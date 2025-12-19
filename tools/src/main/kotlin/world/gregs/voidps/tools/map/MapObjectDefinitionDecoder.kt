@@ -1,6 +1,6 @@
 package world.gregs.voidps.tools.map
 
-import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.data.MapDefinition
@@ -19,11 +19,11 @@ class MapObjectDefinitionDecoder(
         val regionX = definition.id shr 8
         val regionY = definition.id and 0xff
         val objectData = cache.data(Index.MAPS, "l${regionX}_$regionY", xteas?.get(definition.id)) ?: return
-        val reader = BufferReader(objectData)
+        val reader = ArrayReader(objectData)
         decode(reader, definition, modified)
     }
 
-    private fun decode(reader: BufferReader, definition: MapDefinition, modified: Boolean) {
+    private fun decode(reader: ArrayReader, definition: MapDefinition, modified: Boolean) {
         var objectId = -1
         while (true) {
             val skip = reader.readLargeSmart()

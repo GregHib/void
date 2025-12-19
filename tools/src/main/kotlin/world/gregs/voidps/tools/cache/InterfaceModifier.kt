@@ -1,7 +1,7 @@
 package world.gregs.voidps.tools.cache
 
 import com.displee.cache.CacheLibrary
-import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinitionFull
@@ -19,7 +19,7 @@ abstract class InterfaceModifier {
             // Read interface definition
             val definition = InterfaceComponentDefinitionFull()
             with(interfaceDecoder) {
-                definition.read(BufferReader(data))
+                definition.read(ArrayReader(data))
             }
 
             val mod = modifications[file] ?: continue

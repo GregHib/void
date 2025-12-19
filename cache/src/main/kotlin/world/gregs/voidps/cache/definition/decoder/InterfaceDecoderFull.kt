@@ -1,6 +1,6 @@
 package world.gregs.voidps.cache.definition.decoder
 
-import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
@@ -36,7 +36,7 @@ class InterfaceDecoderFull : DefinitionDecoder<InterfaceDefinitionFull>(INTERFAC
         for (i in 0..lastArchive) {
             val data = cache.data(index, archiveId, i)
             if (data != null) {
-                components[i].read(BufferReader(data))
+                components[i].read(ArrayReader(data))
             }
         }
         definition.components = components

@@ -1,7 +1,7 @@
 package world.gregs.voidps.tools.cache
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
-import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Region
@@ -57,7 +57,7 @@ data class Xteas(
 
         fun loadBinary(file: File): Map<Int, IntArray> {
             val xteas = Int2ObjectOpenHashMap<IntArray>()
-            val reader = BufferReader(file.readBytes())
+            val reader = ArrayReader(file.readBytes())
             while (reader.remaining > 0) {
                 val region = reader.readShort()
                 xteas[region] = IntArray(4) { reader.readInt() }

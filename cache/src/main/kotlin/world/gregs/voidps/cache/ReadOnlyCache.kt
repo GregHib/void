@@ -2,7 +2,7 @@ package world.gregs.voidps.cache
 
 import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
-import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.cache.compress.DecompressionContext
 import world.gregs.voidps.cache.secure.VersionTableBuilder
 import world.gregs.voidps.cache.secure.Whirlpool
@@ -51,7 +51,7 @@ abstract class ReadOnlyCache(indexCount: Int) : Cache {
             }
         }
 
-        val reader = BufferReader(decompressed)
+        val reader = ArrayReader(decompressed)
         val rawArray = reader.array()
         var fileDataSizesOffset = decompressed.size
         val chunkSize: Int = rawArray[--fileDataSizesOffset].toInt() and 0xFF
@@ -107,7 +107,7 @@ abstract class ReadOnlyCache(indexCount: Int) : Cache {
         }
         versionTable?.sector(indexId, archiveSector, whirlpool)
         val decompressed = context.decompress(archiveSector) ?: return -1
-        val reader = BufferReader(decompressed)
+        val reader = ArrayReader(decompressed)
         val version = reader.readUnsignedByte()
         if (version < 5 || version > 7) {
             throw RuntimeException("Unknown version: $version")
@@ -200,7 +200,7 @@ abstract class ReadOnlyCache(indexCount: Int) : Cache {
         private const val SECTOR_HEADER_SIZE_BIG = 10
         private const val SECTOR_DATA_SIZE_BIG = 510
 
-        private fun BufferReader.readSmart(version: Int) = if (version >= 7) readBigSmart() else readUnsignedShort()
+        private fun ArrayReader.readSmart(version: Int) = if (version >= 7) readBigSmart() else readUnsignedShort()
 
         /**
          * Reads a section of a cache's archive
@@ -213,7 +213,7 @@ abstract class ReadOnlyCache(indexCount: Int) : Cache {
             val sectorData = ByteArray(SECTOR_SIZE)
             raf.read(sectorData, 0, INDEX_SIZE)
             val bigSector = sectorId > 65535
-            val buffer = BufferReader(sectorData)
+            val buffer = ArrayReader(sectorData)
             val sectorSize = buffer.readUnsignedMedium()
             var sectorPosition = buffer.readUnsignedMedium()
             if (sectorSize < 0 || sectorPosition <= 0 || sectorPosition > mainFile.length() / SECTOR_SIZE) {

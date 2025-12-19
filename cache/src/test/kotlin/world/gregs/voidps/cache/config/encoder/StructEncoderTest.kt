@@ -2,7 +2,7 @@ package world.gregs.voidps.cache.config.encoder
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.config.data.StructDefinition
@@ -28,7 +28,7 @@ class StructEncoderTest {
         }
 
         val actual = StructDefinition()
-        val reader = BufferReader(writer.toArray())
+        val reader = ArrayReader(writer.toArray())
         decoder.readLoop(actual, reader)
 
         assertEquals(definition, actual)
@@ -43,7 +43,7 @@ class StructEncoderTest {
         }
 
         val actual = StructDefinition()
-        val reader = BufferReader(writer.toArray())
+        val reader = ArrayReader(writer.toArray())
         decoder.readLoop(actual, reader)
 
         assertEquals(definition, actual)
@@ -58,7 +58,7 @@ class StructEncoderTest {
         }
 
         val actual = StructDefinition()
-        val reader = BufferReader(writer.toArray())
+        val reader = ArrayReader(writer.toArray())
         decoder.readLoop(actual, reader)
 
         assertEquals(StructDefinition.EMPTY, actual)
@@ -73,7 +73,7 @@ class StructEncoderTest {
         }
 
         val actual = StructDefinition()
-        val reader = BufferReader(writer.toArray())
+        val reader = ArrayReader(writer.toArray())
         decoder.readLoop(actual, reader)
 
         assertEquals(StructDefinition.EMPTY, actual)

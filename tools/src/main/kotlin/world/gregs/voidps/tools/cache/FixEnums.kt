@@ -1,7 +1,7 @@
 package world.gregs.voidps.tools.cache
 
 import com.displee.cache.CacheLibrary
-import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Index
@@ -37,7 +37,7 @@ object FixEnums {
         for ((id, fixes) in enumFixes) {
             val definition = EnumDefinition(id)
             val data = library.data(indexId, decoder.getArchive(id), decoder.getFile(id)) ?: continue
-            val buffer = BufferReader(data)
+            val buffer = ArrayReader(data)
             decoder.readLoop(definition, buffer)
             val map = definition.map!! as MutableMap
             for ((key, value) in fixes) {
@@ -53,7 +53,7 @@ object FixEnums {
             }
             val out = writer.toArray()
             val actual = EnumDefinition()
-            decoder.readLoop(actual, BufferReader(out))
+            decoder.readLoop(actual, ArrayReader(out))
             library.put(indexId, decoder.getArchive(definition.id), decoder.getFile(definition.id), out)
         }
         index.flag()

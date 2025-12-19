@@ -1,7 +1,7 @@
 package world.gregs.voidps.tools.cache
 
 import com.displee.cache.CacheLibrary
-import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
@@ -52,7 +52,7 @@ object MoveCameraClientScript {
                 // Read interface definition
                 val definition = InterfaceComponentDefinitionFull()
                 with(interfaceDecoder) {
-                    definition.read(BufferReader(data))
+                    definition.read(ArrayReader(data))
                 }
 
                 // Find component with script
@@ -83,7 +83,7 @@ object MoveCameraClientScript {
         val scriptData = otherCache.data(Index.CLIENT_SCRIPTS, SCRIPT_ID)!!
         val scriptDef = ClientScriptDefinition()
         scriptDef.id = SCRIPT_ID
-        scriptDecoder.readLoop(scriptDef, BufferReader(scriptData))
+        scriptDecoder.readLoop(scriptDef, ArrayReader(scriptData))
         return scriptDef
     }
 

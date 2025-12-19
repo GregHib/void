@@ -1,6 +1,6 @@
 package world.gregs.voidps.tools.map.render.draw
 
-import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index.DEFAULTS
 import world.gregs.voidps.cache.Index.WORLD_MAP
@@ -35,7 +35,7 @@ class MinimapIconPainter(
         var index = 0
         while (length > counter) {
             val file = cache.data(WORLD_MAP, archiveId, index++) ?: continue
-            val buffer = BufferReader(file)
+            val buffer = ArrayReader(file)
             val position = buffer.readInt()
             val id = buffer.readShort()
             val skip = buffer.readUnsignedByte()

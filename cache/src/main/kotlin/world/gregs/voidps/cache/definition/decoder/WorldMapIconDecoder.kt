@@ -1,6 +1,6 @@
 package world.gregs.voidps.cache.definition.decoder
 
-import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
@@ -29,7 +29,7 @@ class WorldMapIconDecoder : DefinitionDecoder<WorldMapIconDefinition>(WORLD_MAP)
             val icons = mutableListOf<WorldMapIcon>()
             while (length > counter) {
                 val data = cache.data(this.index, archive, index++) ?: continue
-                val buffer = BufferReader(data)
+                val buffer = ArrayReader(data)
                 val position = buffer.readInt()
                 val iconId = buffer.readShort()
                 val skip = buffer.readUnsignedByte()

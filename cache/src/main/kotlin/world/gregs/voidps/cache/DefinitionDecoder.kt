@@ -1,7 +1,7 @@
 package world.gregs.voidps.cache
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.read.Reader
 import java.nio.BufferUnderflowException
 
@@ -41,7 +41,7 @@ abstract class DefinitionDecoder<T : Definition>(val index: Int) {
         val archive = getArchive(id)
         val file = getFile(id)
         val data = cache.data(index, archive, file) ?: return
-        read(definitions, id, BufferReader(data))
+        read(definitions, id, ArrayReader(data))
     }
 
     open fun getFile(id: Int) = id

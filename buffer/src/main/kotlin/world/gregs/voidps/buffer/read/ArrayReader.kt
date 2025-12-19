@@ -2,23 +2,30 @@ package world.gregs.voidps.buffer.read
 
 import java.nio.ByteBuffer
 
-class BufferReader(
-    val buffer: ByteBuffer,
+class ArrayReader(
+    array: ByteArray = ByteArray(0)
 ) : Reader {
+    var array: ByteArray = array
+        private set
 
-    constructor(array: ByteArray) : this(buffer = ByteBuffer.wrap(array))
+    constructor(buffer: ByteBuffer) : this(buffer.array())
 
-    override val length: Int = buffer.remaining()
+    override var length = array.size
+    var position = 0
     override val remaining: Int
-        get() = buffer.remaining()
-
-    override fun peek(): Int {
-        return buffer.get(buffer.position()).toInt()
-    }
-
+        get() = length - position
     private var bitIndex = 0
 
-    override fun readByte(): Int = buffer.get().toInt()
+    fun set(array: ByteArray) {
+        position = 0
+        bitIndex = 0
+        length = array.size
+        this.array = array
+    }
+
+    override fun peek(): Int = array[position].toInt()
+
+    override fun readByte(): Int = array[position++].toInt()
 
     override fun readByteAdd(): Int = (readByte() - 128).toByte().toInt()
 
@@ -92,68 +99,52 @@ class BufferReader(
     }
 
     override fun readString(): String {
-        if (buffer.hasArray()) {
-            val array = buffer.array()
-            val offset = buffer.arrayOffset() + position()
-            val start = offset
-            var pos = offset
-
-            // Find null terminator
-            while (array[pos] != 0.toByte()) {
-                pos++
+        val sb = StringBuilder()
+        var b: Int
+        while (remaining > 0) {
+            b = readUnsignedByte()
+            if (b == 0) {
+                break
             }
-
-            val length = pos - start
-            position(position() + length + 1)
-
-            return String(array, start, length, Charsets.UTF_8)
-        } else {
-            // Fallback for direct buffers
-            val start = position()
-            var pos = start
-            while (buffer.get(pos) != 0.toByte()) {
-                pos++
-            }
-
-            val length = pos - start
-            val bytes = ByteArray(length)
-            buffer.position(start)
-            buffer.get(bytes)
-            buffer.position(pos + 1)
-
-            return String(bytes, Charsets.UTF_8)
+            sb.append(b.toChar())
         }
+        String()
+        return sb.toString()
     }
 
     override fun readBytes(value: ByteArray) {
-        buffer.get(value)
+        for (i in value.indices) {
+            value[i] = readByte().toByte()
+        }
     }
 
     override fun readBytes(array: ByteArray, offset: Int, length: Int) {
-        buffer.get(array, offset, length)
+        for (i in 0 until length) {
+            array[offset + i] = readByte().toByte()
+        }
     }
 
     override fun skip(amount: Int) {
-        buffer.position(buffer.position() + amount)
+        position += amount
     }
 
-    override fun position(): Int = buffer.position()
+    override fun position(): Int = position
 
     override fun position(index: Int) {
-        buffer.position(index)
+        position = index
     }
 
-    override fun array(): ByteArray = buffer.array()
+    override fun array(): ByteArray = array
 
-    override fun readableBytes(): Int = buffer.remaining()
+    override fun readableBytes(): Int = remaining
 
     override fun startBitAccess(): Reader {
-        bitIndex = buffer.position() * 8
+        bitIndex = position() * 8
         return this
     }
 
     override fun stopBitAccess(): Reader {
-        buffer.position((bitIndex + 7) / 8)
+        position((bitIndex + 7) / 8)
         return this
     }
 
@@ -170,14 +161,14 @@ class BufferReader(
         bitIndex += bitCount
 
         while (bitCount > bitOffset) {
-            value += buffer.get(bytePos++).toInt() and BIT_MASKS[bitOffset] shl bitCount - bitOffset
+            value += array[bytePos++].toInt() and BIT_MASKS[bitOffset] shl bitCount - bitOffset
             bitCount -= bitOffset
             bitOffset = 8
         }
         value += if (bitCount == bitOffset) {
-            buffer.get(bytePos).toInt() and BIT_MASKS[bitOffset]
+           array[bytePos].toInt() and BIT_MASKS[bitOffset]
         } else {
-            buffer.get(bytePos).toInt() shr bitOffset - bitCount and BIT_MASKS[bitCount]
+           array[bytePos].toInt() shr bitOffset - bitCount and BIT_MASKS[bitCount]
         }
         return value
     }
