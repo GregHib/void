@@ -9,6 +9,7 @@ import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.type.field.FieldCodec
 
 open class ByteArrayCodec(val field: FieldCodec<Int>, val size: FieldCodec<Int> = UnsignedByteCodec) : FieldCodec<ByteArray> {
+    override fun bytes(value: ByteArray): Int = size.bytes(0) + value.size * field.bytes(0)
     override fun readBinary(reader: Reader) = ByteArray(size.readBinary(reader)) { field.readBinary(reader).toByte() }
 
     override fun writeBinary(writer: Writer, value: ByteArray) {
@@ -32,26 +33,27 @@ open class ByteArrayCodec(val field: FieldCodec<Int>, val size: FieldCodec<Int> 
         }
     }
 
-    companion object : ByteArrayCodec(ByteCodec)
+    companion object : ByteArrayCodec(IntCodec)
 }
 
-open class NullByteArrayCodec(val field: FieldCodec<Int>, val size: FieldCodec<Int> = UnsignedByteCodec) : FieldCodec<ByteArray?> {
+open class NullByteArrayCodec(val field: FieldCodec<Byte>, val size: FieldCodec<Int> = UnsignedByteCodec) : FieldCodec<ByteArray?> {
+    override fun bytes(value: ByteArray?): Int = size.bytes(-1) + if (value != null) value.size * field.bytes(-1) else 0
     override fun readBinary(reader: Reader): ByteArray? {
         val size = size.readBinary(reader)
-        if (size == -1) {
+        if (size == 0) {
             return null
         }
-        return ByteArray(size) { field.readBinary(reader).toByte() }
+        return ByteArray(size) { field.readBinary(reader) }
     }
 
     override fun writeBinary(writer: Writer, value: ByteArray?) {
         if (value == null) {
-            size.writeBinary(writer, -1)
+            size.writeBinary(writer, 0)
             return
         }
         size.writeBinary(writer, value.size)
         for (v in value) {
-            field.writeBinary(writer, v.toInt())
+            field.writeBinary(writer, v)
         }
     }
 
@@ -63,7 +65,7 @@ open class NullByteArrayCodec(val field: FieldCodec<Int>, val size: FieldCodec<I
         }
         val list = mutableListOf<Byte>()
         while (reader.nextElement()) {
-            list.add(field.readConfig(reader).toByte())
+            list.add(field.readConfig(reader))
         }
         return list.toByteArray()
     }

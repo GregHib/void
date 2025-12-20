@@ -16,6 +16,7 @@ open class ArrayCodec<T>(
     val size: FieldCodec<Int> = UnsignedByteCodec,
     val create: (Int, block: (Int) -> T) -> Array<T>,
 ) : FieldCodec<Array<T>> {
+    override fun bytes(value: Array<T>): Int = size.bytes(value.size) + value.sumOf { field.bytes(it) }
     override fun readBinary(reader: Reader) = create(size.readBinary(reader)) { field.readBinary(reader) }
 
     override fun writeBinary(writer: Writer, value: Array<T>) {
@@ -45,9 +46,10 @@ open class NullArrayCodec<T>(
     val size: FieldCodec<Int> = UnsignedByteCodec,
     val create: (Int, block: (Int) -> T) -> Array<T>,
 ) : FieldCodec<Array<T>?> {
+    override fun bytes(value: Array<T>?): Int = if (value == null) size.bytes(0) else size.bytes(value.size) + value.sumOf { field.bytes(it) }
     override fun readBinary(reader: Reader): Array<T>? {
         val size = size.readBinary(reader)
-        if (size == -1) {
+        if (size == 0) {
             return null
         }
         return create(size) { field.readBinary(reader) }
@@ -55,7 +57,7 @@ open class NullArrayCodec<T>(
 
     override fun writeBinary(writer: Writer, value: Array<T>?) {
         if (value == null) {
-            size.writeBinary(writer, -1)
+            size.writeBinary(writer, 0)
             return
         }
         size.writeBinary(writer, value.size)

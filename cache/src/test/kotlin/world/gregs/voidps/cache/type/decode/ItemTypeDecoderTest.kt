@@ -3,8 +3,8 @@ package world.gregs.voidps.cache.type.decode
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.config.ConfigReader
-import world.gregs.voidps.buffer.read.BufferReader
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.read.ArrayReader
+import world.gregs.voidps.buffer.write.ArrayWriter
 import java.io.BufferedInputStream
 import java.io.StringWriter
 
@@ -15,11 +15,11 @@ class ItemTypeDecoderTest {
         val decoder = ItemTypeDecoder()
         fill(decoder)
 
-        val writer = BufferWriter(1024)
-        decoder.writeBinary(writer)
+        val writer = ArrayWriter(1024)
+        decoder.writePacked(writer)
 
         val newDecoder = ItemTypeDecoder()
-        val reader = BufferReader(writer.array())
+        val reader = ArrayReader(writer.array())
         newDecoder.readBinary(reader)
         newDecoder.id.value = 10
         newDecoder.stringId.value = "item_id"

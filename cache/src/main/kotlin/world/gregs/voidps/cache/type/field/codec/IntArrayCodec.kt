@@ -9,6 +9,7 @@ import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.type.field.FieldCodec
 
 open class IntArrayCodec(val field: FieldCodec<Int>, val size: FieldCodec<Int> = UnsignedByteCodec) : FieldCodec<IntArray> {
+    override fun bytes(value: IntArray): Int = size.bytes(0) + value.size * field.bytes(0)
     override fun readBinary(reader: Reader) = IntArray(size.readBinary(reader)) { field.readBinary(reader) }
 
     override fun writeBinary(writer: Writer, value: IntArray) {
@@ -36,9 +37,10 @@ open class IntArrayCodec(val field: FieldCodec<Int>, val size: FieldCodec<Int> =
 }
 
 open class NullIntArrayCodec(val field: FieldCodec<Int>, val size: FieldCodec<Int> = UnsignedByteCodec) : FieldCodec<IntArray?> {
+    override fun bytes(value: IntArray?): Int = size.bytes(-1) + if (value != null) value.size * field.bytes(-1) else 0
     override fun readBinary(reader: Reader): IntArray? {
         val size = size.readBinary(reader)
-        if (size == -1) {
+        if (size == 0) {
             return null
         }
         return IntArray(size) { field.readBinary(reader) }
@@ -46,7 +48,7 @@ open class NullIntArrayCodec(val field: FieldCodec<Int>, val size: FieldCodec<In
 
     override fun writeBinary(writer: Writer, value: IntArray?) {
         if (value == null) {
-            size.writeBinary(writer, -1)
+            size.writeBinary(writer, 0)
             return
         }
         size.writeBinary(writer, value.size)

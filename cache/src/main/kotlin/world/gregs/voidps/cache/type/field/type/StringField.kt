@@ -1,26 +1,23 @@
-package world.gregs.voidps.cache.type.field
+package world.gregs.voidps.cache.type.field.type
 
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.buffer.write.Writer
-import world.gregs.voidps.cache.type.field.type.StringField
+import world.gregs.voidps.cache.type.field.FieldCodec
+import world.gregs.voidps.cache.type.field.PrimitiveField
+import world.gregs.voidps.cache.type.field.codec.NullStringCodec
+import world.gregs.voidps.cache.type.field.codec.StringCodec
 
-/**
- * Base class for all field types.
- *
- * A field handles the serialization and deserialization of a single property
- * in both binary and [world.gregs.config.Config] formats.
- */
-open class ValueField<T : Any>(
-    override val default: T,
-    override val codec: FieldCodec<T>,
-    create: () -> Array<T>,
-) : PrimitiveField<T> {
+class StringField(
+    size: Int,
+    override val default: String,
+    override val codec: FieldCodec<String> = StringCodec
+) : PrimitiveField<String> {
 
-    val data = create()
+    val data = Array(size) { default }
 
     override fun get(index: Int) = data[index]
 
-    override fun set(index: Int, value: T) {
+    override fun set(index: Int, value: String) {
         data[index] = value
     }
 
@@ -56,17 +53,17 @@ open class ValueField<T : Any>(
 
 }
 
-class NullValueField<T : Any>(
-    override val codec: FieldCodec<T?>,
-    create:() -> Array<T?>,
-) : PrimitiveField<T?> {
+class NullStringField(
+    size: Int,
+    override val codec: FieldCodec<String?> = NullStringCodec
+) : PrimitiveField<String?> {
 
-    override val default: T? = null
-    val data = create()
+    override val default: String? = null
+    val data = arrayOfNulls<String?>(size)
 
     override fun get(index: Int) = data[index]
 
-    override fun set(index: Int, value: T?) {
+    override fun set(index: Int, value: String?) {
         data[index] = value
     }
 
@@ -77,12 +74,12 @@ class NullValueField<T : Any>(
     }
 
     override fun writeDirect(writer: Writer) {
-        for (value in data) {
-            codec.writeBinary(writer, value)
+        for (string in data) {
+            codec.writeBinary(writer, string)
         }
     }
 
-    override fun directSize(): Int = data.sumOf { codec.bytes(it) }
+    override fun directSize(): Int = data.size * 4
 
     override fun clear() = data.fill(default)
 

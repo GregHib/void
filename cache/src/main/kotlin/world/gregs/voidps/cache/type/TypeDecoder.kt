@@ -6,12 +6,30 @@ import world.gregs.config.writeSection
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.type.field.*
-import world.gregs.voidps.cache.type.field.type.IndexedStringArrayField
-import world.gregs.voidps.cache.type.field.codec.*
-import world.gregs.voidps.cache.type.field.type.ColourField
-import world.gregs.voidps.cache.type.field.type.FieldPair
-import world.gregs.voidps.cache.type.field.type.FieldTriple
-import world.gregs.voidps.cache.type.field.type.ParameterField
+import world.gregs.voidps.cache.type.field.codec.BooleanCodec
+import world.gregs.voidps.cache.type.field.codec.ByteCodec
+import world.gregs.voidps.cache.type.field.codec.IntCodec
+import world.gregs.voidps.cache.type.field.codec.LiteralCodec
+import world.gregs.voidps.cache.type.field.codec.NullByteArrayCodec
+import world.gregs.voidps.cache.type.field.codec.NullIntArrayCodec
+import world.gregs.voidps.cache.type.field.codec.NullShortArrayCodec
+import world.gregs.voidps.cache.type.field.codec.NullStringArrayCodec
+import world.gregs.voidps.cache.type.field.codec.ShortCodec
+import world.gregs.voidps.cache.type.field.codec.StringArrayCodec
+import world.gregs.voidps.cache.type.field.type.BooleanField
+import world.gregs.voidps.cache.type.field.type.ByteField
+import world.gregs.voidps.cache.type.field.type.PairField
+import world.gregs.voidps.cache.type.field.type.TripleField
+import world.gregs.voidps.cache.type.field.custom.IndexedNullIntArraysField
+import world.gregs.voidps.cache.type.field.custom.IndexedStringArrayField
+import world.gregs.voidps.cache.type.field.type.IntField
+import world.gregs.voidps.cache.type.field.type.NullStringField
+import world.gregs.voidps.cache.type.field.custom.ParameterField
+import world.gregs.voidps.cache.type.field.custom.ShortArraysField
+import world.gregs.voidps.cache.type.field.type.ShortField
+import world.gregs.voidps.cache.type.field.type.StringField
+import world.gregs.voidps.cache.type.field.type.UByteField
+import world.gregs.voidps.cache.type.field.type.UShortField
 
 /**
  * Base class for defining the schema and serialization logic for a [Type].
@@ -46,25 +64,40 @@ import world.gregs.voidps.cache.type.field.type.ParameterField
  *
  * @param T The Type that this decoder creates
  */
-abstract class TypeDecoder<T : Type>(val size: Int = 256) {
+abstract class TypeDecoder<T : Type>(val size: Int, val opcodeSize: Int = 256) {
 
     init {
-        check(size <= 256) { "Field size cannot exceed 256: $size" }
+        check(opcodeSize <= 256) { "Field size cannot exceed 256: $opcodeSize" }
     }
 
-    abstract val id: ValueField<Int>
+    abstract val id: AccessibleField<Int>
+    abstract val stringId: AccessibleField<String>
 
     /**
      * Maps opcodes to their corresponding fields for binary serialization.
      */
-    val fields: Array<TypeField?> = arrayOfNulls(size)
+    val fields: Array<Field?> = arrayOfNulls(opcodeSize)
+
+    val keys: MutableMap<String, Field> = mutableMapOf()
 
     /**
      * Creates a new instance of the Type using the current field values.
      */
-    abstract fun create(): T
+    abstract fun create(index: Int): T
 
+    /**
+     * Load a type back into the memory of this decoder.
+     */
     abstract fun load(type: T)
+
+    /**
+     * Load all types into memory.
+     */
+    fun load(types: List<T>) {
+        for (type in types) {
+            load(type)
+        }
+    }
 
     open fun loaded(types: Array<T?>) {}
 
@@ -81,66 +114,100 @@ abstract class TypeDecoder<T : Type>(val size: Int = 256) {
         Methods to help create and registers common fields with their opcodes.
      */
 
-    fun bool(key: String, default: Boolean, opcode: Int) = register(opcode, key, default, BooleanCodec)
+    fun bool(key: String, default: Boolean, opcode: Int) = register(opcode, key, BooleanField(size, default))
 
-    fun boolLiteral(key: String, default: Boolean, value: Boolean, opcode: Int) = register(opcode, key, default, LiteralCodec(value, BooleanCodec))
+    fun bool(key: String, default: Boolean, literal: Boolean, opcode: Int) = register(opcode, key, BooleanField(size, default, LiteralCodec(literal, BooleanCodec)))
 
-    fun byte(key: String, default: Int, opcode: Int) = register(opcode, key, default, ByteCodec)
+    /** Byte - Key */
+    fun byte(key: String, default: Byte) = registerKey(key, ByteField(size, default))
 
-    fun byteArray(key: String, opcode: Int) = register(opcode, key, null, NullByteArrayCodec)
+    /** Byte - Key + Opcode */
+    fun byte(key: String, default: Byte, opcode: Int) = register(opcode, key, ByteField(size, default))
 
-    fun ubyte(key: String, default: Int, opcode: Int) = register(opcode, key, default, UnsignedByteCodec)
+    /** Byte Literal - Key + Opcode */
+    fun byte(key: String, default: Byte, literal: Byte, opcode: Int) = register(opcode, key, ByteField(size, default, LiteralCodec(literal, ByteCodec)))
 
-    fun short(key: String, default: Int, opcode: Int) = register(opcode, key, default, ShortCodec)
+    /** Unsigned Byte - Key */
+    fun ubyte(key: String, default: Int) = registerKey(key, UByteField(size, default))
 
-    fun ushort(key: String, default: Int, opcode: Int) = register(opcode, key, default, UnsignedShortCodec)
+    /** Unsigned Byte - Key + Opcode */
+    fun ubyte(key: String, default: Int, opcode: Int) = register(opcode, key, UByteField(size, default))
 
-    fun shortArray(key: String, opcode: Int) = register(opcode, key, null, NullShortArrayCodec)
+    fun byteArray(key: String, opcode: Int) = register(opcode, key, nullValue(size, NullByteArrayCodec))
 
-    fun int(key: String, default: Int, opcode: Int) = register(opcode, key, default, IntCodec)
+    /** Short - Key */
+    fun short(key: String, default: Short) = registerKey(key, ShortField(size, default))
 
-    fun intLiteral(key: String, default: Int, value: Int, opcode: Int) = register(opcode, key, default, LiteralCodec(value, IntCodec))
+    /** Short - Key + Opcode */
+    fun short(key: String, default: Short, opcode: Int) = register(opcode, key, ShortField(size, default))
 
-    fun intArray(key: String, opcode: Int) = register(opcode, key, null, NullIntArrayCodec)
+    /** Short Literal - Key + Opcode */
+    fun short(key: String, default: Short, literal: Short, opcode: Int) = register(opcode, key, ShortField(size, default, LiteralCodec(literal, ShortCodec)))
 
-    fun string(key: String, default: String, opcode: Int) = register(opcode, key, default, StringCodec)
+    /** Unsigned Short - Key */
+    fun ushort(key: String, default: Int) = registerKey(key, UShortField(size, default))
 
-    fun string(key: String, opcode: Int): ValueField<String?> {
-        return register(opcode, key, null, NullStringCodec)
+    /** Unsigned Short - Key + Opcode */
+    fun ushort(key: String, default: Int, opcode: Int) = register(opcode, key, UShortField(size, default))
+
+    fun shortArray(key: String, opcode: Int) = register(opcode, key, nullValue(size, NullShortArrayCodec))
+
+    /** Int - Key */
+    fun int(key: String, default: Int) = registerKey(key, IntField(size, default, IntCodec))
+
+    /** Int - Key + Opcode */
+    fun int(key: String, default: Int, opcode: Int) = register(opcode, key, IntField(size, default, IntCodec))
+
+    /** Int Literal - Key + Opcode */
+    fun int(key: String, default: Int, literal: Int, opcode: Int) = register(opcode, key, IntField(size, default, LiteralCodec(literal, IntCodec)))
+
+    fun intArray(key: String, opcode: Int) = register(opcode, key, nullValue(size, NullIntArrayCodec))
+
+    /** Nullable String - Key + Opcode */
+    fun string(key: String, opcode: Int) = register(opcode, key, NullStringField(size))
+
+    /** String - Key + Opcode */
+    fun string(key: String, default: String, opcode: Int) = register(opcode, key, StringField(size, default))
+
+    fun stringArray(key: String, default: Array<String>, opcode: Int) = register(opcode, key, value(size, default, StringArrayCodec))
+
+    fun stringArray(key: String, opcode: Int) = register(opcode, key, nullValue(size, NullStringArrayCodec))
+
+    fun shortArrays(first: String, second: String, opcode: Int): ShortArraysField {
+        val field = ShortArraysField(size, first, second)
+        registerKey(first, field)
+        registerKey(second, field)
+        registerField(opcode, field)
+        return field
     }
 
-    fun stringArray(key: String, default: Array<String>, opcode: Int) = register(opcode, key, default, ArrayCodec(StringCodec) { size, block -> Array(size, block) })
-
-    fun stringArray(key: String, opcode: Int) = register(opcode, key, null, NullArrayCodec(StringCodec) { size, block -> Array(size, block) })
-
     fun indexedStringArray(key: String, default: Array<String?>, opcodes: IntRange): IndexedStringArrayField {
-        val field = IndexedStringArrayField(key, default, opcodes.first)
+        val field = IndexedStringArrayField(size, default, opcodes.first)
+        registerKey(key, field)
         for (opcode in opcodes) {
-            register(opcode, field)
+            registerField(opcode, field)
         }
         return field
     }
 
-    fun map(key: String, fields: Map<String, FieldCodec<out Any>>, opcode: Int) = register(opcode, key, null, NullMapCodec(fields))
+    inline fun <reified T : Any> value(size: Int, default: T, codec: FieldCodec<T>): ValueField<T> = ValueField(default, codec, create = { Array(size) { default } })
 
-    fun map(key: String, default: Map<String, Any>, fields: Map<String, FieldCodec<out Any>>, opcode: Int) = register(opcode, key, default, MapCodec(fields))
+    inline fun <reified T : Any> nullValue(size: Int, codec: FieldCodec<T?>): NullValueField<T> = NullValueField(codec, create = { arrayOfNulls(size) })
 
-    inline fun <reified T> array(key: String, field: FieldCodec<T>, opcode: Int) = register(opcode, key, null, NullArrayCodec(field) { size, block -> Array(size, block) })
+    fun pair(first: PrimitiveField<*>, second: PrimitiveField<*>, opcode: Int) = registerField(opcode, PairField(first, second))
 
-    inline fun <reified T> array(key: String, default: Array<T>, field: FieldCodec<T>, opcode: Int) = register(opcode, key, default, ArrayCodec(field) { size, block -> Array(size, block) })
+    fun triple(first: PrimitiveField<*>, second: PrimitiveField<*>, third: PrimitiveField<*>, opcode: Int) = registerField(opcode, TripleField(first, second, third))
 
-    operator fun <T : Any?> FieldCodec<T>.invoke(key: String, default: T) = ValueField(key, default, this)
-
-    fun <A, B> pair(first: ValueField<A>, second: ValueField<B>, opcode: Int) = register(opcode, FieldPair(first, second))
-
-    fun <A, B, C> triple(first: ValueField<A>, second: ValueField<B>, third: ValueField<C>, opcode: Int) = register(opcode, FieldTriple(first, second, third))
-
-    fun colours(original: String, modified: String, opcode: Int) = register(opcode, ColourField(original, modified))
+    fun stacks(idKey: String, amountKey: String, opcodes: IntRange) = register(IndexedNullIntArraysField(size, idKey, amountKey, opcodes.first), opcodes = opcodes)
 
     fun params(opcode: Int, block: ParameterBuilder.() -> Unit): ParameterField {
         val builder = ParameterBuilder()
         block.invoke(builder)
-        return register(opcode, ParameterField(builder.paramIds, builder.params, builder.transforms, builder.transformIds, builder.renames, builder.originals))
+        val field = ParameterField(size, builder.paramIds)
+        for (key in builder.paramIds.keys) {
+            registerKey(key, field)
+        }
+        return registerField(opcode, field)
     }
 
     /**
@@ -256,9 +323,21 @@ abstract class TypeDecoder<T : Type>(val size: Int = 256) {
         }
     }
 
-    fun <T : Any?> register(opcode: Int, key: String, default: T, codec: FieldCodec<T>) = register(opcode, ValueField(key, default, codec))
 
-    inline fun <reified F : TypeField> register(opcode: Int, field: F): F {
+    inline fun <reified F : Field> register(field: F, opcodes: IntRange): F {
+        for (opcode in opcodes) {
+            registerField(opcode, field)
+        }
+        return field
+    }
+
+    inline fun <reified F : Field> register(opcode: Int, key: String, field: F): F {
+        registerKey(key, field)
+        registerField(opcode, field)
+        return field
+    }
+
+    fun <F : Field> registerField(opcode: Int, field: F): F {
         if (opcode > 0 && fields[opcode] != null) {
             error = "Duplicate opcodes: $opcode"
         }
@@ -272,110 +351,87 @@ abstract class TypeDecoder<T : Type>(val size: Int = 256) {
         return field
     }
 
-    inline fun <reified F : TypeField> register(field: F, opcodes: IntRange): F {
+    fun <F : Field> registerKey(key: String, field: F): F {
+        if (keys.containsKey(key)) {
+            error = "Duplicate field key: $key"
+        }
+        keys[key] = field
+        return field
+    }
+
+    inline fun <reified F : Field> register(field: F, key: String, opcodes: IntRange): F {
         for (opcode in opcodes) {
-            register(opcode, field)
+            register(opcode, key, field)
         }
         return field
     }
 
     /**
-     *  Check post-compilation for errors or invalid fields.
+     * Check post-compilation for errors or invalid fields.
      */
     fun check() {
         require(error == null) { error!! }
-        val duplicateKeys = fields
-            .flatMap { it?.keys ?: emptyList() }
-            .groupingBy { it }
-            .eachCount()
-            .filterValues { it > 1 }
-        require(duplicateKeys.isEmpty()) {
-            "Duplicate field names: ${duplicateKeys.keys}"
-        }
     }
 
-    fun join(other: TypeDecoder<T>) {
+    /**
+     * Override [to] values in decoder with non-default values [from] [other].
+     */
+    fun override(other: TypeDecoder<T>, from: Int, to: Int = from) {
         for (i in fields.indices) {
             val field = fields[i] ?: continue
-            field.join(other.fields[i]!!)
+            field.override(other.fields[i]!!, from, to)
         }
     }
 
     /**
-     * Reset all field values to their default state.
+     * Read a single type [index] from a packed binary [reader].
      */
-    fun reset() {
-        for (field in fields) {
-            field?.reset()
-        }
-    }
-
-    private val resetArray = IntArray(size)
-    private var resetIndex = 0
-
-    fun resetFlags() {
-        val resetArray = resetArray
-        val fields = fields
-        for (idx in 0 until resetIndex) {
-            fields[resetArray[idx]]!!.reset()
-        }
-        resetIndex = 0
-    }
-
-    fun flag(code: Int) {
-        resetArray[resetIndex++] = code
-    }
-
-    /**
-     * Read a single type from a binary file.
-     */
-    fun readBinary(reader: Reader): T {
-        resetFlags()
-        loadBinary(reader)
-        return create()
-    }
-
-    fun loadBinary(reader: Reader) {
+    fun readPacked(reader: Reader, index: Int) {
+        val start = reader.position()
         while (true) {
             val code = reader.readUnsignedByte()
             if (code == 0) {
                 break
             }
-            val field = fields[code] ?: throw IllegalArgumentException("Unknown field opcode '$code'. Is it registered with 'add()' in the type decoder?")
-            field.readBinary(reader, code)
-            flag(code)
+            val field = fields[code]
+            if (field == null) {
+                reader.position(start)
+                val list = replay(reader, index, code)
+                throw IllegalArgumentException("Unknown opcode: $code. Is it register in the type decoder? Previous opcodes: $list")
+            }
+            field.readPacked(reader, index, code)
         }
     }
 
     /**
-     * Write a list of types to a binary file.
+     * Replay a packet for debugging purposes.
+     * Note: Decoding errors typically occur reading the last valid opcode before bytes started to be read erroneously.
      */
-    fun writeBinary(writer: Writer, types: List<T>) {
-        for (type in types) {
-            writeBinary(writer, type)
+    private fun replay(reader: Reader, index: Int, code: Int): List<Int> {
+        val list = mutableListOf<Int>()
+        while (true) {
+            val temp = reader.readUnsignedByte()
+            if (temp == code || temp == 0) {
+                break
+            }
+            list.add(temp)
+            fields[code]!!.clear()
+            fields[code]!!.readPacked(reader, index, temp)
         }
+        return list
     }
 
     /**
-     * Write a single type to a binary file.
+     * Write the decoders [index] values to a packed binary [writer].
+     * @param official Whether to skip custom opcodes (250 and above)
      */
-    fun writeBinary(writer: Writer, type: T): Boolean {
-        load(type)
-        return writeBinary(writer)
-    }
-
-    /**
-     * Write the decoders current values to a binary file.
-     */
-    fun writeBinary(writer: Writer, official: Boolean = false): Boolean {
+    fun writePacked(writer: Writer, index: Int, official: Boolean = false): Boolean {
         var written = false
         for ((opcode, field) in fields.withIndex()) {
             if (field == null || (opcode > 249 && official)) {
                 continue
             }
-            if (field.writeBinary(writer, opcode)) {
-                written = true
-            }
+            written = written or field.writePacked(writer, index, opcode)
         }
         if (written) {
             writer.writeByte(0)
@@ -384,80 +440,99 @@ abstract class TypeDecoder<T : Type>(val size: Int = 256) {
     }
 
     /**
-     * Read a list of types from a config file.
+     * Read a single type [index] from a config [reader].
+     * Note: this assumes [stringId] is the section header.
      */
-    fun readConfig(reader: ConfigReader, list: MutableList<T>) {
-        val fields = fieldMap()
-        while (reader.nextSection()) {
-            list.add(readConfig(reader, fields))
-        }
-    }
-
-    /**
-     * Read a single type from a config file.
-     */
-    fun readConfig(reader: ConfigReader, fields: Map<String, TypeField> = fieldMap()): T {
-        reset()
-        loadConfig(reader, fields)
-        return create()
-    }
-
-    fun loadConfig(reader: ConfigReader, fields: Map<String, TypeField> = fieldMap()) {
-        val section = reader.section()
-        (fields["[section]"] as? ValueField<String>)?.value = section
+    fun readConfig(reader: ConfigReader, index: Int) {
+        stringId.set(index, reader.section())
         while (reader.nextPair()) {
             val key = reader.key()
-            val field = fields[key] ?: throw IllegalArgumentException("Unknown field '$key'. Is it registered in the type decoder?")
-            field.readConfig(reader, key)
-        }
-    }
-
-    fun fieldMap(): Map<String, TypeField> = fields.flatMap { field -> field?.keys?.map { key -> key to field } ?: emptyList() }.toMap()
-
-    /**
-     * Read a list of types from a binary file.
-     */
-    fun readConfig(reader: Reader, list: MutableList<T>) {
-        while (reader.remaining > 0) {
-            list.add(this@TypeDecoder.readBinary(reader))
+            val field = keys[key] ?: throw IllegalArgumentException("Unknown field '$key'. Is it registered in the type decoder?")
+            field.readConfig(reader, index, key)
         }
     }
 
     /**
-     * Write a list of types to a config file.
+     * Write the decoders [index] values to a config [writer].
+     * Note: this assumes [stringId] is the section header.
      */
-    fun writeConfig(writer: ConfigWriter, types: List<T>) {
-        val section = findSectionField()
-        for (type in types) {
-            writeConfig(writer, type, section)
-        }
-    }
-
-    /**
-     * Write a single type to a config file.
-     */
-    fun writeConfig(writer: ConfigWriter, type: T, section: ValueField<String> = findSectionField()) {
-        load(type)
-        writeConfig(writer, section)
-    }
-
-    /**
-     * Write the decoders current values to a config file.
-     */
-    fun writeConfig(writer: ConfigWriter, section: ValueField<String> = findSectionField()) {
-        val fields = fields
-        writer.writeSection(section.value)
+    fun writeConfig(writer: ConfigWriter, index: Int) {
+        writer.writeSection(stringId.get(index))
         val written = mutableSetOf<String>()
-        for (field in fields) {
-            if (field == null || field == section) {
+        for ((key, field) in keys) {
+            if (field == stringId) {
                 continue
             }
-            for (key in field.keys) {
-                if (!written.add(key)) {
+            if (!written.add(key)) {
+                continue
+            }
+            field.writeConfig(writer, index, key)
+        }
+    }
+
+    /**
+     * Read all data from [reader]
+     */
+    fun readDirect(reader: Reader) {
+        var index = 0
+        try {
+            for (field in fields) {
+                index++
+                if (field == null) {
                     continue
                 }
-                field.writeConfig(writer, key)
+                field.readDirect(reader)
             }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            throw RuntimeException("Error reading field opcode: ${index - 1}")
+        }
+    }
+
+    /**
+     * Write all data to [writer]
+     * Make sure [writer] capacity exceeds [directSize]
+     */
+    fun writeDirect(writer: Writer) {
+        var index = 0
+        for (field in fields) {
+            if (index++ == 130 && field is PairField) {
+                println("Write ${(field.first as UByteField).data.size} ${(field.first as UByteField).data.take(10)}")
+                println("Write ${(field.second as ShortField).data.size} ${(field.second as ShortField).data.take(10)}")
+            }
+            if (field == null) {
+                continue
+            }
+            val start = writer.position()
+            field.writeDirect(writer)
+            val actual = writer.position() - start
+            val calc = field.directSize()
+            if (actual != calc) {
+                throw IllegalStateException("Field ${fields.indexOf(field)} size mismatch: calculated $calc, actual $actual.")
+            }
+        }
+    }
+
+    /**
+     * Calculate exact size of data to be written by [writeDirect]
+     */
+    fun directSize(): Int {
+        var size = 0
+        for (field in fields) {
+            if (field == null) {
+                continue
+            }
+            size += field.directSize()
+        }
+        return size
+    }
+
+    /**
+     * Clear all field values to their default state.
+     */
+    fun clear() {
+        for (field in fields) {
+            field?.clear()
         }
     }
 
@@ -486,8 +561,7 @@ abstract class TypeDecoder<T : Type>(val size: Int = 256) {
     }
 
     override fun toString(): String {
-        return "TypeDecoder(id=$id, ${fields.filterNotNull().joinToString { "${it.keys.first()}=${it}" }})"
+        return "TypeDecoder(id=$id, fields=${fields.toList()},keys=${keys.keys})"
     }
 
-    private fun findSectionField(): ValueField<String> = fields.firstOrNull { it?.keys?.contains("[section]") ?: false } as? ValueField<String> ?: throw IllegalArgumentException("No section field defined.")
 }

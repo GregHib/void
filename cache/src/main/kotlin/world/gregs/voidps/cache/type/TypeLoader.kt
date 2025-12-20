@@ -1,147 +1,137 @@
 package world.gregs.voidps.cache.type
 
 import world.gregs.config.Config
-import world.gregs.voidps.buffer.read.BufferReader
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.read.ArrayReader
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.Index
-import world.gregs.voidps.cache.type.decode.ItemTypeDecoder
-import world.gregs.voidps.cache.type.types.ItemType
 import java.io.File
 
-abstract class TypeLoader<T: Type>(directory: File, name: String) {
-    val base = directory.resolve("${name}_base.dat")
-    val combined = directory.resolve("${name}.dat")
-    open val bufferSize = 1_000_000
+/**
+ * Relevant [Cache] info for loading data for a given [Type]
+ */
+abstract class TypeLoader<T : Type>(directory: File?, name: String) {
+    val base = directory?.resolve("${name}_base.dat")
+    val full = directory?.resolve("${name}.dat")
     abstract val index: Int
     open val maxString = 100
 
+    /**
+     * @return The number of [Type]s in the [Cache]
+     */
     open fun size(cache: Cache) = cache.lastArchiveId(index) * 256 + (cache.fileCount(index, cache.lastArchiveId(index)))
 
-    open fun file(id: Int) = id
-
-    open fun archive(id: Int) = id
-
+    /**
+     * Creates an array of a specified size and populates it with [block].
+     */
     abstract fun create(size: Int, block: (Int) -> T? = { null }): Array<T?>
 
-    abstract fun decoder(): TypeDecoder<T>
+    /**
+     * Creates a decoder for the specified [size].
+     */
+    abstract fun decoder(size: Int): TypeDecoder<T>
 
+    /**
+     * Load data from [cache].
+     */
+    abstract fun data(cache: Cache, index: Int): ByteArray?
+
+    /**
+     * Loads data from [cache] and configs [paths] into a type array.
+     * [directory] optionally caches into [base] & [full] for faster future loads.
+     * @param configInvalidated invalidates [full] cache when any config files were changed
+     * @param cacheInvalidated invalidates [base] cache when any config files were changed
+     */
     fun load(cache: Cache, paths: List<String>, configInvalidated: Boolean = false, cacheInvalidated: Boolean = false): Array<T?> {
+        // No caching
+        if (base == null || full == null) {
+            return loadFull(cache, paths)
+        }
         // Fresh start
         if (!base.exists() || cacheInvalidated) {
-            return loadRaw(cache, paths)
+            return loadFull(cache, paths)
         }
         // Config missing
-        if (!combined.exists()) {
-            return reloadBinary(paths)
+        if (!full.exists()) {
+            return reloadConfig(paths)
         }
         // Config files were updated
         if (configInvalidated) {
-            return reloadBinary(paths)
+            return reloadConfig(paths)
         }
         // Load fast
-        val reader = BufferReader(combined.readBytes())
-        return loadBinary(reader)
+        val decoder = loadDirect(full)
+        return create(decoder.size) { decoder.create(it) }
     }
 
     /**
      * Loads data from [cache] and applies config data from [paths].
-     * Stores [base] and [combined] files for faster loading next time.
+     * Stores [base] and [full] files for faster loading next time.
      */
-    fun loadRaw(cache: Cache, paths: List<String>): Array<T?> {
+    internal fun loadFull(cache: Cache, paths: List<String>): Array<T?> {
         val size = size(cache)
-        val reader = BufferReader()
-        val decoder = decoder()
-        val array: Array<T?> = create(size) { id ->
-            val data = cache.data(index, archive(id), file(id)) ?: return@create null
+        val decoder = decoder(size)
+        val reader = ArrayReader()
+        for (i in 0 until size) {
+            val data = data(cache, i) ?: continue
             reader.set(data)
-            decoder.resetFlags()
-            decoder.id.value = id
-            decoder.loadBinary(reader)
-            decoder.create()
+            decoder.readPacked(reader, i)
         }
-        save(array, base)
-        applyConfigs(paths, array)
-        save(array, combined)
-        return array
+        save(decoder, base)
+        applyConfigs(decoder, paths)
+        save(decoder, full)
+        return create(size) { decoder.create(it) }
     }
 
     /**
      * Loads data from [base] and applies newer config data from [paths] onto of it.
-     * Stores [combined] files for fast loading next time.
+     * Stores [full] files for fast loading next time.
      */
-    fun reloadBinary(paths: List<String>): Array<T?> {
-        val reader = BufferReader(base.readBytes())
-        val array = loadBinary(reader)
-        applyConfigs(paths, array)
-        save(array, combined)
-        return array
+    internal fun reloadConfig(paths: List<String>): Array<T?> {
+        val decoder = loadDirect(base!!)
+        applyConfigs(decoder, paths)
+        save(decoder, full)
+        return create(decoder.size) { decoder.create(it) }
     }
 
     /**
-     * Writes [array] to [file] in binary format.
+     * Loads config data from [paths] and applies it to [decoder].
      */
-    private fun save(array: Array<T?>, file: File) {
-        val writer = BufferWriter(bufferSize)
-        writer.writeInt(array.size)
-        val pointer = writer.position()
-        writer.writeInt(0) // Marker
-        var count = 0
-        val decoder = decoder()
-        for (type in array) {
-            type ?: continue
-            decoder.reset()
-            decoder.load(type)
-            if (decoder.writeBinary(writer)) {
-                count++
-            }
-        }
-        val end = writer.position()
-        writer.position(pointer)
-        writer.writeInt(count)
-        writer.position(end)
-        file.writeBytes(writer.toArray())
-    }
-
-    /**
-     * Loads config data from [paths] and applies it onto of [array].
-     */
-    private fun applyConfigs(paths: List<String>, array: Array<T?>) {
-        val decoder = decoder()
-        val combined = decoder()
-        val fields = decoder.fieldMap()
+    fun applyConfigs(decoder: TypeDecoder<T>, paths: List<String>) {
+        val temp = decoder(1)
         for (path in paths) {
             Config.fileReader(path, maxString) {
                 while (nextSection()) {
-                    decoder.reset()
-                    decoder.loadConfig(this, fields)
-                    val id = decoder.id.value
-                    val current = array[id]
-                    if (current == null) {
-                        array[id] = decoder.create()
-                        continue
-                    }
-                    combined.reset()
-                    combined.load(current)
-                    combined.join(decoder)
-                    array[id] = combined.create()
+                    temp.clear()
+                    temp.readConfig(this, 0)
+                    val id = temp.id.get(0)
+                    decoder.override(temp, 0, id)
                 }
             }
         }
     }
 
     /**
+     * Writes [decoder] data to [file] in fast and flat binary format.
+     */
+    internal fun save(decoder: TypeDecoder<T>, file: File?) {
+        if (file == null) {
+            return
+        }
+        val size = decoder.directSize()
+        val writer = ArrayWriter(size + 4 + 10)
+        writer.writeInt(decoder.size)
+        decoder.writeDirect(writer)
+        file.writeBytes(writer.toArray())
+    }
+
+    /**
      * Loads binary format data from [reader].
      */
-    fun loadBinary(reader: BufferReader): Array<T?> {
+    fun loadDirect(file: File): TypeDecoder<T> {
+        val reader = ArrayReader(file.readBytes())
         val size = reader.readInt()
-        val count = reader.readInt()
-        val decoder = decoder()
-        val array = create(size) { null }
-        for (i in 0 until count) {
-            val type = decoder.readBinary(reader)
-            array[type.id] = type
-        }
-        return array
+        val decoder = decoder(size)
+        decoder.readDirect(reader)
+        return decoder
     }
 }

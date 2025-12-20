@@ -8,6 +8,7 @@ import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.buffer.write.Writer
 
 object DoubleCodec : FieldCodec<Double> {
+    override fun bytes(value: Double) = 4
     override fun readBinary(reader: Reader) = reader.readInt() / 10.0
     override fun writeBinary(writer: Writer, value: Double) = writer.writeInt((value * 10).toInt())
     override fun readConfig(reader: ConfigReader) = reader.double()
