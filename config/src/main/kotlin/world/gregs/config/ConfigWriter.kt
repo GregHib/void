@@ -36,7 +36,11 @@ fun ConfigWriter.writeValue(value: Any?, escapeKey: Boolean = false) {
             }
         }
         is Number, is Boolean -> write(value.toString())
+        is BooleanArray -> list(value.size) { writeValue(value[it]) }
+        is ByteArray -> list(value.size) { writeValue(value[it]) }
+        is ShortArray -> list(value.size) { writeValue(value[it]) }
         is IntArray -> list(value.size) { writeValue(value[it]) }
+        is LongArray -> list(value.size) { writeValue(value[it]) }
         is DoubleArray -> list(value.size) { writeValue(value[it]) }
         is List<*> -> list(value.size) { writeValue(value[it]) }
         is Array<*> -> list(value.size) { writeValue(value[it]) }
