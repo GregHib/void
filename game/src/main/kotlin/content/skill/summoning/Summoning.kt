@@ -136,7 +136,7 @@ class Summoning : Script {
             experience.add(Skill.Summoning, summoningXp)
         }
 
-        interfaceOption("Select left-click option", id = "summoning_orb:*") {
+        interfaceOption("Select left-click option", id = "summoning_orb:leftclick_options") {
             openFollowerLeftClickOptions()
         }
 
@@ -160,11 +160,11 @@ class Summoning : Script {
             confirmFollowerLeftClickOptions()
         }
 
-        interfaceOption("Dismiss", id = "summoning_orb:*") {
+        interfaceOption("Dismiss", id = "summoning_orb:*dismiss_follower") {
             dismissFamiliar()
         }
 
-        interfaceOption("Renew Familiar", id = "summoning_orb:*") {
+        interfaceOption("Renew Familiar", id = "summoning_orb:*renew_familiar") {
             renewFamiliar()
         }
 
@@ -190,7 +190,7 @@ class Summoning : Script {
             callFollower()
         }
 
-        interfaceOption("Call Follower", "summoning_orb:*") {
+        interfaceOption("Call Follower", "summoning_orb:*call_follower") {
             callFollower()
         }
 
