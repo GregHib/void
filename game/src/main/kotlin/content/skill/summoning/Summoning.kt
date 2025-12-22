@@ -1,33 +1,28 @@
 package content.skill.summoning
 
 import content.entity.player.dialogue.type.choice
-import content.entity.player.inv.inventoryItem
-import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.interfaceOption
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.playerSpawn
-import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.event.Script
-
 import world.gregs.voidps.cache.definition.data.NPCDefinition
+import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
 
 val itemDefinitions: ItemDefinitions by inject()
 val npcs: NPCs by inject()
 val enums: EnumDefinitions by inject()
-
 
 val Character?.isFamiliar: Boolean
     get() = this != null && this is NPC && id.endsWith("_familiar")
@@ -59,7 +54,7 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean): NPC? {
 
         follower!!.gfx("summon_familiar_size_${follower!!.size}")
         player.updateFamiliarInterface()
-        if(!restart) timers.start("familiar_timer")
+        if (!restart) timers.start("familiar_timer")
     }
 
     return familiarNpc
@@ -117,35 +112,36 @@ fun Player.renewFamiliar() {
     this["familiar_details_seconds_remaining"] = 0
     follower!!.gfx("summon_familiar_size_${follower!!.size}")
 }
-@Script
-class Summoning {
+
+class Summoning : Script {
 
     val enums: EnumDefinitions by inject()
     val npcDefinitions: NPCDefinitions by inject()
-    
+
     init {
-        inventoryItem("Summon", "*_pouch") {
-            val familiarLevel = enums.get("summoning_pouch_levels").getInt(item.def.id)
-            val familiarId = enums.get("summoning_familiar_ids").getInt(item.def.id)
-            val summoningXp = item.def["summon_experience", 0.0]
+        itemOption("Summon", "*_pouch") { option ->
+            val familiarLevel = enums.get("summoning_pouch_levels").getInt(option.item.def.id)
+            val familiarId = enums.get("summoning_familiar_ids").getInt(option.item.def.id)
+            val summoningXp = option.item.def["summon_experience", 0.0]
             val familiar = npcDefinitions.get(familiarId)
-        
-            if (player.levels.get(Skill.Summoning) < familiarLevel) {
-                //TODO: Get actual message
-                player.message("You don't have the level needed to summon that familiar...")
-                return@inventoryItem
+
+            if (levels.get(Skill.Summoning) < familiarLevel) {
+                // TODO: Get actual message
+                message("You don't have the level needed to summon that familiar...")
+                return@itemOption
             }
-        
-            player.summonFamiliar(familiar, false) ?: return@inventoryItem
-            player.inventory.remove(item.id)
-            player.experience.add(Skill.Summoning, summoningXp)
+
+            summonFamiliar(familiar, false) ?: return@itemOption
+            inventory.remove(option.item.id)
+            experience.add(Skill.Summoning, summoningXp)
         }
 
-        interfaceOption("Select left-click option", id = "summoning_orb") {
-            player.openFollowerLeftClickOptions()
+        interfaceOption("Select left-click option", id = "summoning_orb:*") {
+            openFollowerLeftClickOptions()
         }
 
-        interfaceOption("Select", id = "follower_left_click_options") {
+        interfaceOption("Select", id = "follower_left_click_options:*") { option ->
+            val component = option.component
             val varbitValue = when {
                 component.startsWith("follower_details") -> 0
                 component.startsWith("special_move") -> 1
@@ -156,63 +152,61 @@ class Summoning {
                 component.startsWith("renew_familiar") -> 6
                 else -> -1
             }
-        
-            player["summoning_menu_left_click_option"] = varbitValue
+
+            set("summoning_menu_left_click_option", varbitValue)
         }
 
-        interfaceOption("Confirm Selection", "confirm", "follower_left_click_options") {
-            player.confirmFollowerLeftClickOptions()
+        interfaceOption("Confirm Selection", "follower_left_click_options:confirm") {
+            confirmFollowerLeftClickOptions()
         }
 
-        interfaceOption("Dismiss", id = "summoning_orb") {
-            player.dismissFamiliar()
+        interfaceOption("Dismiss", id = "summoning_orb:*") {
+            dismissFamiliar()
         }
 
-        interfaceOption("Renew Familiar", id = "summoning_orb") {
-            player.renewFamiliar()
+        interfaceOption("Renew Familiar", id = "summoning_orb:*") {
+            renewFamiliar()
         }
 
-        interfaceOption("Dismiss *", "dismiss", "familiar_details") {
-            when (option) {
+        interfaceOption("*", "familiar_details:dismiss") { option ->
+            when (option.option) {
                 "Dismiss Familiar" -> {
                     choice("Are you sure you want to dismiss your familiar?") {
                         option("Yes.") {
-                            player.dismissFamiliar()
+                            dismissFamiliar()
                         }
                         option("No.")
                     }
                 }
-                "Dismiss Now" -> player.dismissFamiliar()
+                "Dismiss Now" -> dismissFamiliar()
             }
         }
 
-        interfaceOption("Renew Familiar", "renew", "familiar_details") {
-            player.renewFamiliar()
+        interfaceOption("Renew Familiar", "familiar_details:renew") {
+            renewFamiliar()
         }
 
-        interfaceOption("Call *", "call", "*_details") {
-            player.callFollower()
+        interfaceOption("Call Follower", "*_details:call") {
+            callFollower()
         }
 
-        interfaceOption("Call Follower", "*", "summoning_orb") {
-            player.callFollower()
+        interfaceOption("Call Follower", "summoning_orb:*") {
+            callFollower()
         }
 
-        playerSpawn {player ->
-            if (player["familiar_details_seconds_remaining", 0] == 0 && player["familiar_details_minutes_remaining", 0] == 0) {
+        playerSpawn {
+            if (get("familiar_details_seconds_remaining", 0) == 0 && get("familiar_details_minutes_remaining", 0) == 0) {
                 return@playerSpawn
             }
-        
-            val familiarDef = npcDefinitions.get(player["follower_details_chathead", -1])
-            player.variables.send("follower_details_name")
-            player.variables.send("follower_details_chathead")
-            player.variables.send("familiar_details_minutes_remaining")
-            player.variables.send("familiar_details_seconds_remaining")
-            player.variables.send("follower_details_chathead_animation")
-            player.timers.restart("familiar_timer")
-            player.summonFamiliar(familiarDef, true)
+
+            val familiarDef = npcDefinitions.get(get("follower_details_chathead", -1))
+            variables.send("follower_details_name")
+            variables.send("follower_details_chathead")
+            variables.send("familiar_details_minutes_remaining")
+            variables.send("familiar_details_seconds_remaining")
+            variables.send("follower_details_chathead_animation")
+            timers.restart("familiar_timer")
+            summonFamiliar(familiarDef, true)
         }
-
     }
-
 }

@@ -188,9 +188,50 @@ id = 165
 [summoning_orb]
 id = 747
 type = "summoning_orb"
-components = {
-  familiar_options = 8
-}
+
+[.leftclick_options]
+id = 7
+
+[.familiar_options]
+id = 8
+
+[.follower_details]
+id = 9
+
+[.call_follower]
+id = 10
+
+[.dismiss_follower]
+id = 11
+
+[.take_bob]
+id = 12
+
+[.renew_familiar]
+id = 13
+
+# Can't yet confirm that these 2 are cast / attack.
+# Likely IDs 21 and 22 will be their left-click options as well
+#[.n14]
+#id = 14
+#
+#[.n15]
+#id = 15
+
+[.leftclick_follower_details]
+id = 16
+
+[.leftclick_call_follower]
+id = 17
+
+[.leftclick_dismiss_follower]
+id = 18
+
+[.leftclick_take_bob]
+id = 19
+
+[.leftclick_renew_familiar]
+id = 20
 
 [health_orb]
 id = 748
