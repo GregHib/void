@@ -194,9 +194,9 @@ abstract class TypeDecoder<T : Type>(val size: Int, val opcodeSize: Int = 256) {
 
     inline fun <reified T : Any> nullValue(size: Int, codec: FieldCodec<T?>): NullValueField<T> = NullValueField(codec, create = { arrayOfNulls(size) })
 
-    fun pair(first: PrimitiveField<*>, second: PrimitiveField<*>, opcode: Int) = registerField(opcode, PairField(first, second))
+    fun <A, B> pair(first: PrimitiveField<A>, second: PrimitiveField<B>, opcode: Int) = registerField(opcode, PairField(first, second))
 
-    fun triple(first: PrimitiveField<*>, second: PrimitiveField<*>, third: PrimitiveField<*>, opcode: Int) = registerField(opcode, TripleField(first, second, third))
+    fun <A, B, C> triple(first: PrimitiveField<A>, second: PrimitiveField<B>, third: PrimitiveField<C>, opcode: Int) = registerField(opcode, TripleField(first, second, third))
 
     fun stacks(idKey: String, amountKey: String, opcodes: IntRange) = register(IndexedNullIntArraysField(size, idKey, amountKey, opcodes.first), opcodes = opcodes)
 
@@ -384,6 +384,15 @@ abstract class TypeDecoder<T : Type>(val size: Int, val opcodeSize: Int = 256) {
     }
 
     /**
+     * Read all types from a packed binary [reader].
+     */
+    fun readPacked(reader: Reader) {
+        for (i in 0 until size) {
+            readPacked(reader, i)
+        }
+    }
+
+    /**
      * Read a single type [index] from a packed binary [reader].
      */
     fun readPacked(reader: Reader, index: Int) {
@@ -415,10 +424,23 @@ abstract class TypeDecoder<T : Type>(val size: Int, val opcodeSize: Int = 256) {
                 break
             }
             list.add(temp)
-            fields[code]!!.clear()
-            fields[code]!!.readPacked(reader, index, temp)
+            val field = fields[code] ?: break
+            field.clear()
+            field.readPacked(reader, index, temp)
         }
         return list
+    }
+
+    /**
+     * Write all values to a packed binary [writer].
+     * @param official Whether to skip custom opcodes (250 and above)
+     */
+    fun writePacked(writer: Writer, official: Boolean = false): Boolean {
+        var written = false
+        for (i in 0 until size) {
+            written = written or writePacked(writer, i, official)
+        }
+        return written
     }
 
     /**
@@ -426,17 +448,18 @@ abstract class TypeDecoder<T : Type>(val size: Int, val opcodeSize: Int = 256) {
      * @param official Whether to skip custom opcodes (250 and above)
      */
     fun writePacked(writer: Writer, index: Int, official: Boolean = false): Boolean {
-        var written = false
+        val start = writer.position()
         for ((opcode, field) in fields.withIndex()) {
             if (field == null || (opcode > 249 && official)) {
                 continue
             }
-            written = written or field.writePacked(writer, index, opcode)
+            field.writePacked(writer, index, opcode)
         }
-        if (written) {
+        if (writer.position() > start) {
             writer.writeByte(0)
+            return true
         }
-        return written
+        return false
     }
 
     /**
@@ -494,12 +517,7 @@ abstract class TypeDecoder<T : Type>(val size: Int, val opcodeSize: Int = 256) {
      * Make sure [writer] capacity exceeds [directSize]
      */
     fun writeDirect(writer: Writer) {
-        var index = 0
         for (field in fields) {
-            if (index++ == 130 && field is PairField) {
-                println("Write ${(field.first as UByteField).data.size} ${(field.first as UByteField).data.take(10)}")
-                println("Write ${(field.second as ShortField).data.size} ${(field.second as ShortField).data.take(10)}")
-            }
             if (field == null) {
                 continue
             }

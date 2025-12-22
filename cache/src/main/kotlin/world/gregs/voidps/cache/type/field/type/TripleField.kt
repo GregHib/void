@@ -7,10 +7,10 @@ import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.type.field.Field
 import world.gregs.voidps.cache.type.field.PrimitiveField
 
-class TripleField(
-    val first: PrimitiveField<*>,
-    val second: PrimitiveField<*>,
-    val third: PrimitiveField<*>,
+class TripleField<A, B, C>(
+    val first: PrimitiveField<A>,
+    val second: PrimitiveField<B>,
+    val third: PrimitiveField<C>,
 ) : Field {
 
     override fun readPacked(reader: Reader, index: Int, opcode: Int) {
@@ -20,11 +20,14 @@ class TripleField(
     }
 
     override fun writePacked(writer: Writer, index: Int, opcode: Int): Boolean {
-        var written = false
-        written = written or first.writePacked(writer, index, opcode)
-        written = written or second.writePacked(writer, index, opcode)
-        written = written or third.writePacked(writer, index, opcode)
-        return written
+        if (first.default == first.get(index) && second.default == second.get(index) && third.default == third.get(index)) {
+            return false
+        }
+        writer.writeByte(opcode)
+        first.codec.writeBinary(writer, first.get(index))
+        second.codec.writeBinary(writer, second.get(index))
+        third.codec.writeBinary(writer, third.get(index))
+        return true
     }
 
     override fun readConfig(reader: ConfigReader, index: Int, key: String) {
@@ -54,7 +57,7 @@ class TripleField(
     }
 
     override fun override(other: Field, from: Int, to: Int) {
-        other as TripleField
+        other as TripleField<A, B, C>
         first.override(other.first, from, to)
         second.override(other.second, from, to)
         third.override(other.third, from, to)
@@ -72,7 +75,7 @@ class TripleField(
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as TripleField
+        other as TripleField<A, B, C>
 
         if (first != other.first) return false
         if (second != other.second) return false

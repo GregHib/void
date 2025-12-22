@@ -58,7 +58,6 @@ open class ValueField<T : Any>(
             } else if (data[i] is List<*> && other.data[i] is List<*>) {
                 return data.contentDeepEquals(other.data)
             } else if (data[i] != other.data[i]) {
-                println("Dif ${data[i]}")
                 return false
             }
         }

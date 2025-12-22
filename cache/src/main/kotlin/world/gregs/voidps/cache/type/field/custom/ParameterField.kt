@@ -13,6 +13,8 @@ import world.gregs.voidps.cache.type.field.codec.IntCodec
 import world.gregs.voidps.cache.type.field.codec.StringCodec
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
+import kotlin.collections.component1
+import kotlin.collections.component2
 import kotlin.collections.iterator
 
 /**
@@ -55,18 +57,19 @@ class ParameterField(
     }
 
     override fun writePacked(writer: Writer, index: Int, opcode: Int): Boolean {
-        val params = data[index]
-        if (params == null) {
-            writer.writeByte(0)
-            return true
-        }
+        val params = data[index] ?: return false
+        writer.writeByte(opcode)
+        writeContent(writer, params)
+        return true
+    }
+
+    private fun writeContent(writer: Writer, params: Map<Int, Any>) {
         writer.writeByte(params.size)
         for ((id, value) in params) {
             writer.writeByte(type(value))
             writer.writeMedium(id)
             writeValue(writer, value)
         }
-        return true
     }
 
     private fun writeValue(writer: Writer, value: Any?) {
@@ -166,7 +169,12 @@ class ParameterField(
 
     override fun writeDirect(writer: Writer) {
         for (i in 0 until data.size) {
-            writePacked(writer, i, 0)
+            val params = data[i]
+            if (params == null) {
+                writer.writeByte(0)
+                continue
+            }
+            writeContent(writer, params)
         }
     }
 

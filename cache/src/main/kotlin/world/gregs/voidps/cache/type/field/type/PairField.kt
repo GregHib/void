@@ -7,9 +7,9 @@ import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.type.field.Field
 import world.gregs.voidps.cache.type.field.PrimitiveField
 
-class PairField(
-    val first: PrimitiveField<*>,
-    val second: PrimitiveField<*>,
+class PairField<A, B>(
+    val first: PrimitiveField<A>,
+    val second: PrimitiveField<B>,
 ) : Field {
     override fun readPacked(reader: Reader, index: Int, opcode: Int) {
         first.readPacked(reader, index, opcode)
@@ -17,10 +17,14 @@ class PairField(
     }
 
     override fun writePacked(writer: Writer, index: Int, opcode: Int): Boolean {
-        var written = false
-        written = written or first.writePacked(writer, index, opcode)
-        written = written or second.writePacked(writer, index, opcode)
-        return written
+        if (first.default == first.get(index) && second.default == second.get(index)) {
+            return false
+        }
+        // We use codec directly to avoid writing the opcode twice
+        writer.writeByte(opcode)
+        first.codec.writeBinary(writer, first.get(index))
+        second.codec.writeBinary(writer, second.get(index))
+        return true
     }
 
     override fun readConfig(reader: ConfigReader, index: Int, key: String) {
@@ -46,7 +50,7 @@ class PairField(
     }
 
     override fun override(other: Field, from: Int, to: Int) {
-        other as PairField
+        other as PairField<A, B>
         first.override(other.first, from, to)
         second.override(other.second, from, to)
     }
@@ -62,7 +66,7 @@ class PairField(
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as PairField
+        other as PairField<A, B>
 
         if (first != other.first) return false
         if (second != other.second) return false

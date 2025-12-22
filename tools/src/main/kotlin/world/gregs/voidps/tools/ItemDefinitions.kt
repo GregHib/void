@@ -5,6 +5,7 @@ import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.MemoryCache
 import world.gregs.voidps.cache.definition.data.ItemDefinitionFull
 import world.gregs.voidps.cache.definition.decoder.ItemDecoderFull
+import world.gregs.voidps.cache.type.decode.ItemTypeDecoder
 import world.gregs.voidps.cache.type.load.ItemLoader
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
@@ -21,7 +22,7 @@ object ItemDefinitions {
         }
     }
 
-    class SchemaImp(size: Int): Schema(size) {
+    class SchemaImp(size: Int) : Schema(size) {
         val test = short(-1)
     }
 
@@ -435,6 +436,31 @@ object ItemDefinitions {
         }
     }
 
+    fun directRoundTrip(actual: ItemTypeDecoder) {
+        val writer = ArrayWriter(actual.directSize())
+        actual.writeDirect(writer)
+
+        val loader = ItemLoader()
+        val expected = loader.decoder(actual.size)
+        val reader = ArrayReader(writer.toArray())
+        expected.readDirect(reader)
+        println(expected == actual)
+    }
+
+    fun packedRoundTrip(original: ItemTypeDecoder) {
+        val loader = ItemLoader()
+        val writer = ArrayWriter(5_000_000)
+        for (i in 0 until original.size) {
+            original.writePacked(writer, i)
+        }
+        val reader = ArrayReader(writer.toArray())
+        val actual = loader.decoder(original.size)
+        for (i in 0 until original.size) {
+            actual.readPacked(reader, i)
+        }
+        println(original == actual)
+    }
+
     @JvmStatic
     fun main(args: Array<String>) {
         Settings.load()
@@ -442,7 +468,7 @@ object ItemDefinitions {
 //        val categories = CategoryDefinitions().load(files.find(Settings["definitions.categories"]))
 //        val ammo = AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"]))
 //        val parameters = ParameterDefinitions(categories, ammo).load(files.find(Settings["definitions.parameters"]))
-        val modified: Long = if (true) 0 else System.currentTimeMillis()
+        val modified: Long = if (false) 0 else System.currentTimeMillis()
         File(Settings["storage.data.modified"]).writeBytes(ArrayWriter(8).also { it.writeLong(modified) }.toArray())
         val memoryCache = MemoryCache.load(Settings["storage.cache.path"])
         val dec = ItemDecoderFull()
@@ -451,99 +477,17 @@ object ItemDefinitions {
         val array = dec.create(size)
         println("Alloc took ${System.currentTimeMillis() - s}ms")
         println(array.size)
-
         val files = configFiles()
         val loader = ItemLoader()
-        val expected = loader.decoder(size)
         val actual = loader.decoder(size)
         val reader = ArrayReader()
         for (i in 0 until size) {
             val data = loader.data(memoryCache, i) ?: continue
             reader.set(data)
-            expected.readPacked(reader, i)
+            actual.readPacked(reader, i)
         }
-        loader.applyConfigs(expected, files.list("items.toml"))
-        val writer = ArrayWriter(expected.directSize())
-        expected.writeDirect(writer)
-
-        reader.set(writer.toArray())
-
-        actual.readDirect(reader)
-
-        println(expected == actual)
-//        val expect = expected.fields[40]!! as ShortArraysField
-//        val actual = new.fields[40]!! as ShortArraysField
-//
-//        var equals = true
-//        for (i in expect.first.indices) {
-//            if (!expect.first[i].contentEquals(actual.first[i])) {
-//                println("Not equals $i ${expect.first[i]?.toList()} ${actual.first[i]?.toList()}")
-//                equals = false
-//            }
-//            if (!expect.second[i].contentEquals(actual.second[i])) {
-//                println("Not equals $i ${expect.second[i]?.toList()} ${actual.second[i]?.toList()}")
-//                equals = false
-//            }
-//        }
-
-//        println(equals)
-//        println(expect.first.contentDeepEquals(actual.first))
-//        println(expect.second.contentDeepEquals(actual.second))
-//        println(expect.equals(actual))
-
-//
-//        val directory = File("./data/cache/temp/")
-//        directory.mkdirs()
-//
-//
-//        val reader2 = ArrayReader(directory.resolve("items_base.dat").readBytes())
-//        val actual = .decoder(reader2.readInt())
-//
-//        println("START")
-//        for(i in expected.fields.indices) {
-//            if (i != 40) {
-//                continue
-//            }
-//            val field = expected.fields[i] ?: continue
-//            val other = actual.fields[i]!!
-//        }
-//            val field = expected.fields[i] ?: continue
-//            val other = actual.fields[i]!!
-//            field as ShortArraysField
-//            other as ShortArraysField
-//
-//            println("Write ${field.first.take(3)}")
-//            val buffer = ArrayWriter(field.directSize())
-//            field.writeDirect(buffer)
-//
-//            other.readDirect(reader2)
-//            println("Write other")
-//            val buffer2 = ArrayWriter(other.directSize())
-//            other.writeDirect(buffer2)
-//            if (!buffer.array().contentEquals(buffer2.array())) {
-//                for(j in listOf(0, 1, 2, 3)) {
-//                    val arr = field.first[j]
-//                    val oarr = other.first[j]
-//                    if (!arr.contentEquals(oarr)) {
-//                        println("Different first $j ${arr?.size} ${oarr?.size}")
-//                    }
-//                    val arr2 = field.second[j]
-//                    val oarr2 = other.second[j]
-//                    if (!arr2.contentEquals(oarr2)) {
-//                        println("Different second $j ${arr2?.size} ${oarr2?.size}")
-//                    }
-//                    arr
-//                }
-////                println("Size ${expected.size} ${actual.size}")
-////                println("${field::class.simpleName} ${other::class.simpleName} ${field.equals(other)}")
-////                println("Expect: ${field.directSize()}") // [2595, 2679, 2413, 2794, 2706, 2794, 2461, 0, 2642
-//                // -2836, 0, -2836, -2823, -2844, 0, -2844, -2844, -7615, 2633, 27863]
-////                println("Actual: ${other.directSize()}")// 2595, 2679, 2413, 2794, 2706, 2794, 2461, 0, 2642, 0, 2361, 0, 2769
-//                // 0, -2832, -2824, -2836, 0, -2836, -2823, -2844, 0, -2844, -2844, -7615, 2633, 27863]
-//                // FIXME
-//                throw IllegalStateException("Field $i does not match ${buffer.array().size} ${buffer2.array().size}")
-//            }
-//        }
+        loader.applyConfigs(actual, files.list("items.toml"))
+        packedRoundTrip(actual)
 //        types = loader.load(cache, paths, files.extensions.contains(extension), files.cacheUpdate)
 //        val decoder = dec.load(memoryCache)
 //        test(decoder)

@@ -33,8 +33,8 @@ class ShortArraysField(
     sizeCodec: FieldCodec<Int> = UnsignedByteCodec,
 ) : NullArraysField<ShortArray>(size, firstKey, secondKey, sizeCodec) {
 
-    val first = Array<ShortArray?>(size) { null }
-    val second = Array<ShortArray?>(size) { null }
+    private val first = Array<ShortArray?>(size) { null }
+    private val second = Array<ShortArray?>(size) { null }
 
     override fun getFirst(index: Int) = first[index]
 
@@ -77,30 +77,6 @@ class ShortArraysField(
             return
         }
         writer.list(value.size) { fieldCodec.writeConfig(writer, value[it]) }
-    }
-
-    override fun readPacked(reader: Reader, index: Int, opcode: Int) {
-        val size = sizeCodec.readBinary(reader)
-        if (size == 0) {
-            setFirst(index, null)
-            setSecond(index, null)
-            return
-        }
-        setFirst(index, read(reader, size))
-        setSecond(index, read(reader, size))
-    }
-
-    override fun writePacked(writer: Writer, index: Int, opcode: Int): Boolean {
-        val first = getFirst(index)
-        val second = getSecond(index)
-        if (first == null || second == null) {
-            sizeCodec.writeBinary(writer, 0)
-            return true
-        }
-        sizeCodec.writeBinary(writer, size(first))
-        write(writer, first)
-        write(writer, second)
-        return true
     }
 
     override fun override(other: Field, from: Int, to: Int) {

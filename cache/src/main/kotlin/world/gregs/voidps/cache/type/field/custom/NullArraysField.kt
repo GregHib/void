@@ -44,16 +44,17 @@ abstract class NullArraysField<T>(
     }
 
     override fun writePacked(writer: Writer, index: Int, opcode: Int): Boolean {
-        val first = getFirst(index)
-        val second = getSecond(index)
-        if (first == null || second == null) {
-            sizeCodec.writeBinary(writer, 0)
-            return true
-        }
+        val first = getFirst(index) ?: return false
+        val second = getSecond(index) ?: return false
+        writer.writeByte(opcode)
+        writeContent(writer, first, second)
+        return true
+    }
+
+    private fun writeContent(writer: Writer, first: T, second: T) {
         sizeCodec.writeBinary(writer, size(first))
         write(writer, first)
         write(writer, second)
-        return true
     }
 
     override fun readConfig(reader: ConfigReader, index: Int, key: String) {
@@ -79,7 +80,13 @@ abstract class NullArraysField<T>(
 
     override fun writeDirect(writer: Writer) {
         for (i in 0 until size) {
-            writePacked(writer, i, 0)
+            val first = getFirst(i)
+            val second = getSecond(i)
+            if (first == null || second == null) {
+                sizeCodec.writeBinary(writer, 0)
+                continue
+            }
+            writeContent(writer, first, second)
         }
     }
 

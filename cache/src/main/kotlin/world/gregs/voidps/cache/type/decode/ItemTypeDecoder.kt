@@ -7,13 +7,6 @@ class ItemTypeDecoder(size: Int) : TypeDecoder<ItemType>(size) {
     // Custom values
     override val id = int("id", default = -1, opcode = 250)
     override val stringId = string("[section]", default = "", opcode = 251)
-//    val aka = stringArray("aka", opcode = 252)
-//    val fletchables = stringArray("fletchables", opcode = 253)
-//    val setItems = stringArray("items", opcode = 254)
-//    val tanning = pair(NullStringArrayCodec("tanning_ids", null), NullIntArrayCodec("tanning_prices", null), opcode = 255)
-
-//    val tanning = listMap("tanning", fields = listOf(NullStringArrayCodec("id", null), NullIntArrayCodec("price", null)), opcode = 255)
-
     // Original values
     val modelId = ushort("model_id", default = 0, opcode = 1)
     val name = string("name", default = "null", opcode = 2)
