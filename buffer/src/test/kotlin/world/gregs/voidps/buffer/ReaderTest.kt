@@ -148,6 +148,17 @@ abstract class ReaderTest {
     }
 
     @Test
+    fun `Read non-utf string`() {
+        // Given
+        println('ï'.code)
+        packet(239, 0)
+        // Then
+        println('ï')
+        println(buffer.readString().first().code)
+        assertEquals("ï", buffer.readString())
+    }
+
+    @Test
     fun `Read medium`() {
         // Given
         packet(0, 0, 2, -1, -1, -2, -1, 0, -1)
@@ -254,9 +265,9 @@ abstract class ReaderTest {
 
     @Test
     fun `Read special char`() {
-        packet(-32)
+        packet(-32, 0)
         // When
-        val string = buffer.readString()
+        val string = buffer.readCharString()
         // Then
         assertEquals("\u00E0", string)
     }

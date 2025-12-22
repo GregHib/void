@@ -17,8 +17,8 @@ class EnumDecoder : DefinitionDecoder<EnumDefinition>(ENUMS) {
 
     override fun EnumDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
-            1 -> keyType = byteToChar(buffer.readByte().toByte())
-            2 -> valueType = byteToChar(buffer.readByte().toByte())
+            1 -> keyType = buffer.readChar().toChar()
+            2 -> valueType = buffer.readChar().toChar()
             3 -> defaultString = buffer.readString()
             4 -> defaultInt = buffer.readInt()
             5 -> {

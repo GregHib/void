@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.write.Writer
 
@@ -196,6 +197,28 @@ abstract class WriterTest {
         buffer.writeString("1")
         // Then
         assertBytes(49, 0)
+    }
+
+    @Test
+    fun `Write char`() {
+        // When
+        buffer.writeString("1")
+        // Then
+        assertBytes(49, 0)
+    }
+
+    @Test
+    fun `Unmappable char throws exception`() {
+        assertThrows<IllegalArgumentException> {
+            buffer.writeChar(63.toChar())
+        }
+    }
+
+    @Test
+    fun `Invalid char throws exception`() {
+        assertThrows<IllegalArgumentException> {
+            buffer.writeChar('\u4E00')
+        }
     }
 
     @Test

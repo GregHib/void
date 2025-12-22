@@ -1,5 +1,7 @@
 package world.gregs.voidps.buffer.read
 
+import world.gregs.voidps.buffer.Unicode
+
 interface Reader {
 
     /**
@@ -69,6 +71,20 @@ interface Reader {
 
     fun readString(): String
 
+    fun readCharString(): String {
+        val start = position()
+        var pos = start
+        while (array()[pos] != 0.toByte()) {
+            pos++
+        }
+        val length = pos - start
+        val string = String(CharArray(length) { readChar().toChar() })
+        skip(1)
+        return string
+    }
+
+    fun readChar(): Int = Unicode.byteToChar(readUnsignedByte())
+
     /**
      * Reads all bytes into [ByteArray]
      * @param value The array to be written to.
@@ -128,4 +144,5 @@ interface Reader {
      * @param bitCount number of bits to be written
      */
     fun readBits(bitCount: Int): Int
+
 }

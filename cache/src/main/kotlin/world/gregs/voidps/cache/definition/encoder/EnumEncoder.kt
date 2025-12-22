@@ -1,7 +1,7 @@
 package world.gregs.voidps.cache.definition.encoder
 
+import world.gregs.voidps.buffer.Unicode
 import world.gregs.voidps.buffer.write.Writer
-import world.gregs.voidps.cache.DefinitionDecoder.Companion.charToByte
 import world.gregs.voidps.cache.DefinitionEncoder
 import world.gregs.voidps.cache.definition.data.EnumDefinition
 
@@ -14,12 +14,12 @@ class EnumEncoder : DefinitionEncoder<EnumDefinition> {
 
         if (definition.keyType != 0.toChar()) {
             writeByte(1)
-            writeByte(charToByte(definition.keyType).toInt())
+            writeByte(Unicode.charToByte(definition.keyType))
         }
 
         if (definition.valueType != 0.toChar()) {
             writeByte(2)
-            writeByte(charToByte(definition.valueType).toInt())
+            writeByte(Unicode.charToByte(definition.valueType))
         }
 
         if (definition.defaultString != "null") {

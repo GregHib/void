@@ -1,5 +1,7 @@
 package world.gregs.voidps.buffer.write
 
+import world.gregs.voidps.buffer.Unicode
+
 /**
  * All functions relative to writing directly to a packet are done by this class
  */
@@ -60,6 +62,15 @@ interface Writer {
         writeByte(0)
     }
 
+    fun writeCharString(value: String?) {
+        if (value != null) {
+            for (char in value) {
+                writeChar(char)
+            }
+        }
+        writeByte(0)
+    }
+
     fun writePrefixedString(value: String) {
         writeByte(0)
         for (char in value) {
@@ -67,6 +78,8 @@ interface Writer {
         }
         writeByte(0)
     }
+
+    fun writeChar(value: Char) = writeByte(Unicode.charToByte(value))
 
     fun writeBytes(value: ByteArray)
 

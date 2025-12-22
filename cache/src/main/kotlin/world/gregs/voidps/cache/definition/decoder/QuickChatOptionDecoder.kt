@@ -41,8 +41,8 @@ class QuickChatOptionDecoder : DefinitionDecoder<QuickChatOptionDefinition>(QUIC
                 quickReplyOptions = IntArray(length)
                 navigateChars = CharArray(length) { count ->
                     quickReplyOptions!![count] = buffer.readShort()
-                    val b = buffer.readByte().toByte()
-                    if (b.toInt() != 0) byteToChar(b) else '\u0000'
+                    val b = buffer.readChar()
+                    if (b != 0) b.toChar() else '\u0000'
                 }
             }
             3 -> {
@@ -50,8 +50,8 @@ class QuickChatOptionDecoder : DefinitionDecoder<QuickChatOptionDefinition>(QUIC
                 dynamicData = IntArray(length)
                 staticData = CharArray(length) { count ->
                     dynamicData!![count] = buffer.readShort()
-                    val b = buffer.readByte().toByte()
-                    if (b.toInt() != 0) byteToChar(b) else '\u0000'
+                    val b = buffer.readChar()
+                    if (b != 0) b.toChar() else '\u0000'
                 }
             }
         }
