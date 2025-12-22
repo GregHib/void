@@ -42,21 +42,31 @@ id = 79
 [familiar_details]
 id = 662
 type = "follower_details_tab"
-components = {
-    call = 49,
-    dismiss = 51,
-    attack = 65,
-    take_bob_items = 67,
-    renew = 69,
-}
+
+[.call]
+id = 49
+
+[.dismiss]
+id = 51
+
+[.attack]
+id = 65
+
+[.take_bob_items]
+id = 67
+
+[.renew]
+id = 69
 
 [pet_details]
 id = 663
 type = "follower_details_tab"
-components = {
-    call = 21,
-    dismiss = 23
-}
+
+[.call]
+id = 21
+
+[.dismiss]
+id = 23
 
 [summoning_scroll_creation]
 id = 666
@@ -92,23 +102,51 @@ type = "dialogue_box"
 [follower_left_click_options]
 id = 880
 type = "overlay_tab"
-components = {
-    follower_details_circle = 7,
-    follower_details = 8,
-    special_move_circle = 9,
-    special_move = 10,
-    attack_circle = 11,
-    attack = 12,
-    call_follower_circle = 13,
-    call_follower = 14,
-    dismiss_follower_cricle = 15,
-    dismiss_follower = 16,
-    take_bob_cricle = 17,
-    take_bob = 18,
-    renew_familiar_circle = 19,
-    renew_familiar = 20,
-    confirm = 21
-}
+
+[.follower_details_circle]
+id = 7
+
+[.follower_details]
+id = 8
+
+[.special_move_circle]
+id = 9
+
+[.special_move]
+id = 10
+
+[.attack_circle]
+id = 11
+
+[.attack]
+id = 12
+
+[.call_follower_circle]
+id = 13
+
+[.call_follower]
+id = 14
+
+[.dismiss_follower_cricle]
+id = 15
+
+[.dismiss_follower]
+id = 16
+
+[.take_bob_cricle]
+id = 17
+
+[.take_bob]
+id = 18
+
+[.renew_familiar_circle]
+id = 19
+
+[.renew_familiar]
+id = 20
+
+[.confirm]
+id = 21
 
 [summoning_side]
 id = 722
