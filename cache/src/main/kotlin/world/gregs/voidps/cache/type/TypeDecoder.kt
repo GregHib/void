@@ -70,6 +70,11 @@ abstract class TypeDecoder<T : Type>(val size: Int, val opcodeSize: Int = 256) {
         check(opcodeSize <= 256) { "Field size cannot exceed 256: $opcodeSize" }
     }
 
+    /**
+     * The fields that are used in this type.
+     */
+    abstract val active: Set<Field>
+
     abstract val id: AccessibleField<Int>
     abstract val stringId: AccessibleField<String>
 
@@ -550,6 +555,18 @@ abstract class TypeDecoder<T : Type>(val size: Int, val opcodeSize: Int = 256) {
      */
     fun clear() {
         for (field in fields) {
+            field?.clear()
+        }
+    }
+
+    /**
+     * Clears all fields which aren't [active] allowing for smaller save sizes
+     */
+    fun clearInactive() {
+        for (field in fields) {
+            if (active.contains(field)) {
+                continue
+            }
             field?.clear()
         }
     }

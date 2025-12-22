@@ -60,7 +60,13 @@ abstract class TypeLoader<T : Type>(directory: File?, name: String) {
         }
         // Load fast
         val decoder = loadDirect(full)
-        return create(decoder.size) { decoder.create(it) }
+        return init(decoder)
+    }
+
+    private fun init(decoder: TypeDecoder<T>): Array<T?> {
+        val types = create(decoder.size) { decoder.create(it) }
+        decoder.loaded(types)
+        return types
     }
 
     /**
@@ -79,7 +85,7 @@ abstract class TypeLoader<T : Type>(directory: File?, name: String) {
         save(decoder, base)
         applyConfigs(decoder, paths)
         save(decoder, full)
-        return create(size) { decoder.create(it) }
+        return init(decoder)
     }
 
     /**
@@ -90,7 +96,7 @@ abstract class TypeLoader<T : Type>(directory: File?, name: String) {
         val decoder = loadDirect(base!!)
         applyConfigs(decoder, paths)
         save(decoder, full)
-        return create(decoder.size) { decoder.create(it) }
+        return init(decoder)
     }
 
     /**
@@ -117,6 +123,7 @@ abstract class TypeLoader<T : Type>(directory: File?, name: String) {
         if (file == null) {
             return
         }
+        decoder.clearInactive()
         val size = decoder.directSize()
         val writer = ArrayWriter(size + 4 + 10)
         writer.writeInt(decoder.size)

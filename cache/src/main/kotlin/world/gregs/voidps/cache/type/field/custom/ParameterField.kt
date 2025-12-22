@@ -45,7 +45,7 @@ class ParameterField(
             return
         }
         if (data[index] == null) {
-            data[index] = HashMap(size)
+            data[index] = Object2ObjectOpenHashMap(size)
         }
         val map = data[index] as MutableMap<Int, Any>
         for (i in 0 until size) {
@@ -93,7 +93,7 @@ class ParameterField(
         }
     }
 
-    private fun type(value: Any?) : Int{
+    private fun type(value: Any?): Int {
         return when (value) {
             is Int -> 0
             is String -> 1
@@ -134,10 +134,9 @@ class ParameterField(
         return true
     }
 
-    private fun readMap(reader: Reader) : Map<String, Any> {
+    private fun readMap(reader: Reader): Map<String, Any> {
         val size = reader.readUnsignedByte()
         val map = Object2ObjectOpenHashMap<String, Any>(size)
-//        val map = HashMap<String, Any>(size)
         for (i in 0 until size) {
             val type = reader.readUnsignedByte()
             val id = reader.readString()
@@ -201,7 +200,7 @@ class ParameterField(
             is Long, is Double -> 8
             is Boolean -> 1
             is Map<*, *> -> 1 + (value as Map<String, Any>).toList().sumOf { (key, value) -> key.length + 2 + size(value) }
-            is List<*>, -> 1 + value.sumOf { 1 + size(it) }
+            is List<*> -> 1 + value.sumOf { 1 + size(it) }
             null -> 0
             else -> throw IllegalArgumentException("Unknown parameter type ${value::class.simpleName} $value")
         }

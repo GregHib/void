@@ -9,6 +9,7 @@ import world.gregs.voidps.cache.type.decode.ItemTypeDecoder
 import world.gregs.voidps.cache.type.load.ItemLoader
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
+import world.gregs.voidps.engine.data.type.ItemTypes
 import java.io.File
 import java.nio.ByteBuffer
 
@@ -444,7 +445,7 @@ object ItemDefinitions {
         val expected = loader.decoder(actual.size)
         val reader = ArrayReader(writer.toArray())
         expected.readDirect(reader)
-        println(expected == actual)
+        assert(expected == actual)
     }
 
     fun packedRoundTrip(original: ItemTypeDecoder) {
@@ -458,7 +459,7 @@ object ItemDefinitions {
         for (i in 0 until original.size) {
             actual.readPacked(reader, i)
         }
-        println(original == actual)
+        assert(original == actual)
     }
 
     @JvmStatic
@@ -471,27 +472,32 @@ object ItemDefinitions {
         val modified: Long = if (false) 0 else System.currentTimeMillis()
         File(Settings["storage.data.modified"]).writeBytes(ArrayWriter(8).also { it.writeLong(modified) }.toArray())
         val memoryCache = MemoryCache.load(Settings["storage.cache.path"])
+
+        val defs = ItemDecoderFull().load(memoryCache)
+//        test(defs)
+
         val dec = ItemDecoderFull()
         val size = dec.size(cache = memoryCache)
-        val s = System.currentTimeMillis()
-        val array = dec.create(size)
-        println("Alloc took ${System.currentTimeMillis() - s}ms")
-        println(array.size)
+//        val array = dec.create(size)
+//        println(array.size)
         val files = configFiles()
-        val loader = ItemLoader()
-        val actual = loader.decoder(size)
-        val reader = ArrayReader()
-        for (i in 0 until size) {
-            val data = loader.data(memoryCache, i) ?: continue
-            reader.set(data)
-            actual.readPacked(reader, i)
-        }
-        loader.applyConfigs(actual, files.list("items.toml"))
-        packedRoundTrip(actual)
+//        val loader = ItemLoader()
+//        val actual = loader.decoder(size)
+//        val reader = ArrayReader()
+//        val start = System.currentTimeMillis()
+//        for (i in 0 until size) {
+//            val data = loader.data(memoryCache, i) ?: continue
+//            reader.set(data)
+//            actual.readPacked(reader, i)
+//        }
+//        loader.applyConfigs(actual, files.list("items.toml"))
+//        println("Loaded from cache in ${System.currentTimeMillis() - start}ms")
+//        println("Configs ${System.currentTimeMillis() - start}ms")
+//        directRoundTrip(actual)
 //        types = loader.load(cache, paths, files.extensions.contains(extension), files.cacheUpdate)
 //        val decoder = dec.load(memoryCache)
 //        test(decoder)
 //        val decoder = ItemDecoderFull().load(memoryCache)
-//        ItemTypes.load(memoryCache, files)
+        ItemTypes.load(memoryCache, files)
     }
 }
