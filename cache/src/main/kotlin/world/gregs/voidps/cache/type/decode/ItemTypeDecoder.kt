@@ -1,7 +1,6 @@
 package world.gregs.voidps.cache.type.decode
 
 import world.gregs.voidps.cache.type.TypeDecoder
-import world.gregs.voidps.cache.type.field.Field
 import world.gregs.voidps.cache.type.types.ItemType
 
 class ItemTypeDecoder(size: Int) : TypeDecoder<ItemType>(size) {
@@ -513,7 +512,7 @@ class ItemTypeDecoder(size: Int) : TypeDecoder<ItemType>(size) {
         }
     }
 
-    override val active = setOf(id, name, stackable, cost, members, floorOptions, options, exchangeable, dummyItem, noteId, notedTemplateId, lendId, lendTemplateId, stringId, parameters)
+    override val active = setOf(name, stackable, cost, members, primaryMaleModel, primaryFemaleModel, floorOptions, options, exchangeable, dummyItem, noteId, notedTemplateId, lendId, lendTemplateId, stringId, parameters)
 
     override fun create(index: Int): ItemType {
         val equipIndex = if (primaryFemaleModel.get(index) >= 0) 2 else if (primaryMaleModel.get(index) >= 0) 1 else -1

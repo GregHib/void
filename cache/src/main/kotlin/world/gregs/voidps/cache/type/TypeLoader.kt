@@ -1,7 +1,9 @@
 package world.gregs.voidps.cache.type
 
+import com.github.michaelbull.logging.InlineLogger
 import world.gregs.config.Config
 import world.gregs.voidps.buffer.read.ArrayReader
+import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.Cache
 import java.io.File
@@ -14,6 +16,7 @@ abstract class TypeLoader<T : Type>(directory: File?, name: String) {
     val full = directory?.resolve("${name}.dat")
     abstract val index: Int
     open val maxString = 100
+    private val logger = InlineLogger(name)
 
     /**
      * @return The number of [Type]s in the [Cache]
@@ -52,14 +55,23 @@ abstract class TypeLoader<T : Type>(directory: File?, name: String) {
         }
         // Config missing
         if (!full.exists()) {
-            return reloadConfig(paths)
+            logger.debug { "Config files missing, reloading." }
+            return reloadConfig(cache, paths)
         }
         // Config files were updated
         if (configInvalidated) {
-            return reloadConfig(paths)
+            logger.debug { "Config files changed, reloading." }
+            return reloadConfig(cache, paths)
+        }
+        val (reader, size, activeOpcodes) = readHeader(full)
+        val decoder = decoder(size)
+        // Active opcodes changed
+        if (!decoder.activeOpcodes().contentEquals(activeOpcodes)) {
+            logger.debug { "Active opcodes changed, reloading full cache." }
+            return loadFull(cache, paths)
         }
         // Load fast
-        val decoder = loadDirect(full)
+        decoder.readDirect(reader)
         return init(decoder)
     }
 
@@ -92,11 +104,27 @@ abstract class TypeLoader<T : Type>(directory: File?, name: String) {
      * Loads data from [base] and applies newer config data from [paths] onto of it.
      * Stores [full] files for fast loading next time.
      */
-    internal fun reloadConfig(paths: List<String>): Array<T?> {
-        val decoder = loadDirect(base!!)
+    internal fun reloadConfig(cache: Cache, paths: List<String>): Array<T?> {
+        val (reader, size, activeOpcodes) = readHeader(base!!)
+        val decoder = decoder(size)
+        // Active opcodes changed
+        if (!decoder.activeOpcodes().contentEquals(activeOpcodes)) {
+            logger.debug { "Active opcodes changed, reloading full cache." }
+            return loadFull(cache, paths)
+        }
+        // Read base
+        decoder.readDirect(reader)
         applyConfigs(decoder, paths)
         save(decoder, full)
         return init(decoder)
+    }
+
+    private fun readHeader(file: File): Triple<Reader, Int, ByteArray> {
+        val reader = ArrayReader(file.readBytes())
+        val size = reader.readInt()
+        val active = ByteArray(reader.readUnsignedByte())
+        reader.readBytes(active)
+        return Triple(reader, size, active)
     }
 
     /**
@@ -125,20 +153,13 @@ abstract class TypeLoader<T : Type>(directory: File?, name: String) {
         }
         decoder.clearInactive()
         val size = decoder.directSize()
-        val writer = ArrayWriter(size + 4 + 10)
+        val active = decoder.activeOpcodes()
+        val writer = ArrayWriter(size + 5 + active.size)
         writer.writeInt(decoder.size)
+        writer.writeByte(active.size)
+        writer.writeBytes(active)
         decoder.writeDirect(writer)
         file.writeBytes(writer.toArray())
     }
 
-    /**
-     * Loads binary format data from [reader].
-     */
-    fun loadDirect(file: File): TypeDecoder<T> {
-        val reader = ArrayReader(file.readBytes())
-        val size = reader.readInt()
-        val decoder = decoder(size)
-        decoder.readDirect(reader)
-        return decoder
-    }
 }

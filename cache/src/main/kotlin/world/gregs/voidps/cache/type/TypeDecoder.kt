@@ -34,13 +34,14 @@ import world.gregs.voidps.cache.type.field.type.UShortField
 /**
  * Base class for defining the schema and serialization logic for a [Type].
  *
- * Subclasses define the fields that make up a Type and provide the logic for
- * creating instances from those fields. Each field is registered with an opcode
- * for binary serialization and a key for TOML config serialization.
+ * [fields] hold the data to be serialized between formats. Each field is [register]'ed with an opcode
+ * for binary serialization and a key for [world.gregs.config.Config] serialization.
  *
- * Note: It's important that fields are registered in the same order as they appear in the data object.
+ * Note:
+ *  - [active] fields can be specified for further optimised caching.
+ *  - [id] and [stringId] is required for config decoding (though [id] should be omitted from [active] fields).
  *
- * Example:
+ * Usage example:
  * ```
  * data class ItemType(
  *     val name: String,
@@ -51,6 +52,7 @@ import world.gregs.voidps.cache.type.field.type.UShortField
  *     private val name = string("[section]", "default", opcode = 15)
  *     private val cost = int("cost", 0, opcode = 10)
  *
+ *     override val active = setOf(name, cost)
  *     override fun create() = ItemType(
  *         name = name.value,
  *         cost = cost.value
@@ -73,7 +75,7 @@ abstract class TypeDecoder<T : Type>(val size: Int, val opcodeSize: Int = 256) {
     /**
      * The fields that are used in this type.
      */
-    abstract val active: Set<Field>
+    open val active: Set<Field> = emptySet()
 
     abstract val id: AccessibleField<Int>
     abstract val stringId: AccessibleField<String>
@@ -239,13 +241,12 @@ abstract class TypeDecoder<T : Type>(val size: Int, val opcodeSize: Int = 256) {
         val paramIds = mutableMapOf<String, Int>()
         val params = mutableMapOf<Int, String>()
 
-        val transforms = mutableMapOf<String, Transform>()
+        val transforms = mutableMapOf<String, Transform>() // FIXME
         val transformIds = mutableMapOf<Int, Transform>()
 
         val renames = mutableMapOf<String, String>()
         val originals = mutableMapOf<String, String>()
         var customIds = 10_000
-
 
         data class Transform(
             val configEncode: ((Any) -> Any)? = null,
@@ -557,6 +558,20 @@ abstract class TypeDecoder<T : Type>(val size: Int, val opcodeSize: Int = 256) {
         for (field in fields) {
             field?.clear()
         }
+    }
+
+    /**
+     * List of all the active opcodes
+     */
+    fun activeOpcodes(): ByteArray {
+        val array = mutableListOf<Byte>()
+        for (i in fields.indices) {
+            val field = fields[i] ?: continue
+            if (active.contains(field)) {
+                array.add(i.toByte())
+            }
+        }
+        return array.toByteArray()
     }
 
     /**
