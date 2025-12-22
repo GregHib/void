@@ -2,8 +2,8 @@ package world.gregs.voidps.engine.data
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
-import world.gregs.voidps.buffer.read.BufferReader
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.read.ArrayReader
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.engine.timedLoad
 import java.nio.file.Files
 import java.nio.file.NoSuchFileException
@@ -43,14 +43,14 @@ fun configFiles(): ConfigFiles {
 
 private fun updateModified() {
     val modified = Path.of(Settings["storage.data.modified"])
-    val writer = BufferWriter(8)
+    val writer = ArrayWriter(8)
     writer.writeLong(System.currentTimeMillis())
     modified.writeBytes(writer.toArray())
 }
 
 private fun loadLastUpdate(path: Path): Long {
     if (path.exists()) {
-        val reader = BufferReader(path.readBytes())
+        val reader = ArrayReader(path.readBytes())
         return reader.readLong()
     }
     return 0

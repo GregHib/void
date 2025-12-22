@@ -1,17 +1,45 @@
 package world.gregs.voidps.tools
 
 import world.gregs.voidps.buffer.read.ArrayReader
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.MemoryCache
 import world.gregs.voidps.cache.definition.data.ItemDefinitionFull
 import world.gregs.voidps.cache.definition.decoder.ItemDecoderFull
+import world.gregs.voidps.cache.type.load.ItemLoader
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
-import world.gregs.voidps.engine.data.type.ItemTypes
 import java.io.File
 import java.nio.ByteBuffer
 
 object ItemDefinitions {
+
+    abstract class Schema(val size: Int) {
+        val fields = arrayOfNulls<ShortField>(256)
+
+        fun short(opcode: Int, default: Short = 0) {
+            fields[opcode] = ShortField(size, default)
+        }
+    }
+
+    class SchemaImp(size: Int): Schema(size) {
+        val test = short(-1)
+    }
+
+    class ShortField(size: Int, default: Short) {
+        val array: ShortArray = ShortArray(size) { default }
+
+        fun read(index: Int, reader: ArrayReader) {
+            array[index] = reader.readShort().toShort()
+        }
+
+        fun readRaw() {
+
+        }
+
+        fun writeRaw() {
+
+        }
+    }
 
     class DataClass(size: Int) {
         val modelId = ShortArray(size) { ItemDefinitionFull.EMPTY.modelId.toShort() }
@@ -78,7 +106,7 @@ object ItemDefinitions {
     }
 
 
-    fun write(array: Array<ItemDefinitionFull>, writer: BufferWriter, default: Array<String?>, block: (ItemDefinitionFull) -> Array<String?>) {
+    fun write(array: Array<ItemDefinitionFull>, writer: ArrayWriter, default: Array<String?>, block: (ItemDefinitionFull) -> Array<String?>) {
         val keys = array.map { block(it).toList() }.flatten().distinct().sortedBy { it }
         writer.writeShort(keys.size)
         for (key in keys) {
@@ -166,7 +194,7 @@ object ItemDefinitions {
         val s = System.currentTimeMillis()
         val data = DataClass(size)
         println("Allocation took ${System.currentTimeMillis() - s}ms")
-        val writer = BufferWriter(5_000_000)
+        val writer = ArrayWriter(5_000_000)
 
         write(array) { writer.writeByte(it.stackable) }
         write(array) { writer.writeByte(it.members) }
@@ -378,7 +406,7 @@ object ItemDefinitions {
         }
     }
 
-    private fun write(array: Array<ItemDefinitionFull>, first: (ItemDefinitionFull) -> ShortArray?, second: (ItemDefinitionFull) -> ShortArray?, writer: BufferWriter) {
+    private fun write(array: Array<ItemDefinitionFull>, first: (ItemDefinitionFull) -> ShortArray?, second: (ItemDefinitionFull) -> ShortArray?, writer: ArrayWriter) {
         for (i in array.indices) {
             val data = first(array[i])
             if (data == null) {
@@ -395,7 +423,7 @@ object ItemDefinitions {
         }
     }
 
-    private fun write(array: Array<ItemDefinitionFull>, first: (ItemDefinitionFull) -> ByteArray?, writer: BufferWriter) {
+    private fun write(array: Array<ItemDefinitionFull>, first: (ItemDefinitionFull) -> ByteArray?, writer: ArrayWriter) {
         for (i in array.indices) {
             val data = first(array[i])
             if (data == null) {
@@ -414,21 +442,55 @@ object ItemDefinitions {
 //        val categories = CategoryDefinitions().load(files.find(Settings["definitions.categories"]))
 //        val ammo = AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"]))
 //        val parameters = ParameterDefinitions(categories, ammo).load(files.find(Settings["definitions.parameters"]))
-        val modified: Long = if (false) 0 else System.currentTimeMillis()
-        File(Settings["storage.data.modified"]).writeBytes(BufferWriter(8).also { it.writeLong(modified) }.toArray())
+        val modified: Long = if (true) 0 else System.currentTimeMillis()
+        File(Settings["storage.data.modified"]).writeBytes(ArrayWriter(8).also { it.writeLong(modified) }.toArray())
         val memoryCache = MemoryCache.load(Settings["storage.cache.path"])
         val dec = ItemDecoderFull()
-
         val size = dec.size(cache = memoryCache)
         val s = System.currentTimeMillis()
         val array = dec.create(size)
         println("Alloc took ${System.currentTimeMillis() - s}ms")
-        println(array)
+        println(array.size)
 
-        val decoder = dec.load(memoryCache)
-        test(decoder)
-//        val decoder = ItemDecoderFull().load(memoryCache)
         val files = configFiles()
-        ItemTypes.load(memoryCache, files)
+        val loader = ItemLoader()
+        val expected = loader.decoder(size)
+        val reader = ArrayReader()
+        for (i in 0 until size) {
+            val data = loader.data(memoryCache, i) ?: continue
+            reader.set(data)
+            expected.readPacked(reader, i)
+        }
+        loader.applyConfigs(expected, files.list("items.toml"))
+
+        val directory = File("./data/cache/temp/")
+        directory.mkdirs()
+
+
+        val reader2 = ArrayReader(directory.resolve("items_base.dat").readBytes())
+        val actual = loader.decoder(reader2.readInt())
+
+        for(i in expected.fields.indices) {
+            val field = expected.fields[i] ?: continue
+            val buffer = ArrayWriter(field.directSize())
+            field.writeDirect(buffer)
+            val other = actual.fields[i]!!
+            other.readDirect(reader2)
+            val buffer2 = ArrayWriter(other.directSize())
+            other.writeDirect(buffer2)
+            if (!buffer.array().contentEquals(buffer2.array())) {
+                println("Expect: $field") // [2595, 2679, 2413, 2794, 2706, 2794, 2461, 0, 2642
+                // -2836, 0, -2836, -2823, -2844, 0, -2844, -2844, -7615, 2633, 27863]
+                println("Actual: $other")// 2595, 2679, 2413, 2794, 2706, 2794, 2461, 0, 2642, 0, 2361, 0, 2769
+                // 0, -2832, -2824, -2836, 0, -2836, -2823, -2844, 0, -2844, -2844, -7615, 2633, 27863]
+                // FIXME
+                throw IllegalStateException("Field $i does not match ${buffer.array().size} ${buffer2.array().size}")
+            }
+        }
+//        types = loader.load(cache, paths, files.extensions.contains(extension), files.cacheUpdate)
+//        val decoder = dec.load(memoryCache)
+//        test(decoder)
+//        val decoder = ItemDecoderFull().load(memoryCache)
+//        ItemTypes.load(memoryCache, files)
     }
 }

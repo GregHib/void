@@ -98,7 +98,7 @@ class ShortArraysField(
         if (javaClass != other?.javaClass) return false
 
         other as ShortArraysField
-        return first.contentEquals(other.first) && second.contentEquals(other.second)
+        return first.contentDeepEquals(other.first) && second.contentDeepEquals(other.second)
     }
 
     override fun hashCode(): Int {
