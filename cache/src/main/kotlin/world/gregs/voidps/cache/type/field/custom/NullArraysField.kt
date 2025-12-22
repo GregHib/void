@@ -22,6 +22,8 @@ abstract class NullArraysField<T>(
 
     abstract fun setSecond(index: Int, value: T?)
 
+    abstract fun size(value: T?): Int
+
     abstract fun read(reader: Reader, size: Int): T
 
     abstract fun write(writer: Writer, value: T)
@@ -48,7 +50,7 @@ abstract class NullArraysField<T>(
             sizeCodec.writeBinary(writer, 0)
             return true
         }
-        sizeCodec.writeBinary(writer, size)
+        sizeCodec.writeBinary(writer, size(first))
         write(writer, first)
         write(writer, second)
         return true

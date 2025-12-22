@@ -7,9 +7,9 @@ class ItemTypeDecoder(size: Int) : TypeDecoder<ItemType>(size) {
     // Custom values
     override val id = int("id", default = -1, opcode = 250)
     override val stringId = string("[section]", default = "", opcode = 251)
-    val aka = stringArray("aka", opcode = 252)
-    val fletchables = stringArray("fletchables", opcode = 253)
-    val setItems = stringArray("items", opcode = 254)
+//    val aka = stringArray("aka", opcode = 252)
+//    val fletchables = stringArray("fletchables", opcode = 253)
+//    val setItems = stringArray("items", opcode = 254)
 //    val tanning = pair(NullStringArrayCodec("tanning_ids", null), NullIntArrayCodec("tanning_prices", null), opcode = 255)
 
 //    val tanning = listMap("tanning", fields = listOf(NullStringArrayCodec("id", null), NullIntArrayCodec("price", null)), opcode = 255)
@@ -67,12 +67,11 @@ class ItemTypeDecoder(size: Int) : TypeDecoder<ItemType>(size) {
     val singleNoteTemplateId = short("single_note_template_id", default = -1, opcode = 140)
     val parameters = params(opcode = 249) {
         add("tradeable", "weight", "slot", "examine", "kept", "destroy", "destroy2", "destroy3", "destroy4", "clone", "material", "charges", "charge")
-        // , "aka"
-        add("bank_stacks", "limit", "price", "items", "rank", "canoe_chance_min", "canoe_chance_max", "transform_experience", "use_experience")
+        add("aka", "fletchables", "items")
+        add("bank_stacks", "limit", "price", "rank", "canoe_chance_min", "canoe_chance_max", "transform_experience", "use_experience")
         add("skill_req", "npc", "npc2", "food", "food2", "npc3", "heals", "eat_message")
         add("degrade", "deplete", "charges_max", "degrade_message")
         add("special_points", "summon_experience", "infuse_experience")
-        // , "fletchables"
         add("mining_delay", "smelting", "summoning_def", "pottery", "firemaking", "cleaning", "mining", "smithing", "fishing", "fletching_unf", "fletch_dart", "weaving", "fletch_bolts", "spinning", "cooking", "runecrafting")
         add("jewellery", "silver_jewellery")
         add("attack_range", "weapon_type", "type", "light_source")

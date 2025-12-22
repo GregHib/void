@@ -44,10 +44,25 @@ open class ValueField<T : Any>(
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as StringField
+        other as ValueField<T>
 
-        val otherValue = other.data
-        return data.contentEquals(otherValue)
+        for (i in data.indices) {
+            if (data[i] is ByteArray && other.data[i] is ByteArray) {
+                return data.contentDeepEquals(other.data)
+            } else if (data[i] is ShortArray && other.data[i] is ShortArray) {
+                return data.contentDeepEquals(other.data)
+            } else if (data[i] is IntArray && other.data[i] is IntArray) {
+                return data.contentDeepEquals(other.data)
+            } else if (data[i] is Array<*> && other.data[i] is Array<*>) {
+                return data.contentDeepEquals(other.data)
+            } else if (data[i] is List<*> && other.data[i] is List<*>) {
+                return data.contentDeepEquals(other.data)
+            } else if (data[i] != other.data[i]) {
+                println("Dif ${data[i]}")
+                return false
+            }
+        }
+        return true
     }
 
     override fun hashCode(): Int = data.hashCode()
@@ -58,7 +73,7 @@ open class ValueField<T : Any>(
 
 class NullValueField<T : Any>(
     override val codec: FieldCodec<T?>,
-    create:() -> Array<T?>,
+    create: () -> Array<T?>,
 ) : PrimitiveField<T?> {
 
     override val default: T? = null
@@ -90,10 +105,24 @@ class NullValueField<T : Any>(
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as StringField
+        other as NullValueField<T>
 
-        val otherValue = other.data
-        return data.contentEquals(otherValue)
+        for (i in data.indices) {
+            if (data[i] is ByteArray && other.data[i] is ByteArray) {
+                return data.contentDeepEquals(other.data)
+            } else if (data[i] is ShortArray && other.data[i] is ShortArray) {
+                return data.contentDeepEquals(other.data)
+            } else if (data[i] is IntArray && other.data[i] is IntArray) {
+                return data.contentDeepEquals(other.data)
+            } else if (data[i] is Array<*> && other.data[i] is Array<*>) {
+                return data.contentDeepEquals(other.data)
+            } else if (data[i] is List<*> && other.data[i] is List<*>) {
+                return data.contentDeepEquals(other.data)
+            } else if (data[i] != other.data[i]) {
+                return false
+            }
+        }
+        return true
     }
 
     override fun hashCode(): Int = data.hashCode()

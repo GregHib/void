@@ -1,5 +1,6 @@
 package world.gregs.voidps.cache.type.field.custom
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.ConfigReader
 import world.gregs.config.ConfigWriter
 import world.gregs.config.writePair
@@ -10,6 +11,8 @@ import world.gregs.voidps.cache.type.field.Field
 import world.gregs.voidps.cache.type.field.FieldCodec
 import world.gregs.voidps.cache.type.field.codec.IntCodec
 import world.gregs.voidps.cache.type.field.codec.StringCodec
+import java.nio.ByteBuffer
+import java.nio.ByteOrder
 import kotlin.collections.iterator
 
 /**
@@ -46,7 +49,7 @@ class ParameterField(
         for (i in 0 until size) {
             val type = reader.readUnsignedByte()
             val id = reader.readUnsignedMedium()
-            map[id] = types[type].readBinary(reader)
+            map[id] = readValue(reader, type)!!
         }
         data[index] = map
     }
@@ -59,81 +62,85 @@ class ParameterField(
         }
         writer.writeByte(params.size)
         for ((id, value) in params) {
-            writeValue(writer, id, value)
+            writer.writeByte(type(value))
+            writer.writeMedium(id)
+            writeValue(writer, value)
         }
         return true
     }
 
-    private fun writeValue(writer: Writer, id: Int, value: Any) {
+    private fun writeValue(writer: Writer, value: Any?) {
         when (value) {
-            is Int -> {
-                writer.writeInt(0 or (id shl 8))
-                writer.writeInt(value)
-            }
-            is String -> {
-                writer.writeInt(1 or (id shl 8))
-                writer.writeString(value)
-            }
-            is Long -> {
-                writer.writeInt(2 or (id shl 8))
-                writer.writeLong(value)
-            }
-            is Boolean -> {
-                writer.writeInt(3 or (id shl 8))
-                writer.writeByte(value)
-            }
-            is Double -> {
-                writer.writeInt(4 or (id shl 8))
-                writer.writeInt((value * 10.0).toInt())
-            }
-            is Map<*, *> -> {
-                writer.writeInt(5 or (id shl 8))
-                value as Map<String, Any>
-                writer.writeShort(value.size)
-                for ((key, value) in value) {
-                    writer.writeString(key)
-                    writer.writeString(value.toString())
-                }
-            }
+            is Int -> writer.writeInt(value)
+            is String -> writer.writeCharString(value)
+            is Long -> writer.writeLong(value)
+            is Boolean -> writer.writeByte(value)
+            is Double -> writer.writeBytes(ByteBuffer.allocate(8).putDouble(value).array())
+            is Map<*, *> -> writeMap(writer, value as Map<String, Any>)
             is List<*> -> {
-                writer.writeInt(6 or (id shl 8))
-                writer.writeShort(value.size)
+                assert(value.size < 256)
+                writer.writeByte(value.size)
                 for (value in value) {
-                    writer.writeString(value.toString())
+                    writer.writeByte(type(value))
+                    writeValue(writer, value)
                 }
             }
-            else -> throw IllegalArgumentException("Unknown parameter type ${value::class.simpleName} $id $value")
+            null -> {}
+            else -> throw IllegalArgumentException("Unknown parameter type ${value::class.simpleName} $value")
         }
     }
-    private fun readValue(reader: Reader, type: Int): Any {
+
+    private fun type(value: Any?) : Int{
+        return when (value) {
+            is Int -> 0
+            is String -> 1
+            is Long -> 2
+            is Boolean -> 3
+            is Double -> 4
+            is Map<*, *> -> 5
+            is List<*> -> 6
+            null -> 7
+            else -> throw IllegalArgumentException("Unknown parameter type ${value::class.simpleName} $value")
+        }
+    }
+
+    private fun readValue(reader: Reader, type: Int): Any? {
         return when (type) {
             0 -> reader.readInt()
-            1 -> reader.readString()
+            1 -> reader.readCharString()
             2 -> reader.readLong()
             3 -> reader.readBoolean()
-            4 -> reader.readInt() / 10.0
-            5 ->{
-                val map = HashMap<String, Any>(reader.readShort())
-                for (i in 0 until reader.readShort()) {
-                    map[reader.readString()] = reader.readString()
-                }
-                map
+            4 -> {
+                reader.skip(8)
+                ByteBuffer.wrap(reader.array(), reader.position() - 8, 8).getDouble()
             }
-            6 -> Array(reader.readShort()) { reader.readString() }.toList()
+            5 -> readMap(reader)
+            6 -> Array(reader.readUnsignedByte()) { readValue(reader, reader.readUnsignedByte()) }.toList()
+            7 -> null
             else -> throw IllegalArgumentException("Unknown parameter type $type")
         }
     }
 
-    private fun size(value: Any): Int {
-        return when (value) {
-            is Int, is Double -> 4
-            is String -> value.length + 1
-            is Long -> 8
-            is Boolean -> 1
-            is Map<*, *> -> 2 + (value as Map<String, Any>).toList().sumOf { (key, value) -> key.length + 1 + value.toString().length + 1 }
-            is List<*> -> 2 + value.sumOf { it.toString().length + 1 }
-            else -> throw IllegalArgumentException("Unknown parameter type ${value::class.simpleName} $value")
+    private fun writeMap(writer: Writer, value: Map<String, Any>): Boolean {
+        writer.writeByte(value.size)
+        for ((id, value) in value) {
+            writer.writeByte(type(value))
+            writer.writeString(id)
+            writeValue(writer, value)
         }
+        return true
+    }
+
+    private fun readMap(reader: Reader) : Map<String, Any> {
+        val size = reader.readUnsignedByte()
+        val map = Object2ObjectOpenHashMap<String, Any>(size)
+//        val map = HashMap<String, Any>(size)
+        for (i in 0 until size) {
+            val type = reader.readUnsignedByte()
+            val id = reader.readString()
+            map[id] = readValue(reader, type)!!
+        }
+        return map
     }
 
     override fun readConfig(reader: ConfigReader, index: Int, key: String) {
@@ -179,6 +186,19 @@ class ParameterField(
         return size
     }
 
+    private fun size(value: Any?): Int {
+        return when (value) {
+            is Int -> 4
+            is String -> value.length + 1
+            is Long, is Double -> 8
+            is Boolean -> 1
+            is Map<*, *> -> 1 + (value as Map<String, Any>).toList().sumOf { (key, value) -> key.length + 2 + size(value) }
+            is List<*>, -> 1 + value.sumOf { 1 + size(it) }
+            null -> 0
+            else -> throw IllegalArgumentException("Unknown parameter type ${value::class.simpleName} $value")
+        }
+    }
+
     override fun override(other: Field, from: Int, to: Int) {
         other as ParameterField
         if (other.data[from] == null) {
@@ -190,4 +210,18 @@ class ParameterField(
     override fun clear() {
         data.fill(null)
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as ParameterField
+        return data.contentEquals(other.data)
+    }
+
+    override fun hashCode(): Int {
+        return data.contentHashCode()
+    }
+
+
 }

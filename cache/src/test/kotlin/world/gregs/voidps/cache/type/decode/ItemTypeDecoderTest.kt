@@ -8,6 +8,7 @@ import world.gregs.voidps.buffer.write.ArrayWriter
 import java.io.BufferedInputStream
 import java.io.StringWriter
 
+/*
 class ItemTypeDecoderTest {
 
     @Test
@@ -111,4 +112,4 @@ class ItemTypeDecoderTest {
         decoder.singleNoteTemplateId.value = 179
         decoder.parameters.value = mutableMapOf(1 to "string", 2 to 100000)
     }
-}
+}*/

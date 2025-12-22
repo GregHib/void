@@ -71,7 +71,7 @@ class UShortField(
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as ShortField
+        other as UShortField
 
         val otherValue = other.data
         return data.contentEquals(otherValue)

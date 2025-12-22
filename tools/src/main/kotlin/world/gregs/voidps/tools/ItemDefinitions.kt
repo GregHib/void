@@ -455,6 +455,7 @@ object ItemDefinitions {
         val files = configFiles()
         val loader = ItemLoader()
         val expected = loader.decoder(size)
+        val actual = loader.decoder(size)
         val reader = ArrayReader()
         for (i in 0 until size) {
             val data = loader.data(memoryCache, i) ?: continue
@@ -462,31 +463,87 @@ object ItemDefinitions {
             expected.readPacked(reader, i)
         }
         loader.applyConfigs(expected, files.list("items.toml"))
+        val writer = ArrayWriter(expected.directSize())
+        expected.writeDirect(writer)
 
-        val directory = File("./data/cache/temp/")
-        directory.mkdirs()
+        reader.set(writer.toArray())
 
+        actual.readDirect(reader)
 
-        val reader2 = ArrayReader(directory.resolve("items_base.dat").readBytes())
-        val actual = loader.decoder(reader2.readInt())
+        println(expected == actual)
+//        val expect = expected.fields[40]!! as ShortArraysField
+//        val actual = new.fields[40]!! as ShortArraysField
+//
+//        var equals = true
+//        for (i in expect.first.indices) {
+//            if (!expect.first[i].contentEquals(actual.first[i])) {
+//                println("Not equals $i ${expect.first[i]?.toList()} ${actual.first[i]?.toList()}")
+//                equals = false
+//            }
+//            if (!expect.second[i].contentEquals(actual.second[i])) {
+//                println("Not equals $i ${expect.second[i]?.toList()} ${actual.second[i]?.toList()}")
+//                equals = false
+//            }
+//        }
 
-        for(i in expected.fields.indices) {
-            val field = expected.fields[i] ?: continue
-            val buffer = ArrayWriter(field.directSize())
-            field.writeDirect(buffer)
-            val other = actual.fields[i]!!
-            other.readDirect(reader2)
-            val buffer2 = ArrayWriter(other.directSize())
-            other.writeDirect(buffer2)
-            if (!buffer.array().contentEquals(buffer2.array())) {
-                println("Expect: $field") // [2595, 2679, 2413, 2794, 2706, 2794, 2461, 0, 2642
-                // -2836, 0, -2836, -2823, -2844, 0, -2844, -2844, -7615, 2633, 27863]
-                println("Actual: $other")// 2595, 2679, 2413, 2794, 2706, 2794, 2461, 0, 2642, 0, 2361, 0, 2769
-                // 0, -2832, -2824, -2836, 0, -2836, -2823, -2844, 0, -2844, -2844, -7615, 2633, 27863]
-                // FIXME
-                throw IllegalStateException("Field $i does not match ${buffer.array().size} ${buffer2.array().size}")
-            }
-        }
+//        println(equals)
+//        println(expect.first.contentDeepEquals(actual.first))
+//        println(expect.second.contentDeepEquals(actual.second))
+//        println(expect.equals(actual))
+
+//
+//        val directory = File("./data/cache/temp/")
+//        directory.mkdirs()
+//
+//
+//        val reader2 = ArrayReader(directory.resolve("items_base.dat").readBytes())
+//        val actual = .decoder(reader2.readInt())
+//
+//        println("START")
+//        for(i in expected.fields.indices) {
+//            if (i != 40) {
+//                continue
+//            }
+//            val field = expected.fields[i] ?: continue
+//            val other = actual.fields[i]!!
+//        }
+//            val field = expected.fields[i] ?: continue
+//            val other = actual.fields[i]!!
+//            field as ShortArraysField
+//            other as ShortArraysField
+//
+//            println("Write ${field.first.take(3)}")
+//            val buffer = ArrayWriter(field.directSize())
+//            field.writeDirect(buffer)
+//
+//            other.readDirect(reader2)
+//            println("Write other")
+//            val buffer2 = ArrayWriter(other.directSize())
+//            other.writeDirect(buffer2)
+//            if (!buffer.array().contentEquals(buffer2.array())) {
+//                for(j in listOf(0, 1, 2, 3)) {
+//                    val arr = field.first[j]
+//                    val oarr = other.first[j]
+//                    if (!arr.contentEquals(oarr)) {
+//                        println("Different first $j ${arr?.size} ${oarr?.size}")
+//                    }
+//                    val arr2 = field.second[j]
+//                    val oarr2 = other.second[j]
+//                    if (!arr2.contentEquals(oarr2)) {
+//                        println("Different second $j ${arr2?.size} ${oarr2?.size}")
+//                    }
+//                    arr
+//                }
+////                println("Size ${expected.size} ${actual.size}")
+////                println("${field::class.simpleName} ${other::class.simpleName} ${field.equals(other)}")
+////                println("Expect: ${field.directSize()}") // [2595, 2679, 2413, 2794, 2706, 2794, 2461, 0, 2642
+//                // -2836, 0, -2836, -2823, -2844, 0, -2844, -2844, -7615, 2633, 27863]
+////                println("Actual: ${other.directSize()}")// 2595, 2679, 2413, 2794, 2706, 2794, 2461, 0, 2642, 0, 2361, 0, 2769
+//                // 0, -2832, -2824, -2836, 0, -2836, -2823, -2844, 0, -2844, -2844, -7615, 2633, 27863]
+//                // FIXME
+//                throw IllegalStateException("Field $i does not match ${buffer.array().size} ${buffer2.array().size}")
+//            }
+//        }
 //        types = loader.load(cache, paths, files.extensions.contains(extension), files.cacheUpdate)
 //        val decoder = dec.load(memoryCache)
 //        test(decoder)

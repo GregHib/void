@@ -139,4 +139,23 @@ class IndexedNullIntArraysField(
         first.fill(null)
         second.fill(null)
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as IndexedNullIntArraysField
+
+        if (!first.contentDeepEquals(other.first)) return false
+        if (!second.contentDeepEquals(other.second)) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = first.contentDeepHashCode()
+        result = 31 * result + second.contentDeepHashCode()
+        return result
+    }
+
 }

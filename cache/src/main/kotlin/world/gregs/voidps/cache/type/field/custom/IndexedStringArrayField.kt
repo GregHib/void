@@ -66,7 +66,7 @@ class IndexedStringArrayField(
 
     override fun readDirect(reader: Reader) {
         // String-key table for faster decoding
-        val readKeys = Array(reader.readShort()) { if (it == 0) null else reader.readString() }
+        val readKeys = Array(reader.readUnsignedShort()) { if (it == 0) null else reader.readString() }
         for (i in 0 until data.size) {
             val options = data[i]
             while (true) {
@@ -91,7 +91,7 @@ class IndexedStringArrayField(
         for (options in data) {
             for (i in options.indices) {
                 val option = options[i]
-                if (option == null || option == default[i]) {
+                if (option == default[i]) {
                     continue
                 }
                 writer.writeByte(i)
@@ -119,4 +119,16 @@ class IndexedStringArrayField(
             data[i] = default.clone()
         }
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as IndexedStringArrayField
+
+        return data.contentDeepEquals(other.data)
+    }
+
+    override fun hashCode() = data.contentDeepHashCode()
+
 }

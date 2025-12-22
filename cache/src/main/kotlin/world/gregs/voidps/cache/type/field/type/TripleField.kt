@@ -67,4 +67,25 @@ class TripleField(
         second.clear()
         third.clear()
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as TripleField
+
+        if (first != other.first) return false
+        if (second != other.second) return false
+        if (third != other.third) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = first.hashCode()
+        result = 31 * result + second.hashCode()
+        result = 31 * result + third.hashCode()
+        return result
+    }
+
 }
