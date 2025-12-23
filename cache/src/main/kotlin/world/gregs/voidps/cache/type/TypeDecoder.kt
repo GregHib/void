@@ -15,6 +15,7 @@ import world.gregs.voidps.cache.type.field.codec.NullIntArrayCodec
 import world.gregs.voidps.cache.type.field.codec.NullShortArrayCodec
 import world.gregs.voidps.cache.type.field.codec.NullStringArrayCodec
 import world.gregs.voidps.cache.type.field.codec.ShortCodec
+import world.gregs.voidps.cache.type.field.codec.SmartCodec
 import world.gregs.voidps.cache.type.field.codec.StringArrayCodec
 import world.gregs.voidps.cache.type.field.codec.UnsignedShortCodec
 import world.gregs.voidps.cache.type.field.type.BooleanField
@@ -133,7 +134,11 @@ abstract class TypeDecoder<T : Type>(val typeCount: Int, val opcodeSize: Int = 2
 
     fun bool(key: String, default: Boolean, opcode: Int) = register(opcode, key, BooleanField(typeCount, default))
 
-    fun bool(key: String, default: Boolean, literal: Boolean, opcode: Int) = register(opcode, key, BooleanField(typeCount, default, LiteralCodec(literal, BooleanCodec)))
+    fun bool(key: String, default: Boolean) = registerKey(key, BooleanField(typeCount, default))
+
+    fun bool(default: Boolean, literal: Boolean) = BooleanField(typeCount, default, LiteralCodec(literal, BooleanCodec))
+
+    fun bool(key: String? = null, default: Boolean, literal: Boolean, opcode: Int = -1) = register(opcode, key, bool(default, literal))
 
     /** Byte - Key */
     fun byte(key: String, default: Byte) = registerKey(key, ByteField(typeCount, default))
@@ -169,7 +174,15 @@ abstract class TypeDecoder<T : Type>(val typeCount: Int, val opcodeSize: Int = 2
 
     fun shortArray(key: String, opcode: Int) = register(opcode, key, nullValue(typeCount, NullShortArrayCodec))
 
+    fun shortArray(key: String) = registerKey(key, nullValue(typeCount, NullShortArrayCodec))
+
     fun ushortArray(key: String, opcode: Int) = register(opcode, key, nullValue(typeCount, NullIntArrayCodec(UnsignedShortCodec)))
+
+    /** Smart - Key */
+    fun smart(key: String, default: Int) = registerKey(key, IntField(typeCount, default, SmartCodec))
+
+    /** Smart - Key + Opcode */
+    fun smart(key: String, default: Int, opcode: Int) = register(opcode, key, IntField(typeCount, default, SmartCodec))
 
     /** Int - Key */
     fun int(key: String, default: Int) = registerKey(key, IntField(typeCount, default, IntCodec))
@@ -292,9 +305,13 @@ abstract class TypeDecoder<T : Type>(val typeCount: Int, val opcodeSize: Int = 2
         return field
     }
 
-    inline fun <reified F : Field> register(opcode: Int, key: String, field: F): F {
-        registerKey(key, field)
-        registerField(opcode, field)
+    inline fun <reified F : Field> register(opcode: Int, key: String?, field: F): F {
+        if (key != null) {
+            registerKey(key, field)
+        }
+        if (opcode != -1) {
+            registerField(opcode, field)
+        }
         return field
     }
 

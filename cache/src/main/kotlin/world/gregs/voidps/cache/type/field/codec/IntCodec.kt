@@ -14,3 +14,11 @@ object IntCodec : FieldCodec<Int> {
     override fun readConfig(reader: ConfigReader) = reader.int()
     override fun writeConfig(writer: ConfigWriter, value: Int) = writer.writeValue(value)
 }
+
+object SmartCodec : FieldCodec<Int> {
+    override fun bytes(value: Int) = if (value >= 128) 2 else 1
+    override fun readBinary(reader: Reader) = reader.readSmart()
+    override fun writeBinary(writer: Writer, value: Int) = writer.writeSmart(value)
+    override fun readConfig(reader: ConfigReader) = reader.int()
+    override fun writeConfig(writer: ConfigWriter, value: Int) = writer.writeValue(value)
+}

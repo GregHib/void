@@ -3,7 +3,7 @@ package world.gregs.voidps.cache.type.decode
 import world.gregs.voidps.cache.type.TypeDecoder
 import world.gregs.voidps.cache.type.types.NPCType
 
-class NPCTypeDecoder(count: Int, val members: Boolean = true) : TypeDecoder<NPCType>(count) {
+class NPCTypeDecoder(val members: Boolean = true, count: Int) : TypeDecoder<NPCType>(count) {
     // Custom values
     override val id = int("id", default = -1, opcode = 250)
     override val stringId = string("[section]", default = "", opcode = 251)
