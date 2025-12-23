@@ -233,6 +233,217 @@ id = 19
 [.leftclick_renew_familiar]
 id = 20
 
+
+[.cast_fetch_casket]
+id = 87
+
+[.cast_poison_shot]
+id = 90
+
+[.cast_sundering_strike]
+id = 91
+
+[.cast_clay_deposit]
+id = 92
+
+[.cast_aptitude]
+id = 95
+
+[.cast_glimmer_of_light]
+id = 98
+
+[.cast_second_wind]
+id = 99
+
+[.cast_snaring_wave]
+id = 100
+
+[.cast_inferno]
+id = 101
+
+[.cast_immense_heat]
+id = 102
+
+[.cast_iron_within]
+id = 103
+
+[.cast_rending]
+id = 104
+
+[.cast_fireball_assault]
+id = 105
+
+[.cast_pester]
+id = 106
+
+[.cast_essence_shipment]
+id = 107
+
+[.cast_volcanic_strength]
+id = 108
+
+[.cast_ebon_thunder]
+id = 109
+
+[.cast_ambush]
+id = 110
+
+[.cast_goad]
+id = 111
+
+[.cast_explode]
+id = 112
+
+[.cast_steel_of_legends]
+id = 113
+
+[.cast_boil]
+id = 114
+
+[.cast_titans_constitution]
+id = 115
+
+[.cast_call_to_arms]
+id = 116
+
+[.cast_swamp_plague]
+id = 117
+
+[.cast_swallow_whole]
+id = 118
+
+[.cast_magic_focus]
+id = 119
+
+[.cast_bull_rush]
+id = 120
+
+[.cast_spike_shot]
+id = 121
+
+[.cast_regrowth]
+id = 122
+
+[.cast_deadly_claw]
+id = 123
+
+[.cast_poisonous_blast]
+id = 124
+
+[.cast_acorn_missile]
+id = 125
+
+[.cast_generate_compost]
+id = 126
+
+[.cast_doomsphere_device]
+id = 127
+
+[.cast_dust_cloud]
+id = 128
+
+[.cast_blood_drain]
+id = 129
+
+[.cast_tireless_run]
+id = 130
+
+[.cast_petrifying_gaze]
+id = 131
+
+[.cast_abyssal_drain]
+id = 132
+
+[.cast_dissolve]
+id = 133
+
+[.cast_electric_lash]
+id = 134
+
+[.cast_slime_spray]
+id = 135
+
+[.cast_testudo]
+id = 136
+
+[.cast_ophidian_incubation]
+id = 137
+
+[.cast_healing_aura]
+id = 138
+
+[.cast_winter_storage]
+id = 139
+
+[.cast_arctic_blast]
+id = 140
+
+[.cast_toad_bark]
+id = 141
+
+[.cast_insane_ferocity]
+id = 142
+
+[.cast_cheese_feast]
+id = 143
+
+[.cast_venom_shot]
+id = 144
+
+[.cast_sandstorm]
+id = 145
+
+[.cast_famine]
+id = 146
+
+[.cast_mantis_strike]
+id = 147
+
+[.cast_crushing_claw]
+id = 148
+
+[.cast_unburden]
+id = 149
+
+[.cast_multichop]
+id = 150
+
+[.cast_abyssal_stealth]
+id = 151
+
+[.cast_fish_rain]
+id = 152
+
+[.cast_egg_spawn]
+id = 153
+
+[.cast_thieving_fingers]
+id = 154
+
+[.cast_fruitfall]
+id = 155
+
+[.cast_evil_flames]
+id = 156
+
+[.cast_stony_shell]
+id = 157
+
+[.cast_herbcall]
+id = 158
+
+[.cast_vampire_touch]
+id = 159
+
+[.cast_rise_from_the_ashes]
+id = 160
+
+[.cast_dreadfowl_strike]
+id = 161
+
+[.cast_howl]
+id = 162
+
 [health_orb]
 id = 748
 type = "health_orb"
