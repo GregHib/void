@@ -442,7 +442,7 @@ object ItemDefinitions {
         actual.writeDirect(writer)
 
         val loader = ItemLoader()
-        val expected = loader.decoder(actual.size)
+        val expected = loader.decoder(actual.typeCount)
         val reader = ArrayReader(writer.toArray())
         expected.readDirect(reader)
         assert(expected == actual)
@@ -451,12 +451,12 @@ object ItemDefinitions {
     fun packedRoundTrip(original: ItemTypeDecoder) {
         val loader = ItemLoader()
         val writer = ArrayWriter(5_000_000)
-        for (i in 0 until original.size) {
+        for (i in 0 until original.typeCount) {
             original.writePacked(writer, i)
         }
         val reader = ArrayReader(writer.toArray())
-        val actual = loader.decoder(original.size)
-        for (i in 0 until original.size) {
+        val actual = loader.decoder(original.typeCount)
+        for (i in 0 until original.typeCount) {
             actual.readPacked(reader, i)
         }
         assert(original == actual)

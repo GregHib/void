@@ -76,7 +76,7 @@ abstract class TypeLoader<T : Type>(directory: File?, name: String) {
     }
 
     private fun init(decoder: TypeDecoder<T>): Array<T?> {
-        val types = create(decoder.size) { decoder.create(it) }
+        val types = create(decoder.typeCount) { decoder.create(it) }
         decoder.loaded(types)
         return types
     }
@@ -155,7 +155,7 @@ abstract class TypeLoader<T : Type>(directory: File?, name: String) {
         val size = decoder.directSize()
         val active = decoder.activeOpcodes()
         val writer = ArrayWriter(size + 5 + active.size)
-        writer.writeInt(decoder.size)
+        writer.writeInt(decoder.typeCount)
         writer.writeByte(active.size)
         writer.writeBytes(active)
         decoder.writeDirect(writer)

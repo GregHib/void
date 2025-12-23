@@ -29,6 +29,7 @@ import kotlin.collections.iterator
 class ParameterField(
     size: Int,
     val paramIds: Map<String, Int>,
+    val params: Map<Int, String>,
     val types: Array<FieldCodec<out Any>> = arrayOf(IntCodec, StringCodec),
 ) : AccessibleField<Map<Int, Any>?> {
     val data = arrayOfNulls<Map<Int, Any>>(size)
@@ -37,6 +38,12 @@ class ParameterField(
 
     override fun set(index: Int, value: Map<Int, Any>?) {
         data[index] = value
+    }
+
+    fun getMap(index: Int) = get(index)?.mapKeys { params[it.key] ?: throw IllegalArgumentException("Unknown parameter id $it")  }
+
+    fun setMap(index: Int, value: Map<String, Any>?) {
+        set(index, value?.mapKeys { paramIds[it.key] ?: throw IllegalArgumentException("Unknown parameter string $it") })
     }
 
     override fun readPacked(reader: Reader, index: Int, opcode: Int) {

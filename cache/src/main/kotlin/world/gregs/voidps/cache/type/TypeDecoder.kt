@@ -16,6 +16,7 @@ import world.gregs.voidps.cache.type.field.codec.NullShortArrayCodec
 import world.gregs.voidps.cache.type.field.codec.NullStringArrayCodec
 import world.gregs.voidps.cache.type.field.codec.ShortCodec
 import world.gregs.voidps.cache.type.field.codec.StringArrayCodec
+import world.gregs.voidps.cache.type.field.codec.UnsignedShortCodec
 import world.gregs.voidps.cache.type.field.type.BooleanField
 import world.gregs.voidps.cache.type.field.type.ByteField
 import world.gregs.voidps.cache.type.field.type.PairField
@@ -26,6 +27,8 @@ import world.gregs.voidps.cache.type.field.type.IntField
 import world.gregs.voidps.cache.type.field.type.NullStringField
 import world.gregs.voidps.cache.type.field.custom.ParameterField
 import world.gregs.voidps.cache.type.field.custom.ShortArraysField
+import world.gregs.voidps.cache.type.field.type.QuadField
+import world.gregs.voidps.cache.type.field.type.QuinField
 import world.gregs.voidps.cache.type.field.type.ShortField
 import world.gregs.voidps.cache.type.field.type.StringField
 import world.gregs.voidps.cache.type.field.type.UByteField
@@ -66,7 +69,7 @@ import world.gregs.voidps.cache.type.field.type.UShortField
  *
  * @param T The Type that this decoder creates
  */
-abstract class TypeDecoder<T : Type>(val size: Int, val opcodeSize: Int = 256) {
+abstract class TypeDecoder<T : Type>(val typeCount: Int, val opcodeSize: Int = 256) {
 
     init {
         check(opcodeSize <= 256) { "Field size cannot exceed 256: $opcodeSize" }
@@ -76,6 +79,11 @@ abstract class TypeDecoder<T : Type>(val size: Int, val opcodeSize: Int = 256) {
      * The fields that are used in this type.
      */
     open val active: Set<Field> = emptySet()
+
+    /**
+     * Fields that are custom and shouldn't be written to cache.
+     */
+    open val custom: Set<Field> = setOf(id, stringId)
 
     abstract val id: AccessibleField<Int>
     abstract val stringId: AccessibleField<String>
@@ -121,67 +129,69 @@ abstract class TypeDecoder<T : Type>(val size: Int, val opcodeSize: Int = 256) {
         Methods to help create and registers common fields with their opcodes.
      */
 
-    fun bool(key: String, default: Boolean, opcode: Int) = register(opcode, key, BooleanField(size, default))
+    fun bool(key: String, default: Boolean, opcode: Int) = register(opcode, key, BooleanField(typeCount, default))
 
-    fun bool(key: String, default: Boolean, literal: Boolean, opcode: Int) = register(opcode, key, BooleanField(size, default, LiteralCodec(literal, BooleanCodec)))
+    fun bool(key: String, default: Boolean, literal: Boolean, opcode: Int) = register(opcode, key, BooleanField(typeCount, default, LiteralCodec(literal, BooleanCodec)))
 
     /** Byte - Key */
-    fun byte(key: String, default: Byte) = registerKey(key, ByteField(size, default))
+    fun byte(key: String, default: Byte) = registerKey(key, ByteField(typeCount, default))
 
     /** Byte - Key + Opcode */
-    fun byte(key: String, default: Byte, opcode: Int) = register(opcode, key, ByteField(size, default))
+    fun byte(key: String, default: Byte, opcode: Int) = register(opcode, key, ByteField(typeCount, default))
 
     /** Byte Literal - Key + Opcode */
-    fun byte(key: String, default: Byte, literal: Byte, opcode: Int) = register(opcode, key, ByteField(size, default, LiteralCodec(literal, ByteCodec)))
+    fun byte(key: String, default: Byte, literal: Byte, opcode: Int) = register(opcode, key, ByteField(typeCount, default, LiteralCodec(literal, ByteCodec)))
 
     /** Unsigned Byte - Key */
-    fun ubyte(key: String, default: Int) = registerKey(key, UByteField(size, default))
+    fun ubyte(key: String, default: Int) = registerKey(key, UByteField(typeCount, default))
 
     /** Unsigned Byte - Key + Opcode */
-    fun ubyte(key: String, default: Int, opcode: Int) = register(opcode, key, UByteField(size, default))
+    fun ubyte(key: String, default: Int, opcode: Int) = register(opcode, key, UByteField(typeCount, default))
 
-    fun byteArray(key: String, opcode: Int) = register(opcode, key, nullValue(size, NullByteArrayCodec))
+    fun byteArray(key: String, opcode: Int) = register(opcode, key, nullValue(typeCount, NullByteArrayCodec))
 
     /** Short - Key */
-    fun short(key: String, default: Short) = registerKey(key, ShortField(size, default))
+    fun short(key: String, default: Short) = registerKey(key, ShortField(typeCount, default))
 
     /** Short - Key + Opcode */
-    fun short(key: String, default: Short, opcode: Int) = register(opcode, key, ShortField(size, default))
+    fun short(key: String, default: Short, opcode: Int) = register(opcode, key, ShortField(typeCount, default))
 
     /** Short Literal - Key + Opcode */
-    fun short(key: String, default: Short, literal: Short, opcode: Int) = register(opcode, key, ShortField(size, default, LiteralCodec(literal, ShortCodec)))
+    fun short(key: String, default: Short, literal: Short, opcode: Int) = register(opcode, key, ShortField(typeCount, default, LiteralCodec(literal, ShortCodec)))
 
     /** Unsigned Short - Key */
-    fun ushort(key: String, default: Int) = registerKey(key, UShortField(size, default))
+    fun ushort(key: String, default: Int) = registerKey(key, UShortField(typeCount, default))
 
     /** Unsigned Short - Key + Opcode */
-    fun ushort(key: String, default: Int, opcode: Int) = register(opcode, key, UShortField(size, default))
+    fun ushort(key: String, default: Int, opcode: Int) = register(opcode, key, UShortField(typeCount, default))
 
-    fun shortArray(key: String, opcode: Int) = register(opcode, key, nullValue(size, NullShortArrayCodec))
+    fun shortArray(key: String, opcode: Int) = register(opcode, key, nullValue(typeCount, NullShortArrayCodec))
+
+    fun ushortArray(key: String, opcode: Int) = register(opcode, key, nullValue(typeCount, NullIntArrayCodec(UnsignedShortCodec)))
 
     /** Int - Key */
-    fun int(key: String, default: Int) = registerKey(key, IntField(size, default, IntCodec))
+    fun int(key: String, default: Int) = registerKey(key, IntField(typeCount, default, IntCodec))
 
     /** Int - Key + Opcode */
-    fun int(key: String, default: Int, opcode: Int) = register(opcode, key, IntField(size, default, IntCodec))
+    fun int(key: String, default: Int, opcode: Int) = register(opcode, key, IntField(typeCount, default, IntCodec))
 
     /** Int Literal - Key + Opcode */
-    fun int(key: String, default: Int, literal: Int, opcode: Int) = register(opcode, key, IntField(size, default, LiteralCodec(literal, IntCodec)))
+    fun int(key: String, default: Int, literal: Int, opcode: Int) = register(opcode, key, IntField(typeCount, default, LiteralCodec(literal, IntCodec)))
 
-    fun intArray(key: String, opcode: Int) = register(opcode, key, nullValue(size, NullIntArrayCodec))
+    fun intArray(key: String, opcode: Int) = register(opcode, key, nullValue(typeCount, NullIntArrayCodec))
 
     /** Nullable String - Key + Opcode */
-    fun string(key: String, opcode: Int) = register(opcode, key, NullStringField(size))
+    fun string(key: String, opcode: Int) = register(opcode, key, NullStringField(typeCount))
 
     /** String - Key + Opcode */
-    fun string(key: String, default: String, opcode: Int) = register(opcode, key, StringField(size, default))
+    fun string(key: String, default: String, opcode: Int) = register(opcode, key, StringField(typeCount, default))
 
-    fun stringArray(key: String, default: Array<String>, opcode: Int) = register(opcode, key, value(size, default, StringArrayCodec))
+    fun stringArray(key: String, default: Array<String>, opcode: Int) = register(opcode, key, value(typeCount, default, StringArrayCodec))
 
-    fun stringArray(key: String, opcode: Int) = register(opcode, key, nullValue(size, NullStringArrayCodec))
+    fun stringArray(key: String, opcode: Int) = register(opcode, key, nullValue(typeCount, NullStringArrayCodec))
 
     fun shortArrays(first: String, second: String, opcode: Int): ShortArraysField {
-        val field = ShortArraysField(size, first, second)
+        val field = ShortArraysField(typeCount, first, second)
         registerKey(first, field)
         registerKey(second, field)
         registerField(opcode, field)
@@ -189,7 +199,7 @@ abstract class TypeDecoder<T : Type>(val size: Int, val opcodeSize: Int = 256) {
     }
 
     fun indexedStringArray(key: String, default: Array<String?>, opcodes: IntRange): IndexedStringArrayField {
-        val field = IndexedStringArrayField(size, default, opcodes.first)
+        val field = IndexedStringArrayField(typeCount, default, opcodes.first)
         registerKey(key, field)
         for (opcode in opcodes) {
             registerField(opcode, field)
@@ -205,13 +215,17 @@ abstract class TypeDecoder<T : Type>(val size: Int, val opcodeSize: Int = 256) {
 
     fun <A, B, C> triple(first: PrimitiveField<A>, second: PrimitiveField<B>, third: PrimitiveField<C>, opcode: Int) = registerField(opcode, TripleField(first, second, third))
 
-    fun stacks(idKey: String, amountKey: String, opcodes: IntRange) = register(IndexedNullIntArraysField(size, idKey, amountKey, opcodes.first), opcodes = opcodes)
+    fun <A, B, C, D> quad(first: PrimitiveField<A>, second: PrimitiveField<B>, third: PrimitiveField<C>, fourth: PrimitiveField<D>, opcode: Int) = registerField(opcode, QuadField(first, second, third, fourth))
+
+    fun <A, B, C, D, E> quin(first: PrimitiveField<A>, second: PrimitiveField<B>, third: PrimitiveField<C>, fourth: PrimitiveField<D>, fifth: PrimitiveField<E>, opcode: Int) = registerField(opcode, QuinField(first, second, third, fourth, fifth))
+
+    fun stacks(idKey: String, amountKey: String, opcodes: IntRange) = register(IndexedNullIntArraysField(typeCount, idKey, amountKey, opcodes.first), opcodes = opcodes)
 
     fun params(opcode: Int, block: ParameterBuilder.() -> Unit): ParameterField {
         val builder = ParameterBuilder()
         block.invoke(builder)
-        val field = ParameterField(size, builder.paramIds)
-        for (key in builder.paramIds.keys) {
+        val field = ParameterField(typeCount, builder.ids, builder.params)
+        for (key in builder.ids.keys) {
             registerKey(key, field)
         }
         return registerField(opcode, field)
@@ -221,39 +235,21 @@ abstract class TypeDecoder<T : Type>(val size: Int, val opcodeSize: Int = 256) {
      * Builder for defining parameter field mappings and transformations.
      *
      * Parameters are key-value pairs that can be stored in both config files and binary formats.
-     * This builder allows you to:
-     * - Map string keys to integer IDs for binary serialization
-     * - Rename keys between internal and external representations
-     * - Transform values between formats (e.g. Boolean to Int, Double to Int for binary storage)
+     * This builder allows you to map string keys to integer IDs for binary serialization.
+     * When ids aren't provided, a custom id is generated and will be consistent presuming field initiation order isn't changed.
      *
      * Example:
      * ```
      * params(opcode = 249) {
      *     add("ranged_strength", 643)
-     *     convert("ranged_strength",
-     *         decode = { (it as Int) / 10.0 },
-     *         encode = { (it as Double * 10.0).toInt() }
-     *     )
+     *     add("custom_param")
      * }
      * ```
      */
     class ParameterBuilder {
-        val paramIds = mutableMapOf<String, Int>()
+        val ids = mutableMapOf<String, Int>()
         val params = mutableMapOf<Int, String>()
-
-        val transforms = mutableMapOf<String, Transform>() // FIXME
-        val transformIds = mutableMapOf<Int, Transform>()
-
-        val renames = mutableMapOf<String, String>()
-        val originals = mutableMapOf<String, String>()
         var customIds = 10_000
-
-        data class Transform(
-            val configEncode: ((Any) -> Any)? = null,
-            val configDecode: ((Any) -> Any)? = null,
-            val binaryEncode: ((Any) -> Any)? = null,
-            val binaryDecode: ((Any) -> Any)? = null,
-        )
 
         fun add(vararg keys: String) {
             for (key in keys) {
@@ -265,70 +261,16 @@ abstract class TypeDecoder<T : Type>(val size: Int, val opcodeSize: Int = 256) {
          * Registers a parameter key with its binary ID.
          */
         fun add(key: String, value: Int = customIds++) {
-            if (paramIds.containsKey(key)) {
+            if (ids.containsKey(key)) {
                 println("Duplicate parameter key: $key")
             }
             if (params.containsKey(value)) {
-                println("Duplicate parameter value: $value")
+                println("Duplicate parameter id: $value")
             }
-            paramIds[key] = value
+            ids[key] = value
             params[value] = key
         }
-
-        /**
-         * Renames a key between external (config/binary) and internal (runtime) representations.
-         *
-         * @param original The key name in config/binary files
-         * @param modified The key name used internally in the Type
-         */
-        fun rename(original: String, modified: String) {
-            renames[original] = modified
-            originals[modified] = original
-        }
-
-        /**
-         * Applies the same transformation for both config and binary formats.
-         *
-         * @param decode Transforms stored value to runtime format (on read)
-         * @param encode Transforms runtime value to stored format (on write)
-         */
-        fun convert(key: String, decode: (Any) -> Any, encode: (Any) -> Any) {
-            transforms[key] = Transform(encode, decode, encode, decode)
-            paramIds[key]?.let { transformIds[it] = transforms[key]!! }
-        }
-
-        /**
-         * Applies the same transformation to multiple keys.
-         */
-        fun convert(vararg keys: String, decode: (Any) -> Any, encode: (Any) -> Any) {
-            for (key in keys) {
-                convert(key, decode, encode)
-            }
-        }
-
-        /**
-         * Applies transformations only for config format.
-         */
-        fun convertConfig(key: String, decode: (Any) -> Any, encode: (Any) -> Any) {
-            transforms[key] = Transform(encode, decode)
-            paramIds[key]?.let { transformIds[it] = transforms[key]!! }
-        }
-
-        /**
-         * Applies transformations only for binary format.
-         */
-        fun convertBinary(key: String, decode: (Any) -> Any, encode: (Any) -> Any) {
-            transforms[key] = Transform(binaryDecode = decode, binaryEncode = encode)
-            paramIds[key]?.let { transformIds[it] = transforms[key]!! }
-        }
-
-        fun convertBinary(vararg keys: String, decode: (Any) -> Any, encode: (Any) -> Any) {
-            for (key in keys) {
-                convertBinary(key, decode, encode)
-            }
-        }
     }
-
 
     inline fun <reified F : Field> register(field: F, opcodes: IntRange): F {
         for (opcode in opcodes) {
@@ -393,7 +335,7 @@ abstract class TypeDecoder<T : Type>(val size: Int, val opcodeSize: Int = 256) {
      * Read all types from a packed binary [reader].
      */
     fun readPacked(reader: Reader) {
-        for (i in 0 until size) {
+        for (i in 0 until typeCount) {
             readPacked(reader, i)
         }
     }
@@ -442,7 +384,7 @@ abstract class TypeDecoder<T : Type>(val size: Int, val opcodeSize: Int = 256) {
      * @param official Whether to skip custom opcodes (250 and above)
      */
     fun writePacked(writer: Writer, official: Boolean = false) {
-        for (i in 0 until size) {
+        for (i in 0 until typeCount) {
             writePacked(writer, i, official)
         }
     }
