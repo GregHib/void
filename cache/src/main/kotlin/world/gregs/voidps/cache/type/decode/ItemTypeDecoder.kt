@@ -487,13 +487,7 @@ class ItemTypeDecoder(size: Int) : TypeDecoder<ItemType>(size) {
         add("category", 2195)
         add("param_723", 723)
         val list = listOf("smithing", "light_source", "fletching_unf", "cleaning", "fishing", "skill_req", "cooking", "mining", "fletch_bolts", "smelting", "jewellery", "pottery", "weaving", "spinning", "spinning", "silver_jewellery", "runecrafting", "fletch_dart", "firemaking")
-        for (name in list) {
-            convertBinary(
-                name,
-                decode = { mapOf("string" to (it as String)) },
-                encode = { (it as Map<*, *>).toString() }
-            )
-        }
+        add(*list.toTypedArray())
     }
 
     override fun loaded(types: Array<ItemType?>) {

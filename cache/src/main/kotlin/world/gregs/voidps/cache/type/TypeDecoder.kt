@@ -27,6 +27,8 @@ import world.gregs.voidps.cache.type.field.type.IntField
 import world.gregs.voidps.cache.type.field.type.NullStringField
 import world.gregs.voidps.cache.type.field.custom.ParameterField
 import world.gregs.voidps.cache.type.field.custom.ShortArraysField
+import world.gregs.voidps.cache.type.field.custom.TransformField
+import world.gregs.voidps.cache.type.field.custom.TranslateField
 import world.gregs.voidps.cache.type.field.type.QuadField
 import world.gregs.voidps.cache.type.field.type.QuinField
 import world.gregs.voidps.cache.type.field.type.ShortField
@@ -218,6 +220,17 @@ abstract class TypeDecoder<T : Type>(val typeCount: Int, val opcodeSize: Int = 2
     fun <A, B, C, D> quad(first: PrimitiveField<A>, second: PrimitiveField<B>, third: PrimitiveField<C>, fourth: PrimitiveField<D>, opcode: Int) = registerField(opcode, QuadField(first, second, third, fourth))
 
     fun <A, B, C, D, E> quin(first: PrimitiveField<A>, second: PrimitiveField<B>, third: PrimitiveField<C>, fourth: PrimitiveField<D>, fifth: PrimitiveField<E>, opcode: Int) = registerField(opcode, QuinField(first, second, third, fourth, fifth))
+
+    fun transforms(firstOpcode: Int, lastOpcode: Int): TransformField {
+        val field = TransformField(typeCount, lastOpcode)
+        registerKey("transforms", field)
+        registerKey("varbit", field)
+        registerKey("varp", field)
+        registerField(firstOpcode, field)
+        return registerField(lastOpcode, field)
+    }
+
+    fun translate(key: String, modelIds: NullValueField<IntArray>, opcode: Int) = register(opcode, key, TranslateField(typeCount, modelIds))
 
     fun stacks(idKey: String, amountKey: String, opcodes: IntRange) = register(IndexedNullIntArraysField(typeCount, idKey, amountKey, opcodes.first), opcodes = opcodes)
 
