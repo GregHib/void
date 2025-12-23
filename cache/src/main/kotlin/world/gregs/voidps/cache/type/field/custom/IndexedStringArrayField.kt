@@ -54,13 +54,12 @@ class IndexedStringArrayField(
         }
     }
 
-    override fun writeConfig(writer: ConfigWriter, index: Int, key: String): Boolean {
+    override fun writeConfig(writer: ConfigWriter, index: Int, key: String) {
         val value = get(index)
         if (value.contentEquals(default)) {
-            return false
+            return
         }
         writer.writePair(key, value)
-        return true
     }
 
     override fun readDirect(reader: Reader) {

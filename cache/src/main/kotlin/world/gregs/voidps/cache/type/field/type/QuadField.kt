@@ -39,13 +39,11 @@ class QuadField<A, B, C, D>(
         fourth.readConfig(reader, index, key)
     }
 
-    override fun writeConfig(writer: ConfigWriter, index: Int, key: String): Boolean {
-        var written = false
-        written = written or first.writeConfig(writer, index, key)
-        written = written or second.writeConfig(writer, index, key)
-        written = written or third.writeConfig(writer, index, key)
-        written = written or fourth.writeConfig(writer, index, key)
-        return written
+    override fun writeConfig(writer: ConfigWriter, index: Int, key: String) {
+        first.writeConfig(writer, index, key)
+        second.writeConfig(writer, index, key)
+        third.writeConfig(writer, index, key)
+        fourth.writeConfig(writer, index, key)
     }
 
     override fun readDirect(reader: Reader) {

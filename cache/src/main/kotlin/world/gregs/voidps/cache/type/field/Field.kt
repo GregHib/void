@@ -34,7 +34,7 @@ interface Field {
     /**
      * Writes [index] field to Config format if its value differs from default.
      */
-    fun writeConfig(writer: ConfigWriter, index: Int, key: String): Boolean
+    fun writeConfig(writer: ConfigWriter, index: Int, key: String)
 
     /**
      * Reads all field's value in a fast binary format.

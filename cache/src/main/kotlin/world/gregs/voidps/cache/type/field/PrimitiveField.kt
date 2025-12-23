@@ -30,14 +30,13 @@ interface PrimitiveField<T> : AccessibleField<T> {
         set(index, codec.readConfig(reader))
     }
 
-    override fun writeConfig(writer: ConfigWriter, index: Int, key: String): Boolean {
+    override fun writeConfig(writer: ConfigWriter, index: Int, key: String) {
         if (get(index) == default) {
-            return false
+            return
         }
         writer.writeKey(key)
         codec.writeConfig(writer, get(index))
         writer.write("\n")
-        return true
     }
 
     override fun override(other: Field, from: Int, to: Int) {

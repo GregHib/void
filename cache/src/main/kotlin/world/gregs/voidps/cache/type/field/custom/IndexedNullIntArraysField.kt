@@ -74,12 +74,11 @@ class IndexedNullIntArraysField(
         return array
     }
 
-    override fun writeConfig(writer: ConfigWriter, index: Int, key: String): Boolean {
+    override fun writeConfig(writer: ConfigWriter, index: Int, key: String) {
         when (key) {
-            firstKey -> writeArray(writer, key, first[index] ?: return false)
-            secondKey -> writeArray(writer, key, second[index] ?: return false)
+            firstKey -> writeArray(writer, key, first[index] ?: return)
+            secondKey -> writeArray(writer, key, second[index] ?: return)
         }
-        return true
     }
 
     private fun writeArray(writer: ConfigWriter, key: String, array: ShortArray) {

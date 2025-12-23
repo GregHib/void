@@ -159,11 +159,10 @@ class ParameterField(
         (data[index] as MutableMap<Int, Any>)[id] = reader.value()
     }
 
-    override fun writeConfig(writer: ConfigWriter, index: Int, key: String): Boolean {
+    override fun writeConfig(writer: ConfigWriter, index: Int, key: String) {
         val id = paramIds[key] ?: throw IllegalArgumentException("Unknown parameter type $key")
-        val value = data[index]?.get(id) ?: return false
+        val value = data[index]?.get(id) ?: return
         writer.writePair(key, value)
-        return true
     }
 
     override fun readDirect(reader: Reader) {

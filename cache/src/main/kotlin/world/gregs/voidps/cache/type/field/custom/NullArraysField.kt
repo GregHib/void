@@ -63,12 +63,11 @@ abstract class NullArraysField<T>(
         }
     }
 
-    override fun writeConfig(writer: ConfigWriter, index: Int, key: String): Boolean {
+    override fun writeConfig(writer: ConfigWriter, index: Int, key: String) {
         when (key) {
             firstKey -> write(writer, getFirst(index))
             secondKey -> write(writer, getSecond(index))
         }
-        return true
     }
 
     override fun readDirect(reader: Reader) {
