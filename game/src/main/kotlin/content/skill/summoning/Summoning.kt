@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
@@ -25,7 +24,6 @@ import world.gregs.voidps.engine.queue.softQueue
 val itemDefinitions: ItemDefinitions by inject()
 val npcs: NPCs by inject()
 val enums: EnumDefinitions by inject()
-val interfaceDefs: InterfaceDefinitions by inject()
 
 val Character?.isFamiliar: Boolean
     get() = this != null && this is NPC && id.endsWith("_familiar")
