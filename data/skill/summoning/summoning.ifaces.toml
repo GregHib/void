@@ -58,196 +58,196 @@ id = 67
 [.renew]
 id = 69
 
-[.cast_howl_scroll]
+[.cast_howl]
 id = 75
 
-[.cast_dreadfowl_strike_scroll]
+[.cast_dreadfowl_strike]
 id = 77
 
-[.cast_rise_from_the_ashes_scroll]
+[.cast_rise_from_the_ashes]
 id = 78
 
-[.cast_vampire_touch_scroll]
+[.cast_vampire_touch]
 id = 81
 
-[.cast_herbcall_scroll]
+[.cast_herbcall]
 id = 83
 
-[.cast_stony_shell_scroll]
+[.cast_stony_shell]
 id = 85
 
-[.cast_evil_flames_scroll]
+[.cast_evil_flames]
 id = 87
 
-[.cast_fruitfall_scroll]
+[.cast_fruitfall]
 id = 89
 
-[.cast_thieving_fingers_scroll]
+[.cast_thieving_fingers]
 id = 91
 
-[.cast_egg_spawn_scroll]
+[.cast_egg_spawn]
 id = 93
 
-[.cast_fish_rain_scroll]
+[.cast_fish_rain]
 id = 95
 
-[.cast_abyssal_stealth_scroll]
+[.cast_abyssal_stealth]
 id = 97
 
-[.cast_multichop_scroll]
+[.cast_multichop]
 id = 99
 
-[.cast_unburden_scroll]
+[.cast_unburden]
 id = 101
 
-[.cast_crushing_claw_scroll]
+[.cast_crushing_claw]
 id = 103
 
-[.cast_mantis_strike_scroll]
+[.cast_mantis_strike]
 id = 105
 
-[.cast_famine_scroll]
+[.cast_famine]
 id = 107
 
-[.cast_sandstorm_scroll]
+[.cast_sandstorm]
 id = 109
 
-[.cast_venom_shot_scroll]
+[.cast_venom_shot]
 id = 111
 
-[.cast_cheese_feast_scroll]
+[.cast_cheese_feast]
 id = 113
 
-[.cast_insane_ferocity_scroll]
+[.cast_insane_ferocity]
 id = 115
 
-[.cast_toad_bark_scroll]
+[.cast_toad_bark]
 id = 117
 
-[.cast_arctic_blast_scroll]
+[.cast_arctic_blast]
 id = 119
 
-[.cast_winter_storage_scroll]
+[.cast_winter_storage]
 id = 121
 
-[.cast_healing_aura_scroll]
+[.cast_healing_aura]
 id = 123
 
-[.cast_oph_incubation_scroll]
+[.cast_oph_incubation]
 id = 125
 
-[.cast_testudo_scroll]
+[.cast_testudo]
 id = 127
 
-[.cast_slime_spray_scroll]
+[.cast_slime_spray]
 id = 129
 
-[.cast_electric_lash_scroll]
+[.cast_electric_lash]
 id = 131
 
-[.cast_dissolve_scroll]
+[.cast_dissolve]
 id = 133
 
-[.cast_abyssal_drain_scroll]
+[.cast_abyssal_drain]
 id = 135
 
-[.cast_petrifying_gaze_scroll]
+[.cast_petrifying_gaze]
 id = 137
 
-[.cast_tireless_run_scroll]
+[.cast_tireless_run]
 id = 139
 
-[.cast_blood_drain_scroll]
+[.cast_blood_drain]
 id = 141
 
-[.cast_dust_cloud_scroll]
+[.cast_dust_cloud]
 id = 143
 
-[.cast_doomsphere_scroll]
+[.cast_doomsphere]
 id = 145
 
-[.cast_generate_compost_scroll]
+[.cast_generate_compost]
 id = 147
 
-[.cast_acorn_missile_scroll]
+[.cast_acorn_missile]
 id = 149
 
-[.cast_poisonous_blast_scroll]
+[.cast_poisonous_blast]
 id = 151
 
-[.cast_deadly_claw_scroll]
+[.cast_deadly_claw]
 id = 153
 
-[.cast_regrowth_scroll]
+[.cast_regrowth]
 id = 155
 
-[.cast_spike_shot_scroll]
+[.cast_spike_shot]
 id = 157
 
-[.cast_addy_bull_rush_scroll]
+[.cast_addy_bull_rush]
 id = 159
 
-[.cast_magic_focus_scroll]
+[.cast_magic_focus]
 id = 161
 
-[.cast_swallow_whole_scroll]
+[.cast_swallow_whole]
 id = 163
 
-[.cast_swamp_plague_scroll]
+[.cast_swamp_plague]
 id = 165
 
-[.cast_call_to_arms_scroll]
+[.cast_call_to_arms]
 id = 167
 
-[.cast_titans_con_scroll]
+[.cast_titans_con]
 id = 169
 
-[.cast_boil_scroll]
+[.cast_boil]
 id = 171
 
-[.cast_steel_of_legends_scroll]
+[.cast_steel_of_legends]
 id = 173
 
-[.cast_explode_scroll]
+[.cast_explode]
 id = 175
 
-[.cast_goad_scroll]
+[.cast_goad]
 id = 177
 
-[.cast_ambush_scroll]
+[.cast_ambush]
 id = 179
 
-[.cast_ebon_thunder_scroll]
+[.cast_ebon_thunder]
 id = 181
 
-[.cast_volcanic_str_scroll]
+[.cast_volcanic_str]
 id = 183
 
-[.cast_essence_shipment_scroll]
+[.cast_essence_shipment]
 id = 185
 
-[.cast_pester_scroll]
+[.cast_pester]
 id = 187
 
-[.cast_fireball_assault_scroll]
+[.cast_fireball_assault]
 id = 189
 
-[.cast_rending_scroll]
+[.cast_rending]
 id = 191
 
-[.cast_iron_within_scroll]
+[.cast_iron_within]
 id = 193
 
-[.cast_immense_heat_scroll]
+[.cast_immense_heat]
 id = 195
 
-[.cast_inferno_scroll]
+[.cast_inferno]
 id = 197
 
-[.cast_clay_deposit_scroll]
+[.cast_clay_deposit]
 id = 199
 
-[.cast_fetch_casket_scroll]
+[.cast_fetch_casket]
 id = 200
 
 [.cast_sundering_strike]
