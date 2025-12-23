@@ -58,6 +58,216 @@ id = 67
 [.renew]
 id = 69
 
+[.cast_howl_scroll]
+id = 75
+
+[.cast_dreadfowl_strike_scroll]
+id = 77
+
+[.cast_rise_from_the_ashes_scroll]
+id = 78
+
+[.cast_vampire_touch_scroll]
+id = 81
+
+[.cast_herbcall_scroll]
+id = 83
+
+[.cast_stony_shell_scroll]
+id = 85
+
+[.cast_evil_flames_scroll]
+id = 87
+
+[.cast_fruitfall_scroll]
+id = 89
+
+[.cast_thieving_fingers_scroll]
+id = 91
+
+[.cast_egg_spawn_scroll]
+id = 93
+
+[.cast_fish_rain_scroll]
+id = 95
+
+[.cast_abyssal_stealth_scroll]
+id = 97
+
+[.cast_multichop_scroll]
+id = 99
+
+[.cast_unburden_scroll]
+id = 101
+
+[.cast_crushing_claw_scroll]
+id = 103
+
+[.cast_mantis_strike_scroll]
+id = 105
+
+[.cast_famine_scroll]
+id = 107
+
+[.cast_sandstorm_scroll]
+id = 109
+
+[.cast_venom_shot_scroll]
+id = 111
+
+[.cast_cheese_feast_scroll]
+id = 113
+
+[.cast_insane_ferocity_scroll]
+id = 115
+
+[.cast_toad_bark_scroll]
+id = 117
+
+[.cast_arctic_blast_scroll]
+id = 119
+
+[.cast_winter_storage_scroll]
+id = 121
+
+[.cast_healing_aura_scroll]
+id = 123
+
+[.cast_oph_incubation_scroll]
+id = 125
+
+[.cast_testudo_scroll]
+id = 127
+
+[.cast_slime_spray_scroll]
+id = 129
+
+[.cast_electric_lash_scroll]
+id = 131
+
+[.cast_dissolve_scroll]
+id = 133
+
+[.cast_abyssal_drain_scroll]
+id = 135
+
+[.cast_petrifying_gaze_scroll]
+id = 137
+
+[.cast_tireless_run_scroll]
+id = 139
+
+[.cast_blood_drain_scroll]
+id = 141
+
+[.cast_dust_cloud_scroll]
+id = 143
+
+[.cast_doomsphere_scroll]
+id = 145
+
+[.cast_generate_compost_scroll]
+id = 147
+
+[.cast_acorn_missile_scroll]
+id = 149
+
+[.cast_poisonous_blast_scroll]
+id = 151
+
+[.cast_deadly_claw_scroll]
+id = 153
+
+[.cast_regrowth_scroll]
+id = 155
+
+[.cast_spike_shot_scroll]
+id = 157
+
+[.cast_addy_bull_rush_scroll]
+id = 159
+
+[.cast_magic_focus_scroll]
+id = 161
+
+[.cast_swallow_whole_scroll]
+id = 163
+
+[.cast_swamp_plague_scroll]
+id = 165
+
+[.cast_call_to_arms_scroll]
+id = 167
+
+[.cast_titans_con_scroll]
+id = 169
+
+[.cast_boil_scroll]
+id = 171
+
+[.cast_steel_of_legends_scroll]
+id = 173
+
+[.cast_explode_scroll]
+id = 175
+
+[.cast_goad_scroll]
+id = 177
+
+[.cast_ambush_scroll]
+id = 179
+
+[.cast_ebon_thunder_scroll]
+id = 181
+
+[.cast_volcanic_str_scroll]
+id = 183
+
+[.cast_essence_shipment_scroll]
+id = 185
+
+[.cast_pester_scroll]
+id = 187
+
+[.cast_fireball_assault_scroll]
+id = 189
+
+[.cast_rending_scroll]
+id = 191
+
+[.cast_iron_within_scroll]
+id = 193
+
+[.cast_immense_heat_scroll]
+id = 195
+
+[.cast_inferno_scroll]
+id = 197
+
+[.cast_clay_deposit_scroll]
+id = 199
+
+[.cast_fetch_casket_scroll]
+id = 200
+
+[.cast_sundering_strike]
+id = 203
+
+[.cast_poisonous_shot]
+id = 205
+
+[.cast_snaring_wave]
+id = 207
+
+[.cast_aptitude]
+id = 209
+
+[.cast_second_wind]
+id = 211
+
+[.cast_glimmer_of_light]
+id = 213
+
 [pet_details]
 id = 663
 type = "follower_details_tab"
