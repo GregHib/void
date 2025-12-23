@@ -4,7 +4,9 @@ import content.entity.player.dialogue.type.choice
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
@@ -23,6 +25,7 @@ import world.gregs.voidps.engine.queue.softQueue
 val itemDefinitions: ItemDefinitions by inject()
 val npcs: NPCs by inject()
 val enums: EnumDefinitions by inject()
+val interfaceDefs: InterfaceDefinitions by inject()
 
 val Character?.isFamiliar: Boolean
     get() = this != null && this is NPC && id.endsWith("_familiar")
@@ -64,11 +67,16 @@ fun Player.dismissFamiliar() {
     npcs.remove(follower)
     follower = null
     interfaces.close("familiar_details")
+    sendScript("reset_summoning_orb")
 
-    this["follower_details_name"] = 0
-    this["follower_details_chathead"] = 0
-    this["familiar_details_minutes_remaining"] = 0
-    this["familiar_details_seconds_remaining"] = 0
+    // Need to wait for the above sendScript to reach the client before resetting
+    // Cast option for previous familiar will not be cleared from summoning_orb right-click menu otherwise
+    softQueue("reset_familiar_vars", 1) {
+        player["follower_details_name"] = 0
+        player["follower_details_chathead"] = 0
+        player["familiar_details_minutes_remaining"] = 0
+        player["familiar_details_seconds_remaining"] = 0
+    }
     timers.stop("familiar_timer")
 }
 
