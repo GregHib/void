@@ -16,15 +16,14 @@ class PairField<A, B>(
         second.readPacked(reader, index, opcode)
     }
 
-    override fun writePacked(writer: Writer, index: Int, opcode: Int): Boolean {
+    override fun writePacked(writer: Writer, index: Int, opcode: Int) {
         if (first.default == first.get(index) && second.default == second.get(index)) {
-            return false
+            return
         }
         // We use codec directly to avoid writing the opcode twice
         writer.writeByte(opcode)
         first.codec.writeBinary(writer, first.get(index))
         second.codec.writeBinary(writer, second.get(index))
-        return true
     }
 
     override fun readConfig(reader: ConfigReader, index: Int, key: String) {

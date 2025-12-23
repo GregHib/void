@@ -36,14 +36,13 @@ class IndexedStringArrayField(
         get(index)[opcode - offset] = field.readBinary(reader)
     }
 
-    override fun writePacked(writer: Writer, index: Int, opcode: Int): Boolean {
+    override fun writePacked(writer: Writer, index: Int, opcode: Int) {
         val value = get(index)[opcode - offset]
         if (value == default[opcode - offset]) {
-            return false
+            return
         }
         writer.writeByte(opcode)
         field.writeBinary(writer, value)
-        return true
     }
 
     override fun readConfig(reader: ConfigReader, index: Int, key: String) {

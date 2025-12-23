@@ -43,12 +43,11 @@ abstract class NullArraysField<T>(
         setSecond(index, read(reader, size))
     }
 
-    override fun writePacked(writer: Writer, index: Int, opcode: Int): Boolean {
-        val first = getFirst(index) ?: return false
-        val second = getSecond(index) ?: return false
+    override fun writePacked(writer: Writer, index: Int, opcode: Int) {
+        val first = getFirst(index) ?: return
+        val second = getSecond(index) ?: return
         writer.writeByte(opcode)
         writeContent(writer, first, second)
-        return true
     }
 
     private fun writeContent(writer: Writer, first: T, second: T) {

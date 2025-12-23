@@ -54,6 +54,9 @@ object Main {
         val configFiles = configFiles()
         try {
             preload(cache, configFiles)
+            if (configFiles.cacheUpdate || configFiles.extensions.isNotEmpty()) {
+                updateModified()
+            }
         } catch (ex: Exception) {
             logger.error(ex) { "Error loading files." }
             server.stop()

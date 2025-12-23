@@ -441,19 +441,17 @@ abstract class TypeDecoder<T : Type>(val size: Int, val opcodeSize: Int = 256) {
      * Write all values to a packed binary [writer].
      * @param official Whether to skip custom opcodes (250 and above)
      */
-    fun writePacked(writer: Writer, official: Boolean = false): Boolean {
-        var written = false
+    fun writePacked(writer: Writer, official: Boolean = false) {
         for (i in 0 until size) {
-            written = written or writePacked(writer, i, official)
+            writePacked(writer, i, official)
         }
-        return written
     }
 
     /**
      * Write the decoders [index] values to a packed binary [writer].
      * @param official Whether to skip custom opcodes (250 and above)
      */
-    fun writePacked(writer: Writer, index: Int, official: Boolean = false): Boolean {
+    fun writePacked(writer: Writer, index: Int, official: Boolean = false) {
         val start = writer.position()
         for ((opcode, field) in fields.withIndex()) {
             if (field == null || (opcode > 249 && official)) {
@@ -463,9 +461,7 @@ abstract class TypeDecoder<T : Type>(val size: Int, val opcodeSize: Int = 256) {
         }
         if (writer.position() > start) {
             writer.writeByte(0)
-            return true
         }
-        return false
     }
 
     /**

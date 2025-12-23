@@ -24,7 +24,7 @@ interface Field {
      * Writes [index] field to packed binary format if its value differs from default.
      * @return true if the field was written, false if skipped (matches default)
      */
-    fun writePacked(writer: Writer, index: Int, opcode: Int): Boolean
+    fun writePacked(writer: Writer, index: Int, opcode: Int)
 
     /**
      * Reads [index] field's value from Config format for a specific key.

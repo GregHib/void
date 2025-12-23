@@ -18,13 +18,12 @@ interface PrimitiveField<T> : AccessibleField<T> {
         set(index, codec.readBinary(reader))
     }
 
-    override fun writePacked(writer: Writer, index: Int, opcode: Int): Boolean {
+    override fun writePacked(writer: Writer, index: Int, opcode: Int) {
         if (get(index) == default) {
-            return false
+            return
         }
         writer.writeByte(opcode)
         codec.writeBinary(writer, get(index))
-        return true
     }
 
     override fun readConfig(reader: ConfigReader, index: Int, key: String) {

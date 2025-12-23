@@ -42,21 +42,20 @@ class IndexedNullIntArraysField(
         second[index]!![opcode - offset] = field.readBinary(reader)
     }
 
-    override fun writePacked(writer: Writer, index: Int, opcode: Int): Boolean {
+    override fun writePacked(writer: Writer, index: Int, opcode: Int) {
         val stackIds = first[index]
         val stackAmounts = second[index]
         if (stackIds == null || stackAmounts == null) {
-            return false
+            return
         }
         val id = stackIds[opcode - offset].toInt()
         val amount = stackAmounts[opcode - offset].toInt()
         if (id == 0 && amount == 0) {
-            return false
+            return
         }
         writer.writeByte(opcode)
         writer.writeShort(id)
         writer.writeShort(amount)
-        return true
     }
 
     override fun readConfig(reader: ConfigReader, index: Int, key: String) {

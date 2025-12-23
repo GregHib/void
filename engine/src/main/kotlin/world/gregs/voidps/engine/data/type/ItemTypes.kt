@@ -6,6 +6,7 @@ import world.gregs.voidps.cache.type.load.ItemLoader
 import world.gregs.voidps.cache.type.types.ItemType
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.tempCache
 import world.gregs.voidps.engine.timedLoad
 import java.io.File
 
@@ -15,15 +16,10 @@ object ItemTypes : TypeList<ItemType> {
 
     override fun empty() = ItemType.EMPTY
 
-    fun load(cache: Cache, files: ConfigFiles, extension: String = Settings["definitions.items"]) = timedLoad("item type") {
+    fun load(cache: Cache, files: ConfigFiles, extension: String = Settings["definitions.items"], temp: File? = tempCache()) = timedLoad("item type") {
         val paths = files.list(extension)
-        val directory = File("./data/cache/temp/")
-        directory.mkdirs()
-        val loader = ItemLoader(directory)
+        val loader = ItemLoader(temp)
         types = loader.load(cache, paths, files.extensions.contains(extension), files.cacheUpdate)
-//        val writer = BufferWriter(8)
-//        writer.writeLong(System.currentTimeMillis())
-//        File(Settings["storage.data.modified"]).writeBytes(writer.toArray())
         types.size
     }
 }

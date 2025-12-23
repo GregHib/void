@@ -19,15 +19,14 @@ class TripleField<A, B, C>(
         third.readPacked(reader, index, opcode)
     }
 
-    override fun writePacked(writer: Writer, index: Int, opcode: Int): Boolean {
+    override fun writePacked(writer: Writer, index: Int, opcode: Int) {
         if (first.default == first.get(index) && second.default == second.get(index) && third.default == third.get(index)) {
-            return false
+            return
         }
         writer.writeByte(opcode)
         first.codec.writeBinary(writer, first.get(index))
         second.codec.writeBinary(writer, second.get(index))
         third.codec.writeBinary(writer, third.get(index))
-        return true
     }
 
     override fun readConfig(reader: ConfigReader, index: Int, key: String) {

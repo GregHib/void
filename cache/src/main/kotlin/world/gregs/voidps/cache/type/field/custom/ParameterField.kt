@@ -56,11 +56,10 @@ class ParameterField(
         data[index] = map
     }
 
-    override fun writePacked(writer: Writer, index: Int, opcode: Int): Boolean {
-        val params = data[index] ?: return false
+    override fun writePacked(writer: Writer, index: Int, opcode: Int) {
+        val params = data[index] ?: return
         writer.writeByte(opcode)
         writeContent(writer, params)
-        return true
     }
 
     private fun writeContent(writer: Writer, params: Map<Int, Any>) {

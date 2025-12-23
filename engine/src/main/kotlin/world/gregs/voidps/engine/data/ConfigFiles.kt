@@ -5,6 +5,7 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.engine.timedLoad
+import java.io.File
 import java.nio.file.Files
 import java.nio.file.NoSuchFileException
 import java.nio.file.Path
@@ -28,6 +29,17 @@ data class ConfigFiles(
     fun find(path: String, type: String = "toml"): String = map.getOrDefault(type, emptyList()).firstOrNull { it.endsWith(path) } ?: throw NoSuchFileException("Unable to find config file '$path' in /data/ directory.")
 }
 
+fun tempCache(cachePath: String = Settings["storage.cache.temp.path"]): File? {
+    if (!Settings["storage.cache.temp.active", false]) {
+        return null
+    }
+    val directory = File(cachePath)
+    if (!directory.exists()) {
+        directory.mkdirs()
+    }
+    return directory
+}
+
 fun configFiles(): ConfigFiles {
     val map = Object2ObjectOpenHashMap<String, MutableList<String>>()
     val path = Path.of(Settings["storage.data"])
@@ -41,7 +53,7 @@ fun configFiles(): ConfigFiles {
     return ConfigFiles(map, cacheChanged(lastUpdated), extensions)
 }
 
-private fun updateModified() {
+fun updateModified() {
     val modified = Path.of(Settings["storage.data.modified"])
     val writer = ArrayWriter(8)
     writer.writeLong(System.currentTimeMillis())
