@@ -1,3 +1,27 @@
+# 1043 - 1048 hold numbers representing a string. First character will always be capitalized
+# Characters are space as 0 and A-Z as 1-26
+[pet_name_char_1]
+id = 1043
+
+[pet_name_char_2]
+id = 1044
+
+[pet_name_char_3]
+id = 1045
+
+[pet_name_char_4]
+id = 1046
+
+[pet_name_char_6]
+id = 1047
+
+[pet_name_char_7]
+id = 1048
+
+# Displays text from 1043 - 1048 in the pet's name space if set to 1 in the pet details interface (663)
+[override_pet_name]
+id = 1049
+
 [show_summoning_orb]
 id = 4280
 format = "boolean"
