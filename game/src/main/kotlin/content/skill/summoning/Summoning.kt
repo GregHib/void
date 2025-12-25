@@ -30,13 +30,13 @@ val Character?.isFamiliar: Boolean
 
 var Player.follower: NPC?
     get() {
-        val index = this["follower_index", -1]
+        val index = get("follower_index", -1)
         return world.gregs.voidps.engine.get<NPCs>().indexed(index)
     }
     set(value) {
         if (value != null) {
-            this["follower_index"] = value.index
-            this["follower_id"] = value.id
+            set("follower_index", value.index)
+            set("follower_id", value.id)
         }
     }
 
@@ -95,12 +95,12 @@ fun Player.dismissFamiliar() {
 fun Player.updateFamiliarInterface() {
     if (follower == null) return
 
-    this.interfaces.open("familiar_details")
+    interfaces.open("familiar_details")
 
-    this["follower_details_name"] = enums.get("summoning_familiar_ids").getKey(follower!!.def.id)
-    this["follower_details_chathead"] = follower!!.def.id
+    set("follower_details_name", enums.get("summoning_familiar_ids").getKey(follower!!.def.id))
+    set("follower_details_chathead", follower!!.def.id)
 
-    this["follower_details_chathead_animation"] = 1
+    set("follower_details_chathead_animation", 1)
 }
 
 /**
@@ -114,7 +114,7 @@ fun Player.openFollowerLeftClickOptions() {
  * Confirms the selected option in the follower_left_click_options interface and sets the var.
  */
 fun Player.confirmFollowerLeftClickOptions() {
-    this["summoning_orb_left_click_option"] = this["summoning_menu_left_click_option", -1]
+    set("summoning_orb_left_click_option", get("summoning_menu_left_click_option", -1))
     interfaces.close("follower_left_click_options")
 }
 
@@ -141,8 +141,8 @@ fun Player.renewFamiliar() {
     }
 
     inventory.remove(pouchItem.id)
-    this["familiar_details_minutes_remaining"] = follower!!.def["summoning_time_minutes", 0]
-    this["familiar_details_seconds_remaining"] = 0
+    set("familiar_details_minutes_remaining", follower!!.def["summoning_time_minutes", 0])
+    set("familiar_details_seconds_remaining", 0)
     follower!!.gfx("summon_familiar_size_${follower!!.size}")
 }
 
