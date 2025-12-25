@@ -40,6 +40,13 @@ var Player.follower: NPC?
         }
     }
 
+/**
+ * Summons the given familiar if the player doesn't already have a follower
+ *
+ * @param familiar: The [NPCDefinition] of the familiar being summoned
+ * @param restart: A boolean used to tell if this familiar is being summoned at log in. If set to false will start a new
+ * familiar timer
+ */
 fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean): NPC? {
     if (follower != null) {
         // TODO: Find actual message for this
@@ -61,6 +68,10 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean): NPC? {
     return familiarNpc
 }
 
+/**
+ * Dismisses the familiar that is following the player and resets the summoning orb and varbits back to their default
+ * states. Also stops the familiar timer.
+ */
 fun Player.dismissFamiliar() {
     npcs.remove(follower)
     follower = null
@@ -78,6 +89,9 @@ fun Player.dismissFamiliar() {
     timers.stop("familiar_timer")
 }
 
+/**
+ * Updates the familiar interface (663) with the details of the player's current follower
+ */
 fun Player.updateFamiliarInterface() {
     if (follower == null) return
 
@@ -89,20 +103,33 @@ fun Player.updateFamiliarInterface() {
     this["follower_details_chathead_animation"] = 1
 }
 
+/**
+ * Opens the interface used to set the left-click option of the summoning orb on the minimap
+ */
 fun Player.openFollowerLeftClickOptions() {
     interfaces.open("follower_left_click_options")
 }
 
+/**
+ * Confirms the selected option in the follower_left_click_options interface and sets the var.
+ */
 fun Player.confirmFollowerLeftClickOptions() {
     this["summoning_orb_left_click_option"] = this["summoning_menu_left_click_option", -1]
     interfaces.close("follower_left_click_options")
 }
 
+/**
+ * Teleports the player's follower to their position
+ */
 fun Player.callFollower() {
     follower!!.tele(steps.follow, clearMode = false)
     follower!!.clearWatch()
 }
 
+/**
+ * Resets the familiar back to its maximum remaining time based on the summoned familiar. Removes the pouch from the player's
+ * inventory and rewards xp.
+ */
 fun Player.renewFamiliar() {
     val pouchId = enums.get("summoning_familiar_ids").getKey(follower!!.def.id)
     val pouchItem = Item(itemDefinitions.get(pouchId).stringId)
