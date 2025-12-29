@@ -9,6 +9,7 @@ import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.Caller
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.ScriptTest
+import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -135,7 +136,7 @@ class SpawnTest {
         }
 
         override fun invoke(args: List<String>) {
-            Spawn.world(mapOf())
+            Spawn.world(ConfigFiles(mapOf()))
         }
 
         override val apis = listOf(Spawn)

@@ -5,8 +5,8 @@ import org.koin.core.component.KoinComponent
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.VariableStore
 import world.gregs.voidps.engine.client.variable.Variables
+import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.list
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -32,7 +32,7 @@ object World : Entity, VariableStore, Runnable, KoinComponent {
     val members: Boolean
         get() = Settings["world.members", false]
 
-    fun start(files: Map<String, List<String>>) {
+    fun start(files: ConfigFiles) {
         loadItemSpawns(get<FloorItems>(), get<ItemSpawns>(), files.list(Settings["spawns.items"]), get())
         loadObjectSpawns(get<GameObjects>(), files.list(Settings["spawns.objects"]), get())
         loadNpcSpawns(get<NPCs>(), files.list(Settings["spawns.npcs"]), get())

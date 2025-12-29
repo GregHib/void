@@ -9,8 +9,6 @@ import world.gregs.voidps.engine.data.definition.AmmoDefinitions
 import world.gregs.voidps.engine.data.definition.CategoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.ParameterDefinitions
-import world.gregs.voidps.engine.data.find
-import world.gregs.voidps.engine.data.list
 
 object ItemDefinitions {
 
