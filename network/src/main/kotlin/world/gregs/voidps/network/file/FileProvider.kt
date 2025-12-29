@@ -2,7 +2,7 @@ package world.gregs.voidps.network.file
 
 import com.github.michaelbull.logging.InlineLogger
 import io.ktor.utils.io.*
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.network.file.type.CacheFileProvider
 import world.gregs.voidps.network.file.type.MemoryFileProvider
@@ -59,7 +59,7 @@ interface FileProvider {
         internal fun encode(data: ByteArray): ByteArray {
             val compression = data[0].toInt()
             val size = getInt(data[1], data[2], data[3], data[4]) + if (compression != 0) 8 else 4
-            val write = BufferWriter(data.size + (size / SPLIT) + 1)
+            val write = ArrayWriter(data.size + (size / SPLIT) + 1)
             write.writeByte(compression)
             var length = min(size, LARGEST_BLOCK)
             write.writeBytes(data, OFFSET, length)

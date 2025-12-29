@@ -1,17 +1,15 @@
-package world.gregs.voidps.buffer
+package world.gregs.voidps.buffer.read
 
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.buffer.read.BufferReader
-import java.nio.ByteBuffer
 
-internal class BufferReaderTest {
+abstract class ReaderTest {
 
-    private lateinit var buffer: BufferReader
+    lateinit var buffer: Reader
 
-    private fun packet(vararg bytes: Int) {
-        buffer = BufferReader(buffer = ByteBuffer.wrap(bytes.map { it.toByte() }.toByteArray()))
-    }
+    abstract fun packet(vararg bytes: Int)
 
     @Test
     fun `Read byte`() {
@@ -146,7 +144,15 @@ internal class BufferReaderTest {
         // Given
         packet(49, 0)
         // Then
-        assertEquals("1", buffer.readString())
+        assertEquals("1", buffer.readCharString())
+    }
+
+    @Test
+    fun `Read non-utf string`() {
+        // Given
+        packet(239, 0)
+        // Then
+        assertEquals("ï", buffer.readCharString())
     }
 
     @Test
@@ -196,6 +202,84 @@ internal class BufferReaderTest {
     }
 
     @Test
+    fun `Read bytes`() {
+        // Given
+        packet(-3, -1, -1, -1, 127, -1, 48, 57, 0, -68, 97, 78)
+        buffer.position(2)
+        val out = ByteArray(6)
+        // When
+        buffer.readBytes(out)
+        // Then
+        assertArrayEquals(byteArrayOf(-1, -1, 127, -1, 48, 57), out)
+        assertEquals(8, buffer.position())
+    }
+
+    @Test
+    fun `Read shorts`() {
+        // Given
+        packet(0, 2, -1, -2, 0, 2, -1, -2)
+        buffer.position(2)
+        val out = ShortArray(2)
+        // When
+        buffer.readBytes(out)
+        // Then
+        assertArrayEquals(shortArrayOf(-2, 2), out)
+        assertEquals(6, buffer.position())
+    }
+
+    @Test
+    fun `Read ints`() {
+        // Given
+        packet(0, 0, 0, 2, -1, -1, -1, -2, 0, 0, 0, 2, -1, -1, -1, -2)
+        buffer.position(4)
+        val out = IntArray(2)
+        // When
+        buffer.readBytes(out)
+        // Then
+        assertArrayEquals(intArrayOf(-2, 2), out)
+        assertEquals(12, buffer.position())
+    }
+
+    @Test
+    fun `Read longs`() {
+        // Given
+        packet(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, -1, -1, -1, -1, -1, -1, -1, -2)
+        buffer.position(4)
+        val out = LongArray(2)
+        // When
+        buffer.readBytes(out)
+        // Then
+        assertArrayEquals(longArrayOf(2, -2), out)
+        assertEquals(20, buffer.position())
+    }
+
+    @Test
+    fun `Read floats`() {
+        // Given
+        packet(0, 0, 0, 0, 64, 0, 0, 0, -64, 0, 0, 0)
+        buffer.position(4)
+        val out = FloatArray(2)
+        // When
+        buffer.readBytes(out)
+        // Then
+        assertArrayEquals(floatArrayOf(2.0f, -2.0f), out)
+        assertEquals(12, buffer.position())
+    }
+
+    @Test
+    fun `Read doubles`() {
+        // Given
+        packet(0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0, -64, 0, 0, 0, 0, 0, 0, 0)
+        buffer.position(4)
+        val out = DoubleArray(2)
+        // When
+        buffer.readBytes(out)
+        // Then
+        assertArrayEquals(doubleArrayOf(2.0, -2.0), out)
+        assertEquals(20, buffer.position())
+    }
+
+    @Test
     fun `Read bit access`() {
         // Given
         packet(-64)
@@ -217,9 +301,9 @@ internal class BufferReaderTest {
 
     @Test
     fun `Read special char`() {
-        packet(-32)
+        packet(-32, 0)
         // When
-        val string = buffer.readString()
+        val string = buffer.readCharString()
         // Then
         assertEquals("\u00E0", string)
     }

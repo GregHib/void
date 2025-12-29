@@ -2,7 +2,7 @@ package world.gregs.voidps.cache.secure
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.ArrayWriter
 
 class Huffman {
 
@@ -137,7 +137,7 @@ class Huffman {
      * @param message The message to encode
      */
     fun compress(message: String): ByteArray {
-        val writer = BufferWriter(128)
+        val writer = ArrayWriter(128)
         try {
             // Format the message
             val messageData = formatMessage(message)
@@ -156,7 +156,7 @@ class Huffman {
      * @param message The message to compress, split by symbol into a byte array
      * @param builder The packet to write the compressed data too
      */
-    private fun compress(message: ByteArray, builder: BufferWriter) {
+    private fun compress(message: ByteArray, builder: ArrayWriter) {
         try {
             if (masks == null) {
                 return

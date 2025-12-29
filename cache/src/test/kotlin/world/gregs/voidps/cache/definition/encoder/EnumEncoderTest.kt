@@ -3,8 +3,8 @@ package world.gregs.voidps.cache.definition.encoder
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.buffer.read.BufferReader
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.read.ArrayReader
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.data.EnumDefinition
@@ -26,7 +26,7 @@ internal class EnumEncoderTest {
         )
         val encoder = EnumEncoder()
 
-        val writer = BufferWriter(1024)
+        val writer = ArrayWriter(1024)
         with(encoder) {
             writer.encode(definition)
         }
@@ -35,7 +35,7 @@ internal class EnumEncoderTest {
 
         val decoder = EnumDecoder()
         val decodedDefinition = EnumDefinition(id = definition.id)
-        val reader = BufferReader(ByteBuffer.wrap(data))
+        val reader = ArrayReader(ByteBuffer.wrap(data))
         decoder.readLoop(decodedDefinition, reader)
 
         assertEquals(definition, decodedDefinition)
@@ -48,7 +48,7 @@ internal class EnumEncoderTest {
         val decoder = EnumDecoder()
         val full = decoder.load(cache)
         val encoder = EnumEncoder()
-        val writer = BufferWriter(20_000)
+        val writer = ArrayWriter(20_000)
 
         for (definition in full) {
             with(encoder) {
@@ -58,7 +58,7 @@ internal class EnumEncoderTest {
             val data = writer.array()
 
             val decodedDefinition = EnumDefinition(id = definition.id)
-            val reader = BufferReader(ByteBuffer.wrap(data))
+            val reader = ArrayReader(ByteBuffer.wrap(data))
             decoder.readLoop(decodedDefinition, reader)
 
             assertEquals(definition.keyType, decodedDefinition.keyType)

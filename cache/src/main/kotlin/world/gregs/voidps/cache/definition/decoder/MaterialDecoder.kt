@@ -1,6 +1,6 @@
 package world.gregs.voidps.cache.definition.decoder
 
-import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
@@ -18,7 +18,7 @@ class MaterialDecoder : DefinitionDecoder<MaterialDefinition>(TEXTURE_DEFINITION
     override fun load(cache: Cache): Array<MaterialDefinition> {
         val start = System.currentTimeMillis()
         val data = cache.data(index, 0, 0)!!
-        val reader = BufferReader(data)
+        val reader = ArrayReader(data)
         val size = reader.readShort()
         val definitions = create(size)
         load(definitions, reader)

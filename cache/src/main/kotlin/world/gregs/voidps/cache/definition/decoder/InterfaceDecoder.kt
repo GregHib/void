@@ -1,7 +1,7 @@
 package world.gregs.voidps.cache.definition.decoder
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
-import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
@@ -40,7 +40,7 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
             val data = cache.data(index, archiveId, i)
             if (data != null) {
                 val componentDefinition = InterfaceComponentDefinition(id = InterfaceDefinition.pack(id, i))
-                if (!componentDefinition.isEmpty(BufferReader(data))) {
+                if (!componentDefinition.isEmpty(ArrayReader(data))) {
                     components[i] = componentDefinition
                 }
             }

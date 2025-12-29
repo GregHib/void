@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.client.update.view
 
 import it.unimi.dsi.fastutil.ints.IntLinkedOpenHashSet
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.engine.entity.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.Tile
@@ -14,10 +14,10 @@ class Viewport {
     val idlePlayers: IntArray = IntArray(MAX_PLAYERS)
     private val lastSeen = IntArray(MAX_PLAYERS)
 
-    val playerChanges = BufferWriter(3000)
-    val playerUpdates = BufferWriter(7500)
-    val npcChanges = BufferWriter(3000)
-    val npcUpdates = BufferWriter(4000)
+    val playerChanges = ArrayWriter(3000)
+    val playerUpdates = ArrayWriter(7500)
+    val npcChanges = ArrayWriter(3000)
+    val npcUpdates = ArrayWriter(4000)
 
     var lastLoadZone: Zone = Zone.EMPTY
     var loaded: Boolean = false

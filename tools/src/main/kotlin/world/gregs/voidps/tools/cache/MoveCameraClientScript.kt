@@ -1,8 +1,8 @@
 package world.gregs.voidps.tools.cache
 
 import com.displee.cache.CacheLibrary
-import world.gregs.voidps.buffer.read.BufferReader
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.read.ArrayReader
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinitionFull
@@ -35,7 +35,7 @@ object MoveCameraClientScript {
     private fun addScript(cache: CacheLibrary, scriptDef: ClientScriptDefinition): Int {
         val index = cache.index(Index.CLIENT_SCRIPTS)
         val scriptEncoder = ClientScriptEncoder()
-        val writer = BufferWriter(1024)
+        val writer = ArrayWriter(1024)
         with(scriptEncoder) {
             writer.encode(scriptDef)
         }
@@ -52,7 +52,7 @@ object MoveCameraClientScript {
                 // Read interface definition
                 val definition = InterfaceComponentDefinitionFull()
                 with(interfaceDecoder) {
-                    definition.read(BufferReader(data))
+                    definition.read(ArrayReader(data))
                 }
 
                 // Find component with script
@@ -68,7 +68,7 @@ object MoveCameraClientScript {
                 definition.parent = parent
                 motionHandler[0] = newScriptId
                 // Write
-                val buffer = BufferWriter(1024)
+                val buffer = ArrayWriter(1024)
                 with(encoder) {
                     buffer.encode(definition)
                 }
@@ -83,7 +83,7 @@ object MoveCameraClientScript {
         val scriptData = otherCache.data(Index.CLIENT_SCRIPTS, SCRIPT_ID)!!
         val scriptDef = ClientScriptDefinition()
         scriptDef.id = SCRIPT_ID
-        scriptDecoder.readLoop(scriptDef, BufferReader(scriptData))
+        scriptDecoder.readLoop(scriptDef, ArrayReader(scriptData))
         return scriptDef
     }
 

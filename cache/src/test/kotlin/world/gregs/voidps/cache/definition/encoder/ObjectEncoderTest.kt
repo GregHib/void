@@ -3,8 +3,8 @@ package world.gregs.voidps.cache.definition.encoder
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.buffer.read.BufferReader
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.read.ArrayReader
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.data.ObjectDefinitionFull
@@ -98,21 +98,21 @@ internal class ObjectEncoderTest {
 
         val encoder = ObjectEncoder()
 
-        val writer = BufferWriter(1024)
+        val writer = ArrayWriter(1024)
         with(encoder) {
             writer.encode(definition, members)
         }
 
         val decoder = ObjectDecoderFull(members = false)
         val loadedDefinition = ObjectDefinitionFull(id = definition.id)
-        val reader = BufferReader(ByteBuffer.wrap(writer.toArray()))
+        val reader = ArrayReader(ByteBuffer.wrap(writer.toArray()))
         decoder.readLoop(loadedDefinition, reader)
 
         assertEquals(definition, loadedDefinition)
 
         val decoderMembers = ObjectDecoderFull(members = true)
         val loadedDefinitionMembers = ObjectDefinitionFull(id = definition.id)
-        val readerMembers = BufferReader(ByteBuffer.wrap(writer.toArray()))
+        val readerMembers = ArrayReader(ByteBuffer.wrap(writer.toArray()))
         decoderMembers.readLoop(loadedDefinitionMembers, readerMembers)
 
         assertEquals(members, loadedDefinitionMembers)
@@ -125,14 +125,14 @@ internal class ObjectEncoderTest {
         val decoder = ObjectDecoderFull()
         val full = decoder.load(cache)
         val encoder = ObjectEncoder()
-        val writer = BufferWriter(1024)
+        val writer = ArrayWriter(1024)
         for (definition in full) {
             with(encoder) {
                 writer.clear()
                 writer.encode(definition)
             }
             val loadedDefinition = ObjectDefinitionFull(id = definition.id)
-            val reader = BufferReader(ByteBuffer.wrap(writer.toArray()))
+            val reader = ArrayReader(ByteBuffer.wrap(writer.toArray()))
             decoder.readLoop(loadedDefinition, reader)
             assertEquals(definition, loadedDefinition)
         }

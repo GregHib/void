@@ -1,6 +1,6 @@
 package world.gregs.voidps.cache.definition.data
 
-import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
 
@@ -19,7 +19,7 @@ data class QuickChatPhraseDefinition(
         val (_, stringParts, _, ids, types) = this@QuickChatPhraseDefinition
         if (stringParts != null) {
             if (types != null && ids != null) {
-                val reader = BufferReader(data)
+                val reader = ArrayReader(data)
                 for (index in types.indices) {
                     append(stringParts[index])
                     val type = getType(index)

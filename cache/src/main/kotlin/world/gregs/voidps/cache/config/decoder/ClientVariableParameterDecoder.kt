@@ -11,7 +11,7 @@ class ClientVariableParameterDecoder : ConfigDecoder<ClientVariableParameterDefi
 
     override fun ClientVariableParameterDefinition.read(opcode: Int, buffer: Reader) {
         if (opcode == 1) {
-            aChar3210 = byteToChar(buffer.readByte().toByte())
+            aChar3210 = buffer.readChar().toChar()
         } else if (opcode == 2) {
             anInt3208 = 0
         }

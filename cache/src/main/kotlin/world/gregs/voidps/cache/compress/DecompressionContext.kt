@@ -2,7 +2,7 @@ package world.gregs.voidps.cache.compress
 
 import com.github.michaelbull.logging.InlineLogger
 import lzma.sdk.lzma.Decoder
-import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.cache.secure.Xtea
 import java.io.ByteArrayInputStream
 import java.io.OutputStream
@@ -21,7 +21,7 @@ internal class DecompressionContext {
         if (keys != null && (keys[0] != 0 || keys[1] != 0 || keys[2] != 0 || 0 != keys[3])) {
             Xtea.decipher(data, keys, 5)
         }
-        val buffer = BufferReader(data)
+        val buffer = ArrayReader(data)
         val type = buffer.readUnsignedByte()
         val compressedSize = buffer.readInt() and 0xFFFFFF
         var decompressedSize = 0

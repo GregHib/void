@@ -1,6 +1,6 @@
 package world.gregs.voidps.cache.definition.decoder
 
-import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
@@ -26,7 +26,7 @@ class ClientScriptDecoder(private val revision667: Boolean = false) : Definition
         val length = reader.readInt()
         val bytes = ByteArray(length)
         reader.readBytes(bytes)
-        read(definitions, id, BufferReader(bytes))
+        read(definitions, id, ArrayReader(bytes))
     }
 
     override fun ClientScriptDefinition.read(opcode: Int, buffer: Reader) {

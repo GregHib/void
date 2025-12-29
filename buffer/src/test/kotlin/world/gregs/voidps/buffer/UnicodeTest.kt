@@ -1,22 +1,20 @@
-package world.gregs.voidps.cache.definition.encoder
+package world.gregs.voidps.buffer
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import world.gregs.voidps.cache.DefinitionDecoder.Companion.byteToChar
-import world.gregs.voidps.cache.DefinitionDecoder.Companion.charToByte
 
-class DefinitionDecoderByteTest {
+class UnicodeTest {
     @Test
     fun `Encode byte to char and back`() {
         for (byte in Byte.MIN_VALUE..Byte.MAX_VALUE) {
             if (byte == 0) {
                 continue
             }
-            val original = byte.toByte()
-            val char = byteToChar(original)
+            val original = byte.toByte().toInt()
+            val char = Unicode.byteToChar(original).toChar()
             val roundTrip = try {
-                charToByte(char)
+                Unicode.charToByte(char)
             } catch (e: IllegalArgumentException) {
                 null
             }
@@ -33,7 +31,7 @@ class DefinitionDecoderByteTest {
     fun `Invalid characters throws exception`() {
         val impossibleChar = '\u4E00'
         assertThrows<IllegalArgumentException> {
-            charToByte(impossibleChar)
+            Unicode.charToByte(impossibleChar)
         }
     }
 
@@ -41,7 +39,7 @@ class DefinitionDecoderByteTest {
     fun `Unmappable characters throws exception`() {
         val impossibleChar = 63.toChar()
         assertThrows<IllegalArgumentException> {
-            charToByte(impossibleChar)
+            Unicode.charToByte(impossibleChar)
         }
     }
 }

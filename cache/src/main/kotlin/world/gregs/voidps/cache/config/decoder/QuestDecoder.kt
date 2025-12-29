@@ -48,11 +48,11 @@ class QuestDecoder(
             val sb = StringBuilder()
             var b: Int
             while (readableBytes() > 0) {
-                b = readByte()
+                b = readChar()
                 if (b == 0) {
                     break
                 }
-                sb.append(byteToChar(b.toByte()))
+                sb.append(b)
             }
             return sb.toString()
         }

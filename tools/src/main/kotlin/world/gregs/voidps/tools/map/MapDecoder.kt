@@ -1,7 +1,7 @@
 package world.gregs.voidps.tools.map
 
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
-import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
@@ -44,7 +44,7 @@ class MapDecoder(val xteas: Map<Int, IntArray>? = null) : DefinitionDecoder<MapD
     override fun load(definitions: Array<MapDefinition>, cache: Cache, id: Int) {
         val region = regionHashes[id] ?: return
         val data = cache.data(index, id, 0, null) ?: return
-        val reader = BufferReader(data)
+        val reader = ArrayReader(data)
         val definition = definitions[id]
         definition.id = region
         loadTiles(reader, definition.tiles)
