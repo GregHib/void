@@ -14,10 +14,12 @@ import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.cache.definition.data.NPCDefinition
+import world.gregs.voidps.cache.definition.data.NPCDefinitionFull
+import world.gregs.voidps.cache.definition.type.NPCType
+import world.gregs.voidps.cache.definition.types.NPCTypes
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
-import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.suspend.ContinueSuspension
 import world.gregs.voidps.network.client.Client
@@ -31,7 +33,9 @@ internal class NPCChatTest : DialogueTest() {
     @BeforeEach
     override fun setup() {
         super.setup()
-        npc = NPC(id = "jim", index = -1, def = NPCDefinition(id = 123, stringId = "jim", name = "Jim"))
+        NPCTypes.all = NPCTypes(124)
+        NPCTypes.all.load(123, NPCDefinition(id = 123, stringId = "jim", name = "Jim"))
+        npc = NPC(id = "jim", index = -1, def = NPCType(123))
         player.talkWith(npc)
         declareMock<AnimationDefinitions> {
             every { this@declareMock.get(any<String>()) } returns AnimationDefinition()
@@ -45,10 +49,6 @@ internal class NPCChatTest : DialogueTest() {
             every { this@declareMock.getOrNull("expression_laugh2")?.id } returns 9840
             every { this@declareMock.getOrNull("expression_laugh3")?.id } returns 9840
             every { this@declareMock.getOrNull("expression_laugh4")?.id } returns 9840
-        }
-        declareMock<NPCDefinitions> {
-            every { this@declareMock.get(any<String>()) } returns NPCDefinition()
-            every { this@declareMock.get("jim") } returns NPCDefinition(id = 123, name = "Jim")
         }
     }
 

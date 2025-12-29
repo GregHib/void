@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.player
 
+import world.gregs.voidps.cache.definition.types.NPCTypes
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.RenderEmoteDefinitions
@@ -69,7 +70,7 @@ fun Player.clearRenderEmote() = flag {
     if (id == null) {
         emote = 1426
     } else {
-        val definition = get<NPCDefinitions>().get(id)
+        val definition = NPCTypes.get(id)
         emote = definition.renderEmote
     }
 }

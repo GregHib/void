@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.resolve
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
@@ -167,12 +168,12 @@ fun Player.itemOnItem(
 
 fun Player.npcOption(npc: NPC, option: String) {
     val definitions = get<NPCDefinitions>()
-    val def = if (npc.transform.isNotBlank()) {
-        definitions.get(npc.transform)
+    val options = if (npc.transform.isNotBlank()) {
+        definitions.get(npc.transform).options
     } else {
-        ObjectOptionHandler.getDefinition(this, definitions, npc.def, npc.def)
+        npc.def.resolve(this).options
     }
-    npcOption(npc, def.options.indexOf(option))
+    npcOption(npc, options.indexOf(option))
 }
 
 fun Player.npcOption(npc: NPC, option: Int) = runTest {

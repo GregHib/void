@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.NPCDefinition
+import world.gregs.voidps.cache.definition.data.NPCDefinitionFull
+import world.gregs.voidps.cache.definition.types.NPCTypes
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
@@ -17,7 +19,8 @@ class NPCsTest {
     @BeforeEach
     fun setup() {
         val definitions = NPCDefinitions(arrayOf(NPCDefinition(0)))
-        definitions.ids = mapOf("test" to 0)
+        NPCTypes.all = NPCTypes(1)
+        NPCTypes.all.load(0, NPCDefinition(0, name = "test", stringId = "test"))
         npcs = NPCs(definitions, Collisions(emptyArray()), CollisionStrategyProvider(), AreaDefinitions())
     }
 

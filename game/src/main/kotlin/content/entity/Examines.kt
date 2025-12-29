@@ -1,5 +1,6 @@
 package content.entity
 
+import world.gregs.voidps.cache.definition.types.NPCTypes
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.message
@@ -55,7 +56,7 @@ class Examines : Script {
         }
 
         instruction<ExamineNpc> { player ->
-            val definition = npcDefinitions.get(npcId)
+            val definition = NPCTypes.get(npcId)
             if (definition.contains("examine")) {
                 player.message(definition["examine"], ChatType.Game)
             }

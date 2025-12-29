@@ -1,5 +1,6 @@
 package content.entity.effect
 
+import world.gregs.voidps.cache.definition.types.NPCTypes
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -37,7 +38,7 @@ fun Character.transform(id: String, collision: Boolean = true) {
         return
     }
     this["transform_id"] = id
-    val definition = get<NPCDefinitions>().get(id)
+    val definition = NPCTypes.get(id)
     if (this is Player) {
         appearance.apply {
             emote = definition.renderEmote

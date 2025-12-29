@@ -14,10 +14,11 @@ import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.cache.definition.data.NPCDefinition
+import world.gregs.voidps.cache.definition.data.NPCDefinitionFull
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
+import world.gregs.voidps.cache.definition.types.NPCTypes
 import world.gregs.voidps.engine.Caller
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.Operation
@@ -31,11 +32,9 @@ abstract class OnInteractTest : KoinMock() {
         declare { mockk<StepValidator>(relaxed = true) }
         declare { mockk<LineValidator>(relaxed = true) }
         declare { mockk<PathFinder>(relaxed = true) }
-        declare {
-            val def = mockk<NPCDefinitions>(relaxed = true)
-            every { def.resolve(any(), any()) } returns NPCDefinition(0, stringId = "npc")
-            def
-        }
+        NPCTypes.all = NPCTypes(2)
+        NPCTypes.all.load(0, NPCDefinition(0, transforms = intArrayOf(1), varbit = 0))
+        NPCTypes.all.load(1, NPCDefinition(0, stringId = "npc"))
         declare {
             val def = mockk<ObjectDefinitions>(relaxed = true)
             every { def.resolve(any(), any()) } returns ObjectDefinition(0, stringId = "obj")

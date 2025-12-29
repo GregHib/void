@@ -6,6 +6,7 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.NPCDefinition
+import world.gregs.voidps.cache.definition.types.NPCTypes
 import world.gregs.voidps.engine.data.definition.data.Pocket
 import world.gregs.voidps.engine.data.definition.data.Spot
 import world.gregs.voidps.engine.entity.item.drop.DropTables

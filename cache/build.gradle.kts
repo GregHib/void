@@ -5,6 +5,7 @@ plugins {
 dependencies {
     implementation(project(":buffer"))
     implementation(project(":types"))
+    implementation(project(":config"))
     implementation(libs.displee.cache)
     implementation(libs.koin)
 

@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.client.ui.dialogue
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import world.gregs.voidps.cache.definition.data.NPCDefinition
+import world.gregs.voidps.cache.definition.type.NPCType
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Wildcard
@@ -36,7 +36,7 @@ interface Dialogues {
     }
 }
 
-fun Player.talkWith(npc: NPC, def: NPCDefinition = npc.def) {
+fun Player.talkWith(npc: NPC, def: NPCType = npc.def) {
     set("dialogue_target", npc)
     set("dialogue_def", def)
 }

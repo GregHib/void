@@ -2,6 +2,7 @@ package content.entity.combat
 
 import content.entity.combat.hit.Damage
 import content.entity.combat.hit.Hit
+import world.gregs.voidps.cache.definition.types.NPCTypes
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.modCommand
 import world.gregs.voidps.engine.client.command.stringArg
@@ -41,7 +42,7 @@ class CombatDebug : Script {
         val magicMax = Damage.maximum(player, player, "magic", weapon, spell)
         player.message("Ranged: $rangeMax Melee: $meleeMax Magic: $magicMax")
         player.message("Hit Chance")
-        val target = NPC(npcName, Tile.EMPTY, npcDefinitions.get(npcName)).apply {
+        val target = NPC(npcName, Tile.EMPTY, NPCTypes.get(npcName)).apply {
             levels.link(this, NPCLevels(def))
             levels.clear()
         }

@@ -12,6 +12,9 @@ import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.definition.data.NPCDefinition
+import world.gregs.voidps.cache.definition.data.NPCDefinitionFull
+import world.gregs.voidps.cache.definition.type.NPCType
+import world.gregs.voidps.cache.definition.types.NPCTypes
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -84,7 +87,9 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val npc: NPC = mockk(relaxed = true)
         every { npc.index } returns 1
         val entities = IntOpenHashSet.of(npc.index)
-        every { npc.def } returns NPCDefinition(extras = mapOf("crawl" to false))
+        NPCTypes.all = NPCTypes(1)
+        NPCTypes.all.load(0, NPCDefinition(extras = mapOf("crawl" to false)))
+        every { npc.def } returns NPCType(0)
         every { npcs.indexed(1) } returns npc
         every { npc.visuals.moved } returns true
         every { npc.visuals.walkStep } returns 0 // North
@@ -115,7 +120,9 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val npc: NPC = mockk(relaxed = true)
         every { npc.index } returns 1
         val entities = IntOpenHashSet.of(npc.index)
-        every { npc.def } returns NPCDefinition(extras = mapOf("crawl" to true))
+        NPCTypes.all = NPCTypes(1)
+        NPCTypes.all.load(0, NPCDefinition(extras = mapOf("crawl" to true)))
+        every { npc.def } returns NPCType(0)
         every { npcs.indexed(1) } returns npc
         every { npc.visuals.moved } returns true
         every { npc.visuals.walkStep } returns 0 // North
@@ -146,7 +153,9 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val npc: NPC = mockk(relaxed = true)
         every { npc.index } returns 1
         val entities = IntOpenHashSet.of(npc.index)
-        every { npc.def } returns NPCDefinition(extras = mapOf("crawl" to false))
+        NPCTypes.all = NPCTypes(1)
+        NPCTypes.all.load(0, NPCDefinition(extras = mapOf("crawl" to false)))
+        every { npc.def } returns NPCType(0)
         every { npcs.indexed(1) } returns npc
         every { npc.visuals.moved } returns true
         every { npc.visuals.walkStep } returns 0 // North

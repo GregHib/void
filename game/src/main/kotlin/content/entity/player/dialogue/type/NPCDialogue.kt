@@ -4,6 +4,8 @@ import content.entity.player.dialogue.Expression
 import content.entity.player.dialogue.sendChat
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.cache.definition.data.NPCDefinition
+import world.gregs.voidps.cache.definition.type.NPCType
+import world.gregs.voidps.cache.definition.types.NPCTypes
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.FontDefinitions
@@ -29,7 +31,7 @@ suspend inline fun <reified E : Expression> Player.npc(npcId: String, text: Stri
 @JvmName("npcExpression")
 suspend fun Player.npc(expression: String, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
     val target: NPC = get("dialogue_target") ?: throw IllegalArgumentException("No npc specified for dialogue. Please use player.talkWith(npc) or npc(npcId, text).")
-    val id = target["transform_id", get<NPCDefinition>("dialogue_def")?.stringId ?: target.id]
+    val id = target["transform_id", get<NPCType>("dialogue_def")?.stringId ?: target.id]
     if (target["faces", true]) {
         target.mode = Face(target, this)
     }
@@ -51,7 +53,7 @@ private suspend fun Player.npc(lines: List<String>, clickToContinue: Boolean, np
     check(lines.size <= 4) { "Maximum npc chat lines exceeded ${lines.size} for $this" }
     val id = getInterfaceId(lines.size, clickToContinue)
     check(open(id)) { "Unable to open npc dialogue $id for $this" }
-    val npcDef = get<NPCDefinitions>().get(npcId)
+    val npcDef = NPCTypes.get(npcId)
     val head = getChatHeadComponentName(largeHead ?: npcDef["large_head", false])
     sendNPCHead(this, id, head, npcDef.id)
     interfaces.sendChat(id, head, if (npcDef.contains("dialogue")) "${npcDef["dialogue", ""]}_$expression" else expression, title ?: npcDef.name, lines)

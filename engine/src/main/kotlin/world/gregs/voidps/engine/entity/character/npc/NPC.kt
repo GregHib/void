@@ -2,9 +2,11 @@ package world.gregs.voidps.engine.entity.character.npc
 
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import org.rsmod.game.pathfinder.flag.CollisionFlag
-import world.gregs.voidps.cache.definition.data.NPCDefinition
+import world.gregs.voidps.cache.definition.type.NPCType
+import world.gregs.voidps.cache.definition.types.NPCTypes
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
@@ -26,7 +28,7 @@ import kotlin.coroutines.Continuation
 data class NPC(
     val id: String = "",
     override var tile: Tile = Tile.EMPTY,
-    val def: NPCDefinition = NPCDefinition.EMPTY,
+    val def: NPCType = NPCType.EMPTY,
     override var index: Int = -1,
     override val levels: Levels = Levels(),
 ) : Character {
@@ -63,11 +65,11 @@ data class NPC(
     var huntMode: String? = null
     var huntCounter = 0
 
-    fun def(player: Player, definitions: NPCDefinitions = get()): NPCDefinition {
+    fun def(player: Player, definitions: NPCDefinitions = get()): NPCType {
         if (contains("transform_id")) {
-            return definitions.get(this["transform_id", ""])
+            return NPCTypes.get(this["transform_id", ""])
         }
-        return definitions.resolve(def, player)
+        return def.resolve(player)
     }
 
     override fun equals(other: Any?): Boolean {
@@ -80,4 +82,25 @@ data class NPC(
     override fun hashCode(): Int = index
 
     override fun toString(): String = "NPC(id=$id, index=$index, tile=$tile)"
+}
+
+fun NPCType.resolve(player: Player): NPCType {
+    val transforms = transforms ?: return this
+    if (varbit != -1) {
+        val index = index(player, varbit, true)
+        return NPCType(transforms.getOrNull(index.coerceAtMost(transforms.lastIndex)) ?: return this)
+    }
+    if (varp != -1) {
+        val index = index(player, varp, false)
+        return NPCType(transforms.getOrNull(index.coerceAtMost(transforms.lastIndex)) ?: return this)
+    }
+    return this
+}
+
+private fun index(player: Player, id: Int, varbit: Boolean): Int {
+    val definitions: VariableDefinitions = get()
+    val key = (if (varbit) definitions.getVarbit(id) else definitions.getVarp(id)) ?: return 0
+    val definition = definitions.get(key)
+    val value = player.variables.get<Any>(key) ?: return 0
+    return definition?.values?.toInt(value) ?: 0
 }

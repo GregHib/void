@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client.instruction.handle
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.cache.definition.types.NPCTypes
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.instruction.handle.ObjectOptionHandler.Companion.getDefinition
 import world.gregs.voidps.engine.client.message
@@ -12,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.mode.interact.NPCOnNPCInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnNPCInteract
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.npc.resolve
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
@@ -32,9 +34,9 @@ class NPCOptionHandler(
         var def = npc.def
         val transform = npc["transform_id", ""]
         if (transform.isNotBlank()) {
-            def = definitions.get(transform)
+            def = NPCTypes.get(transform)
         }
-        val definition = getDefinition(player, definitions, def, def)
+        val definition = def.resolve(player)
         val options = definition.options
         val index = instruction.option - 1
         val selectedOption = options.getOrNull(index)

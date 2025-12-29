@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.event
 
 import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.voidps.cache.definition.types.NPCTypes
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.get
@@ -19,7 +20,7 @@ object Wildcards {
 
     private var changes = false
 
-    private lateinit var npcDefinitions: NPCDefinitions
+    private lateinit var npcDefinitions: NPCTypes
     private lateinit var objectDefinitions: ObjectDefinitions
     private lateinit var interfaceDefinitions: InterfaceDefinitions
     private lateinit var itemDefinitions: ItemDefinitions
@@ -27,7 +28,7 @@ object Wildcards {
 
     fun load(
         path: String,
-        npcDefinitions: NPCDefinitions = get(),
+        npcDefinitions: NPCTypes = NPCTypes.all,
         objectDefinitions: ObjectDefinitions = get(),
         interfaceDefinitions: InterfaceDefinitions = get(),
         itemDefinitions: ItemDefinitions = get(),

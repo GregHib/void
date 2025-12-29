@@ -1,7 +1,8 @@
 package world.gregs.voidps.engine.entity.character.npc
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.cache.definition.data.NPCDefinition
+import world.gregs.voidps.cache.definition.type.NPCType
+import world.gregs.voidps.cache.definition.types.NPCTypes
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.Despawn
@@ -66,8 +67,8 @@ data class NPCs(
     fun indexed(index: Int): NPC? = indexArray.getOrNull(index)
 
     fun add(id: String, tile: Tile, direction: Direction = Direction.SOUTH): NPC {
-        val def = definitions.getOrNull(id) ?: return NPC(id, tile, NPCDefinition.EMPTY)
-        val npc = NPC(id, tile, def)
+        val def = NPCTypes.getOrNull(id) ?: return NPC(id, tile, NPCType.EMPTY)
+        val npc = NPC(id, tile, NPCType(def.id))
         if (spawnIndex < spawnQueue.size) {
             spawnQueue[spawnIndex++] = npc
         }
