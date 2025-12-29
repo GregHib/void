@@ -1,8 +1,8 @@
 package world.gregs.voidps.tools.cache
 
 import com.displee.cache.CacheLibrary
-import world.gregs.voidps.buffer.read.BufferReader
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.read.ArrayReader
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 import world.gregs.voidps.cache.definition.decoder.ClientScriptDecoder
@@ -22,7 +22,7 @@ object CopyCs2Script : InterfaceModifier() {
 
     private fun writeScript(cache: CacheLibrary, scriptDef: ClientScriptDefinition) {
         val scriptEncoder = ClientScriptEncoder()
-        val writer = BufferWriter(1024)
+        val writer = ArrayWriter(1024)
         with(scriptEncoder) {
             writer.encode(scriptDef)
         }
@@ -34,7 +34,7 @@ object CopyCs2Script : InterfaceModifier() {
         val scriptData = otherCache.data(Index.CLIENT_SCRIPTS, scriptId)!!
         val scriptDef = ClientScriptDefinition()
         scriptDef.id = scriptId
-        scriptDecoder.readLoop(scriptDef, BufferReader(scriptData))
+        scriptDecoder.readLoop(scriptDef, ArrayReader(scriptData))
         return scriptDef
     }
 

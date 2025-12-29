@@ -1,20 +1,22 @@
-package world.gregs.voidps.buffer
+package world.gregs.voidps.buffer.write
 
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.buffer.read.BufferReader
-import world.gregs.voidps.buffer.write.BufferWriter
+import org.junit.jupiter.api.assertThrows
+import world.gregs.voidps.buffer.read.ArrayReader
 
-internal class BufferWriterTest {
+abstract class WriterTest {
 
-    private lateinit var buffer: BufferWriter
-    private var reader: BufferReader? = null
+    private lateinit var buffer: Writer
+    private var reader: ArrayReader? = null
+
+    abstract fun writer(): Writer
 
     @BeforeEach
     fun setup() {
-        buffer = BufferWriter()
+        buffer = writer()
     }
 
     @Test
@@ -197,6 +199,28 @@ internal class BufferWriterTest {
     }
 
     @Test
+    fun `Write char`() {
+        // When
+        buffer.writeString("1")
+        // Then
+        assertBytes(49, 0)
+    }
+
+    @Test
+    fun `Unmappable char throws exception`() {
+        assertThrows<IllegalArgumentException> {
+            buffer.writeChar(63.toChar())
+        }
+    }
+
+    @Test
+    fun `Invalid char throws exception`() {
+        assertThrows<IllegalArgumentException> {
+            buffer.writeChar('\u4E00')
+        }
+    }
+
+    @Test
     fun `Write long`() {
         // When
         buffer.writeLong(2)
@@ -257,6 +281,72 @@ internal class BufferWriterTest {
     }
 
     @Test
+    fun `Write bytes`() {
+        val input = byteArrayOf(-3, -1, -1, -1, 127, -1)
+        buffer.position(1)
+        // When
+        buffer.writeBytes(input)
+        // Then
+        assertBytes(0, -3, -1, -1, -1, 127, -1)
+        assertEquals(7, buffer.position())
+    }
+
+    @Test
+    fun `Write shorts`() {
+        val input = shortArrayOf(2, -2)
+        buffer.position(1)
+        // When
+        buffer.writeBytes(input)
+        // Then
+        assertBytes(0, 0, 2, -1, -2)
+        assertEquals(5, buffer.position())
+    }
+
+    @Test
+    fun `Write ints`() {
+        val input = intArrayOf(2, -2)
+        buffer.position(1)
+        // When
+        buffer.writeBytes(input)
+        // Then
+        assertBytes(0, 0, 0, 0, 2, -1, -1, -1, -2)
+        assertEquals(9, buffer.position())
+    }
+
+    @Test
+    fun `Write longs`() {
+        val input = longArrayOf(2, -2)
+        buffer.position(1)
+        // When
+        buffer.writeBytes(input)
+        // Then
+        assertBytes(0, 0, 0, 0, 0, 0, 0, 0, 2, -1, -1, -1, -1, -1, -1, -1, -2)
+        assertEquals(17, buffer.position())
+    }
+
+    @Test
+    fun `Write floats`() {
+        val input = floatArrayOf(2.0f, -2.0f)
+        buffer.position(1)
+        // When
+        buffer.writeBytes(input)
+        // Then
+        assertBytes(0, 64, 0, 0, 0, -64, 0, 0, 0)
+        assertEquals(9, buffer.position())
+    }
+
+    @Test
+    fun `Write doubles`() {
+        val input = doubleArrayOf(2.0, -2.0)
+        buffer.position(1)
+        // When
+        buffer.writeBytes(input)
+        // Then
+        assertBytes(0, 64, 0, 0, 0, 0, 0, 0, 0, -64, 0, 0, 0, 0, 0, 0, 0)
+        assertEquals(17, buffer.position())
+    }
+
+    @Test
     fun `Write offset bit access`() {
         // When
         buffer.startBitAccess()
@@ -278,7 +368,7 @@ internal class BufferWriterTest {
 
     private fun assertByte(value: Int) {
         if (reader == null) {
-            reader = BufferReader(buffer.toArray())
+            reader = ArrayReader(buffer.toArray())
         }
         assertEquals(value, reader!!.readByte())
     }

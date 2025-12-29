@@ -1,5 +1,7 @@
 package world.gregs.voidps.buffer.read
 
+import world.gregs.voidps.buffer.Unicode
+
 interface Reader {
 
     /**
@@ -19,59 +21,132 @@ interface Reader {
 
     fun readUnsignedBoolean() = readUnsignedByte() == 1
 
+    fun peek(): Int
+
     fun readByte(): Int
 
-    fun readByteAdd(): Int
+    fun readByteAdd(): Int = (readByte() - 128).toByte().toInt()
 
-    fun readByteInverse(): Int
+    fun readByteInverse(): Int = -readByte()
 
-    fun readByteSubtract(): Int
+    fun readByteSubtract(): Int = (readByteInverse() + 128).toByte().toInt()
 
-    fun readUnsignedByte(): Int
+    fun readUnsignedByte(): Int = readByte() and 0xff
 
-    fun readUnsignedByteAdd(): Int
+    fun readShort(): Int = (readByte() shl 8) or readUnsignedByte()
 
-    fun readShort(): Int
+    fun readShortAdd(): Int = (readByte() shl 8) or readUnsignedByteAdd()
 
-    fun readShortAdd(): Int
+    fun readUnsignedShortAdd(): Int = (readByte() shl 8) or ((readByte() - 128) and 0xff)
 
-    fun readShortLittle(): Int
+    fun readShortLittle(): Int = readUnsignedByte() or (readByte() shl 8)
 
-    fun readShortAddLittle(): Int
+    fun readShortAddLittle(): Int = readUnsignedByteAdd() or (readByte() shl 8)
 
-    fun readUnsignedShort(): Int
+    fun readUnsignedByteAdd(): Int = (readByte() - 128).toByte().toInt()
 
-    fun readUnsignedShortLittle(): Int
+    fun readUnsignedShort(): Int = (readUnsignedByte() shl 8) or readUnsignedByte()
 
-    fun readUnsignedShortAdd(): Int
+    fun readUnsignedShortLittle(): Int = readUnsignedByte() or (readUnsignedByte() shl 8)
 
-    fun readMedium(): Int
+    fun readMedium(): Int = (readByte() shl 16) or (readByte() shl 8) or readUnsignedByte()
 
-    fun readUnsignedMedium(): Int
+    fun readUnsignedMedium(): Int = (readUnsignedByte() shl 16) or (readUnsignedByte() shl 8) or readUnsignedByte()
 
-    fun readInt(): Int
+    fun readInt(): Int = (readUnsignedByte() shl 24) or (readUnsignedByte() shl 16) or (readUnsignedByte() shl 8) or readUnsignedByte()
 
-    fun readIntInverseMiddle(): Int
+    fun readIntInverseMiddle(): Int = (readByte() shl 16) or (readByte() shl 24) or readUnsignedByte() or (readByte() shl 8)
 
-    fun readIntLittle(): Int
+    fun readIntLittle(): Int = readUnsignedByte() or (readByte() shl 8) or (readByte() shl 16) or (readByte() shl 24)
 
-    fun readUnsignedIntMiddle(): Int
+    fun readUnsignedIntMiddle(): Int = (readUnsignedByte() shl 8) or readUnsignedByte() or (readUnsignedByte() shl 24) or (readUnsignedByte() shl 16)
 
-    fun readSmart(): Int
+    fun readSmart(): Int {
+        val peek = readUnsignedByte()
+        return if (peek < 128) {
+            peek
+        } else {
+            (peek shl 8 or readUnsignedByte()) - 32768
+        }
+    }
 
-    fun readBigSmart(): Int
+    fun readBigSmart(): Int {
+        val peek = readByte()
+        return if (peek < 0) {
+            ((peek shl 24) or (readUnsignedByte() shl 16) or (readUnsignedByte() shl 8) or readUnsignedByte()) and 0x7fffffff
+        } else {
+            val value = (peek shl 8) or readUnsignedByte()
+            if (value == 32767) -1 else value
+        }
+    }
 
-    fun readLargeSmart(): Int
+    fun readLargeSmart(): Int {
+        var baseValue = 0
+        var lastValue = readSmart()
+        while (lastValue == 32767) {
+            lastValue = readSmart()
+            baseValue += 32767
+        }
+        return baseValue + lastValue
+    }
 
-    fun readLong(): Long
+    fun readLong(): Long {
+        val first = readInt().toLong() and 0xffffffffL
+        val second = readInt().toLong() and 0xffffffffL
+        return second + (first shl 32)
+    }
 
     fun readString(): String
+
+    fun readCharString(): String {
+        val start = position()
+        var pos = start
+        while (array()[pos] != 0.toByte()) {
+            pos++
+        }
+        val length = pos - start
+        val string = String(CharArray(length) { readChar().toChar() })
+        skip(1)
+        return string
+    }
+
+    fun readChar(): Int = Unicode.byteToChar(readUnsignedByte())
 
     /**
      * Reads all bytes into [ByteArray]
      * @param value The array to be written to.
      */
     fun readBytes(value: ByteArray)
+
+    /**
+     * Reads all big endian shorts into [ShortArray]
+     * @param value The array to be written to.
+     */
+    fun readBytes(value: ShortArray)
+
+    /**
+     * Reads all big endian ints into [IntArray]
+     * @param value The array to be written to.
+     */
+    fun readBytes(value: IntArray)
+
+    /**
+     * Reads all big endian longs into [LongArray]
+     * @param value The array to be written to.
+     */
+    fun readBytes(value: LongArray)
+
+    /**
+     * Reads all floats into [FloatArray]
+     * @param value The array to be written to.
+     */
+    fun readBytes(value: FloatArray)
+
+    /**
+     * Reads all doubles into [DoubleArray]
+     * @param value The array to be written to.
+     */
+    fun readBytes(value: DoubleArray)
 
     /**
      * Reads [length] number of bytes starting at [offset] to [array].
@@ -114,4 +189,5 @@ interface Reader {
      * @param bitCount number of bits to be written
      */
     fun readBits(bitCount: Int): Int
+
 }

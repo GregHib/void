@@ -1,12 +1,11 @@
 package world.gregs.voidps.engine.map.obj
 
-import net.pearx.kasechange.toSentenceCase
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
@@ -36,7 +35,7 @@ class MapObjectsRotatedDecoderTest {
 
     @Test
     fun `Load object in moved zone`() {
-        val writer = BufferWriter()
+        val writer = ArrayWriter()
         writer.writeSmart(124)
         writer.writeSmart(packTile(10, 11, 1))
         val shape = ObjectShape.GROUND_DECOR
@@ -60,7 +59,7 @@ class MapObjectsRotatedDecoderTest {
 
     @Test
     fun `Load object in rotated zone`() {
-        val writer = BufferWriter()
+        val writer = ArrayWriter()
         writer.writeSmart(124)
         writer.writeSmart(packTile(2, 3, 0))
         val shape = ObjectShape.GROUND_DECOR
@@ -84,7 +83,7 @@ class MapObjectsRotatedDecoderTest {
 
     @Test
     fun `Load object in offset zone`() {
-        val writer = BufferWriter()
+        val writer = ArrayWriter()
         writer.writeSmart(124)
         writer.writeSmart(packTile(8, 56, 0))
         val shape = ObjectShape.GROUND_DECOR
@@ -110,7 +109,7 @@ class MapObjectsRotatedDecoderTest {
 
     @Test
     fun `Load ignores objects out of zone`() {
-        val writer = BufferWriter()
+        val writer = ArrayWriter()
         writer.writeSmart(124)
         writer.writeSmart(packTile(18, 19, 0))
         val shape = ObjectShape.ROOF_EDGE_CORNER

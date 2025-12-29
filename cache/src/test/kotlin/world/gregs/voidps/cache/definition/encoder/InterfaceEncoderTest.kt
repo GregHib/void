@@ -4,7 +4,7 @@ import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index.INTERFACES
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinitionFull
@@ -50,7 +50,7 @@ internal class InterfaceEncoderTest {
         )
         val encoder = InterfaceEncoder()
 
-        val writer = BufferWriter(1024)
+        val writer = ArrayWriter(1024)
         with(encoder) {
             writer.encode(definition)
         }

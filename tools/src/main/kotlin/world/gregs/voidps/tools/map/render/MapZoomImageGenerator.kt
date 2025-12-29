@@ -5,7 +5,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
-import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Index.WORLD_MAP
@@ -211,7 +211,7 @@ object MapZoomImageGenerator {
             var index = 0
             while (length > counter) {
                 val file = cache.data(WORLD_MAP, archiveId, index++) ?: continue
-                val buffer = BufferReader(file)
+                val buffer = ArrayReader(file)
                 val position = buffer.readInt()
                 val id = buffer.readShort()
                 val skip = buffer.readUnsignedByte()

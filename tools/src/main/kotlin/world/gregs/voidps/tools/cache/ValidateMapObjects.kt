@@ -1,7 +1,7 @@
 package world.gregs.voidps.tools.cache
 
 import com.displee.cache.CacheLibrary
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
@@ -23,7 +23,7 @@ object ValidateMapObjects {
         val definitions = mapDecoder.load(delegate)
         val max = ObjectDecoder(member = true, lowDetail = false).size(delegate)
         val mapEncoder = MapObjectEncoder()
-        val writer = BufferWriter(45_000)
+        val writer = ArrayWriter(45_000)
         var removed = 0
         var rewrote = 0
         for (definition in definitions) {

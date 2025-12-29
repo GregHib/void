@@ -3,7 +3,7 @@ package world.gregs.voidps.cache.secure
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.read.ArrayReader
 import java.io.File
 
 internal class HuffmanTest {
@@ -57,7 +57,7 @@ internal class HuffmanTest {
     }
 
     private fun decompress(offset: Int): String? {
-        val packet = BufferReader(result)
+        val packet = ArrayReader(result)
         packet.skip(offset)
         return huffman.decompress(packet, packet.readSmart())
     }

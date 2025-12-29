@@ -11,96 +11,82 @@ class BufferReader(
     override val length: Int = buffer.remaining()
     override val remaining: Int
         get() = buffer.remaining()
+
+    override fun peek(): Int {
+        return buffer.get(buffer.position()).toInt()
+    }
+
     private var bitIndex = 0
 
     override fun readByte(): Int = buffer.get().toInt()
 
-    override fun readByteAdd(): Int = (readByte() - 128).toByte().toInt()
-
-    override fun readByteInverse(): Int = -readByte()
-
-    override fun readByteSubtract(): Int = (readByteInverse() + 128).toByte().toInt()
-
-    override fun readUnsignedByte(): Int = readByte() and 0xff
-
-    override fun readShort(): Int = (readByte() shl 8) or readUnsignedByte()
-
-    override fun readShortAdd(): Int = (readByte() shl 8) or readUnsignedByteAdd()
-
-    override fun readUnsignedShortAdd(): Int = (readByte() shl 8) or ((readByte() - 128) and 0xff)
-
-    override fun readShortLittle(): Int = readUnsignedByte() or (readByte() shl 8)
-
-    override fun readShortAddLittle(): Int = readUnsignedByteAdd() or (readByte() shl 8)
-
-    override fun readUnsignedByteAdd(): Int = (readByte() - 128).toByte().toInt()
-
-    override fun readUnsignedShort(): Int = (readUnsignedByte() shl 8) or readUnsignedByte()
-
-    override fun readUnsignedShortLittle(): Int = readUnsignedByte() or (readUnsignedByte() shl 8)
-
-    override fun readMedium(): Int = (readByte() shl 16) or (readByte() shl 8) or readUnsignedByte()
-
-    override fun readUnsignedMedium(): Int = (readUnsignedByte() shl 16) or (readUnsignedByte() shl 8) or readUnsignedByte()
-
-    override fun readInt(): Int = (readUnsignedByte() shl 24) or (readUnsignedByte() shl 16) or (readUnsignedByte() shl 8) or readUnsignedByte()
-
-    override fun readIntInverseMiddle(): Int = (readByte() shl 16) or (readByte() shl 24) or readUnsignedByte() or (readByte() shl 8)
-
-    override fun readIntLittle(): Int = readUnsignedByte() or (readByte() shl 8) or (readByte() shl 16) or (readByte() shl 24)
-
-    override fun readUnsignedIntMiddle(): Int = (readUnsignedByte() shl 8) or readUnsignedByte() or (readUnsignedByte() shl 24) or (readUnsignedByte() shl 16)
-
-    override fun readSmart(): Int {
-        val peek = readUnsignedByte()
-        return if (peek < 128) {
-            peek
-        } else {
-            (peek shl 8 or readUnsignedByte()) - 32768
-        }
-    }
-
-    override fun readBigSmart(): Int {
-        val peek = readByte()
-        return if (peek < 0) {
-            ((peek shl 24) or (readUnsignedByte() shl 16) or (readUnsignedByte() shl 8) or readUnsignedByte()) and 0x7fffffff
-        } else {
-            val value = (peek shl 8) or readUnsignedByte()
-            if (value == 32767) -1 else value
-        }
-    }
-
-    override fun readLargeSmart(): Int {
-        var baseValue = 0
-        var lastValue = readSmart()
-        while (lastValue == 32767) {
-            lastValue = readSmart()
-            baseValue += 32767
-        }
-        return baseValue + lastValue
-    }
-
-    override fun readLong(): Long {
-        val first = readInt().toLong() and 0xffffffffL
-        val second = readInt().toLong() and 0xffffffffL
-        return second + (first shl 32)
-    }
-
     override fun readString(): String {
-        val sb = StringBuilder()
-        var b: Int
-        while (buffer.hasRemaining()) {
-            b = readUnsignedByte()
-            if (b == 0) {
-                break
+        if (buffer.hasArray()) {
+            val array = buffer.array()
+            val offset = buffer.arrayOffset() + position()
+            val start = offset
+            var pos = offset
+            while (array[pos] != 0.toByte()) {
+                pos++
             }
-            sb.append(b.toChar())
+            val length = pos - start
+            position(position() + length + 1)
+            return String(array, start, length, Charsets.UTF_8)
+        } else {
+            // Fallback for direct buffers
+            val start = position()
+            var pos = start
+            while (buffer.get(pos) != 0.toByte()) {
+                pos++
+            }
+
+            val length = pos - start
+            val bytes = ByteArray(length)
+            buffer.position(start)
+            buffer.get(bytes)
+            buffer.position(pos + 1)
+
+            return String(bytes, Charsets.UTF_8)
         }
-        return sb.toString()
     }
 
     override fun readBytes(value: ByteArray) {
         buffer.get(value)
+    }
+
+    override fun readBytes(value: ShortArray) {
+        buffer
+            .asShortBuffer()
+            .get(value)
+        buffer.position(buffer.position() + value.size * 2)
+    }
+
+    override fun readBytes(value: IntArray) {
+        buffer
+            .asIntBuffer()
+            .get(value)
+        buffer.position(buffer.position() + value.size * 4)
+    }
+
+    override fun readBytes(value: LongArray) {
+        buffer
+            .asLongBuffer()
+            .get(value)
+        buffer.position(buffer.position() + value.size * 8)
+    }
+
+    override fun readBytes(value: FloatArray) {
+        buffer
+            .asFloatBuffer()
+            .get(value)
+        buffer.position(buffer.position() + value.size * 4)
+    }
+
+    override fun readBytes(value: DoubleArray) {
+        buffer
+            .asDoubleBuffer()
+            .get(value)
+        buffer.position(buffer.position() + value.size * 8)
     }
 
     override fun readBytes(array: ByteArray, offset: Int, length: Int) {
@@ -133,7 +119,7 @@ class BufferReader(
 
     @Suppress("NAME_SHADOWING")
     override fun readBits(bitCount: Int): Int {
-        if (bitCount < 0 || bitCount > 32) {
+        if (bitCount !in 0..32) {
             throw IllegalArgumentException("Number of bits must be between 1 and 32 inclusive")
         }
 

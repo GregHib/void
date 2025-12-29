@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
@@ -33,7 +33,7 @@ class MapObjectsDecoderTest {
 
     @Test
     fun `Load object`() {
-        val writer = BufferWriter()
+        val writer = ArrayWriter()
         writer.writeSmart(124)
         writer.writeSmart(packTile(10, 11, 1))
         val shape = ObjectShape.GROUND_DECOR
@@ -54,7 +54,7 @@ class MapObjectsDecoderTest {
 
     @Test
     fun `Load multiple object locations with same id`() {
-        val writer = BufferWriter()
+        val writer = ArrayWriter()
         writer.writeSmart(124)
         writer.writeSmart(packTile(10, 11, 1))
         writer.writeByte(packInfo(ObjectShape.WALL_CORNER, 0))
@@ -80,7 +80,7 @@ class MapObjectsDecoderTest {
 
     @Test
     fun `Load multiple objects of different ids`() {
-        val writer = BufferWriter()
+        val writer = ArrayWriter()
         writer.writeSmart(124)
         writer.writeSmart(packTile(10, 11, 0))
         writer.writeByte(packInfo(ObjectShape.GROUND_DECOR, 3))

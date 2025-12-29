@@ -5,7 +5,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.IsaacCipher
@@ -98,10 +98,10 @@ class EncodersTest {
         { mapRegion(123, 456, true, 12, arrayOf(IntArray(4)), 1234, 123456, intArrayOf(4321)) },
         { dynamicMapRegion(123, 456, true, 12, listOf(432, 1), arrayOf(IntArray(4)), 1234, 123456, intArrayOf(4321)) },
         { sendMinimapState(123) },
-        { updateNPCs(BufferWriter(10), BufferWriter(10)) },
+        { updateNPCs(ArrayWriter(10), ArrayWriter(10)) },
         { animateObject(123456, 12345, 12, 21) },
         { preloadObject(12345, 123) },
-        { updatePlayers(BufferWriter(10), BufferWriter(10)) },
+        { updatePlayers(ArrayWriter(10), ArrayWriter(10)) },
         { addProjectileHalfTile(123, 12345, 12, 21, 1234, 4321, 23, 32, 234, 432, 45, 5432) },
         { sendRunEnergy(123) },
         { sendScript(12345, listOf(null, 123, "string")) },

@@ -1,5 +1,7 @@
 package world.gregs.voidps.buffer.write
 
+import world.gregs.voidps.buffer.Unicode
+
 /**
  * All functions relative to writing directly to a packet are done by this class
  */
@@ -9,39 +11,100 @@ interface Writer {
 
     fun writeByte(value: Int)
 
-    fun writeByteAdd(value: Int)
-
-    fun writeByteInverse(value: Int)
-
-    fun writeByteSubtract(value: Int)
-
     fun writeByte(value: Boolean) {
         writeByte(if (value) 1 else 0)
     }
 
-    fun writeShort(value: Int)
+    fun writeByteAdd(value: Int) {
+        writeByte(value + 128)
+    }
 
-    fun writeShortAdd(value: Int)
+    fun writeByteInverse(value: Int) {
+        writeByte(-value)
+    }
 
-    fun writeShortLittle(value: Int)
+    fun writeByteSubtract(value: Int) {
+        writeByte(-value + 128)
+    }
 
-    fun writeShortAddLittle(value: Int)
+    fun writeShort(value: Int) {
+        writeByte(value shr 8)
+        writeByte(value)
+    }
 
-    fun writeMedium(value: Int)
+    fun writeShortAdd(value: Int) {
+        writeByte(value shr 8)
+        writeByteAdd(value)
+    }
 
-    fun writeInt(value: Int)
+    fun writeShortLittle(value: Int) {
+        writeByte(value)
+        writeByte(value shr 8)
+    }
 
-    fun writeIntMiddle(value: Int)
+    fun writeShortAddLittle(value: Int) {
+        writeByteAdd(value)
+        writeByte(value shr 8)
+    }
 
-    fun writeIntInverse(value: Int)
+    fun writeMedium(value: Int) {
+        writeByte(value shr 16)
+        writeByte(value shr 8)
+        writeByte(value)
+    }
 
-    fun writeIntInverseMiddle(value: Int)
+    fun writeInt(value: Int) {
+        writeByte(value shr 24)
+        writeByte(value shr 16)
+        writeByte(value shr 8)
+        writeByte(value)
+    }
 
-    fun writeIntLittle(value: Int)
+    fun writeIntMiddle(value: Int) {
+        writeByte(value shr 8)
+        writeByte(value)
+        writeByte(value shr 24)
+        writeByte(value shr 16)
+    }
 
-    fun writeIntInverseLittle(value: Int)
+    fun writeIntInverse(value: Int) {
+        writeByte(value shr 8)
+        writeByte(value shr 24)
+        writeByte(value shr 16)
+        writeByteInverse(value)
+    }
 
-    fun writeLong(value: Long)
+    fun writeIntInverseMiddle(value: Int) {
+        writeByte(value shr 16)
+        writeByte(value shr 24)
+        writeByte(value)
+        writeByte(value shr 8)
+    }
+
+    fun writeIntLittle(value: Int) {
+        writeByte(value)
+        writeByte(value shr 8)
+        writeByte(value shr 16)
+        writeByte(value shr 24)
+    }
+
+    fun writeIntInverseLittle(value: Int) {
+        writeByteInverse(value)
+        writeByte(value shr 8)
+        writeByte(value shr 16)
+        writeByte(value shr 24)
+    }
+
+    fun writeLong(value: Long) {
+        writeByte((value shr 56).toInt())
+        writeByte((value shr 48).toInt())
+        writeByte((value shr 40).toInt())
+        writeByte((value shr 32).toInt())
+        writeByte((value shr 24).toInt())
+        writeByte((value shr 16).toInt())
+        writeByte((value shr 8).toInt())
+        writeByte(value.toInt())
+    }
 
     fun writeSmart(value: Int) {
         if (value >= 128) {
@@ -60,6 +123,15 @@ interface Writer {
         writeByte(0)
     }
 
+    fun writeCharString(value: String?) {
+        if (value != null) {
+            for (char in value) {
+                writeChar(char)
+            }
+        }
+        writeByte(0)
+    }
+
     fun writePrefixedString(value: String) {
         writeByte(0)
         for (char in value) {
@@ -68,9 +140,21 @@ interface Writer {
         writeByte(0)
     }
 
+    fun writeChar(value: Char) = writeByte(Unicode.charToByte(value))
+
     fun writeBytes(value: ByteArray)
 
     fun writeBytes(data: ByteArray, offset: Int, length: Int)
+
+    fun writeBytes(value: ShortArray)
+
+    fun writeBytes(value: IntArray)
+
+    fun writeBytes(value: LongArray)
+
+    fun writeBytes(value: FloatArray)
+
+    fun writeBytes(value: DoubleArray)
 
     fun startBitAccess()
 

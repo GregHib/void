@@ -1,6 +1,7 @@
 package world.gregs.voidps.cache.definition.decoder
 
-import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.Unicode
+import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
@@ -30,7 +31,7 @@ class QuickChatOptionDecoder : DefinitionDecoder<QuickChatOptionDefinition>(QUIC
                 cache.data(QUICK_CHAT_MENUS, archive, file and 0x7fff)
             }
             ) ?: return
-        read(definitions, id, BufferReader(data))
+        read(definitions, id, ArrayReader(data))
     }
 
     override fun QuickChatOptionDefinition.read(opcode: Int, buffer: Reader) {
@@ -41,8 +42,8 @@ class QuickChatOptionDecoder : DefinitionDecoder<QuickChatOptionDefinition>(QUIC
                 quickReplyOptions = IntArray(length)
                 navigateChars = CharArray(length) { count ->
                     quickReplyOptions!![count] = buffer.readShort()
-                    val b = buffer.readByte().toByte()
-                    if (b.toInt() != 0) byteToChar(b) else '\u0000'
+                    val b = buffer.readChar()
+                    if (b != 0) b.toChar() else '\u0000'
                 }
             }
             3 -> {
@@ -50,8 +51,8 @@ class QuickChatOptionDecoder : DefinitionDecoder<QuickChatOptionDefinition>(QUIC
                 dynamicData = IntArray(length)
                 staticData = CharArray(length) { count ->
                     dynamicData!![count] = buffer.readShort()
-                    val b = buffer.readByte().toByte()
-                    if (b.toInt() != 0) byteToChar(b) else '\u0000'
+                    val b = buffer.readChar()
+                    if (b != 0) b.toChar() else '\u0000'
                 }
             }
         }

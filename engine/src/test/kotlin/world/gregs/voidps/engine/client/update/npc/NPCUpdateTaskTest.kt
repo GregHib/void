@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import org.koin.dsl.module
-import world.gregs.voidps.buffer.read.BufferReader
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.read.ArrayReader
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.update.view.Viewport
@@ -287,22 +287,22 @@ internal class NPCUpdateTaskTest : KoinMock() {
     @Test
     fun `Write small flag`() {
         // Given
-        val writer = BufferWriter()
+        val writer = ArrayWriter()
         // When
         task.writeFlag(writer, 0x10)
         // Then
-        val reader = BufferReader(writer.array())
+        val reader = ArrayReader(writer.array())
         Assertions.assertEquals(0x10, reader.readByte())
     }
 
     @Test
     fun `Write large flag`() {
         // Given
-        val writer = BufferWriter()
+        val writer = ArrayWriter()
         // When
         task.writeFlag(writer, 0x100)
         // Then
-        val reader = BufferReader(writer.array())
+        val reader = ArrayReader(writer.array())
         Assertions.assertEquals(0x10, reader.readUnsignedByte())
         Assertions.assertEquals(0x1, reader.readUnsignedByte())
     }

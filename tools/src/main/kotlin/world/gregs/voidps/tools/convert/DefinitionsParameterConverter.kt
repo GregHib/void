@@ -1,6 +1,6 @@
 package world.gregs.voidps.tools.convert
 
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.*
 import world.gregs.voidps.cache.Index.ITEMS
 import world.gregs.voidps.cache.Index.NPCS
@@ -77,7 +77,7 @@ object DefinitionsParameterConverter {
                 }
             }
             if (modified) {
-                val writer = BufferWriter(capacity = 2048)
+                val writer = ArrayWriter(capacity = 2048)
                 with(encoder) {
                     writer.encode(def, membersDef)
                 }

@@ -5,7 +5,7 @@ import io.mockk.mockk
 import org.junit.jupiter.api.Test
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
-import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index.ITEMS
 import world.gregs.voidps.cache.definition.data.ItemDefinitionFull
@@ -17,7 +17,7 @@ class EncoderComparator {
         val definition = ItemDefinitionFull()
         val encoder = ItemEncoder()
 
-        val writer = BufferWriter()
+        val writer = ArrayWriter()
         with(encoder) {
             writer.encode(definition)
         }
