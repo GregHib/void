@@ -36,6 +36,7 @@ class FileCache(
     }
 
     override fun data(index: Int, archive: Int, file: Int, xtea: IntArray?): ByteArray? {
+        println("DATA ${files.size}")
         if (index >= files.size) {
             return null
         }

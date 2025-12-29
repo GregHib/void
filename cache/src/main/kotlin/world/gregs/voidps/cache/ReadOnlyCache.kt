@@ -51,6 +51,9 @@ abstract class ReadOnlyCache(indexCount: Int) : Cache {
             }
         }
 
+        if (indexId == 10) {
+            println("Here")
+        }
         val reader = ArrayReader(decompressed)
         val rawArray = reader.array()
         var fileDataSizesOffset = decompressed.size
@@ -109,7 +112,7 @@ abstract class ReadOnlyCache(indexCount: Int) : Cache {
         val decompressed = context.decompress(archiveSector) ?: return -1
         val reader = ArrayReader(decompressed)
         val version = reader.readUnsignedByte()
-        if (version < 5 || version > 7) {
+        if (version !in 5..7) {
             throw RuntimeException("Unknown version: $version")
         }
         if (version >= 6) {

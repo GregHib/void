@@ -79,7 +79,8 @@ class ArrayReader(
     }
 
     override fun readBytes(array: ByteArray, offset: Int, length: Int) {
-        System.arraycopy(array, offset, array, position, length)
+        System.arraycopy(this.array, position, array, offset, length)
+        position += length
     }
 
     override fun skip(amount: Int) {
