@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.client.instruction.handle.interactFloorItem
 import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.list
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns

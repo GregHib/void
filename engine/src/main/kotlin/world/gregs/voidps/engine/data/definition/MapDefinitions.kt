@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
-import world.gregs.voidps.engine.data.list
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.engine.map.collision.Collisions
