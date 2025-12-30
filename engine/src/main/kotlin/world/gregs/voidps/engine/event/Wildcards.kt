@@ -28,7 +28,7 @@ object Wildcards {
 
     fun load(
         path: String,
-        npcDefinitions: NPCTypes = NPCTypes.all,
+        npcDefinitions: NPCTypes = NPCTypes,
         objectDefinitions: ObjectDefinitions = get(),
         interfaceDefinitions: InterfaceDefinitions = get(),
         itemDefinitions: ItemDefinitions = get(),

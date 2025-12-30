@@ -1,44 +1,116 @@
 package world.gregs.voidps.cache.definition.types
 
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
-import world.gregs.config.ConfigReader
-import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.buffer.write.Writer
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.type.NPCType
-import world.gregs.voidps.cache.definition.types.Helpers.readExtras
-import world.gregs.voidps.cache.definition.types.Helpers.readIntArrays
-import world.gregs.voidps.cache.definition.types.Helpers.readStrings
-import world.gregs.voidps.cache.definition.types.Helpers.writeExtras
-import world.gregs.voidps.cache.definition.types.Helpers.writeIntArrays
-import world.gregs.voidps.cache.definition.types.Helpers.writeStrings
+import kotlin.text.isNotBlank
 
-class NPCTypes(size: Int) : DefinitionTypes<NPCDefinition> {
-    val ids = Object2IntOpenHashMap<String>()
+object NPCTypes : DefinitionTypes<NPCType, NPCDefinition>() {
+
+    override val ids = Object2IntOpenHashMap<String>()
+    override lateinit var loaded: ByteArray
+    private lateinit var stringIds: Array<String>
+    private lateinit var name: Array<String?>
+    private lateinit var size: ByteArray
+    private lateinit var option1: Array<String?>
+    private lateinit var option2: Array<String?>
+    private lateinit var option3: Array<String?>
+    private lateinit var option4: Array<String?>
+    private lateinit var option5: Array<String?>
+    private lateinit var combat: ByteArray
+    private lateinit var varbit: ByteArray
+    private lateinit var varp: ByteArray
+    private lateinit var transforms: Array<IntArray?>
+    private lateinit var walkMode: ByteArray
+    private lateinit var renderEmote: ShortArray
+    private lateinit var idleSound: ShortArray
+    private lateinit var crawlSound: ShortArray
+    private lateinit var walkSound: ShortArray
+    private lateinit var runSound: ShortArray
+    private lateinit var soundDistance: ByteArray
+    private lateinit var categories: Array<Set<String>?>
+    override lateinit var extras: Array<Map<String, Any>?>
+
     init {
-        ids.defaultReturnValue(-1)
+        set(0)
     }
-    override val loaded = ByteArray(size)
-    private val stringIds = Array(size) { "" }
-    private val name = arrayOfNulls<String>(size)
-    private val size = ByteArray(size) { 0 }
-    private val option1 = arrayOfNulls<String>(size)
-    private val option2 = arrayOfNulls<String>(size)
-    private val option3 = arrayOfNulls<String>(size)
-    private val option4 = arrayOfNulls<String>(size)
-    private val option5 = Array<String?>(size) { EXAMINE }
-    private val combat = ByteArray(size) { -1 }
-    private val varbit = ByteArray(size) { -1 }
-    private val varp = ByteArray(size) { -1 }
-    private val transforms = arrayOfNulls<IntArray?>(size)
-    private val walkMode = ByteArray(size) { 0 }
-    private val renderEmote = ShortArray(size) { -1 }
-    private val idleSound = ShortArray(size) { -1 }
-    private val crawlSound = ShortArray(size) { -1 }
-    private val walkSound = ShortArray(size) { -1 }
-    private val runSound = ShortArray(size) { -1 }
-    private val soundDistance = ByteArray(size) { 0 }
-    private val extras = arrayOfNulls<Map<String, Any>>(size)
+
+    fun id(id: Int) = stringIds[id]
+    fun name(id: Int) = name[id] ?: "null"
+    fun size(id: Int) = size[id].toInt()
+    fun options(id: Int) = arrayOf(option1[id], option2[id], option3[id], option4[id], option5[id])
+    fun option(id: Int, index: Int) = when (index) {
+        0 -> option1[id]
+        1 -> option2[id]
+        2 -> option3[id]
+        3 -> option4[id]
+        4 -> option5[id]
+        else -> throw IllegalArgumentException("Invalid option index $index")
+    }
+
+    fun combat(id: Int) = combat[id].toInt()
+    fun varbit(id: Int) = varbit[id].toInt()
+    fun varp(id: Int) = varp[id].toInt()
+    fun transforms(id: Int) = transforms[id]
+    fun walkMode(id: Int) = walkMode[id].toInt()
+    fun renderEmote(id: Int) = renderEmote[id].toInt()
+    fun idleSound(id: Int) = idleSound[id].toInt()
+    fun crawlSound(id: Int) = crawlSound[id].toInt()
+    fun walkSound(id: Int) = walkSound[id].toInt()
+    fun runSound(id: Int) = runSound[id].toInt()
+    fun soundDistance(id: Int) = soundDistance[id].toInt()
+    fun categories(id: Int) = categories[id] ?: emptySet()
+    fun extras(id: Int) = extras[id]
+
+    override fun get(id: Int) = NPCType(id)
+
+    private const val DEFAULT_SIZE = 0.toByte()
+    private const val DEFAULT_OPTION_5 = "Examine"
+    private const val DEFAULT_COMBAT = (-1).toByte()
+    private const val DEFAULT_VARBIT = (-1).toByte()
+    private const val DEFAULT_VARP = (-1).toByte()
+    private const val DEFAULT_WALK_MODE = 0.toByte()
+    private const val DEFAULT_RENDER_EMOTE = (-1).toShort()
+    private const val DEFAULT_IDLE_SOUND = (-1).toShort()
+    private const val DEFAULT_CRAWL_SOUND = (-1).toShort()
+    private const val DEFAULT_WALK_SOUND = (-1).toShort()
+    private const val DEFAULT_RUN_SOUND = (-1).toShort()
+    private const val DEFAULT_SOUND_DISTANCE = (-1).toByte()
+
+    override fun set(size: Int) {
+        ids.clear()
+        loaded = ByteArray(size)
+        stringIds = Array(size) { it.toString() }
+        name = arrayOfNulls(size)
+        this.size = ByteArray(size) { DEFAULT_SIZE }
+        option1 = arrayOfNulls(size)
+        option2 = arrayOfNulls(size)
+        option3 = arrayOfNulls(size)
+        option4 = arrayOfNulls(size)
+        option5 = Array(size) { DEFAULT_OPTION_5 }
+        combat = ByteArray(size) { DEFAULT_COMBAT }
+        varbit = ByteArray(size) { DEFAULT_VARBIT }
+        varp = ByteArray(size) { DEFAULT_VARP }
+        transforms = arrayOfNulls(size)
+        walkMode = ByteArray(size) { DEFAULT_WALK_MODE }
+        renderEmote = ShortArray(size) { DEFAULT_RENDER_EMOTE }
+        idleSound = ShortArray(size) { DEFAULT_IDLE_SOUND }
+        crawlSound = ShortArray(size) { DEFAULT_CRAWL_SOUND }
+        walkSound = ShortArray(size) { DEFAULT_WALK_SOUND }
+        runSound = ShortArray(size) { DEFAULT_RUN_SOUND }
+        soundDistance = ByteArray(size) { DEFAULT_SOUND_DISTANCE }
+        categories = arrayOfNulls(size)
+        extras = arrayOfNulls(size)
+    }
+
+    override fun bytes() = listOf(loaded, this.size, combat, varbit, varp, walkMode, soundDistance)
+    override fun shorts() = listOf(renderEmote, idleSound, crawlSound, walkSound, runSound)
+    override fun strings() = listOf(stringIds)
+    override fun nullStrings() = listOf(name, option1, option2, option3, option4, option5)
+    override fun nullIntArrays() = listOf(transforms)
+    override fun nullStringSets() = listOf(categories)
+    override fun nullMaps() = listOf(extras)
 
     override fun load(id: Int, definition: NPCDefinition) {
         ids[definition.stringId] = id
@@ -85,118 +157,56 @@ class NPCTypes(size: Int) : DefinitionTypes<NPCDefinition> {
         definition.extras = extras[id]
     }
 
-    fun load(reader: ConfigReader, key: String, id: Int) {
+    var animationDefinitions: Map<String, Int>? = null
+    var soundDefinitions: Map<String, Int>? = null
+    val abbreviations = Object2ObjectOpenHashMap<String, String>()
+
+    @Suppress("UNCHECKED_CAST")
+    override fun load(key: String, value: Any, id: Int, section: String): Boolean {
+        ids.put(section, id)
         when (key) {
-            "[section]" -> stringIds[id] = reader.section()
-            "name" -> name[id] = reader.string()
-            "size" -> size[id] = reader.int().toByte()
-        }
-    }
-
-    override fun load(reader: Reader) {
-        reader.readBytes(loaded)
-        reader.readBytes(size)
-        reader.readBytes(combat)
-        reader.readBytes(varbit)
-        reader.readBytes(varp)
-        reader.readBytes(walkMode)
-        reader.readBytes(soundDistance)
-
-        reader.readBytes(renderEmote)
-        reader.readBytes(idleSound)
-        reader.readBytes(crawlSound)
-        reader.readBytes(walkSound)
-        reader.readBytes(runSound)
-
-        readStrings(reader, stringIds)
-        readStrings(reader, name)
-        readStrings(reader, option1)
-        readStrings(reader, option2)
-        readStrings(reader, option3)
-        readStrings(reader, option4)
-        readStrings(reader, option5)
-        readIntArrays(reader, transforms)
-        readExtras(reader, extras)
-    }
-
-    override fun save(writer: Writer) {
-        writer.writeBytes(loaded)
-        writer.writeBytes(size)
-        writer.writeBytes(combat)
-        writer.writeBytes(varbit)
-        writer.writeBytes(varp)
-        writer.writeBytes(walkMode)
-        writer.writeBytes(soundDistance)
-
-        writer.writeBytes(renderEmote)
-        writer.writeBytes(idleSound)
-        writer.writeBytes(crawlSound)
-        writer.writeBytes(walkSound)
-        writer.writeBytes(runSound)
-
-        writeStrings(writer, stringIds)
-        writeStrings(writer, name)
-        writeStrings(writer, option1)
-        writeStrings(writer, option2)
-        writeStrings(writer, option3)
-        writeStrings(writer, option4)
-        writeStrings(writer, option5)
-        writeIntArrays(writer, transforms)
-        writeExtras(writer, extras)
-    }
-
-    companion object {
-
-        fun load(definitions: Array<NPCDefinition>) {
-            all = NPCTypes(definitions.size)
-            for (id in definitions.indices) {
-                val definition = definitions[id]
-                if (definition == NPCDefinition.EMPTY) {
-                    all.loaded[id] = 0
-                    continue
+            "clone" -> {
+                val name = value as String
+                val npc = ids.getOrDefault(name, -1)
+                require(npc >= 0) { "Cannot find npc id to clone '$name'" }
+                val extras = extras(npc) ?: return true
+                getOrPutExtras(npc).putAll(extras)
+            }
+            "categories" -> categories[id] = (value as List<String>).toSet()
+            "pickpocket" -> {
+                PickpocketTypes.load(key, value, id, section)
+                getOrPutExtras(id)["pickpocket_id"] = PickpocketTypes.index(id)
+            }
+            "fishing_net", "fishing_cage", "fishing_lure", "fishing_harpoon", "fishing_bait" -> {
+                FishingSpotTypes.load(key, value, id, section)
+                getOrPutExtras(id)[key] = FishingSpotTypes.index(id)
+            }
+            "drop_table" -> {
+                value as String
+                require(DropTableTypes.index == 0 || value.isBlank() || DropTableTypes.get("${value}_drop_table") != -1) { "Drop table '$value' not found for npc $section" }
+                getOrPutExtras(id)[key] = value
+            }
+            "combat_anims" -> {
+                value as String
+                if (animationDefinitions != null && value.isNotBlank()) {
+                    // Attack isn't always required because of weapon style
+                    require(animationDefinitions!!.containsKey("${value}_defend")) { "No combat animation ${value}_defend found for npc $section" }
+                    require(animationDefinitions!!.containsKey("${value}_death")) { "No combat animation ${value}_death found for npc $section" }
                 }
-                all.loaded[id] = 1
-                all.load(id, definition)
+                getOrPutExtras(id)[key] = value
             }
-        }
-
-        private const val EXAMINE = "Examine"
-        var all: NPCTypes = NPCTypes(0)
-        fun get(id: String) = NPCType(all.ids.getInt(id))
-        fun getOrNull(id: String): NPCType? {
-            val index = all.ids.getInt(id)
-            if (index == -1) {
-                return null
+            "combat_sounds" -> {
+                value as String
+                if (soundDefinitions != null && value.isNotBlank()) {
+                    require(soundDefinitions!!.containsKey("${value}_attack") || soundDefinitions!!.containsKey("${value}_defend") || soundDefinitions!!.containsKey("${value}_death")) { "No combat sounds '$value' found for npc $section" }
+                }
+                getOrPutExtras(id)[key] = value
             }
-            return NPCType(index)
+            "aka" -> for (abbr in value as List<String>) {
+                abbreviations[abbr] = section
+            }
+            else -> return false
         }
-        fun get(id: Int) = NPCType(id)
-        fun getOrNull(id: Int) = if (contains(id)) NPCType(id) else null
-        fun contains(id: Int) = all.loaded[id] == 1.toByte()
-        fun id(id: Int) = all.stringIds[id]
-        fun name(id: Int) = all.name[id] ?: "null"
-        fun size(id: Int) = all.size[id].toInt()
-        fun options(id: Int) = arrayOf(all.option1[id], all.option2[id], all.option3[id], all.option4[id], all.option5[id])
-        fun option(id: Int, index: Int) = when (index) {
-            0 -> all.option1[id]
-            1 -> all.option2[id]
-            2 -> all.option3[id]
-            3 -> all.option4[id]
-            4 -> all.option5[id]
-            else -> throw IllegalArgumentException("Invalid option index $index")
-        }
-
-        fun combat(id: Int) = all.combat[id].toInt()
-        fun varbit(id: Int) = all.varbit[id].toInt()
-        fun varp(id: Int) = all.varp[id].toInt()
-        fun transforms(id: Int) = all.transforms[id]
-        fun walkMode(id: Int) = all.walkMode[id].toInt()
-        fun renderEmote(id: Int) = all.renderEmote[id].toInt()
-        fun idleSound(id: Int) = all.idleSound[id].toInt()
-        fun crawlSound(id: Int) = all.crawlSound[id].toInt()
-        fun walkSound(id: Int) = all.walkSound[id].toInt()
-        fun runSound(id: Int) = all.runSound[id].toInt()
-        fun soundDistance(id: Int) = all.soundDistance[id].toInt()
-        fun extras(id: Int) = all.extras[id]
+        return true
     }
 }
