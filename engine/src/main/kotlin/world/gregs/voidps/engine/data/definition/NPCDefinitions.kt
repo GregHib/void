@@ -6,9 +6,7 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.NPCDefinition
-import world.gregs.voidps.cache.definition.types.NPCTypes
 import world.gregs.voidps.engine.data.definition.data.Pocket
-import world.gregs.voidps.engine.data.definition.data.Spot
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.timedLoad
 
@@ -46,15 +44,6 @@ class NPCDefinitions(
                                 }
                                 "id" -> id = int()
                                 "pickpocket" -> extras[key] = Pocket(this)
-                                "fishing" -> {
-                                    val spots = Object2ObjectOpenHashMap<String, Any>(2, Hash.VERY_FAST_LOAD_FACTOR)
-                                    while (nextEntry()) {
-                                        val type = key()
-                                        val spot = Spot(this)
-                                        spots[type] = spot
-                                    }
-                                    extras[key] = spots
-                                }
                                 "categories" -> {
                                     val categories = ObjectLinkedOpenHashSet<String>(2, Hash.VERY_FAST_LOAD_FACTOR)
                                     while (nextElement()) {

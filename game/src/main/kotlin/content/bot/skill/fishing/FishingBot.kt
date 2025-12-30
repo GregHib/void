@@ -8,6 +8,7 @@ import content.bot.skill.combat.hasExactGear
 import content.bot.skill.combat.setupGear
 import content.entity.death.weightedSample
 import net.pearx.kasechange.toLowerSpaceCase
+import world.gregs.voidps.cache.definition.types.FishingSpotTypes
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.update.view.Viewport
@@ -17,7 +18,6 @@ import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.GearDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Catch
-import world.gregs.voidps.engine.data.definition.data.Spot
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -100,9 +100,11 @@ class FishingBot : Script {
         if (!npc.def.options.contains(option)) {
             return false
         }
-        val spot: Map<String, Spot> = npc.def["fishing", emptyMap()]
+        val spotId: Int = npc.def.getOrNull("fishing_${option.lowercase()}") ?: return false
+        val index = FishingSpotTypes.baitType(spotId)?.indexOf(bait) ?: return false
+        val rewards = if (index == 0) FishingSpotTypes.bait(spotId) else FishingSpotTypes.secondary(spotId)
         val itemDefinitions: ItemDefinitions = get()
-        val level = spot[option]?.bait?.get(bait)
+        val level = rewards
             ?.minOf { itemDefinitions.get(it)["fishing", Catch.EMPTY].level }
             ?: return false
         return player.has(Skill.Fishing, level, false)

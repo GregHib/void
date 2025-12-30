@@ -3,6 +3,7 @@ package content.skill.fishing
 import com.github.michaelbull.logging.InlineLogger
 import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toTitleCase
+import world.gregs.voidps.cache.definition.types.FishingSpotTypes
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
@@ -11,7 +12,6 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Catch
-import world.gregs.voidps.engine.data.definition.data.Spot
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -33,12 +33,6 @@ class Fishing : Script {
 
     val logger = InlineLogger()
     val itemDefinitions: ItemDefinitions by inject()
-
-    val NPC.spot: Map<String, Spot>
-        get() = def["fishing", emptyMap()]
-
-    val Spot.minimumLevel: Int
-        get() = bait.keys.minOf { minimumLevel(it) ?: Int.MAX_VALUE }
 
     init {
         npcOperate("Bait", "fishing_spot_*") { (target) ->
@@ -78,21 +72,27 @@ class Fishing : Script {
                 break
             }
 
-            val data = target.spot[option] ?: return
-            if (!player.has(Skill.Fishing, data.minimumLevel, true)) {
+            val spotId = target.def.getOrNull<Int>("fishing_${option.lowercase()}") ?: return
+            var minLevel = checkLevel(FishingSpotTypes.bait(spotId), Int.MAX_VALUE)
+            minLevel = checkLevel(FishingSpotTypes.secondary(spotId), minLevel)
+            if (!player.has(Skill.Fishing, minLevel, true)) {
                 break
             }
-
-            val tackle = data.tackle.firstOrNull { tackle -> player.holdsItem(tackle) }
-            if (tackle == null) {
-                player.message("You need a ${data.tackle.first().toTitleCase()} to catch these fish.")
-                break@fishing
+            var tackle = FishingSpotTypes.tackle(spotId) ?: return
+            val alternative = FishingSpotTypes.alternative(spotId)
+            if (!player.holdsItem(tackle)) {
+                if (alternative != null && player.holdsItem(alternative)) {
+                    tackle = alternative
+                } else {
+                    player.message("You need a ${tackle.toTitleCase()} to catch these fish.")
+                    break@fishing
+                }
             }
-
-            val bait = data.bait.keys.firstOrNull { bait -> bait == "none" || player.holdsItem(bait) }
-            val catches = data.bait[bait]
+            val baitTypes = FishingSpotTypes.baitType(spotId) ?: emptyArray()
+            val bait = baitTypes.firstOrNull { bait -> bait == "none" || player.holdsItem(bait) }
+            val catches = if (bait == baitTypes.first()) FishingSpotTypes.bait(spotId) else FishingSpotTypes.secondary(spotId)
             if (bait == null || catches == null) {
-                player.message("You don't have any ${data.bait.keys.first().toTitleCase().plural(2)}.")
+                player.message("You don't have any ${baitTypes.first().toTitleCase().plural(2)}.")
                 break
             }
             if (first) {
@@ -128,6 +128,17 @@ class Fishing : Script {
         player.softTimers.stop("fishing")
     }
 
+    private fun checkLevel(bait: Array<String>?, minLevel: Int): Int {
+        var min = minLevel
+        for (type in bait ?: emptyArray()) {
+            val level = itemDefinitions.get(type)["fishing", Catch.EMPTY].level
+            if (level < min) {
+                min = level
+            }
+        }
+        return min
+    }
+
     fun addCatch(player: Player, catch: String) {
         var fish = catch
         var message = "You catch some ${fish.toLowerSpaceCase()}."
@@ -150,6 +161,4 @@ class Fishing : Script {
         catch == "raw_shark" && random.nextInt(5000) == 0 -> true
         else -> false
     }
-
-    fun Spot.minimumLevel(bait: String): Int? = this.bait[bait]?.minOf { itemDefinitions.get(it)["fishing", Catch.EMPTY].level }
 }
