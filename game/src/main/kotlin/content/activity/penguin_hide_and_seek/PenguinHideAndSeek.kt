@@ -72,7 +72,7 @@ class PenguinHideAndSeek : Script {
             anim("spot_penguin")
             // https://youtu.be/E1roiyC8QD4?si=C4nJB4swiJzlTtTQ&t=50
             message("You spy on the penguin.")
-            val doublePoints = (Settings["quests.requirements.skipMissing", false] || questCompleted("cold_war")) && target.id.removePrefix("hidden_penguin_").toInt() > 4
+            val doublePoints = questCompleted("cold_war") && target.id.removePrefix("hidden_penguin_").toInt() > 4
             inc("penguin_points", if (doublePoints) 2 else 1)
             inc("penguins_found_weekly")
             delay(2)
@@ -164,7 +164,7 @@ class PenguinHideAndSeek : Script {
     }
 
     fun sendBear(player: Player) {
-        player["polar_bear_well"] = if (Settings["quests.requirements.skipMissing", false] || player.questCompleted("hunt_for_red_rektuber")) bear else "hidden"
+        player["polar_bear_well"] = if (player.questCompleted("hunt_for_red_rektuber")) bear else "hidden"
     }
 
     fun sendBear() {

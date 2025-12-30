@@ -2,10 +2,11 @@ package content.quest
 
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 
-val quests = listOf(
+val quests = setOf(
     // free
     "unstable_foundations",
     "cooks_assistant",
@@ -25,7 +26,12 @@ val quests = listOf(
 
 fun Player.quest(name: String): String = this[name, "unstarted"]
 
-fun Player.questCompleted(name: String): Boolean = quest(name).startsWith("completed")
+fun Player.questCompleted(name: String): Boolean {
+    if (!quests.contains(name) && Settings["quests.requirements.skipMissing", false]) {
+        return true
+    }
+    return quest(name).startsWith("completed")
+}
 
 fun Player.refreshQuestJournal() {
     sendScript("quest_journal_refresh")

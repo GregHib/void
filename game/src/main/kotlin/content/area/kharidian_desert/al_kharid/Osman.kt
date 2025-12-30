@@ -25,7 +25,7 @@ class Osman : Script {
         npcOperate("Talk-to", "osman_*") {
             when (quest("prince_ali_rescue")) {
                 "completed" -> {
-                    if (!Settings["quests.requirements.skipMissing", false] && !questCompleted("contact")) {
+                    if (!questCompleted("contact")) {
                         npc<Talk>("Well done. A great rescue. I will remember you if I have anything dangerous to do.")
                         return@npcOperate
                     }
