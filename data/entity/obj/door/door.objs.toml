@@ -3226,12 +3226,13 @@ id = 35147
 id = 35146
 examine = "The door is closed."
 
-[jail_door_8_opened]
+[shantay_prison_door_opened]
 id = 35541
 examine = "This looks sturdier than the rest of the building."
 
-[jail_door_8_closed]
+[shantay_prison_door_closed]
 id = 35401
+material = "iron"
 examine = "It looks sturdy."
 
 [cell_door_14_opened]
@@ -3472,12 +3473,13 @@ examine = "The metal bars look strong."
 id = 40184
 examine = "A locked prison cell door."
 
-[cell_door_18_opened]
+[port_sarim_jail_door_opened]
 id = 40185
 examine = "A prison cell door."
 
-[cell_door_18_closed]
+[port_sarim_jail_door_closed]
 id = 40186
+material = "iron"
 examine = "Stops people getting out."
 
 [large_doors_2_opened]

@@ -1,0 +1,11 @@
+[shantay_pass]
+id = 12774
+examine = "Looks like a stone doorway to me."
+
+[danger_sign]
+id = 35555
+examine = "A sign that suggests danger."
+
+[shantay_chest]
+id = 2693
+examine = "This is used by Shantay and his men to take items to the bank on your behalf."
