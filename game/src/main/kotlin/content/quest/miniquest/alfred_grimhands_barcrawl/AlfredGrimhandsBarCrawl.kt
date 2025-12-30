@@ -21,27 +21,25 @@ suspend fun Player.barCrawlDrink(
     effects: suspend Player.() -> Unit = {},
 ) {
     player<Talk>("I'm doing Alfred Grimhand's Barcrawl.")
-    val info: Map<String, Any> = target.def.getOrNull("bar_crawl") ?: return
-    start?.invoke(this) ?: npc<Talk>(info["start"] as String)
-    val id = info["id"] as String
-    if (!inventory.remove("coins", info["price"] as Int)) {
-        player<Sad>(info["insufficient"] as String)
+    val id = target.def.getOrNull("id") as? String ?: return
+    start?.invoke(this) ?: npc<Talk>(target.def["bar_crawl_start"] as String)
+    if (!inventory.remove("coins", target.def["bar_crawl_price"] as Int)) {
+        player<Sad>(target.def["bar_crawl_insufficient"] as String)
         return
     }
-    message(info["give"] as String)
+    message(target.def["bar_crawl_give"] as String)
     delay(4)
-    message(info["drink"] as String)
+    message(target.def["bar_crawl_drink"] as String)
     delay(4)
-    message(info["effect"] as String)
+    message(target.def["bar_crawl_effect"] as String)
     delay(4)
-    (info["sign"] as? String)?.let { message(it) }
+    (target.def["bar_crawl_sign"] as? String)?.let { message(it) }
     addVarbit("barcrawl_signatures", id)
     effects()
 }
 
 val onBarCrawl: Player.(NPC) -> Boolean = filter@{ target ->
-    val info: Map<String, Any> = target.def.getOrNull("bar_crawl") ?: return@filter false
-    val id = info["id"] as String
+    val id = target.def.getOrNull("bar_crawl_id") as? String ?: return@filter false
     quest("alfred_grimhands_barcrawl") == "signatures" && !containsVarbit("barcrawl_signatures", id)
 }
 

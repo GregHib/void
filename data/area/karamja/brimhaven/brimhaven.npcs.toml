@@ -6,16 +6,14 @@ examine = "Looks like he wants money."
 
 [bartender_dead_mans_chest]
 id = 735
-bar_crawl = {
-  id = "supergrog",
-  price = 15,
-  start = "Fancy a bit of Heart Stopper then do you? It'll only be 8 coins.",
-  insufficient = "Sorry I don't have 15 coins.",
-  give = "The bartender serves you a glass of strange thick dark liquid.",
-  drink = "You wince and drink it.",
-  effect = "You stagger backwards.",
-  sign = "You think you see 2 bartenders signing 2 barcrawl cards."
-}
+bar_crawl_id = "supergrog"
+bar_crawl_price = 15
+bar_crawl_start = "Fancy a bit of Heart Stopper then do you? It'll only be 8 coins."
+bar_crawl_insufficient = "Sorry I don't have 15 coins."
+bar_crawl_give = "The bartender serves you a glass of strange thick dark liquid."
+bar_crawl_drink = "You wince and drink it."
+bar_crawl_effect = "You stagger backwards."
+bar_crawl_sign = "You think you see 2 bartenders signing 2 barcrawl cards."
 categories = ["human"]
 wander_radius = 5
 collision = "indoors"

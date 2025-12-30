@@ -46,15 +46,13 @@ examine = "Keeping an eye out for suspicious activity."
 
 [bartender_rusty_anchor_inn]
 id = 734
-bar_crawl = {
-    id = "black_skull_ale",
-    price = 8,
-    insufficient = "I don't have 8 coins with me.",
-    give = "You buy a Black Skull Ale.",
-    drink = "You drink your Black Skull Ale...",
-    effect = "Your vision blurs.",
-    sign = "The bartender signs your card."
-}
+bar_crawl_id = "black_skull_ale"
+bar_crawl_price = 8
+bar_crawl_insufficient = "I don't have 8 coins with me."
+bar_crawl_give = "You buy a Black Skull Ale."
+bar_crawl_drink = "You drink your Black Skull Ale..."
+bar_crawl_effect = "Your vision blurs."
+bar_crawl_sign = "The bartender signs your card."
 categories = ["human"]
 wander_radius = 4
 collision = "indoors"

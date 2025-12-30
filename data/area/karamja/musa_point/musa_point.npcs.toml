@@ -17,15 +17,13 @@ examine = "Needs a haircut."
 [bartender_zambo]
 id = 568
 shop = "karamja_wines_spirits_and_beers"
-bar_crawl = {
-    id = "ape_bite_liqueur",
-    price = 7,
-    start = "Ah, you'll be wanting some Ape Bite Liqueur, then. It's got a lovely banana taste and it'll only cost you 7 coins.",
-    insufficient = "I don't have 7 coins with me.",
-    give = "You buy some Ape Bite Liqueur.",
-    drink = "You swirl it around and swallow it.",
-    effect = "Zambo signs your card."
-}
+bar_crawl_id = "ape_bite_liqueur"
+bar_crawl_price = 7
+bar_crawl_start = "Ah, you'll be wanting some Ape Bite Liqueur, then. It's got a lovely banana taste and it'll only cost you 7 coins."
+bar_crawl_insufficient = "I don't have 7 coins with me."
+bar_crawl_give = "You buy some Ape Bite Liqueur."
+bar_crawl_drink = "You swirl it around and swallow it."
+bar_crawl_effect = "Zambo signs your card."
 categories = ["human"]
 wander_radius = 3
 collision = "indoors"

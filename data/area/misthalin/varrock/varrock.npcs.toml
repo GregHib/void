@@ -186,16 +186,14 @@ examine = "Animal skins are a speciality."
 
 [bartender_jolly_boar_inn]
 id = 731
-bar_crawl = {
-    id = "olde_suspiciouse",
-    price = 10,
-    start = "Ah, there seems to be a fair few doing that one these days. My supply of Olde Suspiciouse is starting to run low, it'll cost you 10 coins.",
-    insufficient = "I don't have 10 coins right now.",
-    give = "You buy a pint of Olde Suspiciouse.",
-    drink = "You gulp it down.",
-    effect = "Your head is spinning.",
-    sign = "The bartender signs your card."
-}
+bar_crawl_id = "olde_suspiciouse"
+bar_crawl_price = 10
+bar_crawl_start = "Ah, there seems to be a fair few doing that one these days. My supply of Olde Suspiciouse is starting to run low, it'll cost you 10 coins."
+bar_crawl_insufficient = "I don't have 10 coins right now."
+bar_crawl_give = "You buy a pint of Olde Suspiciouse."
+bar_crawl_drink = "You gulp it down."
+bar_crawl_effect = "Your head is spinning."
+bar_crawl_sign = "The bartender signs your card."
 categories = ["human"]
 wander_radius = 5
 collision = "indoors"
@@ -203,15 +201,13 @@ examine = "I could get a beer from him."
 
 [bartender_blue_moon_inn]
 id = 733
-bar_crawl = {
-    id = "uncle_humphreys_gutrot",
-    price = 50,
-    insufficient = "Oh dear. I don't seem to have enough money.",
-    give = "You buy some Uncle Humphrey's Gutrot.",
-    drink = "You drink the Uncle Humphrey's Gutrot.",
-    effect = "Your insides feel terrible.",
-    sign = "The bartender signs your card."
-}
+bar_crawl_id = "uncle_humphreys_gutrot"
+bar_crawl_price = 50
+bar_crawl_insufficient = "Oh dear. I don't seem to have enough money."
+bar_crawl_give = "You buy some Uncle Humphrey's Gutrot."
+bar_crawl_drink = "You drink the Uncle Humphrey's Gutrot."
+bar_crawl_effect = "Your insides feel terrible."
+bar_crawl_sign = "The bartender signs your card."
 categories = ["human"]
 wander_radius = 4
 collision = "indoors"
