@@ -1,16 +1,22 @@
 package content.entity.obj.door
 
+import content.entity.obj.door.Door.isDoor
 import content.entity.obj.door.Door.openDoor
 import content.entity.obj.door.Door.tile
 import content.entity.obj.door.Gate.isGate
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.remaining
+import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
@@ -150,6 +156,8 @@ object Door : AutoCloseable {
     }
 }
 
+
+
 /**
  * Walks a player through a door which other players can't walk through
  */
@@ -205,4 +213,55 @@ suspend fun Player.enterDoor(door: GameObject, def: ObjectDefinition = door.def,
     val tile = enter(door, def, ticks) ?: return
     walkTo(tile, noCollision = true, forceWalk = true)
     delay(delay)
+}
+
+/**
+ * Opens a door
+ */
+suspend fun Player.openDoor(door: GameObject, ticks: Int = 0): Boolean {
+    val def = door.def(this)
+    if (!def.isDoor()) {
+        return true
+    }
+    if (openDoor(this, door, def)) {
+        delay(ticks)
+        Door.opened?.invoke(this)
+        return true
+    }
+    return false
+}
+
+/**
+ * Times a door can be closed consecutively before getting stuck
+ */
+private fun stuck(player: Player): Boolean {
+    if (player.remaining("stuck_door", epochSeconds()) > 0) {
+        player.message("The door seems to be stuck.")
+        return true
+    }
+    if (player.hasClock("recently_opened_door")) {
+        if (player.inc("door_slam_count") >= Settings["world.objs.door.stuck.count", 5]) {
+            player.start("stuck_door", 60, epochSeconds())
+            return true
+        }
+    } else {
+        player.clear("door_slam_count")
+    }
+    player.start("recently_opened_door", 10)
+    return false
+}
+/**
+ * Closes a door
+ */
+fun Player.closeDoor(door: GameObject, ticks: Int = 0): Boolean {
+    val def = door.def(this)
+    if (!def.isDoor()) {
+        return false
+    }
+    // Prevent players from trapping one another
+    if (stuck(this)) {
+        return false
+    }
+    Door.closeDoor(this, door, def)
+    return false
 }
