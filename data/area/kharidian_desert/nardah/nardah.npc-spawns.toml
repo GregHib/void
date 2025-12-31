@@ -1,7 +1,7 @@
 spawns = [
   { id = "rokuh", x = 3430, y = 2914, members = true },
-  { id = "monkey_bedabin_camp", x = 3400, y = 2918, members = true },
-  { id = "rug_merchant_bedabin_camp", x = 3401, y = 2918, members = true },
+  { id = "magic_carpet_monkey", x = 3400, y = 2918, members = true },
+  { id = "rug_merchant_nardah", x = 3401, y = 2918, members = true },
   { id = "ghaslor_the_elder", x = 3441, y = 2933, members = true },
   { id = "usi", x = 3428, y = 2908 },
   { id = "nkuku", x = 3415, y = 2938 },

@@ -1,7 +1,7 @@
 spawns = [
 # 13104
   { id = "musician_shantay_pass", x = 3309, y = 3126, direction = "WEST" },
-  { id = "monkey_bedabin_camp", x = 3311, y = 3108, members = true },
+  { id = "magic_carpet_monkey", x = 3311, y = 3108, members = true },
   { id = "irena_shantay_pass", x = 3303, y = 3113, members = true },
   { id = "irena_shantay_pass_2", x = 3304, y = 3113, members = true },
   { id = "scout_shantay_pass", x = 3301, y = 3100, members = true },

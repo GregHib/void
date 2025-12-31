@@ -1,0 +1,4 @@
+[magic_carpet_var]
+id = 499
+persist = true
+format = "boolean"

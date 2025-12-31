@@ -1,6 +1,6 @@
 spawns = [
   { id = "clay_golem_ruins_of_uzer", x = 3488, y = 3090, members = true },
-  { id = "rug_merchant_ruins_of_uzer", x = 3467, y = 3110, members = true },
+  { id = "rug_merchant_uzer", x = 3467, y = 3110, members = true },
   { id = "monkey_ruins_of_uzer", x = 3467, y = 3109, members = true },
   { id = "father_reen_ruins_of_uzer", x = 3483, y = 3093, members = true },
   { id = "father_badden_ruins_of_uzer", x = 3483, y = 3090, members = true },

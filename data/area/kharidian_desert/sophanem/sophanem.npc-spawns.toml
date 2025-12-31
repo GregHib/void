@@ -69,5 +69,5 @@ spawns = [
   { id = "doorman_sophanem", x = 3294, y = 2812, members = true },
   { id = "doorman_sophanem", x = 3300, y = 2812, members = true },
   { id = "musician_sophanem", x = 3282, y = 2798, members = true },
-  { id = "rug_station_attendant", x = 3243, y = 2813, members = true },
+  { id = "rug_merchant_attendant", x = 3243, y = 2813, members = true },
 ]

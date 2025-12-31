@@ -1,5 +1,5 @@
 spawns = [
-  { id = "monkey_bedabin_camp", x = 3181, y = 3043, members = true },
+  { id = "magic_carpet_monkey", x = 3181, y = 3043, members = true },
   { id = "camel_ardougne", x = 3173, y = 3039 },
   { id = "al_shabim_bedabin_camp", x = 3171, y = 3025 },
   { id = "ugthanki", x = 3190, y = 3054 },

@@ -53,6 +53,7 @@ examine = "He patrols the Shantay Pass."
 
 [rug_merchant_shantay_pass]
 id = 2291
+wander_radius = 2
 examine = "A man who deals in rugs."
 
 [irena_shantay_pass_3]

@@ -110,14 +110,14 @@ examine = "Preach, my brother!"
 id = 6769
 examine = "A guard."
 
-[rug_station_attendant]
+[rug_merchant_attendant]
 id = 2299
 examine = "A man who deals in rugs."
 
 [klenter_2]
 id = 2014
 
-[rug_station_attendant_2]
+[rug_merchant_attendant_2]
 id = 2300
 examine = "A man who deals in rugs."
 
