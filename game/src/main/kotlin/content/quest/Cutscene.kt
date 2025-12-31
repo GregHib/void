@@ -1,5 +1,7 @@
 package content.quest
 
+import content.quest.Cutscene.Companion.tabs
+import content.skill.magic.spell.spellBook
 import world.gregs.voidps.engine.client.Minimap
 import world.gregs.voidps.engine.client.clearMinimap
 import world.gregs.voidps.engine.client.minimap
@@ -80,21 +82,17 @@ class Cutscene(
     }
 
     fun showTabs() {
-        tabs.forEach {
-            player.open(it)
-        }
+        player.openTabs()
         player.clearMinimap()
     }
 
     fun hideTabs() {
-        tabs.forEach {
-            player.close(it)
-        }
+        player.closeTabs()
         player.minimap(Minimap.HideMap)
     }
 
     companion object {
-        private val tabs = listOf(
+        val tabs = listOf(
             "combat_styles",
             "task_system",
             "stats",
@@ -102,11 +100,25 @@ class Cutscene(
             "inventory",
             "worn_equipment",
             "prayer_list",
-            "modern_spellbook",
             "emotes",
             "notes",
         )
     }
+}
+
+fun Player.openTabs() {
+    for (tab in tabs) {
+        open(tab)
+    }
+    open(get("spell_book", "modern_spellbook"))
+}
+
+fun Player.closeTabs() {
+    for (tab in tabs) {
+        close(tab)
+    }
+    set("spell_book", spellBook)
+    close(spellBook)
 }
 
 fun Player.startCutscene(name: String, region: Region = Region.EMPTY): Cutscene = Cutscene(this, name, region)

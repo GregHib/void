@@ -1,6 +1,7 @@
 package content.entity.player.modal.tab
 
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.ui.open
@@ -17,6 +18,7 @@ class Options : Script {
                 message("Please close the interface you have open before setting your graphics options.")
                 return@interfaceOption
             }
+            clearCamera()
             open("graphics_options")
         }
 
