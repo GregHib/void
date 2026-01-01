@@ -18,17 +18,20 @@ import content.quest.openTabs
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
+import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.entity.character.jingle
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.entity.character.player.renderEmote
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
@@ -101,17 +104,68 @@ class RugMerchant : Script {
         itemOnNPCOperate("banana", "magic_carpet_monkey") {
             giveBanana()
         }
+
+        adminCommand("test") {
+            softTimers.stop("magic_carpet_ride")
+            set("magic_carpet", false)
+//            tele(Tile(3308, 3110))
+            startSophanem()
+        }
+
+        timerStart("magic_carpet_ride") {
+            clearAnim()
+            gfx("magic_carpet_fly")
+            renderEmote("magic_carpet")
+            5
+        }
+
+        timerTick("magic_carpet_ride") {
+            gfx("magic_carpet_fly")
+            Timer.CONTINUE
+        }
+
+        timerStop("magic_carpet_ride") {
+            clearGfx()
+        }
     }
 
-    private suspend fun Player.travel(from: String, location: String, skip: Boolean = false) {
+    private fun Player.carpetEnd() {
+        clearAnim()
+        clearGfx()
+        clearRenderEmote()
+        clearCamera()
+        openTabs()
+        set("magic_carpet", false)
+    }
+
+    private suspend fun Player.travel(from: String, to: String, skip: Boolean = false) {
         val price = price(skip)
         if (!inventory.remove("coins", price)) {
             player<Talk>("I don't have enough money with me.")
             npc<Talk>("Looks like you're walking then.")
             return
         }
-        if (from == "shantay_pass") {
-            startShantayCarpet()
+
+        when (from) {
+            "pollnivneach_north" -> pollnivneachNorthStart()
+            "pollnivneach_south" -> pollnivneachSouthStart()
+            "uzer" -> uzerStart()
+            "shantay_pass" -> startShantayCarpet()
+            "bedabin" -> startBedabinCamp()
+            "sophanem" -> {}
+            "menaphos" -> {}
+            "nardah" -> {}
+        }
+        patrolDelay("${from}_to_$to", loop = false)
+        when (to) {
+            "pollnivneach_north" -> pollnivneachNorthLand()
+            "pollnivneach_south" -> pollnivneachSouthLand()
+            "uzer" -> uzerLand()
+            "shantay_pass" -> shantayLand()
+            "bedabin" -> bedabinLand()
+            "sophanem" -> sophanemLand()
+            "menaphos" -> menaphosLand()
+            "nardah" -> nardahLand()
         }
     }
 
@@ -119,40 +173,248 @@ class RugMerchant : Script {
         closeTabs()
         anim("magic_carpet_takeoff")
         gfx("magic_carpet_takeoff")
-        set("magic_carpet_var", true)
+        set("magic_carpet", true)
         sound("carpet_rise")
     }
 
-    private fun Player.endTravel() {
-        openTabs()
-        set("magic_carpet_var", false)
-        clearAnim()
-        clearCamera()
+    private suspend fun Player.pollnivneachNorthLand() {
+        moveCamera(Tile(3339, 3007), height = 875, speed = 100, acceleration = 100)
+        turnCamera(Tile(3349, 3003), height = 500, speed = 100, acceleration = 100)
+        walkOverDelay(Tile(3348, 3005), forceWalk = false)
+        walkOverDelay(Tile(3350, 3004), forceWalk = false)
+        delay(1)
+        exactMove(Tile(3349, 3003), delay = 30, direction = Direction.EAST)
+        delay(1)
+        face(Direction.EAST)
+        delay(2)
+        carpetLand()
+        delay(4)
+        carpetEnd()
+        walkOverDelay(Tile(3351, 3003))
+        arriveDelay()
+    }
+
+    private suspend fun Player.pollnivneachSouthLand() {
+        moveCamera(Tile(3359, 2943), height = 1000, speed = 100, acceleration = 100)
+        turnCamera(Tile(3351, 2942), height = 500, speed = 100, acceleration = 100)
+        exactMove(Tile(3351, 2941), delay = 30, direction = Direction.NORTH)
+        delay(1)
+        face(Direction.NORTH)
+        delay(2)
+        carpetLand()
+        delay(4)
+        carpetEnd()
+        walkOverDelay(Tile(3352, 2941))
+        arriveDelay()
+    }
+
+    private suspend fun Player.uzerLand() {
+        moveCamera(Tile(3460, 3123), height = 1000, speed = 100, acceleration = 100)
+        turnCamera(Tile(3469, 3113), height = 325, speed = 100, acceleration = 100)
+        exactMove(Tile(3469, 3113), delay = 30, direction = Direction.NORTH)
+        face(Direction.NORTH)
+        delay(3)
+        carpetLand()
+        delay(4)
+        carpetEnd()
+        walkOverDelay(Tile(3470, 3113))
+        arriveDelay()
+    }
+
+    private suspend fun Player.sophanemLand() {
+        moveCamera(Tile(3300, 2813), height = 1000, speed = 100, acceleration = 100)
+        turnCamera(Tile(3285, 2813), height = 200, speed = 100, acceleration = 100)
+        exactMove(Tile(3289, 2817), delay = 30, direction = Direction.NORTH)
+        exactMove(Tile(3288, 2813), delay = 30, direction = Direction.NORTH)
+        exactMove(Tile(3285, 2813), delay = 30, direction = Direction.NORTH)
+        face(Direction.NORTH)
+        delay(3)
+        carpetLand()
+        delay(4)
+        carpetEnd()
+        walkOverDelay(Tile(3286, 2813))
+        arriveDelay()
+    }
+
+    private suspend fun Player.menaphosLand() {
+        moveCamera(Tile(3254, 2811), height = 1000, speed = 100, acceleration = 100)
+        turnCamera(Tile(3245, 2813), height = 200, speed = 100, acceleration = 100)
+        exactMove(Tile(3245, 2815), delay = 30, direction = Direction.NORTH)
+        exactMove(Tile(3245, 2813), delay = 30, direction = Direction.NORTH)
+        face(Direction.NORTH)
+        delay(3)
+        carpetLand()
+        delay(4)
+        carpetEnd()
+        walkOverDelay(Tile(3246, 2813))
+        arriveDelay()
+    }
+
+    private suspend fun Player.nardahLand() {
+        moveCamera(Tile(3408, 2907), height = 650, speed = 100, acceleration = 100)
+        turnCamera(Tile(3399, 2915), height = 475, speed = 100, acceleration = 100)
+        exactMove(Tile(3396, 2915), delay = 30, direction = Direction.EAST)
+        exactMove(Tile(3399, 2915), delay = 30, direction = Direction.EAST)
+        exactMove(Tile(3401, 2916), delay = 30, direction = Direction.EAST)
+        face(Direction.EAST)
+        delay(3)
+        carpetLand()
+        delay(4)
+        carpetEnd()
+        walkOverDelay(Tile(3402, 2916))
+        arriveDelay()
+    }
+
+    private suspend fun Player.bedabinLand() {
+        moveCamera(Tile(3176, 3048), height = 1000, speed = 100, acceleration = 100)
+        turnCamera(Tile(3180, 3044), height = 325, speed = 100, acceleration = 100)
+        exactMove(Tile(3181, 3046), delay = 30, direction = Direction.NORTH)
+        exactMove(Tile(3180, 3045), delay = 30, direction = Direction.NORTH)
+        face(Direction.NORTH)
+        delay(4)
+        carpetLand()
+        delay(4)
+        carpetEnd()
+        walkOverDelay(Tile(3181, 3045))
+        arriveDelay()
+    }
+
+    private suspend fun Player.shantayLand() {
+        moveCamera(Tile(3298, 3110), height = 1000, speed = 100, acceleration = 100)
+        turnCamera(Tile(3308, 3110), height = 200, speed = 100, acceleration = 100)
+        exactMove(Tile(3308, 3110), delay = 30, direction = Direction.SOUTH)
+        face(Direction.SOUTH)
+        delay(1)
+        carpetLand()
+        delay(4)
+        carpetEnd()
+        walkOverDelay(Tile(3309, 3110))
+        arriveDelay()
+    }
+
+
+    private fun Player.carpetLand() {
+        softTimers.stop("magic_carpet_ride")
+        anim("magic_carpet_land")
+        gfx("magic_carpet_land")
+        sound("1195")
     }
 
     private suspend fun Player.startShantayCarpet() {
-        moveCamera(Tile(3302, 3110), height = 500, constantSpeed = 100, variableSpeed = 100)
-        turnCamera(Tile(3308, 3110), height = 100, constantSpeed = 100, variableSpeed = 100)
+        // https://youtu.be/_OMaNKNDrEs?si=lsh8rpc15tNu7pyS&t=29
+        moveCamera(Tile(3302, 3110), height = 500, speed = 100, acceleration = 100)
+        turnCamera(Tile(3308, 3110), height = 100, speed = 100, acceleration = 100)
         walkToDelay(Tile(3309, 3110))
         jingle("magic_carpet_travel")
         clearWatch()
         clear("face_entity")
-        walkOverDelay(Tile(3308, 3110))
+        tele(Tile(3308, 3110))
         face(Direction.SOUTH)
         delay(2)
         beginTravel()
         delay(3)
-        moveCamera(Tile(3308, 3114), height = 500, constantSpeed = 10, variableSpeed = 10)
-        turnCamera(Tile(3308, 3110), height = 300, constantSpeed = 10, variableSpeed = 10)
-//        face(Direction.SOUTH)
-        delay(2)
-        gfx("magic_carpet_fly")
-//        clearCamera()
+        moveCamera(Tile(3308, 3114), height = 500, speed = 10, acceleration = 10)
+        turnCamera(Tile(3308, 3110), height = 300, speed = 10, acceleration = 10)
+        delay(1)
+        carpetEnd()
+        delay(1)
+        exactMoveDelay(Tile(3308, 3108), delay = 30, direction = Direction.SOUTH)
+        clearCamera()
+    }
 
-//        walkOverDelay(Tile(3308, 3106))
-        // TODO what happens if you disconnect half way through?
-        delay(10)
-        endTravel()
+    private suspend fun Player.startBedabinCamp() {
+        moveCamera(Tile(3184, 3054), height = 1000, speed = 100, acceleration = 100)
+        turnCamera(Tile(3180, 3045), height = 325, speed = 100, acceleration = 100)
+        walkToDelay(Tile(3180, 3044))
+        jingle("magic_carpet_travel")
+        clearWatch()
+        clear("face_entity")
+        tele(Tile(3180, 3044))
+        face(Direction.NORTH)
+        delay(2)
+        beginTravel()
+        delay(3)
+        carpetEnd()
+        delay(1)
+        exactMoveDelay(Tile(3180, 3040), delay = 30, direction = Direction.NORTH)
+        clearCamera()
+    }
+
+    private suspend fun Player.startSophanem() {
+        moveCamera(Tile(3300, 2813), height = 1000, speed = 100, acceleration = 100)
+        turnCamera(Tile(3285, 2813), height = 200, speed = 100, acceleration = 100)
+        walkToDelay(Tile(3285, 2813))
+        jingle("magic_carpet_travel")
+        clearWatch()
+        clear("face_entity")
+        tele(Tile(3285, 2813))
+        face(Direction.SOUTH)
+        delay(2)
+        beginTravel()
+        delay(3)
+        carpetEnd()
+        delay(1)
+        exactMoveDelay(Tile(3289, 2814), delay = 30, direction = Direction.SOUTH)
+        exactMoveDelay(Tile(3289, 2820), delay = 30, direction = Direction.SOUTH)
+        clearCamera()
+    }
+
+    private suspend fun Player.pollnivneachNorthStart() {
+        moveCamera(Tile(3344, 3005), height = 600, speed = 100, acceleration = 100)
+        turnCamera(Tile(3349, 3005), height = 100, speed = 100, acceleration = 100)
+        walkToDelay(Tile(3349, 3003))
+        jingle("magic_carpet_travel")
+        clearWatch()
+        clear("face_entity")
+        tele(Tile(3349, 3003))
+        face(Direction.EAST)
+        delay(2)
+        beginTravel()
+        delay(3)
+        moveCamera(Tile(3354, 2998), height = 1000, speed = 100, acceleration = 100)
+        turnCamera(Tile(3349, 3003), height = 500, speed = 100, acceleration = 100)
+        delay(1)
+        softTimers.start("magic_carpet_ride")
+        delay(1)
+        walkOverDelay(Tile(3347, 3005))
+        walkOverDelay(Tile(3346, 3007))
+        clearCamera()
+    }
+
+    private suspend fun Player.uzerStart() {
+        moveCamera(Tile(3460, 3123), height = 1000, speed = 100, acceleration = 100)
+        turnCamera(Tile(3469, 3113), height = 325, speed = 100, acceleration = 100)
+        walkToDelay(Tile(3469, 3111))
+        jingle("magic_carpet_travel")
+        clearWatch()
+        clear("face_entity")
+        tele(Tile(3469, 3113))
+        face(Direction.SOUTH)
+        delay(2)
+        beginTravel()
+        delay(3)
+        softTimers.start("magic_carpet_ride")
+        delay(1)
+        walkOverDelay(Tile(3466, 3112))
+        clearCamera()
+    }
+
+    private suspend fun Player.pollnivneachSouthStart() {
+        moveCamera(Tile(3357, 2942), height = 500, speed = 88, acceleration = 100)
+        turnCamera(Tile(3351, 2942), height = 100, speed = 100, acceleration = 100)
+        walkToDelay(Tile(3351, 2942))
+        jingle("magic_carpet_travel")
+        clearWatch()
+        clear("face_entity")
+        tele(Tile(3351, 2942))
+        face(Direction.SOUTH)
+        delay(2)
+        beginTravel()
+        delay(3)
+        softTimers.start("magic_carpet_ride")
+        delay(1)
+        walkOverDelay(Tile(3351, 2939))
+        clearCamera()
     }
 
     private suspend fun Player.price(skip: Boolean): Int {

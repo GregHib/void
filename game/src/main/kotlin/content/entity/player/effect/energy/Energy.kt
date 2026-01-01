@@ -33,7 +33,7 @@ class Energy : Script {
         }
 
         moved {
-            if (visuals.runStep == -1 || get("last_energy_drain", -1) == GameLoop.tick || !Settings["players.energy.drain", true]) {
+            if (visuals.runStep == -1 || get("last_energy_drain", -1) == GameLoop.tick || get("magic_carpet", false) || !Settings["players.energy.drain", true]) {
                 return@moved
             }
             set("last_energy_drain", GameLoop.tick)
