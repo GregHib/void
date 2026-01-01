@@ -13,6 +13,7 @@ import world.gregs.voidps.type.Tile
 class Patrol(
     character: Character,
     private val waypoints: List<Pair<Tile, Int>>,
+    private val loop: Boolean = true,
 ) : Movement(character) {
 
     override fun tick() {
@@ -44,7 +45,11 @@ class Patrol(
         if (character.tile == waypoint) {
             character.clear("patrol_delay")
             character.inc("patrol_index")
-            character.steps.queueStep(waypoint().first)
+            if (!loop && character["patrol_index", 0] >= waypoints.size) {
+                character.mode = EmptyMode
+            } else {
+                character.steps.queueStep(waypoint().first)
+            }
         } else if (character.steps.isEmpty()) {
             character.steps.queueStep(waypoint)
         }

@@ -33,7 +33,14 @@ class PathFindingCommands : Script {
         adminCommand("patrol", stringArg("patrol-id", autofill = patrols.definitions.keys), desc = "Walk along a patrol route") { args ->
             val patrol = patrols.get(args[0])
             tele(patrol.waypoints.first().first)
-            mode = Patrol(this, patrol.waypoints)
+            mode = Patrol(this, patrol.waypoints, loop = false)
+        }
+
+        adminCommand("show_patrol", stringArg("patrol-id", autofill = patrols.definitions.keys), desc = "Display a patrol route") { args ->
+            val patrol = patrols.get(args[0])
+            for ((tile, delay) in patrol.waypoints) {
+                areaGfx("2000", tile)
+            }
         }
 
         adminCommand("pf_bench") {
