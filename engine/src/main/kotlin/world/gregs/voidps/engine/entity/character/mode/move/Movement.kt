@@ -121,12 +121,10 @@ open class Movement(
         if (character is Player) {
             character.steps.last = GameLoop.tick + 1 // faster than character.start("last_movement", 1)
             character.temporaryMoveType = if (run) MoveType.Run else MoveType.Walk
-            character.movementType = if (end) {
-                MoveType.Run
-            } else if (run) {
-                MoveType.Run
-            } else {
-                MoveType.Walk
+            character.movementType = when {
+                end -> MoveType.Run
+                run -> MoveType.Run
+                else -> MoveType.Walk
             }
         }
     }

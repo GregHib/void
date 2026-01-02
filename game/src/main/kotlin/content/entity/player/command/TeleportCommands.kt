@@ -69,6 +69,9 @@ class TeleportCommands : Script {
         "tree_gnome_stronghold" to Tile(2466, 3450),
         "etceteria" to Tile(2602, 3875),
         "dks" to Tile(1922, 4365),
+        "shantay_pass" to Tile(3304, 3119),
+        "uzer" to Tile(3484, 3092),
+        "pollnivneach" to Tile(3357, 2968),
     )
 
     init {

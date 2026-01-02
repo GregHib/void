@@ -7,9 +7,11 @@ import world.gregs.voidps.engine.client.variable.VariableStore
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.GraphicDefinitions
+import world.gregs.voidps.engine.data.definition.PatrolDefinitions
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
+import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.mode.move.Steps
@@ -344,6 +346,23 @@ interface Character :
             delay()
         }
     }
+
+    /**
+     * Walks a route
+     */
+    suspend fun patrolDelay(route: String, loop: Boolean = true, noCollision: Boolean = false) {
+        val patrols: PatrolDefinitions = get()
+        val patrol = patrols.get(route)
+        val waypoints = patrol.waypoints
+        if (waypoints.isEmpty()) {
+            return
+        }
+        mode = Patrol(this, waypoints, loop, noCollision)
+        while (mode is Patrol) {
+            delay()
+        }
+    }
+
     /**
      * Interrupt-able pausing of scripts
      * Note: can't be used after a dialogue suspension in an interaction as the

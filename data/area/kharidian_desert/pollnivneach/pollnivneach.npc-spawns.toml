@@ -41,7 +41,7 @@ spawns = [
   { id = "menaphite_thug_pollnivneach", x = 3347, y = 2961, members = true },
   { id = "menaphite_thug_pollnivneach", x = 3351, y = 2961, members = true },
   { id = "menaphite_thug_pollnivneach", x = 3352, y = 2951, members = true },
-  { id = "monkey_bedabin_camp", x = 3350, y = 3000, members = true },
+  { id = "magic_carpet_monkey", x = 3350, y = 3000, members = true },
   { id = "aristarchus_pollnivneach", x = 3338, y = 2961, members = true },
   { id = "bandit_pollnivneach_2", x = 3356, y = 2994, members = true },
   { id = "bandit_pollnivneach_2", x = 3357, y = 3001, members = true },

@@ -229,8 +229,8 @@ class GypsyAris : Script {
 
         face(Direction.NORTH)
         clearCamera()
-        turnCamera(cutscene.tile(3227, 3367), height = 200, constantSpeed = 2, variableSpeed = 10)
-        turnCamera(cutscene.tile(3227, 3367), height = 100, constantSpeed = 1, variableSpeed = 10)
+        turnCamera(cutscene.tile(3227, 3367), height = 200, speed = 2, acceleration = 10)
+        turnCamera(cutscene.tile(3227, 3367), height = 100, speed = 1, acceleration = 10)
         shakeCamera(type = 3, intensity = 0, movement = 0, speed = 0, cycle = 0)
         sound("rumbling")
         npc<Angry>("wally", "Die, foul demon!", clickToContinue = false)
@@ -245,7 +245,7 @@ class GypsyAris : Script {
         delay(4)
 
         clearCamera()
-        moveCamera(cutscene.tile(3227, 3369), height = 100, constantSpeed = 2, variableSpeed = 10)
+        moveCamera(cutscene.tile(3227, 3369), height = 100, speed = 2, acceleration = 10)
         shakeCamera(type = 1, intensity = 0, movement = 10, speed = 5, cycle = 0)
         shakeCamera(type = 3, intensity = 0, movement = 2, speed = 50, cycle = 0)
         sound("rumbling")

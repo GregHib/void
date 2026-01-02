@@ -29,6 +29,14 @@ class Warning : Script {
             (dialogueSuspension as StringSuspension).resume("no")
         }
 
+        continueDialogue("warning_*:yes") {
+            (dialogueSuspension as StringSuspension).resume("yes")
+        }
+
+        continueDialogue("warning_*:no") {
+            (dialogueSuspension as StringSuspension).resume("no")
+        }
+
         interfaceOption("Off/On", "warning_*:dont_ask") {
             val id = it.id.substringBefore(":")
             val count = get(id, 0)
