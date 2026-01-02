@@ -227,7 +227,7 @@ abstract class WorldTest : KoinTest {
 
     @BeforeEach
     fun beforeEach() {
-        setCurrentTime { System.currentTimeMillis() }
+        setCurrentTime { TIME }
         settings = Settings.load(properties)
         if (loadNpcs) {
             loadNpcSpawns(npcs, configFiles.list(Settings["spawns.npcs"]), npcDefinitions)
@@ -253,6 +253,7 @@ abstract class WorldTest : KoinTest {
     }
 
     companion object {
+        private const val TIME: Long = 43_200_000 // 12:00:00
         private val properties: Properties by lazy {
             val properties = Properties()
             properties.load(WorldTest::class.java.getResourceAsStream("/game.properties")!!)
