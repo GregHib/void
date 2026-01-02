@@ -27,8 +27,9 @@ respawn_delay = 50
 drop_table = "bones"
 examine = "A bedabin nomad fighter - a sandy swordsman."
 
-[rug_merchant_bedabin]
+[rug_merchant_bedabin_camp]
 id = 2292
+wander_radius = 2
 examine = "A man who deals in rugs."
 
 [asgarnia_smith]

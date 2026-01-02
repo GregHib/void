@@ -33,6 +33,7 @@ id = 13235
 
 [rug_merchant_kharidian_desert]
 id = 13237
+wander_radius = 2
 
 [desert_snake]
 id = 1874
@@ -70,6 +71,7 @@ id = 2002
 
 [rug_merchant_sophanem]
 id = 2297
+wander_radius = 2
 
 [monkey_kharidian_desert]
 id = 2302
@@ -146,6 +148,7 @@ id = 2006
 
 [rug_merchant_kharidian_desert_2_2]
 id = 2298
+wander_radius = 2
 
 [ali_the_wise_kharidian_desert_2]
 id = 7447
@@ -200,3 +203,4 @@ id = 13236
 
 [rug_merchant_kharidian_desert_3]
 id = 13238
+wander_radius = 2

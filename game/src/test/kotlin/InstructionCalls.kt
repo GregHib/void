@@ -108,9 +108,17 @@ fun Player.dialogueOption(
     Dialogues.continueDialogue(this, "$id:$component")
 }
 
+private fun isContinuableDialogue(id: String) = id.startsWith("dialogue_chat") || id.startsWith("dialogue_npc_chat") || id.startsWith("dialogue_message") || id.startsWith("dialogue_obj") || id.startsWith("dialogue_double_obj")
+
 fun Player.dialogueContinue(repeat: Int = 1) {
     repeat(repeat) {
         require(dialogue != null) { "No dialogue found for $this. step $it/$repeat" }
+        dialogueOption("continue")
+    }
+}
+
+fun Player.dialogueContinues() {
+    while (dialogue != null && isContinuableDialogue(dialogue!!)) {
         dialogueOption("continue")
     }
 }

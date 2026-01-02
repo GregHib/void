@@ -4,6 +4,10 @@ combat_anims = "golem"
 
 [rug_merchant_uzer]
 id = 2295
+examine = "A man who deals in rugs."
+
+[rug_merchant_uzer_visible]
+id = 2296
 
 [monkey_ruins_of_uzer]
 id = 2303
@@ -31,9 +35,6 @@ id = 1909
 
 [clay_golem_ruins_of_uzer_4]
 id = 1910
-
-[rug_merchant_uzer_2]
-id = 2296
 
 [father_badden_ruins_of_uzer_2]
 id = 2902

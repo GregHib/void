@@ -1,0 +1,6 @@
+[icthlarins_little_helper]
+id = 395
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 1 }

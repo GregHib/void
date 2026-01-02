@@ -1,6 +1,8 @@
 package content.area.kharidian_desert.shantay_pass
 
+import content.entity.player.bank.bank
 import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
 import content.entity.player.dialogue.type.warning
@@ -9,6 +11,8 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
@@ -28,9 +32,7 @@ class ShantayPass : Script {
                 }
                 message("The guard takes your Shantay Pass as you go through the gate.")
             }
-            val west = tile.x < 3304
-            walkToDelay(Tile(if (west) 3303 else 3305, if (exit) 3116 else 3117))
-            walkOverDelay(Tile(if (west) 3303 else 3305, if (exit) 3117 else 3116))
+            pass(exit)
         }
 
         objectOperate("Look-at", "shantay_pass") {
@@ -42,5 +44,29 @@ class ShantayPass : Script {
         objectOperate("Open", "shantay_chest") {
             open("bank")
         }
+
+        npcOperate("Bribe", "shantay_guard_still") {
+            //youtu.be/qGX2YLs1Pb0?t=2457
+            if (!inventory.contains("coins", 200)) {
+                choice("The guard won't let you through without a pass.") {
+                    option("Offer him 200 coins from your bank.") {
+                        if (bank.remove("coins", 200)) {
+                            pass(false)
+                        } else {
+                            // TODO
+                        }
+                    }
+                    option("Stop")
+                }
+                return@npcOperate
+            }
+            // TODO
+        }
+    }
+
+    private suspend fun Player.pass(exit: Boolean) {
+        val west = tile.x < 3304
+        walkToDelay(Tile(if (west) 3303 else 3305, if (exit) 3116 else 3117))
+        walkOverDelay(Tile(if (west) 3303 else 3305, if (exit) 3117 else 3116))
     }
 }

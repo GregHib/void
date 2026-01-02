@@ -79,6 +79,7 @@ examine = "A man who deals in rugs."
 
 [rug_merchant_south_pollnivneach]
 id = 2293
+wander_radius = 2
 examine = "A man who deals in rugs."
 
 [ali_the_operator]

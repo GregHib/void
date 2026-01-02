@@ -1,0 +1,8 @@
+[magic_carpet_stand]
+id = 330
+
+[magic_carpet_land]
+id = 331
+
+[magic_carpet_takeoff]
+id = 654
