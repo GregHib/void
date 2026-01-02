@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
@@ -21,11 +20,14 @@ class ShantayPass : Script {
         objectOperate("Go-through", "shantay_pass") {
             val exit = tile.y <= 3116
             if (!exit) {
-                if (!inventory.remove("shantay_pass")) {
+                if (!inventory.contains("shantay_pass")) {
                     npc<Talk>("shantay_guard_still", "You need a Shantay pass to get through this gate. See Shantay, he will sell you one for a very reasonable price.")
                     return@objectOperate
                 }
                 if (!warning("shantay_pass")) {
+                    return@objectOperate
+                }
+                if (!inventory.remove("shantay_pass")) {
                     return@objectOperate
                 }
                 message("The guard takes your Shantay Pass as you go through the gate.")

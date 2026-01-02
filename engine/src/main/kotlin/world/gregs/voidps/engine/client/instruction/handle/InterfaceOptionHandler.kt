@@ -23,7 +23,7 @@ class InterfaceOptionHandler(
         var (id, component, item, _, options) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
 
         if (options == null) {
-            options = interfaceDefinitions.getComponent(id, component)?.get("options") ?: emptyArray()
+            options = interfaceDefinitions.getComponent(id, component)?.getOrNull("options") ?: emptyArray()
         }
 
         if (option !in options.indices) {
