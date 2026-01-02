@@ -350,14 +350,14 @@ interface Character :
     /**
      * Walks a route
      */
-    suspend fun patrolDelay(route: String, loop: Boolean = true) {
+    suspend fun patrolDelay(route: String, loop: Boolean = true, noCollision: Boolean = false) {
         val patrols: PatrolDefinitions = get()
         val patrol = patrols.get(route)
         val waypoints = patrol.waypoints
         if (waypoints.isEmpty()) {
             return
         }
-        mode = Patrol(this, waypoints, loop)
+        mode = Patrol(this, waypoints, loop, noCollision)
         while (mode is Patrol) {
             delay()
         }

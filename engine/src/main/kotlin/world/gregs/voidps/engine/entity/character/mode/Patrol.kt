@@ -14,6 +14,7 @@ class Patrol(
     character: Character,
     private val waypoints: List<Pair<Tile, Int>>,
     private val loop: Boolean = true,
+    private val noCollision: Boolean = false,
 ) : Movement(character) {
 
     override fun tick() {
@@ -48,10 +49,10 @@ class Patrol(
             if (!loop && character["patrol_index", 0] >= waypoints.size) {
                 character.mode = EmptyMode
             } else {
-                character.steps.queueStep(waypoint().first)
+                character.steps.queueStep(waypoint().first, noCollision)
             }
         } else if (character.steps.isEmpty()) {
-            character.steps.queueStep(waypoint)
+            character.steps.queueStep(waypoint, noCollision)
         }
         super.tick()
     }
