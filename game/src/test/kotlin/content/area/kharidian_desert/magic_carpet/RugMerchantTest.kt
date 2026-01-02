@@ -1,7 +1,6 @@
 package content.area.kharidian_desert.magic_carpet
 
 import WorldTest
-import dialogueContinue
 import dialogueContinues
 import dialogueOption
 import npcOption
@@ -96,5 +95,4 @@ class RugMerchantTest : WorldTest() {
         assertNotEquals(Tile(3309, 3109), player.tile)
         assertEquals(125, player.inventory.count("coins"))
     }
-
 }

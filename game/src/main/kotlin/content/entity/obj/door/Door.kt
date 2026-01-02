@@ -156,8 +156,6 @@ object Door : AutoCloseable {
     }
 }
 
-
-
 /**
  * Walks a player through a door which other players can't walk through
  */
@@ -250,6 +248,7 @@ private fun stuck(player: Player): Boolean {
     player.start("recently_opened_door", 10)
     return false
 }
+
 /**
  * Closes a door
  */

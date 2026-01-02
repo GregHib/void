@@ -8,8 +8,6 @@ import content.entity.player.dialogue.type.statement
 import content.entity.player.dialogue.type.warning
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.chat.Colours
-import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.contains
@@ -46,7 +44,7 @@ class ShantayPass : Script {
         }
 
         npcOperate("Bribe", "shantay_guard_still") {
-            //youtu.be/qGX2YLs1Pb0?t=2457
+            // youtu.be/qGX2YLs1Pb0?t=2457
             if (!inventory.contains("coins", 200)) {
                 choice("The guard won't let you through without a pass.") {
                     option("Offer him 200 coins from your bank.") {

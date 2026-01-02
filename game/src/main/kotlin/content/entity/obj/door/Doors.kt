@@ -13,5 +13,4 @@ class Doors : Script {
             openDoor(target)
         }
     }
-
 }

@@ -196,5 +196,4 @@ class MagicCarpetTest : WorldTest() {
 
         assertEquals(0, player.inventory.count("coins"))
     }
-
 }

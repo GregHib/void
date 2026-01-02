@@ -1,7 +1,6 @@
 package content.area.kharidian_desert.shantay_pass
 
 import WorldTest
-import messages
 import objectOption
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test

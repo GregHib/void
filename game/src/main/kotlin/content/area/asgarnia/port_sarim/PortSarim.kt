@@ -1,7 +1,6 @@
 package content.area.asgarnia.port_sarim
 
 import content.entity.obj.door.enterDoor
-import content.entity.obj.door.openDoor
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -45,7 +44,7 @@ class PortSarim : Script {
         anim("open_chest_mid")
         sound("locked")
         weakQueue("lock_picking", 4) {
-            if (!Level.success(levels.get(Skill.Thieving), 35)) {// TODO unknown rates
+            if (!Level.success(levels.get(Skill.Thieving), 35)) { // TODO unknown rates
                 pickLock(door)
                 return@weakQueue
             }
