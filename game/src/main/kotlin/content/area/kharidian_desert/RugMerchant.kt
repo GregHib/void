@@ -1,14 +1,6 @@
 package content.area.kharidian_desert
 
-import content.entity.player.dialogue.Chuckle
-import content.entity.player.dialogue.EvilLaugh
-import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.None
-import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.RollEyes
-import content.entity.player.dialogue.Surprised
-import content.entity.player.dialogue.Talk
-import content.entity.player.dialogue.Uncertain
+import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
@@ -277,7 +269,6 @@ class RugMerchant : Script {
     }
 
     private suspend fun Player.travel(target: NPC) {
-        // TODO didn't check dialogues without quest requirements
         val current = target.id.removePrefix("rug_merchant_")
         when (target.id) {
             "rug_merchant_south_pollnivneach" -> {
@@ -371,6 +362,7 @@ class RugMerchant : Script {
                 }
             }
             "rug_merchant_shantay_pass" -> {
+                // TODO dialogue without quest requirements
                 npc<Talk>("From here you can travel to Uzer, to the Bedabin camp or to the North of Pollnivneach.")
                 npc<Talk>("The second major carpet hub station, to the south of Pollnivneach is in easy walking distance from there.")
                 choice {
@@ -409,24 +401,22 @@ class RugMerchant : Script {
                             npc<Talk>("You see it's located halfway between Al Kharid, and the Menaphite cities and close enough to Nardah too, so we get more than enough traffic to keep the business running.")
                         }
                         "rug_merchant_south_pollnivneach" -> {
-                            player<Talk>("What are you doing here?")
                             npc<Talk>("I work here renting out magic carpets. I'm from Pollnivneach so it is a handy job, I don't have to commute too far to work every day.")
                             player<Talk>("So I suppose you're called Ali then.")
                             npc<Talk>("Not the most remarkable of names, not that it matters, you see everyone in town knows me as Flash.")
                             player<Talk>("Really?")
-                            npc<None>("No.")
-                            player<None>("........")
-                            npc<None>(".........")
+                            npc<Blink>("No.")
+                            player<Blink>("........")
+                            npc<Blink>(".........")
                             player<Talk>("Oh right.")
                         }
                         "rug_merchant_sophanem" -> {
-                            player<Talk>("What are you doing here?")
                             npc<Chuckle>("I look after the carpet station here. The place is a bit dead though. Ha! I'm just too much.")
                             player<Uncertain>("What?")
                             npc<Talk>("You know, Sophanem, city of the dead and all that?")
-                            player<None>("...")
+                            player<Blink>("...")
                             npc<Talk>("Aww come on, the joke wasn't that bad.")
-                            player<None>("...")
+                            player<Blink>("...")
                         }
                         "rug_merchant_nardah" -> {
                             npc<Talk>("Well I'd preferred to have been running one of the carpet stations at a hub such as Pollnivneach. I was a bit slow off the mark to get that gig though. Still business in Nardah isn't bad for a terminal. At least")

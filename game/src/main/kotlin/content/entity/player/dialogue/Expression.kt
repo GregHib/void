@@ -2,7 +2,6 @@ package content.entity.player.dialogue
 
 sealed class Expression
 
-data object None : Expression()
 data object Admit : Expression()
 data object Afraid : Expression()
 data object Amazed : Expression()
