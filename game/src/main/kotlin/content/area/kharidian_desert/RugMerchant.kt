@@ -13,6 +13,7 @@ import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.entity.player.effect.energy.runEnergy
 import content.quest.closeTabs
 import content.quest.openTabs
 import content.quest.questCompleted
@@ -21,6 +22,7 @@ import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.entity.character.jingle
+import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -191,6 +193,11 @@ class RugMerchant : Script {
         if (!skip) {
             player<Happy>("Here you go.")
         }
+        // Note: [Steps] doesn't have forceRun so this is the work-around
+        if (runEnergy == 0) {
+            runEnergy = 1
+        }
+        running = true
         set("magic_carpet_destination", to)
         when (from) {
             "north_pollnivneach" -> northPollnivneachStart()
