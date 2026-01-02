@@ -1,8 +1,6 @@
 package content.area.kharidian_desert.shantay_pass
 
 import WorldTest
-import content.entity.player.dialogue.continueDialogue
-import interfaceOption
 import objectOption
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
