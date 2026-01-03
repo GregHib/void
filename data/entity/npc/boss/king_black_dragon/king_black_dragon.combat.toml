@@ -1,0 +1,44 @@
+[king_black_dragon.melee]
+chance = 30
+range = 1
+style = "stab"
+condition = "melee_range"
+anim = "king_black_dragon_attack"
+target_sound = "dragon_attack"
+target_hit = { offense = "melee", max = 250 }
+
+[king_black_dragon.dragonfire]
+chance = 30
+range = 8
+anim = "king_black_dragon_breath"
+projectile = "dragon_breath"
+target_sound = "dragon_breath"
+target_hit = { offense = "dragonfire", max = 650 }
+
+[king_black_dragon.toxic]
+chance = 10
+range = 8
+anim = "king_black_dragon_breath"
+projectile = "dragon_breath_toxic"
+target_sound = "dragon_breath_toxic"
+target_hit = { offense = "dragonfire", spell = "toxic", special = true, max = 500 }
+impact_poison = 80
+
+[king_black_dragon.ice]
+chance = 10
+range = 8
+anim = "king_black_dragon_breath"
+projectile = "dragon_breath_ice"
+target_sound = "dragon_breath_ice"
+target_hit = { offense = "dragonfire", spell = "ice", special = true, max = 500 }
+impact_freeze = 10
+
+[king_black_dragon.shock]
+chance = 10
+range = 8
+anim = "king_black_dragon_breath"
+projectile = "dragon_breath_shock"
+target_sound = "dragon_breath_shock"
+target_hit = { offense = "dragonfire", spell = "shock", special = true, max = 500 }
+impact_drain = { skill = "all", amount = 2 }
+impact_message = "You're shocked and weakened!"

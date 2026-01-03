@@ -12,7 +12,7 @@ miss_gfx = "spell_splash"
 miss_sound = "spell_splash"
 impact_gfx = "confuse_impact"
 impact_sound = "confuse_impact"
-impact_drain = [{ skills = "Attack", multiplier = 0.05 }]
+impact_drain = { skill = "Attack", multiplier = 0.05 }
 
 [dark_wizard.water_strike]
 chance = 50
@@ -31,7 +31,7 @@ anim = "sergeant_steelwill_attack"
 gfx = "sergeant_steelwill_attack"
 projectile = "sergeant_steelwill_spell"
 target_hit = { offense = "magic", max = 150 }
-impact_area_gfx = "sergeant_steelwill_impact"
+impact_gfx = { id = "sergeant_steelwill_impact", area = true }
 impact_sound = "sergeant_steelwill_impact"
 
 [general_graardor.melee]
@@ -50,7 +50,7 @@ chance = 50
 range = 8
 anim = "general_graardor_slam"
 gfx = "general_graardor_slam"
-area_sounds = { id = "general_graardor_slam", delay = 20, radius = 7 }
+sound = { id = "general_graardor_slam", delay = 20, radius = 7 }
 projectile = "general_graardor_projectile"
 impact_gfx = "general_graardor_smash_impact"
 miss_gfx = "giant_splash"
@@ -62,7 +62,7 @@ chance = 50
 range = 1
 anim = "kree_arra_melee"
 projectile = "kree_arra_tornado_white"
-target_sounds = [{ id = "kree_arra_melee" }]
+target_sound = "kree_arra_melee"
 target_hit = { offense = "melee", defence = "magic", max = 260 }
 
 [kree_arra.magic]
@@ -71,7 +71,7 @@ range = 10
 condition = "no_attackers"
 anim = "kree_arra_attack"
 projectile = "kree_arra_tornado_blue"
-area_sound = { id = "kree_arra_attack", delay = 1 }
+sound = { id = "kree_arra_attack", delay = 1, radius = 5 }
 target_hit = { offense = "magic", defence = "range", max = 210 }
 
 [kree_arra.range]
@@ -80,7 +80,7 @@ range = 10
 condition = "no_attackers"
 anim = "kree_arra_attack"
 projectile = "kree_arra_tornado_blue"
-area_sound = { id = "kree_arra_attack", delay = 1 }
+sound = { id = "kree_arra_attack", delay = 1, radius = 5 }
 impact_sound = "kree_arra_impact"
 target_hit = { offense = "range", max = 690 }
 
@@ -90,9 +90,9 @@ range = 10
 condition = "no_attackers"
 anim = "kree_arra_attack"
 projectile = "kree_arra_tornado_blue"
-area_sound = { id = "kree_arra_attack", delay = 1 }
+sound = { id = "kree_arra_attack", delay = 1, radius = 5 }
 target_anim = "kree_arra_stun"
-target_sounds = [{ id = "kree_arra_stun" }]
+target_sound = "kree_arra_stun"
 target_gfx = "kree_arra_stun"
 target_hit = { offense = "magic", defence = "range", max = 210 }
 
@@ -102,10 +102,10 @@ range = 10
 condition = "no_attackers"
 anim = "kree_arra_attack"
 projectile = "kree_arra_tornado_blue"
-area_sound = { id = "kree_arra_attack", delay = 1 }
+sound = { id = "kree_arra_attack", delay = 1, radius = 5 }
 impact_sound = "kree_arra_impact"
 target_anim = "kree_arra_stun"
-target_sounds = [{ id = "kree_arra_stun" }]
+target_sound = "kree_arra_stun"
 target_gfx = "kree_arra_stun"
 target_hit = { offense = "range", max = 690 }
 
@@ -115,50 +115,4 @@ gfx = "confuse_cast"
 projectile = "confuse"
 impact_gfx = "confuse_impact"
 impact_sound = "confuse_impact"
-impact_drain = [{ skills = "Attack", multiplier = 0.05 }]
-
-[king_black_dragon.melee]
-chance = 30
-range = 1
-condition = "melee_range"
-anim = "king_black_dragon_attack"
-target_sound = "dragon_attack"
-target_hit = { offense = "melee", max = 250 }
-
-[king_black_dragon.dragonfire]
-chance = 30
-range = 8
-anim = "king_black_dragon_breath"
-projectile = "dragon_breath"
-target_sound = "dragon_breath"
-target_hit = { offense = "dragonfire", max = 650 }
-
-[king_black_dragon.toxic]
-chance = 10
-range = 8
-anim = "king_black_dragon_breath"
-projectile = "dragon_breath_toxic"
-target_sound = "dragon_breath_toxic"
-target_hit = { offense = "dragonfire", spell = "toxic", special = true, max = 500 }
-impact_poison = 80
-
-[king_black_dragon.ice]
-chance = 10
-range = 8
-anim = "king_black_dragon_breath"
-projectile = "dragon_breath_ice"
-target_sound = "dragon_breath_ice"
-target_hit = { offense = "dragonfire", spell = "ice", special = true, max = 500 }
-impact_freeze = 10
-
-[king_black_dragon.shock]
-chance = 10
-range = 8
-anim = "king_black_dragon_breath"
-projectile = "dragon_breath_shock"
-target_sound = "dragon_breath_shock"
-target_hit = { offense = "dragonfire", spell = "shock", special = true, max = 500 }
-impact_drain = [{ skills = "all", amount = 2 }]
-impact_message = "You're shocked and weakened!"
-
-
+impact_drain = { skill = "Attack", multiplier = 0.05 }

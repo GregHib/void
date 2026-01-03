@@ -71,4 +71,5 @@ fun engineModule(files: ConfigFiles) = module {
     single(createdAtStart = true) { SlayerTaskDefinitions().load(files.list(Settings["definitions.slayerTasks"])) }
     single(createdAtStart = true) { CategoryDefinitions().load(files.find(Settings["definitions.categories"])) }
     single(createdAtStart = true) { ClientScriptDefinitions().load(files.list(Settings["definitions.clientScripts"])) }
+    single(createdAtStart = true) { CombatDefinitions().load(files.list(Settings["definitions.combatAttacks"])) }
 }
