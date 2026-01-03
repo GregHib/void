@@ -110,7 +110,7 @@ class Delrith : Script {
                     val suffix = if (index == 4) "!" else "..."
                     val text = "$selected$suffix"
                     say(text)
-                    player<Talk>(text, largeHead = true, clickToContinue = false)
+                    player<Neutral>(text, largeHead = true, clickToContinue = false)
                     val expected = DemonSlayerSpell.getWord(player, index + 1)
                     if (selected != expected) {
                         correct = false
@@ -223,7 +223,7 @@ class Delrith : Script {
         for (wizard in wizards) {
             wizard.say("Arise, Delrith!")
         }
-        npc<Neutral>("dark_wizard_water", "Arise, Delrith!", title = "Dark wizards")
+        npc<Idle>("dark_wizard_water", "Arise, Delrith!", title = "Dark wizards")
 
         statement("The wizards cast an evil spell", clickToContinue = false)
         val regular = objects[cutscene.tile(3227, 3369), "demon_slayer_stone_table"]!!
@@ -265,7 +265,7 @@ class Delrith : Script {
             wizard.clearAnim()
             wizard.face(delrith)
         }
-        npc<Chuckle>(
+        npc<Laugh>(
             "denath",
             """
             Ha ha ha! At last you are free, my demonic brother!
@@ -277,8 +277,8 @@ class Delrith : Script {
             wizard.face(this)
         }
         delrith.face(this)
-        npc<Surprised>("dark_wizard_earth", "Who's that?")
-        npc<Afraid>("denath", "Noo! Not Silverlight! Delrith is not ready yet!")
+        npc<Shock>("dark_wizard_earth", "Who's that?")
+        npc<Scared>("denath", "Noo! Not Silverlight! Delrith is not ready yet!")
         denath.walkToDelay(cutscene.tile(3236, 3368))
         clearCamera()
         moveCamera(cutscene.tile(3226, 3383), 1000, 1, 1)

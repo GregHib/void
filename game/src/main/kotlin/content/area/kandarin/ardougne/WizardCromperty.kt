@@ -15,16 +15,16 @@ class WizardCromperty : Script {
 
     init {
         npcOperate("Talk-to", "wizard_cromperty_*") { (target) ->
-            npc<Talk>("Hello there. My name is Cromperty. I am a wizard, and an inventor.")
-            npc<Talk>("You must be ElderCadence. My good friend Sedridor has told me about you. As both wizard and inventor, he has aided me in my great invention!")
-            player<Talk>("Hello there.")
+            npc<Neutral>("Hello there. My name is Cromperty. I am a wizard, and an inventor.")
+            npc<Neutral>("You must be ElderCadence. My good friend Sedridor has told me about you. As both wizard and inventor, he has aided me in my great invention!")
+            player<Neutral>("Hello there.")
             choice {
-                option<Talk>("Two jobs? That's got to be tough.") {
+                option<Neutral>("Two jobs? That's got to be tough.") {
                     npc<Happy>("Not when you combine them it isn't! I invent MAGIC things!")
                     choice {
                         whatHaveYouInvented(target)
-                        option<Uncertain>("Well, I shall leave you to your inventing.") {
-                            npc<Talk>("Thanks for dropping by! Stop again anytime!")
+                        option<Confused>("Well, I shall leave you to your inventing.") {
+                            npc<Neutral>("Thanks for dropping by! Stop again anytime!")
                         }
                     }
                 }
@@ -52,17 +52,17 @@ class WizardCromperty : Script {
             npc<Happy>("directly to it! I hope to revolutionise the entire teleportation system! Don't you think I'm great? Uh, I mean it's great?")
             choice {
                 option<Quiz>("So where is the other block?") {
-                    npc<Uncertain>("Well... Hmm. I would guess somewhere between here and the Wizards' Tower in Misthalin. All I know is that it hasn't got there yet as the wizards there would have contacted me.")
-                    npc<Upset>("I'm using the GPDT for delivery. They assured me it would be delivered promptly.")
+                    npc<Confused>("Well... Hmm. I would guess somewhere between here and the Wizards' Tower in Misthalin. All I know is that it hasn't got there yet as the wizards there would have contacted me.")
+                    npc<Sad>("I'm using the GPDT for delivery. They assured me it would be delivered promptly.")
                     choice {
                         teleportMe(target)
                         option<Quiz>("Who are the GPDT?") {
-                            npc<Talk>("The Gielinor Parcel Delivery Team. They come very highly recommended. Their motto is: 'We aim to deliver your stuff at some point after you have paid us!'")
+                            npc<Neutral>("The Gielinor Parcel Delivery Team. They come very highly recommended. Their motto is: 'We aim to deliver your stuff at some point after you have paid us!'")
                         }
                     }
                 }
                 teleportMe(target)
-                option<Talk>("Well done, that's very clever.") {
+                option<Neutral>("Well done, that's very clever.") {
                     npc<Happy>("Yes it is isn't it? Forgive me for feeling a little smug, this is a major breakthrough in the field of teleportation!")
                 }
             }
@@ -73,7 +73,7 @@ class WizardCromperty : Script {
         option<Quiz>("Can I be teleported please?") {
             npc<Happy>("By all means! I'm afraid I can't give you any specifics as to where you will come out however. Presumably wherever the other block is located.")
             choice {
-                option<Talk>("Yes, that sounds good. Teleport me!") {
+                option<Neutral>("Yes, that sounds good. Teleport me!") {
                     npc<Happy>("Okey dokey! Ready?")
                     gfx("curse_impact")
                     target.gfx("curse_cast")
@@ -83,8 +83,8 @@ class WizardCromperty : Script {
                         player.tele(2649, 3271)
                     }
                 }
-                option<Surprised>("That sounds dangerous. Leave me here.") {
-                    npc<Talk>("As you wish.")
+                option<Shock>("That sounds dangerous. Leave me here.") {
+                    npc<Neutral>("As you wish.")
                 }
             }
         }

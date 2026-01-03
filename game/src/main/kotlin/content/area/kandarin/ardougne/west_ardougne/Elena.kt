@@ -13,9 +13,9 @@ class Elena : Script {
     init {
         npcOperate("Talk-to", "elenap_vis") {
             player<Happy>("Hi, you're free to go! Your kidnappers don't seem to be about right now.")
-            npc<Neutral>("Thank you, being kidnapped was so inconvenient. I was on my way back to East Ardougne with some samples, I want to see if I can diagnose a cure for this plague.")
-            player<Neutral>("Well you can leave via the manhole in the middle of the city.")
-            npc<Neutral>("Go and see my father, I'll make sure he adequately rewards you. Now I'd better leave while I still can.")
+            npc<Idle>("Thank you, being kidnapped was so inconvenient. I was on my way back to East Ardougne with some samples, I want to see if I can diagnose a cure for this plague.")
+            player<Idle>("Well you can leave via the manhole in the middle of the city.")
+            npc<Idle>("Go and see my father, I'll make sure he adequately rewards you. Now I'd better leave while I still can.")
             open("fade_out")
             delay(4)
             set("plaguecity_can_see_edmond_up_top", false)
@@ -30,15 +30,15 @@ class Elena : Script {
                 "unstarted" -> {
                     player<Happy>("Good day to you, Elena.")
                     npc<Happy>("You too, thanks for freeing me.")
-                    npc<Sad>("It's just a shame the mourners confiscated my equipment.")
+                    npc<Disheartened>("It's just a shame the mourners confiscated my equipment.")
                     player<Quiz>("What did they take?")
-                    npc<Neutral>("My distillator. I can't test any plague samples without it. They're holding it in the Mourner Headquarters in West Ardougne.")
+                    npc<Idle>("My distillator. I can't test any plague samples without it. They're holding it in the Mourner Headquarters in West Ardougne.")
                     npc<Quiz>("I must somehow retrieve that distillator if I am to find a cure for this awful affliction. Do you think you could help me?")
                     if (startQuest("biohazard")) {
                         // todo add quest
                     } else {
-                        player<Neutral>("I'm busy at the moment, I'm afraid.")
-                        npc<Neutral>("Fair enough.")
+                        player<Idle>("I'm busy at the moment, I'm afraid.")
+                        npc<Idle>("Fair enough.")
                     }
                 }
                 "started" -> started()

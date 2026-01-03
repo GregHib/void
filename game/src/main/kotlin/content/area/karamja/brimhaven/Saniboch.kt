@@ -17,60 +17,60 @@ class Saniboch : Script {
 
     init {
         npcOperate("Talk-to", "saniboch") {
-            npc<Talk>("Good day to you, Bwana.")
+            npc<Neutral>("Good day to you, Bwana.")
 
             choice {
                 option<Quiz>("Can I go through that door please?") {
                     if (get("can_enter_brimhaven_dungeon", false)) {
-                        npc<Talk>("Most certainly, you have already given me lots of nice coins.")
+                        npc<Neutral>("Most certainly, you have already given me lots of nice coins.")
                         return@option
                     }
 
-                    npc<Talk>("Most certainly, but I must charge you the sum of 875 coins first.")
+                    npc<Neutral>("Most certainly, but I must charge you the sum of 875 coins first.")
                     if (inventory.contains("coins", dungeonEntryFee)) {
                         choice {
                             option("Okay, here's 875 coins.") {
                                 inventory.remove("coins", dungeonEntryFee)
                                 set("can_enter_brimhaven_dungeon", true)
                                 statement("You pay Saniboch 875 coins.")
-                                npc<Talk>("Many thanks. You may now pass the door. May your death be a glorious one!")
+                                npc<Neutral>("Many thanks. You may now pass the door. May your death be a glorious one!")
                             }
                             option("Never mind.") {
-                                player<Talk>("Never mind.")
+                                player<Neutral>("Never mind.")
                             }
                             option("Why is it worth the entry cost?") {
-                                player<Talk>("Why is it worth the entry cost?")
-                                npc<Talk>("It leads to a huge fearsome dungeon, populated by giants and strange dogs. Adventurers come from all around to explore its depths.")
-                                npc<Talk>("I know not what lies deeper in myself, for my skills in agility and woodcutting are inadequate, but I hear tell of even greater dangers deeper in.")
+                                player<Neutral>("Why is it worth the entry cost?")
+                                npc<Neutral>("It leads to a huge fearsome dungeon, populated by giants and strange dogs. Adventurers come from all around to explore its depths.")
+                                npc<Neutral>("I know not what lies deeper in myself, for my skills in agility and woodcutting are inadequate, but I hear tell of even greater dangers deeper in.")
                             }
                         }
                     } else {
-                        player<Talk>("I don't have the money on me at the moment.")
-                        npc<Talk>("Well this is a dungeon for the more wealthy discerning adventurer. Begone with you, riff raff.")
-                        player<Talk>("But you don't even have clothes, how can you seriously call anyone riff raff.")
-                        npc<Talk>("Hummph.")
+                        player<Neutral>("I don't have the money on me at the moment.")
+                        npc<Neutral>("Well this is a dungeon for the more wealthy discerning adventurer. Begone with you, riff raff.")
+                        player<Neutral>("But you don't even have clothes, how can you seriously call anyone riff raff.")
+                        npc<Neutral>("Hummph.")
                     }
                 }
 
                 option<Quiz>("Where does this strange entrance lead?") {
                     npc<Happy>("To a huge fearsome dungeon, populated by giants and strange dogs. Adventurers come from all around to explore its depths.")
-                    npc<Talk>("I know not what lies deeper in myself, for my skills in agility and woodcutting are inadequate.")
+                    npc<Neutral>("I know not what lies deeper in myself, for my skills in agility and woodcutting are inadequate.")
                 }
 
                 option("Good day to you too.") {
-                    player<Talk>("Good day to you too.")
+                    player<Neutral>("Good day to you too.")
                 }
 
                 option("I'm impressed, that tree is growing on that shed.") {
-                    player<Talk>("I'm impressed, that tree is growing on that shed.")
-                    npc<Talk>("My employer tells me it is an uncommon sort of tree called the Fyburglars tree.")
+                    player<Neutral>("I'm impressed, that tree is growing on that shed.")
+                    npc<Neutral>("My employer tells me it is an uncommon sort of tree called the Fyburglars tree.")
                 }
             }
         }
 
         npcOperate("Pay", "saniboch") {
             if (get("can_enter_brimhaven_dungeon", false)) {
-                npc<Talk>("You have already given me lots of nice coins, you may go in.")
+                npc<Neutral>("You have already given me lots of nice coins, you may go in.")
                 return@npcOperate
             }
 
@@ -79,10 +79,10 @@ class Saniboch : Script {
                 inventory.remove("coins", dungeonEntryFee)
                 set("can_enter_brimhaven_dungeon", true)
                 statement("You pay Saniboch 875 coins.")
-                npc<Talk>("Many thanks. You may now pass the door. May your death be a glorious one!")
+                npc<Neutral>("Many thanks. You may now pass the door. May your death be a glorious one!")
             } else {
-                npc<Talk>("I'll want 875 coins to let you enter.")
-                npc<Talk>("Well this is a dungeon for the more wealthy discerning adventurer. Begone with you, riff raff.")
+                npc<Neutral>("I'll want 875 coins to let you enter.")
+                npc<Neutral>("Well this is a dungeon for the more wealthy discerning adventurer. Begone with you, riff raff.")
             }
         }
 

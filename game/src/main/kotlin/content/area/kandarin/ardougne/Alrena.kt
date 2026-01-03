@@ -20,10 +20,10 @@ class Alrena : Script {
         npcOperate("Talk-to", "alrena") { (target) ->
             when (quest("plague_city")) {
                 "unstarted" -> {
-                    player<Neutral>("Hello Madam.")
-                    npc<Neutral>("Oh, hello there.")
+                    player<Idle>("Hello Madam.")
+                    npc<Idle>("Oh, hello there.")
                     player<Quiz>("Are you ok?")
-                    npc<Sad>("Not too bad... I've just got some troubles on my mind...")
+                    npc<Disheartened>("Not too bad... I've just got some troubles on my mind...")
                 }
                 "started" -> started(target)
                 "has_mask" -> hasMask()
@@ -38,8 +38,8 @@ class Alrena : Script {
     }
 
     suspend fun Player.started(target: NPC) {
-        player<Neutral>("Hello, Edmond has asked me to help find your daughter.")
-        npc<Neutral>("Yes he told me. I've begun making your special gas mask, but I need some dwellberries to finish it.")
+        player<Idle>("Hello, Edmond has asked me to help find your daughter.")
+        npc<Idle>("Yes he told me. I've begun making your special gas mask, but I need some dwellberries to finish it.")
         if (holdsItem("dwellberries")) {
             player<Happy>("Yes I've got some here.")
             item("dwellberries", 600, "You give the dwellberries to Alrena.")
@@ -50,11 +50,11 @@ class Alrena : Script {
             set("plague_city", "has_mask")
             item("gas_mask", 300, "Alrena gives you the mask.")
             target.clearAnim()
-            npc<Neutral>("There we go, all done. While in West Ardougne you must wear this at all times, or you could catch the plague.")
-            npc<Neutral>("I'll make a spare mask. I'll hide it in the wardrobe in case the mourners come in.")
+            npc<Idle>("There we go, all done. While in West Ardougne you must wear this at all times, or you could catch the plague.")
+            npc<Idle>("I'll make a spare mask. I'll hide it in the wardrobe in case the mourners come in.")
         } else {
-            player<Talk>("I'll try to get some.")
-            npc<Talk>("The best place to look is in McGrubor's Wood, just west of Seers' Village.")
+            player<Neutral>("I'll try to get some.")
+            npc<Neutral>("The best place to look is in McGrubor's Wood, just west of Seers' Village.")
         }
     }
 
@@ -68,59 +68,59 @@ class Alrena : Script {
         // todo check
         player<Happy>("Hello Alrena.")
         npc<Happy>("Hello darling, how's that tunnel coming along?")
-        player<Neutral>("I just need to soften the soil a little more and then we'll start digging.")
+        player<Idle>("I just need to soften the soil a little more and then we'll start digging.")
     }
 
     suspend fun Player.bucketOfWater() {
         player<Happy>("Hello Alrena.")
         npc<Happy>("Hello darling, how's that tunnel coming along?")
-        player<Neutral>("I just need to soften the soil a little more and then we'll start digging.")
+        player<Idle>("I just need to soften the soil a little more and then we'll start digging.")
         if (!ownsItem("gas_mask")) {
-            npc<Talk>("Also, don't forget about that spare gas mask if you need it. It's hidden in the cupboard.")
-            player<Talk>("Great, thanks Alrena!")
+            npc<Neutral>("Also, don't forget about that spare gas mask if you need it. It's hidden in the cupboard.")
+            player<Neutral>("Great, thanks Alrena!")
         }
     }
 
     suspend fun Player.fourBucketOfWater() {
         player<Happy>("Hello again Alrena.")
-        npc<Neutral>("How's the tunnel going?")
-        player<Neutral>("I'm getting there.")
+        npc<Idle>("How's the tunnel going?")
+        player<Idle>("I'm getting there.")
         npc<Shifty>("One of the mourners has been sniffing around asking questions about you and Edmond, you should keep an eye out for him.")
         if (ownsItem("gas_mask")) {
-            player<Neutral>("Okay, thanks for the warning.")
+            player<Idle>("Okay, thanks for the warning.")
         } else {
-            npc<Neutral>("Also, don't forget about that spare gas mask if you need it. It's hidden in the wardrobe.")
-            player<Neutral>("Great, thanks Alrena!")
+            npc<Idle>("Also, don't forget about that spare gas mask if you need it. It's hidden in the wardrobe.")
+            player<Idle>("Great, thanks Alrena!")
         }
     }
 
     suspend fun Player.sewer() {
         player<Happy>("Hello Alrena.")
-        npc<Neutral>("Hi, have you managed to get through to West Ardougne?")
-        player<Sad>("Not yet, but I should be going soon.")
-        npc<Sad>("Make sure you wear your mask while you're over there! I can't think of a worse way to die.")
+        npc<Idle>("Hi, have you managed to get through to West Ardougne?")
+        player<Disheartened>("Not yet, but I should be going soon.")
+        npc<Disheartened>("Make sure you wear your mask while you're over there! I can't think of a worse way to die.")
         if (ownsItem("gas_mask")) {
-            player<Neutral>("Okay, thanks for the warning.")
+            player<Idle>("Okay, thanks for the warning.")
         } else {
-            npc<Neutral>("Don't forget, I've got a spare one hidden in the cupboard if you need it.")
-            player<Neutral>("Great, thanks Alrena!")
+            npc<Idle>("Don't forget, I've got a spare one hidden in the cupboard if you need it.")
+            player<Idle>("Great, thanks Alrena!")
         }
     }
 
     suspend fun Player.grillOpen() {
-        player<Neutral>("Hello Alrena.")
-        npc<Uncertain>("Hello, any word on Elena?")
-        player<Sad>("Not yet I'm afraid.")
-        npc<Neutral>("Is there anything else I can do to help?")
+        player<Idle>("Hello Alrena.")
+        npc<Confused>("Hello, any word on Elena?")
+        player<Disheartened>("Not yet I'm afraid.")
+        npc<Idle>("Is there anything else I can do to help?")
         if (quest("plague_city") == "spoken_to_jethick") {
             player<Quiz>("Do you have a picture of Elena?")
-            npc<Neutral>("Yes. There should be one in the house somewhere. Let me know if you need anything else.")
+            npc<Idle>("Yes. There should be one in the house somewhere. Let me know if you need anything else.")
         } else {
-            player<Neutral>("It's alright, I'll get her back soon.")
+            player<Idle>("It's alright, I'll get her back soon.")
             if (ownsItem("gas_mask")) {
-                npc<Neutral>("That's the spirit, dear.")
+                npc<Idle>("That's the spirit, dear.")
             } else {
-                npc<Talk>("That's the spirit, dear. Don't forget that there's a spare gas mask in the cupboard if you need one.")
+                npc<Neutral>("That's the spirit, dear. Don't forget that there's a spare gas mask in the cupboard if you need one.")
             }
         }
     }

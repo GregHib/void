@@ -15,36 +15,36 @@ class Fadli : Script {
     init {
         npcOperate("Talk-to", "fadli") {
             player<Happy>("Hi.")
-            npc<RollEyes>("What?")
+            npc<Bored>("What?")
             choice {
-                option<Neutral>("What do you do?") {
-                    npc<RollEyes>("You can store your stuff here if you want. You can dump anything you don't want to carry whilst you're fighting duels and then pick it up again on the way out.")
-                    npc<RollEyes>("To be honest I'm wasted here.")
+                option<Idle>("What do you do?") {
+                    npc<Bored>("You can store your stuff here if you want. You can dump anything you don't want to carry whilst you're fighting duels and then pick it up again on the way out.")
+                    npc<Bored>("To be honest I'm wasted here.")
                     npc<Frustrated>("I should be winning duels in an arena! I'm the best warrior in Al Kharid!")
-                    player<Uncertain>("Easy, tiger!")
+                    player<Confused>("Easy, tiger!")
                 }
-                option<Uncertain>("What is this place?") {
+                option<Confused>("What is this place?") {
                     npc<Frustrated>("Isn't it obvious?")
-                    npc<Neutral>("This is the Duel Arena...duh!")
+                    npc<Idle>("This is the Duel Arena...duh!")
                 }
-                option<Neutral>("I'd like to access my bank, please.") {
-                    npc<RollEyes>("Sure.")
+                option<Idle>("I'd like to access my bank, please.") {
+                    npc<Bored>("Sure.")
                     open("bank")
                 }
                 option<Happy>("I'd like to collect items.") {
-                    npc<RollEyes>("Yeah, okay.")
+                    npc<Bored>("Yeah, okay.")
                     open("collection_box")
                 }
-                option<Neutral>("Do you watch any matches?") {
-                    npc<Neutral>("When I can.")
+                option<Idle>("Do you watch any matches?") {
+                    npc<Idle>("When I can.")
                     npc<Happy>("Most aren't any good so I throw rotten fruit at them!")
                     player<Happy>("Heh. Can I buy some?")
                     if (World.members) {
-                        npc<Chuckle>("Sure.")
+                        npc<Laugh>("Sure.")
                         openShop("shop_of_distaste")
                         return@option
                     }
-                    npc<RollEyes>("Nope.")
+                    npc<Bored>("Nope.")
                     message("You need to be on a members world to use this feature.")
                 }
             }
@@ -63,7 +63,7 @@ class Fadli : Script {
                 openShop("shop_of_distaste")
                 return@npcOperate
             }
-            npc<RollEyes>("Sorry, I'm not interested.")
+            npc<Bored>("Sorry, I'm not interested.")
             message("You need to be on a members world to use this feature.")
         }
     }

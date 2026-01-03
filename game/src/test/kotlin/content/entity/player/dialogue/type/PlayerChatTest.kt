@@ -1,7 +1,7 @@
 package content.entity.player.dialogue.type
 
-import content.entity.player.dialogue.Laugh
-import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.Cackle
+import content.entity.player.dialogue.Neutral
 import io.mockk.*
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
@@ -56,7 +56,7 @@ internal class PlayerChatTest : DialogueTest() {
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             dialogue {
-                player<Talk>(text = text, clickToContinue = true)
+                player<Neutral>(text = text, clickToContinue = true)
             }
             verify {
                 player.open(expected)
@@ -71,7 +71,7 @@ internal class PlayerChatTest : DialogueTest() {
     fun `Long line wraps player chat`() {
         val text = "This is one long dialogue text line which should be wrapped into two lines."
         dialogue {
-            player<Talk>(text = text, clickToContinue = true)
+            player<Neutral>(text = text, clickToContinue = true)
         }
         verify {
             player.open("dialogue_chat2")
@@ -92,7 +92,7 @@ internal class PlayerChatTest : DialogueTest() {
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             dialogue {
-                player<Talk>(text = text, clickToContinue = false)
+                player<Neutral>(text = text, clickToContinue = false)
             }
             verify {
                 player.open(expected)
@@ -107,7 +107,7 @@ internal class PlayerChatTest : DialogueTest() {
     fun `Sending five or more lines to chat throws exception`() {
         assertThrows<IllegalStateException> {
             dialogueBlocking {
-                player<Talk>(text = "\nOne\nTwo\nThree\nFour\nFive")
+                player<Neutral>(text = "\nOne\nTwo\nThree\nFour\nFive")
             }
         }
         verify(exactly = 0) {
@@ -124,7 +124,7 @@ internal class PlayerChatTest : DialogueTest() {
         player.client = client
         every { interfaceDefinitions.getComponent("dialogue_chat1", any<String>()) } returns InterfaceComponentDefinition(id = InterfaceDefinition.pack(4, 123))
         dialogue {
-            player<Talk>(text = "Text", largeHead = large)
+            player<Neutral>(text = "Text", largeHead = large)
         }
         verify {
             client.playerDialogueHead(InterfaceDefinition.pack(4, 123))
@@ -135,7 +135,7 @@ internal class PlayerChatTest : DialogueTest() {
     @Test
     fun `Send custom player chat title`() {
         dialogue {
-            player<Talk>(text = "text", title = "Bob")
+            player<Neutral>(text = "text", title = "Bob")
         }
         runBlocking(Contexts.Game) {
             verify {
@@ -149,7 +149,7 @@ internal class PlayerChatTest : DialogueTest() {
         player.accountName = "Jim"
         var resumed = false
         dialogue {
-            player<Laugh>(text = "text", largeHead = true)
+            player<Cackle>(text = "text", largeHead = true)
             resumed = true
         }
         (player.dialogueSuspension as ContinueSuspension).resume(Unit)
@@ -165,7 +165,7 @@ internal class PlayerChatTest : DialogueTest() {
         every { player.open("dialogue_chat1") } returns false
         assertThrows<IllegalStateException> {
             dialogueBlocking {
-                player<Talk>(text = "text")
+                player<Neutral>(text = "text")
             }
         }
         coVerify(exactly = 0) {

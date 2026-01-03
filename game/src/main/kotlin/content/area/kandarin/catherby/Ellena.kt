@@ -1,7 +1,7 @@
 package content.area.kandarin.catherby
 
 import content.entity.npc.shop.openShop
-import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.Script
 
@@ -12,12 +12,12 @@ class Ellena : Script {
             suspend fun showMainOptions() {
                 choice {
                     option("Would you look after my crops for me?") {
-                        player<Talk>("Would you look after my crops for me?")
-                        npc<Talk>("I'm afraid I can't help with that right now. Maybe once the Farming system is ready.")
+                        player<Neutral>("Would you look after my crops for me?")
+                        npc<Neutral>("I'm afraid I can't help with that right now. Maybe once the Farming system is ready.")
                     }
 
                     option("Can you give me any farming advice?") {
-                        player<Talk>("Can you give me any Farming advice?")
+                        player<Neutral>("Can you give me any Farming advice?")
                         val tips = listOf(
                             "You can put up to five tomatoes, strawberries, apples, bananas or oranges into a fruit basket, although you can't have a mix in the same basket.",
                             "There are seven main Farming areas - Elstan's area near Falador, Dantaera's area near Catherby, Kragen's area near Ardougne, Lyra's area in Morytania, Marisi's area in Hosidius, Alan's area in the Farming Guild and Oswallt's area in Prifddinas.",
@@ -37,18 +37,18 @@ class Ellena : Script {
                             "You don't have to buy all your plantpots you know, you can make them yourself on a pottery wheel. If you're a good enough craftsman, that is.",
                             "You can put up to ten potatoes, cabbages or onions in vegetable sacks, although you can't have a mix in the same sack.",
                         )
-                        npc<Talk>(tips.random())
+                        npc<Neutral>(tips.random())
                         showMainOptions()
                     }
 
                     option("Can you sell me something?") {
-                        player<Talk>("Can you sell me something?")
-                        npc<Talk>("That depends on whether I have it to sell. What is it that you're looking for?")
+                        player<Neutral>("Can you sell me something?")
+                        npc<Neutral>("That depends on whether I have it to sell. What is it that you're looking for?")
                         openShop("ellena_farming_supplies")
                     }
 
                     option("I'll come back another time.") {
-                        player<Talk>("I'll come back another time.")
+                        player<Neutral>("I'll come back another time.")
                         // Ends dialogue
                     }
                 }

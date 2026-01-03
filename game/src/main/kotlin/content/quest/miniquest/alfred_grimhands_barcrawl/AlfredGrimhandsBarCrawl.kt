@@ -1,7 +1,7 @@
 package content.quest.miniquest.alfred_grimhands_barcrawl
 
-import content.entity.player.dialogue.Sad
-import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.Disheartened
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.messageScroll
@@ -20,12 +20,12 @@ suspend fun Player.barCrawlDrink(
     start: (suspend Player.() -> Unit)? = null,
     effects: suspend Player.() -> Unit = {},
 ) {
-    player<Talk>("I'm doing Alfred Grimhand's Barcrawl.")
+    player<Neutral>("I'm doing Alfred Grimhand's Barcrawl.")
     val info: Map<String, Any> = target.def.getOrNull("bar_crawl") ?: return
-    start?.invoke(this) ?: npc<Talk>(info["start"] as String)
+    start?.invoke(this) ?: npc<Neutral>(info["start"] as String)
     val id = info["id"] as String
     if (!inventory.remove("coins", info["price"] as Int)) {
-        player<Sad>(info["insufficient"] as String)
+        player<Disheartened>(info["insufficient"] as String)
         return
     }
     message(info["give"] as String)

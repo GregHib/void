@@ -2,8 +2,8 @@ package content.area.kharidian_desert.al_kharid
 
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.EvilLaugh
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -20,7 +20,7 @@ class Sorceress : Script {
             npc<Quiz>("Who are you and what do you want?")
             choice {
                 option<Angry>("None of your business!") {
-                    player<Talk>("I go where I like and do what I like.")
+                    player<Neutral>("I go where I like and do what I like.")
                     npc<Angry>("Not in my house. Be gone!")
                     curse(target)
                 }
@@ -28,14 +28,14 @@ class Sorceress : Script {
                     npc<Angry>("I think not!")
                     curse(target)
                 }
-                option<Talk>("Can I have some sq'irks please?") {
-                    npc<Talk>("What do you want them for?")
-                    player<Talk>("Someone asked me to bring them some.")
+                option<Neutral>("Can I have some sq'irks please?") {
+                    npc<Neutral>("What do you want them for?")
+                    player<Neutral>("Someone asked me to bring them some.")
                     npc<Quiz>("Who?")
-                    player<Talk>("Osman")
-                    npc<Talk>("In that case I'm sorry, but you can't. I have had a falling out with him recently and would rather not oblige him.")
+                    player<Neutral>("Osman")
+                    npc<Neutral>("In that case I'm sorry, but you can't. I have had a falling out with him recently and would rather not oblige him.")
                 }
-                option<Talk>("I'm just passing by.")
+                option<Neutral>("I'm just passing by.")
             }
         }
     }

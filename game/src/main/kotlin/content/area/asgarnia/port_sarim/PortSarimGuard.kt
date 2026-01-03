@@ -32,31 +32,31 @@ class PortSarimGuard : Script {
                     else -> "Mmmmmm... donuts..."
                 },
             )
-            player<Neutral>("Maybe I should let him sleep.")
+            player<Idle>("Maybe I should let him sleep.")
         }
 
         npcOperate("Talk-to", "port_sarim_guard_6") {
             npc<Angry>("HALT! Who goes there?")
             choice {
                 option<Happy>("Don't worry, I'm not going to cause trouble.") {
-                    npc<Neutral>("But you shouldn't be here - be off with you!")
-                    player<Neutral>("I was going anyway.")
+                    npc<Idle>("But you shouldn't be here - be off with you!")
+                    player<Idle>("I was going anyway.")
                 }
                 option<Happy>("I am $name the Mighty!") {
-                    npc<Neutral>("Mighty? You look like another of those silly adventurers who thinks they're the bee's knees just because they've done a few lousy quests!")
-                    player<Neutral>("Well it sounds better than sitting on this rooftop all day looking at trees!")
+                    npc<Idle>("Mighty? You look like another of those silly adventurers who thinks they're the bee's knees just because they've done a few lousy quests!")
+                    player<Idle>("Well it sounds better than sitting on this rooftop all day looking at trees!")
                     npc<Angry>("I'll have you know it's a very important job guarding this jail!")
-                    npc<Neutral>("If anyone comes sneaking in here to mess around with the prisoners, the lads downstairs will make mincemeat of them, and I'll be here to pick them off if they try to escape.")
+                    npc<Idle>("If anyone comes sneaking in here to mess around with the prisoners, the lads downstairs will make mincemeat of them, and I'll be here to pick them off if they try to escape.")
                     player<Quiz>("You mean people aren't meant to be able to shoot the prisoners in the cells?")
-                    npc<Neutral>("Yes, that's right.")
-                    player<Chuckle>("Okay, it's been nice talking to you.")
+                    npc<Idle>("Yes, that's right.")
+                    player<Laugh>("Okay, it's been nice talking to you.")
                 }
                 option<Happy>("No-one, there's no-one here.") {
-                    npc<Neutral>("What? I can see you!")
+                    npc<Idle>("What? I can see you!")
                     player<Happy>("No, you're just imagining it. Perhaps you've been up here in the sun for too long?")
-                    npc<Uncertain>("So who am I talking to?")
+                    npc<Confused>("So who am I talking to?")
                     player<Happy>("Oh dear, you've started talking to yourself. That's a common sign that you're going mad!")
-                    npc<Uncertain>("But... but... you're standing right there...")
+                    npc<Confused>("But... but... you're standing right there...")
                     statement("Maybe you should leave him alone now.")
                 }
             }

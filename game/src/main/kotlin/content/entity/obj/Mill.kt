@@ -1,7 +1,7 @@
 package content.entity.obj
 
 import content.entity.player.bank.bank
-import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.player
 import content.quest.quest
 import world.gregs.voidps.engine.Script
@@ -48,7 +48,7 @@ class Mill : Script {
                 return@itemOnObjectOperate
             }
             if (get("cooks_assistant_talked_to_millie", 0) == 0) {
-                player<Talk>("Hmm. I should probably ask that lady downstairs how I can make extra fine flour.")
+                player<Neutral>("Hmm. I should probably ask that lady downstairs how I can make extra fine flour.")
                 return@itemOnObjectOperate
             }
             if (holdsItem("extra_fine_flour")) {

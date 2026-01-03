@@ -3,8 +3,8 @@ package content.area.troll_country.god_wars_dungeon
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Scared
-import content.entity.player.dialogue.Upset
+import content.entity.player.dialogue.Sad
+import content.entity.player.dialogue.Terrified
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -28,13 +28,13 @@ class SirGerry : Script {
                 return@npcOperate
             }
             player<Quiz>("Who are you? What are you doing here in the snow?")
-            npc<Scared>("My name is...Sir Gerry. I am...a member of a secret...society of knights. My time is short and I need...your help.")
+            npc<Terrified>("My name is...Sir Gerry. I am...a member of a secret...society of knights. My time is short and I need...your help.")
             if (questCompleted("recruitment_drive")) {
                 player<Quiz>("A secret society of knights? You don't mean the Temple Knights, do you?")
                 npc<Happy>("Yes! Praise Saradomin! You...have been sent in...my hour of need. Please, take...this scroll to Sir Tiffy in Falador park... You should not...read it.")
             } else {
                 player<Quiz>("A secret society of knights? What a surprise! Is there an old charter or decree that says if you're a knight you have to belong to a secret order?")
-                npc<Upset>("I'm sorry, my friend... I do not understand your meaning. Please, time is short... Take this scroll to Sir Tiffy. You will find him in Falador park... You should not...read it... It contains information for his eyes only.")
+                npc<Sad>("I'm sorry, my friend... I do not understand your meaning. Please, time is short... Take this scroll to Sir Tiffy. You will find him in Falador park... You should not...read it... It contains information for his eyes only.")
             }
             statement("The knight hands you a scroll.")
             inventory.add("knights_notes")
@@ -69,7 +69,7 @@ class SirGerry : Script {
                 inventory.remove("rope")
                 set("godwars_entrance_rope", true)
             } else {
-                npc<Scared>("sir_gerry_normal", "Cough... Hey, over here.")
+                npc<Terrified>("sir_gerry_normal", "Cough... Hey, over here.")
             }
         }
 

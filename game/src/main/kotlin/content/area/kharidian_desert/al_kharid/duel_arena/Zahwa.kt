@@ -16,41 +16,41 @@ class Zahwa : Script {
                     player<Happy>("Hi!")
                 }
                 1 -> {
-                    player<Uncertain>("Are you alright?")
+                    player<Confused>("Are you alright?")
                     npc<Frustrated>("Do I look alright?!")
                 }
                 2 -> {
-                    player<Uncertain>("Are you alright?")
+                    player<Confused>("Are you alright?")
                     npc<Happy>("Yeh. The nurses here are...wonderful!")
                 }
                 3 -> {
                     player<Happy>("Hi!")
                     npc<Frustrated>("I could've 'ad 'im!")
-                    player<Surprised>("Er...")
+                    player<Shock>("Er...")
                     npc<Frustrated>("I was robbed!")
-                    player<RollEyes>("Right.")
+                    player<Bored>("Right.")
                     npc<Frustrated>("It was rigged I tell you!")
-                    player<RollEyes>("Uh huh.")
+                    player<Bored>("Uh huh.")
                     npc<Frustrated>("Leave me alone!")
                 }
                 4 -> {
-                    player<Uncertain>("Are you alright?")
-                    npc<Surprised>("NURSE!")
+                    player<Confused>("Are you alright?")
+                    npc<Shock>("NURSE!")
                 }
                 5 -> {
-                    player<Uncertain>("Are you alright?")
+                    player<Confused>("Are you alright?")
                     npc<Frustrated>("It's just a flesh wound!")
                 }
                 6 -> {
-                    player<Uncertain>("Are you alright?")
-                    npc<Sad>("Can't....go....on!")
-                    npc<Sad>("Leave me behind!")
-                    player<Uncertain>("I'll leave you here, OK?")
-                    npc<Uncertain>("Oh. OK.")
+                    player<Confused>("Are you alright?")
+                    npc<Disheartened>("Can't....go....on!")
+                    npc<Disheartened>("Leave me behind!")
+                    player<Confused>("I'll leave you here, OK?")
+                    npc<Confused>("Oh. OK.")
                 }
                 7 -> {
                     player<Happy>("Hi!")
-                    player<Sad>("Ughhhh....")
+                    player<Disheartened>("Ughhhh....")
                 }
             }
         }

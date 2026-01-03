@@ -2,9 +2,9 @@ package content.area.asgarnia.port_sarim
 
 import content.entity.obj.ship.boatTravel
 import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
-import content.entity.player.dialogue.Upset
+import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -20,16 +20,16 @@ class Seaman : Script {
     init {
         npcOperate("Talk-to", "seaman_lorris*,captain_tobias*,seaman_thresnor*") {
             npc<Quiz>("Do you want to go on a trip to Karamja?")
-            npc<Talk>("The trip will cost you 30 coins.")
+            npc<Neutral>("The trip will cost you 30 coins.")
             choice {
                 option<Happy>("Yes please.") {
                     if (!inventory.remove("coins", 30)) {
-                        player<Upset>("Oh dear, I don't seem to have enough money.")
+                        player<Sad>("Oh dear, I don't seem to have enough money.")
                         return@option
                     }
                     travel()
                 }
-                option<Talk>("No, thank you.")
+                option<Neutral>("No, thank you.")
             }
         }
 

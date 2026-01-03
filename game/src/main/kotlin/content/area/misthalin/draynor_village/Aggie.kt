@@ -27,7 +27,7 @@ class Aggie : Script {
             npc<Happy>("What can I help you with?")
             choice {
                 option<Quiz>("What could you make for me?") {
-                    npc<Talk>("I mostly just make what I find pretty. I sometimes make dye for the women's clothes to brighten the place up. I can make red, yellow and blue dyes. If you'd like some, just bring me the appropriate ingredients.")
+                    npc<Neutral>("I mostly just make what I find pretty. I sometimes make dye for the women's clothes to brighten the place up. I can make red, yellow and blue dyes. If you'd like some, just bring me the appropriate ingredients.")
                     menu(target)
                 }
                 when (quest("prince_ali_rescue")) {
@@ -50,21 +50,21 @@ class Aggie : Script {
                                         item("paste", 400, "Aggie hands you the skin paste.")
                                         npc<Happy>("There you go dearie. That will make you look good at the Varrock dances.")
                                     }
-                                    option<Talk>("No thank you. I don't need any skin paste right now.") {
-                                        npc<Talk>("Okay dearie, that's always your choice.")
+                                    option<Neutral>("No thank you. I don't need any skin paste right now.") {
+                                        npc<Neutral>("Okay dearie, that's always your choice.")
                                     }
                                 }
                             } else {
                                 npc<Happy>("Why, it's one of my most popular potions. The women here, they like to have smooth looking skin. And I must admin, some of the men buy it as well.")
-                                npc<Talk>("I can make it for you, just get me what's needed.")
+                                npc<Neutral>("I can make it for you, just get me what's needed.")
                                 player<Quiz>("What do you need to make it?")
-                                npc<Talk>("Well dearie, you need a base for the paste. That's a mix of ash and water. Then you need redberries to colour it as you want. Bring me those three items and I will make you some.")
+                                npc<Neutral>("Well dearie, you need a base for the paste. That's a mix of ash and water. Then you need redberries to colour it as you want. Bring me those three items and I will make you some.")
                             }
                         }
                     }
                 }
                 option<Happy>("Cool, do you turn people into frogs?") {
-                    npc<Talk>("Oh, not for years, but if you meet a talking chicken, you have probably met the professor in the manor north of here. A few years ago it was flying fish. That machine is a menace.")
+                    npc<Neutral>("Oh, not for years, but if you meet a talking chicken, you have probably met the professor in the manor north of here. A few years ago it was flying fish. That machine is a menace.")
                 }
                 option<Angry>("You mad old witch, you can't help me.") {
                     if (inventory.contains("pot_of_flour")) {
@@ -73,14 +73,14 @@ class Aggie : Script {
                         target.anim("pick_pocket")
                         sound("pick")
                         item("pot_of_flour", 600, "Aggie waves her hands about, and you seem to have a pot of flour less.")
-                        npc<Talk>("Thank you for your kind present of some flour. I am sure you never meant to insult me.")
+                        npc<Neutral>("Thank you for your kind present of some flour. I am sure you never meant to insult me.")
                     } else if (inventory.contains("coins", 101)) {
                         inventory.remove("coins", 20)
                         npc<Angry>("Oh, you like to call a witch names do you?")
                         target.anim("pick_pocket")
                         sound("pick")
                         item("coins", 600, "Aggie waves her hands about, and you seem to be 20 coins poorer.")
-                        npc<Talk>("That's a fine for insulting a witch. You should learn some respect.")
+                        npc<Neutral>("That's a fine for insulting a witch. You should learn some respect.")
                     } else {
                         npc<Angry>("You should be careful about insulting a witch. You never know what shape you could wake up in.")
                     }
@@ -95,15 +95,15 @@ class Aggie : Script {
         npcOperate("Make-dyes", "aggie") { (target) ->
             choice("What dye do you want Aggie to make for you?") {
                 option("Red dye (requires 5 coins and 3 lots of redberries).") {
-                    player<Talk>("Could you make me some red dye, please?")
+                    player<Neutral>("Could you make me some red dye, please?")
                     makeRed(target)
                 }
                 option("Blue dye (requires 5 coins and 2 woad leaves).") {
-                    player<Talk>("Could you make me some blue dye, please?")
+                    player<Neutral>("Could you make me some blue dye, please?")
                     makeBlue(target)
                 }
                 option("Yellow dye (requires 5 coins and 2 onions).") {
-                    player<Talk>("Could you make me some yellow dye, please?")
+                    player<Neutral>("Could you make me some yellow dye, please?")
                     makeYellow(target)
                 }
             }
@@ -113,19 +113,19 @@ class Aggie : Script {
     suspend fun Player.menu(target: NPC) {
         choice {
             option<Quiz>("What do you need to make red dye?") {
-                npc<Talk>("Three lots of redberries and five coins to you.")
+                npc<Neutral>("Three lots of redberries and five coins to you.")
                 redDye(target)
             }
             option<Quiz>("What do you need to make yellow dye?") {
-                npc<Talk>("Two onions and five coins to you.")
+                npc<Neutral>("Two onions and five coins to you.")
                 yellowDye(target)
             }
             option<Quiz>("What do you need to make blue dye?") {
-                npc<Talk>("Two woad leaves and five coins to you.")
+                npc<Neutral>("Two woad leaves and five coins to you.")
                 blueDye(target)
             }
-            option<Talk>("No thanks, I am happy the colour I am.") {
-                npc<Talk>("You are easily pleased with yourself then. When you need dyes, come to me.")
+            option<Neutral>("No thanks, I am happy the colour I am.") {
+                npc<Neutral>("You are easily pleased with yourself then. When you need dyes, come to me.")
             }
         }
     }
@@ -135,18 +135,18 @@ class Aggie : Script {
             option<Quiz>("Okay, make me some yellow dye please.") {
                 makeYellow(target)
             }
-            option<Uncertain>("I don't think I have all the ingredients yet.") {
-                npc<Talk>("You know what you need to get, so come back when you have them. Goodbye for now.")
+            option<Confused>("I don't think I have all the ingredients yet.") {
+                npc<Neutral>("You know what you need to get, so come back when you have them. Goodbye for now.")
             }
             option<Angry>("I can do without dye at that price.") {
-                npc<Talk>("That's your choice, but I would think you have killed for less. I can see it in your eyes.")
+                npc<Neutral>("That's your choice, but I would think you have killed for less. I can see it in your eyes.")
             }
             option<Quiz>("Where do I get onions?") {
-                npc<Talk>("There are some onions growing on a farm to the east of here, next to the sheep field.")
+                npc<Neutral>("There are some onions growing on a farm to the east of here, next to the sheep field.")
                 otherColours(target)
             }
             option<Quiz>("What other colours can you make?") {
-                npc<Talk>("Red, yellow and blue. Which one would you like?")
+                npc<Neutral>("Red, yellow and blue. Which one would you like?")
                 menu(target)
             }
         }
@@ -157,18 +157,18 @@ class Aggie : Script {
             option<Quiz>("Okay, make me some red dye please.") {
                 makeRed(target)
             }
-            option<Uncertain>("I don't think I have all the ingredients yet.") {
-                npc<Talk>("You know what you need to get, so come back when you have them. Goodbye for now.")
+            option<Confused>("I don't think I have all the ingredients yet.") {
+                npc<Neutral>("You know what you need to get, so come back when you have them. Goodbye for now.")
             }
             option<Angry>("I can do without dye at that price.") {
-                npc<Talk>("That's your choice, but I would think you have killed for less. I can see it in your eyes.")
+                npc<Neutral>("That's your choice, but I would think you have killed for less. I can see it in your eyes.")
             }
             option<Quiz>("Where do I get redberries?") {
-                npc<Talk>("I pick mine from the woods south of Varrock. The food shop in Port Sarim sometimes has some as well.")
+                npc<Neutral>("I pick mine from the woods south of Varrock. The food shop in Port Sarim sometimes has some as well.")
                 otherColours(target)
             }
             option<Quiz>("What other colours can you make?") {
-                npc<Talk>("Red, yellow and blue. Which one would you like?")
+                npc<Neutral>("Red, yellow and blue. Which one would you like?")
                 menu(target)
             }
         }
@@ -179,18 +179,18 @@ class Aggie : Script {
             option<Quiz>("Okay, make me some blue dye please.") {
                 makeBlue(target)
             }
-            option<Uncertain>("I don't think I have all the ingredients yet.") {
-                npc<Talk>("You know what you need to get, so come back when you have them. Goodbye for now.")
+            option<Confused>("I don't think I have all the ingredients yet.") {
+                npc<Neutral>("You know what you need to get, so come back when you have them. Goodbye for now.")
             }
             option<Angry>("I can do without dye at that price.") {
-                npc<Talk>("That's your choice, but I would think you have killed for less. I can see it in your eyes.")
+                npc<Neutral>("That's your choice, but I would think you have killed for less. I can see it in your eyes.")
             }
             option<Quiz>("Where do I get woad leaves?") {
-                npc<Talk>("Woad leaves are fairly hard to find. My other customers tell me that Wyson, the head gardener in Falador Park, grows them.")
+                npc<Neutral>("Woad leaves are fairly hard to find. My other customers tell me that Wyson, the head gardener in Falador Park, grows them.")
                 otherColours(target)
             }
             option<Quiz>("What other colours can you make?") {
-                npc<Talk>("Red, yellow and blue. Which one would you like?")
+                npc<Neutral>("Red, yellow and blue. Which one would you like?")
                 menu(target)
             }
         }
@@ -199,7 +199,7 @@ class Aggie : Script {
     suspend fun Player.otherColours(target: NPC) {
         choice {
             option<Quiz>("What other colours can you make?") {
-                npc<Talk>("Red, yellow and blue. Which one would you like?")
+                npc<Neutral>("Red, yellow and blue. Which one would you like?")
                 menu(target)
             }
             option<Happy>("Thanks.") {

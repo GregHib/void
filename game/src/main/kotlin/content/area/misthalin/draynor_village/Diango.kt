@@ -1,9 +1,9 @@
 package content.area.misthalin.draynor_village
 
 import content.entity.npc.shop.openShop
-import content.entity.player.dialogue.Chuckle
 import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Idle
+import content.entity.player.dialogue.Laugh
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
@@ -27,10 +27,10 @@ class Diango : Script {
             choice {
                 option<Quiz>("Spinning plates?") {
                     npc<Happy>("That's right. There's a funny story behind them, their shipment was held up by thieves.")
-                    npc<Chuckle>("The crate was marked 'Dragon Plates'. Apparently they thought it was some kind of armour, when really it's just a plate with a dragon on it!")
+                    npc<Laugh>("The crate was marked 'Dragon Plates'. Apparently they thought it was some kind of armour, when really it's just a plate with a dragon on it!")
                     openShop("diangos_toy_store")
                 }
-                option<Neutral>("I'd like to check holiday items please!") {
+                option<Idle>("I'd like to check holiday items please!") {
                     open("diangos_item_retrieval")
                 }
                 option<Quiz>("What else are you selling?") {

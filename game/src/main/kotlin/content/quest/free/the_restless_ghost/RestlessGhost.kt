@@ -17,8 +17,8 @@ class RestlessGhost : Script {
         npcOperate("Talk-to", "restless_ghost") {
             when (quest("the_restless_ghost")) {
                 "unstarted" -> {
-                    npc<Neutral>("Wooooo! Ooooooh!")
-                    player<Uncertain>("I can't understand a word you are saying. Maybe Father Aereck will be able to help.")
+                    npc<Idle>("Wooooo! Ooooooh!")
+                    player<Confused>("I can't understand a word you are saying. Maybe Father Aereck will be able to help.")
                 }
                 "started", "ghost" -> ghost()
                 "mining_spot", "found_skull" -> miningSpot()
@@ -29,72 +29,72 @@ class RestlessGhost : Script {
 
     suspend fun Player.ghost() {
         if (equipment.contains("ghostspeak_amulet")) {
-            player<Neutral>("Hello ghost, how are you?")
-            npc<Neutral>("Not very good actually.")
+            player<Idle>("Hello ghost, how are you?")
+            npc<Idle>("Not very good actually.")
             player<Quiz>("What's the problem then?")
-            npc<Neutral>("Did you just understand what I said???")
+            npc<Idle>("Did you just understand what I said???")
             choice {
-                option<Neutral>("Yep, now tell me what the problem is.") {
-                    npc<Neutral>("WOW! This is INCREDIBLE! I didn't expect anyone to ever understand me again!")
+                option<Idle>("Yep, now tell me what the problem is.") {
+                    npc<Idle>("WOW! This is INCREDIBLE! I didn't expect anyone to ever understand me again!")
                     player<Angry>("Ok, Ok, I can understand you!")
                     player<Quiz>("But have you any idea WHY you're doomed to be a ghost?")
-                    npc<Neutral>("Well, to be honest, I'm not sure.")
+                    npc<Idle>("Well, to be honest, I'm not sure.")
                     task()
                 }
                 option<Happy>("No, you sound like you're speaking nonsense to me.") {
-                    npc<Neutral>("Oh that's a pity. You got my hopes up there.")
-                    player<Neutral>("Yeah, it is a pity. Sorry about that.")
-                    npc<Neutral>("Hang on a second... you CAN understand me!")
+                    npc<Idle>("Oh that's a pity. You got my hopes up there.")
+                    player<Idle>("Yeah, it is a pity. Sorry about that.")
+                    npc<Idle>("Hang on a second... you CAN understand me!")
                     choice {
-                        option<Neutral>("No I can't.") {
-                            npc<Neutral>("Great.")
-                            npc<Neutral>("The first person I can speak to in ages...")
-                            npc<Neutral>("..and they're a moron.")
+                        option<Idle>("No I can't.") {
+                            npc<Idle>("Great.")
+                            npc<Idle>("The first person I can speak to in ages...")
+                            npc<Idle>("..and they're a moron.")
                         }
                         option<Happy>("Yep, clever aren't I?") {
-                            npc<Neutral>("I'm impressed. You must be very powerful. I don't suppose you can stop me being a ghost?")
+                            npc<Idle>("I'm impressed. You must be very powerful. I don't suppose you can stop me being a ghost?")
                             helpMe()
                         }
                     }
                 }
                 option<Happy>("Wow, this amulet works!") {
-                    npc<Neutral>("Oh! It's your amulet that's doing it! I did wonder. I don't suppose you can help me? I don't like being a ghost.")
+                    npc<Idle>("Oh! It's your amulet that's doing it! I did wonder. I don't suppose you can help me? I don't like being a ghost.")
                     helpMe()
                 }
             }
         } else if (inventory.contains("ghostspeak_amulet")) {
-            npc<Neutral>("Wooo wooo wooooo!")
-            player<Neutral>("Why can't I understand you? Oh, yeah, it might help if I wear this amulet!")
+            npc<Idle>("Wooo wooo wooooo!")
+            player<Idle>("Why can't I understand you? Oh, yeah, it might help if I wear this amulet!")
         } else {
             noGhostAmulet()
         }
     }
 
     suspend fun Player.noGhostAmulet() {
-        player<Neutral>("Hello ghost, how are you?")
-        npc<Neutral>("Wooo wooo wooooo!")
+        player<Idle>("Hello ghost, how are you?")
+        npc<Idle>("Wooo wooo wooooo!")
         choice {
-            option<Uncertain>("Sorry, I don't speak ghost.") {
+            option<Confused>("Sorry, I don't speak ghost.") {
                 dontSpeakGhost()
             }
             option<Happy>("Ooh... THAT'S interesting.") {
-                npc<Neutral>("Woo wooo. Woooooooooooooooooo!")
+                npc<Idle>("Woo wooo. Woooooooooooooooooo!")
                 choice {
                     option<Quiz>("Did he really?") {
-                        npc<Neutral>("Woo.")
+                        npc<Idle>("Woo.")
                         choice {
-                            option<Neutral>("My brother had EXACTLY the same problem.") {
-                                npc<Neutral>("Woo Wooooo!")
-                                npc<Neutral>("Wooooo Woo woo woo!")
+                            option<Idle>("My brother had EXACTLY the same problem.") {
+                                npc<Idle>("Woo Wooooo!")
+                                npc<Idle>("Wooooo Woo woo woo!")
                                 choice {
-                                    option<Neutral>("Goodbye. Thanks for the chat.") {
-                                        npc<Neutral>("Wooo wooo?")
+                                    option<Idle>("Goodbye. Thanks for the chat.") {
+                                        npc<Idle>("Wooo wooo?")
                                     }
-                                    option<Neutral>("You'll have to give me the recipe some time...") {
-                                        npc<Neutral>("Wooooooo woo woooooooo.")
+                                    option<Idle>("You'll have to give me the recipe some time...") {
+                                        npc<Idle>("Wooooooo woo woooooooo.")
                                         choice {
-                                            option<Neutral>("Goodbye. Thanks for the chat.") {
-                                                npc<Neutral>("Wooo wooo?")
+                                            option<Idle>("Goodbye. Thanks for the chat.") {
+                                                npc<Idle>("Wooo wooo?")
                                             }
                                             option<Quiz>("Hmm... I'm not so sure about that.") {
                                                 notSoSure()
@@ -103,16 +103,16 @@ class RestlessGhost : Script {
                                     }
                                 }
                             }
-                            option<Neutral>("Goodbye. Thanks for the chat.") {
-                                npc<Neutral>("Wooo wooo?")
+                            option<Idle>("Goodbye. Thanks for the chat.") {
+                                npc<Idle>("Wooo wooo?")
                             }
                         }
                     }
                     option<Happy>("Yeah, that's what I thought.") {
-                        npc<Neutral>("Wooo woooooooooooooo...")
+                        npc<Idle>("Wooo woooooooooooooo...")
                         choice {
-                            option<Neutral>("Goodbye. Thanks for the chat.") {
-                                npc<Neutral>("Wooo wooo?")
+                            option<Idle>("Goodbye. Thanks for the chat.") {
+                                npc<Idle>("Wooo wooo?")
                             }
                             option<Quiz>("Hmm... I'm not so sure about that.") {
                                 notSoSure()
@@ -122,13 +122,13 @@ class RestlessGhost : Script {
                 }
             }
             option<Quiz>("Any hints where I can find some treasure?") {
-                npc<Neutral>("Wooooooo woo! Wooooo woo wooooo woowoowoo woo Woo wooo. Wooooo woo woo? Woooooooooooooooooo!")
+                npc<Idle>("Wooooooo woo! Wooooo woo wooooo woowoowoo woo Woo wooo. Wooooo woo woo? Woooooooooooooooooo!")
                 choice {
-                    option<Uncertain>("Sorry, I don't speak ghost.") {
+                    option<Confused>("Sorry, I don't speak ghost.") {
                         dontSpeakGhost()
                     }
                     option<Happy>("Thank you. You've been very helpful.") {
-                        npc<Neutral>("Wooooooo.")
+                        npc<Idle>("Wooooooo.")
                     }
                 }
             }
@@ -136,27 +136,27 @@ class RestlessGhost : Script {
     }
 
     suspend fun Player.dontSpeakGhost() {
-        npc<Neutral>("Woo woo?")
-        player<Neutral>("Nope, still don't understand you.")
-        npc<Neutral>("WOOOOOOOOO!")
-        player<Neutral>("Never mind.")
+        npc<Idle>("Woo woo?")
+        player<Idle>("Nope, still don't understand you.")
+        npc<Idle>("WOOOOOOOOO!")
+        player<Idle>("Never mind.")
     }
 
     suspend fun Player.notSoSure() {
-        npc<Neutral>("Wooo woo?")
+        npc<Idle>("Wooo woo?")
         player<Angry>("Well, if you INSIST.")
-        npc<Neutral>("Wooooooooo!")
-        player<Neutral>("Ah well, better be off now...")
-        npc<Neutral>("Woo.")
-        player<Neutral>("Bye.")
+        npc<Idle>("Wooooooooo!")
+        player<Idle>("Ah well, better be off now...")
+        npc<Idle>("Woo.")
+        player<Idle>("Bye.")
     }
 
     suspend fun Player.task() {
-        npc<Neutral>("I should think it's because I've lost my head.")
-        player<Neutral>("What? I can see your head perfectly fine well, see through it at least.")
-        npc<Neutral>("No, no, I mean from my REAL body. If you look in my coffin you'll see my corpse is without its skull. Last thing I remember was being attacked by a warlock while I was mining. It was at the mine just south of this")
-        npc<Neutral>("graveyard.")
-        player<Neutral>("Okay. I'll try to get your skull back for you so you can rest in peace.")
+        npc<Idle>("I should think it's because I've lost my head.")
+        player<Idle>("What? I can see your head perfectly fine well, see through it at least.")
+        npc<Idle>("No, no, I mean from my REAL body. If you look in my coffin you'll see my corpse is without its skull. Last thing I remember was being attacked by a warlock while I was mining. It was at the mine just south of this")
+        npc<Idle>("graveyard.")
+        player<Idle>("Okay. I'll try to get your skull back for you so you can rest in peace.")
         set("the_restless_ghost", "mining_spot")
     }
 
@@ -165,10 +165,10 @@ class RestlessGhost : Script {
             option<Happy>("Yes, ok. Do you know WHY you're a ghost?") {
                 task()
             }
-            option<Neutral>("No, you're scary!") {
-                npc<Neutral>("Great.")
-                npc<Neutral>("The first person I can speak to in ages...")
-                npc<Neutral>("..and they're an idiot.")
+            option<Idle>("No, you're scary!") {
+                npc<Idle>("Great.")
+                npc<Idle>("The first person I can speak to in ages...")
+                npc<Idle>("..and they're an idiot.")
             }
         }
     }
@@ -176,20 +176,20 @@ class RestlessGhost : Script {
     suspend fun Player.miningSpot() {
         if (equipment.contains("ghostspeak_amulet")) {
             if (inventory.contains("muddy_skull")) {
-                player<Neutral>("Hello ghost, how are you?")
-                npc<Neutral>("How are you doing finding my skull?")
+                player<Idle>("Hello ghost, how are you?")
+                npc<Idle>("How are you doing finding my skull?")
                 player<Happy>("I have found it!")
-                npc<Neutral>("Hurrah! Now I can stop being a ghost! You just need to put it in my coffin there, and I will be free!")
+                npc<Idle>("Hurrah! Now I can stop being a ghost! You just need to put it in my coffin there, and I will be free!")
             } else {
-                player<Neutral>("Hello ghost, how are you?")
-                npc<Neutral>("How are you doing finding my skull?")
-                player<Sad>("Sorry, I can't find it at the moment.")
-                npc<Neutral>("Ah well. Keep on looking.")
-                npc<Neutral>("I'm pretty sure it's somewhere near the mining spot south of here. I really hope it's still there somewhere.")
+                player<Idle>("Hello ghost, how are you?")
+                npc<Idle>("How are you doing finding my skull?")
+                player<Disheartened>("Sorry, I can't find it at the moment.")
+                npc<Idle>("Ah well. Keep on looking.")
+                npc<Idle>("I'm pretty sure it's somewhere near the mining spot south of here. I really hope it's still there somewhere.")
             }
         } else if (inventory.contains("ghostspeak_amulet")) {
-            npc<Neutral>("Wooo wooo wooooo!")
-            player<Neutral>("Why can't I understand you? Oh, yeah, it might help if I wear this amulet!")
+            npc<Idle>("Wooo wooo wooooo!")
+            player<Idle>("Why can't I understand you? Oh, yeah, it might help if I wear this amulet!")
         } else {
             noGhostAmulet()
         }

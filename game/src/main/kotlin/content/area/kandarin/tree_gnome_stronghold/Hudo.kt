@@ -9,13 +9,13 @@ class Hudo : Script {
 
     init {
         npcOperate("Talk-to", "gnome_hudo") {
-            player<Neutral>("Hello there.")
-            npc<Neutral>("Hello there traveller. Would you like some groceries? I have a large selection.")
+            player<Idle>("Hello there.")
+            npc<Idle>("Hello there traveller. Would you like some groceries? I have a large selection.")
             choice {
-                option<Neutral>("No thank you.") {
-                    npc<Neutral>("No problem.")
+                option<Idle>("No thank you.") {
+                    npc<Idle>("No problem.")
                 }
-                option<Neutral>("I'll have a look.") {
+                option<Idle>("I'll have a look.") {
                     npc<Happy>("Great stuff.")
                     openShop("grand_tree_groceries")
                 }

@@ -1,9 +1,9 @@
 package content.entity.obj
 
 import content.entity.player.bank.bank
-import content.entity.player.dialogue.Chuckle
+import content.entity.player.dialogue.Laugh
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
@@ -45,12 +45,12 @@ class MilkCow : Script {
                 inventory.replace("bucket", "bucket_of_milk")
                 message("You milk the cow.")
             } else {
-                npc<Chuckle>("gillie_groats", "Tee hee! You've never milked a cow before, have you?")
+                npc<Laugh>("gillie_groats", "Tee hee! You've never milked a cow before, have you?")
                 player<Quiz>("Erm...no. How could you tell?")
-                npc<Chuckle>("gillie_groats", "Because you're spilling milk all over the floor. What a waste! You need something to hold the milk.")
-                player<Talk>("Ah, yes, I really should have guessed that one, shouldn't I?")
-                npc<Chuckle>("gillie_groats", "You're from the city, aren't you? Try it again with an empty bucket.")
-                player<Talk>("Right, I'll do that.")
+                npc<Laugh>("gillie_groats", "Because you're spilling milk all over the floor. What a waste! You need something to hold the milk.")
+                player<Neutral>("Ah, yes, I really should have guessed that one, shouldn't I?")
+                npc<Laugh>("gillie_groats", "You're from the city, aren't you? Try it again with an empty bucket.")
+                player<Neutral>("Right, I'll do that.")
                 message("You'll need an empty bucket to collect the milk.")
             }
         }

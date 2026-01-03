@@ -13,7 +13,7 @@ class Harry : Script {
 
     init {
         npcOperate("Talk-to", "harry") {
-            npc<Talk>("Welcome! You can buy Fishing equipment at my store. We'll also give you a good price for any fish that you catch.")
+            npc<Neutral>("Welcome! You can buy Fishing equipment at my store. We'll also give you a good price for any fish that you catch.")
 
             choice {
                 option("Let's see what you've got, then.") {
@@ -22,13 +22,13 @@ class Harry : Script {
 
                 if (holdsItem("fishbowl_water") || holdsItem("fishbowl_seaweed")) {
                     option("Can I get a fish for this bowl?") {
-                        player<Talk>("Can I get a fish for this bowl?")
+                        player<Neutral>("Can I get a fish for this bowl?")
 
                         when {
                             holdsItem("fishbowl_water") -> {
-                                npc<Talk>("Sorry, you need to put some seaweed into the bowl first")
-                                player<Neutral>("Seaweed?")
-                                npc<Talk>("Yes, the fish seem to like it. Come and see me when you have put some in the bowl.")
+                                npc<Neutral>("Sorry, you need to put some seaweed into the bowl first")
+                                player<Idle>("Seaweed?")
+                                npc<Neutral>("Yes, the fish seem to like it. Come and see me when you have put some in the bowl.")
                             }
 
                             holdsItem("fishbowl_seaweed") -> {
@@ -36,17 +36,17 @@ class Harry : Script {
                                 choice {
                                     option("I'll take it.") {
                                         if (inventory.contains("coins", 10)) {
-                                            player<Talk>("I'll take it.")
+                                            player<Neutral>("I'll take it.")
                                             inventory.remove("coins", 10)
                                             inventory.add("tiny_net")
                                             npc<Happy>("Here you go.")
                                             // Optionally add a game message: "Harry sells you a tiny net."
                                         } else {
-                                            npc<Neutral>("It looks like you don't have enough coins.")
+                                            npc<Idle>("It looks like you don't have enough coins.")
                                         }
                                     }
                                     option("No, thanks; later, maybe.") {
-                                        player<Neutral>("No, thanks; later, maybe.")
+                                        player<Idle>("No, thanks; later, maybe.")
                                     }
                                 }
                             }
@@ -58,9 +58,9 @@ class Harry : Script {
 
                 if (holdsItem("fishbowl_water") || holdsItem("fishbowl_seaweed") || holdsItem("fishbowl")) {
                     option("Do you have any fish food?") {
-                        player<Talk>("Do you have any fish food?")
-                        npc<Talk>("Sorry, I'm all out. I used up the last of it feeding the fish in the aquarium. I have some empty boxes, though - they have the ingredients written on the back.")
-                        npc<Neutral>("I'm sure if you pick up a pestle and mortar you will be able to make your own.")
+                        player<Neutral>("Do you have any fish food?")
+                        npc<Neutral>("Sorry, I'm all out. I used up the last of it feeding the fish in the aquarium. I have some empty boxes, though - they have the ingredients written on the back.")
+                        npc<Idle>("I'm sure if you pick up a pestle and mortar you will be able to make your own.")
                         inventory.add("empty_box_fish")
                         npc<Happy>("Here. I can hardly charge you for an empty box.")
                     }

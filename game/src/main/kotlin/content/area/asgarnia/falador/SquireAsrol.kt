@@ -25,7 +25,7 @@ class SquireAsrol : Script {
         npcOperate("Talk-to", "squire_asrol") {
             when (quest("the_knights_sword")) {
                 "unstarted" -> {
-                    npc<Neutral>("Hello. I am the squire to Sir Vyvin.")
+                    npc<Idle>("Hello. I am the squire to Sir Vyvin.")
                     choice {
                         lifeAsASquire()
                         squireForMe()
@@ -42,34 +42,34 @@ class SquireAsrol : Script {
 
     suspend fun Player.started() {
         npc<Quiz>("So how are you doing getting a sword?")
-        player<Sad>("I'm looking for Imcando dwarves to help me.")
-        npc<Sad>("Please try and find them quickly... I am scared Sir Vyvin will find out!")
+        player<Disheartened>("I'm looking for Imcando dwarves to help me.")
+        npc<Disheartened>("Please try and find them quickly... I am scared Sir Vyvin will find out!")
     }
 
     suspend fun Player.askAboutPicture() {
         npc<Quiz>("So how are you doing getting a sword?")
         player<Happy>("I've found an Imcando dwarf but he needs a picture of the sword before he can make it.")
-        npc<Uncertain>("A picture eh? Hmmm.... The only one I can think of is in a small portrait of Sir Vyvin's father... Sir Vyvin keeps it in a cupboard in his room I think.")
+        npc<Confused>("A picture eh? Hmmm.... The only one I can think of is in a small portrait of Sir Vyvin's father... Sir Vyvin keeps it in a cupboard in his room I think.")
         set("the_knights_sword", "cupboard")
-        player<Neutral>("Ok, I'll try and get that then.")
-        npc<Uncertain>("Please don't let him catch you! He MUSTN'T know what happened!")
+        player<Idle>("Ok, I'll try and get that then.")
+        npc<Confused>("Please don't let him catch you! He MUSTN'T know what happened!")
     }
 
     suspend fun Player.checkPicture() {
         npc<Quiz>("So how are you doing getting a sword?")
         if (holdsItem("portrait")) {
             player<Happy>("I have the picture. I'll just take it to the dwarf now!")
-            npc<Uncertain>("Please hurry!")
+            npc<Confused>("Please hurry!")
             return
         }
-        player<Sad>("I didn't get the picture yet.")
-        npc<Sad>("Please try and get it quickly... I am scared Sir Vyvin will find out!")
+        player<Disheartened>("I didn't get the picture yet.")
+        npc<Disheartened>("Please try and get it quickly... I am scared Sir Vyvin will find out!")
     }
 
     suspend fun Player.bluriteSword() {
         if (equipment.contains("blurite_sword")) {
             player<Happy>("I have retrieved your sword for you.")
-            npc<Uncertain>("So can you un-equip it and hand it over to me now please?")
+            npc<Confused>("So can you un-equip it and hand it over to me now please?")
             return
         }
         if (holdsItem("blurite_sword")) {
@@ -81,20 +81,20 @@ class SquireAsrol : Script {
             return
         }
         if (ownsItem("blurite_sword")) {
-            player<Neutral>("I got a replacement sword made.")
+            player<Idle>("I got a replacement sword made.")
             npc<Happy>("Thank you! Can I have it?")
-            player<Neutral>("I've got it stored safely.")
+            player<Idle>("I've got it stored safely.")
             npc<Frustrated>("Well could you go and get it for me then please? Quickly?")
-            player<Neutral>("Yeah, okay.")
+            player<Idle>("Yeah, okay.")
             return
         }
         npc<Quiz>("So how are you doing getting a sword?")
         player<Happy>("I've found a dwarf who will make the sword. I've just got to find the materials for it now!")
-        npc<Uncertain>("Please hurry!")
+        npc<Confused>("Please hurry!")
     }
 
     fun ChoiceOption.lifeAsASquire() = option<Quiz>("And how is life as a squire?") {
-        npc<Sad>("Well, Sir Vyvin is a good guy to work for, however, I'm in a spot of trouble today. I've gone and lost Sir Vyvin's sword!")
+        npc<Disheartened>("Well, Sir Vyvin is a good guy to work for, however, I'm in a spot of trouble today. I've gone and lost Sir Vyvin's sword!")
         choice {
             whereYouLostIt()
             newSword()
@@ -103,7 +103,7 @@ class SquireAsrol : Script {
     }
 
     fun ChoiceOption.whereYouLostIt() = option<Quiz>("Do you know where you lost it?") {
-        npc<Uncertain>("Well now, if I knew THAT it wouldn't be lost, now would it?")
+        npc<Confused>("Well now, if I knew THAT it wouldn't be lost, now would it?")
         choice {
             vagueArea()
             newSword()
@@ -113,8 +113,8 @@ class SquireAsrol : Script {
     }
 
     fun ChoiceOption.vagueArea() = option<Quiz>("Well, do you know the VAGUE AREA you lost it in?") {
-        npc<Sad>("No. I was carrying it for him all the way from where he had it stored in Lumbridge. It must have slipped from my pack during the trip, and you know what people are like these days...")
-        npc<Sad>("Someone will have just picked it up and kept it for themselves.")
+        npc<Disheartened>("No. I was carrying it for him all the way from where he had it stored in Lumbridge. It must have slipped from my pack during the trip, and you know what people are like these days...")
+        npc<Disheartened>("Someone will have just picked it up and kept it for themselves.")
         choice {
             newSword()
             abundantWithSwords()
@@ -122,14 +122,14 @@ class SquireAsrol : Script {
         }
     }
 
-    fun ChoiceOption.abundantWithSwords() = option<Neutral>("Well the kingdom is fairly abundant with swords...") {
-        npc<Sad>("Yes. You can get bronze swords anywhere. But THIS isn't any old sword.")
+    fun ChoiceOption.abundantWithSwords() = option<Idle>("Well the kingdom is fairly abundant with swords...") {
+        npc<Disheartened>("Yes. You can get bronze swords anywhere. But THIS isn't any old sword.")
         heirloom()
     }
 
     suspend fun Player.heirloom() {
-        npc<Sad>("The thing is, this sword is a family heirloom. It has been passed down through Vyvin's family for five generations! It was originally made by the Imcando dwarves, who were")
-        npc<Sad>("a particularly skilled tribe of dwarven smiths. I doubt anyone could make it in the style they do.")
+        npc<Disheartened>("The thing is, this sword is a family heirloom. It has been passed down through Vyvin's family for five generations! It was originally made by the Imcando dwarves, who were")
+        npc<Disheartened>("a particularly skilled tribe of dwarven smiths. I doubt anyone could make it in the style they do.")
         choice {
             anotherSword()
             hopeYouFind()
@@ -137,22 +137,22 @@ class SquireAsrol : Script {
     }
 
     fun ChoiceOption.anotherSword() = option<Quiz>("So would these dwarves make another one?") {
-        npc<Sad>("I'm not a hundred percent sure the Imcando tribe exists anymore. I should think Reldo, the palace librarian in Varrock, will know; he has done a lot of research on the races of Gielinor.")
+        npc<Disheartened>("I'm not a hundred percent sure the Imcando tribe exists anymore. I should think Reldo, the palace librarian in Varrock, will know; he has done a lot of research on the races of Gielinor.")
         npc<Quiz>("I don't suppose you could try and track down the Imcando dwarves for me? I've got so much work to do...")
         startQuest()
     }
 
-    fun ChoiceOption.hopeYouFind() = option<Neutral>("Well, I hope you find it soon.") {
-        npc<Sad>("Yes, me too. I'm not looking forward to telling Vyvin I've lost it. He's going to want it for the parade next week as well.")
+    fun ChoiceOption.hopeYouFind() = option<Idle>("Well, I hope you find it soon.") {
+        npc<Disheartened>("Yes, me too. I'm not looking forward to telling Vyvin I've lost it. He's going to want it for the parade next week as well.")
     }
 
-    fun ChoiceOption.newSword() = option<Neutral>("I can make a new sword if you like...") {
-        npc<Sad>("Thanks for the offer. I'd be surprised if you could though.")
+    fun ChoiceOption.newSword() = option<Idle>("I can make a new sword if you like...") {
+        npc<Disheartened>("Thanks for the offer. I'd be surprised if you could though.")
         heirloom()
     }
 
     fun ChoiceOption.heAngry() = option<Quiz>("Is he angry?") {
-        npc<Sad>("He doesn't know yet. I was hoping I could think of something to do before he does find out, But I find myself at a loss.")
+        npc<Disheartened>("He doesn't know yet. I was hoping I could think of something to do before he does find out, But I find myself at a loss.")
         choice {
             vagueArea()
             newSword()
@@ -162,7 +162,7 @@ class SquireAsrol : Script {
     }
 
     fun ChoiceOption.squireForMe() = option<Quiz>("Wouldn't you prefer to be a squire for me?") {
-        npc<Neutral>("No, sorry, I'm loyal to Sir Vyvin.")
+        npc<Idle>("No, sorry, I'm loyal to Sir Vyvin.")
     }
 
     suspend fun Player.startQuest() {
@@ -176,11 +176,11 @@ class SquireAsrol : Script {
         choice("Start The Knight's Sword quest?") {
             option("Yes.") {
                 set("the_knights_sword", "started")
-                player<Neutral>("Ok, I'll give it a go.")
+                player<Idle>("Ok, I'll give it a go.")
                 npc<Happy>("Thank you very much! As I say, the best place to start should be with Reldo...")
             }
             option("No.") {
-                npc<Sad>("Oh man... I'm in such trouble...")
+                npc<Disheartened>("Oh man... I'm in such trouble...")
             }
         }
     }

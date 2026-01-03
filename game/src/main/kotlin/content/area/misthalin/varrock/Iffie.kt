@@ -19,10 +19,10 @@ class Iffie : Script {
                     openShop("iffies_random_costume_shop")
                 }
                 option<Quiz>("Aren't you selling anything?") {
-                    npc<Chuckle>("Oh, yes, but only costumes. Thessalia sells some other clothes and runs the makeover service.")
+                    npc<Laugh>("Oh, yes, but only costumes. Thessalia sells some other clothes and runs the makeover service.")
                 }
-                option<Talk>("I just came for a chat.") {
-                    npc<Sad>("Oh, I'm sorry, but I'll never get my knitting done if I stop for a chit-chat with every young ${if (male) "lad" else "lass"} who wanders through the shop!")
+                option<Neutral>("I just came for a chat.") {
+                    npc<Disheartened>("Oh, I'm sorry, but I'll never get my knitting done if I stop for a chit-chat with every young ${if (male) "lad" else "lass"} who wanders through the shop!")
                 }
             }
         }

@@ -2,7 +2,7 @@ package content.area.misthalin.barbarian_village.stronghold_of_security
 
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Upset
+import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.items
@@ -86,7 +86,7 @@ class StrongholdOfSecurityRewards : Script {
                                 statement("Your boots need to be in your inventory to swap them.") // Unknown message
                             }
                         }
-                        option<Upset>("No thanks, I'll keep these.")
+                        option<Sad>("No thanks, I'll keep these.")
                     }
                     return@objectOperate
                 }

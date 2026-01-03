@@ -1,9 +1,9 @@
 package content.area.kharidian_desert.al_kharid.duel_arena
 
-import content.entity.player.dialogue.Chuckle
+import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Neutral
-import content.entity.player.dialogue.Uncertain
+import content.entity.player.dialogue.Idle
+import content.entity.player.dialogue.Laugh
 import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -12,10 +12,10 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
 
-internal fun ChoiceOption.fighters(): Unit = option<Uncertain>("Do you see a lot of injured fighters?") {
-    npc<Neutral>("Yes I do. Thankfully we can cope with almost anything. Jaraah really is a wonderful surgeon, his methods are a little unorthodox but he gets the job done.")
-    npc<Neutral>("I shouldn't tell you this but his nickname is 'The Butcher'.")
-    player<Uncertain>("That's reassuring.")
+internal fun ChoiceOption.fighters(): Unit = option<Confused>("Do you see a lot of injured fighters?") {
+    npc<Idle>("Yes I do. Thankfully we can cope with almost anything. Jaraah really is a wonderful surgeon, his methods are a little unorthodox but he gets the job done.")
+    npc<Idle>("I shouldn't tell you this but his nickname is 'The Butcher'.")
+    player<Confused>("That's reassuring.")
 }
 
 internal suspend fun Player.heal(target: NPC) {
@@ -31,9 +31,9 @@ internal suspend fun Player.heal(target: NPC) {
     npc<Happy>("You look healthy to me!")
 }
 
-internal fun ChoiceOption.often(): Unit = option<Uncertain>("Do you come here often?") {
+internal fun ChoiceOption.often(): Unit = option<Confused>("Do you come here often?") {
     npc<Happy>("I work here, so yes!")
-    npc<Chuckle>("You're silly!")
+    npc<Laugh>("You're silly!")
 }
 
 class Nurses : Script {
@@ -43,7 +43,7 @@ class Nurses : Script {
             player<Happy>("Hi!")
             npc<Happy>("Hi. How can I help?")
             choice {
-                option<Uncertain>("Can you heal me?") {
+                option<Confused>("Can you heal me?") {
                     heal(target)
                 }
                 fighters()

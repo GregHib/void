@@ -39,7 +39,7 @@ class MagicTutor : Script {
         }
     }
 
-    fun ChoiceOption.magicCombat(): Unit = option<Neutral>("Tell me about magic combat please.") {
+    fun ChoiceOption.magicCombat(): Unit = option<Idle>("Tell me about magic combat please.") {
         npc<Happy>("Of course $name! As a rule of thumb, if you cast the highest spell of which you're capable, you'll get the best experience possible.")
         npc<Happy>("Wearing metal armour and ranged armour can seriously impair your magical abilities. Make sure you wear some robes to maximise your capabilities.")
         npc<Happy>("Superheat Item and the Alchemy spells are good ways to level magic if you are not interested in the combat aspect of magic.")
@@ -78,12 +78,12 @@ class MagicTutor : Script {
             return@option
         }
         if (inventory.isFull()) {
-            npc<Upset>("If you had enough space in your inventory I'd give you some mind runes, come back when you do.")
+            npc<Sad>("If you had enough space in your inventory I'd give you some mind runes, come back when you do.")
             inventoryFull()
             return@option
         }
         if (inventory.spaces < 2) {
-            npc<Upset>("If you had enough space in your inventory I'd give you some air runes, come back when you do.")
+            npc<Sad>("If you had enough space in your inventory I'd give you some air runes, come back when you do.")
             inventoryFull()
             return@option
         }

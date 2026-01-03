@@ -2,12 +2,12 @@ package content.area.misthalin.lumbridge
 
 import content.achievement.Tasks
 import content.achievement.Tasks.isCompleted
+import content.entity.player.dialogue.Bored
+import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.RollEyes
-import content.entity.player.dialogue.Talk
-import content.entity.player.dialogue.Uncertain
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -36,7 +36,7 @@ class ExplorerJack : Script {
     init {
         npcOperate("Talk-to", "explorer_jack") {
             if (get("introducing_explorer_jack_task", "uncompleted") == "uncompleted") {
-                npc<Talk>("Ah! Welcome to ${Settings["server.name"]}, lad. My name's Explorer jack. I'm an explorer by trade, and I'm one of the Taskmasters around these parts")
+                npc<Neutral>("Ah! Welcome to ${Settings["server.name"]}, lad. My name's Explorer jack. I'm an explorer by trade, and I'm one of the Taskmasters around these parts")
                 player<Quiz>("Taskmaster? What Tasks are you Master of?")
                 whatIsTaskSystem()
             }
@@ -44,20 +44,20 @@ class ExplorerJack : Script {
                 player<Happy>("I think I've finished all of the Beginner Tasks in the Lumbridge set.")
                 npc<Happy>("You have? Oh, well done! We'll make an explorer of you yet.")
                 player<Happy>("Thank you. Is there a reward?")
-                npc<Talk>("Ah, yes indeed.")
+                npc<Neutral>("Ah, yes indeed.")
                 if (!inventory.add("explorers_ring_1", "antique_lamp_beginner_lumbridge_tasks")) {
-                    npc<Talk>("You don't seem to have space, speak to me again when you have two free spaces in your inventory.") // TODO proper message (not in osrs)
+                    npc<Neutral>("You don't seem to have space, speak to me again when you have two free spaces in your inventory.") // TODO proper message (not in osrs)
                     return@npcOperate
                 }
                 set("unlocked_emote_explore", true)
-                npc<Talk>("Having completed the beginner tasks, you have been granted the ability to use the Explorer emote to show your friends.")
+                npc<Neutral>("Having completed the beginner tasks, you have been granted the ability to use the Explorer emote to show your friends.")
                 npc<Happy>("I have also given you an explorer's ring. Now, this is more than just any old ring. Aside from looking good, it also has magical properties giving you a small but useful boost to your Magic and Prayer.")
-                npc<Talk>("Your ring has the ability to restore some of your run energy to you.")
-                npc<Talk>("For each of the first three sections of the diary you complete, your ring will gain an extra charge; so the ring you receive from the medium level tasks will have 3 charges for example.")
-                npc<Talk>("If they should run out, the ring is recharged by the sun each day, so you will be able to use it again tomorrow and so on.")
-                npc<Talk>("As an extra reward, you can have this old magical lamp to help with your skills. I was going to use it myself, but I don't really need it.")
+                npc<Neutral>("Your ring has the ability to restore some of your run energy to you.")
+                npc<Neutral>("For each of the first three sections of the diary you complete, your ring will gain an extra charge; so the ring you receive from the medium level tasks will have 3 charges for example.")
+                npc<Neutral>("If they should run out, the ring is recharged by the sun each day, so you will be able to use it again tomorrow and so on.")
+                npc<Neutral>("As an extra reward, you can have this old magical lamp to help with your skills. I was going to use it myself, but I don't really need it.")
                 player<Happy>("Thanks very much.")
-                npc<Talk>("If you should lose your ring, come back to see me and I'm sure I'll have another. Now, did you have anything further to ask?")
+                npc<Neutral>("If you should lose your ring, come back to see me and I'm sure I'll have another. Now, did you have anything further to ask?")
             }
             choice {
                 option<Quiz>("Tell me about the Task System.") {
@@ -74,7 +74,7 @@ class ExplorerJack : Script {
                         }
                     }
                 }
-                option<Neutral>("Sorry, I was just leaving.")
+                option<Idle>("Sorry, I was just leaving.")
             }
             /*
             npc<Talk>("What ho! Where did you come from?")
@@ -95,16 +95,16 @@ class ExplorerJack : Script {
         objectOperate("Open", "explorer_jack_trapdoor") {
             val explorerJack = npcs[tile.regionLevel].first { it.id.startsWith("explorer_jack") }
             talkWith(explorerJack)
-            npc<Uncertain>("I say, there's nothing interesting in my cellar! Better go exploring elsewhere, eh?")
+            npc<Confused>("I say, there's nothing interesting in my cellar! Better go exploring elsewhere, eh?")
             player<Quiz>("What's down there?")
-            npc<RollEyes>("Crates, boxes, shelves - nothing you won't see in dozens of houses across Runescape. Go on, explore somewhere else!")
+            npc<Bored>("Crates, boxes, shelves - nothing you won't see in dozens of houses across Runescape. Go on, explore somewhere else!")
         }
     }
 
     suspend fun Player.whatIsTaskSystem() {
-        npc<Neutral>("Well, the Task System is a potent method of guiding yourself to useful things to do around the world.")
-        npc<Talk>("You'll see up to six Tasks in your side bar if you click on the glowing Task List icon. You can click on one for more information about it, hints, waypoint arrows, that sort of thing.")
-        npc<Talk>("Every Task you do will earn you something of value which you can claim from me. It'll be money, mostly, but the Rewards tab for a Task will tell you more.<br>Good luck!")
+        npc<Idle>("Well, the Task System is a potent method of guiding yourself to useful things to do around the world.")
+        npc<Neutral>("You'll see up to six Tasks in your side bar if you click on the glowing Task List icon. You can click on one for more information about it, hints, waypoint arrows, that sort of thing.")
+        npc<Neutral>("Every Task you do will earn you something of value which you can claim from me. It'll be money, mostly, but the Rewards tab for a Task will tell you more.<br>Good luck!")
         set("introducing_explorer_jack_task", "completed")
         set("unstable_foundations", "completed")
         sendScript("task_list_button_hide", 0)
@@ -112,7 +112,7 @@ class ExplorerJack : Script {
     }
 
     suspend fun Player.claim(inventoryId: String) {
-        npc<Neutral>("I'll just fill your $inventoryId with what you need, then.")
+        npc<Idle>("I'll just fill your $inventoryId with what you need, then.")
         val inventory = inventories.inventory(inventoryId)
         val progress = get("task_progress_overall", 0)
         val rewards = progress - get("task_progress_rewarded", 0)

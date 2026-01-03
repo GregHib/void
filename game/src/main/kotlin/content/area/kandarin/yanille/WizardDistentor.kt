@@ -1,7 +1,7 @@
 package content.area.kandarin.yanille
 
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -14,15 +14,15 @@ class WizardDistentor : Script {
 
     init {
         npcOperate("Talk-to", "wizard_distentor") { (target) ->
-            npc<Talk>("Welcome to the Magicians' Guild!")
+            npc<Neutral>("Welcome to the Magicians' Guild!")
             if (!questCompleted("rune_mysteries")) {
                 return@npcOperate
             }
-            player<Talk>("Hello there.")
+            player<Neutral>("Hello there.")
             npc<Quiz>("What can I do for you?")
             choice {
-                option<Talk>("Nothing thanks, I'm just looking around.") {
-                    npc<Talk>("That's fine with me.")
+                option<Neutral>("Nothing thanks, I'm just looking around.") {
+                    npc<Neutral>("That's fine with me.")
                 }
                 option<Quiz>("Can you teleport me to the Rune Essence Mine?") {
                     EssenceMine.teleport(target, this)

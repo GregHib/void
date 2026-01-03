@@ -19,16 +19,16 @@ class Hassan : Script {
         npcOperate("Talk-to", "hassan") {
             when (quest("prince_ali_rescue")) {
                 "unstarted" -> {
-                    npc<Talk>("Greetings! I am Hassan, Chancellor to the Emir of Al Kharid.")
+                    npc<Neutral>("Greetings! I am Hassan, Chancellor to the Emir of Al Kharid.")
                     choice {
                         anyHelp()
                         tooHot()
                         killWarriors()
-                        option<Talk>("I'd better be off.")
+                        option<Neutral>("I'd better be off.")
                     }
                 }
                 "prince_ali_disguise" -> {
-                    npc<Talk>("You have the eternal gratitude for the Emir for rescuing his son. I am authorised to pay you 700 coins.")
+                    npc<Neutral>("You have the eternal gratitude for the Emir for rescuing his son. I am authorised to pay you 700 coins.")
                     if (!inventory.add("coins")) {
                         statement("Leela tries to give you a reward, but you don't have enough room for it.") // TODO proper message
                         return@npcOperate
@@ -52,14 +52,14 @@ class Hassan : Script {
                     clear("prince_ali_rescue_leela")
                 }
                 "completed" -> npc<Happy>("Thank you for being a friend to Al Kharid. You are always welcome here.")
-                else -> npc<Talk>("Hello again. I hear you have agreed to help rescue Prince Ali. On behalf of the Emir, I will have a reward ready for you upon your success.")
+                else -> npc<Neutral>("Hello again. I hear you have agreed to help rescue Prince Ali. On behalf of the Emir, I will have a reward ready for you upon your success.")
             }
         }
     }
 
     fun ChoiceOption.killWarriors() {
         option<Quiz>("Do you mind if I just kill your warriors?") {
-            npc<Uncertain>("Kill our warriors? I assume this is some sort of joke?")
+            npc<Confused>("Kill our warriors? I assume this is some sort of joke?")
             player<Quiz>("I'll take that as a no. Forget I asked.")
             choice {
                 anyHelp()
@@ -72,19 +72,19 @@ class Hassan : Script {
     fun ChoiceOption.anyHelp() {
         option<Happy>("Can I help you? You must need some help here in the desert.") {
             set("prince_ali_rescue", "osman")
-            npc<Uncertain>("I need the services of someone, yes. If you are interested, see the spymaster, Osman. I manage the finances here. Come to me when you need payment.")
+            npc<Confused>("I need the services of someone, yes. If you are interested, see the spymaster, Osman. I manage the finances here. Come to me when you need payment.")
         }
     }
 
     fun ChoiceOption.tooHot() {
-        option<Upset>("It's just too hot here. How can you stand it?") {
-            npc<Talk>("We manage, in our humble way. We are a wealthy town and we have water. It cures many thirsts.")
+        option<Sad>("It's just too hot here. How can you stand it?") {
+            npc<Neutral>("We manage, in our humble way. We are a wealthy town and we have water. It cures many thirsts.")
             inventory.add("jug_of_water")
             statement("The chancellor hands you some water.")
             choice {
                 anyHelp()
                 killWarriors()
-                option<Talk>("I'd better be off.")
+                option<Neutral>("I'd better be off.")
             }
         }
     }

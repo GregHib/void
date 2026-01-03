@@ -1,10 +1,10 @@
 package content.area.misthalin.lumbridge.roddecks_house
 
-import content.entity.player.dialogue.Chuckle
+import content.entity.player.dialogue.Bored
 import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Idle
+import content.entity.player.dialogue.Laugh
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.RollEyes
 import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
@@ -18,7 +18,7 @@ class Roddeck : Script {
             choice("What would you like to say?") {
                 option<Quiz>("Who are you?") {
                     npc<Happy>("My name is Roddeck, and I am the Advisor. Whenever people in Runescape are in need of advice, they click on the Advisor button to seek my help.")
-                    npc<Neutral>("Apart from that, I'm just an elderly gentleman of Lumbridge, and this is my house.")
+                    npc<Idle>("Apart from that, I'm just an elderly gentleman of Lumbridge, and this is my house.")
                     npc<Quiz>("Now, was there anything else you wanted?")
                     choice {
                         anyAdvice()
@@ -32,9 +32,9 @@ class Roddeck : Script {
     }
 
     fun ChoiceOption.anyAdvice(): Unit = option<Quiz>("Can you offer me any advice?") {
-        npc<Chuckle>("Advice? Certainly, certainly! Click my Advisor button whenever you have a question.")
+        npc<Laugh>("Advice? Certainly, certainly! Click my Advisor button whenever you have a question.")
     }
 
-    fun ChoiceOption.noThanks(): Unit = option<RollEyes>("Nothing, thanks.") {
+    fun ChoiceOption.noThanks(): Unit = option<Bored>("Nothing, thanks.") {
     }
 }

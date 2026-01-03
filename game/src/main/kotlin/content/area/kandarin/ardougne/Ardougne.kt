@@ -88,7 +88,7 @@ class Ardougne : Script {
                     message("You search the wardrobe but you find nothing.")
                 } else if (bank.contains("gas_mask")) {
                     statement("The wardrobe is empty.")
-                    player<Neutral>("I think I've still got one of Alrena's gas masks in my bank.")
+                    player<Idle>("I think I've still got one of Alrena's gas masks in my bank.")
                 } else {
                     if (!inventory.add("gas_mask")) {
                         item("gas_mask", 300, "You find a protective mask but you don't have enough room to take it.")

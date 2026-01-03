@@ -1,10 +1,10 @@
 package content.area.kharidian_desert.al_kharid
 
 import content.entity.obj.door.enterDoor
+import content.entity.player.dialogue.Confused
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
-import content.entity.player.dialogue.Uncertain
-import content.entity.player.dialogue.Upset
+import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -66,24 +66,24 @@ class Tollgate : Script {
         talkWith(npc)
         player<Quiz>("Can I come through this gate?")
         if (questCompleted("prince_ali_rescue")) {
-            npc<Talk>("You may pass for free! You are a friend of Al Kharid.")
+            npc<Neutral>("You may pass for free! You are a friend of Al Kharid.")
             pass(this)
             return
         }
-        npc<Talk>("You must pay a toll of 10 gold coins to pass.")
+        npc<Neutral>("You must pay a toll of 10 gold coins to pass.")
         choice {
             option<Quiz>("Okay, I'll pay.") {
                 if (!inventory.contains("coins", 10)) {
-                    player<Upset>("Oh dear I don't actually seem to have enough money.")
+                    player<Sad>("Oh dear I don't actually seem to have enough money.")
                 } else {
                     pass(this)
                 }
             }
-            option<Uncertain>("Who does my money go to?") {
-                npc<Talk>("The money goes to the city of Al-Kharid.")
+            option<Confused>("Who does my money go to?") {
+                npc<Neutral>("The money goes to the city of Al-Kharid.")
             }
             option<Quiz>("No thank you, I'll walk around.") {
-                npc<Talk>("Ok suit yourself.")
+                npc<Neutral>("Ok suit yourself.")
             }
         }
     }

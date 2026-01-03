@@ -1,8 +1,8 @@
 package content.skill.slayer
 
 import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
@@ -33,7 +33,7 @@ class EnchantedGem : Script {
                     whoAreYou()
                     whereAreYou()
                     anyTips()
-                    option<Talk>("That's all thanks.")
+                    option<Neutral>("That's all thanks.")
                 }
             }
         }
@@ -58,19 +58,19 @@ class EnchantedGem : Script {
                 whoAreYou()
                 whereAreYou()
                 anyTips()
-                option<Talk>("That's all thanks.")
+                option<Neutral>("That's all thanks.")
             }
         }
     }
 
     fun ChoiceOption.whoAreYou() {
         option<Quiz>("Who are you?") {
-            npc<Talk>(slayerMaster, "My name's ${slayerMaster.toSentenceCase()}, I'm the Slayer Master best able to train you.")
+            npc<Neutral>(slayerMaster, "My name's ${slayerMaster.toSentenceCase()}, I'm the Slayer Master best able to train you.")
             choice {
                 howAmIDoing()
                 whereAreYou()
                 anyTips()
-                option<Talk>("That's all thanks.")
+                option<Neutral>("That's all thanks.")
             }
         }
     }
@@ -87,7 +87,7 @@ class EnchantedGem : Script {
                 howAmIDoing()
                 whoAreYou()
                 anyTips()
-                option<Talk>("That's all thanks.")
+                option<Neutral>("That's all thanks.")
             }
         }
     }
@@ -95,12 +95,12 @@ class EnchantedGem : Script {
     fun ChoiceOption.anyTips() {
         option<Quiz>("Got any tips for me?") {
             val definition = slayerDefinitions.get(slayerMaster)[slayerTask]!!
-            npc<Talk>(slayerMaster, definition.tip)
+            npc<Neutral>(slayerMaster, definition.tip)
             choice {
                 howAmIDoing()
                 whoAreYou()
                 whereAreYou()
-                option<Talk>("That's all thanks.")
+                option<Neutral>("That's all thanks.")
             }
         }
     }

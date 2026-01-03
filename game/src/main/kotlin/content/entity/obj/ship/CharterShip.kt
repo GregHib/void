@@ -56,12 +56,12 @@ class CharterShip : Script {
                     player<Quiz>("Yes, who are you?")
                     npc<Happy>("${if (target.id == "trader_stan") "Why, I'm Trader Stan, owner and operator" else "I'm one of Trader Stan's crew; we are all part"} of the largest fleet of trading ships and chartered vessels to ever sail the seas!")
                     if (target.id == "trader_stan") {
-                        npc<Talk>("If you want to get to a port in a hurry then you can charter one of my ships to take you there - if the price is right...")
+                        npc<Neutral>("If you want to get to a port in a hurry then you can charter one of my ships to take you there - if the price is right...")
                     }
                     player<Quiz>("So, where exactly can I go with your ships?")
-                    npc<Talk>("We run ships from Port Phasmatys over to Port Tyras, stopping at Port Sarim, Catherby, Brimhaven, Musa Point, the Shipyard and Port Khazard.")
+                    npc<Neutral>("We run ships from Port Phasmatys over to Port Tyras, stopping at Port Sarim, Catherby, Brimhaven, Musa Point, the Shipyard and Port Khazard.")
                     npc<Shifty>("We might dock at Mos Le'Harmless once in a while, as well, if you catch my meaning...")
-                    player<Talk>("Wow, that's a lot of ports. I take it you have some exotic stuff to trade?")
+                    player<Neutral>("Wow, that's a lot of ports. I take it you have some exotic stuff to trade?")
                     npc<Happy>("We certainly do! ${if (target.id == "trader_stan") "I and my crewmen" else "We"} have access to items bought and sold from around the world. Would you like to take a look? Or would you like to charter a ship?")
                     choice {
                         trading()
@@ -69,26 +69,26 @@ class CharterShip : Script {
                         if (target.id != "trader_stan") {
                             option("Isn't it tricky to sail about in those clothes?") {
                                 player<Quiz>("Isn't it tricky to sail about in those clothes?")
-                                npc<Surprised>("Tricky? Tricky!")
-                                npc<Talk>("Do you have even the slightest idea how tricky it is to sail in this stuff?")
+                                npc<Shock>("Tricky? Tricky!")
+                                npc<Neutral>("Do you have even the slightest idea how tricky it is to sail in this stuff?")
                                 npc<Shifty>("Some of us tried tearing it and arguing that it was too fragile to wear when on a boat, but he just had it enchanted to re-stitch itself.")
-                                player<Talk>("Wow, that's kind of harsh.")
-                                npc<Upset>("Anyway, would you like to take a look at our exotic wares from around the world? Or would you like to charter a ship?")
+                                player<Neutral>("Wow, that's kind of harsh.")
+                                npc<Sad>("Anyway, would you like to take a look at our exotic wares from around the world? Or would you like to charter a ship?")
                                 choice {
                                     trading()
                                     charter(target)
-                                    option<Upset>("No thanks.")
+                                    option<Sad>("No thanks.")
                                 }
                             }
                         }
-                        option<Upset>("No thanks.")
+                        option<Sad>("No thanks.")
                     }
                 }
                 option("Yes, I would like to charter a ship.") {
-                    player<Talk>("Yes, I would like to charter a ship.")
-                    npc<Talk>("Certainly sir. Where would you like to go?")
+                    player<Neutral>("Yes, I would like to charter a ship.")
+                    npc<Neutral>("Certainly sir. Where would you like to go?")
                 }
-                option<Upset>("No thanks.")
+                option<Sad>("No thanks.")
             }
         }
 
@@ -142,14 +142,14 @@ class CharterShip : Script {
     }
 
     fun ChoiceOption.trading() {
-        option<Talk>("Yes, let's see what you're trading.") {
+        option<Neutral>("Yes, let's see what you're trading.") {
             openShop("trader_stans_trading_post")
         }
     }
 
     fun ChoiceOption.charter(target: NPC) {
-        option<Talk>("Yes, I would like to charter a ship.") {
-            npc<Talk>("Certainly sir. Where would you like to go?")
+        option<Neutral>("Yes, I would like to charter a ship.") {
+            npc<Neutral>("Certainly sir. Where would you like to go?")
             set("charter_ship", location(target))
             open("charter_ship_map")
         }

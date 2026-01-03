@@ -21,21 +21,21 @@ class FatherUrhney : Script {
         npcOperate("Talk-to", "father_urhney") {
             npc<Frustrated>("Go away! I'm meditating!")
             choice {
-                option<Neutral>("Well, that's friendly.") {
+                option<Idle>("Well, that's friendly.") {
                     npc<Frustrated>("I SAID go AWAY.")
-                    player<Neutral>("Okay, okay... sheesh, what a grouch.")
+                    player<Idle>("Okay, okay... sheesh, what a grouch.")
                 }
                 if (quest("the_restless_ghost") == "started") {
                     option<Happy>("Father Aereck sent me to talk to you.") {
                         npc<Angry>("I suppose I'd better talk to you then. What problems has he got himself into this time?")
                         choice {
-                            option<Neutral>("He's got a ghost haunting his graveyard.") {
+                            option<Idle>("He's got a ghost haunting his graveyard.") {
                                 ghost()
                             }
                             option<Quiz>("You mean he gets himself into lots of problems?") {
-                                npc<Neutral>("Yeah. For example, when we were trainee priests he kept on getting stuck up bell ropes.")
+                                npc<Idle>("Yeah. For example, when we were trainee priests he kept on getting stuck up bell ropes.")
                                 npc<Angry>("Anyway. I don't have time for chitchat. What's his problem THIS time?")
-                                player<Neutral>("He's got a ghost haunting his graveyard.")
+                                player<Idle>("He's got a ghost haunting his graveyard.")
                                 ghost()
                             }
                         }
@@ -61,21 +61,21 @@ class FatherUrhney : Script {
                             item("ghostspeak_amulet", 200, "Father Urhney hands you an amulet.")
                             set("i_cant_hear_dead_people_task", true)
                             npc<Angry>("Be more careful this time.")
-                            player<Neutral>("Okay, I'll try to be.")
+                            player<Idle>("Okay, I'll try to be.")
                         }
                     }
                 }
-                option<Neutral>("I've come to repossess your house.") {
-                    npc<Surprised>("Under what grounds???")
+                option<Idle>("I've come to repossess your house.") {
+                    npc<Shock>("Under what grounds???")
                     choice {
-                        option<Neutral>("Repeated failure on mortgage repayments.") {
+                        option<Idle>("Repeated failure on mortgage repayments.") {
                             npc<Frustrated>("What?")
                             npc<Frustrated>("But... I don't have a mortgage! I built this house myself!")
-                            player<Neutral>("Sorry. I must have got the wrong address. All the houses look the same around here.")
+                            player<Idle>("Sorry. I must have got the wrong address. All the houses look the same around here.")
                             npc<Frustrated>("What? What houses? What ARE you talking about???")
-                            player<Neutral>("Never mind.")
+                            player<Idle>("Never mind.")
                         }
-                        option<Sad>("I don't know. I just wanted this house...") {
+                        option<Disheartened>("I don't know. I just wanted this house...") {
                             npc<Frustrated>("Oh... go away and stop wasting my time!")
                         }
                     }
@@ -92,9 +92,9 @@ class FatherUrhney : Script {
     suspend fun Player.ghost() {
         npc<Angry>("Oh, the silly fool.")
         npc<Angry>("I leave town for just five months, and ALREADY he can't manage.")
-        npc<Sad>("(sigh)")
+        npc<Disheartened>("(sigh)")
         npc<Angry>("Well, I can't go back and exorcise it. I vowed not to leave this place. Until I had done a full two years of prayer and meditation.")
-        npc<Neutral>("Tell you what I can do though; take this amulet.")
+        npc<Idle>("Tell you what I can do though; take this amulet.")
         set("the_restless_ghost", "ghost")
         if (inventory.isFull()) {
             floorItems.add(tile, "ghostspeak_amulet", disappearTicks = 300, owner = this)
@@ -102,9 +102,9 @@ class FatherUrhney : Script {
             inventory.add("ghostspeak_amulet")
         }
         item("ghostspeak_amulet", 200, "Father Urhney hands you an amulet.")
-        npc<Neutral>("It is an Amulet of Ghostspeak.")
-        npc<Neutral>("So called, because when you wear it you can speak to ghosts. A lot of ghosts are doomed to be ghosts because they have left some important task uncompleted.")
-        npc<Neutral>("Maybe if you know what this task is, you can get rid of the ghost. I'm not making any guarantees mind you, but it is the best I can do right now.")
-        player<Neutral>("Thank you. I'll give it a try!")
+        npc<Idle>("It is an Amulet of Ghostspeak.")
+        npc<Idle>("So called, because when you wear it you can speak to ghosts. A lot of ghosts are doomed to be ghosts because they have left some important task uncompleted.")
+        npc<Idle>("Maybe if you know what this task is, you can get rid of the ghost. I'm not making any guarantees mind you, but it is the best I can do right now.")
+        player<Idle>("Thank you. I'll give it a try!")
     }
 }

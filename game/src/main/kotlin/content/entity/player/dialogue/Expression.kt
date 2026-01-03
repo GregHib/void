@@ -3,7 +3,7 @@ package content.entity.player.dialogue
 sealed class Expression
 
 data object Admit : Expression()
-data object Afraid : Expression()
+data object Scared : Expression()
 data object Amazed : Expression()
 data object Frustrated : Expression()
 data object AngryFadeIn : Expression()
@@ -12,7 +12,7 @@ data object Blink : Expression()
 data object Blinking : Expression()
 data object Happy : Expression()
 data object Chicken : Expression()
-data object Chuckle : Expression()
+data object Laugh : Expression()
 data object Condescending : Expression()
 data object Cry : Expression()
 data object Cursing : Expression()
@@ -27,33 +27,28 @@ data object Giggles : Expression()
 data object Goofy : Expression()
 data object Pleased : Expression()
 data object Hysterics : Expression()
-data object Laugh : Expression() // TODO
+data object Cackle : Expression()
 data object LookDown : Expression()
 data object Mad : Expression()
 data object No : Expression()
 data object NoDisgust : Expression()
-data object RollEyes : Expression()
-data object Sad : Expression() // TODO
-data object Scared : Expression()
+data object Bored : Expression()
+data object Disheartened : Expression()
+data object Terrified : Expression()
 data object Shaking : Expression()
-data object Shock : Expression() // TODO
+data object Horrified : Expression()
 data object Sneer : Expression()
 data object Sob : Expression()
-data object Surprised : Expression()
+data object Shock : Expression()
 data object Shifty : Expression()
-data object Talk : Expression()
-data object Neutral : Expression() // TODO
+data object Neutral : Expression()
+data object Idle : Expression()
 data object Teary : Expression()
 data object Unamused : Expression()
-data object Uncertain : Expression()
+data object Confused : Expression()
 data object Unimpressed : Expression()
 data object Unstable : Expression()
 data object Quiz : Expression()
-data object Upset : Expression()
+data object Sad : Expression()
 data object Yes : Expression()
 data object DoorHead : Expression()
-
-/*
-    chant
-    human_sleep
- */

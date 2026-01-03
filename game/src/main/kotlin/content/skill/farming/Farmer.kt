@@ -1,9 +1,9 @@
 package content.skill.farming
 
+import content.entity.player.dialogue.Confused
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
-import content.entity.player.dialogue.Uncertain
-import content.entity.player.dialogue.Upset
+import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -31,22 +31,22 @@ class Farmer(
                     val variable: String = target["patch"] ?: return@choice
                     if (variable.contains("tree") && variable.substringBeforeLast("_").endsWith("_dead")) {
                         option<Quiz>("Would you chop my ${if (variable.contains("fruit_tree")) "fruit " else ""}tree down for me?") {
-                            npc<Uncertain>("Why? You look like you could chop it down yourself!")
+                            npc<Confused>("Why? You look like you could chop it down yourself!")
                             choice {
-                                option<Talk>("Yes, you're right - I'll do it myself.")
-                                option<Talk>("I can't be bothered - I'd rather pay you to do it.") {
-                                    npc<Talk>("Well, it's a lot of hard work - if you pay me 200 Coins I'll chop it down for you.")
+                                option<Neutral>("Yes, you're right - I'll do it myself.")
+                                option<Neutral>("I can't be bothered - I'd rather pay you to do it.") {
+                                    npc<Neutral>("Well, it's a lot of hard work - if you pay me 200 Coins I'll chop it down for you.")
                                     if (inventory.contains("coins", 200)) {
-                                        option<Upset>("I don't have 200 Coins I'm afraid.")
+                                        option<Sad>("I don't have 200 Coins I'm afraid.")
                                         return@option
                                     }
                                     choice {
-                                        option<Talk>("Here's 200 Coins - chop my tree down please.") {
+                                        option<Neutral>("Here's 200 Coins - chop my tree down please.") {
                                             if (inventory.remove("coins", 200)) {
                                                 chopDownTree(variable)
                                             }
                                         }
-                                        option<Upset>("I don't want to pay that much, sorry.")
+                                        option<Sad>("I don't want to pay that much, sorry.")
                                     }
                                 }
                             }
@@ -58,7 +58,7 @@ class Farmer(
                     }
                 } else if (target.contains("north_patch")) {
                     option<Quiz>("Would you look after my crops for me?") {
-                        npc<Talk>("I might - which patch were you thinking of?")
+                        npc<Neutral>("I might - which patch were you thinking of?")
                         choice {
                             option("The northwestern allotment") {
                                 val variable: String = target["north_patch"] ?: return@option
@@ -72,7 +72,7 @@ class Farmer(
                     }
                 }
                 option<Quiz>("Can you give me any farming advice?") {
-                    npc<Talk>(
+                    npc<Neutral>(
                         when (random.nextInt(11)) {
                             0 -> "There is a special patch for growing Belladonna - I believe that it is somewhere near Draynor Manor, where the ground is a tad 'unblessed'"
                             1 -> "Hops are good for brewing ales. I believe there's a brewery up in Keldagrim somewhere, and I've heard rumours that a place called Phasmatys used to be good for that type of thing. 'Fore they all died, of course."
@@ -88,7 +88,7 @@ class Farmer(
                         },
                     )
                 }
-                option<Talk>("I'll come back another time.")
+                option<Neutral>("I'll come back another time.")
             }
         }
 
@@ -99,7 +99,7 @@ class Farmer(
                 return@npcOperate
             }
             if (!inventory.contains("coins", 200)) {
-                npc<Upset>("I'll want 200 Coins to chop down your tree.")
+                npc<Sad>("I'll want 200 Coins to chop down your tree.")
                 return@npcOperate
             }
             choice("Pay 200 Coins to have your tree chopped down?") {
@@ -154,33 +154,33 @@ class Farmer(
             return
         }
         if (value.endsWith("diseased")) {
-            npc<Uncertain>("That patch is diseased - you should cure it before asking me to be responsible for it!")
+            npc<Confused>("That patch is diseased - you should cure it before asking me to be responsible for it!")
             return
         }
         if (value.startsWith("stump")) {
-            npc<Uncertain>("That's a stump. It'll grow back if you just leave it a alone for a while.")
+            npc<Confused>("That's a stump. It'll grow back if you just leave it a alone for a while.")
             return
         }
         val stage = value.substringAfterLast("_")
         if (stage.startsWith("life") || stage.startsWith("claim")) {
-            npc<Uncertain>("That patch is already fully grown! I don't know what you want me to do with it!")
+            npc<Confused>("That patch is already fully grown! I don't know what you want me to do with it!")
             return
         }
         if (get("${variable}_protect", false)) {
-            npc<Uncertain>("I'm already looking after that patch for you.")
+            npc<Confused>("I'm already looking after that patch for you.")
             return
         }
         val def = objectDefinitions.get("${value.substringBeforeLast("_")}_fullygrown")
         val item: String = def.getOrNull("harvest") ?: return
         val harvest = enumDefinitions.get("farming_protection").getString(itemDefinitions.get(item).id).substringAfter(":")
-        npc<Talk>("If you like, but I want $harvest for that.")
+        npc<Neutral>("If you like, but I want $harvest for that.")
         val (required, noted) = requiredItems(item)
         if (!inventory.remove(required) && (noted.isEmpty() || !inventory.remove(noted))) {
-            player<Upset>("I'm afraid I don't have any of those at the moment.")
-            npc<Talk>("Well, I'm not wasting my time for free.")
+            player<Sad>("I'm afraid I don't have any of those at the moment.")
+            npc<Neutral>("Well, I'm not wasting my time for free.")
             return
         }
-        npc<Talk>("That'll do nicely, ${if (male) "sir" else "madam"}. Leave it with me - I'll make sure that patch grows for you.")
+        npc<Neutral>("That'll do nicely, ${if (male) "sir" else "madam"}. Leave it with me - I'll make sure that patch grows for you.")
         set("${variable}_protect", true)
     }
 }

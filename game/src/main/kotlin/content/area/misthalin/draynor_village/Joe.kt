@@ -21,7 +21,7 @@ class Joe : Script {
                         }
                         guardLife()
                         guardDreams()
-                        option<Talk>("I had better leave, I don't want trouble.")
+                        option<Neutral>("I had better leave, I don't want trouble.")
                     }
                 }
                 "joe_beer" -> anotherBeer()
@@ -32,14 +32,14 @@ class Joe : Script {
                 }
                 "prince_ali_disguise" -> {
                     npc<Drunk>("Did yoush say something about shome Prince?")
-                    player<Uncertain>("No.")
+                    player<Confused>("No.")
                     npc<Drunk>("Oh... okay.")
                 }
                 "completed" -> {
-                    npc<Talk>("Halt! Who goes there?")
+                    npc<Neutral>("Halt! Who goes there?")
                     player<Happy>("Hi friend, I am just checking out things here.")
-                    npc<Sad>("The Prince got away, I am in trouble. I better not talk to you, they are not sure I was drunk.")
-                    player<Talk>("I won't say anything, your secret is safe with me.")
+                    npc<Disheartened>("The Prince got away, I am in trouble. I better not talk to you, they are not sure I was drunk.")
+                    player<Neutral>("I won't say anything, your secret is safe with me.")
                 }
                 else -> {
                     player<Quiz>("Hi. Who are you guarding here?")
@@ -55,7 +55,7 @@ class Joe : Script {
                     beer()
                 }
                 "joe_beer" -> anotherBeer()
-                else -> player<Talk>("I don't see any need to give the guard my beer. I'll keep it for myself.")
+                else -> player<Neutral>("I don't see any need to give the guard my beer. I'll keep it for myself.")
             }
         }
     }
@@ -68,7 +68,7 @@ class Joe : Script {
 
     suspend fun Player.beer() {
         npc<Happy>("Ah, that would be lovely. Only one though, just to wet my throat.")
-        player<Talk>("Of course. It must be tough being here without a drink.")
+        player<Neutral>("Of course. It must be tough being here without a drink.")
         set("prince_ali_rescue", "joe_beer")
         inventory.remove("beer")
         sound("drink")
@@ -80,11 +80,11 @@ class Joe : Script {
     suspend fun Player.anotherBeer() {
         player<Quiz>("How are you? Still ok? Not too drunk?")
         if (!inventory.contains("beer", 2)) {
-            npc<Talk>("No, I don't get drunk from only one drink. I reckon I'd need at least two more for that. Still, thanks for the beer.")
+            npc<Neutral>("No, I don't get drunk from only one drink. I reckon I'd need at least two more for that. Still, thanks for the beer.")
             return
         }
         player<Happy>("Would you care for another beer, my friend?")
-        npc<RollEyes>("I'd better not. I don't want to be drunk on duty.")
+        npc<Bored>("I'd better not. I don't want to be drunk on duty.")
         player<Happy>("Here, just keep these for later. I hate to see a thirsty guard.")
         set("prince_ali_rescue", "joe_beers")
         inventory.remove("beer", 2)
@@ -94,9 +94,9 @@ class Joe : Script {
     }
 
     fun ChoiceOption.guardLife() {
-        option<Talk>("Tell me about the life of a guard.") {
-            npc<RollEyes>("Well, the hours are good, but most of those hours are a drag.")
-            npc<Upset>("Sometimes I wonder if I should have spent more time learning when I was a young boy. Maybe I wouldn't be here now, scared of Keli.")
+        option<Neutral>("Tell me about the life of a guard.") {
+            npc<Bored>("Well, the hours are good, but most of those hours are a drag.")
+            npc<Sad>("Sometimes I wonder if I should have spent more time learning when I was a young boy. Maybe I wouldn't be here now, scared of Keli.")
             choice {
                 guardDreams()
                 betterGo()
@@ -105,20 +105,20 @@ class Joe : Script {
     }
 
     fun ChoiceOption.guardDreams() {
-        option<Talk>("What did you want to be when you were a boy?") {
-            npc<RollEyes>("Well, I loved to sit by the lake, with my toes in the water. I'd shoot the fish with my bow and arrow.")
-            player<Uncertain>("That's a strange hobby for a boy.")
+        option<Neutral>("What did you want to be when you were a boy?") {
+            npc<Bored>("Well, I loved to sit by the lake, with my toes in the water. I'd shoot the fish with my bow and arrow.")
+            player<Confused>("That's a strange hobby for a boy.")
             npc<Happy>("It kept us from goblin hunting, which was what most boys did.")
             npc<Angry>("Hang on... Why do you ask? What do you want?")
             choice {
                 option<Happy>("Hey, chill out. I won't cause you trouble.") {
-                    npc<Talk>("Sorry, it's hard to relax when I'm on duty. Stress of the job, and all.")
+                    npc<Neutral>("Sorry, it's hard to relax when I'm on duty. Stress of the job, and all.")
                     player<Quiz>("So why do you do it?")
-                    npc<Talk>("There's good money in it, and some of the shouting I rather like.")
+                    npc<Neutral>("There's good money in it, and some of the shouting I rather like.")
                     npc<Angry>("RESISTANCE IS USELESS!")
                     choice {
                         option<Happy>("So what do you buy with your great wages?") {
-                            npc<RollEyes>("Really, after working here, there's only time for a drink or three. All us guards go to the same pub and drink ourselves stupid.")
+                            npc<Bored>("Really, after working here, there's only time for a drink or three. All us guards go to the same pub and drink ourselves stupid.")
                             npc<Happy>("It's what I enjoy these days. I can't resist the sight of a really cold beer.")
                             choice {
                                 if (inventory.contains("beer")) {
@@ -132,8 +132,8 @@ class Joe : Script {
                         guardLife()
                         option<Happy>("Would you be interested in making a little more money?") {
                             npc<Angry>("What? Are you trying to bribe me? I may not be a great guard, but I am loyal. How dare you try to bribe me!")
-                            player<Surprised>("No, no, you've got the wrong idea, totally. I just wondered if you wanted some part-time bodyguard work.")
-                            npc<Talk>("Oh... sorry. No, I don't need money. As long as you were not offering me a bribe.")
+                            player<Shock>("No, no, you've got the wrong idea, totally. I just wondered if you wanted some part-time bodyguard work.")
+                            npc<Neutral>("Oh... sorry. No, I don't need money. As long as you were not offering me a bribe.")
                             choice {
                                 guardLife()
                                 guardDreams()
@@ -150,8 +150,8 @@ class Joe : Script {
     }
 
     fun ChoiceOption.betterGo() {
-        option<Talk>("I'd better go.") {
-            npc<Talk>("Thanks, I appreciate that. Talking on duty can be punished by having your mouth stitched up. These are tough people, make no mistake.")
+        option<Neutral>("I'd better go.") {
+            npc<Neutral>("Thanks, I appreciate that. Talking on duty can be punished by having your mouth stitched up. These are tough people, make no mistake.")
         }
     }
 }

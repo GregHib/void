@@ -13,19 +13,19 @@ class BarfyBill : Script {
 
     init {
         npcOperate("Talk-To", "barfy_bill") {
-            player<Neutral>("Hello there.")
-            npc<Neutral>("Oh! Hello there.")
+            player<Idle>("Hello there.")
+            npc<Idle>("Oh! Hello there.")
             choice {
-                option<Neutral>("Who are you?") {
-                    npc<Neutral>("My name is Ex Sea Captain Barfy Bill.")
+                option<Idle>("Who are you?") {
+                    npc<Idle>("My name is Ex Sea Captain Barfy Bill.")
                     player<Quiz>("Ex sea captain?")
-                    npc<Sad>("Yeah, I bought a lovely ship and was planning to make a fortune running her as a merchant vessel.")
+                    npc<Disheartened>("Yeah, I bought a lovely ship and was planning to make a fortune running her as a merchant vessel.")
                     player<Quiz>("Why are you not still sailing?")
-                    npc<Sad>("Chronic sea sickness. My first, and only, voyage was spent dry heaving over the rails.")
-                    npc<Neutral>("If I had known about the sea sickness I could have saved myself a lot of money.")
-                    player<Uncertain>("What are you up to now then?")
+                    npc<Disheartened>("Chronic sea sickness. My first, and only, voyage was spent dry heaving over the rails.")
+                    npc<Idle>("If I had known about the sea sickness I could have saved myself a lot of money.")
+                    player<Confused>("What are you up to now then?")
                     npc<Shifty>("Well my ship had a little fire related problem. Fortunately it was well insured.")
-                    npc<Neutral>("Anyway, I don't have to work anymore so I've taken to canoeing on the river.")
+                    npc<Idle>("Anyway, I don't have to work anymore so I've taken to canoeing on the river.")
                     npc<Happy>("I don't get river sick!")
                     npc<Quiz>("Would you like to know how to make a canoe?")
                     choice {
@@ -33,7 +33,7 @@ class BarfyBill : Script {
                             canoeing()
                         }
                         option("No") {
-                            player<Neutral>("No thanks, not right now.")
+                            player<Idle>("No thanks, not right now.")
                         }
                     }
                 }
@@ -48,11 +48,11 @@ class BarfyBill : Script {
         if (minimumCanoeLevel()) {
             return
         }
-        npc<Neutral>("It's really quite simple to make. Just walk down to that tree on the bank and chop it down.")
-        npc<Neutral>("When you have done that you can shape the log further with your axe to make a canoe.")
+        npc<Idle>("It's really quite simple to make. Just walk down to that tree on the bank and chop it down.")
+        npc<Idle>("When you have done that you can shape the log further with your axe to make a canoe.")
         when (levels.get(Skill.Woodcutting)) {
             in 12..26 -> {
-                npc<Neutral>("Hah! I can tell just by looking that you lack talent in woodcutting.")
+                npc<Idle>("Hah! I can tell just by looking that you lack talent in woodcutting.")
                 player<Quiz>("What do you mean?")
                 npc<Happy>("No Callouses! No Splinters! No camp fires littering the trail behind you.")
                 npc<Happy>("Anyway, the only 'canoe' you can make is a log. You'll be able to travel 1 stop along the river with a log canoe.")
@@ -71,9 +71,9 @@ class BarfyBill : Script {
             }
             else -> {
                 npc<Happy>("Hoo! You look like you know which end of an axe is which!")
-                npc<Neutral>("You can easily build one of those Wakas. Be careful if you travel into the Wilderness though.")
-                npc<Afraid>("I've heard tell of great evil in that blasted wasteland.")
-                player<Neutral>("Thanks for the warning Bill.")
+                npc<Idle>("You can easily build one of those Wakas. Be careful if you travel into the Wilderness though.")
+                npc<Scared>("I've heard tell of great evil in that blasted wasteland.")
+                player<Idle>("Thanks for the warning Bill.")
             }
         }
     }

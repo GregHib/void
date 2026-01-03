@@ -1,8 +1,8 @@
 package content.area.misthalin.lumbridge.windmill
 
 import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.*
 import content.quest.quest
 import world.gregs.voidps.engine.Script
@@ -22,7 +22,7 @@ class MillieMiller : Script {
         choice {
             option("I'm looking for extra fine flour.", { quest("cooks_assistant") == "started" && !holdsItem("extra_fine_flour") }) {
                 npc<Quiz>("What's wrong with ordinary flour?")
-                player<Talk>("Well, I'm no expert chef, but apparently it makes better cakes. This cake, you see, is for Duke Horacio.")
+                player<Neutral>("Well, I'm no expert chef, but apparently it makes better cakes. This cake, you see, is for Duke Horacio.")
                 npc<Happy>("Really? How marvellous! Well, I can sure help you out there. Go ahead and use the mill and I'll realign the millstones to produce extra fine flour. Anything else?")
                 set("cooks_assistant_talked_to_millie", 1)
                 choice {
@@ -40,7 +40,7 @@ class MillieMiller : Script {
     fun ChoiceOption.whoAreYou(): Unit = option<Quiz>("Who are you?") {
         npc<Happy>("I'm Miss Millicent Miller the Miller of Mill Lane Mill.Our family have been milling flour for generations.")
         player<Quiz>("Don't you ever get fed up with flour?")
-        npc<Talk>("It's a good business to be in. People will always need flour.")
+        npc<Neutral>("It's a good business to be in. People will always need flour.")
         menu()
     }
 

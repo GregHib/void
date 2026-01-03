@@ -1,7 +1,7 @@
 package content.area.misthalin.varrock.palace
 
-import content.entity.player.dialogue.Chuckle
-import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Idle
+import content.entity.player.dialogue.Laugh
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.type.*
@@ -12,7 +12,7 @@ class Reldo : Script {
 
     init {
         npcOperate("Talk-to", "reldo*") {
-            npc<Neutral>("Hello stranger.")
+            npc<Idle>("Hello stranger.")
             choice {
                 anythingToTrade()
                 whatDoYouDo()
@@ -22,17 +22,17 @@ class Reldo : Script {
     }
 
     fun ChoiceOption.anythingToTrade() = option<Quiz>("Do you have anything to trade?") {
-        npc<Neutral>("Only knowledge.")
+        npc<Idle>("Only knowledge.")
         player<Quiz>("How much do you want for that then?")
-        npc<Chuckle>("No, sorry, that was just my little joke. I'm not the trading type.")
-        player<Neutral>("Ah well.")
+        npc<Laugh>("No, sorry, that was just my little joke. I'm not the trading type.")
+        player<Idle>("Ah well.")
     }
 
     fun ChoiceOption.whatDoYouDo() = option<Quiz>("What do you do?") {
-        npc<Neutral>("I am the palace librarian.")
-        player<Neutral>("Ah. That's why you're in the library then.")
-        npc<Neutral>("Yes.")
-        npc<Neutral>("Although I would probably be in here even if I didn't work here. I like reading. Someday I hope to catalogue all of the information stored in these books so all may read it.")
+        npc<Idle>("I am the palace librarian.")
+        player<Idle>("Ah. That's why you're in the library then.")
+        npc<Idle>("Yes.")
+        npc<Idle>("Although I would probably be in here even if I didn't work here. I like reading. Someday I hope to catalogue all of the information stored in these books so all may read it.")
     }
 
     fun ChoiceOption.aboutImcandoDwarves() = option<Quiz>(
@@ -42,12 +42,12 @@ class Reldo : Script {
             stage == "started" || stage == "find_thurgo"
         },
     ) {
-        npc<Neutral>("The Imcando dwarves, you say?")
-        npc<Neutral>("Ah yes... for many hundreds of years they were the world's most skilled smiths. They used secret smithing knowledge passed down from generation to generation.")
-        npc<Neutral>("Unfortunately, about a century ago, the once thriving race was wiped out during the barbarian invasions of that time.")
+        npc<Idle>("The Imcando dwarves, you say?")
+        npc<Idle>("Ah yes... for many hundreds of years they were the world's most skilled smiths. They used secret smithing knowledge passed down from generation to generation.")
+        npc<Idle>("Unfortunately, about a century ago, the once thriving race was wiped out during the barbarian invasions of that time.")
         player<Quiz>("So are there any Imcando left at all?")
-        npc<Neutral>("I believe a few of them survived, but with the bulk of their population destroyed their numbers have dwindled even further.")
-        npc<Neutral>("They tend to keep to themselves, and they tend not to tell people they're descendants of the Imcando, which is why people think the tribe is extinct. However...")
+        npc<Idle>("I believe a few of them survived, but with the bulk of their population destroyed their numbers have dwindled even further.")
+        npc<Idle>("They tend to keep to themselves, and they tend not to tell people they're descendants of the Imcando, which is why people think the tribe is extinct. However...")
         if (quest("the_knights_sword") == "started") {
             set("the_knights_sword", "find_thurgo")
         }

@@ -3,8 +3,8 @@ package content.area.kandarin.ardougne
 import content.entity.combat.hit.damage
 import content.entity.npc.shop.buy
 import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -24,13 +24,13 @@ class BartenderFlyingHorseInn : Script {
             player<Quiz>("What do you serve?")
             npc<Happy>("Beer!")
             choice {
-                option<Talk>("I'll have a beer then.") {
-                    npc<Talk>("Ok, that'll be two coins.")
+                option<Neutral>("I'll have a beer then.") {
+                    npc<Neutral>("Ok, that'll be two coins.")
                     if (buy("beer", 2)) {
                         message("You buy a pint of beer.")
                     }
                 }
-                option<Talk>("I'll not have anything then.")
+                option<Neutral>("I'll not have anything then.")
                 if (onBarCrawl(target)) {
                     option("I'm doing Alfred Grimhand's barcrawl.") {
                         barCrawl(target)

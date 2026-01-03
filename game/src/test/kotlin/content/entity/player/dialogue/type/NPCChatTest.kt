@@ -1,7 +1,7 @@
 package content.entity.player.dialogue.type
 
-import content.entity.player.dialogue.Laugh
-import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.Cackle
+import content.entity.player.dialogue.Neutral
 import io.mockk.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
@@ -64,7 +64,7 @@ internal class NPCChatTest : DialogueTest() {
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             dialogue {
-                npc<Talk>(text = text, clickToContinue = true)
+                npc<Neutral>(text = text, clickToContinue = true)
             }
             verify {
                 player.open(expected)
@@ -79,7 +79,7 @@ internal class NPCChatTest : DialogueTest() {
     fun `Long line wraps npc chat`() {
         val text = "This is one long dialogue text line which should be wrapped into two lines."
         dialogue {
-            npc<Talk>(text = text, clickToContinue = true)
+            npc<Neutral>(text = text, clickToContinue = true)
         }
         verify {
             player.open("dialogue_npc_chat2")
@@ -100,7 +100,7 @@ internal class NPCChatTest : DialogueTest() {
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             dialogue {
-                npc<Talk>(text = text, clickToContinue = false)
+                npc<Neutral>(text = text, clickToContinue = false)
             }
             verify {
                 player.open(expected)
@@ -114,7 +114,7 @@ internal class NPCChatTest : DialogueTest() {
     @Test
     fun `Sending five or more lines to chat splits them up`() {
         dialogue {
-            npc<Talk>(text = "\nOne\nTwo\nThree\nFour\nFive")
+            npc<Neutral>(text = "\nOne\nTwo\nThree\nFour\nFive")
         }
         (player.dialogueSuspension as ContinueSuspension).resume(Unit)
         verify(exactly = 2) {
@@ -130,7 +130,7 @@ internal class NPCChatTest : DialogueTest() {
         player.client = client
         npc = NPC(id = "john")
         dialogue {
-            npc<Talk>(text = "Text", largeHead = large)
+            npc<Neutral>(text = "Text", largeHead = large)
         }
         verify {
             client.npcDialogueHead(InterfaceDefinition.pack(4, 321), 123)
@@ -141,7 +141,7 @@ internal class NPCChatTest : DialogueTest() {
     @Test
     fun `Send custom npc chat title`() {
         dialogue {
-            npc<Talk>(text = "text", title = "Bob")
+            npc<Neutral>(text = "text", title = "Bob")
         }
         verify {
             interfaces.sendText("dialogue_npc_chat1", "title", "Bob")
@@ -152,7 +152,7 @@ internal class NPCChatTest : DialogueTest() {
     fun `Send npc chat`() {
         var resumed = false
         dialogue {
-            npc<Laugh>(text = "text", largeHead = true)
+            npc<Cackle>(text = "text", largeHead = true)
             resumed = true
         }
         (player.dialogueSuspension as ContinueSuspension).resume(Unit)
@@ -168,7 +168,7 @@ internal class NPCChatTest : DialogueTest() {
         every { player.open("dialogue_npc_chat1") } returns false
         assertThrows<IllegalStateException> {
             dialogueBlocking {
-                npc<Talk>(text = "text")
+                npc<Neutral>(text = "text")
             }
         }
         coVerify(exactly = 0) {
@@ -184,7 +184,7 @@ internal class NPCChatTest : DialogueTest() {
         player.client = client
         npc = NPC("bill")
         dialogue {
-            npc<Talk>(npcId = "jim", title = "Bill", text = "text")
+            npc<Neutral>(npcId = "jim", title = "Bill", text = "text")
         }
         coVerify {
             interfaces.sendText("dialogue_npc_chat1", "title", "Bill")

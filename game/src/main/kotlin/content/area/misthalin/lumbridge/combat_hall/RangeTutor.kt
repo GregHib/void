@@ -38,7 +38,7 @@ class RangeTutor : Script {
         }
     }
 
-    fun ChoiceOption.rangedTraining(): Unit = option<Neutral>("How can I train my Ranged?") {
+    fun ChoiceOption.rangedTraining(): Unit = option<Idle>("How can I train my Ranged?") {
         npc<Happy>("To start with you'll need a bow and arrows, you were given a Shortbow and some arrows when you arrived here from Tutorial island.")
         npc<Happy>("Alternatively, you can claim a training bow and some arrows from me.")
         npc<Happy>("Mikasi, the Magic Combat tutor and I both give out items every 30 minutes, however you must choose whether you want runes or ranged equipment.")
@@ -52,7 +52,7 @@ class RangeTutor : Script {
         npc<Happy>("Once you have your bow and arrows, equip them by selecting their Wield option in your inventory.")
         npc<Happy>("You can change the way you attack by going to the combat options tab. There are three attack styles for bows. Those styles are Accurate, Rapid and Longrange.")
         npc<Amazed>("Accurate increases your bows attack accuracy. Rapid will increase your attack speed with the bow. Longrange will let you attack your enemies from a greater distance.")
-        npc<Neutral>("If you are ever in the market for a new bow or some arrows, you should head on over to Lowe's Archery Emporium in Varrock.")
+        npc<Idle>("If you are ever in the market for a new bow or some arrows, you should head on over to Lowe's Archery Emporium in Varrock.")
         menu("Is there anything else you want to know?")
     }
 
@@ -84,13 +84,13 @@ class RangeTutor : Script {
         }
         if (!ownsItem("training_bow")) {
             if (inventory.isFull()) {
-                npc<Upset>("If you had enough space in your inventory I'd give you a training bow, come back when you do.")
+                npc<Sad>("If you had enough space in your inventory I'd give you a training bow, come back when you do.")
                 inventoryFull()
                 return
             }
         }
         if (inventory.spaces < 2) {
-            npc<Upset>("If you had enough space in your inventory I'd give you some arrows, come back when you do.")
+            npc<Sad>("If you had enough space in your inventory I'd give you some arrows, come back when you do.")
             inventoryFull()
             return
         }
