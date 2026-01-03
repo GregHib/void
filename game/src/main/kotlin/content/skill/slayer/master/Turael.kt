@@ -59,7 +59,9 @@ class Turael : Script {
                 option<Quiz>("Have you any rewards for me, or anything to trade?") {
                     open("slayer_rewards_learn")
                 }
-                option<Talk>("I'm here about blessed axes again.", filter = { questCompleted("animal_magnetism") })
+                if (questCompleted("animal_magnetism")) {
+                    option<Talk>("I'm here about blessed axes again.")
+                }
             }
         }
 

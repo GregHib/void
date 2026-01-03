@@ -42,26 +42,28 @@ class GnomeTrainer : Script {
                         message("You need an Agility level of 85 to attempt the improved gnome course.")
                     }
                 }
-                option<Quiz>("Can I talk about rewards?", filter = { get("gnome_course_advanced_laps", 0) > 0 }) {
-                    if (containsVarbit("agility_course_rewards_claimed", "agile_legs")) {
-                        npc<Quiz>("Of course. How can I help?")
-                        player<Quiz>("Any chance of some more Agile legs?")
-                        if (inventory.add("agile_legs")) {
-                            npc<Neutral>("Here you go, try not to lose them.")
+                if (get("gnome_course_advanced_laps", 0) > 0) {
+                    option<Quiz>("Can I talk about rewards?") {
+                        if (containsVarbit("agility_course_rewards_claimed", "agile_legs")) {
+                            npc<Quiz>("Of course. How can I help?")
+                            player<Quiz>("Any chance of some more Agile legs?")
+                            if (inventory.add("agile_legs")) {
+                                npc<Neutral>("Here you go, try not to lose them.")
+                            } else {
+                                inventoryFull() // TODO correct message
+                            }
+                        } else if (get("gnome_course_advanced_laps", 0) >= 250) {
+                            npc<Happy>("Well, it looks like you've completed our challenge! Take this as a reward: some Agile legs.")
+                            npc<Happy>("You'll find yourself much lighter than usual while wearing them. They are made from the toughest material we gnomes could find, so it might even protect you in combat.")
+                            if (inventory.add("agile_legs")) {
+                                addVarbit("agility_course_rewards_claimed", "agile_legs")
+                                npc<Happy>("There you go. Enjoy!")
+                            } else {
+                                inventoryFull() // TODO correct message
+                            }
                         } else {
-                            inventoryFull() // TODO correct message
+                            npc<Neutral>("Well, you've still got work to do. Your lap count is ${get("gnome_course_advanced_laps", 0)}. It's 250 successful laps for the reward!")
                         }
-                    } else if (get("gnome_course_advanced_laps", 0) >= 250) {
-                        npc<Happy>("Well, it looks like you've completed our challenge! Take this as a reward: some Agile legs.")
-                        npc<Happy>("You'll find yourself much lighter than usual while wearing them. They are made from the toughest material we gnomes could find, so it might even protect you in combat.")
-                        if (inventory.add("agile_legs")) {
-                            addVarbit("agility_course_rewards_claimed", "agile_legs")
-                            npc<Happy>("There you go. Enjoy!")
-                        } else {
-                            inventoryFull() // TODO correct message
-                        }
-                    } else {
-                        npc<Neutral>("Well, you've still got work to do. Your lap count is ${get("gnome_course_advanced_laps", 0)}. It's 250 successful laps for the reward!")
                     }
                 }
                 option<Talk>("I'm done for now. Bye.") {

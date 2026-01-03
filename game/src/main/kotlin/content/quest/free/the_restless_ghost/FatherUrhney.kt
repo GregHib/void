@@ -25,42 +25,44 @@ class FatherUrhney : Script {
                     npc<Frustrated>("I SAID go AWAY.")
                     player<Neutral>("Okay, okay... sheesh, what a grouch.")
                 }
-                option<Happy>("Father Aereck sent me to talk to you.", filter = { quest("the_restless_ghost") == "started" }) {
-                    npc<Angry>("I suppose I'd better talk to you then. What problems has he got himself into this time?")
-                    choice {
-                        option<Neutral>("He's got a ghost haunting his graveyard.") {
-                            ghost()
-                        }
-                        option<Quiz>("You mean he gets himself into lots of problems?") {
-                            npc<Neutral>("Yeah. For example, when we were trainee priests he kept on getting stuck up bell ropes.")
-                            npc<Angry>("Anyway. I don't have time for chitchat. What's his problem THIS time?")
-                            player<Neutral>("He's got a ghost haunting his graveyard.")
-                            ghost()
+                if (quest("the_restless_ghost") == "started") {
+                    option<Happy>("Father Aereck sent me to talk to you.") {
+                        npc<Angry>("I suppose I'd better talk to you then. What problems has he got himself into this time?")
+                        choice {
+                            option<Neutral>("He's got a ghost haunting his graveyard.") {
+                                ghost()
+                            }
+                            option<Quiz>("You mean he gets himself into lots of problems?") {
+                                npc<Neutral>("Yeah. For example, when we were trainee priests he kept on getting stuck up bell ropes.")
+                                npc<Angry>("Anyway. I don't have time for chitchat. What's his problem THIS time?")
+                                player<Neutral>("He's got a ghost haunting his graveyard.")
+                                ghost()
+                            }
                         }
                     }
                 }
-                option<Happy>("I've lost the Amulet of Ghostspeak.", filter = {
-                    val stage = quest("the_restless_ghost")
-                    stage == "ghost" || stage == "mining_spot" || stage == "found_skull" || stage == "completed"
-                }) {
-                    statement("Father Urhney sighs.")
-                    if (holdsItem("ghostspeak_amulet")) {
-                        npc<Angry>("What are you talking about? I can see you've got it with you!")
-                        return@option
-                    }
-                    if (bank.contains("ghostspeak_amulet")) {
-                        npc<Angry>("You come here wasting my time... Has it even occurred to you that you've got it stored somewhere? Now GO AWAY!")
-                        return@option
-                    }
-                    if (inventory.isFull()) {
-                        npc<Angry>("How careless can you get? Those things aren't easy to come by you know! Now clear some space in your inventory and I'll give you another one.")
-                    } else {
-                        npc<Angry>("How careless can you get? Those things aren't easy to come by you know! It's a good job I've got a spare.")
-                        inventory.add("ghostspeak_amulet")
-                        item("ghostspeak_amulet", 200, "Father Urhney hands you an amulet.")
-                        set("i_cant_hear_dead_people_task", true)
-                        npc<Angry>("Be more careful this time.")
-                        player<Neutral>("Okay, I'll try to be.")
+                val stage = quest("the_restless_ghost")
+                if (stage == "ghost" || stage == "mining_spot" || stage == "found_skull" || stage == "completed") {
+                    option<Happy>("I've lost the Amulet of Ghostspeak.") {
+                        statement("Father Urhney sighs.")
+                        if (holdsItem("ghostspeak_amulet")) {
+                            npc<Angry>("What are you talking about? I can see you've got it with you!")
+                            return@option
+                        }
+                        if (bank.contains("ghostspeak_amulet")) {
+                            npc<Angry>("You come here wasting my time... Has it even occurred to you that you've got it stored somewhere? Now GO AWAY!")
+                            return@option
+                        }
+                        if (inventory.isFull()) {
+                            npc<Angry>("How careless can you get? Those things aren't easy to come by you know! Now clear some space in your inventory and I'll give you another one.")
+                        } else {
+                            npc<Angry>("How careless can you get? Those things aren't easy to come by you know! It's a good job I've got a spare.")
+                            inventory.add("ghostspeak_amulet")
+                            item("ghostspeak_amulet", 200, "Father Urhney hands you an amulet.")
+                            set("i_cant_hear_dead_people_task", true)
+                            npc<Angry>("Be more careful this time.")
+                            player<Neutral>("Okay, I'll try to be.")
+                        }
                     }
                 }
                 option<Neutral>("I've come to repossess your house.") {

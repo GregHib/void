@@ -131,43 +131,46 @@ class Kaqemeex : Script {
                 npc<Happy>("Good luck with your Herblore practices, and a good day to you.")
                 player<Happy>("Thanks for your help.")
             }
-            option<Quiz>("May I buy a Herblore skillcape, please?", filter = { hasMax(Skill.Herblore, 99) }) {
-                if (inventory.spaces < 2) {
-                    npc<Sad>("Unfortunately all Skillcapes are only available with a free hood; it's part of a skill promotion deal - buy one get one free, you know. So you'll need to free up some inventory space before I can sell you one.")
-                    return@option
-                }
-                if (!inventory.contains("coins", 99000)) {
-                    npc<Sad>("Most certainly, but I must ask for a donation of 99,000 coins to cover the expense of the cape.")
-                    return@option
-                }
-                npc<Neutral>("Most certainly; the Nardah Herbalist will recognize this cape and create unfinished potions for you and it may be searched for a pestle and mortar.")
-                npc<Neutral>("It has been a pleasure to watch you grow as a herbalist. I am privileged to have been instrumental in your learning, but I must ask for a donation of 99,000 coins to cover the expense of the cape.")
-                choice {
-                    option<Sad>("I'm afraid that's too much money for me.") {
-                        npc<Neutral>("Not at all; there are many other adventurers who would love the opportunity to purchase such a prestigious item. You can find me here if you change your mind.")
+            if (hasMax(Skill.Herblore, 99)) {
+                option<Quiz>("May I buy a Herblore skillcape, please?") {
+                    if (inventory.spaces < 2) {
+                        npc<Sad>("Unfortunately all Skillcapes are only available with a free hood; it's part of a skill promotion deal - buy one get one free, you know. So you'll need to free up some inventory space before I can sell you one.")
+                        return@option
                     }
-                    option<Happy>("Okay, here's 99,000 coins.") {
-                        inventory.transaction {
-                            add("herblore_cape")
-                            add("herblore_hood")
-                            remove("coins", 99000)
+                    if (!inventory.contains("coins", 99000)) {
+                        npc<Sad>("Most certainly, but I must ask for a donation of 99,000 coins to cover the expense of the cape.")
+                        return@option
+                    }
+                    npc<Neutral>("Most certainly; the Nardah Herbalist will recognize this cape and create unfinished potions for you and it may be searched for a pestle and mortar.")
+                    npc<Neutral>("It has been a pleasure to watch you grow as a herbalist. I am privileged to have been instrumental in your learning, but I must ask for a donation of 99,000 coins to cover the expense of the cape.")
+                    choice {
+                        option<Sad>("I'm afraid that's too much money for me.") {
+                            npc<Neutral>("Not at all; there are many other adventurers who would love the opportunity to purchase such a prestigious item. You can find me here if you change your mind.")
                         }
-                        when (inventory.transaction.error) {
-                            TransactionError.None -> npc<Happy>("Good luck to you, $name.")
-                            is TransactionError.Deficient -> {
-                                player<Upset>("But, unfortunately, I was mistaken.")
-                                npc<Neutral>("Well, come back and see me when you do.")
+                        option<Happy>("Okay, here's 99,000 coins.") {
+                            inventory.transaction {
+                                add("herblore_cape")
+                                add("herblore_hood")
+                                remove("coins", 99000)
                             }
-                            is TransactionError.Full, is TransactionError.Invalid -> {
-                                npc<Upset>("Unfortunately all Skillcapes are only available with a free hood, it's part of a skill promotion deal; buy one get one free, you know. So you'll need to free up some inventory space before I can sell you one.")
+                            when (inventory.transaction.error) {
+                                TransactionError.None -> npc<Happy>("Good luck to you, $name.")
+                                is TransactionError.Deficient -> {
+                                    player<Upset>("But, unfortunately, I was mistaken.")
+                                    npc<Neutral>("Well, come back and see me when you do.")
+                                }
+                                is TransactionError.Full, is TransactionError.Invalid -> {
+                                    npc<Upset>("Unfortunately all Skillcapes are only available with a free hood, it's part of a skill promotion deal; buy one get one free, you know. So you'll need to free up some inventory space before I can sell you one.")
+                                }
                             }
                         }
                     }
                 }
-            }
-            option<Quiz>("What must I do to wear a Herblore skillcape?", filter = { !hasMax(Skill.Herblore, 99) }) {
-                npc<Neutral>("To earn the right to wear any skillcape you need to have mastered that skill to the highest level possible and it is no different for Herblore.")
-                npc<Neutral>("With the cape equipped the Nardah Herbalist will create unfinished potions for you and you may search the cape for a pestle and mortar. When you have achieved a level of 99, come back and talk to me again.")
+            } else {
+                option<Quiz>("What must I do to wear a Herblore skillcape?") {
+                    npc<Neutral>("To earn the right to wear any skillcape you need to have mastered that skill to the highest level possible and it is no different for Herblore.")
+                    npc<Neutral>("With the cape equipped the Nardah Herbalist will create unfinished potions for you and you may search the cape for a pestle and mortar. When you have achieved a level of 99, come back and talk to me again.")
+                }
             }
         }
     }

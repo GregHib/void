@@ -64,8 +64,10 @@ class MageOfZamorak : Script {
                 option("Let's see what you're selling.") {
                     openShop("mage_of_zamorak")
                 }
-                option<Quiz>("Could you teleport me to the Abyss?", filter = { questCompleted("enter_the_abyss") }) {
-                    teleport(this, target)
+                if (questCompleted("enter_the_abyss")) {
+                    option<Quiz>("Could you teleport me to the Abyss?") {
+                        teleport(this, target)
+                    }
                 }
                 option<Uncertain>("Alright, I'll go.")
             }

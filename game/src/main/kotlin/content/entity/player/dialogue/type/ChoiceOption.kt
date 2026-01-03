@@ -9,24 +9,23 @@ class ChoiceOption {
 
     data class Option(
         val text: String,
-        val filter: Player.() -> Boolean,
         val block: suspend Player.() -> Unit,
     )
 
     /**
      * Displays option [text] when [filter] is true and if selected invokes [block]
      */
-    fun option(text: String, filter: Player.() -> Boolean = { true }, block: suspend Player.() -> Unit = {}) {
-        values.add(Option(text, filter, block))
+    fun option(text: String, block: suspend Player.() -> Unit = {}) {
+        values.add(Option(text, block))
     }
 
     /**
      * Same as [option] but also repeats [text] as player dialogue with [Expression] [E] before invoking [block]
      */
     @JvmName("optionInline")
-    inline fun <reified E : Expression> option(text: String, noinline filter: Player.() -> Boolean = { true }, noinline block: suspend Player.() -> Unit = {}) {
+    inline fun <reified E : Expression> option(text: String, noinline block: suspend Player.() -> Unit = {}) {
         values.add(
-            Option(text, filter) {
+            Option(text) {
                 player<E>(text)
                 block.invoke(this)
             },
@@ -38,8 +37,5 @@ class ChoiceOption {
         values[index].block.invoke(context)
     }
 
-    fun build(context: Player): List<String> {
-        values.removeIf { !it.filter(context) }
-        return values.map { it.text }
-    }
+    fun build(): List<String> = values.map { it.text }
 }

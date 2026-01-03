@@ -27,22 +27,22 @@ data object Giggles : Expression()
 data object Goofy : Expression()
 data object Pleased : Expression()
 data object Hysterics : Expression()
-data object Laugh : Expression()
+data object Laugh : Expression() // TODO
 data object LookDown : Expression()
 data object Mad : Expression()
 data object No : Expression()
 data object NoDisgust : Expression()
 data object RollEyes : Expression()
-data object Sad : Expression()
+data object Sad : Expression() // TODO
 data object Scared : Expression()
 data object Shaking : Expression()
-data object Shock : Expression()
+data object Shock : Expression() // TODO
 data object Sneer : Expression()
 data object Sob : Expression()
 data object Surprised : Expression()
 data object Shifty : Expression()
 data object Talk : Expression()
-data object Neutral : Expression()
+data object Neutral : Expression() // TODO
 data object Teary : Expression()
 data object Unamused : Expression()
 data object Uncertain : Expression()
@@ -52,3 +52,8 @@ data object Quiz : Expression()
 data object Upset : Expression()
 data object Yes : Expression()
 data object DoorHead : Expression()
+
+/*
+    chant
+    human_sleep
+ */
