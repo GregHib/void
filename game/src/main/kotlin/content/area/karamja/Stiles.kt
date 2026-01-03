@@ -26,7 +26,7 @@ class Stiles : Script {
                 option<Happy>("Which fish can you exchange?") {
                     witchFish()
                 }
-                option<Neutral>("No thanks.") {
+                option<Idle>("No thanks.") {
                 }
             }
         }
@@ -39,8 +39,8 @@ class Stiles : Script {
     suspend fun Player.whoAreYou() {
         npc<Shifty>("Ahhh, when I were a young'un my name were Nigel but, these days, folks mostly call me Stiles.")
         npc<Happy>("Long time ago, in Draynor Village, there were three brothers who'd exchange yer stuff for bitty bits o' paper, like these new-fangled banknotes we've got today. Niles, Miles an' Giles they called themselves.")
-        npc<Upset>("They be long gone, like the golden days, but they were an inspiration to me, so I took this trade myself, an' I changed my name to Stiles.")
-        player<Uncertain>("But why are you here, in this place?")
+        npc<Sad>("They be long gone, like the golden days, but they were an inspiration to me, so I took this trade myself, an' I changed my name to Stiles.")
+        player<Confused>("But why are you here, in this place?")
         npc<Shifty>("The smell of yon bananas were drivin' me scatty, so I can't go too near the fishing spots.")
         npc<Happy>("A tough-lookin' geezer callin' himself a slayer master tried to give me a nosepeg once, but I bain't wearin' one o' them things. Ol' Stiles has a tender nose.")
         npc<Quiz>("So, would ye like me to exchange yer fish now?")
@@ -51,7 +51,7 @@ class Stiles : Script {
             option<Happy>("Which fish can you exchange?") {
                 witchFish()
             }
-            option<Neutral>("No thanks.") {
+            option<Idle>("No thanks.") {
             }
         }
     }
@@ -60,7 +60,7 @@ class Stiles : Script {
         npc<Happy>("Ahhh, ol' Stiles has banknotes for yer lobbies, yer swordies and yer tuna. 'Tis a grand service I be offerin' here, and nary a penny do I ask in return.")
         choice {
             option<Quiz>("Why don't you exchange other fish?") {
-                npc<Upset>("Ahhh, I bain't looking to learn a new trade at my age. Lobbies, swordies an' tuna is enough fer ol' Stiles. Would ye like me to exchange yer fish now?")
+                npc<Sad>("Ahhh, I bain't looking to learn a new trade at my age. Lobbies, swordies an' tuna is enough fer ol' Stiles. Would ye like me to exchange yer fish now?")
                 choice {
                     option<Happy>("Okay, exchange all my fish for banknotes.") {
                         exchange()
@@ -68,7 +68,7 @@ class Stiles : Script {
                     option<Quiz>("Who are you and why are you here?") {
                         whoAreYou()
                     }
-                    option<Neutral>("No thanks.") {
+                    option<Idle>("No thanks.") {
                     }
                 }
             }
@@ -78,7 +78,7 @@ class Stiles : Script {
             option<Quiz>("Who are you and why are you here?") {
                 whoAreYou()
             }
-            option<Neutral>("No thanks.") {
+            option<Idle>("No thanks.") {
             }
         }
     }
@@ -97,7 +97,7 @@ class Stiles : Script {
         if (total > 0) {
             npc<Happy>("There ye goes.")
         } else {
-            npc<Uncertain>("Ahhh, ye've nothing that ol' Stiles can exchange. I'll do yer lobbies, yer swordies and' yer tuna, that's all.")
+            npc<Confused>("Ahhh, ye've nothing that ol' Stiles can exchange. I'll do yer lobbies, yer swordies and' yer tuna, that's all.")
         }
     }
 }

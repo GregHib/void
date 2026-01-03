@@ -3,8 +3,8 @@ package content.area.misthalin.varrock
 import content.area.asgarnia.falador.openDressingRoom
 import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
@@ -126,7 +126,7 @@ class Thessalia : Script {
     suspend fun Player.startMakeover() {
         closeDialogue()
         if (!equipment.isEmpty()) {
-            npc<Talk>("You're not able to try on my clothes with all that armour. Take it off and then speak to me again.")
+            npc<Neutral>("You're not able to try on my clothes with all that armour. Take it off and then speak to me again.")
             return
         }
         openDressingRoom("thessalias_makeovers")

@@ -62,35 +62,35 @@ class BobBarterHerbs : Script {
     init {
         npcOperate("Talk-to", "bob_barter") {
             if (Settings["grandExchange.tutorial.required", false] && !questCompleted("grand_exchange_tutorial")) {
-                player<Talk>("Hello.")
-                npc<Talk>("Mate, I haven't got time for you yet. I suggest you speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance for a lesson. Brugsen will give an interesting lesson on the Grand Exchange and the Tutor will give a simpler, plain lesson.")
+                player<Neutral>("Hello.")
+                npc<Neutral>("Mate, I haven't got time for you yet. I suggest you speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance for a lesson. Brugsen will give an interesting lesson on the Grand Exchange and the Tutor will give a simpler, plain lesson.")
                 return@npcOperate
             }
             npc<Happy>("Hello, chum, fancy buyin' some designer jewellery? They've come all the way from Ardougne! Most pukka!")
             player<Shifty>("Erm, no. I'm all set, thanks.")
             npc<Happy>("Okay, chum, would you like to show you the very latest potion prices?")
             choice {
-                option<Talk>("Who are you?") {
+                option<Neutral>("Who are you?") {
                     npc<Happy>("Why, I'm Bob! Your friendly seller of smashin' goods!")
                     player<Quiz>("So what do you have to sell?")
-                    npc<Talk>("Oh, not much at the moment. Cuz, ya know, business being so well and cushie.")
-                    player<Talk>("You don't really look like you're being so successful.")
-                    npc<Talk>("You plonka! It's all a show, innit! If I let people knows I'm in good business they'll want a share of the moolah!")
-                    player<Talk>("You conveniently have a response for everything.")
-                    npc<Chuckle>("That's the Ardougne way, my friend.")
+                    npc<Neutral>("Oh, not much at the moment. Cuz, ya know, business being so well and cushie.")
+                    player<Neutral>("You don't really look like you're being so successful.")
+                    npc<Neutral>("You plonka! It's all a show, innit! If I let people knows I'm in good business they'll want a share of the moolah!")
+                    player<Neutral>("You conveniently have a response for everything.")
+                    npc<Laugh>("That's the Ardougne way, my friend.")
                     choice {
                         showPrices()
                         option<Shifty>("I'll leave you to it.")
                     }
                 }
                 showPrices()
-                option<Talk>("I'll leave you too it")
+                option<Neutral>("I'll leave you too it")
             }
         }
 
         npcOperate("Info-herbs", "bob_barter") {
             if (Settings["grandExchange.tutorial.required", false] && !questCompleted("grand_exchange_tutorial")) {
-                npc<Talk>("You'll need a tiny bit of training first, chum. I suggest you speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance for a lesson. Brugsen will give an interesting lesson on the Grand Exchange and the Tutor will give a smaller, plain lesson.")
+                npc<Neutral>("You'll need a tiny bit of training first, chum. I suggest you speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance for a lesson. Brugsen will give an interesting lesson on the Grand Exchange and the Tutor will give a smaller, plain lesson.")
                 return@npcOperate
             }
             set("common_item_costs", "herbs")
@@ -99,8 +99,8 @@ class BobBarterHerbs : Script {
 
         npcOperate("Decant", "bob_barter") {
             if (Settings["grandExchange.tutorial.required", false] && !questCompleted("grand_exchange_tutorial")) {
-                player<Talk>("Hello.")
-                npc<Talk>("Mate, I haven't got time for you yet. I suggest you speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance for a lesson. Brugsen will give an interesting lesson on the Grand Exchange and the Tutor will give a simpler, plain lesson.")
+                player<Neutral>("Hello.")
+                npc<Neutral>("Mate, I haven't got time for you yet. I suggest you speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance for a lesson. Brugsen will give an interesting lesson on the Grand Exchange and the Tutor will give a simpler, plain lesson.")
                 return@npcOperate
             }
             decantPotions()
@@ -108,7 +108,7 @@ class BobBarterHerbs : Script {
     }
 
     fun ChoiceOption.showPrices() {
-        option<Talk>("Can you show me the prices for herbs?") {
+        option<Neutral>("Can you show me the prices for herbs?") {
             set("common_item_costs", "herbs")
             open("common_item_costs")
         }
@@ -138,9 +138,9 @@ class BobBarterHerbs : Script {
             }
         }
         when (inventory.transaction.error) {
-            TransactionError.Invalid -> npc<Sad>("I wasn't able to decant your potions.")
+            TransactionError.Invalid -> npc<Disheartened>("I wasn't able to decant your potions.")
             TransactionError.None -> npc<Happy>("There you go, chum.")
-            else -> npc<Uncertain>("Sorry, I can't do anything with those potions.")
+            else -> npc<Confused>("Sorry, I can't do anything with those potions.")
         }
     }
 }

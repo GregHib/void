@@ -512,7 +512,7 @@ class PlagueCity : Script {
         }
 
         itemOnObjectOperate("rope", "plague_sewer_pipe_open") {
-            player<Talk>("Maybe I should try opening it first.")
+            player<Neutral>("Maybe I should try opening it first.")
         }
 
         itemOnObjectOperate("rope", "plague_grill_vis") {
@@ -532,7 +532,7 @@ class PlagueCity : Script {
                     open("fade_in")
                     statement("You climb up through the sewer pipe.", clickToContinue = true)
                 } else {
-                    npc<Neutral>("edmond", "I can't let you enter the city without your gas mask on.")
+                    npc<Idle>("edmond", "I can't let you enter the city without your gas mask on.")
                 }
             } else {
                 statement("There is a grill blocking your way.")

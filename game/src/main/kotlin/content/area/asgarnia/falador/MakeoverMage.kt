@@ -97,7 +97,7 @@ class MakeoverMage : Script {
                 }
                 1 -> {
                     npc<Amazed>("Whew! That was lucky.")
-                    player<Talk>("What was?")
+                    player<Neutral>("What was?")
                     npc<Happy>("Nothing! It's all fine! You seem alive anyway.")
                 }
                 2 -> {
@@ -134,35 +134,35 @@ class MakeoverMage : Script {
         npc<Happy>("Why, of course! Basically, and I will explain this so that you understand it correctly,")
         npc<Happy>("I use my secret magical technique to melt your body down into a puddle of its elements.")
         npc<Happy>("When I have broken down all components of your body, I then rebuild it into the form I am thinking of.")
-        npc<Uncertain>("Or, you know, something vaguely close enough, anyway.")
+        npc<Confused>("Or, you know, something vaguely close enough, anyway.")
         player<Quiz>("Uh... that doesn't sound particularly safe to me.")
         npc<Happy>("It's as safe as houses! Why, I have only had thirty-six major accidents this month!")
         whatDoYouSay()
     }
 
     suspend fun Player.whatDoYouSay() {
-        npc<Uncertain>("So, what do you say? Feel like a change?")
+        npc<Confused>("So, what do you say? Feel like a change?")
         choice {
             start()
             exit()
         }
     }
 
-    fun ChoiceOption.start(): Unit = option<Talk>("Sure, do it.") {
+    fun ChoiceOption.start(): Unit = option<Neutral>("Sure, do it.") {
         npc<Happy>("You, of course, agree that if by some accident you are turned into a frog you have no rights for compensation or refund.")
         openDressingRoom("skin_colour")
     }
 
     fun ChoiceOption.exit(): Unit = option("No, thanks.") {
         player<Frustrated>("No, thanks. I'm happy as I am.")
-        npc<Sad>("Ehhh..suit yourself.")
+        npc<Disheartened>("Ehhh..suit yourself.")
     }
 
     fun ChoiceOption.amulet(): Unit = option<Pleased>("Cool amulet! Can I have one?") {
         val cost = 100
-        npc<Talk>("No problem, but please remember that the amulet I will sell you is only a copy of my own. It contains no magical powers and, as such, will only cost you $cost coins.")
+        npc<Neutral>("No problem, but please remember that the amulet I will sell you is only a copy of my own. It contains no magical powers and, as such, will only cost you $cost coins.")
         if (!holdsItem("coins", cost)) {
-            player<Upset>("Oh, I don't have enough money for that.")
+            player<Sad>("Oh, I don't have enough money for that.")
             return@option
         }
         choice {
@@ -176,14 +176,14 @@ class MakeoverMage : Script {
                     is TransactionError.Deficient -> notEnough("coins")
                     is TransactionError.Full -> {
                         npc<Quiz>("Um...you don't seem to have room to take the amulet. Maybe you should buy it some other time.")
-                        player<Talk>("Oh yeah, that's true.")
+                        player<Neutral>("Oh yeah, that's true.")
                     }
                     else -> {}
                 }
                 explain()
             }
-            option<Surprised>("No way! That's too expensive.") {
-                npc<Talk>("That's fair enough, my jewellery is not to everyone's taste. Now, would you like a makeover?")
+            option<Shock>("No way! That's too expensive.") {
+                npc<Neutral>("That's fair enough, my jewellery is not to everyone's taste. Now, would you like a makeover?")
             }
         }
     }

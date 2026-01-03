@@ -14,10 +14,10 @@ class Recruiter : Script {
 
     init {
         npcOperate("Talk-to", "recruiter") { (target) ->
-            npc<Neutral>("Citizens of West Ardougne! King Tyras needs you for his Royal Army! Who will join this noble cause?")
+            npc<Idle>("Citizens of West Ardougne! King Tyras needs you for his Royal Army! Who will join this noble cause?")
             npc<Angry>("w_ardougnecitizen3", "Plague bringer!")
             npc<Angry>("w_ardougnecitizen3", "King Tyras is scum!")
-            npc<Surprised>("Tyras will be informed of these words of treason!")
+            npc<Shock>("Tyras will be informed of these words of treason!")
             sound("plague_tomato")
             floorItems.add(target.tile, "tomato", disappearTicks = 300)
             statement("Someone throws a tomato at the recruiter.")

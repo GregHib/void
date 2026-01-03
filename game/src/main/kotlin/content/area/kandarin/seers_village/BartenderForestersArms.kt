@@ -1,8 +1,8 @@
 package content.area.kandarin.seers_village
 
 import content.entity.npc.shop.buy
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
@@ -20,31 +20,31 @@ class BartenderForestersArms : Script {
             npc<Quiz>("Good morning, what would you like?")
             choice {
                 option<Quiz>("What do you have?") {
-                    npc<Talk>("Well we have beer, or if you want some food, we have our home made stew and meat pies.")
+                    npc<Neutral>("Well we have beer, or if you want some food, we have our home made stew and meat pies.")
                     choice {
-                        option<Talk>("Beer please.") {
-                            npc<Talk>("One beer coming up. Ok, that'll be two coins.")
+                        option<Neutral>("Beer please.") {
+                            npc<Neutral>("One beer coming up. Ok, that'll be two coins.")
                             if (buy("beer", 2)) {
                                 message("You buy a pint of beer.")
                             }
                         }
-                        option<Talk>("I'll try the meat pie.") {
-                            npc<Talk>("Ok, that'll be 16 coins.")
+                        option<Neutral>("I'll try the meat pie.") {
+                            npc<Neutral>("Ok, that'll be 16 coins.")
                             if (buy("meat_pie", 16)) {
                                 message("You buy a nice hot meat pie.")
                             }
                         }
                         option<Quiz>("Could I have some stew please?") {
-                            npc<Talk>("A bowl of stew, that'll be 20 coins please.")
+                            npc<Neutral>("A bowl of stew, that'll be 20 coins please.")
                             if (buy("stew", 20)) {
                                 message("You buy a bowl of home made stew.")
                             }
                         }
-                        option<Talk>("I don't really want anything thanks.")
+                        option<Neutral>("I don't really want anything thanks.")
                     }
                 }
-                option<Talk>("I'll have a beer then.") {
-                    npc<Talk>("Ok, that'll be two coins.")
+                option<Neutral>("I'll have a beer then.") {
+                    npc<Neutral>("Ok, that'll be two coins.")
                     if (buy("beer", 20)) {
                         message("You buy a pint of beer.")
                     }
@@ -54,7 +54,7 @@ class BartenderForestersArms : Script {
                         barCrawl(target)
                     }
                 }
-                option<Talk>("I don't really want anything thanks.")
+                option<Neutral>("I don't really want anything thanks.")
             }
         }
 

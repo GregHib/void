@@ -22,26 +22,26 @@ class Haakon : Script {
     suspend fun Player.menu(target: NPC) {
         npc<Angry>("I am Haakon, champion of this village. Do you seek to challenge me?")
         choice {
-            option<Neutral>("I challenge you!") {
+            option<Idle>("I challenge you!") {
                 attack(target)
             }
             if (validStages.contains(quest("gunnars_ground"))) {
-                option<Neutral>("You argued with Gunthor.") {
+                option<Idle>("You argued with Gunthor.") {
                     npc<Frustrated>("There is no argument. I honour my father and my ancestors.")
                     choice {
-                        option<Neutral>("Don't you want to settle permanently?") {
+                        option<Idle>("Don't you want to settle permanently?") {
                             npc<Angry>("You test my patience by quuestioning my loyalty to my chieftain. Take up my challenge, outerlander, that I might honourably split your skull open..")
                             choice {
-                                option<Neutral>("I'll take your challenge!") {
+                                option<Idle>("I'll take your challenge!") {
                                     attack(target)
                                 }
-                                option<Neutral>("No thanks.")
+                                option<Idle>("No thanks.")
                             }
                         }
-                        option<Neutral>("How about that challenge?") {
+                        option<Idle>("How about that challenge?") {
                             attack(target)
                         }
-                        option<Neutral>("Goodbye then.")
+                        option<Idle>("Goodbye then.")
                     }
                 }
             }

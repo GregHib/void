@@ -31,15 +31,15 @@ class GoblinMusician : Script {
     suspend fun Player.resting() {
         choice("Can I ask you some questions about resting?") {
             option<Quiz>("How does resting work?") {
-                npc<Neutral>("You stoopid. Goblin sit down, goblin rest, goblin feel better.")
+                npc<Idle>("You stoopid. Goblin sit down, goblin rest, goblin feel better.")
                 resting()
             }
             option<Pleased>("What's special about resting by a musician?") {
-                npc<Neutral>("Drumming good! Make you feel better, boom booms make you run longer!")
+                npc<Idle>("Drumming good! Make you feel better, boom booms make you run longer!")
                 resting()
             }
             option<Pleased>("Can you summarise the effects for me?") {
-                npc<Neutral>("Wot? You sit down, you rest. Listen to Thump-Thump is better.")
+                npc<Idle>("Wot? You sit down, you rest. Listen to Thump-Thump is better.")
                 resting()
             }
             exit()

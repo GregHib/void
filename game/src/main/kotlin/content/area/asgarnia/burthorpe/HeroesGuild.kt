@@ -1,8 +1,8 @@
 package content.area.asgarnia.burthorpe
 
+import content.entity.player.dialogue.Confused
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
-import content.entity.player.dialogue.Uncertain
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -25,13 +25,13 @@ class HeroesGuild : Script {
         }
 
         npcOperate("Talk-to", "achietties") {
-            npc<Talk>("Greetings. Welcome to the Heroes' Guild.")
+            npc<Neutral>("Greetings. Welcome to the Heroes' Guild.")
             if (questCompleted("heroes_quest")) {
                 return@npcOperate
             }
-            npc<Talk>("Only the greatest heroes of this land may gain entrance to this guild.")
+            npc<Neutral>("Only the greatest heroes of this land may gain entrance to this guild.")
             player<Quiz>("I'm a hero. May I apply to join?")
-            npc<Uncertain>("You're a hero? I've never heard of you.")
+            npc<Confused>("You're a hero? I've never heard of you.")
             statement("You do not meet all of the requirements to start the Heroes' Quest.")
         }
     }

@@ -1,8 +1,8 @@
 package content.area.misthalin.lumbridge.farm
 
 import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -17,8 +17,10 @@ class GillieGroats : Script {
         npcOperate("Talk-to", "gillie_groats") {
             npc<Happy>("Hello, I'm Gillie the Milkmaid. What can I do for you?")
             choice {
-                option("I'm after some Top-quality milk.", { quest("cooks_assistant") == "started" && !holdsItem("top_quality_milk") }) {
-                    topQualityMilk()
+                if (quest("cooks_assistant") == "started" && !holdsItem("top_quality_milk")) {
+                    option("I'm after some Top-quality milk.") {
+                        topQualityMilk()
+                    }
                 }
                 option("Who are you?") {
                     whoAreYou()
@@ -49,10 +51,10 @@ class GillieGroats : Script {
     }
 
     suspend fun Player.topQualityMilk() {
-        npc<Talk>("Really? Is it for something special?")
+        npc<Neutral>("Really? Is it for something special?")
         player<Happy>("Most certainly! It's for the cook to make a cake foe Duke Horacio!")
-        npc<Talk>("Wow, it's quite an honour that you'd pick my cows. I'd suggest you get some milk from my prized cow.")
+        npc<Neutral>("Wow, it's quite an honour that you'd pick my cows. I'd suggest you get some milk from my prized cow.")
         player<Quiz>("Which one's that?")
-        npc<Talk>("She's on the east side of the field, over by the cliff. Be gentle!")
+        npc<Neutral>("She's on the east side of the field, over by the cliff. Be gentle!")
     }
 }

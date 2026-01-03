@@ -13,74 +13,74 @@ class ShipyardWorker : Script {
         npcOperate("Talk-to", "shipyard_guard") {
             when (random.nextInt(12)) {
                 0 -> {
-                    player<Talk>("Hello.")
-                    player<Talk>("You look busy!")
-                    npc<Upset>("We need double the men to get this order out on time!")
+                    player<Neutral>("Hello.")
+                    player<Neutral>("You look busy!")
+                    npc<Sad>("We need double the men to get this order out on time!")
                 }
                 1 -> {
-                    player<Talk>("Hello.")
+                    player<Neutral>("Hello.")
                     npc<Happy>("Hello matey!")
-                    player<Talk>("How are you?")
-                    npc<Upset>("Tired!")
-                    player<Talk>("You shouldn't work so hard!")
+                    player<Neutral>("How are you?")
+                    npc<Sad>("Tired!")
+                    player<Neutral>("You shouldn't work so hard!")
                 }
                 2 -> {
-                    player<Talk>("Hello.")
-                    npc<Talk>("Hello there, are you too lazy to work as well?")
-                    player<Uncertain>("Something like that.")
+                    player<Neutral>("Hello.")
+                    npc<Neutral>("Hello there, are you too lazy to work as well?")
+                    player<Confused>("Something like that.")
                     npc<Happy>("I'm just sun bathing!")
                 }
                 3 -> {
-                    player<Talk>("Hello.")
+                    player<Neutral>("Hello.")
                     npc<Angry>("Ouch!")
-                    player<Uncertain>("What's wrong?!")
-                    npc<Upset>("I cut my finger!")
-                    npc<Upset>("Do you have a bandage?")
-                    player<Upset>("I'm afraid not.")
-                    npc<Talk>("That's ok, I'll use my shirt.")
+                    player<Confused>("What's wrong?!")
+                    npc<Sad>("I cut my finger!")
+                    npc<Sad>("Do you have a bandage?")
+                    player<Sad>("I'm afraid not.")
+                    npc<Neutral>("That's ok, I'll use my shirt.")
                 }
                 4 -> {
-                    player<Talk>("Hello.")
-                    npc<Talk>("What do you want?")
+                    player<Neutral>("Hello.")
+                    npc<Neutral>("What do you want?")
                     player<Angry>("Is that any way to talk to your new superior?")
-                    npc<Surprised>("Oh, I'm sorry, I didn't realise!")
+                    npc<Shock>("Oh, I'm sorry, I didn't realise!")
                 }
                 5 -> {
-                    player<Talk>("Hello.")
-                    npc<Talk>("Can I help you?")
-                    player<Talk>("I'm just looking around.")
-                    npc<Talk>("Well there's plenty of work to be done, so if you don't mind...")
-                    player<Talk>("Of course. Sorry to have disturbed you.")
+                    player<Neutral>("Hello.")
+                    npc<Neutral>("Can I help you?")
+                    player<Neutral>("I'm just looking around.")
+                    npc<Neutral>("Well there's plenty of work to be done, so if you don't mind...")
+                    player<Neutral>("Of course. Sorry to have disturbed you.")
                 }
                 6 -> {
-                    player<Talk>("Hello.")
+                    player<Neutral>("Hello.")
                     npc<Angry>("I've had enough of this!")
-                    player<Surprised>("What?")
+                    player<Shock>("What?")
                     npc<Angry>("Breaking my back for pennies! It's just not on!")
                 }
                 7 -> {
-                    player<Talk>("Hello.")
-                    player<Talk>("Looks like hard work?")
-                    npc<Talk>("I like to keep busy.")
+                    player<Neutral>("Hello.")
+                    player<Neutral>("Looks like hard work?")
+                    npc<Neutral>("I like to keep busy.")
                 }
                 8 -> {
-                    player<Talk>("Hello.")
-                    player<Talk>("What are you building?")
-                    npc<Chuckle>("Are you serious?")
-                    player<Chuckle>("Of course not! You're obviously building a boat.")
+                    player<Neutral>("Hello.")
+                    player<Neutral>("What are you building?")
+                    npc<Laugh>("Are you serious?")
+                    player<Laugh>("Of course not! You're obviously building a boat.")
                 }
                 9 -> {
-                    player<Talk>("Hello.")
-                    npc<Talk>("No time to talk we've a fleet to build!")
+                    player<Neutral>("Hello.")
+                    npc<Neutral>("No time to talk we've a fleet to build!")
                 }
                 10 -> {
-                    player<Talk>("Hello.")
-                    player<Talk>("How are you?")
+                    player<Neutral>("Hello.")
+                    player<Neutral>("How are you?")
                     npc<Angry>("Too busy to waste time gossiping!")
-                    player<Surprised>("Touchy!")
+                    player<Shock>("Touchy!")
                 }
                 11 -> {
-                    player<Talk>("Hello.")
+                    player<Neutral>("Hello.")
                     player<Happy>("Quite a few ships you're building!")
                     npc<Happy>("This is just the start! The completed fleet will be awesome!")
                 }

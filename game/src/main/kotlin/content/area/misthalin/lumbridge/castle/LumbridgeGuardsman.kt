@@ -2,7 +2,7 @@ package content.area.misthalin.lumbridge.castle
 
 import content.entity.combat.inCombat
 import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.Script
@@ -35,7 +35,7 @@ class LumbridgeGuardsman : Script {
                 aroundHere()
                 tellMeLumbridge()
                 whatAreGuarding()
-                option<Neutral>("Bye.")
+                option<Idle>("Bye.")
             }
         }
     }
@@ -50,7 +50,7 @@ class LumbridgeGuardsman : Script {
             aroundHere()
             tellMeLumbridge()
             whatAreGuarding()
-            option<Neutral>("Bye.")
+            option<Idle>("Bye.")
         }
     }
 
@@ -64,22 +64,22 @@ class LumbridgeGuardsman : Script {
             aroundHere()
             tellMeLumbridge()
             whatAreGuarding()
-            option<Neutral>("Bye.")
+            option<Idle>("Bye.")
         }
     }
 
     fun ChoiceOption.tellMeLumbridge(): Unit = option<Quiz>("Tell me about Lumbridge.") {
         when (random.nextInt(0, 3)) {
-            0 -> npc<Neutral>("It used to be much nicer here, before the goblins overran the east side of town. You'd think that the Guardsmen would be sent to flush them out, but for every one we slay, three more appear in its place.")
-            1 -> npc<Neutral>("If I'm honest, I don't much care for it here. I understand why so many do enjoy the lifestyle, but I long for the city life. If I do well in my job here, perhaps I could move to Varrock, or Falador, and join the guards there.")
-            2 -> npc<Neutral>("I suppose it's a good place to find your feet in the world. There's reasonable fishing in the river, and with lots of farmland around it's rare that you go hungry. Yes, there's plenty worse places you could live in than Lumbridge.")
+            0 -> npc<Idle>("It used to be much nicer here, before the goblins overran the east side of town. You'd think that the Guardsmen would be sent to flush them out, but for every one we slay, three more appear in its place.")
+            1 -> npc<Idle>("If I'm honest, I don't much care for it here. I understand why so many do enjoy the lifestyle, but I long for the city life. If I do well in my job here, perhaps I could move to Varrock, or Falador, and join the guards there.")
+            2 -> npc<Idle>("I suppose it's a good place to find your feet in the world. There's reasonable fishing in the river, and with lots of farmland around it's rare that you go hungry. Yes, there's plenty worse places you could live in than Lumbridge.")
         }
         choice("What would you like to say?") {
             tellMeGuardsmen()
             aroundHere()
             tellMeLumbridge()
             whatAreGuarding()
-            option<Neutral>("Bye.")
+            option<Idle>("Bye.")
         }
     }
 
@@ -93,7 +93,7 @@ class LumbridgeGuardsman : Script {
             aroundHere()
             tellMeLumbridge()
             whatAreGuarding()
-            option<Neutral>("Bye.")
+            option<Idle>("Bye.")
         }
     }
 }

@@ -1,10 +1,10 @@
 package content.area.asgarnia.falador
 
 import content.entity.npc.shop.openShop
+import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Frustrated
-import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Uncertain
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -67,8 +67,8 @@ class SirVyvin : Script {
         }
 
         npcOperate("Talk-to", "sir_vyvin") {
-            player<Neutral>("Hello.")
-            npc<Neutral>("Greetings traveller.")
+            player<Idle>("Hello.")
+            npc<Idle>("Greetings traveller.")
             choice {
                 option<Quiz>("Do you have anything to trade?") {
                     val kills = get("black_knight_kills", 0)
@@ -79,21 +79,21 @@ class SirVyvin : Script {
                         kills >= 300 -> openShop("white_knight_page_armoury")
                         kills >= 200 -> openShop("white_knight_peon_armoury")
                         kills >= 100 -> openShop("white_knight_novice_armoury")
-                        else -> npc<Neutral>("No, I'm sorry.")
+                        else -> npc<Idle>("No, I'm sorry.")
                     }
                 }
                 option<Quiz>("Why are there so many knights in this city?") {
-                    npc<Neutral>("We are the White Knights of Falador. We are the most powerful order of knights in the land. We are helping the king Vallance rule the kingdom as he is getting old and tired.")
+                    npc<Idle>("We are the White Knights of Falador. We are the most powerful order of knights in the land. We are helping the king Vallance rule the kingdom as he is getting old and tired.")
                 }
                 option("Can I just distract you for a minute?") {
-                    player<Neutral>("Can I just talk to you very slowly for a few minutes, while I distract you, so that my friend over there can do something while you're busy being distracted by me?")
-                    npc<Uncertain>("... ...what?")
-                    npc<Uncertain>("I'm... not sure what you're asking me... you want to join the White Knights?")
-                    player<Neutral>("Nope. I'm just trying to distract you.")
-                    npc<Uncertain>("... ...you are very odd.")
-                    player<Neutral>("So can I distract you some more?")
-                    npc<Uncertain>("... ...I don't think I want to talk to you anymore.")
-                    player<Neutral>("Ok. My work here is done. 'Bye!")
+                    player<Idle>("Can I just talk to you very slowly for a few minutes, while I distract you, so that my friend over there can do something while you're busy being distracted by me?")
+                    npc<Confused>("... ...what?")
+                    npc<Confused>("I'm... not sure what you're asking me... you want to join the White Knights?")
+                    player<Idle>("Nope. I'm just trying to distract you.")
+                    npc<Confused>("... ...you are very odd.")
+                    player<Idle>("So can I distract you some more?")
+                    npc<Confused>("... ...I don't think I want to talk to you anymore.")
+                    player<Idle>("Ok. My work here is done. 'Bye!")
                 }
             }
         }

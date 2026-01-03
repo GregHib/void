@@ -1,9 +1,9 @@
 package content.area.wilderness
 
+import content.entity.player.dialogue.Bored
 import content.entity.player.dialogue.Drunk
 import content.entity.player.dialogue.Pleased
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.RollEyes
 import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -24,7 +24,7 @@ class DrunkenMusician : Script {
                 npc<Drunk>("I'm jus' relaxshed, mate.")
                 player<Quiz>("I'm not sure I want to be as relaxed as you are.")
                 npc<Drunk>("Youze'll never be as relaxshed as as I am, I worked hard to get this relaxshed.")
-                player<RollEyes>("Clearly...")
+                player<Bored>("Clearly...")
                 choice()
             }
             option("Can I ask you some questions about resting?") {

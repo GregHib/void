@@ -1,7 +1,7 @@
 package content.area.karamja
 
 import content.entity.npc.shop.openShop
-import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
@@ -14,12 +14,12 @@ class BartenderZambo : Script {
 
     init {
         npcOperate("Talk-to", "bartender_zambo") { (target) ->
-            npc<Talk>("Hey, are you wanting to try some of my fine wines and spirits? All brewed locally on Karamja.")
+            npc<Neutral>("Hey, are you wanting to try some of my fine wines and spirits? All brewed locally on Karamja.")
             choice {
                 option("Yes, please.") {
                     openShop("karamja_wines_spirits_and_beers")
                 }
-                option<Talk>("No, thank you.")
+                option<Neutral>("No, thank you.")
                 if (onBarCrawl(target)) {
                     option("I'm doing Alfred Grimhand's barcrawl.") {
                         barCrawl(target)

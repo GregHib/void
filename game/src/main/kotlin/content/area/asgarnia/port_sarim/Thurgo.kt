@@ -35,34 +35,31 @@ class Thurgo : Script {
             when (quest("the_knights_sword")) {
                 "find_thurgo" -> menu()
                 "happy_thurgo" -> menuSword()
-                else -> player<Uncertain>("Why would I give him my pie?")
+                else -> player<Confused>("Why would I give him my pie?")
             }
         }
     }
 
     suspend fun Player.menuReplacementSword() {
         choice {
-            madeSword()
-            replacementSword()
-            redberryPie()
+            if (holdsItem("blurite_sword")) {
+                madeSword()
+            } else {
+                replacementSword()
+            }
+            redberryPie(this@menuReplacementSword)
             whatCape()
         }
     }
 
-    fun ChoiceOption.madeSword() = option<Happy>(
-        "Thanks for making that sword for me!",
-        { holdsItem("blurite_sword") },
-    ) {
+    fun ChoiceOption.madeSword() = option<Happy>("Thanks for making that sword for me!") {
         npc<Happy>("You're welcome - thanks for the pie!")
     }
 
-    fun ChoiceOption.replacementSword() = option<Happy>(
-        "Can you make that replacement sword now?",
-        { !holdsItem("blurite_sword") },
-    ) {
+    fun ChoiceOption.replacementSword() = option<Happy>("Can you make that replacement sword now?") {
         npc<Quiz>("How are you doing finding those sword materials?")
         if (inventory.contains(items)) {
-            player<Neutral>("I have them right here.")
+            player<Idle>("I have them right here.")
             inventory.transaction {
                 remove(items)
                 add("blurite_sword")
@@ -73,23 +70,23 @@ class Thurgo : Script {
             return@option
         }
         if (inventory.contains("blurite_ore")) {
-            player<Sad>("I don't have two iron bars.")
+            player<Disheartened>("I don't have two iron bars.")
             npc<Happy>("Better go get some then, huh?")
             return@option
         }
         if (inventory.contains("iron_bar", 2)) {
-            player<Sad>("I don't have any blurite ore yet.")
-            npc<Neutral>("Better go get some then, huh? The only place I know to get it is under this cliff here, but it is guarded by a very powerful ice giant.")
+            player<Disheartened>("I don't have any blurite ore yet.")
+            npc<Idle>("Better go get some then, huh? The only place I know to get it is under this cliff here, but it is guarded by a very powerful ice giant.")
             return@option
         }
-        player<Sad>("I don't have any of them yet.")
+        player<Disheartened>("I don't have any of them yet.")
         npc<Happy>("Well, I need a blurite ore and two iron bars. The only place I know to get blurite is under this cliff here, but it is guarded by a very powerful ice giant.")
     }
 
     suspend fun Player.menuAboutSword() {
         choice {
             aboutSword()
-            redberryPie()
+            redberryPie(this@menuAboutSword)
             whatCape()
         }
     }
@@ -97,7 +94,7 @@ class Thurgo : Script {
     suspend fun Player.menuSword() {
         choice {
             specialSword()
-            redberryPie()
+            redberryPie(this@menuSword)
             whatCape()
         }
     }
@@ -105,60 +102,62 @@ class Thurgo : Script {
     suspend fun Player.menu() {
         choice {
             imcandoDwarf()
-            redberryPie()
+            redberryPie(this@menu)
             whatCape()
         }
     }
 
     fun ChoiceOption.specialSword() = option<Happy>("Can you make a special sword for me?") {
-        npc<Neutral>("Well, after bringing me my favorite food I guess I should give it a go. What sort of sword is it?")
-        player<Neutral>("I need you to make a sword for one of Falador's knights. He had one which was passed down through five generations, but his squire has lost it.")
+        npc<Idle>("Well, after bringing me my favorite food I guess I should give it a go. What sort of sword is it?")
+        player<Idle>("I need you to make a sword for one of Falador's knights. He had one which was passed down through five generations, but his squire has lost it.")
         player<Quiz>("So we need an identical one to replace it.")
-        npc<Neutral>("A knight's sword eh? Well, I'd need to know exactly how it looked before I could make a new one.")
+        npc<Idle>("A knight's sword eh? Well, I'd need to know exactly how it looked before I could make a new one.")
         set("the_knights_sword", "picture")
-        npc<Neutral>("All the Faladian knights used to have swords with unique designs according to their position. Could you bring me a picture or something?")
-        player<Neutral>("I'll go and ask his squire and see if I can find one.")
+        npc<Idle>("All the Faladian knights used to have swords with unique designs according to their position. Could you bring me a picture or something?")
+        player<Idle>("I'll go and ask his squire and see if I can find one.")
     }
 
     fun ChoiceOption.aboutSword() = option<Happy>("About that sword...") {
         npc<Quiz>("Have you got a picture of the sword for me yet?")
         if (!holdsItem("portrait")) {
-            player<Sad>("Sorry, not yet.")
-            npc<Neutral>("Well, come back when you do.")
+            player<Disheartened>("Sorry, not yet.")
+            npc<Idle>("Well, come back when you do.")
             return@option
         }
-        player<Neutral>("I have found a picture of the sword I would like you to make.")
+        player<Idle>("I have found a picture of the sword I would like you to make.")
         item("portrait", 600, "You give the portrait to Thurgo. Thurgo studies the portrait.")
         set("the_knights_sword", "blurite_sword")
         inventory.remove("portrait")
-        npc<Neutral>("You'll need to get me some stuff to make this. I'll need two iron bars to make the sword, to start with. I'll also need an ore called blurite.")
-        npc<Neutral>("Blurite is useless for making actual weapons, except crossbows, but I'll need some as decoration for the hilt.")
-        npc<Neutral>("It is a fairly rare ore. The only place I know to get it is under this cliff here, but it is guarded by a very powerful ice giant.")
-        npc<Neutral>("Most of the rocks in that cliff are pretty useless, and don't contain much of anything, but there's DEFINITELY some blurite in there.")
-        npc<Neutral>("You'll need a little bit of mining experience to be able to find it.")
-        player<Neutral>("Okay. I'll go and find them then.")
+        npc<Idle>("You'll need to get me some stuff to make this. I'll need two iron bars to make the sword, to start with. I'll also need an ore called blurite.")
+        npc<Idle>("Blurite is useless for making actual weapons, except crossbows, but I'll need some as decoration for the hilt.")
+        npc<Idle>("It is a fairly rare ore. The only place I know to get it is under this cliff here, but it is guarded by a very powerful ice giant.")
+        npc<Idle>("Most of the rocks in that cliff are pretty useless, and don't contain much of anything, but there's DEFINITELY some blurite in there.")
+        npc<Idle>("You'll need a little bit of mining experience to be able to find it.")
+        player<Idle>("Okay. I'll go and find them then.")
     }
 
     fun ChoiceOption.imcandoDwarf() = option<Happy>("Are you an Imcando dwarf? I need a special sword.") {
         npc<Angry>("I don't talk about that sort of thing anymore. I'm getting old.")
         choice {
-            redberryPie()
-            option<Sad>("I'll come back another time.")
+            redberryPie(this@option)
+            option<Disheartened>("I'll come back another time.")
         }
     }
 
-    fun ChoiceOption.redberryPie(): Unit = option<Quiz>(
-        "Would you like a redberry pie?",
-        { holdsItem("redberry_pie") },
-    ) {
-        statement("You see Thurgo's eyes light up.")
-        npc<Happy>("I'd never say no to a redberry pie! We Imcando dwarves love them - they're GREAT!")
-        if (quest("the_knights_sword") == "find_thurgo") {
-            set("the_knights_sword", "happy_thurgo")
+    fun ChoiceOption.redberryPie(player: Player) {
+        if (!player.holdsItem("redberry_pie")) {
+            return
         }
-        inventory.remove("redberry_pie")
-        statement("You hand over the pie Thurgo eats the pie. Thurgo pats his stomach.")
-        npc<Happy>("By Guthix! THAT was good pie! Anyone who makes pie like THAT has got to be alright!")
+        option<Quiz>("Would you like a redberry pie?") {
+            statement("You see Thurgo's eyes light up.")
+            npc<Happy>("I'd never say no to a redberry pie! We Imcando dwarves love them - they're GREAT!")
+            if (quest("the_knights_sword") == "find_thurgo") {
+                set("the_knights_sword", "happy_thurgo")
+            }
+            inventory.remove("redberry_pie")
+            statement("You hand over the pie Thurgo eats the pie. Thurgo pats his stomach.")
+            npc<Happy>("By Guthix! THAT was good pie! Anyone who makes pie like THAT has got to be alright!")
+        }
     }
 
     fun ChoiceOption.whatCape() = option("What is that cape you're wearing?") {

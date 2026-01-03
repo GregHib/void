@@ -37,10 +37,10 @@ class GypsyAris : Script {
         npcOperate("Talk-to", "gypsy_aris") { (target) ->
             when (quest("demon_slayer")) {
                 "unstarted" -> {
-                    npc<Talk>("Hello, young one.")
-                    npc<Talk>("Cross my palm with silver and the future will be revealed to you.")
+                    npc<Neutral>("Hello, young one.")
+                    npc<Neutral>("Cross my palm with silver and the future will be revealed to you.")
                     if (!inventory.contains("coins")) {
-                        player<Upset>("Oh dear. I don't have any money.")
+                        player<Sad>("Oh dear. I don't have any money.")
                         return@npcOperate
                     }
                     if (combatLevel < 15) {
@@ -55,13 +55,13 @@ class GypsyAris : Script {
                 }
                 "sir_prysin", "key_hunt" -> howGoesQuest()
                 "completed" -> {
-                    npc<Neutral>("Greetings young one.")
+                    npc<Idle>("Greetings young one.")
                     npc<Happy>("You're a hero now. That was a good bit of demon-slaying.")
                     choice {
-                        option<Uncertain>("How do you know I killed it?") {
-                            npc<Talk>("You forget. I'm good at knowing things.")
+                        option<Confused>("How do you know I killed it?") {
+                            npc<Neutral>("You forget. I'm good at knowing things.")
                         }
-                        option<Neutral>("Thanks.")
+                        option<Idle>("Thanks.")
                         stopCallingMeThat()
                     }
                 }
@@ -133,67 +133,67 @@ class GypsyAris : Script {
         }
     }
 
-    fun ChoiceOption.cityDestroyer(end: suspend Player.() -> Unit): Unit = option<Afraid>("How am I meant to fight a demon who can destroy cities?") {
-        npc<Talk>("If you face Delrith while he is still weak from being summoned, and use the correct weapon, you will not find the task too arduous.")
-        npc<Talk>("Do not fear. If you follow the path of the great hero Wally, then you are sure to defeat the demon.")
+    fun ChoiceOption.cityDestroyer(end: suspend Player.() -> Unit): Unit = option<Scared>("How am I meant to fight a demon who can destroy cities?") {
+        npc<Neutral>("If you face Delrith while he is still weak from being summoned, and use the correct weapon, you will not find the task too arduous.")
+        npc<Neutral>("Do not fear. If you follow the path of the great hero Wally, then you are sure to defeat the demon.")
         end.invoke(this)
     }
 
     fun ChoiceOption.whereIsHe(): Unit = option<Happy>("Okay, where is he? I'll kill him for you.") {
-        npc<Chuckle>("Ah, the overconfidence of the young!")
-        npc<Talk>("Delrith can't be harmed by ordinary weapons. You must face him using the same weapon that Wally used.")
+        npc<Laugh>("Ah, the overconfidence of the young!")
+        npc<Neutral>("Delrith can't be harmed by ordinary weapons. You must face him using the same weapon that Wally used.")
         howToDo()
     }
 
     fun ChoiceOption.notVeryHeroicName(): Unit = option<Happy>("Wally doesn't sound like a very heroic name.") {
-        npc<Talk>("Yes, I know. Maybe that is why history doesn't remember him. However, he was a great hero.")
-        npc<Talk>("Who knows how much pain and suffering Delrith would have brought forth without Wally to stop him!")
-        npc<Talk>("It looks like you are needed to perform similar heroics.")
+        npc<Neutral>("Yes, I know. Maybe that is why history doesn't remember him. However, he was a great hero.")
+        npc<Neutral>("Who knows how much pain and suffering Delrith would have brought forth without Wally to stop him!")
+        npc<Neutral>("It looks like you are needed to perform similar heroics.")
         howToDo()
     }
 
     suspend fun Player.incantation() {
-        player<Talk>("What is the magical incantation?")
-        npc<Talk>("Oh yes, let me think a second.")
-        npc<Neutral>("Aright, I think I've got it now, it goes... ${getWord(this, 1)}... ${getWord(this, 2)}... ${getWord(this, 3)}.,. ${getWord(this, 4)}.,. ${getWord(this, 5)}. Have you got that?")
-        player<Neutral>("I think so, yes.")
+        player<Neutral>("What is the magical incantation?")
+        npc<Neutral>("Oh yes, let me think a second.")
+        npc<Idle>("Aright, I think I've got it now, it goes... ${getWord(this, 1)}... ${getWord(this, 2)}... ${getWord(this, 3)}.,. ${getWord(this, 4)}.,. ${getWord(this, 5)}. Have you got that?")
+        player<Idle>("I think so, yes.")
     }
 
-    suspend fun ChoiceOption.notBeliever(): Unit = option<Talk>("No, I don't believe in that stuff.") {
-        npc<Upset>("Ok suit yourself.")
+    suspend fun ChoiceOption.notBeliever(): Unit = option<Neutral>("No, I don't believe in that stuff.") {
+        npc<Sad>("Ok suit yourself.")
     }
 
-    fun ChoiceOption.hereYouGo(target: NPC): Unit = option<Talk>("Okay, here you go.") {
+    fun ChoiceOption.hereYouGo(target: NPC): Unit = option<Neutral>("Okay, here you go.") {
         inventory.remove("coins", 1)
         npc<Happy>("Come closer and listen carefully to what the future holds, as I peer into the swirling mists o the crystal ball.")
         sound("demon_slayer_crystal_ball_start")
         target.softTimers.start("demon_slayer_crystal_ball")
-        npc<Talk>("I can see images forming. I can see you.")
-        npc<Uncertain>("You are holding a very impressive-looking sword. I'm sure I recognise it...")
-        npc<Uncertain>("There is a big, dark shadow appearing now.")
+        npc<Neutral>("I can see images forming. I can see you.")
+        npc<Confused>("You are holding a very impressive-looking sword. I'm sure I recognise it...")
+        npc<Confused>("There is a big, dark shadow appearing now.")
         target.softTimers.stop("demon_slayer_crystal_ball")
         sound("demon_slayer_crystal_ball_end")
-        npc<Afraid>("Aaargh!")
+        npc<Scared>("Aaargh!")
         player<Quiz>("Are you all right?")
-        npc<Afraid>("It's Delrith! Delrith is coming!")
-        player<Afraid>("Who's Delrith?")
-        npc<Upset>("Delrith...")
-        npc<Talk>("Delrith is a powerful demon.")
-        npc<Afraid>("Oh! I really hope he didn't see me looking at him through my crystal ball!")
-        npc<Upset>("He tried to destroy this city 150 years ago. He was stopped just in time by the great hero Wally.")
-        npc<Upset>("Using his magic sword Silverlight, Wally managed to trap the demon in the stone circle just south of this city.")
-        npc<Surprised>("Ye gods! Silverlight was the sword you were holding in my vision! You are the one destined to stop the demon this time.")
+        npc<Scared>("It's Delrith! Delrith is coming!")
+        player<Scared>("Who's Delrith?")
+        npc<Sad>("Delrith...")
+        npc<Neutral>("Delrith is a powerful demon.")
+        npc<Scared>("Oh! I really hope he didn't see me looking at him through my crystal ball!")
+        npc<Sad>("He tried to destroy this city 150 years ago. He was stopped just in time by the great hero Wally.")
+        npc<Sad>("Using his magic sword Silverlight, Wally managed to trap the demon in the stone circle just south of this city.")
+        npc<Shock>("Ye gods! Silverlight was the sword you were holding in my vision! You are the one destined to stop the demon this time.")
         whatToDo()
     }
 
     fun ChoiceOption.whoYouCallingYoung(target: NPC): Unit = option<Frustrated>("Who are you called 'young one'?") {
-        npc<Talk>("You have been on this world a relatively short time. At least compared to me.")
-        npc<Talk>("So, do you want your fortune told or not?")
+        npc<Neutral>("You have been on this world a relatively short time. At least compared to me.")
+        npc<Neutral>("So, do you want your fortune told or not?")
         choice {
             hereYouGo(target)
             notBeliever()
             option("Ooh, how old are you then?") {
-                npc<Neutral>("Count the number of legs on the stools in the Blue Moon inn, and multiply that number by seven.")
+                npc<Idle>("Count the number of legs on the stools in the Blue Moon inn, and multiply that number by seven.")
                 player<Quiz>("Er, yeah, whatever.")
             }
         }
@@ -225,7 +225,7 @@ class GypsyAris : Script {
         sound("rumbling")
         delay(1)
         open("fade_in")
-        npc<Talk>("gypsy_aris", "Wally managed to arrive at the stone circle just as Delrith was summoned by a cult of chaos druids...")
+        npc<Neutral>("gypsy_aris", "Wally managed to arrive at the stone circle just as Delrith was summoned by a cult of chaos druids...")
 
         face(Direction.NORTH)
         clearCamera()
@@ -268,7 +268,7 @@ class GypsyAris : Script {
         gfx("silverlight_sparkle")
         npc<Pleased>("wally", "I am the greatest demon slayer EVER!")
 
-        npc<Talk>("By reciting the correct magical incantation, and thrusting Silverlight into Delrith while he was newly summoned, Wally was able to imprison Delrith in the stone table at the centre of the circle.")
+        npc<Neutral>("By reciting the correct magical incantation, and thrusting Silverlight into Delrith while he was newly summoned, Wally was able to imprison Delrith in the stone table at the centre of the circle.")
 
         statement("", clickToContinue = false)
         queue.clear("demon_slayer_wally_cutscene_end")
@@ -278,7 +278,7 @@ class GypsyAris : Script {
     }
 
     fun ChoiceOption.withSilver(target: NPC): Unit = option<Quiz>("With silver?") {
-        npc<Neutral>("Oh, sorry, I forgot. With gold, I mean. They haven't used silver coins since before you were born! So, do you want your fortune told?")
+        npc<Idle>("Oh, sorry, I forgot. With gold, I mean. They haven't used silver coins since before you were born! So, do you want your fortune told?")
         choice {
             hereYouGo(target)
             notBeliever()
@@ -286,8 +286,8 @@ class GypsyAris : Script {
     }
 
     suspend fun Player.delrithWillCome() {
-        npc<Upset>("Delrith will come forth from the stone circle again.")
-        npc<Upset>("I would imagine an evil sorcerer is already beginning the rituals to summon Delrith as we speak.")
+        npc<Sad>("Delrith will come forth from the stone circle again.")
+        npc<Sad>("I would imagine an evil sorcerer is already beginning the rituals to summon Delrith as we speak.")
         choice {
             cityDestroyer {
                 otherQuestions()
@@ -306,25 +306,25 @@ class GypsyAris : Script {
 
     suspend fun Player.whereSilverlight() {
         player<Frustrated>("Where can I find Silverlight?")
-        npc<Talk>("Silverlight has been passed down by Wally's descendants. I believe it is currently in the care of one of the king's knights called Sir Prysin.")
+        npc<Neutral>("Silverlight has been passed down by Wally's descendants. I believe it is currently in the care of one of the king's knights called Sir Prysin.")
         npc<Pleased>("He shouldn't be too hard to find. He lives in the royal palace in this city. Tell him Gypsy Aris sent you.")
     }
 
     suspend fun Player.howGoesQuest() {
         npc<Happy>("Greetings. How goes thy quest?")
-        player<Talk>("I'm still working on it.")
-        npc<Talk>("Well if you need any advice I'm always here, young one.")
+        player<Neutral>("I'm still working on it.")
+        npc<Neutral>("Well if you need any advice I'm always here, young one.")
         choice {
             incantationReminder()
             silverlightReminder()
             stopCallingMeThat()
-            option<Talk>("Well I'd better press on with it.") {
-                npc<Talk>("See you anon.")
+            option<Neutral>("Well I'd better press on with it.") {
+                npc<Neutral>("See you anon.")
             }
         }
     }
 
-    fun ChoiceOption.okThanks(): Unit = option<Talk>("Ok thanks. I'll do my best to stop the demon.") {
+    fun ChoiceOption.okThanks(): Unit = option<Neutral>("Ok thanks. I'll do my best to stop the demon.") {
         npc<Happy>("Good luck, and may Guthix be with you!")
     }
 
@@ -345,11 +345,11 @@ class GypsyAris : Script {
     }
 
     fun ChoiceOption.stopCallingMeThat(): Unit = option<Angry>("Stop calling me that!") {
-        npc<Talk>("In the scheme of things you are very young.")
+        npc<Neutral>("In the scheme of things you are very young.")
         choice {
-            option<Talk>("Ok but how old are you?") {
-                npc<Talk>("Count the number of legs on the stools in the Blue Moon inn, and multiply that number by seven.")
-                player<Talk>("Er, yeah, whatever.")
+            option<Neutral>("Ok but how old are you?") {
+                npc<Neutral>("Count the number of legs on the stools in the Blue Moon inn, and multiply that number by seven.")
+                player<Neutral>("Er, yeah, whatever.")
             }
             option<Happy>("Oh if it's in the scheme of things that's ok.") {
                 npc<Happy>("You show wisdom for one so young.")

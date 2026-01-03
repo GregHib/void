@@ -12,10 +12,10 @@ class Dommik : Script {
         npcOperate("Talk-to", "dommik") {
             npc<Happy>("Would you like to buy some crafting equipment?")
             choice {
-                option<Neutral>("No thanks; I've got all the Crafting equipment I need.") {
+                option<Idle>("No thanks; I've got all the Crafting equipment I need.") {
                     npc<Happy>("Okay. Fare well on your travels.")
                 }
-                option<Neutral>("Let's see what you've got, then.") {
+                option<Idle>("Let's see what you've got, then.") {
                     openShop("dommiks_crafting_store")
                 }
             }

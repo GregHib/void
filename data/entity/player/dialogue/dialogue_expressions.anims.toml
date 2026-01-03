@@ -16,52 +16,52 @@ id = 9744
 [expression_amazed4]
 id = 9745
 
-[expression_surprised1]
+[expression_shock1]
 id = 9746
 
-[expression_surprised2]
+[expression_shock2]
 id = 9747
 
-[expression_surprised3]
+[expression_shock3]
 id = 9748
 
-[expression_surprised4]
+[expression_shock4]
 id = 9749
 
-[expression_old_surprised1]
+[expression_old_shock1]
 id = 571
 
-[expression_old_surprised2]
+[expression_old_shock2]
 id = 572
 
-[expression_old_surprised3]
+[expression_old_shock3]
 id = 573
 
-[expression_old_surprised4]
+[expression_old_shock4]
 id = 574
 
-[expression_shock1]
+[expression_horrified1]
 id = 9750
 
-[expression_shock2]
+[expression_horrified2]
 id = 9751
 
-[expression_shock3]
+[expression_horrified3]
 id = 9752
 
-[expression_shock4]
+[expression_horrified4]
 id = 9753
 
-[expression_sad1]
+[expression_disheartened1]
 id = 9757
 
-[expression_sad2]
+[expression_disheartened2]
 id = 9758
 
-[expression_sad3]
+[expression_disheartened3]
 id = 9759
 
-[expression_sad4]
+[expression_disheartened4]
 id = 9760
 
 [expression_old_sad1]
@@ -76,16 +76,16 @@ id = 612
 [expression_old_sad4]
 id = 613
 
-[expression_upset1]
+[expression_sad1]
 id = 9761
 
-[expression_upset2]
+[expression_sad2]
 id = 9762
 
-[expression_upset3]
+[expression_sad3]
 id = 9763
 
-[expression_upset4]
+[expression_sad4]
 id = 9764
 
 [expression_cry1]
@@ -112,40 +112,40 @@ id = 9771
 [expression_teary4]
 id = 9772
 
-[expression_afraid1]
+[expression_scared1]
 id = 9773
 
-[expression_afraid2]
+[expression_scared2]
 id = 9774
 
-[expression_afraid3]
+[expression_scared3]
 id = 9775
 
-[expression_afraid4]
+[expression_scared4]
 id = 9776
 
-[expression_old_afraid1]
+[expression_old_scared1]
 id = 596
 
-[expression_old_afraid2]
+[expression_old_scared2]
 id = 597
 
-[expression_old_afraid3]
+[expression_old_scared3]
 id = 598
 
-[expression_old_afraid4]
+[expression_old_scared4]
 id = 599
 
-[expression_scared1]
+[expression_terrified1]
 id = 9777
 
-[expression_scared2]
+[expression_terrified2]
 id = 9778
 
-[expression_scared3]
+[expression_terrified3]
 id = 9779
 
-[expression_scared4]
+[expression_terrified4]
 id = 9780
 
 [expression_frustrated1]
@@ -226,16 +226,16 @@ id = 9801
 [expression_asleep]
 id = 9802
 
-[expression_neutral1]
+[expression_idle1]
 id = 9803
 
-[expression_neutral2]
+[expression_idle2]
 id = 9804
 
-[expression_neutral3]
+[expression_idle3]
 id = 9805
 
-[expression_neutral4]
+[expression_idle4]
 id = 9806
 
 [expression_old_neutral1]
@@ -250,40 +250,40 @@ id = 590
 [expression_old_neutral4]
 id = 591
 
-[expression_talk1]
+[expression_neutral1]
 id = 9807
 
-[expression_talk2]
+[expression_neutral2]
 id = 9808
 
-[expression_talk3]
+[expression_neutral3]
 id = 9809
 
-[expression_talk4]
+[expression_neutral4]
 id = 9810
 
-[expression_uncertain1]
+[expression_confused1]
 id = 9811
 
-[expression_uncertain2]
+[expression_confused2]
 id = 9812
 
-[expression_uncertain3]
+[expression_confused3]
 id = 9813
 
-[expression_uncertain4]
+[expression_confused4]
 id = 9814
 
-[expression_old_uncertain1]
+[expression_old_confused1]
 id = 575
 
-[expression_old_uncertain2]
+[expression_old_confused2]
 id = 576
 
-[expression_old_uncertain3]
+[expression_old_confused3]
 id = 577
 
-[expression_old_uncertain4]
+[expression_old_confused4]
 id = 578
 
 [expression_admit1]
@@ -298,7 +298,7 @@ id = 9817
 [expression_admit4]
 id = 9818
 
-[expression_old_talk]
+[expression_old_idle]
 id = 579
 
 [expression_sneer1]
@@ -349,28 +349,28 @@ id = 556
 [expression_old_quiz4]
 id = 557
 
-[expression_roll_eyes1]
+[expression_bored1]
 id = 9831
 
-[expression_roll_eyes2]
+[expression_bored2]
 id = 9832
 
-[expression_roll_eyes3]
+[expression_bored3]
 id = 9833
 
-[expression_roll_eyes4]
+[expression_bored4]
 id = 9834
 
-[expression_old_roll_eyes1]
+[expression_old_bored1]
 id = 562
 
-[expression_old_roll_eyes2]
+[expression_old_bored2]
 id = 563
 
-[expression_old_roll_eyes3]
+[expression_old_bored3]
 id = 564
 
-[expression_old_roll_eyes4]
+[expression_old_bored4]
 id = 565
 
 [expression_drunk]
@@ -412,7 +412,7 @@ id = 594
 [expression_old_shifty4]
 id = 595
 
-[expression_chuckle]
+[expression_laugh]
 id = 9840
 
 [expression_hysterics]
@@ -460,28 +460,28 @@ id = 569
 [expression_old_happy4]
 id = 570
 
-[expression_laugh1]
+[expression_cackle1]
 id = 9851
 
-[expression_laugh2]
+[expression_cackle2]
 id = 9852
 
-[expression_laugh3]
+[expression_cackle3]
 id = 9853
 
-[expression_laugh4]
+[expression_cackle4]
 id = 9854
 
-[expression_old_chuckle1]
+[expression_old_laugh1]
 id = 605
 
-[expression_old_chuckle2]
+[expression_old_laugh2]
 id = 606
 
-[expression_old_chuckle3]
+[expression_old_laugh3]
 id = 607
 
-[expression_old_chuckle4]
+[expression_old_laugh4]
 id = 608
 
 [expression_unamused1]
@@ -610,7 +610,7 @@ id = 14711
 [expression_door_head]
 id = 4281
 
-[expression_cat_talk]
+[expression_cat_neutral]
 id = 8373
 
 [expression_cat_quiz]
@@ -622,7 +622,7 @@ id = 9178
 [expression_cat_unamused]
 id = 9187
 
-[expression_tree_talk]
+[expression_tree_neutral]
 id = 584
 
 [expression_tree_happy]
@@ -640,10 +640,10 @@ id = 7170
 [expression_child_evil]
 id = 7171
 
-[expression_child_talk]
+[expression_child_neutral]
 id = 7172
 
-[expression_child_neutral]
+[expression_child_idle]
 id = 7172
 
 [expression_child_happy]
@@ -652,7 +652,7 @@ id = 7173
 [expression_child_laugh]
 id = 7175
 
-[expression_child_uncertain]
+[expression_child_confused]
 id = 7176
 
 [expression_child_sad]
@@ -661,5 +661,5 @@ id = 7177
 [expression_child_scared]
 id = 7178
 
-[expression_child_surprised]
+[expression_child_shock]
 id = 7180

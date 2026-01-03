@@ -10,8 +10,8 @@ class Man : Script {
     init {
         npcOperate("Talk-to", "w_ardougnecitizen3") {
             player<Happy>("Good day.")
-            npc<Surprised>("An outsider! Can you get me out of this hell hole?")
-            player<Sad>("Sorry, that's not what I'm here to do.")
+            npc<Shock>("An outsider! Can you get me out of this hell hole?")
+            player<Disheartened>("Sorry, that's not what I'm here to do.")
         }
 
         npcOperate("Talk-to", "w_ardougnecitizen4") {

@@ -1,7 +1,7 @@
 package content.entity.npc.shop
 
 import content.entity.npc.shop.general.GeneralStores
-import content.entity.player.dialogue.Sad
+import content.entity.player.dialogue.Disheartened
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.client.ui.InterfaceApi
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -38,7 +38,7 @@ suspend fun Player.buy(item: String, cost: Int, message: String = "Oh dear. I do
     when (inventory.transaction.error) {
         is TransactionError.Full -> inventoryFull()
         TransactionError.None -> return true
-        else -> player<Sad>(message)
+        else -> player<Disheartened>(message)
     }
     return false
 }

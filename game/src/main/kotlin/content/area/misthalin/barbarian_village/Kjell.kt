@@ -2,8 +2,8 @@ package content.area.misthalin.barbarian_village
 
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Frustrated
+import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Neutral
-import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.quest.quest
@@ -25,7 +25,7 @@ class Kjell : Script {
     }
 
     suspend fun Player.completed() {
-        npc<Talk>(
+        npc<Neutral>(
             when (random.nextInt(0, 9)) {
                 0 -> "...there's a place for us..."
                 1 -> "...but I'd do anything for you..."
@@ -40,24 +40,24 @@ class Kjell : Script {
         )
         npc<Angry>("Blast!")
         choice {
-            option<Neutral>("Having trouble there?") {
+            option<Idle>("Having trouble there?") {
                 npc<Angry>("I don't need the advice of an outerlander.")
                 advice()
             }
-            option<Neutral>("I'll leave you in peace.") {
+            option<Idle>("I'll leave you in peace.") {
             }
         }
     }
 
     suspend fun Player.advice() {
         choice {
-            option<Neutral>("This music isn't very restful.") {
+            option<Idle>("This music isn't very restful.") {
                 npc<Angry>("Get out of here!")
             }
-            option<Neutral>("Maybe you should take some lessons.") {
+            option<Idle>("Maybe you should take some lessons.") {
                 npc<Angry>("Get out of here!")
             }
-            option<Neutral>("I'll leave you in peace.") {
+            option<Idle>("I'll leave you in peace.") {
                 npc<Angry>("Get out of here!")
             }
         }
@@ -66,16 +66,16 @@ class Kjell : Script {
     suspend fun Player.unstarted() {
         npc<Frustrated>("Get out of here, outerlander!")
         choice {
-            option<Neutral>("What is this place?") {
+            option<Idle>("What is this place?") {
                 npc<Frustrated>("The barbarian village. Go away.")
             }
-            option<Neutral>("Who are you?") {
+            option<Idle>("Who are you?") {
                 npc<Frustrated>("My name is Kjell. Go away.")
             }
-            option<Neutral>("What's in this hut you're guarding?") {
+            option<Idle>("What's in this hut you're guarding?") {
                 npc<Frustrated>("Nothing yet. Once there is, no one will get in or out! Now, Go away!")
             }
-            option<Neutral>("Goodbye then.") {
+            option<Idle>("Goodbye then.") {
             }
         }
     }

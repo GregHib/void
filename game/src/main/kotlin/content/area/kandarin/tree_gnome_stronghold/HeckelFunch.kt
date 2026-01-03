@@ -9,13 +9,13 @@ class HeckelFunch : Script {
 
     init {
         npcOperate("Talk-to", "gnome_heckelfunch") {
-            player<Neutral>("Hello there.")
+            player<Idle>("Hello there.")
             npc<Happy>("Good day to you my friend, a beautiful one at that. Would you like some groceries? I have all sorts. Alcohol also, if you're partial to a drink.")
             choice {
-                option<Neutral>("No thank you.") {
-                    npc<Neutral>("Ahh well, all the best to you.")
+                option<Idle>("No thank you.") {
+                    npc<Idle>("Ahh well, all the best to you.")
                 }
-                option<Neutral>("I'll have a look.") {
+                option<Idle>("I'll have a look.") {
                     npc<Happy>("There's a good human.")
                     openShop("funchs_fine_groceries")
                 }

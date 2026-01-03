@@ -3,7 +3,7 @@ package content.area.misthalin.varrock.palace
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.player
@@ -33,7 +33,7 @@ class VarrockPalaceDrain : Script {
             } else if (quest("demon_slayer") == "unstarted") {
                 player<Shifty>("This is the drainpipe running from the kitchen sink to the sewer. I can see a key just inside the drain.")
             } else {
-                player<Neutral>("That must be the key Sir Prysin dropped.")
+                player<Idle>("That must be the key Sir Prysin dropped.")
                 player<Shifty>("I don't seem to be able to reach it. I wonder if I can dislodge it somehow. That way it may go down into the sewers.")
             }
         }

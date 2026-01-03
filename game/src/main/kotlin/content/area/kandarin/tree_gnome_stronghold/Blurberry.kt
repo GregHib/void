@@ -15,11 +15,11 @@ class Blurberry : Script {
 
     init {
         npcOperate("Talk-to", "blurberry") { (target) ->
-            player<Talk>("Hello.")
-            npc<Neutral>("Well hello there traveller. If you're looking for a cocktail the barman will happily make you one.")
-            npc<Neutral>("Or if you're looking for some training in cocktail making, then I'm your gnome! Aluft Gianne jnr. is looking for gnome cooks and bartenders to help in his new venture, so it's a useful skill to have.")
+            player<Neutral>("Hello.")
+            npc<Idle>("Well hello there traveller. If you're looking for a cocktail the barman will happily make you one.")
+            npc<Idle>("Or if you're looking for some training in cocktail making, then I'm your gnome! Aluft Gianne jnr. is looking for gnome cooks and bartenders to help in his new venture, so it's a useful skill to have.")
             choice {
-                option<Talk>("No thanks, I prefer to stay this side of the bar.")
+                option<Neutral>("No thanks, I prefer to stay this side of the bar.")
                 if (onBarCrawl(target)) {
                     option("I'm doing Alfred Grimhand's barcrawl.") {
                         barCrawl(target)

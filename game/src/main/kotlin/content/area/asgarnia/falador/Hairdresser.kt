@@ -25,12 +25,12 @@ class Hairdresser : Script {
         npcOperate("Talk-to", "hairdresser") {
             npc<Pleased>("Good afternoon ${if (male) "sir" else "madam"}. In need of a haircut${if (male) " or shave" else ""} are we?")
             choice {
-                option<Talk>("Yes, please.") {
+                option<Neutral>("Yes, please.") {
                     npc<Pleased>("Please select the hairstyle you would like from this brochure. I'll even throw in a free recolour.")
                     startHairdressing()
                 }
-                option<Talk>("No, thank you.") {
-                    npc<Talk>("Very well. Come back if you change your mind.")
+                option<Neutral>("No, thank you.") {
+                    npc<Neutral>("Very well. Come back if you change your mind.")
                 }
             }
         }
@@ -94,11 +94,11 @@ class Hairdresser : Script {
     suspend fun Player.startHairdressing() {
         closeDialogue()
         if (equipped(EquipSlot.Weapon).isNotEmpty() || equipped(EquipSlot.Shield).isNotEmpty()) {
-            npc<Afraid>("I don't feel comfortable cutting hair when you are wielding something. Please remove what you are holding first.")
+            npc<Scared>("I don't feel comfortable cutting hair when you are wielding something. Please remove what you are holding first.")
             return
         }
         if (equipped(EquipSlot.Hat).isNotEmpty()) {
-            npc<Upset>("I can't cut your hair with that on your head.")
+            npc<Sad>("I can't cut your hair with that on your head.")
             return
         }
         openDressingRoom("hairdressers_salon")

@@ -1,7 +1,7 @@
 package content.entity.npc
 
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.social.trade.lend.Loan.getSecondsRemaining
@@ -25,9 +25,9 @@ class Banker : Script {
             val collection = false
 
             if (loanReturned) {
-                npc<Talk>("Before we go any further, I should inform you that an item you lent out has been returned to you.")
+                npc<Neutral>("Before we go any further, I should inform you that an item you lent out has been returned to you.")
             } else if (collection) {
-                npc<Talk>("Before we go any further, I should inform you that you have items ready for collection from the Grand Exchange.")
+                npc<Neutral>("Before we go any further, I should inform you that you have items ready for collection from the Grand Exchange.")
             }
             menu()
         }
@@ -60,14 +60,14 @@ class Banker : Script {
             option("I'd like to see my collection box.", block = { open("collection_box") })
             option("I'd like to see my Returned Items box.", block = { open("returned_items") })
             option("What is this place?") {
-                npc<Talk>("This is a branch of the Bank of ${Settings["server.name"]}. We have branches in many towns.")
+                npc<Neutral>("This is a branch of the Bank of ${Settings["server.name"]}. We have branches in many towns.")
                 choice {
                     option("And what do you do?") {
-                        npc<Talk>("We will look after your items and money for you. Leave your valuables with us if you want to keep them safe.")
+                        npc<Neutral>("We will look after your items and money for you. Leave your valuables with us if you want to keep them safe.")
                         achievement()
                     }
                     option("Didn't you used to be called the Bank of Varrock?") {
-                        npc<Talk>("Yes we did, but people kept on coming into our branches outside of Varrock and telling us that our signs were wrong. They acted as if we didn't know what town we were in or something.")
+                        npc<Neutral>("Yes we did, but people kept on coming into our branches outside of Varrock and telling us that our signs were wrong. They acted as if we didn't know what town we were in or something.")
                         achievement()
                     }
                 }

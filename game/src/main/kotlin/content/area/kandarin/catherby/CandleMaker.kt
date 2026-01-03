@@ -9,16 +9,16 @@ class CandleMaker : Script {
 
     init {
         npcOperate("Talk-to", "candle_maker") {
-            npc<Talk>("Hi! Would you be interested in some of my fine candles?")
+            npc<Neutral>("Hi! Would you be interested in some of my fine candles?")
 
             choice {
                 option("Yes please.") {
-                    player<Talk>("Yes please.")
+                    player<Neutral>("Yes please.")
                     openShop("candle_shop")
                 }
 
                 option("No thank you.") {
-                    player<Talk>("No thank you.")
+                    player<Neutral>("No thank you.")
                     // Ends dialogue naturally
                 }
             }

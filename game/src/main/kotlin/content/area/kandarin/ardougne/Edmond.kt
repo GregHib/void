@@ -45,34 +45,34 @@ class Edmond : Script {
             when (quest("plague_city")) {
                 "unstarted" -> {
                     player<Happy>("Hello old man.")
-                    npc<Sad>("Sorry, I can't stop to talk...")
+                    npc<Disheartened>("Sorry, I can't stop to talk...")
                     player<Quiz>("Why, what's wrong?")
-                    npc<Sad>("I've got to find my daughter. I pray that she is still alive...")
+                    npc<Disheartened>("I've got to find my daughter. I pray that she is still alive...")
                     choice {
                         option<Quiz>("What's happened to her?") {
-                            npc<Sad>("Elena's a healer. Three weeks ago she managed to cross the wall into West Ardougne. No one's allowed to cross the wall in case they spread the plague.")
+                            npc<Disheartened>("Elena's a healer. Three weeks ago she managed to cross the wall into West Ardougne. No one's allowed to cross the wall in case they spread the plague.")
                             player<Quiz>("Plague?")
-                            npc<Sad>("Not that long ago, West Ardougne was hit by a deadly plague. They had the wall built to try and keep it contained. No one is allowed to enter the city now apart from the mourners.")
-                            npc<Sad>("They say the plague is a horrible way to go... That's why Elena felt she had to go help. She said she'd be gone for a few days but we've heard nothing since.")
+                            npc<Disheartened>("Not that long ago, West Ardougne was hit by a deadly plague. They had the wall built to try and keep it contained. No one is allowed to enter the city now apart from the mourners.")
+                            npc<Disheartened>("They say the plague is a horrible way to go... That's why Elena felt she had to go help. She said she'd be gone for a few days but we've heard nothing since.")
                             player<Quiz>("Maybe I could help find her?")
-                            npc<Uncertain>("Really, would you? I've been working on a plan to get into West Ardougne, but I'm too old and tired to carry it through. But you on the other hand, you should have no problem.")
+                            npc<Confused>("Really, would you? I've been working on a plan to get into West Ardougne, but I'm too old and tired to carry it through. But you on the other hand, you should have no problem.")
                             if (startQuest("plague_city")) {
                                 player<Quiz>("Where should I start?")
-                                npc<Neutral>("If you're going into West Ardougne you'll need protection from the plague. My wife made a special gas mask for Elena with dwellberries rubbed into it.")
-                                npc<Neutral>("They help to repel the plague apparently. We need some more though...")
+                                npc<Idle>("If you're going into West Ardougne you'll need protection from the plague. My wife made a special gas mask for Elena with dwellberries rubbed into it.")
+                                npc<Idle>("They help to repel the plague apparently. We need some more though...")
                                 player<Quiz>("Where can I find these dwellberries?")
                                 set("plague_city", "started")
                                 refreshQuestJournal()
-                                npc<Neutral>("The only place I know of is McGrubor's Wood, just west of Seers' Village. The berries are bright blue so they're easy to spot.")
-                                player<Neutral>("Okay, I'll go and get some.")
-                                npc<Neutral>("The foresters keep a close eye on it, but there is a back way in.")
+                                npc<Idle>("The only place I know of is McGrubor's Wood, just west of Seers' Village. The berries are bright blue so they're easy to spot.")
+                                player<Idle>("Okay, I'll go and get some.")
+                                npc<Idle>("The foresters keep a close eye on it, but there is a back way in.")
                             } else {
-                                player<Neutral>("On second thoughts, I'd better not.")
-                                npc<Neutral>("Well if you hear anything about Elena please tell me.")
-                                player<Neutral>("I will. Goodbye.")
+                                player<Idle>("On second thoughts, I'd better not.")
+                                npc<Idle>("Well if you hear anything about Elena please tell me.")
+                                player<Idle>("I will. Goodbye.")
                             }
                         }
-                        option<Neutral>("Well, good luck finding her.")
+                        option<Idle>("Well, good luck finding her.")
                     }
                 }
                 "started" -> started()
@@ -97,40 +97,40 @@ class Edmond : Script {
         npc<Quiz>("Have you got the dwellberries yet?")
         if (holdsItem("dwellberries")) {
             player<Happy>("Yes I've got some here.")
-            npc<Neutral>("Take them to my wife Alrena, she's inside.")
+            npc<Idle>("Take them to my wife Alrena, she's inside.")
         } else {
-            player<Upset>("Sorry, I'm afraid not.")
-            npc<Talk>("You'll probably find them in McGrubor's Wood, just west of Seers' Village. The berries are bright blue so they're easy to spot.")
-            player<Talk>("Okay, I'll go and get some.")
-            npc<Talk>("The foresters keep a close eye on it, but there is a back way in.")
+            player<Sad>("Sorry, I'm afraid not.")
+            npc<Neutral>("You'll probably find them in McGrubor's Wood, just west of Seers' Village. The berries are bright blue so they're easy to spot.")
+            player<Neutral>("Okay, I'll go and get some.")
+            npc<Neutral>("The foresters keep a close eye on it, but there is a back way in.")
         }
     }
 
     suspend fun Player.hasMask() {
         player<Happy>("Hi Edmond, I've got the gas mask now.")
-        npc<Neutral>("Good stuff, now for the digging. Beneath us are the Ardougne sewers. I've done some research, and I reckon you can use them to access to West Ardougne.")
+        npc<Idle>("Good stuff, now for the digging. Beneath us are the Ardougne sewers. I've done some research, and I reckon you can use them to access to West Ardougne.")
         set("plague_city", "about_digging")
-        npc<Neutral>("I've already tried digging down to them but the soil is rock hard. You'll need to pour on several buckets of water to soften it up. I reckon four buckets should do it.")
+        npc<Idle>("I've already tried digging down to them but the soil is rock hard. You'll need to pour on several buckets of water to soften it up. I reckon four buckets should do it.")
     }
 
     suspend fun Player.aboutDigging() {
         npc<Quiz>("How's it going?")
-        player<Neutral>("I still need to pour four more buckets of water on the soil.")
+        player<Idle>("I still need to pour four more buckets of water on the soil.")
     }
 
     suspend fun Player.oneBucketOfWater() {
         npc<Quiz>("How's it going?")
-        player<Neutral>("I still need to pour three more buckets of water on the soil.")
+        player<Idle>("I still need to pour three more buckets of water on the soil.")
     }
 
     suspend fun Player.twoBucketOfWater() {
         npc<Quiz>("How's it going?")
-        player<Neutral>("I still need to pour two more buckets of water on the soil.")
+        player<Idle>("I still need to pour two more buckets of water on the soil.")
     }
 
     suspend fun Player.threeBucketOfWater() {
         npc<Quiz>("How's it going?")
-        player<Neutral>("I still need to pour one more bucket of water on the soil.")
+        player<Idle>("I still need to pour one more bucket of water on the soil.")
     }
 
     suspend fun Player.fourBucketOfWater() {
@@ -140,37 +140,37 @@ class Edmond : Script {
 
     suspend fun Player.sewer() {
         if (get("plaguecity_checked_grill", false)) {
-            player<Uncertain>("Edmond, I can't get through to West Ardougne! There's an iron grill blocking my way, I can't pull it off alone.")
-            npc<Neutral>("If you get some rope you could tie to the grill, then we could both pull it at the same time.")
+            player<Confused>("Edmond, I can't get through to West Ardougne! There's an iron grill blocking my way, I can't pull it off alone.")
+            npc<Idle>("If you get some rope you could tie to the grill, then we could both pull it at the same time.")
         } else {
-            npc<Neutral>("I think it's the pipe to the south that comes up in West Ardougne.")
-            player<Neutral>("Alright I'll check it out.")
+            npc<Idle>("I think it's the pipe to the south that comes up in West Ardougne.")
+            player<Idle>("Alright I'll check it out.")
         }
     }
 
     suspend fun Player.grillRope() {
-        player<Neutral>("I've tied a rope to the grill over there, will you help me pull it off?")
-        npc<Neutral>("Alright, let's get to it...")
+        player<Idle>("I've tied a rope to the grill over there, will you help me pull it off?")
+        npc<Idle>("Alright, let's get to it...")
         cutscene()
     }
 
     suspend fun Player.spoken() {
-        player<Neutral>("Hello.")
+        player<Idle>("Hello.")
         npc<Quiz>("Have you found Elena yet?")
         if (holdsItem("picture_plague_city")) {
-            player<Sad>("Not yet, it's a big city over there.")
-            npc<Sad>("I hope it's not too late.")
+            player<Disheartened>("Not yet, it's a big city over there.")
+            npc<Disheartened>("I hope it's not too late.")
         } else {
-            player<Sad>("Not yet, it's a big city over there. Do you have a picture of Elena?")
-            npc<Sad>("There should be a picture of Elena in the house. Please find her quickly, I hope it's not too late.")
+            player<Disheartened>("Not yet, it's a big city over there. Do you have a picture of Elena?")
+            npc<Disheartened>("There should be a picture of Elena in the house. Please find her quickly, I hope it's not too late.")
         }
     }
 
     suspend fun Player.grillOpen() {
-        player<Neutral>("Hello.")
+        player<Idle>("Hello.")
         npc<Quiz>("Have you found Elena yet?")
-        player<Sad>("Not yet, it's a big city over there.")
-        npc<Sad>("I hope it's not too late.")
+        player<Disheartened>("Not yet, it's a big city over there.")
+        npc<Disheartened>("I hope it's not too late.")
     }
 
     suspend fun Player.freedElena() {
@@ -240,9 +240,9 @@ class Edmond : Script {
         clearAnim()
         edmond.clearAnim()
         face(edmond)
-        npc<Neutral>("Once you're in the city look for a man called Jethick. He's an old friend of the family. Hopefully he can help you.", clickToContinue = false)
+        npc<Idle>("Once you're in the city look for a man called Jethick. He's an old friend of the family. Hopefully he can help you.", clickToContinue = false)
         delay(4)
-        player<Neutral>("Alright, thanks I will.", largeHead = true, clickToContinue = false)
+        player<Idle>("Alright, thanks I will.", largeHead = true, clickToContinue = false)
         delay(2)
         cutscene.end()
     }

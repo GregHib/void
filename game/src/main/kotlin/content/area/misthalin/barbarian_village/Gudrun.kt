@@ -45,11 +45,11 @@ class Gudrun : Script {
                 "recital" -> recital()
                 "poem" -> poem()
                 "tell_dororan", "write_poem", "more_poem", "one_more_poem", "poem_done" -> {
-                    npc<Talk>("If there's anything you can do to make papa see sense, please do it.")
+                    npc<Neutral>("If there's anything you can do to make papa see sense, please do it.")
                 }
                 "tell_gudrun" -> whatHeSay()
                 "meet_chieftain" -> {
-                    npc<Talk>("If there's anything you can do to make papa see sense, please do it.")
+                    npc<Neutral>("If there's anything you can do to make papa see sense, please do it.")
                     meetChieftain()
                 }
                 "show_gudrun" -> showGudrun()
@@ -62,11 +62,11 @@ class Gudrun : Script {
                 "completed" -> {
                     npc<Happy>("Hello!")
                     choice {
-                        option<Neutral>("I want to ask you something.") {
+                        option<Idle>("I want to ask you something.") {
                             npc<Quiz>("Of course, what is it?")
                             menu()
                         }
-                        option<Neutral>("Just passing through.") {
+                        option<Idle>("Just passing through.") {
                             npc<Happy>("Goodbye!")
                         }
                     }
@@ -79,10 +79,10 @@ class Gudrun : Script {
     suspend fun Player.recital() {
         npc<Quiz>("Are you ready for the recital?")
         choice {
-            option<Neutral>("Yes.") {
+            option<Idle>("Yes.") {
                 cutscene()
             }
-            option<Neutral>("Not right now.") {
+            option<Idle>("Not right now.") {
             }
         }
     }
@@ -108,26 +108,26 @@ class Gudrun : Script {
         turnCamera(cutscene.tile(3079, 3436), 230)
         delay(2)
         open("fade_in")
-        npc<Talk>("dororan_cutscene", "How long have they been in there?")
+        npc<Neutral>("dororan_cutscene", "How long have they been in there?")
         anim("player_calm_doroan")
         choice {
-            option<Neutral>("They're just starting.") {
+            option<Idle>("They're just starting.") {
                 cutsceneMenu(cutscene)
             }
-            option<Neutral>("You're late.") {
+            option<Idle>("You're late.") {
                 cutsceneMenu(cutscene)
             }
         }
     }
 
     suspend fun Player.cutsceneMenu(cutscene: Cutscene) {
-        npc<Sad>("dororan_cutscene", "This isn't going to work.")
+        npc<Disheartened>("dororan_cutscene", "This isn't going to work.")
         choice {
-            option<Neutral>("Why's that?") {
+            option<Idle>("Why's that?") {
                 anim("player_calm_doroan")
                 cutsceneMenu2(cutscene)
             }
-            option<Neutral>("You're so pessimistic.") {
+            option<Idle>("You're so pessimistic.") {
                 anim("player_calm_doroan")
                 cutsceneMenu2(cutscene)
             }
@@ -137,44 +137,44 @@ class Gudrun : Script {
     suspend fun Player.cutsceneMenu2(cutscene: Cutscene) {
         npc<Cry>("dororan_cutscene", "What was I thinking? You should go in there and stop them before Gudrun makes a fool of herself.")
         choice {
-            option<Neutral>("Okay, I will.") {
+            option<Idle>("Okay, I will.") {
                 anim("player_calm_doroan")
-                npc<Sad>("dororan_cutscene", "No! Wait, stay here, it's too late now. We'll just have to see how it turns out.")
+                npc<Disheartened>("dororan_cutscene", "No! Wait, stay here, it's too late now. We'll just have to see how it turns out.")
                 cutsceneMenu3(cutscene)
             }
-            option<Neutral>("Don't be silly.") {
+            option<Idle>("Don't be silly.") {
                 anim("player_calm_doroan")
-                npc<Sad>("dororan_cutscene", "You're right, it's too late now. We'll just have to see how it turns out.")
+                npc<Disheartened>("dororan_cutscene", "You're right, it's too late now. We'll just have to see how it turns out.")
                 cutsceneMenu3(cutscene)
             }
         }
     }
 
     suspend fun Player.cutsceneMenu3(cutscene: Cutscene) {
-        npc<Sad>("dororan_cutscene", "I can't hear what's happening. Can you hear what's happening?")
+        npc<Disheartened>("dororan_cutscene", "I can't hear what's happening. Can you hear what's happening?")
         anim("player_calm_doroan")
-        player<Talk>("Gunthor is laughing at something.")
-        npc<Upset>("dororan_cutscene", "He's probably considering the various tortures he has planned for me.")
+        player<Neutral>("Gunthor is laughing at something.")
+        npc<Sad>("dororan_cutscene", "He's probably considering the various tortures he has planned for me.")
         anim("player_calm_doroan")
         choice {
-            option<Neutral>("Why would he do that?") {
+            option<Idle>("Why would he do that?") {
                 cutsceneMenu4(cutscene)
             }
-            option<Neutral>("Now you're just being ridiculous.") {
+            option<Idle>("Now you're just being ridiculous.") {
                 cutsceneMenu4(cutscene)
             }
         }
     }
 
     suspend fun Player.cutsceneMenu4(cutscene: Cutscene) {
-        npc<Talk>("dororan_cutscene", "The poem says you can honour your ancestors by settling peacefully on the land they conquered.")
-        npc<Sad>("dororan_cutscene", "He'll probably just find it insulting.")
+        npc<Neutral>("dororan_cutscene", "The poem says you can honour your ancestors by settling peacefully on the land they conquered.")
+        npc<Disheartened>("dororan_cutscene", "He'll probably just find it insulting.")
         anim("player_calm_doroan")
         choice {
-            option<Neutral>("Now's your chance to find out.") {
+            option<Idle>("Now's your chance to find out.") {
                 cutscenePart2(cutscene)
             }
-            option<Neutral>("You're doomed.") {
+            option<Idle>("You're doomed.") {
                 cutscenePart2(cutscene)
             }
         }
@@ -198,7 +198,7 @@ class Gudrun : Script {
         turnCamera(cutscene.tile(3079, 3426), 150)
         delay(2)
         open("fade_in")
-        npc<Upset>("dororan_cutscene", "I hope they at least give me a decent burial.")
+        npc<Sad>("dororan_cutscene", "I hope they at least give me a decent burial.")
         gunthor.anim("gunthor_announcement")
         npc<Frustrated>("chieftain_gunthor_cutscene", "Freemen! Freemen! I have an announcement!")
         npc<Frustrated>("kjell_cutscene", "Hear the chieftain speak! Hear him!")
@@ -222,9 +222,9 @@ class Gudrun : Script {
         val gudrunHugging = objects.add("gudrun_and_dororan", cutscene.tile(3082, 3426), shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
         open("fade_in")
         npc<Happy>("gudrun_cutscene", "That was brilliant! I must know who wrote that poem.")
-        npc<Sad>("dororan_cutscene", "Um, that would be me. Hello")
+        npc<Disheartened>("dororan_cutscene", "Um, that would be me. Hello")
         npc<Pleased>("gudrun_cutscene", "That line about beauty was for me, wasn't it?")
-        npc<Upset>("dororan_cutscene", "Uh, Yes.")
+        npc<Sad>("dororan_cutscene", "Uh, Yes.")
         npc<Happy>("gudrun_cutscene", "You're the mystery poet who sent me the gold ring!")
         npc<Cry>("dororan_cutscene", "Sorry.")
         npc<Happy>("gudrun_cutscene", "I had no idea dwarves could be so romantic! Come here! ")
@@ -251,19 +251,19 @@ class Gudrun : Script {
         npc<Happy>("Papa was so impressed by Dororan's poem, he's made him the village poet!")
         npc<Happy>("dororan_after_cutscene2", "I'm more then a little surprised! He even gave me a house to live in!")
         npc<Pleased>("Our people's tradition is that the tribe provides lodging for the poet.")
-        npc<Chuckle>("dororan_after_cutscene2", "It's huge!")
+        npc<Laugh>("dororan_after_cutscene2", "It's huge!")
         npc<Happy>("It's not in the village. It's east of here: across the river and north of the road on the way to Varrock. It's a big house with roses outside.")
         npc<Pleased>("dororan_after_cutscene2", "I think Gunthor wants to keep me close, but not too close. Oh, I found something there for you!")
         npc<Happy>("dororan_after_cutscene2", "Whoever lived there before left a dozen pairs of boots in the attic.")
-        npc<Talk>("dororan_after_cutscene2", "I picked out a pair for you to thank you for all your help.")
+        npc<Neutral>("dororan_after_cutscene2", "I picked out a pair for you to thank you for all your help.")
         npc<Happy>("dororan_after_cutscene2", "Underneath them all was this magic lamb. You should have it as well!")
         npc<Happy>("We're going to the new house. You should come and visit!")
         npc<Happy>("dororan_after_cutscene2", "Yes, we'll see you there!")
         choice {
-            option<Neutral>("I'll see you soon.") {
+            option<Idle>("I'll see you soon.") {
                 finishQuest()
             }
-            option<Neutral>("I'll consider dropping in.") {
+            option<Idle>("I'll consider dropping in.") {
                 finishQuest()
             }
         }
@@ -274,31 +274,31 @@ class Gudrun : Script {
             npc<Quiz>("What have you got there?")
             player<Pleased>("Another gift from your mysterious suitor.")
             npc<Quiz>("A scroll?")
-            player<Talk>("It's a poem; a story to convince your father to settle down. You could recite it to him.")
+            player<Neutral>("It's a poem; a story to convince your father to settle down. You could recite it to him.")
             npc<Amazed>("Let me see that.")
             anim("hand_over_item")
             item("gunnars_ground", 400, "You show Gudrun the poem")
-            npc<Talk>("'Gunnar's Ground'")
+            npc<Neutral>("'Gunnar's Ground'")
             npc<Pleased>("Yes! I think this could work. I'll go to the longhouse right away!")
             inventory.remove("gunnars_ground")
             set("gunnars_ground", "recital")
             cutscene()
         } else {
             npc<Quiz>("What is it?")
-            player<Upset>("I was meant to bring you a poem, but I seem to have mislaid it.")
+            player<Sad>("I was meant to bring you a poem, but I seem to have mislaid it.")
         }
     }
 
     suspend fun Player.whatHeSay() {
         npc<Quiz>("What did he say?")
-        player<Talk>("He mentioned someone called Gunnar, and that you should think about his feelings.")
+        player<Neutral>("He mentioned someone called Gunnar, and that you should think about his feelings.")
         npc<Angry>("By the eyeballs of Guthix! Always Gunnar!")
         choice {
-            option<Neutral>("Who is Gunnar?") {
+            option<Idle>("Who is Gunnar?") {
                 npc<Frustrated>("He was my great-grandpapa! He founded this village a hundred years ago.")
                 fathersAttitude()
             }
-            option<Neutral>("What should we do now?") {
+            option<Idle>("What should we do now?") {
                 npc<Frustrated>("I don't know. Maybe your mystery man has some ideas.")
                 set("gunnars_ground", "tell_dororan")
                 player<Pleased>("I'll ask him.")
@@ -308,13 +308,13 @@ class Gudrun : Script {
 
     suspend fun Player.fathersAttitude() {
         choice {
-            option<Neutral>("You don't seem to share your father's attitude towards him.") {
+            option<Idle>("You don't seem to share your father's attitude towards him.") {
                 npc<Frustrated>("I think there's a difference between respecting my ancestors and obsessing over them. Papa thinks whatever stupid war Gunnar fought is still going on.")
                 npc<Frustrated>("I don't know. Maybe your mystery man has some ideas.")
                 set("gunnars_ground", "tell_dororan")
                 player<Pleased>("I'll ask him.")
             }
-            option<Neutral>("What should we do now?") {
+            option<Idle>("What should we do now?") {
                 npc<Frustrated>("I don't know. Maybe your mystery man has some ideas.")
                 set("gunnars_ground", "tell_dororan")
                 player<Pleased>("I'll ask him.")
@@ -324,10 +324,10 @@ class Gudrun : Script {
 
     suspend fun Player.meetChieftain() {
         choice {
-            option<Neutral>("Where is he?") {
-                npc<Talk>("In the longhouse at the north end of the village, drinking and shouting.")
+            option<Idle>("Where is he?") {
+                npc<Neutral>("In the longhouse at the north end of the village, drinking and shouting.")
             }
-            option<Neutral>("I'll see what I can do.") {
+            option<Idle>("I'll see what I can do.") {
             }
         }
     }
@@ -345,7 +345,7 @@ class Gudrun : Script {
         npc<Frustrated>("Stupid barbarian.")
         npc<Quiz>("Sorry about that, stranger. Did you want something?.")
         player<Quiz>("Are you Gudrun?")
-        npc<Talk>("Yes.")
+        npc<Neutral>("Yes.")
         if (holdsItem("dororans_engraved_ring")) {
             player<Pleased>("This is for you.")
             anim("hand_over_item")
@@ -353,25 +353,25 @@ class Gudrun : Script {
             npc<Happy>("It's lovely! There's something written on it:")
             npc<Pleased>("'Gudrun the Fair, Gudrun the Fiery.' Is it about me?")
             choice {
-                option<Neutral>("Yes.") {
+                option<Idle>("Yes.") {
                     aboutRing()
                 }
-                option<Neutral>("Presumable.") {
+                option<Idle>("Presumable.") {
                     aboutRing()
                 }
             }
         } else {
-            player<Sad>("I was meant to bring you a ring but I seem to have mislaid it.")
+            player<Disheartened>("I was meant to bring you a ring but I seem to have mislaid it.")
         }
     }
 
     suspend fun Player.aboutRing() {
         npc<Pleased>("This is beautiful gift, stranger. Thank you.")
         choice {
-            option<Neutral>("The ring isn't from me!") {
+            option<Idle>("The ring isn't from me!") {
                 whoFrom()
             }
-            option<Neutral>("It should belong to someone just as beautiful.") {
+            option<Idle>("It should belong to someone just as beautiful.") {
                 npc<Pleased>("That's very flattering! You look like an adventurer, though?")
                 thatsRight()
             }
@@ -381,32 +381,32 @@ class Gudrun : Script {
     suspend fun Player.thatsRight() {
         choice {
             option<Pleased>("That's right.") {
-                npc<Sad>("I'm sorry, I could never get involved with an adventurer.")
+                npc<Disheartened>("I'm sorry, I could never get involved with an adventurer.")
                 whoFrom()
             }
-            option<Talk>("Some call me that.") {
-                npc<Sad>("I'm sorry, I could never get involved with an adventurer.")
+            option<Neutral>("Some call me that.") {
+                npc<Disheartened>("I'm sorry, I could never get involved with an adventurer.")
                 whoFrom()
             }
         }
     }
 
     suspend fun Player.whoFrom() {
-        npc<Surprised>("Oh! Who is it from?")
+        npc<Shock>("Oh! Who is it from?")
         choice {
-            option<Neutral>("A great poet.") {
+            option<Idle>("A great poet.") {
                 npc<Pleased>("A tale-teller? A bard? My people have great respect from poets.")
                 outsideVillage()
             }
-            option<Neutral>("A secret admirer.") {
+            option<Idle>("A secret admirer.") {
                 npc<Pleased>("Does that really happen? How exciting!")
                 outsideVillage()
             }
-            option<Neutral>("A short suitor.") {
+            option<Idle>("A short suitor.") {
                 npc<Quiz>("What?")
-                player<Talk>("A petite paramour.")
+                player<Neutral>("A petite paramour.")
                 npc<Amazed>("What?")
-                player<Talk>("A concise courter!")
+                player<Neutral>("A concise courter!")
                 outsideVillage()
             }
         }
@@ -414,26 +414,26 @@ class Gudrun : Script {
 
     suspend fun Player.outsideVillage() {
         npc<Quiz>("This man, he is from outside the village?")
-        player<Talk>("Yes.")
+        player<Neutral>("Yes.")
         npc<Pleased>("I would love to leave the village and be romanced by exotic, handsome, outerlander men. There's a problem, though.")
         player<Quiz>("What's that?")
-        npc<Sad>("My papa, the chieftain. He would never let an outerlander pursue me.")
+        npc<Disheartened>("My papa, the chieftain. He would never let an outerlander pursue me.")
         player<Quiz>("Why not?")
-        npc<Talk>("He thinks all your people are our enemies.")
+        npc<Neutral>("He thinks all your people are our enemies.")
         choice {
-            option<Neutral>("So, you want me to talk to your father?") {
+            option<Idle>("So, you want me to talk to your father?") {
                 npc<Quiz>("I suppose that might work.")
                 reasonWithHim()
             }
-            option<Neutral>("So, you want me to kill your father?") {
-                npc<Surprised>("What? no! Maybe...you could just try talking to him.")
+            option<Idle>("So, you want me to kill your father?") {
+                npc<Shock>("What? no! Maybe...you could just try talking to him.")
                 reasonWithHim()
             }
         }
     }
 
     suspend fun Player.reasonWithHim() {
-        npc<Sad>("I've tried to reason with him, but he's impossible! Maybe he'll listen to you. I know some of the others feel the same, but they're loyal to papa.")
+        npc<Disheartened>("I've tried to reason with him, but he's impossible! Maybe he'll listen to you. I know some of the others feel the same, but they're loyal to papa.")
         set("gunnars_ground", "meet_chieftain")
         inventory.remove("dororans_engraved_ring")
         meetChieftain()
@@ -445,13 +445,13 @@ class Gudrun : Script {
         npc<Frustrated>("It's none of your business, Kjell! Just guard the hut!")
         npc<Amazed>("Sorry about that. Did you want something?")
         choice {
-            option<Neutral>("What is this place?") {
+            option<Idle>("What is this place?") {
                 whatIsThisPlace()
             }
-            option<Neutral>("Who are you?") {
+            option<Idle>("Who are you?") {
                 whoAreYou()
             }
-            option<Neutral>("Actually, no. Goodbye") {
+            option<Idle>("Actually, no. Goodbye") {
             }
         }
     }
@@ -469,9 +469,9 @@ class Gudrun : Script {
 
     suspend fun Player.whatIsThisPlace() {
         npc<Pleased>("Outerlanders call this the barbarian village. It doesn't have a name because...it's complicated.")
-        npc<Talk>("if you want to know more, you should talk to Hunding. He's up in the tower at the east entrance.")
+        npc<Neutral>("if you want to know more, you should talk to Hunding. He's up in the tower at the east entrance.")
         choice {
-            option<Neutral>("Who are you?") {
+            option<Idle>("Who are you?") {
                 whoAreYou()
             }
             option<Pleased>("Goodbye.") {
@@ -518,27 +518,27 @@ class Gudrun : Script {
 
     suspend fun Player.menu() {
         choice {
-            option<Neutral>("How are things with Dororan?") {
+            option<Idle>("How are things with Dororan?") {
                 npc<Pleased>("I really like him. he's funny, vulnerable and nothing like my people.")
                 choice {
-                    option<Neutral>("You're going to stay together then?") {
+                    option<Idle>("You're going to stay together then?") {
                         npc<Happy>("Of course!")
                         elseGoodbye()
                     }
-                    option<Neutral>("I want to ask about something else.") {
+                    option<Idle>("I want to ask about something else.") {
                         npc<Quiz>("Of course, what is it?")
                         menu()
                     }
-                    option<Neutral>("Goodbye.") {
+                    option<Idle>("Goodbye.") {
                         npc<Happy>("Oh, Goodbye!")
                     }
                 }
             }
-            option<Neutral>("Where did this house come from?") {
-                npc<Neutral>("I don't know. Papa said the previous owners left it to him. I don't know why they would do that.")
+            option<Idle>("Where did this house come from?") {
+                npc<Idle>("I don't know. Papa said the previous owners left it to him. I don't know why they would do that.")
                 theory()
             }
-            option<Neutral>("Goodbye.") {
+            option<Idle>("Goodbye.") {
                 npc<Happy>("Oh, Goodbye!")
             }
         }
@@ -546,15 +546,15 @@ class Gudrun : Script {
 
     suspend fun Player.theory() {
         choice {
-            option<Neutral>("Do you have a theory?") {
+            option<Idle>("Do you have a theory?") {
                 npc<Amazed>("Gunnar always said 'A warrior does not barter; he simply takes!'. I think papa bought the house, but doesn't want anyone to know.")
                 elseGoodbye()
             }
-            option<Neutral>("I want to ask about something else.") {
+            option<Idle>("I want to ask about something else.") {
                 npc<Quiz>("Of course, what is it?")
                 menu()
             }
-            option<Neutral>("Goodbye.") {
+            option<Idle>("Goodbye.") {
                 npc<Happy>("Oh, Goodbye!")
             }
         }
@@ -562,11 +562,11 @@ class Gudrun : Script {
 
     suspend fun Player.elseGoodbye() {
         choice {
-            option<Neutral>("I want to ask about something else.") {
+            option<Idle>("I want to ask about something else.") {
                 npc<Quiz>("Of course, what is it?")
                 menu()
             }
-            option<Neutral>("Goodbye.") {
+            option<Idle>("Goodbye.") {
                 npc<Happy>("Oh, Goodbye!")
             }
         }

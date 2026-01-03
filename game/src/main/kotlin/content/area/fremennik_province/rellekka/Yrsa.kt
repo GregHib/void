@@ -32,8 +32,8 @@ class Yrsa : Script {
                 option<Pleased>("I'd like to change my shoes.") {
                     startShoeShopping()
                 }
-                option<Talk>("Neither, thanks.") {
-                    npc<Talk>("As you wish.")
+                option<Neutral>("Neither, thanks.") {
+                    npc<Neutral>("As you wish.")
                 }
             }
         }
@@ -76,7 +76,7 @@ class Yrsa : Script {
     suspend fun Player.startShoeShopping() {
         closeDialogue()
         if (equipped(EquipSlot.Weapon).isNotEmpty() || equipped(EquipSlot.Shield).isNotEmpty()) {
-            npc<Afraid>("I don't feel comfortable showing you shoes when you are wielding something. Please remove what you are holding first.")
+            npc<Scared>("I don't feel comfortable showing you shoes when you are wielding something. Please remove what you are holding first.")
             return
         }
         if (equipped(EquipSlot.Feet).isNotEmpty()) {

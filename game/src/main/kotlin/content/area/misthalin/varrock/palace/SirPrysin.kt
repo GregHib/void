@@ -32,13 +32,13 @@ class SirPrysin : Script {
                         keyProgressCheck(target)
                         return@npcOperate
                     }
-                    npc<Talk>("Have you sorted that demon out yet?")
+                    npc<Neutral>("Have you sorted that demon out yet?")
                     if (ownsItem("silverlight")) {
-                        player<Upset>("No, not yet.")
-                        npc<Talk>("Well get on with it. He'll be pretty powerful when he gets to full strength.")
+                        player<Sad>("No, not yet.")
+                        npc<Neutral>("Well get on with it. He'll be pretty powerful when he gets to full strength.")
                         return@npcOperate
                     }
-                    player<Upset>("Not yet. And I, um, lost Silverlight.")
+                    player<Sad>("Not yet. And I, um, lost Silverlight.")
                     if (inventory.add("silverlight")) {
                         npc<Angry>("Yes, I know, someone returned it to me. Take better care of it this time.")
                     } else {
@@ -46,82 +46,81 @@ class SirPrysin : Script {
                     }
                 }
                 "completed" -> {
-                    npc<Neutral>("Hello. I've heard you stopped the demon, well done.")
-                    player<Neutral>("Yes, that's right.")
-                    npc<Neutral>("A good job well done then.")
-                    player<Neutral>("Thank you.")
+                    npc<Idle>("Hello. I've heard you stopped the demon, well done.")
+                    player<Idle>("Yes, that's right.")
+                    npc<Idle>("A good job well done then.")
+                    player<Idle>("Thank you.")
                 }
                 else -> {
-                    npc<Talk>("Hello, who are you?")
+                    npc<Neutral>("Hello, who are you?")
                     choice {
                         mightyAdventurer()
                         youTellMe()
-                        arisWantsToTalk()
+                        if (quest("demon_slayer") == "sir_prysin") {
+                            arisWantsToTalk()
+                        }
                     }
                 }
             }
         }
     }
 
-    fun ChoiceOption.arisWantsToTalk(): Unit = option(
-        "Aris said I should come and talk to you.",
-        { quest("demon_slayer") == "sir_prysin" },
-    ) {
-        player<Talk>("Aris said I should come and talk to you.")
-        npc<Talk>("Aris? Is she still alive? I remember her from when I was pretty young. Well what do you need to talk to me about?")
+    fun ChoiceOption.arisWantsToTalk(): Unit = option("Aris said I should come and talk to you.") {
+        player<Neutral>("Aris said I should come and talk to you.")
+        npc<Neutral>("Aris? Is she still alive? I remember her from when I was pretty young. Well what do you need to talk to me about?")
         choice {
             option("I need to find Silverlight.") {
                 findSilverlight()
             }
             option("Yes, she is still alive.") {
                 player<Happy>("Yes she is still alive. She lives right outside the castle!")
-                npc<Talk>("Oh, is that the same Aris? I would have thought she would have died by now. She was pretty old when I was a lad.")
-                npc<Talk>("Anyway, what can I do for you?")
+                npc<Neutral>("Oh, is that the same Aris? I would have thought she would have died by now. She was pretty old when I was a lad.")
+                npc<Neutral>("Anyway, what can I do for you?")
                 findSilverlight()
             }
         }
     }
 
     suspend fun Player.findSilverlight() {
-        player<Talk>("I need to find Silverlight.")
-        npc<Talk>("What do you need to find that for?")
-        player<Talk>("I need it to fight Delrith.")
-        npc<Talk>("Delrith? I thought the world was rid of him, thanks to my great-grandfather.")
+        player<Neutral>("I need to find Silverlight.")
+        npc<Neutral>("What do you need to find that for?")
+        player<Neutral>("I need it to fight Delrith.")
+        npc<Neutral>("Delrith? I thought the world was rid of him, thanks to my great-grandfather.")
         choice {
             option("Well, Aris' crystal ball seems to think otherwise.") {
-                player<Talk>("Well Aris' crystal ball seems to think otherwise.")
-                npc<Talk>("Well if the ball says so, I'd better help you.")
+                player<Neutral>("Well Aris' crystal ball seems to think otherwise.")
+                npc<Neutral>("Well if the ball says so, I'd better help you.")
                 problemIs()
             }
             option("He's back and unfortunately I've got to deal with him.") {
-                player<Upset>("He's back and unfortunately I've got to deal with him.")
-                npc<Talk>("You don't look up to much. I suppose Silverlight may be good enough to carry you through though.")
+                player<Sad>("He's back and unfortunately I've got to deal with him.")
+                npc<Neutral>("You don't look up to much. I suppose Silverlight may be good enough to carry you through though.")
                 problemIs()
             }
         }
     }
 
     suspend fun Player.problemIs() {
-        npc<Talk>("The problem is getting Silverlight.")
-        player<Upset>("You mean you don't have it?")
-        npc<Talk>("Oh I do have it, but it is so powerful that the king made me put it in a special box which needs three different keys to open it. That way it won't fall into the wrong hands.")
+        npc<Neutral>("The problem is getting Silverlight.")
+        player<Sad>("You mean you don't have it?")
+        npc<Neutral>("Oh I do have it, but it is so powerful that the king made me put it in a special box which needs three different keys to open it. That way it won't fall into the wrong hands.")
         choice {
             option("So give me the keys!") {
                 player<Angry>("So give me the keys!")
-                npc<Upset>("Um, well, it's not so easy.")
+                npc<Sad>("Um, well, it's not so easy.")
                 theKeys()
             }
             option("And why is this a problem?") {
-                player<Talk>("And why is this a problem?")
+                player<Neutral>("And why is this a problem?")
                 theKeys()
             }
         }
     }
 
     suspend fun Player.theKeys() {
-        npc<Talk>("I kept one of the keys. I gave the other two to other people for safe keeping.")
-        npc<Talk>("One I gave to Rovin, the captain of the palace guard.")
-        npc<Talk>("I gave the other to the wizard Traiborn.")
+        npc<Neutral>("I kept one of the keys. I gave the other two to other people for safe keeping.")
+        npc<Neutral>("One I gave to Rovin, the captain of the palace guard.")
+        npc<Neutral>("I gave the other to the wizard Traiborn.")
         set("demon_slayer", "key_hunt")
         choice {
             giveYourKey()
@@ -131,8 +130,8 @@ class SirPrysin : Script {
     }
 
     fun ChoiceOption.wheresWizard(): Unit = option("Where does the wizard live?") {
-        player<Talk>("Where does the wizard live?")
-        npc<Talk>("He is one of the wizards who lives in the tower on the little island just off the south coast. I believe his quarters are on the first floor of the tower.")
+        player<Neutral>("Where does the wizard live?")
+        npc<Neutral>("He is one of the wizards who lives in the tower on the little island just off the south coast. I believe his quarters are on the first floor of the tower.")
         choice {
             giveYourKey()
             wheresCaptainRovin()
@@ -141,8 +140,8 @@ class SirPrysin : Script {
     }
 
     fun ChoiceOption.wheresCaptainRovin(): Unit = option("Where can I find Captain Rovin?") {
-        player<Talk>("Where can I find Captain Rovin?")
-        npc<Talk>("Captain Rovin lives at the top of the guards' quarters in the north-west wing of this palace.")
+        player<Neutral>("Where can I find Captain Rovin?")
+        npc<Neutral>("Captain Rovin lives at the top of the guards' quarters in the north-west wing of this palace.")
         choice {
             giveYourKey()
             wheresWizard()
@@ -151,7 +150,7 @@ class SirPrysin : Script {
     }
 
     suspend fun Player.keyProgressCheck(target: NPC) {
-        npc<Talk>("So how are you doing with getting the keys?")
+        npc<Neutral>("So how are you doing with getting the keys?")
         val rovin = holdsItem("silverlight_key_captain_rovin")
         val prysin = holdsItem("silverlight_key_sir_prysin")
         val traiborn = holdsItem("silverlight_key_wizard_traiborn")
@@ -161,13 +160,13 @@ class SirPrysin : Script {
                 return
             }
             prysin && (rovin || traiborn) -> {
-                player<Talk>("I've got the key from ${if (traiborn) "Wizard Traiborn" else "Captain Rovin"} and the one that you dropped down the drain.")
+                player<Neutral>("I've got the key from ${if (traiborn) "Wizard Traiborn" else "Captain Rovin"} and the one that you dropped down the drain.")
             }
-            traiborn && rovin -> player<Talk>("I've got the keys from Wizard Traiborn and Captain Rovin.")
-            rovin -> player<Talk>("I've got the key from Captain Rovin.")
-            traiborn -> player<Talk>("I've got the key from Wizard Traiborn.")
-            prysin -> player<Talk>("I've got the key which you dropped down the drain.")
-            else -> player<Upset>("I haven't found any of them yet.")
+            traiborn && rovin -> player<Neutral>("I've got the keys from Wizard Traiborn and Captain Rovin.")
+            rovin -> player<Neutral>("I've got the key from Captain Rovin.")
+            traiborn -> player<Neutral>("I've got the key from Wizard Traiborn.")
+            prysin -> player<Neutral>("I've got the key which you dropped down the drain.")
+            else -> player<Sad>("I haven't found any of them yet.")
         }
         choice {
             remindMe()
@@ -176,10 +175,10 @@ class SirPrysin : Script {
     }
 
     fun ChoiceOption.giveYourKey(): Unit = option("Can you give me your key?") {
-        player<Talk>("Can you give me your key?")
-        npc<Upset>("Um.... ah....")
-        npc<Upset>("Well there's a problem there as well.")
-        npc<Upset>("I managed to drop the key in the drain just outside the palace kitchen. It is just inside and I can't reach it.")
+        player<Neutral>("Can you give me your key?")
+        npc<Sad>("Um.... ah....")
+        npc<Sad>("Well there's a problem there as well.")
+        npc<Sad>("I managed to drop the key in the drain just outside the palace kitchen. It is just inside and I can't reach it.")
         choice {
             drain()
             wheresCaptainRovin()
@@ -188,8 +187,8 @@ class SirPrysin : Script {
     }
 
     fun ChoiceOption.drain(): Unit = option("So what does the drain lead to?") {
-        player<Talk>("So what does the drain connect to?")
-        npc<Talk>("It is the drain for the drainpipe running from the sink in the kitchen down to the palace sewers.")
+        player<Neutral>("So what does the drain connect to?")
+        npc<Neutral>("It is the drain for the drainpipe running from the sink in the kitchen down to the palace sewers.")
         choice {
             wheresCaptainRovin()
             wheresWizard()
@@ -198,33 +197,33 @@ class SirPrysin : Script {
     }
 
     fun ChoiceOption.huntingTime(): Unit = option("Well I'd better go key hunting.") {
-        player<Talk>("Well I'd better go key hunting.")
-        npc<Talk>("Ok, goodbye.")
+        player<Neutral>("Well I'd better go key hunting.")
+        npc<Neutral>("Ok, goodbye.")
     }
 
     fun ChoiceOption.mightyAdventurer(): Unit = option("I am a mighty adventurer. Who are you?") {
-        player<Talk>("I am a mighty adventurer, who are you?")
-        npc<Talk>("I am Sir Prysin. A bold and famous knight of the realm.")
+        player<Neutral>("I am a mighty adventurer, who are you?")
+        npc<Neutral>("I am Sir Prysin. A bold and famous knight of the realm.")
     }
 
     fun ChoiceOption.youTellMe(): Unit = option("I'm not sure, I was hoping you could tell me.") {
-        player<Uncertain>("I was hoping you could tell me.")
-        npc<Talk>("Well I've never met you before.")
+        player<Confused>("I was hoping you could tell me.")
+        npc<Neutral>("Well I've never met you before.")
     }
 
     fun ChoiceOption.remindMe(): Unit = option("Can you remind me where all the keys were again?") {
-        player<Talk>("Can you remind me where all the keys were again?")
+        player<Neutral>("Can you remind me where all the keys were again?")
         theKeys()
     }
 
     fun ChoiceOption.stillLooking(): Unit = option("I'm still looking.") {
-        player<Talk>("I'm still looking.")
-        npc<Talk>("Ok, tell me when you've got them all.")
+        player<Neutral>("I'm still looking.")
+        npc<Neutral>("Ok, tell me when you've got them all.")
     }
 
     suspend fun Player.giveSilverlight(target: NPC) {
-        player<Neutral>("I've got all three keys!")
-        npc<Neutral>("Excellent! Now I can give you Silverlight.")
+        player<Idle>("I've got all three keys!")
+        npc<Idle>("Excellent! Now I can give you Silverlight.")
         inventory.remove("silverlight_key_wizard_traiborn", "silverlight_key_captain_rovin", "silverlight_key_sir_prysin")
         val tile = Tile(3204, 3470)
         target.mode = PauseMode
@@ -270,7 +269,7 @@ class SirPrysin : Script {
         delay()
         target.face(Direction.NONE)
         delay()
-        npc<Talk>("That sword belonged to my great-grandfather. Make sure you treat it with respect!")
-        npc<Neutral>("Now go kill that demon!")
+        npc<Neutral>("That sword belonged to my great-grandfather. Make sure you treat it with respect!")
+        npc<Idle>("Now go kill that demon!")
     }
 }

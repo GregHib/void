@@ -2,7 +2,7 @@ package content.area.misthalin.draynor_village
 
 import content.entity.effect.transform
 import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
@@ -29,7 +29,7 @@ class PrinceAli : Script {
     init {
         npcOperate("Talk-to", "prince_ali") { (target) ->
             when (quest("prince_ali_rescue")) {
-                "completed" -> npc<Talk>("I owe you my life for that escape. You cannot help me this time, they know who you are. Go in peace, friend of Al-Kharid.")
+                "completed" -> npc<Neutral>("I owe you my life for that escape. You cannot help me this time, they know who you are. Go in peace, friend of Al-Kharid.")
                 "keli_tied_up" -> escape(target)
                 "prince_ali_disguise" -> leave(target)
             }
@@ -56,13 +56,13 @@ class PrinceAli : Script {
 
     suspend fun Player.escape(target: NPC) {
         player<Happy>("Prince, I've come to rescue you.")
-        npc<Talk>("That is very very kind of you, how do I get out?")
+        npc<Neutral>("That is very very kind of you, how do I get out?")
         if (!inventory.contains(disguise)) {
             player<Happy>("I've already dealt with Lady Keli and the guard. I'm going to get you a disguise so the guards outside don't spot you leaving. I'll be back once I have it.")
             return
         }
         player<Happy>("With a disguise. I have removed the Lady Keli. She is tied up, but will not stay tied up for long.")
-        player<Talk>("Take this disguise, and this key.")
+        player<Neutral>("Take this disguise, and this key.")
         statement("You hand the disguise and the key to the prince.")
         inventory.remove(disguise)
         inventory.remove("bronze_key_prince_ali_rescue")

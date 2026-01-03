@@ -1,9 +1,9 @@
 package content.area.karamja
 
 import content.entity.npc.shop.buy
-import content.entity.player.dialogue.Chuckle
 import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.Laugh
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.quest.miniquest.alfred_grimhands_barcrawl.barCrawlDrink
@@ -18,17 +18,17 @@ class BartenderDeadMansChest : Script {
 
     init {
         npcOperate("Talk-to", "bartender_dead_mans_chest") { (target) ->
-            npc<Chuckle>("Yohoho me hearty what would you like to drink?")
+            npc<Laugh>("Yohoho me hearty what would you like to drink?")
             choice {
-                option<Talk>("Nothing, thank you.")
-                option<Talk>("A pint of Grog please.") {
-                    npc<Talk>("One grog coming right up, that'll be three coins.")
+                option<Neutral>("Nothing, thank you.")
+                option<Neutral>("A pint of Grog please.") {
+                    npc<Neutral>("One grog coming right up, that'll be three coins.")
                     if (buy("grog", 3, "Oh dear. I don't seem to have enough money.")) {
                         message("You buy a pint of grog.")
                     }
                 }
-                option<Talk>("A bottle of rum please.") {
-                    npc<Talk>("That'll be 27 coins.")
+                option<Neutral>("A bottle of rum please.") {
+                    npc<Neutral>("That'll be 27 coins.")
                     if (buy("bottle_of_rum", 27, "Oh dear. I don't seem to have enough money.")) {
                         message("You buy a bottle of rum.")
                     }

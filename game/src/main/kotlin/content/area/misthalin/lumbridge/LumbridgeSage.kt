@@ -1,7 +1,7 @@
 package content.area.misthalin.lumbridge
 
 import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
@@ -16,13 +16,13 @@ class LumbridgeSage : Script {
             choice {
                 whoSage()
                 castleLum()
-                option<Neutral>("I'm fine for now, thanks.")
+                option<Idle>("I'm fine for now, thanks.")
             }
         }
     }
 
     fun ChoiceOption.whoSage(): Unit = option<Quiz> ("Who are you?") {
-        npc<Neutral>("I am Phileas, the Lumbridge Sage. In times past, people came from all around to ask me for advice. My renown seems to have diminished somewhat in recent years, though. Can I help you with anything?")
+        npc<Idle>("I am Phileas, the Lumbridge Sage. In times past, people came from all around to ask me for advice. My renown seems to have diminished somewhat in recent years, though. Can I help you with anything?")
         set("sage_advice_task", true)
         choice {
             castleLum()
@@ -31,8 +31,8 @@ class LumbridgeSage : Script {
     }
 
     fun ChoiceOption.castleLum(): Unit = option<Quiz>("Tell me about the town of Lumbridge.") {
-        npc<Neutral>("Lumbridge is one of the older towns in the human-controlled kingdoms. It was founded over two hundred years ago towards the end of the Fourth Age. It's called Lumbridge because of this bridge built over the")
-        npc<Neutral>("River Lum. The town is governed by Duke Horacio, who is a good friend of our monarch, King Roald of Misthalin.")
+        npc<Idle>("Lumbridge is one of the older towns in the human-controlled kingdoms. It was founded over two hundred years ago towards the end of the Fourth Age. It's called Lumbridge because of this bridge built over the")
+        npc<Idle>("River Lum. The town is governed by Duke Horacio, who is a good friend of our monarch, King Roald of Misthalin.")
         set("sage_advice_task", true)
         choice {
             whoSage()

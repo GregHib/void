@@ -13,12 +13,12 @@ class Goblins : Script {
         npcOperate("Talk-to", "goblin_*_red") {
             when (random.nextInt(0, 2)) {
                 0 -> {
-                    npc<Neutral>("Red armour best!")
+                    npc<Idle>("Red armour best!")
                     choice {
-                        option<Uncertain>("Why is red best?") {
-                            npc<Afraid>("Cos General Bentnoze says so, and he bigger than me.")
+                        option<Confused>("Why is red best?") {
+                            npc<Scared>("Cos General Bentnoze says so, and he bigger than me.")
                         }
-                        option<Uncertain>("Err, okay.")
+                        option<Confused>("Err, okay.")
                     }
                 }
                 1 -> {
@@ -32,12 +32,12 @@ class Goblins : Script {
         npcOperate("Talk-to", "goblin_*_green") {
             when (random.nextInt(0, 2)) {
                 0 -> {
-                    npc<Neutral>("green armour best!")
+                    npc<Idle>("green armour best!")
                     choice {
-                        option<Uncertain>("Why is green best?") {
-                            npc<Afraid>("Cos General Wartface says so, and he bigger than me.")
+                        option<Confused>("Why is green best?") {
+                            npc<Scared>("Cos General Wartface says so, and he bigger than me.")
                         }
-                        option<Uncertain>("Err, okay.")
+                        option<Confused>("Err, okay.")
                     }
                 }
 
@@ -50,7 +50,7 @@ class Goblins : Script {
         }
 
         npcOperate("Talk-to", "grubfoot*") {
-            npc<Sad>("Grubfoot wear red armour! Grubfoot wear green armour!")
+            npc<Disheartened>("Grubfoot wear red armour! Grubfoot wear green armour!")
             npc<Quiz>("Why they not make up their minds?")
             npc<Frustrated>(npcId = "general_bentnoze_rfd", "Shut up Grubfoot!")
         }

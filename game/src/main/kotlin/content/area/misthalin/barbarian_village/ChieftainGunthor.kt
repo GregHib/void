@@ -29,10 +29,10 @@ class ChieftainGunthor : Script {
     suspend fun Player.meetChieftain() {
         npc<Angry>("Begone, outerlander! Your kind are not welcome here!")
         choice {
-            option<Neutral>("I need to speak with you, chieftain.") {
+            option<Idle>("I need to speak with you, chieftain.") {
                 makeItShort()
             }
-            option<Neutral>("Be quiet and listen.") {
+            option<Idle>("Be quiet and listen.") {
                 makeItShort()
             }
         }
@@ -40,13 +40,13 @@ class ChieftainGunthor : Script {
 
     suspend fun Player.makeItShort() {
         npc<Frustrated>("Make it short.")
-        player<Talk>("Your daughter seeks permission to court an outerlander.")
+        player<Neutral>("Your daughter seeks permission to court an outerlander.")
         npc<Mad>("WHAT??")
         choice {
-            option<Neutral>("Your daughter seeks permission to court an outerlander.") {
+            option<Idle>("Your daughter seeks permission to court an outerlander.") {
                 barbarians()
             }
-            option<Neutral>("Are you deaf?") {
+            option<Idle>("Are you deaf?") {
                 barbarians()
             }
         }
@@ -55,10 +55,10 @@ class ChieftainGunthor : Script {
     suspend fun Player.barbarians() {
         npc<Frustrated>("Do you have ANY idea who we are?")
         choice {
-            option<Neutral>("You're barbarians.") {
+            option<Idle>("You're barbarians.") {
                 waitAMoment()
             }
-            option<Neutral>("You're a tribe of primitives.") {
+            option<Idle>("You're a tribe of primitives.") {
                 waitAMoment()
             }
         }
@@ -67,10 +67,10 @@ class ChieftainGunthor : Script {
     suspend fun Player.waitAMoment() {
         npc<Angry>("We are storm that sweeps from the mountains! We are the scourge of these soft lands!")
         choice {
-            option<Neutral>("Please wait a moment.") {
+            option<Idle>("Please wait a moment.") {
                 campOfWar()
             }
-            option<Neutral>("Are you finished?") {
+            option<Idle>("Are you finished?") {
                 campOfWar()
             }
         }
@@ -99,12 +99,12 @@ class ChieftainGunthor : Script {
 
     suspend fun Player.seeHimTry() {
         choice {
-            option<Talk>("I'm going!") {
+            option<Neutral>("I'm going!") {
             }
-            option<Talk>("I'd like to see him try.") {
+            option<Neutral>("I'd like to see him try.") {
                 npc<Angry>("haakon_the_champion", "Come here and say that to my face, outerlander!")
             }
-            option<Talk>("I'm going to challenge him right now!") {
+            option<Neutral>("I'm going to challenge him right now!") {
                 npc<Angry>("haakon_the_champion", "Come here and say that to my face, outerlander!")
             }
         }

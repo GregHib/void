@@ -1,8 +1,8 @@
 package content.quest.member.the_grand_tree
 
 import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
@@ -26,7 +26,7 @@ class SpiritTree : Script {
                 statement("The tree doesn't feel like talking.")
                 return@objectOperate
             }
-            npc<Talk>("spirit_tree", "Hello gnome friend. Where would you like to go?")
+            npc<Neutral>("spirit_tree", "Hello gnome friend. Where would you like to go?")
             updatePosition(this)
             open("spirit_tree")
         }
@@ -38,9 +38,9 @@ class SpiritTree : Script {
             }
             npc<Happy>("spirit_tree_gnome", "You friend of gnome people, you friend of mine. Would you like me to take you somewhere?")
             choice {
-                option<Talk>("No thanks, old tree.")
+                option<Neutral>("No thanks, old tree.")
                 option<Quiz>("Where can I go?") {
-                    npc<Talk>("spirit_tree_gnome", "You can travel to the trees which are related to me.")
+                    npc<Neutral>("spirit_tree_gnome", "You can travel to the trees which are related to me.")
                     updatePosition(this)
                     open("spirit_tree")
                 }

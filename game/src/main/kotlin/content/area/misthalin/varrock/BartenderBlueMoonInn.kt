@@ -3,9 +3,9 @@ package content.area.misthalin.varrock
 import content.entity.combat.hit.damage
 import content.entity.npc.shop.buy
 import content.entity.player.dialogue.Angry
+import content.entity.player.dialogue.Disheartened
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Sad
-import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -25,8 +25,8 @@ class BartenderBlueMoonInn : Script {
             approachRange(4)
             npc<Quiz>("What can I do yer for?")
             choice {
-                option<Talk>("A glass of your finest ale please.") {
-                    npc<Talk>("No problemo. That'll be 2 coins.")
+                option<Neutral>("A glass of your finest ale please.") {
+                    npc<Neutral>("No problemo. That'll be 2 coins.")
                     if (buy("beer", 2)) {
                         message("You buy a pint of beer.")
                     }
@@ -34,7 +34,7 @@ class BartenderBlueMoonInn : Script {
                 option<Quiz>("Can you recommend where an adventurer might make his fortune?") {
                     npc<Angry>("Ooh I don't know if I should be giving away information, makes the game too easy.")
                     choice {
-                        option<Talk>("Oh ah well...")
+                        option<Neutral>("Oh ah well...")
                         option<Quiz>("Game? What are you talking about?") {
                             npc<Angry>("This world around us... is an online game... called ${Settings["server.name"]}.")
                             player<Quiz>("Nope, still don't understand what you are talking about. What does 'online' mean?")
@@ -45,7 +45,7 @@ class BartenderBlueMoonInn : Script {
                             npc<Angry>("Go and talk to the bartender at the Jolly Boar Inn, he doesn't seem to mind giving away clues.")
                         }
                         option<Quiz>("Do you know where I can get some good equipment?") {
-                            npc<Talk>("Well, there's the sword shop across the road, or there's also all sorts of shops up around the market.")
+                            npc<Neutral>("Well, there's the sword shop across the road, or there's also all sorts of shops up around the market.")
                         }
                     }
                 }
@@ -68,8 +68,8 @@ class BartenderBlueMoonInn : Script {
     suspend fun Player.barCrawl(target: NPC) = barCrawlDrink(
         target,
         start = {
-            npc<Sad>("Oh no not another of you guys. These barbarian barcrawls cause too much damage to my bar.")
-            npc<Talk>("You're going to have to pay 50 gold for the Uncle Humphrey's Gutrot.")
+            npc<Disheartened>("Oh no not another of you guys. These barbarian barcrawls cause too much damage to my bar.")
+            npc<Neutral>("You're going to have to pay 50 gold for the Uncle Humphrey's Gutrot.")
         },
         effects = {
             levels.drain(Skill.Attack, 6)

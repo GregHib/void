@@ -1,9 +1,9 @@
 package content.area.kharidian_desert.al_kharid
 
+import content.entity.player.dialogue.Disheartened
 import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Sad
-import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.intEntry
 import content.entity.player.dialogue.type.npc
@@ -32,20 +32,20 @@ class Ellis : Script {
 
     init {
         npcOperate("Talk-to", "ellis,tanner") {
-            npc<Talk>("Greetings friend. I am a manufacturer of leather.")
+            npc<Neutral>("Greetings friend. I am a manufacturer of leather.")
             if (inventory.items.none { it.id == "cowhide" || it.id.startsWith("snake_hide") || it.id.endsWith("dragonhide") }) {
                 leather()
                 return@npcOperate
             }
-            npc<Talk>("I see you have bought me some hides. Would you like me to tan them for you?")
+            npc<Neutral>("I see you have bought me some hides. Would you like me to tan them for you?")
             choice {
                 option("Yes please.") {
-                    player<Talk>("Yes please.")
+                    player<Neutral>("Yes please.")
                     open("tanner")
                 }
                 option("No thanks.") {
-                    player<Sad>("No thanks.")
-                    npc<Talk>("Very well, ${if (male) "sir" else "madam"}, as you wish.")
+                    player<Disheartened>("No thanks.")
+                    npc<Neutral>("Very well, ${if (male) "sir" else "madam"}, as you wish.")
                 }
             }
         }
@@ -76,13 +76,13 @@ class Ellis : Script {
     suspend fun Player.leather() {
         choice("What would you like to say?") {
             option<Quiz>("Can I buy some leather then?") {
-                npc<Talk>("I make leather from animal hides. Bring me some cowhides and one gold coin per hide, and I'll tan them into soft leather for you.")
+                npc<Neutral>("I make leather from animal hides. Bring me some cowhides and one gold coin per hide, and I'll tan them into soft leather for you.")
             }
-            option<Talk>("Leather is rather weak stuff.") {
-                npc<Talk>("Normal leather may be quite weak, but it's very heap - I make it from cowhides for only 1 gp per hide - and it's so easy to craft that anyone can work with it.")
-                npc<Talk>("Alternatively you could try hard leather. It's not so easy to craft, but I only charge 3 gp per cowhide to prepare it, and it makes much sturdier armour.")
+            option<Neutral>("Leather is rather weak stuff.") {
+                npc<Neutral>("Normal leather may be quite weak, but it's very heap - I make it from cowhides for only 1 gp per hide - and it's so easy to craft that anyone can work with it.")
+                npc<Neutral>("Alternatively you could try hard leather. It's not so easy to craft, but I only charge 3 gp per cowhide to prepare it, and it makes much sturdier armour.")
                 npc<Happy>("I can also tan snake hides and dragonhides, suitable for crafting into the highest quality armour for rangers.")
-                player<Talk>("Thanks, I'll bear it in mind.")
+                player<Neutral>("Thanks, I'll bear it in mind.")
             }
         }
     }

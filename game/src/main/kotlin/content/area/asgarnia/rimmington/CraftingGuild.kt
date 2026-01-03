@@ -27,11 +27,11 @@ class CraftingGuild : Script {
                 return@objectOperate
             }
             if (!has(Skill.Crafting, 40)) {
-                npc<Neutral>("master_crafter", "Sorry, only experienced crafters are allowed in here. You must be level 40 or above to enter.")
+                npc<Idle>("master_crafter", "Sorry, only experienced crafters are allowed in here. You must be level 40 or above to enter.")
                 return@objectOperate
             }
             if (!equipment.contains("brown_apron")) {
-                npc<Neutral>("master_crafter", "Where's your brown apron? You can't come in here unless you're wearing one.")
+                npc<Idle>("master_crafter", "Where's your brown apron? You can't come in here unless you're wearing one.")
                 return@objectOperate
             }
             enterDoor(target, delay = 2)
@@ -45,9 +45,9 @@ class CraftingGuild : Script {
                 npc<Happy>("I certainly am, and I can see that you are definitely talented enough to own one! Unfortunately, being such a prestigious item, they are appropriately expensive. I'm afraid I must ask you for 99000 gold.")
                 choice {
                     option("99000 gold! Are you mad?") {
-                        npc<Neutral>("Not at all; there are many other adventurers who would love the opportunity to purchase such a prestigious item! You can find me here if you change your mind.")
+                        npc<Idle>("Not at all; there are many other adventurers who would love the opportunity to purchase such a prestigious item! You can find me here if you change your mind.")
                     }
-                    option<Neutral>("That's fine.") {
+                    option<Idle>("That's fine.") {
                         inventory.transaction {
                             remove("coins", 99000)
                             add("crafting_cape")
@@ -55,8 +55,8 @@ class CraftingGuild : Script {
                         }
                         when (inventory.transaction.error) {
                             is TransactionError.Deficient -> {
-                                player<Upset>("But, unfortunately, I don't have enough money with me.")
-                                npc<Neutral>("Well, come back and see me when you do.")
+                                player<Sad>("But, unfortunately, I don't have enough money with me.")
+                                npc<Idle>("Well, come back and see me when you do.")
                             }
                             is TransactionError.Full -> npc<Quiz>("Unfortunately all Skillcapes are only available with a free hood, it's part of a skill promotion deal; buy one get one free, you know. So you'll need to free up some inventory space before I can sell you one.")
                             TransactionError.None -> npc<Happy>("Excellent! Wear that cape with pride my friend.")
@@ -75,12 +75,12 @@ class CraftingGuild : Script {
         }
 
         npcOperate("Talk-to", "master_crafter_3") {
-            npc<Uncertain>("Yeah?")
+            npc<Confused>("Yeah?")
             player<Happy>("Hello.")
-            npc<Uncertain>("Whassup?")
+            npc<Confused>("Whassup?")
             player<Quiz>("So... are you here to give crafting tips?")
-            npc<Uncertain>("Dude, do I look like I wanna talk to you?")
-            player<Neutral>("I suppose not.")
+            npc<Confused>("Dude, do I look like I wanna talk to you?")
+            player<Idle>("I suppose not.")
             npc<Happy>("Right on!")
         }
     }

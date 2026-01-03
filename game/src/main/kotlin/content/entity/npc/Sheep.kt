@@ -44,7 +44,7 @@ class Sheep : Script {
             shear(target, "black")
         }
         npcOperate("Talk-to", "sheep_penguin") {
-            player<Neutral>("That's a sheep...I think. I can't talk to sheep.")
+            player<Idle>("That's a sheep...I think. I can't talk to sheep.")
         }
         npcSpawn("sheep*,black_sheep") {
             if (id != "sheep_penguin") {

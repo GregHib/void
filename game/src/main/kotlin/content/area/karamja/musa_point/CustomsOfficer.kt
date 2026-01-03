@@ -1,9 +1,9 @@
 package content.area.karamja.musa_point
 
 import content.entity.obj.ship.boatTravel
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
-import content.entity.player.dialogue.Upset
+import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -18,25 +18,25 @@ import world.gregs.voidps.type.Tile
 class CustomsOfficer : Script {
     init {
         npcOperate("Talk-to", "customs_officer_brimhaven") {
-            npc<Talk>("Can I help you?")
+            npc<Neutral>("Can I help you?")
             choice {
                 option<Quiz>("Can I journey on this ship?") {
-                    npc<Talk>("Hey, I know you, you work at the plantation.")
-                    npc<Talk>("I don't think you'll try smuggling anything, you just need to pay a boarding charge of 30 coins.")
+                    npc<Neutral>("Hey, I know you, you work at the plantation.")
+                    npc<Neutral>("I don't think you'll try smuggling anything, you just need to pay a boarding charge of 30 coins.")
                     choice {
                         option("Ok.") {
                             if (!inventory.remove("coins", 30)) {
-                                player<Upset>("Oh dear, I don't seem to have enough money.")
+                                player<Sad>("Oh dear, I don't seem to have enough money.")
                                 return@option
                             }
                             travel()
                         }
-                        option<Talk>("Oh, I'll not bother then.")
+                        option<Neutral>("Oh, I'll not bother then.")
                     }
                 }
                 option("Does Karamja have unusual customs then?") {
                     player<Quiz>("Does Karamja have any unusual customs then?")
-                    npc<Talk>("I'm not that sort of customs officer.")
+                    npc<Neutral>("I'm not that sort of customs officer.")
                 }
             }
         }

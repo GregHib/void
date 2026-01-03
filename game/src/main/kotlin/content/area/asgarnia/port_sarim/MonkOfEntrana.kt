@@ -21,16 +21,16 @@ class MonkOfEntrana : Script {
         npcOperate("Talk-to", "monk_of_entrana_port_sarim*") {
             npc<Quiz>("Do you seek passage to holy Entrana? If so, you must leave your weaponry and armour behind. This is Saradomin's will.")
             choice("What would you like to say?") {
-                option<Talk>("No, not right now.") {
-                    npc<Talk>("Very well.")
+                option<Neutral>("No, not right now.") {
+                    npc<Neutral>("Very well.")
                 }
                 option<Happy>("Yes, okay, I'm ready to go.") {
-                    npc<Talk>("Very well. One moment please.")
+                    npc<Neutral>("Very well. One moment please.")
                     message("The monk quickly searches you.")
                     statement("", clickToContinue = false)
                     delay(3)
                     if (passedCheck()) {
-                        npc<Talk>("All is satisfactory. You may board the boat now.")
+                        npc<Neutral>("All is satisfactory. You may board the boat now.")
                         travel()
                     }
                 }
@@ -47,7 +47,7 @@ class MonkOfEntrana : Script {
         npcOperate("Talk-to", "entrana_monk*") {
             npc<Happy>("Do you wish to leave holy Entrana?")
             choice {
-                option<Talk>("Yes, I'm ready to go.") {
+                option<Neutral>("Yes, I'm ready to go.") {
                     npc<Happy>("Okay, let's board...")
                     portSarim()
                 }
@@ -90,9 +90,9 @@ class MonkOfEntrana : Script {
         if (forbidden.isNotEmpty()) {
             npc<Angry>("NO WEAPONS OR ARMOUR are permitted on holy Entrana AT ALL. We will not allow you to travel there in breach of mighty Saradomin's edict.")
             if (forbidden.def.getOrNull<String>("god") == "saradomin") {
-                npc<Talk>("I'm sorry, sir, but no weapons or armour may be worn on Entrana. This rule even forbids items dedicated to Saradomin.")
+                npc<Neutral>("I'm sorry, sir, but no weapons or armour may be worn on Entrana. This rule even forbids items dedicated to Saradomin.")
             } else {
-                npc<Talk>("Do not try and deceive us again. Come back when you have laid down your Zamorakian instruments of death.")
+                npc<Neutral>("Do not try and deceive us again. Come back when you have laid down your Zamorakian instruments of death.")
             }
             return false
         }

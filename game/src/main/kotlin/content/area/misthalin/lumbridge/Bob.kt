@@ -2,9 +2,9 @@ package content.area.misthalin.lumbridge
 
 import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
-import content.entity.player.dialogue.Upset
+import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
@@ -22,13 +22,13 @@ class Bob : Script {
         npcOperate("Talk-to", "bob") {
             choice {
                 option("Give me a quest!") {
-                    npc<Talk>("Sorry I don't have any quests for you at the moment.")
+                    npc<Neutral>("Sorry I don't have any quests for you at the moment.")
                 }
                 option<Quiz>("I'd like to trade.") {
                     npc<Happy>("Great! I buy and sell pickaxes and hatchets. There are plenty to choose from, and I've some free samples too. Take your pick... or hatchet.")
                     openShop("bobs_brilliant_axes")
                 }
-                option<Upset>("Can you repair my items for me?") {
+                option<Sad>("Can you repair my items for me?") {
                     npc<Quiz>("Of course I can, though the material may cost you. Just hand me the item and I'll have a look.")
                 }
             }
@@ -40,7 +40,7 @@ class Bob : Script {
                 return@itemOnNPCOperate
             }
             val cost = repairCost(this, item)
-            npc<Talk>("That'll cost you $cost gold coins to fix, are you sure?")
+            npc<Neutral>("That'll cost you $cost gold coins to fix, are you sure?")
             choice {
                 option("Yes I'm sure!") {
                     val repaired = inventory.transaction {

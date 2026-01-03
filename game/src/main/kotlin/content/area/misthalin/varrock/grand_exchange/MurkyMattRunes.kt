@@ -28,21 +28,21 @@ class MurkyMattRunes : Script {
     init {
         npcOperate("Talk-to", "murky_matt") {
             if (Settings["grandExchange.tutorial.required", false] && !questCompleted("grand_exchange_tutorial")) {
-                player<Talk>("Hello.")
-                npc<Talk>("Arrrr, ${if (male) "me-lad" else "me-lady"}, I would speak with ye, but may I ask ye to speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance. Brugsen will give ye a great and plunderous lesson on the Grand Exchange and the Tutor a much shorter and simpler explanation.")
+                player<Neutral>("Hello.")
+                npc<Neutral>("Arrrr, ${if (male) "me-lad" else "me-lady"}, I would speak with ye, but may I ask ye to speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance. Brugsen will give ye a great and plunderous lesson on the Grand Exchange and the Tutor a much shorter and simpler explanation.")
                 return@npcOperate
             }
             player<Happy>("A pirate!")
-            npc<Talk>("Arrrr, How'd ye be guessing that, ${if (male) "me-lad" else "me-lady"}?")
+            npc<Neutral>("Arrrr, How'd ye be guessing that, ${if (male) "me-lad" else "me-lady"}?")
             player<Happy>("You're kidding, right?")
-            npc<Talk>("Nay! Now, what is it ye be wantin? I can tell ye all about the prices of runes, I can.")
+            npc<Neutral>("Nay! Now, what is it ye be wantin? I can tell ye all about the prices of runes, I can.")
             menu()
         }
 
         npcOperate("Info-runes", "murky_matt") {
             if (Settings["grandExchange.tutorial.required", false] && !questCompleted("grand_exchange_tutorial")) {
-                player<Talk>("Hello.")
-                npc<Talk>("Arrrr, ${if (male) "me-lad" else "me-lady"}, I would speak with ye, but may I ask ye to speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance. Brugsen will give ye a great and plunderous lesson on the Grand Exchange and the Tutor a much shorter and simpler explanation.")
+                player<Neutral>("Hello.")
+                npc<Neutral>("Arrrr, ${if (male) "me-lad" else "me-lady"}, I would speak with ye, but may I ask ye to speak with Brugsen Bursen or the Grand Exchange Tutor near the entrance. Brugsen will give ye a great and plunderous lesson on the Grand Exchange and the Tutor a much shorter and simpler explanation.")
                 return@npcOperate
             }
             set("common_item_costs", "runes")
@@ -51,8 +51,8 @@ class MurkyMattRunes : Script {
 
         npcOperate("Combine", "murky_matt") {
             if (Settings["grandExchange.tutorial.required", false] && !questCompleted("grand_exchange_tutorial")) {
-                player<Talk>("Hello.")
-                npc<Talk>("Arrrr, ${if (male) "me-lad" else "me-lady"}, I must ask ye to get yerself some learnin' about the Grand Exchange first. Brugsen will give ye a great and plunderous lesson, or the Tutor can offer ye a much shorter and simpler explanation.")
+                player<Neutral>("Hello.")
+                npc<Neutral>("Arrrr, ${if (male) "me-lad" else "me-lady"}, I must ask ye to get yerself some learnin' about the Grand Exchange first. Brugsen will give ye a great and plunderous lesson, or the Tutor can offer ye a much shorter and simpler explanation.")
                 return@npcOperate
             }
             combineJewellery()
@@ -62,32 +62,32 @@ class MurkyMattRunes : Script {
     suspend fun Player.menu() {
         choice {
             option<Quiz>("What's a pirate doing here?") {
-                npc<Talk>("By my sea-blistered skin, I could ask the same of you!")
+                npc<Neutral>("By my sea-blistered skin, I could ask the same of you!")
                 player<Quiz>("But... I'm not a pirate?")
-                npc<Talk>("No? Then what's that smell? The smell o' someone spent too long at sea without a bath!")
-                player<Talk>("I think that's probably you.")
-                npc<Laugh>("Har har har!")
+                npc<Neutral>("No? Then what's that smell? The smell o' someone spent too long at sea without a bath!")
+                player<Neutral>("I think that's probably you.")
+                npc<Cackle>("Har har har!")
                 npc<Happy>("We've got a stern landlubber 'ere! Well, let me tell ye, I'm here for the Grand Exchange! Gonna cash in me loot!")
                 player<Quiz>("Don't you just want to sell it in a shop or trade it to someone specific?")
-                npc<Talk>("By my wave-battered bones! Not when I can sell to the whole world from this very spot!")
+                npc<Neutral>("By my wave-battered bones! Not when I can sell to the whole world from this very spot!")
                 if (questCompleted("lunar_diplomacy")) {
-                    player<Talk>("You pirates are nothing but trouble! Why, once I travelled to Lunar Isle with a bunch of your type, and spent days sailing around in circles!")
-                    npc<Talk>("Then ye must know me brother! Murky Pat!")
-                    player<Talk>("Hmmm. Not so sure I remember him.")
-                    npc<Talk>("Well, 'e be on that ship for sure. And I remember 'im tellin' me about some guy like ye, getting all mixed up with curses and cabin boys.")
-                    player<Talk>("Yes! That was me!")
-                    npc<Talk>("Ye sure be a different character.")
+                    player<Neutral>("You pirates are nothing but trouble! Why, once I travelled to Lunar Isle with a bunch of your type, and spent days sailing around in circles!")
+                    npc<Neutral>("Then ye must know me brother! Murky Pat!")
+                    player<Neutral>("Hmmm. Not so sure I remember him.")
+                    npc<Neutral>("Well, 'e be on that ship for sure. And I remember 'im tellin' me about some guy like ye, getting all mixed up with curses and cabin boys.")
+                    player<Neutral>("Yes! That was me!")
+                    npc<Neutral>("Ye sure be a different character.")
                 }
             }
-            option<Talk>("Tell me about the prices of runes.") {
+            option<Neutral>("Tell me about the prices of runes.") {
                 set("common_item_costs", "runes")
                 open("common_item_costs")
             }
             option<Happy>("I got to go, erm, swab some decks! Yarr!") {
                 npc<Angry>("Defer your speech right there! Quit this derogatory and somewhat narrow-minded allusion that all folks of sea voyage are only concerned with washing the decks, looking after parrots and drinking rum. I'll have ye know there is much more to a pirate than meets the eye.")
-                player<Talk>("Aye-aye, captain!")
+                player<Neutral>("Aye-aye, captain!")
                 npc<Unamused>("...")
-                player<Talk>("Oh, come on! Lighten up!")
+                player<Neutral>("Oh, come on! Lighten up!")
             }
         }
     }
@@ -116,9 +116,9 @@ class MurkyMattRunes : Script {
             }
         }
         when (inventory.transaction.error) {
-            TransactionError.Invalid -> npc<Sad>("Arrr, I couldn't combine ye stuff.") // Custom message
+            TransactionError.Invalid -> npc<Disheartened>("Arrr, I couldn't combine ye stuff.") // Custom message
             TransactionError.None -> npc<Happy>("Arr, all done.")
-            else -> npc<Talk>("Arrr, ye've got nothing that I can combine.")
+            else -> npc<Neutral>("Arrr, ye've got nothing that I can combine.")
         }
     }
 }

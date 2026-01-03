@@ -14,7 +14,7 @@ class Zeke : Script {
 
     init {
         npcOperate("Talk-to", "zeke") {
-            npc<Talk>("A thousand greetings, ${if (male) "sir" else "madam"}.")
+            npc<Neutral>("A thousand greetings, ${if (male) "sir" else "madam"}.")
             choice {
                 option("Do you want to trade?") {
                     npc<Happy>("Yes, certainly. I deal in scimitars.")
@@ -27,9 +27,9 @@ class Zeke : Script {
                     npc<Frustrated>("A dragon scimitar? A DRAGON scimitar?")
                     npc<Frustrated>("No way, man!")
                     npc<Angry>("The banana-brained nitwits who make them would never dream of selling any to me.")
-                    npc<Sad>("Seriously, you'll be a monkey's uncle before you'll ever hold a dragon scimitar.")
+                    npc<Disheartened>("Seriously, you'll be a monkey's uncle before you'll ever hold a dragon scimitar.")
                     if (quest("monkey_madness") == "completed") {
-                        player<Uncertain>("Hmmm, funny you should say that...")
+                        player<Confused>("Hmmm, funny you should say that...")
                     } else {
                         player<Quiz>("Oh well, thanks anyway.")
                     }
@@ -39,9 +39,9 @@ class Zeke : Script {
                 option<Quiz>("What do you think of Ali Morrisane?") {
                     npc<Quiz>("He is a dangerous man.")
                     npc<Quiz>("Although he does not appear to be dangerous, he has brought several men to this town who have threatened me and several others.")
-                    npc<Shock>("One man even threatened me with a hammer, saying that when he set up his smithy, my shoddy workmanship would be revealed!")
+                    npc<Horrified>("One man even threatened me with a hammer, saying that when he set up his smithy, my shoddy workmanship would be revealed!")
                     player<Quiz>("What will you do about these threats?")
-                    npc<Talk>("Oh, I am quite confident in the quality of my work...as will you be if you take a look at my wares.")
+                    npc<Neutral>("Oh, I am quite confident in the quality of my work...as will you be if you take a look at my wares.")
                     takeALook()
                 }
             }

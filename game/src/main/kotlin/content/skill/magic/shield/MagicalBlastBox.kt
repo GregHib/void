@@ -90,15 +90,19 @@ class MagicalBlastBox : Script {
         val dungeoneering = if (item.id == "magical_blastbox") "" else "_dungeoneering"
         val blast = get("magical_blastbox_mode$dungeoneering", false)
         choice("The box is currently charged with $charges ${if (blast) "Blast" else "Bolt"} ${"spell".plural(charges)}.") {
-            option("I want to empty the ${if (blast) "Blast" else "Bolt"} spells.", filter = { charges > 0 }) {
-                // TODO proper message
-                if (emptyRunes(this, blast, dungeoneering, slot, charges)) {
-                    message("You empty the box of ${if (blast) "Blast" else "Bolt"} spells.") // TODO proper message
-                } else {
-                    inventoryFull()
+            if (charges > 0) {
+                option("I want to empty the ${if (blast) "Blast" else "Bolt"} spells.") {
+                    // TODO proper message
+                    if (emptyRunes(this, blast, dungeoneering, slot, charges)) {
+                        message("You empty the box of ${if (blast) "Blast" else "Bolt"} spells.") // TODO proper message
+                    } else {
+                        inventoryFull()
+                    }
                 }
             }
-            option("I do not wish to change the box settings.", filter = { charges == 0 })
+            if (charges == 0) {
+                option("I do not wish to change the box settings.")
+            }
             option("Switch to ${if (blast) "Bolt" else "Blast"}.") {
                 if (charges == 0 || emptyRunes(this, blast, dungeoneering, slot, charges)) {
                     val blastMode = toggle("magical_blastbox_mode$dungeoneering")

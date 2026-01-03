@@ -10,13 +10,13 @@ class LouieLegs : Script {
 
     init {
         npcOperate("Talk-to", "louie_legs") {
-            npc<Neutral>("Hey, wanna buy some armour?")
+            npc<Idle>("Hey, wanna buy some armour?")
             choice {
-                option<Neutral>("What have you got?") {
+                option<Idle>("What have you got?") {
                     npc<Happy>("I provide items to help you keep your legs!")
                     openShop("louies_armoured_legs_bazaar")
                 }
-                option<Neutral>("No, thank you.")
+                option<Idle>("No, thank you.")
             }
         }
     }

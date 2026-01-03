@@ -90,15 +90,19 @@ class CelestialSurgeBox : Script {
         val dungeoneering = if (item.id == "celestial_surgebox") "" else "_dungeoneering"
         val surge = get("celestial_surgebox_mode$dungeoneering", false)
         choice("The box is currently charged with $charges ${if (surge) "Surge" else "Wave"} ${"spell".plural(charges)}.") {
-            option("I want to empty the ${if (surge) "Surge" else "Wave"} spells.", filter = { charges > 0 }) {
-                // TODO proper message
-                if (emptyRunes(this, surge, dungeoneering, slot, charges)) {
-                    message("You empty the box of ${if (surge) "Surge" else "Wave"} spells.") // TODO proper message
-                } else {
-                    inventoryFull()
+            if (charges > 0) {
+                option("I want to empty the ${if (surge) "Surge" else "Wave"} spells.") {
+                    // TODO proper message
+                    if (emptyRunes(this, surge, dungeoneering, slot, charges)) {
+                        message("You empty the box of ${if (surge) "Surge" else "Wave"} spells.") // TODO proper message
+                    } else {
+                        inventoryFull()
+                    }
                 }
             }
-            option("I do not wish to change the box settings.", filter = { charges == 0 })
+            if (charges == 0) {
+                option("I do not wish to change the box settings.")
+            }
             option("Switch to ${if (surge) "Wave" else "Surge"}.") {
                 if (charges == 0 || emptyRunes(this, surge, dungeoneering, slot, charges)) {
                     val surgeMode = toggle("celestial_surgebox_mode$dungeoneering")

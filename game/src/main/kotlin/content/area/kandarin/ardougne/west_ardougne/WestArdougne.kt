@@ -45,19 +45,19 @@ class WestArdougne : Script {
                 return@objectOperate
             }
             statement("The door is locked.")
-            npc<Surprised>("elenap_vis", "Hey get me out of here please!")
-            player<Sad>("I would do but I don't have a key.")
+            npc<Shock>("elenap_vis", "Hey get me out of here please!")
+            player<Disheartened>("I would do but I don't have a key.")
             if (get("plaguecity_key_asked", false)) {
                 set("plaguecity_key_asked", true)
             }
-            npc<Uncertain>("elenap_vis", "I think there may be one around somewhere. I'm sure I heard them stashing it somewhere.")
+            npc<Confused>("elenap_vis", "I think there may be one around somewhere. I'm sure I heard them stashing it somewhere.")
             choice {
                 option<Quiz>("Have you caught the plague?") {
-                    npc<Neutral>("elenap_vis", "No, I have none of the symptoms.")
-                    player<Uncertain>("Strange, I was told this house was plague infected.")
-                    npc<Neutral>("elenap_vis", "I suppose that was a cover up by the kidnappers.")
+                    npc<Idle>("elenap_vis", "No, I have none of the symptoms.")
+                    player<Confused>("Strange, I was told this house was plague infected.")
+                    npc<Idle>("elenap_vis", "I suppose that was a cover up by the kidnappers.")
                 }
-                option<Neutral>("Okay, I'll look for it.")
+                option<Idle>("Okay, I'll look for it.")
             }
         }
 
@@ -88,8 +88,8 @@ class WestArdougne : Script {
             }
             npc<Angry>("ted_rehnison", "Go away. We don't want any.")
             if (holdsItem("book_turnip_growing_for_beginners")) {
-                player<Neutral>("I'm a friend of Jethick's, I have come to return a book he borrowed.")
-                npc<Neutral>("ted_rehnison", "Oh... Why didn't you say, come in then.")
+                player<Idle>("I'm a friend of Jethick's, I have come to return a book he borrowed.")
+                npc<Idle>("ted_rehnison", "Oh... Why didn't you say, come in then.")
                 enterDoor(target, delay = 2)
                 inventory.remove("book_turnip_growing_for_beginners")
                 set("plague_city", "returned_book")
@@ -115,28 +115,28 @@ class WestArdougne : Script {
                 return@objectOperate
             }
             statement("The door won't open. <br> You notice a black cross on the door.")
-            npc<Neutral>("mourner_elena_guard_vis", " I'd stand away from there. That black cross means that house has been touched by the plague.")
+            npc<Idle>("mourner_elena_guard_vis", " I'd stand away from there. That black cross means that house has been touched by the plague.")
             if (quest("plague_city") == "spoken_to_milli") {
                 choice {
-                    option<Surprised>("But I think a kidnap victim is in here.") {
-                        npc<Neutral>("mourner_elena_guard_vis", "Sounds unlikely, even kidnappers wouldn't go in there. Even if someone is in there, they're probably dead by now.")
+                    option<Shock>("But I think a kidnap victim is in here.") {
+                        npc<Idle>("mourner_elena_guard_vis", "Sounds unlikely, even kidnappers wouldn't go in there. Even if someone is in there, they're probably dead by now.")
                         choice {
-                            option<Neutral>("Good point.")
-                            option<Neutral>("I want to check anyway.") {
-                                npc<Neutral>("mourner_elena_guard_vis", "You don't have clearance to go in there.")
+                            option<Idle>("Good point.")
+                            option<Idle>("I want to check anyway.") {
+                                npc<Idle>("mourner_elena_guard_vis", "You don't have clearance to go in there.")
                                 player<Quiz>("How do I get clearance?")
-                                npc<Neutral>("mourner_elena_guard_vis", "Well you'd need to apply to the head mourner, or I suppose Bravek the city warder.")
+                                npc<Idle>("mourner_elena_guard_vis", "Well you'd need to apply to the head mourner, or I suppose Bravek the city warder.")
                                 set("plague_city", "need_clearance")
-                                npc<Neutral>("mourner_elena_guard_vis", "I wouldn't get your hopes up though.")
+                                npc<Idle>("mourner_elena_guard_vis", "I wouldn't get your hopes up though.")
                             }
                         }
                     }
                     option<Angry>("I haven't got the plague though...") {
-                        npc<Neutral>("mourner_elena_guard_vis", "Can't risk you being a carrier. That protective clothing you have isn't regulation issue. It won't meet safety standards.")
+                        npc<Idle>("mourner_elena_guard_vis", "Can't risk you being a carrier. That protective clothing you have isn't regulation issue. It won't meet safety standards.")
                     }
-                    option<Neutral>("I'm looking for a woman named Elena.") {
-                        npc<Neutral>("mourner_elena_guard_vis", "Ah yes, I've heard of her. A healer I believe. She must be mad coming over here voluntarily.")
-                        npc<Neutral>("mourner_elena_guard_vis", "I hear rumours she has probably caught the plague now. Very tragic, a stupid waste of life.")
+                    option<Idle>("I'm looking for a woman named Elena.") {
+                        npc<Idle>("mourner_elena_guard_vis", "Ah yes, I've heard of her. A healer I believe. She must be mad coming over here voluntarily.")
+                        npc<Idle>("mourner_elena_guard_vis", "I hear rumours she has probably caught the plague now. Very tragic, a stupid waste of life.")
                     }
                 }
             }

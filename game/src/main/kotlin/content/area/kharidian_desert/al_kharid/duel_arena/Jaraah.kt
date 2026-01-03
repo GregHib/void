@@ -13,19 +13,19 @@ class Jaraah : Script {
             player<Happy>("Hi!")
             npc<Frustrated>("What? Can't you see I'm busy?!")
             choice {
-                option<Uncertain>("Can you heal me?") {
+                option<Confused>("Can you heal me?") {
                     heal(target)
                 }
-                option<Uncertain>("You must see some gruesome things?") {
+                option<Confused>("You must see some gruesome things?") {
                     npc<Frustrated>("It's a gruesome business and with the tools they give me it gets more gruesome before it gets better!")
-                    player<Chuckle>("Really?")
-                    npc<Chuckle>("It beats being stuck in the monastery!")
+                    player<Laugh>("Really?")
+                    npc<Laugh>("It beats being stuck in the monastery!")
                 }
-                option<Uncertain>("Why do they call you 'The Butcher'?") {
-                    npc<Chuckle>("'The Butcher'?")
+                option<Confused>("Why do they call you 'The Butcher'?") {
+                    npc<Laugh>("'The Butcher'?")
                     npc<Frustrated>("Ha!")
                     npc<Frustrated>("Would you like me to demonstrate?")
-                    player<Surprised>("Er...I'll give it a miss, thanks.")
+                    player<Shock>("Er...I'll give it a miss, thanks.")
                 }
             }
         }

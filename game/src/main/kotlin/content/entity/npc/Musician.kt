@@ -1,9 +1,9 @@
 package content.entity.npc
 
 import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Pleased
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -38,7 +38,7 @@ class Musician : Script {
                 player<Quiz>("Yes, I can never run as far as I'd like.")
                 npc<Happy>("Well, you may rest anywhere, simply choose the Rest option on the run buttons.")
                 npc<Happy>("When you are nice and relaxed, you will recharge your run energy more quickly and your life points twice as fast as you would do so normally.")
-                npc<Talk>("Of course, you can't do anything else while you're resting, other than talk.")
+                npc<Neutral>("Of course, you can't do anything else while you're resting, other than talk.")
                 player<Quiz>("Why not?")
                 npc<Happy>("Well, you wouldn't be resting, now would you? Also, you should know that resting by a musician, has a similar effect but the benefits are greater.")
                 resting()

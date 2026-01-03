@@ -1,9 +1,9 @@
 package content.area.kharidian_desert.sophanem
 
+import content.entity.player.dialogue.Confused
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Pleased
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
-import content.entity.player.dialogue.Uncertain
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -53,23 +53,23 @@ class GuardianMummy : Script {
     }
 
     suspend fun Player.notAnother() {
-        npc<Talk>("*sigh* Not another one.")
+        npc<Neutral>("*sigh* Not another one.")
         player<Quiz>("Another what?")
-        npc<Talk>("Another 'archaeologist'.")
-        npc<Talk>("I'm not going to let you plunder my master's tomb you know.")
-        player<Talk>("That's a shame, have you got anything else I could do while I'm here?")
-        npc<Talk>("If it will keep you out of mischief I suppose I could set something up for you...")
-        npc<Talk>("I have a few rooms full of some things you humans might consider valuable, do you want to give it a go?")
+        npc<Neutral>("Another 'archaeologist'.")
+        npc<Neutral>("I'm not going to let you plunder my master's tomb you know.")
+        player<Neutral>("That's a shame, have you got anything else I could do while I'm here?")
+        npc<Neutral>("If it will keep you out of mischief I suppose I could set something up for you...")
+        npc<Neutral>("I have a few rooms full of some things you humans might consider valuable, do you want to give it a go?")
         playPyramidPlunder()
     }
 
     suspend fun Player.playPyramidPlunder() {
         choice("Play the 'Pyramid Plunder' minigame?") {
-            option<Talk>("That sounds like fun, what do I do?") {
+            option<Neutral>("That sounds like fun, what do I do?") {
                 soundsLikeFun()
             }
-            option<Talk>("Not right now") {
-                npc<Talk>("Well, get out of here then.")
+            option<Neutral>("Not right now") {
+                npc<Neutral>("Well, get out of here then.")
             }
             option<Pleased>("I know what I'm doing let's get on with it.") {
                 iKnowWhatImDoing()
@@ -85,35 +85,35 @@ class GuardianMummy : Script {
     }
 
     suspend fun Player.itIsDone() {
-        npc<Talk>("It is done.")
+        npc<Neutral>("It is done.")
         playPyramidPlunder()
     }
 
     suspend fun Player.sceptreRecharging() {
-        player<Talk>("This sceptre seems to have run out of charges.")
-        npc<Talk>("You shouldn't have that thing in the first place, thief!")
-        player<Talk>("If I gave you back some of the artefacts I've taken from the tomb, would you recharge the sceptre for me.")
-        npc<Talk>("*sigh* Oh alright. But only if the sceptre is fully empty, I'm not wasting the King's magic...")
+        player<Neutral>("This sceptre seems to have run out of charges.")
+        npc<Neutral>("You shouldn't have that thing in the first place, thief!")
+        player<Neutral>("If I gave you back some of the artefacts I've taken from the tomb, would you recharge the sceptre for me.")
+        npc<Neutral>("*sigh* Oh alright. But only if the sceptre is fully empty, I'm not wasting the King's magic...")
         choice("Recharge the sceptre with...") {
             option("Gold artefacts?") {
                 if (inventory.chargeSceptre(6, gold)) {
                     statement("You recharge your sceptre with gold artefacts.")
                 } else {
-                    npc<Talk>("You need to have 6 gold artefacts to recharge your sceptre.")
+                    npc<Neutral>("You need to have 6 gold artefacts to recharge your sceptre.")
                 }
             }
             option("Stone artefacts?") {
                 if (inventory.chargeSceptre(12, stone)) {
                     statement("You recharge your sceptre with stone artefacts.")
                 } else {
-                    npc<Talk>("You need to have 12 stone artefacts to recharge your sceptre.")
+                    npc<Neutral>("You need to have 12 stone artefacts to recharge your sceptre.")
                 }
             }
             option("Pottery and Ivory artefacts?") {
                 if (inventory.chargeSceptre(24, ivory)) {
                     statement("You recharge your sceptre with stone artefacts.")
                 } else {
-                    npc<Talk>("You need to have 24 pottery or ivory artefacts to recharge your sceptre.")
+                    npc<Neutral>("You need to have 24 pottery or ivory artefacts to recharge your sceptre.")
                 }
             }
             option("Actually, I'm more interested in plundering the tombs.") {
@@ -125,8 +125,8 @@ class GuardianMummy : Script {
     suspend fun Player.sceptreDischarging() {
         val count = inventory.items.count { it.id.startsWith("pharaohs_sceptre_") }
         if (count < 0) {
-            player<Talk>("I want to charge my sceptre.")
-            npc<Uncertain>("What sceptre?")
+            player<Neutral>("I want to charge my sceptre.")
+            npc<Confused>("What sceptre?")
             player<Quiz>("Er... I don't know.")
             npc<Quiz>("Right...")
             return
@@ -136,7 +136,7 @@ class GuardianMummy : Script {
             discharge(index)
             return
         }
-        npc<Talk>("If I must. You have $count sceptres with charges. Do you want them all emptied?")
+        npc<Neutral>("If I must. You have $count sceptres with charges. Do you want them all emptied?")
         choice {
             option("Yes, uncharge all my sceptres.") {
                 val success = inventory.transaction {
@@ -168,26 +168,26 @@ class GuardianMummy : Script {
     }
 
     suspend fun Player.soundsLikeFun() {
-        npc<Talk>("You have five minutes to explore the treasure rooms and collect as many artefacts as you can.")
-        npc<Talk>("The artefacts are in the urns, chests and sarcophagi found in each room.")
-        npc<Talk>("There are eight treasure rooms, each subsequent room requires higher thieving skills to both enter the room and thieve from the urns and other containers.")
-        npc<Talk>("The rewards also become more lucrative the further into the tomb you go.")
-        npc<Talk>("You will also have to deactivate a trap in order to enter the main part of each room.")
-        npc<Talk>("When you want to move onto the next room you need to find the correct door first.")
-        npc<Talk>("There are four possible exits, you must open the door before finding out whether it is the exit or not.")
-        npc<Talk>("Opening the doors require picking their locks. Having a lockpick will make this easier.")
+        npc<Neutral>("You have five minutes to explore the treasure rooms and collect as many artefacts as you can.")
+        npc<Neutral>("The artefacts are in the urns, chests and sarcophagi found in each room.")
+        npc<Neutral>("There are eight treasure rooms, each subsequent room requires higher thieving skills to both enter the room and thieve from the urns and other containers.")
+        npc<Neutral>("The rewards also become more lucrative the further into the tomb you go.")
+        npc<Neutral>("You will also have to deactivate a trap in order to enter the main part of each room.")
+        npc<Neutral>("When you want to move onto the next room you need to find the correct door first.")
+        npc<Neutral>("There are four possible exits, you must open the door before finding out whether it is the exit or not.")
+        npc<Neutral>("Opening the doors require picking their locks. Having a lockpick will make this easier.")
         anymoreQuestions("How do I get the artefacts?")
     }
 
     suspend fun Player.anymoreQuestions(option: String) {
         choice("Do you have any more questions?") {
-            option<Talk>("How do I leave the game?") {
+            option<Neutral>("How do I leave the game?") {
                 howDoILeave()
             }
-            option<Talk>(option) {
+            option<Neutral>(option) {
                 howToGetArtefacts()
             }
-            option<Talk>("What do I do with the artefacts I collect?") {
+            option<Neutral>("What do I do with the artefacts I collect?") {
                 whatToDoWithArtefacts()
             }
             option("I'm ready to give it a go now.") {
@@ -202,41 +202,41 @@ class GuardianMummy : Script {
     }
 
     suspend fun Player.howDoILeave() {
-        npc<Talk>("If at any point you decide you need to leave just use a glowing door.")
-        npc<Talk>("The game will end and you will be taken out of the pyramid.")
+        npc<Neutral>("If at any point you decide you need to leave just use a glowing door.")
+        npc<Neutral>("The game will end and you will be taken out of the pyramid.")
         anymoreQuestions("What about the chests and sarcophagi?")
     }
 
     suspend fun Player.howToGetArtefacts() {
-        npc<Talk>("The artefacts are in the urns, chests and sarcophagi.")
-        npc<Talk>("Urns contain snakes that guard them.")
-        npc<Talk>("The sarcophagi take some strength to open. They take a while to open.")
-        npc<Talk>("Of course, Mummies have been known to take a nap in the sarcophagi, so beware.")
-        npc<Talk>("The golden chests generally contain better artefacts, but are also trapped with scarabs!")
+        npc<Neutral>("The artefacts are in the urns, chests and sarcophagi.")
+        npc<Neutral>("Urns contain snakes that guard them.")
+        npc<Neutral>("The sarcophagi take some strength to open. They take a while to open.")
+        npc<Neutral>("Of course, Mummies have been known to take a nap in the sarcophagi, so beware.")
+        npc<Neutral>("The golden chests generally contain better artefacts, but are also trapped with scarabs!")
         anymoreQuestions("What about the chests and sarcophagi?")
     }
 
     suspend fun Player.whatToDoWithArtefacts() {
-        npc<Talk>("There are a number of different artefacts, of three main types. The least valuable are the pottery statuettes and scarabs, and the ivory combs.")
-        npc<Talk>("Next are the stone scarabs, statuettes and seals, and finally the gold versions of those artefacts.")
-        npc<Talk>("They are not old, but are well made.")
-        player<Talk>("What do I do with artefacts once I've collected them?")
-        npc<Talk>("That Simon Simpleton, I mean Templeton, will probably give you some money for them.")
-        npc<Talk>("He couldn't spot a real artefact if it came up to him and bit him in the face.")
-        npc<Talk>("He usually slinks about near the pyramid north-east of Sophanem. I expect he's trying to get some poor fools to steal things from that pyramid as well.")
-        npc<Talk>("I expect he'll give you more gold for some than others.")
+        npc<Neutral>("There are a number of different artefacts, of three main types. The least valuable are the pottery statuettes and scarabs, and the ivory combs.")
+        npc<Neutral>("Next are the stone scarabs, statuettes and seals, and finally the gold versions of those artefacts.")
+        npc<Neutral>("They are not old, but are well made.")
+        player<Neutral>("What do I do with artefacts once I've collected them?")
+        npc<Neutral>("That Simon Simpleton, I mean Templeton, will probably give you some money for them.")
+        npc<Neutral>("He couldn't spot a real artefact if it came up to him and bit him in the face.")
+        npc<Neutral>("He usually slinks about near the pyramid north-east of Sophanem. I expect he's trying to get some poor fools to steal things from that pyramid as well.")
+        npc<Neutral>("I expect he'll give you more gold for some than others.")
         anymoreQuestionsSceptre()
     }
 
     suspend fun Player.anymoreQuestionsSceptre() {
         choice("Do you have any more questions?") {
-            option<Talk>("How do I leave the game?") {
+            option<Neutral>("How do I leave the game?") {
                 howDoILeave()
             }
-            option<Talk>("What about the chests and sarcophagi?") {
+            option<Neutral>("What about the chests and sarcophagi?") {
                 howToGetArtefacts()
             }
-            option<Talk>("What's this I hear about a Golden Sceptre?") {
+            option<Neutral>("What's this I hear about a Golden Sceptre?") {
                 whereDidYouHearAboutThat()
             }
             option("I'm ready to give it a go now.") {
@@ -253,12 +253,12 @@ class GuardianMummy : Script {
     }
 
     suspend fun Player.whereDidYouHearAboutThat() {
-        npc<Talk>("Where did you hear about that?")
-        player<Talk>("I couldn't possibly say.")
-        npc<Talk>("It's the only genuinely valuable artefact in this place.")
-        npc<Talk>("It links all the great pyramids in the area, and can be used to travel between them.")
-        npc<Talk>("It requires charging with offerings of fine craftsmanship, that's why we have so many spare artefacts lying around.")
-        npc<Talk>("Anyway, I won't let you get your grubby little hands on the sceptre.")
+        npc<Neutral>("Where did you hear about that?")
+        player<Neutral>("I couldn't possibly say.")
+        npc<Neutral>("It's the only genuinely valuable artefact in this place.")
+        npc<Neutral>("It links all the great pyramids in the area, and can be used to travel between them.")
+        npc<Neutral>("It requires charging with offerings of fine craftsmanship, that's why we have so many spare artefacts lying around.")
+        npc<Neutral>("Anyway, I won't let you get your grubby little hands on the sceptre.")
         anymoreQuestions("What about the chests and sarcophagi?")
     }
 

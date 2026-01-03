@@ -17,14 +17,14 @@ private const val APPROXIMATE_WIDE_TITLE_LENGTH = 30
  *      }
  *      option<Happy>("two") {
  *      }
- *      option("three", ::condition) {
+ *      option("three") {
  *      }
  *  }
  */
 suspend fun Player.choice(title: String? = null, block: suspend ChoiceOption.() -> Unit) {
     val builder = ChoiceOption()
     block.invoke(builder)
-    val lines = builder.build(this)
+    val lines = builder.build()
     if (lines.size == 1) {
         builder.invoke(0, this)
         return

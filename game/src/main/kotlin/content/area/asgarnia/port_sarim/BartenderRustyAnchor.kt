@@ -1,8 +1,8 @@
 package content.area.asgarnia.port_sarim
 
 import content.entity.npc.shop.buy
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -23,13 +23,13 @@ class BartenderRustyAnchor : Script {
         npcOperate("Talk-to", "bartender_rusty_anchor_inn*") { (target) ->
             choice {
                 option<Quiz>("Could I buy a beer please?") {
-                    npc<Talk>("Sure, that will be 2 gold coins please.")
+                    npc<Neutral>("Sure, that will be 2 gold coins please.")
                     if (buy("beer", 2, "I don't have enough coins.")) {
                         message("You buy a pint of beer!")
                     }
                 }
-                option<Talk>("Have you heard any rumours here?") {
-                    npc<Talk>("Well, there was a guy in here earlier saying the goblins up by the mountain are arguing again, about the colour of their armour of all things.")
+                option<Neutral>("Have you heard any rumours here?") {
+                    npc<Neutral>("Well, there was a guy in here earlier saying the goblins up by the mountain are arguing again, about the colour of their armour of all things.")
                 }
                 if (onBarCrawl(target)) {
                     option("I'm doing Alfred Grimhand's barcrawl.") {
@@ -51,8 +51,8 @@ class BartenderRustyAnchor : Script {
         target,
         start = {
             npc<Quiz>("Are you sure? You look a bit skinny for that.")
-            player<Talk>("Just give me whatever I need to drink here.")
-            npc<Talk>("Ok one Black Skull Ale coming up, 8 coins please.")
+            player<Neutral>("Just give me whatever I need to drink here.")
+            npc<Neutral>("Ok one Black Skull Ale coming up, 8 coins please.")
         },
         effects = {
             say("Hiccup!")

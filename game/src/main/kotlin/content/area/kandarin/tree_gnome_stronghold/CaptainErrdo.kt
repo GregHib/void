@@ -13,7 +13,7 @@ class CaptainErrdo : Script {
     init {
         npcOperate("Talk-to", "captain_errdo,captain_bleemadge,captain_dalbur,captain_klemfoodle") { (target) ->
             if (!questCompleted("the_grand_tree")) {
-                npc<Talk>("Welcome to Gnome Air!")
+                npc<Neutral>("Welcome to Gnome Air!")
                 choice {
                     whatsGnomeAir(target)
                     whereCanYouTakeMe(target)
@@ -26,8 +26,8 @@ class CaptainErrdo : Script {
                 takeMe(target)
                 whyAreGlidersBetter(target)
                 if (target.id == "captain_dalbur") {
-                    option<Talk>("What do you think of Ali Morrisane?") {
-                        npc<Talk>("Oh, he's always up to something. Like that magic carpet business.")
+                    option<Neutral>("What do you think of Ali Morrisane?") {
+                        npc<Neutral>("Oh, he's always up to something. Like that magic carpet business.")
                         player<Quiz>("What do you think of his business?")
                         npc<Angry>("Like I said, we'll not be happy if it starts up.")
                         npc<Happy>("Of course, it's likely to flop and not get off the ground, if you see what I mean.")
@@ -80,15 +80,15 @@ class CaptainErrdo : Script {
     }
 
     fun ChoiceOption.nothing() {
-        option<Uncertain>("Sorry, I don't want anything now.")
+        option<Confused>("Sorry, I don't want anything now.")
     }
 
     fun ChoiceOption.whyAreGlidersBetter(target: NPC) {
-        option<Talk>("Why are gliders better than other transport?") {
+        option<Neutral>("Why are gliders better than other transport?") {
             npc<Happy>("Oh we have a whole network! It's wonderful for getting to hard to reach places.")
             npc<Happy>("There are so many places where your teleports cannot reach!")
             player<Happy>("How did you all manage to build such an established network?")
-            npc<Talk>("I think you'll find that is a gnome trade secret!")
+            npc<Neutral>("I think you'll find that is a gnome trade secret!")
             choice {
                 takeMe(target)
                 nothing()
@@ -97,21 +97,21 @@ class CaptainErrdo : Script {
     }
 
     suspend fun Player.embarrassing() {
-        npc<Uncertain>("Ah, how embarrassing.")
+        npc<Confused>("Ah, how embarrassing.")
         player<Quiz>("What happened?")
-        npc<Talk>("A bit of a technical hitch with the landing gear. I won't be able to fly you anywhere, sorry.")
+        npc<Neutral>("A bit of a technical hitch with the landing gear. I won't be able to fly you anywhere, sorry.")
     }
 
     fun ChoiceOption.whatsGnomeAir(target: NPC) {
         option<Quiz>("What's Gnome Air?") {
             npc<Happy>("Gnome Air is the finest airline in Gielinor!")
-            npc<Uncertain>("Well...it's the only real airline in Gielinor.")
-            npc<Chuckle>("Ha!")
-            player<Talk>("What do you mean by real airline?")
-            npc<Chuckle>("Well there's a dodgy magic carpet operation in the desert, I doubt it will ever take off... Ha!")
+            npc<Confused>("Well...it's the only real airline in Gielinor.")
+            npc<Laugh>("Ha!")
+            player<Neutral>("What do you mean by real airline?")
+            npc<Laugh>("Well there's a dodgy magic carpet operation in the desert, I doubt it will ever take off... Ha!")
             if (target.id == "captain_dalbur") {
                 player<Quiz>("What magic carpet business?")
-                npc<Talk>("That fellow over by that stall says he's setting up a magic carpet business. He said his name was Ali Morrisane.")
+                npc<Neutral>("That fellow over by that stall says he's setting up a magic carpet business. He said his name was Ali Morrisane.")
                 //                player["desert"] = 2 // https://chisel.weirdgloop.org/varbs/display?varplayer=599
                 npc<Angry>("If he ever gets it set up, us gnomes won't be happy with him. Especially not King Narnode!")
             }
@@ -131,9 +131,9 @@ class CaptainErrdo : Script {
 
     fun ChoiceOption.oneWayToVarrock(target: NPC) {
         option<Quiz>("How much for one-way to Varrock?") {
-            npc<Upset>("I can't take you anywhere.")
-            player<Upset>("How come?")
-            npc<Upset>("I would, but Glough has told me not to take humans on Gnome Air.")
+            npc<Sad>("I can't take you anywhere.")
+            player<Sad>("How come?")
+            npc<Sad>("I would, but Glough has told me not to take humans on Gnome Air.")
             choice {
                 whatsGnomeAir(target)
                 whereCanYouTakeMe(target)
@@ -143,12 +143,12 @@ class CaptainErrdo : Script {
     }
 
     fun ChoiceOption.leaveYouToIt() {
-        option<Uncertain>("I'll leave you to it.")
+        option<Confused>("I'll leave you to it.")
     }
 
     suspend fun Player.takeMe(target: NPC) {
         player<Quiz>("Where can you take me?")
-        npc<Upset>("Glough has ordered that I only take gnomes on Gnome Air.")
+        npc<Sad>("Glough has ordered that I only take gnomes on Gnome Air.")
         choice {
             whatsGnomeAir(target)
             oneWayToVarrock(target)

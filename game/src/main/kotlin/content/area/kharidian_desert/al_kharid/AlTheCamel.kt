@@ -55,7 +55,7 @@ class AlTheCamel : Script {
 
         objectOperate("Pick-up", "dung") {
             if (!inventory.contains("bucket")) {
-                player<Talk>("I'm not picking that up. I'll need a container...")
+                player<Neutral>("I'm not picking that up. I'll need a container...")
                 return@objectOperate
             }
             scoopPoop()
@@ -71,18 +71,18 @@ class AlTheCamel : Script {
     }
 
     suspend fun Player.bestOfLuck() {
-        player<Talk>("Well, best of luck with that.")
-        npc<Talk>("If you want to hear my poems once more, please come back again.")
+        player<Neutral>("Well, best of luck with that.")
+        npc<Neutral>("If you want to hear my poems once more, please come back again.")
     }
 
     suspend fun Player.noThankYou() {
-        npc<Talk>("Ah, well. I shall return to writing poems to Elly's beauty.")
+        npc<Neutral>("Ah, well. I shall return to writing poems to Elly's beauty.")
         whatDoesSheThink()
     }
 
     suspend fun Player.idLoveTo() {
-        npc<Talk>("That's so kind of you. Which one would you like to hear?")
-        npc<Talk>("'Shall I compare thee to a desert's day' is my finest yet, but I've also composed others.")
+        npc<Neutral>("That's so kind of you. Which one would you like to hear?")
+        npc<Neutral>("'Shall I compare thee to a desert's day' is my finest yet, but I've also composed others.")
         poems()
     }
 
@@ -98,50 +98,50 @@ class AlTheCamel : Script {
     }
 
     suspend fun Player.justToSay() {
-        npc<Upset>("I wrote this poem when I went to the oasis to nibble at a tree, then discovered I'd left nothing for Elly to nibble. I was distraught.")
-        npc<Neutral>("This Is Just To Say")
-        npc<Neutral>("I have nibbled the cacti that were by the oasis,")
-        npc<Neutral>("and which you were probably saving for lunch.")
-        npc<Neutral>("Forgive me, they were delicious, so crunchy and so cold.")
-        npc<Neutral>("I wonder if she's forgiven me for eating her snack.")
+        npc<Sad>("I wrote this poem when I went to the oasis to nibble at a tree, then discovered I'd left nothing for Elly to nibble. I was distraught.")
+        npc<Idle>("This Is Just To Say")
+        npc<Idle>("I have nibbled the cacti that were by the oasis,")
+        npc<Idle>("and which you were probably saving for lunch.")
+        npc<Idle>("Forgive me, they were delicious, so crunchy and so cold.")
+        npc<Idle>("I wonder if she's forgiven me for eating her snack.")
         whatDoesSheThink()
     }
 
     suspend fun Player.desertsDay(interrupt: Boolean) {
         if (!interrupt) {
-            npc<Talk>("That's my favourite poem. Ahem...")
+            npc<Neutral>("That's my favourite poem. Ahem...")
         }
-        npc<Talk>("Shall I compare thee to a desert's day? Thou art drier and more rough-skinned.")
-        npc<Talk>("Rough sandstorms shake the cactuses away And summer's heat defers to autumn wind.")
+        npc<Neutral>("Shall I compare thee to a desert's day? Thou art drier and more rough-skinned.")
+        npc<Neutral>("Rough sandstorms shake the cactuses away And summer's heat defers to autumn wind.")
         if (interrupt) {
-            player<Talk>("Look, I don't really have the time to...")
+            player<Neutral>("Look, I don't really have the time to...")
         }
-        npc<Talk>("Sometimes too hot the eye of heaven shines, With Guthix' gold complexion often dimmed;")
-        npc<Talk>("And every fair from fair sometime declines, By chance or desert's changing course untrimmed...")
+        npc<Neutral>("Sometimes too hot the eye of heaven shines, With Guthix' gold complexion often dimmed;")
+        npc<Neutral>("And every fair from fair sometime declines, By chance or desert's changing course untrimmed...")
         if (interrupt) {
-            player<Talk>("Please, stop.")
-            npc<Talk>("But I've only got six lines left!")
-            player<Talk>("That's six too many. If I really want to hear your poetry, I'll tell you, okay?")
-            npc<Talk>("Very well. Come back and talk to me if you want to hear more.")
+            player<Neutral>("Please, stop.")
+            npc<Neutral>("But I've only got six lines left!")
+            player<Neutral>("That's six too many. If I really want to hear your poetry, I'll tell you, okay?")
+            npc<Neutral>("Very well. Come back and talk to me if you want to hear more.")
             set("al_the_camel", true)
         } else {
-            npc<Talk>("But thine eternal desert shall not fade Nor lose possession of that sand thou owest;")
-            npc<Talk>("Nor Zamorak brag thou art in his shades, When in eternal lines to sand thou growest,")
-            npc<Talk>("So long as camels breathe or eyes can see, So long lives this, and this gives life to thee.")
-            npc<Talk>("Ah, Elly, how beautiful you are.")
+            npc<Neutral>("But thine eternal desert shall not fade Nor lose possession of that sand thou owest;")
+            npc<Neutral>("Nor Zamorak brag thou art in his shades, When in eternal lines to sand thou growest,")
+            npc<Neutral>("So long as camels breathe or eyes can see, So long lives this, and this gives life to thee.")
+            npc<Neutral>("Ah, Elly, how beautiful you are.")
             whatDoesSheThink()
         }
     }
 
     suspend fun Player.whatDoesSheThink() {
         player<Quiz>("What does she think of your poems?")
-        npc<Talk>("She's never heard them.")
-        player<Talk>("Why not?")
-        npc<Sad>("I suspect she loves another - Ollie, another camel who roams with her to the north.")
-        npc<Sad>("So I shall stay here and compose poems for her.")
+        npc<Neutral>("She's never heard them.")
+        player<Neutral>("Why not?")
+        npc<Disheartened>("I suspect she loves another - Ollie, another camel who roams with her to the north.")
+        npc<Disheartened>("So I shall stay here and compose poems for her.")
         choice {
-            option<Talk>("Why not tell her how you feel?") {
-                npc<Talk>("She seems happy enough as she is, and I have my poems to comfort me.")
+            option<Neutral>("Why not tell her how you feel?") {
+                npc<Neutral>("She seems happy enough as she is, and I have my poems to comfort me.")
                 bestOfLuck()
             }
             option("Well, best of luck with that.") {
@@ -152,9 +152,9 @@ class AlTheCamel : Script {
 
     suspend fun Player.dung() {
         player<Pleased>("I'm sorry to bother you, but could you spare me a little dung?")
-        npc<Talk>("Are you serious?")
-        player<Neutral>("Oh yes. If you'd be so kind...")
-        npc<Talk>("Well, just you close your eyes first. I'm not doing it while you're watching me!")
+        npc<Neutral>("Are you serious?")
+        player<Idle>("Oh yes. If you'd be so kind...")
+        npc<Neutral>("Well, just you close your eyes first. I'm not doing it while you're watching me!")
         open("fade_out")
         interfaces.sendText("fade_out", "text", "<red>You close your eyes...")
         delay(2)
@@ -162,36 +162,36 @@ class AlTheCamel : Script {
         objects.add("dung", tile, ticks = TimeUnit.SECONDS.toTicks(30))
         delay(2)
         open("fade_in")
-        npc<Talk>("I hope that's what you wanted!")
-        player<Talk>("Ohhh yes. Lovely.")
+        npc<Neutral>("I hope that's what you wanted!")
+        player<Neutral>("Ohhh yes. Lovely.")
     }
 
     suspend fun Player.listenTo() {
-        npc<Neutral>("Oh, it's you again. Have you come back to listen to my poems?")
+        npc<Idle>("Oh, it's you again. Have you come back to listen to my poems?")
         choice {
             option<Pleased>("I'd love to!") {
                 idLoveTo()
             }
-            option<Talk>("No, thank you.") {
+            option<Neutral>("No, thank you.") {
                 noThankYou()
             }
         }
     }
 
     suspend fun Player.talkingToMe() {
-        npc<Talk>("Sorry, were you saying something to me?")
-        player<Talk>("No, er, nothing important.")
-        npc<Sad>("Never mind, it is unimportant when I have such important matters weighing on my soul.")
-        player<Talk>("How important can a camel's problems be?")
-        npc<Neutral>("Well, you see, there is a camel called Elly. A beautiful, wondrous camel, with hide like spun gold and teeth that shine like an oasis.")
-        player<Uncertain>("...I see.")
-        npc<Talk>("I've written many poems describing her beauty. Would you like to hear one?")
-        player<Neutral>("It's all right, I'm...")
+        npc<Neutral>("Sorry, were you saying something to me?")
+        player<Neutral>("No, er, nothing important.")
+        npc<Disheartened>("Never mind, it is unimportant when I have such important matters weighing on my soul.")
+        player<Neutral>("How important can a camel's problems be?")
+        npc<Idle>("Well, you see, there is a camel called Elly. A beautiful, wondrous camel, with hide like spun gold and teeth that shine like an oasis.")
+        player<Confused>("...I see.")
+        npc<Neutral>("I've written many poems describing her beauty. Would you like to hear one?")
+        player<Idle>("It's all right, I'm...")
         desertsDay(interrupt = true)
     }
 
     suspend fun Player.insult() {
-        player<Talk>(
+        player<Neutral>(
             when (random.nextInt(3)) {
                 0 -> "Mmm... looks like that camel would make a nice kebab."
                 1 -> "I wonder if that camel has fleas..."
@@ -207,7 +207,7 @@ class AlTheCamel : Script {
         anim("fill_bucket")
         message("You scoop up some camel dung into the bucket.")
         if (inventory.contains("ugthanki_dung", 28)) {
-            player<Talk>("Phew - that's enough dung.")
+            player<Neutral>("Phew - that's enough dung.")
         }
     }
 }

@@ -1,7 +1,7 @@
 package content.minigame.sorceress_garden
 
 import content.entity.obj.door.doorTarget
-import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.player
 import content.skill.magic.jewellery.teleport
@@ -76,7 +76,7 @@ class SorceressGarden : Script {
 
     suspend fun Player.pickFruit(type: String) {
         if (!inventory.add("${type}_sqirk")) {
-            player<Neutral>("I cannot carry any more.")
+            player<Idle>("I cannot carry any more.")
             return
         }
         sound("osman_pick_high")
@@ -102,7 +102,7 @@ class SorceressGarden : Script {
 
     suspend fun Player.pickHerb(type: String) {
         if (inventory.spaces < 2) {
-            player<Neutral>("I cannot carry any more.")
+            player<Idle>("I cannot carry any more.")
             return
         }
         val table = dropTables.get("${type}_herbs_drop_table")
@@ -117,7 +117,7 @@ class SorceressGarden : Script {
             }
             when (inventory.transaction.error) {
                 is TransactionError.Full -> {
-                    player<Neutral>("I cannot carry any more.")
+                    player<Idle>("I cannot carry any more.")
                     return
                 }
                 TransactionError.None -> {}

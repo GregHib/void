@@ -25,7 +25,7 @@ class Osman : Script {
             when (quest("prince_ali_rescue")) {
                 "completed" -> {
                     if (!questCompleted("contact")) {
-                        npc<Talk>("Well done. A great rescue. I will remember you if I have anything dangerous to do.")
+                        npc<Neutral>("Well done. A great rescue. I will remember you if I have anything dangerous to do.")
                         return@npcOperate
                     }
                     choice {
@@ -37,7 +37,7 @@ class Osman : Script {
                 "unstarted" -> {
                     npc<Shifty>("Hello. I am Osman. What can I assist you with?")
                     choice {
-                        option<Talk>("You don't seem very tough. Who are you?") {
+                        option<Neutral>("You don't seem very tough. Who are you?") {
                             npc<Shifty>("I work for Al Kharid's Emir. That is all you need to know.")
                         }
                         option<Shifty>("Nothing. I'm just being nosy.") {
@@ -47,7 +47,7 @@ class Osman : Script {
                     return@npcOperate
                 }
                 "osman" -> {
-                    player<Talk>("The chancellor trusts me. I have come for instructions.")
+                    player<Neutral>("The chancellor trusts me. I have come for instructions.")
                     npc<Shifty>("Our prince is captive by the Lady Keli. We just need to make the rescue. There are two things we need you to do.")
                     set("prince_ali_rescue", "leela")
                     choice {
@@ -59,7 +59,7 @@ class Osman : Script {
                 "leela" -> {
                     if (inventory.contains("key_print")) {
                         if (!inventory.contains("bronze_bar")) {
-                            player<Talk>("I have an imprint of the key.")
+                            player<Neutral>("I have an imprint of the key.")
                             npc<Shifty>("Good. Bring me a bronze bar, and I'll get a copy made.")
                         } else {
                             npc<Shifty>("Well done; we can make the key now.")
@@ -69,13 +69,13 @@ class Osman : Script {
                             npc<Shifty>("Pick the key up from Leela.")
                         }
                     } else if (get("prince_ali_rescue_key_given", false) && !ownsItem("bronze_key_prince_ali_rescue")) {
-                        player<Talk>("I'm afraid I lost that key you gave me.")
-                        npc<Uncertain>("Well that was foolish. I can sort you out with another, but it will cost you 15 coins.")
+                        player<Neutral>("I'm afraid I lost that key you gave me.")
+                        npc<Confused>("Well that was foolish. I can sort you out with another, but it will cost you 15 coins.")
                         if (inventory.contains("coins", 15)) {
-                            player<Talk>("Here, I have 15 coins.")
+                            player<Neutral>("Here, I have 15 coins.")
                         } else {
-                            player<Sad>("I haven't got 15 coins with me.")
-                            npc<Talk>("Then come back to me when you do.")
+                            player<Disheartened>("I haven't got 15 coins with me.")
+                            npc<Neutral>("Then come back to me when you do.")
                             return@npcOperate
                         }
                         inventory.transaction {
@@ -88,8 +88,8 @@ class Osman : Script {
                         }
                     }
                     choice {
-                        option<Talk>("Thank you. I will try to find the other items.")
-                        option<Talk>("Can you tell me what I still need to get?") {
+                        option<Neutral>("Thank you. I will try to find the other items.")
+                        option<Neutral>("Can you tell me what I still need to get?") {
                             remainingItems()
                         }
                     }
@@ -105,7 +105,7 @@ class Osman : Script {
 
     private suspend fun Player.sqirks() {
         if (inventory.contains("winter_sqirkjuice") || inventory.contains("spring_sqirkjuice") || inventory.contains("autumn_sqirkjuice") || inventory.contains("summer_sqirkjuice")) {
-            player<Talk>("I have some sq'irk juice for you.")
+            player<Neutral>("I have some sq'irk juice for you.")
             var experience = 0.0
             inventory.transaction {
                 experience += removeToLimit("winter_sqirkjuice", 28) * 350.0
@@ -124,82 +124,82 @@ class Osman : Script {
             howSqirks()
             whySqirks()
             whatSqirks()
-            option<Talk>("I should go.")
+            option<Neutral>("I should go.")
         }
     }
 
     private fun ChoiceOption.whatSqirks() {
         option<Quiz>("What's so good about sq'irk juice?") {
-            npc<Talk>("It is a sweet nectar for a thief or spy. It makes light fingers lighter, fleet feet flightier and comes in four different colours for those who are easily amused.")
+            npc<Neutral>("It is a sweet nectar for a thief or spy. It makes light fingers lighter, fleet feet flightier and comes in four different colours for those who are easily amused.")
             statement("Osman starts salivating at the thought of sq'irk juice.")
             player<Quiz>("It wouldn't have addictive properties, would it?")
-            npc<Talk>("It only holds power over those with poor self-control. Something which I have an abundance of.")
-            player<Talk>("I see.")
+            npc<Neutral>("It only holds power over those with poor self-control. Something which I have an abundance of.")
+            player<Neutral>("I see.")
             choice {
                 whereSqirks()
                 howSqirks()
                 whySqirks()
-                option<Talk>("I should go.")
+                option<Neutral>("I should go.")
             }
         }
     }
 
     private fun ChoiceOption.whySqirks() {
         option<Quiz>("Is there a reward for getting these sq'irks?") {
-            npc<Talk>("Of course. I'll train you in the art of Thieving for your troubles.")
+            npc<Neutral>("Of course. I'll train you in the art of Thieving for your troubles.")
             player<Quiz>("How much training will you give?")
-            npc<Talk>("That depends on the quantity and ripeness of the sq'irks you put into the juice.")
-            player<Talk>("That sounds fair enough.")
+            npc<Neutral>("That depends on the quantity and ripeness of the sq'irks you put into the juice.")
+            player<Neutral>("That sounds fair enough.")
             choice {
                 whereSqirks()
                 howSqirks()
                 whatSqirks()
-                option<Talk>("I should go.")
+                option<Neutral>("I should go.")
             }
         }
     }
 
     private fun ChoiceOption.howSqirks() {
         option<Quiz>("How should I squeeze the fruit?") {
-            npc<Talk>("Use a pestle and mortar. Make sure you have an empty glass with you to collect the juice.")
+            npc<Neutral>("Use a pestle and mortar. Make sure you have an empty glass with you to collect the juice.")
             choice {
                 whereSqirks()
                 whySqirks()
                 whatSqirks()
-                option<Talk>("I should go.")
+                option<Neutral>("I should go.")
             }
         }
     }
 
     private fun ChoiceOption.whereSqirks() {
         option<Quiz>("Where do I get sq'irks?") {
-            npc<Talk>("There is a sorceress near the south eastern edge of Al Kharid who grows them. She used to be friends with Osman, but they fell out.")
+            npc<Neutral>("There is a sorceress near the south eastern edge of Al Kharid who grows them. She used to be friends with Osman, but they fell out.")
             player<Quiz>("What happened?")
-            npc<Talk>("I don't know. All I know is she won't give us any more fruit.")
+            npc<Neutral>("I don't know. All I know is she won't give us any more fruit.")
             player<Quiz>("So all I have to do is ask her for some fruit for you?")
-            npc<Talk>("I doubt it will be that easy. She is not renowned for her generosity and is very secretive about her garden's location.")
-            player<Talk>("Oh come on, it should be easy enough to find.")
-            npc<Talk>("Her garden has remained hidden even from Osman. I believe it must be hidden by magical means.")
+            npc<Neutral>("I doubt it will be that easy. She is not renowned for her generosity and is very secretive about her garden's location.")
+            player<Neutral>("Oh come on, it should be easy enough to find.")
+            npc<Neutral>("Her garden has remained hidden even from Osman. I believe it must be hidden by magical means.")
             player<Quiz>("I see. And why can't you do this yourself?")
-            npc<Talk>("My work requires that I remain here.")
-            player<Talk>("Okay. This should be an interesting task.")
+            npc<Neutral>("My work requires that I remain here.")
+            player<Neutral>("Okay. This should be an interesting task.")
             choice {
                 howSqirks()
                 whySqirks()
                 whatSqirks()
-                option<Talk>("I should go.")
+                option<Neutral>("I should go.")
             }
         }
     }
 
     fun ChoiceOption.findThings() {
-        option<Talk>("Okay, I better go find some things.") {
+        option<Neutral>("Okay, I better go find some things.") {
             npc<Shifty>("May good luck travel with you. Don't forget to find Leela. It can't be done without her help.")
         }
     }
 
     fun ChoiceOption.firstThing() {
-        option<Talk>("What is the first thing I must do?") {
+        option<Neutral>("What is the first thing I must do?") {
             npc<Shifty>("The prince is guarded by some stupid guards and a clever woman. The woman is our only way to get the prince out. Only she can walk freely about the area.")
             npc<Shifty>("I think you will need to tie her up. One coil of rope should do for that. Then, disguise the prince as her to get him out without suspicion.")
             player<Quiz>("How good must the disguise be?")

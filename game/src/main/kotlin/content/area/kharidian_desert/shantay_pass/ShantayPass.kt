@@ -1,7 +1,7 @@
 package content.area.kharidian_desert.shantay_pass
 
 import content.entity.player.bank.bank
-import content.entity.player.dialogue.Talk
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
@@ -21,7 +21,7 @@ class ShantayPass : Script {
             val exit = tile.y <= 3116
             if (!exit) {
                 if (!inventory.contains("shantay_pass")) {
-                    npc<Talk>("shantay_guard_still", "You need a Shantay pass to get through this gate. See Shantay, he will sell you one for a very reasonable price.")
+                    npc<Neutral>("shantay_guard_still", "You need a Shantay pass to get through this gate. See Shantay, he will sell you one for a very reasonable price.")
                     return@objectOperate
                 }
                 if (!warning("shantay_pass")) {

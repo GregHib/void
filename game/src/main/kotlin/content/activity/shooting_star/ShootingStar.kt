@@ -5,8 +5,8 @@ import content.activity.shooting_star.ShootingStarHandler.currentActiveObject
 import content.activity.shooting_star.ShootingStarHandler.currentStarTile
 import content.activity.shooting_star.ShootingStarHandler.totalCollected
 import content.entity.combat.hit.damage
+import content.entity.player.dialogue.Disheartened
 import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
@@ -117,7 +117,7 @@ class ShootingStar : Script {
             if (inventory.isFull()) {
                 message("Inventory full. To make more room, sell, drop or bank something.", ChatType.Game)
             } else if (starDustCount == 0) {
-                npc<Sad>("You don't seem to have any stardust that I can exchange for a reward")
+                npc<Disheartened>("You don't seem to have any stardust that I can exchange for a reward")
             } else if (starDustCount > 0) {
                 val rewards = calculateRewards(starDustCount)
                 inventory.remove("stardust", starDustCount)

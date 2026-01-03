@@ -1,7 +1,7 @@
 package content.area.misthalin.barbarian_village.stronghold_of_security
 
 import content.entity.player.dialogue.DoorHead
-import content.entity.player.dialogue.Surprised
+import content.entity.player.dialogue.Shock
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -24,7 +24,7 @@ class StrongholdOfSecurityDoors : Script {
             }
             openDoor(target, "unlocked_emote_flap")
             if (target.tile.y == 5238 && tile.y > target.tile.y) {
-                player<Surprised>("Oh my! I just got sucked through that door... what a weird feeling! Still, I guess I should expect it as these evidently aren't your average kind of doors.... they talk and look creepy!")
+                player<Shock>("Oh my! I just got sucked through that door... what a weird feeling! Still, I guess I should expect it as these evidently aren't your average kind of doors.... they talk and look creepy!")
             }
         }
 

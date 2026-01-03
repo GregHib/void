@@ -21,10 +21,10 @@ class Baraek : Script {
                     option<Quiz>("Can you sell me some furs?") {
                         sellFur()
                     }
-                    option<Neutral>("Hello. I am in search of a quest.") {
-                        npc<Neutral>("Sorry kiddo, I'm a fur trader not a damsel in distress.")
+                    option<Idle>("Hello. I am in search of a quest.") {
+                        npc<Idle>("Sorry kiddo, I'm a fur trader not a damsel in distress.")
                     }
-                    option<Sad>("Would you like to buy my fur?") {
+                    option<Disheartened>("Would you like to buy my fur?") {
                         buyFur()
                     }
                 }
@@ -33,8 +33,8 @@ class Baraek : Script {
                     option<Quiz>("Can you sell me some furs?") {
                         sellFur()
                     }
-                    option<Neutral>("Hello. I am in search of a quest.") {
-                        npc<Neutral>("Sorry kiddo, I'm a fur trader not a damsel in distress.")
+                    option<Idle>("Hello. I am in search of a quest.") {
+                        npc<Idle>("Sorry kiddo, I'm a fur trader not a damsel in distress.")
                     }
                 }
             }
@@ -42,51 +42,51 @@ class Baraek : Script {
     }
 
     suspend fun Player.sellFur() {
-        npc<Neutral>("Yeah, sure. They're 20 gold coins each.")
+        npc<Idle>("Yeah, sure. They're 20 gold coins each.")
         choice {
-            option<Neutral>("Yeah, OK, here you go.") {
+            option<Idle>("Yeah, OK, here you go.") {
                 if (inventory.remove("coins", 20)) {
                     inventory.add("bear_fur")
                     item("bear_fur", 645, "Baraek sells you a fur.")
                 } else {
-                    player<Sad>("Oh dear, I don't have enough money!")
-                    npc<Neutral>("Well, my best price is 18 coins.")
+                    player<Disheartened>("Oh dear, I don't have enough money!")
+                    npc<Idle>("Well, my best price is 18 coins.")
                     choice {
-                        option<Neutral>("OK, here you go.") {
+                        option<Idle>("OK, here you go.") {
                             if (inventory.remove("coins", 18)) {
                                 inventory.add("bear_fur")
                                 item("bear_fur", 645, "Baraek sells you a fur.")
                             } else {
-                                player<Sad>("Oh dear, I don't have that either.")
-                                npc<Sad>("Well, I can't go any cheaper than that mate. I've got a family to feed.")
-                                player<Sad>("Oh well, never mind.")
+                                player<Disheartened>("Oh dear, I don't have that either.")
+                                npc<Disheartened>("Well, I can't go any cheaper than that mate. I've got a family to feed.")
+                                player<Disheartened>("Oh well, never mind.")
                             }
                         }
-                        option<Neutral>("No thanks, I'll leave it.") {
-                            npc<Neutral>("It's your loss mate.")
+                        option<Idle>("No thanks, I'll leave it.") {
+                            npc<Idle>("It's your loss mate.")
                         }
                     }
                 }
             }
             option<Frustrated>("20 gold coins? That's an outrage!") {
-                npc<Sad>("Well, I can't go any cheaper than that mate. I have a family to feed.")
+                npc<Disheartened>("Well, I can't go any cheaper than that mate. I have a family to feed.")
             }
         }
     }
 
     suspend fun Player.buyFur() {
-        npc<Neutral>("Let's have a look at it.")
+        npc<Idle>("Let's have a look at it.")
         item("bear_fur", 645, "You hand Baraek your fur to look at.")
         // wait 4sec and cant move
-        npc<Neutral>("It's not in the best condition. I guess I could give you 12 coins for it.")
+        npc<Idle>("It's not in the best condition. I guess I could give you 12 coins for it.")
         choice {
-            option<Neutral>("Yeah, that'll do.") {
+            option<Idle>("Yeah, that'll do.") {
                 inventory.remove("bear_fur", 1)
                 inventory.add("coins", 12)
                 player<Happy>("Thanks!")
             }
             option<Frustrated>("I think I'll keep hold of it actually!") {
-                npc<Sad>("Oh ok. Didn't want it anyway!")
+                npc<Disheartened>("Oh ok. Didn't want it anyway!")
             }
         }
     }

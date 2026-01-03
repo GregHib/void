@@ -1,8 +1,8 @@
 package content.area.kandarin.yanille
 
 import content.entity.npc.shop.buy
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Talk
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
@@ -21,30 +21,30 @@ class BartenderDragonInn : Script {
         npcOperate("Talk-to", "bartender_dragon_inn") { (target) ->
             npc<Quiz>("What can I get you?")
             player<Quiz>("What's on the menu?")
-            npc<Talk>("Dragon Bitter and Greenman's Ale, oh and some cheap beer.")
+            npc<Neutral>("Dragon Bitter and Greenman's Ale, oh and some cheap beer.")
             choice {
-                option<Talk>("I'll try the Dragon Bitter.") {
-                    npc<Talk>("Ok, that'll be two coins.")
+                option<Neutral>("I'll try the Dragon Bitter.") {
+                    npc<Neutral>("Ok, that'll be two coins.")
                     if (buy("dragon_bitter", 2)) {
                         message("You buy a pint of Dragon Bitter.")
                     }
                 }
-                option<Talk>("Can I have some Greenman's Ale?") {
-                    npc<Talk>("Ok, that'll be ten coins.")
+                option<Neutral>("Can I have some Greenman's Ale?") {
+                    npc<Neutral>("Ok, that'll be ten coins.")
                     if (buy("greenmans_ale", 10)) {
-                        player<Talk>("Ok, here you go.")
+                        player<Neutral>("Ok, here you go.")
                         message("You buy a pint of Greenman's Ale.")
                     }
                 }
-                option<Talk>("One cheap beer please!") {
-                    npc<Talk>("That'll be 2 gold coins please!")
+                option<Neutral>("One cheap beer please!") {
+                    npc<Neutral>("That'll be 2 gold coins please!")
                     if (buy("beer", 2)) {
                         item("beer", 325, "You buy a pint of cheap beer.")
-                        npc<Talk>("Have a super day!")
+                        npc<Neutral>("Have a super day!")
                     }
                 }
-                option<Talk>("I'll give it a miss I think.") {
-                    npc<Talk>("Come back when you're a little thirstier.")
+                option<Neutral>("I'll give it a miss I think.") {
+                    npc<Neutral>("Come back when you're a little thirstier.")
                 }
                 if (onBarCrawl(target)) {
                     option("I'm doing Alfred Grimhand's barcrawl.") {
