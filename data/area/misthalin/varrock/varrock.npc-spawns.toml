@@ -175,7 +175,6 @@ spawns = [
   { id = "giant_rat_varrock", x = 3264, y = 3383, members = true },
   { id = "giant_rat_varrock", x = 3297, y = 3379, members = true },
   { id = "master_farmer_varrock", x = 3231, y = 3347, members = true },
-  { id = "mage_of_zamorak_varrock", x = 3260, y = 3383, members = true },
   { id = "tanner_varrock", x = 3188, y = 3407 },
   { id = "dreven", x = 3181, y = 3359 },
   { id = "treznor", x = 3226, y = 3458 },
