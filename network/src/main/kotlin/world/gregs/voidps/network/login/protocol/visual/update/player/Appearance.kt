@@ -28,7 +28,7 @@ data class Appearance(
     var hash = hashCode()
     var length = length()
 
-    fun length(): Int = 17 + displayName.length + if (transform != -1) 14 else (0 until 12).sumBy { if (body.get(it) == 0) 1 else 2 }
+    fun length(): Int = 17 + displayName.length + if (transform != -1) 14 else (0 until 12).sumOf { if (body.get(it) == 0) 1 else 2 }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

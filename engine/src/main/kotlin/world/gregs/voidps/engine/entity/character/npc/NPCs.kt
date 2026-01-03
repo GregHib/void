@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.MAX_NPCS
 import world.gregs.voidps.engine.entity.Spawn
-import world.gregs.voidps.engine.entity.character.CharacterMap
 import world.gregs.voidps.engine.entity.character.CharacterSearch
+import world.gregs.voidps.engine.entity.character.CharacterIndexMap
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -35,7 +35,8 @@ data class NPCs(
     private var removeIndex = 0
     var size = 0
         private set
-    private val map: CharacterMap = CharacterMap()
+    private val zoneMap = CharacterIndexMap(MAX_NPCS)
+    internal val regionMap = CharacterIndexMap(MAX_NPCS)
     private val logger = InlineLogger()
 
     override fun run() {
@@ -46,7 +47,8 @@ data class NPCs(
             size--
             val npc = indexArray[index] ?: continue
             indexArray[index] = null
-            map.remove(npc.tile.regionLevel, npc)
+            regionMap.remove(npc.tile.regionLevel.id, npc.index)
+            zoneMap.remove(npc.tile.zone.id, npc.index)
             npc.index = -1
         }
         removeIndex = 0
@@ -90,17 +92,19 @@ data class NPCs(
 
     fun update(npc: NPC, from: Tile) {
         if (from.regionLevel != npc.tile.regionLevel) {
-            map.remove(from.regionLevel, npc)
-            map.add(npc.tile.regionLevel, npc)
+            regionMap.remove(from.regionLevel.id, npc.index)
+            regionMap.add(npc.tile.regionLevel.id, npc.index)
+        }
+        if (from.zone != npc.tile.zone) {
+            zoneMap.remove(from.zone.id, npc.index)
+            zoneMap.add(npc.tile.zone.id, npc.index)
         }
     }
 
-    fun getDirect(region: RegionLevel): List<Int>? = this.map[region]
-
     override operator fun get(tile: Tile): List<NPC> {
         val list = mutableListOf<NPC>()
-        for (index in map[tile.regionLevel] ?: return list) {
-            val npc = indexed(index) ?: continue
+        zoneMap.onEach(tile.zone.id) { index ->
+            val npc = indexed(index) ?: return@onEach
             if (npc.tile == tile) {
                 list.add(npc)
             }
@@ -110,19 +114,16 @@ data class NPCs(
 
     override operator fun get(zone: Zone): List<NPC> {
         val list = mutableListOf<NPC>()
-        for (index in map[zone.regionLevel] ?: return list) {
-            val npc = indexed(index) ?: continue
-            if (npc.tile.zone == zone) {
-                list.add(npc)
-            }
+        zoneMap.onEach(zone.id) { index ->
+            list.add(indexed(index) ?: return@onEach)
         }
         return list
     }
 
     operator fun get(region: RegionLevel): List<NPC> {
         val list = mutableListOf<NPC>()
-        for (index in map[region] ?: return list) {
-            list.add(indexed(index) ?: continue)
+        regionMap.onEach(region.id) { index ->
+            list.add(indexed(index) ?: return@onEach)
         }
         return list
     }
@@ -155,7 +156,8 @@ data class NPCs(
             npc.mode = Wander(npc, npc.tile)
         }
         npc.collision = collision.get(npc)
-        map.add(npc.tile.regionLevel, npc)
+        regionMap.add(npc.tile.regionLevel.id, npc.index)
+        zoneMap.add(npc.tile.zone.id, npc.index)
         val respawnDelay = npc.def.getOrNull<Int>("respawn_delay")
         if (respawnDelay != null && respawnDelay >= 0) {
             npc["respawn_tile"] = npc.tile
@@ -167,7 +169,7 @@ data class NPCs(
     }
 
     fun clear(region: RegionLevel) {
-        for (index in map[region] ?: return) {
+        regionMap.onEach(region.id) { index ->
             if (removeIndex < removeQueue.size) {
                 removeQueue[removeIndex++] = index
             }
@@ -182,6 +184,8 @@ data class NPCs(
         indexArray.fill(null)
         indexer = 1
         size = 0
+        regionMap.clear()
+        zoneMap.clear()
     }
 
     override fun iterator(): Iterator<NPC> = object : Iterator<NPC> {

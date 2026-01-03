@@ -23,6 +23,7 @@ import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.protocol.encode.updatePlayers
 import world.gregs.voidps.network.login.protocol.visual.PlayerVisuals
 import world.gregs.voidps.network.login.protocol.visual.VisualEncoder
+import world.gregs.voidps.network.login.protocol.visual.update.Face
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Tile
 
@@ -30,7 +31,6 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
     private lateinit var task: PlayerUpdateTask
     private lateinit var players: Players
-    private lateinit var encoder: VisualEncoder<PlayerVisuals>
     override val modules = listOf(
         module {
             single { Players() }
@@ -40,11 +40,8 @@ internal class PlayerUpdateTaskTest : KoinMock() {
     @BeforeEach
     fun setup() {
         players = mockk(relaxed = true)
-        encoder = mockk(relaxed = true)
-        every { encoder.initial } returns true
-        every { encoder.mask } returns 2
         every { players.indexed(any()) } returns null
-        task = spyk(PlayerUpdateTask(players, listOf(encoder)))
+        task = spyk(PlayerUpdateTask(players))
     }
 
     @Test
@@ -199,6 +196,8 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.index } returns 1
         every { player.visuals.flag } returns 2
         every { player.visuals.flagged(2) } returns true
+        val face = Face(direction = 1)
+        every { player.visuals.face } returns face
         every { players.indexed(1) } returns player
         every { entities.localCount } returns 1
         every { entities.locals } returns intArrayOf(1)
@@ -212,7 +211,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             sync.writeBits(1, true)
             sync.writeBits(2, 0)
             task.writeFlag(updates, 2)
-            encoder.encode(updates, any(), any())
+            updates.writeShort(1)
         }
     }
 

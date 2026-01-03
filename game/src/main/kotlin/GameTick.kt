@@ -31,7 +31,6 @@ import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.network.login.protocol.npcVisualEncoders
-import world.gregs.voidps.network.login.protocol.playerVisualEncoders
 import java.io.File
 import java.util.concurrent.TimeUnit
 
@@ -75,7 +74,7 @@ fun getTickStages(
         CharacterUpdateTask(
             iterator,
             players,
-            PlayerUpdateTask(players, playerVisualEncoders()),
+            PlayerUpdateTask(players),
             NPCUpdateTask(npcs, npcVisualEncoders()),
             batches,
         ),

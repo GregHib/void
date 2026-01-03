@@ -40,6 +40,7 @@ class Movement : Script {
         }
 
         npcMoved(handler = npcs::update)
+        moved(handler = players::update)
 
         worldSpawn {
             for (border in areas.getTagged("border")) {
