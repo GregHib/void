@@ -16,7 +16,7 @@ import world.gregs.voidps.type.RegionLevel
 
 class NPCUpdateTask(
     private val npcs: NPCs,
-    private val encoders: List<VisualEncoder<NPCVisuals>>,
+    private val encoders: Array<VisualEncoder<NPCVisuals>>,
 ) {
 
     fun run(player: Player) {

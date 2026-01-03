@@ -51,7 +51,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         encoder = mockk(relaxed = true)
         every { encoder.initial } returns false
         every { encoder.mask } returns 8
-        task = spyk(NPCUpdateTask(npcs, listOf(initialEncoder, encoder)))
+        task = spyk(NPCUpdateTask(npcs, arrayOf(initialEncoder, encoder)))
     }
 
     @Test

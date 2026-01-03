@@ -14,6 +14,7 @@ object VisualMask {
     const val PLAYER_GRAPHIC_1_MASK = 0x20
     const val PLAYER_ANIMATION_MASK = 0x8
     const val APPEARANCE_MASK = 0x10
+    const val APPEARANCE_MASK_INV = 0x10.inv()
     const val TEMPORARY_MOVEMENT_TYPE_MASK = 0x800
 
     // Npcs
