@@ -17,8 +17,10 @@ class GillieGroats : Script {
         npcOperate("Talk-to", "gillie_groats") {
             npc<Happy>("Hello, I'm Gillie the Milkmaid. What can I do for you?")
             choice {
-                option("I'm after some Top-quality milk.", { quest("cooks_assistant") == "started" && !holdsItem("top_quality_milk") }) {
-                    topQualityMilk()
+                if (quest("cooks_assistant") == "started" && !holdsItem("top_quality_milk")) {
+                    option("I'm after some Top-quality milk.") {
+                        topQualityMilk()
+                    }
                 }
                 option("Who are you?") {
                     whoAreYou()

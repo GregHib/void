@@ -56,17 +56,16 @@ class SirPrysin : Script {
                     choice {
                         mightyAdventurer()
                         youTellMe()
-                        arisWantsToTalk()
+                        if (quest("demon_slayer") == "sir_prysin") {
+                            arisWantsToTalk()
+                        }
                     }
                 }
             }
         }
     }
 
-    fun ChoiceOption.arisWantsToTalk(): Unit = option(
-        "Aris said I should come and talk to you.",
-        { quest("demon_slayer") == "sir_prysin" },
-    ) {
+    fun ChoiceOption.arisWantsToTalk(): Unit = option("Aris said I should come and talk to you.") {
         player<Neutral>("Aris said I should come and talk to you.")
         npc<Neutral>("Aris? Is she still alive? I remember her from when I was pretty young. Well what do you need to talk to me about?")
         choice {

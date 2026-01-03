@@ -4,6 +4,7 @@ import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
+import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
@@ -18,7 +19,9 @@ class CaptainRovin : Script {
             choice {
                 palaceGuard()
                 whatAboutKing()
-                itsImportant()
+                if (quest("demon_slayer") != "unstarted") {
+                    itsImportant()
+                }
             }
         }
     }
@@ -36,13 +39,12 @@ class CaptainRovin : Script {
         npc<Angry>("Anyway, you're not the King either. So get out of my sight.")
     }
 
-    fun ChoiceOption.itsImportant(): Unit = option<Neutral>(
-        "Yes, I know, but this is important.",
-        { quest("demon_slayer") != "unstarted" },
-    ) {
+    fun ChoiceOption.itsImportant() = option<Neutral>("Yes, I know, but this is important.") {
         npc<Neutral>("Ok, I'm listening. Tell me what's so important.")
         choice {
-            theresADemon()
+            if (!questCompleted("demon_slayer")) {
+                theresADemon()
+            }
             forgot()
             aleDelivery()
         }
@@ -59,10 +61,7 @@ class CaptainRovin : Script {
         npc<Angry>("Why is this relevant anyway? You still shouldn't be here.")
     }
 
-    fun ChoiceOption.theresADemon(): Unit = option<Neutral>(
-        "There's a demon who wants to invade the city.",
-        { quest("demon_slayer") != "completed" },
-    ) {
+    fun ChoiceOption.theresADemon(): Unit = option<Neutral>("There's a demon who wants to invade the city.") {
         if (ownsItem("silverlight_key_captain_rovin")) {
             haveYouNotKilledIt()
         } else {

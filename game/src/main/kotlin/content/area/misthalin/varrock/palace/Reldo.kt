@@ -16,7 +16,10 @@ class Reldo : Script {
             choice {
                 anythingToTrade()
                 whatDoYouDo()
-                aboutImcandoDwarves()
+                val stage = quest("the_knights_sword")
+                if (stage == "started" || stage == "find_thurgo") {
+                    aboutImcandoDwarves()
+                }
             }
         }
     }
@@ -35,13 +38,7 @@ class Reldo : Script {
         npc<Idle>("Although I would probably be in here even if I didn't work here. I like reading. Someday I hope to catalogue all of the information stored in these books so all may read it.")
     }
 
-    fun ChoiceOption.aboutImcandoDwarves() = option<Quiz>(
-        "What do you know about the Imcando dwarves?",
-        {
-            val stage = quest("the_knights_sword")
-            stage == "started" || stage == "find_thurgo"
-        },
-    ) {
+    fun ChoiceOption.aboutImcandoDwarves() = option<Quiz>("What do you know about the Imcando dwarves?") {
         npc<Idle>("The Imcando dwarves, you say?")
         npc<Idle>("Ah yes... for many hundreds of years they were the world's most skilled smiths. They used secret smithing knowledge passed down from generation to generation.")
         npc<Idle>("Unfortunately, about a century ago, the once thriving race was wiped out during the barbarian invasions of that time.")

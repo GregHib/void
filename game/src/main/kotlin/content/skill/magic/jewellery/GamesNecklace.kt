@@ -35,10 +35,13 @@ class GamesNecklace : Script {
                 option("Wilderness Volcano.") {
                     jewelleryTeleport(this, it.inventory, it.slot, wildernessVolcano)
                 }
-                option("Burgh De Rott.", { questCompleted("darkness_of_hallowvale") }) {
-                    jewelleryTeleport(this, it.inventory, it.slot, burghDeRott)
+                if (questCompleted("darkness_of_hallowvale")) {
+                    option("Burgh De Rott.") {
+                        jewelleryTeleport(this, it.inventory, it.slot, burghDeRott)
+                    }
+                } else {
+                    option("Nowhere.")
                 }
-                option("Nowhere.", { !questCompleted("darkness_of_hallowvale") })
             }
         }
 

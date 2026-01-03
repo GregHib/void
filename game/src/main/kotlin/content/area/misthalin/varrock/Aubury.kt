@@ -6,6 +6,7 @@ import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
+import content.quest.questCompleted
 import content.skill.runecrafting.EssenceMine
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -26,16 +27,18 @@ class Aubury : Script {
             choice {
                 skillcapes()
                 openShop()
-                packageForYou()
-                option<Quiz>(
-                    "Anything useful in that package I gave you?",
-                    { quest("rune_mysteries") == "package_delivered" },
-                ) {
-                    npc<Happy>("Well, let's have a look...")
-                    researchPackage()
+                if (quest("rune_mysteries") == "research_package") {
+                    packageForYou()
+                } else if (quest("rune_mysteries") == "package_delivered") {
+                    option<Quiz>("Anything useful in that package I gave you?") {
+                        npc<Happy>("Well, let's have a look...")
+                        researchPackage()
+                    }
                 }
                 noThanks()
-                teleport(target)
+                if (questCompleted("rune_mysteries")) {
+                    teleport(target)
+                }
             }
         }
 
@@ -52,18 +55,12 @@ class Aubury : Script {
         npc<Happy>("Well, if you find someone who does want runes, please send them my way.")
     }
 
-    fun ChoiceOption.teleport(npc: NPC): Unit = option(
-        "Can you teleport me to the Rune Essence?",
-        { quest("rune_mysteries") == "completed" },
-    ) {
+    fun ChoiceOption.teleport(npc: NPC): Unit = option("Can you teleport me to the Rune Essence?") {
         npc<Idle>("Of course. By the way, if you end up making any runes from the essence you mine, I'll happily buy them from you.")
         EssenceMine.teleport(npc, this)
     }
 
-    fun ChoiceOption.packageForYou(): Unit = option<Idle>(
-        "I've been sent here with a package for you.",
-        { quest("rune_mysteries") == "research_package" },
-    ) {
+    fun ChoiceOption.packageForYou(): Unit = option<Idle>("I've been sent here with a package for you.") {
         npc<Confused>("A package? From who?")
         player<Idle>("From Sedridor at the Wizards' Tower.")
         npc<Shock>("From Sedridor? But... surely, he can't have? Please, let me have it. It must be extremely important for him to have sent a stranger.")

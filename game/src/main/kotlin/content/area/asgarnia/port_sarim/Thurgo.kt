@@ -42,24 +42,21 @@ class Thurgo : Script {
 
     suspend fun Player.menuReplacementSword() {
         choice {
-            madeSword()
-            replacementSword()
-            redberryPie()
+            if (holdsItem("blurite_sword")) {
+                madeSword()
+            } else {
+                replacementSword()
+            }
+            redberryPie(this@menuReplacementSword)
             whatCape()
         }
     }
 
-    fun ChoiceOption.madeSword() = option<Happy>(
-        "Thanks for making that sword for me!",
-        { holdsItem("blurite_sword") },
-    ) {
+    fun ChoiceOption.madeSword() = option<Happy>("Thanks for making that sword for me!") {
         npc<Happy>("You're welcome - thanks for the pie!")
     }
 
-    fun ChoiceOption.replacementSword() = option<Happy>(
-        "Can you make that replacement sword now?",
-        { !holdsItem("blurite_sword") },
-    ) {
+    fun ChoiceOption.replacementSword() = option<Happy>("Can you make that replacement sword now?") {
         npc<Quiz>("How are you doing finding those sword materials?")
         if (inventory.contains(items)) {
             player<Idle>("I have them right here.")
@@ -89,7 +86,7 @@ class Thurgo : Script {
     suspend fun Player.menuAboutSword() {
         choice {
             aboutSword()
-            redberryPie()
+            redberryPie(this@menuAboutSword)
             whatCape()
         }
     }
@@ -97,7 +94,7 @@ class Thurgo : Script {
     suspend fun Player.menuSword() {
         choice {
             specialSword()
-            redberryPie()
+            redberryPie(this@menuSword)
             whatCape()
         }
     }
@@ -105,7 +102,7 @@ class Thurgo : Script {
     suspend fun Player.menu() {
         choice {
             imcandoDwarf()
-            redberryPie()
+            redberryPie(this@menu)
             whatCape()
         }
     }
@@ -142,23 +139,25 @@ class Thurgo : Script {
     fun ChoiceOption.imcandoDwarf() = option<Happy>("Are you an Imcando dwarf? I need a special sword.") {
         npc<Angry>("I don't talk about that sort of thing anymore. I'm getting old.")
         choice {
-            redberryPie()
+            redberryPie(this@option)
             option<Disheartened>("I'll come back another time.")
         }
     }
 
-    fun ChoiceOption.redberryPie(): Unit = option<Quiz>(
-        "Would you like a redberry pie?",
-        { holdsItem("redberry_pie") },
-    ) {
-        statement("You see Thurgo's eyes light up.")
-        npc<Happy>("I'd never say no to a redberry pie! We Imcando dwarves love them - they're GREAT!")
-        if (quest("the_knights_sword") == "find_thurgo") {
-            set("the_knights_sword", "happy_thurgo")
+    fun ChoiceOption.redberryPie(player: Player) {
+        if (!player.holdsItem("redberry_pie")) {
+            return
         }
-        inventory.remove("redberry_pie")
-        statement("You hand over the pie Thurgo eats the pie. Thurgo pats his stomach.")
-        npc<Happy>("By Guthix! THAT was good pie! Anyone who makes pie like THAT has got to be alright!")
+        option<Quiz>("Would you like a redberry pie?") {
+            statement("You see Thurgo's eyes light up.")
+            npc<Happy>("I'd never say no to a redberry pie! We Imcando dwarves love them - they're GREAT!")
+            if (quest("the_knights_sword") == "find_thurgo") {
+                set("the_knights_sword", "happy_thurgo")
+            }
+            inventory.remove("redberry_pie")
+            statement("You hand over the pie Thurgo eats the pie. Thurgo pats his stomach.")
+            npc<Happy>("By Guthix! THAT was good pie! Anyone who makes pie like THAT has got to be alright!")
+        }
     }
 
     fun ChoiceOption.whatCape() = option("What is that cape you're wearing?") {
