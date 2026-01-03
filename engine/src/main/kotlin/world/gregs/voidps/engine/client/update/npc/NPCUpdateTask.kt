@@ -112,10 +112,10 @@ class NPCUpdateTask(
         var npc: NPC
         for (direction in Direction.reversed) {
             region = client.tile.regionLevel.add(direction)
-            for (index in npcs.getDirect(region) ?: continue) {
-                npc = npcs.indexed(index) ?: continue
+            npcs.regionMap.onEach(region.id) { index ->
+                npc = npcs.indexed(index) ?: return@onEach
                 if (!add(updates, sync, npc, client, viewport, set, index)) {
-                    continue
+                    return@onEach
                 }
                 val visuals = npc.visuals
                 var flag = visuals.flag

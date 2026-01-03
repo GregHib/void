@@ -2,15 +2,14 @@ package world.gregs.voidps.engine.entity.character
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.type.Zone
 
-class ZoneMapTest {
+class CharacterIndexMapTest {
 
-    private val zone = Zone(id = 42)
+    private val zone = 42
 
     @Test
     fun `Add single character to zone`() {
-        val map = ZoneMap(size = 10)
+        val map = CharacterIndexMap(size = 10)
         val c = 3
 
         map.add(zone, c)
@@ -23,7 +22,7 @@ class ZoneMapTest {
 
     @Test
     fun `Add multiple characters to same zone`() {
-        val map = ZoneMap(size = 10)
+        val map = CharacterIndexMap(size = 10)
 
         val c1 = 1
         val c2 = 2
@@ -42,7 +41,7 @@ class ZoneMapTest {
 
     @Test
     fun `Remove head character`() {
-        val map = ZoneMap(size = 10)
+        val map = CharacterIndexMap(size = 10)
 
         val c1 = 1
         val c2 = 2
@@ -62,7 +61,7 @@ class ZoneMapTest {
 
     @Test
     fun `Remove middle character`() {
-        val map = ZoneMap(size = 10)
+        val map = CharacterIndexMap(size = 10)
 
         val c1 = 1
         val c2 = 2
@@ -82,7 +81,7 @@ class ZoneMapTest {
 
     @Test
     fun `Remove tail character`() {
-        val map = ZoneMap(size = 10)
+        val map = CharacterIndexMap(size = 10)
 
         val c1 = 1
         val c2 = 2
