@@ -15,6 +15,6 @@ combat_sounds = "giant"
 drop_table = "jogre"
 categories = ["jogres"]
 wander_radius = 6
-attack_radius = 8
+retreat_range = 8
 god = "bandos"
 examine = "Green and aggressive."

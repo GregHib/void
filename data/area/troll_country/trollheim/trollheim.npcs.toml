@@ -20,7 +20,7 @@ combat_anims = "thrower_troll"
 drop_table = "thrower_troll"
 drop_table = "thrower_troll_death_plateau"
 attack_range = 8
-attack_radius = 8
+retreat_range = 8
 examine = "Small for a troll, but it's mean, ugly and throws rocks."
 
 [thrower_troll_death_plateau_large]
@@ -56,7 +56,7 @@ attack_speed = 7
 slayer_xp = 95.0
 categories = ["trolls"]
 attack_range = 8 # TODO attack range vs radius?
-attack_radius = 8
+retreat_range = 8
 combat_sounds = "thrower_troll"
 combat_anims = "thrower_troll"
 drop_table = "thrower_troll"

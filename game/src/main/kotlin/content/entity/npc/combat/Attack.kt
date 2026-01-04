@@ -43,7 +43,7 @@ class Attack(
          */
         npcCombatSwing { target ->
             val distance = tile.distanceTo(target)
-            if (distance > def["attack_radius", 8]) {
+            if (distance > def["retreat_range", 8]) {
                 mode = Retreat(this, target)
                 return@npcCombatSwing
             }

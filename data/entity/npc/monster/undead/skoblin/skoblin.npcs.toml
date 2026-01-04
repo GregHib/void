@@ -2,7 +2,7 @@
 id = 9611
 hitpoints = 950
 wander_radius = 8
-attack_radius = 4
+retreat_range = 4
 max_hit_melee = 28
 style = "slash"
 respawn_delay = 60

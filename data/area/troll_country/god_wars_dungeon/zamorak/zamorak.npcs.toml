@@ -18,7 +18,7 @@ slayer_xp = 350.5
 categories = ["demons", "boss"]
 poison_immune = true
 wander_radius = 6
-attack_radius = 8
+retreat_range = 8
 examine = "A servant of the god Zamorak."
 
 [tstanon_karlak]
@@ -36,7 +36,7 @@ attack_speed = 5
 slayer_xp = 142.0
 categories = ["demons"]
 wander_radius = 6
-attack_radius = 8
+retreat_range = 8
 drop_table = "zamorak_bodyguard"
 examine = "Destroyer of 1000 planes!"
 
@@ -55,7 +55,7 @@ attack_speed = 5
 slayer_xp = 161.0
 categories = ["demons"]
 wander_radius = 6
-attack_radius = 8
+retreat_range = 8
 attack_range = 10
 combat_anims = "balfrug_kreeyath"
 combat_sounds = "balfrug_kreeyath"
@@ -79,7 +79,7 @@ attack_speed = 5
 slayer_xp = 150.0
 categories = ["demons"]
 wander_radius = 6
-attack_radius = 8
+retreat_range = 8
 attack_range = 10
 combat_anims = "zakln_gritch"
 combat_sounds = "zakln_gritch"

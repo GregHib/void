@@ -72,7 +72,7 @@ examine = "A knee-high horror from the ocean depths..."
 id = 2881
 attack_range = 8
 hunt_range = 8
-attack_radius = 20
+retreat_range = 20
 max_hit_range = 300
 hunt_mode = "aggressive"
 style = "range"
@@ -96,7 +96,7 @@ examine = "The dagannoth king responsible for the death of the Bukalla."
 id = 2882
 attack_range = 8
 hunt_range = 8
-attack_radius = 20
+retreat_range = 20
 max_hit_magic = 500
 hunt_mode = "aggressive"
 style = "magic"
@@ -118,7 +118,7 @@ examine = "A legendary dagannoth king, rumoured to fly on the North winds."
 
 [dagannoth_rex]
 id = 2883
-attack_radius = 20
+retreat_range = 20
 max_hit_melee = 260
 hunt_range = 8
 hunt_mode = "aggressive"

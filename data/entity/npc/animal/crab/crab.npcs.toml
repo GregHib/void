@@ -7,7 +7,7 @@ examine = "Nobody likes crabs..."
 [rock_crab]
 id = 1265
 wander_radius = 5
-attack_radius = 8
+retreat_range = 8
 hunt_mode = "aggressive"
 categories = ["crab"]
 examine = "No one likes crabs..."
@@ -49,7 +49,7 @@ max_hit_melee = 90
 respawn_delay = 50
 wander_radius = 5
 attack_range = 3
-attack_radius = 8
+retreat_range = 8
 hunt_mode = "aggressive"
 categories = ["crab"]
 examine = "No one likes crabs... especially really big ones!"

@@ -16,7 +16,7 @@ examine = "It's an extremely small brown spider, probably very poisonous."
 [spider_ape_atoll]
 id = 1473
 hitpoints = 20
-attack_radius = 11
+retreat_range = 11
 wander_radius = 9
 slayer_xp = 2.0
 categories = ["spiders"]
@@ -305,7 +305,7 @@ style = "stab"
 respawn_delay = 50
 slayer_xp = 15.0
 wander_radius = 5
-attack_radius = 7
+retreat_range = 7
 combat_anims = "small_scorpion"
 combat_sounds = "scorpion"
 categories = ["scorpions"]

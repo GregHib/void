@@ -16,7 +16,7 @@ combat_anims = "human"
 drop_table = "spiritual_mage"
 categories = ["spiritual_creatures"]
 wander_radius = 6
-attack_radius = 8
+retreat_range = 8
 god = "zamorak"
 examine = "A deadly servant of Zamorak."
 
@@ -38,7 +38,7 @@ combat_anims = "human"
 drop_table = "spiritual_mage"
 categories = ["spiritual_creatures"]
 wander_radius = 6
-attack_radius = 8
+retreat_range = 8
 god = "saradomin"
 examine = "Saradomin's holy mage."
 
@@ -58,7 +58,7 @@ combat_anims = "spiritual_mage_bandos"
 drop_table = "spiritual_mage"
 categories = ["spiritual_creatures"]
 wander_radius = 6
-attack_radius = 8
+retreat_range = 8
 god = "bandos"
 examine = "One of Bandos's chosen."
 
@@ -80,5 +80,5 @@ drop_table = "spiritual_mage"
 drop_table = "spiritual_mage"
 categories = ["spiritual_creatures"]
 wander_radius = 6
-attack_radius = 8
+retreat_range = 8
 examine = "A mage who serves Armadyl above all else - even death."

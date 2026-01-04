@@ -97,7 +97,7 @@ class CombatMovement(
             character.stop("in_combat")
             return true
         }
-        val attackRadius = character.def["attack_radius", 8]
+        val attackRadius = character.def["retreat_range", 8]
         val target = character.get<Character>("target")
         if (target != null && !character.tile.within(target.tile, attackRadius)) {
             character.mode = Retreat(character, target)

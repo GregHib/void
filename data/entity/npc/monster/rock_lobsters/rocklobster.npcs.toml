@@ -1,7 +1,7 @@
 [rock_lobster]
 id = 2889
 wander_radius = 5
-attack_radius = 8
+retreat_range = 8
 hunt_range = 3
 hunt_mode = "aggressive"
 categories = ["rock_lobster"]
