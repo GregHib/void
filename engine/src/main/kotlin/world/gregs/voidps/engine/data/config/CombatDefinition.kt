@@ -1,5 +1,8 @@
 package world.gregs.voidps.engine.data.config
 
+import world.gregs.voidps.type.random
+import kotlin.ranges.random
+
 data class CombatDefinition(
     val npc: String = "",
     val attackSpeed: Int = 4,
@@ -52,6 +55,7 @@ data class CombatDefinition(
      *  @param missGfx gfx played on the target if the [targetHits] was not successful.
      *  @param missSounds sound played to the target if the [targetHits] was not successful.
      *  == Effects ==
+     *  @param impactRegardless Apply impact gfx/sounds/effects even if no damage was dealt (usually considered a miss).
      *  @param impactDrainSkills list of skills drained by the attacking npc after the hit's delay.
      *  @param impactFreeze duration of a freeze applied to target after the hit's delay.
      *  @param impactPoison poison damage applied to target after the hit's delay.
@@ -81,6 +85,7 @@ data class CombatDefinition(
         val missGfx: List<CombatGfx> = emptyList(),
         val missSounds: List<CombatSound> = emptyList(),
         // Effects
+        val impactRegardless: Boolean = false,
         val impactDrainSkills: List<Drain> = emptyList(),
         val impactFreeze: Int = 0,
         val impactPoison: Int = 0,
@@ -107,10 +112,13 @@ data class CombatDefinition(
 
     /**
      * @param skill skill to drain (e.g. "Attack", "Hunter", "all")
-     * @param amount number of levels to drain
+     * @param min number of levels to drain
+     * @param max number of levels to drain
      * @param multiplier multiplier applied to drained skill
      */
-    data class Drain(val skill: String, val amount: Int = 0, val multiplier: Double = 0.0)
+    data class Drain(val skill: String, val min: Int = 0, val max: Int = 0, val multiplier: Double = 0.0) {
+        val amount: Int get() = (min..max).random(random)
+    }
 
     data class CombatSound(val id: String, val delay: Int = 0, val radius: Int = 0)
 

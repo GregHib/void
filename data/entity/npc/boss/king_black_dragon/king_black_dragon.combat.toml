@@ -2,15 +2,14 @@
 attack_speed = 4
 attack_range = 8
 retreat_range = 10
-defend = "king_black_dragon_defend"
+defend_anim = "king_black_dragon_defend"
 defend_sound = "dragon_defend"
-death = "king_black_dragon_death"
+death_anim = "king_black_dragon_death"
 death_sound = "dragon_death"
 
 [king_black_dragon.melee]
 chance = 30
 range = 1
-condition = "melee_range"
 anim = "king_black_dragon_attack"
 target_sound = "dragon_attack"
 target_hit = { offense = "stab", max = 250 }

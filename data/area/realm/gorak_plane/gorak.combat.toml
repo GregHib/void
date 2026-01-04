@@ -1,0 +1,13 @@
+[gorak]
+defend_anim = "gorak_defend"
+defend_sound = "gorak_defend"
+death_anim = "gorak_death"
+death_sound = "gorak_death"
+
+[gorak.melee]
+chance = 100
+range = 1
+anim = "gorak_attack"
+sound = "gorak_attack"
+target_hit = { offense = "typeless_crush", max = 140 }
+impact_drain = { skill = "random", min = 1, max = 4 }

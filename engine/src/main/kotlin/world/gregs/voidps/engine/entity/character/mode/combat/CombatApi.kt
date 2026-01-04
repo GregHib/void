@@ -76,6 +76,13 @@ interface CombatApi {
     }
 
     /**
+     * Condition required to be able to use a type of [attack]
+     */
+    fun npcCondition(condition: String, handler: NPC.(target: Character) -> Boolean) {
+        npcCondition[condition] = handler
+    }
+
+    /**
      * Damage done to a target
      * Emitted on swing, where [combatDamage] is after the attack delay
      * @param type the combat type, typically: melee, range or magic
@@ -143,6 +150,7 @@ interface CombatApi {
 
         private val npcAttack = Object2ObjectOpenHashMap<String, NPC.(Character) -> Unit>(30)
         private val npcImpact = Object2ObjectOpenHashMap<String, NPC.(Character) -> Boolean>(30)
+        private val npcCondition = Object2ObjectOpenHashMap<String, NPC.(Character) -> Boolean>(30)
 
         fun attack(player: Player, attack: CombatAttack) {
             for (handler in attacks[attack.type] ?: emptyList()) {
@@ -160,6 +168,10 @@ interface CombatApi {
 
         fun impact(npc: NPC, target: Character, id: String): Boolean {
             return npcImpact[id]?.invoke(npc, target) ?: return false
+        }
+
+        fun condition(npc: NPC, target: Character, condition: String): Boolean {
+            return npcCondition[condition]?.invoke(npc, target) ?: return true
         }
 
         fun attack(npc: NPC, attack: CombatAttack) {

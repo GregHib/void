@@ -8,21 +8,12 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class AberrantSpectre : Script {
-
     init {
-        npcCombatAttack("aberrant_spectre") { (target) ->
-            if (target !is Player) {
-                return@npcCombatAttack
-            }
-            if (!Equipment.isNosePeg(target.equipped(EquipSlot.Hat).id)) {
-                target.levels.drain(Skill.Attack, multiplier = 0.8)
-                target.levels.drain(Skill.Strength, multiplier = 0.8)
-                target.levels.drain(Skill.Defence, multiplier = 0.6)
-                target.levels.drain(Skill.Ranged, multiplier = 0.8)
-                target.levels.drain(Skill.Magic, multiplier = 0.8)
-                target.levels.drain(Skill.Prayer, multiplier = 0.5)
-                target.levels.drain(Skill.Agility, multiplier = 0.6)
-            }
+        npcCondition("nose_peg") { target ->
+            target is Player && Equipment.isNosePeg(target.equipped(EquipSlot.Hat).id)
+        }
+        npcCondition("no_nose_peg") { target ->
+            !(target is Player && Equipment.isNosePeg(target.equipped(EquipSlot.Hat).id))
         }
     }
 }

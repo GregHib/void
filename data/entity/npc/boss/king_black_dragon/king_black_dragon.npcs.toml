@@ -1,0 +1,15 @@
+[king_black_dragon]
+id = 50
+hitpoints = 2400
+att = 240
+str = 240
+def = 240
+mage = 240
+combat_def = "king_black_dragon"
+hunt_mode = "aggressive"
+allowed_under = true
+slayer_xp = 258.0
+categories = ["dragons", "boss"]
+aka = ["kbd"]
+respawn_delay = 16
+examine = "One of the biggest, meanest dragons around."

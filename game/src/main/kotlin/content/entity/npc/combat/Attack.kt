@@ -7,6 +7,7 @@ import content.entity.effect.freeze
 import content.entity.effect.toxin.poison
 import content.entity.gfx.areaGfx
 import content.entity.proj.shoot
+import net.pearx.kasechange.toPascalCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.config.CombatDefinition
@@ -23,6 +24,7 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.random
 
 class Attack(
     val definitions: CombatDefinitions,
@@ -32,28 +34,27 @@ class Attack(
         npcCombatSwing { target ->
             val distance = tile.distanceTo(target)
             val source = get("combat_def", if (target is Player) def(target).stringId else id)
-            val attackList = definitions.getOrNull(source) ?: return@npcCombatSwing
-            if (distance > attackList.retreatRange) {
+            val definition = definitions.getOrNull(source) ?: return@npcCombatSwing
+            if (distance > definition.retreatRange) {
                 mode = Retreat(this, target)
                 return@npcCombatSwing
             }
-            val attack = when (attackList.attacks.size) {
-                0 -> return@npcCombatSwing
-                1 -> {
-                    val attack = attackList.attacks.values.first()
-                    if (attack.range == 1 && !CharacterTargetStrategy(this).reached(target)) {
-                        return@npcCombatSwing
-                    } else if (attack.range > distance) {
-                        return@npcCombatSwing
-                    }
-                    attack
-                }
-                else -> {
-                    val canMelee = CharacterTargetStrategy(this).reached(target)
-                    val list = attackList.attacks.values.filter { (it.range == 1 && canMelee) || it.range > distance }
-                    weightedSample(list.map { it to it.chance }) ?: return@npcCombatSwing
-                }
+            if (definition.attacks.isEmpty()) {
+                return@npcCombatSwing
             }
+            val validAttacks = mutableListOf<Pair<CombatDefinition.CombatAttack, Int>>()
+            for (attack in definition.attacks.values) {
+                if (!CombatApi.condition(this, target, attack.condition)) {
+                    continue
+                }
+                if (attack.range == 1 && !CharacterTargetStrategy(this).reached(target)) {
+                    continue
+                } else if (attack.range < distance) {
+                    continue
+                }
+                validAttacks.add(attack to attack.chance)
+            }
+            val attack = weightedSample(validAttacks) ?: return@npcCombatSwing
             set("attack_name", attack.id)
             // Source
             play(attack.anim)
@@ -97,26 +98,28 @@ class Attack(
             }
             // Impact
             target.play(attack.impactAnim)
-            target.play(if (context.damage == 0 && attack.missGfx.isNotEmpty()) attack.missGfx else attack.impactGfx)
-            target.play(if (context.damage == 0 && attack.missSounds.isNotEmpty()) attack.missSounds else attack.impactSounds)
+            target.play(if (attack.impactRegardless || context.damage > 0) attack.impactGfx else attack.missGfx)
+            target.play(if (attack.impactRegardless || context.damage > 0) attack.impactSounds else attack.missSounds)
             // Effects
-            for (drain in attack.impactDrainSkills) {
-                if (drain.skill == "all") {
-                    for (skill in Skill.all) {
-                        target.levels.drain(skill, drain.amount, drain.multiplier)
+            if (attack.impactRegardless || context.damage > 0) {
+                for (drain in attack.impactDrainSkills) {
+                    when (drain.skill) {
+                        "all" -> for (skill in Skill.all) {
+                            target.levels.drain(skill, drain.amount, drain.multiplier)
+                        }
+                        "random" -> target.levels.drain(Skill.nonHealth.random(random), drain.amount, drain.multiplier)
+                        else -> target.levels.drain(Skill.of(drain.skill.toPascalCase()) ?: continue, drain.amount, drain.multiplier)
                     }
-                } else {
-                    target.levels.drain(Skill.of(drain.skill) ?: continue, drain.amount, drain.multiplier)
                 }
-            }
-            if (attack.impactFreeze != 0) {
-                target.freeze(attack.impactFreeze)
-            }
-            if (attack.impactPoison != 0) {
-                poison(target, attack.impactPoison)
-            }
-            if (attack.impactMessage != "") {
-                target.message(attack.impactMessage)
+                if (attack.impactFreeze != 0) {
+                    target.freeze(attack.impactFreeze)
+                }
+                if (attack.impactPoison != 0) {
+                    poison(target, attack.impactPoison)
+                }
+                if (attack.impactMessage != "") {
+                    target.message(attack.impactMessage)
+                }
             }
         }
     }

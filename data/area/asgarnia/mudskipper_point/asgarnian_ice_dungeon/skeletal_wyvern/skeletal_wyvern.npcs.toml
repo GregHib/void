@@ -7,9 +7,6 @@ str = 116
 def = 120
 mage = 125
 range = 120
-max_hit_range = 140
-max_hit_icy_breath = 500
-max_hit_melee = 130
 hunt_mode = "aggressive"
 wander_radius = 5
 respawn_delay = 15
@@ -17,6 +14,7 @@ categories = ["skeletal_wyverns"]
 slayer_xp = 210.0
 slayer_level = 72
 xp_bonus = 0.5
+combat_def = "skeletal_wyvern"
 examine = "A very dangerous pile of animated wyvern bones."
 
 [skeletal_wyvern_horns]

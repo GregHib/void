@@ -2,8 +2,8 @@
 attack_speed = 6
 attack_range = 6
 retreat_range = 8
-defend = "skeletal_wyvern_defend"
-death = "skeletal_wyvern_death"
+defend_anim = "skeletal_wyvern_defend"
+death_anim = "skeletal_wyvern_death"
 
 [skeletal_wyvern.bite]
 chance = 5
@@ -13,11 +13,9 @@ target_sound = "wyvern_attack"
 target_hit = { offense = "slash", defence = "stab", max = 130 }
 
 [skeletal_wyvern.tail_whip]
-chance = 5
-range = 1
+clone = "bite"
 anim = "wyvern_tail_whip"
 target_sound = "wyvern_tail_whip"
-target_hit = { offense = "slash", defence = "stab", max = 130 }
 
 [skeletal_wyvern.ice_breath]
 chance = 10
