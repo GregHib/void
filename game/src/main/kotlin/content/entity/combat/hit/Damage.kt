@@ -50,12 +50,10 @@ object Damage {
         source["max_hit"] = baseMaxHit
         val minimum = minimum(source, offensiveType, range)
         source["min_hit"] = minimum
-        val player = if (source is Player && source["debug", false]) {
-            source
-        } else if (target is Player && target["debug", false]) {
-            target
-        } else {
-            null
+        val player = when {
+            source is Player && source["debug", false] -> source
+            target is Player && target["debug", false] -> target
+            else -> null
         }
         if (player != null) {
             val message = "Base maximum hit: $baseMaxHit ($offensiveType, ${if (weapon.isEmpty()) "unarmed" else weapon.id})"

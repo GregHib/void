@@ -76,8 +76,6 @@ class CombatDefinitions {
         var range = 1
         var condition = ""
 
-        var style = ""
-
         var anim = ""
         var targetAnim = ""
         var impactAnim = ""
@@ -92,6 +90,7 @@ class CombatDefinitions {
         val impactGraphics = mutableListOf<CombatDefinition.CombatGfx>()
         val missGraphics = mutableListOf<CombatDefinition.CombatGfx>()
 
+        var origin: Origin = Origin.Entity
         val projectiles = mutableListOf<Projectile>()
         val drainSkills = mutableListOf<CombatDefinition.Drain>()
         val targetHits = mutableListOf<CombatHit>()
@@ -100,14 +99,13 @@ class CombatDefinitions {
         var message = ""
         while (nextPair()) {
             when (val key = key()) {
-                "clone" -> throw UnsupportedOperationException("Clone not supported for combat definitions.")
+                "clone" -> throw UnsupportedOperationException("Clone not supported for combat definitions. ${exception()}")
                 // Selection
                 "chance" -> chance = int()
                 "range" -> range = int()
                 "condition" -> condition = string()
                 // Attacker
                 "anim" -> anim = string()
-                "style" -> style = string()
                 "gfx" -> graphic(graphics)
                 "gfxs" -> graphics(graphics)
                 "sound" -> sound(sounds)
@@ -121,6 +119,12 @@ class CombatDefinitions {
                 // Damage
                 "projectile" -> projectile(projectiles)
                 "projectiles" -> projectiles(projectiles)
+                "projectile_origin" -> origin = when (val key = string()) {
+                    "entity" -> Origin.Entity
+                    "tile" -> Origin.Tile
+                    "centre" -> Origin.Centre
+                    else -> throw IllegalArgumentException("Unknown projectile origin '$key'. ${exception()}")
+                }
                 "target_hit" -> hit(targetHits)
                 "target_hits" -> hits(targetHits)
                 // Impact
@@ -138,7 +142,7 @@ class CombatDefinitions {
                 "miss_gfxs" -> graphics(missGraphics)
                 "miss_sound" -> sound(missSounds)
                 "miss_sounds" -> sound(missSounds)
-                else -> throw UnsupportedOperationException("Unknown key '$key' in combat definition.")
+                else -> throw UnsupportedOperationException("Unknown key '$key' in combat definition. ${exception()}")
             }
         }
         val definition = definitions.getOrPut(stringId) { CombatDefinition(npc = stringId) }
@@ -151,7 +155,7 @@ class CombatDefinitions {
             anim = anim,
             gfx = graphics,
             sounds = sounds,
-            style = style,
+            projectileOrigin = origin,
             projectiles = projectiles,
             targetGfx = targetGraphics,
             targetAnim = targetAnim,
@@ -208,23 +212,16 @@ class CombatDefinitions {
         var delay: Int? = null
         var curve: Int? = null
         var endHeight: Int? = null
-        var origin: Origin = Origin.Entity
         while (nextEntry()) {
             when (val key = key()) {
                 "id" -> id = string()
                 "delay" -> delay = int()
                 "curve" -> curve = int()
                 "end_height" -> endHeight = int()
-                "origin" -> origin = when (val key = string()) {
-                    "entity" -> Origin.Entity
-                    "tile" -> Origin.Tile
-                    "centre" -> Origin.Centre
-                    else -> throw IllegalArgumentException("Unknown projectile origin '$key'. ${exception()}")
-                }
                 else -> throw IllegalArgumentException("Unknown key '$key' in projectile definition. ${exception()}")
             }
         }
-        list.add(Projectile(id = id, delay = delay, curve = curve, endHeight = endHeight, origin = origin))
+        list.add(Projectile(id = id, delay = delay, curve = curve, endHeight = endHeight))
     }
 
     private fun ConfigReader.hits(list: MutableList<CombatHit>) {

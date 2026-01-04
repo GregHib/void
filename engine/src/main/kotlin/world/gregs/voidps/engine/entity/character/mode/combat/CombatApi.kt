@@ -58,6 +58,24 @@ interface CombatApi {
     }
 
     /**
+     * After an [npc] [attack] type
+     */
+    fun npcAttack(npc: String = "*", attack: String = "*", handler: NPC.(target: Character) -> Unit) {
+        Wildcards.find(npc, Wildcard.Npc) { id ->
+            npcAttack["$id:$attack"] = handler
+        }
+    }
+
+    /**
+     * After an [npc] [attack] type's impact
+     */
+    fun npcImpact(npc: String = "*", attack: String = "*", handler: NPC.(target: Character) -> Boolean) {
+        Wildcards.find(npc, Wildcard.Npc) { id ->
+            npcImpact["$id:$attack"] = handler
+        }
+    }
+
+    /**
      * Damage done to a target
      * Emitted on swing, where [combatDamage] is after the attack delay
      * @param type the combat type, typically: melee, range or magic
@@ -123,6 +141,9 @@ interface CombatApi {
         private val prepareSpecial = Object2ObjectOpenHashMap<String, Player.(String) -> Boolean>()
         private val damageSpecial = Object2ObjectOpenHashMap<String, Player.(Character, Int) -> Unit>()
 
+        private val npcAttack = Object2ObjectOpenHashMap<String, NPC.(Character) -> Unit>(30)
+        private val npcImpact = Object2ObjectOpenHashMap<String, NPC.(Character) -> Boolean>(30)
+
         fun attack(player: Player, attack: CombatAttack) {
             for (handler in attacks[attack.type] ?: emptyList()) {
                 handler(player, attack)
@@ -130,6 +151,15 @@ interface CombatApi {
             for (handler in attacks["*"] ?: return) {
                 handler(player, attack)
             }
+        }
+
+        fun attack(npc: NPC, target: Character, id: String): Boolean {
+            npcAttack[id]?.invoke(npc, target) ?: return false
+            return true
+        }
+
+        fun impact(npc: NPC, target: Character, id: String): Boolean {
+            return npcImpact[id]?.invoke(npc, target) ?: return false
         }
 
         fun attack(npc: NPC, attack: CombatAttack) {

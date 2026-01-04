@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.Retreat
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
 import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -24,7 +25,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.type.Tile
 
 class Attack(
-    val definitions: CombatDefinitions
+    val definitions: CombatDefinitions,
 ) : Script {
 
     init {
@@ -64,9 +65,10 @@ class Attack(
             target.play(attack.targetSounds)
             // Hit
             val delays = IntArray(attack.projectiles.size)
+            val origin = attack.projectileOrigin
             for (i in attack.projectiles.indices) {
                 val projectile = attack.projectiles[i]
-                val delay = when (projectile.origin) {
+                val delay = when (origin) {
                     CombatDefinition.Origin.Entity -> shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve, endHeight = projectile.endHeight)
                     CombatDefinition.Origin.Tile -> tile.shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve, endHeight = projectile.endHeight)
                     CombatDefinition.Origin.Centre -> nearestTile(this, target).shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve, endHeight = projectile.endHeight)
@@ -88,8 +90,11 @@ class Attack(
             val attackName: String = get("attack_name") ?: return@npcCombatAttack
             val target = context.target
             val source = if (target is Player) def(target).stringId else id
-            val attackList = definitions.getOrNull(source) ?: return@npcCombatAttack
-            val attack = attackList.attacks[attackName] ?: return@npcCombatAttack
+            val definition = definitions.getOrNull(source) ?: return@npcCombatAttack
+            val attack = definition.attacks[attackName] ?: return@npcCombatAttack
+            if (!CombatApi.impact(this, target, "${definition.npc}:${attack.id}")) {
+                return@npcCombatAttack
+            }
             // Impact
             target.play(attack.impactAnim)
             target.play(if (context.damage == 0 && attack.missGfx.isNotEmpty()) attack.missGfx else attack.impactGfx)
@@ -105,7 +110,7 @@ class Attack(
                 }
             }
             if (attack.impactFreeze != 0) {
-                freeze(target, attack.impactFreeze)
+                target.freeze(attack.impactFreeze)
             }
             if (attack.impactPoison != 0) {
                 poison(target, attack.impactPoison)

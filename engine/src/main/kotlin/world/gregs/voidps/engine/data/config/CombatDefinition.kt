@@ -37,7 +37,6 @@ data class CombatDefinition(
      *  @param condition optional check performed during filtering
      *  == Execution ==
      *  @param anim played by the attacking npc when the swing is executed.
-     *  @param style Combat style used by the attacking (e.g. "crush", "range", "magic").
      *  @param gfx played by the attacking npc when the swing is executed.
      *  @param sounds played to the attacker when the swing is executed.
      *  @param projectiles Projectiles fired by the attacking npc.
@@ -66,9 +65,9 @@ data class CombatDefinition(
         val condition: String = "",
         // Execution
         val anim: String = "",
-        val style: String = "",
         val gfx: List<CombatGfx> = emptyList(),
         val sounds: List<CombatSound> = emptyList(),
+        val projectileOrigin: Origin = Origin.Entity,
         val projectiles: List<Projectile> = emptyList(),
         // Target
         val targetAnim: String = "",
@@ -89,8 +88,8 @@ data class CombatDefinition(
     )
 
     /**
-     * @param offense offensiveType
-     * @param defence defensiveType
+     * @param offense offensiveType (e.g. "crush", "range", "magic")
+     * @param defence defensiveType (e.g. "dragonfire", "typeless_crush", "stab")
      * @param spell id of the spell used.
      * @param special whether hit is from a special attack
      * @param min minimum damage that can be dealt by this hit.
@@ -98,7 +97,7 @@ data class CombatDefinition(
      */
     data class CombatHit(val offense: String = "", val defence: String = "", val spell: String = "", val special: Boolean = false, val min: Int = 0, val max: Int = 0)
 
-    data class Projectile(val id: String, val delay: Int? = null, val curve: Int? = null, val endHeight: Int? = null, val origin: Origin = Origin.Entity)
+    data class Projectile(val id: String, val delay: Int? = null, val curve: Int? = null, val endHeight: Int? = null)
 
     enum class Origin {
         Entity,

@@ -4,7 +4,6 @@ import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
-import world.gregs.voidps.engine.data.definition.SoundDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.Character
@@ -25,7 +24,6 @@ class Block(
     val styleDefinitions: WeaponStyleDefinitions by inject()
     val weaponDefinitions: WeaponAnimationDefinitions by inject()
     val animationDefinitions: AnimationDefinitions by inject()
-    val soundDefinitions: SoundDefinitions by inject()
 
     init {
         combatAttack(handler = ::attack)
