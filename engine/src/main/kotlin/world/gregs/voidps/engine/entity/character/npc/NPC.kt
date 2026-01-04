@@ -31,6 +31,7 @@ data class NPC(
     override val levels: Levels = Levels(),
 ) : Character {
     override val visuals: NPCVisuals = NPCVisuals()
+    val targets: MutableList<Any> = mutableListOf()
 
     var hide = false
     override var blockMove: Int = if (def["solid", true]) CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS else 0
