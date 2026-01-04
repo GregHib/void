@@ -178,12 +178,13 @@ class Combat :
             if (character is NPC) {
                 CombatApi.swing(character, target, character.fightStyle)
             } else if (character is Player) {
-                if (character.fightStyle == "magic" || character.fightStyle == "blaze") {
+                val style = character.fightStyle
+                if (style == "magic" || style == "blaze") {
                     if (Magic.castSpell(character, target)) {
-                        CombatApi.swing(character, target, character.weapon.id, character.fightStyle)
+                        CombatApi.swing(character, target, character.weapon.id, style)
                     }
                 } else {
-                    CombatApi.swing(character, target, character.weapon.id, character.fightStyle)
+                    CombatApi.swing(character, target, character.weapon.id, style)
                 }
             }
             (character as? Player)?.specialAttack = false
