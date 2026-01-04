@@ -3,28 +3,26 @@ id = 32
 delay = 41
 height = 3
 curve = 15
-flight_time = [ 5, 10, 15, 20, 25, 30 ]
 
 [toktz_xil_ul]
 id = 442
 delay = 40
 height = -15
 curve = 15
-flight_time = [ 5, 10, 15, 20, 25, 30, 35, 40, 45 ]
 
 [chinchompa]
 id = 908
 delay = 21
 height = 5
 curve = 15
-flight_time = [ 16, 21, 26, 31, 36, 41, 46, 51, 56, 61 ]
+time_offset = 11
 
 [red_chinchompa]
 id = 909
 delay = 21
 height = 5
 curve = 15
-flight_time = [ 16, 21, 26, 31, 36, 41, 46, 51, 56, 61 ]
+time_offset = 11
 
 [chinchompa_impact]
 id = 2739

@@ -12,4 +12,4 @@ id = 2143
 delay = 40
 height = -19
 curve = 8
-flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+time_offset = 5

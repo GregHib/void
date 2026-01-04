@@ -133,7 +133,7 @@ private fun projectile(
     targetHeight: Int = 0,
 ): Int {
     val definition = get<GraphicDefinitions>().getOrNull(id) ?: return -1
-    val time = getFlightTime(definition, sourceTile, targetTile, flightTime)
+    val time = flightTime(definition, sourceTile, targetTile, flightTime)
     if (time == -1) {
         return -1
     }
@@ -148,7 +148,7 @@ private fun projectile(
         startHeight = startHeight ?: (sourceHeight + definition["height", 0]),
         endHeight = endHeight ?: (targetHeight + definition["end_height", 0]),
         curve = curve ?: definition["curve", DEFAULT_CURVE],
-        offset = (width * 64) + (offset ?: definition["offset", DEFAULT_OFFSET]),
+        offset = (width * 64) + (offset ?: definition["size_offset", DEFAULT_OFFSET]),
     )
     return time + startDelay
 }
@@ -189,11 +189,14 @@ private fun sendProjectile(
     )
 }
 
-private fun getFlightTime(definition: GraphicDefinition, tile: Tile, target: Tile, flightTime: Int?): Int {
+private fun flightTime(definition: GraphicDefinition, tile: Tile, target: Tile, flightTime: Int?): Int {
     if (flightTime != null) {
         return flightTime
     }
-    return definition.getOrNull<List<Int>>("flight_time")?.getOrNull(tile.distanceTo(target) - 1) ?: -1
+    val offset = definition.getOrNull("time_offset") ?: 0
+    val multiplier = definition.getOrNull("multiplier") ?: 5
+    val distance = tile.distanceTo(target) - 1
+    return (offset + (distance * multiplier)).coerceAtLeast(-1)
 }
 
 private val Character.height: Int

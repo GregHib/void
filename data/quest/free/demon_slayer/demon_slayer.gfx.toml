@@ -4,7 +4,8 @@ id = 777
 [demon_slayer_spell]
 id = 782
 height = 0
-flight_time = [ -1, -1, 30, 30 ]
+time_offset = 30
+multiplier = 0
 
 [demon_slayer_spell_impact]
 id = 783

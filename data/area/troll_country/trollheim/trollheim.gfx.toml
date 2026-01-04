@@ -2,7 +2,7 @@
 id = 276
 delay = 31
 angle = 8
-flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+time_offset = 5
 
 [thrower_troll_attack]
 id = 275

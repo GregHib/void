@@ -7,14 +7,15 @@ height = -10
 end_height = -4
 delay = 30
 curve = 15
-flight_time = [21, 26, 31, 36, 41, 46, 51, 56, 61, 66]
+time_offset = 16
+multiplier = 5
 
 [zakln_gritch_snowball_throw]
 id = 1208
 
 [balfrug_kreeyath_fireball]
 id = 1213
-flight_time = [21, 26, 31, 36, 41, 46, 51, 56, 61, 66]
+time_offset = 16
 
 [balfrug_kreeyath_fireball_cast]
 id = 1212

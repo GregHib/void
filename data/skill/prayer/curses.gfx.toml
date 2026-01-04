@@ -4,7 +4,8 @@ id = 2214
 [proj_sap_attack]
 id = 2215
 delay = 30
-flight_time = [ 30, 40, 50, 60, 70, 80, 90, 100, 110, 120 ]
+time_offset = 20
+multiplier = 10
 
 [land_sap_attack]
 id = 2216
@@ -15,7 +16,8 @@ id = 2217
 [proj_sap_ranged]
 id = 2218
 delay = 30
-flight_time = [ 30, 40, 50, 60, 70, 80, 90, 100, 110, 120 ]
+time_offset = 20
+multiplier = 10
 
 [land_sap_ranged]
 id = 2219
@@ -26,7 +28,8 @@ id = 2220
 [proj_sap_magic]
 id = 2221
 delay = 30
-flight_time = [ 30, 40, 50, 60, 70, 80, 90, 100, 110, 120 ]
+time_offset = 20
+multiplier = 10
 
 [land_sap_magic]
 id = 2222
@@ -37,7 +40,8 @@ id = 2223
 [proj_sap_spirit]
 id = 2224
 delay = 30
-flight_time = [ 30, 40, 50, 60, 70, 80, 90, 100, 110, 120 ]
+time_offset = 20
+multiplier = 10
 
 [land_sap_spirit]
 id = 2225
@@ -60,7 +64,8 @@ id = 2230
 [proj_leech_attack]
 id = 2231
 delay = 40
-flight_time = [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
+time_offset = 10
+multiplier = 10
 
 [land_leech_attack]
 id = 2232
@@ -68,7 +73,8 @@ id = 2232
 [proj_leech_strength]
 id = 2248
 delay = 40
-flight_time = [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
+time_offset = 10
+multiplier = 10
 
 [land_leech_strength]
 id = 2250
@@ -76,7 +82,8 @@ id = 2250
 [proj_leech_defence]
 id = 2244
 delay = 40
-flight_time = [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
+time_offset = 10
+multiplier = 10
 
 [land_leech_defence]
 id = 2246
@@ -84,7 +91,8 @@ id = 2246
 [proj_leech_ranged]
 id = 2236
 delay = 40
-flight_time = [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
+time_offset = 10
+multiplier = 10
 
 [land_leech_ranged]
 id = 2238
@@ -92,15 +100,17 @@ id = 2238
 [proj_leech_magic]
 id = 2240
 delay = 40
-flight_time = [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
+time_offset = 10
+multiplier = 10
 
 [land_leech_magic]
 id = 2242
 
 [soul_split]
 id = 2263
-curve = 15
-flight_time = [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
+curve = 18
+time_offset = 10
+multiplier = 10
 
 [soul_split_impact]
 id = 2264
@@ -111,7 +121,8 @@ id = 2251
 [proj_leech_energy]
 id = 2252
 delay = 40
-flight_time = [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
+time_offset = 10
+multiplier = 10
 
 [land_leech_energy]
 id = 2254
@@ -122,7 +133,8 @@ id = 2255
 [proj_leech_special_attack]
 id = 2256
 delay = 40
-flight_time = [ 20, 30, 40, 50, 60, 70, 80, 90, 100, 110 ]
+time_offset = 10
+multiplier = 10
 
 [land_leech_special_attack]
 id = 2258
@@ -136,7 +148,8 @@ id = 2260
 [wrath_shoot]
 id = 2261
 curve = 20
-flight_time = [ 25, 25, 25 ]
+time_offset = 25
+multiplier = 0
 
 [activate_berserker]
 id = 2266

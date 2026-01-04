@@ -4,4 +4,5 @@ height = 10
 curve = 5
 end_height = 0
 delay = 5
-flight_time = [ 60, 50, 40, 30, 20, 10, 5 ]
+time_offset = 70
+multiplier = -10

@@ -6,7 +6,8 @@ height = 30
 id = 1200
 delay = 31
 #curve = 9-23
-flight_time = [34, 39, 44, 49, 54, 59, 64, 69, 74, 79]
+time_offset = 29
+multiplier = 5
 
 [general_graardor_smash_impact]
 id = 359
@@ -21,8 +22,7 @@ id = 1206
 height = -10 # 30
 end_height = -4 # 36
 delay = 30
-offset = 11
-flight_time = [ 16, 21, 26, 31, 36, 41, 46, 51, 56, 61 ]
+size_offset = 11
 
 [sergeant_steelwill_attack]
 id = 1202
@@ -37,4 +37,5 @@ id = 1203
 height = -18 # 22
 end_height = -9 # 31
 delay = 30
-flight_time = [ 16, 26, 36, 46, 56, 66, 76, 86, 96, 106 ]
+time_offset = 6
+multiplier = 10

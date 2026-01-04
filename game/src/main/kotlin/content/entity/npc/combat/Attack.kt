@@ -28,11 +28,6 @@ class Attack(
 ) : Script {
 
     init {
-        /*
-            TODO
-                replace projectile delay with calc
-                lookup range from defs
-         */
         npcCombatSwing { target ->
             val distance = tile.distanceTo(target)
             val source = get("combat_def", if (target is Player) def(target).stringId else id)

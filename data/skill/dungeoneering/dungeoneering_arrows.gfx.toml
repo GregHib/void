@@ -7,7 +7,7 @@ id = 2467
 delay = 41
 height = 3
 curve = 15
-flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+time_offset = 5
 
 [bathus_arrows_shoot]
 id = 2468
@@ -18,7 +18,7 @@ id = 2469
 delay = 41
 height = 3
 curve = 15
-flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+time_offset = 5
 
 [marmaros_arrows_shoot]
 id = 2470
@@ -29,7 +29,7 @@ id = 2471
 delay = 41
 height = 3
 curve = 15
-flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+time_offset = 5
 
 [kratonite_arrows_shoot]
 id = 2472
@@ -40,7 +40,7 @@ id = 2473
 delay = 41
 height = 3
 curve = 15
-flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+time_offset = 5
 
 [fractite_arrows_shoot]
 id = 2474
@@ -51,7 +51,7 @@ id = 2475
 delay = 41
 height = 3
 curve = 15
-flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+time_offset = 5
 
 [zephyrium_arrows_shoot]
 id = 2476
@@ -62,7 +62,7 @@ id = 2477
 delay = 41
 height = 3
 curve = 15
-flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+time_offset = 5
 
 [argonite_arrows_shoot]
 id = 2478
@@ -73,7 +73,7 @@ id = 2479
 delay = 41
 height = 3
 curve = 15
-flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+time_offset = 5
 
 [katagon_arrows_shoot]
 id = 2480
@@ -84,7 +84,7 @@ id = 2481
 delay = 41
 height = 3
 curve = 15
-flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+time_offset = 5
 
 [gorgonite_arrows_shoot]
 id = 2482
@@ -95,7 +95,7 @@ id = 2483
 delay = 41
 height = 3
 curve = 15
-flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+time_offset = 5
 
 [promethium_arrows_shoot]
 id = 2484
@@ -106,7 +106,7 @@ id = 2485
 delay = 41
 height = 3
 curve = 15
-flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+time_offset = 5
 
 [sagittarian_arrows_shoot]
 id = 2486
@@ -117,4 +117,4 @@ id = 2487
 delay = 41
 height = 3
 curve = 15
-flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+time_offset = 5

@@ -7,7 +7,8 @@ id = 473
 delay = 41
 height = 3
 curve = 15
-flight_time = [ 10, 15, 20, 25, 30, 35, 40 ]
+time_offset = 5
+multiplier = 5
 
 [seercull_special_impact]
 id = 474
@@ -134,7 +135,6 @@ id = 2320
 id = 1166
 delay = 80
 curve = 0
-flight_time = [ 5, 10, 15, 20, 25, 30, 35, 40, 45, 50 ]
 
 [guthans_effect]
 id = 398

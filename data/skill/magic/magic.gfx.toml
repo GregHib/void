@@ -5,7 +5,8 @@ id = 457
 id = 458
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [wind_rush_impact]
 id = 463
@@ -15,7 +16,8 @@ height = 60
 id = 458
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [wind_strike_impact]
 id = 463
@@ -25,7 +27,8 @@ height = 60
 id = 459
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [wind_bolt_impact]
 id = 464
@@ -35,7 +38,8 @@ height = 60
 id = 460
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [wind_blast_impact]
 id = 1863
@@ -45,7 +49,8 @@ height = 60
 id = 461
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [wind_wave_impact]
 id = 2699
@@ -55,7 +60,8 @@ height = 60
 id = 461
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [wind_surge_impact]
 id = 2700
@@ -71,7 +77,8 @@ id = 2702
 id = 2703
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [water_strike_impact]
 id = 2708
@@ -81,7 +88,8 @@ height = 60
 id = 2704
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [water_bolt_impact]
 id = 2709
@@ -91,7 +99,8 @@ height = 60
 id = 2705
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [water_blast_impact]
 id = 2710
@@ -101,7 +110,8 @@ height = 60
 id = 2706
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [water_wave_impact]
 id = 2711
@@ -111,7 +121,8 @@ height = 60
 id = 2707
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [water_surge_impact]
 id = 2711
@@ -124,7 +135,8 @@ id = 2713
 id = 2718
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [earth_strike_impact]
 id = 2723
@@ -137,7 +149,8 @@ id = 2714
 id = 2719
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [earth_bolt_impact]
 id = 2724
@@ -150,7 +163,8 @@ id = 2715
 id = 2720
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [earth_blast_impact]
 id = 2725
@@ -163,7 +177,8 @@ id = 2716
 id = 2721
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [earth_wave_impact]
 id = 2726
@@ -176,7 +191,8 @@ id = 2717
 id = 2722
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [earth_surge_impact]
 id = 2727
@@ -189,7 +205,8 @@ id = 2728
 id = 2729
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [fire_strike_impact]
 id = 2737
@@ -199,7 +216,8 @@ height = 60
 id = 2730
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [fire_bolt_impact]
 id = 2738
@@ -209,13 +227,15 @@ height = 60
 id = 2732
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [fire_blast_2]
 id = 2733
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [fire_blast_impact]
 id = 2739
@@ -225,13 +245,15 @@ height = 60
 id = 2734
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [fire_wave_2]
 id = 2735
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [fire_wave_impact]
 id = 2740
@@ -241,13 +263,15 @@ height = 60
 id = 2736
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [fire_surge_2]
 id = 2735
 delay = 51
 height = -4
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [fire_surge_impact]
 id = 2741
@@ -263,7 +287,6 @@ delay = 46
 height = 4
 end_height = 4
 curve = 16
-flight_time = [ 5, 10, 15, 20, 25, 30, 35 ]
 
 [crumble_undead_impact]
 id = 147
@@ -278,9 +301,10 @@ id = 88
 delay = 60
 height = 14
 end_height = 2
-offset = 1
+size_offset = 1
 curve = 16
-flight_time = [ -1, 6, 16, 26, 36, 46, 56, 66, 76, 86 ]
+time_offset = -14
+multiplier = 10
 
 [iban_blast_impact]
 id = 89
@@ -296,8 +320,8 @@ delay = 51
 height = 4
 end_height = -4
 curve = 16
-offset = 1
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [magic_dart_impact]
 id = 329
@@ -324,7 +348,8 @@ id = 103
 delay = 61
 height = 3
 curve = 16
-flight_time = [ -1, 5, 15, 25, 35, 45, 55, 65, 75, 85 ]
+time_offset = -15
+multiplier = 10
 
 [confuse_impact]
 id = 104
@@ -340,7 +365,8 @@ delay = 44
 height = 3
 end_height = -2
 curve = 16
-flight_time = [ 12, 22, 32, 42, 52, 62, 72, 82, 92, 102 ]
+time_offset = 2
+multiplier = 10
 
 [weaken_impact]
 id = 107
@@ -355,7 +381,8 @@ id = 109
 delay = 51
 height = 4
 curve = 16
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [curse_impact]
 id = 110
@@ -370,7 +397,8 @@ id = 178
 delay = 75
 height = 4
 curve = 16
-flight_time = [ -1, -1, 1, 11, 21, 31, 41, 51, 61, 71 ]
+time_offset = -29
+multiplier = 10
 
 [bind_impact]
 id = 181
@@ -393,7 +421,8 @@ id = 168
 delay = 34
 height = 4
 curve = 16
-flight_time = [ 22, 32, 42, 52, 62, 72, 82, 92, 102, 112 ]
+time_offset = 12
+multiplier = 10
 
 [vulnerability_impact]
 id = 169
@@ -408,7 +437,8 @@ id = 171
 delay = 48
 end_height = -4
 curve = 16
-flight_time = [ 8, 18, 28, 38, 48, 58, 68, 78, 88, 98 ]
+time_offset = -2
+multiplier = 10
 
 [enfeeble_impact]
 id = 172
@@ -424,7 +454,8 @@ delay = 52
 height = -2
 end_height = 4
 curve = 16
-flight_time = [ 4, 14, 24, 34, 44, 54, 64, 74, 84, 94 ]
+time_offset = -6
+multiplier = 10
 
 [stun_impact]
 id = 348
@@ -442,7 +473,8 @@ id = 1842
 delay = 52
 end_height = -4
 curve = 16
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [teleport_block_impact]
 id = 1843
@@ -452,7 +484,8 @@ height = 60
 id = 384
 delay = 51
 curve = 16
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [smoke_rush_impact]
 id = 385
@@ -464,7 +497,8 @@ id = 389
 id = 386
 delay = 51
 curve = 16
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [smoke_blitz_impact]
 id = 387
@@ -476,7 +510,8 @@ id = 391
 id = 378
 delay = 51
 curve = 16
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [shadow_rush_impact]
 id = 379
@@ -488,7 +523,8 @@ id = 382
 id = 380
 delay = 51
 curve = 16
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [shadow_blitz_impact]
 id = 381
@@ -500,7 +536,8 @@ id = 383
 id = 372
 delay = 51
 curve = 16
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [blood_rush_impact]
 id = 373
@@ -512,7 +549,8 @@ id = 376
 id = 375
 delay = 51
 curve = 16
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [blood_blitz_impact]
 id = 374
@@ -524,7 +562,8 @@ id = 377
 id = 360
 delay = 51
 curve = 16
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [ice_rush_impact]
 id = 361
@@ -536,7 +575,8 @@ id = 363
 id = 368
 delay = 51
 curve = 16
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [ice_blitz_impact]
 id = 367
@@ -551,7 +591,8 @@ id = 1845
 id = 1846
 delay = 51
 curve = 16
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [miasmic_rush_impact]
 id = 1847
@@ -569,7 +610,8 @@ id = 1850
 id = 1852
 delay = 51
 curve = 16
-flight_time = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ]
+time_offset = -5
+multiplier = 10
 
 [miasmic_blitz_impact]
 id = 1851
@@ -620,4 +662,5 @@ height = 60
 id = 143
 delay = 48
 curve = 16
-flight_time = [ 8, 18, 28, 38, 48, 58, 68, 78, 88, 98 ]
+time_offset = -2
+multiplier = 10

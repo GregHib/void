@@ -7,7 +7,6 @@ id = 36
 delay = 32
 height = 3
 curve = 15
-flight_time = [ 5, 10, 15, 20, 25, 30 ]
 
 [iron_throwing_axe_throw]
 id = 42
@@ -18,7 +17,6 @@ id = 35
 delay = 32
 height = 3
 curve = 15
-flight_time = [ 5, 10, 15, 20, 25, 30 ]
 
 [steel_throwing_axe_throw]
 id = 44
@@ -29,7 +27,6 @@ id = 37
 delay = 32
 height = 3
 curve = 15
-flight_time = [ 5, 10, 15, 20, 25, 30 ]
 
 [mithril_throwing_axe_throw]
 id = 45
@@ -40,7 +37,6 @@ id = 38
 delay = 32
 height = 3
 curve = 15
-flight_time = [ 5, 10, 15, 20, 25, 30 ]
 
 [adamant_throwing_axe_throw]
 id = 46
@@ -51,7 +47,6 @@ id = 39
 delay = 32
 height = 3
 curve = 15
-flight_time = [ 5, 10, 15, 20, 25, 30 ]
 
 [rune_throwing_axe_throw]
 id = 48
@@ -62,7 +57,6 @@ id = 41
 delay = 32
 height = 3
 curve = 15
-flight_time = [ 5, 10, 15, 20, 25, 30 ]
 
 #[morrigans_throwing_axe_throw]
 #id = 1856
@@ -72,7 +66,6 @@ id = 1839
 delay = 32
 height = 10
 curve = 15
-flight_time = [ 5, 10, 15, 20, 25, 30 ]
 
 [rune_throwing_axe_special_throw]
 id = 257
@@ -82,4 +75,4 @@ height = 60
 id = 258
 delay = 41
 curve = 0
-flight_time = [ 10, 15, 20, 25, 30 ]
+time_offset = 5

@@ -3,8 +3,9 @@ id = 437
 
 [retribution_splash]
 id = 438
-flight_time = [ 10 ]
 delay = 10
+time_offset = 10
+multiplier = 0
 
 [redemption]
 id = 436

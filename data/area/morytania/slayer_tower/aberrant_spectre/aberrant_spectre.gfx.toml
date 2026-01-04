@@ -6,7 +6,6 @@ height = 190
 id = 335
 delay = 28
 curve = 5
-flight_time = [ 5, 10, 15, 20, 25, 30, 35, 40, 45, 50 ]
 
 [aberrant_spectre_goo_impact]
 id = 336

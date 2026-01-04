@@ -87,7 +87,11 @@ object Magic {
                 val delay = projectile["delay"] as? Int
                 val curve = projectile["curve"] as? Int
                 val end = projectile["end_height"] as? Int
-                val flightTime = source.shoot(id = id, target = target, delay = delay, curve = curve, endHeight = end)
+                val flightTime = if (id == "ice_barrage") {
+                    target.tile.shoot(id = id, target = target, delay = delay, curve = curve, endHeight = end)
+                } else {
+                    source.shoot(id = id, target = target, delay = delay, curve = curve, endHeight = end)
+                }
                 if (time == -1) {
                     time = flightTime
                 }
