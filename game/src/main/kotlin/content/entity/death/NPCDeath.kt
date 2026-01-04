@@ -2,17 +2,18 @@ package content.entity.death
 
 import com.github.michaelbull.logging.InlineLogger
 import content.area.wilderness.inMultiCombat
-import content.entity.combat.*
+import content.entity.combat.attackers
+import content.entity.combat.damageDealers
+import content.entity.combat.dead
+import content.entity.combat.killer
 import content.entity.effect.clearTransform
-import content.entity.npc.combat.NPCAttack
 import content.entity.player.inv.item.tradeable
 import content.skill.slayer.*
 import content.social.clan.clan
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.data.definition.AnimationDefinitions
-import world.gregs.voidps.engine.data.definition.SoundDefinitions
+import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.World
@@ -39,13 +40,13 @@ import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-class NPCDeath : Script {
+class NPCDeath(
+    val combatDefinitions: CombatDefinitions,
+) : Script {
 
     val npcs: NPCs by inject()
     val floorItems: FloorItems by inject()
     val tables: DropTables by inject()
-    val animationDefinitions: AnimationDefinitions by inject()
-    val soundDefinitions: SoundDefinitions by inject()
 
     var Player.lootSharePotential: Int
         get() = get("loot_share_potential", 0)
@@ -63,8 +64,11 @@ class NPCDeath : Script {
                 val killer = killer
                 val tile = tile
                 npc["death_tile"] = tile
-                val ticks = anim(NPCAttack.anim(animationDefinitions, npc, "death"))
-                (killer as? Player)?.sound(NPCAttack.sound(soundDefinitions, npc, "death"))
+                val definition = combatDefinitions.get(npc["combat_def", npc.id])
+                val ticks = anim(definition.deathAnim)
+                if (definition.deathSound != null) {
+                    (killer as? Player)?.sound(definition.deathSound!!.id)
+                }
                 delay(if (ticks <= 0) 4 else ticks)
                 if (killer is Player) {
                     AuditLog.event(killer, "killed", npc, tile)

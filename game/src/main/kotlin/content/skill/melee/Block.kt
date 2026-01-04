@@ -1,13 +1,14 @@
 package content.skill.melee
 
-import content.entity.npc.combat.NPCAttack
 import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
+import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.data.definition.SoundDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -17,7 +18,9 @@ import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 
-class Block : Script {
+class Block(
+    val combatDefinitions: CombatDefinitions,
+) : Script {
 
     val styleDefinitions: WeaponStyleDefinitions by inject()
     val weaponDefinitions: WeaponAnimationDefinitions by inject()
@@ -29,11 +32,11 @@ class Block : Script {
         npcCombatAttack(handler = ::attack)
     }
 
-    fun attack(source: Character, attack: world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack) {
+    fun attack(source: Character, attack: CombatAttack) {
         val target = attack.target
         val delay = attack.delay
-        source.sound(calculateHitSound(target), delay)
         if (target is Player) {
+            source.sound(calculateHitSound(target), delay)
             target.sound(calculateHitSound(target), delay)
             val shield = target.equipped(EquipSlot.Shield).id
             if (shield.endsWith("shield")) {
@@ -54,15 +57,14 @@ class Block : Script {
                 target.anim(animation, delay)
             }
         } else if (target is NPC) {
-            val animation = NPCAttack.anim(animationDefinitions, target, "defend")
-            target.anim(animation, delay)
+            val id = if (source is Player) target.def(source).stringId else target.id
+            val definition = combatDefinitions.get(id)
+            target.anim(definition.defendAnim, delay)
+            source.sound(definition.defendSound?.id ?: return, delay)
         }
     }
 
     fun calculateHitSound(target: Character): String {
-        if (target is NPC) {
-            return NPCAttack.sound(soundDefinitions, target, "defend")
-        }
         if (target is Player) {
             return if (target.male) {
                 "male_defend_${random.nextInt(0, 3)}"

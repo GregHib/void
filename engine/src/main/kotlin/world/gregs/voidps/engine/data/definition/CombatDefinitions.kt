@@ -6,7 +6,7 @@ import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.config.CombatDefinition
 import world.gregs.voidps.engine.data.config.CombatDefinition.CombatHit
 import world.gregs.voidps.engine.data.config.CombatDefinition.Projectile
-import world.gregs.voidps.engine.data.config.CombatDefinition.ProjectileOrigin
+import world.gregs.voidps.engine.data.config.CombatDefinition.Origin
 import world.gregs.voidps.engine.timedLoad
 
 /**
@@ -14,113 +14,53 @@ import world.gregs.voidps.engine.timedLoad
  */
 class CombatDefinitions {
 
-    private lateinit var definitions: Map<String, List<CombatDefinition>>
+    private lateinit var definitions: Map<String, CombatDefinition>
 
-    fun get(key: String) = definitions[key] ?: emptyList()
+    fun get(key: String) = definitions[key] ?: CombatDefinition()
+
+    fun getOrNull(key: String) = definitions[key]
 
     fun load(paths: List<String>): CombatDefinitions {
         timedLoad("combat definition") {
-            val definitions = Object2ObjectOpenHashMap<String, MutableList<CombatDefinition>>()
+            val definitions = Object2ObjectOpenHashMap<String, CombatDefinition>()
             for (path in paths) {
                 Config.fileReader(path) {
                     while (nextSection()) {
-                        val (stringId, id) = section().split(".")
-                        var chance = 0
-                        var range = 1
-                        var condition = ""
-
-                        var style = ""
-
-                        var anim = ""
-                        var targetAnim = ""
-                        var impactAnim = ""
-
-                        val sounds = mutableListOf<CombatDefinition.CombatSound>()
-                        val targetSounds = mutableListOf<CombatDefinition.CombatSound>()
-                        val impactSounds = mutableListOf<CombatDefinition.CombatSound>()
-                        val missSounds = mutableListOf<CombatDefinition.CombatSound>()
-
-                        val graphics = mutableListOf<CombatDefinition.CombatGfx>()
-                        val targetGraphics = mutableListOf<CombatDefinition.CombatGfx>()
-                        val impactGraphics = mutableListOf<CombatDefinition.CombatGfx>()
-                        val missGraphics = mutableListOf<CombatDefinition.CombatGfx>()
-
-                        val projectiles = mutableListOf<Projectile>()
-                        val drainSkills = mutableListOf<CombatDefinition.Drain>()
-                        val targetHits = mutableListOf<CombatHit>()
-                        var freeze = 0
-                        var poison = 0
-                        var message = ""
-                        while (nextPair()) {
-                            when (val key = key()) {
-                                "clone" -> throw UnsupportedOperationException("Clone not supported for combat definitions.")
-                                // Selection
-                                "chance" -> chance = int()
-                                "range" -> range = int()
-                                "condition" -> condition = string()
-                                // Attacker
-                                "anim" -> anim = string()
-                                "style" -> style = string()
-                                "gfx" -> graphic(graphics)
-                                "gfxs" -> graphics(graphics)
-                                "sound" -> sound(sounds)
-                                "sounds" -> sounds(sounds)
-                                // Target
-                                "target_anim" -> targetAnim = string()
-                                "target_gfx" -> graphic(targetGraphics)
-                                "target_gfxs" -> graphics(targetGraphics)
-                                "target_sound" -> sound(targetSounds)
-                                "target_sounds" -> sounds(targetSounds)
-                                // Damage
-                                "projectile" -> projectile(projectiles)
-                                "projectiles" -> projectiles(projectiles)
-                                "target_hit" -> hit(targetHits)
-                                "target_hits" -> hits(targetHits)
-                                // Impact
-                                "impact_anim" -> impactAnim = string()
-                                "impact_gfx" -> graphic(impactGraphics)
-                                "impact_gfxs" -> graphics(impactGraphics)
-                                "impact_sound" -> sound(impactSounds)
-                                "impact_sounds" -> sound(impactSounds)
-                                "impact_drain" -> drain(drainSkills)
-                                "impact_drains" -> drains(drainSkills)
-                                "impact_freeze" -> freeze = int()
-                                "impact_poison" -> poison = int()
-                                "impact_message" -> message = string()
-                                "miss_gfx" -> graphic(missGraphics)
-                                "miss_gfxs" -> graphics(missGraphics)
-                                "miss_sound" -> sound(missSounds)
-                                "miss_sounds" -> sound(missSounds)
-                                else -> throw UnsupportedOperationException("Unknown key '$key' in combat definition.")
+                        val section = section()
+                        if (section.contains(".")) {
+                            attack(section, definitions)
+                        } else {
+                            check(!definitions.containsKey(section)) { "Definition $section already exists. Make sure [npc_name] comes before [npc_name.attacks]." }
+                            var attackSpeed = 4
+                            var attackRange = 1
+                            var retreatRange = 8
+                            var defendAnim = ""
+                            var deathAnim = ""
+                            var defendSound: CombatDefinition.CombatSound? = null
+                            var deathSound: CombatDefinition.CombatSound? = null
+                            while (nextPair()) {
+                                when (val key = key()) {
+                                    "attack_speed" -> attackSpeed = int()
+                                    "attack_range" -> attackRange = int()
+                                    "retreat_range" -> retreatRange = int()
+                                    "defend" -> defendAnim = string()
+                                    "death" -> deathAnim = string()
+                                    "death_sound" -> deathSound = CombatDefinition.CombatSound(string())
+                                    "defend_sound" -> defendSound = CombatDefinition.CombatSound(string())
+                                    else -> throw UnsupportedOperationException("Unknown key '$key' in combat definition. ${exception()}")
+                                }
                             }
-                        }
-                        definitions.getOrPut(stringId) { mutableListOf() }.add(
-                            CombatDefinition(
-                                npc = stringId,
-                                id = id,
-                                chance = chance,
-                                range = range,
-                                condition = condition,
-                                anim = anim,
-                                gfx = graphics,
-                                sounds = sounds,
-                                style = style,
-                                projectiles = projectiles,
-                                targetGfx = targetGraphics,
-                                targetAnim = targetAnim,
-                                targetSounds = targetSounds,
-                                targetHits = targetHits,
-                                impactAnim = impactAnim,
-                                missGfx = missGraphics,
-                                impactGfx = impactGraphics,
-                                missSounds = missSounds,
-                                impactSounds = impactSounds,
-                                impactDrainSkills = drainSkills,
-                                impactFreeze = freeze,
-                                impactPoison = poison,
-                                impactMessage = message,
+                            definitions[section] = CombatDefinition(
+                                npc = section,
+                                attackSpeed = attackSpeed,
+                                attackRange = attackRange,
+                                retreatRange = retreatRange,
+                                defendAnim = defendAnim,
+                                defendSound = defendSound,
+                                deathAnim = deathAnim,
+                                deathSound = deathSound,
                             )
-                        )
+                        }
                     }
                 }
             }
@@ -128,6 +68,105 @@ class CombatDefinitions {
             this.definitions.size
         }
         return this
+    }
+
+    private fun ConfigReader.attack(section: String, definitions: Object2ObjectOpenHashMap<String, CombatDefinition>) {
+        val (stringId, id) = section.split(".")
+        var chance = 0
+        var range = 1
+        var condition = ""
+
+        var style = ""
+
+        var anim = ""
+        var targetAnim = ""
+        var impactAnim = ""
+
+        val sounds = mutableListOf<CombatDefinition.CombatSound>()
+        val targetSounds = mutableListOf<CombatDefinition.CombatSound>()
+        val impactSounds = mutableListOf<CombatDefinition.CombatSound>()
+        val missSounds = mutableListOf<CombatDefinition.CombatSound>()
+
+        val graphics = mutableListOf<CombatDefinition.CombatGfx>()
+        val targetGraphics = mutableListOf<CombatDefinition.CombatGfx>()
+        val impactGraphics = mutableListOf<CombatDefinition.CombatGfx>()
+        val missGraphics = mutableListOf<CombatDefinition.CombatGfx>()
+
+        val projectiles = mutableListOf<Projectile>()
+        val drainSkills = mutableListOf<CombatDefinition.Drain>()
+        val targetHits = mutableListOf<CombatHit>()
+        var freeze = 0
+        var poison = 0
+        var message = ""
+        while (nextPair()) {
+            when (val key = key()) {
+                "clone" -> throw UnsupportedOperationException("Clone not supported for combat definitions.")
+                // Selection
+                "chance" -> chance = int()
+                "range" -> range = int()
+                "condition" -> condition = string()
+                // Attacker
+                "anim" -> anim = string()
+                "style" -> style = string()
+                "gfx" -> graphic(graphics)
+                "gfxs" -> graphics(graphics)
+                "sound" -> sound(sounds)
+                "sounds" -> sounds(sounds)
+                // Target
+                "target_anim" -> targetAnim = string()
+                "target_gfx" -> graphic(targetGraphics)
+                "target_gfxs" -> graphics(targetGraphics)
+                "target_sound" -> sound(targetSounds)
+                "target_sounds" -> sounds(targetSounds)
+                // Damage
+                "projectile" -> projectile(projectiles)
+                "projectiles" -> projectiles(projectiles)
+                "target_hit" -> hit(targetHits)
+                "target_hits" -> hits(targetHits)
+                // Impact
+                "impact_anim" -> impactAnim = string()
+                "impact_gfx" -> graphic(impactGraphics)
+                "impact_gfxs" -> graphics(impactGraphics)
+                "impact_sound" -> sound(impactSounds)
+                "impact_sounds" -> sound(impactSounds)
+                "impact_drain" -> drain(drainSkills)
+                "impact_drains" -> drains(drainSkills)
+                "impact_freeze" -> freeze = int()
+                "impact_poison" -> poison = int()
+                "impact_message" -> message = string()
+                "miss_gfx" -> graphic(missGraphics)
+                "miss_gfxs" -> graphics(missGraphics)
+                "miss_sound" -> sound(missSounds)
+                "miss_sounds" -> sound(missSounds)
+                else -> throw UnsupportedOperationException("Unknown key '$key' in combat definition.")
+            }
+        }
+        val definition = definitions.getOrPut(stringId) { CombatDefinition(npc = stringId) }
+        val attacks = definition.attacks as MutableMap<String, CombatDefinition.CombatAttack>
+        attacks[id] = CombatDefinition.CombatAttack(
+            id = id,
+            chance = chance,
+            range = range,
+            condition = condition,
+            anim = anim,
+            gfx = graphics,
+            sounds = sounds,
+            style = style,
+            projectiles = projectiles,
+            targetGfx = targetGraphics,
+            targetAnim = targetAnim,
+            targetSounds = targetSounds,
+            targetHits = targetHits,
+            impactAnim = impactAnim,
+            missGfx = missGraphics,
+            impactGfx = impactGraphics,
+            missSounds = missSounds,
+            impactSounds = impactSounds,
+            impactDrainSkills = drainSkills,
+            impactFreeze = freeze,
+            impactPoison = poison,
+            impactMessage = message,
+        )
     }
 
     private fun ConfigReader.drains(drainSkills: MutableList<CombatDefinition.Drain>) {
@@ -169,17 +208,17 @@ class CombatDefinitions {
         var delay: Int? = null
         var curve: Int? = null
         var endHeight: Int? = null
-        var origin: ProjectileOrigin = ProjectileOrigin.Entity
+        var origin: Origin = Origin.Entity
         while (nextEntry()) {
             when (val key = key()) {
                 "id" -> id = string()
                 "delay" -> delay = int()
                 "curve" -> curve = int()
                 "end_height" -> endHeight = int()
-                "origin" -> origin = when(val key = string()) {
-                    "entity" -> ProjectileOrigin.Entity
-                    "tile" -> ProjectileOrigin.Tile
-                    "centre" -> ProjectileOrigin.Centre
+                "origin" -> origin = when (val key = string()) {
+                    "entity" -> Origin.Entity
+                    "tile" -> Origin.Tile
+                    "centre" -> Origin.Centre
                     else -> throw IllegalArgumentException("Unknown projectile origin '$key'. ${exception()}")
                 }
                 else -> throw IllegalArgumentException("Unknown key '$key' in projectile definition. ${exception()}")
@@ -243,7 +282,7 @@ class CombatDefinitions {
         list.add(CombatDefinition.CombatSound(id, delay, radius))
     }
 
-    private fun ConfigReader.graphics(list: MutableList<CombatDefinition.CombatGfx>){
+    private fun ConfigReader.graphics(list: MutableList<CombatDefinition.CombatGfx>) {
         while (nextElement()) {
             graphic(list)
         }

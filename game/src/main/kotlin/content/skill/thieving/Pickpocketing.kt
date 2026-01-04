@@ -2,12 +2,11 @@ package content.skill.thieving
 
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.effect.stun
-import content.entity.npc.combat.NPCAttack
 import content.skill.slayer.categories
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
-import world.gregs.voidps.engine.data.definition.AnimationDefinitions
+import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.data.definition.data.Pocket
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -32,7 +31,7 @@ import world.gregs.voidps.type.random
 
 class Pickpocketing : Script {
 
-    val animationDefinitions: AnimationDefinitions by inject()
+    val combatDefinitions: CombatDefinitions by inject()
     val dropTables: DropTables by inject()
     val logger = InlineLogger()
 
@@ -81,7 +80,7 @@ class Pickpocketing : Script {
         } else {
             target.face(this)
             target.say(pocket.caughtMessage)
-            target.anim(NPCAttack.anim(animationDefinitions, target, "defend"))
+            target.anim(combatDefinitions.get(target["combat_def", target.id]).defendAnim)
             message("You fail to pick the $name's pocket.", ChatType.Filter)
             target.stun(this, pocket.stunTicks, pocket.stunHit.random(random))
             delay(2)

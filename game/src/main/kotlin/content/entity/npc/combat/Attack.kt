@@ -7,26 +7,20 @@ import content.entity.effect.freeze
 import content.entity.effect.toxin.poison
 import content.entity.gfx.areaGfx
 import content.entity.proj.shoot
-import content.skill.slayer.categories
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.config.CombatDefinition
 import world.gregs.voidps.engine.data.config.CombatDefinition.CombatGfx
-import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
-import world.gregs.voidps.engine.data.definition.SoundDefinitions
-import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Tile
 
 class Attack(
@@ -36,10 +30,8 @@ class Attack(
     init {
         /*
             TODO
-                how to handle default npcs
                 replace projectile delay with calc
-
-
+                lookup range from defs
          */
         npcCombatSwing { target ->
             val distance = tile.distanceTo(target)
@@ -47,12 +39,12 @@ class Attack(
                 mode = Retreat(this, target)
                 return@npcCombatSwing
             }
-            val source = if (target is Player) def(target).stringId else id
-            val attackList = definitions.get(source)
-            val attack = when (attackList.size) {
+            val source = get("combat_def", if (target is Player) def(target).stringId else id)
+            val attackList = definitions.getOrNull(source) ?: return@npcCombatSwing
+            val attack = when (attackList.attacks.size) {
                 0 -> return@npcCombatSwing
                 1 -> {
-                    val attack = attackList.first()
+                    val attack = attackList.attacks.values.first()
                     if (attack.range == 1 && !CharacterTargetStrategy(this).reached(target)) {
                         return@npcCombatSwing
                     } else if (attack.range > distance) {
@@ -62,7 +54,7 @@ class Attack(
                 }
                 else -> {
                     val canMelee = CharacterTargetStrategy(this).reached(target)
-                    val list = attackList.filter { (it.range == 1 && canMelee) || it.range > distance }
+                    val list = attackList.attacks.values.filter { (it.range == 1 && canMelee) || it.range > distance }
                     weightedSample(list.map { it to it.chance }) ?: return@npcCombatSwing
                 }
             }
@@ -80,9 +72,9 @@ class Attack(
             for (i in attack.projectiles.indices) {
                 val projectile = attack.projectiles[i]
                 val delay = when (projectile.origin) {
-                    CombatDefinition.ProjectileOrigin.Entity -> shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve, endHeight = projectile.endHeight)
-                    CombatDefinition.ProjectileOrigin.Tile -> tile.shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve, endHeight = projectile.endHeight)
-                    CombatDefinition.ProjectileOrigin.Centre -> nearestTile(this, target).shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve, endHeight = projectile.endHeight)
+                    CombatDefinition.Origin.Entity -> shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve, endHeight = projectile.endHeight)
+                    CombatDefinition.Origin.Tile -> tile.shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve, endHeight = projectile.endHeight)
+                    CombatDefinition.Origin.Centre -> nearestTile(this, target).shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve, endHeight = projectile.endHeight)
                 }
                 delays[i] = delay
             }
@@ -101,8 +93,8 @@ class Attack(
             val attackName: String = get("attack_name") ?: return@npcCombatAttack
             val target = context.target
             val source = if (target is Player) def(target).stringId else id
-            val attackList = definitions.get(source)
-            val attack = attackList.firstOrNull { it.id == attackName } ?: return@npcCombatAttack
+            val attackList = definitions.getOrNull(source) ?: return@npcCombatAttack
+            val attack = attackList.attacks[attackName] ?: return@npcCombatAttack
             // Impact
             target.play(attack.impactAnim)
             target.play(if (context.damage == 0 && attack.missGfx.isNotEmpty()) attack.missGfx else attack.impactGfx)
