@@ -131,6 +131,9 @@ object Hit {
         }
         return level
     }
+
+    fun meleeType(type: String) = type == "melee" || type == "stab" || type == "crush" || type == "slash" || type == "typeless_stab" || type == "typeless_crush" || type == "typeless_slash"
+
 }
 
 /**
@@ -149,7 +152,7 @@ fun Character.hit(
     target: Character,
     weapon: Item = this.weapon,
     offensiveType: String = Weapon.type(this, weapon),
-    delay: Int = if (offensiveType == "melee") 0 else 64,
+    delay: Int = if (Hit.meleeType(offensiveType)) 0 else 64,
     spell: String = this.spell,
     special: Boolean = (this as? Player)?.specialAttack ?: false,
     defensiveType: String = offensiveType,

@@ -1,6 +1,7 @@
 package content.entity.npc.combat
 
 import content.entity.combat.hit.Damage
+import content.entity.combat.hit.Hit
 import content.entity.combat.hit.hit
 import content.entity.death.weightedSample
 import content.entity.effect.freeze
@@ -83,7 +84,7 @@ class Attack(
                     val hit = attack.targetHits[i]
                     var delay = delays.getOrNull(i) ?: -1
                     if (delay == -1) {
-                        delay = if (hit.offense == "melee") 0 else 64
+                        delay = if (Hit.meleeType(hit.offense)) 0 else 64
                     }
                     val damage = Damage.roll(source = this, target = target, offensiveType = hit.offense, weapon = Item.EMPTY, spell = hit.spell, special = hit.special, defensiveType = hit.defence, range = hit.min..hit.max)
                     hit(target = target, delay = delay, offensiveType = hit.offense, defensiveType = hit.defence, spell = hit.spell, special = hit.special, damage = damage)
