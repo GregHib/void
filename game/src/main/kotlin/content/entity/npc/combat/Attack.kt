@@ -35,12 +35,12 @@ class Attack(
          */
         npcCombatSwing { target ->
             val distance = tile.distanceTo(target)
-            if (distance > def["retreat_range", 8]) {
+            val source = get("combat_def", if (target is Player) def(target).stringId else id)
+            val attackList = definitions.getOrNull(source) ?: return@npcCombatSwing
+            if (distance > attackList.retreatRange) {
                 mode = Retreat(this, target)
                 return@npcCombatSwing
             }
-            val source = get("combat_def", if (target is Player) def(target).stringId else id)
-            val attackList = definitions.getOrNull(source) ?: return@npcCombatSwing
             val attack = when (attackList.attacks.size) {
                 0 -> return@npcCombatSwing
                 1 -> {

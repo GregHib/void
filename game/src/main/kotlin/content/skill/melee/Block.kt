@@ -58,7 +58,7 @@ class Block(
             }
         } else if (target is NPC) {
             val id = if (source is Player) target.def(source).stringId else target.id
-            val definition = combatDefinitions.get(id)
+            val definition = combatDefinitions.get(target.def["combat_def", id])
             target.anim(definition.defendAnim, delay)
             source.sound(definition.defendSound?.id ?: return, delay)
         }

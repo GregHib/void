@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -237,14 +238,14 @@ var Character.weapon: Item
 
 val Character.attackSpeed: Int
     get() = when {
-        this is NPC -> def["attack_speed", 4]
+        this is NPC -> def["attack_speed", get<CombatDefinitions>().get(def["combat_def", id]).attackSpeed]
         fightStyle == "magic" -> 5
         this is Player && specialAttack && weapon.id.startsWith("granite_maul") -> 1
         else -> weapon.def["attack_speed", 4] - (attackType == "rapid" || attackType == "medium_fuse").toInt()
     }
 
 var Character.attackRange: Int
-    get() = get("attack_range", if (this is NPC) def["attack_range", 1] else 1)
+    get() = get("attack_range", if (this is NPC) def["attack_range", get<CombatDefinitions>().get(def["combat_def", id]).attackRange] else 1)
     set(value) = set("attack_range", value)
 
 // E.g "accurate"
