@@ -139,7 +139,7 @@ id = 9132
 id = 2449
 categories = ["egg"]
 respawn_delay = 5
-hunt_radius = 3
+hunt_range = 3
 hunt_mode = "aggressive"
 examine = "A horror from the ocean depths..."
 
@@ -157,7 +157,7 @@ str = 35
 def = 25
 slayer_xp = 35.0
 max_hit_melee = 40
-hunt_radius = 3
+hunt_range = 3
 wander_radius = 5
 attack_radius = 8
 hunt_mode = "aggressive"
