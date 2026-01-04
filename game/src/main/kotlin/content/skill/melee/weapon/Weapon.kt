@@ -120,13 +120,14 @@ object Weapon {
 
     fun mark(type: String): HitSplat.Mark = when (type) {
         "range" -> HitSplat.Mark.Range
-        "melee", "scorch" -> HitSplat.Mark.Melee
+        "melee", "scorch", "crush", "slash", "stab" -> HitSplat.Mark.Melee
         "magic", "blaze" -> HitSplat.Mark.Magic
         "poison" -> HitSplat.Mark.Poison
         "disease" -> HitSplat.Mark.Diseased
         "dragonfire", "damage" -> HitSplat.Mark.Regular
         "deflect" -> HitSplat.Mark.Reflected
         "healed" -> HitSplat.Mark.Healed
+        "cannon" -> HitSplat.Mark.Cannon
         else -> HitSplat.Mark.Regular
     }
 

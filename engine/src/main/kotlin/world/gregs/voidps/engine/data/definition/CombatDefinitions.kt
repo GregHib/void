@@ -303,8 +303,16 @@ class CombatDefinitions {
         var max = 0
         while (nextEntry()) {
             when (val key = key()) {
-                "offense" -> offense = string()
-                "defence" -> defence = string()
+                "offense" -> {
+                    offense = string()
+                    require(offense != "ranged") { "Invalid offensive type 'ranged' only 'range' is valid. ${exception()}"}
+                    require(offense != "mage") { "Invalid offensive type 'mage' only 'magic' is valid. ${exception()}"}
+                }
+                "defence" -> {
+                    defence = string()
+                    require(defence != "ranged") { "Invalid defensive type 'ranged' only 'range' is valid. ${exception()}"}
+                    require(defence != "mage") { "Invalid defensive type 'mage' only 'magic' is valid. ${exception()}"}
+                }
                 "spell" -> spell = string()
                 "special" -> special = boolean()
                 "min" -> min = int()

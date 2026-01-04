@@ -50,7 +50,7 @@ class Attack(
                 }
                 if (attack.range == 1 && !CharacterTargetStrategy(this).reached(target)) {
                     continue
-                } else if (attack.range < distance) {
+                } else if (distance < attack.range) {
                     continue
                 }
                 validAttacks.add(attack to attack.chance)
