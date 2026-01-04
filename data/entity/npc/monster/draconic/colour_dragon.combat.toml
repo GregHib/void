@@ -1,0 +1,52 @@
+[blue_dragon]
+attack_range = 1
+retreat_range = 8
+defend_anim = "colour_dragon_defend"
+defend_sound = "dragon_defend"
+death_anim = "colour_dragon_death"
+death_sound = "dragon_death"
+
+[blue_dragon.melee]
+chance = 75
+range = 1
+anim = "colour_dragon_attack"
+target_hit = { offense = "slash", max = 110 }
+target_sound = "dragon_attack"
+
+[blue_dragon.dragonfire]
+chance = 25
+range = 1
+anim = "colour_dragon_breath"
+gfx = "dragon_breath_shoot"
+target_hit = { offense = "dragonfire", special = true, max = 500 }
+target_sound = "dragon_breath"
+
+[green_dragon]
+clone = "blue_dragon"
+
+[green_dragon.melee]
+clone = "blue_dragon.melee"
+target_hit = { offense = "slash", max = 120 }
+
+[green_dragon.dragonfire]
+clone = "blue_dragon.dragonfire"
+
+[red_dragon]
+clone = "blue_dragon"
+
+[red_dragon.melee]
+clone = "blue_dragon.melee"
+target_hit = { offense = "slash", max = 140 }
+
+[red_dragon.dragonfire]
+clone = "blue_dragon.dragonfire"
+
+[black_dragon]
+clone = "blue_dragon"
+
+[black_dragon.melee]
+clone = "blue_dragon.melee"
+target_hit = { offense = "slash", max = 210 }
+
+[black_dragon.dragonfire]
+clone = "blue_dragon.dragonfire"
