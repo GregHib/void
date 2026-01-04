@@ -47,7 +47,18 @@ class CombatDefinitions {
                                     "death_anim" -> deathAnim = string()
                                     "death_sound" -> deathSound = CombatDefinition.CombatSound(string())
                                     "defend_sound" -> defendSound = CombatDefinition.CombatSound(string())
-                                    "clone" -> throw UnsupportedOperationException("Clone only supported for combat attacks not definitions. ${exception()}")
+                                    "clone" -> {
+                                        val name = string()
+                                        val clone = definitions[name]
+                                        require(clone != null) { "Unable to find combat definition '$name' to clone. ${exception()}" }
+                                        if (clone.attackSpeed != 4) attackSpeed = clone.attackSpeed
+                                        if (clone.attackRange != 1) attackRange = clone.attackRange
+                                        if (clone.retreatRange != 8) retreatRange = clone.retreatRange
+                                        if (clone.defendAnim != "") defendAnim = clone.defendAnim
+                                        if (clone.deathAnim != "") deathAnim = clone.deathAnim
+                                        if (clone.defendSound != null) defendSound = clone.defendSound
+                                        if (clone.deathSound != null) deathSound = clone.deathSound
+                                    }
                                     else -> throw UnsupportedOperationException("Unknown key '$key' in combat definition. ${exception()}")
                                 }
                             }
@@ -95,6 +106,7 @@ class CombatDefinitions {
         val projectiles = mutableListOf<Projectile>()
         val drainSkills = mutableListOf<CombatDefinition.Drain>()
         val targetHits = mutableListOf<CombatHit>()
+        var targetMultiple = false
         var impactRegardless = false
         var freeze = 0
         var poison = 0
@@ -105,7 +117,12 @@ class CombatDefinitions {
             when (val key = key()) {
                 "clone" -> {
                     val name = string()
-                    val clone = attacks[name]
+                    val clone = if (name.contains(".")) {
+                        val (id, att) = name.split(".")
+                        definitions[id]?.attacks?.get(att)
+                    } else {
+                        attacks[name]
+                    }
                     require(clone != null) { "Unable to find attack definition '$name' to clone from npc '$stringId'. ${exception()}" }
                     if (clone.chance != 0) chance = clone.chance
                     if (clone.range != 1) range = clone.range
@@ -119,6 +136,7 @@ class CombatDefinitions {
                     if (clone.targetGfx.isNotEmpty()) targetGraphics.addAll(clone.targetGfx)
                     if (clone.targetSounds.isNotEmpty()) targetSounds.addAll(clone.targetSounds)
                     if (clone.targetHits.isNotEmpty()) targetHits.addAll(clone.targetHits)
+                    if (clone.targetMultiple) targetMultiple = clone.targetMultiple
                     if (clone.impactAnim != "") impactAnim = clone.impactAnim
                     if (clone.impactGfx.isNotEmpty()) impactGraphics.addAll(clone.impactGfx)
                     if (clone.impactSounds.isNotEmpty()) impactSounds.addAll(clone.impactSounds)
@@ -146,6 +164,7 @@ class CombatDefinitions {
                 "target_gfxs" -> graphics(targetGraphics)
                 "target_sound" -> sound(targetSounds)
                 "target_sounds" -> sounds(targetSounds)
+                "target_multiple" -> targetMultiple = boolean()
                 // Damage
                 "projectile" -> projectile(projectiles)
                 "projectiles" -> projectiles(projectiles)
@@ -190,6 +209,7 @@ class CombatDefinitions {
             targetAnim = targetAnim,
             targetSounds = targetSounds,
             targetHits = targetHits,
+            targetMultiple = targetMultiple,
             impactAnim = impactAnim,
             missGfx = missGraphics,
             impactGfx = impactGraphics,
@@ -245,7 +265,7 @@ class CombatDefinitions {
         if (peek == '"') {
             list.add(Projectile(string()))
             return
-        } else if (peek != '[') {
+        } else if (peek != '{') {
             throw IllegalArgumentException("Map expected but found literal '${peek}'. ${exception()}")
         }
         var id = ""

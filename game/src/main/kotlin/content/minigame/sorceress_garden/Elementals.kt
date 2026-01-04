@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.data.definition.PatrolDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.hunt.Hunting
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inject
@@ -17,9 +18,7 @@ import kotlin.getValue
 
 class Elementals : Script {
     val patrols: PatrolDefinitions by inject()
-    val hunting: Hunting by inject()
     val players: Players by inject()
-    val huntModes: HuntModeDefinitions by inject()
 
     init {
         npcSpawn("autumn_elemental*,spring_elemental*,summer_elemental*,winter_elemental*") {
@@ -29,9 +28,7 @@ class Elementals : Script {
 
         huntPlayer("*_elemental*", "spotted") {
             val direction = direction
-            val modeDefinition = huntModes.get("spotted")
-            val targets = hunting.getCharacters(this, players, def["hunt_range", 5], modeDefinition)
-            for (player in targets) {
+            for (player in targets as List<Player>) {
                 if (direction != Direction.NONE && direction != player.tile.delta(tile).toDirection()) {
                     continue // Skip players that aren't in-front or under.
                 }
