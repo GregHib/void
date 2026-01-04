@@ -1,7 +1,7 @@
 [skeletal_wyvern]
 attack_speed = 6
-attack_range = 8
-retreat_range = 5
+attack_range = 6
+retreat_range = 8
 defend = "skeletal_wyvern_defend"
 death = "skeletal_wyvern_death"
 
