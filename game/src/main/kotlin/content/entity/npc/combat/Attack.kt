@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
 import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
@@ -60,30 +61,34 @@ class Attack(
             play(attack.anim)
             play(attack.gfx)
             play(attack.sounds)
+            val targets = targets(target, attack.targetMultiple)
             // Target
-            target.play(attack.targetAnim)
-            target.play(attack.targetGfx)
-            target.play(attack.targetSounds)
-            // Hit
-            val delays = IntArray(attack.projectiles.size)
-            val origin = attack.projectileOrigin
-            for (i in attack.projectiles.indices) {
-                val projectile = attack.projectiles[i]
-                val delay = when (origin) {
-                    CombatDefinition.Origin.Entity -> shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve, endHeight = projectile.endHeight)
-                    CombatDefinition.Origin.Tile -> tile.shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve, endHeight = projectile.endHeight)
-                    CombatDefinition.Origin.Centre -> nearestTile(this, target).shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve, endHeight = projectile.endHeight)
+            for (target in targets) {
+                target.play(attack.targetAnim)
+                target.play(attack.targetGfx)
+                target.play(attack.targetSounds)
+                // Hit
+                val delays = IntArray(attack.projectiles.size)
+                val origin = attack.projectileOrigin
+                for (i in attack.projectiles.indices) {
+                    val projectile = attack.projectiles[i]
+                    val delay = when (origin) {
+                        CombatDefinition.Origin.Entity -> shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve, endHeight = projectile.endHeight)
+                        CombatDefinition.Origin.Tile -> tile.shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve, endHeight = projectile.endHeight)
+                        CombatDefinition.Origin.Centre -> nearestTile(this, target).shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve, endHeight = projectile.endHeight)
+                    }
+                    delays[i] = delay
                 }
-                delays[i] = delay
-            }
-            for (i in attack.targetHits.indices) {
-                val hit = attack.targetHits[i]
-                var delay = delays.getOrNull(i) ?: -1
-                if (delay == -1) {
-                    delay = if (hit.offense == "melee") 0 else 64
+                for (i in attack.targetHits.indices) {
+                    val hit = attack.targetHits[i]
+                    var delay = delays.getOrNull(i) ?: -1
+                    if (delay == -1) {
+                        delay = if (hit.offense == "melee") 0 else 64
+                    }
+                    val damage = Damage.roll(source = this, target = target, offensiveType = hit.offense, weapon = Item.EMPTY, spell = hit.spell, special = hit.special, defensiveType = hit.defence, range = hit.min..hit.max)
+                    hit(target = target, delay = delay, offensiveType = hit.offense, defensiveType = hit.defence, spell = hit.spell, special = hit.special, damage = damage)
                 }
-                val damage = Damage.roll(source = this, target = target, offensiveType = hit.offense, weapon = Item.EMPTY, spell = hit.spell, special = hit.special, defensiveType = hit.defence, range = hit.min..hit.max)
-                hit(target = target, delay = delay, offensiveType = hit.offense, defensiveType = hit.defence, spell = hit.spell, special = hit.special, damage = damage)
+                CombatApi.attack(this, target, "${definition.npc}:${attack.id}")
             }
         }
 
@@ -93,36 +98,42 @@ class Attack(
             val source = if (target is Player) def(target).stringId else id
             val definition = definitions.getOrNull(source) ?: return@npcCombatAttack
             val attack = definition.attacks[attackName] ?: return@npcCombatAttack
-            if (!CombatApi.impact(this, target, "${definition.npc}:${attack.id}")) {
-                return@npcCombatAttack
-            }
-            // Impact
-            target.play(attack.impactAnim)
-            target.play(if (attack.impactRegardless || context.damage > 0) attack.impactGfx else attack.missGfx)
-            target.play(if (attack.impactRegardless || context.damage > 0) attack.impactSounds else attack.missSounds)
-            // Effects
-            if (attack.impactRegardless || context.damage > 0) {
-                for (drain in attack.impactDrainSkills) {
-                    when (drain.skill) {
-                        "all" -> for (skill in Skill.all) {
-                            target.levels.drain(skill, drain.amount, drain.multiplier)
+            val targets = targets(target, attack.targetMultiple)
+            for (target in targets) {
+                if (!CombatApi.impact(this, target, "${definition.npc}:${attack.id}")) {
+                    continue
+                }
+                // Impact
+                target.play(attack.impactAnim)
+                target.play(if (attack.impactRegardless || context.damage > 0) attack.impactGfx else attack.missGfx)
+                target.play(if (attack.impactRegardless || context.damage > 0) attack.impactSounds else attack.missSounds)
+                // Effects
+                if (attack.impactRegardless || context.damage > 0) {
+                    for (drain in attack.impactDrainSkills) {
+                        when (drain.skill) {
+                            "all" -> for (skill in Skill.all) {
+                                target.levels.drain(skill, drain.amount, drain.multiplier)
+                            }
+                            "random" -> target.levels.drain(Skill.nonHealth.random(random), drain.amount, drain.multiplier)
+                            else -> target.levels.drain(Skill.of(drain.skill.toPascalCase()) ?: continue, drain.amount, drain.multiplier)
                         }
-                        "random" -> target.levels.drain(Skill.nonHealth.random(random), drain.amount, drain.multiplier)
-                        else -> target.levels.drain(Skill.of(drain.skill.toPascalCase()) ?: continue, drain.amount, drain.multiplier)
                     }
-                }
-                if (attack.impactFreeze != 0) {
-                    target.freeze(attack.impactFreeze)
-                }
-                if (attack.impactPoison != 0) {
-                    poison(target, attack.impactPoison)
-                }
-                if (attack.impactMessage != "") {
-                    target.message(attack.impactMessage)
+                    if (attack.impactFreeze != 0) {
+                        target.freeze(attack.impactFreeze)
+                    }
+                    if (attack.impactPoison != 0) {
+                        poison(target, attack.impactPoison)
+                    }
+                    if (attack.impactMessage != "") {
+                        target.message(attack.impactMessage)
+                    }
                 }
             }
         }
     }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun NPC.targets(target: Character, multiple: Boolean): List<Character> = if (multiple) targets as List<Character> else listOf(target)
 
     private fun Character.play(anim: String) {
         if (anim != "") {

@@ -211,8 +211,8 @@ class CombatDefinitions {
     }
 
     private fun ConfigReader.drain(drainSkills: MutableList<CombatDefinition.Drain>) {
-        if (peek == '"') {
-            throw IllegalArgumentException("Expected { skill = \"\", amount = 2 } found string literal '${string()}'. ${exception()}")
+        if (peek != '{') {
+            throw IllegalArgumentException("Expected { skill = \"\", amount = 2 } found literal '${peek}'. ${exception()}")
         }
         var skill = ""
         var min = 0
@@ -245,6 +245,8 @@ class CombatDefinitions {
         if (peek == '"') {
             list.add(Projectile(string()))
             return
+        } else if (peek != '[') {
+            throw IllegalArgumentException("Map expected but found literal '${peek}'. ${exception()}")
         }
         var id = ""
         var delay: Int? = null
@@ -270,8 +272,8 @@ class CombatDefinitions {
     }
 
     private fun ConfigReader.hit(list: MutableList<CombatHit>) {
-        if (peek == '"') {
-            throw IllegalArgumentException("Expected { offense = \"\", max = 100 } found string literal '${string()}'. ${exception()}")
+        if (peek != '{') {
+            throw IllegalArgumentException("Expected { offense = \"\", max = 100 } found literal '${peek}'. ${exception()}")
         }
         var offense = ""
         var defence: String? = null
@@ -330,6 +332,8 @@ class CombatDefinitions {
         if (peek == '"') {
             list.add(CombatDefinition.CombatGfx(string()))
             return
+        } else if (peek != '[') {
+            throw IllegalArgumentException("Map expected but found literal '${peek}'. ${exception()}")
         }
         var id = ""
         var delay: Int? = null

@@ -8,18 +8,12 @@ mage = 200
 range = 380
 xp_bonus = 1.4
 attack_bonus = 136
-max_hit_range = 690
-max_hit_magic = 210
-max_hit_melee = 260
 hunt_mode = "aggressive"
-attack_speed = 3
 respawn_delay = 150
 slayer_xp = 357.0
 categories = ["aviansie", "boss"]
 poison_immune = true
 wander_radius = 6
-retreat_range = 10
-attack_range = 10
 examine = "Graceful avatar of Armadyl."
 
 [flight_kilisa]

@@ -21,7 +21,7 @@ target_hit = { offense = "magic", max = 80 }
 clone = "goo"
 condition = "no_nose_peg"
 target_hit = { offense = "magic", max = 140 }
-impact_drain = [
+impact_drains = [
     { skill = "attack", multiplier = 0.8 },
     { skill = "strength", multiplier = 0.8 },
     { skill = "defence", multiplier = 0.6 },
@@ -30,4 +30,3 @@ impact_drain = [
     { skill = "prayer", multiplier = 0.5 },
     { skill = "agility", multiplier = 0.6 },
 ]
-

@@ -48,6 +48,7 @@ data class CombatDefinition(
      *  @param targetAnim animation played on the target when the swing is executed.
      *  @param targetSounds sounds played on the target when the swing is executed.
      *  @param targetHits damage hit queued when the swing is executed.
+     *  @param targetMultiple attack more than one target at once.
      *  == Impact ==
      *  @param impactAnim animation played on the target when the [targetHits] impacts.
      *  @param impactGfx gfx played on the target [targetHits] after the hit's delay.
@@ -78,6 +79,7 @@ data class CombatDefinition(
         val targetGfx: List<CombatGfx> = emptyList(),
         val targetSounds: List<CombatSound> = emptyList(),
         val targetHits: List<CombatHit> = emptyList(),
+        val targetMultiple: Boolean = false,
         // Impact
         val impactAnim: String = "",
         val impactGfx: List<CombatGfx> = emptyList(),
@@ -100,7 +102,14 @@ data class CombatDefinition(
      * @param min minimum damage that can be dealt by this hit.
      * @param max maximum damage that can be dealt by this hit.
      */
-    data class CombatHit(val offense: String = "", val defence: String = "", val spell: String = "", val special: Boolean = false, val min: Int = 0, val max: Int = 0)
+    data class CombatHit(
+        val offense: String = "",
+        val defence: String = "",
+        val spell: String = "",
+        val special: Boolean = false,
+        val min: Int = 0,
+        val max: Int = 0,
+    )
 
     data class Projectile(val id: String, val delay: Int? = null, val curve: Int? = null, val endHeight: Int? = null)
 

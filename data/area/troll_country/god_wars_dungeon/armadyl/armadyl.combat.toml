@@ -1,0 +1,46 @@
+[kree_arra]
+attack_speed = 3
+attack_range = 10
+retreat_range = 20
+defend_anim = "kree_arra_defend"
+death_anim = "kree_arra_death"
+
+[kree_arra.melee]
+condition = "no_attackers"
+chance = 60
+range = 1
+condition = "no_attackers"
+anim = "kree_arra_melee"
+target_sound = "kree_arra_melee"
+projectile = "kree_arra_tornado_white"
+target_hit = { offense = "melee", defence = "magic", max = 260 }
+
+[kree_arra.ranged]
+chance = 24
+range = 10
+condition = "no_attackers"
+anim = "kree_arra_attack"
+sound = { id = "kree_arra_attack", delay = 1, radius = 5 }
+projectile = "kree_arra_tornado_grey"
+target_multiple = true
+target_hit = { offense = "range", max = 690 }
+impact_sound = { id = "kree_arra_impact", radius = 5 }
+
+[kree_arra.ranged_teleport]
+clone = "ranged"
+chance = 6
+
+[kree_arra.magic]
+chance = 24
+range = 10
+condition = "no_attackers"
+anim = "kree_arra_attack"
+sound = { id = "kree_arra_attack", delay = 1, radius = 5 }
+projectile = "kree_arra_tornado_blue"
+target_multiple = true
+target_hit = { offense = "magic", defence = "range", max = 210 }
+impact_sound = { id = "kree_arra_impact", radius = 5 }
+
+[kree_arra.magic_teleport]
+clone = "magic"
+chance = 6

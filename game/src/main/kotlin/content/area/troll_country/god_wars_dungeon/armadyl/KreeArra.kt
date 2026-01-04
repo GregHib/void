@@ -1,26 +1,20 @@
 package content.area.troll_country.god_wars_dungeon.armadyl
 
-import content.entity.combat.attackers
-import content.entity.combat.hit.hit
-import content.entity.proj.shoot
+import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.character.areaSound
-import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.move.canTravel
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inject
-import world.gregs.voidps.engine.map.collision.random
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.random
 
 class KreeArra : Script {
 
-    val players: Players by inject()
-    val areas: AreaDefinitions by inject()
     val npcs: NPCs by inject()
+    val stepValidator: StepValidator by inject()
 
     var kilisa: NPC? = null
     var skree: NPC? = null
@@ -39,41 +33,8 @@ class KreeArra : Script {
             }
         }
 
-        npcCombatSwing("kree_arra") { target ->
-            if (attackers.isEmpty() && random.nextInt(2) == 0) { // Enrage
-                val targets = players.filter { it.tile in areas["armadyl_chamber"] }
-                for (t in targets) {
-                    if (random.nextBoolean()) {
-                        hit(t, offensiveType = "magic", defensiveType = "range")
-                    } else {
-                        hit(t, offensiveType = "range")
-                    }
-                    // Teleport
-                    if (random.nextInt(5) == 0) {
-                        var attempts = 0
-                        while (attempts++ < 20) {
-                            val tile = t.tile.toCuboid(2).random(t) ?: continue
-                            if (tile in tile.toCuboid(size, size)) {
-                                continue
-                            }
-                            t.tele(tile)
-                            t.gfx("kree_arra_stun", delay = 100)
-                            t.anim("kree_arra_stun")
-                            t.sound("kree_arra_stun")
-                            break
-                        }
-                    }
-                    shoot("kree_arra_tornado_blue", t.tile)
-                    anim("kree_arra_attack")
-                    areaSound("kree_arra_attack", tile, delay = 1)
-                }
-            } else { // Melee
-                anim("kree_arra_melee")
-                target.sound("kree_arra_melee")
-                shoot("kree_arra_tornado_white", target.tile)
-                hit(target, offensiveType = "melee", defensiveType = "magic")
-            }
-        }
+        npcAttack("kree_arra", "ranged_teleport", ::knockBack)
+        npcAttack("kree_arra", "magic_teleport", ::knockBack)
 
         npcDespawn("flight_kilisa") {
             kilisa = null
@@ -86,11 +47,30 @@ class KreeArra : Script {
         npcDespawn("flockleader_geerin") {
             geerin = null
         }
+    }
 
-        npcCombatAttack("kree_arra") { (target, _, type) ->
-            if (type != "melee") {
-                areaSound("kree_arra_impact", target.tile)
+    fun knockBack(npc: NPC, target: Character) {
+        val direction = target.tile.delta(npc.tile).toDirection()
+        if (knockBack(target, direction)) {
+            return
+        }
+        if (direction.isDiagonal()) {
+            if (knockBack(target, direction.horizontal())) {
+                return
+            }
+            if (knockBack(target, direction.vertical())) {
+                return
             }
         }
+    }
+
+    fun knockBack(target: Character, direction: Direction): Boolean {
+        if (stepValidator.canTravel(target, direction.delta.x, direction.delta.y)) {
+            target.gfx("kree_arra_stun", delay = 100)
+            target.anim("kree_arra_stun", delay = 100)
+            target.sound("kree_arra_stun")
+            return true
+        }
+        return false
     }
 }
