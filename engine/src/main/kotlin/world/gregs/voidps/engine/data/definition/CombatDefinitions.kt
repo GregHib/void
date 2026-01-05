@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.config.CombatDefinition
+import world.gregs.voidps.engine.data.config.CombatDefinition.CombatAttack
 import world.gregs.voidps.engine.data.config.CombatDefinition.CombatHit
 import world.gregs.voidps.engine.data.config.CombatDefinition.Projectile
 import world.gregs.voidps.engine.data.config.CombatDefinition.Origin
@@ -24,58 +25,30 @@ class CombatDefinitions {
     fun load(paths: List<String>): CombatDefinitions {
         timedLoad("combat definition") {
             val definitions = Object2ObjectOpenHashMap<String, CombatDefinition>()
+            val attackClones = mutableListOf<Triple<CombatDefinition, String, String>>()
+            val definitionClones = mutableListOf<Pair<String, String>>()
             for (path in paths) {
                 Config.fileReader(path) {
                     while (nextSection()) {
                         val section = section()
                         if (section.contains(".")) {
-                            attack(section, definitions)
+                            attack(section, definitions, attackClones)
                         } else {
-                            check(!definitions.containsKey(section)) { "Definition $section already exists. Make sure [npc_name] comes before [npc_name.attacks]." }
-                            var attackSpeed = 4
-                            var attackRange = 1
-                            var retreatRange = 8
-                            var defendAnim = ""
-                            var deathAnim = ""
-                            var defendSound: CombatDefinition.CombatSound? = null
-                            var deathSound: CombatDefinition.CombatSound? = null
-                            while (nextPair()) {
-                                when (val key = key()) {
-                                    "attack_speed" -> attackSpeed = int()
-                                    "attack_range" -> attackRange = int()
-                                    "retreat_range" -> retreatRange = int()
-                                    "defend_anim" -> defendAnim = string()
-                                    "death_anim" -> deathAnim = string()
-                                    "death_sound" -> deathSound = CombatDefinition.CombatSound(string())
-                                    "defend_sound" -> defendSound = CombatDefinition.CombatSound(string())
-                                    "clone" -> {
-                                        val name = string()
-                                        val clone = definitions[name]
-                                        require(clone != null) { "Unable to find combat definition '$name' to clone. ${exception()}" }
-                                        if (clone.attackSpeed != 4) attackSpeed = clone.attackSpeed
-                                        if (clone.attackRange != 1) attackRange = clone.attackRange
-                                        if (clone.retreatRange != 8) retreatRange = clone.retreatRange
-                                        if (clone.defendAnim != "") defendAnim = clone.defendAnim
-                                        if (clone.deathAnim != "") deathAnim = clone.deathAnim
-                                        if (clone.defendSound != null) defendSound = clone.defendSound
-                                        if (clone.deathSound != null) deathSound = clone.deathSound
-                                    }
-                                    else -> throw UnsupportedOperationException("Unknown key '$key' in combat definition. ${exception()}")
-                                }
-                            }
-                            definitions[section] = CombatDefinition(
-                                npc = section,
-                                attackSpeed = attackSpeed,
-                                attackRange = attackRange,
-                                retreatRange = retreatRange,
-                                defendAnim = defendAnim,
-                                defendSound = defendSound,
-                                deathAnim = deathAnim,
-                                deathSound = deathSound,
-                            )
+                            definition(definitions, section, definitionClones)
                         }
                     }
                 }
+            }
+            for ((definition, attack, clone) in attackClones) {
+                val original = definition.attacks[attack]!!
+                val (id, att) = clone.split(".")
+                val clone = definitions[id]?.attacks?.get(att) ?: throw IllegalArgumentException("Unable to find combat definition attack '$clone' to clone for '${definition.npc}.${attack}'.")
+                (definition.attacks as MutableMap<String, CombatAttack>)[attack] = override(original, clone)
+            }
+            for ((name, clone) in definitionClones) {
+                val original = definitions[name]!!
+                val clone = definitions[clone] ?: throw IllegalArgumentException("Unable to find combat definition '$clone' to clone for '${original.npc}'.")
+                definitions[name] = override(original, clone)
             }
             this.definitions = definitions
             this.definitions.size
@@ -83,7 +56,41 @@ class CombatDefinitions {
         return this
     }
 
-    private fun ConfigReader.attack(section: String, definitions: MutableMap<String, CombatDefinition>) {
+    private fun ConfigReader.definition(definitions: Object2ObjectOpenHashMap<String, CombatDefinition>, section: String, clones: MutableList<Pair<String, String>>) {
+        check(!definitions.containsKey(section)) { "Definition $section already exists. Make sure [npc_name] comes before [npc_name.attacks]." }
+        var attackSpeed = 4
+        var attackRange = 1
+        var retreatRange = 8
+        var defendAnim = ""
+        var deathAnim = ""
+        var defendSound: CombatDefinition.CombatSound? = null
+        var deathSound: CombatDefinition.CombatSound? = null
+        while (nextPair()) {
+            when (val key = key()) {
+                "attack_speed" -> attackSpeed = int()
+                "attack_range" -> attackRange = int()
+                "retreat_range" -> retreatRange = int()
+                "defend_anim" -> defendAnim = string()
+                "death_anim" -> deathAnim = string()
+                "death_sound" -> deathSound = CombatDefinition.CombatSound(string())
+                "defend_sound" -> defendSound = CombatDefinition.CombatSound(string())
+                "clone" -> clones.add(Pair(section, string()))
+                else -> throw UnsupportedOperationException("Unknown key '$key' in combat definition. ${exception()}")
+            }
+        }
+        definitions[section] = CombatDefinition(
+            npc = section,
+            attackSpeed = attackSpeed,
+            attackRange = attackRange,
+            retreatRange = retreatRange,
+            defendAnim = defendAnim,
+            defendSound = defendSound,
+            deathAnim = deathAnim,
+            deathSound = deathSound,
+        )
+    }
+
+    private fun ConfigReader.attack(section: String, definitions: MutableMap<String, CombatDefinition>, clones: MutableList<Triple<CombatDefinition, String, String>>) {
         val (stringId, id) = section.split(".")
         var chance = 1
         var range = 1
@@ -108,50 +115,21 @@ class CombatDefinitions {
         val projectiles = mutableListOf<Projectile>()
         val drainSkills = mutableListOf<CombatDefinition.Drain>()
         val targetHits = mutableListOf<CombatHit>()
-        var targetMultiple = false
         var targetArea = ""
         var impactRegardless = false
         var freeze = 0
         var poison = 0
         var message = ""
         val definition = definitions.getOrPut(stringId) { CombatDefinition(npc = stringId) }
-        val attacks = definition.attacks as MutableMap<String, CombatDefinition.CombatAttack>
+        val attacks = definition.attacks as MutableMap<String, CombatAttack>
         while (nextPair()) {
             when (val key = key()) {
                 "clone" -> {
-                    val name = string()
-                    val clone = if (name.contains(".")) {
-                        val (id, att) = name.split(".")
-                        definitions[id]?.attacks?.get(att)
-                    } else {
-                        attacks[name]
+                    var clone = string()
+                    if (!clone.contains(".")) {
+                        clone = "$stringId.$clone"
                     }
-                    require(clone != null) { "Unable to find attack definition '$name' to clone from npc '$stringId'. ${exception()}" }
-                    if (clone.chance != 0) chance = clone.chance
-                    if (clone.range != 1) range = clone.range
-                    if (clone.condition != "") condition = clone.condition
-                    if (clone.say != "") anim = clone.say
-                    if (clone.anim != "") anim = clone.anim
-                    if (clone.gfx.isNotEmpty()) graphics.addAll(clone.gfx)
-                    if (clone.sounds.isNotEmpty()) sounds.addAll(clone.sounds)
-                    if (clone.projectileOrigin != Origin.Entity) origin = clone.projectileOrigin
-                    if (clone.projectiles.isNotEmpty()) projectiles.addAll(clone.projectiles)
-                    if (clone.targetAnim != "") targetAnim = clone.targetAnim
-                    if (clone.targetGfx.isNotEmpty()) targetGraphics.addAll(clone.targetGfx)
-                    if (clone.targetSounds.isNotEmpty()) targetSounds.addAll(clone.targetSounds)
-                    if (clone.targetHits.isNotEmpty()) targetHits.addAll(clone.targetHits)
-                    if (clone.targetArea != "") targetArea = clone.targetArea
-                    if (clone.targetMultiple) targetMultiple = clone.targetMultiple
-                    if (clone.impactAnim != "") impactAnim = clone.impactAnim
-                    if (clone.impactGfx.isNotEmpty()) impactGraphics.addAll(clone.impactGfx)
-                    if (clone.impactSounds.isNotEmpty()) impactSounds.addAll(clone.impactSounds)
-                    if (clone.missGfx.isNotEmpty()) missGraphics.addAll(clone.missGfx)
-                    if (clone.missSounds.isNotEmpty()) missSounds.addAll(clone.missSounds)
-                    if (clone.impactDrainSkills.isNotEmpty()) drainSkills.addAll(clone.impactDrainSkills)
-                    if (clone.impactRegardless) impactRegardless = clone.impactRegardless
-                    if (clone.impactFreeze != 0) freeze = clone.impactFreeze
-                    if (clone.impactPoison != 0) poison = clone.impactPoison
-                    if (clone.impactMessage != "") message = clone.impactMessage
+                    clones.add(Triple(definition, id, clone))
                 }
                 // Selection
                 "chance" -> chance = int()
@@ -170,8 +148,7 @@ class CombatDefinitions {
                 "target_gfxs" -> graphics(targetGraphics)
                 "target_sound" -> sound(targetSounds)
                 "target_sounds" -> sounds(targetSounds)
-                "target_multiple" -> targetMultiple = boolean()
-                "target_area" -> targetArea = string()
+                "multi_target_area" -> targetArea = string()
                 // Damage
                 "projectile" -> projectile(projectiles)
                 "projectiles" -> projectiles(projectiles)
@@ -217,8 +194,7 @@ class CombatDefinitions {
             targetAnim = targetAnim,
             targetSounds = targetSounds,
             targetHits = targetHits,
-            targetMultiple = targetMultiple,
-            targetArea = targetArea,
+            multiTargetArea = targetArea,
             impactAnim = impactAnim,
             missGfx = missGraphics,
             impactGfx = impactGraphics,
@@ -330,13 +306,13 @@ class CombatDefinitions {
             when (val key = key()) {
                 "offense" -> {
                     offense = string()
-                    require(offense != "ranged") { "Invalid offensive type 'ranged' only 'range' is valid. ${exception()}"}
-                    require(offense != "mage") { "Invalid offensive type 'mage' only 'magic' is valid. ${exception()}"}
+                    require(offense != "ranged") { "Invalid offensive type 'ranged' only 'range' is valid. ${exception()}" }
+                    require(offense != "mage") { "Invalid offensive type 'mage' only 'magic' is valid. ${exception()}" }
                 }
                 "defence" -> {
                     defence = string()
-                    require(defence != "ranged") { "Invalid defensive type 'ranged' only 'range' is valid. ${exception()}"}
-                    require(defence != "mage") { "Invalid defensive type 'mage' only 'magic' is valid. ${exception()}"}
+                    require(defence != "ranged") { "Invalid defensive type 'ranged' only 'range' is valid. ${exception()}" }
+                    require(defence != "mage") { "Invalid defensive type 'mage' only 'magic' is valid. ${exception()}" }
                 }
                 "special" -> special = boolean()
                 "min" -> min = int()
@@ -429,5 +405,42 @@ class CombatDefinitions {
         }
         list.add(CombatDefinition.CombatGfx(id, delay, height, area, offset))
     }
+
+    private fun override(original: CombatAttack, clone: CombatAttack) = original.copy(
+        chance = if (clone.chance != 0) clone.chance else original.chance,
+        range = if (clone.range != 1) clone.range else original.range,
+        condition = if (clone.condition != "") clone.condition else original.condition,
+        say = if (clone.say != "") clone.say else original.say,
+        anim = if (clone.anim != "") clone.anim else original.anim,
+        gfx = clone.gfx.ifEmpty { original.gfx },
+        sounds = clone.sounds.ifEmpty { original.sounds },
+        projectileOrigin = if (clone.projectileOrigin != Origin.Entity) clone.projectileOrigin else original.projectileOrigin,
+        projectiles = clone.projectiles.ifEmpty { original.projectiles },
+        targetAnim = if (clone.targetAnim != "") clone.targetAnim else original.targetAnim,
+        targetGfx = clone.targetGfx.ifEmpty { original.targetGfx },
+        targetSounds = clone.targetSounds.ifEmpty { original.targetSounds },
+        targetHits = clone.targetHits.ifEmpty { original.targetHits },
+        multiTargetArea = if (clone.multiTargetArea != "") clone.multiTargetArea else original.multiTargetArea,
+        impactAnim = if (clone.impactAnim != "") clone.impactAnim else original.impactAnim,
+        impactGfx = clone.impactGfx.ifEmpty { original.impactGfx },
+        impactSounds = clone.impactSounds.ifEmpty { original.impactSounds },
+        missGfx = clone.missGfx.ifEmpty { original.missGfx },
+        missSounds = clone.missSounds.ifEmpty { original.missSounds },
+        impactDrainSkills = clone.impactDrainSkills.ifEmpty { original.impactDrainSkills },
+        impactRegardless = if (clone.impactRegardless) true else original.impactRegardless,
+        impactFreeze = if (clone.impactFreeze != 0) clone.impactFreeze else original.impactFreeze,
+        impactPoison = if (clone.impactPoison != 0) clone.impactPoison else original.impactPoison,
+        impactMessage = if (clone.impactMessage != "") clone.impactMessage else original.impactMessage,
+    )
+
+    private fun override(original: CombatDefinition, clone: CombatDefinition) = original.copy(
+        attackSpeed = if (clone.attackSpeed != 4) clone.attackSpeed else original.attackSpeed,
+        attackRange = if (clone.attackRange != 1) clone.attackRange else original.attackRange,
+        retreatRange = if (clone.retreatRange != 8) clone.retreatRange else original.retreatRange,
+        defendAnim = if (clone.defendAnim != "") clone.defendAnim else original.defendAnim,
+        deathAnim = if (clone.deathAnim != "") clone.deathAnim else original.deathAnim,
+        defendSound = clone.defendSound ?: original.defendSound,
+        deathSound = clone.deathSound ?: original.deathSound,
+    )
 
 }

@@ -1,0 +1,28 @@
+[human]
+attack_range = 1
+attack_speed = 4
+retreat_range = 8
+defend_anim = "human_defend"
+death_anim = "human_death"
+
+[human.melee]
+anim = "human_attack"
+target_hit = { offense = "crush", max = 10 }
+
+[man]
+clone = "human"
+defend_sound = "man_defend"
+death_sound = "man_death"
+
+[man.melee]
+clone = "human.melee"
+sound = "man_attack"
+
+[woman]
+clone = "human"
+defend_sound = "woman_defend"
+death_sound = "woman_death"
+
+[woman.melee]
+clone = "human.melee"
+sound = "woman_attack"

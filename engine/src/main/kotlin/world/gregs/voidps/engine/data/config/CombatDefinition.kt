@@ -50,8 +50,7 @@ data class CombatDefinition(
      *  @param targetAnim animation played on the target when the swing is executed.
      *  @param targetSounds sounds played on the target when the swing is executed.
      *  @param targetHits damage hit queued when the swing is executed.
-     *  @param targetMultiple attack more than one target at once.
-     *  @param targetArea The area to find multiple targets in.
+     *  @param multiTargetArea The area to find multiple targets within.
      *  == Impact ==
      *  @param impactAnim animation played on the target when the [targetHits] impacts.
      *  @param impactGfx gfx played on the target [targetHits] after the hit's delay.
@@ -83,8 +82,7 @@ data class CombatDefinition(
         val targetGfx: List<CombatGfx> = emptyList(),
         val targetSounds: List<CombatSound> = emptyList(),
         val targetHits: List<CombatHit> = emptyList(),
-        val targetMultiple: Boolean = false,
-        val targetArea: String = "",
+        val multiTargetArea: String = "",
         // Impact
         val impactAnim: String = "",
         val impactGfx: List<CombatGfx> = emptyList(),

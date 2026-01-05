@@ -69,7 +69,7 @@ class Attack(
             if (attack.say != "") {
                 say(attack.say)
             }
-            val targets = targets(target, attack.targetMultiple, attack.targetArea)
+            val targets = targets(target, attack.multiTargetArea)
             // Target
             for (target in targets) {
                 target.play(attack.targetAnim)
@@ -113,7 +113,7 @@ class Attack(
             val source = if (target is Player) def(target).stringId else id
             val definition = definitions.getOrNull(source) ?: return@npcCombatAttack
             val attack = definition.attacks[attackName] ?: return@npcCombatAttack
-            val targets = targets(target, attack.targetMultiple, attack.targetArea)
+            val targets = targets(target, attack.multiTargetArea)
             for (target in targets) {
                 if (!CombatApi.impact(this, target, "${definition.npc}:${attack.id}")) {
                     continue
@@ -151,12 +151,9 @@ class Attack(
     }
 
     @Suppress("UNCHECKED_CAST")
-    private fun NPC.targets(target: Character, multiple: Boolean, area: String): List<Character> {
-        if (!multiple || area == "" && targets.isEmpty()) {
-            return listOf(target)
-        }
+    private fun NPC.targets(target: Character, area: String): List<Character> {
         if (area == "") {
-            return targets as List<Character>
+            return listOf(target)
         }
         val area = areaDefinitions.getOrNull(area)?.area ?: return listOf(target)
         val list = mutableListOf<Character>()

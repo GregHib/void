@@ -21,8 +21,7 @@ range = 1
 anim = "general_graardor_slam"
 gfx = "general_graardor_slam"
 projectile = { id = "general_graardor_projectile", curve_min = 9, curve_max = 24 }
-target_multiple = true
-target_area = "bandos_chamber"
+multi_target_area = "bandos_chamber"
 target_sound = { id = "general_graardor_slam", delay = 20, radius = 7 }
 target_hit = { offense = "range", min = 150, max = 350 }
 impact_gfx = "general_graardor_smash_impact"
