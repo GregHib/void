@@ -30,7 +30,7 @@ anim = "king_black_dragon_breath"
 projectile = "dragon_breath_toxic"
 projectile_origin = "centre"
 target_sound = "dragon_breath_toxic"
-target_hit = { offense = "dragonfire", spell = "toxic", special = true, max = 500 }
+target_hit = { offense = "dragonfire", special = true, max = 500 }
 impact_poison = 80
 
 [king_black_dragon.ice]
@@ -40,7 +40,7 @@ anim = "king_black_dragon_breath"
 projectile = "dragon_breath_ice"
 projectile_origin = "centre"
 target_sound = "dragon_breath_ice"
-target_hit = { offense = "dragonfire", spell = "ice", special = true, max = 500 }
+target_hit = { offense = "dragonfire", special = true, max = 500 }
 impact_freeze = 10
 impact_message = "You have been frozen!"
 
@@ -51,6 +51,6 @@ anim = "king_black_dragon_breath"
 projectile = "dragon_breath_shock"
 projectile_origin = "centre"
 target_sound = "dragon_breath_shock"
-target_hit = { offense = "dragonfire", spell = "shock", special = true, max = 500 }
+target_hit = { offense = "dragonfire", special = true, max = 500 }
 impact_drain = { skill = "all", amount = 2 }
 impact_message = "You're shocked and weakened!"

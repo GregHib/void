@@ -38,13 +38,19 @@ interface Moved {
         private val npcMoved = Object2ObjectOpenHashMap<String, MutableList<(NPC, Tile) -> Unit>>(10)
 
         fun enter(player: Player, id: String, area: Area) {
-            for (handler in entered[id] ?: return) {
+            for (handler in entered[id] ?: emptyList()) {
+                handler(player, area)
+            }
+            for (handler in entered["*"] ?: return) {
                 handler(player, area)
             }
         }
 
         fun exit(player: Player, id: String, area: Area) {
-            for (handler in exited[id] ?: return) {
+            for (handler in exited[id] ?: emptyList()) {
+                handler(player, area)
+            }
+            for (handler in exited["*"] ?: return) {
                 handler(player, area)
             }
         }

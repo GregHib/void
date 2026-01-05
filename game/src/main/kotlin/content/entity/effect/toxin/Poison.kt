@@ -1,5 +1,6 @@
 package content.entity.effect.toxin
 
+import content.entity.combat.hit.Hit
 import content.entity.combat.hit.directHit
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -123,7 +124,7 @@ class Poison : Script {
         val poison = 20 + weapon.id.count { it == '+' } * 10
         if (type == "range" && random.nextDouble() < 0.125) {
             source.poison(target, if (weapon.id == "emerald_bolts_e") 50 else poison)
-        } else if (type == "melee" && random.nextDouble() < 0.25) {
+        } else if (Hit.meleeType(type) && random.nextDouble() < 0.25) {
             source.poison(target, poison + 20)
         }
     }

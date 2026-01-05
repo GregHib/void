@@ -85,7 +85,7 @@ class CombatDefinitions {
 
     private fun ConfigReader.attack(section: String, definitions: MutableMap<String, CombatDefinition>) {
         val (stringId, id) = section.split(".")
-        var chance = 0
+        var chance = 1
         var range = 1
         var condition = ""
 
@@ -109,6 +109,7 @@ class CombatDefinitions {
         val drainSkills = mutableListOf<CombatDefinition.Drain>()
         val targetHits = mutableListOf<CombatHit>()
         var targetMultiple = false
+        var targetArea = ""
         var impactRegardless = false
         var freeze = 0
         var poison = 0
@@ -139,6 +140,7 @@ class CombatDefinitions {
                     if (clone.targetGfx.isNotEmpty()) targetGraphics.addAll(clone.targetGfx)
                     if (clone.targetSounds.isNotEmpty()) targetSounds.addAll(clone.targetSounds)
                     if (clone.targetHits.isNotEmpty()) targetHits.addAll(clone.targetHits)
+                    if (clone.targetArea != "") targetArea = clone.targetArea
                     if (clone.targetMultiple) targetMultiple = clone.targetMultiple
                     if (clone.impactAnim != "") impactAnim = clone.impactAnim
                     if (clone.impactGfx.isNotEmpty()) impactGraphics.addAll(clone.impactGfx)
@@ -169,6 +171,7 @@ class CombatDefinitions {
                 "target_sound" -> sound(targetSounds)
                 "target_sounds" -> sounds(targetSounds)
                 "target_multiple" -> targetMultiple = boolean()
+                "target_area" -> targetArea = string()
                 // Damage
                 "projectile" -> projectile(projectiles)
                 "projectiles" -> projectiles(projectiles)
@@ -185,7 +188,7 @@ class CombatDefinitions {
                 "impact_gfx" -> graphic(impactGraphics)
                 "impact_gfxs" -> graphics(impactGraphics)
                 "impact_sound" -> sound(impactSounds)
-                "impact_sounds" -> sound(impactSounds)
+                "impact_sounds" -> sounds(impactSounds)
                 "impact_drain" -> drain(drainSkills)
                 "impact_drains" -> drains(drainSkills)
                 "impact_regardless" -> impactRegardless = boolean()
@@ -195,7 +198,7 @@ class CombatDefinitions {
                 "miss_gfx" -> graphic(missGraphics)
                 "miss_gfxs" -> graphics(missGraphics)
                 "miss_sound" -> sound(missSounds)
-                "miss_sounds" -> sound(missSounds)
+                "miss_sounds" -> sounds(missSounds)
                 else -> throw UnsupportedOperationException("Unknown key '$key' in combat definition. ${exception()}")
             }
         }
@@ -215,6 +218,7 @@ class CombatDefinitions {
             targetSounds = targetSounds,
             targetHits = targetHits,
             targetMultiple = targetMultiple,
+            targetArea = targetArea,
             impactAnim = impactAnim,
             missGfx = missGraphics,
             impactGfx = impactGraphics,
@@ -229,6 +233,9 @@ class CombatDefinitions {
     }
 
     private fun ConfigReader.drains(list: MutableList<CombatDefinition.Drain>) {
+        if (peek != '[') {
+            throw IllegalArgumentException("List expected but found literal '${peek}'. ${exception()}")
+        }
         list.clear()
         while (nextElement()) {
             drain(list)
@@ -260,6 +267,9 @@ class CombatDefinitions {
     }
 
     private fun ConfigReader.projectiles(list: MutableList<Projectile>) {
+        if (peek != '[') {
+            throw IllegalArgumentException("List expected but found literal '${peek}'. ${exception()}")
+        }
         list.clear()
         while (nextElement()) {
             projectile(list)
@@ -297,6 +307,9 @@ class CombatDefinitions {
     }
 
     private fun ConfigReader.hits(list: MutableList<CombatHit>) {
+        if (peek != '[') {
+            throw IllegalArgumentException("List expected but found literal '${peek}'. ${exception()}")
+        }
         list.clear()
         while (nextElement()) {
             hit(list)
@@ -312,6 +325,7 @@ class CombatDefinitions {
         var special = false
         var min = 0
         var max = 0
+        var delay: Int? = null
         while (nextEntry()) {
             when (val key = key()) {
                 "offense" -> {
@@ -327,13 +341,17 @@ class CombatDefinitions {
                 "special" -> special = boolean()
                 "min" -> min = int()
                 "max" -> max = int()
+                "delay" -> delay = int()
                 else -> throw IllegalArgumentException("Unknown key '$key' in hit definition. ${exception()}")
             }
         }
-        list.add(CombatHit(offense, defence ?: offense, special, min, max))
+        list.add(CombatHit(offense, defence ?: offense, special, min, max, delay))
     }
 
     private fun ConfigReader.sounds(list: MutableList<CombatDefinition.CombatSound>) {
+        if (peek != '[') {
+            throw IllegalArgumentException("List expected but found literal '${peek}'. ${exception()}")
+        }
         list.clear()
         while (nextElement()) {
             sound(list)
@@ -344,6 +362,8 @@ class CombatDefinitions {
         if (peek == '"') {
             list.add(CombatDefinition.CombatSound(string()))
             return
+        } else if (peek != '{') {
+            throw IllegalArgumentException("Map expected but found literal '${peek}'. ${exception()}")
         }
         var id = ""
         var delay = 0
@@ -369,6 +389,9 @@ class CombatDefinitions {
     }
 
     private fun ConfigReader.graphics(list: MutableList<CombatDefinition.CombatGfx>) {
+        if (peek != '[') {
+            throw IllegalArgumentException("List expected but found literal '${peek}'. ${exception()}")
+        }
         list.clear()
         while (nextElement()) {
             graphic(list)
@@ -379,7 +402,7 @@ class CombatDefinitions {
         if (peek == '"') {
             list.add(CombatDefinition.CombatGfx(string()))
             return
-        } else if (peek != '[') {
+        } else if (peek != '{') {
             throw IllegalArgumentException("Map expected but found literal '${peek}'. ${exception()}")
         }
         var id = ""

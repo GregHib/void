@@ -1,5 +1,6 @@
 package content.entity.player.equip
 
+import content.entity.combat.hit.Hit
 import content.entity.player.effect.antifire
 import content.entity.player.effect.superAntifire
 import content.skill.magic.spell.spell
@@ -64,7 +65,7 @@ object Equipment {
                 damage = (damage * multiplier.coerceAtLeast(0.0)).toInt()
             }
         }
-        if (type == "melee" && target.softTimers.contains("power_of_light")) {
+        if (Hit.meleeType(type) && target.softTimers.contains("power_of_light")) {
             damage = (damage * 0.5).toInt()
         }
         if (target is Player && target.equipped(EquipSlot.Shield).id == "divine_spirit_shield") {

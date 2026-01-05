@@ -17,6 +17,7 @@ chance = 1
 range = 1
 anim = "commander_zilyana_magic"
 target_multiple = true
+target_area = "saradomin_chamber"
 target_sound = { id = "commander_zilyana_magic", delay = 1, radius = 5 }
 target_hit = { offense = "magic", min = 100, max = 200 }
 target_gfx = "commander_zilyana_magic_strike"

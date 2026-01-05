@@ -1,5 +1,6 @@
 package content.entity.combat
 
+import content.entity.combat.hit.Hit
 import content.skill.melee.weapon.attackStyle
 import content.skill.slayer.isTask
 import content.skill.slayer.slayerTask
@@ -26,7 +27,7 @@ object Bonus {
         if (source !is Player) {
             return value
         }
-        if (type == "melee" && target is NPC && target.undead) {
+        if (Hit.meleeType(type) && target is NPC && target.undead) {
             when (source.equipped(EquipSlot.Amulet).id) {
                 "salve_amulet_e" -> return (value * 1.2).toInt()
                 "salve_amulet" -> return (value * (7.0 / 6.0)).toInt()
@@ -36,7 +37,7 @@ object Bonus {
             return value
         }
         val helm = source.equipped(EquipSlot.Hat).id
-        if (type == "melee" && (helm.startsWith("black_mask") || helm.startsWith("slayer_helmet"))) {
+        if (Hit.meleeType(type) && (helm.startsWith("black_mask") || helm.startsWith("slayer_helmet"))) {
             return (value * (7.0 / 6.0)).toInt()
         } else if (type == "range" && (helm == "focus_sight" || helm.startsWith("full_slayer_helmet"))) {
             return (value * 1.15).toInt()

@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.config.CombatDefinition
 import world.gregs.voidps.engine.data.config.CombatDefinition.CombatGfx
+import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.areaSound
@@ -21,6 +22,7 @@ import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
 import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.distanceTo
@@ -30,6 +32,8 @@ import world.gregs.voidps.type.random
 
 class Attack(
     val definitions: CombatDefinitions,
+    val areaDefinitions: AreaDefinitions,
+    val players: Players,
 ) : Script {
 
     init {
@@ -51,7 +55,7 @@ class Attack(
                 }
                 if (attack.range == 1 && !CharacterTargetStrategy(this).reached(target)) {
                     continue
-                } else if (distance < attack.range) {
+                } else if (attack.range in 2..<distance) {
                     continue
                 }
                 validAttacks.add(attack to attack.chance)
@@ -65,7 +69,7 @@ class Attack(
             if (attack.say != "") {
                 say(attack.say)
             }
-            val targets = targets(target, attack.targetMultiple)
+            val targets = targets(target, attack.targetMultiple, attack.targetArea)
             // Target
             for (target in targets) {
                 target.play(attack.targetAnim)
@@ -77,9 +81,9 @@ class Attack(
                 for (i in attack.projectiles.indices) {
                     val projectile = attack.projectiles[i]
                     val delay = when (origin) {
-                        CombatDefinition.Origin.Entity -> shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
-                        CombatDefinition.Origin.Tile -> tile.shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
-                        CombatDefinition.Origin.Centre -> nearestTile(this, target).shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
+                        CombatDefinition.Origin.Entity -> shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
+                        CombatDefinition.Origin.Tile -> tile.shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
+                        CombatDefinition.Origin.Centre -> nearestTile(this, target).shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
                     }
                     delays[i] = delay
                 }
@@ -88,6 +92,9 @@ class Attack(
                     var delay = delays.getOrNull(i) ?: -1
                     if (delay == -1) {
                         delay = if (Hit.meleeType(hit.offense)) 0 else 64
+                    }
+                    if (hit.delay != null) {
+                        delay = hit.delay!!
                     }
                     if (hit.max == 0) {
                         hit(target = target, delay = delay, offensiveType = hit.offense, defensiveType = hit.defence, special = hit.special)
@@ -106,7 +113,7 @@ class Attack(
             val source = if (target is Player) def(target).stringId else id
             val definition = definitions.getOrNull(source) ?: return@npcCombatAttack
             val attack = definition.attacks[attackName] ?: return@npcCombatAttack
-            val targets = targets(target, attack.targetMultiple)
+            val targets = targets(target, attack.targetMultiple, attack.targetArea)
             for (target in targets) {
                 if (!CombatApi.impact(this, target, "${definition.npc}:${attack.id}")) {
                     continue
@@ -144,7 +151,20 @@ class Attack(
     }
 
     @Suppress("UNCHECKED_CAST")
-    private fun NPC.targets(target: Character, multiple: Boolean): List<Character> = if (multiple) targets as List<Character> else listOf(target)
+    private fun NPC.targets(target: Character, multiple: Boolean, area: String): List<Character> {
+        if (!multiple || area == "" && targets.isEmpty()) {
+            return listOf(target)
+        }
+        if (area == "") {
+            return targets as List<Character>
+        }
+        val area = areaDefinitions.getOrNull(area)?.area ?: return listOf(target)
+        val list = mutableListOf<Character>()
+        for (zone in area.toZones(tile.level)) {
+            list.addAll(players[zone])
+        }
+        return list
+    }
 
     private fun Character.play(anim: String) {
         if (anim != "") {

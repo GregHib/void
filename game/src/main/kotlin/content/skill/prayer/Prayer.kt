@@ -1,5 +1,6 @@
 package content.skill.prayer
 
+import content.entity.combat.hit.Hit
 import content.skill.melee.weapon.combatStyle
 import content.skill.summoning.isFamiliar
 import world.gregs.voidps.engine.client.variable.PlayerVariables
@@ -64,20 +65,21 @@ object Prayer {
         if (source is NPC && (source.id == "death_spawn" || source.combatStyle.startsWith("typeless_"))) {
             return damage
         }
-        // TODO Deflect
-        if (source is NPC && usingProtectionPrayer(source, target, type)) {
-            target["protected_damage"] = damage
-            return 0
-        } else if (source is Player && usingProtectionPrayer(source, target, type) && !hitThroughProtectionPrayer(source, target, type, weapon, special)) {
-            target["protected_damage"] = damage
-            return (damage * if (target is Player) 0.6 else 0.0).toInt()
-        } else {
-            target.clear("protected_damage")
+        when (source) {
+            is NPC if usingProtectionPrayer(source, target, type) -> {
+                target["protected_damage"] = damage
+                return 0
+            }
+            is Player if usingProtectionPrayer(source, target, type) && !hitThroughProtectionPrayer(source, target, type, weapon, special) -> {
+                target["protected_damage"] = damage
+                return (damage * if (target is Player) 0.6 else 0.0).toInt()
+            }
+            else -> target.clear("protected_damage")
         }
         return damage
     }
 
-    private fun usingProtectionPrayer(source: Character, target: Character, type: String): Boolean = type == "melee" &&
+    private fun usingProtectionPrayer(source: Character, target: Character, type: String): Boolean = Hit.meleeType(type) &&
         target.protectMelee() ||
         type == "range" &&
         target.protectRange() ||
@@ -86,7 +88,7 @@ object Prayer {
         source.isFamiliar &&
         target.protectSummoning()
 
-    fun usingDeflectPrayer(source: Character, target: Character, type: String): Boolean = (type == "melee" && target.praying("deflect_melee")) ||
+    fun usingDeflectPrayer(source: Character, target: Character, type: String): Boolean = (Hit.meleeType(type) && target.praying("deflect_melee")) ||
         (type == "range" && target.praying("deflect_missiles")) ||
         (type == "magic" && target.praying("deflect_magic")) ||
         source.isFamiliar &&
@@ -96,7 +98,7 @@ object Prayer {
         if (target == null) {
             return false
         }
-        if (special && weapon.id == "ancient_mace" && type == "melee") {
+        if (special && weapon.id == "ancient_mace" && Hit.meleeType(type)) {
             return target.protectMelee()
         }
         return false

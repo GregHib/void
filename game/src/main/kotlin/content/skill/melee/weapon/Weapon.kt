@@ -2,6 +2,7 @@ package content.skill.melee.weapon
 
 import content.entity.combat.Target
 import content.entity.combat.attackers
+import content.entity.combat.hit.Hit
 import content.entity.player.combat.special.specialAttack
 import content.entity.player.equip.Equipment
 import content.skill.magic.spell.spell
@@ -52,16 +53,16 @@ object Weapon {
     }
 
     fun specialRatingModifiers(source: Character, type: String, weapon: Item, special: Boolean, rating: Int): Int {
-        if (type == "melee" && special && weapon.id == "dragon_halberd" && source["second_hit", false]) {
+        if (Hit.meleeType(type) && special && weapon.id == "dragon_halberd" && source["second_hit", false]) {
             return (rating * 0.75).toInt()
-        } else if (type == "melee" && special) {
+        } else if (Hit.meleeType(type) && special) {
             return (rating * weapon.def["special_accuracy_mod", 1.0]).toInt()
         }
         return rating
     }
 
     fun guaranteedChance(source: Character, target: Character, type: String, weapon: Item, special: Boolean): Boolean {
-        if (type == "melee" && source.contains("veracs_set_effect") && random.nextInt(4) == 0) {
+        if (Hit.meleeType(type) && source.contains("veracs_set_effect") && random.nextInt(4) == 0) {
             target.start("veracs_effect", 1)
             return true
         } else if (weapon.id.startsWith("bone_dagger")) {
@@ -78,7 +79,7 @@ object Weapon {
     }
 
     fun invalidateChance(source: Character, target: Character, type: String, weapon: Item, special: Boolean): Boolean {
-        if (type == "melee" && target.hasClock("spear_wall")) {
+        if (Hit.meleeType(type) && target.hasClock("spear_wall")) {
             return true
         }
         if (target is NPC && target.id == "skeleton_warlock" && source is Player && source["restless_ghost_warlock", -1] != target.index) {
@@ -192,7 +193,7 @@ object Weapon {
         baseDamage: Int,
     ): Int {
         var damage = baseDamage
-        if (type == "melee" && source is Player) {
+        if (Hit.meleeType(type) && source is Player) {
             if (weapon.id == "keris" && Target.isKalphite(target)) {
                 damage = (damage * (1.0 / 3.0) + if (random.nextDouble() < 0.51) 3.0 else 1.0).toInt()
             } else if (weapon.id.startsWith("ivandis_flail") && Target.isVampyre(target)) {

@@ -23,9 +23,9 @@ condition = "protect_melee_zamorak"
 chance = 3
 say = "YARRRRRRR!"
 #sound = { id = "3274", radius = 15 } TODO Unknown
-target_message = "K'ril Tsutsaroth slams through your protection prayer, leaving you feeling drained."
 target_hit = { offense = "damage", min = 350, max = 500 }
-target_drain = { skill = "prayer", multiplier = 0.5 }
+impact_drain = { skill = "prayer", multiplier = 0.5 }
+impact_message = "K'ril Tsutsaroth slams through your protection prayer, leaving you feeling drained."
 
 [kril_tsutsaroth.melee_slam_poison]
 clone = "melee_slam"

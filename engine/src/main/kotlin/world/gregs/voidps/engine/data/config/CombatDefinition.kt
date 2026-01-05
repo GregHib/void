@@ -51,6 +51,7 @@ data class CombatDefinition(
      *  @param targetSounds sounds played on the target when the swing is executed.
      *  @param targetHits damage hit queued when the swing is executed.
      *  @param targetMultiple attack more than one target at once.
+     *  @param targetArea The area to find multiple targets in.
      *  == Impact ==
      *  @param impactAnim animation played on the target when the [targetHits] impacts.
      *  @param impactGfx gfx played on the target [targetHits] after the hit's delay.
@@ -67,7 +68,7 @@ data class CombatDefinition(
     data class CombatAttack(
         val id: String = "",
         // Selection
-        val chance: Int,
+        val chance: Int = 1,
         val range: Int = 1,
         val condition: String = "",
         // Execution
@@ -83,6 +84,7 @@ data class CombatDefinition(
         val targetSounds: List<CombatSound> = emptyList(),
         val targetHits: List<CombatHit> = emptyList(),
         val targetMultiple: Boolean = false,
+        val targetArea: String = "",
         // Impact
         val impactAnim: String = "",
         val impactGfx: List<CombatGfx> = emptyList(),
@@ -103,6 +105,7 @@ data class CombatDefinition(
      * @param special whether hit is from a special attack
      * @param min minimum damage that can be dealt by this hit.
      * @param max maximum damage that can be dealt by this hit.
+     * @param delay override duration before this hit is applied (usually calculated using projectile travel time)
      */
     data class CombatHit(
         val offense: String = "",
@@ -110,6 +113,7 @@ data class CombatDefinition(
         val special: Boolean = false,
         val min: Int = 0,
         val max: Int = 0,
+        val delay: Int? = null,
     )
 
     data class Projectile(val id: String, val delay: Int? = null, val curve: IntRange? = null, val endHeight: Int? = null)

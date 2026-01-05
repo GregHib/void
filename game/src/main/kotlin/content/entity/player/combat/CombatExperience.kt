@@ -1,5 +1,6 @@
 package content.entity.player.combat
 
+import content.entity.combat.hit.Hit
 import content.skill.melee.weapon.attackStyle
 import content.skill.melee.weapon.attackType
 import content.skill.slayer.isTask
@@ -31,7 +32,7 @@ class CombatExperience : Script {
                 } else {
                     grant(this, target, Skill.Magic, base + damage / 5.0)
                 }
-            } else if (type == "melee" || type == "scorch") {
+            } else if (Hit.meleeType(type) || type == "scorch") {
                 when (attackStyle) {
                     "accurate" -> grant(this, target, Skill.Attack, damage / 2.5)
                     "aggressive" -> grant(this, target, Skill.Strength, damage / 2.5)

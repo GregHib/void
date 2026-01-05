@@ -1,6 +1,6 @@
 [general_graardor]
 attack_speed = 6
-attack_range = 8
+attack_range = 1
 retreat_range = 8
 defend_anim = "general_graardor_defend"
 death_anim = "general_graardor_death"
@@ -22,6 +22,7 @@ anim = "general_graardor_slam"
 gfx = "general_graardor_slam"
 projectile = { id = "general_graardor_projectile", curve_min = 9, curve_max = 24 }
 target_multiple = true
+target_area = "bandos_chamber"
 target_sound = { id = "general_graardor_slam", delay = 20, radius = 7 }
 target_hit = { offense = "range", min = 150, max = 350 }
 impact_gfx = "general_graardor_smash_impact"
@@ -52,6 +53,7 @@ death_anim = "sergeant_steelwill_death"
 death_sound = "sergeant_steelwill_death"
 
 [sergeant_steelwill.magic]
+range = 10
 anim = "sergeant_steelwill_attack"
 gfx = "sergeant_steelwill_attack"
 sound = "sergeant_steelwill_attack"
@@ -70,6 +72,7 @@ death_anim = "sergeant_grimspike_death"
 death_sound = "goblin_death"
 
 [sergeant_grimspike.axe]
+range = 10
 anim = "sergeant_grimspike_attack"
 sound = "sergeant_grimspike_attack"
 projectile = "sergeant_grimspike_axe"

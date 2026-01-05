@@ -23,6 +23,7 @@ anim = "kree_arra_attack"
 sound = { id = "kree_arra_attack", delay = 1, radius = 5 }
 projectile = "kree_arra_tornado_grey"
 target_multiple = true
+target_area = "armadyl_chamber"
 target_hit = { offense = "range", max = 690 }
 impact_sound = { id = "kree_arra_impact", radius = 5 }
 
