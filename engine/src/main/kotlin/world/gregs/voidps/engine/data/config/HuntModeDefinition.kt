@@ -39,8 +39,6 @@ data class HuntModeDefinition(
     val checkZamorak: Boolean = false,
     val checkNotZamorak: Boolean = false,
 ) {
-    var filter: ((Entity) -> Boolean)? = null
-
     init {
         if (type != "player") {
             check(rate >= 3) { "$type hunt rates must be more frequent than 3 ticks." }

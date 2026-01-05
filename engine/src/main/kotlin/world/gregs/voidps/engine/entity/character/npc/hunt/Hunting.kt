@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity.character.npc.hunt
 
-import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -45,6 +44,12 @@ class Hunting(
     private val seed: Random = random,
 ) : Runnable {
 
+    private var count = 0
+    private val playerTargets = arrayOfNulls<Player>(TARGET_CAP)
+    private val npcTargets = arrayOfNulls<NPC>(TARGET_CAP)
+    private val objectTargets = arrayOfNulls<GameObject>(TARGET_CAP)
+    private val itemTargets = arrayOfNulls<FloorItem>(TARGET_CAP)
+
     override fun run() {
         for (npc in npcs) {
             if (npc.huntCounter == -1) {
@@ -58,55 +63,73 @@ class Hunting(
             if (npc.contains("delay") || --npc.huntCounter >= 0) {
                 continue
             }
-            val range = npc.def["hunt_range", 5]
             val definition = huntModes.get(mode)
             npc.huntCounter = definition.rate
+            if (definition.checkNotCombatSelf && npc.hasClock("in_combat")) {
+                continue
+            }
+            val range = npc.def["hunt_range", 5]
             when (definition.type) {
                 "player" -> {
-                    getCharacters(npc, players, range, definition)
-                    val target = npc.targets.randomOrNull(seed) ?: continue
-                    Hunt.hunt(npc, target as Player, mode)
+                    listCharacters(npc, players, range, definition, playerTargets)
+                    if (count == 0) {
+                        continue
+                    }
+                    val index = seed.nextInt(0, count)
+                    Hunt.hunt(npc, playerTargets[index]!!, mode)
                 }
                 "npc" -> {
-                    getCharacters(npc, npcs, range, definition)
-                    val target = npc.targets.randomOrNull(seed) ?: continue
-                    Hunt.hunt(npc, target as NPC, mode)
+                    listCharacters(npc, npcs, range, definition, npcTargets)
+                    if (count == 0) {
+                        continue
+                    }
+                    val index = seed.nextInt(0, count)
+                    Hunt.hunt(npc, npcTargets[index]!!, mode)
                 }
                 "object" -> {
-                    getObjects(npc, definition)
-                    val target = npc.targets.randomOrNull(seed) ?: continue
-                    Hunt.hunt(npc, target as GameObject, mode)
+                    listObjects(npc, definition)
+                    if (count == 0) {
+                        continue
+                    }
+                    val index = seed.nextInt(0, count)
+                    Hunt.hunt(npc, objectTargets[index]!!, mode)
                 }
                 "floor_item" -> {
-                    getItems(npc, range, definition)
-                    val target = npc.targets.randomOrNull(seed) ?: continue
-                    Hunt.hunt(npc, target as FloorItem, mode)
+                    listItems(npc, range, definition)
+                    if (count == 0) {
+                        continue
+                    }
+                    val index = seed.nextInt(0, count)
+                    Hunt.hunt(npc, itemTargets[index]!!, mode)
                 }
             }
         }
+        // Just to avoid dangling references
+        playerTargets.fill(null)
+        npcTargets.fill(null)
+        objectTargets.fill(null)
+        itemTargets.fill(null)
     }
 
     /**
      * Returns all the [FloorItem]s in the first [Zone] with possible targets
      */
-    private fun getItems(npc: NPC, range: Int, definition: HuntModeDefinition, ) {
-        val targets = npc.targets
-        targets.clear()
+    private fun listItems(npc: NPC, range: Int, definition: HuntModeDefinition) {
+        count = 0
         for (zone in npc.tile.zone.toRectangle(ceil(range / 8.0).toInt()).toZonesReversed(npc.tile.level)) {
             for (items in floorItems[zone]) {
                 for (floorItem in items) {
                     if (definition.id != null && floorItem.id != definition.id) {
                         continue
                     }
-                    if (definition.filter != null && !definition.filter!!(floorItem)) {
-                        continue
-                    }
                     if (canSee(npc, floorItem.tile, 1, 1, definition)) {
-                        targets.add(floorItem)
+                        if (count < TARGET_CAP) {
+                            itemTargets[count++] = floorItem
+                        }
                     }
                 }
             }
-            if (targets.isNotEmpty()) {
+            if (count > 0) {
                 break
             }
         }
@@ -115,30 +138,33 @@ class Hunting(
     /**
      * Breadth first searches for the first [TARGET_CAP] possible [GameObject] targets
      */
-    private fun getObjects(npc: NPC, definition: HuntModeDefinition) {
-        val targets = npc.targets
-        targets.clear()
+    private fun listObjects(npc: NPC, definition: HuntModeDefinition) {
+        count = 0
         val queue: Queue<Tile> = LinkedList()
         queue.add(npc.tile)
         while (queue.isNotEmpty()) {
             val parent = queue.poll()
-            if (addTargets(parent, queue, definition, npc, targets, Direction.cardinal)) {
-                return
+            var obj = findTargets(parent, queue, definition, npc, Direction.cardinal)
+            if (obj != null) {
+                if (count < TARGET_CAP) {
+                    objectTargets[count++] = obj
+                }
+                continue
             }
-            if (addTargets(parent, queue, definition, npc, targets, Direction.ordinal)) {
-                return
+            obj = findTargets(parent, queue, definition, npc, Direction.ordinal) ?: continue
+            if (count < TARGET_CAP) {
+                objectTargets[count++] = obj
             }
         }
     }
 
-    private fun addTargets(
+    private fun findTargets(
         parent: Tile,
         queue: Queue<Tile>,
         definition: HuntModeDefinition,
         npc: NPC,
-        targets: MutableList<Any>,
         directions: List<Direction>,
-    ): Boolean {
+    ): GameObject? {
         for (direction in directions) {
             val tile = parent.add(direction)
             queue.add(tile)
@@ -146,40 +172,30 @@ class Hunting(
             if (definition.id != null && obj.id != definition.id) {
                 continue
             }
-            if (definition.filter != null && !definition.filter!!(obj)) {
-                continue
-            }
             if (canSee(npc, obj.tile, obj.width, obj.height, definition)) {
-                targets.add(obj)
-                if (targets.size > TARGET_CAP) {
-                    return true
-                }
+                return obj
             }
         }
-        return false
+        return null
     }
 
     /**
      * Finds the first [TARGET_CAP] possible [Character] targets
      */
-    fun <T : Character> getCharacters(
+    fun <T : Character> listCharacters(
         npc: NPC,
         characterList: CharacterSearch<T>,
         range: Int,
-        definition: HuntModeDefinition
+        definition: HuntModeDefinition,
+        targets: Array<T?>
     ) {
-        val targets = npc.targets
-        targets.clear()
         for (zone in npc.tile.zone.toRectangle(ceil(range / 8.0).toInt()).toZonesReversed(npc.tile.level)) {
             for (character in characterList[zone]) {
-                if (definition.filter != null && !definition.filter!!(character)) {
-                    continue
-                }
                 if (canHunt(npc, character, definition, range)) {
-                    targets.add(character)
-                    if (targets.size > TARGET_CAP) {
+                    if (count >= TARGET_CAP) {
                         return
                     }
+                    targets[count++] = character
                 }
             }
         }
@@ -205,9 +221,6 @@ class Hunting(
             return false
         }
         if (definition.checkNotCombat && target.hasClock("in_combat") && !target.contains("in_multi_combat")) {
-            return false
-        }
-        if (definition.checkNotCombatSelf && npc.hasClock("in_combat")) {
             return false
         }
         if (definition.checkAfk && !target.hasClock("tolerance")) {
