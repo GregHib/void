@@ -71,21 +71,11 @@ class Hunting(
             val range = npc.def["hunt_range", 5]
             when (definition.type) {
                 "player" -> {
-                    listCharacters(npc, players, range, definition, playerTargets)
-                    if (count == 0) {
-                        continue
-                    }
-                    val index = seed.nextInt(0, count)
-                    val target = playerTargets[index] ?: continue
+                    val target = findCharacter(npc, players, range, definition, playerTargets) ?: continue
                     Hunt.hunt(npc, target, mode)
                 }
                 "npc" -> {
-                    listCharacters(npc, npcs, range, definition, npcTargets)
-                    if (count == 0) {
-                        continue
-                    }
-                    val index = seed.nextInt(0, count)
-                    val target = npcTargets[index] ?: continue
+                    val target = findCharacter(npc, npcs, range, definition, npcTargets) ?: continue
                     Hunt.hunt(npc, target, mode)
                 }
                 "object" -> {
@@ -181,6 +171,21 @@ class Hunting(
             }
         }
         return null
+    }
+
+    fun <T : Character> findCharacter(
+        npc: NPC,
+        characters: CharacterSearch<T>,
+        range: Int,
+        definition: HuntModeDefinition,
+        targets: Array<T?>
+    ) : T? {
+        listCharacters(npc, characters, range, definition, targets)
+        if (count == 0) {
+            return null
+        }
+        val index = seed.nextInt(0, count)
+        return targets[index]
     }
 
     /**

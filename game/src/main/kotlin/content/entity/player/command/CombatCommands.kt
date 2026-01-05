@@ -1,5 +1,6 @@
 package content.entity.player.command
 
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.client.command.stringArg
@@ -16,7 +17,7 @@ import world.gregs.voidps.type.Tile
 class CombatCommands(
     val accounts: AccountDefinitions,
     val players: Players,
-) {
+) : Script {
     init {
         adminCommand(
             "boost",
@@ -41,7 +42,7 @@ class CombatCommands(
     }
 
     fun food(player: Player, args: List<String>) {
-        player.inventory.addToLimit("rocktails", 28)
+        player.inventory.addToLimit("rocktail", 28)
     }
 
     fun pots(player: Player, args: List<String>) {
