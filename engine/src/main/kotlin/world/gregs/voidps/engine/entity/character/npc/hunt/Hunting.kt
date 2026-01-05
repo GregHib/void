@@ -76,7 +76,8 @@ class Hunting(
                         continue
                     }
                     val index = seed.nextInt(0, count)
-                    Hunt.hunt(npc, playerTargets[index]!!, mode)
+                    val target = playerTargets[index] ?: continue
+                    Hunt.hunt(npc, target, mode)
                 }
                 "npc" -> {
                     listCharacters(npc, npcs, range, definition, npcTargets)
@@ -84,7 +85,8 @@ class Hunting(
                         continue
                     }
                     val index = seed.nextInt(0, count)
-                    Hunt.hunt(npc, npcTargets[index]!!, mode)
+                    val target = npcTargets[index] ?: continue
+                    Hunt.hunt(npc, target, mode)
                 }
                 "object" -> {
                     listObjects(npc, definition)
@@ -92,7 +94,8 @@ class Hunting(
                         continue
                     }
                     val index = seed.nextInt(0, count)
-                    Hunt.hunt(npc, objectTargets[index]!!, mode)
+                    val target = objectTargets[index] ?: continue
+                    Hunt.hunt(npc, target, mode)
                 }
                 "floor_item" -> {
                     listItems(npc, range, definition)
@@ -100,7 +103,8 @@ class Hunting(
                         continue
                     }
                     val index = seed.nextInt(0, count)
-                    Hunt.hunt(npc, itemTargets[index]!!, mode)
+                    val target = itemTargets[index] ?: continue
+                    Hunt.hunt(npc, target, mode)
                 }
             }
         }
@@ -189,6 +193,7 @@ class Hunting(
         definition: HuntModeDefinition,
         targets: Array<T?>
     ) {
+        count = 0
         for (zone in npc.tile.zone.toRectangle(ceil(range / 8.0).toInt()).toZonesReversed(npc.tile.level)) {
             for (character in characterList[zone]) {
                 if (canHunt(npc, character, definition, range)) {
