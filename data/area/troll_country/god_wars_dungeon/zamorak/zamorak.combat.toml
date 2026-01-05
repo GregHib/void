@@ -1,0 +1,45 @@
+[kril_tsutsaroth]
+attack_speed = 6
+attack_range = 1
+retreat_range = 8
+defend_anim = "kril_tsutsaroth_defend"
+death_anim = "kril_tsutsaroth_death"
+
+[kril_tsutsaroth.melee]
+chance = 6
+range = 1
+anim = "kril_tsutsaroth_attack"
+target_sound = "kril_tsutsaroth_attack"
+target_hit = { offense = "slash", max = 460 }
+
+[kril_tsutsaroth.melee_poison]
+clone = "melee"
+chance = 2
+impact_poison = 80
+
+[kril_tsutsaroth.melee_slam]
+clone = "melee"
+condition = "protect_melee_zamorak"
+chance = 3
+say = "YARRRRRRR!"
+#sound = { id = "3274", radius = 15 } TODO Unknown
+target_message = "K'ril Tsutsaroth slams through your protection prayer, leaving you feeling drained."
+target_hit = { offense = "damage", min = 350, max = 500 }
+target_drain = { skill = "prayer", multiplier = 0.5 }
+
+[kril_tsutsaroth.melee_slam_poison]
+clone = "melee_slam"
+condition = "protect_melee_zamorak"
+chance = 1
+impact_poison = 80
+
+[kril_tsutsaroth.magic]
+chance = 6
+anim = "kril_tsutsaroth_magic_attack"
+gfx = "kril_tsutsaroth_magic_attack"
+#projectile = "1211" TODO unknown
+target_sound = { id = "kril_tsutsaroth_magic", delay = 20 }
+target_hit = { offense = "magic", delay = 1, min = 100, max = 300 }
+impact_sound = { id = "kril_tsutsaroth_magic_impact", radius = 15 }
+miss_gfx = "giant_splash"
+miss_sound = "spell_splash"

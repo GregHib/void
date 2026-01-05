@@ -8,18 +8,13 @@ mage = 300
 range = 250
 attack_bonus = 195
 xp_bonus = 1.325
-max_hit_melee = 270
-max_hit_magic = 200
-min_hit_magic = 100
+combat_def = "commander_zilyana"
 hunt_mode = "aggressive"
-style = "crush"
-attack_speed = 2
 respawn_delay = 150
 slayer_xp = 350.0
 categories = ["boss"]
 poison_immune = true
 wander_radius = 6
-retreat_range = 8
 examine = "Commander of Saradomin's forces."
 
 [starlight]

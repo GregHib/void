@@ -1,0 +1,32 @@
+[commander_zilyana]
+attack_speed = 2
+attack_range = 1
+retreat_range = 8
+defend_anim = "commander_zilyana_defend"
+death_anim = "commander_zilyana_death"
+
+[commander_zilyana.melee]
+chance = 1
+range = 1
+anim = "commander_zilyana_attack"
+target_sound = "commander_zilyana_attack"
+target_hit = { offense = "crush", max = 270 }
+
+[commander_zilyana.magic]
+chance = 1
+range = 1
+anim = "commander_zilyana_magic"
+target_multiple = true
+target_sound = { id = "commander_zilyana_magic", delay = 1, radius = 5 }
+target_hit = { offense = "magic", min = 100, max = 200 }
+target_gfx = "commander_zilyana_magic_strike"
+impact_gfx = "commander_zilyana_magic_impact"
+impact_sound = { id = "commander_zilyana_magic_impact", radius = 5 }
+miss_sounds = [
+    { id = "spell_splash", radius = 5 },
+    { id = "spell_splash", delay = 20, radius = 5 },
+]
+miss_gfxs = [
+    { id = "spell_splash", height = 100, area = true, offset_y = 1 },
+    { id = "spell_splash", height = 100, area = true, offset_y = -1, delay = 20 },
+]

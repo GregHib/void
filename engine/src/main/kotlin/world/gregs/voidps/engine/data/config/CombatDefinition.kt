@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.data.config
 
+import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.random
 import kotlin.ranges.random
 
@@ -39,6 +40,7 @@ data class CombatDefinition(
      *  @param range maximum range (in tiles) at which this swing may be selected.
      *  @param condition optional check performed during filtering
      *  == Execution ==
+     *  @param say said npc when the swing is executed.
      *  @param anim played by the attacking npc when the swing is executed.
      *  @param gfx played by the attacking npc when the swing is executed.
      *  @param sounds played to the attacker when the swing is executed.
@@ -69,6 +71,7 @@ data class CombatDefinition(
         val range: Int = 1,
         val condition: String = "",
         // Execution
+        val say: String = "",
         val anim: String = "",
         val gfx: List<CombatGfx> = emptyList(),
         val sounds: List<CombatSound> = emptyList(),
@@ -97,7 +100,6 @@ data class CombatDefinition(
     /**
      * @param offense offensiveType (e.g. "crush", "range", "magic")
      * @param defence defensiveType (e.g. "dragonfire", "typeless_crush", "stab")
-     * @param spell id of the spell used.
      * @param special whether hit is from a special attack
      * @param min minimum damage that can be dealt by this hit.
      * @param max maximum damage that can be dealt by this hit.
@@ -105,13 +107,12 @@ data class CombatDefinition(
     data class CombatHit(
         val offense: String = "",
         val defence: String = "",
-        val spell: String = "",
         val special: Boolean = false,
         val min: Int = 0,
         val max: Int = 0,
     )
 
-    data class Projectile(val id: String, val delay: Int? = null, val curve: Int? = null, val endHeight: Int? = null)
+    data class Projectile(val id: String, val delay: Int? = null, val curve: IntRange? = null, val endHeight: Int? = null)
 
     enum class Origin {
         Entity,
@@ -129,7 +130,7 @@ data class CombatDefinition(
         val amount: Int get() = (min..max).random(random)
     }
 
-    data class CombatSound(val id: String, val delay: Int = 0, val radius: Int = 0)
+    data class CombatSound(val id: String, val delay: Int = 0, val radius: Int = 0, val offset: Delta? = null)
 
-    data class CombatGfx(val id: String, val delay: Int? = null, val area: Boolean = false)
+    data class CombatGfx(val id: String, val delay: Int? = null, val height: Int? = null, val area: Boolean = false, val offset: Delta? = null)
 }

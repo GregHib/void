@@ -62,6 +62,9 @@ class Attack(
             play(attack.anim)
             play(attack.gfx)
             play(attack.sounds)
+            if (attack.say != "") {
+                say(attack.say)
+            }
             val targets = targets(target, attack.targetMultiple)
             // Target
             for (target in targets) {
@@ -74,9 +77,9 @@ class Attack(
                 for (i in attack.projectiles.indices) {
                     val projectile = attack.projectiles[i]
                     val delay = when (origin) {
-                        CombatDefinition.Origin.Entity -> shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve, endHeight = projectile.endHeight)
-                        CombatDefinition.Origin.Tile -> tile.shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve, endHeight = projectile.endHeight)
-                        CombatDefinition.Origin.Centre -> nearestTile(this, target).shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve, endHeight = projectile.endHeight)
+                        CombatDefinition.Origin.Entity -> shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
+                        CombatDefinition.Origin.Tile -> tile.shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
+                        CombatDefinition.Origin.Centre -> nearestTile(this, target).shoot(id = projectile.id, tile = target.tile, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
                     }
                     delays[i] = delay
                 }
@@ -86,8 +89,12 @@ class Attack(
                     if (delay == -1) {
                         delay = if (Hit.meleeType(hit.offense)) 0 else 64
                     }
-                    val damage = Damage.roll(source = this, target = target, offensiveType = hit.offense, weapon = Item.EMPTY, spell = hit.spell, special = hit.special, defensiveType = hit.defence, range = hit.min..hit.max)
-                    hit(target = target, delay = delay, offensiveType = hit.offense, defensiveType = hit.defence, spell = hit.spell, special = hit.special, damage = damage)
+                    if (hit.max == 0) {
+                        hit(target = target, delay = delay, offensiveType = hit.offense, defensiveType = hit.defence, special = hit.special)
+                    } else {
+                        val damage = Damage.roll(source = this, target = target, offensiveType = hit.offense, weapon = Item.EMPTY, special = hit.special, defensiveType = hit.defence, range = hit.min..hit.max)
+                        hit(target = target, delay = delay, offensiveType = hit.offense, defensiveType = hit.defence, special = hit.special, damage = damage)
+                    }
                 }
                 CombatApi.attack(this, target, "${definition.npc}:${attack.id}")
             }
@@ -116,7 +123,10 @@ class Attack(
                                 target.levels.drain(skill, drain.amount, drain.multiplier)
                             }
                             "random" -> target.levels.drain(Skill.nonHealth.random(random), drain.amount, drain.multiplier)
-                            else -> target.levels.drain(Skill.of(drain.skill.toPascalCase()) ?: continue, drain.amount, drain.multiplier)
+                            else -> {
+                                val skill = Skill.of(drain.skill.toPascalCase()) ?: continue
+                                target.levels.drain(skill, drain.amount, drain.multiplier)
+                            }
                         }
                     }
                     if (attack.impactFreeze != 0) {
@@ -146,7 +156,12 @@ class Attack(
     private fun Character.play(list: List<CombatGfx>) {
         for (gfx in list) {
             if (gfx.area) {
-                areaGfx(id = gfx.id, tile = tile, delay = gfx.delay ?: 0)
+                areaGfx(
+                    id = gfx.id,
+                    tile = if (gfx.offset != null) tile.add(gfx.offset!!) else tile,
+                    delay = gfx.delay ?: 0,
+                    height = gfx.height ?: 0,
+                )
             } else {
                 gfx(id = gfx.id, delay = gfx.delay)
             }
@@ -159,7 +174,12 @@ class Attack(
             if (sound.radius == 0) {
                 sound(id = sound.id, delay = sound.delay)
             } else {
-                areaSound(id = sound.id, tile = tile, radius = sound.radius, delay = sound.delay)
+                areaSound(
+                    id = sound.id,
+                    tile = if (sound.offset != null) tile.add(sound.offset!!) else tile,
+                    radius = sound.radius,
+                    delay = sound.delay
+                )
             }
         }
     }

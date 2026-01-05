@@ -1,0 +1,76 @@
+[general_graardor]
+attack_speed = 6
+attack_range = 8
+retreat_range = 8
+defend_anim = "general_graardor_defend"
+death_anim = "general_graardor_death"
+
+[general_graardor.melee]
+chance = 2
+range = 1
+anim = "general_graardor_attack"
+target_sounds = [
+    { id = "general_graardor_attack" },
+    { id = "general_graardor_attack", delay = 20 },
+]
+target_hit = { offense = "crush", max = 600 }
+
+[general_graardor.range]
+chance = 1
+range = 1
+anim = "general_graardor_slam"
+gfx = "general_graardor_slam"
+projectile = { id = "general_graardor_projectile", curve_min = 9, curve_max = 24 }
+target_multiple = true
+target_sound = { id = "general_graardor_slam", delay = 20, radius = 7 }
+target_hit = { offense = "range", min = 150, max = 350 }
+impact_gfx = "general_graardor_smash_impact"
+miss_gfx = "giant_splash"
+miss_sound = "spell_splash"
+
+[sergeant_strongstack]
+attack_speed = 5
+attack_range = 1
+retreat_range = 8
+defend_anim = "sergeant_strongstack_defend"
+defend_sound = "goblin_defend"
+death_anim = "sergeant_strongstack_death"
+death_sound = "goblin_death"
+
+[sergeant_strongstack.melee]
+anim = "sergeant_strongstack_attack"
+sound = "goblin_attack"
+target_hit = { offense = "crush", max = 150 }
+
+[sergeant_steelwill]
+attack_range = 10
+attack_speed = 5
+retreat_range = 8
+defend_anim = "sergeant_steelwill_defend"
+defend_sound = "sergeant_steelwill_defend"
+death_anim = "sergeant_steelwill_death"
+death_sound = "sergeant_steelwill_death"
+
+[sergeant_steelwill.magic]
+anim = "sergeant_steelwill_attack"
+gfx = "sergeant_steelwill_attack"
+sound = "sergeant_steelwill_attack"
+projectile = "sergeant_steelwill_spell"
+target_hit = { offense = "magic", max = 150 }
+impact_gfx = { id = "sergeant_steelwill_impact", area = true }
+impact_sound = "sergeant_steelwill_impact"
+
+[sergeant_grimspike]
+attack_speed = 5
+attack_range = 10
+retreat_range = 8
+defend_anim = "sergeant_grimspike_defend"
+defend_sound = "goblin_defend"
+death_anim = "sergeant_grimspike_death"
+death_sound = "goblin_death"
+
+[sergeant_grimspike.axe]
+anim = "sergeant_grimspike_attack"
+sound = "sergeant_grimspike_attack"
+projectile = "sergeant_grimspike_axe"
+target_hit = { offense = "range", max = 210 }

@@ -504,14 +504,6 @@ projectiles = [
     { id = "aberrant_spectre_goo" }
 ]
 
-[sergeant_steelwill_spell]
-max_hit = 150
-graphic = "sergeant_steelwill_attack"
-animation = "sergeant_steelwill_attack"
-projectiles = [
-    { id = "sergeant_steelwill_spell" }
-]
-
 [balfrug_kreeyath_fireball]
 max_hit = 160
 graphic = "balfrug_kreeyath_fireball_cast"

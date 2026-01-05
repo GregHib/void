@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.data.config.CombatDefinition.CombatHit
 import world.gregs.voidps.engine.data.config.CombatDefinition.Projectile
 import world.gregs.voidps.engine.data.config.CombatDefinition.Origin
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.type.Delta
 
 /**
  * NPC Combat definitions
@@ -89,6 +90,7 @@ class CombatDefinitions {
         var condition = ""
 
         var anim = ""
+        var say = ""
         var targetAnim = ""
         var impactAnim = ""
 
@@ -127,6 +129,7 @@ class CombatDefinitions {
                     if (clone.chance != 0) chance = clone.chance
                     if (clone.range != 1) range = clone.range
                     if (clone.condition != "") condition = clone.condition
+                    if (clone.say != "") anim = clone.say
                     if (clone.anim != "") anim = clone.anim
                     if (clone.gfx.isNotEmpty()) graphics.addAll(clone.gfx)
                     if (clone.sounds.isNotEmpty()) sounds.addAll(clone.sounds)
@@ -153,6 +156,7 @@ class CombatDefinitions {
                 "range" -> range = int()
                 "condition" -> condition = string()
                 // Attacker
+                "say" -> say = string()
                 "anim" -> anim = string()
                 "gfx" -> graphic(graphics)
                 "gfxs" -> graphics(graphics)
@@ -200,6 +204,7 @@ class CombatDefinitions {
             chance = chance,
             range = range,
             condition = condition,
+            say = say,
             anim = anim,
             gfx = graphics,
             sounds = sounds,
@@ -270,17 +275,24 @@ class CombatDefinitions {
         }
         var id = ""
         var delay: Int? = null
-        var curve: Int? = null
+        var curveMin: Int? = null
+        var curveMax: Int? = null
         var endHeight: Int? = null
         while (nextEntry()) {
             when (val key = key()) {
                 "id" -> id = string()
                 "delay" -> delay = int()
-                "curve" -> curve = int()
+                "curve" -> {
+                    curveMin = int()
+                    curveMax = curveMin
+                }
+                "curve_min" -> curveMin = int()
+                "curve_max" -> curveMax = int()
                 "end_height" -> endHeight = int()
                 else -> throw IllegalArgumentException("Unknown key '$key' in projectile definition. ${exception()}")
             }
         }
+        val curve = if (curveMin != null && curveMax != null) curveMin..curveMax else null
         list.add(Projectile(id = id, delay = delay, curve = curve, endHeight = endHeight))
     }
 
@@ -297,7 +309,6 @@ class CombatDefinitions {
         }
         var offense = ""
         var defence: String? = null
-        var spell = ""
         var special = false
         var min = 0
         var max = 0
@@ -313,14 +324,13 @@ class CombatDefinitions {
                     require(defence != "ranged") { "Invalid defensive type 'ranged' only 'range' is valid. ${exception()}"}
                     require(defence != "mage") { "Invalid defensive type 'mage' only 'magic' is valid. ${exception()}"}
                 }
-                "spell" -> spell = string()
                 "special" -> special = boolean()
                 "min" -> min = int()
                 "max" -> max = int()
                 else -> throw IllegalArgumentException("Unknown key '$key' in hit definition. ${exception()}")
             }
         }
-        list.add(CombatHit(offense, defence ?: offense, spell, special, min, max))
+        list.add(CombatHit(offense, defence ?: offense, special, min, max))
     }
 
     private fun ConfigReader.sounds(list: MutableList<CombatDefinition.CombatSound>) {
@@ -338,15 +348,24 @@ class CombatDefinitions {
         var id = ""
         var delay = 0
         var radius = 0
+        var offset: Delta? = null
         while (nextEntry()) {
             when (val key = key()) {
                 "id" -> id = string()
                 "delay" -> delay = int()
                 "radius" -> radius = int()
+                "offset_x" -> {
+                    val x = int()
+                    offset = offset?.copy(x = x) ?: Delta(x = x, y = 0, level = 0)
+                }
+                "offset_y" -> {
+                    val y = int()
+                    offset = offset?.copy(y = y) ?: Delta(x = 0, y = y, level = 0)
+                }
                 else -> throw IllegalArgumentException("Unknown key '$key' in sound definition. ${exception()}")
             }
         }
-        list.add(CombatDefinition.CombatSound(id, delay, radius))
+        list.add(CombatDefinition.CombatSound(id, delay, radius, offset))
     }
 
     private fun ConfigReader.graphics(list: MutableList<CombatDefinition.CombatGfx>) {
@@ -365,16 +384,27 @@ class CombatDefinitions {
         }
         var id = ""
         var delay: Int? = null
+        var height: Int? = null
         var area = false
+        var offset: Delta? = null
         while (nextEntry()) {
             when (val key = key()) {
                 "id" -> id = string()
                 "delay" -> delay = int()
+                "height" -> height = int()
                 "area" -> area = boolean()
+                "offset_x" -> {
+                    val x = int()
+                    offset = offset?.copy(x = x) ?: Delta(x = x, y = 0, level = 0)
+                }
+                "offset_y" -> {
+                    val y = int()
+                    offset = offset?.copy(y = y) ?: Delta(x = 0, y = y, level = 0)
+                }
                 else -> throw IllegalArgumentException("Unknown key '$key' in gfx definition. ${exception()}")
             }
         }
-        list.add(CombatDefinition.CombatGfx(id, delay, area))
+        list.add(CombatDefinition.CombatGfx(id, delay, height, area, offset))
     }
 
 }

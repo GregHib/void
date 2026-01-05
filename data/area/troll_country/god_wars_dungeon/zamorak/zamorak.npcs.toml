@@ -7,18 +7,12 @@ def = 270
 mage = 200
 attack_bonus = 160
 xp_bonus = 1.375
-max_hit_melee = 460
-max_hit_magic = 300
-min_hit_magic = 100
 hunt_mode = "aggressive"
-style = "slash"
-attack_speed = 6
 respawn_delay = 150
 slayer_xp = 350.5
 categories = ["demons", "boss"]
 poison_immune = true
 wander_radius = 6
-retreat_range = 8
 examine = "A servant of the god Zamorak."
 
 [tstanon_karlak]
