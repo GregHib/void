@@ -58,6 +58,7 @@ class PlayerDeath : Script {
                     instructions.tryReceive().getOrNull() ?: break
                 }
                 val tile = tile.copy()
+                set("death_tile", tile)
                 val wilderness = inWilderness
                 retribution(player)
                 wrath(player)

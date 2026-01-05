@@ -89,6 +89,8 @@ class PlayerCommands : Script {
 
         val prayers = setOf("normal", "curses")
         adminCommand("prayers", stringArg("prayer-type", autofill = prayers, optional = true), stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Switch prayers", handler = ::prayers)
+        commandSuggestion("prayers curses", "curse", "curses")
+        commandSuggestion("prayers normal", "normal", "normals")
         adminCommand(
             "variables",
             stringArg("var-name", desc = "The variable name to search for", optional = true, autofill = variables.definitions.keys),
