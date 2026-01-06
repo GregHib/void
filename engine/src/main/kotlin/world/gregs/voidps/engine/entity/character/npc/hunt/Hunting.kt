@@ -231,7 +231,7 @@ class Hunting(
         if (definition.checkNotTooStrong && targetTooStrong(npc, target)) {
             return false
         }
-        if (definition.checkNotCombat && target.hasClock("in_combat") && !target.contains("in_multi_combat")) {
+        if (definition.checkNotCombat && target.hasClock("under_attack") && !target.contains("in_multi_combat")) {
             return false
         }
         if (definition.checkAfk && !target.hasClock("tolerance")) {

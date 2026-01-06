@@ -96,7 +96,7 @@ class CombatMovement(
         val spawn = spawn ?: return false
         if (!character.tile.within(spawn, wanderRadius)) {
             character.walkTo(spawn)
-            character.stop("in_combat")
+            character.stop("under_attack")
             return true
         }
         val attackRadius = character.def["retreat_range", 8]

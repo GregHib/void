@@ -1,6 +1,6 @@
 package content.skill.thieving
 
-import content.entity.combat.inCombat
+import content.entity.combat.underAttack
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
@@ -29,7 +29,7 @@ class Stalls : Script {
 
     init {
         objectOperate("Steal-from", "*_stall") { (target) ->
-            if (inCombat) {
+            if (underAttack) {
                 message("You can't do this while you're in combat.")
                 return@objectOperate
             }

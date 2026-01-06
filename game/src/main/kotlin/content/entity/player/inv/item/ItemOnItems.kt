@@ -1,6 +1,6 @@
 package content.entity.player.inv.item
 
-import content.entity.combat.inCombat
+import content.entity.combat.underAttack
 import content.entity.player.dialogue.type.makeAmount
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
@@ -154,7 +154,7 @@ class ItemOnItems : Script {
         }
         val definition = overlaps.first()
         val stackable = definition.maximum == -1 && definition.remove.all { inventory.stackable(it.id) } && definition.one.all { inventory.stackable(it.id) }
-        return stackable || maximum == 1 || player["selecting_amount", false] || player.inCombat
+        return stackable || maximum == 1 || player["selecting_amount", false] || player.underAttack
     }
 
     fun getMaximum(overlaps: List<ItemOnItemDefinition>, player: Player): Int {

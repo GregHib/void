@@ -26,7 +26,7 @@ class GodwarsAltars : Script {
                 message("You must wait a total of 10 minutes before being able to recharge your prayer points.")
                 return@objectOperate
             }
-            if (hasClock("in_combat")) {
+            if (hasClock("under_attack")) {
                 message("You cannot recharge your prayer while engaged in combat.")
                 return@objectOperate
             }

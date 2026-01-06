@@ -30,17 +30,17 @@ internal class CombatFlinchTest : WorldTest() {
         tick()
         player.walkTo(tile)
         tick()
-        assertTrue(npc.inCombat)
-        assertFalse(player.inCombat)
+        assertTrue(npc.underAttack)
+        assertFalse(player.underAttack)
         tick(7)
-        assertFalse(npc.inCombat)
+        assertFalse(npc.underAttack)
 
         player.npcOption(npc, "Attack")
         tick()
         player.walkTo(tile)
         tick()
-        assertTrue(npc.inCombat)
-        assertFalse(player.inCombat)
+        assertTrue(npc.underAttack)
+        assertFalse(player.underAttack)
     }
 
     @Test
@@ -52,15 +52,15 @@ internal class CombatFlinchTest : WorldTest() {
         tick()
         player.walkTo(tile)
         tick()
-        assertTrue(npc.inCombat)
-        assertFalse(player.inCombat)
+        assertTrue(npc.underAttack)
+        assertFalse(player.underAttack)
         tick(5) // Don't wait long enough
 
         player.npcOption(npc, "Attack")
         tick()
         player.walkTo(tile)
         tick(4)
-        assertTrue(npc.inCombat)
-        assertTrue(player.inCombat)
+        assertTrue(npc.underAttack)
+        assertTrue(player.underAttack)
     }
 }

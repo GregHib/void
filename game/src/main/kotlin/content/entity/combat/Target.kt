@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -75,7 +76,7 @@ object Target {
             return true
         }
         // If the target I'm trying to attack is already in combat and I am not the attacker
-        if (target.inSingleCombat && target.inCombat && target.attacker != source) {
+        if (target.inSingleCombat && target.underAttack && target.attacker != source) {
             if (target is NPC) {
                 (source as? Player)?.message("Someone else is fighting that.")
             } else {
@@ -84,7 +85,7 @@ object Target {
             return false
         }
         // If I am already in combat and my attempted target is not my attacker
-        if (source.inSingleCombat && source.inCombat && source.attacker != target) {
+        if (source.inSingleCombat && source.underAttack && source.attacker != target) {
             (source as? Player)?.message("You are already in combat.")
             return false
         }
@@ -152,7 +153,13 @@ internal var Character.target: Character?
     }
 
 val Character.inCombat: Boolean
-    get() = hasClock("in_combat")
+    get() = attacking || underAttack
+
+val Character.attacking: Boolean
+    get() = mode is CombatMovement
+
+val Character.underAttack: Boolean
+    get() = hasClock("under_attack")
 
 var Character.attacker: Character?
     get() = get("attacker")

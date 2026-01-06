@@ -50,7 +50,7 @@ class Pickpocketing : Script {
         if (hasClock("food_delay") || hasClock("action_delay")) { // Should action_delay and food_delay be the same??
             return
         }
-        if (hasClock("in_combat")) {
+        if (hasClock("under_attack")) {
             message("You can't pickpocket during combat.")
             return
         }

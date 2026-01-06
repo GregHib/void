@@ -1,6 +1,6 @@
 package content.entity.player
 
-import content.entity.combat.inCombat
+import content.entity.combat.underAttack
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
@@ -17,7 +17,7 @@ class Exit : Script {
         }
 
         interfaceOption(id = "logout:*") {
-            if (inCombat) {
+            if (underAttack) {
                 message("You can't log out until 8 seconds after the end of combat.")
                 return@interfaceOption
             }

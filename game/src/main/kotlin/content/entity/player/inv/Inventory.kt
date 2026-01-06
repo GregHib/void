@@ -1,6 +1,7 @@
 package content.entity.player.inv
 
 import com.github.michaelbull.logging.InlineLogger
+import content.entity.combat.attacking
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.InterfaceApi
 import world.gregs.voidps.engine.client.ui.ItemOption
@@ -28,7 +29,7 @@ class Inventory : Script {
 
         interfaceSwap("inventory:*") { _, _, fromSlot, toSlot ->
             closeInterfaces()
-            if (mode is CombatMovement) {
+            if (attacking) {
                 mode = EmptyMode
             }
             if (!inventory.swap(fromSlot, toSlot)) {
@@ -49,7 +50,7 @@ class Inventory : Script {
                 return@interfaceOption
             }
             closeInterfaces()
-            if (mode is CombatMovement) {
+            if (attacking) {
                 mode = EmptyMode
             }
             InterfaceApi.itemOption(this, ItemOption(item, itemSlot, id.substringBefore(":"), equipOption))

@@ -1,6 +1,6 @@
 package content.area.fremennik_province.waterbirth_island_dungeon
 
-import content.entity.combat.inCombat
+import content.entity.combat.underAttack
 import content.entity.combat.target
 import content.entity.effect.transform
 import world.gregs.voidps.engine.Script
@@ -36,7 +36,7 @@ class RockLobster : Script {
      */
     fun resetToHidden(npc: NPC) {
         npc.softQueue("reset_hidden", TimeUnit.SECONDS.toTicks(30)) {
-            if (npc.inCombat || npc.target != null) {
+            if (npc.underAttack || npc.target != null) {
                 resetToHidden(npc)
             } else {
                 if (npc.transform == "rock_lobster") {

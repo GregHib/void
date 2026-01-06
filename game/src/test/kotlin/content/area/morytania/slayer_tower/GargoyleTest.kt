@@ -114,7 +114,7 @@ class GargoyleTest : WorldTest() {
         tick()
         gargoyle.levels.set(Skill.Constitution, 50)
 
-        gargoyle.start("in_combat", 100)
+        gargoyle.start("under_attack", 100)
         gargoyle.attacker = other
 
         player.npcOption(gargoyle, "Smash")

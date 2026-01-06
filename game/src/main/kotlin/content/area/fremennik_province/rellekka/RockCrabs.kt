@@ -1,6 +1,6 @@
 package content.area.fremennik_province.rellekka
 
-import content.entity.combat.inCombat
+import content.entity.combat.underAttack
 import content.entity.combat.target
 import content.entity.effect.transform
 import world.gregs.voidps.engine.Script
@@ -45,7 +45,7 @@ class RockCrabs : Script {
     fun resetToRock(npc: NPC) {
         npc.softQueue("rock_inactive", TimeUnit.SECONDS.toTicks(30)) {
             // still fighting? reschedule
-            if (npc.target != null || npc.inCombat) {
+            if (npc.target != null || npc.underAttack) {
                 resetToRock(npc)
                 return@softQueue
             }
