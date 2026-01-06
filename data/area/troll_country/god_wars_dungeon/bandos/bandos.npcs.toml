@@ -15,7 +15,7 @@ respawn_delay = 150
 slayer_xp = 338.0
 categories = ["boss"]
 poison_immune = true
-wander_radius = 6
+wander_radius = 20
 examine = "A huge war chief."
 
 [sergeant_strongstack]
@@ -30,7 +30,7 @@ hunt_mode = "aggressive"
 hunt_range = 8
 slayer_xp = 128.0
 categories = ["goblins"]
-wander_radius = 6
+wander_radius = 20
 combat_sounds = "goblin"
 drop_table = "bandos_bodyguard"
 examine = "A battle-honed goblin."
@@ -47,7 +47,7 @@ hunt_mode = "aggressive"
 hunt_range = 8
 slayer_xp = 127.0
 categories = ["goblins"]
-wander_radius = 6
+wander_radius = 20
 drop_table = "bandos_bodyguard"
 examine = "A battle-honed goblin."
 
@@ -65,6 +65,6 @@ hunt_range = 8
 #weapon_style = "thrown"
 slayer_xp = 128.0
 categories = ["goblins"]
-wander_radius = 6
+wander_radius = 20
 drop_table = "bandos_bodyguard"
 examine = "A battle-honed goblin."

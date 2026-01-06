@@ -519,11 +519,3 @@ animation = "growler_attack"
 projectiles = [
     { id = "growler_sonic_spell" }
 ]
-
-[wingman_skree_spell]
-max_hit = 160
-graphic = "wingman_skree_cast"
-animation = "aviansie_attack_magic"
-projectiles = [
-    { id = "wingman_skree_spell" }
-]
