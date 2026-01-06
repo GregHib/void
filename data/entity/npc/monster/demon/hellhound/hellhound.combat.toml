@@ -1,0 +1,14 @@
+[hellhound]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "hellhound_defend"
+defend_sound = "hellhound_defend"
+death_anim = "hellhound_death"
+death_sound = "hellhound_death"
+
+[hellhound.melee]
+range = 1
+anim = "hellhound_attack"
+target_sound = "hellhound_attack"
+target_hit = { offense = "stab", max = 110 }

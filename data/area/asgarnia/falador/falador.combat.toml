@@ -1,0 +1,11 @@
+[guard_falador]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "human_defend"
+death_anim = "human_death"
+
+[guard_falador.melee]
+range = 1
+anim = "human_attack"
+target_hit = { offense = "stab", max = 30 }

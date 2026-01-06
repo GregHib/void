@@ -1,0 +1,15 @@
+[gargoyle]
+attack_speed = 4
+attack_range = 1
+retreat_range = 16
+defend_anim = "gargoyle_defend"
+defend_sound = "gargoyle_defend"
+death_anim = "gargoyle_death"
+death_sound = "gargoyle_death"
+
+[gargoyle.melee]
+range = 1
+anim = "gargoyle_attack"
+target_sound = "gargoyle_attack"
+target_hit = { offense = "slash", max = 110 }
+

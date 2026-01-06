@@ -4,13 +4,10 @@ hitpoints = 700
 att = 100
 str = 90
 def = 70
+combat_def = "ice_wolf"
 wander_radius = 4
 slayer_xp = 70.0
-max_hit_melee = 100
 hunt_mode = "cowardly"
-style = "stab"
-combat_anims = "wolves"
-combat_sounds = "wolves"
 drop_table = "ice_wolf"
 respawn_delay = 30
 categories = ["wolves"]
@@ -27,9 +24,8 @@ att = 150
 str = 150
 def = 70
 hunt_mode = "aggressive"
-max_hit_melee = 160
+max_hit_stab = 160
 hunt_mode = "cowardly"
-style = "stab"
 respawn_delay = 10
 
 [ice_wolf_ice_path]

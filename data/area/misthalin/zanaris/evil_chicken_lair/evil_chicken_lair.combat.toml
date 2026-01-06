@@ -1,0 +1,14 @@
+[evil_chicken]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "evil_chicken_defend"
+defend_sound = "chicken_defend"
+death_anim = "evil_chicken_death"
+death_sound = "chicken_death"
+
+[evil_chicken.magic]
+range = 1
+anim = "evil_chicken_attack"
+target_sound = "evil_chicken_attack"
+target_hit = { offense = "magic", max = 210 }

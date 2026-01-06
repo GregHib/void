@@ -1,0 +1,14 @@
+[cyclops]
+attack_speed = 6
+attack_range = 1
+retreat_range = 8
+defend_anim = "cyclops_defend"
+defend_sound = "giant_defend"
+death_anim = "cyclops_death"
+death_sound = "giant_death"
+
+[cyclops.melee]
+range = 1
+anim = "cyclops_attack"
+target_sound = "giant_attack"
+target_hit = { offense = "crush", max = 120 }

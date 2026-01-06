@@ -250,12 +250,10 @@ hitpoints = 220
 att = 19
 str = 18
 def = 14
-style = "stab"
-max_hit_melee = 30
 attack_bonus = 4
+combat_def = "guard_falador"
 respawn_delay = 50
 drop_table = "guard"
-combat_anims = "human"
 pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
 examine = "He tries to keep order around here."
 

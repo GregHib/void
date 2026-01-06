@@ -1,0 +1,42 @@
+[dwarf]
+attack_speed = 5
+attack_range = 1
+retreat_range = 16
+defend_anim = "dwarf_defend"
+defend_sound = "dwarf_defend"
+death_anim = "dwarf_death"
+death_sound = "dwarf_death"
+
+[dwarf.melee]
+range = 1
+anim = "dwarf_attack"
+target_sound = "dwarf_attack"
+target_hit = { offense = "crush", max = 20 }
+
+[dwarf_hammer]
+clone = "dwarf"
+attack_speed = 6
+
+[dwarf_hammer.melee]
+clone = "dwarf.melee"
+target_hit = { offense = "crush", max = 30 }
+
+[dwarf_mining_guild]
+clone = "dwarf"
+attack_speed = 4
+
+[dwarf_mining_guild.melee]
+clone = "dwarf.melee"
+
+[chaos_dwarf]
+clone = "dwarf"
+attack_speed = 4
+retreat_range = 8
+defend_sound = "chaos_dwarf_defend"
+death_sound = "chaos_dwarf_death"
+
+[chaos_dwarf.melee]
+clone = "dwarf.melee"
+target_sound = "chaos_dwarf_attack"
+target_hit = { offense = "crush", max = 60 }
+
