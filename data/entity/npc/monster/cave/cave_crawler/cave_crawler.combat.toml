@@ -1,0 +1,18 @@
+[cave_crawler]
+attack_speed = 4
+attack_range = 1
+retreat_range = 11
+defend_anim = "cave_crawler_defend"
+defend_sound = "cave_crawler_defend"
+death_anim = "cave_crawler_death"
+death_sound = "cave_crawler_death"
+
+[cave_crawler.melee]
+range = 1
+anim = "cave_crawler_attack"
+target_sound = "cave_crawler_attack"
+target_hit = { offense = "stab", max = 30 }
+
+[cave_crawler.melee_poison]
+clone = "cave_crawler.melee"
+impact_poison = 80

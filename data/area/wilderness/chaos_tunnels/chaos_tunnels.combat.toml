@@ -1,0 +1,79 @@
+[leech]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "leech_defend"
+defend_sound = "leech_defend"
+death_anim = "leech_death"
+death_sound = "leech_death"
+
+[leech.melee]
+range = 1
+anim = "leech_attack"
+target_sound = "leech_attack"
+target_hit = { offense = "stab", max = 30 }
+
+[dust_devil]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "dust_devil_defend"
+defend_sound = "dust_devil_defend"
+death_anim = "dust_devil_death"
+death_sound = "dust_devil_death"
+
+[dust_devil.attack]
+range = 1
+anim = "dust_devil_attack"
+target_hit = { offense = "melee", defence = "range", max = 80 }
+
+[giant_crypt_rat]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "giant_crypt_rat_defend"
+death_anim = "giant_crypt_rat_death"
+
+[giant_crypt_rat.melee]
+range = 1
+anim = "giant_crypt_rat_attack"
+target_hit = { offense = "stab", max = 30 }
+
+[possessed_pickaxe]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "possessed_pickaxe_defend"
+death_anim = "possessed_pickaxe_death"
+
+[possessed_pickaxe.melee]
+range = 1
+anim = "possessed_pickaxe_attack"
+target_hit = { offense = "stab", max = 60 }
+
+[animated_spade]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+death_anim = "spade_death"
+
+[animated_spade.melee]
+range = 1
+anim = "spade_attack"
+target_hit = { offense = "stab", max = 60 }
+
+[fire_elemental]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "fire_elemental_defend"
+defend_sound = "fire_elemental_defend"
+death_anim = "fire_elemental_death"
+death_sound = "fire_elemental_death"
+
+[fire_elemental.melee]
+range = 1
+anim = "fire_elemental_attack"
+target_sound = "fire_elemental_attack"
+target_hit = { offense = "slash", max = 40 }
+

@@ -2,17 +2,14 @@
 id = 81
 hitpoints = 80
 attack_bonus = -15
+combat_def = "cow"
 wander_radius = 12
 immune_poison = true
 slayer_xp = 8.0
-max_hit_melee = 10
-style = "crush"
 respawn_delay = 45
-drop_table = "cow"
-combat_anims = "cow"
-combat_sounds = "cow"
-categories = ["cows"]
 height = 30
+drop_table = "cow"
+categories = ["cows"]
 examine = "Converts grass to beef."
 
 [cow_brown]
@@ -27,14 +24,11 @@ id = 1767
 id = 2310
 hitpoints = 60
 attack_bonus = -20
+combat_def = "cow"
 wander_radius = 10
 slayer_xp = 6.0
-max_hit_melee = 10
-style = "crush"
 respawn_delay = 45
 drop_table = "cow"
-combat_anims = "cow"
-combat_sounds = "cow"
 categories = ["cows"]
 height = 15
 examine = "Young, but still beefy."

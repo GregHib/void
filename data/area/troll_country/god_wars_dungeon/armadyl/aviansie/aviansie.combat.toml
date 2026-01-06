@@ -1,0 +1,23 @@
+[aviansie_axe]
+attack_speed = 4
+attack_range = 5
+retreat_range = 8
+defend_anim = "aviansie_defend"
+defend_sound = "aviansie_defend"
+death_anim = "aviansie_death"
+death_sound = "aviansie_death"
+
+[aviansie_axe.attack]
+range = 5
+anim = "aviansie_attack"
+target_sound = "aviansie_attack"
+projectile = "aviansie_axe"
+target_hit = { offense = "range", max = 80 }
+
+[aviansie_spear]
+clone = "aviansie_axe"
+
+[aviansie_spear.attack]
+clone = "aviansie_axe.attack"
+projectile = "aviansie_spear"
+target_hit = { offense = "range", max = 90 }

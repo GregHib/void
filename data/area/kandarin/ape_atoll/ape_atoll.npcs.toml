@@ -16,20 +16,14 @@ examine = "It's an extremely small brown spider, probably very poisonous."
 [spider_ape_atoll]
 id = 1473
 hitpoints = 20
-retreat_range = 11
+attack_bonus = 1
 wander_radius = 9
 slayer_xp = 2.0
+combat_def = "spider_ape_atoll"
 categories = ["spiders"]
 height = 10
-attack_bonus = 1
-max_hit_melee = 10
-attack_speed = 6
 respawn_delay = 2
 hunt_mode = "cowardly"
-style = "slash"
-poison = 10
-combat_anims = "spider"
-combat_sounds = "spider"
 examine = "It's an extremely small brown spider, probably very poisonous."
 
 [pedestal_ape_atoll]
@@ -297,17 +291,12 @@ hitpoints = 150
 att = 50
 str = 50
 def = 10
-poisonous = true
 attack_bonus = 100
-max_hit_melee = 150
+combat_def = "scorpion_ape_atoll"
 hunt_mode = "cowardly"
-style = "stab"
 respawn_delay = 50
 slayer_xp = 15.0
 wander_radius = 5
-retreat_range = 7
-combat_anims = "small_scorpion"
-combat_sounds = "scorpion"
 categories = ["scorpions"]
 examine = "It's an extremely dangerous looking scorpion."
 
@@ -318,12 +307,11 @@ att = 50
 str = 30
 def = 10
 mage = 10
-style = "stab"
-max_hit_melee = 100
+combat_def = "jungle_spider_ape_atoll"
 attack_bonus = 100
 xp_bonus = 2.5
-categories = ["spiders"]
 respawn_delay = 50
+categories = ["spiders"]
 examine = "A very dangerous looking spider, with its fangs unsheathed."
 
 [snake_ape_atoll]
@@ -336,12 +324,10 @@ att = 10
 str = 10
 def = 10
 mage = 10
-style = "stab"
-max_hit_melee = 20
+combat_def = "bird_ape_atol"
 slayer_xp = 10.0
 categories = ["birds"]
 respawn_delay = 5
-combat_anims = "bird"
 examine = "It's a brightly coloured bird of the jungle."
 
 [bird_green]
@@ -351,12 +337,11 @@ att = 5
 str = 5
 def = 5
 mage = 5
-style = "stab"
-max_hit_melee = 10
+combat_def = "bird_ape_atol"
+max_hit_stab = 10
 slayer_xp = 5.0
 respawn_delay = 5
 categories = ["birds"]
-combat_anims = "bird"
 examine = "It's a brightly coloured bird of the jungle. It flies very quickly."
 
 [daero]
@@ -390,63 +375,28 @@ att = 130
 str = 130
 def = 130
 mage = 130
-style = "melee"
-max_hit_melee = 140
 attack_bonus = 50
+combat_def = "ninja_monkey"
 hunt_mode = "cowardly"
 drop_table = "duke"
 examine = "A large ninja monkey wielding two scimitars."
 
 [oipuis]
 id = 1443
-hitpoints = 1300
-att = 130
-str = 130
-def = 130
-mage = 130
-style = "melee"
-max_hit_melee = 140
-attack_bonus = 50
-hunt_mode = "cowardly"
+clone = "duke"
 drop_table = "medium_ninja_monkey"
-examine = "A large ninja monkey wielding two scimitars."
 
 [ouhai]
 id = 1445
-hitpoints = 1300
-att = 130
-str = 130
-def = 130
-mage = 130
-style = "melee"
-max_hit_melee = 140
-attack_bonus = 50
-hunt_mode = "cowardly"
+clone = "duke"
 drop_table = "medium_ninja_monkey"
-examine = "A large ninja monkey wielding two scimitars."
 
 [uodai]
 id = 1446
-hitpoints = 1300
-att = 130
-str = 130
-def = 130
-mage = 130
-style = "melee"
-max_hit_melee = 140
-attack_bonus = 50
-hunt_mode = "cowardly"
-examine = "A large ninja monkey wielding two scimitars."
+clone = "duke"
+drop_table = "medium_ninja_monkey"
 
 [uyoro]
 id = 1444
-hitpoints = 1300
-att = 130
-str = 130
-def = 130
-mage = 130
-style = "melee"
-max_hit_melee = 140
-attack_bonus = 50
-hunt_mode = "cowardly"
-examine = "A large ninja monkey wielding two scimitars."
+clone = "duke"
+drop_table = "medium_ninja_monkey"

@@ -39,7 +39,7 @@ death_sound = "goblin_death"
 
 [sergeant_strongstack.melee]
 anim = "sergeant_strongstack_attack"
-sound = "goblin_attack"
+target_sound = "goblin_attack"
 target_hit = { offense = "crush", max = 150 }
 
 [sergeant_steelwill]
@@ -55,7 +55,7 @@ death_sound = "sergeant_steelwill_death"
 range = 10
 anim = "sergeant_steelwill_attack"
 gfx = "sergeant_steelwill_attack"
-sound = "sergeant_steelwill_attack"
+target_sound = "sergeant_steelwill_attack"
 projectile = "sergeant_steelwill_spell"
 target_hit = { offense = "magic", max = 150 }
 impact_gfx = { id = "sergeant_steelwill_impact", area = true }
@@ -73,6 +73,6 @@ death_sound = "goblin_death"
 [sergeant_grimspike.axe]
 range = 10
 anim = "sergeant_grimspike_attack"
-sound = "sergeant_grimspike_attack"
+target_sound = "sergeant_grimspike_attack"
 projectile = "sergeant_grimspike_axe"
 target_hit = { offense = "range", max = 210 }

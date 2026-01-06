@@ -1,0 +1,49 @@
+[spider_ape_atoll]
+clone = "spider"
+attack_speed = 6
+
+[spider_ape_atoll.melee]
+clone = "spider.melee"
+target_hit = { offense = "slash", max = 10 }
+impact_poison = 10
+
+[jungle_spider_ape_atoll]
+clone = "spider"
+
+[jungle_spider_ape_atoll.melee]
+clone = "spider.melee"
+target_hit = { offense = "stab", max = 100 }
+impact_poison = 10
+
+[scorpion_ape_atoll]
+clone = "small_scorpion"
+
+[scorpion_ape_atoll.melee]
+clone = "small_scorpion.melee"
+target_hit = { offense = "stab", max = 150 }
+impact_poison = 10
+
+[bird_ape_atol]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "bird_defend"
+death_anim = "bird_death"
+
+[bird_ape_atol.melee]
+range = 1
+anim = "bird_attack"
+target_hit = { offense = "stab", max = 20 }
+
+[ninja_monkey]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "ninja_monkey_defend_double_scimitar"
+defend_sound = "monkey_defend"
+death_anim = "ninja_monkey_death"
+death_sound = "monkey_death"
+
+[ninja_monkey.melee]
+anim = "ninja_monkey_attack_double_scimitar"
+target_hit = { offense = "slash", max = 140 }

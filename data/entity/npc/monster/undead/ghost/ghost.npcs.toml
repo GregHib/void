@@ -4,22 +4,18 @@ hitpoints = 250
 att = 13
 str = 13
 def = 18
-max_hit_melee = 20
-style = "crush"
+combat_def = "ghost"
 slayer_xp = 25.0
 respawn_delay = 40
-retreat_range = 11
 wander_radius = 10
 hunt_mode = "cowardly"
-combat_anims = "ghost"
-combat_sounds = "ghost"
 categories = ["ghosts", "undead"]
 examine = "Eeek! A ghost!"
 
 [ghost]
 id = 103
 clone = "ghost_draynor_manor"
-combat_anims = "ghost_tendril"
+combat_def = "ghost_tendril"
 
 [ghost_2]
 id = 5342
@@ -71,23 +67,19 @@ hitpoints = 800
 att = 63
 str = 63
 def = 68
-max_hit_melee = 70
+combat_def = "stronghold_ghost"
 hunt_mode = "cowardly"
 hunt_range = 1
-style = "crush"
 respawn_delay = 40
 slayer_xp = 80.0
-retreat_range = 11
 wander_radius = 9
-combat_anims = "ghost"
-combat_sounds = "ghost"
 categories = ["ghosts", "undead"]
 examine = "Eeek! A ghost!"
 
 [stronghold_ghost]
 id = 4387
 clone = "stronghold_ghost_hair"
-combat_anims = "ghost_tendril"
+combat_def = "stronghold_ghost_tendril"
 
 [stronghold_ghost_cape]
 id = 4388

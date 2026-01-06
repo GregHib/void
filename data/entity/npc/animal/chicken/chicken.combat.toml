@@ -1,0 +1,14 @@
+[chicken]
+attack_speed = 4
+attack_range = 1
+retreat_range = 6
+defend_anim = "chicken_defend"
+defend_sound = "chicken_defend"
+death_anim = "chicken_death"
+death_sound = "chicken_death"
+
+[chicken.melee]
+range = 1
+anim = "chicken_attack"
+target_sound = "chicken_attack"
+target_hit = { offense = "stab", max = 1 }

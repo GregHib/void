@@ -1,0 +1,35 @@
+[scorpion]
+attack_speed = 4
+attack_range = 1
+retreat_range = 7
+defend_anim = "scorpion_defend"
+defend_sound = "scorpion_defend"
+death_anim = "scorpion_death"
+death_sound = "scorpion_death"
+
+[scorpion.melee]
+range = 1
+anim = "scorpion_attack"
+target_sound = "scorpion_attack"
+target_hit = { offense = "stab", max = 20 }
+
+[small_scorpion]
+clone = "scorpion"
+defend_anim = "small_scorpion_defend"
+death_anim = "small_scorpion_death"
+
+[small_scorpion.melee]
+clone = "scorpion.melee"
+anim = "small_scorpion_attack"
+target_hit = { offense = "stab", max = 30 }
+
+[poison_scorpion]
+clone = "scorpion"
+
+[poison_scorpion.melee]
+clone = "scorpion.melee"
+target_hit = { offense = "stab", max = 30 }
+
+[poison_scorpion.melee_poison]
+clone = "poison_scorpion.melee"
+impact_poison = 30

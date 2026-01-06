@@ -1,2 +1,6 @@
 [banshee_scream]
 id = 337
+time_offset = 18
+multiplier = 0
+height = 23
+end_height = 23

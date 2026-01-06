@@ -1,0 +1,14 @@
+[abyssal_demon]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "abyssal_demon_defend"
+defend_sound = "abyssal_demon_defend"
+death_anim = "abyssal_demon_death"
+death_sound = "abyssal_demon_death"
+
+[abyssal_demon.melee]
+range = 1
+anim = "abyssal_demon_attack"
+target_sound = "abyssal_demon_attack"
+target_hit = { offense = "stab", max = 80 }

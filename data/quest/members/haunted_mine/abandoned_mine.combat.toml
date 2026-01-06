@@ -1,0 +1,6 @@
+[ghost_abandoned_mine]
+clone = "stronghold_ghost_tendril"
+
+[ghost_abandoned_mine.melee]
+clone = "stronghold_ghost_tendril.melee"
+target_hit = { offense = "crush", max = 30 }

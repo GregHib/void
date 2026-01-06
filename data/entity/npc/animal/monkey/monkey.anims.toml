@@ -6,3 +6,27 @@ id = 221
 
 [monkey_death]
 id = 223
+
+[zombie_monkey_attack]
+id = 1383
+
+[ninja_monkey_death]
+id = 1384
+
+[ninja_monkey_attack_scimitar]
+id = 1392
+
+[ninja_monkey_defend_scimitar]
+id = 1393
+
+[ninja_monkey_attack_bow]
+id = 1394
+
+[ninja_monkey_defend_bow]
+id = 1395
+
+[ninja_monkey_attack_double_scimitar]
+id = 1396
+
+[ninja_monkey_defend_double_scimitar]
+id = 1397

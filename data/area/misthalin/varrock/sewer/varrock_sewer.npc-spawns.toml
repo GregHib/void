@@ -5,9 +5,9 @@ spawns = [
   { id = "moss_giant_3", x = 3159, y = 9900 },
   { id = "moss_giant_4", x = 3157, y = 9905 },
 # 12954
-  { id = "giant_spider_2", x = 3217, y = 9889 },
-  { id = "giant_spider_2", x = 3220, y = 9888 },
-  { id = "giant_spider_2", x = 3217, y = 9886 },
+  { id = "giant_spider_mid", x = 3217, y = 9889 },
+  { id = "giant_spider_mid", x = 3220, y = 9888 },
+  { id = "giant_spider_mid", x = 3217, y = 9886 },
   { id = "rat", x = 3242, y = 9895 },
   { id = "rat", x = 3242, y = 9893 },
   { id = "rat", x = 3251, y = 9893 },

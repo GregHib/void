@@ -1,0 +1,24 @@
+[crawling_hand]
+attack_speed = 4
+attack_range = 1
+retreat_range = 15
+defend_anim = "crawling_hand_defend"
+defend_sound = "crawling_hand_defend"
+death_anim = "crawling_hand_death"
+death_sound = "crawling_hand_death"
+
+[crawling_hand.melee]
+range = 1
+anim = "crawling_hand_attack"
+target_sound = "crawling_hand_attack"
+target_hit = { offense = "crush", max = 10 }
+
+[crawling_hand_large]
+clone = "crawling_hand"
+defend_anim = "crawling_hand_large_defend"
+death_anim = "crawling_hand_large_death"
+
+[crawling_hand_large.melee]
+clone = "crawling_hand.melee"
+anim = "crawling_hand_large_attack"
+target_hit = { offense = "crush", max = 20 }

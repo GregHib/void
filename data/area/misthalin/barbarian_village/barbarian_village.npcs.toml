@@ -71,14 +71,11 @@ str = 22
 def = 25
 mage = 240
 attack_bonus = 8
-max_hit_melee = 42
+combat_def = "haakon_the_champion"
 immune_poison = true
 wander_radius = 4
 respawn_delay = 75
-weapon_style = "2h"
-style = "crush"
 categories = ["human"]
-combat_anims = "human"
 collision = "indoors"
 examine = "A mighty warrior, Haakon is powerfully concerned for his tribe."
 

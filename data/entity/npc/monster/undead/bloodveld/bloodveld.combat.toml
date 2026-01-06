@@ -1,0 +1,24 @@
+[bloodveld]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "bloodveld_defend"
+defend_sound = "bloodveld_defend"
+death_anim = "bloodveld_death"
+death_sound = "bloodveld_death"
+
+[bloodveld.attack]
+range = 1
+anim = "bloodveld_attack"
+target_sound = "bloodveld_attack"
+target_hit = { offense = "melee", defence = "magic", max = 50 }
+
+[bloodveld_god_wars]
+clone = "bloodveld"
+defend_anim = "bloodveld_god_wars_defend"
+death_anim = "bloodveld_god_wars_death"
+
+[bloodveld_god_wars.magic]
+clone = "bloodveld.attack"
+anim = "bloodveld_god_wars_attack"
+target_hit = { offense = "melee", defence = "magic", max = 60 }

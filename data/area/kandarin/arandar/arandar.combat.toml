@@ -1,0 +1,12 @@
+[gnome]
+attack_speed = 4
+attack_range = 8
+retreat_range = 8
+defend_anim = "gnome_defend"
+death_anim = "gnome_death"
+
+[gnome.ranged]
+range = 8
+anim = "gnome_bow_attack"
+projectile = "bronze_arrow"
+target_hit = { offense = "range", max = 10 }

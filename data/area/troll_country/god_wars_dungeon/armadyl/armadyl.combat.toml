@@ -56,9 +56,8 @@ death_sound = "aviansie_death"
 
 [flight_kilisa.attack]
 anim = "aviansie_attack"
-sound = "aviansie_attack"
+target_sound = "aviansie_attack"
 target_hit = { offense = "slash", max = 150 }
-
 
 [wingman_skree]
 clone = "flight_kilisa"
@@ -67,7 +66,7 @@ attack_range = 10
 [wingman_skree.attack]
 range = 10
 anim = "aviansie_attack_magic"
-sound = "aviansie_attack_magic"
+target_sound = "aviansie_attack_magic"
 gfx = "wingman_skree_cast"
 projectile = "wingman_skree_spell"
 target_hit = { offense = "magic", max = 160 }
@@ -79,6 +78,6 @@ attack_range = 10
 [flockleader_geerin.attack]
 range = 10
 anim = "aviansie_attack"
-sound = "aviansie_attack"
+target_sound = "aviansie_attack"
 projectile = "flockleader_geerin_spear"
 target_hit = { offense = "range", max = 250 }

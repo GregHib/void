@@ -23,17 +23,12 @@ examine = "A gnome mage and hunter with a somewhat enthusiastic swagger."
 id = 66
 hitpoints = 30
 style = "range"
-weapon_style = "bow"
-ammo = "bronze_arrow"
-attack_range = 8
-max_hit_range = 10
 attack_bonus = -42
 ranged_strength = 2
+combat_def = "gnome"
 respawn_delay = 60
 pickpocket = { level = 75, stun_ticks = 8, stun_hit = 10, xp = 133.5, chance_min = 43, chance_max = 175, table = "gnome" }
 drop_table = "bones"
-combat_anims = "gnome"
-attack_anim = "gnome_bow_attack"
 examine = "Like a mini man!"
 
 [gnome_2]

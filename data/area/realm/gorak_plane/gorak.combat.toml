@@ -8,6 +8,6 @@ death_sound = "gorak_death"
 chance = 100
 range = 1
 anim = "gorak_attack"
-sound = "gorak_attack"
+target_sound = "gorak_attack"
 target_hit = { offense = "typeless_crush", max = 140 }
 impact_drain = { skill = "random", min = 1, max = 4 }

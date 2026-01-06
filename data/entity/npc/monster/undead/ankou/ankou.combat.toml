@@ -1,0 +1,14 @@
+[ankou]
+attack_speed = 4
+attack_range = 1
+retreat_range = 15
+defend_anim = "human_defend"
+defend_sound = "ankou_defend"
+death_anim = "human_death"
+death_sound = "ankou_death"
+
+[ankou.melee]
+range = 1
+anim = "human_attack"
+target_sound = "ankou_attack"
+target_hit = { offense = "crush", max = 80 }

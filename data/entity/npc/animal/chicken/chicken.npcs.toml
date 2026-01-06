@@ -2,18 +2,14 @@
 id = 41
 hitpoints = 30
 attack_bonus = -47
+combat_def = "chicken"
 height = 15
 wander_radius = 8
-retreat_range = 6
 slayer_xp = 3.0
-max_hit_melee = 1
 immune_poison = true
-style = "stab"
 respawn_delay = 25
 categories = ["chickens", "birds"]
 drop_table = "chicken"
-combat_anims = "chicken"
-combat_sounds = "chicken"
 examine = "Yep. Definitely a chicken."
 
 [chicken_brown]

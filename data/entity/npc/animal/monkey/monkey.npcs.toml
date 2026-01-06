@@ -1,18 +1,14 @@
 [monkey_brown]
 id = 132
-style = "crush"
 hitpoints = 60
 att = 2
 str = 3
 def = 3
+combat_def = "monkey"
 height = 15
 wander_radius = 8
-retreat_range = 14
 respawn_delay = 37
-max_hit_melee = 10
 slayer_xp = 6.0
 drop_table = "monkey"
-combat_anims = "monkey"
-combat_sounds = "monkey"
 categories = ["monkeys"]
 examine = "Perhaps our oldest relatives?"
