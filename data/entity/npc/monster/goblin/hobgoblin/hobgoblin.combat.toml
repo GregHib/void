@@ -29,20 +29,20 @@ target_sound = "hobgoblin_armed_attack"
 target_hit = { offense = "stab", max = 30 }
 
 [poh_hobgoblin]
-clone = "hobgoblin"
+clone = "hobgoblin_unarmed"
 attack_speed = 6
 
 [poh_hobgoblin.melee]
-clone = "hobgoblin.melee"
+clone = "hobgoblin_unarmed.melee"
 target_hit = { offense = "crush", max = 60 }
 
 [hobgoblin_god_wars]
-clone = "hobgoblin"
+clone = "poh_hobgoblin"
 defend_anim = "hobgoblin_god_wars_defend"
 death_anim = "hobgoblin_god_wars_death"
 
 [hobgoblin_god_wars.melee]
-clone = "hobgoblin.melee"
+clone = "poh_hobgoblin.melee"
 anim = "hobgoblin_god_wars_attack"
 target_hit = { offense = "crush", max = 50 }
 

@@ -20,7 +20,7 @@ attack_range = 1
 retreat_range = 8
 
 [lesser_demon.melee]
-clone = "greater_demon"
+clone = "greater_demon.melee"
 target_hit = { offense = "slash", max = 80 }
 
 [delrith]

@@ -1,8 +1,7 @@
 [cave_goblin_lumbridge_swamp_caves]
 id = 1822
 hitpoints = 100
-style = "crush"
-max_hit_melee = 10
+combat_def = "cave_goblin"
 slayer_xp = 10.0
 categories = ["goblins"]
 respawn_delay = 50
@@ -26,14 +25,11 @@ hitpoints = 1050
 att = 30
 str = 30
 def = 16
-style = "crush"
-max_hit_melee = 40
+combat_def = "wall_beast"
 hunt_mode = "cowardly"
 slayer_xp = 105.0
 categories = ["wall_beasts"]
 immune_poison = true
-combat_anims = "cave_goblin"
-combat_sounds = "cave_goblin"
 examine = "What could be hiding in that crack in the wall?"
 
 [wall_beast]
@@ -42,14 +38,11 @@ hitpoints = 1050
 att = 30
 str = 30
 def = 16
-style = "crush"
-max_hit_melee = 40
+combat_def = "wall_beast"
 hunt_mode = "cowardly"
 slayer_xp = 105.0
 categories = ["wall_beasts"]
 immune_poison = true
-combat_anims = "wall_beast"
-combat_sounds = "wall_beast"
 drop_table = "wall_beast"
 examine = "A big, scary hand!"
 

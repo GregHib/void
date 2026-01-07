@@ -1,0 +1,39 @@
+[suqah]
+attack_speed = 6
+attack_range = 1
+retreat_range = 8
+defend_anim = "suqah_defend"
+death_anim = "suqah_death"
+
+[suqah.melee]
+chance = 5 # Unknown chances
+range = 1
+anim = "suqah_attack"
+target_hit = { offense = "stab", max = 100 }
+
+[suqah.water]
+chance = 1
+range = 8
+anim = "suqah_attack"
+gfx = "water_wave"
+projectile = "water_spell_cast"
+target_hit = { offense = "magic", max = 100 }
+impact_gfx = "water_wave_impact"
+
+[suqah.ice]
+chance = 1
+range = 8
+anim = "suqah_attack"
+target_sound = "ice_barrage_cast"
+projectile = { id = "ice_barrage", end_height = 0 }
+target_hit = { offense = "magic", min = 100, max = 100 }
+impact_gfx = "ice_barrage_impact"
+impact_sound = "ice_barrage_impact"
+
+[suqah_swords]
+clone = "suqah"
+attack_range = 1
+
+[suqah_swords.melee]
+clone = "suqah.melee"
+target_hit = { offense = "stab", max = 100 }

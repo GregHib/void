@@ -1,0 +1,14 @@
+[minotaur]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "minotaur_defend"
+defend_sound = "minotaur_defend"
+death_anim = "minotaur_death"
+death_sound = "minotaur_death"
+
+[minotaur.melee]
+range = 1
+anim = "minotaur_attack"
+target_sound = "minotaur_attack"
+target_hit = { offense = "crush", max = 20 }
