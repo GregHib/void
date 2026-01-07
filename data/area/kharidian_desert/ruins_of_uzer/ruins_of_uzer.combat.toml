@@ -1,0 +1,8 @@
+[clay_golem]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "golem_defend"
+death_anim = "golem_death"
+
+

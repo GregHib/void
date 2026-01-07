@@ -5,17 +5,12 @@ att = 100
 str = 100
 def = 60
 attack_bonus = 19
-max_hit_melee = 120
+combat_def = "ork"
 hunt_mode = "anti_zamorak_aggressive"
-style = "crush"
-attack_speed = 5
 respawn_delay = 25
 categories = ["ork"]
 wander_radius = 6
-retreat_range = 8
-combat_anims = "ork"
 drop_table = "ork"
-combat_sounds = "giant"
 god = "bandos"
 examine = "Ugly, fierce and with a bad attitude."
 
@@ -30,4 +25,4 @@ clone = "ork_god_wars"
 [ork_mace_god_wars]
 id = 6274
 clone = "ork_god_wars"
-attack_sound = "ork_attack"
+combat_def = "ork_armed"

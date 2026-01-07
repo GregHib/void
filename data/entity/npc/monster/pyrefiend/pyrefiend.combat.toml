@@ -1,0 +1,14 @@
+[pyrefiend]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "pyrefiend_defend"
+defend_sound = "pyrefiend_defend"
+death_anim = "pyrefiend_death"
+death_sound = "pyrefiend_death"
+
+[pyrefiend.magic]
+range = 1
+anim = "pyrefiend_attack"
+target_sound = "pyrefiend_attack"
+target_hit = { offense = "melee", defence = "magic", max = 40 }

@@ -202,23 +202,19 @@ id = 1319
 hitpoints = 300
 str = 20
 def = 20
-style = "crush"
-max_hit_melee = 40
+combat_def = "fox"
 attack_bonus = 30
 respawn_delay = 10
 drop_table = "bones"
-combat_anims = "fox"
 examine = "A cunning animal."
 
 [bunny_rellekka]
 id = 1320
 hitpoints = 50
-style = "crush"
-max_hit_melee = 0
 attack_bonus = -47
 respawn_delay = 25
+combat_def = "bunny"
 drop_table = "bunny"
-combat_anims = "bunny"
 examine = "Hoppity, hoppity."
 
 [bunny_rellekka_2]

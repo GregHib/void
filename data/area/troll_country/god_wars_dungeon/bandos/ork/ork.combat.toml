@@ -1,0 +1,21 @@
+[ork]
+attack_speed = 5
+attack_range = 1
+retreat_range = 8
+defend_anim = "ork_defend"
+defend_sound = "giant_defend"
+death_anim = "ork_death"
+death_sound = "giant_death"
+
+[ork.melee]
+range = 1
+anim = "ork_attack"
+target_sound = "giant_attack"
+target_hit = { offense = "crush", max = 120 }
+
+[ork_armed]
+clone = "ork"
+
+[ork_armed.melee]
+clone = "ork.melee"
+target_sound = "ork_attack"

@@ -511,11 +511,3 @@ animation = "balfrug_kreeyath_attack"
 projectiles = [
     { id = "balfrug_kreeyath_fireball" }
 ]
-
-[growler_sonic_spell]
-max_hit = 160
-graphic = "growler_sonic_cast"
-animation = "growler_attack"
-projectiles = [
-    { id = "growler_sonic_spell" }
-]

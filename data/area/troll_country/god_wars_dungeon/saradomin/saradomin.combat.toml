@@ -30,3 +30,47 @@ miss_gfxs = [
     { id = "spell_splash", height = 100, area = true, offset_y = 1 },
     { id = "spell_splash", height = 100, area = true, offset_y = -1, delay = 20 },
 ]
+
+[starlight]
+attack_speed = 5
+attack_range = 1
+retreat_range = 8
+defend_anim = "starlight_defend"
+death_anim = "starlight_death"
+
+[starlight.melee]
+# TODO sounds
+range = 1
+anim = "starlight_attack"
+target_hit = { offense = "crush", max = 150 }
+
+[growler]
+attack_speed = 5
+attack_range = 10
+retreat_range = 8
+defend_anim = "growler_defend"
+defend_sound = "growler_defend"
+death_anim = "growler_death"
+death_sound = "growler_death"
+
+[growler.magic]
+range = 10
+anim = "growler_attack"
+gfx = "growler_sonic_cast"
+projectiles = "growler_sonic_spell"
+target_hit = { offense = "magic", max = 160 }
+
+[bree]
+attack_speed = 5
+attack_range = 10
+retreat_range = 8
+defend_anim = "bree_defend"
+defend_sound = "bree_defend"
+death_anim = "bree_death"
+death_sound = "bree_death"
+
+[bree.ranged]
+range = 10
+anim = "bree_attack"
+projectile = "bree_arrow"
+target_hit = { offense = "range", max = 160 }

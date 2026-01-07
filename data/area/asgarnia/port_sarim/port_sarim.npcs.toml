@@ -265,24 +265,22 @@ id = 6082
 id = 6115
 hitpoints = 60
 style = "crush"
-max_hit_melee = 0
 attack_bonus = -47
 slayer_xp = 5.0
 categories = ["birds"]
 respawn_delay = 25
-combat_anims = "seagull"
+combat_def = "seagull"
 drop_table = "seagull"
 examine = "A messy bird."
 
 [seagull_port_sarim_2]
 id = 6116
 hitpoints = 100
-style = "crush"
-max_hit_melee = 0
 attack_bonus = -47
 slayer_xp = 5.0
 categories = ["birds"]
 respawn_delay = 25
+combat_def = "seagull"
 drop_table = "seagull"
 examine = "Smells of rotten fish."
 

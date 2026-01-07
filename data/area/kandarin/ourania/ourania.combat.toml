@@ -1,0 +1,66 @@
+[cave_lizard]
+attack_speed = 4
+attack_range = 1
+retreat_range = 11
+defend_anim = "gecko_defend"
+death_anim = "gecko_death"
+
+[cave_lizard.melee]
+range = 1
+anim = "gecko_attack"
+target_hit = { offense = "crush", max = 50 }
+
+[zamorak_warrior_kite]
+clone = "human"
+retreat_range = 11
+
+[zamorak_warrior_kite.melee]
+range = 1
+anim = "sword_slash"
+target_hit = { offense = "slash", max = 80 }
+
+[zamorak_warrior_square]
+clone = "zamorak_warrior_kite"
+
+[zamorak_warrior_square.melee]
+range = 1
+anim = "sword_slash"
+target_hit = { offense = "crush", max = 80 }
+
+[zamorak_mage]
+attack_speed = 4
+attack_range = 3
+retreat_range = 10
+defend_anim = "human_defend"
+death_anim = "human_death"
+
+[zamorak_mage.spell]
+range = 8
+anim = "fire_spell"
+gfx = "fire_spell_cast"
+projectile = "fire_bolt"
+target_sound = "fire_bolt"
+target_hit = { offense = "magic", max = 90 }
+impact_gfx = "fire_bolt_impact"
+impact_sound = "fire_bolt_impact"
+
+[zamorak_ranger]
+attack_speed = 4
+attack_range = 5
+retreat_range = 10
+defend_anim = "human_defend"
+death_anim = "human_death"
+
+[zamorak_ranger.shoot]
+range = 5
+anim = "bow_accurate"
+projectile = "mithril_arrow"
+target_hit = { offense = "range", max = 90 }
+
+[zamorak_crafter]
+clone = "man"
+retreat_range = 11
+
+[zamorak_crafter.melee]
+clone = "man.melee"
+target_hit = { offense = "crush", max = 20 }

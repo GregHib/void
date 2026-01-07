@@ -1,0 +1,42 @@
+[skeleton_warlock]
+attack_speed = 4
+attack_range = 5
+retreat_range = 11
+defend_anim = "skeleton_defend"
+death_anim = "skeleton_death"
+
+[skeleton_warlock.magic]
+range = 5
+anim = "earth_spell"
+gfx = "earth_strike_cast"
+projectile = "earth_strike"
+target_hit = { offense = "magic", max = 30 }
+impact_gfx = "earth_strike_impact"
+
+[skeleton_mace_shield]
+clone = "skeleton_warlock"
+
+[skeleton_mace_shield.melee]
+range = 1
+anim = "skeleton_slash"
+target_hit = { offense = "slash", max = 40 }
+
+[skeleton_unarmed]
+clone = "skeleton_warlock"
+
+[skeleton_unarmed.melee]
+range = 1
+anim = "skeleton_crush"
+target_hit = { offense = "crush", max = 30 }
+
+[skeleton_catacombs]
+attack_speed = 4
+attack_range = 1
+retreat_range = 11
+defend_anim = "skeleton_catacombs_defend"
+death_anim = "skeleton_catacombs_death"
+
+[skeleton_catacombs.melee]
+range = 1
+anim = "skeleton_catacombs_attack"
+target_hit = { offense = "crush", max = 30 }

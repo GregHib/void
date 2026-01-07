@@ -1,0 +1,14 @@
+[yak]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "yak_defend"
+defend_sound = "yak_defend"
+death_anim = "yak_death"
+death_sound = "yak_death"
+
+[yak.melee]
+range = 1
+anim = "yak_attack"
+target_sound = "yak_attack"
+target_hit = { offense = "crush", max = 20 }
