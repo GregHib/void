@@ -45,14 +45,11 @@ hitpoints = 250
 att = 54
 str = 46
 def = 32
-style = "crush"
-max_hit_melee = 60
+combat_def = "harpie_bug_swarm"
 hunt_mode = "cowardly"
 slayer_xp = 25.0
 categories = ["harpie_bug_swarms"]
 respawn_delay = 25
-combat_anims = "harpie_bug_swarm"
-combat_sounds = "harpie_bug_swarm"
 examine = "A swarm of bugs."
 
 [frog_karamja]

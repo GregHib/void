@@ -1,0 +1,26 @@
+[killerwatt]
+attack_speed = 2
+attack_range = 10
+retreat_range = 8
+defend_anim = "killerwatt_defend"
+defend_sound = "killerwatt_defend"
+death_anim = "killerwatt_death"
+death_sound = "killerwatt_death"
+
+[killerwatt.melee]
+range = 1
+anim = "killerwatt_attack"
+target_sound = "killerwatt_attack"
+target_hit = { offense = "stab", max = 60 }
+
+[killerwatt.range]
+condition = "insulated"
+range = 10
+anim = "killerwatt_attack"
+target_sound = "killerwatt_attack"
+target_hit = { offense = "range", defence = "magic", max = 80 }
+
+[killerwatt.range_uninsulated]
+condition = "not_insulated"
+clone = "killerwatt.range"
+target_hit = { offense = "range", defence = "magic", max = 150 }

@@ -1,0 +1,27 @@
+[kalphite_worker]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "kalphite_defend"
+defend_sound = "kalphite_defend"
+death_anim = "kalphite_death"
+death_sound = "kalphite_death"
+
+[kalphite_worker.melee]
+range = 1
+anim = "kalphite_attack"
+target_sound = "kalphite_attack"
+target_hit = { offense = "crush", max = 30 }
+
+[kalphite_guardian]
+clone = "kalphite_worker"
+death_anim = "kalphite_guardian_death"
+
+[kalphite_guardian.melee]
+clone = "kalphite_worker.melee"
+anim = "kalphite_guardian_attack"
+target_hit = { offense = "crush", max = 120 }
+
+[kalphite_guardian.melee_poison] # Unknown chance
+clone = "kalphite_guardian.melee"
+impact_poison = 60
