@@ -26,11 +26,11 @@ class DatabaseStorage : Storage {
         AccountsTable
             .leftJoin(display) {
                 AccountsTable.id eq display[VariablesTable.playerId] and
-                    (display[VariablesTable.name] eq stringLiteral("display_name"))
+                        (display[VariablesTable.name] eq stringLiteral("display_name"))
             }
             .leftJoin(history) {
                 AccountsTable.id eq history[VariablesTable.playerId] and
-                    (history[VariablesTable.name] eq stringLiteral("name_history"))
+                        (history[VariablesTable.name] eq stringLiteral("name_history"))
             }
             .select(
                 AccountsTable.name,
@@ -76,7 +76,7 @@ class DatabaseStorage : Storage {
             }
     }
 
-    override fun offers(days: Int): OpenOffers {
+    override fun offers(days: Int): OpenOffers = transaction {
         val buyByItem: MutableMap<String, TreeMap<Int, MutableList<OpenOffer>>> = mutableMapOf()
         val sellByItem: MutableMap<String, TreeMap<Int, MutableList<OpenOffer>>> = mutableMapOf()
         val offers = OpenOffers(sellByItem, buyByItem)
@@ -102,13 +102,13 @@ class DatabaseStorage : Storage {
         }
         val maxId = OffersTable.id.max()
         for (row in OffersTable.select(maxId)) {
-            val max = row[maxId]!!
-            offers.counter = max
+            val max = row[maxId]
+            offers.counter = max ?: 0
         }
-        return offers
+        offers
     }
 
-    override fun saveClaims(claims: Map<Int, Claim>) {
+    override fun saveClaims(claims: Map<Int, Claim>): Unit = transaction {
         ClaimsTable.deleteAll()
         ClaimsTable.batchUpsert(claims.toList(), ClaimsTable.offerId) { (id, claim) ->
             this[ClaimsTable.offerId] = id
@@ -117,15 +117,13 @@ class DatabaseStorage : Storage {
         }
     }
 
-    override fun savePriceHistory(history: Map<String, PriceHistory>) {
+    override fun savePriceHistory(history: Map<String, PriceHistory>) = transaction {
         ItemHistoryTable.deleteAll()
-        transaction {
-            for ((item, itemHistory) in history) {
-                insertAggregate(item, itemHistory.day, "day")
-                insertAggregate(item, itemHistory.week, "week")
-                insertAggregate(item, itemHistory.month, "month")
-                insertAggregate(item, itemHistory.year, "year")
-            }
+        for ((item, itemHistory) in history) {
+            insertAggregate(item, itemHistory.day, "day")
+            insertAggregate(item, itemHistory.week, "week")
+            insertAggregate(item, itemHistory.month, "month")
+            insertAggregate(item, itemHistory.year, "year")
         }
     }
 
@@ -149,14 +147,16 @@ class DatabaseStorage : Storage {
         }
     }
 
-    override fun claims(): Map<Int, Claim> = ClaimsTable.selectAll().associate { row ->
-        val id = row[ClaimsTable.offerId]
-        val amount = row[ClaimsTable.amount]
-        val coins = row[ClaimsTable.coins]
-        id to Claim(amount, coins)
+    override fun claims(): Map<Int, Claim> = transaction {
+        ClaimsTable.selectAll().associate { row ->
+            val id = row[ClaimsTable.offerId]
+            val amount = row[ClaimsTable.amount]
+            val coins = row[ClaimsTable.coins]
+            id to Claim(amount, coins)
+        }
     }
 
-    override fun priceHistory(): Map<String, PriceHistory> {
+    override fun priceHistory(): Map<String, PriceHistory> = transaction {
         val history = mutableMapOf<String, PriceHistory>()
         ItemHistoryTable.selectAll().forEach { row ->
             val item = row[ItemHistoryTable.item]
@@ -182,24 +182,22 @@ class DatabaseStorage : Storage {
             }
             frame[timestamp] = Aggregate(open = open, high = high, low = low, close = close, volume = volume, count = count, averageHigh = averageHigh, averageLow = averageLow, volumeHigh = volumeHigh, volumeLow = volumeLow)
         }
-        return history
+        history
     }
 
-    override fun save(accounts: List<PlayerSave>) {
-        transaction {
-            saveAccounts(accounts)
-            val names = accounts.map { it.name }
-            val playerIds = AccountsTable
-                .select(AccountsTable.id, AccountsTable.name)
-                .where { LowerCase(AccountsTable.name) inList names.map { it.lowercase() } }
-                .associate { it[AccountsTable.name].lowercase() to it[AccountsTable.id] }
-            saveExperience(accounts, playerIds)
-            saveLevels(accounts, playerIds)
-            saveVariables(accounts, playerIds)
-            saveInventories(accounts, playerIds)
-            saveOffers(accounts, playerIds)
-            saveHistories(accounts, playerIds)
-        }
+    override fun save(accounts: List<PlayerSave>): Unit = transaction {
+        saveAccounts(accounts)
+        val names = accounts.map { it.name }
+        val playerIds = AccountsTable
+            .select(AccountsTable.id, AccountsTable.name)
+            .where { LowerCase(AccountsTable.name) inList names.map { it.lowercase() } }
+            .associate { it[AccountsTable.name].lowercase() to it[AccountsTable.id] }
+        saveExperience(accounts, playerIds)
+        saveLevels(accounts, playerIds)
+        saveVariables(accounts, playerIds)
+        saveInventories(accounts, playerIds)
+        saveOffers(accounts, playerIds)
+        saveHistories(accounts, playerIds)
     }
 
     override fun exists(accountName: String): Boolean = transaction {
@@ -260,8 +258,8 @@ class DatabaseStorage : Storage {
 
     private fun saveOffers(accounts: List<PlayerSave>, playerIds: Map<String, Int>) {
         OffersTable.deleteWhere { playerId inList playerIds.values }
-        val offerData = accounts.flatMap { save -> save.offers.withIndex().map { (index, offer) -> Triple(save.name, index, offer) } }
-        OffersTable.batchUpsert(offerData, OffersTable.playerId, OffersTable.id, OffersTable.index) { (id, index, offer) ->
+        val offerData = accounts.flatMap { save -> save.offers.filter { !it.isEmpty() }.withIndex().map { (index, offer) -> Triple(save.name, index, offer) } }
+        OffersTable.batchUpsert(offerData, OffersTable.playerId, OffersTable.index, OffersTable.id) { (id, index, offer) ->
             this[OffersTable.playerId] = playerIds.getValue(id.lowercase())
             this[OffersTable.id] = offer.id
             this[OffersTable.index] = index
@@ -275,7 +273,7 @@ class DatabaseStorage : Storage {
         }
     }
 
-    override fun saveOffers(offers: OpenOffers) {
+    override fun saveOffers(offers: OpenOffers) = transaction {
         val playerIds = AccountsTable
             .select(AccountsTable.id, AccountsTable.name)
             .associate { it[AccountsTable.name].lowercase() to it[AccountsTable.id] }
@@ -567,7 +565,7 @@ class DatabaseStorage : Storage {
             }
         }
 
-        internal val tables = arrayOf(AccountsTable, ExperienceTable, LevelsTable, VariablesTable, InventoriesTable, OffersTable, PlayerHistoryTable)
+        internal val tables = arrayOf(AccountsTable, ExperienceTable, LevelsTable, VariablesTable, InventoriesTable, OffersTable, ActiveOffersTable, PlayerHistoryTable, ClaimsTable, ItemHistoryTable)
 
         private const val TYPE_STRING = 0.toByte()
         private const val TYPE_INT = 1.toByte()
