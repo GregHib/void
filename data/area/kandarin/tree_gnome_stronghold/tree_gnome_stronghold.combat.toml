@@ -1,0 +1,44 @@
+[terrorbird]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "terrorbird_defend"
+death_anim = "terrorbird_death"
+
+[terrorbird.melee]
+range = 1
+anim = "terrorbird_attack"
+target_hit = { offense = "stab", max = 30 }
+
+[gnome_child]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "gnome_defend"
+death_anim = "gnome_death"
+
+[gnome_child.attack]
+anim = "gnome_attack"
+target_hit = { offense = "crush", max = 0 }
+
+[gnome_guard]
+attack_speed = 6
+attack_range = 1
+retreat_range = 8
+defend_anim = "gnome_defend"
+death_anim = "gnome_death"
+
+[gnome_guard.attack]
+anim = "gnome_attack"
+target_hit = { offense = "slash", max = 30 }
+
+[gnome_woman]
+attack_speed = 6
+attack_range = 1
+retreat_range = 8
+defend_anim = "gnome_defend"
+death_anim = "gnome_death"
+
+[gnome_woman.attack]
+anim = "gnome_attack"
+target_hit = { offense = "crush", max = 10 }

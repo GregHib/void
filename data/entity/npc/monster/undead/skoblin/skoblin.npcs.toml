@@ -1,12 +1,9 @@
 [skoblin]
 id = 9611
 hitpoints = 950
-wander_radius = 8
-retreat_range = 4
+combat_def = "skoblin"
 max_hit_melee = 28
-style = "slash"
 respawn_delay = 60
 drop_table = "skoblin"
-combat_anims = "skoblin"
 categories = ["skoblin"]
 examine = "Could do with gaining a few pounds."

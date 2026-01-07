@@ -1,0 +1,37 @@
+[spiritual_ranger]
+attack_speed = 4
+attack_range = 5
+retreat_range = 8
+defend_anim = "human_defend"
+death_anim = "human_death"
+
+[spiritual_ranger.ranged]
+range = 5
+anim = "spiritual_ranger_attack"
+projectile = "rune_arrow"
+target_hit = { offense = "range", max = 150 }
+
+[spiritual_ranger_bandos]
+attack_speed = 3
+attack_range = 5
+retreat_range = 8
+defend_anim = "spiritual_ranger_bandos_defend"
+death_anim = "spiritual_ranger_bandos_death"
+
+[spiritual_ranger_bandos.ranged]
+range = 5
+anim = "spiritual_ranger_bandos_attack"
+target_hit = { offense = "range", max = 130 }
+
+[spiritual_ranger_armadyl]
+attack_speed = 3
+attack_range = 5
+retreat_range = 8
+defend_anim = "human_defend"
+death_anim = "human_death"
+
+[spiritual_ranger_armadyl.ranged]
+range = 5
+anim = "spiritual_ranger_attack"
+projectile = "rune_arrow"
+target_hit = { offense = "range", max = 160 }

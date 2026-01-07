@@ -1,0 +1,17 @@
+[thrower_troll]
+attack_speed = 7
+attack_range = 8
+retreat_range = 8
+defend_anim = "thrower_troll_defend"
+defend_sound = "thrower_troll_defend"
+death_anim = "thrower_troll_death"
+death_sound = "thrower_troll_death"
+
+[thrower_troll.ranged]
+range = 8
+anim = "thrower_troll_attack"
+target_sound = "thrower_troll_attack"
+projectile = "troll_rock"
+target_hit = { offense = "range", max = 100 } # TODO always successful hits, neitiznot shield reduce max hit to 2
+
+# TODO melee 90

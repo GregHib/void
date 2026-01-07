@@ -1,0 +1,15 @@
+[vampyre_god_wars]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "vampyre_god_wars_defend"
+defend_sound = "vampyre_defend"
+death_anim = "vampyre_god_wars_death"
+death_sound = "vampyre_death"
+
+[vampyre_god_wars.melee]
+range = 1
+anim = "vampyre_god_wars_attack"
+target_sound = "vampyre_attack"
+target_hit = { offense = "slash", max = 80 }
+

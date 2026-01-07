@@ -1,0 +1,14 @@
+[thug]
+attack_speed = 4
+attack_range = 1
+retreat_range = 13
+defend_anim = "thug_defend"
+defend_sound = "thug_defend"
+death_anim = "thug_death"
+death_sound = "thug_death"
+
+[thug.melee]
+range = 1
+anim = "thug_attack"
+target_sound = "thug_attack"
+target_hit = { offense = "stab", max = 20 }

@@ -4,14 +4,10 @@ hitpoints = 180
 att = 7
 str = 5
 def = 9
-retreat_range = 13
+combat_def = "thug"
 wander_radius = 10
-max_hit_melee = 20
-style = "stab"
 respawn_delay = 50
 drop_table = "thug"
-combat_anims = "thug"
-combat_sounds = "thug"
 categories = ["thug"]
 examine = "Low on brains, high on aggression."
 

@@ -108,14 +108,11 @@ att = 5
 str = 2
 def = 5
 mage = 6
-attack_range = 5
-retreat_range = 11
 hitpoints = 120
-max_hit_magic = 60
+combat_def = "dark_wizard_water"
 respawn_delay = 50
 hunt_mode = "cowardly"
 wander_radius = 4
-combat_anims = "human"
 categories = ["human"]
 examine = "He works evil magic."
 
@@ -132,7 +129,7 @@ str = 17
 def = 14
 mage = 22
 hitpoints = 240
-combat_anims = "human"
+combat_def = "dark_wizard_earth"
 categories = ["human"]
 drop_table = "dark_wizard_earth"
 examine = "A practicer of dark arts."
@@ -664,11 +661,9 @@ hitpoints = 220
 att = 19
 str = 18
 def = 14
-style = "stab"
-max_hit_melee = 30
 attack_bonus = 4
+combat_def = "guard_varrock"
 respawn_delay = 50
-combat_anims = "varrock_guard"
 pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
 examine = "He tries to keep order around here. His bizarre uniform isn't helping."
 

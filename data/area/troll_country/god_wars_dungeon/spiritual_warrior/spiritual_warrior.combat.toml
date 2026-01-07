@@ -1,0 +1,54 @@
+[spiritual_warrior_zamorak]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "spiritual_warrior_zamorak_defend"
+defend_sound = "spiritual_warrior_zamorak_defend"
+death_anim = "spiritual_warrior_zamorak_death"
+death_sound = "spiritual_warrior_zamorak_death"
+
+[spiritual_warrior_zamorak.melee]
+range = 1
+anim = "spiritual_warrior_zamorak_attack"
+target_sound = "spiritual_warrior_zamorak_attack"
+target_hit = { offense = "slash", max = 110 }
+
+[spiritual_warrior_saradomin]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "human_defend"
+defend_sound = "spiritual_warrior_saradomin_defend"
+death_anim = "human_death"
+
+[spiritual_warrior_saradomin.melee]
+range = 1
+anim = "sword_slash"
+target_sound = "spiritual_warrior_saradomin_attack"
+target_hit = { offense = "slash", max = 130 }
+
+[spiritual_warrior_bandos]
+attack_speed = 5
+attack_range = 1
+retreat_range = 8
+defend_anim = "spiritual_warrior_bandos_defend"
+defend_sound = "gorak_defend"
+death_anim = "spiritual_warrior_bandos_death"
+death_sound = "gorak_death"
+
+[spiritual_warrior_bandos.melee]
+range = 1
+anim = "spiritual_warrior_bandos_attack"
+target_sound = "gorak_attack"
+target_hit = { offense = "crush", max = 160 }
+
+
+[spiritual_warrior_armadyl]
+clone = "aviansie_axe"
+attack_speed = 4
+attack_range = 5
+retreat_range = 8
+
+[spiritual_warrior_armadyl.attack]
+clone = "aviansie_axe.attack"
+target_hit = { offense = "range", max = 150 }

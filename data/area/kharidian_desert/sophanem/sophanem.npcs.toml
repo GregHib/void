@@ -35,12 +35,9 @@ id = 1995
 hitpoints = 270
 att = 17
 str = 18
-style = "crush"
-max_hit_melee = 30
+combat_def = "locust"
 hunt_mode = "cowardly"
 respawn_delay = 50
-combat_anims = "locust"
-combat_sounds = "locust"
 drop_table = "locust"
 examine = "An obnoxious, overgrown insect."
 

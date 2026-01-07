@@ -8,14 +8,7 @@ import world.gregs.voidps.type.random
 class DarkWizards : Script {
 
     init {
-        npcCombatPrepare("dark_wizard_water*") { target ->
-            spell = if (!random.nextBoolean() && Spell.canDrain(target, "confuse")) "confuse" else "water_strike"
-            true
-        }
-
-        npcCombatPrepare("dark_wizard_earth*") { target ->
-            spell = if (!random.nextBoolean() && Spell.canDrain(target, "weaken")) "weaken" else "earth_strike"
-            true
-        }
+        npcCondition("not_confused") { target -> Spell.canDrain(target, "confuse") }
+        npcCondition("not_weakened") { target -> Spell.canDrain(target, "weaken") }
     }
 }

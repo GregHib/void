@@ -1,0 +1,49 @@
+[spiritual_mage_zamorak]
+clone = "human"
+attack_speed = 4
+attack_range = 5
+retreat_range = 8
+defend_anim = "human_defend"
+death_anim = "human_death"
+
+[spiritual_mage_zamorak.magic]
+range = 5
+anim = "cast_god_spell"
+target_hit = { offense = "magic", max = 190 }
+impact_gfx = "flames_of_zamorak_impact"
+impact_sound = "flames_of_zamorak_impact"
+miss_sound = "flames_of_zamorak_splash"
+miss_gfx = "spell_splash"
+
+[spiritual_mage_saradomin]
+clone = "spiritual_mage_zamorak"
+
+[spiritual_mage_saradomin.magic]
+range = 5
+anim = "cast_god_spell"
+target_hit = { offense = "magic", max = 200 }
+impact_gfx = "saradomin_strike_impact"
+impact_sound = "saradomin_strike_impact"
+miss_sound = "saradomin_strike_splash"
+miss_gfx = "spell_splash"
+
+[spiritual_mage_bandos]
+attack_speed = 4
+attack_range = 5
+retreat_range = 8
+defend_anim = "spiritual_mage_bandos_defend"
+death_anim = "spiritual_mage_bandos_death"
+
+[spiritual_mage_bandos.magic]
+range = 5
+anim = "spiritual_mage_bandos_attack"
+target_hit = { offense = "magic", max = 170 }
+
+[spiritual_mage_armadyl]
+clone = "spiritual_mage_zamorak"
+
+[spiritual_mage_armadyl.magic]
+range = 5
+anim = "spiritual_mage_armadyl_attack"
+target_hit = { offense = "magic", max = 170 }
+
