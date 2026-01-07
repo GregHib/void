@@ -117,8 +117,10 @@ internal object OffersTable : Table("grand_exchange_offers") {
     val coins = integer("coins").default(0)
 
     init {
-        index(true, playerId, id, index)
+        index(true, playerId, index, id)
     }
+
+    override val primaryKey = PrimaryKey(id, name = "pk_offer_id")
 }
 
 internal object ActiveOffersTable : Table("grand_exchange_active_offers") {
@@ -134,6 +136,8 @@ internal object ActiveOffersTable : Table("grand_exchange_active_offers") {
     init {
         index(true, playerId, id)
     }
+
+    override val primaryKey = PrimaryKey(OffersTable.id, name = "pk_active_offer_id")
 }
 
 internal object PlayerHistoryTable : Table("player_exchange_history") {
@@ -148,7 +152,7 @@ internal object PlayerHistoryTable : Table("player_exchange_history") {
 }
 
 internal object ClaimsTable : Table("grand_exchange_claims") {
-    val offerId = integer("offer_id").references(OffersTable.id)
+    val offerId = integer("offer_id").references(OffersTable.id).uniqueIndex()
     val amount = integer("amount")
     val coins = integer("coins")
 }
