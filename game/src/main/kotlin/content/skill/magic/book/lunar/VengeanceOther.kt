@@ -60,7 +60,7 @@ class VengeanceOther(
     fun veng(player: Player, args: List<String>) {
         val target = players.find(player, args.getOrNull(0)) ?: return
         if (target.contains("vengeance")) {
-            player.message("That player already has vengeance cast.", )
+            player.message("That player already has vengeance cast.")
             return
         }
         player.vengeance(target)

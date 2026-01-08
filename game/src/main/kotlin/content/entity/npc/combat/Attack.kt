@@ -196,7 +196,7 @@ class Attack(
                     id = sound.id,
                     tile = if (sound.offset != null) tile.add(sound.offset!!) else tile,
                     radius = sound.radius,
-                    delay = sound.delay
+                    delay = sound.delay,
                 )
             }
         }

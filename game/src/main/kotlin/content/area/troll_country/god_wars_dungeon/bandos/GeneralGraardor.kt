@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.type.Tile
 
 class GeneralGraardor(
-    val npcs: NPCs
+    val npcs: NPCs,
 ) : Script {
     var strongstack: NPC? = null
     var steelwill: NPC? = null

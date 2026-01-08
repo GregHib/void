@@ -51,7 +51,6 @@ class KrilTsutsaroth : Script {
         npcDespawn("zakln_gritch") {
             gritch = null
         }
-
     }
 
     private fun slamCooldown(npc: NPC, target: Character) {

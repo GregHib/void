@@ -23,7 +23,7 @@ class CombatCommands(
             "boost",
             intArg("amount", "amount to boost by (default 25)", optional = true),
             desc = "Boosts all stats",
-            handler = ::boost
+            handler = ::boost,
         )
         adminCommand("food", desc = "Fills inventory with food", handler = ::food)
         adminCommand("pots", desc = "Fills inventory with combat potions", handler = ::pots)
@@ -31,7 +31,7 @@ class CombatCommands(
             "respawn",
             stringArg("player-name", autofill = accounts.displayNames.keys, optional = true),
             desc = "Teleport back to last death location",
-            handler = ::respawn
+            handler = ::respawn,
         )
     }
 
@@ -55,5 +55,4 @@ class CombatCommands(
             player.levels.boost(skill, amount)
         }
     }
-
 }

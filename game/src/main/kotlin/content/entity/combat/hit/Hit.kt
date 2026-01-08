@@ -133,7 +133,6 @@ object Hit {
     }
 
     fun meleeType(type: String) = type == "melee" || type == "stab" || type == "crush" || type == "slash" || type == "typeless_stab" || type == "typeless_crush" || type == "typeless_slash"
-
 }
 
 /**
