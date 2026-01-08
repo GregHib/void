@@ -125,6 +125,7 @@ class Attack(
                 // Effects
                 if (attack.impactRegardless || context.damage > 0) {
                     for (drain in attack.impactDrainSkills) {
+                        println("Drain $drain ${drain.min} ${drain.max} ${drain.amount}")
                         when (drain.skill) {
                             "all" -> for (skill in Skill.all) {
                                 target.levels.drain(skill, drain.amount, drain.multiplier)

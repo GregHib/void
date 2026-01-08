@@ -95,7 +95,11 @@ data class CombatDefinition(
         val impactFreeze: Int = 0,
         val impactPoison: Int = 0,
         val impactMessage: String = "",
-    )
+    ) {
+        companion object {
+            val EMPTY = CombatAttack()
+        }
+    }
 
     /**
      * @param offense offensiveType (e.g. "crush", "range", "magic")
@@ -129,10 +133,15 @@ data class CombatDefinition(
      * @param multiplier multiplier applied to drained skill
      */
     data class Drain(val skill: String, val min: Int = 0, val max: Int = 0, val multiplier: Double = 0.0) {
-        val amount: Int get() = (min..max).random(random)
+        val amount: Int
+            get() = if (min == max) max else (min..max).random(random)
     }
 
     data class CombatSound(val id: String, val delay: Int = 0, val radius: Int = 0, val offset: Delta? = null)
 
     data class CombatGfx(val id: String, val delay: Int? = null, val height: Int? = null, val area: Boolean = false, val offset: Delta? = null)
+
+    companion object {
+        val EMPTY = CombatDefinition()
+    }
 }

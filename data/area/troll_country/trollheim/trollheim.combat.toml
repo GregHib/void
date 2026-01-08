@@ -8,10 +8,16 @@ death_anim = "thrower_troll_death"
 death_sound = "thrower_troll_death"
 
 [thrower_troll.ranged]
+chance = 90
 range = 8
 anim = "thrower_troll_attack"
-target_sound = "thrower_troll_attack"
+sound = { id = "thrower_troll_attack", radius = 10 }
 projectile = "troll_rock"
 target_hit = { offense = "range", max = 100 } # TODO always successful hits, neitiznot shield reduce max hit to 2
+
+[thrower_troll.ranged_speak]
+chance = 10
+clone = "thrower_troll.ranged"
+say = "Urg!"
 
 # TODO melee 90

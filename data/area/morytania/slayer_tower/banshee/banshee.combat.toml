@@ -16,6 +16,8 @@ target_hit = { offense = "melee", defence = "magic", max = 20 }
 
 [banshee.scream]
 condition = "no_earmuffs"
+range = 1
+impact_regardless = true
 anim = "banshee_attack_scream"
 target_sound = "banshee_attack_earmuffs"
 target_anim = "ears_bleed"

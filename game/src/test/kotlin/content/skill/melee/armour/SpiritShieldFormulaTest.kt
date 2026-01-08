@@ -30,9 +30,8 @@ internal class SpiritShieldFormulaTest : CombatFormulaTest() {
         player.equipment.set(EquipSlot.Shield.index, "elysian_spirit_shield")
         val npc = createNPC("greater_demon")
 
-        val (_, _, maxHit, _) = calculate(npc, player, "melee")
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(npc, player, "melee")
 
-        val (offensiveRating, defensiveRating, _, chance) = calculate(npc, player, "melee")
         assertEquals(5440, offensiveRating)
         assertEquals(1251, defensiveRating)
         assertEquals(67, maxHit)
