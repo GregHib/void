@@ -18,7 +18,7 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
         val player = createPlayer(Skill.Attack to 99, Skill.Strength to 99)
         val npc = createNPC("rat")
 
-        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "stab")
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee")
 
         assertEquals(7040, offensiveRating)
         assertEquals(220, defensiveRating)
@@ -31,7 +31,7 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
         val player = createPlayer(Skill.Strength to 80)
         val npc = createNPC("cow_default")
 
-        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "crush")
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee")
 
         assertEquals(768, offensiveRating)
         assertEquals(430, defensiveRating)
@@ -45,7 +45,7 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
         player.equipment.set(EquipSlot.Weapon.index, "bronze_scimitar")
         val npc = createNPC("giant_rat")
 
-        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "stab", Item("bronze_scimitar"))
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", Item("bronze_scimitar"))
 
         assertEquals(2201, offensiveRating)
         assertEquals(704, defensiveRating)
@@ -60,7 +60,7 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
         player.equipment.set(EquipSlot.Weapon.index, "rune_battleaxe")
         val npc = createNPC("giant_rat")
 
-        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "stab", Item("rune_battleaxe"))
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", Item("rune_battleaxe"))
 
         assertEquals(6741, offensiveRating)
         assertEquals(704, defensiveRating)
@@ -84,7 +84,7 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
         InterfaceApi.itemOption(player, "Drink", strengthPotion, 1)
         val npc = createNPC("giant_rat")
 
-        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "stab", weapon)
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon)
 
         assertEquals(8774, offensiveRating)
         assertEquals(704, defensiveRating)
@@ -101,7 +101,7 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
         player.equipment.set(EquipSlot.Weapon.index, weapon.id)
         val npc = createNPC("giant_rat")
 
-        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "stab", weapon)
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon)
 
         assertEquals(5995, offensiveRating)
         assertEquals(704, defensiveRating)
@@ -117,7 +117,7 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
         player.equipment.set(EquipSlot.Weapon.index, weapon.id)
         val npc = createNPC("giant_rat")
 
-        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "stab", weapon)
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon)
 
         assertEquals(19796, offensiveRating)
         assertEquals(704, defensiveRating)
@@ -134,7 +134,7 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
         player.equipment.set(EquipSlot.Weapon.index, weapon.id)
         val npc = createNPC("greater_demon")
 
-        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "slash", weapon)
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon)
 
         assertEquals(26460, offensiveRating)
         assertEquals(5760, defensiveRating)
@@ -150,7 +150,7 @@ internal class MeleeCombatFormulaTest : CombatFormulaTest() {
         player.equipment.set(EquipSlot.Weapon.index, weapon.id)
         val npc = createNPC("giant_rat")
 
-        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "stab", weapon, special = true)
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon, special = true)
 
         assertEquals(39592, offensiveRating)
         assertEquals(704, defensiveRating)
