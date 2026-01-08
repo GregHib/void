@@ -12,3 +12,7 @@ range = 1
 anim = "chaos_druid_attack"
 target_sound = "chaos_druid_attack"
 target_hit = { offense = "crush", max = 20 }
+
+[chaos_druid.confuse]
+clone = "dark_wizard_water.confuse"
+range = 1

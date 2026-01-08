@@ -23,7 +23,6 @@ class KarilsSet : Script {
         }
 
         combatAttack("range", handler = ::attack)
-        npcCombatAttack(style = "range", handler = ::attack)
     }
 
     fun attack(source: Character, attack: world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack) {

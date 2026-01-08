@@ -51,10 +51,9 @@ interface CombatApi {
         }
     }
 
-    fun npcCombatSwing(npc: String = "*", style: String = "*", handler: NPC.(target: Character) -> Unit) {
-        Wildcards.find(npc, Wildcard.Npc) { id ->
-            swingNpc.getOrPut("$id:$style") { mutableListOf() }.add(handler)
-        }
+    fun npcCombatSwing(handler: NPC.(target: Character) -> Unit) {
+        require(swingNpc == null) { "Only one npc swing handler can be registered" }
+        swingNpc =  handler
     }
 
     /**
@@ -93,9 +92,9 @@ interface CombatApi {
         attacks.getOrPut(style) { mutableListOf() }.add(handler)
     }
 
-    fun npcCombatAttack(npc: String = "*", style: String = "*", handler: NPC.(CombatAttack) -> Unit) {
+    fun npcCombatAttack(npc: String = "*", handler: NPC.(CombatAttack) -> Unit) {
         Wildcards.find(npc, Wildcard.Npc) { id ->
-            attackNpc.getOrPut("$id:$style") { mutableListOf() }.add(handler)
+            attackNpc.getOrPut(id) { mutableListOf() }.add(handler)
         }
     }
 
@@ -138,7 +137,7 @@ interface CombatApi {
         private val prepare = Object2ObjectOpenHashMap<String, MutableList<Player.(Character) -> Boolean>>(25)
         private val prepareNpc = Object2ObjectOpenHashMap<String, MutableList<NPC.(Character) -> Boolean>>(5)
         private val swing = Object2ObjectOpenHashMap<String, MutableList<Player.(Character) -> Unit>>(25)
-        private val swingNpc = Object2ObjectOpenHashMap<String, MutableList<NPC.(Character) -> Unit>>(30)
+        private var swingNpc: (NPC.(target: Character) -> Unit)? = null
         private val attacks = Object2ObjectOpenHashMap<String, MutableList<Player.(CombatAttack) -> Unit>>(40)
         private val attackNpc = Object2ObjectOpenHashMap<String, MutableList<NPC.(CombatAttack) -> Unit>>(30)
         private val damages = Object2ObjectOpenHashMap<String, MutableList<Player.(CombatDamage) -> Unit>>(40)
@@ -161,9 +160,8 @@ interface CombatApi {
             }
         }
 
-        fun attack(npc: NPC, target: Character, id: String): Boolean {
-            npcAttack[id]?.invoke(npc, target) ?: return false
-            return true
+        fun attack(npc: NPC, target: Character, id: String) {
+            npcAttack[id]?.invoke(npc, target) ?: return
         }
 
         fun impact(npc: NPC, target: Character, id: String): Boolean {
@@ -175,12 +173,6 @@ interface CombatApi {
         }
 
         fun attack(npc: NPC, attack: CombatAttack) {
-            for (handler in attackNpc["${npc.id}:${attack.type}"] ?: emptyList()) {
-                handler(npc, attack)
-            }
-            for (handler in attackNpc["*:${attack.type}"] ?: emptyList()) {
-                handler(npc, attack)
-            }
             for (handler in attackNpc["${npc.id}:*"] ?: emptyList()) {
                 handler(npc, attack)
             }
@@ -244,9 +236,7 @@ interface CombatApi {
         }
 
         fun swing(npc: NPC, target: Character, style: String) {
-            for (handler in swingNpc["${npc.id}:$style"] ?: swingNpc["*:$style"] ?: swingNpc["${npc.id}:*"] ?: swingNpc["*:*"] ?: return) {
-                handler(npc, target)
-            }
+            swingNpc?.invoke(npc, target) ?: return
         }
 
         fun prepare(player: Player, target: Character, style: String): Boolean {
@@ -295,7 +285,7 @@ interface CombatApi {
             prepare.clear()
             prepareNpc.clear()
             swing.clear()
-            swingNpc.clear()
+            swingNpc = null
             attacks.clear()
             attackNpc.clear()
             damages.clear()

@@ -23,7 +23,6 @@ class GuthansSet : Script {
         }
 
         combatAttack("melee", handler = ::attack)
-        npcCombatAttack(style = "melee", handler = ::attack)
     }
 
     fun attack(source: Character, attack: world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack) {

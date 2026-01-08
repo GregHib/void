@@ -11,11 +11,6 @@ class DrainSpells : Script {
     val spellDefinitions: SpellDefinitions by inject()
 
     init {
-        npcCombatPrepare { target ->
-            val definition = spellDefinitions.get(spell)
-            !(definition.contains("drain_skill") && !Spell.canDrain(target, definition))
-        }
-
         combatPrepare("magic") { target ->
             val definition = spellDefinitions.get(spell)
             !(definition.contains("drain_skill") && !Spell.canDrain(target, definition))

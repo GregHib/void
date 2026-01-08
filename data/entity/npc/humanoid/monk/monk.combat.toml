@@ -1,6 +1,6 @@
 [monk_of_zamorak]
 attack_speed = 4
-attack_range = 8
+attack_range = 1
 retreat_range = 8
 defend_anim = "monk_of_zamorak_defend"
 defend_sound = "monk_of_zamorak_defend"
@@ -14,7 +14,5 @@ target_sound = "monk_of_zamorak_attack"
 target_hit = { offense = "crush", max = 50 }
 
 [monk_of_zamorak.magic]
-range = 8
-anim = "monk_of_zamorak_attack"
-target_sound = "monk_of_zamorak_attack"
-target_hit = { offense = "magic", max = 130 }
+clone = "dark_wizard_water.confuse"
+range = 1
