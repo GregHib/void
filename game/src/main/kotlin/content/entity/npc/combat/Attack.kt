@@ -39,8 +39,11 @@ class Attack(
     init {
         npcCombatSwing { target ->
             val distance = tile.distanceTo(target)
-            val source = get("combat_def", if (target is Player) def(target).stringId else id)
-            val definition = definitions.getOrNull(source) ?: return@npcCombatSwing
+            val defId = if (target is Player) {
+                val def = def(target)
+                def["combat_def", def.stringId]
+            } else id
+            val definition = definitions.getOrNull(defId) ?: return@npcCombatSwing
             if (distance > definition.retreatRange) {
                 mode = Retreat(this, target)
                 return@npcCombatSwing
@@ -125,7 +128,6 @@ class Attack(
                 // Effects
                 if (attack.impactRegardless || context.damage > 0) {
                     for (drain in attack.impactDrainSkills) {
-                        println("Drain $drain ${drain.min} ${drain.max} ${drain.amount}")
                         when (drain.skill) {
                             "all" -> for (skill in Skill.all) {
                                 target.levels.drain(skill, drain.amount, drain.multiplier)
