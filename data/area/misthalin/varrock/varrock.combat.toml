@@ -25,6 +25,9 @@ target_sound = "water_strike_cast"
 impact_sound = "water_strike_impact"
 
 [dark_wizard_earth]
+clone = "dark_wizard_water"
+
+[dark_wizard_earth.strike]
 range = 5
 anim = "earth_spell"
 projectile = "earth_spell_cast"

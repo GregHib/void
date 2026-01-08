@@ -503,11 +503,3 @@ animation = "aberrant_spectre_attack"
 projectiles = [
     { id = "aberrant_spectre_goo" }
 ]
-
-[balfrug_kreeyath_fireball]
-max_hit = 160
-graphic = "balfrug_kreeyath_fireball_cast"
-animation = "balfrug_kreeyath_attack"
-projectiles = [
-    { id = "balfrug_kreeyath_fireball" }
-]

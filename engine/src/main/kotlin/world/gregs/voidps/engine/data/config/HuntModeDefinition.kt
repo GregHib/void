@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.data.config
 
-import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 
 /**

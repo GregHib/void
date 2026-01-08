@@ -57,8 +57,10 @@ death_sound = "growler_death"
 range = 10
 anim = "growler_attack"
 gfx = "growler_sonic_cast"
-projectiles = "growler_sonic_spell"
+target_sound = "growler_sonic_spell_cast"
+projectile = "growler_sonic_spell"
 target_hit = { offense = "magic", max = 160 }
+impact_sound = "growler_sonic_spell_impact"
 
 [bree]
 attack_speed = 5

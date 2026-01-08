@@ -1,0 +1,14 @@
+[werewolf_god_wars]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "werewolf_defend"
+defend_sound = "werewolf_defend"
+death_anim = "werewolf_death"
+death_sound = "werewolf_death"
+
+[werewolf_god_wars.melee]
+range = 1
+anim = "werewolf_attack"
+target_sound = "werewolf_attack"
+target_hit = { offense = "crush", max = 90 }

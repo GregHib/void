@@ -1,0 +1,48 @@
+[warped_cockroach]
+attack_speed = 4
+attack_range = 1
+retreat_range = 4
+defend_anim = "warped_cockroach_defend"
+death_anim = "warped_cockroach_death"
+
+[warped_cockroach.melee]
+range = 1
+anim = "warped_cockroach_attack"
+target_hit = { offense = "slash", max = 15 }
+
+[warped_bat]
+attack_speed = 4
+attack_range = 1
+retreat_range = 4
+defend_anim = "warped_bat_defend"
+death_anim = "warped_bat_death"
+
+[warped_bat.melee]
+range = 1
+anim = "warped_bat_attack"
+target_hit = { offense = "slash", max = 20 }
+
+[warped_fly]
+attack_speed = 4
+attack_range = 1
+retreat_range = 4
+defend_anim = "warped_fly_defend"
+death_anim = "warped_fly_death"
+
+[warped_fly.melee]
+range = 1
+anim = "warped_fly_attack"
+target_hit = { offense = "slash", max = 19 }
+
+[warped_rat]
+attack_speed = 4
+attack_range = 1
+retreat_range = 4
+defend_anim = "warped_rat_defend"
+death_anim = "warped_rat_death"
+
+[warped_rat.melee]
+range = 1
+anim = "warped_rat_attack"
+target_hit = { offense = "slash", max = 20 }
+

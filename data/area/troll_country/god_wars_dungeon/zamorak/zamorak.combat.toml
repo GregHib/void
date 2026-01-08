@@ -43,3 +43,49 @@ target_hit = { offense = "magic", delay = 1, min = 100, max = 300 }
 impact_sound = { id = "kril_tsutsaroth_magic_impact", radius = 15 }
 miss_gfx = "giant_splash"
 miss_sound = "spell_splash"
+
+[balfrug_kreeyath]
+attack_speed = 5
+attack_range = 10
+retreat_range = 8
+defend_anim = "balfrug_kreeyath_defend"
+defend_sound = "balfrug_kreeyath_defend"
+death_anim = "balfrug_kreeyath_death"
+death_sound = "balfrug_kreeyath_death"
+
+[balfrug_kreeyath.magic]
+range = 10
+anim = "balfrug_kreeyath_attack"
+target_sound = "balfrug_kreeyath_attack"
+gfx = "balfrug_kreeyath_fireball_cast"
+projectile = "balfrug_kreeyath_fireball"
+target_hit = { offense = "magic", max = 160 }
+
+[zakln_gritch]
+attack_speed = 5
+attack_range = 10
+retreat_range = 8
+defend_anim = "zakln_gritch_defend"
+defend_sound = "zakln_gritch_defend"
+death_anim = "zakln_gritch_death"
+death_sound = "zakln_gritch_death"
+
+[zakln_gritch.ranged]
+range = 10
+anim = "zakln_gritch_attack"
+projectile = "zakln_gritch_snowball"
+target_hit = { offense = "range", max = 210 }
+
+[tstanon_karlak]
+attack_speed = 5
+attack_range = 1
+retreat_range = 8
+defend_anim = "tstanon_karlak_defend"
+defend_sound = "tstanon_karlak_defend"
+death_anim = "tstanon_karlak_death"
+death_sound = "tstanon_karlak_death"
+
+[tstanon_karlak.melee]
+range = 1
+anim = "tstanon_karlak_attack"
+target_hit = { offense = "crush", max = 150 }
