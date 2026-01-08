@@ -24,3 +24,18 @@ id = 4934
 
 [giant_crypt_rat_death]
 id = 4935
+
+[possessed_pickaxe_defend]
+id = 5590
+
+[possessed_pickaxe_attack]
+id = 5591
+
+[possessed_pickaxe_death]
+id = 5592
+
+[spade_death]
+id = 5596
+
+[spade_attack]
+id = 5597

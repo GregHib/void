@@ -12,7 +12,6 @@ class BindSpells : Script {
 
     init {
         combatAttack("magic", handler = ::attack)
-        npcCombatAttack(style = "magic", handler = ::attack)
     }
 
     fun attack(source: Character, attack: world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack) {

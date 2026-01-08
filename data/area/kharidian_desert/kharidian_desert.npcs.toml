@@ -56,14 +56,11 @@ hitpoints = 620
 att = 53
 str = 54
 def = 54
-style = "slash"
-max_hit_melee = 60
+combat_def = "crocodile_kharidian_desert"
 hunt_mode = "cowardly"
 slayer_xp = 62.0
 categories = ["crocodiles"]
 respawn_delay = 40
-combat_anims = "crocodile"
-combat_sounds = "crocodile"
 examine = "Never smile at a..."
 
 [wanderer_kharidian_desert]
@@ -86,6 +83,7 @@ hitpoints = 210
 att = 20
 str = 20
 def = 20
+combat_def = "goat_kharidian_desert"
 style = "crush"
 max_hit_melee = 60
 attack_bonus = 10

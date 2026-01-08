@@ -1,0 +1,14 @@
+[lizard]
+attack_speed = 4
+attack_range = 1
+retreat_range = 11
+defend_anim = "lizard_defend"
+defend_sound = "lizard_defend"
+death_anim = "lizard_death"
+death_sound = "lizard_death"
+
+[lizard.melee]
+range = 1
+anim = "lizard_attack"
+target_sound = "lizard_attack"
+target_hit = { offense = "crush", max = 50 }

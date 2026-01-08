@@ -1,20 +1,16 @@
 package content.skill.ranged
 
 import content.entity.combat.hit.hit
-import content.entity.npc.combat.NPCAttack
 import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 import content.skill.melee.weapon.attackType
 import content.skill.melee.weapon.weapon
-import content.skill.slayer.categories
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inject
@@ -23,7 +19,6 @@ class Ranged : Script {
 
     val weaponStyles: WeaponStyleDefinitions by inject()
     val weaponDefinitions: WeaponAnimationDefinitions by inject()
-    val animationDefinitions: AnimationDefinitions by inject()
 
     init {
         combatPrepare("range") {
@@ -37,16 +32,12 @@ class Ranged : Script {
         combatSwing(style = "range") { target ->
             swing(this, target)
         }
-
-        npcCombatSwing(style = "range") { target ->
-            swing(this, target)
-        }
     }
 
     fun swing(character: Character, target: Character) {
         // TODO handle target sounds better
         var ammo = character.ammo
-        val style = if (character is NPC) weaponStyles.get(character.def["weapon_style", "unarmed"]) else weaponStyles.get(character.weapon.def["weapon_style", 0])
+        val style = weaponStyles.get(character.weapon.def["weapon_style", 0])
         if (character is Player) {
             val required = Ammo.requiredAmount(character.weapon, character.specialAttack)
             if (character.specialAttack && SpecialAttack.drain(character)) {
@@ -86,14 +77,10 @@ class Ranged : Script {
             }
             "bow" -> {
                 character.gfx("${if (ammo.endsWith("brutal")) "brutal" else ammo}_shoot")
-                if (character is NPC) {
-                    target.sound("${if (ammo.endsWith("brutal")) "brutal" else ammo}_shoot")
+                if (weapon.contains("shortbow")) {
+                    character.sound("shortbow_shoot")
                 } else {
-                    if (weapon.contains("shortbow")) {
-                        character.sound("shortbow_shoot")
-                    } else {
-                        character.sound("longbow_shoot")
-                    }
+                    character.sound("longbow_shoot")
                 }
             }
             "fixed_device" -> {
@@ -106,14 +93,10 @@ class Ranged : Script {
         }
         val type = character.weapon.def.getOrNull("weapon_type") ?: style.stringId
         var animation: String?
-        if (character is NPC && !character.categories.contains("human")) {
-            animation = NPCAttack.anim(animationDefinitions, character, "attack")
-        } else {
-            val definition = weaponDefinitions.get(type)
-            animation = definition.attackTypes.getOrDefault(character.attackType, definition.attackTypes["default"])
-            if (animation == null) {
-                animation = "${style.stringId}_${character.attackType}"
-            }
+        val definition = weaponDefinitions.get(type)
+        animation = definition.attackTypes.getOrDefault(character.attackType, definition.attackTypes["default"])
+        if (animation == null) {
+            animation = "${style.stringId}_${character.attackType}"
         }
         character.anim(animation)
         character.hit(target, delay = if (time == -1) 64 else time)

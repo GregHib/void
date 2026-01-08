@@ -1,0 +1,41 @@
+[skeletal_wyvern]
+attack_speed = 6
+attack_range = 6
+retreat_range = 8
+defend_anim = "skeletal_wyvern_defend"
+death_anim = "skeletal_wyvern_death"
+
+[skeletal_wyvern.bite]
+chance = 5
+range = 1
+anim = "skeletal_wyvern_attack"
+target_sound = "wyvern_attack"
+target_hit = { offense = "slash", defence = "stab", max = 130 }
+
+[skeletal_wyvern.tail_whip]
+clone = "bite"
+anim = "wyvern_tail_whip"
+target_sound = "wyvern_tail_whip"
+
+[skeletal_wyvern.ice_breath]
+chance = 10
+range = 5
+anim = "wyvern_ice_breath"
+gfx = "wyvern_ice_breath"
+target_sound = "wyvern_ice_breath"
+projectile = "wyvern_ice_breath"
+projectile_origin = "centre"
+target_hit = { offense = "icy_breath", special = true, max = 500 }
+impact_sound = "wyvern_ice_breath_hit"
+impact_freeze = 10
+impact_message = "The wyvern's icy breath chills you to the bone!"
+
+[skeletal_wyvern.ranged]
+chance = 10
+range = 6
+anim = "wyvern_ranged"
+gfx = "wyvern_ranged"
+target_sound = "wyvern_ranged"
+projectile = "wyvern_ranged"
+projectile_origin = "centre"
+target_hit = { offense = "range", max = 140 }

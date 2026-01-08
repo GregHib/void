@@ -1,0 +1,14 @@
+[wallasalki]
+attack_speed = 6
+attack_range = 5
+retreat_range = 8
+defend_anim = "wallasalki_defend"
+death_anim = "wallasalki_death"
+
+[wallasalki.magic]
+range = 5
+anim = "wallasalki_attack"
+projectile = "water_blast"
+target_hit = { offense = "magic", max = 30 }
+impact_sound = "water_blast_impact"
+impact_gfx = "water_blast_impact"

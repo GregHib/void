@@ -38,6 +38,7 @@ enum class Skill {
 
     companion object {
         val all = entries.toTypedArray()
+        val nonHealth = entries.filter { it != Constitution }.toTypedArray()
         val count = all.size
 
         private val skills = mapOf(

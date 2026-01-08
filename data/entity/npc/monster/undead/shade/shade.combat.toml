@@ -1,0 +1,14 @@
+[shade]
+attack_speed = 4
+attack_range = 1
+retreat_range = 11
+defend_anim = "shade_defend"
+defend_sound = "shade_defend"
+death_anim = "shade_death"
+death_sound = "shade_death"
+
+[shade.melee]
+range = 1
+anim = "shade_attack"
+target_sound = "shade_attack"
+target_hit = { offense = "crush", max = 127 }

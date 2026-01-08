@@ -1,25 +1,13 @@
 package content.area.troll_country.god_wars_dungeon.bandos
 
-import content.entity.combat.hit.hit
-import content.entity.gfx.areaGfx
-import content.entity.proj.shoot
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.random
 
-class GeneralGraardor : Script {
-
-    val players: Players by inject()
-    val areas: AreaDefinitions by inject()
-    val npcs: NPCs by inject()
-
+class GeneralGraardor(
+    val npcs: NPCs,
+) : Script {
     var strongstack: NPC? = null
     var steelwill: NPC? = null
     var grimspike: NPC? = null
@@ -37,50 +25,11 @@ class GeneralGraardor : Script {
             }
         }
 
-        npcCombatSwing("general_graardor") { target ->
-            when (random.nextInt(2)) {
-                0 -> { // Range
-                    anim("general_graardor_slam")
-                    gfx("general_graardor_slam")
-                    areaSound("general_graardor_slam", target.tile, delay = 20, radius = 7)
-                    val targets = players.filter { it.tile in areas["bandos_chamber"] }
-                    for (t in targets) {
-                        val delay = shoot("general_graardor_projectile", t, curve = random.nextInt(9, 24))
-                        hit(t, offensiveType = "range", delay = delay)
-                    }
-                }
-                else -> { // Melee
-                    target.sound("general_graardor_attack")
-                    target.sound("general_graardor_attack", delay = 20)
-                    anim("general_graardor_attack")
-                    hit(target, offensiveType = "melee")
-                }
-            }
-        }
-
         npcDespawn("sergeant_*") {
             when (id) {
                 "sergeant_strongstack" -> strongstack = null
                 "sergeant_steelwill" -> steelwill = null
                 "sergeant_grimspike" -> grimspike = null
-            }
-        }
-
-        npcCombatAttack("general_graardor") { (target, damage, type) ->
-            if (type == "range") {
-                if (damage > 0) {
-                    target.gfx("general_graardor_smash_impact")
-                } else {
-                    target.gfx("giant_splash")
-                    target.sound("spell_splash")
-                }
-            }
-        }
-
-        npcCombatAttack("sergeant_steelwill") { (target, damage, type) ->
-            if (type == "magic" && damage > 0) {
-                areaGfx("sergeant_steelwill_impact", target.tile)
-                target.sound("sergeant_steelwill_impact")
             }
         }
     }

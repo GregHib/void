@@ -4,16 +4,12 @@ hitpoints = 1110
 att = 65
 str = 65
 def = 65
-attack_speed = 5
+combat_def = "fire_giant"
 hunt_mode = "aggressive"
-style = "slash"
-max_hit_melee = 111
 respawn_delay = 30
 wander_radius = 2
 slayer_xp = 111.0
 drop_table = "fire_giant"
-combat_anims = "fire_giant"
-combat_sounds = "giant"
 categories = ["fire_giants"]
 examine = "His beard seems to have a life of its own."
 

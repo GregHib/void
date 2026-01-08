@@ -503,35 +503,3 @@ animation = "aberrant_spectre_attack"
 projectiles = [
     { id = "aberrant_spectre_goo" }
 ]
-
-[sergeant_steelwill_spell]
-max_hit = 150
-graphic = "sergeant_steelwill_attack"
-animation = "sergeant_steelwill_attack"
-projectiles = [
-    { id = "sergeant_steelwill_spell" }
-]
-
-[balfrug_kreeyath_fireball]
-max_hit = 160
-graphic = "balfrug_kreeyath_fireball_cast"
-animation = "balfrug_kreeyath_attack"
-projectiles = [
-    { id = "balfrug_kreeyath_fireball" }
-]
-
-[growler_sonic_spell]
-max_hit = 160
-graphic = "growler_sonic_cast"
-animation = "growler_attack"
-projectiles = [
-    { id = "growler_sonic_spell" }
-]
-
-[wingman_skree_spell]
-max_hit = 160
-graphic = "wingman_skree_cast"
-animation = "aviansie_attack_magic"
-projectiles = [
-    { id = "wingman_skree_spell" }
-]

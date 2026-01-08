@@ -23,20 +23,16 @@ object Dragonfire {
         var type = type(source)
         if (source is Player && target is Player) {
             if (Equipment.antiDragonShield(target)) {
-                return if (target.antifire) {
-                    10
-                } else if (target.superAntifire) {
-                    0
-                } else {
-                    30
+                return when {
+                    target.antifire -> 10
+                    target.superAntifire -> 0
+                    else -> 30
                 }
             }
-            return if (target.antifire) {
-                200
-            } else if (target.superAntifire) {
-                0
-            } else {
-                250
+            return when {
+                target.antifire -> 200
+                target.superAntifire -> 0
+                else -> 250
             }
         } else if (source is Player) {
             type = "chromatic"
@@ -62,9 +58,9 @@ object Dragonfire {
             return 0
         }
 
-        var max = when {
-            type == "king_black_dragon" && !special -> 650
-            type == "elvarg" -> when {
+        var max = when (type) {
+            "king_black_dragon" if !special -> 650
+            "elvarg" -> when {
                 shield && protection && potion == 1 -> 340
                 shield && !protection && potion == 0 -> 100
                 shield -> 220
@@ -79,12 +75,10 @@ object Dragonfire {
             }
             type == "elvarg" && protection -> max -= 150
             type == "chromatic" && (shield || protection) || type == "metallic" && shield ->
-                return if (potion == 1) {
-                    0
-                } else if (shield) {
-                    50
-                } else {
-                    100
+                return when {
+                    potion == 1 -> 0
+                    shield -> 50
+                    else -> 100
                 }
         }
         if (potion == 1 && normalFire) {

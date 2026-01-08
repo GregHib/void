@@ -1,0 +1,30 @@
+[mudskipper]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "mudskipper_defend"
+defend_sound = "mudskipper_defend"
+death_anim = "mudskipper_death"
+death_sound = "mudskipper_death"
+
+[mudskipper.melee]
+range = 1
+anim = "mudskipper_attack"
+target_sound = "mudskipper_attack"
+target_hit = { offense = "crush", max = 40 }
+
+[crab_underwater]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "underwater_crab_defend"
+defend_sound = "underwater_rock_crab_defend"
+death_anim = "underwater_crab_death"
+death_sound = "underwater_rock_crab_death"
+
+[crab_underwater.melee]
+range = 1
+anim = "underwater_crab_attack"
+target_sound = "underwater_rock_crab_attack"
+target_hit = { offense = "crush", max = 30 }
+

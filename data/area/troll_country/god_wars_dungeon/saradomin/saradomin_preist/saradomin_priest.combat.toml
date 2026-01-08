@@ -1,0 +1,12 @@
+[saradomin_priest]
+attack_speed = 5
+attack_range = 8
+retreat_range = 8
+defend_anim = "saradomin_preist_defend"
+defend_sound = "human_defend"
+death_anim = "human_death"
+
+[saradomin_priest.magic]
+range = 8
+anim = "saradomin_preist_attack"
+target_hit = { offense = "magic", max = 200 }

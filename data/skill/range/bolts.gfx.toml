@@ -3,21 +3,21 @@ id = 27
 delay = 41
 height = 3
 curve = 5
-flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+time_offset = 5
 
 [bone_bolts]
 id = 696
 delay = 41
 height = 3
 curve = 5
-flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+time_offset = 5
 
 [barbed_bolts]
 id = 696
 delay = 41
 height = 3
 curve = 5
-flight_time = [ 10, 15, 20, 25, 30, 35, 40, 45, 50, 55 ]
+time_offset = 5
 
 [zaniks_crossbow_special]
 id = 1714
@@ -27,7 +27,8 @@ id = 1497
 delay = 80
 height = 3
 curve = 5
-flight_time = [ 22, 25, 28, 31, 34, 37, 40, 43 ]
+time_offset = 19
+multiplier = 3
 
 [armour_piercing]
 id = 758

@@ -1,0 +1,8 @@
+[haakon_the_champion]
+clone = "human"
+attack_speed = 6
+
+[haakon_the_champion.melee]
+clone = "human.melee"
+anim = "2h_smash"
+target_hit = { offense = "crush", max = 42 }

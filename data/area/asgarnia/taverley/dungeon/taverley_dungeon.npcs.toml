@@ -4,15 +4,10 @@ hitpoints = 290
 att = 16
 str = 14
 def = 9
-style = "slash"
-attack_speed = 5
-max_hit_melee = 30
+combat_def = "suit_of_armour"
 wander_radius = 5
-attack_radius = 8
 hunt_mode = "aggressive"
-weapon_style = "sword"
 drop_table = "human"
-combat_anims = "human"
 categories = ["human"]
 examine = "A dusty old suit of armour."
 

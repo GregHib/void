@@ -2,45 +2,15 @@ package content.entity.npc.combat.magic
 
 import content.entity.combat.hit.directHit
 import content.skill.magic.spell.Spell
-import content.skill.magic.spell.spell
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.type.random
 
 class Wizards : Script {
 
     init {
-        npcCombatPrepare {
-            spell = def.getOrNull<String>("spell") ?: return@npcCombatPrepare true
-            true
-        }
-
-        npcCombatPrepare("dark_wizard*") { target ->
-            spell = if (random.nextBoolean() && Spell.canDrain(target, "confuse")) {
-                if (def.combat < 20) "confuse" else "weaken"
-            } else {
-                if (def.combat < 20) "water_strike" else "earth_strike"
-            }
-            true
-        }
-
-        npcCombatPrepare("skeleton_mage*") { target ->
-            if (def.combat == 16) {
-                if (random.nextInt(4) == 0 && Spell.canDrain(target, "curse")) {
-                    say("I infect your body with rot...")
-                    spell = "curse"
-                } else {
-                    spell = ""
-                }
-            } else {
-                if (random.nextInt(4) == 0 && Spell.canDrain(target, "vulnerability")) {
-                    say("I infect your body with rot...")
-                    spell = "vulnerability"
-                } else {
-                    spell = "fire_strike"
-                }
-            }
-            true
-        }
+        npcCondition("not_confused") { target -> Spell.canDrain(target, "confuse") }
+        npcCondition("not_weakened") { target -> Spell.canDrain(target, "weaken") }
+        npcCondition("not_cursed") { target -> Spell.canDrain(target, "curse") }
+        npcCondition("not_vulnerable") { target -> Spell.canDrain(target, "vulnerability") }
 
         npcCombatDamage("air_wizard") {
             if (it.spell.startsWith("air_")) {

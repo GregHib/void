@@ -3,49 +3,42 @@ id = 200
 delay = 41
 height = 4
 curve = 15
-flight_time = [ 5, 10, 15, 20, 25, 30, 35 ]
 
 [iron_javelin]
 id = 201
 delay = 41
 height = 4
 curve = 15
-flight_time = [ 5, 10, 15, 20, 25, 30, 35 ]
 
 [steel_javelin]
 id = 202
 delay = 41
 height = 4
 curve = 15
-flight_time = [ 5, 10, 15, 20, 25, 30, 35 ]
 
 [mithril_javelin]
 id = 203
 delay = 41
 height = 4
 curve = 15
-flight_time = [ 5, 10, 15, 20, 25, 30, 35 ]
 
 [adamant_javelin]
 id = 204
 delay = 41
 height = 4
 curve = 15
-flight_time = [ 5, 10, 15, 20, 25, 30, 35 ]
 
 [rune_javelin]
 id = 205
 delay = 41
 height = 4
 curve = 15
-flight_time = [ 5, 10, 15, 20, 25, 30, 35 ]
 
 [morrigans_javelin]
 id = 1837
 delay = 41
 height = 3
 curve = 15
-flight_time = [ 5, 10, 15, 20, 25, 30, 35 ]
 
 [morrigans_javelin_special]
 id = 1836

@@ -4,16 +4,12 @@ hitpoints = 420
 att = 25
 str = 25
 def = 25
-max_hit_melee = 40
-style = "slash"
+combat_def = "black_knight"
 slayer_xp = 42.0
 respawn_delay = 25
-attack_speed = 5
 wander_radius = 6
 hunt_mode = "cowardly"
 drop_table = "black_knight"
-combat_sounds = "black_knight"
-combat_anims = "black_knight"
 categories = ["black_knight"]
 examine = "A dark-hearted knight."
 

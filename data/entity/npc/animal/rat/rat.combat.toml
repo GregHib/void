@@ -1,0 +1,25 @@
+[rat]
+attack_speed = 4
+attack_range = 1
+retreat_range = 18
+defend_anim = "rat_defend"
+defend_sound = "rat_defend"
+death_anim = "rat_death"
+death_sound = "rat_death"
+
+[rat.melee]
+range = 1
+anim = "rat_attack"
+target_sound = "rat_attack"
+target_hit = { offense = "crush", max = 1 }
+
+[giant_rat]
+clone = "rat"
+retreat_range = 10
+defend_anim = "giant_rat_defend"
+death_anim = "giant_rat_death"
+
+[giant_rat.melee]
+clone = "rat.melee"
+anim = "giant_rat_attack"
+target_hit = { offense = "stab", max = 10 }

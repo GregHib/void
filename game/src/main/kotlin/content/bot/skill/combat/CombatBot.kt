@@ -8,7 +8,7 @@ import content.bot.interact.navigation.cancel
 import content.bot.interact.navigation.goToArea
 import content.bot.interact.navigation.resume
 import content.entity.combat.attackers
-import content.entity.combat.inCombat
+import content.entity.combat.underAttack
 import content.entity.death.weightedSample
 import content.skill.magic.spell.removeSpellItems
 import content.skill.magic.spell.spell
@@ -96,7 +96,7 @@ class CombatBot : Script {
 
         levelChanged(Skill.Constitution, ::eat)
 
-        variableSet("in_combat") { _, _, to ->
+        variableSet("under_attack") { _, _, to ->
             if (to == 1 && isBot) {
                 bot.resume("combat")
             }
@@ -179,7 +179,7 @@ class CombatBot : Script {
         if (player.attackers.isNotEmpty()) {
             return player.attackers.contains(npc)
         }
-        if (npc.inCombat) {
+        if (npc.underAttack) {
             return false
         }
         if (!npc.def.options.contains("Attack")) {

@@ -19,9 +19,9 @@ internal class SpiritShieldFormulaTest : CombatFormulaTest() {
 
         assertEquals(97, player.levels.get(Skill.Prayer))
         assertEquals(5440, offensiveRating)
-        assertEquals(1251, defensiveRating)
+        assertEquals(1161, defensiveRating)
         assertEquals(62, maxHit)
-        assertEquals(0.8848, chance, 0.0001)
+        assertEquals(0.8931, chance, 0.0001)
     }
 
     @Test
@@ -30,12 +30,11 @@ internal class SpiritShieldFormulaTest : CombatFormulaTest() {
         player.equipment.set(EquipSlot.Shield.index, "elysian_spirit_shield")
         val npc = createNPC("greater_demon")
 
-        val (_, _, maxHit, _) = calculate(npc, player, "melee")
+        val (offensiveRating, defensiveRating, maxHit, chance) = calculate(npc, player, "melee")
 
-        val (offensiveRating, defensiveRating, _, chance) = calculate(npc, player, "melee")
         assertEquals(5440, offensiveRating)
-        assertEquals(1251, defensiveRating)
+        assertEquals(1161, defensiveRating)
         assertEquals(67, maxHit)
-        assertEquals(0.8848, chance, 0.0001)
+        assertEquals(0.8931, chance, 0.0001)
     }
 }

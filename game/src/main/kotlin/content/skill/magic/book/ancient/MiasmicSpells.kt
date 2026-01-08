@@ -14,7 +14,6 @@ class MiasmicSpells : Script {
 
     init {
         combatAttack("magic", handler = ::attack)
-        npcCombatAttack(style = "magic", handler = ::attack)
     }
 
     fun attack(source: Character, attack: CombatAttack) {

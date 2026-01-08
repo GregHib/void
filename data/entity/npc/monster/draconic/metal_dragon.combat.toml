@@ -1,0 +1,59 @@
+[bronze_dragon]
+attack_range = 8
+retreat_range = 8
+defend_anim = "dragon_defend"
+defend_sound = "dragon_defend"
+death_anim = "dragon_death"
+death_sound = "dragon_death"
+
+[bronze_dragon.melee]
+chance = 30
+range = 1
+anim = "dragon_attack"
+target_hit = { offense = "slash", max = 120 }
+target_sound = "dragon_attack"
+
+[bronze_dragon.dragonfire]
+chance = 30
+range = 1
+anim = "dragon_breath"
+gfx = "dragon_breath_shoot"
+target_hit = { offense = "dragonfire", special = true, max = 500 }
+target_sound = "dragon_breath"
+
+[bronze_dragon.fireball]
+chance = 30
+range = 8
+anim = "dragon_shoot"
+gfx = "dragon_breath_shoot"
+projectile = "dragon_breath"
+projectile_origin = "centre"
+target_hit = { offense = "dragonfire", special = true, max = 500 }
+target_sound = "metal_dragon_fireball"
+
+[iron_dragon]
+clone = "bronze_dragon"
+
+[iron_dragon.melee]
+clone = "bronze_dragon.melee"
+target_hit = { offense = "slash", max = 170 }
+
+[iron_dragon.dragonfire]
+clone = "bronze_dragon.dragonfire"
+
+[iron_dragon.fireball]
+clone = "bronze_dragon.fireball"
+
+[steel_dragon]
+clone = "bronze_dragon"
+
+[steel_dragon.melee]
+clone = "bronze_dragon.melee"
+target_hit = { offense = "slash", max = 250 }
+
+[steel_dragon.dragonfire]
+clone = "bronze_dragon.dragonfire"
+target_hit = { offense = "dragonfire", special = true, max = 650 }
+
+[steel_dragon.fireball]
+clone = "bronze_dragon.fireball"

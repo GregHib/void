@@ -1,0 +1,34 @@
+[banshee]
+attack_speed = 4
+attack_range = 1
+retreat_range = 15
+defend_anim = "banshee_defend"
+defend_sound = "banshee_defend"
+death_anim = "banshee_death"
+death_sound = "banshee_death"
+
+[banshee.attack]
+condition = "earmuffs"
+range = 1
+anim = "banshee_attack"
+target_sound = "banshee_attack"
+target_hit = { offense = "melee", defence = "magic", max = 20 }
+
+[banshee.scream]
+condition = "no_earmuffs"
+range = 1
+impact_regardless = true
+anim = "banshee_attack_scream"
+target_sound = "banshee_attack_earmuffs"
+target_anim = "ears_bleed"
+projectile = { id = "banshee_scream" }
+target_hit = { offense = "melee", defence = "magic", max = 80 }
+impact_drains = [
+    { skill = "attack", multiplier = 0.2 },
+    { skill = "strength", multiplier = 0.2 },
+    { skill = "defence", multiplier = 0.2 },
+    { skill = "ranged", multiplier = 0.2 },
+    { skill = "magic", multiplier = 0.2 },
+    { skill = "prayer", multiplier = 0.1 },
+    { skill = "agility", multiplier = 0.1 },
+]

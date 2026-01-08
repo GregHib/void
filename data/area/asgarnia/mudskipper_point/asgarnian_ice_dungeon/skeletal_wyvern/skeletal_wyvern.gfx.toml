@@ -4,7 +4,8 @@ height = 36
 end_height = 10
 curve = 18
 delay = 41
-flight_time = [12, 14, 16, 18, 20, 22, 24, 26]
+time_offset = 10
+multiplier = 2
 
 [wyvern_ice_breath_hit]
 id = 502
@@ -16,4 +17,5 @@ id = 499
 height = 67
 end_height = 31
 delay = 30
-flight_time = [16, 18, 20, 22, 24, 26, 28, 30]
+time_offset = 14
+multiplier = 2

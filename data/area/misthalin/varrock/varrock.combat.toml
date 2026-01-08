@@ -1,0 +1,60 @@
+[dark_wizard_water]
+attack_speed = 4
+attack_range = 5
+retreat_range = 11
+defend_anim = "human_defend"
+death_anim = "human_death"
+
+[dark_wizard_water.confuse]
+range = 5
+condition = "not_confused"
+gfx = "confuse_cast"
+target_sound = "confuse_cast"
+projectile = "confuse"
+target_hit = { offense = "magic", max = 0 }
+impact_gfx = "confuse_impact"
+impact_sound = "confuse_impact"
+impact_drain = { skill = "attack", multiplier = 0.05 }
+
+[dark_wizard_water.strike]
+range = 5
+anim = "water_spell"
+projectile = "water_spell_cast"
+target_hit = { offense = "magic", max = 40 }
+target_sound = "water_strike_cast"
+impact_sound = "water_strike_impact"
+
+[dark_wizard_earth]
+clone = "dark_wizard_water"
+
+[dark_wizard_earth.strike]
+range = 5
+anim = "earth_spell"
+projectile = "earth_spell_cast"
+target_hit = { offense = "magic", max = 60 }
+target_sound = "earth_strike_cast"
+impact_sound = "earth_strike_impact"
+
+[dark_wizard_earth.weaken]
+range = 5
+condition = "not_weakened"
+gfx = "weaken_cast"
+target_sound = "weaken_cast"
+projectile = "weaken"
+target_hit = { offense = "magic", max = 10 }
+impact_gfx = "weaken_impact"
+impact_sound = "weaken_impact"
+impact_drain = { skill = "strength", multiplier = 0.05 }
+
+[guard_varrock]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "varrock_guard_defend"
+death_anim = "varrock_guard_death"
+
+[guard_varrock.melee]
+range = 1
+anim = "varrock_guard_attack"
+target_hit = { offense = "stab", max = 30 }
+

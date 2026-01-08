@@ -89,10 +89,10 @@ class Combat :
     }
 
     fun stop(character: Character) {
-        character.stop("in_combat")
+        character.stop("under_attack")
         for (attacker in character.attackers) {
             if (attacker.target == character) {
-                attacker.stop("in_combat")
+                attacker.stop("under_attack")
             }
         }
     }
@@ -113,14 +113,14 @@ class Combat :
         if (character is Player && character.mode != EmptyMode) {
             return
         }
-        if (character is NPC && character.mode is CombatMovement && character.hasClock("in_combat")) {
+        if (character is NPC && character.attacking && character.underAttack) {
             return
         }
         character.mode = CombatMovement(character, source)
         character.target = source
         val delay = character.attackSpeed / 2
         character.start("action_delay", delay)
-        character.start("in_combat", delay + 8)
+        character.start("under_attack", delay + 8)
     }
 
     companion object {
@@ -167,23 +167,24 @@ class Combat :
                 }
                 player.message("---- Swing ($id) -> ($targetId) -----")
             }
-            if (!target.hasClock("in_combat")) {
+            if (!target.hasClock("under_attack")) {
                 if (character is Player) {
                     CombatApi.start(character, target)
                 } else if (character is NPC) {
                     CombatApi.start(character, target)
                 }
             }
-            target.start("in_combat", 8)
+            target.start("under_attack", 8)
             if (character is NPC) {
                 CombatApi.swing(character, target, character.fightStyle)
             } else if (character is Player) {
-                if (character.fightStyle == "magic" || character.fightStyle == "blaze") {
+                val style = character.fightStyle
+                if (style == "magic" || style == "blaze") {
                     if (Magic.castSpell(character, target)) {
-                        CombatApi.swing(character, target, character.weapon.id, character.fightStyle)
+                        CombatApi.swing(character, target, character.weapon.id, style)
                     }
                 } else {
-                    CombatApi.swing(character, target, character.weapon.id, character.fightStyle)
+                    CombatApi.swing(character, target, character.weapon.id, style)
                 }
             }
             (character as? Player)?.specialAttack = false

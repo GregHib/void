@@ -1,0 +1,14 @@
+[fire_giant]
+attack_speed = 5
+attack_range = 1
+retreat_range = 8
+defend_anim = "fire_giant_defend"
+defend_sound = "giant_defend"
+death_anim = "fire_giant_death"
+death_sound = "giant_death"
+
+[fire_giant.melee]
+range = 1
+anim = "fire_giant_attack"
+target_sound = "giant_attack"
+target_hit = { offense = "slash", max = 111 }

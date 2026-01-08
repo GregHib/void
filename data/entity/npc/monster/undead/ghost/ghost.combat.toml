@@ -1,0 +1,37 @@
+[ghost]
+attack_speed = 4
+attack_range = 1
+retreat_range = 11
+defend_anim = "ghost_defend"
+defend_sound = "ghost_defend"
+death_anim = "ghost_death"
+death_sound = "ghost_death"
+
+[ghost.melee]
+range = 1
+anim = "ghost_attack"
+target_sound = "ghost_attack"
+target_hit = { offense = "crush", max = 20 }
+
+[ghost_tendril]
+clone = "ghost"
+defend_anim = "ghost_tendril_defend"
+death_anim = "ghost_tendril_death"
+
+[ghost_tendril.melee]
+clone = "ghost.melee"
+anim = "ghost_tendril_attack"
+
+[stronghold_ghost]
+clone = "ghost"
+
+[stronghold_ghost.melee]
+clone = "ghost.melee"
+target_hit = { offense = "crush", max = 70 }
+
+[stronghold_ghost_tendril]
+clone = "ghost_tendril"
+
+[stronghold_ghost_tendril.melee]
+clone = "ghost_tendril.melee"
+target_hit = { offense = "crush", max = 70 }

@@ -1,0 +1,14 @@
+[black_knight]
+attack_speed = 5
+attack_range = 1
+retreat_range = 8
+defend_anim = "black_knight_defend"
+defend_sound = "black_knight_defend"
+death_anim = "black_knight_death"
+death_sound = "black_knight_death"
+
+[black_knight.melee]
+range = 1
+anim = "black_knight_attack"
+target_sound = "black_knight_attack"
+target_hit = { offense = "slash", max = 40 }

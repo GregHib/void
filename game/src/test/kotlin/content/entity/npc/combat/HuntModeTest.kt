@@ -1,13 +1,13 @@
 package content.entity.npc.combat
 
 import WorldTest
-import content.entity.combat.inCombat
+import content.entity.combat.attacking
+import content.entity.combat.underAttack
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import kotlin.test.assertEquals
 
@@ -23,14 +23,14 @@ internal class HuntModeTest : WorldTest() {
     fun `Cowardly attack low level player when in range`() {
         val player = createPlayer(emptyTile)
         val npc = createNPC("giant_spider", emptyTile.addY(2))
-        assertFalse(player.inCombat)
+        assertFalse(player.underAttack)
         assertTrue(Settings["world.npcs.aggression", false])
 
         player.walkTo(emptyTile.addY(1))
         tick(6)
 
-        assertTrue(npc.mode is CombatMovement)
-        assertTrue(player.inCombat)
+        assertTrue(npc.attacking)
+        assertTrue(player.underAttack)
     }
 
     @Test
@@ -38,12 +38,12 @@ internal class HuntModeTest : WorldTest() {
         val player = createPlayer(emptyTile)
         val npc = createNPC("giant_spider", emptyTile.addY(1))
         player.combatLevel = 5
-        assertFalse(player.inCombat)
+        assertFalse(player.underAttack)
 
         tick(6)
 
-        assertFalse(npc.mode is CombatMovement)
-        assertFalse(player.inCombat)
+        assertFalse(npc.attacking)
+        assertFalse(player.underAttack)
     }
 
     @Test

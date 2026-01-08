@@ -1,0 +1,33 @@
+[aberrant_spectre]
+attack_speed = 4
+attack_range = 6
+retreat_range = 19
+defend_anim = "aberrant_spectre_defend"
+defend_sound = "aberrant_spectre_defend"
+death_anim = "aberrant_spectre_death"
+death_sound = "aberrant_spectre_death"
+
+[aberrant_spectre.goo]
+condition = "nose_peg"
+chance = 100
+range = 6
+anim = "aberrant_spectre_attack"
+gfx = "aberrant_spectre_goo_cast"
+projectile = "aberrant_spectre_goo"
+impact_gfx = "aberrant_spectre_goo_impact"
+target_hit = { offense = "magic", max = 80 }
+
+[aberrant_spectre.special]
+clone = "goo"
+condition = "no_nose_peg"
+impact_regardless = true
+target_hit = { offense = "magic", max = 140 }
+impact_drains = [
+    { skill = "attack", multiplier = 0.8 },
+    { skill = "strength", multiplier = 0.8 },
+    { skill = "defence", multiplier = 0.6 },
+    { skill = "ranged", multiplier = 0.8 },
+    { skill = "magic", multiplier = 0.8 },
+    { skill = "prayer", multiplier = 0.5 },
+    { skill = "agility", multiplier = 0.6 },
+]

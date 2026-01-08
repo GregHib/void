@@ -3,7 +3,7 @@ package content.area.morytania.slayer_tower
 import content.entity.combat.attacker
 import content.entity.combat.attackers
 import content.entity.combat.hit.damage
-import content.entity.combat.inCombat
+import content.entity.combat.underAttack
 import content.entity.effect.transform
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -17,7 +17,7 @@ class Gargoyle : Script {
 
     init {
         npcOperate("Smash", "gargoyle") { (target) ->
-            if (target.inCombat && target.attacker != this) {
+            if (target.underAttack && target.attacker != this) {
                 message("Someone else is fighting that.")
                 return@npcOperate
             }
@@ -25,7 +25,7 @@ class Gargoyle : Script {
         }
 
         itemOnNPCOperate("rock_hammer", "gargoyle") { (target) ->
-            if (target.inCombat && target.attacker != this) {
+            if (target.underAttack && target.attacker != this) {
                 message("Someone else is fighting that.")
                 return@itemOnNPCOperate
             }

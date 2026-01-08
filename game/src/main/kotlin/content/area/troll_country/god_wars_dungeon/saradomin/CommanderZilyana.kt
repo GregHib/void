@@ -1,23 +1,13 @@
 package content.area.troll_country.god_wars_dungeon.saradomin
 
-import content.entity.combat.hit.hit
-import content.entity.gfx.areaGfx
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.random
 
-class CommanderZilyana : Script {
-
-    val players: Players by inject()
-    val areas: AreaDefinitions by inject()
-    val npcs: NPCs by inject()
+class CommanderZilyana(
+    val npcs: NPCs,
+) : Script {
 
     var starlight: NPC? = null
     var bree: NPC? = null
@@ -36,26 +26,6 @@ class CommanderZilyana : Script {
             }
         }
 
-        npcCombatSwing("commander_zilyana") { target ->
-            when (random.nextInt(2)) {
-                0 -> { // Magic
-                    anim("commander_zilyana_magic")
-                    areaSound("commander_zilyana_magic", target.tile, delay = 1)
-                    val targets = players.filter { it.tile in areas["saradomin_chamber"] }
-                    for (t in targets) {
-                        val hit = hit(t, offensiveType = "magic")
-                        if (hit > 0) {
-                            t.gfx("commander_zilyana_magic_strike")
-                        }
-                    }
-                }
-                else -> { // Melee
-                    target.sound("commander_zilyana_attack")
-                    hit(target, offensiveType = "melee")
-                }
-            }
-        }
-
         npcDespawn("starlight") {
             starlight = null
         }
@@ -66,20 +36,6 @@ class CommanderZilyana : Script {
 
         npcDespawn("growler") {
             growler = null
-        }
-
-        npcCombatAttack("commander_zilyana") { (target, damage, type) ->
-            if (type == "magic") {
-                if (damage > 0) {
-                    areaSound("commander_zilyana_magic_impact", target.tile)
-                    target.gfx("commander_zilyana_magic_impact")
-                } else {
-                    areaSound("spell_splash", target.tile)
-                    areaSound("spell_splash", target.tile, delay = 20)
-                    areaGfx("spell_splash", target.tile.addY(1), height = 100)
-                    areaGfx("spell_splash", target.tile.addY(-1), delay = 20, height = 100)
-                }
-            }
         }
     }
 }

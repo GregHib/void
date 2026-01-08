@@ -6,15 +6,13 @@ att = 8
 str = 8
 def = 12
 mage = 10
-attack_speed = 4
+combat_def = "chaos_druid"
 style = "crush"
 respawn_delay = 25
 wander_radius = 5
 height = 50
 drop_table = "chaos_druid"
 categories = ["chaos_druid", "human"]
-combat_anims = "chaos_druid"
-combat_sounds = "chaos_druid"
 examine = "A crazy, evil druid."
 
 [chaos_druid_1]

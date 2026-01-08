@@ -1,0 +1,56 @@
+[king_black_dragon]
+attack_speed = 4
+attack_range = 8
+retreat_range = 10
+defend_anim = "king_black_dragon_defend"
+defend_sound = "dragon_defend"
+death_anim = "king_black_dragon_death"
+death_sound = "dragon_death"
+
+[king_black_dragon.melee]
+chance = 30
+range = 1
+anim = "king_black_dragon_attack"
+target_sound = "dragon_attack"
+target_hit = { offense = "stab", max = 250 }
+
+[king_black_dragon.dragonfire]
+chance = 30
+range = 8
+anim = "king_black_dragon_breath"
+projectile = "dragon_breath"
+projectile_origin = "centre"
+target_sound = "dragon_breath"
+target_hit = { offense = "dragonfire", max = 650 }
+
+[king_black_dragon.toxic]
+chance = 10
+range = 8
+anim = "king_black_dragon_breath"
+projectile = "dragon_breath_toxic"
+projectile_origin = "centre"
+target_sound = "dragon_breath_toxic"
+target_hit = { offense = "dragonfire", special = true, max = 500 }
+impact_poison = 80
+
+[king_black_dragon.ice]
+chance = 10
+range = 8
+anim = "king_black_dragon_breath"
+projectile = "dragon_breath_ice"
+projectile_origin = "centre"
+target_sound = "dragon_breath_ice"
+target_hit = { offense = "dragonfire", special = true, max = 500 }
+impact_freeze = 10
+impact_message = "You have been frozen!"
+
+[king_black_dragon.shock]
+chance = 10
+range = 8
+anim = "king_black_dragon_breath"
+projectile = "dragon_breath_shock"
+projectile_origin = "centre"
+target_sound = "dragon_breath_shock"
+target_hit = { offense = "dragonfire", special = true, max = 500 }
+impact_drain = { skill = "all", amount = 2 }
+impact_message = "You're shocked and weakened!"

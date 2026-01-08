@@ -1,22 +1,34 @@
+[spider]
+id = 61
+hitpoints = 20
+attack_bonus = -35
+max_hit_melee = 1
+retreat_range = 11
+wander_radius = 9
+respawn_delay = 35
+style = "stab"
+slayer_xp = 2.0
+combat_anims = "spider"
+combat_sounds = "spider"
+categories = ["spiders"]
+height = 10
+examine = "Incey wincey."
+
 [giant_spider]
 id = 59
 hitpoints = 50
 attack_bonus = -10
-attack_radius = 13
 wander_radius = 10
+combat_def = "giant_spider"
 hunt_mode = "cowardly"
 hunt_range = 1
 slayer_xp = 5.0
-max_hit_melee = 10
-style = "stab"
 respawn_delay = 45
-combat_anims = "giant_spider"
-combat_sounds = "giant_spider"
 categories = ["giant_spiders", "spiders"]
 height = 10
 examine = "I think this spider has been genetically modified."
 
-[giant_spider_2]
+[giant_spider_mid]
 id = 60
 hitpoints = 320
 att = 20
@@ -24,18 +36,15 @@ str = 24
 def = 21
 wander_radius = 6
 respawn_delay = 30
+combat_def = "giant_spider_mid"
 hunt_mode = "cowardly"
 hunt_range = 1
 slayer_xp = 33.0
-max_hit_melee = 30
-style = "stab"
-combat_anims = "giant_spider"
-combat_sounds = "giant_spider"
-categories = ["giant_spiders", "spiders"]
 height = 10
+categories = ["giant_spiders", "spiders"]
 examine = "I think this spider has been genetically modified."
 
-[giant_spider_3]
+[giant_spider_hard]
 id = 4400
 hitpoints = 500
 att = 41
@@ -44,6 +53,7 @@ def = 31
 attack_bonus = 10
 wander_radius = 6
 respawn_delay = 25
+combat_def = "giant_spider_hard"
 hunt_mode = "cowardly"
 hunt_range = 1
 slayer_xp = 50.0
@@ -55,30 +65,12 @@ categories = ["giant_spiders", "spiders"]
 height = 10
 examine = "I think this spider has been genetically modified."
 
-[spider]
-id = 61
-hitpoints = 20
-attack_bonus = -35
-max_hit_melee = 1
-attack_radius = 11
-wander_radius = 9
-respawn_delay = 35
-style = "stab"
-slayer_xp = 2.0
-combat_anims = "spider"
-combat_sounds = "spider"
-categories = ["spiders"]
-height = 10
-examine = "Incey wincey."
-
 [deadly_red_spider]
 id = 63
 hitpoints = 340
-max_hit_melee = 30
 attack = 30
 str = 25
 def = 30
-attack_radius = 11
 wander_radius = 9
 attack_speed = 4
 respawn_delay = 30
@@ -93,20 +85,13 @@ examine = "I think this spider has been genetically modified.."
 [poison_spider]
 id = 134
 hitpoints = 640
-max_hit_melee = 70
 attack = 50
 str = 58
 def = 52
-attack_radius = 11
+combat_def = "poison_spider"
 wander_radius = 9
-attack_speed = 4
 respawn_delay = 30
-poison = 60
-poison_roll = 2 # unknown
-style = "stab"
 slayer_xp = 35.0
-combat_anims = "spider"
-combat_sounds = "spider"
 categories = ["spiders"]
 height = 10
 examine = "I think this spider has been genetically modified.."
@@ -114,7 +99,6 @@ examine = "I think this spider has been genetically modified.."
 [spider_underground_pass]
 id = 1004
 clone = "spider"
-max_hit_melee = 10
 
 [spider_stronghold_of_security]
 id = 4401
@@ -123,17 +107,13 @@ att = 21
 str = 21
 def = 21
 attack_bonus = 35
-max_hit_melee = 60
+combat_def = "spider_stronghold_of_security"
 hunt_mode = "cowardly"
-attack_radius = 11
 wander_radius = 9
 respawn_delay = 27
-style = "stab"
 slayer_xp = 22.0
-combat_anims = "spider"
-combat_sounds = "spider"
-categories = ["spiders"]
 height = 10
+categories = ["spiders"]
 examine = "I think this spider has been genetically modified."
 
 [spider_haunted_woods]

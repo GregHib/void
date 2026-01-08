@@ -1,0 +1,23 @@
+[jackal]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "jackal_defend"
+defend_sound = "dog_defend"
+death_anim = "jackal_death"
+death_sound = "dog_death"
+
+[jackal.melee]
+range = 1
+anim = "jackal_attack"
+target_sound = "dog_attack"
+target_hit = { offense = "stab", max = 30 }
+
+[guard_dog]
+clone = "jackal"
+defend_anim = "medium_dog_defend"
+death_anim = "medium_dog_death"
+
+[guard_dog.melee]
+clone = "jackal.melee"
+anim = "medium_dog_attack"

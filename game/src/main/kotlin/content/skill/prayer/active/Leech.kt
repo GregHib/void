@@ -120,7 +120,7 @@ class Leech : Script {
         combatDamage(handler = ::damage)
         npcCombatDamage(handler = ::damage)
 
-        variableSet("in_combat") { _, _, to ->
+        variableSet("under_attack") { _, _, to ->
             if (to == 0) {
                 for ((_, skill) in map) {
                     clear("${skill.name.lowercase()}_drain_msg")

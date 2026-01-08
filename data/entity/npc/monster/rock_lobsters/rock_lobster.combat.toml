@@ -1,0 +1,15 @@
+[rock_lobster]
+attack_speed = 2
+attack_range = 1
+retreat_range = 8
+defend_anim = "rock_lobster_defend"
+defend_sound = "rock_lobster_defend"
+death_anim = "rock_lobster_death"
+death_sound = "rock_lobster_death"
+
+[rock_lobster.melee]
+range = 1
+anim = "rock_lobster_attack"
+target_sound = "rock_lobster_attack"
+target_hit = { offense = "crush", max = 110 }
+

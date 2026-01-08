@@ -12,13 +12,10 @@ hitpoints = 600
 att = 43
 str = 43
 def = 43
-attack_speed = 6
-style = "crush"
-max_hit_melee = 70
 attack_bonus = 22
+combat_def = "jogre_ardougne"
 hunt_mode = "cowardly"
 respawn_delay = 30
-combat_anims = "jogre"
 examine = "An aggressive humanoid."
 
 [cyclops_ardougne]

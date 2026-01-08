@@ -1,0 +1,83 @@
+[kree_arra]
+attack_speed = 3
+attack_range = 10
+retreat_range = 20
+defend_anim = "kree_arra_defend"
+death_anim = "kree_arra_death"
+
+[kree_arra.melee]
+condition = "no_attackers"
+chance = 60
+range = 1
+condition = "no_attackers"
+anim = "kree_arra_melee"
+target_sound = "kree_arra_melee"
+projectile = "kree_arra_tornado_white"
+target_hit = { offense = "melee", defence = "magic", max = 260 }
+
+[kree_arra.ranged]
+chance = 24
+range = 10
+condition = "no_attackers"
+anim = "kree_arra_attack"
+sound = { id = "kree_arra_attack", delay = 1, radius = 5 }
+projectile = "kree_arra_tornado_grey"
+multi_target_area = "armadyl_chamber"
+target_hit = { offense = "range", max = 690 }
+impact_sound = { id = "kree_arra_impact", radius = 5 }
+
+[kree_arra.ranged_teleport]
+clone = "ranged"
+chance = 6
+
+[kree_arra.magic]
+chance = 24
+range = 10
+condition = "no_attackers"
+anim = "kree_arra_attack"
+sound = { id = "kree_arra_attack", delay = 1, radius = 5 }
+projectile = "kree_arra_tornado_blue"
+multi_target_area = "armadyl_chamber"
+target_hit = { offense = "magic", defence = "range", max = 210 }
+impact_sound = { id = "kree_arra_impact", radius = 5 }
+
+[kree_arra.magic_teleport]
+clone = "magic"
+chance = 6
+
+[flight_kilisa]
+attack_speed = 5
+attack_range = 1
+retreat_range = 8
+defend_anim = "aviansie_defend"
+defend_sound = "aviansie_defend"
+death_anim = "aviansie_death"
+death_sound = "aviansie_death"
+
+[flight_kilisa.attack]
+anim = "aviansie_attack"
+target_sound = "aviansie_attack"
+target_hit = { offense = "slash", max = 150 }
+
+[wingman_skree]
+clone = "flight_kilisa"
+attack_range = 10
+
+[wingman_skree.attack]
+range = 10
+anim = "aviansie_attack_magic"
+target_sound = "aviansie_attack_magic"
+gfx = "wingman_skree_cast"
+projectile = "wingman_skree_spell"
+target_hit = { offense = "magic", max = 160 }
+
+[flockleader_geerin]
+clone = "flight_kilisa"
+attack_range = 10
+
+[flockleader_geerin.attack]
+range = 10
+anim = "aviansie_attack"
+target_sound = "aviansie_attack"
+projectile = "flockleader_geerin_spear"
+target_hit = { offense = "range", max = 250 }

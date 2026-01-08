@@ -1,0 +1,56 @@
+[goblin]
+attack_speed = 6
+attack_range = 1
+retreat_range = 8
+defend_anim = "goblin_defend"
+defend_sound = "goblin_defend"
+death_anim = "goblin_death"
+death_sound = "goblin_death"
+
+[goblin.melee]
+range = 1
+anim = "goblin_attack"
+target_sound = "goblin_attack"
+target_hit = { offense = "crush", max = 10 }
+
+[stronghold_of_security_goblin]
+clone = "goblin"
+retreat_range = 15
+
+[stronghold_of_security_goblin.melee]
+clone = "goblin.melee"
+target_hit = { offense = "stab", max = 10 }
+
+[stronghold_of_security_goblin_spear]
+clone = "goblin"
+retreat_range = 15
+
+[stronghold_of_security_goblin_spear.melee]
+clone = "goblin.melee"
+target_hit = { offense = "crush", max = 20 }
+
+[goblin_god_wars]
+clone = "goblin"
+attack_speed = 5
+defend_anim = "goblin_god_wars_defend"
+death_anim = "goblin_god_wars_death"
+
+[goblin_god_wars.melee]
+clone = "goblin.melee"
+anim = "goblin_god_wars_attack"
+target_hit = { offense = "crush", max = 20 }
+
+[goblin_god_wars_flag]
+clone = "goblin_god_wars"
+
+[goblin_god_wars_flag.melee]
+clone = "goblin_god_wars.melee"
+anim = "goblin_god_wars_flag_attack"
+
+[goblin_god_wars_axe]
+clone = "goblin_god_wars"
+
+[goblin_god_wars_axe.melee]
+clone = "goblin_god_wars.melee"
+anim = "goblin_god_wars_axe_attack"
+

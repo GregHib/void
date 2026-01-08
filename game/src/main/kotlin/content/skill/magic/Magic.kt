@@ -1,7 +1,6 @@
 package content.skill.magic
 
 import content.entity.combat.hit.hit
-import content.entity.npc.combat.NPCAttack
 import content.entity.proj.shoot
 import content.skill.magic.book.modern.teleBlock
 import content.skill.magic.spell.Spell
@@ -10,7 +9,6 @@ import content.skill.magic.spell.spell
 import content.skill.melee.weapon.weapon
 import content.skill.slayer.categories
 import world.gregs.voidps.engine.data.config.SpellDefinition
-import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -53,16 +51,11 @@ object Magic {
             return "salamander_scorch"
         }
         val staff = source.weapon.def["category", ""] == "staff"
-        if (source is Player || source is NPC && source.categories.contains("human")) {
-            return if (staff && definition.contains("animation_staff")) {
-                definition["animation_staff"]
-            } else {
-                definition["animation", ""]
-            }
-        } else if (source is NPC) {
-            return NPCAttack.anim(get<AnimationDefinitions>(), source, "attack")
+        return if (staff && definition.contains("animation_staff")) {
+            definition["animation_staff"]
+        } else {
+            definition["animation", ""]
         }
-        return ""
     }
 
     fun graphic(source: Character, definition: SpellDefinition): String {
@@ -94,7 +87,11 @@ object Magic {
                 val delay = projectile["delay"] as? Int
                 val curve = projectile["curve"] as? Int
                 val end = projectile["end_height"] as? Int
-                val flightTime = source.shoot(id = id, target = target, delay = delay, curve = curve, endHeight = end)
+                val flightTime = if (id == "ice_barrage") {
+                    target.tile.shoot(id = id, target = target, delay = delay, curve = curve, endHeight = end)
+                } else {
+                    source.shoot(id = id, target = target, delay = delay, curve = curve, endHeight = end)
+                }
                 if (time == -1) {
                     time = flightTime
                 }

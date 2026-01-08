@@ -1,0 +1,12 @@
+[dragith_nurn]
+attack_speed = 5
+attack_range = 1
+retreat_range = 4
+defend_anim = "dragith_nurn_defend"
+death_anim = "dragith_nurn_death"
+
+[dragith_nurn.melee]
+range = 1
+anim = "dragith_nurn_attack"
+target_hit = { offense = "slash", max = 30 }
+

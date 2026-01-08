@@ -4,16 +4,12 @@ hitpoints = 600
 att = 30
 str = 30
 def = 30
-attack_speed = 6
+combat_def = "moss_giant"
 hunt_mode = "aggressive"
-style = "crush"
-max_hit_melee = 60
 respawn_delay = 30
 wander_radius = 2
 slayer_xp = 60.0
 drop_table = "moss_giant"
-combat_anims = "moss_giant"
-combat_sounds = "giant"
 categories = ["moss_giants"]
 examine = "His beard seems to have a life of its own."
 

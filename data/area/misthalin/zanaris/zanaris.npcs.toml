@@ -225,15 +225,11 @@ str = 65
 def = 65
 mage = 65
 range = 65
-style = "magical_melee"
-style = "magical_ranged"
-max_hit_melee = 80
-max_hit_range = 60
+combat_def = "zygomite"
 attack_bonus = 30
 slayer_xp = 65.0
 categories = ["mutated_zygomites"]
 respawn_delay = 30
-combat_anims = "zygomite"
 drop_table = "zygomite_level_74"
 examine = "A bouncy fungus."
 

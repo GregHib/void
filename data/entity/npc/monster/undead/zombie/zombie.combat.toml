@@ -1,0 +1,41 @@
+[zombie]
+attack_speed = 5
+attack_range = 1
+retreat_range = 12
+defend_anim = "zombie_defend"
+defend_sound = "zombie_defend"
+death_anim = "zombie_death"
+death_sound = "zombie_death"
+
+[zombie.melee]
+range = 1
+anim = "zombie_attack"
+target_sound = "zombie_attack"
+target_hit = { offense = "slash", max = 20 }
+
+[zombie_sword]
+clone = "zombie"
+defend_anim = "zombie_dragging_defend"
+death_anim = "zombie_dragging_death"
+
+[zombie_sword.melee]
+clone = "zombie.melee"
+anim = "zombie_dragging_attack"
+
+[zombie_axe]
+clone = "zombie"
+defend_anim = "zombie_weapon_defend"
+death_anim = "zombie_weapon_death"
+
+[zombie_tan_trousers_axe.melee]
+clone = "zombie.melee"
+anim = "zombie_weapon_attack"
+
+[zombie_tarns_lair_sword]
+clone = "zombie_sword"
+defend_anim = "zombie_dragging_defend"
+death_anim = "zombie_dragging_death"
+
+[zombie_tarns_lair_sword.melee]
+clone = "zombie_sword.melee"
+target_hit = { offense = "crush", max = 50 }

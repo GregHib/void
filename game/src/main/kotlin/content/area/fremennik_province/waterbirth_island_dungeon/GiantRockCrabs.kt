@@ -1,7 +1,7 @@
 package content.area.fremennik_province.waterbirth_island_dungeon
 
-import content.entity.combat.inCombat
 import content.entity.combat.target
+import content.entity.combat.underAttack
 import content.entity.effect.transform
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
@@ -33,7 +33,7 @@ class GiantRockCrabs : Script {
      */
     fun scheduleReset(npc: NPC) {
         npc.softQueue("reset_to_boulder", TimeUnit.SECONDS.toTicks(30)) {
-            if (npc.target != null || npc.inCombat) {
+            if (npc.target != null || npc.underAttack) {
                 scheduleReset(npc) // still in combat, reschedule
             } else {
                 npc.transform(npc.id.replace("giant_rock_crab", "boulder"))

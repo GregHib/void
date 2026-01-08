@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
+import kotlin.ranges.IntRange
 
 object Damage {
     private val logger = InlineLogger()
@@ -39,21 +40,20 @@ object Damage {
         spell: String = "",
         special: Boolean = false,
         defensiveType: String = offensiveType,
+        range: IntRange? = null,
     ): Int {
         val success = Hit.success(source, target, offensiveType, weapon, special, defensiveType)
         if (offensiveType != "dragonfire" && !success) {
             return -1
         }
-        val baseMaxHit = maximum(source, target, offensiveType, weapon, spell, success)
+        val baseMaxHit = maximum(source, target, offensiveType, weapon, spell, success, range)
         source["max_hit"] = baseMaxHit
-        val minimum = minimum(source, offensiveType)
+        val minimum = minimum(source, offensiveType, range)
         source["min_hit"] = minimum
-        val player = if (source is Player && source["debug", false]) {
-            source
-        } else if (target is Player && target["debug", false]) {
-            target
-        } else {
-            null
+        val player = when {
+            source is Player && source["debug", false] -> source
+            target is Player && target["debug", false] -> target
+            else -> null
         }
         if (player != null) {
             val message = "Base maximum hit: $baseMaxHit ($offensiveType, ${if (weapon.isEmpty()) "unarmed" else weapon.id})"
@@ -68,9 +68,9 @@ object Damage {
      * @param target only applicable for "dragonfire" [type]
      * @param special only applicable for "dragonfire" type
      */
-    fun maximum(source: Character, target: Character, type: String, weapon: Item, spell: String = "", special: Boolean = false): Int = when {
+    fun maximum(source: Character, target: Character, type: String, weapon: Item, spell: String = "", special: Boolean = false, range: IntRange? = null): Int = when {
         type == "dragonfire" -> Dragonfire.maxHit(source, target, special || source is NPC && spell != "")
-        source is NPC -> source.def["max_hit_$type", 0]
+        source is NPC -> source.def["max_hit_$type", range?.last ?: 0]
         type == "magic" && weapon.id.startsWith("saradomin_sword") -> 160
         type == "magic" && spell == "magic_dart" -> effectiveLevel(source, Skill.Magic) + 100
         type == "magic" -> {
@@ -97,8 +97,8 @@ object Damage {
     /**
      * Calculates the minimum damage before modifications are applied
      */
-    private fun minimum(source: Character, type: String): Int = when {
-        source is NPC -> source.def["min_hit_$type", 0]
+    private fun minimum(source: Character, type: String, range: IntRange? = null): Int = when {
+        source is NPC -> range?.first ?: source.def["min_hit_$type", 0]
         else -> 0
     }
 

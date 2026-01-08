@@ -1,0 +1,23 @@
+[fox]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "fox_defend"
+death_anim = "fox_death"
+
+[fox.melee]
+range = 1
+anim = "fox_attack"
+target_hit = { offense = "crush", max = 40 }
+
+[bunny]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "bunny_defend"
+death_anim = "bunny_death"
+
+[bunny.melee]
+range = 1
+anim = "bunny_attack"
+target_hit = { offense = "crush", max = 0 }

@@ -1,0 +1,21 @@
+[cave_bug]
+attack_speed = 4
+attack_range = 1
+retreat_range = 26
+defend_anim = "cave_bug_defend"
+defend_sound = "cave_bug_defend"
+death_anim = "cave_bug_death"
+death_sound = "cave_bug_death"
+
+[cave_bug.melee]
+range = 1
+anim = "cave_bug_attack"
+target_sound = "cave_bug_attack"
+target_hit = { offense = "stab", max = 10 }
+
+[cave_bug_green]
+clone = "cave_bug"
+
+[cave_bug_green.melee]
+clone = "cave_bug.melee"
+target_hit = { offense = "crush", max = 90 }

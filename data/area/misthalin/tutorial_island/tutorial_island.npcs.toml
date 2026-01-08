@@ -51,21 +51,20 @@ examine = "Your introduction to the world of Gielinor."
 
 [giant_rat_tutorial_island]
 id = 950
-categories = ["giant_rats", "rats"]
-style = "stab"
 hitpoints = 30
+combat_def = "giant_rat_tutorial_island"
+categories = ["giant_rats", "rats"]
 wander_radius = 2
 respawn_delay = 30
 drop_table = "giant_rat"
-combat_anims = "giant_rat"
 examine = "Overgrown vermin."
 
 [chicken_tutorial_island]
 id = 951
+combat_def = "chicken_tutorial_island"
 categories = ["chickens", "birds"]
 wander_radius = 2
 drop_table = "chicken"
-combat_anims = "chicken"
 examine = "Yep. Definitely a chicken."
 
 [fishing_spot_tutorial_island]

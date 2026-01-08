@@ -23,12 +23,9 @@ str = 35
 def = 35
 mage = 0
 range = 0
-style = "stab"
-max_hit_melee = 40
+combat_def = "ugthanki"
 hunt_mode = "cowardly"
 respawn_delay = 350
-combat_anims = "ugthanki"
-drop_table = "ugthanki"
 examine = "A vicious attacking camel."
 
 [shantay_guard]

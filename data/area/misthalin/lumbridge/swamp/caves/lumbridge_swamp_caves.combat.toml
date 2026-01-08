@@ -1,0 +1,29 @@
+[cave_goblin]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "cave_goblin_defend"
+defend_sound = "cave_goblin_defend"
+death_anim = "cave_goblin_death"
+death_sound = "cave_goblin_death"
+
+[cave_goblin.melee]
+range = 1
+anim = "cave_goblin_attack"
+target_sound = "cave_goblin_attack"
+target_hit = { offense = "crush", max = 10 }
+
+[wall_beast]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "wall_beast_defend"
+defend_sound = "wall_beast_defend"
+death_anim = "wall_beast_death"
+death_sound = "wall_beast_death"
+
+[wall_beast.melee]
+range = 1
+anim = "wall_beast_attack"
+target_sound = "wall_beast_attack"
+target_hit = { offense = "crush", max = 40 }

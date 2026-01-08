@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.character.mode.combat
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.stop
+import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
@@ -15,6 +16,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.cantReach
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
@@ -94,10 +96,10 @@ class CombatMovement(
         val spawn = spawn ?: return false
         if (!character.tile.within(spawn, wanderRadius)) {
             character.walkTo(spawn)
-            character.stop("in_combat")
+            character.stop("under_attack")
             return true
         }
-        val attackRadius = character.def["attack_radius", 8]
+        val attackRadius = character.def["retreat_range", 8]
         val target = character.get<Character>("target")
         if (target != null && !character.tile.within(target.tile, attackRadius)) {
             character.mode = Retreat(character, target)
@@ -106,7 +108,7 @@ class CombatMovement(
         return false
     }
 
-    private fun attackRange(): Int = character["attack_range", if (character is NPC) character.def["attack_range", 1] else 1]
+    private fun attackRange(): Int = character["attack_range", if (character is NPC) character.def["attack_range", get<CombatDefinitions>().get(character.def["combat_def", character.id]).attackRange] else 1]
 
     override fun onCompletion() {
     }

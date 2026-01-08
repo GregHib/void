@@ -1,0 +1,19 @@
+[skeleton_mage]
+clone = "man"
+
+[skeleton_mage.melee]
+chance = 75
+clone = "human.melee"
+target_hit = { offense = "crush", max = 30 }
+
+[skeleton_mage.curse]
+chance = 25
+condition = "not_cursed"
+say = "I infect your body with rot..."
+anim = "curse"
+gfx = "weaken_cast"
+target_sound = "weaken_cast"
+projectile = "weaken"
+impact_gfx = "curse_impact"
+impact_sound = "curse_impact"
+impact_drain = { skill = "defence", multiplier = 0.05 }

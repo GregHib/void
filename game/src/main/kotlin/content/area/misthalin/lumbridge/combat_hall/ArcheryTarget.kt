@@ -1,7 +1,7 @@
 package content.area.misthalin.lumbridge.combat_hall
 
 import content.entity.combat.hit.Damage
-import content.entity.combat.inCombat
+import content.entity.combat.underAttack
 import content.entity.proj.shoot
 import content.skill.melee.weapon.fightStyle
 import content.skill.melee.weapon.weapon
@@ -44,7 +44,7 @@ class ArcheryTarget : Script {
                 player.message("You can only use a Training bow and arrows against this target.")
                 return@weakQueue
             }
-            if (player.inCombat) {
+            if (player.underAttack) {
                 player.message("You are already in combat.")
                 return@weakQueue
             }

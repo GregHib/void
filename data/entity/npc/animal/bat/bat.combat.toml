@@ -1,0 +1,29 @@
+[bat]
+attack_speed = 4
+attack_range = 1
+retreat_range = 14
+defend_anim = "bat_defend"
+defend_sound = "bat_defend"
+death_anim = "bat_death"
+death_sound = "bat_death"
+
+[bat.melee]
+range = 1
+anim = "bat_attack"
+target_sound = "bat_attack"
+target_hit = { offense = "stab", max = 10 }
+
+[giant_bat]
+clone = "bat"
+death_anim = "giant_bat_death"
+
+[giant_bat.melee]
+clone = "bat.melee"
+target_hit = { offense = "stab", max = 30 }
+
+[giant_bat_brine_cavern]
+clone = "giant_bat"
+
+[giant_bat_brine_cavern.melee]
+clone = "giant_bat.melee"
+target_hit = { offense = "crush", max = 30 }

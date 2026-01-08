@@ -1,5 +1,6 @@
 package content.entity.player.equip
 
+import content.entity.combat.hit.Hit
 import content.entity.player.effect.antifire
 import content.entity.player.effect.superAntifire
 import content.skill.magic.spell.spell
@@ -35,37 +36,36 @@ object Equipment {
 
     fun shieldDamageReductionModifiers(source: Character, target: Character, type: String, baseDamage: Int): Int {
         var damage = baseDamage
-        if (source is NPC && type == "dragonfire" && source.isFamiliar) {
-            damage = (damage * 0.7).toInt()
-        } else if (source is Player && type == "icy_breath" && fireResistantShield(source.equipped(EquipSlot.Shield).id)) {
-            damage = 100
-        } else if (source is Player && type == "dragonfire") {
-            val metal = target is NPC && (target.id.contains("bronze") || target.id.contains("iron") || target.id.contains("steel"))
-            var multiplier = 1.0
+        when (source) {
+            is NPC if type == "dragonfire" && source.isFamiliar -> damage = (damage * 0.7).toInt()
+            is Player if type == "icy_breath" && fireResistantShield(source.equipped(EquipSlot.Shield).id) -> damage = 100
+            is Player if type == "dragonfire" -> {
+                val metal = target is NPC && (target.id.contains("bronze") || target.id.contains("iron") || target.id.contains("steel"))
+                var multiplier = 1.0
 
-            val shield = source.equipped(EquipSlot.Shield).id
-            if (shield == "anti_dragon_shield" || shield.startsWith("dragonfire_shield")) {
-                multiplier -= if (metal) 0.6 else 0.8
-                source.message("Your shield absorbs most of the dragon's fiery breath!", ChatType.Filter)
-            }
-
-            if (source.antifire || source.superAntifire) {
-                multiplier -= if (source.superAntifire) 1.0 else 0.5
-            }
-
-            if (multiplier > 0.0) {
-                val black = target is NPC && target.id.contains("black")
-                if (!metal && !black && random.nextDouble() <= 0.1) {
-                    multiplier -= 0.1
-                    source.message("You manage to resist some of the dragon fire!", ChatType.Filter)
-                } else {
-                    source.message("You're horribly burnt by the dragon fire!", ChatType.Filter)
+                val shield = source.equipped(EquipSlot.Shield).id
+                if (shield == "anti_dragon_shield" || shield.startsWith("dragonfire_shield")) {
+                    multiplier -= if (metal) 0.6 else 0.8
+                    source.message("Your shield absorbs most of the dragon's fiery breath!", ChatType.Filter)
                 }
-            }
-            damage = (damage * multiplier.coerceAtLeast(0.0)).toInt()
-        }
 
-        if (type == "melee" && target.softTimers.contains("power_of_light")) {
+                if (source.antifire || source.superAntifire) {
+                    multiplier -= if (source.superAntifire) 1.0 else 0.5
+                }
+
+                if (multiplier > 0.0) {
+                    val black = target is NPC && target.id.contains("black")
+                    if (!metal && !black && random.nextDouble() <= 0.1) {
+                        multiplier -= 0.1
+                        source.message("You manage to resist some of the dragon fire!", ChatType.Filter)
+                    } else {
+                        source.message("You're horribly burnt by the dragon fire!", ChatType.Filter)
+                    }
+                }
+                damage = (damage * multiplier.coerceAtLeast(0.0)).toInt()
+            }
+        }
+        if (Hit.meleeType(type) && target.softTimers.contains("power_of_light")) {
             damage = (damage * 0.5).toInt()
         }
         if (target is Player && target.equipped(EquipSlot.Shield).id == "divine_spirit_shield") {
@@ -139,10 +139,10 @@ object Equipment {
     fun bonus(source: Character, target: Character, type: String, offense: Boolean): Int = if (offense) {
         style(source, if (source is NPC) "attack_bonus" else "${combatStyle(type, source)}_attack")
     } else {
-        style(target, "${combatStyle(type, target)}_defence")
+        style(target, "${combatStyle(type, source)}_defence")
     }
 
     private fun style(character: Character, style: String): Int = if (character is NPC) character.def[style, 0] else character[style] ?: 0
 
-    private fun combatStyle(type: String, character: Character) = if (type == "range" || type == "magic") type else character.combatStyle.removePrefix("typeless_")
+    private fun combatStyle(type: String, character: Character) = if (type == "range" || type == "magic") type else (if (character is NPC) type else character.combatStyle).removePrefix("typeless_")
 }

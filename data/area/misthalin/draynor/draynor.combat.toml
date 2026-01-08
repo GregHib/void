@@ -1,0 +1,11 @@
+[draynor_jail_guard]
+attack_speed = 5
+attack_range = 1
+retreat_range = 8
+defend_anim = "mace_defend"
+death_anim = "human_death"
+
+[draynor_jail_guard.melee]
+range = 1
+anim = "mace_pummel"
+target_hit = { offense = "crush", max = 30 }

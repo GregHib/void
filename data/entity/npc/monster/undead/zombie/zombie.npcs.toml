@@ -5,17 +5,12 @@ att = 8
 str = 9
 def = 10
 attack_bonus = 5
-attack_speed = 5
+combat_def = "zombie"
 wander_radius = 10
-attack_radius = 12
 slayer_xp = 22.0
-max_hit_melee = 20
 hunt_mode = "cowardly"
-style = "slash"
 respawn_delay = 35
 drop_table = "zombie"
-combat_anims = "zombie"
-combat_sounds = "zombie"
 categories = ["zombies", "undead"]
 examine = "Dead man walking."
 
@@ -76,29 +71,24 @@ att = 13
 str = 13
 def = 18
 attack_bonus = 5
-attack_speed = 5
+combat_def = "zombie"
 wander_radius = 10
-attack_radius = 12
 slayer_xp = 24.0
-max_hit_melee = 20
 hunt_mode = "cowardly"
-style = "slash"
 respawn_delay = 35
 drop_table = "zombie_empty"
-combat_anims = "zombie"
-combat_sounds = "zombie"
 categories = ["zombies", "undead"]
 examine = "Dead woman walking."
 
 [zombie_blue_skirt_sword]
 id = 74
 clone = "zombie_brown_shorts"
-combat_anims = "zombie_dragging"
+combat_def = "zombie_sword"
 
 [zombie_tan_trousers_axe]
 id = 5309
 clone = "zombie_brown_shorts"
-combat_anims = "zombie_weapon"
+combat_def = "zombie_axe"
 
 # Level 24s
 [zombie_yellow_shirt]
@@ -108,16 +98,12 @@ att = 19
 str = 21
 def = 16
 attack_bonus = 5
-attack_speed = 5
+combat_def = "zombie"
+max_hit_slash = 30
 wander_radius = 10
-attack_radius = 12
 slayer_xp = 30.0
-max_hit_melee = 30
 hunt_mode = "cowardly"
-style = "slash"
 respawn_delay = 35
-combat_anims = "zombie"
-combat_sounds = "zombie"
 drop_table = "zombie_armed"
 categories = ["zombies", "undead"]
 examine = "The walking dead."
@@ -125,12 +111,12 @@ examine = "The walking dead."
 [zombie_green_shorts_sword]
 id = 75
 clone = "zombie_yellow_shirt"
-combat_anims = "zombie_weapon"
+combat_def = "zombie_sword"
 
 [zombie_armour_green_shorts_sword]
 id = 5314
 clone = "zombie_yellow_shirt"
-combat_anims = "zombie_weapon"
+combat_def = "zombie_sword"
 
 [zombie_armour_grey_shorts_sword]
 id = 5315
@@ -152,26 +138,27 @@ clone = "zombie_yellow_shirt"
 [zombie_red_suit_sword]
 id = 5316
 clone = "zombie_yellow_shirt"
-combat_anims = "zombie_weapon"
+combat_def = "zombie_sword"
 
 [zombie_grey_suit_sword]
 id = 5318
 clone = "zombie_yellow_shirt"
-combat_anims = "zombie_weapon"
+combat_def = "zombie_sword"
 
 [zombie_tan_trousers_axe_2]
 id = 5319
 clone = "zombie_yellow_shirt"
-combat_anims = "zombie_weapon"
+combat_def = "zombie_axe"
 
 [zombie_tan_shorts_axe]
 id = 5320
 clone = "zombie_yellow_shirt"
+combat_def = "zombie_axe"
 
 [zombie_red_skirt_sword]
 id = 5321
 clone = "zombie_yellow_shirt"
-combat_anims = "zombie_weapon"
+combat_def = "zombie_sword"
 
 [zombie_blue_skirt_sword_2]
 id = 5322
@@ -181,27 +168,27 @@ combat_anims = "zombie_dragging"
 [zombie_yellow_shirt_sword]
 id = 5323
 clone = "zombie_yellow_shirt"
-combat_anims = "zombie_weapon"
+combat_def = "zombie_sword"
 
 [zombie_red_sword]
 id = 5324
 clone = "zombie_yellow_shirt_sword"
-combat_anims = "zombie_weapon"
+combat_def = "zombie_sword"
 
 [zombie_grey_axe]
 id = 5325
 clone = "zombie_yellow_shirt_sword"
-combat_anims = "zombie_weapon"
+combat_def = "zombie_axe"
 
 [zombie_red_maid_axe]
 id = 5326
 clone = "zombie_yellow_shirt_sword"
-combat_anims = "zombie_weapon"
+combat_def = "zombie_axe"
 
 [zombie_blue_maid_axe]
 id = 5327
 clone = "zombie_yellow_shirt_sword"
-combat_anims = "zombie_weapon"
+combat_def = "zombie_axe"
 
 # Level 25s
 
@@ -212,15 +199,12 @@ att = 19
 str = 21
 def = 21
 attack_bonus = 5
-max_hit_melee = 30
-style = "slash"
+combat_def = "zombie_axe"
+max_hit_slash = 30
 drop_table = "zombie_entrana"
-combat_anims = "zombie_weapon"
-combat_sounds = "zombie"
 respawn_delay = 35
 slayer_xp = 30.0
 wander_radius = 8
-attack_radius = 12
 categories = ["zombies", "undead"]
 examine = "The walking dead."
 
@@ -247,15 +231,11 @@ att = 19
 str = 21
 def = 16
 attack_bonus = 5
-attack_speed = 5
+combat_def = "zombie_sword"
+max_hit_slash = 30
 wander_radius = 10
-attack_radius = 12
 slayer_xp = 30.0
-max_hit_melee = 30
-combat_anims = "zombie_weapon"
-combat_sounds = "zombie"
 hunt_mode = "cowardly"
-style = "slash"
 respawn_delay = 35
 drop_table = "zombie_melzars_maze"
 categories = ["zombies", "undead"]
@@ -275,17 +255,13 @@ att = 25
 str = 29
 def = 20
 attack_bonus = 5
-attack_speed = 5
+combat_def = "zombie"
+max_hit_slash = 40
 wander_radius = 10
-attack_radius = 12
 slayer_xp = 30.0
-max_hit_melee = 40
 hunt_mode = "cowardly"
-style = "slash"
 respawn_delay = 35
 drop_table = "zombie"
-combat_anims = "zombie"
-combat_sounds = "zombie"
 categories = ["zombies", "undead"]
 examine = "Dead man walking."
 
@@ -306,27 +282,25 @@ att = 35
 str = 40
 def = 40
 attack_bonus = 5
-attack_speed = 5
+combat_def = "zombie_axe"
+max_hit_slash = 50
 wander_radius = 10
-attack_radius = 12
 slayer_xp = 40.0
-max_hit_melee = 50
-combat_anims = "zombie_weapon"
 hunt_mode = "cowardly"
-style = "slash"
 respawn_delay = 35
 drop_table = "zombie"
-combat_sounds = "zombie"
 categories = ["zombies", "undead"]
 examine = "Dead man walking."
 
 [zombie_stronghold_of_security_trousers]
 id = 4393
 clone = "zombie_stronghold_of_security_blue_skirt_axe"
+combat_def = "zombie_sword"
 
 [zombie_stronghold_of_security_blue_shorts_sword]
 id = 5378
 clone = "zombie_stronghold_of_security_blue_skirt_axe"
+combat_def = "zombie_sword"
 
 # Level 53s
 [zombie_stronghold_of_security_female]
@@ -336,15 +310,11 @@ att = 55
 str = 40
 def = 48
 attack_bonus = 5
-attack_speed = 5
+combat_def = "zombie_sword"
+max_hit_slash = 30
 wander_radius = 10
-attack_radius = 12
 slayer_xp = 50.0
-max_hit_melee = 30
-combat_anims = "zombie_dragging"
-combat_sounds = "zombie"
 hunt_mode = "cowardly"
-style = "slash"
 respawn_delay = 35
 drop_table = "zombie"
 categories = ["zombies", "undead"]
@@ -353,7 +323,7 @@ examine = "The walking dead."
 [zombie_stronghold_of_security_male]
 id = 5380
 clone = "zombie_stronghold_of_security_female"
-combat_anims = "zombie_weapon"
+combat_def = "zombie_sword"
 
 [zombie_stronghold_of_security_red]
 id = 4394
@@ -365,17 +335,12 @@ hitpoints = 380
 att = 36
 str = 35
 def = 33
+combat_def = "zombie_tarns_lair_sword"
 wander_radius = 10
-attack_radius = 12
 slayer_xp = 38.0
-max_hit_melee = 50
-combat_anims = "zombie_dragging"
-combat_sounds = "zombie"
 drop_table = "zombie_tarns_lair_low"
 hunt_mode = "cowardly"
-style = "crush"
 respawn_delay = 35
-drop_table = "zombie"
 categories = ["zombies", "undead"]
 examine = "Could his name be 'Lurch'?"
 
@@ -385,17 +350,12 @@ hitpoints = 400
 att = 39
 str = 35
 def = 35
+combat_def = "zombie_tarns_lair_sword"
 slayer_xp = 40.0
-max_hit_melee = 50
 wander_radius = 10
-attack_radius = 12
-combat_anims = "zombie_dragging"
-combat_sounds = "zombie"
 drop_table = "zombie_tarns_lair_low"
 hunt_mode = "cowardly"
-style = "crush"
 respawn_delay = 35
-drop_table = "zombie"
 categories = ["zombies", "undead"]
 examine = "Mostly 'armless."
 
@@ -405,17 +365,13 @@ hitpoints = 420
 att = 42
 str = 39
 def = 42
+combat_def = "zombie_tarns_lair_sword"
+max_hit_crush = 60
 slayer_xp = 42.0
-max_hit_melee = 60
 wander_radius = 10
-attack_radius = 12
-combat_anims = "zombie_dragging"
-combat_sounds = "zombie"
 drop_table = "zombie_tarns_lair_low"
 hunt_mode = "cowardly"
-style = "crush"
 respawn_delay = 50
-drop_table = "zombie"
 categories = ["zombies", "undead"]
 examine = "Has anybody told him he's dead?"
 
@@ -425,17 +381,13 @@ hitpoints = 480
 att = 44
 str = 42
 def = 44
+combat_def = "zombie_tarns_lair_sword"
+max_hit_crush = 60
 slayer_xp = 48.0
-max_hit_melee = 60
 wander_radius = 10
-attack_radius = 12
-combat_anims = "zombie_dragging"
-combat_sounds = "zombie"
 drop_table = "zombie_tarns_lair_low"
 hunt_mode = "cowardly"
-style = "crush"
 respawn_delay = 50
-drop_table = "zombie"
 categories = ["zombies", "undead"]
 examine = "Dave? Is that you?"
 
@@ -445,17 +397,13 @@ hitpoints = 500
 att = 50
 str = 50
 def = 47
+combat_def = "zombie_tarns_lair_sword"
+max_hit_crush = 70
 slayer_xp = 50.0
-max_hit_melee = 70
 wander_radius = 10
-attack_radius = 12
-combat_anims = "zombie_dragging"
-combat_sounds = "zombie"
 drop_table = "zombie_tarns_lair_low"
 hunt_mode = "cowardly"
-style = "crush"
 respawn_delay = 50
-drop_table = "zombie"
 categories = ["zombies", "undead"]
 examine = "Why don't zombies ever wash?"
 
@@ -465,17 +413,13 @@ hitpoints = 570
 att = 53
 str = 55
 def = 50
+combat_def = "zombie_tarns_lair_sword"
+max_hit_crush = 70
 slayer_xp = 57.0
-max_hit_melee = 70
 wander_radius = 10
-attack_radius = 12
-combat_anims = "zombie_dragging"
-combat_sounds = "zombie"
 drop_table = "zombie_tarns_lair_mid"
 hunt_mode = "cowardly"
-style = "crush"
 respawn_delay = 50
-drop_table = "zombie"
 categories = ["zombies", "undead"]
 examine = "A shambling pile of rotten flesh."
 
@@ -485,17 +429,13 @@ hitpoints = 630
 att = 56
 str = 58
 def = 60
+combat_def = "zombie_tarns_lair_sword"
+max_hit_crush = 80
 slayer_xp = 63.0
-max_hit_melee = 80
 wander_radius = 10
-attack_radius = 12
-combat_anims = "zombie_dragging"
-combat_sounds = "zombie"
 drop_table = "zombie_tarns_lair_mid"
 hunt_mode = "cowardly"
-style = "crush"
 respawn_delay = 50
-drop_table = "zombie"
 categories = ["zombies", "undead"]
 examine = "He needs lessons on walking."
 
@@ -505,17 +445,13 @@ hitpoints = 650
 att = 61
 str = 60
 def = 61
+combat_def = "zombie_tarns_lair_sword"
+max_hit_crush = 80
 slayer_xp = 65.0
-max_hit_melee = 80
 wander_radius = 10
-attack_radius = 12
-combat_anims = "zombie_weapon"
-combat_sounds = "zombie"
 drop_table = "zombie_tarns_lair_mid"
 hunt_mode = "cowardly"
-style = "crush"
 respawn_delay = 50
-drop_table = "zombie"
 categories = ["zombies", "undead"]
 examine = "Fred, the undead."
 
@@ -525,17 +461,13 @@ hitpoints = 680
 att = 61
 str = 63
 def = 62
+combat_def = "zombie_tarns_lair_sword"
+max_hit_crush = 80
 slayer_xp = 68.0
-max_hit_melee = 80
 wander_radius = 10
-attack_radius = 12
-combat_anims = "zombie_weapon"
-combat_sounds = "zombie"
 drop_table = "zombie_tarns_lair_mid"
 hunt_mode = "cowardly"
-style = "crush"
 respawn_delay = 50
-drop_table = "zombie"
 categories = ["zombies", "undead"]
 examine = "One of the undead."
 
@@ -545,17 +477,13 @@ hitpoints = 710
 att = 69
 str = 65
 def = 62
+combat_def = "zombie_tarns_lair_sword"
+max_hit_crush = 90
 slayer_xp = 68.0
-max_hit_melee = 90
 wander_radius = 10
-attack_radius = 12
-combat_anims = "zombie_weapon"
-combat_sounds = "zombie"
 drop_table = "zombie_tarns_lair_mid"
 hunt_mode = "cowardly"
-style = "crush"
 respawn_delay = 50
-drop_table = "zombie"
 categories = ["zombies", "undead"]
 examine = "A disgusting zombie."
 
@@ -565,17 +493,13 @@ hitpoints = 730
 att = 72
 str = 73
 def = 62
+combat_def = "zombie_tarns_lair_sword"
+max_hit_crush = 90
 slayer_xp = 73.0
-max_hit_melee = 90
 wander_radius = 10
-attack_radius = 12
-combat_anims = "zombie_weapon"
-combat_sounds = "zombie"
 drop_table = "zombie_tarns_lair_mid"
 hunt_mode = "cowardly"
-style = "crush"
 respawn_delay = 50
-drop_table = "zombie"
 categories = ["zombies", "undead"]
 examine = "Somebody tell him he's already dead!"
 
@@ -585,17 +509,13 @@ hitpoints = 750
 att = 71
 str = 81
 def = 70
+combat_def = "zombie_tarns_lair_sword"
+max_hit_crush = 100
 slayer_xp = 75.0
-max_hit_melee = 100
 wander_radius = 10
-attack_radius = 12
-combat_anims = "zombie_weapon"
-combat_sounds = "zombie"
 drop_table = "zombie_tarns_lair_high"
 hunt_mode = "cowardly"
-style = "crush"
 respawn_delay = 50
-drop_table = "zombie"
 categories = ["zombies", "undead"]
 examine = "He sure looks grave."
 
@@ -605,17 +525,13 @@ hitpoints = 760
 att = 74
 str = 80
 def = 71
+combat_def = "zombie_tarns_lair_sword"
+max_hit_crush = 100
 slayer_xp = 76.0
-max_hit_melee = 100
 wander_radius = 10
-attack_radius = 12
-combat_anims = "zombie_weapon"
-combat_sounds = "zombie"
 drop_table = "zombie_tarns_lair_high"
 hunt_mode = "cowardly"
-style = "crush"
 respawn_delay = 50
-drop_table = "zombie"
 categories = ["zombies", "undead"]
 examine = "Can't a body get any rest around here?"
 
@@ -625,17 +541,13 @@ hitpoints = 810
 att = 82
 str = 80
 def = 72
+combat_def = "zombie_tarns_lair_sword"
+max_hit_crush = 100
 slayer_xp = 81.0
-max_hit_melee = 100
 wander_radius = 10
-attack_radius = 12
-combat_anims = "zombie_weapon"
-combat_sounds = "zombie"
 drop_table = "zombie_tarns_lair_high"
 hunt_mode = "cowardly"
-style = "crush"
 respawn_delay = 50
-drop_table = "zombie"
 categories = ["zombies", "undead"]
 examine = "At least he's not legless."
 
@@ -645,17 +557,13 @@ hitpoints = 920
 att = 85
 str = 80
 def = 75
+combat_def = "zombie_tarns_lair_sword"
+max_hit_crush = 100
 slayer_xp = 92.0
-max_hit_melee = 100
 wander_radius = 10
-attack_radius = 12
-combat_anims = "zombie_weapon"
-combat_sounds = "zombie"
 drop_table = "zombie_tarns_lair_high"
 hunt_mode = "cowardly"
-style = "crush"
 respawn_delay = 50
-drop_table = "zombie"
 categories = ["zombies", "undead"]
 examine = "All skin and bones."
 
@@ -665,17 +573,13 @@ hitpoints = 960
 att = 85
 str = 83
 def = 81
+combat_def = "zombie_tarns_lair_sword"
+max_hit_crush = 110
 slayer_xp = 96.0
-max_hit_melee = 110
 wander_radius = 10
-attack_radius = 12
-combat_anims = "zombie_weapon"
-combat_sounds = "zombie"
 drop_table = "zombie_tarns_lair_high"
 hunt_mode = "cowardly"
-style = "crush"
 respawn_delay = 50
-drop_table = "zombie"
 categories = ["zombies", "undead"]
 examine = "All skin and bones."
 
@@ -685,17 +589,13 @@ hitpoints = 1020
 att = 86
 str = 83
 def = 81
+combat_def = "zombie_tarns_lair_sword"
+max_hit_crush = 110
 slayer_xp = 102.0
-max_hit_melee = 110
 wander_radius = 10
-attack_radius = 12
-combat_anims = "zombie_weapon"
-combat_sounds = "zombie"
 drop_table = "zombie_tarns_lair_high"
 hunt_mode = "cowardly"
-style = "crush"
 respawn_delay = 50
-drop_table = "zombie"
 categories = ["zombies", "undead"]
 examine = "All skin and bones."
 
@@ -705,16 +605,12 @@ hitpoints = 760
 att = 69
 str = 70
 def = 71
+combat_def = "zombie_tarns_lair_sword"
+max_hit_crush = 90
 slayer_xp = 76.0
-max_hit_melee = 90
 wander_radius = 10
-attack_radius = 12
-combat_anims = "zombie_weapon"
-combat_sounds = "zombie"
 drop_table = "zombie_tarns_lair_high"
 hunt_mode = "cowardly"
-style = "crush"
 respawn_delay = 50
-drop_table = "zombie"
 categories = ["zombies", "undead"]
 examine = "Brains..."

@@ -1,0 +1,52 @@
+[dagannoth_supreme]
+attack_speed = 4
+attack_range = 8
+retreat_range = 20
+defend_anim = "dagannoth_king_defend"
+defend_sound = "dagannoth_defend"
+death_anim = "dagannoth_king_death"
+death_sound = "dagannoth_death"
+
+[dagannoth_supreme.ranged]
+range = 8
+anim = "dagannoth_king_attack"
+target_sound = "dagannoth_attack"
+projectile = "dagannoth_supreme_shoot"
+target_hit = { offense = "range", max = 300 }
+
+[dagannoth_prime]
+clone = "dagannoth_supreme"
+
+[dagannoth_prime.magic]
+range = 8
+anim = "dagannoth_king_attack"
+target_sound = "dagannoth_attack"
+projectile = "water_surge"
+target_hit = { offense = "magic", max = 500 }
+impact_gfx = "water_surge_impact"
+impact_sound = "water_surge_impact"
+
+[dagannoth_rex]
+clone = "dagannoth_supreme"
+attack_range = 1
+
+[dagannoth_rex.melee]
+range = 1
+anim = "dagannoth_rex_attack"
+target_sound = "dagannoth_attack"
+target_hit = { offense = "slash", max = 260 }
+
+[spinolyp]
+attack_speed = 4
+attack_range = 10
+retreat_range = 8
+defend_anim = "spinolyp_defend"
+death_anim = "spinolyp_death"
+
+[spinolyp.magic]
+range = 10
+anim = "spinolyp_attack"
+projectile = "water_strike"
+target_hit = { offense = "magic", defence = "range", max = 100 }
+impact_gfx = "water_strike_impact"
+impact_sound = "water_strike_impact"

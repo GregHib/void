@@ -5,16 +5,12 @@ att = 45
 str = 40
 def = 40
 mage = 60
-max_hit_melee = 60
-max_hit_magic = 10
-style = "stab"
+combat_def = "catablepon"
 respawn_delay = 20
 wander_radius = 6
-attack_radius = 8
 slayer_xp = 40.0
 hunt_mode = "cowardly"
 drop_table = "catablepon"
-combat_anims = "catablepon"
 categories = ["catablepons"]
 examine = "Big... Cow-like... But cows don't have serpent tails!"
 
@@ -31,7 +27,7 @@ slayer_xp = 70.0
 [catablepon_high]
 id = 4399
 clone = "catablepon"
-max_hit_melee = 70
+max_hit_stab = 70
 hitpoints = 500
 att = 65
 str = 60

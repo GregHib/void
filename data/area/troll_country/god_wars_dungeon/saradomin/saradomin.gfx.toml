@@ -10,7 +10,8 @@ height = -9 # 31
 end_height = -9 #31
 delay = 35
 curve = 5
-flight_time = [11, 21, 31, 41, 51, 61, 71, 81, 91, 101] # 11/10
+time_offset = 1
+multiplier = 10
 
 [growler_sonic_cast]
 id = 1184
@@ -29,5 +30,5 @@ height = 20 # 60
 end_height = -4 # 36
 delay = 30
 curve = 15
-offset = 100
-flight_time = [21, 26, 31, 36, 41, 46, 51, 56, 61, 66] # 21/5
+size_offset = 100
+time_offset = 16

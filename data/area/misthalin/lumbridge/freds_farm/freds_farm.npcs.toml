@@ -9,11 +9,10 @@ id = 11629
 
 [ram_freds_farm]
 id = 12369
+hitpoints = 80
+combat_def = "ram_freds_farm"
 drop_table = "ram"
 respawn_delay = 45
-combat_anims = "ram"
-combat_sounds = "ram"
-hitpoints = 80
 categories = ["rams"]
 examine = "White and shaggy."
 

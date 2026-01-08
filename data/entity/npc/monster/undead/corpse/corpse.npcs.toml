@@ -1,26 +1,20 @@
 [corpse_spider]
 id = 7914
 hitpoints = 150
+combat_def = "corpse_spider"
 wander_radius = 8
-attack_radius = 4
-max_hit_melee = 15
-style = "slash"
 respawn_delay = 60
 drop_table = "corpse_spider"
-combat_anims = "corpse_spider"
 categories = ["corpse_spider"]
 examine = "Could do with gaining a few pounds."
 
 [crawling_corpse_torso]
 id = 7916
 hitpoints = 350
+combat_def = "crawling_corpse_torso"
 wander_radius = 8
-attack_radius = 4
-max_hit_melee = 20
-style = "slash"
 respawn_delay = 60
 drop_table = "crawling_corpse_torso"
-combat_anims = "crawling_corpse_torso"
 categories = ["crawling_corpse_torso"]
 examine = "Could do with gaining a few pounds."
 
@@ -39,14 +33,10 @@ clone = "crawling_corpse_torso"
 [corpse_archer]
 id = 7923
 hitpoints = 650
+combat_def = "corpse_archer"
 wander_radius = 8
-attack_radius = 4
-max_hit_range = 19
-weapon_style = "bow"
-style = "range"
 respawn_delay = 60
 drop_table = "corpse_archer"
-combat_anims = "corpse_archer"
 categories = ["corpse_archer"]
 examine = "Could do with gaining a few pounds."
 
@@ -85,15 +75,10 @@ clone = "corpse_archer"
 [corpse_mage]
 id = 9612
 hitpoints = 750
+combat_def = "corpse_mage"
 wander_radius = 8
-attack_radius = 4
-max_hit_magic = 20
-attack_range = 5
-spell = "wind_rush"
-style = "magic"
 respawn_delay = 60
 drop_table = "corpse_mage"
-combat_anims = "corpse_mage"
 categories = ["corpse_mage"]
 examine = "Could do with gaining a few pounds."
 

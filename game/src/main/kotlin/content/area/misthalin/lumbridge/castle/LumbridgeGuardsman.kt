@@ -1,6 +1,6 @@
 package content.area.misthalin.lumbridge.castle
 
-import content.entity.combat.inCombat
+import content.entity.combat.underAttack
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Quiz
@@ -14,7 +14,7 @@ class LumbridgeGuardsman : Script {
     init {
         npcOperate("Talk-to", "lumbridge_guardsman_*") {
             // From wiki: When you attack them and try to talk to them *Using the Right Click* a message will say "The guard somehow doesn't feel like talking to you."
-            if (inCombat) {
+            if (underAttack) {
                 message("The guard somehow doesn't feel like talking to you.")
                 return@npcOperate
             }

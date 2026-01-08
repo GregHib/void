@@ -1,0 +1,9 @@
+[lumbridge_guardsman]
+clone = "man"
+attack_speed = 5
+defend_anim = "sword_defend"
+
+[lumbridge_guardsman.melee]
+range = 1
+anim = "sword_slash"
+target_hit = { offense = "slash", max = 16 }

@@ -27,12 +27,12 @@ internal class CombatRetaliationTest : WorldTest() {
         player.npcOption(npc, "Attack")
         tick()
 
-        assertTrue(npc.inCombat)
-        assertFalse(player.inCombat)
+        assertTrue(npc.underAttack)
+        assertFalse(player.underAttack)
 
         tick(4)
-        assertTrue(npc.inCombat)
-        assertTrue(player.inCombat)
+        assertTrue(npc.underAttack)
+        assertTrue(player.underAttack)
     }
 
     @Test
@@ -47,12 +47,12 @@ internal class CombatRetaliationTest : WorldTest() {
         player.playerOption(target, "Attack")
         tick()
 
-        assertTrue(target.inCombat)
-        assertFalse(player.inCombat)
+        assertTrue(target.underAttack)
+        assertFalse(player.underAttack)
 
         tick(4)
-        assertTrue(target.inCombat)
-        assertTrue(player.inCombat)
+        assertTrue(target.underAttack)
+        assertTrue(player.underAttack)
     }
 
     @Test
@@ -67,11 +67,11 @@ internal class CombatRetaliationTest : WorldTest() {
         player.playerOption(target, "Attack")
         tick()
 
-        assertTrue(target.inCombat)
-        assertFalse(player.inCombat)
+        assertTrue(target.underAttack)
+        assertFalse(player.underAttack)
 
         tick(4)
-        assertTrue(target.inCombat)
-        assertFalse(player.inCombat)
+        assertTrue(target.underAttack)
+        assertFalse(player.underAttack)
     }
 }

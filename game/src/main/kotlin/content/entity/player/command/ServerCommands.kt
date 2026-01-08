@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.ClientScriptDefinitions
+import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.data.definition.GraphicDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
@@ -84,6 +85,7 @@ class ServerCommands : Script {
     fun reload(player: Player, args: List<String>) {
         val files = configFiles()
         when (args.joinToString("_")) {
+            "combat" -> get<CombatDefinitions>().load(files.list(Settings["definitions.combatAttacks"]))
             "book", "books" -> get<Books>().load(files.list(Settings["definitions.books"]))
             "stairs", "tele", "teles", "teleports" -> get<ObjectTeleports>().load(files.list(Settings["map.teleports"]))
             "tracks", "songs", "music_tracks" -> get<MusicTracks>().load(files.find(Settings["map.music"]))

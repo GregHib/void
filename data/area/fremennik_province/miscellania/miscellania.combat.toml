@@ -1,0 +1,15 @@
+[rabbit_miscellania]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "rabbit_defend"
+defend_sound = "rabbit_defend"
+death_anim = "rabbit_death"
+death_sound = "rabbit_death"
+
+[rabbit_miscellania.melee]
+range = 1
+anim = "rabbit_attack"
+target_sound = "rabbit_attack"
+target_hit = { offense = "crush", max = 10 }
+

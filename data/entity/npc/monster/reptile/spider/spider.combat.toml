@@ -1,0 +1,70 @@
+[spider]
+attack_speed = 4
+attack_range = 1
+retreat_range = 11
+defend_anim = "spider_defend"
+defend_sound = "spider_defend"
+death_anim = "spider_death"
+death_sound = "spider_death"
+
+[spider.melee]
+range = 1
+anim = "spider_attack"
+target_sound = "spider_attack"
+target_hit = { offense = "stab", max = 10 }
+
+[giant_spider]
+attack_speed = 4
+attack_range = 1
+retreat_range = 13
+defend_anim = "giant_spider_defend"
+defend_sound = "giant_spider_defend"
+death_anim = "giant_spider_death"
+death_sound = "giant_spider_death"
+
+[giant_spider.melee]
+range = 1
+anim = "giant_spider_attack"
+target_sound = "giant_spider_attack"
+target_hit = { offense = "stab", max = 10 }
+
+[giant_spider_mid]
+clone = "giant_spider"
+retreat_range = 8
+
+[giant_spider_mid.melee]
+clone = "giant_spider.melee"
+target_hit = { offense = "stab", max = 30 }
+
+[giant_spider_hard]
+clone = "giant_spider_mid"
+
+[giant_spider_hard.melee]
+clone = "giant_spider.melee"
+target_hit = { offense = "stab", max = 70 }
+
+[deadly_red_spider]
+clone = "giant_spider_mid"
+retreat_range = 11
+
+[deadly_red_spider.melee]
+clone = "giant_spider_mid.melee"
+
+[poison_spider]
+clone = "spider"
+
+[poison_spider.melee]
+clone = "spider.melee"
+target_hit = { offense = "stab", max = 70 }
+
+[poison_spider.melee_poison]
+clone = "poison_spider.melee"
+impact_poison = 60
+
+[spider_stronghold_of_security]
+clone = "spider"
+
+[spider_stronghold_of_security.melee]
+clone = "spider.melee"
+target_hit = { offense = "stab", max = 60 }
+

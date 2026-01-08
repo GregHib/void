@@ -1,0 +1,18 @@
+[chaos_druid]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "chaos_druid_defend"
+defend_sound = "chaos_druid_defend"
+death_anim = "chaos_druid_death"
+death_sound = "chaos_druid_death"
+
+[chaos_druid.melee]
+range = 1
+anim = "chaos_druid_attack"
+target_sound = "chaos_druid_attack"
+target_hit = { offense = "crush", max = 20 }
+
+[chaos_druid.confuse]
+clone = "dark_wizard_water.confuse"
+range = 1

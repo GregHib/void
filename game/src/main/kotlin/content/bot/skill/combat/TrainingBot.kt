@@ -6,7 +6,8 @@ import content.bot.interact.navigation.await
 import content.bot.interact.navigation.cancel
 import content.bot.interact.navigation.goToArea
 import content.entity.combat.attackers
-import content.entity.combat.inCombat
+import content.entity.combat.attacking
+import content.entity.combat.underAttack
 import content.entity.player.bank.ownsItem
 import content.skill.magic.spell.spellBook
 import content.skill.melee.weapon.attackRange
@@ -17,7 +18,6 @@ import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -94,7 +94,7 @@ class TrainingBot : Script {
                 await("tick")
             } else if (target is NPC) {
                 npcOption(target, "Attack")
-                while (player.mode is CombatMovement) {
+                while (player.attacking) {
                     await("tick")
                 }
                 await("tick")
@@ -159,7 +159,7 @@ class TrainingBot : Script {
         if (!npc.tile.within(player.tile, Viewport.VIEW_RADIUS)) {
             return false
         }
-        if (npc.inCombat && !npc.attackers.contains(player)) {
+        if (npc.underAttack && !npc.attackers.contains(player)) {
             return false
         }
         if (!npc.def.options.contains("Attack")) {

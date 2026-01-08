@@ -1,0 +1,24 @@
+[bear]
+attack_speed = 4
+attack_range = 1
+retreat_range = 10
+defend_anim = "bear_defend"
+defend_sound = "bear_defend"
+death_anim = "bear_death"
+death_sound = "bear_death"
+
+[bear.melee]
+range = 1
+anim = "bear_attack"
+target_sound = "bear_attack"
+target_hit = { offense = "slash", max = 30 }
+
+[bear_club]
+clone = "bear"
+defend_anim = "bear_cub_defend"
+death_anim = "bear_cub_death"
+
+[bear_club.melee]
+clone = "bear.melee"
+anim = "bear_cub_attack"
+target_hit = { offense = "slash", max = 40 }

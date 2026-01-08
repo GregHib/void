@@ -1,0 +1,14 @@
+[chompy_bird]
+attack_speed = 4
+attack_range = 1
+retreat_range = 8
+defend_anim = "chompy_bird_defend"
+defend_sound = "chompy_bird_defend"
+death_anim = "chompy_bird_death"
+death_sound = "chompy_bird_death"
+
+[chompy_bird.melee]
+anim = "chompy_bird_attack"
+target_sound = "chompy_bird_attack"
+target_hit = { offense = "none", max = 0 }
+

@@ -109,12 +109,9 @@ id = 5529
 hitpoints = 500
 att = 20
 str = 10
-style = "crush"
-max_hit_melee = 20
+combat_def = "yak"
 immune_poison = true
 respawn_delay = 5
-combat_anims = "yak"
-combat_sounds = "yak"
 drop_table = "yak"
 examine = "A hairy, smelly, grazing animal."
 

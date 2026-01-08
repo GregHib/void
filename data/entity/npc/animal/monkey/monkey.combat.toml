@@ -1,0 +1,14 @@
+[monkey]
+attack_speed = 4
+attack_range = 1
+retreat_range = 14
+defend_anim = "monkey_defend"
+defend_sound = "monkey_defend"
+death_anim = "monkey_death"
+death_sound = "monkey_death"
+
+[monkey.melee]
+range = 1
+anim = "monkey_attack"
+target_sound = "monkey_attack"
+target_hit = { offense = "crush", max = 10 }
