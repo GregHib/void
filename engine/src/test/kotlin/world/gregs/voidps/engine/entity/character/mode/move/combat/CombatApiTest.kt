@@ -233,15 +233,13 @@ class CombatApiTest {
     @Nested
     inner class NPCCombatAttackTest : ScriptTest {
         override val checks = listOf(
-            listOf("npc", "style"),
-            listOf("npc", "*"),
-            listOf("*", "style"),
-            listOf("*", "*"),
+            listOf("npc"),
+            listOf("*"),
         )
         override val failedChecks = emptyList<List<String>>()
 
         override fun Script.register(args: List<String>, caller: Caller) {
-            npcCombatAttack(args[0], args[1]) {
+            npcCombatAttack(args[0]) {
                 caller.call()
                 assertTrue(it.target is Player)
             }

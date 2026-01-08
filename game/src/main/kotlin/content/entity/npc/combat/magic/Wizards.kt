@@ -2,7 +2,6 @@ package content.entity.npc.combat.magic
 
 import content.entity.combat.hit.directHit
 import content.skill.magic.spell.Spell
-import content.skill.magic.spell.spell
 import world.gregs.voidps.engine.Script
 
 class Wizards : Script {
