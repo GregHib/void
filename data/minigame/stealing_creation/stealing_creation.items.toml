@@ -232,6 +232,7 @@ bank_stacks = false
 charges = 24450
 slot = "Weapon"
 type = "TwoHanded"
+equip_req = { Ranged = 50 }
 examine = "The sacred clay weapon has transformed into a bow."
 weight = 2.0
 
@@ -569,6 +570,7 @@ id = 14194
 weight = 0.2
 slot = "Weapon"
 type = "TwoHanded"
+equip_req = { Ranged = 20 }
 examine = "The sacred clay has transformed into a wood-like substance."
 
 [bow_class_2_noted]
@@ -579,6 +581,7 @@ id = 14196
 weight = 0.3
 slot = "Weapon"
 type = "TwoHanded"
+equip_req = { Ranged = 40 }
 examine = "The sacred clay has transformed into a wood-like substance."
 
 [bow_class_3_noted]
@@ -589,6 +592,7 @@ id = 14198
 weight = 0.4
 slot = "Weapon"
 type = "TwoHanded"
+equip_req = { Ranged = 60 }
 examine = "The sacred clay has transformed into a wood-like substance."
 
 [bow_class_4_noted]
@@ -599,6 +603,7 @@ id = 14200
 weight = 0.5
 slot = "Weapon"
 type = "TwoHanded"
+equip_req = { Ranged = 80 }
 examine = "The sacred clay has transformed into a wood-like substance."
 
 [bow_class_5_noted]
@@ -612,21 +617,25 @@ examine = "The sacred clay has transformed into a wood-like substance."
 [arrows_class_2]
 id = 14203
 slot = "Ammo"
+equip_req = { Ranged = 20 }
 examine = "The sacred clay has transformed into a wood-like substance."
 
 [arrows_class_3]
 id = 14204
 slot = "Ammo"
+equip_req = { Ranged = 40 }
 examine = "The sacred clay has transformed into a wood-like substance."
 
 [arrows_class_4]
 id = 14205
 slot = "Ammo"
+equip_req = { Ranged = 60 }
 examine = "The sacred clay has transformed into a wood-like substance."
 
 [arrows_class_5]
 id = 14206
 slot = "Ammo"
+equip_req = { Ranged = 80 }
 examine = "The sacred clay has transformed into a wood-like substance."
 
 [prayer_potion_stealing_creation_5]
