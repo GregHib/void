@@ -84,9 +84,7 @@ interface CombatApi {
     /**
      * Damage done to a target
      * Emitted on swing, where [combatDamage] is after the attack delay
-     * @param type the combat type, typically: melee, range or magic
-     * @param damage the damage inflicted upon the [target]
-     * @param delay until hit in client ticks
+     * @param style the combat type, typically: melee, range or magic
      */
     fun combatAttack(style: String = "*", handler: Player.(CombatAttack) -> Unit) {
         attacks.getOrPut(style) { mutableListOf() }.add(handler)
@@ -101,11 +99,7 @@ interface CombatApi {
     /**
      * Damage done by [source] to the emitter
      * Used for defend graphics, for effects use [CombatAttack]
-     * @param type the combat type, typically: melee, range or magic
-     * @param damage the damage inflicted by the [source]
-     * @param weapon weapon used
-     * @param spell magic spell used
-     * @param special whether weapon special attack was used
+     * @param style the combat type, typically: melee, range or magic
      */
     fun combatDamage(style: String = "*", handler: Player.(CombatDamage) -> Unit) {
         damages.getOrPut(style) { mutableListOf() }.add(handler)

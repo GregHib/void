@@ -4,7 +4,6 @@ import content.entity.combat.hit.directHit
 import content.skill.magic.spell.Spell
 import content.skill.magic.spell.spell
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.type.random
 
 class Wizards : Script {
 

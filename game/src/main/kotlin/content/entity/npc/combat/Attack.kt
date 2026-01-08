@@ -42,7 +42,9 @@ class Attack(
             val defId = if (target is Player) {
                 val def = def(target)
                 def["combat_def", def.stringId]
-            } else id
+            } else {
+                id
+            }
             val definition = definitions.getOrNull(defId) ?: return@npcCombatSwing
             if (distance > definition.retreatRange) {
                 mode = Retreat(this, target)
