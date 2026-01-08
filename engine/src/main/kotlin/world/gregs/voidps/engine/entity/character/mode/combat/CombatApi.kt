@@ -167,10 +167,10 @@ interface CombatApi {
         }
 
         fun attack(npc: NPC, attack: CombatAttack) {
-            for (handler in attackNpc["${npc.id}:*"] ?: emptyList()) {
+            for (handler in attackNpc[npc.id] ?: emptyList()) {
                 handler(npc, attack)
             }
-            for (handler in attackNpc["*:*"] ?: return) {
+            for (handler in attackNpc["*"] ?: return) {
                 handler(npc, attack)
             }
         }
