@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.timer.epochMilliseconds
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.encode.grandExchange
 import world.gregs.voidps.type.random
@@ -325,7 +326,7 @@ class GrandExchange(
         }
         val cumulativeMap = TreeMap<Long, OpenOffer>()
         var totalWeight = 0L
-        val now = System.currentTimeMillis()
+        val now = epochMilliseconds()
         for (offer in offers) {
             val age = now - offer.lastActive
             totalWeight += age

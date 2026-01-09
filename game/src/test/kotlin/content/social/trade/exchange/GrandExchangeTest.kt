@@ -1,5 +1,6 @@
 package content.social.trade.exchange
 
+import FakeRandom
 import WorldTest
 import containsMessage
 import content.entity.player.bank.bank
@@ -18,7 +19,9 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.IntSuspension
+import world.gregs.voidps.engine.timer.setCurrentTime
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.setRandom
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
@@ -28,9 +31,14 @@ class GrandExchangeTest : WorldTest() {
 
     private lateinit var exchange: GrandExchange
     private lateinit var clerk: NPC
+    private var startTime = 1_760_000_000_000L
 
     @BeforeEach
     fun setup() {
+        setRandom(object : FakeRandom() {
+            override fun nextLong(): Long = 0
+        })
+        setCurrentTime { startTime }
         settings["grandExchange.tax"] = 0.0
         exchange = get()
         exchange.clear()
@@ -692,6 +700,8 @@ class GrandExchangeTest : WorldTest() {
     }
 
     private fun confirm(player: Player) {
+        startTime += 10
+        setCurrentTime { startTime }
         player.interfaceOption("grand_exchange", "confirm", "Confirm Offer")
     }
 
