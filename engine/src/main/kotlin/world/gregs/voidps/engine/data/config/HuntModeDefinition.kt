@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectLayer
  * @param checkNotCombatSelf checks if npc is in combat
  * @param checkNotBusy checks target doesn't have menu open
  * @param checkAfk check if target is "afk" aka has tolerance by staying in the same area for 10 minutes (dark beasts don't check)
- * @param findKeepHunting unknown
+ * @param findKeepHunting keeps hunting even when npc has an interaction mode (used for target switching in combat e.g. corp, kbd)
  * @param pauseIfNobodyNear stop finding new target when no players are around
  * @param rate ticks between checking for new targets. Non-player targets have min 3 ticks.
  * @param id the id for object or floor item target
