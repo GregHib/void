@@ -70,7 +70,7 @@ class Ammo : Script {
         if (slot == EquipSlot.Weapon) {
             val weapon = player.equipped(EquipSlot.Weapon)
             when {
-                weapon.id == "zaryte_bow" -> player.ammo = "zaryte_arrow"
+                weapon.id.startsWith("zaryte_bow") -> player.ammo = "zaryte_arrow"
                 weapon.id.endsWith("sling") -> player.ammo = "sling_rock"
                 weapon.id.startsWith("crystal_bow") -> player.ammo = "special_arrow"
                 else -> player.ammo = weapon.id
