@@ -48,14 +48,17 @@ class CombatMovement(
             return
         }
         if (!attack()) {
+            var skip: Boolean
             if (character.steps.destination == character.tile || Overlap.isUnder(character.tile, character.size, target.tile, target.size)) {
                 stepOut()
+                skip = true
             } else {
+                val wasEmpty = character.steps.isEmpty()
                 character.steps.clearDestination()
-                recalculate()
+                skip = recalculate() && wasEmpty
             }
             super.tick()
-            if (attack()) {
+            if (skip || attack()) {
                 return
             }
             if (character is NPC && retreat(character)) {
