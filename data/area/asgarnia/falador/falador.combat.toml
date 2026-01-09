@@ -1,6 +1,6 @@
 [guard_falador]
 attack_speed = 4
-retreat_range = 8
+retreat_range = 4
 defend_anim = "human_defend"
 death_anim = "human_death"
 

@@ -10,18 +10,19 @@ import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
+import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
+import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.mode.combat.*
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.type.Tile
 
-class Combat :
-    Script,
-    CombatApi {
+class Combat(val combatDefinitions: CombatDefinitions) : Script, CombatApi {
 
     init {
         CombatMovement.combatReached = { target ->
@@ -121,6 +122,18 @@ class Combat :
         }
         if (character is NPC && character.attacking && character.underAttack) {
             return
+        }
+        if (character is NPC) {
+            // Retreat
+            val definition = combatDefinitions.getOrNull(character.id) ?: return
+            val spawn: Tile = character["spawn_tile"]!!
+            val distance = spawn.distanceTo(source.tile)
+            if (distance > definition.retreatRange) {
+                if (character.mode !is Retreat || (character.mode as Retreat).target != source) {
+                    character.mode = Retreat(character, source, spawn, definition.retreatRange)
+                }
+                return
+            }
         }
         character.mode = CombatMovement(character, source)
         character.target = source
