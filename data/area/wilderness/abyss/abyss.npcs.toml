@@ -51,6 +51,6 @@ examine = "Apparently walks the Abyss."
 
 [dark_mage]
 id = 2262
-faces = false
+interacts = false
 categories = ["human"]
 examine = "An initiate of Zamorak."

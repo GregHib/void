@@ -32,7 +32,7 @@ examine = "Runes are his passion."
 
 [mage_of_zamorak_normal]
 id = 2261
-faces = false
+interacts = false
 categories = ["human"]
 wander_radius = 5
 collision = "indoors"
@@ -40,21 +40,21 @@ examine = "A disciple of Zamorak."
 
 [mage_of_zamorak_wilderness]
 id = 2257
-faces = false
+interacts = false
 categories = ["human"]
 wander_radius = 4
 examine = "A disciple of Zamorak."
 
 [mage_of_zamorak_wilderness_trade]
 id = 2258
-faces = false
+interacts = false
 categories = ["human"]
 wander_radius = 4
 examine = "A disciple of Zamorak."
 
 [mage_of_zamorak_wilderness_teleport]
 id = 2259
-faces = false
+interacts = false
 categories = ["human"]
 wander_radius = 4
 examine = "A disciple of Zamorak."
@@ -141,7 +141,7 @@ id = 8874
 [iffie]
 id = 5914
 categories = ["human"]
-faces = false
+interacts = false
 examine = "An old woman busily knitting."
 
 [ash_cleaner]
