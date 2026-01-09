@@ -31,6 +31,9 @@ class CombatMovement(
 ) : Movement(character, strategy) {
 
     override fun start() {
+        if (character is NPC) {
+            character.steps.clear()
+        }
         character.face(target)
         character.watch(target)
         character.clear("face_entity")

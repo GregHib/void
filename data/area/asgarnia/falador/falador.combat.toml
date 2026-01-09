@@ -6,5 +6,5 @@ death_anim = "human_death"
 
 [guard_falador.melee]
 range = 1
-anim = "human_attack"
+anim = "sword_lunge"
 target_hit = { offense = "stab", max = 30 }
