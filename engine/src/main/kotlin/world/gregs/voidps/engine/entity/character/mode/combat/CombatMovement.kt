@@ -2,14 +2,13 @@ package world.gregs.voidps.engine.entity.character.mode.combat
 
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.variable.hasClock
-import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
-import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
+import world.gregs.voidps.engine.entity.character.mode.move.Step
 import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -20,6 +19,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.random
 
 /**
  * Keeps [character] within attack range of [target]
@@ -29,9 +29,6 @@ class CombatMovement(
     var target: Character,
     strategy: TargetStrategy = CharacterTargetStrategy(target),
 ) : Movement(character, strategy) {
-
-    private val wanderRange = (character as? NPC)?.def?.getOrNull("wander_range") ?: 5
-    private val spawn: Tile? = character["respawn_tile"]
 
     override fun start() {
         character.face(target)
@@ -47,6 +44,16 @@ class CombatMovement(
             character.mode = EmptyMode
             return
         }
+        if (character is NPC) {
+            val definition = get<CombatDefinitions>().get(character.id)
+            val retreatRange = definition.retreatRange
+            val attackRange = definition.attackRange
+            val spawn: Tile = character["respawn_tile"]!!
+            if (!character.tile.within(spawn, retreatRange + attackRange)) {
+                character.mode = EmptyMode
+                return
+            }
+        }
         if (!attack()) {
             var skip: Boolean
             if (character.steps.destination == character.tile || Overlap.isUnder(character.tile, character.size, target.tile, target.size)) {
@@ -61,9 +68,6 @@ class CombatMovement(
             if (skip || attack()) {
                 return
             }
-            if (character is NPC && retreat(character)) {
-                return
-            }
             if (character.hasClock("movement_delay") || character.visuals.moved || getTarget() != null || character is NPC) {
                 return
             }
@@ -71,9 +75,29 @@ class CombatMovement(
             if (character.mode == this) {
                 character.mode = EmptyMode
             }
-        } else if (character is NPC && retreat(character)) {
-            return
         }
+    }
+
+    override fun nextDirection(target: Step?): Direction? {
+        if (character !is NPC) {
+            return super.nextDirection(target)
+        }
+        val direction = super.nextDirection(target) ?: return null
+        val step = character.tile.add(direction)
+        if (outOfRange(character, step)) {
+            return null
+        }
+        return direction
+    }
+
+    private fun outOfRange(character: NPC, step: Tile): Boolean {
+        val spawn: Tile = character["respawn_tile"] ?: return false
+        val retreatRange = get<CombatDefinitions>().get(character.id).retreatRange
+        if (step.distanceTo(spawn) > retreatRange) {
+            character.mode = EmptyMode
+            return true
+        }
+        return false
     }
 
     private fun stepOut() {
@@ -81,7 +105,15 @@ class CombatMovement(
         if (target.mode is CombatMovement || target.mode is Interact) {
             return
         }
-        character.steps.queueStep(character.tile.add(Direction.cardinal.random()))
+        val direction = Direction.cardinal.random(random)
+        if (!canStep(direction.delta.x, direction.delta.y)) {
+            return
+        }
+        val step = character.tile.add(direction)
+        if (character is NPC && outOfRange(character, step)) {
+            return
+        }
+        character.steps.queueStep(step)
     }
 
     private fun attack(): Boolean {
@@ -90,22 +122,6 @@ class CombatMovement(
         if (arrived(if (melee) -1 else attackRange)) {
             clearSteps()
             combatReached?.invoke(character, target)
-            return true
-        }
-        return false
-    }
-
-    private fun retreat(character: NPC): Boolean {
-        val spawn = spawn ?: return false
-        if (!character.tile.within(spawn, wanderRange)) {
-            character.walkTo(spawn)
-            character.stop("under_attack")
-            return true
-        }
-        val attackRadius = character.def["retreat_range", 8]
-        val target = character.get<Character>("target")
-        if (target != null && !character.tile.within(target.tile, attackRadius)) {
-            character.mode = Retreat(character, target)
             return true
         }
         return false
@@ -120,7 +136,7 @@ class CombatMovement(
         if (replacement !is CombatMovement || replacement.target != target) {
             if (character is Player) {
                 CombatApi.stop(character, target)
-            } else  if (character is NPC) {
+            } else if (character is NPC) {
                 CombatApi.stop(character, target)
             }
         }

@@ -144,12 +144,12 @@ open class Movement(
 
     open fun recalculate(): Boolean {
         val strategy = strategy ?: return false
-        if (!equals(strategy.tile, character.steps.destination)) {
-            needsCalculation = true
-            calculate()
-            return true
+        if (equals(strategy.tile, character.steps.destination)) {
+            return false
         }
-        return false
+        needsCalculation = true
+        calculate()
+        return true
     }
 
     open fun onCompletion() {
@@ -158,7 +158,7 @@ open class Movement(
         }
     }
 
-    protected fun nextDirection(target: Step?): Direction? {
+    protected open fun nextDirection(target: Step?): Direction? {
         target ?: return null
         val dx = (target.x - character.tile.x).sign
         val dy = (target.y - character.tile.y).sign

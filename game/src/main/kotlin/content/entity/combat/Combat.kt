@@ -70,6 +70,11 @@ class Combat(val combatDefinitions: CombatDefinitions) : Script, CombatApi {
         }
 
         npcCombatStop { target ->
+            if (target.dead) {
+                set("face_entity", target)
+            } else {
+                clearWatch()
+            }
             target.stop("under_attack")
             target.attackers.remove(this)
             this.target = null
