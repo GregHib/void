@@ -25,7 +25,7 @@ examine = "he guardian of Burthorpe's lost horticultural heritage."
 
 [bob_cat]
 id = 1091
-wander_range = 4
+wander_range = 30000
 examine = "The Jagex cat."
 
 [hild]
