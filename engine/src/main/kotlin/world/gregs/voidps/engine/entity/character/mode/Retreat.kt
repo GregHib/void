@@ -26,6 +26,14 @@ class Retreat(
             npc.mode = EmptyMode
             return
         }
+        if (!npc.tile.within(spawn, retreatRange)) {
+            npc.mode = EmptyMode
+            return
+        }
+        if (!target.tile.within(spawn, retreatRange + 11)) {
+            npc.mode = EmptyMode
+            return
+        }
         val deltaX = if (npc.tile.x - target.tile.x > 0) 1 else -1
         val deltaY = if (npc.tile.y - target.tile.y > 0) 1 else -1
         if (step(deltaX, deltaY) || step(deltaX, 0) || step(0, deltaY)) {
@@ -38,11 +46,8 @@ class Retreat(
             return false
         }
         val step = npc.tile.add(deltaX, deltaY)
-        if (step.distanceTo(spawn) > retreatRange + 11) {
-            npc.mode = EmptyMode
-            return false
-        }
-        if (step.distanceTo(spawn) > retreatRange) {
+        // Npcs can't step out of range but can step in
+        if (!step.within(spawn, retreatRange)) {
             return false
         }
         character.steps.queueStep(step)

@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.mode.combat
 
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.data.config.CombatDefinition
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -20,6 +21,7 @@ import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
+import kotlin.math.abs
 
 /**
  * Keeps [character] within attack range of [target]
@@ -76,21 +78,13 @@ class CombatMovement(
             return super.nextDirection(target)
         }
         val direction = super.nextDirection(target) ?: return null
-        val step = character.tile.add(direction)
-        if (outOfRange(character, step)) {
+        val spawn: Tile = character["spawn_tile"] ?: return direction
+        val definition = get<CombatDefinitions>().get(character.def["combat_def", character.id])
+        if (!withinAggro(this.target, spawn, definition)) {
+            character.mode = EmptyMode
             return null
         }
         return direction
-    }
-
-    private fun outOfRange(character: NPC, step: Tile): Boolean {
-        val spawn: Tile = character["respawn_tile"] ?: return false
-        val retreatRange = get<CombatDefinitions>().get(character.id).retreatRange
-        if (step.distanceTo(spawn) > retreatRange) {
-            character.mode = EmptyMode
-            return true
-        }
-        return false
     }
 
     private fun stepOut() {
@@ -102,11 +96,7 @@ class CombatMovement(
         if (!canStep(direction.delta.x, direction.delta.y)) {
             return
         }
-        val step = strategy.tile.add(direction)
-        if (character is NPC && outOfRange(character, step)) {
-            return
-        }
-        character.steps.queueStep(step)
+        character.steps.queueStep(strategy.tile.add(direction))
     }
 
     private fun attack(): Boolean {
@@ -143,6 +133,16 @@ class CombatMovement(
 
         override fun close() {
             combatReached = null
+        }
+
+        fun withinAggro(target: Character, spawn: Tile, definition: CombatDefinition): Boolean {
+            val aggroRange = definition.retreatRange + definition.attackRange
+            val absX = abs(target.tile.x - spawn.x)
+            val absY = abs(target.tile.y - spawn.y)
+            if (definition.attackRange == 1 && absX == absY && absX == aggroRange) {
+                return false
+            }
+            return absX <= aggroRange && absY <= aggroRange
         }
     }
 }

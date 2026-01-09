@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.areaSound
-import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
 import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -46,10 +45,6 @@ class Attack(
                 id
             }
             val definition = definitions.getOrNull(defId) ?: return@npcCombatSwing
-            if (!target.tile.within(get("spawn_tile")!!, definition.retreatRange + definition.attackRange)) {
-                mode = EmptyMode
-                return@npcCombatSwing
-            }
             if (definition.attacks.isEmpty()) {
                 return@npcCombatSwing
             }

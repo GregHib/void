@@ -132,8 +132,7 @@ class Combat(val combatDefinitions: CombatDefinitions) : Script, CombatApi {
             // Retreat
             val definition = combatDefinitions.getOrNull(character.def["combat_def", character.id]) ?: return
             val spawn: Tile = character["spawn_tile"]!!
-            val distance = spawn.distanceTo(source.tile)
-            if (distance > definition.retreatRange) {
+            if (!CombatMovement.withinAggro(source, spawn, definition)) {
                 if (character.mode !is Retreat || (character.mode as Retreat).target != source) {
                     character.mode = Retreat(character, source, spawn, definition.retreatRange)
                 }
