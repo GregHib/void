@@ -68,6 +68,12 @@ class Combat :
             this.target = null
         }
 
+        npcCombatStop { target ->
+            target.stop("under_attack")
+            target.attackers.remove(this)
+            this.target = null
+        }
+
         playerDeath {
             stop(this)
         }
