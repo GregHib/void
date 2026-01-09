@@ -68,7 +68,7 @@ class PlayerCommands : Script {
         adminCommand("restore", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Restore all skills", handler = ::restore)
         adminCommand("hide", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Toggle invisibility to other players", handler = ::hide)
         adminCommand("pos", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Position of the players", handler = ::position)
-        commandAlias("pos", "mypos")
+        commandAlias("pos", "mypos", "tile")
         adminCommand("chat", stringArg("message", desc = "Text to display (use quotes for spaces)"), stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Force a chat message over a players head", handler = ::chat)
         adminCommand("hit", intArg("amount", desc = "Damage to deal", optional = true), stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Damage player by an amount", handler = ::hit)
         adminCommand("watch", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Look at another player", handler = ::watch)

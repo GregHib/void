@@ -12,7 +12,7 @@ class Retreat(
     private val npc: NPC,
     val target: Entity,
     private val spawn: Tile = npc["spawn_tile"]!!,
-    private val retreatRange: Int = npc.def["retreat_range", get<CombatDefinitions>().get(npc.id).retreatRange],
+    private val retreatRange: Int = npc.def.getOrNull("retreat_range") ?: get<CombatDefinitions>().get(npc.id).retreatRange,
 ) : Movement(npc) {
 
     override fun start() {
