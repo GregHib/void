@@ -117,8 +117,8 @@ class Leech : Script {
             boostMessage(source, "Run Energy")
         }
 
-        combatDamage(handler = ::damage)
-        npcCombatDamage(handler = ::damage)
+        combatDamage(handler = ::prayers)
+        npcCombatDamage(handler = ::prayers)
 
         variableSet("under_attack") { _, _, to ->
             if (to == 0) {
@@ -130,50 +130,80 @@ class Leech : Script {
         }
     }
 
-    fun damage(target: Character, it: CombatDamage) {
-        val (source) = it
-        for ((prayer, skill) in map) {
-            if (!source.praying(prayer)) {
-                continue
+    fun prayers(target: Character, it: CombatDamage) {
+        val source = it.source
+        if (source.praying("sap_warrior")) {
+            sap(source, target, Skill.Attack, 10, 20)
+            sap(source, target, Skill.Strength, 10, 20)
+            sap(source, target, Skill.Defence, 10, 20)
+        } else if (source.praying("sap_mage")) {
+            sap(source, target, Skill.Magic, 10, 20)
+            sap(source, target, Skill.Defence, 10, 20)
+        } else if (source.praying("sap_ranger")) {
+            sap(source, target, Skill.Ranged, 10, 20)
+            sap(source, target, Skill.Defence, 10, 20)
+        } else {
+            if (source.praying("leech_magic")) {
+                leech(source, target, Skill.Magic, 5, 10)
             }
-            val sap = prayer.startsWith("sap")
-
-            if (random.nextDouble() >= if (sap) 0.25 else 0.15) {
-                continue
+            if (source.praying("leech_ranged")) {
+                leech(source, target, Skill.Ranged, 5, 10)
             }
-            val name = skill.name.lowercase()
-            val drain = target.getDrain(skill) + 1
-            if (drain * 100.0 / getLevel(target, skill) > if (sap) 10 else 15) {
-                weakMessage(source, sap, name)
-                continue
+            if (source.praying("leech_attack")) {
+                leech(source, target, Skill.Attack, 5, 10)
             }
-
-            cast(source, target, sap, name)
-
-            if (sap) {
-                source.message("Your curse drains ${skill.name} from the enemy, boosting your ${skill.name}.")
+            if (source.praying("leech_strength")) {
+                leech(source, target, Skill.Strength, 5, 10)
             }
-            if (sap && skill == Skill.Attack) {
-                target.setDrain(Skill.Attack, drain, 10)
-                target.setDrain(Skill.Strength, drain, 10)
-                target.setDrain(Skill.Defence, drain, 10)
-            } else {
-                target.setDrain(skill, drain, 10)
-            }
-            target.updateBonus(skill)
-
-            if (!sap) {
-                val leech = source.getLeech(skill) + 1
-                if (leech * 100.0 / source.levels.getMax(skill) > 5) {
-                    drainMessage(source, name)
-                    continue
-                }
-                boostMessage(source, skill.name)
-                source.setLeech(skill, leech)
-                source.updateBonus(skill)
-                source.softTimers.startIfAbsent("prayer_bonus_drain")
+            if (source.praying("leech_defence")) {
+                leech(source, target, Skill.Defence, 5, 10)
             }
         }
+    }
+
+    fun sap(source: Character, target: Character, skill: Skill, base: Int, max: Int) {
+        if (random.nextDouble() >= 0.25) {
+            return
+        }
+
+        val name = skill.name.lowercase()
+        val drain = target.getDrain(skill) + 1
+        if (drain * 100.0 / getLevel(target, skill) > max - base) {
+            weakMessage(source, sap = true, name)
+            return
+        }
+
+        cast(source, target, sap = true, name)
+
+        source.message("Your curse drains ${skill.name} from the enemy, boosting your ${skill.name}.")
+        target.setDrain(skill, drain, base)
+        target.updateBonus(skill)
+    }
+
+    fun leech(source: Character, target: Character, skill: Skill, base: Int, max: Int) {
+        if (random.nextDouble() >= 0.15) {
+            return
+        }
+
+        val name = skill.name.lowercase()
+        val drain = target.getDrain(skill) + 1
+        if (drain * 100.0 / getLevel(target, skill) > max - base) {
+            weakMessage(source, sap = false, name)
+            return
+        }
+
+        cast(source, target, sap = false, name)
+        target.setDrain(skill, drain, base)
+        target.updateBonus(skill)
+        val leech = source.getLeech(skill) + 1
+        if (leech * 100.0 / source.levels.getMax(skill) > 5) {
+            drainMessage(source, name)
+            return
+        }
+        boostMessage(source, skill.name)
+        source.setLeech(skill, leech)
+        source.updateBonus(skill)
+        source.softTimers.startIfAbsent("prayer_bonus_drain")
     }
 
     fun restore(player: Player, skill: Skill, leech: Int) {
