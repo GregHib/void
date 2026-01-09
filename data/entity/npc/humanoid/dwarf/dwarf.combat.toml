@@ -1,6 +1,5 @@
 [dwarf]
 attack_speed = 5
-attack_range = 1
 retreat_range = 16
 defend_anim = "dwarf_defend"
 defend_sound = "dwarf_defend"

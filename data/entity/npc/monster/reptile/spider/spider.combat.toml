@@ -1,6 +1,5 @@
 [spider]
 attack_speed = 4
-attack_range = 1
 retreat_range = 11
 defend_anim = "spider_defend"
 defend_sound = "spider_defend"
@@ -15,7 +14,6 @@ target_hit = { offense = "stab", max = 10 }
 
 [giant_spider]
 attack_speed = 4
-attack_range = 1
 retreat_range = 13
 defend_anim = "giant_spider_defend"
 defend_sound = "giant_spider_defend"

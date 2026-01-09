@@ -1,6 +1,5 @@
 [ghost]
 attack_speed = 4
-attack_range = 1
 retreat_range = 11
 defend_anim = "ghost_defend"
 defend_sound = "ghost_defend"

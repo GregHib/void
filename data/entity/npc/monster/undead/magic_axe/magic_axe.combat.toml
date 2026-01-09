@@ -1,6 +1,5 @@
 [magic_axe]
 attack_speed = 4
-attack_range = 1
 retreat_range = 8
 defend_anim = "magic_axe_defend"
 defend_sound = "magic_axe_defend"

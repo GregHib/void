@@ -1,6 +1,5 @@
 [commander_zilyana]
 attack_speed = 2
-attack_range = 1
 retreat_range = 8
 defend_anim = "commander_zilyana_defend"
 death_anim = "commander_zilyana_death"
@@ -33,7 +32,6 @@ miss_gfxs = [
 
 [starlight]
 attack_speed = 5
-attack_range = 1
 retreat_range = 8
 defend_anim = "starlight_defend"
 death_anim = "starlight_death"
@@ -46,7 +44,6 @@ target_hit = { offense = "crush", max = 150 }
 
 [growler]
 attack_speed = 5
-attack_range = 10
 retreat_range = 8
 defend_anim = "growler_defend"
 defend_sound = "growler_defend"
@@ -64,7 +61,6 @@ impact_sound = "growler_sonic_spell_impact"
 
 [bree]
 attack_speed = 5
-attack_range = 10
 retreat_range = 8
 defend_anim = "bree_defend"
 defend_sound = "bree_defend"

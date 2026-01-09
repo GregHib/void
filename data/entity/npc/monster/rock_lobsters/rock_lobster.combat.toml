@@ -1,6 +1,5 @@
 [rock_lobster]
 attack_speed = 2
-attack_range = 1
 retreat_range = 8
 defend_anim = "rock_lobster_defend"
 defend_sound = "rock_lobster_defend"

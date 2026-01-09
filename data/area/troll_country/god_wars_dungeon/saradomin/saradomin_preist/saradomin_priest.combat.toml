@@ -1,6 +1,5 @@
 [saradomin_priest]
 attack_speed = 5
-attack_range = 8
 retreat_range = 8
 defend_anim = "saradomin_preist_defend"
 defend_sound = "human_defend"

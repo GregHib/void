@@ -1,6 +1,5 @@
 [ice_giant]
 attack_speed = 5
-attack_range = 1
 retreat_range = 5
 defend_anim = "ice_giant_defend"
 defend_sound = "giant_defend"

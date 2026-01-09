@@ -1,6 +1,5 @@
 [earth_elemental]
 attack_speed = 6
-attack_range = 1
 retreat_range = 8
 defend_anim = "earth_elemental_defend"
 defend_sound = "earth_elemental_defend"
@@ -15,7 +14,6 @@ target_hit = { offense = "crush", max = 40 }
 
 [air_elemental]
 attack_speed = 4
-attack_range = 1
 retreat_range = 8
 defend_anim = "air_elemental_defend"
 defend_sound = "air_elemental_defend"
@@ -30,7 +28,6 @@ target_hit = { offense = "stab", max = 30 }
 
 [water_elemental]
 attack_speed = 4
-attack_range = 1
 retreat_range = 8
 defend_anim = "water_elemental_defend"
 defend_sound = "water_elemental_defend"

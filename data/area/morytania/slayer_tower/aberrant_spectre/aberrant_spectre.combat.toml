@@ -1,6 +1,5 @@
 [aberrant_spectre]
 attack_speed = 4
-attack_range = 6
 retreat_range = 19
 defend_anim = "aberrant_spectre_defend"
 defend_sound = "aberrant_spectre_defend"

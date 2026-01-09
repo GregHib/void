@@ -1,6 +1,5 @@
 [thrower_troll]
 attack_speed = 7
-attack_range = 8
 retreat_range = 8
 defend_anim = "thrower_troll_defend"
 defend_sound = "thrower_troll_defend"

@@ -1,6 +1,5 @@
 [aviansie_axe]
 attack_speed = 4
-attack_range = 5
 retreat_range = 8
 defend_anim = "aviansie_defend"
 defend_sound = "aviansie_defend"

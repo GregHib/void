@@ -45,6 +45,7 @@ def = 17
 combat_def = "skeleton_unarmed"
 wander_radius = 8
 hunt_mode = "aggressive"
+hunt_range = 5
 style = "crush"
 height = 30
 respawn_delay = 70

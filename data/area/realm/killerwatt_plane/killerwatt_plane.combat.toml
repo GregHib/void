@@ -1,6 +1,5 @@
 [killerwatt]
 attack_speed = 2
-attack_range = 10
 retreat_range = 8
 defend_anim = "killerwatt_defend"
 defend_sound = "killerwatt_defend"

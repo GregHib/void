@@ -1,6 +1,5 @@
 [king_black_dragon]
 attack_speed = 4
-attack_range = 8
 retreat_range = 10
 defend_anim = "king_black_dragon_defend"
 defend_sound = "dragon_defend"

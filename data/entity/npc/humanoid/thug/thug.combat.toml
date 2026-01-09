@@ -1,6 +1,5 @@
 [thug]
 attack_speed = 4
-attack_range = 1
 retreat_range = 13
 defend_anim = "thug_defend"
 defend_sound = "thug_defend"

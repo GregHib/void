@@ -1,5 +1,4 @@
 [blue_dragon]
-attack_range = 1
 retreat_range = 8
 defend_anim = "colour_dragon_defend"
 defend_sound = "dragon_defend"

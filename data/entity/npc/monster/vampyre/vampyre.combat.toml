@@ -1,6 +1,5 @@
 [vampyre_god_wars]
 attack_speed = 4
-attack_range = 1
 retreat_range = 8
 defend_anim = "vampyre_god_wars_defend"
 defend_sound = "vampyre_defend"

@@ -1,6 +1,5 @@
 [wallasalki]
 attack_speed = 6
-attack_range = 5
 retreat_range = 8
 defend_anim = "wallasalki_defend"
 death_anim = "wallasalki_death"

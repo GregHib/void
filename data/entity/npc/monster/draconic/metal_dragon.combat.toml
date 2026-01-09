@@ -1,5 +1,4 @@
 [bronze_dragon]
-attack_range = 8
 retreat_range = 8
 defend_anim = "dragon_defend"
 defend_sound = "dragon_defend"

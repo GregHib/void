@@ -1,6 +1,5 @@
 [earth_warrior]
 attack_speed = 4
-attack_range = 1
 retreat_range = 5
 defend_anim = "earth_warrior_defend"
 defend_sound = "earth_warrior_defend"

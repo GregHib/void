@@ -1,6 +1,5 @@
 [monk_of_zamorak]
 attack_speed = 4
-attack_range = 1
 retreat_range = 8
 defend_anim = "monk_of_zamorak_defend"
 defend_sound = "monk_of_zamorak_defend"

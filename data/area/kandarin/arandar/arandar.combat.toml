@@ -1,6 +1,5 @@
 [gnome]
 attack_speed = 4
-attack_range = 8
 retreat_range = 8
 defend_anim = "gnome_defend"
 death_anim = "gnome_death"

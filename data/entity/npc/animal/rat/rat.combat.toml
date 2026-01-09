@@ -1,6 +1,5 @@
 [rat]
 attack_speed = 4
-attack_range = 1
 retreat_range = 18
 defend_anim = "rat_defend"
 defend_sound = "rat_defend"

@@ -1,6 +1,5 @@
 [spiritual_warrior_zamorak]
 attack_speed = 4
-attack_range = 1
 retreat_range = 8
 defend_anim = "spiritual_warrior_zamorak_defend"
 defend_sound = "spiritual_warrior_zamorak_defend"
@@ -15,7 +14,6 @@ target_hit = { offense = "slash", max = 110 }
 
 [spiritual_warrior_saradomin]
 attack_speed = 4
-attack_range = 1
 retreat_range = 8
 defend_anim = "human_defend"
 defend_sound = "spiritual_warrior_saradomin_defend"
@@ -29,7 +27,6 @@ target_hit = { offense = "slash", max = 130 }
 
 [spiritual_warrior_bandos]
 attack_speed = 5
-attack_range = 1
 retreat_range = 8
 defend_anim = "spiritual_warrior_bandos_defend"
 defend_sound = "gorak_defend"
@@ -46,7 +43,6 @@ target_hit = { offense = "crush", max = 160 }
 [spiritual_warrior_armadyl]
 clone = "aviansie_axe"
 attack_speed = 4
-attack_range = 5
 retreat_range = 8
 
 [spiritual_warrior_armadyl.attack]

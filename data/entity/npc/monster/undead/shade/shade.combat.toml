@@ -1,6 +1,5 @@
 [shade]
 attack_speed = 4
-attack_range = 1
 retreat_range = 11
 defend_anim = "shade_defend"
 defend_sound = "shade_defend"

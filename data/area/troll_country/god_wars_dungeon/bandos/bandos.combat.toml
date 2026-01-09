@@ -1,6 +1,5 @@
 [general_graardor]
 attack_speed = 6
-attack_range = 1
 retreat_range = 8
 defend_anim = "general_graardor_defend"
 death_anim = "general_graardor_death"
@@ -30,7 +29,6 @@ miss_sound = "spell_splash"
 
 [sergeant_strongstack]
 attack_speed = 5
-attack_range = 1
 retreat_range = 8
 defend_anim = "sergeant_strongstack_defend"
 defend_sound = "goblin_defend"
@@ -43,7 +41,6 @@ target_sound = "goblin_attack"
 target_hit = { offense = "crush", max = 150 }
 
 [sergeant_steelwill]
-attack_range = 10
 attack_speed = 5
 retreat_range = 8
 defend_anim = "sergeant_steelwill_defend"
@@ -63,7 +60,6 @@ impact_sound = "sergeant_steelwill_impact"
 
 [sergeant_grimspike]
 attack_speed = 5
-attack_range = 10
 retreat_range = 8
 defend_anim = "sergeant_grimspike_defend"
 defend_sound = "goblin_defend"

@@ -1,6 +1,5 @@
 [bat]
 attack_speed = 4
-attack_range = 1
 retreat_range = 14
 defend_anim = "bat_defend"
 defend_sound = "bat_defend"
