@@ -4,5 +4,8 @@ id = 404
 [monk_of_zamorak_attack]
 id = 422
 
+[monk_of_zamorak_zap]
+id = 707
+
 [monk_of_zamorak_death]
 id = 836

@@ -1,8 +1,30 @@
 [monk_of_zamorak_paterdomus_temple]
 id = 1044
+hitpoints = 200
+att = 18
+str = 18
+def = 22
+mage = 25
+combat_def = "monk_of_zamorak"
+max_hit_crush = 30
+max_hit_magic = 110
+hunt_mode = "cowardly"
+respawn_delay = 25
+examine = "An evil human cleric."
 
 [monk_of_zamorak_paterdomus_temple_2]
 id = 1045
+hitpoints = 100
+att = 8
+str = 8
+def = 12
+mage = 25
+combat_def = "monk_of_zamorak"
+max_hit_crush = 50
+max_hit_magic = 50
+hunt_mode = "cowardly"
+respawn_delay = 25
+examine = "An evil human cleric."
 
 [monk_of_zamorak_paterdomus_temple_3]
 id = 1046
@@ -11,7 +33,7 @@ att = 25
 str = 25
 def = 25
 mage = 40
-style = "crush"
+combat_def = "monk_of_zamorak"
 max_hit_melee = 30
 max_hit_magic = 80
 hunt_mode = "cowardly"

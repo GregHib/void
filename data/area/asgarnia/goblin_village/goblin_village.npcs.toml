@@ -5,9 +5,9 @@ att = 18
 str = 18
 def = 22
 mage = 25
-style = "crush"
-max_hit_melee = 30
-max_hit_magic = 80
+combat_def = "monk_of_zamorak"
+max_hit_crush = 30
+max_hit_magic = 100
 hunt_mode = "cowardly"
 examine = "A Zamorakian human cleric."
 

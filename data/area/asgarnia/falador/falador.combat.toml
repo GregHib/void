@@ -1,10 +1,23 @@
-[guard_falador]
+[guard]
 attack_speed = 4
 retreat_range = 4
 defend_anim = "human_defend"
 death_anim = "human_death"
 
-[guard_falador.melee]
+[guard.melee]
 range = 1
 anim = "sword_lunge"
 target_hit = { offense = "stab", max = 30 }
+
+[guard_xbow]
+attack_speed = 6
+retreat_range = 4
+defend_anim = "human_defend"
+death_anim = "human_death"
+
+[guard_xbow.range]
+range = 5
+anim = "crossbow_accurate"
+target_sound = "crossbow_shoot"
+projectile = "crossbow_bolt"
+target_hit = { offense = "range", max = 40 }

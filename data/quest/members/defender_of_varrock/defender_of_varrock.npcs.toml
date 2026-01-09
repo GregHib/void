@@ -45,6 +45,14 @@ id = 8175
 
 [monk_of_zamorak_defender_of_varrock]
 id = 8178
+hitpoints = 100
+att = 8
+str = 8
+def = 12
+mage = 25
+combat_def = "monk_of_zamorak"
+hunt_mode = "cowardly"
+examine = "A Zamorakian human cleric."
 
 [sir_prysin_defender_of_varrock]
 id = 9360
