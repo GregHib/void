@@ -1,7 +1,7 @@
 [yrsa]
 id = 1301
 categories = ["human"]
-wander_radius = 2
+wander_range = 2
 shop = "yrsas_shoe_store"
 collision = "indoors"
 examine = "Pretty shabbily dressed for a clothes shop owner."
@@ -420,12 +420,12 @@ id = 406
 
 [lokar_searunner]
 id = 413
-wander_radius = 3
+wander_range = 3
 examine = "Either a very fremennikey pirate, or a very piratey fremennik."
 
 [fish_monger]
 id = 1315
-wander_radius = 4
+wander_range = 4
 examine = "Fish-tastic!"
 
 [jarvald_rellekka_2]

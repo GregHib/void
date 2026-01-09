@@ -2,13 +2,13 @@
 id = 384
 drop_table = "human"
 categories = ["human"]
-wander_radius = 4
+wander_range = 4
 examine = "Not very civilised looking."
 
 [gunnjorn]
 id = 607
 categories = ["human"]
-wander_radius = 4
+wander_range = 4
 examine = "He maintains this agility course."
 
 [fishing_spot_barbarian_outpost]

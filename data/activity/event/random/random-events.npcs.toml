@@ -1,6 +1,6 @@
 [frog_frogland]
 id = 390
-wander_radius = 3
+wander_range = 3
 examine = "A frog."
 
 [frog_2_frogland]
@@ -91,20 +91,20 @@ id = 8637
 
 [balloon_animal_dog]
 id = 11232
-wander_radius = 3
+wander_range = 3
 examine = "It looks like an animal."
 
 [balloon_animal_cat]
 id = 11233
-wander_radius = 3
+wander_range = 3
 examine = "It looks like an animal."
 
 [balloon_animal_sheep]
 id = 11234
-wander_radius = 3
+wander_range = 3
 examine = "It looks like an animal."
 
 [balloon_animal_goat]
 id = 11235
-wander_radius = 3
+wander_range = 3
 examine = "It looks like an animal."

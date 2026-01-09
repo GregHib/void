@@ -1,12 +1,12 @@
 [neil]
 id = 1784
-wander_radius = 15
+wander_range = 15
 shop = "neils_wilderness_cape_shop"
 examine = "A very brave merchant."
 
 [sam]
 id = 1787
-wander_radius = 15
+wander_range = 15
 shop = "sams_wilderness_cape_shop"
 examine = "A very brave merchant."
 

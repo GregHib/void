@@ -32,7 +32,7 @@ class Wander(
             super.tick()
             return
         }
-        val radius: Int = npc.def["wander_radius", 5]
+        val radius: Int = npc.def["wander_range", 5]
         if (radius <= 0) {
             npc.mode = EmptyMode
             return

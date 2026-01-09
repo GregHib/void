@@ -1,14 +1,14 @@
 [traiborn]
 id = 881
 categories = ["human"]
-wander_radius = 3
+wander_range = 3
 collision = "indoors"
 examine = "An old wizard."
 
 [sedridor]
 id = 300
 categories = ["human"]
-wander_radius = 4
+wander_range = 4
 collision = "indoors"
 examine = "Head wizard of the Wizard's Tower."
 

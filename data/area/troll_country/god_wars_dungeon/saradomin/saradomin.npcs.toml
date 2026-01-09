@@ -14,7 +14,7 @@ respawn_delay = 150
 slayer_xp = 350.0
 categories = ["boss"]
 poison_immune = true
-wander_radius = 6
+wander_range = 6
 examine = "Commander of Saradomin's forces."
 
 [starlight]
@@ -28,7 +28,7 @@ attack_bonus = 60
 combat_def = "starlight"
 xp_bonus = 1.05
 hunt_mode = "aggressive"
-wander_radius = 6
+wander_range = 6
 drop_table = "saradomin_bodyguard"
 examine = "Bane of darkness."
 
@@ -42,7 +42,7 @@ mage = 150
 attack_bonus = 10
 combat_def = "growler"
 hunt_mode = "aggressive"
-wander_radius = 6
+wander_range = 6
 retreat_range = 8
 drop_table = "saradomin_bodyguard"
 examine = "Defender of the faithful."
@@ -58,6 +58,6 @@ range = 150
 attack_bonus = 10
 combat_def = "bree"
 hunt_mode = "aggressive"
-wander_radius = 6
+wander_range = 6
 drop_table = "saradomin_bodyguard"
 examine = "Champion of truth."

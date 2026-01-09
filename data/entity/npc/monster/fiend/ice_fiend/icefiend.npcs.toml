@@ -20,7 +20,7 @@ id = 7715
 [icefiend_ghorrock]
 id = 9066
 respawn_delay = 30
-wander_radius = 4
+wander_range = 4
 combat_def = "icefiend"
 drop_table = "icefiend"
 categories = ["icefiends"]

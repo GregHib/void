@@ -1,7 +1,7 @@
 [harry]
 id = 576
 categories = ["human"]
-wander_radius = 2
+wander_range = 2
 shop = "harrys_fishing_shop"
 collision = "indoors"
 examine = "Something fishy about him."
@@ -9,7 +9,7 @@ examine = "Something fishy about him."
 [candle_maker]
 id = 562
 categories = ["human"]
-wander_radius = 2
+wander_range = 2
 collision = "indoors"
 shop = "candle_shop"
 examine = "HHas an odd smell about him."
@@ -17,28 +17,28 @@ examine = "HHas an odd smell about him."
 [arhein]
 id = 563
 categories = ["human"]
-wander_radius = 2
+wander_range = 2
 shop = "arheins_store"
 examine = "He looks fairly well-to-do."
 
 [hickton]
 id = 575
 categories = ["human"]
-wander_radius = 2
+wander_range = 2
 collision = "indoors"
 examine = "A master fletcher."
 
 [caleb]
 id = 666
 categories = ["human"]
-wander_radius = 2
+wander_range = 2
 collision = "indoors"
 examine = "A well dressed nobleman."
 
 [vanessa]
 id = 2305
 categories = ["human"]
-wander_radius = 2
+wander_range = 2
 shop = "vanessas_farming_shop"
 collision = "indoors"
 examine = "She sells farming equipment."
@@ -46,7 +46,7 @@ examine = "She sells farming equipment."
 [ellena]
 id = 2331
 categories = ["human"]
-wander_radius = 2
+wander_range = 2
 patch = "farming_fruit_tree_patch_catherby"
 examine = "Perhaps this gardener might look after your crops for you."
 
@@ -60,7 +60,7 @@ mage = 25
 combat_def = "renegade_knight"
 categories = ["human"]
 hunt_range = 2
-wander_radius = 5
+wander_range = 5
 hunt_mode = "aggressive"
 drop_table = "human"
 respawn_delay = 50
@@ -78,7 +78,7 @@ combat_def = "renegade_knight"
 max_hit_slash = 50
 categories = ["human"]
 hunt_range = 2
-wander_radius = 5
+wander_range = 5
 hunt_mode = "aggressive"
 drop_table = "human"
 respawn_delay = 25

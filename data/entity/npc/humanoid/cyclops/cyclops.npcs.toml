@@ -11,7 +11,7 @@ respawn_delay = 25
 slayer_xp = 110.0
 drop_table = "cyclops_god_wars"
 categories = ["cyclops"]
-wander_radius = 6
+wander_range = 6
 god = "bandos"
 examine = "A one-eyed man-eater."
 

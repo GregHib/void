@@ -2,7 +2,7 @@
 id = 526
 categories = ["human"]
 shop = "falador_general_store"
-wander_radius = 2
+wander_range = 2
 collision = "indoors"
 examine = "A product of a consumerist society."
 
@@ -10,27 +10,27 @@ examine = "A product of a consumerist society."
 id = 527
 categories = ["human"]
 shop = "falador_general_store"
-wander_radius = 2
+wander_range = 2
 collision = "indoors"
 examine = "Likes you more, the more you spend."
 
 [wyson_the_gardener]
 id = 36
 categories = ["human"]
-wander_radius = 4
+wander_range = 4
 examine = "The head gardener."
 
 [makeover_mage_female]
 id = 2676
 categories = ["human"]
-wander_radius = 3
+wander_range = 3
 collision = "indoors"
 examine = "Master of the mystical make-over."
 
 [makeover_mage_male]
 id = 599
 categories = ["human"]
-wander_radius = 3
+wander_range = 3
 examine = "Master of the mystical make-over."
 
 [tanner]
@@ -53,7 +53,7 @@ examine = "He works in the Crafting Guild."
 
 [master_crafter_3]
 id = 2733
-wander_radius = 4
+wander_range = 4
 categories = ["human"]
 collision = "indoors"
 examine = "He wanders around the Crafting Guild pretending to be working."
@@ -70,7 +70,7 @@ bar_crawl = {
     sign = "The barmaid giggles and signs your card."
 }
 categories = ["human"]
-wander_radius = 3
+wander_range = 3
 collision = "indoors"
 examine = "Works in the Rising Sun."
 
@@ -90,19 +90,19 @@ examine = "A wizard who specialises in magical picture-taking processes."
 [sir_vyvin]
 id = 605
 categories = ["human"]
-wander_radius = 4
+wander_range = 4
 examine = "A White Knight officer with an injured eye."
 
 [squire_asrol]
 id = 606
 categories = ["human"]
-wander_radius = 4
+wander_range = 4
 examine = "Indentured servant of a Knight."
 
 [hairdresser]
 id = 598
 categories = ["human"]
-wander_radius = 3
+wander_range = 3
 collision = "indoors"
 examine = "Anyone fancy a trim?"
 
@@ -251,6 +251,7 @@ att = 19
 str = 18
 def = 14
 attack_bonus = 4
+wander_range = 2
 combat_def = "guard_falador"
 respawn_delay = 50
 drop_table = "guard"
@@ -591,7 +592,7 @@ examine = "A fancy businessman with a mighty fine hat."
 
 [gadrin]
 id = 3295
-wander_radius = 3
+wander_range = 3
 examine = "He's in charge of the mining guild."
 
 [assistant_brock_falador_2]

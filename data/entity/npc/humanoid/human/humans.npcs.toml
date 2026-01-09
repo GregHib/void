@@ -1,7 +1,7 @@
 [man]
 id = 1
 hitpoints = 70
-wander_radius = 4
+wander_range = 4
 respawn_delay = 25
 combat_def = "man"
 pickpocket = { stun_hit = 10, stun_ticks = 8, xp = 8.0, chance_min = 180, chance_max = 240 }
@@ -20,7 +20,7 @@ id = 3
 [woman]
 id = 4
 hitpoints = 70
-wander_radius = 4
+wander_range = 4
 respawn_delay = 25
 combat_def = "woman"
 pickpocket = { stun_hit = 10, stun_ticks = 8, xp = 8.0, chance_min = 180, chance_max = 240 }
@@ -43,7 +43,7 @@ examine = "Head of the Magic Guild."
 
 [jeffery]
 id = 637
-wander_radius = 4
+wander_range = 4
 categories = ["human"]
 collision = "indoors"
 examine = "The man with the armour."
@@ -61,7 +61,7 @@ bar_crawl = {
   sign = "The bartender scrawls his signature on your card."
 }
 categories = ["human"]
-wander_radius = 5
+wander_range = 5
 collision = "indoors"
 examine = "I could get a beer from him."
 
@@ -78,7 +78,7 @@ bar_crawl = {
   sign = "Through your tears you see the bartender..."
 }
 categories = ["human"]
-wander_radius = 3
+wander_range = 3
 collision = "indoors"
 examine = "I could get a beer from him."
 
@@ -95,7 +95,7 @@ bar_crawl = {
   sign = "You can just about make out the bartender signing your barcrawl card."
 }
 categories = ["human"]
-wander_radius = 5
+wander_range = 5
 collision = "indoors"
 examine = "I could get a beer from him."
 
@@ -110,12 +110,12 @@ examine = "The hat is a dead give away."
 [tool_leprechaun]
 id = 3021
 categories = ["human"]
-wander_radius = 2
+wander_range = 2
 examine = "Looks after your farming tools."
 
 [jeffery3]
 id = 3323
-wander_radius = 4
+wander_range = 4
 categories = ["human"]
 examine = "The man with the armour."
 
@@ -131,6 +131,6 @@ examine = "A young master craftsman."
 
 [jeffery_normal]
 id = 6298
-wander_radius = 4
+wander_range = 4
 categories = ["human"]
 examine = "The man with the armour."

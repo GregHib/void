@@ -1,6 +1,6 @@
 [sheep]
 id = 43
-wander_radius = 10
+wander_range = 10
 categories = ["sheep"]
 examine = "White and fluffy."
 

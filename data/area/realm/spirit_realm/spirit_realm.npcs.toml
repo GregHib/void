@@ -10,7 +10,7 @@ examine = "The wraith of a long-dead prisoner."
 
 [edward]
 id = 1782
-wander_radius = 10
+wander_range = 10
 shop = "edwards_wilderness_cape_shop"
 examine = "A very brave merchant."
 

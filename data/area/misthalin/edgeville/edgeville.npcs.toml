@@ -2,7 +2,7 @@
 id = 528
 categories = ["human"]
 shop = "edgeville_general_store"
-wander_radius = 2
+wander_range = 2
 collision = "indoors"
 examine = "If he doesn't have it, he can't sell it."
 
@@ -10,7 +10,7 @@ examine = "If he doesn't have it, he can't sell it."
 id = 529
 categories = ["human"]
 shop = "edgeville_general_store"
-wander_radius = 2
+wander_range = 2
 collision = "indoors"
 examine = "She's here on work experience."
 
@@ -26,7 +26,7 @@ id = 11670
 
 [richard_edgeville]
 id = 1783
-wander_radius = 10
+wander_range = 10
 shop = "richards_wilderness_cape_shop"
 examine = "A very brave merchant."
 

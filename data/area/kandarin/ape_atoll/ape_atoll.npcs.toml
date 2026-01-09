@@ -17,7 +17,7 @@ examine = "It's an extremely small brown spider, probably very poisonous."
 id = 1473
 hitpoints = 20
 attack_bonus = 1
-wander_radius = 9
+wander_range = 9
 slayer_xp = 2.0
 combat_def = "spider_ape_atoll"
 categories = ["spiders"]
@@ -296,7 +296,7 @@ combat_def = "scorpion_ape_atoll"
 hunt_mode = "cowardly"
 respawn_delay = 50
 slayer_xp = 15.0
-wander_radius = 5
+wander_range = 5
 categories = ["scorpions"]
 examine = "It's an extremely dangerous looking scorpion."
 

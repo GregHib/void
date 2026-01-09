@@ -15,7 +15,7 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
         stringId = id,
         extras = mapOf(
             "categories" to setOf("human"),
-            "wander_radius" to 4,
+            "wander_range" to 4,
             "examine" to "Servant of the Duke of Lumbridge.",
         ),
     )

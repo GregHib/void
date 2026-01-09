@@ -2,7 +2,7 @@
 id = 47
 hitpoints = 20
 attack_bonus = -47
-wander_radius = 8
+wander_range = 8
 slayer_xp = 2.0
 combat_def = "rat"
 respawn_delay = 1
@@ -51,7 +51,7 @@ att = 2
 str = 3
 def = 2
 combat_def = "giant_rat"
-wander_radius = 10
+wander_range = 10
 hitpoints = 50
 slayer_xp = 5.0
 respawn_delay = 30
@@ -78,31 +78,31 @@ id = 8829
 
 [rat_ratcatchers]
 id = 2974
-wander_radius = 4
+wander_range = 4
 
 [rat_ratcatchers_2]
 id = 2975
-wander_radius = 4
+wander_range = 4
 
 [rat_ratcatchers_3]
 id = 2976
-wander_radius = 4
+wander_range = 4
 
 [rat_ratcatchers_4]
 id = 2977
-wander_radius = 4
+wander_range = 4
 
 [rat_ratcatchers_5]
 id = 2978
-wander_radius = 4
+wander_range = 4
 
 [rat_ratcatchers_6]
 id = 2979
-wander_radius = 4
+wander_range = 4
 
 [rat_ratcatchers_7]
 id = 2980
-wander_radius = 4
+wander_range = 4
 examine = "A popular dwarven delicacy."
 
 [rat_swept_away]

@@ -645,7 +645,7 @@ examine = "Proprietor of Vigr's Warhammers."
 
 [trade_referee]
 id = 2127
-wander_radius = 3
+wander_range = 3
 examine = "He is regulating the flow of goods on the trade floor and maintaining order."
 
 [king_veldaban]

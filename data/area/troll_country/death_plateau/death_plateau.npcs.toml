@@ -1,6 +1,6 @@
 [ash]
 id = 1100
-wander_radius = 6
+wander_range = 6
 categories = ["trolls"]
 examine = "Human is his speciality."
 
