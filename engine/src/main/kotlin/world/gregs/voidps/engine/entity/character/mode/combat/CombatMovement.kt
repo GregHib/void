@@ -27,7 +27,7 @@ import world.gregs.voidps.type.random
 class CombatMovement(
     character: Character,
     var target: Character,
-    strategy: TargetStrategy = CharacterTargetStrategy(target),
+    val strategy: TargetStrategy = CharacterTargetStrategy(target),
 ) : Movement(character, strategy) {
 
     override fun start() {
@@ -112,7 +112,7 @@ class CombatMovement(
         if (!canStep(direction.delta.x, direction.delta.y)) {
             return
         }
-        val step = character.tile.add(direction)
+        val step = strategy.tile.add(direction)
         if (character is NPC && outOfRange(character, step)) {
             return
         }

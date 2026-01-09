@@ -42,13 +42,13 @@ open class Movement(
         if (!needsCalculation || strategy == null) {
             return
         }
-        clearSteps()
         if (character is Player && !strategy.tile.noCollision) {
             val route = pathFinder.findPath(character, strategy, shape)
             character.steps.queueRoute(route, strategy.tile, strategy.tile.noCollision, strategy.tile.noRun)
         } else {
             character.steps.queueStep(strategy.tile, strategy.tile.noCollision, strategy.tile.noRun)
         }
+        needsCalculation = false
     }
 
     override fun tick() {
