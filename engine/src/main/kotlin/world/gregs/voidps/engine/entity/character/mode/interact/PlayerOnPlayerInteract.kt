@@ -8,9 +8,9 @@ import world.gregs.voidps.engine.entity.character.player.name
 
 data class PlayerOnPlayerInteract(
     override val target: Player,
-    val option: String,
+    override val option: String,
     val player: Player,
-) : Interact(player, target) {
+) : InteractOption(player, target) {
     override fun hasOperate() = Operation.playerPlayer.containsKey(option)
 
     override fun hasApproach() = Approachable.playerPlayer.containsKey(option)

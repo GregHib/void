@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
+import world.gregs.voidps.engine.entity.character.mode.interact.InteractOption
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -156,7 +157,7 @@ val Character.inCombat: Boolean
     get() = attacking || underAttack
 
 val Character.attacking: Boolean
-    get() = mode is CombatMovement
+    get() = mode is CombatMovement || mode is InteractOption && (mode as InteractOption).option == "Attack"
 
 val Character.underAttack: Boolean
     get() = hasClock("under_attack")

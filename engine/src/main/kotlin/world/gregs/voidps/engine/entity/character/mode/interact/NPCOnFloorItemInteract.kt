@@ -8,10 +8,10 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItem
 
 data class NPCOnFloorItemInteract(
     override val target: FloorItem,
-    val option: String,
+    override val option: String,
     val npc: NPC,
     val shape: Int?
-) : Interact(npc, target, shape = shape) {
+) : InteractOption(npc, target, shape = shape) {
     override fun hasOperate() = Operation.npcFloorItem.containsKey(option)
 
     override fun hasApproach() = Approachable.npcFloorItem.containsKey(option)
