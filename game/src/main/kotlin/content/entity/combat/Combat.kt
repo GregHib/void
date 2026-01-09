@@ -130,7 +130,7 @@ class Combat(val combatDefinitions: CombatDefinitions) : Script, CombatApi {
         }
         if (character is NPC) {
             // Retreat
-            val definition = combatDefinitions.getOrNull(character.id) ?: return
+            val definition = combatDefinitions.getOrNull(character.def["combat_def", character.id]) ?: return
             val spawn: Tile = character["spawn_tile"]!!
             val distance = spawn.distanceTo(source.tile)
             if (distance > definition.retreatRange) {

@@ -47,16 +47,6 @@ class CombatMovement(
             character.mode = EmptyMode
             return
         }
-        if (character is NPC) {
-            val definition = get<CombatDefinitions>().get(character.id)
-            val retreatRange = definition.retreatRange
-            val attackRange = definition.attackRange
-            val spawn: Tile = character["respawn_tile"]!!
-            if (!character.tile.within(spawn, retreatRange + attackRange)) {
-                character.mode = EmptyMode
-                return
-            }
-        }
         if (!attack()) {
             var skip: Boolean
             if (character.steps.destination == character.tile || Overlap.isUnder(character.tile, character.size, target.tile, target.size)) {
