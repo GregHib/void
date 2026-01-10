@@ -3,10 +3,12 @@ package content.entity.combat
 import WorldTest
 import npcOption
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.move.running
@@ -55,7 +57,7 @@ internal class CombatMovementTest : WorldTest() {
         val player = createPlayer(tile = Tile(3030, 3350))
         player.interactNpc(npc, "Attack")
         tick()
-        assert(npc.mode is Retreat)
+        assertTrue(npc.mode is Retreat)
     }
 
     @Test
@@ -65,7 +67,7 @@ internal class CombatMovementTest : WorldTest() {
         val player = createPlayer(tile = Tile(3032, 3350))
         npc.interactPlayer(player, "Attack")
         tick()
-        assert(npc.mode is CombatMovement)
+        assertTrue(npc.mode is CombatMovement)
         player.walkTo(Tile(3031, 3350))
         tick(2)
         assert(npc.mode !is CombatMovement)
@@ -78,10 +80,26 @@ internal class CombatMovementTest : WorldTest() {
         val player = createPlayer(tile = Tile(3032, 3350))
         npc.interactPlayer(player, "Attack")
         tick()
-        assert(npc.mode is CombatMovement)
+        assertTrue(npc.mode is CombatMovement)
         player.walkTo(Tile(3031, 3350))
         tick(2)
-        assert(npc.mode is CombatMovement)
+        assertTrue(npc.mode is CombatMovement)
+    }
+
+    @Test
+    fun `Ranged npc has steps queued after target has left aggression range`() {
+        val npc = createNPC("guard_falador_2", Tile(3036, 3355))
+        npc.tele(3042, 3357)
+        val player = createPlayer(tile = Tile(3042, 3363))
+        npc.interactPlayer(player, "Attack")
+        tick(2)
+        assertTrue(npc.mode is CombatMovement)
+        assertEquals(Tile(3042, 3358), npc.tile)
+        player.walkTo(Tile(3042, 3365))
+        tick(4)
+        assertEquals(Tile(3042, 3363), npc.steps.peek()?.id?.let { Tile(it) })
+        assertTrue(npc.mode is EmptyMode)
+        assertEquals(Tile(3042, 3359), npc.tile)
     }
 
     @Test
@@ -91,7 +109,7 @@ internal class CombatMovementTest : WorldTest() {
         val player = createPlayer(tile = Tile(3034, 3350))
         npc.interactPlayer(player, "Attack")
         tick(2)
-        assert(npc.mode is CombatMovement)
+        assertTrue(npc.mode is CombatMovement)
         assertEquals(Tile(3033, 3350), npc.tile)
     }
 
@@ -107,7 +125,7 @@ internal class CombatMovementTest : WorldTest() {
 
         assertEquals(Tile(3032, 3351), npc.tile)
         assertEquals(Tile(3032, 3350), player.tile)
-        assert(npc.mode is CombatMovement)
+        assertTrue(npc.mode is CombatMovement)
     }
 
     companion object {

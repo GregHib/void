@@ -158,7 +158,7 @@ open class Movement(
         }
     }
 
-    protected open fun nextDirection(target: Step?): Direction? {
+    protected fun nextDirection(target: Step?): Direction? {
         target ?: return null
         val dx = (target.x - character.tile.x).sign
         val dy = (target.y - character.tile.y).sign

@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
-import world.gregs.voidps.engine.entity.character.mode.move.Step
 import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -49,6 +48,14 @@ class CombatMovement(
             character.mode = EmptyMode
             return
         }
+        if (character is NPC) {
+            val spawn: Tile = character["spawn_tile"] ?: return
+            val definition = get<CombatDefinitions>().get(character.def["combat_def", character.id])
+            if (!withinAggro(this.target, spawn, definition)) {
+                character.mode = EmptyMode
+                return
+            }
+        }
         if (!attack()) {
             var skip: Boolean
             if (character.steps.destination == character.tile || Overlap.isUnder(character.tile, character.size, target.tile, target.size)) {
@@ -73,20 +80,6 @@ class CombatMovement(
         }
     }
 
-    override fun nextDirection(target: Step?): Direction? {
-        if (character !is NPC) {
-            return super.nextDirection(target)
-        }
-        val direction = super.nextDirection(target) ?: return null
-        val spawn: Tile = character["spawn_tile"] ?: return direction
-        val definition = get<CombatDefinitions>().get(character.def["combat_def", character.id])
-        if (!withinAggro(this.target, spawn, definition)) {
-            character.mode = EmptyMode
-            return null
-        }
-        return direction
-    }
-
     private fun stepOut() {
         clearSteps()
         if (target.mode is CombatMovement || target.mode is Interact) {
@@ -103,7 +96,6 @@ class CombatMovement(
         val attackRange = attackRange()
         val melee = attackRange == 1 && character["weapon", Item.EMPTY].def["weapon_type", ""] != "salamander"
         if (arrived(if (melee) -1 else attackRange)) {
-            clearSteps()
             combatReached?.invoke(character, target)
             return true
         }
