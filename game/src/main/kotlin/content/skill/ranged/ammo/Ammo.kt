@@ -128,5 +128,4 @@ class Ammo : Script {
         val definition = ammoDefinitions.get(group)
         return definition.items.contains(ammo.id)
     }
-
 }

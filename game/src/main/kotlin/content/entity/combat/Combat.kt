@@ -22,7 +22,9 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.Tile
 
-class Combat(val combatDefinitions: CombatDefinitions) : Script, CombatApi {
+class Combat(val combatDefinitions: CombatDefinitions) :
+    Script,
+    CombatApi {
 
     init {
         CombatMovement.combatReached = { target ->
