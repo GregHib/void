@@ -1,10 +1,18 @@
 package content.entity.player.effect.degrade
 
 import WorldTest
+import content.entity.combat.hit.hit
+import interfaceOption
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.client.instruction.handle.interactNpc
+import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
+import world.gregs.voidps.type.Tile
 
 class DegradeTest : WorldTest() {
 
@@ -187,4 +195,37 @@ class DegradeTest : WorldTest() {
         assertFalse(inventory.clearCharges(player, slot))
         assertFalse(inventory.charge(player, slot))
     }
+
+    @Test
+    fun `Degrade item while equipped`() {
+        val player = createPlayer()
+        player.equipment.set(EquipSlot.Hat.index, "corrupt_dragon_helm_degraded", 1500)
+        tick()
+        assertTrue(player.softTimers.contains("degrading"))
+        assertEquals(1499, player.equipment.charges(player, EquipSlot.Hat.index))
+    }
+
+    @Test
+    fun `Degrade on attack`() {
+        val player = createPlayer(emptyTile)
+        player.levels.set(Skill.Ranged, 75)
+        player.equipment.set(EquipSlot.Weapon.index, "crystal_bow_8_10", 2500)
+        tick()
+        val npc = createNPC("greater_demon", emptyTile.addX(1))
+        player.interactNpc(npc, "Attack")
+        tick(2)
+        assertEquals(2499, player.equipment.charges(player, EquipSlot.Weapon.index))
+    }
+
+    @Test
+    fun `Degrade on hit`() {
+        val player = createPlayer(emptyTile)
+        player.equipment.set(EquipSlot.Shield.index, "crystal_shield_9_10", 2500)
+        tick()
+        val npc = createNPC("greater_demon", emptyTile.addX(1))
+        npc.interactPlayer(player, "Attack")
+        tick(2)
+        assertEquals(2499, player.equipment.charges(player, EquipSlot.Shield.index))
+    }
+
 }
