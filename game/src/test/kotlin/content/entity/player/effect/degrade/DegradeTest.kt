@@ -1,18 +1,13 @@
 package content.entity.player.effect.degrade
 
 import WorldTest
-import content.entity.combat.hit.hit
-import interfaceOption
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
-import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.type.Tile
 
 class DegradeTest : WorldTest() {
 
@@ -227,5 +222,4 @@ class DegradeTest : WorldTest() {
         tick(2)
         assertEquals(2499, player.equipment.charges(player, EquipSlot.Shield.index))
     }
-
 }
