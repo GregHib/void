@@ -45,7 +45,11 @@ class SkillCommands : Script {
 
     fun set(player: Player, args: List<String>) {
         val target = players.find(player, if (args.size == 3) args[2] else null) ?: return
-        val skill = Skill.valueOf(args[0].toSentenceCase())
+        var string = args[0].toSentenceCase()
+        if (string == "Range") {
+            string = "Ranged"
+        }
+        val skill = Skill.valueOf(string)
         val level = args[1].toInt()
         target.experience.set(skill, Level.experience(skill, level))
         target.levels.set(skill, level)

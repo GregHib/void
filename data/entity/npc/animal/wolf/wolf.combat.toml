@@ -1,6 +1,5 @@
 [white_wolf]
 attack_speed = 4
-attack_range = 1
 retreat_range = 8
 defend_anim = "wolves_defend"
 defend_sound = "wolves_defend"

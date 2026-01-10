@@ -1,6 +1,6 @@
 [bogrog]
 id = 4472
-wander_radius = 5
+wander_range = 5
 examine = "Ugly and bad-tempered."
 shop = "summoning_supplies"
 

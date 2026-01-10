@@ -1,6 +1,5 @@
 [ankou]
 attack_speed = 4
-attack_range = 1
 retreat_range = 15
 defend_anim = "human_defend"
 defend_sound = "ankou_defend"

@@ -1,6 +1,5 @@
 [dagannoth_supreme]
 attack_speed = 4
-attack_range = 8
 retreat_range = 20
 defend_anim = "dagannoth_king_defend"
 defend_sound = "dagannoth_defend"
@@ -28,7 +27,6 @@ impact_sound = "water_surge_impact"
 
 [dagannoth_rex]
 clone = "dagannoth_supreme"
-attack_range = 1
 
 [dagannoth_rex.melee]
 range = 1
@@ -38,7 +36,6 @@ target_hit = { offense = "slash", max = 260 }
 
 [spinolyp]
 attack_speed = 4
-attack_range = 10
 retreat_range = 8
 defend_anim = "spinolyp_defend"
 death_anim = "spinolyp_death"

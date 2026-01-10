@@ -1,6 +1,5 @@
 [warped_cockroach]
 attack_speed = 4
-attack_range = 1
 retreat_range = 4
 defend_anim = "warped_cockroach_defend"
 death_anim = "warped_cockroach_death"
@@ -12,7 +11,6 @@ target_hit = { offense = "slash", max = 15 }
 
 [warped_bat]
 attack_speed = 4
-attack_range = 1
 retreat_range = 4
 defend_anim = "warped_bat_defend"
 death_anim = "warped_bat_death"
@@ -24,7 +22,6 @@ target_hit = { offense = "slash", max = 20 }
 
 [warped_fly]
 attack_speed = 4
-attack_range = 1
 retreat_range = 4
 defend_anim = "warped_fly_defend"
 death_anim = "warped_fly_death"
@@ -36,7 +33,6 @@ target_hit = { offense = "slash", max = 19 }
 
 [warped_rat]
 attack_speed = 4
-attack_range = 1
 retreat_range = 4
 defend_anim = "warped_rat_defend"
 death_anim = "warped_rat_death"

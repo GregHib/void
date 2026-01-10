@@ -1,80 +1,60 @@
 package world.gregs.voidps.engine.entity.character.mode
 
+import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.type.Direction
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.type.Tile
 
 class Retreat(
     private val npc: NPC,
-    private val target: Entity,
+    val target: Entity,
     private val spawn: Tile = npc["spawn_tile"]!!,
-    private val maxRetreatRadius: Int = npc.def["max_retreat_distance", 25],
-    private val maxRadius: Int = npc.def["max_retreat_distance", 25],
+    private val retreatRange: Int = npc.def.getOrNull("retreat_range") ?: get<CombatDefinitions>().get(npc.id).retreatRange,
 ) : Movement(npc) {
+
+    override fun start() {
+        if (target is Character) {
+            npc.watch(target)
+        }
+    }
 
     override fun tick() {
         if (target is Character && target["dead", false]) {
             npc.mode = EmptyMode
             return
         }
-        var direction = getRetreatDirection(npc, target)
-        if (direction == null) {
+        if (!npc.tile.within(spawn, retreatRange)) {
             npc.mode = EmptyMode
             return
         }
-        direction = splitDirectionIfNeeded(direction)
-        if (direction == null) {
+        if (!target.tile.within(spawn, retreatRange + 11)) {
             npc.mode = EmptyMode
             return
         }
-        if (target is Character) {
-            npc.watch(target)
+        val deltaX = if (npc.tile.x - target.tile.x > 0) 1 else -1
+        val deltaY = if (npc.tile.y - target.tile.y > 0) 1 else -1
+        if (step(deltaX, deltaY) || step(deltaX, 0) || step(0, deltaY)) {
+            super.tick()
         }
-        character.steps.queueStep(npc.tile.add(direction))
-        super.tick()
     }
 
-    private fun splitDirectionIfNeeded(direction: Direction): Direction? {
-        if (canStep(direction.delta.x, direction.delta.y)) {
-            return direction
+    private fun step(deltaX: Int, deltaY: Int): Boolean {
+        if (!canStep(deltaX, deltaY)) {
+            return false
         }
-        if (!direction.isDiagonal()) {
-            return null
+        val step = npc.tile.add(deltaX, deltaY)
+        // Npcs can't step out of range but can step in
+        if (!step.within(spawn, retreatRange)) {
+            return false
         }
-        val horizontal = direction.horizontal()
-        if (canStep(horizontal.delta.x, horizontal.delta.y)) {
-            return horizontal
-        }
-        val vertical = direction.vertical()
-        if (canStep(vertical.delta.x, vertical.delta.y)) {
-            return vertical
-        }
-        return null
+        character.steps.queueStep(step)
+        return true
     }
 
-    private fun getRetreatDirection(npc: NPC, target: Entity): Direction? {
-        if (npc.tile.level != target.tile.level || npc.tile.distanceTo(target) > maxRetreatRadius) {
-            return null
-        }
-        val delta = npc.tile.delta(target.tile)
-        val direction = when {
-            delta.x > 0 && delta.y > 0 -> Direction.NORTH_EAST
-            delta.x > 0 -> Direction.SOUTH_EAST
-            delta.y > 0 -> Direction.NORTH_WEST
-            else -> Direction.SOUTH_WEST
-        }
-        val add = npc.tile.add(direction)
-        val horizontal = add.x in spawn.x - maxRadius..spawn.x + maxRadius
-        val vertical = add.y in spawn.y - maxRadius..spawn.y + maxRadius
-        return when {
-            horizontal && vertical -> direction
-            vertical -> if (direction.delta.y == 1) Direction.NORTH else Direction.SOUTH
-            horizontal -> if (direction.delta.x == 1) Direction.EAST else Direction.WEST
-            else -> null
-        }
+    override fun stop(replacement: Mode) {
+        npc.clearWatch()
     }
 }

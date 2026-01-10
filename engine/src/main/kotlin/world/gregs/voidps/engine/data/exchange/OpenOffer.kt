@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.data.exchange
 
+import world.gregs.voidps.engine.timer.epochMilliseconds
+
 /**
  * An open Grand Exchange offer
  * @param id unique
@@ -12,5 +14,5 @@ data class OpenOffer(
     var remaining: Int = 0,
     var coins: Int = 0,
     val account: String = "",
-    var lastActive: Long = System.currentTimeMillis(),
+    var lastActive: Long = epochMilliseconds(),
 )

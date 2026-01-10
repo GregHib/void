@@ -2,8 +2,9 @@
 id = 78
 tradeable = false
 slot = "Ammo"
-examine = "An ice arrow."
+equip_req = { Ranged = 40 }
 kept = "Reclaim"
+examine = "An ice arrow."
 
 [lever_temple_of_ikov]
 id = 83

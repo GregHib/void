@@ -1,6 +1,5 @@
 [zombie]
 attack_speed = 5
-attack_range = 1
 retreat_range = 12
 defend_anim = "zombie_defend"
 defend_sound = "zombie_defend"

@@ -1,3 +1,43 @@
+[baby_impling]
+id = 1028
+wander_range = 30000
+
+[young_impling]
+id = 1029
+wander_range = 30000
+
+[gourmet_impling]
+id = 1030
+wander_range = 30000
+
+[earth_impling]
+id = 1031
+wander_range = 30000
+
+[essence_impling]
+id = 1032
+wander_range = 30000
+
+[eclectic_impling]
+id = 1033
+wander_range = 30000
+
+[nature_impling]
+id = 1034
+wander_range = 30000
+
+[magpie_impling]
+id = 1035
+wander_range = 30000
+
+[ninja_impling]
+id = 6053
+wander_range = 30000
+
+[dragon_impling]
+id = 6054
+wander_range = 30000
+
 [baby_impling_puro_puro]
 id = 6055
 
@@ -15,6 +55,18 @@ id = 6059
 
 [eclectic_impling_puro_puro]
 id = 6060
+
+[nature_impling_puro_puro]
+id = 6061
+
+[magpie_impling_puro_puro]
+id = 6062
+
+[ninja_impling_puro_puro]
+id = 6063
+
+[dragon_impling_puro_puro]
+id = 6064
 
 [elnock_inquisitor_puro_puro]
 id = 6070

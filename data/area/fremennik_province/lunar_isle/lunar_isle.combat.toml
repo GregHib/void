@@ -1,6 +1,5 @@
 [suqah]
 attack_speed = 6
-attack_range = 1
 retreat_range = 8
 defend_anim = "suqah_defend"
 death_anim = "suqah_death"
@@ -32,7 +31,6 @@ impact_sound = "ice_barrage_impact"
 
 [suqah_swords]
 clone = "suqah"
-attack_range = 1
 
 [suqah_swords.melee]
 clone = "suqah.melee"

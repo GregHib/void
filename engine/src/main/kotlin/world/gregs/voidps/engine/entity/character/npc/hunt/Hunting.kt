@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.data.config.HuntModeDefinition
 import world.gregs.voidps.engine.data.definition.HuntModeDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterSearch
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
 import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfWalk
@@ -67,6 +68,9 @@ class Hunting(
             val definition = huntModes.get(mode)
             npc.huntCounter = definition.rate
             if (definition.checkNotCombatSelf && npc.mode is CombatMovement) {
+                continue
+            }
+            if (!definition.findKeepHunting && npc.mode !is EmptyMode) {
                 continue
             }
             val range = npc.def["hunt_range", 5]

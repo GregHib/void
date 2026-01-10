@@ -3,3 +3,8 @@
 option = "Climb"
 tile = { x = 2452, y = 3231 }
 to = { x = 3271, y = 4861 }
+
+[ourania_cave_ladder_up]
+option = "Climb"
+tile = { x = 3271, y = 4862 }
+to = { x = 2452, y = 3232 }

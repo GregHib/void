@@ -1,34 +1,34 @@
 [butterfly_1]
 id = 153
 categories = ["butterfly"]
-wander_radius = 4
+wander_range = 4
 collision = "sky"
 examine = "These look much better in the wild."
 
 [butterfly_2]
 id = 154
 categories = ["butterfly"]
-wander_radius = 4
+wander_range = 4
 collision = "sky"
 examine = "I love butterflies."
 
 [butterfly_3]
 id = 155
 categories = ["butterfly"]
-wander_radius = 4
+wander_range = 4
 collision = "sky"
 examine = "It's a Blue Morpho Butterfly."
 
 [butterfly_4]
 id = 156
 categories = ["butterfly"]
-wander_radius = 4
+wander_range = 4
 collision = "sky"
 examine = "It's a Tiger Swallowtail Butterfly."
 
 [butterfly_5]
 id = 157
 categories = ["butterfly"]
-wander_radius = 4
+wander_range = 4
 collision = "sky"
 examine = "It's a Viceroy Butterfly."

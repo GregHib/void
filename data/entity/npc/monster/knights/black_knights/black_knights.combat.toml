@@ -1,6 +1,5 @@
 [black_knight]
 attack_speed = 5
-attack_range = 1
 retreat_range = 8
 defend_anim = "black_knight_defend"
 defend_sound = "black_knight_defend"

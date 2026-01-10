@@ -1,6 +1,5 @@
 [abyssal_demon]
 attack_speed = 4
-attack_range = 1
 retreat_range = 8
 defend_anim = "abyssal_demon_defend"
 defend_sound = "abyssal_demon_defend"

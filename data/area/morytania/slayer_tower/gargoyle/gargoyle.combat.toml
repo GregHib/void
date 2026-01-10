@@ -1,6 +1,5 @@
 [gargoyle]
 attack_speed = 4
-attack_range = 1
 retreat_range = 16
 defend_anim = "gargoyle_defend"
 defend_sound = "gargoyle_defend"

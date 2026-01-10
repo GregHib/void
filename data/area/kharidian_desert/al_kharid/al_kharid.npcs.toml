@@ -2,7 +2,7 @@
 id = 524
 categories = ["human"]
 shop = "al_kharid_general_store"
-wander_radius = 2
+wander_range = 2
 collision = "indoors"
 examine = "A product of a consumerist society."
 
@@ -10,7 +10,7 @@ examine = "A product of a consumerist society."
 id = 525
 categories = ["human"]
 shop = "al_kharid_general_store"
-wander_radius = 2
+wander_range = 2
 collision = "indoors"
 examine = "Likes you more, the more you spend."
 
@@ -18,13 +18,13 @@ examine = "Likes you more, the more you spend."
 id = 541
 categories = ["human"]
 shop = "zekes_superior_scimitars"
-wander_radius = 3
+wander_range = 3
 collision = "indoors"
 examine = "Sells superior scimitars."
 
 [louie_legs]
 id = 542
-wander_radius = 4
+wander_range = 4
 shop = "louies_armoured_legs_bazaar"
 categories = ["human"]
 collision = "indoors"
@@ -32,7 +32,7 @@ examine = "For the finest in armoured legware."
 
 [ranael]
 id = 544
-wander_radius = 2
+wander_range = 2
 shop = "ranaels_super_skirt_store"
 categories = ["human"]
 collision = "indoors"
@@ -40,7 +40,7 @@ examine = "She's an expert on armoured skirts!"
 
 [dommik]
 id = 545
-wander_radius = 4
+wander_range = 4
 shop = "dommiks_crafting_store"
 categories = ["human"]
 collision = "indoors"
@@ -48,13 +48,13 @@ examine = "If Crafting's your thing, he's your man."
 
 [ali_morrisane]
 id = 1862
-wander_radius = 3
+wander_range = 3
 categories = ["human"]
 examine = "A bazaar merchant."
 
 [karim]
 id = 543
-wander_radius = 4
+wander_range = 4
 categories = ["human"]
 collision = "indoors"
 examine = "Kebabs are full of meaty goodness."
@@ -83,22 +83,22 @@ examine = "Looks a bit lost."
 
 [alice_the_camel]
 id = 2813
-wander_radius = 5
+wander_range = 5
 examine = "A camel who's come from the south."
 
 [cam_the_camel]
 id = 2812
-wander_radius = 4
+wander_range = 4
 examine = "A camel who likes to rest."
 
 [ollie_the_camel]
 id = 2811
-wander_radius = 6
+wander_range = 6
 examine = "A camel who wants to fly some day."
 
 [elly_the_camel]
 id = 2810
-wander_radius = 4
+wander_range = 4
 examine = "A camel whose love is unrequited."
 
 [al_kharid_warrior]
@@ -111,7 +111,7 @@ style = "slash"
 max_hit_melee = 20
 attack_bonus = 10
 respawn_delay = 25
-wander_radius = 4
+wander_range = 4
 drop_table = "citizen"
 pickpocket = { level = 25, stun_ticks = 8, stun_hit = 20, xp = 26.0, chance_min = 100, chance_max = 240, table = "warrior" }
 examine = "Part of Al Kharid's elite fighting force."
@@ -120,7 +120,7 @@ examine = "Part of Al Kharid's elite fighting force."
 id = 16
 hitpoints = 70
 combat_def = "man"
-wander_radius = 4
+wander_range = 4
 respawn_delay = 25
 pickpocket = { stun_hit = 10, stun_ticks = 8, xp = 8.0, chance_min = 180, chance_max = 240 }
 drop_table = "human"

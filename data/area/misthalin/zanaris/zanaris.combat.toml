@@ -1,6 +1,5 @@
 [zygomite]
 attack_speed = 4
-attack_range = 1
 retreat_range = 8
 defend_anim = "zygomite_defend"
 defend_sound = "zygomite_defend"

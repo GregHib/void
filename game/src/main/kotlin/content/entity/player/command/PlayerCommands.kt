@@ -68,7 +68,7 @@ class PlayerCommands : Script {
         adminCommand("restore", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Restore all skills", handler = ::restore)
         adminCommand("hide", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Toggle invisibility to other players", handler = ::hide)
         adminCommand("pos", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Position of the players", handler = ::position)
-        commandAlias("pos", "mypos")
+        commandAlias("pos", "mypos", "tile")
         adminCommand("chat", stringArg("message", desc = "Text to display (use quotes for spaces)"), stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Force a chat message over a players head", handler = ::chat)
         adminCommand("hit", intArg("amount", desc = "Damage to deal", optional = true), stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Damage player by an amount", handler = ::hit)
         adminCommand("watch", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Look at another player", handler = ::watch)
@@ -83,14 +83,9 @@ class PlayerCommands : Script {
         )
         val spellbooks = setOf("ancient", "lunar", "modern", "dungeoneering")
         adminCommand("spellbook", stringArg("spellbook-type", autofill = spellbooks, optional = true), stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Switch spellbook", handler = ::spellbook)
-        commandSuggestion("spellbook lunar", "lunar", "lunars")
-        commandSuggestion("spellbook ancient", "ancient", "ancients")
-        commandSuggestion("spellbook modern", "modern", "moderns")
 
         val prayers = setOf("normal", "curses")
         adminCommand("prayers", stringArg("prayer-type", autofill = prayers, optional = true), stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Switch prayers", handler = ::prayers)
-        commandSuggestion("prayers curses", "curse", "curses")
-        commandSuggestion("prayers normal", "normal", "normals")
         adminCommand(
             "variables",
             stringArg("var-name", desc = "The variable name to search for", optional = true, autofill = variables.definitions.keys),
@@ -161,12 +156,22 @@ class PlayerCommands : Script {
 
     fun prayers(player: Player, args: List<String>) {
         val target = players.find(player, args.getOrNull(1)) ?: return
-        target[PRAYERS] = args.getOrNull(0) ?: "prayers"
+        val name = args.getOrNull(0)?.removeSuffix("s") ?: "normal"
+        if (name == "regular" || name == "modern") {
+            player.message("Unknown prayer type '$name'. Did you mean 'normal'?", ChatType.Console)
+            return
+        }
+        target[PRAYERS] = name
     }
 
     fun spellbook(player: Player, args: List<String>) {
         val target = players.find(player, args.getOrNull(1)) ?: return
-        target.open("${args.getOrNull(0) ?: "modern"}_spellbook")
+        val name = args.getOrNull(0)?.removeSuffix("s") ?: "modern"
+        if (name == "normal" || name == "regular") {
+            player.message("Unknown spellbook type '$name'. Did you mean 'modern'?", ChatType.Console)
+            return
+        }
+        target.open("${name}_spellbook")
     }
 
     fun debug(player: Player, args: List<String>) {

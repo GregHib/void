@@ -65,7 +65,7 @@ class ItemDefinitions(
                                 "fletch_bolts" -> extras[key] = FletchBolts(this)
                                 "fletching_unf" -> extras[key] = Fletching(this)
                                 "light_source" -> extras[key] = LightSources(this)
-                                "skill_req" -> {
+                                "skill_req", "equip_req" -> {
                                     val map = Object2IntOpenHashMap<Skill>(1, Hash.VERY_FAST_LOAD_FACTOR)
                                     while (nextEntry()) {
                                         map[Skill.valueOf(key().toSentenceCase())] = int()

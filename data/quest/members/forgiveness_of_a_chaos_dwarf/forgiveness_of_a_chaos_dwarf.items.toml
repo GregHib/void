@@ -7,6 +7,7 @@ slot = "Weapon"
 type = "TwoHanded"
 attack_range = 9
 special_energy = 500
+equip_req = { Ranged = 75 }
 examine = "A miniature dwarven cannon."
 
 [hand_cannon_noted]

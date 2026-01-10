@@ -1,6 +1,6 @@
 [father_aereck]
 id = 456
-wander_radius = 4
+wander_range = 4
 categories = ["human"]
 collision = "indoors"
 examine = "He seems to be very devout."
@@ -12,7 +12,7 @@ examine = "Eek! A ghost!"
 
 [father_urhney]
 id = 458
-wander_radius = 4
+wander_range = 4
 categories = ["human"]
 collision = "indoors"
 examine = "Very holy."

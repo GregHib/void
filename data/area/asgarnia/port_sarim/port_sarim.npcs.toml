@@ -56,7 +56,7 @@ bar_crawl = {
     sign = "The bartender signs your card."
 }
 categories = ["human"]
-wander_radius = 4
+wander_range = 4
 collision = "indoors"
 examine = "I could get a beer from him."
 

@@ -113,7 +113,7 @@ id = 7468
 
 [rug_merchant_nardah]
 id = 3020
-wander_radius = 2
+wander_range = 2
 examine = "A carpet merchant."
 
 [ali_the_wise_2]

@@ -11,7 +11,7 @@ slayer_xp = 106.0
 slayer_level = 63
 drop_table = "spiritual_ranger"
 categories = ["spiritual_creatures"]
-wander_radius = 6
+wander_range = 6
 god = "zamorak"
 examine = "Defender of Zamorak."
 
@@ -30,7 +30,7 @@ slayer_xp = 106.0
 slayer_level = 63
 drop_table = "spiritual_ranger"
 categories = ["spiritual_creatures"]
-wander_radius = 6
+wander_range = 6
 god = "saradomin"
 examine = "A ranger spirit dedicated to Saradomin."
 
@@ -45,7 +45,7 @@ respawn_delay = 25
 slayer_xp = 131.0
 slayer_level = 63
 categories = ["spiritual_creatures"]
-wander_radius = 6
+wander_range = 6
 drop_table = "spiritual_ranger"
 god = "bandos"
 examine = "The spirit of a ranger, serving Bandos beyond death."
@@ -61,7 +61,7 @@ respawn_delay = 25
 slayer_xp = 120.0
 slayer_level = 63
 categories = ["spiritual_creatures"]
-wander_radius = 6
+wander_range = 6
 drop_table = "spiritual_ranger"
 examine = "Armadyl's favourite servant."
 

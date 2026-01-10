@@ -1,6 +1,5 @@
 [hill_giant]
 attack_speed = 6
-attack_range = 1
 retreat_range = 8
 defend_anim = "hill_giant_defend"
 defend_sound = "giant_defend"

@@ -2,7 +2,7 @@
 id = 11674
 categories = ["human"]
 shop = "karamja_general_store"
-wander_radius = 2
+wander_range = 2
 collision = "indoors"
 examine = "Clearly takes pride in his appearance."
 
@@ -10,7 +10,7 @@ examine = "Clearly takes pride in his appearance."
 id = 11677
 categories = ["human"]
 shop = "karamja_general_store"
-wander_radius = 2
+wander_range = 2
 collision = "indoors"
 examine = "Needs a haircut."
 
@@ -27,7 +27,7 @@ bar_crawl = {
     effect = "Zambo signs your card."
 }
 categories = ["human"]
-wander_radius = 3
+wander_range = 3
 collision = "indoors"
 examine = "Appears slightly drunk."
 

@@ -1,6 +1,5 @@
 [dark_beast]
 attack_speed = 4
-attack_range = 1
 retreat_range = 8
 defend_anim = "dark_beast_defend"
 defend_sound = "dark_beast_defend"

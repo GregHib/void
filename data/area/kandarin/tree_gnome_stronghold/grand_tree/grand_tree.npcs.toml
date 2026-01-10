@@ -3,7 +3,7 @@ id = 600
 shop = "grand_tree_groceries"
 categories = ["gnome"]
 large_head = false
-wander_radius = 4
+wander_range = 4
 examine = "It's another jolly tree gnome."
 
 [gnome_heckelfunch]
@@ -11,7 +11,7 @@ id = 603
 shop = "funchs_fine_groceries"
 categories = ["gnome"]
 large_head = false
-wander_radius = 4
+wander_range = 4
 examine = "It's another jolly tree gnome."
 
 [captain_errdo]
@@ -21,30 +21,30 @@ large_head = true
 [captain_bleemadge]
 id = 3810
 large_head = true
-wander_radius = 4
+wander_range = 4
 examine = "Huzzah!"
 
 [captain_dalbur]
 id = 3809
 large_head = true
-wander_radius = 4
+wander_range = 4
 examine = "Tally Ho!"
 
 [captain_klemfoodle]
 id = 3812
 large_head = true
-wander_radius = 4
+wander_range = 4
 examine = "Up up and away!"
 
 [captain_errdo_crashed]
 id = 5249
 large_head = true
-wander_radius = 4
+wander_range = 4
 examine = "He looks embarrassed"
 
 [shipyard_guard]
 id = 675
-wander_radius = 4
+wander_range = 4
 
 [timble_grand_tree]
 id = 4573

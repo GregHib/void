@@ -135,7 +135,7 @@ spawns = [
   { id = "guard_falador", x = 3036, y = 3355, members = true },
   { id = "guard_falador_2", x = 2944, y = 3376 },
   { id = "guard_falador_2", x = 2973, y = 3379 },
-  { id = "guard_falador_2", x = 3041, y = 3353 },
+  { id = "guard_falador_2", x = 3041, y = 3355 },
   { id = "guard_falador_3", x = 2956, y = 3382 },
   { id = "guard_falador_3", x = 2988, y = 3371 },
   { id = "guard_falador_4", x = 2950, y = 3376 },

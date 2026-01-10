@@ -7,6 +7,7 @@ data class PrayerDefinition(
     val level: Int = 1,
     val drain: Int = 0,
     val groups: List<Int> = emptyList(),
+    val drains: Map<String, Int> = emptyMap(),
     val bonuses: Map<String, Int> = emptyMap(),
     val members: Boolean = false,
     override var stringId: String = "",

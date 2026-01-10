@@ -1,6 +1,5 @@
 [leech]
 attack_speed = 4
-attack_range = 1
 retreat_range = 8
 defend_anim = "leech_defend"
 defend_sound = "leech_defend"
@@ -15,7 +14,6 @@ target_hit = { offense = "stab", max = 30 }
 
 [dust_devil]
 attack_speed = 4
-attack_range = 1
 retreat_range = 8
 defend_anim = "dust_devil_defend"
 defend_sound = "dust_devil_defend"
@@ -29,7 +27,6 @@ target_hit = { offense = "melee", defence = "range", max = 80 }
 
 [giant_crypt_rat]
 attack_speed = 4
-attack_range = 1
 retreat_range = 8
 defend_anim = "giant_crypt_rat_defend"
 death_anim = "giant_crypt_rat_death"
@@ -41,7 +38,6 @@ target_hit = { offense = "stab", max = 30 }
 
 [possessed_pickaxe]
 attack_speed = 4
-attack_range = 1
 retreat_range = 8
 defend_anim = "possessed_pickaxe_defend"
 death_anim = "possessed_pickaxe_death"
@@ -53,7 +49,6 @@ target_hit = { offense = "stab", max = 60 }
 
 [animated_spade]
 attack_speed = 4
-attack_range = 1
 retreat_range = 8
 death_anim = "spade_death"
 
@@ -64,7 +59,6 @@ target_hit = { offense = "stab", max = 60 }
 
 [fire_elemental]
 attack_speed = 4
-attack_range = 1
 retreat_range = 8
 defend_anim = "fire_elemental_defend"
 defend_sound = "fire_elemental_defend"

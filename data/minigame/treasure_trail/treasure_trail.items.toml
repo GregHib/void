@@ -2814,6 +2814,7 @@ price = 745
 limit = 1000
 god = "saradomin"
 slot = "Ammo"
+equip_req = { Ranged = 50 }
 examine = "Arrows imbued with the power of Saradomin."
 
 [guthix_arrows]
@@ -2821,6 +2822,7 @@ id = 19157
 price = 701
 limit = 1000
 slot = "Ammo"
+equip_req = { Ranged = 50 }
 examine = "Arrows imbued with the power of Guthix."
 
 [zamorak_arrows]
@@ -2829,6 +2831,7 @@ price = 883
 limit = 1000
 god = "zamorak"
 slot = "Ammo"
+equip_req = { Ranged = 50 }
 examine = "Arrows imbued with the power of Zamorak."
 
 [black_platebody_h1]

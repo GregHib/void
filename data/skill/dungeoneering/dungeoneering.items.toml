@@ -1724,7 +1724,7 @@ tradeable = false
 slot = "Ammo"
 examine = "Bow ammunition."
 
-[zephyrium_arrows_b]
+[zephyrium_arrows_bound]
 id = 15952
 slot = "Ammo"
 examine = "Bow ammunition."
@@ -4921,9 +4921,10 @@ id = 16447
 slot = "Ammo"
 examine = "Bow ammunition."
 
-[zephyrium_arrows_2]
-clone = "zephyrium_arrows_p_bound"
+[zephyrium_arrows]
 id = 16452
+slot = "Ammo"
+examine = "Bow ammunition."
 
 [argonite_arrows]
 id = 16457
@@ -4970,7 +4971,7 @@ id = 16497
 clone = "fractite_arrows_p_bound"
 id = 16502
 
-[zephyrium_arrows]
+[zephyrium_arrows_p]
 clone = "zephyrium_arrows_p_bound"
 id = 16507
 

@@ -1,6 +1,6 @@
 [diango]
 id = 970
-wander_radius = 4
+wander_range = 4
 shop = "diangos_toy_store"
 categories = ["human"]
 collision = "outdoors"
@@ -17,13 +17,13 @@ examine = "An old sailor."
 
 [lady_keli]
 id = 919
-wander_radius = 4
+wander_range = 4
 collision = "indoors"
 examine = "An infamous bandit."
 
 [aggie]
 id = 922
-wander_radius = 4
+wander_range = 4
 collision = "indoors"
 examine = "A witch."
 
@@ -36,7 +36,7 @@ def = 21
 attack_bonus = 9
 combat_def = "draynor_jail_guard"
 respawn_delay = 30
-wander_radius = 4
+wander_range = 4
 drop_table = "human"
 categories = ["human"]
 collision = "outdoors"
@@ -65,7 +65,7 @@ examine = "Lady Keli's head guard."
 [leela]
 id = 13172
 categories = ["human"]
-wander_radius = 4
+wander_range = 4
 examine = "She comes from Al Kharid."
 
 [undead_tree_draynor]
@@ -120,12 +120,12 @@ id = 2243
 
 [pig]
 id = 2239
-wander_radius = 4
+wander_range = 4
 examine = "Porker."
 
 [pig_2]
 id = 2240
-wander_radius = 4
+wander_range = 4
 examine = "Swine."
 
 [master_farmer]

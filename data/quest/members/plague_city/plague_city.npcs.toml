@@ -10,13 +10,13 @@ str = 10
 def = 10
 max_hit_melee = 20
 categories = ["human"]
-wander_radius = 4
+wander_range = 4
 examine = "A mourner, or plague healer."
 
 [alrena]
 id = 710
 categories = ["human"]
-wander_radius = 4
+wander_range = 4
 examine = "She looks concerned."
 
 [bravek]
@@ -40,50 +40,50 @@ categories = ["human"]
 
 [recruiter]
 id = 720
-wander_radius = 4
+wander_range = 4
 categories = ["human"]
 examine = "A member of the Ardougne Royal Army."
 
 [ted_rehnison]
 id = 721
-wander_radius = 4
+wander_range = 4
 categories = ["human"]
 examine = "The head of the Rehnison family."
 
 [martha_rehnison]
 id = 722
-wander_radius = 4
+wander_range = 4
 categories = ["human"]
 examine = "A fairly poor looking woman."
 
 [billy_rehnison]
 id = 723
-wander_radius = 4
+wander_range = 4
 categories = ["human"]
 examine = "The Rehnisons' eldest son."
 
 [milli_rehnison]
 id = 724
 dialogue = "child"
-wander_radius = 4
+wander_range = 4
 categories = ["human"]
 examine = "She doesn't seem very happy."
 
 [jethick]
 id = 725
-wander_radius = 4
+wander_range = 4
 categories = ["human"]
 examine = "A cynical old man."
 
 [w_ardougnecitizen3]
 id = 728
-wander_radius = 4
+wander_range = 4
 categories = ["human"]
 examine = "One of Gielinor's many citizens."
 
 [w_ardougnecitizen4]
 id = 729
-wander_radius = 4
+wander_range = 4
 categories = ["human"]
 examine = "One of Gielinor's many citizens."
 
@@ -99,11 +99,11 @@ examine = "The city warder of West Ardougne."
 
 [edmond_top]
 id = 3213
-wander_radius = 4
+wander_range = 4
 
 [edmond_sewer]
 id = 3214
-wander_radius = 4
+wander_range = 4
 
 [elenap_vis]
 id = 3215

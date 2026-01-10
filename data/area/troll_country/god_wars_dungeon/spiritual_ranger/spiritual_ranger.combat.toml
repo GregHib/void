@@ -1,6 +1,5 @@
 [spiritual_ranger]
 attack_speed = 4
-attack_range = 5
 retreat_range = 8
 defend_anim = "human_defend"
 death_anim = "human_death"
@@ -13,7 +12,6 @@ target_hit = { offense = "range", max = 150 }
 
 [spiritual_ranger_bandos]
 attack_speed = 3
-attack_range = 5
 retreat_range = 8
 defend_anim = "spiritual_ranger_bandos_defend"
 death_anim = "spiritual_ranger_bandos_death"
@@ -25,7 +23,6 @@ target_hit = { offense = "range", max = 130 }
 
 [spiritual_ranger_armadyl]
 attack_speed = 3
-attack_range = 5
 retreat_range = 8
 defend_anim = "human_defend"
 death_anim = "human_death"

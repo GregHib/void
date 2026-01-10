@@ -1,6 +1,5 @@
 [kree_arra]
 attack_speed = 3
-attack_range = 10
 retreat_range = 20
 defend_anim = "kree_arra_defend"
 death_anim = "kree_arra_death"
@@ -47,7 +46,6 @@ chance = 6
 
 [flight_kilisa]
 attack_speed = 5
-attack_range = 1
 retreat_range = 8
 defend_anim = "aviansie_defend"
 defend_sound = "aviansie_defend"
@@ -61,7 +59,6 @@ target_hit = { offense = "slash", max = 150 }
 
 [wingman_skree]
 clone = "flight_kilisa"
-attack_range = 10
 
 [wingman_skree.attack]
 range = 10
@@ -73,7 +70,6 @@ target_hit = { offense = "magic", max = 160 }
 
 [flockleader_geerin]
 clone = "flight_kilisa"
-attack_range = 10
 
 [flockleader_geerin.attack]
 range = 10

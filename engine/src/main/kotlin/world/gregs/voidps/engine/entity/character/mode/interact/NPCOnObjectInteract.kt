@@ -8,10 +8,10 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 
 data class NPCOnObjectInteract(
     override val target: GameObject,
-    val option: String,
+    override val option: String,
     val npc: NPC,
     var approachRange: Int? = null
-) : Interact(npc, target, approachRange = approachRange) {
+) : InteractOption(npc, target, approachRange = approachRange) {
     override fun hasOperate() = Operation.npcObject.containsKey("$option:${npc.id}") || Operation.npcObject.containsKey("$option:*")
 
     override fun hasApproach() = Approachable.npcObject.containsKey("$option:${npc.id}") || Approachable.npcObject.containsKey("$option:*")

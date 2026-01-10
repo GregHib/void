@@ -1,6 +1,5 @@
 [harpie_bug_swarm]
 attack_speed = 4
-attack_range = 1
 retreat_range = 8
 defend_anim = "harpie_bug_swarm_defend"
 defend_sound = "harpie_bug_swarm_defend"

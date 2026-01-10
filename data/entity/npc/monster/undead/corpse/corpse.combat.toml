@@ -1,6 +1,5 @@
 [corpse_spider]
 attack_speed = 4
-attack_range = 1
 retreat_range = 4
 defend_anim = "corpse_spider_defend"
 death_anim = "corpse_spider_death"
@@ -12,7 +11,6 @@ target_hit = { offense = "slash", max = 15 }
 
 [crawling_corpse_torso]
 attack_speed = 4
-attack_range = 1
 retreat_range = 4
 defend_anim = "crawling_corpse_torso_defend"
 death_anim = "crawling_corpse_torso_death"
@@ -24,7 +22,6 @@ target_hit = { offense = "slash", max = 20 }
 
 [corpse_archer]
 attack_speed = 4
-attack_range = 1
 retreat_range = 4
 defend_anim = "corpse_archer_defend"
 death_anim = "corpse_archer_death"
@@ -36,7 +33,6 @@ target_hit = { offense = "range", max = 19 }
 
 [corpse_mage]
 attack_speed = 4
-attack_range = 5
 retreat_range = 4
 defend_anim = "corpse_mage_defend"
 death_anim = "corpse_mage_death"

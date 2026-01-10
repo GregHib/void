@@ -74,8 +74,9 @@ kept = "Reclaim"
 id = 4160
 tradeable = false
 slot = "Ammo"
-examine = "Arrow with a wider than normal tip."
 kept = "Reclaim"
+equip_req = { Ranged = 50, Slayer = 55 }
+examine = "Arrow with a wider than normal tip."
 
 [bag_of_salt]
 id = 4161

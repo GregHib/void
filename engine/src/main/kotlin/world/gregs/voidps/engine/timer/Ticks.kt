@@ -30,6 +30,8 @@ val CLIENT_TICKS = ClientTickTime()
 
 fun TimeUnit.toTicks(duration: Int): Int = (toMillis(duration.toLong()) / 600).toInt()
 
+fun epochMilliseconds() = currentTime()
+
 fun epochSeconds() = TimeUnit.MILLISECONDS.toSeconds(currentTime()).toInt()
 
 fun epochMinutes() = TimeUnit.MILLISECONDS.toMinutes(currentTime()).toInt()

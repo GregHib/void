@@ -5,6 +5,8 @@ import world.gregs.voidps.engine.entity.distanceTo
 
 /**
  * Faces target when within [distance]
+ * Aka interaction mode
+ * [distance] aka talking range
  */
 class Face(
     val character: Character,

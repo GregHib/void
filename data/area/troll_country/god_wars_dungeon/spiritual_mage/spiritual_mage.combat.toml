@@ -1,7 +1,6 @@
 [spiritual_mage_zamorak]
 clone = "human"
 attack_speed = 4
-attack_range = 5
 retreat_range = 8
 defend_anim = "human_defend"
 death_anim = "human_death"
@@ -29,7 +28,6 @@ miss_gfx = "spell_splash"
 
 [spiritual_mage_bandos]
 attack_speed = 4
-attack_range = 5
 retreat_range = 8
 defend_anim = "spiritual_mage_bandos_defend"
 death_anim = "spiritual_mage_bandos_death"

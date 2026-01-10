@@ -1,3 +1,23 @@
+# Groups
+# 0 = defence
+# 1 = strength
+# 2 = attack
+# 3 = ranged
+# 4 = magic
+# 5 = renewal
+# 6 = protect from overhead
+# 7 = protect from summoning
+# 8 = wrath/soul split
+# 9 = deflect summoning
+# 10 = drain strength
+# 11 = drain attack
+# 12 = deflect overheads
+# 13 = drain magic
+# 14 = drain ranged
+# 15 = drain defence
+# 16 = drain special attack
+# 17 = sap combat
+
 [thick_skin_prayer]
 index = 0
 level = 1
@@ -152,7 +172,7 @@ members = false
 index = 27
 level = 70
 drain = 20
-groups = [ 0, 1, 2 ]
+groups = [ 0, 1, 2, 3, 4 ]
 bonuses = { attack = 20, strength = 23, defence = 25 }
 members = true
 
@@ -238,7 +258,8 @@ members = true
 index = 2
 level = 52
 drain = 14
-groups = [ 14 ]
+drains = { ranged_attack = 10, ranged_strength = 10, defence = 10 }
+groups = [ 14, 17 ]
 members = true
 
 [deflect_summoning_curse]
@@ -267,6 +288,7 @@ index = 14
 level = 82
 drain = 10
 groups = [ 10 ]
+drains = { strength = 10 }
 bonuses = { strength = 5 }
 members = true
 
@@ -275,6 +297,7 @@ index = 12
 level = 78
 drain = 10
 groups = [ 13 ]
+drains = { magic = 10 }
 bonuses = { magic = 5 }
 members = true
 
@@ -283,6 +306,7 @@ index = 13
 level = 80
 drain = 10
 groups = [ 15 ]
+drains = { defence = 10 }
 bonuses = { defence = 5 }
 members = true
 
@@ -305,6 +329,7 @@ index = 11
 level = 76
 drain = 10
 groups = [ 14 ]
+drains = { ranged_attack = 10, ranged_strength = 10 }
 bonuses = { ranged_attack = 5, ranged_strength = 5 }
 members = true
 
@@ -313,6 +338,7 @@ index = 10
 level = 74
 drain = 10
 groups = [ 11 ]
+drains = { attack = 10 }
 bonuses = { attack = 5 }
 members = true
 
@@ -320,14 +346,16 @@ members = true
 index = 1
 level = 50
 drain = 14
-groups = [ 11 ]
+groups = [ 11, 17 ]
+drains = { attack = 10, strength = 10, defence = 10 }
 members = true
 
 [sap_mage_curse]
 index = 3
 level = 54
 drain = 14
-groups = [ 13 ]
+drains = { magic = 10, defence = 10 }
+groups = [ 13, 17 ]
 members = true
 
 [deflect_magic_curse]

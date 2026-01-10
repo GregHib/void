@@ -85,27 +85,21 @@ class CollisionDecoder(private val collisions: Collisions) {
         private fun isTile(tiles: ByteArray, localX: Int, localY: Int, level: Int, flag: Int): Boolean = tiles[MapDefinition.index(localX, localY, level)].toInt() and flag == flag
 
         private fun rotateX(x: Int, y: Int, rotation: Int): Int = (
-            if (rotation == 1) {
-                y
-            } else if (rotation == 2) {
-                7 - x
-            } else if (rotation == 3) {
-                7 - y
-            } else {
-                x
-            }
-            ) and 0x7
+                when (rotation) {
+                    1 -> y
+                    2 -> 7 - x
+                    3 -> 7 - y
+                    else -> x
+                }
+                ) and 0x7
 
         private fun rotateY(x: Int, y: Int, rotation: Int): Int = (
-            if (rotation == 1) {
-                7 - x
-            } else if (rotation == 2) {
-                7 - y
-            } else if (rotation == 3) {
-                x
-            } else {
-                y
-            }
-            ) and 0x7
+                when (rotation) {
+                    1 -> 7 - x
+                    2 -> 7 - y
+                    3 -> x
+                    else -> y
+                }
+                ) and 0x7
     }
 }

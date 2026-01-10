@@ -1,6 +1,5 @@
 [evil_chicken]
 attack_speed = 4
-attack_range = 1
 retreat_range = 8
 defend_anim = "evil_chicken_defend"
 defend_sound = "chicken_defend"

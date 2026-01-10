@@ -59,7 +59,6 @@ class CombatDefinitions {
     private fun ConfigReader.definition(definitions: Object2ObjectOpenHashMap<String, CombatDefinition>, section: String, clones: MutableList<Pair<String, String>>) {
         check(!definitions.containsKey(section)) { "Definition $section already exists. Make sure [npc_name] comes before [npc_name.attacks]." }
         var attackSpeed = 4
-        var attackRange = 1
         var retreatRange = 8
         var defendAnim = ""
         var deathAnim = ""
@@ -68,7 +67,6 @@ class CombatDefinitions {
         while (nextPair()) {
             when (val key = key()) {
                 "attack_speed" -> attackSpeed = int()
-                "attack_range" -> attackRange = int()
                 "retreat_range" -> retreatRange = int()
                 "defend_anim" -> defendAnim = string()
                 "death_anim" -> deathAnim = string()
@@ -81,7 +79,6 @@ class CombatDefinitions {
         definitions[section] = CombatDefinition(
             npc = section,
             attackSpeed = attackSpeed,
-            attackRange = attackRange,
             retreatRange = retreatRange,
             defendAnim = defendAnim,
             defendSound = defendSound,
@@ -179,7 +176,10 @@ class CombatDefinitions {
                 else -> throw UnsupportedOperationException("Unknown key '$key' in combat definition. ${exception()}")
             }
         }
-        attacks[id] = CombatDefinition.CombatAttack(
+        if (range > definition.attackRange) {
+            definition.attackRange = range
+        }
+        attacks[id] = CombatAttack(
             id = id,
             chance = chance,
             range = range,

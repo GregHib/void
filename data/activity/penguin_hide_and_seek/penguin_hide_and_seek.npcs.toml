@@ -1,11 +1,11 @@
 [snowman_penguin]
 id = 4662
-wander_radius = 64
+wander_range = 64
 examine = "What's black and white and covered in snow?"
 
 [pumpkin_penguin]
 id = 8077
-wander_radius = 64
+wander_range = 64
 examine = "What's black and white and smells of pumpkin?"
 
 [hidden_penguin_0]
@@ -40,12 +40,12 @@ id = 8103
 
 [barrel_penguin]
 id = 8104
-wander_radius = 64
+wander_range = 64
 examine = "What's black and white and smells like beer?"
 
 [bush_penguin]
 id = 8105
-wander_radius = 64
+wander_range = 64
 examine = "What's black and white and down to earth?"
 
 [bush_penguin_2]
@@ -53,59 +53,59 @@ id = 8106
 
 [cactus_penguin]
 id = 8107
-wander_radius = 64
+wander_range = 64
 examine = "What's black and white and covered in spines?"
 
 [crate_penguin]
 id = 8108
-wander_radius = 64
+wander_range = 64
 examine = "What's black and white and on a sneaking mission?"
 
 [rock_penguin]
 id = 8109
-wander_radius = 64
+wander_range = 64
 examine = "What's black and white and looks like a rock hopper?"
 
 [toadstool_penguin]
 id = 8110
-wander_radius = 64
+wander_range = 64
 examine = "What's black and white and covered in mushroom?"
 
 # 2008 thanks giving hidden turkey event
 
 [cactus_turkey]
 id = 8502
-wander_radius = 64
+wander_range = 64
 
 [cactus_turkey_2]
 id = 8503
 
 [bush_turkey]
 id = 8504
-wander_radius = 64
+wander_range = 64
 
 [toadstool_turkey]
 id = 8505
-wander_radius = 64
+wander_range = 64
 
 [barrel_turkey]
 id = 8506
-wander_radius = 64
+wander_range = 64
 
 [bush_turkey_2]
 id = 8507
-wander_radius = 64
+wander_range = 64
 
 [crate_turkey]
 id = 8508
-wander_radius = 64
+wander_range = 64
 
 [bush_turkey_3]
 id = 8509
 
 [rock_turkey]
 id = 8510
-wander_radius = 64
+wander_range = 64
 
 [bush_turkey_4]
 id = 8511

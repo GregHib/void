@@ -1,6 +1,6 @@
 [hans]
 id = 0
-wander_radius = 4
+wander_range = 4
 categories = ["human"]
 collision = "outdoors"
 examine = "Servant of the Duke of Lumbridge."
@@ -16,7 +16,7 @@ examine = "An expert on axes."
 id = 520
 categories = ["human"]
 shop = "lumbridge_general_store"
-wander_radius = 2
+wander_range = 2
 collision = "indoors"
 examine = "Sells stuff."
 
@@ -24,7 +24,7 @@ examine = "Sells stuff."
 id = 521
 categories = ["human"]
 shop = "lumbridge_general_store"
-wander_radius = 2
+wander_range = 2
 collision = "indoors"
 examine = "Helps sell stuff."
 
@@ -43,13 +43,13 @@ examine = "Cheerful, helpful and optimistic, I'll bet."
 [lachtopher]
 id = 7870
 categories = ["human"]
-wander_radius = 5
+wander_range = 5
 examine = "He has the aura of a lazy-bones about him."
 
 [victoria]
 id = 7872
 categories = ["human"]
-wander_radius = 2
+wander_range = 2
 examine = "She seems to be stressed."
 
 [lumbridge_sage]
@@ -61,7 +61,7 @@ examine = "He provides new players with useful information."
 id = 2238
 categories = ["human"]
 collision = "outdoors"
-wander_radius = 25
+wander_range = 25
 examine = "A local farmer. She might be able to provide some useful information."
 
 [border_guard_al_kharid]
@@ -81,19 +81,19 @@ examine = "Looks a little green around the gills."
 [millie_miller]
 id = 3806
 categories = ["human"]
-wander_radius = 4
+wander_range = 4
 collision = "indoors"
 examine = "Miss Millicent Miller, the Miller of Mill Lane Mill."
 
 [gillie_groats]
 id = 3807
-wander_radius = 4
+wander_range = 4
 categories = ["human"]
 examine = "Gillie milks cows and she's udderly fantastic at it."
 
 [explorer_jack]
 id = 13295
-wander_radius = 5
+wander_range = 5
 categories = ["human"]
 collision = "indoors"
 examine = "He looks like a professional explorer."
@@ -105,28 +105,28 @@ examine = "He looks like a professional explorer."
 [duke_horacio]
 id = 741
 categories = ["human"]
-wander_radius = 3
+wander_range = 3
 collision = "indoors"
 examine = "Duke Horacio of Lumbridge."
 
 [sigmund]
 id = 2082
 categories = ["human"]
-wander_radius = 3
+wander_range = 3
 collision = "indoors"
 examine = "Advisor to the Duke of Lumbridge."
 
 [cook_lumbridge]
 id = 278
 categories = ["human"]
-wander_radius = 4
+wander_range = 4
 collision = "indoors"
 examine = "Lumbridge Castle's head cook."
 
 [lumbridge_guardsman_dante]
 id = 7885
 categories = ["human"]
-wander_radius = 4
+wander_range = 4
 collision = "indoors"
 examine = "He tries to keep order around Lumbridge."
 
@@ -149,7 +149,7 @@ id = 7890
 [lumbridge_man]
 id = 7873
 hitpoints = 70
-wander_radius = 4
+wander_range = 4
 respawn_delay = 25
 combat_def = "man"
 pickpocket = { stun_hit = 10, stun_ticks = 8, xp = 8.0, chance_min = 180, chance_max = 240 }
@@ -185,7 +185,7 @@ id = 7879
 id = 7880
 hitpoints = 70
 combat_def = "woman"
-wander_radius = 4
+wander_range = 4
 respawn_delay = 25
 pickpocket = { stun_hit = 10, stun_ticks = 8, xp = 8.0, chance_min = 180, chance_max = 240 }
 drop_table = "human"

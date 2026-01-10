@@ -1,6 +1,5 @@
 [rabbit_miscellania]
 attack_speed = 4
-attack_range = 1
 retreat_range = 8
 defend_anim = "rabbit_defend"
 defend_sound = "rabbit_defend"

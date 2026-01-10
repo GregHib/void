@@ -1,6 +1,5 @@
 [cave_bug]
 attack_speed = 4
-attack_range = 1
 retreat_range = 26
 defend_anim = "cave_bug_defend"
 defend_sound = "cave_bug_defend"

@@ -109,12 +109,12 @@ examine = "A guard."
 
 [rug_merchant_attendant]
 id = 2299
-wander_radius = 2
+wander_range = 2
 examine = "A man who deals in rugs."
 
 [rug_merchant_attendant_visible]
 id = 2300
-wander_radius = 2
+wander_range = 2
 examine = "A man who deals in rugs."
 
 [klenter_2]

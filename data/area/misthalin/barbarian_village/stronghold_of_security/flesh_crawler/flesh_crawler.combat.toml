@@ -1,6 +1,5 @@
 [flesh_crawler]
 attack_speed = 3
-attack_range = 1
 retreat_range = 11
 defend_anim = "flesh_crawler_defend"
 defend_sound = "flesh_crawler_defend"

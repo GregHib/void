@@ -2,7 +2,7 @@
 id = 162
 dialogue = "old"
 categories = ["gnome"]
-wander_radius = 4
+wander_range = 4
 examine = "He can advise on training."
 
 [brimstail]
@@ -22,10 +22,10 @@ bar_crawl = {
 }
 dialogue = "old"
 categories = ["gnome"]
-wander_radius = 3
+wander_range = 3
 examine = "He seems to run the cocktail bar."
 
 [captain_daerkin]
 id = 4595
-wander_radius = 3
+wander_range = 3
 examine = "A gnome pilot off duty, he looks a bit drunk."

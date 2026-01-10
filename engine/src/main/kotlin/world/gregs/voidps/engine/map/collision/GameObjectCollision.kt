@@ -34,33 +34,41 @@ abstract class GameObjectCollision {
     }
 
     private fun modifyObject(def: ObjectDefinition, x: Int, y: Int, level: Int, rotation: Int, block: Int) {
-        if (def.sizeX == 1 && def.sizeY == 1) {
-            modifyCardinal(x, y, level, block)
-        } else if (def.sizeX == 2 && def.sizeY == 2) {
-            modifyCardinal(x, y, level, block)
-            modifyCardinal(x + 1, y, level, block)
-            modifyCardinal(x, y + 1, level, block)
-            modifyCardinal(x + 1, y + 1, level, block)
-        } else if (def.sizeX == 3 && def.sizeY == 3) {
-            modifyCardinal(x, y + 1, level, block)
-            modifyCardinal(x, y + 2, level, block)
-            modifyCardinal(x + 1, y, level, block)
-            modifyCardinal(x + 1, y + 1, level, block)
-            modifyCardinal(x + 2, y, level, block)
-            modifyCardinal(x + 2, y + 2, level, block)
-        } else {
-            val width = if (rotation and 0x1 == 1) def.sizeY else def.sizeX
-            val height = if (rotation and 0x1 == 1) def.sizeX else def.sizeY
-            if (width == 1 && height == 2) {
-                modifyCardinal(x, y, level, block)
-                modifyCardinal(x, y + 1, level, block)
-            } else if (width == 2 && height == 1) {
+        when (def.sizeX) {
+            1 if def.sizeY == 1 -> modifyCardinal(x, y, level, block)
+            2 if def.sizeY == 2 -> {
                 modifyCardinal(x, y, level, block)
                 modifyCardinal(x + 1, y, level, block)
-            } else {
-                for (dx in 0 until width) {
-                    for (dy in 0 until height) {
-                        modifyCardinal(x + dx, y + dy, level, block)
+                modifyCardinal(x, y + 1, level, block)
+                modifyCardinal(x + 1, y + 1, level, block)
+            }
+            3 if def.sizeY == 3 -> {
+                modifyCardinal(x, y, level, block)
+                modifyCardinal(x, y + 1, level, block)
+                modifyCardinal(x, y + 2, level, block)
+                modifyCardinal(x + 1, y, level, block)
+                modifyCardinal(x + 1, y + 1, level, block)
+                modifyCardinal(x + 1, y + 2, level, block)
+                modifyCardinal(x + 2, y, level, block)
+                modifyCardinal(x + 2, y + 1, level, block)
+                modifyCardinal(x + 2, y + 2, level, block)
+            }
+            else -> {
+                val width = if (rotation and 0x1 == 1) def.sizeY else def.sizeX
+                val height = if (rotation and 0x1 == 1) def.sizeX else def.sizeY
+                when (width) {
+                    1 if height == 2 -> {
+                        modifyCardinal(x, y, level, block)
+                        modifyCardinal(x, y + 1, level, block)
+                    }
+                    2 if height == 1 -> {
+                        modifyCardinal(x, y, level, block)
+                        modifyCardinal(x + 1, y, level, block)
+                    }
+                    else -> for (dx in 0 until width) {
+                        for (dy in 0 until height) {
+                            modifyCardinal(x + dx, y + dy, level, block)
+                        }
                     }
                 }
             }

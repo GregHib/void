@@ -1,6 +1,5 @@
 [werewolf_god_wars]
 attack_speed = 4
-attack_range = 1
 retreat_range = 8
 defend_anim = "werewolf_defend"
 defend_sound = "werewolf_defend"

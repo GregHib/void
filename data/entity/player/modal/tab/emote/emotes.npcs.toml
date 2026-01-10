@@ -13,32 +13,32 @@ id = 11229
 
 [seal]
 id = 13255
-wander_radius = 2
+wander_range = 2
 examine = "Arf arf."
 
 [seal_2]
 id = 13256
-wander_radius = 2
+wander_range = 2
 examine = "Arf arf."
 
 [seal_3]
 id = 13257
-wander_radius = 2
+wander_range = 2
 examine = "Arf arf."
 
 [seal_4]
 id = 13258
-wander_radius = 2
+wander_range = 2
 examine = "Arf arf."
 
 [seal_5]
 id = 13259
-wander_radius = 2
+wander_range = 2
 examine = "Arf arf."
 
 [seal_6]
 id = 13260
-wander_radius = 2
+wander_range = 2
 examine = "Arf arf."
 
 [ring_of_stone]

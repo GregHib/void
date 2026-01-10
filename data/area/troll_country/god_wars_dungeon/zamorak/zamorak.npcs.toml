@@ -12,7 +12,7 @@ respawn_delay = 150
 slayer_xp = 350.5
 categories = ["demons", "boss"]
 poison_immune = true
-wander_radius = 6
+wander_range = 6
 examine = "A servant of the god Zamorak."
 
 [tstanon_karlak]
@@ -27,7 +27,7 @@ combat_def = "tstanon_karlak"
 hunt_mode = "aggressive"
 slayer_xp = 142.0
 categories = ["demons"]
-wander_radius = 6
+wander_range = 6
 drop_table = "zamorak_bodyguard"
 examine = "Destroyer of 1000 planes!"
 
@@ -42,7 +42,7 @@ combat_def = "balfrug_kreeyath"
 hunt_mode = "aggressive"
 slayer_xp = 161.0
 categories = ["demons"]
-wander_radius = 6
+wander_range = 6
 drop_table = "zamorak_bodyguard"
 examine = "Despoiler of Ullek."
 
@@ -58,6 +58,6 @@ combat_def = "zakln_gritch"
 hunt_mode = "aggressive"
 slayer_xp = 150.0
 categories = ["demons"]
-wander_radius = 6
+wander_range = 6
 drop_table = "zamorak_bodyguard"
 examine = "Scourge of the Light."

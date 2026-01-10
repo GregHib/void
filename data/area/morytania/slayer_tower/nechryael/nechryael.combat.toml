@@ -1,6 +1,5 @@
 [nechryael]
 attack_speed = 4
-attack_range = 1
 retreat_range = 13
 defend_anim = "nechryael_defend"
 defend_sound = "nechryael_defend"
@@ -15,7 +14,6 @@ target_hit = { offense = "crush", max = 110 }
 
 [death_spawn]
 attack_speed = 4
-attack_range = 1
 retreat_range = 7
 defend_anim = "death_spawn_defend"
 defend_sound = "death_spawn_defend"

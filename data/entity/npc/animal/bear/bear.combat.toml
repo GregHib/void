@@ -1,6 +1,5 @@
 [bear]
 attack_speed = 4
-attack_range = 1
 retreat_range = 10
 defend_anim = "bear_defend"
 defend_sound = "bear_defend"

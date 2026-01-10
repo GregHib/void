@@ -40,6 +40,7 @@ class PrayerDefinitions {
                     var drain = 0
                     val groups = IntArrayList()
                     val bonuses = Object2IntOpenHashMap<String>()
+                    val drains = Object2IntOpenHashMap<String>()
                     var members = false
                     while (nextPair()) {
                         when (val key = key()) {
@@ -52,11 +53,14 @@ class PrayerDefinitions {
                             "bonuses" -> while (nextEntry()) {
                                 bonuses[key()] = int()
                             }
+                            "drains" -> while (nextEntry()) {
+                                bonuses[key()] = int()
+                            }
                             "members" -> members = boolean()
                             else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
                         val id = stringId.substring(0, stringId.lastIndexOf('_'))
-                        val definition = PrayerDefinition(index, level, drain, groups, bonuses, members, id)
+                        val definition = PrayerDefinition(index, level, drain, groups, drains, bonuses, members, id)
                         definitions[id] = definition
                         if (stringId.endsWith("_curse")) {
                             curses[index] = definition

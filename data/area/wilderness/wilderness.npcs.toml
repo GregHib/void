@@ -30,13 +30,13 @@ examine = "He works evil magic."
 [william]
 id = 1778
 shop = "williams_wilderness_cape_shop"
-wander_radius = 15
+wander_range = 15
 examine = "A very brave merchant."
 
 [ian]
 id = 1779
 shop = "ians_wilderness_cape_shop"
-wander_radius = 15
+wander_range = 15
 examine = "A very brave merchant."
 
 [larry]

@@ -1,26 +1,26 @@
 [patrick_platypus]
 id = 7027
-wander_radius = 4
+wander_range = 4
 examine = "A most unlikely creature."
 
 [penelope_platypus]
 id = 7028
-wander_radius = 4
+wander_range = 4
 examine = "A most unlikely creature."
 
 [peter_platypus]
 id = 7029
-wander_radius = 4
+wander_range = 4
 examine = "A most unlikely creature."
 
 [peanut_platypus]
 id = 7030
-wander_radius = 4
+wander_range = 4
 examine = "A most unlikely creature."
 
 [diseased_kebbit]
 id = 7039
-wander_radius = 3
+wander_range = 3
 examine = "A shy creature with a toxic bite."
 
 [diseased_kebbit_2]
@@ -41,7 +41,7 @@ id = 7043
 
 [flying_bugs]
 id = 7083
-wander_radius = 3
+wander_range = 3
 examine = "Pesky little things."
 
 [patrick_platypus_2]

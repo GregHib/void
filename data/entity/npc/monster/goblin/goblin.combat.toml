@@ -1,6 +1,5 @@
 [goblin]
 attack_speed = 6
-attack_range = 1
 retreat_range = 8
 defend_anim = "goblin_defend"
 defend_sound = "goblin_defend"

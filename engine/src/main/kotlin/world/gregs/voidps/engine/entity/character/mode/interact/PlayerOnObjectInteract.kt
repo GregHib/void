@@ -9,10 +9,10 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 
 data class PlayerOnObjectInteract(
     override val target: GameObject,
-    val option: String,
+    override val option: String,
     val player: Player,
     var approachRange: Int? = null,
-) : Interact(player, target, approachRange = approachRange) {
+) : InteractOption(player, target, approachRange = approachRange) {
     override fun hasOperate() = Operation.playerObject.containsKey("$option:${target.def(player).stringId}") || Operation.playerObject.containsKey("$option:*")
 
     override fun hasApproach() = Approachable.playerObject.containsKey("$option:${target.def(player).stringId}") || Approachable.playerObject.containsKey("$option:*")

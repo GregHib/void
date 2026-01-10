@@ -28,12 +28,10 @@ enum class Skill {
     Dungeoneering,
     ;
 
-    fun maximum(): Int = if (this == Dungeoneering) {
-        120
-    } else if (this == Constitution) {
-        990
-    } else {
-        99
+    fun maximum(): Int = when (this) {
+        Dungeoneering -> 120
+        Constitution -> 990
+        else -> 99
     }
 
     companion object {

@@ -1,12 +1,12 @@
 [crab]
 id = 2706
 categories = ["crab"]
-wander_radius = 3
+wander_range = 3
 examine = "Nobody likes crabs..."
 
 [rock_crab]
 id = 1265
-wander_radius = 5
+wander_range = 5
 hunt_mode = "aggressive"
 categories = ["crab"]
 examine = "No one likes crabs..."
@@ -44,7 +44,7 @@ hitpoints = 1800
 combat_def = "rock_crab"
 max_hit_crush = 90
 respawn_delay = 50
-wander_radius = 5
+wander_range = 5
 retreat_range = 8
 hunt_mode = "aggressive"
 categories = ["crab"]

@@ -12,57 +12,57 @@ examine = "He looks like a strong warrior."
 
 [harrallak_menarous]
 id = 70
-wander_radius = 5
+wander_range = 5
 examine = "The guildmaster of the Warriors' Guild."
 
 [ref]
 id = 4300
-wander_radius = 2
+wander_range = 2
 examine = "He looks fair and reliable."
 
 [jimmy]
 id = 4298
-wander_radius = 4
+wander_range = 4
 examine = "He looks a bit drunk."
 
 [jade]
 id = 4296
-wander_radius = 3
+wander_range = 3
 examine = "Bank staff."
 
 [anton]
 id = 4295
-wander_radius = 5
+wander_range = 5
 examine = "Armour shopkeeper."
 
 [lilly]
 id = 4294
-wander_radius = 5
+wander_range = 5
 examine = "Potion shopkeeper."
 
 [lidio]
 id = 4293
-wander_radius = 4
+wander_range = 4
 examine = "Food shopkeeper."
 
 [shanomi]
 id = 4290
-wander_radius = 3
+wander_range = 3
 examine = "A warrior mage from the east."
 
 [kamfreena]
 id = 4289
-wander_radius = 3
+wander_range = 3
 examine = "Blademistress, skillful female warrior."
 
 [ajjat]
 id = 4288
-wander_radius = 2
+wander_range = 2
 examine = "Used to be a black knight."
 
 [gamfred]
 id = 4287
-wander_radius = 2
+wander_range = 2
 examine = "The guild engineer."
 
 [cyclopse_hammer]

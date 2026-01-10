@@ -251,36 +251,36 @@ id = 5445
 
 [silver_merchant_ardougne]
 id = 569
-wander_radius = -1
+wander_range = -1
 shop = "ardougne_silver_stall"
 examine = "Looks fairly well fed."
 
 [gem_merchant_ardougne]
 id = 570
-wander_radius = -1
+wander_range = -1
 shop = "ardougne_gem_stall"
 examine = "Seems very well-off."
 
 [baker_ardougne]
 id = 571
-wander_radius = -1
+wander_range = -1
 examine = "So where are the butcher and the candlestick-maker?"
 
 [spice_seller_ardougne]
 id = 572
-wander_radius = -1
+wander_range = -1
 shop = "ardougne_spice_stall"
 examine = "Has a very exotic aroma about him."
 
 [fur_trader_ardougne]
 id = 573
-wander_radius = -1
+wander_range = -1
 shop = "ardougne_fur_stall"
 examine = "Knows how to keep warm in the winter."
 
 [silk_merchant_ardougne]
 id = 574
-wander_radius = -1
+wander_range = -1
 examine = "Seems very well-off."
 
 [zenesha]
@@ -382,7 +382,7 @@ examine = "She'll serve you a drink as quick as a shot!"
 
 [king_lathas]
 id = 364
-wander_radius = 4
+wander_range = 4
 examine = "King Lathas of East Ardougne."
 
 [sick_looking_sheep_1_3]

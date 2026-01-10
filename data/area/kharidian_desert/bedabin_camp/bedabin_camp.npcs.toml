@@ -29,7 +29,7 @@ examine = "A bedabin nomad fighter - a sandy swordsman."
 
 [rug_merchant_bedabin_camp]
 id = 2292
-wander_radius = 2
+wander_range = 2
 examine = "A man who deals in rugs."
 
 [asgarnia_smith]

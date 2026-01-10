@@ -9,22 +9,22 @@ examine = "You're being watched."
 
 [fyiona_fray]
 id = 3634
-wander_radius = 3
+wander_range = 3
 examine = "A retired but dangerous looking female soldier."
 
 [valantay_eppel]
 id = 3629
-wander_radius = 6
+wander_range = 6
 examine = "A Burgh de Rott male militia volunteer."
 
 [jayene_kliyn]
 id = 3628
-wander_radius = 7
+wander_range = 7
 examine = "A Burgh de Rott female militia volunteer."
 
 [sorin_temple_trekking]
 id = 3509
-wander_radius = 4
+wander_range = 4
 examine = "A flea infested, pale looking excuse of a man."
 
 [valantay_eppel_2]

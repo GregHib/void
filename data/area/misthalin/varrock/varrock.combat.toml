@@ -1,6 +1,5 @@
 [dark_wizard_water]
 attack_speed = 4
-attack_range = 5
 retreat_range = 11
 defend_anim = "human_defend"
 death_anim = "human_death"
@@ -48,7 +47,6 @@ impact_drain = { skill = "strength", multiplier = 0.05 }
 
 [guard_varrock]
 attack_speed = 4
-attack_range = 1
 retreat_range = 8
 defend_anim = "varrock_guard_defend"
 death_anim = "varrock_guard_death"

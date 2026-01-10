@@ -1,6 +1,5 @@
 [jogre_ardougne]
 attack_speed = 6
-attack_range = 1
 retreat_range = 8
 defend_anim = "jogre_defend"
 death_anim = "jogre_death"

@@ -1,6 +1,5 @@
 [greater_demon]
 attack_speed = 4
-attack_range = 5
 retreat_range = 11
 defend_anim = "demon_defend"
 defend_sound = "demon_defend"
@@ -16,7 +15,6 @@ target_hit = { offense = "slash", max = 90 }
 [lesser_demon]
 clone = "greater_demon"
 attack_speed = 4
-attack_range = 1
 retreat_range = 8
 
 [lesser_demon.melee]
@@ -26,7 +24,6 @@ target_hit = { offense = "slash", max = 80 }
 [delrith]
 clone = "greater_demon"
 attack_speed = 6
-attack_range = 1
 retreat_range = 8
 death_anim = "delrith_death"
 
@@ -36,7 +33,6 @@ target_hit = { offense = "crush", max = 90 }
 
 [black_demon]
 clone = "greater_demon"
-attack_range = 5
 
 [black_demon.melee]
 range = 1

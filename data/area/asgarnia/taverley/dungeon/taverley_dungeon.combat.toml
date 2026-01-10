@@ -1,6 +1,5 @@
 [suit_of_armour]
 attack_speed = 5
-attack_range = 1
 retreat_range = 8
 defend_anim = "human_defend"
 death_anim = "human_death"

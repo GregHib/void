@@ -9,10 +9,10 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItem
 
 data class PlayerOnFloorItemInteract(
     override val target: FloorItem,
-    val option: String,
+    override val option: String,
     val player: Player,
     val shape: Int?
-) : Interact(player, target, shape = shape) {
+) : InteractOption(player, target, shape = shape) {
     override fun hasOperate() = Operation.playerFloorItem.containsKey(option)
 
     override fun hasApproach() = Approachable.playerFloorItem.containsKey(option)

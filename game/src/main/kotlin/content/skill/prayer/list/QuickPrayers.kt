@@ -114,12 +114,39 @@ class QuickPrayers : Script {
                 return
             }
             for (group in definition.groups) {
-                for (key in definitions.getGroup(group) ?: continue) {
-                    removeVarbit(listKey, key, refresh = false)
+                removeGroup(listKey, group)
+            }
+            for (type in definition.bonuses.keys + definition.drains.keys) {
+                when (type) {
+                    "magic", "ranged_attack", "ranged_strength" -> if (curses) {
+                        removeGroup(listKey, 11) // Attack
+                        removeGroup(listKey, 10) // Strength
+                    } else {
+                        removeGroup(listKey, 1) // Strength
+                        removeGroup(listKey, 2) // Attack
+                    }
+                    "attack", "strength" -> if (curses) {
+                        removeGroup(listKey, 14) // Ranged
+                        removeGroup(listKey, 13) // Magic
+                    } else {
+                        removeGroup(listKey, 3) // Ranged
+                        removeGroup(listKey, 4) // Magic
+                    }
+                    "defence" -> if (curses) {
+                        removeGroup(listKey, 15)
+                    } else {
+                        removeGroup(listKey, 0)
+                    }
                 }
             }
             addVarbit(listKey, name, refresh = false)
             sendVariable(listKey)
+        }
+    }
+
+    private fun Player.removeGroup(listKey: String, group: Int) {
+        for (key in definitions.getGroup(group) ?: return) {
+            removeVarbit(listKey, key, refresh = false)
         }
     }
 

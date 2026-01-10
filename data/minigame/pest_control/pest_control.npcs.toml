@@ -4,17 +4,17 @@ examine = "A squire of balance."
 
 [void_knight_pest_control]
 id = 3786
-wander_radius = 1
+wander_range = 1
 examine = "A powerful knight of balance."
 
 [void_knight_2_pest_control]
 id = 3788
-wander_radius = 1
+wander_range = 1
 examine = "A powerful knight of balance."
 
 [void_knight_3_pest_control]
 id = 3789
-wander_radius = 1
+wander_range = 1
 examine = "A powerful knight of balance."
 
 [squire_pest_control]
@@ -27,7 +27,7 @@ examine = "A squire of balance."
 
 [squire_3_pest_control]
 id = 3792
-wander_radius = 1
+wander_range = 1
 examine = "A squire of balance."
 
 [squire_4_pest_control]
@@ -44,22 +44,22 @@ examine = "A squire of balance."
 
 [squire_rangeshop_pest_control]
 id = 3796
-wander_radius = 1
+wander_range = 1
 examine = "A squire of balance."
 
 [squire_blacksmith_pest_control]
 id = 3797
-wander_radius = 1
+wander_range = 1
 examine = "A squire of balance."
 
 [squire_runeshop_pest_control]
 id = 3798
-wander_radius = 1
+wander_range = 1
 examine = "A squire of balance."
 
 [squire_storemaster_pest_control]
 id = 3799
-wander_radius = 1
+wander_range = 1
 examine = "A squire of balance."
 
 [squire_ship_island_pest_control]
@@ -72,7 +72,7 @@ examine = "A squire of balance."
 
 [void_knight_4_pest_control]
 id = 5956
-wander_radius = 1
+wander_range = 1
 examine = "A powerful knight of balance."
 
 [squire_intermediate_pest_control]
@@ -85,7 +85,7 @@ examine = "A squire of balance."
 
 [commodore_matthias_spawn_pest_control]
 id = 11497
-wander_radius = 2
+wander_range = 2
 
 [commodore_matthias_pest_control]
 id = 11498
@@ -93,7 +93,7 @@ examine = "Leader of the Void Knights."
 
 [jessika_pest_control]
 id = 11499
-wander_radius = 2
+wander_range = 2
 examine = "A mage and researcher."
 
 [jessika_spawn_pest_control]
@@ -181,7 +181,7 @@ examine = "A Void knight."
 
 [jessika_a_void_dance]
 id = 11660
-wander_radius = 2
+wander_range = 2
 examine = "A mage and researcher."
 
 [jessika_spawn_a_void_dance_pest_control]

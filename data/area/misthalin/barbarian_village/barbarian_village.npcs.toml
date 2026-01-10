@@ -1,6 +1,6 @@
 [gudrun]
 id = 2864
-wander_radius = 4
+wander_range = 4
 categories = ["human"]
 examine = "The chieftain's daughter."
 
@@ -73,7 +73,7 @@ mage = 240
 attack_bonus = 8
 combat_def = "haakon_the_champion"
 immune_poison = true
-wander_radius = 4
+wander_range = 4
 respawn_delay = 75
 categories = ["human"]
 collision = "indoors"
