@@ -70,7 +70,8 @@ internal class CombatMovementTest : WorldTest() {
         assertTrue(npc.mode is CombatMovement)
         player.walkTo(Tile(3031, 3350))
         tick(2)
-        assert(npc.mode !is CombatMovement)
+        assertTrue(npc.mode !is CombatMovement)
+        assertEquals(Tile(3032, 3351), npc.tile)
     }
 
     @Test

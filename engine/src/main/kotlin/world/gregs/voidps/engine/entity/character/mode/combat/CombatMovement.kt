@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
-import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -28,7 +27,7 @@ import kotlin.math.abs
 class CombatMovement(
     character: Character,
     var target: Character,
-    val strategy: TargetStrategy = CharacterTargetStrategy(target),
+    val strategy: TargetStrategy = TargetStrategy(character, target),
 ) : Movement(character, strategy) {
 
     override fun start() {

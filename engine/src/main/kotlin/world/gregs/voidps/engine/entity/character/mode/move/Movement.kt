@@ -42,11 +42,12 @@ open class Movement(
         if (!needsCalculation || strategy == null) {
             return
         }
-        if (character is Player && !strategy.tile.noCollision) {
+        val tile = strategy.destination(character)
+        if (character is Player && !tile.noCollision) {
             val route = pathFinder.findPath(character, strategy, shape)
-            character.steps.queueRoute(route, strategy.tile, strategy.tile.noCollision, strategy.tile.noRun)
+            character.steps.queueRoute(route, tile, tile.noCollision, tile.noRun)
         } else {
-            character.steps.queueStep(strategy.tile, strategy.tile.noCollision, strategy.tile.noRun)
+            character.steps.queueStep(tile, tile.noCollision, tile.noRun)
         }
         needsCalculation = false
     }
@@ -144,7 +145,8 @@ open class Movement(
 
     open fun recalculate(): Boolean {
         val strategy = strategy ?: return false
-        if (equals(strategy.tile, character.steps.destination)) {
+        val tile = strategy.destination(character)
+        if (equals(tile, character.steps.destination)) {
             return false
         }
         needsCalculation = true

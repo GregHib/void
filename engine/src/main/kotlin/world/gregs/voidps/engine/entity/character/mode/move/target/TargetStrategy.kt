@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.mode.move.target
 
 import org.rsmod.game.pathfinder.reach.ReachStrategy
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.get
@@ -25,6 +26,8 @@ interface TargetStrategy {
     val rotation: Int
     val shape: Int
 
+    fun destination(source: Character): Tile = tile
+
     fun requiresLineOfSight(): Boolean = true
 
     fun reached(character: Character): Boolean = ReachStrategy.reached(
@@ -43,7 +46,7 @@ interface TargetStrategy {
     )
 
     companion object {
-        operator fun <T : Any> invoke(entity: T): TargetStrategy = when (entity) {
+        operator fun <T : Any> invoke(source: Character, entity: T): TargetStrategy = when (entity) {
             is Tile -> TileTargetStrategy(entity)
             is GameObject -> when (entity.id) {
                 "archery_target" -> TileTargetStrategy(entity.tile.addX(5))
@@ -55,7 +58,7 @@ interface TargetStrategy {
                 else -> ObjectTargetStrategy(entity)
             }
             is FloorItem -> FloorItemTargetStrategy(entity)
-            is Character -> CharacterTargetStrategy(entity)
+            is Character -> if (source is NPC) NPCCharacterTargetStrategy(entity) else CharacterTargetStrategy(entity)
             else -> DefaultTargetStrategy
         }
     }
