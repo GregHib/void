@@ -1,0 +1,45 @@
+[chaos_elemental]
+attack_speed = 4
+retreat_range = 11
+defend_sound = "chaos_elemental_defend"
+death_anim = "chaos_elemental_death"
+death_sound = "chaos_elemental_death"
+
+[chaos_elemental.discord]
+chance = 2
+range = 10
+anim = "chaos_elemental_attack"
+sound = { id = "chaos_elemental_discord_cast", radius = 10 }
+gfx = "chaos_elemental_discord_cast"
+projectile = "chaos_elemental_discord_travel"
+impact_sound = { id = "chaos_elemental_discord_impact", delay = 110, radius = 5 }
+target_hit = { offense = "random", max = 280 }
+multi_target_area = "chaos_elemental_area"
+
+[chaos_elemental.confusion]
+condition = "confusion_cooldown"
+chance = 1
+range = 10
+sound = { id = "chaos_elemental_confusion_cast", radius = 10 }
+gfx = "chaos_elemental_confusion_cast"
+projectile = "chaos_elemental_confusion_travel"
+target_sound = "chaos_elemental_confusion_impact"
+impact_gfx = "chaos_elemental_confusion_impact"
+anim = "chaos_elemental_attack"
+multi_target_area = "chaos_elemental_area"
+impact_regardless = true
+target_hit = { offense = "none", max = 0 }
+
+[chaos_elemental.madness]
+condition = "free_inventory_spaces"
+chance = 1
+range = 10
+anim = "chaos_elemental_attack"
+gfx = "chaos_elemental_madness_cast"
+projectile = "chaos_elemental_madness_travel"
+sound = { id = "chaos_elemental_madness_cast", radius = 10 }
+target_sound = "chaos_elemental_madness_impact"
+impact_gfx = "chaos_elemental_madness_impact"
+multi_target_area = "chaos_elemental_area"
+impact_regardless = true
+target_hit = { offense = "none", max = 0 }

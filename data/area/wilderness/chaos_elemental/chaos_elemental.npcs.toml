@@ -1,0 +1,18 @@
+[chaos_elemental]
+id = 3200
+hitpoints = 2500
+att = 270
+str = 270
+def = 270
+mage = 270
+range = 270
+combat_def = "chaos_elemental"
+xp_bonus = 7.5
+hunt_mode = "aggressive"
+hunt_range = 10
+slayer_xp = 268.75
+categories = ["bosses"]
+respawn_delay = 100
+height = 320
+drop_table = "chaos_elemental"
+examine = "pUre A cHaOs of crEatuRe!"

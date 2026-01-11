@@ -116,9 +116,6 @@ class Attack(
                 target.play(if (attack.impactRegardless || context.damage > 0) attack.impactGfx else attack.missGfx)
                 target.play(if (attack.impactRegardless || context.damage > 0) attack.impactSounds else attack.missSounds)
                 // Effects
-                if (attack.id == "confusion" || attack.id == "madness") {
-                    println(attack)
-                }
                 if (attack.impactRegardless || context.damage > 0) {
                     for (drain in attack.impactDrainSkills) {
                         when (drain.skill) {
