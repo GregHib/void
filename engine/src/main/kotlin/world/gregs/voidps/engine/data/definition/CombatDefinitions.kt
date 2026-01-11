@@ -91,6 +91,7 @@ class CombatDefinitions {
         val (stringId, id) = section.split(".")
         var chance = 1
         var range = 1
+        var approach = false
         var condition = ""
 
         var anim = ""
@@ -131,6 +132,7 @@ class CombatDefinitions {
                 // Selection
                 "chance" -> chance = int()
                 "range" -> range = int()
+                "approach" -> approach = boolean()
                 "condition" -> condition = string()
                 // Attacker
                 "say" -> say = string()
@@ -183,6 +185,7 @@ class CombatDefinitions {
             id = id,
             chance = chance,
             range = range,
+            approach = approach,
             condition = condition,
             say = say,
             anim = anim,

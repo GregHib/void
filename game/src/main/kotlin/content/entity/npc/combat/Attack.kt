@@ -55,6 +55,15 @@ class Attack(
             if (attack.say != "") {
                 say(attack.say)
             }
+            if (attack.approach) {
+                if (tile.within(primaryTarget.tile, attack.range)) {
+                    clear("attack_range")
+                } else {
+                    set("attack_range", attack.range)
+                    set("next_attack", attack.id)
+                    return@npcCombatSwing
+                }
+            }
             val targets = targets(primaryTarget, attack.multiTargetArea)
             // Target(s)
             for (target in targets) {
@@ -145,19 +154,29 @@ class Attack(
 
     fun selectAttack(source: NPC, target: Character, definition: CombatDefinition): CombatDefinition.CombatAttack? {
         val distance = source.tile.distanceTo(target)
+        val next: String? = source["next_attack"]
+        if (next != null) {
+            val attack = definition.attacks[next] ?: return null
+            return if (withinRange(source, target, distance, attack)) attack else null
+        }
         val validAttacks = mutableListOf<Pair<CombatDefinition.CombatAttack, Int>>()
         for (attack in definition.attacks.values) {
             if (!CombatApi.condition(source, target, attack.condition)) {
                 continue
             }
-            if (attack.range == 1 && !CharacterTargetStrategy(source).reached(target)) {
-                continue
-            } else if (attack.range in 2..<distance) {
+            if (!attack.approach && !withinRange(source, target, distance, attack)) {
                 continue
             }
             validAttacks.add(attack to attack.chance)
         }
+        if (validAttacks.isEmpty()) {
+            return null
+        }
         return weightedSample(validAttacks)
+    }
+
+    fun withinRange(source: NPC, target: Character, distance: Int, attack: CombatDefinition.CombatAttack): Boolean {
+        return attack.range == 1 && CharacterTargetStrategy(source).reached(target) || distance in 2..attack.range
     }
 
     @Suppress("UNCHECKED_CAST")
