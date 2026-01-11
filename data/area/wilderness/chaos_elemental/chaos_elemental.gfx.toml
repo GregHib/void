@@ -1,0 +1,38 @@
+[chaos_elemental_madness_cast]
+id = 550
+height = 0
+
+[chaos_elemental_madness_travel]
+id = 551
+curve = 16
+delay = 40
+
+[chaos_elemental_madness_impact]
+id = 552
+height = 88
+
+[chaos_elemental_confusion_cast]
+id = 553
+height = 0
+
+[chaos_elemental_confusion_travel]
+id = 554
+curve = 16
+delay = 40
+
+[chaos_elemental_confusion_impact]
+id = 555
+height = 88
+
+[chaos_elemental_discord_cast]
+id = 556
+height = 0
+
+[chaos_elemental_discord_travel]
+id = 557
+curve = 15
+delay = 40
+
+[chaos_elemental_discord_impact]
+id = 558
+height = 88

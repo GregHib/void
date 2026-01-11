@@ -78,27 +78,6 @@ id = 2390
 [mysterious_ghost_wilderness_5]
 id = 2394
 
-[chaos_elemental]
-id = 3200
-hitpoints = 2500
-att = 270
-str = 270
-def = 270
-mage = 270
-range = 270
-style = "crush"
-max_hit_melee = 280
-xp_bonus = 7.5
-hunt_mode = "cowardly"
-slayer_xp = 268.75
-categories = ["bosses"]
-respawn_delay = 100
-drop_table = "chaos_elemental"
-attack_anim = "chaos_elemental_attack"
-death_anim = "chaos_elemental_death"
-combat_sounds = "chaos_elemental"
-examine = "pUre A cHaOs of crEatuRe!"
-
 [fishing_spot_wilderness]
 id = 3804
 

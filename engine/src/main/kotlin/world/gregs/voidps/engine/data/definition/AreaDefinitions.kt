@@ -63,9 +63,9 @@ class AreaDefinitions(
                         }
                         val area: Area = if (x.size <= 2) {
                             if (level == null) {
-                                Rectangle(x.first(), y.first(), x.last(), y.last())
+                                Rectangle(x.min(), y.min(), x.max(), y.max())
                             } else {
-                                Cuboid(x.first(), y.first(), x.last(), y.last(), level, level)
+                                Cuboid(x.min(), y.min(), x.max(), y.max(), level, level)
                             }
                         } else {
                             Polygon(x.toIntArray(), y.toIntArray(), level ?: 0, level ?: 3)

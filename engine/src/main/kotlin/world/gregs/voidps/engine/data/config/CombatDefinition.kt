@@ -38,6 +38,7 @@ data class CombatDefinition(
      *  == Selection ==
      *  @param chance weight for this swing. Note: relative weight, not a percentage.
      *  @param range maximum range (in tiles) at which this swing may be selected.
+     *  @param approach will move towards target if the distance to target is less than the required range.
      *  @param condition optional check performed during filtering
      *  == Execution ==
      *  @param say said npc when the swing is executed.
@@ -69,13 +70,14 @@ data class CombatDefinition(
         // Selection
         val chance: Int = 1,
         val range: Int = 1,
+        val approach: Boolean = false,
         val condition: String = "",
         // Execution
         val say: String = "",
         val anim: String = "",
         val gfx: List<CombatGfx> = emptyList(),
         val sounds: List<CombatSound> = emptyList(),
-        val projectileOrigin: Origin = Origin.Entity,
+        val projectileOrigin: Origin = Origin.Tile,
         val projectiles: List<Projectile> = emptyList(),
         // Target
         val targetAnim: String = "",
@@ -121,8 +123,13 @@ data class CombatDefinition(
     data class Projectile(val id: String, val delay: Int? = null, val curve: IntRange? = null, val endHeight: Int? = null)
 
     enum class Origin {
-        Entity,
+        /**
+         * Entities south-west tile
+         */
         Tile,
+        /**
+         * Entities size-centered tile (different from size/2)
+         */
         Centre,
     }
 

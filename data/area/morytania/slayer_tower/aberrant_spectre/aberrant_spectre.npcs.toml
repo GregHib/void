@@ -3,6 +3,7 @@ id = 1604
 hitpoints = 900
 def = 90
 mage = 105
+combat_def = "aberrant_spectre"
 hunt_mode = "aggressive"
 wander_range = 2
 respawn_delay = 30

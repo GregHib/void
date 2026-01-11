@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
-import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
+import world.gregs.voidps.engine.entity.character.mode.move.target.NPCCharacterTargetStrategy
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -36,10 +36,9 @@ class Attack(
 ) : Script {
 
     init {
-        npcCombatSwing { target ->
-            val distance = tile.distanceTo(target)
-            val defId = if (target is Player) {
-                val def = def(target)
+        npcCombatSwing { primaryTarget ->
+            val defId = if (primaryTarget is Player) {
+                val def = def(primaryTarget)
                 def["combat_def", def.stringId]
             } else {
                 id
@@ -48,20 +47,7 @@ class Attack(
             if (definition.attacks.isEmpty()) {
                 return@npcCombatSwing
             }
-            val validAttacks = mutableListOf<Pair<CombatDefinition.CombatAttack, Int>>()
-            for (attack in definition.attacks.values) {
-                if (!CombatApi.condition(this, target, attack.condition)) {
-                    continue
-                }
-                if (attack.range == 1 && !CharacterTargetStrategy(this).reached(target)) {
-                    continue
-                } else if (attack.range in 2..<distance) {
-                    continue
-                }
-                validAttacks.add(attack to attack.chance)
-            }
-            val attack = weightedSample(validAttacks) ?: return@npcCombatSwing
-            set("attack_name", attack.id)
+            var attack = selectAttack(this, primaryTarget, definition) ?: return@npcCombatSwing
             // Source
             play(attack.anim)
             play(attack.gfx)
@@ -69,8 +55,17 @@ class Attack(
             if (attack.say != "") {
                 say(attack.say)
             }
-            val targets = targets(target, attack.multiTargetArea)
-            // Target
+            if (attack.approach) {
+                if (tile.within(primaryTarget.tile, attack.range)) {
+                    clear("attack_range")
+                } else {
+                    set("attack_range", attack.range)
+                    set("next_attack", attack.id)
+                    return@npcCombatSwing
+                }
+            }
+            val targets = targets(primaryTarget, attack.multiTargetArea)
+            // Target(s)
             for (target in targets) {
                 target.play(attack.targetAnim)
                 target.play(attack.targetGfx)
@@ -81,8 +76,7 @@ class Attack(
                 for (i in attack.projectiles.indices) {
                     val projectile = attack.projectiles[i]
                     val delay = when (origin) {
-                        CombatDefinition.Origin.Entity -> shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
-                        CombatDefinition.Origin.Tile -> tile.shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
+                        CombatDefinition.Origin.Tile -> shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
                         CombatDefinition.Origin.Centre -> nearestTile(this, target).shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
                     }
                     delays[i] = delay
@@ -96,11 +90,17 @@ class Attack(
                     if (hit.delay != null) {
                         delay = hit.delay!!
                     }
+                    var offense = hit.offense
+                    var defence = hit.defence
+                    if (offense == "random") {
+                        offense = listOf("crush", "range", "magic").random(random)
+                        defence = offense
+                    }
                     if (hit.max == 0) {
-                        hit(target = target, delay = delay, offensiveType = hit.offense, defensiveType = hit.defence, special = hit.special)
+                        hit(target = target, delay = delay, offensiveType = offense, defensiveType = defence, special = hit.special, spell = attack.id) // Reuse spell for attack name
                     } else {
-                        val damage = Damage.roll(source = this, target = target, offensiveType = hit.offense, weapon = Item.EMPTY, special = hit.special, defensiveType = hit.defence, range = hit.min..hit.max)
-                        hit(target = target, delay = delay, offensiveType = hit.offense, defensiveType = hit.defence, special = hit.special, damage = damage)
+                        val damage = Damage.roll(source = this, target = target, offensiveType = offense, weapon = Item.EMPTY, special = hit.special, defensiveType = defence, range = hit.min..hit.max)
+                        hit(target = target, delay = delay, offensiveType = offense, defensiveType = defence, special = hit.special, damage = damage, spell = attack.id)
                     }
                 }
                 CombatApi.attack(this, target, "${definition.npc}:${attack.id}")
@@ -108,7 +108,7 @@ class Attack(
         }
 
         npcCombatAttack { context ->
-            val attackName: String = get("attack_name") ?: return@npcCombatAttack
+            val attackName: String = context.spell
             val target = context.target
             val source = if (target is Player) def(target).stringId else id
             val definition = definitions.getOrNull(source) ?: return@npcCombatAttack
@@ -120,6 +120,7 @@ class Attack(
                 }
                 // Impact
                 target.play(attack.impactAnim)
+                // TODO are impact gfx done here or at cast time with projectile delay??
                 target.play(if (attack.impactRegardless || context.damage > 0) attack.impactGfx else attack.missGfx)
                 target.play(if (attack.impactRegardless || context.damage > 0) attack.impactSounds else attack.missSounds)
                 // Effects
@@ -150,13 +151,43 @@ class Attack(
         }
     }
 
-    @Suppress("UNCHECKED_CAST")
-    private fun NPC.targets(target: Character, area: String): List<Character> {
-        if (area == "") {
-            return listOf(target)
+    fun selectAttack(source: NPC, target: Character, definition: CombatDefinition): CombatDefinition.CombatAttack? {
+        val distance = source.tile.distanceTo(target)
+        val next: String? = source["next_attack"]
+        if (next != null) {
+            val attack = definition.attacks[next] ?: return null
+            return if (withinRange(source, target, distance, attack)) attack else null
         }
-        val area = areaDefinitions.getOrNull(area)?.area ?: return listOf(target)
-        val list = mutableListOf<Character>()
+        val validAttacks = mutableListOf<Pair<CombatDefinition.CombatAttack, Int>>()
+        for (attack in definition.attacks.values) {
+            if (!CombatApi.condition(source, target, attack.condition)) {
+                continue
+            }
+            if (!attack.approach && !withinRange(source, target, distance, attack)) {
+                continue
+            }
+            validAttacks.add(attack to attack.chance)
+        }
+        if (validAttacks.isEmpty()) {
+            return null
+        }
+        return weightedSample(validAttacks)
+    }
+
+    fun withinRange(source: NPC, target: Character, distance: Int, attack: CombatDefinition.CombatAttack): Boolean {
+        if (attack.range == 1 && attack.targetHits.any { Hit.meleeType(it.offense) }) {
+            return NPCCharacterTargetStrategy(source).reached(target)
+        }
+        return distance in 1..attack.range
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun NPC.targets(target: Character, area: String): Set<Character> {
+        if (area == "") {
+            return setOf(target)
+        }
+        val area = areaDefinitions.getOrNull(area)?.area ?: return setOf(target)
+        val list = mutableSetOf(target)
         for (zone in area.toZones(tile.level)) {
             list.addAll(players[zone])
         }

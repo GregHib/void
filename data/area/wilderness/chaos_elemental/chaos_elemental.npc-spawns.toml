@@ -1,0 +1,3 @@
+spawns = [
+    { id = "chaos_elemental", x = 3261, y = 3927 },
+]

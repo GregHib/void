@@ -1,7 +1,7 @@
 [troll_rock]
 id = 276
 delay = 31
-angle = 8
+curve = 8
 time_offset = 5
 
 [thrower_troll_attack]
