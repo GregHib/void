@@ -11,7 +11,6 @@ slayer_level = 15
 respawn_delay = 15
 wander_range = 13
 drop_table = "banshee"
-attack_sound = "nothing"
 hunt_mode = "cowardly"
 categories = ["banshees", "undead"]
 examine = "A tortured screaming soul."
