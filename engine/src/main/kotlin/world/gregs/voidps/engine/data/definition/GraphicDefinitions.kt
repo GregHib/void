@@ -27,6 +27,7 @@ class GraphicDefinitions(
                         while (nextPair()) {
                             when (val key = key()) {
                                 "id" -> id = int()
+                                "angle" -> throw IllegalArgumentException("Unknown key 'angle' use 'curve' instead. ${exception()}")
                                 else -> extras[key] = value()
                             }
                         }
