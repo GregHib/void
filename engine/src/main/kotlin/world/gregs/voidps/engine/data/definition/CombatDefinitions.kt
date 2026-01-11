@@ -109,7 +109,7 @@ class CombatDefinitions {
         val impactGraphics = mutableListOf<CombatDefinition.CombatGfx>()
         val missGraphics = mutableListOf<CombatDefinition.CombatGfx>()
 
-        var origin: Origin = Origin.Entity
+        var origin: Origin = Origin.Tile
         val projectiles = mutableListOf<Projectile>()
         val drainSkills = mutableListOf<CombatDefinition.Drain>()
         val targetHits = mutableListOf<CombatHit>()
@@ -152,7 +152,6 @@ class CombatDefinitions {
                 "projectile" -> projectile(projectiles)
                 "projectiles" -> projectiles(projectiles)
                 "projectile_origin" -> origin = when (val key = string()) {
-                    "entity" -> Origin.Entity
                     "tile" -> Origin.Tile
                     "centre" -> Origin.Centre
                     else -> throw IllegalArgumentException("Unknown projectile origin '$key'. ${exception()}")

@@ -77,7 +77,7 @@ data class CombatDefinition(
         val anim: String = "",
         val gfx: List<CombatGfx> = emptyList(),
         val sounds: List<CombatSound> = emptyList(),
-        val projectileOrigin: Origin = Origin.Entity,
+        val projectileOrigin: Origin = Origin.Tile,
         val projectiles: List<Projectile> = emptyList(),
         // Target
         val targetAnim: String = "",
@@ -123,8 +123,13 @@ data class CombatDefinition(
     data class Projectile(val id: String, val delay: Int? = null, val curve: IntRange? = null, val endHeight: Int? = null)
 
     enum class Origin {
-        Entity,
+        /**
+         * Entities south-west tile
+         */
         Tile,
+        /**
+         * Entities size-centered tile (different from size/2)
+         */
         Centre,
     }
 

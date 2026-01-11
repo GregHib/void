@@ -76,8 +76,7 @@ class Attack(
                 for (i in attack.projectiles.indices) {
                     val projectile = attack.projectiles[i]
                     val delay = when (origin) {
-                        CombatDefinition.Origin.Entity -> shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
-                        CombatDefinition.Origin.Tile -> tile.shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
+                        CombatDefinition.Origin.Tile -> shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
                         CombatDefinition.Origin.Centre -> nearestTile(this, target).shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
                     }
                     delays[i] = delay
@@ -175,9 +174,7 @@ class Attack(
         return weightedSample(validAttacks)
     }
 
-    fun withinRange(source: NPC, target: Character, distance: Int, attack: CombatDefinition.CombatAttack): Boolean {
-        return attack.range == 1 && CharacterTargetStrategy(source).reached(target) || distance in 2..attack.range
-    }
+    fun withinRange(source: NPC, target: Character, distance: Int, attack: CombatDefinition.CombatAttack): Boolean = attack.range == 1 && CharacterTargetStrategy(source).reached(target) || distance in 2..attack.range
 
     @Suppress("UNCHECKED_CAST")
     private fun NPC.targets(target: Character, area: String): Set<Character> {
