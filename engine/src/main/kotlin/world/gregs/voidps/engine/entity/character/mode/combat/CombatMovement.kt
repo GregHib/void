@@ -57,7 +57,7 @@ class CombatMovement(
         }
         if (!attack()) {
             var skip: Boolean
-            if (character.steps.destination == character.tile || Overlap.isUnder(character.tile, character.size, target.tile, target.size)) {
+            if (Overlap.isUnder(character.tile, character.size, target.tile, target.size)) {
                 stepOut()
                 skip = true
             } else {
