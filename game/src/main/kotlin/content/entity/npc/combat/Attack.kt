@@ -37,7 +37,6 @@ class Attack(
 
     init {
         npcCombatSwing { target ->
-            val distance = tile.distanceTo(target)
             val defId = if (target is Player) {
                 val def = def(target)
                 def["combat_def", def.stringId]
@@ -48,20 +47,7 @@ class Attack(
             if (definition.attacks.isEmpty()) {
                 return@npcCombatSwing
             }
-            val validAttacks = mutableListOf<Pair<CombatDefinition.CombatAttack, Int>>()
-            for (attack in definition.attacks.values) {
-                if (!CombatApi.condition(this, target, attack.condition)) {
-                    continue
-                }
-                if (attack.range == 1 && !CharacterTargetStrategy(this).reached(target)) {
-                    continue
-                } else if (attack.range in 2..<distance) {
-                    continue
-                }
-                validAttacks.add(attack to attack.chance)
-            }
-            val attack = weightedSample(validAttacks) ?: return@npcCombatSwing
-            set("attack_name", attack.id)
+            var attack = selectAttack(this, target, definition, multi = false) ?: return@npcCombatSwing
             // Source
             play(attack.anim)
             play(attack.gfx)
@@ -70,8 +56,12 @@ class Attack(
                 say(attack.say)
             }
             val targets = targets(target, attack.multiTargetArea)
-            // Target
+            // Target(s)
             for (target in targets) {
+                // Randomise
+                if (attack.multiRandomAttacks) {
+                    attack = selectAttack(this, target, definition, multi = true) ?: return@npcCombatSwing
+                }
                 target.play(attack.targetAnim)
                 target.play(attack.targetGfx)
                 target.play(attack.targetSounds)
@@ -97,10 +87,10 @@ class Attack(
                         delay = hit.delay!!
                     }
                     if (hit.max == 0) {
-                        hit(target = target, delay = delay, offensiveType = hit.offense, defensiveType = hit.defence, special = hit.special)
+                        hit(target = target, delay = delay, offensiveType = hit.offense, defensiveType = hit.defence, special = hit.special, spell = attack.id) // Reuse spell for attack name
                     } else {
                         val damage = Damage.roll(source = this, target = target, offensiveType = hit.offense, weapon = Item.EMPTY, special = hit.special, defensiveType = hit.defence, range = hit.min..hit.max)
-                        hit(target = target, delay = delay, offensiveType = hit.offense, defensiveType = hit.defence, special = hit.special, damage = damage)
+                        hit(target = target, delay = delay, offensiveType = hit.offense, defensiveType = hit.defence, special = hit.special, damage = damage, spell = attack.id)
                     }
                 }
                 CombatApi.attack(this, target, "${definition.npc}:${attack.id}")
@@ -108,7 +98,7 @@ class Attack(
         }
 
         npcCombatAttack { context ->
-            val attackName: String = get("attack_name") ?: return@npcCombatAttack
+            val attackName: String = context.spell
             val target = context.target
             val source = if (target is Player) def(target).stringId else id
             val definition = definitions.getOrNull(source) ?: return@npcCombatAttack
@@ -120,9 +110,13 @@ class Attack(
                 }
                 // Impact
                 target.play(attack.impactAnim)
+                // TODO are impact gfx done here or at cast time with projectile delay??
                 target.play(if (attack.impactRegardless || context.damage > 0) attack.impactGfx else attack.missGfx)
                 target.play(if (attack.impactRegardless || context.damage > 0) attack.impactSounds else attack.missSounds)
                 // Effects
+                if (attack.id == "confusion" || attack.id == "madness") {
+                    println(attack)
+                }
                 if (attack.impactRegardless || context.damage > 0) {
                     for (drain in attack.impactDrainSkills) {
                         when (drain.skill) {
@@ -148,6 +142,26 @@ class Attack(
                 }
             }
         }
+    }
+
+    fun selectAttack(source: NPC, target: Character, definition: CombatDefinition, multi: Boolean): CombatDefinition.CombatAttack? {
+        val distance = source.tile.distanceTo(target)
+        val validAttacks = mutableListOf<Pair<CombatDefinition.CombatAttack, Int>>()
+        for (attack in definition.attacks.values) {
+            if (!CombatApi.condition(source, target, attack.condition)) {
+                continue
+            }
+            if (multi && attack.multiTargetArea == "") {
+                continue
+            }
+            if (attack.range == 1 && !CharacterTargetStrategy(source).reached(target)) {
+                continue
+            } else if (attack.range in 2..<distance) {
+                continue
+            }
+            validAttacks.add(attack to attack.chance)
+        }
+        return weightedSample(validAttacks)
     }
 
     @Suppress("UNCHECKED_CAST")

@@ -113,6 +113,7 @@ class CombatDefinitions {
         val drainSkills = mutableListOf<CombatDefinition.Drain>()
         val targetHits = mutableListOf<CombatHit>()
         var targetArea = ""
+        var multiRandomAttacks = false
         var impactRegardless = false
         var freeze = 0
         var poison = 0
@@ -146,6 +147,7 @@ class CombatDefinitions {
                 "target_sound" -> sound(targetSounds)
                 "target_sounds" -> sounds(targetSounds)
                 "multi_target_area" -> targetArea = string()
+                "multi_random_attack" -> multiRandomAttacks = boolean()
                 // Damage
                 "projectile" -> projectile(projectiles)
                 "projectiles" -> projectiles(projectiles)
@@ -195,6 +197,7 @@ class CombatDefinitions {
             targetSounds = targetSounds,
             targetHits = targetHits,
             multiTargetArea = targetArea,
+            multiRandomAttacks = multiRandomAttacks,
             impactAnim = impactAnim,
             missGfx = missGraphics,
             impactGfx = impactGraphics,
