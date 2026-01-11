@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
-import world.gregs.voidps.engine.entity.character.mode.move.target.CharacterTargetStrategy
+import world.gregs.voidps.engine.entity.character.mode.move.target.DefaultTargetStrategy
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -156,14 +156,14 @@ class Attack(
         val next: String? = source["next_attack"]
         if (next != null) {
             val attack = definition.attacks[next] ?: return null
-            return if (withinRange(source, target, distance, attack)) attack else null
+            return if (withinRange(target, distance, attack)) attack else null
         }
         val validAttacks = mutableListOf<Pair<CombatDefinition.CombatAttack, Int>>()
         for (attack in definition.attacks.values) {
             if (!CombatApi.condition(source, target, attack.condition)) {
                 continue
             }
-            if (!attack.approach && !withinRange(source, target, distance, attack)) {
+            if (!attack.approach && !withinRange(target, distance, attack)) {
                 continue
             }
             validAttacks.add(attack to attack.chance)
@@ -174,7 +174,12 @@ class Attack(
         return weightedSample(validAttacks)
     }
 
-    fun withinRange(source: NPC, target: Character, distance: Int, attack: CombatDefinition.CombatAttack): Boolean = attack.range == 1 && CharacterTargetStrategy(source).reached(target) || distance in 2..attack.range
+    fun withinRange(target: Character, distance: Int, attack: CombatDefinition.CombatAttack): Boolean {
+        if (attack.range == 1 && attack.targetHits.any { Hit.meleeType(it.offense) }) {
+            return DefaultTargetStrategy.reached(target)
+        }
+        return distance in 1..attack.range
+    }
 
     @Suppress("UNCHECKED_CAST")
     private fun NPC.targets(target: Character, area: String): Set<Character> {
