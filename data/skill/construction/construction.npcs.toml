@@ -23,3 +23,17 @@ max_hit_melee = 120
 attack_bonus = 22
 hunt_mode = "cowardly"
 examine = "It's full of pent-up aggression."
+
+[tok_xil_construction]
+id = 3592
+hitpoints = 600
+att = 120
+str = 180
+def = 90
+mage = 90
+range = 180
+combat_def = "tok_xil"
+max_hit_range = 190
+max_hit_crush = 190
+hunt_mode = "cowardly"
+examine = "I don't like the look of those spines..."

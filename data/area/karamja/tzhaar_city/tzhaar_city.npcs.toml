@@ -241,3 +241,78 @@ id = 2623
 [tzHaar_mej_zuh]
 id = 2619
 
+[tz_haar_xil_ring]
+id = 2604
+hitpoints = 1200
+att = 140
+str = 100
+def = 100
+mage = 40
+range = 120
+style = "crush"
+style = "range"
+max_hit_crush = 110
+max_hit_range = 160
+slayer_xp = 120.0
+categories = ["tz_haar"]
+respawn_delay = 50
+examine = "Doesn't look very social."
+
+[tz_haar_hur]
+id = 2598
+hitpoints = 800
+att = 60
+str = 60
+def = 60
+mage = 80
+attack_speed = 5
+style = "crush"
+max_hit_melee = 70
+slayer_xp = 80.0
+categories = ["tz_haar"]
+respawn_delay = 50
+examine = "Looks like a craftsman of some kind."
+
+[tz_haar_ket_level_149]
+id = 2610
+hitpoints = 1400
+att = 120
+str = 140
+def = 120
+mage = 40
+style = "crush"
+max_hit_melee = 150
+slayer_xp = 140.0
+categories = ["tz_haar"]
+respawn_delay = 50
+examine = "Must be a guard or something."
+
+[tz_haar_xil_sword]
+id = 2604
+hitpoints = 1200
+att = 140
+str = 100
+def = 100
+mage = 40
+range = 120
+style = "crush"
+max_hit_melee = 110
+slayer_xp = 120.0
+categories = ["tz_haar"]
+respawn_delay = 50
+examine = "Doesn't look very social."
+
+[tz_haar_xil_knife]
+id = 2604
+hitpoints = 1200
+att = 140
+str = 100
+def = 100
+mage = 40
+range = 120
+style = "crush"
+max_hit_melee = 110
+slayer_xp = 120.0
+categories = ["tz_haar"]
+respawn_delay = 50
+examine = "Doesn't look very social."

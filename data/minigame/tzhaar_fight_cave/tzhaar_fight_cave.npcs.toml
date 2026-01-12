@@ -1,26 +1,53 @@
-[ket_zek_standard]
-id = 2743
-hitpoints = 1600
-att = 320
-str = 480
-def = 240
-mage = 240
-range = 480
-style = "magic"
-style = "stab"
-max_hit_magic = 490
-max_hit_melee = 540
-hunt_mode = "cowardly"
-slayer_xp = 160.0
+[tz_kih]
+id = 2734
+hitpoints = 100
+att = 20
+str = 30
+def = 15
+mage = 15
+range = 30
+combat_def = "tz_kih"
+slayer_xp = 10.0
 categories = ["tz_haar"]
-examine = "Good doggy-lizard-thing..."
+examine = "Some kind of bat..."
 
-[ket_zek_spawn_point]
-id = 2744
-clone = "ket_zek_standard"
+[tz_kih_spawn_point]
+clone = "tz_kih"
+id = 2735
 
-[tok_xil_fight_cave]
-id = 2631
+[tz_kek]
+id = 2736
+hitpoints = 200
+att = 40
+str = 60
+def = 30
+mage = 30
+range = 60
+combat_def = "tz_kek"
+slayer_xp = 20.0
+categories = ["tz_haar"]
+examine = "Looks like living lava..."
+
+[tz_kek_spawn_point]
+id = 2737
+clone = "tz_kek"
+
+[tz_kek_spawn]
+id = 2738
+hitpoints = 100
+att = 20
+str = 30
+def = 15
+mage = 15
+range = 30
+combat_def = "tz_kek"
+max_hit_crush = 40
+slayer_xp = 10.0
+categories = ["tz_haar"]
+examine = "Looks like living lava..."
+
+[tok_xil]
+id = 2739
 hitpoints = 400
 att = 80
 str = 120
@@ -35,144 +62,43 @@ slayer_xp = 40.0
 categories = ["tz_haar"]
 examine = "I don't like the look of those spines..."
 
-[tok_xil_fight_pit]
-id = 2632
-clone = "tok_xil_fight_cave"
+[tok_xil_spawn_point]
+id = 2740
+clone = "tok_xil"
 
-[tok_xil_level_135]
-id = 3592
-hitpoints = 600
-att = 120
-str = 180
-def = 90
-mage = 90
-range = 180
-style = "crush"
-max_hit_melee = 190
-hunt_mode = "cowardly"
-examine = "I don't like the look of those spines..."
-
-[tz_kek_level_45]
-id = 2629
-hitpoints = 200
-att = 40
-str = 60
-def = 30
-mage = 30
-range = 60
-style = "crush"
-max_hit_melee = 70
-hunt_mode = "cowardly"
-slayer_xp = 20.0
-categories = ["tz_haar"]
-examine = "Looks like living lava..."
-
-
-[tz_kek_level_22]
-id = 2738
-hitpoints = 100
-att = 20
-str = 30
-def = 15
-mage = 15
-range = 30
-style = "crush"
-max_hit_melee = 40
-hunt_mode = "cowardly"
-slayer_xp = 10.0
-categories = ["tz_haar"]
-examine = "Looks like living lava..."
-
-[tz_kih]
-id = 2627 # 2628,2734,2735,7362
-hitpoints = 100
-att = 20
-str = 30
-def = 15
-mage = 15
-range = 30
-style = "stab"
-max_hit_melee = 40
-hunt_mode = "cowardly"
-slayer_xp = 10.0
-categories = ["tz_haar"]
-examine = "Some kind of bat..."
-
-[tz_haar_hur]
-id = 2598
+[yt_mej_kot]
+id = 2741
 hitpoints = 800
-att = 60
-str = 60
-def = 60
-mage = 80
-attack_speed = 5
-style = "crush"
-max_hit_melee = 70
+att = 160
+str = 240
+def = 120
+mage = 120
+range = 240
+combat_def = "yt_mej_kot"
 slayer_xp = 80.0
 categories = ["tz_haar"]
-respawn_delay = 50
-examine = "Looks like a craftsman of some kind."
+examine = "Holy reptile..."
 
-[tz_haar_ket_level_149]
-id = 2610
-hitpoints = 1400
-att = 120
-str = 140
-def = 120
-mage = 40
-style = "crush"
-max_hit_melee = 150
-slayer_xp = 140.0
-categories = ["tz_haar"]
-respawn_delay = 50
-examine = "Must be a guard or something."
+[yt_mej_kot_spawn_point]
+id = 2742
+clone = "yt_mej_kot"
 
-[tz_haar_xil_sword]
-id = 2604
-hitpoints = 1200
-att = 140
-str = 100
-def = 100
-mage = 40
-range = 120
-style = "crush"
-max_hit_melee = 110
-slayer_xp = 120.0
+[ket_zek]
+id = 2743
+hitpoints = 1600
+att = 320
+str = 480
+def = 240
+mage = 240
+range = 480
+combat_def = "ket_zek"
+slayer_xp = 160.0
 categories = ["tz_haar"]
-respawn_delay = 50
-examine = "Doesn't look very social."
+examine = "Good doggy-lizard-thing..."
 
-[tz_haar_xil_knife]
-id = 2604
-hitpoints = 1200
-att = 140
-str = 100
-def = 100
-mage = 40
-range = 120
-style = "crush"
-max_hit_melee = 110
-slayer_xp = 120.0
-categories = ["tz_haar"]
-respawn_delay = 50
-examine = "Doesn't look very social."
-
-[tz_haar_xil_ring]
-id = 2604
-hitpoints = 1200
-att = 140
-str = 100
-def = 100
-mage = 40
-range = 120
-style = "crush"
-style = "range"
-max_hit_crush = 110
-max_hit_range = 160
-slayer_xp = 120.0
-categories = ["tz_haar"]
-respawn_delay = 50
-examine = "Doesn't look very social."
+[ket_zek_spawn_point]
+id = 2744
+clone = "ket_zek"
 
 [tz_tok_jad]
 id = 2745
@@ -182,21 +108,13 @@ str = 960
 def = 480
 mage = 480
 range = 960
-attack_speed = 8
-style = "stab"
-style = "magic"
-style = "range"
-max_hit_melee = 970
-max_hit_range = 970
-max_hit_magic = 950
-hunt_mode = "cowardly"
+combat_def = "tz_tok_jad"
 slayer_xp = 25250.0
 categories = ["tz_haar"]
 aka = ["jad"]
 examine = "This is going to hurt..."
 
-
-[yt_hur_kot_level_108]
+[yt_hur_kot]
 id = 2746
 hitpoints = 600
 att = 140
@@ -204,38 +122,7 @@ str = 100
 def = 60
 mage = 120
 range = 120
-style = "crush"
-max_hit_melee = 140
+combat_def = "yt_hur_kot"
 slayer_xp = 60.0
 categories = ["tz_haar"]
 examine = "Mini menace."
-
-[yt_mej_kot_standard]
-id = 2741
-hitpoints = 800
-att = 160
-str = 240
-def = 120
-mage = 120
-range = 240
-style = "crush"
-max_hit_melee = 250
-hunt_mode = "cowardly"
-slayer_xp = 80.0
-categories = ["tz_haar"]
-examine = "Holy reptile..."
-
-[yt_mej_kot_spawn_point]
-id = 2742
-hitpoints = 800
-att = 160
-str = 240
-def = 120
-mage = 120
-range = 240
-style = "crush"
-max_hit_melee = 250
-hunt_mode = "cowardly"
-slayer_xp = 80.0
-categories = ["tz_haar"]
-examine = "Holy reptile..."

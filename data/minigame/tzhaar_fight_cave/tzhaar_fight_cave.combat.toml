@@ -1,0 +1,62 @@
+[tz_kih]
+
+[tz_kih.melee]
+range = 1
+target_hit = { offense = "stab", max = 40 }
+
+[tz_kek]
+
+[tz_kek.melee]
+range = 1
+target_hit = { offense = "crush", max = 70 }
+
+[tok_xil]
+
+[tok_xil.melee]
+range = 1
+target_hit = { offense = "crush", max = 130 }
+
+[tok_xil.range]
+range = 10
+target_hit = { offense = "range", max = 140 }
+
+[yt_mej_kot]
+
+[yt_mej_kot.melee]
+range = 1
+target_hit = { offense = "crush", max = 250 }
+
+[yt_mej_kot.magic]
+range = 10
+target_hit = { offense = "magic", max = 250 }
+
+[ket_zek]
+
+[ket_zek.melee]
+range = 1
+target_hit = { offense = "stab", max = 540 }
+
+[ket_zek.magic]
+range = 10
+target_hit = { offense = "magic", max = 490 }
+
+[tz_tok_jad]
+attack_speed = 8
+
+[tz_tok_jad.melee]
+range = 1
+target_hit = { offense = "stab", max = 970 }
+
+[tz_tok_jad.range]
+range = 10
+target_hit = { offense = "range", max = 970 }
+
+[tz_tok_jad.magic]
+range = 10
+target_hit = { offense = "magic", max = 950 }
+
+[yt_hur_kot]
+
+[yt_hur_kot.melee]
+range = 1
+target_hit = { offense = "crush", max = 140 }
