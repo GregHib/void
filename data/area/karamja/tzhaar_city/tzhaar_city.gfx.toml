@@ -1,0 +1,9 @@
+[tzhaar_magic_attack_old]
+id = 439
+
+[tzhaar_magic_hit]
+id = 446
+
+[tzhaar_magic_travel]
+id = 445
+curve = 15

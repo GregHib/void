@@ -1,180 +1,214 @@
-[tz_haar_mej_tzhaar_city]
+[tzhaar_mej]
 id = 2591
 hitpoints = 1000
 att = 80
 str = 80
 def = 80
 mage = 120
-attack_speed = 5
-style = "crush"
-max_hit_magic = 130
-max_hit_melee = 90
+hunt_mode = "tzhaar_hunter"
+hunt_range = 6
+combat_def = "tzhaar_mej"
 slayer_xp = 100.0
-categories = ["tz_haar"]
+categories = ["tzhaar"]
 respawn_delay = 50
-drop_table = "tz_haar_mej"
+drop_table = "tzhaar_mej"
 examine = "Appears to be some kind of mystic."
 
-[tz_haar_mej_tzhaar_city_2]
+[tzhaar_mej_horns]
 id = 2592
-clone = "tz_haar_mej_tzhaar_city"
+clone = "tzhaar_mej"
 
-[tz_haar_mej_tzhaar_city_3]
+[tzhaar_mej_horn]
 id = 2594
-clone = "tz_haar_mej_tzhaar_city"
+clone = "tzhaar_mej"
 
-[tz_haar_mej_tzhaar_city_4]
+[tzhaar_mej_spikes]
 id = 2595
-clone = "tz_haar_mej_tzhaar_city"
+clone = "tzhaar_mej"
 
-[tz_haar_mej_tzhaar_city_5]
+[tzhaar_mej_horn_spikes]
 id = 2596
-clone = "tz_haar_mej_tzhaar_city"
+clone = "tzhaar_mej"
 
-[tz_haar_mej_tzhaar_city_6]
+[tzhaar_mej_tusks]
 id = 2597
-clone = "tz_haar_mej_tzhaar_city"
+clone = "tzhaar_mej"
 
-[tz_haar_hur_tzhaar_city]
-id = 2600
+[tzhaar_hur]
+id = 2598
 hitpoints = 800
 att = 60
 str = 60
 def = 60
 mage = 80
-attack_speed = 5
-style = "crush"
-max_hit_melee = 70
+combat_def = "tzhaar_hur"
 slayer_xp = 80.0
-categories = ["tz_haar"]
+categories = ["tzhaar"]
 respawn_delay = 50
-drop_table = "tz_haar_hur"
+drop_table = "tzhaar_hur"
 examine = "Looks like a craftsman of some kind."
 
-[tz_haar_hur_tzhaar_city_2]
+[tzhaar_hur_angry]
+id = 2599
+clone = "tzhaar_hur"
+
+[tzhaar_hur_spikes]
+id = 2600
+clone = "tzhaar_hur"
+
+[tzhaar_hur_2]
 id = 2601
-clone = "tz_haar_hur_tzhaar_city"
+clone = "tzhaar_hur"
 
-[tz_haar_hur_tzhaar_city_3]
+[tzhaar_hur_3]
 id = 2602
-clone = "tz_haar_hur_tzhaar_city"
+clone = "tzhaar_hur"
 
-[tz_haar_hur_tzhaar_city_4]
+[tzhaar_hur_4]
 id = 2603
-clone = "tz_haar_hur_tzhaar_city"
+clone = "tzhaar_hur"
 
-[tz_haar_xil_tzhaar_city]
-id = 2605
+[tzhaar_xil_knives]
+id = 2604
 hitpoints = 1200
 att = 140
 str = 100
 def = 100
 mage = 40
 range = 120
-style = "crush"
-max_hit_melee = 110
+combat_def = "tzhaar_xil"
+max_hit_crush = 110
 slayer_xp = 120.0
-categories = ["tz_haar"]
+categories = ["tzhaar"]
 respawn_delay = 50
-drop_table = "tz_haar_xil"
+drop_table = "tzhaar_xil"
 examine = "Doesn't look very social."
 
-[tz_haar_xil_tzhaar_city_2]
+[tzhaar_xil_swords]
+clone = "tzhaar_xil_knives"
+id = 2605
+
+[tzhaar_xil_ring]
+clone = "tzhaar_xil_swords"
 id = 2606
-clone = "tz_haar_xil_tzhaar_city"
+combat_def = "tzhaar_xil_rings"
 
-[tz_haar_xil_tzhaar_city_3]
+[tzhaar_xil_knife]
 id = 2607
-clone = "tz_haar_xil_tzhaar_city"
+clone = "tzhaar_xil_swords"
 
-[tz_haar_xil_tzhaar_city_4]
+[tzhaar_xil_swords2]
 id = 2608
-clone = "tz_haar_xil_tzhaar_city"
+clone = "tzhaar_xil_swords"
 
-[tz_haar_xil_tzhaar_city_5]
+[tzhaar_xil_ring2]
 id = 2609
-clone = "tz_haar_xil_tzhaar_city"
+clone = "tzhaar_xil_ring"
 
-[tz_haar_ket_tzhaar_city]
+[tzhaar_ket]
 id = 2611
 hitpoints = 1400
 att = 120
 str = 140
 def = 120
 mage = 40
-style = "crush"
-max_hit_melee = 150
+combat_def = "tzhaar_ket"
 slayer_xp = 140.0
-categories = ["tz_haar"]
+categories = ["tzhaar"]
 respawn_delay = 50
+drop_table = "tzhaar_ket"
 examine = "Must be a guard or something."
 
-[tz_haar_ket_tzhaar_city_2]
+[tzhaar_ket_shield]
+id = 2612
+hitpoints = 2000
+att = 200
+str = 180
+def = 190
+mage = 40
+combat_def = "tzhaar_ket"
+max_hit_crush = 190
+slayer_xp = 200.0
+categories = ["tzhaar"]
+respawn_delay = 50
+drop_table = "tzhaar_ket_high"
+examine = "One of the stronger guards of Mor Ul Rek."
+
+[tzhaar_ket_shield_maul]
+id = 2613
+clone = "tzhaar_ket_shield"
+
+[tzhaar_ket_maul_mace]
 id = 2614
-clone = "tz_haar_ket_tzhaar_city"
+clone = "tzhaar_ket"
 
-[tz_haar_ket_tzhaar_city_3]
+[tzhaar_ket_maul]
 id = 2615
-clone = "tz_haar_ket_tzhaar_city"
+clone = "tzhaar_ket"
 
-[tz_haar_ket_tzhaar_city_4]
+[tzhaar_ket_spike_maul_mace]
 id = 2616
-clone = "tz_haar_ket_tzhaar_city"
+clone = "tzhaar_ket"
 
-[tz_haar_mej_jal_tzhaar_city]
+[tzhaar_mej_jal]
 id = 2617
+large_head = true
 examine = "This TzHaar-Mej runs the Fight Cave."
 
-[tz_haar_hur_tel_tzhaar_city]
+[tzhaar_hur_tel]
 id = 2620
+shop = "tzhaar_hur_tels_equipment_store"
+large_head = true
 examine = "It stocks obsidian weapons."
 
-[tz_haar_hur_lek_tzhaar_city]
+[tzhaar_hur_lek]
 id = 2622
+shop = "tzhaar_hur_leks_ore_and_gem_store"
+large_head = true
 examine = "It stocks ores and gems."
 
-[tz_haar_ket_tzhaar_city_5]
+[tzhaar_ket_5]
 id = 2624
 
-[tz_haar_ket_tzhaar_city_6]
+[tzhaar_ket_6]
 id = 2625
 
-[tz_haar_mej_malk_tzhaar_city]
+[tzhaar_mej_malk]
 id = 7746
 examine = "It looks concerned."
 
-[tz_haar_xil_tog_tzhaar_city]
+[tzhaar_xil_tog]
 id = 7747
 examine = "It looks upset."
 
-[tz_haar_hur_frok_tzhaar_city]
+[tzhaar_hur_frok]
 id = 7748
 examine = "It looks worried."
 
-[tz_haar_ket_grol_tzhaar_city]
+[tzhaar_ket_grol]
 id = 7749
 examine = "It is guarding a crack in the wall."
 
-[tz_haar_ket_rok_tzhaar_city]
+[tzhaar_ket_rok]
 id = 7750
 examine = "It guards the mine entrance."
 
-[tz_haar_ket_lurk_tzhaar_caves]
+[tzhaar_ket_lurk]
 id = 7751
 examine = "It guards the miners."
 
-[tz_haar_mej_lor_tzhaar_caves]
+[tzhaar_mej_lor]
 id = 7752
 examine = "A TzHaar librarian."
 
-[tz_haar_mej_tzhaar_caves]
+[tzhaar_mej_tzhaar_caves]
 id = 7753
 examine = "It's busy reading."
 
-[tz_haar_hur_tzhaar_caves]
+[tzhaar_hur_tzhaar_caves]
 id = 7754
 
-[tz_haar_xil_tzhaar_caves]
+[tzhaar_xil_tzhaar_caves]
 id = 7755
 examine = "It's probably just looking at the pictures."
 
@@ -182,49 +216,49 @@ examine = "It's probably just looking at the pictures."
 id = 7756
 examine = "A TzHaar-Hur stamping stone tablets."
 
-[tz_haar_hur_brekt_tzhaar_caves]
+[tzhaar_hur_brekt_tzhaar_caves]
 id = 7757
 examine = "A senior citizen TzHaar-Hur."
 
-[tz_haar_hur_brekt_tzhaar_caves_2]
+[tzhaar_hur_brekt_tzhaar_caves_2]
 id = 7758
 
-[tz_haar_ket_jok_tzhaar_caves]
+[tzhaar_ket_jok_tzhaar_caves]
 id = 7759
 examine = "A senior citizen TzHaar-Ket."
 
-[tz_haar_ket_jok_tzhaar_caves_2]
+[tzhaar_ket_jok_tzhaar_caves_2]
 id = 7760
 
-[tz_haar_xil_mor_tzhaar_caves]
+[tzhaar_xil_mor_tzhaar_caves]
 id = 7761
 examine = "A senior citizen TzHaar-Xil."
 
-[tz_haar_xil_mor_tzhaar_caves_2]
+[tzhaar_xil_mor_tzhaar_caves_2]
 id = 7762
 
-[tz_haar_mej_kol_tzhaar_caves]
+[tzhaar_mej_kol_tzhaar_caves]
 id = 7763
 examine = "A senior citizen TzHaar-Mej."
 
-[tz_haar_mej_kol_tzhaar_caves_2]
+[tzhaar_mej_kol_tzhaar_caves_2]
 id = 7764
 
-[tz_haar_hur_klag_tzhaar_caves]
+[tzhaar_hur_klag_tzhaar_caves]
 id = 7765
 examine = "A senior citizen TzHaar-Hur."
 
-[tz_haar_hur_klag_tzhaar_caves_2]
+[tzhaar_hur_klag_tzhaar_caves_2]
 id = 7766
 examine = "A senior citizen TzHaar-Hur."
 
-[tz_haar_hur_tzhaar_caves_2]
+[tzhaar_hur_tzhaar_caves_2]
 id = 7767
 
-[tz_haar_hur_tzhaar_caves_3]
+[tzhaar_hur_tzhaar_caves_3]
 id = 7768
 
-[tz_haar_hur_tzhaar_caves_4]
+[tzhaar_hur_tzhaar_caves_4]
 id = 7769
 
 [lava_monster_tzhaar_caves]
@@ -235,84 +269,25 @@ examine = "A monster made of magma."
 id = 7773
 examine = "A monster like many others, but on fire."
 
-[tzHaar_mej_roh]
+[tzhaar_mej_roh]
 id = 2623
+shop = "tzhaar_mej_rohs_rune_store"
+large_head = true
 
-[tzHaar_mej_zuh]
+[tzhaar_ket_zuh]
 id = 2619
+large_head = true
 
-[tz_haar_xil_ring]
-id = 2604
-hitpoints = 1200
-att = 140
-str = 100
-def = 100
-mage = 40
-range = 120
-style = "crush"
-style = "range"
-max_hit_crush = 110
-max_hit_range = 160
-slayer_xp = 120.0
-categories = ["tz_haar"]
-respawn_delay = 50
-examine = "Doesn't look very social."
-
-[tz_haar_hur]
-id = 2598
-hitpoints = 800
-att = 60
-str = 60
-def = 60
-mage = 80
-attack_speed = 5
-style = "crush"
-max_hit_melee = 70
-slayer_xp = 80.0
-categories = ["tz_haar"]
-respawn_delay = 50
-examine = "Looks like a craftsman of some kind."
-
-[tz_haar_ket_level_149]
+[tzhaar_ket_level_149]
 id = 2610
 hitpoints = 1400
 att = 120
 str = 140
 def = 120
 mage = 40
-style = "crush"
-max_hit_melee = 150
+combat_def = "tzhar_ket"
+max_hit_crush = 150
 slayer_xp = 140.0
-categories = ["tz_haar"]
+categories = ["tzhaar"]
 respawn_delay = 50
 examine = "Must be a guard or something."
-
-[tz_haar_xil_sword]
-id = 2604
-hitpoints = 1200
-att = 140
-str = 100
-def = 100
-mage = 40
-range = 120
-style = "crush"
-max_hit_melee = 110
-slayer_xp = 120.0
-categories = ["tz_haar"]
-respawn_delay = 50
-examine = "Doesn't look very social."
-
-[tz_haar_xil_knife]
-id = 2604
-hitpoints = 1200
-att = 140
-str = 100
-def = 100
-mage = 40
-range = 120
-style = "crush"
-max_hit_melee = 110
-slayer_xp = 120.0
-categories = ["tz_haar"]
-respawn_delay = 50
-examine = "Doesn't look very social."

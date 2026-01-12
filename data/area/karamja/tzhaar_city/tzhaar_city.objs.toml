@@ -1,0 +1,14 @@
+[lava_forge]
+id = 9390
+
+[cave_entrance_library]
+id = 31292
+
+[cave_entrance_fight_cave]
+id = 9356
+
+[cave_entrance_tzhaar_city]
+id = 31284
+
+[cave_exit_tzhaar_city]
+id = 9359

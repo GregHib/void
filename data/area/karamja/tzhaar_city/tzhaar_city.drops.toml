@@ -1,4 +1,4 @@
-[tz_haar_hur_drop_table]
+[tzhaar_hur_drop_table]
 roll = 512
 drops = [
     { id = "uncut_sapphire", chance = 2 },
@@ -14,7 +14,7 @@ drops = [
     { id = "nothing", chance = 32 },
 ]
 
-[tz_haar_mej_drop_table]
+[tzhaar_mej_drop_table]
 roll = 4096
 drops = [
     { id = "obsidian_cape" },
@@ -32,7 +32,7 @@ drops = [
     { id = "uncut_diamond", chance = 8 },
 ]
 
-[tz_haar_xil_drop_table]
+[tzhaar_xil_drop_table]
 roll = 2048
 drops = [
     { id = "toktz_xil_ul", min = 10, max = 29, chance = 4 },
@@ -45,4 +45,33 @@ drops = [
     { id = "uncut_ruby", chance = 32 },
     { id = "uncut_diamond", chance = 8 },
     { id = "nothing", chance = 778 },
+]
+
+[tzhaar_ket_drop_table]
+roll = 2048
+drops = [
+    { id = "tzhaar_ket_om", chance = 4 },
+    { id = "toktz_ket_xil", chance = 4 },
+    { id = "obsidian_cape", chance = 4 },
+    { id = "uncut_sapphire", chance = 64 },
+    { id = "uncut_emerald", chance = 32 },
+    { id = "uncut_ruby", chance = 16 },
+    { id = "uncut_diamond", chance = 4 },
+    { id = "nothing", chance = 1280 },
+    { id = "tokkul", min = 1, max = 64, chance = 640 },
+]
+
+[tzhaar_ket_high_drop_table]
+roll = 2048
+drops = [
+    { id = "tzhaar_ket_om", chance = 4 },
+    { id = "toktz_ket_xil", chance = 4 },
+    { id = "obsidian_cape", chance = 4 },
+    { id = "uncut_sapphire", chance = 64 },
+    { id = "uncut_emerald", chance = 32 },
+    { id = "uncut_ruby", chance = 24 },
+    { id = "uncut_diamond", chance = 12 },
+    { id = "onyx_bolt_tips", min = 1, max = 4, chance = 40 },
+    { id = "tokkul", min = 20, max = 83, chance = 768 },
+    { id = "nothing", chance = 1096 },
 ]

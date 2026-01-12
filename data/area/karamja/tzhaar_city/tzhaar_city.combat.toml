@@ -1,0 +1,63 @@
+[tzhaar_ket]
+attack_speed = 4
+defend_anim = "tzhaar_defend"
+death_anim = "tzhaar_death"
+defend_sound = "tzhaar_ket_defend"
+death_sound = "tzhaar_ket_death"
+
+[tzhaar_ket.melee]
+anim = "tzhaar_attack"
+target_sound = "tzhaar_ket_attack_club"
+target_hit = { offense = "crush", max = 150 }
+
+[tzhaar_xil]
+clone = "tzhaar_ket"
+defend_sound = "tzhaar_xil_defend"
+death_sound = "tzhaar_xil_death"
+
+[tzhaar_xil.melee]
+clone = "tzhaar_ket.melee"
+target_sound = "tzhaar_xil_attack_multiblade"
+
+[tzhaar_xil_rings]
+clone = "tzhaar_ket"
+
+[tzhaar_xil_rings.melee]
+clone = "tzhaar_ket.melee"
+target_hit = { offense = "crush", max = 110 }
+
+[tzhaar_xil_rings.ranged]
+anim = "tzhaar_attack"
+projectile = "toktz_xil_ul"
+target_hit = { offense = "range", max = 160 }
+impact_sound = "axe_throw"
+
+[tzhaar_hur]
+clone = "tzhaar_ket"
+attack_speed = 5
+defend_sound = "tzhaar_hur_defend"
+death_sound = "tzhaar_hur_death"
+
+[tzhaar_hur.melee]
+clone = "tzhaar_ket.melee"
+target_sound = "tzhaar_hur_attack"
+target_hit = { offense = "crush", max = 70 }
+
+[tzhaar_mej]
+clone = "tzhaar_ket"
+attack_speed = 5
+defend_sound = "tzhaar_mej_defend"
+death_sound = "tzhaar_mej_death"
+
+[tzhaar_mej.melee]
+clone = "tzhaar_ket.melee"
+target_sound = "tzhaar_mej_attack_staff"
+target_hit = { offense = "crush", max = 90 }
+
+[tzhaar_mej.magic]
+anim = "tzhaar_mej_attack"
+projectile = "tzhaar_magic_travel"
+target_hit = { offense = "magic", max = 130 }
+impact_gfx = "tzhaar_magic_hit"
+miss_gfx = "giant_splash"
+miss_sound = "spell_splash"

@@ -1,30 +1,3 @@
-[tzhaar_defend]
-id = 2605
-
-[tzhaar_mej_defend]
-id = 2606
-
-[tzhaar_death]
-id = 2607
-
-[tzhaar_mej_death]
-id = 2608
-
-[tzhaar_punch]
-id = 2609
-
-[tzhaar_attack]
-id = 2610
-
-[tzhaar_ring_throw]
-id = 2611
-
-[tzhaar_mej_staff_attack]
-id = 2612
-
-[tzhaar_mej_magic_attack]
-id = 2613
-
 [firebat_death]
 id = 2620
 
@@ -33,3 +6,51 @@ id = 2621
 
 [firebat_defend]
 id = 2622
+
+[tzhaar_mej_attack]
+id = 9260
+
+[tzhaar_attack]
+id = 9286
+
+[tzhaar_defend]
+id = 9287
+
+[tzhaar_death]
+id = 9288
+
+[tzhaar_death_one_arm2]
+id = 9289
+
+[tzhaar_death_one_arm3]
+id = 9290
+
+[tzhaar_death_one_arm4]
+id = 9291
+
+[tzhaar_attack_large_arm]
+id = 9292
+
+[tzhaar_attack_large_arm2]
+id = 9293
+
+[tzhaar_throne_sit]
+id = 9299
+
+[tzhaar_bongos]
+id = 9311
+
+[tzhaar_stomp_rage]
+id = 9312
+
+[tzhaar_attack_two_arms]
+id = 9313
+
+[tzhaar_attack_two_arms2]
+id = 9314
+
+[tzhaar_attack_2]
+id = 9345
+
+[tzhaar_stick_out_arm]
+id = 9349

@@ -1,0 +1,9 @@
+[cave_exit_tzhaar_city]
+option = "Enter"
+tile = { x = 2479, y = 5176 }
+to = { x = 2866, y = 9571 }
+
+[cave_entrance_tzhaar_city]
+option = "Enter"
+tile = { x = 2867, y = 9570 }
+to = { x = 2480, y = 5175 }
