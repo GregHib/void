@@ -65,6 +65,8 @@ data class Cuboid(
         return list
     }
 
+    override fun offset(delta: Delta) = Cuboid(minX + delta.x, minY + delta.y, maxX + delta.x, maxY + delta.y, minLevel + delta.level, maxLevel + delta.level)
+
     fun toRectangles(): List<Rectangle> = (minLevel..maxLevel).map { Rectangle(minX, minY, maxX, maxY) }
 
     override fun contains(x: Int, y: Int, level: Int): Boolean = level in minLevel..maxLevel && x in minX..maxX && y in minY..maxY
