@@ -1,12 +1,3 @@
-[firebat_death]
-id = 2620
-
-[firebat_attack]
-id = 2621
-
-[firebat_defend]
-id = 2622
-
 [tzhaar_mej_attack]
 id = 9260
 

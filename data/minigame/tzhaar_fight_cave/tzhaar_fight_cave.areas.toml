@@ -2,3 +2,24 @@
 x = [2368, 2559]
 y = [5056, 5183]
 tags = ["multi_combat"]
+
+[tzhaar_fight_cave_north_west]
+x = [2378, 2385]
+y = [5109, 5102]
+
+[tzhaar_fight_cave_south_west]
+x = [2379, 2385]
+y = [5076, 5070]
+
+[tzhaar_fight_cave_south]
+x = [2402, 2408]
+y = [5076, 5070]
+
+[tzhaar_fight_cave_south_east]
+x = [2416, 2422]
+y = [5086, 5080]
+
+[tzhaar_fight_cave_none]
+x = [2397, 2403]
+y = [5091, 5085]
+

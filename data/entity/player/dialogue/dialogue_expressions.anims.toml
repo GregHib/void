@@ -663,3 +663,18 @@ id = 7178
 
 [expression_child_shock]
 id = 7180
+
+[expression_tzhaar_happy]
+id = 9315
+
+[expression_tzhaar_quiz]
+id = 9316
+
+[expression_tzhaar_confused]
+id = 9317
+
+[expression_tzhaar_neutral]
+id = 9318
+
+[expression_tzhaar_sad]
+id = 9319

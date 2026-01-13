@@ -1,0 +1,41 @@
+[tz_kih_attack]
+id = 291
+
+[tz_kih_defend]
+id = 296
+
+[tz_kih_death]
+id = 295
+
+[tz_kek_attack]
+id = 595
+
+[tz_kek_defend]
+id = 597
+
+[tz_kek_death]
+id = 596
+
+[tok_xil_attack]
+id = 598
+
+[tok_xil_death]
+id = 599
+
+[tok_xil_defend]
+id = 600
+
+[tok_xil_shoot]
+id = 601
+
+[yt_mej_kot_attack]
+id = 608
+
+[yt_mej_kot_death]
+id = 609
+
+[yt_mej_kot_defend]
+id = 610
+
+[self_heal]
+id = 167

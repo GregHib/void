@@ -1115,7 +1115,7 @@ rotation_14 = ["south", "north_west"]
 rotation_15 = ["south_east", "south"]
 
 [wave_63]
-npcs = ["tz_tok_jad"]
+npcs = ["tztok_jad"]
 rotation_1 = ["south_west"]
 rotation_2 = ["south_east"]
 rotation_3 = ["south_west"]

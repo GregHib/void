@@ -54,9 +54,7 @@ str = 120
 def = 60
 mage = 60
 range = 120
-style = "crush"
-max_hit_melee = 130
-max_hit_range = 140
+combat_def = "tok_xil"
 hunt_mode = "cowardly"
 slayer_xp = 40.0
 categories = ["tz_haar"]
@@ -100,7 +98,7 @@ examine = "Good doggy-lizard-thing..."
 id = 2744
 clone = "ket_zek"
 
-[tz_tok_jad]
+[tztok_jad]
 id = 2745
 hitpoints = 2500
 att = 640
@@ -108,7 +106,7 @@ str = 960
 def = 480
 mage = 480
 range = 960
-combat_def = "tz_tok_jad"
+combat_def = "tztok_jad"
 slayer_xp = 25250.0
 categories = ["tz_haar"]
 aka = ["jad"]

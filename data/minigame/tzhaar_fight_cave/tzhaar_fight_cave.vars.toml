@@ -1,0 +1,11 @@
+[fight_cave_x]
+format = "int"
+persist = true
+
+[fight_cave_y]
+format = "int"
+persist = true
+
+[fight_cave_rotation]
+format = "int"
+persist = true

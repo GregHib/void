@@ -7,6 +7,9 @@ id = 31292
 [cave_entrance_fight_cave]
 id = 9356
 
+[cave_exit_fight_cave]
+id = 9357
+
 [cave_entrance_tzhaar_city]
 id = 31284
 

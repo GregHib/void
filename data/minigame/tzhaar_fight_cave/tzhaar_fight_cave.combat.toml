@@ -1,62 +1,118 @@
 [tz_kih]
+attack_speed = 4
+defend_anim = "tz_kih_defend"
+death_anim = "tz_kih_death"
+defend_sound = "tz_kih_defend"
+death_sound = "tz_kih_death"
 
 [tz_kih.melee]
 range = 1
+anim = "tz_kih_attack"
+target_sound = "tz_kih_attack"
 target_hit = { offense = "stab", max = 40 }
+impact_drain = { skill = "prayer", amount = 1 }
 
 [tz_kek]
+attack_speed = 4
+defend_anim = "tz_kek_defend"
+death_anim = "tz_kek_death"
+defend_sound = "tz_kek_defend"
+death_sound = "tz_kek_death"
 
 [tz_kek.melee]
 range = 1
+anim = "tz_kek_attack"
+target_sound = "tz_kek_attack"
 target_hit = { offense = "crush", max = 70 }
 
 [tok_xil]
+attack_speed = 4
+defend_anim = "tok_xil_defend"
+death_anim = "tok_xil_death"
+defend_sound = "tok_xil_defend"
+death_sound = "tok_xil_death"
 
 [tok_xil.melee]
 range = 1
+anim = "tok_xil_attack"
+target_sound = "tok_xil_attack"
 target_hit = { offense = "crush", max = 130 }
 
 [tok_xil.range]
 range = 10
+anim = "tok_xil_shoot"
+target_sound = { id = "tok_xil_shoot", delay = 15 }
+#projectile = "" TODO Tile(23, 12).shoot(tzhaar_spine_attack, sourceIndex = 0, targetIndex = -554, curve = 16, sizeOffset = 32, startTime = 32, endTime = 160, startHeight = 256, endHeight = 124, sourceIndex = 0, targetIndex = -554) // 443?
 target_hit = { offense = "range", max = 140 }
 
 [yt_mej_kot]
+attack_speed = 4
+defend_anim = "yt_mej_kot_defend"
+death_anim = "yt_mej_kot_death"
+defend_sound = "yt_mej_kot_defend"
+death_sound = "yt_mej_kot_death"
 
 [yt_mej_kot.melee]
 range = 1
+anim = "yt_mej_kot_attack"
+target_sound = "yt_mej_kot_attack"
 target_hit = { offense = "crush", max = 250 }
 
-[yt_mej_kot.magic]
-range = 10
-target_hit = { offense = "magic", max = 250 }
+[yt_mej_kot.heal]
+condition = "weakened_nearby_monsters"
+range = 1
+anim = "yt_mej_kot_heal"
+target_sound = "self_heal"
 
 [ket_zek]
+attack_speed = 4
+defend_anim = "ket_zek_defend"
+death_anim = "ket_zek_death"
+# TODO sounds
 
 [ket_zek.melee]
 range = 1
+anim = "ket_zek_attack"
 target_hit = { offense = "stab", max = 540 }
 
 [ket_zek.magic]
 range = 10
+anim = "ket_zek_attack_magic"
+#projectile = "" TODO
 target_hit = { offense = "magic", max = 490 }
 
-[tz_tok_jad]
+[tztok_jad]
 attack_speed = 8
+defend_anim = "tztok_jad_defend"
+death_anim = "tztok_jad_death"
 
-[tz_tok_jad.melee]
+[tztok_jad.melee]
 range = 1
+anim = "tztok_jad_attack_melee"
 target_hit = { offense = "stab", max = 970 }
 
-[tz_tok_jad.range]
+[tztok_jad.range]
 range = 10
+anim = "tztok_jad_attack_range"
 target_hit = { offense = "range", max = 970 }
 
-[tz_tok_jad.magic]
+[tztok_jad.magic]
 range = 10
+anim = "tztok_jad_attack_magic"
+#projectile = "" TODO
 target_hit = { offense = "magic", max = 950 }
 
 [yt_hur_kot]
+attack_speed = 4
+defend_anim = "yt_hur_kot_defend"
+death_anim = "yt_hur_kot_death"
 
 [yt_hur_kot.melee]
 range = 1
+anim = "yt_hur_kot_attack"
 target_hit = { offense = "crush", max = 140 }
+
+[yt_hur_kot.heal]
+condition = "near_jad"
+range = 1
+anim = "yt_hur_kot_heal"

@@ -153,18 +153,21 @@ clone = "tzhaar_ket"
 [tzhaar_mej_jal]
 id = 2617
 large_head = true
+dialogue = "tzhaar"
 examine = "This TzHaar-Mej runs the Fight Cave."
 
 [tzhaar_hur_tel]
 id = 2620
 shop = "tzhaar_hur_tels_equipment_store"
 large_head = true
+dialogue = "tzhaar"
 examine = "It stocks obsidian weapons."
 
 [tzhaar_hur_lek]
 id = 2622
 shop = "tzhaar_hur_leks_ore_and_gem_store"
 large_head = true
+dialogue = "tzhaar"
 examine = "It stocks ores and gems."
 
 [tzhaar_ket_5]
@@ -273,10 +276,12 @@ examine = "A monster like many others, but on fire."
 id = 2623
 shop = "tzhaar_mej_rohs_rune_store"
 large_head = true
+dialogue = "tzhaar"
 
 [tzhaar_ket_zuh]
 id = 2619
 large_head = true
+dialogue = "tzhaar"
 
 [tzhaar_ket_level_149]
 id = 2610
