@@ -82,6 +82,7 @@ class AccountManager(
         player.collision = collisionStrategyProvider.get(character = player)
         return true
     }
+
     /**
      * Send region load to a player
      */
@@ -107,6 +108,9 @@ class AccountManager(
         }
         if (safely && player.contains("delay")) {
             player.message("You need to wait a few moments before you can log out.")
+            return
+        }
+        if (!Despawn.logout(player)) {
             return
         }
         player["logged_out"] = true

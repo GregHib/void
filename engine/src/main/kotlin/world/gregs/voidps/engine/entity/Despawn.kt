@@ -15,6 +15,10 @@ interface Despawn {
         playerDespawns.add(handler)
     }
 
+    fun playerLogout(handler: Player.() -> Boolean) {
+        playerLogout.add(handler)
+    }
+
     fun npcDespawn(id: String = "*", handler: NPC.() -> Unit) {
         Wildcards.find(id, Wildcard.Npc) { key ->
             npcDespawns.getOrPut(key) { mutableListOf() }.add(handler)
@@ -38,11 +42,21 @@ interface Despawn {
     }
 
     companion object : AutoCloseable {
+        private val playerLogout = ObjectArrayList<(Player) -> Boolean>(2)
         private val playerDespawns = ObjectArrayList<(Player) -> Unit>(20)
         private val npcDespawns = Object2ObjectOpenHashMap<String, MutableList<(NPC) -> Unit>>(30)
         private val objectDespawns = Object2ObjectOpenHashMap<String, MutableList<(GameObject) -> Unit>>(10)
         private val floorItemDespawns = Object2ObjectOpenHashMap<String, MutableList<(FloorItem) -> Unit>>(2)
         private val worldDespawns = ObjectArrayList<() -> Unit>(2)
+
+        fun logout(player: Player): Boolean {
+            for (handler in playerLogout) {
+                if (handler(player)) {
+                    return false
+                }
+            }
+            return true
+        }
 
         fun player(player: Player) {
             for (handler in playerDespawns) {
