@@ -6,6 +6,7 @@ import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.command.*
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -25,6 +26,7 @@ class SkillCommands : Script {
     init {
         val skills = Skill.entries.map { it.name }.toSet()
         adminCommand("master", stringArg("player-name", "target player (default self)", optional = true, autofill = accounts.displayNames.keys), desc = "Set all skills to level 99", handler = ::master)
+        adminCommand("god", stringArg("insta-kill", "max hit every hit (default true)", optional = true, autofill = setOf("true", "false")), desc = "Toggle god mode", handler = ::god)
         val self = command(
             stringArg("skill-name", "the name of the skill", autofill = skills),
             intArg("level", "level to set it to"),
@@ -67,6 +69,17 @@ class SkillCommands : Script {
         target.softQueue("clear_flash", 1) {
             player.clear("skill_stat_flash")
         }
+    }
+
+    fun god(player: Player, args: List<String>) {
+        val god = args.getOrNull(0)?.toBoolean() ?: !player["god_mode", false]
+        player["god_mode"] = god
+        if (god) {
+            player["insta_kill"] = args.getOrNull(1)?.toBoolean() ?: true
+        } else {
+            player.clear("insta_kill")
+        }
+        player.message("God mode ${if (player["god_mode", false]) "enabled" else "disabled"} instant kill: ${player["insta_kill", false]}.")
     }
 
     fun reset(player: Player, args: List<String>) {

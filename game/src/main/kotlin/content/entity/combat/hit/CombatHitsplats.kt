@@ -44,7 +44,7 @@ class CombatHitsplats : Script {
                 return
             }
             var soak = 0
-            if (Settings["combat.damageSoak", true] && damage > 200) {
+            if (!source["insta_kill", false] && Settings["combat.damageSoak", true] && damage > 200) {
                 val percent = target["absorb_$type", 10] / 100.0
                 soak = floor((damage - 200) * percent).toInt()
                 damage -= soak

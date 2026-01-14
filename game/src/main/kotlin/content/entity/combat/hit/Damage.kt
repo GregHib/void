@@ -159,6 +159,11 @@ object Damage {
             source.message(message)
             logger.debug { message }
         }
+        if (target["god_mode", false]) {
+            return 0
+        } else if (source["insta_kill", false]) {
+            return 10_000
+        }
         return damage
     }
 }
