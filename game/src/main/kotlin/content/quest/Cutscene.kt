@@ -122,6 +122,11 @@ fun Player.largeInstance(): Region {
     return instance
 }
 
+/**
+ * Delta between original and instance
+ * Add to convert to instance
+ * Minus to convert to original
+ */
 fun Player.instanceOffset(): Delta {
     val id: Long = get("instance_offset") ?: return Delta.EMPTY
     return Delta(id)

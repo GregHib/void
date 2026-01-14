@@ -1,5 +1,6 @@
 [tz_kih]
 attack_speed = 4
+retreat_range = 64
 defend_anim = "tz_kih_defend"
 death_anim = "tz_kih_death"
 defend_sound = "tz_kih_defend"
@@ -14,6 +15,7 @@ impact_drain = { skill = "prayer", amount = 1 }
 
 [tz_kek]
 attack_speed = 4
+retreat_range = 64
 defend_anim = "tz_kek_defend"
 death_anim = "tz_kek_death"
 defend_sound = "tz_kek_defend"
@@ -27,6 +29,7 @@ target_hit = { offense = "crush", max = 70 }
 
 [tok_xil]
 attack_speed = 4
+retreat_range = 64
 defend_anim = "tok_xil_defend"
 death_anim = "tok_xil_death"
 defend_sound = "tok_xil_defend"
@@ -47,6 +50,7 @@ target_hit = { offense = "range", max = 140 }
 
 [yt_mej_kot]
 attack_speed = 4
+retreat_range = 64
 defend_anim = "yt_mej_kot_defend"
 death_anim = "yt_mej_kot_death"
 defend_sound = "yt_mej_kot_defend"
@@ -66,6 +70,7 @@ target_sound = "self_heal"
 
 [ket_zek]
 attack_speed = 4
+retreat_range = 64
 defend_anim = "ket_zek_defend"
 death_anim = "ket_zek_death"
 # TODO sounds
@@ -83,6 +88,7 @@ target_hit = { offense = "magic", max = 490 }
 
 [tztok_jad]
 attack_speed = 8
+retreat_range = 64
 defend_anim = "tztok_jad_defend"
 death_anim = "tztok_jad_death"
 
@@ -104,6 +110,7 @@ target_hit = { offense = "magic", max = 950 }
 
 [yt_hur_kot]
 attack_speed = 4
+retreat_range = 64
 defend_anim = "yt_hur_kot_defend"
 death_anim = "yt_hur_kot_death"
 
