@@ -92,10 +92,9 @@ class NPCDeath(
                     mode = EmptyMode
                     Spawn.npc(npc)
                 } else {
-                    World.queue("remove_npc") {
+                    World.queue("remove_npc_${npc.index}") {
                         npcs.remove(npc)
                     }
-                    Despawn.npc(npc)
                 }
             }
         }
