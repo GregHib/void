@@ -127,8 +127,9 @@ class AccountManager(
                 players.remove(player)
             }
             val offset = player.get<Long>("instance_offset")?.let { Delta(it) } ?: Delta.EMPTY
-            for (def in areaDefinitions.get(player.tile.add(offset).zone)) {
-                if (player.tile in def.area) {
+            val original = player.tile.minus(offset)
+            for (def in areaDefinitions.get(original.zone)) {
+                if (original in def.area) {
                     Moved.exit(player, def.name, def.area)
                 }
             }
