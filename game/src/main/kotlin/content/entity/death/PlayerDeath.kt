@@ -76,7 +76,9 @@ class PlayerDeath : Script {
                     dropItems(player, killer, tile, wilderness)
                 }
                 levels.clear()
-                if (onDeath.teleport) {
+                if (onDeath.teleport != null) {
+                    tele(onDeath.teleport!!)
+                } else {
                     tele(respawnTile)
                 }
                 face(Direction.SOUTH, update = false)

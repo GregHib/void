@@ -26,6 +26,7 @@ import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.network.login.protocol.encode.logout
+import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
@@ -125,7 +126,8 @@ class AccountManager(
             World.queue("logout", 1) {
                 players.remove(player)
             }
-            for (def in areaDefinitions.get(player.tile.zone)) {
+            val offset = player.get<Long>("instance_offset")?.let { Delta(it) } ?: Delta.EMPTY
+            for (def in areaDefinitions.get(player.tile.add(offset).zone)) {
                 if (player.tile in def.area) {
                     Moved.exit(player, def.name, def.area)
                 }

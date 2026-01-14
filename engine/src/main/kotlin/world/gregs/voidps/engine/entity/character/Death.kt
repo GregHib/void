@@ -5,12 +5,13 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.*
+import world.gregs.voidps.type.Tile
 
 interface Death {
 
     data class OnDeath(
         var dropItems: Boolean = true,
-        var teleport: Boolean = true,
+        var teleport: Tile? = null,
     )
 
     fun playerDeath(handler: Player.(OnDeath) -> Unit) {
