@@ -37,7 +37,7 @@ class Energy : Script {
                 return@moved
             }
             set("last_energy_drain", GameLoop.tick)
-            if (visuals.runStep != -1) {
+            if (visuals.runStep != -1 && !get("god_mode", false)) {
                 runEnergy -= getDrainAmount(this)
                 walkWhenOutOfEnergy(this)
             }
