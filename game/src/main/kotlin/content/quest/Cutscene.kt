@@ -106,10 +106,10 @@ class Cutscene(
     }
 }
 
-fun Player.smallInstance(region: Region? = null): Region {
+fun Player.smallInstance(region: Region? = null, levels: Int = 4): Region {
     val instance = Instances.small()
     if (region != null) {
-        get<DynamicZones>().copy(region, instance)
+        get<DynamicZones>().copy(region, instance, levels)
         set("instance_offset", instance.offset(region).id)
     }
     set("instance", instance.id)

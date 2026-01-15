@@ -53,9 +53,9 @@ class DynamicZones(
      * @param from The region to be copied
      * @param to The region to be replaced
      */
-    fun copy(from: Region, to: Region) {
-        val targetZones = LinkedList(to.toCuboid().toZones())
-        for (zone in from.toCuboid().toZones()) {
+    fun copy(from: Region, to: Region, levels: Int = 4) {
+        val targetZones = LinkedList(to.toCuboid(levels = levels).toZones())
+        for (zone in from.toCuboid(levels = levels).toZones()) {
             copy(zone, targetZones.poll())
         }
     }
