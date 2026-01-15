@@ -153,6 +153,7 @@ class CombatDefinitions {
                 "projectiles" -> projectiles(projectiles)
                 "projectile_origin" -> origin = when (val key = string()) {
                     "tile" -> Origin.Tile
+                    "tile_two" -> Origin.TileTwo
                     "centre" -> Origin.Centre
                     else -> throw IllegalArgumentException("Unknown projectile origin '$key'. ${exception()}")
                 }

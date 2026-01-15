@@ -3,7 +3,9 @@ package content.area.karamja.tzhaar_city
 import FakeRandom
 import WorldTest
 import content.entity.combat.hit.directHit
+import content.entity.combat.hit.hit
 import content.quest.instanceOffset
+import intEntry
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
@@ -13,6 +15,8 @@ import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerRights
+import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -53,7 +57,23 @@ class TzhaarFightCaveTest : WorldTest() {
 
     @Test
     fun `Jad spawns healers after half hp`() {
-
+        setRandom(object : FakeRandom() {
+            override fun nextBits(bitCount: Int): Int = 0
+        })
+        val player = createPlayer(Tile(2438, 5168), "JalYt")
+        player["god_mode"] = true
+        player["insta_kill"] = true
+        player.rights = PlayerRights.Admin
+        player.inventory.add("dragon_scimitar")
+        val entrance = objects[Tile(2437, 5166), "cave_entrance_fight_cave"]!!
+        player.interactObject(entrance, "Enter")
+        tick(2)
+        player.intEntry(63)
+        tick(5)
+        val jad = npcs[player.tile.regionLevel].first { it.id == "tztok_jad" }
+        jad.directHit(player, 1 + (jad.levels.getMax(Skill.Constitution) / 2))
+        tick(3)
+        assertEquals(4, npcs[player.tile.regionLevel].count { it.id == "yt_hur_kot" })
     }
 
     private fun killAll(player: Player) {

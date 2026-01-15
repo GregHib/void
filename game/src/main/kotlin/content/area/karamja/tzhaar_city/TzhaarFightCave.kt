@@ -1,7 +1,11 @@
 package content.area.karamja.tzhaar_city
 
-import content.entity.combat.Combat
+import com.github.michaelbull.logging.InlineLogger
+import content.entity.combat.hit.Damage
+import content.entity.combat.hit.damage
+import content.entity.combat.hit.hit
 import content.entity.combat.killer
+import content.entity.combat.target
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
@@ -10,13 +14,13 @@ import content.entity.player.dialogue.type.intEntry
 import content.entity.player.dialogue.type.npc
 import content.entity.player.inv.item.addOrDrop
 import content.quest.clearInstance
-import content.quest.instance
 import content.quest.instanceOffset
 import content.quest.smallInstance
-import kotlinx.coroutines.runBlocking
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.flag.CollisionFlag
+import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.close
@@ -28,23 +32,27 @@ import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.areaSound
+import world.gregs.voidps.engine.entity.character.jingle
+import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.isAdmin
-import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.AuditLog
+import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.map.collision.random
-import world.gregs.voidps.engine.map.instance.Instances
-import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.engine.queue.LogoutBehaviour
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.epochMilliseconds
 import world.gregs.voidps.engine.timer.epochSeconds
+import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
@@ -54,7 +62,6 @@ import java.util.concurrent.TimeUnit
 class TzhaarFightCave(
     val areas: AreaDefinitions,
     val npcDefinitions: NPCDefinitions,
-    val zones: DynamicZones,
     val npcs: NPCs,
     val accountManager: AccountManager,
 ) : Script {
@@ -62,15 +69,20 @@ class TzhaarFightCave(
     val centre = Tile(2400, 5088)
     val entrance = Tile(2413, 5117)
     val outside = Tile(2436, 5170)
-    val safeTile = Tile(2413, 5117)
     val region = Region(9551)
 
     val waves = TzhaarFightCaveWaves()
+
+    val logger = InlineLogger()
 
     init {
         worldSpawn {
             waves.load(it.find(Settings["spawns.fight.cave.waves"]))
         }
+
+        /*
+            Entrance/Exit
+         */
 
         objectOperate("Enter", "cave_entrance_fight_cave") {
             if (!isAdmin() && hasClock("fight_cave_cooldown", epochSeconds())) {
@@ -88,7 +100,7 @@ class TzhaarFightCave(
             if (isAdmin()) {
                 startWave = intEntry("What wave would you like to start on?").coerceIn(1..63)
             }
-            smallInstance(region)
+            smallInstance(region, 3)
             delay(1)
             val offset = instanceOffset()
             tele(entrance.add(offset))
@@ -103,12 +115,20 @@ class TzhaarFightCave(
             }
         }
 
-        npcDeath("tz_kek,tz_kek_spawn_point") {
-            val killer = killer as? Player ?: return@npcDeath
-            for (i in 0 until 2) {
-                spawn("tz_kek_spawn", tile.addX(i), killer)
+        exited("tzhaar_fight_cave_multi_area") {
+            close("tzhaar_fight_cave")
+            clearInstance()
+            if (get("logged_out", false)) {
+                val offset = tile.delta(tile.region.tile)
+                tele(region.tile.add(offset))
+            } else {
+                clear("fight_cave_wave")
             }
         }
+
+        /*
+            Waves
+         */
 
         npcDespawn("tz_kih,tz_kih_spawn_point,tz_kek_spawn,tok_xil,tok_xil_spawn_point,yt_mej_kot*,ket_zek*,tztok_jad") {
             val killer = killer as? Player ?: return@npcDespawn
@@ -117,20 +137,63 @@ class TzhaarFightCave(
             }
             val wave = killer.wave
             if (wave == 63 && id == "tztok_jad") {
-                killer.strongQueue("fight_cave_end") {
-                    killer.leave(wave, true)
-                }
+                killer.leave(wave, true)
             } else if (wave < 63) {
                 startWave(killer, wave + 1, start = false)
             }
         }
 
+        npcCombatDamage("tz_kek,tz_kek_spawn_point") { (source) ->
+            source.damage(10)
+        }
+
+        npcDeath("tz_kek,tz_kek_spawn_point") {
+            val killer = killer as? Player ?: return@npcDeath
+            spawn("tz_kek_spawn", tile, killer)
+            spawn("tz_kek_spawn", tile, killer)
+        }
+
+        npcAttack("tztok_jad", "magic") {
+            val target = target ?: return@npcAttack
+            // Note: Override for jad only, don't use elsewhere
+            strongQueue("hit_target", 3) {
+                hit(target, offensiveType = "magic", delay = 64, damage = Damage.roll(this@npcAttack, target, offensiveType = "magic", range = 0..950))
+            }
+        }
+
+        npcAttack("tztok_jad", "range") {
+            val target = target ?: return@npcAttack
+            // Note: Override for jad only, don't use elsewhere
+            strongQueue("hit_target", 3) {
+                hit(target, offensiveType = "range", delay = 64, damage = Damage.roll(this@npcAttack, target, offensiveType = "range", range = 0..970))
+            }
+        }
+
+        npcTimerStart("yt_hur_kot_heal") { 4 }
+
+        npcTimerTick("yt_hur_kot_heal") {
+            val jad = npcs[tile.regionLevel].firstOrNull { it.id == "tztok_jad" } ?: return@npcTimerTick Timer.CONTINUE
+            if (!tile.within(jad.tile, 5)) {
+                return@npcTimerTick Timer.CONTINUE
+            }
+            val healed = jad.levels.restore(Skill.Constitution, 50)
+            if (healed > 0) {
+                anim("yt_hur_kot_heal")
+                jad.gfx("tzhaar_heal")
+                areaSound("self_heal", tile, radius = 10)
+            }
+            Timer.CONTINUE
+        }
+
+        /*
+            Restart
+         */
+
         playerSpawn {
             if (wave == -1) {
                 return@playerSpawn
             }
-
-            val instance = smallInstance(region)
+            val instance = smallInstance(region, 3)
             open("tzhaar_fight_cave")
             val delta = tile.delta(region.tile)
             val pos = instance.tile.add(delta)
@@ -139,8 +202,10 @@ class TzhaarFightCave(
             } else {
                 tele(centre.add(instanceOffset()))
             }
-            sendVariable("fight_cave_wave")
-            startWave(this, wave, start = true)
+            strongQueue("fight_cave_start", TimeUnit.SECONDS.toTicks(2)) {
+                startWave(player, wave, start = true)
+                player.sendVariable("fight_cave_wave")
+            }
         }
 
         playerLogout(::logoutChoice)
@@ -151,27 +216,49 @@ class TzhaarFightCave(
             }
             it.dropItems = false
             it.teleport = outside
-            softQueue("fight_cave_end", 1) {
-                player.leave(wave)
+            softQueue("fire_cave_death", 3) {
+                leave(wave)
             }
         }
 
-        entered("tzhaar_fight_cave_multi_area") {
-            open("tzhaar_fight_cave")
-        }
-
-        exited("tzhaar_fight_cave_multi_area") {
-            close("tzhaar_fight_cave")
-            clearInstance()
-            clear("fight_cave_wave")
-            if (get("logged_out", false)) {
-                val offset = tile.delta(tile.region.tile)
-                tele(region.tile.add(offset))
+        npcLevelChanged(Skill.Constitution, "tztok_jad") { skill, from, to ->
+            val max = levels.getMax(skill)
+            if (from != max && to == max) {
+                set("healed", true)
+                return@npcLevelChanged
+            }
+            // Healers can only respawn if healed to full.
+            if (!get("healed", false)) {
+                return@npcLevelChanged
+            }
+            val half = max / 2
+            if (half !in to..<from) {
+                return@npcLevelChanged
+            }
+            val count = npcs[tile.regionLevel].count { it.id == "yt_hur_kot" }
+            val block = CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS
+            val directions = mutableSetOf(Direction.NORTH_WEST, Direction.NORTH_EAST, Direction.SOUTH_EAST, Direction.SOUTH, Direction.SOUTH_WEST, Direction.NONE)
+            val target = target
+            if (target is Player) {
+                val element = waves.spawns(63, target["fight_cave_rotation", 1]).first()
+                println("Spawning but not $element")
+                directions.remove(element)
+            }
+            val offset = tile.region.tile.delta(region.tile)
+            val def = npcDefinitions.get("yt_hur_kot")
+            for (i in 0 until 4 - count) {
+                val dir = directions.random(random)
+                var tile = randomTile(dir, offset, def, block) ?: continue
+                val npc = npcs.add("yt_hur_kot", tile)
+                npc["in_multi_combat"] = true
+                npc.mode = Follow(npc, this)
+                npc.softTimers.start("yt_hur_kot_heal")
             }
         }
     }
 
-    suspend fun Player.leave(wave: Int, defeatedJad: Boolean = false) {
+    fun Player.leave(wave: Int, defeatedJad: Boolean = false) {
+        clear("fight_cave_wave")
         start("fight_cave_cooldown", TimeUnit.MINUTES.toSeconds(2).toInt(), epochSeconds())
         tele(outside)
         var tokkul = wave * (wave + 1)
@@ -181,12 +268,14 @@ class TzhaarFightCave(
         }
         addOrDrop("tokkul", tokkul, revealTicks = FloorItems.NEVER)
         AuditLog.event(this, "end_fight_cave", wave, tokkul, defeatedJad)
-        if (wave == 63 && defeatedJad) {
-            npc<Happy>("tzhaar_mej_jal", "You even defeated TzTok-Jad, I am most impressed! Please accept this gift as a reward.")
-        } else if (tokkul > 0) {
-            npc<Neutral>("tzhaar_mej_jal", "Well done in the cave, here take Tokkul as reward.")
-        } else {
-            npc<Angry>("tzhaar_mej_jal", "Well I suppose you tried... better luck next time.")
+        queue("fight_cave_dialogue", 1) {
+            if (wave == 63 && defeatedJad) {
+                npc<Happy>("tzhaar_mej_jal", "You even defeated TzTok-Jad, I am most impressed! Please accept this gift as a reward.")
+            } else if (tokkul > 0) {
+                npc<Neutral>("tzhaar_mej_jal", "Well done in the cave, here take Tokkul as reward.")
+            } else {
+                npc<Angry>("tzhaar_mej_jal", "Well I suppose you tried... better luck next time.")
+            }
         }
     }
 
@@ -202,6 +291,11 @@ class TzhaarFightCave(
     }
 
     fun startWave(player: Player, wave: Int, start: Boolean) {
+        player.close("tzhaar_fight_cave")
+        player.open("tzhaar_fight_cave")
+        if (wave != 1) {
+            player.jingle("fight_cave_wave_complete")
+        }
         player["fight_cave_wave"] = wave
         if (player["fight_caves_logout_warning", false]) {
             player.softQueue("logout", onCancel = null, behaviour = LogoutBehaviour.Accelerate) {
@@ -235,21 +329,27 @@ class TzhaarFightCave(
             val id = ids[i]
             val def = npcDefinitions.get(id)
             val direction = directions[i]
-            val area = when (direction) {
-                Direction.NORTH_WEST -> areas["tzhaar_fight_cave_north_west"]
-                Direction.NORTH_EAST -> areas["tzhaar_fight_cave_north_east"]
-                Direction.SOUTH_EAST -> areas["tzhaar_fight_cave_south_east"]
-                Direction.SOUTH -> areas["tzhaar_fight_cave_south"]
-                Direction.SOUTH_WEST -> areas["tzhaar_fight_cave_south_west"]
-                Direction.NONE -> areas["tzhaar_fight_cave_none"]
-                else -> continue
-            }
-            var tile = area.offset(offset).random(CollisionStrategies.Normal, def.size, block)
-            if (tile == null) {
-                tile = area.offset(offset).random()
-            }
+            val tile = randomTile(direction, offset, def, block) ?: continue
             spawn(id, tile, player)
         }
+    }
+
+    fun randomTile(direction: Direction, offset: Delta, def: NPCDefinition, block: Int): Tile? {
+        val area = when (direction) {
+            Direction.NORTH_WEST -> areas["tzhaar_fight_cave_north_west"]
+            Direction.NORTH_EAST -> areas["tzhaar_fight_cave_north_east"]
+            Direction.SOUTH_EAST -> areas["tzhaar_fight_cave_south_east"]
+            Direction.SOUTH -> areas["tzhaar_fight_cave_south"]
+            Direction.SOUTH_WEST -> areas["tzhaar_fight_cave_south_west"]
+            Direction.NONE -> areas["tzhaar_fight_cave_none"]
+            else -> return null
+        }
+        var tile = area.offset(offset).random(CollisionStrategies.Normal, def.size, block)
+        if (tile == null) {
+            logger.warn { "Failed to find random tile for fight cave spawn $direction in $area with $offset" }
+            tile = area.offset(offset).random()
+        }
+        return tile
     }
 
     private val Player.wave: Int
@@ -258,7 +358,10 @@ class TzhaarFightCave(
     private fun spawn(id: String, tile: Tile, target: Player) {
         val npc = npcs.add(id, tile)
         npc["in_multi_combat"] = true
-        Combat.combat(npc, target)
+        npc.interactPlayer(target, "Attack")
+        if (id == "tztok_jad") {
+            npc["healed"] = true
+        }
     }
 
     fun hasFamiliar(player: Player) = false

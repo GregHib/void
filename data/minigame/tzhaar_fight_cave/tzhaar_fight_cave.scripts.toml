@@ -1,0 +1,7 @@
+[tzhaar_fightcave_init]
+id = 1227
+params = [
+    "layer_interface",
+    "background_interface",
+    "text_interface",
+]

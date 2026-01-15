@@ -56,7 +56,8 @@ target_hit = { offense = "crush", max = 90 }
 
 [tzhaar_mej.magic]
 anim = "tzhaar_mej_attack"
-projectile = "tzhaar_magic_travel"
+gfx = "tzhaar_mej_attack"
+projectile = "tzhaar_mej_travel"
 target_hit = { offense = "magic", max = 130 }
 impact_gfx = "tzhaar_magic_hit"
 miss_gfx = "giant_splash"

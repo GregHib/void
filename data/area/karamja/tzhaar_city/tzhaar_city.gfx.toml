@@ -4,6 +4,9 @@ id = 439
 [tzhaar_magic_hit]
 id = 446
 
-[tzhaar_magic_travel]
+[tzhaar_mej_attack]
+id = 1620
+
+[tzhaar_mej_travel]
 id = 445
 curve = 15

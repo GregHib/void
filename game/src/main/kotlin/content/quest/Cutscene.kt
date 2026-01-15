@@ -142,6 +142,7 @@ fun Player.clearInstance(): Boolean {
     clear("instance_offset")
     val region = Region(id)
     Instances.free(region)
+    get<DynamicZones>().clear(region)
     return true
 }
 

@@ -1,6 +1,6 @@
 [tzhaar_fight_cave]
 id = 316
-type = "overlay"
+type = "game_screen_overlay"
 
 [.background]
 id = 1

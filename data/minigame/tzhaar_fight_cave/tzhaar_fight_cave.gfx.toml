@@ -1,2 +1,42 @@
 [tzhaar_heal]
 id = 444
+height = 256
+
+[ket_zek_attack]
+id = 1622
+height = 128
+
+[ket_zek_travel]
+id = 1623
+curve = 16
+delay = 28
+height = 128
+time_offset = 8
+multiplier = 8
+
+[ket_zek_impact]
+id = 1624
+
+[tok_xil_shoot]
+id = 1616
+curve = 16
+delay = 32
+height = 256
+size_offset = 0
+
+[tztok_jad_stomp]
+id = 1625
+
+[tztok_jad_magic]
+id = 1626
+
+[tztok_jad_travel]
+id = 1627
+curve = 16
+delay = 86
+height = 50
+multiplier = 8
+
+[tztok_jad_range_impact]
+id = 451
+height = 52

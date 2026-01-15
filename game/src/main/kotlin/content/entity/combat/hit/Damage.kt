@@ -36,7 +36,7 @@ object Damage {
         source: Character,
         target: Character,
         offensiveType: String,
-        weapon: Item,
+        weapon: Item = Item.EMPTY,
         spell: String = "",
         special: Boolean = false,
         defensiveType: String = offensiveType,

@@ -72,10 +72,10 @@ class SkillCommands : Script {
     }
 
     fun god(player: Player, args: List<String>) {
-        val god = args.getOrNull(0)?.toBoolean() ?: !player["god_mode", false]
+        val god = !player["god_mode", false]
         player["god_mode"] = god
         if (god) {
-            player["insta_kill"] = args.getOrNull(1)?.toBoolean() ?: true
+            player["insta_kill"] = args.getOrNull(0)?.toBoolean() ?: true
         } else {
             player.clear("insta_kill")
         }

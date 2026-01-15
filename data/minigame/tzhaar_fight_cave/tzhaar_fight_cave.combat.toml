@@ -42,10 +42,10 @@ target_sound = "tok_xil_attack"
 target_hit = { offense = "crush", max = 130 }
 
 [tok_xil.range]
-range = 10
+range = 14
 anim = "tok_xil_shoot"
 target_sound = { id = "tok_xil_shoot", delay = 15 }
-#projectile = "" TODO Tile(23, 12).shoot(tzhaar_spine_attack, sourceIndex = 0, targetIndex = -554, curve = 16, sizeOffset = 32, startTime = 32, endTime = 160, startHeight = 256, endHeight = 124, sourceIndex = 0, targetIndex = -554) // 443?
+projectile = "tok_xil_shoot"
 target_hit = { offense = "range", max = 140 }
 
 [yt_mej_kot]
@@ -72,54 +72,75 @@ target_sound = "self_heal"
 attack_speed = 4
 retreat_range = 64
 defend_anim = "ket_zek_defend"
+defend_sound = "tok_xil_defend"
+death_sound = "tok_xil_death"
 death_anim = "ket_zek_death"
-# TODO sounds
 
 [ket_zek.melee]
 range = 1
 anim = "ket_zek_attack"
+target_sound = "tok_xil_attack"
 target_hit = { offense = "stab", max = 540 }
 
 [ket_zek.magic]
-range = 10
+range = 14
 anim = "ket_zek_attack_magic"
-#projectile = "" TODO
+gfx = "ket_zek_attack"
+projectile = "ket_zek_travel"
+projectile_origin = "tile_two"
+target_sound = "ket_zek_attack"
 target_hit = { offense = "magic", max = 490 }
-
-[tztok_jad]
-attack_speed = 8
-retreat_range = 64
-defend_anim = "tztok_jad_defend"
-death_anim = "tztok_jad_death"
-
-[tztok_jad.melee]
-range = 1
-anim = "tztok_jad_attack_melee"
-target_hit = { offense = "stab", max = 970 }
-
-[tztok_jad.range]
-range = 10
-anim = "tztok_jad_attack_range"
-target_hit = { offense = "range", max = 970 }
-
-[tztok_jad.magic]
-range = 10
-anim = "tztok_jad_attack_magic"
-#projectile = "" TODO
-target_hit = { offense = "magic", max = 950 }
+impact_gfx = "ket_zek_impact"
 
 [yt_hur_kot]
 attack_speed = 4
 retreat_range = 64
 defend_anim = "yt_hur_kot_defend"
 death_anim = "yt_hur_kot_death"
+defend_sound = "yt_mej_kot_defend"
+death_sound = "yt_mej_kot_death"
 
 [yt_hur_kot.melee]
+condition = "target_is_player"
 range = 1
 anim = "yt_hur_kot_attack"
+target_sound = "yt_mej_kot_attack"
 target_hit = { offense = "crush", max = 140 }
 
-[yt_hur_kot.heal]
-condition = "near_jad"
+[tztok_jad]
+attack_speed = 8
+retreat_range = 64
+defend_anim = "tztok_jad_defend"
+death_anim = "tztok_jad_death"
+defend_sound = "dragon_defend"
+death_sound = "dragon_death"
+
+[tztok_jad.melee]
 range = 1
-anim = "yt_hur_kot_heal"
+anim = "tztok_jad_attack_melee"
+target_sound = "tztok_jad_attack"
+target_hit = { offense = "stab", max = 970 }
+
+[tztok_jad.range]
+range = 14
+anim = "tztok_jad_attack_range"
+gfx = "tztok_jad_stomp"
+#target_hit = { offense = "range", max = 970, delay = 60 }
+projectile = { id = "", delay = 120 }
+impact_regardless = true
+impact_sound = "fire_wave_impact"
+impact_gfxs = [
+    { id = "tztok_jad_range_impact", area = true },
+    { id = "fire_wave_impact" }
+]
+
+[tztok_jad.magic]
+range = 14
+anim = "tztok_jad_attack_magic"
+gfx = "tztok_jad_magic"
+target_sound = "fire_wave_cast"
+projectile = "tztok_jad_travel"
+projectile_origin = "tile_two"
+#target_hit = { offense = "magic", max = 950 }
+impact_regardless = true
+impact_sound = "fire_wave_impact"
