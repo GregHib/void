@@ -2,6 +2,7 @@ package content.area.karamja.tzhaar_city
 
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Confused
+import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Sad
@@ -34,20 +35,20 @@ object TzHaar {
                         } no?"
                     )
                     player<Confused>("Well yes I suppose I am...")
-                    npc<Angry>("Then you JalYt-$caste!")
+                    npc<Happy>("Then you JalYt-$caste!")
                     choice {
                         option<Quiz>("What are you then?") {
                             when {
                                 target.id.startsWith("tzhaar_hur") -> {
-                                    npc<Angry>("Silly JalYt, I am TzHaar-Hur, one of the crafters for this city.")
+                                    npc<Happy>("Silly JalYt, I am TzHaar-Hur, one of the crafters for this city.")
                                     npc<Neutral>("There are the wise TzHaar-Mej who guide us, the mighty TzHaar-Ket who guard us, and the swift TzHaar-Xil who hunt for our food.")
                                 }
                                 target.id.startsWith("tzhaar_ket") -> {
-                                    npc<Angry>("Daft JalYt, I am TzHaar-Ket, one of the guardians of our city.")
+                                    npc<Happy>("Daft JalYt, I am TzHaar-Ket, one of the guardians of our city.")
                                     npc<Neutral>("There are the wise TzHaar-Mej who guide us, the swift TzHaar-Xil who hunt for our food, and the skilled TzHaar-Hur who craft our homes and tools.")
                                 }
                                 else -> {
-                                    npc<Angry>("Foolish JalYt, I am TzHaar-Mej, one of the mystics of this city.")
+                                    npc<Happy>("Foolish JalYt, I am TzHaar-Mej, one of the mystics of this city.")
                                     choice {
                                         option<Quiz>("What other types are there?") {
                                             npc<Neutral>("There are the mighty TzHaar-Ket who guard us, the swift TzHaar-Xil who hunt for our food, and the skilled TzHaar-Hur who craft our homes and tools.")

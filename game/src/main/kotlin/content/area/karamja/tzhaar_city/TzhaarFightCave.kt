@@ -3,6 +3,7 @@ package content.area.karamja.tzhaar_city
 import content.entity.combat.Combat
 import content.entity.combat.killer
 import content.entity.player.dialogue.Angry
+import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.intEntry
@@ -115,7 +116,6 @@ class TzhaarFightCave(
                 return@npcDespawn
             }
             val wave = killer.wave
-            println("NPC despawn $this $wave")
             if (wave == 63 && id == "tztok_jad") {
                 killer.strongQueue("fight_cave_end") {
                     killer.leave(wave, true)
@@ -182,7 +182,7 @@ class TzhaarFightCave(
         addOrDrop("tokkul", tokkul, revealTicks = FloorItems.NEVER)
         AuditLog.event(this, "end_fight_cave", wave, tokkul, defeatedJad)
         if (wave == 63 && defeatedJad) {
-            npc<Angry>("tzhaar_mej_jal", "You even defeated TzTok-Jad, I am most impressed! Please accept this gift as a reward.")
+            npc<Happy>("tzhaar_mej_jal", "You even defeated TzTok-Jad, I am most impressed! Please accept this gift as a reward.")
         } else if (tokkul > 0) {
             npc<Neutral>("tzhaar_mej_jal", "Well done in the cave, here take Tokkul as reward.")
         } else {

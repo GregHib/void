@@ -137,7 +137,7 @@ class InterfaceCommands : Script {
         val content = args[0]
         val npcId = args.getOrNull(1)
         if (id != null) {
-            val npc = id < 1000
+            val npc = npcId != null
             if (player.open("dialogue_${if (npc) "npc_" else ""}chat1")) {
                 if (npc) {
                     player.client?.npcDialogueHead(15794178, npcId!!.toInt())
