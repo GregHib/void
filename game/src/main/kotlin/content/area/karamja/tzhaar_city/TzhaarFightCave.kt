@@ -1,12 +1,8 @@
 package content.area.karamja.tzhaar_city
 
 import com.github.michaelbull.logging.InlineLogger
-import content.entity.combat.hit.Damage
 import content.entity.combat.hit.damage
-import content.entity.combat.hit.directHit
-import content.entity.combat.hit.hit
 import content.entity.combat.killer
-import content.entity.combat.target
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
@@ -33,7 +29,6 @@ import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -43,21 +38,15 @@ import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.LogoutBehaviour
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.queue.strongQueue
-import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.epochMilliseconds
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.type.Delta
-import world.gregs.voidps.type.Direction
-import world.gregs.voidps.type.Region
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.random
+import world.gregs.voidps.type.*
 import java.util.concurrent.TimeUnit
 
 class TzhaarFightCave(

@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 class TzHaarFightCaveGuard : Script {
     init {
         npcOperate("Talk-to", "tzhaar_mej_jal") {
-            npc<Shifty>("You want help JalYt-${TzHaar.caste(this)}-${name}?")
+            npc<Shifty>("You want help JalYt-${TzHaar.caste(this)}-$name?")
             choice {
                 option<Quiz>("What is this place?") {
                     npc<Neutral>("This is the fight cave, TzHaar-Xil made it for practice, but many JalYt come here to fight too. Just enter the cave and make sure you're prepared.")

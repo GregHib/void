@@ -20,7 +20,7 @@ object TzHaar {
     fun ChoiceOption.whatDidYouCallMe(target: NPC) {
         option<Angry>("What did you call me?") {
             val caste = caste(this)
-            npc<Confused>("Are you not JalYt-$caste-${name}?")
+            npc<Confused>("Are you not JalYt-$caste-$name?")
             choice {
                 option<Quiz>("What's a 'JalYt-$caste'?") {
                     npc<Confused>(
@@ -32,7 +32,7 @@ object TzHaar {
                                 "Hur" -> "skilled at making things"
                                 else -> "mysterious"
                             }
-                        } no?"
+                        } no?",
                     )
                     player<Confused>("Well yes I suppose I am...")
                     npc<Happy>("Then you JalYt-$caste!")

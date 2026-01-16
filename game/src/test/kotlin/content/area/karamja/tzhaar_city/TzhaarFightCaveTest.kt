@@ -3,8 +3,6 @@ package content.area.karamja.tzhaar_city
 import FakeRandom
 import WorldTest
 import content.entity.combat.hit.directHit
-import content.entity.combat.hit.hit
-import content.quest.instanceOffset
 import intEntry
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.*

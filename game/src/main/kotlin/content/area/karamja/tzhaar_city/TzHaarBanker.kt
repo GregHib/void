@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 class TzHaarBanker : Script {
     init {
         npcOperate("Talk-to", "tzhaar_ket_zuh") {
-            npc<Quiz>("Can I help you JalYt-${TzHaar.caste(this)}-${name}?")
+            npc<Quiz>("Can I help you JalYt-${TzHaar.caste(this)}-$name?")
             choice {
                 option("I'd like to access my bank account please.", block = { open("bank") })
                 whatDidYouCallMe(it.target)
