@@ -1,0 +1,59 @@
+[hole_easter_2007]
+id = 9258
+examine = "A rabbit hole."
+
+[hole_2_easter_2007]
+id = 9259
+examine = "A rabbit hole."
+
+[hole_3_easter_2007]
+id = 15810
+examine = "A rabbit hole."
+
+[hole_4_easter_2007]
+id = 23112
+examine = "A rabbit hole."
+
+[pile_of_eggs_easter_2007]
+id = 23113
+examine = "Bundles!"
+
+[pile_of_eggs_2_easter_2007]
+id = 23114
+examine = "Be vewy, vewy quiet."
+
+[pile_of_eggs_3_easter_2007]
+id = 23115
+examine = "An egg short of a dozen."
+
+[pile_of_eggs_4_easter_2007]
+id = 23116
+examine = "Is this some kind of yolk?"
+
+[rabbit_hole_easter_2007]
+id = 23117
+examine = "A rather large rabbit hole."
+
+[warren_exit_easter_2007]
+id = 23118
+examine = "There's a hole in the ceiling of the warren."
+
+[door_easter_2007]
+id = 23119
+examine = "Egg-xit."
+
+[kebbit_chute_easter_2007]
+id = 23123
+examine = "A chute for depositing kebbits."
+
+[hedge_easter_2007]
+id = 23137
+examine = "Keeps the neighbours out!"
+
+[hedge_corner_easter_2007]
+id = 23138
+examine = "Keeps the neighbours out!"
+
+[hedge_end_easter_2007]
+id = 23139
+examine = "Keeps the neighbours out!"

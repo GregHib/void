@@ -2,23 +2,23 @@
 id = 1088
 examine = "The ideal thing to sit on."
 
-[chair_2]
+[posh_chair]
 id = 1090
 examine = "A comfortable seat."
 
-[chair_3]
+[posh_chair_orange]
 id = 1091
 examine = "A comfortable seat."
 
-[chair_4]
+[posh_chair_white]
 id = 1092
 examine = "A comfortable seat."
 
-[chair_5]
+[chair3]
 id = 1093
 examine = "Good for sitting on."
 
-[chair_6]
+[chair4]
 id = 1094
 examine = "Good for sitting on."
 
@@ -26,135 +26,163 @@ examine = "Good for sitting on."
 id = 1101
 examine = "The perfect way to sit at the bar."
 
-[chair_8]
+[gnomebench]
+id = 1104
+examine = "Gnomes are found sitting here."
+
+[bench]
+id = 1106
+examine = "Sit back and relax..."
+
+[egypt_chair]
 id = 1110
 examine = "Used for sitting on."
 
-[chair_9]
+[spookychair]
 id = 1111
 examine = "Do I dare sit on this?"
 
-[chair_10]
+[chair_dark]
 id = 1115
 examine = "The ideal thing to sit on."
 
-[chair_11]
+[oldchair]
 id = 1898
 examine = "This needs dusting before I'll sit on it."
 
-[chair_12]
+[oldchair2]
 id = 1899
 examine = "This needs dusting before I'll sit on it."
 
-[chair_13]
+[arena_hospital_chair]
 id = 3182
 examine = "Wait here for a nurse."
 
-[chair_14]
+[druid_bench]
+id = 3523
+examine = "An old bench, probably made from wood in this swamp."
+
+[troll_chair]
 id = 3801
 examine = "The ideal thing to sit on."
 
-[chair_15]
+[viking_longhall_chair]
 id = 4271
 examine = "Generally used for sitting."
 
-[chair_16]
+[misc_posh_chair]
 id = 4690
 examine = "Fancy."
 
-[chair_17]
+[misc_ornatechair]
 id = 4702
 examine = "A nicely carved wooden chair."
 
-[chair_18]
+[ahoy_chair_1]
 id = 5345
 examine = "The ideal thing to sit on."
 
-[chair_19]
+[ahoy_chair_2]
 id = 5346
 examine = "This needs dusting before I'll sit on it."
 
-[chair_20]
+[ahoy_chair_3]
 id = 5347
 examine = "This needs dusting before I'll sit on it."
 
-[chair_21]
+[chair_redseat]
 id = 5614
 examine = "The ideal thing to sit on."
 
-[chair_22]
+[bench2]
+id = 5615
+examine = "Sit back and relax..."
+
+[dwarf_keldagrim_chair]
 id = 6194
 examine = "Used for sitting."
 
-[chair_23]
+[dwarf_keldagrim_chair_posh]
 id = 6195
 examine = "Used for sitting."
 
-[chair_24]
+[rd_chair]
 id = 7385
 examine = "The ideal thing to sit on."
 
-[chair_25]
+[rd_bench2_half]
+id = 7388
+examine = "Sit back and relax..."
+
+[farming_chair]
 id = 7504
 examine = "For sitting."
 
-[chair_26]
+[farming_chair_mory]
 id = 7505
 examine = "For sitting."
 
-[chair_27]
+[elf_village_chair]
 id = 8770
 examine = "A chair."
 
-[chair_28]
+[elf_village_bench]
+id = 8772
+examine = "Sit back and relax..."
+
+[wom_ornatechair]
 id = 9148
 examine = "A nicely carved wooden chair."
 
-[chair_29]
+[sarim_bettys_chair]
 id = 9514
 examine = "Betty's chair."
 
-[chair_30]
+[sarim_bench2]
+id = 9531
+examine = "Sit back and relax..."
+
+[rimmington_chair]
 id = 9621
 examine = "For sitting."
 
-[chair_31]
+[rimmington_posh_chair]
 id = 9622
 examine = "Fancy."
 
-[chair_32]
+[melzar_oldchair]
 id = 9704
 examine = "This needs dusting before I'll sit on it."
 
-[chair_33]
+[melzar_oldchair2]
 id = 9705
 examine = "This needs dusting before I'll sit on it."
 
-[chair_34]
+[makinghistory_chair]
 id = 10259
 examine = "Generally used for sitting."
 
-[chair_35]
+[elid_chair1]
 id = 10491
 examine = "The ideal thing to sit on."
 
-[chair_36]
+[elid_chair2]
 id = 10492
 examine = "Good for sitting on."
 
-[chair_37]
+[magictraining_ornatechair]
 id = 10724
 examine = "A nicely carved wooden chair."
 
-[chair_38]
+[draynor_chair]
 id = 11489
 examine = "The ideal thing to sit on."
 
-[chair_39]
+[draynor_chair_cobweb]
 id = 11490
 examine = "Do I dare sit on this?"
 
-[chair_40]
+[draynor_haunted_chair]
 id = 11496
 examine = "Did that chair just move?"
 
@@ -174,35 +202,35 @@ examine = "Put your head in my hands."
 id = 12310
 examine = "Someone should be sitting here."
 
-[chair_45]
+[100_cutscene_chair_man]
 id = 12311
 examine = "Someone should be sitting here."
 
-[chair_46]
+[100_gobchair]
 id = 12312
 examine = "Suitable for one."
 
-[chair_47]
+[100_goblin_vibrating_chair]
 id = 12313
 examine = "Suitable for one."
 
-[chair_48]
+[empty_chair]
 id = 12318
 examine = "It's a seat!"
 
-[chair_49]
+[empty_chair_ogre]
 id = 12319
 examine = "It's a seat!"
 
-[chair_50]
+[burgh_chair1]
 id = 12885
 examine = "The ideal thing to sit on."
 
-[chair_51]
+[burgh_chair_2]
 id = 12886
 examine = "The ideal thing to sit on."
 
-[chair_52]
+[burgh_chair_4]
 id = 12888
 examine = "This needs dusting before I'll sit on it."
 
@@ -234,45 +262,57 @@ examine = "A comfortable seat."
 id = 13587
 examine = "A comfortable seat."
 
-[chair_60]
+[fishing_contest_chair]
 id = 14050
 examine = "For sitting."
 
-[chair_61]
+[royal_viking_bench]
+id = 15088
+examine = "Sit back and relax..."
+
+[royal_longhall_chair]
 id = 15091
 examine = "Generally used for sitting."
 
-[chair_62]
+[posh_chair_mahogany]
 id = 15462
 examine = "A comfortable seat."
 
-[chair_63]
+[brew_chair]
 id = 15981
 examine = "The ideal thing to sit on."
 
-[chair_64]
+[lunar_moonclan_bench]
+id = 16706
+examine = "Sit on it."
+
+[lunar_moonclan_chair_2]
 id = 16743
 examine = "It's not uncommon for people to sit on these."
 
-[chair_65]
+[lunar_moonclan_chair]
 id = 16744
 examine = "It's not uncommon for people to sit on these."
 
-[chair_66]
+[quest_lunar_chair]
 id = 16900
 examine = "Generally used for sitting."
 
-[chair_67]
+[dk_chair]
 id = 17146
 examine = "The ideal thing to sit on"
 
-[chair_68]
+[eyeglo_chair]
 id = 17234
 examine = "A gnome-sized chair."
 
-[chair_69]
+[qip_digsite_chair]
 id = 17311
 examine = "A posh looking chair."
+
+[qip_digsite_bench]
+id = 17312
+examine = "A posh looking bench."
 
 [chair_70]
 id = 17462
@@ -282,113 +322,145 @@ examine = "Where people may put themselves."
 id = 17463
 examine = "An elegant chair."
 
-[chair_72]
+[area_sanguine_ghetto_chair1]
 id = 17547
 examine = "To sit on."
 
-[chair_73]
+[area_sanguine_ghetto_chair2]
 id = 17548
 examine = "To sit on."
 
-[chair_74]
+[area_sanguine_ghetto_chair3]
 id = 17549
 examine = "To sit on."
 
-[chair_75]
+[area_sanguine_ghetto_chair4]
 id = 17550
 examine = "To sit on."
 
-[chair_76]
+[myq3_hideout_chair]
 id = 17663
 examine = "Good for sitting on."
 
-[chair_77]
+[area_sanguine_gothic_chair1]
 id = 17757
 examine = "Once an elegant chair"
 
-[chair_78]
+[area_sanguine_gothic_chair2]
 id = 17758
 examine = "A well-used chair."
 
-[chair_79]
+[area_sanguine_gothic_chair3]
 id = 17759
 examine = "An old chair."
 
-[chair_80]
+[area_sanguine_gothic_chair4]
 id = 17760
 examine = "An old chair."
 
-[chair_81]
+[area_sanguine_gothic_chair5]
 id = 17761
 examine = "An old chair."
+
+[area_sanguine_gothic_bench]
+id = 17764
+examine = "Looks like an old church bench."
+
+[slug2_mayor_bench]
+id = 18234
+examine = "A decorative teak bench."
 
 [chair_82]
 id = 18316
 examine = "A poorly made chair."
 
-[chair_83]
+[fai_varrock_bench]
+id = 18488
+examine = "Generally used for sitting."
+
+[ep_chair_broken01]
 id = 19929
 examine = "A busted chair."
 
-[chair_84]
+[ep_chair01]
 id = 19933
 examine = "A weary chair."
 
-[chair_85]
+[qip_watchtower_chair]
 id = 20065
 examine = "A chair."
 
-[chair_86]
+[contact_chair4]
 id = 20352
 examine = "Good for sitting on."
 
-[chair_87]
+[peng_war_chair01]
 id = 20999
 examine = "Sit down and chill."
 
-[chair_88]
+[dorgesh_market2_bench]
+id = 21254
+examine = "A well-made bench."
+
+[frisb_chair]
 id = 21354
 examine = "The ideal thing to sit on."
 
-[chair_89]
+[frisd_izso_chair]
 id = 21607
 examine = "A chair made from stone."
 
-[chair_90]
+[brain_mon_chair]
 id = 22156
 examine = "A chair."
 
-[chair_91]
+[brain_mon_fallen_chair]
 id = 22157
 examine = "A chair."
 
-[chair_92]
+[brain_mon_bench_outside]
+id = 22158
+examine = "A bench."
+
+[dorgesh_market_bench]
+id = 22669
+examine = "A well-made bench."
+
+[dorgesh_rich_chair1]
 id = 22676
 examine = "Looks comfy...for a goblin."
 
-[chair_93]
+[dorgesh_average_chair1]
 id = 22692
 examine = "A stone chair."
 
-[chair_94]
+[dorgesh_council_chair_members]
 id = 22703
 examine = "A chair for members of the Dorgeshuun Council."
 
-[chair_95]
+[dorgesh_council_head_chair]
 id = 22704
 examine = "A chair for the head of the Dorgeshuun Council."
 
-[chair_96]
+[dorgesh_stately_chair]
 id = 22843
 examine = "A very well-made chair."
 
-[chair_97]
+[fai_varrock_full_bench]
+id = 23109
+examine = "For sitting on."
+
+[fai_varrock_juliet_chair]
 id = 23624
 examine = "A comfortable seat."
 
 [chair_98]
 id = 24304
 examine = "A comfortable seat."
+
+[fai_varrock_posh_bench]
+id = 24321
+examine = "For sitting on."
 
 [chair_99]
 id = 24333
@@ -398,49 +470,65 @@ examine = "A poorly made chair."
 id = 24334
 examine = "A poorly made chair."
 
-[chair_101]
+[grim_witch_house_chair]
 id = 24683
 examine = "An elegant chair."
 
-[chair_102]
+[grim_witch_house_spookychair]
 id = 24814
 examine = "Do I dare sit on this?"
 
-[chair_103]
+[dragon_slayer_qip_spookychair]
 id = 25048
 examine = "Do I dare sit on this?"
 
-[chair_104]
+[kr_cam_bench]
+id = 25601
+examine = "Sit back and relax..."
+
+[kr_cam_spookychair]
 id = 25616
 examine = "Do I dare sit on this?"
 
-[chair_105]
+[murder_qip_posh_bench]
+id = 25676
+examine = "For sitting on."
+
+[kr_bench]
+id = 25768
+examine = "Sit back and relax..."
+
+[kr_chair]
 id = 25771
 examine = "The ideal thing to sit on."
 
-[chair_106]
+[kr_posh_chair]
 id = 25784
 examine = "A comfortable seat."
 
-[chair_107]
+[kr_court_chair]
 id = 25832
 examine = "A comfortable seat."
 
-[chair_108]
+[kr_camelot_chair_01]
 id = 26075
 examine = "A chair."
 
-[chair_109]
+[kr_camelot_chair_01_mirror]
 id = 26076
 examine = "A chair."
 
-[chair_110]
+[kr_camelot_chair_02]
 id = 26077
 examine = "A chair."
 
 [chair_111]
 id = 27244
 examine = "The civilised way to rest your legs."
+
+[bench_3]
+id = 27714
+examine = "You can wait here."
 
 [chair_112]
 id = 27849
@@ -458,6 +546,10 @@ examine = "A cushioned seat for the bony backside of Death."
 id = 27890
 examine = "Hard and chilly as a gravestone."
 
+[bench_4]
+id = 28103
+examine = "Sit back and relax."
+
 [chair_116]
 id = 28504
 examine = "To sit in, for quiet contemplation."
@@ -465,6 +557,10 @@ examine = "To sit in, for quiet contemplation."
 [chair_117]
 id = 28627
 examine = "A place to sit and watch the furniture grow."
+
+[bench_5]
+id = 28636
+examine = "A benchmark in druidic comfort."
 
 [chair_118]
 id = 29107
@@ -486,13 +582,53 @@ examine = "It looks a bit rickety."
 id = 30080
 examine = "Must be very sturdy to stand up to the weight."
 
+[bench_6]
+id = 30214
+examine = "A bench."
+
+[bench_7]
+id = 30215
+examine = "A bench."
+
+[bench_8]
+id = 30216
+examine = "A bench."
+
+[bench_9]
+id = 30217
+examine = "A bench."
+
+[bench_10]
+id = 30218
+examine = "A bench."
+
+[bench_11]
+id = 30691
+examine = "Not exactly the best place to see a beautiful view."
+
 [chair_123]
 id = 30736
 examine = "Do I dare sit on this?"
 
+[bench_12]
+id = 30819
+examine = "A sturdy bench."
+
+[bench_13]
+id = 31270
+examine = "A well-made TzHaar table."
+
+[bench_14]
+id = 31271
+examine = "A well-made TzHaar table."
+
 [chair_124]
 id = 32032
 examine = "The ideal thing to sit on."
+
+[bench_15]
+id = 32070
+examine = "An ogre bench, useful for taking all that weight off their legs."
 
 [chair_125]
 id = 32274
@@ -514,12 +650,20 @@ examine = "A comfortable seat."
 id = 33196
 examine = "A comfortable seat."
 
+[bench_16]
+id = 33197
+examine = "Gnomes are found sitting here."
+
 [chair_130]
 id = 34227
 examine = "A comfortable seat."
 
 [chair_131]
 id = 35149
+
+[bench_17]
+id = 35221
+examine = "A well-made TzHaar table."
 
 [chair_132]
 id = 35451
@@ -541,6 +685,14 @@ examine = "An elegant chair."
 id = 36831
 examine = "A comfortable seat."
 
+[bench_18]
+id = 36905
+examine = "Sit back and relax."
+
+[bench_19]
+id = 37298
+examine = "Sit back and relax."
+
 [chair_137]
 id = 37337
 examine = "The ideal thing to sit on."
@@ -548,6 +700,10 @@ examine = "The ideal thing to sit on."
 [chair_138]
 id = 39175
 examine = "An elegant chair."
+
+[bench_20]
+id = 40017
+examine = "For sitting on."
 
 [chair_139]
 id = 40039
@@ -561,9 +717,17 @@ examine = "Fancy."
 id = 40041
 examine = "Fancy."
 
+[bench_21]
+id = 41103
+examine = "Sit back and relax..."
+
 [chair_142]
 id = 41116
 examine = "The ideal thing to sit on."
+
+[bench_22]
+id = 41421
+examine = "A sturdy bench."
 
 [chair_143]
 id = 41431
@@ -736,6 +900,10 @@ examine = "A stern wooden chair."
 id = 47884
 examine = "A frumpy-looking chair."
 
+[bench_23]
+id = 49041
+examine = "Sit back and relax..."
+
 [chair_186]
 id = 49061
 examine = "A comfortable seat."
@@ -747,6 +915,10 @@ examine = "A comfortable seat."
 [chair_188]
 id = 49329
 examine = "It will likely stop me from sliding."
+
+[bench_24]
+id = 52591
+examine = "Fairy-sized bench."
 
 [chair_189]
 id = 57134

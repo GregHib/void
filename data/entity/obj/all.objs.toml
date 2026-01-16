@@ -2200,3 +2200,15 @@ examine = "Wild redberries are growing here."
 [redberry_bush_empty]
 id = 23630
 examine = "Wild redberries grow here."
+
+[books]
+id = 41217
+examine = "Books on every subject imaginable."
+
+[books_2]
+id = 41218
+examine = "Books on every subject imaginable."
+
+[books_3]
+id = 41219
+examine = "Books on every subject imaginable."

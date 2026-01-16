@@ -1,0 +1,10 @@
+spawns = [
+  { id = "easter_bunny_easter_2010", x = 2528, y = 5355 },
+  { id = "easta_buni_spawn_easter_2010", x = 2526, y = 5353, direction = "NORTH_EAST" },
+  { id = "big_ben_easter_2010", x = 2513, y = 5334 },
+  { id = "easter_bird_easter_2010", x = 2524, y = 5331 },
+  { id = "impling_manager_2_easter_2010", x = 2520, y = 5340 },
+  { id = "fluffy_easter_2009", x = 2515, y = 5338 },
+  { id = "beny_easter_2009", x = 2515, y = 5337 },
+  { id = "bubbles_easter_2009", x = 2515, y = 5336 },
+]

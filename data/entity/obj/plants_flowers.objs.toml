@@ -1,0 +1,463 @@
+[thistle]
+id = 1174
+examine = "Spiky!"
+
+[blueflower]
+id = 1187
+examine = "That's pretty."
+
+[redflower]
+id = 1188
+examine = "Blooming!"
+
+[rareflower_yellow]
+id = 1197
+examine = "A rarely found flower."
+
+[medplant]
+id = 1313
+examine = "An unusual tree grows here."
+
+[medplant_karamja]
+id = 1314
+examine = "An unusual tree grows here."
+
+[medplant_swamp]
+id = 1369
+examine = "An unusual tree grows here."
+
+[plant1]
+id = 1391
+examine = "A leafy plant."
+
+[plant2]
+id = 1392
+examine = "A leafy fern."
+
+[plant3]
+id = 1393
+examine = "A small bushy plant."
+
+[plant4]
+id = 1394
+examine = "A leafy shrub."
+
+[zqdoorhideplant]
+id = 2270
+examine = "A jungle plant."
+
+[ahoy_plant_1]
+id = 5331
+examine = "A leafy fern."
+
+[ahoy_plant_2]
+id = 5332
+examine = "A small bushy plant."
+
+[ahoy_plant_3]
+id = 5333
+examine = "A leafy shrub."
+
+[ahoy_plant_4]
+id = 5334
+examine = "A leafy shrub."
+
+[feud_potted_plant]
+id = 6237
+examine = "Yellow blossom, lovely."
+
+[dwarf_keldagrim_pitcher_plant]
+id = 7013
+examine = "Insect eating plant."
+
+[dwarf_keldagrim_pitcher_plant_big]
+id = 7014
+examine = "Insect eating plant."
+
+[dwarf_keldagrim_pitcher_plant_massive]
+id = 7015
+examine = "Insect eating plant."
+
+[sanddune_plant1]
+id = 9498
+examine = "A small plant, suitable for sandy soil."
+
+[sanddune_plant2]
+id = 9499
+examine = "A decorative plant."
+
+[sanddune_plant3]
+id = 9500
+examine = "A fairly small plant."
+
+[sanddune_plant4]
+id = 9501
+examine = "Another plant."
+
+[small_plant1]
+id = 9604
+examine = "A leafy plant."
+
+[small_plant2]
+id = 9605
+examine = "A leafy fern."
+
+[small_plant3]
+id = 9606
+examine = "A leafy shrub."
+
+[fairy2_plant_1]
+id = 16267
+examine = "A leafy fern."
+
+[fairy2_plant_2]
+id = 16268
+examine = "A small bushy plant."
+
+[fairy2_plant_3]
+id = 16269
+examine = "A leafy shrub."
+
+[fairy2_plant_4]
+id = 16270
+examine = "A small leafy shrub."
+
+[hunting_trail_clue3_0]
+id = 19339
+examine = "A small fern-like plant."
+
+[hunting_trail_clue3_1]
+id = 19340 
+examine = "A small fern-like plant."
+
+[hunting_trail_clue3_2]
+id = 19341
+examine = "A small fern-like plant."
+
+[hunting_trail_clue3_3]
+id = 19342
+examine = "A small fern-like plant."
+
+[hunting_trail_clue3_4]
+id = 19343
+examine = "A small fern-like plant."
+
+[hunting_trail_clue3_5]
+id = 19344
+examine = "A small fern-like plant."
+
+[hunting_trail_clue3_6]
+id = 19345
+examine = "A small fern-like plant."
+
+[hunting_trail_clue3_7]
+id = 19346
+examine = "A small fern-like plant."
+
+[hunting_trail_clue3_8]
+id = 19347
+examine = "A small fern-like plant."
+
+[hunting_trail_clue3_9]
+id = 19348
+examine = "A small fern-like plant."
+
+[hunting_trail_clue4_0]
+id = 19349
+examine = "A small fern-like plant."
+
+[hunting_trail_clue4_1]
+id = 19350
+examine = "A small fern-like plant."
+
+[hunting_trail_clue4_2]
+id = 19351
+examine = "A small fern-like plant."
+
+[hunting_trail_clue4_3]
+id = 19352
+examine = "A small fern-like plant."
+
+[hunting_trail_clue4_4]
+id = 19353
+examine = "A small fern-like plant."
+
+[hunting_trail_clue4_5]
+id = 19354
+examine = "A small fern-like plant."
+
+[hunting_trail_clue4_6]
+id = 19355
+examine = "A small fern-like plant."
+
+[hunting_trail_clue1_0]
+id = 19356
+examine = "A small fern-like plant."
+
+[hunting_trail_clue1_1]
+id = 19357
+examine = "A small fern-like plant."
+
+[hunting_trail_clue1_2]
+id = 19358
+examine = "A small fern-like plant."
+
+[hunting_trail_clue1_3]
+id = 19359
+examine = "A small fern-like plant."
+
+[hunting_trail_clue1_4]
+id = 19360
+examine = "A small fern-like plant."
+
+[hunting_trail_clue1_5]
+id = 19361
+examine = "A small fern-like plant."
+
+[hunting_trail_clue1_6]
+id = 19362
+examine = "A small fern-like plant."
+
+[hunting_trail_clue1_7]
+id = 19363
+examine = "A small fern-like plant."
+
+[hunting_trail_clue1_8]
+id = 19364
+examine = "A small fern-like plant."
+
+[hunting_trail_clue1_9]
+id = 19365
+examine = "A small fern-like plant."
+
+[hunting_trail_clue1_10]
+id = 19366
+examine = "A small fern-like plant."
+
+[hunting_trail_clue1_11]
+id = 19367
+examine = "A small fern-like plant."
+
+[hunting_trail_clue1_12]
+id = 19368
+examine = "A small fern-like plant."
+
+[hunting_trail_clue1_13]
+id = 19369
+examine = "A small fern-like plant."
+
+[hunting_trail_clue1_14]
+id = 19370
+examine = "A small fern-like plant."
+
+[hunting_trail_clue1_15]
+id = 19371
+examine = "A small fern-like plant."
+
+[hunting_trail_clue2_0]
+id = 19372
+examine = "A small fern-like plant."
+
+[hunting_trail_clue2_1]
+id = 19373
+examine = "A small fern-like plant."
+
+[hunting_trail_clue2_2]
+id = 19374
+examine = "A small fern-like plant."
+
+[hunting_trail_clue2_3]
+id = 19375
+examine = "A small fern-like plant."
+
+[hunting_trail_clue2_4]
+id = 19376
+examine = "A small fern-like plant."
+
+[hunting_trail_clue2_5]
+id = 19377
+examine = "A small fern-like plant."
+
+[hunting_trail_clue2_6]
+id = 19378
+examine = "A small fern-like plant."
+
+[hunting_trail_clue2_7]
+id = 19379
+examine = "A small fern-like plant."
+
+[hunting_trail_clue2_8]
+id = 19380
+examine = "A small fern-like plant."
+
+[hunting_trail_clue2_9]
+id = 19381
+examine = "A small fern-like plant."
+
+[hunting_trail_clue2_10]
+id = 19382
+examine = "A small fern-like plant."
+
+[hunting_trail_clue2_11]
+id = 19383
+examine = "A small fern-like plant."
+
+[hunting_trail_clue2_12]
+id = 19384
+examine = "A small fern-like plant."
+
+[hunting_trail_clue2_13]
+id = 19385
+examine = "A small fern-like plant."
+
+[hunting_trail_clue2_14]
+id = 19386
+examine = "A small fern-like plant."
+
+[hunting_trail_clue2_15]
+id = 19387
+examine = "A small fern-like plant."
+
+[tol_plant4]
+id = 21924
+examine = "A leafy shrub."
+
+[dragon_slayer_qip_mine_plant]
+id = 25137
+examine = "Some sort of plant."
+
+[lotg_yu_point_tree]
+id = 27344
+examine = "It looks good for goblins to eat."
+
+[lotg_yu_point_tree_group]
+id = 27345
+examine = "It looks good for goblins to eat."
+
+[lotg_yu_strawberry_tree]
+id = 27346
+examine = "It looks good for goblins to eat."
+
+[lotg_yu_strawberry_tree_small]
+id = 27347
+examine = "It looks good for goblins to eat."
+
+[lotg_yu_strawberry_tree_lean]
+id = 27348
+examine = "It looks good for goblins to eat."
+
+[lotg_yu_round_plant]
+id = 27355
+examine = "A plant with a single circular leaf."
+
+[lotg_yu_round_plant_small]
+id = 27356
+examine = "A plant with a single circular leaf."
+
+[lotg_yu_round_plant_medium]
+id = 27357
+examine = "A plant with a single circular leaf."
+
+[plant5]
+id = 27904
+examine = "A plant."
+
+[plant6]
+id = 27905
+examine = "A plant."
+
+[plant7]
+id = 27983
+examine = "A plant."
+
+[plant8]
+id = 28875
+examine = "A dead shrub."
+
+[plant9]
+id = 28876
+examine = "A dead fern."
+
+[plant10]
+id = 28877
+examine = "A dead shrub."
+
+[plant11]
+id = 28878
+examine = "A dead shrub."
+
+[plant_halloween_2010]
+id = 31863
+examine = "A spooky plant."
+
+[plant2_halloween_2010]
+id = 31864
+examine = "A spooky plant."
+
+[plant3_halloween_2010]
+id = 31865
+examine = "A spooky plant."
+
+[plant4_halloween_2010]
+id = 31866
+examine = "A spooky plant."
+
+[plant5_halloween_2010]
+id = 31867
+examine = "A spooky plant."
+
+[plant12]
+id = 35432
+examine = "A desert plant."
+
+[plant13]
+id = 37842
+examine = "An overgrown limpwurt plant."
+
+[plant14]
+id = 37843
+examine = "An overgrown limpwurt plant."
+
+[plant15]
+id = 39284
+examine = "A small, bushy plant."
+
+[plant16]
+id = 39285
+examine = "A leafy shrub."
+
+[plant17]
+id = 39427
+examine = "A leafy fern."
+
+[plant18]
+id = 39428
+examine = "A small bushy plant."
+
+[plant19]
+id = 39429
+examine = "A leafy shrub."
+
+[plant20]
+id = 40111
+examine = "A plant."
+
+[plant21]
+id = 45499
+examine = "A plant."
+
+[plant22]
+id = 47756
+examine = "A very festive shrub."
+
+[plant23]
+id = 52793
+examine = "A plant."
+
+[plant24]
+id = 53516
+examine = "A local plant."
+
+[plant25]
+id = 53518
+examine = "A local plant."

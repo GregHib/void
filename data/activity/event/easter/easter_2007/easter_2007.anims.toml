@@ -1,0 +1,41 @@
+[human_to_bunny_easter_2007]
+id = 3855
+ticks = 2
+walk = false
+run = false
+
+[bunny_to_human_easter_2007]
+id = 3856
+ticks = 2
+walk = false
+run = false
+
+[easter_egg_rolling_blue_easter_2007]
+id = 3860
+ticks = 2
+walk = false
+run = false
+
+[easter_egg_rolling_yellow_easter_2007]
+id = 3861
+ticks = 2
+walk = false
+run = false
+
+[easter_egg_rolling_green_easter_2007]
+id = 3862
+ticks = 2
+walk = false
+run = false
+
+[easter_egg_rolling_red_easter_2007]
+id = 3863
+ticks = 2
+walk = false
+run = false
+
+[nigel_hit_bunny_easter_2007]
+id = 3873
+ticks = 2
+walk = false
+run = false

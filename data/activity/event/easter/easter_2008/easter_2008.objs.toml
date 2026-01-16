@@ -1,0 +1,106 @@
+[rabbit_hole_easter_2008]
+id = 29826
+examine = "A rather large rabbit hole."
+
+[rabbit_hole_2_easter_2008]
+id = 29827
+examine = "A rather large rabbit hole."
+
+[rabbit_hole_3_easter_2008]
+id = 29828
+examine = "A rather large rabbit hole."
+
+[rabbit_hole_4_easter_2008]
+id = 29829
+examine = "A hole in the ceiling of the warren, which leads to the surface."
+
+[rabbit_hole_5_easter_2008]
+id = 29830
+examine = "Too small for a human, but just right for a rabbit."
+
+[incubator_instructions_easter_2008]
+id = 29839
+examine = "A signpost with the incubator instructions on it."
+
+[chocolate_mixer_easter_2008]
+id = 29840
+examine = "A large chocolate mixer."
+
+[chocolate_mixer_2_easter_2008]
+id = 29841
+examine = "A large chocolate mixer."
+
+[chocolate_mixer_3_easter_2008]
+id = 29842
+
+[incubator_water_tank_easter_2008]
+id = 29853
+examine = "This is where water is added to the incubator."
+
+[incubator_water_tank_2_easter_2008]
+id = 29854
+examine = "This is where water is added to the incubator."
+
+[incubator_coal_scuttle_easter_2008]
+id = 29855
+examine = "This is where coal is added to the incubator."
+
+[incubator_coal_2_scuttle_easter_2008]
+id = 29856
+examine = "This is where coal is added to the incubator."
+
+[incubator_easter_2008]
+id = 29857
+examine = "This is where an egg is incubated."
+
+[incubator_2_easter_2008]
+id = 29858
+examine = "This is where an egg is incubated."
+
+[incubator_3_easter_2008]
+id = 29859
+examine = "Contains your freshly-made egg."
+
+[incubator_4_easter_2008]
+id = 29860
+examine = "It looks like your egg has started to grow."
+
+[incubator_5_easter_2008]
+id = 29861
+examine = "It looks like your egg is growing well."
+
+[incubator_6_easter_2008]
+id = 29862
+examine = "It looks like your egg is getting much larger."
+
+[incubator_7_easter_2008]
+id = 29863
+examine = "It looks like your egg is ready to hatch."
+
+[incubator_controls_easter_2008]
+id = 29864
+examine = "It looks like a device for adjusting the incubator temperature."
+
+[cockatrice_eggs_easter_2008]
+id = 29865
+examine = "A pile of cockatrice eggs."
+
+[cockatrice_eggs_2_easter_2008]
+id = 29866
+examine = "A pile of cockatrice eggs."
+
+[large_table_easter_2008]
+id = 29867
+examine = "A sturdy table covered with buckets."
+
+[coal_easter_2008]
+id = 29868
+examine = "A big pile of coal."
+
+[chocolate_pool_2008]
+id = 29869
+examine = "A gloopy pool of rich, molten chocolate."
+
+[water_pool_2008]
+id = 29871
+examine = "A pool of water bubbling up from deep underground."
