@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.timer.Timer
 
 class TzHaarHealers(
     val npcs: NPCs,
@@ -37,17 +38,32 @@ class TzHaarHealers(
             }
         }
 
-        npcCondition("target_is_jad", ::nearJad)
-        npcCondition("target_is_player") { it is Player }
-
-        npcAttack("yt_hur_kot", "heal") {
-            val jad = npcs[tile.regionLevel].firstOrNull { it.id == "tztok_jad" } ?: return@npcAttack
-            heal(jad, 50)
+        npcMoved("yt_hur_kot") {
+            if (softTimers.contains("yt_hur_kot_heal")) {
+                return@npcMoved
+            }
+            val jad = npcs[tile.regionLevel].firstOrNull { it.id == "tztok_jad" } ?: return@npcMoved
+            if (tile.within(jad.tile, 5)) {
+                softTimers.start("yt_hur_kot_heal")
+            }
         }
-    }
 
-    private fun nearJad(npc: NPC, character: Character): Boolean {
-        return character is NPC && character.id == "tztok_jad"
+        npcTimerStart("yt_hur_kot_heal") { 4 }
+
+        npcTimerTick("yt_hur_kot_heal") {
+            val jad = npcs[tile.regionLevel].firstOrNull { it.id == "tztok_jad" } ?: return@npcTimerTick Timer.CONTINUE
+            if (!tile.within(jad.tile, 5)) {
+                return@npcTimerTick Timer.CONTINUE
+            }
+            val healed = jad.levels.restore(Skill.Constitution, 50)
+            if (healed > 0) {
+                anim("yt_hur_kot_heal")
+                jad.gfx("tzhaar_heal")
+                jad.directHit(50, "healed")
+                areaSound("self_heal", tile, radius = 10)
+            }
+            Timer.CONTINUE
+        }
     }
 
     private fun heal(target: NPC, amount: Int) {

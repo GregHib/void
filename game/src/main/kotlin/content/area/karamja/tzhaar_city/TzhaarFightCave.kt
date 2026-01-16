@@ -3,6 +3,7 @@ package content.area.karamja.tzhaar_city
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.combat.hit.Damage
 import content.entity.combat.hit.damage
+import content.entity.combat.hit.directHit
 import content.entity.combat.hit.hit
 import content.entity.combat.killer
 import content.entity.combat.target
@@ -153,36 +154,33 @@ class TzhaarFightCave(
             spawn("tz_kek_spawn", tile, killer)
         }
 
-        npcAttack("tztok_jad", "magic") {
-            val target = target ?: return@npcAttack
-            // Note: Override for jad only, don't use elsewhere
-            strongQueue("hit_target", 3) {
-                hit(target, offensiveType = "magic", delay = 64, damage = Damage.roll(this@npcAttack, target, offensiveType = "magic", range = 0..950))
+        npcLevelChanged(Skill.Constitution, "tztok_jad") { skill, from, to ->
+            val max = levels.getMax(skill)
+            if (from != max && to == max) {
+                set("healed", true)
+                return@npcLevelChanged
             }
-        }
-
-        npcAttack("tztok_jad", "range") {
-            val target = target ?: return@npcAttack
-            // Note: Override for jad only, don't use elsewhere
-            strongQueue("hit_target", 3) {
-                hit(target, offensiveType = "range", delay = 64, damage = Damage.roll(this@npcAttack, target, offensiveType = "range", range = 0..970))
+            // Healers can only respawn if healed to full.
+            if (!get("healed", false)) {
+                return@npcLevelChanged
             }
-        }
-
-        npcTimerStart("yt_hur_kot_heal") { 4 }
-
-        npcTimerTick("yt_hur_kot_heal") {
-            val jad = npcs[tile.regionLevel].firstOrNull { it.id == "tztok_jad" } ?: return@npcTimerTick Timer.CONTINUE
-            if (!tile.within(jad.tile, 5)) {
-                return@npcTimerTick Timer.CONTINUE
+            val half = max / 2
+            if (half !in to..<from) {
+                return@npcLevelChanged
             }
-            val healed = jad.levels.restore(Skill.Constitution, 50)
-            if (healed > 0) {
-                anim("yt_hur_kot_heal")
-                jad.gfx("tzhaar_heal")
-                areaSound("self_heal", tile, radius = 10)
+            val count = npcs[tile.regionLevel].count { it.id == "yt_hur_kot" }
+            val block = CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS
+            val directions = mutableSetOf(Direction.NORTH_WEST, Direction.SOUTH_EAST, Direction.SOUTH, Direction.SOUTH_WEST, Direction.NONE)
+            val offset = tile.region.tile.delta(region.tile)
+            val def = npcDefinitions.get("yt_hur_kot")
+            for (i in 0 until 4 - count) {
+                val dir = directions.random(random)
+                var tile = randomTile(dir, offset, def, block) ?: continue
+                val npc = npcs.add("yt_hur_kot", tile)
+                npc["in_multi_combat"] = true
+                npc.mode = Follow(npc, this)
+                npc.softTimers.start("yt_hur_kot_heal")
             }
-            Timer.CONTINUE
         }
 
         /*
@@ -218,41 +216,6 @@ class TzhaarFightCave(
             it.teleport = outside
             softQueue("fire_cave_death", 3) {
                 leave(wave)
-            }
-        }
-
-        npcLevelChanged(Skill.Constitution, "tztok_jad") { skill, from, to ->
-            val max = levels.getMax(skill)
-            if (from != max && to == max) {
-                set("healed", true)
-                return@npcLevelChanged
-            }
-            // Healers can only respawn if healed to full.
-            if (!get("healed", false)) {
-                return@npcLevelChanged
-            }
-            val half = max / 2
-            if (half !in to..<from) {
-                return@npcLevelChanged
-            }
-            val count = npcs[tile.regionLevel].count { it.id == "yt_hur_kot" }
-            val block = CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS
-            val directions = mutableSetOf(Direction.NORTH_WEST, Direction.NORTH_EAST, Direction.SOUTH_EAST, Direction.SOUTH, Direction.SOUTH_WEST, Direction.NONE)
-            val target = target
-            if (target is Player) {
-                val element = waves.spawns(63, target["fight_cave_rotation", 1]).first()
-                println("Spawning but not $element")
-                directions.remove(element)
-            }
-            val offset = tile.region.tile.delta(region.tile)
-            val def = npcDefinitions.get("yt_hur_kot")
-            for (i in 0 until 4 - count) {
-                val dir = directions.random(random)
-                var tile = randomTile(dir, offset, def, block) ?: continue
-                val npc = npcs.add("yt_hur_kot", tile)
-                npc["in_multi_combat"] = true
-                npc.mode = Follow(npc, this)
-                npc.softTimers.start("yt_hur_kot_heal")
             }
         }
     }
@@ -337,7 +300,6 @@ class TzhaarFightCave(
     fun randomTile(direction: Direction, offset: Delta, def: NPCDefinition, block: Int): Tile? {
         val area = when (direction) {
             Direction.NORTH_WEST -> areas["tzhaar_fight_cave_north_west"]
-            Direction.NORTH_EAST -> areas["tzhaar_fight_cave_north_east"]
             Direction.SOUTH_EAST -> areas["tzhaar_fight_cave_south_east"]
             Direction.SOUTH -> areas["tzhaar_fight_cave_south"]
             Direction.SOUTH_WEST -> areas["tzhaar_fight_cave_south_west"]

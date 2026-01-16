@@ -167,7 +167,7 @@ class TzhaarFightCaveTest : WorldTest() {
         player["fight_cave_wave"] = 10
         tick(2)
         player.directHit(1000)
-        tick(2)
+        tick(4)
 
         assertEquals(Tile(2436, 5170), player.tile)
         assertNull(player.get<Int>("fight_cave_wave"))

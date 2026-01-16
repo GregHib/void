@@ -101,7 +101,6 @@ defend_sound = "yt_mej_kot_defend"
 death_sound = "yt_mej_kot_death"
 
 [yt_hur_kot.melee]
-condition = "target_is_player"
 range = 1
 anim = "yt_hur_kot_attack"
 target_sound = "yt_mej_kot_attack"
