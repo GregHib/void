@@ -2,3 +2,25 @@
 id = 3681
 examine = "Even his mother hates him."
 
+[egg_red_easter_2007]
+id = 3682
+
+[egg_green_easter_2007]
+id = 3683
+
+[egg_yellow_easter_2007]
+id = 3684
+
+[egg_blue_easter_2007]
+id = 3685
+
+[chocolate_kebbit_easter_2007]
+id = 3686
+examine = "Chocolatey kebbit goodness."
+
+[chocolate_kebbit_2_easter_2007]
+id = 3687
+examine = "Chocolatey kebbit goodness."
+
+[easter_bunny_easter_2007]
+id = 3688

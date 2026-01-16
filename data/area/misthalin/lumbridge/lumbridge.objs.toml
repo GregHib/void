@@ -346,10 +346,6 @@ examine = "An interesting sign."
 id = 1189
 examine = "Commonly found in grassy areas."
 
-[lumbridge_flower]
-id = 1188
-examine = "Blooming!"
-
 [lumbridge_lantern]
 id = 45269
 examine = "A light for my path."
@@ -554,22 +550,6 @@ examine = "He looks pretty busy."
 id = 45313
 examine = "A spit over a roaring fire."
 
-[lumbridge_thistle]
-id = 1174
-examine = "Spiky!"
-
-[lumbridge_plant]
-id = 1392
-examine = "A leafy fern."
-
-[lumbridge_plant_2]
-id = 1393
-examine = "A small bushy plant."
-
-[lumbridge_plant_3]
-id = 1394
-examine = "A leafy shrub."
-
 [lumbridge_gravestone]
 id = 404
 examine = "The inscription is worn away and unreadable."
@@ -581,4 +561,3 @@ examine = "The inscription is worn away and unreadable."
 [lumbridge_gravestone_3]
 id = 37006
 examine = "'Here lies...'is all I can read."
-

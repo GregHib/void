@@ -1,4 +1,125 @@
+[easter_bunny_2009]
+id = 7407
+examine = "He's the king of all chocolatey things."
+
+[easter_bunny_2_2009]
+id = 7408
+examine = "He's the king of all chocolatey things."
+
+[easter_bunny_3_2009]
+id = 7409
+examine = "He's the king of all chocolatey things."
+
+[easter_bunny_jr_easter_2_2]
+id = 7410
+examine = "The Easter Bunny's lazy son."
+
+[easter_bunny_jr_easter_7]
+id = 7411
+examine = "The Easter Bunny's lazy son."
+
+[easter_bunny_jr_easter_6_2]
+id = 7412
+examine = "The Easter Bunny's lazy son."
+
+[fluffy_easter_2009]
+id = 7413
+categories = ["squirrel"]
+examine = "A cute, cuddly, little squirrel - with teeth."
+
+[beny_easter_2009]
+id = 7414
+examine = "A cute, cuddly, little squirrel - with teeth."
+
+[bubbles_easter_2009]
+id = 7415
+examine = "A cute, cuddly, little squirrel - with teeth."
+
+[big_ben_easter]
+id = 7416
+examine = "A cute, cuddly, little squirrel - with teeth."
+
+[easter_bird_easter_2]
+id = 7417
+examine = "The bird looks asleep."
+
+[easter_bird_easter_3]
+id = 7418
+examine = "The bird looks drowsy."
+
+[easter_bird_easter_4]
+id = 7419
+examine = "The bird looks overworked and underpaid."
+
+[easter_impling_easter_6]
+id = 7420
+examine = "An eggstra-special impling."
+
+[impling_worker_easter_3_2]
+id = 7421
+examine = "An impling worker, painting away."
+
+[impling_worker_easter_5]
+id = 7422
+examine = "An impling worker, painting away."
+
+[impling_worker_easter]
+id = 7423
+
+[impling_worker_easter_4_2]
+id = 7424
+examine = "An impling worker, painting away."
+
+[impling_manager_easter]
+id = 7425
+examine = "An impling manager: what a terrifying thought!"
+
+[impling_worker_easter_2]
+id = 7426
+examine = "This worker looks after the incubator."
+
+[easter_bunny_jr_easter]
+id = 7429
+
+[easter_bunny_jr_easter_2]
+id = 7430
+
+[easter_bunny_jr_easter_3]
+id = 7431
+
+[easter_bunny_jr_easter_4]
+id = 7432
+
+[easter_bunny_jr_easter_5]
+id = 7433
+
+[easter_bunny_jr_easter_6]
+id = 7434
+
+[easter_bird_easter]
+id = 7435
+
+[easter_impling_easter]
+id = 7436
+
+[easter_impling_easter_2]
+id = 7437
+
+[easter_impling_easter_3]
+id = 7438
+
+[easter_impling_easter_4]
+id = 7439
+
+[easter_impling_easter_5]
+id = 7440
+
+[impling_worker_easter_3]
+id = 7441
+
+[impling_worker_easter_4]
+id = 7442
+
 [rat_easter_2009]
 id = 7461
 examine = "It seems to be searching for chocolate."
-

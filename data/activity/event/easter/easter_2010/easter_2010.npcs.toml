@@ -1,0 +1,66 @@
+[charlie_the_squirrel_pet_easter_2010]
+id = 9681
+categories = ["squirrel"]
+examine = "A squirrel wearing weird face paint."
+
+[fluffy_pet_easter_2010]
+id = 9682
+categories = ["squirrel"]
+examine = "A cute, cuddly, little squirrel - with teeth."
+
+[goblin_courier_easter_2010]
+id = 9683
+categories = ["goblins"]
+examine = "An ugly green creature. He seems to be waiting for something."
+
+[a_strange_courier_easter_2010]
+id = 9684
+categories = ["elf"]
+examine = "An odd-looking person. Seems to be waiting for something."
+
+[courier_easter_2010]
+id = 9685
+categories = ["human"]
+examine = "One of RuneScape's many citizens. He seems to be waiting for something."
+
+[charlie_the_squirrel]
+id = 9686
+categories = ["squirrel"]
+examine = "A squirrel wearing weird face paint."
+
+[easter_bunny_easter_2010]
+id = 9687
+categories = ["rabbit"]
+examine = "The loveable protector of Easter."
+
+[easta_buni_spawn_easter_2010]
+id = 9688
+
+[easta_buni_easter_2010]
+id = 9689
+examine = "An ice troll."
+
+[phlegm_knee_easter_2010]
+id = 9690
+examine = "An ugly green creature."
+
+[hooded_client_easter_2010]
+id = 9691
+examine = "A strange-looking man."
+
+[big_ben_easter_2010]
+id = 9695
+examine = "A cute, cuddly little squirrel...with teeth."
+
+[easter_bird_easter_2010]
+id = 9696
+categories = ["birds"]
+examine = "The bird looks awake and alert."
+
+[impling_manager_easter_2010]
+id = 9704
+examine = "An impling manager: what a terrifying thought!"
+
+[impling_manager_2_easter_2010]
+id = 9705
+examine = "An impling manager: what a terrifying thought!"

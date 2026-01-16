@@ -1,0 +1,30 @@
+[chocatrice_easter_2008]
+id = 7201
+examine = "Chocolate plus Cockatrice equals Chocatrice?"
+
+[rat_easter_2008]
+id = 7202
+examine = "It has chocolate all round its mouth."
+
+[rat_2_easter_2008]
+id = 7204
+examine = "It's had more than its fair share of chocolate this Easter."
+
+[mouse_easter_2008]
+id = 7205
+examine = "It's searching for more chocolate to eat."
+
+[cockroach_easter_2008]
+id = 7206
+examine = "It seems to have eaten a lot of chocolate."
+
+[spider_easter_2008]
+id = 7207
+examine = "It's searching for crumbs of chocolate."
+
+[rabbit_easter_2008]
+id = 7208
+
+[snail_easter_2008]
+id = 7209
+examine = "It seems to have eaten a lot of chocolate."
