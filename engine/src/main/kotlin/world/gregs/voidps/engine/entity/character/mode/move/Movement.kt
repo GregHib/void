@@ -227,7 +227,7 @@ open class Movement(
                     }
                 }
                 for (def in areaDefinitions.get(toOriginal.zone)) {
-                    if (toOriginal in def.area && toOriginal !in def.area) {
+                    if (toOriginal in def.area && fromOriginal !in def.area) {
                         Moved.enter(character, def.name, def.area)
                     }
                 }

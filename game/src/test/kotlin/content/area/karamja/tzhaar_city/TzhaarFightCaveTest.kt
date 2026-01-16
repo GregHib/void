@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 
@@ -29,7 +28,7 @@ class TzhaarFightCaveTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextBits(bitCount: Int): Int = 0
         })
-        val player = createPlayer(Tile(2438, 5168), "JalYt")
+        val player = createPlayer(Tile(2438, 5168), "JalYt-1")
         player["auto_retaliate"] = true
         player["god_mode"] = true
         player["insta_kill"] = true
@@ -58,7 +57,7 @@ class TzhaarFightCaveTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextBits(bitCount: Int): Int = 0
         })
-        val player = createPlayer(Tile(2438, 5168), "JalYt")
+        val player = createPlayer(Tile(2438, 5168), "JalYt-2")
         player["god_mode"] = true
         player["insta_kill"] = true
         player.rights = PlayerRights.Admin
@@ -101,13 +100,11 @@ class TzhaarFightCaveTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextBits(bitCount: Int): Int = 0
         })
-        val player = createPlayer(Tile(2438, 5168), "JalYt")
+        val player = createPlayer(Tile(2438, 5168), "JalYt-1")
         player["god_mode"] = true
         val entrance = objects[Tile(2437, 5166), "cave_entrance_fight_cave"]!!
         player.interactObject(entrance, "Enter")
         tick(5)
-        val region = Region(9551)
-        val delta = player.tile.delta(player.tile.region.tile)
         val manager = get<AccountManager>()
         manager.logout(player, true)
         assertTrue(player["fight_caves_logout_warning", false])
@@ -115,7 +112,7 @@ class TzhaarFightCaveTest : WorldTest() {
         killAll(player)
         tick(3)
         assertTrue(player["logged_out", false])
-        assertEquals(region.tile.add(delta), player.tile)
+        assertEquals(Tile(2413, 5105), player.tile)
     }
 
     @Test
@@ -123,26 +120,24 @@ class TzhaarFightCaveTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextBits(bitCount: Int): Int = 0
         })
-        val player = createPlayer(Tile(2438, 5168), "JalYt")
+        val player = createPlayer(Tile(2438, 5168), "JalYt-2")
         player["god_mode"] = true
         val entrance = objects[Tile(2437, 5166), "cave_entrance_fight_cave"]!!
         player.interactObject(entrance, "Enter")
         tick(5)
-        val region = Region(9551)
-        val delta = player.tile.delta(player.tile.region.tile)
         val manager = get<AccountManager>()
         manager.logout(player, true)
         assertTrue(player["fight_caves_logout_warning", false])
         manager.logout(player, true)
         tick()
-        assertEquals(region.tile.add(delta), player.tile)
+        assertEquals(Tile(2413, 5113), player.tile)
     }
 
     @Test
     fun `Logging back in restarts the wave`() {
         val tile = Tile(2417, 5089)
         val delta = tile.delta(tile.region.tile)
-        val player = createPlayer(tile, "JalYt")
+        val player = createPlayer(tile, "JalYt-3")
         player["fight_cave_wave"] = 10
 
         Spawn.player(player)
@@ -157,7 +152,7 @@ class TzhaarFightCaveTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextBits(bitCount: Int): Int = 0
         })
-        val player = createPlayer(Tile(2438, 5168), "JalYt")
+        val player = createPlayer(Tile(2438, 5168), "JalYt-4")
         player.inventory.add("dragon_scimitar")
         val entrance = objects[Tile(2437, 5166), "cave_entrance_fight_cave"]!!
         player.interactObject(entrance, "Enter")
@@ -178,7 +173,7 @@ class TzhaarFightCaveTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextBits(bitCount: Int): Int = 0
         })
-        val player = createPlayer(Tile(2438, 5168), "JalYt")
+        val player = createPlayer(Tile(2438, 5168), "JalYt-5")
         val entrance = objects[Tile(2437, 5166), "cave_entrance_fight_cave"]!!
         player.interactObject(entrance, "Enter")
         tick(5)

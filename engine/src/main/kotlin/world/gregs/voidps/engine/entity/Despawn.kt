@@ -51,7 +51,7 @@ interface Despawn {
 
         fun logout(player: Player): Boolean {
             for (handler in playerLogout) {
-                if (handler(player)) {
+                if (!handler(player)) {
                     return false
                 }
             }
@@ -98,6 +98,7 @@ interface Despawn {
         }
 
         override fun close() {
+            playerLogout.clear()
             playerDespawns.clear()
             npcDespawns.clear()
             objectDespawns.clear()

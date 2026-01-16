@@ -39,7 +39,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.map.collision.random
-import world.gregs.voidps.engine.queue.LogoutBehaviour
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.queue.strongQueue
@@ -109,6 +108,7 @@ class TzhaarFightCave(
             close("tzhaar_fight_cave")
             clearInstance()
             if (get("logged_out", false)) {
+                // Save the player's relative position in the original region
                 val offset = tile.delta(tile.region.tile)
                 tele(region.tile.add(offset))
             } else {
@@ -232,7 +232,7 @@ class TzhaarFightCave(
     }
 
     private fun logoutChoice(player: Player): Boolean {
-        if (player["fight_caves_logout_warning", false]) {
+        if (!player.contains("fight_cave_wave") || player["fight_caves_logout_warning", false]) {
             return true
         }
         player["fight_caves_logout_warning"] = true
@@ -250,9 +250,7 @@ class TzhaarFightCave(
         }
         player["fight_cave_wave"] = wave
         if (player["fight_caves_logout_warning", false]) {
-            player.softQueue("logout", onCancel = null, behaviour = LogoutBehaviour.Accelerate) {
-                accountManager.logout(player, false)
-            }
+            Script.launch { accountManager.logout(player, false) }
             return
         }
         if (start && wave != 63) {
