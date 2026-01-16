@@ -6995,6 +6995,7 @@ tz
 tz-kek
 tz-kih
 tz-kil
+thzaar
 tz_haar
 tzhaar
 tzhaar_city

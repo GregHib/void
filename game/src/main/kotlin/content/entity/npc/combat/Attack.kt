@@ -75,20 +75,27 @@ class Attack(
                 val origin = attack.projectileOrigin
                 for (i in attack.projectiles.indices) {
                     val projectile = attack.projectiles[i]
+                    if (projectile.id == "") {
+                        delays[i] = projectile.delay ?: 0
+                        continue
+                    }
                     val delay = when (origin) {
                         CombatDefinition.Origin.Tile -> shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
+                        CombatDefinition.Origin.TileTwo -> shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight, tileOffset = 2)
                         CombatDefinition.Origin.Centre -> nearestTile(this, target).shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
                     }
                     delays[i] = delay
                 }
+                var miss = true
+                var delay = 0
                 for (i in attack.targetHits.indices) {
                     val hit = attack.targetHits[i]
-                    var delay = delays.getOrNull(i) ?: -1
+                    delay = delays.getOrNull(i) ?: -1
                     if (delay == -1) {
                         delay = if (Hit.meleeType(hit.offense)) 0 else 64
                     }
                     if (hit.delay != null) {
-                        delay = hit.delay!!
+                        delay += hit.delay!!
                     }
                     var offense = hit.offense
                     var defence = hit.defence
@@ -96,14 +103,20 @@ class Attack(
                         offense = listOf("crush", "range", "magic").random(random)
                         defence = offense
                     }
-                    if (hit.max == 0) {
+                    val damage = if (hit.max == 0) {
                         hit(target = target, delay = delay, offensiveType = offense, defensiveType = defence, special = hit.special, spell = attack.id) // Reuse spell for attack name
                     } else {
                         val damage = Damage.roll(source = this, target = target, offensiveType = offense, weapon = Item.EMPTY, special = hit.special, defensiveType = defence, range = hit.min..hit.max)
                         hit(target = target, delay = delay, offensiveType = offense, defensiveType = defence, special = hit.special, damage = damage, spell = attack.id)
                     }
+                    if (damage > 0) {
+                        miss = false
+                    }
                 }
                 CombatApi.attack(this, target, "${definition.npc}:${attack.id}")
+                val impactDelay = delays.firstOrNull()
+                target.play(if (!attack.impactRegardless && miss) attack.missGfx else attack.impactGfx, impactDelay)
+                target.play(if (!attack.impactRegardless && miss) attack.missSounds else attack.impactSounds, impactDelay)
             }
         }
 
@@ -120,9 +133,6 @@ class Attack(
                 }
                 // Impact
                 target.play(attack.impactAnim)
-                // TODO are impact gfx done here or at cast time with projectile delay??
-                target.play(if (attack.impactRegardless || context.damage > 0) attack.impactGfx else attack.missGfx)
-                target.play(if (attack.impactRegardless || context.damage > 0) attack.impactSounds else attack.missSounds)
                 // Effects
                 if (attack.impactRegardless || context.damage > 0) {
                     for (drain in attack.impactDrainSkills) {
@@ -201,32 +211,32 @@ class Attack(
     }
 
     @JvmName("playGfx")
-    private fun Character.play(list: List<CombatGfx>) {
+    private fun Character.play(list: List<CombatGfx>, delay: Int? = null) {
         for (gfx in list) {
             if (gfx.area) {
                 areaGfx(
                     id = gfx.id,
                     tile = if (gfx.offset != null) tile.add(gfx.offset!!) else tile,
-                    delay = gfx.delay ?: 0,
+                    delay = delay ?: gfx.delay ?: 0,
                     height = gfx.height ?: 0,
                 )
             } else {
-                gfx(id = gfx.id, delay = gfx.delay)
+                gfx(id = gfx.id, delay = delay ?: gfx.delay)
             }
         }
     }
 
     @JvmName("playSounds")
-    private fun Character.play(list: List<CombatDefinition.CombatSound>) {
+    private fun Character.play(list: List<CombatDefinition.CombatSound>, delay: Int? = null) {
         for (sound in list) {
             if (sound.radius == 0) {
-                sound(id = sound.id, delay = sound.delay)
+                sound(id = sound.id, delay = delay ?: sound.delay)
             } else {
                 areaSound(
                     id = sound.id,
                     tile = if (sound.offset != null) tile.add(sound.offset!!) else tile,
                     radius = sound.radius,
-                    delay = sound.delay,
+                    delay = delay ?: sound.delay,
                 )
             }
         }

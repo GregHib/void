@@ -18,3 +18,11 @@ persist = true
 [debug]
 format = "boolean"
 persist = true
+
+[god_mode]
+format = "boolean"
+persist = true
+
+[insta_kill]
+format = "boolean"
+persist = true

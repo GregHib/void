@@ -128,6 +128,10 @@ data class CombatDefinition(
          */
         Tile,
         /**
+         * Entities south-west tile offset by +2
+         */
+        TileTwo,
+        /**
          * Entities size-centered tile (different from size/2)
          */
         Centre,

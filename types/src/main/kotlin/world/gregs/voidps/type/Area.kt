@@ -20,6 +20,8 @@ interface Area : Iterable<Tile> {
 
     fun toZones(level: Int = 0): List<Zone>
 
+    fun offset(delta: Delta): Area
+
     companion object {
         @Suppress("UNCHECKED_CAST")
         fun fromMap(map: Map<String, Any>, maxLevel: Int): Area {

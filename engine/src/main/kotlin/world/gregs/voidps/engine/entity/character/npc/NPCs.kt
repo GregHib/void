@@ -49,6 +49,7 @@ data class NPCs(
             indexArray[index] = null
             regionMap.remove(npc.tile.regionLevel.id, npc.index)
             zoneMap.remove(npc.tile.zone.id, npc.index)
+            Despawn.npc(npc)
             npc.index = -1
         }
         removeIndex = 0

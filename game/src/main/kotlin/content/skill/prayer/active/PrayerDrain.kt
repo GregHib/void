@@ -28,6 +28,9 @@ class PrayerDrain : Script {
     }
 
     fun drain(player: Player): Int {
+        if (player["god_mode", false]) {
+            return Timer.CONTINUE
+        }
         val equipmentBonus = player["prayer", 0]
         var prayerDrainCounter = player["prayer_drain_counter", 0]
 

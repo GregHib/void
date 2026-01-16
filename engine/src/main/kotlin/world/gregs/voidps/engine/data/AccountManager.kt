@@ -26,6 +26,7 @@ import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.network.login.protocol.encode.logout
+import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
@@ -82,6 +83,7 @@ class AccountManager(
         player.collision = collisionStrategyProvider.get(character = player)
         return true
     }
+
     /**
      * Send region load to a player
      */
@@ -94,8 +96,10 @@ class AccountManager(
         loadCallback.invoke(player)
         player.open(player.interfaces.gameFrame)
         Spawn.player(player)
-        for (def in areaDefinitions.get(player.tile.zone)) {
-            if (player.tile in def.area) {
+        val offset = player.get<Long>("instance_offset")?.let { Delta(it) } ?: Delta.EMPTY
+        val original = player.tile.minus(offset)
+        for (def in areaDefinitions.get(original.zone)) {
+            if (original in def.area) {
                 Moved.enter(player, def.name, def.area)
             }
         }
@@ -107,6 +111,9 @@ class AccountManager(
         }
         if (safely && player.contains("delay")) {
             player.message("You need to wait a few moments before you can log out.")
+            return
+        }
+        if (!Despawn.logout(player)) {
             return
         }
         player["logged_out"] = true
@@ -121,8 +128,10 @@ class AccountManager(
             World.queue("logout", 1) {
                 players.remove(player)
             }
-            for (def in areaDefinitions.get(player.tile.zone)) {
-                if (player.tile in def.area) {
+            val offset = player.get<Long>("instance_offset")?.let { Delta(it) } ?: Delta.EMPTY
+            val original = player.tile.minus(offset)
+            for (def in areaDefinitions.get(original.zone)) {
+                if (original in def.area) {
                     Moved.exit(player, def.name, def.area)
                 }
             }

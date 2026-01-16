@@ -36,7 +36,7 @@ object Damage {
         source: Character,
         target: Character,
         offensiveType: String,
-        weapon: Item,
+        weapon: Item = Item.EMPTY,
         spell: String = "",
         special: Boolean = false,
         defensiveType: String = offensiveType,
@@ -158,6 +158,11 @@ object Damage {
             val message = "Max damage: $damage (${listOf(type, "$strengthBonus str", style, spec).joinToString(", ")})"
             source.message(message)
             logger.debug { message }
+        }
+        if (target["god_mode", false]) {
+            return 0
+        } else if (source["insta_kill", false]) {
+            return 10_000
         }
         return damage
     }

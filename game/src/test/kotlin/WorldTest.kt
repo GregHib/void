@@ -42,6 +42,7 @@ import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollisionAdd
 import world.gregs.voidps.engine.map.collision.GameObjectCollisionRemove
+import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.timer.setCurrentTime
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.ConnectionQueue
@@ -243,6 +244,7 @@ abstract class WorldTest : KoinTest {
         objects.reset()
         World.clear()
         Settings.clear()
+        Instances.reset()
     }
 
     @AfterAll

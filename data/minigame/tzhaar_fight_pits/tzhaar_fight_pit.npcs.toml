@@ -1,0 +1,53 @@
+[tz_kih_fight_pits]
+id = 2627
+hitpoints = 100
+att = 20
+str = 30
+def = 15
+mage = 15
+range = 30
+style = "stab"
+max_hit_melee = 40
+hunt_mode = "cowardly"
+slayer_xp = 10.0
+categories = ["tz_haar"]
+examine = "Some kind of bat..."
+
+[tz_kih_fight_pits_2]
+clone = "tz_kih"
+id = 2628
+
+[tz_kek_fight_pits]
+id = 2629
+hitpoints = 200
+att = 40
+str = 60
+def = 30
+mage = 30
+range = 60
+combat_def = "tz_kek"
+slayer_xp = 20.0
+categories = ["tz_haar"]
+examine = "Looks like living lava..."
+
+[tz_kek_fight_pits_2]
+clone = "tz_kek_fight_pits"
+id = 2630
+
+[tok_xil_fight_pits]
+id = 2631
+hitpoints = 400
+att = 80
+str = 120
+def = 60
+mage = 60
+range = 120
+combat_def = "tok_xil"
+hunt_mode = "cowardly"
+slayer_xp = 40.0
+categories = ["tz_haar"]
+examine = "I don't like the look of those spines..."
+
+[tok_xil_fight_pits_2]
+id = 2632
+clone = "tok_xil_fight_pits"

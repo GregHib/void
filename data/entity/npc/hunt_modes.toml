@@ -44,6 +44,15 @@ check_not_combat_self = true
 check_not_too_strong = true
 check_not_busy = true
 
+# Attacking tzhaar crafters
+[tzhaar_hunter]
+type = "player"
+check_visual = "line_of_sight"
+check_not_too_strong = false
+check_not_combat = false
+check_not_combat_self = true
+check_not_busy = false
+
 # Finds ashes on the floor
 [ash_finder]
 type = "floor_item"

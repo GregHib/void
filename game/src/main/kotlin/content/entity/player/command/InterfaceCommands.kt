@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.ClientScriptDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.inject
@@ -35,6 +36,7 @@ class InterfaceCommands : Script {
     val animationDefinitions: AnimationDefinitions by inject()
     val inventoryDefinitions: InventoryDefinitions by inject()
     val scriptDefinitions: ClientScriptDefinitions by inject()
+    val npcDefinitions: NPCDefinitions by inject()
 
     init {
         adminCommand("inter", stringArg("interface-id", autofill = definitions.ids.keys), desc = "Open an interface with int or string id", handler = ::open)
@@ -79,6 +81,7 @@ class InterfaceCommands : Script {
         adminCommand(
             "expr",
             stringArg("expression-id", autofill = { animationDefinitions.definitions.filter { it.stringId.startsWith("expression_") }.map { it.stringId.removePrefix("expression_") }.toSet() }),
+            stringArg("npc-id", autofill = { npcDefinitions.ids.keys }, optional = true),
             desc = "Display dialogue head with an animation expression",
             handler = ::expression,
         )
@@ -131,12 +134,13 @@ class InterfaceCommands : Script {
 
     fun expression(player: Player, args: List<String>) {
         val id = args[0].toIntOrNull()
-        val content = args.joinToString(" ")
+        val content = args[0]
+        val npcId = args.getOrNull(1)
         if (id != null) {
-            val npc = id < 1000
+            val npc = npcId != null
             if (player.open("dialogue_${if (npc) "npc_" else ""}chat1")) {
                 if (npc) {
-                    player.client?.npcDialogueHead(15794178, 2176)
+                    player.client?.npcDialogueHead(15794178, npcId!!.toInt())
                 } else {
                     player.client?.playerDialogueHead(4194306)
                 }
@@ -146,7 +150,7 @@ class InterfaceCommands : Script {
             }
         } else {
             player.queue("dialogue_command") {
-                player.npc("1902", content, content)
+                player.npc(npcId ?: "1902", content, content)
             }
         }
     }

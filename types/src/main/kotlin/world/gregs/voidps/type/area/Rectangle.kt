@@ -54,6 +54,8 @@ data class Rectangle(
         return list
     }
 
+    override fun offset(delta: Delta) = Rectangle(minX + delta.x, minY + delta.y, maxX + delta.x, maxY + delta.y)
+
     fun intersects(other: Rectangle): Boolean {
         if (other.width <= 0 || other.height <= 0 || width <= 0 || height <= 0) {
             return false

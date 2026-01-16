@@ -1,0 +1,35 @@
+[tzhaar_ket_defend]
+id = 257
+
+[tzhaar_ket_death]
+id = 256
+
+[tzhaar_ket_attack_club]
+id = 250
+
+[tzhaar_hur_attack]
+id = 251
+
+[tzhaar_hur_death]
+id = 252
+
+[tzhaar_hur_defend]
+id = 253
+
+[tzhaar_xil_attack_multiblade]
+id = 268
+
+[tzhaar_xil_death]
+id = 270
+
+[tzhaar_xil_hit]
+id = 271
+
+[tzhaar_mej_attack_staff]
+id = 262
+
+[tzhaar_mej_death]
+id = 263
+
+[tzhaar_mej_defend]
+id = 264

@@ -1,0 +1,10 @@
+[tzhaar_fight_cave]
+id = 316
+type = "game_screen_overlay"
+
+[.background]
+id = 1
+
+[.wave_number]
+id = 2
+

@@ -130,6 +130,10 @@ permanent = false
 [overlay]
 index = 7
 
+[game_screen_overlay]
+fixedIndex = 7
+resizeIndex = 6
+
 [main_screen]
 fixedIndex = 18
 resizeIndex = 8

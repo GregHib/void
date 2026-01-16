@@ -207,12 +207,13 @@ class Hunting(
         count = 0
         for (zone in npc.tile.zone.toRectangle(ceil(range / 8.0).toInt()).toZonesReversed(npc.tile.level)) {
             for (character in characterList[zone]) {
-                if (canHunt(npc, character, definition, range)) {
-                    if (count >= TARGET_CAP) {
-                        return
-                    }
-                    targets[count++] = character
+                if (!canHunt(npc, character, definition, range)) {
+                    continue
                 }
+                if (count >= TARGET_CAP) {
+                    return
+                }
+                targets[count++] = character
             }
         }
     }

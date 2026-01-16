@@ -1,0 +1,80 @@
+[tz_kih_death]
+id = 9230
+
+[tz_kih_defend]
+id = 9231
+
+[tz_kih_attack]
+id = 9232
+
+[tz_kek_attack]
+id = 9233
+
+[tz_kek_death]
+id = 9234
+
+[tz_kek_defend]
+id = 9235
+
+[tok_xil_death]
+id = 9239
+
+[tok_xil_defend]
+id = 9242
+
+[tok_xil_shoot]
+id = 9243
+
+[tok_xil_attack]
+id = 9245
+
+[yt_mej_kot_attack]
+id = 9246
+
+[yt_mej_kot_death]
+id = 9247
+
+[yt_mej_kot_defend]
+id = 9248
+
+[yt_mej_kot_heal]
+id = 9249
+
+[ket_zek_attack]
+id = 9265
+
+[ket_zek_attack_magic]
+id = 9266
+
+[ket_zek_defend]
+id = 9268
+
+[ket_zek_death]
+id = 9269
+
+[tztok_jad_attack_range]
+id = 9276
+
+[tztok_jad_attack_melee]
+id = 9277
+
+[tztok_jad_defend]
+id = 9278
+
+[tztok_jad_death]
+id = 9279
+
+[tztok_jad_attack_magic]
+id = 9300
+
+[yt_hur_kot_attack]
+id = 9252
+
+[yt_hur_kot_defend]
+id = 9253
+
+[yt_hur_kot_heal]
+id = 9254
+
+[yt_hur_kot_death]
+id = 9257

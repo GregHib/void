@@ -106,6 +106,46 @@ class Cutscene(
     }
 }
 
+fun Player.smallInstance(region: Region? = null, levels: Int = 4): Region {
+    val instance = Instances.small()
+    if (region != null) {
+        get<DynamicZones>().copy(region, instance, levels)
+        set("instance_offset", instance.offset(region).id)
+    }
+    set("instance", instance.id)
+    return instance
+}
+
+fun Player.largeInstance(): Region {
+    val instance = Instances.large()
+    set("instance", instance.id)
+    return instance
+}
+
+/**
+ * Delta between original and instance
+ * Add to convert to instance
+ * Minus to convert to original
+ */
+fun Player.instanceOffset(): Delta {
+    val id: Long = get("instance_offset") ?: return Delta.EMPTY
+    return Delta(id)
+}
+
+fun Player.instance(): Region? {
+    val id: Int = get("instance") ?: return null
+    return Region(id)
+}
+
+fun Player.clearInstance(): Boolean {
+    val id: Int = remove("instance") ?: return false
+    clear("instance_offset")
+    val region = Region(id)
+    Instances.free(region)
+    get<DynamicZones>().clear(region)
+    return true
+}
+
 fun Player.openTabs() {
     for (tab in tabs) {
         open(tab)

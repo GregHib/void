@@ -20,6 +20,9 @@ object SpecialAttack {
             player.specialAttack = false
             return false
         }
+        if (player["god_mode", false]) {
+            return true
+        }
         var energy = amount
         if (player.equipped(EquipSlot.Ring).id == "ring_of_vigour") {
             energy = floor(energy * 0.9).toInt()

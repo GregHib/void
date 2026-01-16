@@ -26,25 +26,25 @@ class CombatHitsplats : Script {
 
     fun hit(target: Character, it: CombatDamage) {
         var (source, type, damage, _, spell, _) = it
-        if (damage < 0) {
-            target.hit(
-                source = source,
-                amount = 0,
-                mark = HitSplat.Mark.Missed,
-            )
-        } else if (type == "healed") {
+        if (type == "healed") {
             target.hit(
                 source = source,
                 amount = damage,
                 mark = HitSplat.Mark.Healed,
             )
             target.levels.restore(Skill.Constitution, damage)
+        } else if (damage < 0 || target["god_mode", false]) {
+            target.hit(
+                source = source,
+                amount = 0,
+                mark = HitSplat.Mark.Missed,
+            )
         } else {
             if (type == "magic" && definitions.get(spell).maxHit == -1) {
                 return
             }
             var soak = 0
-            if (Settings["combat.damageSoak", true] && damage > 200) {
+            if (!source["insta_kill", false] && Settings["combat.damageSoak", true] && damage > 200) {
                 val percent = target["absorb_$type", 10] / 100.0
                 soak = floor((damage - 200) * percent).toInt()
                 damage -= soak

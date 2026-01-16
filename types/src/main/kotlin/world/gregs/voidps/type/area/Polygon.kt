@@ -1,6 +1,7 @@
 package world.gregs.voidps.type.area
 
 import world.gregs.voidps.type.Area
+import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Tile
 import kotlin.math.abs
 
@@ -48,6 +49,8 @@ open class Polygon(
         }
         return area / 2.0
     }
+
+    override fun offset(delta: Delta) = Polygon(xPoints.map { it + delta.x }.toIntArray(), yPoints.map { it + delta.y }.toIntArray(), level + delta.level, level + delta.level)
 
     override fun iterator(): Iterator<Tile> {
         val iterator = bounds.iterator()
