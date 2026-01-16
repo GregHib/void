@@ -29,8 +29,8 @@ data class ConfigFiles(
     fun find(path: String, type: String = "toml"): String = map.getOrDefault(type, emptyList()).firstOrNull { it.endsWith(path) } ?: throw NoSuchFileException("Unable to find config file '$path' in /data/ directory.")
 }
 
-fun tempCache(cachePath: String = Settings["storage.cache.temp.path"]): File? {
-    if (!Settings["storage.cache.temp.active", false]) {
+fun tempCache(cachePath: String = Settings["storage.caching.path"]): File? {
+    if (!Settings["storage.caching.active", false]) {
         return null
     }
     val directory = File(cachePath)

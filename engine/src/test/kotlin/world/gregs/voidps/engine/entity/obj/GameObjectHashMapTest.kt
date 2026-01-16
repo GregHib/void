@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 
 class GameObjectHashMapTest {
 
-    private lateinit var map: GameObjectMap
+    private lateinit var map: GameObjectHashMap
 
     @BeforeEach
     fun setup() {
