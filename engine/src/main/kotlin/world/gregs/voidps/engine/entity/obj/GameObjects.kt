@@ -16,6 +16,7 @@ import world.gregs.voidps.network.login.protocol.encode.zone.ObjectAddition
 import world.gregs.voidps.network.login.protocol.encode.zone.ObjectRemoval
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
+import java.io.File
 
 /**
  * Stores GameObjects and modifications mainly for verifying interactions
@@ -32,11 +33,19 @@ class GameObjects(
     private val definitions: ObjectDefinitions,
     private val storeUnused: Boolean = false,
 ) : ZoneBatchUpdates.Sender {
-    private val map = if (storeUnused) GameObjectArrayMap() else GameObjectHashMap()
+    private val map = GameObjectHashMap()
     private val replacements: MutableMap<Int, Int> = Int2IntOpenHashMap()
     val timers = GameObjectTimers()
     var size = 0
         private set
+
+    fun load(file: File) {
+        size = map.load(file)
+    }
+
+    fun save(file: File) {
+        map.save(file)
+    }
 
     /**
      * Adds a temporary object with [id] [tile] [shape] and [rotation]

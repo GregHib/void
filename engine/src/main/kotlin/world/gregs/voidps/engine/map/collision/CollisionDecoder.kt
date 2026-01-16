@@ -1,9 +1,12 @@
 package world.gregs.voidps.engine.map.collision
 
 import org.rsmod.game.pathfinder.flag.CollisionFlag
+import world.gregs.voidps.buffer.read.ArrayReader
+import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
+import java.io.File
 
 /**
  * Adds collision for all blocked tiles except bridges
@@ -75,6 +78,51 @@ class CollisionDecoder(private val collisions: Collisions) {
                 }
             }
         }
+    }
+
+    fun load(file: File): Int {
+        val reader = ArrayReader(file.readBytes())
+        val full = reader.readInt()
+        for (i in 0 until full) {
+            val index = reader.readInt()
+            val array = IntArray(64)
+            reader.readBytes(array)
+            collisions.flags[index] = array
+        }
+        val equals = reader.readInt()
+        for (i in 0 until equals) {
+            val index = reader.readInt()
+            val type = reader.readInt()
+            collisions.flags[index] = IntArray(64) { type }
+        }
+        return full + equals
+    }
+
+    fun save(file: File) {
+        val writer = BufferWriter(26_000_000)
+        val full = mutableListOf<Int>()
+        val equals = mutableListOf<Int>()
+        val flags = collisions.flags
+        for (i in 0 until flags.size) {
+            if (flags[i] == null) continue
+            val first = flags[i]!![0]
+            if (flags[i]!!.all { it == first }) {
+                equals.add(i)
+            } else {
+                full.add(i)
+            }
+        }
+        writer.writeInt(full.size)
+        for (index in full) {
+            writer.writeInt(index)
+            writer.writeBytes(flags[index]!!)
+        }
+        writer.writeInt(equals.size)
+        for (index in equals) {
+            writer.writeInt(index)
+            writer.writeInt(flags[index]!![0])
+        }
+        file.writeBytes(writer.toArray())
     }
 
     companion object {

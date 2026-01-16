@@ -322,7 +322,7 @@ abstract class WorldTest : KoinTest {
         private val objectCollisionAdd: GameObjectCollisionAdd by lazy { GameObjectCollisionAdd(collisions) }
         private val objectCollisionRemove: GameObjectCollisionRemove by lazy { GameObjectCollisionRemove(collisions) }
         private val gameObjects: GameObjects by lazy { GameObjects(objectCollisionAdd, objectCollisionRemove, ZoneBatchUpdates(), objectDefinitions, storeUnused = true) }
-        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder(collisions), objectDefinitions, gameObjects, cache).loadCache() }
+        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder(collisions), objectDefinitions, gameObjects, cache).load(configFiles) }
         private val fontDefinitions: FontDefinitions by lazy { FontDefinitions(FontDecoder().load(cache)).load(configFiles.find(Settings["definitions.fonts"])) }
         private val objectTeleports: ObjectTeleports by lazy { ObjectTeleports().load(configFiles.list(Settings["map.teleports"])) }
         private val itemOnItemDefinitions: ItemOnItemDefinitions by lazy { ItemOnItemDefinitions().load(configFiles.list(Settings["definitions.itemOnItem"])) }

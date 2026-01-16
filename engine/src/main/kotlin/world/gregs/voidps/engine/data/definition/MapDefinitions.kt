@@ -2,25 +2,19 @@ package world.gregs.voidps.engine.data.definition
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.FileCache
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.decoder.MapTileDecoder
-import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
+import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.GameObjectCollisionAdd
-import world.gregs.voidps.engine.map.collision.GameObjectCollisionRemove
 import world.gregs.voidps.engine.map.obj.MapObjectsDecoder
 import world.gregs.voidps.engine.map.obj.MapObjectsRotatedDecoder
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Zone
+import java.io.File
 import kotlin.system.exitProcess
-import kotlin.time.measureTimedValue
 
 /**
  * Loads map collision and objects fast and direct
@@ -38,28 +32,51 @@ class MapDefinitions(
     private val decoder = MapObjectsDecoder(objects, definitions)
     private val rotationDecoder = MapObjectsRotatedDecoder(objects, definitions)
 
-    fun loadCache(xteas: Map<Int, IntArray>? = null): MapDefinitions {
+    fun load(configFiles: ConfigFiles, xteas: Map<Int, IntArray>? = null): MapDefinitions {
         try {
-            val start = System.currentTimeMillis()
-            var regions = 0
-            val settings = ByteArray(16384)
-            for (regionX in 0 until 256) {
-                for (regionY in 0 until 256) {
-                    if (!loadSettings(cache, regionX, regionY, settings)) {
-                        continue
-                    }
-                    collisions.decode(settings, regionX shl 6, regionY shl 6)
-                    val keys = if (xteas != null) xteas[Region.id(regionX, regionY)] else null
-                    decoder.decode(cache, settings, regionX, regionY, keys)
-                    regions++
-                }
+            if (!Settings["storage.caching.active", false]) {
+                loadCache(xteas)
+                return this
             }
-            logger.info { "Loaded $regions maps ${objects.size} ${"object".plural(objects.size)} in ${System.currentTimeMillis() - start}ms" }
+            val path = Settings["storage.caching.path"]
+            File(path).mkdirs()
+            val objectsFile = File("${path}${Settings["storage.caching.objects"]}")
+            val collisionsFile = File("${path}${Settings["storage.caching.collisions"]}")
+            if (objectsFile.exists() && collisionsFile.exists() && !configFiles.cacheUpdate) {
+                val start = System.currentTimeMillis()
+                val zones = collisions.load(collisionsFile)
+                objects.load(objectsFile)
+                logger.info { "Loaded all maps $zones zones ${objects.size} ${"object".plural(objects.size)} in ${System.currentTimeMillis() - start}ms" }
+            } else {
+                loadCache(xteas)
+                val start = System.currentTimeMillis()
+                collisions.save(collisionsFile)
+                objects.save(objectsFile)
+                logger.info { "Cached maps in ${System.currentTimeMillis() - start}ms" }
+            }
             return this
         } catch (e: ArrayIndexOutOfBoundsException) {
             logger.error(e) { "Error loading map definition; do you have the latest cache?" }
             exitProcess(1)
         }
+    }
+
+    private fun loadCache(xteas: Map<Int, IntArray>? = null) {
+        val start = System.currentTimeMillis()
+        var regions = 0
+        val settings = ByteArray(16384)
+        for (regionX in 0 until 256) {
+            for (regionY in 0 until 256) {
+                if (!loadSettings(cache, regionX, regionY, settings)) {
+                    continue
+                }
+                collisions.decode(settings, regionX shl 6, regionY shl 6)
+                val keys = if (xteas != null) xteas[Region.id(regionX, regionY)] else null
+                decoder.decode(cache, settings, regionX, regionY, keys)
+                regions++
+            }
+        }
+        logger.info { "Loaded $regions maps ${objects.size} ${"object".plural(objects.size)} in ${System.currentTimeMillis() - start}ms" }
     }
 
     fun loadZone(from: Zone, to: Zone, rotation: Int, xteas: Map<Int, IntArray>? = null) {
@@ -95,19 +112,4 @@ class MapDefinitions(
         return settings
     }
 
-    companion object {
-        @JvmStatic
-        fun main(args: Array<String>) {
-            val properties = Settings.load()
-//            properties["storage.cache.path"] = "./data/cache-old/"
-            val (cache, duration) = measureTimedValue { FileCache.load(properties) }
-            println("Loaded cache in ${duration.inWholeMilliseconds}ms")
-            val files = configFiles()
-            val definitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(files.list(Settings["definitions.objects"]))
-            val collisions = Collisions()
-            val add = GameObjectCollisionAdd(collisions)
-            val remove = GameObjectCollisionRemove(collisions)
-            val defs = MapDefinitions(CollisionDecoder(collisions), definitions, GameObjects(add, remove, ZoneBatchUpdates(), definitions, storeUnused = true), cache).loadCache()
-        }
-    }
 }

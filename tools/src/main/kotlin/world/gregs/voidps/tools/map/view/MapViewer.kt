@@ -41,7 +41,7 @@ class MapViewer {
                 val objectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache))
                     .load(files.list(Settings["definitions.objects"]))
                 val objects = GameObjects(GameObjectCollisionAdd(collisions), GameObjectCollisionRemove(collisions), ZoneBatchUpdates(), objectDefinitions)
-                MapDefinitions(CollisionDecoder(collisions), objectDefinitions, objects, cache).loadCache()
+                MapDefinitions(CollisionDecoder(collisions), objectDefinitions, objects, cache).load(files)
             }
             frame.add(MapView(nav, collisions, files.list(Settings["map.areas"])))
             frame.pack()
