@@ -1,0 +1,135 @@
+[impling_worker_easter_2010]
+id = 49102
+examine = "An impling worker."
+
+[impling_worker_2_easter_2010]
+id = 49103
+examine = "An impling worker."
+
+[impling_worker_3_easter_2010]
+id = 49104
+examine = "An impling worker."
+
+[impling_worker_4_easter_2010]
+id = 49105
+examine = "An impling worker, painting away."
+
+[impling_manager_easter_2010]
+id = 49106
+examine = "An impling manager; what a terrifying thought!"
+
+[water_tank_easter_2010]
+id = 49109
+examine = "It collects rainwater from the surface."
+
+[bird_food_easter_2010]
+id = 49112
+examine = "A sack of grey seeds."
+
+[boxes_easter_2010]
+id = 49119
+examine = "They seem to be filled with nuts."
+
+[boxes_2_easter_2010]
+id = 49120
+examine = "They seem to be filled with nuts."
+
+[boxes_3_easter_2010]
+id = 49121
+examine = "They seem to be filled with chocolate."
+
+[boxes_4_easter_2010]
+id = 49122
+examine = "They seem to be filled with chocolate."
+
+[boxes_5_easter_2010]
+id = 49123
+examine = "They seem to be filled with chocolate."
+
+[boxes_6_easter_2010]
+id = 49125
+examine = "They seem to be filled with nuts."
+
+[boxes_7_easter_2010]
+id = 49126
+examine = "They seem to be filled with chocolate."
+
+[dirty_oven_easter_2010]
+id = 49129
+examine = "Lots of soot on this oven."
+
+[oven_easter_2010]
+id = 49130
+examine = "Cleaned and ready to go."
+
+[oven_controls_easter_2010]
+id = 49131
+examine = "These control the oven."
+
+[water_tank_2_easter_2010]
+id = 49132
+examine = "Supplies water to the oven."
+
+[coal_supply_easter_2010]
+id = 49133
+examine = "Supplies coal to the oven."
+
+[egg-painting_machine_easter_2010]
+id = 49137
+examine = "A machine for painting chocolate eggs."
+
+[egg-painting_machine_2_easter_2010]
+id = 49138
+examine = "A machine for painting chocolate eggs."
+
+[egg-painting_machine_3_easter_2010]
+id = 49140
+examine = "A machine for painting chocolate eggs."
+
+[egg-painting_machine_4_easter_2010]
+id = 49143
+examine = "A machine for painting chocolate eggs."
+
+[nut_machine_easter_2010]
+id = 49145
+examine = "Sorts and crushes nuts to coat the eggs."
+
+[nut_machine_2_easter_2010]
+id = 49146
+examine = "Sorts and crushes nuts to coat the eggs."
+
+[nut_machine_3_easter_2010]
+id = 49148
+examine = "Sorts and crushes nuts to coat the eggs."
+
+[nut_machine_4_easter_2010]
+id = 49149
+examine = "Sorts and crushes nuts to coat the eggs."
+
+[nut_machine_5_easter_2010]
+id = 49151
+examine = "Sorts and crushes nuts and chocolate for eggs."
+
+[nut_machine_6_easter_2010]
+id = 49152
+examine = "Sorts and crushes nuts and chocolate for eggs."
+
+[nut_crate_easter_2010]
+id = 49156
+examine = "A crate filled with nuts."
+
+[nut_crate_2_easter_2010]
+id = 49157
+examine = "A crate filled with nuts."
+
+[nut_crates_easter_2010]
+id = 49158
+examine = "Some crates filled with nuts."
+
+[egg_crate_easter_2010]
+id = 49159
+examine = "A crate of chocolate eggs."
+
+[egg_crates_easter_2010]
+id = 49161
+examine = "Some crates of chocolate eggs."

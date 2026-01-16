@@ -1,0 +1,299 @@
+[rabbit_hole_easter_2009]
+id = 30074
+examine = "A hole in the ceiling of the warren, which leads to the surface."
+
+[rabbit_hole_2_easter_2009]
+id = 30075
+examine = "Too small for a human, but just right for a rabbit."
+
+[rabbit_hole_3_easter_2009]
+id = 30076
+examine = "A small hole leading back to the warren."
+
+[noticeboard_easter_2009]
+id = 30077
+examine = "Easter Bunny's noticeboard with his to-do list on it."
+
+[water_tank_easter_2009]
+id = 30083
+examine = "It collects rain water from the surface."
+
+[wheel_easter_2009]
+id = 30084
+examine = "The driving force in the Egg Plant."
+
+[wheel_2_easter_2009]
+id = 30085
+examine = "The driving force in the Egg Plant."
+
+[easter_bird_easter_2009]
+id = 30086
+examine = "The bird looks asleep."
+
+[easter_bird_2_easter_2009]
+id = 30087
+examine = "The bird looks drowsy."
+
+[easter_bird_3_easter_2009]
+id = 30088
+examine = "The bird looks awake and alert."
+
+[bird_food_easter_2009]
+id = 30089
+examine = "A sack of grey seeds."
+
+[bird_food_2_easter_2009]
+id = 30090
+examine = "A sack of crumbled crackers."
+
+[bird_food_3_easter_2009]
+id = 30091
+examine = "A sack of pinkish bits."
+
+[bird_food_4_easter_2009]
+id = 30092
+examine = "A sack of black seeds."
+
+[water_bowl_easter_2009]
+id = 30093
+examine = "A bowl full of fresh water."
+
+[water_bowl_2_easter_2009]
+id = 30094
+examine = "An empty water bowl."
+
+[seed_bowl_easter_2009]
+id = 30095
+examine = "A bowl full of sunflower seeds."
+
+[seed_bowl_2_easter_2009]
+id = 30096
+examine = "A bowl full of cracker bits."
+
+[seed_bowl_3_easter_2009]
+id = 30097
+examine = "A bowl full of worms."
+
+[seed_bowl_4_easter_2009]
+id = 30098
+examine = "A bowl full of poppy seeds."
+
+[seed_bowl_5_easter_2009]
+id = 30099
+examine = "An empty seed bowl."
+
+[crates_easter_2009]
+id = 30100
+examine = "They seem to be filled with nuts."
+
+[boxes_easter_2009]
+id = 30101
+examine = "They seem to be filled with chocolate."
+
+[crates_2_easter_2009]
+id = 30102
+examine = "They seem to be filled with chocolate."
+
+[crates_3_easter_2009]
+id = 30103
+examine = "They seem to be filled with nuts."
+
+[boxes_2_easter_2009]
+id = 30104
+examine = "They seem to be filled with chocolate."
+
+[broken_incubator_easter_2009]
+id = 30106
+examine = "Not much left of this device."
+
+[broken_incubator_2_easter_2009]
+id = 30107
+examine = "Doesn't look like this will function without a lot of repairs."
+
+[broken_incubator_3_easter_2009]
+id = 30108
+examine = "Doesn't look like this will function without a few more parts."
+
+[incubator_controls_easter_2009]
+id = 30109
+examine = "Need to be connected up."
+
+[incubator_controls_2_easter_2009]
+id = 30110
+examine = "These control the incubator."
+
+[water_tank_2_easter_2009]
+id = 30111
+examine = "Needs to be connected up."
+
+[water_tank_3_easter_2009]
+id = 30112
+examine = "Supplies water to the incubator."
+
+[coal_supply_easter_2009]
+id = 30113
+examine = "Needs to be connected up."
+
+[coal_supply_2_easter_2009]
+id = 30114
+examine = "Supplies coal to the incubator."
+
+[coal_easter_2009]
+id = 30115
+examine = "A pile of coal."
+
+[cockatrice_eggs_easter_2009]
+id = 30116
+examine = "A pile of cockatrice eggs."
+
+[egg-painting_machine_easter_2009]
+id = 30117
+examine = "A machine for painting chocolate eggs."
+
+[egg-painting_machine_2_easter_2009]
+id = 30118
+examine = "A machine for painting chocolate eggs."
+
+[egg-painting_machine_3_easter_2009]
+id = 30119
+examine = "A machine for painting chocolate eggs."
+
+[egg-painting_machine_4_easter_2009]
+id = 30120
+examine = "A machine for painting chocolate eggs."
+
+[nut_machine_easter_2009]
+id = 30121
+examine = "Sorts and crushes nuts to coat the eggs."
+
+[nut_machine_2_easter_2009]
+id = 30122
+examine = "Sorts and crushes nuts to coat the eggs."
+
+[nut_machine_3_easter_2009]
+id = 30123
+examine = "Sorts and crushes nuts to coat the eggs."
+
+[nut_machine_4_easter_2009]
+id = 30124
+examine = "Sorts and crushes nuts to coat the eggs."
+
+[nut_machine_5_easter_2009]
+id = 30125
+examine = "Sorts and crushes nuts to coat the eggs."
+
+[nut_machine_6_easter_2009]
+id = 30126
+examine = "Sorts and crushes nuts to coat the eggs."
+
+[nut_machine_7_easter_2009]
+id = 30127
+examine = "Sorts and crushes nuts to coat the eggs."
+
+[nut_machine_8_easter_2009]
+id = 30128
+examine = "Sorts and crushes nuts to coat the eggs."
+
+[nut_machine_9_easter_2009]
+id = 30129
+examine = "Sorts and crushes nuts to coat the eggs."
+
+[nut_crate_easter_2009]
+id = 30132
+examine = "A crate filled with nuts."
+
+[nut_crate_2_easter_2009]
+id = 30133
+examine = "A crate filled with nuts."
+
+[nut_crates_easter_2009]
+id = 42643
+examine = "Some crates filled with nuts."
+
+[egg_crate_easter_2009]
+id = 42644
+examine = "A crate of chocolate eggs."
+
+[egg_crate_2_easter_2009]
+id = 42645
+examine = "A crate of chocolate eggs."
+
+[egg_crates_easter_2009]
+id = 42646
+examine = "Some crates of chocolate eggs."
+
+[glass_jars_easter_2009]
+id = 42647
+examine = "Some empty glass jars."
+
+[paint_jars_easter_2009]
+id = 42648
+examine = "Some glass jars filled with paint."
+
+[paint_jars_2_easter_2009]
+id = 42649
+examine = "Some glass jars filled with paint."
+
+[easter_eggs_easter_2009]
+id = 42650
+examine = "Some painted chocolate eggs."
+
+[easter_eggs_2_easter_2009]
+id = 42651
+examine = "Some painted chocolate eggs."
+
+[easter_eggs_3_easter_2009]
+id = 42652
+examine = "Some painted chocolate eggs."
+
+[chocolate_eggs_easter_2009]
+id = 42653
+examine = "Some scrumptious chocolate eggs."
+
+[chocolate_eggs_2_easter_2009]
+id = 42654
+examine = "Some tasty chocolate eggs."
+
+[chocolate_eggs_3_easter_2009]
+id = 42655
+examine = "Some delicious chocolate eggs."
+
+[chocolate_eggs_4_easter_2009]
+id = 42656
+examine = "Some yummy chocolate eggs."
+
+[chocolate_eggs_5_easter_2009]
+id = 42657
+examine = "Some fabulous chocolate eggs."
+
+[chocolate_eggs_6_easter_2009]
+id = 42658
+examine = "Some irresistible chocolate eggs."
+
+[chocolate_barrel_easter_2009]
+id = 42659
+examine = "A barrel of melted chocolate."
+
+[cream_jug_easter_2009]
+id = 42660
+examine = "A big jug of cream."
+
+[chocolate_bars_easter_2009]
+id = 42661
+examine = "A pallet of chocolate bars."
+
+[buckets_easter_2009]
+id = 42662
+examine = "A pile of empty buckets."
+
+[clock_easter_2009]
+id = 42725
+examine = "Handy for telling the time."
+
+[incubator_easter_2009]
+id = 42742
+examine = "Fixed, but needs hooking up."
+
+[incubator_2_easter_2009]
+id = 42743
+examine = "Fixed and ready to go."
