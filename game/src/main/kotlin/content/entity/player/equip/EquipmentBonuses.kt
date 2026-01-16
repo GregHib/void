@@ -11,15 +11,12 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.VisualMask.APPEARANCE_MASK
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
-class EquipmentBonuses : Script {
-
-    val definitions: ItemDefinitions by inject()
+class EquipmentBonuses(val definitions: ItemDefinitions) : Script {
 
     val df = DecimalFormat("0.0").apply {
         roundingMode = RoundingMode.FLOOR

@@ -7,15 +7,12 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 
-class TradeOffer : Script {
-
-    val definitions: ItemDefinitions by inject()
+class TradeOffer(val definitions: ItemDefinitions) : Script {
 
     val tradeRestriction = object : ItemRestrictionRule {
         override fun restricted(id: String): Boolean {

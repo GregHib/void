@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
 class ZamorakGodsword : Script {
+
     init {
         specialAttackDamage("ice_cleave") { target, damage ->
             if (damage < 0) {

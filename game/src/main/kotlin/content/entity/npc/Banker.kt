@@ -11,11 +11,8 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inject
 
-class Banker : Script {
-
-    val npcs: NPCs by inject()
+class Banker(val npcs: NPCs) : Script {
 
     init {
         npcApproach("Talk-to", "banker*") {

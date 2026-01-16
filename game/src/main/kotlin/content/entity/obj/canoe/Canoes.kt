@@ -18,15 +18,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.StringSuspension
 import world.gregs.voidps.type.Direction
 
-class Canoes : Script {
-
-    val objects: GameObjects by inject()
-
-    val stations: CanoeDefinitions by inject()
+class Canoes(val objects: GameObjects, val stations: CanoeDefinitions) : Script {
 
     init {
         playerSpawn {

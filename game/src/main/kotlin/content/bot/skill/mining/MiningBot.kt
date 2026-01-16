@@ -18,14 +18,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.InteractObject
 
-class MiningBot : Script {
-
-    val areas: AreaDefinitions by inject()
-    val tasks: TaskManager by inject()
+class MiningBot(val areas: AreaDefinitions, val tasks: TaskManager) : Script {
 
     init {
         worldSpawn {

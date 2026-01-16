@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.removeToLimit
@@ -19,10 +18,7 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.type.Direction
 
-class Traiborn : Script {
-
-    val floorItems: FloorItems by inject()
-    val objects: GameObjects by inject()
+class Traiborn(val floorItems: FloorItems, val objects: GameObjects) : Script {
 
     var Player.bonesRequired: Int
         get() = get("demon_slayer_bones", -1)

@@ -5,11 +5,8 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.inject
 
-class CombatBracelet : Script {
-
-    val areas: AreaDefinitions by inject()
+class CombatBracelet(val areas: AreaDefinitions) : Script {
 
     val warriorsGuild = areas["warriors_guild_teleport"]
     val championsGuild = areas["champions_guild_teleport"]

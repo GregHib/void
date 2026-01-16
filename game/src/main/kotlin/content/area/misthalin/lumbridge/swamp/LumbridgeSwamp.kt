@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.softQueue
@@ -17,9 +16,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
-class LumbridgeSwamp : Script {
-
-    val npcs: NPCs by inject()
+class LumbridgeSwamp(val npcs: NPCs) : Script {
 
     init {
         objectOperate("Search", "rocks_skull_restless_ghost_quest") {

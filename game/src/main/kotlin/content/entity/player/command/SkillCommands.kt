@@ -14,14 +14,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
 import kotlin.getValue
 
-class SkillCommands : Script {
-
-    val players: Players by inject()
-    val accounts: AccountDefinitions by inject()
+class SkillCommands(val players: Players, val accounts: AccountDefinitions) : Script {
 
     init {
         val skills = Skill.entries.map { it.name }.toSet()

@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.variable.hasClock
 
 class RellekkaGuards : Script {
+
     init {
         huntPlayer("market_guard_rellekka", "guarding") { target ->
             if (target.hasClock("thieving")) {

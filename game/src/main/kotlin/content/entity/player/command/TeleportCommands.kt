@@ -20,19 +20,18 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 
-class TeleportCommands : Script {
-
-    val areas: AreaDefinitions by inject()
-    val players: Players by inject()
-    val exchange: GrandExchange by inject()
-    val definitions: ItemDefinitions by inject()
-    val enums: EnumDefinitions by inject()
-    val itemDefinitions: ItemDefinitions by inject()
-    val accounts: AccountDefinitions by inject()
+class TeleportCommands(
+    val areas: AreaDefinitions,
+    val players: Players,
+    val exchange: GrandExchange,
+    val definitions: ItemDefinitions,
+    val enums: EnumDefinitions,
+    val itemDefinitions: ItemDefinitions,
+    val accounts: AccountDefinitions,
+) : Script {
 
     private val places = mapOf(
         "draynor" to Tile(3086, 3248),

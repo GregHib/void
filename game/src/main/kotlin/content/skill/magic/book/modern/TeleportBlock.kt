@@ -41,6 +41,7 @@ fun Character.unblockTeleport() {
 }
 
 class TeleportBlock : Script {
+
     init {
         combatPrepare("magic") { target ->
             if (spell == "teleport_block" && target is NPC) {

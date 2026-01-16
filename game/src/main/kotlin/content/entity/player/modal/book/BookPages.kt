@@ -5,11 +5,8 @@ import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inject
 
-class BookPages : Script {
-
-    val books: Books by inject()
+class BookPages(val books: Books) : Script {
 
     init {
         itemOption("Read") { (item) ->

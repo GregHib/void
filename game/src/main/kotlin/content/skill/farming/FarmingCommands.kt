@@ -19,6 +19,7 @@ class FarmingCommands(
     val accounts: AccountDefinitions,
     val players: Players,
 ) : Script {
+
     init {
         modCommand("patches", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "List farming patches for the given player", handler = ::listPatches)
         modCommand("growth", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Check the next farming growth tick for the given player", handler = ::growthInfo)

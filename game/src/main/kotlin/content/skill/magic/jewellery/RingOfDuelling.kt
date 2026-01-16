@@ -3,11 +3,8 @@ package content.skill.magic.jewellery
 import content.entity.player.dialogue.type.choice
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.inject
 
-class RingOfDuelling : Script {
-
-    val areas: AreaDefinitions by inject()
+class RingOfDuelling(val areas: AreaDefinitions) : Script {
 
     val duelArena = areas["duel_arena_teleport"]
     val castleWars = areas["castle_wars_teleport"]

@@ -5,12 +5,9 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
 
-class MiasmicSpells : Script {
-
-    val definitions: SpellDefinitions by inject()
+class MiasmicSpells(val definitions: SpellDefinitions) : Script {
 
     init {
         combatAttack("magic", handler = ::attack)

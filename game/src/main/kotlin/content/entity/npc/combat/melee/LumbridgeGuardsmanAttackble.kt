@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.queue.strongQueue
 
 class LumbridgeGuardsmanAttackble : Script {
+
     init {
         huntNPC("aggressive_npcs") { target ->
             if (id == "lumbridge_guardsman_attackable2" && target.id.endsWith("rat")) {

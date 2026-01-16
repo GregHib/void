@@ -7,14 +7,10 @@ import world.gregs.voidps.engine.entity.character.mode.move.canTravel
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-class KreeArra : Script {
-
-    val npcs: NPCs by inject()
-    val stepValidator: StepValidator by inject()
+class KreeArra(val npcs: NPCs, val stepValidator: StepValidator) : Script {
 
     var kilisa: NPC? = null
     var skree: NPC? = null

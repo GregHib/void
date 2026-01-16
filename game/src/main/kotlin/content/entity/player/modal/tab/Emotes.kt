@@ -12,16 +12,13 @@ import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
 
-class Emotes : Script {
-
-    val definitions: InterfaceDefinitions by inject()
+class Emotes(val definitions: InterfaceDefinitions) : Script {
 
     companion object {
         val unlockableEmotes = listOf(

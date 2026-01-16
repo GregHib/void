@@ -4,12 +4,8 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendInterfaceItemUpdate
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.inject
 
-class Containers : Script {
-
-    val inventoryDefinitions: InventoryDefinitions by inject()
-    val itemDefs: ItemDefinitions by inject()
+class Containers(val inventoryDefinitions: InventoryDefinitions, val itemDefs: ItemDefinitions) : Script {
 
     init {
         inventoryUpdated { inventory, updates ->

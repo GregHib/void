@@ -12,13 +12,12 @@ import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.inject
 
-class EffectCommands : Script {
-
-    val accounts: AccountDefinitions by inject()
-    val players: Players by inject()
-    val npcDefinitions: NPCDefinitions by inject()
+class EffectCommands(
+    val accounts: AccountDefinitions,
+    val players: Players,
+    npcDefinitions: NPCDefinitions,
+) : Script {
 
     init {
         adminCommand("disease", intArg("damage", optional = true), stringArg("player-name", optional = true), desc = "Disease the player", handler = ::disease)

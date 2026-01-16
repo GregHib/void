@@ -21,17 +21,12 @@ import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 
-class ExplorerJack : Script {
-
-    val npcs: NPCs by inject()
-
-    val variableDefinitions: VariableDefinitions by inject()
+class ExplorerJack(val npcs: NPCs, val variableDefinitions: VariableDefinitions) : Script {
 
     init {
         npcOperate("Talk-to", "explorer_jack") {

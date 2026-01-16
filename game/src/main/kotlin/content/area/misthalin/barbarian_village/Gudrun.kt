@@ -21,7 +21,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
@@ -31,11 +30,8 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 
-class Gudrun : Script {
+class Gudrun(val objects: GameObjects, val npcs: NPCs) : Script {
 
-    val objects: GameObjects by inject()
-
-    val npcs: NPCs by inject()
     val region = Region(12341)
 
     init {

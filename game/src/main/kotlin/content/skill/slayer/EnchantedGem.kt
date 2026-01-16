@@ -11,12 +11,9 @@ import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.SlayerTaskDefinitions
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.strongQueue
 
-class EnchantedGem : Script {
-
-    val slayerDefinitions: SlayerTaskDefinitions by inject()
+class EnchantedGem(val slayerDefinitions: SlayerTaskDefinitions) : Script {
 
     init {
         playerSpawn {

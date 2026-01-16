@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
 
 class Apprentice : Script {
+
     init {
         npcOperate("Talk-to", "apprentice") { (target) ->
             if (get("sorceress_garden_unlocked", false)) {

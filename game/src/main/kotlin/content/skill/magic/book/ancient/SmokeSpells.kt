@@ -5,12 +5,9 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.random
 
-class SmokeSpells : Script {
-
-    val definitions: SpellDefinitions by inject()
+class SmokeSpells(val definitions: SpellDefinitions) : Script {
 
     init {
         combatAttack("magic", handler = ::attack)

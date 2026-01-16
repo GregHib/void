@@ -3,12 +3,10 @@ package content.skill.melee.armour
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-class CastleWarsBrace : Script {
+class CastleWarsBrace(val areas: AreaDefinitions) : Script {
 
-    val areas: AreaDefinitions by inject()
     val area = areas["castle_wars"]
 
     init {
@@ -24,6 +22,7 @@ class CastleWarsBrace : Script {
             }
         }
 
+        // TODO should be activated on game start not equip.
         itemAdded("castle_wars_brace*", "worn_equipment", EquipSlot.Hands) {
             if (tile in area) {
                 set("castle_wars_brace", true)
@@ -36,6 +35,4 @@ class CastleWarsBrace : Script {
             }
         }
     }
-
-    // TODO should be activated on game start not equip.
 }

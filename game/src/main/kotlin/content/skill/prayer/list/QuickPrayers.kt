@@ -18,12 +18,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.inject
 
-class QuickPrayers : Script {
-
-    val enums: EnumDefinitions by inject()
-    val definitions: PrayerDefinitions by inject()
+class QuickPrayers(val enums: EnumDefinitions, val definitions: PrayerDefinitions) : Script {
 
     init {
         interfaceOption(id = "prayer_list:regular_prayers") { (_, itemSlot) ->

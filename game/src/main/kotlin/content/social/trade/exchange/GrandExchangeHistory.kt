@@ -3,12 +3,9 @@ package content.social.trade.exchange
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.inject
 import kotlin.math.absoluteValue
 
-class GrandExchangeHistory : Script {
-
-    val definitions: ItemDefinitions by inject()
+class GrandExchangeHistory(val definitions: ItemDefinitions) : Script {
 
     init {
         interfaceOpened("exchange_history") { id ->

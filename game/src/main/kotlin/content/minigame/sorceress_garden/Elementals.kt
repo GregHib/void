@@ -9,12 +9,9 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.strongQueue
 
-class Elementals : Script {
-    val patrols: PatrolDefinitions by inject()
-    val players: Players by inject()
+class Elementals(val patrols: PatrolDefinitions, val players: Players) : Script {
 
     init {
         npcSpawn("autumn_elemental*,spring_elemental*,summer_elemental*,winter_elemental*") {

@@ -9,16 +9,15 @@ import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 
-class Mourner : Script {
-
-    val npcs: NPCs by inject()
-    val objects: GameObjects by inject()
+class Mourner(
+    val npcs: NPCs,
+    val objects: GameObjects,
+) : Script {
 
     init {
         npcOperate("Talk-to", "mourner_elena_guard_vis") { (target) ->

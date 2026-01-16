@@ -6,13 +6,10 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.remove
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-class DoorSupport : Script {
-
-    val objects: GameObjects by inject()
+class DoorSupport(val objects: GameObjects) : Script {
 
     init {
         npcOperate("Destroy", "door_support*") {

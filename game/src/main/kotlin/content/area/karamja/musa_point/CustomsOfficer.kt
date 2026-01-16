@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
 
 class CustomsOfficer : Script {
+
     init {
         npcOperate("Talk-to", "customs_officer_brimhaven") {
             npc<Neutral>("Can I help you?")

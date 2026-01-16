@@ -20,18 +20,17 @@ import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.rights
-import world.gregs.voidps.engine.inject
 import kotlin.math.max
 
-class MetaCommands : Script {
-
-    val fontDefinitions: FontDefinitions by inject()
-    val itemDefinitions: ItemDefinitions by inject()
-    val objectDefinitions: ObjectDefinitions by inject()
-    val npcDefinitions: NPCDefinitions by inject()
-    val accountDefinitions: AccountDefinitions by inject()
-    val grandExchange: GrandExchange by inject()
-    val variableDefinitions: VariableDefinitions by inject()
+class MetaCommands(
+    val fontDefinitions: FontDefinitions,
+    val itemDefinitions: ItemDefinitions,
+    val objectDefinitions: ObjectDefinitions,
+    val npcDefinitions: NPCDefinitions,
+    val accountDefinitions: AccountDefinitions,
+    val grandExchange: GrandExchange,
+    val variableDefinitions: VariableDefinitions,
+) : Script {
 
     init {
         playerCommand(

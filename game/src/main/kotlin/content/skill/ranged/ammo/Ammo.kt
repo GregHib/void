@@ -16,13 +16,9 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasUseLevel
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-class Ammo : Script {
-
-    val ammoDefinitions: AmmoDefinitions by inject()
-    val weaponStyles: WeaponStyleDefinitions by inject()
+class Ammo(val ammoDefinitions: AmmoDefinitions, val weaponStyles: WeaponStyleDefinitions) : Script {
 
     init {
         combatPrepare {

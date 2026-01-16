@@ -3,13 +3,10 @@ package content.entity.npc.combat.melee
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.random
 
-class Chicken : Script {
-
-    val floorItems: FloorItems by inject()
+class Chicken(val floorItems: FloorItems) : Script {
 
     init {
         npcSpawn("chicken*") {

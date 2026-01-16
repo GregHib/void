@@ -14,6 +14,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 
 class RingOfLife : Script {
+
     init {
         levelChanged(Skill.Constitution) { skill, from, to ->
             if (to >= from || to < 1) {

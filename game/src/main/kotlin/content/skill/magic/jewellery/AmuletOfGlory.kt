@@ -5,11 +5,8 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.inject
 
-class AmuletOfGlory : Script {
-
-    val areas: AreaDefinitions by inject()
+class AmuletOfGlory(val areas: AreaDefinitions) : Script {
 
     val edgeville = areas["edgeville_teleport"]
     val karamja = areas["karamja_teleport"]

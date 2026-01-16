@@ -26,7 +26,6 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.*
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -39,11 +38,12 @@ import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
 import kotlin.text.toIntOrNull
 
-class ShootingStar : Script {
+class ShootingStar(
+    val objects: GameObjects,
+    val npcs: NPCs,
+    val players: Players,
+) : Script {
 
-    val objects: GameObjects by inject()
-    val npcs: NPCs by inject()
-    val players: Players by inject()
     val logger = InlineLogger()
 
     init {

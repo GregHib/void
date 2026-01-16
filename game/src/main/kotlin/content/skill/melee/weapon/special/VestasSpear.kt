@@ -9,13 +9,9 @@ import world.gregs.voidps.engine.entity.character.CharacterSearch
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 
-class VestasSpear : Script {
-
-    val players: Players by inject()
-    val npcs: NPCs by inject()
+class VestasSpear(val players: Players, val npcs: NPCs) : Script {
 
     init {
         specialAttackDamage("spear_wall") { target, _ ->

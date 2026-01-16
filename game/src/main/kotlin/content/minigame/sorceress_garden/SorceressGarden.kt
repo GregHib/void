@@ -14,15 +14,13 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.type.Tile
 
-class SorceressGarden : Script {
-    val dropTables: DropTables by inject()
+class SorceressGarden(val dropTables: DropTables) : Script {
 
     init {
         objectOperate("Drink-from", "sorceress_garden_fountain") {

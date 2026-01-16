@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.name
 
 class TzHaarFightCaveGuard : Script {
+
     init {
         npcOperate("Talk-to", "tzhaar_mej_jal") {
             npc<Shifty>("You want help JalYt-${TzHaar.caste(this)}-$name?")

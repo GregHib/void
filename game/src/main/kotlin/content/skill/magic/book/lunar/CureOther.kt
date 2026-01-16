@@ -10,11 +10,8 @@ import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.inject
 
-class CureOther : Script {
-
-    val definitions: SpellDefinitions by inject()
+class CureOther(val definitions: SpellDefinitions) : Script {
 
     init {
         onPlayerApproach("lunar_spellbook:cure_other") { (target) ->

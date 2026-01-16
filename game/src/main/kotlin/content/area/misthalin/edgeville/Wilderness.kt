@@ -2,12 +2,9 @@ package content.area.misthalin.edgeville
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Tile
 
-class Wilderness : Script {
-
-    val areas: AreaDefinitions by inject()
+class Wilderness(val areas: AreaDefinitions) : Script {
 
     val wilderness = areas["wilderness"]
     val safeZones = areas.getTagged("safe_zone")

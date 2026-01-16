@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
@@ -21,9 +20,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.type.Tile
 
-class WestArdougne : Script {
-
-    val floorItems: FloorItems by inject()
+class WestArdougne(val floorItems: FloorItems) : Script {
 
     val doorStages = setOf("returned_book", "spoken_to_ted", "spoken_to_milli", "need_clearance")
 

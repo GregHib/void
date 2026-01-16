@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.Items
 import world.gregs.voidps.engine.inv.charges
@@ -31,9 +30,7 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.SetCharge.setCharge
 import world.gregs.voidps.engine.queue.weakQueue
 
-class ItemOnItems : Script {
-
-    val itemOnItemDefs: ItemOnItemDefinitions by inject()
+class ItemOnItems(val itemOnItemDefs: ItemOnItemDefinitions) : Script {
 
     init {
         itemOnItem(bidirectional = false) { fromItem, toItem ->

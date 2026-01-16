@@ -7,13 +7,11 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inject
 
-class TaskList : Script {
-
-    val variables: VariableDefinitions by inject()
-
-    val enumDefinitions: EnumDefinitions by inject()
+class TaskList(
+    val variables: VariableDefinitions,
+    val enumDefinitions: EnumDefinitions,
+) : Script {
 
     init {
         playerSpawn {

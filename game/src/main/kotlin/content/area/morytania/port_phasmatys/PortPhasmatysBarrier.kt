@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.type.Tile
 
 class PortPhasmatysBarrier : Script {
+
     init {
         objectOperate("Pass", "phasmatys_barrier") { (target) ->
 //            https://youtu.be/PrkWAZmuEnw?si=T86lk1tMR91q2fjv&t=150

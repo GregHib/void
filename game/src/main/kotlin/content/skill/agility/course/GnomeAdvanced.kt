@@ -13,14 +13,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
-class GnomeAdvanced : Script {
-
-    val npcs: NPCs by inject()
+class GnomeAdvanced(val npcs: NPCs) : Script {
 
     init {
         objectOperate("Climb-up", "gnome_tree_branch_advanced") {

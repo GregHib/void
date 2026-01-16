@@ -34,7 +34,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRe
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.InteractInterface
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
@@ -61,11 +60,11 @@ suspend fun Bot.setAttackStyle(style: Int) {
     player.instructions.send(InteractInterface(interfaceId = 884, componentId = style + 11, itemId = -1, itemSlot = -1, option = 0))
 }
 
-class CombatBot : Script {
-
-    val areas: AreaDefinitions by inject()
-    val tasks: TaskManager by inject()
-    val floorItems: FloorItems by inject()
+class CombatBot(
+    val areas: AreaDefinitions,
+    val tasks: TaskManager,
+    val floorItems: FloorItems,
+) : Script {
 
     init {
         worldSpawn {

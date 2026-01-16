@@ -21,16 +21,16 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.sendInventory
 import kotlin.math.ceil
 
-class GrandExchangeOffers : Script {
+class GrandExchangeOffers(
+    val exchange: GrandExchange,
+    val itemDefinitions: ItemDefinitions,
+    val accountDefinitions: AccountDefinitions,
+) : Script {
 
-    val exchange: GrandExchange by inject()
-    val itemDefinitions: ItemDefinitions by inject()
-    val accountDefinitions: AccountDefinitions by inject()
     val logger = InlineLogger()
 
     init {

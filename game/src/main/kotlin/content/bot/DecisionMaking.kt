@@ -9,13 +9,12 @@ import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.inject
 import kotlin.coroutines.resume
 
-class DecisionMaking : Script {
-
-    val players: Players by inject()
-    val tasks: TaskManager by inject()
+class DecisionMaking(
+    val players: Players,
+    val tasks: TaskManager,
+) : Script {
 
     val scope = CoroutineScope(Contexts.Game)
     val logger = InlineLogger("Bot")

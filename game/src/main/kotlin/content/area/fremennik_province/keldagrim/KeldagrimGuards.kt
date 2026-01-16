@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.variable.hasClock
 
 class KeldagrimGuards : Script {
+
     init {
         huntPlayer("black_guard_keldagrim_market*", "guarding") { target ->
             if (target.hasClock("thieving")) {

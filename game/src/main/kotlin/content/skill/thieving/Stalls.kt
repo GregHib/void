@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
@@ -23,9 +22,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 
-class Stalls : Script {
-
-    val drops: DropTables by inject()
+class Stalls(val drops: DropTables) : Script {
 
     init {
         objectOperate("Steal-from", "*_stall") { (target) ->

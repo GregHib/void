@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.name
 
 class TzHaarShops : Script {
+
     init {
         npcOperate("Talk-to", "tzhaar_hur_tel,tzhaar_hur_lek,tzhaar_mej_roh") { (target) ->
             npc<Quiz>("Can I help you JalYt-${TzHaar.caste(this)}-$name?")

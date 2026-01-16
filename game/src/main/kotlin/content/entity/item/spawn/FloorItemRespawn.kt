@@ -4,12 +4,11 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
-import world.gregs.voidps.engine.inject
 
-class FloorItemRespawn : Script {
-
-    val items: FloorItems by inject()
-    val spawns: ItemSpawns by inject()
+class FloorItemRespawn(
+    val items: FloorItems,
+    val spawns: ItemSpawns,
+) : Script {
 
     init {
         floorItemDespawn {

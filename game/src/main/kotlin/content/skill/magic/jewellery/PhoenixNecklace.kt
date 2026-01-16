@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class PhoenixNecklace : Script {
+
     init {
         levelChanged(Skill.Constitution) { skill, from, to ->
             if (to > from) {

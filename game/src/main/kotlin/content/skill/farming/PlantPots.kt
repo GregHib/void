@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
 
 class PlantPots : Script {
+
     init {
         itemOnObjectOperate("plant_pot_empty", "*_patch_weeds_*") {
             message("This patch needs weeding first.")

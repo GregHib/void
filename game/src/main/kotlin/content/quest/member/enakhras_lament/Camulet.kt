@@ -6,14 +6,11 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 
-class Camulet : Script {
-
-    val areas: AreaDefinitions by inject()
+class Camulet(val areas: AreaDefinitions) : Script {
 
     init {
         itemOption("Rub", "camulet") {

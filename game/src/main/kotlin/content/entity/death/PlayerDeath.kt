@@ -27,7 +27,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.map.Spiral
 import world.gregs.voidps.engine.queue.strongQueue
@@ -35,16 +34,15 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
-class PlayerDeath : Script {
-
-    val floorItems: FloorItems by inject()
-    val enums: EnumDefinitions by inject()
+class PlayerDeath(
+    val floorItems: FloorItems,
+    val enums: EnumDefinitions,
+    val players: Players,
+    val npcs: NPCs,
+) : Script {
 
     val respawnTile: Tile
         get() = Tile(Settings["world.home.x", 0], Settings["world.home.y", 0], Settings["world.home.level", 0])
-
-    val players: Players by inject()
-    val npcs: NPCs by inject()
 
     init {
         playerDeath { onDeath ->

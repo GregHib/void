@@ -15,21 +15,20 @@ import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.charge
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 
-class ItemCommands : Script {
-
-    val areas: AreaDefinitions by inject()
-    val players: Players by inject()
-    val exchange: GrandExchange by inject()
-    val definitions: ItemDefinitions by inject()
-    val enums: EnumDefinitions by inject()
-    val itemDefinitions: ItemDefinitions by inject()
-    val accounts: AccountDefinitions by inject()
+class ItemCommands(
+    val areas: AreaDefinitions,
+    val players: Players,
+    val exchange: GrandExchange,
+    val definitions: ItemDefinitions,
+    val enums: EnumDefinitions,
+    val itemDefinitions: ItemDefinitions,
+    val accounts: AccountDefinitions,
+) : Script {
 
     val alternativeNames = Object2ObjectOpenHashMap<String, String>()
 

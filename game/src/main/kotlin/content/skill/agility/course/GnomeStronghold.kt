@@ -9,14 +9,11 @@ import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
 import world.gregs.voidps.engine.entity.character.player.renderEmote
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
-class GnomeStronghold : Script {
-
-    val npcs: NPCs by inject()
+class GnomeStronghold(val npcs: NPCs) : Script {
 
     init {
         objectOperate("Walk-across", "gnome_log_balance") {

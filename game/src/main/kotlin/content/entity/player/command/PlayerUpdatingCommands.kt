@@ -16,15 +16,14 @@ import world.gregs.voidps.engine.entity.character.colourOverlay
 import world.gregs.voidps.engine.entity.character.flagExactMovement
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.setTimeBar
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 
-class PlayerUpdatingCommands : Script {
-
-    val players: Players by inject()
-    val animationDefinitions: AnimationDefinitions by inject()
-    val graphicDefinitions: GraphicDefinitions by inject()
+class PlayerUpdatingCommands(
+    val players: Players,
+    animationDefinitions: AnimationDefinitions,
+    graphicDefinitions: GraphicDefinitions,
+) : Script {
 
     init {
         adminCommand("kill", desc = "Remove all bots") {

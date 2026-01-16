@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
 
 class ClanCupPlaque : Script {
+
     init {
         // https://www.youtube.com/watch?v=K-Ptq7ZxeWI
         objectOperate("Read", "lumbridge_clan_cup_plaque") {

@@ -3,14 +3,10 @@ package content.entity.player.command
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.intArg
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.type.Zone
 
-class ZoneCommands : Script {
-
-    private val zones: DynamicZones by inject()
-
+class ZoneCommands(val zones: DynamicZones) : Script {
     init {
         adminCommand("rotate_zone", intArg("rotation", optional = true), desc = "Rotate the current zone") { args ->
             zones.copy(tile.zone, tile.zone, rotation = args.getOrNull(0)?.toIntOrNull() ?: 1)

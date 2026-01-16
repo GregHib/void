@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.ChatPrivate
 import world.gregs.voidps.network.client.instruction.ChatPublic
 import world.gregs.voidps.network.client.instruction.ChatTypeChange
@@ -23,10 +22,7 @@ import world.gregs.voidps.network.login.protocol.encode.privateChatFrom
 import world.gregs.voidps.network.login.protocol.encode.privateChatTo
 import world.gregs.voidps.network.login.protocol.encode.publicChat
 
-class Chat : Script {
-
-    val players: Players by inject()
-    val huffman: Huffman by inject()
+class Chat(val players: Players, val huffman: Huffman) : Script {
 
     init {
         instruction<ChatPrivate> { player ->

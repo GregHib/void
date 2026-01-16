@@ -13,12 +13,8 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.inject
 
-class Ranged : Script {
-
-    val weaponStyles: WeaponStyleDefinitions by inject()
-    val weaponDefinitions: WeaponAnimationDefinitions by inject()
+class Ranged(val weaponStyles: WeaponStyleDefinitions, val weaponDefinitions: WeaponAnimationDefinitions) : Script {
 
     init {
         combatPrepare("range") {

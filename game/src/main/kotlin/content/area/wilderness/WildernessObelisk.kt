@@ -9,16 +9,15 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
 import world.gregs.voidps.type.random
 
-class WildernessObelisk : Script {
-
-    val areas: AreaDefinitions by inject()
-    val objects: GameObjects by inject()
-    val players: Players by inject()
+class WildernessObelisk(
+    val areas: AreaDefinitions,
+    val objects: GameObjects,
+    val players: Players,
+) : Script {
 
     val obelisks = areas.getTagged("obelisk")
 

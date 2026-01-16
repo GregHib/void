@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.holdsItem
@@ -18,9 +17,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-class ArmadylPillar : Script {
-
-    val objects: GameObjects by inject()
+class ArmadylPillar(val objects: GameObjects) : Script {
 
     init {
         objectApproach("Grapple", "armadyl_pillar") { (target) ->

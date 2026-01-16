@@ -8,11 +8,8 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.inject
 
-class CureMe : Script {
-
-    val definitions: SpellDefinitions by inject()
+class CureMe(val definitions: SpellDefinitions) : Script {
 
     init {
         interfaceOption("Cast", "lunar_spellbook:cure_me") {

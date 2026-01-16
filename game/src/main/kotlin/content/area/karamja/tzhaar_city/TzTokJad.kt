@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.queue.strongQueue
 
 class TzTokJad : Script {
+
     init {
         npcAttack("tztok_jad", "magic") {
             val target = target ?: return@npcAttack

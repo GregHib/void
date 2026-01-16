@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
@@ -19,9 +18,7 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-class LadyKeli : Script {
-
-    val npcs: NPCs by inject()
+class LadyKeli(val npcs: NPCs) : Script {
 
     init {
         npcOperate("Talk-to", "lady_keli") { (target) ->

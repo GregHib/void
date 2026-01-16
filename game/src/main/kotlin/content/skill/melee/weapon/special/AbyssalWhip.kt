@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 
 class AbyssalWhip : Script {
+
     init {
         specialAttackDamage("energy_drain") { target, damage ->
             if (target !is Player || damage < 0) {

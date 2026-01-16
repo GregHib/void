@@ -9,12 +9,8 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
-import world.gregs.voidps.engine.inject
 
-class Melee : Script {
-
-    val styleDefinitions: WeaponStyleDefinitions by inject()
-    val animationDefinitions: WeaponAnimationDefinitions by inject()
+class Melee(val styleDefinitions: WeaponStyleDefinitions, val animationDefinitions: WeaponAnimationDefinitions) : Script {
 
     init {
         combatPrepare("melee") {

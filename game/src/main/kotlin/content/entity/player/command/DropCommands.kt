@@ -23,16 +23,13 @@ import world.gregs.voidps.engine.entity.item.drop.DropTable
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.entity.item.drop.TableType
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.timer.TICKS
 import java.util.concurrent.TimeUnit
 import kotlin.collections.iterator
 import kotlin.system.measureTimeMillis
 
-class DropCommands : Script {
-
-    val tables: DropTables by inject()
+class DropCommands(val tables: DropTables) : Script {
 
     init {
         modCommand(

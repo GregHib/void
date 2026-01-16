@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.random
@@ -27,10 +26,7 @@ import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.timer.epochSeconds
 import java.util.concurrent.TimeUnit
 
-class Teleports : Script {
-
-    val areas: AreaDefinitions by inject()
-    val definitions: SpellDefinitions by inject()
+class Teleports(val areas: AreaDefinitions, val definitions: SpellDefinitions) : Script {
 
     init {
         interfaceOption("Cast", "*_spellbook:*_teleport") {

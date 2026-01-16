@@ -5,12 +5,9 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
 
-class RuneEssenceMine : Script {
-
-    val areas: AreaDefinitions by inject()
+class RuneEssenceMine(val areas: AreaDefinitions) : Script {
 
     init {
         objectOperate("Enter", "rune_essence_exit_portal") { (target) ->

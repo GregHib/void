@@ -18,6 +18,7 @@ internal suspend fun Player.openDressingRoom(id: String) {
 }
 
 class DressingRoom : Script {
+
     init {
         timerStart("dressing_room") { 1 }
 

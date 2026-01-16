@@ -5,12 +5,9 @@ import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-class CombatStyles : Script {
-
-    val styles: WeaponStyleDefinitions by inject()
+class CombatStyles(val styles: WeaponStyleDefinitions) : Script {
 
     init {
         npcSpawn {

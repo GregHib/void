@@ -6,13 +6,10 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
-class ItemPlace : Script {
-
-    val floorItems: FloorItems by inject()
+class ItemPlace(val floorItems: FloorItems) : Script {
 
     init {
         itemOnObjectOperate(obj = "table*") { (target, item, slot) ->

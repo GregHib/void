@@ -9,12 +9,11 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.PatrolDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.random
 
-class PortSarimGuard : Script {
-
-    val patrols: PatrolDefinitions by inject()
+class PortSarimGuard(
+    val patrols: PatrolDefinitions,
+) : Script {
 
     init {
         npcSpawn("port_sarim_guard_6") {

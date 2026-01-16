@@ -8,21 +8,17 @@ import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
 
-class DiangoItemRetrieval : Script {
+class DiangoItemRetrieval(val inventoryDefinitions: InventoryDefinitions, val itemDefinitions: ItemDefinitions) : Script {
 
     val itemLimit = 48
     val container = InterfaceDefinition.pack(468, 2)
     val scrollbar = InterfaceDefinition.pack(468, 3)
-
-    val inventoryDefinitions: InventoryDefinitions by inject()
-    val itemDefinitions: ItemDefinitions by inject()
 
     init {
         interfaceOpened("diangos_item_retrieval") {

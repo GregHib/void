@@ -21,18 +21,18 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import kotlin.random.Random
 
-class GiantMole : Script {
+class GiantMole(
+    val areas: AreaDefinitions,
+    val players: Players,
+) : Script {
 
     val logger = InlineLogger()
-    val areas: AreaDefinitions by inject()
-    val players: Players by inject()
 
     val acceptedTiles = listOf(
         Tile(3005, 3376, 0),

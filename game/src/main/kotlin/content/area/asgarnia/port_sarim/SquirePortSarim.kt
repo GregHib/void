@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.Tile
 
 class SquirePortSarim : Script {
+
     init {
         npcOperate("Talk-to", "squire_port_sarim") {
             npc<Sad>("Well the order has become quite diminished over the years, it's a very long process to learn the skills of a Void Knight. Recently there have been breaches into our realm from somewhere else, and strange creatures")

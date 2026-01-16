@@ -13,15 +13,14 @@ import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.encode.*
 
-class VariableCommands : Script {
-
-    val definitions: InterfaceDefinitions by inject()
-    val variableDefinitions: VariableDefinitions by inject()
-    val players: Players by inject()
-    val accounts: AccountDefinitions by inject()
+class VariableCommands(
+    val definitions: InterfaceDefinitions,
+    val variableDefinitions: VariableDefinitions,
+    val players: Players,
+    val accounts: AccountDefinitions,
+) : Script {
 
     init {
         modCommand("vars", stringArg("variable-name", optional = true, autofill = variableDefinitions.definitions.keys), stringArg("player-name", "target player (default self)", optional = true, autofill = accounts.displayNames.keys), desc = "Search players variables") { args ->

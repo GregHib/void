@@ -8,13 +8,9 @@ import world.gregs.voidps.engine.entity.character.CharacterSearch
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
 
-class Dragon2hSword : Script {
-
-    val players: Players by inject()
-    val npcs: NPCs by inject()
+class Dragon2hSword(val players: Players, val npcs: NPCs) : Script {
 
     init {
         specialAttackDamage("powerstab") { target, damage ->

@@ -25,18 +25,17 @@ import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.network.login.protocol.encode.*
 import kotlin.collections.iterator
 
-class InterfaceCommands : Script {
-
-    val definitions: InterfaceDefinitions by inject()
-    val animationDefinitions: AnimationDefinitions by inject()
-    val inventoryDefinitions: InventoryDefinitions by inject()
-    val scriptDefinitions: ClientScriptDefinitions by inject()
-    val npcDefinitions: NPCDefinitions by inject()
+class InterfaceCommands(
+    val definitions: InterfaceDefinitions,
+    val animationDefinitions: AnimationDefinitions,
+    val inventoryDefinitions: InventoryDefinitions,
+    val npcDefinitions: NPCDefinitions,
+    scriptDefinitions: ClientScriptDefinitions,
+) : Script {
 
     init {
         adminCommand("inter", stringArg("interface-id", autofill = definitions.ids.keys), desc = "Open an interface with int or string id", handler = ::open)

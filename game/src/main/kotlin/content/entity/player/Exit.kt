@@ -5,11 +5,8 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.AccountManager
-import world.gregs.voidps.engine.inject
 
-class Exit : Script {
-
-    val accounts: AccountManager by inject()
+class Exit(val accounts: AccountManager) : Script {
 
     init {
         interfaceOption("Exit", "toplevel*:logout") {

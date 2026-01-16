@@ -2,11 +2,8 @@ package content.quest.member.fairy_tale_part_2.fairy_ring
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inject
 
-class TravelLog : Script {
-
-    val fairyRing: FairyRingCodes by inject()
+class TravelLog(val fairyRing: FairyRingCodes) : Script {
 
     init {
         interfaceOption("Re-sort list", "travel_log:re_sort_list") {

@@ -18,6 +18,7 @@ class CombatCommands(
     val accounts: AccountDefinitions,
     val players: Players,
 ) : Script {
+
     init {
         adminCommand(
             "boost",

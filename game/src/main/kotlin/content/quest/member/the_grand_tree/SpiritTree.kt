@@ -13,12 +13,9 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Tile
 
-class SpiritTree : Script {
-
-    val enums: EnumDefinitions by inject()
+class SpiritTree(val enums: EnumDefinitions) : Script {
 
     init {
         objectOperate("Talk-to", "spirit_tree,spirit_tree_fullygrown") {

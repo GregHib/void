@@ -10,14 +10,11 @@ import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.network.client.instruction.WorldMapClick
 import world.gregs.voidps.network.login.protocol.encode.updateInterface
 
-class WorldMap : Script {
-
-    val definitions: InterfaceDefinitions by inject()
+class WorldMap(val definitions: InterfaceDefinitions) : Script {
 
     init {
         timerStart("world_map_check") { 5 }

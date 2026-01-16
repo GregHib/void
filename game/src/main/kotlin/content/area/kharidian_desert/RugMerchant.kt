@@ -32,6 +32,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
 class RugMerchant : Script {
+
     init {
         npcOperate("Talk-to", "rug_merchant_*") { (target) ->
             player<Neutral>("Hello.")

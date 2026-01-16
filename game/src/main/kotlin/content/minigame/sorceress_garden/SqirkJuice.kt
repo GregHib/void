@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
 class SqirkJuice : Script {
+
     init {
         consumed("winter_sqirkjuice") { _, _ ->
             runEnergy += runEnergy / 20

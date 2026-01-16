@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.softQueue
@@ -17,11 +16,11 @@ import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
-class FishingSpot : Script {
-
-    val areas: AreaDefinitions by inject()
-    val players: Players by inject()
-    val collisions: Collisions by inject()
+class FishingSpot(
+    val areas: AreaDefinitions,
+    val players: Players,
+    val collisions: Collisions,
+) : Script {
 
     val water = CollisionStrategies.Blocked
     val land = CollisionStrategies.Normal

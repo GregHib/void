@@ -15,13 +15,12 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Tile
 
-class CharterShip : Script {
+class CharterShip(val ships: CharterShips, val teles: ObjectTeleports) : Script {
 
     val locations = listOf(
         "catherby",
@@ -29,9 +28,6 @@ class CharterShip : Script {
         "port_khazard",
         "port_sarim",
     )
-
-    val ships: CharterShips by inject()
-    val teles: ObjectTeleports by inject()
 
     init {
         interfaceRefresh("charter_ship_map") { id ->

@@ -14,20 +14,16 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 
-class LumbridgeBeginnerTasks :
-    Script,
+class LumbridgeBeginnerTasks(
+    val areas: AreaDefinitions,
+    val objects: GameObjects,
+    val styleDefinitions: WeaponStyleDefinitions,
+) : Script,
     PrayerApi {
-
-    val areas: AreaDefinitions by inject()
-
-    val objects: GameObjects by inject()
-
-    val styleDefinitions: WeaponStyleDefinitions by inject()
 
     init {
         timerStop("firemaking") {

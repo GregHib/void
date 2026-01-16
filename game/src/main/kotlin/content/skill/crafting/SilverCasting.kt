@@ -15,13 +15,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.queue.weakQueue
 
-class SilverCasting : Script {
-
-    val itemDefinitions: ItemDefinitions by inject()
+class SilverCasting(val itemDefinitions: ItemDefinitions) : Script {
 
     val moulds = listOf(
         Item("holy_mould"),

@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.inv.transact.operation.SwapItem.swap
@@ -15,9 +14,7 @@ import world.gregs.voidps.engine.inv.transact.operation.SwapItem.swap
  * Offering an item to lend for a duration
  */
 
-class TradeLending : Script {
-
-    val definitions: ItemDefinitions by inject()
+class TradeLending(val definitions: ItemDefinitions) : Script {
 
     val lendRestriction = object : ItemRestrictionRule {
         override fun restricted(id: String) = definitions.get(id).lendId == -1

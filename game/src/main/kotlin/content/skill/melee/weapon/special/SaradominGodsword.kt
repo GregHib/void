@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import kotlin.math.max
 
 class SaradominGodsword : Script {
+
     init {
         specialAttackDamage("healing_blade") { _, damage ->
             if (damage >= 0) {

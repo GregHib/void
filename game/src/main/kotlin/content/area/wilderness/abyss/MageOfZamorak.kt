@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
@@ -25,9 +24,7 @@ import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.random
 
-class MageOfZamorak : Script {
-
-    val areas: AreaDefinitions by inject()
+class MageOfZamorak(val areas: AreaDefinitions) : Script {
 
     val abyss = areas["abyss_multi_area"]
     val abyssCenter = areas["abyss_center"]

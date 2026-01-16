@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.data.definition.PatrolDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.timer.Timer
@@ -24,10 +23,7 @@ import kotlin.getValue
 import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
 
-class PathFindingCommands : Script {
-
-    val patrols: PatrolDefinitions by inject()
-    val collisions: Collisions by inject()
+class PathFindingCommands(val patrols: PatrolDefinitions, val collisions: Collisions) : Script {
 
     init {
         adminCommand("patrol", stringArg("patrol-id", autofill = patrols.definitions.keys), desc = "Walk along a patrol route") { args ->

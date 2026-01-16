@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.inv.*
 
 class FarmingEquipmentStore : Script {
+
     init {
         interfaceOpened("farming_equipment_store") {
             open("farming_equipment_store_side")

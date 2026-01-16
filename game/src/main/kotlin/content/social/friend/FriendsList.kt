@@ -16,16 +16,15 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.FriendAdd
 import world.gregs.voidps.network.client.instruction.FriendDelete
 import world.gregs.voidps.network.login.protocol.encode.*
 
-class FriendsList : Script {
-
-    val players: Players by inject()
-    val accounts: AccountDefinitions by inject()
-    val accountDefinitions: AccountDefinitions by inject()
+class FriendsList(
+    val players: Players,
+    val accounts: AccountDefinitions,
+    val accountDefinitions: AccountDefinitions,
+) : Script {
 
     val maxFriends = 200
 

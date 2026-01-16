@@ -9,13 +9,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-class TreeGnomeStronghold : Script {
-
-    val objects: GameObjects by inject()
+class TreeGnomeStronghold(val objects: GameObjects) : Script {
 
     init {
         objectOperate("Open", "tree_gnome_door_east_closed,tree_gnome_door_west_closed") { (target) ->

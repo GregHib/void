@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
 class Darklight : Script {
+
     init {
         specialAttackDamage("weaken") { target, damage ->
             if (damage < 0) {

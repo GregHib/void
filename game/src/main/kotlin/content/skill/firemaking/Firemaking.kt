@@ -20,17 +20,13 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.obj.ObjectShape
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-class Firemaking : Script {
-
-    val floorItems: FloorItems by inject()
-    val objects: GameObjects by inject()
+class Firemaking(val floorItems: FloorItems, val objects: GameObjects) : Script {
 
     val directions = listOf(Direction.WEST, Direction.EAST, Direction.SOUTH, Direction.NORTH)
 
