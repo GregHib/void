@@ -49,7 +49,6 @@ import world.gregs.voidps.type.*
 import java.util.concurrent.TimeUnit
 
 class TzhaarFightCave(
-    val areas: AreaDefinitions,
     val npcDefinitions: NPCDefinitions,
     val npcs: NPCs,
     val accountManager: AccountManager,
@@ -286,11 +285,11 @@ class TzhaarFightCave(
 
     fun randomTile(direction: Direction, offset: Delta, def: NPCDefinition, block: Int): Tile? {
         val area = when (direction) {
-            Direction.NORTH_WEST -> areas["tzhaar_fight_cave_north_west"]
-            Direction.SOUTH_EAST -> areas["tzhaar_fight_cave_south_east"]
-            Direction.SOUTH -> areas["tzhaar_fight_cave_south"]
-            Direction.SOUTH_WEST -> areas["tzhaar_fight_cave_south_west"]
-            Direction.NONE -> areas["tzhaar_fight_cave_none"]
+            Direction.NORTH_WEST -> AreaDefinitions["tzhaar_fight_cave_north_west"]
+            Direction.SOUTH_EAST -> AreaDefinitions["tzhaar_fight_cave_south_east"]
+            Direction.SOUTH -> AreaDefinitions["tzhaar_fight_cave_south"]
+            Direction.SOUTH_WEST -> AreaDefinitions["tzhaar_fight_cave_south_west"]
+            Direction.NONE -> AreaDefinitions["tzhaar_fight_cave_none"]
             else -> return null
         }
         var tile = area.offset(offset).random(CollisionStrategies.Normal, def.size, block)

@@ -25,13 +25,12 @@ import world.gregs.voidps.engine.inv.inventory
 class SmithingBot(
     val interfaceDefinitions: InterfaceDefinitions,
     val itemDefinitions: ItemDefinitions,
-    val areas: AreaDefinitions,
     val tasks: TaskManager,
 ) : Script {
 
     init {
         worldSpawn {
-            for (area in areas.getTagged("smithing")) {
+            for (area in AreaDefinitions.getTagged("smithing")) {
                 val spaces: Int = area["spaces", 1]
                 val task = Task(
                     name = "smith on anvil at ${area.name}".toLowerSpaceCase(),

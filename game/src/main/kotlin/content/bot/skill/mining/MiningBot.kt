@@ -21,11 +21,11 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.InteractObject
 
-class MiningBot(val areas: AreaDefinitions, val tasks: TaskManager) : Script {
+class MiningBot(val tasks: TaskManager) : Script {
 
     init {
         worldSpawn {
-            for (area in areas.getTagged("mine")) {
+            for (area in AreaDefinitions.getTagged("mine")) {
                 val spaces: Int = area["spaces", 1]
                 val type = area["rocks", emptyList<String>()].firstOrNull() ?: continue
                 val range: IntRange = area["levels", "1-5"].toIntRange()

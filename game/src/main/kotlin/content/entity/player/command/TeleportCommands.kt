@@ -24,7 +24,6 @@ import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 
 class TeleportCommands(
-    val areas: AreaDefinitions,
     val players: Players,
     val exchange: GrandExchange,
     val definitions: ItemDefinitions,
@@ -75,7 +74,7 @@ class TeleportCommands(
 
     init {
         val coords = command(intArg("x"), intArg("y"), intArg("level", optional = true), desc = "Teleport to given coordinates", handler = ::coords)
-        val place = command(stringArg("name", autofill = { places.keys + areas.names }, desc = "Area Name"), desc = "Teleport to given area", handler = ::area)
+        val place = command(stringArg("name", autofill = { places.keys + AreaDefinitions.names }, desc = "Area Name"), desc = "Teleport to given area", handler = ::area)
         val region = command(intArg("region", desc = "Region ID"), desc = "Teleport to given region id") { args ->
             tele(Region(args[0].toInt()).tile.add(32, 32))
             set("world_map_centre", tile.id)
@@ -118,7 +117,7 @@ class TeleportCommands(
         if (place != null) {
             player.tele(place)
         } else {
-            player.tele(areas[name])
+            player.tele(AreaDefinitions[name])
         }
         player["world_map_centre"] = player.tile.id
         player["world_map_marker_player"] = player.tile.id

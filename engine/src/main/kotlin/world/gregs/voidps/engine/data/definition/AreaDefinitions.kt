@@ -13,11 +13,14 @@ import world.gregs.voidps.type.area.Cuboid
 import world.gregs.voidps.type.area.Polygon
 import world.gregs.voidps.type.area.Rectangle
 
-class AreaDefinitions(
-    private var named: Map<String, AreaDefinition> = Object2ObjectOpenHashMap(),
-    private var tagged: Map<String, Set<AreaDefinition>> = Object2ObjectOpenHashMap(),
-    private var areas: Map<Int, Set<AreaDefinition>> = Int2ObjectOpenHashMap(),
-) {
+object AreaDefinitions {
+
+    var named: MutableMap<String, AreaDefinition> = Object2ObjectOpenHashMap()
+        private set
+    var tagged: MutableMap<String, MutableSet<AreaDefinition>> = Object2ObjectOpenHashMap()
+        private set
+    var areas: MutableMap<Int, MutableSet<AreaDefinition>> = Int2ObjectOpenHashMap()
+        private set
 
     val names: Set<String>
         get() = named.keys
@@ -102,4 +105,10 @@ class AreaDefinitions(
     }
 
     fun getAll() = named.values
+
+    fun clear() {
+        named = Object2ObjectOpenHashMap()
+        tagged = Object2ObjectOpenHashMap()
+        areas = Int2ObjectOpenHashMap()
+    }
 }

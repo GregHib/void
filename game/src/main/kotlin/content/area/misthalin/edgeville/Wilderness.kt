@@ -4,10 +4,10 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.type.Tile
 
-class Wilderness(val areas: AreaDefinitions) : Script {
+class Wilderness : Script {
 
-    val wilderness = areas["wilderness"]
-    val safeZones = areas.getTagged("safe_zone")
+    val wilderness = AreaDefinitions["wilderness"]
+    val safeZones = AreaDefinitions.getTagged("safe_zone")
 
     init {
         playerSpawn {

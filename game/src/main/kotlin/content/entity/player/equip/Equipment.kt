@@ -89,8 +89,7 @@ object Equipment {
         if (source["castle_wars_brace", false] && Weapon.isFlagHolder(target)) {
             damage = (damage * 1.2).toInt()
         } else if (source.equipped(EquipSlot.Ring).id.startsWith("ferocious_ring")) {
-            val areas: AreaDefinitions = get()
-            val area = areas["kuradals_dungeon"]
+            val area = AreaDefinitions["kuradals_dungeon"]
             if (source.tile in area && target.tile in area) {
                 damage = (damage * 1.04).toInt()
             }

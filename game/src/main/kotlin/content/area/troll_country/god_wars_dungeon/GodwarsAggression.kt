@@ -12,9 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.type.random
 
-class GodwarsAggression(val areas: AreaDefinitions) : Script {
-
-    val dungeon = areas["godwars_dungeon_multi_area"]
+class GodwarsAggression : Script {
 
     init {
         npcSpawn(handler = ::randomHuntMode)
@@ -46,13 +44,13 @@ class GodwarsAggression(val areas: AreaDefinitions) : Script {
 
         itemAdded(inventory = "worn_equipment") { (item) ->
             val god = item.def.getOrNull<String>("god") ?: return@itemAdded
-            if (tile in dungeon) {
+            if (tile in AreaDefinitions["godwars_dungeon_multi_area"]) {
                 get<MutableSet<String>>("gods")!!.add(god)
             }
         }
 
         itemRemoved(inventory = "worn_equipment") {
-            if (tile in dungeon) {
+            if (tile in AreaDefinitions["godwars_dungeon_multi_area"]) {
                 set("gods", equipment.items.mapNotNull { it.def.getOrNull<String>("god") }.toMutableSet())
             }
         }
@@ -83,7 +81,7 @@ class GodwarsAggression(val areas: AreaDefinitions) : Script {
     }
 
     fun randomHuntMode(npc: NPC) {
-        if (npc.tile in dungeon && (npc.def["hunt_mode", ""] == "zamorak_aggressive" || npc.def["hunt_mode", ""] == "anti_zamorak_aggressive")) {
+        if (npc.tile in AreaDefinitions["godwars_dungeon_multi_area"] && (npc.def["hunt_mode", ""] == "zamorak_aggressive" || npc.def["hunt_mode", ""] == "anti_zamorak_aggressive")) {
             npc.huntMode = if (random.nextBoolean()) npc.def["hunt_mode"] else "godwars_aggressive"
         }
     }

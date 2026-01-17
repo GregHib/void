@@ -71,9 +71,7 @@ internal class InteractTest : KoinMock() {
         player.collision = CollisionStrategies.Normal
         target = NPC(tile = Tile(10, 10))
         target.collision = CollisionStrategies.Normal
-        declareMock<AreaDefinitions> {
-            every { get(any<Zone>()) } returns emptySet()
-        }
+        AreaDefinitions.clear()
     }
 
     private fun interact(operate: Boolean, approach: Boolean, suspend: Boolean) {

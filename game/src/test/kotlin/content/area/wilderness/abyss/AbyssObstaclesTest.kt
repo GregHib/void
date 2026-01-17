@@ -25,9 +25,8 @@ internal class AbyssObstaclesTest : WorldTest() {
 
     @BeforeEach
     fun setup() {
-        val areas: AreaDefinitions = get()
         definitions = get()
-        center = areas["abyss_center"]
+        center = AreaDefinitions["abyss_center"]
     }
 
     @Test

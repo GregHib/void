@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.client.instruction.InteractInterface
 import world.gregs.voidps.network.client.instruction.InteractNPC
 
-suspend fun Bot.openShop(id: String): NPC = openShop(get<AreaDefinitions>().getOrNull(id)!!)
+suspend fun Bot.openShop(id: String): NPC = openShop(AreaDefinitions.getOrNull(id)!!)
 
 suspend fun Bot.openNearestShop(id: String): Boolean {
     val reached = goToNearest { it["items", emptyList<String>()].contains(id) }

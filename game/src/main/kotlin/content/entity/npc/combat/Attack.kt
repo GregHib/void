@@ -31,7 +31,6 @@ import world.gregs.voidps.type.random
 
 class Attack(
     val definitions: CombatDefinitions,
-    val areaDefinitions: AreaDefinitions,
     val players: Players,
 ) : Script {
 
@@ -196,7 +195,7 @@ class Attack(
         if (area == "") {
             return setOf(target)
         }
-        val area = areaDefinitions.getOrNull(area)?.area ?: return setOf(target)
+        val area = AreaDefinitions.getOrNull(area)?.area ?: return setOf(target)
         val list = mutableSetOf(target)
         for (zone in area.toZones(tile.level)) {
             list.addAll(players[zone])

@@ -20,11 +20,11 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.InteractObject
 
-class WoodcuttingBot(val areas: AreaDefinitions, val tasks: TaskManager) : Script {
+class WoodcuttingBot(val tasks: TaskManager) : Script {
 
     init {
         worldSpawn {
-            for (area in areas.getTagged("trees")) {
+            for (area in AreaDefinitions.getTagged("trees")) {
                 val spaces: Int = area["spaces", 1]
                 val range: IntRange = area["levels", "1-5"].toIntRange()
                 val type = area["trees", emptyList<String>()].firstOrNull()

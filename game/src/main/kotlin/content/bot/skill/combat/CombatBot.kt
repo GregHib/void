@@ -61,14 +61,13 @@ suspend fun Bot.setAttackStyle(style: Int) {
 }
 
 class CombatBot(
-    val areas: AreaDefinitions,
     val tasks: TaskManager,
     val floorItems: FloorItems,
 ) : Script {
 
     init {
         worldSpawn {
-            for (area in areas.getTagged("combat_training")) {
+            for (area in AreaDefinitions.getTagged("combat_training")) {
                 val spaces: Int = area["spaces", 1]
                 val types = area["npcs", emptyList<String>()].toSet()
                 val range = area["levels", "1-5"].toIntRange()

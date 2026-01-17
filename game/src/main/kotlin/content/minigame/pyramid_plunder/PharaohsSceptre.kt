@@ -5,11 +5,7 @@ import content.skill.magic.jewellery.itemTeleport
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 
-class PharaohsSceptre(val areas: AreaDefinitions) : Script {
-
-    val jalsavrah = areas["jalsavrah_teleport"]
-    val jaleustrophos = areas["jaleustrophos_teleport"]
-    val jaldraocht = areas["jaldraocht_teleport"]
+class PharaohsSceptre : Script {
 
     init {
         itemOption("Teleport", "pharaohs_sceptre_#", "inventory") {
@@ -18,13 +14,13 @@ class PharaohsSceptre(val areas: AreaDefinitions) : Script {
             }
             choice("Which Pyramid do you want to teleport to?") {
                 option("Jalsavrah") {
-                    itemTeleport(this, it.inventory, it.slot, jalsavrah, "pharaohs_sceptre")
+                    itemTeleport(this, it.inventory, it.slot, AreaDefinitions["jalsavrah_teleport"], "pharaohs_sceptre")
                 }
                 option("Jaleustrophos") {
-                    itemTeleport(this, it.inventory, it.slot, jaleustrophos, "pharaohs_sceptre")
+                    itemTeleport(this, it.inventory, it.slot, AreaDefinitions["jaleustrophos_teleport"], "pharaohs_sceptre")
                 }
                 option("Jaldraocht") {
-                    itemTeleport(this, it.inventory, it.slot, jaldraocht, "pharaohs_sceptre")
+                    itemTeleport(this, it.inventory, it.slot, AreaDefinitions["jaldraocht_teleport"], "pharaohs_sceptre")
                 }
                 option("I'm happy where I am actually.")
             }
@@ -35,9 +31,9 @@ class PharaohsSceptre(val areas: AreaDefinitions) : Script {
                 return@itemOption
             }
             val area = when (it.option) {
-                "Jalsavrah" -> jalsavrah
-                "Jaleustrophos" -> jaleustrophos
-                "Jaldraocht" -> jaldraocht
+                "Jalsavrah" -> AreaDefinitions["jalsavrah_teleport"]
+                "Jaleustrophos" -> AreaDefinitions["jaleustrophos_teleport"]
+                "Jaldraocht" -> AreaDefinitions["jaldraocht_teleport"]
                 else -> return@itemOption
             }
             itemTeleport(this, it.inventory, it.slot, area, "pharaohs_sceptre")

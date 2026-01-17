@@ -19,7 +19,6 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 
 class LumbridgeBeginnerTasks(
-    val areas: AreaDefinitions,
     val objects: GameObjects,
     val styleDefinitions: WeaponStyleDefinitions,
 ) : Script,
@@ -56,7 +55,7 @@ class LumbridgeBeginnerTasks(
         }
 
         itemAdded("copper_ore", inventory = "inventory") {
-            if (softTimers.contains("mining") && tile in areas["lumbridge_swamp_east_copper_mine"]) {
+            if (softTimers.contains("mining") && tile in AreaDefinitions["lumbridge_swamp_east_copper_mine"]) {
                 set("take_your_pick_task", true)
             }
         }
@@ -281,7 +280,7 @@ class LumbridgeBeginnerTasks(
         }
 
         itemAdded("empty_pot", inventory = "inventory") {
-            if (softTimers.contains("pottery") && tile in areas["draynor"]) {
+            if (softTimers.contains("pottery") && tile in AreaDefinitions["draynor"]) {
                 set("hotpot_task", true)
             }
         }
@@ -293,7 +292,7 @@ class LumbridgeBeginnerTasks(
         }
 
         itemAdded("raw_shrimps", inventory = "inventory") {
-            if (softTimers.contains("fishing") && tile in areas["lumbridge_swamp_fishing_area"]) {
+            if (softTimers.contains("fishing") && tile in AreaDefinitions["lumbridge_swamp_fishing_area"]) {
                 set("shrimpin_aint_easy_task", true)
             }
         }

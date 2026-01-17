@@ -21,7 +21,6 @@ class Movement(
     val collisions: Collisions,
     val npcs: NPCs,
     val players: Players,
-    val areas: AreaDefinitions,
 ) : Script {
 
     val borders = mutableMapOf<Zone, Rectangle>()
@@ -43,7 +42,7 @@ class Movement(
         moved(handler = players::update)
 
         worldSpawn {
-            for (border in areas.getTagged("border")) {
+            for (border in AreaDefinitions.getTagged("border")) {
                 val passage = border.area as Rectangle
                 for (zone in passage.toZones()) {
                     borders[zone] = passage

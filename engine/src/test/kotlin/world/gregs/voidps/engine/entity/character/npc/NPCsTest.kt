@@ -18,7 +18,7 @@ class NPCsTest {
     fun setup() {
         val definitions = NPCDefinitions(arrayOf(NPCDefinition(0)))
         definitions.ids = mapOf("test" to 0)
-        npcs = NPCs(definitions, Collisions(emptyArray()), CollisionStrategyProvider(), AreaDefinitions())
+        npcs = NPCs(definitions, Collisions(emptyArray()), CollisionStrategyProvider())
     }
 
     @Test

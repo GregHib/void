@@ -41,12 +41,12 @@ class AccountManagerTest : KoinMock() {
         module {
             single { ItemDefinitions(emptyArray()) }
             single { InterfaceDefinitions(emptyArray()).apply { ids = emptyMap() } }
-            single { AreaDefinitions(areas = mapOf(0 to setOf(AreaDefinition("area", Rectangle(Tile(0), 1, 1), emptySet())))) }
         },
     )
 
     @BeforeEach
     fun setup() {
+        AreaDefinitions.areas[0] = mutableSetOf(AreaDefinition("area", Rectangle(Tile(0), 1, 1), emptySet()))
         val inventoryDefinitions = InventoryDefinitions(arrayOf(InventoryDefinition.EMPTY))
         inventoryDefinitions.ids = mapOf("worn_equipment" to 0)
         connectionQueue = ConnectionQueue(1)
@@ -87,7 +87,6 @@ class AccountManagerTest : KoinMock() {
             variableDefinitions = VariableDefinitions(),
             saveQueue = SaveQueue(storage),
             connectionQueue = connectionQueue,
-            areaDefinitions = get(),
             players = Players(),
             overrides = AppearanceOverrides(),
         )

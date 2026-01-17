@@ -40,7 +40,6 @@ import kotlin.random.Random
 
 class PenguinHideAndSeek(
     val npcs: NPCs,
-    val areas: AreaDefinitions,
     val players: Players,
     val accounts: AccountDefinitions,
 ) : Script {
@@ -263,7 +262,7 @@ class PenguinHideAndSeek(
             if (penguin == null) {
                 continue
             }
-            val areas = areas.get(penguin.tile.zone).firstOrNull { it.tags.contains("penguin_area") }
+            val areas = AreaDefinitions.get(penguin.tile.zone).firstOrNull { it.tags.contains("penguin_area") }
             var hint = ""
             if (areas != null) {
                 list.add("${Colours.BLUE.toTag()}${areas.name.toTitleCase()}")

@@ -20,14 +20,13 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.InteractInterfaceItem
 
 class FiremakingBot(
-    val areas: AreaDefinitions,
     val tasks: TaskManager,
     val objects: GameObjects,
 ) : Script {
 
     init {
         worldSpawn {
-            for (area in areas.getTagged("fire_making")) {
+            for (area in AreaDefinitions.getTagged("fire_making")) {
                 val spaces: Int = area["spaces", 1]
                 val task = Task(
                     name = "make fires at ${area.name}".toLowerSpaceCase(),

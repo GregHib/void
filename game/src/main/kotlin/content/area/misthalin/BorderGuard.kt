@@ -11,7 +11,7 @@ import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.area.Rectangle
 import kotlin.collections.set
 
-class BorderGuard(val objects: GameObjects, val areas: AreaDefinitions) : Script {
+class BorderGuard(val objects: GameObjects) : Script {
 
     val guards = mutableMapOf<Rectangle, List<GameObject>>()
 
@@ -19,7 +19,7 @@ class BorderGuard(val objects: GameObjects, val areas: AreaDefinitions) : Script
 
     init {
         worldSpawn {
-            for (border in areas.getTagged("border")) {
+            for (border in AreaDefinitions.getTagged("border")) {
                 val passage = border.area as Rectangle
                 for (zone in passage.toZones()) {
                     guards[passage] = zone.toRectangle().mapNotNull {

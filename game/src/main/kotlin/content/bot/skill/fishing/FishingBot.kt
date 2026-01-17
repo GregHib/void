@@ -29,14 +29,13 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.InteractNPC
 
 class FishingBot(
-    val areas: AreaDefinitions,
     val tasks: TaskManager,
     val gear: GearDefinitions,
 ) : Script {
 
     init {
         worldSpawn {
-            for (area in areas.getTagged("fish")) {
+            for (area in AreaDefinitions.getTagged("fish")) {
                 val spaces: Int = area["spaces", 1]
                 val type: String = area.getOrNull("type") ?: continue
                 val sets = gear.get("fishing").filter { it["spot", ""] == type }

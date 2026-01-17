@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.entity.character.npc
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.data.NPCDefinition
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.MAX_NPCS
@@ -23,7 +22,6 @@ data class NPCs(
     private val definitions: NPCDefinitions,
     private val collisions: Collisions,
     private val collision: CollisionStrategyProvider,
-    private val areaDefinitions: AreaDefinitions,
 ) : Runnable,
     Iterable<NPC>,
     CharacterSearch<NPC> {

@@ -5,9 +5,7 @@ import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-class CastleWarsBrace(val areas: AreaDefinitions) : Script {
-
-    val area = areas["castle_wars"]
+class CastleWarsBrace : Script {
 
     init {
         entered("castle_wars") {
@@ -24,13 +22,13 @@ class CastleWarsBrace(val areas: AreaDefinitions) : Script {
 
         // TODO should be activated on game start not equip.
         itemAdded("castle_wars_brace*", "worn_equipment", EquipSlot.Hands) {
-            if (tile in area) {
+            if (tile in AreaDefinitions["castle_wars"]) {
                 set("castle_wars_brace", true)
             }
         }
 
         itemRemoved("castle_wars_brace*", "worn_equipment", EquipSlot.Hands) {
-            if (tile in area) {
+            if (tile in AreaDefinitions["castle_wars"]) {
                 clear("castle_wars_brace")
             }
         }

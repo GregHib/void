@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-class Equipping(val areas: AreaDefinitions) : Script {
+class Equipping : Script {
 
     val logger = InlineLogger()
 
@@ -34,7 +34,7 @@ class Equipping(val areas: AreaDefinitions) : Script {
         itemOption("Equip", handler = ::equip)
 
         itemOption("Remove", inventory = "worn_equipment") { (item, slot) ->
-            if (item.id == "gas_mask" && tile in areas["west_ardougne"]) {
+            if (item.id == "gas_mask" && tile in AreaDefinitions["west_ardougne"]) {
                 message("You should leave your gas mask on while you're in West Ardougne.")
                 return@itemOption
             }
@@ -60,11 +60,11 @@ class Equipping(val areas: AreaDefinitions) : Script {
         if (!player.hasRequirements(item, true)) {
             return
         }
-        if (item.id.contains("greegree") && player.tile !in areas["ape_atoll"] && player.tile !in areas["ape_atoll_agility_dungeon"]) {
+        if (item.id.contains("greegree") && player.tile !in AreaDefinitions["ape_atoll"] && player.tile !in AreaDefinitions["ape_atoll_agility_dungeon"]) {
             player.message("You attempt to use the Monkey Greegree but nothing happens.")
             return
         }
-        if (item.slot == EquipSlot.Hat && player.tile in areas["west_ardougne"]) {
+        if (item.slot == EquipSlot.Hat && player.tile in AreaDefinitions["west_ardougne"]) {
             player.message("You should leave your gas mask on while you're in West Ardougne.")
             return
         }

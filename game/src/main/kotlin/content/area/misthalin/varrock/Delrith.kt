@@ -48,10 +48,9 @@ import java.util.concurrent.TimeUnit
 class Delrith(
     val objects: GameObjects,
     val npcs: NPCs,
-    val areas: AreaDefinitions,
 ) : Script {
 
-    val area = areas["demon_slayer_stone_circle"]
+    val area = AreaDefinitions["demon_slayer_stone_circle"]
     val defaultTile = Tile(3220, 3367)
     val targets = listOf(
         Tile(3227, 3369) to Tile(3224, 3366),

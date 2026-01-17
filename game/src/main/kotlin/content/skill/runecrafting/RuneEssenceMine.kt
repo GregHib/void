@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.queue.softQueue
 
-class RuneEssenceMine(val areas: AreaDefinitions) : Script {
+class RuneEssenceMine : Script {
 
     init {
         objectOperate("Enter", "rune_essence_exit_portal") { (target) ->
@@ -17,7 +17,7 @@ class RuneEssenceMine(val areas: AreaDefinitions) : Script {
 
             softQueue("essence_mine_exit", 3) {
                 val npc = get("last_npc_teleport_to_rune_essence_mine", "aubury")
-                val tile = areas["${npc}_return"].random()
+                val tile = AreaDefinitions["${npc}_return"].random()
                 tele(tile)
             }
         }

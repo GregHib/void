@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-class Grapple(val objects: GameObjects, val areas: AreaDefinitions) : Script {
+class Grapple(val objects: GameObjects) : Script {
 
     init {
         objectApproach("Grapple", "lumbridge_broken_raft") { (target) ->
@@ -141,7 +141,7 @@ class Grapple(val objects: GameObjects, val areas: AreaDefinitions) : Script {
             }
             steps.clear()
             val start = Tile(2841, 3425)
-            if (tile !in areas["water_obselisk_island"]) {
+            if (tile !in AreaDefinitions["water_obselisk_island"]) {
                 message("I can't do that from here.")
                 return@objectApproach
             }
@@ -170,7 +170,7 @@ class Grapple(val objects: GameObjects, val areas: AreaDefinitions) : Script {
                 return@objectApproach
             }
             steps.clear()
-            if (tile !in areas["mountain_shortcut_grapple_area"]) {
+            if (tile !in AreaDefinitions["mountain_shortcut_grapple_area"]) {
                 message("I can't do that from here.")
                 return@objectApproach
             }

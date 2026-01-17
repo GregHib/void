@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
 import world.gregs.voidps.engine.client.update.npc.NPCUpdateTask
 import world.gregs.voidps.engine.client.update.player.PlayerUpdateTask
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -27,7 +26,7 @@ internal class CharacterUpdateTaskTest : KoinMock() {
     private lateinit var batches: ZoneBatchUpdates
     override val modules = listOf(
         module {
-            single { NPCs(get(), get(), get(), AreaDefinitions()) }
+            single { NPCs(get(), get(), get()) }
             single { Players() }
         },
     )

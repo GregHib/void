@@ -29,11 +29,11 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-class TrainingBot(val areas: AreaDefinitions, val tasks: TaskManager) : Script {
+class TrainingBot(val tasks: TaskManager) : Script {
 
     init {
         worldSpawn {
-            val area = areas.getOrNull("lumbridge_combat_tutors") ?: return@worldSpawn
+            val area = AreaDefinitions.getOrNull("lumbridge_combat_tutors") ?: return@worldSpawn
             val range = 1..5
             val skills = listOf(Skill.Attack, Skill.Magic, Skill.Ranged)
             val melees = listOf(Skill.Attack, Skill.Strength, Skill.Defence)

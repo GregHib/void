@@ -6,12 +6,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 
-class SkillsNecklace(val areas: AreaDefinitions) : Script {
-
-    val fishing = areas["fishing_guild_teleport"]
-    val mining = areas["mining_guild_teleport"]
-    val crafting = areas["crafting_guild_teleport"]
-    val cooking = areas["cooking_guild_teleport"]
+class SkillsNecklace : Script {
 
     init {
         itemOption("Rub", "skills_necklace_#") {
@@ -21,19 +16,19 @@ class SkillsNecklace(val areas: AreaDefinitions) : Script {
             choice("Where would you like to teleport to?") {
                 option("Fishing Guild.") {
                     message("You rub the necklace...", ChatType.Filter)
-                    jewelleryTeleport(this, it.inventory, it.slot, fishing)
+                    jewelleryTeleport(this, it.inventory, it.slot, AreaDefinitions["fishing_guild_teleport"])
                 }
                 option("Mining Guild.") {
                     message("You rub the necklace...", ChatType.Filter)
-                    jewelleryTeleport(this, it.inventory, it.slot, mining)
+                    jewelleryTeleport(this, it.inventory, it.slot, AreaDefinitions["mining_guild_teleport"])
                 }
                 option("Crafting Guild.") {
                     message("You rub the necklace...", ChatType.Filter)
-                    jewelleryTeleport(this, it.inventory, it.slot, crafting)
+                    jewelleryTeleport(this, it.inventory, it.slot, AreaDefinitions["crafting_guild_teleport"])
                 }
                 option("Cooking Guild.") {
                     message("You rub the necklace...", ChatType.Filter)
-                    jewelleryTeleport(this, it.inventory, it.slot, cooking)
+                    jewelleryTeleport(this, it.inventory, it.slot, AreaDefinitions["cooking_guild_teleport"])
                 }
                 option("Nowhere.")
             }
@@ -44,14 +39,14 @@ class SkillsNecklace(val areas: AreaDefinitions) : Script {
                 return@itemOption
             }
             val area = when (it.option) {
-                "Fishing Guild" -> fishing
-                "Mining Guild" -> mining
-                "Crafting Guild" -> crafting
-                "Cooking Guild" -> cooking
+                "Fishing Guild" -> "fishing_guild_teleport"
+                "Mining Guild" -> "mining_guild_teleport"
+                "Crafting Guild" -> "crafting_guild_teleport"
+                "Cooking Guild" -> "cooking_guild_teleport"
                 else -> return@itemOption
             }
             message("You rub the necklace...", ChatType.Filter)
-            jewelleryTeleport(this, it.inventory, it.slot, area)
+            jewelleryTeleport(this, it.inventory, it.slot, AreaDefinitions[area])
         }
     }
 }

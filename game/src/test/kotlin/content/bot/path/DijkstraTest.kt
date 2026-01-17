@@ -17,7 +17,6 @@ import kotlinx.io.pool.ObjectPool
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.Tile
 import java.util.*
@@ -31,7 +30,7 @@ internal class DijkstraTest {
 
     @BeforeEach
     fun setup() {
-        graph = NavigationGraph(mockk(), AreaDefinitions())
+        graph = NavigationGraph(mockk())
         pool = object : DefaultPool<DijkstraFrontier>(1) {
             override fun produceInstance() = DijkstraFrontier(3)
         }

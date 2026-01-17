@@ -14,19 +14,18 @@ import world.gregs.voidps.type.area.Rectangle
 import world.gregs.voidps.type.random
 
 class WildernessObelisk(
-    val areas: AreaDefinitions,
     val objects: GameObjects,
     val players: Players,
 ) : Script {
 
-    val obelisks = areas.getTagged("obelisk")
+    val obelisks = AreaDefinitions.getTagged("obelisk")
 
     init {
         objectOperate("Activate", "wilderness_obelisk_*") { (target) ->
             if (World.containsQueue(target.id)) {
                 return@objectOperate
             }
-            val definition = areas.getOrNull(target.id) ?: return@objectOperate
+            val definition = AreaDefinitions.getOrNull(target.id) ?: return@objectOperate
             val rectangle = (definition.area as Rectangle)
             replace(target, Tile(rectangle.minX - 1, rectangle.minY - 1))
             replace(target, Tile(rectangle.maxX + 1, rectangle.minY - 1))

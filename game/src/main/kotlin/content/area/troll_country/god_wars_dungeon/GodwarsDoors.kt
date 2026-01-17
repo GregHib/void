@@ -5,12 +5,12 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 
-class GodwarsDoors(val areas: AreaDefinitions) : Script {
+class GodwarsDoors : Script {
 
     init {
         objectOperate("Open", "big_door_saradomin_closed,big_door_bandos_closed,big_door_armadyl_closed,big_door_zamorak_closed") { (target) ->
             val god = target.id.removePrefix("big_door_").removeSuffix("_closed")
-            if (tile in areas["${god}_chamber"]) {
+            if (tile in AreaDefinitions["${god}_chamber"]) {
                 enterDoor(target)
                 return@objectOperate
             }

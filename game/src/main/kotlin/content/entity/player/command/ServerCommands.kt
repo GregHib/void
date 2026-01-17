@@ -107,7 +107,7 @@ class ServerCommands(val players: Players, val accountLoader: PlayerAccountLoade
                 val npcs: NPCs = get()
                 loadNpcSpawns(npcs, files.list(Settings["spawns.npcs"]), npcDefs)
             }
-            "areas" -> get<AreaDefinitions>().load(files.list(Settings["map.areas"]))
+            "areas" -> AreaDefinitions.load(files.list(Settings["map.areas"]))
             "emotes", "render_anims", "render_emotes" -> get<RenderEmoteDefinitions>().load(files.find(Settings["definitions.renderEmotes"]))
             "anim_defs", "anims", "animations" -> get<AnimationDefinitions>().load(files.list(Settings["definitions.animations"]))
             "container_defs", "containers", "inventory_defs", "inventories", "inv_defs", "invs", "shop", "shops" -> {

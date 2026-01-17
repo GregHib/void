@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.*
 
-class WindChill(val areas: AreaDefinitions) : Script {
+class WindChill : Script {
 
     init {
         timerStart("windchill") {
@@ -20,7 +20,7 @@ class WindChill(val areas: AreaDefinitions) : Script {
         }
 
         timerTick("windchill") {
-            if (tile !in areas["godwars_chill_area"]) {
+            if (tile !in AreaDefinitions["godwars_chill_area"]) {
                 return@timerTick Timer.CANCEL
             }
             sound("windy")

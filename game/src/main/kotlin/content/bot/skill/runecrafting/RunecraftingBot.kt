@@ -14,11 +14,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.network.client.instruction.InteractObject
 
-class RunecraftingBot(val areas: AreaDefinitions, val tasks: TaskManager) : Script {
+class RunecraftingBot(val tasks: TaskManager) : Script {
 
     init {
         worldSpawn {
-            for (area in areas.getTagged("altar")) {
+            for (area in AreaDefinitions.getTagged("altar")) {
                 val type: String = area["type"]
                 val spaces: Int = area["spaces", 1]
                 val range: IntRange = area["levels", "1-5"].toIntRange()

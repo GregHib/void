@@ -220,13 +220,12 @@ open class Movement(
                 val offset = character.get<Long>("instance_offset")?.let { Delta(it) } ?: Delta.EMPTY
                 val toOriginal = to.minus(offset)
                 val fromOriginal = from.minus(offset)
-                val areaDefinitions: AreaDefinitions = get()
-                for (def in areaDefinitions.get(fromOriginal.zone)) {
+                for (def in AreaDefinitions.get(fromOriginal.zone)) {
                     if (fromOriginal in def.area && toOriginal !in def.area) {
                         Moved.exit(character, def.name, def.area)
                     }
                 }
-                for (def in areaDefinitions.get(toOriginal.zone)) {
+                for (def in AreaDefinitions.get(toOriginal.zone)) {
                     if (toOriginal in def.area && fromOriginal !in def.area) {
                         Moved.enter(character, def.name, def.area)
                     }

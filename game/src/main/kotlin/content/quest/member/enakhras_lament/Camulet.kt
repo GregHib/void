@@ -10,11 +10,11 @@ import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 
-class Camulet(val areas: AreaDefinitions) : Script {
+class Camulet : Script {
 
     init {
         itemOption("Rub", "camulet") {
-            if (jewelleryTeleport(this, it.inventory, it.slot, areas["camulet_teleport"])) {
+            if (jewelleryTeleport(this, it.inventory, it.slot, AreaDefinitions["camulet_teleport"])) {
                 message("You rub the amulet...")
             } else {
                 statement("Your Camulet has run out of teleport charges. You can renew them by applying camel dung.")

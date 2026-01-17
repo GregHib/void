@@ -28,7 +28,6 @@ import world.gregs.voidps.type.Tile
 import kotlin.random.Random
 
 class GiantMole(
-    val areas: AreaDefinitions,
     val players: Players,
 ) : Script {
 
@@ -41,8 +40,8 @@ class GiantMole(
         Tile(2989, 3378, 0),
     )
 
-    val giantMoleLair = areas["giant_mole_lair"]
-    val gianMoleSpawns = areas["giant_mole_spawn_area"]
+    val giantMoleLair = AreaDefinitions["giant_mole_lair"]
+    val gianMoleSpawns = AreaDefinitions["giant_mole_spawn_area"]
     val initialCaveTile: Tile = Tile(1752, 5237, 0)
 
     init {

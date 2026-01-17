@@ -21,14 +21,13 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.InteractDialogue
 
 class SmeltingBot(
-    val areas: AreaDefinitions,
     val tasks: TaskManager,
     val itemDefinitions: ItemDefinitions,
 ) : Script {
 
     init {
         worldSpawn {
-            for (area in areas.getTagged("smelting")) {
+            for (area in AreaDefinitions.getTagged("smelting")) {
                 val spaces: Int = area["spaces", 1]
                 val task = Task(
                     name = "smelt bars at ${area.name}".toLowerSpaceCase(),

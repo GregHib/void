@@ -25,7 +25,7 @@ import java.io.File
 
 fun engineModule(files: ConfigFiles) = module {
     // Entities
-    single { NPCs(get(), get(), get(), get()) }
+    single { NPCs(get(), get(), get()) }
     single { Players() }
     single { GameObjects(get(), get(), get(), get(), Settings["development.loadAllObjects", false]).apply { get<ZoneBatchUpdates>().register(this) } }
     single { FloorItems(get(), get()).apply { get<ZoneBatchUpdates>().register(this) } }
@@ -34,13 +34,13 @@ fun engineModule(files: ConfigFiles) = module {
     single {
         SaveQueue(get(), SafeStorage(File(Settings["storage.players.errors"])))
     }
-    single { AccountManager(get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), AppearanceOverrides(get(), get())) }
+    single { AccountManager(get(), get(), get(), get(), get(), get(), get(), get(), get(), AppearanceOverrides(get(), get())) }
     // IO
     single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game) }
     // Map
     single { ZoneBatchUpdates() }
     single { DynamicZones(get(), get(), get()) }
-    single(createdAtStart = true) { AreaDefinitions().load(files.list(Settings["map.areas"])) }
+    single(createdAtStart = true) { AreaDefinitions.load(files.list(Settings["map.areas"])) }
     single(createdAtStart = true) { CanoeDefinitions().load(files.find(Settings["map.canoes"])) }
     // Network
     single {

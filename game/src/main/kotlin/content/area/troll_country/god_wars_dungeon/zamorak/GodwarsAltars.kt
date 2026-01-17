@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-class GodwarsAltars(val areas: AreaDefinitions) : Script {
+class GodwarsAltars : Script {
 
     init {
         objectOperate("Pray-at", "prayer_*_altar_godwars") { (target) ->
@@ -38,7 +38,7 @@ class GodwarsAltars(val areas: AreaDefinitions) : Script {
 
         objectOperate("Teleport", "prayer_*_altar_godwars") { (target) ->
             val god = target.id.removePrefix("prayer_").removeSuffix("_altar_godwars")
-            tele(areas["${god}_entrance"])
+            tele(AreaDefinitions["${god}_entrance"])
             visuals.hits.clear()
             message("The god's pity you and allow you to leave the encampment.")
         }

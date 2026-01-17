@@ -21,7 +21,6 @@ import world.gregs.voidps.engine.inv.transact.charge
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 
 class ItemCommands(
-    val areas: AreaDefinitions,
     val players: Players,
     val exchange: GrandExchange,
     val definitions: ItemDefinitions,

@@ -17,7 +17,6 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
 class FishingSpot(
-    val areas: AreaDefinitions,
     val players: Players,
     val collisions: Collisions,
 ) : Script {
@@ -54,7 +53,7 @@ class FishingSpot(
     }
 
     fun move(npc: NPC) {
-        val area = areas.get(npc.tile.zone).firstOrNull { it.name.endsWith("fishing_area") } ?: return
+        val area = AreaDefinitions.get(npc.tile.zone).firstOrNull { it.name.endsWith("fishing_area") } ?: return
         /*
             Find all water tiles that have two water tiles next to them and land perpendicular
                [W]    [L]    [W]

@@ -21,11 +21,11 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.InteractDialogue
 import world.gregs.voidps.network.client.instruction.InteractInterfaceObject
 
-class CookingBot(val areas: AreaDefinitions, val tasks: TaskManager) : Script {
+class CookingBot(val tasks: TaskManager) : Script {
 
     init {
         worldSpawn {
-            for (area in areas.getTagged("cooking")) {
+            for (area in AreaDefinitions.getTagged("cooking")) {
                 val spaces: Int = area["spaces", 1]
                 val type: String = area.getOrNull("type") ?: ""
                 val task = Task(
