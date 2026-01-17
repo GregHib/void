@@ -21,7 +21,6 @@ import world.gregs.voidps.type.Zone
 data class NPCs(
     private val definitions: NPCDefinitions,
     private val collisions: Collisions,
-    private val collision: CollisionStrategyProvider,
 ) : Runnable,
     Iterable<NPC>,
     CharacterSearch<NPC> {
@@ -154,7 +153,7 @@ data class NPCs(
         if (npc.mode == EmptyMode && Wander.wanders(npc)) {
             npc.mode = Wander(npc, npc.tile)
         }
-        npc.collision = collision.get(npc)
+        npc.collision = CollisionStrategyProvider.get(npc)
         regionMap.add(npc.tile.regionLevel.id, npc.index)
         zoneMap.add(npc.tile.zone.id, npc.index)
         val respawnDelay = npc.def.getOrNull<Int>("respawn_delay")

@@ -33,7 +33,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
     private lateinit var viewport: Viewport
     override val modules = listOf(
         module {
-            single { NPCs(get(), get(), get()) }
+            single { NPCs(get(), get()) }
         },
     )
     private lateinit var encoder: VisualEncoder<NPCVisuals>

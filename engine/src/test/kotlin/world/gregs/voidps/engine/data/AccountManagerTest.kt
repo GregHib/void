@@ -24,7 +24,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.entity.character.player.equip.AppearanceOverrides
-import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.ConnectionQueue
@@ -83,7 +82,6 @@ class AccountManagerTest : KoinMock() {
             inventoryDefinitions = inventoryDefinitions,
             itemDefinitions = get(),
             accountDefinitions = AccountDefinitions(),
-            collisionStrategyProvider = CollisionStrategyProvider(),
             variableDefinitions = VariableDefinitions(),
             saveQueue = SaveQueue(storage),
             connectionQueue = connectionQueue,

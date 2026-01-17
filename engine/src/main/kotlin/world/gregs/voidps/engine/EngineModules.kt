@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.entity.character.player.equip.AppearanceOverrid
 import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollisionAdd
 import world.gregs.voidps.engine.map.collision.GameObjectCollisionRemove
@@ -29,7 +28,7 @@ fun engineLoad(files: ConfigFiles) {
 
 fun engineModule(files: ConfigFiles) = module {
     // Entities
-    single { NPCs(get(), get(), get()) }
+    single { NPCs(get(), get()) }
     single { Players() }
     single { GameObjects(get(), get(), get(), get(), Settings["development.loadAllObjects", false]).apply { get<ZoneBatchUpdates>().register(this) } }
     single { FloorItems(get(), get()).apply { get<ZoneBatchUpdates>().register(this) } }
@@ -38,7 +37,7 @@ fun engineModule(files: ConfigFiles) = module {
     single {
         SaveQueue(get(), SafeStorage(File(Settings["storage.players.errors"])))
     }
-    single { AccountManager(get(), get(), get(), get(), get(), get(), get(), get(), get(), AppearanceOverrides(get(), get())) }
+    single { AccountManager(get(), get(), get(), get(), get(), get(), get(), get(), AppearanceOverrides(get(), get())) }
     // IO
     single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game) }
     // Map
@@ -53,7 +52,6 @@ fun engineModule(files: ConfigFiles) = module {
     single(createdAtStart = true) { GameObjectCollisionRemove(get()) }
     // Collision
     single { Collisions() }
-    single { CollisionStrategyProvider() }
     single { StepValidator(get<Collisions>()) }
     // Pathfinding
     single { PathFinder(flags = get<Collisions>(), useRouteBlockerFlags = true) }

@@ -56,7 +56,7 @@ fun Character.transform(id: String, collision: Boolean = true) {
     }
     if (collision) {
         this["old_collision"] = this.collision
-        this.collision = get<CollisionStrategyProvider>().get(definition)
+        this.collision = CollisionStrategyProvider.get(definition)
     }
 }
 

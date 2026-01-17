@@ -35,7 +35,6 @@ class AccountManager(
     private val inventoryDefinitions: InventoryDefinitions,
     private val itemDefinitions: ItemDefinitions,
     private val accountDefinitions: AccountDefinitions,
-    private val collisionStrategyProvider: CollisionStrategyProvider,
     private val variableDefinitions: VariableDefinitions,
     private val saveQueue: SaveQueue,
     private val connectionQueue: ConnectionQueue,
@@ -79,7 +78,7 @@ class AccountManager(
             player.client = client
             (player.variables as PlayerVariables).client = client
         }
-        player.collision = collisionStrategyProvider.get(character = player)
+        player.collision = CollisionStrategyProvider.get(character = player)
         return true
     }
 

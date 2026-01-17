@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.type.Tile
 
@@ -17,7 +16,7 @@ class NPCsTest {
     fun setup() {
         val definitions = NPCDefinitions(arrayOf(NPCDefinition(0)))
         definitions.ids = mapOf("test" to 0)
-        npcs = NPCs(definitions, Collisions(emptyArray()), CollisionStrategyProvider())
+        npcs = NPCs(definitions, Collisions(emptyArray()))
     }
 
     @Test

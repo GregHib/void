@@ -26,7 +26,7 @@ internal class CharacterUpdateTaskTest : KoinMock() {
     private lateinit var batches: ZoneBatchUpdates
     override val modules = listOf(
         module {
-            single { NPCs(get(), get(), get()) }
+            single { NPCs(get(), get()) }
             single { Players() }
         },
     )
