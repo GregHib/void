@@ -11,12 +11,9 @@ import world.gregs.voidps.type.Tile
 
 private val logger = InlineLogger()
 
-fun loadNpcSpawns(
-    npcs: NPCs,
-    paths: List<String>,
-) {
+fun loadNpcSpawns(paths: List<String>, ) {
     timedLoad("npc spawn") {
-        npcs.clear()
+        NPCs.clear()
         val membersWorld = World.members
         var count = 0
         val hashes = mutableSetOf<Long>()
@@ -57,7 +54,7 @@ fun loadNpcSpawns(
                             }
                             hashes.add(hash)
                         }
-                        npcs.add(id, tile, direction)
+                        NPCs.add(id, tile, direction)
                         count++
                     }
                 }

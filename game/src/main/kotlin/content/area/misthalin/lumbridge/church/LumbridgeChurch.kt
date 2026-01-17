@@ -28,7 +28,7 @@ import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
-class LumbridgeChurch(val npcs: NPCs) : Script {
+class LumbridgeChurch : Script {
 
     val ghostSpawn = Tile(3250, 3195)
 
@@ -112,9 +112,9 @@ class LumbridgeChurch(val npcs: NPCs) : Script {
             tele(3247, 3193)
         }
         inventory.remove("muddy_skull")
-        val ghost = npcs[ghostSpawn].firstOrNull { it.id == "restless_ghost" }
-        npcs.remove(ghost)
-        val restlessGhost = npcs.add("restless_ghost", cutscene.tile(3248, 3193), Direction.SOUTH)
+        val ghost = NPCs[ghostSpawn].firstOrNull { it.id == "restless_ghost" }
+        NPCs.remove(ghost)
+        val restlessGhost = NPCs.add("restless_ghost", cutscene.tile(3248, 3193), Direction.SOUTH)
         tele(cutscene.tile(3248, 3192), clearInterfaces = false)
         npc<Happy>("restless_ghost", "Release! Thank you stranger.", clickToContinue = false)
         moveCamera(cutscene.tile(3251, 3193), 320)
@@ -158,7 +158,7 @@ class LumbridgeChurch(val npcs: NPCs) : Script {
     }
 
     suspend fun Player.spawnGhost() {
-        val ghostExists = npcs[ghostSpawn.zone].any { it.id == "restless_ghost" }
+        val ghostExists = NPCs[ghostSpawn.zone].any { it.id == "restless_ghost" }
         if (!ghostExists) {
             sound("coffin_open")
             sound("rg_ghost_approach")
@@ -166,10 +166,10 @@ class LumbridgeChurch(val npcs: NPCs) : Script {
             delay(1)
             sound("bigghost_appear")
             delay(1)
-            val ghost = npcs.add("restless_ghost", ghostSpawn, Direction.SOUTH)
+            val ghost = NPCs.add("restless_ghost", ghostSpawn, Direction.SOUTH)
             ghost.animDelay("restless_ghost_awakens")
             ghost.softQueue("despawn", TimeUnit.SECONDS.toTicks(60)) {
-                npcs.remove(ghost)
+                NPCs.remove(ghost)
             }
         } else {
             message("There's a skeleton without a skull in here. There's no point in disturbing it.")

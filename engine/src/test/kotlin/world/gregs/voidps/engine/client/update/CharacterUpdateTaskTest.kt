@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.iterator.SequentialIterator
 import world.gregs.voidps.engine.client.update.npc.NPCUpdateTask
 import world.gregs.voidps.engine.client.update.player.PlayerUpdateTask
-import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.script.KoinMock
@@ -20,13 +19,11 @@ internal class CharacterUpdateTaskTest : KoinMock() {
 
     private lateinit var task: CharacterUpdateTask
     private lateinit var players: Players
-    private lateinit var npcs: NPCs
     private lateinit var playerTask: PlayerUpdateTask
     private lateinit var npcTask: NPCUpdateTask
     private lateinit var batches: ZoneBatchUpdates
     override val modules = listOf(
         module {
-            single { NPCs() }
             single { Players() }
         },
     )
@@ -35,7 +32,6 @@ internal class CharacterUpdateTaskTest : KoinMock() {
     fun setup() {
         players = mockk(relaxed = true)
         playerTask = mockk(relaxed = true)
-        npcs = mockk(relaxed = true)
         npcTask = mockk(relaxed = true)
         batches = mockk(relaxed = true)
         task = spyk(CharacterUpdateTask(SequentialIterator(), players, playerTask, npcTask, batches))

@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import org.koin.dsl.module
 import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.buffer.write.Writer
@@ -28,14 +27,8 @@ import world.gregs.voidps.type.Tile
 internal class NPCUpdateTaskTest : KoinMock() {
 
     private lateinit var task: NPCUpdateTask
-    private lateinit var npcs: NPCs
     private lateinit var player: Player
     private lateinit var viewport: Viewport
-    override val modules = listOf(
-        module {
-            single { NPCs() }
-        },
-    )
     private lateinit var encoder: VisualEncoder<NPCVisuals>
     private lateinit var initialEncoder: VisualEncoder<NPCVisuals>
 
@@ -44,14 +37,14 @@ internal class NPCUpdateTaskTest : KoinMock() {
         player = mockk(relaxed = true)
         viewport = mockk(relaxed = true)
         every { viewport.radius } returns 15
-        npcs = mockk(relaxed = true)
+        NPCs.clear()
         initialEncoder = mockk(relaxed = true)
         every { initialEncoder.initial } returns true
         every { initialEncoder.mask } returns 2
         encoder = mockk(relaxed = true)
         every { encoder.initial } returns false
         every { encoder.mask } returns 8
-        task = spyk(NPCUpdateTask(npcs, arrayOf(initialEncoder, encoder)))
+        task = spyk(NPCUpdateTask(arrayOf(initialEncoder, encoder)))
     }
 
     @Test
@@ -60,7 +53,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val entities = IntOpenHashSet.of(1)
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
-        every { npcs.indexed(1) } returns null
+        every { NPCs.indexed(1) } returns null
         // When
         task.processLocals(player, viewport, sync, updates, entities)
         // Then
@@ -85,7 +78,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.index } returns 1
         val entities = IntOpenHashSet.of(npc.index)
         every { npc.def } returns NPCDefinition(extras = mapOf("crawl" to false))
-        every { npcs.indexed(1) } returns npc
+        every { NPCs.indexed(1) } returns npc
         every { npc.visuals.moved } returns true
         every { npc.visuals.walkStep } returns 0 // North
         every { npc.visuals.runStep } returns -1 // None
@@ -116,7 +109,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.index } returns 1
         val entities = IntOpenHashSet.of(npc.index)
         every { npc.def } returns NPCDefinition(extras = mapOf("crawl" to true))
-        every { npcs.indexed(1) } returns npc
+        every { NPCs.indexed(1) } returns npc
         every { npc.visuals.moved } returns true
         every { npc.visuals.walkStep } returns 0 // North
         every { npc.visuals.flag } returns if (update) 2 else 0
@@ -147,7 +140,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.index } returns 1
         val entities = IntOpenHashSet.of(npc.index)
         every { npc.def } returns NPCDefinition(extras = mapOf("crawl" to false))
-        every { npcs.indexed(1) } returns npc
+        every { NPCs.indexed(1) } returns npc
         every { npc.visuals.moved } returns true
         every { npc.visuals.walkStep } returns 0 // North
         every { npc.visuals.runStep } returns 0 // North
@@ -189,8 +182,8 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.visuals.animation } returns Animation(123)
         val map = CharacterIndexMap(4)
         map.add(player.tile.regionLevel.id, index)
-        every { npcs.regionMap } returns map
-        every { npcs.indexed(index) } returns npc
+        every { NPCs.regionMap } returns map
+        every { NPCs.indexed(index) } returns npc
         every { npc.visuals.flag } returns if (update) 10 else 0
         every { npc.visuals.flagged(2) } returns update
         every { npc.visuals.flagged(8) } returns update
@@ -230,8 +223,8 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.def.id } returns id
         val map = CharacterIndexMap(4)
         map.add(player.tile.regionLevel.id, index)
-        every { npcs.regionMap } returns map
-        every { npcs.indexed(index) } returns npc
+        every { NPCs.regionMap } returns map
+        every { NPCs.indexed(index) } returns npc
         every { npc.visuals.face.direction } returns 8194
         every { entities.size } returns 256
         // When
@@ -256,8 +249,8 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.def.id } returns 20
         val map = CharacterIndexMap(4)
         map.add(player.tile.regionLevel.id, index)
-        every { npcs.regionMap } returns map
-        every { npcs.indexed(index) } returns npc
+        every { NPCs.regionMap } returns map
+        every { NPCs.indexed(index) } returns npc
         every { npc.visuals.face.direction } returns 8194
         // When
         task.processAdditions(player, viewport, sync, updates, entities)
@@ -281,8 +274,8 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.def.id } returns 20
         val map = CharacterIndexMap(4)
         map.add(player.tile.regionLevel.id, index)
-        every { npcs.regionMap } returns map
-        every { npcs.indexed(index) } returns npc
+        every { NPCs.regionMap } returns map
+        every { NPCs.indexed(index) } returns npc
         every { npc.visuals.face.direction } returns 8194
         // When
         task.processAdditions(player, viewport, sync, updates, entities)

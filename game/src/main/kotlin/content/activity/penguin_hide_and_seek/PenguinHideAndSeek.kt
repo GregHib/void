@@ -39,7 +39,6 @@ import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
 class PenguinHideAndSeek(
-    val npcs: NPCs,
     val players: Players,
     val accounts: AccountDefinitions,
 ) : Script {
@@ -139,14 +138,14 @@ class PenguinHideAndSeek(
             var spots = easy.shuffled(random).take(5)
             var i = 0
             for ((type, tile) in spots) {
-                val penguin = npcs.add("hidden_penguin_$i", tile)
+                val penguin = NPCs.add("hidden_penguin_$i", tile)
                 penguin.transform(disguise(type), collision = false)
                 penguins[i++] = penguin
             }
             val hard = load(files, "spawns.penguins.hard")
             spots = hard.shuffled(random).take(5)
             for ((type, tile) in spots) {
-                val penguin = npcs.add("hidden_penguin_$i", tile)
+                val penguin = NPCs.add("hidden_penguin_$i", tile)
                 penguin.transform(disguise(type), collision = false)
                 penguins[i++] = penguin
             }
@@ -177,7 +176,7 @@ class PenguinHideAndSeek(
     fun clear() {
         for (i in penguins.indices) {
             val penguin = penguins[i] ?: continue
-            npcs.remove(penguin)
+            NPCs.remove(penguin)
             penguins[i] = null
         }
         bear = "hidden"

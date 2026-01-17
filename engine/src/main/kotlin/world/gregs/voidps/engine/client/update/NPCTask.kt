@@ -6,11 +6,12 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.mode.Wander.Companion.wanders
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
 class NPCTask(
     iterator: TaskIterator<NPC>,
-    override val characters: Iterable<NPC>,
+    override val characters: Iterable<NPC> = NPCs,
 ) : CharacterTask<NPC>(iterator) {
 
     override fun run(character: NPC) {

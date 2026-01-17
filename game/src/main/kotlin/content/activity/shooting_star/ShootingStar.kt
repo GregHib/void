@@ -40,7 +40,6 @@ import kotlin.text.toIntOrNull
 
 class ShootingStar(
     val objects: GameObjects,
-    val npcs: NPCs,
     val players: Players,
 ) : Script {
 
@@ -178,7 +177,7 @@ class ShootingStar(
             }
         }
         logger.info { "Crashed star event has started at: $location (${currentStarTile.x}, ${currentStarTile.y}) tier $tier." }
-        val shootingStarShadow = npcs.add("shooting_star_shadow", Tile(currentStarTile.x, currentStarTile.y + 6), Direction.NONE)
+        val shootingStarShadow = NPCs.add("shooting_star_shadow", Tile(currentStarTile.x, currentStarTile.y + 6), Direction.NONE)
         shootingStarShadow.walkTo(currentStarTile, noCollision = true, forceWalk = true)
         areaSound("star_meteor_falling", currentStarTile, radius = 15, delay = 20)
         World.queue("awaiting_shadow_walk", 6) {
@@ -197,7 +196,7 @@ class ShootingStar(
             }
             World.queue("falling_star_object_removal", 1) {
                 currentActiveObject = shootingStarObjectFalling.replace("crashed_star_tier_$tier")
-                npcs.remove(shootingStarShadow)
+                NPCs.remove(shootingStarShadow)
             }
         }
     }
@@ -206,9 +205,9 @@ class ShootingStar(
         currentActiveObject?.let { current -> objects[currentStarTile, current.id] }?.remove()
         if (!forceStopped) {
             areaSound("star_sprite_appear", currentStarTile, radius = 10)
-            val starSprite = npcs.add("star_sprite", currentStarTile, Direction.NONE)
+            val starSprite = NPCs.add("star_sprite", currentStarTile, Direction.NONE)
             World.queue("start_sprite_despawn_timer", TimeUnit.MINUTES.toTicks(10)) {
-                npcs.remove(starSprite)
+                NPCs.remove(starSprite)
             }
         }
         totalCollected = 0

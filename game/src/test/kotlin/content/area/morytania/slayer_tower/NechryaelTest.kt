@@ -4,6 +4,7 @@ import FakeRandom
 import WorldTest
 import npcOption
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.setRandom
 import kotlin.test.assertEquals
@@ -20,7 +21,7 @@ class NechryaelTest : WorldTest() {
         player.levels.set(Skill.Constitution, 50)
         player.levels.set(Skill.Slayer, 80)
 
-        val nechryael = npcs.add("nechryael", emptyTile.addY(1))
+        val nechryael = NPCs.add("nechryael", emptyTile.addY(1))
         tick()
 
         player.npcOption(nechryael, "Attack")
@@ -40,7 +41,7 @@ class NechryaelTest : WorldTest() {
         player.levels.set(Skill.Constitution, 50)
         player.levels.set(Skill.Slayer, 80)
 
-        val nechryael = npcs.add("nechryael", emptyTile.addY(1))
+        val nechryael = NPCs.add("nechryael", emptyTile.addY(1))
         tick()
 
         player.npcOption(nechryael, "Attack")

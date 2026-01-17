@@ -15,7 +15,6 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.RegionLevel
 
 class NPCUpdateTask(
-    private val npcs: NPCs,
     private val encoders: Array<VisualEncoder<NPCVisuals>>,
 ) {
 
@@ -50,7 +49,7 @@ class NPCUpdateTask(
         sync.writeBits(8, set.size)
         while (iterator.hasNext()) {
             index = iterator.nextInt()
-            npc = npcs.indexed(index)
+            npc = NPCs.indexed(index)
 
             val change = localChange(client, viewport, npc)
             sync.writeBits(1, change != LocalChange.None)
@@ -112,8 +111,8 @@ class NPCUpdateTask(
         var npc: NPC
         for (direction in Direction.reversed) {
             region = client.tile.regionLevel.add(direction)
-            npcs.regionMap.onEach(region.id) { index ->
-                npc = npcs.indexed(index) ?: return@onEach
+            NPCs.regionMap.onEach(region.id) { index ->
+                npc = NPCs.indexed(index) ?: return@onEach
                 if (!add(updates, sync, npc, client, viewport, set, index)) {
                     return@onEach
                 }

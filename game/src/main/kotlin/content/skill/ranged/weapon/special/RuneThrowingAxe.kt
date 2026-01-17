@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.map.spiral
 
 class RuneThrowingAxe(
     val players: Players,
-    val npcs: NPCs,
     val lineOfSight: LineValidator,
 ) : Script {
 
@@ -45,7 +44,7 @@ class RuneThrowingAxe(
             return
         }
         val chain: MutableSet<Int> = source.getOrPut("chain_hits") { mutableSetOf() }
-        val characters = if (target is Player) players else npcs
+        val characters = if (target is Player) players else NPCs
         for (tile in target.tile.spiral(4)) {
             for (character in characters[tile]) {
                 if (character == target || chain.contains(character.index) || !Target.attackable(source, character)) {

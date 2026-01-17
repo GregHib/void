@@ -120,7 +120,7 @@ class CombatBot(
         goToArea(map)
         setAttackStyle(skill)
         while (player.inventory.spaces > 0 && player.isRangedNotOutOfAmmo(skill) && player.isMagicNotOutOfRunes(skill)) {
-            val targets = get<NPCs>()
+            val targets = NPCs
                 .filter { isAvailableTarget(map, it, races) }
                 .map { it to tile.distanceTo(it) }
             val target = weightedSample(targets, invert = true)

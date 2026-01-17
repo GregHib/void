@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.notEnough
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Distance.nearestTo
@@ -54,7 +53,7 @@ class Tollgate(val objects: GameObjects) : Script {
         }
     }
 
-    fun getGuard(player: Player) = get<NPCs>()[player.tile.regionLevel].firstOrNull { it.id.startsWith("border_guard_al_kharid") }
+    fun getGuard(player: Player) = NPCs[player.tile.regionLevel].firstOrNull { it.id.startsWith("border_guard_al_kharid") }
 
     suspend fun Player.dialogue(npc: NPC? = getGuard(this)) {
         if (npc == null) {

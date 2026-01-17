@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
-class KrilTsutsaroth(val npcs: NPCs) : Script {
+class KrilTsutsaroth : Script {
 
     var kreeyath: NPC? = null
     var karlak: NPC? = null
@@ -20,13 +20,13 @@ class KrilTsutsaroth(val npcs: NPCs) : Script {
     init {
         npcSpawn("kril_tsutsaroth") {
             if (kreeyath == null) {
-                kreeyath = npcs.add("balfrug_kreeyath", Tile(2921, 5319, 2))
+                kreeyath = NPCs.add("balfrug_kreeyath", Tile(2921, 5319, 2))
             }
             if (karlak == null) {
-                karlak = npcs.add("tstanon_karlak", Tile(2932, 5328, 2))
+                karlak = NPCs.add("tstanon_karlak", Tile(2932, 5328, 2))
             }
             if (gritch == null) {
-                gritch = npcs.add("zakln_gritch", Tile(2919, 5327, 2))
+                gritch = NPCs.add("zakln_gritch", Tile(2919, 5327, 2))
             }
         }
 

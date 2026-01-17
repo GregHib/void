@@ -83,7 +83,7 @@ private fun updateGraph(bot: Bot) {
 }
 
 private suspend fun Bot.rest() {
-    val musician = get<NPCs>().firstOrNull { it.tile.within(player.tile, VIEW_RADIUS) && it.def.options.contains("Listen-to") }
+    val musician = NPCs.firstOrNull { it.tile.within(player.tile, VIEW_RADIUS) && it.def.options.contains("Listen-to") }
     if (musician != null && player.tile.distanceTo(musician) < 10) {
         player.instructions.send(InteractNPC(npcIndex = 49, option = musician.def.options.indexOfFirst { it == "Listen-to" } + 1))
         repeat(32) {

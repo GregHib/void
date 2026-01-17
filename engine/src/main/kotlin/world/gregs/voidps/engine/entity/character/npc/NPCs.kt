@@ -17,7 +17,7 @@ import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
-class NPCs : Runnable,
+object NPCs : Runnable,
     Iterable<NPC>,
     CharacterSearch<NPC> {
     private val indexArray: Array<NPC?> = arrayOfNulls(MAX_NPCS)

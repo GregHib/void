@@ -36,7 +36,6 @@ import java.util.concurrent.TimeUnit
 
 fun getTickStages(
     players: Players = get(),
-    npcs: NPCs = get(),
     items: FloorItems = get(),
     floorItems: FloorItemTracking = get(),
     objects: GameObjects = get(),
@@ -54,17 +53,17 @@ fun getTickStages(
     val iterator: TaskIterator<Player> = if (sequential) SequentialIterator() else ParallelIterator()
     return listOf(
         PlayerResetTask(sequentialPlayer, players, batches),
-        NPCResetTask(sequentialNpc, npcs),
+        NPCResetTask(sequentialNpc),
         hunting,
         grandExchange,
         // Connections/Tick Input
         queue,
-        npcs,
+        NPCs,
         items,
         // Tick
         InstructionTask(players, handlers),
         World,
-        NPCTask(sequentialNpc, npcs),
+        NPCTask(sequentialNpc),
         PlayerTask(sequentialPlayer, players),
         floorItems,
         objects.timers,
@@ -75,7 +74,7 @@ fun getTickStages(
             iterator,
             players,
             PlayerUpdateTask(players),
-            NPCUpdateTask(npcs, npcVisualEncoders()),
+            NPCUpdateTask(npcVisualEncoders()),
             batches,
         ),
         AiTick,

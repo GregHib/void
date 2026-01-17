@@ -16,7 +16,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
-class LumbridgeSwamp(val npcs: NPCs) : Script {
+class LumbridgeSwamp : Script {
 
     init {
         objectOperate("Search", "rocks_skull_restless_ghost_quest") {
@@ -34,13 +34,13 @@ class LumbridgeSwamp(val npcs: NPCs) : Script {
             set("the_restless_ghost", "found_skull")
             val index: Int? = remove("restless_ghost_warlock")
             if (index != null) {
-                val skeleton = npcs.indexed(index)
+                val skeleton = NPCs.indexed(index)
                 if (skeleton != null) {
-                    npcs.remove(skeleton)
+                    NPCs.remove(skeleton)
                 }
             }
             message("A skeleton warlock has appeared.")
-            val warlock = npcs.add("skeleton_warlock", Tile(3236, 3149), Direction.SOUTH)
+            val warlock = NPCs.add("skeleton_warlock", Tile(3236, 3149), Direction.SOUTH)
             set("restless_ghost_warlock", warlock.index)
             warlock.anim("restless_ghost_warlock_spawn")
             val player = this
@@ -48,7 +48,7 @@ class LumbridgeSwamp(val npcs: NPCs) : Script {
                 warlock.interactPlayer(player, "Attack")
             }
             World.queue("skeleton_warlock", TimeUnit.SECONDS.toTicks(60)) {
-                npcs.remove(warlock)
+                NPCs.remove(warlock)
                 clear("restless_ghost_warlock")
             }
         }

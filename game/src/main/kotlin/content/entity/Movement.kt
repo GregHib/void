@@ -18,7 +18,6 @@ import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.area.Rectangle
 
 class Movement(
-    val npcs: NPCs,
     val players: Players,
 ) : Script {
 
@@ -37,7 +36,7 @@ class Movement(
             }
         }
 
-        npcMoved(handler = npcs::update)
+        npcMoved(handler = NPCs::update)
         moved(handler = players::update)
 
         worldSpawn {

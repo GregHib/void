@@ -17,7 +17,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
-class GnomeAdvanced(val npcs: NPCs) : Script {
+class GnomeAdvanced : Script {
 
     init {
         objectOperate("Climb-up", "gnome_tree_branch_advanced") {
@@ -25,7 +25,7 @@ class GnomeAdvanced(val npcs: NPCs) : Script {
                 npc<Happy>("gnome_trainer", "Sorry mate, you're not experienced enough to try that route. I suggest you carry on over the balancing rope instead.")
                 return@objectOperate
             }
-            npcs.gnomeTrainer("Terrorbirds could climb faster than that!", Zone(9263413))
+            NPCs.gnomeTrainer("Terrorbirds could climb faster than that!", Zone(9263413))
             message("You climb the tree...", ChatType.Filter)
             anim("climb_up")
             delay(2)
@@ -36,7 +36,7 @@ class GnomeAdvanced(val npcs: NPCs) : Script {
         }
 
         objectApproach("Run-across", "gnome_sign_post_advanced") {
-            npcs.gnomeTrainer("Come on! I'd be over there by now.", Zone(13457717))
+            NPCs.gnomeTrainer("Come on! I'd be over there by now.", Zone(13457717))
             approachRange(1)
             arriveDelay()
             val disable = Settings["agility.disableCourseFailure", false]

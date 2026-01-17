@@ -40,7 +40,6 @@ import world.gregs.voidps.type.Tile
 
 class NPCDeath(
     val combatDefinitions: CombatDefinitions,
-    val npcs: NPCs,
     val floorItems: FloorItems,
     val tables: DropTables,
 ) : Script {
@@ -90,7 +89,7 @@ class NPCDeath(
                     Spawn.npc(npc)
                 } else {
                     World.queue("remove_npc_${npc.index}") {
-                        npcs.remove(npc)
+                        NPCs.remove(npc)
                     }
                 }
             }

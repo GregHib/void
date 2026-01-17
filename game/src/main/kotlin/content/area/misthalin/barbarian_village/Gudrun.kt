@@ -30,7 +30,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 
-class Gudrun(val objects: GameObjects, val npcs: NPCs) : Script {
+class Gudrun(val objects: GameObjects) : Script {
 
     val region = Region(12341)
 
@@ -95,7 +95,7 @@ class Gudrun(val objects: GameObjects, val npcs: NPCs) : Script {
         }
         delay(4)
         tele(cutscene.tile(3078, 3435), clearInterfaces = false)
-        val dororan = npcs.add("dororan_cutscene", cutscene.tile(3079, 3435), Direction.SOUTH)
+        val dororan = NPCs.add("dororan_cutscene", cutscene.tile(3079, 3435), Direction.SOUTH)
         dororan.anim("dororan_lean_on_door")
         anim("player_lean_on_door")
         dororan.face(Direction.NORTH)
@@ -179,16 +179,16 @@ class Gudrun(val objects: GameObjects, val npcs: NPCs) : Script {
     suspend fun Player.cutscenePart2(cutscene: Cutscene) {
         open("fade_out")
         delay(3)
-        npcs.clear(cutscene.instance.toLevel(0))
+        NPCs.clear(cutscene.instance.toLevel(0))
         clearAnim()
         delay(1)
         tele(cutscene.tile(3083, 3426), clearInterfaces = false)
         face(Direction.WEST)
-        val dororan = npcs.add("dororan_cutscene", cutscene.tile(3082, 3428), Direction.SOUTH)
-        val gudrun = npcs.add("gudrun_cutscene", cutscene.tile(3080, 3426), Direction.SOUTH)
-        val kjell = npcs.add("kjell_cutscene", cutscene.tile(3077, 3426), Direction.SOUTH)
-        val gunthor = npcs.add("chieftain_gunthor_cutscene", cutscene.tile(3079, 3425), Direction.SOUTH)
-        val haakon = npcs.add("haakon_the_champion_cutscene", cutscene.tile(3078, 3425), Direction.SOUTH)
+        val dororan = NPCs.add("dororan_cutscene", cutscene.tile(3082, 3428), Direction.SOUTH)
+        val gudrun = NPCs.add("gudrun_cutscene", cutscene.tile(3080, 3426), Direction.SOUTH)
+        val kjell = NPCs.add("kjell_cutscene", cutscene.tile(3077, 3426), Direction.SOUTH)
+        val gunthor = NPCs.add("chieftain_gunthor_cutscene", cutscene.tile(3079, 3425), Direction.SOUTH)
+        val haakon = NPCs.add("haakon_the_champion_cutscene", cutscene.tile(3078, 3425), Direction.SOUTH)
         dororan.face(gudrun)
         moveCamera(cutscene.tile(3079, 3419), 400)
         turnCamera(cutscene.tile(3079, 3426), 150)
@@ -211,7 +211,7 @@ class Gudrun(val objects: GameObjects, val npcs: NPCs) : Script {
         delay(4)
         val npc = listOf(kjell, gunthor, haakon, gudrun, dororan)
         for (remove in npc) {
-            npcs.remove(remove)
+            NPCs.remove(remove)
         }
         moveCamera(cutscene.tile(3084, 3421), 350)
         turnCamera(cutscene.tile(3082, 3426), 250)
@@ -235,7 +235,7 @@ class Gudrun(val objects: GameObjects, val npcs: NPCs) : Script {
         set("dororan_after_cutscene", "shown")
         set("gudrun", "hidden")
         set("gudrun_after_cutscene", "shown")
-        val gudrunAfter = npcs[Tile(3082, 3417)].firstOrNull { it.id == "gudrun_after_cutscene" }
+        val gudrunAfter = NPCs[Tile(3082, 3417)].firstOrNull { it.id == "gudrun_after_cutscene" }
         if (gudrunAfter != null) {
             interactNpc(gudrunAfter, "Talk-to")
         } else {

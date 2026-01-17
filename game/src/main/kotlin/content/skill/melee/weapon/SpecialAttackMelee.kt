@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.spiral
 
 fun multiTargets(target: Character, hits: Int): List<Character> {
-    val group = if (target is Player) get<Players>() else get<NPCs>()
+    val group = if (target is Player) get<Players>() else NPCs
     val targets = mutableListOf<Character>()
     for (tile in target.tile.spiral(1)) {
         val characters = group[tile]

@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
 import world.gregs.voidps.engine.get
@@ -40,7 +41,7 @@ class CooksAssistantTest : WorldTest() {
         val player = createPlayer(Tile(3208, 3215, 0))
 
         // Start quest
-        val cook = npcs[Tile(3209, 3215)].single { it.id == "cook_lumbridge" }
+        val cook = NPCs[Tile(3209, 3215)].single { it.id == "cook_lumbridge" }
         player.tele(3208, 3215, 0)
         player.npcOption(cook, "Talk-to")
         tick()
@@ -82,7 +83,7 @@ class CooksAssistantTest : WorldTest() {
         player.inventory.add("grain")
 
         player.tele(3169, 3305)
-        val millie = npcs[Tile(3169, 3306)].single { it.id == "millie_miller" }
+        val millie = NPCs[Tile(3169, 3306)].single { it.id == "millie_miller" }
         player.npcOption(millie, "Talk-to")
         tick()
         player.fastForwardDialogue()

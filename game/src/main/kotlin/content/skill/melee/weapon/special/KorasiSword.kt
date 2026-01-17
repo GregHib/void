@@ -19,7 +19,6 @@ import world.gregs.voidps.type.random
 
 class KorasiSword(
     val players: Players,
-    val npcs: NPCs,
     val lineOfSight: LineValidator,
 ) : Script {
 
@@ -56,7 +55,7 @@ class KorasiSword(
         if (chain.size >= 3) {
             return
         }
-        val characters = if (target is Player) players else npcs
+        val characters = if (target is Player) players else NPCs
         for (tile in target.tile.spiral(4)) {
             for (character in characters[tile]) {
                 if (character == target || chain.contains(character.index) || !Target.attackable(source, character)) {

@@ -13,11 +13,11 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.type.Direction
 import kotlin.text.toIntOrNull
 
-class NPCCommands(val npcs: NPCs) : Script {
+class NPCCommands : Script {
 
     init {
         modCommand("npcs", desc = "Get total npc count") {
-            message("NPCs: ${npcs.count()}")
+            message("NPCs: ${NPCs.count()}")
         }
         adminCommand("npc", stringArg("npc-id", autofill = NPCDefinitions.ids.keys), desc = "Spawn an npc", handler = ::spawn)
     }
@@ -29,9 +29,8 @@ class NPCCommands(val npcs: NPCs) : Script {
             player.message("Unable to find npc with id ${args[0]}.")
             return
         }
-        val npcs: NPCs = get()
         println("{ id = \"${definition.stringId}\", x = ${player.tile.x}, y = ${player.tile.y}, level = ${player.tile.level}, members = true },")
-        val npc = npcs.add(definition.stringId, player.tile, Direction.NORTH)
+        val npc = NPCs.add(definition.stringId, player.tile, Direction.NORTH)
         npc.start("movement_delay", -1)
     }
 }

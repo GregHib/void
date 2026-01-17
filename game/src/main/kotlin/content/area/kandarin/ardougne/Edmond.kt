@@ -33,7 +33,6 @@ import world.gregs.voidps.type.Region
 
 class Edmond(
     val floorItems: FloorItems,
-    val npcs: NPCs,
     val objects: GameObjects,
 ) : Script {
 
@@ -212,7 +211,7 @@ class Edmond(
         delay(4)
         tele(cutscene.tile(2514, 9740), clearInterfaces = false)
         face(Direction.SOUTH)
-        val edmond = npcs.add("edmond", cutscene.tile(2514, 9741), Direction.SOUTH)
+        val edmond = NPCs.add("edmond", cutscene.tile(2514, 9741), Direction.SOUTH)
         edmond.mode = PauseMode
         delay(1)
         moveCamera(cutscene.tile(2517, 9744), 300)

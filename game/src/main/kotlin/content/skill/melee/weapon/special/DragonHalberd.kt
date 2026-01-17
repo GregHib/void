@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.sound
 
-class DragonHalberd(val players: Players, val npcs: NPCs) : Script {
+class DragonHalberd(val players: Players) : Script {
 
     init {
         specialAttack("sweep") { target, id ->
@@ -21,7 +21,7 @@ class DragonHalberd(val players: Players, val npcs: NPCs) : Script {
             val secondTile = target.tile.add(if (dir.isDiagonal()) dir.vertical() else dir.rotate(-2))
             val list = mutableListOf<Character>()
             list.add(target)
-            val set = if (target is Player) players else npcs
+            val set = if (target is Player) players else NPCs
             val groups = set.filter { it != target && it.tile.within(tile, VIEW_RADIUS) }.groupBy { it.tile }
             list.addAll(groups.getOrDefault(target.tile, emptyList()))
             list.addAll(groups.getOrDefault(firstTile, emptyList()))

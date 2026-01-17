@@ -25,7 +25,6 @@ import java.util.concurrent.TimeUnit
 
 class Gravestones(
     val players: Players,
-    val npcs: NPCs,
     val floorItems: FloorItems,
 ) : Script {
 
@@ -142,14 +141,14 @@ class Gravestones(
             val remainder = target.remaining("grave_timer", epochSeconds())
             val minutes = TimeUnit.SECONDS.toMinutes(remainder.toLong())
             target.softTimers.stop("grave_degrade")
-            npcs.remove(target)
+            NPCs.remove(target)
             message("It looks like it'll survive another $minutes ${"minute".plural(minutes)}. You demolish it anyway.")
         }
 
         droppable {
             var droppable = true
             // TODO can you drop items on someone else's grave?
-            for (grave in npcs[tile].filter { it.id.startsWith("gravestone_") }) {
+            for (grave in NPCs[tile].filter { it.id.startsWith("gravestone_") }) {
                 if (grave["player_name", ""] == name) {
                     message("Surely you aren't going to drop litter on your own grave!")
                     droppable = false
@@ -190,7 +189,7 @@ class Gravestones(
             }
         }
         npc.stop("grave_timer")
-        npcs.remove(npc)
+        NPCs.remove(npc)
     }
 
     fun remainMessage(player: Player, grave: NPC) {

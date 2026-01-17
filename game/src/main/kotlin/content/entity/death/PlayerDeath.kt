@@ -38,7 +38,6 @@ class PlayerDeath(
     val floorItems: FloorItems,
     val enums: EnumDefinitions,
     val players: Players,
-    val npcs: NPCs,
 ) : Script {
 
     val respawnTile: Tile
@@ -100,7 +99,7 @@ class PlayerDeath(
         }
 
         // Spawn grave
-        val time = if (!inWilderness || killer !is Player) Gravestone.spawn(npcs, player, tile) else 0
+        val time = if (!inWilderness || killer !is Player) Gravestone.spawn(player, tile) else 0
         // Drop everything
         drop(player, Item("bones"), tile, inWilderness, killer, time)
         drop(player, player.inventory, tile, inWilderness, killer, time)
@@ -199,8 +198,7 @@ class PlayerDeath(
                 source.directHit(player, random.nextInt(maxHit))
             }
         }
-        val npcs = npcs[tile]
-        for (npc in npcs) {
+        for (npc in NPCs[tile]) {
             if (Target.attackable(source, npc)) {
                 source.directHit(npc, random.nextInt(maxHit))
             }

@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerRights
 import world.gregs.voidps.engine.entity.character.player.rights
@@ -67,14 +68,14 @@ class TzhaarFightCaveTest : WorldTest() {
         tick(2)
         player.intEntry(63)
         tick(5)
-        val jad = npcs[player.tile.regionLevel].first { it.id == "tztok_jad" }
+        val jad = NPCs[player.tile.regionLevel].first { it.id == "tztok_jad" }
         jad.directHit(player, 1 + (jad.levels.getMax(Skill.Constitution) / 2))
         tick(3)
-        assertEquals(4, npcs[player.tile.regionLevel].count { it.id == "yt_hur_kot" })
+        assertEquals(4, NPCs[player.tile.regionLevel].count { it.id == "yt_hur_kot" })
     }
 
     private fun killAll(player: Player) {
-        val current = npcs[player.tile.regionLevel].toList()
+        val current = NPCs[player.tile.regionLevel].toList()
         for (npc in current) {
             npc.directHit(player, npc.levels.get(Skill.Constitution))
         }
@@ -82,7 +83,7 @@ class TzhaarFightCaveTest : WorldTest() {
     }
 
     private fun killKets(player: Player) {
-        val current = npcs[player.tile.regionLevel].toList()
+        val current = NPCs[player.tile.regionLevel].toList()
         var killed = false
         for (npc in current) {
             if (npc.id == "tz_kek_spawn") {

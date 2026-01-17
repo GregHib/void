@@ -24,7 +24,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.equip.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
@@ -72,7 +71,7 @@ class TrainingBot(val tasks: TaskManager) : Script {
                 getObjects { it.id == "archery_target" }
                     .randomOrNull()
             } else {
-                get<NPCs>()
+                NPCs
                     .filter { isAvailableTarget(map, it, skill) }
                     .randomOrNull()
             }
@@ -124,7 +123,7 @@ class TrainingBot(val tasks: TaskManager) : Script {
                 withdrawAll("training_sword", "training_shield")
                 goToArea(area)
                 if (!player.inventory.contains("training_sword")) {
-                    val tutor = get<NPCs>().first { it.tile.within(player.tile, Viewport.VIEW_RADIUS) && it.id == "harlan" }
+                    val tutor = NPCs.first { it.tile.within(player.tile, Viewport.VIEW_RADIUS) && it.id == "harlan" }
                     npcOption(tutor, "Talk-to")
                     await { dialogue != null }
                     await("tick")
@@ -141,7 +140,7 @@ class TrainingBot(val tasks: TaskManager) : Script {
     }
 
     suspend fun Bot.claim(npc: String) {
-        val tutor = get<NPCs>().first { it.tile.within(player.tile, Viewport.VIEW_RADIUS) && it.id == npc }
+        val tutor = NPCs.first { it.tile.within(player.tile, Viewport.VIEW_RADIUS) && it.id == npc }
         npcOption(tutor, "Talk-to")
         await { dialogue != null }
         await("tick")

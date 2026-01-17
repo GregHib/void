@@ -16,7 +16,6 @@ import world.gregs.voidps.network.client.instruction.*
 
 class InstructionHandlers(
     players: Players,
-    npcs: NPCs,
     items: FloorItems,
     objects: GameObjects,
     objectDefinitions: ObjectDefinitions,
@@ -31,10 +30,10 @@ class InstructionHandlers(
     private val closeInterface = InterfaceClosedHandler()
     val interactInterface = InterfaceOptionHandler(handler, interfaceDefinitions)
     private val moveInventoryItem = InterfaceSwitchHandler(handler)
-    private val interactNPC = NPCOptionHandler(npcs)
+    private val interactNPC = NPCOptionHandler()
     private val interactObject = ObjectOptionHandler(objects, objectDefinitions)
     private val interactPlayer = PlayerOptionHandler(players)
-    private val interactInterfaceNPC = InterfaceOnNPCOptionHandler(npcs, handler)
+    private val interactInterfaceNPC = InterfaceOnNPCOptionHandler(handler)
     private val interactInterfaceObject = InterfaceOnObjectOptionHandler(objects, handler)
     private val interactInterfacePlayer = InterfaceOnPlayerOptionHandler(players, handler)
     private val interactInterfaceItem = InterfaceOnInterfaceOptionHandler(handler)

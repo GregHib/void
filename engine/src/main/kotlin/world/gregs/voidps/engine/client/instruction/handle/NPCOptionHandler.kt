@@ -17,9 +17,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.network.client.instruction.InteractNPC
 
-class NPCOptionHandler(
-    private val npcs: NPCs,
-) : InstructionHandler<InteractNPC>() {
+class NPCOptionHandler : InstructionHandler<InteractNPC>() {
 
     private val logger = InlineLogger()
 
@@ -27,7 +25,7 @@ class NPCOptionHandler(
         if (player.contains("delay")) {
             return
         }
-        val npc = npcs.indexed(instruction.npcIndex) ?: return
+        val npc = NPCs.indexed(instruction.npcIndex) ?: return
         var def = npc.def
         val transform = npc["transform_id", ""]
         if (transform.isNotBlank()) {

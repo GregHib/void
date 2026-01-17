@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 
-class Banker(val npcs: NPCs) : Script {
+class Banker : Script {
 
     init {
         npcApproach("Talk-to", "banker*") {
@@ -34,7 +34,7 @@ class Banker(val npcs: NPCs) : Script {
         }
 
         objectOperate("Use", "bank_booth_*", arrive = false) { (target) ->
-            val banker = npcs.first { it.def.name == "Banker" }
+            val banker = NPCs.first { it.def.name == "Banker" }
             talkWith(banker)
             menu()
         }

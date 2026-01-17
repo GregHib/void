@@ -63,7 +63,6 @@ abstract class WorldTest : KoinTest {
     private val logger = InlineLogger()
     private lateinit var engine: GameLoop
     lateinit var players: Players
-    lateinit var npcs: NPCs
     lateinit var floorItems: FloorItems
     lateinit var objects: GameObjects
     private lateinit var accountDefs: AccountDefinitions
@@ -117,9 +116,9 @@ abstract class WorldTest : KoinTest {
     }
 
     fun createNPC(id: String, tile: Tile = Tile.EMPTY, block: (NPC) -> Unit = {}): NPC {
-        val npc = npcs.add(id, tile)
+        val npc = NPCs.add(id, tile)
         block.invoke(npc)
-        npcs.run()
+        NPCs.run()
         return npc
     }
 
@@ -180,7 +179,6 @@ abstract class WorldTest : KoinTest {
                             get(),
                             get(),
                             get(),
-                            get(),
                             object : FakeRandom() {
                                 override fun nextBits(bitCount: Int) = 0
                             },
@@ -202,7 +200,6 @@ abstract class WorldTest : KoinTest {
                 get(),
                 get(),
                 get(),
-                get(),
                 get<ConnectionQueue>(),
                 get(),
                 get(),
@@ -214,7 +211,6 @@ abstract class WorldTest : KoinTest {
             Spawn.world(configFiles)
         }
         players = get()
-        npcs = get()
         floorItems = get()
         objects = get()
         accountDefs = get()
@@ -232,7 +228,7 @@ abstract class WorldTest : KoinTest {
         setCurrentTime { TIME }
         settings = Settings.load(properties)
         if (loadNpcs) {
-            loadNpcSpawns(npcs, configFiles.list(Settings["spawns.npcs"]))
+            loadNpcSpawns(configFiles.list(Settings["spawns.npcs"]))
         }
         setRandom(FakeRandom())
     }
@@ -240,7 +236,7 @@ abstract class WorldTest : KoinTest {
     @AfterEach
     fun afterEach() {
         players.clear()
-        npcs.clear()
+        NPCs.clear()
         floorItems.clear()
         objects.reset()
         World.clear()

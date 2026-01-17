@@ -49,7 +49,6 @@ import world.gregs.voidps.type.*
 import java.util.concurrent.TimeUnit
 
 class TzhaarFightCave(
-    val npcs: NPCs,
     val accountManager: AccountManager,
 ) : Script {
 
@@ -155,7 +154,7 @@ class TzhaarFightCave(
             if (half !in to..<from) {
                 return@npcLevelChanged
             }
-            val count = npcs[tile.regionLevel].count { it.id == "yt_hur_kot" }
+            val count = NPCs[tile.regionLevel].count { it.id == "yt_hur_kot" }
             val block = CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS
             val directions = mutableSetOf(Direction.NORTH_WEST, Direction.SOUTH_EAST, Direction.SOUTH, Direction.SOUTH_WEST, Direction.NONE)
             val offset = tile.region.tile.delta(region.tile)
@@ -163,7 +162,7 @@ class TzhaarFightCave(
             for (i in 0 until 4 - count) {
                 val dir = directions.random(random)
                 var tile = randomTile(dir, offset, def, block) ?: continue
-                val npc = npcs.add("yt_hur_kot", tile)
+                val npc = NPCs.add("yt_hur_kot", tile)
                 npc["in_multi_combat"] = true
                 npc.mode = Follow(npc, this)
                 npc.softTimers.start("yt_hur_kot_heal")
@@ -303,7 +302,7 @@ class TzhaarFightCave(
         get() = get("fight_cave_wave", -1)
 
     private fun spawn(id: String, tile: Tile, target: Player) {
-        val npc = npcs.add(id, tile)
+        val npc = NPCs.add(id, tile)
         npc["in_multi_combat"] = true
         npc.interactPlayer(target, "Attack")
         if (id == "tztok_jad") {

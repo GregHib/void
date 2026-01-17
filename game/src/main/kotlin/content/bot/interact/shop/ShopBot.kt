@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.client.instruction.InteractInterface
 import world.gregs.voidps.network.client.instruction.InteractNPC
 
@@ -33,7 +32,7 @@ suspend fun Bot.openShop(map: AreaDefinition): NPC {
 }
 
 private suspend fun Bot.openShop(): NPC {
-    val shop = get<NPCs>().first { it.tile.within(player.tile, Viewport.VIEW_RADIUS) && it.def.options.contains("Trade") }
+    val shop = NPCs.first { it.tile.within(player.tile, Viewport.VIEW_RADIUS) && it.def.options.contains("Trade") }
     player.instructions.send(InteractNPC(npcIndex = shop.index, option = shop.def.options.indexOfFirst { it == "Trade" } + 1))
     await("shop")
     return shop

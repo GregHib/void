@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 object Target {
@@ -41,7 +40,7 @@ object Target {
             if (target.index == -1) {
                 return false
             }
-            if (get<NPCs>().indexed(target.index) == null) {
+            if (NPCs.indexed(target.index) == null) {
                 return false
             }
             if (source.fightStyle == "melee" && target.categories.contains("aviansie")) {

@@ -38,7 +38,6 @@ import kotlin.random.Random
  *   floor items - Varrock ash cleaner
  */
 class Hunting(
-    private val npcs: NPCs,
     private val players: Players,
     private val objects: GameObjects,
     private val floorItems: FloorItems,
@@ -54,7 +53,7 @@ class Hunting(
     private val itemTargets = arrayOfNulls<FloorItem>(TARGET_CAP)
 
     override fun run() {
-        for (npc in npcs) {
+        for (npc in NPCs) {
             if (npc.huntCounter == -1) {
                 continue
             }
@@ -81,7 +80,7 @@ class Hunting(
                     Hunt.hunt(npc, target, mode)
                 }
                 "npc" -> {
-                    val target = findCharacter(npc, npcs, range, definition, npcTargets) ?: continue
+                    val target = findCharacter(npc, NPCs, range, definition, npcTargets) ?: continue
                     Hunt.hunt(npc, target, mode)
                 }
                 "object" -> {

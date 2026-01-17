@@ -4,6 +4,7 @@ import FakeRandom
 import WorldTest
 import npcOption
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.setRandom
 import kotlin.test.assertNotEquals
@@ -19,7 +20,7 @@ class AbyssalDemonTest : WorldTest() {
         player.levels.set(Skill.Constitution, 50)
         player.levels.set(Skill.Slayer, 85)
 
-        val demon = npcs.add("abyssal_demon", emptyTile.addY(1))
+        val demon = NPCs.add("abyssal_demon", emptyTile.addY(1))
         tick()
 
         player.npcOption(demon, "Attack")
@@ -38,7 +39,7 @@ class AbyssalDemonTest : WorldTest() {
         player.levels.set(Skill.Constitution, 50)
         player.levels.set(Skill.Slayer, 85)
 
-        val demon = npcs.add("abyssal_demon", emptyTile.addY(1))
+        val demon = NPCs.add("abyssal_demon", emptyTile.addY(1))
         tick()
 
         player.npcOption(demon, "Attack")

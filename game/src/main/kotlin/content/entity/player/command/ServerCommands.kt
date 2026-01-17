@@ -36,7 +36,6 @@ import world.gregs.voidps.engine.data.definition.SoundDefinitions
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -103,8 +102,7 @@ class ServerCommands(val players: Players, val accountLoader: PlayerAccountLoade
             "nav_graph", "ai_graph" -> get<NavigationGraph>().load(files.find(Settings["map.navGraph"]))
             "npcs" -> {
                 NPCDefinitions.load(files.list(Settings["definitions.npcs"]))
-                val npcs: NPCs = get()
-                loadNpcSpawns(npcs, files.list(Settings["spawns.npcs"]))
+                loadNpcSpawns(files.list(Settings["spawns.npcs"]))
             }
             "areas" -> AreaTypes.load(files.list(Settings["map.areas"]))
             "emotes", "render_anims", "render_emotes" -> get<RenderEmoteDefinitions>().load(files.find(Settings["definitions.renderEmotes"]))

@@ -5,9 +5,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.type.Tile
 
-class GeneralGraardor(
-    val npcs: NPCs,
-) : Script {
+class GeneralGraardor : Script {
     var strongstack: NPC? = null
     var steelwill: NPC? = null
     var grimspike: NPC? = null
@@ -15,13 +13,13 @@ class GeneralGraardor(
     init {
         npcSpawn("general_graardor") {
             if (strongstack == null) {
-                strongstack = npcs.add("sergeant_strongstack", Tile(2866, 5358, 2))
+                strongstack = NPCs.add("sergeant_strongstack", Tile(2866, 5358, 2))
             }
             if (steelwill == null) {
-                steelwill = npcs.add("sergeant_steelwill", Tile(2872, 5352, 2))
+                steelwill = NPCs.add("sergeant_steelwill", Tile(2872, 5352, 2))
             }
             if (grimspike == null) {
-                grimspike = npcs.add("sergeant_grimspike", Tile(2868, 5362, 2))
+                grimspike = NPCs.add("sergeant_grimspike", Tile(2868, 5362, 2))
             }
         }
 

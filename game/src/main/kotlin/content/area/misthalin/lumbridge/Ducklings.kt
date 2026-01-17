@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
 
-class Ducklings(val npcs: NPCs) : Script {
+class Ducklings : Script {
 
     init {
         npcSpawn("ducklings", ::followParent)
@@ -47,7 +47,7 @@ class Ducklings(val npcs: NPCs) : Script {
 
     fun findParent(npc: NPC): NPC? {
         for (dir in Direction.cardinal) {
-            return npcs[npc.tile.add(dir.delta)].firstOrNull { isDuck(it) && !it.contains("ducklings") } ?: continue
+            return NPCs[npc.tile.add(dir.delta)].firstOrNull { isDuck(it) && !it.contains("ducklings") } ?: continue
         }
         return null
     }

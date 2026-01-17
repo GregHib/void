@@ -270,7 +270,7 @@ class PlayerCommands(
             }
         }
         if (type == "all" || type == "npcs") {
-            val npcs = get<NPCs>()[tile]
+            val npcs = NPCs[tile]
             println(npcs)
             if (npcs.isNotEmpty()) {
                 player.message("--- NPCs ---", ChatType.Console)

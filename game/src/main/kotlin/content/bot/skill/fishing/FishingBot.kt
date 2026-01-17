@@ -72,7 +72,7 @@ class FishingBot(
         setupGear(set)
         goToArea(map)
         while (player.inventory.spaces > 0 && (bait == "none" || player.holdsItem(bait))) {
-            val spots = get<NPCs>()
+            val spots = NPCs
                 .filter { isAvailableSpot(map, it, option, bait) }
                 .map { it to tile.distanceTo(it) }
             val spot = weightedSample(spots, invert = true)

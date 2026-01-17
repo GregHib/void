@@ -7,6 +7,7 @@ import dialogueOption
 import npcOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.inventory
@@ -97,5 +98,5 @@ internal class EnterTheAbyssTest : WorldTest() {
         assertEquals(1000.0, player.experience.get(Skill.Runecrafting))
     }
 
-    private fun findNpc(player: Player, id: String) = npcs[player.tile.region.toLevel(player.tile.level)].first { it.id == id }
+    private fun findNpc(player: Player, id: String) = NPCs[player.tile.region.toLevel(player.tile.level)].first { it.id == id }
 }
