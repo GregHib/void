@@ -112,7 +112,7 @@ class LumbridgeChurch : Script {
             tele(3247, 3193)
         }
         inventory.remove("muddy_skull")
-        val ghost = NPCs.at(ghostSpawn).firstOrNull { it.id == "restless_ghost" }
+        val ghost = NPCs.findOrNull(ghostSpawn, "restless_ghost")
         NPCs.remove(ghost)
         val restlessGhost = NPCs.add("restless_ghost", cutscene.tile(3248, 3193), Direction.SOUTH)
         tele(cutscene.tile(3248, 3192), clearInterfaces = false)

@@ -235,7 +235,7 @@ class Gudrun(val objects: GameObjects) : Script {
         set("dororan_after_cutscene", "shown")
         set("gudrun", "hidden")
         set("gudrun_after_cutscene", "shown")
-        val gudrunAfter = NPCs.at(Tile(3082, 3417)).firstOrNull { it.id == "gudrun_after_cutscene" }
+        val gudrunAfter = NPCs.findOrNull(Tile(3082, 3417), "gudrun_after_cutscene")
         if (gudrunAfter != null) {
             interactNpc(gudrunAfter, "Talk-to")
         } else {
