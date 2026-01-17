@@ -7,6 +7,7 @@ internal class SettingsTest {
     @Test
     fun `Assert important properties are active`() {
         Settings.load()
+        assertTrue(Settings["development.accountCreation", false])
         assertTrue(Settings["world.npcs.randomWalk", false])
         assertTrue(Settings["world.npcs.aggression", false])
         assertTrue(Settings["world.npcs.collision", false])

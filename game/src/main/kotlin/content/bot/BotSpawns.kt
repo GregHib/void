@@ -20,7 +20,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.sex
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.*
@@ -32,14 +31,15 @@ import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.text.toIntOrNull
 
-class BotSpawns : Script {
+class BotSpawns(
+    val areas: AreaDefinitions,
+    val enums: EnumDefinitions,
+    val structs: StructDefinitions,
+    val tasks: TaskManager,
+    val loader: PlayerAccountLoader,
+) : Script {
 
-    val areas: AreaDefinitions by inject()
     val bots = mutableListOf<Player>()
-    val enums: EnumDefinitions by inject()
-    val structs: StructDefinitions by inject()
-    val tasks: TaskManager by inject()
-    val loader: PlayerAccountLoader by inject()
 
     val lumbridge = areas["lumbridge_teleport"]
 

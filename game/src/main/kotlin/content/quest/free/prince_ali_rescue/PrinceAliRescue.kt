@@ -9,13 +9,11 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 
-class PrinceAliRescue : Script {
+class PrinceAliRescue(val fontDefinitions: FontDefinitions) : Script {
 
-    val fontDefinitions: FontDefinitions by inject()
     val disguise = listOf(
         Item("pink_skirt"),
         Item("wig_blonde"),

@@ -16,15 +16,12 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.weakQueue
 
-class FarmingPatchPick : Script {
-
-    val variableDefinitions: VariableDefinitions by inject()
+class FarmingPatchPick(val variableDefinitions: VariableDefinitions) : Script {
 
     init {
         objectOperate("Harvest", "*_fullygrown") { (target) ->

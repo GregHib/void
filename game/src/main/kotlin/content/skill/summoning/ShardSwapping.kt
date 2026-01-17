@@ -11,16 +11,12 @@ import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import kotlin.math.min
 
-class ShardSwapping : Script {
-
-    val enums: EnumDefinitions by inject()
-    val itemDefinitions: ItemDefinitions by inject()
+class ShardSwapping(val enums: EnumDefinitions, val itemDefinitions: ItemDefinitions) : Script {
 
     init {
         npcOperate("Swap", "bogrog") {

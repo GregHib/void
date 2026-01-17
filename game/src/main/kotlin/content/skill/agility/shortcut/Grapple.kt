@@ -15,15 +15,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.*
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-class Grapple : Script {
-
-    val objects: GameObjects by inject()
-
-    val areas: AreaDefinitions by inject()
+class Grapple(val objects: GameObjects, val areas: AreaDefinitions) : Script {
 
     init {
         objectApproach("Grapple", "lumbridge_broken_raft") { (target) ->

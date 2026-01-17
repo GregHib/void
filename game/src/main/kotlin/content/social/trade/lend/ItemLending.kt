@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.*
 import java.util.concurrent.TimeUnit
 
@@ -17,9 +16,7 @@ import java.util.concurrent.TimeUnit
  * On logout return items borrowed or lent until logout
  */
 
-class ItemLending : Script {
-
-    val players: Players by inject()
+class ItemLending(val players: Players) : Script {
 
     init {
         playerSpawn {

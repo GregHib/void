@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
@@ -29,9 +28,7 @@ import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
-class LumbridgeChurch : Script {
-
-    val npcs: NPCs by inject()
+class LumbridgeChurch(val npcs: NPCs) : Script {
 
     val ghostSpawn = Tile(3250, 3195)
 

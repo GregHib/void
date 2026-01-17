@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
 
 class BarrelchestAnchor : Script {
+
     init {
         specialAttack("sunder") { target, id ->
             anim("${id}_special")

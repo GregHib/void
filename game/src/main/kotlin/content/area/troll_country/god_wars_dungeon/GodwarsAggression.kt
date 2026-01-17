@@ -9,13 +9,11 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.type.random
 
-class GodwarsAggression : Script {
+class GodwarsAggression(val areas: AreaDefinitions) : Script {
 
-    val areas: AreaDefinitions by inject()
     val dungeon = areas["godwars_dungeon_multi_area"]
 
     init {

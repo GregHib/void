@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.success
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.discharge
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
@@ -29,10 +28,8 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 
-class Pickpocketing : Script {
+class Pickpocketing(val combatDefinitions: CombatDefinitions, val dropTables: DropTables) : Script {
 
-    val combatDefinitions: CombatDefinitions by inject()
-    val dropTables: DropTables by inject()
     val logger = InlineLogger()
 
     init {

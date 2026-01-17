@@ -25,7 +25,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.isAdmin
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
@@ -39,12 +38,12 @@ import java.time.temporal.TemporalAdjusters
 import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
-class PenguinHideAndSeek : Script {
-
-    val npcs: NPCs by inject()
-    val areas: AreaDefinitions by inject()
-    val players: Players by inject()
-    val accounts: AccountDefinitions by inject()
+class PenguinHideAndSeek(
+    val npcs: NPCs,
+    val areas: AreaDefinitions,
+    val players: Players,
+    val accounts: AccountDefinitions,
+) : Script {
 
     val penguins = arrayOfNulls<NPC>(10)
     var week = -1

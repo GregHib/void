@@ -6,14 +6,11 @@ import content.skill.prayer.PrayerApi
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.PrayerDefinitions
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.random
 
-class PrayerBonus :
+class PrayerBonus(val definitions: PrayerDefinitions) :
     Script,
     PrayerApi {
-
-    val definitions: PrayerDefinitions by inject()
 
     init {
         prayerStart { prayer ->

@@ -20,16 +20,13 @@ import world.gregs.voidps.engine.entity.character.player.chat.notEnough
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
 
-class Tollgate : Script {
-
-    val objects: GameObjects by inject()
+class Tollgate(val objects: GameObjects) : Script {
 
     val gates = Rectangle(Tile(3268, 3227), 1, 2)
 

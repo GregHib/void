@@ -9,16 +9,14 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.MoveItem.moveAll
 
-class ItemReturning : Script {
+class ItemReturning(val players: Players) : Script {
 
     val logger = InlineLogger()
-    val players: Players by inject()
 
     init {
         interfaceOpened("returned_items") {

@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.type.random
 
 class AbyssalDemon : Script {
+
     init {
         npcCombatDamage("abyssal_demon") { (source) ->
             if (random.nextInt(6) == 0) {

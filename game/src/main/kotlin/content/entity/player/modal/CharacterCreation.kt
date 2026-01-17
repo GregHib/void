@@ -8,15 +8,11 @@ import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 
-class CharacterCreation : Script {
-
-    val enums: EnumDefinitions by inject()
-    val structs: StructDefinitions by inject()
+class CharacterCreation(val enums: EnumDefinitions, val structs: StructDefinitions) : Script {
 
     init {
         interfaceOpened("character_creation") { id ->

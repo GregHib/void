@@ -10,14 +10,11 @@ import world.gregs.voidps.engine.entity.character.flagHits
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatDamage
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 import kotlin.collections.set
 import kotlin.math.floor
 
-class CombatHitsplats : Script {
-
-    val definitions: SpellDefinitions by inject()
+class CombatHitsplats(val definitions: SpellDefinitions) : Script {
 
     init {
         combatDamage(handler = ::hit)

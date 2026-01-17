@@ -36,7 +36,6 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.queue.weakQueue
@@ -46,11 +45,11 @@ import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
-class Delrith : Script {
-
-    val objects: GameObjects by inject()
-    val npcs: NPCs by inject()
-    val areas: AreaDefinitions by inject()
+class Delrith(
+    val objects: GameObjects,
+    val npcs: NPCs,
+    val areas: AreaDefinitions,
+) : Script {
 
     val area = areas["demon_slayer_stone_circle"]
     val defaultTile = Tile(3220, 3367)

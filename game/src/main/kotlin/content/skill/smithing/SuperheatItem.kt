@@ -9,16 +9,12 @@ import world.gregs.voidps.engine.data.definition.data.Smelting
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.remove
 
-class SuperheatItem : Script {
-
-    val spellDefinitions: SpellDefinitions by inject()
-    val itemDefinitions: ItemDefinitions by inject()
+class SuperheatItem(val spellDefinitions: SpellDefinitions, val itemDefinitions: ItemDefinitions) : Script {
 
     init {
         onItem("modern_spellbook:superheat_item") { item, _ ->

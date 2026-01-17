@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.type.random
 
 class CompostBin : Script {
+
     init {
         playerSpawn {
             sendVariable("compost_bin_falador")

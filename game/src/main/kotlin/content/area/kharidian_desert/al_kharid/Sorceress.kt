@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
 
 class Sorceress : Script {
+
     init {
         npcOperate("Talk-to", "sorceress") { (target) ->
             npc<Quiz>("Who are you and what do you want?")

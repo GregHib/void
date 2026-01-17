@@ -10,14 +10,14 @@ import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.sendInventory
 
-class ShopOpen : Script {
+class ShopOpen(
+    val itemDefinitions: ItemDefinitions,
+    val inventoryDefinitions: InventoryDefinitions,
+) : Script {
 
-    val itemDefinitions: ItemDefinitions by inject()
-    val inventoryDefinitions: InventoryDefinitions by inject()
     val logger = InlineLogger()
 
     init {

@@ -13,17 +13,15 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 
 class Block(
     val combatDefinitions: CombatDefinitions,
+    val styleDefinitions: WeaponStyleDefinitions,
+    val weaponDefinitions: WeaponAnimationDefinitions,
+    val animationDefinitions: AnimationDefinitions,
 ) : Script {
-
-    val styleDefinitions: WeaponStyleDefinitions by inject()
-    val weaponDefinitions: WeaponAnimationDefinitions by inject()
-    val animationDefinitions: AnimationDefinitions by inject()
 
     init {
         combatAttack(handler = ::attack)

@@ -4,11 +4,8 @@ import content.entity.effect.freeze
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.inject
 
-class BindSpells : Script {
-
-    val definitions: SpellDefinitions by inject()
+class BindSpells(val definitions: SpellDefinitions) : Script {
 
     init {
         combatAttack("magic", handler = ::attack)

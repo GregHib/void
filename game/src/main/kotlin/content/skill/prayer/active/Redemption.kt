@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class Redemption : Script {
+
     init {
         levelChanged(Skill.Constitution) { skill, _, to ->
             if (to <= 0 || to >= levels.getMax(skill) / 10 || !praying("redemption")) {

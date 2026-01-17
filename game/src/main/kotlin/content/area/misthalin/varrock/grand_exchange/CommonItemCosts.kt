@@ -7,13 +7,12 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.inject
 
-class CommonItemCosts : Script {
-
-    val enums: EnumDefinitions by inject()
-    val exchange: GrandExchange by inject()
-    val itemDefinitions: ItemDefinitions by inject()
+class CommonItemCosts(
+    val enums: EnumDefinitions,
+    val exchange: GrandExchange,
+    val itemDefinitions: ItemDefinitions,
+) : Script {
 
     init {
         interfaceOpened("common_item_costs") { id ->

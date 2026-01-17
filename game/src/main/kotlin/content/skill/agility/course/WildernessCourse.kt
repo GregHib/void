@@ -17,14 +17,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 
-class WildernessCourse : Script {
-
-    val objects: GameObjects by inject()
+class WildernessCourse(val objects: GameObjects) : Script {
 
     init {
         objectOperate("Open", "wilderness_agility_door_closed") { (target) ->

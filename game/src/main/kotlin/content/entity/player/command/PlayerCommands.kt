@@ -37,21 +37,19 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.timer.TimerQueue
 import kotlin.collections.iterator
-import kotlin.getValue
 
-class PlayerCommands : Script {
-
-    val players: Players by inject()
-    val accounts: AccountDefinitions by inject()
-    val exchange: GrandExchange by inject()
-    val saveQueue: SaveQueue by inject()
-    val enums: EnumDefinitions by inject()
-    val structs: StructDefinitions by inject()
-    val variables: VariableDefinitions by inject()
+class PlayerCommands(
+    val players: Players,
+    val accounts: AccountDefinitions,
+    val exchange: GrandExchange,
+    val saveQueue: SaveQueue,
+    val enums: EnumDefinitions,
+    val structs: StructDefinitions,
+    val variables: VariableDefinitions,
+) : Script {
 
     init {
         modCommand("save", desc = "Save all players") {

@@ -20,15 +20,14 @@ import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 
-class SmithingBot : Script {
-
-    val interfaceDefinitions: InterfaceDefinitions by inject()
-    val itemDefinitions: ItemDefinitions by inject()
-    val areas: AreaDefinitions by inject()
-    val tasks: TaskManager by inject()
+class SmithingBot(
+    val interfaceDefinitions: InterfaceDefinitions,
+    val itemDefinitions: ItemDefinitions,
+    val areas: AreaDefinitions,
+    val tasks: TaskManager,
+) : Script {
 
     init {
         worldSpawn {

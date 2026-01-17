@@ -13,15 +13,10 @@ import world.gregs.voidps.engine.client.variable.ListValues
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.suspend.StringSuspension
 import world.gregs.voidps.type.Tile
 
-class FairyRing : Script {
-
-    val fairyRing: FairyRingCodes by inject()
-
-    val variableDefinitions: VariableDefinitions by inject()
+class FairyRing(val fairyRing: FairyRingCodes, val variableDefinitions: VariableDefinitions) : Script {
 
     val Player.code: String
         get() = "${get("fairy_ring_code_1", "a")}${get("fairy_ring_code_2", "j")}${get("fairy_ring_code_3", "r")}"

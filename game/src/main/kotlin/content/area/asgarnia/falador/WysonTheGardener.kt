@@ -8,14 +8,13 @@ import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
-class WysonTheGardener : Script {
-
-    val floorItems: FloorItems by inject()
+class WysonTheGardener(
+    val floorItems: FloorItems,
+) : Script {
 
     init {
         npcOperate("Talk-to", "wyson_the_gardener") {

@@ -12,13 +12,9 @@ import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.InteractObject
 
-class RunecraftingBot : Script {
-
-    val areas: AreaDefinitions by inject()
-    val tasks: TaskManager by inject()
+class RunecraftingBot(val areas: AreaDefinitions, val tasks: TaskManager) : Script {
 
     init {
         worldSpawn {

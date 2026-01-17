@@ -7,14 +7,11 @@ import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.type.Tile
 
-class Ectophial : Script {
-
-    val objects: GameObjects by inject()
+class Ectophial(val objects: GameObjects) : Script {
 
     init {
         itemOption("Empty", "ectophial") {

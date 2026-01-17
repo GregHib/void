@@ -14,14 +14,13 @@ import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.spiral
 
-class RuneThrowingAxe : Script {
-
-    val players: Players by inject()
-    val npcs: NPCs by inject()
-    val lineOfSight: LineValidator by inject()
+class RuneThrowingAxe(
+    val players: Players,
+    val npcs: NPCs,
+    val lineOfSight: LineValidator,
+) : Script {
 
     init {
         specialAttack("chainhit") { target, _ ->

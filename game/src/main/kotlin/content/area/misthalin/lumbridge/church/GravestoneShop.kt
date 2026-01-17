@@ -4,13 +4,10 @@ import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.chat.notEnough
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
-class GravestoneShop : Script {
-
-    val enums: EnumDefinitions by inject()
+class GravestoneShop(val enums: EnumDefinitions) : Script {
 
     init {
         interfaceOpened("gravestone_shop") { id ->

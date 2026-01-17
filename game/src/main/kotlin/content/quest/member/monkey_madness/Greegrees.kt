@@ -12,15 +12,11 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-class Greegrees : Script {
-
-    val items: FloorItems by inject()
-    val areas: AreaDefinitions by inject()
+class Greegrees(val items: FloorItems, val areas: AreaDefinitions) : Script {
 
     init {
         playerSpawn {

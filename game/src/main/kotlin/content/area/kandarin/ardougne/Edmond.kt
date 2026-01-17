@@ -25,20 +25,19 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 
-class Edmond : Script {
-
-    val floorItems: FloorItems by inject()
+class Edmond(
+    val floorItems: FloorItems,
+    val npcs: NPCs,
+    val objects: GameObjects,
+) : Script {
 
     val region = Region(10136)
-    val npcs: NPCs by inject()
-    val objects: GameObjects by inject()
 
     init {
         npcOperate("Talk-to", "edmond") {

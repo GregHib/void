@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 
 class ArmourSalesman : Script {
+
     init {
         npcOperate("Trade", "armour_salesman") {
             when {

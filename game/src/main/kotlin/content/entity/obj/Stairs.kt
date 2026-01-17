@@ -5,11 +5,8 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Teleport
-import world.gregs.voidps.engine.inject
 
-class Stairs : Script {
-
-    val teleports: ObjectTeleports by inject()
+class Stairs(val teleports: ObjectTeleports) : Script {
 
     init {
         objectOperate("Climb", arrive = false) { (target) ->

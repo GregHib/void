@@ -7,6 +7,7 @@ import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.Script
 
 class MilkSellers : Script {
+
     init {
         npcOperate("Talk-to", "milk_seller") {
             npc<Happy>("Would you like to buy some milk?")

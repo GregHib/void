@@ -14,13 +14,10 @@ import world.gregs.voidps.engine.data.config.SlayerTaskDefinition
 import world.gregs.voidps.engine.data.definition.SlayerTaskDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
-class Turael : Script {
-
-    val slayerDefinitions: SlayerTaskDefinitions by inject()
+class Turael(val slayerDefinitions: SlayerTaskDefinitions) : Script {
 
     init {
         npcOperate("Talk-to", "turael") {

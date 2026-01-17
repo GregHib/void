@@ -14,16 +14,15 @@ import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.setTimeBar
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 import world.gregs.voidps.type.Delta
 
-class NPCUpdatingCommands : Script {
-
-    val npcs: NPCs by inject()
-    val definitions: NPCDefinitions by inject()
-    val animationDefinitions: AnimationDefinitions by inject()
-    val graphicDefinitions: GraphicDefinitions by inject()
+class NPCUpdatingCommands(
+    val npcs: NPCs,
+    val definitions: NPCDefinitions,
+    animationDefinitions: AnimationDefinitions,
+    graphicDefinitions: GraphicDefinitions,
+) : Script {
 
     init {
         adminCommand("npc_tfm", stringArg("transform-id", autofill = definitions.ids.keys)) { args ->

@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
 
 class Seaman : Script {
+
     init {
         npcOperate("Talk-to", "seaman_lorris*,captain_tobias*,seaman_thresnor*") {
             npc<Quiz>("Do you want to go on a trip to Karamja?")

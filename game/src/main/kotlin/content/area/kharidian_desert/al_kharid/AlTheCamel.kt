@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.timer.toTicks
@@ -20,9 +19,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 
-class AlTheCamel : Script {
-
-    val objects: GameObjects by inject()
+class AlTheCamel(val objects: GameObjects) : Script {
 
     init {
         npcOperate("Talk-to", "*camel") {

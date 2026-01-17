@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 class Shantay(
     val npcs: NPCs,
 ) : Script {
+
     init {
         npcOperate("Talk-to", "shantay") {
             npc<Neutral>("Hello effendi, I am Shantay.")

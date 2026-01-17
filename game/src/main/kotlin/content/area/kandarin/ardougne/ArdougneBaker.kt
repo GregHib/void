@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.type.equals
 
 class ArdougneBaker : Script {
+
     init {
         npcOperate("Trade", "baker_ardougne") { (target) ->
             if (target.tile.equals(2669, 3310)) {

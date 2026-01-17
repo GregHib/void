@@ -8,12 +8,8 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.inject
 
-class DragonHalberd : Script {
-
-    val players: Players by inject()
-    val npcs: NPCs by inject()
+class DragonHalberd(val players: Players, val npcs: NPCs) : Script {
 
     init {
         specialAttack("sweep") { target, id ->

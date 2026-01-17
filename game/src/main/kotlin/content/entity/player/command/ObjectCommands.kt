@@ -6,11 +6,8 @@ import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.inject
 
-class ObjectCommands : Script {
-
-    val objects: GameObjects by inject()
+class ObjectCommands(val objects: GameObjects) : Script {
 
     init {
         adminCommand(

@@ -12,14 +12,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 
-class TrapChests : Script {
-
-    val tables: DropTables by inject()
+class TrapChests(val tables: DropTables) : Script {
 
     init {
         objectOperate("Open", "*_chest") { (target) ->

@@ -12,16 +12,12 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.player.*
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.IgnoreAdd
 import world.gregs.voidps.network.client.instruction.IgnoreDelete
 import world.gregs.voidps.network.login.protocol.encode.Friend
 import world.gregs.voidps.network.login.protocol.encode.sendIgnoreList
 
-class IgnoreList : Script {
-
-    val accounts: AccountDefinitions by inject()
-    val players: Players by inject()
+class IgnoreList(val accounts: AccountDefinitions, val players: Players) : Script {
 
     val maxIgnores = 100
 

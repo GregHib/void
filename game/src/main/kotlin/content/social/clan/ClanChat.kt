@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.*
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.client.instruction.ClanChatJoin
@@ -21,16 +20,16 @@ import world.gregs.voidps.network.login.protocol.encode.appendClanChat
 import world.gregs.voidps.network.login.protocol.encode.updateClanChat
 import java.util.concurrent.TimeUnit
 
-class ClanChat : Script {
+class ClanChat(
+    val accounts: AccountDefinitions,
+    val players: Players,
+    val accountDefinitions: AccountDefinitions,
+) : Script {
 
-    val accounts: AccountDefinitions by inject()
     val maxMembers = 100
     val maxAttempts = 10
-    val players: Players by inject()
 
     val list = listOf(ClanRank.None, ClanRank.Recruit, ClanRank.Corporeal, ClanRank.Sergeant, ClanRank.Lieutenant, ClanRank.Captain, ClanRank.General)
-
-    val accountDefinitions: AccountDefinitions by inject()
 
     init {
         playerSpawn {

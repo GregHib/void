@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.weakQueue
 
 class FarmingPatchClear : Script {
+
     init {
         objectOperate("Clear", "*_tree_farming_stump") { (target) ->
             message("You start digging up the tree stump.", type = ChatType.Filter)

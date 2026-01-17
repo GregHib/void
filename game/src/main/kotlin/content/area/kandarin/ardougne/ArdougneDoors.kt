@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 
 class ArdougneDoors : Script {
+
     init {
         objectOperate("Open", "ardougne_locked_door_closed,ardougne_house_locked_door_closed,ardougne_castle_locked_door_closed") { (target) ->
             if (tile.x <= target.tile.x) {

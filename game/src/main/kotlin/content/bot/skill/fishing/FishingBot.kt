@@ -24,16 +24,15 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.InteractNPC
 
-class FishingBot : Script {
-
-    val areas: AreaDefinitions by inject()
-    val tasks: TaskManager by inject()
-    val gear: GearDefinitions by inject()
+class FishingBot(
+    val areas: AreaDefinitions,
+    val tasks: TaskManager,
+    val gear: GearDefinitions,
+) : Script {
 
     init {
         worldSpawn {

@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.timer.Timer
 class TzHaarHealers(
     val npcs: NPCs,
 ) : Script {
+
     init {
         npcCondition("weakened_nearby_monsters") {
             val zones = tile.zone.toRectangle(1).toZones()

@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
 import world.gregs.voidps.engine.entity.character.sound
 
 class SpecialAttacks : Script {
+
     init {
         variableSet("special_attack") { _, from, to ->
             if (to == true && from != true) {

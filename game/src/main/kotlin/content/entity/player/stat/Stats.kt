@@ -8,11 +8,8 @@ import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.Skill.*
-import world.gregs.voidps.engine.inject
 
-class Stats : Script {
-
-    val definitions: InterfaceDefinitions by inject()
+class Stats(val definitions: InterfaceDefinitions) : Script {
 
     init {
         interfaceOpened("stats") {

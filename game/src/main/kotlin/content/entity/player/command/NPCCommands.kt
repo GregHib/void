@@ -10,14 +10,10 @@ import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
 import kotlin.text.toIntOrNull
 
-class NPCCommands : Script {
-
-    val npcs: NPCs by inject()
-    val npcDefinitions: NPCDefinitions by inject()
+class NPCCommands(val npcs: NPCs, val npcDefinitions: NPCDefinitions) : Script {
 
     init {
         modCommand("npcs", desc = "Get total npc count") {

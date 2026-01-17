@@ -12,13 +12,10 @@ import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.strongQueue
 
-class WildernessLevers : Script {
-
-    val teleports: ObjectTeleports by inject()
+class WildernessLevers(val teleports: ObjectTeleports) : Script {
 
     init {
         objTeleportTakeOff("Pull", "lever_*") { target, option ->

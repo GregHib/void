@@ -8,13 +8,10 @@ import content.entity.player.dialogue.type.warning
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Teleport
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.equals
 
-class StrongholdOfSecurityLadders : Script {
-
-    val teleports: ObjectTeleports by inject()
+class StrongholdOfSecurityLadders(val teleports: ObjectTeleports) : Script {
 
     init {
         objTeleportLand("Climb-down", "stronghold_of_security_entrance") { _, _ ->

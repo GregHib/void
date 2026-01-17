@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -24,7 +23,7 @@ import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 
-class Furnace : Script {
+class Furnace(val itemDefinitions: ItemDefinitions) : Script {
 
     val bars = listOf(
         "bronze_bar",
@@ -39,7 +38,6 @@ class Furnace : Script {
     )
 
     val logger = InlineLogger()
-    val itemDefinitions: ItemDefinitions by inject()
 
     init {
         objectOperate("Smelt", "furnace*", arrive = false) { (target) ->

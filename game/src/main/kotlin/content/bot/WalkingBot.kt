@@ -3,12 +3,9 @@ package content.bot
 import content.bot.interact.navigation.await
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.Walk
 
-class WalkingBot : Script {
-
-    val tasks: TaskManager by inject()
+class WalkingBot(val tasks: TaskManager) : Script {
 
     init {
         worldSpawn {

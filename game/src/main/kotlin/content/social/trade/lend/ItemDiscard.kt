@@ -9,15 +9,12 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
-class ItemDiscard : Script {
+class ItemDiscard(val players: Players, val itemDefinitions: ItemDefinitions) : Script {
 
     val logger = InlineLogger()
-    val players: Players by inject()
-    val itemDefinitions: ItemDefinitions by inject()
 
     init {
         itemOption("Discard", "inventory") { (item, slot) ->

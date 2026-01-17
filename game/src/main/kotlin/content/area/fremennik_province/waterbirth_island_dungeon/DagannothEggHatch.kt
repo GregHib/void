@@ -4,14 +4,11 @@ import content.entity.effect.transform
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-class DagannothEggHatch : Script {
-
-    val npcs: NPCs by inject()
+class DagannothEggHatch(val npcs: NPCs) : Script {
 
     init {
         /**

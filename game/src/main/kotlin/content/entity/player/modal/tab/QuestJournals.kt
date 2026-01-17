@@ -6,14 +6,11 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.ui.InterfaceApi
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.Timer
 
-class QuestJournals : Script {
+class QuestJournals(val questDefinitions: QuestDefinitions) : Script {
 
     val logger = InlineLogger()
-
-    val questDefinitions: QuestDefinitions by inject()
 
     init {
         playerSpawn {

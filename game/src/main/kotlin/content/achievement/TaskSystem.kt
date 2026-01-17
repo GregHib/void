@@ -13,13 +13,12 @@ import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.inject
 
-class TaskSystem : Script {
-
-    val variables: VariableDefinitions by inject()
-    val enumDefinitions: EnumDefinitions by inject()
-    val structDefinitions: StructDefinitions by inject()
+class TaskSystem(
+    val variables: VariableDefinitions,
+    val enumDefinitions: EnumDefinitions,
+    val structDefinitions: StructDefinitions,
+) : Script {
 
     init {
         interfaceOpened("task_system") {

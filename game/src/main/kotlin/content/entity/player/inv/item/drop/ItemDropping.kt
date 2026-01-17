@@ -6,15 +6,13 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.Items
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
-class ItemDropping : Script {
+class ItemDropping(val floorItems: FloorItems) : Script {
 
-    val floorItems: FloorItems by inject()
     val logger = InlineLogger()
 
     init {

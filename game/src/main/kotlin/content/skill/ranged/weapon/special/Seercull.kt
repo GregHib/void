@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
 
 class Seercull : Script {
+
     init {
         specialAttack("soulshot") { target, _ ->
             anim("bow_accurate")

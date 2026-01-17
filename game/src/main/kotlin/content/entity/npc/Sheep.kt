@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
@@ -22,9 +21,7 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.random
 
-class Sheep : Script {
-
-    val items: FloorItems by inject()
+class Sheep(val items: FloorItems) : Script {
 
     private val retreatChance = 0.25
 

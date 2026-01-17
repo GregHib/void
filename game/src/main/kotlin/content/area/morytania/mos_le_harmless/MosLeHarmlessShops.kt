@@ -4,6 +4,7 @@ import content.entity.npc.shop.openShop
 import world.gregs.voidps.engine.Script
 
 class MosLeHarmlessShops : Script {
+
     init {
         npcApproach("Trade", "mike,charley,joe,smith") { (target) ->
             approachRange(2)

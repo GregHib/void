@@ -17,15 +17,14 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.InteractDialogue
 
-class SmeltingBot : Script {
-
-    val areas: AreaDefinitions by inject()
-    val tasks: TaskManager by inject()
-    val itemDefinitions: ItemDefinitions by inject()
+class SmeltingBot(
+    val areas: AreaDefinitions,
+    val tasks: TaskManager,
+    val itemDefinitions: ItemDefinitions,
+) : Script {
 
     init {
         worldSpawn {

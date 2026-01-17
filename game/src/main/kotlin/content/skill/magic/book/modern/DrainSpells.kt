@@ -4,11 +4,8 @@ import content.skill.magic.spell.Spell
 import content.skill.magic.spell.spell
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
-import world.gregs.voidps.engine.inject
 
-class DrainSpells : Script {
-
-    val spellDefinitions: SpellDefinitions by inject()
+class DrainSpells(val spellDefinitions: SpellDefinitions) : Script {
 
     init {
         combatPrepare("magic") { target ->

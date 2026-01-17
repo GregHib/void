@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.type.random
 
 class ChaosElemental : Script {
+
     init {
         npcCondition("free_inventory_spaces") { target -> target is Player && !target.inventory.isFull() }
 

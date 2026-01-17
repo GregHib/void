@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
 class PenguinKeeper : Script {
+
     init {
         npcOperate("Talk-to", "penguin_keeper_ardougne") {
             player<Neutral>("Hello there. how are the penguins doing today?")

@@ -5,15 +5,12 @@ import net.pearx.kasechange.toKebabCase
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.area.Rectangle
 
-class Talismans : Script {
+class Talismans(val teleports: ObjectTeleports) : Script {
 
     val overworld = Rectangle(2048, 2496, 3903, 4159)
-
-    val teleports: ObjectTeleports by inject()
 
     init {
         itemOption("Locate", "*_talisman") { (item) ->

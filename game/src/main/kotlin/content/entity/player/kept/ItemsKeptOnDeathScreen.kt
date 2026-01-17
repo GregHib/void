@@ -8,12 +8,9 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.Timer
 
-class ItemsKeptOnDeathScreen : Script {
-
-    val enums: EnumDefinitions by inject()
+class ItemsKeptOnDeathScreen(val enums: EnumDefinitions) : Script {
 
     init {
         interfaceRefresh("items_kept_on_death") {

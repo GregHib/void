@@ -7,14 +7,11 @@ import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.random
 
-class Men : Script {
-
-    val floorItems: FloorItems by inject()
+class Men(val floorItems: FloorItems) : Script {
 
     init {
         npcOperate("Talk-to", "man,woman") { (target) ->

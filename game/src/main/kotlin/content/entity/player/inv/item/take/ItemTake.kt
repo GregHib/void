@@ -7,16 +7,14 @@ import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.Items
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.SetCharge.setCharge
 
-class ItemTake : Script {
+class ItemTake(val floorItems: FloorItems) : Script {
 
-    val floorItems: FloorItems by inject()
     val logger = InlineLogger()
 
     init {

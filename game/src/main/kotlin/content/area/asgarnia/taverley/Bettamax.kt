@@ -3,11 +3,10 @@ package content.area.asgarnia.taverley
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.inject
 
-class Bettamax : Script {
-
-    val npcs: NPCs by inject()
+class Bettamax(
+    val npcs: NPCs,
+) : Script {
 
     init {
         npcSpawn("wilbur") {

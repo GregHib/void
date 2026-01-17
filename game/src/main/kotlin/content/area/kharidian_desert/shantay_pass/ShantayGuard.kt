@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
 
 class ShantayGuard(val objects: GameObjects) : Script {
+
     init {
         npcOperate("Talk-to", "shantay_guard") {
             npc<Neutral>("Go talk to Shantay. I'm on duty and I don't have time to talk to the likes of you!")

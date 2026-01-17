@@ -9,12 +9,8 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.inject
 
-class HealGroup : Script {
-
-    val definitions: SpellDefinitions by inject()
-    val players: Players by inject()
+class HealGroup(val definitions: SpellDefinitions, val players: Players) : Script {
 
     init {
         interfaceOption("Cast", "lunar_spellbook:heal_group") {

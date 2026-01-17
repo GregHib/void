@@ -16,6 +16,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
 class Entrana : Script {
+
     init {
         objectOperate("Cross", "entrana_gangplank_exit") {
             walkOverDelay(Tile(2834, 3333, 1))

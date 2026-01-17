@@ -7,15 +7,14 @@ import world.gregs.voidps.engine.data.SaveQueue
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-class AutoSave : Script {
-
-    val players: Players by inject()
-    val saveQueue: SaveQueue by inject()
-    val exchange: GrandExchange by inject()
+class AutoSave(
+    val players: Players,
+    val saveQueue: SaveQueue,
+    val exchange: GrandExchange,
+) : Script {
 
     init {
         worldSpawn {

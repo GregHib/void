@@ -5,11 +5,8 @@ import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.inject
 
-class BloodSpells : Script {
-
-    val definitions: SpellDefinitions by inject()
+class BloodSpells(val definitions: SpellDefinitions) : Script {
 
     init {
         combatAttack("magic", handler = ::attack)

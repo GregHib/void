@@ -7,13 +7,9 @@ import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.removeRequest
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.*
 
-class TradeSync : Script {
-
-    val interfaceDefinitions: InterfaceDefinitions by inject()
-    val inventoryDefinitions: InventoryDefinitions by inject()
+class TradeSync(val interfaceDefinitions: InterfaceDefinitions, val inventoryDefinitions: InventoryDefinitions) : Script {
 
     init {
         slotChanged("trade_offer") {
@@ -34,15 +30,14 @@ class TradeSync : Script {
             modified(this, other, warn)
         }
 
+        /**
+         * Persist updates on an offer to the other player
+         */
         inventoryUpdated("inventory") { _, _ ->
             val other: Player = Trade.getPartner(this) ?: return@inventoryUpdated
             updateInventorySpaces(other, this)
         }
     }
-
-    /**
-     * Persist updates on an offer to the other player
-     */
 
     /*
         Offer

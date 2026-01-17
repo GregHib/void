@@ -6,11 +6,8 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.inject
 
-class BarbarianOutpostGate : Script {
-
-    val npcs: NPCs by inject()
+class BarbarianOutpostGate(val npcs: NPCs) : Script {
 
     init {
         objectOperate("Open", "barbarian_outpost_gate_left_closed,barbarian_outpost_gate_right_closed") { (target) ->

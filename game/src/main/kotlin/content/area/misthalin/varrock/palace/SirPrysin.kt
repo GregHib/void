@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
@@ -19,9 +18,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-class SirPrysin : Script {
-
-    val objects: GameObjects by inject()
+class SirPrysin(val objects: GameObjects) : Script {
     val cupboardTile = Tile(3204, 3469)
 
     init {

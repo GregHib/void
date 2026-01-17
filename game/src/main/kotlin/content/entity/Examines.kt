@@ -9,16 +9,15 @@ import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.client.instruction.ExamineItem
 import world.gregs.voidps.network.client.instruction.ExamineNpc
 import world.gregs.voidps.network.client.instruction.ExamineObject
 
-class Examines : Script {
-
-    val itemDefinitions: ItemDefinitions by inject()
-    val npcDefinitions: NPCDefinitions by inject()
-    val objectDefinitions: ObjectDefinitions by inject()
+class Examines(
+    val itemDefinitions: ItemDefinitions,
+    val npcDefinitions: NPCDefinitions,
+    val objectDefinitions: ObjectDefinitions,
+) : Script {
 
     init {
         interfaceOption("Examine", "inventory:inventory", ::examineItem)

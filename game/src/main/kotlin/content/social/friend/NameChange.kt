@@ -13,15 +13,12 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.login.protocol.encode.Friend
 import java.util.concurrent.TimeUnit
 
-class NameChange : Script {
-
-    val players: Players by inject()
+class NameChange(val players: Players) : Script {
 
     init {
         modCommand("rename", desc = "Change your display name (login stays the same)", handler = ::rename)

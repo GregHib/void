@@ -10,12 +10,9 @@ import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.epochSeconds
 
-class Vengeance : Script {
-
-    val definitions: SpellDefinitions by inject()
+class Vengeance(val definitions: SpellDefinitions) : Script {
 
     init {
         interfaceOption("Cast", "lunar_spellbook:vengeance") {

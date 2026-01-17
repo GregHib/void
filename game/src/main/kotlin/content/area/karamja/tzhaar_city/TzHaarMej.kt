@@ -13,6 +13,7 @@ import world.gregs.voidps.type.Tile
 class TzHaarMej(
     val npcs: NPCs,
 ) : Script {
+
     init {
         huntPlayer("tzhaar_mej", "tzhaar_hunter") { target ->
             val victim = target.target

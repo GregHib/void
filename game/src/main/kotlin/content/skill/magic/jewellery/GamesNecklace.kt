@@ -5,11 +5,8 @@ import content.entity.player.dialogue.type.statement
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.inject
 
-class GamesNecklace : Script {
-
-    val areas: AreaDefinitions by inject()
+class GamesNecklace(val areas: AreaDefinitions) : Script {
 
     val burthorpe = areas["burthorpe_teleport"]
     val barbarianOutput = areas["barbarian_outpost_teleport"]

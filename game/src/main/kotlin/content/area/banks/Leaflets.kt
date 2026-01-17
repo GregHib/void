@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
 class Leaflets : Script {
+
     init {
         objectOperate("Take", "*_bank_leaflet") {
             if (inventory.contains("leaflet")) {

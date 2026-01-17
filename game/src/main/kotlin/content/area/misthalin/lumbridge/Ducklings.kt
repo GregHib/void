@@ -6,15 +6,12 @@ import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
 
-class Ducklings : Script {
-
-    val npcs: NPCs by inject()
+class Ducklings(val npcs: NPCs) : Script {
 
     init {
         npcSpawn("ducklings", ::followParent)

@@ -11,15 +11,12 @@ import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.midi
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.network.login.protocol.encode.playJingle
 import world.gregs.voidps.network.login.protocol.encode.playMIDI
 import world.gregs.voidps.network.login.protocol.encode.playSoundEffect
 import kotlin.collections.iterator
 
-class SoundCommands : Script {
-
-    val enums: EnumDefinitions by inject()
+class SoundCommands(val enums: EnumDefinitions) : Script {
 
     init {
         adminCommand("sound", stringArg("sound-id"), desc = "Play a sound by int or string id") { args ->

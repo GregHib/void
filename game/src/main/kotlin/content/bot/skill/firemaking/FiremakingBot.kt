@@ -16,15 +16,14 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.InteractInterfaceItem
 
-class FiremakingBot : Script {
-
-    val areas: AreaDefinitions by inject()
-    val tasks: TaskManager by inject()
-    val objects: GameObjects by inject()
+class FiremakingBot(
+    val areas: AreaDefinitions,
+    val tasks: TaskManager,
+    val objects: GameObjects,
+) : Script {
 
     init {
         worldSpawn {

@@ -33,7 +33,6 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Direction
@@ -41,11 +40,10 @@ import world.gregs.voidps.type.Tile
 
 class NPCDeath(
     val combatDefinitions: CombatDefinitions,
+    val npcs: NPCs,
+    val floorItems: FloorItems,
+    val tables: DropTables,
 ) : Script {
-
-    val npcs: NPCs by inject()
-    val floorItems: FloorItems by inject()
-    val tables: DropTables by inject()
 
     var Player.lootSharePotential: Int
         get() = get("loot_share_potential", 0)

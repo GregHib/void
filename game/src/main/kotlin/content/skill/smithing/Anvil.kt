@@ -20,14 +20,13 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.weakQueue
 
-class Anvil : Script {
+class Anvil(val itemDefinitions: ItemDefinitions, val interfaceDefinitions: InterfaceDefinitions) : Script {
 
     val types = listOf(
         "dagger",
@@ -63,8 +62,6 @@ class Anvil : Script {
         "crossbow_limbs",
     )
 
-    val itemDefinitions: ItemDefinitions by inject()
-    val interfaceDefinitions: InterfaceDefinitions by inject()
     val logger = InlineLogger()
 
     init {

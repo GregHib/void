@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.TICKS
 import java.io.File
 import java.time.LocalDateTime
@@ -21,8 +20,7 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.concurrent.TimeUnit
 
-class LogCommands : Script {
-    val accounts: AccountDefinitions by inject()
+class LogCommands(val accounts: AccountDefinitions) : Script {
 
     init {
         modCommand("log_limit", intArg("past-hours", desc = "how many hours back to search through", optional = true), desc = "Set the limit for how many hours of logs to search through") { args ->

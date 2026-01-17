@@ -23,7 +23,6 @@ import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
@@ -31,13 +30,13 @@ import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.type.random
 
-class Woodcutting : Script {
-
-    val players: Players by inject()
-    val definitions: ObjectDefinitions by inject()
-    val objects: GameObjects by inject()
-    val floorItems: FloorItems by inject()
-    val drops: DropTables by inject()
+class Woodcutting(
+    val players: Players,
+    val definitions: ObjectDefinitions,
+    val objects: GameObjects,
+    val floorItems: FloorItems,
+    val drops: DropTables,
+) : Script {
 
     val minPlayers = 0
     val maxPlayers = 2000

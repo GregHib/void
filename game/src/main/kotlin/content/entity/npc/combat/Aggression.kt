@@ -10,11 +10,8 @@ import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inject
 
-class Aggression : Script {
-
-    val areas: AreaDefinitions by inject()
+class Aggression(val areas: AreaDefinitions) : Script {
 
     init {
         huntPlayer(mode = "aggressive", handler = ::playerHandler)

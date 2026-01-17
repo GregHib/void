@@ -24,6 +24,7 @@ class Farmer(
     val itemDefinitions: ItemDefinitions,
     val objectDefinitions: ObjectDefinitions,
 ) : Script {
+
     init {
         npcOperate("Talk-to", "alain,amaethwr,dreven,dantaera,ellena,elstan,fayeth,francis,garth_brimhaven,gileth_observatory,heskel,imiago_tai_bwo_wannai_normal,kragen_ardougne,lyra,rhazien,rhonen,selena,taria,torrell,treznor,vasquen,bolongo,frizzy_skernip,praistan_ebola,prissy_scilla,yulf_squecks") { (target) ->
             choice {

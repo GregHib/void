@@ -24,6 +24,7 @@ import kotlin.coroutines.cancellation.CancellationException
 
 /**
  * A helper interface made up of all callable methods for easier scripting.
+ * Scripts are automatically detected and inject parameters @see ContentLoader.kt
  */
 interface Script : Spawn, Despawn, Skills, Moved, VariableApi, TimerApi, Operation, Approachable, InterfaceApi, Death, SettingsReload, Dialogues, Items, InventoryApi, Hunt, Teleport, CombatApi {
     companion object {

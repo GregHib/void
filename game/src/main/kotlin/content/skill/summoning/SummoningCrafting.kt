@@ -13,17 +13,13 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import kotlin.math.min
 
-class SummoningCrafting : Script {
-
-    val enums: EnumDefinitions by inject()
-    val itemDefinitions: ItemDefinitions by inject()
+class SummoningCrafting(val enums: EnumDefinitions, val itemDefinitions: ItemDefinitions) : Script {
 
     val pouchInterfaceId = 672
     val pouchComponentId = 16

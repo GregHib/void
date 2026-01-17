@@ -4,11 +4,8 @@ import content.entity.player.dialogue.type.choice
 import content.skill.magic.jewellery.itemTeleport
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.inject
 
-class PharaohsSceptre : Script {
-
-    val areas: AreaDefinitions by inject()
+class PharaohsSceptre(val areas: AreaDefinitions) : Script {
 
     val jalsavrah = areas["jalsavrah_teleport"]
     val jaleustrophos = areas["jaleustrophos_teleport"]

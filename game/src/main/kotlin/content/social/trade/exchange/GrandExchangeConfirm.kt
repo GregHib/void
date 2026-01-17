@@ -10,15 +10,12 @@ import world.gregs.voidps.engine.data.exchange.ExchangeOffer
 import world.gregs.voidps.engine.entity.character.player.chat.notEnough
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 
-class GrandExchangeConfirm : Script {
-
-    val exchange: GrandExchange by inject()
+class GrandExchangeConfirm(val exchange: GrandExchange) : Script {
 
     val logger = InlineLogger()
 

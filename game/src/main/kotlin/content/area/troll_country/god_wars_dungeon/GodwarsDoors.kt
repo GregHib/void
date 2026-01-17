@@ -4,11 +4,8 @@ import content.entity.obj.door.enterDoor
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.inject
 
-class GodwarsDoors : Script {
-
-    val areas: AreaDefinitions by inject()
+class GodwarsDoors(val areas: AreaDefinitions) : Script {
 
     init {
         objectOperate("Open", "big_door_saradomin_closed,big_door_bandos_closed,big_door_armadyl_closed,big_door_zamorak_closed") { (target) ->

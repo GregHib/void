@@ -6,16 +6,12 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.area.Rectangle
 import kotlin.collections.set
 
-class BorderGuard : Script {
-
-    val objects: GameObjects by inject()
-    val areas: AreaDefinitions by inject()
+class BorderGuard(val objects: GameObjects, val areas: AreaDefinitions) : Script {
 
     val guards = mutableMapOf<Rectangle, List<GameObject>>()
 

@@ -11,20 +11,20 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.area.Rectangle
 
-class Movement : Script {
+class Movement(
+    val collisions: Collisions,
+    val npcs: NPCs,
+    val players: Players,
+    val areas: AreaDefinitions,
+) : Script {
 
-    val collisions: Collisions by inject()
-    val npcs: NPCs by inject()
-    val players: Players by inject()
     val borders = mutableMapOf<Zone, Rectangle>()
-    val areas: AreaDefinitions by inject()
 
     init {
         playerSpawn {

@@ -20,15 +20,12 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Tanning
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 
-class Ellis : Script {
-
-    val itemDefs: ItemDefinitions by inject()
+class Ellis(val itemDefs: ItemDefinitions) : Script {
 
     init {
         npcOperate("Talk-to", "ellis,tanner") {

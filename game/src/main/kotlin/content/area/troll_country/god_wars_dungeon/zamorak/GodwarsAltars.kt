@@ -7,14 +7,11 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-class GodwarsAltars : Script {
-
-    val areas: AreaDefinitions by inject()
+class GodwarsAltars(val areas: AreaDefinitions) : Script {
 
     init {
         objectOperate("Pray-at", "prayer_*_altar_godwars") { (target) ->

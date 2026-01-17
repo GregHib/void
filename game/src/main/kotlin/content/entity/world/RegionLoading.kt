@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.network.client.instruction.FinishRegionLoad
 import world.gregs.voidps.network.login.protocol.encode.dynamicMapRegion
@@ -25,10 +24,7 @@ import world.gregs.voidps.type.Zone
  * Loads maps when they are accessed
  */
 
-class RegionLoading : Script {
-
-    val players: Players by inject()
-    val dynamicZones: DynamicZones by inject()
+class RegionLoading(val players: Players, val dynamicZones: DynamicZones) : Script {
 
     val playerRegions = IntArray(MAX_PLAYERS - 1)
 

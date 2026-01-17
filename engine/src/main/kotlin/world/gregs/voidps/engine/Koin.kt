@@ -16,6 +16,7 @@ inline fun <T : Any> get(
     noinline parameters: ParametersDefinition? = null,
 ): T = getKoin().get(kClass, qualifier, parameters)
 
+@Deprecated("Use script constructors instead")
 inline fun <reified T : Any> inject(
     qualifier: Qualifier? = null,
     noinline parameters: ParametersDefinition? = null,

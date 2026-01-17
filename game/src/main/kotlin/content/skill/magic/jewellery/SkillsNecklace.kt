@@ -5,11 +5,8 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.inject
 
-class SkillsNecklace : Script {
-
-    val areas: AreaDefinitions by inject()
+class SkillsNecklace(val areas: AreaDefinitions) : Script {
 
     val fishing = areas["fishing_guild_teleport"]
     val mining = areas["mining_guild_teleport"]

@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPC
 
 class Gorak : Script {
+
     init {
         combatDamage { (source) ->
             if (source is NPC && source.id.startsWith("gorak") && protectMelee()) {

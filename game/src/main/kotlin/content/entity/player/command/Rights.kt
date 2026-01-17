@@ -15,11 +15,8 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.inject
 
-class Rights : Script {
-
-    val accounts: AccountDefinitions by inject()
+class Rights(val accounts: AccountDefinitions) : Script {
 
     init {
         playerSpawn {

@@ -19,50 +19,15 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.inject
 import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
-class Gravestones : Script {
-
-    val players: Players by inject()
-    val npcs: NPCs by inject()
-    val floorItems: FloorItems by inject()
-
-    fun start(npc: NPC, restart: Boolean): Int {
-        val player = players.get(npc["player_name", ""])
-        if (player != null) {
-            val remaining = npc.remaining("grave_timer", epochSeconds())
-            player.sendScript("gravestone_set_timer", remaining / 60 * 100)
-        }
-        return 60
-    }
-
-    fun tick(npc: NPC): Int {
-        val remaining = npc.remaining("grave_timer", epochSeconds())
-        if (remaining <= 120 && !npc.transform.endsWith("broken")) {
-            npc.transform("${npc.id}_broken")
-        } else if (remaining <= 60 && !npc.transform.endsWith("collapse")) {
-            npc.transform("${npc.id}_collapse")
-            val player = players.get(npc["player_name", ""])
-            player?.message("Your gravestone has collapsed.")
-        }
-        return Timer.CONTINUE
-    }
-
-    fun stop(npc: NPC, death: Boolean) {
-        val player = players.get(npc.remove("player_name") ?: "")
-        if (player != null) {
-            player.clear("gravestone_time")
-            val tile: Tile? = player.remove("gravestone_tile")
-            if (tile != null) {
-                MapMarkers.remove(player, tile, "grave")
-            }
-        }
-        npc.stop("grave_timer")
-        npcs.remove(npc)
-    }
+class Gravestones(
+    val players: Players,
+    val npcs: NPCs,
+    val floorItems: FloorItems,
+) : Script {
 
     init {
         playerSpawn {
@@ -192,6 +157,40 @@ class Gravestones : Script {
             }
             droppable
         }
+    }
+
+    fun start(npc: NPC, restart: Boolean): Int {
+        val player = players.get(npc["player_name", ""])
+        if (player != null) {
+            val remaining = npc.remaining("grave_timer", epochSeconds())
+            player.sendScript("gravestone_set_timer", remaining / 60 * 100)
+        }
+        return 60
+    }
+
+    fun tick(npc: NPC): Int {
+        val remaining = npc.remaining("grave_timer", epochSeconds())
+        if (remaining <= 120 && !npc.transform.endsWith("broken")) {
+            npc.transform("${npc.id}_broken")
+        } else if (remaining <= 60 && !npc.transform.endsWith("collapse")) {
+            npc.transform("${npc.id}_collapse")
+            val player = players.get(npc["player_name", ""])
+            player?.message("Your gravestone has collapsed.")
+        }
+        return Timer.CONTINUE
+    }
+
+    fun stop(npc: NPC, death: Boolean) {
+        val player = players.get(npc.remove("player_name") ?: "")
+        if (player != null) {
+            player.clear("gravestone_time")
+            val tile: Tile? = player.remove("gravestone_tile")
+            if (tile != null) {
+                MapMarkers.remove(player, tile, "grave")
+            }
+        }
+        npc.stop("grave_timer")
+        npcs.remove(npc)
     }
 
     fun remainMessage(player: Player, grave: NPC) {

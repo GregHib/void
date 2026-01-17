@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.variable.hasClock
 
 class DraynorGuards : Script {
+
     init {
         huntPlayer("guard_ardougne", "guarding") { target ->
             if (target.hasClock("thieving")) {
