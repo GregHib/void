@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.get
 import java.nio.file.NoSuchFileException
-import kotlin.reflect.KClass
 import kotlin.system.exitProcess
 
 /**
@@ -39,7 +38,6 @@ object ContentLoader {
             throw NoSuchFileException("No content scripts found.")
         }
         logger.info { "Loaded ${scripts.size} ${"script".plural(scripts.size)} in ${System.currentTimeMillis() - start}ms" }
-        println(map.toList().sortedByDescending { it.second })
         return scripts
     }
 
@@ -52,14 +50,9 @@ object ContentLoader {
         Script.clear()
     }
 
-    val map = mutableMapOf<KClass<*>, Int>()
-
     private fun loadScript(name: String): Any {
         val clazz = Class.forName(name)
         val constructor = clazz.declaredConstructors.first()
-        for (param in constructor.parameters) {
-            map.set(param.type.kotlin, map.getOrDefault(param.type.kotlin, 0) + 1)
-        }
         val params = constructor.parameters.map { get(it.type.kotlin) }.toTypedArray()
         return constructor.newInstance(*params)
     }

@@ -98,6 +98,7 @@ object Main {
                 cache(cache, configFiles),
             )
         }
+        engineLoad(configFiles)
         Wildcards.load(Settings["storage.wildcards"])
         ContentLoader.load()
         Wildcards.update(Settings["storage.wildcards"])

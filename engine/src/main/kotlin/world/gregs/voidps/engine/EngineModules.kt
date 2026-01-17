@@ -23,6 +23,10 @@ import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.network.client.ConnectionQueue
 import java.io.File
 
+fun engineLoad(files: ConfigFiles) {
+    AreaTypes.load(files.list(Settings["map.areas"]))
+}
+
 fun engineModule(files: ConfigFiles) = module {
     // Entities
     single { NPCs(get(), get(), get()) }
@@ -40,7 +44,6 @@ fun engineModule(files: ConfigFiles) = module {
     // Map
     single { ZoneBatchUpdates() }
     single { DynamicZones(get(), get(), get()) }
-    single(createdAtStart = true) { AreaTypes.load(files.list(Settings["map.areas"])) }
     single(createdAtStart = true) { CanoeDefinitions().load(files.find(Settings["map.canoes"])) }
     // Network
     single {

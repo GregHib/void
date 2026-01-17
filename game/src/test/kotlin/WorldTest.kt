@@ -190,6 +190,7 @@ abstract class WorldTest : KoinTest {
                 },
             )
         }
+        engineLoad(configFiles)
         Wildcards.load(Settings["storage.wildcards"])
         scripts = ContentLoader.load()
         Wildcards.clear()
