@@ -40,7 +40,6 @@ import kotlin.text.toIntOrNull
 
 class ShootingStar(
     val objects: GameObjects,
-    val players: Players,
 ) : Script {
 
     val logger = InlineLogger()
@@ -172,7 +171,7 @@ class ShootingStar(
         currentStarTile = location.tile
         val tier = random.nextInt(1, 9)
         if (Settings["world.messages", false]) {
-            for (player in players) {
+            for (player in Players) {
                 player.message("${Colours.DARK_RED.toTag()}A star has crashed at ${location.description}.")
             }
         }
@@ -184,7 +183,7 @@ class ShootingStar(
             val shootingStarObjectFalling: GameObject = objects.add("crashed_star_falling_object", currentStarTile)
             val under = mutableListOf<Player>()
             for (tile in currentStarTile.toCuboid(2, 2)) {
-                for (player in players.at(tile)) {
+                for (player in Players.at(tile)) {
                     under.add(player)
                 }
             }

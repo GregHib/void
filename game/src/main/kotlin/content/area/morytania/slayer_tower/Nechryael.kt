@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 
-class Nechryael(val players: Players) : Script {
+class Nechryael : Script {
 
     init {
         npcCombatAttack("nechryael") { (target) ->
@@ -31,7 +31,7 @@ class Nechryael(val players: Players) : Script {
                 val name = target.name
                 spawn.softQueue("despawn", TimeUnit.SECONDS.toTicks(60)) {
                     NPCs.remove(spawn)
-                    players.get(name)?.dec("death_spawns")
+                    Players.get(name)?.dec("death_spawns")
                 }
                 spawn.anim("death_spawn")
                 spawn.interactPlayer(target, "Attack")

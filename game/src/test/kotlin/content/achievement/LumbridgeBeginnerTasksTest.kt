@@ -343,7 +343,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         val player = createPlayer(Tile(3211, 3253))
         player.inventory.add("air_rune", "mind_rune")
 
-        val npc = NPCs.at(player.tile.zone).first { it.id == "magic_dummy" }
+        val npc = NPCs.find(player.tile.zone, "magic_dummy")
 
         player.interactOn(npc, "modern_spellbook", "wind_strike")
         tick(2)
@@ -635,7 +635,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         player.inventory.add("earth_rune", 2)
         player.inventory.add("body_rune")
 
-        val npc = NPCs.at(player.tile.zone).first { it.id == "magic_dummy" }
+        val npc = NPCs.find(player.tile.zone, "magic_dummy")
 
         player.interactOn(npc, "modern_spellbook", "confuse")
         tick(2)

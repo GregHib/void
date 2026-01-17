@@ -22,7 +22,6 @@ import java.util.concurrent.TimeUnit
 
 class ClanChat(
     val accounts: AccountDefinitions,
-    val players: Players,
     val accountDefinitions: AccountDefinitions,
 ) : Script {
 
@@ -62,7 +61,7 @@ class ClanChat(
                 return@instruction
             }
 
-            val target = players.get(name)
+            val target = Players.get(name)
             if (target == null) {
                 player.message("Could not find player with the username '$name'.")
                 return@instruction
@@ -100,7 +99,7 @@ class ClanChat(
             player.friends[account.accountName] = rank
             player.updateFriend(account)
             if (clan.members.any { it.accountName == account.accountName }) {
-                val target = players.get(name) ?: return@instruction
+                val target = Players.get(name) ?: return@instruction
                 updateMembers(target, clan, rank)
             }
         }

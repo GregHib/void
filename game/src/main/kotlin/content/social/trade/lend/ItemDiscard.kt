@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
-class ItemDiscard(val players: Players, val itemDefinitions: ItemDefinitions) : Script {
+class ItemDiscard(val itemDefinitions: ItemDefinitions) : Script {
 
     val logger = InlineLogger()
 
@@ -44,7 +44,7 @@ class ItemDiscard(val players: Players, val itemDefinitions: ItemDefinitions) : 
                     softTimers.clear("borrow_message")
                     val name: String? = clear("borrowed_from") as? String
                     if (name != null) {
-                        val lender = players.get(name) ?: return@option
+                        val lender = Players.get(name) ?: return@option
                         lender.softTimers.stop("loan_message")
                     }
                 }

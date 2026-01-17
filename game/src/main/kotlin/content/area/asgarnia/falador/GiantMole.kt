@@ -27,9 +27,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import kotlin.random.Random
 
-class GiantMole(
-    val players: Players,
-) : Script {
+class GiantMole : Script {
 
     val logger = InlineLogger()
 
@@ -150,7 +148,7 @@ class GiantMole(
     fun handleDirtOnScreen(moleTile: Tile) {
         val nearMole = mutableListOf<Player>()
         for (tile in moleTile.toCuboid(5)) {
-            for (player in players.at(tile)) {
+            for (player in Players.at(tile)) {
                 nearMole.add(player)
             }
         }

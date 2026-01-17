@@ -42,7 +42,6 @@ import world.gregs.voidps.engine.timer.TimerQueue
 import kotlin.collections.iterator
 
 class PlayerCommands(
-    val players: Players,
     val accounts: AccountDefinitions,
     val exchange: GrandExchange,
     val saveQueue: SaveQueue,
@@ -53,7 +52,7 @@ class PlayerCommands(
 
     init {
         modCommand("save", desc = "Save all players") {
-            players.forEach(saveQueue::save)
+            Players.forEach(saveQueue::save)
             exchange.save()
             AuditLog.save()
         }
@@ -109,51 +108,51 @@ class PlayerCommands(
     }
 
     fun rest(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(0)) ?: return
+        val target = Players.find(player, args.getOrNull(0)) ?: return
         target["energy"] = MAX_RUN_ENERGY
     }
 
     fun specialRestore(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(0)) ?: return
+        val target = Players.find(player, args.getOrNull(0)) ?: return
         target.specialAttackEnergy = MAX_SPECIAL_ATTACK
     }
 
     fun prayerRestore(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(0)) ?: return
+        val target = Players.find(player, args.getOrNull(0)) ?: return
         target.levels.clear(Skill.Prayer)
     }
 
     fun restore(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(0)) ?: return
+        val target = Players.find(player, args.getOrNull(0)) ?: return
         for (skill in Skill.entries) {
             target.levels.clear(skill)
         }
     }
 
     fun skull(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(0)) ?: return
+        val target = Players.find(player, args.getOrNull(0)) ?: return
         target.skull()
     }
 
     fun unskull(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(0)) ?: return
+        val target = Players.find(player, args.getOrNull(0)) ?: return
         target.unskull()
     }
 
     fun hide(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(0)) ?: return
+        val target = Players.find(player, args.getOrNull(0)) ?: return
         target.appearance.hidden = !target.appearance.hidden
         target.flagAppearance()
     }
 
     fun position(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(0)) ?: return
+        val target = Players.find(player, args.getOrNull(0)) ?: return
         player.message("${target.tile} Zone(${target.tile.zone.id}) ${target.tile.region}")
         println(target.tile)
     }
 
     fun prayers(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(1)) ?: return
+        val target = Players.find(player, args.getOrNull(1)) ?: return
         val name = args.getOrNull(0)?.removeSuffix("s") ?: "normal"
         if (name == "regular" || name == "modern") {
             player.message("Unknown prayer type '$name'. Did you mean 'normal'?", ChatType.Console)
@@ -163,7 +162,7 @@ class PlayerCommands(
     }
 
     fun spellbook(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(1)) ?: return
+        val target = Players.find(player, args.getOrNull(1)) ?: return
         val name = args.getOrNull(0)?.removeSuffix("s") ?: "modern"
         if (name == "normal" || name == "regular") {
             player.message("Unknown spellbook type '$name'. Did you mean 'modern'?", ChatType.Console)
@@ -173,23 +172,23 @@ class PlayerCommands(
     }
 
     fun debug(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(0)) ?: return
+        val target = Players.find(player, args.getOrNull(0)) ?: return
         target["debug"] = !target["debug", false]
         player.message("Debugging ${if (target["debug", false]) "enabled" else "disabled"} for player '${target.name}'.")
     }
 
     fun chat(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(1)) ?: return
+        val target = Players.find(player, args.getOrNull(1)) ?: return
         target.say(args[0])
     }
 
     fun hit(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(1)) ?: return
+        val target = Players.find(player, args.getOrNull(1)) ?: return
         target.damage(args.getOrNull(0)?.toIntOrNull() ?: 10)
     }
 
     fun watch(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(0))
+        val target = Players.find(player, args.getOrNull(0))
         if (target != null) {
             player.watch(target)
         } else {
@@ -202,7 +201,7 @@ class PlayerCommands(
             return
         }
         player.start("search_delay", 1)
-        val target = players.find(player, args.getOrNull(1)) ?: return
+        val target = Players.find(player, args.getOrNull(1)) ?: return
         val search = args.getOrNull(0)
         player.message("=== Variables ===", ChatType.Console)
         for ((variable, value) in (target.variables as PlayerVariables).temp.toSortedMap()) {
@@ -225,7 +224,7 @@ class PlayerCommands(
             return
         }
         player.start("search_delay", 1)
-        val target = players.find(player, args.getOrNull(1)) ?: return
+        val target = Players.find(player, args.getOrNull(1)) ?: return
         val search = args.getOrNull(0)
         player.message("=== Timers ===", ChatType.Console)
         for (timer in target.timers.queue) {
@@ -248,7 +247,7 @@ class PlayerCommands(
             return
         }
         player.start("search_delay", 1)
-        val target = players.find(player, args.getOrNull(1)) ?: return
+        val target = Players.find(player, args.getOrNull(1)) ?: return
         val type = args.getOrNull(0) ?: "all"
         val tile = target.tile
         if (type == "all" || type == "objects") {
@@ -261,7 +260,7 @@ class PlayerCommands(
             }
         }
         if (type == "all" || type == "players") {
-            val players = players.at(tile).filterNot { it == player }
+            val players = Players.at(tile).filterNot { it == player }
             if (players.isNotEmpty()) {
                 player.message("--- Players ---", ChatType.Console)
                 for (other in players) {
@@ -298,7 +297,7 @@ class PlayerCommands(
     }
 
     fun unlock(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(1)) ?: return
+        val target = Players.find(player, args.getOrNull(1)) ?: return
         val type = args[0]
         if (type == "all" || type == "music" || type == "songs" || type == "music tracks" || type == "music_tracks") {
             enums.get("music_track_names").map?.keys?.forEach { key ->

@@ -30,18 +30,11 @@ import world.gregs.voidps.type.Tile
 internal class PlayerUpdateTaskTest : KoinMock() {
 
     private lateinit var task: PlayerUpdateTask
-    private lateinit var players: Players
-    override val modules = listOf(
-        module {
-            single { Players() }
-        },
-    )
 
     @BeforeEach
     fun setup() {
-        players = mockk(relaxed = true)
-        every { players.indexed(any()) } returns null
-        task = spyk(PlayerUpdateTask(players))
+        Players.clear()
+        task = spyk(PlayerUpdateTask())
     }
 
     @Test

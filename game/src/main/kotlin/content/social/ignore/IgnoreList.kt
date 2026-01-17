@@ -17,7 +17,7 @@ import world.gregs.voidps.network.client.instruction.IgnoreDelete
 import world.gregs.voidps.network.login.protocol.encode.Friend
 import world.gregs.voidps.network.login.protocol.encode.sendIgnoreList
 
-class IgnoreList(val accounts: AccountDefinitions, val players: Players) : Script {
+class IgnoreList(val accounts: AccountDefinitions) : Script {
 
     val maxIgnores = 100
 
@@ -55,7 +55,7 @@ class IgnoreList(val accounts: AccountDefinitions, val players: Players) : Scrip
 
             player.ignores.add(account.accountName)
             player.sendIgnore(account)
-            val other = players.get(name)
+            val other = Players.get(name)
             if (other != null && other.friend(player) && !other.isAdmin()) {
                 other.updateFriend(Friend(player.name, player.previousName, world = 0))
             }
@@ -82,7 +82,7 @@ class IgnoreList(val accounts: AccountDefinitions, val players: Players) : Scrip
             if (player.privateStatus != "on") {
                 return@instruction
             }
-            val other = players.get(name)
+            val other = Players.get(name)
             if (other != null && (other.friend(player) || other.isAdmin())) {
                 other.updateFriend(Friend(player.name, player.previousName, world = Settings.world, worldName = Settings.worldName))
             }

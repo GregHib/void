@@ -42,7 +42,6 @@ fun gameModule(files: ConfigFiles) = module {
             get(),
             get(),
             get(),
-            get(),
             InterfaceHandler(get(), get(), get(), get()),
         )
     }
@@ -53,7 +52,7 @@ fun gameModule(files: ConfigFiles) = module {
         ExchangeHistory(get(), get<Storage>().priceHistory().toMutableMap()).also { it.calculatePrices() }
     }
     single(createdAtStart = true) {
-        GrandExchange(get(), get(), get<Storage>().claims().toMutableMap(), get(), get(), get(), get())
+        GrandExchange(get(), get(), get<Storage>().claims().toMutableMap(), get(), get(), get())
     }
     single {
         if (Settings["storage.type", "files"] == "database") {

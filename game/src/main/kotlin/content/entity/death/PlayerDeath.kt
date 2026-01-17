@@ -37,7 +37,6 @@ import world.gregs.voidps.type.random
 class PlayerDeath(
     val floorItems: FloorItems,
     val enums: EnumDefinitions,
-    val players: Players,
 ) : Script {
 
     val respawnTile: Tile
@@ -192,7 +191,7 @@ class PlayerDeath(
     }
 
     fun hitCharacters(tile: Tile, source: Player, maxHit: Int) {
-        for (player in players.at(tile)) {
+        for (player in Players.at(tile)) {
             if (Target.attackable(source, player)) {
                 source.directHit(player, random.nextInt(maxHit))
             }

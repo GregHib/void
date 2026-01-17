@@ -17,15 +17,13 @@ import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.area.Rectangle
 
-class Movement(
-    val players: Players,
-) : Script {
+class Movement : Script {
 
     val borders = mutableMapOf<Zone, Rectangle>()
 
     init {
         playerSpawn {
-            if (players.add(this) && Settings["world.players.collision", false]) {
+            if (Players.add(this) && Settings["world.players.collision", false]) {
                 add(this)
             }
         }
@@ -37,7 +35,7 @@ class Movement(
         }
 
         npcMoved(handler = NPCs::update)
-        moved(handler = players::update)
+        moved(handler = Players::update)
 
         worldSpawn {
             for (border in AreaTypes.tagged("border")) {

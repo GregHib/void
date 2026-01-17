@@ -27,15 +27,14 @@ fun engineLoad(files: ConfigFiles) {
 
 fun engineModule(files: ConfigFiles) = module {
     // Entities
-    single { Players() }
     single { GameObjects(get(), get(), get(), get(), Settings["development.loadAllObjects", false]).apply { get<ZoneBatchUpdates>().register(this) } }
     single { FloorItems(get(), get()).apply { get<ZoneBatchUpdates>().register(this) } }
-    single { FloorItemTracking(get(), get(), get()) }
-    single { Hunting(get(), get(), get(), get(), get()) }
+    single { FloorItemTracking(get(), get()) }
+    single { Hunting(get(), get(), get(), get()) }
     single {
         SaveQueue(get(), SafeStorage(File(Settings["storage.players.errors"])))
     }
-    single { AccountManager(get(), get(), get(), get(), get(), get(), get(), get(), AppearanceOverrides(get(), get())) }
+    single { AccountManager(get(), get(), get(), get(), get(), get(), get(), AppearanceOverrides(get(), get())) }
     // IO
     single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game) }
     // Map

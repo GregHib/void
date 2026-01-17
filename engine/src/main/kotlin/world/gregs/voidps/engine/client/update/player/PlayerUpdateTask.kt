@@ -25,9 +25,7 @@ import world.gregs.voidps.network.login.protocol.visual.encode.player.TemporaryM
 import world.gregs.voidps.type.Delta
 import kotlin.math.abs
 
-class PlayerUpdateTask(
-    private val players: Players,
-) {
+class PlayerUpdateTask {
     private val watchEncoder = WatchEncoder(VisualMask.PLAYER_WATCH_MASK)
     private val playerTimeBarEncoder = PlayerTimeBarEncoder()
     private val sayEncoder = SayEncoder(VisualMask.PLAYER_SAY_MASK)
@@ -82,7 +80,7 @@ class PlayerUpdateTask(
             if (viewport.isIdle(index) == active) {
                 continue
             }
-            player = players.indexed(index)!!
+            player = Players.indexed(index)!!
 
             flag = updateFlag(updates, player, set)
             updateType = localChange(updates, player, client, viewport, flag)
@@ -250,7 +248,7 @@ class PlayerUpdateTask(
                 continue
             }
 
-            player = players.indexed(index)
+            player = Players.indexed(index)
             viewport.setIdle(index)
             if (player == null) {
                 skip++

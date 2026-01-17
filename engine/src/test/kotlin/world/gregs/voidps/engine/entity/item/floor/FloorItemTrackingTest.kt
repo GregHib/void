@@ -17,16 +17,14 @@ import world.gregs.voidps.type.Tile
 class FloorItemTrackingTest {
 
     private lateinit var items: FloorItems
-    private lateinit var players: Players
     private lateinit var batches: ZoneBatchUpdates
     private lateinit var tracking: FloorItemTracking
 
     @BeforeEach
     fun setup() {
-        players = mockk(relaxed = true)
         batches = mockk(relaxed = true)
         items = FloorItems(batches, mockk(relaxed = true))
-        tracking = FloorItemTracking(items, players, batches)
+        tracking = FloorItemTracking(items, batches)
         startKoin {
             modules(
                 module {

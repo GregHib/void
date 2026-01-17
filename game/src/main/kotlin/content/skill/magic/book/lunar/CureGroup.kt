@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
 
-class CureGroup(val definitions: SpellDefinitions, val players: Players) : Script {
+class CureGroup(val definitions: SpellDefinitions) : Script {
 
     init {
         interfaceOption("Cast", "lunar_spellbook:cure_group") {
@@ -23,7 +23,7 @@ class CureGroup(val definitions: SpellDefinitions, val players: Players) : Scrip
             anim("lunar_cast_group")
             sound(spell)
             experience.add(Skill.Magic, definition.experience)
-            players
+            Players
                 .filter { other -> other.tile.within(tile, 1) && other.poisoned && get("accept_aid", true) }
                 .forEach { target ->
                     target.gfx(spell)

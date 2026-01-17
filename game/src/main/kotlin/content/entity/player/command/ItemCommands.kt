@@ -21,7 +21,6 @@ import world.gregs.voidps.engine.inv.transact.charge
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 
 class ItemCommands(
-    val players: Players,
     val exchange: GrandExchange,
     val definitions: ItemDefinitions,
     val enums: EnumDefinitions,
@@ -75,7 +74,7 @@ class ItemCommands(
         val name = args[0]
         val itemName = alternativeNames.getOrDefault(args.getOrNull(1), args[1])
         val amount = (args.getOrNull(2) ?: "1").toSILong().coerceAtMost(Int.MAX_VALUE.toLong()).toInt()
-        val target = players.get(name)
+        val target = Players.get(name)
         if (target == null) {
             player.message("Couldn't find online player '$name'", ChatType.Console)
             return

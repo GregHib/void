@@ -12,7 +12,7 @@ import world.gregs.voidps.type.random
  */
 class PlayerResetTask(
     iterator: TaskIterator<Player>,
-    override val characters: Players,
+    override val characters: Players = Players,
     private val batches: ZoneBatchUpdates,
 ) : CharacterTask<Player>(iterator) {
 

@@ -55,7 +55,7 @@ import kotlin.text.isBlank
 import kotlin.text.split
 import kotlin.text.toIntOrNull
 
-class ServerCommands(val players: Players, val accountLoader: PlayerAccountLoader) : Script {
+class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
 
     init {
         adminCommand(
@@ -168,7 +168,7 @@ class ServerCommands(val players: Players, val accountLoader: PlayerAccountLoade
             player.message("Update time must be positive.", ChatType.Console)
             return
         }
-        for (p in players) {
+        for (p in Players) {
             p.client?.systemUpdate(ticks)
         }
         shutdown(player, (ticks - 2).coerceAtLeast(0))

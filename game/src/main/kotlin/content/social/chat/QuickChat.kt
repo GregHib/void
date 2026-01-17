@@ -25,7 +25,6 @@ import world.gregs.voidps.network.login.protocol.encode.privateQuickChatTo
 import world.gregs.voidps.network.login.protocol.encode.publicQuickChat
 
 class QuickChat(
-    val players: Players,
     val phrases: QuickChatPhraseDefinitions,
     val variables: VariableDefinitions,
     val enums: EnumDefinitions,
@@ -36,7 +35,7 @@ class QuickChat(
 
     init {
         instruction<QuickChatPrivate> { player ->
-            val target = players.get(friend)
+            val target = Players.get(friend)
             if (target == null || target.ignores(player)) {
                 player.message("Unable to send message - player unavailable.")
                 return@instruction
@@ -56,7 +55,7 @@ class QuickChat(
                     val data = generateData(player, file, data)
                     val text = definition.buildString(enums.definitions, items.definitions, data)
                     AuditLog.event(player, "said_qc", text)
-                    players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }.forEach {
+                    Players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }.forEach {
                         it.client?.publicQuickChat(player.index, 0x8000, player.rights.ordinal, file, data)
                     }
                 }

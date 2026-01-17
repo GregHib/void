@@ -31,7 +31,6 @@ import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.type.random
 
 class Woodcutting(
-    val players: Players,
     val definitions: ObjectDefinitions,
     val objects: GameObjects,
     val floorItems: FloorItems,
@@ -179,7 +178,7 @@ class Woodcutting(
         return if (tree.level == 1) {
             random.nextInt(delay.first, delay.last) // Regular tree's
         } else {
-            Interpolation.interpolate(players.size, delay.last, delay.first, minPlayers, maxPlayers)
+            Interpolation.interpolate(Players.size, delay.last, delay.first, minPlayers, maxPlayers)
         }
     }
 }

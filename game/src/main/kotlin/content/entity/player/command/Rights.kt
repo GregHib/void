@@ -40,7 +40,7 @@ class Rights(val accounts: AccountDefinitions) : Script {
             player.message("No rights found with the name: '${right.toSentenceCase()}'.")
             return
         }
-        val target = get<Players>().firstOrNull { it.name.equals(args[0], true) }
+        val target = Players.firstOrNull { it.name.equals(args[0], true) }
         if (target == null) {
             player.message("Unable to find player '${args[0]}' online.", ChatType.Console)
             return

@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.MoveItem.moveAll
 
-class ItemReturning(val players: Players) : Script {
+class ItemReturning : Script {
 
     val logger = InlineLogger()
 
@@ -39,7 +39,7 @@ class ItemReturning(val players: Players) : Script {
 
             message("Demanding return of item.")
             val name: String? = get("lent_to")
-            val borrower = if (name == null) null else players.get(name)
+            val borrower = if (name == null) null else Players.get(name)
             if (borrower == null) {
                 message("There was an issue returning your item.")
                 logger.warn { "Unable to find lent item borrower '$name'." }

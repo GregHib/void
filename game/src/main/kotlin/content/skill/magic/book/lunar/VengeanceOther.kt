@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.timer.epochSeconds
 
 class VengeanceOther(
-    val players: Players,
     val accounts: AccountDefinitions,
     val definitions: SpellDefinitions,
 ) : Script {
@@ -58,7 +57,7 @@ class VengeanceOther(
     }
 
     fun veng(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(0)) ?: return
+        val target = Players.find(player, args.getOrNull(0)) ?: return
         if (target.contains("vengeance")) {
             player.message("That player already has vengeance cast.")
             return

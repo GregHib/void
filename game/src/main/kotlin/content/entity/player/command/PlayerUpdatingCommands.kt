@@ -20,14 +20,13 @@ import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 
 class PlayerUpdatingCommands(
-    val players: Players,
     animationDefinitions: AnimationDefinitions,
     graphicDefinitions: GraphicDefinitions,
 ) : Script {
 
     init {
         adminCommand("kill", desc = "Remove all bots") {
-            val iter = players.iterator()
+            val iter = Players.iterator()
             val remove = mutableListOf<Player>()
             while (iter.hasNext()) {
                 val p = iter.next()
@@ -36,12 +35,12 @@ class PlayerUpdatingCommands(
                 }
             }
             for (bot in remove) {
-                players.remove(bot)
+                Players.remove(bot)
             }
         }
 
         playerCommand("players", desc = "Get the total and local player counts") {
-            message("Players: ${players.size}, ${viewport?.players?.localCount}")
+            message("Players: ${Players.size}, ${viewport?.players?.localCount}")
         }
 
         adminCommand("anim", stringArg("anim-id", autofill = animationDefinitions.ids.keys), desc = "Perform animation (-1 to clear)") { args ->

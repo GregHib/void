@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
 
-class HealGroup(val definitions: SpellDefinitions, val players: Players) : Script {
+class HealGroup(val definitions: SpellDefinitions) : Script {
 
     init {
         interfaceOption("Cast", "lunar_spellbook:heal_group") {
@@ -27,7 +27,7 @@ class HealGroup(val definitions: SpellDefinitions, val players: Players) : Scrip
             val amount = (levels.get(Skill.Constitution) * 0.75).toInt() + 5
             anim("lunar_cast")
             sound(spell)
-            val group = players
+            val group = Players
                 .filter { other -> other != this && other.tile.within(tile, 1) && other.levels.getOffset(Skill.Constitution) < 0 && get("accept_aid", true) }
                 .take(5)
             group.forEach { target ->

@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.queue.softQueue
 
-class SkillCommands(val players: Players, val accounts: AccountDefinitions) : Script {
+class SkillCommands(val accounts: AccountDefinitions) : Script {
 
     init {
         val skills = Skill.entries.map { it.name }.toSet()
@@ -41,7 +41,7 @@ class SkillCommands(val players: Players, val accounts: AccountDefinitions) : Sc
     }
 
     fun set(player: Player, args: List<String>) {
-        val target = players.find(player, if (args.size == 3) args[2] else null) ?: return
+        val target = Players.find(player, if (args.size == 3) args[2] else null) ?: return
         var string = args[0].toSentenceCase()
         if (string == "Range") {
             string = "Ranged"
@@ -56,7 +56,7 @@ class SkillCommands(val players: Players, val accounts: AccountDefinitions) : Sc
     }
 
     fun master(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(0)) ?: return
+        val target = Players.find(player, args.getOrNull(0)) ?: return
         for (skill in Skill.all) {
             target.experience.set(skill, 14000000.0)
             target.levels.restore(skill, 1000)
@@ -78,7 +78,7 @@ class SkillCommands(val players: Players, val accounts: AccountDefinitions) : Sc
     }
 
     fun reset(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(0)) ?: return
+        val target = Players.find(player, args.getOrNull(0)) ?: return
         for ((index, skill) in Skill.all.withIndex()) {
             target.experience.set(skill, Experience.defaultExperience[index] / 10.0)
             target.levels.set(skill, Levels.defaultLevels[index])

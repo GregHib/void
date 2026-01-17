@@ -5,10 +5,11 @@ import world.gregs.voidps.engine.client.update.iterator.TaskIterator
 import world.gregs.voidps.engine.client.update.npc.NPCUpdateTask
 import world.gregs.voidps.engine.client.update.player.PlayerUpdateTask
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 
 class CharacterUpdateTask(
     iterator: TaskIterator<Player>,
-    override val characters: Iterable<Player>,
+    override val characters: Iterable<Player> = Players,
     private val playerUpdating: PlayerUpdateTask,
     private val npcUpdating: NPCUpdateTask,
     private val batches: ZoneBatchUpdates,

@@ -62,7 +62,6 @@ abstract class WorldTest : KoinTest {
 
     private val logger = InlineLogger()
     private lateinit var engine: GameLoop
-    lateinit var players: Players
     lateinit var floorItems: FloorItems
     lateinit var objects: GameObjects
     private lateinit var accountDefs: AccountDefinitions
@@ -178,7 +177,6 @@ abstract class WorldTest : KoinTest {
                             get(),
                             get(),
                             get(),
-                            get(),
                             object : FakeRandom() {
                                 override fun nextBits(bitCount: Int) = 0
                             },
@@ -199,7 +197,6 @@ abstract class WorldTest : KoinTest {
                 get(),
                 get(),
                 get(),
-                get(),
                 get<ConnectionQueue>(),
                 get(),
                 get(),
@@ -210,7 +207,6 @@ abstract class WorldTest : KoinTest {
             engine = GameLoop(tickStages)
             Spawn.world(configFiles)
         }
-        players = get()
         floorItems = get()
         objects = get()
         accountDefs = get()
@@ -235,7 +231,7 @@ abstract class WorldTest : KoinTest {
 
     @AfterEach
     fun afterEach() {
-        players.clear()
+        Players.clear()
         NPCs.clear()
         floorItems.clear()
         objects.reset()

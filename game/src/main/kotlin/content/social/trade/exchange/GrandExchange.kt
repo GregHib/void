@@ -54,7 +54,6 @@ class GrandExchange(
     private val claims: MutableMap<Int, Claim> = mutableMapOf(),
     private val itemDefinitions: ItemDefinitions,
     private val accounts: AccountDefinitions,
-    private val players: Players,
     private val storage: Storage,
 ) : Runnable {
 
@@ -135,7 +134,7 @@ class GrandExchange(
 
     override fun run() {
         for ((account, index) in cancellations) {
-            val player = players.get(accounts.getByAccount(account)?.displayName ?: "") ?: continue
+            val player = Players.get(accounts.getByAccount(account)?.displayName ?: "") ?: continue
             val offer = player.offers[index]
             if (offer.isEmpty()) {
                 continue
@@ -200,7 +199,7 @@ class GrandExchange(
             }
         }
         val definition = accounts.getByAccount(pending.account) ?: return
-        val player = players.get(definition.displayName) ?: return
+        val player = Players.get(definition.displayName) ?: return
         for (i in 0 until 6) {
             refresh(player, i)
         }
@@ -260,7 +259,7 @@ class GrandExchange(
      */
     private fun claim(id: Int, account: String, item: String, traded: Int, price: Int, otherPrice: Int, sell: Boolean) {
         val definition = accounts.getByAccount(account)
-        val player = players.get(definition?.displayName ?: "")
+        val player = Players.get(definition?.displayName ?: "")
         val slot = player?.offers?.indexOfFirst { it.id == id } ?: -1
         val offer = player?.offers?.getOrNull(slot)
         if (offer == null) {

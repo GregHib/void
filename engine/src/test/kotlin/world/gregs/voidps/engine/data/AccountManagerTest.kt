@@ -85,7 +85,6 @@ class AccountManagerTest : KoinMock() {
             variableDefinitions = VariableDefinitions(),
             saveQueue = SaveQueue(storage),
             connectionQueue = connectionQueue,
-            players = Players(),
             overrides = AppearanceOverrides(),
         )
     }

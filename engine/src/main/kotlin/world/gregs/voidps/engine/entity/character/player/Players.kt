@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.CharacterIndexMap
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
-class Players :
+object Players :
     Iterable<Player>,
     CharacterSearch<Player> {
     private val players = mutableListOf<Player>()

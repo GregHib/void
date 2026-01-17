@@ -24,7 +24,6 @@ import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 
 class TeleportCommands(
-    val players: Players,
     val exchange: GrandExchange,
     val definitions: ItemDefinitions,
     val enums: EnumDefinitions,
@@ -84,7 +83,7 @@ class TeleportCommands(
         commandAlias("tele", "tp")
 
         adminCommand("tele_to", stringArg("player-name", desc = "Player name (use quotes if contains spaces)", autofill = accounts.displayNames.keys), desc = "Teleport to another player") { args ->
-            val target = players.firstOrNull { it.name.equals(args[0], true) }
+            val target = Players.firstOrNull { it.name.equals(args[0], true) }
             if (target == null) {
                 message("Unable to find player '${args[0]}' online.", ChatType.Console)
                 return@adminCommand
@@ -93,7 +92,7 @@ class TeleportCommands(
         }
 
         adminCommand("tele_to_me", stringArg("player-name", desc = "Player name (use quotes if contains spaces)", autofill = accounts.displayNames.keys), desc = "Teleport another player to you") { args ->
-            val target = players.firstOrNull { it.name.equals(args[0], true) }
+            val target = Players.firstOrNull { it.name.equals(args[0], true) }
             if (target == null) {
                 message("Unable to find player '${args[0]}' online.", ChatType.Console)
                 return@adminCommand

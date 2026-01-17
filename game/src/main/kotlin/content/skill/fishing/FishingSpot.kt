@@ -16,9 +16,7 @@ import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
-class FishingSpot(
-    val players: Players,
-) : Script {
+class FishingSpot : Script {
 
     val water = CollisionStrategies.Blocked
     val land = CollisionStrategies.Normal
@@ -70,7 +68,7 @@ class FishingSpot(
         npc.softTimers.start("fishing_spot_respawn")
         val fishers: MutableSet<String> = npc.remove("fishers") ?: return
         for (fisher in fishers) {
-            val player = players.get(fisher) ?: continue
+            val player = Players.get(fisher) ?: continue
             player.mode = EmptyMode
             player.queue.clearWeak()
         }

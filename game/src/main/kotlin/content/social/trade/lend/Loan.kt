@@ -55,7 +55,7 @@ object Loan {
             logger.error { "Unable to find borrowed item partner for $player" }
             return
         }
-        val lender = get<Players>().get(name) ?: return
+        val lender = Players.get(name) ?: return
         lender.softTimers.stop("loan_message")
     }
 

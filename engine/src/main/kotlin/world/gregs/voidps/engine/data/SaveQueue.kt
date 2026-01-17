@@ -5,7 +5,6 @@ import kotlinx.coroutines.*
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.player.name
 import java.lang.Runnable
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.system.measureTimeMillis
@@ -33,7 +32,7 @@ class SaveQueue(
         scope.save(pending.values.toList())
     }
 
-    fun direct(players: Players): Job = scope.save(players.filter { !it.contains("bot") }.map { it.copy() })
+    fun direct(): Job = scope.save(Players.filter { !it.contains("bot") }.map { it.copy() })
 
     private fun CoroutineScope.save(accounts: List<PlayerSave>) = launch(handler) {
         val took = measureTimeMillis {

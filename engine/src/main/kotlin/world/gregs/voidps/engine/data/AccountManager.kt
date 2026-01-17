@@ -38,7 +38,6 @@ class AccountManager(
     private val variableDefinitions: VariableDefinitions,
     private val saveQueue: SaveQueue,
     private val connectionQueue: ConnectionQueue,
-    private val players: Players,
     private val overrides: AppearanceOverrides,
 ) {
     private val validItems = ValidItemRestriction(itemDefinitions)
@@ -51,7 +50,7 @@ class AccountManager(
     }
 
     fun setup(player: Player, client: Client?, displayMode: Int): Boolean {
-        player.index = players.index() ?: return false
+        player.index = Players.index() ?: return false
         player.visuals.hits.self = player.index
         player.interfaces = Interfaces(player, interfaceDefinitions)
         player.interfaceOptions = InterfaceOptions(player, interfaceDefinitions, inventoryDefinitions)
@@ -124,7 +123,7 @@ class AccountManager(
         player.client?.disconnect()
         connectionQueue.disconnect {
             World.queue("logout", 1) {
-                players.remove(player)
+                Players.remove(player)
             }
             val offset = player.get<Long>("instance_offset")?.let { Delta(it) } ?: Delta.EMPTY
             val original = player.tile.minus(offset)

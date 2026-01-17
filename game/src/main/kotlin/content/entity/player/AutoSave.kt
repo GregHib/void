@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
 class AutoSave(
-    val players: Players,
     val saveQueue: SaveQueue,
     val exchange: GrandExchange,
 ) : Script {
@@ -23,7 +22,7 @@ class AutoSave(
 
         worldDespawn {
             runBlocking {
-                saveQueue.direct(players).join()
+                saveQueue.direct().join()
                 exchange.save()
             }
         }
@@ -44,7 +43,7 @@ class AutoSave(
             return
         }
         World.queue("auto_save", TimeUnit.MINUTES.toTicks(minutes)) {
-            for (player in players) {
+            for (player in Players) {
                 saveQueue.save(player)
             }
             exchange.save()

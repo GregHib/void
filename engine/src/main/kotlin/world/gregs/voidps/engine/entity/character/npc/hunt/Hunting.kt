@@ -38,7 +38,6 @@ import kotlin.random.Random
  *   floor items - Varrock ash cleaner
  */
 class Hunting(
-    private val players: Players,
     private val objects: GameObjects,
     private val floorItems: FloorItems,
     private val huntModes: HuntModeDefinitions,
@@ -76,7 +75,7 @@ class Hunting(
             val range = npc.def["hunt_range", 5]
             when (definition.type) {
                 "player" -> {
-                    val target = findCharacter(npc, players, range, definition, playerTargets) ?: continue
+                    val target = findCharacter(npc, Players, range, definition, playerTargets) ?: continue
                     Hunt.hunt(npc, target, mode)
                 }
                 "npc" -> {

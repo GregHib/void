@@ -18,23 +18,17 @@ import world.gregs.voidps.engine.script.KoinMock
 internal class CharacterUpdateTaskTest : KoinMock() {
 
     private lateinit var task: CharacterUpdateTask
-    private lateinit var players: Players
     private lateinit var playerTask: PlayerUpdateTask
     private lateinit var npcTask: NPCUpdateTask
     private lateinit var batches: ZoneBatchUpdates
-    override val modules = listOf(
-        module {
-            single { Players() }
-        },
-    )
 
     @BeforeEach
     fun setup() {
-        players = mockk(relaxed = true)
+        Players.clear()
         playerTask = mockk(relaxed = true)
         npcTask = mockk(relaxed = true)
         batches = mockk(relaxed = true)
-        task = spyk(CharacterUpdateTask(SequentialIterator(), players, playerTask, npcTask, batches))
+        task = spyk(CharacterUpdateTask(SequentialIterator(), Players, playerTask, npcTask, batches))
     }
 
     @Test
@@ -42,7 +36,7 @@ internal class CharacterUpdateTaskTest : KoinMock() {
         // Given
         val player = mockk<Player>(relaxed = true)
         every { player.networked } returns true
-        every { players.iterator() } returns mutableListOf(player).iterator()
+        Players.add(player)
         // When
         task.run()
         // Then
@@ -57,7 +51,7 @@ internal class CharacterUpdateTaskTest : KoinMock() {
         // Given
         val player = mockk<Player>(relaxed = true)
         every { player.networked } returns false
-        every { players.iterator() } returns mutableListOf(player).iterator()
+        Players.add(player)
         // When
         task.run()
         // Then

@@ -39,7 +39,6 @@ import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
 class PenguinHideAndSeek(
-    val players: Players,
     val accounts: AccountDefinitions,
 ) : Script {
 
@@ -165,7 +164,7 @@ class PenguinHideAndSeek(
     }
 
     fun sendBear() {
-        for (player in players) {
+        for (player in Players) {
             sendBear(player)
         }
     }
@@ -256,7 +255,7 @@ class PenguinHideAndSeek(
             "Penguins found this week: ${player["penguins_found_weekly", 0]}",
             "",
         )
-        val target = players.find(player, args.getOrNull(0)) ?: return
+        val target = Players.find(player, args.getOrNull(0)) ?: return
         for ((index, penguin) in penguins.withIndex()) {
             if (penguin == null) {
                 continue
