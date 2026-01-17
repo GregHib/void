@@ -1,7 +1,7 @@
 package content.area.misthalin
 
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.data.definition.AreaTypes
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -19,7 +19,7 @@ class BorderGuard(val objects: GameObjects) : Script {
 
     init {
         worldSpawn {
-            for (border in AreaTypes.tagged("border")) {
+            for (border in Areas.tagged("border")) {
                 val passage = border.area as Rectangle
                 for (zone in passage.toZones()) {
                     guards[passage] = zone.toRectangle().mapNotNull {

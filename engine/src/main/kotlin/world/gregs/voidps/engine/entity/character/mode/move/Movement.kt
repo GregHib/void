@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.definition.AreaTypes
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
@@ -220,12 +220,12 @@ open class Movement(
                 val offset = character.get<Long>("instance_offset")?.let { Delta(it) } ?: Delta.EMPTY
                 val toOriginal = to.minus(offset)
                 val fromOriginal = from.minus(offset)
-                for (def in AreaTypes.get(fromOriginal.zone)) {
+                for (def in Areas.get(fromOriginal.zone)) {
                     if (fromOriginal in def.area && toOriginal !in def.area) {
                         Moved.exit(character, def.name, def.area)
                     }
                 }
-                for (def in AreaTypes.get(toOriginal.zone)) {
+                for (def in Areas.get(toOriginal.zone)) {
                     if (toOriginal in def.area && fromOriginal !in def.area) {
                         Moved.enter(character, def.name, def.area)
                     }

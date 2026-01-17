@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
-import world.gregs.voidps.engine.data.definition.AreaTypes
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -260,7 +260,7 @@ class PenguinHideAndSeek(
             if (penguin == null) {
                 continue
             }
-            val areas = AreaTypes.get(penguin.tile.zone).firstOrNull { it.tags.contains("penguin_area") }
+            val areas = Areas.get(penguin.tile.zone).firstOrNull { it.tags.contains("penguin_area") }
             var hint = ""
             if (areas != null) {
                 list.add("${Colours.BLUE.toTag()}${areas.name.toTitleCase()}")

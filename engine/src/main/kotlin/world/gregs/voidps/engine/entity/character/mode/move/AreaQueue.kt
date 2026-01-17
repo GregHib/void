@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.entity.character.mode.move
 
-import world.gregs.voidps.engine.data.definition.AreaTypes
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.Tile
 
@@ -22,12 +22,12 @@ class AreaQueue(
         player.steps.movedFrom = Tile.EMPTY
         Moved.player(player, from)
         val to = player.tile
-        for (def in AreaTypes.get(from.zone)) {
+        for (def in Areas.get(from.zone)) {
             if (from in def.area && to !in def.area) {
                 Moved.exit(player, def.name, def.area)
             }
         }
-        for (def in AreaTypes.get(to.zone)) {
+        for (def in Areas.get(to.zone)) {
             if (to in def.area && from !in def.area) {
                 Moved.enter(player, def.name, def.area)
             }

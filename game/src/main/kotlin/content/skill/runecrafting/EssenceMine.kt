@@ -2,7 +2,7 @@ package content.skill.runecrafting
 
 import content.entity.proj.shoot
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.AreaTypes
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -21,7 +21,7 @@ object EssenceMine {
         player.shoot("curse", player.tile)
         player.softQueue("essence_mine_teleport", 3) {
             player["last_npc_teleport_to_rune_essence_mine"] = npc.id
-            val tile = AreaTypes["essence_mine_teleport"].random(player)!!
+            val tile = Areas["essence_mine_teleport"].random(player)!!
             player.tele(tile)
             if (player["enter_the_abyss", "unstarted"] == "scrying") {
                 player["scrying_orb_${npc.id}"] = true

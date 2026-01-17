@@ -3,7 +3,7 @@ package content.skill.runecrafting
 import content.entity.proj.shoot
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.AreaTypes
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.queue.softQueue
 
@@ -17,7 +17,7 @@ class RuneEssenceMine : Script {
 
             softQueue("essence_mine_exit", 3) {
                 val npc = get("last_npc_teleport_to_rune_essence_mine", "aubury")
-                val tile = AreaTypes["${npc}_return"].random()
+                val tile = Areas["${npc}_return"].random()
                 tele(tile)
             }
         }

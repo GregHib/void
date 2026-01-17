@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.AreaTypes
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -59,7 +59,7 @@ class Teleports(val definitions: SpellDefinitions) : Script {
                     pause(ticks)
                 }
                 withContext(NonCancellable) {
-                    tele(AreaTypes["lumbridge_teleport"].random())
+                    tele(Areas["lumbridge_teleport"].random())
                     set("click_your_heels_three_times_task", true)
                     start("home_teleport_timeout", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
                 }
@@ -84,8 +84,8 @@ class Teleports(val definitions: SpellDefinitions) : Script {
             return
         }
         player.closeInterfaces()
-        val definition = AreaTypes.getOrNull(option.item.id) ?: return
-        val scrolls = AreaTypes.tagged("scroll")
+        val definition = Areas.getOrNull(option.item.id) ?: return
+        val scrolls = Areas.tagged("scroll")
         val type = if (scrolls.contains(definition)) "scroll" else "tablet"
         val map = definition.area
         player.queue("teleport", onCancel = null) {
@@ -115,7 +115,7 @@ class Teleports(val definitions: SpellDefinitions) : Script {
             sound("teleport")
             gfx("teleport_$book")
             animDelay("teleport_$book")
-            tele(AreaTypes[component].random(player)!!)
+            tele(Areas[component].random(player)!!)
             delay(1)
             sound("teleport_land")
             gfx("teleport_land_$book")

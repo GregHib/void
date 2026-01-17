@@ -5,7 +5,7 @@ import content.skill.magic.jewellery.jewelleryTeleport
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.data.definition.AreaTypes
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
@@ -14,7 +14,7 @@ class Camulet : Script {
 
     init {
         itemOption("Rub", "camulet") {
-            if (jewelleryTeleport(this, it.inventory, it.slot, AreaTypes["camulet_teleport"])) {
+            if (jewelleryTeleport(this, it.inventory, it.slot, Areas["camulet_teleport"])) {
                 message("You rub the amulet...")
             } else {
                 statement("Your Camulet has run out of teleport charges. You can renew them by applying camel dung.")

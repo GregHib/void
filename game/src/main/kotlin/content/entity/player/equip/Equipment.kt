@@ -9,7 +9,7 @@ import content.skill.melee.weapon.combatStyle
 import content.skill.prayer.protectMagic
 import content.skill.summoning.isFamiliar
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.AreaTypes
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -88,7 +88,7 @@ object Equipment {
         if (source["castle_wars_brace", false] && Weapon.isFlagHolder(target)) {
             damage = (damage * 1.2).toInt()
         } else if (source.equipped(EquipSlot.Ring).id.startsWith("ferocious_ring")) {
-            val area = AreaTypes["kuradals_dungeon"]
+            val area = Areas["kuradals_dungeon"]
             if (source.tile in area && target.tile in area) {
                 damage = (damage * 1.04).toInt()
             }

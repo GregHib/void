@@ -6,7 +6,7 @@ import containsMessage
 import objectOption
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.data.definition.AreaTypes
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.get
@@ -26,7 +26,7 @@ internal class AbyssObstaclesTest : WorldTest() {
     @BeforeEach
     fun setup() {
         definitions = get()
-        center = AreaTypes["abyss_center"]
+        center = Areas["abyss_center"]
     }
 
     @Test

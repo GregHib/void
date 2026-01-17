@@ -13,7 +13,7 @@ import world.gregs.voidps.type.area.Cuboid
 import world.gregs.voidps.type.area.Polygon
 import world.gregs.voidps.type.area.Rectangle
 
-object AreaTypes {
+object Areas {
 
     private var named: Map<String, AreaDefinition> = Object2ObjectOpenHashMap()
     private var tagged: Map<String, Set<AreaDefinition>> = Object2ObjectOpenHashMap()
@@ -32,7 +32,7 @@ object AreaTypes {
 
     fun tagged(tag: String): Set<AreaDefinition> = tagged[tag] ?: emptySet()
 
-    fun load(paths: List<String>): AreaTypes {
+    fun load(paths: List<String>): Areas {
         timedLoad("map area") {
             val named = Object2ObjectOpenHashMap<String, AreaDefinition>()
             val tagged = Object2ObjectOpenHashMap<String, MutableSet<AreaDefinition>>()

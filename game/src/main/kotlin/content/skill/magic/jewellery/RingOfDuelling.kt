@@ -2,7 +2,7 @@ package content.skill.magic.jewellery
 
 import content.entity.player.dialogue.type.choice
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.data.definition.AreaTypes
+import world.gregs.voidps.engine.data.definition.Areas
 
 class RingOfDuelling : Script {
 
@@ -13,16 +13,16 @@ class RingOfDuelling : Script {
             }
             choice("Where would you like to teleport to?") {
                 option("Al Kharid Duel Arena.") {
-                    jewelleryTeleport(this, it.inventory, it.slot, AreaTypes["duel_arena_teleport"])
+                    jewelleryTeleport(this, it.inventory, it.slot, Areas["duel_arena_teleport"])
                 }
                 option("Castle Wars Arena.") {
-                    jewelleryTeleport(this, it.inventory, it.slot, AreaTypes["castle_wars_teleport"])
+                    jewelleryTeleport(this, it.inventory, it.slot, Areas["castle_wars_teleport"])
                 }
                 option("Mobilising Armies Command Centre.") {
-                    jewelleryTeleport(this, it.inventory, it.slot, AreaTypes["mobilising_armies_teleport"])
+                    jewelleryTeleport(this, it.inventory, it.slot, Areas["mobilising_armies_teleport"])
                 }
                 option("Fist of Guthix.") {
-                    jewelleryTeleport(this, it.inventory, it.slot, AreaTypes["fist_of_guthix_teleport"])
+                    jewelleryTeleport(this, it.inventory, it.slot, Areas["fist_of_guthix_teleport"])
                 }
                 option("Nowhere.")
             }
@@ -39,7 +39,7 @@ class RingOfDuelling : Script {
                 "Fist of Guthix" -> "fist_of_guthix_teleport"
                 else -> return@itemOption
             }
-            jewelleryTeleport(this, it.inventory, it.slot, AreaTypes[area])
+            jewelleryTeleport(this, it.inventory, it.slot, Areas[area])
         }
     }
 }

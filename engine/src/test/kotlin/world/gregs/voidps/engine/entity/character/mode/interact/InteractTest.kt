@@ -12,13 +12,12 @@ import org.koin.dsl.module
 import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
-import org.rsmod.game.pathfinder.collision.CollisionFlagMap
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.data.definition.AreaTypes
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -67,7 +66,7 @@ internal class InteractTest : KoinMock() {
         player.collision = CollisionStrategies.Normal
         target = NPC(tile = Tile(10, 10))
         target.collision = CollisionStrategies.Normal
-        AreaTypes.clear()
+        Areas.clear()
     }
 
     private fun interact(operate: Boolean, approach: Boolean, suspend: Boolean) {

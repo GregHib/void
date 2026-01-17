@@ -6,7 +6,7 @@ import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.definition.AreaDefinition
-import world.gregs.voidps.engine.data.definition.AreaTypes
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.timedLoad
@@ -141,7 +141,7 @@ class NavigationGraph(
                 is GameObject -> node.tile
                 else -> return@forEach
             }
-            tags[node] = AreaTypes.getAll().filter { it.area.contains(tile) }.toSet()
+            tags[node] = Areas.getAll().filter { it.area.contains(tile) }.toSet()
         }
     }
 

@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.SettingsReload
 import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
-import world.gregs.voidps.engine.data.definition.AreaTypes
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.ClientScriptDefinitions
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.data.definition.GraphicDefinitions
@@ -104,7 +104,7 @@ class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
                 NPCDefinitions.load(files.list(Settings["definitions.npcs"]))
                 loadNpcSpawns(files.list(Settings["spawns.npcs"]))
             }
-            "areas" -> AreaTypes.load(files.list(Settings["map.areas"]))
+            "areas" -> Areas.load(files.list(Settings["map.areas"]))
             "emotes", "render_anims", "render_emotes" -> get<RenderEmoteDefinitions>().load(files.find(Settings["definitions.renderEmotes"]))
             "anim_defs", "anims", "animations" -> get<AnimationDefinitions>().load(files.list(Settings["definitions.animations"]))
             "container_defs", "containers", "inventory_defs", "inventories", "inv_defs", "invs", "shop", "shops" -> {

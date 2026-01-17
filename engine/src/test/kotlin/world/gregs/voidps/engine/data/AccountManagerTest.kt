@@ -21,7 +21,6 @@ import world.gregs.voidps.engine.data.exchange.OpenOffers
 import world.gregs.voidps.engine.data.exchange.PriceHistory
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.entity.character.player.equip.AppearanceOverrides
 import world.gregs.voidps.engine.script.KoinMock
@@ -45,7 +44,7 @@ class AccountManagerTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        AreaTypes.set(emptyMap(), emptyMap(), mapOf(0 to setOf(AreaDefinition("area", Rectangle(Tile(0), 1, 1), emptySet()))))
+        Areas.set(emptyMap(), emptyMap(), mapOf(0 to setOf(AreaDefinition("area", Rectangle(Tile(0), 1, 1), emptySet()))))
         val inventoryDefinitions = InventoryDefinitions(arrayOf(InventoryDefinition.EMPTY))
         inventoryDefinitions.ids = mapOf("worn_equipment" to 0)
         connectionQueue = ConnectionQueue(1)

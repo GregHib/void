@@ -3,7 +3,7 @@ package content.area.wilderness
 import content.skill.magic.book.modern.teleBlocked
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.AreaTypes
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Teleport
@@ -17,14 +17,14 @@ class WildernessObelisk(
     val objects: GameObjects,
 ) : Script {
 
-    val obelisks = AreaTypes.tagged("obelisk")
+    val obelisks = Areas.tagged("obelisk")
 
     init {
         objectOperate("Activate", "wilderness_obelisk_*") { (target) ->
             if (World.containsQueue(target.id)) {
                 return@objectOperate
             }
-            val definition = AreaTypes.getOrNull(target.id) ?: return@objectOperate
+            val definition = Areas.getOrNull(target.id) ?: return@objectOperate
             val rectangle = (definition.area as Rectangle)
             replace(target, Tile(rectangle.minX - 1, rectangle.minY - 1))
             replace(target, Tile(rectangle.maxX + 1, rectangle.minY - 1))

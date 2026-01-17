@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.character.npc.hunt.Hunting
-import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.equip.AppearanceOverrides
 import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -22,7 +21,7 @@ import world.gregs.voidps.network.client.ConnectionQueue
 import java.io.File
 
 fun engineLoad(files: ConfigFiles) {
-    AreaTypes.load(files.list(Settings["map.areas"]))
+    Areas.load(files.list(Settings["map.areas"]))
 }
 
 fun engineModule(files: ConfigFiles) = module {

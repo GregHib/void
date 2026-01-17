@@ -5,7 +5,7 @@ import content.entity.player.dialogue.type.statement
 import content.skill.melee.weapon.Weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.AreaTypes
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -141,7 +141,7 @@ class Grapple(val objects: GameObjects) : Script {
             }
             steps.clear()
             val start = Tile(2841, 3425)
-            if (tile !in AreaTypes["water_obselisk_island"]) {
+            if (tile !in Areas["water_obselisk_island"]) {
                 message("I can't do that from here.")
                 return@objectApproach
             }
@@ -170,7 +170,7 @@ class Grapple(val objects: GameObjects) : Script {
                 return@objectApproach
             }
             steps.clear()
-            if (tile !in AreaTypes["mountain_shortcut_grapple_area"]) {
+            if (tile !in Areas["mountain_shortcut_grapple_area"]) {
                 message("I can't do that from here.")
                 return@objectApproach
             }

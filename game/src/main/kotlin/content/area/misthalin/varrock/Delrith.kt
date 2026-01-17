@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.client.shakeCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.AreaTypes
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.Death
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -49,7 +49,7 @@ class Delrith(
     val objects: GameObjects,
 ) : Script {
 
-    val area = AreaTypes["demon_slayer_stone_circle"]
+    val area = Areas["demon_slayer_stone_circle"]
     val defaultTile = Tile(3220, 3367)
     val targets = listOf(
         Tile(3227, 3369) to Tile(3224, 3366),

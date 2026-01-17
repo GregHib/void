@@ -12,7 +12,7 @@ import org.rsmod.game.pathfinder.*
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.AreaTypes
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.mode.move.target.TileTargetStrategy
 import world.gregs.voidps.engine.entity.character.move.running
@@ -35,7 +35,7 @@ internal class MovementTest : KoinMock() {
     fun setup() {
         player = Player(tile = Tile(5, 5))
         player.collision = CollisionStrategies.Normal
-        AreaTypes.clear()
+        Areas.clear()
         pathFinder = declareMock {
             every { findPath(any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any()) } returns Route(
                 listOf(RouteCoordinates(10, 10)),

@@ -3,7 +3,7 @@ package content.skill.magic.jewellery
 import content.entity.player.dialogue.type.choice
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.AreaTypes
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 
 class SkillsNecklace : Script {
@@ -16,19 +16,19 @@ class SkillsNecklace : Script {
             choice("Where would you like to teleport to?") {
                 option("Fishing Guild.") {
                     message("You rub the necklace...", ChatType.Filter)
-                    jewelleryTeleport(this, it.inventory, it.slot, AreaTypes["fishing_guild_teleport"])
+                    jewelleryTeleport(this, it.inventory, it.slot, Areas["fishing_guild_teleport"])
                 }
                 option("Mining Guild.") {
                     message("You rub the necklace...", ChatType.Filter)
-                    jewelleryTeleport(this, it.inventory, it.slot, AreaTypes["mining_guild_teleport"])
+                    jewelleryTeleport(this, it.inventory, it.slot, Areas["mining_guild_teleport"])
                 }
                 option("Crafting Guild.") {
                     message("You rub the necklace...", ChatType.Filter)
-                    jewelleryTeleport(this, it.inventory, it.slot, AreaTypes["crafting_guild_teleport"])
+                    jewelleryTeleport(this, it.inventory, it.slot, Areas["crafting_guild_teleport"])
                 }
                 option("Cooking Guild.") {
                     message("You rub the necklace...", ChatType.Filter)
-                    jewelleryTeleport(this, it.inventory, it.slot, AreaTypes["cooking_guild_teleport"])
+                    jewelleryTeleport(this, it.inventory, it.slot, Areas["cooking_guild_teleport"])
                 }
                 option("Nowhere.")
             }
@@ -46,7 +46,7 @@ class SkillsNecklace : Script {
                 else -> return@itemOption
             }
             message("You rub the necklace...", ChatType.Filter)
-            jewelleryTeleport(this, it.inventory, it.slot, AreaTypes[area])
+            jewelleryTeleport(this, it.inventory, it.slot, Areas[area])
         }
     }
 }

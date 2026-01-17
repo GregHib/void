@@ -11,7 +11,7 @@ import content.bot.skill.combat.setupGear
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinition
-import world.gregs.voidps.engine.data.definition.AreaTypes
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -26,7 +26,7 @@ class FiremakingBot(
 
     init {
         worldSpawn {
-            for (area in AreaTypes.tagged("fire_making")) {
+            for (area in Areas.tagged("fire_making")) {
                 val spaces: Int = area["spaces", 1]
                 val task = Task(
                     name = "make fires at ${area.name}".toLowerSpaceCase(),

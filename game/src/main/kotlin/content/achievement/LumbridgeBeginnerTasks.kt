@@ -6,7 +6,7 @@ import content.skill.melee.weapon.attackStyle
 import content.skill.prayer.PrayerApi
 import content.skill.ranged.ammo
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.data.definition.AreaTypes
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -55,7 +55,7 @@ class LumbridgeBeginnerTasks(
         }
 
         itemAdded("copper_ore", inventory = "inventory") {
-            if (softTimers.contains("mining") && tile in AreaTypes["lumbridge_swamp_east_copper_mine"]) {
+            if (softTimers.contains("mining") && tile in Areas["lumbridge_swamp_east_copper_mine"]) {
                 set("take_your_pick_task", true)
             }
         }
@@ -280,7 +280,7 @@ class LumbridgeBeginnerTasks(
         }
 
         itemAdded("empty_pot", inventory = "inventory") {
-            if (softTimers.contains("pottery") && tile in AreaTypes["draynor"]) {
+            if (softTimers.contains("pottery") && tile in Areas["draynor"]) {
                 set("hotpot_task", true)
             }
         }
@@ -292,7 +292,7 @@ class LumbridgeBeginnerTasks(
         }
 
         itemAdded("raw_shrimps", inventory = "inventory") {
-            if (softTimers.contains("fishing") && tile in AreaTypes["lumbridge_swamp_fishing_area"]) {
+            if (softTimers.contains("fishing") && tile in Areas["lumbridge_swamp_fishing_area"]) {
                 set("shrimpin_aint_easy_task", true)
             }
         }
