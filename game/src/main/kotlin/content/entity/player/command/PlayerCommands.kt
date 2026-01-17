@@ -40,7 +40,6 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.timer.TimerQueue
 import kotlin.collections.iterator
-import kotlin.getValue
 
 class PlayerCommands(
     val players: Players,

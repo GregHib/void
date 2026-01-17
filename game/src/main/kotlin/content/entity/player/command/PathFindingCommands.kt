@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.map.collision.CollisionFlags
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Tile
-import kotlin.getValue
 import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
 

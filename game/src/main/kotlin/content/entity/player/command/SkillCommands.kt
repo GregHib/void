@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.queue.softQueue
-import kotlin.getValue
 
 class SkillCommands(val players: Players, val accounts: AccountDefinitions) : Script {
 
