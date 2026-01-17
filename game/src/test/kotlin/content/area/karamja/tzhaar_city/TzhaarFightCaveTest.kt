@@ -68,14 +68,14 @@ class TzhaarFightCaveTest : WorldTest() {
         tick(2)
         player.intEntry(63)
         tick(5)
-        val jad = NPCs[player.tile.regionLevel].first { it.id == "tztok_jad" }
+        val jad = NPCs.at(player.tile.regionLevel).first { it.id == "tztok_jad" }
         jad.directHit(player, 1 + (jad.levels.getMax(Skill.Constitution) / 2))
         tick(3)
-        assertEquals(4, NPCs[player.tile.regionLevel].count { it.id == "yt_hur_kot" })
+        assertEquals(4, NPCs.at(player.tile.regionLevel).count { it.id == "yt_hur_kot" })
     }
 
     private fun killAll(player: Player) {
-        val current = NPCs[player.tile.regionLevel].toList()
+        val current = NPCs.at(player.tile.regionLevel).toList()
         for (npc in current) {
             npc.directHit(player, npc.levels.get(Skill.Constitution))
         }
@@ -83,7 +83,7 @@ class TzhaarFightCaveTest : WorldTest() {
     }
 
     private fun killKets(player: Player) {
-        val current = NPCs[player.tile.regionLevel].toList()
+        val current = NPCs.at(player.tile.regionLevel).toList()
         var killed = false
         for (npc in current) {
             if (npc.id == "tz_kek_spawn") {

@@ -40,7 +40,7 @@ class LadyKeli : Script {
                 "keli_tied_up", "prince_ali_disguise", "completed" -> {
                     target.say("You tricked me, and tied me up, Guards kill this stranger!!")
                     message("Guards alerted to kill you!")
-                    val guard = NPCs[tile.regionLevel].sortedBy { it.tile.distanceTo(tile) }.firstOrNull { it.id.startsWith("draynor_jail_guard") } ?: return@npcOperate
+                    val guard = NPCs.at(tile.regionLevel).sortedBy { it.tile.distanceTo(tile) }.firstOrNull { it.id.startsWith("draynor_jail_guard") } ?: return@npcOperate
                     guard.interactPlayer(this, "Attack")
                     guard.say("Yes M'lady")
                 }

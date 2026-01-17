@@ -33,7 +33,7 @@ class WildernessObelisk(
             replace(target, Tile(rectangle.maxX + 1, rectangle.maxY + 1))
             World.queue(target.id, 7) {
                 val obelisk = obelisks.random(random)
-                for (player in players[target.tile.zone]) {
+                for (player in players.at(target.tile.zone)) {
                     if (player.tile !in rectangle || player.teleBlocked) {
                         continue
                     }

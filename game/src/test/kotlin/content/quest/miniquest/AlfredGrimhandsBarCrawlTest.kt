@@ -244,5 +244,5 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         assertEquals(Tile(2546, 3569), player.tile)
     }
 
-    private fun findNpc(player: Player, id: String) = NPCs[player.tile.region.toLevel(player.tile.level)].first { it.id == id }
+    private fun findNpc(player: Player, id: String) = NPCs.at(player.tile.region.toLevel(player.tile.level)).first { it.id == id }
 }

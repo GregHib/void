@@ -14,7 +14,7 @@ class TzHaarHealers : Script {
         npcCondition("weakened_nearby_monsters") {
             val zones = tile.zone.toRectangle(1).toZones()
             for (zone in zones) {
-                for (npc in NPCs[zone]) {
+                for (npc in NPCs.at(zone)) {
                     if (npc.levels.get(Skill.Constitution) < npc.levels.getMax(Skill.Constitution) / 2) {
                         return@npcCondition true
                     }
@@ -26,7 +26,7 @@ class TzHaarHealers : Script {
         npcAttack("yt_mej_kot", "heal") {
             val zones = tile.zone.toRectangle(1).toZones()
             for (zone in zones) {
-                for (npc in NPCs[zone]) {
+                for (npc in NPCs.at(zone)) {
                     if (npc.levels.get(Skill.Constitution) < npc.levels.getMax(Skill.Constitution) / 2) {
                         heal(npc, 100)
                         return@npcAttack
@@ -39,7 +39,7 @@ class TzHaarHealers : Script {
             if (softTimers.contains("yt_hur_kot_heal")) {
                 return@npcMoved
             }
-            val jad = NPCs[tile.regionLevel].firstOrNull { it.id == "tztok_jad" } ?: return@npcMoved
+            val jad = NPCs.at(tile.regionLevel).firstOrNull { it.id == "tztok_jad" } ?: return@npcMoved
             if (tile.within(jad.tile, 5)) {
                 softTimers.start("yt_hur_kot_heal")
             }
@@ -48,7 +48,7 @@ class TzHaarHealers : Script {
         npcTimerStart("yt_hur_kot_heal") { 4 }
 
         npcTimerTick("yt_hur_kot_heal") {
-            val jad = NPCs[tile.regionLevel].firstOrNull { it.id == "tztok_jad" } ?: return@npcTimerTick Timer.CONTINUE
+            val jad = NPCs.at(tile.regionLevel).firstOrNull { it.id == "tztok_jad" } ?: return@npcTimerTick Timer.CONTINUE
             if (!tile.within(jad.tile, 5)) {
                 return@npcTimerTick Timer.CONTINUE
             }

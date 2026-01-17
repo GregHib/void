@@ -7,5 +7,5 @@ interface CharacterSearch<C : Character> {
 
     fun at(tile: Tile): List<C>
 
-    operator fun get(zone: Zone): List<C>
+    fun at(zone: Zone): List<C>
 }

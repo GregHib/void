@@ -66,7 +66,7 @@ class Players :
         return list
     }
 
-    override operator fun get(zone: Zone): List<Player> {
+    override fun at(zone: Zone): List<Player> {
         val list = mutableListOf<Player>()
         map.onEach(zone.id) { index ->
             list.add(indexed(index) ?: return@onEach)

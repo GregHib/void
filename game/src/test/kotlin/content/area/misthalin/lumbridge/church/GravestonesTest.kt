@@ -36,7 +36,7 @@ class GravestonesTest : WorldTest() {
 
         tick(9)
 
-        val grave = NPCs[tile].firstOrNull { it.id.startsWith("gravestone") }
+        val grave = NPCs.at(tile).firstOrNull { it.id.startsWith("gravestone") }
         assertNotNull(grave)
         assertEquals(player.name, grave["player_name", ""])
         assertTrue(grave.softTimers.contains("grave_degrade"))
@@ -53,7 +53,7 @@ class GravestonesTest : WorldTest() {
         val player = createPlayer(tile)
         Gravestone.spawn(player, tile)
         tick()
-        val grave = NPCs[tile].first { it.id.startsWith("gravestone") }
+        val grave = NPCs.at(tile).first { it.id.startsWith("gravestone") }
         grave["grave_timer"] = 119
         TimerApi.tick(grave, "grave_degrade")
         assertEquals("gravestone_memorial_plaque_broken", grave.transform)
@@ -63,7 +63,7 @@ class GravestonesTest : WorldTest() {
         grave["grave_timer"] = 0
         TimerApi.stop(grave, "grave_degrade", false)
         tick()
-        assertNull(NPCs[tile].firstOrNull { it.id.startsWith("gravestone") })
+        assertNull(NPCs.at(tile).firstOrNull { it.id.startsWith("gravestone") })
     }
 
     @Test
@@ -72,10 +72,10 @@ class GravestonesTest : WorldTest() {
         val player = createPlayer(tile)
         Gravestone.spawn(player, tile)
         tick()
-        val grave = NPCs[tile].first { it.id.startsWith("gravestone") }
+        val grave = NPCs.at(tile).first { it.id.startsWith("gravestone") }
         player.npcOption(grave, "Demolish")
         tick(2)
-        assertNull(NPCs[tile].firstOrNull { it.id.startsWith("gravestone") })
+        assertNull(NPCs.at(tile).firstOrNull { it.id.startsWith("gravestone") })
     }
 
     @Test
@@ -85,7 +85,7 @@ class GravestonesTest : WorldTest() {
         Gravestone.spawn(player, tile)
         val floorItem = floorItems.add(tile, "coins", 10, revealTicks = 100, disappearTicks = 160, owner = player.name)
         tick()
-        val grave = NPCs[tile].first { it.id.startsWith("gravestone") }
+        val grave = NPCs.at(tile).first { it.id.startsWith("gravestone") }
         grave["grave_timer"] = 119
         TimerApi.tick(grave, "grave_degrade")
 
@@ -106,7 +106,7 @@ class GravestonesTest : WorldTest() {
         Gravestone.spawn(player, tile)
         val floorItem = floorItems.add(tile, "coins", 10, revealTicks = 100, disappearTicks = 160, owner = player.name)
         tick()
-        val grave = NPCs[tile].first { it.id.startsWith("gravestone") }
+        val grave = NPCs.at(tile).first { it.id.startsWith("gravestone") }
         grave["grave_timer"] = 119
         TimerApi.tick(grave, "grave_degrade")
 

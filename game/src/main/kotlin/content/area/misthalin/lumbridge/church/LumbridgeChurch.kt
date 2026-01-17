@@ -158,8 +158,8 @@ class LumbridgeChurch : Script {
     }
 
     suspend fun Player.spawnGhost() {
-        val ghostExists = NPCs[ghostSpawn.zone].any { it.id == "restless_ghost" }
-        if (!ghostExists) {
+        val ghostExists = NPCs.findOrNull(ghostSpawn.zone, "restless_ghost")
+        if (ghostExists == null) {
             sound("coffin_open")
             sound("rg_ghost_approach")
             shoot("restless_ghost", ghostSpawn, height = 30, endHeight = 0, flightTime = 50)

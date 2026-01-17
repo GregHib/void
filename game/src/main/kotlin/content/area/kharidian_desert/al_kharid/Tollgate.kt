@@ -53,7 +53,7 @@ class Tollgate(val objects: GameObjects) : Script {
         }
     }
 
-    fun getGuard(player: Player) = NPCs[player.tile.regionLevel].firstOrNull { it.id.startsWith("border_guard_al_kharid") }
+    fun getGuard(player: Player) = NPCs.at(player.tile.regionLevel).firstOrNull { it.id.startsWith("border_guard_al_kharid") }
 
     suspend fun Player.dialogue(npc: NPC? = getGuard(this)) {
         if (npc == null) {

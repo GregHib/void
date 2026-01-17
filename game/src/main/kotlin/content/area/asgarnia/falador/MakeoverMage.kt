@@ -81,7 +81,7 @@ class MakeoverMage(val enums: EnumDefinitions) : Script {
             }
             flagAppearance()
             closeMenu()
-            val mage = NPCs[tile.regionLevel].first { it.id.startsWith("makeover_mage") }
+            val mage = NPCs.at(tile.regionLevel).first { it.id.startsWith("makeover_mage") }
             talkWith(mage)
             if (!changed) {
                 npc<Quiz>("That is no different from what you already have. I guess I shouldn't charge you if I'm not changing anything.")

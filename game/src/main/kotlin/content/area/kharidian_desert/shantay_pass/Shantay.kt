@@ -54,7 +54,7 @@ class Shantay : Script {
                 set("shantay_state", "returning")
             } else {
                 message("Shantay saunters over to talk with you.")
-                talkWith(NPCs[tile.regionLevel].first { it.id == "shantay" })
+                talkWith(NPCs.at(tile.regionLevel).first { it.id == "shantay" })
                 npc<Neutral>("If you want to be let out, you have to pay a fine of five gold. Do you want to pay now?")
                 leaveJail()
             }
@@ -155,7 +155,7 @@ class Shantay : Script {
         delay(2)
     }
 
-    fun findNearestGuard(player: Player) = NPCs[player.tile.regionLevel].sortedBy { player.tile.distanceTo(it.tile) }.firstOrNull { it.id == "shantay_guard" }
+    fun findNearestGuard(player: Player) = NPCs.at(player.tile.regionLevel).sortedBy { player.tile.distanceTo(it.tile) }.firstOrNull { it.id == "shantay_guard" }
 
     private suspend fun Player.buyPass() {
         inventory.transaction {

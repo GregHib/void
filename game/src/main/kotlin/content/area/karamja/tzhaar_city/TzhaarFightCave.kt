@@ -154,7 +154,7 @@ class TzhaarFightCave(
             if (half !in to..<from) {
                 return@npcLevelChanged
             }
-            val count = NPCs[tile.regionLevel].count { it.id == "yt_hur_kot" }
+            val count = NPCs.at(tile.regionLevel).count { it.id == "yt_hur_kot" }
             val block = CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS
             val directions = mutableSetOf(Direction.NORTH_WEST, Direction.SOUTH_EAST, Direction.SOUTH, Direction.SOUTH_WEST, Direction.NONE)
             val offset = tile.region.tile.delta(region.tile)

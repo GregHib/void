@@ -114,7 +114,15 @@ object NPCs : Runnable,
         return list
     }
 
-    override operator fun get(zone: Zone): List<NPC> {
+    fun find(zone: Zone, id: String) = find(zone) { it.id == id }
+
+    fun findOrNull(zone: Zone, id: String) = findOrNull(zone) { it.id == id }
+
+    fun find(zone: Zone, filter: (NPC) -> Boolean) = at(zone).first(filter)
+
+    fun findOrNull(zone: Zone, filter: (NPC) -> Boolean) = at(zone).firstOrNull(filter)
+
+    override fun at(zone: Zone): List<NPC> {
         val list = mutableListOf<NPC>()
         zoneMap.onEach(zone.id) { index ->
             list.add(indexed(index) ?: return@onEach)
@@ -122,7 +130,15 @@ object NPCs : Runnable,
         return list
     }
 
-    operator fun get(region: RegionLevel): List<NPC> {
+    fun find(region: RegionLevel, id: String) = find(region) { it.id == id }
+
+    fun findOrNull(region: RegionLevel, id: String) = findOrNull(region) { it.id == id }
+
+    fun find(region: RegionLevel, filter: (NPC) -> Boolean) = at(region).first(filter)
+
+    fun findOrNull(region: RegionLevel, filter: (NPC) -> Boolean) = at(region).firstOrNull(filter)
+
+    fun at(region: RegionLevel): List<NPC> {
         val list = mutableListOf<NPC>()
         regionMap.onEach(region.id) { index ->
             list.add(indexed(index) ?: return@onEach)

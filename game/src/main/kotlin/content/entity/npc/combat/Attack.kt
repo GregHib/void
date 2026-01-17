@@ -198,7 +198,7 @@ class Attack(
         val area = AreaTypes.getOrNull(area)?.area ?: return setOf(target)
         val list = mutableSetOf(target)
         for (zone in area.toZones(tile.level)) {
-            list.addAll(players[zone])
+            list.addAll(players.at(zone))
         }
         return list
     }

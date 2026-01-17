@@ -98,5 +98,5 @@ internal class EnterTheAbyssTest : WorldTest() {
         assertEquals(1000.0, player.experience.get(Skill.Runecrafting))
     }
 
-    private fun findNpc(player: Player, id: String) = NPCs[player.tile.region.toLevel(player.tile.level)].first { it.id == id }
+    private fun findNpc(player: Player, id: String) = NPCs.at(player.tile.region.toLevel(player.tile.level)).first { it.id == id }
 }
