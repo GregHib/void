@@ -6,6 +6,7 @@ import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.SaveQueue
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.World
@@ -54,7 +55,14 @@ class PlayerAccountLoader(
                 client.disconnect(Response.GAME_UPDATE)
                 return null
             }
-            val player = storage.load(username)?.toPlayer() ?: accounts.create(username, passwordHash)
+            var player = storage.load(username)?.toPlayer()
+            if (player == null) {
+                if (!Settings["development.accountCreation", false]) {
+                    client.disconnect(Response.INVALID_CREDENTIALS)
+                    return null
+                }
+                player = accounts.create(username, passwordHash)
+            }
             logger.info { "Player $username loaded and queued for login." }
             connect(player, client, displayMode)
             return player.instructions
