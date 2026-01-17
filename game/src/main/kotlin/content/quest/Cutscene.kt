@@ -74,10 +74,9 @@ class Cutscene(
         val regionLevel = instance.toLevel(0)
         get<NPCs>().clear(regionLevel)
         val objects = get<GameObjects>()
-        val collisions = get<Collisions>()
         for (zone in regionLevel.toCuboid().toZones()) {
             objects.clear(zone)
-            collisions.clear(zone)
+            Collisions.clear(zone)
         }
     }
 

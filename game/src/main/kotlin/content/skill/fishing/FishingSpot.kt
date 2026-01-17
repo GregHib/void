@@ -18,7 +18,6 @@ import world.gregs.voidps.type.random
 
 class FishingSpot(
     val players: Players,
-    val collisions: Collisions,
 ) : Script {
 
     val water = CollisionStrategies.Blocked
@@ -79,7 +78,7 @@ class FishingSpot(
     }
 
     fun check(tile: Tile, strategy: CollisionStrategy): Boolean {
-        val tileFlag = collisions[tile.x, tile.y, tile.level]
+        val tileFlag = Collisions[tile.x, tile.y, tile.level]
         return strategy.canMove(
             tileFlag,
             CollisionFlag.BLOCK_NORTH_AND_SOUTH_EAST or

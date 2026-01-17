@@ -12,6 +12,7 @@ import org.koin.dsl.module
 import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
+import org.rsmod.game.pathfinder.collision.CollisionFlagMap
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.Script
@@ -40,23 +41,20 @@ internal class InteractTest : KoinMock() {
 
     override val modules: List<Module> = listOf(
         module {
-            single {
-                Collisions().apply {
-                    for (x in 0 until 24 step 8) {
-                        for (y in 0 until 24 step 8) {
-                            allocateIfAbsent(x, y, 0)
-                        }
-                    }
-                }
-            }
-            single { LineValidator(get()) }
-            single { StepValidator(get()) }
-            single { PathFinder(get()) }
+            single { LineValidator(Collisions.map) }
+            single { StepValidator(Collisions.map) }
+            single { PathFinder(Collisions.map) }
         },
     )
 
     @BeforeEach
     fun setup() {
+        for (x in 0 until 24 step 8) {
+            for (y in 0 until 24 step 8) {
+                Collisions.deallocateIfPresent(x, y, 0)
+                Collisions.allocateIfAbsent(x, y, 0)
+            }
+        }
         mockkStatic("world.gregs.voidps.engine.client.ui.InterfacesKt")
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         approached = false

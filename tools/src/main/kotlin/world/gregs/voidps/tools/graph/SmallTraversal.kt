@@ -10,15 +10,15 @@ import world.gregs.voidps.type.Direction
  */
 object SmallTraversal : TileTraversalStrategy {
 
-    override fun blocked(collisions: Collisions, x: Int, y: Int, level: Int, size: Int, direction: Direction): Boolean = when (direction) {
-        Direction.NONE -> collisions.check(x, y, level, 2359552)
-        Direction.NORTH -> collisions.check(x, y + 1, level, 2359584)
-        Direction.EAST -> collisions.check(x + 1, y, level, 2359680)
-        Direction.SOUTH -> collisions.check(x, y - 1, level, 2359554)
-        Direction.WEST -> collisions.check(x - 1, y, level, 2359560)
-        Direction.NORTH_WEST -> collisions.check(x - 1, y + 1, level, 2359608) || collisions.check(x, y + 1, level, 2359584) || collisions.check(x - 1, y, level, 2359560)
-        Direction.NORTH_EAST -> collisions.check(x + 1, y + 1, level, 2359776) || collisions.check(x, y + 1, level, 2359584) || collisions.check(x + 1, y, level, 2359680)
-        Direction.SOUTH_EAST -> collisions.check(x + 1, y - 1, level, 2359683) || collisions.check(x, y - 1, level, 2359554) || collisions.check(x + 1, y, level, 2359680)
-        Direction.SOUTH_WEST -> collisions.check(x - 1, y - 1, level, 2359566) || collisions.check(x, y - 1, level, 2359554) || collisions.check(x - 1, y, level, 2359560)
+    override fun blocked(x: Int, y: Int, level: Int, size: Int, direction: Direction): Boolean = when (direction) {
+        Direction.NONE -> Collisions.check(x, y, level, 2359552)
+        Direction.NORTH -> Collisions.check(x, y + 1, level, 2359584)
+        Direction.EAST -> Collisions.check(x + 1, y, level, 2359680)
+        Direction.SOUTH -> Collisions.check(x, y - 1, level, 2359554)
+        Direction.WEST -> Collisions.check(x - 1, y, level, 2359560)
+        Direction.NORTH_WEST -> Collisions.check(x - 1, y + 1, level, 2359608) || Collisions.check(x, y + 1, level, 2359584) || Collisions.check(x - 1, y, level, 2359560)
+        Direction.NORTH_EAST -> Collisions.check(x + 1, y + 1, level, 2359776) || Collisions.check(x, y + 1, level, 2359584) || Collisions.check(x + 1, y, level, 2359680)
+        Direction.SOUTH_EAST -> Collisions.check(x + 1, y - 1, level, 2359683) || Collisions.check(x, y - 1, level, 2359554) || Collisions.check(x + 1, y, level, 2359680)
+        Direction.SOUTH_WEST -> Collisions.check(x - 1, y - 1, level, 2359566) || Collisions.check(x, y - 1, level, 2359554) || Collisions.check(x - 1, y, level, 2359560)
     }
 }

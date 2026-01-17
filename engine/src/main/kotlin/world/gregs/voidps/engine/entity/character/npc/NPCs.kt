@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
-import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.type.Tile
@@ -20,7 +19,6 @@ import world.gregs.voidps.type.Zone
 
 data class NPCs(
     private val definitions: NPCDefinitions,
-    private val collisions: Collisions,
 ) : Runnable,
     Iterable<NPC>,
     CharacterSearch<NPC> {

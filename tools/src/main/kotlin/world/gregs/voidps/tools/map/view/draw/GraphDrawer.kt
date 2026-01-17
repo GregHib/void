@@ -20,10 +20,9 @@ class GraphDrawer(
     private val view: MapView,
     private val nav: NavigationGraph?,
     private val area: AreaSet,
-    private val collisions: Collisions? = null,
 ) {
 
-    private val steps: StepValidator? = collisions?.let { StepValidator(it) }
+    private val steps: StepValidator = StepValidator(Collisions.map)
     private val linkColour = Color(0.0f, 0.0f, 1.0f, 0.5f)
     private val textColour = Color.WHITE
     private val indexFont = Font("serif", Font.BOLD, 16)
@@ -127,7 +126,7 @@ class GraphDrawer(
                     g.fillOval(mapX + width / 2, mapY + height / 2, width, height)
                 }
             }
-            if (DISPLAY_AREA_COLLISIONS && steps != null && collisions != null && collisions.isZoneAllocated(minX, minY, view.level)) {
+            if (DISPLAY_AREA_COLLISIONS && steps != null && Collisions.isZoneAllocated(minX, minY, view.level)) {
                 val tileWidth = view.mapToImageX(1)
                 val tileHeight = view.mapToImageY(1)
                 val xPoints = if (shape is Rectangle) intArrayOf(minX, minX, maxX, maxX) else area.points.map { it.x }.toIntArray()
@@ -150,7 +149,7 @@ class GraphDrawer(
                 g.color = areaColour
             }
         }
-        if (DISPLAY_ALL_COLLISIONS && collisions != null && steps != null) {
+        if (DISPLAY_ALL_COLLISIONS && steps != null) {
             val tileWidth = view.mapToImageX(1)
             val tileHeight = view.mapToImageY(1)
             for (zoneX in 0 until 16384 step 8) {
@@ -162,7 +161,7 @@ class GraphDrawer(
                     if (!view.contains(viewX, viewY) && !view.contains(viewX2, viewY) && !view.contains(viewX, viewY2) && !view.contains(viewX2, viewY2)) {
                         continue
                     }
-                    if (collisions.isZoneAllocated(zoneX, zoneY, view.level)) {
+                    if (Collisions.isZoneAllocated(zoneX, zoneY, view.level)) {
                         for (x in 0 until 8) {
                             for (y in 0 until 8) {
                                 g.color = if (canTravel(steps, zoneX + x, zoneY + y, view.level, CollisionStrategies.Normal)) {

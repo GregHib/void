@@ -112,7 +112,7 @@ object Main {
 
     private fun cache(cache: Cache, files: ConfigFiles) = module {
         val members = Settings["world.members", false]
-        single(createdAtStart = true) { MapDefinitions(CollisionDecoder(get()), get(), get(), cache).load(files) }
+        single(createdAtStart = true) { MapDefinitions(CollisionDecoder(), get(), get(), cache).load(files) }
         single(createdAtStart = true) { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
         single(createdAtStart = true) {
             ObjectDefinitions(ObjectDecoder(members, lowDetail = false, get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.objects"]))

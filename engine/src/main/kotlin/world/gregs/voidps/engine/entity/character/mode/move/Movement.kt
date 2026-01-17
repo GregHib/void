@@ -236,7 +236,6 @@ open class Movement(
         }
 
         private fun move(character: Character, from: Tile, to: Tile) {
-            val collisions: Collisions = get()
             val mask = character.collisionFlag
             val size = character.size
             for (x in 0 until size) {
@@ -247,8 +246,8 @@ open class Movement(
                     val toY = to.y + y
 
                     if (fromX != toX || fromY != toY || from.level != to.level) {
-                        collisions.remove(fromX, fromY, from.level, mask)
-                        collisions.add(toX, toY, to.level, mask)
+                        Collisions.remove(fromX, fromY, from.level, mask)
+                        Collisions.add(toX, toY, to.level, mask)
                     }
                 }
             }

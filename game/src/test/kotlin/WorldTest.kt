@@ -170,7 +170,6 @@ abstract class WorldTest : KoinTest {
                     single { parameterDefinitions }
                     single { gameObjects }
                     single { mapDefinitions }
-                    single { collisions }
                     single { objectCollisionAdd }
                     single { objectCollisionAdd }
                     single { objectCollisionRemove }
@@ -222,7 +221,7 @@ abstract class WorldTest : KoinTest {
         logger.info { "World startup took ${millis}ms" }
         for (x in 0 until 24 step 8) {
             for (y in 0 until 24 step 8) {
-                collisions.allocateIfAbsent(x, y, 0)
+                Collisions.allocateIfAbsent(x, y, 0)
             }
         }
     }
@@ -319,11 +318,10 @@ abstract class WorldTest : KoinTest {
         private val weaponStyleDefinitions: WeaponStyleDefinitions by lazy { WeaponStyleDefinitions().load(configFiles.find(Settings["definitions.weapons.styles"])) }
         private val weaponAnimationDefinitions: WeaponAnimationDefinitions by lazy { WeaponAnimationDefinitions().load(configFiles.find(Settings["definitions.weapons.animations"])) }
         private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder().load(cache), structDefinitions).load(configFiles.find(Settings["definitions.enums"])) }
-        private val collisions: Collisions by lazy { Collisions() }
-        private val objectCollisionAdd: GameObjectCollisionAdd by lazy { GameObjectCollisionAdd(collisions) }
-        private val objectCollisionRemove: GameObjectCollisionRemove by lazy { GameObjectCollisionRemove(collisions) }
+        private val objectCollisionAdd: GameObjectCollisionAdd by lazy { GameObjectCollisionAdd() }
+        private val objectCollisionRemove: GameObjectCollisionRemove by lazy { GameObjectCollisionRemove() }
         private val gameObjects: GameObjects by lazy { GameObjects(objectCollisionAdd, objectCollisionRemove, ZoneBatchUpdates(), objectDefinitions, storeUnused = true) }
-        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder(collisions), objectDefinitions, gameObjects, cache).load(configFiles) }
+        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder(), objectDefinitions, gameObjects, cache).load(configFiles) }
         private val fontDefinitions: FontDefinitions by lazy { FontDefinitions(FontDecoder().load(cache)).load(configFiles.find(Settings["definitions.fonts"])) }
         private val objectTeleports: ObjectTeleports by lazy { ObjectTeleports().load(configFiles.list(Settings["map.teleports"])) }
         private val itemOnItemDefinitions: ItemOnItemDefinitions by lazy { ItemOnItemDefinitions().load(configFiles.list(Settings["definitions.itemOnItem"])) }

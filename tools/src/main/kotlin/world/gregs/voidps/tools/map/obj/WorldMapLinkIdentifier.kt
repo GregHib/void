@@ -33,12 +33,11 @@ object WorldMapLinkIdentifier {
         val worldMapIconDecoder = WorldMapIconDecoder().load(cache)
         val definitions: ObjectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(configFiles().getValue(Settings["definitions.objects"]))
         val mapDecoder = MapDecoder(xteas).load(cache)
-        val collisions = Collisions()
-        val collisionDecoder = CollisionDecoder(collisions)
+        val collisionDecoder = CollisionDecoder()
         val graph = MutableNavigationGraph()
-        val linker = ObjectLinker(collisions)
+        val linker = ObjectLinker()
         val clientScriptDecoder = ClientScriptDecoder().load(cache)
-        val objects = GameObjects(GameObjectCollisionAdd(collisions), GameObjectCollisionRemove(collisions), ZoneBatchUpdates(), definitions)
+        val objects = GameObjects(GameObjectCollisionAdd(), GameObjectCollisionRemove(), ZoneBatchUpdates(), definitions)
         val regions = mutableListOf<Region>()
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {
@@ -54,7 +53,7 @@ object WorldMapLinkIdentifier {
             )
         }
         val start = System.currentTimeMillis()
-        val objCollision = GameObjectCollisionAdd(collisions)
+        val objCollision = GameObjectCollisionAdd()
         val list = mutableListOf<GameObject>()
         for (region in regions) {
             val def = mapDecoder.getOrNull(region.id) ?: continue

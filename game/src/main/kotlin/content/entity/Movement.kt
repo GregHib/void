@@ -18,7 +18,6 @@ import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.area.Rectangle
 
 class Movement(
-    val collisions: Collisions,
     val npcs: NPCs,
     val players: Players,
 ) : Script {
@@ -98,7 +97,7 @@ class Movement(
         val size = char.size
         for (x in char.tile.x until char.tile.x + size) {
             for (y in char.tile.y until char.tile.y + size) {
-                collisions.add(x, y, char.tile.level, mask)
+                Collisions.add(x, y, char.tile.level, mask)
             }
         }
     }
@@ -108,7 +107,7 @@ class Movement(
         val size = char.size
         for (x in 0 until size) {
             for (y in 0 until size) {
-                collisions.remove(char.tile.x + x, char.tile.y + y, char.tile.level, mask)
+                Collisions.remove(char.tile.x + x, char.tile.y + y, char.tile.level, mask)
             }
         }
     }

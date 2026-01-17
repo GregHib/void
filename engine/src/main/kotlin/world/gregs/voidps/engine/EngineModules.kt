@@ -28,7 +28,7 @@ fun engineLoad(files: ConfigFiles) {
 
 fun engineModule(files: ConfigFiles) = module {
     // Entities
-    single { NPCs(get(), get()) }
+    single { NPCs(get()) }
     single { Players() }
     single { GameObjects(get(), get(), get(), get(), Settings["development.loadAllObjects", false]).apply { get<ZoneBatchUpdates>().register(this) } }
     single { FloorItems(get(), get()).apply { get<ZoneBatchUpdates>().register(this) } }
@@ -42,20 +42,19 @@ fun engineModule(files: ConfigFiles) = module {
     single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game) }
     // Map
     single { ZoneBatchUpdates() }
-    single { DynamicZones(get(), get(), get()) }
+    single { DynamicZones(get(), get()) }
     single(createdAtStart = true) { CanoeDefinitions().load(files.find(Settings["map.canoes"])) }
     // Network
     single {
         ConnectionQueue(Settings["network.maxLoginsPerTick", 1])
     }
-    single(createdAtStart = true) { GameObjectCollisionAdd(get()) }
-    single(createdAtStart = true) { GameObjectCollisionRemove(get()) }
+    single(createdAtStart = true) { GameObjectCollisionAdd() }
+    single(createdAtStart = true) { GameObjectCollisionRemove() }
     // Collision
-    single { Collisions() }
-    single { StepValidator(get<Collisions>()) }
+    single { StepValidator(Collisions.map) }
     // Pathfinding
-    single { PathFinder(flags = get<Collisions>(), useRouteBlockerFlags = true) }
-    single { LineValidator(flags = get<Collisions>()) }
+    single { PathFinder(flags = Collisions.map, useRouteBlockerFlags = true) }
+    single { LineValidator(flags = Collisions.map) }
     // Definitions
     single(createdAtStart = true) { SoundDefinitions().load(files.list(Settings["definitions.sounds"])) }
     single(createdAtStart = true) { QuestDefinitions().load(files.find(Settings["definitions.quests"])) }

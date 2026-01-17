@@ -36,14 +36,13 @@ class MapViewer {
             val defs = ObjectDefinitions(decoder).load(files.list(Settings["definitions.objects"]))
             AreaTypes.load(files.list(Settings["map.areas"]))
             val nav = NavigationGraph(defs).load(files.find(Settings["map.navGraph"]))
-            val collisions = Collisions()
             if (DISPLAY_AREA_COLLISIONS || DISPLAY_ALL_COLLISIONS) {
                 val objectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache))
                     .load(files.list(Settings["definitions.objects"]))
-                val objects = GameObjects(GameObjectCollisionAdd(collisions), GameObjectCollisionRemove(collisions), ZoneBatchUpdates(), objectDefinitions)
-                MapDefinitions(CollisionDecoder(collisions), objectDefinitions, objects, cache).load(files)
+                val objects = GameObjects(GameObjectCollisionAdd(), GameObjectCollisionRemove(), ZoneBatchUpdates(), objectDefinitions)
+                MapDefinitions(CollisionDecoder(), objectDefinitions, objects, cache).load(files)
             }
-            frame.add(MapView(nav, collisions, files.list(Settings["map.areas"])))
+            frame.add(MapView(nav, files.list(Settings["map.areas"])))
             frame.pack()
             frame.setLocationRelativeTo(null)
             frame.isVisible = true

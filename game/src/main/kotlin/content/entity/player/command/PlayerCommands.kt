@@ -289,7 +289,7 @@ class PlayerCommands(
             }
         }
         if (type == "all" || type == "collision") {
-            val flag = get<Collisions>()[tile.x, tile.y, tile.level]
+            val flag = Collisions[tile.x, tile.y, tile.level]
             if (flag != 0) {
                 player.message("--- Collisions ---", ChatType.Console)
                 player.message(flag.toString(), ChatType.Console)

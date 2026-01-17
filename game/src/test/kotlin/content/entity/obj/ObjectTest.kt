@@ -10,18 +10,15 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.type.Tile
 
 internal class ObjectTest : WorldTest() {
 
-    private lateinit var collision: Collisions
     private lateinit var handler: InstructionHandlers
 
     @BeforeEach
     fun start() {
-        collision = get()
         handler = get()
     }
 

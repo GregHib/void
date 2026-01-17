@@ -12,14 +12,12 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 internal class CollisionDecoderTest {
-    private lateinit var collisions: Collisions
     private lateinit var decoder: CollisionDecoder
     private lateinit var settings: ByteArray
 
     @BeforeEach
     fun setup() {
-        collisions = Collisions()
-        decoder = CollisionDecoder(collisions)
+        decoder = CollisionDecoder()
         settings = ByteArray(64 * 64 * 4)
     }
 
@@ -31,7 +29,7 @@ internal class CollisionDecoderTest {
         // When
         decoder.decode(settings, region.tile.x, region.tile.y)
         // Then
-        assertEquals(collisions[region.tile.x + 1, region.tile.y + 1, 0], CollisionFlag.FLOOR)
+        assertEquals(Collisions[region.tile.x + 1, region.tile.y + 1, 0], CollisionFlag.FLOOR)
     }
 
     @Test
@@ -44,7 +42,7 @@ internal class CollisionDecoderTest {
         decoder.decode(settings, region.tile.x, region.tile.y)
         // Then
         for (zone in region.toRectangle().toZones()) {
-            assertTrue(collisions.allocateIfAbsent(zone.tile.x, zone.tile.y, 0).all { it == 0 })
+            assertTrue(Collisions.allocateIfAbsent(zone.tile.x, zone.tile.y, 0).all { it == 0 })
         }
     }
 
@@ -57,7 +55,7 @@ internal class CollisionDecoderTest {
         // When
         decoder.decode(settings, region.tile.x, region.tile.y)
         // Then
-        assertEquals(collisions[region.tile.x + 1, region.tile.y + 1, 1], CollisionFlag.FLOOR)
+        assertEquals(Collisions[region.tile.x + 1, region.tile.y + 1, 1], CollisionFlag.FLOOR)
     }
 
     @Test
@@ -69,7 +67,7 @@ internal class CollisionDecoderTest {
         // When
         decoder.decode(settings, source, target, 1)
         // Then
-        assertEquals(collisions[target.tile.x + 4, target.tile.y + 5, 0], CollisionFlag.FLOOR)
+        assertEquals(Collisions[target.tile.x + 4, target.tile.y + 5, 0], CollisionFlag.FLOOR)
     }
 
     @Test
@@ -80,6 +78,6 @@ internal class CollisionDecoderTest {
         // When
         decoder.decode(settings, source, source, 1)
         // Then
-        assertEquals(collisions[source.tile.x + 4, source.tile.y + 5, 0], CollisionFlag.FLOOR)
+        assertEquals(Collisions[source.tile.x + 4, source.tile.y + 5, 0], CollisionFlag.FLOOR)
     }
 }

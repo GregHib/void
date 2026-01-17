@@ -10,7 +10,21 @@ import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
-typealias Collisions = CollisionFlagMap
+object Collisions {
+    val map = CollisionFlagMap()
+
+    operator fun get(absoluteX: Int, absoluteZ: Int, level: Int) = map[absoluteX, absoluteZ, level]
+    operator fun set(absoluteX: Int, absoluteZ: Int, level: Int, mask: Int) = map.set(absoluteX, absoluteZ, level, mask)
+    fun add(absoluteX: Int, absoluteZ: Int, level: Int, mask: Int) = map.add(absoluteX, absoluteZ, level, mask)
+    fun remove(absoluteX: Int, absoluteZ: Int, level: Int, mask: Int) = map.remove(absoluteX, absoluteZ, level, mask)
+    fun allocateIfAbsent(absoluteX: Int, absoluteZ: Int, level: Int) = map.allocateIfAbsent(absoluteX, absoluteZ, level)
+    fun deallocateIfPresent(absoluteX: Int, absoluteZ: Int, level: Int) = map.deallocateIfPresent(absoluteX, absoluteZ, level)
+    fun isZoneAllocated(absoluteX: Int, absoluteZ: Int, level: Int) = map.isZoneAllocated(absoluteX, absoluteZ, level)
+
+    fun clear() {
+        map.flags.fill(null)
+    }
+}
 
 fun Collisions.check(x: Int, y: Int, level: Int, flag: Int): Boolean = get(x, y, level) and flag != 0
 
@@ -64,5 +78,14 @@ private fun canFit(steps: StepValidator, tile: Tile, collision: CollisionStrateg
         }
         return true
     }
-    return steps.canTravel(x = tile.x, z = tile.y - 1, level = tile.level, offsetX = 0, offsetZ = 1, size = size, collision = collision, extraFlag = extraFlag) || steps.canTravel(x = tile.x, z = tile.y + 1, level = tile.level, offsetX = 0, offsetZ = -1, size = size, collision = collision, extraFlag = extraFlag) || steps.canTravel(x = tile.x - 1, z = tile.y, level = tile.level, offsetX = 1, offsetZ = 0, size = size, collision = collision, extraFlag = extraFlag) || steps.canTravel(x = tile.x + 1, z = tile.y, level = tile.level, offsetX = -1, offsetZ = 0, size = size, collision = collision, extraFlag = extraFlag)
+    return steps.canTravel(x = tile.x, z = tile.y - 1, level = tile.level, offsetX = 0, offsetZ = 1, size = size, collision = collision, extraFlag = extraFlag) || steps.canTravel(x = tile.x, z = tile.y + 1, level = tile.level, offsetX = 0, offsetZ = -1, size = size, collision = collision, extraFlag = extraFlag) || steps.canTravel(
+        x = tile.x - 1,
+        z = tile.y,
+        level = tile.level,
+        offsetX = 1,
+        offsetZ = 0,
+        size = size,
+        collision = collision,
+        extraFlag = extraFlag
+    ) || steps.canTravel(x = tile.x + 1, z = tile.y, level = tile.level, offsetX = -1, offsetZ = 0, size = size, collision = collision, extraFlag = extraFlag)
 }

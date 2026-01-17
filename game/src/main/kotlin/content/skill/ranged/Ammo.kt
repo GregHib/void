@@ -65,7 +65,7 @@ object Ammo {
             player.message("That was your last one!")
         }
 
-        if (random > 1.0 - dropChance && !get<Collisions>().check(target.tile.x, target.tile.y, target.tile.level, CollisionFlag.FLOOR)) {
+        if (random > 1.0 - dropChance && !Collisions.check(target.tile.x, target.tile.y, target.tile.level, CollisionFlag.FLOOR)) {
             get<FloorItems>().add(target.tile, ammo, required, revealTicks = 100, disappearTicks = 200, owner = player)
         }
     }
