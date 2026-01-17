@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.mode.move.Steps
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.timer.TimerSlot
@@ -63,11 +62,11 @@ data class NPC(
     var huntMode: String? = null
     var huntCounter = 0
 
-    fun def(player: Player, definitions: NPCDefinitions = get()): NPCDefinition {
+    fun def(player: Player): NPCDefinition {
         if (contains("transform_id")) {
-            return definitions.get(this["transform_id", ""])
+            return NPCDefinitions.get(this["transform_id", ""])
         }
-        return definitions.resolve(def, player)
+        return NPCDefinitions.resolve(def, player)
     }
 
     override fun equals(other: Any?): Boolean {

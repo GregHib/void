@@ -13,18 +13,18 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.type.Direction
 import kotlin.text.toIntOrNull
 
-class NPCCommands(val npcs: NPCs, val npcDefinitions: NPCDefinitions) : Script {
+class NPCCommands(val npcs: NPCs) : Script {
 
     init {
         modCommand("npcs", desc = "Get total npc count") {
             message("NPCs: ${npcs.count()}")
         }
-        adminCommand("npc", stringArg("npc-id", autofill = npcDefinitions.ids.keys), desc = "Spawn an npc", handler = ::spawn)
+        adminCommand("npc", stringArg("npc-id", autofill = NPCDefinitions.ids.keys), desc = "Spawn an npc", handler = ::spawn)
     }
 
     fun spawn(player: Player, args: List<String>) {
         val id = args[0].toIntOrNull()
-        val definition = if (id != null) npcDefinitions.getOrNull(id) else npcDefinitions.getOrNull(args[0])
+        val definition = if (id != null) NPCDefinitions.getOrNull(id) else NPCDefinitions.getOrNull(args[0])
         if (definition == null) {
             player.message("Unable to find npc with id ${args[0]}.")
             return

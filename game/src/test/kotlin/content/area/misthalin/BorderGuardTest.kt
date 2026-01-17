@@ -12,13 +12,11 @@ import world.gregs.voidps.type.Tile
 
 internal class BorderGuardTest : WorldTest() {
 
-    private lateinit var collision: Collisions
     private lateinit var handler: InstructionHandlers
 
     @BeforeEach
     fun start() {
         handler = get()
-        collision = get()
     }
 
     @Test

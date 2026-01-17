@@ -19,7 +19,6 @@ object Wildcards {
 
     private var changes = false
 
-    private lateinit var npcDefinitions: NPCDefinitions
     private lateinit var objectDefinitions: ObjectDefinitions
     private lateinit var interfaceDefinitions: InterfaceDefinitions
     private lateinit var itemDefinitions: ItemDefinitions
@@ -27,14 +26,12 @@ object Wildcards {
 
     fun load(
         path: String,
-        npcDefinitions: NPCDefinitions = get(),
         objectDefinitions: ObjectDefinitions = get(),
         interfaceDefinitions: InterfaceDefinitions = get(),
         itemDefinitions: ItemDefinitions = get(),
         variableDefinitions: VariableDefinitions = get(),
     ) {
         timedLoad("wildcard") {
-            this.npcDefinitions = npcDefinitions
             this.objectDefinitions = objectDefinitions
             this.interfaceDefinitions = interfaceDefinitions
             this.itemDefinitions = itemDefinitions
@@ -79,7 +76,7 @@ object Wildcards {
 
     private fun fingerprint(type: Wildcard): Int {
         return when (type) {
-            Wildcard.Npc -> npcDefinitions.ids.keys.hashCode()
+            Wildcard.Npc -> NPCDefinitions.ids.keys.hashCode()
             Wildcard.Object -> objectDefinitions.ids.keys.hashCode()
             Wildcard.Interface -> interfaceDefinitions.ids.keys.hashCode()
             Wildcard.Component -> interfaceDefinitions.componentIds.keys.hashCode()
@@ -135,7 +132,7 @@ object Wildcards {
     }
 
     private fun set(type: Wildcard): Set<String> = when (type) {
-        Wildcard.Npc -> npcDefinitions.ids.keys
+        Wildcard.Npc -> NPCDefinitions.ids.keys
         Wildcard.Object -> objectDefinitions.ids.keys
         Wildcard.Interface -> interfaceDefinitions.ids.keys
         Wildcard.Component -> interfaceDefinitions.componentIds.keys

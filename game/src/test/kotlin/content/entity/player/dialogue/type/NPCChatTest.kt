@@ -50,10 +50,7 @@ internal class NPCChatTest : DialogueTest() {
             every { this@declareMock.getOrNull("expression_laugh3")?.id } returns 9840
             every { this@declareMock.getOrNull("expression_laugh4")?.id } returns 9840
         }
-        declareMock<NPCDefinitions> {
-            every { this@declareMock.get(any<String>()) } returns NPCDefinition()
-            every { this@declareMock.get("jim") } returns NPCDefinition(id = 123, name = "Jim")
-        }
+        NPCDefinitions.set(Array(124) { if (it == 123) NPCDefinition(id = 123, name = "Jim") else NPCDefinition.EMPTY }, mapOf("jim" to 123))
     }
 
     @TestFactory

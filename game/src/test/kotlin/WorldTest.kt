@@ -14,6 +14,7 @@ import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.MemoryCache
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
+import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
@@ -150,7 +151,6 @@ abstract class WorldTest : KoinTest {
                     single(createdAtStart = true) { cache }
                     single(createdAtStart = true) { huffman }
                     single(createdAtStart = true) { objectDefinitions }
-                    single(createdAtStart = true) { npcDefinitions }
                     single(createdAtStart = true) { itemDefinitions }
                     single(createdAtStart = true) { animationDefinitions }
                     single(createdAtStart = true) { graphicDefinitions }
@@ -189,6 +189,7 @@ abstract class WorldTest : KoinTest {
                 },
             )
         }
+        NPCDefinitions.set(npcDefinitions, npcIds)
         engineLoad(configFiles)
         Wildcards.load(Settings["storage.wildcards"])
         scripts = ContentLoader().load()
@@ -231,7 +232,7 @@ abstract class WorldTest : KoinTest {
         setCurrentTime { TIME }
         settings = Settings.load(properties)
         if (loadNpcs) {
-            loadNpcSpawns(npcs, configFiles.list(Settings["spawns.npcs"]), npcDefinitions)
+            loadNpcSpawns(npcs, configFiles.list(Settings["spawns.npcs"]))
         }
         setRandom(FakeRandom())
     }
@@ -295,8 +296,12 @@ abstract class WorldTest : KoinTest {
         val objectDefinitions: ObjectDefinitions by lazy {
             ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false, parameterDefinitions).load(cache)).load(configFiles.list(Settings["definitions.objects"]))
         }
-        private val npcDefinitions: NPCDefinitions by lazy {
-            NPCDefinitions(NPCDecoder(member = true, parameterDefinitions).load(cache)).load(configFiles.list(Settings["definitions.npcs"]))
+        private val npcDefinitions: Array<NPCDefinition> by lazy {
+            NPCDecoder(member = true, parameterDefinitions).load(cache)
+        }
+        private val npcIds: Map<String, Int> by lazy {
+            NPCDefinitions.init(npcDefinitions).load(configFiles.list(Settings["definitions.npcs"]))
+            NPCDefinitions.ids
         }
         val itemDefinitions: ItemDefinitions by lazy {
             ItemDefinitions(ItemDecoder(parameterDefinitions).load(cache)).load(configFiles.list(Settings["definitions.items"]))

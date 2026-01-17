@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.Players
 class EffectCommands(
     val accounts: AccountDefinitions,
     val players: Players,
-    npcDefinitions: NPCDefinitions,
 ) : Script {
 
     init {
@@ -24,7 +23,7 @@ class EffectCommands(
         adminCommand("poison", intArg("damage", optional = true), stringArg("player-name", optional = true), desc = "Poison the player", handler = ::poison)
         adminCommand("freeze", intArg("ticks", optional = true), stringArg("player-name", optional = true), desc = "Freeze the player", handler = ::freeze)
         adminCommand("cure", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Cure the player", handler = ::cure)
-        adminCommand("tfm", stringArg("npc-id", autofill = npcDefinitions.ids.keys), stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Transform into an npc (-1 to clear)", handler = ::transform)
+        adminCommand("tfm", stringArg("npc-id", autofill = NPCDefinitions.ids.keys), stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Transform into an npc (-1 to clear)", handler = ::transform)
         commandAlias("tfm", "transform")
         commandSuggestion("tfm", "pnpc", "morph")
     }

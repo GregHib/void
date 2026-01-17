@@ -26,7 +26,6 @@ class MetaCommands(
     val fontDefinitions: FontDefinitions,
     val itemDefinitions: ItemDefinitions,
     val objectDefinitions: ObjectDefinitions,
-    val npcDefinitions: NPCDefinitions,
     val accountDefinitions: AccountDefinitions,
     val grandExchange: GrandExchange,
     val variableDefinitions: VariableDefinitions,
@@ -49,7 +48,7 @@ class MetaCommands(
 
         modCommand(
             "find",
-            stringArg("content-name", desc = "The term to search content for", autofill = { itemDefinitions.ids.keys + objectDefinitions.ids.keys + npcDefinitions.ids.keys + accountDefinitions.displayNames.keys + accountDefinitions.clans.keys }),
+            stringArg("content-name", desc = "The term to search content for", autofill = { itemDefinitions.ids.keys + objectDefinitions.ids.keys + NPCDefinitions.ids.keys + accountDefinitions.displayNames.keys + accountDefinitions.clans.keys }),
             desc = "Search all content",
             handler = ::find,
         )
@@ -77,14 +76,14 @@ class MetaCommands(
             message("$found results found for '$search'", ChatType.Console)
         }
 
-        modCommand("npcs", stringArg("name", desc = "Npc name or id to search for", autofill = npcDefinitions.ids.keys), desc = "Search all npcs") { args ->
+        modCommand("npcs", stringArg("name", desc = "Npc name or id to search for", autofill = NPCDefinitions.ids.keys), desc = "Search all npcs") { args ->
             if (hasClock("search_delay")) {
                 return@modCommand
             }
             start("search_delay", 1)
             val search = args.joinToString(" ").lowercase()
             message("===== NPCs =====", ChatType.Console)
-            val found = search(this, npcDefinitions, search) { it.name }
+            val found = search(this, NPCDefinitions, search) { it.name }
             message("$found results found for '$search'", ChatType.Console)
         }
 
@@ -123,7 +122,7 @@ class MetaCommands(
         player.message("===== Objects =====", ChatType.Console)
         found += search(player, objectDefinitions, search) { it.name }
         player.message("===== NPCs =====", ChatType.Console)
-        found += search(player, npcDefinitions, search) { it.name }
+        found += search(player, NPCDefinitions, search) { it.name }
         player.message("===== Commands =====", ChatType.Console)
         found += searchCommands(player, search)
         player.message("===== Players =====", ChatType.Console)

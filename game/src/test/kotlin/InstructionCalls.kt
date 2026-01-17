@@ -174,7 +174,7 @@ fun Player.itemOnItem(
 }
 
 fun Player.npcOption(npc: NPC, option: String) {
-    val definitions = get<NPCDefinitions>()
+    val definitions = NPCDefinitions
     val def = if (npc.transform.isNotBlank()) {
         definitions.get(npc.transform)
     } else {

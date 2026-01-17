@@ -15,7 +15,6 @@ import world.gregs.voidps.network.client.instruction.ExamineObject
 
 class Examines(
     val itemDefinitions: ItemDefinitions,
-    val npcDefinitions: NPCDefinitions,
     val objectDefinitions: ObjectDefinitions,
 ) : Script {
 
@@ -54,7 +53,7 @@ class Examines(
         }
 
         instruction<ExamineNpc> { player ->
-            val definition = npcDefinitions.get(npcId)
+            val definition = NPCDefinitions.get(npcId)
             if (definition.contains("examine")) {
                 player.message(definition["examine"], ChatType.Game)
             }

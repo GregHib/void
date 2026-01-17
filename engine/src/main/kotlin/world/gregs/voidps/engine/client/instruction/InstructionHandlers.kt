@@ -4,7 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.instruction.handle.*
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -21,7 +20,6 @@ class InstructionHandlers(
     items: FloorItems,
     objects: GameObjects,
     objectDefinitions: ObjectDefinitions,
-    npcDefinitions: NPCDefinitions,
     itemDefinitions: ItemDefinitions,
     interfaceDefinitions: InterfaceDefinitions,
     handler: InterfaceHandler,
@@ -33,7 +31,7 @@ class InstructionHandlers(
     private val closeInterface = InterfaceClosedHandler()
     val interactInterface = InterfaceOptionHandler(handler, interfaceDefinitions)
     private val moveInventoryItem = InterfaceSwitchHandler(handler)
-    private val interactNPC = NPCOptionHandler(npcs, npcDefinitions)
+    private val interactNPC = NPCOptionHandler(npcs)
     private val interactObject = ObjectOptionHandler(objects, objectDefinitions)
     private val interactPlayer = PlayerOptionHandler(players)
     private val interactInterfaceNPC = InterfaceOnNPCOptionHandler(npcs, handler)

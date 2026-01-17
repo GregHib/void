@@ -19,13 +19,12 @@ import world.gregs.voidps.type.Delta
 
 class NPCUpdatingCommands(
     val npcs: NPCs,
-    val definitions: NPCDefinitions,
     animationDefinitions: AnimationDefinitions,
     graphicDefinitions: GraphicDefinitions,
 ) : Script {
 
     init {
-        adminCommand("npc_tfm", stringArg("transform-id", autofill = definitions.ids.keys)) { args ->
+        adminCommand("npc_tfm", stringArg("transform-id", autofill = NPCDefinitions.ids.keys)) { args ->
             val npc = npcs[tile.addY(1)].first()
             npc.transform(args[0])
         }

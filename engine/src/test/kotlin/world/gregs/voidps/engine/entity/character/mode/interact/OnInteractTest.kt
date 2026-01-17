@@ -31,11 +31,7 @@ abstract class OnInteractTest : KoinMock() {
         declare { mockk<StepValidator>(relaxed = true) }
         declare { mockk<LineValidator>(relaxed = true) }
         declare { mockk<PathFinder>(relaxed = true) }
-        declare {
-            val def = mockk<NPCDefinitions>(relaxed = true)
-            every { def.resolve(any(), any()) } returns NPCDefinition(0, stringId = "npc")
-            def
-        }
+        NPCDefinitions.init(arrayOf(NPCDefinition(0, stringId = "npc")))
         declare {
             val def = mockk<ObjectDefinitions>(relaxed = true)
             every { def.resolve(any(), any()) } returns ObjectDefinition(0, stringId = "obj")

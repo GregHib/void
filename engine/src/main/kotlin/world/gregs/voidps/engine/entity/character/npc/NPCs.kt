@@ -17,9 +17,7 @@ import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
-data class NPCs(
-    private val definitions: NPCDefinitions,
-) : Runnable,
+class NPCs : Runnable,
     Iterable<NPC>,
     CharacterSearch<NPC> {
     private val indexArray: Array<NPC?> = arrayOfNulls(MAX_NPCS)
@@ -64,7 +62,7 @@ data class NPCs(
     fun indexed(index: Int): NPC? = indexArray.getOrNull(index)
 
     fun add(id: String, tile: Tile, direction: Direction = Direction.SOUTH): NPC {
-        val def = definitions.getOrNull(id) ?: return NPC(id, tile, NPCDefinition.EMPTY)
+        val def = NPCDefinitions.getOrNull(id) ?: return NPC(id, tile, NPCDefinition.EMPTY)
         val npc = NPC(id, tile, def)
         if (spawnIndex < spawnQueue.size) {
             spawnQueue[spawnIndex++] = npc

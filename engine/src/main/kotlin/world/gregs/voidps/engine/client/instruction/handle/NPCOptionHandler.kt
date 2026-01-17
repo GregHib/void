@@ -19,7 +19,6 @@ import world.gregs.voidps.network.client.instruction.InteractNPC
 
 class NPCOptionHandler(
     private val npcs: NPCs,
-    private val definitions: NPCDefinitions,
 ) : InstructionHandler<InteractNPC>() {
 
     private val logger = InlineLogger()
@@ -32,9 +31,9 @@ class NPCOptionHandler(
         var def = npc.def
         val transform = npc["transform_id", ""]
         if (transform.isNotBlank()) {
-            def = definitions.get(transform)
+            def = NPCDefinitions.get(transform)
         }
-        val definition = getDefinition(player, definitions, def, def)
+        val definition = getDefinition(player, NPCDefinitions, def, def)
         val options = definition.options
         val index = instruction.option - 1
         val selectedOption = options.getOrNull(index)

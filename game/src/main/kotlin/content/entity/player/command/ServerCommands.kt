@@ -102,10 +102,9 @@ class ServerCommands(val players: Players, val accountLoader: PlayerAccountLoade
             }
             "nav_graph", "ai_graph" -> get<NavigationGraph>().load(files.find(Settings["map.navGraph"]))
             "npcs" -> {
-                val npcDefs = get<NPCDefinitions>()
-                npcDefs.load(files.list(Settings["definitions.npcs"]))
+                NPCDefinitions.load(files.list(Settings["definitions.npcs"]))
                 val npcs: NPCs = get()
-                loadNpcSpawns(npcs, files.list(Settings["spawns.npcs"]), npcDefs)
+                loadNpcSpawns(npcs, files.list(Settings["spawns.npcs"]))
             }
             "areas" -> AreaTypes.load(files.list(Settings["map.areas"]))
             "emotes", "render_anims", "render_emotes" -> get<RenderEmoteDefinitions>().load(files.find(Settings["definitions.renderEmotes"]))

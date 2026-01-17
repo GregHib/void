@@ -13,9 +13,9 @@ class NPCsTest {
 
     @BeforeEach
     fun setup() {
-        val definitions = NPCDefinitions(arrayOf(NPCDefinition(0)))
+        val definitions = NPCDefinitions.init(arrayOf(NPCDefinition(0)))
         definitions.ids = mapOf("test" to 0)
-        npcs = NPCs(definitions)
+        npcs = NPCs()
     }
 
     @Test

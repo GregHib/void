@@ -69,7 +69,7 @@ fun Player.clearRenderEmote() = flag {
     if (id == null) {
         emote = 1426
     } else {
-        val definition = get<NPCDefinitions>().get(id)
+        val definition = NPCDefinitions.get(id)
         emote = definition.renderEmote
     }
 }

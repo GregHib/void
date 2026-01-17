@@ -28,7 +28,7 @@ fun engineLoad(files: ConfigFiles) {
 
 fun engineModule(files: ConfigFiles) = module {
     // Entities
-    single { NPCs(get()) }
+    single { NPCs() }
     single { Players() }
     single { GameObjects(get(), get(), get(), get(), Settings["development.loadAllObjects", false]).apply { get<ZoneBatchUpdates>().register(this) } }
     single { FloorItems(get(), get()).apply { get<ZoneBatchUpdates>().register(this) } }

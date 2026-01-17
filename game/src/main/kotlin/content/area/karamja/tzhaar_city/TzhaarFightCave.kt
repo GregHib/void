@@ -49,7 +49,6 @@ import world.gregs.voidps.type.*
 import java.util.concurrent.TimeUnit
 
 class TzhaarFightCave(
-    val npcDefinitions: NPCDefinitions,
     val npcs: NPCs,
     val accountManager: AccountManager,
 ) : Script {
@@ -160,7 +159,7 @@ class TzhaarFightCave(
             val block = CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS
             val directions = mutableSetOf(Direction.NORTH_WEST, Direction.SOUTH_EAST, Direction.SOUTH, Direction.SOUTH_WEST, Direction.NONE)
             val offset = tile.region.tile.delta(region.tile)
-            val def = npcDefinitions.get("yt_hur_kot")
+            val def = NPCDefinitions.get("yt_hur_kot")
             for (i in 0 until 4 - count) {
                 val dir = directions.random(random)
                 var tile = randomTile(dir, offset, def, block) ?: continue
@@ -276,7 +275,7 @@ class TzhaarFightCave(
         val block = CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS
         for (i in ids.indices) {
             val id = ids[i]
-            val def = npcDefinitions.get(id)
+            val def = NPCDefinitions.get(id)
             val direction = directions[i]
             val tile = randomTile(direction, offset, def, block) ?: continue
             spawn(id, tile, player)

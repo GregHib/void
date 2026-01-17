@@ -32,7 +32,7 @@ object MonsterInfoBoxDumper {
         val ammo = AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"]))
         val parameters = ParameterDefinitions(categories, ammo).load(files.find(Settings["definitions.parameters"]))
         val definitions = NPCDecoder(true, parameters).load(cache)
-        val decoder = NPCDefinitions(definitions).load(files.getValue(Settings["definitions.npcs"]))
+        NPCDefinitions.init(definitions).load(files.getValue(Settings["definitions.npcs"]))
         val wiki = Wiki.load("C:\\Users\\Greg\\Downloads\\oldschool-runescape-wiki-2023-10-08.xml")
         if (infoBox) {
             if (save) {
@@ -47,13 +47,13 @@ object MonsterInfoBoxDumper {
                 if (infobox.contains("name1") || infobox.contains("version1")) {
                     for (i in 1 until 25) {
                         if (infobox.contains("name$i") || infobox.contains("version$i")) {
-                            print(decoder, infobox, i.toString())
+                            print(NPCDefinitions, infobox, i.toString())
                         } else {
                             break
                         }
                     }
                 } else if (infobox.contains("name")) {
-                    print(decoder, infobox, "")
+                    print(NPCDefinitions, infobox, "")
                 }
             }
         }

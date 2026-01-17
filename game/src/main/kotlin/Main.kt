@@ -4,6 +4,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.runBlocking
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
+import org.koin.core.module.Module
 import org.koin.dsl.module
 import org.koin.logger.slf4jLogger
 import world.gregs.voidps.cache.Cache
@@ -110,38 +111,41 @@ object Main {
         )
     }
 
-    private fun cache(cache: Cache, files: ConfigFiles) = module {
+    private fun cache(cache: Cache, files: ConfigFiles): Module {
         val members = Settings["world.members", false]
-        single(createdAtStart = true) { MapDefinitions(CollisionDecoder(), get(), get(), cache).load(files) }
-        single(createdAtStart = true) { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
-        single(createdAtStart = true) {
-            ObjectDefinitions(ObjectDecoder(members, lowDetail = false, get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.objects"]))
+        val module = module {
+            single(createdAtStart = true) { MapDefinitions(CollisionDecoder(), get(), get(), cache).load(files) }
+            single(createdAtStart = true) { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
+            single(createdAtStart = true) {
+                ObjectDefinitions(ObjectDecoder(members, lowDetail = false, get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.objects"]))
+            }
+            single(createdAtStart = true) { NPCDefinitions.init(NPCDecoder(members, get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.npcs"]), get()) }
+            single(createdAtStart = true) { ItemDefinitions(ItemDecoder(get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.items"])) }
+            single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().load(cache)).load(files.list(Settings["definitions.animations"])) }
+            single(createdAtStart = true) { EnumDefinitions(EnumDecoder().load(cache), get()).load(files.find(Settings["definitions.enums"])) }
+            single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(cache)).load(files.list(Settings["definitions.graphics"])) }
+            single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().load(cache)).load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"])) }
+            single(createdAtStart = true) { InventoryDefinitions(InventoryDecoder().load(cache)).load(files.list(Settings["definitions.inventories"]), files.list(Settings["definitions.shops"])) }
+            single(createdAtStart = true) { StructDefinitions(StructDecoder(get<ParameterDefinitions>()).load(cache)).load(files.find(Settings["definitions.structs"])) }
+            single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }
+            single(createdAtStart = true) { WeaponStyleDefinitions().load(files.find(Settings["definitions.weapons.styles"])) }
+            single(createdAtStart = true) { WeaponAnimationDefinitions().load(files.find(Settings["definitions.weapons.animations"])) }
+            single(createdAtStart = true) { AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"])) }
+            single(createdAtStart = true) { ParameterDefinitions(get(), get()).load(files.find(Settings["definitions.parameters"])) }
+            single(createdAtStart = true) { FontDefinitions(FontDecoder().load(cache)).load(files.find(Settings["definitions.fonts"])) }
+            single(createdAtStart = true) { ItemOnItemDefinitions().load(files.list(Settings["definitions.itemOnItem"])) }
+            single(createdAtStart = true) {
+                VariableDefinitions().load(
+                    files.list(Settings["definitions.variables.players"]),
+                    files.list(Settings["definitions.variables.bits"]),
+                    files.list(Settings["definitions.variables.clients"]),
+                    files.list(Settings["definitions.variables.strings"]),
+                    files.list(Settings["definitions.variables.customs"]),
+                )
+            }
+            single(createdAtStart = true) { DropTables().load(files.list(Settings["spawns.drops"]), get()) }
+            single(createdAtStart = true) { ObjectTeleports().load(files.list(Settings["map.teleports"])) }
         }
-        single(createdAtStart = true) { NPCDefinitions(NPCDecoder(members, get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.npcs"]), get(), get(), get()) }
-        single(createdAtStart = true) { ItemDefinitions(ItemDecoder(get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.items"])) }
-        single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().load(cache)).load(files.list(Settings["definitions.animations"])) }
-        single(createdAtStart = true) { EnumDefinitions(EnumDecoder().load(cache), get()).load(files.find(Settings["definitions.enums"])) }
-        single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(cache)).load(files.list(Settings["definitions.graphics"])) }
-        single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().load(cache)).load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"])) }
-        single(createdAtStart = true) { InventoryDefinitions(InventoryDecoder().load(cache)).load(files.list(Settings["definitions.inventories"]), files.list(Settings["definitions.shops"])) }
-        single(createdAtStart = true) { StructDefinitions(StructDecoder(get<ParameterDefinitions>()).load(cache)).load(files.find(Settings["definitions.structs"])) }
-        single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }
-        single(createdAtStart = true) { WeaponStyleDefinitions().load(files.find(Settings["definitions.weapons.styles"])) }
-        single(createdAtStart = true) { WeaponAnimationDefinitions().load(files.find(Settings["definitions.weapons.animations"])) }
-        single(createdAtStart = true) { AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"])) }
-        single(createdAtStart = true) { ParameterDefinitions(get(), get()).load(files.find(Settings["definitions.parameters"])) }
-        single(createdAtStart = true) { FontDefinitions(FontDecoder().load(cache)).load(files.find(Settings["definitions.fonts"])) }
-        single(createdAtStart = true) { ItemOnItemDefinitions().load(files.list(Settings["definitions.itemOnItem"])) }
-        single(createdAtStart = true) {
-            VariableDefinitions().load(
-                files.list(Settings["definitions.variables.players"]),
-                files.list(Settings["definitions.variables.bits"]),
-                files.list(Settings["definitions.variables.clients"]),
-                files.list(Settings["definitions.variables.strings"]),
-                files.list(Settings["definitions.variables.customs"]),
-            )
-        }
-        single(createdAtStart = true) { DropTables().load(files.list(Settings["spawns.drops"]), get()) }
-        single(createdAtStart = true) { ObjectTeleports().load(files.list(Settings["map.teleports"])) }
+        return module
     }
 }
