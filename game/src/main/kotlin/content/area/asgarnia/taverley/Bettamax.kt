@@ -8,7 +8,7 @@ class Bettamax : Script {
 
     init {
         npcSpawn("wilbur") {
-            val bettamax = NPCs.at(tile.zone).first { it.id == "bettamax" }
+            val bettamax = NPCs.find(tile.zone, "bettamax")
             mode = Follow(this, bettamax)
             watch(bettamax)
         }

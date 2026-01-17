@@ -221,7 +221,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     fun `You Can Bank on Us`() {
         val player = createPlayer(Tile(3208, 3220, 2))
 
-        val banker = NPCs.at(Tile(3208, 3222, 2)).first { it.id.startsWith("banker") }
+        val banker = NPCs.find(Tile(3208, 3222, 2)) { it.id.startsWith("banker") }
 
         player.npcOption(banker, "Talk-to")
         tick(2)
@@ -256,7 +256,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
             override fun nextInt(from: Int, until: Int) = until
         })
         val player = createPlayer(Tile(3257, 3260))
-        val npc = NPCs.at(Tile(3258, 3260)).first { it.id.startsWith("cow_") }
+        val npc = NPCs.find(Tile(3258, 3260)) { it.id.startsWith("cow_") }
 
         player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
         player.levels.set(Skill.Attack, 100)
@@ -272,7 +272,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     @Test
     fun `Tan Your Hide`() {
         val player = createPlayer(Tile(3276, 3192))
-        val npc = NPCs.at(Tile(3276, 3193)).first { it.id == "ellis" }
+        val npc = NPCs.find(Tile(3276, 3193)) { it.id == "ellis" }
 
         player.inventory.add("cowhide", "coins")
 
@@ -400,7 +400,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     @Test
     fun `Greasing the Wheels of Commerce`() {
         val player = createPlayer(Tile(3214, 3242))
-        val npc = NPCs.at(Tile(3214, 3243)).first { it.id == "shop_assistant_lumbridge" }
+        val npc = NPCs.find(Tile(3214, 3243), "shop_assistant_lumbridge")
         player.inventory.add("bronze_dagger", 1)
 
         player.npcOption(npc, "Trade")
@@ -577,7 +577,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     @Test
     fun `The Fruit of the Sea`() {
         val player = createPlayer(Tile(3194, 3254))
-        val npc = NPCs.at(Tile(3195, 3254)).first { it.id == "hank" }
+        val npc = NPCs.find(Tile(3195, 3254), "hank")
         player.inventory.add("raw_shrimps")
 
         player.npcOption(npc, "Trade")
@@ -662,7 +662,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
             override fun nextBits(bitCount: Int) = 100
         })
         val player = createPlayer(Tile(3206, 3205))
-        val npc = NPCs.at(Tile(3206, 3204)).first { it.id == "rat" }
+        val npc = NPCs.find(Tile(3206, 3204), "rat")
 
         player.levels.set(Skill.Ranged, 50)
         player.equipment.set(EquipSlot.Weapon.index, "magic_shortbow")
@@ -718,7 +718,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     @Test
     fun `Hail to the Duke, Baby`() {
         val player = createPlayer(Tile(3211, 3220, 1))
-        val duke = NPCs.at(Tile(3212, 3220, 1)).first { it.id == "duke_horacio" }
+        val duke = NPCs.find(Tile(3212, 3220, 1), "duke_horacio")
 
         player.npcOption(duke, "Talk-to")
         tick()
@@ -729,7 +729,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     @Test
     fun `Window Shopping`() {
         val player = createPlayer(Tile(3215, 3243))
-        val npc = NPCs.at(Tile(3214, 3243)).first { it.id == "shop_assistant_lumbridge" }
+        val npc = NPCs.find(Tile(3214, 3243), "shop_assistant_lumbridge")
 
         player.npcOption(npc, "Trade")
         tick()
@@ -794,7 +794,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         val player = createPlayer(Tile(3267, 3227))
         player.inventory.add("coins", 10)
 
-        val guard = NPCs.at(Tile(3267, 3226)).first { it.id == "border_guard_al_kharid" }
+        val guard = NPCs.find(Tile(3267, 3226), "border_guard_al_kharid")
         player.npcOption(guard, "Talk-to")
         tick()
         player.dialogueContinue(2)
@@ -809,7 +809,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         val player = createPlayer(Tile(3267, 3227))
         player.inventory.add("coins", 9)
 
-        val guard = NPCs.at(Tile(3267, 3226)).first { it.id == "border_guard_al_kharid" }
+        val guard = NPCs.find(Tile(3267, 3226), "border_guard_al_kharid")
         player.npcOption(guard, "Talk-to")
         tick()
         player.dialogueContinue(2)
@@ -823,7 +823,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     fun `What is This Place`() {
         val player = createPlayer(Tile(3104, 9571))
 
-        val guard = NPCs.at(Tile(3103, 9571)).first { it.id == "sedridor" }
+        val guard = NPCs.find(Tile(3103, 9571), "sedridor")
         player.npcOption(guard, "Teleport")
         tick(2)
 

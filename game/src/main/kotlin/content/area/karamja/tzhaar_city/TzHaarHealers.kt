@@ -39,7 +39,7 @@ class TzHaarHealers : Script {
             if (softTimers.contains("yt_hur_kot_heal")) {
                 return@npcMoved
             }
-            val jad = NPCs.at(tile.regionLevel).firstOrNull { it.id == "tztok_jad" } ?: return@npcMoved
+            val jad = NPCs.findOrNull(tile.regionLevel, "tztok_jad") ?: return@npcMoved
             if (tile.within(jad.tile, 5)) {
                 softTimers.start("yt_hur_kot_heal")
             }
@@ -48,7 +48,7 @@ class TzHaarHealers : Script {
         npcTimerStart("yt_hur_kot_heal") { 4 }
 
         npcTimerTick("yt_hur_kot_heal") {
-            val jad = NPCs.at(tile.regionLevel).firstOrNull { it.id == "tztok_jad" } ?: return@npcTimerTick Timer.CONTINUE
+            val jad = NPCs.findOrNull(tile.regionLevel, "tztok_jad") ?: return@npcTimerTick Timer.CONTINUE
             if (!tile.within(jad.tile, 5)) {
                 return@npcTimerTick Timer.CONTINUE
             }

@@ -99,10 +99,6 @@ object NPCs : Runnable,
 
     fun findOrNull(tile: Tile, id: String) = findOrNull(tile) { it.id == id }
 
-    fun find(tile: Tile, filter: (NPC) -> Boolean) = at(tile).first(filter)
-
-    fun findOrNull(tile: Tile, filter: (NPC) -> Boolean) = at(tile).firstOrNull(filter)
-
     override fun at(tile: Tile): List<NPC> {
         val list = mutableListOf<NPC>()
         zoneMap.onEach(tile.zone.id) { index ->
@@ -117,10 +113,6 @@ object NPCs : Runnable,
     fun find(zone: Zone, id: String) = find(zone) { it.id == id }
 
     fun findOrNull(zone: Zone, id: String) = findOrNull(zone) { it.id == id }
-
-    fun find(zone: Zone, filter: (NPC) -> Boolean) = at(zone).first(filter)
-
-    fun findOrNull(zone: Zone, filter: (NPC) -> Boolean) = at(zone).firstOrNull(filter)
 
     override fun at(zone: Zone): List<NPC> {
         val list = mutableListOf<NPC>()

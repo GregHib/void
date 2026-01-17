@@ -68,7 +68,7 @@ class TzhaarFightCaveTest : WorldTest() {
         tick(2)
         player.intEntry(63)
         tick(5)
-        val jad = NPCs.at(player.tile.regionLevel).first { it.id == "tztok_jad" }
+        val jad = NPCs.find(player.tile.regionLevel, "tztok_jad")
         jad.directHit(player, 1 + (jad.levels.getMax(Skill.Constitution) / 2))
         tick(3)
         assertEquals(4, NPCs.at(player.tile.regionLevel).count { it.id == "yt_hur_kot" })

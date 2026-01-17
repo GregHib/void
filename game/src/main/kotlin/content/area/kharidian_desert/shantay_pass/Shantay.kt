@@ -54,7 +54,7 @@ class Shantay : Script {
                 set("shantay_state", "returning")
             } else {
                 message("Shantay saunters over to talk with you.")
-                talkWith(NPCs.at(tile.regionLevel).first { it.id == "shantay" })
+                talkWith(NPCs.find(tile.regionLevel, "shantay"))
                 npc<Neutral>("If you want to be let out, you have to pay a fine of five gold. Do you want to pay now?")
                 leaveJail()
             }

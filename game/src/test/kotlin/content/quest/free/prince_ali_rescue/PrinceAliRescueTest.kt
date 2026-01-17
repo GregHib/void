@@ -47,7 +47,7 @@ class PrinceAliRescueTest : WorldTest() {
         )
         player.inventory.add("coins", 5)
         // Talk to Hassan to start quest
-        val hassan = NPCs.at(Tile(3302, 3163)).first { it.id == "hassan" }
+        val hassan = NPCs.find(Tile(3302, 3163), "hassan")
         player.npcOption(hassan, "Talk-to")
         tick()
         player.dialogueContinue()
@@ -59,7 +59,7 @@ class PrinceAliRescueTest : WorldTest() {
 
         // Talk to Osman
         player.tele(3287, 3180)
-        val osman = NPCs.at(Tile(3286, 3180)).first { it.id == "osman" }
+        val osman = NPCs.find(Tile(3286, 3180), "osman")
         player.npcOption(osman, "Talk-to")
         tick()
         player.dialogueContinue()
@@ -68,7 +68,7 @@ class PrinceAliRescueTest : WorldTest() {
 
         // Talk to Ned to get wig
         player.tele(3100, 3258)
-        val ned = NPCs.at(Tile(3100, 3257)).first { it.id == "ned" }
+        val ned = NPCs.find(Tile(3100, 3257), "ned")
         player.npcOption(ned, "Talk-to")
         tick()
         player.dialogueContinue() // Hello
@@ -89,7 +89,7 @@ class PrinceAliRescueTest : WorldTest() {
 
         // Talk to Aggie to get skin paste
         player.tele(3086, 3260)
-        val aggie = NPCs.at(Tile(3085, 3260)).first { it.id == "aggie" }
+        val aggie = NPCs.find(Tile(3085, 3260), "aggie")
         player.npcOption(aggie, "Talk-to")
         tick()
         player.dialogueContinue() // Hello
@@ -125,7 +125,7 @@ class PrinceAliRescueTest : WorldTest() {
 
         // Talk to Lady Keli to get key print
         player.tele(3127, 3244)
-        val keli = NPCs.at(Tile(3128, 3244)).first { it.id == "lady_keli" }
+        val keli = NPCs.find(Tile(3128, 3244), "lady_keli")
         player.npcOption(keli, "Talk-to")
         tick()
         player.dialogueContinue() // Are you keli
@@ -171,7 +171,7 @@ class PrinceAliRescueTest : WorldTest() {
 
         // Get key from Leela
         player.tele(3112, 3263)
-        val leela = NPCs.at(Tile(3113, 3263)).first { it.id == "leela" }
+        val leela = NPCs.find(Tile(3113, 3263), "leela")
         player.npcOption(leela, "Talk-to")
         tick()
         player.dialogueContinue() // Hi
@@ -186,7 +186,7 @@ class PrinceAliRescueTest : WorldTest() {
 
         // Get Joe drunk
         player.tele(3124, 3246)
-        val joe = NPCs.at(Tile(3125, 3246)).first { it.id == "jail_guard_joe" }
+        val joe = NPCs.find(Tile(3125, 3246), "jail_guard_joe")
         player.npcOption(joe, "Talk-to")
         tick()
         player.dialogueOption("line1") // Have beer
@@ -225,7 +225,7 @@ class PrinceAliRescueTest : WorldTest() {
 
         // Free the prince
         player.tele(3123, 3243)
-        val ali = NPCs.at(Tile(3123, 3242)).first { it.id == "prince_ali" }
+        val ali = NPCs.find(Tile(3123, 3242), "prince_ali")
         player.npcOption(ali, "Talk-to")
         tick()
         player.dialogueContinue() // Rescue

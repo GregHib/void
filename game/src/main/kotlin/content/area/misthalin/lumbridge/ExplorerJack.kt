@@ -88,7 +88,7 @@ class ExplorerJack(val variableDefinitions: VariableDefinitions) : Script {
         }
 
         objectOperate("Open", "explorer_jack_trapdoor") {
-            val explorerJack = NPCs.at(tile.regionLevel).first { it.id.startsWith("explorer_jack") }
+            val explorerJack = NPCs.find(tile.regionLevel) { it.id.startsWith("explorer_jack") }
             talkWith(explorerJack)
             npc<Confused>("I say, there's nothing interesting in my cellar! Better go exploring elsewhere, eh?")
             player<Quiz>("What's down there?")
