@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.entity.MAX_PLAYERS
@@ -115,7 +115,7 @@ class BotSpawns(
     fun spawn() {
         GlobalScope.launch(Contexts.Game) {
             val name = "Bot ${++counter}"
-            val bot = Player(tile = AreaDefinitions["lumbridge_teleport"].random(), accountName = name)
+            val bot = Player(tile = AreaTypes["lumbridge_teleport"].random(), accountName = name)
             bot.initBot()
             loader.connect(bot, if (Settings["development.bots.live", false]) DummyClient() else null)
             setAppearance(bot)

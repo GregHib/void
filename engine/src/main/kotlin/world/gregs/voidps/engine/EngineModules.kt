@@ -40,7 +40,7 @@ fun engineModule(files: ConfigFiles) = module {
     // Map
     single { ZoneBatchUpdates() }
     single { DynamicZones(get(), get(), get()) }
-    single(createdAtStart = true) { AreaDefinitions.load(files.list(Settings["map.areas"])) }
+    single(createdAtStart = true) { AreaTypes.load(files.list(Settings["map.areas"])) }
     single(createdAtStart = true) { CanoeDefinitions().load(files.find(Settings["map.canoes"])) }
     // Network
     single {

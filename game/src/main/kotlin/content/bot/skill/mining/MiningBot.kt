@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.definition.AreaDefinition
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -25,7 +25,7 @@ class MiningBot(val tasks: TaskManager) : Script {
 
     init {
         worldSpawn {
-            for (area in AreaDefinitions.getTagged("mine")) {
+            for (area in AreaTypes.tagged("mine")) {
                 val spaces: Int = area["spaces", 1]
                 val type = area["rocks", emptyList<String>()].firstOrNull() ?: continue
                 val range: IntRange = area["levels", "1-5"].toIntRange()

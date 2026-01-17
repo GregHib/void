@@ -1,13 +1,13 @@
 package content.area.misthalin.edgeville
 
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.type.Tile
 
 class Wilderness : Script {
 
-    val wilderness = AreaDefinitions["wilderness"]
-    val safeZones = AreaDefinitions.getTagged("safe_zone")
+    val wilderness = AreaTypes["wilderness"]
+    val safeZones = AreaTypes.tagged("safe_zone")
 
     init {
         playerSpawn {

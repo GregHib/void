@@ -12,7 +12,7 @@ import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.config.GearDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinition
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -27,7 +27,7 @@ class SmeltingBot(
 
     init {
         worldSpawn {
-            for (area in AreaDefinitions.getTagged("smelting")) {
+            for (area in AreaTypes.tagged("smelting")) {
                 val spaces: Int = area["spaces", 1]
                 val task = Task(
                     name = "smelt bars at ${area.name}".toLowerSpaceCase(),

@@ -4,7 +4,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 
 class GamesNecklace : Script {
 
@@ -15,20 +15,20 @@ class GamesNecklace : Script {
             }
             choice("Where would you like to teleport to?") {
                 option("Burthorpe Games Rooms.") {
-                    jewelleryTeleport(this, it.inventory, it.slot, AreaDefinitions["burthorpe_teleport"])
+                    jewelleryTeleport(this, it.inventory, it.slot, AreaTypes["burthorpe_teleport"])
                 }
                 option("Barbarian Outpost.") {
-                    jewelleryTeleport(this, it.inventory, it.slot, AreaDefinitions["barbarian_outpost_teleport"])
+                    jewelleryTeleport(this, it.inventory, it.slot, AreaTypes["barbarian_outpost_teleport"])
                 }
                 option("Clan Wars.") {
-                    jewelleryTeleport(this, it.inventory, it.slot, AreaDefinitions["clan_wars_teleport"])
+                    jewelleryTeleport(this, it.inventory, it.slot, AreaTypes["clan_wars_teleport"])
                 }
                 option("Wilderness Volcano.") {
-                    jewelleryTeleport(this, it.inventory, it.slot, AreaDefinitions["wilderness_volcano_teleport"])
+                    jewelleryTeleport(this, it.inventory, it.slot, AreaTypes["wilderness_volcano_teleport"])
                 }
                 if (questCompleted("darkness_of_hallowvale")) {
                     option("Burgh De Rott.") {
-                        jewelleryTeleport(this, it.inventory, it.slot, AreaDefinitions["burgh_de_rott_teleport"])
+                        jewelleryTeleport(this, it.inventory, it.slot, AreaTypes["burgh_de_rott_teleport"])
                     }
                 } else {
                     option("Nowhere.")
@@ -54,7 +54,7 @@ class GamesNecklace : Script {
                 }
                 else -> return@itemOption
             }
-            jewelleryTeleport(this, it.inventory, it.slot, AreaDefinitions[area])
+            jewelleryTeleport(this, it.inventory, it.slot, AreaTypes[area])
         }
     }
 }

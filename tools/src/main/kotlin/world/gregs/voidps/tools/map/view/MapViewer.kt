@@ -8,7 +8,7 @@ import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.data.definition.MapDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -34,7 +34,7 @@ class MapViewer {
             val decoder = ObjectDecoder(member = false, lowDetail = false).load(cache)
             val files = configFiles()
             val defs = ObjectDefinitions(decoder).load(files.list(Settings["definitions.objects"]))
-            AreaDefinitions.load(files.list(Settings["map.areas"]))
+            AreaTypes.load(files.list(Settings["map.areas"]))
             val nav = NavigationGraph(defs).load(files.find(Settings["map.navGraph"]))
             val collisions = Collisions()
             if (DISPLAY_AREA_COLLISIONS || DISPLAY_ALL_COLLISIONS) {

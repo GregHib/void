@@ -14,7 +14,7 @@ import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -127,7 +127,7 @@ class Larry(
             for (i in 0 until 10) {
                 if (!containsVarbit("penguins_found", "penguin_$i")) {
                     val penguin = npcs.firstOrNull { it.id == "hidden_penguin_$i" } ?: continue
-                    val area = AreaDefinitions.get(penguin.tile.zone).firstOrNull { it.tags.contains("penguin_area") } ?: continue
+                    val area = AreaTypes.get(penguin.tile.zone).firstOrNull { it.tags.contains("penguin_area") } ?: continue
                     val hint: String = area.getOrNull("hint") ?: continue
                     npc<Shifty>("I've heard there's a penguin located $hint")
                     return@option

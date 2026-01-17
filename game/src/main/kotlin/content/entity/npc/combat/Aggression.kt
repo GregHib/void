@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
@@ -22,7 +22,7 @@ class Aggression : Script {
             if (!Settings["world.npcs.aggression", true] || attacking(this, target)) {
                 return@huntPlayer
             }
-            if (Settings["world.npcs.safeZone", false] && tile in AreaDefinitions["lumbridge"]) {
+            if (Settings["world.npcs.safeZone", false] && tile in AreaTypes["lumbridge"]) {
                 return@huntPlayer
             }
             interactPlayer(target, "Attack")
@@ -43,7 +43,7 @@ class Aggression : Script {
         if (!Settings["world.npcs.aggression", true] || attacking(npc, target)) {
             return
         }
-        if (Settings["world.npcs.safeZone", false] && npc.tile in AreaDefinitions["lumbridge"]) {
+        if (Settings["world.npcs.safeZone", false] && npc.tile in AreaTypes["lumbridge"]) {
             return
         }
         npc.interactPlayer(target, "Attack")

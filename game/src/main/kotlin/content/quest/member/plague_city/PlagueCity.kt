@@ -8,7 +8,7 @@ import content.quest.quest
 import content.quest.questJournal
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
@@ -417,7 +417,7 @@ class PlagueCity : Script {
                         list.add("<navy>need to free her. She thinks the key to her cell is hidden")
                         list.add("<navy>somewhere in the house.")
                     } else {
-                        if (tile in AreaDefinitions["plague_house"] || tile in AreaDefinitions["plague_house_basement"]) {
+                        if (tile in AreaTypes["plague_house"] || tile in AreaTypes["plague_house_basement"]) {
                             list.add("<navy>I've managed to enter the <maroon>Plague House. <navy>Now I need to find")
                             list.add("<maroon>Elena.")
                         } else {

@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.data.definition.AreaDefinition
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -33,7 +33,7 @@ class TrainingBot(val tasks: TaskManager) : Script {
 
     init {
         worldSpawn {
-            val area = AreaDefinitions.getOrNull("lumbridge_combat_tutors") ?: return@worldSpawn
+            val area = AreaTypes.getOrNull("lumbridge_combat_tutors") ?: return@worldSpawn
             val range = 1..5
             val skills = listOf(Skill.Attack, Skill.Magic, Skill.Ranged)
             val melees = listOf(Skill.Attack, Skill.Strength, Skill.Defence)

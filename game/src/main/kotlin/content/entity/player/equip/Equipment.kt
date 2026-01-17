@@ -9,14 +9,13 @@ import content.skill.melee.weapon.combatStyle
 import content.skill.prayer.protectMagic
 import content.skill.summoning.isFamiliar
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import kotlin.math.ceil
@@ -89,7 +88,7 @@ object Equipment {
         if (source["castle_wars_brace", false] && Weapon.isFlagHolder(target)) {
             damage = (damage * 1.2).toInt()
         } else if (source.equipped(EquipSlot.Ring).id.startsWith("ferocious_ring")) {
-            val area = AreaDefinitions["kuradals_dungeon"]
+            val area = AreaTypes["kuradals_dungeon"]
             if (source.tile in area && target.tile in area) {
                 damage = (damage * 1.04).toInt()
             }

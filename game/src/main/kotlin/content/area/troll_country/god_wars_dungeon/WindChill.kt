@@ -5,7 +5,7 @@ import content.entity.player.effect.energy.runEnergy
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.inventory
@@ -20,7 +20,7 @@ class WindChill : Script {
         }
 
         timerTick("windchill") {
-            if (tile !in AreaDefinitions["godwars_chill_area"]) {
+            if (tile !in AreaTypes["godwars_chill_area"]) {
                 return@timerTick Timer.CANCEL
             }
             sound("windy")

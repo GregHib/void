@@ -8,7 +8,7 @@ import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -282,10 +282,10 @@ class MageOfZamorak : Script {
             player.sound("teleport_all")
             player.delay(2)
             player["abyss_obstacles"] = random.nextInt(0, 12)
-            var tile = AreaDefinitions["abyss_multi_area"].random(player)
+            var tile = AreaTypes["abyss_multi_area"].random(player)
             var count = 0
-            while ((tile == null || tile in AreaDefinitions["abyss_center"]) && count++ < 100) {
-                tile = AreaDefinitions["abyss_multi_area"].random(player)
+            while ((tile == null || tile in AreaTypes["abyss_center"]) && count++ < 100) {
+                tile = AreaTypes["abyss_multi_area"].random(player)
             }
             player.tele(tile!!)
             player.levels.drain(Skill.Prayer, player.levels.get(Skill.Prayer))

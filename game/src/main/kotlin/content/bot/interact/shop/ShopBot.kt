@@ -12,14 +12,14 @@ import content.entity.npc.shop.shopInventory
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.data.definition.AreaDefinition
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.client.instruction.InteractInterface
 import world.gregs.voidps.network.client.instruction.InteractNPC
 
-suspend fun Bot.openShop(id: String): NPC = openShop(AreaDefinitions.getOrNull(id)!!)
+suspend fun Bot.openShop(id: String): NPC = openShop(AreaTypes.getOrNull(id)!!)
 
 suspend fun Bot.openNearestShop(id: String): Boolean {
     val reached = goToNearest { it["items", emptyList<String>()].contains(id) }

@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.equipment
@@ -38,7 +38,7 @@ class GodwarsAltars : Script {
 
         objectOperate("Teleport", "prayer_*_altar_godwars") { (target) ->
             val god = target.id.removePrefix("prayer_").removeSuffix("_altar_godwars")
-            tele(AreaDefinitions["${god}_entrance"])
+            tele(AreaTypes["${god}_entrance"])
             visuals.hits.clear()
             message("The god's pity you and allow you to leave the encampment.")
         }

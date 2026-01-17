@@ -12,7 +12,7 @@ import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.config.GearDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinition
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Smithing
@@ -30,7 +30,7 @@ class SmithingBot(
 
     init {
         worldSpawn {
-            for (area in AreaDefinitions.getTagged("smithing")) {
+            for (area in AreaTypes.tagged("smithing")) {
                 val spaces: Int = area["spaces", 1]
                 val task = Task(
                     name = "smith on anvil at ${area.name}".toLowerSpaceCase(),

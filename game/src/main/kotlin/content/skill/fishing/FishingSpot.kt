@@ -4,7 +4,7 @@ import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -53,7 +53,7 @@ class FishingSpot(
     }
 
     fun move(npc: NPC) {
-        val area = AreaDefinitions.get(npc.tile.zone).firstOrNull { it.name.endsWith("fishing_area") } ?: return
+        val area = AreaTypes.get(npc.tile.zone).firstOrNull { it.name.endsWith("fishing_area") } ?: return
         /*
             Find all water tiles that have two water tiles next to them and land perpendicular
                [W]    [L]    [W]

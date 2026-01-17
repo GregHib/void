@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -74,7 +74,7 @@ class TeleportCommands(
 
     init {
         val coords = command(intArg("x"), intArg("y"), intArg("level", optional = true), desc = "Teleport to given coordinates", handler = ::coords)
-        val place = command(stringArg("name", autofill = { places.keys + AreaDefinitions.names }, desc = "Area Name"), desc = "Teleport to given area", handler = ::area)
+        val place = command(stringArg("name", autofill = { places.keys + AreaTypes.names }, desc = "Area Name"), desc = "Teleport to given area", handler = ::area)
         val region = command(intArg("region", desc = "Region ID"), desc = "Teleport to given region id") { args ->
             tele(Region(args[0].toInt()).tile.add(32, 32))
             set("world_map_centre", tile.id)
@@ -117,7 +117,7 @@ class TeleportCommands(
         if (place != null) {
             player.tele(place)
         } else {
-            player.tele(AreaDefinitions[name])
+            player.tele(AreaTypes[name])
         }
         player["world_map_centre"] = player.tile.id
         player["world_map_marker_player"] = player.tile.id

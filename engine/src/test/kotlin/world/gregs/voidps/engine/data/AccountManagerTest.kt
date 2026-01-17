@@ -46,7 +46,7 @@ class AccountManagerTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        AreaDefinitions.areas[0] = mutableSetOf(AreaDefinition("area", Rectangle(Tile(0), 1, 1), emptySet()))
+        AreaTypes.set(emptyMap(), emptyMap(), mapOf(0 to setOf(AreaDefinition("area", Rectangle(Tile(0), 1, 1), emptySet()))))
         val inventoryDefinitions = InventoryDefinitions(arrayOf(InventoryDefinition.EMPTY))
         inventoryDefinitions.ids = mapOf("worn_equipment" to 0)
         connectionQueue = ConnectionQueue(1)

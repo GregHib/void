@@ -13,17 +13,16 @@ import world.gregs.voidps.type.area.Cuboid
 import world.gregs.voidps.type.area.Polygon
 import world.gregs.voidps.type.area.Rectangle
 
-object AreaDefinitions {
+object AreaTypes {
 
-    var named: MutableMap<String, AreaDefinition> = Object2ObjectOpenHashMap()
-        private set
-    var tagged: MutableMap<String, MutableSet<AreaDefinition>> = Object2ObjectOpenHashMap()
-        private set
-    var areas: MutableMap<Int, MutableSet<AreaDefinition>> = Int2ObjectOpenHashMap()
-        private set
+    private var named: Map<String, AreaDefinition> = Object2ObjectOpenHashMap()
+    private var tagged: Map<String, Set<AreaDefinition>> = Object2ObjectOpenHashMap()
+    private var areas: Map<Int, Set<AreaDefinition>> = Int2ObjectOpenHashMap()
 
     val names: Set<String>
         get() = named.keys
+
+    fun getAll() = named.values
 
     fun getOrNull(name: String): AreaDefinition? = named[name]
 
@@ -31,9 +30,9 @@ object AreaDefinitions {
 
     fun get(zone: Zone): Set<AreaDefinition> = areas[zone.id] ?: emptySet()
 
-    fun getTagged(tag: String): Set<AreaDefinition> = tagged[tag] ?: emptySet()
+    fun tagged(tag: String): Set<AreaDefinition> = tagged[tag] ?: emptySet()
 
-    fun load(paths: List<String>): AreaDefinitions {
+    fun load(paths: List<String>): AreaTypes {
         timedLoad("map area") {
             val named = Object2ObjectOpenHashMap<String, AreaDefinition>()
             val tagged = Object2ObjectOpenHashMap<String, MutableSet<AreaDefinition>>()
@@ -104,7 +103,11 @@ object AreaDefinitions {
         return this
     }
 
-    fun getAll() = named.values
+    internal fun set(named: Map<String, AreaDefinition>, tagged: Map<String, Set<AreaDefinition>>, areas: Map<Int, Set<AreaDefinition>>) {
+        this.named = named
+        this.tagged = tagged
+        this.areas = areas
+    }
 
     fun clear() {
         named = Object2ObjectOpenHashMap()

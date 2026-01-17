@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.data.config.GearDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinition
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.data.definition.GearDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Catch
@@ -35,7 +35,7 @@ class FishingBot(
 
     init {
         worldSpawn {
-            for (area in AreaDefinitions.getTagged("fish")) {
+            for (area in AreaTypes.tagged("fish")) {
                 val spaces: Int = area["spaces", 1]
                 val type: String = area.getOrNull("type") ?: continue
                 val sets = gear.get("fishing").filter { it["spot", ""] == type }

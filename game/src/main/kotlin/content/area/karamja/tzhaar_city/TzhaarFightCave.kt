@@ -27,7 +27,7 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.mode.Follow
@@ -285,11 +285,11 @@ class TzhaarFightCave(
 
     fun randomTile(direction: Direction, offset: Delta, def: NPCDefinition, block: Int): Tile? {
         val area = when (direction) {
-            Direction.NORTH_WEST -> AreaDefinitions["tzhaar_fight_cave_north_west"]
-            Direction.SOUTH_EAST -> AreaDefinitions["tzhaar_fight_cave_south_east"]
-            Direction.SOUTH -> AreaDefinitions["tzhaar_fight_cave_south"]
-            Direction.SOUTH_WEST -> AreaDefinitions["tzhaar_fight_cave_south_west"]
-            Direction.NONE -> AreaDefinitions["tzhaar_fight_cave_none"]
+            Direction.NORTH_WEST -> AreaTypes["tzhaar_fight_cave_north_west"]
+            Direction.SOUTH_EAST -> AreaTypes["tzhaar_fight_cave_south_east"]
+            Direction.SOUTH -> AreaTypes["tzhaar_fight_cave_south"]
+            Direction.SOUTH_WEST -> AreaTypes["tzhaar_fight_cave_south_west"]
+            Direction.NONE -> AreaTypes["tzhaar_fight_cave_none"]
             else -> return null
         }
         var tile = area.offset(offset).random(CollisionStrategies.Normal, def.size, block)

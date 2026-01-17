@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -40,8 +40,8 @@ class GiantMole(
         Tile(2989, 3378, 0),
     )
 
-    val giantMoleLair = AreaDefinitions["giant_mole_lair"]
-    val gianMoleSpawns = AreaDefinitions["giant_mole_spawn_area"]
+    val giantMoleLair = AreaTypes["giant_mole_lair"]
+    val gianMoleSpawns = AreaTypes["giant_mole_spawn_area"]
     val initialCaveTile: Tile = Tile(1752, 5237, 0)
 
     init {

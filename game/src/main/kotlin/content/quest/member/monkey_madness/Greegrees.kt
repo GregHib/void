@@ -6,7 +6,7 @@ import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeType
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -22,7 +22,7 @@ class Greegrees(val items: FloorItems) : Script {
         playerSpawn {
             val item = equipped(EquipSlot.Weapon).id
             if (item.endsWith("_greegree")) {
-                if (tile in AreaDefinitions["ape_atoll"] || tile in AreaDefinitions["ape_atoll_agility_dungeon"]) {
+                if (tile in AreaTypes["ape_atoll"] || tile in AreaTypes["ape_atoll_agility_dungeon"]) {
                     transform(item.replace("_greegree", ""))
                     closeType("spellbook_tab")
                 } else {
@@ -81,7 +81,7 @@ class Greegrees(val items: FloorItems) : Script {
         if (get("logged_out", false)) {
             return // TODO check if removed on logout or not
         }
-        if (tile in AreaDefinitions["ape_atoll"] || tile in AreaDefinitions["ape_atoll_agility_dungeon"]) {
+        if (tile in AreaTypes["ape_atoll"] || tile in AreaTypes["ape_atoll_agility_dungeon"]) {
             return
         }
         val item = equipped(EquipSlot.Weapon).id

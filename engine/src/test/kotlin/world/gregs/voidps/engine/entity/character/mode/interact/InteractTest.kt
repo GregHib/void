@@ -9,7 +9,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import org.koin.core.module.Module
 import org.koin.dsl.module
-import org.koin.test.mock.declareMock
 import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
@@ -18,7 +17,7 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -27,7 +26,6 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.Zone
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
@@ -71,7 +69,7 @@ internal class InteractTest : KoinMock() {
         player.collision = CollisionStrategies.Normal
         target = NPC(tile = Tile(10, 10))
         target.collision = CollisionStrategies.Normal
-        AreaDefinitions.clear()
+        AreaTypes.clear()
     }
 
     private fun interact(operate: Boolean, approach: Boolean, suspend: Boolean) {

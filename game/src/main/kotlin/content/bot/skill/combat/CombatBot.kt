@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.data.definition.AmmoDefinitions
 import world.gregs.voidps.engine.data.definition.AreaDefinition
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -67,7 +67,7 @@ class CombatBot(
 
     init {
         worldSpawn {
-            for (area in AreaDefinitions.getTagged("combat_training")) {
+            for (area in AreaTypes.tagged("combat_training")) {
                 val spaces: Int = area["spaces", 1]
                 val types = area["npcs", emptyList<String>()].toSet()
                 val range = area["levels", "1-5"].toIntRange()

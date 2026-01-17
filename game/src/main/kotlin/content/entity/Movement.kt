@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.AreaTypes
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
@@ -42,7 +42,7 @@ class Movement(
         moved(handler = players::update)
 
         worldSpawn {
-            for (border in AreaDefinitions.getTagged("border")) {
+            for (border in AreaTypes.tagged("border")) {
                 val passage = border.area as Rectangle
                 for (zone in passage.toZones()) {
                     borders[zone] = passage
