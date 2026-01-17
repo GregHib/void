@@ -192,7 +192,7 @@ abstract class WorldTest : KoinTest {
         }
         engineLoad(configFiles)
         Wildcards.load(Settings["storage.wildcards"])
-        scripts = ContentLoader.load()
+        scripts = ContentLoader().load()
         Wildcards.clear()
         saves = File(Settings["storage.players.path"])
         saves?.mkdirs()
@@ -251,7 +251,7 @@ abstract class WorldTest : KoinTest {
     @AfterAll
     fun afterAll() {
         saves?.deleteRecursively()
-        ContentLoader.clear()
+        Script.clear()
         stopKoin()
     }
 
