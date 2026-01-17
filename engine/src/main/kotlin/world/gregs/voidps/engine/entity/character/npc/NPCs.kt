@@ -95,7 +95,7 @@ object NPCs : Runnable,
         }
     }
 
-    override operator fun get(tile: Tile): List<NPC> {
+    override fun at(tile: Tile): List<NPC> {
         val list = mutableListOf<NPC>()
         zoneMap.onEach(tile.zone.id) { index ->
             val npc = indexed(index) ?: return@onEach

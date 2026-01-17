@@ -150,7 +150,7 @@ class GiantMole(
     fun handleDirtOnScreen(moleTile: Tile) {
         val nearMole = mutableListOf<Player>()
         for (tile in moleTile.toCuboid(5)) {
-            for (player in players[tile]) {
+            for (player in players.at(tile)) {
                 nearMole.add(player)
             }
         }

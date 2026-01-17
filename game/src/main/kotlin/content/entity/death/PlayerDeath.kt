@@ -192,13 +192,12 @@ class PlayerDeath(
     }
 
     fun hitCharacters(tile: Tile, source: Player, maxHit: Int) {
-        val players = players[tile]
-        for (player in players) {
+        for (player in players.at(tile)) {
             if (Target.attackable(source, player)) {
                 source.directHit(player, random.nextInt(maxHit))
             }
         }
-        for (npc in NPCs[tile]) {
+        for (npc in NPCs.at(tile)) {
             if (Target.attackable(source, npc)) {
                 source.directHit(npc, random.nextInt(maxHit))
             }

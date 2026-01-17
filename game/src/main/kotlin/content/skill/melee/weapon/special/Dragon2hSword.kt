@@ -21,7 +21,7 @@ class Dragon2hSword(val players: Players) : Script {
             var remaining = if (target is Player) 2 else 14
             for (direction in Direction.reversed) {
                 val tile = tile.add(direction)
-                for (char in characters[tile]) {
+                for (char in characters.at(tile)) {
                     if (char == this || char == target || !char.inMultiCombat || !Target.attackable(this, char)) {
                         continue
                     }

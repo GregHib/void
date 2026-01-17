@@ -5,7 +5,7 @@ import world.gregs.voidps.type.Zone
 
 interface CharacterSearch<C : Character> {
 
-    operator fun get(tile: Tile): List<C>
+    fun at(tile: Tile): List<C>
 
     operator fun get(zone: Zone): List<C>
 }

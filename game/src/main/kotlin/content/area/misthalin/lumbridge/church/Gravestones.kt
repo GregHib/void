@@ -148,7 +148,7 @@ class Gravestones(
         droppable {
             var droppable = true
             // TODO can you drop items on someone else's grave?
-            for (grave in NPCs[tile].filter { it.id.startsWith("gravestone_") }) {
+            for (grave in NPCs.at(tile).filter { it.id.startsWith("gravestone_") }) {
                 if (grave["player_name", ""] == name) {
                     message("Surely you aren't going to drop litter on your own grave!")
                     droppable = false

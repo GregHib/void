@@ -23,7 +23,7 @@ class Mourner(
             if (holdsItem("warrant")) {
                 player<Idle>("I have a warrant from Bravek to enter here.")
                 npc<Confused>("This is highly irregular. Please wait...")
-                val otherGuard = NPCs[if (target.tile.equals(2539, 3273)) Tile(2534, 3273) else Tile(2539, 3273)].first { it.id == "mourner_elena_guard_vis" }
+                val otherGuard = NPCs.at(if (target.tile.equals(2539, 3273)) Tile(2534, 3273) else Tile(2539, 3273)).first { it.id == "mourner_elena_guard_vis" }
                 val faceDirection = if (target.tile.equals(2539, 3273)) Direction.EAST else Direction.WEST
                 target.face(faceDirection)
                 delay(1)

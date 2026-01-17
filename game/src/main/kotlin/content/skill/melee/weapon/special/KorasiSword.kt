@@ -57,7 +57,7 @@ class KorasiSword(
         }
         val characters = if (target is Player) players else NPCs
         for (tile in target.tile.spiral(4)) {
-            for (character in characters[tile]) {
+            for (character in characters.at(tile)) {
                 if (character == target || chain.contains(character.index) || !Target.attackable(source, character)) {
                     continue
                 }

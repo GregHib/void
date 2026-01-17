@@ -47,7 +47,7 @@ class Ducklings : Script {
 
     fun findParent(npc: NPC): NPC? {
         for (dir in Direction.cardinal) {
-            return NPCs[npc.tile.add(dir.delta)].firstOrNull { isDuck(it) && !it.contains("ducklings") } ?: continue
+            return NPCs.at(npc.tile.add(dir.delta)).firstOrNull { isDuck(it) && !it.contains("ducklings") } ?: continue
         }
         return null
     }

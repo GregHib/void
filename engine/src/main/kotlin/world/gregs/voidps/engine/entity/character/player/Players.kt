@@ -55,7 +55,7 @@ class Players :
 
     fun indexed(index: Int): Player? = indexArray[index]
 
-    override operator fun get(tile: Tile): List<Player> {
+    override fun at(tile: Tile): List<Player> {
         val list = mutableListOf<Player>()
         map.onEach(tile.zone.id) { index ->
             val player = indexed(index) ?: return@onEach

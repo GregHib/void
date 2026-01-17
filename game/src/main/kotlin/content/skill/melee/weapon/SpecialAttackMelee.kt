@@ -13,7 +13,7 @@ fun multiTargets(target: Character, hits: Int): List<Character> {
     val group = if (target is Player) get<Players>() else NPCs
     val targets = mutableListOf<Character>()
     for (tile in target.tile.spiral(1)) {
-        val characters = group[tile]
+        val characters = group.at(tile)
         for (character in characters) {
             if (character == target || !character.inMultiCombat) {
                 continue

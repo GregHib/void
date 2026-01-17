@@ -22,10 +22,10 @@ class Elementals(val patrols: PatrolDefinitions, val players: Players) : Script 
         huntPlayer("*_elemental*", "spotted") {
             val direction = direction
             // Catch all players two tiles in-front
-            for (player in players[tile.add(direction)]) {
+            for (player in players.at(tile.add(direction))) {
                 catch(player)
             }
-            for (player in players[tile.add(direction).add(direction)]) {
+            for (player in players.at(tile.add(direction).add(direction))) {
                 catch(player)
             }
         }

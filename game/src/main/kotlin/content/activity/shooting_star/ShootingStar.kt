@@ -184,7 +184,7 @@ class ShootingStar(
             val shootingStarObjectFalling: GameObject = objects.add("crashed_star_falling_object", currentStarTile)
             val under = mutableListOf<Player>()
             for (tile in currentStarTile.toCuboid(2, 2)) {
-                for (player in players[tile]) {
+                for (player in players.at(tile)) {
                     under.add(player)
                 }
             }

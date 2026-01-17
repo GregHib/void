@@ -44,7 +44,7 @@ class TzHaarMej : Script {
     private fun findHelpers(tile: Tile): MutableList<NPC> {
         val helpers = mutableListOf<NPC>()
         for (tile in Spiral.spiral(tile, 6)) {
-            for (npc in NPCs[tile]) {
+            for (npc in NPCs.at(tile)) {
                 if (npc.inCombat) {
                     continue
                 }

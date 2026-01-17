@@ -22,7 +22,7 @@ class VestasSpear(val players: Players) : Script {
             var remaining = 15
             val characters: CharacterSearch<*> = if (target is Player) players else NPCs
             for (tile in tile.spiral(1)) {
-                for (char in characters[tile]) {
+                for (char in characters.at(tile)) {
                     if (char == this || char == target || !char.inMultiCombat || !Target.attackable(this, char)) {
                         continue
                     }

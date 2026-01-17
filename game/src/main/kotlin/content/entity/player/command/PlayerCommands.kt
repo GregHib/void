@@ -261,7 +261,7 @@ class PlayerCommands(
             }
         }
         if (type == "all" || type == "players") {
-            val players = players[tile].filterNot { it == player }
+            val players = players.at(tile).filterNot { it == player }
             if (players.isNotEmpty()) {
                 player.message("--- Players ---", ChatType.Console)
                 for (other in players) {
@@ -270,7 +270,7 @@ class PlayerCommands(
             }
         }
         if (type == "all" || type == "npcs") {
-            val npcs = NPCs[tile]
+            val npcs = NPCs.at(tile)
             println(npcs)
             if (npcs.isNotEmpty()) {
                 player.message("--- NPCs ---", ChatType.Console)
