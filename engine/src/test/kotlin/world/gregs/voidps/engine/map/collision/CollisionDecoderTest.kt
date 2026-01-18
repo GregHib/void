@@ -17,6 +17,7 @@ internal class CollisionDecoderTest {
 
     @BeforeEach
     fun setup() {
+        Collisions.clear()
         decoder = CollisionDecoder()
         settings = ByteArray(64 * 64 * 4)
     }

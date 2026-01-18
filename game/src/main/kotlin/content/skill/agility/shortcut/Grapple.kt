@@ -230,7 +230,7 @@ class Grapple : Script {
         }
     }
 
-    fun Grapple.lumbridgeTree(grapple: Boolean) {
+    fun lumbridgeTree(grapple: Boolean) {
         val tree = GameObjects.findOrNull(Tile(3244, 3179), "strong_yew")
         tree?.replace("strong_yew_${if (grapple) "grapple" else "rope"}", ticks = 8)
         for (x in 3246..3251) {
@@ -238,7 +238,7 @@ class Grapple : Script {
         }
     }
 
-    fun Grapple.alKharidTree(grapple: Boolean) {
+    fun alKharidTree(grapple: Boolean) {
         val tree = GameObjects.findOrNull(Tile(3260, 3179), "strong_tree")
         tree?.replace("strong_tree_${if (grapple) "grapple" else "rope"}", ticks = 8)
         for (x in 3254..3259) {
