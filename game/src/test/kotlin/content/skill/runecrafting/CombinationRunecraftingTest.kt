@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Rune
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.equipment
@@ -58,7 +59,7 @@ internal class CombinationRunecraftingTest : WorldTest() {
             player.inventory.add("${element}_talisman")
 
             val altarTile = RunecraftingTest.altars.first { it.type == objectElement }.altarTile
-            val altar = objects.find(altarTile, "${objectElement}_altar")
+            val altar = GameObjects.find(altarTile, "${objectElement}_altar")
             player.itemOnObject(altar, 0)
             tick(1)
             tickIf { player.visuals.moved }
@@ -82,7 +83,7 @@ internal class CombinationRunecraftingTest : WorldTest() {
             player.inventory.add("${element}_talisman", 2)
 
             val altarTile = RunecraftingTest.altars.first { it.type == objectElement }.altarTile
-            val altar = objects.find(altarTile, "${objectElement}_altar")
+            val altar = GameObjects.find(altarTile, "${objectElement}_altar")
             player.itemOnObject(altar, 0)
             tick(1)
             tickIf { player.visuals.moved }

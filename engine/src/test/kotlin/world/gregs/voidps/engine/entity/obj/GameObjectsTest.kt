@@ -21,7 +21,6 @@ import kotlin.test.assertTrue
 
 class GameObjectsTest : KoinMock() {
 
-    private lateinit var objects: GameObjects
     private lateinit var spawns: MutableList<GameObject>
     private lateinit var despawns: MutableList<GameObject>
 
@@ -30,7 +29,6 @@ class GameObjectsTest : KoinMock() {
         // Using collision = false to avoid koin [GameObject#def]
         ObjectDefinitions.set(arrayOf(ObjectDefinition(123), ObjectDefinition(456)), mapOf("test" to 123, "test2" to 456))
         mockkObject(ZoneBatchUpdates)
-        objects = GameObjects(storeUnused = true)
         spawns = mockk(relaxed = true)
         despawns = mockk(relaxed = true)
         object : Spawn, Despawn {
@@ -43,26 +41,21 @@ class GameObjectsTest : KoinMock() {
                 }
             }
         }
-    }
-
-    @AfterEach
-    fun teardown() {
-        unmockkObject(ZoneBatchUpdates)
-        Spawn.close()
-        Despawn.close()
+        GameObjects.clear()
+        GameObjects.storeUnused = true
     }
 
     @Test
     fun `Set an object to a tile`() {
         val obj = GameObject(id = 1234, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
 
-        objects.set(obj.intId, obj.x, obj.y, obj.level, obj.shape, obj.rotation, ObjectDefinition.EMPTY)
+        GameObjects.set(obj.intId, obj.x, obj.y, obj.level, obj.shape, obj.rotation, ObjectDefinition.EMPTY)
 
-        assertEquals(obj, objects.getLayer(obj.tile, ObjectLayer.GROUND))
-        assertNull(objects.getLayer(obj.tile, ObjectLayer.WALL))
-        assertNull(objects.getLayer(Tile(10, 10, 1), ObjectLayer.GROUND))
-        objects.clear()
-        assertNull(objects.getLayer(obj.tile, ObjectLayer.GROUND))
+        assertEquals(obj, GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
+        assertNull(GameObjects.getLayer(obj.tile, ObjectLayer.WALL))
+        assertNull(GameObjects.getLayer(Tile(10, 10, 1), ObjectLayer.GROUND))
+        GameObjects.clear()
+        assertNull(GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
         verify(exactly = 0) {
             spawns.add(obj)
             despawns.add(obj)
@@ -72,13 +65,13 @@ class GameObjectsTest : KoinMock() {
     @Test
     fun `Temporarily remove an object`() {
         val obj = GameObject(id = 1234, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
-        objects.set(obj.intId, obj.x, obj.y, obj.level, obj.shape, obj.rotation, ObjectDefinition.EMPTY)
+        GameObjects.set(obj.intId, obj.x, obj.y, obj.level, obj.shape, obj.rotation, ObjectDefinition.EMPTY)
 
-        objects.remove(obj)
-        assertNull(objects.getLayer(obj.tile, ObjectLayer.GROUND))
+        GameObjects.remove(obj)
+        assertNull(GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
 
-        objects.add(obj)
-        assertEquals(obj, objects.getLayer(obj.tile, ObjectLayer.GROUND))
+        GameObjects.add(obj)
+        assertEquals(obj, GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
         verify {
             ZoneBatchUpdates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
         }
@@ -92,13 +85,13 @@ class GameObjectsTest : KoinMock() {
     fun `Temporarily add an object`() {
         val obj = GameObject(id = 1234, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
 
-        objects.add(obj)
-        assertEquals(obj, objects.getLayer(obj.tile, ObjectLayer.GROUND))
-        assertTrue(objects.contains(obj))
+        GameObjects.add(obj)
+        assertEquals(obj, GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
+        assertTrue(GameObjects.contains(obj))
 
-        objects.reset(obj.tile.zone)
-        assertNull(objects.getLayer(obj.tile, ObjectLayer.GROUND))
-        assertFalse(objects.contains(obj))
+        GameObjects.reset(obj.tile.zone)
+        assertNull(GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
+        assertFalse(GameObjects.contains(obj))
         verifyOrder {
             ZoneBatchUpdates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
             spawns.add(obj)
@@ -111,19 +104,19 @@ class GameObjectsTest : KoinMock() {
         val obj = GameObject(id = 1234, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
         val override = GameObject(id = 4321, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0)
 
-        objects.add(obj)
-        assertEquals(obj, objects.getLayer(obj.tile, ObjectLayer.GROUND))
-        assertTrue(objects.contains(obj))
-        assertFalse(objects.contains(override))
-        objects.add(override)
-        assertEquals(override, objects.getLayer(obj.tile, ObjectLayer.GROUND))
-        assertTrue(objects.contains(override))
-        assertFalse(objects.contains(obj))
+        GameObjects.add(obj)
+        assertEquals(obj, GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
+        assertTrue(GameObjects.contains(obj))
+        assertFalse(GameObjects.contains(override))
+        GameObjects.add(override)
+        assertEquals(override, GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
+        assertTrue(GameObjects.contains(override))
+        assertFalse(GameObjects.contains(obj))
 
-        objects.remove(override)
-        assertNull(objects.getLayer(obj.tile, ObjectLayer.GROUND))
-        assertFalse(objects.contains(obj))
-        assertFalse(objects.contains(override))
+        GameObjects.remove(override)
+        assertNull(GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
+        assertFalse(GameObjects.contains(obj))
+        assertFalse(GameObjects.contains(override))
         verifyOrder {
             ZoneBatchUpdates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
             spawns.add(obj)
@@ -137,14 +130,14 @@ class GameObjectsTest : KoinMock() {
     @Test
     fun `Add and remove a temp object over an original`() {
         val original = GameObject(id = 123, x = 10, y = 10, level = 0, shape = 10, rotation = 1)
-        objects.set(original.intId, original.x, original.y, original.level, original.shape, original.rotation, ObjectDefinition.EMPTY)
+        GameObjects.set(original.intId, original.x, original.y, original.level, original.shape, original.rotation, ObjectDefinition.EMPTY)
 
         val obj = GameObject(id = 1234, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0)
-        objects.add(obj)
-        assertEquals(obj, objects.getLayer(obj.tile, ObjectLayer.GROUND))
+        GameObjects.add(obj)
+        assertEquals(obj, GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
 
-        objects.remove(obj)
-        assertEquals(original, objects.getLayer(obj.tile, ObjectLayer.GROUND))
+        GameObjects.remove(obj)
+        assertEquals(original, GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
 
         verifyOrder {
             ZoneBatchUpdates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
@@ -159,18 +152,18 @@ class GameObjectsTest : KoinMock() {
     @Test
     fun `Override temp over an original object`() {
         val original = GameObject(id = 123, x = 10, y = 10, level = 0, shape = 10, rotation = 1)
-        objects.set(original.intId, original.x, original.y, original.level, original.shape, original.rotation, ObjectDefinition.EMPTY)
+        GameObjects.set(original.intId, original.x, original.y, original.level, original.shape, original.rotation, ObjectDefinition.EMPTY)
 
         val obj = GameObject(id = 1234, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0)
-        objects.add(obj)
-        assertEquals(obj, objects.getLayer(obj.tile, ObjectLayer.GROUND))
+        GameObjects.add(obj)
+        assertEquals(obj, GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
 
         val override = GameObject(id = 4321, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0)
-        objects.add(override)
-        assertEquals(override, objects.getLayer(override.tile, ObjectLayer.GROUND))
+        GameObjects.add(override)
+        assertEquals(override, GameObjects.getLayer(override.tile, ObjectLayer.GROUND))
 
-        objects.remove(override)
-        assertEquals(original, objects.getLayer(obj.tile, ObjectLayer.GROUND))
+        GameObjects.remove(override)
+        assertEquals(original, GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
 
         verifyOrder {
             // Add 1234
@@ -191,12 +184,12 @@ class GameObjectsTest : KoinMock() {
 
     @Test
     fun `Temporary object is removed after ticks`() {
-        val obj = objects.add(id = "test", tile = Tile(100, 100), shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2, ticks = 5, collision = false)
+        val obj = GameObjects.add(id = "test", tile = Tile(100, 100), shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2, ticks = 5, collision = false)
         repeat(5) {
-            assertTrue(objects.contains(obj))
-            objects.timers.run()
+            assertTrue(GameObjects.contains(obj))
+            GameObjects.timers.run()
         }
-        assertFalse(objects.contains(obj))
+        assertFalse(GameObjects.contains(obj))
         verifyOrder {
             spawns.add(obj)
             despawns.add(obj)
@@ -206,13 +199,13 @@ class GameObjectsTest : KoinMock() {
     @Test
     fun `Removed object is returned after ticks`() {
         val obj = GameObject(id = 123, x = 100, y = 100, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)
-        objects.add(obj, collision = false)
-        objects.remove(obj = obj, ticks = 5, collision = false)
+        GameObjects.add(obj, collision = false)
+        GameObjects.remove(obj = obj, ticks = 5, collision = false)
         repeat(5) {
-            assertFalse(objects.contains(obj))
-            objects.timers.run()
+            assertFalse(GameObjects.contains(obj))
+            GameObjects.timers.run()
         }
-        assertTrue(objects.contains(obj))
+        assertTrue(GameObjects.contains(obj))
         verifyOrder {
             spawns.add(obj)
             despawns.add(obj)
@@ -223,15 +216,15 @@ class GameObjectsTest : KoinMock() {
     @Test
     fun `Replaced temporary object is undone after ticks`() {
         val obj = GameObject(id = 5678, x = 100, y = 100, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)
-        objects.add(obj, collision = false)
-        val replacement = objects.replace(obj, "test", Tile(101, 100), ObjectShape.CENTRE_PIECE_STRAIGHT, 1, ticks = 5, collision = false)
+        GameObjects.add(obj, collision = false)
+        val replacement = GameObjects.replace(obj, "test", Tile(101, 100), ObjectShape.CENTRE_PIECE_STRAIGHT, 1, ticks = 5, collision = false)
         repeat(5) {
-            assertFalse(objects.contains(obj))
-            assertTrue(objects.contains(replacement))
-            objects.timers.run()
+            assertFalse(GameObjects.contains(obj))
+            assertTrue(GameObjects.contains(replacement))
+            GameObjects.timers.run()
         }
-        assertTrue(objects.contains(obj))
-        assertFalse(objects.contains(replacement))
+        assertTrue(GameObjects.contains(obj))
+        assertFalse(GameObjects.contains(replacement))
         verifyOrder {
             spawns.add(obj)
             despawns.add(obj)
@@ -243,18 +236,25 @@ class GameObjectsTest : KoinMock() {
     @Test
     fun `Replaced original object is undone after ticks`() {
         val original = GameObject(id = 5678, x = 100, y = 100, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)
-        objects.set(original.intId, original.x, original.y, original.level, original.shape, original.rotation, ObjectDefinition.EMPTY)
-        val replacement = objects.replace(original, "test", Tile(101, 100), ObjectShape.CENTRE_PIECE_STRAIGHT, 1, ticks = 5, collision = false)
+        GameObjects.set(original.intId, original.x, original.y, original.level, original.shape, original.rotation, ObjectDefinition.EMPTY)
+        val replacement = GameObjects.replace(original, "test", Tile(101, 100), ObjectShape.CENTRE_PIECE_STRAIGHT, 1, ticks = 5, collision = false)
         repeat(5) {
-            assertFalse(objects.contains(original))
-            assertTrue(objects.contains(replacement))
-            objects.timers.run()
+            assertFalse(GameObjects.contains(original))
+            assertTrue(GameObjects.contains(replacement))
+            GameObjects.timers.run()
         }
-        assertTrue(objects.contains(original))
-        assertFalse(objects.contains(replacement))
+        assertTrue(GameObjects.contains(original))
+        assertFalse(GameObjects.contains(replacement))
         verifyOrder {
             spawns.add(replacement)
             despawns.add(replacement)
         }
+    }
+
+    @AfterEach
+    fun teardown() {
+        unmockkObject(ZoneBatchUpdates)
+        Spawn.close()
+        Despawn.close()
     }
 }

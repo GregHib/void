@@ -15,23 +15,23 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 
-class SlayerTower(val objects: GameObjects) : Script {
+class SlayerTower : Script {
 
     init {
         objectSpawn("slayer_tower_entrance_door_*_opened") {
             val statue = if (id == "slayer_tower_entrance_door_west_opened") {
-                objects.findOrNull(tile.add(-2, -2), "slayer_tower_statue")
+                GameObjects.findOrNull(tile.add(-2, -2), "slayer_tower_statue")
             } else {
-                objects.findOrNull(tile.add(1, -2), "slayer_tower_statue")
+                GameObjects.findOrNull(tile.add(1, -2), "slayer_tower_statue")
             } ?: return@objectSpawn
             statue.anim("slayer_tower_statue_stand")
         }
 
         objectDespawn("slayer_tower_entrance_door_*_opened") {
             val statue = if (id == "slayer_tower_entrance_door_west_opened") {
-                objects.findOrNull(tile.add(-2, -2), "slayer_tower_statue")
+                GameObjects.findOrNull(tile.add(-2, -2), "slayer_tower_statue")
             } else {
-                objects.findOrNull(tile.add(1, -2), "slayer_tower_statue")
+                GameObjects.findOrNull(tile.add(1, -2), "slayer_tower_statue")
             } ?: return@objectDespawn
             statue.anim("slayer_tower_statue_hide")
         }

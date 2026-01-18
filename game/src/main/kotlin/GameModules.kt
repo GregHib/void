@@ -44,7 +44,6 @@ fun gameModule(files: ConfigFiles) = module {
             get(),
             get(),
             get(),
-            get(),
             InterfaceHandler(get(), get(), get(), get()),
         )
     }

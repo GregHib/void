@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.suspend.StringSuspension
 import world.gregs.voidps.type.Direction
 
-class Canoes(val objects: GameObjects, val stations: CanoeDefinitions) : Script {
+class Canoes(val stations: CanoeDefinitions) : Script {
 
     init {
         playerSpawn {
@@ -167,7 +167,7 @@ class Canoes(val objects: GameObjects, val stations: CanoeDefinitions) : Script 
             tele(definition.destination)
             set("canoe_state_$station", "tree")
             set("canoe_state_$destination", "tree")
-            objects.add("a_sinking_canoe_$canoe", tile = definition.sink, rotation = 1, ticks = 3)
+            GameObjects.add("a_sinking_canoe_$canoe", tile = definition.sink, rotation = 1, ticks = 3)
             sound("canoe_sink")
             message(definition.message, type = ChatType.Filter)
         }

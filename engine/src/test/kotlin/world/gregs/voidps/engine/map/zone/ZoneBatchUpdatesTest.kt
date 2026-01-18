@@ -40,6 +40,7 @@ internal class ZoneBatchUpdatesTest : KoinMock() {
         player = Player()
         client = mockk(relaxed = true)
         update = mockk(relaxed = true)
+        GameObjects.storeUnused = true
         mockkStatic("world.gregs.voidps.network.login.protocol.encode.ZoneEncodersKt")
         mockkStatic("world.gregs.voidps.network.login.protocol.encode.ZoneUpdateEncodersKt")
         mockkStatic("world.gregs.voidps.engine.entity.character.player.PlayerVisualsKt")
@@ -57,13 +58,12 @@ internal class ZoneBatchUpdatesTest : KoinMock() {
         val zone = Zone(2, 2)
         ZoneBatchUpdates.add(zone, update)
         player.tile = Tile(20, 20)
-        val objects = GameObjects(storeUnused = true)
-        objects.set(id = 1234, x = 21, y = 20, level = 0, shape = ObjectShape.WALL_DECOR_STRAIGHT_NO_OFFSET, rotation = 0, definition = ObjectDefinition.EMPTY)
-        ZoneBatchUpdates.register(objects)
+        GameObjects.set(id = 1234, x = 21, y = 20, level = 0, shape = ObjectShape.WALL_DECOR_STRAIGHT_NO_OFFSET, rotation = 0, definition = ObjectDefinition.EMPTY)
+        ZoneBatchUpdates.register(GameObjects)
         val added = GameObject(4321, Tile(20, 21), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
-        objects.add(added, collision = false) // Avoid koin
+        GameObjects.add(added, collision = false) // Avoid koin
         val removed = GameObject(1234, Tile(21, 20), ObjectShape.WALL_DECOR_STRAIGHT_NO_OFFSET, 0)
-        objects.remove(removed, collision = false)
+        GameObjects.remove(removed, collision = false)
         player["logged_in"] = true
         // When
         ZoneBatchUpdates.run(player)

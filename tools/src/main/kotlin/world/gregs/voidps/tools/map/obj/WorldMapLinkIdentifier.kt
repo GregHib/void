@@ -37,7 +37,6 @@ object WorldMapLinkIdentifier {
         val graph = MutableNavigationGraph()
         val linker = ObjectLinker()
         val clientScriptDecoder = ClientScriptDecoder().load(cache)
-        val objects = GameObjects()
         val regions = mutableListOf<Region>()
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {
@@ -54,7 +53,7 @@ object WorldMapLinkIdentifier {
                 val tile = Tile(region.tile.x + loc.x, region.tile.y + loc.y, loc.level)
                 val obj = GameObject(loc.id, tile, loc.shape, loc.rotation)
                 list.add(obj)
-                objects.add(obj)
+                GameObjects.add(obj)
                 objCollision.modify(obj)
             }
             val x = region.tile.x

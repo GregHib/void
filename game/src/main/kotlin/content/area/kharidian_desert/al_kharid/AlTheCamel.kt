@@ -19,7 +19,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 
-class AlTheCamel(val objects: GameObjects) : Script {
+class AlTheCamel : Script {
 
     init {
         npcOperate("Talk-to", "*camel") {
@@ -156,7 +156,7 @@ class AlTheCamel(val objects: GameObjects) : Script {
         interfaces.sendText("fade_out", "text", "<red>You close your eyes...")
         delay(2)
         val tile = get<NPC>("dialogue_target")?.tile ?: tile.add(Direction.all.random())
-        objects.add("dung", tile, ticks = TimeUnit.SECONDS.toTicks(30))
+        GameObjects.add("dung", tile, ticks = TimeUnit.SECONDS.toTicks(30))
         delay(2)
         open("fade_in")
         npc<Neutral>("I hope that's what you wanted!")

@@ -38,7 +38,6 @@ import kotlin.random.Random
  *   floor items - Varrock ash cleaner
  */
 class Hunting(
-    private val objects: GameObjects,
     private val floorItems: FloorItems,
     private val huntModes: HuntModeDefinitions,
     private val lineValidator: LineValidator,
@@ -166,7 +165,7 @@ class Hunting(
         for (direction in directions) {
             val tile = parent.add(direction)
             queue.add(tile)
-            val obj = objects.findOrNull(tile, definition.layer) ?: continue
+            val obj = GameObjects.findOrNull(tile, definition.layer) ?: continue
             if (definition.id != null && obj.id != definition.id) {
                 continue
             }

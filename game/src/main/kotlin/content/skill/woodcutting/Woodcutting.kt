@@ -31,7 +31,6 @@ import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.type.random
 
 class Woodcutting(
-    val objects: GameObjects,
     val floorItems: FloorItems,
     val drops: DropTables,
 ) : Script {
@@ -59,7 +58,7 @@ class Woodcutting(
         val ivy = tree.log.isEmpty()
         var first = true
         while (player.awaitDialogues()) {
-            if (!objects.contains(target) || !player.has(Skill.Woodcutting, tree.level, true)) {
+            if (!GameObjects.contains(target) || !player.has(Skill.Woodcutting, tree.level, true)) {
                 break
             }
 
@@ -83,7 +82,7 @@ class Woodcutting(
             } else if (remaining > 0) {
                 player.pause(remaining)
             }
-            if (!objects.contains(target)) {
+            if (!GameObjects.contains(target)) {
                 break
             }
             if (success(player.levels.get(Skill.Woodcutting), hatchet, tree)) {
@@ -163,7 +162,7 @@ class Woodcutting(
         val stumpId = "${obj.id}_stump"
         if (ObjectDefinitions.contains(stumpId)) {
             val delay = getRegrowTickDelay(tree)
-            objects.replace(obj, stumpId, ticks = delay)
+            GameObjects.replace(obj, stumpId, ticks = delay)
             areaSound("fell_tree", obj.tile)
         }
         return true

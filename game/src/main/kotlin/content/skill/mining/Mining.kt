@@ -28,7 +28,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 
-class Mining(val objects: GameObjects, val itemDefinitions: ItemDefinitions) : Script {
+class Mining(val itemDefinitions: ItemDefinitions) : Script {
 
     val gems = setOf(
         "uncut_sapphire",
@@ -46,7 +46,7 @@ class Mining(val objects: GameObjects, val itemDefinitions: ItemDefinitions) : S
             softTimers.start("mining")
             var first = true
             while (true) {
-                if (!objects.contains(target)) {
+                if (!GameObjects.contains(target)) {
                     break
                 }
 
@@ -79,7 +79,7 @@ class Mining(val objects: GameObjects, val itemDefinitions: ItemDefinitions) : S
                 } else if (remaining > 0) {
                     pause(delay)
                 }
-                if (!objects.contains(target)) {
+                if (!GameObjects.contains(target)) {
                     break
                 }
                 if (rock.gems) {
@@ -166,7 +166,7 @@ class Mining(val objects: GameObjects, val itemDefinitions: ItemDefinitions) : S
             return false
         }
         if (rock.life >= 0) {
-            objects.replace(obj, "depleted${obj.id.dropWhile { it != '_' }}", ticks = rock.life)
+            GameObjects.replace(obj, "depleted${obj.id.dropWhile { it != '_' }}", ticks = rock.life)
             return true
         }
         return false

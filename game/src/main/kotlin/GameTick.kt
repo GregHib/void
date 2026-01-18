@@ -37,7 +37,6 @@ import java.util.concurrent.TimeUnit
 fun getTickStages(
     items: FloorItems = get(),
     floorItems: FloorItemTracking = get(),
-    objects: GameObjects = get(),
     queue: ConnectionQueue = get(),
     accountSave: SaveQueue = get(),
     hunting: Hunting = get(),
@@ -64,7 +63,7 @@ fun getTickStages(
         NPCTask(sequentialNpc),
         PlayerTask(sequentialPlayer),
         floorItems,
-        objects.timers,
+        GameObjects.timers,
         // Update
         dynamicZones,
         ZoneBatchUpdates,

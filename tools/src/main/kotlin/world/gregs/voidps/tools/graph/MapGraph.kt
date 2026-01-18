@@ -18,7 +18,6 @@ import kotlin.math.sqrt
 import kotlin.system.measureNanoTime
 
 class MapGraph(
-    private val objects: GameObjects,
     private val xteas: Xteas,
     private val cache: Cache,
 ) {
@@ -39,7 +38,7 @@ class MapGraph(
 
                 for (zone in region.tile.zone.toCuboid(width = 8, height = 8).toZones()) {
                     val time = measureNanoTime {
-                        val loaded = zone.toCuboid().flatMap { tile -> objects.at(tile) }
+                        val loaded = zone.toCuboid().flatMap { tile -> GameObjects.at(tile) }
                         objs.addAll(loaded)
                         all.addAll(getCenterPoints(strategy, zone.toCuboid(width = 2, height = 2)))
                     }

@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.add
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
@@ -41,7 +42,7 @@ class SummoningCraftingTest : WorldTest() {
             val player = createPlayer(Tile(2523, 3056))
             player.levels.set(Skill.Summoning, 99)
             val originalXp = player.experience.get(Skill.Summoning)
-            val obelisk = objects.find(Tile(2521, 3055), "obelisk")
+            val obelisk = GameObjects.find(Tile(2521, 3055), "obelisk")
             val interactingSlot = index * 5 - 3
 
             val charmItemId: Int = pouch.def["summoning_charm_id"]
@@ -99,7 +100,7 @@ class SummoningCraftingTest : WorldTest() {
             val player = createPlayer(Tile(2523, 3056))
             player.levels.set(Skill.Summoning, 99)
             val originalXp = player.experience.get(Skill.Summoning)
-            val obelisk = objects.find(Tile(2521, 3055), "obelisk")
+            val obelisk = GameObjects.find(Tile(2521, 3055), "obelisk")
             val interactingSlot = index * 5 - 3
 
             player.inventory.transaction {

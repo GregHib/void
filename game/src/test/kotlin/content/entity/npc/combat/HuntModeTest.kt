@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import kotlin.test.assertEquals
 
@@ -17,7 +18,7 @@ internal class HuntModeTest : WorldTest() {
     @BeforeEach
     fun setup() {
         NPCs.clear()
-        players.clear()
+        Players.clear()
     }
 
     @Test

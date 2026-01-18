@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
@@ -218,7 +219,7 @@ class PrinceAliRescueTest : WorldTest() {
 
         // Enter prison
         player.tele(3123, 3244)
-        val door = objects.find(Tile(3123, 3243), "draynor_prison_door_closed")
+        val door = GameObjects.find(Tile(3123, 3243), "draynor_prison_door_closed")
         player.objectOption(door, "Open")
         tick(4)
         assertEquals(Tile(3123, 3243), player.tile)

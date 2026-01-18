@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import org.koin.test.get
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
@@ -31,7 +32,7 @@ internal class RunecraftingTest : WorldTest() {
             player.levels.set(Skill.Runecrafting, 99)
             player.inventory.add("rune_essence")
 
-            val altar = objects.find(altarTile, "${type}_altar")
+            val altar = GameObjects.find(altarTile, "${type}_altar")
             player.objectOption(altar, "Craft-rune")
             tick(1)
             tickIf { player.visuals.moved }
@@ -50,7 +51,7 @@ internal class RunecraftingTest : WorldTest() {
             player.levels.set(Skill.Runecrafting, 99)
             player.inventory.add("rune_essence")
 
-            val altar = objects.find(altarTile, "${type}_altar")
+            val altar = GameObjects.find(altarTile, "${type}_altar")
             player.objectOption(altar, "Craft-rune")
             tick(1)
             tickIf { player.visuals.moved }
@@ -69,7 +70,7 @@ internal class RunecraftingTest : WorldTest() {
             player.levels.set(Skill.Runecrafting, 99)
             player.inventory.add("pure_essence")
 
-            val altar = objects.find(altarTile, "${type}_altar")
+            val altar = GameObjects.find(altarTile, "${type}_altar")
             player.itemOnObject(altar, 0)
             tick(1)
             tickIf { player.visuals.moved }
@@ -88,7 +89,7 @@ internal class RunecraftingTest : WorldTest() {
             player.levels.set(Skill.Runecrafting, 99)
             player.inventory.add("pure_essence")
 
-            val altar = objects.find(altarTile, "${type}_altar")
+            val altar = GameObjects.find(altarTile, "${type}_altar")
             player.itemOnObject(altar, 0)
             tick(1)
             tickIf { player.visuals.moved }
@@ -107,7 +108,7 @@ internal class RunecraftingTest : WorldTest() {
             player.levels.set(Skill.Runecrafting, 0)
             player.inventory.add("pure_essence")
 
-            val altar = objects.find(altarTile, "${type}_altar")
+            val altar = GameObjects.find(altarTile, "${type}_altar")
             player.objectOption(altar, "Craft-rune")
             tick(1)
             tickIf { player.visuals.moved }

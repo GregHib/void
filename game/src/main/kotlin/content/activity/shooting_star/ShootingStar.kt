@@ -38,9 +38,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
 import kotlin.text.toIntOrNull
 
-class ShootingStar(
-    val objects: GameObjects,
-) : Script {
+class ShootingStar : Script {
 
     val logger = InlineLogger()
 
@@ -180,7 +178,7 @@ class ShootingStar(
         shootingStarShadow.walkTo(currentStarTile, noCollision = true, forceWalk = true)
         areaSound("star_meteor_falling", currentStarTile, radius = 15, delay = 20)
         World.queue("awaiting_shadow_walk", 6) {
-            val shootingStarObjectFalling: GameObject = objects.add("crashed_star_falling_object", currentStarTile)
+            val shootingStarObjectFalling: GameObject = GameObjects.add("crashed_star_falling_object", currentStarTile)
             val under = mutableListOf<Player>()
             for (tile in currentStarTile.toCuboid(2, 2)) {
                 for (player in Players.at(tile)) {
@@ -201,7 +199,7 @@ class ShootingStar(
     }
 
     fun cleanseEvent(forceStopped: Boolean) {
-        currentActiveObject?.let { current -> objects.findOrNull(currentStarTile, current.id) }?.remove()
+        currentActiveObject?.let { current -> GameObjects.findOrNull(currentStarTile, current.id) }?.remove()
         if (!forceStopped) {
             areaSound("star_sprite_appear", currentStarTile, radius = 10)
             val starSprite = NPCs.add("star_sprite", currentStarTile, Direction.NONE)

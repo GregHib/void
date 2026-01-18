@@ -20,9 +20,7 @@ import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
-class TaverleyDungeon(
-    val objects: GameObjects,
-) : Script {
+class TaverleyDungeon : Script {
 
     val leftSpawn = Tile(2887, 9832)
     val rightSpawn = Tile(2887, 9829)
@@ -41,7 +39,7 @@ class TaverleyDungeon(
     }
 
     fun spawn(player: Player, tile: Tile): Boolean {
-        val armour = objects.getLayer(tile, ObjectLayer.GROUND) ?: return false
+        val armour = GameObjects.getLayer(tile, ObjectLayer.GROUND) ?: return false
         armour.remove(TimeUnit.MINUTES.toTicks(5))
         val suit = NPCs.add("suit_of_armour", armour.tile)
         player.message("Suddenly the suit of armour comes to life!")

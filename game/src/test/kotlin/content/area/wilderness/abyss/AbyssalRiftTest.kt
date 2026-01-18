@@ -5,6 +5,7 @@ import containsMessage
 import objectOption
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -19,7 +20,7 @@ internal class AbyssalRiftTest : WorldTest() {
         Tile(3027, 4834) to "Legacy of Seergaze",
         Tile(3050, 4829) to "not yet unlocked",
     ).map { (tile, message) ->
-        val obj = objects.find(tile) { it.id.endsWith("rift") }
+        val obj = GameObjects.find(tile) { it.id.endsWith("rift") }
         dynamicTest("Can't enter ${obj.id}") {
             val player = createPlayer(tile)
 

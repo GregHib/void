@@ -11,17 +11,15 @@ import kotlin.system.exitProcess
 
 class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLinks: List<Pair<Tile, Tile>>, val graph: MutableNavigationGraph) {
 
-    val objs = get<GameObjects>()
-
     /**
      * Ignore re-used objects, e.g. chains on levels > 0 in stronghold of security
      */
     private fun isReused(obj: GameObject): Boolean {
         if (obj.tile.level > 0) {
-            if (objs.findOrNull(obj.tile.addLevel(1), obj.id) != null) {
+            if (GameObjects.findOrNull(obj.tile.addLevel(1), obj.id) != null) {
                 return false
             }
-            if (objs.findOrNull(obj.tile.minus(level = 1), obj.id) != null) {
+            if (GameObjects.findOrNull(obj.tile.minus(level = 1), obj.id) != null) {
                 return false
             }
         }

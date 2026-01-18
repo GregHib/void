@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.instruction.handle.interactOn
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
@@ -22,7 +23,7 @@ class CurePlantTest : WorldTest() {
         player.inventory.add("astral_rune")
         player.inventory.add("earth_rune", 8)
         player["farming_veg_patch_falador_se"] = "potato_diseased_2"
-        val patch = objects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
+        val patch = GameObjects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.interactOn(patch, "lunar_spellbook", "cure_plant")
         tick(4)
@@ -39,7 +40,7 @@ class CurePlantTest : WorldTest() {
         player.inventory.add("astral_rune")
         player.inventory.add("earth_rune", 8)
         player["farming_veg_patch_falador_se"] = "potato_2"
-        val patch = objects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
+        val patch = GameObjects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.interactOn(patch, "lunar_spellbook", "cure_plant")
         tick(4)
@@ -57,7 +58,7 @@ class CurePlantTest : WorldTest() {
         player.inventory.add("astral_rune")
         player.inventory.add("earth_rune", 8)
         player["farming_veg_patch_falador_se"] = "potato_2"
-        val patch = objects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
+        val patch = GameObjects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.interactOn(patch, "lunar_spellbook", "cure_plant")
         tick(4)

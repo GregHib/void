@@ -7,6 +7,7 @@ import objectOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
@@ -19,7 +20,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
     @Test
     fun `Get rewards from peace chest`() {
         val player = createPlayer(Tile(1907, 5223))
-        val chest = objects.find(Tile(1907, 5222), "gift_of_peace")
+        val chest = GameObjects.find(Tile(1907, 5222), "gift_of_peace")
 
         player.objectOption(chest, "Open")
         tick()
@@ -34,7 +35,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
     fun `Can't claim twice from peace chest`() {
         val player = createPlayer(Tile(1907, 5223))
         player["unlocked_emote_flap"] = true
-        val chest = objects.find(Tile(1907, 5222), "gift_of_peace")
+        val chest = GameObjects.find(Tile(1907, 5222), "gift_of_peace")
 
         player.objectOption(chest, "Open")
         tick()
@@ -48,7 +49,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
     fun `Can't claim with full inventory from peace chest`() {
         val player = createPlayer(Tile(1907, 5223))
         player.inventory.add("shark", 28)
-        val chest = objects.find(Tile(1907, 5222), "gift_of_peace")
+        val chest = GameObjects.find(Tile(1907, 5222), "gift_of_peace")
 
         player.objectOption(chest, "Open")
         tick()
@@ -62,7 +63,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
     @Test
     fun `Get rewards from grain of plenty`() {
         val player = createPlayer(Tile(2021, 5214))
-        val grain = objects.find(Tile(2021, 5215), "grain_of_plenty")
+        val grain = GameObjects.find(Tile(2021, 5215), "grain_of_plenty")
 
         player.objectOption(grain, "Search")
         tick()
@@ -77,7 +78,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
     fun `Can't claim twice from grain of plenty`() {
         val player = createPlayer(Tile(2021, 5214))
         player["unlocked_emote_flap"] = true
-        val grain = objects.find(Tile(2021, 5215), "grain_of_plenty")
+        val grain = GameObjects.find(Tile(2021, 5215), "grain_of_plenty")
 
         player.objectOption(grain, "Search")
         tick()
@@ -91,7 +92,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
     fun `Can't claim with full inventory from grain of plenty`() {
         val player = createPlayer(Tile(2021, 5214))
         player.inventory.add("shark", 28)
-        val grain = objects.find(Tile(2021, 5215), "grain_of_plenty")
+        val grain = GameObjects.find(Tile(2021, 5215), "grain_of_plenty")
 
         player.objectOption(grain, "Search")
         tick()
@@ -109,7 +110,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
         player.levels.set(Skill.Prayer, 10)
         player.experience.set(Skill.Constitution, Level.experience(15))
         player.levels.set(Skill.Constitution, 100)
-        val box = objects.find(Tile(2144, 5280), "box_of_health")
+        val box = GameObjects.find(Tile(2144, 5280), "box_of_health")
 
         player.objectOption(box, "Open")
         tick()
@@ -130,7 +131,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
         player.levels.set(Skill.Prayer, 10)
         player.experience.set(Skill.Constitution, Level.experience(15))
         player.levels.set(Skill.Constitution, 100)
-        val box = objects.find(Tile(2144, 5280), "box_of_health")
+        val box = GameObjects.find(Tile(2144, 5280), "box_of_health")
 
         player.objectOption(box, "Open")
         tick()
@@ -151,7 +152,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
         player.levels.set(Skill.Prayer, 10)
         player.experience.set(Skill.Constitution, Level.experience(15))
         player.levels.set(Skill.Constitution, 100)
-        val box = objects.find(Tile(2144, 5280), "box_of_health")
+        val box = GameObjects.find(Tile(2144, 5280), "box_of_health")
 
         player.objectOption(box, "Open")
         tick()
@@ -167,7 +168,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
     @Test
     fun `Get rewards from cradle of life`() {
         val player = createPlayer(Tile(2343, 5214))
-        val cradle = objects.find(Tile(2344, 5214), "cradle_of_life")
+        val cradle = GameObjects.find(Tile(2344, 5214), "cradle_of_life")
 
         player.objectOption(cradle, "Search")
         tick()
@@ -188,7 +189,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
     fun `Can replace lost items from cradle of life`() {
         val player = createPlayer(Tile(2343, 5214))
         player["unlocked_emote_stomp"] = true
-        val cradle = objects.find(Tile(2344, 5214), "cradle_of_life")
+        val cradle = GameObjects.find(Tile(2344, 5214), "cradle_of_life")
 
         player.objectOption(cradle, "Search")
         tick()
@@ -209,7 +210,7 @@ class StrongholdOfSecurityRewardTest : WorldTest() {
         val player = createPlayer(Tile(2343, 5214))
         player["unlocked_emote_stomp"] = true
         player.inventory.add("fancy_boots")
-        val cradle = objects.find(Tile(2344, 5214), "cradle_of_life")
+        val cradle = GameObjects.find(Tile(2344, 5214), "cradle_of_life")
 
         player.objectOption(cradle, "Search")
         tick()

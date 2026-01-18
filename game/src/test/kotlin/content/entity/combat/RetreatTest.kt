@@ -7,6 +7,7 @@ import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
@@ -27,7 +28,7 @@ class RetreatTest : WorldTest() {
     ).map { (from, to) ->
         dynamicTest("Retreat target $from moves $to") {
             NPCs.clear()
-            players.clear()
+            Players.clear()
             val spawn = Tile(3035, 3355)
             val npc = createNPC("guard_falador", spawn)
             val player = createPlayer(tile = spawn.add(from))
@@ -59,7 +60,7 @@ class RetreatTest : WorldTest() {
     ).map { direction ->
         dynamicTest("Can't retreat $direction out of bounds") {
             NPCs.clear()
-            players.clear()
+            Players.clear()
             val spawn = Tile(3035, 3355)
             val npc = createNPC("guard_falador", spawn)
             val player = createPlayer(tile = spawn.add(direction.inverse()))

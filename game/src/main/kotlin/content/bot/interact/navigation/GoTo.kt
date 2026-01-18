@@ -114,7 +114,7 @@ private suspend fun Bot.navigate() {
             this.step = step
             player.instructions.send(step)
             val timeout = withTimeoutOrNull(TICKS.toMillis(20)) {
-                if (step is InteractObject && get<GameObjects>().findOrNull(player.tile.copy(step.x, step.y), step.objectId) == null) {
+                if (step is InteractObject && GameObjects.findOrNull(player.tile.copy(step.x, step.y), step.objectId) == null) {
                     await("tick")
                 } else {
                     await("move")

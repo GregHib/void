@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 
-class ZamorakCrafter(val objects: GameObjects, val patrols: PatrolDefinitions) : Script {
+class ZamorakCrafter(val patrols: PatrolDefinitions) : Script {
 
     init {
         npcSpawn("zamorak_crafter*") {
@@ -23,7 +23,7 @@ class ZamorakCrafter(val objects: GameObjects, val patrols: PatrolDefinitions) :
     fun checkRoute(npc: NPC, from: Tile) {
         if (npc.tile.equals(3314, 4811)) {
             npc.strongQueue("craft_runes") {
-                val altar = objects.findOrNull(Tile(3315, 4810), "ourania_altar")
+                val altar = GameObjects.findOrNull(Tile(3315, 4810), "ourania_altar")
                 if (altar != null) {
                     npc.face(altar)
                 }

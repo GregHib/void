@@ -30,7 +30,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 
-class Gudrun(val objects: GameObjects) : Script {
+class Gudrun : Script {
 
     val region = Region(12341)
 
@@ -215,7 +215,7 @@ class Gudrun(val objects: GameObjects) : Script {
         }
         moveCamera(cutscene.tile(3084, 3421), 350)
         turnCamera(cutscene.tile(3082, 3426), 250)
-        val gudrunHugging = objects.add("gudrun_and_dororan", cutscene.tile(3082, 3426), shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        val gudrunHugging = GameObjects.add("gudrun_and_dororan", cutscene.tile(3082, 3426), shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
         open("fade_in")
         npc<Happy>("gudrun_cutscene", "That was brilliant! I must know who wrote that poem.")
         npc<Disheartened>("dororan_cutscene", "Um, that would be me. Hello")

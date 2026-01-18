@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
@@ -26,7 +27,7 @@ internal class MysteriousRuinsTest : WorldTest() {
             player.inventory.add("${type}_talisman")
 
             println("Start $tile")
-            val ruins = objects.find(ruinsTile, "${type}_altar_ruins")
+            val ruins = GameObjects.find(ruinsTile, "${type}_altar_ruins")
             player.itemOnObject(ruins, 0)
             tickIf {
                 println(player.tile)
@@ -45,7 +46,7 @@ internal class MysteriousRuinsTest : WorldTest() {
             player.equipment.set(EquipSlot.Hat.index, "${type}_tiara")
             tick(1)
 
-            val ruins = objects.find(ruinsTile, "${type}_altar_ruins")
+            val ruins = GameObjects.find(ruinsTile, "${type}_altar_ruins")
             player.objectOption(ruins, "Enter", 0)
             tickIf { player.tile.region == tile.region }
 
@@ -60,7 +61,7 @@ internal class MysteriousRuinsTest : WorldTest() {
             val player = createPlayer(tile)
             player.equipment.set(EquipSlot.Hat.index, "omni_tiara")
 
-            val ruins = objects.find(ruinsTile, "${type}_altar_ruins")
+            val ruins = GameObjects.find(ruinsTile, "${type}_altar_ruins")
             player.objectOption(ruins, "Enter", 0)
             tickIf { player.tile.region == tile.region }
 
@@ -75,7 +76,7 @@ internal class MysteriousRuinsTest : WorldTest() {
             val player = createPlayer(tile)
             player.equipment.set(EquipSlot.Weapon.index, "omni_talisman_staff")
 
-            val ruins = objects.find(ruinsTile, "${type}_altar_ruins")
+            val ruins = GameObjects.find(ruinsTile, "${type}_altar_ruins")
             player.objectOption(ruins, "Enter", 0)
             tick(5)
             tickIf { player.tile.region == tile.region }
@@ -100,7 +101,7 @@ internal class MysteriousRuinsTest : WorldTest() {
             val tile = Areas["${type}_altar_teleport"].random()
             val player = createPlayer(tile)
 
-            val ruins = objects.find(ruinsTile, "${type}_altar_ruins")
+            val ruins = GameObjects.find(ruinsTile, "${type}_altar_ruins")
             player.objectOption(ruins, "Enter", 0)
             tick(4)
 

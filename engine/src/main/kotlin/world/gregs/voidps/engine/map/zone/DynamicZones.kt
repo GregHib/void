@@ -12,7 +12,6 @@ import java.util.*
 import kotlin.collections.set
 
 class DynamicZones(
-    private val objects: GameObjects,
     private val extract: MapDefinitions,
 ) : Runnable {
     private val zones: MutableMap<Int, Int> = Int2IntArrayMap()
@@ -37,7 +36,7 @@ class DynamicZones(
      */
     fun copy(from: Zone, to: Zone = from, rotation: Int = 0) {
         zones[to.id] = from.rotatedId(rotation)
-        objects.reset(to)
+        GameObjects.reset(to)
         Collisions.clear(to)
         extract.loadZone(from, to, rotation)
         for (region in to.toCuboid(radius = 3).toRegions()) {
@@ -63,7 +62,7 @@ class DynamicZones(
      */
     fun clear(zone: Zone) {
         zones.remove(zone.id)
-        objects.reset(zone)
+        GameObjects.reset(zone)
         Collisions.clear(zone)
         extract.loadZone(zone, zone, 0)
         for (region in zone.toCuboid(radius = 3).toRegions()) {
@@ -80,7 +79,7 @@ class DynamicZones(
     fun clear(region: Region) {
         for (zone in region.toCuboid().toZones()) {
             if (zones.containsKey(zone.id)) {
-                objects.clear(zone)
+                GameObjects.clear(zone)
                 Collisions.clear(zone)
                 extract.loadZone(zone, zone, 0)
                 zones.remove(zone.id)

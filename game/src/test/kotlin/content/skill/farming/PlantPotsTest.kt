@@ -6,6 +6,7 @@ import itemOnObject
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
@@ -18,7 +19,7 @@ class PlantPotsTest : WorldTest() {
         player.inventory.add("plant_pot_empty")
         player.inventory.add("gardening_trowel")
         player["farming_veg_patch_falador_se"] = "weeds_2"
-        val patch = objects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
+        val patch = GameObjects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.itemOnObject(patch, 0)
         tick(3)
@@ -35,7 +36,7 @@ class PlantPotsTest : WorldTest() {
         player.inventory.add("plant_pot_empty")
         player.inventory.add("gardening_trowel")
         player["farming_veg_patch_falador_se"] = "weeds_0"
-        val patch = objects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
+        val patch = GameObjects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.itemOnObject(patch, 0)
         tick(3)
@@ -50,7 +51,7 @@ class PlantPotsTest : WorldTest() {
         val player = createPlayer(Tile(3057, 3308))
         player.inventory.add("plant_pot_empty")
         player["farming_veg_patch_falador_se"] = "weeds_0"
-        val patch = objects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
+        val patch = GameObjects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.itemOnObject(patch, 0)
         tick(3)

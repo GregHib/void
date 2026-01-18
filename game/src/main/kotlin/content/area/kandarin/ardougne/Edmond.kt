@@ -33,7 +33,6 @@ import world.gregs.voidps.type.Region
 
 class Edmond(
     val floorItems: FloorItems,
-    val objects: GameObjects,
 ) : Script {
 
     val region = Region(10136)
@@ -216,9 +215,9 @@ class Edmond(
         delay(1)
         moveCamera(cutscene.tile(2517, 9744), 300)
         turnCamera(cutscene.tile(2513, 9740), 230)
-        val hangingopeend = objects.add("hanging_rope_anim", cutscene.tile(2514, 9739), ObjectShape.CENTRE_PIECE_STRAIGHT, 2, 20, false)
-        val straightrope = objects.add("straight_rope_anim", cutscene.tile(2514, 9740), ObjectShape.CENTRE_PIECE_STRAIGHT, 2, 20, false)
-        val straightropeend = objects.add("straight_rope_end_anim", cutscene.tile(2514, 9741), ObjectShape.CENTRE_PIECE_STRAIGHT, 2, 20, false)
+        val hangingopeend = GameObjects.add("hanging_rope_anim", cutscene.tile(2514, 9739), ObjectShape.CENTRE_PIECE_STRAIGHT, 2, 20, false)
+        val straightrope = GameObjects.add("straight_rope_anim", cutscene.tile(2514, 9740), ObjectShape.CENTRE_PIECE_STRAIGHT, 2, 20, false)
+        val straightropeend = GameObjects.add("straight_rope_end_anim", cutscene.tile(2514, 9741), ObjectShape.CENTRE_PIECE_STRAIGHT, 2, 20, false)
         open("fade_in")
         delay(2)
         say("1...")

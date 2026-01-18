@@ -15,25 +15,24 @@ object DoubleDoor {
      * Get the neighbouring door given either one of the door [gameObject]'s
      */
     fun get(gameObject: GameObject, def: ObjectDefinition, clockwise: Int): GameObject? {
-        val objects: GameObjects = get()
         var orientation = Direction.cardinal[gameObject.rotation(clockwise)]
-        var door = objects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
+        var door = GameObjects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
         if (door != null && door.def.isDoor()) {
             return door
         }
         orientation = orientation.inverse()
-        door = objects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
+        door = GameObjects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
         if (door != null && door.def.isDoor()) {
             return door
         }
         if (def.isGate()) {
             orientation = orientation.rotate(2)
-            door = objects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
+            door = GameObjects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
             if (door != null && door.def.isGate()) {
                 return door
             }
             orientation = orientation.inverse()
-            door = objects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
+            door = GameObjects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
             if (door != null && door.def.isGate()) {
                 return door
             }

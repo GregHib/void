@@ -21,7 +21,6 @@ import world.gregs.voidps.network.client.instruction.InteractInterfaceItem
 
 class FiremakingBot(
     val tasks: TaskManager,
-    val objects: GameObjects,
 ) : Script {
 
     init {
@@ -58,10 +57,10 @@ class FiremakingBot(
         goToArea(map)
         val lighterIndex = player.inventory.indexOf(lighter.id)
         while (player.inventory.contains(logs.id)) {
-            if (objects.getLayer(player.tile, ObjectLayer.GROUND) != null) {
+            if (GameObjects.getLayer(player.tile, ObjectLayer.GROUND) != null) {
                 val spot = player.tile
                     .toCuboid(1)
-                    .firstOrNull { objects.getLayer(it, ObjectLayer.GROUND) == null }
+                    .firstOrNull { GameObjects.getLayer(it, ObjectLayer.GROUND) == null }
                 if (spot == null) {
                     await("tick")
                     if (player.inventory.spaces < 4) {

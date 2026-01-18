@@ -26,7 +26,7 @@ import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-class Firemaking(val floorItems: FloorItems, val objects: GameObjects) : Script {
+class Firemaking(val floorItems: FloorItems) : Script {
 
     val directions = listOf(Direction.WEST, Direction.EAST, Direction.SOUTH, Direction.NORTH)
 
@@ -108,7 +108,7 @@ class Firemaking(val floorItems: FloorItems, val objects: GameObjects) : Script 
         if (!has(Skill.Firemaking, fire.level, true)) {
             return false
         }
-        if (objects.getLayer(item.tile, ObjectLayer.GROUND) != null) {
+        if (GameObjects.getLayer(item.tile, ObjectLayer.GROUND) != null) {
             message("You can't light a fire here.")
             return false
         }
@@ -116,7 +116,7 @@ class Firemaking(val floorItems: FloorItems, val objects: GameObjects) : Script 
     }
 
     fun spawnFire(player: Player, tile: Tile, fire: Fire) {
-        val obj = objects.add("fire_${fire.colour}", tile, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0, ticks = fire.life)
+        val obj = GameObjects.add("fire_${fire.colour}", tile, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0, ticks = fire.life)
         floorItems.add(tile, "ashes", revealTicks = fire.life, disappearTicks = 60, owner = "")
         val interact = player.mode as Interact
         for (dir in directions) {

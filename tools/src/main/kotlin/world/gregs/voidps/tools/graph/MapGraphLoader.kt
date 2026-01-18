@@ -18,9 +18,8 @@ object MapGraphLoader {
         val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
         ObjectDefinitions.init(ObjectDecoder(member = true, lowDetail = false).load(cache))
             .load(configFiles().getValue(Settings["definitions.objects"]))
-        val objects = GameObjects()
         val xteas = Xteas() // .load("./xteas.json")
-        val graph = MapGraph(objects, xteas, cache)
+        val graph = MapGraph(xteas, cache)
         graph.load(12342)
     }
 }

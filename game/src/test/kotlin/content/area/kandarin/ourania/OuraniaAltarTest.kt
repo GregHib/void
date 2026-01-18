@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
@@ -17,7 +18,7 @@ internal class OuraniaAltarTest : WorldTest() {
         val player = createPlayer(Tile(3315, 4813))
         player.inventory.add("pure_essence", 28)
 
-        val altar = objects.find(Tile(3315, 4810), "ourania_altar")
+        val altar = GameObjects.find(Tile(3315, 4810), "ourania_altar")
         player.objectOption(altar, "Craft-rune")
         tick(1)
 
@@ -32,7 +33,7 @@ internal class OuraniaAltarTest : WorldTest() {
         player.inventory.add("pure_essence", 28)
         player["ardougne_medium_diary_complete"] = true
 
-        val altar = objects.find(Tile(3315, 4810), "ourania_altar")
+        val altar = GameObjects.find(Tile(3315, 4810), "ourania_altar")
         player.objectOption(altar, "Craft-rune")
         tick(1)
 

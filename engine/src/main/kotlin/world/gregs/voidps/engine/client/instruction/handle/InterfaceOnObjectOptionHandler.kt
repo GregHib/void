@@ -14,14 +14,13 @@ import world.gregs.voidps.network.client.instruction.InteractInterfaceObject
 import world.gregs.voidps.type.Tile
 
 class InterfaceOnObjectOptionHandler(
-    private val objects: GameObjects,
     private val handler: InterfaceHandler,
 ) : InstructionHandler<InteractInterfaceObject>() {
 
     override fun validate(player: Player, instruction: InteractInterfaceObject) {
         val (objectId, x, y, interfaceId, componentId, itemId, itemSlot) = instruction
         val tile = Tile(x, y, player.tile.level)
-        val obj = objects.findOrNull(tile, objectId)
+        val obj = GameObjects.findOrNull(tile, objectId)
         if (obj == null) {
             player.noInterest()
             return

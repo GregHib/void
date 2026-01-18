@@ -13,9 +13,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
 import world.gregs.voidps.type.random
 
-class WildernessObelisk(
-    val objects: GameObjects,
-) : Script {
+class WildernessObelisk : Script {
 
     val obelisks = Areas.tagged("obelisk")
 
@@ -44,7 +42,7 @@ class WildernessObelisk(
     }
 
     fun replace(obj: GameObject, tile: Tile) {
-        val sw = objects.findOrNull(tile, obj.id) ?: return
-        objects.replace(sw, "wilderness_obelisk_glow", ticks = 8)
+        val sw = GameObjects.findOrNull(tile, obj.id) ?: return
+        GameObjects.replace(sw, "wilderness_obelisk_glow", ticks = 8)
     }
 }

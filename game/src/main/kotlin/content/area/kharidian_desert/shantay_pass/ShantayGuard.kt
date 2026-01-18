@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
 
-class ShantayGuard(val objects: GameObjects) : Script {
+class ShantayGuard : Script {
 
     init {
         npcOperate("Talk-to", "shantay_guard") {
@@ -27,7 +27,7 @@ class ShantayGuard(val objects: GameObjects) : Script {
                         npc<Neutral>("You need a Shantay pass to get through this gate. See Shantay, he will sell you one for a very reasonable price.")
                         return@option
                     }
-                    interactObject(objects.find(Tile(3303, 3116), "shantay_pass"), "Go-through")
+                    interactObject(GameObjects.find(Tile(3303, 3116), "shantay_pass"), "Go-through")
                 }
                 option<Neutral>("Nothing thanks.") {
                     npc<Neutral>("Okay then, have a nice day.")

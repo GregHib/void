@@ -25,7 +25,7 @@ import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
 
-class Tollgate(val objects: GameObjects) : Script {
+class Tollgate : Script {
 
     val gates = Rectangle(Tile(3268, 3227), 1, 2)
 
@@ -86,7 +86,7 @@ class Tollgate(val objects: GameObjects) : Script {
 
     fun getGate(player: Player): GameObject {
         val tile = gates.nearestTo(player.tile)
-        return objects.find(tile) { it.id.startsWith("toll_gate_al_kharid") }
+        return GameObjects.find(tile) { it.id.startsWith("toll_gate_al_kharid") }
     }
 
     fun pass(player: Player) {

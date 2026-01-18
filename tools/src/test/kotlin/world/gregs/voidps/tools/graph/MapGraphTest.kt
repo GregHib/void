@@ -19,7 +19,7 @@ internal class MapGraphTest {
     @BeforeEach
     fun setup() {
         strategy = mockk(relaxed = true)
-        graph = MapGraph(mockk(), mockk(), mockk())
+        graph = MapGraph(mockk(), mockk())
     }
 
     @Test

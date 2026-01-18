@@ -100,12 +100,11 @@ object Door : AutoCloseable {
     }
 
     private fun resetExisting(obj: GameObject, double: GameObject?): Boolean {
-        val objects: GameObjects = get()
-        if (double == null && objects.timers.execute(obj)) {
+        if (double == null && GameObjects.timers.execute(obj)) {
             return true
         }
 
-        return double != null && (objects.timers.execute(obj) || objects.timers.execute(double))
+        return double != null && (GameObjects.timers.execute(obj) || GameObjects.timers.execute(double))
     }
 
     /**

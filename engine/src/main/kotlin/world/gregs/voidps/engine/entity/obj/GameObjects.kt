@@ -1,9 +1,11 @@
 package world.gregs.voidps.engine.entity.obj
 
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
+import org.jetbrains.annotations.TestOnly
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.Spawn
@@ -26,9 +28,7 @@ import java.io.File
  * Note: [Spawn] and [Despawn] events are only emitted for temporary and permanent objects, original objects that are added or removed do not emit events.
  * @param storeUnused store non-interactive and objects without configs for debugging and content dev (uses ~240MB more ram).
  */
-class GameObjects(
-    private val storeUnused: Boolean = false,
-) : ZoneBatchUpdates.Sender {
+object GameObjects : ZoneBatchUpdates.Sender {
     private val collisionAdd = GameObjectCollisionAdd()
     private val collisionRemove = GameObjectCollisionRemove()
     private val map = GameObjectHashMap()
@@ -119,6 +119,9 @@ class GameObjects(
             size++
         }
     }
+
+    @set:TestOnly
+    var storeUnused = Settings["development.loadAllObjects", false]
 
     /**
      * Decide to store [GameObject]s which don't have options or configs
@@ -346,6 +349,7 @@ class GameObjects(
      * Note: Doesn't undo collision changes
      */
     fun clear() {
+        storeUnused = Settings["development.loadAllObjects", false]
         map.clear()
         replacements.clear()
     }
@@ -380,45 +384,43 @@ class GameObjects(
         }
     }
 
-    companion object {
-        const val NEVER = -1
-        private const val REPLACED = 0x1
+    const val NEVER = -1
+    private const val REPLACED = 0x1
 
-        private fun empty(value: Int) = value == -1 || value == 0
+    private fun empty(value: Int) = value == -1 || value == 0
 
-        /**
-         * Value represents an objects id, shape and rotation plus and extra bit for whether the object has been [REPLACED] or removed.
-         */
-        internal fun value(replaced: Boolean, id: Int, shape: Int, rotation: Int): Int = replaced.toInt() or (rotation shl 1) + (shape shl 3) + (id shl 8)
+    /**
+     * Value represents an objects id, shape and rotation plus and extra bit for whether the object has been [REPLACED] or removed.
+     */
+    internal fun value(replaced: Boolean, id: Int, shape: Int, rotation: Int): Int = replaced.toInt() or (rotation shl 1) + (shape shl 3) + (id shl 8)
 
-        private fun id(value: Int): Int = value shr 8 and 0x1ffff
-        private fun shape(value: Int): Int = value shr 3 and 0x1f
-        private fun rotation(value: Int): Int = value shr 1 and 0x3
-        private fun replaced(value: Int) = value and REPLACED == REPLACED
-        private fun GameObject.value(replaced: Boolean): Int = replaced.toInt() or ((packed shr 30).toInt() shl 1)
+    private fun id(value: Int): Int = value shr 8 and 0x1ffff
+    private fun shape(value: Int): Int = value shr 3 and 0x1f
+    private fun rotation(value: Int): Int = value shr 1 and 0x3
+    private fun replaced(value: Int) = value and REPLACED == REPLACED
+    private fun GameObject.value(replaced: Boolean): Int = replaced.toInt() or ((packed shr 30).toInt() shl 1)
 
-        /**
-         * Index represents a [Tile] and [ObjectLayer]
-         */
-        private fun index(tile: Tile, layer: Int) = tile.id or (layer shl 30)
-        private fun level(index: Int) = index shr 28 and 0x2
-        private fun layer(index: Int) = index shr 30 and 0x2
-        private fun x(index: Int) = index shr 14 and 0x3fff
-        private fun y(index: Int) = index and 0x3fff
-        private val GameObject.index: Int
-            get() = (packed and 0x3fffffff).toInt() or (ObjectLayer.layer(shape) shl 30)
-    }
+    /**
+     * Index represents a [Tile] and [ObjectLayer]
+     */
+    private fun index(tile: Tile, layer: Int) = tile.id or (layer shl 30)
+    private fun level(index: Int) = index shr 28 and 0x2
+    private fun layer(index: Int) = index shr 30 and 0x2
+    private fun x(index: Int) = index shr 14 and 0x3fff
+    private fun y(index: Int) = index and 0x3fff
+    private val GameObject.index: Int
+        get() = (packed and 0x3fffffff).toInt() or (ObjectLayer.layer(shape) shl 30)
 }
 
 /**
  * Replaces an existing map objects with [id] [tile] [shape] and [rotation], modifying [collision] and
  * optionally removed after [ticks]
  */
-fun GameObject.replace(id: String, tile: Tile = this.tile, shape: Int = this.shape, rotation: Int = this.rotation, ticks: Int = -1, collision: Boolean = true): GameObject = get<GameObjects>().replace(this, id, tile, shape, rotation, ticks, collision)
+fun GameObject.replace(id: String, tile: Tile = this.tile, shape: Int = this.shape, rotation: Int = this.rotation, ticks: Int = -1, collision: Boolean = true): GameObject = GameObjects.replace(this, id, tile, shape, rotation, ticks, collision)
 
 /**
  * Removes an existing map [GameObject] and its [collision], optionally reverted after [ticks]
  */
 fun GameObject.remove(ticks: Int = -1, collision: Boolean = true) {
-    get<GameObjects>().remove(this, ticks, collision)
+    GameObjects.remove(this, ticks, collision)
 }

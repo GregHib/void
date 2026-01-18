@@ -8,6 +8,7 @@ import objectOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
@@ -47,7 +48,7 @@ class SirGerryTest : WorldTest() {
         player["godwars_knights_notes"] = true
         player.inventory.add("rope")
 
-        val hole = objects.find(Tile(2917, 3745), "godwars_hole_base")
+        val hole = GameObjects.find(Tile(2917, 3745), "godwars_hole_base")
 
         player.objectOption(hole, optionIndex = 0) // Tie-rope
         tick()

@@ -5,6 +5,7 @@ import containsMessage
 import objectOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -16,7 +17,7 @@ class ZamorakBridgeTest : WorldTest() {
         val player = createPlayer(Tile(2885, 5332, 2))
         player.levels.set(Skill.Constitution, 700)
         player.levels.set(Skill.Prayer, 50)
-        val bridge = objects.find(Tile(2885, 5333, 2), "godwars_zamorak_bridge")
+        val bridge = GameObjects.find(Tile(2885, 5333, 2), "godwars_zamorak_bridge")
 
         player.objectOption(bridge, "Climb-off")
         tick(8)
@@ -30,7 +31,7 @@ class ZamorakBridgeTest : WorldTest() {
         val player = createPlayer(Tile(2885, 5345, 2))
         player.levels.set(Skill.Constitution, 700)
         player.levels.set(Skill.Prayer, 50)
-        val bridge = objects.find(Tile(2885, 5344, 2), "godwars_zamorak_bridge")
+        val bridge = GameObjects.find(Tile(2885, 5344, 2), "godwars_zamorak_bridge")
 
         player.objectOption(bridge, "Climb-off")
         tick(8)
@@ -43,7 +44,7 @@ class ZamorakBridgeTest : WorldTest() {
     fun `Can't climb bridge without level 70 hp`() {
         val player = createPlayer(Tile(2885, 5332, 2))
         player.levels.set(Skill.Constitution, 690)
-        val bridge = objects.find(Tile(2885, 5333, 2), "godwars_zamorak_bridge")
+        val bridge = GameObjects.find(Tile(2885, 5333, 2), "godwars_zamorak_bridge")
 
         player.objectOption(bridge, "Climb-off")
         tick(2)

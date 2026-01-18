@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
@@ -59,7 +60,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     @Test
     fun `Master of All I survey`() = runTest {
         val player = createPlayer(Tile(3207, 3224, 2))
-        val ladder = objects.find(Tile(3207, 3223, 2), "lumbridge_castle_ladder")
+        val ladder = GameObjects.find(Tile(3207, 3223, 2), "lumbridge_castle_ladder")
 
         player.objectOption(ladder, "Climb-up")
         tick(4)
@@ -70,7 +71,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     @Test
     fun `Raise the Roof`() = runTest {
         val player = createPlayer(Tile(3209, 3217, 3))
-        val ladder = objects.find(Tile(3210, 3218, 3), "lumbridge_flag")
+        val ladder = GameObjects.find(Tile(3210, 3218, 3), "lumbridge_flag")
 
         player.objectOption(ladder, "Raise")
         tick(25)
@@ -85,7 +86,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         })
         val player = createPlayer(Tile(3229, 3147))
         player.levels.set(Skill.Mining, 100)
-        val rocks = objects.find(Tile(3230, 3147), "copper_rocks_rock_1")
+        val rocks = GameObjects.find(Tile(3230, 3147), "copper_rocks_rock_1")
         player.inventory.add("bronze_pickaxe")
 
         player.objectOption(rocks, "Mine")
@@ -98,7 +99,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     fun `Adventurer's Log`() {
         val player = createPlayer(Tile(3233, 3215))
         player.levels.set(Skill.Woodcutting, 100)
-        val tree = objects.find(Tile(3233, 3216), "tree_4")
+        val tree = GameObjects.find(Tile(3233, 3216), "tree_4")
         player.inventory.add("bronze_hatchet")
 
         player.objectOption(tree, "Chop down")
@@ -135,7 +136,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     fun `Shellfish Roasting on an Open Fire`() {
         val player = createPlayer(Tile(3079, 3444))
         player.inventory.add("raw_crayfish")
-        val fire = objects.find(Tile(3079, 3445), "fire_orange")
+        val fire = GameObjects.find(Tile(3079, 3445), "fire_orange")
 
         player.itemOnObject(fire, 0)
         tick(5)
@@ -150,7 +151,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         })
         val player = createPlayer(Tile(3225, 3147))
         player.levels.set(Skill.Mining, 100)
-        val rocks = objects.find(Tile(3225, 3148), "tin_rocks_rock_1")
+        val rocks = GameObjects.find(Tile(3225, 3148), "tin_rocks_rock_1")
         player.inventory.add("bronze_pickaxe")
 
         player.objectOption(rocks, "Mine")
@@ -163,7 +164,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     fun `Bar One`() {
         val player = createPlayer(Tile(3227, 3255))
         player.levels.set(Skill.Smithing, 100)
-        val furnace = objects.find(Tile(3226, 3256), "furnace_lumbridge")
+        val furnace = GameObjects.find(Tile(3226, 3256), "furnace_lumbridge")
         player.inventory.add("copper_ore", "tin_ore")
 
         player.itemOnObject(furnace, 0)
@@ -178,7 +179,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     @Test
     fun `Cutting Edge Technology`() {
         val player = createPlayer(Tile(3228, 3254))
-        val anvil = objects.find(Tile(3229, 3254), "anvil_lumbridge")
+        val anvil = GameObjects.find(Tile(3229, 3254), "anvil_lumbridge")
         player.inventory.add("bronze_bar", "hammer")
 
         player.itemOnObject(anvil, 0)
@@ -239,7 +240,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     fun `Hang on to Something`() {
         val player = createPlayer(Tile(3208, 3220, 2))
         player.inventory.add("coins", 1000)
-        val bank = objects.find(Tile(3208, 3221, 2), "bank_booth_lumbridge")
+        val bank = GameObjects.find(Tile(3208, 3221, 2), "bank_booth_lumbridge")
 
         player.objectOption(bank, "Use-quickly")
         tick(5)
@@ -376,7 +377,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         val player = createPlayer(Tile(2893, 4846))
         player.levels.set(Skill.Mining, 100)
         player.inventory.add("bronze_pickaxe")
-        val essence = objects.find(Tile(2891, 4847), "rune_essence_rocks")
+        val essence = GameObjects.find(Tile(2891, 4847), "rune_essence_rocks")
 
         player.objectOption(essence, "Mine")
         tick(9)
@@ -390,7 +391,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         player.levels.set(Skill.Runecrafting, 99)
         player.inventory.add("rune_essence")
 
-        val altar = objects.find(Tile(2843, 4833), "air_altar")
+        val altar = GameObjects.find(Tile(2843, 4833), "air_altar")
         player.objectOption(altar, "Craft-rune")
         tick(2)
 
@@ -434,7 +435,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         val player = createPlayer(Tile(3244, 3207))
         player.levels.drain(Skill.Prayer, 1)
 
-        val altar = objects.find(Tile(3243, 3206), "prayer_altar_lumbridge")
+        val altar = GameObjects.find(Tile(3243, 3206), "prayer_altar_lumbridge")
         player.objectOption(altar, "Pray")
         tick()
 
@@ -528,7 +529,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         player.levels.set(Skill.Smithing, 2)
         player.inventory.add("bronze_bar", "hammer")
 
-        val anvil = objects.find(Tile(3229, 3254), "anvil_lumbridge")
+        val anvil = GameObjects.find(Tile(3229, 3254), "anvil_lumbridge")
         player.itemOnObject(anvil, 0)
         tick()
         player.interfaceOption("smithing", "mace_1", "Make 1 Mace")
@@ -543,7 +544,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         player.levels.set(Skill.Smithing, 7)
         player.inventory.add("bronze_bar", "bronze_bar", "hammer")
 
-        val anvil = objects.find(Tile(3229, 3254), "anvil_lumbridge")
+        val anvil = GameObjects.find(Tile(3229, 3254), "anvil_lumbridge")
         player.itemOnObject(anvil, 0)
         tick()
         player.interfaceOption("smithing", "full_helm_1", "Make 1 Full helm")
@@ -619,7 +620,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         val player = createPlayer(Tile(3079, 3444))
         player.levels.set(Skill.Cooking, 100)
         player.inventory.add("raw_herring")
-        val fire = objects.find(Tile(3079, 3445), "fire_orange")
+        val fire = GameObjects.find(Tile(3079, 3445), "fire_orange")
 
         player.itemOnObject(fire, 0)
         tick(5)
@@ -680,7 +681,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         player.levels.set(Skill.Cooking, 10)
         player.inventory.add("uncooked_berry_pie")
 
-        val oven = objects.find(Tile(3230, 3196), "cooking_range_lumbridge")
+        val oven = GameObjects.find(Tile(3230, 3196), "cooking_range_lumbridge")
         player.itemOnObject(oven, 0)
         tick(5)
 
@@ -771,7 +772,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     fun `Tower Power`() {
         val player = createPlayer(Tile(3104, 3161, 1))
 
-        val stairs = objects.find(Tile(3103, 3159, 1), "wizards_tower_staircase")
+        val stairs = GameObjects.find(Tile(3103, 3159, 1), "wizards_tower_staircase")
         player.objectOption(stairs, "Climb-up")
         tick(2)
 
@@ -782,7 +783,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     fun `Tinkle the Ivories`() {
         val player = createPlayer(Tile(3243, 3213))
 
-        val stairs = objects.find(Tile(3243, 3214), "lumbridge_organ")
+        val stairs = GameObjects.find(Tile(3243, 3214), "lumbridge_organ")
         player.objectOption(stairs, "Play")
         tick()
 

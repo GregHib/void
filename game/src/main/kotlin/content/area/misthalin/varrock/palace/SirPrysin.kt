@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-class SirPrysin(val objects: GameObjects) : Script {
+class SirPrysin : Script {
     val cupboardTile = Tile(3204, 3469)
 
     init {
@@ -229,7 +229,7 @@ class SirPrysin(val objects: GameObjects) : Script {
         delay(1)
         target.tele(tile, clearMode = false)
         tele(tile.addY(1))
-        val cupboard = objects.find(cupboardTile, "silverlight_sword_case_closed")
+        val cupboard = GameObjects.find(cupboardTile, "silverlight_sword_case_closed")
         delay(1)
         target.face(cupboard)
         face(target)

@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObjects
 
-class ObjectCommands(val objects: GameObjects) : Script {
+class ObjectCommands : Script {
 
     init {
         adminCommand(
@@ -26,6 +26,6 @@ class ObjectCommands(val objects: GameObjects) : Script {
         val shape = args.getOrNull(1)?.toIntOrNull() ?: 10
         val rotation = args.getOrNull(2)?.toIntOrNull() ?: 0
         val ticks = args.getOrNull(3)?.toIntOrNull() ?: -1
-        objects.add(id, player.tile, shape, rotation, ticks)
+        GameObjects.add(id, player.tile, shape, rotation, ticks)
     }
 }

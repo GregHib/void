@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
@@ -42,7 +43,7 @@ class AllotmentPatchTest : WorldTest() {
             })
             val player = createPlayer(tile)
             player.inventory.add("rake")
-            val patch = objects.find(tile.addY(1), id)
+            val patch = GameObjects.find(tile.addY(1), id)
 
             player.objectOption(patch, "Rake")
             tick(12)
@@ -70,7 +71,7 @@ class AllotmentPatchTest : WorldTest() {
             player.inventory.add("seed_dibber")
             player.levels.set(Skill.Farming, 99)
             player["farming_veg_patch_falador_nw"] = "weeds_0"
-            val patch = objects.find(tile.addY(1), "farming_veg_patch_falador_nw")
+            val patch = GameObjects.find(tile.addY(1), "farming_veg_patch_falador_nw")
 
             player.itemOnObject(patch, 0)
             tick(10)
@@ -128,7 +129,7 @@ class AllotmentPatchTest : WorldTest() {
             player.inventory.add("spade")
             player.levels.set(Skill.Farming, 99)
             player["farming_veg_patch_falador_nw"] = "${id}_life1"
-            val patch = objects.find(tile.addY(1), "farming_veg_patch_falador_nw")
+            val patch = GameObjects.find(tile.addY(1), "farming_veg_patch_falador_nw")
 
             player.objectOption(patch, "Harvest")
             tickIf { player["farming_veg_patch_falador_nw", "empty"] != "weeds_0" }

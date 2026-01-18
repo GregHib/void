@@ -9,11 +9,8 @@ import world.gregs.voidps.type.Tile
 
 private val logger = InlineLogger()
 
-fun loadObjectSpawns(
-    objects: GameObjects,
-    paths: List<String>,
-) = timedLoad("object spawn") {
-    objects.reset()
+fun loadObjectSpawns(paths: List<String>) = timedLoad("object spawn") {
+    GameObjects.reset()
     val membersWorld = World.members
     var count = 0
     for (path in paths) {
@@ -48,7 +45,7 @@ fun loadObjectSpawns(
                     if (definition == null) {
                         logger.warn { "Invalid object spawn id '$id' in $path." }
                     } else {
-                        objects.add(GameObject(definition.id, tile.x, tile.y, tile.level, type, rotation))
+                        GameObjects.add(GameObject(definition.id, tile.x, tile.y, tile.level, type, rotation))
                         count++
                     }
                 }

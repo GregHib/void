@@ -19,7 +19,6 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 
 class LumbridgeBeginnerTasks(
-    val objects: GameObjects,
     val styleDefinitions: WeaponStyleDefinitions,
 ) : Script,
     PrayerApi {
@@ -29,7 +28,7 @@ class LumbridgeBeginnerTasks(
             val regular: Boolean = remove("burnt_regular_log") ?: return@timerStop
             val tile: Tile = remove("fire_tile") ?: return@timerStop
             if (regular) {
-                val fire = objects.getShape(tile, ObjectShape.CENTRE_PIECE_STRAIGHT)
+                val fire = GameObjects.getShape(tile, ObjectShape.CENTRE_PIECE_STRAIGHT)
                 if (fire != null && fire.id.startsWith("fire_")) {
                     this["log_a_rhythm_task"] = true
                 }

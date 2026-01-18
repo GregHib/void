@@ -114,11 +114,9 @@ object Main {
     private fun cache(cache: Cache, files: ConfigFiles): Module {
         val members = Settings["world.members", false]
         val module = module {
-            single(createdAtStart = true) { MapDefinitions(CollisionDecoder(), get(), cache).load(files) }
+            single(createdAtStart = true) { MapDefinitions(CollisionDecoder(), cache).load(files) }
             single(createdAtStart = true) { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
-            single(createdAtStart = true) {
-                ObjectDefinitions.init(ObjectDecoder(members, lowDetail = false, get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.objects"]))
-            }
+            single(createdAtStart = true) { ObjectDefinitions.init(ObjectDecoder(members, lowDetail = false, get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.objects"])) }
             single(createdAtStart = true) { NPCDefinitions.init(NPCDecoder(members, get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.npcs"]), get()) }
             single(createdAtStart = true) { ItemDefinitions(ItemDecoder(get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.items"])) }
             single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().load(cache)).load(files.list(Settings["definitions.animations"])) }

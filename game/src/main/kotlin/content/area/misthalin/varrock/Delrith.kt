@@ -45,9 +45,7 @@ import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
-class Delrith(
-    val objects: GameObjects,
-) : Script {
+class Delrith : Script {
 
     val area = Areas["demon_slayer_stone_circle"]
     val defaultTile = Tile(3220, 3367)
@@ -223,8 +221,8 @@ class Delrith(
         npc<Idle>("dark_wizard_water", "Arise, Delrith!", title = "Dark wizards")
 
         statement("The wizards cast an evil spell", clickToContinue = false)
-        val regular = objects.find(cutscene.tile(3227, 3369), "demon_slayer_stone_table")
-        val table = objects.replace(regular, "demon_slayer_stone_table_summoning", ticks = 8)
+        val regular = GameObjects.find(cutscene.tile(3227, 3369), "demon_slayer_stone_table")
+        val table = GameObjects.replace(regular, "demon_slayer_stone_table_summoning", ticks = 8)
         clearCamera()
         turnCamera(cutscene.tile(3227, 3369), 100, 232, 232)
         moveCamera(cutscene.tile(3227, 3365), 500, 232, 232)
@@ -315,16 +313,16 @@ class Delrith(
         var direction = Direction.NORTH
         while (rotation < 4) {
             repeat(6) {
-                objects.add("demon_slayer_energy_barrier", tile, ObjectShape.WALL_STRAIGHT, rotation)
+                GameObjects.add("demon_slayer_energy_barrier", tile, ObjectShape.WALL_STRAIGHT, rotation)
                 tile = tile.add(direction)
             }
             direction = direction.rotate(1)
             repeat(3) {
-                objects.add("demon_slayer_energy_barrier", tile, ObjectShape.WALL_DIAGONAL, rotation)
-                objects.add("demon_slayer_energy_barrier", tile.add(direction.rotate(1)), ObjectShape.WALL_DIAGONAL_CORNER, rotation)
+                GameObjects.add("demon_slayer_energy_barrier", tile, ObjectShape.WALL_DIAGONAL, rotation)
+                GameObjects.add("demon_slayer_energy_barrier", tile.add(direction.rotate(1)), ObjectShape.WALL_DIAGONAL_CORNER, rotation)
                 tile = tile.add(direction)
             }
-            objects.add("demon_slayer_energy_barrier", tile, ObjectShape.WALL_DIAGONAL, rotation)
+            GameObjects.add("demon_slayer_energy_barrier", tile, ObjectShape.WALL_DIAGONAL, rotation)
             rotation++
             direction = direction.rotate(1)
             tile = tile.add(direction)

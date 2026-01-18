@@ -14,9 +14,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 
-class Mourner(
-    val objects: GameObjects,
-) : Script {
+class Mourner : Script {
 
     init {
         npcOperate("Talk-to", "mourner_elena_guard_vis") { (target) ->
@@ -34,7 +32,7 @@ class Mourner(
                 otherGuard.say("Well you can't let them in...")
                 delay(1)
                 val doorTile = if (target.tile.equals(2539, 3273)) Tile(2540, 3273) else Tile(2533, 3273)
-                val door = objects.find(doorTile, "door_plague_city_closed")
+                val door = GameObjects.find(doorTile, "door_plague_city_closed")
                 enterDoor(door, delay = 2)
                 statement("You wait until the mourner's back is turned and sneak into the building.")
                 return@npcOperate

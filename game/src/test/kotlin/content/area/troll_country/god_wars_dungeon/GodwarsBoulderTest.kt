@@ -4,6 +4,7 @@ import WorldTest
 import objectOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 
@@ -14,7 +15,7 @@ class GodwarsBoulderTest : WorldTest() {
         val player = createPlayer(Tile(2898, 3715))
         player.levels.set(Skill.Strength, 60)
 
-        val hole = objects.find(Tile(2898, 3716), "godwars_boulder")
+        val hole = GameObjects.find(Tile(2898, 3716), "godwars_boulder")
 
         player.objectOption(hole, optionIndex = 0) // Move
         tick(8)
@@ -26,7 +27,7 @@ class GodwarsBoulderTest : WorldTest() {
         val player = createPlayer(Tile(2898, 3719))
         player.levels.set(Skill.Strength, 60)
 
-        val hole = objects.find(Tile(2898, 3716), "godwars_boulder")
+        val hole = GameObjects.find(Tile(2898, 3716), "godwars_boulder")
 
         player.objectOption(hole, optionIndex = 0) // Move
         tick(8)
@@ -38,7 +39,7 @@ class GodwarsBoulderTest : WorldTest() {
         val player = createPlayer(Tile(2899, 3713))
         player.levels.set(Skill.Agility, 60)
 
-        val hole = objects.find(Tile(2900, 3713), "godwars_little_hole")
+        val hole = GameObjects.find(Tile(2900, 3713), "godwars_little_hole")
 
         player.objectOption(hole, "Crawl-through")
         tick(8)
@@ -50,7 +51,7 @@ class GodwarsBoulderTest : WorldTest() {
         val player = createPlayer(Tile(2904, 3720))
         player.levels.set(Skill.Agility, 60)
 
-        val hole = objects.find(Tile(2904, 3719), "godwars_little_hole")
+        val hole = GameObjects.find(Tile(2904, 3719), "godwars_little_hole")
 
         player.objectOption(hole, "Crawl-through")
         tick(8)
@@ -62,7 +63,7 @@ class GodwarsBoulderTest : WorldTest() {
         val player = createPlayer(Tile(2898, 3715))
         player.levels.set(Skill.Strength, 59)
 
-        val hole = objects.find(Tile(2898, 3716), "godwars_boulder")
+        val hole = GameObjects.find(Tile(2898, 3716), "godwars_boulder")
 
         player.objectOption(hole, optionIndex = 0) // Move
         tick(2)
@@ -74,7 +75,7 @@ class GodwarsBoulderTest : WorldTest() {
         val player = createPlayer(Tile(2899, 3713))
         player.levels.set(Skill.Agility, 59)
 
-        val hole = objects.find(Tile(2900, 3713), "godwars_little_hole")
+        val hole = GameObjects.find(Tile(2900, 3713), "godwars_little_hole")
 
         player.objectOption(hole, "Crawl-through")
         tick()

@@ -86,9 +86,8 @@ class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
             "fairy_ring", "fairy_rings", "fairy_codes" -> get<FairyRingCodes>().load(files.find(Settings["definitions.fairyCodes"]))
             "ships" -> get<CharterShips>().load(files.find(Settings["map.ships.prices"]))
             "objects", "objs" -> {
-                val custom: GameObjects = get()
                 ObjectDefinitions.load(files.list(Settings["definitions.objects"]))
-                loadObjectSpawns(custom, files.list(Settings["spawns.objects"]))
+                loadObjectSpawns(files.list(Settings["spawns.objects"]))
             }
             "item_defs", "items", "floor_items" -> {
                 val items: FloorItems = get()

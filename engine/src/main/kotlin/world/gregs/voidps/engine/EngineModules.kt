@@ -26,10 +26,10 @@ fun engineLoad(files: ConfigFiles) {
 
 fun engineModule(files: ConfigFiles) = module {
     // Entities
-    single { GameObjects(Settings["development.loadAllObjects", false]).apply { ZoneBatchUpdates.register(this) } }
+    single { ZoneBatchUpdates.register(GameObjects) }
     single { FloorItems(get()).apply { ZoneBatchUpdates.register(this) } }
     single { FloorItemTracking(get()) }
-    single { Hunting(get(), get(), get(), get()) }
+    single { Hunting(get(), get(), get()) }
     single {
         SaveQueue(get(), SafeStorage(File(Settings["storage.players.errors"])))
     }
@@ -37,7 +37,7 @@ fun engineModule(files: ConfigFiles) = module {
     // IO
     single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game) }
     // Map
-    single { DynamicZones(get(), get()) }
+    single { DynamicZones(get()) }
     single(createdAtStart = true) { CanoeDefinitions().load(files.find(Settings["map.canoes"])) }
     // Network
     single {

@@ -17,9 +17,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.client.instruction.InteractObject
 import world.gregs.voidps.type.Tile
 
-class ObjectOptionHandler(
-    private val objects: GameObjects,
-) : InstructionHandler<InteractObject>() {
+class ObjectOptionHandler : InstructionHandler<InteractObject>() {
 
     private val logger = InlineLogger()
 
@@ -51,13 +49,13 @@ class ObjectOptionHandler(
     }
 
     private fun getObject(tile: Tile, objectId: Int): GameObject? {
-        val obj = objects.findOrNull(tile, objectId)
+        val obj = GameObjects.findOrNull(tile, objectId)
         if (obj == null) {
             val definition = ObjectDefinitions.getOrNull(objectId)
             return if (definition == null) {
-                objects.findOrNull(tile, objectId.toString())
+                GameObjects.findOrNull(tile, objectId.toString())
             } else {
-                objects.findOrNull(tile, definition.id)
+                GameObjects.findOrNull(tile, definition.id)
             }
         }
         return obj

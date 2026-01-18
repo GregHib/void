@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-class TreeGnomeStronghold(val objects: GameObjects) : Script {
+class TreeGnomeStronghold : Script {
 
     init {
         objectOperate("Open", "tree_gnome_door_east_closed,tree_gnome_door_west_closed") { (target) ->
@@ -32,7 +32,7 @@ class TreeGnomeStronghold(val objects: GameObjects) : Script {
                 face(target)
             }
             target.replace(target.id.replace("_closed", "_west_opened"), ticks = 5, collision = false)
-            objects.add("tree_gnome_gate_east_opened", Tile(2462, 3383), ObjectShape.CENTRE_PIECE_STRAIGHT, 0, 5, false)
+            GameObjects.add("tree_gnome_gate_east_opened", Tile(2462, 3383), ObjectShape.CENTRE_PIECE_STRAIGHT, 0, 5, false)
             walkOverDelay(tile.copy(y = if (tile.y <= 3382) 3385 else 3382))
         }
 

@@ -64,7 +64,6 @@ abstract class WorldTest : KoinTest {
     private val logger = InlineLogger()
     private lateinit var engine: GameLoop
     lateinit var floorItems: FloorItems
-    lateinit var objects: GameObjects
     private lateinit var accountDefs: AccountDefinitions
     private lateinit var accounts: AccountManager
     private var saves: File? = null
@@ -122,7 +121,7 @@ abstract class WorldTest : KoinTest {
         return npc
     }
 
-    fun createObject(id: String, tile: Tile = Tile.EMPTY, shape: Int = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation: Int = 0): GameObject = objects.add(id, tile, shape, rotation)
+    fun createObject(id: String, tile: Tile = Tile.EMPTY, shape: Int = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation: Int = 0): GameObject = GameObjects.add(id, tile, shape, rotation)
 
     fun createFloorItem(
         id: String,
@@ -164,16 +163,18 @@ abstract class WorldTest : KoinTest {
                     single(createdAtStart = true) { itemOnItemDefinitions }
                     single(createdAtStart = true) { variableDefinitions }
                     single(createdAtStart = true) { dropTables }
+                    single(createdAtStart = true) {
+                        ObjectDefinitions.set(objectDefinitions, objectIds)
+                        ObjectDefinitions
+                    }
                     single { ammoDefinitions }
                     single { parameterDefinitions }
-                    single { gameObjects }
                     single { mapDefinitions }
                     single { objectCollisionAdd }
                     single { objectCollisionAdd }
                     single { objectCollisionRemove }
                     single {
                         Hunting(
-                            get(),
                             get(),
                             get(),
                             get(),
@@ -185,7 +186,7 @@ abstract class WorldTest : KoinTest {
                 },
             )
         }
-        ObjectDefinitions.set(objectDefinitions, objectIds)
+
         NPCDefinitions.set(npcDefinitions, npcIds)
         engineLoad(configFiles)
         Wildcards.load(Settings["storage.wildcards"])
@@ -195,7 +196,6 @@ abstract class WorldTest : KoinTest {
         saves?.mkdirs()
         val millis = measureTimeMillis {
             val tickStages = getTickStages(
-                get(),
                 get(),
                 get(),
                 get<ConnectionQueue>(),
@@ -208,7 +208,6 @@ abstract class WorldTest : KoinTest {
             Spawn.world(configFiles)
         }
         floorItems = get()
-        objects = get()
         accountDefs = get()
         accounts = get()
         logger.info { "World startup took ${millis}ms" }
@@ -234,7 +233,7 @@ abstract class WorldTest : KoinTest {
         Players.clear()
         NPCs.clear()
         floorItems.clear()
-        objects.reset()
+        GameObjects.reset()
         World.clear()
         Settings.clear()
         Instances.reset()
@@ -322,8 +321,7 @@ abstract class WorldTest : KoinTest {
         private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder().load(cache), structDefinitions).load(configFiles.find(Settings["definitions.enums"])) }
         private val objectCollisionAdd: GameObjectCollisionAdd by lazy { GameObjectCollisionAdd() }
         private val objectCollisionRemove: GameObjectCollisionRemove by lazy { GameObjectCollisionRemove() }
-        private val gameObjects: GameObjects by lazy { GameObjects(storeUnused = true) }
-        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder(), gameObjects, cache).load(configFiles) }
+        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder(), cache).load(configFiles) }
         private val fontDefinitions: FontDefinitions by lazy { FontDefinitions(FontDecoder().load(cache)).load(configFiles.find(Settings["definitions.fonts"])) }
         private val objectTeleports: ObjectTeleports by lazy { ObjectTeleports().load(configFiles.list(Settings["map.teleports"])) }
         private val itemOnItemDefinitions: ItemOnItemDefinitions by lazy { ItemOnItemDefinitions().load(configFiles.list(Settings["definitions.itemOnItem"])) }

@@ -29,18 +29,17 @@ object Replace {
         if (firstId == -1 || secondId == -1) {
             return
         }
-        val objects = get<GameObjects>()
         val first = GameObject(firstId, firstTile, firstOriginal.shape, firstRotation)
         val second = GameObject(secondId, secondTile, secondOriginal.shape, secondRotation)
-        objects.remove(firstOriginal, collision)
-        objects.remove(secondOriginal, collision)
-        objects.add(first, collision)
-        objects.add(second, collision)
-        objects.timers.add(setOf(firstOriginal, secondOriginal, first, second), ticks) {
-            objects.remove(first, collision)
-            objects.remove(second, collision)
-            objects.add(firstOriginal, collision)
-            objects.add(secondOriginal, collision)
+        GameObjects.remove(firstOriginal, collision)
+        GameObjects.remove(secondOriginal, collision)
+        GameObjects.add(first, collision)
+        GameObjects.add(second, collision)
+        GameObjects.timers.add(setOf(firstOriginal, secondOriginal, first, second), ticks) {
+            GameObjects.remove(first, collision)
+            GameObjects.remove(second, collision)
+            GameObjects.add(firstOriginal, collision)
+            GameObjects.add(secondOriginal, collision)
         }
     }
 }

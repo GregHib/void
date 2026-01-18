@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Tile
 
 class EaglesEyriesTest : WorldTest() {
@@ -15,7 +16,7 @@ class EaglesEyriesTest : WorldTest() {
     fun `Climb up eagles peak`() {
         val player = createPlayer(Tile(2322, 3502))
         player.levels.set(Skill.Agility, 25)
-        val rocks = objects.find(Tile(2322, 3501), "eagles_peak_rocks")
+        val rocks = GameObjects.find(Tile(2322, 3501), "eagles_peak_rocks")
 
         player.objectOption(rocks, "Climb")
         tick(9)
@@ -28,7 +29,7 @@ class EaglesEyriesTest : WorldTest() {
     fun `Climb down eagles peak`() {
         val player = createPlayer(Tile(2324, 3497))
         player.levels.set(Skill.Agility, 25)
-        val rocks = objects.find(Tile(2324, 3498), "eagles_peak_rocks")
+        val rocks = GameObjects.find(Tile(2324, 3498), "eagles_peak_rocks")
 
         player.objectOption(rocks, "Climb")
         tick(9)
@@ -41,7 +42,7 @@ class EaglesEyriesTest : WorldTest() {
     fun `Can't climb eagels peak without level`() {
         val player = createPlayer(Tile(2324, 3497))
         player.levels.set(Skill.Agility, 24)
-        val rocks = objects.find(Tile(2323, 3497), "eagles_peak_rocks")
+        val rocks = GameObjects.find(Tile(2323, 3497), "eagles_peak_rocks")
 
         player.objectOption(rocks, "Climb")
         tick(2)
@@ -53,7 +54,7 @@ class EaglesEyriesTest : WorldTest() {
     fun `Climb up rellekka rocky handholds`() {
         val player = createPlayer(Tile(2740, 3830, 1))
         player.levels.set(Skill.Agility, 35)
-        val rocks = objects.find(Tile(2741, 3830, 1), "rocky_handholds_bottom")
+        val rocks = GameObjects.find(Tile(2741, 3830, 1), "rocky_handholds_bottom")
 
         player.objectOption(rocks, "Climb")
         tick(9)
@@ -66,7 +67,7 @@ class EaglesEyriesTest : WorldTest() {
     fun `Climb down rellekka rocky handholds`() {
         val player = createPlayer(Tile(2744, 3830, 1))
         player.levels.set(Skill.Agility, 35)
-        val rocks = objects.find(Tile(2743, 3830, 1), "rocky_handholds_top")
+        val rocks = GameObjects.find(Tile(2743, 3830, 1), "rocky_handholds_top")
 
         player.objectOption(rocks, "Climb")
         tick(9)
@@ -79,7 +80,7 @@ class EaglesEyriesTest : WorldTest() {
     fun `Can't climb rellekkas rocky handholds without level`() {
         val player = createPlayer(Tile(2740, 3830, 1))
         player.levels.set(Skill.Agility, 34)
-        val rocks = objects.find(Tile(2741, 3830, 1), "rocky_handholds_bottom")
+        val rocks = GameObjects.find(Tile(2741, 3830, 1), "rocky_handholds_bottom")
 
         player.objectOption(rocks, "Climb")
         tick(2)

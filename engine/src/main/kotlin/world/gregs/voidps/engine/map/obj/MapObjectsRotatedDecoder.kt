@@ -11,9 +11,7 @@ import world.gregs.voidps.type.area.Rectangle
 /**
  * Adds all objects except bridges from a single [zone], into a different zone, with [zoneRotation] applied.
  */
-class MapObjectsRotatedDecoder(
-    private val objects: GameObjects,
-) : MapObjectDecoder() {
+class MapObjectsRotatedDecoder : MapObjectDecoder() {
 
     internal var zoneRotation: Int = 0
     internal lateinit var zone: Rectangle
@@ -35,7 +33,7 @@ class MapObjectsRotatedDecoder(
         val objRotation = (rotation + zoneRotation) and 0x3
         val rotX = rotateX(localX.rem(8), localY.rem(8), def.sizeX, def.sizeY, objRotation, zoneRotation)
         val rotY = rotateY(localX.rem(8), localY.rem(8), def.sizeX, def.sizeY, objRotation, zoneRotation)
-        objects.set(objectId, regionTileX + rotX, regionTileY + rotY, level, shape, objRotation, def)
+        GameObjects.set(objectId, regionTileX + rotX, regionTileY + rotY, level, shape, objRotation, def)
     }
 
     internal fun rotateX(

@@ -10,6 +10,7 @@ import org.junit.jupiter.api.TestFactory
 import skillCreation
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
@@ -37,7 +38,7 @@ class SmeltingTest : WorldTest() {
             val player = createPlayer(Tile(3227, 3255))
             player.levels.set(Skill.Smithing, 99)
             player.inventory.add(ores)
-            val furnace = objects.find(Tile(3226, 3256), "furnace_lumbridge")
+            val furnace = GameObjects.find(Tile(3226, 3256), "furnace_lumbridge")
 
             player.objectOption(furnace, "Smelt")
             tick()
@@ -59,7 +60,7 @@ class SmeltingTest : WorldTest() {
         player.levels.set(Skill.Smithing, 99)
         player.inventory.add("iron_ore", 2)
         player.inventory.add("coal", 3)
-        val furnace = objects.find(Tile(3226, 3256), "furnace_lumbridge")
+        val furnace = GameObjects.find(Tile(3226, 3256), "furnace_lumbridge")
 
         player.objectOption(furnace, "Smelt")
         tick()
@@ -78,7 +79,7 @@ class SmeltingTest : WorldTest() {
         val player = createPlayer(Tile(3227, 3255))
         player.levels.set(Skill.Smithing, 99)
         player.inventory.add("iron_ore", 2)
-        val furnace = objects.find(Tile(3226, 3256), "furnace_lumbridge")
+        val furnace = GameObjects.find(Tile(3226, 3256), "furnace_lumbridge")
 
         player.objectOption(furnace, "Smelt")
         tick()
@@ -97,7 +98,7 @@ class SmeltingTest : WorldTest() {
         player.equipment.set(EquipSlot.Hands.index, "goldsmith_gauntlets")
         player.levels.set(Skill.Smithing, 99)
         player.inventory.add("gold_ore")
-        val furnace = objects.find(Tile(3110, 3502), "furnace_edgeville")
+        val furnace = GameObjects.find(Tile(3110, 3502), "furnace_edgeville")
 
         player.objectOption(furnace, "Smelt")
         tick()
@@ -122,7 +123,7 @@ class SmeltingTest : WorldTest() {
             player.levels.set(Skill.Smithing, 99)
             player.inventory.add(ores)
             player.inventory.add(ores)
-            val furnace = objects.find(Tile(3110, 3502), "furnace_edgeville")
+            val furnace = GameObjects.find(Tile(3110, 3502), "furnace_edgeville")
 
             player.objectOption(furnace, "Smelt")
             tick()
@@ -144,7 +145,7 @@ class SmeltingTest : WorldTest() {
         player.equipment.set(EquipSlot.Chest.index, "varrock_armour_4")
         player.levels.set(Skill.Smithing, 99)
         player.inventory.add("iron_ore", 2)
-        val furnace = objects.find(Tile(3110, 3502), "furnace_edgeville")
+        val furnace = GameObjects.find(Tile(3110, 3502), "furnace_edgeville")
 
         player.objectOption(furnace, "Smelt")
         tick()

@@ -12,14 +12,12 @@ import world.gregs.voidps.type.Zone
 internal class DynamicZonesTest {
 
     private lateinit var zones: DynamicZones
-    private lateinit var objects: GameObjects
     private lateinit var extract: MapDefinitions
 
     @BeforeEach
     fun setup() {
-        objects = mockk(relaxed = true)
         extract = mockk(relaxed = true)
-        zones = DynamicZones(objects, extract)
+        zones = DynamicZones(extract)
     }
 
     @Test

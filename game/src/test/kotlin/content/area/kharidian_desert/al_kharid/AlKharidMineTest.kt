@@ -5,6 +5,7 @@ import containsMessage
 import objectOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -15,7 +16,7 @@ class AlKharidMineTest : WorldTest() {
     fun `Climb up mine shortcut`() {
         val player = createPlayer(Tile(3303, 3315))
         player.levels.set(Skill.Agility, 38)
-        val rocks = objects.find(Tile(3304, 3315), "al_kharid_mine_shortcut_bottom")
+        val rocks = GameObjects.find(Tile(3304, 3315), "al_kharid_mine_shortcut_bottom")
         player.objectOption(rocks, "Climb")
         tick(5)
 
@@ -26,7 +27,7 @@ class AlKharidMineTest : WorldTest() {
     fun `Can't climb up mine shortcut without levels`() {
         val player = createPlayer(Tile(3303, 3315))
         player.levels.set(Skill.Agility, 37)
-        val rocks = objects.find(Tile(3304, 3315), "al_kharid_mine_shortcut_bottom")
+        val rocks = GameObjects.find(Tile(3304, 3315), "al_kharid_mine_shortcut_bottom")
         player.objectOption(rocks, "Climb")
         tick(2)
 
@@ -37,7 +38,7 @@ class AlKharidMineTest : WorldTest() {
     fun `Climb down mine shortcut`() {
         val player = createPlayer(Tile(3307, 3315))
         player.levels.set(Skill.Agility, 38)
-        val rocks = objects.find(Tile(3306, 3315), "al_kharid_mine_shortcut_top")
+        val rocks = GameObjects.find(Tile(3306, 3315), "al_kharid_mine_shortcut_top")
         player.objectOption(rocks, "Climb")
         tick(5)
 
@@ -48,7 +49,7 @@ class AlKharidMineTest : WorldTest() {
     fun `Can't climb down mine shortcut without levels`() {
         val player = createPlayer(Tile(3307, 3315))
         player.levels.set(Skill.Agility, 37)
-        val rocks = objects.find(Tile(3306, 3315), "al_kharid_mine_shortcut_top")
+        val rocks = GameObjects.find(Tile(3306, 3315), "al_kharid_mine_shortcut_top")
         player.objectOption(rocks, "Climb")
         tick(2)
 

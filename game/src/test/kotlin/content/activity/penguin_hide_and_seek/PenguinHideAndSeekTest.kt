@@ -231,7 +231,7 @@ class PenguinHideAndSeekTest : WorldTest() {
     }
 
     private fun instance(): PenguinHideAndSeek {
-        val instance = PenguinHideAndSeek(get(), get())
+        val instance = PenguinHideAndSeek(get())
         return instance
     }
 }
