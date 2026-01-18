@@ -23,9 +23,7 @@ import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
-class Gravestones(
-    val floorItems: FloorItems,
-) : Script {
+class Gravestones : Script {
 
     init {
         playerSpawn {
@@ -207,7 +205,7 @@ class Gravestones(
     }
 
     fun updateItems(tile: Tile, name: String, seconds: Int) {
-        val items = floorItems[tile].filter { it.owner == name }
+        val items = FloorItems[tile].filter { it.owner == name }
         for (item in items) {
             item.revealTicks = TimeUnit.SECONDS.toTicks(seconds)
             item.disappearTicks = TimeUnit.SECONDS.toTicks(seconds) + 60

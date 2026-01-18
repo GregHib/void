@@ -30,10 +30,7 @@ import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.type.random
 
-class Woodcutting(
-    val floorItems: FloorItems,
-    val drops: DropTables,
-) : Script {
+class Woodcutting(val drops: DropTables) : Script {
 
     val minPlayers = 0
     val maxPlayers = 2000
@@ -115,7 +112,7 @@ class Woodcutting(
         areaSound("bird_chirp", player.tile)
 
         val dropTile = player.tile.toCuboid(1).random(player) ?: player.tile
-        floorItems.add(tile = dropTile, id = drop.id, amount = drop.amount.first, disappearTicks = 50)
+        FloorItems.add(tile = dropTile, id = drop.id, amount = drop.amount.first, disappearTicks = 50)
     }
 
     fun success(level: Int, hatchet: Item, tree: Tree): Boolean {

@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.type.Direction
 
-class Traiborn(val floorItems: FloorItems) : Script {
+class Traiborn : Script {
 
     var Player.bonesRequired: Int
         get() = get("demon_slayer_bones", -1)
@@ -130,7 +130,7 @@ class Traiborn(val floorItems: FloorItems) : Script {
     suspend fun Player.spinachRoll() {
         inventory.add("spinach_roll")
         if (inventory.transaction.error != TransactionError.None) {
-            floorItems.add(tile, "spinach_roll", disappearTicks = 300)
+            FloorItems.add(tile, "spinach_roll", disappearTicks = 300)
         }
         item("spinach_roll", 400, "Traiborn digs around in the pockets of his robes. After a few moments he triumphantly presents you with a spinach roll.")
         player<Idle>("Thank you very much.")

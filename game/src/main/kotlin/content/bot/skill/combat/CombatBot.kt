@@ -60,10 +60,7 @@ suspend fun Bot.setAttackStyle(style: Int) {
     player.instructions.send(InteractInterface(interfaceId = 884, componentId = style + 11, itemId = -1, itemSlot = -1, option = 0))
 }
 
-class CombatBot(
-    val tasks: TaskManager,
-    val floorItems: FloorItems,
-) : Script {
+class CombatBot(val tasks: TaskManager) : Script {
 
     init {
         worldSpawn {
@@ -165,7 +162,7 @@ class CombatBot(
             await("tick")
         }
         repeat(amount) {
-            val item = floorItems[tile].firstOrNull() ?: return@repeat
+            val item = FloorItems[tile].firstOrNull() ?: return@repeat
             pickup(item)
         }
     }

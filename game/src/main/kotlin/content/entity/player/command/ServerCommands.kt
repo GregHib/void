@@ -89,11 +89,10 @@ class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
                 loadObjectSpawns(files.list(Settings["spawns.objects"]))
             }
             "item_defs", "items", "floor_items" -> {
-                val items: FloorItems = get()
                 val itemSpawns: ItemSpawns = get()
-                items.clear()
+                FloorItems.clear()
                 ItemDefinitions.load(files.list(Settings["definitions.items"]))
-                loadItemSpawns(items, itemSpawns, files.list(Settings["spawns.items"]))
+                loadItemSpawns(itemSpawns, files.list(Settings["spawns.items"]))
             }
             "nav_graph", "ai_graph" -> get<NavigationGraph>().load(files.find(Settings["map.navGraph"]))
             "npcs" -> {

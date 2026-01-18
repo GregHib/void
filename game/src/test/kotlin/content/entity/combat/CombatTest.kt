@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
@@ -54,7 +55,7 @@ internal class CombatTest : WorldTest() {
 
         assertEquals(emptyTile, player.tile)
         assertTrue(player.experience.get(Skill.Magic) > EXPERIENCE)
-        assertTrue(floorItems[tile].any { it.id == "bones" })
+        assertTrue(FloorItems[tile].any { it.id == "bones" })
         assertTrue(player.inventory.count("mind_rune") < 100)
     }
 
@@ -80,8 +81,7 @@ internal class CombatTest : WorldTest() {
         assertTrue(player.experience.get(Skill.Attack) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Strength) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Defence) > EXPERIENCE)
-        println(floorItems[tile.zone])
-        assertTrue(floorItems[tile].any { it.id == "bones" })
+        assertTrue(FloorItems[tile].any { it.id == "bones" })
     }
 
     @Test
@@ -107,11 +107,11 @@ internal class CombatTest : WorldTest() {
         val tile = npc["death_tile", npc.tile]
         tick(6) // npc death
 
-        val drops = floorItems[tile]
+        val drops = FloorItems[tile]
         assertEquals(emptyTile, player.tile)
         assertTrue(player.equipment[EquipSlot.Ammo.index].amount < 100)
         assertTrue(drops.any { it.id == "bones" })
-        assertTrue(floorItems[emptyTile.addY(4)].any { it.id == "rune_arrow" })
+        assertTrue(FloorItems[emptyTile.addY(4)].any { it.id == "rune_arrow" })
         assertTrue(player.experience.get(Skill.Ranged) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Defence) > EXPERIENCE)
         assertTrue(player.inventory.count("rune_arrow") < 100)
@@ -217,7 +217,7 @@ internal class CombatTest : WorldTest() {
         assertTrue(player.experience.get(Skill.Attack) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Strength) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Defence) > EXPERIENCE)
-        val items = floorItems[targetTile]
+        val items = FloorItems[targetTile]
         assertTrue(items.any { it.id == "coins" })
         assertTrue(items.any { it.id == "rune_arrow" && it.amount > 1 })
         assertTrue(items.any { it.id == "bones" })

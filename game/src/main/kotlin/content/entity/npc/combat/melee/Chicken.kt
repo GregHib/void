@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.random
 
-class Chicken(val floorItems: FloorItems) : Script {
+class Chicken : Script {
 
     init {
         npcSpawn("chicken*") {
@@ -21,7 +21,7 @@ class Chicken(val floorItems: FloorItems) : Script {
         npcTimerTick("lay_eggs") {
             anim("chicken_defend")
             // Timed on Rs3 but can be inauthentic for 2011
-            floorItems.add(tile, "egg", disappearTicks = 100)
+            FloorItems.add(tile, "egg", disappearTicks = 100)
             say("squawk!")
             areaSound("chicken_defend", tile)
             Timer.CONTINUE

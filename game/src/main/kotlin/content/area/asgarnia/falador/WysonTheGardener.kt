@@ -12,9 +12,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
-class WysonTheGardener(
-    val floorItems: FloorItems,
-) : Script {
+class WysonTheGardener : Script {
 
     init {
         npcOperate("Talk-to", "wyson_the_gardener") {
@@ -76,7 +74,7 @@ class WysonTheGardener(
         npc<Idle>("Mmmm... okay, that sounds fair.")
         if (inventory.remove("coins", 15)) {
             if (!inventory.add("woad_leaf")) {
-                floorItems.add(tile, "woad_leaf", disappearTicks = 300, owner = this)
+                FloorItems.add(tile, "woad_leaf", disappearTicks = 300, owner = this)
             }
             item("woad_leaf", 290, "You buy a woad leaf from Wyson.")
             player<Happy>("Thanks.")
@@ -90,7 +88,7 @@ class WysonTheGardener(
         npc<Happy>("Okay, that's more than fair.")
         if (inventory.remove("coins", 20)) {
             if (!inventory.add("woad_leaf", 2)) {
-                floorItems.add(tile, "woad_leaf", 2, disappearTicks = 300, owner = this)
+                FloorItems.add(tile, "woad_leaf", 2, disappearTicks = 300, owner = this)
             }
             item("woad_leaf", 290, "You buy a pair of woad leaves from Wyson.")
             player<Happy>("Thanks.")

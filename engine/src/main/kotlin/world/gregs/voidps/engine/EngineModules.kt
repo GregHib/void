@@ -27,9 +27,9 @@ fun engineLoad(files: ConfigFiles) {
 fun engineModule(files: ConfigFiles) = module {
     // Entities
     single { ZoneBatchUpdates.register(GameObjects) }
-    single { FloorItems().apply { ZoneBatchUpdates.register(this) } }
-    single { FloorItemTracking(get()) }
-    single { Hunting(get(), get(), get()) }
+    single { ZoneBatchUpdates.register(FloorItems) }
+    single { FloorItemTracking() }
+    single { Hunting(get(), get()) }
     single {
         SaveQueue(get(), SafeStorage(File(Settings["storage.players.errors"])))
     }

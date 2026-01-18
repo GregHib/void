@@ -28,7 +28,6 @@ class ItemSpawns(
 private val logger = InlineLogger()
 
 fun loadItemSpawns(
-    items: FloorItems,
     spawns: ItemSpawns,
     paths: List<String>,
 ) {
@@ -67,7 +66,7 @@ fun loadItemSpawns(
                             logger.warn { "Invalid item spawn id '$id' in $path." }
                         }
                         spawns.set(tile, ItemSpawn(id, amount, delay))
-                        items.add(tile, id, amount)
+                        FloorItems.add(tile, id, amount)
                     }
                 }
             }

@@ -32,7 +32,7 @@ object DropTableDefinitions {
                 },
             )
         }
-        val decoder = DropTables().load(configFiles().getValue(Settings["spawns.drops"]), itemDefinitions)
+        val decoder = DropTables().load(configFiles().getValue(Settings["spawns.drops"]))
 //        val table = decoder.getValue("goblin_drop_table")
 //
 //        val list = mutableListOf<ItemDrop>()

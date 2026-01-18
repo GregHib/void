@@ -13,9 +13,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.network.client.instruction.InteractFloorItem
 
-class FloorItemOptionHandler(
-    private val items: FloorItems,
-) : InstructionHandler<InteractFloorItem>() {
+class FloorItemOptionHandler : InstructionHandler<InteractFloorItem>() {
 
     private val logger = InlineLogger()
 
@@ -25,7 +23,7 @@ class FloorItemOptionHandler(
         }
         val (id, x, y, optionIndex) = instruction
         val tile = player.tile.copy(x, y)
-        val floorItem = items[tile].firstOrNull { it.def.id == id }
+        val floorItem = FloorItems[tile].firstOrNull { it.def.id == id }
         if (floorItem == null) {
             logger.warn { "Invalid floor item $id $tile" }
             return

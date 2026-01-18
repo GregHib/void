@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.random
 
-class Men(val floorItems: FloorItems) : Script {
+class Men : Script {
 
     init {
         npcOperate("Talk-to", "man,woman") { (target) ->
@@ -76,7 +76,7 @@ class Men(val floorItems: FloorItems) : Script {
                 21 -> {
                     npc<Happy>("Have this flyer...")
                     if (inventory.isFull()) {
-                        floorItems.add(tile, "flier", disappearTicks = 300, owner = this)
+                        FloorItems.add(tile, "flier", disappearTicks = 300, owner = this)
                     } else {
                         inventory.add("flier")
                     }

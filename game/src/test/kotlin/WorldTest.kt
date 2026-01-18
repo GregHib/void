@@ -63,7 +63,6 @@ abstract class WorldTest : KoinTest {
 
     private val logger = InlineLogger()
     private lateinit var engine: GameLoop
-    lateinit var floorItems: FloorItems
     private lateinit var accountDefs: AccountDefinitions
     private lateinit var accounts: AccountManager
     private var saves: File? = null
@@ -131,7 +130,7 @@ abstract class WorldTest : KoinTest {
         disappearTicks: Int = FloorItems.NEVER,
         charges: Int = 0,
         owner: Player? = null,
-    ): FloorItem = floorItems.add(tile, id, amount, revealTicks, disappearTicks, charges, owner)
+    ): FloorItem = FloorItems.add(tile, id, amount, revealTicks, disappearTicks, charges, owner)
 
     fun Inventory.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount)) }
 
@@ -180,7 +179,6 @@ abstract class WorldTest : KoinTest {
                         Hunting(
                             get(),
                             get(),
-                            get(),
                             object : FakeRandom() {
                                 override fun nextBits(bitCount: Int) = 0
                             },
@@ -200,7 +198,6 @@ abstract class WorldTest : KoinTest {
         val millis = measureTimeMillis {
             val tickStages = getTickStages(
                 get(),
-                get(),
                 get<ConnectionQueue>(),
                 get(),
                 get(),
@@ -210,7 +207,6 @@ abstract class WorldTest : KoinTest {
             engine = GameLoop(tickStages)
             Spawn.world(configFiles)
         }
-        floorItems = get()
         accountDefs = get()
         accounts = get()
         logger.info { "World startup took ${millis}ms" }
@@ -235,7 +231,7 @@ abstract class WorldTest : KoinTest {
     fun afterEach() {
         Players.clear()
         NPCs.clear()
-        floorItems.clear()
+        FloorItems.clear()
         GameObjects.reset()
         World.clear()
         Settings.clear()
@@ -341,7 +337,7 @@ abstract class WorldTest : KoinTest {
                 configFiles.list(Settings["definitions.variables.customs"]),
             )
         }
-        private val dropTables: DropTables by lazy { DropTables().load(configFiles.list(Settings["spawns.drops"]), get()) }
+        private val dropTables: DropTables by lazy { DropTables().load(configFiles.list(Settings["spawns.drops"])) }
         val emptyTile = Tile(2655, 4640)
     }
 }

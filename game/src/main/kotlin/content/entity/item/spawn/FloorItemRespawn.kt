@@ -5,16 +5,13 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 
-class FloorItemRespawn(
-    val items: FloorItems,
-    val spawns: ItemSpawns,
-) : Script {
+class FloorItemRespawn(val spawns: ItemSpawns) : Script {
 
     init {
         floorItemDespawn {
             if (isSpawnItem(this)) {
                 val spawn = spawns.get(tile) ?: return@floorItemDespawn
-                items.add(tile, spawn.id, spawn.amount, revealTicks = spawn.delay, owner = "")
+                FloorItems.add(tile, spawn.id, spawn.amount, revealTicks = spawn.delay, owner = "")
             }
         }
     }

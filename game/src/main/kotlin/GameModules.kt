@@ -42,7 +42,6 @@ fun gameModule(files: ConfigFiles) = module {
     single {
         InstructionHandlers(
             get(),
-            get(),
             InterfaceHandler(get(), get(), get()),
         )
     }

@@ -40,7 +40,6 @@ import world.gregs.voidps.type.Tile
 
 class NPCDeath(
     val combatDefinitions: CombatDefinitions,
-    val floorItems: FloorItems,
     val tables: DropTables,
 ) : Script {
 
@@ -115,7 +114,7 @@ class NPCDeath(
         } else {
             drops.forEach { item ->
                 if (!item.id.contains("clue_scroll") && item.amount > 0) {
-                    floorItems.add(tile, item.id, item.amount, charges = item.charges(), revealTicks = if (item.tradeable) 60 else FloorItems.NEVER, disappearTicks = 120, owner = if (killer is Player) killer else null)
+                    FloorItems.add(tile, item.id, item.amount, charges = item.charges(), revealTicks = if (item.tradeable) 60 else FloorItems.NEVER, disappearTicks = 120, owner = if (killer is Player) killer else null)
                 }
             }
         }
@@ -135,7 +134,7 @@ class NPCDeath(
             } else {
                 val awardee = getAwardee(item, killer, members)
                 notify(members, awardee, item)
-                floorItems.add(
+                FloorItems.add(
                     tile,
                     item.id,
                     item.amount,
@@ -153,7 +152,7 @@ class NPCDeath(
         val total = item.def.cost * item.amount
         val split = total / members.size
         for (member in members) {
-            floorItems.add(tile, "coins", split, revealTicks = 60, disappearTicks = 120, owner = member)
+            FloorItems.add(tile, "coins", split, revealTicks = 60, disappearTicks = 120, owner = member)
             member.message("<dark_green>You received $split gold as your split of this drop: ${item.amount} x ${item.def.name}.", ChatType.ClanChat)
         }
     }

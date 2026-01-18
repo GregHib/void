@@ -25,7 +25,6 @@ import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
 class SirVyvin(
-    val floorItems: FloorItems,
     val lineValidator: LineValidator,
 ) : Script {
 
@@ -54,7 +53,7 @@ class SirVyvin(
                     } else {
                         statement("You find a small portrait in here which you take.")
                         if (inventory.isFull()) {
-                            floorItems.add(tile, "portrait", disappearTicks = 300, owner = this)
+                            FloorItems.add(tile, "portrait", disappearTicks = 300, owner = this)
                             return@objectOperate
                         }
                         inventory.add("portrait")

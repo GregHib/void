@@ -34,10 +34,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
-class PlayerDeath(
-    val floorItems: FloorItems,
-    val enums: EnumDefinitions,
-) : Script {
+class PlayerDeath(val enums: EnumDefinitions) : Script {
 
     val respawnTile: Tile
         get() = Tile(Settings["world.home.x", 0], Settings["world.home.y", 0], Settings["world.home.level", 0])
@@ -134,12 +131,12 @@ class PlayerDeath(
         AuditLog.event(player, "lost", item)
         if (inWilderness && killer is Player) {
             if (item.tradeable) {
-                floorItems.add(tile, item.id, item.amount, revealTicks = 180, disappearTicks = 240, owner = killer)
+                FloorItems.add(tile, item.id, item.amount, revealTicks = 180, disappearTicks = 240, owner = killer)
             } else {
-                floorItems.add(tile, "coins", item.amount * item.def.cost, revealTicks = 180, disappearTicks = 240, owner = killer)
+                FloorItems.add(tile, "coins", item.amount * item.def.cost, revealTicks = 180, disappearTicks = 240, owner = killer)
             }
         } else {
-            floorItems.add(tile, item.id, item.amount, revealTicks = time, disappearTicks = time + 60, owner = player)
+            FloorItems.add(tile, item.id, item.amount, revealTicks = time, disappearTicks = time + 60, owner = player)
         }
     }
 

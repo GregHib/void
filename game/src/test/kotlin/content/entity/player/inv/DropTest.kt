@@ -31,29 +31,29 @@ internal class DropTest : WorldTest() {
         tick()
 
         assertTrue(player.inventory.isEmpty())
-        assertTrue(floorItems[player.tile].any { it.id == "bronze_sword" })
+        assertTrue(FloorItems[player.tile].any { it.id == "bronze_sword" })
     }
 
     @Test
     fun `Floor item respawns after delay`() {
-        loadItemSpawns(get<FloorItems>(), get<ItemSpawns>(), configFiles().list(Settings["spawns.items"]))
+        loadItemSpawns(get<ItemSpawns>(), configFiles().list(Settings["spawns.items"]))
         val tile = Tile(3244, 3157)
         val player = createPlayer(tile)
 
-        val floorItem = floorItems[tile].first()
+        val floorItem = FloorItems[tile].first()
         player.floorItemOption(floorItem, "Take")
         tick(1)
 
         assertTrue(player.inventory.contains("small_fishing_net"))
         tick(10)
-        assertTrue(floorItems[tile].isNotEmpty())
+        assertTrue(FloorItems[tile].isNotEmpty())
     }
 
     @Test
     fun `Drop stackable items on one another`() {
         val tile = emptyTile
         val player = createPlayer(tile)
-        floorItems.add(tile, "coins", 500, revealTicks = 100, owner = player)
+        FloorItems.add(tile, "coins", 500, revealTicks = 100, owner = player)
         player.inventory.add("coins", 500)
         tick()
 
@@ -61,22 +61,22 @@ internal class DropTest : WorldTest() {
         tick()
 
         assertTrue(player.inventory.isEmpty())
-        assertEquals(1, floorItems[tile].count { it.id == "coins" })
-        assertEquals(1000, floorItems[tile].first().amount)
+        assertEquals(1, FloorItems[tile].count { it.id == "coins" })
+        assertEquals(1000, FloorItems[tile].first().amount)
     }
 
     @Test
     fun `Drop items on one another`() {
         val tile = emptyTile
         val player = createPlayer(tile)
-        floorItems.add(tile, "bronze_sword")
+        FloorItems.add(tile, "bronze_sword")
         player.inventory.add("bronze_sword")
 
         player.interfaceOption("inventory", "inventory", "Drop", 4, Item("bronze_sword"), 0)
         tick()
 
         assertTrue(player.inventory.isEmpty())
-        assertEquals(2, floorItems[tile].count { it.id == "bronze_sword" })
+        assertEquals(2, FloorItems[tile].count { it.id == "bronze_sword" })
     }
 
     @Test
@@ -89,7 +89,7 @@ internal class DropTest : WorldTest() {
         tick(2)
 
         assertTrue(player.inventory.isEmpty())
-        assertTrue(floorItems[tile.addX(1)].any { it.id == "bronze_sword" })
+        assertTrue(FloorItems[tile.addX(1)].any { it.id == "bronze_sword" })
     }
 
     @Test
@@ -103,6 +103,6 @@ internal class DropTest : WorldTest() {
         tick()
 
         assertTrue(player.inventory.contains("toolkit"))
-        assertFalse(floorItems[tile.addX(1)].any { it.id == "toolkit" })
+        assertFalse(FloorItems[tile.addX(1)].any { it.id == "toolkit" })
     }
 }

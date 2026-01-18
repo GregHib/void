@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import java.util.concurrent.TimeUnit
 
-class AvasDevices(val floorItems: FloorItems) : Script {
+class AvasDevices : Script {
 
     val attractor = setOf(
         "iron_arrow",
@@ -72,7 +72,7 @@ class AvasDevices(val floorItems: FloorItems) : Script {
             val junk = if (equipped(EquipSlot.Cape).id == "avas_attractor") attractor else accumulator
             val item = junk.random()
             if (!inventory.add(item)) {
-                floorItems.add(tile, item, revealTicks = 100, disappearTicks = 200, owner = this)
+                FloorItems.add(tile, item, revealTicks = 100, disappearTicks = 200, owner = this)
             }
             return@timerTick Timer.CONTINUE
         }

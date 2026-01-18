@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.random
 
-class Sheep(val items: FloorItems) : Script {
+class Sheep : Script {
 
     private val retreatChance = 0.25
 
@@ -90,7 +90,7 @@ class Sheep(val items: FloorItems) : Script {
         val item = if (colour == "black") "black_wool" else "wool"
         message("You get some ${item.toLowerSpaceCase()}.")
         if (!inventory.add(item)) {
-            items.add(tile, item, revealTicks = 100, disappearTicks = 200, owner = this)
+            FloorItems.add(tile, item, revealTicks = 100, disappearTicks = 200, owner = this)
         }
         target.face(this)
         target.transform("${target.id}_shorn")

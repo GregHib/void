@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
@@ -34,7 +35,7 @@ class CooksAssistantTest : WorldTest() {
 
     @BeforeAll
     fun beforeAllLocal() {
-        loadItemSpawns(floorItems, get(), configFiles.list(Settings["spawns.items"]))
+        loadItemSpawns(get(), configFiles.list(Settings["spawns.items"]))
     }
 
     @Test
@@ -55,7 +56,7 @@ class CooksAssistantTest : WorldTest() {
         assertEquals("started", player.quest("cooks_assistant"))
 
         // Pick up empty pot
-        val pot = floorItems[Tile(3209, 3214)].first { it.id == "empty_pot" }
+        val pot = FloorItems[Tile(3209, 3214)].first { it.id == "empty_pot" }
         player.tele(3209, 3215, 0)
         player.interactFloorItem(pot, "Take")
         tick()
@@ -63,14 +64,14 @@ class CooksAssistantTest : WorldTest() {
 
         // Super Large Egg
         player.tele(3227, 3299)
-        val egg = floorItems[Tile(3227, 3299)].first { it.id == "super_large_egg" }
+        val egg = FloorItems[Tile(3227, 3299)].first { it.id == "super_large_egg" }
         player.interactFloorItem(egg, "Take")
         tick()
         assertEquals(1, player.inventory.count("super_large_egg"))
 
         // Top Quality Milk
         player.tele(3263, 3278)
-        val bucket = floorItems[Tile(3263, 3277)].first { it.id == "bucket" }
+        val bucket = FloorItems[Tile(3263, 3277)].first { it.id == "bucket" }
         player.interactFloorItem(bucket, "Take")
         tick()
         assertEquals(1, player.inventory.count("bucket"))

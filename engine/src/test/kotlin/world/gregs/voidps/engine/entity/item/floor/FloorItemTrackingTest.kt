@@ -11,22 +11,20 @@ import world.gregs.voidps.type.Tile
 
 class FloorItemTrackingTest {
 
-    private lateinit var items: FloorItems
     private lateinit var tracking: FloorItemTracking
 
     @BeforeEach
     fun setup() {
         Players.clear()
         Players.add(Player(accountName = "player"))
-        items = FloorItems()
-        tracking = FloorItemTracking(items)
+        tracking = FloorItemTracking()
         ItemDefinitions.set(arrayOf(ItemDefinition(0)), mapOf("item" to 0))
     }
 
     @Test
     fun `Private items are revealed after timer`() {
-        val item = items.add(Tile.EMPTY, "item", revealTicks = 10, owner = "player")
-        items.run()
+        val item = FloorItems.add(Tile.EMPTY, "item", revealTicks = 10, owner = "player")
+        FloorItems.run()
 
         repeat(10) {
             assertEquals("player", item.owner)
@@ -40,20 +38,20 @@ class FloorItemTrackingTest {
 
     @Test
     fun `Public items are removed after timer`() {
-        val item = items.add(Tile.EMPTY, "item", disappearTicks = 10)
-        items.run()
+        val item = FloorItems.add(Tile.EMPTY, "item", disappearTicks = 10)
+        FloorItems.run()
 
         repeat(10) {
             tracking.run()
         }
 
-        assertFalse(items[Tile.EMPTY].contains(item))
+        assertFalse(FloorItems[Tile.EMPTY].contains(item))
     }
 
     @Test
     fun `Removal timer isn't counting down while reveal timer is active`() {
-        val item = items.add(Tile.EMPTY, "item", revealTicks = 10, disappearTicks = 10, owner = "player")
-        items.run()
+        val item = FloorItems.add(Tile.EMPTY, "item", revealTicks = 10, disappearTicks = 10, owner = "player")
+        FloorItems.run()
 
         repeat(10) {
             assertEquals("player", item.owner)
@@ -73,20 +71,20 @@ class FloorItemTrackingTest {
 
     @Test
     fun `Public items revealed and removed after timers`() {
-        val item = items.add(Tile.EMPTY, "item", revealTicks = 10, disappearTicks = 10, owner = "player")
-        items.run()
+        val item = FloorItems.add(Tile.EMPTY, "item", revealTicks = 10, disappearTicks = 10, owner = "player")
+        FloorItems.run()
 
         repeat(10) {
             tracking.run()
         }
-        assertTrue(items[Tile.EMPTY].contains(item))
+        assertTrue(FloorItems[Tile.EMPTY].contains(item))
         assertNull(item.owner)
         assertEquals(0, item.revealTicks)
         assertEquals(10, item.disappearTicks)
         repeat(10) {
             tracking.run()
         }
-        assertFalse(items[Tile.EMPTY].contains(item))
+        assertFalse(FloorItems[Tile.EMPTY].contains(item))
         assertEquals(0, item.disappearTicks)
     }
 

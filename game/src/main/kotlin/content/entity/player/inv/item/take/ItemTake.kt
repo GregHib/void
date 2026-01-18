@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.SetCharge.setCharge
 
-class ItemTake(val floorItems: FloorItems) : Script {
+class ItemTake : Script {
 
     val logger = InlineLogger()
 
@@ -26,7 +26,7 @@ class ItemTake(val floorItems: FloorItems) : Script {
                 inventoryFull()
                 return@floorItemOperate
             }
-            if (!floorItems.remove(target)) {
+            if (!FloorItems.remove(target)) {
                 message("Too late - it's gone!")
                 return@floorItemOperate
             }
@@ -55,7 +55,7 @@ class ItemTake(val floorItems: FloorItems) : Script {
 
         npcOperateFloorItem("Take") { (target) ->
             arriveDelay()
-            if (!floorItems.remove(target)) {
+            if (!FloorItems.remove(target)) {
                 logger.warn { "$this unable to take $target." }
             }
             if (id == "ash_cleaner") {

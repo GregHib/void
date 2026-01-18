@@ -66,7 +66,7 @@ object Ammo {
         }
 
         if (random > 1.0 - dropChance && !Collisions.check(target.tile.x, target.tile.y, target.tile.level, CollisionFlag.FLOOR)) {
-            get<FloorItems>().add(target.tile, ammo, required, revealTicks = 100, disappearTicks = 200, owner = player)
+            FloorItems.add(target.tile, ammo, required, revealTicks = 100, disappearTicks = 200, owner = player)
         }
     }
 

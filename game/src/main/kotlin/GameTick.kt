@@ -34,7 +34,6 @@ import java.io.File
 import java.util.concurrent.TimeUnit
 
 fun getTickStages(
-    items: FloorItems = get(),
     floorItems: FloorItemTracking = get(),
     queue: ConnectionQueue = get(),
     accountSave: SaveQueue = get(),
@@ -55,7 +54,7 @@ fun getTickStages(
         // Connections/Tick Input
         queue,
         NPCs,
-        items,
+        FloorItems,
         // Tick
         InstructionTask(handlers),
         World,

@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.*
@@ -83,7 +84,7 @@ class GravestonesTest : WorldTest() {
         val tile = Tile(3235, 3220)
         val player = createPlayer(tile)
         Gravestone.spawn(player, tile)
-        val floorItem = floorItems.add(tile, "coins", 10, revealTicks = 100, disappearTicks = 160, owner = player.name)
+        val floorItem = FloorItems.add(tile, "coins", 10, revealTicks = 100, disappearTicks = 160, owner = player.name)
         tick()
         val grave = NPCs.find(tile) { it.id.startsWith("gravestone") }
         grave["grave_timer"] = 119
@@ -104,7 +105,7 @@ class GravestonesTest : WorldTest() {
         val tile = Tile(3235, 3220)
         val player = createPlayer(tile)
         Gravestone.spawn(player, tile)
-        val floorItem = floorItems.add(tile, "coins", 10, revealTicks = 100, disappearTicks = 160, owner = player.name)
+        val floorItem = FloorItems.add(tile, "coins", 10, revealTicks = 100, disappearTicks = 160, owner = player.name)
         tick()
         val grave = NPCs.find(tile) { it.id.startsWith("gravestone") }
         grave["grave_timer"] = 119
@@ -132,6 +133,6 @@ class GravestonesTest : WorldTest() {
         tick()
 
         assertFalse(player.inventory.isEmpty())
-        assertFalse(floorItems[player.tile].any { it.id == "bronze_sword" })
+        assertFalse(FloorItems[player.tile].any { it.id == "bronze_sword" })
     }
 }

@@ -279,7 +279,7 @@ class PlayerCommands(
             }
         }
         if (type == "all" || type == "items") {
-            val items = get<FloorItems>()[tile]
+            val items = FloorItems[tile]
             if (items.isNotEmpty()) {
                 player.message("--- Floor Items ---", ChatType.Console)
                 for (item in items) {

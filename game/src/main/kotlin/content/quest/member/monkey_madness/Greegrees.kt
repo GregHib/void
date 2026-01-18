@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-class Greegrees(val items: FloorItems) : Script {
+class Greegrees : Script {
 
     init {
         playerSpawn {
@@ -93,7 +93,7 @@ class Greegrees(val items: FloorItems) : Script {
                 if (equipment.remove(EquipSlot.Weapon.index, item)) {
                     // FIXME issue with item spawning displaying twice if spawned on the same tick. #614
                     World.queue("greegree_spawn", 1) {
-                        items.add(tile, item, disappearTicks = 300, owner = this)
+                        FloorItems.add(tile, item, disappearTicks = 300, owner = this)
                     }
                 }
             }

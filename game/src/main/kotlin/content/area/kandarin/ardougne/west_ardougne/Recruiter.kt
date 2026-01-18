@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 
-class Recruiter(val floorItems: FloorItems) : Script {
+class Recruiter : Script {
 
     init {
         npcOperate("Talk-to", "recruiter") { (target) ->
@@ -16,7 +16,7 @@ class Recruiter(val floorItems: FloorItems) : Script {
             npc<Angry>("w_ardougnecitizen3", "King Tyras is scum!")
             npc<Shock>("Tyras will be informed of these words of treason!")
             sound("plague_tomato")
-            floorItems.add(target.tile, "tomato", disappearTicks = 300)
+            FloorItems.add(target.tile, "tomato", disappearTicks = 300)
             statement("Someone throws a tomato at the recruiter.")
         }
     }

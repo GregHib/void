@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.type.Tile
 
-class Aggie(val floorItems: FloorItems) : Script {
+class Aggie : Script {
 
     init {
         npcOperate("Talk-to", "aggie") { (target) ->
@@ -259,7 +259,7 @@ class Aggie(val floorItems: FloorItems) : Script {
             inventory.remove("coins", 5)
             inventory.remove("woad_leaf", 2)
             if (!inventory.add("blue_dye")) {
-                floorItems.add(tile, "blue_dye", disappearTicks = 300, owner = this)
+                FloorItems.add(tile, "blue_dye", disappearTicks = 300, owner = this)
             }
             item("blue_dye", 380, "You hand the woad leaves and payment to Aggie. Aggie produces a blue bottle and hands it to you.")
         }

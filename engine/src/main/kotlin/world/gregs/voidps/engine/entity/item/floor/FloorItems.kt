@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.item.floor.FloorItems.Companion.MAX_TILE_ITEMS
 import world.gregs.voidps.network.login.protocol.encode.send
 import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemAddition
 import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemRemoval
@@ -21,7 +20,7 @@ import world.gregs.voidps.type.Zone
 /**
  * Stores up to [MAX_TILE_ITEMS] [FloorItem]s per tile
  */
-class FloorItems : ZoneBatchUpdates.Sender, Runnable {
+object FloorItems : ZoneBatchUpdates.Sender, Runnable {
 
     internal val data = Int2ObjectOpenHashMap<MutableMap<Int, MutableList<FloorItem>>>()
     private val tilePool = object : DefaultPool<MutableList<FloorItem>>(INITIAL_POOL_CAPACITY) {
@@ -151,11 +150,9 @@ class FloorItems : ZoneBatchUpdates.Sender, Runnable {
         }
     }
 
-    companion object {
-        private val logger = InlineLogger()
-        const val IMMEDIATE = 0
-        const val NEVER = -1
-        private const val MAX_TILE_ITEMS = 128
-        private const val INITIAL_POOL_CAPACITY = 10
-    }
+    private val logger = InlineLogger()
+    const val IMMEDIATE = 0
+    const val NEVER = -1
+    private const val MAX_TILE_ITEMS = 128
+    private const val INITIAL_POOL_CAPACITY = 10
 }

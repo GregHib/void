@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
-class ItemPlace(val floorItems: FloorItems) : Script {
+class ItemPlace : Script {
 
     init {
         itemOnObjectOperate(obj = "table*") { (target, item, slot) ->
@@ -25,7 +25,7 @@ class ItemPlace(val floorItems: FloorItems) : Script {
                 anim("take")
                 sound("drop_item")
                 val tile = target.nearestTo(tile)
-                floorItems.add(tile, item.id, item.amount, revealTicks = 100, disappearTicks = 1000, owner = this)
+                FloorItems.add(tile, item.id, item.amount, revealTicks = 100, disappearTicks = 1000, owner = this)
             }
         }
     }

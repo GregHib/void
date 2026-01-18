@@ -12,17 +12,14 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.network.client.instruction.InteractInterfaceFloorItem
 
-class InterfaceOnFloorItemOptionHandler(
-    private val items: FloorItems,
-    private val handler: InterfaceHandler,
-) : InstructionHandler<InteractInterfaceFloorItem>() {
+class InterfaceOnFloorItemOptionHandler(private val handler: InterfaceHandler) : InstructionHandler<InteractInterfaceFloorItem>() {
 
     private val logger = InlineLogger()
 
     override fun validate(player: Player, instruction: InteractInterfaceFloorItem) {
         val (floorItemId, x, y, interfaceId, componentId, itemId, itemSlot) = instruction
         val tile = player.tile.copy(x, y)
-        val floorItem = items[tile].firstOrNull { it.def.id == floorItemId }
+        val floorItem = FloorItems[tile].firstOrNull { it.def.id == floorItemId }
         if (floorItem == null) {
             logger.warn { "Invalid floor item $itemId $tile" }
             return

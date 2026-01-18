@@ -31,9 +31,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 
-class Edmond(
-    val floorItems: FloorItems,
-) : Script {
+class Edmond : Script {
 
     val region = Region(10136)
 
@@ -185,7 +183,7 @@ class Edmond(
                 if (!ownsItem("a_magic_scroll")) {
                     option<Quiz>("Do you have any more of those scrolls?") {
                         if (!inventory.add("a_magic_scroll")) {
-                            floorItems.add(tile, "a_magic_scroll", disappearTicks = 300, owner = this)
+                            FloorItems.add(tile, "a_magic_scroll", disappearTicks = 300, owner = this)
                         }
                         npc<Happy>("Yes, here you go.")
                     }

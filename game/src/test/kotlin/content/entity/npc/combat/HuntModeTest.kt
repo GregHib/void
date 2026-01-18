@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.combatLevel
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import kotlin.test.assertEquals
 
 internal class HuntModeTest : WorldTest() {
@@ -78,6 +79,6 @@ internal class HuntModeTest : WorldTest() {
         tick(9)
 
         assertEquals(emptyTile.addY(3), npc.tile)
-        assertTrue(floorItems[emptyTile.addY(3)].isEmpty())
+        assertTrue(FloorItems[emptyTile.addY(3)].isEmpty())
     }
 }

@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
-class ItemDropping(val floorItems: FloorItems) : Script {
+class ItemDropping : Script {
 
     val logger = InlineLogger()
 
@@ -24,9 +24,9 @@ class ItemDropping(val floorItems: FloorItems) : Script {
             AuditLog.event(this, "dropped", item, tile)
             if (inventory.remove(slot, item.id, item.amount)) {
                 if (item.tradeable) {
-                    floorItems.add(tile, item.id, item.amount, revealTicks = 100, disappearTicks = 200, owner = this)
+                    FloorItems.add(tile, item.id, item.amount, revealTicks = 100, disappearTicks = 200, owner = this)
                 } else {
-                    floorItems.add(tile, item.id, item.amount, charges = item.charges(), revealTicks = FloorItems.NEVER, disappearTicks = 300, owner = this)
+                    FloorItems.add(tile, item.id, item.amount, charges = item.charges(), revealTicks = FloorItems.NEVER, disappearTicks = 300, owner = this)
                 }
                 Items.drop(this, item)
                 sound("drop_item")

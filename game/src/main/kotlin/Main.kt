@@ -141,7 +141,7 @@ object Main {
                     files.list(Settings["definitions.variables.customs"]),
                 )
             }
-            single(createdAtStart = true) { DropTables().load(files.list(Settings["spawns.drops"]), get()) }
+            single(createdAtStart = true) { DropTables().load(files.list(Settings["spawns.drops"])) }
             single(createdAtStart = true) { ObjectTeleports().load(files.list(Settings["map.teleports"])) }
         }
         return module

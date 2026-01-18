@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 
-class FatherUrhney(val floorItems: FloorItems) : Script {
+class FatherUrhney : Script {
 
     init {
         npcOperate("Talk-to", "father_urhney") {
@@ -94,7 +94,7 @@ class FatherUrhney(val floorItems: FloorItems) : Script {
         npc<Idle>("Tell you what I can do though; take this amulet.")
         set("the_restless_ghost", "ghost")
         if (inventory.isFull()) {
-            floorItems.add(tile, "ghostspeak_amulet", disappearTicks = 300, owner = this)
+            FloorItems.add(tile, "ghostspeak_amulet", disappearTicks = 300, owner = this)
         } else {
             inventory.add("ghostspeak_amulet")
         }

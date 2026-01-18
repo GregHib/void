@@ -13,11 +13,10 @@ import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.*
 
 class InstructionHandlers(
-    items: FloorItems,
     interfaceDefinitions: InterfaceDefinitions,
     handler: InterfaceHandler,
 ) {
-    private val interactFloorItem = FloorItemOptionHandler(items)
+    private val interactFloorItem = FloorItemOptionHandler()
     private val interactDialogue = DialogueContinueHandler(interfaceDefinitions)
     private val continueKey = DialogueContinueKeyHandler(interfaceDefinitions)
     private val interactDialogueItem = DialogueItemContinueHandler()
@@ -31,7 +30,7 @@ class InstructionHandlers(
     private val interactInterfaceObject = InterfaceOnObjectOptionHandler(handler)
     private val interactInterfacePlayer = InterfaceOnPlayerOptionHandler(handler)
     private val interactInterfaceItem = InterfaceOnInterfaceOptionHandler(handler)
-    private val interactInterfaceFloorItem = InterfaceOnFloorItemOptionHandler(items, handler)
+    private val interactInterfaceFloorItem = InterfaceOnFloorItemOptionHandler(handler)
     private val executeCommand = ExecuteCommandHandler()
     var songEndHandler: SongEnd.(Player) -> Unit = empty()
     var finishRegionLoad: FinishRegionLoad.(Player) -> Unit = empty()

@@ -13,6 +13,6 @@ val Item.tradeable: Boolean
 
 fun Player.addOrDrop(id: String, amount: Int = 1, inventory: Inventory = this.inventory, revealTicks: Int = 100, disappearTicks: Int = 200) {
     if (!inventory.add(id, amount)) {
-        get<FloorItems>().add(tile, id, amount, revealTicks = revealTicks, disappearTicks = disappearTicks, owner = this)
+        FloorItems.add(tile, id, amount, revealTicks = revealTicks, disappearTicks = disappearTicks, owner = this)
     }
 }
