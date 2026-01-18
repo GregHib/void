@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
  */
 class MapObjectsDecoder(
     private val objects: GameObjects,
-    private val definitions: ObjectDefinitions,
 ) : MapObjectDecoder() {
 
     fun decode(cache: Cache, settings: ByteArray, regionX: Int, regionY: Int, keys: IntArray?) {
@@ -22,6 +21,6 @@ class MapObjectsDecoder(
     }
 
     override fun add(objectId: Int, localX: Int, localY: Int, level: Int, shape: Int, rotation: Int, regionTileX: Int, regionTileY: Int) {
-        objects.set(objectId, regionTileX + localX, regionTileY + localY, level, shape, rotation, definitions.getValue(objectId))
+        objects.set(objectId, regionTileX + localX, regionTileY + localY, level, shape, rotation, ObjectDefinitions.getValue(objectId))
     }
 }

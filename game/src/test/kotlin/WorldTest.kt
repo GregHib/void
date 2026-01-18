@@ -15,6 +15,7 @@ import world.gregs.voidps.cache.MemoryCache
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.data.NPCDefinition
+import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
@@ -148,7 +149,6 @@ abstract class WorldTest : KoinTest {
                 module {
                     single(createdAtStart = true) { cache }
                     single(createdAtStart = true) { huffman }
-                    single(createdAtStart = true) { objectDefinitions }
                     single(createdAtStart = true) { itemDefinitions }
                     single(createdAtStart = true) { animationDefinitions }
                     single(createdAtStart = true) { graphicDefinitions }
@@ -185,6 +185,7 @@ abstract class WorldTest : KoinTest {
                 },
             )
         }
+        ObjectDefinitions.set(objectDefinitions, objectIds)
         NPCDefinitions.set(npcDefinitions, npcIds)
         engineLoad(configFiles)
         Wildcards.load(Settings["storage.wildcards"])
@@ -285,8 +286,13 @@ abstract class WorldTest : KoinTest {
         private val huffman: Huffman by lazy { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
         private val ammoDefinitions: AmmoDefinitions by lazy { AmmoDefinitions().load(configFiles.find(Settings["definitions.ammoGroups"])) }
         private val parameterDefinitions: ParameterDefinitions by lazy { ParameterDefinitions(CategoryDefinitions().load(configFiles.find(Settings["definitions.categories"])), ammoDefinitions).load(configFiles.find(Settings["definitions.parameters"])) }
-        val objectDefinitions: ObjectDefinitions by lazy {
-            ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false, parameterDefinitions).load(cache)).load(configFiles.list(Settings["definitions.objects"]))
+        private val objectDefinitions: Array<ObjectDefinition> by lazy {
+            ObjectDecoder(member = true, lowDetail = false, parameterDefinitions).load(cache)
+        }
+        private val objectIds: Map<String, Int> by lazy {
+            ObjectDecoder(member = true, lowDetail = false, parameterDefinitions).load(cache)
+            ObjectDefinitions.init(objectDefinitions).load(configFiles.list(Settings["definitions.objects"]))
+            ObjectDefinitions.ids
         }
         private val npcDefinitions: Array<NPCDefinition> by lazy {
             NPCDecoder(member = true, parameterDefinitions).load(cache)
@@ -317,8 +323,8 @@ abstract class WorldTest : KoinTest {
         private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder().load(cache), structDefinitions).load(configFiles.find(Settings["definitions.enums"])) }
         private val objectCollisionAdd: GameObjectCollisionAdd by lazy { GameObjectCollisionAdd() }
         private val objectCollisionRemove: GameObjectCollisionRemove by lazy { GameObjectCollisionRemove() }
-        private val gameObjects: GameObjects by lazy { GameObjects(objectCollisionAdd, objectCollisionRemove, ZoneBatchUpdates(), objectDefinitions, storeUnused = true) }
-        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder(), objectDefinitions, gameObjects, cache).load(configFiles) }
+        private val gameObjects: GameObjects by lazy { GameObjects(ZoneBatchUpdates(), storeUnused = true) }
+        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder(), gameObjects, cache).load(configFiles) }
         private val fontDefinitions: FontDefinitions by lazy { FontDefinitions(FontDecoder().load(cache)).load(configFiles.find(Settings["definitions.fonts"])) }
         private val objectTeleports: ObjectTeleports by lazy { ObjectTeleports().load(configFiles.list(Settings["map.teleports"])) }
         private val itemOnItemDefinitions: ItemOnItemDefinitions by lazy { ItemOnItemDefinitions().load(configFiles.list(Settings["definitions.itemOnItem"])) }

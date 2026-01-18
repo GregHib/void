@@ -22,7 +22,6 @@ import world.gregs.voidps.type.random
 class Farmer(
     val enumDefinitions: EnumDefinitions,
     val itemDefinitions: ItemDefinitions,
-    val objectDefinitions: ObjectDefinitions,
 ) : Script {
 
     init {
@@ -171,7 +170,7 @@ class Farmer(
             npc<Confused>("I'm already looking after that patch for you.")
             return
         }
-        val def = objectDefinitions.get("${value.substringBeforeLast("_")}_fullygrown")
+        val def = ObjectDefinitions.get("${value.substringBeforeLast("_")}_fullygrown")
         val item: String = def.getOrNull("harvest") ?: return
         val harvest = enumDefinitions.get("farming_protection").getString(itemDefinitions.get(item).id).substringAfter(":")
         npc<Neutral>("If you like, but I want $harvest for that.")

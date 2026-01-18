@@ -27,12 +27,11 @@ import java.io.File
  * @param storeUnused store non-interactive and objects without configs for debugging and content dev (uses ~240MB more ram).
  */
 class GameObjects(
-    private val collisionAdd: GameObjectCollisionAdd,
-    private val collisionRemove: GameObjectCollisionRemove,
     private val batches: ZoneBatchUpdates,
-    private val definitions: ObjectDefinitions,
     private val storeUnused: Boolean = false,
 ) : ZoneBatchUpdates.Sender {
+    private val collisionAdd = GameObjectCollisionAdd()
+    private val collisionRemove = GameObjectCollisionRemove()
     private val map = GameObjectHashMap()
     private val replacements: MutableMap<Int, Int> = Int2IntOpenHashMap()
     val timers = GameObjectTimers()
@@ -52,7 +51,7 @@ class GameObjects(
      * Optionally removed after [ticks]
      */
     fun add(id: String, tile: Tile, shape: Int = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation: Int = 0, ticks: Int = NEVER, collision: Boolean = true): GameObject {
-        val obj = GameObject(definitions.get(id).id, tile, shape, rotation)
+        val obj = GameObject(ObjectDefinitions.get(id).id, tile, shape, rotation)
         add(obj)
         timers.add(obj, ticks) {
             remove(obj, collision)
@@ -191,7 +190,7 @@ class GameObjects(
         ticks: Int = NEVER,
         collision: Boolean = true,
     ): GameObject {
-        val replacement = GameObject(definitions.get(id).id, tile, shape, rotation)
+        val replacement = GameObject(ObjectDefinitions.get(id).id, tile, shape, rotation)
         replace(original, replacement, ticks, collision)
         return replacement
     }

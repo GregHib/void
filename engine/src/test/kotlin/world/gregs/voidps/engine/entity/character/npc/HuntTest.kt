@@ -96,12 +96,7 @@ class HuntTest {
 
         @BeforeEach
         fun setup() {
-            declare {
-                val def = mockk<ObjectDefinitions>(relaxed = true)
-                every { def.resolve(any(), any()) } returns ObjectDefinition(0, stringId = "obj")
-                every { def.get(any<Int>()) } returns ObjectDefinition(0, stringId = "obj")
-                def
-            }
+            ObjectDefinitions.init(arrayOf(ObjectDefinition(0, stringId = "obj")))
         }
 
         override fun Script.register(args: List<String>, caller: Caller) {

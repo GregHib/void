@@ -54,14 +54,12 @@ internal class ZoneBatchUpdatesTest : KoinMock() {
 
     @Test
     fun `Entering zone sends clear and initial updates`() {
-        declareMock<ObjectDefinitions> {
-            every { get(4321) } returns ObjectDefinition(1234)
-        }
+        ObjectDefinitions.init(arrayOf(ObjectDefinition(1234)))
         // Given
         val zone = Zone(2, 2)
         batches.add(zone, update)
         player.tile = Tile(20, 20)
-        val objects = GameObjects(GameObjectCollisionAdd(), GameObjectCollisionRemove(), ZoneBatchUpdates(), mockk(relaxed = true), storeUnused = true)
+        val objects = GameObjects(ZoneBatchUpdates(), storeUnused = true)
         objects.set(id = 1234, x = 21, y = 20, level = 0, shape = ObjectShape.WALL_DECOR_STRAIGHT_NO_OFFSET, rotation = 0, definition = ObjectDefinition.EMPTY)
         batches.register(objects)
         val added = GameObject(4321, Tile(20, 21), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)

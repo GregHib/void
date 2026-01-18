@@ -31,26 +31,19 @@ object WorldMapLinkIdentifier {
         val xteas: Xteas = Xteas().load(Settings["storage.xteas"], Settings["xteaJsonKey", Xteas.DEFAULT_KEY], Settings["xteaJsonValue", Xteas.DEFAULT_VALUE])
         val worldMapDetailsDecoder = WorldMapDetailsDecoder().load(cache)
         val worldMapIconDecoder = WorldMapIconDecoder().load(cache)
-        val definitions: ObjectDefinitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(configFiles().getValue(Settings["definitions.objects"]))
+        ObjectDefinitions.init(ObjectDecoder(member = true, lowDetail = false).load(cache)).load(configFiles().getValue(Settings["definitions.objects"]))
         val mapDecoder = MapDecoder(xteas).load(cache)
         val collisionDecoder = CollisionDecoder()
         val graph = MutableNavigationGraph()
         val linker = ObjectLinker()
         val clientScriptDecoder = ClientScriptDecoder().load(cache)
-        val objects = GameObjects(GameObjectCollisionAdd(), GameObjectCollisionRemove(), ZoneBatchUpdates(), definitions)
+        val objects = GameObjects(ZoneBatchUpdates())
         val regions = mutableListOf<Region>()
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {
                 cache.data(5, "m${regionX}_$regionY") ?: continue
                 regions.add(Region(regionX, regionY))
             }
-        }
-        startKoin {
-            modules(
-                module {
-                    single { definitions }
-                },
-            )
         }
         val start = System.currentTimeMillis()
         val objCollision = GameObjectCollisionAdd()

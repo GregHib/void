@@ -29,13 +29,9 @@ class GameObjectsTest : KoinMock() {
     @BeforeEach
     fun setup() {
         // Using collision = false to avoid koin [GameObject#def]
-        val definitions = mockk<ObjectDefinitions>(relaxed = true)
-        every { definitions.get(any<Int>()) } returns ObjectDefinition()
-        every { definitions.get("test") } returns ObjectDefinition(123)
-        every { definitions.get("test2") } returns ObjectDefinition(456)
-        declare { definitions }
+        ObjectDefinitions.set(arrayOf(ObjectDefinition(123), ObjectDefinition(456)), mapOf("test" to 123, "test2" to 456))
         updates = mockk(relaxed = true)
-        objects = GameObjects(mockk(relaxed = true), mockk(relaxed = true), updates, definitions, storeUnused = true)
+        objects = GameObjects(updates, storeUnused = true)
         spawns = mockk(relaxed = true)
         despawns = mockk(relaxed = true)
         object : Spawn, Despawn {

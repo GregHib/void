@@ -16,9 +16,7 @@ import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
 
-class NavigationGraph(
-    private val definitions: ObjectDefinitions,
-) {
+class NavigationGraph {
 
     private var adjacencyList: Object2ObjectOpenHashMap<Any, ObjectOpenHashSet<Edge>> = Object2ObjectOpenHashMap<Any, ObjectOpenHashSet<Edge>>()
     private val tags = Object2ObjectOpenHashMap<Any, Set<AreaDefinition>>()
@@ -78,10 +76,10 @@ class NavigationGraph(
                                     }
                                     val instruction = when {
                                         objectId != "" -> {
-                                            var def = definitions.getOrNull(objectId) ?: continue
+                                            var def = ObjectDefinitions.getOrNull(objectId) ?: continue
                                             if (transform != null) {
                                                 val id = def.transforms?.get(transform) ?: continue
-                                                def = definitions.getOrNull(id) ?: continue
+                                                def = ObjectDefinitions.getOrNull(id) ?: continue
                                             }
                                             val optionIndex = def.optionsIndex(option) + 1
                                             InteractObject(def.id, tile.x, tile.y, optionIndex)

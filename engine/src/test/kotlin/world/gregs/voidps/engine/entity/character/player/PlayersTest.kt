@@ -1,11 +1,17 @@
 package world.gregs.voidps.engine.entity.character.player
 
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 internal class PlayersTest {
+
+    @BeforeEach
+    fun setup() {
+        Players.clear()
+    }
 
     @Test
     fun `Add character to list`() {

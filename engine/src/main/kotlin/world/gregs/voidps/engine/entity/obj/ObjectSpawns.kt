@@ -12,7 +12,6 @@ private val logger = InlineLogger()
 fun loadObjectSpawns(
     objects: GameObjects,
     paths: List<String>,
-    definitions: ObjectDefinitions,
 ) = timedLoad("object spawn") {
     objects.reset()
     val membersWorld = World.members
@@ -45,7 +44,7 @@ fun loadObjectSpawns(
                         continue
                     }
                     val tile = Tile(x, y, level)
-                    val definition = definitions.getOrNull(id)
+                    val definition = ObjectDefinitions.getOrNull(id)
                     if (definition == null) {
                         logger.warn { "Invalid object spawn id '$id' in $path." }
                     } else {

@@ -11,6 +11,7 @@ import org.koin.dsl.module
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.type.Tile
 
@@ -22,6 +23,8 @@ class FloorItemTrackingTest {
 
     @BeforeEach
     fun setup() {
+        Players.clear()
+        Players.add(Player(accountName = "player"))
         batches = mockk(relaxed = true)
         items = FloorItems(batches, mockk(relaxed = true))
         tracking = FloorItemTracking(items, batches)

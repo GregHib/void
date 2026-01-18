@@ -7,9 +7,7 @@ import objectOption
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.definition.Areas
-import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Area
@@ -21,11 +19,9 @@ import kotlin.test.assertTrue
 internal class AbyssObstaclesTest : WorldTest() {
 
     private lateinit var center: Area
-    private lateinit var definitions: ObjectDefinitions
 
     @BeforeEach
     fun setup() {
-        definitions = get()
         center = Areas["abyss_center"]
     }
 

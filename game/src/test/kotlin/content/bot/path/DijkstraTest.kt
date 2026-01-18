@@ -30,7 +30,7 @@ internal class DijkstraTest {
 
     @BeforeEach
     fun setup() {
-        graph = NavigationGraph(mockk())
+        graph = NavigationGraph()
         pool = object : DefaultPool<DijkstraFrontier>(1) {
             override fun produceInstance() = DijkstraFrontier(3)
         }

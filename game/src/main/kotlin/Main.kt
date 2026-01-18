@@ -117,7 +117,7 @@ object Main {
             single(createdAtStart = true) { MapDefinitions(CollisionDecoder(), get(), get(), cache).load(files) }
             single(createdAtStart = true) { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
             single(createdAtStart = true) {
-                ObjectDefinitions(ObjectDecoder(members, lowDetail = false, get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.objects"]))
+                ObjectDefinitions.init(ObjectDecoder(members, lowDetail = false, get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.objects"]))
             }
             single(createdAtStart = true) { NPCDefinitions.init(NPCDecoder(members, get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.npcs"]), get()) }
             single(createdAtStart = true) { ItemDefinitions(ItemDecoder(get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.items"])) }

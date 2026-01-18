@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.mode.interact
 
+import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.Caller
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -27,6 +28,6 @@ class InterfaceOnNPCInteractTest : OnInteractTest() {
         }
     }
 
-    override fun interact() = InterfaceOnNPCInteract(NPC("npc"), "id", 0, Player())
+    override fun interact() = InterfaceOnNPCInteract(NPC("npc", def = NPCDefinition(0, stringId = "npc")), "id", 0, Player())
 
 }

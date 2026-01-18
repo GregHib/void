@@ -23,14 +23,13 @@ import kotlin.system.exitProcess
  */
 class MapDefinitions(
     private val collisions: CollisionDecoder,
-    definitions: ObjectDefinitions,
     private val objects: GameObjects,
     private val cache: Cache,
 ) {
     private val logger = InlineLogger()
 
-    private val decoder = MapObjectsDecoder(objects, definitions)
-    private val rotationDecoder = MapObjectsRotatedDecoder(objects, definitions)
+    private val decoder = MapObjectsDecoder(objects)
+    private val rotationDecoder = MapObjectsRotatedDecoder(objects)
 
     fun load(configFiles: ConfigFiles, xteas: Map<Int, IntArray>? = null): MapDefinitions {
         try {

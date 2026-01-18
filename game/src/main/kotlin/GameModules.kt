@@ -30,14 +30,13 @@ fun gameModule(files: ConfigFiles) = module {
             },
         )
     }
-    single(createdAtStart = true) { NavigationGraph(get()).load(files.find(Settings["map.navGraph"])) }
+    single(createdAtStart = true) { NavigationGraph().load(files.find(Settings["map.navGraph"])) }
     single(createdAtStart = true) { Books().load(files.list(Settings["definitions.books"])) }
     single(createdAtStart = true) { MusicTracks().load(files.find(Settings["map.music"])) }
     single(createdAtStart = true) { FairyRingCodes().load(files.find(Settings["definitions.fairyCodes"])) }
     single(createdAtStart = true) { CharterShips().load(files.find(Settings["map.ships.prices"])) }
     single {
         InstructionHandlers(
-            get(),
             get(),
             get(),
             get(),

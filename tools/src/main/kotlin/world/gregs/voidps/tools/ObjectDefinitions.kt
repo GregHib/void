@@ -14,9 +14,9 @@ object ObjectDefinitions {
     fun main(args: Array<String>) {
         Settings.load()
         val cache = CacheDelegate(Settings["storage.cache.path"])
-        val definitions = ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false).load(cache))
+        ObjectDefinitions.init(ObjectDecoder(member = true, lowDetail = false).load(cache))
             .load(configFiles().getValue(Settings["definitions.objects"]))
-        for (def in definitions.definitions) {
+        for (def in ObjectDefinitions.definitions) {
             if(def.stringId.startsWith("slayer_tower_chain")) {
                 println("${def.id} ${def.name} ${def.options?.toList()}")
             }

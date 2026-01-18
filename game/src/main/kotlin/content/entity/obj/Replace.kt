@@ -24,9 +24,8 @@ object Replace {
         ticks: Int,
         collision: Boolean = true,
     ) {
-        val definitions = get<ObjectDefinitions>()
-        val firstId = definitions.get(firstReplacement).id
-        val secondId = definitions.get(secondReplacement).id
+        val firstId = ObjectDefinitions.get(firstReplacement).id
+        val secondId = ObjectDefinitions.get(secondReplacement).id
         if (firstId == -1 || secondId == -1) {
             return
         }

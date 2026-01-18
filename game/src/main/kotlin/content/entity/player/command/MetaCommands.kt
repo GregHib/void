@@ -25,7 +25,6 @@ import kotlin.math.max
 class MetaCommands(
     val fontDefinitions: FontDefinitions,
     val itemDefinitions: ItemDefinitions,
-    val objectDefinitions: ObjectDefinitions,
     val accountDefinitions: AccountDefinitions,
     val grandExchange: GrandExchange,
     val variableDefinitions: VariableDefinitions,
@@ -48,7 +47,7 @@ class MetaCommands(
 
         modCommand(
             "find",
-            stringArg("content-name", desc = "The term to search content for", autofill = { itemDefinitions.ids.keys + objectDefinitions.ids.keys + NPCDefinitions.ids.keys + accountDefinitions.displayNames.keys + accountDefinitions.clans.keys }),
+            stringArg("content-name", desc = "The term to search content for", autofill = { itemDefinitions.ids.keys + ObjectDefinitions.ids.keys + NPCDefinitions.ids.keys + accountDefinitions.displayNames.keys + accountDefinitions.clans.keys }),
             desc = "Search all content",
             handler = ::find,
         )
@@ -65,14 +64,14 @@ class MetaCommands(
             message("$found results found for '$search'", ChatType.Console)
         }
 
-        modCommand("objects", stringArg("name", desc = "Object name or id to search for", autofill = objectDefinitions.ids.keys), desc = "Search all game objects") { args ->
+        modCommand("objects", stringArg("name", desc = "Object name or id to search for", autofill = ObjectDefinitions.ids.keys), desc = "Search all game objects") { args ->
             if (hasClock("search_delay")) {
                 return@modCommand
             }
             start("search_delay", 1)
             val search = args.joinToString(" ").lowercase()
             message("===== Objects =====", ChatType.Console)
-            val found = search(this, objectDefinitions, search) { it.name }
+            val found = search(this, ObjectDefinitions, search) { it.name }
             message("$found results found for '$search'", ChatType.Console)
         }
 
@@ -120,7 +119,7 @@ class MetaCommands(
         player.message("===== Items =====", ChatType.Console)
         found += search(player, itemDefinitions, search) { it.name }
         player.message("===== Objects =====", ChatType.Console)
-        found += search(player, objectDefinitions, search) { it.name }
+        found += search(player, ObjectDefinitions, search) { it.name }
         player.message("===== NPCs =====", ChatType.Console)
         found += search(player, NPCDefinitions, search) { it.name }
         player.message("===== Commands =====", ChatType.Console)

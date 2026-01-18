@@ -31,7 +31,6 @@ import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.type.random
 
 class Woodcutting(
-    val definitions: ObjectDefinitions,
     val objects: GameObjects,
     val floorItems: FloorItems,
     val drops: DropTables,
@@ -162,7 +161,7 @@ class Woodcutting(
             return true
         }
         val stumpId = "${obj.id}_stump"
-        if (definitions.contains(stumpId)) {
+        if (ObjectDefinitions.contains(stumpId)) {
             val delay = getRegrowTickDelay(tree)
             objects.replace(obj, stumpId, ticks = delay)
             areaSound("fell_tree", obj.tile)

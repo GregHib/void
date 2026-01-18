@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
+import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.data.definition.data.Pickable
@@ -11,15 +12,25 @@ import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.data.definition.data.Tree
 import world.gregs.voidps.engine.timedLoad
 
-class ObjectDefinitions(
-    override var definitions: Array<ObjectDefinition>,
-) : DefinitionsDecoder<ObjectDefinition> {
+object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
 
+    override lateinit var definitions: Array<ObjectDefinition>
     override lateinit var ids: Map<String, Int>
 
     fun getValue(id: Int): ObjectDefinition = definitions[id]
 
     override fun empty() = ObjectDefinition.EMPTY
+
+    fun init(definitions: Array<ObjectDefinition>): ObjectDefinitions {
+        this.definitions = definitions
+        return this
+    }
+
+    @TestOnly
+    fun set(definitions: Array<ObjectDefinition>, ids: Map<String, Int>) {
+        this.definitions = definitions
+        this.ids = ids
+    }
 
     fun load(paths: List<String>): ObjectDefinitions {
         timedLoad("object extra") {

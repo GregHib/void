@@ -16,16 +16,15 @@ import world.gregs.voidps.type.Tile
 
 class MapObjectsDecoderTest {
 
-    private lateinit var definitions: ObjectDefinitions
     private lateinit var objects: GameObjects
     private lateinit var decoder: MapObjectsDecoder
     private lateinit var tiles: ByteArray
 
     @BeforeEach
     fun setup() {
-        definitions = ObjectDefinitions(Array(10_000) { ObjectDefinition.EMPTY })
-        objects = GameObjects(GameObjectCollisionAdd(), GameObjectCollisionRemove(), ZoneBatchUpdates(), definitions, storeUnused = true)
-        decoder = MapObjectsDecoder(objects, definitions)
+        ObjectDefinitions.init(Array(10_000) { ObjectDefinition.EMPTY })
+        objects = GameObjects(ZoneBatchUpdates(), storeUnused = true)
+        decoder = MapObjectsDecoder(objects)
         tiles = ByteArray(64 * 64 * 4)
     }
 

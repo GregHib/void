@@ -14,10 +14,10 @@ internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, 
 
     override fun empty(): ObjectDefinition = ObjectDefinition(-1)
 
-    override fun definitions(): ObjectDefinitions = ObjectDefinitions(definitions)
+    override fun definitions(): ObjectDefinitions = ObjectDefinitions.init(definitions)
 
     override fun load(definitions: ObjectDefinitions) {
         val uri = ObjectDefinitionsTest::class.java.getResource("test-object.toml")!!
-        definitions.load(listOf(uri.path))
+        ObjectDefinitions.load(listOf(uri.path))
     }
 }

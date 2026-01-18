@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.client.update.npc
 
 import io.mockk.*
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -37,7 +38,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         player = mockk(relaxed = true)
         viewport = mockk(relaxed = true)
         every { viewport.radius } returns 15
-        NPCs.clear()
+        mockkObject(NPCs)
         initialEncoder = mockk(relaxed = true)
         every { initialEncoder.initial } returns true
         every { initialEncoder.mask } returns 2
@@ -306,5 +307,10 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val reader = ArrayReader(writer.array())
         Assertions.assertEquals(0x10, reader.readUnsignedByte())
         Assertions.assertEquals(0x1, reader.readUnsignedByte())
+    }
+
+    @AfterEach
+    fun teardown() {
+        unmockkObject(NPCs)
     }
 }
