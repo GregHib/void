@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.item.floor
 
 import io.mockk.mockk
+import io.mockk.mockkObject
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -18,16 +19,14 @@ import world.gregs.voidps.type.Tile
 class FloorItemTrackingTest {
 
     private lateinit var items: FloorItems
-    private lateinit var batches: ZoneBatchUpdates
     private lateinit var tracking: FloorItemTracking
 
     @BeforeEach
     fun setup() {
         Players.clear()
         Players.add(Player(accountName = "player"))
-        batches = mockk(relaxed = true)
-        items = FloorItems(batches, mockk(relaxed = true))
-        tracking = FloorItemTracking(items, batches)
+        items = FloorItems(mockk(relaxed = true))
+        tracking = FloorItemTracking(items)
         startKoin {
             modules(
                 module {

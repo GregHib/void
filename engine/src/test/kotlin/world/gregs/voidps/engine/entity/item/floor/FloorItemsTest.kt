@@ -1,6 +1,8 @@
 package world.gregs.voidps.engine.entity.item.floor
 
 import io.mockk.mockk
+import io.mockk.mockkObject
+import io.mockk.unmockkObject
 import io.mockk.verify
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
@@ -21,12 +23,11 @@ import world.gregs.voidps.type.Zone
 class FloorItemsTest {
 
     private lateinit var items: FloorItems
-    private lateinit var batches: ZoneBatchUpdates
 
     @BeforeEach
     fun setup() {
-        batches = mockk(relaxed = true)
-        items = FloorItems(batches, mockk(relaxed = true))
+        mockkObject(ZoneBatchUpdates)
+        items = FloorItems(mockk(relaxed = true))
         startKoin {
             modules(
                 module {
@@ -57,8 +58,8 @@ class FloorItemsTest {
         assertEquals(items[Tile(10, 10, 1)].first(), second)
         assertTrue(items[Tile(100, 100)].isEmpty())
         verify {
-            batches.add(Zone.EMPTY, FloorItemAddition(tile = 0, id = 1, amount = 1, owner = null))
-            batches.add(Zone(1, 1, 1), FloorItemAddition(tile = 268599306, id = 1, amount = 1, owner = "player"))
+            ZoneBatchUpdates.add(Zone.EMPTY, FloorItemAddition(tile = 0, id = 1, amount = 1, owner = null))
+            ZoneBatchUpdates.add(Zone(1, 1, 1), FloorItemAddition(tile = 268599306, id = 1, amount = 1, owner = "player"))
         }
     }
 
@@ -87,7 +88,7 @@ class FloorItemsTest {
         assertEquals(floorItem.revealTicks, 5)
         assertEquals(floorItem.owner, "player")
         verify {
-            batches.add(
+            ZoneBatchUpdates.add(
                 Zone.EMPTY,
                 FloorItemUpdate(
                     tile = 0,
@@ -144,7 +145,7 @@ class FloorItemsTest {
         assertFalse(items.contains(first))
         assertTrue(items.contains(second))
         verify {
-            batches.add(Zone.EMPTY, FloorItemRemoval(tile = 0, id = -1, owner = null))
+            ZoneBatchUpdates.add(Zone.EMPTY, FloorItemRemoval(tile = 0, id = -1, owner = null))
         }
     }
 
@@ -184,12 +185,13 @@ class FloorItemsTest {
         val items = items[Tile.EMPTY]
         assertTrue(items.isEmpty())
         verify {
-            batches.add(Zone.EMPTY, FloorItemRemoval(tile = 0, id = 1, owner = null))
+            ZoneBatchUpdates.add(Zone.EMPTY, FloorItemRemoval(tile = 0, id = 1, owner = null))
         }
     }
 
     @AfterEach
     fun teardown() {
         stopKoin()
+        unmockkObject(ZoneBatchUpdates)
     }
 }

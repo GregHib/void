@@ -13,12 +13,11 @@ import world.gregs.voidps.type.random
 class PlayerResetTask(
     iterator: TaskIterator<Player>,
     override val characters: Players = Players,
-    private val batches: ZoneBatchUpdates,
 ) : CharacterTask<Player>(iterator) {
 
     override fun run() {
         super.run()
-        batches.reset()
+        ZoneBatchUpdates.clear()
         if (!DEBUG && pidCounter++ > 100 && random.nextInt(50) == 0) {
             pidCounter = 0
             characters.shuffle()

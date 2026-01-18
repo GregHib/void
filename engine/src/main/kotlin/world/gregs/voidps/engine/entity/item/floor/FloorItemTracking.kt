@@ -9,7 +9,6 @@ import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemReveal
  */
 class FloorItemTracking(
     private val items: FloorItems,
-    private val batches: ZoneBatchUpdates,
 ) : Runnable {
     private val removal = mutableListOf<FloorItem>()
 
@@ -19,7 +18,7 @@ class FloorItemTracking(
                 for (floorItem in list) {
                     if (floorItem.reveal()) {
                         val player = Players.get(floorItem.owner!!)
-                        batches.add(floorItem.tile.zone, FloorItemReveal(floorItem.tile.id, floorItem.def.id, floorItem.amount, player?.index ?: -1))
+                        ZoneBatchUpdates.add(floorItem.tile.zone, FloorItemReveal(floorItem.tile.id, floorItem.def.id, floorItem.amount, player?.index ?: -1))
                         floorItem.owner = null
                     } else if (floorItem.remove()) {
                         removal.add(floorItem)

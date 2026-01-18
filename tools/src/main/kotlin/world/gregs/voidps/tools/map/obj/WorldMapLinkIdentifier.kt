@@ -37,7 +37,7 @@ object WorldMapLinkIdentifier {
         val graph = MutableNavigationGraph()
         val linker = ObjectLinker()
         val clientScriptDecoder = ClientScriptDecoder().load(cache)
-        val objects = GameObjects(ZoneBatchUpdates())
+        val objects = GameObjects()
         val regions = mutableListOf<Region>()
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {

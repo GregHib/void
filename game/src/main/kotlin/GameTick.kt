@@ -40,7 +40,6 @@ fun getTickStages(
     objects: GameObjects = get(),
     queue: ConnectionQueue = get(),
     accountSave: SaveQueue = get(),
-    batches: ZoneBatchUpdates = get(),
     hunting: Hunting = get(),
     grandExchange: GrandExchange = get(),
     sequential: Boolean = CharacterTask.DEBUG,
@@ -51,7 +50,7 @@ fun getTickStages(
     val sequentialPlayer: TaskIterator<Player> = SequentialIterator()
     val iterator: TaskIterator<Player> = if (sequential) SequentialIterator() else ParallelIterator()
     return listOf(
-        PlayerResetTask(sequentialPlayer, batches = batches),
+        PlayerResetTask(sequentialPlayer),
         NPCResetTask(sequentialNpc),
         hunting,
         grandExchange,
@@ -68,13 +67,11 @@ fun getTickStages(
         objects.timers,
         // Update
         dynamicZones,
-        batches,
+        ZoneBatchUpdates,
         CharacterUpdateTask(
             iterator,
-            Players,
             PlayerUpdateTask(),
             NPCUpdateTask(npcVisualEncoders()),
-            batches,
         ),
         AiTick,
         accountSave,

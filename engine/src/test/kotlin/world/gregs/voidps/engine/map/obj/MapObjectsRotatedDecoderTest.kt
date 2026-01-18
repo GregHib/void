@@ -25,7 +25,7 @@ class MapObjectsRotatedDecoderTest {
     @BeforeEach
     fun setup() {
         ObjectDefinitions.init(Array(10_000) { ObjectDefinition.EMPTY })
-        objects = GameObjects(ZoneBatchUpdates(), storeUnused = true)
+        objects = GameObjects(storeUnused = true)
         decoder = MapObjectsRotatedDecoder(objects)
         settings = ByteArray(64 * 64 * 4)
     }

@@ -38,7 +38,7 @@ class MapViewer {
             if (DISPLAY_AREA_COLLISIONS || DISPLAY_ALL_COLLISIONS) {
                 ObjectDefinitions.init(ObjectDecoder(member = true, lowDetail = false).load(cache))
                     .load(files.list(Settings["definitions.objects"]))
-                val objects = GameObjects(ZoneBatchUpdates())
+                val objects = GameObjects()
                 MapDefinitions(CollisionDecoder(), objects, cache).load(files)
             }
             frame.add(MapView(nav, files.list(Settings["map.areas"])))

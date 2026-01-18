@@ -202,7 +202,6 @@ abstract class WorldTest : KoinTest {
                 get(),
                 get(),
                 get(),
-                get(),
                 sequential = true,
             )
             engine = GameLoop(tickStages)
@@ -323,7 +322,7 @@ abstract class WorldTest : KoinTest {
         private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder().load(cache), structDefinitions).load(configFiles.find(Settings["definitions.enums"])) }
         private val objectCollisionAdd: GameObjectCollisionAdd by lazy { GameObjectCollisionAdd() }
         private val objectCollisionRemove: GameObjectCollisionRemove by lazy { GameObjectCollisionRemove() }
-        private val gameObjects: GameObjects by lazy { GameObjects(ZoneBatchUpdates(), storeUnused = true) }
+        private val gameObjects: GameObjects by lazy { GameObjects(storeUnused = true) }
         private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder(), gameObjects, cache).load(configFiles) }
         private val fontDefinitions: FontDefinitions by lazy { FontDefinitions(FontDecoder().load(cache)).load(configFiles.find(Settings["definitions.fonts"])) }
         private val objectTeleports: ObjectTeleports by lazy { ObjectTeleports().load(configFiles.list(Settings["map.teleports"])) }

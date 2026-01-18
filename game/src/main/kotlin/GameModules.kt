@@ -14,6 +14,7 @@ import org.koin.dsl.module
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.data.*
+import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 import java.io.File
@@ -30,7 +31,10 @@ fun gameModule(files: ConfigFiles) = module {
             },
         )
     }
-    single(createdAtStart = true) { NavigationGraph().load(files.find(Settings["map.navGraph"])) }
+    single(createdAtStart = true) {
+        get<ObjectDefinitions>()
+        NavigationGraph().load(files.find(Settings["map.navGraph"]))
+    }
     single(createdAtStart = true) { Books().load(files.list(Settings["definitions.books"])) }
     single(createdAtStart = true) { MusicTracks().load(files.find(Settings["map.music"])) }
     single(createdAtStart = true) { FairyRingCodes().load(files.find(Settings["definitions.fairyCodes"])) }

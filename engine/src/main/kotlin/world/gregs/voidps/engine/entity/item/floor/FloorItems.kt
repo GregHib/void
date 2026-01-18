@@ -22,7 +22,6 @@ import world.gregs.voidps.type.Zone
  * Stores up to [MAX_TILE_ITEMS] [FloorItem]s per tile
  */
 class FloorItems(
-    private val batches: ZoneBatchUpdates,
     private val definitions: ItemDefinitions,
 ) : ZoneBatchUpdates.Sender,
     Runnable {
@@ -72,7 +71,7 @@ class FloorItems(
             return
         }
         addQueue.add(floorItem)
-        batches.add(floorItem.tile.zone, FloorItemAddition(floorItem.tile.id, floorItem.def.id, floorItem.amount, floorItem.owner))
+        ZoneBatchUpdates.add(floorItem.tile.zone, FloorItemAddition(floorItem.tile.id, floorItem.def.id, floorItem.amount, floorItem.owner))
     }
 
     private fun add(floorItem: FloorItem) {
@@ -103,7 +102,7 @@ class FloorItems(
         val existing = list.firstOrNull { it.owner == floorItem.owner && it.id == floorItem.id } ?: return false
         val original = existing.amount
         if (existing.merge(floorItem)) {
-            batches.add(floorItem.tile.zone, FloorItemUpdate(floorItem.tile.id, existing.def.id, original, existing.amount, existing.owner))
+            ZoneBatchUpdates.add(floorItem.tile.zone, FloorItemUpdate(floorItem.tile.id, existing.def.id, original, existing.amount, existing.owner))
             return true
         }
         return false
@@ -118,7 +117,7 @@ class FloorItems(
         val list = zone[floorItem.tile.id] ?: return false
         if (list.remove(floorItem)) {
             removeQueue.add(floorItem)
-            batches.add(floorItem.tile.zone, FloorItemRemoval(floorItem.tile.id, floorItem.def.id, floorItem.owner))
+            ZoneBatchUpdates.add(floorItem.tile.zone, FloorItemRemoval(floorItem.tile.id, floorItem.def.id, floorItem.owner))
             if (list.isEmpty() && zone.remove(floorItem.tile.id, list)) {
                 tilePool.recycle(list)
                 if (zone.isEmpty() && data.remove(floorItem.tile.zone.id) != null) {
@@ -134,7 +133,7 @@ class FloorItems(
         for ((_, zone) in data) {
             for ((_, items) in zone) {
                 for (floorItem in items) {
-                    batches.add(floorItem.tile.zone, FloorItemRemoval(floorItem.tile.id, floorItem.def.id, floorItem.owner))
+                    ZoneBatchUpdates.add(floorItem.tile.zone, FloorItemRemoval(floorItem.tile.id, floorItem.def.id, floorItem.owner))
                     removeQueue.add(floorItem)
                 }
                 tilePool.recycle(items)

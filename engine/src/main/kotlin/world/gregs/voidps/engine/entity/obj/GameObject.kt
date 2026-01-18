@@ -45,7 +45,7 @@ value class GameObject(internal val packed: Long) : Entity {
     val rotation: Int
         get() = rotation(packed)
 
-    fun anim(id: String) = get<ZoneBatchUpdates>()
+    fun anim(id: String) = ZoneBatchUpdates
         .add(tile.zone, ObjectAnimation(tile.id, get<AnimationDefinitions>().get(id).id, shape, rotation))
 
     fun nearestTo(tile: Tile) = Tile(

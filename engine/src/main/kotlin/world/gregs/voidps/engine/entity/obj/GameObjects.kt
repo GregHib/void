@@ -27,7 +27,6 @@ import java.io.File
  * @param storeUnused store non-interactive and objects without configs for debugging and content dev (uses ~240MB more ram).
  */
 class GameObjects(
-    private val batches: ZoneBatchUpdates,
     private val storeUnused: Boolean = false,
 ) : ZoneBatchUpdates.Sender {
     private val collisionAdd = GameObjectCollisionAdd()
@@ -70,7 +69,7 @@ class GameObjects(
         if (original == obj.value(replaced = true)) {
             // Re-add original
             map.remove(obj, REPLACED)
-            batches.add(obj.tile.zone, ObjectAddition(obj.tile.id, obj.intId, obj.shape, obj.rotation))
+            ZoneBatchUpdates.add(obj.tile.zone, ObjectAddition(obj.tile.id, obj.intId, obj.shape, obj.rotation))
             if (collision) {
                 collisionAdd.modify(obj)
             }
@@ -91,7 +90,7 @@ class GameObjects(
 
             // Add replacement
             replacements[obj.index] = obj.value(replaced = true)
-            batches.add(obj.tile.zone, ObjectAddition(obj.tile.id, obj.intId, obj.shape, obj.rotation))
+            ZoneBatchUpdates.add(obj.tile.zone, ObjectAddition(obj.tile.id, obj.intId, obj.shape, obj.rotation))
             if (collision) {
                 collisionAdd.modify(obj)
             }
@@ -102,7 +101,7 @@ class GameObjects(
 
     private fun remove(objectValue: Int, obj: GameObject, collision: Boolean): GameObject {
         val gameObject = GameObject(id(objectValue), obj.x, obj.y, obj.level, shape(objectValue), rotation(objectValue))
-        batches.add(obj.tile.zone, ObjectRemoval(obj.tile.id, gameObject.shape, gameObject.rotation))
+        ZoneBatchUpdates.add(obj.tile.zone, ObjectRemoval(obj.tile.id, gameObject.shape, gameObject.rotation))
         if (collision) {
             collisionRemove.modify(gameObject)
         }
@@ -151,7 +150,7 @@ class GameObjects(
         if (replacements[obj.index] == obj.value(replaced = true)) {
             // Remove replacement
             replacements.remove(obj.index)
-            batches.add(obj.tile.zone, ObjectRemoval(obj.tile.id, obj.shape, obj.rotation))
+            ZoneBatchUpdates.add(obj.tile.zone, ObjectRemoval(obj.tile.id, obj.shape, obj.rotation))
             if (collision) {
                 collisionRemove.modify(obj)
             }
@@ -161,7 +160,7 @@ class GameObjects(
             map.remove(obj, REPLACED)
             if (original > 1) {
                 val originalObj = GameObject(id(original), obj.x, obj.y, obj.level, shape(original), rotation(original))
-                batches.add(obj.tile.zone, ObjectAddition(obj.tile.id, originalObj.intId, originalObj.shape, originalObj.rotation))
+                ZoneBatchUpdates.add(obj.tile.zone, ObjectAddition(obj.tile.id, originalObj.intId, originalObj.shape, originalObj.rotation))
                 if (collision) {
                     collisionAdd.modify(originalObj)
                 }
@@ -170,7 +169,7 @@ class GameObjects(
         } else if (original == obj.value(replaced = false) && original != 0) {
             // Remove original
             map.add(obj, REPLACED)
-            batches.add(obj.tile.zone, ObjectRemoval(obj.tile.id, obj.shape, obj.rotation))
+            ZoneBatchUpdates.add(obj.tile.zone, ObjectRemoval(obj.tile.id, obj.shape, obj.rotation))
             if (collision) {
                 collisionRemove.modify(obj)
             }
