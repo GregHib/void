@@ -16,6 +16,7 @@ dependencies {
     if (findProperty("includeDb") != null) {
         implementation(project(":database"))
     }
+    implementation(project(":website"))
     implementation(libs.fastutil)
     implementation(libs.kasechange)
     implementation(libs.rsmod.pathfinder)

@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.data.exchange.ExchangeHistory
+import world.gregs.voidps.engine.data.exchange.ExchangeHistoryEntry
 import world.gregs.voidps.engine.data.exchange.ExchangeOffer
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -50,7 +51,7 @@ class Player(
     var passwordHash: String = "",
     val body: BodyParts = BodyParts(),
     val offers: Array<ExchangeOffer> = Array(6) { ExchangeOffer() },
-    val history: MutableList<ExchangeHistory> = mutableListOf(),
+    val history: MutableList<ExchangeHistoryEntry> = mutableListOf(),
 ) : Character {
 
     override val visuals: PlayerVisuals = PlayerVisuals(body)

@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.data
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.*
-import world.gregs.voidps.engine.data.exchange.ExchangeHistory
+import world.gregs.voidps.engine.data.exchange.ExchangeHistoryEntry
 import world.gregs.voidps.engine.data.exchange.ExchangeOffer
 import world.gregs.voidps.engine.data.exchange.OfferState
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -32,7 +32,7 @@ data class PlayerSave(
     val friends: Map<String, ClanRank>,
     val ignores: List<String>,
     val offers: Array<ExchangeOffer>,
-    val history: List<ExchangeHistory>,
+    val history: List<ExchangeHistoryEntry>,
 ) {
 
     fun toPlayer(): Player = Player(
@@ -222,7 +222,7 @@ data class PlayerSave(
             val friends = Object2ObjectOpenHashMap<String, ClanRank>()
             val ignores = ObjectArrayList<String>()
             val offers = Array(6) { ExchangeOffer.EMPTY }
-            val history = ObjectArrayList<ExchangeHistory>()
+            val history = ObjectArrayList<ExchangeHistoryEntry>()
             Config.fileReader(file) {
                 while (nextPair()) {
                     when (val key = key()) {
@@ -367,7 +367,7 @@ data class PlayerSave(
                                                 else -> throw IllegalArgumentException("Unexpected exchange history key: '$key' ${exception()}")
                                             }
                                         }
-                                        history.add(ExchangeHistory(item, amount, coins))
+                                        history.add(ExchangeHistoryEntry(item, amount, coins))
                                     }
                                     else -> throw IllegalArgumentException("Unexpected key: '$exchangeKey' ${exception()}")
                                 }

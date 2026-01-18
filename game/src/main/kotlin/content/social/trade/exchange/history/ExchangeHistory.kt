@@ -18,11 +18,11 @@ import kotlin.collections.set
  */
 class ExchangeHistory(
     private val itemDefinitions: ItemDefinitions,
-    val history: MutableMap<String, PriceHistory> = mutableMapOf(),
-) {
+    override val history: MutableMap<String, PriceHistory> = mutableMapOf(),
+) : world.gregs.voidps.engine.data.exchange.ExchangeHistory {
     private val marketPrices = mutableMapOf<String, Int>()
 
-    fun record(item: String, amount: Int, price: Int) {
+    override fun record(item: String, amount: Int, price: Int) {
         val history = history.getOrPut(item) { PriceHistory() }
         val timestamp = System.currentTimeMillis()
         history.record(timestamp, price, amount)

@@ -10,6 +10,7 @@ import content.skill.farming.FarmingDefinitions
 import content.social.trade.exchange.GrandExchange
 import content.social.trade.exchange.history.ExchangeHistory
 import kotlinx.io.pool.DefaultPool
+import org.koin.dsl.bind
 import org.koin.dsl.module
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
@@ -53,7 +54,7 @@ fun gameModule(files: ConfigFiles) = module {
     }
     single(createdAtStart = true) {
         ExchangeHistory(get(), get<Storage>().priceHistory().toMutableMap()).also { it.calculatePrices() }
-    }
+    } bind world.gregs.voidps.engine.data.exchange.ExchangeHistory::class
     single(createdAtStart = true) {
         GrandExchange(get(), get(), get<Storage>().claims().toMutableMap(), get(), get(), get(), get())
     }

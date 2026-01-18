@@ -1,5 +1,6 @@
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.obj.ObjectTeleports
+import world.gregs.voidps.website.Website
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.runBlocking
 import org.koin.core.context.startKoin
@@ -72,6 +73,11 @@ object Main {
         server.loginServer = loginServer
         logger.info { "${Settings["server.name"]} loaded in ${System.currentTimeMillis() - startTime}ms" }
         AuditLog.info("game online")
+        try {
+            Website.start()
+        } catch (e: Exception) {
+            logger.error(e) { "Error starting website" }
+        }
         runBlocking {
             try {
                 job.join()
