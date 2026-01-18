@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.timer.epochSeconds
 import java.util.concurrent.TimeUnit
@@ -55,7 +54,7 @@ object Loan {
             logger.error { "Unable to find borrowed item partner for $player" }
             return
         }
-        val lender = Players.get(name) ?: return
+        val lender = Players.find(name) ?: return
         lender.softTimers.stop("loan_message")
     }
 

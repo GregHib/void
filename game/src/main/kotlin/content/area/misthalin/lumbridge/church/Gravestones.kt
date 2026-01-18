@@ -91,7 +91,7 @@ class Gravestones : Script {
             target.start("grave_timer", seconds, epochSeconds())
             updateItems(target.tile, name, seconds)
             delay(2)
-            val deceased = Players.get(name)
+            val deceased = Players.find(name)
             val remainder = target.remaining("grave_timer", epochSeconds())
             val minutes = TimeUnit.SECONDS.toMinutes(remainder.toLong())
             deceased?.message("$name has repaired your gravestone. It should survive another $minutes ${"minute".plural(minutes)}.")
@@ -124,7 +124,7 @@ class Gravestones : Script {
             delay(2)
             message("The gods hear your prayers; the gravestone will remain for a little longer.")
             target["blessed"] = true
-            val deceased = Players.get(name)
+            val deceased = Players.find(name)
             val remainder = target.remaining("grave_timer", epochSeconds())
             val minutes = TimeUnit.SECONDS.toMinutes(remainder.toLong())
             deceased?.message("$name has blessed your gravestone. It should survive another $minutes ${"minute".plural(minutes)}.")
@@ -156,7 +156,7 @@ class Gravestones : Script {
     }
 
     fun start(npc: NPC, restart: Boolean): Int {
-        val player = Players.get(npc["player_name", ""])
+        val player = Players.find(npc["player_name", ""])
         if (player != null) {
             val remaining = npc.remaining("grave_timer", epochSeconds())
             player.sendScript("gravestone_set_timer", remaining / 60 * 100)
@@ -170,14 +170,14 @@ class Gravestones : Script {
             npc.transform("${npc.id}_broken")
         } else if (remaining <= 60 && !npc.transform.endsWith("collapse")) {
             npc.transform("${npc.id}_collapse")
-            val player = Players.get(npc["player_name", ""])
+            val player = Players.find(npc["player_name", ""])
             player?.message("Your gravestone has collapsed.")
         }
         return Timer.CONTINUE
     }
 
     fun stop(npc: NPC, death: Boolean) {
-        val player = Players.get(npc.remove("player_name") ?: "")
+        val player = Players.find(npc.remove("player_name") ?: "")
         if (player != null) {
             player.clear("gravestone_time")
             val tile: Tile? = player.remove("gravestone_tile")

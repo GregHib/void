@@ -26,7 +26,7 @@ class Chat(val huffman: Huffman) : Script {
 
     init {
         instruction<ChatPrivate> { player ->
-            val target = Players.get(friend)
+            val target = Players.find(friend)
             if (target == null || target.ignores(player)) {
                 player.message("Unable to send message - player unavailable.")
                 return@instruction

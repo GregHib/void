@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.isAdmin
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.login.protocol.encode.Friend
 import world.gregs.voidps.network.login.protocol.encode.sendFriendsList
 
@@ -27,7 +26,7 @@ fun Player.updateFriend(friend: AccountDefinition) {
 }
 
 fun toFriend(player: Player, account: AccountDefinition): Friend {
-    val friend = Players.get(account.displayName)
+    val friend = Players.find(account.displayName)
     val rank = player.friends[account.accountName] ?: ClanRank.Friend
     val online = friend != null && (player.isAdmin() || friend.visibleOnline(player))
     return Friend(account.displayName, account.previousName, rank.value, world = if (online) Settings.world else 0, worldName = Settings.worldName)

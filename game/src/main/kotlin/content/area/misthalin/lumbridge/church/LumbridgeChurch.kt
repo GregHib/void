@@ -159,20 +159,20 @@ class LumbridgeChurch : Script {
 
     suspend fun Player.spawnGhost() {
         val ghostExists = NPCs.findOrNull(ghostSpawn.zone, "restless_ghost")
-        if (ghostExists == null) {
-            sound("coffin_open")
-            sound("rg_ghost_approach")
-            shoot("restless_ghost", ghostSpawn, height = 30, endHeight = 0, flightTime = 50)
-            delay(1)
-            sound("bigghost_appear")
-            delay(1)
-            val ghost = NPCs.add("restless_ghost", ghostSpawn, Direction.SOUTH)
-            ghost.animDelay("restless_ghost_awakens")
-            ghost.softQueue("despawn", TimeUnit.SECONDS.toTicks(60)) {
-                NPCs.remove(ghost)
-            }
-        } else {
+        if (ghostExists != null) {
             message("There's a skeleton without a skull in here. There's no point in disturbing it.")
+            return
+        }
+        sound("coffin_open")
+        sound("rg_ghost_approach")
+        shoot("restless_ghost", ghostSpawn, height = 30, endHeight = 0, flightTime = 50)
+        delay(1)
+        sound("bigghost_appear")
+        delay(1)
+        val ghost = NPCs.add("restless_ghost", ghostSpawn, Direction.SOUTH)
+        ghost.animDelay("restless_ghost_awakens")
+        ghost.softQueue("despawn", TimeUnit.SECONDS.toTicks(60)) {
+            NPCs.remove(ghost)
         }
     }
 }

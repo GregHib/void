@@ -10,8 +10,6 @@ import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.GameObjects.findOrNull
 import world.gregs.voidps.network.login.protocol.encode.send
 import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemAddition
 import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemRemoval
@@ -106,13 +104,13 @@ object FloorItems : ZoneBatchUpdates.Sender, Runnable {
         return false
     }
 
-    fun find(tile: Tile, id: String) = find(tile) { it.id == id }
+    fun first(tile: Tile, id: String) = first(tile) { it.id == id }
 
-    fun find(tile: Tile, filter: (FloorItem) -> Boolean) = findOrNull(tile, filter) ?: error("Floor Item not found at $tile")
+    fun first(tile: Tile, filter: (FloorItem) -> Boolean) = firstOrNull(tile, filter) ?: error("Floor Item not found at $tile")
 
-    fun findOrNull(tile: Tile, id: String) = findOrNull(tile) { it.id == id }
+    fun firstOrNull(tile: Tile, id: String) = firstOrNull(tile) { it.id == id }
 
-    fun findOrNull(tile: Tile, filter: (FloorItem) -> Boolean) = at(tile).firstOrNull(filter)
+    fun firstOrNull(tile: Tile, filter: (FloorItem) -> Boolean) = at(tile).firstOrNull(filter)
 
     fun at(tile: Tile): List<FloorItem> = data.get(tile.zone.id)?.get(tile.id) ?: emptyList()
 

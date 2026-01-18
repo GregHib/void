@@ -39,7 +39,7 @@ class ItemReturning : Script {
 
             message("Demanding return of item.")
             val name: String? = get("lent_to")
-            val borrower = if (name == null) null else Players.get(name)
+            val borrower = if (name == null) null else Players.find(name)
             if (borrower == null) {
                 message("There was an issue returning your item.")
                 logger.warn { "Unable to find lent item borrower '$name'." }

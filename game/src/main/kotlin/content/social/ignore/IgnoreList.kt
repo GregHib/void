@@ -55,7 +55,7 @@ class IgnoreList(val accounts: AccountDefinitions) : Script {
 
             player.ignores.add(account.accountName)
             player.sendIgnore(account)
-            val other = Players.get(name)
+            val other = Players.find(name)
             if (other != null && other.friend(player) && !other.isAdmin()) {
                 other.updateFriend(Friend(player.name, player.previousName, world = 0))
             }
@@ -82,7 +82,7 @@ class IgnoreList(val accounts: AccountDefinitions) : Script {
             if (player.privateStatus != "on") {
                 return@instruction
             }
-            val other = Players.get(name)
+            val other = Players.find(name)
             if (other != null && (other.friend(player) || other.isAdmin())) {
                 other.updateFriend(Friend(player.name, player.previousName, world = Settings.world, worldName = Settings.worldName))
             }

@@ -133,7 +133,7 @@ class GrandExchange(
 
     override fun run() {
         for ((account, index) in cancellations) {
-            val player = Players.get(accounts.getByAccount(account)?.displayName ?: "") ?: continue
+            val player = Players.find(accounts.getByAccount(account)?.displayName ?: "") ?: continue
             val offer = player.offers[index]
             if (offer.isEmpty()) {
                 continue
@@ -198,7 +198,7 @@ class GrandExchange(
             }
         }
         val definition = accounts.getByAccount(pending.account) ?: return
-        val player = Players.get(definition.displayName) ?: return
+        val player = Players.find(definition.displayName) ?: return
         for (i in 0 until 6) {
             refresh(player, i)
         }
@@ -258,7 +258,7 @@ class GrandExchange(
      */
     private fun claim(id: Int, account: String, item: String, traded: Int, price: Int, otherPrice: Int, sell: Boolean) {
         val definition = accounts.getByAccount(account)
-        val player = Players.get(definition?.displayName ?: "")
+        val player = Players.find(definition?.displayName ?: "")
         val slot = player?.offers?.indexOfFirst { it.id == id } ?: -1
         val offer = player?.offers?.getOrNull(slot)
         if (offer == null) {

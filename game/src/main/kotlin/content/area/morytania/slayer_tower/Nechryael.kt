@@ -31,7 +31,7 @@ class Nechryael : Script {
                 val name = target.name
                 spawn.softQueue("despawn", TimeUnit.SECONDS.toTicks(60)) {
                     NPCs.remove(spawn)
-                    Players.get(name)?.dec("death_spawns")
+                    Players.find(name)?.dec("death_spawns")
                 }
                 spawn.anim("death_spawn")
                 spawn.interactPlayer(target, "Attack")

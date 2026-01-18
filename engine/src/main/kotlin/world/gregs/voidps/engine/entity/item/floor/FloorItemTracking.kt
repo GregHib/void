@@ -15,7 +15,7 @@ class FloorItemTracking : Runnable {
             for ((_, list) in zone) {
                 for (floorItem in list) {
                     if (floorItem.reveal()) {
-                        val player = Players.get(floorItem.owner!!)
+                        val player = Players.find(floorItem.owner!!)
                         ZoneBatchUpdates.add(floorItem.tile.zone, FloorItemReveal(floorItem.tile.id, floorItem.def.id, floorItem.amount, player?.index ?: -1))
                         floorItem.owner = null
                     } else if (floorItem.remove()) {

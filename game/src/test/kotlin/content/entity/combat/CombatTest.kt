@@ -56,7 +56,7 @@ internal class CombatTest : WorldTest() {
 
         assertEquals(emptyTile, player.tile)
         assertTrue(player.experience.get(Skill.Magic) > EXPERIENCE)
-        assertNotNull(FloorItems.findOrNull(tile, "bones"))
+        assertNotNull(FloorItems.firstOrNull(tile, "bones"))
         assertTrue(player.inventory.count("mind_rune") < 100)
     }
 
@@ -82,7 +82,7 @@ internal class CombatTest : WorldTest() {
         assertTrue(player.experience.get(Skill.Attack) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Strength) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Defence) > EXPERIENCE)
-        assertNotNull(FloorItems.findOrNull(tile, "bones"))
+        assertNotNull(FloorItems.firstOrNull(tile, "bones"))
     }
 
     @Test
@@ -112,7 +112,7 @@ internal class CombatTest : WorldTest() {
         assertEquals(emptyTile, player.tile)
         assertTrue(player.equipment[EquipSlot.Ammo.index].amount < 100)
         assertTrue(drops.any { it.id == "bones" })
-        assertNotNull(FloorItems.findOrNull(emptyTile.addY(4), "rune_arrow"))
+        assertNotNull(FloorItems.firstOrNull(emptyTile.addY(4), "rune_arrow"))
         assertTrue(player.experience.get(Skill.Ranged) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Defence) > EXPERIENCE)
         assertTrue(player.inventory.count("rune_arrow") < 100)

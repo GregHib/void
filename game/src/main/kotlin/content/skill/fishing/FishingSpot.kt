@@ -68,7 +68,7 @@ class FishingSpot : Script {
         npc.softTimers.start("fishing_spot_respawn")
         val fishers: MutableSet<String> = npc.remove("fishers") ?: return
         for (fisher in fishers) {
-            val player = Players.get(fisher) ?: continue
+            val player = Players.find(fisher) ?: continue
             player.mode = EmptyMode
             player.queue.clearWeak()
         }

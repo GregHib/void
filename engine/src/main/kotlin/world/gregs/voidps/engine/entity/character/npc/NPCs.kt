@@ -95,9 +95,9 @@ object NPCs : Runnable,
         }
     }
 
-    fun find(tile: Tile, id: String) = find(tile) { it.id == id }
+    fun find(tile: Tile, id: String) = first(tile) { it.id == id }
 
-    fun findOrNull(tile: Tile, id: String) = findOrNull(tile) { it.id == id }
+    fun findOrNull(tile: Tile, id: String) = firstOrNull(tile) { it.id == id }
 
     override fun at(tile: Tile): List<NPC> {
         val list = mutableListOf<NPC>()
@@ -110,9 +110,9 @@ object NPCs : Runnable,
         return list
     }
 
-    fun find(zone: Zone, id: String) = find(zone) { it.id == id }
+    fun find(zone: Zone, id: String) = first(zone) { it.id == id }
 
-    fun findOrNull(zone: Zone, id: String) = findOrNull(zone) { it.id == id }
+    fun findOrNull(zone: Zone, id: String) = firstOrNull(zone) { it.id == id }
 
     override fun at(zone: Zone): List<NPC> {
         val list = mutableListOf<NPC>()

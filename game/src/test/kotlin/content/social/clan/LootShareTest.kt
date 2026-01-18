@@ -134,7 +134,7 @@ internal class LootShareTest : WorldTest() {
         val tile = npc["death_tile", npc.tile]
         tick(7)
 
-        assertNotNull(FloorItems.find(tile, "bones"))
+        assertNotNull(FloorItems.first(tile, "bones"))
         verify(exactly = 0) {
             client.message(match { it.contains("received: ") }, ChatType.ClanChat.id)
         }
@@ -167,7 +167,7 @@ internal class LootShareTest : WorldTest() {
         val tile = npc["death_tile", npc.tile]
         tick(7)
 
-        assertNotNull(FloorItems.findOrNull(tile, "bones"))
+        assertNotNull(FloorItems.firstOrNull(tile, "bones"))
         verify {
             client.message(match { it.contains("received: ") }, ChatType.ClanChat.id)
         }

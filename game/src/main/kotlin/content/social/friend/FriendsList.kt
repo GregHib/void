@@ -75,7 +75,7 @@ class FriendsList(
             }
             val accountDefinition = accountDefinitions.get(friendsName) ?: return@instruction
             if (clan.members.any { it.accountName == accountDefinition.accountName }) {
-                val target = Players.get(friendsName) ?: return@instruction
+                val target = Players.find(friendsName) ?: return@instruction
                 for (member in clan.members) {
                     member.client?.appendClanChat(ClanMember.of(target, ClanRank.Friend))
                 }
@@ -99,7 +99,7 @@ class FriendsList(
             }
             val accountDefinition = accountDefinitions.get(friendsName) ?: return@instruction
             if (clan.members.any { it.accountName == accountDefinition.accountName }) {
-                val target = Players.get(friendsName) ?: return@instruction
+                val target = Players.find(friendsName) ?: return@instruction
                 for (member in clan.members) {
                     member.client?.appendClanChat(ClanMember.of(target, ClanRank.None))
                 }
@@ -189,7 +189,7 @@ class FriendsList(
     }
 
     fun String.updateFriend(friend: Player, online: Boolean) {
-        val player = Players.get(this) ?: return
+        val player = Players.find(this) ?: return
         player.updateFriend(
             Friend(
                 name = friend.name,

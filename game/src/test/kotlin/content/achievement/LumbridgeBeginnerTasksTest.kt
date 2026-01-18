@@ -222,7 +222,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     fun `You Can Bank on Us`() {
         val player = createPlayer(Tile(3208, 3220, 2))
 
-        val banker = NPCs.find(Tile(3208, 3222, 2)) { it.id.startsWith("banker") }
+        val banker = NPCs.first(Tile(3208, 3222, 2)) { it.id.startsWith("banker") }
 
         player.npcOption(banker, "Talk-to")
         tick(2)
@@ -257,7 +257,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
             override fun nextInt(from: Int, until: Int) = until
         })
         val player = createPlayer(Tile(3257, 3260))
-        val npc = NPCs.find(Tile(3258, 3260)) { it.id.startsWith("cow_") }
+        val npc = NPCs.first(Tile(3258, 3260)) { it.id.startsWith("cow_") }
 
         player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
         player.levels.set(Skill.Attack, 100)
@@ -273,7 +273,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
     @Test
     fun `Tan Your Hide`() {
         val player = createPlayer(Tile(3276, 3192))
-        val npc = NPCs.find(Tile(3276, 3193)) { it.id == "ellis" }
+        val npc = NPCs.first(Tile(3276, 3193)) { it.id == "ellis" }
 
         player.inventory.add("cowhide", "coins")
 

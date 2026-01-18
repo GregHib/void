@@ -20,7 +20,6 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
-import kotlin.test.assertFalse
 
 internal class DropTest : WorldTest() {
 
@@ -33,7 +32,7 @@ internal class DropTest : WorldTest() {
         tick()
 
         assertTrue(player.inventory.isEmpty())
-        assertNotNull(FloorItems.findOrNull(player.tile, "bronze_sword"))
+        assertNotNull(FloorItems.firstOrNull(player.tile, "bronze_sword"))
     }
 
     @Test
@@ -91,7 +90,7 @@ internal class DropTest : WorldTest() {
         tick(2)
 
         assertTrue(player.inventory.isEmpty())
-        assertNotNull(FloorItems.find(tile.addX(1), "bronze_sword"))
+        assertNotNull(FloorItems.first(tile.addX(1), "bronze_sword"))
     }
 
     @Test
@@ -105,6 +104,6 @@ internal class DropTest : WorldTest() {
         tick()
 
         assertTrue(player.inventory.contains("toolkit"))
-        assertNull(FloorItems.findOrNull(tile.addX(1), "toolkit"))
+        assertNull(FloorItems.firstOrNull(tile.addX(1), "toolkit"))
     }
 }

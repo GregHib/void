@@ -61,7 +61,7 @@ class ClanChat(
                 return@instruction
             }
 
-            val target = Players.get(name)
+            val target = Players.find(name)
             if (target == null) {
                 player.message("Could not find player with the username '$name'.")
                 return@instruction
@@ -99,7 +99,7 @@ class ClanChat(
             player.friends[account.accountName] = rank
             player.updateFriend(account)
             if (clan.members.any { it.accountName == account.accountName }) {
-                val target = Players.get(name) ?: return@instruction
+                val target = Players.find(name) ?: return@instruction
                 updateMembers(target, clan, rank)
             }
         }

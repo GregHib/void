@@ -98,7 +98,7 @@ class ItemLending : Script {
             val name: String? = player["lent_to"]
             player.stop("lend_timeout")
             player.softTimers.stop("loan_message")
-            val borrower = Players.get(name ?: return) ?: return
+            val borrower = Players.find(name ?: return) ?: return
             borrower.stop("borrow_timeout")
             borrower.softTimers.stop("borrow_message")
             borrower.message("The item you borrowed has been returned to its owner.")

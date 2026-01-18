@@ -44,7 +44,7 @@ class ItemDiscard : Script {
                     softTimers.clear("borrow_message")
                     val name: String? = clear("borrowed_from") as? String
                     if (name != null) {
-                        val lender = Players.get(name) ?: return@option
+                        val lender = Players.find(name) ?: return@option
                         lender.softTimers.stop("loan_message")
                     }
                 }
