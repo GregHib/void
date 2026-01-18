@@ -3,44 +3,30 @@ package world.gregs.voidps.engine.client.instruction
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.instruction.handle.*
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.engine.data.definition.ObjectDefinitions
-import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.*
 
 class InstructionHandlers(
-    players: Players,
-    npcs: NPCs,
-    items: FloorItems,
-    objects: GameObjects,
-    objectDefinitions: ObjectDefinitions,
-    npcDefinitions: NPCDefinitions,
-    itemDefinitions: ItemDefinitions,
     interfaceDefinitions: InterfaceDefinitions,
     handler: InterfaceHandler,
 ) {
-    private val interactFloorItem = FloorItemOptionHandler(items)
+    private val interactFloorItem = FloorItemOptionHandler()
     private val interactDialogue = DialogueContinueHandler(interfaceDefinitions)
     private val continueKey = DialogueContinueKeyHandler(interfaceDefinitions)
-    private val interactDialogueItem = DialogueItemContinueHandler(itemDefinitions)
+    private val interactDialogueItem = DialogueItemContinueHandler()
     private val closeInterface = InterfaceClosedHandler()
     val interactInterface = InterfaceOptionHandler(handler, interfaceDefinitions)
     private val moveInventoryItem = InterfaceSwitchHandler(handler)
-    private val interactNPC = NPCOptionHandler(npcs, npcDefinitions)
-    private val interactObject = ObjectOptionHandler(objects, objectDefinitions)
-    private val interactPlayer = PlayerOptionHandler(players)
-    private val interactInterfaceNPC = InterfaceOnNPCOptionHandler(npcs, handler)
-    private val interactInterfaceObject = InterfaceOnObjectOptionHandler(objects, handler)
-    private val interactInterfacePlayer = InterfaceOnPlayerOptionHandler(players, handler)
+    private val interactNPC = NPCOptionHandler()
+    private val interactObject = ObjectOptionHandler()
+    private val interactPlayer = PlayerOptionHandler()
+    private val interactInterfaceNPC = InterfaceOnNPCOptionHandler(handler)
+    private val interactInterfaceObject = InterfaceOnObjectOptionHandler(handler)
+    private val interactInterfacePlayer = InterfaceOnPlayerOptionHandler(handler)
     private val interactInterfaceItem = InterfaceOnInterfaceOptionHandler(handler)
-    private val interactInterfaceFloorItem = InterfaceOnFloorItemOptionHandler(items, handler)
+    private val interactInterfaceFloorItem = InterfaceOnFloorItemOptionHandler(handler)
     private val executeCommand = ExecuteCommandHandler()
     var songEndHandler: SongEnd.(Player) -> Unit = empty()
     var finishRegionLoad: FinishRegionLoad.(Player) -> Unit = empty()

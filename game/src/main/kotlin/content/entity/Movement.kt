@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
@@ -17,18 +17,13 @@ import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.area.Rectangle
 
-class Movement(
-    val collisions: Collisions,
-    val npcs: NPCs,
-    val players: Players,
-    val areas: AreaDefinitions,
-) : Script {
+class Movement : Script {
 
     val borders = mutableMapOf<Zone, Rectangle>()
 
     init {
         playerSpawn {
-            if (players.add(this) && Settings["world.players.collision", false]) {
+            if (Players.add(this) && Settings["world.players.collision", false]) {
                 add(this)
             }
         }
@@ -39,11 +34,11 @@ class Movement(
             }
         }
 
-        npcMoved(handler = npcs::update)
-        moved(handler = players::update)
+        npcMoved(handler = NPCs::update)
+        moved(handler = Players::update)
 
         worldSpawn {
-            for (border in areas.getTagged("border")) {
+            for (border in Areas.tagged("border")) {
                 val passage = border.area as Rectangle
                 for (zone in passage.toZones()) {
                     borders[zone] = passage
@@ -99,7 +94,7 @@ class Movement(
         val size = char.size
         for (x in char.tile.x until char.tile.x + size) {
             for (y in char.tile.y until char.tile.y + size) {
-                collisions.add(x, y, char.tile.level, mask)
+                Collisions.add(x, y, char.tile.level, mask)
             }
         }
     }
@@ -109,7 +104,7 @@ class Movement(
         val size = char.size
         for (x in 0 until size) {
             for (y in 0 until size) {
-                collisions.remove(char.tile.x + x, char.tile.y + y, char.tile.level, mask)
+                Collisions.remove(char.tile.x + x, char.tile.y + y, char.tile.level, mask)
             }
         }
     }

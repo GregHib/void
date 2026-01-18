@@ -6,7 +6,7 @@ import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.definition.AreaDefinition
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.timedLoad
@@ -16,10 +16,7 @@ import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
 
-class NavigationGraph(
-    private val definitions: ObjectDefinitions,
-    private val areas: AreaDefinitions,
-) {
+class NavigationGraph {
 
     private var adjacencyList: Object2ObjectOpenHashMap<Any, ObjectOpenHashSet<Edge>> = Object2ObjectOpenHashMap<Any, ObjectOpenHashSet<Edge>>()
     private val tags = Object2ObjectOpenHashMap<Any, Set<AreaDefinition>>()
@@ -79,10 +76,10 @@ class NavigationGraph(
                                     }
                                     val instruction = when {
                                         objectId != "" -> {
-                                            var def = definitions.getOrNull(objectId) ?: continue
+                                            var def = ObjectDefinitions.getOrNull(objectId) ?: continue
                                             if (transform != null) {
                                                 val id = def.transforms?.get(transform) ?: continue
-                                                def = definitions.getOrNull(id) ?: continue
+                                                def = ObjectDefinitions.getOrNull(id) ?: continue
                                             }
                                             val optionIndex = def.optionsIndex(option) + 1
                                             InteractObject(def.id, tile.x, tile.y, optionIndex)
@@ -142,7 +139,7 @@ class NavigationGraph(
                 is GameObject -> node.tile
                 else -> return@forEach
             }
-            tags[node] = areas.getAll().filter { it.area.contains(tile) }.toSet()
+            tags[node] = Areas.getAll().filter { it.area.contains(tile) }.toSet()
         }
     }
 

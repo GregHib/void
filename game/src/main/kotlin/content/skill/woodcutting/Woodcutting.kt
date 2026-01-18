@@ -30,13 +30,7 @@ import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.type.random
 
-class Woodcutting(
-    val players: Players,
-    val definitions: ObjectDefinitions,
-    val objects: GameObjects,
-    val floorItems: FloorItems,
-    val drops: DropTables,
-) : Script {
+class Woodcutting(val drops: DropTables) : Script {
 
     val minPlayers = 0
     val maxPlayers = 2000
@@ -61,7 +55,7 @@ class Woodcutting(
         val ivy = tree.log.isEmpty()
         var first = true
         while (player.awaitDialogues()) {
-            if (!objects.contains(target) || !player.has(Skill.Woodcutting, tree.level, true)) {
+            if (!GameObjects.contains(target) || !player.has(Skill.Woodcutting, tree.level, true)) {
                 break
             }
 
@@ -85,7 +79,7 @@ class Woodcutting(
             } else if (remaining > 0) {
                 player.pause(remaining)
             }
-            if (!objects.contains(target)) {
+            if (!GameObjects.contains(target)) {
                 break
             }
             if (success(player.levels.get(Skill.Woodcutting), hatchet, tree)) {
@@ -118,7 +112,7 @@ class Woodcutting(
         areaSound("bird_chirp", player.tile)
 
         val dropTile = player.tile.toCuboid(1).random(player) ?: player.tile
-        floorItems.add(tile = dropTile, id = drop.id, amount = drop.amount.first, disappearTicks = 50)
+        FloorItems.add(tile = dropTile, id = drop.id, amount = drop.amount.first, disappearTicks = 50)
     }
 
     fun success(level: Int, hatchet: Item, tree: Tree): Boolean {
@@ -163,9 +157,9 @@ class Woodcutting(
             return true
         }
         val stumpId = "${obj.id}_stump"
-        if (definitions.contains(stumpId)) {
+        if (ObjectDefinitions.contains(stumpId)) {
             val delay = getRegrowTickDelay(tree)
-            objects.replace(obj, stumpId, ticks = delay)
+            GameObjects.replace(obj, stumpId, ticks = delay)
             areaSound("fell_tree", obj.tile)
         }
         return true
@@ -179,7 +173,7 @@ class Woodcutting(
         return if (tree.level == 1) {
             random.nextInt(delay.first, delay.last) // Regular tree's
         } else {
-            Interpolation.interpolate(players.size, delay.last, delay.first, minPlayers, maxPlayers)
+            Interpolation.interpolate(Players.size, delay.last, delay.first, minPlayers, maxPlayers)
         }
     }
 }

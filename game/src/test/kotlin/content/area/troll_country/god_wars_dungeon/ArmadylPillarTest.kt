@@ -5,6 +5,7 @@ import containsMessage
 import objectOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
@@ -22,7 +23,7 @@ class ArmadylPillarTest : WorldTest() {
         player.equipment.set(EquipSlot.Weapon.index, "rune_crossbow")
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
 
-        val pillar = objects[Tile(2871, 5270, 2), "armadyl_pillar"]!!
+        val pillar = GameObjects.find(Tile(2871, 5270, 2), "armadyl_pillar")
 
         player.objectOption(pillar, "Grapple")
 
@@ -38,7 +39,7 @@ class ArmadylPillarTest : WorldTest() {
         player.equipment.set(EquipSlot.Weapon.index, "rune_crossbow")
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
 
-        val pillar = objects[Tile(2871, 5270, 2), "armadyl_pillar"]!!
+        val pillar = GameObjects.find(Tile(2871, 5270, 2), "armadyl_pillar")
 
         player.objectOption(pillar, "Grapple")
 
@@ -54,7 +55,7 @@ class ArmadylPillarTest : WorldTest() {
         player.inventory.add("rune_crossbow")
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
 
-        val pillar = objects[Tile(2871, 5270, 2), "armadyl_pillar"]!!
+        val pillar = GameObjects.find(Tile(2871, 5270, 2), "armadyl_pillar")
 
         player.objectOption(pillar, "Grapple")
 
@@ -71,7 +72,7 @@ class ArmadylPillarTest : WorldTest() {
         player.equipment.set(EquipSlot.Weapon.index, "rune_crossbow")
         player.inventory.add("mithril_grapple")
 
-        val pillar = objects[Tile(2871, 5270, 2), "armadyl_pillar"]!!
+        val pillar = GameObjects.find(Tile(2871, 5270, 2), "armadyl_pillar")
 
         player.objectOption(pillar, "Grapple")
 
@@ -88,7 +89,7 @@ class ArmadylPillarTest : WorldTest() {
         player.equipment.set(EquipSlot.Weapon.index, "rune_crossbow")
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
 
-        val pillar = objects[Tile(2871, 5270, 2), "armadyl_pillar"]!!
+        val pillar = GameObjects.find(Tile(2871, 5270, 2), "armadyl_pillar")
 
         player.objectOption(pillar, "Grapple")
 

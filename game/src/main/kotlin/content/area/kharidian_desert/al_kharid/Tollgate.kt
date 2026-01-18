@@ -19,14 +19,13 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.notEnough
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
 
-class Tollgate(val objects: GameObjects) : Script {
+class Tollgate : Script {
 
     val gates = Rectangle(Tile(3268, 3227), 1, 2)
 
@@ -54,7 +53,7 @@ class Tollgate(val objects: GameObjects) : Script {
         }
     }
 
-    fun getGuard(player: Player) = get<NPCs>()[player.tile.regionLevel].firstOrNull { it.id.startsWith("border_guard_al_kharid") }
+    fun getGuard(player: Player) = NPCs.find(player.tile.regionLevel) { it.id.startsWith("border_guard_al_kharid") }
 
     suspend fun Player.dialogue(npc: NPC? = getGuard(this)) {
         if (npc == null) {
@@ -87,7 +86,7 @@ class Tollgate(val objects: GameObjects) : Script {
 
     fun getGate(player: Player): GameObject {
         val tile = gates.nearestTo(player.tile)
-        return objects[tile].first { it.id.startsWith("toll_gate_al_kharid") }
+        return GameObjects.find(tile) { it.id.startsWith("toll_gate_al_kharid") }
     }
 
     fun pass(player: Player) {

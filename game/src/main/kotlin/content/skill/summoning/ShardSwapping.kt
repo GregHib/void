@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import kotlin.math.min
 
-class ShardSwapping(val enums: EnumDefinitions, val itemDefinitions: ItemDefinitions) : Script {
+class ShardSwapping(val enums: EnumDefinitions) : Script {
 
     init {
         npcOperate("Swap", "bogrog") {
@@ -38,7 +38,7 @@ class ShardSwapping(val enums: EnumDefinitions, val itemDefinitions: ItemDefinit
 
             if (item.id.endsWith("_u")) {
                 val actualItemId = enums.get("summoning_${itemType}_ids_1").getInt(enumIndex)
-                actualItem = Item(itemDefinitions.get(actualItemId).stringId)
+                actualItem = Item(ItemDefinitions.get(actualItemId).stringId)
             }
 
             sendValueMessage(this, actualItem, itemType)
@@ -51,7 +51,7 @@ class ShardSwapping(val enums: EnumDefinitions, val itemDefinitions: ItemDefinit
 
             if (item.id.endsWith("_u")) {
                 val actualItemId = enums.get("summoning_${itemType}_ids_1").getInt(enumIndex)
-                actualItem = Item(itemDefinitions.get(actualItemId).stringId)
+                actualItem = Item(ItemDefinitions.get(actualItemId).stringId)
                 sendValueMessage(this, actualItem, itemType)
                 return@interfaceOption
             }

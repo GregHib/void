@@ -21,12 +21,8 @@ import world.gregs.voidps.engine.inv.transact.charge
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 
 class ItemCommands(
-    val areas: AreaDefinitions,
-    val players: Players,
     val exchange: GrandExchange,
-    val definitions: ItemDefinitions,
     val enums: EnumDefinitions,
-    val itemDefinitions: ItemDefinitions,
     val accounts: AccountDefinitions,
 ) : Script {
 
@@ -34,8 +30,8 @@ class ItemCommands(
 
     init {
         worldSpawn {
-            for (id in 0 until definitions.size) {
-                val definition = definitions.get(id)
+            for (id in 0 until ItemDefinitions.size) {
+                val definition = ItemDefinitions.get(id)
                 val list = (definition.extras as? MutableMap<String, Any>)?.remove("aka") as? List<String> ?: continue
                 for (name in list) {
                     alternativeNames[name] = definition.stringId
@@ -45,7 +41,7 @@ class ItemCommands(
 
         adminCommand(
             "item",
-            stringArg("item-id", autofill = itemDefinitions.ids.keys),
+            stringArg("item-id", autofill = ItemDefinitions.ids.keys),
             intArg("item-amount", "number of items to spawn (e.g. 100, 10k, 5m, default 1)", optional = true),
             desc = "Spawn an item into your inventory",
             handler = ::itemSpawn,
@@ -54,7 +50,7 @@ class ItemCommands(
         adminCommand(
             "give",
             stringArg("player-name", autofill = accounts.displayNames.keys),
-            stringArg("item-id", autofill = itemDefinitions.ids.keys),
+            stringArg("item-id", autofill = ItemDefinitions.ids.keys),
             intArg("item-amount", "number of items to spawn (e.g. 100, 10k, 5m)", optional = true),
             desc = "Spawn an item into another players inventory",
             handler = ::targetSpawn,
@@ -62,11 +58,11 @@ class ItemCommands(
 
         adminCommand(
             "items",
-            stringArg("item-id", autofill = itemDefinitions.ids.keys),
-            stringArg("id", autofill = itemDefinitions.ids.keys, optional = true),
-            stringArg("id", autofill = itemDefinitions.ids.keys, optional = true),
-            stringArg("id", autofill = itemDefinitions.ids.keys, optional = true),
-            stringArg("id", autofill = itemDefinitions.ids.keys, optional = true),
+            stringArg("item-id", autofill = ItemDefinitions.ids.keys),
+            stringArg("id", autofill = ItemDefinitions.ids.keys, optional = true),
+            stringArg("id", autofill = ItemDefinitions.ids.keys, optional = true),
+            stringArg("id", autofill = ItemDefinitions.ids.keys, optional = true),
+            stringArg("id", autofill = ItemDefinitions.ids.keys, optional = true),
             desc = "Spawn multiple items at once",
             handler = ::itemSpawns,
         )
@@ -76,17 +72,17 @@ class ItemCommands(
         val name = args[0]
         val itemName = alternativeNames.getOrDefault(args.getOrNull(1), args[1])
         val amount = (args.getOrNull(2) ?: "1").toSILong().coerceAtMost(Int.MAX_VALUE.toLong()).toInt()
-        val target = players.get(name)
+        val target = Players.find(name)
         if (target == null) {
             player.message("Couldn't find online player '$name'", ChatType.Console)
             return
         }
-        spawn(player, target, definitions.get(itemName), amount)
+        spawn(player, target, ItemDefinitions.get(itemName), amount)
     }
 
     fun itemSpawn(player: Player, args: List<String>) {
         val name = alternativeNames.getOrDefault(args.getOrNull(0), args[0])
-        val definition = definitions.get(name)
+        val definition = ItemDefinitions.get(name)
         val amount = (args.getOrNull(1) ?: "1").toSILong().coerceAtMost(Int.MAX_VALUE.toLong()).toInt()
         spawn(player, player, definition, amount)
     }
@@ -94,7 +90,7 @@ class ItemCommands(
     fun itemSpawns(player: Player, args: List<String>) {
         for (item in args) {
             val name = alternativeNames.getOrDefault(item, item)
-            val definition = definitions.get(name)
+            val definition = ItemDefinitions.get(name)
             spawn(player, player, definition, 1)
         }
     }

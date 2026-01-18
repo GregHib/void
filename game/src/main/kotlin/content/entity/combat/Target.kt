@@ -22,17 +22,16 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 object Target {
     fun attackable(source: Character, target: Character): Boolean {
         if (target is NPC) {
-            if (target.id.startsWith("door_support") && get<NPCDefinitions>().get(target.id).options[1] == "Destroy") {
+            if (target.id.startsWith("door_support") && NPCDefinitions.get(target.id).options[1] == "Destroy") {
                 return true
             }
             if (target.transform != "") {
-                if (get<NPCDefinitions>().get(target.transform).options[1] != "Attack") {
+                if (NPCDefinitions.get(target.transform).options[1] != "Attack") {
                     return false
                 }
             } else if (target.def.options[1] != "Attack") {
@@ -41,7 +40,7 @@ object Target {
             if (target.index == -1) {
                 return false
             }
-            if (get<NPCs>().indexed(target.index) == null) {
+            if (NPCs.indexed(target.index) == null) {
                 return false
             }
             if (source.fightStyle == "melee" && target.categories.contains("aviansie")) {

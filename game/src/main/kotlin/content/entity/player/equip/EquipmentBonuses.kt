@@ -16,7 +16,7 @@ import world.gregs.voidps.network.login.protocol.visual.VisualMask.APPEARANCE_MA
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
-class EquipmentBonuses(val definitions: ItemDefinitions) : Script {
+class EquipmentBonuses : Script {
 
     val df = DecimalFormat("0.0").apply {
         roundingMode = RoundingMode.FLOOR
@@ -56,7 +56,7 @@ class EquipmentBonuses(val definitions: ItemDefinitions) : Script {
 
         interfaceOption("Stats", "equipment_bonuses:inventory") { (item) ->
             if (equipping()) {
-                showStats(this, definitions.get(item.id))
+                showStats(this, ItemDefinitions.get(item.id))
             }
         }
 

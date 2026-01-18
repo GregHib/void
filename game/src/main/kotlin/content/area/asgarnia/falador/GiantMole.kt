@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -27,10 +27,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import kotlin.random.Random
 
-class GiantMole(
-    val areas: AreaDefinitions,
-    val players: Players,
-) : Script {
+class GiantMole : Script {
 
     val logger = InlineLogger()
 
@@ -41,8 +38,8 @@ class GiantMole(
         Tile(2989, 3378, 0),
     )
 
-    val giantMoleLair = areas["giant_mole_lair"]
-    val gianMoleSpawns = areas["giant_mole_spawn_area"]
+    val giantMoleLair = Areas["giant_mole_lair"]
+    val gianMoleSpawns = Areas["giant_mole_spawn_area"]
     val initialCaveTile: Tile = Tile(1752, 5237, 0)
 
     init {
@@ -151,7 +148,7 @@ class GiantMole(
     fun handleDirtOnScreen(moleTile: Tile) {
         val nearMole = mutableListOf<Player>()
         for (tile in moleTile.toCuboid(5)) {
-            for (player in players[tile]) {
+            for (player in Players.at(tile)) {
                 nearMole.add(player)
             }
         }

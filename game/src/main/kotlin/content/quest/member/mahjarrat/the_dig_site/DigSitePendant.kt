@@ -3,12 +3,10 @@ package content.quest.member.mahjarrat.the_dig_site
 import content.skill.magic.jewellery.jewelleryTeleport
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 
-class DigSitePendant(val areas: AreaDefinitions) : Script {
-
-    val digSite = areas["dig_site_teleport"]
+class DigSitePendant : Script {
 
     init {
         itemOption("Rub", "dig_site_pendant_#") {
@@ -16,7 +14,7 @@ class DigSitePendant(val areas: AreaDefinitions) : Script {
                 return@itemOption
             }
             message("You rub the pendant...", ChatType.Filter)
-            jewelleryTeleport(this, it.inventory, it.slot, digSite)
+            jewelleryTeleport(this, it.inventory, it.slot, Areas["dig_site_teleport"])
         }
     }
 }

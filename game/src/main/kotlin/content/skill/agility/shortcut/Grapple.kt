@@ -5,7 +5,7 @@ import content.entity.player.dialogue.type.statement
 import content.skill.melee.weapon.Weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-class Grapple(val objects: GameObjects, val areas: AreaDefinitions) : Script {
+class Grapple : Script {
 
     init {
         objectApproach("Grapple", "lumbridge_broken_raft") { (target) ->
@@ -141,7 +141,7 @@ class Grapple(val objects: GameObjects, val areas: AreaDefinitions) : Script {
             }
             steps.clear()
             val start = Tile(2841, 3425)
-            if (tile !in areas["water_obselisk_island"]) {
+            if (tile !in Areas["water_obselisk_island"]) {
                 message("I can't do that from here.")
                 return@objectApproach
             }
@@ -154,9 +154,9 @@ class Grapple(val objects: GameObjects, val areas: AreaDefinitions) : Script {
             sound("grapple_shoot")
             delay(3)
             for (y in 3427..3433) {
-                objects.add("grapple_rope", Tile(2841, y), rotation = 1, shape = ObjectShape.GROUND_DECOR, ticks = 14)
+                GameObjects.add("grapple_rope", Tile(2841, y), rotation = 1, shape = ObjectShape.GROUND_DECOR, ticks = 14)
             }
-            objects.add("catherby_rocks_rope", Tile(2841, 3426), rotation = 1, shape = ObjectShape.GROUND_DECOR, ticks = 14)
+            GameObjects.add("catherby_rocks_rope", Tile(2841, 3426), rotation = 1, shape = ObjectShape.GROUND_DECOR, ticks = 14)
             target.replace("catherby_crossbow_tree_grapple", ticks = 14)
             delay(4)
             anim("water_obelisk_swim")
@@ -170,7 +170,7 @@ class Grapple(val objects: GameObjects, val areas: AreaDefinitions) : Script {
                 return@objectApproach
             }
             steps.clear()
-            if (tile !in areas["mountain_shortcut_grapple_area"]) {
+            if (tile !in Areas["mountain_shortcut_grapple_area"]) {
                 message("I can't do that from here.")
                 return@objectApproach
             }
@@ -182,9 +182,9 @@ class Grapple(val objects: GameObjects, val areas: AreaDefinitions) : Script {
             delay(2)
             renderEmote("climbing")
             for (x in 2867..2869) {
-                objects.add("catherby_grapple_rope", Tile(x, 3429), shape = ObjectShape.GROUND_DECOR, ticks = 14)
+                GameObjects.add("catherby_grapple_rope", Tile(x, 3429), shape = ObjectShape.GROUND_DECOR, ticks = 14)
             }
-            objects.add("catherby_rocks_grapple", Tile(2869, 3429), shape = ObjectShape.GROUND_DECOR, ticks = 14)
+            GameObjects.add("catherby_rocks_grapple", Tile(2869, 3429), shape = ObjectShape.GROUND_DECOR, ticks = 14)
             delay()
             walkOverDelay(Tile(2868, 3429))
             clearRenderEmote()
@@ -230,19 +230,19 @@ class Grapple(val objects: GameObjects, val areas: AreaDefinitions) : Script {
         }
     }
 
-    fun Grapple.lumbridgeTree(grapple: Boolean) {
-        val tree = objects[Tile(3244, 3179), "strong_yew"]
+    fun lumbridgeTree(grapple: Boolean) {
+        val tree = GameObjects.findOrNull(Tile(3244, 3179), "strong_yew")
         tree?.replace("strong_yew_${if (grapple) "grapple" else "rope"}", ticks = 8)
         for (x in 3246..3251) {
-            objects.add("grapple_rope", Tile(x, 3179), shape = ObjectShape.GROUND_DECOR, ticks = 8)
+            GameObjects.add("grapple_rope", Tile(x, 3179), shape = ObjectShape.GROUND_DECOR, ticks = 8)
         }
     }
 
-    fun Grapple.alKharidTree(grapple: Boolean) {
-        val tree = objects[Tile(3260, 3179), "strong_tree"]
+    fun alKharidTree(grapple: Boolean) {
+        val tree = GameObjects.findOrNull(Tile(3260, 3179), "strong_tree")
         tree?.replace("strong_tree_${if (grapple) "grapple" else "rope"}", ticks = 8)
         for (x in 3254..3259) {
-            objects.add("grapple_rope", Tile(x, 3180), shape = ObjectShape.GROUND_DECOR, ticks = 8)
+            GameObjects.add("grapple_rope", Tile(x, 3180), shape = ObjectShape.GROUND_DECOR, ticks = 8)
         }
     }
 

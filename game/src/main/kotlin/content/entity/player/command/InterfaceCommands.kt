@@ -33,7 +33,6 @@ class InterfaceCommands(
     val definitions: InterfaceDefinitions,
     val animationDefinitions: AnimationDefinitions,
     val inventoryDefinitions: InventoryDefinitions,
-    val npcDefinitions: NPCDefinitions,
     scriptDefinitions: ClientScriptDefinitions,
 ) : Script {
 
@@ -80,7 +79,7 @@ class InterfaceCommands(
         adminCommand(
             "expr",
             stringArg("expression-id", autofill = { animationDefinitions.definitions.filter { it.stringId.startsWith("expression_") }.map { it.stringId.removePrefix("expression_") }.toSet() }),
-            stringArg("npc-id", autofill = { npcDefinitions.ids.keys }, optional = true),
+            stringArg("npc-id", autofill = { NPCDefinitions.ids.keys }, optional = true),
             desc = "Display dialogue head with an animation expression",
             handler = ::expression,
         )

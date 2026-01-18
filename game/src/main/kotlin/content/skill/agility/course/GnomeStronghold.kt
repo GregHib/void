@@ -13,12 +13,12 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
-class GnomeStronghold(val npcs: NPCs) : Script {
+class GnomeStronghold : Script {
 
     init {
         objectOperate("Walk-across", "gnome_log_balance") {
             agilityCourse("gnome")
-            npcs.gnomeTrainer("Okay get over that log, quick quick!", listOf(Zone(878901), Zone(878900), Zone(876852)))
+            NPCs.gnomeTrainer("Okay get over that log, quick quick!", listOf(Zone(878901), Zone(878900), Zone(876852)))
             renderEmote("rope_balance")
             message("You walk carefully across the slippery log...", ChatType.Filter)
             walkOverDelay(Tile(2474, 3429))
@@ -31,7 +31,7 @@ class GnomeStronghold(val npcs: NPCs) : Script {
         objectOperate("Climb-over", "gnome_obstacle_net") {
             arriveDelay()
             agilityCourse("gnome")
-            npcs.gnomeTrainer("Move it, move it, move it!", listOf(Zone(8768252), Zone(876853)))
+            NPCs.gnomeTrainer("Move it, move it, move it!", listOf(Zone(8768252), Zone(876853)))
             message("You climb the netting...", ChatType.Filter)
             anim("climb_up")
             delay(2)
@@ -41,7 +41,7 @@ class GnomeStronghold(val npcs: NPCs) : Script {
         }
 
         objectOperate("Climb", "gnome_tree_branch_up") {
-            npcs.gnomeTrainer("That's it - straight up", listOf(Zone(5069109), Zone(5071157)))
+            NPCs.gnomeTrainer("That's it - straight up", listOf(Zone(5069109), Zone(5071157)))
             message("You climb the tree...", ChatType.Filter)
             anim("climb_up")
             delay(2)
@@ -52,7 +52,7 @@ class GnomeStronghold(val npcs: NPCs) : Script {
         }
 
         objectOperate("Walk-on", "gnome_balancing_rope") {
-            npcs.gnomeTrainer("Come on scaredy cat, get across that rope!", Zone(9263413))
+            NPCs.gnomeTrainer("Come on scaredy cat, get across that rope!", Zone(9263413))
             renderEmote("rope_balance")
             walkOverDelay(Tile(2483, 3420, 2))
             agilityStage(4)
@@ -80,7 +80,7 @@ class GnomeStronghold(val npcs: NPCs) : Script {
 
         objectOperate("Climb-over", "gnome_obstacle_net_free_standing") { (target) ->
             agilityCourse("gnome")
-            npcs.gnomeTrainer("My Granny can move faster than you.", Zone(876854))
+            NPCs.gnomeTrainer("My Granny can move faster than you.", Zone(876854))
             message("You climb the netting.", ChatType.Filter)
             anim("climb_up")
             delay(2)

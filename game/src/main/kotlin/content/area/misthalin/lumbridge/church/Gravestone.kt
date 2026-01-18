@@ -14,14 +14,14 @@ import java.util.concurrent.TimeUnit
 
 object Gravestone {
 
-    fun spawn(npcs: NPCs, player: Player, tile: Tile): Int {
+    fun spawn(player: Player, tile: Tile): Int {
         if (!Settings["combat.gravestones", true]) {
             return 0
         }
         val grave = player["gravestone_current", "memorial_plaque"]
         val minutes = times[grave] ?: return 0
         val seconds = TimeUnit.MINUTES.toSeconds(minutes.toLong()).toInt()
-        val gravestone = npcs.add("gravestone_$grave", tile, player.direction)
+        val gravestone = NPCs.add("gravestone_$grave", tile, player.direction)
         gravestone.anim(if (grave == "memorial_plaque") "gravestone_fall_plaque" else "gravestone_fall")
         gravestone["player_name"] = player.name
         gravestone["player_male"] = player.male

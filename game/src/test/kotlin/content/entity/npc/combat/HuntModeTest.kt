@@ -8,15 +8,18 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.combatLevel
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import kotlin.test.assertEquals
 
 internal class HuntModeTest : WorldTest() {
 
     @BeforeEach
     fun setup() {
-        npcs.clear()
-        players.clear()
+        NPCs.clear()
+        Players.clear()
     }
 
     @Test
@@ -76,6 +79,6 @@ internal class HuntModeTest : WorldTest() {
         tick(9)
 
         assertEquals(emptyTile.addY(3), npc.tile)
-        assertTrue(floorItems[emptyTile.addY(3)].isEmpty())
+        assertTrue(FloorItems.at(emptyTile.addY(3)).isEmpty())
     }
 }

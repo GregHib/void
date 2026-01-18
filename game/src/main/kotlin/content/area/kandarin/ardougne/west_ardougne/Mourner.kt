@@ -14,17 +14,14 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 
-class Mourner(
-    val npcs: NPCs,
-    val objects: GameObjects,
-) : Script {
+class Mourner : Script {
 
     init {
         npcOperate("Talk-to", "mourner_elena_guard_vis") { (target) ->
             if (holdsItem("warrant")) {
                 player<Idle>("I have a warrant from Bravek to enter here.")
                 npc<Confused>("This is highly irregular. Please wait...")
-                val otherGuard = npcs[if (target.tile.equals(2539, 3273)) Tile(2534, 3273) else Tile(2539, 3273)].first { it.id == "mourner_elena_guard_vis" }
+                val otherGuard = NPCs.find(if (target.tile.equals(2539, 3273)) Tile(2534, 3273) else Tile(2539, 3273), "mourner_elena_guard_vis")
                 val faceDirection = if (target.tile.equals(2539, 3273)) Direction.EAST else Direction.WEST
                 target.face(faceDirection)
                 delay(1)
@@ -35,7 +32,7 @@ class Mourner(
                 otherGuard.say("Well you can't let them in...")
                 delay(1)
                 val doorTile = if (target.tile.equals(2539, 3273)) Tile(2540, 3273) else Tile(2533, 3273)
-                val door = objects[doorTile, "door_plague_city_closed"]!!
+                val door = GameObjects.find(doorTile, "door_plague_city_closed")
                 enterDoor(door, delay = 2)
                 statement("You wait until the mourner's back is turned and sneak into the building.")
                 return@npcOperate

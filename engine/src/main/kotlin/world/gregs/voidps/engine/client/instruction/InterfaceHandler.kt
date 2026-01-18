@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.equipment
 
 class InterfaceHandler(
-    private val itemDefinitions: ItemDefinitions,
     private val interfaceDefinitions: InterfaceDefinitions,
     private val inventoryDefinitions: InventoryDefinitions,
     private val enumDefinitions: EnumDefinitions,
@@ -26,17 +25,17 @@ class InterfaceHandler(
         var inventory = ""
         if (itemId != -1) {
             when {
-                id.startsWith("summoning_") && id.endsWith("_creation") -> item = Item(itemDefinitions.get(itemId).stringId)
-                id == "summoning_trade_in" -> item = Item(itemDefinitions.get(itemId).stringId)
+                id.startsWith("summoning_") && id.endsWith("_creation") -> item = Item(ItemDefinitions.get(itemId).stringId)
+                id == "summoning_trade_in" -> item = Item(ItemDefinitions.get(itemId).stringId)
                 id == "exchange_item_sets" -> {
                     val expected = enumDefinitions.get("exchange_item_sets").getInt(itemSlot + 1)
                     if (expected != itemId) {
                         logger.info { "Exchange item sets don't match [$player, expected=$expected, actual=$itemId]" }
                         return null
                     }
-                    item = Item(itemDefinitions.get(expected).stringId)
+                    item = Item(ItemDefinitions.get(expected).stringId)
                 }
-                id == "common_item_costs" -> item = Item(itemDefinitions.get(itemId).stringId)
+                id == "common_item_costs" -> item = Item(ItemDefinitions.get(itemId).stringId)
                 id == "farming_equipment_store" || id == "farming_equipment_store_side" -> {}
                 else -> {
                     inventory = getInventory(player, id, component, componentDefinition) ?: return null
@@ -86,7 +85,7 @@ class InterfaceHandler(
     }
 
     private fun getInventoryItem(player: Player, id: String, componentDefinition: InterfaceComponentDefinition, inventoryId: String, item: Int, itemSlot: Int): Item? {
-        val itemId = if (item == -1 || item > itemDefinitions.size) "" else itemDefinitions.get(item).stringId
+        val itemId = if (item == -1 || item > ItemDefinitions.size) "" else ItemDefinitions.get(item).stringId
         val slot = when {
             itemSlot == -1 && inventoryId == "worn_equipment" -> player.equipment.indexOf(itemId)
             itemSlot == -1 && inventoryId == "item_loan" -> 0

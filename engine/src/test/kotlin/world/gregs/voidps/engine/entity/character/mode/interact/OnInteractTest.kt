@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity.character.mode.interact
 
-import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertFalse
@@ -31,17 +30,8 @@ abstract class OnInteractTest : KoinMock() {
         declare { mockk<StepValidator>(relaxed = true) }
         declare { mockk<LineValidator>(relaxed = true) }
         declare { mockk<PathFinder>(relaxed = true) }
-        declare {
-            val def = mockk<NPCDefinitions>(relaxed = true)
-            every { def.resolve(any(), any()) } returns NPCDefinition(0, stringId = "npc")
-            def
-        }
-        declare {
-            val def = mockk<ObjectDefinitions>(relaxed = true)
-            every { def.resolve(any(), any()) } returns ObjectDefinition(0, stringId = "obj")
-            every { def.get(any<Int>()) } returns ObjectDefinition(0, stringId = "obj")
-            def
-        }
+        NPCDefinitions.set(arrayOf(NPCDefinition(0, stringId = "npc")), mapOf("npc" to 0))
+        ObjectDefinitions.set(arrayOf(ObjectDefinition(0, stringId = "obj")), mapOf("obj" to 0))
     }
 
     open val checks: List<List<String>> = emptyList()

@@ -33,17 +33,13 @@ import world.gregs.voidps.type.Tile
 class AccountManager(
     private val interfaceDefinitions: InterfaceDefinitions,
     private val inventoryDefinitions: InventoryDefinitions,
-    private val itemDefinitions: ItemDefinitions,
     private val accountDefinitions: AccountDefinitions,
-    private val collisionStrategyProvider: CollisionStrategyProvider,
     private val variableDefinitions: VariableDefinitions,
     private val saveQueue: SaveQueue,
     private val connectionQueue: ConnectionQueue,
-    private val players: Players,
-    private val areaDefinitions: AreaDefinitions,
     private val overrides: AppearanceOverrides,
 ) {
-    private val validItems = ValidItemRestriction(itemDefinitions)
+    private val validItems = ValidItemRestriction()
     private val homeTile: Tile
         get() = Tile(Settings["world.home.x", 0], Settings["world.home.y", 0], Settings["world.home.level", 0])
 
@@ -53,16 +49,15 @@ class AccountManager(
     }
 
     fun setup(player: Player, client: Client?, displayMode: Int): Boolean {
-        player.index = players.index() ?: return false
+        player.index = Players.index() ?: return false
         player.visuals.hits.self = player.index
         player.interfaces = Interfaces(player, interfaceDefinitions)
         player.interfaceOptions = InterfaceOptions(player, interfaceDefinitions, inventoryDefinitions)
         (player.variables as PlayerVariables).definitions = variableDefinitions
 //        player.area.areaDefinitions = areaDefinitions
         player.inventories.definitions = inventoryDefinitions
-        player.inventories.itemDefinitions = itemDefinitions
         player.inventories.validItemRule = validItems
-        player.inventories.normalStack = ItemDependentStack(itemDefinitions)
+        player.inventories.normalStack = ItemDependentStack
         player.inventories.player = player
         player.inventories.start()
         player.steps.previous = player.tile.add(Direction.WEST.delta)
@@ -80,7 +75,7 @@ class AccountManager(
             player.client = client
             (player.variables as PlayerVariables).client = client
         }
-        player.collision = collisionStrategyProvider.get(character = player)
+        player.collision = CollisionStrategyProvider.get(character = player)
         return true
     }
 
@@ -98,7 +93,7 @@ class AccountManager(
         Spawn.player(player)
         val offset = player.get<Long>("instance_offset")?.let { Delta(it) } ?: Delta.EMPTY
         val original = player.tile.minus(offset)
-        for (def in areaDefinitions.get(original.zone)) {
+        for (def in Areas.get(original.zone)) {
             if (original in def.area) {
                 Moved.enter(player, def.name, def.area)
             }
@@ -126,11 +121,11 @@ class AccountManager(
         player.client?.disconnect()
         connectionQueue.disconnect {
             World.queue("logout", 1) {
-                players.remove(player)
+                Players.remove(player)
             }
             val offset = player.get<Long>("instance_offset")?.let { Delta(it) } ?: Delta.EMPTY
             val original = player.tile.minus(offset)
-            for (def in areaDefinitions.get(original.zone)) {
+            for (def in Areas.get(original.zone)) {
                 if (original in def.area) {
                     Moved.exit(player, def.name, def.area)
                 }

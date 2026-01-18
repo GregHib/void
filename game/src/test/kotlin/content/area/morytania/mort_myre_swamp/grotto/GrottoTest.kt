@@ -5,6 +5,7 @@ import WorldTest
 import objectOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import kotlin.test.assertEquals
@@ -15,7 +16,7 @@ class GrottoTest : WorldTest() {
     @Test
     fun `Jump bridge south`() {
         val player = createPlayer(Tile(3441, 3331))
-        val bridge = objects[Tile(3441, 3331), "grotto_bridge"]!!
+        val bridge = GameObjects.find(Tile(3441, 3331), "grotto_bridge")
 
         player.objectOption(bridge, "Jump")
         tick(3)
@@ -26,7 +27,7 @@ class GrottoTest : WorldTest() {
     @Test
     fun `Jump bridge north`() {
         val player = createPlayer(Tile(3440, 3329))
-        val bridge = objects[Tile(3440, 3329), "grotto_bridge"]!!
+        val bridge = GameObjects.find(Tile(3440, 3329), "grotto_bridge")
 
         player.objectOption(bridge, "Jump")
         tick(3)
@@ -40,7 +41,7 @@ class GrottoTest : WorldTest() {
             override fun nextBits(bitCount: Int): Int = 255
         })
         val player = createPlayer(Tile(3441, 3331))
-        val bridge = objects[Tile(3441, 3331), "grotto_bridge"]!!
+        val bridge = GameObjects.find(Tile(3441, 3331), "grotto_bridge")
 
         player.objectOption(bridge, "Jump")
         tick(6)
@@ -55,7 +56,7 @@ class GrottoTest : WorldTest() {
             override fun nextBits(bitCount: Int): Int = 255
         })
         val player = createPlayer(Tile(3440, 3329))
-        val bridge = objects[Tile(3440, 3329), "grotto_bridge"]!!
+        val bridge = GameObjects.find(Tile(3440, 3329), "grotto_bridge")
 
         player.objectOption(bridge, "Jump")
         tick(6)

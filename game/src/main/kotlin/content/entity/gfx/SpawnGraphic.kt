@@ -14,5 +14,5 @@ fun areaGfx(
     height: Int = 0,
     rotation: Direction = Direction.SOUTH,
 ) {
-    get<ZoneBatchUpdates>().add(tile.zone, GraphicAddition(tile.id, get<GraphicDefinitions>().get(id).id, height, delay, rotation.ordinal))
+    ZoneBatchUpdates.add(tile.zone, GraphicAddition(tile.id, get<GraphicDefinitions>().get(id).id, height, delay, rotation.ordinal))
 }

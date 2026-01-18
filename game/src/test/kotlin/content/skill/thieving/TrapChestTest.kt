@@ -5,6 +5,7 @@ import WorldTest
 import objectOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
@@ -19,7 +20,7 @@ internal class TrapChestTest : WorldTest() {
         })
         val player = createPlayer(Tile(2675, 3310))
         player.levels.set(Skill.Thieving, 15)
-        val stall = objects[Tile(2676, 3310), "coin_chest"]!!
+        val stall = GameObjects.find(Tile(2676, 3310), "coin_chest")
 
         player.objectOption(stall, "Search for traps")
         tick(6)

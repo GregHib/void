@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -26,7 +26,7 @@ import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.timer.epochSeconds
 import java.util.concurrent.TimeUnit
 
-class Teleports(val areas: AreaDefinitions, val definitions: SpellDefinitions) : Script {
+class Teleports(val definitions: SpellDefinitions) : Script {
 
     init {
         interfaceOption("Cast", "*_spellbook:*_teleport") {
@@ -59,7 +59,7 @@ class Teleports(val areas: AreaDefinitions, val definitions: SpellDefinitions) :
                     pause(ticks)
                 }
                 withContext(NonCancellable) {
-                    tele(areas["lumbridge_teleport"].random())
+                    tele(Areas["lumbridge_teleport"].random())
                     set("click_your_heels_three_times_task", true)
                     start("home_teleport_timeout", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
                 }
@@ -84,8 +84,8 @@ class Teleports(val areas: AreaDefinitions, val definitions: SpellDefinitions) :
             return
         }
         player.closeInterfaces()
-        val definition = areas.getOrNull(option.item.id) ?: return
-        val scrolls = areas.getTagged("scroll")
+        val definition = Areas.getOrNull(option.item.id) ?: return
+        val scrolls = Areas.tagged("scroll")
         val type = if (scrolls.contains(definition)) "scroll" else "tablet"
         val map = definition.area
         player.queue("teleport", onCancel = null) {
@@ -115,7 +115,7 @@ class Teleports(val areas: AreaDefinitions, val definitions: SpellDefinitions) :
             sound("teleport")
             gfx("teleport_$book")
             animDelay("teleport_$book")
-            tele(areas[component].random(player)!!)
+            tele(Areas[component].random(player)!!)
             delay(1)
             sound("teleport_land")
             gfx("teleport_land_$book")

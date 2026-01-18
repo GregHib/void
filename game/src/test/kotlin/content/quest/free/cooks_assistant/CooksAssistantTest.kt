@@ -15,8 +15,11 @@ import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -32,7 +35,7 @@ class CooksAssistantTest : WorldTest() {
 
     @BeforeAll
     fun beforeAllLocal() {
-        loadItemSpawns(floorItems, get(), configFiles.list(Settings["spawns.items"]), itemDefinitions)
+        loadItemSpawns(get(), configFiles.list(Settings["spawns.items"]))
     }
 
     @Test
@@ -40,7 +43,7 @@ class CooksAssistantTest : WorldTest() {
         val player = createPlayer(Tile(3208, 3215, 0))
 
         // Start quest
-        val cook = npcs[Tile(3209, 3215)].single { it.id == "cook_lumbridge" }
+        val cook = NPCs.find(Tile(3209, 3215), "cook_lumbridge")
         player.tele(3208, 3215, 0)
         player.npcOption(cook, "Talk-to")
         tick()
@@ -53,7 +56,7 @@ class CooksAssistantTest : WorldTest() {
         assertEquals("started", player.quest("cooks_assistant"))
 
         // Pick up empty pot
-        val pot = floorItems[Tile(3209, 3214)].first { it.id == "empty_pot" }
+        val pot = FloorItems.first(Tile(3209, 3214), "empty_pot")
         player.tele(3209, 3215, 0)
         player.interactFloorItem(pot, "Take")
         tick()
@@ -61,18 +64,18 @@ class CooksAssistantTest : WorldTest() {
 
         // Super Large Egg
         player.tele(3227, 3299)
-        val egg = floorItems[Tile(3227, 3299)].first { it.id == "super_large_egg" }
+        val egg = FloorItems.first(Tile(3227, 3299), "super_large_egg")
         player.interactFloorItem(egg, "Take")
         tick()
         assertEquals(1, player.inventory.count("super_large_egg"))
 
         // Top Quality Milk
         player.tele(3263, 3278)
-        val bucket = floorItems[Tile(3263, 3277)].first { it.id == "bucket" }
+        val bucket = FloorItems.first(Tile(3263, 3277), "bucket")
         player.interactFloorItem(bucket, "Take")
         tick()
         assertEquals(1, player.inventory.count("bucket"))
-        val prizedDairyCow = objects[Tile(3264, 3277)].first { it.id == "prized_dairy_cow" }
+        val prizedDairyCow = GameObjects.find(Tile(3264, 3277), "prized_dairy_cow")
         player.objectOption(prizedDairyCow, "Milk")
         tick(8)
         assertEquals(0, player.inventory.count("bucket"))
@@ -82,7 +85,7 @@ class CooksAssistantTest : WorldTest() {
         player.inventory.add("grain")
 
         player.tele(3169, 3305)
-        val millie = npcs[Tile(3169, 3306)].single { it.id == "millie_miller" }
+        val millie = NPCs.find(Tile(3169, 3306), "millie_miller")
         player.npcOption(millie, "Talk-to")
         tick()
         player.fastForwardDialogue()
@@ -91,19 +94,19 @@ class CooksAssistantTest : WorldTest() {
         player.selectDialogueOption(2) // I'm fine, thanks
 
         player.tele(3165, 3307, 2)
-        val hopper = objects[Tile(3166, 3307, 2)].single { it.id == "hopper" }
+        val hopper = GameObjects.find(Tile(3166, 3307, 2), "hopper")
         assertEquals(1, player.inventory.count("grain"))
         player.itemOnObject(hopper, player.inventory.indexOf("grain"))
         tick()
         assertEquals(0, player.inventory.count("grain"))
 
         player.tele(3165, 3305, 2)
-        val hopperControls = objects[Tile(3166, 3305, 2)].single { it.id == "hopper_controls" }
+        val hopperControls = GameObjects.find(Tile(3166, 3305, 2), "hopper_controls")
         player.interactObject(hopperControls, "Operate")
         tick()
 
         player.tele(3165, 3306, 0)
-        val flourBin = objects[Tile(3166, 3306, 0)].single { it.id == "flour_bin_3" }
+        val flourBin = GameObjects.find(Tile(3166, 3306, 0), "flour_bin_3")
         player.interactObject(flourBin, "Take-flour")
         tick()
         assertEquals(1, player.inventory.count("extra_fine_flour"))

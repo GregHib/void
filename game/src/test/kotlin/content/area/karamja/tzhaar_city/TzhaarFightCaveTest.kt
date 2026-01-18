@@ -12,10 +12,12 @@ import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerRights
 import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
@@ -33,7 +35,7 @@ class TzhaarFightCaveTest : WorldTest() {
         player["god_mode"] = true
         player["insta_kill"] = true
 
-        val entrance = objects[Tile(2437, 5166), "cave_entrance_fight_cave"]!!
+        val entrance = GameObjects.find(Tile(2437, 5166), "cave_entrance_fight_cave")
         player.interactObject(entrance, "Enter")
         tick(5)
 
@@ -62,19 +64,19 @@ class TzhaarFightCaveTest : WorldTest() {
         player["insta_kill"] = true
         player.rights = PlayerRights.Admin
         player.inventory.add("dragon_scimitar")
-        val entrance = objects[Tile(2437, 5166), "cave_entrance_fight_cave"]!!
+        val entrance = GameObjects.find(Tile(2437, 5166), "cave_entrance_fight_cave")
         player.interactObject(entrance, "Enter")
         tick(2)
         player.intEntry(63)
         tick(5)
-        val jad = npcs[player.tile.regionLevel].first { it.id == "tztok_jad" }
+        val jad = NPCs.find(player.tile.regionLevel, "tztok_jad")
         jad.directHit(player, 1 + (jad.levels.getMax(Skill.Constitution) / 2))
         tick(3)
-        assertEquals(4, npcs[player.tile.regionLevel].count { it.id == "yt_hur_kot" })
+        assertEquals(4, NPCs.at(player.tile.regionLevel).count { it.id == "yt_hur_kot" })
     }
 
     private fun killAll(player: Player) {
-        val current = npcs[player.tile.regionLevel].toList()
+        val current = NPCs.at(player.tile.regionLevel).toList()
         for (npc in current) {
             npc.directHit(player, npc.levels.get(Skill.Constitution))
         }
@@ -82,7 +84,7 @@ class TzhaarFightCaveTest : WorldTest() {
     }
 
     private fun killKets(player: Player) {
-        val current = npcs[player.tile.regionLevel].toList()
+        val current = NPCs.at(player.tile.regionLevel).toList()
         var killed = false
         for (npc in current) {
             if (npc.id == "tz_kek_spawn") {
@@ -102,7 +104,7 @@ class TzhaarFightCaveTest : WorldTest() {
         })
         val player = createPlayer(Tile(2438, 5168), "JalYt-1")
         player["god_mode"] = true
-        val entrance = objects[Tile(2437, 5166), "cave_entrance_fight_cave"]!!
+        val entrance = GameObjects.find(Tile(2437, 5166), "cave_entrance_fight_cave")
         player.interactObject(entrance, "Enter")
         tick(5)
         val manager = get<AccountManager>()
@@ -122,7 +124,7 @@ class TzhaarFightCaveTest : WorldTest() {
         })
         val player = createPlayer(Tile(2438, 5168), "JalYt-2")
         player["god_mode"] = true
-        val entrance = objects[Tile(2437, 5166), "cave_entrance_fight_cave"]!!
+        val entrance = GameObjects.find(Tile(2437, 5166), "cave_entrance_fight_cave")
         player.interactObject(entrance, "Enter")
         tick(5)
         val manager = get<AccountManager>()
@@ -154,7 +156,7 @@ class TzhaarFightCaveTest : WorldTest() {
         })
         val player = createPlayer(Tile(2438, 5168), "JalYt-4")
         player.inventory.add("dragon_scimitar")
-        val entrance = objects[Tile(2437, 5166), "cave_entrance_fight_cave"]!!
+        val entrance = GameObjects.find(Tile(2437, 5166), "cave_entrance_fight_cave")
         player.interactObject(entrance, "Enter")
         tick(5)
         player["fight_cave_wave"] = 10
@@ -174,7 +176,7 @@ class TzhaarFightCaveTest : WorldTest() {
             override fun nextBits(bitCount: Int): Int = 0
         })
         val player = createPlayer(Tile(2438, 5168), "JalYt-5")
-        val entrance = objects[Tile(2437, 5166), "cave_entrance_fight_cave"]!!
+        val entrance = GameObjects.find(Tile(2437, 5166), "cave_entrance_fight_cave")
         player.interactObject(entrance, "Enter")
         tick(5)
         player.tele(3221, 3219)

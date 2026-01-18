@@ -26,7 +26,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 
-class ExplorerJack(val npcs: NPCs, val variableDefinitions: VariableDefinitions) : Script {
+class ExplorerJack(val variableDefinitions: VariableDefinitions) : Script {
 
     init {
         npcOperate("Talk-to", "explorer_jack") {
@@ -88,7 +88,7 @@ class ExplorerJack(val npcs: NPCs, val variableDefinitions: VariableDefinitions)
         }
 
         objectOperate("Open", "explorer_jack_trapdoor") {
-            val explorerJack = npcs[tile.regionLevel].first { it.id.startsWith("explorer_jack") }
+            val explorerJack = NPCs.find(tile.regionLevel) { it.id.startsWith("explorer_jack") }
             talkWith(explorerJack)
             npc<Confused>("I say, there's nothing interesting in my cellar! Better go exploring elsewhere, eh?")
             player<Quiz>("What's down there?")

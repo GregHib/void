@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
-class Ned(val floorItems: FloorItems) : Script {
+class Ned : Script {
 
     init {
         npcOperate("Talk-to", "ned") {
@@ -118,7 +118,7 @@ class Ned(val floorItems: FloorItems) : Script {
             statement("You hand Ned 15 coins. Ned gives you a coil of rope.")
             inventory.remove("coins", 15)
             if (inventory.isFull()) {
-                floorItems.add(tile, "rope", disappearTicks = 300, owner = this)
+                FloorItems.add(tile, "rope", disappearTicks = 300, owner = this)
             } else {
                 inventory.add("rope")
             }

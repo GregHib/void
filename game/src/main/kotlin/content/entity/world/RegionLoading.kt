@@ -24,7 +24,7 @@ import world.gregs.voidps.type.Zone
  * Loads maps when they are accessed
  */
 
-class RegionLoading(val players: Players, val dynamicZones: DynamicZones) : Script {
+class RegionLoading(val dynamicZones: DynamicZones) : Script {
 
     val playerRegions = IntArray(MAX_PLAYERS - 1)
 
@@ -53,7 +53,7 @@ class RegionLoading(val players: Players, val dynamicZones: DynamicZones) : Scri
             player.viewport?.seen(player)
             playerRegions[player.index - 1] = player.tile.regionLevel.id
             val viewport = player.viewport ?: return@callback
-            players.forEach { other ->
+            for (other in Players) {
                 viewport.seen(other)
             }
             updateRegion(player, true, crossedDynamicBoarder(player))
@@ -68,7 +68,7 @@ class RegionLoading(val players: Players, val dynamicZones: DynamicZones) : Scri
          * A region has been changed and needs updating for all players
          */
         DynamicZones.reloadCallback = {
-            players.forEach { player ->
+            for (player in Players) {
                 if (player.networked && needsRegionChange(player)) {
                     updateRegion(player, initial = false, force = true)
                 }

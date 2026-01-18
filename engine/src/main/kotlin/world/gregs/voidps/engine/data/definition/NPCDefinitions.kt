@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
+import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.data.definition.data.Pocket
@@ -11,20 +12,29 @@ import world.gregs.voidps.engine.data.definition.data.Spot
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.timedLoad
 
-class NPCDefinitions(
-    override var definitions: Array<NPCDefinition>,
-) : DefinitionsDecoder<NPCDefinition> {
+object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
 
     override lateinit var ids: Map<String, Int>
 
     override fun empty() = NPCDefinition.EMPTY
 
+    override lateinit var definitions: Array<NPCDefinition>
+
+    fun init(definitions: Array<NPCDefinition>): NPCDefinitions {
+        this.definitions = definitions
+        return this
+    }
+
+    @TestOnly
+    fun set(definitions: Array<NPCDefinition>, map: Map<String, Int>) {
+        this.definitions = definitions
+        this.ids = map
+    }
+
     fun load(
         paths: List<String>,
         dropTables: DropTables? = null,
-        animationDefinitions: AnimationDefinitions? = null,
-        soundDefinitions: SoundDefinitions? = null,
-    ): NPCDefinitions {
+    ) {
         timedLoad("npc extra") {
             val ids = Object2IntOpenHashMap<String>()
             ids.defaultReturnValue(-1)
@@ -85,6 +95,5 @@ class NPCDefinitions(
             this.ids = ids
             ids.size
         }
-        return this
     }
 }

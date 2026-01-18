@@ -17,11 +17,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.type.random
 
-class KorasiSword(
-    val players: Players,
-    val npcs: NPCs,
-    val lineOfSight: LineValidator,
-) : Script {
+class KorasiSword(val lineOfSight: LineValidator) : Script {
 
     init {
         specialAttack("disrupt") { target, id ->
@@ -56,9 +52,9 @@ class KorasiSword(
         if (chain.size >= 3) {
             return
         }
-        val characters = if (target is Player) players else npcs
+        val characters = if (target is Player) Players else NPCs
         for (tile in target.tile.spiral(4)) {
-            for (character in characters[tile]) {
+            for (character in characters.at(tile)) {
                 if (character == target || chain.contains(character.index) || !Target.attackable(source, character)) {
                     continue
                 }

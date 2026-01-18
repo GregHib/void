@@ -124,8 +124,7 @@ fun Player.dialogueContinues() {
 }
 
 private fun getItemOptionIndex(item: String, option: String): Int? {
-    val definitions: ItemDefinitions = get()
-    val definition = definitions.getOrNull(item) ?: return null
+    val definition = ItemDefinitions.getOrNull(item) ?: return null
     return definition.options.indexOf(option)
 }
 
@@ -174,7 +173,7 @@ fun Player.itemOnItem(
 }
 
 fun Player.npcOption(npc: NPC, option: String) {
-    val definitions = get<NPCDefinitions>()
+    val definitions = NPCDefinitions
     val def = if (npc.transform.isNotBlank()) {
         definitions.get(npc.transform)
     } else {

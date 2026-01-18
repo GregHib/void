@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
@@ -19,7 +20,7 @@ class CompostBinTest : WorldTest() {
     fun `Fill empty compost bin with compostable items`() {
         val player = createPlayer(Tile(3056, 3311))
         player.inventory.add("weeds", 2)
-        val bin = objects[Tile(3056, 3312), "farming_compost_bin_falador"]!!
+        val bin = GameObjects.find(Tile(3056, 3312), "farming_compost_bin_falador")
 
         player.itemOnObject(bin, 0)
         tick(3)
@@ -32,7 +33,7 @@ class CompostBinTest : WorldTest() {
         val player = createPlayer(Tile(3056, 3311))
         player.inventory.add("pineapple", 3)
         player["compost_bin_falador"] = "supercompostable_13"
-        val bin = objects[Tile(3056, 3312), "farming_compost_bin_falador"]!!
+        val bin = GameObjects.find(Tile(3056, 3312), "farming_compost_bin_falador")
 
         player.itemOnObject(bin, 0)
         tick(3)
@@ -44,7 +45,7 @@ class CompostBinTest : WorldTest() {
     fun `Can't fill compost bin with non-compostable items`() {
         val player = createPlayer(Tile(3056, 3311))
         player.inventory.add("shark", 2)
-        val bin = objects[Tile(3056, 3312), "farming_compost_bin_falador"]!!
+        val bin = GameObjects.find(Tile(3056, 3312), "farming_compost_bin_falador")
 
         player.itemOnObject(bin, 0)
         tick(3)
@@ -57,7 +58,7 @@ class CompostBinTest : WorldTest() {
         val player = createPlayer(Tile(3056, 3311))
         player.inventory.add("weeds")
         player["compost_bin_falador"] = "supercompostable_14"
-        val bin = objects[Tile(3056, 3312), "farming_compost_bin_falador"]!!
+        val bin = GameObjects.find(Tile(3056, 3312), "farming_compost_bin_falador")
 
         player.itemOnObject(bin, 0)
         tick(3)
@@ -76,7 +77,7 @@ class CompostBinTest : WorldTest() {
         val player = createPlayer(Tile(3056, 3311))
         player.inventory.add("bucket", 3)
         player["compost_bin_falador"] = "compost_15"
-        val bin = objects[Tile(3056, 3312), "farming_compost_bin_falador"]!!
+        val bin = GameObjects.find(Tile(3056, 3312), "farming_compost_bin_falador")
 
         player.objectOption(bin, "Empty")
         tick(10)
@@ -91,7 +92,7 @@ class CompostBinTest : WorldTest() {
         val player = createPlayer(Tile(3056, 3311))
         player.inventory.add("bucket", 3)
         player["compost_bin_falador"] = "supercompost_15"
-        val bin = objects[Tile(3056, 3312), "farming_compost_bin_falador"]!!
+        val bin = GameObjects.find(Tile(3056, 3312), "farming_compost_bin_falador")
 
         player.objectOption(bin, "Empty")
         tick(10)
@@ -105,7 +106,7 @@ class CompostBinTest : WorldTest() {
     fun `Take tomatoes from completed compost bin`() {
         val player = createPlayer(Tile(3056, 3311))
         player["compost_bin_falador"] = "rotten_tomatoes_15"
-        val bin = objects[Tile(3056, 3312), "farming_compost_bin_falador"]!!
+        val bin = GameObjects.find(Tile(3056, 3312), "farming_compost_bin_falador")
 
         player.objectOption(bin, "Take-tomato")
         tick(10)
@@ -120,7 +121,7 @@ class CompostBinTest : WorldTest() {
         val player = createPlayer(Tile(3056, 3311))
         player.inventory.add("spade")
         player["compost_bin_falador"] = "supercompostable_13"
-        val bin = objects[Tile(3056, 3312), "farming_compost_bin_falador"]!!
+        val bin = GameObjects.find(Tile(3056, 3312), "farming_compost_bin_falador")
 
         player.itemOnObject(bin, 0)
         tick(1)

@@ -74,7 +74,7 @@ suspend fun Bot.buyItem(item: String, amount: Int = 1): Boolean {
 }
 
 fun Bot.equip(item: String) {
-    val def = get<ItemDefinitions>().getOrNull(item) ?: return
+    val def = ItemDefinitions.getOrNull(item) ?: return
     if (def.slot == EquipSlot.None) {
         return
     }
@@ -87,7 +87,7 @@ fun Bot.equip(item: String) {
 fun Bot.inventoryOption(item: String, option: String) {
     val index = player.inventory.indexOf(item)
     if (index != -1) {
-        val def = get<ItemDefinitions>().getOrNull(item) ?: return
+        val def = ItemDefinitions.getOrNull(item) ?: return
         player.instructions.trySend(InteractInterface(interfaceId = 149, componentId = 0, itemId = def.id, itemSlot = index, option = def.options.indexOf(option)))
     }
 }
@@ -109,10 +109,9 @@ suspend fun Bot.dialogueOption(option: String) {
 }
 
 fun Bot.getObject(filter: (GameObject) -> Boolean): GameObject? {
-    val objects = get<GameObjects>()
     for (zone in player.tile.zone.spiral(2)) {
         val obj = zone.toCuboid()
-            .flatMap { tile -> objects[tile] }
+            .flatMap { tile -> GameObjects.at(tile) }
             .firstOrNull(filter)
         if (obj != null) {
             return obj
@@ -122,12 +121,11 @@ fun Bot.getObject(filter: (GameObject) -> Boolean): GameObject? {
 }
 
 fun Bot.getObjects(filter: (GameObject) -> Boolean): List<GameObject> {
-    val objects = get<GameObjects>()
     val list = mutableListOf<GameObject>()
     for (zone in player.tile.zone.spiral(2)) {
         list.addAll(
             zone.toCuboid()
-                .flatMap { tile -> objects[tile] }
+                .flatMap { tile -> GameObjects.at(tile) }
                 .filter(filter),
         )
     }

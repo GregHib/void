@@ -23,7 +23,7 @@ import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 
-class Furnace(val itemDefinitions: ItemDefinitions) : Script {
+class Furnace : Script {
 
     val bars = listOf(
         "bronze_bar",
@@ -62,7 +62,7 @@ class Furnace(val itemDefinitions: ItemDefinitions) : Script {
         val available = mutableListOf<String>()
         var max = 0
         for (bar in bars) {
-            val smelt: Smelting = itemDefinitions.getOrNull(bar)?.get("smelting") ?: continue
+            val smelt: Smelting = ItemDefinitions.getOrNull(bar)?.get("smelting") ?: continue
             val min = smelt.items.minOf { item -> inventory.count(item.id, item.amount) }
             if (min <= 0) {
                 continue
@@ -88,7 +88,7 @@ class Furnace(val itemDefinitions: ItemDefinitions) : Script {
             return
         }
 
-        val definition = itemDefinitions.get(id)
+        val definition = ItemDefinitions.get(id)
         val smelting: Smelting = definition.getOrNull("smelting") ?: return
         if (!player.has(Skill.Smithing, smelting.level, message = true)) {
             player.softTimers.stop("smelting")

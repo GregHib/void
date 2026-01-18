@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import org.koin.test.mock.declareMock
 import stringEntry
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.open
@@ -18,9 +17,7 @@ internal class DestroyTest : DialogueTest() {
     @BeforeEach
     override fun setup() {
         super.setup()
-        declareMock<ItemDefinitions> {
-            every { this@declareMock.get("1234") } returns ItemDefinition(id = 1234, name = "magic")
-        }
+        ItemDefinitions.set(Array(1235) { if (it == 1234) ItemDefinition(id = 1234, name = "magic") else ItemDefinition.EMPTY }, mapOf("1234" to 0))
     }
 
     @Test

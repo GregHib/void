@@ -6,10 +6,9 @@ import containsMessage
 import objectOption
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
-import world.gregs.voidps.engine.data.definition.ObjectDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Area
@@ -21,13 +20,10 @@ import kotlin.test.assertTrue
 internal class AbyssObstaclesTest : WorldTest() {
 
     private lateinit var center: Area
-    private lateinit var definitions: ObjectDefinitions
 
     @BeforeEach
     fun setup() {
-        val areas: AreaDefinitions = get()
-        definitions = get()
-        center = areas["abyss_center"]
+        center = Areas["abyss_center"]
     }
 
     @Test
@@ -37,7 +33,7 @@ internal class AbyssObstaclesTest : WorldTest() {
         player.levels.set(Skill.Mining, 99)
         player.inventory.add("bronze_pickaxe")
 
-        val obj = objects[Tile(3026, 4813)].first { it.id.startsWith("abyss_obstacle") }
+        val obj = GameObjects.find(Tile(3026, 4813)) { it.id.startsWith("abyss_obstacle") }
 
         player.objectOption(obj, optionIndex = 0)
         tick(17)
@@ -56,7 +52,7 @@ internal class AbyssObstaclesTest : WorldTest() {
         player["abyss_obstacles"] = 0
         player.inventory.add("bronze_pickaxe")
 
-        val obj = objects[Tile(3026, 4813)].first { it.id.startsWith("abyss_obstacle") }
+        val obj = GameObjects.find(Tile(3026, 4813)) { it.id.startsWith("abyss_obstacle") }
 
         player.objectOption(obj, optionIndex = 0)
         tick(8)
@@ -73,7 +69,7 @@ internal class AbyssObstaclesTest : WorldTest() {
         player.inventory.add("dragon_pickaxe")
         player["abyss_obstacles"] = 0
 
-        val obj = objects[Tile(3026, 4813)].first { it.id.startsWith("abyss_obstacle") }
+        val obj = GameObjects.find(Tile(3026, 4813)) { it.id.startsWith("abyss_obstacle") }
 
         player.objectOption(obj, optionIndex = 0)
         tick()
@@ -89,7 +85,7 @@ internal class AbyssObstaclesTest : WorldTest() {
         player.levels.set(Skill.Woodcutting, 99)
         player.inventory.add("bronze_hatchet")
 
-        val obj = objects[Tile(3018, 4821)].first { it.id.startsWith("abyss_obstacle") }
+        val obj = GameObjects.find(Tile(3018, 4821)) { it.id.startsWith("abyss_obstacle") }
 
         player.objectOption(obj, optionIndex = 0)
         tick(16)
@@ -104,7 +100,7 @@ internal class AbyssObstaclesTest : WorldTest() {
         val player = createPlayer(tile)
         player.inventory.add("dragon_hatchet")
 
-        val obj = objects[Tile(3018, 4821)].first { it.id.startsWith("abyss_obstacle") }
+        val obj = GameObjects.find(Tile(3018, 4821)) { it.id.startsWith("abyss_obstacle") }
 
         player.objectOption(obj, optionIndex = 0)
         tick(6)
@@ -123,7 +119,7 @@ internal class AbyssObstaclesTest : WorldTest() {
         val player = createPlayer(tile)
         player.inventory.add("bronze_hatchet")
 
-        val obj = objects[Tile(3018, 4821)].first { it.id.startsWith("abyss_obstacle") }
+        val obj = GameObjects.find(Tile(3018, 4821)) { it.id.startsWith("abyss_obstacle") }
 
         player.objectOption(obj, optionIndex = 0)
         tick(7)
@@ -139,7 +135,7 @@ internal class AbyssObstaclesTest : WorldTest() {
         player.levels.set(Skill.Firemaking, 99)
         player.inventory.add("tinderbox")
 
-        val obj = objects[Tile(3018, 4833)].first { it.id.startsWith("abyss_obstacle") }
+        val obj = GameObjects.find(Tile(3018, 4833)) { it.id.startsWith("abyss_obstacle") }
 
         player.objectOption(obj, optionIndex = 0)
         tick(21)
@@ -154,7 +150,7 @@ internal class AbyssObstaclesTest : WorldTest() {
         val player = createPlayer(tile)
         player.levels.set(Skill.Firemaking, 99)
 
-        val obj = objects[Tile(3018, 4833)].first { it.id.startsWith("abyss_obstacle") }
+        val obj = GameObjects.find(Tile(3018, 4833)) { it.id.startsWith("abyss_obstacle") }
 
         player.objectOption(obj, optionIndex = 0)
         tick(4)
@@ -173,7 +169,7 @@ internal class AbyssObstaclesTest : WorldTest() {
         val player = createPlayer(tile)
         player.inventory.add("tinderbox")
 
-        val obj = objects[Tile(3018, 4833)].first { it.id.startsWith("abyss_obstacle") }
+        val obj = GameObjects.find(Tile(3018, 4833)) { it.id.startsWith("abyss_obstacle") }
 
         player.objectOption(obj, optionIndex = 0)
         tick(4)
@@ -188,7 +184,7 @@ internal class AbyssObstaclesTest : WorldTest() {
         val player = createPlayer(Tile(3020, 4842))
         player.levels.set(Skill.Thieving, 99)
 
-        val obj = objects[Tile(3021, 4842)].first { it.id.startsWith("abyss_obstacle") }
+        val obj = GameObjects.find(Tile(3021, 4842)) { it.id.startsWith("abyss_obstacle") }
 
         player.objectOption(obj, optionIndex = 0)
         tick(16)
@@ -206,7 +202,7 @@ internal class AbyssObstaclesTest : WorldTest() {
         val player = createPlayer(tile)
         player.levels.set(Skill.Thieving, 99)
 
-        val obj = objects[Tile(3021, 4842)].first { it.id.startsWith("abyss_obstacle") }
+        val obj = GameObjects.find(Tile(3021, 4842)) { it.id.startsWith("abyss_obstacle") }
 
         player.objectOption(obj, optionIndex = 0)
         tick(3)
@@ -221,7 +217,7 @@ internal class AbyssObstaclesTest : WorldTest() {
         val player = createPlayer(Tile(3030, 4851))
         player.levels.set(Skill.Agility, 99)
 
-        val obj = objects[Tile(3028, 4849)].first { it.id.startsWith("abyss_obstacle") }
+        val obj = GameObjects.find(Tile(3028, 4849)) { it.id.startsWith("abyss_obstacle") }
 
         player.objectOption(obj, optionIndex = 0)
         tick(16)
@@ -239,7 +235,7 @@ internal class AbyssObstaclesTest : WorldTest() {
         val player = createPlayer(tile)
         player.levels.set(Skill.Agility, 99)
 
-        val obj = objects[Tile(3028, 4849)].first { it.id.startsWith("abyss_obstacle") }
+        val obj = GameObjects.find(Tile(3028, 4849)) { it.id.startsWith("abyss_obstacle") }
 
         player.objectOption(obj, optionIndex = 0)
         tick(16)
@@ -253,7 +249,7 @@ internal class AbyssObstaclesTest : WorldTest() {
     fun `Enter passage obstacle`() {
         val player = createPlayer(Tile(3038, 4853))
 
-        val obj = objects[Tile(3038, 4853)].first { it.id.startsWith("abyss_obstacle") }
+        val obj = GameObjects.find(Tile(3038, 4853)) { it.id.startsWith("abyss_obstacle") }
 
         player.objectOption(obj, optionIndex = 0)
         tick(3)

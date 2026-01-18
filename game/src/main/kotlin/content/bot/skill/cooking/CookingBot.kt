@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.config.GearDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinition
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -21,11 +21,11 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.InteractDialogue
 import world.gregs.voidps.network.client.instruction.InteractInterfaceObject
 
-class CookingBot(val areas: AreaDefinitions, val tasks: TaskManager) : Script {
+class CookingBot(val tasks: TaskManager) : Script {
 
     init {
         worldSpawn {
-            for (area in areas.getTagged("cooking")) {
+            for (area in Areas.tagged("cooking")) {
                 val spaces: Int = area["spaces", 1]
                 val type: String = area.getOrNull("type") ?: ""
                 val task = Task(

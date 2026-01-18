@@ -18,21 +18,19 @@ import kotlin.test.assertEquals
 class ShardSwappingTest : WorldTest() {
 
     private lateinit var enums: EnumDefinitions
-    private lateinit var itemDefinitions: ItemDefinitions
     private lateinit var pouchMap: Map<Int, Any>
     private lateinit var scrollMap: Map<Int, Any>
 
     @BeforeEach
     fun setup() {
         enums = get()
-        itemDefinitions = get()
         pouchMap = enums.get("summoning_pouch_ids_1").map!!.filter { (index, _) -> index < 78 }
         scrollMap = enums.get("summoning_scroll_ids_1").map!!.filter { (index, _) -> index < 78 }
     }
 
     @TestFactory
     fun `Swap Pouches for Shards`() = pouchMap.map { (index, pouchId) ->
-        val pouch = Item(itemDefinitions.get(pouchId as Int).stringId)
+        val pouch = Item(ItemDefinitions.get(pouchId as Int).stringId)
         dynamicTest("Swap ${pouch.id}") {
             val player = createPlayer(emptyTile)
             val bogrog = createNPC("bogrog", emptyTile.addY(4))
@@ -57,7 +55,7 @@ class ShardSwappingTest : WorldTest() {
 
     @TestFactory
     fun `Swap Scrolls for Shards`() = scrollMap.map { (index, scrollId) ->
-        val scroll = Item(itemDefinitions.get(scrollId as Int).stringId)
+        val scroll = Item(ItemDefinitions.get(scrollId as Int).stringId)
         dynamicTest("Swap ${scroll.id}") {
             val player = createPlayer(emptyTile)
             val bogrog = createNPC("bogrog", emptyTile.addY(4))

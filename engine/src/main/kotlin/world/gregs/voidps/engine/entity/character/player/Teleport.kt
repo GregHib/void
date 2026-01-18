@@ -2,12 +2,11 @@ package world.gregs.voidps.engine.entity.character.player
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.*
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Tile
@@ -70,7 +69,7 @@ interface Teleport {
         }
 
         fun teleport(player: Player, area: String, type: String) {
-            teleport(player, get<AreaDefinitions>()[area].random(player)!!, type)
+            teleport(player, Areas[area].random(player)!!, type)
         }
 
         fun teleport(player: Player, tile: Tile, type: String, sound: Boolean = true) {

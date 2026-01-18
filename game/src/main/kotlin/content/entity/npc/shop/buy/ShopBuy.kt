@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import kotlin.math.min
 
-class ShopBuy(val itemDefs: ItemDefinitions) : Script {
+class ShopBuy : Script {
     val logger = InlineLogger()
 
     init {
@@ -33,7 +33,7 @@ class ShopBuy(val itemDefs: ItemDefinitions) : Script {
                 else -> return@interfaceOption
             }
             val id: Int = get("info_item") ?: return@interfaceOption
-            val item = itemDefs.get(id).stringId
+            val item = ItemDefinitions.get(id).stringId
             val inventory = shopInventory()
             val index = inventory.indexOf(item)
             if (hasShopSample()) {

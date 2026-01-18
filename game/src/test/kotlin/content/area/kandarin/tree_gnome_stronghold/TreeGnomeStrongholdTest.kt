@@ -5,6 +5,7 @@ import containsMessage
 import objectOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -15,7 +16,7 @@ class TreeGnomeStrongholdTest : WorldTest() {
     fun `Climb up rock shortcut`() {
         val player = createPlayer(Tile(2486, 3515))
         player.levels.set(Skill.Agility, 37)
-        val rocks = objects[Tile(2487, 3515), "gnome_stronghold_shortcut_rock_top"]!!
+        val rocks = GameObjects.find(Tile(2487, 3515), "gnome_stronghold_shortcut_rock_top")
         player.objectOption(rocks, "Climb")
         tick(8)
 
@@ -26,7 +27,7 @@ class TreeGnomeStrongholdTest : WorldTest() {
     fun `Can't climb up rock shortcut without levels`() {
         val player = createPlayer(Tile(2486, 3515))
         player.levels.set(Skill.Agility, 36)
-        val rocks = objects[Tile(2487, 3515), "gnome_stronghold_shortcut_rock_top"]!!
+        val rocks = GameObjects.find(Tile(2487, 3515), "gnome_stronghold_shortcut_rock_top")
         player.objectOption(rocks, "Climb")
         tick(2)
 
@@ -37,7 +38,7 @@ class TreeGnomeStrongholdTest : WorldTest() {
     fun `Climb down rock shortcut`() {
         val player = createPlayer(Tile(2489, 3521))
         player.levels.set(Skill.Agility, 37)
-        val rocks = objects[Tile(2489, 3520), "gnome_stronghold_shortcut_rock_bottom"]!!
+        val rocks = GameObjects.find(Tile(2489, 3520), "gnome_stronghold_shortcut_rock_bottom")
         player.objectOption(rocks, "Climb")
         tick(8)
 
@@ -48,7 +49,7 @@ class TreeGnomeStrongholdTest : WorldTest() {
     fun `Can't climb down rock shortcut without levels`() {
         val player = createPlayer(Tile(2489, 3521))
         player.levels.set(Skill.Agility, 36)
-        val rocks = objects[Tile(2489, 3520), "gnome_stronghold_shortcut_rock_bottom"]!!
+        val rocks = GameObjects.find(Tile(2489, 3520), "gnome_stronghold_shortcut_rock_bottom")
         player.objectOption(rocks, "Climb")
         tick(2)
 

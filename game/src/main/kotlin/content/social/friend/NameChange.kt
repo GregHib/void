@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.login.protocol.encode.Friend
 import java.util.concurrent.TimeUnit
 
-class NameChange(val players: Players) : Script {
+class NameChange : Script {
 
     init {
         modCommand("rename", desc = "Change your display name (login stays the same)", handler = ::rename)
@@ -43,7 +43,7 @@ class NameChange(val players: Players) : Script {
                 option("Yes, call me $toName") {
                     val previous = player.name
                     player.name = toName
-                    players
+                    Players
                         .filter { it.friend(player) }
                         .forEach { friend ->
                             friend.updateFriend(Friend(toName, previous, renamed = true, world = Settings.world, worldName = Settings.worldName))

@@ -2,7 +2,6 @@ package world.gregs.voidps.tools.map.obj
 
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.tools.map.obj.types.*
 import world.gregs.voidps.tools.map.view.graph.MutableNavigationGraph
 import world.gregs.voidps.type.Tile
@@ -11,17 +10,15 @@ import kotlin.system.exitProcess
 
 class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLinks: List<Pair<Tile, Tile>>, val graph: MutableNavigationGraph) {
 
-    val objs = get<GameObjects>()
-
     /**
      * Ignore re-used objects, e.g. chains on levels > 0 in stronghold of security
      */
     private fun isReused(obj: GameObject): Boolean {
         if (obj.tile.level > 0) {
-            if (objs[obj.tile.addLevel(1), obj.id] != null) {
+            if (GameObjects.findOrNull(obj.tile.addLevel(1), obj.id) != null) {
                 return false
             }
-            if (objs[obj.tile.minus(level = 1), obj.id] != null) {
+            if (GameObjects.findOrNull(obj.tile.minus(level = 1), obj.id) != null) {
                 return false
             }
         }

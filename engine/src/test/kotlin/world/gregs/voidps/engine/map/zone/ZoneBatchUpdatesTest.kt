@@ -6,7 +6,6 @@ import io.mockk.mockkStatic
 import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.view.Viewport
@@ -16,9 +15,6 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.GameObjectCollisionAdd
-import world.gregs.voidps.engine.map.collision.GameObjectCollisionRemove
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.protocol.encode.clearZone
@@ -32,7 +28,6 @@ import world.gregs.voidps.type.Zone
 
 internal class ZoneBatchUpdatesTest : KoinMock() {
 
-    private lateinit var batches: ZoneBatchUpdates
     private lateinit var player: Player
     private lateinit var client: Client
     private lateinit var update: ZoneUpdate
@@ -42,6 +37,7 @@ internal class ZoneBatchUpdatesTest : KoinMock() {
         player = Player()
         client = mockk(relaxed = true)
         update = mockk(relaxed = true)
+        GameObjects.storeUnused = true
         mockkStatic("world.gregs.voidps.network.login.protocol.encode.ZoneEncodersKt")
         mockkStatic("world.gregs.voidps.network.login.protocol.encode.ZoneUpdateEncodersKt")
         mockkStatic("world.gregs.voidps.engine.entity.character.player.PlayerVisualsKt")
@@ -50,29 +46,24 @@ internal class ZoneBatchUpdatesTest : KoinMock() {
         player["logged_in"] = false
         player.viewport = Viewport()
         player.viewport!!.size = 0
-        batches = ZoneBatchUpdates()
     }
 
     @Test
     fun `Entering zone sends clear and initial updates`() {
-        declareMock<ObjectDefinitions> {
-            every { get(4321) } returns ObjectDefinition(1234)
-        }
+        ObjectDefinitions.init(arrayOf(ObjectDefinition(1234)))
         // Given
         val zone = Zone(2, 2)
-        batches.add(zone, update)
+        ZoneBatchUpdates.add(zone, update)
         player.tile = Tile(20, 20)
-        val collisions = Collisions()
-        val objects = GameObjects(GameObjectCollisionAdd(collisions), GameObjectCollisionRemove(collisions), ZoneBatchUpdates(), mockk(relaxed = true), storeUnused = true)
-        objects.set(id = 1234, x = 21, y = 20, level = 0, shape = ObjectShape.WALL_DECOR_STRAIGHT_NO_OFFSET, rotation = 0, definition = ObjectDefinition.EMPTY)
-        batches.register(objects)
+        GameObjects.set(id = 1234, x = 21, y = 20, level = 0, shape = ObjectShape.WALL_DECOR_STRAIGHT_NO_OFFSET, rotation = 0, definition = ObjectDefinition.EMPTY)
+        ZoneBatchUpdates.register(GameObjects)
         val added = GameObject(4321, Tile(20, 21), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
-        objects.add(added, collision = false) // Avoid koin
+        GameObjects.add(added, collision = false) // Avoid koin
         val removed = GameObject(1234, Tile(21, 20), ObjectShape.WALL_DECOR_STRAIGHT_NO_OFFSET, 0)
-        objects.remove(removed, collision = false)
+        GameObjects.remove(removed, collision = false)
         player["logged_in"] = true
         // When
-        batches.run(player)
+        ZoneBatchUpdates.run(player)
         // Then
         verify(exactly = 1) {
             client.clearZone(2, 2, 0)
@@ -90,10 +81,10 @@ internal class ZoneBatchUpdatesTest : KoinMock() {
         player.tile = zone.tile
         player.viewport!!.lastLoadZone = lastZone
         // Given
-        batches.add(zone, update)
-        batches.run()
+        ZoneBatchUpdates.add(zone, update)
+        ZoneBatchUpdates.run()
         // When
-        batches.run(player)
+        ZoneBatchUpdates.run(player)
         // Then
         verify {
             client.sendBatch(any<ByteArray>(), 7, 7, 1)
@@ -110,9 +101,9 @@ internal class ZoneBatchUpdatesTest : KoinMock() {
         every { update.private } returns true
         every { update.visible(player.name) } returns true
         // Given
-        batches.add(zone, update)
+        ZoneBatchUpdates.add(zone, update)
         // When
-        batches.run(player)
+        ZoneBatchUpdates.run(player)
         // Then
         verify {
             client.send(update)
@@ -132,9 +123,9 @@ internal class ZoneBatchUpdatesTest : KoinMock() {
         every { update.private } returns true
         every { update.visible(player.name) } returns false
         // Given
-        batches.add(zone, update)
+        ZoneBatchUpdates.add(zone, update)
         // When
-        batches.run(player)
+        ZoneBatchUpdates.run(player)
         // Then
         verify(exactly = 0) {
             client.send(update)

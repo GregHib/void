@@ -8,6 +8,7 @@ import itemOnNpc
 import npcOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -22,7 +23,7 @@ class GargoyleTest : WorldTest() {
         player.levels.set(Skill.Constitution, 50)
         player.levels.set(Skill.Slayer, 75)
         player.inventory.add("rock_hammer")
-        val gargoyle = npcs.add("gargoyle", emptyTile.addY(1))
+        val gargoyle = NPCs.add("gargoyle", emptyTile.addY(1))
         tick()
         gargoyle.levels.set(Skill.Constitution, 50)
 
@@ -39,7 +40,7 @@ class GargoyleTest : WorldTest() {
         player.levels.set(Skill.Constitution, 50)
         player.levels.set(Skill.Slayer, 75)
         player.inventory.add("rock_hammer")
-        val gargoyle = npcs.add("gargoyle", emptyTile.addY(1))
+        val gargoyle = NPCs.add("gargoyle", emptyTile.addY(1))
         tick()
         gargoyle.levels.set(Skill.Constitution, 50)
 
@@ -57,7 +58,7 @@ class GargoyleTest : WorldTest() {
         player.levels.set(Skill.Slayer, 75)
         player.inventory.add("rock_hammer")
         player["killing_blow"] = true
-        val gargoyle = npcs.add("gargoyle", emptyTile.addY(1))
+        val gargoyle = NPCs.add("gargoyle", emptyTile.addY(1))
         tick()
         gargoyle.levels.set(Skill.Constitution, 50)
 
@@ -74,7 +75,7 @@ class GargoyleTest : WorldTest() {
         player.levels.set(Skill.Constitution, 50)
         player.levels.set(Skill.Slayer, 75)
         player["killing_blow"] = true
-        val gargoyle = npcs.add("gargoyle", emptyTile.addY(1))
+        val gargoyle = NPCs.add("gargoyle", emptyTile.addY(1))
         tick()
         gargoyle.levels.set(Skill.Constitution, 50)
 
@@ -92,7 +93,7 @@ class GargoyleTest : WorldTest() {
         player.levels.set(Skill.Constitution, 50)
         player.levels.set(Skill.Slayer, 75)
         player.inventory.add("rock_hammer")
-        val gargoyle = npcs.add("gargoyle", emptyTile.addY(1))
+        val gargoyle = NPCs.add("gargoyle", emptyTile.addY(1))
         tick()
 
         player.npcOption(gargoyle, "Smash")
@@ -110,7 +111,7 @@ class GargoyleTest : WorldTest() {
         player.levels.set(Skill.Constitution, 50)
         player.levels.set(Skill.Slayer, 75)
         player.inventory.add("rock_hammer")
-        val gargoyle = npcs.add("gargoyle", emptyTile.addY(1))
+        val gargoyle = NPCs.add("gargoyle", emptyTile.addY(1))
         tick()
         gargoyle.levels.set(Skill.Constitution, 50)
 

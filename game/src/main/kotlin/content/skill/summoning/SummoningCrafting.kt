@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import kotlin.math.min
 
-class SummoningCrafting(val enums: EnumDefinitions, val itemDefinitions: ItemDefinitions) : Script {
+class SummoningCrafting(val enums: EnumDefinitions) : Script {
 
     val pouchInterfaceId = 672
     val pouchComponentId = 16
@@ -104,7 +104,7 @@ class SummoningCrafting(val enums: EnumDefinitions, val itemDefinitions: ItemDef
      */
     fun infusePouches(player: Player, enumIndex: Int, amount: Int) {
         val pouchItemId = enums.get("summoning_pouch_ids_1").getInt(enumIndex)
-        val pouchItem = Item(itemDefinitions.get(pouchItemId).stringId)
+        val pouchItem = Item(ItemDefinitions.get(pouchItemId).stringId)
 
         val shards = getShards(pouchItem)
         val charms = getCharms(pouchItem)
@@ -139,10 +139,10 @@ class SummoningCrafting(val enums: EnumDefinitions, val itemDefinitions: ItemDef
      */
     fun transformScrolls(player: Player, enumIndex: Int, amount: Int) {
         val scrollItemId = enums.get("summoning_scroll_ids_1").getInt(enumIndex)
-        val scrollItem = Item(itemDefinitions.get(scrollItemId).stringId)
+        val scrollItem = Item(ItemDefinitions.get(scrollItemId).stringId)
 
         val pouchId = enums.get("summoning_scroll_ids_2").getKey(scrollItemId)
-        val pouchItem = Item(itemDefinitions.get(pouchId).stringId)
+        val pouchItem = Item(ItemDefinitions.get(pouchId).stringId)
 
         val maxTransformAmount = player.inventory.count(pouchItem.id)
         val amountToTransform = min(amount, maxTransformAmount)
@@ -174,10 +174,10 @@ class SummoningCrafting(val enums: EnumDefinitions, val itemDefinitions: ItemDef
         val tertiaryItemId2 = pouch.def["summoning_pouch_req_item_id_2", -1]
         val tertiaryItemAmount2 = pouch.def["summoning_pouch_req_item_amount_2", -1]
 
-        val tertiaries = mutableListOf(Item(itemDefinitions.get(tertiaryItemId1).stringId, tertiaryItemAmount1))
+        val tertiaries = mutableListOf(Item(ItemDefinitions.get(tertiaryItemId1).stringId, tertiaryItemAmount1))
 
         if (tertiaryItemId2 != -1 && tertiaryItemAmount2 != -1) {
-            tertiaries.add(Item(itemDefinitions.get(tertiaryItemId2).stringId, tertiaryItemAmount2))
+            tertiaries.add(Item(ItemDefinitions.get(tertiaryItemId2).stringId, tertiaryItemAmount2))
         }
 
         return tertiaries.toList()
@@ -193,7 +193,7 @@ class SummoningCrafting(val enums: EnumDefinitions, val itemDefinitions: ItemDef
     fun getShards(pouch: Item): Item {
         val shardItemId: Int = pouch.def["summoning_shard_id"]
         val shardAmount: Int = pouch.def["summoning_shard_amount"]
-        return Item(itemDefinitions.get(shardItemId).stringId, shardAmount)
+        return Item(ItemDefinitions.get(shardItemId).stringId, shardAmount)
     }
 
     /**
@@ -206,7 +206,7 @@ class SummoningCrafting(val enums: EnumDefinitions, val itemDefinitions: ItemDef
     fun getCharms(pouch: Item): Item {
         val charmItemId: Int = pouch.def["summoning_charm_id"]
         val charmAmount: Int = pouch.def["summoning_charm_amount"]
-        return Item(itemDefinitions.get(charmItemId).stringId, charmAmount)
+        return Item(ItemDefinitions.get(charmItemId).stringId, charmAmount)
     }
 
     /**
@@ -219,7 +219,7 @@ class SummoningCrafting(val enums: EnumDefinitions, val itemDefinitions: ItemDef
     fun getPouches(pouch: Item): Item {
         val pouchItemId: Int = pouch.def["summoning_pouch_id"]
         val pouchAmount: Int = pouch.def["summoning_pouch_amount"]
-        return Item(itemDefinitions.get(pouchItemId).stringId, pouchAmount)
+        return Item(ItemDefinitions.get(pouchItemId).stringId, pouchAmount)
     }
 
     /**

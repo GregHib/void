@@ -30,7 +30,7 @@ value class GameObject(internal val packed: Long) : Entity {
     val height: Int
         get() = if (rotation and 0x1 == 1) def.sizeX else def.sizeY
     val def: ObjectDefinition
-        get() = get<ObjectDefinitions>().get(intId)
+        get() = ObjectDefinitions.get(intId)
 
     val intId: Int
         get() = id(packed)
@@ -45,7 +45,7 @@ value class GameObject(internal val packed: Long) : Entity {
     val rotation: Int
         get() = rotation(packed)
 
-    fun anim(id: String) = get<ZoneBatchUpdates>()
+    fun anim(id: String) = ZoneBatchUpdates
         .add(tile.zone, ObjectAnimation(tile.id, get<AnimationDefinitions>().get(id).id, shape, rotation))
 
     fun nearestTo(tile: Tile) = Tile(
@@ -60,7 +60,7 @@ value class GameObject(internal val packed: Long) : Entity {
         "GameObject(id=$id, intId=$intId, tile=$tile, shape=$shape, rotation=$rotation)"
     }
 
-    fun def(player: Player, definitions: ObjectDefinitions = get()): ObjectDefinition = definitions.resolve(def, player)
+    fun def(player: Player): ObjectDefinition = ObjectDefinitions.resolve(def, player)
 
     companion object {
         operator fun invoke(id: Int, tile: Tile, shape: Int, rotation: Int): GameObject = GameObject(id, tile.x, tile.y, tile.level, shape, rotation)

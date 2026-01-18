@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-class DagannothEggHatch(val npcs: NPCs) : Script {
+class DagannothEggHatch : Script {
 
     init {
         /**
@@ -24,7 +24,7 @@ class DagannothEggHatch(val npcs: NPCs) : Script {
             // Small stand-up delay before attacking
             softQueue("dagannoth_hatch_attack", 1) {
                 transform("dagannoth_egg_opened")
-                npcs.add("dagannoth_spawn", tile)
+                NPCs.add("dagannoth_spawn", tile)
                 interactPlayer(target, "Attack")
             }
             softQueue("dagannoth_respawn", TimeUnit.MINUTES.toTicks(5)) {

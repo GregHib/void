@@ -14,6 +14,7 @@ import org.koin.dsl.module
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.data.*
+import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 import java.io.File
@@ -30,7 +31,10 @@ fun gameModule(files: ConfigFiles) = module {
             },
         )
     }
-    single(createdAtStart = true) { NavigationGraph(get(), get()).load(files.find(Settings["map.navGraph"])) }
+    single(createdAtStart = true) {
+        get<ObjectDefinitions>()
+        NavigationGraph().load(files.find(Settings["map.navGraph"]))
+    }
     single(createdAtStart = true) { Books().load(files.list(Settings["definitions.books"])) }
     single(createdAtStart = true) { MusicTracks().load(files.find(Settings["map.music"])) }
     single(createdAtStart = true) { FairyRingCodes().load(files.find(Settings["definitions.fairyCodes"])) }
@@ -38,24 +42,17 @@ fun gameModule(files: ConfigFiles) = module {
     single {
         InstructionHandlers(
             get(),
-            get(),
-            get(),
-            get(),
-            get(),
-            get(),
-            get(),
-            get(),
-            InterfaceHandler(get(), get(), get(), get()),
+            InterfaceHandler(get(), get(), get()),
         )
     }
     single(createdAtStart = true) {
         get<Storage>().offers(Settings["grandExchange.offers.activeDays", 0])
     }
     single(createdAtStart = true) {
-        ExchangeHistory(get(), get<Storage>().priceHistory().toMutableMap()).also { it.calculatePrices() }
+        ExchangeHistory(get<Storage>().priceHistory().toMutableMap()).also { it.calculatePrices() }
     }
     single(createdAtStart = true) {
-        GrandExchange(get(), get(), get<Storage>().claims().toMutableMap(), get(), get(), get(), get())
+        GrandExchange(get(), get(), get<Storage>().claims().toMutableMap(), get(), get())
     }
     single {
         if (Settings["storage.type", "files"] == "database") {

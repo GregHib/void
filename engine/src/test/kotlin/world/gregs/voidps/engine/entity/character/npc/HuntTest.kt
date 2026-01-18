@@ -1,10 +1,7 @@
 package world.gregs.voidps.engine.entity.character.npc
 
-import io.mockk.every
-import io.mockk.mockk
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
-import org.koin.test.mock.declare
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.Caller
 import world.gregs.voidps.engine.Script
@@ -12,12 +9,10 @@ import world.gregs.voidps.engine.ScriptTest
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.npc.hunt.Hunt
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.type.Tile
-import kotlin.test.assertEquals
 
 class HuntTest {
 
@@ -96,12 +91,7 @@ class HuntTest {
 
         @BeforeEach
         fun setup() {
-            declare {
-                val def = mockk<ObjectDefinitions>(relaxed = true)
-                every { def.resolve(any(), any()) } returns ObjectDefinition(0, stringId = "obj")
-                every { def.get(any<Int>()) } returns ObjectDefinition(0, stringId = "obj")
-                def
-            }
+            ObjectDefinitions.init(arrayOf(ObjectDefinition(0, stringId = "obj")))
         }
 
         override fun Script.register(args: List<String>, caller: Caller) {

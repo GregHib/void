@@ -2,14 +2,9 @@ package content.skill.magic.jewellery
 
 import content.entity.player.dialogue.type.choice
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 
-class RingOfDuelling(val areas: AreaDefinitions) : Script {
-
-    val duelArena = areas["duel_arena_teleport"]
-    val castleWars = areas["castle_wars_teleport"]
-    val mobilisingArmies = areas["mobilising_armies_teleport"]
-    val fistOfGuthix = areas["fist_of_guthix_teleport"]
+class RingOfDuelling : Script {
 
     init {
         itemOption("Rub", "ring_of_duelling_#") {
@@ -18,16 +13,16 @@ class RingOfDuelling(val areas: AreaDefinitions) : Script {
             }
             choice("Where would you like to teleport to?") {
                 option("Al Kharid Duel Arena.") {
-                    jewelleryTeleport(this, it.inventory, it.slot, duelArena)
+                    jewelleryTeleport(this, it.inventory, it.slot, Areas["duel_arena_teleport"])
                 }
                 option("Castle Wars Arena.") {
-                    jewelleryTeleport(this, it.inventory, it.slot, castleWars)
+                    jewelleryTeleport(this, it.inventory, it.slot, Areas["castle_wars_teleport"])
                 }
                 option("Mobilising Armies Command Centre.") {
-                    jewelleryTeleport(this, it.inventory, it.slot, mobilisingArmies)
+                    jewelleryTeleport(this, it.inventory, it.slot, Areas["mobilising_armies_teleport"])
                 }
                 option("Fist of Guthix.") {
-                    jewelleryTeleport(this, it.inventory, it.slot, fistOfGuthix)
+                    jewelleryTeleport(this, it.inventory, it.slot, Areas["fist_of_guthix_teleport"])
                 }
                 option("Nowhere.")
             }
@@ -38,13 +33,13 @@ class RingOfDuelling(val areas: AreaDefinitions) : Script {
                 return@itemOption
             }
             val area = when (it.option) {
-                "Duel Arena" -> duelArena
-                "Castle Wars" -> castleWars
-                "Mobilising Armies" -> mobilisingArmies
-                "Fist of Guthix" -> fistOfGuthix
+                "Duel Arena" -> "duel_arena_teleport"
+                "Castle Wars" -> "castle_wars_teleport"
+                "Mobilising Armies" -> "mobilising_armies_teleport"
+                "Fist of Guthix" -> "fist_of_guthix_teleport"
                 else -> return@itemOption
             }
-            jewelleryTeleport(this, it.inventory, it.slot, area)
+            jewelleryTeleport(this, it.inventory, it.slot, Areas[area])
         }
     }
 }

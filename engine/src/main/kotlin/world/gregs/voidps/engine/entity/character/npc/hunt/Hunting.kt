@@ -38,10 +38,6 @@ import kotlin.random.Random
  *   floor items - Varrock ash cleaner
  */
 class Hunting(
-    private val npcs: NPCs,
-    private val players: Players,
-    private val objects: GameObjects,
-    private val floorItems: FloorItems,
     private val huntModes: HuntModeDefinitions,
     private val lineValidator: LineValidator,
     private val seed: Random = random,
@@ -54,7 +50,7 @@ class Hunting(
     private val itemTargets = arrayOfNulls<FloorItem>(TARGET_CAP)
 
     override fun run() {
-        for (npc in npcs) {
+        for (npc in NPCs) {
             if (npc.huntCounter == -1) {
                 continue
             }
@@ -77,11 +73,11 @@ class Hunting(
             val range = npc.def["hunt_range", 5]
             when (definition.type) {
                 "player" -> {
-                    val target = findCharacter(npc, players, range, definition, playerTargets) ?: continue
+                    val target = findCharacter(npc, Players, range, definition, playerTargets) ?: continue
                     Hunt.hunt(npc, target, mode)
                 }
                 "npc" -> {
-                    val target = findCharacter(npc, npcs, range, definition, npcTargets) ?: continue
+                    val target = findCharacter(npc, NPCs, range, definition, npcTargets) ?: continue
                     Hunt.hunt(npc, target, mode)
                 }
                 "object" -> {
@@ -117,7 +113,7 @@ class Hunting(
     private fun listItems(npc: NPC, range: Int, definition: HuntModeDefinition) {
         count = 0
         for (zone in npc.tile.zone.toRectangle(ceil(range / 8.0).toInt()).toZonesReversed(npc.tile.level)) {
-            for (items in floorItems[zone]) {
+            for (items in FloorItems.at(zone)) {
                 for (floorItem in items) {
                     if (definition.id != null && floorItem.id != definition.id) {
                         continue
@@ -168,7 +164,7 @@ class Hunting(
         for (direction in directions) {
             val tile = parent.add(direction)
             queue.add(tile)
-            val obj = objects[tile, definition.layer] ?: continue
+            val obj = GameObjects.findOrNull(tile, definition.layer) ?: continue
             if (definition.id != null && obj.id != definition.id) {
                 continue
             }
@@ -206,7 +202,7 @@ class Hunting(
     ) {
         count = 0
         for (zone in npc.tile.zone.toRectangle(ceil(range / 8.0).toInt()).toZonesReversed(npc.tile.level)) {
-            for (character in characterList[zone]) {
+            for (character in characterList.at(zone)) {
                 if (!canHunt(npc, character, definition, range)) {
                     continue
                 }

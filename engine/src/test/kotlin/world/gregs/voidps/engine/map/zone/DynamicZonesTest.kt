@@ -5,24 +5,18 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.definition.MapDefinitions
-import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Zone
 
 internal class DynamicZonesTest {
 
     private lateinit var zones: DynamicZones
-    private lateinit var objects: GameObjects
-    private lateinit var collisions: Collisions
     private lateinit var extract: MapDefinitions
 
     @BeforeEach
     fun setup() {
-        objects = mockk(relaxed = true)
-        collisions = mockk(relaxed = true)
         extract = mockk(relaxed = true)
-        zones = DynamicZones(objects, collisions, extract)
+        zones = DynamicZones(extract)
     }
 
     @Test

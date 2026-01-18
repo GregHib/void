@@ -4,6 +4,7 @@ import WorldTest
 import objectOption
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
@@ -23,7 +24,7 @@ internal class StilesTest : WorldTest() {
     ).map { (delta, target) ->
         dynamicTest("Climb east stile from $delta to $target") {
             val objTile = Tile(2647, 3375)
-            val obj = objects[objTile, "ardougne_farm_stile"]!!
+            val obj = GameObjects.find(objTile, "ardougne_farm_stile")
             val player = createPlayer(objTile.add(delta))
 
             player.objectOption(obj, "Climb-over")
@@ -47,7 +48,7 @@ internal class StilesTest : WorldTest() {
     ).map { (delta, target) ->
         dynamicTest("Climb north stile from $delta to $target") {
             val objTile = Tile(3197, 3276)
-            val obj = objects[objTile, "freds_farm_stile"]!!
+            val obj = GameObjects.find(objTile, "freds_farm_stile")
             val player = createPlayer(objTile.add(delta))
 
             player.objectOption(obj, "Climb-over")

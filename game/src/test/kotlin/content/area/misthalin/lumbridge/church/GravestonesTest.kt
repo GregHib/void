@@ -8,9 +8,11 @@ import npcOption
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.variable.remaining
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.*
@@ -35,7 +37,7 @@ class GravestonesTest : WorldTest() {
 
         tick(9)
 
-        val grave = npcs[tile].firstOrNull { it.id.startsWith("gravestone") }
+        val grave = NPCs.firstOrNull(tile) { it.id.startsWith("gravestone") }
         assertNotNull(grave)
         assertEquals(player.name, grave["player_name", ""])
         assertTrue(grave.softTimers.contains("grave_degrade"))
@@ -50,9 +52,9 @@ class GravestonesTest : WorldTest() {
     fun `A gravestone breaks after 3 minutes`() {
         val tile = Tile(3235, 3220)
         val player = createPlayer(tile)
-        Gravestone.spawn(npcs, player, tile)
+        Gravestone.spawn(player, tile)
         tick()
-        val grave = npcs[tile].first { it.id.startsWith("gravestone") }
+        val grave = NPCs.first(tile) { it.id.startsWith("gravestone") }
         grave["grave_timer"] = 119
         TimerApi.tick(grave, "grave_degrade")
         assertEquals("gravestone_memorial_plaque_broken", grave.transform)
@@ -62,29 +64,29 @@ class GravestonesTest : WorldTest() {
         grave["grave_timer"] = 0
         TimerApi.stop(grave, "grave_degrade", false)
         tick()
-        assertNull(npcs[tile].firstOrNull { it.id.startsWith("gravestone") })
+        assertNull(NPCs.firstOrNull(tile) { it.id.startsWith("gravestone") })
     }
 
     @Test
     fun `Demolish a grave early`() {
         val tile = Tile(3235, 3220)
         val player = createPlayer(tile)
-        Gravestone.spawn(npcs, player, tile)
+        Gravestone.spawn(player, tile)
         tick()
-        val grave = npcs[tile].first { it.id.startsWith("gravestone") }
+        val grave = NPCs.first(tile) { it.id.startsWith("gravestone") }
         player.npcOption(grave, "Demolish")
         tick(2)
-        assertNull(npcs[tile].firstOrNull { it.id.startsWith("gravestone") })
+        assertNull(NPCs.firstOrNull(tile) { it.id.startsWith("gravestone") })
     }
 
     @Test
     fun `Repairing a grave returns it to 5 minutes remaining`() {
         val tile = Tile(3235, 3220)
         val player = createPlayer(tile)
-        Gravestone.spawn(npcs, player, tile)
-        val floorItem = floorItems.add(tile, "coins", 10, revealTicks = 100, disappearTicks = 160, owner = player.name)
+        Gravestone.spawn(player, tile)
+        val floorItem = FloorItems.add(tile, "coins", 10, revealTicks = 100, disappearTicks = 160, owner = player.name)
         tick()
-        val grave = npcs[tile].first { it.id.startsWith("gravestone") }
+        val grave = NPCs.first(tile) { it.id.startsWith("gravestone") }
         grave["grave_timer"] = 119
         TimerApi.tick(grave, "grave_degrade")
 
@@ -102,10 +104,10 @@ class GravestonesTest : WorldTest() {
     fun `Blessing a grave gives it 60 minutes remaining`() {
         val tile = Tile(3235, 3220)
         val player = createPlayer(tile)
-        Gravestone.spawn(npcs, player, tile)
-        val floorItem = floorItems.add(tile, "coins", 10, revealTicks = 100, disappearTicks = 160, owner = player.name)
+        Gravestone.spawn(player, tile)
+        val floorItem = FloorItems.add(tile, "coins", 10, revealTicks = 100, disappearTicks = 160, owner = player.name)
         tick()
-        val grave = npcs[tile].first { it.id.startsWith("gravestone") }
+        val grave = NPCs.first(tile) { it.id.startsWith("gravestone") }
         grave["grave_timer"] = 119
         TimerApi.tick(grave, "grave_degrade")
 
@@ -123,7 +125,7 @@ class GravestonesTest : WorldTest() {
     fun `Can't drop items onto a grave`() {
         val tile = Tile(3235, 3220)
         val player = createPlayer(tile)
-        Gravestone.spawn(npcs, player, tile)
+        Gravestone.spawn(player, tile)
         tick()
         player.inventory.add("bronze_sword")
 
@@ -131,6 +133,6 @@ class GravestonesTest : WorldTest() {
         tick()
 
         assertFalse(player.inventory.isEmpty())
-        assertFalse(floorItems[player.tile].any { it.id == "bronze_sword" })
+        assertNull(FloorItems.firstOrNull(player.tile, "bronze_sword"))
     }
 }

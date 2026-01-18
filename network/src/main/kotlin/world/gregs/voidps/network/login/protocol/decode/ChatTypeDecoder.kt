@@ -1,6 +1,5 @@
 package world.gregs.voidps.network.login.protocol.decode
 
-import io.ktor.utils.io.core.*
 import kotlinx.io.Source
 import kotlinx.io.readUByte
 import world.gregs.voidps.network.client.Instruction

@@ -6,7 +6,7 @@ import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 
-class CollisionStrategyProvider {
+object CollisionStrategyProvider {
     fun get(character: Character): CollisionStrategy = when (character) {
         is NPC -> get(character.def)
         else -> CollisionStrategies.Normal

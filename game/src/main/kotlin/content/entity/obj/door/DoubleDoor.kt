@@ -6,7 +6,6 @@ import content.entity.obj.door.Gate.isGate
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.equals
 
@@ -15,25 +14,24 @@ object DoubleDoor {
      * Get the neighbouring door given either one of the door [gameObject]'s
      */
     fun get(gameObject: GameObject, def: ObjectDefinition, clockwise: Int): GameObject? {
-        val objects: GameObjects = get()
         var orientation = Direction.cardinal[gameObject.rotation(clockwise)]
-        var door = objects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
+        var door = GameObjects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
         if (door != null && door.def.isDoor()) {
             return door
         }
         orientation = orientation.inverse()
-        door = objects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
+        door = GameObjects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
         if (door != null && door.def.isDoor()) {
             return door
         }
         if (def.isGate()) {
             orientation = orientation.rotate(2)
-            door = objects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
+            door = GameObjects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
             if (door != null && door.def.isGate()) {
                 return door
             }
             orientation = orientation.inverse()
-            door = objects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
+            door = GameObjects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
             if (door != null && door.def.isGate()) {
                 return door
             }

@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
@@ -100,12 +99,11 @@ object Door : AutoCloseable {
     }
 
     private fun resetExisting(obj: GameObject, double: GameObject?): Boolean {
-        val objects: GameObjects = get()
-        if (double == null && objects.timers.execute(obj)) {
+        if (double == null && GameObjects.timers.execute(obj)) {
             return true
         }
 
-        return double != null && (objects.timers.execute(obj) || objects.timers.execute(double))
+        return double != null && (GameObjects.timers.execute(obj) || GameObjects.timers.execute(double))
     }
 
     /**

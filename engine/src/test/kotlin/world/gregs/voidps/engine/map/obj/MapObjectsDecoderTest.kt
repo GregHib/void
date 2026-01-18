@@ -6,29 +6,22 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.GameObjectCollisionAdd
-import world.gregs.voidps.engine.map.collision.GameObjectCollisionRemove
 import world.gregs.voidps.type.Tile
 
 class MapObjectsDecoderTest {
 
-    private lateinit var definitions: ObjectDefinitions
-    private lateinit var objects: GameObjects
     private lateinit var decoder: MapObjectsDecoder
     private lateinit var tiles: ByteArray
 
     @BeforeEach
     fun setup() {
-        definitions = ObjectDefinitions(Array(10_000) { ObjectDefinition.EMPTY })
-        val collisions = Collisions()
-        objects = GameObjects(GameObjectCollisionAdd(collisions), GameObjectCollisionRemove(collisions), ZoneBatchUpdates(), definitions, storeUnused = true)
-        decoder = MapObjectsDecoder(objects, definitions)
+        ObjectDefinitions.init(Array(10_000) { ObjectDefinition.EMPTY })
+        decoder = MapObjectsDecoder()
         tiles = ByteArray(64 * 64 * 4)
+        GameObjects.storeUnused = true
     }
 
     @Test
@@ -44,7 +37,7 @@ class MapObjectsDecoderTest {
         decoder.decode(array, tiles, 128, 256)
 
         val tile = Tile(138, 267, 1)
-        val gameObject = objects.getShape(tile, shape)
+        val gameObject = GameObjects.getShape(tile, shape)
 
         assertNotNull(gameObject)
         assertEquals(shape, gameObject!!.shape)
@@ -66,20 +59,20 @@ class MapObjectsDecoderTest {
         decoder.decode(array, tiles, 128, 256)
 
         var tile = Tile(138, 267, 1)
-        var gameObject = objects.getShape(tile, ObjectShape.WALL_CORNER)
+        var gameObject = GameObjects.getShape(tile, ObjectShape.WALL_CORNER)
         assertNotNull(gameObject)
         assertEquals(0, gameObject!!.rotation)
         assertEquals(123, gameObject.intId)
 
         tile = Tile(142, 271, 2)
-        gameObject = objects.getShape(tile, ObjectShape.WALL_STRAIGHT)
+        gameObject = GameObjects.getShape(tile, ObjectShape.WALL_STRAIGHT)
         assertNotNull(gameObject)
         assertEquals(1, gameObject!!.rotation)
         assertEquals(123, gameObject.intId)
     }
 
     @Test
-    fun `Load multiple objects of different ids`() {
+    fun `Load multiple GameObjects of different ids`() {
         val writer = ArrayWriter()
         writer.writeSmart(124)
         writer.writeSmart(packTile(10, 11, 0))
@@ -94,13 +87,13 @@ class MapObjectsDecoderTest {
         decoder.decode(array, tiles, 192, 64)
 
         var tile = Tile(202, 75, 0)
-        var gameObject = objects.getShape(tile, ObjectShape.GROUND_DECOR)
+        var gameObject = GameObjects.getShape(tile, ObjectShape.GROUND_DECOR)
         assertNotNull(gameObject)
         assertEquals(3, gameObject!!.rotation)
         assertEquals(123, gameObject.intId)
 
         tile = Tile(196, 72, 2)
-        gameObject = objects.getShape(tile, ObjectShape.ROOF_DIAGONAL)
+        gameObject = GameObjects.getShape(tile, ObjectShape.ROOF_DIAGONAL)
         assertNotNull(gameObject)
         assertEquals(0, gameObject!!.rotation)
         assertEquals(1357, gameObject.intId)

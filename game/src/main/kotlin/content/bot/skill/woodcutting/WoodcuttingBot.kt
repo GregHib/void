@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.definition.AreaDefinition
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.data.Tree
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -20,11 +20,11 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.InteractObject
 
-class WoodcuttingBot(val areas: AreaDefinitions, val tasks: TaskManager) : Script {
+class WoodcuttingBot(val tasks: TaskManager) : Script {
 
     init {
         worldSpawn {
-            for (area in areas.getTagged("trees")) {
+            for (area in Areas.tagged("trees")) {
                 val spaces: Int = area["spaces", 1]
                 val range: IntRange = area["levels", "1-5"].toIntRange()
                 val type = area["trees", emptyList<String>()].firstOrNull()

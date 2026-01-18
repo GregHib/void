@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.weakQueue
 
-class FletchUnfinished(val itemDefinitions: ItemDefinitions) : Script {
+class FletchUnfinished : Script {
 
     init {
         @Suppress("UNCHECKED_CAST")
@@ -27,7 +27,7 @@ class FletchUnfinished(val itemDefinitions: ItemDefinitions) : Script {
                     maximum = 27,
                     text = "What would you like to fletch?",
                 )
-                val itemToFletch: Fletching = itemDefinitions.get(selected).getOrNull("fletching_unf") ?: return@weakQueue
+                val itemToFletch: Fletching = ItemDefinitions.get(selected).getOrNull("fletching_unf") ?: return@weakQueue
                 if (!has(Skill.Fletching, itemToFletch.level, true)) {
                     return@weakQueue
                 }

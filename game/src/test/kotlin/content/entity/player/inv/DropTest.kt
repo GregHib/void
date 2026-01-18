@@ -7,17 +7,19 @@ import itemOnObject
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertNotNull
+import org.junit.jupiter.api.assertNull
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
-import kotlin.test.assertFalse
 
 internal class DropTest : WorldTest() {
 
@@ -30,29 +32,29 @@ internal class DropTest : WorldTest() {
         tick()
 
         assertTrue(player.inventory.isEmpty())
-        assertTrue(floorItems[player.tile].any { it.id == "bronze_sword" })
+        assertNotNull(FloorItems.firstOrNull(player.tile, "bronze_sword"))
     }
 
     @Test
     fun `Floor item respawns after delay`() {
-        loadItemSpawns(get<FloorItems>(), get<ItemSpawns>(), configFiles().list(Settings["spawns.items"]), get())
+        loadItemSpawns(get<ItemSpawns>(), configFiles().list(Settings["spawns.items"]))
         val tile = Tile(3244, 3157)
         val player = createPlayer(tile)
 
-        val floorItem = floorItems[tile].first()
+        val floorItem = FloorItems.at(tile).first()
         player.floorItemOption(floorItem, "Take")
         tick(1)
 
         assertTrue(player.inventory.contains("small_fishing_net"))
         tick(10)
-        assertTrue(floorItems[tile].isNotEmpty())
+        assertTrue(FloorItems.at(tile).isNotEmpty())
     }
 
     @Test
     fun `Drop stackable items on one another`() {
         val tile = emptyTile
         val player = createPlayer(tile)
-        floorItems.add(tile, "coins", 500, revealTicks = 100, owner = player)
+        FloorItems.add(tile, "coins", 500, revealTicks = 100, owner = player)
         player.inventory.add("coins", 500)
         tick()
 
@@ -60,22 +62,22 @@ internal class DropTest : WorldTest() {
         tick()
 
         assertTrue(player.inventory.isEmpty())
-        assertEquals(1, floorItems[tile].count { it.id == "coins" })
-        assertEquals(1000, floorItems[tile].first().amount)
+        assertEquals(1, FloorItems.at(tile).count { it.id == "coins" })
+        assertEquals(1000, FloorItems.at(tile).first().amount)
     }
 
     @Test
     fun `Drop items on one another`() {
         val tile = emptyTile
         val player = createPlayer(tile)
-        floorItems.add(tile, "bronze_sword")
+        FloorItems.add(tile, "bronze_sword")
         player.inventory.add("bronze_sword")
 
         player.interfaceOption("inventory", "inventory", "Drop", 4, Item("bronze_sword"), 0)
         tick()
 
         assertTrue(player.inventory.isEmpty())
-        assertEquals(2, floorItems[tile].count { it.id == "bronze_sword" })
+        assertEquals(2, FloorItems.at(tile).count { it.id == "bronze_sword" })
     }
 
     @Test
@@ -83,12 +85,12 @@ internal class DropTest : WorldTest() {
         val tile = Tile(3212, 3218, 1)
         val player = createPlayer(tile)
         player.inventory.add("bronze_sword")
-        val drawers = objects[tile.addX(1), "table_lumbridge"]!!
+        val drawers = GameObjects.find(tile.addX(1), "table_lumbridge")
         player.itemOnObject(drawers, itemSlot = 0)
         tick(2)
 
         assertTrue(player.inventory.isEmpty())
-        assertTrue(floorItems[tile.addX(1)].any { it.id == "bronze_sword" })
+        assertNotNull(FloorItems.first(tile.addX(1), "bronze_sword"))
     }
 
     @Test
@@ -96,12 +98,12 @@ internal class DropTest : WorldTest() {
         val tile = Tile(3212, 3218, 1)
         val player = createPlayer()
         player.inventory.add("toolkit")
-        val drawers = objects[tile.addX(1), "table_lumbridge"]!!
+        val drawers = GameObjects.find(tile.addX(1), "table_lumbridge")
 
         player.itemOnObject(drawers, itemSlot = 0)
         tick()
 
         assertTrue(player.inventory.contains("toolkit"))
-        assertFalse(floorItems[tile.addX(1)].any { it.id == "toolkit" })
+        assertNull(FloorItems.firstOrNull(tile.addX(1), "toolkit"))
     }
 }

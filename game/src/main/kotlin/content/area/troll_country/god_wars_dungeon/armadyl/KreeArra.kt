@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-class KreeArra(val npcs: NPCs, val stepValidator: StepValidator) : Script {
+class KreeArra(val stepValidator: StepValidator) : Script {
 
     var kilisa: NPC? = null
     var skree: NPC? = null
@@ -19,13 +19,13 @@ class KreeArra(val npcs: NPCs, val stepValidator: StepValidator) : Script {
     init {
         npcSpawn("kree_arra") {
             if (kilisa == null) {
-                kilisa = npcs.add("flight_kilisa", Tile(2833, 5297, 2))
+                kilisa = NPCs.add("flight_kilisa", Tile(2833, 5297, 2))
             }
             if (skree == null) {
-                skree = npcs.add("wingman_skree", Tile(2840, 5303, 2))
+                skree = NPCs.add("wingman_skree", Tile(2840, 5303, 2))
             }
             if (geerin == null) {
-                geerin = npcs.add("flockleader_geerin", Tile(2828, 5299, 2))
+                geerin = NPCs.add("flockleader_geerin", Tile(2828, 5299, 2))
             }
         }
 

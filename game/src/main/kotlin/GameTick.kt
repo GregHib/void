@@ -21,7 +21,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.hunt.Hunting
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -35,14 +34,9 @@ import java.io.File
 import java.util.concurrent.TimeUnit
 
 fun getTickStages(
-    players: Players = get(),
-    npcs: NPCs = get(),
-    items: FloorItems = get(),
     floorItems: FloorItemTracking = get(),
-    objects: GameObjects = get(),
     queue: ConnectionQueue = get(),
     accountSave: SaveQueue = get(),
-    batches: ZoneBatchUpdates = get(),
     hunting: Hunting = get(),
     grandExchange: GrandExchange = get(),
     sequential: Boolean = CharacterTask.DEBUG,
@@ -53,30 +47,28 @@ fun getTickStages(
     val sequentialPlayer: TaskIterator<Player> = SequentialIterator()
     val iterator: TaskIterator<Player> = if (sequential) SequentialIterator() else ParallelIterator()
     return listOf(
-        PlayerResetTask(sequentialPlayer, players, batches),
-        NPCResetTask(sequentialNpc, npcs),
+        PlayerResetTask(sequentialPlayer),
+        NPCResetTask(sequentialNpc),
         hunting,
         grandExchange,
         // Connections/Tick Input
         queue,
-        npcs,
-        items,
+        NPCs,
+        FloorItems,
         // Tick
-        InstructionTask(players, handlers),
+        InstructionTask(handlers),
         World,
-        NPCTask(sequentialNpc, npcs),
-        PlayerTask(sequentialPlayer, players),
+        NPCTask(sequentialNpc),
+        PlayerTask(sequentialPlayer),
         floorItems,
-        objects.timers,
+        GameObjects.timers,
         // Update
         dynamicZones,
-        batches,
+        ZoneBatchUpdates,
         CharacterUpdateTask(
             iterator,
-            players,
-            PlayerUpdateTask(players),
-            NPCUpdateTask(npcs, npcVisualEncoders()),
-            batches,
+            PlayerUpdateTask(),
+            NPCUpdateTask(npcVisualEncoders()),
         ),
         AiTick,
         accountSave,

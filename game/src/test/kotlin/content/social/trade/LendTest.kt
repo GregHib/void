@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.item.Item
@@ -228,13 +229,13 @@ internal class LendTest : WorldTest() {
     }
 
     private fun login(lender: Player) {
-        players.add(lender)
+        Players.add(lender)
         Spawn.player(lender)
     }
 
     private fun logout(borrower: Player) {
         Despawn.player(borrower)
-        players.remove(borrower)
+        Players.remove(borrower)
     }
 
     private fun acceptTrade(sender: Player, receiver: Player) {

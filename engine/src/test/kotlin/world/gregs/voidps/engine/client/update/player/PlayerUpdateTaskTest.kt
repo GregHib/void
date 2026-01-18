@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client.update.player
 
 import io.mockk.*
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
@@ -8,7 +9,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import org.koin.dsl.module
 import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.buffer.write.Writer
@@ -21,8 +21,6 @@ import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.protocol.encode.updatePlayers
-import world.gregs.voidps.network.login.protocol.visual.PlayerVisuals
-import world.gregs.voidps.network.login.protocol.visual.VisualEncoder
 import world.gregs.voidps.network.login.protocol.visual.update.Face
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Tile
@@ -30,18 +28,11 @@ import world.gregs.voidps.type.Tile
 internal class PlayerUpdateTaskTest : KoinMock() {
 
     private lateinit var task: PlayerUpdateTask
-    private lateinit var players: Players
-    override val modules = listOf(
-        module {
-            single { Players() }
-        },
-    )
 
     @BeforeEach
     fun setup() {
-        players = mockk(relaxed = true)
-        every { players.indexed(any()) } returns null
-        task = spyk(PlayerUpdateTask(players))
+        mockkObject(Players)
+        task = spyk(PlayerUpdateTask())
     }
 
     @Test
@@ -80,8 +71,8 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val idleIndex = 1
         val activeIndex = 2
 
-        every { players.indexed(1) } returns idlePlayer
-        every { players.indexed(2) } returns activePlayer
+        every { Players.indexed(1) } returns idlePlayer
+        every { Players.indexed(2) } returns activePlayer
         every { entities.localCount } returns 2
         every { entities.locals } returns intArrayOf(1, 2)
         every { activePlayer.index } returns activeIndex
@@ -92,10 +83,10 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         task.processLocals(idlePlayer, mockk(relaxed = true), mockk(relaxed = true), entities, viewport, active)
         // Then
         verify(exactly = (!active).toInt()) {
-            players.indexed(idleIndex)
+            Players.indexed(idleIndex)
         }
         verify(exactly = active.toInt()) {
-            players.indexed(activeIndex)
+            Players.indexed(activeIndex)
         }
     }
 
@@ -109,7 +100,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
         val index = 0
         every { player.index } returns index
-        every { players.indexed(1) } returns player
+        every { Players.indexed(1) } returns player
         every { entities.localCount } returns 1
         every { entities.locals } returns intArrayOf(1)
         every { player.client!!.disconnected } returns true
@@ -138,7 +129,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val sync: Writer = mockk(relaxed = true)
 
         every { player.index } returns 1
-        every { players.indexed(1) } returns player
+        every { Players.indexed(1) } returns player
         every { player.visuals.walkStep } returns 0 // North
         every { entities.localCount } returns 1
         every { entities.locals } returns intArrayOf(1)
@@ -167,7 +158,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.visuals.flag } returns 2
         every { player.visuals.walkStep } returns -1 // None
         every { player.visuals.runStep } returns -1 // None
-        every { players.indexed(1) } returns player
+        every { Players.indexed(1) } returns player
         every { entities.localCount } returns 1
         every { entities.locals } returns intArrayOf(1)
         every { viewport.delta(player) } returns value(Delta(0, -1))
@@ -198,7 +189,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.visuals.flagged(2) } returns true
         val face = Face(direction = 1)
         every { player.visuals.face } returns face
-        every { players.indexed(1) } returns player
+        every { Players.indexed(1) } returns player
         every { entities.localCount } returns 1
         every { entities.locals } returns intArrayOf(1)
         every { viewport.delta(any()) } returns value(Delta.EMPTY)
@@ -227,8 +218,8 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val index = 1
 
         every { skipPlayer.index } returns index
-        every { players.indexed(1) } returns skipPlayer
-        every { players.indexed(2) } returns player
+        every { Players.indexed(1) } returns skipPlayer
+        every { Players.indexed(2) } returns player
         every { entities.localCount } returns 2
         every { entities.locals } returns intArrayOf(1, 2)
         every { viewport.delta(any()) } returns value(Delta.EMPTY)
@@ -250,7 +241,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
 
-        every { players.indexed(1) } returns player
+        every { Players.indexed(1) } returns player
         every { entities.localCount } returns 1
         every { entities.locals } returns intArrayOf(1)
         every { viewport.delta(any()) } returns value(Delta.EMPTY)
@@ -275,7 +266,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
         every { player.visuals.flagged(2) } returns true
         every { player.index } returns index
-        every { players.indexed(index) } returns player
+        every { Players.indexed(index) } returns player
         every { viewport.lastSeen(player) } returns value(Tile(64, 0))
         every { player.tile } returns value(Tile(81, 14))
         every { entities.globalCount } returns 1
@@ -418,5 +409,10 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         assertEquals(0x40, reader.readUnsignedByte())
         assertEquals(0x40, reader.readUnsignedByte())
         assertEquals(0x1, reader.readUnsignedByte())
+    }
+
+    @AfterEach
+    fun teardown() {
+        unmockkObject(Players)
     }
 }

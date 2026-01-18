@@ -14,10 +14,10 @@ import world.gregs.voidps.engine.inv.transact.operation.SwapItem.swap
  * Offering an item to lend for a duration
  */
 
-class TradeLending(val definitions: ItemDefinitions) : Script {
+class TradeLending : Script {
 
     val lendRestriction = object : ItemRestrictionRule {
-        override fun restricted(id: String) = definitions.get(id).lendId == -1
+        override fun restricted(id: String) = ItemDefinitions.get(id).lendId == -1
     }
 
     init {

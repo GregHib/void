@@ -21,7 +21,6 @@ import world.gregs.voidps.network.client.instruction.FriendDelete
 import world.gregs.voidps.network.login.protocol.encode.*
 
 class FriendsList(
-    val players: Players,
     val accounts: AccountDefinitions,
     val accountDefinitions: AccountDefinitions,
 ) : Script {
@@ -76,7 +75,7 @@ class FriendsList(
             }
             val accountDefinition = accountDefinitions.get(friendsName) ?: return@instruction
             if (clan.members.any { it.accountName == accountDefinition.accountName }) {
-                val target = players.get(friendsName) ?: return@instruction
+                val target = Players.find(friendsName) ?: return@instruction
                 for (member in clan.members) {
                     member.client?.appendClanChat(ClanMember.of(target, ClanRank.Friend))
                 }
@@ -100,7 +99,7 @@ class FriendsList(
             }
             val accountDefinition = accountDefinitions.get(friendsName) ?: return@instruction
             if (clan.members.any { it.accountName == accountDefinition.accountName }) {
-                val target = players.get(friendsName) ?: return@instruction
+                val target = Players.find(friendsName) ?: return@instruction
                 for (member in clan.members) {
                     member.client?.appendClanChat(ClanMember.of(target, ClanRank.None))
                 }
@@ -174,7 +173,7 @@ class FriendsList(
     fun friends(player: Player, it: Player) = player.friend(it) || it.isAdmin()
 
     fun notifyBefriends(player: Player, online: Boolean, notify: (Player, String) -> Boolean = friends(player)) {
-        players
+        Players
             .filter { it.friend(player) && notify(it, player.privateStatus) }
             .forEach { friend ->
                 friend.updateFriend(
@@ -190,7 +189,7 @@ class FriendsList(
     }
 
     fun String.updateFriend(friend: Player, online: Boolean) {
-        val player = players.get(this) ?: return
+        val player = Players.find(this) ?: return
         player.updateFriend(
             Friend(
                 name = friend.name,

@@ -27,7 +27,6 @@ import kotlin.math.ceil
 
 class GrandExchangeOffers(
     val exchange: GrandExchange,
-    val itemDefinitions: ItemDefinitions,
     val accountDefinitions: AccountDefinitions,
 ) : Script {
 
@@ -85,7 +84,7 @@ class GrandExchangeOffers(
         }
 
         continueItemDialogue { item ->
-            val def = itemDefinitions.getOrNull(item)
+            val def = ItemDefinitions.getOrNull(item)
             if (def == null || !def.exchangeable || def.noted || def.lent || def.dummyItem != 0) {
                 message("You can't trade that item on the Grand Exchange.")
                 return@continueItemDialogue
@@ -134,7 +133,7 @@ class GrandExchangeOffers(
             set("grand_exchange_price", get("grand_exchange_market_price", 0))
         }
 
-        val grandExchangeItems = itemDefinitions.definitions.filter { def -> def.exchangeable && !def.noted && !def.lent && def.dummyItem == 0 }.map { it.stringId }.toSet()
+        val grandExchangeItems = ItemDefinitions.definitions.filter { def -> def.exchangeable && !def.noted && !def.lent && def.dummyItem == 0 }.map { it.stringId }.toSet()
 
         adminCommand("offers", stringArg("name", desc = "Item id to search for", autofill = grandExchangeItems), desc = "Search all grand exchange open offers", handler = ::offersCommand)
     }
@@ -146,7 +145,7 @@ class GrandExchangeOffers(
         player.start("search_delay", 1)
         player.message("===== Offers =====", ChatType.Console)
         val id = args[0].lowercase()
-        val definition = itemDefinitions.getOrNull(id)
+        val definition = ItemDefinitions.getOrNull(id)
         if (definition == null) {
             player.message("No results found for '$id'", ChatType.Console)
             return
@@ -183,7 +182,7 @@ class GrandExchangeOffers(
     }
 
     fun selectItem(player: Player, item: String) {
-        val definition = itemDefinitions.get(item)
+        val definition = ItemDefinitions.get(item)
         player["grand_exchange_item"] = item
         player["grand_exchange_item_id"] = definition.id
         player.interfaces.sendText("grand_exchange", "examine", definition["examine", ""])

@@ -23,14 +23,12 @@ import kotlin.system.exitProcess
  */
 class MapDefinitions(
     private val collisions: CollisionDecoder,
-    definitions: ObjectDefinitions,
-    private val objects: GameObjects,
     private val cache: Cache,
 ) {
     private val logger = InlineLogger()
 
-    private val decoder = MapObjectsDecoder(objects, definitions)
-    private val rotationDecoder = MapObjectsRotatedDecoder(objects, definitions)
+    private val decoder = MapObjectsDecoder()
+    private val rotationDecoder = MapObjectsRotatedDecoder()
 
     fun load(configFiles: ConfigFiles, xteas: Map<Int, IntArray>? = null): MapDefinitions {
         try {
@@ -45,13 +43,13 @@ class MapDefinitions(
             if (objectsFile.exists() && collisionsFile.exists() && !configFiles.cacheUpdate) {
                 val start = System.currentTimeMillis()
                 val zones = collisions.load(collisionsFile)
-                objects.load(objectsFile)
-                logger.info { "Loaded all maps $zones zones ${objects.size} ${"object".plural(objects.size)} in ${System.currentTimeMillis() - start}ms" }
+                GameObjects.load(objectsFile)
+                logger.info { "Loaded all maps $zones zones ${GameObjects.size} ${"object".plural(GameObjects.size)} in ${System.currentTimeMillis() - start}ms" }
             } else {
                 loadCache(xteas)
                 val start = System.currentTimeMillis()
                 collisions.save(collisionsFile)
-                objects.save(objectsFile)
+                GameObjects.save(objectsFile)
                 logger.info { "Cached maps in ${System.currentTimeMillis() - start}ms" }
             }
             return this
@@ -76,7 +74,7 @@ class MapDefinitions(
                 regions++
             }
         }
-        logger.info { "Loaded $regions maps ${objects.size} ${"object".plural(objects.size)} in ${System.currentTimeMillis() - start}ms" }
+        logger.info { "Loaded $regions maps ${GameObjects.size} ${"object".plural(GameObjects.size)} in ${System.currentTimeMillis() - start}ms" }
     }
 
     fun loadZone(from: Zone, to: Zone, rotation: Int, xteas: Map<Int, IntArray>? = null) {

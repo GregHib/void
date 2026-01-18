@@ -6,14 +6,13 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.spiral
 
 fun multiTargets(target: Character, hits: Int): List<Character> {
-    val group = if (target is Player) get<Players>() else get<NPCs>()
+    val group = if (target is Player) Players else NPCs
     val targets = mutableListOf<Character>()
     for (tile in target.tile.spiral(1)) {
-        val characters = group[tile]
+        val characters = group.at(tile)
         for (character in characters) {
             if (character == target || !character.inMultiCombat) {
                 continue

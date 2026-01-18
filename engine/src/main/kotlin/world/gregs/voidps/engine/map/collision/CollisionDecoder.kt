@@ -11,7 +11,7 @@ import java.io.File
 /**
  * Adds collision for all blocked tiles except bridges
  */
-class CollisionDecoder(private val collisions: Collisions) {
+class CollisionDecoder {
 
     /**
      * Decode [settings] region [x] [y] into [Collisions]
@@ -21,10 +21,10 @@ class CollisionDecoder(private val collisions: Collisions) {
             for (localX in 0 until 64) {
                 for (localY in 0 until 64) {
                     if (localX.rem(8) == 0 && localY.rem(8) == 0) {
-                        collisions.allocateIfAbsent(x + localX, y + localY, level)
+                        Collisions.allocateIfAbsent(x + localX, y + localY, level)
                     }
                     if (isTile(settings, localX, localY, level, ROOF_TILE)) {
-                        collisions.setUnsafe(x + localX, y + localY, level, CollisionFlag.ROOF)
+                        Collisions.setUnsafe(x + localX, y + localY, level, CollisionFlag.ROOF)
                     }
                     if (!isTile(settings, localX, localY, level, BLOCKED_TILE)) {
                         continue
@@ -35,14 +35,14 @@ class CollisionDecoder(private val collisions: Collisions) {
                             continue
                         }
                     }
-                    collisions.setUnsafe(x + localX, y + localY, height, CollisionFlag.FLOOR)
+                    Collisions.setUnsafe(x + localX, y + localY, height, CollisionFlag.FLOOR)
                 }
             }
         }
     }
 
     private fun Collisions.setUnsafe(x: Int, y: Int, level: Int, mask: Int) {
-        val flags = flags[Zone.tileIndex(x, y, level)]!!
+        val flags = map.flags[Zone.tileIndex(x, y, level)]!!
         val tile = Tile.index(x, y)
         flags[tile] = flags[tile] or mask
     }
@@ -56,7 +56,7 @@ class CollisionDecoder(private val collisions: Collisions) {
         val targetX = to.tile.x
         val targetY = to.tile.y
         for (level in 0 until 4) {
-            collisions.allocateIfAbsent(targetX, targetY, level)
+            Collisions.allocateIfAbsent(targetX, targetY, level)
             for (localX in x until x + 8) {
                 for (localY in y until y + 8) {
                     if (!isTile(settings, localX, localY, level, BLOCKED_TILE)) {
@@ -72,9 +72,9 @@ class CollisionDecoder(private val collisions: Collisions) {
                     val rotY = rotateY(localX, localY, zoneRotation)
 
                     if (isTile(settings, localX, localY, level, ROOF_TILE)) {
-                        collisions.setUnsafe(targetX + rotX, targetY + rotY, height, CollisionFlag.ROOF)
+                        Collisions.setUnsafe(targetX + rotX, targetY + rotY, height, CollisionFlag.ROOF)
                     }
-                    collisions.setUnsafe(targetX + rotX, targetY + rotY, height, CollisionFlag.FLOOR)
+                    Collisions.setUnsafe(targetX + rotX, targetY + rotY, height, CollisionFlag.FLOOR)
                 }
             }
         }
@@ -87,13 +87,13 @@ class CollisionDecoder(private val collisions: Collisions) {
             val index = reader.readInt()
             val array = IntArray(64)
             reader.readBytes(array)
-            collisions.flags[index] = array
+            Collisions.map.flags[index] = array
         }
         val equals = reader.readInt()
         for (i in 0 until equals) {
             val index = reader.readInt()
             val type = reader.readInt()
-            collisions.flags[index] = IntArray(64) { type }
+            Collisions.map.flags[index] = IntArray(64) { type }
         }
         return full + equals
     }
@@ -102,7 +102,7 @@ class CollisionDecoder(private val collisions: Collisions) {
         val writer = BufferWriter(26_000_000)
         val full = mutableListOf<Int>()
         val equals = mutableListOf<Int>()
-        val flags = collisions.flags
+        val flags = Collisions.map.flags
         for (i in 0 until flags.size) {
             if (flags[i] == null) continue
             val first = flags[i]!![0]

@@ -23,10 +23,10 @@ object NPCDefinitions {
         val ammo = AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"]))
         val parameters = ParameterDefinitions(categories, ammo).load(files.find(Settings["definitions.parameters"]))
         val definitions = NPCDecoder(true, parameters).load(cache)
-        val decoder = NPCDefinitions(definitions).load(files.getValue(Settings["definitions.npcs"]))
+        NPCDefinitions.init(definitions).load(files.getValue(Settings["definitions.npcs"]))
         val renderAnimations = RenderAnimationDecoder().load(cache)
-        for (i in decoder.definitions.indices) {
-            val def = decoder.getOrNull(i) ?: continue
+        for (i in NPCDefinitions.definitions.indices) {
+            val def = NPCDefinitions.getOrNull(i) ?: continue
             if (def.name.contains("wizard", ignoreCase = true)) {
                 println(def)
                 val att = def["att", 0]

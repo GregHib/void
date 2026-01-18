@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.map.zone
 import it.unimi.dsi.fastutil.ints.Int2IntArrayMap
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import world.gregs.voidps.engine.data.definition.MapDefinitions
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.clear
@@ -13,8 +12,6 @@ import java.util.*
 import kotlin.collections.set
 
 class DynamicZones(
-    private val objects: GameObjects,
-    private val collisions: Collisions,
     private val extract: MapDefinitions,
 ) : Runnable {
     private val zones: MutableMap<Int, Int> = Int2IntArrayMap()
@@ -39,8 +36,8 @@ class DynamicZones(
      */
     fun copy(from: Zone, to: Zone = from, rotation: Int = 0) {
         zones[to.id] = from.rotatedId(rotation)
-        objects.reset(to)
-        collisions.clear(to)
+        GameObjects.reset(to)
+        Collisions.clear(to)
         extract.loadZone(from, to, rotation)
         for (region in to.toCuboid(radius = 3).toRegions()) {
             regions.add(region.id)
@@ -65,8 +62,8 @@ class DynamicZones(
      */
     fun clear(zone: Zone) {
         zones.remove(zone.id)
-        objects.reset(zone)
-        collisions.clear(zone)
+        GameObjects.reset(zone)
+        Collisions.clear(zone)
         extract.loadZone(zone, zone, 0)
         for (region in zone.toCuboid(radius = 3).toRegions()) {
             if (region.toRectangle().toZones().none { zones.containsKey(it.id) }) {
@@ -82,8 +79,8 @@ class DynamicZones(
     fun clear(region: Region) {
         for (zone in region.toCuboid().toZones()) {
             if (zones.containsKey(zone.id)) {
-                objects.clear(zone)
-                collisions.clear(zone)
+                GameObjects.clear(zone)
+                Collisions.clear(zone)
                 extract.loadZone(zone, zone, 0)
                 zones.remove(zone.id)
             }

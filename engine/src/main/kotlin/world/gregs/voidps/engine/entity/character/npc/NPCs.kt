@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.entity.character.npc
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.data.NPCDefinition
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.MAX_NPCS
@@ -13,18 +12,12 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
-import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
-data class NPCs(
-    private val definitions: NPCDefinitions,
-    private val collisions: Collisions,
-    private val collision: CollisionStrategyProvider,
-    private val areaDefinitions: AreaDefinitions,
-) : Runnable,
+object NPCs : Runnable,
     Iterable<NPC>,
     CharacterSearch<NPC> {
     private val indexArray: Array<NPC?> = arrayOfNulls(MAX_NPCS)
@@ -69,7 +62,7 @@ data class NPCs(
     fun indexed(index: Int): NPC? = indexArray.getOrNull(index)
 
     fun add(id: String, tile: Tile, direction: Direction = Direction.SOUTH): NPC {
-        val def = definitions.getOrNull(id) ?: return NPC(id, tile, NPCDefinition.EMPTY)
+        val def = NPCDefinitions.getOrNull(id) ?: return NPC(id, tile, NPCDefinition.EMPTY)
         val npc = NPC(id, tile, def)
         if (spawnIndex < spawnQueue.size) {
             spawnQueue[spawnIndex++] = npc
@@ -102,7 +95,11 @@ data class NPCs(
         }
     }
 
-    override operator fun get(tile: Tile): List<NPC> {
+    fun find(tile: Tile, id: String) = first(tile) { it.id == id }
+
+    fun findOrNull(tile: Tile, id: String) = firstOrNull(tile) { it.id == id }
+
+    override fun at(tile: Tile): List<NPC> {
         val list = mutableListOf<NPC>()
         zoneMap.onEach(tile.zone.id) { index ->
             val npc = indexed(index) ?: return@onEach
@@ -113,7 +110,11 @@ data class NPCs(
         return list
     }
 
-    override operator fun get(zone: Zone): List<NPC> {
+    fun find(zone: Zone, id: String) = first(zone) { it.id == id }
+
+    fun findOrNull(zone: Zone, id: String) = firstOrNull(zone) { it.id == id }
+
+    override fun at(zone: Zone): List<NPC> {
         val list = mutableListOf<NPC>()
         zoneMap.onEach(zone.id) { index ->
             list.add(indexed(index) ?: return@onEach)
@@ -121,7 +122,15 @@ data class NPCs(
         return list
     }
 
-    operator fun get(region: RegionLevel): List<NPC> {
+    fun find(region: RegionLevel, id: String) = find(region) { it.id == id }
+
+    fun findOrNull(region: RegionLevel, id: String) = findOrNull(region) { it.id == id }
+
+    fun find(region: RegionLevel, filter: (NPC) -> Boolean) = at(region).first(filter)
+
+    fun findOrNull(region: RegionLevel, filter: (NPC) -> Boolean) = at(region).firstOrNull(filter)
+
+    fun at(region: RegionLevel): List<NPC> {
         val list = mutableListOf<NPC>()
         regionMap.onEach(region.id) { index ->
             list.add(indexed(index) ?: return@onEach)
@@ -156,7 +165,7 @@ data class NPCs(
         if (npc.mode == EmptyMode && Wander.wanders(npc)) {
             npc.mode = Wander(npc, npc.tile)
         }
-        npc.collision = collision.get(npc)
+        npc.collision = CollisionStrategyProvider.get(npc)
         regionMap.add(npc.tile.regionLevel.id, npc.index)
         zoneMap.add(npc.tile.zone.id, npc.index)
         val respawnDelay = npc.def.getOrNull<Int>("respawn_delay")

@@ -1,11 +1,8 @@
 package world.gregs.voidps.engine.entity.character.player
 
-import io.mockk.every
-import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
-import org.koin.test.mock.declare
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.Caller
 import world.gregs.voidps.engine.Script
@@ -72,12 +69,7 @@ class TeleportTest {
 
         @BeforeEach
         fun setup() {
-            declare {
-                val def = mockk<ObjectDefinitions>(relaxed = true)
-                every { def.resolve(any(), any()) } returns ObjectDefinition(0, stringId = "obj")
-                every { def.get(any<Int>()) } returns ObjectDefinition(0, stringId = "obj")
-                def
-            }
+            ObjectDefinitions.init(arrayOf(ObjectDefinition(0, stringId = "obj")))
         }
 
         override fun Script.register(args: List<String>, caller: Caller) {
@@ -110,12 +102,7 @@ class TeleportTest {
 
         @BeforeEach
         fun setup() {
-            declare {
-                val def = mockk<ObjectDefinitions>(relaxed = true)
-                every { def.resolve(any(), any()) } returns ObjectDefinition(0, stringId = "obj")
-                every { def.get(any<Int>()) } returns ObjectDefinition(0, stringId = "obj")
-                def
-            }
+            ObjectDefinitions.init(arrayOf(ObjectDefinition(0, stringId = "obj")))
         }
 
         override fun Script.register(args: List<String>, caller: Caller) {

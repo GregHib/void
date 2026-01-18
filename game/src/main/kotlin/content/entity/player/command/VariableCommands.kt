@@ -18,13 +18,12 @@ import world.gregs.voidps.network.login.protocol.encode.*
 class VariableCommands(
     val definitions: InterfaceDefinitions,
     val variableDefinitions: VariableDefinitions,
-    val players: Players,
     val accounts: AccountDefinitions,
 ) : Script {
 
     init {
         modCommand("vars", stringArg("variable-name", optional = true, autofill = variableDefinitions.definitions.keys), stringArg("player-name", "target player (default self)", optional = true, autofill = accounts.displayNames.keys), desc = "Search players variables") { args ->
-            val target = players.find(this, args.getOrNull(1)) ?: return@modCommand
+            val target = Players.find(this, args.getOrNull(1)) ?: return@modCommand
             val search = args.getOrNull(0)
             for ((key, value) in target.variables.data) {
                 if (search != null && !key.contains(search)) {

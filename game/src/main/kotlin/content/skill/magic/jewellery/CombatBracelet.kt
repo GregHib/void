@@ -3,15 +3,10 @@ package content.skill.magic.jewellery
 import content.entity.player.dialogue.type.choice
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 
-class CombatBracelet(val areas: AreaDefinitions) : Script {
-
-    val warriorsGuild = areas["warriors_guild_teleport"]
-    val championsGuild = areas["champions_guild_teleport"]
-    val monastery = areas["monastery_teleport"]
-    val rangingGuild = areas["ranging_guild_teleport"]
+class CombatBracelet : Script {
 
     init {
         itemOption("Rub", "combat_bracelet_#") {
@@ -21,19 +16,19 @@ class CombatBracelet(val areas: AreaDefinitions) : Script {
             choice("Where would you like to teleport to?") {
                 option("Warriors' Guild") {
                     message("You rub the bracelet...", ChatType.Filter)
-                    jewelleryTeleport(this, it.inventory, it.slot, warriorsGuild)
+                    jewelleryTeleport(this, it.inventory, it.slot, Areas["warriors_guild_teleport"])
                 }
                 option("Champions' Guild") {
                     message("You rub the bracelet...", ChatType.Filter)
-                    jewelleryTeleport(this, it.inventory, it.slot, championsGuild)
+                    jewelleryTeleport(this, it.inventory, it.slot, Areas["champions_guild_teleport"])
                 }
                 option("Monastery") {
                     message("You rub the bracelet...", ChatType.Filter)
-                    jewelleryTeleport(this, it.inventory, it.slot, monastery)
+                    jewelleryTeleport(this, it.inventory, it.slot, Areas["monastery_teleport"])
                 }
                 option("Ranging Guild") {
                     message("You rub the bracelet...", ChatType.Filter)
-                    jewelleryTeleport(this, it.inventory, it.slot, rangingGuild)
+                    jewelleryTeleport(this, it.inventory, it.slot, Areas["ranging_guild_teleport"])
                 }
                 option("Nowhere")
             }
@@ -44,10 +39,10 @@ class CombatBracelet(val areas: AreaDefinitions) : Script {
                 return@itemOption
             }
             val area = when (it.option) {
-                "Warriors' Guild" -> warriorsGuild
-                "Champions' Guild" -> championsGuild
-                "Monastery" -> monastery
-                "Ranging Guild" -> rangingGuild
+                "Warriors' Guild" -> Areas["warriors_guild_teleport"]
+                "Champions' Guild" -> Areas["champions_guild_teleport"]
+                "Monastery" -> Areas["monastery_teleport"]
+                "Ranging Guild" -> Areas["ranging_guild_teleport"]
                 else -> return@itemOption
             }
             message("You rub the bracelet...", ChatType.Filter)

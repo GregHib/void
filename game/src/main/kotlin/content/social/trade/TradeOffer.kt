@@ -12,11 +12,11 @@ import world.gregs.voidps.engine.inv.restrict.ItemRestrictionRule
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 
-class TradeOffer(val definitions: ItemDefinitions) : Script {
+class TradeOffer : Script {
 
     val tradeRestriction = object : ItemRestrictionRule {
         override fun restricted(id: String): Boolean {
-            val def = definitions.get(id)
+            val def = ItemDefinitions.get(id)
             return def.lendTemplateId != -1 || def.dummyItem != 0 || !def["tradeable", true]
         }
     }

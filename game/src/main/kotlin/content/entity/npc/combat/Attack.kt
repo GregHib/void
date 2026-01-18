@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.config.CombatDefinition
 import world.gregs.voidps.engine.data.config.CombatDefinition.CombatGfx
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.areaSound
@@ -31,8 +31,6 @@ import world.gregs.voidps.type.random
 
 class Attack(
     val definitions: CombatDefinitions,
-    val areaDefinitions: AreaDefinitions,
-    val players: Players,
 ) : Script {
 
     init {
@@ -196,10 +194,10 @@ class Attack(
         if (area == "") {
             return setOf(target)
         }
-        val area = areaDefinitions.getOrNull(area)?.area ?: return setOf(target)
+        val area = Areas.getOrNull(area)?.area ?: return setOf(target)
         val list = mutableSetOf(target)
         for (zone in area.toZones(tile.level)) {
-            list.addAll(players[zone])
+            list.addAll(Players.at(zone))
         }
         return list
     }

@@ -5,9 +5,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.type.Tile
 
-class CommanderZilyana(
-    val npcs: NPCs,
-) : Script {
+class CommanderZilyana : Script {
 
     var starlight: NPC? = null
     var bree: NPC? = null
@@ -16,13 +14,13 @@ class CommanderZilyana(
     init {
         npcSpawn("commander_zilyana") {
             if (starlight == null) {
-                starlight = npcs.add("starlight", Tile(2903, 5260))
+                starlight = NPCs.add("starlight", Tile(2903, 5260))
             }
             if (bree == null) {
-                bree = npcs.add("bree", Tile(2902, 5270))
+                bree = NPCs.add("bree", Tile(2902, 5270))
             }
             if (growler == null) {
-                growler = npcs.add("growler", Tile(2898, 5262))
+                growler = NPCs.add("growler", Tile(2898, 5262))
             }
         }
 

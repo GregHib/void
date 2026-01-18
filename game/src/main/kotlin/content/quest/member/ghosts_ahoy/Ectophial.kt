@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.type.Tile
 
-class Ectophial(val objects: GameObjects) : Script {
+class Ectophial : Script {
 
     init {
         itemOption("Empty", "ectophial") {
@@ -37,7 +37,7 @@ class Ectophial(val objects: GameObjects) : Script {
 
         teleportLand("ectophial") {
             message("... and the world changes around you.", ChatType.Filter)
-            val ectofuntus = objects[Tile(3658, 3518), "ectofuntus"] ?: return@teleportLand
+            val ectofuntus = GameObjects.findOrNull(Tile(3658, 3518), "ectofuntus") ?: return@teleportLand
             val slot = inventory.indexOf("ectophial")
             interactItemOn(ectofuntus, "inventory", "inventory", Item("empty_ectophial"), slot)
         }

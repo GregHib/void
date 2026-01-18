@@ -5,7 +5,6 @@ import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.tools.cache.Xteas
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Distance
@@ -19,10 +18,8 @@ import kotlin.math.sqrt
 import kotlin.system.measureNanoTime
 
 class MapGraph(
-    private val objects: GameObjects,
     private val xteas: Xteas,
     private val cache: Cache,
-    private val collision: Collisions,
 ) {
 
     fun load(regionId: Int) {
@@ -41,7 +38,7 @@ class MapGraph(
 
                 for (zone in region.tile.zone.toCuboid(width = 8, height = 8).toZones()) {
                     val time = measureNanoTime {
-                        val loaded = zone.toCuboid().flatMap { tile -> objects[tile] }
+                        val loaded = zone.toCuboid().flatMap { tile -> GameObjects.at(tile) }
                         objs.addAll(loaded)
                         all.addAll(getCenterPoints(strategy, zone.toCuboid(width = 2, height = 2)))
                     }
@@ -87,7 +84,7 @@ class MapGraph(
             val parent = queue.poll()
             for (direction in Direction.clockwise) {
                 val tile = parent.add(direction.delta)
-                if (!distances.containsKey(tile) && area.contains(tile) && !traversal.blocked(collision, parent, 1, direction)) {
+                if (!distances.containsKey(tile) && area.contains(tile) && !traversal.blocked(parent, 1, direction)) {
                     distances[tile] = distances[parent]!! + 1
                     queue.addLast(tile)
                 }
@@ -112,7 +109,7 @@ class MapGraph(
         val list = mutableListOf<Tile>()
         val visitedTiles = mutableSetOf<Tile>()
         for (tile in area) {
-            if (!visitedTiles.contains(tile) && !traversal.blocked(collision, tile, 1, Direction.NONE)) {
+            if (!visitedTiles.contains(tile) && !traversal.blocked(tile, 1, Direction.NONE)) {
                 val knots = getFloodedTiles(traversal, tile, area).keys
                 if (knots.size > 2) {
                     var center = centroid(knots)

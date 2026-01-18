@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.IntSuspension
 
 private const val INTERFACE_ID = "dialogue_skill_creation"
@@ -52,9 +51,8 @@ suspend fun Player.makeAmountIndex(
 }
 
 private fun setItemOptions(player: Player, items: List<String>, names: List<String>?) {
-    val definitions: ItemDefinitions = get()
     for (index in 0 until 10) {
-        val item = definitions.get(items.getOrNull(index) ?: "")
+        val item = ItemDefinitions.get(items.getOrNull(index) ?: "")
         player["skill_creation_item_$index"] = item.id
         if (names != null && names.indices.contains(index)) {
             player["skill_creation_name_$index"] = names[index]

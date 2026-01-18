@@ -6,6 +6,7 @@ import objectOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
@@ -20,7 +21,7 @@ internal class GrappleTest : WorldTest() {
         player.levels.set(Skill.Agility, 8)
         player.levels.set(Skill.Ranged, 38)
         player.levels.set(Skill.Strength, 17)
-        val obj = objects[Tile(3252, 3179), "lumbridge_broken_raft"]!!
+        val obj = GameObjects.find(Tile(3252, 3179), "lumbridge_broken_raft")
         player.objectOption(obj, "Grapple")
 
         tick()
@@ -35,7 +36,7 @@ internal class GrappleTest : WorldTest() {
         player.levels.set(Skill.Ranged, 38)
         player.levels.set(Skill.Strength, 17)
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
-        val obj = objects[Tile(3252, 3179), "lumbridge_broken_raft"]!!
+        val obj = GameObjects.find(Tile(3252, 3179), "lumbridge_broken_raft")
         player.objectOption(obj, "Grapple")
 
         tick()
@@ -48,7 +49,7 @@ internal class GrappleTest : WorldTest() {
         val player = createPlayer(Tile(3246, 3179))
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
         player.equipment.set(EquipSlot.Weapon.index, "bronze_crossbow")
-        val obj = objects[Tile(3252, 3179), "lumbridge_broken_raft"]!!
+        val obj = GameObjects.find(Tile(3252, 3179), "lumbridge_broken_raft")
         player.objectOption(obj, "Grapple")
 
         tick()
@@ -64,7 +65,7 @@ internal class GrappleTest : WorldTest() {
         player.levels.set(Skill.Strength, 17)
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
         player.equipment.set(EquipSlot.Weapon.index, "bronze_crossbow")
-        val obj = objects[Tile(3252, 3179), "lumbridge_broken_raft"]!!
+        val obj = GameObjects.find(Tile(3252, 3179), "lumbridge_broken_raft")
         player.objectOption(obj, "Grapple")
 
         tick()
@@ -80,7 +81,7 @@ internal class GrappleTest : WorldTest() {
         player.levels.set(Skill.Strength, 17)
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
         player.equipment.set(EquipSlot.Weapon.index, "bronze_crossbow")
-        val obj = objects[Tile(3252, 3179), "lumbridge_broken_raft"]!!
+        val obj = GameObjects.find(Tile(3252, 3179), "lumbridge_broken_raft")
         player.objectOption(obj, "Grapple")
 
         tick(24)
@@ -96,7 +97,7 @@ internal class GrappleTest : WorldTest() {
         player.levels.set(Skill.Strength, 17)
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
         player.equipment.set(EquipSlot.Weapon.index, "bronze_crossbow")
-        val obj = objects[Tile(3252, 3179), "lumbridge_broken_raft"]!!
+        val obj = GameObjects.find(Tile(3252, 3179), "lumbridge_broken_raft")
         player.objectOption(obj, "Grapple")
 
         tick()
@@ -112,7 +113,7 @@ internal class GrappleTest : WorldTest() {
         player.levels.set(Skill.Strength, 17)
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
         player.equipment.set(EquipSlot.Weapon.index, "bronze_crossbow")
-        val obj = objects[Tile(3252, 3179), "lumbridge_broken_raft"]!!
+        val obj = GameObjects.find(Tile(3252, 3179), "lumbridge_broken_raft")
         player.objectOption(obj, "Grapple")
 
         tick(24)
@@ -128,7 +129,7 @@ internal class GrappleTest : WorldTest() {
         player.levels.set(Skill.Strength, 37)
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
         player.equipment.set(EquipSlot.Weapon.index, "bronze_crossbow")
-        val obj = objects[Tile(3005, 3393), "falador_wall_south"]!!
+        val obj = GameObjects.find(Tile(3005, 3393), "falador_wall_south")
         player.objectOption(obj, "Grapple")
 
         tick(13)
@@ -144,7 +145,7 @@ internal class GrappleTest : WorldTest() {
         player.levels.set(Skill.Strength, 37)
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
         player.equipment.set(EquipSlot.Weapon.index, "bronze_crossbow")
-        val obj = objects[Tile(3006, 3395), "falador_wall_north"]!!
+        val obj = GameObjects.find(Tile(3006, 3395), "falador_wall_north")
         player.objectOption(obj, "Grapple")
 
         tick(13)
@@ -155,7 +156,7 @@ internal class GrappleTest : WorldTest() {
     @Test
     fun `Can't jump down falador wall south`() {
         val player = createPlayer(Tile(3005, 3394, 1))
-        val obj = objects[Tile(3005, 3393, 1), "falador_wall_jump_south"]!!
+        val obj = GameObjects.find(Tile(3005, 3393, 1), "falador_wall_jump_south")
         player.objectOption(obj, "Jump")
 
         tick(2)
@@ -167,7 +168,7 @@ internal class GrappleTest : WorldTest() {
     fun `Jump down falador wall south`() {
         val player = createPlayer(Tile(3005, 3394, 1))
         player.levels.set(Skill.Agility, 4)
-        val obj = objects[Tile(3005, 3393, 1), "falador_wall_jump_south"]!!
+        val obj = GameObjects.find(Tile(3005, 3393, 1), "falador_wall_jump_south")
         player.objectOption(obj, "Jump")
 
         tick(2)
@@ -179,7 +180,7 @@ internal class GrappleTest : WorldTest() {
     fun `Jump down falador wall north`() {
         val player = createPlayer(Tile(3006, 3394, 1))
         player.levels.set(Skill.Agility, 4)
-        val obj = objects[Tile(3006, 3395, 1), "falador_wall_jump_north"]!!
+        val obj = GameObjects.find(Tile(3006, 3395, 1), "falador_wall_jump_north")
         player.objectOption(obj, "Jump")
 
         tick(2)
@@ -190,7 +191,7 @@ internal class GrappleTest : WorldTest() {
     @Test
     fun `Can't jump down falador wall north`() {
         val player = createPlayer(Tile(3006, 3394, 1))
-        val obj = objects[Tile(3006, 3395, 1), "falador_wall_jump_north"]!!
+        val obj = GameObjects.find(Tile(3006, 3395, 1), "falador_wall_jump_north")
         player.objectOption(obj, "Jump")
 
         tick(2)
@@ -206,7 +207,7 @@ internal class GrappleTest : WorldTest() {
         player.levels.set(Skill.Strength, 22)
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
         player.equipment.set(EquipSlot.Weapon.index, "bronze_crossbow")
-        val obj = objects[Tile(2841, 3434), "catherby_crossbow_tree"]!!
+        val obj = GameObjects.find(Tile(2841, 3434), "catherby_crossbow_tree")
         player.objectOption(obj, "Grapple")
 
         tick(12)
@@ -222,7 +223,7 @@ internal class GrappleTest : WorldTest() {
         player.levels.set(Skill.Strength, 22)
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
         player.equipment.set(EquipSlot.Weapon.index, "bronze_crossbow")
-        val obj = objects[Tile(2841, 3434), "catherby_crossbow_tree"]!!
+        val obj = GameObjects.find(Tile(2841, 3434), "catherby_crossbow_tree")
         player.objectOption(obj, "Grapple")
 
         tick()
@@ -237,7 +238,7 @@ internal class GrappleTest : WorldTest() {
         player.levels.set(Skill.Ranged, 39)
         player.levels.set(Skill.Strength, 22)
         player.equipment.set(EquipSlot.Weapon.index, "bronze_crossbow")
-        val obj = objects[Tile(2841, 3434), "catherby_crossbow_tree"]!!
+        val obj = GameObjects.find(Tile(2841, 3434), "catherby_crossbow_tree")
         player.objectOption(obj, "Grapple")
 
         tick()
@@ -252,7 +253,7 @@ internal class GrappleTest : WorldTest() {
         player.levels.set(Skill.Ranged, 39)
         player.levels.set(Skill.Strength, 22)
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
-        val obj = objects[Tile(2841, 3434), "catherby_crossbow_tree"]!!
+        val obj = GameObjects.find(Tile(2841, 3434), "catherby_crossbow_tree")
         player.objectOption(obj, "Grapple")
 
         tick()
@@ -268,7 +269,7 @@ internal class GrappleTest : WorldTest() {
         player.levels.set(Skill.Strength, 22)
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
         player.equipment.set(EquipSlot.Weapon.index, "bronze_crossbow")
-        val obj = objects[Tile(2841, 3434), "catherby_crossbow_tree"]!!
+        val obj = GameObjects.find(Tile(2841, 3434), "catherby_crossbow_tree")
         player.objectOption(obj, "Grapple")
 
         tick()
@@ -284,7 +285,7 @@ internal class GrappleTest : WorldTest() {
         player.levels.set(Skill.Strength, 35)
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
         player.equipment.set(EquipSlot.Weapon.index, "bronze_crossbow")
-        val obj = objects[Tile(2869, 3429), "catherby_rocks"]!!
+        val obj = GameObjects.find(Tile(2869, 3429), "catherby_rocks")
         player.objectOption(obj, "Grapple")
 
         tick(12)
@@ -300,7 +301,7 @@ internal class GrappleTest : WorldTest() {
         player.levels.set(Skill.Strength, 35)
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
         player.equipment.set(EquipSlot.Weapon.index, "bronze_crossbow")
-        val obj = objects[Tile(2869, 3429), "catherby_rocks"]!!
+        val obj = GameObjects.find(Tile(2869, 3429), "catherby_rocks")
         player.objectOption(obj, "Grapple")
 
         tick()
@@ -315,7 +316,7 @@ internal class GrappleTest : WorldTest() {
         player.levels.set(Skill.Ranged, 35)
         player.levels.set(Skill.Strength, 35)
         player.equipment.set(EquipSlot.Weapon.index, "bronze_crossbow")
-        val obj = objects[Tile(2869, 3429), "catherby_rocks"]!!
+        val obj = GameObjects.find(Tile(2869, 3429), "catherby_rocks")
         player.objectOption(obj, "Grapple")
 
         tick()
@@ -330,7 +331,7 @@ internal class GrappleTest : WorldTest() {
         player.levels.set(Skill.Ranged, 35)
         player.levels.set(Skill.Strength, 35)
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
-        val obj = objects[Tile(2869, 3429), "catherby_rocks"]!!
+        val obj = GameObjects.find(Tile(2869, 3429), "catherby_rocks")
         player.objectOption(obj, "Grapple")
 
         tick()
@@ -346,7 +347,7 @@ internal class GrappleTest : WorldTest() {
         player.levels.set(Skill.Strength, 35)
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
         player.equipment.set(EquipSlot.Weapon.index, "bronze_crossbow")
-        val obj = objects[Tile(2869, 3429), "catherby_rocks"]!!
+        val obj = GameObjects.find(Tile(2869, 3429), "catherby_rocks")
         player.objectOption(obj, "Grapple")
 
         tick()
@@ -362,7 +363,7 @@ internal class GrappleTest : WorldTest() {
         player.levels.set(Skill.Strength, 38)
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
         player.equipment.set(EquipSlot.Weapon.index, "bronze_crossbow")
-        val obj = objects[Tile(2556, 3073), "yanille_grapple_wall"]!!
+        val obj = GameObjects.find(Tile(2556, 3073), "yanille_grapple_wall")
         player.objectOption(obj, "Grapple")
 
         tick(15)
@@ -378,7 +379,7 @@ internal class GrappleTest : WorldTest() {
         player.levels.set(Skill.Strength, 38)
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
         player.equipment.set(EquipSlot.Weapon.index, "bronze_crossbow")
-        val obj = objects[Tile(2556, 3075), "yanille_grapple_wall"]!!
+        val obj = GameObjects.find(Tile(2556, 3075), "yanille_grapple_wall")
         player.objectOption(obj, "Grapple")
 
         tick(13)
@@ -390,7 +391,7 @@ internal class GrappleTest : WorldTest() {
     fun `Jump down yanille wall south`() {
         val player = createPlayer(Tile(2556, 3073, 1))
         player.levels.set(Skill.Agility, 4)
-        val obj = objects[Tile(2556, 3073, 1), "yanille_grapple_wall_jump"]!!
+        val obj = GameObjects.find(Tile(2556, 3073, 1), "yanille_grapple_wall_jump")
         player.objectOption(obj, "Jump")
 
         tick(2)
@@ -402,7 +403,7 @@ internal class GrappleTest : WorldTest() {
     fun `Jump down yanille wall north`() {
         val player = createPlayer(Tile(2556, 3074, 1))
         player.levels.set(Skill.Agility, 4)
-        val obj = objects[Tile(2556, 3075, 1), "yanille_grapple_wall_jump"]!!
+        val obj = GameObjects.find(Tile(2556, 3075, 1), "yanille_grapple_wall_jump")
         player.objectOption(obj, "Jump")
 
         tick(4)
@@ -413,7 +414,7 @@ internal class GrappleTest : WorldTest() {
     @Test
     fun `Can't jump down yanille wall south`() {
         val player = createPlayer(Tile(2556, 3073, 1))
-        val obj = objects[Tile(2556, 3073, 1), "yanille_grapple_wall_jump"]!!
+        val obj = GameObjects.find(Tile(2556, 3073, 1), "yanille_grapple_wall_jump")
         player.objectOption(obj, "Jump")
 
         tick(2)
@@ -424,7 +425,7 @@ internal class GrappleTest : WorldTest() {
     @Test
     fun `Can't jump down yanille wall north`() {
         val player = createPlayer(Tile(2556, 3074, 1))
-        val obj = objects[Tile(2556, 3073, 1), "yanille_grapple_wall_jump"]!!
+        val obj = GameObjects.find(Tile(2556, 3073, 1), "yanille_grapple_wall_jump")
         player.objectOption(obj, "Jump")
 
         tick(2)

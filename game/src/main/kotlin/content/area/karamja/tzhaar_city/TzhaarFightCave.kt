@@ -27,7 +27,7 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.mode.Follow
@@ -49,9 +49,6 @@ import world.gregs.voidps.type.*
 import java.util.concurrent.TimeUnit
 
 class TzhaarFightCave(
-    val areas: AreaDefinitions,
-    val npcDefinitions: NPCDefinitions,
-    val npcs: NPCs,
     val accountManager: AccountManager,
 ) : Script {
 
@@ -157,15 +154,15 @@ class TzhaarFightCave(
             if (half !in to..<from) {
                 return@npcLevelChanged
             }
-            val count = npcs[tile.regionLevel].count { it.id == "yt_hur_kot" }
+            val count = NPCs.at(tile.regionLevel).count { it.id == "yt_hur_kot" }
             val block = CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS
             val directions = mutableSetOf(Direction.NORTH_WEST, Direction.SOUTH_EAST, Direction.SOUTH, Direction.SOUTH_WEST, Direction.NONE)
             val offset = tile.region.tile.delta(region.tile)
-            val def = npcDefinitions.get("yt_hur_kot")
+            val def = NPCDefinitions.get("yt_hur_kot")
             for (i in 0 until 4 - count) {
                 val dir = directions.random(random)
                 var tile = randomTile(dir, offset, def, block) ?: continue
-                val npc = npcs.add("yt_hur_kot", tile)
+                val npc = NPCs.add("yt_hur_kot", tile)
                 npc["in_multi_combat"] = true
                 npc.mode = Follow(npc, this)
                 npc.softTimers.start("yt_hur_kot_heal")
@@ -277,7 +274,7 @@ class TzhaarFightCave(
         val block = CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS
         for (i in ids.indices) {
             val id = ids[i]
-            val def = npcDefinitions.get(id)
+            val def = NPCDefinitions.get(id)
             val direction = directions[i]
             val tile = randomTile(direction, offset, def, block) ?: continue
             spawn(id, tile, player)
@@ -286,11 +283,11 @@ class TzhaarFightCave(
 
     fun randomTile(direction: Direction, offset: Delta, def: NPCDefinition, block: Int): Tile? {
         val area = when (direction) {
-            Direction.NORTH_WEST -> areas["tzhaar_fight_cave_north_west"]
-            Direction.SOUTH_EAST -> areas["tzhaar_fight_cave_south_east"]
-            Direction.SOUTH -> areas["tzhaar_fight_cave_south"]
-            Direction.SOUTH_WEST -> areas["tzhaar_fight_cave_south_west"]
-            Direction.NONE -> areas["tzhaar_fight_cave_none"]
+            Direction.NORTH_WEST -> Areas["tzhaar_fight_cave_north_west"]
+            Direction.SOUTH_EAST -> Areas["tzhaar_fight_cave_south_east"]
+            Direction.SOUTH -> Areas["tzhaar_fight_cave_south"]
+            Direction.SOUTH_WEST -> Areas["tzhaar_fight_cave_south_west"]
+            Direction.NONE -> Areas["tzhaar_fight_cave_none"]
             else -> return null
         }
         var tile = area.offset(offset).random(CollisionStrategies.Normal, def.size, block)
@@ -305,7 +302,7 @@ class TzhaarFightCave(
         get() = get("fight_cave_wave", -1)
 
     private fun spawn(id: String, tile: Tile, target: Player) {
-        val npc = npcs.add(id, tile)
+        val npc = NPCs.add(id, tile)
         npc["in_multi_combat"] = true
         npc.interactPlayer(target, "Attack")
         if (id == "tztok_jad") {

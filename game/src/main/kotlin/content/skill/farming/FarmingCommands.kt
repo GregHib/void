@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.timer.TICKS
 
 class FarmingCommands(
     val accounts: AccountDefinitions,
-    val players: Players,
 ) : Script {
 
     init {
@@ -27,7 +26,7 @@ class FarmingCommands(
     }
 
     fun listPatches(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(0)) ?: return
+        val target = Players.find(player, args.getOrNull(0)) ?: return
         val list = mutableListOf<String>()
         for ((_, vars) in FarmingPatches.patches) {
             for (variable in vars) {
@@ -70,7 +69,7 @@ class FarmingCommands(
     }
 
     fun growthInfo(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(0)) ?: return
+        val target = Players.find(player, args.getOrNull(0)) ?: return
         val ticks = target.timers.remaining("farming_tick")
         if (ticks == -1) {
             player.message("Player has no patches active.", ChatType.Console)
@@ -80,7 +79,7 @@ class FarmingCommands(
     }
 
     fun rot(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(0)) ?: return
+        val target = Players.find(player, args.getOrNull(0)) ?: return
         rot(target, "compost_bin_falador")
         rot(target, "compost_bin_catherby")
         rot(target, "compost_bin_port_phasmatys")

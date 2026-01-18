@@ -1,7 +1,7 @@
 package content.area.misthalin
 
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -11,7 +11,7 @@ import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.area.Rectangle
 import kotlin.collections.set
 
-class BorderGuard(val objects: GameObjects, val areas: AreaDefinitions) : Script {
+class BorderGuard : Script {
 
     val guards = mutableMapOf<Rectangle, List<GameObject>>()
 
@@ -19,11 +19,11 @@ class BorderGuard(val objects: GameObjects, val areas: AreaDefinitions) : Script
 
     init {
         worldSpawn {
-            for (border in areas.getTagged("border")) {
+            for (border in Areas.tagged("border")) {
                 val passage = border.area as Rectangle
                 for (zone in passage.toZones()) {
                     guards[passage] = zone.toRectangle().mapNotNull {
-                        val obj = objects.getLayer(it, ObjectLayer.GROUND)
+                        val obj = GameObjects.getLayer(it, ObjectLayer.GROUND)
                         if (obj != null && obj.id.startsWith("border_guard")) obj else null
                     }
                 }

@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-class DoorSupport(val objects: GameObjects) : Script {
+class DoorSupport : Script {
 
     init {
         npcOperate("Destroy", "door_support*") {
@@ -20,7 +20,7 @@ class DoorSupport(val objects: GameObjects) : Script {
             for (attack in attackers) {
                 attack.mode = EmptyMode
             }
-            val base = objects[tile, "door_support_base"]!!
+            val base = GameObjects.find(tile, "door_support_base")
             base.remove(ticks = TimeUnit.SECONDS.toTicks(30))
         }
     }

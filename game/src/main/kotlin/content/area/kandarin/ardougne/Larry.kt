@@ -14,7 +14,7 @@ import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -22,10 +22,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
-class Larry(
-    val npcs: NPCs,
-    val areas: AreaDefinitions,
-) : Script {
+class Larry : Script {
 
     init {
         npcOperate("Talk-to", "larry_ardougne_normal") {
@@ -127,8 +124,8 @@ class Larry(
         option<Neutral>("I'm having trouble finding the penguins; can I have a hint?") {
             for (i in 0 until 10) {
                 if (!containsVarbit("penguins_found", "penguin_$i")) {
-                    val penguin = npcs.firstOrNull { it.id == "hidden_penguin_$i" } ?: continue
-                    val area = areas.get(penguin.tile.zone).firstOrNull { it.tags.contains("penguin_area") } ?: continue
+                    val penguin = NPCs.firstOrNull { it.id == "hidden_penguin_$i" } ?: continue
+                    val area = Areas.get(penguin.tile.zone).firstOrNull { it.tags.contains("penguin_area") } ?: continue
                     val hint: String = area.getOrNull("hint") ?: continue
                     npc<Shifty>("I've heard there's a penguin located $hint")
                     return@option

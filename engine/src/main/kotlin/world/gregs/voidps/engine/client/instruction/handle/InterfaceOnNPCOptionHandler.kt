@@ -12,14 +12,11 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.network.client.instruction.InteractInterfaceNPC
 
-class InterfaceOnNPCOptionHandler(
-    private val npcs: NPCs,
-    private val handler: InterfaceHandler,
-) : InstructionHandler<InteractInterfaceNPC>() {
+class InterfaceOnNPCOptionHandler(private val handler: InterfaceHandler) : InstructionHandler<InteractInterfaceNPC>() {
 
     override fun validate(player: Player, instruction: InteractInterfaceNPC) {
         val (npcIndex, interfaceId, componentId, itemId, itemSlot) = instruction
-        val npc = npcs.indexed(npcIndex) ?: return
+        val npc = NPCs.indexed(npcIndex) ?: return
 
         val (id, component, item) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
 

@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.queue.strongQueue
 
-class Elementals(val patrols: PatrolDefinitions, val players: Players) : Script {
+class Elementals(val patrols: PatrolDefinitions) : Script {
 
     init {
         npcSpawn("autumn_elemental*,spring_elemental*,summer_elemental*,winter_elemental*") {
@@ -22,10 +22,10 @@ class Elementals(val patrols: PatrolDefinitions, val players: Players) : Script 
         huntPlayer("*_elemental*", "spotted") {
             val direction = direction
             // Catch all players two tiles in-front
-            for (player in players[tile.add(direction)]) {
+            for (player in Players.at(tile.add(direction))) {
                 catch(player)
             }
-            for (player in players[tile.add(direction).add(direction)]) {
+            for (player in Players.at(tile.add(direction).add(direction))) {
                 catch(player)
             }
         }

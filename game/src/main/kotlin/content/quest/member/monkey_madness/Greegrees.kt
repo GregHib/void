@@ -6,7 +6,7 @@ import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeType
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -16,13 +16,13 @@ import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-class Greegrees(val items: FloorItems, val areas: AreaDefinitions) : Script {
+class Greegrees : Script {
 
     init {
         playerSpawn {
             val item = equipped(EquipSlot.Weapon).id
             if (item.endsWith("_greegree")) {
-                if (tile in areas["ape_atoll"] || tile in areas["ape_atoll_agility_dungeon"]) {
+                if (tile in Areas["ape_atoll"] || tile in Areas["ape_atoll_agility_dungeon"]) {
                     transform(item.replace("_greegree", ""))
                     closeType("spellbook_tab")
                 } else {
@@ -81,7 +81,7 @@ class Greegrees(val items: FloorItems, val areas: AreaDefinitions) : Script {
         if (get("logged_out", false)) {
             return // TODO check if removed on logout or not
         }
-        if (tile in areas["ape_atoll"] || tile in areas["ape_atoll_agility_dungeon"]) {
+        if (tile in Areas["ape_atoll"] || tile in Areas["ape_atoll_agility_dungeon"]) {
             return
         }
         val item = equipped(EquipSlot.Weapon).id
@@ -93,7 +93,7 @@ class Greegrees(val items: FloorItems, val areas: AreaDefinitions) : Script {
                 if (equipment.remove(EquipSlot.Weapon.index, item)) {
                     // FIXME issue with item spawning displaying twice if spawned on the same tick. #614
                     World.queue("greegree_spawn", 1) {
-                        items.add(tile, item, disappearTicks = 300, owner = this)
+                        FloorItems.add(tile, item, disappearTicks = 300, owner = this)
                     }
                 }
             }

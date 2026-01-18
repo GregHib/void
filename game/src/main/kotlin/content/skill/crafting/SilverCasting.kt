@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.queue.weakQueue
 
-class SilverCasting(val itemDefinitions: ItemDefinitions) : Script {
+class SilverCasting : Script {
 
     val moulds = listOf(
         Item("holy_mould"),
@@ -49,12 +49,12 @@ class SilverCasting(val itemDefinitions: ItemDefinitions) : Script {
                     "${mould.id}_text",
                     if (has) {
                         val colour = if (holdsItem("silver_bar")) "green" else "orange"
-                        "<$colour>Make ${itemDefinitions.get(item).name.toTitleCase()}"
+                        "<$colour>Make ${ItemDefinitions.get(item).name.toTitleCase()}"
                     } else {
                         "<orange>You need a ${silver.name ?: mould.def.name.lowercase()} to make this item."
                     },
                 )
-                interfaces.sendItem(id, "${mould.id}_model", if (has) itemDefinitions.get(item).id else mould.def.id)
+                interfaces.sendItem(id, "${mould.id}_model", if (has) ItemDefinitions.get(item).id else mould.def.id)
             }
         }
 
@@ -92,18 +92,18 @@ class SilverCasting(val itemDefinitions: ItemDefinitions) : Script {
         val data = item.silver ?: return
         closeMenu()
         if (!inventory.contains(item.id)) {
-            message("You need a ${item.def.name} in order to make a ${itemDefinitions.get(data.item).name}.")
+            message("You need a ${item.def.name} in order to make a ${ItemDefinitions.get(data.item).name}.")
             return
         }
         if (!inventory.contains("silver_bar")) {
-            message("You need a silver bar in order to make a ${itemDefinitions.get(data.item).name}.")
+            message("You need a silver bar in order to make a ${ItemDefinitions.get(data.item).name}.")
             return
         }
         if (!has(Skill.Crafting, data.level)) {
             return
         }
         if (!inventory.contains("silver_bar")) {
-            message("You have run out of silver bars to make another ${itemDefinitions.get(data.item).name}.")
+            message("You have run out of silver bars to make another ${ItemDefinitions.get(data.item).name}.")
             return
         }
         anim("cook_range")

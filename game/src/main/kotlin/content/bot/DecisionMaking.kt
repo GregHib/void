@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import kotlin.coroutines.resume
 
 class DecisionMaking(
-    val players: Players,
     val tasks: TaskManager,
 ) : Script {
 
@@ -34,16 +33,17 @@ class DecisionMaking(
         }
 
         AiTick.method = {
-            players.forEach { player ->
-                if (player.isBot) {
-                    val bot: Bot = player["bot"]!!
-                    if (!bot.contains("task_bot")) {
-                        val lastTask: String? = bot["last_task_bot"]
-                        assign(player, tasks.assign(bot, lastTask))
-                    }
-                    player.bot.resume("tick")
-                    handleNewSuspensions(player)
+            for (player in Players) {
+                if (!player.isBot) {
+                    continue
                 }
+                val bot: Bot = player["bot"]!!
+                if (!bot.contains("task_bot")) {
+                    val lastTask: String? = bot["last_task_bot"]
+                    assign(player, tasks.assign(bot, lastTask))
+                }
+                player.bot.resume("tick")
+                handleNewSuspensions(player)
             }
         }
     }

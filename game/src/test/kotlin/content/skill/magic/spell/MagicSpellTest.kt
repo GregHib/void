@@ -24,7 +24,6 @@ import world.gregs.voidps.engine.inv.stack.ItemStackingRule
 
 abstract class MagicSpellTest : KoinTest {
 
-    private lateinit var itemDefinitions: ItemDefinitions
     private lateinit var inventoryDefinitions: InventoryDefinitions
     protected lateinit var interfaceDefinitions: InterfaceDefinitions
     private lateinit var fontDefinitions: FontDefinitions
@@ -46,13 +45,11 @@ abstract class MagicSpellTest : KoinTest {
         )
         inventoryDefinitions = InventoryDefinitions(emptyArray())
         inventoryDefinitions.ids = emptyMap()
-        itemDefinitions = ItemDefinitions(itemDefs)
-        itemDefinitions.ids = itemIds
+        ItemDefinitions.set(itemDefs, itemIds)
         fontDefinitions = FontDefinitions(arrayOf(FontDefinition(0, (0..200).map { 1.toByte() }.toByteArray()))).apply { ids = mapOf("p12_full" to 0) }
         startKoin {
             modules(
                 module {
-                    single { itemDefinitions }
                     single { interfaceDefinitions }
                     single { fontDefinitions }
                 },
@@ -95,7 +92,7 @@ abstract class MagicSpellTest : KoinTest {
     }
 
     private val normalStackRule = object : ItemStackingRule {
-        override fun stackable(id: String): Boolean = itemDefinitions.get(id).stackable == 1
+        override fun stackable(id: String): Boolean = ItemDefinitions.get(id).stackable == 1
     }
 
     fun player(): Player {
@@ -104,7 +101,6 @@ abstract class MagicSpellTest : KoinTest {
         )
         player.interfaces = Interfaces(player, definitions = interfaceDefinitions)
         player.inventories.definitions = inventoryDefinitions
-        player.inventories.itemDefinitions = itemDefinitions
         player.inventories.validItemRule = NoRestrictions
         player.inventories.player = player
         player.inventories.normalStack = normalStackRule

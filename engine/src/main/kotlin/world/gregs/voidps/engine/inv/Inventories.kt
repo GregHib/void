@@ -24,7 +24,6 @@ class Inventories(
     val instances: MutableMap<String, Inventory> = mutableMapOf()
 
     lateinit var definitions: InventoryDefinitions
-    lateinit var itemDefinitions: ItemDefinitions
     lateinit var validItemRule: ItemRestrictionRule
     lateinit var player: Player
     lateinit var normalStack: ItemStackingRule
@@ -54,7 +53,7 @@ class Inventories(
             val ids = def.ids
             val amounts = def.amounts
             val data = if (ids != null && amounts != null) {
-                Array(def.length) { Item(itemDefinitions.get(ids[it]).stringId, amounts[it]) }
+                Array(def.length) { Item(ItemDefinitions.get(ids[it]).stringId, amounts[it]) }
             } else {
                 val amountBounds = if (def["shop", false]) ShopItemAmountBounds else DefaultItemAmountBounds
                 Array(def.length) { Item("", amountBounds.minimum(it)) }

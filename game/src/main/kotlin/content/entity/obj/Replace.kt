@@ -3,7 +3,6 @@ package content.entity.obj
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.type.Tile
 
 object Replace {
@@ -24,24 +23,22 @@ object Replace {
         ticks: Int,
         collision: Boolean = true,
     ) {
-        val definitions = get<ObjectDefinitions>()
-        val firstId = definitions.get(firstReplacement).id
-        val secondId = definitions.get(secondReplacement).id
+        val firstId = ObjectDefinitions.get(firstReplacement).id
+        val secondId = ObjectDefinitions.get(secondReplacement).id
         if (firstId == -1 || secondId == -1) {
             return
         }
-        val objects = get<GameObjects>()
         val first = GameObject(firstId, firstTile, firstOriginal.shape, firstRotation)
         val second = GameObject(secondId, secondTile, secondOriginal.shape, secondRotation)
-        objects.remove(firstOriginal, collision)
-        objects.remove(secondOriginal, collision)
-        objects.add(first, collision)
-        objects.add(second, collision)
-        objects.timers.add(setOf(firstOriginal, secondOriginal, first, second), ticks) {
-            objects.remove(first, collision)
-            objects.remove(second, collision)
-            objects.add(firstOriginal, collision)
-            objects.add(secondOriginal, collision)
+        GameObjects.remove(firstOriginal, collision)
+        GameObjects.remove(secondOriginal, collision)
+        GameObjects.add(first, collision)
+        GameObjects.add(second, collision)
+        GameObjects.timers.add(setOf(firstOriginal, secondOriginal, first, second), ticks) {
+            GameObjects.remove(first, collision)
+            GameObjects.remove(second, collision)
+            GameObjects.add(firstOriginal, collision)
+            GameObjects.add(secondOriginal, collision)
         }
     }
 }

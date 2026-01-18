@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.map.spiral
 
-class VestasSpear(val players: Players, val npcs: NPCs) : Script {
+class VestasSpear : Script {
 
     init {
         specialAttackDamage("spear_wall") { target, _ ->
@@ -20,9 +20,9 @@ class VestasSpear(val players: Players, val npcs: NPCs) : Script {
                 return@specialAttackDamage
             }
             var remaining = 15
-            val characters: CharacterSearch<*> = if (target is Player) players else npcs
+            val characters: CharacterSearch<*> = if (target is Player) Players else NPCs
             for (tile in tile.spiral(1)) {
-                for (char in characters[tile]) {
+                for (char in characters.at(tile)) {
                     if (char == this || char == target || !char.inMultiCombat || !Target.attackable(this, char)) {
                         continue
                     }

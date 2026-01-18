@@ -11,10 +11,12 @@ import kotlinx.coroutines.test.runTest
 import npcOption
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertNotNull
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.client.instruction.ClanChatJoin
 import world.gregs.voidps.network.login.protocol.encode.message
@@ -132,7 +134,7 @@ internal class LootShareTest : WorldTest() {
         val tile = npc["death_tile", npc.tile]
         tick(7)
 
-        assertTrue(floorItems[tile].any { it.id == "bones" })
+        assertNotNull(FloorItems.first(tile, "bones"))
         verify(exactly = 0) {
             client.message(match { it.contains("received: ") }, ChatType.ClanChat.id)
         }
@@ -165,7 +167,7 @@ internal class LootShareTest : WorldTest() {
         val tile = npc["death_tile", npc.tile]
         tick(7)
 
-        assertTrue(floorItems[tile].any { it.id == "bones" })
+        assertNotNull(FloorItems.firstOrNull(tile, "bones"))
         verify {
             client.message(match { it.contains("received: ") }, ChatType.ClanChat.id)
         }

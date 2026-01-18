@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.rights
-import world.gregs.voidps.engine.get
 
 class Rights(val accounts: AccountDefinitions) : Script {
 
@@ -40,7 +39,7 @@ class Rights(val accounts: AccountDefinitions) : Script {
             player.message("No rights found with the name: '${right.toSentenceCase()}'.")
             return
         }
-        val target = get<Players>().firstOrNull { it.name.equals(args[0], true) }
+        val target = Players.firstOrNull { it.name.equals(args[0], true) }
         if (target == null) {
             player.message("Unable to find player '${args[0]}' online.", ChatType.Console)
             return

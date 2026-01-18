@@ -26,6 +26,7 @@ class DropTablesTest {
     @Test
     fun `Load from toml`() {
         val uri = DropTablesTest::class.java.getResource("drop-table.toml")!!.toURI()
+        ItemDefinitions.clear()
         val decoder = DropTables().load(listOf(uri.path))
         val table = decoder.getValue("test_drop_table")
         assertNotNull(table)
@@ -62,7 +63,7 @@ class DropTablesTest {
         Settings.load(mapOf("world.members" to "true"))
         assertFalse(drop.predicate!!.invoke(Player()))
         Settings.load(mapOf("world.members" to "false"))
-        assertTrue(drop.predicate!!.invoke(Player()))
+        assertTrue(drop.predicate.invoke(Player()))
 
         drop = subDrops[3] as ItemDrop
         assertEquals("dragon_dagger", drop.id)
@@ -71,7 +72,7 @@ class DropTablesTest {
         assertNotNull(drop.predicate)
         assertFalse(drop.predicate!!.invoke(Player()))
         Settings.load(mapOf("world.members" to "true"))
-        assertTrue(drop.predicate!!.invoke(Player()))
+        assertTrue(drop.predicate.invoke(Player()))
 
         drop = subDrops[4] as ItemDrop
         assertEquals("coins", drop.id)
@@ -97,7 +98,7 @@ class DropTablesTest {
             val variables = Player()
             Assertions.assertFalse(drop.predicate!!.invoke(variables))
             variables["test"] = equals
-            Assertions.assertTrue(drop.predicate!!.invoke(variables))
+            Assertions.assertTrue(drop.predicate.invoke(variables))
         }
     }
 
@@ -127,8 +128,8 @@ class DropTablesTest {
         val inventoryDefinitions = InventoryDefinitions(arrayOf(InventoryDefinition(length = 10)))
         inventoryDefinitions.ids = mapOf("inventory" to 0)
         player.inventories.definitions = inventoryDefinitions
-        val itemDefinitions = ItemDefinitions(emptyArray()).apply { ids = mapOf("test" to 0) }
-        player.inventories.normalStack = ItemDependentStack(itemDefinitions)
+        ItemDefinitions.set(emptyArray(), mapOf("test" to 0))
+        player.inventories.normalStack = ItemDependentStack
         player.inventories.validItemRule = NoRestrictions
         player.inventories.player = player
         val drop = ItemDrop(
@@ -141,7 +142,7 @@ class DropTablesTest {
         )
         Assertions.assertFalse(drop.predicate!!.invoke(player))
         Assertions.assertTrue(player.inventory.add("test"))
-        Assertions.assertTrue(drop.predicate!!.invoke(player))
+        Assertions.assertTrue(drop.predicate.invoke(player))
     }
 
     @Test
@@ -150,8 +151,8 @@ class DropTablesTest {
         val inventoryDefinitions = InventoryDefinitions(arrayOf(InventoryDefinition(length = 10)))
         inventoryDefinitions.ids = mapOf("inventory" to 0)
         player.inventories.definitions = inventoryDefinitions
-        val itemDefinitions = ItemDefinitions(emptyArray()).apply { ids = mapOf("test" to 0) }
-        player.inventories.normalStack = ItemDependentStack(itemDefinitions)
+        ItemDefinitions.set(emptyArray(), mapOf("test" to 0))
+        player.inventories.normalStack = ItemDependentStack
         player.inventories.validItemRule = NoRestrictions
         player.inventories.player = player
         val drop = ItemDrop(
@@ -163,7 +164,7 @@ class DropTablesTest {
         )
         Assertions.assertTrue(drop.predicate!!.invoke(player))
         Assertions.assertTrue(player.inventory.add("test"))
-        Assertions.assertFalse(drop.predicate!!.invoke(player))
+        Assertions.assertFalse(drop.predicate.invoke(player))
     }
 
     @Test
@@ -172,8 +173,8 @@ class DropTablesTest {
         val inventoryDefinitions = InventoryDefinitions(arrayOf(InventoryDefinition(length = 10)))
         inventoryDefinitions.ids = mapOf("inventory" to 0)
         player.inventories.definitions = inventoryDefinitions
-        val itemDefinitions = ItemDefinitions(emptyArray()).apply { ids = mapOf("test" to 0, "unknown" to 1) }
-        player.inventories.normalStack = ItemDependentStack(itemDefinitions)
+        ItemDefinitions.set(emptyArray(), mapOf("test" to 0, "unknown" to 1))
+        player.inventories.normalStack = ItemDependentStack
         player.inventories.validItemRule = NoRestrictions
         player.inventories.player = player
         val drop = ItemDrop(
@@ -186,9 +187,9 @@ class DropTablesTest {
         )
         Assertions.assertFalse(drop.predicate!!.invoke(player))
         Assertions.assertTrue(player.inventory.add("test"))
-        Assertions.assertTrue(drop.predicate!!.invoke(player))
+        Assertions.assertTrue(drop.predicate.invoke(player))
         Assertions.assertTrue(player.inventory.add("unknown"))
-        Assertions.assertFalse(drop.predicate!!.invoke(player))
+        Assertions.assertFalse(drop.predicate.invoke(player))
     }
 
     @Test
@@ -206,9 +207,9 @@ class DropTablesTest {
         val variables = Player()
         Assertions.assertTrue(drop.predicate!!.invoke(variables))
         variables["test"] = 11
-        Assertions.assertFalse(drop.predicate!!.invoke(variables))
+        Assertions.assertFalse(drop.predicate.invoke(variables))
         variables["test"] = 10
-        Assertions.assertTrue(drop.predicate!!.invoke(variables))
+        Assertions.assertTrue(drop.predicate.invoke(variables))
     }
 
     @Test
@@ -228,9 +229,9 @@ class DropTablesTest {
         Settings.load(mapOf("world.members" to "true"))
         Assertions.assertTrue(drop.predicate!!.invoke(variables))
         variables["test"] = 11
-        Assertions.assertFalse(drop.predicate!!.invoke(variables))
+        Assertions.assertFalse(drop.predicate.invoke(variables))
         variables["test"] = 10
-        Assertions.assertTrue(drop.predicate!!.invoke(variables))
+        Assertions.assertTrue(drop.predicate.invoke(variables))
     }
 
     @Test

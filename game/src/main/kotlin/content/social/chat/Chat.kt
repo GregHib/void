@@ -22,11 +22,11 @@ import world.gregs.voidps.network.login.protocol.encode.privateChatFrom
 import world.gregs.voidps.network.login.protocol.encode.privateChatTo
 import world.gregs.voidps.network.login.protocol.encode.publicChat
 
-class Chat(val players: Players, val huffman: Huffman) : Script {
+class Chat(val huffman: Huffman) : Script {
 
     init {
         instruction<ChatPrivate> { player ->
-            val target = players.get(friend)
+            val target = Players.find(friend)
             if (target == null || target.ignores(player)) {
                 player.message("Unable to send message - player unavailable.")
                 return@instruction
@@ -55,7 +55,7 @@ class Chat(val players: Players, val huffman: Huffman) : Script {
                 "public" -> {
                     AuditLog.event(player, "said", text)
                     val compressed = huffman.compress(text)
-                    players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }.forEach {
+                    Players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }.forEach {
                         it.client?.publicChat(player.index, effects, player.rights.ordinal, compressed)
                     }
                 }

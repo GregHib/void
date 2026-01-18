@@ -7,20 +7,16 @@ import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemReveal
 /**
  * Removes or reveals items once a floor items countdown is complete.
  */
-class FloorItemTracking(
-    private val items: FloorItems,
-    private val players: Players,
-    private val batches: ZoneBatchUpdates,
-) : Runnable {
+class FloorItemTracking : Runnable {
     private val removal = mutableListOf<FloorItem>()
 
     override fun run() {
-        for ((_, zone) in items.data) {
+        for ((_, zone) in FloorItems.data) {
             for ((_, list) in zone) {
                 for (floorItem in list) {
                     if (floorItem.reveal()) {
-                        val player = players.get(floorItem.owner!!)
-                        batches.add(floorItem.tile.zone, FloorItemReveal(floorItem.tile.id, floorItem.def.id, floorItem.amount, player?.index ?: -1))
+                        val player = Players.find(floorItem.owner!!)
+                        ZoneBatchUpdates.add(floorItem.tile.zone, FloorItemReveal(floorItem.tile.id, floorItem.def.id, floorItem.amount, player?.index ?: -1))
                         floorItem.owner = null
                     } else if (floorItem.remove()) {
                         removal.add(floorItem)
@@ -29,7 +25,7 @@ class FloorItemTracking(
             }
         }
         for (item in removal) {
-            items.remove(item)
+            FloorItems.remove(item)
         }
         removal.clear()
     }

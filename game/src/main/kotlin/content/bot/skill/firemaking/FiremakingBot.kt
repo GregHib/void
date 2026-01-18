@@ -11,7 +11,7 @@ import content.bot.skill.combat.setupGear
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinition
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -20,14 +20,12 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.InteractInterfaceItem
 
 class FiremakingBot(
-    val areas: AreaDefinitions,
     val tasks: TaskManager,
-    val objects: GameObjects,
 ) : Script {
 
     init {
         worldSpawn {
-            for (area in areas.getTagged("fire_making")) {
+            for (area in Areas.tagged("fire_making")) {
                 val spaces: Int = area["spaces", 1]
                 val task = Task(
                     name = "make fires at ${area.name}".toLowerSpaceCase(),
@@ -59,10 +57,10 @@ class FiremakingBot(
         goToArea(map)
         val lighterIndex = player.inventory.indexOf(lighter.id)
         while (player.inventory.contains(logs.id)) {
-            if (objects.getLayer(player.tile, ObjectLayer.GROUND) != null) {
+            if (GameObjects.getLayer(player.tile, ObjectLayer.GROUND) != null) {
                 val spot = player.tile
                     .toCuboid(1)
-                    .firstOrNull { objects.getLayer(it, ObjectLayer.GROUND) == null }
+                    .firstOrNull { GameObjects.getLayer(it, ObjectLayer.GROUND) == null }
                 if (spot == null) {
                     await("tick")
                     if (player.inventory.spaces < 4) {

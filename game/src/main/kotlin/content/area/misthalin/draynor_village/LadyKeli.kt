@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-class LadyKeli(val npcs: NPCs) : Script {
+class LadyKeli : Script {
 
     init {
         npcOperate("Talk-to", "lady_keli") { (target) ->
@@ -40,7 +40,7 @@ class LadyKeli(val npcs: NPCs) : Script {
                 "keli_tied_up", "prince_ali_disguise", "completed" -> {
                     target.say("You tricked me, and tied me up, Guards kill this stranger!!")
                     message("Guards alerted to kill you!")
-                    val guard = npcs[tile.regionLevel].sortedBy { it.tile.distanceTo(tile) }.firstOrNull { it.id.startsWith("draynor_jail_guard") } ?: return@npcOperate
+                    val guard = NPCs.at(tile.regionLevel).sortedBy { it.tile.distanceTo(tile) }.firstOrNull { it.id.startsWith("draynor_jail_guard") } ?: return@npcOperate
                     guard.interactPlayer(this, "Attack")
                     guard.say("Yes M'lady")
                 }

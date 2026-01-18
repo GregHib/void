@@ -9,7 +9,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import org.koin.core.module.Module
 import org.koin.dsl.module
-import org.koin.test.mock.declareMock
 import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
@@ -18,7 +17,7 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -27,7 +26,6 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.Zone
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
@@ -42,23 +40,20 @@ internal class InteractTest : KoinMock() {
 
     override val modules: List<Module> = listOf(
         module {
-            single {
-                Collisions().apply {
-                    for (x in 0 until 24 step 8) {
-                        for (y in 0 until 24 step 8) {
-                            allocateIfAbsent(x, y, 0)
-                        }
-                    }
-                }
-            }
-            single { LineValidator(get()) }
-            single { StepValidator(get()) }
-            single { PathFinder(get()) }
+            single { LineValidator(Collisions.map) }
+            single { StepValidator(Collisions.map) }
+            single { PathFinder(Collisions.map) }
         },
     )
 
     @BeforeEach
     fun setup() {
+        for (x in 0 until 24 step 8) {
+            for (y in 0 until 24 step 8) {
+                Collisions.deallocateIfPresent(x, y, 0)
+                Collisions.allocateIfAbsent(x, y, 0)
+            }
+        }
         mockkStatic("world.gregs.voidps.engine.client.ui.InterfacesKt")
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         approached = false
@@ -71,9 +66,7 @@ internal class InteractTest : KoinMock() {
         player.collision = CollisionStrategies.Normal
         target = NPC(tile = Tile(10, 10))
         target.collision = CollisionStrategies.Normal
-        declareMock<AreaDefinitions> {
-            every { get(any<Zone>()) } returns emptySet()
-        }
+        Areas.clear()
     }
 
     private fun interact(operate: Boolean, approach: Boolean, suspend: Boolean) {

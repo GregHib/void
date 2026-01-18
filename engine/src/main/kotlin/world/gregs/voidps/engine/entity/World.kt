@@ -7,12 +7,9 @@ import world.gregs.voidps.engine.client.variable.VariableStore
 import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
-import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timer.TimerQueue
@@ -33,9 +30,9 @@ object World : Entity, VariableStore, Runnable, KoinComponent {
         get() = Settings["world.members", false]
 
     fun start(files: ConfigFiles) {
-        loadItemSpawns(get<FloorItems>(), get<ItemSpawns>(), files.list(Settings["spawns.items"]), get())
-        loadObjectSpawns(get<GameObjects>(), files.list(Settings["spawns.objects"]), get())
-        loadNpcSpawns(get<NPCs>(), files.list(Settings["spawns.npcs"]), get())
+        loadItemSpawns(get<ItemSpawns>(), files.list(Settings["spawns.items"]))
+        loadObjectSpawns(files.list(Settings["spawns.objects"]))
+        loadNpcSpawns(files.list(Settings["spawns.npcs"]))
         Spawn.world(files)
     }
 

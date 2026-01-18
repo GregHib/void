@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.inv.sendInventory
 
-class BankOpen(val players: Players, val accounts: AccountDefinitions) : Script {
+class BankOpen(val accounts: AccountDefinitions) : Script {
 
     init {
         adminCommand("bank", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Open the players bank", handler = ::bank)
@@ -88,7 +88,7 @@ class BankOpen(val players: Players, val accounts: AccountDefinitions) : Script 
     }
 
     fun bank(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(0)) ?: return
+        val target = Players.find(player, args.getOrNull(0)) ?: return
         if (target != player) {
             player.message("${Colours.RED_ORANGE.toTag()}Note: modifications won't effect target players bank!")
         }

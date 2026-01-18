@@ -3,7 +3,7 @@ package content.entity.player.dialogue.type
 import io.mockk.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import org.koin.test.mock.declareMock
+import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -16,9 +16,7 @@ internal class ItemBoxTest : DialogueTest() {
     fun `Send item box`() {
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         var resumed = false
-        declareMock<ItemDefinitions> {
-            every { this@declareMock.get("item_name").id } returns 9009
-        }
+        ItemDefinitions.set(arrayOf(ItemDefinition(id = 9009, name = "item_name")), mapOf("item_name" to 0))
         every { player.sendScript(any(), *anyVararg()) } just Runs
         dialogue {
             item(
@@ -46,10 +44,7 @@ internal class ItemBoxTest : DialogueTest() {
     fun `Send double item box`() {
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         var resumed = false
-        declareMock<ItemDefinitions> {
-            every { this@declareMock.get("item_name").id } returns 9009
-            every { this@declareMock.get("item2_name").id } returns 9010
-        }
+        ItemDefinitions.set(arrayOf(ItemDefinition(id = 9009, name = "item_name"), ItemDefinition(id = 9010, name = "item2_name")), mapOf("item_name" to 0, "item2_name" to 1))
         dialogue {
             items("item_name", "item2_name", "Item descriptions")
             resumed = true

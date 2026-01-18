@@ -3,6 +3,7 @@ package content.area.morytania.slayer_tower
 import WorldTest
 import npcOption
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
@@ -23,7 +24,7 @@ class BansheeTest : WorldTest() {
         player.levels.set(Skill.Magic, 50)
         player.levels.set(Skill.Prayer, 50)
         player.levels.set(Skill.Agility, 50)
-        val banshee = npcs.add("banshee", emptyTile.addY(1))
+        val banshee = NPCs.add("banshee", emptyTile.addY(1))
         tick()
 
         player.npcOption(banshee, "Attack")
@@ -53,7 +54,7 @@ class BansheeTest : WorldTest() {
         player.levels.set(Skill.Prayer, 50)
         player.levels.set(Skill.Agility, 50)
         player.equipment.set(EquipSlot.Hat.index, "earmuffs")
-        val banshee = npcs.add("banshee", emptyTile.addY(1))
+        val banshee = NPCs.add("banshee", emptyTile.addY(1))
         tick()
 
         player.npcOption(banshee, "Attack")

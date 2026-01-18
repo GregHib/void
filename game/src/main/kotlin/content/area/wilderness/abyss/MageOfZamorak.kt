@@ -8,7 +8,7 @@ import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeInterfaces
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -24,10 +24,7 @@ import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.random
 
-class MageOfZamorak(val areas: AreaDefinitions) : Script {
-
-    val abyss = areas["abyss_multi_area"]
-    val abyssCenter = areas["abyss_center"]
+class MageOfZamorak : Script {
 
     init {
         playerSpawn {
@@ -285,10 +282,10 @@ class MageOfZamorak(val areas: AreaDefinitions) : Script {
             player.sound("teleport_all")
             player.delay(2)
             player["abyss_obstacles"] = random.nextInt(0, 12)
-            var tile = abyss.random(player)
+            var tile = Areas["abyss_multi_area"].random(player)
             var count = 0
-            while ((tile == null || tile in abyssCenter) && count++ < 100) {
-                tile = abyss.random(player)
+            while ((tile == null || tile in Areas["abyss_center"]) && count++ < 100) {
+                tile = Areas["abyss_multi_area"].random(player)
             }
             player.tele(tile!!)
             player.levels.drain(Skill.Prayer, player.levels.get(Skill.Prayer))

@@ -25,8 +25,6 @@ import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
 class SirVyvin(
-    val floorItems: FloorItems,
-    val npcs: NPCs,
     val lineValidator: LineValidator,
 ) : Script {
 
@@ -44,7 +42,7 @@ class SirVyvin(
         objectOperate("Search", "cupboard_the_knights_sword_opened") {
             when (quest("the_knights_sword")) {
                 "cupboard", "blurite_sword" -> {
-                    val sirVyvin = npcs[tile.regionLevel].firstOrNull { it.id == "sir_vyvin" }
+                    val sirVyvin = NPCs.findOrNull(tile.regionLevel, "sir_vyvin")
                     if (sirVyvin != null && lineValidator.hasLineOfSight(sirVyvin, this)) {
                         talkWith(sirVyvin)
                         npc<Frustrated>("HEY! Just WHAT do you THINK you are DOING??? STAY OUT of MY cupboard!")
@@ -55,7 +53,7 @@ class SirVyvin(
                     } else {
                         statement("You find a small portrait in here which you take.")
                         if (inventory.isFull()) {
-                            floorItems.add(tile, "portrait", disappearTicks = 300, owner = this)
+                            FloorItems.add(tile, "portrait", disappearTicks = 300, owner = this)
                             return@objectOperate
                         }
                         inventory.add("portrait")

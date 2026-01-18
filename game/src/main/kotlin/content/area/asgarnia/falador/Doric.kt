@@ -18,9 +18,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
 
-class Doric(
-    val floorItems: FloorItems,
-) : Script {
+class Doric : Script {
 
     val ores = listOf(
         Item("clay", 6),
@@ -114,7 +112,7 @@ class Doric(
                 player<Happy>("Yes, I will get you the materials.")
                 set("dorics_quest", "started")
                 if (inventory.isFull()) {
-                    floorItems.add(tile, "bronze_pickaxe", disappearTicks = 300, owner = this)
+                    FloorItems.add(tile, "bronze_pickaxe", disappearTicks = 300, owner = this)
                 } else {
                     inventory.add("bronze_pickaxe")
                 }

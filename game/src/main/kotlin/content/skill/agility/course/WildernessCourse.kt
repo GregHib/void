@@ -21,7 +21,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 
-class WildernessCourse(val objects: GameObjects) : Script {
+class WildernessCourse : Script {
 
     init {
         objectOperate("Open", "wilderness_agility_door_closed") { (target) ->
@@ -47,7 +47,7 @@ class WildernessCourse(val objects: GameObjects) : Script {
             walkOverDelay(Tile(2998, 3930))
             clearRenderEmote()
             val gateTile = Tile(2998, 3931)
-            val gate = objects[gateTile, "wilderness_agility_gate_east_closed"]
+            val gate = GameObjects.findOrNull(gateTile, "wilderness_agility_gate_east_closed")
             if (gate != null) {
                 enterDoor(gate)
             } else {
@@ -76,7 +76,7 @@ class WildernessCourse(val objects: GameObjects) : Script {
             }
             walkOverDelay(Tile(2998, 3917))
             clearRenderEmote()
-            val door = objects[Tile(2998, 3917), "wilderness_agility_door_closed"]
+            val door = GameObjects.findOrNull(Tile(2998, 3917), "wilderness_agility_door_closed")
             if (door != null) {
                 enterDoor(door, delay = 1)
             } else {

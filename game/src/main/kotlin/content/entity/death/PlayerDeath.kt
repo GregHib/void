@@ -34,12 +34,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
-class PlayerDeath(
-    val floorItems: FloorItems,
-    val enums: EnumDefinitions,
-    val players: Players,
-    val npcs: NPCs,
-) : Script {
+class PlayerDeath(val enums: EnumDefinitions) : Script {
 
     val respawnTile: Tile
         get() = Tile(Settings["world.home.x", 0], Settings["world.home.y", 0], Settings["world.home.level", 0])
@@ -100,7 +95,7 @@ class PlayerDeath(
         }
 
         // Spawn grave
-        val time = if (!inWilderness || killer !is Player) Gravestone.spawn(npcs, player, tile) else 0
+        val time = if (!inWilderness || killer !is Player) Gravestone.spawn(player, tile) else 0
         // Drop everything
         drop(player, Item("bones"), tile, inWilderness, killer, time)
         drop(player, player.inventory, tile, inWilderness, killer, time)
@@ -136,12 +131,12 @@ class PlayerDeath(
         AuditLog.event(player, "lost", item)
         if (inWilderness && killer is Player) {
             if (item.tradeable) {
-                floorItems.add(tile, item.id, item.amount, revealTicks = 180, disappearTicks = 240, owner = killer)
+                FloorItems.add(tile, item.id, item.amount, revealTicks = 180, disappearTicks = 240, owner = killer)
             } else {
-                floorItems.add(tile, "coins", item.amount * item.def.cost, revealTicks = 180, disappearTicks = 240, owner = killer)
+                FloorItems.add(tile, "coins", item.amount * item.def.cost, revealTicks = 180, disappearTicks = 240, owner = killer)
             }
         } else {
-            floorItems.add(tile, item.id, item.amount, revealTicks = time, disappearTicks = time + 60, owner = player)
+            FloorItems.add(tile, item.id, item.amount, revealTicks = time, disappearTicks = time + 60, owner = player)
         }
     }
 
@@ -193,14 +188,12 @@ class PlayerDeath(
     }
 
     fun hitCharacters(tile: Tile, source: Player, maxHit: Int) {
-        val players = players[tile]
-        for (player in players) {
+        for (player in Players.at(tile)) {
             if (Target.attackable(source, player)) {
                 source.directHit(player, random.nextInt(maxHit))
             }
         }
-        val npcs = npcs[tile]
-        for (npc in npcs) {
+        for (npc in NPCs.at(tile)) {
             if (Target.attackable(source, npc)) {
                 source.directHit(npc, random.nextInt(maxHit))
             }

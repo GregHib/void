@@ -15,8 +15,6 @@ import world.gregs.voidps.engine.entity.character.player.Players
 
 class EffectCommands(
     val accounts: AccountDefinitions,
-    val players: Players,
-    npcDefinitions: NPCDefinitions,
 ) : Script {
 
     init {
@@ -24,13 +22,13 @@ class EffectCommands(
         adminCommand("poison", intArg("damage", optional = true), stringArg("player-name", optional = true), desc = "Poison the player", handler = ::poison)
         adminCommand("freeze", intArg("ticks", optional = true), stringArg("player-name", optional = true), desc = "Freeze the player", handler = ::freeze)
         adminCommand("cure", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Cure the player", handler = ::cure)
-        adminCommand("tfm", stringArg("npc-id", autofill = npcDefinitions.ids.keys), stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Transform into an npc (-1 to clear)", handler = ::transform)
+        adminCommand("tfm", stringArg("npc-id", autofill = NPCDefinitions.ids.keys), stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Transform into an npc (-1 to clear)", handler = ::transform)
         commandAlias("tfm", "transform")
         commandSuggestion("tfm", "pnpc", "morph")
     }
 
     fun disease(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(1)) ?: return
+        val target = Players.find(player, args.getOrNull(1)) ?: return
         val damage = args.getOrNull(0)?.toIntOrNull() ?: 100
         if (player.diseased || damage < 0) {
             target.cureDisease()
@@ -40,7 +38,7 @@ class EffectCommands(
     }
 
     fun poison(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(1)) ?: return
+        val target = Players.find(player, args.getOrNull(1)) ?: return
         val damage = args.getOrNull(0)?.toIntOrNull() ?: 100
         if (player.poisoned || damage < 0) {
             target.curePoison()
@@ -50,7 +48,7 @@ class EffectCommands(
     }
 
     fun freeze(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(1)) ?: return
+        val target = Players.find(player, args.getOrNull(1)) ?: return
         val ticks = args.getOrNull(0)?.toIntOrNull() ?: 100
         if (player.poisoned || ticks < 0) {
             target.softTimers.clear("movement_delay")
@@ -60,12 +58,12 @@ class EffectCommands(
     }
 
     fun transform(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(1)) ?: return
+        val target = Players.find(player, args.getOrNull(1)) ?: return
         target.transform(args[0])
     }
 
     fun cure(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(0)) ?: return
+        val target = Players.find(player, args.getOrNull(0)) ?: return
         target.curePoison()
         target.cureDisease()
         target.softTimers.clear("stunned")

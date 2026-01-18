@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertNotNull
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
@@ -18,7 +19,7 @@ class FarmingPatchTest : WorldTest() {
     @Test
     fun `Check farming patch guide`() {
         val player = createPlayer(Tile(3057, 3308))
-        val patch = objects[Tile(3058, 3308), "farming_veg_patch_falador_se"]!!
+        val patch = GameObjects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.objectOption(patch, "Guide")
         tick()
@@ -29,7 +30,7 @@ class FarmingPatchTest : WorldTest() {
     @Test
     fun `Inspect farming patch`() {
         val player = createPlayer(Tile(3057, 3308))
-        val patch = objects[Tile(3058, 3308), "farming_veg_patch_falador_se"]!!
+        val patch = GameObjects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.objectOption(patch, "Inspect")
         tick()
@@ -41,7 +42,7 @@ class FarmingPatchTest : WorldTest() {
     fun `Rake farming patch`() {
         val player = createPlayer(Tile(3057, 3308))
         player.inventory.add("rake")
-        val patch = objects[Tile(3058, 3308), "farming_veg_patch_falador_se"]!!
+        val patch = GameObjects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.objectOption(patch, "Rake")
         tick(12)
@@ -56,7 +57,7 @@ class FarmingPatchTest : WorldTest() {
         val player = createPlayer(Tile(3057, 3308))
         player.inventory.add("compost")
         player["farming_veg_patch_falador_se"] = "weeds_0"
-        val patch = objects[Tile(3058, 3308), "farming_veg_patch_falador_se"]!!
+        val patch = GameObjects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.itemOnObject(patch, 0)
         tick(3)
@@ -74,7 +75,7 @@ class FarmingPatchTest : WorldTest() {
         player.inventory.add("compost")
         player["farming_veg_patch_falador_se"] = "weeds_0"
         player.addVarbit("patch_compost", "farming_veg_patch_falador_se")
-        val patch = objects[Tile(3058, 3308), "farming_veg_patch_falador_se"]!!
+        val patch = GameObjects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.itemOnObject(patch, 0)
         tick(3)
@@ -92,7 +93,7 @@ class FarmingPatchTest : WorldTest() {
         player.inventory.add("potato_seed", 3)
         player.inventory.add("seed_dibber")
         player["farming_veg_patch_falador_se"] = "weeds_0"
-        val patch = objects[Tile(3058, 3308), "farming_veg_patch_falador_se"]!!
+        val patch = GameObjects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.itemOnObject(patch, 0)
         tick(4)
@@ -107,7 +108,7 @@ class FarmingPatchTest : WorldTest() {
         val player = createPlayer(Tile(3057, 3308))
         player.inventory.add("potato_seed", 3)
         player["farming_veg_patch_falador_se"] = "weeds_0"
-        val patch = objects[Tile(3058, 3308), "farming_veg_patch_falador_se"]!!
+        val patch = GameObjects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.itemOnObject(patch, 0)
         tick(4)
@@ -123,7 +124,7 @@ class FarmingPatchTest : WorldTest() {
         val player = createPlayer(Tile(3057, 3308))
         player.inventory.add("potato_seed", 3)
         player["farming_veg_patch_falador_se"] = "potato_0"
-        val patch = objects[Tile(3058, 3308), "farming_veg_patch_falador_se"]!!
+        val patch = GameObjects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.itemOnObject(patch, 0)
         tick(4)
@@ -139,7 +140,7 @@ class FarmingPatchTest : WorldTest() {
         val player = createPlayer(Tile(3057, 3308))
         player.inventory.add("watering_can_8")
         player["farming_veg_patch_falador_se"] = "potato_0"
-        val patch = objects[Tile(3058, 3308), "farming_veg_patch_falador_se"]!!
+        val patch = GameObjects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.itemOnObject(patch, 0)
         tick(3)
@@ -155,7 +156,7 @@ class FarmingPatchTest : WorldTest() {
         val player = createPlayer(Tile(3057, 3308))
         player.inventory.add("watering_can_8")
         player["farming_veg_patch_falador_se"] = "weeds_0"
-        val patch = objects[Tile(3058, 3308), "farming_veg_patch_falador_se"]!!
+        val patch = GameObjects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.itemOnObject(patch, 0)
         tick(3)
@@ -172,7 +173,7 @@ class FarmingPatchTest : WorldTest() {
         val player = createPlayer(Tile(3057, 3308))
         player.inventory.add("watering_can_8")
         player["farming_veg_patch_falador_se"] = "potato_watered_0"
-        val patch = objects[Tile(3058, 3308), "farming_veg_patch_falador_se"]!!
+        val patch = GameObjects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.itemOnObject(patch, 0)
         tick(3)
@@ -188,7 +189,7 @@ class FarmingPatchTest : WorldTest() {
         val player = createPlayer(Tile(3057, 3308))
         player.inventory.add("spade")
         player["farming_veg_patch_falador_se"] = "potato_dead_1"
-        val patch = objects[Tile(3058, 3308), "farming_veg_patch_falador_se"]!!
+        val patch = GameObjects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.itemOnObject(patch, 0)
         tick(3)

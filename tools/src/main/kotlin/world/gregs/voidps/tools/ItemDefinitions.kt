@@ -20,7 +20,7 @@ object ItemDefinitions {
         val categories = CategoryDefinitions().load(files.find(Settings["definitions.categories"]))
         val ammo = AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"]))
         val parameters = ParameterDefinitions(categories, ammo).load(files.find(Settings["definitions.parameters"]))
-        val decoder = ItemDefinitions(ItemDecoder(parameters).load(cache)).load(files.list(Settings["definitions.items"]))
+        val decoder = ItemDefinitions.init(ItemDecoder(parameters).load(cache)).load(files.list(Settings["definitions.items"]))
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
             if (def.stringId.contains("dragon_plate")) {

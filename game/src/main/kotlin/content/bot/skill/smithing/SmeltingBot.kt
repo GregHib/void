@@ -12,7 +12,7 @@ import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.config.GearDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinition
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -20,15 +20,11 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.InteractDialogue
 
-class SmeltingBot(
-    val areas: AreaDefinitions,
-    val tasks: TaskManager,
-    val itemDefinitions: ItemDefinitions,
-) : Script {
+class SmeltingBot(val tasks: TaskManager) : Script {
 
     init {
         worldSpawn {
-            for (area in areas.getTagged("smelting")) {
+            for (area in Areas.tagged("smelting")) {
                 val spaces: Int = area["spaces", 1]
                 val task = Task(
                     name = "smelt bars at ${area.name}".toLowerSpaceCase(),
@@ -66,7 +62,7 @@ class SmeltingBot(
         if (bar == "iron_bar" && player.inventory.contains("coal")) {
             bar = "steel_bar"
         }
-        val barId = itemDefinitions.get(bar).id
+        val barId = ItemDefinitions.get(bar).id
         await("tick")
         while (player.inventory.contains(ore.id)) {
             itemOnObject(ore, furnace)

@@ -16,7 +16,6 @@ import world.gregs.voidps.type.Tile
 
 class CombatCommands(
     val accounts: AccountDefinitions,
-    val players: Players,
 ) : Script {
 
     init {
@@ -37,7 +36,7 @@ class CombatCommands(
     }
 
     fun respawn(player: Player, args: List<String>) {
-        val target = players.find(player, args.getOrNull(0)) ?: return
+        val target = Players.find(player, args.getOrNull(0)) ?: return
         val tile: Tile = target["death_tile"] ?: return
         target.tele(tile)
     }

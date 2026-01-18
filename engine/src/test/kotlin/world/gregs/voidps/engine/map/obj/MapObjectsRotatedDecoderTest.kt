@@ -7,29 +7,21 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.GameObjectCollisionAdd
-import world.gregs.voidps.engine.map.collision.GameObjectCollisionRemove
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
 
 class MapObjectsRotatedDecoderTest {
 
-    private lateinit var definitions: ObjectDefinitions
-    private lateinit var objects: GameObjects
     private lateinit var decoder: MapObjectsRotatedDecoder
     private lateinit var settings: ByteArray
 
     @BeforeEach
     fun setup() {
-        definitions = ObjectDefinitions(Array(10_000) { ObjectDefinition.EMPTY })
-        val collisions = Collisions()
-        objects = GameObjects(GameObjectCollisionAdd(collisions), GameObjectCollisionRemove(collisions), ZoneBatchUpdates(), definitions, storeUnused = true)
-        decoder = MapObjectsRotatedDecoder(objects, definitions)
+        ObjectDefinitions.init(Array(10_000) { ObjectDefinition.EMPTY })
+        decoder = MapObjectsRotatedDecoder()
         settings = ByteArray(64 * 64 * 4)
     }
 
@@ -49,7 +41,7 @@ class MapObjectsRotatedDecoderTest {
         decoder.decode(array, settings, 960, 896)
 
         val tile = Tile(965, 900, 1) // local 5, 4
-        val gameObject = objects.getShape(tile, shape)
+        val gameObject = GameObjects.getShape(tile, shape)
 
         assertNotNull(gameObject)
         assertEquals(shape, gameObject!!.shape)
@@ -73,7 +65,7 @@ class MapObjectsRotatedDecoderTest {
         decoder.decode(array, settings, 0, 0)
 
         val tile = Tile(4, 2, 0)
-        val gameObject = objects.getShape(tile, shape)
+        val gameObject = GameObjects.getShape(tile, shape)
 
         assertNotNull(gameObject)
         assertEquals(shape, gameObject!!.shape)
@@ -96,10 +88,10 @@ class MapObjectsRotatedDecoderTest {
         decoder.zone = Rectangle(8, 16, 56, 64)
         decoder.decode(array, settings, 8, 56)
 
-        assertNull(objects.getShape(Tile(0, 56), shape))
+        assertNull(GameObjects.getShape(Tile(0, 56), shape))
 
         val tile = Tile(8, 56, 0)
-        val gameObject = objects.getShape(tile, shape)
+        val gameObject = GameObjects.getShape(tile, shape)
 
         assertNotNull(gameObject)
         assertEquals(shape, gameObject!!.shape)
@@ -123,7 +115,7 @@ class MapObjectsRotatedDecoderTest {
         decoder.decode(array, settings, 64, 64)
 
         val tile = Tile(82, 84, 0)
-        val gameObject = objects.getShape(tile, shape)
+        val gameObject = GameObjects.getShape(tile, shape)
         assertNull(gameObject)
     }
 

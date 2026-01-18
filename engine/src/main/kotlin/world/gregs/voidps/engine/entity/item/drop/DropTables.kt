@@ -19,7 +19,7 @@ class DropTables {
 
     fun getValue(key: String) = tables.getValue(key)
 
-    fun load(paths: List<String>, itemDefinitions: ItemDefinitions? = null): DropTables {
+    fun load(paths: List<String>): DropTables {
         timedLoad("drop table") {
             val tables = Object2ObjectOpenHashMap<String, DropTable>(10, Hash.VERY_FAST_LOAD_FACTOR)
             for (path in paths) {
@@ -36,7 +36,7 @@ class DropTables {
                                 "type" -> type = TableType.byName(string())
                                 "chance" -> chance = int()
                                 "drops" -> while (nextElement()) {
-                                    drops.add(readItemDrop(itemDefinitions))
+                                    drops.add(readItemDrop())
                                 }
                                 else -> throw IllegalArgumentException("Unexpected table key: '$key' ${exception()}")
                             }
@@ -63,7 +63,7 @@ class DropTables {
 
     private data class ReferenceTable(val tableName: String, val roll: Int?, override val chance: Int, override val predicate: ((Player) -> Boolean)?) : Drop
 
-    private fun ConfigReader.readItemDrop(itemDefinitions: ItemDefinitions?): Drop {
+    private fun ConfigReader.readItemDrop(): Drop {
         var table = ""
         var chance: Int? = null
         var roll: Int? = null
@@ -110,7 +110,7 @@ class DropTables {
         if (table != "") {
             return ReferenceTable(table, roll, chance ?: -1, predicate)
         }
-        require(itemDefinitions == null || id == "nothing" || itemDefinitions.getOrNull(id) != null) { "Unable to find item with id '$id'." }
+        require(id == "nothing" || !ItemDefinitions.loaded || ItemDefinitions.getOrNull(id) != null) { "Unable to find item with id '$id'." }
         return ItemDrop(
             id = id,
             amount = min..max,

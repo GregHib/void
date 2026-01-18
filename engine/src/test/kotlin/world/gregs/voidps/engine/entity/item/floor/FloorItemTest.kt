@@ -1,12 +1,8 @@
 package world.gregs.voidps.engine.entity.item.floor
 
-import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.koin.core.context.startKoin
-import org.koin.core.context.stopKoin
-import org.koin.dsl.module
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.type.Tile
@@ -15,13 +11,7 @@ class FloorItemTest {
 
     @BeforeEach
     fun setup() {
-        startKoin {
-            modules(
-                module {
-                    single { ItemDefinitions(arrayOf(ItemDefinition(0), ItemDefinition(1, stackable = 1))).apply { ids = mapOf("item" to 0, "stackable" to 1) } }
-                },
-            )
-        }
+        ItemDefinitions.set(arrayOf(ItemDefinition(0), ItemDefinition(1, stackable = 1)), mapOf("item" to 0, "stackable" to 1))
     }
 
     @Test
@@ -68,8 +58,4 @@ class FloorItemTest {
         assertFalse(first.reveal())
     }
 
-    @AfterEach
-    fun teardown() {
-        stopKoin()
-    }
 }

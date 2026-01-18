@@ -22,7 +22,7 @@ import world.gregs.voidps.type.Tile
 import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
 
-class PathFindingCommands(val patrols: PatrolDefinitions, val collisions: Collisions) : Script {
+class PathFindingCommands(val patrols: PatrolDefinitions) : Script {
 
     init {
         adminCommand("patrol", stringArg("patrol-id", autofill = patrols.definitions.keys), desc = "Walk along a patrol route") { args ->
@@ -39,7 +39,7 @@ class PathFindingCommands(val patrols: PatrolDefinitions, val collisions: Collis
         }
 
         adminCommand("pf_bench") {
-            val pf = PathFinder(flags = collisions, useRouteBlockerFlags = true)
+            val pf = PathFinder(flags = Collisions.map, useRouteBlockerFlags = true)
             val start = Tile(3270, 3331, 0)
             val timeShort = measureTimeMillis {
                 repeat(100_000) {

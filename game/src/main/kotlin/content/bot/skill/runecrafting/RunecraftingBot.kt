@@ -9,16 +9,16 @@ import content.bot.skill.combat.setupGear
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.definition.AreaDefinition
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.network.client.instruction.InteractObject
 
-class RunecraftingBot(val areas: AreaDefinitions, val tasks: TaskManager) : Script {
+class RunecraftingBot(val tasks: TaskManager) : Script {
 
     init {
         worldSpawn {
-            for (area in areas.getTagged("altar")) {
+            for (area in Areas.tagged("altar")) {
                 val type: String = area["type"]
                 val spaces: Int = area["spaces", 1]
                 val range: IntRange = area["levels", "1-5"].toIntRange()

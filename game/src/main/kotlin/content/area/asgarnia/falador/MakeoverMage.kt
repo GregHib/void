@@ -25,10 +25,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 
-class MakeoverMage(
-    val enums: EnumDefinitions,
-    val npcs: NPCs,
-) : Script {
+class MakeoverMage(val enums: EnumDefinitions) : Script {
 
     init {
         npcSpawn("makeover_mage*") {
@@ -84,7 +81,7 @@ class MakeoverMage(
             }
             flagAppearance()
             closeMenu()
-            val mage = npcs[tile.regionLevel].first { it.id.startsWith("makeover_mage") }
+            val mage = NPCs.find(tile.regionLevel) { it.id.startsWith("makeover_mage") }
             talkWith(mage)
             if (!changed) {
                 npc<Quiz>("That is no different from what you already have. I guess I shouldn't charge you if I'm not changing anything.")

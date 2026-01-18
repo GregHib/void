@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -39,9 +39,6 @@ import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
 class PenguinHideAndSeek(
-    val npcs: NPCs,
-    val areas: AreaDefinitions,
-    val players: Players,
     val accounts: AccountDefinitions,
 ) : Script {
 
@@ -140,14 +137,14 @@ class PenguinHideAndSeek(
             var spots = easy.shuffled(random).take(5)
             var i = 0
             for ((type, tile) in spots) {
-                val penguin = npcs.add("hidden_penguin_$i", tile)
+                val penguin = NPCs.add("hidden_penguin_$i", tile)
                 penguin.transform(disguise(type), collision = false)
                 penguins[i++] = penguin
             }
             val hard = load(files, "spawns.penguins.hard")
             spots = hard.shuffled(random).take(5)
             for ((type, tile) in spots) {
-                val penguin = npcs.add("hidden_penguin_$i", tile)
+                val penguin = NPCs.add("hidden_penguin_$i", tile)
                 penguin.transform(disguise(type), collision = false)
                 penguins[i++] = penguin
             }
@@ -167,7 +164,7 @@ class PenguinHideAndSeek(
     }
 
     fun sendBear() {
-        for (player in players) {
+        for (player in Players) {
             sendBear(player)
         }
     }
@@ -178,7 +175,7 @@ class PenguinHideAndSeek(
     fun clear() {
         for (i in penguins.indices) {
             val penguin = penguins[i] ?: continue
-            npcs.remove(penguin)
+            NPCs.remove(penguin)
             penguins[i] = null
         }
         bear = "hidden"
@@ -258,12 +255,12 @@ class PenguinHideAndSeek(
             "Penguins found this week: ${player["penguins_found_weekly", 0]}",
             "",
         )
-        val target = players.find(player, args.getOrNull(0)) ?: return
+        val target = Players.find(player, args.getOrNull(0)) ?: return
         for ((index, penguin) in penguins.withIndex()) {
             if (penguin == null) {
                 continue
             }
-            val areas = areas.get(penguin.tile.zone).firstOrNull { it.tags.contains("penguin_area") }
+            val areas = Areas.get(penguin.tile.zone).firstOrNull { it.tags.contains("penguin_area") }
             var hint = ""
             if (areas != null) {
                 list.add("${Colours.BLUE.toTag()}${areas.name.toTitleCase()}")

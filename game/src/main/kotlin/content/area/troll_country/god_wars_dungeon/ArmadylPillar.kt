@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-class ArmadylPillar(val objects: GameObjects) : Script {
+class ArmadylPillar : Script {
 
     init {
         objectApproach("Grapple", "armadyl_pillar") { (target) ->
@@ -39,7 +39,7 @@ class ArmadylPillar(val objects: GameObjects) : Script {
             sound("crossbow_grappling")
             anim("godwars_crossbow_swing", delay = 6)
             gfx("godwars_grapple_shoot", delay = 6)
-            objects[Tile(2872, 5270, 2), "armadyl_pillar_grapple"]?.anim(if (tile.y > target.tile.y) "godwars_grapple_swing_reverse" else "godwars_grapple_swing")
+            GameObjects.findOrNull(Tile(2872, 5270, 2), "armadyl_pillar_grapple")?.anim(if (tile.y > target.tile.y) "godwars_grapple_swing_reverse" else "godwars_grapple_swing")
             delay(3)
             exactMoveDelay(middle, startDelay = 15, delay = 29, direction = direction)
             exactMoveDelay(middle.addY(-offset), delay = 21, direction = direction)

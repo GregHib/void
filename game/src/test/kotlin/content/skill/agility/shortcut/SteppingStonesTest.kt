@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import kotlin.random.Random
@@ -18,15 +19,15 @@ class SteppingStonesTest : WorldTest() {
         val player = createPlayer(Tile(2925, 2947))
         player.levels.set(Skill.Agility, 30)
 
-        var stones = objects[Tile(2925, 2948), "shilo_village_waterfall_stepping_stone_south"]!!
+        var stones = GameObjects.find(Tile(2925, 2948), "shilo_village_waterfall_stepping_stone_south")
         player.objectOption(stones, "Cross")
         tick(4)
 
-        stones = objects[Tile(2925, 2949), "shilo_village_waterfall_stepping_stone_middle"]!!
+        stones = GameObjects.find(Tile(2925, 2949), "shilo_village_waterfall_stepping_stone_middle")
         player.objectOption(stones, "Cross")
         tick(4)
 
-        stones = objects[Tile(2925, 2950), "shilo_village_waterfall_stepping_stone_north"]!!
+        stones = GameObjects.find(Tile(2925, 2950), "shilo_village_waterfall_stepping_stone_north")
         player.objectOption(stones, "Cross")
         tick(4)
 
@@ -39,15 +40,15 @@ class SteppingStonesTest : WorldTest() {
         val player = createPlayer(Tile(2925, 2951))
         player.levels.set(Skill.Agility, 30)
 
-        var stones = objects[Tile(2925, 2950), "shilo_village_waterfall_stepping_stone_north"]!!
+        var stones = GameObjects.find(Tile(2925, 2950), "shilo_village_waterfall_stepping_stone_north")
         player.objectOption(stones, "Cross")
         tick(4)
 
-        stones = objects[Tile(2925, 2949), "shilo_village_waterfall_stepping_stone_middle"]!!
+        stones = GameObjects.find(Tile(2925, 2949), "shilo_village_waterfall_stepping_stone_middle")
         player.objectOption(stones, "Cross")
         tick(4)
 
-        stones = objects[Tile(2925, 2948), "shilo_village_waterfall_stepping_stone_south"]!!
+        stones = GameObjects.find(Tile(2925, 2948), "shilo_village_waterfall_stepping_stone_south")
         player.objectOption(stones, "Cross")
         tick(4)
 
@@ -62,7 +63,7 @@ class SteppingStonesTest : WorldTest() {
         })
         val player = createPlayer(Tile(2925, 2947))
         player.levels.set(Skill.Agility, 30)
-        val stones = objects[Tile(2925, 2948), "shilo_village_waterfall_stepping_stone_south"]!!
+        val stones = GameObjects.find(Tile(2925, 2948), "shilo_village_waterfall_stepping_stone_south")
         player.objectOption(stones, "Cross")
         tick(13)
 
@@ -78,7 +79,7 @@ class SteppingStonesTest : WorldTest() {
         })
         val player = createPlayer(Tile(2925, 2951))
         player.levels.set(Skill.Agility, 30)
-        val stones = objects[Tile(2925, 2950), "shilo_village_waterfall_stepping_stone_north"]!!
+        val stones = GameObjects.find(Tile(2925, 2950), "shilo_village_waterfall_stepping_stone_north")
         player.objectOption(stones, "Cross")
         tick(13)
 
@@ -91,7 +92,7 @@ class SteppingStonesTest : WorldTest() {
     fun `Can't cross shilo village waterfall without level`() {
         val player = createPlayer(Tile(2925, 2951))
         player.levels.set(Skill.Agility, 29)
-        val stones = objects[Tile(2925, 2950), "shilo_village_waterfall_stepping_stone_north"]!!
+        val stones = GameObjects.find(Tile(2925, 2950), "shilo_village_waterfall_stepping_stone_north")
 
         player.objectOption(stones, "Cross")
         tick(2)
@@ -104,19 +105,19 @@ class SteppingStonesTest : WorldTest() {
         val player = createPlayer(Tile(3149, 3363))
         player.levels.set(Skill.Agility, 31)
 
-        var stones = objects[Tile(3150, 3363), "draynor_stepping_stone"]!!
+        var stones = GameObjects.find(Tile(3150, 3363), "draynor_stepping_stone")
         player.objectOption(stones, "Jump-onto")
         tick(4)
 
-        stones = objects[Tile(3151, 3363), "draynor_stepping_stone"]!!
+        stones = GameObjects.find(Tile(3151, 3363), "draynor_stepping_stone")
         player.objectOption(stones, "Jump-onto")
         tick(4)
 
-        stones = objects[Tile(3152, 3363), "draynor_stepping_stone"]!!
+        stones = GameObjects.find(Tile(3152, 3363), "draynor_stepping_stone")
         player.objectOption(stones, "Jump-onto")
         tick(4)
 
-        stones = objects[Tile(3153, 3363), "draynor_stepping_stone"]!!
+        stones = GameObjects.find(Tile(3153, 3363), "draynor_stepping_stone")
         player.objectOption(stones, "Jump-onto")
         tick(4)
 
@@ -129,19 +130,19 @@ class SteppingStonesTest : WorldTest() {
         val player = createPlayer(Tile(3154, 3363))
         player.levels.set(Skill.Agility, 31)
 
-        var stones = objects[Tile(3153, 3363), "draynor_stepping_stone"]!!
+        var stones = GameObjects.find(Tile(3153, 3363), "draynor_stepping_stone")
         player.objectOption(stones, "Jump-onto")
         tick(4)
 
-        stones = objects[Tile(3152, 3363), "draynor_stepping_stone"]!!
+        stones = GameObjects.find(Tile(3152, 3363), "draynor_stepping_stone")
         player.objectOption(stones, "Jump-onto")
         tick(4)
 
-        stones = objects[Tile(3151, 3363), "draynor_stepping_stone"]!!
+        stones = GameObjects.find(Tile(3151, 3363), "draynor_stepping_stone")
         player.objectOption(stones, "Jump-onto")
         tick(4)
 
-        stones = objects[Tile(3150, 3363), "draynor_stepping_stone"]!!
+        stones = GameObjects.find(Tile(3150, 3363), "draynor_stepping_stone")
         player.objectOption(stones, "Jump-onto")
         tick(4)
 
@@ -156,7 +157,7 @@ class SteppingStonesTest : WorldTest() {
         })
         val player = createPlayer(Tile(3149, 3363))
         player.levels.set(Skill.Agility, 31)
-        val stones = objects[Tile(3150, 3363), "draynor_stepping_stone"]!!
+        val stones = GameObjects.find(Tile(3150, 3363), "draynor_stepping_stone")
         player.objectOption(stones, "Jump-onto")
         tick(14)
 
@@ -172,7 +173,7 @@ class SteppingStonesTest : WorldTest() {
         })
         val player = createPlayer(Tile(3154, 3363))
         player.levels.set(Skill.Agility, 31)
-        val stones = objects[Tile(3153, 3363), "draynor_stepping_stone"]!!
+        val stones = GameObjects.find(Tile(3153, 3363), "draynor_stepping_stone")
         player.objectOption(stones, "Jump-onto")
         tick(13)
 
@@ -186,7 +187,7 @@ class SteppingStonesTest : WorldTest() {
         val player = createPlayer(Tile(3149, 3363))
         player.levels.set(Skill.Agility, 30)
 
-        val stones = objects[Tile(3150, 3363), "draynor_stepping_stone"]!!
+        val stones = GameObjects.find(Tile(3150, 3363), "draynor_stepping_stone")
         player.objectOption(stones, "Jump-onto")
         tick(2)
 
@@ -198,7 +199,7 @@ class SteppingStonesTest : WorldTest() {
         val player = createPlayer(Tile(2860, 2971))
         player.levels.set(Skill.Agility, 74)
 
-        val stones = objects[Tile(2860, 2974), "shilo_river_stepping_stone"]!!
+        val stones = GameObjects.find(Tile(2860, 2974), "shilo_river_stepping_stone")
         player.objectOption(stones, "Jump-to")
         tick(5)
 
@@ -210,7 +211,7 @@ class SteppingStonesTest : WorldTest() {
         val player = createPlayer(Tile(2860, 2971))
         player.levels.set(Skill.Agility, 73)
 
-        val stones = objects[Tile(2860, 2974), "shilo_river_stepping_stone"]!!
+        val stones = GameObjects.find(Tile(2860, 2974), "shilo_river_stepping_stone")
         player.objectOption(stones, "Jump-to")
         tick(2)
 
@@ -222,7 +223,7 @@ class SteppingStonesTest : WorldTest() {
         val player = createPlayer(Tile(2860, 2977))
         player.levels.set(Skill.Agility, 74)
 
-        val stones = objects[Tile(2860, 2974), "shilo_river_stepping_stone"]!!
+        val stones = GameObjects.find(Tile(2860, 2974), "shilo_river_stepping_stone")
         player.objectOption(stones, "Jump-to")
         tick(5)
 

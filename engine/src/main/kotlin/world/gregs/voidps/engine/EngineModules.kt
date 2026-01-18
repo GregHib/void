@@ -8,14 +8,11 @@ import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
-import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.hunt.Hunting
-import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.equip.AppearanceOverrides
 import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.GameObjectCollisionAdd
 import world.gregs.voidps.engine.map.collision.GameObjectCollisionRemove
@@ -23,38 +20,36 @@ import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.network.client.ConnectionQueue
 import java.io.File
 
+fun engineLoad(files: ConfigFiles) {
+    Areas.load(files.list(Settings["map.areas"]))
+}
+
 fun engineModule(files: ConfigFiles) = module {
     // Entities
-    single { NPCs(get(), get(), get(), get()) }
-    single { Players() }
-    single { GameObjects(get(), get(), get(), get(), Settings["development.loadAllObjects", false]).apply { get<ZoneBatchUpdates>().register(this) } }
-    single { FloorItems(get(), get()).apply { get<ZoneBatchUpdates>().register(this) } }
-    single { FloorItemTracking(get(), get(), get()) }
-    single { Hunting(get(), get(), get(), get(), get(), get()) }
+    single { ZoneBatchUpdates.register(GameObjects) }
+    single { ZoneBatchUpdates.register(FloorItems) }
+    single { FloorItemTracking() }
+    single { Hunting(get(), get()) }
     single {
         SaveQueue(get(), SafeStorage(File(Settings["storage.players.errors"])))
     }
-    single { AccountManager(get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), AppearanceOverrides(get(), get())) }
+    single { AccountManager(get(), get(), get(), get(), get(), get(), AppearanceOverrides(get(), get())) }
     // IO
     single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game) }
     // Map
-    single { ZoneBatchUpdates() }
-    single { DynamicZones(get(), get(), get()) }
-    single(createdAtStart = true) { AreaDefinitions().load(files.list(Settings["map.areas"])) }
+    single { DynamicZones(get()) }
     single(createdAtStart = true) { CanoeDefinitions().load(files.find(Settings["map.canoes"])) }
     // Network
     single {
         ConnectionQueue(Settings["network.maxLoginsPerTick", 1])
     }
-    single(createdAtStart = true) { GameObjectCollisionAdd(get()) }
-    single(createdAtStart = true) { GameObjectCollisionRemove(get()) }
+    single(createdAtStart = true) { GameObjectCollisionAdd() }
+    single(createdAtStart = true) { GameObjectCollisionRemove() }
     // Collision
-    single { Collisions() }
-    single { CollisionStrategyProvider() }
-    single { StepValidator(get<Collisions>()) }
+    single { StepValidator(Collisions.map) }
     // Pathfinding
-    single { PathFinder(flags = get<Collisions>(), useRouteBlockerFlags = true) }
-    single { LineValidator(flags = get<Collisions>()) }
+    single { PathFinder(flags = Collisions.map, useRouteBlockerFlags = true) }
+    single { LineValidator(flags = Collisions.map) }
     // Definitions
     single(createdAtStart = true) { SoundDefinitions().load(files.list(Settings["definitions.sounds"])) }
     single(createdAtStart = true) { QuestDefinitions().load(files.find(Settings["definitions.quests"])) }
@@ -65,7 +60,10 @@ fun engineModule(files: ConfigFiles) = module {
     single(createdAtStart = true) { PatrolDefinitions().load(files.list(Settings["definitions.patrols"])) }
     single(createdAtStart = true) { PrayerDefinitions().load(files.find(Settings["definitions.prayers"])) }
     single(createdAtStart = true) { GearDefinitions().load(files.find(Settings["definitions.gearSets"])) }
-    single(createdAtStart = true) { DiangoCodeDefinitions().load(files.find(Settings["definitions.diangoCodes"])) }
+    single(createdAtStart = true) {
+        get<ItemDefinitions>()
+        DiangoCodeDefinitions().load(files.find(Settings["definitions.diangoCodes"]))
+    }
     single(createdAtStart = true) { AccountDefinitions().load() }
     single(createdAtStart = true) { HuntModeDefinitions().load(files.find(Settings["definitions.huntModes"])) }
     single(createdAtStart = true) { SlayerTaskDefinitions().load(files.list(Settings["definitions.slayerTasks"])) }

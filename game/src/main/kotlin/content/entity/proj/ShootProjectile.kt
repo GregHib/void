@@ -166,13 +166,12 @@ private fun sendProjectile(
     curve: Int = DEFAULT_CURVE,
     offset: Int = DEFAULT_OFFSET,
 ) {
-    val batches: ZoneBatchUpdates = get()
     val definitions: GraphicDefinitions = get()
     var index = if (target != null) target.index + 1 else 0
     if (target is Player) {
         index = -index
     }
-    batches.add(
+    ZoneBatchUpdates.add(
         tile.zone,
         ProjectileAddition(
             tile = tile.id,

@@ -19,9 +19,7 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
-class Shantay(
-    val npcs: NPCs,
-) : Script {
+class Shantay : Script {
 
     init {
         npcOperate("Talk-to", "shantay") {
@@ -56,7 +54,7 @@ class Shantay(
                 set("shantay_state", "returning")
             } else {
                 message("Shantay saunters over to talk with you.")
-                talkWith(npcs[tile.regionLevel].first { it.id == "shantay" })
+                talkWith(NPCs.find(tile.regionLevel, "shantay"))
                 npc<Neutral>("If you want to be let out, you have to pay a fine of five gold. Do you want to pay now?")
                 leaveJail()
             }
@@ -157,7 +155,7 @@ class Shantay(
         delay(2)
     }
 
-    fun findNearestGuard(player: Player) = npcs[player.tile.regionLevel].sortedBy { player.tile.distanceTo(it.tile) }.firstOrNull { it.id == "shantay_guard" }
+    fun findNearestGuard(player: Player) = NPCs.at(player.tile.regionLevel).sortedBy { player.tile.distanceTo(it.tile) }.firstOrNull { it.id == "shantay_guard" }
 
     private suspend fun Player.buyPass() {
         inventory.transaction {

@@ -12,9 +12,8 @@ import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -24,12 +23,8 @@ import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 
 class TeleportCommands(
-    val areas: AreaDefinitions,
-    val players: Players,
     val exchange: GrandExchange,
-    val definitions: ItemDefinitions,
     val enums: EnumDefinitions,
-    val itemDefinitions: ItemDefinitions,
     val accounts: AccountDefinitions,
 ) : Script {
 
@@ -75,7 +70,7 @@ class TeleportCommands(
 
     init {
         val coords = command(intArg("x"), intArg("y"), intArg("level", optional = true), desc = "Teleport to given coordinates", handler = ::coords)
-        val place = command(stringArg("name", autofill = { places.keys + areas.names }, desc = "Area Name"), desc = "Teleport to given area", handler = ::area)
+        val place = command(stringArg("name", autofill = { places.keys + Areas.names }, desc = "Area Name"), desc = "Teleport to given area", handler = ::area)
         val region = command(intArg("region", desc = "Region ID"), desc = "Teleport to given region id") { args ->
             tele(Region(args[0].toInt()).tile.add(32, 32))
             set("world_map_centre", tile.id)
@@ -85,7 +80,7 @@ class TeleportCommands(
         commandAlias("tele", "tp")
 
         adminCommand("tele_to", stringArg("player-name", desc = "Player name (use quotes if contains spaces)", autofill = accounts.displayNames.keys), desc = "Teleport to another player") { args ->
-            val target = players.firstOrNull { it.name.equals(args[0], true) }
+            val target = Players.firstOrNull { it.name.equals(args[0], true) }
             if (target == null) {
                 message("Unable to find player '${args[0]}' online.", ChatType.Console)
                 return@adminCommand
@@ -94,7 +89,7 @@ class TeleportCommands(
         }
 
         adminCommand("tele_to_me", stringArg("player-name", desc = "Player name (use quotes if contains spaces)", autofill = accounts.displayNames.keys), desc = "Teleport another player to you") { args ->
-            val target = players.firstOrNull { it.name.equals(args[0], true) }
+            val target = Players.firstOrNull { it.name.equals(args[0], true) }
             if (target == null) {
                 message("Unable to find player '${args[0]}' online.", ChatType.Console)
                 return@adminCommand
@@ -118,7 +113,7 @@ class TeleportCommands(
         if (place != null) {
             player.tele(place)
         } else {
-            player.tele(areas[name])
+            player.tele(Areas[name])
         }
         player["world_map_centre"] = player.tile.id
         player["world_map_marker_player"] = player.tile.id

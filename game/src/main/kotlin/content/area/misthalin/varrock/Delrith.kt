@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.client.shakeCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.Death
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -45,13 +45,9 @@ import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
-class Delrith(
-    val objects: GameObjects,
-    val npcs: NPCs,
-    val areas: AreaDefinitions,
-) : Script {
+class Delrith : Script {
 
-    val area = areas["demon_slayer_stone_circle"]
+    val area = Areas["demon_slayer_stone_circle"]
     val defaultTile = Tile(3220, 3367)
     val targets = listOf(
         Tile(3227, 3369) to Tile(3224, 3366),
@@ -115,7 +111,7 @@ class Delrith(
                         correct = false
                         target.anim("delrith_continue")
                         delay(2)
-                        npcs.remove(target)
+                        NPCs.remove(target)
                         delay(1)
                     } else {
                         delay(3)
@@ -126,7 +122,7 @@ class Delrith(
                     sound("demon_slayer_delrith_banished")
                     statement("Delrith is sucked into the vortex...", clickToContinue = false)
                     delay(14)
-                    npcs.remove(target)
+                    NPCs.remove(target)
                     statement("...back into the dark dimension from which he came.")
                     val cutscene: Cutscene? = remove("demon_slayer_cutscene")
                     if (cutscene != null) {
@@ -175,11 +171,11 @@ class Delrith(
         set("demon_slayer_cutscene", cutscene)
         steps.clear()
         mode = EmptyMode
-        val wizard1 = npcs.add("dark_wizard_water", cutscene.tile(3226, 3371), Direction.SOUTH_EAST)
-        val wizard2 = npcs.add("dark_wizard_water_2", cutscene.tile(3229, 3371), Direction.SOUTH_WEST)
-        val wizard3 = npcs.add("dark_wizard_earth", cutscene.tile(3226, 3368), Direction.NORTH_EAST)
-        val denath = npcs.add("denath", cutscene.tile(3229, 3368), Direction.NORTH_WEST)
-        val delrith = npcs.add("delrith", cutscene.tile(3227, 3369), Direction.SOUTH)
+        val wizard1 = NPCs.add("dark_wizard_water", cutscene.tile(3226, 3371), Direction.SOUTH_EAST)
+        val wizard2 = NPCs.add("dark_wizard_water_2", cutscene.tile(3229, 3371), Direction.SOUTH_WEST)
+        val wizard3 = NPCs.add("dark_wizard_earth", cutscene.tile(3226, 3368), Direction.NORTH_EAST)
+        val denath = NPCs.add("denath", cutscene.tile(3229, 3368), Direction.NORTH_WEST)
+        val delrith = NPCs.add("delrith", cutscene.tile(3227, 3369), Direction.SOUTH)
         delrith.hide = true
         val wizards = listOf(wizard1, wizard2, wizard3, denath)
         for (wizard in wizards) {
@@ -225,8 +221,8 @@ class Delrith(
         npc<Idle>("dark_wizard_water", "Arise, Delrith!", title = "Dark wizards")
 
         statement("The wizards cast an evil spell", clickToContinue = false)
-        val regular = objects[cutscene.tile(3227, 3369), "demon_slayer_stone_table"]!!
-        val table = objects.replace(regular, "demon_slayer_stone_table_summoning", ticks = 8)
+        val regular = GameObjects.find(cutscene.tile(3227, 3369), "demon_slayer_stone_table")
+        val table = GameObjects.replace(regular, "demon_slayer_stone_table_summoning", ticks = 8)
         clearCamera()
         turnCamera(cutscene.tile(3227, 3369), 100, 232, 232)
         moveCamera(cutscene.tile(3227, 3365), 500, 232, 232)
@@ -317,16 +313,16 @@ class Delrith(
         var direction = Direction.NORTH
         while (rotation < 4) {
             repeat(6) {
-                objects.add("demon_slayer_energy_barrier", tile, ObjectShape.WALL_STRAIGHT, rotation)
+                GameObjects.add("demon_slayer_energy_barrier", tile, ObjectShape.WALL_STRAIGHT, rotation)
                 tile = tile.add(direction)
             }
             direction = direction.rotate(1)
             repeat(3) {
-                objects.add("demon_slayer_energy_barrier", tile, ObjectShape.WALL_DIAGONAL, rotation)
-                objects.add("demon_slayer_energy_barrier", tile.add(direction.rotate(1)), ObjectShape.WALL_DIAGONAL_CORNER, rotation)
+                GameObjects.add("demon_slayer_energy_barrier", tile, ObjectShape.WALL_DIAGONAL, rotation)
+                GameObjects.add("demon_slayer_energy_barrier", tile.add(direction.rotate(1)), ObjectShape.WALL_DIAGONAL_CORNER, rotation)
                 tile = tile.add(direction)
             }
-            objects.add("demon_slayer_energy_barrier", tile, ObjectShape.WALL_DIAGONAL, rotation)
+            GameObjects.add("demon_slayer_energy_barrier", tile, ObjectShape.WALL_DIAGONAL, rotation)
             rotation++
             direction = direction.rotate(1)
             tile = tile.add(direction)

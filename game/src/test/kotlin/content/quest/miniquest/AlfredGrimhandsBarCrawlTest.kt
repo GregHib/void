@@ -7,8 +7,10 @@ import objectOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
@@ -226,7 +228,7 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
     fun `Can't enter gate before quest is completed`() {
         val player = createPlayer(Tile(2545, 3569))
 
-        val gate = objects[Tile(2545, 3569), "barbarian_outpost_gate_right_closed"]!!
+        val gate = GameObjects.find(Tile(2545, 3569), "barbarian_outpost_gate_right_closed")
         player.objectOption(gate, "Open")
         tick(4)
         assertNotEquals(Tile(2546), player.tile)
@@ -237,11 +239,11 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         val player = createPlayer(Tile(2545, 3569))
         player["alfred_grimhands_barcrawl"] = "completed"
 
-        val gate = objects[Tile(2545, 3569), "barbarian_outpost_gate_right_closed"]!!
+        val gate = GameObjects.find(Tile(2545, 3569), "barbarian_outpost_gate_right_closed")
         player.objectOption(gate, "Open")
         tick(4)
         assertEquals(Tile(2546, 3569), player.tile)
     }
 
-    private fun findNpc(player: Player, id: String) = npcs[player.tile.region.toLevel(player.tile.level)].first { it.id == id }
+    private fun findNpc(player: Player, id: String) = NPCs.find(player.tile.region.toLevel(player.tile.level), id)
 }

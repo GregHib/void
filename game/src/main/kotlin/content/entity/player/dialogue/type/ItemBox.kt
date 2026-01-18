@@ -14,7 +14,7 @@ private const val DOUBLE_ITEM_INTERFACE_ID = "dialogue_double_obj_box"
 
 suspend fun Player.item(item: String, zoom: Int, text: String, sprite: Int? = null) {
     check(open(ITEM_INTERFACE_ID)) { "Unable to open item dialogue for $this" }
-    sendScript("dialogue_item_zoom", get<ItemDefinitions>().get(item).id, zoom)
+    sendScript("dialogue_item_zoom", ItemDefinitions.get(item).id, zoom)
     if (sprite != null) {
         interfaces.sendSprite(ITEM_INTERFACE_ID, "sprite", sprite)
     }
@@ -26,8 +26,8 @@ suspend fun Player.item(item: String, zoom: Int, text: String, sprite: Int? = nu
 
 suspend fun Player.items(item1: String, item2: String, text: String) {
     check(open(DOUBLE_ITEM_INTERFACE_ID)) { "Unable to open item dialogue for $this" }
-    interfaces.sendItem(DOUBLE_ITEM_INTERFACE_ID, "model1", get<ItemDefinitions>().get(item1).id)
-    interfaces.sendItem(DOUBLE_ITEM_INTERFACE_ID, "model2", get<ItemDefinitions>().get(item2).id)
+    interfaces.sendItem(DOUBLE_ITEM_INTERFACE_ID, "model1", ItemDefinitions.get(item1).id)
+    interfaces.sendItem(DOUBLE_ITEM_INTERFACE_ID, "model2", ItemDefinitions.get(item2).id)
     val lines = if (text.contains("\n")) text.trimIndent().replace("\n", "<br>") else get<FontDefinitions>().get("q8_full").splitLines(text, 380).joinToString("<br>")
     interfaces.sendText(DOUBLE_ITEM_INTERFACE_ID, "line1", lines)
     ContinueSuspension.get(this)

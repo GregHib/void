@@ -11,13 +11,9 @@ import world.gregs.voidps.type.Tile
 
 private val logger = InlineLogger()
 
-fun loadNpcSpawns(
-    npcs: NPCs,
-    paths: List<String>,
-    npcDefinitions: NPCDefinitions,
-) {
+fun loadNpcSpawns(paths: List<String>, ) {
     timedLoad("npc spawn") {
-        npcs.clear()
+        NPCs.clear()
         val membersWorld = World.members
         var count = 0
         val hashes = mutableSetOf<Long>()
@@ -48,7 +44,7 @@ fun loadNpcSpawns(
                             continue
                         }
                         val tile = Tile(x, y, level)
-                        val definition = npcDefinitions.getOrNull(id)
+                        val definition = NPCDefinitions.getOrNull(id)
                         if (definition == null) {
                             logger.warn { "Invalid npc spawn id '$id' in $path." }
                         } else if (debug) {
@@ -58,7 +54,7 @@ fun loadNpcSpawns(
                             }
                             hashes.add(hash)
                         }
-                        npcs.add(id, tile, direction)
+                        NPCs.add(id, tile, direction)
                         count++
                     }
                 }

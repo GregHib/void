@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
  */
 class NPCResetTask(
     iterator: TaskIterator<NPC>,
-    override val characters: NPCs,
+    override val characters: NPCs = NPCs,
 ) : CharacterTask<NPC>(iterator) {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")

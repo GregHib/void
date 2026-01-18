@@ -8,7 +8,7 @@ import content.quest.quest
 import content.quest.questJournal
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-class PlagueCity(val areas: AreaDefinitions) : Script {
+class PlagueCity : Script {
 
     val stages = setOf("grill_open", "spoken_to_jethick", "returned_book", "spoken_to_ted", "spoken_to_milli", "need_clearance", "talk_to_bravek", "has_cure_paper", "gave_cure", "freed_elena", "completed", "completed_with_spell")
 
@@ -417,7 +417,7 @@ class PlagueCity(val areas: AreaDefinitions) : Script {
                         list.add("<navy>need to free her. She thinks the key to her cell is hidden")
                         list.add("<navy>somewhere in the house.")
                     } else {
-                        if (tile in areas["plague_house"] || tile in areas["plague_house_basement"]) {
+                        if (tile in Areas["plague_house"] || tile in Areas["plague_house_basement"]) {
                             list.add("<navy>I've managed to enter the <maroon>Plague House. <navy>Now I need to find")
                             list.add("<maroon>Elena.")
                         } else {

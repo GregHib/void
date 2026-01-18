@@ -12,9 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.PlayerOptions
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.network.client.instruction.InteractPlayer
 
-class PlayerOptionHandler(
-    private val players: Players,
-) : InstructionHandler<InteractPlayer>() {
+class PlayerOptionHandler : InstructionHandler<InteractPlayer>() {
 
     private val logger = InlineLogger()
 
@@ -22,7 +20,7 @@ class PlayerOptionHandler(
         if (player.contains("delay")) {
             return
         }
-        val target = players.indexed(instruction.playerIndex) ?: return
+        val target = Players.indexed(instruction.playerIndex) ?: return
         val optionIndex = instruction.option
         val option = player.options.get(optionIndex)
         if (option == PlayerOptions.EMPTY_OPTION) {

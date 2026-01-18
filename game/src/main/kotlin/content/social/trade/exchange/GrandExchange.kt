@@ -52,13 +52,11 @@ class GrandExchange(
     val offers: OpenOffers,
     val history: ExchangeHistory,
     private val claims: MutableMap<Int, Claim> = mutableMapOf(),
-    private val itemDefinitions: ItemDefinitions,
     private val accounts: AccountDefinitions,
-    private val players: Players,
     private val storage: Storage,
 ) : Runnable {
 
-    private val limits = BuyLimits(itemDefinitions)
+    private val limits = BuyLimits()
 
     private data class PendingOffer(val account: String, val offer: ExchangeOffer)
 
@@ -135,7 +133,7 @@ class GrandExchange(
 
     override fun run() {
         for ((account, index) in cancellations) {
-            val player = players.get(accounts.getByAccount(account)?.displayName ?: "") ?: continue
+            val player = Players.find(accounts.getByAccount(account)?.displayName ?: "") ?: continue
             val offer = player.offers[index]
             if (offer.isEmpty()) {
                 continue
@@ -200,7 +198,7 @@ class GrandExchange(
             }
         }
         val definition = accounts.getByAccount(pending.account) ?: return
-        val player = players.get(definition.displayName) ?: return
+        val player = Players.find(definition.displayName) ?: return
         for (i in 0 until 6) {
             refresh(player, i)
         }
@@ -224,7 +222,7 @@ class GrandExchange(
         } else {
             player.removeVarbit("grand_exchange_ranges", "slot_$index")
         }
-        val itemDef = itemDefinitions.get(offer.item)
+        val itemDef = ItemDefinitions.get(offer.item)
         player.client?.grandExchange(index, offer.state.int, itemDef.id, offer.price, offer.amount, offer.completed, offer.coins)
     }
 
@@ -260,7 +258,7 @@ class GrandExchange(
      */
     private fun claim(id: Int, account: String, item: String, traded: Int, price: Int, otherPrice: Int, sell: Boolean) {
         val definition = accounts.getByAccount(account)
-        val player = players.get(definition?.displayName ?: "")
+        val player = Players.find(definition?.displayName ?: "")
         val slot = player?.offers?.indexOfFirst { it.id == id } ?: -1
         val offer = player?.offers?.getOrNull(slot)
         if (offer == null) {

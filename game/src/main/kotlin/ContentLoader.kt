@@ -10,7 +10,7 @@ import kotlin.system.exitProcess
 /**
  * Loads content scripts from a precomputed scripts.txt list made by scriptMetadata gradle build task
  */
-object ContentLoader {
+class ContentLoader {
     private val logger = InlineLogger()
 
     fun load(): List<Script> {
@@ -44,10 +44,6 @@ object ContentLoader {
     private fun loadContentApis() {
         Script.interfaces.add(PrayerApi)
         Script.interfaces.add(Bots)
-    }
-
-    fun clear() {
-        Script.clear()
     }
 
     private fun loadScript(name: String): Any {

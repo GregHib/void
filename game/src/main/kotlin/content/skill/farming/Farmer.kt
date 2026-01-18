@@ -19,11 +19,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.random
 
-class Farmer(
-    val enumDefinitions: EnumDefinitions,
-    val itemDefinitions: ItemDefinitions,
-    val objectDefinitions: ObjectDefinitions,
-) : Script {
+class Farmer(val enumDefinitions: EnumDefinitions) : Script {
 
     init {
         npcOperate("Talk-to", "alain,amaethwr,dreven,dantaera,ellena,elstan,fayeth,francis,garth_brimhaven,gileth_observatory,heskel,imiago_tai_bwo_wannai_normal,kragen_ardougne,lyra,rhazien,rhonen,selena,taria,torrell,treznor,vasquen,bolongo,frizzy_skernip,praistan_ebola,prissy_scilla,yulf_squecks") { (target) ->
@@ -139,13 +135,13 @@ class Farmer(
     }
 
     fun requiredItems(value: String): Pair<List<Item>, List<Item>> {
-        val def = itemDefinitions.get(value)
+        val def = ItemDefinitions.get(value)
         if (value == "spirit_tree") {
             return listOf(Item("monkey_nuts", 5), Item("monkey_bar"), Item("ground_tooth")) to emptyList()
         }
         val id = def.getOrNull<String>("farming_protect_id") ?: return Pair(emptyList<Item>(), emptyList<Item>())
         val amount = def["farming_protect_amount", 1]
-        val noted = if (itemDefinitions.contains("${id}_noted")) listOf(Item("${id}_noted", amount)) else emptyList()
+        val noted = if (ItemDefinitions.contains("${id}_noted")) listOf(Item("${id}_noted", amount)) else emptyList()
         return Pair(listOf(Item(id, amount)), noted)
     }
 
@@ -171,9 +167,9 @@ class Farmer(
             npc<Confused>("I'm already looking after that patch for you.")
             return
         }
-        val def = objectDefinitions.get("${value.substringBeforeLast("_")}_fullygrown")
+        val def = ObjectDefinitions.get("${value.substringBeforeLast("_")}_fullygrown")
         val item: String = def.getOrNull("harvest") ?: return
-        val harvest = enumDefinitions.get("farming_protection").getString(itemDefinitions.get(item).id).substringAfter(":")
+        val harvest = enumDefinitions.get("farming_protection").getString(ItemDefinitions.get(item).id).substringAfter(":")
         npc<Neutral>("If you like, but I want $harvest for that.")
         val (required, noted) = requiredItems(item)
         if (!inventory.remove(required) && (noted.isEmpty() || !inventory.remove(noted))) {

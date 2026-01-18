@@ -5,6 +5,7 @@ import objectOption
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
 
@@ -19,7 +20,7 @@ class SorceressGardenTest : WorldTest() {
     ).map { (start, tile, season) ->
         dynamicTest("Steal $season sqirk") {
             val player = createPlayer(start)
-            val tree = objects[tile, "sqirk_tree_$season"]!!
+            val tree = GameObjects.find(tile, "sqirk_tree_$season")
             player.objectOption(tree, "Pick-fruit")
             tick(5)
             assertEquals(Tile(2911, 5470), player.tile)
@@ -36,7 +37,7 @@ class SorceressGardenTest : WorldTest() {
     ).map { (start, tile, season) ->
         dynamicTest("Steal $season herbs") {
             val player = createPlayer(start)
-            val herbs = objects[tile, "sorceress_herbs_$season"]!!
+            val herbs = GameObjects.find(tile, "sorceress_herbs_$season")
             player.objectOption(herbs, "Pick")
             tick(5)
             assertEquals(Tile(2911, 5470), player.tile)

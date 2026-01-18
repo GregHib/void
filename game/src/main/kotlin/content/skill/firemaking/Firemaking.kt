@@ -26,7 +26,7 @@ import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-class Firemaking(val floorItems: FloorItems, val objects: GameObjects) : Script {
+class Firemaking : Script {
 
     val directions = listOf(Direction.WEST, Direction.EAST, Direction.SOUTH, Direction.NORTH)
 
@@ -40,7 +40,7 @@ class Firemaking(val floorItems: FloorItems, val objects: GameObjects) : Script 
             closeDialogue()
             queue.clearWeak()
             if (inventory.remove(logSlot, log.id)) {
-                val floorItem = floorItems.add(tile, log.id, disappearTicks = 300, owner = this)
+                val floorItem = FloorItems.add(tile, log.id, disappearTicks = 300, owner = this)
                 interactFloorItem(floorItem, "Light")
             }
         }
@@ -85,7 +85,7 @@ class Firemaking(val floorItems: FloorItems, val objects: GameObjects) : Script 
             } else if (remaining > 0) {
                 player.pause(remaining)
             }
-            if (Level.success(player.levels.get(Skill.Firemaking), fire.chance) && floorItems.remove(floorItem)) {
+            if (Level.success(player.levels.get(Skill.Firemaking), fire.chance) && FloorItems.remove(floorItem)) {
                 player.message("The fire catches and the logs begin to burn.", ChatType.Filter)
                 player.exp(Skill.Firemaking, fire.xp)
                 spawnFire(player, floorItem.tile, fire)
@@ -108,16 +108,16 @@ class Firemaking(val floorItems: FloorItems, val objects: GameObjects) : Script 
         if (!has(Skill.Firemaking, fire.level, true)) {
             return false
         }
-        if (objects.getLayer(item.tile, ObjectLayer.GROUND) != null) {
+        if (GameObjects.getLayer(item.tile, ObjectLayer.GROUND) != null) {
             message("You can't light a fire here.")
             return false
         }
-        return floorItems[item.tile].contains(item)
+        return FloorItems.at(item.tile).contains(item)
     }
 
     fun spawnFire(player: Player, tile: Tile, fire: Fire) {
-        val obj = objects.add("fire_${fire.colour}", tile, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0, ticks = fire.life)
-        floorItems.add(tile, "ashes", revealTicks = fire.life, disappearTicks = 60, owner = "")
+        val obj = GameObjects.add("fire_${fire.colour}", tile, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0, ticks = fire.life)
+        FloorItems.add(tile, "ashes", revealTicks = fire.life, disappearTicks = 60, owner = "")
         val interact = player.mode as Interact
         for (dir in directions) {
             if (interact.canStep(dir.delta.x, dir.delta.y)) {

@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.SettingsReload
 import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.ClientScriptDefinitions
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.data.definition.GraphicDefinitions
@@ -36,7 +36,6 @@ import world.gregs.voidps.engine.data.definition.SoundDefinitions
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -45,7 +44,6 @@ import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
-import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.get
@@ -56,7 +54,7 @@ import kotlin.text.isBlank
 import kotlin.text.split
 import kotlin.text.toIntOrNull
 
-class ServerCommands(val players: Players, val accountLoader: PlayerAccountLoader) : Script {
+class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
 
     init {
         adminCommand(
@@ -87,27 +85,21 @@ class ServerCommands(val players: Players, val accountLoader: PlayerAccountLoade
             "fairy_ring", "fairy_rings", "fairy_codes" -> get<FairyRingCodes>().load(files.find(Settings["definitions.fairyCodes"]))
             "ships" -> get<CharterShips>().load(files.find(Settings["map.ships.prices"]))
             "objects", "objs" -> {
-                val defs: ObjectDefinitions = get()
-                val custom: GameObjects = get()
-                defs.load(files.list(Settings["definitions.objects"]))
-                loadObjectSpawns(custom, files.list(Settings["spawns.objects"]), defs)
+                ObjectDefinitions.load(files.list(Settings["definitions.objects"]))
+                loadObjectSpawns(files.list(Settings["spawns.objects"]))
             }
             "item_defs", "items", "floor_items" -> {
-                val items: FloorItems = get()
                 val itemSpawns: ItemSpawns = get()
-                items.clear()
-                val itemDefinitions: ItemDefinitions = get()
-                itemDefinitions.load(files.list(Settings["definitions.items"]))
-                loadItemSpawns(items, itemSpawns, files.list(Settings["spawns.items"]), itemDefinitions)
+                FloorItems.clear()
+                ItemDefinitions.load(files.list(Settings["definitions.items"]))
+                loadItemSpawns(itemSpawns, files.list(Settings["spawns.items"]))
             }
             "nav_graph", "ai_graph" -> get<NavigationGraph>().load(files.find(Settings["map.navGraph"]))
             "npcs" -> {
-                val npcDefs = get<NPCDefinitions>()
-                npcDefs.load(files.list(Settings["definitions.npcs"]))
-                val npcs: NPCs = get()
-                loadNpcSpawns(npcs, files.list(Settings["spawns.npcs"]), npcDefs)
+                NPCDefinitions.load(files.list(Settings["definitions.npcs"]))
+                loadNpcSpawns(files.list(Settings["spawns.npcs"]))
             }
-            "areas" -> get<AreaDefinitions>().load(files.list(Settings["map.areas"]))
+            "areas" -> Areas.load(files.list(Settings["map.areas"]))
             "emotes", "render_anims", "render_emotes" -> get<RenderEmoteDefinitions>().load(files.find(Settings["definitions.renderEmotes"]))
             "anim_defs", "anims", "animations" -> get<AnimationDefinitions>().load(files.list(Settings["definitions.animations"]))
             "container_defs", "containers", "inventory_defs", "inventories", "inv_defs", "invs", "shop", "shops" -> {
@@ -171,7 +163,7 @@ class ServerCommands(val players: Players, val accountLoader: PlayerAccountLoade
             player.message("Update time must be positive.", ChatType.Console)
             return
         }
-        for (p in players) {
+        for (p in Players) {
             p.client?.systemUpdate(ticks)
         }
         shutdown(player, (ticks - 2).coerceAtLeast(0))

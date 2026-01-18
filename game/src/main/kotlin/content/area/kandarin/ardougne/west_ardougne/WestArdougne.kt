@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.type.Tile
 
-class WestArdougne(val floorItems: FloorItems) : Script {
+class WestArdougne : Script {
 
     val doorStages = setOf("returned_book", "spoken_to_ted", "spoken_to_milli", "need_clearance")
 
@@ -31,7 +31,7 @@ class WestArdougne(val floorItems: FloorItems) : Script {
                 return@objectOperate
             }
             if (!inventory.add("a_small_key")) {
-                floorItems.add(tile, "a_small_key", disappearTicks = 300, owner = this)
+                FloorItems.add(tile, "a_small_key", disappearTicks = 300, owner = this)
             }
             item("a_small_key", 300, "You find a small key in the barrel.")
         }

@@ -25,7 +25,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 
-class Ellis(val itemDefs: ItemDefinitions) : Script {
+class Ellis : Script {
 
     init {
         npcOperate("Talk-to", "ellis,tanner") {
@@ -91,7 +91,7 @@ class Ellis(val itemDefs: ItemDefinitions) : Script {
             return
         }
         player.softTimers.start("tanning")
-        val tanning: Tanning = itemDefs.get(item)["tanning"]
+        val tanning: Tanning = ItemDefinitions.get(item)["tanning"]
         val (leather, cost) = tanning.prices[if (type.endsWith("_1")) 1 else 0]
         var tanned = 0
         var noHides = false

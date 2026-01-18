@@ -23,11 +23,7 @@ import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
-class Gravestones(
-    val players: Players,
-    val npcs: NPCs,
-    val floorItems: FloorItems,
-) : Script {
+class Gravestones : Script {
 
     init {
         playerSpawn {
@@ -95,7 +91,7 @@ class Gravestones(
             target.start("grave_timer", seconds, epochSeconds())
             updateItems(target.tile, name, seconds)
             delay(2)
-            val deceased = players.get(name)
+            val deceased = Players.find(name)
             val remainder = target.remaining("grave_timer", epochSeconds())
             val minutes = TimeUnit.SECONDS.toMinutes(remainder.toLong())
             deceased?.message("$name has repaired your gravestone. It should survive another $minutes ${"minute".plural(minutes)}.")
@@ -128,7 +124,7 @@ class Gravestones(
             delay(2)
             message("The gods hear your prayers; the gravestone will remain for a little longer.")
             target["blessed"] = true
-            val deceased = players.get(name)
+            val deceased = Players.find(name)
             val remainder = target.remaining("grave_timer", epochSeconds())
             val minutes = TimeUnit.SECONDS.toMinutes(remainder.toLong())
             deceased?.message("$name has blessed your gravestone. It should survive another $minutes ${"minute".plural(minutes)}.")
@@ -142,14 +138,14 @@ class Gravestones(
             val remainder = target.remaining("grave_timer", epochSeconds())
             val minutes = TimeUnit.SECONDS.toMinutes(remainder.toLong())
             target.softTimers.stop("grave_degrade")
-            npcs.remove(target)
+            NPCs.remove(target)
             message("It looks like it'll survive another $minutes ${"minute".plural(minutes)}. You demolish it anyway.")
         }
 
         droppable {
             var droppable = true
             // TODO can you drop items on someone else's grave?
-            for (grave in npcs[tile].filter { it.id.startsWith("gravestone_") }) {
+            for (grave in NPCs.at(tile).filter { it.id.startsWith("gravestone_") }) {
                 if (grave["player_name", ""] == name) {
                     message("Surely you aren't going to drop litter on your own grave!")
                     droppable = false
@@ -160,7 +156,7 @@ class Gravestones(
     }
 
     fun start(npc: NPC, restart: Boolean): Int {
-        val player = players.get(npc["player_name", ""])
+        val player = Players.find(npc["player_name", ""])
         if (player != null) {
             val remaining = npc.remaining("grave_timer", epochSeconds())
             player.sendScript("gravestone_set_timer", remaining / 60 * 100)
@@ -174,14 +170,14 @@ class Gravestones(
             npc.transform("${npc.id}_broken")
         } else if (remaining <= 60 && !npc.transform.endsWith("collapse")) {
             npc.transform("${npc.id}_collapse")
-            val player = players.get(npc["player_name", ""])
+            val player = Players.find(npc["player_name", ""])
             player?.message("Your gravestone has collapsed.")
         }
         return Timer.CONTINUE
     }
 
     fun stop(npc: NPC, death: Boolean) {
-        val player = players.get(npc.remove("player_name") ?: "")
+        val player = Players.find(npc.remove("player_name") ?: "")
         if (player != null) {
             player.clear("gravestone_time")
             val tile: Tile? = player.remove("gravestone_tile")
@@ -190,7 +186,7 @@ class Gravestones(
             }
         }
         npc.stop("grave_timer")
-        npcs.remove(npc)
+        NPCs.remove(npc)
     }
 
     fun remainMessage(player: Player, grave: NPC) {
@@ -209,7 +205,7 @@ class Gravestones(
     }
 
     fun updateItems(tile: Tile, name: String, seconds: Int) {
-        val items = floorItems[tile].filter { it.owner == name }
+        val items = FloorItems.at(tile).filter { it.owner == name }
         for (item in items) {
             item.revealTicks = TimeUnit.SECONDS.toTicks(seconds)
             item.disappearTicks = TimeUnit.SECONDS.toTicks(seconds) + 60

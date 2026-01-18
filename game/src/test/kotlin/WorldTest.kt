@@ -14,10 +14,12 @@ import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.MemoryCache
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
+import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.cache.definition.data.NPCDefinition
+import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
-import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
@@ -61,10 +63,6 @@ abstract class WorldTest : KoinTest {
 
     private val logger = InlineLogger()
     private lateinit var engine: GameLoop
-    lateinit var players: Players
-    lateinit var npcs: NPCs
-    lateinit var floorItems: FloorItems
-    lateinit var objects: GameObjects
     private lateinit var accountDefs: AccountDefinitions
     private lateinit var accounts: AccountManager
     private var saves: File? = null
@@ -116,13 +114,13 @@ abstract class WorldTest : KoinTest {
     }
 
     fun createNPC(id: String, tile: Tile = Tile.EMPTY, block: (NPC) -> Unit = {}): NPC {
-        val npc = npcs.add(id, tile)
+        val npc = NPCs.add(id, tile)
         block.invoke(npc)
-        npcs.run()
+        NPCs.run()
         return npc
     }
 
-    fun createObject(id: String, tile: Tile = Tile.EMPTY, shape: Int = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation: Int = 0): GameObject = objects.add(id, tile, shape, rotation)
+    fun createObject(id: String, tile: Tile = Tile.EMPTY, shape: Int = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation: Int = 0): GameObject = GameObjects.add(id, tile, shape, rotation)
 
     fun createFloorItem(
         id: String,
@@ -132,7 +130,7 @@ abstract class WorldTest : KoinTest {
         disappearTicks: Int = FloorItems.NEVER,
         charges: Int = 0,
         owner: Player? = null,
-    ): FloorItem = floorItems.add(tile, id, amount, revealTicks, disappearTicks, charges, owner)
+    ): FloorItem = FloorItems.add(tile, id, amount, revealTicks, disappearTicks, charges, owner)
 
     fun Inventory.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount)) }
 
@@ -149,9 +147,10 @@ abstract class WorldTest : KoinTest {
                 module {
                     single(createdAtStart = true) { cache }
                     single(createdAtStart = true) { huffman }
-                    single(createdAtStart = true) { objectDefinitions }
-                    single(createdAtStart = true) { npcDefinitions }
-                    single(createdAtStart = true) { itemDefinitions }
+                    single(createdAtStart = true) {
+                        ItemDefinitions.set(itemDefinitions, itemIds)
+                        ItemDefinitions
+                    }
                     single(createdAtStart = true) { animationDefinitions }
                     single(createdAtStart = true) { graphicDefinitions }
                     single(createdAtStart = true) { interfaceDefinitions }
@@ -166,20 +165,18 @@ abstract class WorldTest : KoinTest {
                     single(createdAtStart = true) { itemOnItemDefinitions }
                     single(createdAtStart = true) { variableDefinitions }
                     single(createdAtStart = true) { dropTables }
+                    single(createdAtStart = true) {
+                        ObjectDefinitions.set(objectDefinitions, objectIds)
+                        ObjectDefinitions
+                    }
                     single { ammoDefinitions }
                     single { parameterDefinitions }
-                    single { gameObjects }
                     single { mapDefinitions }
-                    single { collisions }
                     single { objectCollisionAdd }
                     single { objectCollisionAdd }
                     single { objectCollisionRemove }
                     single {
                         Hunting(
-                            get(),
-                            get(),
-                            get(),
-                            get(),
                             get(),
                             get(),
                             object : FakeRandom() {
@@ -190,20 +187,18 @@ abstract class WorldTest : KoinTest {
                 },
             )
         }
+
+        NPCDefinitions.set(npcDefinitions, npcIds)
+        engineLoad(configFiles)
         Wildcards.load(Settings["storage.wildcards"])
-        scripts = ContentLoader.load()
+        scripts = ContentLoader().load()
         Wildcards.clear()
         saves = File(Settings["storage.players.path"])
         saves?.mkdirs()
         val millis = measureTimeMillis {
             val tickStages = getTickStages(
                 get(),
-                get(),
-                get(),
-                get(),
-                get(),
                 get<ConnectionQueue>(),
-                get(),
                 get(),
                 get(),
                 get(),
@@ -212,16 +207,12 @@ abstract class WorldTest : KoinTest {
             engine = GameLoop(tickStages)
             Spawn.world(configFiles)
         }
-        players = get()
-        npcs = get()
-        floorItems = get()
-        objects = get()
         accountDefs = get()
         accounts = get()
         logger.info { "World startup took ${millis}ms" }
         for (x in 0 until 24 step 8) {
             for (y in 0 until 24 step 8) {
-                collisions.allocateIfAbsent(x, y, 0)
+                Collisions.allocateIfAbsent(x, y, 0)
             }
         }
     }
@@ -231,17 +222,17 @@ abstract class WorldTest : KoinTest {
         setCurrentTime { TIME }
         settings = Settings.load(properties)
         if (loadNpcs) {
-            loadNpcSpawns(npcs, configFiles.list(Settings["spawns.npcs"]), npcDefinitions)
+            loadNpcSpawns(configFiles.list(Settings["spawns.npcs"]))
         }
         setRandom(FakeRandom())
     }
 
     @AfterEach
     fun afterEach() {
-        players.clear()
-        npcs.clear()
-        floorItems.clear()
-        objects.reset()
+        Players.clear()
+        NPCs.clear()
+        FloorItems.clear()
+        GameObjects.reset()
         World.clear()
         Settings.clear()
         Instances.reset()
@@ -250,7 +241,7 @@ abstract class WorldTest : KoinTest {
     @AfterAll
     fun afterAll() {
         saves?.deleteRecursively()
-        ContentLoader.clear()
+        Script.clear()
         stopKoin()
     }
 
@@ -292,14 +283,27 @@ abstract class WorldTest : KoinTest {
         private val huffman: Huffman by lazy { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
         private val ammoDefinitions: AmmoDefinitions by lazy { AmmoDefinitions().load(configFiles.find(Settings["definitions.ammoGroups"])) }
         private val parameterDefinitions: ParameterDefinitions by lazy { ParameterDefinitions(CategoryDefinitions().load(configFiles.find(Settings["definitions.categories"])), ammoDefinitions).load(configFiles.find(Settings["definitions.parameters"])) }
-        val objectDefinitions: ObjectDefinitions by lazy {
-            ObjectDefinitions(ObjectDecoder(member = true, lowDetail = false, parameterDefinitions).load(cache)).load(configFiles.list(Settings["definitions.objects"]))
+        private val objectDefinitions: Array<ObjectDefinition> by lazy {
+            ObjectDecoder(member = true, lowDetail = false, parameterDefinitions).load(cache)
         }
-        private val npcDefinitions: NPCDefinitions by lazy {
-            NPCDefinitions(NPCDecoder(member = true, parameterDefinitions).load(cache)).load(configFiles.list(Settings["definitions.npcs"]))
+        private val objectIds: Map<String, Int> by lazy {
+            ObjectDecoder(member = true, lowDetail = false, parameterDefinitions).load(cache)
+            ObjectDefinitions.init(objectDefinitions).load(configFiles.list(Settings["definitions.objects"]))
+            ObjectDefinitions.ids
         }
-        val itemDefinitions: ItemDefinitions by lazy {
-            ItemDefinitions(ItemDecoder(parameterDefinitions).load(cache)).load(configFiles.list(Settings["definitions.items"]))
+        private val npcDefinitions: Array<NPCDefinition> by lazy {
+            NPCDecoder(member = true, parameterDefinitions).load(cache)
+        }
+        private val npcIds: Map<String, Int> by lazy {
+            NPCDefinitions.init(npcDefinitions).load(configFiles.list(Settings["definitions.npcs"]))
+            NPCDefinitions.ids
+        }
+        val itemDefinitions: Array<ItemDefinition> by lazy {
+            ItemDecoder(parameterDefinitions).load(cache)
+        }
+        val itemIds: Map<String, Int> by lazy {
+            ItemDefinitions.init(itemDefinitions).load(configFiles.list(Settings["definitions.items"]))
+            ItemDefinitions.ids
         }
         private val animationDefinitions: AnimationDefinitions by lazy {
             AnimationDefinitions(AnimationDecoder().load(cache)).load(configFiles.list(Settings["definitions.animations"]))
@@ -311,21 +315,22 @@ abstract class WorldTest : KoinTest {
             InterfaceDefinitions(InterfaceDecoder().load(cache)).load(configFiles.list(Settings["definitions.interfaces"]), configFiles.find(Settings["definitions.interfaces.types"]))
         }
         private val inventoryDefinitions: InventoryDefinitions by lazy {
-            InventoryDefinitions(InventoryDecoder().load(cache)).load(configFiles.list(Settings["definitions.inventories"]), configFiles.list(Settings["definitions.shops"]), itemDefinitions)
+            InventoryDefinitions(InventoryDecoder().load(cache)).load(configFiles.list(Settings["definitions.inventories"]), configFiles.list(Settings["definitions.shops"]))
         }
         private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder(parameterDefinitions).load(cache)).load(configFiles.find(Settings["definitions.structs"])) }
         private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }
         private val weaponStyleDefinitions: WeaponStyleDefinitions by lazy { WeaponStyleDefinitions().load(configFiles.find(Settings["definitions.weapons.styles"])) }
         private val weaponAnimationDefinitions: WeaponAnimationDefinitions by lazy { WeaponAnimationDefinitions().load(configFiles.find(Settings["definitions.weapons.animations"])) }
         private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder().load(cache), structDefinitions).load(configFiles.find(Settings["definitions.enums"])) }
-        private val collisions: Collisions by lazy { Collisions() }
-        private val objectCollisionAdd: GameObjectCollisionAdd by lazy { GameObjectCollisionAdd(collisions) }
-        private val objectCollisionRemove: GameObjectCollisionRemove by lazy { GameObjectCollisionRemove(collisions) }
-        private val gameObjects: GameObjects by lazy { GameObjects(objectCollisionAdd, objectCollisionRemove, ZoneBatchUpdates(), objectDefinitions, storeUnused = true) }
-        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder(collisions), objectDefinitions, gameObjects, cache).load(configFiles) }
+        private val objectCollisionAdd: GameObjectCollisionAdd by lazy { GameObjectCollisionAdd() }
+        private val objectCollisionRemove: GameObjectCollisionRemove by lazy { GameObjectCollisionRemove() }
+        private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder(), cache).load(configFiles) }
         private val fontDefinitions: FontDefinitions by lazy { FontDefinitions(FontDecoder().load(cache)).load(configFiles.find(Settings["definitions.fonts"])) }
         private val objectTeleports: ObjectTeleports by lazy { ObjectTeleports().load(configFiles.list(Settings["map.teleports"])) }
-        private val itemOnItemDefinitions: ItemOnItemDefinitions by lazy { ItemOnItemDefinitions().load(configFiles.list(Settings["definitions.itemOnItem"])) }
+        private val itemOnItemDefinitions: ItemOnItemDefinitions by lazy {
+            itemIds.size
+            ItemOnItemDefinitions().load(configFiles.list(Settings["definitions.itemOnItem"]))
+        }
         private val variableDefinitions: VariableDefinitions by lazy {
             VariableDefinitions().load(
                 configFiles.list(Settings["definitions.variables.players"]),
@@ -335,7 +340,7 @@ abstract class WorldTest : KoinTest {
                 configFiles.list(Settings["definitions.variables.customs"]),
             )
         }
-        private val dropTables: DropTables by lazy { DropTables().load(configFiles.list(Settings["spawns.drops"]), get()) }
+        private val dropTables: DropTables by lazy { DropTables().load(configFiles.list(Settings["spawns.drops"])) }
         val emptyTile = Tile(2655, 4640)
     }
 }

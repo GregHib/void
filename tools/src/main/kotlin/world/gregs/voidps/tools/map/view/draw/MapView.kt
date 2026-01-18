@@ -2,7 +2,6 @@ package world.gregs.voidps.tools.map.view.draw
 
 import content.bot.interact.navigation.graph.NavigationGraph
 import kotlinx.coroutines.*
-import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.tools.map.view.draw.WorldMap.Companion.flipRegionY
 import world.gregs.voidps.tools.map.view.graph.AreaSet
 import world.gregs.voidps.tools.map.view.interact.MouseDrag
@@ -17,7 +16,7 @@ import java.awt.Graphics
 import javax.swing.JPanel
 import javax.swing.SwingUtilities
 
-class MapView(nav: NavigationGraph?, collisions: Collisions?, private val areaFiles: List<String>) : JPanel() {
+class MapView(nav: NavigationGraph?, private val areaFiles: List<String>) : JPanel() {
 
     private val options = OptionsPane(this)
     private val areaSet = AreaSet.load(areaFiles)
@@ -29,7 +28,7 @@ class MapView(nav: NavigationGraph?, collisions: Collisions?, private val areaFi
     private val hover = MouseHover(highlight, area)
     private val map = WorldMap(this)
     private val resize = ResizeListener(map)
-    private val graph = GraphDrawer(this, nav, areaSet, collisions)
+    private val graph = GraphDrawer(this, nav, areaSet)
 
     //    private val click = MouseClick(this, nav, graph, area, areaSet)
     private val apc = AreaPointConnector(this, areaSet)

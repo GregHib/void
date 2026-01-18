@@ -5,7 +5,15 @@ import world.gregs.voidps.type.Zone
 
 interface CharacterSearch<C : Character> {
 
-    operator fun get(tile: Tile): List<C>
+    fun first(tile: Tile, filter: (C) -> Boolean) = at(tile).first(filter)
 
-    operator fun get(zone: Zone): List<C>
+    fun firstOrNull(tile: Tile, filter: (C) -> Boolean) = at(tile).firstOrNull(filter)
+
+    fun at(tile: Tile): List<C>
+
+    fun first(zone: Zone, filter: (C) -> Boolean) = at(zone).first(filter)
+
+    fun firstOrNull(zone: Zone, filter: (C) -> Boolean) = at(zone).firstOrNull(filter)
+
+    fun at(zone: Zone): List<C>
 }

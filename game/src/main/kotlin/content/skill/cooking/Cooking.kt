@@ -26,7 +26,7 @@ import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-class Cooking(val definitions: ItemDefinitions, val objects: GameObjects) : Script {
+class Cooking : Script {
 
     val GameObject.cookingRange: Boolean get() = id.startsWith("cooking_range")
 
@@ -39,7 +39,7 @@ class Cooking(val definitions: ItemDefinitions, val objects: GameObjects) : Scri
                 sinew = choice == 1
             }
             val definition = if (sinew) {
-                definitions.get("sinew")
+                ItemDefinitions.get("sinew")
             } else if (item.id == "sinew") {
                 return@itemOnObjectOperate
             } else {
@@ -63,7 +63,7 @@ class Cooking(val definitions: ItemDefinitions, val objects: GameObjects) : Scri
     }
 
     fun Player.cook(item: Item, count: Int, obj: GameObject, cooking: Uncooked, offset: Int? = null) {
-        if (count <= 0 || objects[obj.tile, obj.id] == null) {
+        if (count <= 0 || GameObjects.findOrNull(obj.tile, obj.id) == null) {
             softTimers.stop("cooking")
             return
         }
@@ -87,7 +87,7 @@ class Cooking(val definitions: ItemDefinitions, val objects: GameObjects) : Scri
         face(obj)
         anim("cook_${if (obj.id.startsWith("fire_")) "fire" else "range"}")
         weakQueue("cooking", offset ?: 4) {
-            if (!objects.contains(obj)) {
+            if (!GameObjects.contains(obj)) {
                 return@weakQueue
             }
             val level = levels.get(Skill.Cooking)

@@ -9,10 +9,7 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 /**
  * Adds collision for all blocked tiles except bridges
  */
-class MapObjectsDecoder(
-    private val objects: GameObjects,
-    private val definitions: ObjectDefinitions,
-) : MapObjectDecoder() {
+class MapObjectsDecoder : MapObjectDecoder() {
 
     fun decode(cache: Cache, settings: ByteArray, regionX: Int, regionY: Int, keys: IntArray?) {
         val objectData = cache.data(Index.MAPS, "l${regionX}_$regionY", xtea = keys) ?: return
@@ -22,6 +19,7 @@ class MapObjectsDecoder(
     }
 
     override fun add(objectId: Int, localX: Int, localY: Int, level: Int, shape: Int, rotation: Int, regionTileX: Int, regionTileY: Int) {
-        objects.set(objectId, regionTileX + localX, regionTileY + localY, level, shape, rotation, definitions.getValue(objectId))
+        // 202, 75
+        GameObjects.set(objectId, regionTileX + localX, regionTileY + localY, level, shape, rotation, ObjectDefinitions.getValue(objectId))
     }
 }

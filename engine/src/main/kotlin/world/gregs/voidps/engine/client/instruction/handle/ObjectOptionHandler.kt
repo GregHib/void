@@ -17,10 +17,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.client.instruction.InteractObject
 import world.gregs.voidps.type.Tile
 
-class ObjectOptionHandler(
-    private val objects: GameObjects,
-    private val definitions: ObjectDefinitions,
-) : InstructionHandler<InteractObject>() {
+class ObjectOptionHandler : InstructionHandler<InteractObject>() {
 
     private val logger = InlineLogger()
 
@@ -35,7 +32,7 @@ class ObjectOptionHandler(
             logger.warn { "Invalid object $objectId $tile" }
             return
         }
-        val definition = getDefinition(player, definitions, target.def, target.def)
+        val definition = getDefinition(player, ObjectDefinitions, target.def, target.def)
         val options = definition.options
         if (options == null) {
             logger.warn { "Invalid object interaction $target $option ${definition.options.contentToString()}" }
@@ -52,13 +49,13 @@ class ObjectOptionHandler(
     }
 
     private fun getObject(tile: Tile, objectId: Int): GameObject? {
-        val obj = objects[tile, objectId]
+        val obj = GameObjects.findOrNull(tile, objectId)
         if (obj == null) {
-            val definition = definitions.getOrNull(objectId)
+            val definition = ObjectDefinitions.getOrNull(objectId)
             return if (definition == null) {
-                objects[tile, objectId.toString()]
+                GameObjects.findOrNull(tile, objectId.toString())
             } else {
-                objects[tile, definition.id]
+                GameObjects.findOrNull(tile, definition.id)
             }
         }
         return obj

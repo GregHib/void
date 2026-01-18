@@ -31,11 +31,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 
-class Edmond(
-    val floorItems: FloorItems,
-    val npcs: NPCs,
-    val objects: GameObjects,
-) : Script {
+class Edmond : Script {
 
     val region = Region(10136)
 
@@ -187,7 +183,7 @@ class Edmond(
                 if (!ownsItem("a_magic_scroll")) {
                     option<Quiz>("Do you have any more of those scrolls?") {
                         if (!inventory.add("a_magic_scroll")) {
-                            floorItems.add(tile, "a_magic_scroll", disappearTicks = 300, owner = this)
+                            FloorItems.add(tile, "a_magic_scroll", disappearTicks = 300, owner = this)
                         }
                         npc<Happy>("Yes, here you go.")
                     }
@@ -212,14 +208,14 @@ class Edmond(
         delay(4)
         tele(cutscene.tile(2514, 9740), clearInterfaces = false)
         face(Direction.SOUTH)
-        val edmond = npcs.add("edmond", cutscene.tile(2514, 9741), Direction.SOUTH)
+        val edmond = NPCs.add("edmond", cutscene.tile(2514, 9741), Direction.SOUTH)
         edmond.mode = PauseMode
         delay(1)
         moveCamera(cutscene.tile(2517, 9744), 300)
         turnCamera(cutscene.tile(2513, 9740), 230)
-        val hangingopeend = objects.add("hanging_rope_anim", cutscene.tile(2514, 9739), ObjectShape.CENTRE_PIECE_STRAIGHT, 2, 20, false)
-        val straightrope = objects.add("straight_rope_anim", cutscene.tile(2514, 9740), ObjectShape.CENTRE_PIECE_STRAIGHT, 2, 20, false)
-        val straightropeend = objects.add("straight_rope_end_anim", cutscene.tile(2514, 9741), ObjectShape.CENTRE_PIECE_STRAIGHT, 2, 20, false)
+        val hangingopeend = GameObjects.add("hanging_rope_anim", cutscene.tile(2514, 9739), ObjectShape.CENTRE_PIECE_STRAIGHT, 2, 20, false)
+        val straightrope = GameObjects.add("straight_rope_anim", cutscene.tile(2514, 9740), ObjectShape.CENTRE_PIECE_STRAIGHT, 2, 20, false)
+        val straightropeend = GameObjects.add("straight_rope_end_anim", cutscene.tile(2514, 9741), ObjectShape.CENTRE_PIECE_STRAIGHT, 2, 20, false)
         open("fade_in")
         delay(2)
         say("1...")

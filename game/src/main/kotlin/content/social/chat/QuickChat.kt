@@ -25,18 +25,16 @@ import world.gregs.voidps.network.login.protocol.encode.privateQuickChatTo
 import world.gregs.voidps.network.login.protocol.encode.publicQuickChat
 
 class QuickChat(
-    val players: Players,
     val phrases: QuickChatPhraseDefinitions,
     val variables: VariableDefinitions,
     val enums: EnumDefinitions,
-    val items: ItemDefinitions,
 ) : Script {
 
     val logger = InlineLogger("QuickChat")
 
     init {
         instruction<QuickChatPrivate> { player ->
-            val target = players.get(friend)
+            val target = Players.find(friend)
             if (target == null || target.ignores(player)) {
                 player.message("Unable to send message - player unavailable.")
                 return@instruction
@@ -44,7 +42,7 @@ class QuickChat(
             val definition = phrases.get(file)
             val data = generateData(player, file, data)
             player.client?.privateQuickChatTo(target.name, file, data)
-            val text = definition.buildString(enums.definitions, items.definitions, data)
+            val text = definition.buildString(enums.definitions, ItemDefinitions.definitions, data)
             AuditLog.event(player, "told_qc", target, text)
             target.client?.privateQuickChatFrom(player.name, player.rights.ordinal, file, data)
         }
@@ -54,9 +52,9 @@ class QuickChat(
                 0 -> {
                     val definition = phrases.get(file)
                     val data = generateData(player, file, data)
-                    val text = definition.buildString(enums.definitions, items.definitions, data)
+                    val text = definition.buildString(enums.definitions, ItemDefinitions.definitions, data)
                     AuditLog.event(player, "said_qc", text)
-                    players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }.forEach {
+                    Players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }.forEach {
                         it.client?.publicQuickChat(player.index, 0x8000, player.rights.ordinal, file, data)
                     }
                 }
@@ -72,7 +70,7 @@ class QuickChat(
                     }
                     val definition = phrases.get(file)
                     val data = generateData(player, file, data)
-                    val text = definition.buildString(enums.definitions, items.definitions, data)
+                    val text = definition.buildString(enums.definitions, ItemDefinitions.definitions, data)
                     AuditLog.event(player, "clan_said_qc", clan, text)
                     clan.members.filterNot { it.ignores(player) }.forEach { member ->
                         member.client?.clanQuickChat(player.name, member.clan!!.name, player.rights.ordinal, file, data)

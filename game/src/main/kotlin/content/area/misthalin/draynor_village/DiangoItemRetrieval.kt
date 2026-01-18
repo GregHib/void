@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
 
-class DiangoItemRetrieval(val inventoryDefinitions: InventoryDefinitions, val itemDefinitions: ItemDefinitions) : Script {
+class DiangoItemRetrieval(val inventoryDefinitions: InventoryDefinitions) : Script {
 
     val itemLimit = 48
     val container = InterfaceDefinition.pack(468, 2)
@@ -64,7 +64,7 @@ class DiangoItemRetrieval(val inventoryDefinitions: InventoryDefinitions, val it
             var skipped = 0
             for (index in 0 until inventory.size) {
                 val id = definition.ids?.getOrNull(index) ?: continue
-                val itemDefinition = itemDefinitions.get(id)
+                val itemDefinition = ItemDefinitions.get(id)
                 val event: String? = itemDefinition.getOrNull("event")
                 if ((event == null || player[event, false]) && !player.ownsItem(itemDefinition.stringId)) {
                     // Add second screen if itemLimit is reached

@@ -10,9 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Spiral
 import world.gregs.voidps.type.Tile
 
-class TzHaarMej(
-    val npcs: NPCs,
-) : Script {
+class TzHaarMej : Script {
 
     init {
         huntPlayer("tzhaar_mej", "tzhaar_hunter") { target ->
@@ -46,7 +44,7 @@ class TzHaarMej(
     private fun findHelpers(tile: Tile): MutableList<NPC> {
         val helpers = mutableListOf<NPC>()
         for (tile in Spiral.spiral(tile, 6)) {
-            for (npc in npcs[tile]) {
+            for (npc in NPCs.at(tile)) {
                 if (npc.inCombat) {
                     continue
                 }

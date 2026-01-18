@@ -3,15 +3,10 @@ package content.skill.magic.jewellery
 import content.entity.player.dialogue.type.choice
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 
-class AmuletOfGlory(val areas: AreaDefinitions) : Script {
-
-    val edgeville = areas["edgeville_teleport"]
-    val karamja = areas["karamja_teleport"]
-    val draynorVillage = areas["draynor_village_teleport"]
-    val alKharid = areas["al_kharid_teleport"]
+class AmuletOfGlory : Script {
 
     init {
         itemOption("Rub", "amulet_of_glory_#") {
@@ -21,19 +16,19 @@ class AmuletOfGlory(val areas: AreaDefinitions) : Script {
             choice("Where would you like to teleport to?") {
                 option("Edgeville") {
                     message("You rub the amulet...", ChatType.Filter)
-                    jewelleryTeleport(this, it.inventory, it.slot, edgeville)
+                    jewelleryTeleport(this, it.inventory, it.slot, Areas["edgeville_teleport"])
                 }
                 option("Karamja") {
                     message("You rub the amulet...", ChatType.Filter)
-                    jewelleryTeleport(this, it.inventory, it.slot, karamja)
+                    jewelleryTeleport(this, it.inventory, it.slot, Areas["karamja_teleport"])
                 }
                 option("Draynor Village") {
                     message("You rub the amulet...", ChatType.Filter)
-                    jewelleryTeleport(this, it.inventory, it.slot, draynorVillage)
+                    jewelleryTeleport(this, it.inventory, it.slot, Areas["draynor_village_teleport"])
                 }
                 option("Al Kharid") {
                     message("You rub the amulet...", ChatType.Filter)
-                    jewelleryTeleport(this, it.inventory, it.slot, alKharid)
+                    jewelleryTeleport(this, it.inventory, it.slot, Areas["al_kharid_teleport"])
                 }
                 option("Nowhere")
             }
@@ -44,10 +39,10 @@ class AmuletOfGlory(val areas: AreaDefinitions) : Script {
                 return@itemOption
             }
             val area = when (it.option) {
-                "Edgeville" -> edgeville
-                "Karamja" -> karamja
-                "Draynor Village" -> draynorVillage
-                "Al Kharid" -> alKharid
+                "Edgeville" -> Areas["edgeville_teleport"]
+                "Karamja" -> Areas["karamja_teleport"]
+                "Draynor Village" -> Areas["draynor_village_teleport"]
+                "Al Kharid" -> Areas["al_kharid_teleport"]
                 else -> return@itemOption
             }
             message("You rub the amulet...", ChatType.Filter)

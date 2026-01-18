@@ -19,7 +19,7 @@ import world.gregs.voidps.type.Zone
  * Batched messages are sent and cleared at the end of the tick
  * Initial messages are stored until removed and sent on subscription
  */
-class ZoneBatchUpdates : Runnable {
+object ZoneBatchUpdates : Runnable {
     private val batches: MutableMap<Int, MutableList<ZoneUpdate>> = Int2ObjectOpenHashMap()
     private val encoded: MutableMap<Int, ByteArray> = Int2ObjectOpenHashMap()
     private val pool: ObjectPool<MutableList<ZoneUpdate>> = object : DefaultPool<MutableList<ZoneUpdate>>(INITIAL_UPDATE_POOL_SIZE) {
@@ -69,7 +69,7 @@ class ZoneBatchUpdates : Runnable {
         }
     }
 
-    fun reset() {
+    fun clear() {
         for (value in batches.values) {
             pool.recycle(value)
         }
@@ -82,20 +82,18 @@ class ZoneBatchUpdates : Runnable {
         client?.sendBatch(encoded, zoneOffset.x, zoneOffset.y, zone.level)
     }
 
-    companion object {
-        private const val INITIAL_UPDATE_POOL_SIZE = 100
+    private const val INITIAL_UPDATE_POOL_SIZE = 100
 
-        /**
-         * Returns the zone offset for [zone] relative to player's [viewport]
-         */
-        private fun getZoneOffset(viewport: Viewport, zone: Zone): Zone {
-            val base = viewport.lastLoadZone.safeMinus(viewport.zoneRadius, viewport.zoneRadius)
-            return zone.safeMinus(base)
-        }
+    /**
+     * Returns the zone offset for [zone] relative to player's [viewport]
+     */
+    private fun getZoneOffset(viewport: Viewport, zone: Zone): Zone {
+        val base = viewport.lastLoadZone.safeMinus(viewport.zoneRadius, viewport.zoneRadius)
+        return zone.safeMinus(base)
+    }
 
-        private fun Player.clearZone(zone: Zone) {
-            val zoneOffset = getZoneOffset(viewport!!, zone)
-            client?.clearZone(zoneOffset.x, zoneOffset.y, zone.level)
-        }
+    private fun Player.clearZone(zone: Zone) {
+        val zoneOffset = getZoneOffset(viewport!!, zone)
+        client?.clearZone(zoneOffset.x, zoneOffset.y, zone.level)
     }
 }

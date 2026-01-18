@@ -7,6 +7,7 @@ import objectOption
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import kotlin.test.assertEquals
@@ -24,7 +25,7 @@ class SlayerTowerTest : WorldTest() {
         dynamicTest("Climb $direction spikey chain $tile") {
             val player = createPlayer(tile.addY(1))
             player.levels.set(Skill.Agility, 71)
-            val chain = objects[tile, "slayer_tower_chain_$direction"]!!
+            val chain = GameObjects.find(tile, "slayer_tower_chain_$direction")
 
             player.objectOption(chain, "Climb-$direction")
 
@@ -45,7 +46,7 @@ class SlayerTowerTest : WorldTest() {
         dynamicTest("Can't climb $direction spikey chain $tile without level") {
             val player = createPlayer(tile.addX(-1))
             player.levels.set(Skill.Agility, 60)
-            val chain = objects[tile, "slayer_tower_chain_$direction"]!!
+            val chain = GameObjects.find(tile, "slayer_tower_chain_$direction")
 
             player.objectOption(chain, "Climb-$direction")
 
@@ -68,7 +69,7 @@ class SlayerTowerTest : WorldTest() {
             })
             val player = createPlayer(tile.addY(1))
             player.levels.set(Skill.Agility, 99)
-            val chain = objects[tile, "slayer_tower_chain_$direction"]!!
+            val chain = GameObjects.find(tile, "slayer_tower_chain_$direction")
 
             player.objectOption(chain, "Climb-$direction")
 

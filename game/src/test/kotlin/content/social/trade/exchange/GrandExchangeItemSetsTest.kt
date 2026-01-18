@@ -6,7 +6,6 @@ import interfaceOption
 import npcOption
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.koin.test.get
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add

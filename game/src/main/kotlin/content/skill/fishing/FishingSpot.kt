@@ -4,7 +4,7 @@ import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -16,11 +16,7 @@ import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
-class FishingSpot(
-    val areas: AreaDefinitions,
-    val players: Players,
-    val collisions: Collisions,
-) : Script {
+class FishingSpot : Script {
 
     val water = CollisionStrategies.Blocked
     val land = CollisionStrategies.Normal
@@ -54,7 +50,7 @@ class FishingSpot(
     }
 
     fun move(npc: NPC) {
-        val area = areas.get(npc.tile.zone).firstOrNull { it.name.endsWith("fishing_area") } ?: return
+        val area = Areas.get(npc.tile.zone).firstOrNull { it.name.endsWith("fishing_area") } ?: return
         /*
             Find all water tiles that have two water tiles next to them and land perpendicular
                [W]    [L]    [W]
@@ -72,7 +68,7 @@ class FishingSpot(
         npc.softTimers.start("fishing_spot_respawn")
         val fishers: MutableSet<String> = npc.remove("fishers") ?: return
         for (fisher in fishers) {
-            val player = players.get(fisher) ?: continue
+            val player = Players.find(fisher) ?: continue
             player.mode = EmptyMode
             player.queue.clearWeak()
         }
@@ -80,7 +76,7 @@ class FishingSpot(
     }
 
     fun check(tile: Tile, strategy: CollisionStrategy): Boolean {
-        val tileFlag = collisions[tile.x, tile.y, tile.level]
+        val tileFlag = Collisions[tile.x, tile.y, tile.level]
         return strategy.canMove(
             tileFlag,
             CollisionFlag.BLOCK_NORTH_AND_SOUTH_EAST or

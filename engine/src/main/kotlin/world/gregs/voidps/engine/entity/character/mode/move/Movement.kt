@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
@@ -220,13 +220,12 @@ open class Movement(
                 val offset = character.get<Long>("instance_offset")?.let { Delta(it) } ?: Delta.EMPTY
                 val toOriginal = to.minus(offset)
                 val fromOriginal = from.minus(offset)
-                val areaDefinitions: AreaDefinitions = get()
-                for (def in areaDefinitions.get(fromOriginal.zone)) {
+                for (def in Areas.get(fromOriginal.zone)) {
                     if (fromOriginal in def.area && toOriginal !in def.area) {
                         Moved.exit(character, def.name, def.area)
                     }
                 }
-                for (def in areaDefinitions.get(toOriginal.zone)) {
+                for (def in Areas.get(toOriginal.zone)) {
                     if (toOriginal in def.area && fromOriginal !in def.area) {
                         Moved.enter(character, def.name, def.area)
                     }
@@ -237,7 +236,6 @@ open class Movement(
         }
 
         private fun move(character: Character, from: Tile, to: Tile) {
-            val collisions: Collisions = get()
             val mask = character.collisionFlag
             val size = character.size
             for (x in 0 until size) {
@@ -248,8 +246,8 @@ open class Movement(
                     val toY = to.y + y
 
                     if (fromX != toX || fromY != toY || from.level != to.level) {
-                        collisions.remove(fromX, fromY, from.level, mask)
-                        collisions.add(toX, toY, to.level, mask)
+                        Collisions.remove(fromX, fromY, from.level, mask)
+                        Collisions.add(toX, toY, to.level, mask)
                     }
                 }
             }

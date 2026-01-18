@@ -1,11 +1,9 @@
 package world.gregs.voidps.engine.inv.transact.operation
 
-import io.mockk.every
+import io.mockk.mockkObject
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
-import org.koin.test.mock.declareMock
-import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.Inventory
@@ -35,14 +33,10 @@ abstract class TransactionOperationTest : KoinMock() {
             else -> null
         }
     }
-    protected lateinit var itemDefinitions: ItemDefinitions
 
     @BeforeEach
     fun setup() {
-        itemDefinitions = declareMock<ItemDefinitions> {
-            every { this@declareMock.get(any<String>()) } returns ItemDefinition()
-            every { this@declareMock.getOrNull(any<String>()) } returns ItemDefinition()
-        }
+        mockkObject(ItemDefinitions)
         transaction()
     }
 

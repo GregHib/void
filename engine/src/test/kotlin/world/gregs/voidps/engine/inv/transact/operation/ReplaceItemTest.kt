@@ -4,7 +4,6 @@ import io.mockk.every
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Test
-import org.koin.test.get
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.inv.stack.NeverStack
@@ -47,8 +46,7 @@ internal class ReplaceItemTest : TransactionOperationTest() {
 
     @Test
     fun `Replace item at index`() {
-        val definitions: ItemDefinitions = get()
-        every { definitions.get("item") } returns ItemDefinition(1234)
+        every { ItemDefinitions.get("item") } returns ItemDefinition(1234)
         transaction(stackRule = NeverStack) {
             add("item", 2)
         }

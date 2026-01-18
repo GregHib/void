@@ -7,7 +7,7 @@ import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-class ObjectLinker(private val collisions: Collisions) {
+class ObjectLinker {
     fun deltaBetween(one: GameObject, two: GameObject): Delta? {
         val pair = linkedPoints(one, two) ?: return null
         return pair.second.delta(pair.first)
@@ -45,12 +45,12 @@ class ObjectLinker(private val collisions: Collisions) {
      * Returns a walkable tile within radius of 1
      */
     fun getValidTile(tile: Tile): Tile? {
-        if (!collisions.check(tile.x, tile.y, tile.level, 0x100)) { // BLOCKED
+        if (!Collisions.check(tile.x, tile.y, tile.level, 0x100)) { // BLOCKED
             return tile
         }
         Direction.all.forEach {
             val tile = tile.add(it.delta)
-            if (!collisions.check(tile.x, tile.y, tile.level, 0x100)) { // BLOCKED
+            if (!Collisions.check(tile.x, tile.y, tile.level, 0x100)) { // BLOCKED
                 return tile
             }
         }

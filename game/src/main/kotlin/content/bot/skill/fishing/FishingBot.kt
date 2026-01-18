@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.data.config.GearDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinition
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.GearDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Catch
@@ -23,20 +23,18 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.InteractNPC
 
 class FishingBot(
-    val areas: AreaDefinitions,
     val tasks: TaskManager,
     val gear: GearDefinitions,
 ) : Script {
 
     init {
         worldSpawn {
-            for (area in areas.getTagged("fish")) {
+            for (area in Areas.tagged("fish")) {
                 val spaces: Int = area["spaces", 1]
                 val type: String = area.getOrNull("type") ?: continue
                 val sets = gear.get("fishing").filter { it["spot", ""] == type }
@@ -73,7 +71,7 @@ class FishingBot(
         setupGear(set)
         goToArea(map)
         while (player.inventory.spaces > 0 && (bait == "none" || player.holdsItem(bait))) {
-            val spots = get<NPCs>()
+            val spots = NPCs
                 .filter { isAvailableSpot(map, it, option, bait) }
                 .map { it to tile.distanceTo(it) }
             val spot = weightedSample(spots, invert = true)
@@ -100,9 +98,8 @@ class FishingBot(
             return false
         }
         val spot: Map<String, Spot> = npc.def["fishing", emptyMap()]
-        val itemDefinitions: ItemDefinitions = get()
         val level = spot[option]?.bait?.get(bait)
-            ?.minOf { itemDefinitions.get(it)["fishing", Catch.EMPTY].level }
+            ?.minOf { ItemDefinitions.get(it)["fishing", Catch.EMPTY].level }
             ?: return false
         return player.has(Skill.Fishing, level, false)
     }

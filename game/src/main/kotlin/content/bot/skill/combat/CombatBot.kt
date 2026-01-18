@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.data.definition.AmmoDefinitions
 import world.gregs.voidps.engine.data.definition.AreaDefinition
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -60,15 +60,11 @@ suspend fun Bot.setAttackStyle(style: Int) {
     player.instructions.send(InteractInterface(interfaceId = 884, componentId = style + 11, itemId = -1, itemSlot = -1, option = 0))
 }
 
-class CombatBot(
-    val areas: AreaDefinitions,
-    val tasks: TaskManager,
-    val floorItems: FloorItems,
-) : Script {
+class CombatBot(val tasks: TaskManager) : Script {
 
     init {
         worldSpawn {
-            for (area in areas.getTagged("combat_training")) {
+            for (area in Areas.tagged("combat_training")) {
                 val spaces: Int = area["spaces", 1]
                 val types = area["npcs", emptyList<String>()].toSet()
                 val range = area["levels", "1-5"].toIntRange()
@@ -121,7 +117,7 @@ class CombatBot(
         goToArea(map)
         setAttackStyle(skill)
         while (player.inventory.spaces > 0 && player.isRangedNotOutOfAmmo(skill) && player.isMagicNotOutOfRunes(skill)) {
-            val targets = get<NPCs>()
+            val targets = NPCs
                 .filter { isAvailableTarget(map, it, races) }
                 .map { it to tile.distanceTo(it) }
             val target = weightedSample(targets, invert = true)
@@ -166,7 +162,7 @@ class CombatBot(
             await("tick")
         }
         repeat(amount) {
-            val item = floorItems[tile].firstOrNull() ?: return@repeat
+            val item = FloorItems.at(tile).firstOrNull() ?: return@repeat
             pickup(item)
         }
     }

@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.npc.flagTransform
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 
 fun Character.clearTransform() {
@@ -37,7 +36,7 @@ fun Character.transform(id: String, collision: Boolean = true) {
         return
     }
     this["transform_id"] = id
-    val definition = get<NPCDefinitions>().get(id)
+    val definition = NPCDefinitions.get(id)
     if (this is Player) {
         appearance.apply {
             emote = definition.renderEmote
@@ -56,7 +55,7 @@ fun Character.transform(id: String, collision: Boolean = true) {
     }
     if (collision) {
         this["old_collision"] = this.collision
-        this.collision = get<CollisionStrategyProvider>().get(definition)
+        this.collision = CollisionStrategyProvider.get(definition)
     }
 }
 

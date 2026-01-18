@@ -7,9 +7,7 @@ import world.gregs.voidps.engine.entity.character.CharacterIndexMap
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
-class Players :
-    Iterable<Player>,
-    CharacterSearch<Player> {
+object Players : Iterable<Player>, CharacterSearch<Player> {
     private val players = mutableListOf<Player>()
     private val indexArray: Array<Player?> = arrayOfNulls(MAX_PLAYERS)
     private var indexer = 1
@@ -17,7 +15,7 @@ class Players :
     val size: Int
         get() = players.size
 
-    fun get(name: String): Player? = firstOrNull { it.name == name }
+    fun find(name: String): Player? = firstOrNull { it.name == name }
 
     fun add(player: Player): Boolean {
         if (player.index == -1 || indexArray[player.index] != null) {
@@ -55,7 +53,7 @@ class Players :
 
     fun indexed(index: Int): Player? = indexArray[index]
 
-    override operator fun get(tile: Tile): List<Player> {
+    override fun at(tile: Tile): List<Player> {
         val list = mutableListOf<Player>()
         map.onEach(tile.zone.id) { index ->
             val player = indexed(index) ?: return@onEach
@@ -66,7 +64,7 @@ class Players :
         return list
     }
 
-    override operator fun get(zone: Zone): List<Player> {
+    override fun at(zone: Zone): List<Player> {
         val list = mutableListOf<Player>()
         map.onEach(zone.id) { index ->
             list.add(indexed(index) ?: return@onEach)

@@ -12,7 +12,7 @@ import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.config.GearDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinition
-import world.gregs.voidps.engine.data.definition.AreaDefinitions
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Smithing
@@ -24,14 +24,12 @@ import world.gregs.voidps.engine.inv.inventory
 
 class SmithingBot(
     val interfaceDefinitions: InterfaceDefinitions,
-    val itemDefinitions: ItemDefinitions,
-    val areas: AreaDefinitions,
     val tasks: TaskManager,
 ) : Script {
 
     init {
         worldSpawn {
-            for (area in areas.getTagged("smithing")) {
+            for (area in Areas.tagged("smithing")) {
                 val spaces: Int = area["spaces", 1]
                 val task = Task(
                     name = "smith on anvil at ${area.name}".toLowerSpaceCase(),
@@ -66,7 +64,7 @@ class SmithingBot(
             return
         }
         val bar = player.inventory.items.first { it.id.endsWith("_bar") }
-        val type = types.filter { player.has(Skill.Smithing, itemDefinitions.get(bar.id.replace("_bar", "_$it")).getOrNull<Smithing>("smithing")?.level ?: Int.MAX_VALUE) }.random()
+        val type = types.filter { player.has(Skill.Smithing, ItemDefinitions.get(bar.id.replace("_bar", "_$it")).getOrNull<Smithing>("smithing")?.level ?: Int.MAX_VALUE) }.random()
         await("tick")
         while (player.inventory.contains(bar.id)) {
             itemOnObject(bar, anvil)

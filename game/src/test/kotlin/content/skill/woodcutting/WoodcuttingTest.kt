@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -25,6 +26,6 @@ internal class WoodcuttingTest : WorldTest() {
 
         assertTrue(player.inventory.contains("logs"))
         assertTrue(player.experience.get(Skill.Woodcutting) > 0)
-        assertNotEquals(tree.id, objects.getLayer(tile, ObjectLayer.GROUND)?.id)
+        assertNotEquals(tree.id, GameObjects.getLayer(tile, ObjectLayer.GROUND)?.id)
     }
 }

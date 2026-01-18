@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 class CommonItemCosts(
     val enums: EnumDefinitions,
     val exchange: GrandExchange,
-    val itemDefinitions: ItemDefinitions,
 ) : Script {
 
     init {
@@ -21,7 +20,7 @@ class CommonItemCosts(
             var index = 1
             for (i in 0 until enum.length) {
                 val item = enum.getInt(i)
-                val definition = itemDefinitions.get(item)
+                val definition = ItemDefinitions.get(item)
                 val price = exchange.history.marketPrice(definition.stringId)
                 sendScript("send_common_item_price", index, i, "${price.toDigitGroupString()} gp")
                 index += 2

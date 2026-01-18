@@ -38,11 +38,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
 import kotlin.text.toIntOrNull
 
-class ShootingStar(
-    val objects: GameObjects,
-    val npcs: NPCs,
-    val players: Players,
-) : Script {
+class ShootingStar : Script {
 
     val logger = InlineLogger()
 
@@ -173,19 +169,19 @@ class ShootingStar(
         currentStarTile = location.tile
         val tier = random.nextInt(1, 9)
         if (Settings["world.messages", false]) {
-            for (player in players) {
+            for (player in Players) {
                 player.message("${Colours.DARK_RED.toTag()}A star has crashed at ${location.description}.")
             }
         }
         logger.info { "Crashed star event has started at: $location (${currentStarTile.x}, ${currentStarTile.y}) tier $tier." }
-        val shootingStarShadow = npcs.add("shooting_star_shadow", Tile(currentStarTile.x, currentStarTile.y + 6), Direction.NONE)
+        val shootingStarShadow = NPCs.add("shooting_star_shadow", Tile(currentStarTile.x, currentStarTile.y + 6), Direction.NONE)
         shootingStarShadow.walkTo(currentStarTile, noCollision = true, forceWalk = true)
         areaSound("star_meteor_falling", currentStarTile, radius = 15, delay = 20)
         World.queue("awaiting_shadow_walk", 6) {
-            val shootingStarObjectFalling: GameObject = objects.add("crashed_star_falling_object", currentStarTile)
+            val shootingStarObjectFalling: GameObject = GameObjects.add("crashed_star_falling_object", currentStarTile)
             val under = mutableListOf<Player>()
             for (tile in currentStarTile.toCuboid(2, 2)) {
-                for (player in players[tile]) {
+                for (player in Players.at(tile)) {
                     under.add(player)
                 }
             }
@@ -197,18 +193,18 @@ class ShootingStar(
             }
             World.queue("falling_star_object_removal", 1) {
                 currentActiveObject = shootingStarObjectFalling.replace("crashed_star_tier_$tier")
-                npcs.remove(shootingStarShadow)
+                NPCs.remove(shootingStarShadow)
             }
         }
     }
 
     fun cleanseEvent(forceStopped: Boolean) {
-        currentActiveObject?.let { current -> objects[currentStarTile, current.id] }?.remove()
+        currentActiveObject?.let { current -> GameObjects.findOrNull(currentStarTile, current.id) }?.remove()
         if (!forceStopped) {
             areaSound("star_sprite_appear", currentStarTile, radius = 10)
-            val starSprite = npcs.add("star_sprite", currentStarTile, Direction.NONE)
+            val starSprite = NPCs.add("star_sprite", currentStarTile, Direction.NONE)
             World.queue("start_sprite_despawn_timer", TimeUnit.MINUTES.toTicks(10)) {
-                npcs.remove(starSprite)
+                NPCs.remove(starSprite)
             }
         }
         totalCollected = 0
