@@ -113,7 +113,7 @@ class Hunting(
     private fun listItems(npc: NPC, range: Int, definition: HuntModeDefinition) {
         count = 0
         for (zone in npc.tile.zone.toRectangle(ceil(range / 8.0).toInt()).toZonesReversed(npc.tile.level)) {
-            for (items in FloorItems[zone]) {
+            for (items in FloorItems.at(zone)) {
                 for (floorItem in items) {
                     if (definition.id != null && floorItem.id != definition.id) {
                         continue

@@ -23,7 +23,7 @@ class FloorItemOptionHandler : InstructionHandler<InteractFloorItem>() {
         }
         val (id, x, y, optionIndex) = instruction
         val tile = player.tile.copy(x, y)
-        val floorItem = FloorItems[tile].firstOrNull { it.def.id == id }
+        val floorItem = FloorItems.at(tile).firstOrNull { it.def.id == id }
         if (floorItem == null) {
             logger.warn { "Invalid floor item $id $tile" }
             return

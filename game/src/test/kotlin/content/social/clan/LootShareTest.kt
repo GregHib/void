@@ -11,6 +11,7 @@ import kotlinx.coroutines.test.runTest
 import npcOption
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertNotNull
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -133,7 +134,7 @@ internal class LootShareTest : WorldTest() {
         val tile = npc["death_tile", npc.tile]
         tick(7)
 
-        assertTrue(FloorItems[tile].any { it.id == "bones" })
+        assertNotNull(FloorItems.find(tile, "bones"))
         verify(exactly = 0) {
             client.message(match { it.contains("received: ") }, ChatType.ClanChat.id)
         }
@@ -166,7 +167,7 @@ internal class LootShareTest : WorldTest() {
         val tile = npc["death_tile", npc.tile]
         tick(7)
 
-        assertTrue(FloorItems[tile].any { it.id == "bones" })
+        assertNotNull(FloorItems.findOrNull(tile, "bones"))
         verify {
             client.message(match { it.contains("received: ") }, ChatType.ClanChat.id)
         }

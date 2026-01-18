@@ -7,6 +7,8 @@ import itemOnObject
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertNotNull
+import org.junit.jupiter.api.assertNull
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.entity.item.Item
@@ -31,7 +33,7 @@ internal class DropTest : WorldTest() {
         tick()
 
         assertTrue(player.inventory.isEmpty())
-        assertTrue(FloorItems[player.tile].any { it.id == "bronze_sword" })
+        assertNotNull(FloorItems.findOrNull(player.tile, "bronze_sword"))
     }
 
     @Test
@@ -40,13 +42,13 @@ internal class DropTest : WorldTest() {
         val tile = Tile(3244, 3157)
         val player = createPlayer(tile)
 
-        val floorItem = FloorItems[tile].first()
+        val floorItem = FloorItems.at(tile).first()
         player.floorItemOption(floorItem, "Take")
         tick(1)
 
         assertTrue(player.inventory.contains("small_fishing_net"))
         tick(10)
-        assertTrue(FloorItems[tile].isNotEmpty())
+        assertTrue(FloorItems.at(tile).isNotEmpty())
     }
 
     @Test
@@ -61,8 +63,8 @@ internal class DropTest : WorldTest() {
         tick()
 
         assertTrue(player.inventory.isEmpty())
-        assertEquals(1, FloorItems[tile].count { it.id == "coins" })
-        assertEquals(1000, FloorItems[tile].first().amount)
+        assertEquals(1, FloorItems.at(tile).count { it.id == "coins" })
+        assertEquals(1000, FloorItems.at(tile).first().amount)
     }
 
     @Test
@@ -76,7 +78,7 @@ internal class DropTest : WorldTest() {
         tick()
 
         assertTrue(player.inventory.isEmpty())
-        assertEquals(2, FloorItems[tile].count { it.id == "bronze_sword" })
+        assertEquals(2, FloorItems.at(tile).count { it.id == "bronze_sword" })
     }
 
     @Test
@@ -89,7 +91,7 @@ internal class DropTest : WorldTest() {
         tick(2)
 
         assertTrue(player.inventory.isEmpty())
-        assertTrue(FloorItems[tile.addX(1)].any { it.id == "bronze_sword" })
+        assertNotNull(FloorItems.find(tile.addX(1), "bronze_sword"))
     }
 
     @Test
@@ -103,6 +105,6 @@ internal class DropTest : WorldTest() {
         tick()
 
         assertTrue(player.inventory.contains("toolkit"))
-        assertFalse(FloorItems[tile.addX(1)].any { it.id == "toolkit" })
+        assertNull(FloorItems.findOrNull(tile.addX(1), "toolkit"))
     }
 }

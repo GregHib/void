@@ -40,9 +40,9 @@ class FloorItemsTest {
         val second = FloorItems.add(Tile(10, 10, 1), "item", owner = "player")
         FloorItems.run()
 
-        assertEquals(FloorItems[Tile.EMPTY].first(), first)
-        assertEquals(FloorItems[Tile(10, 10, 1)].first(), second)
-        assertTrue(FloorItems[Tile(100, 100)].isEmpty())
+        assertEquals(FloorItems.at(Tile.EMPTY).first(), first)
+        assertEquals(FloorItems.at(Tile(10, 10, 1)).first(), second)
+        assertTrue(FloorItems.at(Tile(100, 100)).isEmpty())
         verify {
             ZoneBatchUpdates.add(Zone.EMPTY, FloorItemAddition(tile = 0, id = 1, amount = 1, owner = null))
             ZoneBatchUpdates.add(Zone(1, 1, 1), FloorItemAddition(tile = 268599306, id = 1, amount = 1, owner = "player"))
@@ -55,7 +55,7 @@ class FloorItemsTest {
         val second = FloorItems.add(Tile.EMPTY, "item2")
         FloorItems.run()
 
-        val items = FloorItems[Tile.EMPTY]
+        val items = FloorItems.at(Tile.EMPTY)
         assertEquals(items[0], first)
         assertEquals(items[1], second)
     }
@@ -67,7 +67,7 @@ class FloorItemsTest {
         FloorItems.add(Tile.EMPTY, "stackable", owner = "player", disappearTicks = 10, revealTicks = 10)
         FloorItems.run()
 
-        val floorItem = FloorItems[Tile.EMPTY].first()
+        val floorItem = FloorItems.at(Tile.EMPTY).first()
         assertEquals(floorItem.id, "stackable")
         assertEquals(floorItem.amount, 2)
         assertEquals(floorItem.disappearTicks, 5)
@@ -92,7 +92,7 @@ class FloorItemsTest {
         val first = FloorItems.add(Tile.EMPTY, "item", owner = "player")
         val second = FloorItems.add(Tile.EMPTY, "item", owner = "player")
         FloorItems.run()
-        val items = FloorItems[Tile.EMPTY]
+        val items = FloorItems.at(Tile.EMPTY)
         assertEquals(first, items[0])
         assertEquals(second, items[1])
     }
@@ -103,7 +103,7 @@ class FloorItemsTest {
         val second = FloorItems.add(Tile.EMPTY, "item", 20, owner = "player")
         FloorItems.run()
 
-        val items = FloorItems[Tile.EMPTY]
+        val items = FloorItems.at(Tile.EMPTY)
         assertEquals(first, items[0])
         assertEquals(second, items[1])
     }
@@ -114,7 +114,7 @@ class FloorItemsTest {
         val second = FloorItems.add(Tile.EMPTY, "item", owner = "player", disappearTicks = 10, revealTicks = 10)
         FloorItems.run()
 
-        val items = FloorItems[Tile.EMPTY]
+        val items = FloorItems.at(Tile.EMPTY)
         assertEquals(first, items[0])
         assertEquals(second, items[1])
     }
@@ -127,7 +127,7 @@ class FloorItemsTest {
 
         assertTrue(FloorItems.remove(first))
         FloorItems.run()
-        val items = FloorItems[Tile.EMPTY]
+        val items = FloorItems.at(Tile.EMPTY)
         assertFalse(items.contains(first))
         assertTrue(items.contains(second))
         verify {
@@ -145,7 +145,7 @@ class FloorItemsTest {
         val item = FloorItems.add(Tile.EMPTY, "item", owner = "player")
         FloorItems.run()
 
-        val items = FloorItems[Tile.EMPTY]
+        val items = FloorItems.at(Tile.EMPTY)
         assertTrue(items.none { it.def.cost == 5 })
         assertEquals(item, items[127])
     }
@@ -156,7 +156,7 @@ class FloorItemsTest {
             FloorItems.add(Tile.EMPTY, if (it >= 128) "equal_item" else "item")
         }
 
-        val items = FloorItems[Tile.EMPTY]
+        val items = FloorItems.at(Tile.EMPTY)
         assertTrue(items.none { it.id == "item" })
     }
 
@@ -168,7 +168,7 @@ class FloorItemsTest {
         FloorItems.clear()
         FloorItems.run()
 
-        val items = FloorItems[Tile.EMPTY]
+        val items = FloorItems.at(Tile.EMPTY)
         assertTrue(items.isEmpty())
         verify {
             ZoneBatchUpdates.add(Zone.EMPTY, FloorItemRemoval(tile = 0, id = 1, owner = null))

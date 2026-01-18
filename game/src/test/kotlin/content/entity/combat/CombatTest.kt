@@ -10,6 +10,7 @@ import npcOption
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertNotNull
 import playerOption
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.appearance
@@ -55,7 +56,7 @@ internal class CombatTest : WorldTest() {
 
         assertEquals(emptyTile, player.tile)
         assertTrue(player.experience.get(Skill.Magic) > EXPERIENCE)
-        assertTrue(FloorItems[tile].any { it.id == "bones" })
+        assertNotNull(FloorItems.findOrNull(tile, "bones"))
         assertTrue(player.inventory.count("mind_rune") < 100)
     }
 
@@ -81,7 +82,7 @@ internal class CombatTest : WorldTest() {
         assertTrue(player.experience.get(Skill.Attack) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Strength) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Defence) > EXPERIENCE)
-        assertTrue(FloorItems[tile].any { it.id == "bones" })
+        assertNotNull(FloorItems.findOrNull(tile, "bones"))
     }
 
     @Test
@@ -107,11 +108,11 @@ internal class CombatTest : WorldTest() {
         val tile = npc["death_tile", npc.tile]
         tick(6) // npc death
 
-        val drops = FloorItems[tile]
+        val drops = FloorItems.at(tile)
         assertEquals(emptyTile, player.tile)
         assertTrue(player.equipment[EquipSlot.Ammo.index].amount < 100)
         assertTrue(drops.any { it.id == "bones" })
-        assertTrue(FloorItems[emptyTile.addY(4)].any { it.id == "rune_arrow" })
+        assertNotNull(FloorItems.findOrNull(emptyTile.addY(4), "rune_arrow"))
         assertTrue(player.experience.get(Skill.Ranged) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Defence) > EXPERIENCE)
         assertTrue(player.inventory.count("rune_arrow") < 100)
@@ -217,7 +218,7 @@ internal class CombatTest : WorldTest() {
         assertTrue(player.experience.get(Skill.Attack) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Strength) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Defence) > EXPERIENCE)
-        val items = FloorItems[targetTile]
+        val items = FloorItems.at(targetTile)
         assertTrue(items.any { it.id == "coins" })
         assertTrue(items.any { it.id == "rune_arrow" && it.amount > 1 })
         assertTrue(items.any { it.id == "bones" })

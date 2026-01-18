@@ -36,7 +36,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.timer.TimerQueue
 import kotlin.collections.iterator
@@ -279,7 +278,7 @@ class PlayerCommands(
             }
         }
         if (type == "all" || type == "items") {
-            val items = FloorItems[tile]
+            val items = FloorItems.at(tile)
             if (items.isNotEmpty()) {
                 player.message("--- Floor Items ---", ChatType.Console)
                 for (item in items) {

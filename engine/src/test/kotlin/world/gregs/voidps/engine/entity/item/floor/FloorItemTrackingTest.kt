@@ -45,7 +45,7 @@ class FloorItemTrackingTest {
             tracking.run()
         }
 
-        assertFalse(FloorItems[Tile.EMPTY].contains(item))
+        assertFalse(FloorItems.at(Tile.EMPTY).contains(item))
     }
 
     @Test
@@ -77,14 +77,14 @@ class FloorItemTrackingTest {
         repeat(10) {
             tracking.run()
         }
-        assertTrue(FloorItems[Tile.EMPTY].contains(item))
+        assertTrue(FloorItems.at(Tile.EMPTY).contains(item))
         assertNull(item.owner)
         assertEquals(0, item.revealTicks)
         assertEquals(10, item.disappearTicks)
         repeat(10) {
             tracking.run()
         }
-        assertFalse(FloorItems[Tile.EMPTY].contains(item))
+        assertFalse(FloorItems.at(Tile.EMPTY).contains(item))
         assertEquals(0, item.disappearTicks)
     }
 

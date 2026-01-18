@@ -56,7 +56,7 @@ class CooksAssistantTest : WorldTest() {
         assertEquals("started", player.quest("cooks_assistant"))
 
         // Pick up empty pot
-        val pot = FloorItems[Tile(3209, 3214)].first { it.id == "empty_pot" }
+        val pot = FloorItems.find(Tile(3209, 3214), "empty_pot")
         player.tele(3209, 3215, 0)
         player.interactFloorItem(pot, "Take")
         tick()
@@ -64,14 +64,14 @@ class CooksAssistantTest : WorldTest() {
 
         // Super Large Egg
         player.tele(3227, 3299)
-        val egg = FloorItems[Tile(3227, 3299)].first { it.id == "super_large_egg" }
+        val egg = FloorItems.find(Tile(3227, 3299), "super_large_egg")
         player.interactFloorItem(egg, "Take")
         tick()
         assertEquals(1, player.inventory.count("super_large_egg"))
 
         // Top Quality Milk
         player.tele(3263, 3278)
-        val bucket = FloorItems[Tile(3263, 3277)].first { it.id == "bucket" }
+        val bucket = FloorItems.find(Tile(3263, 3277), "bucket")
         player.interactFloorItem(bucket, "Take")
         tick()
         assertEquals(1, player.inventory.count("bucket"))

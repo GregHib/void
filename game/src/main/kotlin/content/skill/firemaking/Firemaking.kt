@@ -112,7 +112,7 @@ class Firemaking : Script {
             message("You can't light a fire here.")
             return false
         }
-        return FloorItems[item.tile].contains(item)
+        return FloorItems.at(item.tile).contains(item)
     }
 
     fun spawnFire(player: Player, tile: Tile, fire: Fire) {

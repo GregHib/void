@@ -79,6 +79,6 @@ internal class HuntModeTest : WorldTest() {
         tick(9)
 
         assertEquals(emptyTile.addY(3), npc.tile)
-        assertTrue(FloorItems[emptyTile.addY(3)].isEmpty())
+        assertTrue(FloorItems.at(emptyTile.addY(3)).isEmpty())
     }
 }

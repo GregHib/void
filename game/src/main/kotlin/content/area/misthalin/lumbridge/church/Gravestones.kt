@@ -205,7 +205,7 @@ class Gravestones : Script {
     }
 
     fun updateItems(tile: Tile, name: String, seconds: Int) {
-        val items = FloorItems[tile].filter { it.owner == name }
+        val items = FloorItems.at(tile).filter { it.owner == name }
         for (item in items) {
             item.revealTicks = TimeUnit.SECONDS.toTicks(seconds)
             item.disappearTicks = TimeUnit.SECONDS.toTicks(seconds) + 60

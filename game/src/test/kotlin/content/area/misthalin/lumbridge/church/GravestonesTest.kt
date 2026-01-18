@@ -133,6 +133,6 @@ class GravestonesTest : WorldTest() {
         tick()
 
         assertFalse(player.inventory.isEmpty())
-        assertFalse(FloorItems[player.tile].any { it.id == "bronze_sword" })
+        assertNull(FloorItems.findOrNull(player.tile, "bronze_sword"))
     }
 }

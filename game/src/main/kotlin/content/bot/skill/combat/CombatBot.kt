@@ -162,7 +162,7 @@ class CombatBot(val tasks: TaskManager) : Script {
             await("tick")
         }
         repeat(amount) {
-            val item = FloorItems[tile].firstOrNull() ?: return@repeat
+            val item = FloorItems.at(tile).firstOrNull() ?: return@repeat
             pickup(item)
         }
     }

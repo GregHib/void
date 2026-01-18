@@ -21,7 +21,7 @@ internal class TakeTest : WorldTest() {
         tick(5)
 
         assertTrue(player.inventory.contains("bronze_sword"))
-        assertTrue(FloorItems[tile.add(0, 2)].isEmpty())
+        assertTrue(FloorItems.at(tile.add(0, 2)).isEmpty())
     }
 
     @Test
@@ -34,7 +34,7 @@ internal class TakeTest : WorldTest() {
         tick(5)
 
         assertTrue(player.inventory.contains("bronze_sword"))
-        assertTrue(FloorItems[tile.add(1, 0)].isEmpty())
+        assertTrue(FloorItems.at(tile.add(1, 0)).isEmpty())
         assertEquals(tile, player.tile)
     }
 }
