@@ -24,7 +24,7 @@ class FloorItem(
 ) : Entity {
 
     val def: ItemDefinition
-        get() = get<ItemDefinitions>().get(id)
+        get() = ItemDefinitions.get(id)
 
     val value: Long
         get() = def.cost * amount.toLong()

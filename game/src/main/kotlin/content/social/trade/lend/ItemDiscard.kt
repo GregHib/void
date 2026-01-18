@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
-class ItemDiscard(val itemDefinitions: ItemDefinitions) : Script {
+class ItemDiscard : Script {
 
     val logger = InlineLogger()
 
@@ -24,7 +24,7 @@ class ItemDiscard(val itemDefinitions: ItemDefinitions) : Script {
                 }
                 return@itemOption
             }
-            val loan = itemDefinitions.get(item.def.lendId).stringId
+            val loan = ItemDefinitions.get(item.def.lendId).stringId
             item(
                 loan,
                 900,

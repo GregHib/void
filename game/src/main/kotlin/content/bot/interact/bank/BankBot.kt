@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.EnterInt
 import world.gregs.voidps.network.client.instruction.InteractInterface
 
-private fun getItemId(id: String): Int? = get<ItemDefinitions>().getOrNull(id)?.id
+private fun getItemId(id: String): Int? = ItemDefinitions.getOrNull(id)?.id
 
 suspend fun Bot.openBank() {
     if (player.menu == "bank") {

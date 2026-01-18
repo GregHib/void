@@ -22,13 +22,13 @@ object DropTableDefinitions {
         val categories = CategoryDefinitions().load(files.find(Settings["definitions.categories"]))
         val ammo = AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"]))
         val parameters = ParameterDefinitions(categories, ammo).load(files.find(Settings["definitions.parameters"]))
-        val itemDefinitions = ItemDefinitions(ItemDecoder(parameters).load(cache)).load(files.list(Settings["definitions.items"]))
+        val itemDefinitions = ItemDefinitions.init(ItemDecoder(parameters).load(cache)).load(files.list(Settings["definitions.items"]))
         startKoin {
             modules(
                 module {
                     @Suppress("USELESS_CAST")
                     single { CacheDelegate(Settings["storage.cache.path"]) as Cache }
-                    single { ItemDefinitions(ItemDecoder().load(get())).load(listOf()) }
+                    single { ItemDefinitions.init(ItemDecoder().load(get())).load(listOf()) }
                 },
             )
         }

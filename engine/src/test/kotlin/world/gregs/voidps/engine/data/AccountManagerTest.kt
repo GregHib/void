@@ -37,7 +37,7 @@ class AccountManagerTest : KoinMock() {
 
     override val modules = listOf(
         module {
-            single { ItemDefinitions(emptyArray()) }
+            single { ItemDefinitions.init(emptyArray()) }
             single { InterfaceDefinitions(emptyArray()).apply { ids = emptyMap() } }
         },
     )
@@ -79,7 +79,6 @@ class AccountManagerTest : KoinMock() {
         manager = AccountManager(
             interfaceDefinitions = get(),
             inventoryDefinitions = inventoryDefinitions,
-            itemDefinitions = get(),
             accountDefinitions = AccountDefinitions(),
             variableDefinitions = VariableDefinitions(),
             saveQueue = SaveQueue(storage),

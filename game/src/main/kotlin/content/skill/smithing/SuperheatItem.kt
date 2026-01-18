@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.remove
 
-class SuperheatItem(val spellDefinitions: SpellDefinitions, val itemDefinitions: ItemDefinitions) : Script {
+class SuperheatItem(val spellDefinitions: SpellDefinitions) : Script {
 
     init {
         onItem("modern_spellbook:superheat_item") { item, _ ->
@@ -27,7 +27,7 @@ class SuperheatItem(val spellDefinitions: SpellDefinitions, val itemDefinitions:
             if (bar == "iron_bar" && inventory.count("coal") >= 2) {
                 bar = "steel_bar"
             }
-            val smelting: Smelting = itemDefinitions.get(bar)["smelting"]
+            val smelting: Smelting = ItemDefinitions.get(bar)["smelting"]
             if (!has(Skill.Smithing, smelting.level, message = true)) {
                 sound("superheat_fail")
                 return@onItem

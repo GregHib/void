@@ -27,13 +27,13 @@ fun engineLoad(files: ConfigFiles) {
 fun engineModule(files: ConfigFiles) = module {
     // Entities
     single { ZoneBatchUpdates.register(GameObjects) }
-    single { FloorItems(get()).apply { ZoneBatchUpdates.register(this) } }
+    single { FloorItems().apply { ZoneBatchUpdates.register(this) } }
     single { FloorItemTracking(get()) }
     single { Hunting(get(), get(), get()) }
     single {
         SaveQueue(get(), SafeStorage(File(Settings["storage.players.errors"])))
     }
-    single { AccountManager(get(), get(), get(), get(), get(), get(), get(), AppearanceOverrides(get(), get())) }
+    single { AccountManager(get(), get(), get(), get(), get(), get(), AppearanceOverrides(get(), get())) }
     // IO
     single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game) }
     // Map
@@ -60,7 +60,10 @@ fun engineModule(files: ConfigFiles) = module {
     single(createdAtStart = true) { PatrolDefinitions().load(files.list(Settings["definitions.patrols"])) }
     single(createdAtStart = true) { PrayerDefinitions().load(files.find(Settings["definitions.prayers"])) }
     single(createdAtStart = true) { GearDefinitions().load(files.find(Settings["definitions.gearSets"])) }
-    single(createdAtStart = true) { DiangoCodeDefinitions().load(files.find(Settings["definitions.diangoCodes"])) }
+    single(createdAtStart = true) {
+        get<ItemDefinitions>()
+        DiangoCodeDefinitions().load(files.find(Settings["definitions.diangoCodes"]))
+    }
     single(createdAtStart = true) { AccountDefinitions().load() }
     single(createdAtStart = true) { HuntModeDefinitions().load(files.find(Settings["definitions.huntModes"])) }
     single(createdAtStart = true) { SlayerTaskDefinitions().load(files.list(Settings["definitions.slayerTasks"])) }

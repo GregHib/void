@@ -20,10 +20,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.InteractDialogue
 
-class SmeltingBot(
-    val tasks: TaskManager,
-    val itemDefinitions: ItemDefinitions,
-) : Script {
+class SmeltingBot(val tasks: TaskManager) : Script {
 
     init {
         worldSpawn {
@@ -65,7 +62,7 @@ class SmeltingBot(
         if (bar == "iron_bar" && player.inventory.contains("coal")) {
             bar = "steel_bar"
         }
-        val barId = itemDefinitions.get(bar).id
+        val barId = ItemDefinitions.get(bar).id
         await("tick")
         while (player.inventory.contains(ore.id)) {
             itemOnObject(ore, furnace)

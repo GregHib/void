@@ -16,10 +16,7 @@ import kotlin.collections.set
  * Historical aggregated data on every item
  * https://web.archive.org/web/20210430192551/https://secure.runescape.com/m%3Dforum/sl%3D0/forums?98,99,806,63785618
  */
-class ExchangeHistory(
-    private val itemDefinitions: ItemDefinitions,
-    val history: MutableMap<String, PriceHistory> = mutableMapOf(),
-) {
+class ExchangeHistory(val history: MutableMap<String, PriceHistory> = mutableMapOf()) {
     private val marketPrices = mutableMapOf<String, Int>()
 
     fun record(item: String, amount: Int, price: Int) {
@@ -38,7 +35,7 @@ class ExchangeHistory(
     fun marketPrice(item: String): Int {
         val price = marketPrices[item]
         if (price == null) {
-            val definition = itemDefinitions.get(item)
+            val definition = ItemDefinitions.get(item)
             return definition["price", definition.cost]
         }
         return price

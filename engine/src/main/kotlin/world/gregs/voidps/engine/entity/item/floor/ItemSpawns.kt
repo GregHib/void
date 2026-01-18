@@ -31,7 +31,6 @@ fun loadItemSpawns(
     items: FloorItems,
     spawns: ItemSpawns,
     paths: List<String>,
-    itemDefinitions: ItemDefinitions,
 ) {
     timedLoad("item spawn") {
         spawns.clear()
@@ -64,7 +63,7 @@ fun loadItemSpawns(
                             continue
                         }
                         val tile = Tile(x, y, level)
-                        if (itemDefinitions.getOrNull(id) == null) {
+                        if (ItemDefinitions.getOrNull(id) == null) {
                             logger.warn { "Invalid item spawn id '$id' in $path." }
                         }
                         spawns.set(tile, ItemSpawn(id, amount, delay))

@@ -193,14 +193,13 @@ object SpellRunes {
     private fun InterfaceComponentDefinition.spellRequiredItems(): MutableMap<String, Int>? {
         val array = information ?: return null
         val map = mutableMapOf<String, Int>()
-        val definitions: ItemDefinitions = get()
         for (i in 8..14 step 2) {
             val id = array[i] as Int
             val amount = array[i + 1] as Int
             if (id == -1 || amount <= 0) {
                 break
             }
-            val item = definitions.get(id)
+            val item = ItemDefinitions.get(id)
             if (item.members && !World.members) {
                 return null
             }

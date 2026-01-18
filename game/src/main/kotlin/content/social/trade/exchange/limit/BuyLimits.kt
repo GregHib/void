@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
  * Items `limit` set in *.items.toml
  * Limit reset hours set by "grandExchange.buyLimit.hours" in game.properties
  */
-class BuyLimits(private val itemDefinitions: ItemDefinitions) {
+class BuyLimits {
 
     /**
      * [amount] of an item a player has bought, last updated [timestamp].
@@ -27,7 +27,7 @@ class BuyLimits(private val itemDefinitions: ItemDefinitions) {
     }
 
     fun limit(account: String, item: String): Int {
-        val limit = itemDefinitions.get(item).getOrNull<Int>("limit") ?: return -1
+        val limit = ItemDefinitions.get(item).getOrNull<Int>("limit") ?: return -1
         return limit - (limits["${account}_$item"]?.amount ?: 0)
     }
 

@@ -99,9 +99,8 @@ class FishingBot(
             return false
         }
         val spot: Map<String, Spot> = npc.def["fishing", emptyMap()]
-        val itemDefinitions: ItemDefinitions = get()
         val level = spot[option]?.bait?.get(bait)
-            ?.minOf { itemDefinitions.get(it)["fishing", Catch.EMPTY].level }
+            ?.minOf { ItemDefinitions.get(it)["fishing", Catch.EMPTY].level }
             ?: return false
         return player.has(Skill.Fishing, level, false)
     }

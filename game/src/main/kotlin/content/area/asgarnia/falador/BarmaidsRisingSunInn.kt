@@ -23,9 +23,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 
-class BarmaidsRisingSunInn(
-    val itemDefinitions: ItemDefinitions,
-) : Script {
+class BarmaidsRisingSunInn : Script {
 
     init {
         npcApproach("Talk-to", "barmaid_emily") { (target) ->
@@ -116,7 +114,7 @@ class BarmaidsRisingSunInn(
             }
             is TransactionError.Full -> inventoryFull()
             TransactionError.None -> {
-                message("You buy a ${itemDefinitions.get(beer).name}.")
+                message("You buy a ${ItemDefinitions.get(beer).name}.")
                 player<Neutral>("Thanks, Emily.")
             }
             else -> {}

@@ -65,7 +65,7 @@ val Item.isNote: Boolean
 
 val Item.noted: Item?
     get() = if (def.noteId != -1) {
-        val definition = get<ItemDefinitions>().get(def.noteId)
+        val definition = ItemDefinitions.get(def.noteId)
         copy(id = definition.stringId)
     } else if (def.notedTemplateId != -1) {
         null

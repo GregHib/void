@@ -4,6 +4,7 @@ import io.mockk.every
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.stack.NeverStack
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -13,7 +14,7 @@ internal class RemoveChargeLimitTest : TransactionOperationTest() {
 
     @Test
     fun `Remove charges after the transaction has failed`() {
-        every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
         transaction(stackRule = NeverStack) {
             set(0, Item("item", 1))
         }
@@ -26,7 +27,7 @@ internal class RemoveChargeLimitTest : TransactionOperationTest() {
 
     @Test
     fun `Remove invalid charge from item`() {
-        every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
         transaction(stackRule = NeverStack) {
             set(0, Item("item", 1))
         }
@@ -36,7 +37,7 @@ internal class RemoveChargeLimitTest : TransactionOperationTest() {
 
     @Test
     fun `Discharge more charges than available`() {
-        every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
         transaction(stackRule = NeverStack) {
             set(0, Item("item", 4))
         }
@@ -47,7 +48,7 @@ internal class RemoveChargeLimitTest : TransactionOperationTest() {
 
     @Test
     fun `Discharge correct amount of charges`() {
-        every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
         transaction(stackRule = NeverStack) {
             set(0, Item("item", 4))
         }

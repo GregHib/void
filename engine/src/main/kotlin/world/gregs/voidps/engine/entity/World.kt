@@ -33,7 +33,7 @@ object World : Entity, VariableStore, Runnable, KoinComponent {
         get() = Settings["world.members", false]
 
     fun start(files: ConfigFiles) {
-        loadItemSpawns(get<FloorItems>(), get<ItemSpawns>(), files.list(Settings["spawns.items"]), get())
+        loadItemSpawns(get<FloorItems>(), get<ItemSpawns>(), files.list(Settings["spawns.items"]))
         loadObjectSpawns(files.list(Settings["spawns.objects"]))
         loadNpcSpawns(files.list(Settings["spawns.npcs"]))
         Spawn.world(files)

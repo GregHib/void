@@ -16,7 +16,7 @@ class DiangoCodeDefinitions {
 
     fun getOrNull(code: String) = definitions[code]
 
-    fun load(path: String, itemDefinitions: ItemDefinitions? = null): DiangoCodeDefinitions {
+    fun load(path: String): DiangoCodeDefinitions {
         timedLoad("diango code definition") {
             val definitions = Object2ObjectOpenHashMap<String, DiangoCodeDefinition>(1, Hash.VERY_FAST_LOAD_FACTOR)
             Config.fileReader(path, 50) {
@@ -31,7 +31,7 @@ class DiangoCodeDefinitions {
                             "add" -> {
                                 while (nextElement()) {
                                     val id = string()
-                                    require(itemDefinitions == null || itemDefinitions.contains(id)) { "Invalid diango item id: $id" }
+                                    require(!ItemDefinitions.loaded || ItemDefinitions.contains(id)) { "Invalid diango item id: $id" }
                                     items.add(Item(id))
                                 }
                             }

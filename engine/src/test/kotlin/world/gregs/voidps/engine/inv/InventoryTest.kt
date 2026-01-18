@@ -80,12 +80,11 @@ internal class InventoryTest {
     fun `Stackable true if normal stack mode and item stacks`() {
         // Given
         val id = "1"
-        val definitions: ItemDefinitions = mockk(relaxed = true)
         inventory = inventory(
             items = emptyArray(),
-            stackRule = ItemDependentStack(definitions),
+            stackRule = ItemDependentStack,
         )
-        every { definitions.get(id) } returns ItemDefinition(stackable = 1)
+        ItemDefinitions.set(arrayOf(ItemDefinition(), ItemDefinition(stackable = 1)), mapOf(id to 0))
         // When
         val stackable = inventory.stackable(id)
         // Then
@@ -96,12 +95,11 @@ internal class InventoryTest {
     fun `Stackable false if normal stack mode and non-stackable item`() {
         // Given
         val id = "1"
-        val definitions: ItemDefinitions = mockk(relaxed = true)
         inventory = inventory(
             items = emptyArray(),
-            stackRule = ItemDependentStack(definitions),
+            stackRule = ItemDependentStack,
         )
-        every { definitions.get(id) } returns ItemDefinition(stackable = 0)
+        ItemDefinitions.set(arrayOf(ItemDefinition(), ItemDefinition(stackable = 0)), mapOf(id to 0))
         // When
         val stackable = inventory.stackable(id)
         // Then

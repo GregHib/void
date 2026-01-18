@@ -28,7 +28,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.type.random
 
-class Fishing(val itemDefinitions: ItemDefinitions) : Script {
+class Fishing : Script {
 
     val logger = InlineLogger()
 
@@ -94,7 +94,7 @@ class Fishing(val itemDefinitions: ItemDefinitions) : Script {
                 break
             }
             if (first) {
-                player.message(itemDefinitions.get(tackle)["cast", ""], ChatType.Filter)
+                player.message(ItemDefinitions.get(tackle)["cast", ""], ChatType.Filter)
             }
             val remaining = player.remaining("action_delay")
             if (remaining < 0) {
@@ -109,7 +109,7 @@ class Fishing(val itemDefinitions: ItemDefinitions) : Script {
                 first = false
             }
             for (item in catches) {
-                val catch = itemDefinitions.get(item)["fishing", Catch.EMPTY]
+                val catch = ItemDefinitions.get(item)["fishing", Catch.EMPTY]
                 val level = player.levels.get(Skill.Fishing)
                 if (level >= catch.level && success(level, catch.chance)) {
                     if (bait != "none" && !player.inventory.remove(bait)) {
@@ -149,5 +149,5 @@ class Fishing(val itemDefinitions: ItemDefinitions) : Script {
         else -> false
     }
 
-    fun Spot.minimumLevel(bait: String): Int? = this.bait[bait]?.minOf { itemDefinitions.get(it)["fishing", Catch.EMPTY].level }
+    fun Spot.minimumLevel(bait: String): Int? = this.bait[bait]?.minOf { ItemDefinitions.get(it)["fishing", Catch.EMPTY].level }
 }

@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 
-class BirdsNest(val drops: DropTables, val itemDefinitions: ItemDefinitions) : Script {
+class BirdsNest(val drops: DropTables) : Script {
 
     init {
         itemOption("Search", "birds_nest_*") { (item, slot) ->
@@ -37,7 +37,7 @@ class BirdsNest(val drops: DropTables, val itemDefinitions: ItemDefinitions) : S
                 return@itemOption
             }
 
-            val itemName = itemDefinitions.get(drop.id).name.lowercase()
+            val itemName = ItemDefinitions.get(drop.id).name.lowercase()
             if (inventory.replace(slot, item.id, "birds_nest_empty")) {
                 inventory.add(itemId, itemAmount)
             }

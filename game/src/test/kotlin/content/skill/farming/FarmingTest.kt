@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test
 import org.koin.test.mock.declare
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.cache.definition.data.FontDefinition
-import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.MapValues
 import world.gregs.voidps.engine.data.config.JingleDefinition
@@ -60,11 +59,9 @@ class FarmingTest : KoinMock() {
         player = Player()
         val invDefs = mockk<InventoryDefinitions>(relaxed = true)
         every { invDefs.get(any<String>()) } returns InventoryDefinition.EMPTY
-        val itemDefs = mockk<ItemDefinitions>(relaxed = true)
-        every { itemDefs.get(any<String>()) } returns ItemDefinition.EMPTY
         player.inventories.definitions = invDefs
-        player.inventories.normalStack = ItemDependentStack(itemDefs)
-        player.inventories.validItemRule = ValidItemRestriction(itemDefs)
+        player.inventories.normalStack = ItemDependentStack
+        player.inventories.validItemRule = ValidItemRestriction()
         player.inventories.player = player
         resetCurrentTime()
         setRandom(object : FakeRandom() {

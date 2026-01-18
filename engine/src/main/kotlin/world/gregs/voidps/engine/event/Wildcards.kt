@@ -20,18 +20,15 @@ object Wildcards {
     private var changes = false
 
     private lateinit var interfaceDefinitions: InterfaceDefinitions
-    private lateinit var itemDefinitions: ItemDefinitions
     private lateinit var variableDefinitions: VariableDefinitions
 
     fun load(
         path: String,
         interfaceDefinitions: InterfaceDefinitions = get(),
-        itemDefinitions: ItemDefinitions = get(),
         variableDefinitions: VariableDefinitions = get(),
     ) {
         timedLoad("wildcard") {
             this.interfaceDefinitions = interfaceDefinitions
-            this.itemDefinitions = itemDefinitions
             this.variableDefinitions = variableDefinitions
             val file = File(path)
             if (!file.exists()) {
@@ -77,7 +74,7 @@ object Wildcards {
             Wildcard.Object -> ObjectDefinitions.ids.keys.hashCode()
             Wildcard.Interface -> interfaceDefinitions.ids.keys.hashCode()
             Wildcard.Component -> interfaceDefinitions.componentIds.keys.hashCode()
-            Wildcard.Item -> itemDefinitions.ids.keys.hashCode()
+            Wildcard.Item -> ItemDefinitions.ids.keys.hashCode()
             Wildcard.Variables -> variableDefinitions.definitions.keys.hashCode()
         }
     }
@@ -133,7 +130,7 @@ object Wildcards {
         Wildcard.Object -> ObjectDefinitions.ids.keys
         Wildcard.Interface -> interfaceDefinitions.ids.keys
         Wildcard.Component -> interfaceDefinitions.componentIds.keys
-        Wildcard.Item -> itemDefinitions.ids.keys
+        Wildcard.Item -> ItemDefinitions.ids.keys
         Wildcard.Variables -> variableDefinitions.definitions.keys
     }
 

@@ -14,12 +14,12 @@ import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.MemoryCache
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
+import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
-import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
@@ -148,7 +148,10 @@ abstract class WorldTest : KoinTest {
                 module {
                     single(createdAtStart = true) { cache }
                     single(createdAtStart = true) { huffman }
-                    single(createdAtStart = true) { itemDefinitions }
+                    single(createdAtStart = true) {
+                        ItemDefinitions.set(itemDefinitions, itemIds)
+                        ItemDefinitions
+                    }
                     single(createdAtStart = true) { animationDefinitions }
                     single(createdAtStart = true) { graphicDefinitions }
                     single(createdAtStart = true) { interfaceDefinitions }
@@ -299,8 +302,12 @@ abstract class WorldTest : KoinTest {
             NPCDefinitions.init(npcDefinitions).load(configFiles.list(Settings["definitions.npcs"]))
             NPCDefinitions.ids
         }
-        val itemDefinitions: ItemDefinitions by lazy {
-            ItemDefinitions(ItemDecoder(parameterDefinitions).load(cache)).load(configFiles.list(Settings["definitions.items"]))
+        val itemDefinitions: Array<ItemDefinition> by lazy {
+            ItemDecoder(parameterDefinitions).load(cache)
+        }
+        val itemIds: Map<String, Int> by lazy {
+            ItemDefinitions.init(itemDefinitions).load(configFiles.list(Settings["definitions.items"]))
+            ItemDefinitions.ids
         }
         private val animationDefinitions: AnimationDefinitions by lazy {
             AnimationDefinitions(AnimationDecoder().load(cache)).load(configFiles.list(Settings["definitions.animations"]))
@@ -312,7 +319,7 @@ abstract class WorldTest : KoinTest {
             InterfaceDefinitions(InterfaceDecoder().load(cache)).load(configFiles.list(Settings["definitions.interfaces"]), configFiles.find(Settings["definitions.interfaces.types"]))
         }
         private val inventoryDefinitions: InventoryDefinitions by lazy {
-            InventoryDefinitions(InventoryDecoder().load(cache)).load(configFiles.list(Settings["definitions.inventories"]), configFiles.list(Settings["definitions.shops"]), itemDefinitions)
+            InventoryDefinitions(InventoryDecoder().load(cache)).load(configFiles.list(Settings["definitions.inventories"]), configFiles.list(Settings["definitions.shops"]))
         }
         private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder(parameterDefinitions).load(cache)).load(configFiles.find(Settings["definitions.structs"])) }
         private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }

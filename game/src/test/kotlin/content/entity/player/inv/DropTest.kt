@@ -36,7 +36,7 @@ internal class DropTest : WorldTest() {
 
     @Test
     fun `Floor item respawns after delay`() {
-        loadItemSpawns(get<FloorItems>(), get<ItemSpawns>(), configFiles().list(Settings["spawns.items"]), get())
+        loadItemSpawns(get<FloorItems>(), get<ItemSpawns>(), configFiles().list(Settings["spawns.items"]))
         val tile = Tile(3244, 3157)
         val player = createPlayer(tile)
 

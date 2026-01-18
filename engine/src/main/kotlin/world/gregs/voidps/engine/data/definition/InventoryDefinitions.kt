@@ -16,14 +16,14 @@ class InventoryDefinitions(
 
     override fun empty() = InventoryDefinition.EMPTY
 
-    fun load(paths: List<String>, shopPaths: List<String>, itemDefs: ItemDefinitions = get()): InventoryDefinitions {
+    fun load(paths: List<String>, shopPaths: List<String>): InventoryDefinitions {
         timedLoad("inventory extra") {
             val ids = Object2IntOpenHashMap<String>()
             for (path in paths) {
-                loadInventories(path, itemDefs, ids, shop = false)
+                loadInventories(path, ids, shop = false)
             }
             for (path in shopPaths) {
-                loadInventories(path, itemDefs, ids, shop = true)
+                loadInventories(path, ids, shop = true)
             }
             this.ids = ids
             ids.size
@@ -31,7 +31,7 @@ class InventoryDefinitions(
         return this
     }
 
-    private fun loadInventories(path: String, itemDefs: ItemDefinitions, ids: Object2IntOpenHashMap<String>, shop: Boolean) {
+    private fun loadInventories(path: String, ids: Object2IntOpenHashMap<String>, shop: Boolean) {
         Config.fileReader(path) {
             while (nextSection()) {
                 val stringId = section()
@@ -64,8 +64,8 @@ class InventoryDefinitions(
                                         else -> throw IllegalArgumentException("Unexpected key: '$itemKey' ${exception()}")
                                     }
                                 }
-                                require(itemDefs.contains(id)) { "Unable to find inventory item with id '$id' at $path." }
-                                itemIds[index] = itemDefs.get(id).id
+                                require(ItemDefinitions.contains(id)) { "Unable to find inventory item with id '$id' at $path." }
+                                itemIds[index] = ItemDefinitions.get(id).id
                                 amounts[index++] = amount
                             }
                         }

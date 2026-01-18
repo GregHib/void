@@ -43,18 +43,17 @@ fun gameModule(files: ConfigFiles) = module {
         InstructionHandlers(
             get(),
             get(),
-            get(),
-            InterfaceHandler(get(), get(), get(), get()),
+            InterfaceHandler(get(), get(), get()),
         )
     }
     single(createdAtStart = true) {
         get<Storage>().offers(Settings["grandExchange.offers.activeDays", 0])
     }
     single(createdAtStart = true) {
-        ExchangeHistory(get(), get<Storage>().priceHistory().toMutableMap()).also { it.calculatePrices() }
+        ExchangeHistory(get<Storage>().priceHistory().toMutableMap()).also { it.calculatePrices() }
     }
     single(createdAtStart = true) {
-        GrandExchange(get(), get(), get<Storage>().claims().toMutableMap(), get(), get(), get())
+        GrandExchange(get(), get(), get<Storage>().claims().toMutableMap(), get(), get())
     }
     single {
         if (Settings["storage.type", "files"] == "database") {

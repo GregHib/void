@@ -24,7 +24,6 @@ import world.gregs.voidps.type.setRandom
 internal class CombinationRunecraftingTest : WorldTest() {
 
     private lateinit var teleports: ObjectTeleports
-    private lateinit var definitions: ItemDefinitions
     private val combinationsList = mutableListOf<List<Any>>()
 
     @BeforeEach
@@ -33,10 +32,9 @@ internal class CombinationRunecraftingTest : WorldTest() {
             override fun nextBoolean() = false
         })
         teleports = get()
-        definitions = get()
         combinationsList.clear()
         elements.flatMap { element ->
-            val combinations = definitions.get("${element}_rune").get<Rune>("runecrafting").combinations
+            val combinations = ItemDefinitions.get("${element}_rune").get<Rune>("runecrafting").combinations
             combinations.map { (objectElement, value) ->
                 val type = value[0] as String
                 val xp = value[1] as Double

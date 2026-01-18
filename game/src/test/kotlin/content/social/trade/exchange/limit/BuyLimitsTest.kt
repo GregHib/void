@@ -10,15 +10,13 @@ import java.util.concurrent.TimeUnit
 class BuyLimitsTest {
 
     private lateinit var definition: ItemDefinition
-    private lateinit var itemDefinitions: ItemDefinitions
     private lateinit var buyLimits: BuyLimits
 
     @BeforeEach
     fun setup() {
         definition = ItemDefinition(stringId = "item")
-        itemDefinitions = ItemDefinitions(arrayOf(definition))
-        itemDefinitions.ids = mapOf("item" to 0)
-        buyLimits = BuyLimits(itemDefinitions)
+        ItemDefinitions.set(arrayOf(definition), mapOf("item" to 0))
+        buyLimits = BuyLimits()
     }
 
     @Test

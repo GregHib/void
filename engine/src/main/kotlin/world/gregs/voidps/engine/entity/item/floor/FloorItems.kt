@@ -21,10 +21,7 @@ import world.gregs.voidps.type.Zone
 /**
  * Stores up to [MAX_TILE_ITEMS] [FloorItem]s per tile
  */
-class FloorItems(
-    private val definitions: ItemDefinitions,
-) : ZoneBatchUpdates.Sender,
-    Runnable {
+class FloorItems : ZoneBatchUpdates.Sender, Runnable {
 
     internal val data = Int2ObjectOpenHashMap<MutableMap<Int, MutableList<FloorItem>>>()
     private val tilePool = object : DefaultPool<MutableList<FloorItem>>(INITIAL_POOL_CAPACITY) {
@@ -54,7 +51,7 @@ class FloorItems(
     fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = NEVER, disappearTicks: Int = NEVER, charges: Int = 0, owner: Player?) = add(tile, id, amount, revealTicks, disappearTicks, charges, owner?.name)
 
     fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = NEVER, disappearTicks: Int = NEVER, charges: Int = 0, owner: String? = null): FloorItem {
-        if (!definitions.contains(id)) {
+        if (!ItemDefinitions.contains(id)) {
             logger.warn { "Invalid floor item id: '$id' at $tile" }
         }
         val item = FloorItem(tile, id, amount, revealTicks, disappearTicks, charges, if (revealTicks == 0) null else owner)

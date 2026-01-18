@@ -22,22 +22,19 @@ import kotlin.test.assertEquals
 class SummoningCraftingTest : WorldTest() {
 
     private lateinit var enums: EnumDefinitions
-    private lateinit var itemDefinitions: ItemDefinitions
     private lateinit var nonDungeoneeringPouchMap: Map<Int, Any>
     private lateinit var nonDungeoneeringScollMap: Map<Int, Any>
 
     @BeforeEach
     fun setup() {
         enums = get()
-        itemDefinitions = get()
-
         nonDungeoneeringPouchMap = enums.get("summoning_pouch_ids_1").map!!.filter { (index, _) -> index < 78 }
         nonDungeoneeringScollMap = enums.get("summoning_scroll_ids_1").map!!.filter { (index, _) -> index < 78 }
     }
 
     @TestFactory
     fun `Infuse Non-Dungeoneering Pouch`() = nonDungeoneeringPouchMap.map { (index, pouchId) ->
-        val pouch = Item(itemDefinitions.get(pouchId as Int).stringId)
+        val pouch = Item(ItemDefinitions.get(pouchId as Int).stringId)
         dynamicTest("Infuse ${pouch.id}") {
             val player = createPlayer(Tile(2523, 3056))
             player.levels.set(Skill.Summoning, 99)
@@ -47,25 +44,25 @@ class SummoningCraftingTest : WorldTest() {
 
             val charmItemId: Int = pouch.def["summoning_charm_id"]
             val charmAmount: Int = pouch.def["summoning_charm_amount"]
-            val charm = Item(itemDefinitions.get(charmItemId).stringId, charmAmount)
+            val charm = Item(ItemDefinitions.get(charmItemId).stringId, charmAmount)
 
             val shardItemId: Int = pouch.def["summoning_shard_id"]
             val shardAmount: Int = pouch.def["summoning_shard_amount"]
-            val shard = Item(itemDefinitions.get(shardItemId).stringId, shardAmount)
+            val shard = Item(ItemDefinitions.get(shardItemId).stringId, shardAmount)
 
             val blankPouchItemId: Int = pouch.def["summoning_pouch_id"]
             val blankPouchAmount: Int = pouch.def["summoning_pouch_amount"]
-            val blankPouch = Item(itemDefinitions.get(blankPouchItemId).stringId, blankPouchAmount)
+            val blankPouch = Item(ItemDefinitions.get(blankPouchItemId).stringId, blankPouchAmount)
 
             val tertiaryItemId1: Int = pouch.def["summoning_pouch_req_item_id_1"]
             val tertiaryItemAmount1: Int = pouch.def["summoning_pouch_req_item_amount_1"]
             val tertiaryItemId2 = pouch.def["summoning_pouch_req_item_id_2", -1]
             val tertiaryItemAmount2 = pouch.def["summoning_pouch_req_item_amount_2", -1]
 
-            val tertiaries = mutableListOf(Item(itemDefinitions.get(tertiaryItemId1).stringId, tertiaryItemAmount1))
+            val tertiaries = mutableListOf(Item(ItemDefinitions.get(tertiaryItemId1).stringId, tertiaryItemAmount1))
 
             if (tertiaryItemId2 != -1 && tertiaryItemAmount2 != -1) {
-                tertiaries.add(Item(itemDefinitions.get(tertiaryItemId2).stringId, tertiaryItemAmount2))
+                tertiaries.add(Item(ItemDefinitions.get(tertiaryItemId2).stringId, tertiaryItemAmount2))
             }
 
             player.inventory.transaction {
@@ -92,9 +89,9 @@ class SummoningCraftingTest : WorldTest() {
 
     @TestFactory
     fun `Transform Non-Dungeoneering Scrolls`() = nonDungeoneeringScollMap.map { (index, scrollId) ->
-        val scroll = Item(itemDefinitions.get(scrollId as Int).stringId)
+        val scroll = Item(ItemDefinitions.get(scrollId as Int).stringId)
         val pouchId = enums.get("summoning_scroll_ids_2").getKey(scrollId)
-        val pouch = Item(itemDefinitions.get(pouchId).stringId)
+        val pouch = Item(ItemDefinitions.get(pouchId).stringId)
 
         dynamicTest("Transform ${scroll.id}") {
             val player = createPlayer(Tile(2523, 3056))

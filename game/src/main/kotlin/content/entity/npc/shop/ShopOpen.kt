@@ -13,10 +13,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.sendInventory
 
-class ShopOpen(
-    val itemDefinitions: ItemDefinitions,
-    val inventoryDefinitions: InventoryDefinitions,
-) : Script {
+class ShopOpen(val inventoryDefinitions: InventoryDefinitions) : Script {
 
     val logger = InlineLogger()
 
@@ -93,7 +90,7 @@ class ShopOpen(
         for (index in 0 until definition.length) {
             val id = definition.ids?.getOrNull(index) ?: continue
             val amount = definition.amounts?.getOrNull(index) ?: continue
-            val itemDefinition = itemDefinitions.get(id)
+            val itemDefinition = ItemDefinitions.get(id)
             inventory.transaction { set(index, Item(itemDefinition.stringId, amount)) }
         }
     }

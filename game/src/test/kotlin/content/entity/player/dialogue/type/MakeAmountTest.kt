@@ -7,7 +7,6 @@ import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.open
@@ -25,15 +24,15 @@ internal class MakeAmountTest : DialogueTest() {
         super.setup()
         interfaceOptions = mockk(relaxed = true)
         player.interfaceOptions = interfaceOptions
-        declareMock<ItemDefinitions> {
-            every { this@declareMock.get("1").id } returns 1
-            every { this@declareMock.get("2").id } returns 2
-            every { this@declareMock.get("3").id } returns 3
-            every { this@declareMock.get("") } returns ItemDefinition()
-            every { this@declareMock.get("1") } returns ItemDefinition(id = 1, name = "Jimmy")
-            every { this@declareMock.get("2") } returns ItemDefinition(id = 2, name = "Jerome")
-            every { this@declareMock.get("3") } returns ItemDefinition(id = 3, name = "Jorge")
-        }
+        ItemDefinitions.set(
+            arrayOf(
+                ItemDefinition(),
+                ItemDefinition(id = 1, name = "Jimmy"),
+                ItemDefinition(id = 2, name = "Jerome"),
+                ItemDefinition(id = 3, name = "Jorge"),
+            ),
+            mapOf("" to 0, "1" to 1, "2" to 2, "3" to 3),
+        )
     }
 
     @Test

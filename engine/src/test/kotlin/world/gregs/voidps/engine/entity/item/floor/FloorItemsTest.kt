@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity.item.floor
 
-import io.mockk.mockk
 import io.mockk.mockkObject
 import io.mockk.unmockkObject
 import io.mockk.verify
@@ -8,9 +7,6 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.koin.core.context.startKoin
-import org.koin.core.context.stopKoin
-import org.koin.dsl.module
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -27,24 +23,16 @@ class FloorItemsTest {
     @BeforeEach
     fun setup() {
         mockkObject(ZoneBatchUpdates)
-        items = FloorItems(mockk(relaxed = true))
-        startKoin {
-            modules(
-                module {
-                    single {
-                        val definitions = arrayOf(
-                            ItemDefinition.EMPTY,
-                            ItemDefinition(1, cost = 10),
-                            ItemDefinition(2, stackable = 1),
-                            ItemDefinition(3, cost = 10),
-                            ItemDefinition(4, cost = 5),
-                        )
-                        ItemDefinitions(definitions).apply {
-                            ids = mapOf("item" to 1, "stackable" to 2, "equal_item" to 3, "cheap_item" to 4)
-                        }
-                    }
-                },
-            )
+        items = FloorItems()
+        val definitions = arrayOf(
+            ItemDefinition.EMPTY,
+            ItemDefinition(1, cost = 10),
+            ItemDefinition(2, stackable = 1),
+            ItemDefinition(3, cost = 10),
+            ItemDefinition(4, cost = 5),
+        )
+        ItemDefinitions.init(definitions).apply {
+            ids = mapOf("item" to 1, "stackable" to 2, "equal_item" to 3, "cheap_item" to 4)
         }
     }
 
@@ -191,7 +179,6 @@ class FloorItemsTest {
 
     @AfterEach
     fun teardown() {
-        stopKoin()
         unmockkObject(ZoneBatchUpdates)
     }
 }

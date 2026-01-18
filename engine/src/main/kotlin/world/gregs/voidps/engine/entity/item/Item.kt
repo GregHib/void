@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity.item
 
-import org.koin.mp.KoinPlatformTools
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 
@@ -12,7 +11,7 @@ class Item(
     val def: ItemDefinition
         get() = defOrNull ?: ItemDefinition.EMPTY
     private val defOrNull: ItemDefinition?
-        get() = KoinPlatformTools.defaultContext().getOrNull()?.get<ItemDefinitions>()?.getOrNull(id)
+        get() = ItemDefinitions.getOrNull(id)
     private val itemCharge: Boolean
         get() {
             val charges = defOrNull?.getOrNull<Int>("charges")

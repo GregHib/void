@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.inv.transact.operation
 
 import io.mockk.every
+import io.mockk.mockkObject
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
@@ -35,14 +36,10 @@ abstract class TransactionOperationTest : KoinMock() {
             else -> null
         }
     }
-    protected lateinit var itemDefinitions: ItemDefinitions
 
     @BeforeEach
     fun setup() {
-        itemDefinitions = declareMock<ItemDefinitions> {
-            every { this@declareMock.get(any<String>()) } returns ItemDefinition()
-            every { this@declareMock.getOrNull(any<String>()) } returns ItemDefinition()
-        }
+        mockkObject(ItemDefinitions)
         transaction()
     }
 

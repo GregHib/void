@@ -1,16 +1,9 @@
 package world.gregs.voidps.engine.entity.item.floor
 
-import io.mockk.mockk
-import io.mockk.mockkObject
-import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.koin.core.context.startKoin
-import org.koin.core.context.stopKoin
-import org.koin.dsl.module
 import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -25,15 +18,9 @@ class FloorItemTrackingTest {
     fun setup() {
         Players.clear()
         Players.add(Player(accountName = "player"))
-        items = FloorItems(mockk(relaxed = true))
+        items = FloorItems()
         tracking = FloorItemTracking(items)
-        startKoin {
-            modules(
-                module {
-                    single { ItemDefinitions(arrayOf(ItemDefinition(0))).apply { ids = mapOf("item" to 0) } }
-                },
-            )
-        }
+        ItemDefinitions.set(arrayOf(ItemDefinition(0)), mapOf("item" to 0))
     }
 
     @Test
@@ -103,8 +90,4 @@ class FloorItemTrackingTest {
         assertEquals(0, item.disappearTicks)
     }
 
-    @AfterEach
-    fun teardown() {
-        stopKoin()
-    }
 }

@@ -4,6 +4,7 @@ import io.mockk.every
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.stack.AlwaysStack
 import world.gregs.voidps.engine.inv.stack.NeverStack
@@ -14,7 +15,7 @@ internal class ClearChargeTest : TransactionOperationTest() {
 
     @Test
     fun `Can't clear charges of failed transaction`() {
-        every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
         transaction(stackRule = NeverStack) {
             set(0, Item("item", 1))
         }
@@ -54,7 +55,7 @@ internal class ClearChargeTest : TransactionOperationTest() {
 
     @Test
     fun `Can't clear charges of item with no charges`() {
-        every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
         transaction(stackRule = NeverStack) {
             set(0, Item("item", 0))
         }
@@ -67,7 +68,7 @@ internal class ClearChargeTest : TransactionOperationTest() {
 
     @Test
     fun `Clear charges of an item`() {
-        every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
         transaction(stackRule = NeverStack) {
             set(0, Item("item", 5))
         }

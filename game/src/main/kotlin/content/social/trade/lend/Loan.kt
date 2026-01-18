@@ -65,9 +65,8 @@ object Loan {
     }
 
     fun lendItem(borrower: Player, lender: Player, item: String, duration: Int) {
-        val definitions = get<ItemDefinitions>()
-        val def = definitions.get(item)
-        val lend = definitions.get(def.lendId).stringId
+        val def = ItemDefinitions.get(item)
+        val lend = ItemDefinitions.get(def.lendId).stringId
         if (!borrower.inventory.add(lend)) {
             logger.error { "Unable to add $lender's loan $item '$lend' for $duration to $borrower" }
             return

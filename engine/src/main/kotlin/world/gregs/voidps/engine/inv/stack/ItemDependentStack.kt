@@ -5,8 +5,6 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 /**
  * Checks individual items are stackable
  */
-class ItemDependentStack(
-    private val definitions: ItemDefinitions,
-) : ItemStackingRule {
-    override fun stackable(id: String) = definitions.get(id).stackable == 1
+object ItemDependentStack : ItemStackingRule {
+    override fun stackable(id: String) = ItemDefinitions.get(id).stackable == 1
 }

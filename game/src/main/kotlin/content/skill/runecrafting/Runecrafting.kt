@@ -28,19 +28,19 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import kotlin.math.min
 
-class Runecrafting(val itemDefinitions: ItemDefinitions) : Script {
+class Runecrafting : Script {
 
     val logger = InlineLogger()
 
     init {
         itemOnObjectOperate("*_essence", "*_altar") { (target) ->
             val id = target.id.replace("_altar", "_rune")
-            bindRunes(this, id, itemDefinitions.get(id))
+            bindRunes(this, id, ItemDefinitions.get(id))
         }
 
         objectOperate("Craft-rune", "*_altar") { (target) ->
             val id = target.id.replace("_altar", "_rune")
-            bindRunes(this, id, itemDefinitions.get(id))
+            bindRunes(this, id, ItemDefinitions.get(id))
         }
 
         itemOnObjectOperate("*_rune", "*_altar") { (target, item) ->

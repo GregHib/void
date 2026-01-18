@@ -4,6 +4,7 @@ import io.mockk.every
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.charges
@@ -45,7 +46,7 @@ class TransactionOperationsKtTest : TransactionOperationTest() {
 
     @Test
     fun `Add variable charges before item charges`() {
-        every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charge" to "charge_variable", "charges_max" to 10, "charges" to 0))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charge" to "charge_variable", "charges_max" to 10, "charges" to 0))
         transaction(capacity = 10, stackRule = NeverStack) {
             set(0, Item("item", 5))
         }
@@ -62,7 +63,7 @@ class TransactionOperationsKtTest : TransactionOperationTest() {
 
     @Test
     fun `Remove variable charges before item charges`() {
-        every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charge" to "charge_variable", "charges" to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charge" to "charge_variable", "charges" to 10))
         transaction(capacity = 10, stackRule = NeverStack) {
             add("item", 5)
         }
@@ -79,7 +80,7 @@ class TransactionOperationsKtTest : TransactionOperationTest() {
 
     @Test
     fun `Clear variable charges before item charges`() {
-        every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charge" to "charge_variable", "charges" to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charge" to "charge_variable", "charges" to 10))
         transaction(capacity = 10, stackRule = NeverStack) {
             add("item", 5)
         }
@@ -142,7 +143,7 @@ class TransactionOperationsKtTest : TransactionOperationTest() {
 
     @Test
     fun `Add charges reverts on transaction failure`() {
-        every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charge" to "charge_variable", "charges" to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charge" to "charge_variable", "charges" to 10))
         transaction(stackRule = NeverStack) {
             set(0, Item("item"))
         }
@@ -160,7 +161,7 @@ class TransactionOperationsKtTest : TransactionOperationTest() {
 
     @Test
     fun `Remove charges reverts on transaction failure`() {
-        every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charge" to "charge_variable", "charges" to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charge" to "charge_variable", "charges" to 10))
         transaction(stackRule = NeverStack) {
             set(0, Item("item"))
         }
@@ -178,7 +179,7 @@ class TransactionOperationsKtTest : TransactionOperationTest() {
 
     @Test
     fun `Clear charges reverts on transaction failure`() {
-        every { itemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charge" to "charge_variable", "charges" to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charge" to "charge_variable", "charges" to 10))
         transaction(stackRule = NeverStack) {
             set(0, Item("item"))
         }

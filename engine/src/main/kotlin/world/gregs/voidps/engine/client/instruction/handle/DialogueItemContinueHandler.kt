@@ -7,14 +7,12 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.client.instruction.InteractDialogueItem
 
-class DialogueItemContinueHandler(
-    private val definitions: ItemDefinitions,
-) : InstructionHandler<InteractDialogueItem>() {
+class DialogueItemContinueHandler : InstructionHandler<InteractDialogueItem>() {
 
     private val logger = InlineLogger()
 
     override fun validate(player: Player, instruction: InteractDialogueItem) {
-        val definition = definitions.getOrNull(instruction.item)
+        val definition = ItemDefinitions.getOrNull(instruction.item)
         if (definition == null) {
             logger.debug { "Item ${instruction.item} not found for player $player." }
             return

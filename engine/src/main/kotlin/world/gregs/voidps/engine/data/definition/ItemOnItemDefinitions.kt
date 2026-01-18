@@ -24,7 +24,7 @@ class ItemOnItemDefinitions {
 
     fun contains(one: Item, two: Item) = definitions.containsKey(id(one, two)) || definitions.containsKey(id(two, one))
 
-    fun load(paths: List<String>, itemDefinitions: ItemDefinitions = get()): ItemOnItemDefinitions {
+    fun load(paths: List<String>): ItemOnItemDefinitions {
         timedLoad("item on item definition") {
             val definitions = Object2ObjectOpenHashMap<String, MutableList<ItemOnItemDefinition>>()
             var count = 0
@@ -59,11 +59,11 @@ class ItemOnItemDefinitions {
                                 "skill" -> skill = Skill.valueOf(string().toSentenceCase())
                                 "level" -> level = int()
                                 "xp" -> xp = double()
-                                "requires" -> itemList(requires, itemDefinitions)
-                                "one" -> itemList(oneOf, itemDefinitions)
-                                "remove" -> itemList(remove, itemDefinitions)
-                                "add" -> itemList(add, itemDefinitions)
-                                "fail" -> itemList(fail, itemDefinitions)
+                                "requires" -> itemList(requires)
+                                "one" -> itemList(oneOf)
+                                "remove" -> itemList(remove)
+                                "add" -> itemList(add)
+                                "fail" -> itemList(fail)
                                 "delay" -> delay = int()
                                 "ticks" -> ticks = int()
                                 "chance" -> chance = string().toIntRange()
@@ -125,7 +125,7 @@ class ItemOnItemDefinitions {
         return this
     }
 
-    private fun ConfigReader.itemList(items: MutableList<Item>, itemDefinitions: ItemDefinitions?) {
+    private fun ConfigReader.itemList(items: MutableList<Item>) {
         while (nextElement()) {
             if (peek == '{') {
                 var id = ""
@@ -136,13 +136,13 @@ class ItemOnItemDefinitions {
                         "amount", "charges" -> amount = int()
                     }
                 }
-                if (itemDefinitions != null && !itemDefinitions.contains(id)) {
+                if (!ItemDefinitions.contains(id)) {
                     logger.warn { "Invalid item-on-item id: $id" }
                 }
                 items.add(Item(id, amount))
             } else {
                 val id = string()
-                if (itemDefinitions != null && !itemDefinitions.contains(id)) {
+                if (!ItemDefinitions.contains(id)) {
                     logger.warn { "Invalid item-on-item id: $id" }
                 }
                 items.add(Item(id))

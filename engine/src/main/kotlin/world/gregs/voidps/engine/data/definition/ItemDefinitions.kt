@@ -5,6 +5,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import net.pearx.kasechange.toSentenceCase
+import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
@@ -15,13 +16,34 @@ import world.gregs.voidps.engine.entity.item.ItemKept
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-class ItemDefinitions(
-    override var definitions: Array<ItemDefinition>,
-) : DefinitionsDecoder<ItemDefinition> {
+object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
 
-    val size: Int = definitions.size
+    override var definitions: Array<ItemDefinition> = emptyArray()
 
-    override lateinit var ids: Map<String, Int>
+    var loaded = false
+
+    val size: Int
+        get() = definitions.size
+
+    override var ids: Map<String, Int> = emptyMap()
+
+    fun init(definitions: Array<ItemDefinition>): ItemDefinitions {
+        this.definitions = definitions
+        return this
+    }
+
+    @TestOnly
+    fun set(definitions: Array<ItemDefinition>, ids: Map<String, Int>) {
+        this.definitions = definitions
+        this.ids = ids
+        loaded = true
+    }
+
+    fun clear() {
+        this.definitions = emptyArray()
+        this.ids = emptyMap()
+        loaded = false
+    }
 
     override fun empty() = ItemDefinition.EMPTY
 
@@ -100,6 +122,7 @@ class ItemDefinitions(
                         }
                         require(!ids.containsKey(stringId)) { "Duplicate item id found '$stringId' at $path." }
                         ids[stringId] = id
+                        loaded = true
                         definitions[id].stringId = stringId
                         if (extras.size > 0) {
                             definitions[id].extras = extras

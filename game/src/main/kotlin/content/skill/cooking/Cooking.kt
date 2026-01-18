@@ -26,7 +26,7 @@ import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-class Cooking(val definitions: ItemDefinitions) : Script {
+class Cooking : Script {
 
     val GameObject.cookingRange: Boolean get() = id.startsWith("cooking_range")
 
@@ -39,7 +39,7 @@ class Cooking(val definitions: ItemDefinitions) : Script {
                 sinew = choice == 1
             }
             val definition = if (sinew) {
-                definitions.get("sinew")
+                ItemDefinitions.get("sinew")
             } else if (item.id == "sinew") {
                 return@itemOnObjectOperate
             } else {

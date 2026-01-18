@@ -28,7 +28,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 
-class Mining(val itemDefinitions: ItemDefinitions) : Script {
+class Mining : Script {
 
     val gems = setOf(
         "uncut_sapphire",
@@ -95,7 +95,7 @@ class Mining(val itemDefinitions: ItemDefinitions) : Script {
                     ores = rock.ores.filter { it == name }
                 }
                 for (item in ores) {
-                    val ore = itemDefinitions.get(item)["mining", Ore.EMPTY]
+                    val ore = ItemDefinitions.get(item)["mining", Ore.EMPTY]
                     if (success(levels.get(Skill.Mining), ore.chance)) {
                         experience.add(Skill.Mining, ore.xp)
                         ShootingStarHandler.extraOreHandler(this, item, ore.xp)

@@ -30,7 +30,7 @@ object InventoryConverter {
         val targetDecoder = InventoryDecoder().load(targetCache)
         Settings.load()
         val files = configFiles()
-        val itemDefinitions = ItemDefinitions(ItemDecoder().load(targetCache)).load(files.list(Settings["definitions.items"]))
+        ItemDefinitions.init(ItemDecoder().load(targetCache)).load(files.list(Settings["definitions.items"]))
         val encoder = InventoryEncoder()
         val data: MutableMap<String, Any> = mutableMapOf()
 
@@ -58,7 +58,7 @@ object InventoryConverter {
             }
 
             if (otherDef.ids != null) {
-                targetDef.ids = otherDef.ids?.filter { itemDefinitions.getOrNull(it) != null }?.toIntArray()
+                targetDef.ids = otherDef.ids?.filter { ItemDefinitions.getOrNull(it) != null }?.toIntArray()
                 targetDef.amounts = otherDef.amounts!!.take(targetDef.ids!!.size).toIntArray()
                 counter++
                 val writer = ArrayWriter(4096)
@@ -79,15 +79,15 @@ object InventoryConverter {
                 }
                 val list = mutableListOf<Map<String, Int>>()
                 targetDef.ids!!.forEachIndexed { i, id ->
-                    list.add(mapOf(itemDefinitions.get(id).stringId to targetDef.amounts!![i]))
+                    list.add(mapOf(ItemDefinitions.get(id).stringId to targetDef.amounts!![i]))
                 }
                 if (found != null) {
                     if (int) {
-                        data[found!!] = mapOf("id" to index)
+                        data[found] = mapOf("id" to index)
                     }
                     val map = (data[found] as Map<String, Any>).toMutableMap()
                     map["defaults"] = list
-                    data[found!!] = map
+                    data[found] = map
                 } else {
                     data["inventory_$index"] = mapOf("id" to index, "defaults" to list)
                 }

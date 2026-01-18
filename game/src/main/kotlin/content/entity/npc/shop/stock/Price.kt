@@ -9,7 +9,7 @@ import kotlin.math.min
 
 object Price {
     private fun getRealItem(item: String): Int {
-        val def = get<ItemDefinitions>().get(item)
+        val def = ItemDefinitions.get(item)
         if (def.noted) {
             return def.noteId
         }
@@ -27,7 +27,7 @@ object Price {
         if (price != -1 && price > 0) {
             return price
         }
-        val def = get<ItemDefinitions>().get(itemId)
+        val def = ItemDefinitions.get(itemId)
         if (def.contains("skill_cape") || def.contains("skill_cape_t")) {
             return 99000
         }

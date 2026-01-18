@@ -10,10 +10,9 @@ import world.gregs.voidps.engine.suspend.StringSuspension
 private const val DESTROY_INTERFACE_ID = "dialogue_confirm_destroy"
 
 suspend fun Player.destroy(item: String, text: String): Boolean {
-    val itemDecoder: ItemDefinitions = get()
     check(open(DESTROY_INTERFACE_ID)) { "Unable to open destroy dialogue for $item $this" }
     interfaces.sendText(DESTROY_INTERFACE_ID, "line1", text.trimIndent().replace("\n", "<br>"))
-    val def = itemDecoder.get(item)
+    val def = ItemDefinitions.get(item)
     interfaces.sendText(DESTROY_INTERFACE_ID, "item_name", def.name)
     interfaces.sendItem(DESTROY_INTERFACE_ID, "item_slot", def.id, 1)
     val result = StringSuspension.get(this) == "confirm"

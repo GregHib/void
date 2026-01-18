@@ -21,7 +21,6 @@ object GeneralStores {
             if (id != -1 && id != null) -1 else 0
         }
         val checker = ItemIndexAmountBounds(minimumQuantities, 0)
-        val itemDefinitions = get<ItemDefinitions>()
         Inventory(
             data = Array(definition.length) {
                 val id = definition.ids?.getOrNull(it)
@@ -29,11 +28,11 @@ object GeneralStores {
                 if (id == null) {
                     Item.EMPTY
                 } else {
-                    Item(itemDefinitions.get(id).stringId, amount ?: 0)
+                    Item(ItemDefinitions.get(id).stringId, amount ?: 0)
                 }
             },
             id = key,
-            itemRule = GeneralStoreRestrictions(get<ItemDefinitions>()),
+            itemRule = GeneralStoreRestrictions,
             stackRule = AlwaysStack,
             amountBounds = checker,
         )

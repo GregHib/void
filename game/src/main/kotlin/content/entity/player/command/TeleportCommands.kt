@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -25,9 +24,7 @@ import world.gregs.voidps.type.Tile
 
 class TeleportCommands(
     val exchange: GrandExchange,
-    val definitions: ItemDefinitions,
     val enums: EnumDefinitions,
-    val itemDefinitions: ItemDefinitions,
     val accounts: AccountDefinitions,
 ) : Script {
 

@@ -26,7 +26,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.weakQueue
 
-class Anvil(val itemDefinitions: ItemDefinitions, val interfaceDefinitions: InterfaceDefinitions) : Script {
+class Anvil(val interfaceDefinitions: InterfaceDefinitions) : Script {
 
     val types = listOf(
         "dagger",
@@ -91,7 +91,7 @@ class Anvil(val itemDefinitions: ItemDefinitions, val interfaceDefinitions: Inte
             interfaces.sendText("smithing", "title", "${metal.toSentenceCase()} Smithing")
             for (type in types) {
                 val componentDefinition = interfaceDefinitions.getComponent("smithing", type)
-                val itemDefinition = itemDefinitions.get("${metal}_$type")
+                val itemDefinition = ItemDefinitions.get("${metal}_$type")
                 val id = itemDefinition.id
                 if (id != -1) {
                     val amount = componentDefinition?.getOrNull("amount") ?: 1
@@ -107,7 +107,7 @@ class Anvil(val itemDefinitions: ItemDefinitions, val interfaceDefinitions: Inte
             interfaces.sendVisibility("smithing", "spit_iron", metal == "iron")
             interfaces.sendVisibility("smithing", "studs_steel", metal == "steel")
             interfaces.sendVisibility("smithing", "bullseye_lantern", metal == "steel")
-            interfaces.sendItem("smithing", "lantern", itemDefinitions.get("bullseye_lantern_frame").id, 1)
+            interfaces.sendItem("smithing", "lantern", ItemDefinitions.get("bullseye_lantern_frame").id, 1)
             interfaces.sendVisibility("smithing", "grapple", metal == "mithril")
             interfaces.sendVisibility("smithing", "darts", quest("tourist_trap") == "completed")
             interfaces.sendVisibility("smithing", "claw", quest("death_plateau") == "completed")
@@ -131,7 +131,7 @@ class Anvil(val itemDefinitions: ItemDefinitions, val interfaceDefinitions: Inte
         } else {
             "${metal}_$type"
         }
-        val itemDefinition = itemDefinitions.get(item)
+        val itemDefinition = ItemDefinitions.get(item)
         val smithing: Smithing = itemDefinition.getOrNull("smithing") ?: return
         val component = interfaceDefinitions.getComponent("smithing", type)
         val quantity = component?.getOrNull("amount") ?: 1

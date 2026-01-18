@@ -74,7 +74,7 @@ suspend fun Bot.buyItem(item: String, amount: Int = 1): Boolean {
 }
 
 fun Bot.equip(item: String) {
-    val def = get<ItemDefinitions>().getOrNull(item) ?: return
+    val def = ItemDefinitions.getOrNull(item) ?: return
     if (def.slot == EquipSlot.None) {
         return
     }
@@ -87,7 +87,7 @@ fun Bot.equip(item: String) {
 fun Bot.inventoryOption(item: String, option: String) {
     val index = player.inventory.indexOf(item)
     if (index != -1) {
-        val def = get<ItemDefinitions>().getOrNull(item) ?: return
+        val def = ItemDefinitions.getOrNull(item) ?: return
         player.instructions.trySend(InteractInterface(interfaceId = 149, componentId = 0, itemId = def.id, itemSlot = index, option = def.options.indexOf(option)))
     }
 }

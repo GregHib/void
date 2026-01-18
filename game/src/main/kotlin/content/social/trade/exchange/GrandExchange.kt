@@ -52,12 +52,11 @@ class GrandExchange(
     val offers: OpenOffers,
     val history: ExchangeHistory,
     private val claims: MutableMap<Int, Claim> = mutableMapOf(),
-    private val itemDefinitions: ItemDefinitions,
     private val accounts: AccountDefinitions,
     private val storage: Storage,
 ) : Runnable {
 
-    private val limits = BuyLimits(itemDefinitions)
+    private val limits = BuyLimits()
 
     private data class PendingOffer(val account: String, val offer: ExchangeOffer)
 
@@ -223,7 +222,7 @@ class GrandExchange(
         } else {
             player.removeVarbit("grand_exchange_ranges", "slot_$index")
         }
-        val itemDef = itemDefinitions.get(offer.item)
+        val itemDef = ItemDefinitions.get(offer.item)
         player.client?.grandExchange(index, offer.state.int, itemDef.id, offer.price, offer.amount, offer.completed, offer.coins)
     }
 

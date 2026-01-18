@@ -44,7 +44,6 @@ import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
-import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.get
@@ -93,9 +92,8 @@ class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
                 val items: FloorItems = get()
                 val itemSpawns: ItemSpawns = get()
                 items.clear()
-                val itemDefinitions: ItemDefinitions = get()
-                itemDefinitions.load(files.list(Settings["definitions.items"]))
-                loadItemSpawns(items, itemSpawns, files.list(Settings["spawns.items"]), itemDefinitions)
+                ItemDefinitions.load(files.list(Settings["definitions.items"]))
+                loadItemSpawns(items, itemSpawns, files.list(Settings["spawns.items"]))
             }
             "nav_graph", "ai_graph" -> get<NavigationGraph>().load(files.find(Settings["map.navGraph"]))
             "npcs" -> {

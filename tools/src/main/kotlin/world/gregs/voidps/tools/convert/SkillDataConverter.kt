@@ -31,14 +31,13 @@ object SkillDataConverter {
         val koin = startKoin {
             modules(
                 module {
-                    single { ItemDefinitions(ItemDecoder().load(get())).load(listOf(Settings["definitions.items"])) }
+                    single { ItemDefinitions.init(ItemDecoder().load(get())).load(listOf(Settings["definitions.items"])) }
                     single { CacheDelegate(Settings["storage.cache.path"]) as Cache }
                 },
             )
         }.koin
 
         val cache: Cache = koin.get()
-        val items: ItemDefinitions = get()
         val files = configFiles()
         val sounds = SoundDefinitions().load(files.list(Settings["definitions.sounds"]))
         val animations = AnimationDefinitions(AnimationDecoder().load(cache)).load(listOf(Settings["definitions.animations"]))
@@ -87,21 +86,21 @@ object SkillDataConverter {
                 }
             }
             if (map.containsKey("tool")) {
-                map.replace("tool", items.get(map["tool"] as Int).stringId)
+                map.replace("tool", ItemDefinitions.get(map["tool"] as Int).stringId)
             }
             if (map.containsKey("product")) {
-                map.replace("product", items.get(map["product"] as Int).stringId)
+                map.replace("product", ItemDefinitions.get(map["product"] as Int).stringId)
             }
             if (map.containsKey("fail product")) {
-                map.replace("fail product", items.get(map["fail product"] as Int).stringId)
+                map.replace("fail product", ItemDefinitions.get(map["fail product"] as Int).stringId)
             }
             if (map.containsKey("materials")) {
                 val list: List<Int> = map["materials"] as List<Int>
-                map.replace("materials", list.map { items.get(it).stringId })
+                map.replace("materials", list.map { ItemDefinitions.get(it).stringId })
             }
             if (map.containsKey("by-products")) {
                 val list: List<Int> = map["by-products"] as List<Int>
-                map.replace("by-products", list.map { items.get(it).stringId })
+                map.replace("by-products", list.map { ItemDefinitions.get(it).stringId })
             }
             printMaking(map, yaml)
         }

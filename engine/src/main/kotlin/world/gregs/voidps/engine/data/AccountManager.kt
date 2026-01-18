@@ -33,14 +33,13 @@ import world.gregs.voidps.type.Tile
 class AccountManager(
     private val interfaceDefinitions: InterfaceDefinitions,
     private val inventoryDefinitions: InventoryDefinitions,
-    private val itemDefinitions: ItemDefinitions,
     private val accountDefinitions: AccountDefinitions,
     private val variableDefinitions: VariableDefinitions,
     private val saveQueue: SaveQueue,
     private val connectionQueue: ConnectionQueue,
     private val overrides: AppearanceOverrides,
 ) {
-    private val validItems = ValidItemRestriction(itemDefinitions)
+    private val validItems = ValidItemRestriction()
     private val homeTile: Tile
         get() = Tile(Settings["world.home.x", 0], Settings["world.home.y", 0], Settings["world.home.level", 0])
 
@@ -57,9 +56,8 @@ class AccountManager(
         (player.variables as PlayerVariables).definitions = variableDefinitions
 //        player.area.areaDefinitions = areaDefinitions
         player.inventories.definitions = inventoryDefinitions
-        player.inventories.itemDefinitions = itemDefinitions
         player.inventories.validItemRule = validItems
-        player.inventories.normalStack = ItemDependentStack(itemDefinitions)
+        player.inventories.normalStack = ItemDependentStack
         player.inventories.player = player
         player.inventories.start()
         player.steps.previous = player.tile.add(Direction.WEST.delta)

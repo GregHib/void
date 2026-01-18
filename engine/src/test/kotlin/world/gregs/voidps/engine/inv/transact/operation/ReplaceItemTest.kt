@@ -47,8 +47,7 @@ internal class ReplaceItemTest : TransactionOperationTest() {
 
     @Test
     fun `Replace item at index`() {
-        val definitions: ItemDefinitions = get()
-        every { definitions.get("item") } returns ItemDefinition(1234)
+        every { ItemDefinitions.get("item") } returns ItemDefinition(1234)
         transaction(stackRule = NeverStack) {
             add("item", 2)
         }

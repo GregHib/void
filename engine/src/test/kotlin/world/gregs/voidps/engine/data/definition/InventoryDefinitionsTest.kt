@@ -30,16 +30,15 @@ internal class InventoryDefinitionsTest : DefinitionsDecoderTest<InventoryDefini
 
     override fun load(definitions: InventoryDefinitions) {
         val uri = InventoryDefinitionsTest::class.java.getResource("test-inventory.toml")!!
-        val itemDefs = mockk<ItemDefinitions>(relaxed = true)
-        every { itemDefs.get(any<String>()) }.returns(ItemDefinition(0))
-        every { itemDefs.get("bronze_pickaxe") }.returns(ItemDefinition(1))
-        every { itemDefs.get("bronze_hatchet") }.returns(ItemDefinition(2))
-        every { itemDefs.get("iron_hatchet") }.returns(ItemDefinition(3))
-        every { itemDefs.get("steel_hatchet") }.returns(ItemDefinition(4))
-        every { itemDefs.get("iron_battleaxe") }.returns(ItemDefinition(5))
-        every { itemDefs.get("steel_battleaxe") }.returns(ItemDefinition(6))
-        every { itemDefs.get("mithril_battleaxe") }.returns(ItemDefinition(7))
-        every { itemDefs.contains(any<String>()) }.returns(true)
-        definitions.load(emptyList(), listOf(uri.path), itemDefs)
+        ItemDefinitions.set(Array(8) { ItemDefinition(it) }, mapOf(
+            "bronze_pickaxe" to 1,
+            "bronze_hatchet" to 2,
+            "iron_hatchet" to 3,
+            "steel_hatchet" to 4,
+            "iron_battleaxe" to 5,
+            "steel_battleaxe" to 6,
+            "mithril_battleaxe" to 7,
+        ))
+        definitions.load(emptyList(), listOf(uri.path))
     }
 }

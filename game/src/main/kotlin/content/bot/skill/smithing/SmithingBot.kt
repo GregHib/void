@@ -24,7 +24,6 @@ import world.gregs.voidps.engine.inv.inventory
 
 class SmithingBot(
     val interfaceDefinitions: InterfaceDefinitions,
-    val itemDefinitions: ItemDefinitions,
     val tasks: TaskManager,
 ) : Script {
 
@@ -65,7 +64,7 @@ class SmithingBot(
             return
         }
         val bar = player.inventory.items.first { it.id.endsWith("_bar") }
-        val type = types.filter { player.has(Skill.Smithing, itemDefinitions.get(bar.id.replace("_bar", "_$it")).getOrNull<Smithing>("smithing")?.level ?: Int.MAX_VALUE) }.random()
+        val type = types.filter { player.has(Skill.Smithing, ItemDefinitions.get(bar.id.replace("_bar", "_$it")).getOrNull<Smithing>("smithing")?.level ?: Int.MAX_VALUE) }.random()
         await("tick")
         while (player.inventory.contains(bar.id)) {
             itemOnObject(bar, anvil)

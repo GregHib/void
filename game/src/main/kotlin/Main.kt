@@ -118,7 +118,7 @@ object Main {
             single(createdAtStart = true) { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
             single(createdAtStart = true) { ObjectDefinitions.init(ObjectDecoder(members, lowDetail = false, get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.objects"])) }
             single(createdAtStart = true) { NPCDefinitions.init(NPCDecoder(members, get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.npcs"]), get()) }
-            single(createdAtStart = true) { ItemDefinitions(ItemDecoder(get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.items"])) }
+            single(createdAtStart = true) { ItemDefinitions.init(ItemDecoder(get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.items"])) }
             single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().load(cache)).load(files.list(Settings["definitions.animations"])) }
             single(createdAtStart = true) { EnumDefinitions(EnumDecoder().load(cache), get()).load(files.find(Settings["definitions.enums"])) }
             single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(cache)).load(files.list(Settings["definitions.graphics"])) }
