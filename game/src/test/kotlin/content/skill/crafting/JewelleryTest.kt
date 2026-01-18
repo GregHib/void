@@ -28,7 +28,7 @@ class JewelleryTest : WorldTest() {
             val player = createPlayer(Tile(3227, 3255))
             player.levels.set(Skill.Crafting, 10)
             player.inventory.add("${type}_mould", "gold_bar")
-            val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
+            val furnace = objects.find(Tile(3226, 3256), "furnace_lumbridge")
 
             player.itemOnObject(furnace, 0)
             tick()
@@ -48,7 +48,7 @@ class JewelleryTest : WorldTest() {
         val player = createPlayer(Tile(3227, 3255))
         player.levels.set(Skill.Crafting, 75)
         player.inventory.add("ring_mould", "gold_bar", "enchanted_gem")
-        val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
+        val furnace = objects.find(Tile(3226, 3256), "furnace_lumbridge")
 
         player.itemOnObject(furnace, 0)
         tick()
@@ -69,7 +69,7 @@ class JewelleryTest : WorldTest() {
                 val player = createPlayer(Tile(3227, 3255))
                 player.levels.set(Skill.Crafting, 99)
                 player.inventory.add("${type}_mould", "gold_bar", gem)
-                val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
+                val furnace = objects.find(Tile(3226, 3256), "furnace_lumbridge")
 
                 player.itemOnObject(furnace, 0)
                 tick()
@@ -91,7 +91,7 @@ class JewelleryTest : WorldTest() {
         val player = createPlayer(Tile(3227, 3255))
         player.levels.set(Skill.Crafting, 99)
         player.inventory.add("necklace_mould", "gold_bar")
-        val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
+        val furnace = objects.find(Tile(3226, 3256), "furnace_lumbridge")
 
         player.itemOnObject(furnace, 0)
         tick()
@@ -113,7 +113,7 @@ class JewelleryTest : WorldTest() {
         player.inventory.add("bracelet_mould")
         player.inventory.add("gold_bar", 6)
         player.inventory.add("ruby", 6)
-        val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
+        val furnace = objects.find(Tile(3226, 3256), "furnace_lumbridge")
 
         player.itemOnObject(furnace, 0)
         tick()
@@ -138,7 +138,7 @@ class JewelleryTest : WorldTest() {
         player.inventory.add("bracelet_mould")
         player.inventory.add("gold_bar", 3)
         player.inventory.add("ruby", 2)
-        val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
+        val furnace = objects.find(Tile(3226, 3256), "furnace_lumbridge")
 
         player.itemOnObject(furnace, 0)
         tick()
@@ -159,7 +159,7 @@ class JewelleryTest : WorldTest() {
         player.inventory.add("bracelet_mould")
         player.inventory.add("gold_bar", 3)
         player.inventory.add("diamond", 2)
-        val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
+        val furnace = objects.find(Tile(3226, 3256), "furnace_lumbridge")
 
         player.itemOnObject(furnace, 0)
         tick()
@@ -182,7 +182,7 @@ class JewelleryTest : WorldTest() {
         player.inventory.add("amulet_unstrung_mould")
         player.inventory.add("gold_bar", 1)
         player.inventory.add("dragonstone", 2)
-        val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
+        val furnace = objects.find(Tile(3226, 3256), "furnace_lumbridge")
 
         player.itemOnObject(furnace, 0)
         tick()
@@ -203,7 +203,7 @@ class JewelleryTest : WorldTest() {
         val player = createPlayer(Tile(3227, 3255))
         player.levels.set(Skill.Crafting, 65)
         player.inventory.add("ring_mould", "gold_bar", "onyx")
-        val furnace = objects[Tile(3226, 3256), "furnace_lumbridge"]!!
+        val furnace = objects.find(Tile(3226, 3256), "furnace_lumbridge")
 
         player.itemOnObject(furnace, 0)
         tick()

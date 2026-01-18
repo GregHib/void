@@ -15,7 +15,7 @@ class EdgevilleMonkeyBarsTest : WorldTest() {
     fun `Swing south across monkey bars`() {
         val player = createPlayer(Tile(3120, 9970))
         player.levels.set(Skill.Agility, 15)
-        val monkeyBars = objects[Tile(3119, 9969), "edgeville_monkey_bars"]!!
+        val monkeyBars = objects.find(Tile(3119, 9969), "edgeville_monkey_bars")
 
         player.objectOption(monkeyBars, "Swing across")
         tick(12)
@@ -28,7 +28,7 @@ class EdgevilleMonkeyBarsTest : WorldTest() {
     fun `Swing north across monkey bars`() {
         val player = createPlayer(Tile(3121, 9964))
         player.levels.set(Skill.Agility, 15)
-        val monkeyBars = objects[Tile(3120, 9964), "edgeville_monkey_bars"]!!
+        val monkeyBars = objects.find(Tile(3120, 9964), "edgeville_monkey_bars")
 
         player.objectOption(monkeyBars, "Swing across")
         tick(11)
@@ -40,7 +40,7 @@ class EdgevilleMonkeyBarsTest : WorldTest() {
     @Test
     fun `Can't swing across monkey bars without level`() {
         val player = createPlayer(Tile(3121, 9964))
-        val monkeyBars = objects[Tile(3120, 9964), "edgeville_monkey_bars"]!!
+        val monkeyBars = objects.find(Tile(3120, 9964), "edgeville_monkey_bars")
 
         player.objectOption(monkeyBars, "Swing across")
         tick(2)

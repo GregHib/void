@@ -18,7 +18,7 @@ class PlantPotsTest : WorldTest() {
         player.inventory.add("plant_pot_empty")
         player.inventory.add("gardening_trowel")
         player["farming_veg_patch_falador_se"] = "weeds_2"
-        val patch = objects[Tile(3058, 3308), "farming_veg_patch_falador_se"]!!
+        val patch = objects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.itemOnObject(patch, 0)
         tick(3)
@@ -35,7 +35,7 @@ class PlantPotsTest : WorldTest() {
         player.inventory.add("plant_pot_empty")
         player.inventory.add("gardening_trowel")
         player["farming_veg_patch_falador_se"] = "weeds_0"
-        val patch = objects[Tile(3058, 3308), "farming_veg_patch_falador_se"]!!
+        val patch = objects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.itemOnObject(patch, 0)
         tick(3)
@@ -50,7 +50,7 @@ class PlantPotsTest : WorldTest() {
         val player = createPlayer(Tile(3057, 3308))
         player.inventory.add("plant_pot_empty")
         player["farming_veg_patch_falador_se"] = "weeds_0"
-        val patch = objects[Tile(3058, 3308), "farming_veg_patch_falador_se"]!!
+        val patch = objects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.itemOnObject(patch, 0)
         tick(3)

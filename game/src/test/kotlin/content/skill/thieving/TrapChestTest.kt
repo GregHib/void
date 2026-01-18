@@ -19,7 +19,7 @@ internal class TrapChestTest : WorldTest() {
         })
         val player = createPlayer(Tile(2675, 3310))
         player.levels.set(Skill.Thieving, 15)
-        val stall = objects[Tile(2676, 3310), "coin_chest"]!!
+        val stall = objects.find(Tile(2676, 3310), "coin_chest")
 
         player.objectOption(stall, "Search for traps")
         tick(6)

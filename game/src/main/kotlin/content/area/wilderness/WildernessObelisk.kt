@@ -44,7 +44,7 @@ class WildernessObelisk(
     }
 
     fun replace(obj: GameObject, tile: Tile) {
-        val sw = objects[tile, obj.id] ?: return
+        val sw = objects.findOrNull(tile, obj.id) ?: return
         objects.replace(sw, "wilderness_obelisk_glow", ticks = 8)
     }
 }

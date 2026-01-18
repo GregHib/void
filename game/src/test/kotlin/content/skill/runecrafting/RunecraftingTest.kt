@@ -31,7 +31,7 @@ internal class RunecraftingTest : WorldTest() {
             player.levels.set(Skill.Runecrafting, 99)
             player.inventory.add("rune_essence")
 
-            val altar = objects[altarTile, "${type}_altar"]!!
+            val altar = objects.find(altarTile, "${type}_altar")
             player.objectOption(altar, "Craft-rune")
             tick(1)
             tickIf { player.visuals.moved }
@@ -50,7 +50,7 @@ internal class RunecraftingTest : WorldTest() {
             player.levels.set(Skill.Runecrafting, 99)
             player.inventory.add("rune_essence")
 
-            val altar = objects[altarTile, "${type}_altar"]!!
+            val altar = objects.find(altarTile, "${type}_altar")
             player.objectOption(altar, "Craft-rune")
             tick(1)
             tickIf { player.visuals.moved }
@@ -69,7 +69,7 @@ internal class RunecraftingTest : WorldTest() {
             player.levels.set(Skill.Runecrafting, 99)
             player.inventory.add("pure_essence")
 
-            val altar = objects[altarTile, "${type}_altar"]!!
+            val altar = objects.find(altarTile, "${type}_altar")
             player.itemOnObject(altar, 0)
             tick(1)
             tickIf { player.visuals.moved }
@@ -88,7 +88,7 @@ internal class RunecraftingTest : WorldTest() {
             player.levels.set(Skill.Runecrafting, 99)
             player.inventory.add("pure_essence")
 
-            val altar = objects[altarTile, "${type}_altar"]!!
+            val altar = objects.find(altarTile, "${type}_altar")
             player.itemOnObject(altar, 0)
             tick(1)
             tickIf { player.visuals.moved }
@@ -107,7 +107,7 @@ internal class RunecraftingTest : WorldTest() {
             player.levels.set(Skill.Runecrafting, 0)
             player.inventory.add("pure_essence")
 
-            val altar = objects[altarTile, "${type}_altar"]!!
+            val altar = objects.find(altarTile, "${type}_altar")
             player.objectOption(altar, "Craft-rune")
             tick(1)
             tickIf { player.visuals.moved }

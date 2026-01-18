@@ -201,7 +201,7 @@ class ShootingStar(
     }
 
     fun cleanseEvent(forceStopped: Boolean) {
-        currentActiveObject?.let { current -> objects[currentStarTile, current.id] }?.remove()
+        currentActiveObject?.let { current -> objects.findOrNull(currentStarTile, current.id) }?.remove()
         if (!forceStopped) {
             areaSound("star_sprite_appear", currentStarTile, radius = 10)
             val starSprite = NPCs.add("star_sprite", currentStarTile, Direction.NONE)

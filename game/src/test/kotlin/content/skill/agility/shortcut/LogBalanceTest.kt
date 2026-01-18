@@ -15,7 +15,7 @@ class LogBalanceTest : WorldTest() {
     fun `Walk west across coal truck log`() {
         val player = createPlayer(Tile(2602, 3478))
         player.levels.set(Skill.Agility, 20)
-        val log = objects[Tile(2602, 3477), "coal_truck_log_balance"]!!
+        val log = objects.find(Tile(2602, 3477), "coal_truck_log_balance")
 
         player.objectOption(log, "Walk-across")
         tick(7)
@@ -28,7 +28,7 @@ class LogBalanceTest : WorldTest() {
     fun `Walk east across coal truck log`() {
         val player = createPlayer(Tile(2598, 3477))
         player.levels.set(Skill.Agility, 20)
-        val log = objects[Tile(2599, 3477), "coal_truck_log_balance"]!!
+        val log = objects.find(Tile(2599, 3477), "coal_truck_log_balance")
 
         player.objectOption(log, "Walk-across")
         tick(7)
@@ -41,7 +41,7 @@ class LogBalanceTest : WorldTest() {
     fun `Can't walk across coal truck log without level`() {
         val player = createPlayer(Tile(2598, 3477))
         player.levels.set(Skill.Agility, 19)
-        val log = objects[Tile(2599, 3477), "coal_truck_log_balance"]!!
+        val log = objects.find(Tile(2599, 3477), "coal_truck_log_balance")
 
         player.objectOption(log, "Walk-across")
         tick(2)
@@ -53,7 +53,7 @@ class LogBalanceTest : WorldTest() {
     fun `Walk west across ardougne log`() {
         val player = createPlayer(Tile(2602, 3336))
         player.levels.set(Skill.Agility, 33)
-        val log = objects[Tile(2601, 3336), "ardougne_log_balance_east"]!!
+        val log = objects.find(Tile(2601, 3336), "ardougne_log_balance_east")
 
         player.objectOption(log, "Walk-across")
         tick(7)
@@ -66,7 +66,7 @@ class LogBalanceTest : WorldTest() {
     fun `Walk east across ardougne log`() {
         val player = createPlayer(Tile(2598, 3336))
         player.levels.set(Skill.Agility, 33)
-        val log = objects[Tile(2599, 3336), "ardougne_log_balance_west"]!!
+        val log = objects.find(Tile(2599, 3336), "ardougne_log_balance_west")
 
         player.objectOption(log, "Walk-across")
         tick(7)
@@ -79,7 +79,7 @@ class LogBalanceTest : WorldTest() {
     fun `Can't walk across ardougne log without level`() {
         val player = createPlayer(Tile(2602, 3336))
         player.levels.set(Skill.Agility, 32)
-        val log = objects[Tile(2601, 3336), "ardougne_log_balance_east"]!!
+        val log = objects.find(Tile(2601, 3336), "ardougne_log_balance_east")
 
         player.objectOption(log, "Walk-across")
         tick(2)

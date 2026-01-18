@@ -58,7 +58,7 @@ internal class CombinationRunecraftingTest : WorldTest() {
             player.inventory.add("${element}_talisman")
 
             val altarTile = RunecraftingTest.altars.first { it.type == objectElement }.altarTile
-            val altar = objects[altarTile, "${objectElement}_altar"]!!
+            val altar = objects.find(altarTile, "${objectElement}_altar")
             player.itemOnObject(altar, 0)
             tick(1)
             tickIf { player.visuals.moved }
@@ -82,7 +82,7 @@ internal class CombinationRunecraftingTest : WorldTest() {
             player.inventory.add("${element}_talisman", 2)
 
             val altarTile = RunecraftingTest.altars.first { it.type == objectElement }.altarTile
-            val altar = objects[altarTile, "${objectElement}_altar"]!!
+            val altar = objects.find(altarTile, "${objectElement}_altar")
             player.itemOnObject(altar, 0)
             tick(1)
             tickIf { player.visuals.moved }

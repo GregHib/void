@@ -39,7 +39,7 @@ class TreePatchTest : WorldTest() {
             })
             val player = createPlayer(tile)
             player.inventory.add("rake")
-            val patch = objects[tile.addY(1), id]!!
+            val patch = objects.find(tile.addY(1), id)
 
             player.objectOption(patch, "Rake")
             tick(10)
@@ -65,7 +65,7 @@ class TreePatchTest : WorldTest() {
             player.inventory.add("spade")
             player.levels.set(Skill.Farming, 99)
             player["farming_tree_patch_lumbridge"] = "weeds_0"
-            val patch = objects[tile.addY(1), "farming_tree_patch_lumbridge"]!!
+            val patch = objects.find(tile.addY(1), "farming_tree_patch_lumbridge")
 
             player.itemOnObject(patch, 0)
             tick(10)
@@ -96,7 +96,7 @@ class TreePatchTest : WorldTest() {
             val player = createPlayer(tile)
             player.levels.set(Skill.Farming, 99)
             player["farming_tree_patch_lumbridge"] = "${id}_claim"
-            val patch = objects[tile.addY(1), "farming_tree_patch_lumbridge"]!!
+            val patch = objects.find(tile.addY(1), "farming_tree_patch_lumbridge")
 
             player.objectOption(patch, "Check-health")
             tickIf { player["farming_tree_patch_lumbridge", "empty"] != "${id}_life1" }
@@ -120,7 +120,7 @@ class TreePatchTest : WorldTest() {
             player.inventory.add("spade")
             player.levels.set(Skill.Farming, 99)
             player["farming_tree_patch_lumbridge"] = "${id}_stump"
-            val patch = objects[tile.addY(1), "farming_tree_patch_lumbridge"]!!
+            val patch = objects.find(tile.addY(1), "farming_tree_patch_lumbridge")
 
             player.objectOption(patch, "Clear")
             tickIf { player["farming_tree_patch_lumbridge", "empty"] == "${id}_stump" }
@@ -144,7 +144,7 @@ class TreePatchTest : WorldTest() {
             player.levels.set(Skill.Farming, 99)
             player.inventory.add("secateurs")
             player["farming_tree_patch_lumbridge"] = "${id}_diseased_2"
-            val patch = objects[tile.addY(1), "farming_tree_patch_lumbridge"]!!
+            val patch = objects.find(tile.addY(1), "farming_tree_patch_lumbridge")
 
             player.itemOnObject(patch, 0)
             tick(5)
@@ -171,7 +171,7 @@ class TreePatchTest : WorldTest() {
             player.levels.set(Skill.Woodcutting, 99)
             player.levels.set(Skill.Farming, 99)
             player["farming_tree_patch_lumbridge"] = "${id}_life1"
-            val patch = objects[tile.addY(1), "farming_tree_patch_lumbridge"]!!
+            val patch = objects.find(tile.addY(1), "farming_tree_patch_lumbridge")
 
             player.objectOption(patch, "Chop down")
             tickIf { player["farming_tree_patch_lumbridge", "empty"] == "${id}_life1" }

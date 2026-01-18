@@ -251,7 +251,7 @@ class PlayerCommands(
         val type = args.getOrNull(0) ?: "all"
         val tile = target.tile
         if (type == "all" || type == "objects") {
-            val objs = get<GameObjects>()[tile]
+            val objs = get<GameObjects>().at(tile)
             if (objs.isNotEmpty()) {
                 player.message("--- Objects ---", ChatType.Console)
                 for (obj in objs) {

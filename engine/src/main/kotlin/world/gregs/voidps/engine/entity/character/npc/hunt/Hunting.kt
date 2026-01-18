@@ -166,7 +166,7 @@ class Hunting(
         for (direction in directions) {
             val tile = parent.add(direction)
             queue.add(tile)
-            val obj = objects[tile, definition.layer] ?: continue
+            val obj = objects.findOrNull(tile, definition.layer) ?: continue
             if (definition.id != null && obj.id != definition.id) {
                 continue
             }

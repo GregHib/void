@@ -37,7 +37,7 @@ class Ectophial(val objects: GameObjects) : Script {
 
         teleportLand("ectophial") {
             message("... and the world changes around you.", ChatType.Filter)
-            val ectofuntus = objects[Tile(3658, 3518), "ectofuntus"] ?: return@teleportLand
+            val ectofuntus = objects.findOrNull(Tile(3658, 3518), "ectofuntus") ?: return@teleportLand
             val slot = inventory.indexOf("ectophial")
             interactItemOn(ectofuntus, "inventory", "inventory", Item("empty_ectophial"), slot)
         }

@@ -19,7 +19,7 @@ internal class AbyssalRiftTest : WorldTest() {
         Tile(3027, 4834) to "Legacy of Seergaze",
         Tile(3050, 4829) to "not yet unlocked",
     ).map { (tile, message) ->
-        val obj = objects[tile].first { it.id.endsWith("rift") }
+        val obj = objects.find(tile) { it.id.endsWith("rift") }
         dynamicTest("Can't enter ${obj.id}") {
             val player = createPlayer(tile)
 

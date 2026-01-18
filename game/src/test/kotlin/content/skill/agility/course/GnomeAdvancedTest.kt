@@ -16,7 +16,7 @@ internal class GnomeAdvancedTest : WorldTest() {
     fun `Climb up advanced branch`() {
         val player = createPlayer(Tile(2472, 3420, 2))
         player.levels.set(Skill.Agility, 85)
-        val branch = objects[Tile(2472, 3419, 2), "gnome_tree_branch_advanced"]!!
+        val branch = objects.find(Tile(2472, 3419, 2), "gnome_tree_branch_advanced")
 
         player.objectOption(branch, "Climb-up")
         tick(3)
@@ -28,7 +28,7 @@ internal class GnomeAdvancedTest : WorldTest() {
     @Test
     fun `Can't climb up advanced branch`() {
         val player = createPlayer(Tile(2472, 3420, 2))
-        val branch = objects[Tile(2472, 3419, 2), "gnome_tree_branch_advanced"]!!
+        val branch = objects.find(Tile(2472, 3419, 2), "gnome_tree_branch_advanced")
 
         player.objectOption(branch, "Climb-up")
         tick(3)
@@ -43,7 +43,7 @@ internal class GnomeAdvancedTest : WorldTest() {
             override fun nextInt(until: Int) = if (until == 256) -10 else 0
         })
         val player = createPlayer(Tile(2475, 3418, 3))
-        val sign = objects[Tile(2478, 3417, 3), "gnome_sign_post_advanced"]!!
+        val sign = objects.find(Tile(2478, 3417, 3), "gnome_sign_post_advanced")
 
         player.objectOption(sign, "Run-across")
         tick(8)
@@ -58,7 +58,7 @@ internal class GnomeAdvancedTest : WorldTest() {
             override fun nextInt(until: Int) = if (until == 1) 0 else until
         })
         val player = createPlayer(Tile(2475, 3418, 3))
-        val sign = objects[Tile(2478, 3417, 3), "gnome_sign_post_advanced"]!!
+        val sign = objects.find(Tile(2478, 3417, 3), "gnome_sign_post_advanced")
 
         player.objectOption(sign, "Run-across")
         tick(22)
@@ -71,7 +71,7 @@ internal class GnomeAdvancedTest : WorldTest() {
     @Test
     fun `Swing across poles`() {
         val player = createPlayer(Tile(2485, 3418, 3))
-        val pole = objects[Tile(2486, 3425, 3), "gnome_pole_advanced"]!!
+        val pole = objects.find(Tile(2486, 3425, 3), "gnome_pole_advanced")
 
         player.objectOption(pole, "Swing-to")
         tick(16)
@@ -83,7 +83,7 @@ internal class GnomeAdvancedTest : WorldTest() {
     @Test
     fun `Jump over barrier`() {
         val player = createPlayer(Tile(2486, 3432, 3))
-        val barrier = objects[Tile(2485, 3433, 3), "gnome_barrier_advanced"]!!
+        val barrier = objects.find(Tile(2485, 3433, 3), "gnome_barrier_advanced")
 
         player.objectOption(barrier, "Jump-over")
         tick(5)
@@ -95,7 +95,7 @@ internal class GnomeAdvancedTest : WorldTest() {
     @Test
     fun `Jump over barrier with bonus reward`() {
         val player = createPlayer(Tile(2486, 3432, 3))
-        val barrier = objects[Tile(2485, 3433, 3), "gnome_barrier_advanced"]!!
+        val barrier = objects.find(Tile(2485, 3433, 3), "gnome_barrier_advanced")
         player.agilityCourse("gnome")
         player.agilityStage = 6
         player.objectOption(barrier, "Jump-over")

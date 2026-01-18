@@ -15,7 +15,7 @@ class ShantayPassTest : WorldTest() {
     @Test
     fun `Can't enter desert without pass`() {
         val player = createPlayer(Tile(3305, 3117))
-        val pass = objects[Tile(3303, 3116), "shantay_pass"]!!
+        val pass = objects.find(Tile(3303, 3116), "shantay_pass")
         player.objectOption(pass, "Go-through")
         tick()
         assertNotNull(player.dialogue)
@@ -26,7 +26,7 @@ class ShantayPassTest : WorldTest() {
     fun `Enter through pass`() {
         val player = createPlayer(Tile(3305, 3117))
         player.inventory.add("shantay_pass")
-        val pass = objects[Tile(3303, 3116), "shantay_pass"]!!
+        val pass = objects.find(Tile(3303, 3116), "shantay_pass")
         player.objectOption(pass, "Go-through")
         tick(1)
         Dialogues.continueDialogue(player, "warning_shantay_pass:yes")
@@ -38,7 +38,7 @@ class ShantayPassTest : WorldTest() {
     fun `Exit through pass`() {
         val player = createPlayer(Tile(3305, 3115))
         player.inventory.add("shantay_pass")
-        val pass = objects[Tile(3303, 3116), "shantay_pass"]!!
+        val pass = objects.find(Tile(3303, 3116), "shantay_pass")
         player.objectOption(pass, "Go-through")
         tick(3)
         assertEquals(Tile(3305, 3117), player.tile)

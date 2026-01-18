@@ -34,7 +34,7 @@ class EvilTurnipPatchTest : WorldTest() {
             })
             val player = createPlayer(tile)
             player.inventory.add("rake")
-            val patch = objects[tile.addY(1), id]!!
+            val patch = objects.find(tile.addY(1), id)
 
             player.objectOption(patch, "Rake")
             tick(10)
@@ -56,7 +56,7 @@ class EvilTurnipPatchTest : WorldTest() {
             player.inventory.add("seed_dibber")
             player.levels.set(Skill.Farming, 99)
             player["farming_evil_turnip_patch_draynor"] = "weeds_0"
-            val patch = objects[tile.addY(1), "farming_evil_turnip_patch_draynor"]!!
+            val patch = objects.find(tile.addY(1), "farming_evil_turnip_patch_draynor")
 
             player.itemOnObject(patch, 0)
             tick(10)
@@ -84,7 +84,7 @@ class EvilTurnipPatchTest : WorldTest() {
             player.inventory.add("spade")
             player.levels.set(Skill.Farming, 99)
             player["farming_evil_turnip_patch_draynor"] = "${id}_life1"
-            val patch = objects[tile.addY(1), "farming_evil_turnip_patch_draynor"]!!
+            val patch = objects.find(tile.addY(1), "farming_evil_turnip_patch_draynor")
 
             player.objectOption(patch, "Pick")
             tickIf { player["farming_evil_turnip_patch_draynor", "empty"] != "weeds_0" }

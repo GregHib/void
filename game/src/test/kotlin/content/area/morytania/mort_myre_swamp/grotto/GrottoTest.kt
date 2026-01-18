@@ -15,7 +15,7 @@ class GrottoTest : WorldTest() {
     @Test
     fun `Jump bridge south`() {
         val player = createPlayer(Tile(3441, 3331))
-        val bridge = objects[Tile(3441, 3331), "grotto_bridge"]!!
+        val bridge = objects.find(Tile(3441, 3331), "grotto_bridge")
 
         player.objectOption(bridge, "Jump")
         tick(3)
@@ -26,7 +26,7 @@ class GrottoTest : WorldTest() {
     @Test
     fun `Jump bridge north`() {
         val player = createPlayer(Tile(3440, 3329))
-        val bridge = objects[Tile(3440, 3329), "grotto_bridge"]!!
+        val bridge = objects.find(Tile(3440, 3329), "grotto_bridge")
 
         player.objectOption(bridge, "Jump")
         tick(3)
@@ -40,7 +40,7 @@ class GrottoTest : WorldTest() {
             override fun nextBits(bitCount: Int): Int = 255
         })
         val player = createPlayer(Tile(3441, 3331))
-        val bridge = objects[Tile(3441, 3331), "grotto_bridge"]!!
+        val bridge = objects.find(Tile(3441, 3331), "grotto_bridge")
 
         player.objectOption(bridge, "Jump")
         tick(6)
@@ -55,7 +55,7 @@ class GrottoTest : WorldTest() {
             override fun nextBits(bitCount: Int): Int = 255
         })
         val player = createPlayer(Tile(3440, 3329))
-        val bridge = objects[Tile(3440, 3329), "grotto_bridge"]!!
+        val bridge = objects.find(Tile(3440, 3329), "grotto_bridge")
 
         player.objectOption(bridge, "Jump")
         tick(6)

@@ -63,7 +63,7 @@ class Cooking(val definitions: ItemDefinitions, val objects: GameObjects) : Scri
     }
 
     fun Player.cook(item: Item, count: Int, obj: GameObject, cooking: Uncooked, offset: Int? = null) {
-        if (count <= 0 || objects[obj.tile, obj.id] == null) {
+        if (count <= 0 || objects.findOrNull(obj.tile, obj.id) == null) {
             softTimers.stop("cooking")
             return
         }

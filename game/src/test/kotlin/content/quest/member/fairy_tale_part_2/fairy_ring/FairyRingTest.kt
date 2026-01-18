@@ -21,7 +21,7 @@ class FairyRingTest : WorldTest() {
         player["fairy_tale_ii"] = "completed"
         player.equipment.set(EquipSlot.Weapon.index, "dramen_staff")
 
-        val fairyRing = objects[Tile(3129, 3496), "fairy_ring_edgeville"]!!
+        val fairyRing = objects.find(Tile(3129, 3496), "fairy_ring_edgeville")
 
         player.objectOption(fairyRing, "Use")
 
@@ -40,7 +40,7 @@ class FairyRingTest : WorldTest() {
         val player = createPlayer(Tile(3129, 3497))
         player["fairy_tale_ii"] = "completed"
 
-        val fairyRing = objects[Tile(3129, 3496), "fairy_ring_edgeville"]!!
+        val fairyRing = objects.find(Tile(3129, 3496), "fairy_ring_edgeville")
 
         player.objectOption(fairyRing, "Use")
 
@@ -54,7 +54,7 @@ class FairyRingTest : WorldTest() {
         val player = createPlayer(Tile(3129, 3497))
         player.equipment.set(EquipSlot.Weapon.index, "dramen_staff")
 
-        val fairyRing = objects[Tile(3129, 3496), "fairy_ring_edgeville"]!!
+        val fairyRing = objects.find(Tile(3129, 3496), "fairy_ring_edgeville")
 
         player.objectOption(fairyRing, "Use")
 
@@ -69,7 +69,7 @@ class FairyRingTest : WorldTest() {
         player["fairy_tale_ii"] = "completed"
         player["fairy_tale_iii"] = "completed"
 
-        val fairyRing = objects[Tile(3129, 3496), "fairy_ring_edgeville"]!!
+        val fairyRing = objects.find(Tile(3129, 3496), "fairy_ring_edgeville")
 
         player.objectOption(fairyRing, "Use")
 

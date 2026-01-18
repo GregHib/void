@@ -60,7 +60,7 @@ class PlagueCityTest : WorldTest() {
         player.dialogueContinue(3)
 
         player.tele(2567, 3332)
-        val soil = objects[Tile(2566, 3332), "plague_mud_patch2"]!!
+        val soil = objects.find(Tile(2566, 3332), "plague_mud_patch2")
         repeat(4) {
             player.itemOnObject(soil, player.inventory.indexOf("bucket_of_water"))
             tick()
@@ -74,7 +74,7 @@ class PlagueCityTest : WorldTest() {
         assertEquals(Tile(2518, 9760), player.tile)
 
         player.tele(2514, 9739)
-        val grill = objects[Tile(2514, 9739), "plague_grill"]!!
+        val grill = objects.find(Tile(2514, 9739), "plague_grill")
         player.itemOnObject(grill, player.inventory.indexOf("rope"))
         tick(3)
         player.dialogueContinue()
@@ -93,7 +93,7 @@ class PlagueCityTest : WorldTest() {
         assertEquals("gas_mask", player.equipped(EquipSlot.Hat).id)
 
         player.tele(2514, 9739)
-        val pipe = objects[Tile(2514, 9737), "plague_sewer_pipe_open"]!!
+        val pipe = objects.find(Tile(2514, 9737), "plague_sewer_pipe_open")
         player.objectOption(pipe, "Climb-up")
         tick(4)
         assertEquals(Tile(2529, 3304), player.tile)
@@ -109,7 +109,7 @@ class PlagueCityTest : WorldTest() {
         assertEquals(1, player.inventory.count("book_turnip_growing_for_beginners"))
 
         player.tele(2531, 3328)
-        val door = objects[Tile(2531, 3328), "door_rehnison_closed"]!!
+        val door = objects.find(Tile(2531, 3328), "door_rehnison_closed")
         player.objectOption(door, "Open")
         tick()
         player.dialogueContinue(3)
@@ -133,7 +133,7 @@ class PlagueCityTest : WorldTest() {
         assertNull(player.dialogue)
 
         player.tele(2533, 3273, 0)
-        val plagueDoor = objects[Tile(2533, 3273), "door_plague_city_closed"]!!
+        val plagueDoor = objects.find(Tile(2533, 3273), "door_plague_city_closed")
         player.objectOption(plagueDoor, "Open")
         tick()
         player.dialogueContinue(2)
@@ -154,7 +154,7 @@ class PlagueCityTest : WorldTest() {
         player.dialogueContinue(4)
 
         player.tele(2532, 3315, 1)
-        val bravekDoor = objects[Tile(2533, 3315, 1), "door_civic_office_closed"]!!
+        val bravekDoor = objects.find(Tile(2533, 3315, 1), "door_civic_office_closed")
         player.objectOption(bravekDoor, "Open")
         tick(3)
         assertEquals(Tile(2533, 3315, 1), player.tile)
@@ -187,14 +187,14 @@ class PlagueCityTest : WorldTest() {
         assertEquals(Tile(2533, 3272), player.tile)
 
         player.tele(2535, 3268, 0)
-        val barrel = objects[Tile(2534, 3268), "plague_key_barrel"]!!
+        val barrel = objects.find(Tile(2534, 3268), "plague_key_barrel")
         player.objectOption(barrel, "Search")
         tick()
         player.dialogueContinue()
         assertEquals(1, player.inventory.count("a_small_key"))
 
         player.tele(2539, 9672, 0)
-        val prisonDoor = objects[Tile(2539, 9672), "door_elena_prison_closed"]!!
+        val prisonDoor = objects.find(Tile(2539, 9672), "door_elena_prison_closed")
         player.objectOption(prisonDoor, "Open")
         tick(3)
         assertEquals(Tile(2540, 9672), player.tile)

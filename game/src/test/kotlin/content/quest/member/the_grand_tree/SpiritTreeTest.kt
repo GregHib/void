@@ -15,7 +15,7 @@ class SpiritTreeTest : WorldTest() {
     @Test
     fun `Can't teleport without quest complete`() {
         val player = createPlayer(Tile(2542, 3169))
-        val tree = objects[Tile(2543, 3168), "spirit_tree_gnome"]!!
+        val tree = objects.find(Tile(2543, 3168), "spirit_tree_gnome")
         player.objectOption(tree, "Teleport")
         tick()
 
@@ -28,7 +28,7 @@ class SpiritTreeTest : WorldTest() {
     fun `Teleport from stronghold tree to grand exchange`() {
         val player = createPlayer(Tile(2461, 3444))
         player["the_grand_tree"] = "completed"
-        val tree = objects[Tile(2460, 3445), "spirit_tree_stronghold"]!!
+        val tree = objects.find(Tile(2460, 3445), "spirit_tree_stronghold")
         player.objectOption(tree, "Teleport")
         tick()
         player.interfaceOption("spirit_tree", "text", slot = 2, optionIndex = 0)

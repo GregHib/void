@@ -47,7 +47,7 @@ class WildernessCourse(val objects: GameObjects) : Script {
             walkOverDelay(Tile(2998, 3930))
             clearRenderEmote()
             val gateTile = Tile(2998, 3931)
-            val gate = objects[gateTile, "wilderness_agility_gate_east_closed"]
+            val gate = objects.findOrNull(gateTile, "wilderness_agility_gate_east_closed")
             if (gate != null) {
                 enterDoor(gate)
             } else {
@@ -76,7 +76,7 @@ class WildernessCourse(val objects: GameObjects) : Script {
             }
             walkOverDelay(Tile(2998, 3917))
             clearRenderEmote()
-            val door = objects[Tile(2998, 3917), "wilderness_agility_door_closed"]
+            val door = objects.findOrNull(Tile(2998, 3917), "wilderness_agility_door_closed")
             if (door != null) {
                 enterDoor(door, delay = 1)
             } else {

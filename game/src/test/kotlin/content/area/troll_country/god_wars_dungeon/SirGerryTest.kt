@@ -47,7 +47,7 @@ class SirGerryTest : WorldTest() {
         player["godwars_knights_notes"] = true
         player.inventory.add("rope")
 
-        val hole = objects[Tile(2917, 3745), "godwars_hole_base"]!!
+        val hole = objects.find(Tile(2917, 3745), "godwars_hole_base")
 
         player.objectOption(hole, optionIndex = 0) // Tie-rope
         tick()

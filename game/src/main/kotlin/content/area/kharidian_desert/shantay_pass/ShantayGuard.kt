@@ -27,7 +27,7 @@ class ShantayGuard(val objects: GameObjects) : Script {
                         npc<Neutral>("You need a Shantay pass to get through this gate. See Shantay, he will sell you one for a very reasonable price.")
                         return@option
                     }
-                    interactObject(objects[Tile(3303, 3116), "shantay_pass"]!!, "Go-through")
+                    interactObject(objects.find(Tile(3303, 3116), "shantay_pass"), "Go-through")
                 }
                 option<Neutral>("Nothing thanks.") {
                     npc<Neutral>("Okay then, have a nice day.")

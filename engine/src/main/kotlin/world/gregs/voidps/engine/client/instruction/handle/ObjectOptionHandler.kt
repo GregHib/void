@@ -52,13 +52,13 @@ class ObjectOptionHandler(
     }
 
     private fun getObject(tile: Tile, objectId: Int): GameObject? {
-        val obj = objects[tile, objectId]
+        val obj = objects.findOrNull(tile, objectId)
         if (obj == null) {
             val definition = definitions.getOrNull(objectId)
             return if (definition == null) {
-                objects[tile, objectId.toString()]
+                objects.findOrNull(tile, objectId.toString())
             } else {
-                objects[tile, definition.id]
+                objects.findOrNull(tile, definition.id)
             }
         }
         return obj

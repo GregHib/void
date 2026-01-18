@@ -69,7 +69,7 @@ class CanoesTest : WorldTest() {
     }
 
     private fun travelByCanoe(player: Player, currentStation: String, target: String, canoe: String) {
-        val station = objects[stationTile(currentStation), "canoe_station_$currentStation"]!!
+        val station = objects.find(stationTile(currentStation), "canoe_station_$currentStation")
 
         // Chop-down
         player.objectOption(station, "Chop-down")
@@ -100,7 +100,7 @@ class CanoesTest : WorldTest() {
     fun `Can't chop without a hatchet`() {
         val player = createPlayer(Tile(3232, 3252))
         player.levels.set(Skill.Woodcutting, 12)
-        val station = objects[Tile(3233, 3250), "canoe_station_lumbridge"]!!
+        val station = objects.find(Tile(3233, 3250), "canoe_station_lumbridge")
 
         // Chop-down
         player.objectOption(station, "Chop-down")
@@ -112,7 +112,7 @@ class CanoesTest : WorldTest() {
     @Test
     fun `Can't shape without the level`() {
         val player = createPlayer(Tile(3202, 3343))
-        val station = objects[Tile(3200, 3341), "canoe_station_champions_guild"]!!
+        val station = objects.find(Tile(3200, 3341), "canoe_station_champions_guild")
         player.levels.set(Skill.Woodcutting, 12)
         player.inventory.add("steel_hatchet")
 

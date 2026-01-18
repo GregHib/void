@@ -34,7 +34,7 @@ class BelladonnaPatchTest : WorldTest() {
             })
             val player = createPlayer(tile)
             player.inventory.add("rake")
-            val patch = objects[tile.addY(1), id]!!
+            val patch = objects.find(tile.addY(1), id)
 
             player.objectOption(patch, "Rake")
             tick(10)
@@ -56,7 +56,7 @@ class BelladonnaPatchTest : WorldTest() {
             player.inventory.add("seed_dibber")
             player.levels.set(Skill.Farming, 99)
             player["farming_belladonna_patch_draynor"] = "weeds_0"
-            val patch = objects[tile.addY(1), "farming_belladonna_patch_draynor"]!!
+            val patch = objects.find(tile.addY(1), "farming_belladonna_patch_draynor")
 
             player.itemOnObject(patch, 0)
             tick(10)
@@ -81,7 +81,7 @@ class BelladonnaPatchTest : WorldTest() {
             player.levels.set(Skill.Farming, 99)
             player.inventory.add("plant_cure")
             player["farming_belladonna_patch_draynor"] = "${id}_diseased_2"
-            val patch = objects[tile.addY(1), "farming_belladonna_patch_draynor"]!!
+            val patch = objects.find(tile.addY(1), "farming_belladonna_patch_draynor")
 
             player.itemOnObject(patch, 0)
             tick(5)
@@ -103,7 +103,7 @@ class BelladonnaPatchTest : WorldTest() {
             player.inventory.add("spade")
             player.levels.set(Skill.Farming, 99)
             player["farming_belladonna_patch_draynor"] = "${id}_life1"
-            val patch = objects[tile.addY(1), "farming_belladonna_patch_draynor"]!!
+            val patch = objects.find(tile.addY(1), "farming_belladonna_patch_draynor")
 
             player.objectOption(patch, "Pick")
             tickIf { player["farming_belladonna_patch_draynor", "empty"] != "weeds_0" }

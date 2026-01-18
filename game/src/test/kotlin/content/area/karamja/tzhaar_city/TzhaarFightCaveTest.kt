@@ -34,7 +34,7 @@ class TzhaarFightCaveTest : WorldTest() {
         player["god_mode"] = true
         player["insta_kill"] = true
 
-        val entrance = objects[Tile(2437, 5166), "cave_entrance_fight_cave"]!!
+        val entrance = objects.find(Tile(2437, 5166), "cave_entrance_fight_cave")
         player.interactObject(entrance, "Enter")
         tick(5)
 
@@ -63,7 +63,7 @@ class TzhaarFightCaveTest : WorldTest() {
         player["insta_kill"] = true
         player.rights = PlayerRights.Admin
         player.inventory.add("dragon_scimitar")
-        val entrance = objects[Tile(2437, 5166), "cave_entrance_fight_cave"]!!
+        val entrance = objects.find(Tile(2437, 5166), "cave_entrance_fight_cave")
         player.interactObject(entrance, "Enter")
         tick(2)
         player.intEntry(63)
@@ -103,7 +103,7 @@ class TzhaarFightCaveTest : WorldTest() {
         })
         val player = createPlayer(Tile(2438, 5168), "JalYt-1")
         player["god_mode"] = true
-        val entrance = objects[Tile(2437, 5166), "cave_entrance_fight_cave"]!!
+        val entrance = objects.find(Tile(2437, 5166), "cave_entrance_fight_cave")
         player.interactObject(entrance, "Enter")
         tick(5)
         val manager = get<AccountManager>()
@@ -123,7 +123,7 @@ class TzhaarFightCaveTest : WorldTest() {
         })
         val player = createPlayer(Tile(2438, 5168), "JalYt-2")
         player["god_mode"] = true
-        val entrance = objects[Tile(2437, 5166), "cave_entrance_fight_cave"]!!
+        val entrance = objects.find(Tile(2437, 5166), "cave_entrance_fight_cave")
         player.interactObject(entrance, "Enter")
         tick(5)
         val manager = get<AccountManager>()
@@ -155,7 +155,7 @@ class TzhaarFightCaveTest : WorldTest() {
         })
         val player = createPlayer(Tile(2438, 5168), "JalYt-4")
         player.inventory.add("dragon_scimitar")
-        val entrance = objects[Tile(2437, 5166), "cave_entrance_fight_cave"]!!
+        val entrance = objects.find(Tile(2437, 5166), "cave_entrance_fight_cave")
         player.interactObject(entrance, "Enter")
         tick(5)
         player["fight_cave_wave"] = 10
@@ -175,7 +175,7 @@ class TzhaarFightCaveTest : WorldTest() {
             override fun nextBits(bitCount: Int): Int = 0
         })
         val player = createPlayer(Tile(2438, 5168), "JalYt-5")
-        val entrance = objects[Tile(2437, 5166), "cave_entrance_fight_cave"]!!
+        val entrance = objects.find(Tile(2437, 5166), "cave_entrance_fight_cave")
         player.interactObject(entrance, "Enter")
         tick(5)
         player.tele(3221, 3219)

@@ -23,31 +23,31 @@ class WreckedGhostShipTest : WorldTest() {
         player.runEnergy = 10_000
 
         val rock1 = Tile(3602, 3550)
-        var rocks = objects[rock1, "wrecked_ghost_ship_rock"]!!
+        var rocks = objects.find(rock1, "wrecked_ghost_ship_rock")
         player.objectOption(rocks, "Jump-to")
         tick(6)
         assertEquals(rock1, player.tile)
 
         val rock2 = Tile(3597, 3552)
-        rocks = objects[rock2, "wrecked_ghost_ship_rock"]!!
+        rocks = objects.find(rock2, "wrecked_ghost_ship_rock")
         player.objectOption(rocks, "Jump-to")
         tick(9)
         assertEquals(rock2, player.tile)
 
         val rock3 = Tile(3595, 3556)
-        rocks = objects[rock3, "wrecked_ghost_ship_rock"]!!
+        rocks = objects.find(rock3, "wrecked_ghost_ship_rock")
         player.objectOption(rocks, "Jump-to")
         tick(12)
         assertEquals(rock3, player.tile)
 
         val rock4 = Tile(3597, 3561)
-        rocks = objects[rock4, "wrecked_ghost_ship_rock"]!!
+        rocks = objects.find(rock4, "wrecked_ghost_ship_rock")
         player.objectOption(rocks, "Jump-to")
         tick(9)
         assertEquals(rock4, player.tile)
 
         val shore = Tile(3601, 3564)
-        rocks = objects[shore, "wrecked_ghost_ship_rock"]!!
+        rocks = objects.find(shore, "wrecked_ghost_ship_rock")
         player.objectOption(rocks, "Jump-to")
         tick(9)
         assertEquals(50.0, player.experience.get(Skill.Agility))
@@ -63,31 +63,31 @@ class WreckedGhostShipTest : WorldTest() {
         player.runEnergy = 10_000
 
         val rock1 = Tile(3599, 3564)
-        var rocks = objects[rock1, "wrecked_ghost_ship_rock"]!!
+        var rocks = objects.find(rock1, "wrecked_ghost_ship_rock")
         player.objectOption(rocks, "Jump-to")
         tick(20)
         assertEquals(rock1, player.tile)
 
         val rock2 = Tile(3597, 3559)
-        rocks = objects[rock2, "wrecked_ghost_ship_rock"]!!
+        rocks = objects.find(rock2, "wrecked_ghost_ship_rock")
         player.objectOption(rocks, "Jump-to")
         tick(9)
         assertEquals(rock2, player.tile)
 
         val rock3 = Tile(3595, 3554)
-        rocks = objects[rock3, "wrecked_ghost_ship_rock"]!!
+        rocks = objects.find(rock3, "wrecked_ghost_ship_rock")
         player.objectOption(rocks, "Jump-to")
         tick(12)
         assertEquals(rock3, player.tile)
 
         val rock4 = Tile(3599, 3552)
-        rocks = objects[rock4, "wrecked_ghost_ship_rock"]!!
+        rocks = objects.find(rock4, "wrecked_ghost_ship_rock")
         player.objectOption(rocks, "Jump-to")
         tick(9)
         assertEquals(rock4, player.tile)
 
         val shore = Tile(3604, 3550)
-        rocks = objects[shore, "wrecked_ghost_ship_rock"]!!
+        rocks = objects.find(shore, "wrecked_ghost_ship_rock")
         player.objectOption(rocks, "Jump-to")
         tick(9)
         assertEquals(50.0, player.experience.get(Skill.Agility))
@@ -102,27 +102,27 @@ class WreckedGhostShipTest : WorldTest() {
         player.levels.set(Skill.Agility, 25)
         player.runEnergy = 10_000
 
-        var rocks = objects[Tile(3604, 3550), "wrecked_ghost_ship_rock"]!!
+        var rocks = objects.find(Tile(3604, 3550), "wrecked_ghost_ship_rock")
         player.objectOption(rocks, "Jump-to")
         tick(5)
         assertEquals(Tile(3602, 3550), player.tile)
 
-        rocks = objects[Tile(3599, 3552), "wrecked_ghost_ship_rock"]!!
+        rocks = objects.find(Tile(3599, 3552), "wrecked_ghost_ship_rock")
         player.objectOption(rocks, "Jump-to")
         tick(8)
         assertEquals(Tile(3597, 3552), player.tile)
 
-        rocks = objects[Tile(3595, 3554), "wrecked_ghost_ship_rock"]!!
+        rocks = objects.find(Tile(3595, 3554), "wrecked_ghost_ship_rock")
         player.objectOption(rocks, "Jump-to")
         tick(10)
         assertEquals(Tile(3595, 3556), player.tile)
 
-        rocks = objects[Tile(3597, 3559), "wrecked_ghost_ship_rock"]!!
+        rocks = objects.find(Tile(3597, 3559), "wrecked_ghost_ship_rock")
         player.objectOption(rocks, "Jump-to")
         tick(8)
         assertEquals(Tile(3597, 3561), player.tile)
 
-        rocks = objects[Tile(3599, 3564), "wrecked_ghost_ship_rock"]!!
+        rocks = objects.find(Tile(3599, 3564), "wrecked_ghost_ship_rock")
         player.objectOption(rocks, "Jump-to")
         tick(8)
         assertEquals(50.0, player.experience.get(Skill.Agility))
@@ -137,27 +137,27 @@ class WreckedGhostShipTest : WorldTest() {
         player.levels.set(Skill.Agility, 25)
         player.runEnergy = 10_000
 
-        val shore = objects[Tile(3601, 3564), "wrecked_ghost_ship_rock"]!!
+        val shore = objects.find(Tile(3601, 3564), "wrecked_ghost_ship_rock")
         player.objectOption(shore, "Jump-to")
         tick(5)
         assertEquals(Tile(3599, 3564), player.tile)
 
-        var rocks = objects[Tile(3597, 3561), "wrecked_ghost_ship_rock"]!!
+        var rocks = objects.find(Tile(3597, 3561), "wrecked_ghost_ship_rock")
         player.objectOption(rocks, "Jump-to")
         tick(8)
         assertEquals(Tile(3597, 3559), player.tile)
 
-        rocks = objects[Tile(3595, 3556), "wrecked_ghost_ship_rock"]!!
+        rocks = objects.find(Tile(3595, 3556), "wrecked_ghost_ship_rock")
         player.objectOption(rocks, "Jump-to")
         tick(8)
         assertEquals(Tile(3595, 3554), player.tile)
 
-        rocks = objects[Tile(3597, 3552), "wrecked_ghost_ship_rock"]!!
+        rocks = objects.find(Tile(3597, 3552), "wrecked_ghost_ship_rock")
         player.objectOption(rocks, "Jump-to")
         tick(8)
         assertEquals(Tile(3599, 3552), player.tile)
 
-        rocks = objects[Tile(3602, 3550), "wrecked_ghost_ship_rock"]!!
+        rocks = objects.find(Tile(3602, 3550), "wrecked_ghost_ship_rock")
         player.objectOption(rocks, "Jump-to")
         tick(9)
         assertEquals(50.0, player.experience.get(Skill.Agility))
@@ -174,7 +174,7 @@ class WreckedGhostShipTest : WorldTest() {
         player.levels.set(Skill.Agility, 25)
         player.runEnergy = 10_000
 
-        val rocks = objects[Tile(3599, 3552), "wrecked_ghost_ship_rock"]!!
+        val rocks = objects.find(Tile(3599, 3552), "wrecked_ghost_ship_rock")
         player.objectOption(rocks, "Jump-to")
         tick(6)
         assertEquals(Tile(3597, 3552), player.tile)
@@ -189,7 +189,7 @@ class WreckedGhostShipTest : WorldTest() {
         player.levels.set(Skill.Agility, 24)
         player.runEnergy = 10_000
 
-        val rocks = objects[Tile(3599, 3552), "wrecked_ghost_ship_rock"]!!
+        val rocks = objects.find(Tile(3599, 3552), "wrecked_ghost_ship_rock")
         player.objectOption(rocks, "Jump-to")
         tick(2)
         assertTrue(player.containsMessage("You need level 25 agility"))
@@ -204,7 +204,7 @@ class WreckedGhostShipTest : WorldTest() {
         player.levels.set(Skill.Agility, 25)
         player.runEnergy = 0
 
-        val rocks = objects[Tile(3599, 3552), "wrecked_ghost_ship_rock"]!!
+        val rocks = objects.find(Tile(3599, 3552), "wrecked_ghost_ship_rock")
         player.objectOption(rocks, "Jump-to")
         tick(2)
         assertTrue(player.containsMessage("You don't have enough energy"))
@@ -215,7 +215,7 @@ class WreckedGhostShipTest : WorldTest() {
     fun `Cross gangplank off of ship`() {
         val player = createPlayer(Tile(3605, 3545, 1))
 
-        val rocks = objects[Tile(3605, 3546, 1), "wrecked_ghost_ship_gangplank"]!!
+        val rocks = objects.find(Tile(3605, 3546, 1), "wrecked_ghost_ship_gangplank")
         player.objectOption(rocks, "Cross")
         tick(3)
         assertEquals(Tile(3605, 3548), player.tile)
@@ -225,7 +225,7 @@ class WreckedGhostShipTest : WorldTest() {
     fun `Cross gangplank onto ship`() {
         val player = createPlayer(Tile(3605, 3548))
 
-        val rocks = objects[Tile(3605, 3547), "wrecked_ghost_ship_gangplank_end"]!!
+        val rocks = objects.find(Tile(3605, 3547), "wrecked_ghost_ship_gangplank_end")
         player.objectOption(rocks, "Cross")
         tick(3)
         assertEquals(Tile(3605, 3545, 1), player.tile)

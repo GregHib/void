@@ -38,7 +38,7 @@ class HopsPatchTest : WorldTest() {
             })
             val player = createPlayer(tile)
             player.inventory.add("rake")
-            val patch = objects[tile.addY(1), id]!!
+            val patch = objects.find(tile.addY(1), id)
 
             player.objectOption(patch, "Rake")
             tick(10)
@@ -66,7 +66,7 @@ class HopsPatchTest : WorldTest() {
             player.inventory.add("seed_dibber")
             player.levels.set(Skill.Farming, 99)
             player["farming_hops_patch_yannile"] = "weeds_0"
-            val patch = objects[tile.addY(1), "farming_hops_patch_yannile"]!!
+            val patch = objects.find(tile.addY(1), "farming_hops_patch_yannile")
 
             player.itemOnObject(patch, 0)
             tick(10)
@@ -124,7 +124,7 @@ class HopsPatchTest : WorldTest() {
             player.inventory.add("spade")
             player.levels.set(Skill.Farming, 99)
             player["farming_hops_patch_yannile"] = "${id}_life1"
-            val patch = objects[tile.addY(1), "farming_hops_patch_yannile"]!!
+            val patch = objects.find(tile.addY(1), "farming_hops_patch_yannile")
 
             player.objectOption(patch, "Harvest")
             tickIf { player["farming_hops_patch_yannile", "empty"] != "weeds_0" }

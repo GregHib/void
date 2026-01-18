@@ -19,7 +19,7 @@ class ApeAtollTest : WorldTest() {
         player.levels.set(Skill.Constitution, 850)
         player.levels.set(Skill.Agility, 50)
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
-        val stones = objects[Tile(2754, 2742), "ape_atoll_stepping_stones"]!!
+        val stones = objects.find(Tile(2754, 2742), "ape_atoll_stepping_stones")
 
         player.objectOption(stones, "Jump-to")
         tick(8)
@@ -32,7 +32,7 @@ class ApeAtollTest : WorldTest() {
     @Test
     fun `Can't jump to stepping stones with less than 48 agility`() {
         val player = createPlayer(Tile(2755, 2742))
-        val stones = objects[Tile(2754, 2742), "ape_atoll_stepping_stones"]!!
+        val stones = objects.find(Tile(2754, 2742), "ape_atoll_stepping_stones")
         player.objectOption(stones, "Jump-to")
         tick(4)
         assertEquals(Tile(2755, 2742), player.tile)
@@ -43,7 +43,7 @@ class ApeAtollTest : WorldTest() {
         val player = createPlayer(Tile(2755, 2742))
         player.levels.set(Skill.Agility, 50)
         player.equipment.set(EquipSlot.Weapon.index, "medium_ninja_monkey_greegree")
-        val stones = objects[Tile(2754, 2742), "ape_atoll_stepping_stones"]!!
+        val stones = objects.find(Tile(2754, 2742), "ape_atoll_stepping_stones")
         player.objectOption(stones, "Jump-to")
         tick(4)
         assertEquals(Tile(2755, 2742), player.tile)
@@ -54,7 +54,7 @@ class ApeAtollTest : WorldTest() {
         val player = createPlayer(Tile(2755, 2742))
         player.levels.set(Skill.Constitution, 850)
         player.levels.set(Skill.Agility, 50)
-        val stones = objects[Tile(2754, 2742), "ape_atoll_stepping_stones"]!!
+        val stones = objects.find(Tile(2754, 2742), "ape_atoll_stepping_stones")
 
         player.objectOption(stones, "Jump-to")
         tick(8)
@@ -69,7 +69,7 @@ class ApeAtollTest : WorldTest() {
         val player = createPlayer(Tile(2752, 2742))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
-        val tree = objects[Tile(2752, 2741), "ape_atoll_tropical_tree"]!!
+        val tree = objects.find(Tile(2752, 2741), "ape_atoll_tropical_tree")
 
         player.objectOption(tree, "Climb")
         tick(5)
@@ -84,7 +84,7 @@ class ApeAtollTest : WorldTest() {
         val player = createPlayer(Tile(2752, 2742))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "medium_ninja_monkey_greegree")
-        val tree = objects[Tile(2752, 2741), "ape_atoll_tropical_tree"]!!
+        val tree = objects.find(Tile(2752, 2741), "ape_atoll_tropical_tree")
 
         player.objectOption(tree, "Climb")
         tick(5)
@@ -102,7 +102,7 @@ class ApeAtollTest : WorldTest() {
         val player = createPlayer(Tile(2752, 2742))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
-        val tree = objects[Tile(2752, 2741), "ape_atoll_tropical_tree"]!!
+        val tree = objects.find(Tile(2752, 2741), "ape_atoll_tropical_tree")
 
         player.objectOption(tree, "Climb")
         tick(12)
@@ -119,7 +119,7 @@ class ApeAtollTest : WorldTest() {
         })
         val player = createPlayer(Tile(2752, 2742))
         player.levels.set(Skill.Constitution, 850)
-        val tree = objects[Tile(2752, 2741), "ape_atoll_tropical_tree"]!!
+        val tree = objects.find(Tile(2752, 2741), "ape_atoll_tropical_tree")
 
         player.objectOption(tree, "Climb")
         tick(12)
@@ -134,7 +134,7 @@ class ApeAtollTest : WorldTest() {
         val player = createPlayer(Tile(2753, 2741, 2))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
-        val bars = objects[Tile(2752, 2741, 2), "ape_atoll_monkeybars"]!!
+        val bars = objects.find(Tile(2752, 2741, 2), "ape_atoll_monkeybars")
 
         player.objectOption(bars, "Swing Across")
         tick(8)
@@ -149,7 +149,7 @@ class ApeAtollTest : WorldTest() {
         val player = createPlayer(Tile(2753, 2741, 2))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "gorilla_greegree")
-        val bars = objects[Tile(2752, 2741, 2), "ape_atoll_monkeybars"]!!
+        val bars = objects.find(Tile(2752, 2741, 2), "ape_atoll_monkeybars")
 
         player.objectOption(bars, "Swing Across")
         tick(4)
@@ -167,7 +167,7 @@ class ApeAtollTest : WorldTest() {
         val player = createPlayer(Tile(2753, 2741, 2))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
-        val bars = objects[Tile(2752, 2741, 2), "ape_atoll_monkeybars"]!!
+        val bars = objects.find(Tile(2752, 2741, 2), "ape_atoll_monkeybars")
 
         player.objectOption(bars, "Swing Across")
         tick(15)
@@ -184,7 +184,7 @@ class ApeAtollTest : WorldTest() {
         })
         val player = createPlayer(Tile(2753, 2741, 2))
         player.levels.set(Skill.Constitution, 850)
-        val bars = objects[Tile(2752, 2741, 2), "ape_atoll_monkeybars"]!!
+        val bars = objects.find(Tile(2752, 2741, 2), "ape_atoll_monkeybars")
 
         player.objectOption(bars, "Swing Across")
         tick(15)
@@ -199,7 +199,7 @@ class ApeAtollTest : WorldTest() {
         val player = createPlayer(Tile(2747, 2741))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
-        val slope = objects[Tile(2746, 2741), "ape_atoll_skull_slope"]!!
+        val slope = objects.find(Tile(2746, 2741), "ape_atoll_skull_slope")
 
         player.objectOption(slope, "Climb-up")
         tick(6)
@@ -214,7 +214,7 @@ class ApeAtollTest : WorldTest() {
         val player = createPlayer(Tile(2747, 2741))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "medium_zombie_monkey_greegree")
-        val slope = objects[Tile(2746, 2741), "ape_atoll_skull_slope"]!!
+        val slope = objects.find(Tile(2746, 2741), "ape_atoll_skull_slope")
 
         player.objectOption(slope, "Climb-up")
         tick(6)
@@ -232,7 +232,7 @@ class ApeAtollTest : WorldTest() {
         val player = createPlayer(Tile(2747, 2741))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
-        val slope = objects[Tile(2746, 2741), "ape_atoll_skull_slope"]!!
+        val slope = objects.find(Tile(2746, 2741), "ape_atoll_skull_slope")
 
         player.objectOption(slope, "Climb-up")
         tick(6)
@@ -249,7 +249,7 @@ class ApeAtollTest : WorldTest() {
         })
         val player = createPlayer(Tile(2747, 2741))
         player.levels.set(Skill.Constitution, 850)
-        val slope = objects[Tile(2746, 2741), "ape_atoll_skull_slope"]!!
+        val slope = objects.find(Tile(2746, 2741), "ape_atoll_skull_slope")
 
         player.objectOption(slope, "Climb-up")
         tick(16)
@@ -264,7 +264,7 @@ class ApeAtollTest : WorldTest() {
         val player = createPlayer(Tile(2751, 2731))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
-        val slope = objects[Tile(2752, 2731), "ape_atoll_rope_swing"]!!
+        val slope = objects.find(Tile(2752, 2731), "ape_atoll_rope_swing")
 
         player.objectOption(slope, "Swing")
         tick(4)
@@ -279,7 +279,7 @@ class ApeAtollTest : WorldTest() {
         val player = createPlayer(Tile(2751, 2731))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "large_zombie_monkey_greegree")
-        val slope = objects[Tile(2752, 2731), "ape_atoll_rope_swing"]!!
+        val slope = objects.find(Tile(2752, 2731), "ape_atoll_rope_swing")
 
         player.objectOption(slope, "Swing")
         tick(4)
@@ -297,7 +297,7 @@ class ApeAtollTest : WorldTest() {
         val player = createPlayer(Tile(2751, 2731))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
-        val slope = objects[Tile(2752, 2731), "ape_atoll_rope_swing"]!!
+        val slope = objects.find(Tile(2752, 2731), "ape_atoll_rope_swing")
 
         player.objectOption(slope, "Swing")
         tick(10)
@@ -314,7 +314,7 @@ class ApeAtollTest : WorldTest() {
         })
         val player = createPlayer(Tile(2751, 2731))
         player.levels.set(Skill.Constitution, 850)
-        val slope = objects[Tile(2752, 2731), "ape_atoll_rope_swing"]!!
+        val slope = objects.find(Tile(2752, 2731), "ape_atoll_rope_swing")
 
         player.objectOption(slope, "Swing")
         tick(14)
@@ -329,7 +329,7 @@ class ApeAtollTest : WorldTest() {
         val player = createPlayer(Tile(2758, 2734))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
-        val slope = objects[Tile(2757, 2734), "ape_atoll_tropical_tree_rope"]!!
+        val slope = objects.find(Tile(2757, 2734), "ape_atoll_tropical_tree_rope")
 
         player.objectOption(slope, "Climb-down")
         tick(15)
@@ -346,7 +346,7 @@ class ApeAtollTest : WorldTest() {
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
         player.agilityCourse("ape_atoll")
         player["ape_atoll_course_stage"] = 5
-        val slope = objects[Tile(2757, 2734), "ape_atoll_tropical_tree_rope"]!!
+        val slope = objects.find(Tile(2757, 2734), "ape_atoll_tropical_tree_rope")
 
         player.objectOption(slope, "Climb-down")
         tick(15)
@@ -362,7 +362,7 @@ class ApeAtollTest : WorldTest() {
         val player = createPlayer(Tile(2758, 2734))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "monkey_greegree")
-        val slope = objects[Tile(2757, 2734), "ape_atoll_tropical_tree_rope"]!!
+        val slope = objects.find(Tile(2757, 2734), "ape_atoll_tropical_tree_rope")
 
         player.objectOption(slope, "Climb-down")
         tick(14)
@@ -380,7 +380,7 @@ class ApeAtollTest : WorldTest() {
         val player = createPlayer(Tile(2758, 2734))
         player.levels.set(Skill.Constitution, 850)
         player.equipment.set(EquipSlot.Weapon.index, "small_ninja_monkey_greegree")
-        val slope = objects[Tile(2757, 2734), "ape_atoll_tropical_tree_rope"]!!
+        val slope = objects.find(Tile(2757, 2734), "ape_atoll_tropical_tree_rope")
 
         player.objectOption(slope, "Climb-down")
         tick(7)
@@ -397,7 +397,7 @@ class ApeAtollTest : WorldTest() {
         })
         val player = createPlayer(Tile(2758, 2734))
         player.levels.set(Skill.Constitution, 850)
-        val slope = objects[Tile(2757, 2734), "ape_atoll_tropical_tree_rope"]!!
+        val slope = objects.find(Tile(2757, 2734), "ape_atoll_tropical_tree_rope")
 
         player.objectOption(slope, "Climb-down")
         tick(7)

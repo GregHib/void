@@ -218,7 +218,7 @@ class PrinceAliRescueTest : WorldTest() {
 
         // Enter prison
         player.tele(3123, 3244)
-        val door = objects[Tile(3123, 3243), "draynor_prison_door_closed"]!!
+        val door = objects.find(Tile(3123, 3243), "draynor_prison_door_closed")
         player.objectOption(door, "Open")
         tick(4)
         assertEquals(Tile(3123, 3243), player.tile)

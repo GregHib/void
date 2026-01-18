@@ -28,7 +28,7 @@ class StrongholdOfSecurityDoorsTest : WorldTest() {
     ).map { (tile, id) ->
         dynamicTest("${id.toSentenceCase()} door gives questions") {
             val player = createPlayer(tile)
-            val door = objects[tile, id]!!
+            val door = objects.find(tile, id)
 
             player["stronghold_safe_space"] = true
             player.objectOption(door, "Open")
@@ -47,7 +47,7 @@ class StrongholdOfSecurityDoorsTest : WorldTest() {
     ).map { (tile, id) ->
         dynamicTest("Enter through ${id.toSentenceCase()} door") {
             val player = createPlayer(tile)
-            val door = objects[tile, id]!!
+            val door = objects.find(tile, id)
 
             player["stronghold_safe_space"] = false
             player.objectOption(door, "Open")
@@ -68,7 +68,7 @@ class StrongholdOfSecurityDoorsTest : WorldTest() {
             })
             val tile = Tile(1878, 5223)
             val player = createPlayer(tile)
-            val door = objects[tile, "gate_of_war"]!!
+            val door = objects.find(tile, "gate_of_war")
             player["stronghold_safe_space"] = true
 
             player.objectOption(door, "Open")

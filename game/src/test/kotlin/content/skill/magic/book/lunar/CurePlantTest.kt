@@ -22,7 +22,7 @@ class CurePlantTest : WorldTest() {
         player.inventory.add("astral_rune")
         player.inventory.add("earth_rune", 8)
         player["farming_veg_patch_falador_se"] = "potato_diseased_2"
-        val patch = objects[Tile(3058, 3308), "farming_veg_patch_falador_se"]!!
+        val patch = objects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.interactOn(patch, "lunar_spellbook", "cure_plant")
         tick(4)
@@ -39,7 +39,7 @@ class CurePlantTest : WorldTest() {
         player.inventory.add("astral_rune")
         player.inventory.add("earth_rune", 8)
         player["farming_veg_patch_falador_se"] = "potato_2"
-        val patch = objects[Tile(3058, 3308), "farming_veg_patch_falador_se"]!!
+        val patch = objects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.interactOn(patch, "lunar_spellbook", "cure_plant")
         tick(4)
@@ -57,7 +57,7 @@ class CurePlantTest : WorldTest() {
         player.inventory.add("astral_rune")
         player.inventory.add("earth_rune", 8)
         player["farming_veg_patch_falador_se"] = "potato_2"
-        val patch = objects[Tile(3058, 3308), "farming_veg_patch_falador_se"]!!
+        val patch = objects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.interactOn(patch, "lunar_spellbook", "cure_plant")
         tick(4)

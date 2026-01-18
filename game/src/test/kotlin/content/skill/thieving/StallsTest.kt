@@ -21,7 +21,7 @@ internal class StallsTest : WorldTest() {
         })
         val player = createPlayer(Tile(2666, 3310))
         player.levels.set(Skill.Thieving, 15)
-        val stall = objects[Tile(2667, 3310), "bakers_stall"]!!
+        val stall = objects.find(Tile(2667, 3310), "bakers_stall")
 
         player.objectOption(stall, "Steal-from")
         tick(3)

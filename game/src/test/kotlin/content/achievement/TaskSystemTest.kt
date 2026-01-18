@@ -24,7 +24,7 @@ class TaskSystemTest : WorldTest() {
         assertEquals(6, player["task_pin_slot", 0])
 
         // Complete an unrelated task
-        val ladder = objects[Tile(3207, 3223, 2), "lumbridge_castle_ladder"]!!
+        val ladder = objects.find(Tile(3207, 3223, 2), "lumbridge_castle_ladder")
         player.objectOption(ladder, "Climb-up")
         tick(4)
         player.interfaceOption("task_popup", "details", "Details")
@@ -44,7 +44,7 @@ class TaskSystemTest : WorldTest() {
         assertEquals(64, player["task_pinned", -1])
         assertEquals(5, player["task_pin_slot", 0])
 
-        val ladder = objects[Tile(3207, 3223, 2), "lumbridge_castle_ladder"]!!
+        val ladder = objects.find(Tile(3207, 3223, 2), "lumbridge_castle_ladder")
         player.objectOption(ladder, "Climb-up")
         tick(4)
         player.interfaceOption("task_popup", "details", "Details")
@@ -64,7 +64,7 @@ class TaskSystemTest : WorldTest() {
         assertEquals(64, player["task_pinned", -1])
         assertEquals(5, player["task_pin_slot", 0])
 
-        val ladder = objects[Tile(3207, 3223, 2), "lumbridge_castle_ladder"]!!
+        val ladder = objects.find(Tile(3207, 3223, 2), "lumbridge_castle_ladder")
         player.objectOption(ladder, "Climb-up")
         tick(4)
         player.interfaceOption("task_system", "task_5", "Select Task")
@@ -85,7 +85,7 @@ class TaskSystemTest : WorldTest() {
         assertEquals(5, player["task_pin_slot", 0])
 
         // Complete the task
-        val ladder = objects[Tile(3207, 3223, 2), "lumbridge_castle_ladder"]!!
+        val ladder = objects.find(Tile(3207, 3223, 2), "lumbridge_castle_ladder")
         player.objectOption(ladder, "Climb-up")
         tick(4)
         player.tele(3205, 3228, 0)

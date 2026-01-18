@@ -112,7 +112,7 @@ fun Bot.getObject(filter: (GameObject) -> Boolean): GameObject? {
     val objects = get<GameObjects>()
     for (zone in player.tile.zone.spiral(2)) {
         val obj = zone.toCuboid()
-            .flatMap { tile -> objects[tile] }
+            .flatMap { tile -> objects.at(tile) }
             .firstOrNull(filter)
         if (obj != null) {
             return obj
@@ -127,7 +127,7 @@ fun Bot.getObjects(filter: (GameObject) -> Boolean): List<GameObject> {
     for (zone in player.tile.zone.spiral(2)) {
         list.addAll(
             zone.toCuboid()
-                .flatMap { tile -> objects[tile] }
+                .flatMap { tile -> objects.at(tile) }
                 .filter(filter),
         )
     }

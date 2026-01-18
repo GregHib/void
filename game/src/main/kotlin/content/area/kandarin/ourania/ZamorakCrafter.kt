@@ -23,7 +23,7 @@ class ZamorakCrafter(val objects: GameObjects, val patrols: PatrolDefinitions) :
     fun checkRoute(npc: NPC, from: Tile) {
         if (npc.tile.equals(3314, 4811)) {
             npc.strongQueue("craft_runes") {
-                val altar = objects[Tile(3315, 4810), "ourania_altar"]
+                val altar = objects.findOrNull(Tile(3315, 4810), "ourania_altar")
                 if (altar != null) {
                     npc.face(altar)
                 }

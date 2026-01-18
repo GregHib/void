@@ -86,7 +86,7 @@ class Tollgate(val objects: GameObjects) : Script {
 
     fun getGate(player: Player): GameObject {
         val tile = gates.nearestTo(player.tile)
-        return objects[tile].first { it.id.startsWith("toll_gate_al_kharid") }
+        return objects.find(tile) { it.id.startsWith("toll_gate_al_kharid") }
     }
 
     fun pass(player: Player) {

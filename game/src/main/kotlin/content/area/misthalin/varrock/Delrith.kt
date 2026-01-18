@@ -223,7 +223,7 @@ class Delrith(
         npc<Idle>("dark_wizard_water", "Arise, Delrith!", title = "Dark wizards")
 
         statement("The wizards cast an evil spell", clickToContinue = false)
-        val regular = objects[cutscene.tile(3227, 3369), "demon_slayer_stone_table"]!!
+        val regular = objects.find(cutscene.tile(3227, 3369), "demon_slayer_stone_table")
         val table = objects.replace(regular, "demon_slayer_stone_table_summoning", ticks = 8)
         clearCamera()
         turnCamera(cutscene.tile(3227, 3369), 100, 232, 232)

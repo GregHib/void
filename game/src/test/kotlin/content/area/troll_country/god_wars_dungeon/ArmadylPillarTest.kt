@@ -22,7 +22,7 @@ class ArmadylPillarTest : WorldTest() {
         player.equipment.set(EquipSlot.Weapon.index, "rune_crossbow")
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
 
-        val pillar = objects[Tile(2871, 5270, 2), "armadyl_pillar"]!!
+        val pillar = objects.find(Tile(2871, 5270, 2), "armadyl_pillar")
 
         player.objectOption(pillar, "Grapple")
 
@@ -38,7 +38,7 @@ class ArmadylPillarTest : WorldTest() {
         player.equipment.set(EquipSlot.Weapon.index, "rune_crossbow")
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
 
-        val pillar = objects[Tile(2871, 5270, 2), "armadyl_pillar"]!!
+        val pillar = objects.find(Tile(2871, 5270, 2), "armadyl_pillar")
 
         player.objectOption(pillar, "Grapple")
 
@@ -54,7 +54,7 @@ class ArmadylPillarTest : WorldTest() {
         player.inventory.add("rune_crossbow")
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
 
-        val pillar = objects[Tile(2871, 5270, 2), "armadyl_pillar"]!!
+        val pillar = objects.find(Tile(2871, 5270, 2), "armadyl_pillar")
 
         player.objectOption(pillar, "Grapple")
 
@@ -71,7 +71,7 @@ class ArmadylPillarTest : WorldTest() {
         player.equipment.set(EquipSlot.Weapon.index, "rune_crossbow")
         player.inventory.add("mithril_grapple")
 
-        val pillar = objects[Tile(2871, 5270, 2), "armadyl_pillar"]!!
+        val pillar = objects.find(Tile(2871, 5270, 2), "armadyl_pillar")
 
         player.objectOption(pillar, "Grapple")
 
@@ -88,7 +88,7 @@ class ArmadylPillarTest : WorldTest() {
         player.equipment.set(EquipSlot.Weapon.index, "rune_crossbow")
         player.equipment.set(EquipSlot.Ammo.index, "mithril_grapple")
 
-        val pillar = objects[Tile(2871, 5270, 2), "armadyl_pillar"]!!
+        val pillar = objects.find(Tile(2871, 5270, 2), "armadyl_pillar")
 
         player.objectOption(pillar, "Grapple")
 

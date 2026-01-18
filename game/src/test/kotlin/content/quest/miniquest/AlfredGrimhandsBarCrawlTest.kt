@@ -227,7 +227,7 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
     fun `Can't enter gate before quest is completed`() {
         val player = createPlayer(Tile(2545, 3569))
 
-        val gate = objects[Tile(2545, 3569), "barbarian_outpost_gate_right_closed"]!!
+        val gate = objects.find(Tile(2545, 3569), "barbarian_outpost_gate_right_closed")
         player.objectOption(gate, "Open")
         tick(4)
         assertNotEquals(Tile(2546), player.tile)
@@ -238,7 +238,7 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         val player = createPlayer(Tile(2545, 3569))
         player["alfred_grimhands_barcrawl"] = "completed"
 
-        val gate = objects[Tile(2545, 3569), "barbarian_outpost_gate_right_closed"]!!
+        val gate = objects.find(Tile(2545, 3569), "barbarian_outpost_gate_right_closed")
         player.objectOption(gate, "Open")
         tick(4)
         assertEquals(Tile(2546, 3569), player.tile)

@@ -83,7 +83,7 @@ internal class DropTest : WorldTest() {
         val tile = Tile(3212, 3218, 1)
         val player = createPlayer(tile)
         player.inventory.add("bronze_sword")
-        val drawers = objects[tile.addX(1), "table_lumbridge"]!!
+        val drawers = objects.find(tile.addX(1), "table_lumbridge")
         player.itemOnObject(drawers, itemSlot = 0)
         tick(2)
 
@@ -96,7 +96,7 @@ internal class DropTest : WorldTest() {
         val tile = Tile(3212, 3218, 1)
         val player = createPlayer()
         player.inventory.add("toolkit")
-        val drawers = objects[tile.addX(1), "table_lumbridge"]!!
+        val drawers = objects.find(tile.addX(1), "table_lumbridge")
 
         player.itemOnObject(drawers, itemSlot = 0)
         tick()

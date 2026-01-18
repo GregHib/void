@@ -208,10 +208,27 @@ class GameObjects(
         }
     }
 
+    fun find(tile: Tile, filter: (GameObject) -> Boolean) = findOrNull(tile, filter) ?: error("Object not found at $tile")
+
+    fun findOrNull(tile: Tile, filter: (GameObject) -> Boolean) = get(tile, ObjectLayer.WALL, filter)
+        ?: get(tile, ObjectLayer.WALL_DECORATION, filter)
+        ?: get(tile, ObjectLayer.GROUND, filter)
+        ?: get(tile, ObjectLayer.GROUND_DECORATION, filter)
+
+    private fun get(tile: Tile, layer: Int, block: (GameObject) -> Boolean): GameObject? {
+        val obj = getLayer(tile, layer) ?: return null
+        if (block.invoke(obj)) {
+            return obj
+        }
+        return null
+    }
+
+    fun find(tile: Tile, id: String) = findOrNull(tile, id) ?: error("Object '$id' not found at $tile")
+
     /**
      * Get object by string [id]
      */
-    operator fun get(tile: Tile, id: String) = get(tile, ObjectLayer.WALL, id)
+    fun findOrNull(tile: Tile, id: String) = get(tile, ObjectLayer.WALL, id)
         ?: get(tile, ObjectLayer.WALL_DECORATION, id)
         ?: get(tile, ObjectLayer.GROUND, id)
         ?: get(tile, ObjectLayer.GROUND_DECORATION, id)
@@ -227,7 +244,7 @@ class GameObjects(
     /**
      * Get all objects on [tile]
      */
-    operator fun get(tile: Tile) = listOfNotNull(
+    fun at(tile: Tile) = listOfNotNull(
         getLayer(tile, ObjectLayer.WALL),
         getLayer(tile, ObjectLayer.WALL_DECORATION),
         getLayer(tile, ObjectLayer.GROUND),
@@ -237,7 +254,7 @@ class GameObjects(
     /**
      * Get object by integer [id]
      */
-    operator fun get(tile: Tile, id: Int) = get(tile, ObjectLayer.WALL, id)
+    fun findOrNull(tile: Tile, id: Int) = get(tile, ObjectLayer.WALL, id)
         ?: get(tile, ObjectLayer.WALL_DECORATION, id)
         ?: get(tile, ObjectLayer.GROUND, id)
         ?: get(tile, ObjectLayer.GROUND_DECORATION, id)

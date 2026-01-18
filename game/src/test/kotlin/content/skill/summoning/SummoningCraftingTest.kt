@@ -41,7 +41,7 @@ class SummoningCraftingTest : WorldTest() {
             val player = createPlayer(Tile(2523, 3056))
             player.levels.set(Skill.Summoning, 99)
             val originalXp = player.experience.get(Skill.Summoning)
-            val obelisk = objects[Tile(2521, 3055), "obelisk"]!!
+            val obelisk = objects.find(Tile(2521, 3055), "obelisk")
             val interactingSlot = index * 5 - 3
 
             val charmItemId: Int = pouch.def["summoning_charm_id"]
@@ -99,7 +99,7 @@ class SummoningCraftingTest : WorldTest() {
             val player = createPlayer(Tile(2523, 3056))
             player.levels.set(Skill.Summoning, 99)
             val originalXp = player.experience.get(Skill.Summoning)
-            val obelisk = objects[Tile(2521, 3055), "obelisk"]!!
+            val obelisk = objects.find(Tile(2521, 3055), "obelisk")
             val interactingSlot = index * 5 - 3
 
             player.inventory.transaction {

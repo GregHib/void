@@ -13,7 +13,7 @@ internal class BarbarianAdvancedTest : WorldTest() {
     fun `Run up barbarian outpost run wall`() {
         val player = createPlayer(Tile(2538, 3544))
         player.levels.set(Skill.Agility, 90)
-        val pipe = objects[Tile(2538, 3541), "barbarian_outpost_run_wall"]!!
+        val pipe = objects.find(Tile(2538, 3541), "barbarian_outpost_run_wall")
 
         player.objectOption(pipe, "Run-up")
         tick(13)
@@ -25,7 +25,7 @@ internal class BarbarianAdvancedTest : WorldTest() {
     @Test
     fun `Can't do advanced barbarian outpost course`() {
         val player = createPlayer(Tile(2538, 3542))
-        val pipe = objects[Tile(2538, 3541), "barbarian_outpost_run_wall"]!!
+        val pipe = objects.find(Tile(2538, 3541), "barbarian_outpost_run_wall")
 
         player.objectOption(pipe, "Run-up")
         tick(13)
@@ -37,7 +37,7 @@ internal class BarbarianAdvancedTest : WorldTest() {
     @Test
     fun `Climb up wall`() {
         val player = createPlayer(Tile(2537, 3545, 2))
-        val pipe = objects[Tile(2537, 3546, 2), "barbarian_outpost_climb_wall"]!!
+        val pipe = objects.find(Tile(2537, 3546, 2), "barbarian_outpost_climb_wall")
 
         player.objectOption(pipe, "Climb-up")
         tick(6)
@@ -49,7 +49,7 @@ internal class BarbarianAdvancedTest : WorldTest() {
     @Test
     fun `Fire spring device`() {
         val player = createPlayer(Tile(2536, 3546, 3))
-        val pipe = objects[Tile(2532, 3544, 3), "barbarian_outpost_spring"]!!
+        val pipe = objects.find(Tile(2532, 3544, 3), "barbarian_outpost_spring")
 
         player.objectOption(pipe, "Fire")
         tick(10)
@@ -61,7 +61,7 @@ internal class BarbarianAdvancedTest : WorldTest() {
     @Test
     fun `Cross balance beam`() {
         val player = createPlayer(Tile(2532, 3553, 3))
-        val pipe = objects[Tile(2534, 3553, 3), "barbarian_outpost_balance_beam"]!!
+        val pipe = objects.find(Tile(2534, 3553, 3), "barbarian_outpost_balance_beam")
 
         player.objectOption(pipe, "Cross")
         tick(7)
@@ -73,7 +73,7 @@ internal class BarbarianAdvancedTest : WorldTest() {
     @Test
     fun `Jump over gap`() {
         val player = createPlayer(Tile(2536, 3553, 3))
-        val pipe = objects[Tile(2537, 3553, 3), "barbarian_outpost_gap"]!!
+        val pipe = objects.find(Tile(2537, 3553, 3), "barbarian_outpost_gap")
 
         player.objectOption(pipe, "Jump-over")
         tick(3)
@@ -85,7 +85,7 @@ internal class BarbarianAdvancedTest : WorldTest() {
     @Test
     fun `Slide down roof`() {
         val player = createPlayer(Tile(2539, 3553, 2))
-        val pipe = objects[Tile(2540, 3553, 2), "barbarian_outpost_roof"]!!
+        val pipe = objects.find(Tile(2540, 3553, 2), "barbarian_outpost_roof")
 
         player.objectOption(pipe, "Slide-down")
         tick(6)
@@ -97,7 +97,7 @@ internal class BarbarianAdvancedTest : WorldTest() {
     @Test
     fun `Finish advanced course lap`() {
         val player = createPlayer(Tile(2538, 3552, 2))
-        val pipe = objects[Tile(2540, 3552, 2), "barbarian_outpost_roof"]!!
+        val pipe = objects.find(Tile(2540, 3552, 2), "barbarian_outpost_roof")
 
         player.agilityCourse("barbarian")
         player.agilityStage = 7

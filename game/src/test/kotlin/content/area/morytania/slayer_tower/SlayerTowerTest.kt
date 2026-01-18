@@ -24,7 +24,7 @@ class SlayerTowerTest : WorldTest() {
         dynamicTest("Climb $direction spikey chain $tile") {
             val player = createPlayer(tile.addY(1))
             player.levels.set(Skill.Agility, 71)
-            val chain = objects[tile, "slayer_tower_chain_$direction"]!!
+            val chain = objects.find(tile, "slayer_tower_chain_$direction")
 
             player.objectOption(chain, "Climb-$direction")
 
@@ -45,7 +45,7 @@ class SlayerTowerTest : WorldTest() {
         dynamicTest("Can't climb $direction spikey chain $tile without level") {
             val player = createPlayer(tile.addX(-1))
             player.levels.set(Skill.Agility, 60)
-            val chain = objects[tile, "slayer_tower_chain_$direction"]!!
+            val chain = objects.find(tile, "slayer_tower_chain_$direction")
 
             player.objectOption(chain, "Climb-$direction")
 
@@ -68,7 +68,7 @@ class SlayerTowerTest : WorldTest() {
             })
             val player = createPlayer(tile.addY(1))
             player.levels.set(Skill.Agility, 99)
-            val chain = objects[tile, "slayer_tower_chain_$direction"]!!
+            val chain = objects.find(tile, "slayer_tower_chain_$direction")
 
             player.objectOption(chain, "Climb-$direction")
 

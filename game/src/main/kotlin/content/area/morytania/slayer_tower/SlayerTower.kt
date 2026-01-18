@@ -20,18 +20,18 @@ class SlayerTower(val objects: GameObjects) : Script {
     init {
         objectSpawn("slayer_tower_entrance_door_*_opened") {
             val statue = if (id == "slayer_tower_entrance_door_west_opened") {
-                objects[tile.add(-2, -2), "slayer_tower_statue"]
+                objects.findOrNull(tile.add(-2, -2), "slayer_tower_statue")
             } else {
-                objects[tile.add(1, -2), "slayer_tower_statue"]
+                objects.findOrNull(tile.add(1, -2), "slayer_tower_statue")
             } ?: return@objectSpawn
             statue.anim("slayer_tower_statue_stand")
         }
 
         objectDespawn("slayer_tower_entrance_door_*_opened") {
             val statue = if (id == "slayer_tower_entrance_door_west_opened") {
-                objects[tile.add(-2, -2), "slayer_tower_statue"]
+                objects.findOrNull(tile.add(-2, -2), "slayer_tower_statue")
             } else {
-                objects[tile.add(1, -2), "slayer_tower_statue"]
+                objects.findOrNull(tile.add(1, -2), "slayer_tower_statue")
             } ?: return@objectDespawn
             statue.anim("slayer_tower_statue_hide")
         }

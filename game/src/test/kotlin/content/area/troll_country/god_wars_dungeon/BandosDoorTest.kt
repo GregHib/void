@@ -18,7 +18,7 @@ class BandosDoorTest : WorldTest() {
         val player = createPlayer(Tile(2851, 5333, 2))
         player.levels.set(Skill.Strength, 70)
         player.inventory.add("hammer")
-        val door = objects[Tile(2851, 5333, 2), "godwars_bandos_big_door"]!!
+        val door = objects.find(Tile(2851, 5333, 2), "godwars_bandos_big_door")
 
         player.objectOption(door, "Bang")
         tick(4)
@@ -29,7 +29,7 @@ class BandosDoorTest : WorldTest() {
     @Test
     fun `Bang on door exit`() {
         val player = createPlayer(Tile(2850, 5333, 2))
-        val door = objects[Tile(2851, 5333, 2), "godwars_bandos_big_door"]!!
+        val door = objects.find(Tile(2851, 5333, 2), "godwars_bandos_big_door")
 
         player.objectOption(door, "Bang")
         tick(4)
@@ -42,7 +42,7 @@ class BandosDoorTest : WorldTest() {
         val player = createPlayer(Tile(2851, 5333, 2))
         player.levels.set(Skill.Strength, 69)
         player.inventory.add("hammer")
-        val door = objects[Tile(2851, 5333, 2), "godwars_bandos_big_door"]!!
+        val door = objects.find(Tile(2851, 5333, 2), "godwars_bandos_big_door")
 
         player.objectOption(door, "Bang")
         tick(2)
@@ -55,7 +55,7 @@ class BandosDoorTest : WorldTest() {
     fun `Can't bang on door without a hammer`() {
         val player = createPlayer(Tile(2851, 5333, 2))
         player.levels.set(Skill.Strength, 70)
-        val door = objects[Tile(2851, 5333, 2), "godwars_bandos_big_door"]!!
+        val door = objects.find(Tile(2851, 5333, 2), "godwars_bandos_big_door")
 
         player.objectOption(door, "Bang")
         tick(2)
