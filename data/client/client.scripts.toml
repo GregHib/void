@@ -283,3 +283,6 @@ params = [
 
 [refresh_item_info]
 id = 917
+
+[reset_summoning_orb]
+id = 2471
