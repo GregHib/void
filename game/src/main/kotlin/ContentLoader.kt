@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.get
 import java.nio.file.NoSuchFileException
-import kotlin.reflect.KClass
 import kotlin.system.exitProcess
 
 /**

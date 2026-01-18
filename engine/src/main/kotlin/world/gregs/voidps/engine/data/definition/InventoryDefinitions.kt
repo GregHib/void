@@ -5,7 +5,6 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.InventoryDefinition
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timedLoad
 
 class InventoryDefinitions(

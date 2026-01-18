@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.suspend.StringSuspension
 
 private const val DESTROY_INTERFACE_ID = "dialogue_confirm_destroy"

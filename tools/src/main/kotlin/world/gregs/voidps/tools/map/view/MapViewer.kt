@@ -5,16 +5,12 @@ import com.github.weisj.darklaf.LafManager.getPreferredThemeStyle
 import content.bot.interact.navigation.graph.NavigationGraph
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
-import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.MapDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
-import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
-import world.gregs.voidps.engine.map.collision.GameObjectCollisionAdd
-import world.gregs.voidps.engine.map.collision.GameObjectCollisionRemove
 import world.gregs.voidps.tools.map.view.draw.MapView
 import java.awt.EventQueue
 import javax.swing.JFrame

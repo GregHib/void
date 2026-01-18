@@ -2,7 +2,6 @@ package world.gregs.voidps.tools.map.view.draw
 
 import content.bot.interact.navigation.graph.NavigationGraph
 import kotlinx.coroutines.*
-import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.tools.map.view.draw.WorldMap.Companion.flipRegionY
 import world.gregs.voidps.tools.map.view.graph.AreaSet
 import world.gregs.voidps.tools.map.view.interact.MouseDrag

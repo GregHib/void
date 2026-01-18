@@ -1,6 +1,5 @@
 package world.gregs.voidps.network.login.protocol.encode
 
-import io.ktor.utils.io.*
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.Protocol.CAMERA_MOVE
 import world.gregs.voidps.network.login.Protocol.CAMERA_RESET

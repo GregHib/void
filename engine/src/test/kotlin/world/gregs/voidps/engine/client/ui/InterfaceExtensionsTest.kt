@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.client.ui
 
 import io.mockk.every
-import io.mockk.mockk
 import io.mockk.verify
 import io.mockk.verifyOrder
 import org.junit.jupiter.api.Assertions.assertFalse
@@ -10,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_ID
-import world.gregs.voidps.engine.entity.character.player.Player
 
 internal class InterfaceExtensionsTest : InterfaceTest() {
 

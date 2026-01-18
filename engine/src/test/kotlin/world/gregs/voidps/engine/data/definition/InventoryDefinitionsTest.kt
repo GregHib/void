@@ -1,7 +1,5 @@
 package world.gregs.voidps.engine.data.definition
 
-import io.mockk.every
-import io.mockk.mockk
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.definition.data.ItemDefinition

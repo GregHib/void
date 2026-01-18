@@ -1,6 +1,5 @@
 package world.gregs.voidps.cache.definition.decoder
 
-import world.gregs.voidps.buffer.Unicode
 import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache

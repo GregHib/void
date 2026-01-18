@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.definition.MapDefinitions
-import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Zone
 

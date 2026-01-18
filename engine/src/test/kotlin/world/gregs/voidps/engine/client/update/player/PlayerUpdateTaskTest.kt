@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import org.koin.dsl.module
 import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.buffer.write.Writer
@@ -22,8 +21,6 @@ import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.protocol.encode.updatePlayers
-import world.gregs.voidps.network.login.protocol.visual.PlayerVisuals
-import world.gregs.voidps.network.login.protocol.visual.VisualEncoder
 import world.gregs.voidps.network.login.protocol.visual.update.Face
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Tile

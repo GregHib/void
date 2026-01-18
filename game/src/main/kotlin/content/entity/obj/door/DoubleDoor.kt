@@ -6,7 +6,6 @@ import content.entity.obj.door.Gate.isGate
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.equals
 
