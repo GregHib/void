@@ -327,7 +327,10 @@ abstract class WorldTest : KoinTest {
         private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder(), cache).load(configFiles) }
         private val fontDefinitions: FontDefinitions by lazy { FontDefinitions(FontDecoder().load(cache)).load(configFiles.find(Settings["definitions.fonts"])) }
         private val objectTeleports: ObjectTeleports by lazy { ObjectTeleports().load(configFiles.list(Settings["map.teleports"])) }
-        private val itemOnItemDefinitions: ItemOnItemDefinitions by lazy { ItemOnItemDefinitions().load(configFiles.list(Settings["definitions.itemOnItem"])) }
+        private val itemOnItemDefinitions: ItemOnItemDefinitions by lazy {
+            itemIds.size
+            ItemOnItemDefinitions().load(configFiles.list(Settings["definitions.itemOnItem"]))
+        }
         private val variableDefinitions: VariableDefinitions by lazy {
             VariableDefinitions().load(
                 configFiles.list(Settings["definitions.variables.players"]),

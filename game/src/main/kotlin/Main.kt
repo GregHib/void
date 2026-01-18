@@ -131,7 +131,10 @@ object Main {
             single(createdAtStart = true) { AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"])) }
             single(createdAtStart = true) { ParameterDefinitions(get(), get()).load(files.find(Settings["definitions.parameters"])) }
             single(createdAtStart = true) { FontDefinitions(FontDecoder().load(cache)).load(files.find(Settings["definitions.fonts"])) }
-            single(createdAtStart = true) { ItemOnItemDefinitions().load(files.list(Settings["definitions.itemOnItem"])) }
+            single(createdAtStart = true) {
+                get<ItemDefinitions>()
+                ItemOnItemDefinitions().load(files.list(Settings["definitions.itemOnItem"]))
+            }
             single(createdAtStart = true) {
                 VariableDefinitions().load(
                     files.list(Settings["definitions.variables.players"]),
