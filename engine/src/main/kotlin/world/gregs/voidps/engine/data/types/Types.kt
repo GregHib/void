@@ -14,7 +14,7 @@ import java.io.File
 import kotlin.collections.set
 import kotlin.text.replace
 
-abstract class Types<T, D: Definition> where T: Type, T: Params {
+abstract class Types<T, D : Definition> where T : Type, T : Params {
     protected var types: Array<T> = create(0)
     protected var ids = Object2IntOpenHashMap<String>().also { it.defaultReturnValue(-1) }
 
@@ -25,7 +25,7 @@ abstract class Types<T, D: Definition> where T: Type, T: Params {
     abstract val extension: String
     abstract val definitionCodec: DefinitionCodec<D>
     abstract val typeCodec: TypeCodec<T>
-    val size = 1_000_000
+    open val size = 1_000_000
 
     abstract fun create(size: Int, array: Array<D>): Array<T>
 
@@ -35,12 +35,19 @@ abstract class Types<T, D: Definition> where T: Type, T: Params {
         val extension = Settings[extension]
         val file = File("${Settings["storage.caching.path"]}${extension.replace(".toml", ".bin")}")
         // Definitions
-        if (!file.exists() || files.cacheUpdate || !Settings["storage.caching.active", false]) {
-            val defs = definitionCodec.load(cache)
-            types = create(defs.size, defs)
-            typeCodec.write(file, types, size)
-        } else {
+        val active = Settings["storage.caching.active", false]
+        if (file.exists() && !files.cacheUpdate && active) {
             types = typeCodec.read(file)
+        } else {
+            var start = System.currentTimeMillis()
+            val defs = definitionCodec.load(cache)
+            println("Definition load took ${System.currentTimeMillis() - start}ms")
+            start = System.currentTimeMillis()
+            types = create(defs.size, defs)
+            println("Type conversion took ${System.currentTimeMillis() - start}ms")
+            if (active) {
+                typeCodec.write(file, types, size)
+            }
         }
         // Ids
         for (type in types) {

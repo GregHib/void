@@ -11,6 +11,8 @@ object NpcTypes : ParamTypes<NpcType, NPCDefinitionFull>() {
     override val params = NpcParams
     override val definitionCodec = NpcDefinitionCodec
     override val typeCodec = NpcTypeCodec
+    override val maxStringSize = 250
+    override val size: Int = 5_000_000
     override fun create(size: Int, array: Array<NPCDefinitionFull>) = Array(size) { NpcType(array[it]) }
     override fun create(size: Int) = Array(size) { NpcType(it) }
 }

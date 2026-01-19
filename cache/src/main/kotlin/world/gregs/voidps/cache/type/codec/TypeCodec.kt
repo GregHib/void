@@ -12,7 +12,10 @@ abstract class TypeCodec<T: Type> {
     abstract fun create(size: Int, block: (T) -> Unit): Array<T>
 
     fun read(file: File): Array<T> {
-        val reader = ArrayReader(file.readBytes())
+        val start = System.currentTimeMillis()
+        val array = file.readBytes()
+        println("Array read took ${System.currentTimeMillis() - start}ms ${array.size}")
+        val reader = ArrayReader(array)
         return create(reader.readInt()) {
             read(it, reader)
         }
@@ -22,6 +25,7 @@ abstract class TypeCodec<T: Type> {
 
     fun write(file: File, types: Array<T>, size: Int = 100_000) {
         val writer = ArrayWriter(size)
+        writer.writeInt(types.size)
         for (type in types) {
             write(type, writer)
         }

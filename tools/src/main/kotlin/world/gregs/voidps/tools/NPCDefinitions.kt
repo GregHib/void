@@ -22,9 +22,12 @@ object NPCDefinitions {
         val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
 
         val start = System.currentTimeMillis()
-        NpcTypes.load(cache, files)
+//        for (i in 0 until 1) {
+            NpcTypes.load(cache, files)
+//        }
         println("Loaded in ${System.currentTimeMillis() - start}ms")
         println(NpcTypes.get(1))
+        System.exit(0)
 
         val categories = CategoryDefinitions().load(files.find(Settings["definitions.categories"]))
         val ammo = AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"]))

@@ -12,14 +12,21 @@ import java.io.File
 
 abstract class ParamTypes<T, D: Definition> : Types<T, D>() where T: Type, T: Params {
     abstract val params: Parameters<T>
+    open val maxStringSize = 100
+
     override fun load(cache: Cache, files: ConfigFiles) {
         params.validate()
         super.load(cache, files)
         // Params
         val file = File("${Settings["storage.caching.path"]}${extension.replace(".toml", "_params.bin")}")
-        if (!file.exists() || files.cacheUpdate || !Settings["storage.caching.active", false] || files.extensions.contains(extension)) {
-            readConfig(files.list(extension), types)
-            params.write(file, types, size)
+        val active = Settings["storage.caching.active", false]
+        if (!file.exists() || files.cacheUpdate || !active || files.extensions.contains(extension)) {
+            val start = System.currentTimeMillis()
+            readConfig(files.list(Settings[extension]), types)
+            println("Config read took ${System.currentTimeMillis() - start}ms")
+            if (active) {
+                params.write(file, types, size)
+            }
         } else {
             params.read(file, types)
         }
@@ -27,7 +34,7 @@ abstract class ParamTypes<T, D: Definition> : Types<T, D>() where T: Type, T: Pa
 
     open fun readConfig(paths: List<String>, types: Array<T>) {
         for (path in paths) {
-            Config.fileReader(path) {
+            Config.fileReader(path, maxStringSize) {
                 while (nextSection()) {
                     val section = section()
                     val params = params.read(this)
@@ -42,6 +49,7 @@ abstract class ParamTypes<T, D: Definition> : Types<T, D>() where T: Type, T: Pa
                         }
                     }
                     val type = types[id]
+                    ids.put(section, id)
                     type.stringId = section
                     type.set(params)
                 }
