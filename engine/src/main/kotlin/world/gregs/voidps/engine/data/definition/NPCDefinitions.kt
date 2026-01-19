@@ -31,6 +31,8 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
         this.ids = map
     }
 
+    val map = mutableMapOf<String, Any>()
+
     fun load(
         paths: List<String>,
         dropTables: DropTables? = null,
@@ -83,6 +85,9 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                         ids[stringId] = id
                         definitions[id].stringId = stringId
                         if (extras.isNotEmpty()) {
+                            for((key, value) in extras) {
+                                map.put(key, value::class)
+                            }
                             if (definitions[id].extras != null) {
                                 (definitions[id].extras as MutableMap<String, Any>).putAll(extras)
                             } else {
@@ -92,6 +97,7 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                     }
                 }
             }
+            println(map)
             this.ids = ids
             ids.size
         }

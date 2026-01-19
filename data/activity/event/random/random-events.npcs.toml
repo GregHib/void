@@ -45,7 +45,7 @@ examine = "Speaks on behalf of His and Her Royal Frogness."
 
 [quiz_master]
 id = 2477
-interact_distance = 4
+interact_range = 4
 categories = ["human"]
 examine = "Apparently a master of quizzes!"
 

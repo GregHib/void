@@ -120,9 +120,9 @@ class NPCEncoder : DefinitionEncoder<NPCDefinitionFull> {
             writeByte(definition.secondaryShadowModifier.toInt())
         }
 
-        if (definition.walkMask.toInt() != 0) {
+        if (definition.walkMode.toInt() != 0) {
             writeByte(119)
-            writeByte(definition.walkMask.toInt())
+            writeByte(definition.walkMode.toInt())
         }
 
         val translations = definition.translations

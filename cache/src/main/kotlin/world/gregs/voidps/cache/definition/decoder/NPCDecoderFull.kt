@@ -53,7 +53,7 @@ class NPCDecoderFull(val members: Boolean = true) : DefinitionDecoder<NPCDefinit
                 primaryShadowModifier = buffer.readByte().toByte()
                 secondaryShadowModifier = buffer.readByte().toByte()
             }
-            119 -> walkMask = buffer.readByte().toByte()
+            119 -> walkMode = buffer.readByte().toByte()
             121 -> {
                 translations = arrayOfNulls(modelIds!!.size)
                 val length = buffer.readUnsignedByte()

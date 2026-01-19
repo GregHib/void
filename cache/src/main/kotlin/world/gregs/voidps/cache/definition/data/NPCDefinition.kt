@@ -1,5 +1,7 @@
 package world.gregs.voidps.cache.definition.data
 
+import kotlinx.serialization.Transient
+import kotlinx.serialization.Serializable
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
 import world.gregs.voidps.cache.definition.Transforms

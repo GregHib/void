@@ -46,7 +46,7 @@ internal class NPCEncoderTest {
             secondaryShadowColour = 12345,
             primaryShadowModifier = 10,
             secondaryShadowModifier = -10,
-            walkMask = 4,
+            walkMode = 4,
             translations = arrayOf(intArrayOf(1, 64, 126), intArrayOf(4, 27, 84), intArrayOf(35, 87, 70)),
             hitbarSprite = 30000,
             height = 15000,

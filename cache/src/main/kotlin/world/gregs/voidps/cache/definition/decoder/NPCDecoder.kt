@@ -5,6 +5,7 @@ import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Index.NPCS
 import world.gregs.voidps.cache.definition.Parameters
 import world.gregs.voidps.cache.definition.data.NPCDefinition
+import world.gregs.voidps.cache.definition.data.NPCDefinitionFull
 
 class NPCDecoder(
     val member: Boolean,
