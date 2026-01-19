@@ -329,22 +329,6 @@ examine = "Only sawdust..."
 id = 10672
 examine = "Reclaim your lost puppets!"
 
-[crate_84]
-id = 10701
-examine = "A blue crate. Probably containing puppets."
-
-[crate_85]
-id = 10702
-examine = "A green crate. Probably containing puppets."
-
-[crate_86]
-id = 10703
-examine = "A red crate. Probably containing puppets."
-
-[crate_87]
-id = 10704
-examine = "A large crate. More puppets?"
-
 [crate_88]
 id = 11228
 examine = "Useful for transportation of valuable items."

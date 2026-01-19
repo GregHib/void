@@ -1,0 +1,9 @@
+spawns = [
+  { id = "rosie_xmas_2005", x = 2007, y = 4427, level = 1 },
+  { id = "sorcha_xmas_2005", x = 1993, y = 4442, level = 1 },
+  { id = "cait_xmas_2005", x = 2022, y = 4435, level = 1 },
+  { id = "cormac_xmas_2005", x = 2011, y = 4443 },
+  { id = "fionn_xmas_2005", x = 2005, y = 4435 },
+  { id = "donnacha_xmas_2005", x = 1996, y = 4439, level = 1 },
+  { id = "ronan_xmas_2005", x = 2003, y = 4445 },
+]

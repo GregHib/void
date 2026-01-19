@@ -19,8 +19,8 @@ spawns = [
     { id = "luthas_musa_point", x = 2939, y = 3154 },
     { id = "swarm_musa_point", x = 2883, y = 3155 },
     { id = "swarm_musa_point", x = 2883, y = 3160 },
-    { id = "jack_musa_point", x = 2904, y = 3178, members = true },
-    { id = "jill_musa_point", x = 2907, y = 3174, members = true },
-    { id = "jeff_musa_point", x = 2906, y = 3172, members = true },
+    { id = "gub_musa_multi_child_1", x = 2904, y = 3178, members = true },
+    { id = "gub_musa_multi_child_2", x = 2907, y = 3174, members = true },
+    { id = "gub_musa_multi_child_3", x = 2906, y = 3172, members = true },
     { id = "jessika_mudskipper_point", x = 2944, y = 3147, members = true },
 ]

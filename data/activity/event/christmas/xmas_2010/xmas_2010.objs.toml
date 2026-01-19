@@ -1,0 +1,91 @@
+[christmas-cupboard_xmas_2010]
+id = 12258
+examine = "A portal to another world, or just a cupboard?"
+
+[snowman_accessories_xmas_2010]
+id = 15651
+examine = "It almost looks like a snowman melted here."
+
+[trinket_of_sealification_xmas_2010]
+id = 29000
+examine = "Arf arf!"
+
+[snowmaker_xmas_2010]
+id = 29014
+examine = "This will definitely fit in Thorvar's bag."
+
+[ice_skates_xmas_2010]
+id = 29039
+examine = "These look far too small for Thorvar."
+
+[pile_of_snow_xmas_2010]
+id = 29047
+examine = "This looks cold."
+
+[icicle_xmas_2010]
+id = 29049
+examine = "It mite be a stalagmite."
+
+[switch_xmas_2010]
+id = 29051
+examine = "It's a switch."
+
+[icy_ground_xmas_2010]
+id = 56893
+examine = "This looks slippery."
+
+[sign_xmas_2010]
+id = 56896
+examine = "'No Humans'."
+
+[portal_xmas_2010]
+id = 56898
+examine = "This looks like a sensible thing to step into."
+
+[door_xmas_2010]
+id = 56900
+examine = "The door is now clear of ice."
+
+[door_2_xmas_2010]
+id = 56901
+examine = "It's blocked by a single icicle."
+
+[door_3_xmas_2010]
+id = 56902
+examine = "It's blocked by two icicles."
+
+[door_4_xmas_2010]
+id = 56903
+examine = "It's blocked by three icicles."
+
+[portal_2_xmas_2010]
+id = 56904
+examine = "This looks like a sensible thing to step into."
+
+[icicle_2_xmas_2010]
+id = 56905
+examine = "A tiny icicle. Ticicle."
+
+[icicle_3_xmas_2010]
+id = 56906
+examine = "A tiny icicle. Ticicle."
+
+[christmas_tree_xmas_2010]
+id = 56933
+examine = "O Christmas tree, O Christmas tree..."
+
+[snowmaker_2_xmas_2010]
+id = 56934
+examine = "You never know when you might need snow."
+
+[gates_xmas_2010]
+id = 56935
+examine = "They lead to the seal sliding event."
+
+[gates_2_xmas_2010]
+id = 56936
+examine = "They lead back to the main competition grounds."
+
+[portal_3_xmas_2010]
+id = 56960
+examine = "A portal from this mystical place."

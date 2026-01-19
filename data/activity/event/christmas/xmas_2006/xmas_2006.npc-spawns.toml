@@ -1,0 +1,17 @@
+spawns = [
+  { id = "gublinch_1_spawn_1", x = 3184, y = 5340 },
+  { id = "gublinch_1_spawn_2", x = 3191, y = 5325 },
+  { id = "gublinch_1_spawn_3", x = 3147, y = 5328 },
+  { id = "gublinch_1_spawn_4", x = 3153, y = 5341 },
+  { id = "gublinch_1_spawn_5", x = 3164, y = 5341 },
+  { id = "gublinch_1_spawn_6", x = 3147, y = 5355 },
+  { id = "gublinch_1_spawn_7", x = 3161, y = 5359 },
+  { id = "gublinch_1_spawn_8", x = 3171, y = 5353 },
+  { id = "gublinch_1_spawn_9", x = 3187, y = 5353 },
+  { id = "gublinch_1_spawn_10", x = 3189, y = 5366 },
+  { id = "gublinch_1_spawn_11", x = 3177, y = 5365 },
+  { id = "gublinch_1_spawn_12", x = 3191, y = 5334 },
+  { id = "gublinch_1_spawn_13", x = 3148, y = 5321 },
+  { id = "gublinch_1_spawn_14", x = 3149, y = 5366 },
+  { id = "gublinch_1_spawn_15", x = 3171, y = 5338 },
+]

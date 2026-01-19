@@ -1,0 +1,279 @@
+[empty_table_xmas_2009]
+id = 47733
+examine = "The table is bare."
+
+[table_xmas_2009]
+id = 47736
+examine = "The table is covered with roast turkey and sausages."
+
+[table_2_xmas_2009]
+id = 47737
+examine = "The table is covered with sauces and crunchy roast potatoes."
+
+[unicorn_sculpture_xmas_2009]
+id = 47744
+examine = "A beautiful ice sculpture of a unicorn."
+
+[minotaur_sculpture_xmas_2009]
+id = 47745
+examine = "A fierce ice sculpture of a minotaur."
+
+[dragon_sculpture_xmas_2009]
+id = 47746
+examine = "A dazzling ice sculpture of a dragon."
+
+[fountain_xmas_2009]
+id = 47747
+examine = "The water looks VERY cold!"
+
+[christmas_tree_xmas_2009]
+id = 47748
+examine = "It has been beautifully decorated."
+
+[tree_xmas_2009]
+id = 47755
+examine = "An ornamental Christmas tree."
+
+[present_xmas_2009]
+id = 47758
+examine = "This one looks bigger than the rest."
+
+[presents_xmas_2009]
+id = 47760
+examine = "I wonder what's inside."
+
+[presents_2_xmas_2009]
+id = 47762
+examine = "I wonder what's inside."
+
+[christmas_cupboard_xmas_2009]
+id = 47763
+examine = "Could this be a portal to another world or is it just a cupboard?"
+
+[christmas_cupboard_2_xmas_2009]
+id = 47764
+examine = "Could this be a portal to another world or is it just a cupboard?"
+
+[christmas_cupboard_3_xmas_2009]
+id = 47765
+examine = "Could this be a portal to another world or is it just a cupboard?"
+
+[christmas_cupboard_4_xmas_2009]
+id = 47766
+examine = "Could this be a portal to another world or is it just a cupboard?"
+
+[cupboard_xmas_2009]
+id = 47767
+examine = "This cupboard is thick with dust."
+
+[cupboard_2_xmas_2009]
+id = 47768
+examine = "This cupboard is thick with dust."
+
+[barrel_xmas_2009]
+id = 47773
+examine = "An old wooden barrel."
+
+[gates_xmas_2009]
+id = 47774
+examine = "I think someone doesn't want guests."
+
+[gates_2_xmas_2009]
+id = 47775
+examine = "Rusty old gates."
+
+[stairs_xmas_2009]
+id = 47776
+examine = "Stairs leading up."
+
+[scourges_grave_xmas_2009]
+id = 47785
+examine = "It's Scourge's grave! Spooky!"
+
+[barrel_2_xmas_2009]
+id = 47787
+examine = "An old wooden barrel."
+
+[barrel_3_xmas_2009]
+id = 47788
+examine = "An old wooden barrel."
+
+[general_wartface_xmas_2009]
+id = 47790
+examine = "He's imprisoned in fire!"
+
+[general_wartface_2_xmas_2009]
+id = 47791
+examine = "He's imprisoned in fire!"
+
+[general_bentnoze_xmas_2009]
+id = 47793
+examine = "He's trapped in fire!"
+
+[general_bentnoze_2_xmas_2009]
+id = 47794
+examine = "He's trapped in fire!"
+
+[sir_amik_varze_xmas_2009]
+id = 47796
+examine = "Sir Amik is caught in flames!"
+
+[sir_amik_varze_2_xmas_2009]
+id = 47797
+examine = "Sir Amik is caught in flames!"
+
+[cook_xmas_2009]
+id = 47799
+examine = "Cook is caught in fire!"
+
+[cook_2_xmas_2009]
+id = 47800
+examine = "Cook is caught in fire!"
+
+[partygoer_xmas_2009]
+id = 47802
+examine = "This partygoer is trapped in fire!"
+
+[partygoer_2_xmas_2009]
+id = 47803
+examine = "This partygoer is trapped in fire!"
+
+[tiny_thom_xmas_2009]
+id = 47805
+examine = "Tiny Thom is trapped in fire!"
+
+[tiny_thom_2_xmas_2009]
+id = 47806
+examine = "Tiny Thom is trapped in fire!"
+
+[scourges_bed_xmas_2009]
+id = 47856
+examine = "Scourge's bed actually looks pretty comfy."
+
+[santa_xmas_2009]
+id = 47857
+examine = "The cage is locked up tight."
+
+[cage_xmas_2009]
+id = 47858
+examine = "The cage is empty now."
+
+[staircase_xmas_2009]
+id = 47859
+examine = "These stairs go down."
+
+[staircase_2_xmas_2009]
+id = 47862
+examine = "These stairs look spooky."
+
+[candlestand_xmas_2009]
+id = 47872
+examine = "The flickering light casts a dim, miserly glow."
+
+[table_3_xmas_2009]
+id = 47873
+examine = "A round table with uneven legs."
+
+[table_4_xmas_2009]
+id = 47876
+examine = "A round table with uneven legs."
+
+[table_5_xmas_2009]
+id = 47877
+examine = "A grand old banquet table."
+
+[table_6_xmas_2009]
+id = 47878
+examine = "A grand old banquet table."
+
+[table_7_xmas_2009]
+id = 47879
+examine = "A grand old banquet table."
+
+[table_8_xmas_2009]
+id = 47881
+examine = "An old kitchen table."
+
+[table_9_xmas_2009]
+id = 47882
+examine = "An old kitchen table."
+
+[stool_xmas_2009]
+id = 47886
+examine = "An oak stool with one leg slightly shorter than the others."
+
+[wardrobe_xmas_2009]
+id = 47887
+examine = "An old, decaying wardrobe."
+
+[cupboard_3_xmas_2009]
+id = 47888
+examine = "A rickety old cupboard."
+
+[shelves_xmas_2009]
+id = 47889
+examine = "Warped shelves."
+
+[shelves_2_xmas_2009]
+id = 47890
+examine = "Old shelves."
+
+[shelves_3_xmas_2009]
+id = 47891
+examine = "Old and dusty shelves."
+
+[shelves_4_xmas_2009]
+id = 47892
+examine = "Sturdy shelves."
+
+[shelves_5_xmas_2009]
+id = 47893
+examine = "There's a mouse living in one of those pans."
+
+[shelves_6_xmas_2009]
+id = 47894
+examine = "Lots of dusty pots and pans are stored here."
+
+[shelves_7_xmas_2009]
+id = 47895
+examine = "Some severe-looking cooking instruments hang here."
+
+[bookcase_xmas_2009]
+id = 47896
+examine = "Crammed with books on every topic."
+
+[bookcase_2_xmas_2009]
+id = 47897
+examine = "Filled with books on magic."
+
+[bookcase_3_xmas_2009]
+id = 47898
+examine = "Crammed with books on spells and incantations."
+
+[bookcase_4_xmas_2009]
+id = 47899
+examine = "Crammed with books on dark magic."
+
+[grandfather_clock_xmas_2009]
+id = 47900
+examine = "Tick-tock, it's a clock."
+
+[larder_xmas_2009]
+id = 47901
+examine = "A nicely carved larder that's seen better days."
+
+[crate_xmas_2009]
+id = 47902
+examine = "This crate is riddled with holes."
+
+[crates_xmas_2009]
+id = 47903
+examine = "These crates store junk from a past era."
+
+[barrel_4_xmas_2009]
+id = 47904
+examine = "An old wooden barrel."
+
+[barrels_xmas_2009]
+id = 47905
+examine = "Old wooden barrels."

@@ -1,0 +1,160 @@
+[paintcans_xmas_2005]
+id = 10673
+examine = "Equipment for colouring items."
+
+[paintcans_2_xmas_2005]
+id = 10674
+examine = "Equipment for colouring items."
+
+[paintcans_3_xmas_2005]
+id = 10675
+examine = "Equipment for colouring items."
+
+[workbench_xmas_2005]
+id = 10676
+examine = "A puppet is being constructed here."
+
+[workbench_2_xmas_2005]
+id = 10677
+examine = "A puppet is being constructed here."
+
+[workbench_3_xmas_2005]
+id = 10678
+examine = "A puppet is being constructed here."
+
+[decorations_box_xmas_2005]
+id = 10679
+examine = "A box containing unpainted decorations."
+
+[decorations_box_2_xmas_2005]
+id = 10680
+examine = "A box containing unpainted decorations."
+
+[decorations_box_3_xmas_2005]
+id = 10681
+examine = "A box containing unpainted decorations."
+
+[decorations_box_4_xmas_2005]
+id = 10682
+examine = "A box containing unpainted decorations."
+
+[decorations_box_5_xmas_2005]
+id = 10683
+examine = "A box containing unpainted decorations."
+
+[decorations_box_6_xmas_2005]
+id = 10684
+examine = "A box containing unpainted decorations."
+
+[decorations_box_7_xmas_2005]
+id = 10685
+examine = "A box containing unpainted decorations."
+
+[puppet_heads_blue_xmas_2005]
+id = 10686
+examine = "Box containing blue puppet heads."
+
+[puppet_torsos_blue_xmas_2005]
+id = 10687
+examine = "Box containing blue puppet torsos."
+
+[puppet_arms_blue_xmas_2005]
+id = 10688
+examine = "Box containing blue puppet arms."
+
+[puppet_legs_blue_xmas_2005]
+id = 10689
+examine = "Box containing blue puppet legs."
+
+[puppet_heads_red_xmas_2005]
+id = 10690
+examine = "Box containing red puppet heads."
+
+[puppet_torsos_red_xmas_2005]
+id = 10691
+examine = "Box containing red puppet torsos."
+
+[puppet_arms_red_xmas_2005]
+id = 10692
+examine = "Box containing red puppet arms."
+
+[puppet_legs_red_xmas_2005]
+id = 10693
+examine = "Box containing red puppet legs."
+
+[puppet_heads_green_xmas_2005]
+id = 10694
+examine = "Box containing green puppet heads."
+
+[puppet_torsos_green_xmas_2005]
+id = 10695
+examine = "Box containing green puppet torsos."
+
+[puppet_arms_green_xmas_2005]
+id = 10696
+examine = "Box containing green puppet arms."
+
+[puppet_legs_green_xmas_2005]
+id = 10697
+examine = "Box containing green puppet legs."
+
+[crate_blue_xmas_2005]
+id = 10701
+examine = "A blue crate. Probably containing puppets."
+
+[crate_green_xmas_2005]
+id = 10702
+examine = "A green crate. Probably containing puppets."
+
+[crate_red_xmas_2005]
+id = 10703
+examine = "A red crate. Probably containing puppets."
+
+[crate_xmas_2005]
+id = 10704
+examine = "A large crate. More puppets?"
+
+[crates_xmas_2005]
+id = 10705
+examine = "Some large wooden crates."
+
+[large_box_xmas_2005]
+id = 10706
+examine = "A large box full of wood chippings."
+
+[paint_pots_xmas_2005]
+id = 10710
+examine = "Pots full of paint."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[trapdoor_steps_xmas_2005]
+id = 10699
+examine = "You can climb up these."
+
+[ladder_xmas_2005]
+id = 10707
+examine = "A wooden ladder."
+
+[ladder_2_xmas_2005]
+id = 10708
+examine = "A wooden ladder."

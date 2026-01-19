@@ -1,47 +1,114 @@
-[queen_of_snow_xmas_2009]
-id = 6731
-examine = "Her lack of body heat is unsettling."
-
 [snow_imp_xmas_2009]
-id = 6739
-examine = "It looks right at home here."
+id = 9364
 
-[snow_xmas_2009]
-id = 6740
-examine = "Snowflakes swirling in the wind."
+[jack_frost_xmas_2009]
+id = 9365
 
-[snow_xmas_2009_2]
-id = 6741
+[tiny_thom_xmas_2009]
+id = 9366
+examine = "Not the tallest."
+
+[cook_xmas_2009]
+id = 9367
+examine = "Lumbridge Castle's head cook."
+
+[louis_the_camel_xmas_2009]
+id = 9368
+examine = "A camel who likes to complain."
 
 [ebenezer_scourge_xmas_2009]
 id = 9369
 
-[ebenezer_scourge_xmas_2009_2]
+[ebenezer_scourge_2_xmas_2009]
 id = 9370
 
-[snow_imp_xmas_2009_2]
+[ebenezer_scourge_3_xmas_2009]
+id = 9371
+examine = "Bah, humbug!"
+
+[snow_imp_2_xmas_2009]
 id = 9372
 
-[snow_imp_xmas_2009_3]
+[snow_imp_3_xmas_2009]
 id = 9373
 
-[snow_imp_xmas_2009_4]
+[snow_imp_4_xmas_2009]
 id = 9374
 
-[snow_imp_xmas_2009_5]
+[snow_imp_5_xmas_2009]
 id = 9375
 
+[snow_imp_6_xmas_2009]
+id = 9376
+examine = "Small, blue and mischievous - it's a snow imp all right."
+
+[snow_imp_7_xmas_2009]
+id = 9377
+examine = "Small, blue and mischievous - it's a snow imp all right."
+
+[snow_imp_8_xmas_2009]
+id = 9378
+examine = "Small, blue and mischievous - it's a snow imp all right."
+
+[snow_imp_9_xmas_2009]
+id = 9379
+examine = "Small, blue and mischievous - it's a snow imp all right."
+
 [partygoer_xmas_2009]
+id = 9380
+examine = "This kind woman is full of goodwill."
+
+[partygoer_2_xmas_2009]
+id = 9381
+examine = "He's really got caught up in the Christmas spirit."
+
+[partygoer_3_xmas_2009]
+id = 9382
+examine = "This kind woman is full of goodwill."
+
+[partygoer_4_xmas_2009]
 id = 9383
 
-[partygoer_xmas_2009_2]
+[partygoer_5_xmas_2009]
+id = 9384
+examine = "He's really got caught up in the Christmas spirit."
+
+[partygoer_6_xmas_2009]
+id = 9385
+examine = "He's really got caught up in the Christmas spirit."
+
+[partygoer_7_xmas_2009]
 id = 9386
 
-[partygoer_xmas_2009_3]
+[partygoer_8_xmas_2009]
+id = 9387
+examine = "He's really got caught up in the Christmas spirit."
+
+[partygoer_9_xmas_2009]
+id = 9388
+examine = "He's really got caught up in the Christmas spirit."
+
+[partygoer_10_xmas_2009]
 id = 9389
 
-[partygoer_xmas_2009_4]
+[partygoer_11_xmas_2009]
+id = 9390
+examine = "This kind woman is full of goodwill."
+
+[partygoer_12_xmas_2009]
+id = 9391
+examine = "This kind woman is full of goodwill."
+
+[partygoer_13_xmas_2009]
 id = 9392
+
+[partygoer_14_xmas_2009]
+id = 9393
+examine = "This kind woman is full of goodwill."
+
+[partygoer_15_xmas_2009]
+id = 9394
+examine = "This kind woman is full of goodwill."
 
 [betty_xmas_2009]
 id = 9395
@@ -50,116 +117,95 @@ examine = "She seems like a nice person."
 [sir_amik_varze_xmas_2009]
 id = 9396
 
-[queen_of_snow_xmas_2009_2]
+[sir_amik_varze_2_xmas_2009]
+id = 9397
+examine = "The leader of the White Knights looks a little merry today."
+
+[queen_of_snow_xmas_2009]
 id = 9398
+examine = "Her lack of body heat is unsettling."
 
 [santa_claus_xmas_2009]
 id = 9399
 
-[tiny_thom_xmas_2009]
+[santa_claus_2_xmas_2009]
+id = 9400
+examine = "A jolly distributor of presents."
+
+[tiny_thom_2_xmas_2009]
 id = 9401
 
-[jack_frost_xmas_2009]
+[tiny_thom_3_xmas_2009]
+id = 9402
+examine = "Not the tallest."
+
+[jack_frost_2_xmas_2009]
 id = 9403
 examine = "The Queen of Snow's rebellious teenage son."
 
-[cook_xmas_2009]
+[cook_2_xmas_2009]
 id = 9404
 
-[louis_the_camel_xmas_2009]
+[cook_3_xmas_2009]
+id = 9405
+examine = "Lumbridge Castle's head cook."
+
+[louis_the_camel_2_xmas_2009]
 id = 9406
 examine = "A camel who likes to complain."
 
 [general_wartface_xmas_2009]
 id = 9407
 
+[general_wartface_2_xmas_2009]
+id = 9408
+examine = "An ugly, yet festive, green creature."
+
 [general_bentnoze_xmas_2009]
 id = 9409
 
-[general_bentnoze_xmas_2009_2]
+[general_bentnoze_2_xmas_2009]
+id = 9410
+examine = "An ugly, yet festive, green creature."
+
+[general_bentnoze_3_xmas_2009]
 id = 9411
 
-[general_wartface_xmas_2009_2]
+[general_bentnoze_4_xmas_2009]
+id = 9412
+examine = "An ugly, yet festive, green creature."
+
+[general_wartface_3_xmas_2009]
 id = 9413
 
-[sir_amik_varze_xmas_2009_2]
+[general_wartface_4_xmas_2009]
+id = 9414
+examine = "An ugly, yet festive, green creature."
+
+[sir_amik_varze_3_xmas_2009]
 id = 9415
 
-[cook_xmas_2009_2]
+[sir_amik_varze_4_xmas_2009]
+id = 9416
+examine = "The leader of the White Knights looks a little merry today."
+
+[cook_4_xmas_2009]
 id = 9417
 
-[partygoer_xmas_2009_5]
+[cook_5_xmas_2009]
+id = 9418
+examine = "Lumbridge Castle's head cook."
+
+[partygoer_16_xmas_2009]
 id = 9419
 
-[tiny_thom_xmas_2009_2]
+[partygoer_17_xmas_2009]
+id = 9420
+examine = "He's really got caught up in the Christmas spirit."
+
+[tiny_thom_4_xmas_2009]
 id = 9421
 
-[ebenezer_scourge_xmas_2009_3]
-id = 9371
-
-[snow_imp_xmas_2009_2_2]
-id = 9376
-
-[snow_imp_xmas_2009_2_3]
-id = 9377
-
-[partygoer_xmas_2009_6]
-id = 9384
-
-[partygoer_xmas_2009_7]
-id = 9385
-
-[partygoer_xmas_2009_2_2]
-id = 9387
-
-[partygoer_xmas_2009_2_3]
-id = 9388
-
-[partygoer_xmas_2009_3_2]
-id = 9390
-
-[partygoer_xmas_2009_3_3]
-id = 9391
-
-[partygoer_xmas_2009_4_2]
-id = 9393
-
-[partygoer_xmas_2009_4_3]
-id = 9394
-
-[sir_amik_varze_xmas_2009_3]
-id = 9397
-
-[santa_claus_xmas_2009_2]
-id = 9400
-
-[tiny_thom_xmas_2009_3]
-id = 9402
-
-[cook_xmas_2009_3]
-id = 9405
-
-[general_wartface_xmas_2009_3]
-id = 9408
-
-[general_bentnoze_xmas_2009_3]
-id = 9410
-
-[general_bentnoze_xmas_2009_2_2]
-id = 9412
-
-[general_wartface_xmas_2009_2_2]
-id = 9414
-
-[sir_amik_varze_xmas_2009_2_2]
-id = 9416
-
-[cook_xmas_2009_2_2]
-id = 9418
-
-[partygoer_xmas_2009_5_2]
-id = 9420
-
-[tiny_thom_xmas_2009_2_2]
+[tiny_thom_5_xmas_2009]
 id = 9422
-
+examine = "Not the tallest."

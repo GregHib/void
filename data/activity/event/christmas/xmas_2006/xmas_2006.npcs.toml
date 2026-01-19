@@ -1,0 +1,89 @@
+[shanty_claws]
+id = 828
+wander_radius = 4
+large_head = true
+examine = "A sea shanty-singing werewolf wearing a Santa Claus robe."
+
+[gublinch_1_spawn_1]
+id = 829
+
+[gublinch_1_spawn_2]
+id = 5003
+
+[gublinch_1_spawn_3]
+id = 5004
+
+[gublinch_1_spawn_4]
+id = 5005
+
+[gublinch_1_spawn_5]
+id = 5006
+
+[gublinch_1_spawn_6]
+id = 5007
+
+[gublinch_1_spawn_7]
+id = 5008
+
+[gublinch_1_spawn_8]
+id = 5009
+
+[gublinch_1_spawn_9]
+id = 5010
+
+[gublinch_1_spawn_10]
+id = 5011
+
+[gublinch_1_spawn_11]
+id = 5012
+
+[gublinch_1_spawn_12]
+id = 5013
+
+[gublinch_1_spawn_13]
+id = 5014
+
+[gublinch_1_spawn_14]
+id = 5015
+
+[gublinch_1_spawn_15]
+id = 5016
+
+[gublinch_1]
+id = 5017
+wander_radius = 4
+examine = "A sweaty gublinch."
+
+[gublinch_2]
+id = 5018
+wander_radius = 4
+examine = "A chilled, smelly gublinch."
+
+[gublinch_3]
+id = 5019
+wander_radius = 4
+examine = "A freezing cold gublinch."
+
+[gub_musa_multi_child_1]
+id = 5020
+
+[gub_musa_multi_child_2]
+id = 5021
+
+[gub_musa_multi_child_3]
+id = 5022
+
+[gub_musa_child_1]
+id = 5023
+wander_radius = 2
+examine = "A happy child, now that he has been freed."
+
+[gub_musa_child_2]
+id = 5024
+wander_radius = 2
+examine = "A happy child, now that he has been freed."
+
+[gub_musa_child_3]
+id = 5025
+wander_radius = 2
+examine = "A happy child, now that he has been freed."
