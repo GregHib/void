@@ -12,3 +12,17 @@ anim = "harpie_bug_swarm_attack"
 target_sound = "harpie_bug_swarm_attack"
 target_hit = { offense = "crush", max = 60 }
 
+[shaikahan]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "shaikahan_defend"
+defend_sound = "shaikahan_defend"
+death_anim = "shaikahan_death"
+death_sound = "shaikahan_death"
+
+[shaikahan.melee]
+range = 1
+anim = "shaikahan_attack"
+target_sound = "shaikahan_attack"
+target_hit = { offense = "slash", max = 90 }
+

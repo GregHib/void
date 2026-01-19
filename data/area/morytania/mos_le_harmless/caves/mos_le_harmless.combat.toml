@@ -1,0 +1,13 @@
+[cave_horror]
+attack_range = 8
+attack_speed = 5
+defend_anim = "cave_horror_defend"
+death_anim = "cave_horror_howl"
+defend_sound = "jungle_horror_defend"
+death_sound = "jungle_horror_death"
+
+[cave_horror.attack]
+range = 1
+anim = "cave_horror_swing"
+target_sound = "jungle_horror_attack"
+target_hit = { offence = "crush", defence = "magic", max = 90 }

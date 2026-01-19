@@ -11,7 +11,6 @@ respawn_delay = 25
 slayer_xp = 95.0
 categories = ["trolls"]
 drop_table = "thrower_troll_death_plateau"
-retreat_range = 8
 examine = "Small for a troll, but it's mean, ugly and throws rocks."
 
 [thrower_troll_death_plateau_large]

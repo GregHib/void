@@ -1,0 +1,9 @@
+[pirate]
+clone = "man"
+retreat_range = 6
+attack_speed = 5
+
+[pirate.melee]
+range = 1
+anim = "human_attack"
+target_hit = { offence = "crush", max = 1 }

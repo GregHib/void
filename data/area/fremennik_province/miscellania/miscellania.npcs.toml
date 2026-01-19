@@ -256,8 +256,7 @@ id = 1402
 [rooster_miscellania]
 id = 1403
 hitpoints = 50
-style = "stab"
-max_hit_melee = 0
+max_hit_stab = 0
 attack_bonus = -47
 slayer_xp = 5.0
 categories = ["birds"]
@@ -268,12 +267,9 @@ examine = "He rules the, er, roost."
 [rabbit_miscellania]
 id = 1404
 hitpoints = 50
-style = "crush"
-max_hit_melee = 10
+combat_def = "rabbit_miscellania"
 attack_bonus = -47
 respawn_delay = 25
-combat_anims = "rabbit"
-combat_sounds = "rabbit"
 drop_table = "rabbit"
 examine = "A cute bunny rabbit."
 

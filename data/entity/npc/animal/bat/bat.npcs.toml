@@ -19,15 +19,11 @@ att = 22
 str = 22
 def = 22
 combat_def = "giant_bat"
-style = "stab"
 hunt_mode = "cowardly"
 slayer_xp = 32.0
 wander_range = 8
-retreat_range = 14
 respawn_delay = 35
 drop_table = "bat"
-combat_anims = "bat"
-combat_sounds = "bat"
 categories = ["bats"]
 examine = "An annoying flappy thing."
 

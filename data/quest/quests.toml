@@ -872,10 +872,7 @@ sprite = 3138
 region = 30
 start_point = "Search a bookcase in Seers' Village church."
 start_path = [[ 2702, 3465 ]]
-req_skills = {
-    Smithing = 33,
-Defence = 33
-}
+req_skills = { Smithing = 33, Defence = 33 }
 req_quests = ["elemental_workshop_ii"]
 req_items = "Any pickaxe, a hammer and some coal."
 req_combat = "Level 44 earth elementals."

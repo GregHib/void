@@ -84,12 +84,9 @@ att = 20
 str = 20
 def = 20
 combat_def = "goat_kharidian_desert"
-style = "crush"
-max_hit_melee = 60
 attack_bonus = 10
 respawn_delay = 50
 drop_table = "billy_goat"
-combat_anims = "goat"
 examine = "They'll eat anything!"
 
 [goat_kharidian_desert_2]

@@ -12,7 +12,7 @@ hunt_mode = "aggressive"
 respawn_delay = 150
 slayer_xp = 357.0
 categories = ["aviansie", "boss"]
-poison_immune = true
+immune_poison = true
 wander_range = 6
 examine = "Graceful avatar of Armadyl."
 
