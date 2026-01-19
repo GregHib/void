@@ -1,0 +1,23 @@
+[ice_troll_king]
+attack_speed = 6
+retreat_range = 8
+defend_anim = "ogre_defend"
+defend_sound = "giant_defend"
+death_anim = "ogre_death"
+death_sound = "giant_death"
+
+[ice_troll_king.melee]
+chance = 75
+range = 1
+anim = "ogre_attack"
+target_sound = "giant_attack"
+target_hit = { offense = "crush", max = 210 }
+
+[ice_troll_king.special]
+target_hit = { offense = "damage", max = 160 }
+
+[ice_troll_king.magic]
+target_hit = { offense = "magic", max = 110 }
+
+[ice_troll_king.range]
+target_hit = { offense = "range", max = 70 }

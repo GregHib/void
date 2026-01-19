@@ -27,7 +27,7 @@ style = "crush"
 max_hit_melee = 40
 respawn_delay = 40
 attack_speed = 8
-poison_immune = true
+immune_poison = true
 drop_table = "ghast"
 examine = "Arrghhh... A ghast!"
 

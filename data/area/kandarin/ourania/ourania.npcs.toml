@@ -43,10 +43,8 @@ combat_def = "zamorak_mage"
 respawn_delay = 50
 hunt_mode = "aggressive"
 attack_range = 3
-retreat_range = 10
 wander_range = 5
 categories = ["human"]
-combat_anims = "human"
 drop_table = "zamorak_mage"
 examine = "A mage of Zamorak."
 

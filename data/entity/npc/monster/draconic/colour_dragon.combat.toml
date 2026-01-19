@@ -49,3 +49,14 @@ target_hit = { offense = "slash", max = 210 }
 
 [black_dragon.dragonfire]
 clone = "blue_dragon.dragonfire"
+
+[baby_dragon]
+clone = "blue_dragon"
+defend_anim = "baby_dragon_defend"
+death_anim = "baby_dragon_death"
+
+[baby_dragon.melee]
+clone = "blue_dragon.melee"
+anim = "baby_dragon_attack"
+target_sound = "baby_dragon_attack"
+target_hit = { offense = "slash", max = 61 }

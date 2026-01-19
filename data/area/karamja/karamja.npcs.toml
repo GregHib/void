@@ -9,12 +9,9 @@ hitpoints = 1000
 att = 80
 str = 80
 def = 25
-style = "slash"
-max_hit_melee = 90
+combat_def = "shaikahan"
 hunt_mode = "cowardly"
 respawn_delay = 50
-attack_anim = "shaikahan_attack"
-defend_anim = "shaikahan_defend"
 drop_table = "the_shaikahan"
 examine = "A huge beast, resembling in some ways a lion, but mostly a twisted nightmare."
 

@@ -13,7 +13,7 @@ hunt_mode = "aggressive"
 respawn_delay = 150
 slayer_xp = 350.0
 categories = ["boss"]
-poison_immune = true
+immune_poison = true
 wander_range = 6
 examine = "Commander of Saradomin's forces."
 
@@ -43,7 +43,6 @@ attack_bonus = 10
 combat_def = "growler"
 hunt_mode = "aggressive"
 wander_range = 6
-retreat_range = 8
 drop_table = "saradomin_bodyguard"
 examine = "Defender of the faithful."
 

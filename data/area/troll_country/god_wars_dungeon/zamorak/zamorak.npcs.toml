@@ -11,7 +11,7 @@ hunt_mode = "aggressive"
 respawn_delay = 150
 slayer_xp = 350.5
 categories = ["demons", "boss"]
-poison_immune = true
+immune_poison = true
 wander_range = 6
 examine = "A servant of the god Zamorak."
 
