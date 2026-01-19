@@ -1,0 +1,10 @@
+[snake]
+attack_speed = 4
+retreat_range = 11
+defend_sound = "snake_defend"
+death_sound = "snake_death"
+
+[snake.melee]
+range = 1
+target_sound = "snake_attack"
+target_hit = { offense = "stab", max = 10 }

@@ -45,7 +45,6 @@ combat_def = "rock_crab"
 max_hit_crush = 90
 respawn_delay = 50
 wander_range = 5
-retreat_range = 8
 hunt_mode = "aggressive"
 categories = ["crab"]
 examine = "No one likes crabs... especially really big ones!"

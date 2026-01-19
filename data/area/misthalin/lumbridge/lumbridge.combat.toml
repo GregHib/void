@@ -7,3 +7,13 @@ defend_anim = "sword_defend"
 range = 1
 anim = "sword_slash"
 target_hit = { offense = "slash", max = 16 }
+
+[farmer]
+clone = "man"
+attack_speed = 6
+defend_anim = "farmer_defend"
+
+[farmer.melee]
+range = 1
+anim = "farmer_attack"
+target_hit = { offense = "stab", max = 10 }

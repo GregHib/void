@@ -121,7 +121,7 @@ combat_def = "zombie_sword"
 [zombie_armour_grey_shorts_sword]
 id = 5315
 clone = "zombie_yellow_shirt"
-combat_anims = "zombie_dragging"
+combat_def = "zombie_dragging"
 
 [zombie_red_outfit]
 id = 5311
@@ -163,7 +163,7 @@ combat_def = "zombie_sword"
 [zombie_blue_skirt_sword_2]
 id = 5322
 clone = "zombie_yellow_shirt"
-combat_anims = "zombie_dragging"
+combat_def = "zombie_dragging"
 
 [zombie_yellow_shirt_sword]
 id = 5323
