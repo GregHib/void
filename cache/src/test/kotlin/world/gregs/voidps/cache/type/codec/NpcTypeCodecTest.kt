@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.write.ArrayWriter
-import world.gregs.voidps.cache.type.NpcType
+import world.gregs.voidps.cache.type.data.NpcType
 
 class NpcTypeCodecTest {
 
@@ -28,11 +28,11 @@ class NpcTypeCodecTest {
         type.params = hashMapOf(1 to "string", 2 to 100000)
 
         val writer = ArrayWriter(1024)
-        NpcTypeCodec.write(writer, type)
+        type.encode(writer)
 
         val loaded = NpcType(0)
         val reader = ArrayReader(writer.toArray())
-        NpcTypeCodec.read(reader, loaded)
+        loaded.decode(reader)
 
         assertEquals(type.name, loaded.name)
         assertEquals(type.size, loaded.size)

@@ -8,6 +8,7 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.engine.data.definition.data.Spot
+import world.gregs.voidps.engine.data.param.NpcParams
 
 class FishingParamTest {
 

@@ -1,6 +1,6 @@
-package world.gregs.voidps.cache.definition.decoder
+package world.gregs.voidps.cache.definition.codec
 
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.write.ArrayWriter
@@ -77,12 +77,12 @@ class NpcDefinitionCodecTest {
         )
 
         val writer = ArrayWriter(1024)
-        NpcDefinitionCodec.encode(writer, definition)
+        definition.encode(writer)
 
         val loadedDefinition = NPCDefinitionFull(id = definition.id)
         val reader = ArrayReader(writer.toArray())
-        NpcDefinitionCodec.decode(reader, loadedDefinition)
+        loadedDefinition.decode(reader)
 
-        assertEquals(definition, loadedDefinition)
+        Assertions.assertEquals(definition, loadedDefinition)
     }
 }

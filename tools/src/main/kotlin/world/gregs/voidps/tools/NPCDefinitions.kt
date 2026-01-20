@@ -1,10 +1,9 @@
 package world.gregs.voidps.tools
 
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.MemoryCache
 import world.gregs.voidps.cache.config.decoder.RenderAnimationDecoder
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
-import world.gregs.voidps.cache.definition.decoder.NPCDecoderFull
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.definition.AmmoDefinitions
@@ -18,20 +17,18 @@ object NPCDefinitions {
     fun main(args: Array<String>) {
         Settings.load()
         val files = configFiles()
-        val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
+        val cache: Cache = MemoryCache(Settings["storage.cache.path"])
 
         val start = System.currentTimeMillis()
 //        for (i in 0 until 1) {
-            NpcTypes.load(cache, files)
+        NpcTypes.load(cache, files)
 //        }
         println("Startup took ${System.currentTimeMillis() - start}ms")
         println(NpcTypes.get(1))
-
         val categories = CategoryDefinitions().load(files.find(Settings["definitions.categories"]))
         val ammo = AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"]))
         val parameters = ParameterDefinitions(categories, ammo).load(files.find(Settings["definitions.parameters"]))
         val definitions = NPCDecoder(true, parameters).load(cache)
-        val full = NPCDecoderFull().load(cache)
         NPCDefinitions.init(definitions).load(files.getValue(Settings["definitions.npcs"]))
         val renderAnimations = RenderAnimationDecoder().load(cache)
         for (i in NPCDefinitions.definitions.indices) {

@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.data.types.keys
+package world.gregs.voidps.engine.data.param
 
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
@@ -6,86 +6,153 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.buffer.write.Writer
-import world.gregs.voidps.cache.type.NpcType
+import world.gregs.voidps.cache.type.data.NpcType
 import world.gregs.voidps.engine.data.definition.data.Pocket
 import world.gregs.voidps.engine.data.definition.data.Spot
-import world.gregs.voidps.engine.data.param.Parameters
 import world.gregs.voidps.engine.data.param.codec.BooleanParam
 import world.gregs.voidps.engine.data.param.codec.DoubleParam
 import world.gregs.voidps.engine.data.param.codec.IntParam
 import world.gregs.voidps.engine.data.param.codec.ParamCodec
 import world.gregs.voidps.engine.data.param.codec.StringListParam
 import world.gregs.voidps.engine.data.param.codec.StringParam
-import kotlin.collections.set
+import kotlin.collections.iterator
 
 object NpcParams : Parameters<NpcType>() {
 
-    override val parameters = listOf(
-        Triple("clone", CLONE, StringParam),
-        Triple("id", ID, IntParam),
-        Triple("examine", EXAMINE, StringParam),
-        Triple("categories", CATEGORIES, StringListParam),
-        Triple("wander_range", WANDER_RANGE, IntParam),
-        Triple("interact_range", INTERACT_RANGE, IntParam),
-        Triple("hitpoints", HITPOINTS, IntParam),
-        Triple("att", ATT, IntParam),
-        Triple("str", STR, IntParam),
-        Triple("def", DEF, IntParam),
-        Triple("combat_def", COMBAT_DEF, StringParam),
-        Triple("style", STYLE, StringParam), // Deprecated
-        Triple("defend_anim", DEFEND_ANIM, StringParam), // Deprecated
-        Triple("death_anim", DEATH_ANIM, StringParam), // Deprecated
-        Triple("max_hit_melee", MAX_HIT_MELEE, IntParam), // Deprecated
-        Triple("max_hit_magic", MAX_HIT_MAGIC, IntParam),
-        Triple("max_hit_range", MAX_HIT_RANGE, IntParam),
-        Triple("max_hit_crush", MAX_HIT_CRUSH, IntParam),
-        Triple("max_hit_stab", MAX_HIT_STAB, IntParam),
-        Triple("max_hit_dragonfire", MAX_HIT_DRAGONFIRE, IntParam),
-        Triple("max_hit_slash", MAX_HIT_SLASH, IntParam),
-        Triple("respawn_delay", RESPAWN_DELAY, IntParam),
-        Triple("drop_table", DROP_TABLE, StringParam),
-        Triple("mage", MAGE, IntParam),
-        Triple("hunt_mode", HUNT_MODE, StringParam),
-        Triple("attack_bonus", ATTACK_BONUS, IntParam),
-        Triple("xp_bonus", XP_BONUS, DoubleParam),
-        Triple("attack_speed", ATTACK_SPEED, IntParam),
-        Triple("hunt_range", HUNT_RANGE, IntParam),
-        Triple("collision", COLLISION, StringParam),
-        Triple("shop", SHOP, StringParam),
-        Triple("range", RANGE, IntParam),
-        Triple("slayer_xp", SLAYER_XP, DoubleParam),
-        Triple("bar_crawl", BAR_CRAWL, BarCrawl()),
-        Triple("patch", PATCH, StringParam),
-        Triple("north_patch", NORTH_PATCH, StringParam),
-        Triple("south_patch", SOUTH_PATCH, StringParam),
-        Triple("spell", SPELL, StringParam),
-        Triple("pickpocket", PICKPOCKET, PickpocketParam()),
-        Triple("regen_rate_ticks", REGEN_RATE_TICKS, IntParam),
-        Triple("slayer_level", SLAYER_LEVEL, IntParam),
-        Triple("weapon_style", WEAPON_STYLE, StringParam),
-        Triple("ammo", AMMO, StringParam),
-        Triple("attack_range", ATTACK_RANGE, IntParam),
-        Triple("retaliates", RETALIATES, BooleanParam),
-        Triple("height", HEIGHT, IntParam),
-        Triple("ranged_strength", RANGED_STRENGTH, IntParam),
-        Triple("solid", SOLID, BooleanParam),
-        Triple("large_head", LARGE_HEAD, BooleanParam),
-        Triple("dialogue", DIALOGUE, StringParam),
-        Triple("aka", AKA, StringListParam),
-        Triple("immune_poison", IMMUNE_POISON, BooleanParam),
-        Triple("immune_cannon", IMMUNE_CANNON, BooleanParam),
-        Triple("immune_death", IMMUNE_DEATH, BooleanParam),
-        Triple("immune_deflect", IMMUNE_DEFLECT, BooleanParam),
-        Triple("immune_stun", IMMUNE_STUN, BooleanParam),
-        Triple("immune_drain", IMMUNE_DRAIN, BooleanParam),
-        Triple("interacts", INTERACTS, BooleanParam),
-        Triple("god", GOD, StringParam),
-        Triple("drops", DROPS, StringParam),
-        Triple("magic", MAGIC, IntParam),
-        Triple("allowed_under", ALLOWED_UNDER, BooleanParam),
-        Triple("song", SONG, IntParam),
-        Triple("poison", POISON, IntParam),
-        Triple("fishing", FISHING, FishingParam()),
+    override val codecs = mapOf(
+        CLONE to StringParam,
+        ID to IntParam,
+        EXAMINE to StringParam,
+        CATEGORIES to StringListParam,
+        WANDER_RANGE to IntParam,
+        INTERACT_RANGE to IntParam,
+        HITPOINTS to IntParam,
+        ATT to IntParam,
+        STR to IntParam,
+        DEF to IntParam,
+        COMBAT_DEF to StringParam,
+        STYLE to StringParam, // Deprecated
+        DEFEND_ANIM to StringParam, // Deprecated
+        DEATH_ANIM to StringParam, // Deprecated
+        MAX_HIT_MELEE to IntParam, // Deprecated
+        MAX_HIT_MAGIC to IntParam,
+        MAX_HIT_RANGE to IntParam,
+        MAX_HIT_CRUSH to IntParam,
+        MAX_HIT_STAB to IntParam,
+        MAX_HIT_DRAGONFIRE to IntParam,
+        MAX_HIT_SLASH to IntParam,
+        RESPAWN_DELAY to IntParam,
+        DROP_TABLE to StringParam,
+        MAGE to IntParam,
+        HUNT_MODE to StringParam,
+        ATTACK_BONUS to IntParam,
+        XP_BONUS to DoubleParam,
+        ATTACK_SPEED to IntParam,
+        HUNT_RANGE to IntParam,
+        COLLISION to StringParam,
+        SHOP to StringParam,
+        RANGE to IntParam,
+        SLAYER_XP to DoubleParam,
+        BAR_CRAWL to BarCrawl(),
+        PATCH to StringParam,
+        NORTH_PATCH to StringParam,
+        SOUTH_PATCH to StringParam,
+        SPELL to StringParam,
+        PICKPOCKET to PickpocketParam(),
+        REGEN_RATE_TICKS to IntParam,
+        SLAYER_LEVEL to IntParam,
+        WEAPON_STYLE to StringParam,
+        AMMO to StringParam,
+        ATTACK_RANGE to IntParam,
+        RETALIATES to BooleanParam,
+        HEIGHT to IntParam,
+        RANGED_STRENGTH to IntParam,
+        SOLID to BooleanParam,
+        LARGE_HEAD to BooleanParam,
+        DIALOGUE to StringParam,
+        AKA to StringListParam,
+        IMMUNE_POISON to BooleanParam,
+        IMMUNE_CANNON to BooleanParam,
+        IMMUNE_DEATH to BooleanParam,
+        IMMUNE_DEFLECT to BooleanParam,
+        IMMUNE_STUN to BooleanParam,
+        IMMUNE_DRAIN to BooleanParam,
+        INTERACTS to BooleanParam,
+        GOD to StringParam,
+        DROPS to StringParam,
+        MAGIC to IntParam,
+        ALLOWED_UNDER to BooleanParam,
+        SONG to IntParam,
+        POISON to IntParam,
+        FISHING to FishingParam(),
+    )
+
+    override val keys = mapOf(
+        "clone" to CLONE,
+        "id" to ID,
+        "examine" to EXAMINE,
+        "categories" to CATEGORIES,
+        "wander_range" to WANDER_RANGE,
+        "interact_range" to INTERACT_RANGE,
+        "hitpoints" to HITPOINTS,
+        "att" to ATT,
+        "str" to STR,
+        "def" to DEF,
+        "combat_def" to COMBAT_DEF,
+        "style" to STYLE,
+        "defend_anim" to DEFEND_ANIM,
+        "death_anim" to DEATH_ANIM,
+        "max_hit_melee" to MAX_HIT_MELEE,
+        "max_hit_magic" to MAX_HIT_MAGIC,
+        "max_hit_range" to MAX_HIT_RANGE,
+        "max_hit_crush" to MAX_HIT_CRUSH,
+        "max_hit_stab" to MAX_HIT_STAB,
+        "max_hit_dragonfire" to MAX_HIT_DRAGONFIRE,
+        "max_hit_slash" to MAX_HIT_SLASH,
+        "respawn_delay" to RESPAWN_DELAY,
+        "drop_table" to DROP_TABLE,
+        "mage" to MAGE,
+        "hunt_mode" to HUNT_MODE,
+        "attack_bonus" to ATTACK_BONUS,
+        "xp_bonus" to XP_BONUS,
+        "attack_speed" to ATTACK_SPEED,
+        "hunt_range" to HUNT_RANGE,
+        "collision" to COLLISION,
+        "shop" to SHOP,
+        "range" to RANGE,
+        "slayer_xp" to SLAYER_XP,
+        "bar_crawl" to BAR_CRAWL,
+        "patch" to PATCH,
+        "north_patch" to NORTH_PATCH,
+        "south_patch" to SOUTH_PATCH,
+        "spell" to SPELL,
+        "pickpocket" to PICKPOCKET,
+        "regen_rate_ticks" to REGEN_RATE_TICKS,
+        "slayer_level" to SLAYER_LEVEL,
+        "weapon_style" to WEAPON_STYLE,
+        "ammo" to AMMO,
+        "attack_range" to ATTACK_RANGE,
+        "retaliates" to RETALIATES,
+        "height" to HEIGHT,
+        "ranged_strength" to RANGED_STRENGTH,
+        "solid" to SOLID,
+        "large_head" to LARGE_HEAD,
+        "dialogue" to DIALOGUE,
+        "aka" to AKA,
+        "immune_poison" to IMMUNE_POISON,
+        "immune_cannon" to IMMUNE_CANNON,
+        "immune_death" to IMMUNE_DEATH,
+        "immune_deflect" to IMMUNE_DEFLECT,
+        "immune_stun" to IMMUNE_STUN,
+        "immune_drain" to IMMUNE_DRAIN,
+        "interacts" to INTERACTS,
+        "god" to GOD,
+        "drops" to DROPS,
+        "magic" to MAGIC,
+        "allowed_under" to ALLOWED_UNDER,
+        "song" to SONG,
+        "poison" to POISON,
+        "fishing" to FISHING,
     )
 
     const val EXAMINE = 10_000
@@ -152,7 +219,6 @@ object NpcParams : Parameters<NpcType>() {
     const val POISON = 10_075
     const val FISHING = 10_077
 
-
     class PickpocketParam : ParamCodec<Pocket>() {
         override fun read(reader: Reader) = Pocket(
             level = reader.readByte(),
@@ -164,7 +230,7 @@ object NpcParams : Parameters<NpcType>() {
             table = reader.readString()
         )
 
-        override fun read(reader: ConfigReader) = Pocket(reader)
+        override fun read(reader: ConfigReader) = Pocket.Companion(reader)
         override fun write(writer: Writer, value: Pocket) {
             writer.writeByte(value.level)
             DoubleParam.write(writer, value.xp)
@@ -242,7 +308,7 @@ object NpcParams : Parameters<NpcType>() {
             val spots = Object2ObjectOpenHashMap<String, Spot>(2, Hash.VERY_FAST_LOAD_FACTOR)
             while (reader.nextEntry()) {
                 val type = reader.key()
-                val spot = Spot(reader)
+                val spot = Spot.Companion(reader)
                 spots[type] = spot
             }
             return spots
@@ -268,5 +334,3 @@ object NpcParams : Parameters<NpcType>() {
         }
     }
 }
-
-

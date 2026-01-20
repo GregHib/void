@@ -1,8 +1,7 @@
 package world.gregs.voidps.engine.data.types
 
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.config.Config
-import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.type.Params
 import world.gregs.voidps.cache.type.Type
 import world.gregs.voidps.engine.data.ConfigFiles
@@ -10,29 +9,32 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.param.Parameters
 import java.io.File
 
-abstract class ParamTypes<T, D: Definition> : Types<T, D>() where T: Type, T: Params {
-    abstract val params: Parameters<T>
-    open val maxStringSize = 100
+interface ParamTypes<T> : DefinitionTypes<T> where T : Type, T : Params {
+    var ids: MutableMap<String, Int>
 
-    override fun load(cache: Cache, files: ConfigFiles) {
-        params.validate()
-        super.load(cache, files)
+    fun get(id: String) = get(ids.getValue(id))
+
+    fun getOrNull(id: String) = getOrNull(ids.getValue(id))
+
+    fun Parameters<T>.read(files: ConfigFiles, fileExtension: String, maxSize: Int = 1_000_000, maxString: Int = 100) {
+        validate()
         // Params
-        val extension = Settings[extension]
-        val file = File("${Settings["storage.caching.path"]}${extension.replace(".toml", "_params.bin")}")
+        val file = File("${Settings["storage.caching.path"]}${fileExtension.replace(".toml", "_params.bin")}")
         val active = Settings["storage.caching.active", false]
-        if (!file.exists() || files.cacheUpdate || !active || files.needsUpdate(extension)) {
-            readConfig(files.list(extension), types)
-            if (active) {
-                params.write(file, types, size)
-                files.update(extension)
-            }
-        } else {
-            params.read(file, types)
+        if (file.exists() && !files.cacheUpdate && active && !files.needsUpdate(fileExtension)) {
+            read(file, types)
+            return
+        }
+        readConfig(files.list(fileExtension), this, maxString)
+        if (active) {
+            write(file, types, maxSize)
+            files.update(fileExtension)
         }
     }
 
-    open fun readConfig(paths: List<String>, types: Array<T>) {
+    fun readConfig(paths: List<String>, params: Parameters<T>, maxStringSize: Int) {
+        val ids = Object2IntOpenHashMap<String>()
+        ids.defaultReturnValue(-1)
         for (path in paths) {
             Config.fileReader(path, maxStringSize) {
                 while (nextSection()) {
@@ -55,5 +57,7 @@ abstract class ParamTypes<T, D: Definition> : Types<T, D>() where T: Type, T: Pa
                 }
             }
         }
+        this.ids = ids
     }
+
 }

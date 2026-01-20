@@ -1,7 +1,10 @@
 package world.gregs.voidps.cache.definition.data
 
+import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.*
+import world.gregs.voidps.cache.type.Type
 
 data class NPCDefinitionFull(
     override var id: Int = -1,
@@ -69,14 +72,348 @@ data class NPCDefinitionFull(
     var pickSizeShift: Int = 0,
     var soundRangeMin: Int = 0,
     override var params: Map<Int, Any>? = null,
-    override var stringId: String = "",
+    override var stringId: String = "", // TODO remove
     override var extras: Map<String, Any>? = null,
 ) : Definition,
     Transforms,
     Recolourable,
     ColourPalette,
     Parameterized,
-    Extra {
+    Extra, Type {
+
+    override fun decode(reader: Reader) {
+        while (true) {
+            when (val opcode = reader.readUnsignedByte()) {
+                0 -> break
+                1 -> {
+                    val length = reader.readUnsignedByte()
+                    modelIds = IntArray(length)
+                    for (count in 0 until length) {
+                        modelIds!![count] = reader.readUnsignedShort()
+                        if (modelIds!![count] == 65535) {
+                            modelIds!![count] = -1
+                        }
+                    }
+                }
+                2 -> name = reader.readString()
+                12 -> size = reader.readUnsignedByte()
+                in 30..34 -> options[opcode - 30] = reader.readString()
+                40 -> readColours(reader)
+                41 -> readTextures(reader)
+                42 -> readColourPalette(reader)
+                60 -> dialogueModels = IntArray(reader.readUnsignedByte()) { reader.readUnsignedShort() }
+                93 -> drawMinimapDot = false
+                95 -> combat = reader.readShort()
+                97 -> scaleXY = reader.readShort()
+                98 -> scaleZ = reader.readShort()
+                99 -> priorityRender = true
+                100 -> lightModifier = reader.readByte()
+                101 -> shadowModifier = 5 * reader.readByte()
+                102 -> headIcon = reader.readShort()
+                103 -> rotation = reader.readShort()
+                106, 118 -> readTransforms(reader, opcode == 118)
+                107 -> clickable = false
+                109 -> slowWalk = false
+                111 -> animateIdle = false
+                113 -> {
+                    primaryShadowColour = reader.readShort().toShort()
+                    secondaryShadowColour = reader.readShort().toShort()
+                }
+                114 -> {
+                    primaryShadowModifier = reader.readByte().toByte()
+                    secondaryShadowModifier = reader.readByte().toByte()
+                }
+                119 -> walkMode = reader.readByte().toByte()
+                121 -> {
+                    translations = arrayOfNulls(modelIds!!.size)
+                    val length = reader.readUnsignedByte()
+                    for (count in 0 until length) {
+                        val index = reader.readUnsignedByte()
+                        translations!![index] = intArrayOf(
+                            reader.readByte(),
+                            reader.readByte(),
+                            reader.readByte(),
+                        )
+                    }
+                }
+                122 -> hitbarSprite = reader.readShort()
+                123 -> height = reader.readShort()
+                125 -> respawnDirection = reader.readByte().toByte()
+                127 -> renderEmote = reader.readShort()
+                128 -> reader.readUnsignedByte()
+                134 -> {
+                    idleSound = reader.readShort()
+                    if (idleSound == 65535) {
+                        idleSound = -1
+                    }
+                    crawlSound = reader.readShort()
+                    if (crawlSound == 65535) {
+                        crawlSound = -1
+                    }
+                    walkSound = reader.readShort()
+                    if (walkSound == 65535) {
+                        walkSound = -1
+                    }
+                    runSound = reader.readShort()
+                    if (runSound == 65535) {
+                        runSound = -1
+                    }
+                    soundDistance = reader.readUnsignedByte()
+                }
+                135 -> {
+                    primaryCursorOp = reader.readUnsignedByte()
+                    primaryCursor = reader.readShort()
+                }
+                136 -> {
+                    secondaryCursorOp = reader.readUnsignedByte()
+                    secondaryCursor = reader.readShort()
+                }
+                137 -> attackCursor = reader.readShort()
+                138 -> armyIcon = reader.readShort()
+                139 -> spriteId = reader.readShort()
+                140 -> ambientSoundVolume = reader.readUnsignedByte()
+                141 -> visiblePriority = true
+                142 -> mapFunction = reader.readShort()
+                143 -> invisiblePriority = true
+                in 150..154 -> options[opcode - 150] = reader.readString()
+                155 -> {
+                    hue = reader.readByte().toByte()
+                    saturation = reader.readByte().toByte()
+                    lightness = reader.readByte().toByte()
+                    opacity = reader.readByte().toByte()
+                }
+                158 -> mainOptionIndex = 1.toByte()
+                159 -> mainOptionIndex = 0.toByte()
+                160 -> campaigns = IntArray(reader.readUnsignedByte()) { reader.readShort() }
+                162 -> vorbis = true
+                163 -> slayerType = reader.readUnsignedByte()
+                164 -> {
+                    soundRateMin = reader.readShort()
+                    soundRateMax = reader.readShort()
+                }
+                165 -> pickSizeShift = reader.readUnsignedByte()
+                168 -> soundRangeMin = reader.readUnsignedByte()
+                249 -> readParameters(reader)
+            }
+        }
+    }
+
+    override fun encode(writer: Writer) {
+        if (id == -1) {
+            return
+        }
+        val modelIds = modelIds
+        if (modelIds != null) {
+            writer.writeByte(1)
+            writer.writeByte(modelIds.size)
+            for (models in modelIds) {
+                writer.writeShort(models)
+            }
+        }
+        if (name != "null") {
+            writer.writeByte(2)
+            writer.writeString(name)
+        }
+        if (size != 1) {
+            writer.writeByte(12)
+            writer.writeByte(size)
+        }
+        for (index in 0 until 5) {
+            val option = options[index] ?: continue
+            writer.writeByte(30 + index)
+            writer.writeString(option)
+        }
+        writeColoursTextures(writer)
+        writeRecolourPalette(writer)
+        val dialogueModels = dialogueModels
+        if (dialogueModels != null) {
+            writer.writeByte(60)
+            writer.writeByte(dialogueModels.size)
+            for (id in dialogueModels) {
+                writer.writeShort(id)
+            }
+        }
+        if (!drawMinimapDot) {
+            writer.writeByte(93)
+        }
+        if (combat != -1) {
+            writer.writeByte(95)
+            writer.writeShort(combat)
+        }
+        if (scaleXY != 128) {
+            writer.writeByte(97)
+            writer.writeShort(scaleXY)
+        }
+        if (scaleZ != 128) {
+            writer.writeByte(98)
+            writer.writeShort(scaleZ)
+        }
+        if (priorityRender) {
+            writer.writeByte(99)
+        }
+        if (lightModifier != 0) {
+            writer.writeByte(100)
+            writer.writeByte(lightModifier)
+        }
+        if (shadowModifier != 0) {
+            writer.writeByte(101)
+            writer.writeByte(shadowModifier / 5)
+        }
+        if (headIcon != -1) {
+            writer.writeByte(102)
+            writer.writeShort(headIcon)
+        }
+        if (rotation != 32) {
+            writer.writeByte(103)
+            writer.writeShort(rotation)
+        }
+        writeTransforms(writer, 106, 118)
+        if (!clickable) {
+            writer.writeByte(107)
+        }
+        if (!slowWalk) {
+            writer.writeByte(109)
+        }
+        if (!animateIdle) {
+            writer.writeByte(111)
+        }
+        if (primaryShadowColour != 0.toShort() || secondaryShadowColour != 0.toShort()) {
+            writer.writeByte(113)
+            writer.writeShort(primaryShadowColour.toInt())
+            writer.writeShort(secondaryShadowColour.toInt())
+        }
+        if (primaryShadowModifier.toInt() != -96 || secondaryShadowModifier.toInt() != -16) {
+            writer.writeByte(114)
+            writer.writeByte(primaryShadowModifier.toInt())
+            writer.writeByte(secondaryShadowModifier.toInt())
+        }
+        if (walkMode.toInt() != 0) {
+            writer.writeByte(119)
+            writer.writeByte(walkMode.toInt())
+        }
+        val translations = translations
+        if (translations != null) {
+            writer.writeByte(121)
+            writer.writeByte(translations.filterNotNull().size)
+            for (i in translations.indices) {
+                val translation = translations[i] ?: continue
+                writer.writeByte(i)
+                writer.writeByte(translation[0])
+                writer.writeByte(translation[1])
+                writer.writeByte(translation[2])
+            }
+        }
+        if (hitbarSprite != -1) {
+            writer.writeByte(122)
+            writer.writeShort(hitbarSprite)
+        }
+        if (height != -1) {
+            writer.writeByte(123)
+            writer.writeShort(height)
+        }
+        if (respawnDirection.toInt() != 4) {
+            writer.writeByte(125)
+            writer.writeByte(respawnDirection.toInt())
+        }
+        if (renderEmote != -1) {
+            writer.writeByte(127)
+            writer.writeShort(renderEmote)
+        }
+        if (idleSound != -1 || crawlSound != -1 || walkSound != -1 || runSound != -1 || soundDistance != 0) {
+            writer.writeByte(134)
+            writer.writeShort(idleSound)
+            writer.writeShort(crawlSound)
+            writer.writeShort(walkSound)
+            writer.writeShort(runSound)
+            writer.writeByte(soundDistance)
+        }
+        if (primaryCursorOp != -1 || primaryCursor != -1) {
+            writer.writeByte(135)
+            writer.writeByte(primaryCursorOp)
+            writer.writeShort(primaryCursor)
+        }
+        if (secondaryCursorOp != -1 || secondaryCursor != -1) {
+            writer.writeByte(136)
+            writer.writeByte(secondaryCursorOp)
+            writer.writeShort(secondaryCursor)
+        }
+        if (attackCursor != -1) {
+            writer.writeByte(137)
+            writer.writeShort(attackCursor)
+        }
+        if (armyIcon != -1) {
+            writer.writeByte(138)
+            writer.writeShort(armyIcon)
+        }
+        if (spriteId != -1) {
+            writer.writeByte(139)
+            writer.writeShort(spriteId)
+        }
+        if (ambientSoundVolume != 255) {
+            writer.writeByte(140)
+            writer.writeByte(ambientSoundVolume)
+        }
+        if (visiblePriority) {
+            writer.writeByte(141)
+        }
+        if (mapFunction != -1) {
+            writer.writeByte(142)
+            writer.writeShort(mapFunction)
+        }
+        if (invisiblePriority) {
+            writer.writeByte(143)
+        }
+        // FIXME member options
+//        for (index in 0 until 5) {
+//            val option = options[index] ?: continue
+//            writer.writeByte(150 + index)
+//            writer.writeString(option)
+//        }
+        if (hue.toInt() != 0 || saturation.toInt() != 0 || lightness.toInt() != 0 || opacity.toInt() != 0) {
+            writer.writeByte(155)
+            writer.writeByte(hue.toInt())
+            writer.writeByte(saturation.toInt())
+            writer.writeByte(lightness.toInt())
+            writer.writeByte(opacity.toInt())
+        }
+        if (mainOptionIndex.toInt() == 1) {
+            writer.writeByte(158)
+        }
+        if (mainOptionIndex.toInt() == 0) {
+            writer.writeByte(159)
+        }
+        val campaigns = campaigns
+        if (campaigns != null) {
+            writer.writeByte(160)
+            writer.writeByte(campaigns.size)
+            for (it in campaigns) {
+                writer.writeShort(it)
+            }
+        }
+        if (vorbis) {
+            writer.writeByte(162)
+        }
+        if (slayerType != -1) {
+            writer.writeByte(163)
+            writer.writeByte(slayerType)
+        }
+        if (soundRateMin != 256 || soundRateMax != 256) {
+            writer.writeByte(164)
+            writer.writeShort(soundRateMin)
+            writer.writeShort(soundRateMax)
+        }
+        if (pickSizeShift != 0) {
+            writer.writeByte(165)
+            writer.writeByte(pickSizeShift)
+        }
+        if (soundRangeMin != 0) {
+            writer.writeByte(165)
+            writer.writeByte(soundRangeMin)
+        }
+        writeParameters(writer)
+        writer.writeByte(0)
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

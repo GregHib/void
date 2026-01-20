@@ -7,10 +7,10 @@ import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.buffer.write.Writer
-import world.gregs.voidps.cache.type.NpcType
+import world.gregs.voidps.cache.type.data.NpcType
 import world.gregs.voidps.cache.type.Params
 import world.gregs.voidps.engine.data.param.codec.ParamCodec
-import world.gregs.voidps.engine.data.types.keys.NpcParams
+import world.gregs.voidps.engine.data.param.NpcParams
 import java.io.File
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.collections.set
@@ -18,22 +18,15 @@ import kotlin.concurrent.atomics.AtomicInt
 import kotlin.reflect.KClass
 
 abstract class Parameters<T : Params> {
-    abstract val parameters: List<Triple<String, Int, ParamCodec<*>>>
-    private lateinit var codecs: Map<Int, ParamCodec<*>>
-    private lateinit var keys: Map<String, Int>
+    internal abstract val codecs: Map<Int, ParamCodec<*>>
+    internal abstract val keys: Map<String, Int>
 
     fun validate() {
         val set = mutableSetOf<Int>()
-        val codecs = Int2ObjectOpenHashMap<ParamCodec<*>>(parameters.size)
-        val keys = Object2IntOpenHashMap<String>(parameters.size)
-        for ((key, id, codec) in parameters) {
+        for (id in keys.values) {
             require(set.add(id)) { "Duplicate parameter id: $id" }
             require(id < Short.MAX_VALUE) { "Parameter id out of bounds: $id"}
-            codecs.put(id, codec)
-            keys.put(key, id)
         }
-        this.codecs = codecs
-        this.keys = keys
     }
 
     fun read(config: ConfigReader): MutableMap<Int, Any> {
@@ -41,37 +34,23 @@ abstract class Parameters<T : Params> {
         while (config.nextPair()) {
             val key = config.key()
             val id = keys[key] ?: throw IllegalArgumentException("Unknown key: $key")
-            val codec = codecs[id] ?: throw IllegalArgumentException("Unknown codec: $id")
+            val codec = codecs[id] ?: throw IllegalArgumentException("Unknown id: $id")
             params[id] = codec.read(config)
         }
         return params
     }
-
-    /*
-        // Definition load took 59ms
-        // Config read took 152ms
-        // Both - Startup took 276ms
-
-        Writing = 60ms
-        Read both = 200ms
-        Read definitions 54ms
-        Array type Conversion 13ms
-        Read config = 100ms
-
-        Pure cache = 90ms
-     */
 
     fun read(file: File, types: Array<T>) {
         val array = file.readBytes()
         val reader = ArrayReader(array)
         for (type in types) {
             type.stringId = reader.readString()
-            val params = NpcParams.read(reader) ?: continue
+            val params = read(reader) ?: continue
             type.set(params)
         }
     }
 
-    fun read(reader: Reader): Map<Int, Any>? {
+    private fun read(reader: Reader): Map<Int, Any>? {
         val size = reader.readByte()
         if (size == 0) {
             return null
@@ -94,17 +73,17 @@ abstract class Parameters<T : Params> {
         file.writeBytes(writer.toArray())
     }
 
-    fun write(writer: Writer, params: Map<Int, Any>?) {
+    private fun write(writer: Writer, params: Map<Int, Any>?) {
         if (params == null) {
             writer.writeByte(0)
             return
         }
-        writer.writeByte(params.count { it.key >= 0 })
+        writer.writeByte(params.count { codecs.containsKey(it.key) })
         for (id in params.keys) {
             if (id < 0) {
                 continue
             }
-            val codec = codecs[id] ?: throw IllegalArgumentException("Unknown key id: $id")
+            val codec = codecs[id] ?: continue
             writer.writeShort(id)
             codec.write(writer, params[id]!!)
         }
