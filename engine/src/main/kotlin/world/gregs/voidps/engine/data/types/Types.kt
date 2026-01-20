@@ -39,12 +39,8 @@ abstract class Types<T, D : Definition> where T : Type, T : Params {
         if (file.exists() && !files.cacheUpdate && active) {
             types = typeCodec.read(file)
         } else {
-            var start = System.currentTimeMillis()
             val defs = definitionCodec.load(cache)
-            println("Definition load took ${System.currentTimeMillis() - start}ms")
-            start = System.currentTimeMillis()
             types = create(defs.size, defs)
-            println("Type conversion took ${System.currentTimeMillis() - start}ms")
             if (active) {
                 typeCodec.write(file, types, size)
             }

@@ -14,7 +14,7 @@ object NpcDefinitionCodec : DefinitionCodec<NPCDefinitionFull> {
     override fun create(index: Int) = NPCDefinitionFull(index)
 
     override fun data(cache: Cache, index: Int): ByteArray? {
-        return cache.data(Index.NPCS, index and 0x7f, index ushr 7)
+        return cache.data(Index.NPCS, index ushr 7, index and 0x7f)
     }
 
     override fun encode(writer: Writer, definition: NPCDefinitionFull) {

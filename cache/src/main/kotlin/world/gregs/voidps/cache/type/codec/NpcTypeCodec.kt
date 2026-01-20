@@ -15,7 +15,7 @@ object NpcTypeCodec : TypeCodec<NpcType>() {
 
     override fun create(size: Int, block: (NpcType) -> Unit) = Array(size) { NpcType(it).also(block) }
 
-    override fun read(type: NpcType, reader: Reader) {
+    override fun read(reader: Reader, type: NpcType) {
         while (reader.position() < reader.length) {
             when (val opcode = reader.readUnsignedByte()) {
                 0 -> break
@@ -51,7 +51,7 @@ object NpcTypeCodec : TypeCodec<NpcType>() {
         }
     }
 
-    override fun write(definition: NpcType, writer: Writer) {
+    override fun write(writer: Writer, definition: NpcType) {
         if (definition.id == -1) {
             return
         }
@@ -80,6 +80,11 @@ object NpcTypeCodec : TypeCodec<NpcType>() {
         }
 
         writeTransforms(writer, definition.transforms, definition.varbit, definition.varp, 106, 118)
+
+        if (definition.walkMode.toInt() != 0) {
+            writer.writeByte(119)
+            writer.writeByte(definition.walkMode.toInt())
+        }
 
         if (definition.renderEmote != -1) {
             writer.writeByte(127)

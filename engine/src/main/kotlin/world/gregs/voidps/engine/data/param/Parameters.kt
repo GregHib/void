@@ -19,7 +19,6 @@ import kotlin.reflect.KClass
 
 abstract class Parameters<T : Params> {
     abstract val parameters: List<Triple<String, Int, ParamCodec<*>>>
-//    abstract val parameters: Map<Int, ParamCodec<*>>
     private lateinit var codecs: Map<Int, ParamCodec<*>>
     private lateinit var keys: Map<String, Int>
 
@@ -49,6 +48,10 @@ abstract class Parameters<T : Params> {
     }
 
     /*
+        // Definition load took 59ms
+        // Config read took 152ms
+        // Both - Startup took 276ms
+
         Writing = 60ms
         Read both = 200ms
         Read definitions 54ms
@@ -59,9 +62,7 @@ abstract class Parameters<T : Params> {
      */
 
     fun read(file: File, types: Array<T>) {
-        val start = System.currentTimeMillis()
         val array = file.readBytes()
-        println("Array read took ${System.currentTimeMillis() - start}ms ${array.size}")
         val reader = ArrayReader(array)
         for (type in types) {
             type.stringId = reader.readString()

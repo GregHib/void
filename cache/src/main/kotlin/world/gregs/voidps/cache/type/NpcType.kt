@@ -34,8 +34,6 @@ class NpcType(override val id: Int = -1) : Type, Params {
     override var stringId: String = ""
     override var params: Map<Int, Any>? = null
 
-    var examine: String? = null
-
     constructor(definition: NPCDefinitionFull) : this(definition.id) {
         name = definition.name
         size = definition.size

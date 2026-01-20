@@ -18,14 +18,14 @@ abstract class ParamTypes<T, D: Definition> : Types<T, D>() where T: Type, T: Pa
         params.validate()
         super.load(cache, files)
         // Params
+        val extension = Settings[extension]
         val file = File("${Settings["storage.caching.path"]}${extension.replace(".toml", "_params.bin")}")
         val active = Settings["storage.caching.active", false]
-        if (!file.exists() || files.cacheUpdate || !active || files.extensions.contains(extension)) {
-            val start = System.currentTimeMillis()
-            readConfig(files.list(Settings[extension]), types)
-            println("Config read took ${System.currentTimeMillis() - start}ms")
+        if (!file.exists() || files.cacheUpdate || !active || files.needsUpdate(extension)) {
+            readConfig(files.list(extension), types)
             if (active) {
                 params.write(file, types, size)
+                files.update(extension)
             }
         } else {
             params.read(file, types)
