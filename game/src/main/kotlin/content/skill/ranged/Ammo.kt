@@ -31,19 +31,6 @@ object Ammo {
 
     fun requiredAmount(weapon: Item, special: Boolean) = if (weapon.id.startsWith("dark_bow") || (weapon.id.startsWith("magic_shortbow") && special)) 2 else 1
 
-    private val rollOnMissEnchantments = setOf(
-        "opal_bolts_e",
-        "jade_bolts_e",
-        "pearl_bolts_e",
-        "topaz_bolts_e",
-        "sapphire_bolts_e",
-        "emerald_bolts_e",
-        "ruby_bolts_e",
-        "diamond_bolts_e",
-        "dragon_bolts_e",
-        "onyx_bolts_e",
-    )
-
     fun remove(player: Player, target: Character, ammo: String, required: Int) {
         if (ammo == "" || ammo == "zaryte_arrow" || ammo == "sling_rock" || ammo == "special_arrow") {
             return
@@ -92,10 +79,7 @@ object Ammo {
         if (source !is Player || type != "range") {
             return baseDamage
         }
-        val miss = baseDamage < 0
-        if (miss && source.ammo !in rollOnMissEnchantments) {
-            return baseDamage
-        }
+
         var damage = baseDamage
 
         when {
