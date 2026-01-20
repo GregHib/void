@@ -76,10 +76,12 @@ object Ammo {
         weapon: Item,
         baseDamage: Int,
     ): Int {
-        if (source !is Player || baseDamage < 0 || type != "range") {
+        if (source !is Player || type != "range") {
             return baseDamage
         }
+
         var damage = baseDamage
+
         when {
             source.ammo == "opal_bolts_e" && chance(source, target, "lucky_lightning", 0.05) -> {
                 damage += (source.levels.get(Skill.Ranged) * 0.1).toInt()
