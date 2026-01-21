@@ -114,7 +114,10 @@ object Main {
     private fun cache(cache: Cache, files: ConfigFiles): Module {
         val members = Settings["world.members", false]
         val module = module {
-            single(createdAtStart = true) { MapDefinitions(CollisionDecoder(), cache).load(files) }
+            single(createdAtStart = true) {
+                get<ObjectDefinitions>()
+                MapDefinitions(CollisionDecoder(), cache).load(files)
+            }
             single(createdAtStart = true) { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
             single(createdAtStart = true) { ObjectDefinitions.init(ObjectDecoder(members, lowDetail = false, get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.objects"])) }
             single(createdAtStart = true) { NPCDefinitions.init(NPCDecoder(members, get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.npcs"]), get()) }
@@ -123,7 +126,10 @@ object Main {
             single(createdAtStart = true) { EnumDefinitions(EnumDecoder().load(cache), get()).load(files.find(Settings["definitions.enums"])) }
             single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(cache)).load(files.list(Settings["definitions.graphics"])) }
             single(createdAtStart = true) { InterfaceDefinitions(InterfaceDecoder().load(cache)).load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"])) }
-            single(createdAtStart = true) { InventoryDefinitions(InventoryDecoder().load(cache)).load(files.list(Settings["definitions.inventories"]), files.list(Settings["definitions.shops"])) }
+            single(createdAtStart = true) {
+                get<ItemDefinitions>()
+                InventoryDefinitions(InventoryDecoder().load(cache)).load(files.list(Settings["definitions.inventories"]), files.list(Settings["definitions.shops"]))
+            }
             single(createdAtStart = true) { StructDefinitions(StructDecoder(get<ParameterDefinitions>()).load(cache)).load(files.find(Settings["definitions.structs"])) }
             single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }
             single(createdAtStart = true) { WeaponStyleDefinitions().load(files.find(Settings["definitions.weapons.styles"])) }
@@ -144,7 +150,10 @@ object Main {
                     files.list(Settings["definitions.variables.customs"]),
                 )
             }
-            single(createdAtStart = true) { DropTables().load(files.list(Settings["spawns.drops"])) }
+            single(createdAtStart = true) {
+                get<ItemDefinitions>()
+                DropTables().load(files.list(Settings["spawns.drops"]))
+            }
             single(createdAtStart = true) { ObjectTeleports().load(files.list(Settings["map.teleports"])) }
         }
         return module
