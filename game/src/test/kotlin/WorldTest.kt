@@ -263,6 +263,7 @@ abstract class WorldTest : KoinTest {
             properties["storage.grand.exchange.offers.claim.path"] = "../temp/data/test-grand_exchange/claimable_offers.toml"
             properties["storage.grand.exchange.offers.path"] = "../temp/data/test-grand_exchange/offers.toml"
             properties["storage.grand.exchange.history.path"] = "../temp/data/test-grand_exchange/price_history/"
+            properties["storage.caching.path"] = "../temp/data/cache"
             properties["quests.requirements.skipMissing"] = false
             properties["grandExchange.priceLimit"] = true
             properties["world.npcs.randomWalk"] = false
