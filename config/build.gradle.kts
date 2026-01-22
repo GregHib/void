@@ -14,6 +14,7 @@ repositories {
 
 
 dependencies {
+    implementation("world.gregs.voidps.buffer:buffer")
     implementation(libs.kasechange)
     implementation(libs.fastutil)
 

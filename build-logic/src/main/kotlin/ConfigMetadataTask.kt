@@ -5,7 +5,10 @@ import org.gradle.api.tasks.*
 import org.gradle.work.ChangeType
 import org.gradle.work.Incremental
 import org.gradle.work.InputChanges
+import org.jetbrains.kotlin.it.unimi.dsi.fastutil.objects.ba
 import world.gregs.config.Config
+import world.gregs.config.param.NpcParams
+import world.gregs.config.param.Parameters
 import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.write.ArrayWriter
 import java.io.File
@@ -20,7 +23,7 @@ abstract class ConfigMetadataTask : DefaultTask() {
     @get:PathSensitive(PathSensitivity.RELATIVE)
     abstract val directories: ConfigurableFileCollection
 
-    @get:OutputFile
+    @get:OutputDirectory
     abstract val output: DirectoryProperty
 
     init {
@@ -39,6 +42,7 @@ abstract class ConfigMetadataTask : DefaultTask() {
             val changes = mutableMapOf<String, MutableList<String>>()
             for (file in directories) {
                 val ending = file.name.substringAfter(".")
+                println("Change $ending ${file.path}")
                 changes.getOrPut(ending) { mutableListOf() }.add(file.path)
                 count++
             }
@@ -48,16 +52,17 @@ abstract class ConfigMetadataTask : DefaultTask() {
                     "npcs.toml" -> {
                         val configs = mutableMapOf<Int, MutableMap<Int, Any>>()
                         for (file in files) {
-                            val values = readConfig(file)
-                            val id = values[-1] as Int
-                            configs[id] = values
-                            ids.getOrPut(file) { mutableListOf() }.add(id)
+                            for (values in readConfig(file, NpcParams)) {
+                                val id = values[Parameters.ID] as Int
+                                configs[id] = values
+                                ids.getOrPut(file) { mutableListOf() }.add(id)
+                            }
                         }
                         val writer = ArrayWriter(1_000_000)
                         val indices = IntArray(MAX_ID)
                         for (i in 0 until MAX_ID) {
                             val values = configs[i] ?: continue
-                            writeConfig(writer, values, indices)
+                            writeConfig(writer, values, indices, NpcParams)
                         }
                         writeData(writer, base, "npcs")
                         writeIndices(indices, base, "npcs")
@@ -69,6 +74,7 @@ abstract class ConfigMetadataTask : DefaultTask() {
             val removals = mutableMapOf<String, MutableList<String>>()
             for (change in inputChanges.getFileChanges(directories)) {
                 val ending = change.file.name.substringAfter(".")
+                println("Update ${change.changeType.name} $ending ${change.file.path}")
                 if (change.changeType == ChangeType.REMOVED) {
                     removals.getOrPut(ending) { mutableListOf() }.add(change.file.path)
                 } else {
@@ -108,15 +114,16 @@ abstract class ConfigMetadataTask : DefaultTask() {
                         val indices = readIndices(base, "npcs")
                         val reader = readData(base, "npcs")
                         for (file in files) {
-                            val values = readConfig(file)
-                            val id = values[-1] as Int
-                            ids.getOrPut(file) { mutableListOf() }.add(id)
-                            configs[id] = values
+                            for (values in readConfig(file, NpcParams)) {
+                                val id = values[Parameters.ID] as Int
+                                ids.getOrPut(file) { mutableListOf() }.add(id)
+                                configs[id] = values
+                            }
                         }
                         val encoded = mutableMapOf<Int, ByteArray>()
                         for ((id, params) in configs) {
                             val writer = ArrayWriter(500_000)
-                            writeConfig(writer, params, indices)
+                            writeConfig(writer, params, indices, NpcParams)
                             encoded[id] = writer.toArray()
                         }
                         var writer = ArrayWriter(buffer = reader.array)
@@ -139,7 +146,7 @@ abstract class ConfigMetadataTask : DefaultTask() {
                             }
                             // Overwrite
                             writer.writeBytes(params, start, params.size)
-                            for(i in id until MAX_ID) {
+                            for (i in id until MAX_ID) {
                                 indices[i] = indices[i] + difference
                             }
                         }
@@ -165,13 +172,16 @@ abstract class ConfigMetadataTask : DefaultTask() {
 
     private fun readIds(base: File): MutableMap<String, MutableList<Int>> {
         val ids = mutableMapOf<String, MutableList<Int>>()
-        val reader = ArrayReader(base.resolve("ids.dat").readBytes())
-        val size = reader.readInt()
-        for (i in 0 until size) {
-            val file = reader.readString()
-            val array = IntArray(reader.readInt())
-            reader.readBytes(array)
-            ids[file] = array.toMutableList()
+        val file = base.resolve("ids.dat")
+        if (file.exists()) {
+            val reader = ArrayReader(file.readBytes())
+            val size = reader.readInt()
+            for (i in 0 until size) {
+                val file = reader.readString()
+                val array = IntArray(reader.readInt())
+                reader.readBytes(array)
+                ids[file] = array.toMutableList()
+            }
         }
         return ids
     }
@@ -194,66 +204,34 @@ abstract class ConfigMetadataTask : DefaultTask() {
         return indices
     }
 
-    private fun writeConfig(writer: ArrayWriter, values: MutableMap<Int, Any>, indices: IntArray) {
-        val id = values[-1] as Int
-        val stringId = values[-2] as String
+    private fun writeConfig(writer: ArrayWriter, values: MutableMap<Int, Any>, indices: IntArray, params: Parameters) {
+        val id = values[Parameters.ID] as Int
+        val stringId = values[Parameters.STRING_ID] as String
         writer.writeInt(id)
         indices[id] = writer.position()
         writer.writeString(stringId)
-        writer.writeByte(values.size)
-        for ((key, value) in values) {
-            if (key < 0) {
-                continue
-            }
-            writer.writeShort(key)
-            writer.writeInt(value as Int) // TODO
-        }
+        params.write(writer, values)
     }
 
-    private fun readConfig(file: String): MutableMap<Int, Any> {
-        val values = mutableMapOf<Int, Any>()
-        Config.fileReader(file, 250) {
+    private fun readConfig(file: String, params: Parameters, stringSize: Int = 250): List<MutableMap<Int, Any>> {
+        val list = mutableListOf<MutableMap<Int, Any>>()
+        Config.fileReader(file, stringSize) {
             while (nextSection()) {
                 val section = section()
-                values[-2] = section
-                while (nextPair()) {
-                    val key = key()
-                    val value = value() // TODO
-                    values[key.toInt()] = value // TODO
-                }
+                val values = params.read(this)
+                values[Parameters.STRING_ID] = section
+                list.add(values)
             }
         }
-        return values
+        return list
     }
 
     fun IntArray.startingIndex(id: Int) = this[id] - 4 // For the id header
-    
+
     fun IntArray.size(id: Int, end: Int): Int {
         val endIndex = this.getOrNull(id + 1)?.let { it - 4 } ?: end
         return endIndex - this[id]
     }
-
-    /*
-        data class File(
-
-
-
-        Data file
-        [id]
-        [size]
-        [id..]
-        [value..]
-
-        Index file
-        [id]
-        [index]
-
-        fun fastReadAll() {
-           id = readInt()
-
-        }
-        fun update()
-     */
 
     companion object {
         const val MAX_ID = 80_000
