@@ -55,6 +55,21 @@ tasks {
         resourceDirectory = resources
     }
 
+    register("configMetadata", ConfigMetadataTask::class.java) {
+        directories.from(
+            fileTree("../data/achievement") { include("**/*.toml") },
+            fileTree("../data/activity") { include("**/*.toml") },
+            fileTree("../data/area") { include("**/*.toml") },
+            fileTree("../data/client") { include("**/*.toml") },
+            fileTree("../data/entity") { include("**/*.toml") },
+            fileTree("../data/minigame") { include("**/*.toml") },
+            fileTree("../data/quest") { include("**/*.toml") },
+            fileTree("../data/skill") { include("**/*.toml") },
+            fileTree("../data/social") { include("**/*.toml") },
+        )
+        output.set(layout.buildDirectory.dir("configs"))
+    }
+
     named<ShadowJar>("shadowJar") {
         dependsOn("scriptMetadata")
         from(layout.buildDirectory.file("scripts.txt"))

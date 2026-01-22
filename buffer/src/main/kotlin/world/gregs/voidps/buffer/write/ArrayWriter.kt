@@ -115,12 +115,36 @@ class ArrayWriter(
         return if (bitIndex != -1) {
             (bitIndex + 7) / 8
         } else {
-            return position
+            position
         }
     }
 
     override fun position(index: Int) {
         position = index
+    }
+    fun cut(start: Int, size: Int): ArrayWriter {
+        require(size >= 0) { "Size must be non-negative" }
+        require(start >= 0 && start + size <= buffer.size) { "Cut range out of bounds" }
+
+        val copy = ByteArray(buffer.size - size)
+        System.arraycopy(buffer, 0, copy, 0, start)
+        System.arraycopy(buffer, start + size, copy, start, buffer.size - start - size)
+        return ArrayWriter(buffer = copy)
+    }
+
+//    fun cut(start: Int, end: Int): ArrayWriter {
+//        require(start <= end) { "Start position can't exceed end position" }
+//        val copy = ByteArray(buffer.size - (end - start))
+//        System.arraycopy(buffer, 0, copy, 0, start)
+//        System.arraycopy(buffer, end, copy, start, buffer.size - end)
+//        return ArrayWriter(buffer = copy)
+//    }
+
+    fun insert(start: Int, size: Int): ArrayWriter {
+        val copy = ByteArray(buffer.size + size)
+        System.arraycopy(buffer, 0, copy, 0, start)
+        System.arraycopy(buffer, start, copy, start + size, buffer.size - start)
+        return ArrayWriter(buffer = copy)
     }
 
     override fun toArray(): ByteArray {

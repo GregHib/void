@@ -9,6 +9,7 @@ repositories {
 
 dependencies {
     implementation("world.gregs.config:config")
+    implementation("world.gregs.voidps.buffer:buffer")
     implementation(libs.kotlin.embeddable)
 }
 

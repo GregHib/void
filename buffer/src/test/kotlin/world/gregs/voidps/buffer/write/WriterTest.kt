@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.buffer.read.ArrayReader
+import kotlin.test.assertContentEquals
 
 abstract class WriterTest {
 
