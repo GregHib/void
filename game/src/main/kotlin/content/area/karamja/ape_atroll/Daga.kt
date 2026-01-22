@@ -6,7 +6,6 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.inv.add
@@ -30,7 +29,6 @@ class Daga : Script {
 
                     option("Yes please.") {
                         player<Shifty>("Yes, please.")
-                        closeDialogue()
                         openShop("dagas_scimitar_smithy")
                     }
 
@@ -40,7 +38,6 @@ class Daga : Script {
 
                     option("Do you have any Dragon Scimitars in stock?") {
                         player<Shifty>("Do you have any Dragon Scimitars in stock?")
-                        // Combined into one string - the engine splits it automatically now
                         npc<Shifty>("daga", "It just so happens I recently got a fresh delivery. <br>Do you want to buy one?")
                         choice {
                             option("Yes.") {
@@ -50,7 +47,6 @@ class Daga : Script {
                                     npc<Shifty>("daga", "Sorry, you don't have enough space in your inventory.")
                                     inventoryFull()
                                 } else if (!inventory.contains("coins", 100_000)) {
-                                    // Combined into one string
                                     npc<Shifty>("daga", "Sorry, you don't have enough coins. <br>It costs 100,000 gold coins.")
                                 } else {
                                     inventory.remove("coins", 100_000)

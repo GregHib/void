@@ -10,38 +10,38 @@ import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-class Hamab : Script {
+class MonkeyShopkeeper : Script {
 
     init {
-        npcOperate("Talk-to", "hamab") {
+        npcOperate("Talk-to", "hamab,ifaba,tutab") { (npc) ->
             val amulet = equipped(EquipSlot.Amulet)
+            val shopName = npc.def["shop", ""]  // Gets shop name from NPC def
 
             if (amulet.id == "monkeyspeak_amulet") {
-                // Explicitly named "hamab" to fix the 'null' error
-                npc<Shifty>("hamab", "Would you like to buy or sell some crafting materials?")
-
+                npc<Shifty>("Would you like to see my wares?")
                 choice {
                     option("Yes, please.") {
                         player<Shifty>("Yes, please.")
-                        closeDialogue() // Clears dialogue so shop opens correctly
-                        openShop("hamabs_crafting_emporium")
+                        closeDialogue()
+                        openShop(shopName)
                     }
                     option("No, thanks.") {
                         player<Shifty>("No, thanks.")
                     }
                 }
             } else {
-                // Monkey dialogue when not wearing the amulet
-                npc<Shifty>("hamab", "Ook! Ah Uh Ah! Ook Ook! Ah!")
+                npc<Shifty>(npc.id, "Ook! Ah Uh Ah! Ook Ook! Ah!")
             }
         }
 
-        npcOperate("Trade", "hamab") {
+        npcOperate("Trade", "hamab,ifaba,tutab") { (npc) ->
             val amulet = equipped(EquipSlot.Amulet)
+            val shopName = npc.def["shop", ""]
+
             if (amulet.id == "monkeyspeak_amulet") {
-                openShop("hamabs_crafting_emporium")
+                openShop(shopName)
             } else {
-                npc<Shifty>("hamab", "Ook! Ah Uh Ah! Ook Ook! Ah!")
+                npc<Shifty>(npc.id, "Ook! Ah Uh Ah! Ook Ook! Ah!")
             }
         }
     }

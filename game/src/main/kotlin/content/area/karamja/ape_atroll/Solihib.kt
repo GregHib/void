@@ -17,13 +17,11 @@ class Solihib : Script {
             val amulet = equipped(EquipSlot.Amulet)
 
             if (amulet.id == "monkeyspeak_amulet") {
-                // Corrected name to "solihib" and matched the official Wiki transcript
                 npc<Shifty>("solihib", "Would you like to buy or sell some foodstuffs?")
 
                 choice {
                     option("Yes, please.") {
                         player<Shifty>("Yes, please.")
-                        closeDialogue() // Clears dialogue so the shop opens cleanly
                         openShop("solihibs_food_stall")
                     }
                     option("No, thanks.") {
@@ -31,7 +29,6 @@ class Solihib : Script {
                     }
                 }
             } else {
-                // Monkey dialogue when not wearing the amulet
                 npc<Shifty>("solihib", "Ook! Ah Uh Ah! Ook Ook! Ah!")
             }
         }
