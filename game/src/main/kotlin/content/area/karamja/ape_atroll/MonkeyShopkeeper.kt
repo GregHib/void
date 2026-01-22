@@ -35,7 +35,7 @@ class MonkeyShopkeeper : Script {
                     }
                 }
             } else {
-                npc<Shifty>(npc.id, "Ook! Ah Uh Ah! Ook Ook! Ah!")
+                npc<Shifty>("Ook! Ah Uh Ah! Ook Ook! Ah!")
             }
         }
 
@@ -46,7 +46,7 @@ class MonkeyShopkeeper : Script {
             if (amulet.id == "monkeyspeak_amulet") {
                 openShop(shopName)
             } else {
-                npc<Shifty>(npc.id, "Ook! Ah Uh Ah! Ook Ook! Ah!")
+                npc<Shifty>("Ook! Ah Uh Ah! Ook Ook! Ah!")
             }
         }
     }
