@@ -84,7 +84,7 @@ class TrapChests(val tables: DropTables) : Script {
                     else -> return@objectOperate
                 }
             }
-            anim("climb_down")
+            anim("human_pickupfloor")
             anim("open_chest")
             delay(1)
             message("You find treasure inside!", ChatType.Filter)

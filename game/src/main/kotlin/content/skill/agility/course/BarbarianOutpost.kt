@@ -99,7 +99,7 @@ class BarbarianOutpost : Script {
 
         objectOperate("Climb-over", "barbarian_outpost_obstacle_net") {
             message("You climb the netting...", ChatType.Filter)
-            anim("climb_up")
+            anim("human_reachforladder")
             delay(2)
             agilityStage(3)
             tele(2537, tile.y.coerceIn(3545, 3546), 1)

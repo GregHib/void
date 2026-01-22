@@ -33,7 +33,7 @@ class GnomeStronghold : Script {
             agilityCourse("gnome")
             NPCs.gnomeTrainer("Move it, move it, move it!", listOf(Zone(8768252), Zone(876853)))
             message("You climb the netting...", ChatType.Filter)
-            anim("climb_up")
+            anim("human_reachforladder")
             delay(2)
             agilityStage(2)
             tele(tile.x.coerceIn(2471, 2476), 3424, 1)
@@ -43,7 +43,7 @@ class GnomeStronghold : Script {
         objectOperate("Climb", "gnome_tree_branch_up") {
             NPCs.gnomeTrainer("That's it - straight up", listOf(Zone(5069109), Zone(5071157)))
             message("You climb the tree...", ChatType.Filter)
-            anim("climb_up")
+            anim("human_reachforladder")
             delay(2)
             message("... to the platform above.", ChatType.Filter)
             agilityStage(3)
@@ -71,7 +71,7 @@ class GnomeStronghold : Script {
 
         objectOperate("Climb-down", "gnome_tree_branch_down") {
             message("You climb the tree...", ChatType.Filter)
-            anim("climb_down")
+            anim("human_pickupfloor")
             delay(2)
             agilityStage(5)
             tele(2486, 3420, 0)
@@ -82,7 +82,7 @@ class GnomeStronghold : Script {
             agilityCourse("gnome")
             NPCs.gnomeTrainer("My Granny can move faster than you.", Zone(876854))
             message("You climb the netting.", ChatType.Filter)
-            anim("climb_up")
+            anim("human_reachforladder")
             delay(2)
             agilityStage(6)
             val direction = target.tile.delta(tile).toDirection().vertical()

@@ -29,7 +29,7 @@ class Stairs(val teleports: ObjectTeleports) : Script {
             if (remaining > 0) {
                 return@objTeleportTakeOff remaining
             } else if (remaining < 0) {
-                anim(if (option == "Climb-down" || obj.stringId.endsWith("_down")) "climb_down" else "climb_up")
+                anim(if (option == "Climb-down" || obj.stringId.endsWith("_down")) "human_pickupfloor" else "human_reachforladder")
                 start("teleport_delay", 2)
                 return@objTeleportTakeOff 2
             }

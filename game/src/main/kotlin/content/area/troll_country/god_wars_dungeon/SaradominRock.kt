@@ -37,7 +37,7 @@ class SaradominRock : Script {
             player.message("You aren't carrying a rope with you.")
             return
         }
-        player.anim("climb_up")
+        player.anim("human_reachforladder")
         player[id.replace("rock", "rope")] = true
     }
 }
