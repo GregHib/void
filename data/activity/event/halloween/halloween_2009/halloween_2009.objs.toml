@@ -1,0 +1,703 @@
+[large_door_halloween_2009]
+id = 3129
+examine = "A large double door."
+
+[large_door_2_halloween_2009]
+id = 3131
+examine = "A large double door."
+
+[staircase_halloween_2009]
+id = 27866
+examine = "Dare I go up?"
+
+[stairs_halloween_2009]
+id = 27869
+examine = "Dare I go up?"
+
+[staircase_2_halloween_2009]
+id = 27870
+examine = "These stairs look spooky!"
+
+[table_halloween_2009]
+id = 27885
+examine = "Death himself uses this table to put things on."
+
+[bed_halloween_2009]
+id = 27889
+examine = "A bed for sleeping the sleep of death."
+
+[table_2_halloween_2009]
+id = 27892
+examine = "Death himself uses this table to put things on."
+
+[table_3_halloween_2009]
+id = 27893
+examine = "Death himself uses this table to put things on."
+
+[table_4_halloween_2009]
+id = 27894
+examine = "Death himself uses this table to put things on."
+
+[death_clock_halloween_2009]
+id = 27896
+examine = "Every swing of the pendulum brings you closer to the moment of your death."
+
+[bookcase_halloween_2009]
+id = 28095
+examine = "Volume after volume of obituaries."
+
+[bookcase_2_halloween_2009]
+id = 46548
+examine = "Autobiographies - posthumous autobiographies."
+
+[cabinet_halloween_2009]
+id = 46549
+examine = "A locked cabinet."
+
+[cabinet_2_halloween_2009]
+id = 46550
+examine = "A locked cabinet."
+
+[candlestand_halloween_2009]
+id = 46551
+examine = "The flickering light casts shadows that seem darker than black."
+
+[towels_halloween_2009]
+id = 46553
+examine = "These could make you as dry as a bone."
+
+[table_5_halloween_2009]
+id = 46554
+examine = "Dead souls could feast around this table."
+
+[table_6_halloween_2009]
+id = 46555
+examine = "Dead souls could feast around this table."
+
+[table_7_halloween_2009]
+id = 46556
+examine = "Dead souls could feast around this table."
+
+[table_8_halloween_2009]
+id = 46557
+examine = "Dead souls could feast around this table."
+
+[bookcase_3_halloween_2009]
+id = 46558
+examine = "Death seems to like gothic novels."
+
+[bookcase_4_halloween_2009]
+id = 46559
+examine = "The titles are in long-dead languages."
+
+[footlocker_halloween_2009]
+id = 46562
+examine = "Are actual feet locked in here?"
+
+[table_9_halloween_2009]
+id = 46563
+examine = "Death himself uses this table to put things on."
+
+[table_10_halloween_2009]
+id = 46564
+examine = "Death himself uses this table to put things on."
+
+[stool_halloween_2009]
+id = 46565
+examine = "The Grim Reaper might rest his weary bones for a moment here."
+
+[wardrobe_halloween_2009]
+id = 46566
+examine = "How many spare robes does one Grim Reaper need?"
+
+[wardrobe_2_halloween_2009]
+id = 46567
+examine = "How many spare robes does one Grim Reaper need?"
+
+[dresser_halloween_2009]
+id = 46568
+examine = "Death might shine his skull at this dresser."
+
+[towels_2_halloween_2009]
+id = 46570
+examine = "These could make you as dry as a bone."
+
+[mirror_halloween_2009]
+id = 46571
+examine = "A place to reflect on your mortality."
+
+[web_halloween_2009]
+id = 46602
+examine = "You could swing across using this."
+
+[web_2_halloween_2009]
+id = 46603
+examine = "You could swing across using this."
+
+[web_3_halloween_2009]
+id = 46604
+examine = "You could swing across using this."
+
+[web_4_halloween_2009]
+id = 46605
+examine = "You could swing across using this."
+
+[web_5_halloween_2009]
+id = 46606
+examine = "You could swing across using this."
+
+[web_6_halloween_2009]
+id = 46607
+examine = "You could swing across using this."
+
+[web_7_halloween_2009]
+id = 46608
+examine = "A web platform."
+
+[spider-monkey_bars_halloween_2009]
+id = 46609
+examine = "You could swing on this."
+
+[web_wall_halloween_2009]
+id = 46618
+examine = "The web here looks strong enough to run against."
+
+[web_strand_halloween_2009]
+id = 46619
+examine = "You could balance across here."
+
+[web_strand_2_halloween_2009]
+id = 46620
+examine = "You could balance across here."
+
+[web_strand_3_halloween_2009]
+id = 46621
+examine = "You could balance across here."
+
+[web_strand_4_halloween_2009]
+id = 46622
+examine = "You could balance across here."
+
+[web_strand_5_halloween_2009]
+id = 46623
+examine = "You could balance across here."
+
+[web_strand_6_halloween_2009]
+id = 46624
+examine = "You could balance across here."
+
+[web_strand_7_halloween_2009]
+id = 46625
+examine = "You could balance across here."
+
+[web_strand_8_halloween_2009]
+id = 46626
+examine = "You could balance across here."
+
+[web_strand_9_halloween_2009]
+id = 46627
+examine = "You could balance across here."
+
+[web_strand_10_halloween_2009]
+id = 46628
+examine = "You could balance across here."
+
+[web_strand_11_halloween_2009]
+id = 46629
+examine = "You could balance across here."
+
+[web_strand_12_halloween_2009]
+id = 46630
+examine = "You could balance across here."
+
+[web_strand_13_halloween_2009]
+id = 46631
+examine = "You could balance across here."
+
+[web_strand_14_halloween_2009]
+id = 46632
+examine = "You could balance across here."
+
+[web_strand_15_halloween_2009]
+id = 46633
+examine = "You could balance across here."
+
+[web_strand_16_halloween_2009]
+id = 46634
+examine = "You could balance across here."
+
+[web_strand_17_halloween_2009]
+id = 46635
+examine = "You could balance across here."
+
+[web_strand_18_halloween_2009]
+id = 46636
+examine = "You could balance across here."
+
+[web_strand_19_halloween_2009]
+id = 46637
+examine = "You could balance across here."
+
+[web_strand_20_halloween_2009]
+id = 46638
+examine = "You could balance across here."
+
+[web_strand_21_halloween_2009]
+id = 46639
+examine = "You could balance across here."
+
+[web_strand_22_halloween_2009]
+id = 46640
+examine = "You could balance across here."
+
+[pillars_halloween_2009]
+id = 46641
+examine = "You could hop across these."
+
+[web_ledge_halloween_2009]
+id = 46642
+examine = "This web looks strong enough to walk on."
+
+[web_wall_2_halloween_2009]
+id = 46643
+examine = "You could climb along this wall."
+
+[web_8_halloween_2009]
+id = 46652
+examine = "A hanging web."
+
+[web-swing_halloween_2009]
+id = 46653
+examine = "You could swing across using this."
+
+[web_9_halloween_2009]
+id = 46688
+examine = "The spider that made this must have been enormous."
+
+[web_10_halloween_2009]
+id = 46689
+examine = "The spider that made this must have been enormous."
+
+[web_11_halloween_2009]
+id = 46690
+examine = "The spider that made this must have been enormous."
+
+[web_12_halloween_2009]
+id = 46691
+examine = "The spider that made this must have been enormous."
+
+[web_13_halloween_2009]
+id = 46692
+examine = "The spider that made this must have been enormous."
+
+[web_14_halloween_2009]
+id = 46693
+examine = "The spider that made this must have been enormous."
+
+[web_15_halloween_2009]
+id = 46694
+examine = "The spider that made this must have been enormous."
+
+[web_16_halloween_2009]
+id = 46695
+examine = "The spider that made this must have been enormous."
+
+[web_17_halloween_2009]
+id = 46696
+examine = "The spider that made this must have been enormous."
+
+[web_18_halloween_2009]
+id = 46697
+examine = "The spider that made this must have been enormous."
+
+[web_19_halloween_2009]
+id = 46698
+examine = "The spider that made this must have been enormous."
+
+[web_20_halloween_2009]
+id = 46699
+examine = "The spider that made this must have been enormous."
+
+[web_21_halloween_2009]
+id = 46700
+examine = "The spider that made this must have been enormous."
+
+[web_22_halloween_2009]
+id = 46701
+examine = "The spider that made this must have been enormous."
+
+[web_23_halloween_2009]
+id = 46702
+examine = "The spider that made this must have been enormous."
+
+[web_24_halloween_2009]
+id = 46703
+examine = "The spider that made this must have been enormous."
+
+[web_25_halloween_2009]
+id = 46704
+examine = "The spider that made this must have been enormous."
+
+[web_26_halloween_2009]
+id = 46705
+examine = "The spider that made this must have been enormous."
+
+[web_27_halloween_2009]
+id = 46706
+examine = "The spider that made this must have been enormous."
+
+[web_28_halloween_2009]
+id = 46707
+examine = "The spider that made this must have been enormous."
+
+[web_29_halloween_2009]
+id = 46708
+examine = "The spider that made this must have been enormous."
+
+[web_30_halloween_2009]
+id = 46709
+examine = "The spider that made this must have been enormous."
+
+[web_31_halloween_2009]
+id = 46710
+examine = "The spider that made this must have been enormous."
+
+[web_32_halloween_2009]
+id = 46711
+examine = "The spider that made this must have been enormous."
+
+[web_33_halloween_2009]
+id = 46712
+examine = "The spider that made this must have been enormous."
+
+[web_34_halloween_2009]
+id = 46713
+examine = "The spider that made this must have been enormous."
+
+[web_35_halloween_2009]
+id = 46714
+examine = "The spider that made this must have been enormous."
+
+[web_36_halloween_2009]
+id = 46715
+examine = "The spider that made this must have been enormous."
+
+[web_37_halloween_2009]
+id = 46716
+examine = "The spider that made this must have been enormous."
+
+[web_38_halloween_2009]
+id = 46717
+examine = "The spider that made this must have been enormous."
+
+[web_39_halloween_2009]
+id = 46718
+examine = "The spider that made this must have been enormous."
+
+[web_40_halloween_2009]
+id = 46719
+examine = "The spider that made this must have been enormous."
+
+[web_ladder_halloween_2009]
+id = 46731
+examine = "This looks like it could support your weight."
+
+[death_clock_2_halloween_2009]
+id = 46774
+examine = "Every swing of the pendulum brings you closer to the moment of your death."
+
+[death_clock_3_halloween_2009]
+id = 46775
+examine = "Every swing of the pendulum brings you closer to the moment of your death."
+
+[death_clock_4_halloween_2009]
+id = 46776
+examine = "Every swing of the pendulum brings you closer to the moment of your death."
+
+[larder_halloween_2009]
+id = 46777
+examine = "A nicely carved larder to keep food cool."
+
+[larder_2_halloween_2009]
+id = 46778
+examine = "A nicely carved larder to keep food cool."
+
+[larder_3_halloween_2009]
+id = 46779
+examine = "A nicely carved larder to keep food cool."
+
+[bookcase_5_halloween_2009]
+id = 46780
+examine = "These books are full of the names of the dead."
+
+[bookcase_6_halloween_2009]
+id = 46781
+examine = "These books are full of the names of the dead."
+
+[bookcase_7_halloween_2009]
+id = 46782
+examine = "These books are full of the names of the dead."
+
+[bookcase_8_halloween_2009]
+id = 46783
+examine = "Books of gothic poetry."
+
+[bookcase_9_halloween_2009]
+id = 46784
+examine = "Books of gothic poetry."
+
+[bookcase_10_halloween_2009]
+id = 46785
+examine = "Books of gothic poetry."
+
+[bookcase_11_halloween_2009]
+id = 46786
+examine = "Ghost stories, written from experience."
+
+[bookcase_12_halloween_2009]
+id = 46787
+examine = "Ghost stories, written from experience."
+
+[bookcase_13_halloween_2009]
+id = 46788
+examine = "Ghost stories, written from experience."
+
+[cabinet_3_halloween_2009]
+id = 46789
+examine = "A locked cabinet."
+
+[cabinet_4_halloween_2009]
+id = 46790
+examine = "A locked cabinet."
+
+[cabinet_5_halloween_2009]
+id = 46791
+examine = "A locked cabinet."
+
+[cabinet_6_halloween_2009]
+id = 46792
+examine = "A locked cabinet."
+
+[cabinet_7_halloween_2009]
+id = 46793
+examine = "A locked cabinet."
+
+[cabinet_8_halloween_2009]
+id = 46794
+examine = "A locked cabinet."
+
+[fireplace_halloween_2009]
+id = 46801
+examine = "This fire seems to radiate cold."
+
+[fireplace_2_halloween_2009]
+id = 46802
+examine = "This fire seems to radiate cold."
+
+[fireplace_3_halloween_2009]
+id = 46803
+examine = "This fire seems to radiate cold."
+
+[candlestand_2_halloween_2009]
+id = 46807
+examine = "The flickering light casts shadows that seem darker than black."
+
+[candlestand_3_halloween_2009]
+id = 46808
+examine = "The flickering light casts shadows that seem darker than black."
+
+[candlestand_4_halloween_2009]
+id = 46809
+examine = "The flickering light casts shadows that seem darker than black."
+
+[table_11_halloween_2009]
+id = 46813
+examine = "Death himself uses this table to put things on."
+
+[table_12_halloween_2009]
+id = 46814
+examine = "Death himself uses this table to put things on."
+
+[table_13_halloween_2009]
+id = 46815
+examine = "Death himself uses this table to put things on."
+
+[table_14_halloween_2009]
+id = 46816
+examine = "Death himself uses this table to put things on."
+
+[table_15_halloween_2009]
+id = 46817
+examine = "Death himself uses this table to put things on."
+
+[table_16_halloween_2009]
+id = 46818
+examine = "Death himself uses this table to put things on."
+
+[table_17_halloween_2009]
+id = 46819
+examine = "Death himself uses this table to put things on."
+
+[table_18_halloween_2009]
+id = 46820
+examine = "Death himself uses this table to put things on."
+
+[table_19_halloween_2009]
+id = 46821
+examine = "Death himself uses this table to put things on."
+
+[table_20_halloween_2009]
+id = 46825
+examine = "Death himself uses this table to put things on."
+
+[table_21_halloween_2009]
+id = 46826
+examine = "Death himself uses this table to put things on."
+
+[table_22_halloween_2009]
+id = 46827
+examine = "Death himself uses this table to put things on."
+
+[candlestand_5_halloween_2009]
+id = 46831
+examine = "No light shines here."
+
+[candlestand_6_halloween_2009]
+id = 46832
+examine = "No light shines here."
+
+[candlestand_7_halloween_2009]
+id = 46833
+examine = "No light shines here."
+
+[bookcase_14_halloween_2009]
+id = 46834
+examine = "Volume after volume of Death's diary, going back to the dawn of time."
+
+[bookcase_15_halloween_2009]
+id = 46835
+examine = "Volume after volume of Death's diary, going back to the dawn of time."
+
+[bookcase_16_halloween_2009]
+id = 46836
+examine = "Volume after volume of Death's diary, going back to the dawn of time."
+
+[bookcase_17_halloween_2009]
+id = 46837
+examine = "Volumes filled with descriptions of the way people have died."
+
+[bookcase_18_halloween_2009]
+id = 46838
+examine = "Volumes filled with descriptions of the way people have died."
+
+[bookcase_19_halloween_2009]
+id = 46839
+examine = "Volumes filled with descriptions of the way people have died."
+
+[bookcase_20_halloween_2009]
+id = 46840
+examine = "Volumes full of names and dates."
+
+[bookcase_21_halloween_2009]
+id = 46841
+examine = "Volumes full of names and dates."
+
+[bookcase_22_halloween_2009]
+id = 46842
+examine = "Volumes full of names and dates."
+
+[bookcase_23_halloween_2009]
+id = 46843
+examine = "Rules of every kind of game, in case Death is challenged."
+
+[bookcase_24_halloween_2009]
+id = 46844
+examine = "Rules of every kind of game, in case Death is challenged."
+
+[bookcase_25_halloween_2009]
+id = 46845
+examine = "Rules of every kind of game, in case Death is challenged."
+
+[footlocker_2_halloween_2009]
+id = 46846
+examine = "Are actual feet locked in here?"
+
+[footlocker_3_halloween_2009]
+id = 46847
+examine = "Are actual feet locked in here?"
+
+[footlocker_4_halloween_2009]
+id = 46848
+examine = "Are actual feet locked in here?"
+
+[bed_2_halloween_2009]
+id = 46849
+examine = "A bed for sleeping the sleep of death."
+
+[bed_3_halloween_2009]
+id = 46850
+examine = "A bed for sleeping the sleep of death."
+
+[bed_4_halloween_2009]
+id = 46851
+examine = "A bed for sleeping the sleep of death."
+
+[wardrobe_3_halloween_2009]
+id = 46852
+examine = "How many spare robes does one Grim Reaper need?"
+
+[wardrobe_4_halloween_2009]
+id = 46853
+examine = "How many spare robes does one Grim Reaper need?"
+
+[wardrobe_5_halloween_2009]
+id = 46854
+examine = "How many spare robes does one Grim Reaper need?"
+
+[wardrobe_6_halloween_2009]
+id = 46855
+examine = "How many spare robes does one Grim Reaper need?"
+
+[wardrobe_7_halloween_2009]
+id = 46856
+examine = "How many spare robes does one Grim Reaper need?"
+
+[wardrobe_8_halloween_2009]
+id = 46857
+examine = "How many spare robes does one Grim Reaper need?"
+
+[bed_5_halloween_2009]
+id = 46858
+examine = "A bed for sleeping the sleep of death."
+
+[bed_6_halloween_2009]
+id = 46859
+examine = "A bed for sleeping the sleep of death."
+
+[bed_7_halloween_2009]
+id = 46860
+examine = "A bed for sleeping the sleep of death."
+
+[portal_halloween_2009]
+id = 46933
+examine = "It makes your skin crawl."
+
+[portal_2_halloween_2009]
+id = 46934
+examine = "The portal back to the Grim Reaper's house."
+
+[dark_portal_halloween_2009]
+id = 46935
+examine = "The portal back to the world of mortals."
+
+[web_ladder_2_halloween_2009]
+id = 46936
+examine = "A ladder made from web."
+
+[web_ladder_3_halloween_2009]
+id = 46938
+examine = "A ladder made from web."
+
+[ladder_halloween_2009]
+id = 46939
+examine = "A ladder made from web."

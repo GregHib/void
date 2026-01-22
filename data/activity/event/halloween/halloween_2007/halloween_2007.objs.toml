@@ -1,0 +1,142 @@
+[ramp_halloween_2007]
+id = 27211
+examine = "A ramp leading into some strange goo."
+
+[ramp_2_halloween_2007]
+id = 27212
+examine = "The way into the...gooey...stuff."
+
+[slide_halloween_2007]
+id = 27218
+examine = "Oh so much fun. Wheeeeeee!"
+
+[pitfall_halloween_2007]
+id = 27240
+examine = "I'm guessing stepping on that would be a bad idea."
+
+[torch_halloween_2007]
+id = 27241
+examine = "They seem to extinguish when people walk near."
+
+[staircase_halloween_2007]
+id = 27242
+examine = "Going up?"
+
+[staircase_2_halloween_2007]
+id = 27243
+examine = "Going down?"
+
+[table_halloween_2007]
+id = 27245
+examine = "I wonder if Grim ever uses this to dine on?"
+
+[cabinets_halloween_2007]
+id = 27246
+examine = "The perfect place to store...stuff."
+
+[cabinets_2_halloween_2007]
+id = 27247
+examine = "The perfect place to store...stuff."
+
+[bookcases_halloween_2007]
+id = 27248
+examine = "Strange contraptions that houses paper things."
+
+[bookcases_2_halloween_2007]
+id = 27249
+examine = "Strange contraptions that houses paper things."
+
+[bookcases_3_halloween_2007]
+id = 27250
+examine = "Strange contraptions that houses paper things."
+
+[fireplace_halloween_2007]
+id = 27251
+examine = "What's the deal with all the blue fire in this house?"
+
+[sofa_halloween_2007]
+id = 27252
+examine = "Looks surprisingly comfy."
+
+[fishtank_halloween_2007]
+id = 27253
+examine = "Here, fishy, fishy, fishy!"
+
+[dark_portal_halloween_2007]
+id = 27254
+examine = "Do I really want to go through there?"
+
+[grim_chest_halloween_2007]
+id = 27255
+examine = "I wonder what the Reaper would hide away."
+
+[grim_chest_2_halloween_2007]
+id = 27256
+examine = "I wonder what the Reaper would hide away."
+
+[skull_halloween_2007]
+id = 27257
+examine = "This must be the Grim Reaper's previous servant's skull."
+
+[skeleton_portrait_halloween_2007]
+id = 27258
+examine = "Maybe that's his mum?"
+
+[zombie_portrait_halloween_2007]
+id = 27259
+examine = "One of death's buddies, perhaps? Or maybe his Mrs Reaper? Oh dear."
+
+[shelves_halloween_2007]
+id = 27260
+examine = "Keeps things off the floor. Surprise, surprise."
+
+[shelves_2_halloween_2007]
+id = 27261
+examine = "Keeps things off the floor. Surprise, surprise."
+
+[sullen_tree_halloween_2007]
+id = 27262
+examine = "In dire need of a tree surgeon."
+
+[bleak_tree_halloween_2007]
+id = 27263
+examine = "Seems choked by all those webs."
+
+[foul_tree_halloween_2007]
+id = 27264
+examine = "An undead tree? Surely not."
+
+[wretched_tree_halloween_2007]
+id = 27265
+examine = "I wouldn't expect anything less from Grim's garden."
+
+[spider_web_halloween_2007]
+id = 27266
+examine = "Now, it's no common house spider that spun that."
+
+[gargoyle_halloween_2007]
+id = 27274
+examine = "Looks like a cheeky chappy."
+
+[gargoyle_2_halloween_2007]
+id = 27275
+examine = "Did he just move?"
+
+[doorway_halloween_2007]
+id = 27276
+examine = "I hope I can pass through alive."
+
+[gargoyle_attack_halloween_2007]
+id = 27277
+
+[springboard_halloween_2007]
+id = 27278
+examine = "Looks like the only way across that strange abyss."
+
+[worm_halloween_2007]
+id = 27280
+examine = "It must have been wriggling around in the skull."
+
+[doorway_2_halloween_2007]
+id = 27282
+examine = "A doorway flanked by stone gargoyles."

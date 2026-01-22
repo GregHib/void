@@ -1,0 +1,111 @@
+[large_root_halloween_2006]
+id = 19032
+examine = "A large root from that evil tree."
+
+[paint_cans_halloween_2006]
+id = 19064
+examine = "Equipment for colouring items."
+
+[large_box_halloween_2006]
+id = 19065
+examine = "A large box full of wood chippings."
+
+[puppet_arms_halloween_2006]
+id = 19066
+examine = "Box containing blue puppet arms."
+
+[puppet_arms_2_halloween_2006]
+id = 19067
+examine = "Box containing red puppet arms."
+
+[puppet_heads_halloween_2006]
+id = 19068
+examine = "Box containing green puppet heads."
+
+[puppet_heads_2_halloween_2006]
+id = 19069
+examine = "Box containing blue puppet heads."
+
+[crates_halloween_2006]
+id = 19071
+examine = "Some large wooden crates."
+
+[decorations_box_halloween_2006]
+id = 19085
+examine = "A box containing unpainted decorations."
+
+[decorations_box_2_halloween_2006]
+id = 19086
+examine = "A box containing unpainted decorations."
+
+[decorations_box_3_halloween_2006]
+id = 19095
+examine = "A box containing unpainted decorations."
+
+[decorations_box_4_halloween_2006]
+id = 19096
+examine = "A box containing unpainted decorations."
+
+[decorations_box_5_halloween_2006]
+id = 19097
+examine = "A box containing unpainted decorations."
+
+[decorations_box_6_halloween_2006]
+id = 19098
+examine = "A box containing unpainted decorations."
+
+[paint_cans_2_halloween_2006]
+id = 19099
+examine = "Equipment for colouring items."
+
+[paint_cans_3_halloween_2006]
+id = 19100
+examine = "Equipment for colouring items."
+
+[paint_cans_4_halloween_2006]
+id = 19101
+examine = "Equipment for colouring items."
+
+[puppet_torsos_halloween_2006]
+id = 19102
+examine = "Box containing blue puppet torsos."
+
+[puppet_legs_halloween_2006]
+id = 19103
+examine = "Box containing blue puppet legs."
+
+[puppet_heads_3_halloween_2006]
+id = 19104
+examine = "Box containing red puppet heads."
+
+[puppet_torsos_2_halloween_2006]
+id = 19105
+examine = "Box containing red puppet torsos."
+
+[puppet_torsos_3_halloween_2006]
+id = 19107
+examine = "Box containing green puppet torsos."
+
+[puppet_arms_3_halloween_2006]
+id = 19108
+examine = "Box containing green puppet arms."
+
+[puppet_legs_2_halloween_2006]
+id = 19109
+examine = "Box containing green puppet legs."
+
+[roots_halloween_2006]
+id = 19110
+examine = "A bunch of tangled roots; maybe I can climb out with these."
+
+[roots_2_halloween_2006]
+id = 19112
+examine = "A bunch of tangled roots; maybe I can climb out with these."
+
+[hanging_roots_halloween_2006]
+id = 37321
+examine = "The roots of that evil tree."
+
+[hanging_roots_2_halloween_2006]
+id = 37322
+examine = "The roots of that evil tree."

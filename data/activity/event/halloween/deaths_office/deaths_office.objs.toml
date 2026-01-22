@@ -1,0 +1,39 @@
+[grim_reaper_deaths_office]
+id = 45802
+examine = "I wish I could tell where he was looking."
+
+[exit_portal_deaths_office]
+id = 45803
+examine = "A portal for those who wish to leave."
+
+[noticeboard_deaths_office]
+id = 45814
+examine = "Nothing interesting is written here."
+
+[books_deaths_office]
+id = 45820
+examine = "They've been discarded."
+
+[books_2_deaths_office]
+id = 45821
+examine = "They've been discarded."
+
+[scrolls_deaths_office]
+id = 45822
+examine = "These scrolls have been strewn all over the place."
+
+[books_3_deaths_office]
+id = 45823
+examine = "These books are stacked very neatly."
+
+[books_4_deaths_office]
+id = 45824
+examine = "These books have been strewn all over the place."
+
+[drawers_deaths_office]
+id = 45825
+examine = "Someone probably thinks all this stuff is important."
+
+[drawers_2_deaths_office]
+id = 45826
+examine = "There are books on top."

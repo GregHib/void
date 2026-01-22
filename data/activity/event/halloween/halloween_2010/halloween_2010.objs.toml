@@ -1,0 +1,123 @@
+[death_clock_halloween_2010]
+id = 31818
+examine = "Every swing of the pendulum brings you closer to the moment of your death."
+
+[towels_halloween_2010]
+id = 31819
+examine = "These could make you dry as a bone."
+
+[bed_halloween_2010]
+id = 31842
+examine = "A bed for sleeping the sleep of death."
+
+[dark_portal_halloween_2010]
+id = 31845
+examine = "Do you really want to go through there?"
+
+[stage_halloween_2010]
+id = 31860
+examine = "Made from the heaviest of metals and a pinch of rock."
+
+[stage_candle_halloween_2010]
+id = 31861
+examine = "A bright candle."
+
+[stage_barrier_halloween_2010]
+id = 31862
+examine = "A barrier."
+
+[web_halloween_2010]
+id = 31886
+examine = "A spiders web."
+
+[table_halloween_2010]
+id = 31915
+examine = "A table with food on it."
+
+[table_2_halloween_2010]
+id = 31916
+examine = "A table with food on it."
+
+[table_3_halloween_2010]
+id = 31961
+examine = "A table with food on it."
+
+[table_5_halloween_2010]
+id = 31990
+examine = "A table with food on it."
+
+[table_6_halloween_2010]
+id = 31998
+examine = "A table with food on it."
+
+[table_7_halloween_2010]
+id = 32001
+examine = "A table with food on it."
+
+[table_8_halloween_2010]
+id = 32002
+examine = "A table with food on it."
+
+[table_9_halloween_2010]
+id = 32008
+examine = "A table with food on it."
+
+[table_10_halloween_2010]
+id = 32012
+examine = "A table with food on it."
+
+[pumpkin_halloween_2010]
+id = 32034
+examine = "A pumpkin lantern."
+
+[pumpkin_2_halloween_2010]
+id = 32041
+examine = "A pumpkin lantern."
+
+[pumpkin_3_halloween_2010]
+id = 32042
+examine = "A pumpkin lantern."
+
+[pumpkin_4_halloween_2010]
+id = 32043
+examine = "A pumpkin lantern."
+
+[pumpkin_5_halloween_2010]
+id = 32044
+examine = "A pumpkin lantern."
+
+[four-poster_bed_halloween_2010]
+id = 32046
+examine = "A bed fit for a Grim."
+
+[purple_tile_halloween_2010]
+id = 32064
+examine = "A purple floor tile."
+
+[blue_tile_halloween_2010]
+id = 32076
+examine = "A blue floor tile."
+
+[red_tile_halloween_2010]
+id = 32077
+examine = "A red floor tile."
+
+[green_tile_halloween_2010]
+id = 32100
+examine = "A green floor tile."
+
+[orange_tile_halloween_2010]
+id = 32101
+examine = "An orange floor tile."
+
+[turquoise_tile_halloween_2010]
+id = 32102
+examine = "A turquoise floor tile."
+
+[pink_tile_halloween_2010]
+id = 32103
+examine = "A pink floor tile."
+
+[white_tile_halloween_2010]
+id = 32104
+examine = "A white floor tile."
