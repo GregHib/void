@@ -21,7 +21,7 @@ abstract class Parameters {
         val set = mutableSetOf<Int>()
         for (id in keys.values) {
             require(set.add(id)) { "Duplicate parameter id: $id" }
-            require(id < Short.MAX_VALUE) { "Parameter id out of bounds: $id"}
+            require(id < Short.MAX_VALUE) { "Parameter id out of bounds: $id" }
         }
     }
 
@@ -39,12 +39,14 @@ abstract class Parameters {
     fun <T : Param> read(file: File, types: Array<T>): MutableMap<String, Int> {
         val array = file.readBytes()
         val reader = ArrayReader(array)
-        val ids = Object2IntOpenHashMap<String>()
+        val ids = Object2IntOpenHashMap<String>(20_000)
         ids.defaultReturnValue(-1)
-        for (type in types) {
+        while (reader.position < reader.length) {
+            val id = reader.readInt()
+            val type = types[id]
             type.stringId = reader.readString()
             ids[type.stringId] = type.id
-            val params = read(reader) ?: continue
+            val params = read(reader)
             type.params = params
         }
         return ids
@@ -55,7 +57,7 @@ abstract class Parameters {
         if (size == 0) {
             return null
         }
-        val params = Int2ObjectOpenHashMap<Any>()
+        val params = Int2ObjectOpenHashMap<Any>(size)
         for (i in 0 until size) {
             val id = reader.readShort()
             val codec = codecs[id] ?: throw IllegalArgumentException("Unknown key id: $id")
@@ -75,10 +77,9 @@ abstract class Parameters {
 
     fun write(writer: Writer, params: Map<Int, Any>?) {
         if (params == null) {
-            writer.writeByte(0)
             return
         }
-        writer.writeByte(params.count { codecs.containsKey(it.key) })
+        writer.writeByte(params.count { codecs.containsKey(it.key) && it.key >= 0 })
         for (id in params.keys) {
             if (id < 0) {
                 continue

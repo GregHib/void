@@ -1,5 +1,6 @@
 package world.gregs.voidps.cache.definition.data
 
+import world.gregs.config.param.Param
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.*
 
@@ -34,7 +35,7 @@ data class NPCDefinitionFull(
     var secondaryShadowColour: Short = 0,
     var primaryShadowModifier: Byte = -96,
     var secondaryShadowModifier: Byte = -16,
-    var walkMask: Byte = 0,
+    var walkMode: Byte = 0,
     var translations: Array<IntArray?>? = null,
     var hitbarSprite: Int = -1,
     var height: Int = -1,
@@ -76,7 +77,7 @@ data class NPCDefinitionFull(
     Recolourable,
     ColourPalette,
     Parameterized,
-    Extra {
+    Extra, Param {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -153,7 +154,7 @@ data class NPCDefinitionFull(
         if (secondaryShadowColour != other.secondaryShadowColour) return false
         if (primaryShadowModifier != other.primaryShadowModifier) return false
         if (secondaryShadowModifier != other.secondaryShadowModifier) return false
-        if (walkMask != other.walkMask) return false
+        if (walkMode != other.walkMode) return false
         if (translations != null) {
             if (other.translations == null) return false
             if (!translations.contentDeepEquals(other.translations)) return false
@@ -233,7 +234,7 @@ data class NPCDefinitionFull(
         result = 31 * result + secondaryShadowColour
         result = 31 * result + primaryShadowModifier
         result = 31 * result + secondaryShadowModifier
-        result = 31 * result + walkMask
+        result = 31 * result + walkMode
         result = 31 * result + (translations?.contentDeepHashCode() ?: 0)
         result = 31 * result + hitbarSprite
         result = 31 * result + height

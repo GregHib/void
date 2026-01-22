@@ -1,5 +1,6 @@
 package world.gregs.voidps.cache.definition.decoder
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Index.NPCS
@@ -8,7 +9,7 @@ import world.gregs.voidps.cache.definition.data.NPCDefinition
 
 class NPCDecoder(
     val member: Boolean,
-    private val parameters: Parameters = Parameters.EMPTY,
+    parameters: Parameters = Parameters.EMPTY,
 ) : DefinitionDecoder<NPCDefinition>(NPCS) {
 
     override fun create(size: Int) = Array(size) { NPCDefinition(it, stringId = it.toString()) }
@@ -59,7 +60,23 @@ class NPCDecoder(
                     options[opcode - 150] = null
                 }
             }
-            249 -> readParameters(buffer, parameters)
+            249 -> readParameters(buffer)
         }
+    }
+
+    var params: Map<Int, Any>? = null
+
+    fun readParameters(buffer: Reader) {
+        val length = buffer.readUnsignedByte()
+        if (length == 0) {
+            return
+        }
+        val params = Int2ObjectArrayMap<Any>()
+        for (i in 0 until length) {
+            val string = buffer.readUnsignedBoolean()
+            val id = buffer.readUnsignedMedium()
+            params[id] = if (string) buffer.readString() else buffer.readInt()
+        }
+        this.params = params
     }
 }

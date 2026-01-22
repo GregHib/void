@@ -1,5 +1,6 @@
 package world.gregs.voidps.cache.definition.data
 
+import world.gregs.config.param.Param
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
 import world.gregs.voidps.cache.definition.Transforms
@@ -22,9 +23,10 @@ data class NPCDefinition(
     var soundDistance: Int = 0,
     override var stringId: String = "",
     override var extras: Map<String, Any>? = null,
+    override var params: Map<Int, Any>? = null,
 ) : Definition,
     Transforms,
-    Extra {
+    Extra, Param {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

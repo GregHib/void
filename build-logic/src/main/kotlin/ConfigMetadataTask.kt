@@ -33,6 +33,7 @@ abstract class ConfigMetadataTask : DefaultTask() {
 
     @TaskAction
     fun execute(inputChanges: InputChanges) {
+        val start = System.currentTimeMillis()
         val base = output.get().asFile
         base.mkdirs()
         var count = 0
@@ -157,6 +158,7 @@ abstract class ConfigMetadataTask : DefaultTask() {
             }
         }
         writeIds(base, ids)
+        println("Total task took ${System.currentTimeMillis() - start}ms for $count files")
     }
 
     private fun writeIds(base: File, ids: Map<String, List<Int>>) {
