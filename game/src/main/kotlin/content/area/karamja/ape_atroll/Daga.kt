@@ -24,7 +24,7 @@ class Daga : Script {
 
             if (amulet.id == "monkeyspeak_amulet") {
 
-                npc<Shifty>("daga", "Would you like to buy or sell some scimitars?")
+                npc<Shifty>("Sorry, you don't have enough space in your inventory.")
 
                 choice {
 
