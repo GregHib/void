@@ -22,7 +22,6 @@ class MonkeyShopkeeper : Script {
                 choice {
                     option("Yes, please.") {
                         player<Shifty>("Yes, please.")
-                        closeDialogue()
                         openShop(shopName)
                     }
                     option("No, thanks.") {
