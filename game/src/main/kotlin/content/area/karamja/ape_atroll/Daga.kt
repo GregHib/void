@@ -40,7 +40,6 @@ class Daga : Script {
                     option("Do you have any Dragon Scimitars in stock?") {
                         player<Shifty>("Do you have any Dragon Scimitars in stock?")
                         npc<Shifty>(
-                            "daga",
                             "It just so happens I recently got a fresh delivery. <br>Do you want to buy one?",
                         )
                         choice {
@@ -54,15 +53,14 @@ class Daga : Script {
                                 when (inventory.transaction.error) {
                                     is TransactionError.Full -> {
                                         inventoryFull()
-                                        npc<Shifty>("daga", "Sorry, you don't have enough space in your inventory.")
+                                        npc<Shifty>("Sorry, you don't have enough space in your inventory.")
                                     }
 
                                     TransactionError.None -> {
-                                        npc<Shifty>("daga", "There you go. Pleasure doing business with you.")
+                                        npc<Shifty>("There you go. Pleasure doing business with you.")
                                     }
 
                                     else -> npc<Shifty>(
-                                        "daga",
                                         "Sorry, you don't have enough coins. <br>It costs 100,000 gold coins.",
                                     )
                                 }
@@ -75,7 +73,7 @@ class Daga : Script {
                     }
                 }
             } else {
-                npc<Shifty>("daga", "Ook! Ah Uh Ah! Ook Ook! Ah!")
+                npc<Shifty>("Ook! Ah Uh Ah! Ook Ook! Ah!")
             }
         }
 
@@ -84,7 +82,7 @@ class Daga : Script {
             if (amulet.id == "monkeyspeak_amulet") {
                 openShop("dagas_scimitar_smithy")
             } else {
-                npc<Shifty>("daga", "Ook! Ah Uh Ah! Ook Ook! Ah!")
+                npc<Shifty>("Ook! Ah Uh Ah! Ook Ook! Ah!")
             }
         }
     }
