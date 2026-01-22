@@ -6,19 +6,25 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class MonkeyShopkeeper : Script {
 
     init {
-        npcOperate("Talk-to", "hamab,ifaba,tutab") { (npc) ->
+        npcOperate("Talk-to", "hamab,ifaba,tutab,solihib") { (npc) ->
             val amulet = equipped(EquipSlot.Amulet)
-            val shopName = npc.def["shop", ""]  // Gets shop name from NPC def
+            val shopName = npc.def["shop", ""]
 
             if (amulet.id == "monkeyspeak_amulet") {
-                npc<Shifty>("Would you like to see my wares?")
+                npc<Shifty>(
+                    when (npc.id) {
+                        "ifaba" -> "Would you like to buy or sell anything?"
+                        "hamab" -> "Would you like to buy or sell some crafting materials?"
+                        "solihib" -> "Would you like to buy or sell some foodstuffs?"
+                        else -> "Would you like to buy or sell some magical items?"
+                    },
+                )
                 choice {
                     option("Yes, please.") {
                         player<Shifty>("Yes, please.")
@@ -33,7 +39,7 @@ class MonkeyShopkeeper : Script {
             }
         }
 
-        npcOperate("Trade", "hamab,ifaba,tutab") { (npc) ->
+        npcOperate("Trade", "hamab,ifaba,tutab,solihib") { (npc) ->
             val amulet = equipped(EquipSlot.Amulet)
             val shopName = npc.def["shop", ""]
 

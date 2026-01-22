@@ -8,9 +8,10 @@ import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class Daga : Script {
@@ -38,30 +39,41 @@ class Daga : Script {
 
                     option("Do you have any Dragon Scimitars in stock?") {
                         player<Shifty>("Do you have any Dragon Scimitars in stock?")
-                        npc<Shifty>("daga", "It just so happens I recently got a fresh delivery. <br>Do you want to buy one?")
+                        npc<Shifty>(
+                            "daga",
+                            "It just so happens I recently got a fresh delivery. <br>Do you want to buy one?",
+                        )
                         choice {
                             option("Yes.") {
                                 player<Shifty>("Yes, please.")
 
-                                if (inventory.isFull()) {
-                                    npc<Shifty>("daga", "Sorry, you don't have enough space in your inventory.")
-                                    inventoryFull()
-                                } else if (!inventory.contains("coins", 100_000)) {
-                                    npc<Shifty>("daga", "Sorry, you don't have enough coins. <br>It costs 100,000 gold coins.")
-                                } else {
-                                    inventory.remove("coins", 100_000)
-                                    inventory.add("dragon_scimitar")
-                                    npc<Shifty>("daga", "There you go. Pleasure doing business with you.")
+                                inventory.transaction {
+                                    remove("coin", 100_000)
+                                    add("dragon_scimitar")
                                 }
-                            }
+                                when (inventory.transaction.error) {
+                                    is TransactionError.Full -> {
+                                        inventoryFull()
+                                        npc<Shifty>("daga", "Sorry, you don't have enough space in your inventory.")
+                                    }
 
-                            option("No.") {
-                                player<Shifty>("No.")
+                                    TransactionError.None -> {
+                                        npc<Shifty>("daga", "There you go. Pleasure doing business with you.")
+                                    }
+
+                                    else -> npc<Shifty>(
+                                        "daga",
+                                        "Sorry, you don't have enough coins. <br>It costs 100,000 gold coins.",
+                                    )
+                                }
+
+                                option("No.") {
+                                    player<Shifty>("No.")
+                                }
                             }
                         }
                     }
                 }
-
             } else {
                 npc<Shifty>("daga", "Ook! Ah Uh Ah! Ook Ook! Ah!")
             }
