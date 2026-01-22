@@ -12,7 +12,7 @@ dependencies {
     implementation(project(":cache"))
     implementation(project(":network"))
     implementation(project(":types"))
-    implementation(project(":config"))
+    implementation("world.gregs.config:config")
     if (findProperty("includeDb") != null) {
         implementation(project(":database"))
     }

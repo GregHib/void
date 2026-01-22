@@ -1,10 +1,3 @@
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenCentral()
-    }
-}
-
 dependencyResolutionManagement {
     @Suppress("UnstableApiUsage")
     repositories {
@@ -17,5 +10,3 @@ dependencyResolutionManagement {
         }
     }
 }
-
-includeBuild("../config")

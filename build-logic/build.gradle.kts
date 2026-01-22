@@ -8,6 +8,7 @@ repositories {
 }
 
 dependencies {
+    implementation("world.gregs.config:config")
     implementation(libs.kotlin.embeddable)
 }
 

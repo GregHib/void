@@ -8,7 +8,7 @@ dependencies {
     implementation(project(":engine"))
     implementation(project(":game"))
     implementation(project(":network"))
-    implementation(project(":config"))
+    implementation("world.gregs.config:config")
     implementation(project(":types"))
 
     implementation("org.seleniumhq.selenium:selenium-java:4.16.1")

@@ -2,6 +2,7 @@ buildscript {
     dependencies {
         classpath(libs.kotlin)
         classpath(libs.shadow)
+        classpath("world.gregs.config:config")
     }
 }
 

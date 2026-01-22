@@ -7,7 +7,7 @@ dependencies {
     implementation(project(":cache"))
     implementation(project(":network"))
     implementation(project(":types"))
-    implementation(project(":config"))
+    implementation("world.gregs.config:config")
 
     implementation(libs.fastutil)
     implementation(libs.kasechange)
