@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":buffer"))
+    implementation("world.gregs.voidps.buffer:buffer")
     implementation(project(":cache"))
 
     implementation(libs.ktor)

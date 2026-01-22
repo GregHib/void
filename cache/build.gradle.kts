@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":buffer"))
+    implementation("world.gregs.voidps.buffer:buffer")
     implementation(project(":types"))
     implementation(libs.displee.cache)
     implementation(libs.koin)

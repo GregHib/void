@@ -3,6 +3,7 @@ buildscript {
         classpath(libs.kotlin)
         classpath(libs.shadow)
         classpath("world.gregs.config:config")
+        classpath("world.gregs.voidps.buffer:buffer")
     }
 }
 
