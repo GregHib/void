@@ -56,18 +56,11 @@ tasks {
     }
 
     register("configMetadata", ConfigMetadataTask::class.java) {
+        val names = File("./data/dirs.txt").readLines()
         directories.from(
-            fileTree("../data/achievement") { include("**/*.toml") },
-            fileTree("../data/activity") { include("**/*.toml") },
-            fileTree("../data/area") { include("**/*.toml") },
-            fileTree("../data/client") { include("**/*.toml") },
-            fileTree("../data/entity") { include("**/*.toml") },
-            fileTree("../data/minigame") { include("**/*.toml") },
-            fileTree("../data/quest") { include("**/*.toml") },
-            fileTree("../data/skill") { include("**/*.toml") },
-            fileTree("../data/social") { include("**/*.toml") },
+            names.map { fileTree("../data/${it}") { include("**/*.toml") } }
         )
-        output.set(layout.buildDirectory.dir("configs"))
+        output.set(layout.settingsDirectory.dir("data/.temp"))
     }
 
     named<ShadowJar>("shadowJar") {

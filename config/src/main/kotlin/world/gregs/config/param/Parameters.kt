@@ -13,13 +13,10 @@ import kotlin.collections.set
 
 abstract class Parameters {
     internal abstract val codecs: Map<Int, ParamCodec<*>>
-    internal abstract val keys: Map<String, Int>
-
-    fun id(key: String): Int = keys[key] ?: throw IllegalArgumentException("Unknown key: $key")
 
     fun validate() {
         val set = mutableSetOf<Int>()
-        for (id in keys.values) {
+        for (id in codecs.keys) {
             require(set.add(id)) { "Duplicate parameter id: $id" }
             require(id < Short.MAX_VALUE) { "Parameter id out of bounds: $id" }
         }
@@ -29,7 +26,7 @@ abstract class Parameters {
         val params = Int2ObjectOpenHashMap<Any>()
         while (config.nextPair()) {
             val key = config.key()
-            val id = keys[key] ?: throw IllegalArgumentException("Unknown key: $key")
+            val id = Params.id(key) ?: throw IllegalArgumentException("Unknown key: $key")
             val codec = codecs[id] ?: throw IllegalArgumentException("Unknown id: $id")
             params[id] = codec.read(config)
         }
@@ -88,11 +85,5 @@ abstract class Parameters {
             writer.writeShort(id)
             codec.write(writer, params[id]!!)
         }
-    }
-
-    companion object {
-        const val CLONE = -2
-        const val ID = -1
-        const val STRING_ID = -3
     }
 }
