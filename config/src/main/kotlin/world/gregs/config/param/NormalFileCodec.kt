@@ -43,34 +43,13 @@ class NormalFileCodec(
         writeIndices(indices, base)
     }
 
-    override fun removed(base: File, removed: List<Path>) {
-        val reader = readData(base)
-        var writer = ArrayWriter(buffer = reader.array)
-        val indices = readIndices(base)
-        val ids = readIds(base)
-        for (path in removed) {
-            for (id in ids[path.pathString] ?: continue) {
-                if (indices[id] == 0) {
-                    continue // Already empty
-                }
-                val index = indices.startingIndex(id)
-                indices[id] = 0
-                val size = indices.size(id, reader.length)
-                writer = writer.cut(index, size)
-                ids[path.pathString]?.remove(id)
-            }
-        }
-        writeIds(base, ids)
-        writeData(writer, base)
-        writeIndices(indices, base)
-    }
-
     override fun modified(base: File, modified: List<Path>) {
         val configs = mutableMapOf<Int, MutableMap<Int, Any>>()
         val indices = readIndices(base)
         val reader = readData(base)
         val ids = readIds(base)
         for (path in modified) {
+            // TODO don't edits need to remove any ids that were removed?
             for (values in readConfig(path.pathString)) {
                 val id = values[Params.ID] as Int
                 ids.getOrPut(path.pathString) { mutableSetOf() }.add(id)
@@ -103,6 +82,28 @@ class NormalFileCodec(
             writer.writeBytes(params, start, params.size)
             for (i in indices.indices) {
                 indices[i] = indices[i] + difference
+            }
+        }
+        writeIds(base, ids)
+        writeData(writer, base)
+        writeIndices(indices, base)
+    }
+
+    override fun removed(base: File, removed: List<Path>) {
+        val reader = readData(base)
+        var writer = ArrayWriter(buffer = reader.array)
+        val indices = readIndices(base)
+        val ids = readIds(base)
+        for (path in removed) {
+            for (id in ids[path.pathString] ?: continue) {
+                if (indices[id] == 0) {
+                    continue // Already empty
+                }
+                val index = indices.startingIndex(id)
+                indices[id] = 0
+                val size = indices.size(id, reader.length)
+                writer = writer.cut(index, size)
+                ids[path.pathString]?.remove(id)
             }
         }
         writeIds(base, ids)

@@ -11,7 +11,7 @@ import world.gregs.voidps.type.Tile
 
 private val logger = InlineLogger()
 
-fun loadNpcSpawns(paths: List<String>, ) {
+fun loadNpcSpawns(paths: List<String>) {
     timedLoad("npc spawn") {
         NPCs.clear()
         val membersWorld = World.members
