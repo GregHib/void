@@ -17,7 +17,7 @@ private val logger = InlineLogger()
 fun loadNpcSpawns(paths: List<String>, reload: Boolean = false) {
     timedLoad("npc spawn") {
         NPCs.clear()
-        val file = File("${Settings["storage.caching.path"]}npc_spawns.dat")
+        val file = File("${Settings["storage.caching.path"]}${Settings["storage.caching.npcSpawns"]}")
         if (reload || !file.exists()) {
             loadNormal(paths, file, Settings["storage.caching.active", false])
         } else {
