@@ -1,6 +1,6 @@
 [cave_crawler]
 attack_speed = 4
-retreat_range = 11
+retreat_range = 12
 defend_anim = "cave_crawler_defend"
 defend_sound = "cave_crawler_defend"
 death_anim = "cave_crawler_death"
