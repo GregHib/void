@@ -144,7 +144,7 @@ object Damage {
 
         damage = Equipment.shieldDamageReductionModifiers(source, target, type, damage)
 
-        damage = Target.damageLimitModifiers(target, damage)
+        damage = Target.damageLimitModifiers(source, target, damage, type, weapon, spell)
 
         if (source["debug", false]) {
             val strengthBonus = Weapon.strengthBonus(source, type, weapon)

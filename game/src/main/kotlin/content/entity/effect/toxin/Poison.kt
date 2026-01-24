@@ -106,7 +106,10 @@ class Poison : Script {
                 character.curePoison()
                 return Timer.CANCEL
             }
-            damage > 0 -> character.directHit(character["poison_source", character], Target.damageLimitModifiers(character, damage), "poison")
+            damage > 0 -> {
+                val source = character["poison_source", character]
+                character.directHit(source, Target.damageLimitModifiers(source, character, damage), "poison")
+            }
         }
         return Timer.CONTINUE
     }

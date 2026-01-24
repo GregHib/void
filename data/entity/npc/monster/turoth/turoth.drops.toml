@@ -1,0 +1,28 @@
+[turoth_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "turoth_secondary" },
+    { table = "hard_clue_scroll", roll = 128 },
+]
+
+[turoth_secondary]
+roll = 512
+drops = [
+    { id = "steel_platelegs", chance = 28 },
+    { id = "mithril_hatchet", chance = 12 },
+    { id = "mithril_kiteshield", chance = 4 },
+    { id = "adamant_full_helm", chance = 4 },
+    { id = "rune_dagger", chance = 4 },
+    { id = "leaf_bladed_sword" },
+    { id = "light_mystic_robe_bottom" },
+    { id = "law_rune", amount = 3, chance = 24 },
+    { id = "nature_rune", amount = 15, chance = 20 },
+    { id = "nature_rune", amount = 37, chance = 4 },
+    { table = "rare_seed_drop_table", chance = 72 },
+    { id = "limpwurt_root", chance = 28 },
+    { id = "coins", amount = 44, chance = 116 },
+    { id = "coins", amount = 132, chance = 48 },
+    { id = "coins", amount = 440, chance = 4 },
+    { table = "gem_drop_table", chance = 20 },
+]

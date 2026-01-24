@@ -1,0 +1,12 @@
+[jelly]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "jelly_defend"
+defend_sound = "jelly_defend"
+death_anim = "jelly_death"
+death_sound = "jelly_death"
+
+[jelly.attack]
+anim = "jelly_attack"
+target_sound = "jelly_attack"
+target_hit = { offense = "melee", defence = "magic", max = 50 }

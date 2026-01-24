@@ -27,48 +27,6 @@ drops = [
     { table = "gem_drop_table", chance = 2 },
 ]
 
-[jelly_drop_table]
-type = "all"
-drops = [
-    { table = "jelly_secondary" },
-    { table = "hard_clue_scroll", roll = 128 },
-]
-
-[jelly_secondary]
-roll = 128
-drops = [
-    { id = "steel_battleaxe", chance = 11 },
-    { id = "steel_2h_sword", chance = 7 },
-    { id = "steel_hatchet", chance = 3 },
-    { id = "mithril_kiteshield", chance = 2 },
-    { id = "mithril_boots" },
-    { id = "rune_full_helm" },
-    { id = "coins", amount = 102, chance = 39 },
-    { id = "coins", amount = 44, chance = 30 },
-    { id = "coins", amount = 220, chance = 10 },
-    { id = "coins", amount = 11, chance = 7 },
-    { id = "coins", amount = 460, chance = 2 },
-    { id = "chaos_rune", amount = 15, chance = 5 },
-    { id = "death_rune", amount = 5, chance = 3 },
-    { id = "gold_bar", chance = 2 },
-    { id = "thread", amount = 10 },
-    { table = "gem_drop_table", chance = 4 },
-    { id = "adamant_battleaxe", chance = 22 },
-    { id = "black_2h_sword", chance = 10 },
-    { id = "adamant_hatchet", chance = 6 },
-    { id = "adamant_2h_sword", chance = 4 },
-    { id = "mithril_boots", chance = 4 },
-    { id = "rune_kiteshield", chance = 4 },
-    { id = "rune_full_helm", chance = 2 },
-    { id = "chaos_rune", amount = 45, chance = 10 },
-    { id = "death_rune", amount = 15, chance = 6 },
-    { id = "coins", amount = 1000, chance = 42 },
-    { id = "gold_bar", chance = 4 },
-    { id = "thread", amount = 10, chance = 2 },
-    { table = "gem_drop_table", chance = 10 },
-    { table = "hard_clue_scroll", chance = 2 },
-]
-
 [mummy_drop_table]
 type = "all"
 drops = [
@@ -126,33 +84,3 @@ drops = [
     { id = "adamant_pickaxe", chance = 4 },
     { id = "rune_pickaxe" },
 ]
-
-[turoth_drop_table]
-type = "all"
-drops = [
-    { id = "bones" },
-    { table = "turoth_secondary" },
-    { table = "hard_clue_scroll", roll = 128 },
-]
-
-[turoth_secondary]
-roll = 512
-drops = [
-    { id = "steel_platelegs", chance = 28 },
-    { id = "mithril_hatchet", chance = 12 },
-    { id = "mithril_kiteshield", chance = 4 },
-    { id = "adamant_full_helm", chance = 4 },
-    { id = "rune_dagger", chance = 4 },
-    { id = "leaf_bladed_sword" },
-    { id = "light_mystic_robe_bottom" },
-    { id = "law_rune", amount = 3, chance = 24 },
-    { id = "nature_rune", amount = 15, chance = 20 },
-    { id = "nature_rune", amount = 37, chance = 4 },
-    { table = "rare_seed_drop_table", chance = 72 },
-    { id = "limpwurt_root", chance = 28 },
-    { id = "coins", amount = 44, chance = 116 },
-    { id = "coins", amount = 132, chance = 48 },
-    { id = "coins", amount = 440, chance = 4 },
-    { table = "gem_drop_table", chance = 20 },
-]
-

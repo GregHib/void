@@ -1,0 +1,8 @@
+[jelly_defend]
+id = 550
+
+[jelly_attack]
+id = 547
+
+[jelly_death]
+id = 549
