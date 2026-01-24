@@ -97,7 +97,7 @@ class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
             "nav_graph", "ai_graph" -> get<NavigationGraph>().load(files.find(Settings["map.navGraph"]))
             "npcs" -> {
                 NPCDefinitions.load(files.list(Settings["definitions.npcs"]))
-                loadNpcSpawns(files.list(Settings["spawns.npcs"]))
+                loadNpcSpawns(files, reload = true)
             }
             "areas" -> Areas.load(files.list(Settings["map.areas"]))
             "emotes", "render_anims", "render_emotes" -> get<RenderEmoteDefinitions>().load(files.find(Settings["definitions.renderEmotes"]))

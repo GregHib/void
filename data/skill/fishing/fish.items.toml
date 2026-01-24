@@ -211,7 +211,7 @@ price = 12
 limit = 20000
 weight = 0.35
 fishing = { level = 16, xp = 20.0, chance_min = 5, chance_max = 65 }
-cooking = { level = 10, xp = 60.0, chances = { fire = "98-452", cooks_range = "108-472" }, cooked = "mackerel", cooked_message = "You successfully cook a mackerel.", burnt_message = "You accidentally burn the mackerel." }
+cooking = { level = 10, xp = 60.0, chances = { fire = "98-452", cooks_range = "108-472" }, cooked = "mackerel", burnt = "burnt_herring", cooked_message = "You successfully cook a mackerel.", burnt_message = "You accidentally burn the mackerel." }
 examine = "I should try cooking this."
 
 [raw_mackerel_noted]

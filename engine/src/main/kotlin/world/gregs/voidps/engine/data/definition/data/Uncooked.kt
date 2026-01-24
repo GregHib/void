@@ -42,8 +42,6 @@ data class Uncooked(
             var level = 1
             var xp = 0.0
             var burntXp = 0.0
-            var chanceMin = 255
-            var chanceMax = 255
             var cooked = ""
             var cookedMessage = ""
             var burnt = ""
@@ -58,8 +56,6 @@ data class Uncooked(
                     "level" -> level = reader.int()
                     "xp" -> xp = reader.double()
                     "burntXp" -> burntXp = reader.double()
-                    "chance_min" -> chanceMin = reader.int()
-                    "chance_max" -> chanceMax = reader.int()
                     "cooked" -> cooked = reader.string()
                     "cooked_message" -> cookedMessage = reader.string()
                     "burnt" -> burnt = reader.string()
@@ -82,7 +78,7 @@ data class Uncooked(
                 level = level,
                 xp = xp,
                 burntXp = burntXp,
-                chance = chanceMin until chanceMax,
+                chance = fireChance,
                 rangeChance = rangeChance,
                 cooksRangeChance = cooksRangeChance,
                 gauntletChance = gauntletChance,

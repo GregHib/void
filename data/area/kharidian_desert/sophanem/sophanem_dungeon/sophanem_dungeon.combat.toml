@@ -1,0 +1,35 @@
+[scarab_mage]
+attack_speed = 15
+defend_sound = "scarabs_defend"
+death_anim = "scarab_death"
+death_sound = "scarabs_death"
+
+[scarab_mage.attack]
+range = 8
+anim = "scarab_attack"
+target_sound = "scarabs_attack"
+target_hit = { offense = "magic", max = 170 }
+
+[locust_rider]
+attack_speed = 15
+defend_sound = "scarabs_defend"
+death_anim = "scarab_death"
+death_sound = "scarabs_death"
+
+[locust_rider.attack]
+range = 1
+anim = "scarab_attack"
+target_sound = "scarabs_attack"
+target_hit = { offense = "crush", max = 150 }
+
+[scarabs]
+attack_speed = 1
+defend_sound = "scarabs_defend"
+death_anim = "scarab_death"
+death_sound = "scarabs_death"
+
+[scarabs.attack]
+range = 1
+anim = "scarab_attack"
+target_sound = "scarabs_attack"
+target_hit = { offense = "slash", max = 10 }

@@ -1,0 +1,16 @@
+[cave_slime]
+attack_speed = 5
+retreat_range = 13
+defend_anim = "cave_slime_defend"
+death_anim = "cave_slime_death"
+
+[cave_slime.melee]
+range = 1
+anim = "cave_slime_attack"
+target_hit = { offense = "stab", max = 20 }
+
+[cave_slime.melee_poison]
+range = 1
+anim = "cave_slime_attack"
+target_hit = { offense = "stab", max = 20 }
+impact_poison = 30

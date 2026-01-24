@@ -28,7 +28,6 @@ slayer_xp = 110.0
 slayer_level = 68
 categories = ["spiritual_creatures"]
 wander_range = 6
-combat_anims = "human"
 drop_table = "spiritual_warrior"
 god = "saradomin"
 examine = "Saradomin's chosen warrior."
