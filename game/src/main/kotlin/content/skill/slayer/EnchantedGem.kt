@@ -35,7 +35,7 @@ class EnchantedGem(val slayerDefinitions: SlayerTaskDefinitions) : Script {
             }
         }
 
-        itemOption("Kills-left", "enchanted_gem") {
+        itemOption("Kills-left", "enchanted_gem,ring_of_slaying_*") {
             if (slayerTask == "nothing") {
                 message("") // TODO
             } else {

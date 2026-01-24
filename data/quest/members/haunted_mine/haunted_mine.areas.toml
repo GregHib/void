@@ -7,3 +7,8 @@ tags = ["multi_combat"]
 x = [3136, 3199]
 y = [4544, 4663]
 tags = ["multi_combat"]
+
+[tarns_lair_teleport]
+x = [3185, 3185]
+y = [4601, 4601]
+tags = ["teleport"]
