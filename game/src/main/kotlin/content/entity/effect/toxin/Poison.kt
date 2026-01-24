@@ -121,7 +121,7 @@ class Poison : Script {
 
     fun attack(source: Character, attack: CombatAttack) {
         val (target, damage, type, weapon) = attack
-        if (damage <= 0 || source !is Player || !poisoned(weapon.id, source.ammo)) {
+        if (damage <= 0 || source !is Player || !poisoned(weapon.id) && !poisoned(source.ammo)) {
             return
         }
         val poison = 20 + weapon.id.count { it == '+' } * 10
@@ -132,6 +132,6 @@ class Poison : Script {
         }
     }
 
-    fun poisoned(id: String, ammo: String) = id.endsWith("_p") || id.endsWith("_p+") || id.endsWith("_p++") || ammo == "emerald_bolts_e"
+    fun poisoned(id: String) = id.endsWith("_p") || id.endsWith("_p+") || id.endsWith("_p++") || id == "emerald_bolts_e"
 
 }
