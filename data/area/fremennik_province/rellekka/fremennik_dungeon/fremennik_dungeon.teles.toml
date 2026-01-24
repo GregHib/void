@@ -1,0 +1,9 @@
+[slayer_dungeon_entrance]
+option = "Enter"
+tile = { x = 2797, y = 3614 }
+to = { x = 2808, y = 10002 }
+
+[slayer_dungeon_exit]
+option = "Enter"
+tile = { x = 2809, y = 10001 }
+to = { x = 2796, y = 3615 }

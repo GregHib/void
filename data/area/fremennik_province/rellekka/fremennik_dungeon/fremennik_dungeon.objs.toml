@@ -1,0 +1,15 @@
+[slayer_danger_sign]
+id = 5127
+examine = "Danger!"
+
+[slayer_kursk_statue]
+id = 4541
+examine = "Did that thing just twitch?"
+
+[slayer_dungeon_entrance]
+id = 4499
+examine = "Wow - it's a guinea pig! No, hang on, it's a cave."
+
+[slayer_dungeon_exit]
+id = 4500
+examine = "This leads back to the cruel world above."
