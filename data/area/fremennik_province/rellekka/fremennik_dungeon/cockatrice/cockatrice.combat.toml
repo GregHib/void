@@ -1,0 +1,29 @@
+[cockatrice]
+attack_speed = 6
+retreat_range = 8
+defend_anim = "cockatrice_defend"
+defend_sound = "cockatrice_defend"
+death_anim = "cockatrice_death"
+death_sound = "cockatrice_death"
+
+[cockatrice.attack]
+condition = "mirror_shield"
+anim = "cockatrice_attack"
+target_sound = "cockatrice_attack"
+target_hit = { offense = "stab", max = 50 }
+
+[cockatrice.piercing_gaze]
+condition = "no_mirror_shield"
+anim = "cockatrice_gaze"
+target_sound = "cockatrice_attack"
+projectile = "cockatrice_zap"
+target_hit = { offense = "damage", min = 90, max = 90, accuracy_roll = false }
+impact_drains = [
+    { skill = "attack", multiplier = 0.4 },
+    { skill = "strength", multiplier = 0.4 },
+    { skill = "defence", multiplier = 0.2 },
+    { skill = "ranged", multiplier = 0.4 },
+    { skill = "prayer", multiplier = 0.2 },
+    { skill = "magic", multiplier = 0.4 },
+    { skill = "agility", multiplier = 0.2 },
+]

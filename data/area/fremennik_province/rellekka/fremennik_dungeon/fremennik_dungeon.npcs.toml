@@ -28,19 +28,6 @@ categories = ["basilisks"]
 respawn_delay = 15
 examine = "The eyes of evil."
 
-[cockatrice_fremennik_dungeon]
-id = 1620
-hitpoints = 370
-att = 22
-str = 37
-def = 37
-combat_def = "cockatrice"
-slayer_xp = 37.0
-categories = ["cockatrice"]
-respawn_delay = 15
-drop_table = "cockatrice"
-examine = "The winged reptile."
-
 [pyrefiend_fremennik_dungeon]
 id = 1633
 categories = ["pyrefiends"]

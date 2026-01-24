@@ -1,0 +1,8 @@
+[cockatrice_attack]
+id = 363
+
+[cockatrice_defend]
+id = 365
+
+[cockatrice_death]
+id = 364
