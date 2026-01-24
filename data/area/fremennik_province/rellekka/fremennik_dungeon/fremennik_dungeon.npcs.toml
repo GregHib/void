@@ -28,19 +28,6 @@ categories = ["basilisks"]
 respawn_delay = 15
 examine = "The eyes of evil."
 
-[pyrefiend_fremennik_dungeon]
-id = 1633
-categories = ["pyrefiends"]
-examine = "A small fire demon."
-
-[pyrefiend_fremennik_dungeon_2]
-id = 1634
-
-[pyrefiend_fremennik_dungeon_3]
-id = 1635
-
-[pyrefiend_fremennik_dungeon_4]
-id = 1636
 
 [aquanite_fremennik_dungeon]
 id = 9172

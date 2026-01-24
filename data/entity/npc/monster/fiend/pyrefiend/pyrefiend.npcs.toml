@@ -1,0 +1,35 @@
+[pyrefiend_large]
+id = 1633
+hitpoints = 450
+att = 52
+str = 30
+def = 22
+combat_def = "pyrefiend"
+slayer_xp = 45.0
+slayer_level = 30
+respawn_delay = 25
+drop_table = "pyrefiend"
+categories = ["pyrefiends", "fiery", "demon"]
+examine = "A small fire demon."
+
+[pyrefiend_medium]
+id = 1634
+clone = "pyrefiend_large"
+
+[pyrefiend_tiny]
+id = 1635
+clone = "pyrefiend_large"
+
+[pyrefiend_small]
+id = 1636
+clone = "pyrefiend_large"
+
+[pyrefiend_god_wars]
+id = 6216
+clone = "pyrefiend_large"
+hitpoints = 480
+att = 60
+str = 36
+max_hit_melee = 50
+hunt_mode = "zamorak_aggressive"
+god = "zamorak"
