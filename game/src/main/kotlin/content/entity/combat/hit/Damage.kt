@@ -41,9 +41,10 @@ object Damage {
         special: Boolean = false,
         defensiveType: String = offensiveType,
         range: IntRange? = null,
+        skipAccuracyRoll: Boolean = false
     ): Int {
         val success = Hit.success(source, target, offensiveType, weapon, special, defensiveType)
-        if (offensiveType != "dragonfire" && !success) {
+        if (offensiveType != "dragonfire" && !success && !skipAccuracyRoll) {
             return -1
         }
         val baseMaxHit = maximum(source, target, offensiveType, weapon, spell, success, range)

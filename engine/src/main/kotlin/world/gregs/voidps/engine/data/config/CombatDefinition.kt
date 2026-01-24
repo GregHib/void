@@ -110,6 +110,7 @@ data class CombatDefinition(
      * @param min minimum damage that can be dealt by this hit.
      * @param max maximum damage that can be dealt by this hit.
      * @param delay override duration before this hit is applied (usually calculated using projectile travel time)
+     * @param accuracyRoll should accuracy be rolled to check for successful hit or not (false = always hit)
      */
     data class CombatHit(
         val offense: String = "",
@@ -118,6 +119,7 @@ data class CombatDefinition(
         val min: Int = 0,
         val max: Int = 0,
         val delay: Int? = null,
+        val accuracyRoll: Boolean = true,
     )
 
     data class Projectile(val id: String, val delay: Int? = null, val curve: IntRange? = null, val endHeight: Int? = null)
