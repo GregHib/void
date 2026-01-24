@@ -183,7 +183,7 @@ class Attack(
     }
 
     fun withinRange(source: NPC, target: Character, distance: Int, attack: CombatDefinition.CombatAttack): Boolean {
-        if (attack.range == 1 && attack.targetHits.any { Hit.meleeType(it.offense) }) {
+        if (attack.range == 1 && (attack.targetHits.any { Hit.meleeType(it.offense) } || source.size > 1)) {
             return NPCCharacterTargetStrategy(source).reached(target)
         }
         return distance in 1..attack.range
