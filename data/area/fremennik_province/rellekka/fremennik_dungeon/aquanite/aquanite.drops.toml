@@ -1,0 +1,64 @@
+[aquanite_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { table = "aquanite_secondary" },
+    { table = "aquanite_tertiary" },
+]
+
+[aquanite_secondary]
+roll = 512
+drops = [
+    { id = "water_rune", min = 30, max = 100, chance = 32 },
+    { id = "air_rune", amount = 40, chance = 8 },
+    { id = "nature_rune", amount = 4, chance = 8 },
+    { id = "death_rune", amount = 3, chance = 8 },
+    { id = "blood_rune", amount = 3, chance = 8 },
+    { id = "soul_rune", min = 3, max = 6, chance = 8 },
+    { id = "water_battlestaff", chance = 8 },
+    { id = "air_battlestaff", chance = 2 },
+    { id = "amulet_of_ranging" },
+    { id = "adamant_bolts", amount = 10, chance = 32 },
+    { id = "runite_bolts", amount = 5, chance = 32 },
+    { id = "rune_dart", amount = 10, chance = 32 },
+    { id = "poison_ivy_seed", chance = 8 },
+    { id = "cactus_seed", chance = 8 },
+    { id = "belladonna_seed", chance = 8 },
+    { id = "avantoe_seed", chance = 8 },
+    { id = "toadflax_seed", chance = 8 },
+    { id = "cadantine_seed", chance = 8 },
+    { id = "irit_seed", chance = 8 },
+    { id = "kwuarm_seed", chance = 8 },
+    { id = "ranarr_seed", chance = 2 },
+    { id = "snapdragon_seed", chance = 2 },
+    { id = "lantadyme_seed", chance = 2 },
+    { id = "dwarf_weed_seed", chance = 2 },
+    { id = "torstol_seed", chance = 2 },
+    { id = "grimy_guam", chance = 8 },
+    { id = "grimy_marrentill", chance = 8 },
+    { id = "grimy_harralander", chance = 8 },
+    { id = "grimy_ranarr", chance = 8 },
+    { id = "grimy_irit", chance = 8 },
+    { id = "grimy_avantoe", chance = 8 },
+    { id = "grimy_kwuarm", chance = 8 },
+    { id = "grimy_cadantine", chance = 8 },
+    { id = "grimy_lantadyme", chance = 8 },
+    { id = "grimy_dwarf_weed", chance = 8 },
+    { id = "raw_lobster", min = 1, max = 3, chance = 32 },
+    { id = "raw_swordfish", min = 1, max = 2, chance = 32 },
+    { id = "raw_shark", chance = 32 },
+    { id = "coins", amount = 500, chance = 32 },
+    { id = "seaweed_noted", min = 3, max = 6, chance = 32 },
+    { id = "snape_grass_noted", amount = 3, chance = 32 },
+    { id = "pelvis_bone", chance = 32, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+]
+
+[aquanite_tertiary]
+roll = 512
+drops = [
+    { table = "hard_clue_scroll", chance = 8 },
+    { id = "clue_scroll_hard", chance = 8 },
+    { id = "long_bone", chance = 2 },
+    { id = "curved_bone", chance = 2 },
+    { id = "starved_ancient_effigy" },
+]

@@ -1,0 +1,13 @@
+[aquanite]
+id = 9172
+hitpoints = 1250
+# Stats are unknown
+def = 70
+mage = 170
+height = 40
+combat_def = "aquanite"
+categories = ["aquanites"]
+slayer_level = 78
+slayer_xp = 125.0
+drop_table = "aquanite"
+examine = "It has a light on its forehead. What a pretty light... So shiny!"

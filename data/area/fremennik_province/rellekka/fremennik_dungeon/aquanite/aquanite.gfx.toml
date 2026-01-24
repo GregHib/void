@@ -1,0 +1,17 @@
+[aquanite_travel]
+id = 2119
+# Made up
+height = 5
+curve = 12
+delay = 35
+time_offset = 10
+multiplier = 8
+
+[aquanite_cast]
+id = 2120
+
+[aquanite_cast_special]
+id = 2121
+
+[aquanite_splash]
+id = 2122
