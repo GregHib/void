@@ -1,5 +1,5 @@
 [cave_horror]
-attack_range = 8
+retreat_range = 8
 attack_speed = 5
 defend_anim = "cave_horror_defend"
 death_anim = "cave_horror_howl"
