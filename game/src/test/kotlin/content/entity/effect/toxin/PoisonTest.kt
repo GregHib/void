@@ -1,6 +1,8 @@
 package content.entity.effect.toxin
 
 import WorldTest
+import containsMessage
+import messages
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -15,6 +17,7 @@ class PoisonTest : WorldTest() {
         val player = createPlayer()
         player.levels.set(Skill.Constitution, 990)
         player.poison(player, 14)
+        assertTrue(player.containsMessage("You have been poisoned"))
         assertEquals(14, player.poisonDamage)
         assertTrue(player.timers.contains("poison"))
         assertTrue(player.poisoned)
@@ -26,6 +29,25 @@ class PoisonTest : WorldTest() {
         assertEquals(0, player.poisonDamage)
         assertFalse(player.poisoned)
         assertFalse(player.timers.contains("poison"))
+    }
+
+    @Test
+    fun `Anti-poison fades over time`() {
+        val player = createPlayer()
+        player.antiPoison(1600, TimeUnit.MILLISECONDS)
+        assertEquals(-4, player.poisonDamage)
+        assertTrue(player.timers.contains("poison"))
+        assertTrue(player.antiPoison)
+        tick(30)
+        assertEquals(100, player.levels.get(Skill.Constitution))
+        assertEquals(-2, player.poisonDamage)
+        assertTrue(player.containsMessage("Your poison resistance is about to wear off"))
+        tick(30)
+        assertEquals(100, player.levels.get(Skill.Constitution))
+        assertEquals(0, player.poisonDamage)
+        assertFalse(player.antiPoison)
+        assertFalse(player.timers.contains("poison"))
+        assertTrue(player.containsMessage("Your poison resistance has worn off"))
     }
 
     @Test
@@ -52,23 +74,6 @@ class PoisonTest : WorldTest() {
         player.poison(player, 110)
         assertEquals(890, player.levels.get(Skill.Constitution))
         assertEquals(110, player.poisonDamage)
-    }
-
-    @Test
-    fun `Anti-poison fades over time`() {
-        val player = createPlayer()
-        player.antiPoison(1600, TimeUnit.MILLISECONDS)
-        assertEquals(-4, player.poisonDamage)
-        assertTrue(player.timers.contains("poison"))
-        assertTrue(player.antiPoison)
-        tick(30)
-        assertEquals(100, player.levels.get(Skill.Constitution))
-        assertEquals(-2, player.poisonDamage)
-        tick(30)
-        assertEquals(100, player.levels.get(Skill.Constitution))
-        assertEquals(0, player.poisonDamage)
-        assertFalse(player.antiPoison)
-        assertFalse(player.timers.contains("poison"))
     }
 
     @Test
