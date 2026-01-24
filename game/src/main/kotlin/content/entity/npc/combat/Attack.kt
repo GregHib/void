@@ -122,7 +122,7 @@ class Attack(
             val attackName: String = context.spell
             val target = context.target
             val source = if (target is Player) def(target).stringId else id
-            val definition = definitions.getOrNull(source) ?: return@npcCombatAttack
+            val definition = definitions.getOrNull(def["combat_def", source]) ?: return@npcCombatAttack
             val attack = definition.attacks[attackName] ?: return@npcCombatAttack
             val targets = targets(target, attack.multiTargetArea)
             for (target in targets) {
