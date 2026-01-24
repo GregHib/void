@@ -8,7 +8,7 @@ death_sound = "scarabs_death"
 range = 8
 anim = "scarab_attack"
 target_sound = "scarabs_attack"
-target_hit = { offence = "magic", max = 170 }
+target_hit = { offense = "magic", max = 170 }
 
 [locust_rider]
 attack_speed = 15
@@ -20,7 +20,7 @@ death_sound = "scarabs_death"
 range = 1
 anim = "scarab_attack"
 target_sound = "scarabs_attack"
-target_hit = { offence = "crush", max = 150 }
+target_hit = { offense = "crush", max = 150 }
 
 [scarabs]
 attack_speed = 1
@@ -32,4 +32,4 @@ death_sound = "scarabs_death"
 range = 1
 anim = "scarab_attack"
 target_sound = "scarabs_attack"
-target_hit = { offence = "slash", max = 10 }
+target_hit = { offense = "slash", max = 10 }

@@ -10,4 +10,4 @@ death_sound = "jungle_horror_death"
 range = 1
 anim = "cave_horror_swing"
 target_sound = "jungle_horror_attack"
-target_hit = { offence = "crush", defence = "magic", max = 90 }
+target_hit = { offense = "crush", defence = "magic", max = 90 }

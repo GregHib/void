@@ -7,7 +7,7 @@ death_anim = "abyssal_leech_death"
 [abyssal_leech.melee]
 range = 1
 anim = "abyssal_leech_attack"
-target_hit = { offence = "slash", max = 20 }
+target_hit = { offense = "slash", max = 20 }
 
 [abyssal_guardian]
 attack_speed = 5
@@ -18,7 +18,7 @@ death_anim = "abyssal_guardian_death"
 [abyssal_guardian.melee]
 range = 1
 anim = "abyssal_guardian_attack"
-target_hit = { offence = "stab", max = 110 }
+target_hit = { offense = "stab", max = 110 }
 
 [abyssal_walker]
 attack_speed = 5
@@ -29,4 +29,4 @@ death_anim = "abyssal_walker_death"
 [abyssal_walker.melee]
 range = 1
 anim = "abyssal_walker_attack"
-target_hit = { offence = "crush", max = 130 }
+target_hit = { offense = "crush", max = 130 }
