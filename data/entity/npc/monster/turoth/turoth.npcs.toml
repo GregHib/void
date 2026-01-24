@@ -1,0 +1,50 @@
+[turoth]
+id = 1623
+hitpoints = 810
+att = 58
+str = 88
+def = 88
+combat_def = "turoth_large"
+slayer_xp = 81.0
+slayer_level = 55
+categories = ["turoth"]
+immune_cannon = true
+respawn_delay = 15
+drop_table = "turoth"
+examine = "He's one big leg short!"
+
+[turoth_level_87]
+id = 1626
+clone = "turoth"
+hitpoints = 790
+att = 56
+str = 86
+def = 86
+slayer_xp = 79.0
+examine = "She's one leg short!"
+
+[turoth_level_85]
+id = 1627
+clone = "turoth"
+hitpoints = 770
+att = 54
+str = 84
+def = 84
+slayer_xp = 77.0
+combat_def = "turoth_small"
+examine = "It's one leg short!"
+
+[turoth_level_83]
+id = 1628
+clone = "turoth"
+hitpoints = 760
+att = 53
+str = 83
+def = 83
+slayer_xp = 76.0
+combat_def = "turoth_tiny"
+examine = "It's one small leg short!"
+
+[turoth_level_88]
+id = 1630
+clone = "turoth_level_87"

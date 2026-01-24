@@ -1,0 +1,14 @@
+[cockatrice]
+id = 1620
+hitpoints = 370
+att = 22
+str = 37
+def = 37
+height = 50
+combat_def = "cockatrice"
+slayer_xp = 37.0
+slayer_level = 25
+categories = ["cockatrice"]
+respawn_delay = 15
+drop_table = "cockatrice"
+examine = "The winged reptile."

@@ -78,7 +78,8 @@ fun Character.shoot(
     curve: Int? = null,
     offset: Int? = null,
     width: Int = size,
-    tileOffset: Int = 0,
+    tileOffsetX: Int = 0,
+    tileOffsetY: Int = 0,
 ) = projectile(
     id = id,
     target = target,
@@ -92,7 +93,7 @@ fun Character.shoot(
     sourceHeight = this.height,
     targetHeight = target.height,
     targetTile = target.tile,
-    sourceTile = tile.add(tileOffset, tileOffset),
+    sourceTile = tile.add(tileOffsetX, tileOffsetY),
 )
 
 fun Character.shoot(

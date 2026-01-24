@@ -1,0 +1,26 @@
+[turoth_small_attack]
+id = 9481
+
+[turoth_small_death]
+id = 9482
+
+[turoth_small_defend]
+id = 9483
+
+[turoth_tiny_attack]
+id = 9476
+
+[turoth_tiny_death]
+id = 9477
+
+[turoth_tiny_defend]
+id = 9478
+
+[turoth_large_attack]
+id = 9471
+
+[turoth_large_death]
+id = 9472
+
+[turoth_large_defend]
+id = 9473

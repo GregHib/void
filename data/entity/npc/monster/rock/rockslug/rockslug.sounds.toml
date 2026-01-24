@@ -1,0 +1,8 @@
+[rockslug_attack]
+id = 729
+
+[rockslug_death]
+id = 730
+
+[rockslug_defend]
+id = 731

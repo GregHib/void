@@ -41,9 +41,10 @@ object Damage {
         special: Boolean = false,
         defensiveType: String = offensiveType,
         range: IntRange? = null,
+        skipAccuracyRoll: Boolean = false,
     ): Int {
         val success = Hit.success(source, target, offensiveType, weapon, special, defensiveType)
-        if (offensiveType != "dragonfire" && !success) {
+        if (offensiveType != "dragonfire" && !success && !skipAccuracyRoll) {
             return -1
         }
         val baseMaxHit = maximum(source, target, offensiveType, weapon, spell, success, range)
@@ -66,10 +67,10 @@ object Damage {
     /**
      * Calculates the base maximum damage before modifications are applied
      * @param target only applicable for "dragonfire" [type]
-     * @param special only applicable for "dragonfire" type
+     * @param success only applicable for "dragonfire" type
      */
-    fun maximum(source: Character, target: Character, type: String, weapon: Item, spell: String = "", special: Boolean = false, range: IntRange? = null): Int = when {
-        type == "dragonfire" -> Dragonfire.maxHit(source, target, special || source is NPC && spell != "")
+    fun maximum(source: Character, target: Character, type: String, weapon: Item, spell: String = "", success: Boolean = false, range: IntRange? = null): Int = when {
+        type == "dragonfire" -> Dragonfire.maxHit(source, target, success || source is NPC && spell != "")
         source is NPC -> source.def["max_hit_$type", range?.last ?: 0]
         type == "magic" && weapon.id.startsWith("saradomin_sword") -> 160
         type == "magic" && spell == "magic_dart" -> effectiveLevel(source, Skill.Magic) + 100
@@ -143,7 +144,7 @@ object Damage {
 
         damage = Equipment.shieldDamageReductionModifiers(source, target, type, damage)
 
-        damage = Target.damageLimitModifiers(target, damage)
+        damage = Target.damageLimitModifiers(source, target, damage, type, weapon, spell)
 
         if (source["debug", false]) {
             val strengthBonus = Weapon.strengthBonus(source, type, weapon)

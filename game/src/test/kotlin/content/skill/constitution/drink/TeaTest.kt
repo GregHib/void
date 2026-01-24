@@ -48,7 +48,7 @@ internal class TeaTest : WorldTest() {
 
         assertTrue(player.inventory.contains("guthix_rest_2"))
         assertEquals(150, player.levels.get(Skill.Constitution))
-        assertEquals(40, player["poison_damage", 0])
+        assertEquals(40, player["poison", 0])
         assertEquals(500, player.runEnergy)
     }
 

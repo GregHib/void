@@ -110,6 +110,8 @@ class CombatDefinitions {
         val missGraphics = mutableListOf<CombatDefinition.CombatGfx>()
 
         var origin: Origin = Origin.Tile
+        var originX = 0
+        var originY = 0
         val projectiles = mutableListOf<Projectile>()
         val drainSkills = mutableListOf<CombatDefinition.Drain>()
         val targetHits = mutableListOf<CombatHit>()
@@ -153,10 +155,11 @@ class CombatDefinitions {
                 "projectiles" -> projectiles(projectiles)
                 "projectile_origin" -> origin = when (val key = string()) {
                     "tile" -> Origin.Tile
-                    "tile_two" -> Origin.TileTwo
                     "centre" -> Origin.Centre
                     else -> throw IllegalArgumentException("Unknown projectile origin '$key'. ${exception()}")
                 }
+                "projectile_origin_x" -> originX = int()
+                "projectile_origin_y" -> originY = int()
                 "target_hit" -> hit(targetHits)
                 "target_hits" -> hits(targetHits)
                 // Impact
@@ -192,6 +195,8 @@ class CombatDefinitions {
             gfx = graphics,
             sounds = sounds,
             projectileOrigin = origin,
+            projectileOriginX = originX,
+            projectileOriginY = originY,
             projectiles = projectiles,
             targetGfx = targetGraphics,
             targetAnim = targetAnim,
@@ -305,6 +310,7 @@ class CombatDefinitions {
         var min = 0
         var max = 0
         var delay: Int? = null
+        var accuracyRoll = true
         while (nextEntry()) {
             when (val key = key()) {
                 "offense" -> {
@@ -321,10 +327,11 @@ class CombatDefinitions {
                 "min" -> min = int()
                 "max" -> max = int()
                 "delay" -> delay = int()
+                "accuracy_roll" -> accuracyRoll = boolean()
                 else -> throw IllegalArgumentException("Unknown key '$key' in hit definition. ${exception()}")
             }
         }
-        list.add(CombatHit(offense, defence ?: offense, special, min, max, delay))
+        list.add(CombatHit(offense, defence ?: offense, special, min, max, delay, accuracyRoll))
     }
 
     private fun ConfigReader.sounds(list: MutableList<CombatDefinition.CombatSound>) {

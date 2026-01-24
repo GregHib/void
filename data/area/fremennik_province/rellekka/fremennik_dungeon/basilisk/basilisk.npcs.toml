@@ -1,0 +1,14 @@
+[basilisk]
+id = 1616
+hitpoints = 750
+att = 30
+str = 45
+def = 75
+combat_def = "basilisk"
+slayer_xp = 75.0
+slayer_level = 40
+height = 20
+categories = ["basilisks"]
+respawn_delay = 15
+drop_table = "basilisk"
+examine = "The eyes of evil."

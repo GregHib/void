@@ -10,3 +10,7 @@ y = [3597, 3711, 3711, 3775, 3775, 3903, 3903, 3711, 3711, 3584, 3584, 3597]
 tags = ["penguin_area"]
 hint = "between Fremennik and barbarians."
 
+[rellekka_slayer_cave_teleport]
+x = [2792, 2794]
+y = [3611, 3613]
+tags = ["teleport"]

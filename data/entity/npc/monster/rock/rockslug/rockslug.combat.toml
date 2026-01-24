@@ -1,0 +1,12 @@
+[rockslug]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "rockslug_defend"
+defend_sound = "rockslug_defend"
+death_anim = "rockslug_death"
+death_sound = "rockslug_death"
+
+[rockslug.attack]
+anim = "rockslug_attack"
+target_sound = "rockslug_attack"
+target_hit = { offense = "crush", max = 40 }

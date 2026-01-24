@@ -1,0 +1,32 @@
+[turoth_large]
+attack_speed = 4
+retreat_range = 6
+defend_anim = "turoth_large_defend"
+defend_sound = "turoth_defend"
+death_anim = "turoth_large_death"
+death_sound = "turoth_death"
+
+[turoth_large.attack]
+anim = "turoth_large_attack"
+target_sound = "turoth_attack"
+target_hit = { offense = "stab", max = 100 }
+
+[turoth_small]
+clone = "turoth_large"
+defend_anim = "turoth_small_defend"
+death_anim = "turoth_small_death"
+
+[turoth_small.attack]
+anim = "turoth_small_attack"
+target_sound = "turoth_attack"
+target_hit = { offense = "stab", max = 90 }
+
+[turoth_tiny]
+clone = "turoth_large"
+defend_anim = "turoth_tiny_defend"
+death_anim = "turoth_tiny_death"
+
+[turoth_tiny.attack]
+anim = "turoth_tiny_attack"
+target_sound = "turoth_attack"
+target_hit = { offense = "stab", max = 90 }

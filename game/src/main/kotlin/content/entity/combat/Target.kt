@@ -4,9 +4,11 @@ import content.area.wilderness.Wilderness
 import content.area.wilderness.inPvp
 import content.area.wilderness.inSingleCombat
 import content.area.wilderness.inWilderness
+import content.entity.combat.hit.Hit
 import content.entity.effect.transform
 import content.entity.player.equip.Equipment
 import content.skill.melee.weapon.fightStyle
+import content.skill.ranged.ammo
 import content.skill.slayer.categories
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
@@ -22,6 +24,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 object Target {
@@ -135,7 +138,13 @@ object Target {
     /**
      * Limits maximum amount of damage on NPCs (while still allowing Guthans to work)
      */
-    fun damageLimitModifiers(target: Character, damage: Int): Int = when (target) {
+    fun damageLimitModifiers(source: Character, target: Character, damage: Int, type: String = "", weapon: Item = Item.EMPTY, spell: String = ""): Int = when (target) {
+        is NPC if (target.id.startsWith("turoth") || target.id.startsWith("kurask")) -> when {
+            type == "magic" && spell != "magic_dart" -> 0
+            type == "range" && source.ammo != "broad_tipped_bolts" && source.ammo != "broad_arrows" -> 0
+            Hit.meleeType(type) && !weapon.id.startsWith("leaf_bladed") -> 0
+            else -> damage
+        }
         is NPC if target.def.contains("damage_cap") -> damage.coerceAtMost(target.def["damage_cap"])
         is NPC if target.def.contains("immune_death") -> damage.coerceAtMost(target.levels.get(Skill.Constitution) - 10)
         else -> damage

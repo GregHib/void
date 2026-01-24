@@ -1,0 +1,11 @@
+[rockslug_attack]
+id = 9506
+
+[rockslug_death]
+id = 9507
+
+[rockslug_defend]
+id = 9508
+
+[slayer_salt_sprinkle]
+id = 9502

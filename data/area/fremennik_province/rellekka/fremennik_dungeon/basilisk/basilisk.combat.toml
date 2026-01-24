@@ -1,0 +1,29 @@
+[basilisk]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "basilisk_defend"
+defend_sound = "basilisk_defend"
+death_anim = "basilisk_death"
+death_sound = "basilisk_death"
+
+[basilisk.attack]
+condition = "mirror_shield"
+anim = "basilisk_attack"
+target_sound = "basilisk_attack"
+target_hit = { offense = "slash", max = 50 }
+
+[basilisk.piercing_gaze]
+condition = "no_mirror_shield"
+anim = "basilisk_special"
+target_sound = { id = "basilisk_attack", delay = 25 }
+projectile = "basilisk_zap"
+target_hit = { offense = "damage", min = 100, max = 100, accuracy_roll = false }
+impact_drains = [
+    { skill = "attack", multiplier = 0.6 },
+    { skill = "strength", multiplier = 0.4 },
+    { skill = "defence", multiplier = 0.3 },
+    { skill = "ranged", multiplier = 0.6 },
+    { skill = "prayer", multiplier = 0.3 },
+    { skill = "magic", multiplier = 0.6 },
+    { skill = "agility", multiplier = 0.3 },
+]

@@ -78,9 +78,8 @@ class Attack(
                         continue
                     }
                     val delay = when (origin) {
-                        CombatDefinition.Origin.Tile -> shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
-                        CombatDefinition.Origin.TileTwo -> shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight, tileOffset = 2)
                         CombatDefinition.Origin.Centre -> nearestTile(this, target).shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
+                        else -> shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight, tileOffsetX = attack.projectileOriginX, tileOffsetY = attack.projectileOriginY)
                     }
                     delays[i] = delay
                 }
@@ -104,7 +103,7 @@ class Attack(
                     val damage = if (hit.max == 0) {
                         hit(target = target, delay = delay, offensiveType = offense, defensiveType = defence, special = hit.special, spell = attack.id) // Reuse spell for attack name
                     } else {
-                        val damage = Damage.roll(source = this, target = target, offensiveType = offense, weapon = Item.EMPTY, special = hit.special, defensiveType = defence, range = hit.min..hit.max)
+                        val damage = Damage.roll(source = this, target = target, offensiveType = offense, weapon = Item.EMPTY, special = hit.special, defensiveType = defence, range = hit.min..hit.max, skipAccuracyRoll = !hit.accuracyRoll)
                         hit(target = target, delay = delay, offensiveType = offense, defensiveType = defence, special = hit.special, damage = damage, spell = attack.id)
                     }
                     if (damage > 0) {
@@ -122,7 +121,7 @@ class Attack(
             val attackName: String = context.spell
             val target = context.target
             val source = if (target is Player) def(target).stringId else id
-            val definition = definitions.getOrNull(source) ?: return@npcCombatAttack
+            val definition = definitions.getOrNull(def["combat_def", source]) ?: return@npcCombatAttack
             val attack = definition.attacks[attackName] ?: return@npcCombatAttack
             val targets = targets(target, attack.multiTargetArea)
             for (target in targets) {
@@ -183,7 +182,7 @@ class Attack(
     }
 
     fun withinRange(source: NPC, target: Character, distance: Int, attack: CombatDefinition.CombatAttack): Boolean {
-        if (attack.range == 1 && attack.targetHits.any { Hit.meleeType(it.offense) }) {
+        if (attack.range == 1 && (attack.targetHits.any { Hit.meleeType(it.offense) } || source.size > 1)) {
             return NPCCharacterTargetStrategy(source).reached(target)
         }
         return distance in 1..attack.range

@@ -2,3 +2,8 @@
 x = [3359, 3363]
 y = [2968, 2972]
 tags = ["teleport", "scroll"]
+
+[pollnivneach_slayer_teleport]
+x = [3361, 3362]
+y = [2992, 2994]
+tags = ["teleport"]

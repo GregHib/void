@@ -78,7 +78,7 @@ class EquipmentBonuses : Script {
 
         interfaceOption("Remove", "equipment_bonuses:inventory") { (item, itemSlot) ->
             if (equipping()) {
-                InterfaceApi.itemOption(this, ItemOption(item, itemSlot, "inventory", "Remove"))
+                InterfaceApi.itemOption(this, ItemOption(item, itemSlot, "worn_equipment", "Remove"))
                 checkEmoteUpdate(this)
             }
         }

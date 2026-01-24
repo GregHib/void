@@ -1,0 +1,12 @@
+[kurask]
+attack_speed = 4
+retreat_range = 11
+defend_anim = "kurask_defend"
+defend_sound = "kurask_defend"
+death_anim = "kurask_death"
+death_sound = "kurask_death"
+
+[kurask.attack]
+anim = "kurask_attack"
+target_sound = "kurask_attack"
+target_hit = { offense = "crush", max = 110 }

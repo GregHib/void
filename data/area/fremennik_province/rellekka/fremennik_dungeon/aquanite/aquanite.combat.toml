@@ -1,0 +1,29 @@
+[aquanite]
+attack_speed = 5
+retreat_range = 8
+death_anim = "aquanite_death"
+defend_anim = "aquanite_defend"
+# Unknown sounds
+
+[aquanite.magic]
+chance = 10
+range = 8
+anim = "aquanite_attack"
+gfx = "aquanite_cast"
+projectile = "aquanite_travel"
+projectile_origin_y = 1
+target_hit = { offense = "magic", max = 134 }
+impact_gfx = "aquanite_splash"
+miss_gfx = "giant_splash"
+miss_sound = "spell_splash"
+
+[aquanite.special]
+chance = 1 # Unknown rate
+condition = "target_protect_magic"
+range = 8
+anim = "aquanite_special"
+gfx = "aquanite_cast_special"
+projectile = { id = "aquanite_travel", delay = 55 }
+projectile_origin_y = 1
+target_hit = { offense = "magic", max = 250 }
+impact_gfx = "aquanite_splash"

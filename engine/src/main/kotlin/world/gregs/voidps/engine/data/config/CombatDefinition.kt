@@ -46,6 +46,9 @@ data class CombatDefinition(
      *  @param gfx played by the attacking npc when the swing is executed.
      *  @param sounds played to the attacker when the swing is executed.
      *  @param projectiles Projectiles fired by the attacking npc.
+     *  @param projectileOrigin where the projectile originates (for large npcs)
+     *  @param projectileOriginX tile x offset from npcs south-west tile
+     *  @param projectileOriginY tile y offset from npcs south-west tile
      *  === Target ===
      *  @param targetGfx gfx played on the target when the swing is executed.
      *  @param targetAnim animation played on the target when the swing is executed.
@@ -78,6 +81,8 @@ data class CombatDefinition(
         val gfx: List<CombatGfx> = emptyList(),
         val sounds: List<CombatSound> = emptyList(),
         val projectileOrigin: Origin = Origin.Tile,
+        val projectileOriginX: Int = 0,
+        val projectileOriginY: Int = 0,
         val projectiles: List<Projectile> = emptyList(),
         // Target
         val targetAnim: String = "",
@@ -110,6 +115,7 @@ data class CombatDefinition(
      * @param min minimum damage that can be dealt by this hit.
      * @param max maximum damage that can be dealt by this hit.
      * @param delay override duration before this hit is applied (usually calculated using projectile travel time)
+     * @param accuracyRoll should accuracy be rolled to check for successful hit or not (false = always hit)
      */
     data class CombatHit(
         val offense: String = "",
@@ -118,6 +124,7 @@ data class CombatDefinition(
         val min: Int = 0,
         val max: Int = 0,
         val delay: Int? = null,
+        val accuracyRoll: Boolean = true,
     )
 
     data class Projectile(val id: String, val delay: Int? = null, val curve: IntRange? = null, val endHeight: Int? = null)
@@ -127,10 +134,6 @@ data class CombatDefinition(
          * Entities south-west tile
          */
         Tile,
-        /**
-         * Entities south-west tile offset by +2
-         */
-        TileTwo,
         /**
          * Entities size-centered tile (different from size/2)
          */

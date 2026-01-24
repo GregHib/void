@@ -14,9 +14,9 @@ object Dragonfire {
 
     /**
      * Calculate the dragonfire max hit
-     * @param special for hitting extra damage if accuracy roll was low or is kbd special dragon breath
+     * @param success for hitting extra damage if accuracy roll was low or is kbd special dragon breath
      */
-    fun maxHit(source: Character, target: Character, special: Boolean): Int {
+    fun maxHit(source: Character, target: Character, success: Boolean): Int {
         if (source is Player && target is NPC && Target.isDragon(target) && !Target.isMetalDragon(target)) {
             return -1
         }
@@ -37,11 +37,11 @@ object Dragonfire {
         } else if (source is Player) {
             type = "chromatic"
         } else if (target is Player) {
-            target.message(if (special) "You're horribly burnt by the dragon fire!" else "You manage to resist some of the dragon fire!")
+            target.message(if (success) "You're horribly burnt by the dragon fire!" else "You manage to resist some of the dragon fire!")
         }
         return maxHit(
             type = type,
-            special = special,
+            success = success,
             shield = Equipment.antiDragonShield(target),
             protection = target.protectMagic(),
             potion = when {
@@ -52,26 +52,26 @@ object Dragonfire {
         )
     }
 
-    internal fun maxHit(type: String, special: Boolean, shield: Boolean, protection: Boolean = false, potion: Int = 0): Int {
-        val normalFire = type != "king_black_dragon" || !special
+    internal fun maxHit(type: String, success: Boolean, shield: Boolean, protection: Boolean = false, potion: Int = 0): Int {
+        val normalFire = type != "king_black_dragon" || !success
         if (potion == 2 && normalFire) {
             return 0
         }
 
         var max = when (type) {
-            "king_black_dragon" if !special -> 650
+            "king_black_dragon" if !success -> 650
             "elvarg" -> when {
                 shield && protection && potion == 1 -> 340
                 shield && !protection && potion == 0 -> 100
                 shield -> 220
                 else -> 700
             }
-            else -> if (special) 500 else 300
+            else -> if (success) 500 else 300
         }
         when {
             type == "king_black_dragon" && (shield || protection) -> {
                 max = if (shield) 150 else 200
-                if (special) max -= 50
+                if (success) max -= 50
             }
             type == "elvarg" && protection -> max -= 150
             type == "chromatic" && (shield || protection) || type == "metallic" && shield ->

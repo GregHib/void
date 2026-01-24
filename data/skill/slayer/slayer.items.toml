@@ -37,6 +37,7 @@ id = 4154
 id = 4155
 tradeable = false
 weight = 0.002
+aka = ["slayer_gem"]
 examine = "I can contact the Slayer Masters with this."
 kept = "Wilderness"
 
@@ -360,6 +361,8 @@ examine = "For use against turoth and kurasks."
 id = 13281
 charges = 1
 degrade = "ring_of_slaying_7"
+# https://youtu.be/91YaxnEa81k?t=334
+degrade_message = "Your ring of slaying has seven uses left."
 deplete = "teleport"
 jewellery = { level = 75, xp = 15.0 }
 weight = 0.006
@@ -370,6 +373,7 @@ examine = "An enchanted ring."
 id = 13282
 charges = 1
 degrade = "ring_of_slaying_6"
+degrade_message = "Your ring of slaying has six uses left."
 deplete = "teleport"
 weight = 0.006
 slot = "Ring"
@@ -379,31 +383,38 @@ examine = "An enchanted ring."
 clone = "ring_of_slaying_7"
 id = 13283
 degrade = "ring_of_slaying_5"
+degrade_message = "Your ring of slaying has five uses left."
 
 [ring_of_slaying_5]
 clone = "ring_of_slaying_7"
 id = 13284
 degrade = "ring_of_slaying_4"
+degrade_message = "Your ring of slaying has four uses left."
 
 [ring_of_slaying_4]
 clone = "ring_of_slaying_7"
 id = 13285
 degrade = "ring_of_slaying_3"
+degrade_message = "Your ring of slaying has three uses left."
 
 [ring_of_slaying_3]
 clone = "ring_of_slaying_7"
 id = 13286
 degrade = "ring_of_slaying_2"
+degrade_message = "Your ring of slaying has two uses left."
 
 [ring_of_slaying_2]
 clone = "ring_of_slaying_7"
 id = 13287
 degrade = "ring_of_slaying_1"
+degrade_message = "Your ring of slaying has one use left."
 
 [ring_of_slaying_1]
 clone = "ring_of_slaying_7"
 id = 13288
-degrade = "destroy"
+degrade = "enchanted_gem"
+# https://youtu.be/KrTaJcIfaT0?t=2
+degrade_message = "The ring collapses into a Slayer gem, which you stow in your pack."
 
 [leaf_bladed_sword]
 id = 13290
