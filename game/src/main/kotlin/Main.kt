@@ -91,6 +91,7 @@ object Main {
     }
 
     private fun preload(cache: Cache, configFiles: ConfigFiles) {
+        configFiles.update()
         startKoin {
             slf4jLogger(level = Level.ERROR)
             modules(
