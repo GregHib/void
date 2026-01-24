@@ -13,3 +13,10 @@ examine = "Wow - it's a guinea pig! No, hang on, it's a cave."
 [slayer_dungeon_exit]
 id = 4500
 examine = "This leads back to the cruel world above."
+
+[slayer_dungeon_crevice]
+id = 9321
+examine = "This leads back to the cruel world above."
+
+[slayer_dungeon_chasm]
+id = 44339
