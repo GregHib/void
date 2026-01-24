@@ -21,6 +21,9 @@ val Character.poisoned: Boolean get() = poisonDamage > 0
 
 val Character.antiPoison: Boolean get() = poisonDamage < 0
 
+val Character.poisonImmune: Boolean
+    get() = this is NPC && def["immune_poison", false] || this is Player && equipped(EquipSlot.Shield).id == "anti_poison_totem"
+
 var Character.poisonDamage: Int
     get() = if (this is Player) get("poison", 0) else this["poison", 0]
     set(value) = if (this is Player) {
@@ -36,7 +39,7 @@ fun Character.curePoison(): Boolean {
 }
 
 fun Character.poison(target: Character, damage: Int) {
-    if (target.antiPoison || damage < target.poisonDamage || immune(target)) {
+    if (target.antiPoison || damage < target.poisonDamage || target.poisonImmune) {
         return
     }
     val timers = if (target is Player) target.timers else target.softTimers
@@ -53,8 +56,6 @@ fun Player.antiPoison(duration: Int, timeUnit: TimeUnit) {
     clear("poison_source")
     timers.startIfAbsent("poison")
 }
-
-private fun immune(character: Character) = character is NPC && character.def["immune_poison", false] || character is Player && character.equipped(EquipSlot.Shield).id == "anti_poison_totem"
 
 class Poison : Script {
 
@@ -81,7 +82,7 @@ class Poison : Script {
     }
 
     fun start(character: Character, restart: Boolean): Int {
-        if (immune(character)) {
+        if (character.poisonImmune) {
             return Timer.CANCEL
         }
         if (!restart) {
@@ -126,12 +127,12 @@ class Poison : Script {
         }
         val poison = 20 + weapon.id.count { it == '+' } * 10
         if (type == "range" && random.nextDouble() < 0.125) {
-            source.poison(target, if (source.ammo == "emerald_bolts_e") 50 else poison)
+            source.poison(target, poison)
         } else if (Hit.meleeType(type) && random.nextDouble() < 0.25) {
             source.poison(target, poison + 20)
         }
     }
 
-    fun poisoned(id: String) = id.endsWith("_p") || id.endsWith("_p+") || id.endsWith("_p++") || id == "emerald_bolts_e"
+    fun poisoned(id: String) = id.endsWith("_p") || id.endsWith("_p+") || id.endsWith("_p++")
 
 }

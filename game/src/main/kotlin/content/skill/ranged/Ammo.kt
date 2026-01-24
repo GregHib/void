@@ -3,7 +3,10 @@ package content.skill.ranged
 import content.entity.combat.Target
 import content.entity.combat.hit.directHit
 import content.entity.effect.freeze
+import content.entity.effect.toxin.antiPoison
 import content.entity.effect.toxin.poison
+import content.entity.effect.toxin.poisonImmune
+import content.entity.effect.toxin.poisoned
 import content.entity.player.equip.Equipment
 import content.skill.slayer.undead
 import org.rsmod.game.pathfinder.flag.CollisionFlag
@@ -102,7 +105,7 @@ object Ammo {
                 target.levels.drain(Skill.Prayer, amount)
                 source.levels.restore(Skill.Prayer, amount / 2)
             }
-            source.ammo == "emerald_bolts_e" && chance(source, target, "magical_poison", if (target is Player) 0.54 else 0.55) -> {
+            source.ammo == "emerald_bolts_e" && !target.antiPoison && !target.poisonImmune && !target.poisoned && chance(source, target, "magical_poison", if (target is Player) 0.54 else 0.55) -> {
                 source.poison(target, 50)
             }
             source.ammo == "ruby_bolts_e" && chance(source, target, "blood_forfeit", if (target is Player) 0.11 else 0.06) -> {
