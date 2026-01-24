@@ -21,10 +21,10 @@ abstract class CombatFormulaTest : WorldTest() {
         val chance: Double,
     )
 
-    internal fun calculate(source: Player, target: Character, type: String, weapon: Item = Item.EMPTY, spell: String = "", special: Boolean = false): Results {
+    internal fun calculate(source: Player, target: Character, type: String, weapon: Item = Item.EMPTY, spell: String = "", special: Boolean = false, success: Boolean = false): Results {
         val offensiveRating = Hit.rating(source, target, type, weapon, special, true)
         val defensiveRating = Hit.rating(source, target, type, weapon, special, false)
-        val maxHit = Damage.maximum(source, target, type, weapon, spell, special)
+        val maxHit = Damage.maximum(source, target, type, weapon, spell, success)
         val actualMaxHit = Damage.modify(source, target, type, maxHit, weapon, spell, special)
         val chance = Hit.chance(source, target, type, weapon, special)
         return Results(offensiveRating, defensiveRating, actualMaxHit, chance)
