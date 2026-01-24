@@ -1,5 +1,6 @@
 package content.entity.effect.toxin
 
+import content.entity.combat.Target
 import content.entity.combat.hit.Hit
 import content.entity.combat.hit.directHit
 import content.skill.ranged.ammo
@@ -104,7 +105,7 @@ class Poison : Script {
                 character.curePoison()
                 return Timer.CANCEL
             }
-            damage > 0 -> character.directHit(character["poison_source", character], damage, "poison")
+            damage > 0 -> character.directHit(character["poison_source", character], Target.damageLimitModifiers(character, damage), "poison")
         }
         return Timer.CONTINUE
     }
