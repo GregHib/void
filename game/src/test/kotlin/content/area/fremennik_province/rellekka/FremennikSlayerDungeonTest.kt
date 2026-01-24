@@ -89,5 +89,4 @@ class FremennikSlayerDungeonTest : WorldTest() {
         assertEquals(Tile(2735, 10008), player.tile)
         assertTrue(player.containsMessage("You need level 62 agility"))
     }
-
 }

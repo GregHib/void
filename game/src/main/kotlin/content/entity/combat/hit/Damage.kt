@@ -41,7 +41,7 @@ object Damage {
         special: Boolean = false,
         defensiveType: String = offensiveType,
         range: IntRange? = null,
-        skipAccuracyRoll: Boolean = false
+        skipAccuracyRoll: Boolean = false,
     ): Int {
         val success = Hit.success(source, target, offensiveType, weapon, special, defensiveType)
         if (offensiveType != "dragonfire" && !success && !skipAccuracyRoll) {

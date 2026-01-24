@@ -137,5 +137,4 @@ class Poison : Script {
     }
 
     fun poisoned(id: String) = id.endsWith("_p") || id.endsWith("_p+") || id.endsWith("_p++")
-
 }
