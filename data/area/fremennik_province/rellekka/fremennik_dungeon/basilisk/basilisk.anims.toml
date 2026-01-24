@@ -1,0 +1,11 @@
+[basilisk_attack]
+id = 260
+
+[basilisk_defend]
+id = 261
+
+[basilisk_death]
+id = 264
+
+[basilisk_special]
+id = 9533

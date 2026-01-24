@@ -16,18 +16,6 @@ examine = "Large, heavy, with sharp things attached to its head."
 id = 1609
 clone = "kurask_fremennik_dungeon"
 
-[basilisk_fremennik_dungeon]
-id = 1616
-hitpoints = 750
-att = 30
-str = 45
-def = 75
-combat_def = "basilisk"
-slayer_xp = 75.0
-categories = ["basilisks"]
-respawn_delay = 15
-examine = "The eyes of evil."
-
 
 [aquanite_fremennik_dungeon]
 id = 9172

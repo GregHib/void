@@ -5,11 +5,3 @@ retreat_range = 8
 [kurask.melee]
 range = 1
 target_hit = { offense = "crush", max = 110 }
-
-[basilisk]
-attack_speed = 4
-retreat_range = 8
-
-[basilisk.melee]
-range = 1
-target_hit = { offense = "slash", max = 50 }
