@@ -5,17 +5,10 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.engine.timedLoad
-import java.io.File
 import java.nio.file.Files
 import java.nio.file.NoSuchFileException
 import java.nio.file.Path
-import kotlin.io.path.exists
-import kotlin.io.path.extension
-import kotlin.io.path.isDirectory
-import kotlin.io.path.name
-import kotlin.io.path.pathString
-import kotlin.io.path.readBytes
-import kotlin.io.path.writeBytes
+import kotlin.io.path.*
 
 data class ConfigFiles(
     val map: Map<String, List<String>>,
@@ -27,37 +20,29 @@ data class ConfigFiles(
     fun getValue(key: String) = map.getValue(key)
 
     fun find(path: String, type: String = "toml"): String = map.getOrDefault(type, emptyList()).firstOrNull { it.endsWith(path) } ?: throw NoSuchFileException("Unable to find config file '$path' in /data/ directory.")
-}
 
-fun tempCache(cachePath: String = Settings["storage.caching.path"]): File? {
-    if (!Settings["storage.caching.active", false]) {
-        return null
+    fun update() {
+        val modified = Path.of(Settings["storage.data.modified"])
+        val writer = ArrayWriter(8)
+        writer.writeLong(System.currentTimeMillis())
+        modified.writeBytes(writer.toArray())
     }
-    val directory = File(cachePath)
-    if (!directory.exists()) {
-        directory.mkdirs()
-    }
-    return directory
 }
 
 fun configFiles(): ConfigFiles {
     val map = Object2ObjectOpenHashMap<String, MutableList<String>>()
-    val path = Path.of(Settings["storage.data"])
+    val data = Path.of(Settings["storage.data"])
     val modified = Path.of(Settings["storage.data.modified"])
     val lastUpdated = loadLastUpdate(modified)
     val extensions = mutableSetOf<String>()
-    timedLoad("config file paths") {
-        walkPath(map, path, lastUpdated, extensions)
+    timedLoad("config file path") {
+        val dirs = data.resolve("dirs.txt").toFile().readLines()
+        for (dir in dirs) {
+            walkPath(map, data.resolve(dir), lastUpdated, extensions)
+        }
         map.size
     }
     return ConfigFiles(map, cacheChanged(lastUpdated), extensions)
-}
-
-fun updateModified() {
-    val modified = Path.of(Settings["storage.data.modified"])
-    val writer = ArrayWriter(8)
-    writer.writeLong(System.currentTimeMillis())
-    modified.writeBytes(writer.toArray())
 }
 
 private fun loadLastUpdate(path: Path): Long {
@@ -74,16 +59,13 @@ private fun walkPath(
     lastUpdated: Long,
     invalidatedExtensions: MutableSet<String>,
 ) {
-    val name = dir.name
-    if (name == "saves" || name == "players" || name == "cache") {
-        return
-    }
     for (path in Files.newDirectoryStream(dir)) {
-        if (path.isDirectory()) {
+        val name = path.name
+        if (!name.endsWith(".toml")) {
             walkPath(map, path, lastUpdated, invalidatedExtensions)
             continue
         }
-        val extension = path.name.substringAfter('.')
+        val extension = name.substringAfter('.')
         map.getOrPut(extension) { ObjectArrayList() }.add(path.pathString)
 
         // Check file-type hasn't been marked as invalidated before checking the last modified time for invalidation
@@ -98,7 +80,7 @@ private fun cacheChanged(
     dir: Path = Path.of(Settings["storage.cache.path"]),
 ): Boolean {
     for (path in Files.newDirectoryStream(dir)) {
-        if (path.isDirectory() || (!path.extension.startsWith("dat") && !path.extension.startsWith("idx"))) {
+        if (!path.extension.startsWith("dat") && !path.extension.startsWith("idx")) {
             continue
         }
         val lastModified = Files.getLastModifiedTime(path).toMillis()

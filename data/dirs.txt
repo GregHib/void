@@ -1,0 +1,9 @@
+achievement
+activity
+area
+client
+entity
+minigame
+quest
+skill
+social
