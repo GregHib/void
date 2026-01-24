@@ -78,9 +78,8 @@ class Attack(
                         continue
                     }
                     val delay = when (origin) {
-                        CombatDefinition.Origin.Tile -> shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
-                        CombatDefinition.Origin.TileTwo -> shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight, tileOffset = 2)
                         CombatDefinition.Origin.Centre -> nearestTile(this, target).shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
+                        else -> shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight, tileOffsetX = attack.projectileOriginX, tileOffsetY = attack.projectileOriginY)
                     }
                     delays[i] = delay
                 }

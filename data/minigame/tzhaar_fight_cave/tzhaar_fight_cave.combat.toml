@@ -87,7 +87,8 @@ range = 14
 anim = "ket_zek_attack_magic"
 gfx = "ket_zek_attack"
 projectile = "ket_zek_travel"
-projectile_origin = "tile_two"
+projectile_origin_x = 2
+projectile_origin_y = 2
 target_sound = "ket_zek_attack"
 target_hit = { offense = "magic", max = 490 }
 impact_gfx = "ket_zek_impact"
@@ -139,7 +140,8 @@ anim = "tztok_jad_attack_magic"
 gfx = "tztok_jad_magic"
 target_sound = "fire_wave_cast"
 projectile = "tztok_jad_travel"
-projectile_origin = "tile_two"
+projectile_origin_x = 2
+projectile_origin_y = 2
 #target_hit = { offense = "magic", max = 950 }
 impact_regardless = true
 impact_sound = "fire_wave_impact"
