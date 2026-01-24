@@ -31,7 +31,7 @@ fun Character.cureDisease(): Boolean {
 }
 
 fun Character.disease(target: Character, damage: Int) {
-    if (damage < target["disease_damage", 0]) {
+    if (target.antiDisease || damage < target["disease_damage", 0]) {
         return
     }
     val timers = if (target is Player) target.timers else target.softTimers
@@ -75,7 +75,7 @@ class Disease : Script {
     }
 
     fun start(character: Character, restart: Boolean): Int {
-        if (character.antiDisease || immune(character)) {
+        if (immune(character)) {
             return Timer.CANCEL
         }
         if (!restart && character.diseaseCounter == 0) {
