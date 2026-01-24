@@ -2,7 +2,6 @@ package content.entity.effect.toxin
 
 import WorldTest
 import containsMessage
-import messages
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -71,9 +70,9 @@ class PoisonTest : WorldTest() {
         assertEquals(100, player.poisonDamage)
         assertTrue(player.timers.contains("poison"))
         tick(30)
-        player.poison(player, 110)
+        player.poison(player, 100)
         assertEquals(890, player.levels.get(Skill.Constitution))
-        assertEquals(110, player.poisonDamage)
+        assertEquals(100, player.poisonDamage)
     }
 
     @Test
