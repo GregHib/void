@@ -139,7 +139,7 @@ object Target {
      * Limits maximum amount of damage on NPCs (while still allowing Guthans to work)
      */
     fun damageLimitModifiers(source: Character, target: Character, damage: Int, type: String = "", weapon: Item = Item.EMPTY, spell: String = ""): Int = when (target) {
-        is NPC if target.id.startsWith("turoth") -> when {
+        is NPC if (target.id.startsWith("turoth") || target.id.startsWith("kurask")) -> when {
             type == "magic" && spell != "magic_dart" -> 0
             type == "range" && source.ammo != "broad_tipped_bolts" && source.ammo != "broad_arrows" -> 0
             Hit.meleeType(type) && !weapon.id.startsWith("leaf_bladed") -> 0

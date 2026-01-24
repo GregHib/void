@@ -1,7 +1,0 @@
-[kurask]
-attack_speed = 4
-retreat_range = 8
-
-[kurask.melee]
-range = 1
-target_hit = { offense = "crush", max = 110 }
