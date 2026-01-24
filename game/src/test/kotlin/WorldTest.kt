@@ -316,6 +316,7 @@ abstract class WorldTest : KoinTest {
             InterfaceDefinitions(InterfaceDecoder().load(cache)).load(configFiles.list(Settings["definitions.interfaces"]), configFiles.find(Settings["definitions.interfaces.types"]))
         }
         private val inventoryDefinitions: InventoryDefinitions by lazy {
+            itemIds
             InventoryDefinitions(InventoryDecoder().load(cache)).load(configFiles.list(Settings["definitions.inventories"]), configFiles.list(Settings["definitions.shops"]))
         }
         private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder(parameterDefinitions).load(cache)).load(configFiles.find(Settings["definitions.structs"])) }
