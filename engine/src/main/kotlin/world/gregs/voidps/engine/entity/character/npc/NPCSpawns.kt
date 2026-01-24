@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.config.Config
 import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.write.ArrayWriter
+import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.World
@@ -14,11 +15,13 @@ import java.io.File
 
 private val logger = InlineLogger()
 
-fun loadNpcSpawns(paths: List<String>, reload: Boolean = false) {
+fun loadNpcSpawns(files: ConfigFiles, reload: Boolean = false) {
     timedLoad("npc spawn") {
         NPCs.clear()
         val file = File("${Settings["storage.caching.path"]}${Settings["storage.caching.npcSpawns"]}")
-        if (reload || !file.exists()) {
+        val extension = Settings["spawns.npcs"]
+        if (reload || !file.exists() || files.extensions.contains(extension)) {
+            val paths = files.list(extension)
             loadNormal(paths, file, Settings["storage.caching.active", false])
         } else {
             loadFast(file)

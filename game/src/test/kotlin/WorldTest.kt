@@ -222,7 +222,7 @@ abstract class WorldTest : KoinTest {
         setCurrentTime { TIME }
         settings = Settings.load(properties)
         if (loadNpcs) {
-            loadNpcSpawns(configFiles.list(Settings["spawns.npcs"]))
+            loadNpcSpawns(configFiles)
         }
         setRandom(FakeRandom())
     }
