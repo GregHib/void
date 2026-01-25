@@ -72,8 +72,16 @@ id = 14504
 examine = "Danger, Wilderness ahead. Last chance to turn back..."
 
 [edgeville_wilderness_sign_2]
-id = 14507
+id = 14505
 examine = "Danger, Wilderness ahead. Watch out for the beasts."
+
+[edgeville_wilderness_sign_3]
+id = 14506
+examine = "Danger, Wilderness up ahead. Beware of stray magma."
+
+[edgeville_wilderness_sign_4]
+id = 14507
+examine = "Danger, Wilderness ahead. Almost certain death!."
 
 [edgeville_suit_of_armor]
 id = 27005
@@ -146,3 +154,19 @@ examine = "A whetstone for sharpening."
 [edgeville_bank_table]
 id = 26970
 examine = "Banking transactions are processed here."
+
+[edgeville_clan_cup_plaque]
+id = 54019
+examine = "Dedicated to the winners of the Clan Cup."
+
+[edgeville_clan_cup_plaque_2]
+id = 54020
+examine = "Dedicated to the winners of the Clan Cup."
+
+[edgeville_rack]
+id = 26918
+examine = "Makes you taller."
+
+[edgeville_lathe]
+id = 26821
+examine = "It's a lathe... What did you expect?"
