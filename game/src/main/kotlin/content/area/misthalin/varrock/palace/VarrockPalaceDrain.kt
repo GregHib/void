@@ -26,7 +26,7 @@ class VarrockPalaceDrain : Script {
             }
         }
 
-        objectOperate("Search", "varrock_palace_drain") {
+        objectOperate("Search", "varrock_palace_drain*") {
             anim("climb_down")
             if (get("demon_slayer_drain_dislodged", false) || ownsItem("silverlight_key_sir_prysin")) {
                 message("Nothing interesting seems to have been dropped down here today.")
@@ -38,7 +38,7 @@ class VarrockPalaceDrain : Script {
             }
         }
 
-        itemOnObjectOperate("*of_water", "varrock_palace_drain") { (_, item, slot) ->
+        itemOnObjectOperate("*of_water", "varrock_palace_drain*") { (_, item, slot) ->
             val replacement = when {
                 item.id.startsWith("bucket_of") -> "bucket"
                 item.id.startsWith("jug_of") -> "jug"
