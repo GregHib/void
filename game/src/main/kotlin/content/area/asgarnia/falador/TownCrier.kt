@@ -66,7 +66,7 @@ class TownCrier : Script {
         "Take time to check the second trade window carefully. Don't be scammed!",
         "There are no cheats in RuneScape! Never visit websites promising otherwise!",
         "Summoning familiars can help you in combat and skilling!",
-        "Have you tried Dungeoneering? It's a great way to train all your skills!"
+        "Have you tried Dungeoneering? It's a great way to train all your skills!",
     )
 
     private val activeOverhead: String
@@ -104,23 +104,23 @@ class TownCrier : Script {
             npc<Neutral>("Hear ye! Hear ye! <br>Player Moderators are a massive help to RuneScape!")
             npc<Neutral>("Oh, hello citizen. Are you here to find out about <br>Player Moderators? Or perhaps would you like to know about the laws of the land?")
             choice {
-                    option<Quiz>("Tell me about Player Moderators.") {
+                option<Quiz>("Tell me about Player Moderators.") {
                     npc<Neutral>("Of course. What would you like to know?")
                     choice {
-                            option<Quiz>("What is a Player Moderator?") {
+                        option<Quiz>("What is a Player Moderator?") {
                             npc<Neutral>("Player Moderators are normal players of the game, just like you. However, since they have shown themselves to be trustworthy and active reporters, they have been invited by Jagex to monitor the game and take appropriate")
                             npc<Neutral>("action when they see rule breaking. You can spot a Player Moderator in game by looking at the chat screen - when a Player Moderator speaks, a silver crown appears to the left of their name. Remember, if there's no silver crown")
                             npc<Neutral>("there, they are not a Player Moderator! <br>You can check out the website if you'd like more information.")
                             player<Neutral>("Thanks!")
                             npc<Neutral>("Is there anything else you'd like to know?")
                         }
-                            option<Quiz>("What can Player Moderators do?") {
+                        option<Quiz>("What can Player Moderators do?") {
                             npc<Neutral>("Player Moderators, or 'P-mods', have the ability to mute rule breakers and Jagex view their reports as a priority so that action is taken as quickly as possible. P-mods also have access to the Player Moderator Centre. Within the")
                             npc<Neutral>("Centre are tools to help them Moderate RuneScape. These tools include dedicated forums, the Player Moderator Guidelines and the Player Moderator Code of Conduct.")
                             player<Neutral>("Thanks!")
                             npc<Neutral>("Is there anything else you'd like to know?")
                         }
-                            option<Quiz>("How do I become a Player Moderator?") {
+                        option<Quiz>("How do I become a Player Moderator?") {
                             npc<Neutral>("Jagex picks players who spend their time and effort to help better the RuneScape community. To increase your chances of becoming a Player Moderator:")
                             npc<Neutral>("Keep your account secure! This is very important, as a player with poor security will never be a P-Mod. Read our Security Tips for more information.")
                             npc<Neutral>("Play by the rules! The rules of RuneScape are enforced for a reason, to make the game a fair and enjoyable environment for all.")
@@ -142,15 +142,15 @@ class TownCrier : Script {
                         }
                     }
                 }
-                   option<Quiz>("Tell me about the Rules of RuneScape.") {
+                option<Quiz>("Tell me about the Rules of RuneScape.") {
                     npc<Neutral>("At once. Take a look at my book here.")
                     // TODO: Open Rules of RuneScape book interface
                 }
-                    option<Quiz>("Can you give me a handy tip please?") {
+                option<Quiz>("Can you give me a handy tip please?") {
                     npc<Neutral>(tips.random())
                     npc<Neutral>("Is there anything else you'd like to know?")
                 }
-                    option<Quiz>("No thanks.") {
+                option<Quiz>("No thanks.") {
                     npc<Neutral>("Very well. Fare thee well, citizen!")
                 }
             }

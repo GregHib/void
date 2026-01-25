@@ -5,7 +5,6 @@ import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
@@ -27,10 +26,10 @@ class MonkeyShopkeeper : Script {
                     },
                 )
                 choice {
-                        option<Quiz>("Yes, please.") {
+                    option<Quiz>("Yes, please.") {
                         openShop(shopName)
                     }
-                        option<Quiz>("No, thanks.") {
+                    option<Quiz>("No, thanks.") {
                     }
                 }
             } else {

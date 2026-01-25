@@ -28,13 +28,14 @@ class Daga : Script {
                 npc<Shifty>("Sorry, you don't have enough space in your inventory.")
 
                 choice {
-                        option<Quiz>("Yes, please.") {
+                    option<Quiz>("Yes, please.") {
                         openShop("dagas_scimitar_smithy")
                     }
-                        option<Quiz>("No, thanks.") {
+                    option<Quiz>("No, thanks.") {
                     }
-                        option<Quiz>("Do you have any Dragon Scimitars in stock?") {
-                        npc<Shifty>("It just so happens I recently got a fresh delivery. <br>Do you want to buy one?",
+                    option<Quiz>("Do you have any Dragon Scimitars in stock?") {
+                        npc<Shifty>(
+                            "It just so happens I recently got a fresh delivery. <br>Do you want to buy one?",
                         )
                         choice {
                             option("Yes.") {
