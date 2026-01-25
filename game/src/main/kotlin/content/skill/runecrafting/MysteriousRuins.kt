@@ -49,7 +49,7 @@ class MysteriousRuins(val teleports: ObjectTeleports) : Script {
                 return@itemOnObjectOperate
             }
             message("You hold the ${item.id.toSentenceCase()} towards the mysterious ruins.")
-            anim("human_pickupfloor")
+            anim("climb_down")
             delay(2)
             set("${item.id.removeSuffix("_talisman")}_altar_ruins", refresh = false, value = true)
             interactObject(target, "Enter", approachRange = -1)

@@ -75,7 +75,7 @@ class Ardougne : Script {
 
         objectOperate("Open", "alrenas_cupboard_shut") { (target) ->
             message("You open the cupboard.")
-            anim("human_pickupfloor")
+            anim("climb_down")
             sound("cupboard_open")
             target.replace("alrenas_cupboard_open", ticks = TimeUnit.MINUTES.toTicks(1))
         }

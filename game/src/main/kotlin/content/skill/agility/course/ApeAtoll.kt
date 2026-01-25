@@ -95,7 +95,7 @@ class ApeAtoll : Script {
                 else -> {
                     val monkey = weapon == "small_ninja_monkey_greegree"
                     message("You reach for the tree trunk and lose your footing...")
-                    anim(if (monkey) "ninja_monkey_climb_tree_fail" else "human_reachforladder")
+                    anim(if (monkey) "ninja_monkey_climb_tree_fail" else "climb_up")
                     if (monkey) {
                         sound("climbing_loop", repeat = 3)
                     } else {

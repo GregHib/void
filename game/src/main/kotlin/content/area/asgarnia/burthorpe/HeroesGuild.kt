@@ -19,7 +19,7 @@ class HeroesGuild : Script {
         itemOnObjectOperate("amulet_of_glory", "fountain_of_heroes") {
             if (inventory.replace(it.slot, it.item.id, "amulet_of_glory_4")) {
                 message("You dip the amulet in the fountain...")
-                anim("human_pickupfloor")
+                anim("climb_down")
                 item("amulet_of_glory", 300, "You feel a power emanating from the fountain as it recharges your amulet. You can now rub the amulet to teleport and wear it to get more gems whilst mining.")
             }
         }

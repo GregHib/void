@@ -35,7 +35,7 @@ class BoneBurying : Script {
                 return@itemOption
             }
             start("bone_delay", 1)
-            anim("human_pickupfloor")
+            anim("climb_down")
             exp(Skill.Prayer, xp)
             sound("bury_bones")
             set("i_wonder_if_itll_sprout_task", true)

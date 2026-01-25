@@ -123,7 +123,7 @@ class SorceressGarden(val dropTables: DropTables) : Script {
             }
         }
         sound("pick")
-        animDelay("human_pickupfloor")
+        animDelay("climb_down")
         experience.add(Skill.Farming, 25.0)
         leave()
     }

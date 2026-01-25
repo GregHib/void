@@ -27,7 +27,7 @@ class GnomeAdvanced : Script {
             }
             NPCs.gnomeTrainer("Terrorbirds could climb faster than that!", Zone(9263413))
             message("You climb the tree...", ChatType.Filter)
-            anim("human_reachforladder")
+            anim("climb_up")
             delay(2)
             message("... to an even higher platform.", ChatType.Filter)
             agilityStage(4)

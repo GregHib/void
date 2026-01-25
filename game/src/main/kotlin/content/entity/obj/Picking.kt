@@ -23,7 +23,7 @@ class Picking : Script {
             val pickable: Pickable = target.pickable ?: return@objectOperate
             if (inventory.add(pickable.item)) {
                 sound("pick")
-                anim("human_pickupfloor")
+                anim("climb_down")
                 if (random.nextInt(pickable.chance) == 0) {
                     target.remove(TimeUnit.SECONDS.toTicks(pickable.respawnDelay))
                 }

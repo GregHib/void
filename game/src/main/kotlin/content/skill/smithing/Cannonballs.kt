@@ -53,11 +53,11 @@ class Cannonballs : Script {
         player.message("You heat the steel bar into a liquid state.", ChatType.Filter)
         player.delay(3)
         player.message("You poor the molten metal into your cannonball mould.", ChatType.Filter)
-        player.anim("human_pickupfloor")
+        player.anim("climb_down")
         player.delay(1)
         player.message("The molten metal cools slowly to form 4 cannonballs.", ChatType.Filter)
         player.delay(3)
-        player.anim("human_pickupfloor")
+        player.anim("climb_down")
         player.message("You remove the cannonballs from the mould.", ChatType.Filter)
         player.inventory.transaction {
             remove("steel_bar")

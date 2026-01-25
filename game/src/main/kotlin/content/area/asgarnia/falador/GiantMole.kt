@@ -63,7 +63,7 @@ class GiantMole : Script {
         }
 
         objectOperate("Climb", "giant_mole_lair_escape_rope") {
-            anim("human_reachforladder")
+            anim("climb_up")
             tele(acceptedTiles.random())
         }
 
