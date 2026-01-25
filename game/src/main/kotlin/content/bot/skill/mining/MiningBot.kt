@@ -9,6 +9,7 @@ import content.bot.skill.combat.setupGear
 import content.entity.death.weightedSample
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.definition.AreaDefinition
@@ -19,7 +20,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.network.client.instruction.InteractObject
+import world.gregs.voidps.engine.suspend.Suspension
+import kotlin.coroutines.Continuation
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class MiningBot(val tasks: TaskManager) : Script {
 
@@ -54,6 +58,46 @@ class MiningBot(val tasks: TaskManager) : Script {
         }
     }
 
+    interface State
+
+    object Idle : State
+    object Running : State
+
+    sealed class MiningState : State {
+        object MissingItem : MiningState()
+        object Depleted : MiningState()
+        object Level : MiningState()
+        object Success : MiningState()
+        object InvFull : MiningState()
+    }
+
+    suspend fun <T : State> wait(): T {
+        return suspendCoroutine {
+            suspensions[0] = it
+        } as T
+    }
+
+    var Bot.state: State
+        get() = Idle
+        set(value) {}
+
+    val states = arrayOfNulls<State>(100)
+    val suspensions = arrayOfNulls<Continuation<State>>(100)
+
+    fun tick() {
+        for (i in states.indices) {
+            when (val state = states[i]) {
+                null, Idle, Running -> continue
+                else -> {
+                    val suspension = suspensions[i]
+                    suspensions[i] = null
+                    suspension?.resume(state)
+                }
+            }
+        }
+
+    }
+
     suspend fun Bot.mineRocks(map: AreaDefinition, type: String) {
         setupGear(Skill.Mining)
         goToArea(map)
@@ -68,8 +112,16 @@ class MiningBot(val tasks: TaskManager) : Script {
                 }
                 continue
             }
-            player.instructions.send(InteractObject(rock.def.id, rock.tile.x, rock.tile.y, 1))
+            state = Running
+            player.interactObject(rock, "Mine")
             await("mining")
+            when (wait<MiningState>()) {
+                MiningState.Depleted -> continue
+                MiningState.MissingItem -> setupGear(Skill.Mining)
+                MiningState.Level -> break // TODO cancel task
+                MiningState.Success -> continue
+                MiningState.InvFull -> mineRocks(map, type)
+            }
         }
     }
 
