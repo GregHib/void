@@ -126,6 +126,10 @@ val Player.equipment: Inventory
 val Player.beastOfBurden: Inventory
     get() = inventories.inventory("beast_of_burden")
 
-fun Player.holdsItem(id: String) = inventory.contains(id) || equipment.contains(id)
+fun Player.carriesItem(id: String) = inventory.contains(id) || equips(id)
 
-fun Player.holdsItem(id: String, amount: Int) = inventory.contains(id, amount) || equipment.contains(id, amount)
+fun Player.carriesItem(id: String, amount: Int) = inventory.contains(id, amount) || equips(id, amount)
+
+fun Player.equips(id: String) = equipment.contains(id)
+
+fun Player.equips(id: String, amount: Int) = equipment.contains(id, amount)

@@ -23,7 +23,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.InteractNPC
 
@@ -70,7 +70,7 @@ class FishingBot(
     suspend fun Bot.fish(map: AreaDefinition, option: String, bait: String, set: GearDefinition) {
         setupGear(set)
         goToArea(map)
-        while (player.inventory.spaces > 0 && (bait == "none" || player.holdsItem(bait))) {
+        while (player.inventory.spaces > 0 && (bait == "none" || player.carriesItem(bait))) {
             val spots = NPCs
                 .filter { isAvailableSpot(map, it, option, bait) }
                 .map { it to tile.distanceTo(it) }

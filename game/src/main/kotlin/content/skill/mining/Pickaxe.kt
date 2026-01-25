@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirementsToUse
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 
 object Pickaxe {
     private val pickaxes = listOf(
@@ -20,5 +20,5 @@ object Pickaxe {
         Item("bronze_pickaxe"),
     )
 
-    fun best(player: Player): Item? = pickaxes.firstOrNull { pickaxe -> player.hasRequirementsToUse(pickaxe, skills = setOf(Skill.Mining, Skill.Firemaking)) && player.holdsItem(pickaxe.id) }
+    fun best(player: Player): Item? = pickaxes.firstOrNull { pickaxe -> player.hasRequirementsToUse(pickaxe, skills = setOf(Skill.Mining, Skill.Firemaking)) && player.carriesItem(pickaxe.id) }
 }

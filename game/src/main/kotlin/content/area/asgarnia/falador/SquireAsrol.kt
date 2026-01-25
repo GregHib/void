@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.equipment
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
@@ -57,7 +57,7 @@ class SquireAsrol : Script {
 
     suspend fun Player.checkPicture() {
         npc<Quiz>("So how are you doing getting a sword?")
-        if (holdsItem("portrait")) {
+        if (carriesItem("portrait")) {
             player<Happy>("I have the picture. I'll just take it to the dwarf now!")
             npc<Confused>("Please hurry!")
             return
@@ -72,7 +72,7 @@ class SquireAsrol : Script {
             npc<Confused>("So can you un-equip it and hand it over to me now please?")
             return
         }
-        if (holdsItem("blurite_sword")) {
+        if (carriesItem("blurite_sword")) {
             player<Happy>("I have retrieved your sword for you.")
             npc<Happy>("Thank you, thank you, thank you! I was seriously worried I would have to own up to Sir Vyvin!")
             statement("You give the sword to the squire.")

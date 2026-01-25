@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.success
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -78,13 +78,13 @@ class Fishing : Script {
                 break
             }
 
-            val tackle = data.tackle.firstOrNull { tackle -> player.holdsItem(tackle) }
+            val tackle = data.tackle.firstOrNull { tackle -> player.carriesItem(tackle) }
             if (tackle == null) {
                 player.message("You need a ${data.tackle.first().toTitleCase()} to catch these fish.")
                 break@fishing
             }
 
-            val bait = data.bait.keys.firstOrNull { bait -> bait == "none" || player.holdsItem(bait) }
+            val bait = data.bait.keys.firstOrNull { bait -> bait == "none" || player.carriesItem(bait) }
             val catches = data.bait[bait]
             if (bait == null || catches == null) {
                 player.message("You don't have any ${data.bait.keys.first().toTitleCase().plural(2)}.")

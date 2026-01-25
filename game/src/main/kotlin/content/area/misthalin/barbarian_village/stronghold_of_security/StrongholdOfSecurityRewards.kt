@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 
@@ -116,7 +116,7 @@ class StrongholdOfSecurityRewards : Script {
         objectOperate("Search", "stronghold_dead_explorer") {
             anim("pick_pocket")
             sound("pick")
-            if (holdsItem("stronghold_notes")) {
+            if (carriesItem("stronghold_notes")) {
                 message("You don't find anything.")
                 return@objectOperate
             }

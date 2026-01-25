@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Direction
@@ -148,9 +148,9 @@ class SirPrysin : Script {
 
     suspend fun Player.keyProgressCheck(target: NPC) {
         npc<Neutral>("So how are you doing with getting the keys?")
-        val rovin = holdsItem("silverlight_key_captain_rovin")
-        val prysin = holdsItem("silverlight_key_sir_prysin")
-        val traiborn = holdsItem("silverlight_key_wizard_traiborn")
+        val rovin = carriesItem("silverlight_key_captain_rovin")
+        val prysin = carriesItem("silverlight_key_sir_prysin")
+        val traiborn = carriesItem("silverlight_key_wizard_traiborn")
         when {
             rovin && prysin && traiborn -> {
                 giveSilverlight(target)

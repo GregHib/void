@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
@@ -266,7 +266,7 @@ class Gudrun : Script {
     }
 
     suspend fun Player.poem() {
-        if (holdsItem("gunnars_ground")) {
+        if (carriesItem("gunnars_ground")) {
             npc<Quiz>("What have you got there?")
             player<Pleased>("Another gift from your mysterious suitor.")
             npc<Quiz>("A scroll?")
@@ -342,7 +342,7 @@ class Gudrun : Script {
         npc<Quiz>("Sorry about that, stranger. Did you want something?.")
         player<Quiz>("Are you Gudrun?")
         npc<Neutral>("Yes.")
-        if (holdsItem("dororans_engraved_ring")) {
+        if (carriesItem("dororans_engraved_ring")) {
             player<Pleased>("This is for you.")
             anim("hand_over_item")
             item("dororans_engraved_ring", 400, "You show Gudrun the ring.")

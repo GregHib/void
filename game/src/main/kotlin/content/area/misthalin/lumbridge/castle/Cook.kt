@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
@@ -47,33 +47,33 @@ class Cook : Script {
 
     suspend fun Player.started() {
         npc<Sad>("how are you getting on with finding the ingredients?")
-        if (holdsItem("top_quality_milk")) {
+        if (carriesItem("top_quality_milk")) {
             item("top_quality_milk", 500, "You give the top-quality milk to the cook.")
             inventory.remove("top_quality_milk")
             set("cooks_assistant_milk", 1)
             player<Happy>("Here's some top-quality milk.")
         }
-        if (holdsItem("extra_fine_flour")) {
+        if (carriesItem("extra_fine_flour")) {
             item("extra_fine_flour", 500, "You give the extra fine flour to the cook.")
             inventory.remove("extra_fine_flour")
             set("cooks_assistant_flour", 1)
             player<Happy>("Here's the extra fine flour.")
         }
-        if (holdsItem("super_large_egg")) {
+        if (carriesItem("super_large_egg")) {
             item("super_large_egg", 500, "You give the super large egg to the cook.")
             inventory.remove("super_large_egg")
             set("cooks_assistant_egg", 1)
             player<Happy>("Here's a super large egg.")
         }
-        if (holdsItem("egg") && (get("cooks_assistant_egg", 0) == 0)) {
+        if (carriesItem("egg") && (get("cooks_assistant_egg", 0) == 0)) {
             player<Neutral>("I've this egg.")
             npc<Neutral>("No, I need a super large egg. You'll probably find one near the local chickens.")
         }
-        if (holdsItem("pot_of_flour") && (get("cooks_assistant_flour", 0) == 0)) {
+        if (carriesItem("pot_of_flour") && (get("cooks_assistant_flour", 0) == 0)) {
             player<Neutral>("I've this flour.")
             npc<Neutral>("That's not fine enough. I imagine if you speak with Millie at the mill to the north she'll help you out.")
         }
-        if (holdsItem("bucket_of_milk") && (get("cooks_assistant_milk", 0) == 0)) {
+        if (carriesItem("bucket_of_milk") && (get("cooks_assistant_milk", 0) == 0)) {
             player<Neutral>("I've this milk.")
             npc<Neutral>("Not bad, but not good enough. There's a milk maid that looks after the cows to the north-east. She might have some advice.")
         }
@@ -185,7 +185,7 @@ class Cook : Script {
         npc<Happy>("It's called the Cook-o-Matic 25 and it uses a combination of state-of-the-art temperature regulation and magic.")
         player<Neutral>("Will it mean my food will burn less often?")
         npc<Happy>("As long as the food is fairly easy to cook in the first place!")
-        if (holdsItem("cook_o_matic_manual")) {
+        if (carriesItem("cook_o_matic_manual")) {
             npc<Happy>("The manual you have in your inventory should tell you more.")
         } else if (inventory.isFull()) {
             npc<Sad>("I'd give you the manual, but you don't have room to take it. Ask me again when you have some space.")

@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
@@ -49,7 +49,7 @@ class ArmadylPillar : Script {
 
         objectOperate("Search", "godwars_armadyl_crate") {
             val hasCrossbow = inventory.items.any { Weapon.crossbows.contains(it.id) } || equipment.items.any { Weapon.crossbows.contains(it.id) }
-            val hasGrapple = holdsItem("mithril_grapple")
+            val hasGrapple = carriesItem("mithril_grapple")
             if (!hasCrossbow || !hasGrapple) {
                 if (inventory.add("bronze_crossbow", "mithril_grapple")) {
                     item("bronze_crossbow", 400, "Inside the crate you find a bronze crossbow and a grappling hook.")

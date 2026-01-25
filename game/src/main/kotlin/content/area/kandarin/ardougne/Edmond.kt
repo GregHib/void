@@ -26,7 +26,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
@@ -90,7 +90,7 @@ class Edmond : Script {
     suspend fun Player.started() {
         player<Happy>("Hello Edmond.")
         npc<Quiz>("Have you got the dwellberries yet?")
-        if (holdsItem("dwellberries")) {
+        if (carriesItem("dwellberries")) {
             player<Happy>("Yes I've got some here.")
             npc<Idle>("Take them to my wife Alrena, she's inside.")
         } else {
@@ -152,7 +152,7 @@ class Edmond : Script {
     suspend fun Player.spoken() {
         player<Idle>("Hello.")
         npc<Quiz>("Have you found Elena yet?")
-        if (holdsItem("picture_plague_city")) {
+        if (carriesItem("picture_plague_city")) {
             player<Disheartened>("Not yet, it's a big city over there.")
             npc<Disheartened>("I hope it's not too late.")
         } else {

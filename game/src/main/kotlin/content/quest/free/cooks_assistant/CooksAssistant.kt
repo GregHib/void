@@ -4,7 +4,7 @@ import content.entity.player.bank.bank
 import content.quest.quest
 import content.quest.questJournal
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 
 class CooksAssistant : Script {
 
@@ -32,7 +32,7 @@ class CooksAssistant : Script {
                     )
                     if (get("cooks_assistant_milk", 0) == 1) {
                         list.add("<str>I have given the cook a bucket of top-quality milk.")
-                    } else if (holdsItem("top_quality_milk")) {
+                    } else if (carriesItem("top_quality_milk")) {
                         list.add("<navy>I have found a <maroon>bucket of top-quality milk <navy>to give to the cook.")
                     } else if (bank.contains("top_quality_milk")) {
                         list.add("<navy>I have a <maroon>bucket of top-quality milk <navy>to give to the cook. it's in my <maroon>bank.")
@@ -42,7 +42,7 @@ class CooksAssistant : Script {
 
                     if (get("cooks_assistant_flour", 0) == 1) {
                         list.add("<str>I have given the cook a pot of extra fine flour.")
-                    } else if (holdsItem("extra_fine_flour")) {
+                    } else if (carriesItem("extra_fine_flour")) {
                         list.add("<navy>I have found a <maroon>pot of extra fine flour <navy>to give to the cook.")
                     } else if (bank.contains("extra_fine_flour")) {
                         list.add("<navy>I have a <maroon>pot of extra fine flour <navy>to give to the cook. it's in my <maroon>bank.")
@@ -52,7 +52,7 @@ class CooksAssistant : Script {
 
                     if (get("cooks_assistant_egg", 0) == 1) {
                         list.add("<str>I have given the cook a super large egg.")
-                    } else if (holdsItem("super_large_egg")) {
+                    } else if (carriesItem("super_large_egg")) {
                         list.add("<navy>I have found a <maroon>super large egg <navy>to give to the cook.")
                     } else if (bank.contains("super_large_egg")) {
                         list.add("<navy>I have a <maroon>super large egg <navy>to give to the cook. it's in my <maroon>bank.")
