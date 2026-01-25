@@ -7,7 +7,7 @@ class ClanCupPlaque : Script {
 
     init {
         // https://www.youtube.com/watch?v=K-Ptq7ZxeWI
-        objectOperate("Read", "lumbridge_clan_cup_plaque") {
+        objectOperate("Read", "*clan_cup_plaque*") {
             open("clan_cup_interface")
             interfaces.sendText("clan_cup_interface", "current_winners_button", "Current")
             interfaces.sendText("clan_cup_interface", "main_text", "Current Winners")

@@ -1,0 +1,4 @@
+spawns = [
+#12342
+    { id = "leather_gloves", x = 3097, y = 3486, delay = 100 },
+]

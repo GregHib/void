@@ -22,3 +22,151 @@ examine = "An underwall tunnel."
 [grand_exchange_underwall_tunnel]
 id = 9312
 examine = "An underwall tunnel."
+
+[cooking_range_edgeville]
+id = 12269
+examine = "Hmmmm...home cooking."
+
+[cooking_range_edgeville_2]
+id = 24283
+examine = "Ideal for cooking on."
+
+[evil_daves_basement_trapdoor]
+id = 12267
+examine = "What evil lurks below?"
+
+[edgeville_grandfather_clock]
+id = 12293
+examine = "Tick-tock, it's a clock."
+
+[edgeville_bookcase]
+id = 12282
+examine = "A good source of books."
+
+[edgeville_bookcase_2]
+id = 26952
+examine = "A good source of books."
+
+[edgeville_bookcase_3]
+id = 26951
+examine = "A good source of books."
+
+[edgeville_bed]
+id = 26954
+examine = "A well slept-in-bed."
+
+[edgeville_bed2]
+id = 26955
+examine = "How can people sleep this close to the Wilderness?"
+
+[edgeville_small_table]
+id = 26958
+examine = "A small wooden table."
+
+[edgeville_small_table_2]
+id = 26959
+examine = "A small wooden table."
+
+[edgeville_wilderness_sign]
+id = 14504
+examine = "Danger, Wilderness ahead. Last chance to turn back..."
+
+[edgeville_wilderness_sign_2]
+id = 14505
+examine = "Danger, Wilderness ahead. Watch out for the beasts."
+
+[edgeville_wilderness_sign_3]
+id = 14506
+examine = "Danger, Wilderness up ahead. Beware of stray magma."
+
+[edgeville_wilderness_sign_4]
+id = 14507
+examine = "Danger, Wilderness ahead. Almost certain death!."
+
+[edgeville_suit_of_armor]
+id = 27005
+examine = "When I see these, I always wonder if someone's hiding inside"
+
+[edgeville_hanging_banner]
+id = 27007
+examine = "A decorative banner."
+
+[edgeville_crates]
+id = 26962
+examine = "Wooden crates for storing things."
+
+[edgeville_clothes_equipment]
+id = 27008
+examine = "Essentials for a seamstress."
+
+[edgeville_stool]
+id = 26963
+examine = "A wooden stool."
+
+[edgeville_stepladder]
+id = 26953
+examine = "These can be useful."
+
+[edgeville_large_table]
+id = 26957
+examine = "A nice sturdy looking table."
+
+[bank_deposit_box_edgeville]
+id = 26969
+examine = "Lets you put items into your bank."
+
+[edgeville_warehouse_shelves]
+id = 26947
+examine = "Storage for all needs."
+
+[edgeville_warehouse_shelves_2]
+id = 26948
+examine = "Storage for all needs."
+
+[edgeville_warehouse_shelves_3]
+id = 26949
+examine = "Storage for all needs."
+
+[edgeville_warehouse_shelves_4]
+id = 26950
+examine = "Storage for all needs."
+
+[edgeville_cart]
+id = 307
+examine = "One horsepower; wooden suspension: a beauty."
+
+[edgeville_chest]
+id = 55349
+examine = "A chest for storing logs."
+
+[unlit_beacon_edgeville]
+id = 38437
+examine = "Probably used as a warning beacon."
+
+[edgeville_pile_of_logs]
+id = 38447
+examine = "Specially cut logs for use with a beacon."
+
+[edgeville_whetstone]
+id = 26820
+examine = "A whetstone for sharpening."
+
+[edgeville_bank_table]
+id = 26970
+examine = "Banking transactions are processed here."
+
+[edgeville_clan_cup_plaque]
+id = 54019
+examine = "Dedicated to the winners of the Clan Cup."
+
+[edgeville_clan_cup_plaque_2]
+id = 54020
+examine = "Dedicated to the winners of the Clan Cup."
+
+[edgeville_rack]
+id = 26918
+examine = "Makes you taller."
+
+[edgeville_lathe]
+id = 26821
+examine = "It's a lathe... What did you expect?"

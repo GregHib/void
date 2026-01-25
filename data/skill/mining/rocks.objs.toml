@@ -202,6 +202,10 @@ clone = "gold_rocks_old_1"
 id = 2611
 examine = "A rocky outcrop."
 
+[rock]
+id = 2616
+examine = "It's a rock."
+
 [rock_rocks_tourist_trap_dark_1]
 id = 2704
 examine = "Rocky!"

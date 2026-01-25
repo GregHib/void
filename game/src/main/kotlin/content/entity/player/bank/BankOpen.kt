@@ -82,7 +82,7 @@ class BankOpen(val accounts: AccountDefinitions) : Script {
             }
         }
 
-        objectOperate("Deposit", "bank_deposit_box") {
+        objectOperate("Deposit", "bank_deposit_box*") {
             open("bank_deposit_box")
         }
     }

@@ -1,3 +1,7 @@
+[bullrushes]
+id = 1162
+examine = "Found near the water's edge."
+
 [thistle]
 id = 1174
 examine = "Spiky!"
@@ -61,6 +65,18 @@ examine = "A leafy shrub."
 [ahoy_plant_4]
 id = 5334
 examine = "A leafy shrub."
+
+[bullrushes_2]
+id = 5539
+examine = "Found near the water's edge."
+
+[bullrushes_3]
+id = 5541
+examine = "Found near the water's edge."
+
+[bullrushes_4]
+id = 5542
+examine = "Found near the water's edge."
 
 [feud_potted_plant]
 id = 6237
