@@ -1,10 +1,10 @@
 package content.area.karamja.ape_atroll
 
 import content.entity.npc.shop.openShop
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
@@ -26,12 +26,10 @@ class MonkeyShopkeeper : Script {
                     },
                 )
                 choice {
-                    option("Yes, please.") {
-                        player<Shifty>("Yes, please.")
+                    option<Neutral>("Yes, please.") {
                         openShop(shopName)
                     }
-                    option("No, thanks.") {
-                        player<Shifty>("No, thanks.")
+                    option<Neutral>("No, thanks.") {
                     }
                 }
             } else {
