@@ -25,3 +25,7 @@ examine = "A wooden gate."
 [gate_fishing_contest_closed]
 id = 47
 examine = "A wooden gate."
+
+[cooking_range_fishing_content]
+id = 49035
+examine = "Ideal for cooking on."

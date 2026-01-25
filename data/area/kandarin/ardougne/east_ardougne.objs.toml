@@ -154,3 +154,15 @@ id = 2555
 level = 61
 exp = 50.0
 examine = "A secure door."
+
+[cooking_range_west_ardougne]
+id = 34495
+examine = "Ideal for cooking on."
+
+[cooking_range_east_ardougne]
+id = 34546
+examine = "Ideal for cooking on."
+
+[cooking_range_ardougne]
+id = 34565
+examine = "An appliance used for cooking."

@@ -27,3 +27,11 @@ examine = "Fine brews from exotic regions."
 
 [tea_stall_empty]
 id = 634
+
+[cooking_range_varrock]
+id = 24283
+examine = "Ideal for cooking on."
+
+[cooking_range_varrock_palace_oven]
+id = 24313
+examine = "For cooking food."

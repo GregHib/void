@@ -1,3 +1,7 @@
 [bank_booth_nardah]
 id = 10517
 examine = "The bank teller will serve you from here."
+
+[cooking_range_clay_oven]
+id = 10377
+examine = "A clay oven for cooking with."

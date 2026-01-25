@@ -49,3 +49,7 @@ examine = "These stairs were carved out of the rock of the cavern."
 [phasmatys_barrier]
 id = 52760
 examine = "A ghostly barrier."
+
+[cooking_range_port_phasmatys]
+id = 5275
+examine = "An appliance for cooking with."

@@ -21,3 +21,7 @@ examine = "There's something fishy about this stall."
 
 [fish_stall_empty]
 id = 4276
+
+[fire_rellekka]
+id = 4265
+examine = "Toasty."

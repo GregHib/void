@@ -29,3 +29,7 @@ examine = "Handy for boarding the ship."
 [port_sarim_lady_lumbridge_gangplank_enter]
 id = 2593
 examine = "Handy for boarding the ship."
+
+[cooking_range_port_sarim]
+id = 40110
+examine = "Ideal for cooking on."

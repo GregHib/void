@@ -1,3 +1,7 @@
 [bank_booth_zanaris]
 id = 52589
 examine = "The bank teller will serve you from here."
+
+[cooking_range_zanaris]
+id = 52576
+examine = "I could cook up a storm on this."
