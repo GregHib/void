@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
@@ -31,7 +31,7 @@ class Aggie : Script {
                     "leela", "equipment", "joe_one_beer", "joe_two_beers", "joe_three_beers", "tie_up_lady_keli" -> {
                         option("Talk about Prince Ali Rescue.") {
                             player<Quiz>("Could you think of a way to make skin paste?")
-                            if (holdsItem("ashes") && holdsItem("pot_of_flour") && holdsItem("bucket_of_water") && holdsItem("redberries")) {
+                            if (carriesItem("ashes") && carriesItem("pot_of_flour") && carriesItem("bucket_of_water") && carriesItem("redberries")) {
                                 npc<Happy>("Yes I can. I see you already have the ingredients. Would you like me to mix some for you now?")
                                 choice {
                                     option<Happy>("Yes please. Mix me some skin paste.") {

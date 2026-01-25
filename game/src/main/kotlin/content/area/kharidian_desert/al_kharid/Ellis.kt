@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.data.Tanning
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
@@ -86,7 +86,7 @@ class Ellis : Script {
 
     fun tan(player: Player, type: String, amount: Int) {
         val item = type.removeSuffix("_1")
-        if (!player.holdsItem(item)) {
+        if (!player.carriesItem(item)) {
             player.message("You don't have any ${item.toLowerSpaceCase()} to tan.")
             return
         }

@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.Timer
@@ -64,7 +64,7 @@ class Sheep : Script {
     }
 
     private suspend fun Player.shear(target: NPC, colour: String) {
-        if (!holdsItem("shears")) {
+        if (!carriesItem("shears")) {
             message("You need a set of shears to do this.")
             return
         }

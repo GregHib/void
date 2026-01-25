@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
@@ -84,7 +84,7 @@ class WestArdougne : Script {
                 return@objectOperate
             }
             npc<Angry>("ted_rehnison", "Go away. We don't want any.")
-            if (holdsItem("book_turnip_growing_for_beginners")) {
+            if (carriesItem("book_turnip_growing_for_beginners")) {
                 player<Idle>("I'm a friend of Jethick's, I have come to return a book he borrowed.")
                 npc<Idle>("ted_rehnison", "Oh... Why didn't you say, come in then.")
                 enterDoor(target, delay = 2)

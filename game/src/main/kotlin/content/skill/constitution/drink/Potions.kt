@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.timer.toTicks
@@ -41,7 +41,7 @@ class Potions : Script {
         }
     }
 
-    fun Player.hasHolyItem() = equipped(EquipSlot.Cape).id.startsWith("prayer_cape") || holdsItem("holy_wrench")
+    fun Player.hasHolyItem() = equipped(EquipSlot.Cape).id.startsWith("prayer_cape") || carriesItem("holy_wrench")
 
     fun Player.effects(potion: String) {
         when {

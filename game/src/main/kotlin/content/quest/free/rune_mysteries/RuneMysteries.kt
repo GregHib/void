@@ -3,7 +3,7 @@ package content.quest.free.rune_mysteries
 import content.quest.quest
 import content.quest.questJournal
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 
 class RuneMysteries : Script {
 
@@ -41,7 +41,7 @@ class RuneMysteries : Script {
                         "<maroon>Lumbridge, across the bridge from <maroon>Draynor Village.",
                     )
 
-                    if (!holdsItem("air_talisman")) {
+                    if (!carriesItem("air_talisman")) {
                         list.add("<navy>If I lose the <maroon>Strange Talisman<navy> , I'll need to ask <maroon>Duke Horacio<navy> for")
                         list.add("<navy>another.")
                     }
@@ -72,7 +72,7 @@ class RuneMysteries : Script {
                         "<maroon>Runecrafting.<navy> I can find him in his <maroon>Rune Shop<navy> in south east",
                         "<maroon>Varrock.",
                     )
-                    if (!holdsItem("research_package_rune_mysteries")) {
+                    if (!carriesItem("research_package_rune_mysteries")) {
                         list.add("<navy>If I lose the <maroon>Package<navy> , I'll need to ask <maroon>Sedridor<navy> for")
                         list.add("<navy>another.")
                     }
@@ -110,7 +110,7 @@ class RuneMysteries : Script {
                         "<navy>and asked me to take some <maroon>Research Notes<navy> . back to him. I",
                         "<navy>can find <maroon>Sedridor<navy> in the basement of the <maroon>Wizards' Tower<navy>.",
                     )
-                    if (!holdsItem("research_notes_rune_mysteries")) {
+                    if (!carriesItem("research_notes_rune_mysteries")) {
                         list.add("<navy>If I lose the <maroon>Research Notes<navy> I'll need to ask <maroon>Aubury<navy> for")
                         list.add("<navy>some more.")
                     }

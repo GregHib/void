@@ -10,14 +10,14 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.queue.weakQueue
 
 class PortSarim : Script {
 
     init {
         takeable("white_apron_port_sarim") {
-            if (holdsItem("white_apron")) {
+            if (carriesItem("white_apron")) {
                 message("You already have one of those.")
                 null
             } else {

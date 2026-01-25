@@ -54,11 +54,11 @@ class Runecrafting : Script {
             }
             val combination = list[0] as String
             val xp = list[1] as Double
-            if (!holdsItem("pure_essence")) {
+            if (!carriesItem("pure_essence")) {
                 message("You need pure essence to bind $combination runes.")
                 return@itemOnObjectOperate
             }
-            if (!holdsItem("${element}_talisman") && !hasClock("magic_imbue")) {
+            if (!carriesItem("${element}_talisman") && !hasClock("magic_imbue")) {
                 message("You need a $element talisman to bind $combination runes.")
                 return@itemOnObjectOperate
             }

@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirementsToUse
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 
 object Hatchet {
     private val hatchets = listOf(
@@ -21,7 +21,7 @@ object Hatchet {
         Item("bronze_hatchet"),
     )
 
-    fun best(player: Player): Item? = hatchets.firstOrNull { hasRequirements(player, it) && player.holdsItem(it.id) }
+    fun best(player: Player): Item? = hatchets.firstOrNull { hasRequirements(player, it) && player.carriesItem(it.id) }
 
     fun hasRequirements(player: Player, hatchet: Item, message: Boolean = false): Boolean = player.hasRequirementsToUse(hatchet, message, setOf(Skill.Firemaking, Skill.Woodcutting))
 }

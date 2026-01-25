@@ -10,7 +10,7 @@ import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 
@@ -40,7 +40,7 @@ class Alrena : Script {
     suspend fun Player.started(target: NPC) {
         player<Idle>("Hello, Edmond has asked me to help find your daughter.")
         npc<Idle>("Yes he told me. I've begun making your special gas mask, but I need some dwellberries to finish it.")
-        if (holdsItem("dwellberries")) {
+        if (carriesItem("dwellberries")) {
             player<Happy>("Yes I've got some here.")
             item("dwellberries", 600, "You give the dwellberries to Alrena.")
             target.anim("human_herbing_grind")

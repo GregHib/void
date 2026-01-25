@@ -11,7 +11,7 @@ import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 
@@ -19,14 +19,14 @@ class MilkCow : Script {
 
     init {
         objectOperate("Milk", "prized_dairy_cow") {
-            if (!holdsItem("bucket")) {
+            if (!carriesItem("bucket")) {
                 message("You'll need an empty bucket to collect the milk.")
                 return@objectOperate
             }
             if (quest("cooks_assistant") != "started") {
                 statement("If you're after ordinary milk, you should use an ordinary dairy cow.")
             }
-            if (holdsItem("top_quality_milk") || bank.contains("top_quality_milk")) {
+            if (carriesItem("top_quality_milk") || bank.contains("top_quality_milk")) {
                 message("You've already got some top-quality milk; you should take it to the cook.")
                 return@objectOperate
             }
@@ -38,7 +38,7 @@ class MilkCow : Script {
         }
 
         objectOperate("Milk", "dairy_cow") {
-            if (holdsItem("bucket")) {
+            if (carriesItem("bucket")) {
                 anim("milk_cow")
                 sound("milk_cow")
                 delay(5)

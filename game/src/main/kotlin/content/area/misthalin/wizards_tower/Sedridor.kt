@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
@@ -166,7 +166,7 @@ class Sedridor : Script {
         npc<Idle>("Ah, $name. How goes your quest? Have you delivered my research to Aubury yet?")
         player<Idle>("Yes, I have. He gave me some notes to give to you.")
         npc<Happy>("Wonderful! Let's have a look then.")
-        if (holdsItem("research_notes_rune_mysteries")) {
+        if (carriesItem("research_notes_rune_mysteries")) {
             item("research_notes_rune_mysteries", 600, "You hand the notes to Sedridor.")
             npc<Happy>("Alright, let's see what Aubury has for us...")
             npc<Shock>("Yes, this is it! The lost incantation!")

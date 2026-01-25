@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.Inventory
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -27,7 +27,7 @@ class GuardianMummy : Script {
 
     init {
         npcOperate("Talk-to", "guardian_mummy") {
-            if (holdsItem("pharaohs_sceptre")) {
+            if (carriesItem("pharaohs_sceptre")) {
                 sceptreRecharging()
                 return@npcOperate
             }
@@ -75,7 +75,7 @@ class GuardianMummy : Script {
                 iKnowWhatImDoing()
             }
             option("I want to charge or remove charges from my sceptre.") {
-                if (holdsItem("pharaohs_sceptre")) {
+                if (carriesItem("pharaohs_sceptre")) {
                     sceptreRecharging()
                 } else {
                     sceptreDischarging()

@@ -9,7 +9,7 @@ import content.entity.player.dialogue.type.player
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 
 class GillieGroats : Script {
 
@@ -17,7 +17,7 @@ class GillieGroats : Script {
         npcOperate("Talk-to", "gillie_groats") {
             npc<Happy>("Hello, I'm Gillie the Milkmaid. What can I do for you?")
             choice {
-                if (quest("cooks_assistant") == "started" && !holdsItem("top_quality_milk")) {
+                if (quest("cooks_assistant") == "started" && !carriesItem("top_quality_milk")) {
                     option("I'm after some Top-quality milk.") {
                         topQualityMilk()
                     }

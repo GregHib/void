@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.queue
@@ -53,7 +53,7 @@ class PlagueCity : Script {
                         "<maroon>Edmond <navy>told me that his wife, <maroon>Alrena, <navy>can make me a <maroon>gas",
                         "<maroon>Mask <navy>to protect myself from the <maroon>plague.",
                     )
-                    if (holdsItem("dwellberries")) {
+                    if (carriesItem("dwellberries")) {
                         list.add("<navy>I need to get some <maroon>Dwellberries<navy> for <maroon>Alrena<navy> so she can make")
                         list.add("<navy>me a <maroon>Gas Mask<navy> to protect myself from the <maroon>Plague<navy>. According")
                         list.add("<navy>to <maroon>Edmond<navy>, I can find some in <maroon>McGrubor's Wood<navy>, west of")
@@ -200,7 +200,7 @@ class PlagueCity : Script {
                         list.add("<navy>I entered <maroon>West Ardougne <navy>and found <maroon>Jethick<navy>, an old friend")
                         list.add("<navy>of <maroon>Edmond. <navy>He seemed willing to help me find <maroon>Elena <navy>but")
                         list.add("<navy>didn't know what she looked like.")
-                        if (holdsItem("picture_plague_city")) {
+                        if (carriesItem("picture_plague_city")) {
                             list.add("<navy>I have a picture of her which might help. I should show it to <maroon>Jethick.")
                         }
                     } else {
@@ -235,13 +235,13 @@ class PlagueCity : Script {
                         list.add("<maroon>Rehnison Family. <navy>According to him, they live in a timber")
                         list.add("<navy>house in the north of the city. He asked me to return a")
                         list.add("<navy>book to them while I was there.")
-                        if (!holdsItem("book_turnip_growing_for_beginners")) {
+                        if (!carriesItem("book_turnip_growing_for_beginners")) {
                             list.add("<navy>but I don't have it with me.")
                         }
                     } else {
                         list.add("<navy>I entered <maroon>West Ardougne<navy> and found <maroon>Jethick<navy>, an old friend of")
                         list.add("<navy><maroon>Edmond<navy>. He seemed willing to help me find <maroon>Elena<navy> but didn't")
-                        if (holdsItem("picture_plague_city")) {
+                        if (carriesItem("picture_plague_city")) {
                             list.add("<navy>know what she looked like. I have a picture of her which might")
                             list.add("<navy>help. I should show it to <maroon>Jethick<navy>.")
                         } else {

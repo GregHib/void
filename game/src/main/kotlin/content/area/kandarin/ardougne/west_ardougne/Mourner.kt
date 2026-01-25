@@ -9,7 +9,7 @@ import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
@@ -18,7 +18,7 @@ class Mourner : Script {
 
     init {
         npcOperate("Talk-to", "mourner_elena_guard_vis") { (target) ->
-            if (holdsItem("warrant")) {
+            if (carriesItem("warrant")) {
                 player<Idle>("I have a warrant from Bravek to enter here.")
                 npc<Confused>("This is highly irregular. Please wait...")
                 val otherGuard = NPCs.find(if (target.tile.equals(2539, 3273)) Tile(2534, 3273) else Tile(2539, 3273), "mourner_elena_guard_vis")

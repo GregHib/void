@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.weakQueue
 
@@ -128,7 +128,7 @@ class FarmingPatchPick(val variableDefinitions: VariableDefinitions) : Script {
     }
 
     fun saveLife(player: Player, chance: IntRange, obj: GameObject): Boolean {
-        if (player.holdsItem("magic_secateurs") && !obj.id.startsWith("farming_belladonna") && !obj.id.startsWith("farming_cactus") && !obj.id.startsWith("farming_mushroom") && !obj.id.startsWith("farming_fruit_tree") && !obj.id.startsWith("farming_calquat") || (obj.id.startsWith("farming_flower") && obj.def(player).stringId.startsWith("limpwurt")) && !obj.id.endsWith("_stump")) {
+        if (player.carriesItem("magic_secateurs") && !obj.id.startsWith("farming_belladonna") && !obj.id.startsWith("farming_cactus") && !obj.id.startsWith("farming_mushroom") && !obj.id.startsWith("farming_fruit_tree") && !obj.id.startsWith("farming_calquat") || (obj.id.startsWith("farming_flower") && obj.def(player).stringId.startsWith("limpwurt")) && !obj.id.endsWith("_stump")) {
             return Level.success(player.levels.get(Skill.Farming), chance.first + (chance.first / 10)..chance.last + (chance.last / 10))
         }
         return Level.success(player.levels.get(Skill.Farming), chance)

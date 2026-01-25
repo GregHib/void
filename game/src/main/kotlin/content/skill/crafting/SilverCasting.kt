@@ -43,12 +43,12 @@ class SilverCasting : Script {
                 val item = silver.item
                 val quest = silver.quest
                 interfaces.sendVisibility(id, mould.id, quest == null || quest(quest) != "unstarted")
-                val has = holdsItem(mould.id)
+                val has = carriesItem(mould.id)
                 interfaces.sendText(
                     id,
                     "${mould.id}_text",
                     if (has) {
-                        val colour = if (holdsItem("silver_bar")) "green" else "orange"
+                        val colour = if (carriesItem("silver_bar")) "green" else "orange"
                         "<$colour>Make ${ItemDefinitions.get(item).name.toTitleCase()}"
                     } else {
                         "<orange>You need a ${silver.name ?: mould.def.name.lowercase()} to make this item."

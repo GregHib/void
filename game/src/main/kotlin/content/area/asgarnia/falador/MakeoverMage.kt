@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.notEnough
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.male
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
@@ -157,7 +157,7 @@ class MakeoverMage(val enums: EnumDefinitions) : Script {
     fun ChoiceOption.amulet(): Unit = option<Pleased>("Cool amulet! Can I have one?") {
         val cost = 100
         npc<Neutral>("No problem, but please remember that the amulet I will sell you is only a copy of my own. It contains no magical powers and, as such, will only cost you $cost coins.")
-        if (!holdsItem("coins", cost)) {
+        if (!carriesItem("coins", cost)) {
             player<Sad>("Oh, I don't have enough money for that.")
             return@option
         }
