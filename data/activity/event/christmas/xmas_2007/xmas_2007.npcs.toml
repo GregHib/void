@@ -1,0 +1,46 @@
+[queen_of_snow_xmas_2007]
+id = 6731
+examine = "Her lack of body heat is unsettling."
+
+[snow_imp_xmas_2007]
+id = 6739
+examine = "It looks right at home here."
+
+[snow_xmas_2007]
+id = 6740
+examine = "Snowflakes swirling in the wind."
+
+[snow_2_xmas_2007]
+id = 6741
+
+[barbarian_snowman_xmas_2007]
+id = 6742
+examine = "A helmetted, barbarian snowman."
+
+[dragon_snowman_xmas_2007]
+id = 6743
+examine = "A snowman in fake dragon armour."
+
+[dwarf_snowman_xmas_2007]
+id = 6744
+examine = "A snow dwarf."
+
+[pirate_snowman_xmas_2007]
+id = 6745
+examine = "Arr!"
+
+[snowman_xmas_2007]
+id = 6746
+examine = "A traditional snowman."
+
+[snow_ranger_xmas_2007]
+id = 6747
+examine = "A snowman armed with a holly bow."
+
+[snow_warrior_xmas_2007]
+id = 6748
+examine = "A snowman armed with an ice sword."
+
+[snow_mage_xmas_2007]
+id = 6749
+examine = "A snowman armed with a winter staff."

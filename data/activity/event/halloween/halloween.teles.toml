@@ -1,6 +1,6 @@
 # 6475 halloween
 # 6731 halloween
-[10699]
+[trapdoor_steps_xmas_2005]
 option = "Climb-up"
 tile = { x = 1693, y = 4510, level = 1 }
 to = { x = 3091, y = 3275 }
@@ -40,7 +40,7 @@ tile = { x = 3865, y = 5524 }
 to = { x = 3972, y = 5565 }
 
 # 15699 halloween
-[46731]
+[web_ladder_halloween_2009]
 option = "Climb"
 tile = { x = 3936, y = 5151, level = 2 }
 delta = { y = 165 }
@@ -72,3 +72,32 @@ option = "Climb-up"
 tile = { x = 4319, y = 5474 }
 delta = { x = -5, level = 1 }
 
+[staircase_halloween_2007]
+option = "Climb-up"
+tile = { x = 1700, y = 4824 }
+to = { x = 1639, y = 4835 }
+
+[staircase_2_halloween_2007]
+option = "Climb-down"
+tile = { x = 1636, y = 4835 }
+to = { x = 1703, y = 4826 }
+
+[ladder_2_xmas_2005]
+option = "Climb-down"
+tile = { x = 1698, y = 4515, level = 1 }
+delta = { x = -2, level = -1 }
+
+[ladder_xmas_2005]
+option = "Climb-up"
+tile = { x = 1698, y = 4515 }
+delta = { x = 2, level = 1 }
+
+[ladder_2_xmas_2005]
+option = "Climb-down"
+tile = { x = 1695, y = 4515, level = 1 }
+delta = { x = 2, level = -1 }
+
+[ladder_xmas_2005]
+option = "Climb-up"
+tile = { x = 1695, y = 4515 }
+delta = { x = -2, level = 1 }

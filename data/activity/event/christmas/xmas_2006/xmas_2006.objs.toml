@@ -1,0 +1,72 @@
+[gublinch_snow_1]
+id = 19030
+examine = "A large pile of snow."
+
+[gublinch_snow_2]
+id = 19031
+examine = "A large pile of snow."
+
+[gublinch_snow_3]
+id = 19033
+examine = "A large pile of snow."
+
+[gublinch_snow_4]
+id = 19034
+examine = "A large pile of snow."
+
+[gublinch_snow_5]
+id = 19035
+examine = "A large pile of snow."
+
+[cage_without_gublinch]
+id = 19036
+examine = "A strong metal cage."
+
+[cage_with_gublinch]
+id = 19037
+examine = "A strong cage; it has a gublinch in it."
+
+[gub_wintumber_tree_standard]
+id = 19038
+examine = "A pretty wintumber tree."
+
+[cave_entrance_gublinch_lair]
+id = 19039
+
+[ladder_gublinch_lair]
+id = 19040
+examine = "It leads back up to the surface."
+
+[childerkin_slaves]
+id = 20100
+examine = "These childerkins have been childernapped by the gublinch."
+
+[gublinch_cage]
+id = 20119
+
+[gublinch_cage_2]
+id = 20120
+
+[gublinch_cage_3]
+id = 20121
+
+[gublinch_cage_4]
+id = 20122
+
+[gublinch_cage_5]
+id = 20123
+
+[gublinch_cage_6]
+id = 20124
+
+[gublinch_cage_7]
+id = 20125
+
+[gublinch_cage_8]
+id = 20126
+
+[gublinch_cage_9]
+id = 20127
+
+[gublinch_cage_10]
+id = 20128

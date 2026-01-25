@@ -69,7 +69,7 @@ class WestArdougne : Script {
         }
 
         objectOperate("Climb-down", "plague_manhole_open") {
-            anim("human_pickupfloor")
+            anim("climb_down")
             statement("You climb down through the manhole.", clickToContinue = false)
             open("fade_out")
             delay(3)

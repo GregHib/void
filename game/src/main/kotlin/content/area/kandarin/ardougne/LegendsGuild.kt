@@ -37,13 +37,13 @@ class LegendsGuild : Script {
 
     suspend fun Player.combatBracelet() {
         message("You touch the jewellery against the totem pole...")
-        anim("human_pickupfloor")
+        anim("climb_down")
         item("combat_bracelet", 300, "You feel a power emanating from the totem pole as it recharges your bracelet. You can now rub the bracelet to teleport and wear it to get information while on a Slayer assignment.")
     }
 
     suspend fun Player.skillsNecklace() {
         message("You touch the jewellery against the totem pole...")
-        anim("human_pickupfloor")
+        anim("climb_down")
         item("skills_necklace", 200, "You feel a power emanating from the totem pole as it recharges your necklace. You can now rub the necklace to teleport and wear it to get more caskets while big net Fishing.")
     }
 }

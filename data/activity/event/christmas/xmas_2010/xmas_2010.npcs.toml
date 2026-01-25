@@ -1,5 +1,6 @@
 [snow_angel_statue_xmas_2010]
 id = 13254
+examine = "She is carved from ice."
 
 [fishing_spot_xmas_2010]
 id = 13261
@@ -39,10 +40,52 @@ id = 13272
 
 [fishing_spot_xmas_2010_13]
 id = 13275
+examine = "Is that crab wearing Thorvar's hat?"
 
 [fishing_spot_xmas_2010_14]
 id = 13274
+examine = "There's a crab here."
 
 [fishing_spot_xmas_2010_15]
 id = 13276
+examine = "The crab is hiding."
 
+[sir_amik_varze_christmas]
+id = 13277
+examine = "The leader of the White Knights looks a little merry today."
+
+[general_wartface_christmas]
+id = 13278
+examine = "An ugly, yet festive, green creature."
+
+[general_bentnoze_christmas]
+id = 13279
+examine = "An ugly, yet festive, green creature."
+
+[thok_master_of_dungeoneering_christmas]
+id = 13280
+examine = "The self-proclaimed master of festivities."
+
+[rewards_trader_christmas]
+id = 13281
+examine = "He is trembling, covered in cuts and scrapes, and wearing a festive hat."
+
+[manni_the_reveller_christmas]
+id = 13283
+examine = "Every innkeeper's best friend - if they serve eggnog!"
+
+[brundt_the_chieftain_christmas]
+id = 13284
+examine = "Brundt, the red-nosed chieftain, has a very shiny nose."
+
+[thorvald_the_warrior_christmas]
+id = 13285
+examine = "A festive Fremennik hero."
+
+[swensen_the_navigator_christmas]
+id = 13286
+examine = "A Fremennik navigator of sleighs."
+
+[olaf_the_bard_christmas]
+id = 13287
+examine = "A Fremennik carol singer."

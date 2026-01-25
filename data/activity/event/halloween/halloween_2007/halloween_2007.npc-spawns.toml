@@ -1,0 +1,4 @@
+spawns = [
+  { id = "grim_reaper_halloween_2007", x = 1707, y = 4814},
+  { id = "muncher_halloween_2007", x = 1702, y = 4821 },
+]
