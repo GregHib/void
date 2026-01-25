@@ -1,3 +1,27 @@
 [bank_booth_fishing_guild]
 id = 49018
 examine = "The bank teller will serve you from here."
+
+[gate_fishing_guild_left_opened]
+id = 49015
+
+[gate_fishing_guild_left_closed]
+id = 49014
+gate = false
+examine = "A gate."
+
+[gate_fishing_guild_right_opened]
+id = 49017
+
+[gate_fishing_guild_right_closed]
+id = 49016
+gate = false
+examine = "A gate."
+
+[gate_fishing_contest_opened]
+id = 49
+examine = "A wooden gate."
+
+[gate_fishing_contest_closed]
+id = 47
+examine = "A wooden gate."
