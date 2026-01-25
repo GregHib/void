@@ -1,6 +1,8 @@
 package content.area.karamja.ape_atroll
 
 import content.entity.npc.shop.openShop
+import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.type.choice
@@ -28,18 +30,16 @@ class Daga : Script {
                 npc<Shifty>("Sorry, you don't have enough space in your inventory.")
 
                 choice {
-                    option<Quiz>("Yes, please.") {
+                    option<Neutral>("Yes, please.") {
                         openShop("dagas_scimitar_smithy")
                     }
-                    option<Quiz>("No, thanks.") {
+                    option<Neutral>("No, thanks.") {
                     }
                     option<Quiz>("Do you have any Dragon Scimitars in stock?") {
-                        npc<Shifty>(
-                            "It just so happens I recently got a fresh delivery. <br>Do you want to buy one?",
-                        )
+                        npc<Happy>("It just so happens I recently got a fresh delivery. <br>Do you want to buy one?")
                         choice {
                             option("Yes.") {
-                                player<Shifty>("Yes, please.")
+                                player<Neutral>("Yes, please.")
                                 inventory.transaction {
                                     remove("coin", 100_000)
                                     add("dragon_scimitar")

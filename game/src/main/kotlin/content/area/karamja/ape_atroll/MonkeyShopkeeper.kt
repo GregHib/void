@@ -1,7 +1,7 @@
 package content.area.karamja.ape_atroll
 
 import content.entity.npc.shop.openShop
-import content.entity.player.dialogue.Quiz
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
@@ -26,10 +26,10 @@ class MonkeyShopkeeper : Script {
                     },
                 )
                 choice {
-                    option<Quiz>("Yes, please.") {
+                    option<Neutral>("Yes, please.") {
                         openShop(shopName)
                     }
-                    option<Quiz>("No, thanks.") {
+                    option<Neutral>("No, thanks.") {
                     }
                 }
             } else {
