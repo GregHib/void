@@ -1,3 +1,7 @@
 [bank_chest_neitiznot]
 id = 21301
 examine = "An open bank chest."
+
+[cooking_range_neitiznot]
+id = 21302
+examine = "Cook your food here."

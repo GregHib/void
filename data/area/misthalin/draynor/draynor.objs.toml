@@ -26,3 +26,7 @@ examine = "Lots of seeds here."
 
 [seed_stall_empty]
 id = 14012
+
+[cooking_range_draynor_manor]
+id = 47633
+examine = "It smells of fried fish."

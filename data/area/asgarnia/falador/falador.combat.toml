@@ -21,3 +21,14 @@ anim = "crossbow_accurate"
 target_sound = "crossbow_shoot"
 projectile = "crossbow_bolt"
 target_hit = { offense = "range", max = 40 }
+
+[white_knight]
+attack_speed = 7
+retreat_range = 4
+defend_anim = "human_defend"
+death_anim = "human_death"
+
+[white_knight.melee]
+range = 1
+anim = "2h_chop"
+target_hit = { offense = "slash", max = 60 }

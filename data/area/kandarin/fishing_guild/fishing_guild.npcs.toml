@@ -1,4 +1,4 @@
-[master_fisher_fishing_guild]
+[master_fisher]
 id = 308
 examine = "The man in charge of the fishing guild."
 
@@ -40,3 +40,38 @@ examine = "He runs the Fishing Guild shop."
 id = 3709
 examine = "She seems happy in her work."
 
+[bonzo]
+id = 225
+examine = "The Fishing Contest judge."
+
+[sinister_stranger]
+id = 226
+
+[morris]
+id = 227
+examine = "He checks the entrants to the Fishing Contest."
+
+[big_dave]
+id = 228
+examine = "I can see how he got his name."
+
+[joshua]
+id = 229
+examine = "He loves to fish!"
+
+[grandpa_jack]
+id = 230
+examine = "He looks elderly."
+
+[fishing_spot_ranging_guild]
+id = 233
+examine = "I can fish here."
+
+[fishing_spot_ranging_guild_2]
+id = 234
+
+[fishing_spot_ranging_guild_3]
+id = 235
+
+[fishing_spot_ranging_guild_4]
+id = 236

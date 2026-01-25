@@ -13,14 +13,6 @@ examine = "Solid bars of iron."
 id = 38
 examine = "Stops people walking past."
 
-[gate_4_opened]
-id = 49
-examine = "A wooden gate."
-
-[gate_4_closed]
-id = 47
-examine = "A wooden gate."
-
 [gate_5_opened]
 id = 50
 examine = "A wooden gate."
@@ -1469,19 +1461,3 @@ examine = "A wooden gate."
 [gate_242]
 id = 45213
 examine = "A wooden gate."
-
-[gate_253_opened]
-id = 49015
-
-[gate_253_closed]
-id = 49014
-gate = false
-examine = "A gate."
-
-[gate_254_opened]
-id = 49017
-
-[gate_254_closed]
-id = 49016
-gate = false
-examine = "A gate."

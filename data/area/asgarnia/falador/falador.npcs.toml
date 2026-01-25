@@ -541,16 +541,7 @@ examine = "Bow wow."
 
 [guard_falador_8]
 id = 9
-hitpoints = 220
-att = 19
-str = 18
-def = 14
-style = "stab"
-max_hit_melee = 30
-attack_bonus = 4
-respawn_delay = 50
-pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
-examine = "He tries to keep order around here."
+clone = "guard_falador"
 
 [water_wizard]
 id = 2710
@@ -690,9 +681,7 @@ hitpoints = 520
 att = 27
 str = 29
 def = 21
-attack_speed = 7
-style = "slash"
-max_hit_melee = 60
 attack_bonus = 30
+combat_def = "white_knight"
 respawn_delay = 50
 examine = "The knight seems to be watching something."

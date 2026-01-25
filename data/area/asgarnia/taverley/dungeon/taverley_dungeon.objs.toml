@@ -1,3 +1,7 @@
 [suit_of_armour]
 id = 32292
 examine = "A dusty old suit of armour."
+
+[cooking_range_black_knights_base]
+id = 36973
+examine = "Ideal for cooking on."

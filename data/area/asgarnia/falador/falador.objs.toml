@@ -17,3 +17,7 @@ examine = "A tunnel leading under the wall."
 [falador_underwall_tunnel_south]
 id = 9309
 examine = "A tunnel leading under the wall."
+
+[cooking_range_falador]
+id = 2728
+examine = "Ideal for cooking on."

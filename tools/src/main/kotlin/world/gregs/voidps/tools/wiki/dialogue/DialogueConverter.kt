@@ -6,6 +6,7 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import net.pearx.kasechange.toPascalCase
 import net.pearx.kasechange.toSnakeCase
+import net.pearx.kasechange.toTitleCase
 import world.gregs.yaml.Yaml
 import world.gregs.yaml.read.YamlReaderConfiguration
 import java.io.File
@@ -152,7 +153,7 @@ object DialogueConverter {
             val relative = file.parent.replace(input.path, "").removePrefix("\\")
             val text = file.readText().replace("\" + player.getName() + \"", "{\$player_name}").replace("{\$player_name}", "<player_name>")
             val root = DialogueUnion(yaml.read(text, reader) as Map<String, Any>)
-            val out = outputPath.resolve(relative).resolve("${name.replace("'", "").toPascalCase()}.kts")
+            val out = outputPath.resolve(relative).resolve("${name.replace("'", "").toPascalCase()}.kt")
             out.parentFile.mkdirs()
             writeAll(out, name.toSnakeCase(), getParents(root))
         }
@@ -183,19 +184,22 @@ object DialogueConverter {
             import world.gregs.voidps.engine.entity.character.player.Player
             import content.entity.player.dialogue.*
             import content.entity.player.dialogue.type.*
-            import world.gregs.voidps.engine.entity.character.mode.interact.TargetInteraction
             import world.gregs.voidps.engine.entity.character.npc.NPC
-            import world.gregs.voidps.engine.entity.character.npc.npcOperate
+            import world.gregs.voidps.engine.Script
             
-            npcOperate("Talk-to", "$name") {
-                startDialogue()
-            }
+            class ${name.replace("'", "").toTitleCase()} : Script {
+                init {
+                    npcOperate("Talk-to", "$name") {
+                        startDialogue()
+                    }
+                }
             """.trimIndent(),
         )
         file.appendText("\n\n")
         for (parent: DialogueUnion in sorted) {
             file.appendText(parent.builder.toString().replace("\t", "    "))
         }
+        file.appendText("}\n")
     }
 
     private fun printMembers(
@@ -212,48 +216,50 @@ object DialogueConverter {
         if (parent != previousParent) {
             val function = branchToFunction[parent]
             if (function != null) {
-                builder.append("suspend fun TargetInteraction<Player, NPC>.").append(function).append("() {\n")
+                builder.append("\tsuspend fun Player.").append(function).append("() {\n")
+            } else {
+                builder.append("\tsuspend fun Player.").append("unknown").append("() {\n")
             }
         }
         if (front.isNPCDialogue) {
             val anim = getAnimName(front.animation)
-            builder.append("\tnpc").append("<").append(anim).append(">").append("(")
+            builder.append("\t\tnpc").append("<").append(anim).append(">").append("(")
             if (npc != front.npc) {
                 builder.append(getNpcName(front.npc!!)).append(", ")
             }
             builder.append("\"").append(front.text).append("\"").append(")")
         } else if (front.isPlayerDialogue) {
             val anim = getAnimName(front.animation)
-            builder.append("\tplayer").append("<").append(anim).append(">").append("(").append("\"").append(front.text).append("\"").append(")")
+            builder.append("\t\tplayer").append("<").append(anim).append(">").append("(").append("\"").append(front.text).append("\"").append(")")
         } else if (front.isMessageDialogue) {
-            builder.append("\tmessage").append("(").append("\"").append(front.text).append("\")")
+            builder.append("\t\tmessage").append("(").append("\"").append(front.text).append("\")")
         } else if (front.isOptionsDialogue) {
             val options = front.options
 //            branchToFunction[front] = toFunction(options?.first()?.message)
-            builder.append("\tchoice {\n")
+            builder.append("\t\tchoice {\n")
             var count = 0
             for (option: DialogueOption in options!!) {
                 count++
                 val function = toFunction(option.message)
                 branchToFunction[option.child] = function
-                builder.append("\t\toption(\"").append(option.message).append("\") {\n\t\t\t").append(function).append("()\n\t\t}")
+                builder.append("\t\t\toption(\"").append(option.message).append("\") {\n\t\t\t\t").append(function).append("()\n\t\t\t}")
                 if (count == options.size) {
                     continue
                 }
                 builder.append("\n")
             }
-            builder.append("\n\t}")
+            builder.append("\n\t\t}")
         } else {
             val function = branchToFunction[parent]
             if (function != null) {
-                builder.append("suspend fun TargetInteraction<Player, NPC>.").append(function).append("() {\n")
+                builder.append("\tsuspend fun Player.").append(function).append("() {\n")
             }
             return
         }
         if (!lastNode) {
             builder.append("\n")
         } else {
-            builder.append("\n}\n\n")
+            builder.append("\n\t}\n\n")
             parents.add(parent)
         }
     }

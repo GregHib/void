@@ -2,6 +2,14 @@
 id = 31759
 examine = "This drain leads from the sink to the sewers below."
 
+[varrock_palace_drain_key]
+id = 17424
+examine = "This drain leads from the sink to the sewers below."
+
+[varrock_palace_drain_empty]
+id = 17423
+examine = "This drain leads from the sink to the sewers below."
+
 [varrock_manhole]
 id = 881
 examine = "There's a cover over this manhole."
@@ -27,3 +35,11 @@ examine = "Fine brews from exotic regions."
 
 [tea_stall_empty]
 id = 634
+
+[cooking_range_varrock]
+id = 24283
+examine = "Ideal for cooking on."
+
+[cooking_range_varrock_palace_oven]
+id = 24313
+examine = "For cooking food."

@@ -82,7 +82,7 @@ spawns = [
   { id = "duck_grey_swim", x = 2617, y = 3445 },
   { id = "duck_grey_swim", x = 2619, y = 3447 },
   { id = "duck_grey_swim", x = 2621, y = 3444 },
-  { id = "master_fisher_fishing_guild", x = 2613, y = 3394 },
+  { id = "master_fisher", x = 2613, y = 3394 },
   { id = "fishing_spot_fishing_guild", x = 2599, y = 3419, members = true },
   { id = "fishing_spot_fishing_guild", x = 2601, y = 3422, members = true },
   { id = "fishing_spot_fishing_guild", x = 2602, y = 3412, members = true },
