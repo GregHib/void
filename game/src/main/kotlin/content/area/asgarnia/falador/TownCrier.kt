@@ -25,8 +25,6 @@ class TownCrier : Script {
      */
     private val currentOverheads = listOf(
         "The Grand Exchange is now open! Buy and sell items with other players!",
-        "Penguins are roaming Gielinor — spy on them for rewards!",
-        "A Shooting Star has crashed somewhere in the world!",
         "New content is being actively developed — stay tuned for updates!",
     )
 
