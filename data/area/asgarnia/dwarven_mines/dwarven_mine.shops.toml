@@ -24,6 +24,17 @@ defaults = [
     { id = "hammer", amount = 10 },
 ]
 
+[nurmofs_pickaxe_shop]
+id = 68
+defaults = [
+    { id = "bronze_pickaxe", amount = 6 },
+    { id = "iron_pickaxe", amount = 5 },
+    { id = "steel_pickaxe", amount = 4 },
+    { id = "mithril_pickaxe", amount = 3 },
+    { id = "adamant_pickaxe", amount = 2 },
+    { id = "rune_pickaxe", amount = 1 },
+]
+
 [nulodions_multicannon_parts]
 id = 79
 defaults = [
