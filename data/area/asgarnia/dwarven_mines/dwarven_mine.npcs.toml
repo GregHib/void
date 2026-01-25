@@ -36,6 +36,7 @@ examine = "I wonder if he wants to buy my junk?"
 
 [nurmof]
 id = 594
+shop = "nurmofs_pickaxe_shop"
 examine = "He runs a pickaxe store."
 
 [boot_dwarven_mine]
