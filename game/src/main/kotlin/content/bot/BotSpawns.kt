@@ -45,34 +45,37 @@ class BotSpawns(
     var counter = 0
 
     init {
-        timerStart("bot_spawn") { TimeUnit.SECONDS.toTicks(Settings["bots.spawnSeconds", 60]) }
+        worldTimerStart("bot_spawn") { TimeUnit.SECONDS.toTicks(Settings["bots.spawnSeconds", 60]) }
 
-        timerTick("bot_spawn") {
+        worldTimerTick("bot_spawn") {
             if (counter > Settings["bots.count", 0]) {
-                return@timerTick Timer.CANCEL
+                return@worldTimerTick Timer.CANCEL
             }
             spawn()
-            return@timerTick Timer.CONTINUE
+            return@worldTimerTick Timer.CONTINUE
         }
 
         worldSpawn {
-            if (Settings["bots.count", 0] > 0) {
-                World.timers.start("bot_spawn")
-            }
-            if (!Settings["bots.numberedNames", false]) {
-                names.addAll(File(Settings["bots.names"]).readLines())
-            }
+            loadSettings()
         }
 
         settingsReload {
-            if (Settings["bots.count", 0] > bots.size) {
-                World.timers.start("bot_spawn")
-            }
+            loadSettings()
         }
 
         adminCommand("bots", intArg("count", optional = true), desc = "Spawn (count) number of bots", handler = ::spawn)
         adminCommand("clear_bots", intArg("count", optional = true), desc = "Clear all or some amount of bots", handler = ::clear)
         adminCommand("bot", stringArg("task", optional = true, autofill = tasks.names), desc = "Toggle yourself on/off as a bot player", handler = ::toggle)
+    }
+
+    private fun loadSettings() {
+        if (Settings["bots.count", 0] > 0) {
+            World.timers.start("bot_spawn")
+        }
+        if (!Settings["bots.numberedNames", false]) {
+            names.clear()
+            names.addAll(File(Settings["bots.names"]).readLines())
+        }
     }
 
     fun spawn(player: Player, args: List<String>) {
