@@ -27,6 +27,7 @@ import world.gregs.voidps.network.client.DummyClient
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.type.random
+import java.io.File
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.text.toIntOrNull
@@ -39,6 +40,7 @@ class BotSpawns(
 ) : Script {
 
     val bots = mutableListOf<Player>()
+    val names = mutableListOf<String>()
 
     var counter = 0
 
@@ -56,6 +58,9 @@ class BotSpawns(
         worldSpawn {
             if (Settings["bots.count", 0] > 0) {
                 World.timers.start("bot_spawn")
+            }
+            if (!Settings["bots.numberedNames", false]) {
+                names.addAll(File(Settings["bots.names"]).readLines())
             }
         }
 
@@ -114,7 +119,21 @@ class BotSpawns(
 
     fun spawn() {
         GlobalScope.launch(Contexts.Game) {
-            val name = "Bot ${++counter}"
+            counter++
+            val name = if (Settings["bots.numberedNames", false]) {
+                "Bot $counter"
+            } else {
+                val prefix = Settings["bots.namePrefix", ""].trim('"')
+                val length = 12 - prefix.length
+                val short = names.filter { it.length < length }
+                var selected = short.randomOrNull(random)
+                if (selected == null) {
+                    selected = names.removeAt(random.nextInt(names.size))
+                } else {
+                    names.remove(selected)
+                }
+                "${prefix}${selected}"
+            }
             val bot = Player(tile = Areas["lumbridge_teleport"].random(), accountName = name)
             bot.initBot()
             loader.connect(bot, if (Settings["development.bots.live", false]) DummyClient() else null)
