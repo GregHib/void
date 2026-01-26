@@ -7,3 +7,4 @@ minigame
 quest
 skill
 social
+bot
