@@ -107,6 +107,10 @@ class LoginServer(
             write.finish(response)
             return false
         }
+        if (username.length > 12) {
+            write.finish(Response.INVALID_CREDENTIALS)
+            return false
+        }
         if (!online.add(username)) {
             write.finish(Response.ACCOUNT_ONLINE)
             return false
