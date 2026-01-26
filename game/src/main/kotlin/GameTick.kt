@@ -1,4 +1,5 @@
 import com.github.michaelbull.logging.InlineLogger
+import content.bot.BotManager
 import content.social.trade.exchange.GrandExchange
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InstructionTask
@@ -42,6 +43,7 @@ fun getTickStages(
     sequential: Boolean = CharacterTask.DEBUG,
     handlers: InstructionHandlers = get(),
     dynamicZones: DynamicZones = get(),
+    botManager: BotManager = get(),
 ): List<Runnable> {
     val sequentialNpc: TaskIterator<NPC> = SequentialIterator()
     val sequentialPlayer: TaskIterator<Player> = SequentialIterator()
@@ -70,7 +72,7 @@ fun getTickStages(
             PlayerUpdateTask(),
             NPCUpdateTask(npcVisualEncoders()),
         ),
-        AiTick,
+        botManager,
         accountSave,
         SaveLogs(),
     )

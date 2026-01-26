@@ -1,0 +1,150 @@
+[woodcutting_ready]
+requires = [
+    { carries = "bronze_hatchet,iron_hatchet,steel_hatchet" },
+    { inventory_space = 20 },
+]
+
+[bank_all_after_full]
+plan = [
+    { wait_for = "full_inventory" },
+    { go_to = "bank" },
+    { option = "Bank-quickly", npc = "banker*" },
+    { wait = 2, interface = "bank" },
+    { option = "Deposit-All", interface = "bank:inventory" },
+]
+
+[chop_normal_trees]
+type = "activity"
+capacity = 4
+requires = [
+    { clone = "woodcutting_ready" },
+    { location = "normal_tree_area" },
+    { skill = "woodcutting", min = 1, max = 15 },
+]
+plan = [
+    { option = "Chop-down", object = "tree*", retry_ticks = 5, retry_max = 10 },
+    { clone = "bank_all_after_full" },
+]
+produces = [
+    { item = "logs" }
+]
+
+[chop_oak_trees]
+type = "activity"
+capacity = 4
+requires = [
+    { clone = "woodcutting_ready" },
+    { location = "oak_tree_area" },
+    { skill = "woodcutting", min = 15, max = 30 },
+]
+plan = [
+    { option = "Chop-down", object = "oak_tree", retry_ticks = 15, retry_max = 10 },
+    { clone = "bank_all_after_full" },
+]
+produces = [
+    { item = "logs" }
+]
+
+
+[axe_shopping]
+requires = [
+    { location = "axe_store" },
+    { inventory_space = 1 },
+]
+plan = [
+    { option = "Trade", npc = "axe_store_owner" },
+]
+
+[buy_bronze_axe]
+type = "resolver"
+requires = [
+    { clone = "axe_shopping" },
+    { skill = "woodcutting", min = 5 },
+    { carries = "coins", amount = 25 },
+]
+plan = [
+    { clone = "axe_shopping" },
+    { option = "Buy-1", interface = "axe_shop:inventory" },
+]
+produces = [
+    { item = "bronze_axe" }
+]
+
+[buy_iron_axe]
+type = "resolver"
+requires = [
+    { clone = "axe_shopping" },
+    { skill = "woodcutting", min = 10 },
+    { carries = "coins", amount = 150 },
+]
+plan = [
+    { clone = "axe_shopping" },
+    { option = "Buy-1", interface = "axe_shop:inventory:iron_axe" },
+]
+produces = [
+    { item = "iron_axe" }
+]
+
+# equips -> equipped
+# carries -> on person
+# owns -> in bank or on person
+
+[ring_of_duelling_equipped]
+type = "teleport"
+weight = 10
+requires = [
+    { variable = "spellbook", value = "normal" },
+    { equips = "ring_of_dueling_*" }
+]
+plan = [
+    { option = "Castle Wars", interface = "equipment:inventory" },
+]
+produces = [
+    { location = "castle_wars_teleport" }
+]
+
+[ring_of_duelling]
+type = "teleport"
+weight = 8
+requires = [
+    { variable = "spellbook", value = "normal" },
+    { carries = "ring_of_dueling_*" }
+]
+plan = [
+    { option = "Rub", interface = "inventory:inventory" },
+    { option = "Select", interface = "choice:line1" },
+]
+produces = [
+    { location = "castle_wars_teleport" }
+]
+
+
+[teleport_varrock]
+type = "teleport"
+weight = 10
+requires = [
+    { variable = "spellbook", value = "normal" },
+    { carries = "fire_rune", amount = 1 },
+    { carries = "air_rune", amount = 3 },
+    { carries = "law_rune", amount = 1 },
+]
+plan = [
+    { option = "Cast", interface = "normal_spellbook:varrock_teleport" },
+]
+produces = [
+    { location = "varrock_teleport" }
+]
+
+[teleport_lumbridge]
+type = "teleport"
+weight = 5
+requires = [
+    { variable = "spellbook", value = "normal" },
+    { variable = "lumbridge_cooldown", value = "normal" },
+]
+plan = [
+    { option = "Cast", interface = "normal_spellbook:home_teleport" },
+]
+produces = [
+    { location = "lumbridge_teleport" }
+]

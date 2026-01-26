@@ -1,3 +1,4 @@
+import content.bot.BotManager
 import content.bot.TaskManager
 import content.bot.interact.navigation.graph.NavigationGraph
 import content.bot.interact.path.Dijkstra
@@ -22,6 +23,7 @@ import java.io.File
 fun gameModule(files: ConfigFiles) = module {
     single { ItemSpawns() }
     single { TaskManager() }
+    single { BotManager().load(files) }
     single {
         val size = get<NavigationGraph>().size
         Dijkstra(
