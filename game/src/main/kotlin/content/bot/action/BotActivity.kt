@@ -1,14 +1,15 @@
 package content.bot.action
 
 import content.bot.req.CloneRequirement
+import content.bot.req.RequiresReference
 import content.bot.req.RequiresInvSpace
 import content.bot.req.RequiresCarriedItem
-import content.bot.req.MandatoryRequirement
 import content.bot.req.Requirement
 import content.bot.req.RequiresEquippedItem
 import content.bot.req.RequiresLocation
 import content.bot.req.RequiresOwnedItem
 import content.bot.req.RequiresSkill
+import content.bot.req.RequiresTile
 import content.bot.req.RequiresVariable
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
@@ -23,6 +24,7 @@ data class BotActivity(
 
 fun loadActivities(paths: List<String>): Map<String, BotActivity> {
     val activities = mutableMapOf<String, BotActivity>()
+    val fragments = mutableMapOf<String, BehaviourFragment>()
     timedLoad("bot activity") {
         val clones = mutableMapOf<String, String>()
         for (path in paths) {
@@ -30,10 +32,12 @@ fun loadActivities(paths: List<String>): Map<String, BotActivity> {
                 while (nextSection()) {
                     val id = section()
                     var capacity = 0
+                    var template: String? = null
                     var type = "activity"
                     var weight = 0
                     var actions: List<BotAction> = emptyList()
                     var requirements: List<Requirement> = emptyList()
+                    var fields: Map<String, Any> = emptyMap()
                     while (nextPair()) {
                         when (val key = key()) {
                             "requires" -> requirements = requirements()
@@ -41,7 +45,9 @@ fun loadActivities(paths: List<String>): Map<String, BotActivity> {
                             "produces" -> produces()
                             "capacity" -> capacity = int()
                             "type" -> type = string()
+                            "template" -> template = string()
                             "weight" -> weight = int()
+                            "fields" -> fields = fields()
                             else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
                     }
@@ -49,11 +55,16 @@ fun loadActivities(paths: List<String>): Map<String, BotActivity> {
                     if (clone != null) {
                         clones[id] = clone.id
                     }
-                    activities[id] = BotActivity(id, capacity, requirements, plan = actions)
+                    if (template != null) {
+                        fragments[id] = BehaviourFragment(id, capacity, template, requirements, plan = actions, fields = fields)
+                    } else {
+                        activities[id] = BotActivity(id, capacity, requirements, plan = actions)
+                    }
                 }
             }
         }
-        for (activity in activities.values) {
+        // Resolve cloning first
+        for (activity in activities.values + fragments.values) {
             for (index in activity.plan.indices.reversed()) {
                 val action = activity.plan[index]
                 if (action is BotAction.Clone) {
@@ -71,6 +82,26 @@ fun loadActivities(paths: List<String>): Map<String, BotActivity> {
                 requirements.addAll(clone.requirements)
             }
         }
+        // Fragments are partially filled behaviours with template + fields
+        // This code resolves those fields into actual values taken from the template.
+        val templates = mutableSetOf<String>()
+        for ((id, fragment) in fragments) {
+            val template = activities[fragment.template] ?: throw IllegalArgumentException("Unable to find template '${fragment.template}' for activity '$id'.")
+            templates.add(fragment.template)
+
+            val requirements = mutableListOf<Requirement>()
+            requirements.addAll(fragment.requirements)
+            fragment.resolveRequirements(template, requirements)
+
+            val actions = mutableListOf<BotAction>()
+            actions.addAll(fragment.plan)
+            fragment.resolveActions(template, actions)
+            activities[id] = BotActivity(id, fragment.capacity, requirements, actions)
+        }
+        // Templates aren't selectable activities
+        for (template in templates) {
+            activities.remove(template)
+        }
         activities.size
     }
     return activities
@@ -86,6 +117,16 @@ private fun ConfigReader.produces() {
     }
 }
 
+private fun ConfigReader.fields(): Map<String, Any> {
+    val map = mutableMapOf<String, Any>()
+    while (nextEntry()) {
+        val key = key()
+        val value = value()
+        map[key] = value
+    }
+    return map
+}
+
 private fun ConfigReader.requirements(): List<Requirement> {
     val list = mutableListOf<Requirement>()
     while (nextElement()) {
@@ -94,26 +135,81 @@ private fun ConfigReader.requirements(): List<Requirement> {
         var value: Any? = null
         var min = 1
         var max = 1
+        var x = 0
+        var y = 0
+        var level = 0
+        val references = mutableMapOf<String, String>()
         while (nextEntry()) {
             when (val key = key()) {
                 "skill", "carries", "equips", "owns", "variable", "clone", "location" -> {
                     type = key
                     id = string()
+                    if (id.contains('$')) {
+                        references[key] = id
+                    }
                 }
-                "amount" -> {
-                    min = int()
-                    max = min
+                "amount" -> when (val value = value()) {
+                    is Int -> {
+                        min = value
+                        max = value
+                    }
+                    is String if value.contains('$') -> references[key] = value
+                    else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
                 }
-                "min" -> min = int()
-                "max" -> max = int()
+                "min" -> when (val value = value()) {
+                    is Int -> min = value
+                    is String if value.contains('$') -> references[key] = value
+                    else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
+                }
+                "max" -> when (val value = value()) {
+                    is Int -> max = value
+                    is String if value.contains('$') -> references[key] = value
+                    else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
+                }
                 "inventory_space" -> {
                     type = key
-                    min = int()
+                    when (val value = value()) {
+                        is Int -> min = value
+                        is String if value.contains('$') -> references[key] = value
+                        else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
+                    }
+                }
+                "x" -> {
+                    type = "tile"
+                    when (val value = value()) {
+                        is Int -> x = value
+                        is String if value.contains('$') -> references[key] = value
+                        else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
+                    }
+                }
+                "y" -> {
+                    type = "tile"
+                    when (val value = value()) {
+                        is Int -> y = value
+                        is String if value.contains('$') -> references[key] = value
+                        else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
+                    }
+                }
+                "level" -> {
+                    type = "tile"
+                    when (val value = value()) {
+                        is Int -> level = value
+                        is String if value.contains('$') -> references[key] = value
+                        else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
+                    }
+                }
+                "radius" -> {
+                    type = "tile"
+                    when (val value = value()) {
+                        is Int -> min = value
+                        is String if value.contains('$') -> references[key] = value
+                        else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
+                    }
                 }
                 "value" -> value = value()
             }
         }
-        val requirement = when (type) {
+        var requirement = when (type) {
             "skill" -> RequiresSkill(id, min, max)
             "carries" -> RequiresCarriedItem(id, min)
             "owns" -> RequiresOwnedItem(id, min)
@@ -122,8 +218,12 @@ private fun ConfigReader.requirements(): List<Requirement> {
             "clone" -> CloneRequirement(id)
             "inventory_space" -> RequiresInvSpace(min)
             "location" -> RequiresLocation(id)
+            "tile" -> RequiresTile(x, y, level, min)
             "holds" -> throw IllegalArgumentException("Unknown requirement type 'holds'; did you mean 'carries' or 'equips'? ${exception()}.")
             else -> throw IllegalArgumentException("Unknown requirement type: $type ${exception()}")
+        }
+        if (references.isNotEmpty()) {
+            requirement = RequiresReference(requirement, references)
         }
         list.add(requirement)
     }
@@ -140,38 +240,76 @@ private fun ConfigReader.actions(): List<BotAction> {
         var retryMax = 0
         var timeout = 0
         var ticks = 0
-        var radius = 0
+        var radius = 10
+        val references = mutableMapOf<String, String>()
         while (nextEntry()) {
             when (val key = key()) {
                 "go_to", "wait_for", "interface", "npc", "object", "clone" -> {
                     type = key
                     id = string()
+                    if (id.contains('$')) {
+                        references[key] = id
+                    }
+                }
+                "target", "id" -> {
+                    id = string()
+                    if (id.contains('$')) {
+                        references[key] = id
+                    }
+                }
+                "option" -> {
+                    option = string()
+                    if (option.contains('$')) {
+                        references[key] = option
+                    }
                 }
                 "wait" -> {
                     type = key
-                    ticks = int()
+                    when (val value = value()) {
+                        is Int -> ticks = value
+                        is String if value.contains('$') -> references[key] = value
+                        else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
+                    }
                 }
-                "radius" -> radius = int()
-                "target", "id" -> id = string()
-                "retry_ticks" -> retryTicks = int()
-                "retry_max" -> retryMax = int()
-                "option" -> option = string()
-                "timeout" -> timeout = int()
+                "radius" -> when (val value = value()) {
+                    is Int -> radius = value
+                    is String if value.contains('$') -> references[key] = value
+                    else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
+                }
+                "retry_ticks" -> when (val value = value()) {
+                    is Int -> retryTicks = value
+                    is String if value.contains('$') -> references[key] = value
+                    else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
+                }
+                "retry_max" -> when (val value = value()) {
+                    is Int -> retryMax = value
+                    is String if value.contains('$') -> references[key] = value
+                    else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
+
+                }
+                "timeout" -> when (val value = value()) {
+                    is Int -> timeout = value
+                    is String if value.contains('$') -> references[key] = value
+                    else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
+                }
                 else -> throw IllegalArgumentException("Unknown action key: $key ${exception()}")
             }
         }
-        val action = when (type) {
+        var action = when (type) {
             "go_to" -> BotAction.GoTo(id)
             "wait" -> BotAction.Wait(ticks)
-            "npc" -> BotAction.InteractNpc(id, option, retryTicks, retryMax, radius)
-            "object" -> BotAction.InteractObject(id, option, retryTicks, retryMax, radius)
-            "interface" -> BotAction.InterfaceOption(option, id)
+            "npc" -> BotAction.InteractNpc(id = id, option = option, retryTicks = retryTicks, retryMax = retryMax, radius = radius)
+            "object" -> BotAction.InteractObject(id = id, option = option, retryTicks = retryTicks, retryMax = retryMax, radius = radius)
+            "interface" -> BotAction.InterfaceOption(id = id, option = option)
             "clone" -> BotAction.Clone(id)
             "wait_for" -> when (id) {
                 "full_inventory" -> BotAction.WaitFullInventory(timeout)
                 else -> throw IllegalArgumentException("Unknown wait_for action: $id ${exception()}")
             }
             else -> throw IllegalArgumentException("Unknown action type: $type ${exception()}")
+        }
+        if (references.isNotEmpty()) {
+            action = BotAction.Reference(action, references)
         }
         list.add(action)
     }

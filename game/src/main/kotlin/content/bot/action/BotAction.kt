@@ -14,6 +14,7 @@ sealed interface BotAction {
 
     data class GoTo(val target: String) : BotAction
     data class Clone(val id: String) : BotAction
+    data class Reference(val action: BotAction, val references: Map<String, String>) : BotAction
 
     data class Wait(val ticks: Int) : BotAction
 
@@ -33,6 +34,6 @@ sealed interface BotAction {
         val radius: Int = 10,
     ) : RetryableAction()
 
-    data class InterfaceOption(val option: String, val id: String) : BotAction
+    data class InterfaceOption(val id: String, val option: String) : BotAction
     data class WaitFullInventory(val timeout: Int) : BotAction
 }
