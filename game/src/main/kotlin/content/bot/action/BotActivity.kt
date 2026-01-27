@@ -1,24 +1,28 @@
 package content.bot.action
 
-import content.bot.req.CloneRequirement
-import content.bot.req.RequiresReference
-import content.bot.req.RequiresInvSpace
-import content.bot.req.RequiresCarriedItem
-import content.bot.req.Requirement
-import content.bot.req.RequiresEquippedItem
-import content.bot.req.RequiresLocation
-import content.bot.req.RequiresOwnedItem
-import content.bot.req.RequiresSkill
-import content.bot.req.RequiresTile
-import content.bot.req.RequiresVariable
+import content.bot.fact.FactClone
+import content.bot.fact.FactReference
+import content.bot.fact.HasInventorySpace
+import content.bot.fact.CarriesItem
+import content.bot.fact.Fact
+import content.bot.fact.EquipsItem
+import content.bot.fact.AtLocation
+import content.bot.fact.OwnsItem
+import content.bot.fact.HasSkillLevel
+import content.bot.fact.AtTile
+import content.bot.fact.HasVariable
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.timedLoad
 
+/**
+ * An activity with a limited number of slots that bots can perform
+ * E.g. cutting oak trees in varrock, mining copper ore in lumbridge
+ */
 data class BotActivity(
     override val id: String,
     val capacity: Int,
-    override val requirements: List<Requirement> = emptyList(),
+    override val requirements: List<Fact> = emptyList(),
     override val plan: List<BotAction> = emptyList(),
 ) : Behaviour
 
@@ -36,7 +40,7 @@ fun loadActivities(paths: List<String>): Map<String, BotActivity> {
                     var type = "activity"
                     var weight = 0
                     var actions: List<BotAction> = emptyList()
-                    var requirements: List<Requirement> = emptyList()
+                    var requirements: List<Fact> = emptyList()
                     var fields: Map<String, Any> = emptyMap()
                     while (nextPair()) {
                         when (val key = key()) {
@@ -51,7 +55,7 @@ fun loadActivities(paths: List<String>): Map<String, BotActivity> {
                             else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
                     }
-                    val clone = requirements.filterIsInstance<CloneRequirement>().firstOrNull()
+                    val clone = requirements.filterIsInstance<FactClone>().firstOrNull()
                     if (clone != null) {
                         clones[id] = clone.id
                     }
@@ -77,8 +81,8 @@ fun loadActivities(paths: List<String>): Map<String, BotActivity> {
             for ((id, cloneId) in clones) {
                 val activity = activities[id] ?: continue
                 val clone = activities[cloneId] ?: continue
-                val requirements = activity.requirements as MutableList<Requirement>
-                requirements.removeIf { it is CloneRequirement && it.id == cloneId }
+                val requirements = activity.requirements as MutableList<Fact>
+                requirements.removeIf { it is FactClone && it.id == cloneId }
                 requirements.addAll(clone.requirements)
                 requirements.sortBy { it.priority }
             }
@@ -90,7 +94,7 @@ fun loadActivities(paths: List<String>): Map<String, BotActivity> {
             val template = activities[fragment.template] ?: throw IllegalArgumentException("Unable to find template '${fragment.template}' for activity '$id'.")
             templates.add(fragment.template)
 
-            val requirements = mutableListOf<Requirement>()
+            val requirements = mutableListOf<Fact>()
             requirements.addAll(fragment.requirements)
             fragment.resolveRequirements(template, requirements)
             requirements.sortBy { it.priority }
@@ -129,8 +133,8 @@ private fun ConfigReader.fields(): Map<String, Any> {
     return map
 }
 
-private fun ConfigReader.requirements(): List<Requirement> {
-    val list = mutableListOf<Requirement>()
+private fun ConfigReader.requirements(): List<Fact> {
+    val list = mutableListOf<Fact>()
     while (nextElement()) {
         var type = ""
         var id = ""
@@ -212,20 +216,20 @@ private fun ConfigReader.requirements(): List<Requirement> {
             }
         }
         var requirement = when (type) {
-            "skill" -> RequiresSkill(id, min, max)
-            "carries" -> RequiresCarriedItem(id, min)
-            "owns" -> RequiresOwnedItem(id, min)
-            "equips" -> RequiresEquippedItem(id, min)
-            "variable" -> RequiresVariable(id, value)
-            "clone" -> CloneRequirement(id)
-            "inventory_space" -> RequiresInvSpace(min)
-            "location" -> RequiresLocation(id)
-            "tile" -> RequiresTile(x, y, level, min)
+            "skill" -> HasSkillLevel(id, min, max)
+            "carries" -> CarriesItem(id, min)
+            "owns" -> OwnsItem(id, min)
+            "equips" -> EquipsItem(id, min)
+            "variable" -> HasVariable(id, value)
+            "clone" -> FactClone(id)
+            "inventory_space" -> HasInventorySpace(min)
+            "location" -> AtLocation(id)
+            "tile" -> AtTile(x, y, level, min)
             "holds" -> throw IllegalArgumentException("Unknown requirement type 'holds'; did you mean 'carries' or 'equips'? ${exception()}.")
             else -> throw IllegalArgumentException("Unknown requirement type: $type ${exception()}")
         }
         if (references.isNotEmpty()) {
-            requirement = RequiresReference(requirement, references)
+            requirement = FactReference(requirement, references)
         }
         list.add(requirement)
     }

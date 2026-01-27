@@ -5,8 +5,8 @@ import content.bot.action.BehaviourState
 import content.bot.action.BotAction
 import content.bot.action.BotActivity
 import content.bot.action.Reason
-import content.bot.req.MandatoryRequirement
-import content.bot.req.RequiresSkill
+import content.bot.fact.MandatoryFact
+import content.bot.fact.HasSkillLevel
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -208,7 +208,7 @@ class BotManagerTest {
         val activity = testActivity(
             id = "test",
             requirements = listOf(
-                RequiresSkill("attack", 99, 99)
+                HasSkillLevel("attack", 99, 99)
             ),
             plan = listOf(BotAction.Wait(4))
         )
@@ -227,7 +227,7 @@ class BotManagerTest {
 
     fun testActivity(
         id: String,
-        requirements: List<MandatoryRequirement> = emptyList(),
+        requirements: List<MandatoryFact> = emptyList(),
         plan: List<BotAction>
     ) = BotActivity(id, 1, requirements, plan)
 }

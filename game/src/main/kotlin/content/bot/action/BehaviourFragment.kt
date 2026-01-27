@@ -1,22 +1,22 @@
 package content.bot.action
 
-import content.bot.req.CloneRequirement
-import content.bot.req.Requirement
-import content.bot.req.RequiresCarriedItem
-import content.bot.req.RequiresEquippedItem
-import content.bot.req.RequiresInvSpace
-import content.bot.req.RequiresLocation
-import content.bot.req.RequiresOwnedItem
-import content.bot.req.RequiresReference
-import content.bot.req.RequiresSkill
-import content.bot.req.RequiresTile
-import content.bot.req.RequiresVariable
+import content.bot.fact.FactClone
+import content.bot.fact.Fact
+import content.bot.fact.CarriesItem
+import content.bot.fact.EquipsItem
+import content.bot.fact.HasInventorySpace
+import content.bot.fact.AtLocation
+import content.bot.fact.OwnsItem
+import content.bot.fact.FactReference
+import content.bot.fact.HasSkillLevel
+import content.bot.fact.AtTile
+import content.bot.fact.HasVariable
 
 data class BehaviourFragment(
     override val id: String,
     val capacity: Int,
     var template: String,
-    override val requirements: List<Requirement> = emptyList(),
+    override val requirements: List<Fact> = emptyList(),
     override val plan: List<BotAction> = emptyList(),
     val fields: Map<String, Any> = emptyMap(),
 ) : Behaviour {
@@ -54,46 +54,46 @@ data class BehaviourFragment(
         }
     }
 
-    fun resolveRequirements(template: BotActivity, requirements: MutableList<Requirement>) {
+    fun resolveRequirements(template: BotActivity, requirements: MutableList<Fact>) {
         for (req in template.requirements) {
             val resolved = when (req) {
-                is RequiresReference -> when (val requirement = req.requirement) {
-                    is RequiresSkill -> RequiresSkill(
+                is FactReference -> when (val requirement = req.fact) {
+                    is HasSkillLevel -> HasSkillLevel(
                         id = resolve(req.references["skill"], requirement.id),
                         min = resolve(req.references["min"], requirement.min),
                         max = resolve(req.references["max"], requirement.max),
                     )
-                    is RequiresVariable -> RequiresVariable(
+                    is HasVariable -> HasVariable(
                         id = resolve(req.references["variable"], requirement.id),
                         value = resolve(req.references["value"], requirement.value),
                     )
-                    is RequiresCarriedItem -> RequiresCarriedItem(
+                    is CarriesItem -> CarriesItem(
                         id = resolve(req.references["carries"], requirement.id),
                         amount = resolve(req.references["amount"], requirement.amount),
                     )
-                    is RequiresEquippedItem -> RequiresEquippedItem(
+                    is EquipsItem -> EquipsItem(
                         id = resolve(req.references["equips"], requirement.id),
                         amount = resolve(req.references["amount"], requirement.amount),
                     )
-                    is RequiresOwnedItem -> RequiresOwnedItem(
+                    is OwnsItem -> OwnsItem(
                         id = resolve(req.references["owns"], requirement.id),
                         amount = resolve(req.references["amount"], requirement.amount),
                     )
-                    is RequiresInvSpace -> RequiresInvSpace(
+                    is HasInventorySpace -> HasInventorySpace(
                         amount = resolve(req.references["inventory_space"], requirement.amount),
                     )
-                    is RequiresLocation -> RequiresLocation(
+                    is AtLocation -> AtLocation(
                         id = resolve(req.references["location"], requirement.id),
                     )
-                    is RequiresTile -> RequiresTile(
+                    is AtTile -> AtTile(
                         x = resolve(req.references["x"], requirement.x),
                         y = resolve(req.references["y"], requirement.y),
                         level = resolve(req.references["level"], requirement.level),
                         radius = resolve(req.references["radius"], requirement.radius),
                     )
-                    is CloneRequirement, is RequiresReference -> throw IllegalArgumentException("Invalid requirement type: ${req.requirement::class.simpleName}.")
+                    is FactClone, is FactReference -> throw IllegalArgumentException("Invalid requirement type: ${req.fact::class.simpleName}.")
                 }
-                is CloneRequirement -> throw IllegalArgumentException("Unresolved clone requirement in template ${id}.")
+                is FactClone -> throw IllegalArgumentException("Unresolved clone requirement in template ${id}.")
                 else -> req
             }
             requirements.add(resolved)

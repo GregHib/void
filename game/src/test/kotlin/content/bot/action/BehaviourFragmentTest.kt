@@ -1,16 +1,16 @@
 package content.bot.action
 
-import content.bot.req.CloneRequirement
-import content.bot.req.Requirement
-import content.bot.req.RequiresCarriedItem
-import content.bot.req.RequiresEquippedItem
-import content.bot.req.RequiresInvSpace
-import content.bot.req.RequiresLocation
-import content.bot.req.RequiresOwnedItem
-import content.bot.req.RequiresReference
-import content.bot.req.RequiresSkill
-import content.bot.req.RequiresTile
-import content.bot.req.RequiresVariable
+import content.bot.fact.FactClone
+import content.bot.fact.Fact
+import content.bot.fact.CarriesItem
+import content.bot.fact.EquipsItem
+import content.bot.fact.HasInventorySpace
+import content.bot.fact.AtLocation
+import content.bot.fact.OwnsItem
+import content.bot.fact.FactReference
+import content.bot.fact.HasSkillLevel
+import content.bot.fact.AtTile
+import content.bot.fact.HasVariable
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
@@ -208,17 +208,17 @@ class BehaviourFragmentTest {
             id = "a",
             capacity = 1,
             requirements = listOf(
-                RequiresReference(
-                    RequiresLocation("default"),
+                FactReference(
+                    AtLocation("default"),
                     references = mapOf(
                         "location" to $$"some_${type}_area"
                     )
                 )
             )
         )
-        val actions = mutableListOf<Requirement>()
+        val actions = mutableListOf<Fact>()
         fragment.resolveRequirements(template, actions)
-        assertEquals(RequiresLocation("some_fun_area"), actions.single())
+        assertEquals(AtLocation("some_fun_area"), actions.single())
     }
 
     @Test
@@ -228,17 +228,17 @@ class BehaviourFragmentTest {
             id = "a",
             capacity = 1,
             requirements = listOf(
-                RequiresReference(
-                    RequiresLocation("default"),
+                FactReference(
+                    AtLocation("default"),
                     references = mapOf(
                         "location" to $$"some_$area_type"
                     )
                 )
             )
         )
-        val actions = mutableListOf<Requirement>()
+        val actions = mutableListOf<Fact>()
         fragment.resolveRequirements(template, actions)
-        assertEquals(RequiresLocation("some_fun"), actions.single())
+        assertEquals(AtLocation("some_fun"), actions.single())
     }
 
     /*
@@ -247,14 +247,14 @@ class BehaviourFragmentTest {
 
     @TestFactory
     fun `Resolve requirement references`() = listOf(
-        Triple(RequiresSkill("default", 1, 120), mapOf("skill" to "attack", "min" to 5, "max" to 99), RequiresSkill("attack", 5, 99)),
-        Triple(RequiresVariable("default", 1), mapOf("variable" to "test", "value" to true), RequiresVariable("test", true)),
-        Triple(RequiresEquippedItem("default", 1), mapOf("equips" to "item", "amount" to 10), RequiresEquippedItem("item", 10)),
-        Triple(RequiresCarriedItem("default", 1), mapOf("carries" to "item", "amount" to 10), RequiresCarriedItem("item", 10)),
-        Triple(RequiresOwnedItem("default", 1), mapOf("owns" to "item", "amount" to 10), RequiresOwnedItem("item", 10)),
-        Triple(RequiresInvSpace(1), mapOf("inventory_space" to 10), RequiresInvSpace(10)),
-        Triple(RequiresLocation("default"), mapOf("location" to "area"), RequiresLocation("area")),
-        Triple(RequiresTile(0, 0, 0, 0), mapOf("x" to 4, "y" to 3, "level" to 2, "radius" to 1), RequiresTile(4, 3, 2, 1)),
+        Triple(HasSkillLevel("default", 1, 120), mapOf("skill" to "attack", "min" to 5, "max" to 99), HasSkillLevel("attack", 5, 99)),
+        Triple(HasVariable("default", 1), mapOf("variable" to "test", "value" to true), HasVariable("test", true)),
+        Triple(EquipsItem("default", 1), mapOf("equips" to "item", "amount" to 10), EquipsItem("item", 10)),
+        Triple(CarriesItem("default", 1), mapOf("carries" to "item", "amount" to 10), CarriesItem("item", 10)),
+        Triple(OwnsItem("default", 1), mapOf("owns" to "item", "amount" to 10), OwnsItem("item", 10)),
+        Triple(HasInventorySpace(1), mapOf("inventory_space" to 10), HasInventorySpace(10)),
+        Triple(AtLocation("default"), mapOf("location" to "area"), AtLocation("area")),
+        Triple(AtTile(0, 0, 0, 0), mapOf("x" to 4, "y" to 3, "level" to 2, "radius" to 1), AtTile(4, 3, 2, 1)),
     ).map { (default, values, expected) ->
         dynamicTest("Resolve ${default::class.simpleName} references") {
             val fields = values.mapKeys { "ref_${it.key}" }
@@ -264,13 +264,13 @@ class BehaviourFragmentTest {
                 id = "a",
                 capacity = 1,
                 requirements = listOf(
-                    RequiresReference(
+                    FactReference(
                         default,
                         references = references
                     )
                 )
             )
-            val actions = mutableListOf<Requirement>()
+            val actions = mutableListOf<Fact>()
             fragment.resolveRequirements(template, actions)
             assertEquals(expected, actions.single())
         }
@@ -283,8 +283,8 @@ class BehaviourFragmentTest {
             id = "a",
             capacity = 1,
             requirements = listOf(
-                RequiresReference(
-                    RequiresSkill("x"),
+                FactReference(
+                    HasSkillLevel("x"),
                     references = mapOf("skill" to "missing")
                 )
             )
@@ -301,17 +301,17 @@ class BehaviourFragmentTest {
             id = "a",
             capacity = 1,
             requirements = listOf(
-                RequiresReference(
-                    RequiresSkill("x"),
+                FactReference(
+                    HasSkillLevel("x"),
                     emptyMap()
                 )
             )
         )
 
-        val actions = mutableListOf<Requirement>()
+        val actions = mutableListOf<Fact>()
         fragment.resolveRequirements(template, actions)
 
-        assertEquals(RequiresSkill("x"), actions.single())
+        assertEquals(HasSkillLevel("x"), actions.single())
     }
 
     @Test
@@ -321,14 +321,14 @@ class BehaviourFragmentTest {
             id = "a",
             capacity = 1,
             requirements = listOf(
-                RequiresSkill("x")
+                HasSkillLevel("x")
             )
         )
 
-        val actions = mutableListOf<Requirement>()
+        val actions = mutableListOf<Fact>()
         fragment.resolveRequirements(template, actions)
 
-        assertEquals(RequiresSkill("x"), actions.single())
+        assertEquals(HasSkillLevel("x"), actions.single())
     }
 
     @Test
@@ -337,7 +337,7 @@ class BehaviourFragmentTest {
         val template = BotActivity(
             id = "a",
             capacity = 1,
-            requirements = listOf(CloneRequirement("x"))
+            requirements = listOf(FactClone("x"))
         )
         assertThrows<IllegalArgumentException> {
             fragment.resolveRequirements(template, mutableListOf())
@@ -351,9 +351,9 @@ class BehaviourFragmentTest {
             id = "a",
             capacity = 1,
             requirements = listOf(
-                RequiresReference(
-                    RequiresReference(
-                        RequiresSkill("x"),
+                FactReference(
+                    FactReference(
+                        HasSkillLevel("x"),
                         emptyMap()
                     ),
                     emptyMap()

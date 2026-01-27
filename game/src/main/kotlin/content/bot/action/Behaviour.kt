@@ -1,9 +1,9 @@
 package content.bot.action
 
-import content.bot.req.Requirement
+import content.bot.fact.Fact
 
 interface Behaviour {
     val id: String
-    val requirements: List<Requirement>
+    val requirements: List<Fact>
     val plan: List<BotAction>
 }
