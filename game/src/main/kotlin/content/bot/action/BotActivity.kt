@@ -80,6 +80,7 @@ fun loadActivities(paths: List<String>): Map<String, BotActivity> {
                 val requirements = activity.requirements as MutableList<Requirement>
                 requirements.removeIf { it is CloneRequirement && it.id == cloneId }
                 requirements.addAll(clone.requirements)
+                requirements.sortBy { it.priority }
             }
         }
         // Fragments are partially filled behaviours with template + fields
@@ -92,6 +93,7 @@ fun loadActivities(paths: List<String>): Map<String, BotActivity> {
             val requirements = mutableListOf<Requirement>()
             requirements.addAll(fragment.requirements)
             fragment.resolveRequirements(template, requirements)
+            requirements.sortBy { it.priority }
 
             val actions = mutableListOf<BotAction>()
             actions.addAll(fragment.plan)
@@ -227,6 +229,7 @@ private fun ConfigReader.requirements(): List<Requirement> {
         }
         list.add(requirement)
     }
+    list.sortBy { it.priority }
     return list
 }
 
