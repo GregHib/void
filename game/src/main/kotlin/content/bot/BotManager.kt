@@ -2,6 +2,8 @@ package content.bot
 
 import com.github.michaelbull.logging.InlineLogger
 import content.bot.action.*
+import content.bot.fact.MandatoryFact
+import content.bot.fact.ResolvableFact
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.type.random
@@ -33,7 +35,7 @@ class BotManager(
     }
 
     private fun hasRequirements(bot: Bot, activity: BotActivity): Boolean {
-        return slots.hasFree(activity) && !bot.blocked.contains(activity.id) && activity.requirements.all { it.satisfied(bot) }
+        return slots.hasFree(activity) && !bot.blocked.contains(activity.id) && activity.requirements.all { it is MandatoryFact && it.satisfied(bot) }
     }
 
     private fun assignActivity(bot: Bot) {
