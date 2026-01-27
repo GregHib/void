@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.timedLoad
 data class BotActivity(
     override val id: String,
     val capacity: Int,
-    override val requirements: List<Fact> = emptyList(),
+    override val requires: List<Fact> = emptyList(),
     override val plan: List<BotAction> = emptyList(),
 ) : Behaviour
 
@@ -81,9 +81,9 @@ fun loadActivities(paths: List<String>): Map<String, BotActivity> {
             for ((id, cloneId) in clones) {
                 val activity = activities[id] ?: continue
                 val clone = activities[cloneId] ?: continue
-                val requirements = activity.requirements as MutableList<Fact>
+                val requirements = activity.requires as MutableList<Fact>
                 requirements.removeIf { it is FactClone && it.id == cloneId }
-                requirements.addAll(clone.requirements)
+                requirements.addAll(clone.requires)
                 requirements.sortBy { it.priority }
             }
         }
@@ -95,7 +95,7 @@ fun loadActivities(paths: List<String>): Map<String, BotActivity> {
             templates.add(fragment.template)
 
             val requirements = mutableListOf<Fact>()
-            requirements.addAll(fragment.requirements)
+            requirements.addAll(fragment.requires)
             fragment.resolveRequirements(template, requirements)
             requirements.sortBy { it.priority }
 

@@ -4,6 +4,6 @@ import content.bot.fact.Fact
 
 interface Behaviour {
     val id: String
-    val requirements: List<Fact>
+    val requires: List<Fact>
     val plan: List<BotAction>
 }

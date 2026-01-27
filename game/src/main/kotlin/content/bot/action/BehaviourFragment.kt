@@ -16,7 +16,7 @@ data class BehaviourFragment(
     override val id: String,
     val capacity: Int,
     var template: String,
-    override val requirements: List<Fact> = emptyList(),
+    override val requires: List<Fact> = emptyList(),
     override val plan: List<BotAction> = emptyList(),
     val fields: Map<String, Any> = emptyMap(),
 ) : Behaviour {
@@ -55,7 +55,7 @@ data class BehaviourFragment(
     }
 
     fun resolveRequirements(template: BotActivity, requirements: MutableList<Fact>) {
-        for (req in template.requirements) {
+        for (req in template.requires) {
             val resolved = when (req) {
                 is FactReference -> when (val requirement = req.fact) {
                     is HasSkillLevel -> HasSkillLevel(
