@@ -2,17 +2,17 @@ package content.bot.req
 
 import content.bot.Bot
 
-sealed interface ResolvableRequirement : Requirement
+sealed class ResolvableRequirement(priority: Int) : Requirement(priority)
 
-sealed interface ItemRequirement : ResolvableRequirement {
-    val id: String
-    val amount: Int
+sealed class ItemRequirement : ResolvableRequirement(100) {
+    abstract val id: String
+    abstract val amount: Int
 }
 
 data class RequiresEquippedItem(
     override val id: String,
     override val amount: Int = 1,
-) : ItemRequirement {
+) : ItemRequirement() {
     fun check(bot: Bot) {
         // bot.inventory.has(id, amount)
     }
@@ -21,24 +21,24 @@ data class RequiresEquippedItem(
 data class RequiresCarriedItem(
     override val id: String,
     override val amount: Int = 1,
-) : ItemRequirement
+) : ItemRequirement()
 
 data class RequiresOwnedItem(
     override val id: String,
     override val amount: Int = 1,
-) : ItemRequirement
+) : ItemRequirement()
 
 data class RequiresInvSpace(
     val amount: Int,
-) : ResolvableRequirement
+) : ResolvableRequirement(10)
 
 data class RequiresLocation(
     val id: String,
-) : ResolvableRequirement
+) : ResolvableRequirement(1000)
 
 data class RequiresTile(
     val x: Int,
     val y: Int,
     val level: Int,
     val radius: Int,
-) : ResolvableRequirement
+) : ResolvableRequirement(1100)
