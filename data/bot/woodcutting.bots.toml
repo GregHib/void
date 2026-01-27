@@ -1,99 +1,70 @@
-[woodcutting_ready]
+[woodcutting_template]
 requires = [
-    { carries = "bronze_hatchet,iron_hatchet,steel_hatchet" },
+    { carries = "$hatchet" },
+    { location = "$location" },
     { inventory_space = 20 },
 ]
-
-[bank_all_after_full]
 plan = [
-    { wait_for = "full_inventory" },
-    { go_to = "bank" },
-    { option = "Bank-quickly", npc = "banker*" },
-    { wait = 2, interface = "bank" },
-    { option = "Deposit-All", interface = "bank:inventory" },
+    { option = "Chop-down", object = "$tree", retry_ticks = "$wait", retry_max = 10 },
 ]
 
-[chop_normal_trees]
-type = "activity"
+[normal_trees]
+template = "woodcutting_template"
 capacity = 4
+fields = { hatchet = "bronze_hatchet,iron_hatchet", location = "normal_trees", tree = "tree*", wait = 10 }
 requires = [
-    { clone = "woodcutting_ready" },
-    { location = "normal_tree_area" },
     { skill = "woodcutting", min = 1, max = 15 },
 ]
-plan = [
-    { option = "Chop-down", object = "tree*", retry_ticks = 5, retry_max = 10 },
-    { clone = "bank_all_after_full" },
-]
 produces = [
     { item = "logs" }
 ]
 
-[chop_oak_trees]
-type = "activity"
+[oak_trees]
+template = "woodcutting_template"
 capacity = 4
+fields = { hatchet = "steel_hatchet", location = "oak_trees", tree = "oak_tree", wait = 10 }
 requires = [
-    { clone = "woodcutting_ready" },
-    { location = "oak_tree_area" },
     { skill = "woodcutting", min = 15, max = 30 },
 ]
-plan = [
-    { option = "Chop-down", object = "oak_tree", retry_ticks = 15, retry_max = 10 },
-    { clone = "bank_all_after_full" },
-]
 produces = [
-    { item = "logs" }
+    { item = "oak_logs" }
 ]
 
 
-[axe_shopping]
+[buy_from_shop]
 requires = [
-    { location = "axe_store" },
+    { carries = "coins", amount = "$cost" },
+    { location = "$shop_location" },
     { inventory_space = 1 },
 ]
 plan = [
-    { option = "Trade", npc = "axe_store_owner" },
-]
-
-[buy_bronze_axe]
-type = "resolver"
-requires = [
-    { clone = "axe_shopping" },
-    { skill = "woodcutting", min = 5 },
-    { carries = "coins", amount = 25 },
-]
-plan = [
-    { clone = "axe_shopping" },
-    { option = "Buy-1", interface = "axe_shop:inventory" },
+    { option = "Trade", npc = "$shopkeeper" },
+    { option = "Buy-1", interface = "shop:inventory:$item" },
 ]
 produces = [
-    { item = "bronze_axe" }
+    { item = "$item" }
 ]
 
-[buy_iron_axe]
+[buy_iron_hatchet]
 type = "resolver"
+template = "buy_from_shop"
+fields = { cost = 25, shop_location = "axe_shop", shopkeeper = "bob", item = "iron_hatchet" }
 requires = [
-    { clone = "axe_shopping" },
+    { skill = "woodcutting", min = 1 },
+]
+
+[buy_steel_hatchet]
+type = "resolver"
+template = "buy_from_shop"
+fields = { cost = 50, shop_location = "axe_shop", shopkeeper = "bob", item = "steel_hatchet" }
+requires = [
     { skill = "woodcutting", min = 10 },
-    { carries = "coins", amount = 150 },
 ]
-plan = [
-    { clone = "axe_shopping" },
-    { option = "Buy-1", interface = "axe_shop:inventory:iron_axe" },
-]
-produces = [
-    { item = "iron_axe" }
-]
-
-# equips -> equipped
-# carries -> on person
-# owns -> in bank or on person
 
 [ring_of_duelling_equipped]
 type = "teleport"
 weight = 10
 requires = [
-    { variable = "spellbook", value = "normal" },
     { equips = "ring_of_dueling_*" }
 ]
 plan = [
@@ -117,7 +88,6 @@ plan = [
 produces = [
     { location = "castle_wars_teleport" }
 ]
-
 
 [teleport_varrock]
 type = "teleport"

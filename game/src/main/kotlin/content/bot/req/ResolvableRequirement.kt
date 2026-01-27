@@ -35,3 +35,10 @@ data class RequiresInvSpace(
 data class RequiresLocation(
     val id: String,
 ) : ResolvableRequirement
+
+data class RequiresTile(
+    val x: Int,
+    val y: Int,
+    val level: Int,
+    val radius: Int,
+) : ResolvableRequirement
