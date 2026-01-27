@@ -207,7 +207,7 @@ class BehaviourFragmentTest {
         val template = BotActivity(
             id = "a",
             capacity = 1,
-            requirements = listOf(
+            requires = listOf(
                 FactReference(
                     AtLocation("default"),
                     references = mapOf(
@@ -227,7 +227,7 @@ class BehaviourFragmentTest {
         val template = BotActivity(
             id = "a",
             capacity = 1,
-            requirements = listOf(
+            requires = listOf(
                 FactReference(
                     AtLocation("default"),
                     references = mapOf(
@@ -263,7 +263,7 @@ class BehaviourFragmentTest {
             val template = BotActivity(
                 id = "a",
                 capacity = 1,
-                requirements = listOf(
+                requires = listOf(
                     FactReference(
                         default,
                         references = references
@@ -282,7 +282,7 @@ class BehaviourFragmentTest {
         val template = BotActivity(
             id = "a",
             capacity = 1,
-            requirements = listOf(
+            requires = listOf(
                 FactReference(
                     HasSkillLevel("x"),
                     references = mapOf("skill" to "missing")
@@ -300,7 +300,7 @@ class BehaviourFragmentTest {
         val template = BotActivity(
             id = "a",
             capacity = 1,
-            requirements = listOf(
+            requires = listOf(
                 FactReference(
                     HasSkillLevel("x"),
                     emptyMap()
@@ -320,7 +320,7 @@ class BehaviourFragmentTest {
         val template = BotActivity(
             id = "a",
             capacity = 1,
-            requirements = listOf(
+            requires = listOf(
                 HasSkillLevel("x")
             )
         )
@@ -337,7 +337,7 @@ class BehaviourFragmentTest {
         val template = BotActivity(
             id = "a",
             capacity = 1,
-            requirements = listOf(FactClone("x"))
+            requires = listOf(FactClone("x"))
         )
         assertThrows<IllegalArgumentException> {
             fragment.resolveRequirements(template, mutableListOf())
@@ -350,7 +350,7 @@ class BehaviourFragmentTest {
         val template = BotActivity(
             id = "a",
             capacity = 1,
-            requirements = listOf(
+            requires = listOf(
                 FactReference(
                     FactReference(
                         HasSkillLevel("x"),
