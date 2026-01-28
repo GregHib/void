@@ -14,7 +14,7 @@ categories = ["tz_haar"]
 examine = "Some kind of bat..."
 
 [tz_kih_fight_pits_2]
-clone = "tz_kih"
+clone = "tz_kih_fight_pits"
 id = 2628
 
 [tz_kek_fight_pits]
