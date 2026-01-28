@@ -16,6 +16,7 @@ object ObjectDefinitions {
         val cache = CacheDelegate(Settings["storage.cache.path"])
         ObjectDefinitions.init(ObjectDecoder(member = true, lowDetail = false).load(cache))
             .load(configFiles().getValue(Settings["definitions.objects"]))
+        ObjectDefinitions.definitions.findTransforms(29585)
         for (def in ObjectDefinitions.definitions) {
             if(def.stringId.startsWith("slayer_tower_chain")) {
                 println("${def.id} ${def.name} ${def.options?.toList()}")
@@ -59,7 +60,7 @@ object ObjectDefinitions {
         return indices.mapNotNull {
             val def = getOrNull(it) ?: return@mapNotNull null
             if (def.transforms?.contains(id) == true) {
-                println("Found $it ${def.transforms?.contentToString()}")
+                println("Found $it ${def.transforms?.contentToString()} varbit=${this[it].varbit} varp=${this[it].varp}")
                 return@mapNotNull def
             }
             return@mapNotNull null
