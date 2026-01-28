@@ -14,10 +14,12 @@ import content.bot.fact.HasVariable
 
 data class BehaviourFragment(
     override val id: String,
+    val type: String,
     val capacity: Int,
     var template: String,
     override val requires: List<Fact> = emptyList(),
     override val plan: List<BotAction> = emptyList(),
+    override val produces: Set<Fact> = emptySet(),
     val fields: Map<String, Any> = emptyMap(),
 ) : Behaviour {
     fun resolveActions(template: BotActivity, actions: MutableList<BotAction>) {

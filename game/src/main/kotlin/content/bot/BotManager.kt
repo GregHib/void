@@ -2,6 +2,7 @@ package content.bot
 
 import com.github.michaelbull.logging.InlineLogger
 import content.bot.action.*
+import content.bot.fact.Fact
 import content.bot.fact.MandatoryFact
 import content.bot.fact.ResolvableFact
 import world.gregs.voidps.engine.data.ConfigFiles
@@ -10,6 +11,7 @@ import world.gregs.voidps.type.random
 
 class BotManager(
     private var activities: Map<String, BotActivity> = emptyMap(),
+    private var resolvers: Map<Fact, List<Resolver>> = emptyMap(),
 ) : Runnable {
     val slots = ActivitySlots()
     val bots = mutableListOf<Bot>()
@@ -54,20 +56,41 @@ class BotManager(
 
     private fun start(bot: Bot, behaviour: Behaviour, frame: BehaviourFrame) {
         for (requirement in behaviour.requires) {
-            if (!requirement.satisfied(bot)) {
-                if (requirement is MandatoryFact) {
-                    frame.fail(Reason.Requirements)
+            if (requirement.satisfied(bot)) {
+                continue
+            }
+            if (requirement is MandatoryFact) {
+                frame.fail(Reason.Requirements)
+                return
+            } else if (requirement is ResolvableFact) {
+                val resolver = pickResolver(bot, requirement, frame)
+                if (resolver == null) {
+                    frame.fail(Reason.Requirements) // No way to resolve
                     return
                 }
-                if (requirement is ResolvableFact) {
-//                    frame.blocked.add(requirement)
-                    // TODO
-
-                    return
-                }
+                // Attempt resolution
+                frame.blocked.add(resolver.id)
+                bot.queue(BehaviourFrame(resolver))
+                return
             }
         }
         frame.start(bot)
+    }
+
+    // TODO read resolvers
+    //  Handle resolver execution and fallback
+    private fun pickResolver(bot: Bot, fact: ResolvableFact, frame: BehaviourFrame): Behaviour? {
+        val options = mutableListOf<Resolver>()
+        for (resolver in resolvers[fact] ?: return null) {
+            if (frame.blocked.contains(resolver.id)) {
+                continue
+            }
+            if (resolver.requires.any { it is MandatoryFact && !it.satisfied(bot) }) {
+                continue
+            }
+            options.add(resolver)
+        }
+        return options.randomOrNull(random)
     }
 
     private fun execute(bot: Bot) {

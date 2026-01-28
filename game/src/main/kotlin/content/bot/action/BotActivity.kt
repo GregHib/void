@@ -24,10 +24,12 @@ data class BotActivity(
     val capacity: Int,
     override val requires: List<Fact> = emptyList(),
     override val plan: List<BotAction> = emptyList(),
+    override val produces: Set<Fact> = emptySet(),
 ) : Behaviour
 
 fun loadActivities(paths: List<String>): Map<String, BotActivity> {
     val activities = mutableMapOf<String, BotActivity>()
+    val resolvers = mutableMapOf<Fact, Resolver>()
     val fragments = mutableMapOf<String, BehaviourFragment>()
     timedLoad("bot activity") {
         val clones = mutableMapOf<String, String>()
@@ -41,12 +43,13 @@ fun loadActivities(paths: List<String>): Map<String, BotActivity> {
                     var weight = 0
                     var actions: List<BotAction> = emptyList()
                     var requirements: List<Fact> = emptyList()
+                    var produces: List<Fact> = emptyList()
                     var fields: Map<String, Any> = emptyMap()
                     while (nextPair()) {
                         when (val key = key()) {
                             "requires" -> requirements = requirements()
                             "plan" -> actions = actions()
-                            "produces" -> produces()
+                            "produces" -> produces = requirements()
                             "capacity" -> capacity = int()
                             "type" -> type = string()
                             "template" -> template = string()
@@ -59,8 +62,13 @@ fun loadActivities(paths: List<String>): Map<String, BotActivity> {
                     if (clone != null) {
                         clones[id] = clone.id
                     }
+
                     if (template != null) {
-                        fragments[id] = BehaviourFragment(id, capacity, template, requirements, plan = actions, fields = fields)
+                        fragments[id] = BehaviourFragment(id, type, capacity, template, requirements, plan = actions, fields = fields)
+                    } else if (type == "resolver") {
+                        for (fact in produces) {
+                            resolvers[fact] = Resolver(id, requirements, plan = actions)
+                        }
                     } else {
                         activities[id] = BotActivity(id, capacity, requirements, plan = actions)
                     }
@@ -102,7 +110,13 @@ fun loadActivities(paths: List<String>): Map<String, BotActivity> {
             val actions = mutableListOf<BotAction>()
             actions.addAll(fragment.plan)
             fragment.resolveActions(template, actions)
-            activities[id] = BotActivity(id, fragment.capacity, requirements, actions)
+            if (fragment.type == "resolver") {
+                for (fact in fragment.produces) {
+                    resolvers[fact] = Resolver(id, requirements, actions)
+                }
+            } else {
+                activities[id] = BotActivity(id, fragment.capacity, requirements, actions)
+            }
         }
         // Templates aren't selectable activities
         for (template in templates) {
