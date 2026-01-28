@@ -21,6 +21,7 @@ data class BehaviourFragment(
     override val id: String,
     val type: String,
     val capacity: Int,
+    val weight: Int,
     var template: String,
     override val requires: List<Fact> = emptyList(),
     override val plan: List<BotAction> = emptyList(),

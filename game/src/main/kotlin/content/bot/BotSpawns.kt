@@ -37,6 +37,8 @@ class BotSpawns(
     val structs: StructDefinitions,
     val tasks: TaskManager,
     val loader: PlayerAccountLoader,
+    val manager: BotManager,
+    val accounts: AccountManager,
 ) : Script {
 
     val bots = mutableListOf<Player>()
@@ -96,11 +98,11 @@ class BotSpawns(
 
     fun clear(player: Player, args: List<String>) {
         val count = args[0].toIntOrNull() ?: MAX_PLAYERS
-        World.queue("bot_$counter") {
-            val manager = get<AccountManager>()
+        World.queue("bot_clear") {
             runBlocking {
-                for (bot in bots.take(count)) {
-                    manager.logout(bot, false)
+                for (bot in manager.bots.take(count)) {
+                    manager.remove(bot)
+                    accounts.logout(bot.player, false)
                 }
             }
         }
@@ -108,12 +110,14 @@ class BotSpawns(
 
     fun toggle(player: Player, args: List<String>) {
         if (player.isBot) {
+            manager.remove(player.bot)
             player.clear("bot")
             player.message("Bot disabled.")
         } else {
-            player.initBot()
-            if (args[0].isNotBlank()) {
-                player["task_bot"] = args[0]
+            val bot = player.initBot()
+            manager.add(bot)
+            if (args.getOrNull(0)?.isNotBlank() == true) {
+                manager.assign(bot, args[0])
             }
             Bots.start(player)
             player.message("Bot enabled.")
@@ -137,18 +141,18 @@ class BotSpawns(
                 }
                 "${prefix}${selected}"
             }
-            val bot = Player(tile = Areas["lumbridge_teleport"].random(), accountName = name)
-            bot.initBot()
-            loader.connect(bot, if (Settings["development.bots.live", false]) DummyClient() else null)
-            setAppearance(bot)
-            if (bot.inventory.isEmpty()) {
-                bot.inventory.add("coins", 10000)
+            val player = Player(tile = Areas["lumbridge_teleport"].random(), accountName = name)
+            val bot = player.initBot()
+            loader.connect(player, if (Settings["development.bots.live", false]) DummyClient() else null)
+            setAppearance(player)
+            if (player.inventory.isEmpty()) {
+                player.inventory.add("coins", 10000)
             }
-            Bots.start(bot)
-            bot.viewport?.loaded = true
+            Bots.start(player)
+            player.viewport?.loaded = true
             delay(3)
-            bots.add(bot)
-            bot.running = true
+            manager.add(bot)
+            player.running = true
         }
     }
 

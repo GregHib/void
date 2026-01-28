@@ -5,6 +5,8 @@ import content.bot.action.BehaviourState
 import content.bot.action.BotAction
 import content.bot.action.BotActivity
 import content.bot.action.Reason
+import content.bot.fact.Fact
+import content.bot.fact.FactClone
 import content.bot.fact.MandatoryFact
 import content.bot.fact.HasSkillLevel
 import org.junit.jupiter.api.Assertions.*
@@ -22,7 +24,7 @@ class BotManagerTest {
             id = "woodcutting",
             plan = listOf(BotAction.Wait(1))
         )
-        val manager = BotManager(mapOf(activity.id to activity))
+        val manager = BotManager(mutableMapOf(activity.id to activity))
         val bot = testBot()
 
         manager.tick(bot)
@@ -37,7 +39,7 @@ class BotManagerTest {
             id = "mine",
             plan = listOf(BotAction.Wait(1))
         )
-        val manager = BotManager(mapOf(activity.id to activity))
+        val manager = BotManager(mutableMapOf(activity.id to activity))
 
         val bot1 = testBot("bot1")
         val bot2 = testBot("bot2")
@@ -55,7 +57,7 @@ class BotManagerTest {
             id = "walk",
             plan = listOf(BotAction.Wait(1))
         )
-        val manager = BotManager(mapOf(activity.id to activity))
+        val manager = BotManager(mutableMapOf(activity.id to activity))
         val bot = testBot()
 
         manager.tick(bot)
@@ -100,7 +102,7 @@ class BotManagerTest {
             plan = listOf(action)
         )
 
-        val manager = BotManager(mapOf(activity.id to activity))
+        val manager = BotManager(mutableMapOf(activity.id to activity))
         val bot = testBot()
 
         manager.tick(bot)
@@ -108,7 +110,7 @@ class BotManagerTest {
 
         val frame = bot.frame()
         repeat(3) {
-            frame.fail(Reason.Requirements)
+            frame.fail(Reason.Requirement(FactClone("")))
             manager.tick(bot)
             assertTrue(frame.state is BehaviourState.Wait)
             manager.tick(bot) // Tick 1
@@ -128,7 +130,7 @@ class BotManagerTest {
             plan = listOf(BotAction.Wait(1))
         )
 
-        val manager = BotManager(mapOf(activity.id to activity))
+        val manager = BotManager(mutableMapOf(activity.id to activity))
         val bot = testBot()
 
         manager.tick(bot)
@@ -172,7 +174,7 @@ class BotManagerTest {
             plan = listOf(BotAction.Wait(1))
         )
 
-        val manager = BotManager(mapOf(activity.id to activity))
+        val manager = BotManager(mutableMapOf(activity.id to activity))
         val bot = testBot()
 
         manager.tick(bot)
@@ -191,12 +193,12 @@ class BotManagerTest {
             plan = listOf(BotAction.Wait(1))
         )
 
-        val manager = BotManager(mapOf(activity.id to activity))
+        val manager = BotManager(mutableMapOf(activity.id to activity))
         val bot = testBot()
 
         manager.tick(bot)
         manager.tick(bot)
-        bot.frame().fail(Reason.Requirements)
+        bot.frame().fail(Reason.Requirement(FactClone("")))
         manager.tick(bot)
         manager.tick(bot)
 
@@ -214,7 +216,7 @@ class BotManagerTest {
             plan = listOf(BotAction.Wait(4))
         )
 
-        val manager = BotManager(mapOf(activity.id to activity))
+        val manager = BotManager(mutableMapOf(activity.id to activity))
         val bot = testBot()
         bot.frames.add(BehaviourFrame(activity))
 

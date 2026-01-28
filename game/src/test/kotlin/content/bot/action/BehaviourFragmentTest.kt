@@ -25,7 +25,8 @@ class BehaviourFragmentTest {
             capacity = 1,
             template = "tpl",
             type = "activity",
-            fields = fields
+            fields = fields,
+            weight = 1,
         )
 
     /*
