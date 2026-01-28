@@ -6,7 +6,6 @@ import content.bot.fact.CarriesItem
 import content.bot.fact.EquipsItem
 import content.bot.fact.HasInventorySpace
 import content.bot.fact.AtLocation
-import content.bot.fact.OwnsItem
 import content.bot.fact.FactReference
 import content.bot.fact.HasSkillLevel
 import content.bot.fact.AtTile
@@ -16,6 +15,7 @@ import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.api.assertThrows
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
 class BehaviourFragmentTest {
 
@@ -24,6 +24,7 @@ class BehaviourFragmentTest {
             id = "test",
             capacity = 1,
             template = "tpl",
+            type = "activity",
             fields = fields
         )
 
@@ -182,9 +183,9 @@ class BehaviourFragmentTest {
         Triple(BotAction.WaitFullInventory(4), mapOf("timeout" to 5), BotAction.WaitFullInventory(5)),
     ).map { (default, values, expected) ->
         dynamicTest("Resolve ${default::class.simpleName} references") {
-            val fields = values.mapKeys { "\$ref_${it.key}" }
+            val fields = values.mapKeys { "ref_${it.key}" }
             val fragment = fragment(fields)
-            val references = values.map { it.key to "ref_${it.key}" }.toMap()
+            val references = values.map { it.key to "\$ref_${it.key}" }.toMap()
             val template = BotActivity(
                 id = "a",
                 capacity = 1,
@@ -247,11 +248,10 @@ class BehaviourFragmentTest {
 
     @TestFactory
     fun `Resolve requirement references`() = listOf(
-        Triple(HasSkillLevel("default", 1, 120), mapOf("skill" to "attack", "min" to 5, "max" to 99), HasSkillLevel("attack", 5, 99)),
+        Triple(HasSkillLevel(Skill.Defence, 1, 120), mapOf("skill" to "attack", "min" to 5, "max" to 99), HasSkillLevel(Skill.Attack, 5, 99)),
         Triple(HasVariable("default", 1), mapOf("variable" to "test", "value" to true), HasVariable("test", true)),
         Triple(EquipsItem("default", 1), mapOf("equips" to "item", "amount" to 10), EquipsItem("item", 10)),
         Triple(CarriesItem("default", 1), mapOf("carries" to "item", "amount" to 10), CarriesItem("item", 10)),
-        Triple(OwnsItem("default", 1), mapOf("owns" to "item", "amount" to 10), OwnsItem("item", 10)),
         Triple(HasInventorySpace(1), mapOf("inventory_space" to 10), HasInventorySpace(10)),
         Triple(AtLocation("default"), mapOf("location" to "area"), AtLocation("area")),
         Triple(AtTile(0, 0, 0, 0), mapOf("x" to 4, "y" to 3, "level" to 2, "radius" to 1), AtTile(4, 3, 2, 1)),
@@ -284,7 +284,7 @@ class BehaviourFragmentTest {
             capacity = 1,
             requires = listOf(
                 FactReference(
-                    HasSkillLevel("x"),
+                    HasSkillLevel(Skill.Attack),
                     references = mapOf("skill" to "missing")
                 )
             )
@@ -302,7 +302,7 @@ class BehaviourFragmentTest {
             capacity = 1,
             requires = listOf(
                 FactReference(
-                    HasSkillLevel("x"),
+                    HasSkillLevel(Skill.Attack),
                     emptyMap()
                 )
             )
@@ -311,7 +311,7 @@ class BehaviourFragmentTest {
         val actions = mutableListOf<Fact>()
         fragment.resolveRequirements(template, actions)
 
-        assertEquals(HasSkillLevel("x"), actions.single())
+        assertEquals(HasSkillLevel(Skill.Attack), actions.single())
     }
 
     @Test
@@ -321,14 +321,14 @@ class BehaviourFragmentTest {
             id = "a",
             capacity = 1,
             requires = listOf(
-                HasSkillLevel("x")
+                HasSkillLevel(Skill.Attack)
             )
         )
 
         val actions = mutableListOf<Fact>()
         fragment.resolveRequirements(template, actions)
 
-        assertEquals(HasSkillLevel("x"), actions.single())
+        assertEquals(HasSkillLevel(Skill.Attack), actions.single())
     }
 
     @Test
@@ -353,7 +353,7 @@ class BehaviourFragmentTest {
             requires = listOf(
                 FactReference(
                     FactReference(
-                        HasSkillLevel("x"),
+                        HasSkillLevel(Skill.Attack),
                         emptyMap()
                     ),
                     emptyMap()

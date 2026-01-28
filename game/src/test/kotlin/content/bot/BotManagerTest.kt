@@ -10,6 +10,7 @@ import content.bot.fact.HasSkillLevel
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
 class BotManagerTest {
 
@@ -208,7 +209,7 @@ class BotManagerTest {
         val activity = testActivity(
             id = "test",
             requirements = listOf(
-                HasSkillLevel("attack", 99, 99)
+                HasSkillLevel(Skill.Attack, 99, 99)
             ),
             plan = listOf(BotAction.Wait(4))
         )

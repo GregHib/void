@@ -7,12 +7,14 @@ import content.bot.fact.CarriesItem
 import content.bot.fact.Fact
 import content.bot.fact.EquipsItem
 import content.bot.fact.AtLocation
-import content.bot.fact.OwnsItem
 import content.bot.fact.HasSkillLevel
 import content.bot.fact.AtTile
 import content.bot.fact.HasVariable
+import net.pearx.kasechange.toPascalCase
+import net.pearx.kasechange.toTitleCase
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.timedLoad
 
 /**
@@ -230,9 +232,8 @@ private fun ConfigReader.requirements(): List<Fact> {
             }
         }
         var requirement = when (type) {
-            "skill" -> HasSkillLevel(id, min, max)
+            "skill" -> HasSkillLevel(Skill.of(id.toPascalCase())!!, min, max)
             "carries" -> CarriesItem(id, min)
-            "owns" -> OwnsItem(id, min)
             "equips" -> EquipsItem(id, min)
             "variable" -> HasVariable(id, value)
             "clone" -> FactClone(id)

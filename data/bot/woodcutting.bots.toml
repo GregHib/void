@@ -11,7 +11,7 @@ plan = [
 [normal_trees]
 template = "woodcutting_template"
 capacity = 4
-fields = { hatchet = "bronze_hatchet,iron_hatchet", location = "normal_trees", tree = "tree*", wait = 10 }
+fields = { hatchet = "iron_hatchet", location = "normal_trees", tree = "tree*", wait = 10 }
 requires = [
     { skill = "woodcutting", min = 1, max = 15 },
 ]

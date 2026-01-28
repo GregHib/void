@@ -37,7 +37,7 @@ class BotManager(
     }
 
     private fun hasRequirements(bot: Bot, activity: BotActivity): Boolean {
-        return slots.hasFree(activity) && !bot.blocked.contains(activity.id) && activity.requires.all { it is MandatoryFact && it.satisfied(bot) }
+        return slots.hasFree(activity) && !bot.blocked.contains(activity.id) && activity.requires.all { it is MandatoryFact && it.check(bot) }
     }
 
     private fun assignActivity(bot: Bot) {
@@ -56,7 +56,7 @@ class BotManager(
 
     private fun start(bot: Bot, behaviour: Behaviour, frame: BehaviourFrame) {
         for (requirement in behaviour.requires) {
-            if (requirement.satisfied(bot)) {
+            if (requirement.check(bot)) {
                 continue
             }
             if (requirement is MandatoryFact) {
@@ -85,7 +85,7 @@ class BotManager(
             if (frame.blocked.contains(resolver.id)) {
                 continue
             }
-            if (resolver.requires.any { it is MandatoryFact && !it.satisfied(bot) }) {
+            if (resolver.requires.any { it is MandatoryFact && !it.check(bot) }) {
                 continue
             }
             options.add(resolver)

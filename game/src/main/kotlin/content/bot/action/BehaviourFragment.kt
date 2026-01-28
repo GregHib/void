@@ -6,11 +6,12 @@ import content.bot.fact.CarriesItem
 import content.bot.fact.EquipsItem
 import content.bot.fact.HasInventorySpace
 import content.bot.fact.AtLocation
-import content.bot.fact.OwnsItem
 import content.bot.fact.FactReference
 import content.bot.fact.HasSkillLevel
 import content.bot.fact.AtTile
 import content.bot.fact.HasVariable
+import net.pearx.kasechange.toPascalCase
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
 data class BehaviourFragment(
     override val id: String,
@@ -61,7 +62,7 @@ data class BehaviourFragment(
             val resolved = when (req) {
                 is FactReference -> when (val requirement = req.fact) {
                     is HasSkillLevel -> HasSkillLevel(
-                        id = resolve(req.references["skill"], requirement.id),
+                        skill = Skill.of(resolve(req.references["skill"], requirement.skill.name).toPascalCase())!!,
                         min = resolve(req.references["min"], requirement.min),
                         max = resolve(req.references["max"], requirement.max),
                     )
@@ -75,10 +76,6 @@ data class BehaviourFragment(
                     )
                     is EquipsItem -> EquipsItem(
                         id = resolve(req.references["equips"], requirement.id),
-                        amount = resolve(req.references["amount"], requirement.amount),
-                    )
-                    is OwnsItem -> OwnsItem(
-                        id = resolve(req.references["owns"], requirement.id),
                         amount = resolve(req.references["amount"], requirement.amount),
                     )
                     is HasInventorySpace -> HasInventorySpace(

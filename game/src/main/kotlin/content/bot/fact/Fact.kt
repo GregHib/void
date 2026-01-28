@@ -7,7 +7,7 @@ import content.bot.Bot
  * @param priority Ensure bots aren't walking to locations before getting items etc... lower values are prioritised first.
  */
 sealed class Fact(val priority: Int) {
-    fun satisfied(bot: Bot): Boolean = false
+    open fun check(bot: Bot): Boolean = false
 }
 
 internal data class FactClone(
