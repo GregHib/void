@@ -51,7 +51,7 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                                 "clone" -> {
                                     val name = string()
                                     val npc = refs.getInt(name)
-                                    require(npc >= 0) { "Cannot find npc id to clone '$name'. Make sure it's in the same file." }
+                                    require(npc >= 0) { "Cannot find npc to clone with id '$name' in ${path}. Make sure it's in the same file." }
                                     val definition = definitions[npc]
                                     extras.putAll(definition.extras ?: continue)
                                 }

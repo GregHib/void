@@ -35,8 +35,10 @@ object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
     fun load(paths: List<String>): ObjectDefinitions {
         timedLoad("object extra") {
             val ids = Object2IntOpenHashMap<String>()
+            val refs = Object2IntOpenHashMap<String>()
             ids.defaultReturnValue(-1)
             for (path in paths) {
+                refs.clear()
                 Config.fileReader(path) {
                     while (nextSection()) {
                         val stringId = section()
@@ -50,8 +52,8 @@ object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
                                 "mining" -> extras[key] = Rock(this)
                                 "clone" -> {
                                     val name = string()
-                                    val obj = ids.getInt(name)
-                                    require(obj >= 0) { "Cannot find object id to clone '$name'" }
+                                    val obj = refs.getInt(name)
+                                    require(obj >= 0) { "Cannot find object to clone with id '$name' in ${path}. Make sure it's in the same file." }
                                     val definition = definitions[obj]
                                     extras.putAll(definition.extras ?: continue)
                                 }
@@ -67,6 +69,7 @@ object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
                         }
                         require(!ids.containsKey(stringId)) { "Duplicate object id found '$stringId' at $path." }
                         ids[stringId] = id
+                        refs[stringId] = id
                         definitions[id].stringId = stringId
                         if (extras.isNotEmpty()) {
                             definitions[id].extras = extras
