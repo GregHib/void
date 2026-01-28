@@ -8,23 +8,32 @@ import world.gregs.voidps.engine.inv.inventory
 
 sealed class ResolvableFact(priority: Int) : Fact(priority)
 
-sealed class ItemFact : ResolvableFact(100) {
-    abstract val id: String
-    abstract val amount: Int
-}
-
 data class EquipsItem(
-    override val id: String,
-    override val amount: Int = 1,
-) : ItemFact() {
+    val id: String,
+    val amount: Int = 1,
+) : ResolvableFact(100) {
     override fun check(bot: Bot) = bot.player.equips(id, amount)
 }
 
 data class CarriesItem(
-    override val id: String,
-    override val amount: Int = 1,
-) : ItemFact() {
+    val id: String,
+    val amount: Int = 1,
+) : ResolvableFact(100) {
     override fun check(bot: Bot) = bot.player.carriesItem(id, amount)
+}
+
+data class EquipsOne(
+    val ids: Set<String>,
+    val amount: Int = 1,
+) : ResolvableFact(100) {
+    override fun check(bot: Bot) = ids.any { id -> bot.player.equips(id, amount) }
+}
+
+data class CarriesOne(
+    val ids: Set<String>,
+    val amount: Int = 1,
+) : ResolvableFact(100) {
+    override fun check(bot: Bot) = ids.any { id -> bot.player.carriesItem(id, amount) }
 }
 
 data class HasInventorySpace(
