@@ -1,0 +1,24 @@
+[run_to_varrock]
+type = "activity"
+capacity = 1
+requires = [
+    { variable = "movement", value = "run" }
+]
+plan = [
+    { go_to = "varrock_teleport" }
+]
+produces = [
+    { location = "varrock_teleport" }
+]
+
+[toggle_run]
+type = "resolver"
+requires = [
+    { variable = "movement", value = "walk" }
+]
+plan = [
+    { option = "Turn Run mode on", interface = "energy_orb:run_background" }
+]
+produces = [
+    { variable = "movement", value = "run" }
+]

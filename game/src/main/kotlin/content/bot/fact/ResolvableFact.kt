@@ -15,6 +15,13 @@ data class EquipsItem(
     override fun check(bot: Bot) = bot.player.equips(id, amount)
 }
 
+data class HasVariable(
+    val id: String,
+    val value: Any? = null,
+) : ResolvableFact(1) {
+    override fun check(bot: Bot) = bot.player.variables.get<Any>(id) == value
+}
+
 data class CarriesItem(
     val id: String,
     val amount: Int = 1,

@@ -12,7 +12,6 @@ import java.util.Stack
 
 data class Bot(val player: Player) : Character by player {
     var step: Instruction? = null
-
     val blocked: MutableSet<String> = mutableSetOf()
     var previous: BotActivity? = null
     val frames = Stack<BehaviourFrame>()
@@ -25,7 +24,6 @@ data class Bot(val player: Player) : Character by player {
 
     internal fun reset() {
         frames.clear()
-        blocked.clear()
     }
 
     internal fun queue(frame: BehaviourFrame) {

@@ -16,8 +16,7 @@ data class BehaviourFrame(
 
     fun start(bot: Bot) {
         val action = action()
-        action.start(bot)
-        state = BehaviourState.Running
+        state = action.start(bot)
     }
 
     fun next(): Boolean {
