@@ -79,6 +79,12 @@ object Wildcards {
         }
     }
 
+    fun get(key: String, type: Wildcard): Set<String> {
+        val set = mutableSetOf<String>()
+        find(key, type) { set.add(it) }
+        return set
+    }
+
     fun find(key: String, type: Wildcard, block: (String) -> Unit) {
         if (key == "*") {
             block(key)

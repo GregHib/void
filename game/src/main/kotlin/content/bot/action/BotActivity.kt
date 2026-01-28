@@ -9,12 +9,15 @@ import content.bot.fact.EquipsItem
 import content.bot.fact.AtLocation
 import content.bot.fact.HasSkillLevel
 import content.bot.fact.AtTile
+import content.bot.fact.CarriesOne
+import content.bot.fact.EquipsOne
 import content.bot.fact.HasVariable
 import net.pearx.kasechange.toPascalCase
-import net.pearx.kasechange.toTitleCase
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Wildcard
+import world.gregs.voidps.engine.event.Wildcards
 import world.gregs.voidps.engine.timedLoad
 
 /**
@@ -233,8 +236,16 @@ private fun ConfigReader.requirements(): List<Fact> {
         }
         var requirement = when (type) {
             "skill" -> HasSkillLevel(Skill.of(id.toPascalCase())!!, min, max)
-            "carries" -> CarriesItem(id, min)
-            "equips" -> EquipsItem(id, min)
+            "carries" -> if (id.any { it == '*' || it == '#' }) {
+                CarriesOne(Wildcards.get(id, Wildcard.Item), min)
+            } else {
+                CarriesItem(id, min)
+            }
+            "equips" -> if (id.any { it == '*' || it == '#' }) {
+                EquipsOne(Wildcards.get(id, Wildcard.Item), min)
+            } else {
+                EquipsItem(id, min)
+            }
             "variable" -> HasVariable(id, value)
             "clone" -> FactClone(id)
             "inventory_space" -> HasInventorySpace(min)

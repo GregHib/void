@@ -30,7 +30,6 @@ produces = [
     { carries = "oak_logs" }
 ]
 
-
 [buy_from_shop]
 requires = [
     { carries = "coins", amount = "$cost" },
@@ -65,7 +64,7 @@ requires = [
 type = "teleport"
 weight = 10
 requires = [
-    { equips = "ring_of_dueling_*" }
+    { equips = "ring_of_duelling_*" }
 ]
 plan = [
     { option = "Castle Wars", interface = "equipment:inventory" },
@@ -79,7 +78,7 @@ type = "teleport"
 weight = 8
 requires = [
     { variable = "spellbook", value = "normal" },
-    { carries = "ring_of_dueling_*" }
+    { carries = "ring_of_duelling_*" }
 ]
 plan = [
     { option = "Rub", interface = "inventory:inventory" },

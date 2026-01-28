@@ -9,9 +9,13 @@ import content.bot.fact.AtLocation
 import content.bot.fact.FactReference
 import content.bot.fact.HasSkillLevel
 import content.bot.fact.AtTile
+import content.bot.fact.CarriesOne
+import content.bot.fact.EquipsOne
 import content.bot.fact.HasVariable
 import net.pearx.kasechange.toPascalCase
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.event.Wildcard
+import world.gregs.voidps.engine.event.Wildcards
 
 data class BehaviourFragment(
     override val id: String,
@@ -74,10 +78,34 @@ data class BehaviourFragment(
                         id = resolve(req.references["carries"], requirement.id),
                         amount = resolve(req.references["amount"], requirement.amount),
                     )
+                    is CarriesOne -> {
+                        val resolve = resolve(req.references["equips"], "")
+                        val ids = if (resolve.isBlank()) {
+                            requirement.ids
+                        } else {
+                            Wildcards.get(resolve, Wildcard.Item)
+                        }
+                        CarriesOne(
+                            ids = ids,
+                            amount = resolve(req.references["amount"], requirement.amount),
+                        )
+                    }
                     is EquipsItem -> EquipsItem(
                         id = resolve(req.references["equips"], requirement.id),
                         amount = resolve(req.references["amount"], requirement.amount),
                     )
+                    is EquipsOne -> {
+                        val resolve = resolve(req.references["equips"], "")
+                        val ids = if (resolve.isBlank()) {
+                           requirement.ids
+                        } else {
+                            Wildcards.get(resolve, Wildcard.Item)
+                        }
+                        EquipsOne(
+                            ids = ids,
+                            amount = resolve(req.references["amount"], requirement.amount),
+                        )
+                    }
                     is HasInventorySpace -> HasInventorySpace(
                         amount = resolve(req.references["inventory_space"], requirement.amount),
                     )
