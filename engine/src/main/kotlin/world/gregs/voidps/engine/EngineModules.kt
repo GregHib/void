@@ -22,12 +22,12 @@ import java.io.File
 
 fun engineLoad(files: ConfigFiles) {
     Areas.load(files.list(Settings["map.areas"]))
+    ZoneBatchUpdates.register(GameObjects)
+    ZoneBatchUpdates.register(FloorItems)
 }
 
 fun engineModule(files: ConfigFiles) = module {
     // Entities
-    single { ZoneBatchUpdates.register(GameObjects) }
-    single { ZoneBatchUpdates.register(FloorItems) }
     single { FloorItemTracking() }
     single { Hunting(get(), get()) }
     single {
