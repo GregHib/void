@@ -32,9 +32,7 @@ data class BotActivity(
     override val produces: Set<Fact> = emptySet(),
 ) : Behaviour
 
-fun loadActivities(paths: List<String>): Map<String, BotActivity> {
-    val activities = mutableMapOf<String, BotActivity>()
-    val resolvers = mutableMapOf<Fact, Resolver>()
+fun loadActivities(paths: List<String>, activities: MutableMap<String, BotActivity>, resolvers: MutableMap<Fact, MutableList<Resolver>>) {
     val fragments = mutableMapOf<String, BehaviourFragment>()
     timedLoad("bot activity") {
         val clones = mutableMapOf<String, String>()
@@ -69,10 +67,10 @@ fun loadActivities(paths: List<String>): Map<String, BotActivity> {
                     }
 
                     if (template != null) {
-                        fragments[id] = BehaviourFragment(id, type, capacity, template, requirements, plan = actions, fields = fields)
+                        fragments[id] = BehaviourFragment(id, type, capacity, weight, template, requirements, plan = actions, fields = fields)
                     } else if (type == "resolver") {
                         for (fact in produces) {
-                            resolvers[fact] = Resolver(id, requirements, plan = actions)
+                            resolvers.getOrPut(fact) { mutableListOf() }.add(Resolver(id, weight, requirements, plan = actions))
                         }
                     } else {
                         activities[id] = BotActivity(id, capacity, requirements, plan = actions)
@@ -117,7 +115,7 @@ fun loadActivities(paths: List<String>): Map<String, BotActivity> {
             fragment.resolveActions(template, actions)
             if (fragment.type == "resolver") {
                 for (fact in fragment.produces) {
-                    resolvers[fact] = Resolver(id, requirements, actions)
+                    resolvers.getOrPut(fact) { mutableListOf() }.add(Resolver(id, fragment.weight, requirements, actions))
                 }
             } else {
                 activities[id] = BotActivity(id, fragment.capacity, requirements, actions)
@@ -129,7 +127,6 @@ fun loadActivities(paths: List<String>): Map<String, BotActivity> {
         }
         activities.size
     }
-    return activities
 }
 
 private fun ConfigReader.produces() {

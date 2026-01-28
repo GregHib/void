@@ -1,3 +1,9 @@
+[idle]
+capacity = 2048
+plan = [
+    { wait = 50 } # 30s
+]
+
 [woodcutting_template]
 requires = [
     { carries = "$hatchet" },
@@ -77,7 +83,6 @@ produces = [
 type = "teleport"
 weight = 8
 requires = [
-    { variable = "spellbook", value = "normal" },
     { carries = "ring_of_duelling_*" }
 ]
 plan = [

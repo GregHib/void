@@ -37,4 +37,8 @@ data class Bot(val player: Player) : Character by player {
         }
         frame().state = BehaviourState.Failed(Reason.Cancelled)
     }
+
+    override fun toString(): String {
+        return "BOT ${player.accountName}"
+    }
 }
