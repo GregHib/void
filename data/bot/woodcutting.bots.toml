@@ -16,7 +16,7 @@ requires = [
     { skill = "woodcutting", min = 1, max = 15 },
 ]
 produces = [
-    { item = "logs" }
+    { carries = "logs" }
 ]
 
 [oak_trees]
@@ -27,7 +27,7 @@ requires = [
     { skill = "woodcutting", min = 15, max = 30 },
 ]
 produces = [
-    { item = "oak_logs" }
+    { carries = "oak_logs" }
 ]
 
 
@@ -42,7 +42,7 @@ plan = [
     { option = "Buy-1", interface = "shop:inventory:$item" },
 ]
 produces = [
-    { item = "$item" }
+    { carries = "$item" }
 ]
 
 [buy_iron_hatchet]

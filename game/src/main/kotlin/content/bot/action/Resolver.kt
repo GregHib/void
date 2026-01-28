@@ -10,4 +10,5 @@ data class Resolver(
     override val id: String,
     override val requires: List<Fact> = emptyList(),
     override val plan: List<BotAction> = emptyList(),
+    override val produces: Set<Fact> = emptySet(),
 ) : Behaviour
