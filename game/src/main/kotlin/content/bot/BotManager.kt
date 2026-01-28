@@ -56,7 +56,7 @@ class BotManager(
     }
 
     private fun hasRequirements(bot: Bot, activity: BotActivity): Boolean {
-        return slots.hasFree(activity) && !bot.blocked.contains(activity.id) && activity.requires.all { it is MandatoryFact && it.check(bot) }
+        return slots.hasFree(activity) && !bot.blocked.contains(activity.id) && activity.requires.all { it !is MandatoryFact || it.check(bot) }
     }
 
     fun assign(bot: Bot, id: String): Boolean {
@@ -85,7 +85,7 @@ class BotManager(
     private fun assign(bot: Bot, activity: BotActivity) {
         AuditLog.event(bot, "assigned", activity.id)
         if (bot.player["debug", false]) {
-            logger.info { "Assigned bot: ${bot.player.accountName} task ${activity.id}." }
+            logger.info { "Assigned bot: '${bot.player.accountName}' task '${activity.id}'." }
         }
         slots.occupy(activity)
         bot.previous = activity
@@ -134,7 +134,7 @@ class BotManager(
             }
             options.add(resolver)
         }
-        return options.randomOrNull(random)
+        return options.minByOrNull { it.weight }
     }
 
     private fun execute(bot: Bot) {
