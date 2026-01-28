@@ -37,8 +37,10 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
     ) {
         timedLoad("npc extra") {
             val ids = Object2IntOpenHashMap<String>()
+            val refs = Object2IntOpenHashMap<String>()
             ids.defaultReturnValue(-1)
             for (path in paths) {
+                refs.clear()
                 Config.fileReader(path, 150) {
                     while (nextSection()) {
                         val stringId = section()
@@ -48,8 +50,8 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                             when (val key = key()) {
                                 "clone" -> {
                                     val name = string()
-                                    val npc = ids.getInt(name)
-                                    require(npc >= 0) { "Cannot find npc id to clone '$name'" }
+                                    val npc = refs.getInt(name)
+                                    require(npc >= 0) { "Cannot find npc id to clone '$name'. Make sure it's in the same file." }
                                     val definition = definitions[npc]
                                     extras.putAll(definition.extras ?: continue)
                                 }
@@ -80,6 +82,7 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                             }
                         }
                         require(!ids.containsKey(stringId)) { "Duplicate npc id found '$stringId' at $path." }
+                        refs[stringId] = id
                         ids[stringId] = id
                         definitions[id].stringId = stringId
                         if (extras.isNotEmpty()) {
