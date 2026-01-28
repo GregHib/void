@@ -25,6 +25,7 @@ data class Bot(val player: Player) : Character by player {
 
     internal fun reset() {
         frames.clear()
+        blocked.clear()
     }
 
     internal fun queue(frame: BehaviourFrame) {
