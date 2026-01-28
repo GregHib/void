@@ -1,10 +1,5 @@
-[idle]
-capacity = 2048
-plan = [
-    { wait = 50 } # 30s
-]
-
 [woodcutting_template]
+type = "activity"
 requires = [
     { carries = "$hatchet" },
     { location = "$location" },

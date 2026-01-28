@@ -5,6 +5,7 @@ import content.bot.action.*
 import content.bot.fact.Fact
 import content.bot.fact.MandatoryFact
 import content.bot.fact.ResolvableFact
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.event.AuditLog
@@ -69,9 +70,16 @@ class BotManager(
         val activity = if (bot.previous != null && hasRequirements(bot, bot.previous!!)) {
             bot.previous
         } else {
+            // TODO could be a command
+//            if (bot.player["debug", false]) {
+//                for (activity in activities.values) {
+//                    logger.info { "Activity ${activity.id}: ${hasRequirements(bot, activity)} ${activity.requires.map { "[${it}=${it !is MandatoryFact}+${it.check(bot)}]" }}." }
+//                }
+//            }
             activities.values
                 .filter { hasRequirements(bot, it) }
                 .randomOrNull(random)
+                ?: BotActivity("idle", 2048, plan = listOf(BotAction.Wait(50))) // 30s
         }
         if (activity == null) {
             if (bot.player["debug", false]) {
@@ -112,7 +120,9 @@ class BotManager(
                     logger.info { "Starting resolution: ${resolver.id} for ${behaviour.id} req ${requirement}." }
                 }
                 frame.blocked.add(resolver.id)
-                bot.queue(BehaviourFrame(resolver))
+                val resolverFrame = BehaviourFrame(resolver)
+                bot.queue(resolverFrame)
+                resolverFrame.start(bot)
                 return
             }
         }

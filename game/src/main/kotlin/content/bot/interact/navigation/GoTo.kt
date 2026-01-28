@@ -2,12 +2,17 @@ package content.bot.interact.navigation
 
 import com.github.michaelbull.logging.InlineLogger
 import content.bot.Bot
+import content.bot.bot
 import content.bot.interact.navigation.graph.Edge
 import content.bot.interact.navigation.graph.NavigationGraph
 import content.bot.interact.navigation.graph.waypoints
 import content.bot.interact.path.*
+import content.bot.isBot
 import content.entity.player.effect.energy.energyPercent
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeoutOrNull
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.update.view.Viewport.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.entity.character.move.running
@@ -71,7 +76,7 @@ private suspend fun Bot.goTo(strategy: NodeTargetStrategy): Tile? {
     return result
 }
 
-private fun updateGraph(bot: Bot) {
+fun updateGraph(bot: Bot) {
     val graph: NavigationGraph = get()
     val edges = graph.get(bot.player)
     edges.clear()
@@ -101,7 +106,7 @@ private suspend fun Bot.run() {
     player.instructions.send(InteractInterface(interfaceId = 750, componentId = 1, itemId = -1, itemSlot = -1, option = 0))
 }
 
-private suspend fun Bot.navigate() {
+suspend fun Bot.navigate() {
     val waypoints = player.waypoints.toMutableList().iterator()
     while (waypoints.hasNext()) {
         val waypoint = waypoints.next()
@@ -127,4 +132,5 @@ private suspend fun Bot.navigate() {
         waypoints.remove()
     }
     player["navigating"] = false
+    frame().completed()
 }
