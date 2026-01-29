@@ -181,6 +181,15 @@ class GrandExchange(
                 // Find the highest buyer
                 val buying = offers.buying(offer.item)
                 val entry = buying.lastEntry()
+                if (Settings["grandExchange.instantOffer", false]) {
+                    val percent = Settings["grandExchange.instantSellUnderMarketPrice", 0.0]
+                    val marketPrice = history.marketPrice(offer.item)
+                    val instantPrice = marketPrice - (marketPrice * percent).toInt()
+                    if (offer.price <= instantPrice) {
+                        exchange(offer, pending.account, offer.price, mutableListOf(OpenOffer(remaining = offer.amount, lastActive = 0)))
+                        break
+                    }
+                }
                 if (entry == null || entry.key < offer.price || !exchange(offer, pending.account, entry.key, entry.value)) {
                     offers.sell(pending.account, offer)
                     break
@@ -191,6 +200,15 @@ class GrandExchange(
                 // Find the cheapest seller
                 val selling = offers.selling(offer.item)
                 val entry = selling.firstEntry()
+                if (Settings["grandExchange.instantOffer", false]) {
+                    val percent = Settings["grandExchange.instantBuyOverMarketPrice", 0.0]
+                    val marketPrice = history.marketPrice(offer.item)
+                    val instantPrice = marketPrice + (marketPrice * percent).toInt()
+                    if (offer.price >= instantPrice) {
+                        exchange(offer, pending.account, instantPrice, mutableListOf(OpenOffer(remaining = offer.amount, lastActive = 0)))
+                        break
+                    }
+                }
                 if (entry == null || entry.key > offer.price || !exchange(offer, pending.account, entry.key, entry.value)) {
                     offers.buy(pending.account, offer)
                     break
