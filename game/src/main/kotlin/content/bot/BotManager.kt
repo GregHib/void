@@ -17,6 +17,7 @@ import world.gregs.voidps.type.random
 class BotManager(
     private val activities: MutableMap<String, BotActivity> = mutableMapOf(),
     private val resolvers: MutableMap<Fact, MutableList<Resolver>> = mutableMapOf(),
+    private val groups: MutableMap<String, MutableList<String>> = mutableMapOf(),
 ) : Runnable {
     val slots = ActivitySlots()
     val bots = mutableListOf<Bot>()
@@ -24,6 +25,16 @@ class BotManager(
 
     fun add(bot: Bot) {
         bots.add(bot)
+        for (activity in activities.values) {
+            if (activity.requires.any { !it.check(bot) }) {
+                continue
+            }
+            bot.available.add(activity.id)
+        }
+    }
+
+    fun update(bot: Bot, event: String) {
+
     }
 
     fun remove(bot: Bot): Boolean {
@@ -35,7 +46,7 @@ class BotManager(
     }
 
     fun load(files: ConfigFiles): BotManager {
-        loadActivities(files.list(Settings["bots.definitions"]), activities, resolvers)
+        loadActivities(files.list(Settings["bots.definitions"]), activities, groups, resolvers)
         return this
     }
 
@@ -67,16 +78,15 @@ class BotManager(
         val activity = if (bot.previous != null && hasRequirements(bot, bot.previous!!)) {
             bot.previous
         } else {
-            // TODO could be a command
-//            if (bot.player["debug", false]) {
-//                for (activity in activities.values) {
-//                    logger.info { "Activity ${activity.id}: ${hasRequirements(bot, activity)} ${activity.requires.map { "[${it}=${it !is MandatoryFact}+${it.check(bot)}]" }}." }
-//                }
-//            }
-            activities.values
-                .filter { hasRequirements(bot, it) }
-                .randomOrNull(random)
-                ?: BotActivity("idle", 2048, plan = listOf(BotAction.Wait(50))) // 30s
+            val id = bot.available.filter {
+                val activity = activities[it]
+                activity != null && hasRequirements(bot, activity)
+            }.randomOrNull(random)
+            if (id == null) {
+                BotActivity("idle", 2048, plan = listOf(BotAction.Wait(50))) // 30s
+            } else {
+                activities[id]
+            }
         }
         if (activity == null) {
             if (bot.player["debug", false]) {

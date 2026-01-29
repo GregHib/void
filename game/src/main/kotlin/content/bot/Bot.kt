@@ -15,6 +15,7 @@ data class Bot(val player: Player) : Character by player {
     val blocked: MutableSet<String> = mutableSetOf()
     var previous: BotActivity? = null
     val frames = Stack<BehaviourFrame>()
+    val available = mutableSetOf<String>()
 
     fun noTask() = frames.isEmpty()
 

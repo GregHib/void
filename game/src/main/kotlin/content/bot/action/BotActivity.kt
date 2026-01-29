@@ -33,7 +33,7 @@ data class BotActivity(
     override val produces: Set<Fact> = emptySet(),
 ) : Behaviour
 
-fun loadActivities(paths: List<String>, activities: MutableMap<String, BotActivity>, resolvers: MutableMap<Fact, MutableList<Resolver>>) {
+fun loadActivities(paths: List<String>, activities: MutableMap<String, BotActivity>, groups: MutableMap<String, MutableList<String>>, resolvers: MutableMap<Fact, MutableList<Resolver>>) {
     val fragments = mutableMapOf<String, BehaviourFragment>()
     timedLoad("bot activity") {
         val reqClones = mutableMapOf<String, String>()
@@ -145,6 +145,14 @@ fun loadActivities(paths: List<String>, activities: MutableMap<String, BotActivi
         // Templates aren't selectable activities
         for (template in templates) {
             activities.remove(template)
+        }
+        // Group activities by requirement types
+        for (activity in activities.values) {
+            for (fact in activity.requires) {
+                for (key in fact.keys()) {
+                    groups.getOrPut(key) { mutableListOf() }.add(activity.id)
+                }
+            }
         }
         activities.size
     }

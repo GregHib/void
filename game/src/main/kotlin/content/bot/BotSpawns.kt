@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.sex
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
@@ -68,6 +69,7 @@ class BotSpawns(
         adminCommand("bots", intArg("count", optional = true), desc = "Spawn (count) number of bots", handler = ::spawn)
         adminCommand("clear_bots", intArg("count", optional = true), desc = "Clear all or some amount of bots", handler = ::clear)
         adminCommand("bot", stringArg("task", optional = true, autofill = tasks.names), desc = "Toggle yourself on/off as a bot player", handler = ::toggle)
+        adminCommand("bot_info", desc = "Print bot info", handler = ::info)
     }
 
     private fun loadSettings() {
@@ -105,6 +107,14 @@ class BotSpawns(
                     accounts.logout(bot.player, false)
                 }
             }
+        }
+    }
+
+    fun info(player: Player, args: List<String>) {
+        val bot = player.bot
+        player.message("Available activities:", ChatType.Console)
+        for (activity in bot.available) {
+            player.message("  $activity", ChatType.Console)
         }
     }
 
