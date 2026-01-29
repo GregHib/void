@@ -132,5 +132,5 @@ suspend fun Bot.navigate() {
         waypoints.remove()
     }
     player["navigating"] = false
-    frame().completed()
+    frame().success()
 }
