@@ -138,9 +138,9 @@ sealed interface BotAction {
     data class WaitFullInventory(val timeout: Int) : BotAction
 
     /**
-     * TODO how to handle repeat actions e.g. repeat Chop-down trees until inv is full
+     * TODO how to handle repeat actions e.g. repeat Chop-down trees until inv is full - These are actions Gathering, Skilling etc..
      *      more resolvers like bank all, drop cheap items
-     *      how to handle combat, one task or multiple?
+     *      how to handle combat, one task or multiple? - One Fight action
      *          frames should have tick(): State methods
      *          Combat should be an action which has a state machine for eating, retargeting, looting etc..
      *          GatheringActivity
@@ -154,5 +154,41 @@ sealed interface BotAction {
      *         Received an item recently? Add relevant activties to that item to the list of posibilities
      *         Been too long since you picked up an item, now remove that goal from the list
      *         No posibilities? Now expand search wider
+     *
+     *    Open questions:
+     *     - Complex activities like minigames, quests
+     *        Minigames:
+     *           They are closed mechanical systems so they are actions.
+     *            JoinMinigameLobby - Success, Timeout, Kicked etc..
+     *            PlayMinigame - Roll selection, objectives, movement, combat, scoring. Fails on game end or leaving/disconnect
+     *        Trading with players:
+     *           Outcomes are non-deterministic, waiting on player timing
+     *           SellingAction
+     *           TradeAction
+     *            inits trade
+     *            trade rules
+     *                max wait
+     *                accepted items
+     *                price bounds
+ *                reacts to
+     *                offer chances
+     *                cancellation
+*                 terminates with success/failure
+     *        Quests:
+     *          Some complex quest mechanics might need custom actions
+     *          Activities:
+     *            TalkToCook
+     *            GetBucket
+     *            GetMilk
+     *            GetEgg
+     *            ReturnToCook
+     *     - navigation + actions
+     *     - targetting
+     *     - activity generators - reactive loading
+     *          Separate mandatory and resolvable requirements
+ *              mandatory requirements become gates for if activities are in the current pool
+ *              Listeners wait for state changes on specific mandatory requirements (level up, skill changes) and revaluate adding to activity pool
+ *                  These listeners also check current activity requirements and fail it if no longer gated
+     *
      */
 }

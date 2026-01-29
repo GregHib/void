@@ -1,30 +1,14 @@
 package content.bot
 
-import content.bot.action.BehaviourFrame
-import content.bot.action.BehaviourState
-import content.bot.action.BotAction
-import content.bot.action.BotActivity
-import content.bot.action.Reason
-import content.bot.action.Resolver
-import content.bot.action.SoftReason
+import content.bot.action.*
 import content.bot.fact.AtTile
-import content.bot.fact.CarriesItem
-import content.bot.fact.EquipsItem
 import content.bot.fact.Fact
 import content.bot.fact.FactClone
-import content.bot.fact.MandatoryFact
 import content.bot.fact.HasSkillLevel
-import content.bot.fact.HasVariable
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.cache.config.data.InventoryDefinition
-import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.restrict.ValidItemRestriction
-import world.gregs.voidps.engine.inv.stack.ItemDependentStack
 
 class BotManagerTest {
 
@@ -49,7 +33,7 @@ class BotManagerTest {
     fun `Activity capacity is respected`() {
         val activity = testActivity(
             id = "mine",
-            plan = listOf(BotAction.Wait(1))
+            plan = listOf(BotAction.Clone(""))
         )
         val manager = BotManager(mutableMapOf(activity.id to activity))
 
@@ -83,8 +67,8 @@ class BotManagerTest {
         val activity = testActivity(
             id = "task",
             plan = listOf(
-                BotAction.Wait(1),
-                BotAction.Wait(1)
+                BotAction.Clone("1"),
+                BotAction.Clone("1")
             )
         )
         val frame = BehaviourFrame(activity)
@@ -202,7 +186,7 @@ class BotManagerTest {
     fun `Failed activity is blocked`() {
         val activity = testActivity(
             id = "fish",
-            plan = listOf(BotAction.Wait(1))
+            plan = listOf(BotAction.Clone(""))
         )
 
         val manager = BotManager(mutableMapOf(activity.id to activity))
@@ -222,7 +206,7 @@ class BotManagerTest {
     fun `Behaviour without requirements isn't started`() {
         val activity = testActivity(
             id = "test",
-            requirements = listOf(
+            requires = listOf(
                 HasSkillLevel(Skill.Attack, 99, 99)
             ),
             plan = listOf(BotAction.Wait(4))
@@ -251,7 +235,7 @@ class BotManagerTest {
         )
         val activity = testActivity(
             id = "woodcut",
-            requirements = listOf(fact),
+            resolves = listOf(fact),
             plan = listOf(BotAction.Wait(1))
         )
         val manager = BotManager(
@@ -276,8 +260,8 @@ class BotManagerTest {
 
         val activity = testActivity(
             id = "mine",
-            requirements = listOf(fact),
-            plan = listOf(BotAction.Wait(1))
+            resolves = listOf(fact),
+            plan = listOf(BotAction.Clone(""))
         )
 
         val manager = BotManager(
@@ -298,7 +282,7 @@ class BotManagerTest {
         val resolver = Resolver(id = "get_key", weight = 1)
         val activity = testActivity(
             id = "open_door",
-            requirements = listOf(fact),
+            resolves = listOf(fact),
             plan = listOf(BotAction.Wait(1))
         )
         val manager = BotManager(
@@ -328,7 +312,7 @@ class BotManagerTest {
         )
         val activity = testActivity(
             id = "enter_zone",
-            requirements = listOf(fact),
+            resolves = listOf(fact),
             plan = listOf(BotAction.Wait(1))
         )
         val manager = BotManager(
@@ -356,7 +340,7 @@ class BotManagerTest {
         )
         val activity = testActivity(
             id = "smelt",
-            requirements = listOf(fact),
+            resolves = listOf(fact),
             plan = listOf(BotAction.Wait(1))
         )
         val manager = BotManager(
@@ -385,7 +369,7 @@ class BotManagerTest {
         )
         val activity = testActivity(
             id = "craft",
-            requirements = listOf(fact),
+            resolves = listOf(fact),
             plan = listOf(BotAction.Wait(1))
         )
         val manager = BotManager(
@@ -412,7 +396,7 @@ class BotManagerTest {
         )
         val activity = testActivity(
             id = "work",
-            requirements = listOf(fact),
+            resolves = listOf(fact),
             plan = listOf(BotAction.Wait(1))
         )
         val manager = BotManager(
@@ -429,7 +413,8 @@ class BotManagerTest {
 
     fun testActivity(
         id: String,
-        requirements: List<Fact> = emptyList(),
+        requires: List<Fact> = emptyList(),
+        resolves: List<Fact> = emptyList(),
         plan: List<BotAction>
-    ) = BotActivity(id, 1, requirements, plan)
+    ) = BotActivity(id, 1, requires, resolves, plan)
 }
