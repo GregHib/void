@@ -33,8 +33,23 @@ class BotManager(
         }
     }
 
-    fun update(bot: Bot, event: String) {
-
+    fun update(bot: Bot, group: String) {
+        val iterator = bot.available.iterator()
+        while (iterator.hasNext()) {
+            val id = iterator.next()
+            val activity = activities[id] ?: continue
+            // TODO could filter by keys
+            if (activity.requires.any { !it.check(bot) }) {
+                iterator.remove()
+            }
+        }
+        for (id in groups[group] ?: return) {
+            val activity = activities[id] ?: continue
+            if (activity.requires.any { !it.check(bot) }) {
+                continue
+            }
+            bot.available.add(activity.id)
+        }
     }
 
     fun remove(bot: Bot): Boolean {
