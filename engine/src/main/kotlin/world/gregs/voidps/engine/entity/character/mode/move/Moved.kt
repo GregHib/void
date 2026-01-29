@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.mode.move
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Wildcard
@@ -23,21 +24,21 @@ interface Moved {
         }
     }
 
-    fun entered(area: String, handler: Player.(area: Area) -> Unit) {
+    fun entered(area: String, handler: Player.(area: AreaDefinition) -> Unit) {
         entered.getOrPut(area) { mutableListOf() }.add(handler)
     }
 
-    fun exited(area: String, handler: Player.(area: Area) -> Unit) {
+    fun exited(area: String, handler: Player.(area: AreaDefinition) -> Unit) {
         exited.getOrPut(area) { mutableListOf() }.add(handler)
     }
 
     companion object : AutoCloseable {
-        private val entered = Object2ObjectOpenHashMap<String, MutableList<Player.(Area) -> Unit>>(25)
-        private val exited = Object2ObjectOpenHashMap<String, MutableList<Player.(Area) -> Unit>>(25)
+        private val entered = Object2ObjectOpenHashMap<String, MutableList<Player.(AreaDefinition) -> Unit>>(25)
+        private val exited = Object2ObjectOpenHashMap<String, MutableList<Player.(AreaDefinition) -> Unit>>(25)
         val playerMoved = ObjectArrayList<(Player, Tile) -> Unit>(15)
         private val npcMoved = Object2ObjectOpenHashMap<String, MutableList<(NPC, Tile) -> Unit>>(10)
 
-        fun enter(player: Player, id: String, area: Area) {
+        fun enter(player: Player, id: String, area: AreaDefinition) {
             for (handler in entered[id] ?: emptyList()) {
                 handler(player, area)
             }
@@ -46,7 +47,7 @@ interface Moved {
             }
         }
 
-        fun exit(player: Player, id: String, area: Area) {
+        fun exit(player: Player, id: String, area: AreaDefinition) {
             for (handler in exited[id] ?: emptyList()) {
                 handler(player, area)
             }

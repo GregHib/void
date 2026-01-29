@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Nested
 import world.gregs.voidps.engine.Caller
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.ScriptTest
+import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.Tile
@@ -67,12 +68,13 @@ class MovedTest {
         override fun Script.register(args: List<String>, caller: Caller) {
             entered(args[0]) { area ->
                 caller.call()
-                assertEquals(Rectangle(Tile(1, 2), 1, 2), area)
+                assertEquals(Rectangle(Tile(1, 2), 1, 2), area.area)
             }
         }
 
         override fun invoke(args: List<String>) {
-            Moved.enter(Player(), args[0], Rectangle(Tile(1, 2), 1, 2))
+            val def = AreaDefinition("", area = Rectangle(Tile(1, 2), 1, 2), tags = emptySet())
+            Moved.enter(Player(), args[0], def)
         }
 
         override val apis = listOf(Moved)
@@ -89,12 +91,13 @@ class MovedTest {
         override fun Script.register(args: List<String>, caller: Caller) {
             exited(args[0]) { area ->
                 caller.call()
-                assertEquals(Rectangle(Tile(1, 2), 1, 2), area)
+                assertEquals(Rectangle(Tile(1, 2), 1, 2), area.area)
             }
         }
 
         override fun invoke(args: List<String>) {
-            Moved.exit(Player(), args[0], Rectangle(Tile(1, 2), 1, 2))
+            val def = AreaDefinition("", area = Rectangle(Tile(1, 2), 1, 2), tags = emptySet())
+            Moved.exit(Player(), args[0], def)
         }
 
         override val apis = listOf(Moved)
