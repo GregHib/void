@@ -24,10 +24,8 @@ import world.gregs.voidps.network.client.instruction.InteractNPC
 import world.gregs.voidps.type.random
 
 sealed interface BotAction {
-    open fun start(bot: Bot): BehaviourState {
-        // TODO here's where code goes, either handle this way or put in an event handler for each type
-        return BehaviourState.Running
-    }
+    fun start(bot: Bot): BehaviourState = BehaviourState.Failed(Reason.Cancelled)
+    fun update(): BehaviourState = BehaviourState.Running
 
     sealed class RetryableAction : BotAction {
         abstract val retryTicks: Int
@@ -71,7 +69,7 @@ sealed interface BotAction {
         override val retryMax: Int = 0,
         val radius: Int = 10,
     ) : RetryableAction() {
-        override fun start(bot: Bot) : BehaviourState {
+        override fun start(bot: Bot): BehaviourState {
             val npcs = mutableListOf<NPC>()
             for (tile in Spiral.spiral(bot.player.tile, radius)) {
                 for (npc in NPCs.at(tile)) {
@@ -138,4 +136,23 @@ sealed interface BotAction {
     }
 
     data class WaitFullInventory(val timeout: Int) : BotAction
+
+    /**
+     * TODO how to handle repeat actions e.g. repeat Chop-down trees until inv is full
+     *      more resolvers like bank all, drop cheap items
+     *      how to handle combat, one task or multiple?
+     *          frames should have tick(): State methods
+     *          Combat should be an action which has a state machine for eating, retargeting, looting etc..
+     *          GatheringActivity
+     *          TravelActivity
+     *      how to handle navigation in a non-hacky way
+     *          navigation behaviours
+     *          make nav-graph points only?
+     *          combine nav-graph requirements with facts
+ *          Goal generators
+     *         Rather than check all req for all activties do it reactively
+     *         Received an item recently? Add relevant activties to that item to the list of posibilities
+     *         Been too long since you picked up an item, now remove that goal from the list
+     *         No posibilities? Now expand search wider
+     */
 }
