@@ -40,7 +40,7 @@ data class EquipsItem(
     val amount: Int = 1,
 ) : Fact(100) {
     override fun check(bot: Bot) = bot.player.equips(id, amount)
-    override fun keys() = setOf("equipment")
+    override fun keys() = setOf("inv:equipment")
 }
 
 data class HasVariable(
@@ -56,7 +56,7 @@ data class CarriesItem(
     val amount: Int = 1,
 ) : Fact(100) {
     override fun check(bot: Bot) = bot.player.carriesItem(id, amount)
-    override fun keys() = setOf("inventory")
+    override fun keys() = setOf("inv:inventory")
 }
 
 data class EquipsOne(
@@ -64,7 +64,7 @@ data class EquipsOne(
     val amount: Int = 1,
 ) : Fact(100) {
     override fun check(bot: Bot) = ids.any { id -> bot.player.equips(id, amount) }
-    override fun keys() = setOf("equipment")
+    override fun keys() = setOf("inv:equipment")
 }
 
 data class CarriesOne(
@@ -72,14 +72,14 @@ data class CarriesOne(
     val amount: Int = 1,
 ) : Fact(100) {
     override fun check(bot: Bot) = ids.any { id -> bot.player.carriesItem(id, amount) }
-    override fun keys() = setOf("inventory")
+    override fun keys() = setOf("inv:inventory")
 }
 
 data class HasInventorySpace(
     val amount: Int,
 ) : Fact(10) {
     override fun check(bot: Bot) = bot.player.inventory.spaces >= amount
-    override fun keys() = setOf("inventory")
+    override fun keys() = setOf("inv:inventory")
 }
 
 data class AtLocation(
