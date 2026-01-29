@@ -11,7 +11,8 @@ import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.SlayerTaskDefinitions
-import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.queue.queue
 
 class EnchantedGem(val slayerDefinitions: SlayerTaskDefinitions) : Script {
 
@@ -22,9 +23,9 @@ class EnchantedGem(val slayerDefinitions: SlayerTaskDefinitions) : Script {
         }
 
         itemOption("Activate", "enchanted_gem") {
-            strongQueue("enchanted_gem_activate") {
+            queue("enchanted_gem_activate") {
                 val master = slayerMaster
-                npc<Happy>(master, "Hello there $name, what can I help you with?")
+                npc<Happy>(master, "Hello there ${this@itemOption.name}, what can I help you with?")
                 choice {
                     howAmIDoing()
                     whoAreYou()
