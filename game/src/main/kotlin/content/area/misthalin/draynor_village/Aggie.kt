@@ -52,10 +52,10 @@ class Aggie : Script {
                                     }
                                 }
                             } else {
-                                npc<Happy>("Why, it's one of my most popular potions. The women here, they like to have smooth looking skin. And I must admin, some of the men buy it as well.")
+                                npc<Happy>("Why, it's one of my most popular potions. The women here, they like to have smooth looking skin. And I must admit, some of the men buy it as well.")
                                 npc<Neutral>("I can make it for you, just get me what's needed.")
                                 player<Quiz>("What do you need to make it?")
-                                npc<Neutral>("Well dearie, you need a base for the paste. That's a mix of ash and water. Then you need redberries to colour it as you want. Bring me those three items and I will make you some.")
+                                npc<Neutral>("Well dearie, you need a base for the paste. That's a mix of ash, flour and water. Then you need redberries to colour it as you want. Bring me those four items and I will make you some.")
                             }
                         }
                     }
