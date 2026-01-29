@@ -1,7 +1,7 @@
 [run_to_varrock]
 type = "activity"
 capacity = 1
-requires = [
+resolve = [
     { variable = "movement", value = "run" }
 ]
 plan = [

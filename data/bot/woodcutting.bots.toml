@@ -1,6 +1,6 @@
 [woodcutting_template]
 type = "activity"
-requires = [
+resolve = [
     { carries = "$hatchet" },
     { location = "$location" },
     { inventory_space = 20 },
@@ -32,7 +32,7 @@ produces = [
 ]
 
 [buy_from_shop]
-requires = [
+resolve = [
     { carries = "coins", amount = "$cost" },
     { location = "$shop_location" },
     { inventory_space = 1 },
@@ -93,6 +93,8 @@ type = "teleport"
 weight = 10
 requires = [
     { variable = "spellbook", value = "normal" },
+]
+resolve = [
     { carries = "fire_rune", amount = 1 },
     { carries = "air_rune", amount = 3 },
     { carries = "law_rune", amount = 1 },
