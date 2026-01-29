@@ -24,6 +24,7 @@ data class BehaviourFragment(
     val weight: Int,
     var template: String,
     override val requires: List<Fact> = emptyList(),
+    override val resolve: List<Fact> = emptyList(),
     override val plan: List<BotAction> = emptyList(),
     override val produces: Set<Fact> = emptySet(),
     val fields: Map<String, Any> = emptyMap(),

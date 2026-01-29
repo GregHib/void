@@ -3,9 +3,6 @@ package content.bot
 import com.github.michaelbull.logging.InlineLogger
 import content.bot.action.*
 import content.bot.fact.Fact
-import content.bot.fact.MandatoryFact
-import content.bot.fact.ResolvableFact
-import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.event.AuditLog
@@ -57,7 +54,7 @@ class BotManager(
     }
 
     private fun hasRequirements(bot: Bot, activity: BotActivity): Boolean {
-        return slots.hasFree(activity) && !bot.blocked.contains(activity.id) && activity.requires.all { it !is MandatoryFact || it.check(bot) }
+        return slots.hasFree(activity) && !bot.blocked.contains(activity.id) && activity.requires.all { it.check(bot) }
     }
 
     fun assign(bot: Bot, id: String): Boolean {
@@ -105,26 +102,28 @@ class BotManager(
             if (requirement.check(bot)) {
                 continue
             }
-            if (requirement is MandatoryFact) {
-                frame.fail(Reason.Requirement(requirement))
-                return
-            } else if (requirement is ResolvableFact) {
-                val resolver = pickResolver(bot, requirement, frame)
-                if (resolver == null) {
-                    frame.fail(Reason.Requirement(requirement)) // No way to resolve
-                    return
-                }
-                // Attempt resolution
-                AuditLog.event(bot, "start_resolver", resolver.id, behaviour.id)
-                if (bot.player["debug", false]) {
-                    logger.info { "Starting resolution: ${resolver.id} for ${behaviour.id} req ${requirement}." }
-                }
-                frame.blocked.add(resolver.id)
-                val resolverFrame = BehaviourFrame(resolver)
-                bot.queue(resolverFrame)
-                resolverFrame.start(bot)
+            frame.fail(Reason.Requirement(requirement))
+            return
+        }
+        for (requirement in behaviour.resolve) {
+            if (requirement.check(bot)) {
+                continue
+            }
+            val resolver = pickResolver(bot, requirement, frame)
+            if (resolver == null) {
+                frame.fail(Reason.Requirement(requirement)) // No way to resolve
                 return
             }
+            // Attempt resolution
+            AuditLog.event(bot, "start_resolver", resolver.id, behaviour.id)
+            if (bot.player["debug", false]) {
+                logger.info { "Starting resolution: ${resolver.id} for ${behaviour.id} req ${requirement}." }
+            }
+            frame.blocked.add(resolver.id)
+            val resolverFrame = BehaviourFrame(resolver)
+            bot.queue(resolverFrame)
+            resolverFrame.start(bot)
+            return
         }
         AuditLog.event(bot, "start_activity", behaviour.id)
         if (bot.player["debug", false]) {
@@ -133,13 +132,13 @@ class BotManager(
         frame.start(bot)
     }
 
-    private fun pickResolver(bot: Bot, fact: ResolvableFact, frame: BehaviourFrame): Behaviour? {
+    private fun pickResolver(bot: Bot, fact: Fact, frame: BehaviourFrame): Behaviour? {
         val options = mutableListOf<Resolver>()
         for (resolver in resolvers[fact] ?: return null) {
             if (frame.blocked.contains(resolver.id)) {
                 continue
             }
-            if (resolver.requires.any { fact -> fact is MandatoryFact && !fact.check(bot) }) {
+            if (resolver.requires.any { fact -> !fact.check(bot) }) {
                 continue
             }
             options.add(resolver)

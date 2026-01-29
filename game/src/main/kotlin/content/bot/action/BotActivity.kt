@@ -28,6 +28,7 @@ data class BotActivity(
     override val id: String,
     val capacity: Int,
     override val requires: List<Fact> = emptyList(),
+    override val resolve: List<Fact> = emptyList(),
     override val plan: List<BotAction> = emptyList(),
     override val produces: Set<Fact> = emptySet(),
 ) : Behaviour
@@ -35,7 +36,8 @@ data class BotActivity(
 fun loadActivities(paths: List<String>, activities: MutableMap<String, BotActivity>, resolvers: MutableMap<Fact, MutableList<Resolver>>) {
     val fragments = mutableMapOf<String, BehaviourFragment>()
     timedLoad("bot activity") {
-        val clones = mutableMapOf<String, String>()
+        val reqClones = mutableMapOf<String, String>()
+        val resClones = mutableMapOf<String, String>()
         for (path in paths) {
             Config.fileReader(path) {
                 while (nextSection()) {
@@ -46,11 +48,13 @@ fun loadActivities(paths: List<String>, activities: MutableMap<String, BotActivi
                     var weight = 0
                     var actions: List<BotAction> = emptyList()
                     var requirements: List<Fact> = emptyList()
+                    var resolvables: List<Fact> = emptyList()
                     var produces: List<Fact> = emptyList()
                     var fields: Map<String, Any> = emptyMap()
                     while (nextPair()) {
                         when (val key = key()) {
                             "requires" -> requirements = requirements()
+                            "resolve" -> resolvables = requirements()
                             "plan" -> actions = actions()
                             "produces" -> produces = requirements()
                             "capacity" -> capacity = int()
@@ -63,7 +67,11 @@ fun loadActivities(paths: List<String>, activities: MutableMap<String, BotActivi
                     }
                     val clone = requirements.filterIsInstance<FactClone>().firstOrNull()
                     if (clone != null) {
-                        clones[id] = clone.id
+                        reqClones[id] = clone.id
+                    }
+                    val resolveClone = resolvables.filterIsInstance<FactClone>().firstOrNull()
+                    if (resolveClone != null) {
+                        resClones[id] = resolveClone.id
                     }
 
                     if (template != null) {
@@ -89,13 +97,21 @@ fun loadActivities(paths: List<String>, activities: MutableMap<String, BotActivi
                     actions.addAll(index, list)
                 }
             }
-            for ((id, cloneId) in clones) {
+            for ((id, cloneId) in reqClones) {
                 val activity = activities[id] ?: continue
                 val clone = activities[cloneId] ?: continue
                 val requirements = activity.requires as MutableList<Fact>
                 requirements.removeIf { it is FactClone && it.id == cloneId }
                 requirements.addAll(clone.requires)
                 requirements.sortBy { it.priority }
+            }
+            for ((id, cloneId) in resClones) {
+                val activity = activities[id] ?: continue
+                val clone = activities[cloneId] ?: continue
+                val resolvables = activity.resolve as MutableList<Fact>
+                resolvables.removeIf { it is FactClone && it.id == cloneId }
+                resolvables.addAll(clone.resolve)
+                resolvables.sortBy { it.priority }
             }
         }
         // Fragments are partially filled behaviours with template + fields
@@ -110,15 +126,20 @@ fun loadActivities(paths: List<String>, activities: MutableMap<String, BotActivi
             fragment.resolveRequirements(template, requirements)
             requirements.sortBy { it.priority }
 
+            val resolvables = mutableListOf<Fact>()
+            resolvables.addAll(fragment.requires)
+            fragment.resolveRequirements(template, resolvables)
+            resolvables.sortBy { it.priority }
+
             val actions = mutableListOf<BotAction>()
             actions.addAll(fragment.plan)
             fragment.resolveActions(template, actions)
             if (fragment.type == "resolver") {
                 for (fact in fragment.produces) {
-                    resolvers.getOrPut(fact) { mutableListOf() }.add(Resolver(id, fragment.weight, requirements, actions))
+                    resolvers.getOrPut(fact) { mutableListOf() }.add(Resolver(id, fragment.weight, requirements, resolvables, actions))
                 }
             } else {
-                activities[id] = BotActivity(id, fragment.capacity, requirements, actions)
+                activities[id] = BotActivity(id, fragment.capacity, requirements, resolvables, actions)
             }
         }
         // Templates aren't selectable activities
