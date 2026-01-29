@@ -95,7 +95,7 @@ class AccountManager(
         val original = player.tile.minus(offset)
         for (def in Areas.get(original.zone)) {
             if (original in def.area) {
-                Moved.enter(player, def.name, def.area)
+                Moved.enter(player, def.name, def)
             }
         }
     }
@@ -127,7 +127,7 @@ class AccountManager(
             val original = player.tile.minus(offset)
             for (def in Areas.get(original.zone)) {
                 if (original in def.area) {
-                    Moved.exit(player, def.name, def.area)
+                    Moved.exit(player, def.name, def)
                 }
             }
             Despawn.player(player)

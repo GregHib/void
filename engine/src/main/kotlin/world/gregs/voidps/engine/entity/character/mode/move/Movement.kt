@@ -222,12 +222,12 @@ open class Movement(
                 val fromOriginal = from.minus(offset)
                 for (def in Areas.get(fromOriginal.zone)) {
                     if (fromOriginal in def.area && toOriginal !in def.area) {
-                        Moved.exit(character, def.name, def.area)
+                        Moved.exit(character, def.name, def)
                     }
                 }
                 for (def in Areas.get(toOriginal.zone)) {
                     if (toOriginal in def.area && fromOriginal !in def.area) {
-                        Moved.enter(character, def.name, def.area)
+                        Moved.enter(character, def.name, def)
                     }
                 }
             } else if (character is NPC) {

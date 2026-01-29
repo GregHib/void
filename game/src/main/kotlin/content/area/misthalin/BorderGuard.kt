@@ -1,6 +1,7 @@
 package content.area.misthalin
 
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -47,8 +48,8 @@ class BorderGuard : Script {
         exited("border_guard_draynor_falador", ::exit)
     }
 
-    fun enter(player: Player, area: Area) {
-        val border = area as Rectangle
+    fun enter(player: Player, def: AreaDefinition) {
+        val border = def.area as Rectangle
         if (player.steps.destination in border || player.steps.isEmpty()) {
             val tile = border.nearestTo(player.tile)
             val endSide = Border.getOppositeSide(border, tile)
@@ -60,8 +61,8 @@ class BorderGuard : Script {
         changeGuardState(guards, true)
     }
 
-    fun exit(player: Player, area: Area) {
-        val border = area as Rectangle
+    fun exit(player: Player, def: AreaDefinition) {
+        val border = def.area as Rectangle
         val guards = guards[border] ?: return
         player.steps.update(noCollision = false, noRun = false)
         changeGuardState(guards, false)
