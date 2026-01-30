@@ -6,13 +6,28 @@ resolve = [
     { inventory_space = 20 },
 ]
 plan = [
-    { option = "Chop-down", object = "$tree", retry_ticks = "$wait", retry_max = 10 },
+    { option = "Chop-down", object = "$tree" },
+]
+produces = [
+    { skill = "woodcutting" }
 ]
 
-[normal_trees]
+[go_to_lumbridge_north_trees]
+type = "resolver"
+resolve = [
+    { variable = "movement", value = "run" }
+]
+plan = [
+    { go_to = "lumbridge_north_trees" }
+]
+produces = [
+    { location = "lumbridge_north_trees" }
+]
+
+[lumbridge_trees]
 template = "woodcutting_template"
 capacity = 4
-fields = { hatchet = "iron_hatchet", location = "normal_trees", tree = "tree*", wait = 10 }
+fields = { hatchet = "iron_hatchet,steel_hatchet", location = "lumbridge_north_trees", tree = "tree" }
 requires = [
     { skill = "woodcutting", min = 1, max = 15 },
 ]
@@ -20,10 +35,10 @@ produces = [
     { carries = "logs" }
 ]
 
-[oak_trees]
+[lumbridge_oak_trees]
 template = "woodcutting_template"
-capacity = 4
-fields = { hatchet = "steel_hatchet", location = "oak_trees", tree = "oak_tree", wait = 10 }
+capacity = 2
+fields = { hatchet = "steel_hatchet", location = "lumbridge_north_trees", tree = "oak" }
 requires = [
     { skill = "woodcutting", min = 15, max = 30 },
 ]
@@ -31,91 +46,24 @@ produces = [
     { carries = "oak_logs" }
 ]
 
-[buy_from_shop]
-resolve = [
-    { carries = "coins", amount = "$cost" },
-    { location = "$shop_location" },
-    { inventory_space = 1 },
-]
-plan = [
-    { option = "Trade", npc = "$shopkeeper" },
-    { option = "Buy-1", interface = "shop:inventory:$item" },
+[draynor_oak_trees]
+template = "woodcutting_template"
+capacity = 2
+fields = { hatchet = "steel_hatchet", location = "draynor_oak_trees", tree = "oak" }
+requires = [
+    { skill = "woodcutting", min = 15, max = 30 },
 ]
 produces = [
-    { carries = "$item" }
+    { carries = "oak_logs" }
 ]
 
-[buy_iron_hatchet]
-type = "resolver"
-template = "buy_from_shop"
-fields = { cost = 25, shop_location = "axe_shop", shopkeeper = "bob", item = "iron_hatchet" }
+[draynor_willow_trees]
+template = "woodcutting_template"
+capacity = 6
+fields = { hatchet = "steel_hatchet,mithril_hatchet", location = "draynor_willow_trees", tree = "willow*" }
 requires = [
-    { skill = "woodcutting", min = 1 },
-]
-
-[buy_steel_hatchet]
-type = "resolver"
-template = "buy_from_shop"
-fields = { cost = 50, shop_location = "axe_shop", shopkeeper = "bob", item = "steel_hatchet" }
-requires = [
-    { skill = "woodcutting", min = 10 },
-]
-
-[ring_of_duelling_equipped]
-type = "teleport"
-weight = 10
-requires = [
-    { equips = "ring_of_duelling_*" }
-]
-plan = [
-    { option = "Castle Wars", interface = "equipment:inventory" },
+    { skill = "woodcutting", min = 30, max = 45 },
 ]
 produces = [
-    { location = "castle_wars_teleport" }
-]
-
-[ring_of_duelling]
-type = "teleport"
-weight = 8
-requires = [
-    { carries = "ring_of_duelling_*" }
-]
-plan = [
-    { option = "Rub", interface = "inventory:inventory" },
-    { option = "Select", interface = "choice:line1" },
-]
-produces = [
-    { location = "castle_wars_teleport" }
-]
-
-[teleport_varrock]
-type = "teleport"
-weight = 10
-requires = [
-    { variable = "spellbook", value = "normal" },
-]
-resolve = [
-    { carries = "fire_rune", amount = 1 },
-    { carries = "air_rune", amount = 3 },
-    { carries = "law_rune", amount = 1 },
-]
-plan = [
-    { option = "Cast", interface = "normal_spellbook:varrock_teleport" },
-]
-produces = [
-    { location = "varrock_teleport" }
-]
-
-[teleport_lumbridge]
-type = "teleport"
-weight = 5
-requires = [
-    { variable = "spellbook", value = "normal" },
-    { variable = "lumbridge_cooldown", value = "normal" },
-]
-plan = [
-    { option = "Cast", interface = "normal_spellbook:home_teleport" },
-]
-produces = [
-    { location = "lumbridge_teleport" }
+    { carries = "willow_logs" }
 ]

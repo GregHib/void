@@ -1,11 +1,11 @@
 package content.bot.action
 
-import content.bot.fact.Fact
+import content.bot.fact.Condition
 
 interface Behaviour {
     val id: String
-    val requires: List<Fact>
-    val resolve: List<Fact>
+    val requires: List<Condition>
+    val resolve: List<Condition>
     val plan: List<BotAction>
-    val produces: Set<Fact>
+    val produces: Set<Condition>
 }

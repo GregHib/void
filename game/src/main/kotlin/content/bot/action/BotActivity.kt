@@ -1,21 +1,9 @@
 package content.bot.action
 
-import content.bot.fact.FactClone
-import content.bot.fact.FactReference
-import content.bot.fact.HasInventorySpace
-import content.bot.fact.CarriesItem
+import content.bot.fact.Condition
 import content.bot.fact.Fact
-import content.bot.fact.EquipsItem
-import content.bot.fact.AtLocation
-import content.bot.fact.HasSkillLevel
-import content.bot.fact.AtTile
-import content.bot.fact.CarriesOne
-import content.bot.fact.EquipsOne
-import content.bot.fact.HasVariable
-import net.pearx.kasechange.toPascalCase
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
 import world.gregs.voidps.engine.timedLoad
@@ -27,13 +15,13 @@ import world.gregs.voidps.engine.timedLoad
 data class BotActivity(
     override val id: String,
     val capacity: Int,
-    override val requires: List<Fact> = emptyList(),
-    override val resolve: List<Fact> = emptyList(),
+    override val requires: List<Condition> = emptyList(),
+    override val resolve: List<Condition> = emptyList(),
     override val plan: List<BotAction> = emptyList(),
-    override val produces: Set<Fact> = emptySet(),
+    override val produces: Set<Condition> = emptySet(),
 ) : Behaviour
 
-fun loadActivities(paths: List<String>, activities: MutableMap<String, BotActivity>, groups: MutableMap<String, MutableList<String>>, resolvers: MutableMap<Fact, MutableList<Resolver>>) {
+fun loadActivities(paths: List<String>, activities: MutableMap<String, BotActivity>, groups: MutableMap<String, MutableList<String>>, resolvers: MutableMap<String, MutableList<Resolver>>) {
     val fragments = mutableMapOf<String, BehaviourFragment>()
     timedLoad("bot activity") {
         val reqClones = mutableMapOf<String, String>()
@@ -47,16 +35,16 @@ fun loadActivities(paths: List<String>, activities: MutableMap<String, BotActivi
                     var type = "activity"
                     var weight = 0
                     var actions: List<BotAction> = emptyList()
-                    var requirements: List<Fact> = emptyList()
-                    var resolvables: List<Fact> = emptyList()
-                    var produces: List<Fact> = emptyList()
+                    val requirements: MutableList<Condition> = mutableListOf()
+                    val resolvables: MutableList<Condition> = mutableListOf()
+                    val produces: MutableList<Condition> = mutableListOf()
                     var fields: Map<String, Any> = emptyMap()
                     while (nextPair()) {
                         when (val key = key()) {
-                            "requires" -> requirements = requirements()
-                            "resolve" -> resolvables = requirements()
+                            "requires" -> requirements(requirements) // TODO convert to pass mutable list + clone list
+                            "resolve" -> requirements(resolvables)
                             "plan" -> actions = actions()
-                            "produces" -> produces = requirements()
+                            "produces" -> requirements(produces)
                             "capacity" -> capacity = int()
                             "type" -> type = string()
                             "template" -> template = string()
@@ -65,23 +53,25 @@ fun loadActivities(paths: List<String>, activities: MutableMap<String, BotActivi
                             else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
                     }
-                    val clone = requirements.filterIsInstance<FactClone>().firstOrNull()
+                    val clone = requirements.filterIsInstance<Condition.Clone>().firstOrNull()
                     if (clone != null) {
                         reqClones[id] = clone.id
                     }
-                    val resolveClone = resolvables.filterIsInstance<FactClone>().firstOrNull()
+                    val resolveClone = resolvables.filterIsInstance<Condition.Clone>().firstOrNull()
                     if (resolveClone != null) {
                         resClones[id] = resolveClone.id
                     }
 
                     if (template != null) {
-                        fragments[id] = BehaviourFragment(id, type, capacity, weight, template, requirements, plan = actions, fields = fields)
+                        fragments[id] = BehaviourFragment(id, type, capacity, weight, template, requirements, resolvables, plan = actions, fields = fields)
                     } else if (type == "resolver") {
                         for (fact in produces) {
-                            resolvers.getOrPut(fact) { mutableListOf() }.add(Resolver(id, weight, requirements, plan = actions))
+                            for (key in fact.keys()) {
+                                resolvers.getOrPut(key) { mutableListOf() }.add(Resolver(id, weight, requirements, resolvables, plan = actions))
+                            }
                         }
                     } else {
-                        activities[id] = BotActivity(id, capacity, requirements, plan = actions)
+                        activities[id] = BotActivity(id, capacity, requirements, resolvables, plan = actions)
                     }
                 }
             }
@@ -100,18 +90,18 @@ fun loadActivities(paths: List<String>, activities: MutableMap<String, BotActivi
             for ((id, cloneId) in reqClones) {
                 val activity = activities[id] ?: continue
                 val clone = activities[cloneId] ?: continue
-                val requirements = activity.requires as MutableList<Fact>
-                requirements.removeIf { it is FactClone && it.id == cloneId }
+                val requirements = activity.requires as MutableList<Condition>
+                requirements.removeIf { it is Condition.Clone && it.id == cloneId }
                 requirements.addAll(clone.requires)
-                requirements.sortBy { it.priority }
+                requirements.sortBy { it.priority() }
             }
             for ((id, cloneId) in resClones) {
                 val activity = activities[id] ?: continue
                 val clone = activities[cloneId] ?: continue
-                val resolvables = activity.resolve as MutableList<Fact>
-                resolvables.removeIf { it is FactClone && it.id == cloneId }
+                val resolvables = activity.resolve as MutableList<Condition>
+                resolvables.removeIf { it is Condition.Clone && it.id == cloneId }
                 resolvables.addAll(clone.resolve)
-                resolvables.sortBy { it.priority }
+                resolvables.sortBy { it.priority() }
             }
         }
         // Fragments are partially filled behaviours with template + fields
@@ -121,22 +111,24 @@ fun loadActivities(paths: List<String>, activities: MutableMap<String, BotActivi
             val template = activities[fragment.template] ?: throw IllegalArgumentException("Unable to find template '${fragment.template}' for activity '$id'.")
             templates.add(fragment.template)
 
-            val requirements = mutableListOf<Fact>()
+            val requirements = mutableListOf<Condition>()
             requirements.addAll(fragment.requires)
-            fragment.resolveRequirements(template, requirements)
-            requirements.sortBy { it.priority }
+            fragment.resolveRequirements(requirements, template.requires)
+            requirements.sortBy { it.priority() }
 
-            val resolvables = mutableListOf<Fact>()
-            resolvables.addAll(fragment.requires)
-            fragment.resolveRequirements(template, resolvables)
-            resolvables.sortBy { it.priority }
+            val resolvables = mutableListOf<Condition>()
+            resolvables.addAll(fragment.resolve)
+            fragment.resolveRequirements(resolvables, template.resolve)
+            resolvables.sortBy { it.priority() }
 
             val actions = mutableListOf<BotAction>()
             actions.addAll(fragment.plan)
             fragment.resolveActions(template, actions)
             if (fragment.type == "resolver") {
                 for (fact in fragment.produces) {
-                    resolvers.getOrPut(fact) { mutableListOf() }.add(Resolver(id, fragment.weight, requirements, resolvables, actions))
+                    for (key in fact.keys()) {
+                        resolvers.getOrPut(key) { mutableListOf() }.add(Resolver(id, fragment.weight, requirements, resolvables, actions))
+                    }
                 }
             } else {
                 activities[id] = BotActivity(id, fragment.capacity, requirements, resolvables, actions)
@@ -153,18 +145,9 @@ fun loadActivities(paths: List<String>, activities: MutableMap<String, BotActivi
                     groups.getOrPut(key) { mutableListOf() }.add(activity.id)
                 }
             }
+            println(activity)
         }
         activities.size
-    }
-}
-
-private fun ConfigReader.produces() {
-    while (nextElement()) {
-        while (nextEntry()) {
-            val key = key()
-            val value = value()
-//            println("$key = $value")
-        }
     }
 }
 
@@ -178,17 +161,13 @@ private fun ConfigReader.fields(): Map<String, Any> {
     return map
 }
 
-private fun ConfigReader.requirements(): List<Fact> {
-    val list = mutableListOf<Fact>()
+private fun ConfigReader.requirements(list: MutableList<Condition>) {
     while (nextElement()) {
         var type = ""
         var id = ""
         var value: Any? = null
-        var min = 1
-        var max = 1
-        var x = 0
-        var y = 0
-        var level = 0
+        var min: Int? = null
+        var max: Int? = null
         val references = mutableMapOf<String, String>()
         while (nextEntry()) {
             when (val key = key()) {
@@ -225,30 +204,6 @@ private fun ConfigReader.requirements(): List<Fact> {
                         else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
                     }
                 }
-                "x" -> {
-                    type = "tile"
-                    when (val value = value()) {
-                        is Int -> x = value
-                        is String if value.contains('$') -> references[key] = value
-                        else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
-                    }
-                }
-                "y" -> {
-                    type = "tile"
-                    when (val value = value()) {
-                        is Int -> y = value
-                        is String if value.contains('$') -> references[key] = value
-                        else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
-                    }
-                }
-                "level" -> {
-                    type = "tile"
-                    when (val value = value()) {
-                        is Int -> level = value
-                        is String if value.contains('$') -> references[key] = value
-                        else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
-                    }
-                }
                 "radius" -> {
                     type = "tile"
                     when (val value = value()) {
@@ -260,33 +215,48 @@ private fun ConfigReader.requirements(): List<Fact> {
                 "value" -> value = value()
             }
         }
-        var requirement = when (type) {
-            "skill" -> HasSkillLevel(Skill.of(id.toPascalCase())!!, min, max)
-            "carries" -> if (id.any { it == '*' || it == '#' }) {
-                CarriesOne(Wildcards.get(id, Wildcard.Item), min)
-            } else {
-                CarriesItem(id, min)
+        var requirement = getRequirement(type, id, min, max, value)
+        if (requirement == null) {
+            if (type == "holds") {
+                throw IllegalArgumentException("Unknown requirement type 'holds'; did you mean 'carries' or 'equips'? ${exception()}.")
             }
-            "equips" -> if (id.any { it == '*' || it == '#' }) {
-                EquipsOne(Wildcards.get(id, Wildcard.Item), min)
-            } else {
-                EquipsItem(id, min)
-            }
-            "variable" -> HasVariable(id, value)
-            "clone" -> FactClone(id)
-            "inventory_space" -> HasInventorySpace(min)
-            "location" -> AtLocation(id)
-            "tile" -> AtTile(x, y, level, min)
-            "holds" -> throw IllegalArgumentException("Unknown requirement type 'holds'; did you mean 'carries' or 'equips'? ${exception()}.")
-            else -> throw IllegalArgumentException("Unknown requirement type: $type ${exception()}")
+            throw IllegalArgumentException("Unknown requirement type: $type ${exception()}")
         }
         if (references.isNotEmpty()) {
-            requirement = FactReference(requirement, references)
+            requirement = Condition.Reference(type, id, value, min, max, references)
         }
         list.add(requirement)
     }
-    list.sortBy { it.priority }
-    return list
+    list.sortBy { it.priority() }
+}
+
+private fun getRequirement(type: String, id: String, min: Int?, max: Int?, value: Any?): Condition? = when (type) {
+    "skill" -> Condition.range(Fact.SkillLevel.of(id), min, max)
+    "carries" -> if (id.contains(",")) {
+        Condition.Any(id.split(",").map { Condition.range(Fact.InventoryCount(it), min, max) })
+    } else if (id.any { it == '*' || it == '#' }) {
+        Condition.Any(Wildcards.get(id, Wildcard.Item).map { Condition.range(Fact.InventoryCount(it), min, max) })
+    } else {
+        Condition.range(Fact.InventoryCount(id), min, max)
+    }
+    "equips" -> if (id.contains(",")) {
+        Condition.Any(id.split(",").map { Condition.range(Fact.EquipCount(it), min, max) })
+    } else if (id.any { it == '*' || it == '#' }) {
+        Condition.Any(Wildcards.get(id, Wildcard.Item).map { Condition.range(Fact.EquipCount(it), min, max) })
+    } else {
+        Condition.range(Fact.EquipCount(id), min, max)
+    }
+    "variable" -> when(value) {
+        is Int -> Condition.Equals(Fact.IntVariable(id), value)
+        is String -> Condition.Equals(Fact.StringVariable(id), value)
+        is Double -> Condition.Equals(Fact.DoubleVariable(id), value)
+        is Boolean -> Condition.Equals(Fact.BoolVariable(id), value)
+        else -> null
+    }
+    "clone" -> Condition.Clone(id)
+    "inventory_space" -> Condition.range(Fact.InventorySpace, min, max)
+    "location" -> Condition.Area(Fact.PlayerTile, id)
+    else -> null
 }
 
 private fun ConfigReader.actions(): List<BotAction> {

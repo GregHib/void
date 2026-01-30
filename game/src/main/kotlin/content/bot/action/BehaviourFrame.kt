@@ -19,6 +19,11 @@ data class BehaviourFrame(
         state = action.start(bot)
     }
 
+    fun update(bot: Bot) {
+        val action = action()
+        state = action.update(bot)
+    }
+
     fun next(): Boolean {
         index++
         state = BehaviourState.Pending

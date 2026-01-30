@@ -2,7 +2,7 @@ package content.bot
 
 import com.github.michaelbull.logging.InlineLogger
 import content.bot.action.*
-import content.bot.fact.Fact
+import content.bot.fact.Condition
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.event.AuditLog
@@ -16,7 +16,7 @@ import world.gregs.voidps.type.random
  */
 class BotManager(
     private val activities: MutableMap<String, BotActivity> = mutableMapOf(),
-    private val resolvers: MutableMap<Fact, MutableList<Resolver>> = mutableMapOf(),
+    private val resolvers: MutableMap<String, MutableList<Resolver>> = mutableMapOf(),
     private val groups: MutableMap<String, MutableList<String>> = mutableMapOf(),
 ) : Runnable {
     val slots = ActivitySlots()
@@ -157,16 +157,18 @@ class BotManager(
         frame.start(bot)
     }
 
-    private fun pickResolver(bot: Bot, fact: Fact, frame: BehaviourFrame): Behaviour? {
+    private fun pickResolver(bot: Bot, condition: Condition, frame: BehaviourFrame): Behaviour? {
         val options = mutableListOf<Resolver>()
-        for (resolver in resolvers[fact] ?: return null) {
-            if (frame.blocked.contains(resolver.id)) {
-                continue
+        for (key in condition.keys()) {
+            for (resolver in resolvers[key] ?: return null) {
+                if (frame.blocked.contains(resolver.id)) {
+                    continue
+                }
+                if (resolver.requires.any { fact -> !fact.check(bot) }) {
+                    continue
+                }
+                options.add(resolver)
             }
-            if (resolver.requires.any { fact -> !fact.check(bot) }) {
-                continue
-            }
-            options.add(resolver)
         }
         return options.minByOrNull { it.weight }
     }
@@ -175,7 +177,7 @@ class BotManager(
         val frame = bot.frame()
         val behaviour = frame.behaviour
         when (val state = frame.state) {
-            BehaviourState.Running -> return
+            BehaviourState.Running -> frame.update(bot)
             BehaviourState.Pending -> start(bot, behaviour, frame)
             BehaviourState.Success -> if (!frame.next()) {
                 AuditLog.event(bot, "completed", frame.behaviour.id)

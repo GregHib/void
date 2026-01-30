@@ -10,11 +10,11 @@ class BotUpdates(val manager: BotManager) : Script {
             }
         }
 
-        moved { from ->
-            if (isBot && tile != from) {
-                manager.update(bot, "tile")
-            }
-        }
+//        moved { from ->
+//            if (isBot && tile != from) {
+//                manager.update(bot, "tile")  // FIXME expensive
+//            }
+//        }
 
         variableSet { key, from, to ->
             if (isBot && from != to) {

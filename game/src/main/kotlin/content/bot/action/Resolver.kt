@@ -1,6 +1,6 @@
 package content.bot.action
 
-import content.bot.fact.Fact
+import content.bot.fact.Condition
 
 /**
  * An activity that can be performed to resolve a requirement
@@ -10,8 +10,8 @@ import content.bot.fact.Fact
 data class Resolver(
     override val id: String,
     val weight: Int,
-    override val requires: List<Fact> = emptyList(),
-    override val resolve: List<Fact> = emptyList(),
+    override val requires: List<Condition> = emptyList(),
+    override val resolve: List<Condition> = emptyList(),
     override val plan: List<BotAction> = emptyList(),
-    override val produces: Set<Fact> = emptySet(),
+    override val produces: Set<Condition> = emptySet(),
 ) : Behaviour

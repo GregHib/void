@@ -1,19 +1,6 @@
 package content.bot.action
 
-import content.bot.fact.FactClone
-import content.bot.fact.Fact
-import content.bot.fact.CarriesItem
-import content.bot.fact.EquipsItem
-import content.bot.fact.HasInventorySpace
-import content.bot.fact.AtLocation
-import content.bot.fact.FactReference
-import content.bot.fact.HasSkillLevel
-import content.bot.fact.AtTile
-import content.bot.fact.CarriesOne
-import content.bot.fact.EquipsOne
-import content.bot.fact.HasVariable
-import net.pearx.kasechange.toPascalCase
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import content.bot.fact.*
 import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
 
@@ -23,10 +10,10 @@ data class BehaviourFragment(
     val capacity: Int,
     val weight: Int,
     var template: String,
-    override val requires: List<Fact> = emptyList(),
-    override val resolve: List<Fact> = emptyList(),
+    override val requires: List<Condition> = emptyList(),
+    override val resolve: List<Condition> = emptyList(),
     override val plan: List<BotAction> = emptyList(),
-    override val produces: Set<Fact> = emptySet(),
+    override val produces: Set<Condition> = emptySet(),
     val fields: Map<String, Any> = emptyMap(),
 ) : Behaviour {
     fun resolveActions(template: BotActivity, actions: MutableList<BotAction>) {
@@ -63,68 +50,64 @@ data class BehaviourFragment(
         }
     }
 
-    fun resolveRequirements(template: BotActivity, requirements: MutableList<Fact>) {
-        for (req in template.requires) {
+    fun resolveRequirements(requirements: MutableList<Condition>, facts: List<Condition>) {
+        for (req in facts) {
             val resolved = when (req) {
-                is FactReference -> when (val requirement = req.fact) {
-                    is HasSkillLevel -> HasSkillLevel(
-                        skill = Skill.of(resolve(req.references["skill"], requirement.skill.name).toPascalCase())!!,
-                        min = resolve(req.references["min"], requirement.min),
-                        max = resolve(req.references["max"], requirement.max),
-                    )
-                    is HasVariable -> HasVariable(
-                        id = resolve(req.references["variable"], requirement.id),
-                        value = resolve(req.references["value"], requirement.value),
-                    )
-                    is CarriesItem -> CarriesItem(
-                        id = resolve(req.references["carries"], requirement.id),
-                        amount = resolve(req.references["amount"], requirement.amount),
-                    )
-                    is CarriesOne -> {
-                        val resolve = resolve(req.references["equips"], "")
-                        val ids = if (resolve.isBlank()) {
-                            requirement.ids
-                        } else {
-                            Wildcards.get(resolve, Wildcard.Item)
+                is Condition.Reference -> {
+                    val references = req.references
+                    val min = resolve(references["min"], req.min)
+                    val max = resolve(references["max"], req.max)
+                    when (req.type) {
+                        "skill" -> {
+                            val id = resolve(references[req.type], req.id)
+                            Condition.range(Fact.SkillLevel.of(id), min, max)
                         }
-                        CarriesOne(
-                            ids = ids,
-                            amount = resolve(req.references["amount"], requirement.amount),
-                        )
-                    }
-                    is EquipsItem -> EquipsItem(
-                        id = resolve(req.references["equips"], requirement.id),
-                        amount = resolve(req.references["amount"], requirement.amount),
-                    )
-                    is EquipsOne -> {
-                        val resolve = resolve(req.references["equips"], "")
-                        val ids = if (resolve.isBlank()) {
-                           requirement.ids
-                        } else {
-                            Wildcards.get(resolve, Wildcard.Item)
+                        "carries" -> {
+                            val id = resolve(references[req.type], req.id)
+                            val min = resolve(references["amount"], req.min)
+                            if (id.contains(",")) {
+                                Condition.Any(id.split(",").map { Condition.range(Fact.InventoryCount(it), min, max) })
+                            } else if (id.any { it == '*' || it == '#' }) {
+                                Condition.Any(Wildcards.get(id, Wildcard.Item).map { Condition.range(Fact.InventoryCount(it), min, max) })
+                            } else {
+                                Condition.range(Fact.InventoryCount(id), min, max)
+                            }
                         }
-                        EquipsOne(
-                            ids = ids,
-                            amount = resolve(req.references["amount"], requirement.amount),
-                        )
+                        "equips" -> {
+                            val id = resolve(references[req.type], req.id)
+                            val min = resolve(references["amount"], req.min)
+                            if (id.contains(",")) {
+                                Condition.Any(id.split(",").map { Condition.range(Fact.EquipCount(id), min, max) })
+                            } else if (id.any { it == '*' || it == '#' }) {
+                                Condition.Any(Wildcards.get(id, Wildcard.Item).map { Condition.range(Fact.EquipCount(id), min, max) })
+                            } else {
+                                Condition.range(Fact.EquipCount(id), min, max)
+                            }
+                        }
+                        "variable" -> {
+                            val id = resolve(references[req.type], req.id)
+                            when (val value = resolve(references["value"], req.value)) {
+                                is Int -> Condition.Equals(Fact.IntVariable(id), value)
+                                is String -> Condition.Equals(Fact.StringVariable(id), value)
+                                is Double -> Condition.Equals(Fact.DoubleVariable(id), value)
+                                is Boolean -> Condition.Equals(Fact.BoolVariable(id), value)
+                                else -> null
+                            }
+                        }
+                        "inventory_space" -> {
+                            val min = resolve(references["inventory_space"], req.min)
+                            Condition.range(Fact.InventorySpace, min, null)
+                        }
+                        "location" -> {
+                            val id = resolve(references["location"], req.id)
+                            Condition.Area(Fact.PlayerTile, id)
+                        }
+                        else -> null
                     }
-                    is HasInventorySpace -> HasInventorySpace(
-                        amount = resolve(req.references["inventory_space"], requirement.amount),
-                    )
-                    is AtLocation -> AtLocation(
-                        id = resolve(req.references["location"], requirement.id),
-                    )
-                    is AtTile -> AtTile(
-                        x = resolve(req.references["x"], requirement.x),
-                        y = resolve(req.references["y"], requirement.y),
-                        level = resolve(req.references["level"], requirement.level),
-                        radius = resolve(req.references["radius"], requirement.radius),
-                    )
-                    is FactClone, is FactReference -> throw IllegalArgumentException("Invalid requirement type: ${req.fact::class.simpleName}.")
                 }
-                is FactClone -> throw IllegalArgumentException("Unresolved clone requirement in template ${id}.")
+                is Condition.Clone -> throw IllegalArgumentException("Unresolved clone requirement in template ${id}.")
                 else -> req
-            }
+            } ?: continue
             requirements.add(resolved)
         }
     }
@@ -154,6 +137,14 @@ data class BehaviourFragment(
     }
 
     private fun resolve(reference: String?, default: Int): Int {
+        return if (reference != null) {
+            fields[reference.key()] as? Int ?: throw IllegalArgumentException("Unable to find field '$reference' in ${id}.")
+        } else {
+            default
+        }
+    }
+
+    private fun resolve(reference: String?, default: Int?): Int? {
         return if (reference != null) {
             fields[reference.key()] as? Int ?: throw IllegalArgumentException("Unable to find field '$reference' in ${id}.")
         } else {
