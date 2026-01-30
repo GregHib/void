@@ -1,0 +1,59 @@
+
+[ring_of_duelling_equipped]
+type = "teleport"
+weight = 10
+requires = [
+    { equips = "ring_of_duelling_*" }
+]
+plan = [
+    { option = "Castle Wars", interface = "equipment:inventory" },
+]
+produces = [
+    { location = "castle_wars_teleport" }
+]
+
+[ring_of_duelling]
+type = "teleport"
+weight = 8
+requires = [
+    { carries = "ring_of_duelling_*" }
+]
+plan = [
+    { option = "Rub", interface = "inventory:inventory" },
+    { option = "Select", interface = "choice:line1" },
+]
+produces = [
+    { location = "castle_wars_teleport" }
+]
+
+[teleport_varrock]
+type = "teleport"
+weight = 10
+requires = [
+    { variable = "spellbook", value = "normal" },
+]
+resolve = [
+    { carries = "fire_rune", amount = 1 },
+    { carries = "air_rune", amount = 3 },
+    { carries = "law_rune", amount = 1 },
+]
+plan = [
+    { option = "Cast", interface = "normal_spellbook:varrock_teleport" },
+]
+produces = [
+    { location = "varrock_teleport" }
+]
+
+[teleport_lumbridge]
+type = "teleport"
+weight = 5
+requires = [
+    { variable = "spellbook", value = "normal" },
+    { variable = "lumbridge_cooldown", value = "normal" },
+]
+plan = [
+    { option = "Cast", interface = "normal_spellbook:home_teleport" },
+]
+produces = [
+    { location = "lumbridge_teleport" }
+]

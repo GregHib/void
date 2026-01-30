@@ -1,0 +1,37 @@
+[buy_from_shop]
+resolve = [
+    { carries = "coins", amount = "$cost" },
+    { location = "$shop_location" },
+    { inventory_space = 1 },
+]
+plan = [
+    { option = "Trade", npc = "$shopkeeper" },
+    { option = "Buy 1", interface = "shop:inventory:$item" },
+]
+produces = [
+    { carries = "$item" }
+]
+
+[buy_bronze_hatchet]
+type = "resolver"
+template = "buy_from_shop"
+fields = { cost = 16, shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "bronze_hatchet" }
+requires = [
+    { skill = "woodcutting", min = 1 },
+]
+
+[buy_iron_hatchet]
+type = "resolver"
+template = "buy_from_shop"
+fields = { cost = 56, shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "iron_hatchet" }
+requires = [
+    { skill = "woodcutting", min = 1 },
+]
+
+[buy_steel_hatchet]
+type = "resolver"
+template = "buy_from_shop"
+fields = { cost = 200, shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "steel_hatchet" }
+requires = [
+    { skill = "woodcutting", min = 6 },
+]

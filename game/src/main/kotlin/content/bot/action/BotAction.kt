@@ -7,11 +7,14 @@ import content.bot.interact.navigation.updateGraph
 import content.bot.interact.path.AreaStrategy
 import content.bot.interact.path.Dijkstra
 import content.bot.interact.path.EdgeTraversal
+import content.entity.Movement
 import content.entity.combat.attackers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -24,16 +27,22 @@ import world.gregs.voidps.network.client.instruction.InteractNPC
 import world.gregs.voidps.type.random
 
 sealed interface BotAction {
-    fun start(bot: Bot): BehaviourState = BehaviourState.Failed(Reason.Cancelled)
-    fun update(): BehaviourState = BehaviourState.Running
+    fun start(bot: Bot): BehaviourState = BehaviourState.Running
+    fun update(bot: Bot): BehaviourState = BehaviourState.Running
 
     sealed class RetryableAction : BotAction {
         abstract val retryTicks: Int
         abstract val retryMax: Int
     }
 
-    data class Clone(val id: String) : BotAction
-    data class Reference(val action: BotAction, val references: Map<String, String>) : BotAction
+    data class Clone(val id: String) : BotAction {
+        override fun start(bot: Bot) = BehaviourState.Failed(Reason.Cancelled)
+        override fun update(bot: Bot) = BehaviourState.Failed(Reason.Cancelled)
+    }
+    data class Reference(val action: BotAction, val references: Map<String, String>) : BotAction {
+        override fun start(bot: Bot) = BehaviourState.Failed(Reason.Cancelled)
+        override fun update(bot: Bot) = BehaviourState.Failed(Reason.Cancelled)
+    }
 
     data class Wait(val ticks: Int) : BotAction {
         override fun start(bot: Bot): BehaviourState {
@@ -96,7 +105,10 @@ sealed interface BotAction {
         override val retryMax: Int = 0,
         val radius: Int = 10,
     ) : RetryableAction() {
-        override fun start(bot: Bot): BehaviourState {
+        override fun update(bot: Bot): BehaviourState {
+            if (bot.mode is PlayerOnObjectInteract) {
+                return BehaviourState.Running
+            }
             val objects = mutableListOf<GameObject>()
             for (tile in Spiral.spiral(bot.player.tile, radius)) {
                 for (obj in GameObjects.at(tile)) {
@@ -138,57 +150,63 @@ sealed interface BotAction {
     data class WaitFullInventory(val timeout: Int) : BotAction
 
     /**
-     * TODO how to handle repeat actions e.g. repeat Chop-down trees until inv is full - These are actions Gathering, Skilling etc..
-     *      more resolvers like bank all, drop cheap items
-     *      how to handle combat, one task or multiple? - One Fight action
-     *          frames should have tick(): State methods
-     *          Combat should be an action which has a state machine for eating, retargeting, looting etc..
-     *          GatheringActivity
-     *          TravelActivity
-     *      how to handle navigation in a non-hacky way
-     *          navigation behaviours
-     *          make nav-graph points only?
-     *          combine nav-graph requirements with facts
- *          Goal generators
-     *         Rather than check all req for all activties do it reactively
-     *         Received an item recently? Add relevant activties to that item to the list of posibilities
-     *         Been too long since you picked up an item, now remove that goal from the list
-     *         No posibilities? Now expand search wider
-     *
-     *    Open questions:
-     *     - Complex activities like minigames, quests
-     *        Minigames:
-     *           They are closed mechanical systems so they are actions.
-     *            JoinMinigameLobby - Success, Timeout, Kicked etc..
-     *            PlayMinigame - Roll selection, objectives, movement, combat, scoring. Fails on game end or leaving/disconnect
-     *        Trading with players:
-     *           Outcomes are non-deterministic, waiting on player timing
-     *           SellingAction
-     *           TradeAction
-     *            inits trade
-     *            trade rules
-     *                max wait
-     *                accepted items
-     *                price bounds
- *                reacts to
-     *                offer chances
-     *                cancellation
-*                 terminates with success/failure
-     *        Quests:
-     *          Some complex quest mechanics might need custom actions
-     *          Activities:
-     *            TalkToCook
-     *            GetBucket
-     *            GetMilk
-     *            GetEgg
-     *            ReturnToCook
-     *     - navigation + actions
-     *     - targetting
-     *     - activity generators - reactive loading
-     *          Separate mandatory and resolvable requirements
- *              mandatory requirements become gates for if activities are in the current pool
- *              Listeners wait for state changes on specific mandatory requirements (level up, skill changes) and revaluate adding to activity pool
- *                  These listeners also check current activity requirements and fail it if no longer gated
-     *
+TODO how to handle repeat actions e.g. repeat Chop-down trees until inv is full - These are actions Gathering, Skilling etc..
+     more resolvers like bank all, drop cheap items
+     how to handle combat, one task or multiple? - One Fight action
+         frames should have tick(): State methods
+         Combat should be an action which has a state machine for eating, retargeting, looting etc..
+         GatheringActivity
+         TravelActivity
+     how to handle navigation in a non-hacky way
+         navigation behaviours
+         make nav-graph points only?
+         combine nav-graph requirements with facts
+     Goal generators
+        Rather than check all req for all activities do it reactively
+        Received an item recently? Add relevant activities to that item to the list of posibilities
+        Been too long since you picked up an item, now remove that goal from the list
+        No possibilities? Now expand search wider
+
+   Open questions:
+    - Complex activities like minigames, quests
+       Minigames:
+          They are closed mechanical systems so they are actions.
+           JoinMinigameLobby - Success, Timeout, Kicked etc..
+           PlayMinigame - Roll selection, objectives, movement, combat, scoring. Fails on game end or leaving/disconnect
+       Trading with players:
+          Outcomes are non-deterministic, waiting on player timing
+          SellingAction
+          TradeAction
+           inits trade
+           trade rules
+               max wait
+               accepted items
+               price bounds
+           reacts to
+               offer chances
+               cancellation
+           terminates with success/failure
+       Quests:
+         Some complex quest mechanics might need custom actions
+         Activities:
+           TalkToCook
+           GetBucket
+           GetMilk
+           GetEgg
+           ReturnToCook
+    - navigation + actions
+         Virtual nodes
+         Create a temp node
+             link the current tile as a weight = 0
+             link any applicable teleports
+         run traversal from temp source node
+    - targeting
+         policy
+    - activity generators - reactive loading
+         Separate mandatory and resolvable requirements
+         mandatory requirements become gates for if activities are in the current pool
+         Listeners wait for state changes on specific mandatory requirements (level up, skill changes) and revaluate adding to activity pool
+             These listeners also check current activity requirements and fail it if no longer gated
+
      */
 }

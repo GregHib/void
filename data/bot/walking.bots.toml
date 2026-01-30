@@ -1,15 +1,15 @@
-[run_to_varrock]
-type = "activity"
-capacity = 1
-resolve = [
-    { variable = "movement", value = "run" }
-]
-plan = [
-    { go_to = "varrock_teleport" }
-]
-produces = [
-    { location = "varrock_teleport" }
-]
+#[run_to_varrock]
+#type = "activity"
+#capacity = 1
+#resolve = [
+#    { variable = "movement", value = "run" }
+#]
+#plan = [
+#    { go_to = "varrock_teleport" }
+#]
+#produces = [
+#    { location = "varrock_teleport" }
+#]
 
 [toggle_run]
 type = "resolver"
