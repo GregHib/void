@@ -1,27 +1,15 @@
 [woodcutting_template]
 type = "activity"
-resolve = [
+resolve = [ # setup?
     { carries = "$hatchet" },
     { location = "$location" },
     { inventory_space = 20 },
 ]
 plan = [
-    { option = "Chop-down", object = "$tree" },
+    { option = "Chop down", object = "$tree" },
 ]
 produces = [
     { skill = "woodcutting" }
-]
-
-[go_to_lumbridge_north_trees]
-type = "resolver"
-resolve = [
-    { variable = "movement", value = "run" }
-]
-plan = [
-    { go_to = "lumbridge_north_trees" }
-]
-produces = [
-    { location = "lumbridge_north_trees" }
 ]
 
 [lumbridge_trees]

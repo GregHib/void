@@ -42,7 +42,7 @@ sealed interface Condition {
     data class Area(val fact: Fact<Tile>, val area: String) : Condition {
         override fun check(bot: Bot) = fact.getValue(bot) in Areas[area]
         override fun priority() = fact.priority
-        override fun keys() = fact.keys()
+        override fun keys() = setOf("enter:$area")
     }
 
     data class OneOf<T>(val fact: Fact<T>, val values: Set<T>) : Condition {

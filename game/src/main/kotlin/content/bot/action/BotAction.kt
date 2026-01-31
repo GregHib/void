@@ -119,7 +119,7 @@ sealed interface BotAction {
             }
             val obj = objects.randomOrNull(random) ?: return BehaviourState.Failed(Reason.NoTarget)
             val index = obj.def(bot.player).options?.indexOf(option) ?: return BehaviourState.Failed(Reason.NoTarget)
-            bot.player.instructions.trySend(world.gregs.voidps.network.client.instruction.InteractObject(obj.intId, obj.x, obj.y, index))
+            bot.player.instructions.trySend(world.gregs.voidps.network.client.instruction.InteractObject(obj.intId, obj.x, obj.y, index + 1))
             return BehaviourState.Running
         }
     }
