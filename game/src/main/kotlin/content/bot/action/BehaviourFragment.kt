@@ -90,11 +90,12 @@ data class BehaviourFragment(
                         }
                         "variable" -> {
                             val id = resolve(references[req.type], req.id)
+                            val default = resolve(references["default"], req.default)
                             when (val value = resolve(references["value"], req.value)) {
-                                is Int -> Condition.Equals(Fact.IntVariable(id), value)
-                                is String -> Condition.Equals(Fact.StringVariable(id), value)
-                                is Double -> Condition.Equals(Fact.DoubleVariable(id), value)
-                                is Boolean -> Condition.Equals(Fact.BoolVariable(id), value)
+                                is Int -> Condition.Equals(Fact.IntVariable(id, default as? Int), value)
+                                is String -> Condition.Equals(Fact.StringVariable(id, default as? String), value)
+                                is Double -> Condition.Equals(Fact.DoubleVariable(id, default as? Double), value)
+                                is Boolean -> Condition.Equals(Fact.BoolVariable(id, default as? Boolean), value)
                                 else -> null
                             }
                         }

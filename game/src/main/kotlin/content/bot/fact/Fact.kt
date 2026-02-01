@@ -29,24 +29,24 @@ sealed class Fact<T>(val priority: Int) {
         override fun getValue(player: Player) = player.equipment.count(id)
     }
 
-    data class IntVariable(val id: String) : Fact<Int?>(1) {
+    data class IntVariable(val id: String, val default: Int?) : Fact<Int?>(1) {
         override fun keys() = setOf("var:${id}")
-        override fun getValue(player: Player) = player.variables.get<Int>(id)
+        override fun getValue(player: Player) = player.variables.get(id) ?: default
     }
 
-    data class BoolVariable(val id: String) : Fact<Boolean?>(1) {
+    data class BoolVariable(val id: String, val default: Boolean?) : Fact<Boolean?>(1) {
         override fun keys() = setOf("var:${id}")
-        override fun getValue(player: Player) = player.variables.get<Boolean>(id)
+        override fun getValue(player: Player) = player.variables.get(id) ?: default
     }
 
-    data class StringVariable(val id: String) : Fact<String?>(1) {
+    data class StringVariable(val id: String, val default: String?) : Fact<String?>(1) {
         override fun keys() = setOf("var:${id}")
-        override fun getValue(player: Player) = player.variables.get<String>(id)
+        override fun getValue(player: Player) = player.variables.get(id) ?: default
     }
 
-    data class DoubleVariable(val id: String) : Fact<Double?>(1) {
+    data class DoubleVariable(val id: String, val default: Double?) : Fact<Double?>(1) {
         override fun keys() = setOf("var:${id}")
-        override fun getValue(player: Player) = player.variables.get<Double>(id)
+        override fun getValue(player: Player) = player.variables.get(id) ?: default
     }
 
     object PlayerTile : Fact<Tile>(1000) {

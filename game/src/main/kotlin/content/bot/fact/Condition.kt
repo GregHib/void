@@ -39,7 +39,7 @@ sealed interface Condition {
         override fun keys() = fact.keys()
     }
 
-    data class Area(val fact: Fact<Tile>, val area: String) : Condition {
+    data class Area(val fact: Fact<Tile>, val area: String) : Condition { // TODO make fact always PlayerTile?
         override fun check(player: Player) = fact.getValue(player) in Areas[area]
         override fun priority() = fact.priority
         override fun keys() = setOf("enter:$area")
@@ -73,6 +73,7 @@ sealed interface Condition {
         val type: String = "",
         val id: String = "",
         val value: kotlin.Any? = null,
+        val default: kotlin.Any? = null,
         val min: Int? = null,
         val max: Int? = null,
         val references: Map<String, String> = emptyMap(),

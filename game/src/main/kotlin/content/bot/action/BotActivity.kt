@@ -34,16 +34,16 @@ fun loadActivities(paths: List<String>, activities: MutableMap<String, BotActivi
                     var template: String? = null
                     var type = "activity"
                     var weight = 0
-                    var actions: List<BotAction> = emptyList()
+                    val actions: MutableList<BotAction> = mutableListOf()
                     val requirements: MutableList<Condition> = mutableListOf()
                     val resolvables: MutableList<Condition> = mutableListOf()
                     val produces: MutableList<Condition> = mutableListOf()
                     var fields: Map<String, Any> = emptyMap()
                     while (nextPair()) {
                         when (val key = key()) {
-                            "requires" -> requirements(requirements) // TODO convert to pass mutable list + clone list
-                            "resolve" -> requirements(resolvables)
-                            "actions" -> actions = actions()
+                            "requires" -> requirements(requirements)
+                            "setup" -> requirements(resolvables)
+                            "actions" -> actions(actions)
                             "produces" -> requirements(produces)
                             "capacity" -> capacity = int()
                             "type" -> type = string()
@@ -166,6 +166,7 @@ private fun ConfigReader.requirements(list: MutableList<Condition>) {
         var type = ""
         var id = ""
         var value: Any? = null
+        var default: Any? = null
         var min: Int? = null
         var max: Int? = null
         val references = mutableMapOf<String, String>()
@@ -213,9 +214,10 @@ private fun ConfigReader.requirements(list: MutableList<Condition>) {
                     }
                 }
                 "value" -> value = value()
+                "default" -> default = value()
             }
         }
-        var requirement = getRequirement(type, id, min, max, value)
+        var requirement = getRequirement(type, id, min, max, value, default)
         if (requirement == null) {
             if (type == "holds") {
                 throw IllegalArgumentException("Unknown requirement type 'holds'; did you mean 'carries' or 'equips'? ${exception()}.")
@@ -223,7 +225,7 @@ private fun ConfigReader.requirements(list: MutableList<Condition>) {
             throw IllegalArgumentException("Unknown requirement type: $type ${exception()}")
         }
         if (references.isNotEmpty()) {
-            requirement = Condition.Reference(type, id, value, min, max, references)
+            requirement = Condition.Reference(type, id, value, default, min, max, references)
         }
         list.add(requirement)
     }
@@ -246,11 +248,11 @@ private fun getRequirement(type: String, id: String, min: Int?, max: Int?, value
     } else {
         Condition.range(Fact.EquipCount(id), min, max)
     }
-    "variable" -> when(value) {
-        is Int -> Condition.Equals(Fact.IntVariable(id), value)
-        is String -> Condition.Equals(Fact.StringVariable(id), value)
-        is Double -> Condition.Equals(Fact.DoubleVariable(id), value)
-        is Boolean -> Condition.Equals(Fact.BoolVariable(id), value)
+    "variable" -> when (value) {
+        is Int -> Condition.Equals(Fact.IntVariable(id, default as? Int), value)
+        is String -> Condition.Equals(Fact.StringVariable(id, default as? String), value)
+        is Double -> Condition.Equals(Fact.DoubleVariable(id, default as? Double), value)
+        is Boolean -> Condition.Equals(Fact.BoolVariable(id, default as? Boolean), value)
         else -> null
     }
     "clone" -> Condition.Clone(id)
@@ -259,8 +261,7 @@ private fun getRequirement(type: String, id: String, min: Int?, max: Int?, value
     else -> null
 }
 
-private fun ConfigReader.actions(): List<BotAction> {
-    val list = mutableListOf<BotAction>()
+fun ConfigReader.actions(list: MutableList<BotAction>) {
     while (nextElement()) {
         var type = ""
         var id = ""
@@ -284,20 +285,20 @@ private fun ConfigReader.actions(): List<BotAction> {
                 }
                 "x" -> {
                     type = "tile"
-                    val value = string()
-                    if (value.contains('$')) {
+                    val value = value()
+                    if (value is String && value.contains('$')) {
                         references[key] = value
                     } else {
-                        x = value.toInt()
+                        x = value as Int
                     }
                 }
                 "y" -> {
                     type = "tile"
-                    val value = string()
-                    if (value.contains('$')) {
+                    val value = value()
+                    if (value is String && value.contains('$')) {
                         references[key] = value
                     } else {
-                        y = value.toInt()
+                        y = value as Int
                     }
                 }
                 "target", "id" -> {
@@ -363,5 +364,4 @@ private fun ConfigReader.actions(): List<BotAction> {
         }
         list.add(action)
     }
-    return list
 }
