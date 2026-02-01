@@ -58,6 +58,7 @@ sealed interface BotAction {
                 return BehaviourState.Success
             }
             updateGraph(bot)
+            // TODO new format for nav graph
             val strategy = AreaStrategy(def.area)
             val result = get<Dijkstra>().find(bot.player, strategy, EdgeTraversal())
             bot["navigating"] = result == null

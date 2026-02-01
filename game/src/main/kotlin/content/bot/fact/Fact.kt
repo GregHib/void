@@ -1,6 +1,6 @@
 package content.bot.fact
 
-import content.bot.Bot
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
@@ -11,47 +11,47 @@ import world.gregs.voidps.type.Tile
  * @param priority Ensure bots aren't walking to locations before getting items etc... lower values are prioritised first.
  */
 sealed class Fact<T>(val priority: Int) {
-    abstract fun getValue(bot: Bot): T
+    abstract fun getValue(player: Player): T
     open fun keys(): Set<String> = emptySet()
 
     data class InventoryCount(val id: String) : Fact<Int>(100) {
         override fun keys() = setOf("inv:inventory")
-        override fun getValue(bot: Bot) = bot.player.inventory.count(id)
+        override fun getValue(player: Player) = player.inventory.count(id)
     }
 
     object InventorySpace : Fact<Int>(10) {
         override fun keys() = setOf("inv:inventory")
-        override fun getValue(bot: Bot) = bot.player.inventory.spaces
+        override fun getValue(player: Player) = player.inventory.spaces
     }
 
     data class EquipCount(val id: String) : Fact<Int>(100) {
         override fun keys() = setOf("inv:equipment")
-        override fun getValue(bot: Bot) = bot.player.equipment.count(id)
+        override fun getValue(player: Player) = player.equipment.count(id)
     }
 
     data class IntVariable(val id: String) : Fact<Int?>(1) {
         override fun keys() = setOf("var:${id}")
-        override fun getValue(bot: Bot) = bot.player.variables.get<Int>(id)
+        override fun getValue(player: Player) = player.variables.get<Int>(id)
     }
 
     data class BoolVariable(val id: String) : Fact<Boolean?>(1) {
         override fun keys() = setOf("var:${id}")
-        override fun getValue(bot: Bot) = bot.player.variables.get<Boolean>(id)
+        override fun getValue(player: Player) = player.variables.get<Boolean>(id)
     }
 
     data class StringVariable(val id: String) : Fact<String?>(1) {
         override fun keys() = setOf("var:${id}")
-        override fun getValue(bot: Bot) = bot.player.variables.get<String>(id)
+        override fun getValue(player: Player) = player.variables.get<String>(id)
     }
 
     data class DoubleVariable(val id: String) : Fact<Double?>(1) {
         override fun keys() = setOf("var:${id}")
-        override fun getValue(bot: Bot) = bot.player.variables.get<Double>(id)
+        override fun getValue(player: Player) = player.variables.get<Double>(id)
     }
 
     object PlayerTile : Fact<Tile>(1000) {
         override fun keys() = setOf("tile")
-        override fun getValue(bot: Bot) = bot.player.tile
+        override fun getValue(player: Player) = player.tile
     }
 
     object AttackLevel : SkillLevel(Skill.Attack)
@@ -84,7 +84,7 @@ sealed class Fact<T>(val priority: Int) {
         val skill: Skill,
     ) : Fact<Int>(0) {
         override fun keys() = setOf("skill:${skill.name.lowercase()}")
-        override fun getValue(bot: Bot) = bot.player.levels.get(skill)
+        override fun getValue(player: Player) = player.levels.get(skill)
 
         companion object {
             fun of(skill: String): SkillLevel = when (skill.lowercase()) {

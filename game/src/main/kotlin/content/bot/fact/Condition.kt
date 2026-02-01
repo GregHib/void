@@ -1,70 +1,70 @@
 package content.bot.fact
 
-import content.bot.Bot
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.Tile
 
 sealed interface Condition {
-    fun check(bot: Bot): Boolean
+    fun check(player: Player): Boolean
     fun keys(): Set<String>
     fun priority(): Int
 
     data class Equals<T>(val fact: Fact<T>, val value: T) : Condition {
-        override fun check(bot: Bot) = fact.getValue(bot) == value
+        override fun check(player: Player) = fact.getValue(player) == value
         override fun priority() = fact.priority
         override fun keys() = fact.keys()
     }
 
     data class AtLeast(val fact: Fact<Int>, val min: Int) : Condition {
-        override fun check(bot: Bot) = fact.getValue(bot) >= min
+        override fun check(player: Player) = fact.getValue(player) >= min
         override fun priority() = fact.priority
         override fun keys() = fact.keys()
     }
 
     data class AtMost(val fact: Fact<Int>, val max: Int) : Condition {
-        override fun check(bot: Bot) = fact.getValue(bot) <= max
+        override fun check(player: Player) = fact.getValue(player) <= max
         override fun priority() = fact.priority
         override fun keys() = fact.keys()
     }
 
     data class Range(val fact: Fact<Int>, val min: Int, val max: Int) : Condition {
-        override fun check(bot: Bot) = fact.getValue(bot) in min..max
+        override fun check(player: Player) = fact.getValue(player) in min..max
         override fun priority() = fact.priority
         override fun keys() = fact.keys()
     }
 
     data class Within(val fact: Fact<Tile>, val tile: Tile, val radius: Int) : Condition {
-        override fun check(bot: Bot) = fact.getValue(bot).within(tile, radius)
+        override fun check(player: Player) = fact.getValue(player).within(tile, radius)
         override fun priority() = fact.priority
         override fun keys() = fact.keys()
     }
 
     data class Area(val fact: Fact<Tile>, val area: String) : Condition {
-        override fun check(bot: Bot) = fact.getValue(bot) in Areas[area]
+        override fun check(player: Player) = fact.getValue(player) in Areas[area]
         override fun priority() = fact.priority
         override fun keys() = setOf("enter:$area")
     }
 
     data class OneOf<T>(val fact: Fact<T>, val values: Set<T>) : Condition {
-        override fun check(bot: Bot) = fact.getValue(bot) in values
+        override fun check(player: Player) = fact.getValue(player) in values
         override fun priority() = fact.priority
         override fun keys() = fact.keys()
     }
 
     data class Not(val inner: Condition) : Condition {
-        override fun check(bot: Bot) = !inner.check(bot)
+        override fun check(player: Player) = !inner.check(player)
         override fun priority() = inner.priority()
         override fun keys() = inner.keys()
     }
 
     data class All(val conditions: List<Condition>) : Condition {
-        override fun check(bot: Bot) = conditions.all { it.check(bot) }
+        override fun check(player: Player) = conditions.all { it.check(player) }
         override fun priority() = conditions.first().priority()
         override fun keys() = conditions.flatMap { it.keys() }.toSet()
     }
 
     data class Any(val conditions: List<Condition>) : Condition {
-        override fun check(bot: Bot) = conditions.any { it.check(bot) }
+        override fun check(player: Player) = conditions.any { it.check(player) }
         override fun priority() = conditions.first().priority()
         override fun keys() = conditions.flatMap { it.keys() }.toSet()
     }
@@ -77,13 +77,13 @@ sealed interface Condition {
         val max: Int? = null,
         val references: Map<String, String> = emptyMap(),
     ) : Condition {
-        override fun check(bot: Bot) = false
+        override fun check(player: Player) = false
         override fun priority() = -1
         override fun keys() = emptySet<String>()
     }
 
     class Clone(val id: String) : Condition {
-        override fun check(bot: Bot) = false
+        override fun check(player: Player) = false
         override fun priority() = -1
         override fun keys() = emptySet<String>()
     }

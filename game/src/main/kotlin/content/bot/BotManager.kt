@@ -26,7 +26,7 @@ class BotManager(
     fun add(bot: Bot) {
         bots.add(bot)
         for (activity in activities.values) {
-            if (activity.requires.any { !it.check(bot) }) {
+            if (activity.requires.any { !it.check(bot.player) }) {
                 continue
             }
             bot.available.add(activity.id)
@@ -39,13 +39,13 @@ class BotManager(
             val id = iterator.next()
             val activity = activities[id] ?: continue
             // TODO could filter by keys
-            if (activity.requires.any { !it.check(bot) }) {
+            if (activity.requires.any { !it.check(bot.player) }) {
                 iterator.remove()
             }
         }
         for (id in groups[group] ?: return) {
             val activity = activities[id] ?: continue
-            if (activity.requires.any { !it.check(bot) }) {
+            if (activity.requires.any { !it.check(bot.player) }) {
                 continue
             }
             bot.available.add(activity.id)
@@ -80,7 +80,7 @@ class BotManager(
     }
 
     private fun hasRequirements(bot: Bot, activity: BotActivity): Boolean {
-        return slots.hasFree(activity) && !bot.blocked.contains(activity.id) && activity.requires.all { it.check(bot) }
+        return slots.hasFree(activity) && !bot.blocked.contains(activity.id) && activity.requires.all { it.check(bot.player) }
     }
 
     fun assign(bot: Bot, id: String): Boolean {
@@ -124,14 +124,14 @@ class BotManager(
 
     private fun start(bot: Bot, behaviour: Behaviour, frame: BehaviourFrame) {
         for (requirement in behaviour.requires) {
-            if (requirement.check(bot)) {
+            if (requirement.check(bot.player)) {
                 continue
             }
             frame.fail(Reason.Requirement(requirement))
             return
         }
         for (requirement in behaviour.resolve) {
-            if (requirement.check(bot)) {
+            if (requirement.check(bot.player)) {
                 continue
             }
             val resolver = pickResolver(bot, requirement, frame)
@@ -168,7 +168,7 @@ class BotManager(
                 if (frame.blocked.contains(resolver.id)) {
                     continue
                 }
-                if (resolver.requires.any { fact -> !fact.check(bot) }) {
+                if (resolver.requires.any { fact -> !fact.check(bot.player) }) {
                     continue
                 }
                 options.add(resolver)
