@@ -98,7 +98,7 @@ class BotManager(
                 activity != null && hasRequirements(bot, activity)
             }.randomOrNull(random)
             if (id == null) {
-                BotActivity("idle", 2048, plan = listOf(BotAction.Wait(50))) // 30s
+                BotActivity("idle", 2048, actions = listOf(BotAction.Wait(50))) // 30s
             } else {
                 activities[id]
             }
@@ -159,7 +159,7 @@ class BotManager(
 
     private fun pickResolver(bot: Bot, condition: Condition, frame: BehaviourFrame): Behaviour? {
         if (condition is Condition.Area) {
-            return Resolver("go_to_${condition.area}", -1, plan = listOf(BotAction.GoTo(condition.area)), produces = setOf(condition))
+            return Resolver("go_to_${condition.area}", -1, actions = listOf(BotAction.GoTo(condition.area)), produces = setOf(condition))
         }
         // TODO actions should have retry policies?
         val options = mutableListOf<Resolver>()

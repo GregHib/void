@@ -17,7 +17,7 @@ data class BotActivity(
     val capacity: Int,
     override val requires: List<Condition> = emptyList(),
     override val resolve: List<Condition> = emptyList(),
-    override val plan: List<BotAction> = emptyList(),
+    override val actions: List<BotAction> = emptyList(),
     override val produces: Set<Condition> = emptySet(),
 ) : Behaviour
 
@@ -43,7 +43,7 @@ fun loadActivities(paths: List<String>, activities: MutableMap<String, BotActivi
                         when (val key = key()) {
                             "requires" -> requirements(requirements) // TODO convert to pass mutable list + clone list
                             "resolve" -> requirements(resolvables)
-                            "plan" -> actions = actions()
+                            "actions" -> actions = actions()
                             "produces" -> requirements(produces)
                             "capacity" -> capacity = int()
                             "type" -> type = string()
@@ -63,26 +63,26 @@ fun loadActivities(paths: List<String>, activities: MutableMap<String, BotActivi
                     }
 
                     if (template != null) {
-                        fragments[id] = BehaviourFragment(id, type, capacity, weight, template, requirements, resolvables, plan = actions, fields = fields)
+                        fragments[id] = BehaviourFragment(id, type, capacity, weight, template, requirements, resolvables, actions = actions, fields = fields)
                     } else if (type == "resolver") {
                         for (fact in produces) {
                             for (key in fact.keys()) {
-                                resolvers.getOrPut(key) { mutableListOf() }.add(Resolver(id, weight, requirements, resolvables, plan = actions))
+                                resolvers.getOrPut(key) { mutableListOf() }.add(Resolver(id, weight, requirements, resolvables, actions = actions))
                             }
                         }
                     } else {
-                        activities[id] = BotActivity(id, capacity, requirements, resolvables, plan = actions)
+                        activities[id] = BotActivity(id, capacity, requirements, resolvables, actions = actions)
                     }
                 }
             }
         }
         // Resolve cloning first
         for (activity in activities.values + fragments.values) {
-            for (index in activity.plan.indices.reversed()) {
-                val action = activity.plan[index]
+            for (index in activity.actions.indices.reversed()) {
+                val action = activity.actions[index]
                 if (action is BotAction.Clone) {
-                    val list = activities[action.id]?.plan ?: throw IllegalArgumentException("Unable to find activity to clone '${action.id}'.")
-                    val actions = activity.plan as MutableList<BotAction>
+                    val list = activities[action.id]?.actions ?: throw IllegalArgumentException("Unable to find activity to clone '${action.id}'.")
+                    val actions = activity.actions as MutableList<BotAction>
                     actions.removeAt(index)
                     actions.addAll(index, list)
                 }
@@ -122,7 +122,7 @@ fun loadActivities(paths: List<String>, activities: MutableMap<String, BotActivi
             resolvables.sortBy { it.priority() }
 
             val actions = mutableListOf<BotAction>()
-            actions.addAll(fragment.plan)
+            actions.addAll(fragment.actions)
             fragment.resolveActions(template, actions)
             if (fragment.type == "resolver") {
                 for (fact in fragment.produces) {
@@ -270,6 +270,8 @@ private fun ConfigReader.actions(): List<BotAction> {
         var timeout = 0
         var ticks = 0
         var radius = 10
+        var x = 0
+        var y = 0
         val references = mutableMapOf<String, String>()
         while (nextEntry()) {
             when (val key = key()) {
@@ -278,6 +280,24 @@ private fun ConfigReader.actions(): List<BotAction> {
                     id = string()
                     if (id.contains('$')) {
                         references[key] = id
+                    }
+                }
+                "x" -> {
+                    type = "tile"
+                    val value = string()
+                    if (value.contains('$')) {
+                        references[key] = value
+                    } else {
+                        x = value.toInt()
+                    }
+                }
+                "y" -> {
+                    type = "tile"
+                    val value = string()
+                    if (value.contains('$')) {
+                        references[key] = value
+                    } else {
+                        y = value.toInt()
                     }
                 }
                 "target", "id" -> {
@@ -328,6 +348,7 @@ private fun ConfigReader.actions(): List<BotAction> {
             "go_to" -> BotAction.GoTo(id)
             "wait" -> BotAction.Wait(ticks)
             "npc" -> BotAction.InteractNpc(id = id, option = option, retryTicks = retryTicks, retryMax = retryMax, radius = radius)
+            "tile" -> BotAction.WalkTo(x = x, y = y)
             "object" -> BotAction.InteractObject(id = id, option = option, retryTicks = retryTicks, retryMax = retryMax, radius = radius)
             "interface" -> BotAction.InterfaceOption(id = id, option = option)
             "clone" -> BotAction.Clone(id)

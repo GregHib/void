@@ -1,10 +1,10 @@
 [buy_from_shop]
-resolve = [
+setup = [
     { carries = "coins", amount = "$cost" },
     { location = "$shop_location" },
     { inventory_space = 1 },
 ]
-plan = [
+actions = [
     { option = "Trade", npc = "$shopkeeper" },
     { option = "Buy 1", interface = "shop:inventory:$item" },
 ]

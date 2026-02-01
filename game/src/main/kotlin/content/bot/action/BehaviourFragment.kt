@@ -12,12 +12,12 @@ data class BehaviourFragment(
     var template: String,
     override val requires: List<Condition> = emptyList(),
     override val resolve: List<Condition> = emptyList(),
-    override val plan: List<BotAction> = emptyList(),
+    override val actions: List<BotAction> = emptyList(),
     override val produces: Set<Condition> = emptySet(),
     val fields: Map<String, Any> = emptyMap(),
 ) : Behaviour {
     fun resolveActions(template: BotActivity, actions: MutableList<BotAction>) {
-        for (action in template.plan) {
+        for (action in template.actions) {
             val resolved = when (action) {
                 is BotAction.Reference -> when (val copy = action.action) {
                     is BotAction.GoTo -> BotAction.GoTo(resolve(action.references["go_to"], copy.target))
@@ -38,6 +38,10 @@ data class BehaviourFragment(
                         retryTicks = resolve(action.references["retry_ticks"], copy.retryTicks),
                         retryMax = resolve(action.references["retry_max"], copy.retryMax),
                         radius = resolve(action.references["radius"], copy.radius),
+                    )
+                    is BotAction.WalkTo -> BotAction.WalkTo(
+                        x = resolve(action.references["x"], copy.x),
+                        y = resolve(action.references["y"], copy.y),
                     )
                     is BotAction.Wait -> BotAction.Wait(resolve(action.references["wait"], copy.ticks))
                     is BotAction.WaitFullInventory -> BotAction.WaitFullInventory(resolve(action.references["timeout"], copy.timeout))

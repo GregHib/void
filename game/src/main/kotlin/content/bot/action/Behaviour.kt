@@ -6,6 +6,6 @@ interface Behaviour {
     val id: String
     val requires: List<Condition>
     val resolve: List<Condition>
-    val plan: List<BotAction>
+    val actions: List<BotAction>
     val produces: Set<Condition>
 }

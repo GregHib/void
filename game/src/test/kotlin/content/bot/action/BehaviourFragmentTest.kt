@@ -29,7 +29,7 @@ class BehaviourFragmentTest {
         val template = BotActivity(
             id = "a",
             capacity = 1,
-            plan = listOf(
+            actions = listOf(
                 BotAction.Reference(
                     BotAction.GoTo("x"),
                     references = mapOf("go_to" to "missing")
@@ -48,7 +48,7 @@ class BehaviourFragmentTest {
         val template = BotActivity(
             id = "a",
             capacity = 1,
-            plan = listOf(BotAction.Clone("x"))
+            actions = listOf(BotAction.Clone("x"))
         )
         assertThrows<IllegalArgumentException> {
             fragment.resolveActions(template, mutableListOf())
@@ -61,7 +61,7 @@ class BehaviourFragmentTest {
         val template = BotActivity(
             id = "a",
             capacity = 1,
-            plan = listOf(
+            actions = listOf(
                 BotAction.Reference(
                     BotAction.Reference(
                         BotAction.GoTo("x"),
@@ -82,7 +82,7 @@ class BehaviourFragmentTest {
         val template = BotActivity(
             id = "a",
             capacity = 1,
-            plan = listOf(
+            actions = listOf(
                 BotAction.Reference(
                     BotAction.GoTo("x"),
                     references = mapOf("go_to" to "dest")
@@ -101,7 +101,7 @@ class BehaviourFragmentTest {
         val template = BotActivity(
             id = "a",
             capacity = 1,
-            plan = listOf(
+            actions = listOf(
                 BotAction.Reference(
                     BotAction.Wait(10),
                     references = emptyMap()
@@ -121,7 +121,7 @@ class BehaviourFragmentTest {
         val template = BotActivity(
             id = "a",
             capacity = 1,
-            plan = listOf(
+            actions = listOf(
                 BotAction.Wait(10)
             )
         )
@@ -180,7 +180,7 @@ class BehaviourFragmentTest {
             val template = BotActivity(
                 id = "a",
                 capacity = 1,
-                plan = listOf(
+                actions = listOf(
                     BotAction.Reference(
                         default,
                         references = references

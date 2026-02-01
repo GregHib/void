@@ -10,9 +10,9 @@ data class BehaviourFrame(
     var blocked: MutableSet<String> = mutableSetOf(),
 ) {
 
-    fun action(): BotAction = behaviour.plan[index]
+    fun action(): BotAction = behaviour.actions[index]
 
-    fun completed() = index >= behaviour.plan.size
+    fun completed() = index >= behaviour.actions.size
 
     fun start(bot: Bot) {
         val action = action()
@@ -27,7 +27,7 @@ data class BehaviourFrame(
     fun next(): Boolean {
         index++
         state = BehaviourState.Pending
-        return index < behaviour.plan.size
+        return index < behaviour.actions.size
     }
 
     fun fail(reason: Reason) {

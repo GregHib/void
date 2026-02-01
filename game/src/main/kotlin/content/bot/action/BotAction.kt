@@ -24,6 +24,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Spiral
 import world.gregs.voidps.network.client.instruction.InteractInterface
 import world.gregs.voidps.network.client.instruction.InteractNPC
+import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.type.random
 
 sealed interface BotAction {
@@ -149,6 +150,13 @@ sealed interface BotAction {
     }
 
     data class WaitFullInventory(val timeout: Int) : BotAction
+
+    data class WalkTo(val x: Int, val y: Int): BotAction {
+        override fun start(bot: Bot): BehaviourState {
+            bot.player.instructions.trySend(Walk(x, y))
+            return BehaviourState.Success
+        }
+    }
 
     /**
 TODO how to handle repeat actions e.g. repeat Chop-down trees until inv is full - These are actions Gathering, Skilling etc..

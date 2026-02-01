@@ -1,11 +1,11 @@
 [woodcutting_template]
 type = "activity"
-resolve = [ # setup?
+setup = [
     { carries = "$hatchet" },
     { location = "$location" },
     { inventory_space = 20 },
 ]
-plan = [
+actions = [
     { option = "Chop down", object = "$tree" },
 ]
 produces = [

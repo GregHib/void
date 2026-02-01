@@ -5,7 +5,7 @@ weight = 10
 requires = [
     { equips = "ring_of_duelling_*" }
 ]
-plan = [
+actions = [
     { option = "Castle Wars", interface = "equipment:inventory" },
 ]
 produces = [
@@ -18,7 +18,7 @@ weight = 8
 requires = [
     { carries = "ring_of_duelling_*" }
 ]
-plan = [
+actions = [
     { option = "Rub", interface = "inventory:inventory" },
     { option = "Select", interface = "choice:line1" },
 ]
@@ -32,12 +32,12 @@ weight = 10
 requires = [
     { variable = "spellbook", value = "normal" },
 ]
-resolve = [
+setup = [
     { carries = "fire_rune", amount = 1 },
     { carries = "air_rune", amount = 3 },
     { carries = "law_rune", amount = 1 },
 ]
-plan = [
+actions = [
     { option = "Cast", interface = "normal_spellbook:varrock_teleport" },
 ]
 produces = [
@@ -51,7 +51,7 @@ requires = [
     { variable = "spellbook", value = "normal" },
     { variable = "lumbridge_cooldown", value = "normal" },
 ]
-plan = [
+actions = [
     { option = "Cast", interface = "normal_spellbook:home_teleport" },
 ]
 produces = [

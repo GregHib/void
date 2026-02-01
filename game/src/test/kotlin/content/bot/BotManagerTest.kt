@@ -228,7 +228,7 @@ class BotManagerTest {
         val resolver = Resolver(
             id = "go_to_area",
             weight = 1,
-            plan = listOf(BotAction.Wait(1)),
+            actions = listOf(BotAction.Wait(1)),
             produces = setOf(condition)
         )
         val activity = testActivity(
@@ -253,8 +253,8 @@ class BotManagerTest {
     fun `Lowest weight resolver is selected`() {
         val condition = Condition.Within(Fact.PlayerTile, Tile(100, 100, 2), 2)
 
-        val bad = Resolver("bad", weight = 10, plan = listOf(BotAction.Clone("")))
-        val good = Resolver("good", weight = 1, plan = listOf(BotAction.Clone("")))
+        val bad = Resolver("bad", weight = 10, actions = listOf(BotAction.Clone("")))
+        val good = Resolver("good", weight = 1, actions = listOf(BotAction.Clone("")))
 
         val activity = testActivity(
             id = "mine",
@@ -277,7 +277,7 @@ class BotManagerTest {
     @Test
     fun `Blocked resolver is not reselected`() {
         val condition = Condition.Within(Fact.PlayerTile, Tile(100, 100, 2), 2)
-        val resolver = Resolver(id = "get_key", weight = 1, plan = listOf(BotAction.Clone("")))
+        val resolver = Resolver(id = "get_key", weight = 1, actions = listOf(BotAction.Clone("")))
         val activity = testActivity(
             id = "open_door",
             resolves = listOf(condition),
@@ -306,7 +306,7 @@ class BotManagerTest {
         val resolver = Resolver(
             id = "walk",
             weight = 1,
-            plan = listOf(BotAction.Wait(1))
+            actions = listOf(BotAction.Wait(1))
         )
         val activity = testActivity(
             id = "enter_zone",
@@ -334,7 +334,7 @@ class BotManagerTest {
         val resolver = Resolver(
             id = "test",
             weight = 1,
-            plan = listOf(BotAction.Wait(1))
+            actions = listOf(BotAction.Wait(1))
         )
         val activity = testActivity(
             id = "smelt",
@@ -363,7 +363,7 @@ class BotManagerTest {
         val resolver = Resolver(
             id = "mine_gem",
             weight = 1,
-            plan = listOf(BotAction.Clone("")),
+            actions = listOf(BotAction.Clone("")),
             requires = listOf(Condition.Range(Fact.MiningLevel, 99, 99))
         )
         val activity = testActivity(
@@ -391,7 +391,7 @@ class BotManagerTest {
         val resolver = Resolver(
             id = "get_tool",
             weight = 1,
-            plan = listOf(BotAction.Wait(1))
+            actions = listOf(BotAction.Wait(1))
         )
         val activity = testActivity(
             id = "work",

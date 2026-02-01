@@ -1,10 +1,10 @@
 #[run_to_varrock]
 #type = "activity"
 #capacity = 1
-#resolve = [
+#setup = [
 #    { variable = "movement", value = "run" }
 #]
-#plan = [
+#actions = [
 #    { go_to = "varrock_teleport" }
 #]
 #produces = [
@@ -16,7 +16,7 @@ type = "resolver"
 requires = [
     { variable = "movement", value = "walk" }
 ]
-plan = [
+actions = [
     { option = "Turn Run mode on", interface = "energy_orb:run_background" }
 ]
 produces = [
