@@ -3,6 +3,8 @@ package content.bot
 import com.github.michaelbull.logging.InlineLogger
 import content.bot.action.*
 import content.bot.fact.Condition
+import content.bot.interact.path.Graph
+import content.bot.interact.path.Graph.Companion.loadGraph
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.event.AuditLog
@@ -19,6 +21,7 @@ class BotManager(
     private val resolvers: MutableMap<String, MutableList<Resolver>> = mutableMapOf(),
     private val groups: MutableMap<String, MutableList<String>> = mutableMapOf(),
 ) : Runnable {
+    lateinit var graph: Graph
     val slots = ActivitySlots()
     val bots = mutableListOf<Bot>()
     private val logger = InlineLogger("BotManager")
@@ -61,7 +64,9 @@ class BotManager(
     }
 
     fun load(files: ConfigFiles): BotManager {
-        loadActivities(files.list(Settings["bots.definitions"]), activities, groups, resolvers)
+        val shortcuts = mutableListOf<NavigationShortcut>()
+        loadActivities(files.list(Settings["bots.definitions"]), activities, groups, resolvers, shortcuts)
+        graph = loadGraph(files.list(Settings["bots.nav.definitions"]), shortcuts)
         return this
     }
 

@@ -1,36 +1,35 @@
-
-[ring_of_duelling_equipped]
-type = "teleport"
-weight = 10
-requires = [
-    { equips = "ring_of_duelling_*" }
-]
-actions = [
-    { option = "Castle Wars", interface = "equipment:inventory" },
-]
-produces = [
-    { location = "castle_wars_teleport" }
-]
-
-[ring_of_duelling]
-type = "teleport"
-weight = 8
-requires = [
-    { carries = "ring_of_duelling_*" }
-]
-actions = [
-    { option = "Rub", interface = "inventory:inventory" },
-    { option = "Select", interface = "choice:line1" },
-]
-produces = [
-    { location = "castle_wars_teleport" }
-]
+#[ring_of_duelling_equipped]
+#type = "shortcut"
+#weight = 10
+#requires = [
+#    { equips = "ring_of_duelling_*" }
+#]
+#actions = [
+#    { option = "Castle Wars", interface = "equipment:inventory" },
+#]
+#produces = [
+#    { location = "castle_wars_teleport" }
+#]
+#
+#[ring_of_duelling]
+#type = "shortcut"
+#weight = 8
+#requires = [
+#    { carries = "ring_of_duelling_*" }
+#]
+#actions = [
+#    { option = "Rub", interface = "inventory:inventory" },
+#    { option = "Select", interface = "choice:line1" },
+#]
+#produces = [
+#    { location = "castle_wars_teleport" }
+#]
 
 [teleport_varrock]
-type = "teleport"
+type = "shortcut"
 weight = 10
 requires = [
-    { variable = "spellbook", value = "normal" },
+    { variable = "spellbook_config", value = 0, default = 0 },
 ]
 setup = [
     { carries = "fire_rune", amount = 1 },
@@ -38,21 +37,21 @@ setup = [
     { carries = "law_rune", amount = 1 },
 ]
 actions = [
-    { option = "Cast", interface = "normal_spellbook:varrock_teleport" },
+    { option = "Cast", interface = "modern_spellbook:varrock_teleport" },
 ]
 produces = [
     { location = "varrock_teleport" }
 ]
 
 [teleport_lumbridge]
-type = "teleport"
+type = "shortcut"
 weight = 5
 requires = [
-    { variable = "spellbook", value = "normal" },
-    { variable = "lumbridge_cooldown", value = "normal" },
+    { variable = "spellbook_config", value = 0, default = 0 },
+    { variable = "lumbridge_cooldown", value = "normal" }, # clock/timer teleport_delay
 ]
 actions = [
-    { option = "Cast", interface = "normal_spellbook:home_teleport" },
+    { option = "Cast", interface = "modern_spellbook:lumbridge_home_teleport" },
 ]
 produces = [
     { location = "lumbridge_teleport" }

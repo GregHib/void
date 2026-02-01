@@ -5,6 +5,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.ints.IntArrayList
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
+import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Area
@@ -103,7 +104,8 @@ object Areas {
         return this
     }
 
-    internal fun set(named: Map<String, AreaDefinition>, tagged: Map<String, Set<AreaDefinition>>, areas: Map<Int, Set<AreaDefinition>>) {
+    @TestOnly
+    fun set(named: Map<String, AreaDefinition>, tagged: Map<String, Set<AreaDefinition>>, areas: Map<Int, Set<AreaDefinition>>) {
         this.named = named
         this.tagged = tagged
         this.areas = areas

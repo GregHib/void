@@ -1,5 +1,8 @@
 package content.entity.player.command
 
+import content.bot.Bot
+import content.bot.BotManager
+import content.bot.bot
 import content.bot.interact.path.Dijkstra
 import content.bot.interact.path.EdgeTraversal
 import content.bot.interact.path.NodeTargetStrategy
@@ -116,6 +119,20 @@ class PathFindingCommands(val patrols: PatrolDefinitions) : Script {
             //
             //    val pf = SmartPathFinder(flags = collisions.data, useRouteBlockerFlags = false)
             //    println(pf.findPath(3205, 3220, 3205, 3223, 2))
+        }
+
+        adminCommand("walk_test") {
+            val manager = get<BotManager>()
+            val list = mutableListOf<Int>()
+            set("bot", Bot(this))
+            bot.blocked.add("teleport_varrock")
+            // TODO convert nav_graph.toml to n
+            println(manager.graph.find(this, list, "varrock_teleport"))
+            println(list)
+            for (edge in list) {
+                println(manager.graph.tile(edge))
+            }
+
         }
 
         adminCommand("walk_to_bank") {

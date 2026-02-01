@@ -21,7 +21,13 @@ data class BotActivity(
     override val produces: Set<Condition> = emptySet(),
 ) : Behaviour
 
-fun loadActivities(paths: List<String>, activities: MutableMap<String, BotActivity>, groups: MutableMap<String, MutableList<String>>, resolvers: MutableMap<String, MutableList<Resolver>>) {
+fun loadActivities(
+    paths: List<String>,
+    activities: MutableMap<String, BotActivity>,
+    groups: MutableMap<String, MutableList<String>>,
+    resolvers: MutableMap<String, MutableList<Resolver>>,
+    shortcuts: MutableList<NavigationShortcut>,
+) {
     val fragments = mutableMapOf<String, BehaviourFragment>()
     timedLoad("bot activity") {
         val reqClones = mutableMapOf<String, String>()
@@ -70,6 +76,8 @@ fun loadActivities(paths: List<String>, activities: MutableMap<String, BotActivi
                                 resolvers.getOrPut(key) { mutableListOf() }.add(Resolver(id, weight, requirements, resolvables, actions = actions))
                             }
                         }
+                    } else if (type == "shortcut") {
+                        shortcuts.add(NavigationShortcut(id, weight, requirements, resolvables, actions = actions, produces = produces.toSet()))
                     } else {
                         activities[id] = BotActivity(id, capacity, requirements, resolvables, actions = actions)
                     }
@@ -124,14 +132,16 @@ fun loadActivities(paths: List<String>, activities: MutableMap<String, BotActivi
             val actions = mutableListOf<BotAction>()
             actions.addAll(fragment.actions)
             fragment.resolveActions(template, actions)
-            if (fragment.type == "resolver") {
-                for (fact in fragment.produces) {
-                    for (key in fact.keys()) {
-                        resolvers.getOrPut(key) { mutableListOf() }.add(Resolver(id, fragment.weight, requirements, resolvables, actions))
+            when (fragment.type) {
+                "resolver" -> {
+                    for (fact in fragment.produces) {
+                        for (key in fact.keys()) {
+                            resolvers.getOrPut(key) { mutableListOf() }.add(Resolver(id, fragment.weight, requirements, resolvables, actions))
+                        }
                     }
                 }
-            } else {
-                activities[id] = BotActivity(id, fragment.capacity, requirements, resolvables, actions)
+                "shortcut" -> shortcuts.add(NavigationShortcut(id, fragment.weight, requirements, resolvables, actions = actions))
+                else -> activities[id] = BotActivity(id, fragment.capacity, requirements, resolvables, actions)
             }
         }
         // Templates aren't selectable activities
@@ -161,7 +171,7 @@ private fun ConfigReader.fields(): Map<String, Any> {
     return map
 }
 
-private fun ConfigReader.requirements(list: MutableList<Condition>) {
+fun ConfigReader.requirements(list: MutableList<Condition>) {
     while (nextElement()) {
         var type = ""
         var id = ""
@@ -232,7 +242,7 @@ private fun ConfigReader.requirements(list: MutableList<Condition>) {
     list.sortBy { it.priority() }
 }
 
-private fun getRequirement(type: String, id: String, min: Int?, max: Int?, value: Any?): Condition? = when (type) {
+private fun getRequirement(type: String, id: String, min: Int?, max: Int?, value: Any?, default: Any?): Condition? = when (type) {
     "skill" -> Condition.range(Fact.SkillLevel.of(id), min, max)
     "carries" -> if (id.contains(",")) {
         Condition.Any(id.split(",").map { Condition.range(Fact.InventoryCount(it), min, max) })
