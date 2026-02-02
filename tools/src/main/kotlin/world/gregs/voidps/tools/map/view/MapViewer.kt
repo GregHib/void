@@ -31,13 +31,14 @@ class MapViewer {
             val files = configFiles()
             ObjectDefinitions.init(decoder).load(files.list(Settings["definitions.objects"]))
             Areas.load(files.list(Settings["map.areas"]))
-            val graph = Graph.loadGraph(files.list(Settings["bots.nav.definitions"]), emptyList())
             if (DISPLAY_AREA_COLLISIONS || DISPLAY_ALL_COLLISIONS) {
                 ObjectDefinitions.init(ObjectDecoder(member = true, lowDetail = false).load(cache))
                     .load(files.list(Settings["definitions.objects"]))
                 MapDefinitions(CollisionDecoder(), cache).load(files)
             }
-            frame.add(MapView(graph, files.list(Settings["map.areas"])))
+            val view = MapView()
+            view.reload(files)
+            frame.add(view)
             frame.pack()
             frame.setLocationRelativeTo(null)
             frame.isVisible = true

@@ -17,9 +17,9 @@ import kotlin.math.sqrt
 
 class GraphDrawer(
     private val view: MapView,
-    private var graph: Graph?,
     private val area: AreaSet,
 ) {
+    private var graph: Graph? = null
 
     private val steps: StepValidator = StepValidator(Collisions.map)
     private val linkColour = Color(0.0f, 0.0f, 1.0f, 0.5f)

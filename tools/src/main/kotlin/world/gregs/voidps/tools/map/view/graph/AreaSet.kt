@@ -69,8 +69,8 @@ class AreaSet {
 //            writer.writeValue(File(path), set.areas)
         }
 
-        fun load(paths: List<String>): AreaSet {
-            val set = AreaSet()
+        fun load(paths: List<String>, set: AreaSet) {
+            set.areas.clear()
             val areas = mutableListOf<Area>()
             for (path in paths) {
                 Config.fileReader(path) {
@@ -113,7 +113,6 @@ class AreaSet {
                 }
             }
             set.areas.addAll(areas)
-            return set
         }
     }
 }
