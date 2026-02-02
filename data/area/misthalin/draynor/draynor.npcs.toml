@@ -112,11 +112,16 @@ shop = "draynor_seed_market"
 examine = "She's a seed merchant."
 
 [piglet]
+id = 2241
+examine = "I shall call him, Mini Pig."
+
+[piglet_2]
 id = 2242
 examine = "Porcine."
 
-[piglet_2]
+[piglet_3]
 id = 2243
+examine = "Hog."
 
 [pig]
 id = 2239
