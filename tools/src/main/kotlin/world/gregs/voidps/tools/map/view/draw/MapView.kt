@@ -1,7 +1,10 @@
 package world.gregs.voidps.tools.map.view.draw
 
-import content.bot.interact.navigation.graph.NavigationGraph
+import content.bot.interact.path.Graph
 import kotlinx.coroutines.*
+import world.gregs.voidps.engine.data.ConfigFiles
+import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.tools.map.view.draw.WorldMap.Companion.flipRegionY
 import world.gregs.voidps.tools.map.view.graph.AreaSet
 import world.gregs.voidps.tools.map.view.interact.MouseDrag
@@ -16,7 +19,7 @@ import java.awt.Graphics
 import javax.swing.JPanel
 import javax.swing.SwingUtilities
 
-class MapView(nav: NavigationGraph?, private val areaFiles: List<String>) : JPanel() {
+class MapView(graph: Graph, private val areaFiles: List<String>) : JPanel() {
 
     private val options = OptionsPane(this)
     private val areaSet = AreaSet.load(areaFiles)
@@ -28,7 +31,7 @@ class MapView(nav: NavigationGraph?, private val areaFiles: List<String>) : JPan
     private val hover = MouseHover(highlight, area)
     private val map = WorldMap(this)
     private val resize = ResizeListener(map)
-    private val graph = GraphDrawer(this, nav, areaSet)
+    private val graph = GraphDrawer(this, graph, areaSet)
 
     //    private val click = MouseClick(this, nav, graph, area, areaSet)
     private val apc = AreaPointConnector(this, areaSet)
@@ -85,6 +88,10 @@ class MapView(nav: NavigationGraph?, private val areaFiles: List<String>) : JPan
     fun updateZoom(x: Int, y: Int) {
         highlight.update(x, y)
         area.update(x, y)
+    }
+
+    fun reload(files: ConfigFiles = configFiles()) {
+        graph.reload(Graph.loadGraph(files.list(Settings["bots.nav.definitions"]), emptyList()))
     }
 
     fun updateLevel(level: Int) {

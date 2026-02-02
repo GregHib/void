@@ -1,6 +1,6 @@
 package world.gregs.voidps.tools.map.view.draw
 
-import content.bot.interact.navigation.graph.NavigationGraph
+import content.bot.interact.path.Graph
 import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
@@ -11,14 +11,13 @@ import world.gregs.voidps.tools.map.view.MapViewer.Companion.FILTER_VIEWPORT
 import world.gregs.voidps.tools.map.view.graph.Area
 import world.gregs.voidps.tools.map.view.graph.AreaSet
 import world.gregs.voidps.tools.map.view.graph.Link
-import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
 import java.awt.*
 import kotlin.math.sqrt
 
 class GraphDrawer(
     private val view: MapView,
-    private val nav: NavigationGraph?,
+    private var graph: Graph?,
     private val area: AreaSet,
 ) {
 
@@ -29,11 +28,10 @@ class GraphDrawer(
     private val areaColour = Color(1.0f, 0.0f, 1.0f, 0.2f)
     private val walkableColour = Color(0.0f, 1.0f, 0.0f, 0.3f)
     private val collisionColour = Color(1.0f, 0.0f, 0.0f, 0.3f)
-    private val distances = nav?.nodes?.map { nav.get(it) }?.flatten()?.distinct()?.mapNotNull { edge ->
-        val start = edge.start as? Tile ?: return@mapNotNull null
-        val end = edge.end as? Tile ?: return@mapNotNull null
-        edge to Distance.chebyshev(start.x, start.y, end.x, end.y)
-    }?.toMap()
+
+    fun reload(graph: Graph?) {
+        this.graph = graph
+    }
 
     fun repaint(link: Link) {
         repaint(link.start)
@@ -49,40 +47,41 @@ class GraphDrawer(
 
     fun draw(g: Graphics) {
         g.color = linkColour
-        nav?.nodes?.filterIsInstance<Tile>()?.forEach { node ->
-            if (node.level != view.level) {
-                return@forEach
-            }
-            val viewX = view.mapToViewX(node.x)
-            val viewY = view.mapToViewY(view.flipMapY(node.y))
-            if (!view.contains(viewX, viewY)) {
-                return@forEach
-            }
-            val width = view.mapToImageX(1)
-            val height = view.mapToImageY(1)
-            g.fillOval(viewX, viewY, width, height)
-
-            val edges = nav.getAdjacent(node)
-            edges.forEachIndexed { index, edge ->
-                val start = edge.start as? Tile ?: return@forEachIndexed
-                val end = edge.end as? Tile ?: return@forEachIndexed
-                if (start.level != view.level || end.level != view.level) {
-                    return@forEachIndexed
+        if (graph != null) {
+            val graph = graph!!
+            for (i in 1 until graph.nodeCount) {
+                val tile = Tile(graph.tiles[i])
+                if (tile.level != view.level) {
+                    continue
                 }
-                val distance = distances?.get(edge)
-                val endX = view.mapToViewX(end.x) + width / 2
-                val endY = view.mapToViewY(view.flipMapY(end.y)) + height / 2
-                val offset = width / 4
-                val startX = viewX + width / 2
-                val startY = viewY + height / 2
-                if (view.scale > 10) {
-                    g.drawArrowHead(startX, startY, endX, endY, offset * 3, width / 2, index.toString())
-                    if (distance != null) {
+                val viewX = view.mapToViewX(tile.x)
+                val viewY = view.mapToViewY(view.flipMapY(tile.y))
+                if (!view.contains(viewX, viewY)) {
+                    continue
+                }
+                val width = view.mapToImageX(1)
+                val height = view.mapToImageY(1)
+                g.fillOval(viewX, viewY, width, height)
+
+                val edges = graph.adjacentEdges[i]
+                edges?.forEachIndexed { index, edge ->
+                    val end = graph.tile(edge)
+                    if (tile.level != view.level || end.level != view.level) {
+                        return@forEachIndexed
+                    }
+                    val distance = graph.edgeWeights[edge]
+                    val endX = view.mapToViewX(end.x) + width / 2
+                    val endY = view.mapToViewY(view.flipMapY(end.y)) + height / 2
+                    val offset = width / 4
+                    val startX = viewX + width / 2
+                    val startY = viewY + height / 2
+                    if (view.scale > 10) {
+                        g.drawArrowHead(startX, startY, endX, endY, offset * 3, width / 2, index.toString())
                         g.drawString(distance.toString(), startX + (endX - startX) / 2, startY + (endY - startY) / 2)
                     }
-                }
-                if (view.contains(startX, startY) || view.contains(endX, endY)) {
-                    g.drawLine(startX, startY, endX, endY)
+                    if (view.contains(startX, startY) || view.contains(endX, endY)) {
+                        g.drawLine(startX, startY, endX, endY)
+                    }
                 }
             }
         }
@@ -179,9 +178,9 @@ class GraphDrawer(
     }
 
     private fun canTravel(steps: StepValidator, x: Int, y: Int, level: Int, collision: CollisionStrategy) = steps.canTravel(x = x, z = y - 1, level = level, size = 1, offsetX = 0, offsetZ = 1, extraFlag = 0, collision = collision) ||
-        steps.canTravel(x = x, z = y + 1, level = level, size = 1, offsetX = 0, offsetZ = -1, extraFlag = 0, collision = collision) ||
-        steps.canTravel(x = x - 1, z = y, level = level, size = 1, offsetX = 1, offsetZ = 0, extraFlag = 0, collision = collision) ||
-        steps.canTravel(x = x + 1, z = y, level = level, size = 1, offsetX = -1, offsetZ = 0, extraFlag = 0, collision = collision)
+            steps.canTravel(x = x, z = y + 1, level = level, size = 1, offsetX = 0, offsetZ = -1, extraFlag = 0, collision = collision) ||
+            steps.canTravel(x = x - 1, z = y, level = level, size = 1, offsetX = 1, offsetZ = 0, extraFlag = 0, collision = collision) ||
+            steps.canTravel(x = x + 1, z = y, level = level, size = 1, offsetX = -1, offsetZ = 0, extraFlag = 0, collision = collision)
 
     /**
      * Draws an arrow of [length] at [offset] along the line [x1], [y1] -> [x2], [y2]
