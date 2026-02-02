@@ -1,8 +1,8 @@
 edges = [
-    { from_x = 3234, from_y = 3218, to_x = 3236, to_y = 3205 }, # lumbridge_gate_south_to_village
-    { from_x = 3234, from_y = 3218, to_x = 3243, to_y = 3209 }, # lumbridge_gate_south_to_church
+    { from_x = 3236, from_y = 3218, to_x = 3236, to_y = 3205 }, # lumbridge_gate_south_to_village
+    { from_x = 3236, from_y = 3218, to_x = 3243, to_y = 3209 }, # lumbridge_gate_south_to_church
     { from_x = 3236, from_y = 3205, to_x = 3243, to_y = 3209 }, # lumbridge_south_village_to_church
-    { from_x = 3234, from_y = 3218, to_x = 3250, to_y = 3212 }, # lumbridge_gate_south_to_behind_church
+    { from_x = 3236, from_y = 3218, to_x = 3250, to_y = 3212 }, # lumbridge_gate_south_to_behind_church
     { from_x = 3250, from_y = 3212, to_x = 3258, to_y = 3206 }, # lumbridge_behind_church_to_church_fishing_spot
     { from_x = 3236, from_y = 3205, to_x = 3231, to_y = 3203, cost = 5, actions = [{ option = "Open", object = "door_720_closed", x = 3234, y = 3203 }, { x = 3231, y = 3203 }] }, # lumbridge_south_village_to_bobs_axes
     { from_x = 3231, from_y = 3203, to_x = 3236, to_y = 3205, cost = 5, actions = [{ option = "Open", object = "door_720_closed", x = 3234, y = 3203 }, { x = 3236, y = 3205 }] }, # lumbridge_bobs_axes_to_south_village
@@ -12,33 +12,38 @@ edges = [
     { from_x = 3244, from_y = 3190, to_x = 3253, to_y = 3200 }, # lumbridge_graveyard_exit_to_behind_graveyard
     { from_x = 3250, from_y = 3212, to_x = 3253, to_y = 3200 }, # lumbridge_behind_church_to_behind_graveyard
     { from_x = 3258, from_y = 3206, to_x = 3253, to_y = 3200 }, # lumbridge_church_fishing_spot_to_behind_graveyard
-    { from_x = 3205, from_y = 3209, to_x = 3205, to_y = 3209, cost = 1, actions = [{ option = "Climb-down", object = "lumbridge_staircase_top", x = 3204, y = 3207 }] }, # lumbridge_castle_2nd_floor_south_stairs_to_1st_floor
-    { from_x = 3208, from_y = 3219, to_x = 3205, to_y = 3209 }, # lumbridge_castle_2nd_floor_bank_to_south_stairs
-    { from_x = 3205, from_y = 3209, to_x = 3205, to_y = 3209, cost = 1, actions = [{ option = "Climb-up", object = "lumbridge_staircase", x = 3204, y = 3207 }] }, # lumbridge_castle_ground_floor_south_stairs_to_1st_floor
+    { from_x = 3205, from_y = 3209, from_level = 2, to_x = 3205, to_y = 3209, to_level = 1, cost = 1, actions = [{ option = "Climb-down", object = "lumbridge_staircase_top", x = 3204, y = 3207 }] }, # lumbridge_castle_2nd_floor_south_stairs_to_1st_floor
+    { from_x = 3208, from_y = 3219, from_level = 2, to_x = 3205, to_y = 3209, to_level = 2 }, # lumbridge_castle_2nd_floor_bank_to_south_stairs
+    { from_x = 3205, from_y = 3209, to_x = 3205, to_y = 3209, to_level = 1, cost = 1, actions = [{ option = "Climb-up", object = "lumbridge_staircase", x = 3204, y = 3207 }] }, # lumbridge_castle_ground_floor_south_stairs_to_1st_floor
     { from_x = 3205, from_y = 3209, to_x = 3208, to_y = 3210 }, # lumbridge_castle_ground_floor_south_stairs_to_kitchen_corridor
     { from_x = 3208, from_y = 3210, to_x = 3215, to_y = 3216 }, # lumbridge_castle_kitchen_corridor_to_castle_south_entrance
     { from_x = 3208, from_y = 3210, to_x = 3211, to_y = 3214 }, # lumbridge_castle_kitchen_corridor_to_kitchen
     { from_x = 3215, from_y = 3216, to_x = 3222, to_y = 3218 }, # lumbridge_castle_south_entrance_to_courtyard_south
-    { from_x = 3205, from_y = 3209, to_x = 3205, to_y = 3209, cost = 1, actions = [{ option = "Climb-down", object = "lumbridge_castle_staircase_south_middle", x = 3204, y = 3207 }] }, # lumbridge_castle_1st_floor_south_stairs_to_ground_floor
-    { from_x = 3205, from_y = 3209, to_x = 3205, to_y = 3209, cost = 1, actions = [{ option = "Climb-up", object = "lumbridge_castle_staircase_south_middle", x = 3204, y = 3207 }] }, # lumbridge_castle_1st_floor_south_stairs_to_2nd_floor
+    { from_x = 3205, from_y = 3209, from_level = 1, to_x = 3205, to_y = 3209, cost = 1, actions = [{ option = "Climb-down", object = "lumbridge_castle_staircase_south_middle", x = 3204, y = 3207 }] }, # lumbridge_castle_1st_floor_south_stairs_to_ground_floor
+    { from_x = 3205, from_y = 3209, from_level = 1, to_x = 3205, to_y = 3209, to_level = 2, cost = 1, actions = [{ option = "Climb-up", object = "lumbridge_castle_staircase_south_middle", x = 3204, y = 3207 }] }, # lumbridge_castle_1st_floor_south_stairs_to_2nd_floor
     { from_x = 3209, from_y = 3205, to_x = 3199, to_y = 3218 }, # lumbridge_castle_grounds_south_to_tower_west
     { from_x = 3199, from_y = 3218, to_x = 3184, to_y = 3225 }, # lumbridge_castle_tower_west_to_yew_trees
     { from_x = 3199, from_y = 3218, to_x = 3193, to_y = 3236 }, # lumbridge_castle_tower_west_to_tree_patch
     { from_x = 3184, from_y = 3225, to_x = 3168, to_y = 3221 }, # lumbridge_castle_yew_trees_to_yew_trees_west
     { from_x = 3184, from_y = 3225, to_x = 3193, to_y = 3236 }, # lumbridge_castle_yew_trees_to_tree_patch
     { from_x = 3226, from_y = 3214, to_x = 3227, to_y = 3214, cost = 3, actions = [{ option = "Open", object = "door_627_closed", x = 3226, y = 3214 }] }, # lumbridge_south_tower_to_ground_floor
-    { from_x = 3227, from_y = 3214, to_x = 3229, to_y = 3214, cost = 1, actions = [{ option = "Climb-up", object = "36768", x = 3229, y = 3213 }] }, # lumbridge_south_tower_ground_floor_to_1st_floor
-    { from_x = 3229, from_y = 3214, to_x = 3229, to_y = 3214, cost = 1, actions = [{ option = "Climb-up", object = "36769", x = 3229, y = 3213 }] }, # lumbridge_south_tower_1st_floor_to_2nd_floor
-    { from_x = 3229, from_y = 3214, to_x = 3229, to_y = 3214, cost = 1, actions = [{ option = "Climb-down", object = "36769", x = 3229, y = 3213 }] }, # lumbridge_south_tower_1st_floor_to_ground_floor
-    { from_x = 3229, from_y = 3214, to_x = 3229, to_y = 3214, cost = 1, actions = [{ option = "Climb-down", object = "36770", x = 3229, y = 3213 }] }, # lumbridge_south_tower_2nd_floor_to_1st_floor
-    { from_x = 3234, from_y = 3220, to_x = 3236, to_y = 3225 }, # lumbridge_gate_north_to_bridge_west
+    { from_x = 3227, from_y = 3214, to_x = 3229, to_y = 3214, to_level = 1, cost = 1, actions = [{ option = "Climb-up", object = "36768", x = 3229, y = 3213 }] }, # lumbridge_south_tower_ground_floor_to_1st_floor
+    { from_x = 3229, from_y = 3214, from_level = 1, to_x = 3229, to_y = 3214, to_level = 2, cost = 1, actions = [{ option = "Climb-up", object = "36769", x = 3229, y = 3213 }] }, # lumbridge_south_tower_1st_floor_to_2nd_floor
+    { from_x = 3229, from_y = 3214, from_level = 1, to_x = 3229, to_y = 3214, cost = 1, actions = [{ option = "Climb-down", object = "36769", x = 3229, y = 3213 }] }, # lumbridge_south_tower_1st_floor_to_ground_floor
+    { from_x = 3229, from_y = 3214, from_level = 2, to_x = 3229, to_y = 3214, to_level = 1, cost = 1, actions = [{ option = "Climb-down", object = "36770", x = 3229, y = 3213 }] }, # lumbridge_south_tower_2nd_floor_to_1st_floor
+    { from_x = 3236, from_y = 3220, to_x = 3236, to_y = 3225 }, # lumbridge_gate_north_to_bridge_west
     { from_x = 3236, from_y = 3225, to_x = 3230, to_y = 3232 }, # lumbridge_bridge_west_to_unstable_house
     { from_x = 3236, from_y = 3225, to_x = 3253, to_y = 3225 }, # lumbridge_bridge_west_to_bridge_east
     { from_x = 3253, from_y = 3225, to_x = 3263, to_y = 3222 }, # lumbridge_bridge_east_to_trees_east
     { from_x = 3253, from_y = 3225, to_x = 3260, to_y = 3228 }, # lumbridge_bridge_east_to_east_crossroad
     { from_x = 3260, from_y = 3228, to_x = 3263, to_y = 3222 }, # lumbridge_east_crossroad_to_trees_east
+    { from_x = 3260, from_y = 3228, to_x = 3259, to_y = 3239 },
+    { from_x = 3259, from_y = 3239, to_x = 3258, to_y = 3250 },
+    { from_x = 3259, from_y = 3239, to_x = 3256, to_y = 3247 },
+    { from_x = 3256, from_y = 3247, to_x = 3251, to_y = 3252 },
     { from_x = 3235, from_y = 3261, to_x = 3250, to_y = 3266 }, # lumbridge_bridge_north_to_cow_entrance
     { from_x = 3251, from_y = 3252, to_x = 3250, to_y = 3266 }, # lumbridge_goblin_path_north_to_cow_entrance
+    { from_x = 3251, from_y = 3252, to_x = 3258, to_y = 3250 },
     { from_x = 3250, from_y = 3266, to_x = 3240, to_y = 3280 }, # lumbridge_cow_entrance_to_cow_path
     { from_x = 3240, from_y = 3280, to_x = 3238, to_y = 3295 }, # lumbridge_cow_path_to_chicken_entrance
     { from_x = 3238, from_y = 3295, to_x = 3235, to_y = 3295, cost = 0, actions = [{ option = "Open", object = "gate_235_closed", x = 3237, y = 3295 }] }, # lumbridge_chicken_entrance_to_chicken_pen
@@ -73,9 +78,9 @@ edges = [
     { from_x = 3136, from_y = 3219, to_x = 3119, to_y = 3228 }, # lumbridge_swamp_west_wall_to_draynor_jail_path_south
     { from_x = 3222, from_y = 3218, to_x = 3226, to_y = 3214 }, # lumbridge_courtyard_south_to_tower_door
     { from_x = 3222, from_y = 3218, to_x = 3222, to_y = 3220 }, # lumbridge_courtyard_south_to_north
-    { from_x = 3222, from_y = 3218, to_x = 3234, to_y = 3218 }, # lumbridge_courtyard_south_to_gate_north
-    { from_x = 3222, from_y = 3220, to_x = 3234, to_y = 3220 }, # lumbridge_courtyard_north_to_gate_north
-    { from_x = 3234, from_y = 3218, to_x = 3234, to_y = 3220 }, # lumbridge_courtyard_gate_south_to_gate_north
+    { from_x = 3222, from_y = 3218, to_x = 3236, to_y = 3218 }, # lumbridge_courtyard_south_to_gate_north
+    { from_x = 3222, from_y = 3220, to_x = 3236, to_y = 3220 }, # lumbridge_courtyard_north_to_gate_north
+    { from_x = 3236, from_y = 3218, to_x = 3236, to_y = 3220 }, # lumbridge_courtyard_gate_south_to_gate_north
     { from_x = 3222, from_y = 3218, to_x = 3209, to_y = 3205 }, # lumbridge_courtyard_south_to_grounds_south
     { from_x = 3230, from_y = 3232, to_x = 3222, to_y = 3241 }, # lumbridge_unstable_house_to_general_store_east
     { from_x = 3222, from_y = 3241, to_x = 3217, to_y = 3241, cost = 6, actions = [{ option = "Open", object = "door_720_closed", x = 3219, y = 3241 }, { x = 3217, y = 3241 }] }, # lumbridge_general_store_east_to_general_store
@@ -102,6 +107,23 @@ edges = [
     { from_x = 3225, from_y = 3252, to_x = 3222, to_y = 3255 }, # lumbridge_smiths_south_to_west
     { from_x = 3222, from_y = 3255, to_x = 3218, to_y = 3255 }, # lumbridge_smiths_west_to_smiths_crossroad
     { from_x = 3218, from_y = 3255, to_x = 3219, to_y = 3247 }, # lumbridge_smiths_crossroad_to_west_crossroad
+    { from_x = 3218, from_y = 3255, to_x = 3223, to_y = 3260 },
+    { from_x = 3223, from_y = 3260, to_x = 3235, to_y = 3261 },
+    { from_x = 3218, from_y = 3255, to_x = 3217, to_y = 3268 },
+    { from_x = 3217, from_y = 3268, to_x = 3213, to_y = 3277 },
+    { from_x = 3213, from_y = 3277, to_x = 3199, to_y = 3279 },
+    { from_x = 3199, from_y = 3279, to_x = 3190, to_y = 3283 },
+    { from_x = 3190, from_y = 3283, to_x = 3190, to_y = 3294 },
+    { from_x = 3190, from_y = 3294, to_x = 3186, to_y = 3307 },
+    { from_x = 3186, from_y = 3307, to_x = 3177, to_y = 3315 },
+    { from_x = 3177, from_y = 3315, to_x = 3177, to_y = 3316, cost = 0, actions = [{ option = "Open", object = "gate_235_closed", x = 3177, y = 3316 }] },
+    { from_x = 3177, from_y = 3316, to_x = 3177, to_y = 3315, cost = 0, actions = [{ option = "Open", object = "gate_235_closed", x = 3177, y = 3316 }] },
+    { from_x = 3177, from_y = 3316, to_x = 3179, to_y = 3326 },
+    { from_x = 3179, from_y = 3326, to_x = 3178, to_y = 3334 },
+    { from_x = 3178, from_y = 3334, to_x = 3177, to_y = 3345 },
+    { from_x = 3177, from_y = 3345, to_x = 3177, to_y = 3357 },
+    { from_x = 3177, from_y = 3357, to_x = 3178, to_y = 3364 },
+    { from_x = 3178, from_y = 3364, to_x = 3184, to_y = 3370 },
     { from_x = 3225, from_y = 3252, to_x = 3219, to_y = 3247 }, # lumbridge_smiths_south_to_west_crossroad
     { from_x = 3253, from_y = 3225, to_x = 3245, to_y = 3238 }, # lumbridge_bridge_east_to_goblins_river
     { from_x = 3253, from_y = 3225, to_x = 3254, to_y = 3239 }, # lumbridge_bridge_east_to_goblins
@@ -129,7 +151,7 @@ edges = [
     { from_x = 3128, from_y = 3407, to_x = 2841, to_y = 4830, cost = 3, actions = [{ option = "null", object = "air_altar_ruins", x = 3126, y = 3404 }] }, # varrock_west_air_altar_ruins_to_air_altar
     { from_x = 2841, from_y = 4830, to_x = 2841, to_y = 4829 }, # varrock_west_air_altar_to_exit
     { from_x = 2841, from_y = 4829, to_x = 3128, to_y = 3407, cost = 3, actions = [{ option = "Enter", object = "air_altar_portal", x = 2841, y = 4828 }] }, # varrock_west_air_altar_exit_to_ruins
-    { from_x = 3304, from_y = 3474, to_x = 2655, to_y = 4831, cost = 3, actions = [{ option = "null", object = "earth_altar_ruins", x = 3305, y = 3473 }] }, # varrock_east_earth_altar_ruins_to_altar
+    { from_x = 3304, from_y = 3474, to_x = 2655, to_y = 4831, cost = 3, actions = [{ option = "Enter", object = "earth_altar_ruins", x = 3305, y = 3473 }] }, # varrock_east_earth_altar_ruins_to_altar
     { from_x = 2655, from_y = 4831, to_x = 2655, to_y = 4830 }, # varrock_east_earth_altar_to_exit
     { from_x = 2655, from_y = 4830, to_x = 3304, to_y = 3474, cost = 3, actions = [{ option = "Enter", object = "earth_altar_portal", x = 2655, y = 4829 }] }, # varrock_east_earth_altar_exit_to_ruins
     { from_x = 3254, from_y = 3422, to_x = 3265, to_y = 3428 }, # varrock_east_bank_to_dirt_crossroad
@@ -147,6 +169,8 @@ edges = [
     { from_x = 3230, from_y = 3430, to_x = 3223, to_y = 3429 }, # varrock_east_armour_shop_to_centre_east
     { from_x = 3238, from_y = 3295, to_x = 3238, to_y = 3304 }, # lumbridge_chicken_entrance_to_varrock_south_split
     { from_x = 3238, from_y = 3304, to_x = 3251, to_y = 3319 }, # varrock_south_split_to_al_kharid_path_west
+    { from_x = 3238, from_y = 3304, to_x = 3238, to_y = 3320 }, # varrock_south_split_to_al_kharid_path_west
+    { from_x = 3238, from_y = 3320, to_x = 3240, to_y = 3336 }, # varrock_south_split_to_al_kharid_path_west
     { from_x = 3251, from_y = 3319, to_x = 3268, to_y = 3331 }, # varrock_al_kharid_path_west_to_crossroads
     { from_x = 3283, from_y = 3331, to_x = 3295, to_y = 3334 }, # al_kharid_north_entrance_to_varrock_north_west
     { from_x = 3295, from_y = 3334, to_x = 3304, to_y = 3335 }, # varrock_al_kharid_north_west_to_crossroad
@@ -162,6 +186,12 @@ edges = [
     { from_x = 3211, from_y = 3395, to_x = 3211, to_y = 3381 }, # varrock_blue_moon_inn_to_south_border
     { from_x = 3211, from_y = 3381, to_x = 3214, to_y = 3367 }, # varrock_south_border_to_dark_mages
     { from_x = 3214, from_y = 3367, to_x = 3226, to_y = 3352 }, # varrock_south_dark_mages_to_south
+    { from_x = 3214, from_y = 3367, to_x = 3206, to_y = 3376 },
+    { from_x = 3211, from_y = 3381, to_x = 3206, to_y = 3376 },
+    { from_x = 3206, from_y = 3376, to_x = 3197, to_y = 3373 },
+    { from_x = 3197, from_y = 3373, to_x = 3191, to_y = 3367 },
+    { from_x = 3197, from_y = 3373, to_x = 3184, to_y = 3370 },
+    { from_x = 3191, from_y = 3367, to_x = 3184, to_y = 3370 },
     { from_x = 3226, from_y = 3352, to_x = 3228, to_y = 3337 }, # varrock_dark_mages_to_south_fields_path
     { from_x = 3228, from_y = 3337, to_x = 3240, to_y = 3336 }, # varrock_south_fields_path_to_stile
     { from_x = 3240, from_y = 3336, to_x = 3254, to_y = 3333 }, # varrock_south_stile_to_path

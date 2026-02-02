@@ -21,6 +21,14 @@ rocks = ["copper", "tin", "iron"]
 levels = "1-45"
 spaces = 4
 
+[varrock_south_west_mine]
+x = [3171, 3184]
+y = [3364, 3380]
+tags = ["mine"]
+rocks = ["copper", "tin", "clay", "iron", "silver"]
+levels = "1-45"
+spaces = 4
+
 [varrock_east_bank]
 x = [3250, 3257]
 y = [3416, 3424]

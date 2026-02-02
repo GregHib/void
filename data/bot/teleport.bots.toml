@@ -27,17 +27,39 @@
 
 [teleport_varrock]
 type = "shortcut"
-weight = 10
+weight = 20
 requires = [
     { variable = "spellbook_config", value = 0, default = 0 },
-]
-setup = [
     { carries = "fire_rune", amount = 1 },
     { carries = "air_rune", amount = 3 },
     { carries = "law_rune", amount = 1 },
 ]
 actions = [
     { option = "Cast", interface = "modern_spellbook:varrock_teleport" },
+    { wait = 5 },
+]
+produces = [
+    { location = "varrock_teleport" }
+]
+
+[teleport_varrock_via_bank]
+type = "shortcut"
+weight = 50
+requires = [
+    { variable = "spellbook_config", value = 0, default = 0 },
+    { owns = "fire_rune", amount = 1 },
+    { owns = "air_rune", amount = 3 },
+    { owns = "law_rune", amount = 1 },
+]
+actions = [
+    { go_to_nearest = "bank" },
+    { option = "Use-quickly", object = "bank_booth*" },
+    { option = "Withdraw-1", interface = "bank:inventory:fire_rune" },
+    { option = "Withdraw-X", interface = "bank:inventory:air_rune" },
+    { enter_int = 3 },
+    { option = "Withdraw-1", interface = "bank:inventory:law_rune" },
+    { option = "Cast", interface = "modern_spellbook:varrock_teleport" },
+    { wait = 5 },
 ]
 produces = [
     { location = "varrock_teleport" }
