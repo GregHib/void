@@ -42,6 +42,8 @@ sealed interface BotAction {
         override fun update(bot: Bot) = BehaviourState.Failed(Reason.Cancelled)
     }
 
+    // TODO actions for navigation, combat, gathering, equipping items
+
     data class Wait(val ticks: Int) : BotAction {
         override fun start(bot: Bot) = BehaviourState.Wait(ticks, BehaviourState.Success)
     }
@@ -164,7 +166,7 @@ sealed interface BotAction {
             }
             val obj = objects.randomOrNull(random) ?: return BehaviourState.Failed(Reason.NoTarget)
             val index = obj.def(bot.player).options?.indexOf(option) ?: return BehaviourState.Failed(Reason.NoTarget)
-            bot.player.instructions.trySend(world.gregs.voidps.network.client.instruction.InteractObject(obj.intId, obj.x, obj.y, index + 1))
+            bot.player.instructions.trySend(InteractObject(obj.intId, obj.x, obj.y, index + 1))
             return BehaviourState.Wait(2, BehaviourState.Success)
         }
 

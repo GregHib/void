@@ -27,7 +27,7 @@
 
 [teleport_varrock]
 type = "shortcut"
-weight = 20
+weight = 75
 requires = [
     { variable = "spellbook_config", value = 0, default = 0 },
     { carries = "fire_rune", amount = 1 },
@@ -44,7 +44,7 @@ produces = [
 
 [teleport_varrock_via_bank]
 type = "shortcut"
-weight = 50
+weight = 100
 requires = [
     { variable = "spellbook_config", value = 0, default = 0 },
     { owns = "fire_rune", amount = 1 },
@@ -60,6 +60,7 @@ actions = [
     { option = "Withdraw-1", interface = "bank:inventory:law_rune" },
     { option = "Cast", interface = "modern_spellbook:varrock_teleport" },
     { wait = 5 },
+#    { wait = { location = "varrock_teleport" } },
 ]
 produces = [
     { location = "varrock_teleport" }
