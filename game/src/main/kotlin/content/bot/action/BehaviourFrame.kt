@@ -21,13 +21,16 @@ data class BehaviourFrame(
 
     fun update(bot: Bot) {
         val action = action()
-        state = action.update(bot)
+        state = action.update(bot) ?: return
     }
 
     fun next(): Boolean {
+        if (index >= behaviour.actions.lastIndex) {
+            return false
+        }
         index++
-        state = BehaviourState.Pending
-        return index < behaviour.actions.size
+        state = BehaviourState.Running
+        return true
     }
 
     fun fail(reason: Reason) {

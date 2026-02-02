@@ -77,7 +77,8 @@ fun loadActivities(
                             }
                         }
                     } else if (type == "shortcut") {
-                        shortcuts.add(NavigationShortcut(id, weight, requirements, resolvables, actions = actions, produces = produces.toSet()))
+                        require(resolvables.isEmpty()) { "Shortcuts cannot have setup requirements" }
+                        shortcuts.add(NavigationShortcut(id, weight, requirements, actions = actions, produces = produces.toSet()))
                     } else {
                         activities[id] = BotActivity(id, capacity, requirements, resolvables, actions = actions)
                     }
@@ -140,7 +141,7 @@ fun loadActivities(
                         }
                     }
                 }
-                "shortcut" -> shortcuts.add(NavigationShortcut(id, fragment.weight, requirements, resolvables, actions = actions))
+                "shortcut" -> shortcuts.add(NavigationShortcut(id, fragment.weight, requirements, actions = actions))
                 else -> activities[id] = BotActivity(id, fragment.capacity, requirements, resolvables, actions)
             }
         }
@@ -155,7 +156,6 @@ fun loadActivities(
                     groups.getOrPut(key) { mutableListOf() }.add(activity.id)
                 }
             }
-            println(activity)
         }
         activities.size
     }
@@ -192,7 +192,6 @@ fun ConfigReader.requirements(list: MutableList<Condition>) {
                 "amount" -> when (val value = value()) {
                     is Int -> {
                         min = value
-                        max = value
                     }
                     is String if value.contains('$') -> references[key] = value
                     else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
@@ -251,6 +250,13 @@ private fun getRequirement(type: String, id: String, min: Int?, max: Int?, value
     } else {
         Condition.range(Fact.InventoryCount(id), min, max)
     }
+    "owns" -> if (id.contains(",")) {
+        Condition.Any(id.split(",").map { Condition.range(Fact.ItemCount(it), min, max) })
+    } else if (id.any { it == '*' || it == '#' }) {
+        Condition.Any(Wildcards.get(id, Wildcard.Item).map { Condition.range(Fact.ItemCount(it), min, max) })
+    } else {
+        Condition.range(Fact.ItemCount(id), min, max)
+    }
     "equips" -> if (id.contains(",")) {
         Condition.Any(id.split(",").map { Condition.range(Fact.EquipCount(it), min, max) })
     } else if (id.any { it == '*' || it == '#' }) {
@@ -279,6 +285,7 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
         var retryTicks = 0
         var retryMax = 0
         var timeout = 0
+        var int = 0
         var ticks = 0
         var radius = 10
         var x = 0
@@ -286,7 +293,7 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
         val references = mutableMapOf<String, String>()
         while (nextEntry()) {
             when (val key = key()) {
-                "go_to", "wait_for", "interface", "npc", "object", "clone" -> {
+                "go_to", "go_to_nearest", "enter_string", "wait_for", "interface", "npc", "object", "clone" -> {
                     type = key
                     id = string()
                     if (id.contains('$')) {
@@ -294,7 +301,9 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
                     }
                 }
                 "x" -> {
-                    type = "tile"
+                    if (type == "") {
+                        type = "tile"
+                    }
                     val value = value()
                     if (value is String && value.contains('$')) {
                         references[key] = value
@@ -303,7 +312,9 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
                     }
                 }
                 "y" -> {
-                    type = "tile"
+                    if (type == "") {
+                        type = "tile"
+                    }
                     val value = value()
                     if (value is String && value.contains('$')) {
                         references[key] = value
@@ -352,11 +363,22 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
                     is String if value.contains('$') -> references[key] = value
                     else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
                 }
+                "enter_int" -> {
+                    type = key
+                    when (val value = value()) {
+                        is Int -> int = value
+                        is String if value.contains('$') -> references[key] = value
+                        else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
+                    }
+                }
                 else -> throw IllegalArgumentException("Unknown action key: $key ${exception()}")
             }
         }
         var action = when (type) {
             "go_to" -> BotAction.GoTo(id)
+            "go_to_nearest" -> BotAction.GoToNearest(id)
+            "enter_string" -> BotAction.StringEntry(id)
+            "enter_int" -> BotAction.IntEntry(int)
             "wait" -> BotAction.Wait(ticks)
             "npc" -> BotAction.InteractNpc(id = id, option = option, retryTicks = retryTicks, retryMax = retryMax, radius = radius)
             "tile" -> BotAction.WalkTo(x = x, y = y)

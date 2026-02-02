@@ -36,7 +36,7 @@ class GraphTest {
 //        builder.print()
 
         val output = mutableListOf<Int>()
-        val success = builder.build().find(Player(), output, a, b)
+        val success = builder.build().find(Player(), output, Graph.Node(a), b)
         assertTrue(success)
         assertEquals(listOf(1, 2), output)
     }
@@ -71,7 +71,7 @@ class GraphTest {
 //        builder.print()
 
         val output = mutableListOf<Int>()
-        val success = builder.build().find(Player(), output, a, c)
+        val success = builder.build().find(Player(), output, Graph.Node(a), c)
         assertTrue(success)
         assertEquals(listOf(ab, bd, df, fc), output)
     }
@@ -109,7 +109,7 @@ class GraphTest {
 //        builder.print()
 
         val output = mutableListOf<Int>()
-        val success = builder.build().find(Player(), output, f, d)
+        val success = builder.build().find(Player(), output, Graph.Node(f), d)
         assertTrue(success)
         assertEquals(listOf(fg, gb, bd), output)
     }
@@ -141,7 +141,7 @@ class GraphTest {
 //        builder.print()
 
         val output = mutableListOf<Int>()
-        val success = builder.build().find(Player(), output, a, d)
+        val success = builder.build().find(Player(), output, Graph.Node(a), d)
         assertTrue(success)
         assertEquals(listOf(ae, ec, cd), output)
     }
@@ -160,7 +160,7 @@ class GraphTest {
 //        builder.print()
 
         val output = mutableListOf<Int>()
-        val success = builder.build().find(Player(), output, b, a)
+        val success = builder.build().find(Player(), output, Graph.Node(b), a)
         assertFalse(success)
     }
 
@@ -198,7 +198,7 @@ class GraphTest {
 //        builder.print()
 
         val output = mutableListOf<Int>()
-        val success = builder.build().find(Player(), output, setOf(f, a), d)
+        val success = builder.build().find(Player(), output, setOf(Graph.Node(f), Graph.Node(a)), d)
         assertTrue(success)
         assertEquals(listOf(ab, bd), output)
     }
@@ -220,10 +220,10 @@ class GraphTest {
         player.tile = a
 
         val path = mutableListOf<Int>()
-        val found = graph.find(player, path, start = 0, target = 2)
+        val found = graph.find(player, path, start = Graph.Node(0), target = 2)
 
         assertTrue(found)
-        assertEquals(2, path.size, "Shortest path should be two edges, not direct edge")
+        assertEquals(listOf(0, 2), path)
     }
 
     @Test
@@ -246,7 +246,7 @@ class GraphTest {
         player.tile = a
 
         val path = mutableListOf<Int>()
-        val found = graph.find(player, path, start = 0, target = 1)
+        val found = graph.find(player, path, start = Graph.Node(0), target = 1)
 
         assertFalse(found, "Edge condition blocks traversal")
         assertTrue(path.isEmpty())
@@ -256,9 +256,9 @@ class GraphTest {
     fun `Starting points include nearby tiles`() {
         val builder = Graph.Builder()
 
-        val a = Tile(0)
-        val b = Tile(20)
-        val c = Tile(100)
+        val a = Tile(1, 1)
+        val b = Tile(20, 20)
+        val c = Tile(100, 100)
 
         builder.add(a)
         builder.add(b)
@@ -266,13 +266,13 @@ class GraphTest {
 
         val graph = builder.build()
         val player = Player()
-        player.tile = Tile(10)
+        player.tile = Tile(10, 10)
 
         val starts = graph.startingPoints(player)
 
-        assertTrue(starts.contains(0))
-        assertTrue(starts.contains(1))
-        assertFalse(starts.contains(2))
+        assertTrue(starts.contains(Graph.Node(1, 9)))
+        assertTrue(starts.contains(Graph.Node(2, 10)))
+        assertFalse(starts.contains(Graph.Node(3, 90)))
     }
 
     @Test
@@ -287,6 +287,7 @@ class GraphTest {
         )
 
         val builder = Graph.Builder()
+        builder.add(Tile(75, 75))
         val edge = builder.add(shortcut)
 
         val graph = builder.build()
@@ -295,7 +296,7 @@ class GraphTest {
 
         val starts = graph.startingPoints(player)
 
-        assertTrue(starts.contains(edge))
+        assertTrue(starts.contains(Graph.Node(edge)))
     }
 
     @Test
@@ -312,9 +313,48 @@ class GraphTest {
         player.tile = a
 
         val path = mutableListOf<Int>()
-        val found = graph.find(player, path, start = 0, target = 2)
+        val found = graph.find(player, path, start = Graph.Node(0), target = 2)
 
         assertTrue(found)
         assertEquals(listOf(e1, e2), path)
+    }
+
+    @Test
+    fun `Complex route`() {
+        /*
+         */
+        val builder = Graph.Builder()
+        val a = 0
+        val b = 1
+        val c = 2
+        val d = 3
+        val e = 4
+        val f = 5
+        val g = 6
+        val h = 7
+        val i = 8
+        val j = 9
+        val k = 10
+        val l = 11
+        val m = 12
+        builder.addEdge(a, b, 12)
+        builder.addEdge(b, c, 13)
+        builder.addEdge(c, d, 13)
+        builder.addEdge(d, e, 18)
+        builder.addEdge(e, f, 11)
+        builder.addEdge(f, g, 10)
+        builder.addEdge(g, h, 8)
+        builder.addEdge(h, i, 7)
+        val aj = builder.addEdge(a, j, 2)
+        val jk = builder.addEdge(j, k, 5)
+        val kl = builder.addEdge(k, l, 7)
+        val lm = builder.addEdge(l, m, 9)
+        val mh = builder.addEdge(m, h, 6)
+//        builder.print()
+
+        val output = mutableListOf<Int>()
+        val success = builder.build().find(Player(), output, Graph.Node(a), h)
+        assertTrue(success)
+        assertEquals(listOf(aj, jk, kl, lm, mh), output)
     }
 }

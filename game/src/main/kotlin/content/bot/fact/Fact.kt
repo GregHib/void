@@ -1,5 +1,6 @@
 package content.bot.fact
 
+import content.entity.player.bank.bank
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.equipment
@@ -14,14 +15,19 @@ sealed class Fact<T>(val priority: Int) {
     abstract fun getValue(player: Player): T
     open fun keys(): Set<String> = emptySet()
 
+    object InventorySpace : Fact<Int>(10) {
+        override fun keys() = setOf("inv:inventory")
+        override fun getValue(player: Player) = player.inventory.spaces
+    }
+
     data class InventoryCount(val id: String) : Fact<Int>(100) {
         override fun keys() = setOf("inv:inventory")
         override fun getValue(player: Player) = player.inventory.count(id)
     }
 
-    object InventorySpace : Fact<Int>(10) {
-        override fun keys() = setOf("inv:inventory")
-        override fun getValue(player: Player) = player.inventory.spaces
+    data class ItemCount(val id: String) : Fact<Int>(100) {
+        override fun keys() = setOf("inv:inventory", "inv:bank", "inv:equipment")
+        override fun getValue(player: Player) = player.inventory.count(id) + player.bank.count(id) + player.equipment.count(id)
     }
 
     data class EquipCount(val id: String) : Fact<Int>(100) {

@@ -21,6 +21,7 @@ data class BehaviourFragment(
             val resolved = when (action) {
                 is BotAction.Reference -> when (val copy = action.action) {
                     is BotAction.GoTo -> BotAction.GoTo(resolve(action.references["go_to"], copy.target))
+                    is BotAction.GoToNearest -> BotAction.GoToNearest(resolve(action.references["go_to_nearest"], copy.tag))
                     is BotAction.InterfaceOption -> BotAction.InterfaceOption(
                         id = resolve(action.references["interface"], copy.id),
                         option = resolve(action.references["option"], copy.option),
@@ -42,6 +43,12 @@ data class BehaviourFragment(
                     is BotAction.WalkTo -> BotAction.WalkTo(
                         x = resolve(action.references["x"], copy.x),
                         y = resolve(action.references["y"], copy.y),
+                    )
+                    is BotAction.StringEntry -> BotAction.StringEntry(
+                        value = resolve(action.references["value"], copy.value),
+                    )
+                    is BotAction.IntEntry -> BotAction.IntEntry(
+                        value = resolve(action.references["value"], copy.value),
                     )
                     is BotAction.Wait -> BotAction.Wait(resolve(action.references["wait"], copy.ticks))
                     is BotAction.WaitFullInventory -> BotAction.WaitFullInventory(resolve(action.references["timeout"], copy.timeout))
@@ -86,6 +93,17 @@ data class BehaviourFragment(
                                 Condition.Any(Wildcards.get(id, Wildcard.Item).map { Condition.range(Fact.EquipCount(id), min, max) })
                             } else {
                                 Condition.range(Fact.EquipCount(id), min, max)
+                            }
+                        }
+                        "owns" -> {
+                            val id = resolve(references[req.type], req.id)
+                            val min = resolve(references["amount"], req.min)
+                            if (id.contains(",")) {
+                                Condition.Any(id.split(",").map { Condition.range(Fact.ItemCount(id), min, max) })
+                            } else if (id.any { it == '*' || it == '#' }) {
+                                Condition.Any(Wildcards.get(id, Wildcard.Item).map { Condition.range(Fact.ItemCount(id), min, max) })
+                            } else {
+                                Condition.range(Fact.ItemCount(id), min, max)
                             }
                         }
                         "variable" -> {

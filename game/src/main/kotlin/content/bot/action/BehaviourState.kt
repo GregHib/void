@@ -5,5 +5,5 @@ sealed interface BehaviourState  {
     object Running : BehaviourState
     object Success : BehaviourState
     data class Failed(val reason: Reason) : BehaviourState
-    data class Wait(var ticks: Int) : BehaviourState
+    data class Wait(var ticks: Int, val next: BehaviourState) : BehaviourState
 }

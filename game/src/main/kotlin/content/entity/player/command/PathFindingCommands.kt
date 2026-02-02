@@ -2,10 +2,14 @@ package content.entity.player.command
 
 import content.bot.Bot
 import content.bot.BotManager
+import content.bot.action.BehaviourFrame
+import content.bot.action.BotAction
+import content.bot.action.Resolver
 import content.bot.bot
 import content.bot.interact.path.Dijkstra
 import content.bot.interact.path.EdgeTraversal
 import content.bot.interact.path.NodeTargetStrategy
+import content.bot.isBot
 import content.entity.gfx.areaGfx
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
@@ -14,6 +18,7 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.stringArg
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.PatrolDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -121,18 +126,15 @@ class PathFindingCommands(val patrols: PatrolDefinitions) : Script {
             //    println(pf.findPath(3205, 3220, 3205, 3223, 2))
         }
 
-        adminCommand("walk_test") {
-            val manager = get<BotManager>()
-            val list = mutableListOf<Int>()
-            set("bot", Bot(this))
-            bot.blocked.add("teleport_varrock")
-            // TODO convert nav_graph.toml to n
-            println(manager.graph.find(this, list, "varrock_teleport"))
-            println(list)
-            for (edge in list) {
-                println(manager.graph.tile(edge))
+        adminCommand("go_to", stringArg("area-id", autofill = Areas.getAll().map { it.stringId }.toSet(), optional = true), desc = "Bot walk to a location") { args ->
+            val area = args.getOrNull(0) ?: "varrock_teleport"
+            if (!isBot) {
+                val manager = get<BotManager>()
+                val bot = Bot(this)
+                set("bot", bot)
+                manager.add(bot)
             }
-
+            bot.queue(BehaviourFrame(Resolver("bot_to_$area", 0, actions = listOf(BotAction.GoTo(area)))))
         }
 
         adminCommand("walk_to_bank") {

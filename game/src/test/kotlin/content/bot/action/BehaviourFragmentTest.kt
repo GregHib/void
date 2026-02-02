@@ -24,25 +24,6 @@ class BehaviourFragmentTest {
      */
 
     @Test
-    fun `Missing action field reference throws`() {
-        val fragment = fragment()
-        val template = BotActivity(
-            id = "a",
-            capacity = 1,
-            actions = listOf(
-                BotAction.Reference(
-                    BotAction.GoTo("x"),
-                    references = mapOf("go_to" to "missing")
-                )
-            )
-        )
-
-        assertThrows<IllegalArgumentException> {
-            fragment.resolveActions(template, mutableListOf())
-        }
-    }
-
-    @Test
     fun `Nested clone action throws`() {
         val fragment = fragment()
         val template = BotActivity(
@@ -135,6 +116,7 @@ class BehaviourFragmentTest {
     @TestFactory
     fun `Resolve action references`() = listOf(
         Triple(BotAction.GoTo("default"), mapOf("go_to" to "lumbridge"), BotAction.GoTo("lumbridge")),
+        Triple(BotAction.GoToNearest("default"), mapOf("go_to_nearest" to "lumbridge"), BotAction.GoToNearest("lumbridge")),
         Triple(BotAction.InterfaceOption(option = "click", id = "something"), mapOf("option" to "Open", "interface" to "bank"), BotAction.InterfaceOption(option = "Open", id = "bank")),
         Triple(
             BotAction.InteractNpc(
@@ -238,7 +220,7 @@ class BehaviourFragmentTest {
     @TestFactory
     fun `Resolve requirement references`() = listOf(
         Triple(Condition.Reference("skill", "defence", min = 1, max = 120), mapOf("skill" to "attack", "min" to 5, "max" to 99), Condition.Range(Fact.AttackLevel, 5, 99)),
-        Triple(Condition.Reference("variable", "default", value = 1), mapOf("variable" to "test", "value" to true), Condition.Equals(Fact.BoolVariable("test"), true)),
+        Triple(Condition.Reference("variable", "default", value = 1), mapOf("variable" to "test", "value" to true), Condition.Equals(Fact.BoolVariable("test", null), true)),
         Triple(Condition.Reference("equips", "default", min = 1), mapOf("equips" to "item", "amount" to 10), Condition.AtLeast(Fact.EquipCount("item"), 10)),
         Triple(Condition.Reference("carries", "default", min = 1), mapOf("carries" to "item", "amount" to 10), Condition.AtLeast(Fact.InventoryCount("item"), 10)),
         Triple(Condition.Reference("inventory_space", min = 1), mapOf("inventory_space" to 10), Condition.AtLeast(Fact.InventorySpace, 10)),

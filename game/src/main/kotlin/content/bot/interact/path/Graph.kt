@@ -35,11 +35,11 @@ class Graph(
         return Tile(tiles[nodeIndex])
     }
 
-    fun findNearest(player: Player, tag: String, output: MutableList<Int>): Boolean {
+    fun findNearest(player: Player, output: MutableList<Int>, tag: String): Boolean {
         val start = startingPoints(player)
         return find(player, output, start, target = {
             val tile = Tile(tiles[it])
-            Areas.tagged(tag).any { a -> tile in a.area }
+            Areas.tagged(tag).any { a -> tile in a.area } // TODO store tags and/or areas per node
         })
     }
 
@@ -48,13 +48,17 @@ class Graph(
         return find(player, output, start, target = { Tile(tiles[it]) in Areas[area] })
     }
 
-    internal fun startingPoints(player: Player): Set<Int> = buildSet {
-        for (index in tiles.indices) {
-            val tile = tiles[index]
-            if (!player.tile.within(Tile(tile), 25)) {
+    fun startingPoints(player: Player): Set<Node> = buildSet {
+        for (index in 1 until tiles.size) {
+            val tile = Tile(tiles[index])
+            if (player.tile.level != tile.level) {
                 continue
             }
-            add(index)
+            val distance = player.tile.distanceTo(tile)
+            if (distance > 10) {
+                continue
+            }
+            add(Node(index, distance.coerceAtLeast(0)))
         }
         val blocked = if (player.isBot) player.bot.blocked else emptySet()
         for (shortcut in shortcuts.values) {
@@ -64,18 +68,18 @@ class Graph(
             if (shortcut.requires.any { !it.check(player) }) {
                 continue
             }
-            add(0)
+            add(Node(0, 0))
             break
         }
     }
 
-    fun find(player: Player, output: MutableList<Int>, start: Int, target: Int) = find(player, output, setOf(start)) { it == target }
+    fun find(player: Player, output: MutableList<Int>, start: Node, target: Int) = find(player, output, setOf(start)) { it == target }
 
-    fun find(player: Player, output: MutableList<Int>, start: Set<Int>, target: Int) = find(player, output, start) { it == target }
+    fun find(player: Player, output: MutableList<Int>, start: Set<Node>, target: Int) = find(player, output, start) { it == target }
 
-    fun find(player: Player, output: MutableList<Int>, start: Int, target: (Int) -> Boolean) = find(player, output, setOf(start), target)
+    fun find(player: Player, output: MutableList<Int>, start: Node, target: (Int) -> Boolean) = find(player, output, setOf(start), target)
 
-    fun find(player: Player, output: MutableList<Int>, startingPoints: Set<Int>, target: (Int) -> Boolean): Boolean {
+    fun find(player: Player, output: MutableList<Int>, startingPoints: Set<Node>, target: (Int) -> Boolean): Boolean {
         output.clear()
         val queue = PriorityQueue<Node>()
         val visited = BooleanArray(nodeCount)
@@ -85,8 +89,8 @@ class Graph(
         val previousEdge = IntArray(nodeCount)
 
         for (start in startingPoints) {
-            distance[start] = 0
-            queue.add(Node(start, 0))
+            distance[start.index] = 0
+            queue.add(start)
         }
         while (queue.isNotEmpty()) {
             val (node, cost) = queue.poll()
@@ -125,7 +129,7 @@ class Graph(
         return false
     }
 
-    private data class Node(val index: Int, val cost: Int) : Comparable<Node> {
+    data class Node(val index: Int, val cost: Int = 0) : Comparable<Node> {
         override fun compareTo(other: Node) = cost.compareTo(other.cost)
     }
 
@@ -181,11 +185,6 @@ class Graph(
             return tiles.indexOf(tile)
         }
 
-        fun addBiEdge(start: Int, end: Int, weight: Int) {
-            addEdge(start, end, weight)
-            addEdge(end, start, weight)
-        }
-
         fun addEdge(start: Int, end: Int, weight: Int, actions: List<BotAction>? = null, conditions: List<Condition>? = null): Int {
             val edgeIndex = edgeCount++
             nodes.add(start)
@@ -234,8 +233,10 @@ class Graph(
                             while (nextElement()) {
                                 var fromX = 0
                                 var fromY = 0
+                                var fromLevel = 0
                                 var toX = 0
                                 var toY = 0
+                                var toLevel = 0
                                 var cost = 0
                                 val actions: MutableList<BotAction> = mutableListOf()
                                 val requirements: MutableList<Condition> = mutableListOf()
@@ -243,8 +244,10 @@ class Graph(
                                     when (val key = key()) {
                                         "from_x" -> fromX = int()
                                         "from_y" -> fromY = int()
+                                        "from_level" -> fromLevel = int()
                                         "to_x" -> toX = int()
                                         "to_y" -> toY = int()
+                                        "to_level" -> toLevel = int()
                                         "cost" -> cost = int()
                                         "actions" -> actions(actions)
                                         "conditions" -> requirements(requirements)
@@ -254,11 +257,11 @@ class Graph(
                                 when {
                                     actions.isEmpty() -> {
                                         val cost = Distance.manhattan(fromX, fromY, toX, toY)
-                                        actions.add(BotAction.WalkTo(toX, toY))
-                                        builder.addBiEdge(Tile(fromX, fromY), Tile(toX, toY), cost, actions)
+                                        builder.addEdge(Tile(fromX, fromY, fromLevel), Tile(toX, toY, toLevel), cost, listOf(BotAction.WalkTo(toX, toY)), null)
+                                        builder.addEdge(Tile(toX, toY, toLevel), Tile(fromX, fromY, fromLevel), cost, listOf(BotAction.WalkTo(fromX, fromY)), null)
                                     }
-                                    requirements.isEmpty() -> builder.addEdge(Tile(fromX, fromY), Tile(toX, toY), cost, actions, null)
-                                    else -> builder.addEdge(Tile(fromX, fromY), Tile(toX, toY), cost, actions, requirements)
+                                    requirements.isEmpty() -> builder.addEdge(Tile(fromX, fromY, fromLevel), Tile(toX, toY, toLevel), cost, actions, null)
+                                    else -> builder.addEdge(Tile(fromX, fromY, fromLevel), Tile(toX, toY, toLevel), cost, actions, requirements)
                                 }
                             }
                         }

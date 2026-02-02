@@ -3,8 +3,10 @@ package content.bot
 import com.github.michaelbull.logging.InlineLogger
 import content.bot.action.*
 import content.bot.fact.Condition
+import content.bot.fact.Fact
 import content.bot.interact.path.Graph
 import content.bot.interact.path.Graph.Companion.loadGraph
+import content.entity.player.bank.bank
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.event.AuditLog
@@ -94,6 +96,8 @@ class BotManager(
         return true
     }
 
+    private val idle = BotActivity("idle", 2048, actions = listOf(BotAction.Wait(50))) // 30s
+
     private fun assignRandom(bot: Bot) {
         val activity = if (bot.previous != null && hasRequirements(bot, bot.previous!!)) {
             bot.previous
@@ -102,11 +106,7 @@ class BotManager(
                 val activity = activities[it]
                 activity != null && hasRequirements(bot, activity)
             }.randomOrNull(random)
-            if (id == null) {
-                BotActivity("idle", 2048, actions = listOf(BotAction.Wait(50))) // 30s
-            } else {
-                activities[id]
-            }
+            activities[id] ?: idle
         }
         if (activity == null) {
             if (bot.player["debug", false]) {
@@ -159,17 +159,35 @@ class BotManager(
         if (bot.player["debug", false]) {
             logger.info { "Starting activity: ${behaviour.id}." }
         }
+        bot.blocked.add(behaviour.id)
         frame.start(bot)
     }
 
     private fun pickResolver(bot: Bot, condition: Condition, frame: BehaviourFrame): Behaviour? {
-        if (condition is Condition.Area) {
-            return Resolver("go_to_${condition.area}", -1, actions = listOf(BotAction.GoTo(condition.area)), produces = setOf(condition))
-        }
         // TODO actions should have retry policies?
         val options = mutableListOf<Resolver>()
+        // Go to area
+        if (condition is Condition.Area) {
+            options.add(Resolver("go_to_${condition.area}", -1, actions = listOf(BotAction.GoTo(condition.area)), produces = setOf(condition)))
+        }
+        // If in bank and needs inventory -> withdraw from bank
+        if (condition is Condition.AtLeast && condition.fact is Fact.InventoryCount) {
+            if (bot.player.bank.contains(condition.fact.id, condition.min)) {
+                options.add(
+                    Resolver(
+                        "withdraw_${condition.fact.id}", 20, actions = listOf(
+                            BotAction.GoToNearest("bank"),
+                            BotAction.InteractObject("Use-quickly", "bank_booth*"),
+                            BotAction.InterfaceOption("Withdraw-x", "bank:inventory:${condition.fact.id}"),
+                            BotAction.StringEntry("${condition.min}"),
+                        )
+                    )
+                )
+            }
+        }
+        // TODO: If in inventory and needs equipped -> equip
         for (key in condition.keys()) {
-            for (resolver in resolvers[key] ?: return null) {
+            for (resolver in resolvers[key] ?: emptyList()) {
                 if (frame.blocked.contains(resolver.id)) {
                     continue
                 }
@@ -188,25 +206,36 @@ class BotManager(
         when (val state = frame.state) {
             BehaviourState.Running -> frame.update(bot)
             BehaviourState.Pending -> start(bot, behaviour, frame)
-            BehaviourState.Success -> if (!frame.next()) {
-                AuditLog.event(bot, "completed", frame.behaviour.id)
-                bot.frames.pop()
-                if (behaviour is BotActivity) {
-                    slots.release(behaviour)
+            BehaviourState.Success -> {
+                val debug = bot.player["debug", false]
+                if (debug) {
+                    logger.info { "Completed action: ${frame.action()} for ${behaviour.id}." }
+                }
+                if (!frame.next()) {
+                    AuditLog.event(bot, "completed", frame.behaviour.id)
+                    bot.frames.pop()
+                    if (behaviour is BotActivity) {
+                        slots.release(behaviour)
+                    }
+                } else {
+                    if (debug) {
+                        logger.info { "Next action: ${frame.action()} for ${behaviour.id}." }
+                    }
+                    frame.start(bot)
                 }
             }
             is BehaviourState.Failed -> {
                 val action = frame.action()
+                if (bot.player["debug", false]) {
+                    logger.info { "Failed action: ${action::class.simpleName} for ${behaviour.id}, reason: ${state.reason}." }
+                }
                 if (action is BotAction.RetryableAction && action.retryMax > 0) {
-                    frame.state = BehaviourState.Wait(action.retryTicks)
+                    frame.state = BehaviourState.Wait(action.retryTicks, BehaviourState.Running)
                     if (frame.retries++ < action.retryMax) {
+                        frame.start(bot)
                         AuditLog.event(bot, "retry", frame.behaviour.id, frame.index, frame.retries, action::class.simpleName)
                         return
                     }
-                }
-
-                if (bot.player["debug", false]) {
-                    logger.info { "Failed action: ${action::class.simpleName} for ${behaviour.id}, reason: ${state.reason}." }
                 }
                 AuditLog.event(bot, "failed", behaviour.id, state.reason, frame.index, frame.retries, action::class.simpleName)
                 if (state.reason is HardReason) {
@@ -221,7 +250,7 @@ class BotManager(
             }
             is BehaviourState.Wait -> {
                 if (--state.ticks <= 0) {
-                    frame.state = BehaviourState.Pending
+                    frame.state = state.next
                 }
             }
         }
