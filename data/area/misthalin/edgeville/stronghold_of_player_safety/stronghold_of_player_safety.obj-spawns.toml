@@ -1,0 +1,3 @@
+spawns = [
+    { id = "player_safety_poster", x = 3077, y = 4235, type = 4, rotation = 0},
+]

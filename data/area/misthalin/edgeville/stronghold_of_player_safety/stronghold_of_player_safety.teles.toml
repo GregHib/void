@@ -4,7 +4,7 @@ option = "Climb-down"
 tile = { x = 3088, y = 3571 }
 to = { x = 3089, y = 9971 }
 
-[29589]
+[stronghold_of_player_safety_stairs_up]
 option = "Climb-up"
 tile = { x = 3086, y = 4244 }
 to = { x = 3083, y = 3452 }
@@ -14,11 +14,6 @@ to = { x = 3083, y = 3452 }
 option = "Pull"
 tile = { x = 3153, y = 3923 }
 to = { x = 2562, y = 3311 }
-
-[29729]
-option = "Climb"
-tile = { x = 3159, y = 4280, level = 3 }
-to = { x = 3077, y = 3462 }
 
 [29660]
 option = "Climb-up"
@@ -65,3 +60,17 @@ option = "Climb-up"
 tile = { x = 3171, y = 4273, level = 2 }
 delta = { x = -3, y = -2, level = 1 }
 
+[stronghold_of_player_safety_tunnel]
+option = "Use"
+tile = { x = 3139, y = 4230, level = 2}
+to = { x = 3077, y = 4235 }
+
+[stronghold_of_player_safety_jail_entrance_up]
+option = "Leave"
+tile = { x = 3082, y = 4228 }
+to = { x = 3074, y = 3456 }
+
+[stronghold_of_player_safety_jail_door_locked_2]
+option = "Open"
+tile = { x = 3178, y = 4266 }
+to = { x = 3177, y = 4269, level = 2 }

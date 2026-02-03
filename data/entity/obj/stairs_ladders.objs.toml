@@ -173,3 +173,51 @@ examine = "I can climb down this."
 [lumbridge_church_3rd_floor_ladder_down_west]
 id = 36991
 examine = "I can climb down this."
+
+[stronghold_of_player_safety_stairs_up]
+id = 29589
+examine = "The guard is watching these stairs."
+
+[stronghold_of_player_safety_stairs_down]
+id = 29592
+examine = "They help one to rise up or down"
+
+[29671]
+id = 29671
+examine = "I wonder where they will take me."
+
+[29672]
+id = 29672
+examine = "I wonder where they will take me."
+
+[29660]
+id = 29660
+examine = "I wonder where they will take me."
+
+[29663]
+id = 29663
+examine = "I wonder where they will take me."
+
+[29664]
+id = 29664
+examine = "I wonder where they will take me."
+
+[29667]
+id = 29667
+examine = "I wonder where they will take me."
+
+[29668]
+id = 29668
+examine = "I wonder where they will take me."
+
+[29655]
+id = 29655
+examine = "I wonder where they will take me."
+
+[29656]
+id = 29656
+examine = "I wonder where they will take me."
+
+[29659]
+id = 29659
+examine = "I wonder where they will take me."

@@ -1,0 +1,9 @@
+[stronghold_of_player_safety_chest]
+id = 4499
+persist = true
+format = "boolean"
+
+[stronghold_of_player_safety_lever]
+id = 4500
+persist = true
+format = "boolean"

@@ -1,0 +1,107 @@
+[player_safety_poster]
+id = 29586
+examine = "It looks like there's a small hole in the centre of this poster."
+
+[player_safety_bow_and_arrow]
+id = 8773
+examine = "A useful ranging device."
+
+[player_safety_big_desk]
+id = 29588
+examine = "The examiner's desk, covered in past papers."
+
+[player_safety_coat_of_arms]
+id = 29584
+examine = "It says 'Playeri eruditi sunt'"
+
+[player_safety_shelf]
+id = 18156
+examine = "Some shelves."
+
+[player_safety_desk]
+id = 29587
+examine = "A desk for sitting at and writing on."
+
+[player_safety_satchel]
+id = 29583
+examine = "Professor Henry's satchel. There's some sort of cup in here."
+
+[stronghold_of_player_safety_crevice]
+id = 29728
+examine = "It looks like a bit of a squeeze."
+
+[stronghold_of_player_safety_jail_bed]
+id = 29593
+examine = "A dirty bed."
+
+[stronghold_of_player_safety_jail_bed_2]
+id = 29594
+examine = "This tiny rock hammer must have been used to create the chess set here."
+
+[stronghold_of_player_safety_panning_tray]
+id = 17560
+examine = "Fill it with things."
+
+[stronghold_of_player_safety_broken_plaque]
+id = 29608
+examine = "The writing on this plaque is too faded to read."
+
+[stronghold_of_player_safety_jail_entrance_up]
+id = 29602
+examine = "The jail entrance."
+
+[stronghold_of_player_safety_jail_entrance_down]
+id = 29603
+examine = "The jail entrance."
+
+[stronghold_of_player_safety_bookcase]
+id = 29581
+examine = "A good source of books."
+
+[stronghold_of_player_safety_jail_door]
+id = 21001
+examine = "A plaque details this gublinch's crimes."
+
+[stronghold_of_player_safety_jail_door_2]
+id = 21008
+examine = "A plaque details this gublinch's crimes."
+
+[stronghold_of_player_safety_tunnel]
+id = 29623
+examine = "This appears to lead back to the jail cell."
+
+[stronghold_of_player_safety_slimy_skulls]
+id = 29579
+examine = "Skulls covered in bug slime."
+
+[stronghold_of_player_safety_rocks]
+id = 29726
+examine = "Yuck. They are covered in bug slime."
+
+[stronghold_of_player_safety_rocks_2]
+id = 29727
+examine = "Yuck. They are covered in bug slime."
+
+[stronghold_of_player_safety_rope]
+id = 29729
+examine = "I wonder where this leads?"
+
+[stronghold_of_player_safety_an_old_lever_closed]
+id = 29730
+examine = "I wonder what it does."
+
+[stronghold_of_player_safety_an_old_lever_opened]
+id = 29731
+examine = "I wonder what it does."
+
+[stronghold_of_player_safety_jail_door_locked]
+id = 29624
+examine = "It looks pretty dark behind there."
+
+[stronghold_of_player_safety_treasure_chest_closed]
+id = 29577
+examine = "The chest is closed."
+
+[stronghold_of_player_safety_treasure_chest_opened]
+id = 29578
+examine = "The chest is open."

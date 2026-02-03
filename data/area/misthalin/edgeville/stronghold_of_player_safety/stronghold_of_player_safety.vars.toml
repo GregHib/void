@@ -1,0 +1,3 @@
+[safety_rope_climbed]
+format = "boolean"
+persist = true

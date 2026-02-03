@@ -1,10 +1,10 @@
 package content.area.misthalin.edgeville.stronghold_of_player_safety
 
-import world.gregs.voidps.engine.Script
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
+import world.gregs.voidps.engine.Script
 
 class ProfessorHenry : Script {
     init {

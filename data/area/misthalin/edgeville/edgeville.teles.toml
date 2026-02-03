@@ -130,7 +130,7 @@ tile = { x = 3046, y = 3483 }
 delta = { level = 1 }
 
 # 12342 edgeville
-[29592]
+[stronghold_of_player_safety_stairs_down]
 option = "Climb-down"
 tile = { x = 3084, y = 3452 }
 to = { x = 3086, y = 4247 }
@@ -140,12 +140,7 @@ option = "Pull"
 tile = { x = 3090, y = 3474 }
 to = { x = 3154, y = 3924 }
 
-[29728]
-option = "Enter"
-tile = { x = 3076, y = 3463 }
-to = { x = 3157, y = 4279, level = 3 }
-
-[29603]
+[stronghold_of_player_safety_jail_entrance_down]
 option = "Use"
 tile = { x = 3075, y = 3456 }
 to = { x = 3082, y = 4229 }
