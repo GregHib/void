@@ -1,8 +1,8 @@
 package content.area.misthalin.draynor_village
 
-import world.gregs.voidps.engine.Script
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 
 class MissSchism : Script {
@@ -76,5 +76,4 @@ class MissSchism : Script {
         player<Neutral>("I'd like to go now.")
         npc<Quiz>("Oh, really? Well, do keep an eye on him - I just KNOW he's planning something...")
     }
-
 }

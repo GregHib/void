@@ -4,7 +4,6 @@ import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.Script
 
-
 class ProfessorOnglewip : Script {
 
     init {
@@ -17,5 +16,4 @@ class ProfessorOnglewip : Script {
             npc<Happy>("Well, it's full of gnomes. How much nicer could it be?")
         }
     }
-
 }
