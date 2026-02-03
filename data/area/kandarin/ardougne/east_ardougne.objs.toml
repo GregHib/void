@@ -166,3 +166,7 @@ examine = "Ideal for cooking on."
 [cooking_range_ardougne]
 id = 34565
 examine = "An appliance used for cooking."
+
+[potters_wheel_ardougne]
+id = 34801
+examine = "Used for fashioning clay items."

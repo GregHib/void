@@ -338,10 +338,6 @@ examine = "Now he's just too thin."
 id = 3974
 examine = "He hasn't eaten in a long time."
 
-[potters_wheel_2]
-id = 4310
-examine = "Used for fashioning clay items."  
-
 [corpse_16]
 id = 4518
 examine = "How do you make a skeleton laugh?"
@@ -813,10 +809,6 @@ examine = "Now he's just too thin."
 id = 20300
 examine = "He hasn't eaten in a long time."
 
-[potters_wheel_3]
-id = 20375
-examine = "Used for fashioning clay items."  
-
 [pillar_33]
 id = 20872
 examine = "A pillar I could stand on."
@@ -1286,10 +1278,6 @@ examine = "A pretty water feature."
 [candles_20]
 id = 34615
 examine = "Lit to remember the souls of the departed."
-
-[potters_wheel_4]
-id = 34801
-examine = "Used for fashioning clay items."
 
 [pillar_69]
 id = 35140

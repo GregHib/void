@@ -5,3 +5,7 @@ examine = "The bank teller will serve you from here."
 [spinning_wheel_sophanem]
 id = 20365
 examine = "Used for spinning thread."
+
+[potters_wheel_sophanem]
+id = 20375
+examine = "Used for fashioning clay items."

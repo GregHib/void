@@ -33,3 +33,8 @@ examine = "A hot furnace."
 [spinning_wheel_rellekka]
 id = 4309
 examine = "Used for spinning thread."
+
+[potters_wheel_rellekka]
+id = 4310
+examine = "Used for fashioning clay items."
+
