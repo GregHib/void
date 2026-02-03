@@ -57,14 +57,8 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                                 }
                                 "id" -> id = int()
                                 "pickpocket" -> extras[key] = Pocket(this)
-                                "fishing" -> {
-                                    val spots = Object2ObjectOpenHashMap<String, Any>(2, Hash.VERY_FAST_LOAD_FACTOR)
-                                    while (nextEntry()) {
-                                        val type = key()
-                                        val spot = Spot(this)
-                                        spots[type] = spot
-                                    }
-                                    extras[key] = spots
+                                "fishing_cage", "fishing_net", "fishing_harpoon", "fishing_bait", "fishing_lure" -> {
+                                    extras[key] = Spot(this)
                                 }
                                 "categories" -> {
                                     val categories = ObjectLinkedOpenHashSet<String>(2, Hash.VERY_FAST_LOAD_FACTOR)
