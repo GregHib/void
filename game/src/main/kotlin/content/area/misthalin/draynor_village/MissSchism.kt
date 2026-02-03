@@ -61,11 +61,11 @@ class MissSchism : Script {
         }
         npc<Shock>("When he first moved here, he didn't bring much. From the window you could see he just had some old furniture and a few dusty ornaments.")
         npc<Happy>("Here, look at this picture:")
-        //todo cutscene 
+        // todo cutscene
         npc<Happy>("Also he always seemed so poor. When I went round to collect donations for the Draynor Manor Restoration Fund, he couldn't spare them a penny!")
         player<Neutral>("So he's redecorated?")
         npc<Shock>("Well, just you look in there now!")
-        //todo cutscene 
+        // todo cutscene
         npc<Happy>("You see? It's full of jewellery and decorations! And all those expensive things appeared just after the bank got robbed.")
         npc<Happy>("He changed his hat too - he used to wear a scruffy old black thing, but suddenly he was wearing that party hat!")
         player<Neutral>("So you're saying he might have been the bank robber?")
