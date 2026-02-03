@@ -814,10 +814,10 @@ id = 34233
 id = 2706
 examine = "A nicely fitted door."
 
-[door_81_opened]
+[door_cooks_guild_opened]
 id = 15502
 
-[door_81_closed]
+[door_cooks_guild_closed]
 id = 2712
 examine = "The entrance to the Cooking Guild."
 
@@ -2828,10 +2828,10 @@ examine = "A strong metal door."
 id = 26706
 examine = "A strong metal door."
 
-[door_490_opened]
+[door_cooks_guild_achievement_opened]
 id = 26811
 
-[door_490_closed]
+[door_cooks_guild_achievement_closed]
 id = 26810
 examine = "The door is closed."
 
