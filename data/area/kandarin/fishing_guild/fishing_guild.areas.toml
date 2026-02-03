@@ -2,3 +2,11 @@
 x = [2611, 2613]
 y = [3380, 3382]
 tags = ["teleport"]
+
+[fishing_guild_south_fishing_area]
+x = [2602, 2612]
+y = [3410, 3417]
+
+[fishing_guild_north_fishing_area]
+x = [2598, 2605]
+y = [3419, 3426]

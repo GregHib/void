@@ -48,10 +48,14 @@ examine = "A big, scary hand!"
 
 [fishing_spot_lumbridge_swamp_caves]
 id = 2067
+fishing_net = { items = ["small_fishing_net"], bait = { none = ["frog_spawn"] } }
+fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_slimy_eel", "raw_cave_eel"] } }
 examine = "I can see fish swimming in the water."
 
 [fishing_spot_lumbridge_swamp_caves_2]
 id = 2068
+fishing_net = { items = ["small_fishing_net"], bait = { none = ["frog_spawn"] } }
+fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_slimy_eel", "raw_cave_eel"] } }
 
 [sergeant_mossfists_lumbridge_swamp_caves]
 id = 5891

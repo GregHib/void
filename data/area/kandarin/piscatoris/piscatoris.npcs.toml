@@ -56,3 +56,8 @@ id = 8555
 [brian_twitcher_3]
 id = 8556
 
+[fishing_spot_harpoon_small_net_piscatoris]
+id = 3848
+fishing_harpoon = { items = ["harpoon", "barb_tail_harpoon"], bait = { none = ["raw_tuna", "raw_swordfish"] } }
+fishing_net = { items = ["small_fishing_net"], bait = { none = ["raw_monkfish"] } }
+examine = "I can see fish swimming in the water."

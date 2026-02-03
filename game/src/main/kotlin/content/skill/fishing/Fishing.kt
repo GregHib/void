@@ -32,9 +32,6 @@ class Fishing : Script {
 
     val logger = InlineLogger()
 
-    val NPC.spot: Map<String, Spot>
-        get() = def["fishing", emptyMap()]
-
     val Spot.minimumLevel: Int
         get() = bait.keys.minOf { minimumLevel(it) ?: Int.MAX_VALUE }
 
@@ -58,7 +55,7 @@ class Fishing : Script {
 
     suspend fun fish(player: Player, target: NPC, option: String) {
         player.arriveDelay()
-        if (!target.def.contains("fishing")) {
+        if (!target.def.contains("fishing_${option.lowercase()}")) {
             return
         }
         target.getOrPut("fishers") { mutableSetOf<String>() }.add(player.name)
@@ -76,7 +73,7 @@ class Fishing : Script {
                 break
             }
 
-            val data = target.spot[option] ?: return
+            val data: Spot = target.def.getOrNull("fishing_${option.lowercase()}") ?: return
             if (!player.has(Skill.Fishing, data.minimumLevel, true)) {
                 break
             }

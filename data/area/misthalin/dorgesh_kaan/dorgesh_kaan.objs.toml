@@ -27,3 +27,7 @@ id = 22682
 
 [dorgesh_kaan_gem_chest_open]
 id = 22683
+
+[furnace_dorgesh_kaan]
+id = 22721
+examine = "	A very hot furnace."

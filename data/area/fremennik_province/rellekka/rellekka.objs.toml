@@ -25,3 +25,16 @@ id = 4276
 [fire_rellekka]
 id = 4265
 examine = "Toasty."
+
+[furnace_rellekka]
+id = 4304
+examine = "A hot furnace."
+
+[spinning_wheel_rellekka]
+id = 4309
+examine = "Used for spinning thread."
+
+[potters_wheel_rellekka]
+id = 4310
+examine = "Used for fashioning clay items."
+

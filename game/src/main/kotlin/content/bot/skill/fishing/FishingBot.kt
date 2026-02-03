@@ -97,8 +97,8 @@ class FishingBot(
         if (!npc.def.options.contains(option)) {
             return false
         }
-        val spot: Map<String, Spot> = npc.def["fishing", emptyMap()]
-        val level = spot[option]?.bait?.get(bait)
+        val spot: Spot = npc.def.getOrNull("fishing_${option.lowercase()}") ?: return false
+        val level = spot.bait[bait]
             ?.minOf { ItemDefinitions.get(it)["fishing", Catch.EMPTY].level }
             ?: return false
         return player.has(Skill.Fishing, level, false)

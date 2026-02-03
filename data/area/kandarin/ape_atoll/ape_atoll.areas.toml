@@ -14,3 +14,11 @@ hint = "where monkeys rule."
 x = [3008, 3071]
 y = [5440, 5503]
 tags = ["multi_combat"]
+
+[ape_atoll_east_fishing_area]
+x = [2771, 2780]
+y = [2733, 2741]
+
+[ape_atoll_west_fishing_area]
+x = [2693, 2700]
+y = [2702, 2715]

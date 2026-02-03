@@ -16,3 +16,11 @@ x = [2784, 2879]
 y = [3392, 3519]
 tags = ["penguin_area"]
 hint = "near a mountain of wolves."
+
+[catherby_fishing_area]
+x = [2836, 2846]
+y = [3429, 3431]
+
+[catherby_cage_fishing_area]
+x = [2853, 2860]
+y = [3423, 3426]

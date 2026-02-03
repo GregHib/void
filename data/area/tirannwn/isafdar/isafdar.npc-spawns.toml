@@ -148,4 +148,7 @@ spawns = [
   { id = "pawya", x = 2269, y = 3245 },
   { id = "pawya", x = 2269, y = 3249 },
   { id = "pawya", x = 2270, y = 3239 },
+  # 8499
+  { id = "fishing_spot_iorwerth_camp", x = 2162, y = 3274, members = true },
+  { id = "fishing_spot_iorwerth_camp", x = 2164, y = 3280, members = true },
 ]

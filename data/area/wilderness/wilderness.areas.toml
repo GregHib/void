@@ -85,3 +85,7 @@ tags = ["teleport", "obelisk"]
 x = [3306, 3308]
 y = [3915, 3917]
 tags = ["teleport", "obelisk"]
+
+[wilderness_fishing_area]
+x = [3347, 3368]
+y = [3793, 3817]

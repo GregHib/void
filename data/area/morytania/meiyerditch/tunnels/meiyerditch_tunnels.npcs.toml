@@ -16,6 +16,7 @@ examine = "A member of the Myreque and an aspiring young priest."
 
 [fishing_spot_meiyerditch_tunnels]
 id = 7636
+fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_slimy_eel", "raw_cave_eel"] } }
 
 [skeletal_hand_meiyerditch_tunnels]
 id = 7640

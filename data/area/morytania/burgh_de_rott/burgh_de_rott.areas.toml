@@ -2,3 +2,11 @@
 x = [3485, 3489]
 y = [3235, 3239]
 tags = ["teleport"]
+
+[burgh_de_rott_west_fishing_area]
+x = [3471, 3501]
+y = [3175, 3199]
+
+[burgh_de_rott_east_fishing_area]
+x = [3512, 3562]
+y = [3165, 3181]
