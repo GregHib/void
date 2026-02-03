@@ -22,11 +22,11 @@ class MissSchism : Script {
                         choice {
                             option<Neutral>("I'm quite new.") {
                                 npc<Shock>("Aah, perhaps you missed the excitement. It's that old man in this house here. Do you know him?")
-                                DoYouKnowHim()
+                                doYouKnowHim()
                             }
                             option<Neutral>("I've been around here for ages.") {
                                 npc<Happy>("Ah, so you'd have seen the changes here. It's that old man in this house here. Do you know him?")
-                                DoYouKnowHim()
+                                doYouKnowHim()
                             }
                             option<Neutral>("I've had enough of talking to you.") {
                                 npc<Sad>("Maybe another time, my dear.")
@@ -53,7 +53,7 @@ class MissSchism : Script {
         }
     }
 
-    suspend fun Player.DoYouKnowHim() {
+    suspend fun Player.doYouKnowHim() {
         if (get("wom_task", false)) {
             player<Neutral>("I haven't spoken to him yet.")
         } else {
