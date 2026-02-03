@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.inventory
@@ -149,7 +150,8 @@ class Kaqemeex : Script {
                         }
                         option<Happy>("Okay, here's 99,000 coins.") {
                             inventory.transaction {
-                                add("herblore_cape")
+                                val trimmed = Skill.entries.any { it != Skill.Herblore && levels.getMax(it) >= Level.MAX_LEVEL }
+                                add("herblore_cape${if (trimmed) "_t" else ""}")
                                 add("herblore_hood")
                                 remove("coins", 99000)
                             }

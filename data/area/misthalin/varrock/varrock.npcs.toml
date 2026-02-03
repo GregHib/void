@@ -312,7 +312,7 @@ id = 5066
 
 [valaine]
 id = 536
-shop = "varrock_general_store"
+shop = "valaines_shop_of_champions"
 examine = "A champion saleswoman!"
 
 [scavvo]

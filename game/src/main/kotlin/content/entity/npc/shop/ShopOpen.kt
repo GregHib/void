@@ -29,6 +29,7 @@ class ShopOpen(val inventoryDefinitions: InventoryDefinitions) : Script {
         interfaceClosed("shop") {
             close("item_info")
             close("shop_side")
+            sendVariable("tab")
             val shop = shop()
             if (shop.endsWith("general_store")) {
                 GeneralStores.unbind(this, shop)

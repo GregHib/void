@@ -67,7 +67,9 @@ abstract class ScriptMetadataTask : DefaultTask() {
                 continue
             }
             val psiFile: KtFile = instance.findFile(localFile) as KtFile
-            val classes = psiFile.collectDescendantsOfType<KtClass>()
+            val classes = psiFile
+                .collectDescendantsOfType<KtClass>()
+                .filter { clazz -> clazz.superTypeListEntries.any { type -> type.text == "Script" } }
             val packageName = psiFile.packageFqName.asString()
             if (change.changeType == ChangeType.MODIFIED) {
                 for (name in classes.map { it.name }) {
@@ -79,10 +81,8 @@ abstract class ScriptMetadataTask : DefaultTask() {
             if (change.changeType == ChangeType.MODIFIED || change.changeType == ChangeType.ADDED) {
                 for (ktClass in classes) {
                     val className = ktClass.name ?: "Anonymous"
-                    if (ktClass.superTypeListEntries.any { it.text == "Script" }) {
-                        lines.add("$packageName.$className")
-                        scripts++
-                    }
+                    lines.add("$packageName.$className")
+                    scripts++
                 }
             }
         }

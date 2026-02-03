@@ -44,7 +44,7 @@ class GameFrame : Script {
         Tab.entries.forEach { tab ->
             val name = tab.name.toSnakeCase()
             interfaceOption(name.toTitleCase(), "toplevel*:$name") {
-                set("tab", false, tab.name)
+                set("tab", tab.name)
             }
         }
 

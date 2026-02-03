@@ -8,6 +8,7 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.inv.equipment
@@ -49,8 +50,9 @@ class CraftingGuild : Script {
                     }
                     option<Idle>("That's fine.") {
                         inventory.transaction {
+                            val trimmed = Skill.entries.any { it != Skill.Crafting && levels.getMax(it) >= Level.MAX_LEVEL }
                             remove("coins", 99000)
-                            add("crafting_cape")
+                            add("crafting_cape${if (trimmed) "_t" else ""}")
                             add("crafting_hood")
                         }
                         when (inventory.transaction.error) {
