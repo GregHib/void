@@ -28,8 +28,10 @@ examine = "Nice hair."
 id = 305
 examine = "Looks young."
 
-[fishing_spot_baxtorian_falls_2]
+[fishing_spot_baxtorian_falls_lure]
 id = 310
+fishing_lure = { items = ["fly_fishing_rod"], bait = { feather = ["raw_trout", "raw_salmon"], stripy_feather = ["raw_rainbow_fish"] } }
+fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_pike"] } }
 
 [guard_baxtorian_falls]
 id = 4259

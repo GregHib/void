@@ -14,3 +14,20 @@ hint = "between Fremennik and barbarians."
 x = [2792, 2794]
 y = [3611, 3613]
 tags = ["teleport"]
+
+[rellekka_small_net_fishing_area]
+x = [2633, 2633]
+y = [3687, 3694]
+
+[rellekka_cage_fishing_area]
+x = [2639, 2642]
+y = [3694, 3699]
+
+[rellekka_big_net_fishing_area]
+x = [2641, 2648]
+y = [3708, 3711]
+
+[rellekka_south_fishing_area]
+x = [2675, 2693]
+y = [3592, 3598]
+

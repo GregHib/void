@@ -15,3 +15,15 @@ x = [2368, 2687]
 y = [2816, 2943]
 tags = ["penguin_area"]
 hint = "near some ogres in South Feldip Hills."
+
+[feldip_hills_north_fishing_area]
+x = [2455, 2468]
+y = [2927, 2936]
+
+[feldip_hills_fishing_area]
+x = [2442, 2450]
+y = [2915, 2922]
+
+[feldip_hills_south_fishing_area]
+x = [2435, 2436]
+y = [2890, 2895]

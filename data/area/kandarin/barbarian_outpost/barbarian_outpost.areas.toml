@@ -13,3 +13,7 @@ x = [2380,2380,2496,2496,2623,2623]
 y = [3520,3550,3551,3596,3597,3520]
 tags = ["penguin_area"]
 hint = "near the Barbarian Outpost."
+
+[barbarian_outpost_fishing_area]
+x = [2498, 2516]
+y = [3547, 3575]

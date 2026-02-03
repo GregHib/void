@@ -172,6 +172,8 @@ examine = "A holy man."
 
 [fishing_spot_ardougne]
 id = 311
+fishing_lure = { items = ["fly_fishing_rod"], bait = { feather = ["raw_trout", "raw_salmon"], stripy_feather = ["raw_rainbow_fish"] } }
+fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_pike"] } }
 
 [guard_ardougne]
 id = 32

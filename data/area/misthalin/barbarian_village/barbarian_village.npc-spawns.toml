@@ -33,7 +33,7 @@ spawns = [
   { id = "goblin_barbarian_village_2", x = 3118, y = 3432 },
   { id = "goblin_barbarian_village_3", x = 3119, y = 3444 },
   { id = "fishing_spot_barbarian_village", x = 3104, y = 3424, members = true },
-  { id = "fishing_spot_barbarian_village", x = 3108, y = 3433, members = true },
+  { id = "fishing_spot_barbarian_village", x = 3110, y = 3433, members = true },
   { id = "engineering_assistant_barbarian_village", x = 3013, y = 3451 },
   { id = "engineering_assistant_barbarian_village_2", x = 3019, y = 3443 },
   { id = "engineer_barbarian_village", x = 3008, y = 3442 },

@@ -69,6 +69,7 @@ examine = "Yep. Definitely a chicken."
 
 [fishing_spot_tutorial_island]
 id = 952
+fishing_net = { items = ["small_fishing_net"] }
 examine = "I can see fish swimming in the water."
 
 [brother_brace]

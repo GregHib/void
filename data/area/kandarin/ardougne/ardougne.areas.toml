@@ -26,8 +26,8 @@ tags = ["penguin_area"]
 hint = "near the coast, east of Ardougne."
 
 [north_ardougne]
-x = [2368,2368,2687,2687,2431,2431]
-y = [3328,3391,3391,3340,3340,3328]
+x = [2368, 2368, 2687, 2687, 2431, 2431]
+y = [3328, 3391, 3391, 3340, 3340, 3328]
 tags = ["penguin_area"]
 hint = "north of Ardougne."
 
@@ -38,7 +38,11 @@ tags = ["penguin_area"]
 hint = "west of Ardougne, in the hills."
 
 [south_ardougne]
-x = [2432,2432,2368,2368,2432,2432,2687,2687]
-y = [3072,3136,3136,3199,3199,3263,3263,3072]
+x = [2432, 2432, 2368, 2368, 2432, 2432, 2687, 2687]
+y = [3072, 3136, 3136, 3199, 3199, 3263, 3263, 3072]
 tags = ["penguin_area"]
 hint = "south of Ardougne."
+
+[ardounge_fishing_area]
+x = [2561, 2568]
+y = [3365, 3374]

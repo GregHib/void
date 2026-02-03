@@ -148,4 +148,4 @@ examine = "A worker in the brewery."
 
 [fishing_spot_braindeath_island]
 id = 2859
-
+fishing_fish = { items = ["fishbowl_and_net"], bait = { none = ["sluglings", "karamthulhu"] } }

@@ -153,12 +153,15 @@ examine = "A bruise blue coloured blamish snail, these types are said to spit ac
 
 [fishing_spot_mort_myre_swamp]
 id = 1236
+fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_slimy_eel"] } }
 
-[fishing_spot_mort_myre_swamp_2]
+[fishing_spot_mort_myre_swamp_centre]
 id = 1237
+fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_slimy_eel"] } }
 
-[fishing_spot_mort_myre_swamp_3]
+[fishing_spot_mort_myre_swamp_south]
 id = 1238
+fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_slimy_eel"] } }
 
 [curpile_fyod_mort_myre_swamp]
 id = 1568

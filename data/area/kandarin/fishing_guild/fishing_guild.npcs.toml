@@ -2,9 +2,6 @@
 id = 308
 examine = "The man in charge of the fishing guild."
 
-[fishing_spot_fishing_guild]
-id = 313
-
 [goblin_fishing_guild]
 id = 4272
 categories = ["goblins"]
@@ -63,17 +60,17 @@ examine = "He loves to fish!"
 id = 230
 examine = "He looks elderly."
 
-[fishing_spot_ranging_guild]
+[fishing_spot_fishing_contest]
 id = 233
 examine = "I can fish here."
 
-[fishing_spot_ranging_guild_2]
+[fishing_spot_fishing_contest_2]
 id = 234
 
-[fishing_spot_ranging_guild_3]
+[fishing_spot_fishing_contest_3]
 id = 235
 
-[fishing_spot_ranging_guild_4]
+[fishing_spot_fishing_contest_4]
 id = 236
 
 [fishing_spot_cage_harpoon_fishing_guild]
@@ -81,3 +78,17 @@ id = 312
 fishing_cage = { items = ["lobster_pot"], bait = { none = ["raw_lobster"] } }
 fishing_harpoon = { items = ["harpoon", "barb_tail_harpoon"], bait = { none = ["raw_tuna", "raw_swordfish"] } }
 examine = "I can see fish swimming in the water."
+
+[fishing_spot_fishing_guild]
+id = 313
+fishing_net = { items = ["big_fishing_net"], bait = { none = [
+    "raw_mackerel",
+    "raw_cod",
+    "raw_bass",
+    "oyster",
+    "casket",
+    "seaweed",
+    "leather_gloves",
+    "leather_boots"
+] } }
+fishing_harpoon = { items = ["harpoon", "barb_tail_harpoon"], bait = { none = ["raw_shark"] } }

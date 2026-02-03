@@ -1,5 +1,7 @@
 [fishing_spot_isafdar]
 id = 1190
+fishing_lure = { items = ["fly_fishing_rod"], bait = { feather = ["raw_trout", "raw_salmon"], stripy_feather = ["raw_rainbow_fish"] } }
+fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_pike"] } }
 
 [elf_tracker]
 id = 1199

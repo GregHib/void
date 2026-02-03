@@ -3,3 +3,11 @@ x = [2368, 2495]
 y = [3392, 3519]
 tags = ["penguin_area"]
 hint = "near a big tree surrounded by short people."
+
+[tree_gnome_stronghold_west_fishing_spot]
+x = [2382, 2385]
+y = [3410, 3423]
+
+[tree_gnome_stronghold_east_fishing_spot]
+x = [2389, 2391]
+y = [3421, 3423]

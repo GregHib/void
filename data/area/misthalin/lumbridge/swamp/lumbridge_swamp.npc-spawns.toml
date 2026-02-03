@@ -33,8 +33,6 @@ spawns = [
   { id = "giant_rat_lumbridge_swamp", x = 3235, y = 3172, members = true },
   { id = "giant_spider_lumbridge", x = 3186, y = 3190, members = true },
   { id = "giant_spider_lumbridge", x = 3190, y = 3189, members = true },
-  { id = "fishing_spot_lumbridge_swamp", x = 3255, y = 3163, members = true },
-  { id = "fishing_spot_lumbridge_swamp", x = 3256, y = 3177, members = true },
   { id = "sergeant_mossfists", x = 3183, y = 3161, members = true },
   { id = "sergeant_slimetoes", x = 3181, y = 3161, members = true },
   { id = "giant_spider", x = 3184, y = 3190 },

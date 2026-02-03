@@ -39,3 +39,7 @@ x = [3264,3264,3391,3391,3423,3423,3455,3455]
 y = [3136,3327,3327,3263,3263,3182,3182,3136]
 tags = ["penguin_area"]
 hint = "around the Al Kharid region, north of Shantay Pass."
+
+[al_kharid_fishing_spot]
+x = [3255, 3281]
+y = [3135, 3166]

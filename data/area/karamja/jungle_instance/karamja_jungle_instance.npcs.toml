@@ -12,11 +12,13 @@ id = 1170
 [the_shaikahan_karamja_jungle_instance]
 id = 1173
 
-[fishing_spot_karamja_jungle_instance]
+[fishing_spot_karamja_karambwan_west]
 id = 1176
+fishing_fish = { items = ["karambwan_vessel"], bait = { raw_karambwanji = ["raw_karambwan"] } }
 
-[fishing_spot_karamja_jungle_instance_2]
+[fishing_spot_karamja_karambwan_east]
 id = 1177
+fishing_fish = { items = ["karambwan_vessel"], bait = { raw_karambwanji = ["raw_karambwan"] } }
 
 [pelican_karamja_jungle_instance]
 id = 148

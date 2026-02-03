@@ -80,6 +80,8 @@ id = 2394
 
 [fishing_spot_wilderness]
 id = 3804
+fishing_cage = { items = ["lobster_pot"], bait = { none = ["raw_lobster"] } }
+fishing_harpoon = { items = ["harpoon", "barb_tail_harpoon"], bait = { none = ["raw_tuna", "raw_swordfish"] } }
 
 [giant_rat_wilderness]
 id = 4927

@@ -107,6 +107,8 @@ examine = "They just call him 'Coach'."
 
 [fishing_spot_tree_gnome_stronghold]
 id = 309
+fishing_lure = { items = ["fly_fishing_rod"], bait = { feather = ["raw_trout", "raw_salmon"], stripy_feather = ["raw_rainbow_fish"] } }
+fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_pike"] } }
 
 [devin_mendelberg]
 id = 3828

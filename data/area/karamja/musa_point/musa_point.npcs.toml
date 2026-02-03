@@ -46,9 +46,13 @@ examine = "One of Gielinor's many citizens, apparently trying to be an explorer.
 
 [fishing_spot_musa_point]
 id = 323
+fishing_net = { items = ["small_fishing_net"], bait = { none = ["raw_shrimps", "raw_anchovies"] } }
+fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_sardine", "raw_herring"] } }
 
 [fishing_spot_musa_point_2]
 id = 324
+fishing_cage = { items = ["lobster_pot"], bait = { none = ["raw_lobster"] } }
+fishing_harpoon = { items = ["harpoon", "barb_tail_harpoon"], bait = { none = ["raw_tuna", "raw_swordfish"] } }
 
 [luthas_musa_point]
 id = 379

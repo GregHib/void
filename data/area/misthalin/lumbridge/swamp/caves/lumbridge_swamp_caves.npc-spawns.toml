@@ -66,7 +66,7 @@ spawns = [
   { id = "hole_in_the_wall_lumbridge_swamp_caves", x = 3215, y = 9560 },
   { id = "hole_in_the_wall_lumbridge_swamp_caves", x = 3216, y = 9588 },
   { id = "fishing_spot_lumbridge_swamp_caves", x = 3154, y = 9544 },
-  { id = "fishing_spot_lumbridge_swamp_caves_2", x = 3243, y = 9570, members = true },
+  { id = "fishing_spot_lumbridge_swamp_caves_2", x = 3245, y = 9570, members = true },
   { id = "sergeant_mossfists_lumbridge_swamp_caves", x = 3168, y = 9572, members = true },
   { id = "sergeant_slimetoes_lumbridge_swamp_caves", x = 3170, y = 9572, members = true },
 ]

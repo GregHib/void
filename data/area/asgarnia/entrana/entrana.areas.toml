@@ -3,3 +3,11 @@ x = [2783,2879]
 y = [3328,3391]
 tags = ["penguin_area"]
 hint = "where no weapons may go."
+
+[entrana_dock_fishing_area]
+x = [ 2875, 2879 ]
+y = [ 3331, 3342 ]
+
+[entrana_river_fishing_area]
+x = [ 2840, 2850 ]
+y = [ 3356, 3361 ]
