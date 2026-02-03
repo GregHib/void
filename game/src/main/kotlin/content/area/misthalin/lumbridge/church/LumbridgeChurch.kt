@@ -74,7 +74,7 @@ class LumbridgeChurch : Script {
             }
         }
 
-        itemOnObjectOperate("muddy_skull", "coffin_restless_ghost_2") {
+        itemOnObjectOperate("muddy_skull", "coffin_restless_ghost_2,restless_ghost_coffin") {
             returnSkull()
         }
 
