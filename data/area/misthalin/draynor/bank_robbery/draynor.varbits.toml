@@ -1,0 +1,9 @@
+[wom_task]
+id = 596
+persist = true
+format = "boolean"
+
+[wom_bankjob]
+id = 960
+persist = true
+format = "boolean"
