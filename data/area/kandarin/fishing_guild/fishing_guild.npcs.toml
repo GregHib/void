@@ -75,3 +75,9 @@ id = 235
 
 [fishing_spot_ranging_guild_4]
 id = 236
+
+[fishing_spot_cage_harpoon_fishing_guild]
+id = 312
+fishing_cage = { items = ["lobster_pot"], bait = { none = ["raw_lobster"] } }
+fishing_harpoon = { items = ["harpoon", "barb_tail_harpoon"], bait = { none = ["raw_tuna", "raw_swordfish"] } }
+examine = "I can see fish swimming in the water."
