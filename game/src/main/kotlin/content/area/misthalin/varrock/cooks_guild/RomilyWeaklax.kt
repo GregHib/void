@@ -23,7 +23,7 @@ class RomilyWeaklax : Script {
             npc<Neutral>("Hello and welcome to my pie shop, how can I help you?")
             choice {
                 option("I'd like to buy some pies.") {
-                    openShop(target["shop", ""])
+                    openShop(target.def["shop", ""])
                 }
                 val pie = get("pie_task", "")
                 if (pie != "") {

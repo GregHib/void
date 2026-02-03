@@ -372,11 +372,11 @@ examine = "A door to a grand place."
 id = 1575
 examine = "A door to a grand place."
 
-[door_28_opened]
+[door_champions_guild_opened]
 id = 2033
 examine = "This is someone's bedroom door."
 
-[door_28_closed]
+[door_champions_guild_closed]
 id = 1805
 examine = "The door to the Champions' Guild."
 
