@@ -21,3 +21,7 @@ examine = "A tunnel leading under the wall."
 [cooking_range_falador]
 id = 2728
 examine = "Ideal for cooking on."
+
+[spinning_wheel_falador]
+id = 2644
+examine = "Used for spinning thread."

@@ -9,3 +9,7 @@ examine = "Cook your food here."
 [furnace_clay_forge_neitiznot]
 id = 21303
 examine = "For smelting metal."
+
+[spinning_wheel_neitiznot]
+id = 21304
+examine = "Used for spinning thread."

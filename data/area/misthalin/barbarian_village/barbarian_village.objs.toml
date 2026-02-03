@@ -5,3 +5,7 @@ examine = "Hot!"
 [stronghold_of_security_entrance]
 id = 16154
 examine = "The entrance to the Stronghold of Security."
+
+[spinning_wheel_barbarian_village]
+id = 5707
+examine = "Used for spinning thread."

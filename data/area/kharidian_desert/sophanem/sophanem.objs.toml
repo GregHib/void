@@ -1,3 +1,7 @@
 [bank_booth_sophanem]
 id = 20325
 examine = "The bank teller will serve you from here."
+
+[spinning_wheel_sophanem]
+id = 20365
+examine = "Used for spinning thread."

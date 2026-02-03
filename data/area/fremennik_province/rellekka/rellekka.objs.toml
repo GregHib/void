@@ -29,3 +29,7 @@ examine = "Toasty."
 [furnace_rellekka]
 id = 4304
 examine = "A hot furnace."
+
+[spinning_wheel_rellekka]
+id = 4309
+examine = "Used for spinning thread."
