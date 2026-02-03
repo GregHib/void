@@ -2,6 +2,8 @@ package content.entity.npc.shop
 
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.npc.shop.general.GeneralStores
+import content.entity.player.modal.Tab
+import content.entity.player.modal.tab
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.close
@@ -29,6 +31,7 @@ class ShopOpen(val inventoryDefinitions: InventoryDefinitions) : Script {
         interfaceClosed("shop") {
             close("item_info")
             close("shop_side")
+            sendVariable("tab")
             val shop = shop()
             if (shop.endsWith("general_store")) {
                 GeneralStores.unbind(this, shop)
