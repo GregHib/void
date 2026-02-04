@@ -149,7 +149,6 @@ class BehaviourFragmentTest {
             )
         ),
         Triple(BotAction.Wait(4), mapOf("wait" to 5), BotAction.Wait(5)),
-        Triple(BotAction.WaitFullInventory(4), mapOf("timeout" to 5), BotAction.WaitFullInventory(5)),
     ).map { (default, values, expected) ->
         dynamicTest("Resolve ${default::class.simpleName} references") {
             val fields = values.mapKeys { "ref_${it.key}" }

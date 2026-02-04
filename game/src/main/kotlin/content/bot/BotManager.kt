@@ -164,28 +164,13 @@ class BotManager(
     }
 
     private fun pickResolver(bot: Bot, condition: Condition, frame: BehaviourFrame): Behaviour? {
-        // TODO actions should have retry policies?
         val options = mutableListOf<Resolver>()
-        // Go to area
-        if (condition is Condition.Area) {
-            options.add(Resolver("go_to_${condition.area}", -1, actions = listOf(BotAction.GoTo(condition.area)), produces = setOf(condition)))
-        }
-        // If in bank and needs inventory -> withdraw from bank
-        if (condition is Condition.AtLeast && condition.fact is Fact.InventoryCount) {
-            if (bot.player.bank.contains(condition.fact.id, condition.min)) {
-                options.add(
-                    Resolver(
-                        "withdraw_${condition.fact.id}", 20, actions = listOf(
-                            BotAction.GoToNearest("bank"),
-                            BotAction.InteractObject("Use-quickly", "bank_booth*"),
-                            BotAction.InterfaceOption("Withdraw-x", "bank:inventory:${condition.fact.id}"),
-                            BotAction.StringEntry("${condition.min}"),
-                        )
-                    )
-                )
+        addDefaultResolvers(bot, options, condition)
+        if (condition is Condition.Any) {
+            for (condition in condition.conditions) {
+                addDefaultResolvers(bot, options, condition)
             }
         }
-        // TODO: If in inventory and needs equipped -> equip
         for (key in condition.keys()) {
             for (resolver in resolvers[key] ?: emptyList()) {
                 if (frame.blocked.contains(resolver.id)) {
@@ -200,9 +185,42 @@ class BotManager(
         return options.minByOrNull { it.weight }
     }
 
+    private fun addDefaultResolvers(bot: Bot, resolvers: MutableList<Resolver>, condition: Condition) {
+        if (condition is Condition.Area) {
+            resolvers.add(Resolver("go_to_${condition.area}", -1, actions = listOf(BotAction.GoTo(condition.area)), produces = setOf(condition)))
+        } else if (condition is Condition.AtLeast && condition.fact is Fact.InventoryCount && bot.player.bank.contains(condition.fact.id, condition.min)) {
+            if (condition.min == 1 || condition.min == 5 || condition.min == 10) {
+                resolvers.add(
+                    Resolver(
+                        "withdraw_${condition.fact.id}", 20, actions = listOf(
+                            BotAction.GoToNearest("bank"),
+                            BotAction.InteractObject("Use-quickly", "bank_booth*"),
+                            BotAction.InterfaceOption("Withdraw-${condition.min}", "bank:inventory:${condition.fact.id}"),
+                        )
+                    )
+                )
+            } else {
+                resolvers.add(
+                    Resolver(
+                        "withdraw_${condition.fact.id}", 20, actions = listOf(
+                            BotAction.GoToNearest("bank"),
+                            BotAction.InteractObject("Use-quickly", "bank_booth*"),
+                            BotAction.InterfaceOption("Withdraw-X", "bank:inventory:${condition.fact.id}"),
+                            BotAction.IntEntry(condition.min),
+                        )
+                    )
+                )
+            }
+        }
+        // TODO: If in inventory and needs equipped -> equip
+    }
+
     private fun execute(bot: Bot) {
         val frame = bot.frame()
         val behaviour = frame.behaviour
+        if (bot.player["debug", false]) {
+            logger.info { "Bot task: ${behaviour.id} state: ${frame.state} action: ${frame.action()}." }
+        }
         when (val state = frame.state) {
             BehaviourState.Running -> frame.update(bot)
             BehaviourState.Pending -> start(bot, behaviour, frame)
@@ -215,6 +233,7 @@ class BotManager(
                     AuditLog.event(bot, "completed", frame.behaviour.id)
                     bot.frames.pop()
                     if (behaviour is BotActivity) {
+                        bot.blocked.remove(behaviour.id)
                         slots.release(behaviour)
                     }
                 } else {

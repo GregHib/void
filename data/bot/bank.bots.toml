@@ -1,0 +1,10 @@
+[deposit_all_bank]
+type = "resolver"
+actions = [
+    { go_to_nearest = "bank" },
+    { option = "Use-quickly", object = "bank_booth*" },
+    { option = "Deposit carried items", interface = "bank:carried" },
+]
+produces = [
+    { inventory_space = 28 }
+]

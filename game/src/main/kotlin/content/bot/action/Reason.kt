@@ -3,7 +3,7 @@ package content.bot.action
 import content.bot.fact.Condition
 
 interface Reason {
-    object Invalid : HardReason
+    data class Invalid(val message: String) : HardReason
     object Cancelled : HardReason
     object NoRoute : HardReason
     object Timeout : HardReason

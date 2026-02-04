@@ -23,8 +23,8 @@ data class BehaviourFragment(
                     is BotAction.GoTo -> BotAction.GoTo(resolve(action.references["go_to"], copy.target))
                     is BotAction.GoToNearest -> BotAction.GoToNearest(resolve(action.references["go_to_nearest"], copy.tag))
                     is BotAction.InterfaceOption -> BotAction.InterfaceOption(
-                        id = resolve(action.references["interface"], copy.id),
                         option = resolve(action.references["option"], copy.option),
+                        id = resolve(action.references["interface"], copy.id),
                     )
                     is BotAction.InteractNpc -> {
                         val option = resolve(action.references["option"], copy.option)
@@ -69,7 +69,6 @@ data class BehaviourFragment(
                         value = resolve(action.references["value"], copy.value),
                     )
                     is BotAction.Wait -> BotAction.Wait(resolve(action.references["wait"], copy.ticks))
-                    is BotAction.WaitFullInventory -> BotAction.WaitFullInventory(resolve(action.references["timeout"], copy.timeout))
                     is BotAction.Clone, is BotAction.Reference -> throw IllegalArgumentException("Invalid reference action type: ${action.action::class.simpleName}.")
                 }
                 is BotAction.Clone -> throw IllegalArgumentException("Unresolved clone action in template ${id}.")

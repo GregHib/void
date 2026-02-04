@@ -177,7 +177,7 @@ fun ConfigReader.requirements(list: MutableList<Condition>) {
     list.sortBy { it.priority() }
 }
 
-private fun ConfigReader.requirement(): Condition {
+private fun ConfigReader.requirement(greatThan: Boolean = true): Condition {
     var type = ""
     var id = ""
     var value: Any? = null
@@ -224,7 +224,7 @@ private fun ConfigReader.requirement(): Condition {
             "default" -> default = value()
         }
     }
-    var requirement = getRequirement(type, id, min, max, value, default)
+    var requirement = getRequirement(type, id, min, max, value, default, greatThan)
     if (requirement == null) {
         if (type == "holds") {
             throw IllegalArgumentException("Unknown requirement type 'holds'; did you mean 'carries' or 'equips'? ${exception()}.")
@@ -237,7 +237,7 @@ private fun ConfigReader.requirement(): Condition {
     return requirement
 }
 
-private fun getRequirement(type: String, id: String, min: Int?, max: Int?, value: Any?, default: Any?): Condition? = when (type) {
+private fun getRequirement(type: String, id: String, min: Int?, max: Int?, value: Any?, default: Any?, greatThan: Boolean): Condition? = when (type) {
     "skill" -> Condition.range(Fact.SkillLevel.of(id), min, max)
     "carries" -> Condition.split(id, min, max, Wildcard.Item) { Fact.InventoryCount(it) }
     "owns" -> Condition.split(id, min, max, Wildcard.Item) { Fact.ItemCount(it) }
@@ -252,7 +252,7 @@ private fun getRequirement(type: String, id: String, min: Int?, max: Int?, value
         else -> null
     }
     "clone" -> Condition.Clone(id)
-    "inventory_space" -> Condition.range(Fact.InventorySpace, min, max)
+    "inventory_space" -> Condition.range(Fact.InventorySpace, min, max, greatThan)
     "location" -> Condition.Area(Fact.PlayerTile, id)
     else -> null
 }
@@ -275,7 +275,7 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
         val references = mutableMapOf<String, String>()
         while (nextEntry()) {
             when (val key = key()) {
-                "go_to", "go_to_nearest", "enter_string", "wait_for", "interface", "npc", "object", "clone" -> {
+                "go_to", "go_to_nearest", "enter_string", "interface", "npc", "object", "clone" -> {
                     type = key
                     id = string()
                     if (id.contains('$')) {
@@ -316,7 +316,7 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
                         references[key] = option
                     }
                 }
-                "success" -> success = requirement()
+                "success" -> success = requirement(greatThan = false)
                 "wait" -> {
                     type = key
                     when (val value = value()) {
@@ -376,10 +376,6 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
             "object" -> BotAction.InteractObject(id = id, option = option, delay = delay, success = success, radius = radius)
             "interface" -> BotAction.InterfaceOption(id = id, option = option)
             "clone" -> BotAction.Clone(id)
-            "wait_for" -> when (id) {
-                "full_inventory" -> BotAction.WaitFullInventory(timeout)
-                else -> throw IllegalArgumentException("Unknown wait_for action: $id ${exception()}")
-            }
             else -> throw IllegalArgumentException("Unknown action type: $type ${exception()}")
         }
         if (references.isNotEmpty()) {

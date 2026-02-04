@@ -94,16 +94,22 @@ sealed interface Condition {
 
     companion object {
         fun split(id: String, min: Int?, max: Int?, wildcard: Wildcard, fact: (String) -> Fact<Int>): Condition = when {
-            id.contains(",") -> Any(id.split(",").flatMap { if (id.any { it == '*' || it == '#' }) Wildcards.get(id, wildcard).map { range(fact(id), min, max) } else listOf(range(fact(id), min, max)) })
-            id.any { it == '*' || it == '#' } -> Any(Wildcards.get(id, wildcard).map { range(fact(id), min, max) })
+            id.contains(",") -> Any(id.split(",").flatMap { individual ->
+                if (individual.any { char -> char == '*' || char == '#' }) {
+                    Wildcards.get(individual, wildcard).map { resolved -> range(fact(resolved), min, max) }
+                } else {
+                    listOf(range(fact(individual), min, max))
+                }
+            })
+            id.any { char -> char == '*' || char == '#' } -> Any(Wildcards.get(id, wildcard).map { resolved -> range(fact(resolved), min, max) })
             else -> range(fact(id), min, max)
         }
 
-        fun range(fact: Fact<Int>, min: Int?, max: Int?) = when {
+        fun range(fact: Fact<Int>, min: Int?, max: Int?, greaterThan: Boolean = true) = when {
             min != null && max != null -> Range(fact, min, max)
             min != null -> AtLeast(fact, min)
             max != null -> AtMost(fact, max)
-            else -> Equals(fact, 1)
+            else -> if (greaterThan) AtLeast(fact, 1) else AtMost(fact, 1)
         }
     }
 

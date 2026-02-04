@@ -50,7 +50,7 @@ sealed interface BotAction {
 
     data class GoTo(val target: String) : BotAction {
         override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
-            val def = Areas.getOrNull(target) ?: return BehaviourState.Failed(Reason.Invalid)
+            val def = Areas.getOrNull(target) ?: return BehaviourState.Failed(Reason.Invalid("No areas found with id '$target'."))
             if (bot.tile in def.area) {
                 return BehaviourState.Success
             }
@@ -59,6 +59,11 @@ sealed interface BotAction {
             val graph = manager.graph
             val success = graph.find(bot.player, list, target)
             return queueRoute(success, list, graph, bot, target)
+        }
+
+        override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState? {
+            val def = Areas.getOrNull(target) ?: return BehaviourState.Failed(Reason.Invalid("No areas found with id '$target'."))
+            return if (bot.tile in def.area) BehaviourState.Success else null
         }
 
         companion object {
@@ -94,7 +99,7 @@ sealed interface BotAction {
         override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
             val set = Areas.tagged(tag)
             if (set.isEmpty()) {
-                return BehaviourState.Failed(Reason.Invalid)
+                return BehaviourState.Failed(Reason.Invalid("No areas tagged with tag '$tag'."))
             }
             if (set.any { bot.tile in it.area }) {
                 return BehaviourState.Success
@@ -109,7 +114,7 @@ sealed interface BotAction {
         override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState? {
             val set = Areas.tagged(tag)
             if (set.isEmpty()) {
-                return BehaviourState.Failed(Reason.Invalid)
+                return BehaviourState.Failed(Reason.Invalid("No areas tagged with tag '$tag'."))
             }
             if (set.any { bot.tile in it.area }) {
                 return BehaviourState.Success
@@ -132,9 +137,9 @@ sealed interface BotAction {
         }
 
         override fun update(bot: Bot, frame: BehaviourFrame) = when {
+            successCondition?.check(bot.player) == true -> BehaviourState.Success
             bot.mode is PlayerOnNPCInteract -> if (successCondition == null) BehaviourState.Success else BehaviourState.Running
             bot.mode is EmptyMode -> search(bot)
-            successCondition?.check(bot.player) == true -> BehaviourState.Success
             else -> null
         }
 
@@ -184,11 +189,11 @@ sealed interface BotAction {
         }
 
         override fun update(bot: Bot, frame: BehaviourFrame) = when {
-            bot.levels.get(Skill.Constitution) <= bot.levels.getMax(Skill.Constitution) / healPercentage-> eat(bot)
+            bot.levels.get(Skill.Constitution) <= bot.levels.getMax(Skill.Constitution) / healPercentage -> eat(bot)
+            success?.check(bot.player) == true -> BehaviourState.Success
             bot.mode is PlayerOnNPCInteract -> if (success == null) BehaviourState.Success else BehaviourState.Running
             bot.mode is PlayerOnFloorItemInteract -> BehaviourState.Running
             bot.mode is EmptyMode -> search(bot)
-            success?.check(bot.player) == true -> BehaviourState.Success
             else -> null
         }
 
@@ -269,9 +274,9 @@ sealed interface BotAction {
         }
 
         override fun update(bot: Bot, frame: BehaviourFrame) = when {
+            success?.check(bot.player) == true -> BehaviourState.Success
             bot.mode is PlayerOnObjectInteract -> if (success == null) BehaviourState.Success else BehaviourState.Running
             bot.mode is EmptyMode -> search(bot)
-            success?.check(bot.player) == true -> BehaviourState.Success
             else -> null
         }
 
@@ -307,10 +312,13 @@ sealed interface BotAction {
         }
     }
 
-    data class InterfaceOption(val id: String, val option: String) : BotAction {
+    data class InterfaceOption(val option: String, val id: String, val success: Condition? = null) : BotAction {
         override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
             val definitions = get<InterfaceDefinitions>()
             val split = id.split(":")
+            if (split.size < 2) {
+                return BehaviourState.Failed(Reason.Invalid("Invalid interface id '$id'."))
+            }
             val (id, component) = split
             val item = split.getOrNull(2)
             val def = definitions.getOrNull(id) ?: return BehaviourState.Failed(Reason.NoTarget)
@@ -343,11 +351,20 @@ sealed interface BotAction {
                     option = index
                 )
             ) // TODO could await actual response, or something to get actual feedback
-            return BehaviourState.Wait(1, BehaviourState.Success)
+            return when {
+                success == null -> BehaviourState.Wait(1, BehaviourState.Success)
+                success.check(bot.player) -> BehaviourState.Success
+                else -> BehaviourState.Running
+            }
+        }
+
+        override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState? {
+            if (success != null && success.check(bot.player)) {
+                return BehaviourState.Success
+            }
+            return super.update(bot, frame)
         }
     }
-
-    data class WaitFullInventory(val timeout: Int) : BotAction
 
     data class IntEntry(val value: Int) : BotAction {
         override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
