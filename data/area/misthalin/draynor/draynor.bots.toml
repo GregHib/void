@@ -1,0 +1,20 @@
+[draynor_east_trees]
+template = "normal_tree_template"
+fields = { location = "draynor_oak_trees" }
+
+[draynor_east_oak_trees]
+template = "oak_tree_template"
+fields = { location = "draynor_oak_trees" }
+
+[draynor_north_trees]
+template = "normal_tree_template"
+fields = { location = "draynor_north_trees" }
+
+[draynor_west_oak_trees]
+template = "oak_tree_template"
+fields = { location = "draynor_west_oak_trees" }
+
+[draynor_willow_trees]
+template = "willow_tree_template"
+capacity = 8
+fields = { location = "draynor_willow_trees" }

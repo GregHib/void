@@ -2,7 +2,6 @@ package content.bot.action
 
 import content.bot.fact.*
 import world.gregs.voidps.engine.event.Wildcard
-import world.gregs.voidps.engine.event.Wildcards
 
 data class BehaviourFragment(
     override val id: String,
@@ -31,14 +30,16 @@ data class BehaviourFragment(
                         if (option == "Attack") {
                             BotAction.FightNpc(
                                 id = resolve(action.references["npc"], copy.id),
+                                success = resolveReference(copy.success),
+                                delay = resolve(action.references["radius"], copy.delay),
                                 radius = resolve(action.references["radius"], copy.radius),
                             )
                         } else {
                             BotAction.InteractNpc(
                                 option = option,
                                 id = resolve(action.references["npc"], copy.id),
+                                success = resolveReference(copy.success),
                                 delay = resolve(action.references["delay"], copy.delay),
-                                successCondition = copy.successCondition,
                                 radius = resolve(action.references["radius"], copy.radius),
                             )
                         }
@@ -46,7 +47,7 @@ data class BehaviourFragment(
                     is BotAction.FightNpc -> BotAction.FightNpc(
                         id = resolve(action.references["npc"], copy.id),
                         delay = resolve(action.references["delay"], copy.delay),
-                        success = copy.success,
+                        success = resolveReference(copy.success),
                         healPercentage = resolve(action.references["heal_percent"], copy.healPercentage),
                         lootOverValue = resolve(action.references["loot_over"], copy.lootOverValue),
                         radius = resolve(action.references["radius"], copy.radius),
@@ -54,8 +55,8 @@ data class BehaviourFragment(
                     is BotAction.InteractObject -> BotAction.InteractObject(
                         option = resolve(action.references["option"], copy.option),
                         id = resolve(action.references["object"], copy.id),
+                        success = resolveReference(copy.success),
                         delay = resolve(action.references["delay"], copy.delay),
-                        success = copy.success,
                         radius = resolve(action.references["radius"], copy.radius),
                     )
                     is BotAction.WalkTo -> BotAction.WalkTo(
@@ -80,67 +81,74 @@ data class BehaviourFragment(
 
     fun resolveRequirements(requirements: MutableList<Condition>, facts: List<Condition>) {
         for (req in facts) {
-            val resolved = when (req) {
-                is Condition.Reference -> {
-                    val references = req.references
-                    val min = resolve(references["min"], req.min)
-                    val max = resolve(references["max"], req.max)
-                    when (req.type) {
-                        "skill" -> {
-                            val id = resolve(references[req.type], req.id)
-                            Condition.range(Fact.SkillLevel.of(id), min, max)
-                        }
-                        "carries" -> {
-                            val id = resolve(references[req.type], req.id)
-                            val min = resolve(references["amount"], req.min)
-                            Condition.split(id, min, max, Wildcard.Item) { Fact.InventoryCount(it) }
-                        }
-                        "equips" -> {
-                            val id = resolve(references[req.type], req.id)
-                            val min = resolve(references["amount"], req.min)
-                            Condition.split(id, min, max, Wildcard.Item) { Fact.EquipCount(it) }
-                        }
-                        "owns" -> {
-                            val id = resolve(references[req.type], req.id)
-                            val min = resolve(references["amount"], req.min)
-                            Condition.split(id, min, max, Wildcard.Item) { Fact.ItemCount(it) }
-                        }
-                        "clock" -> {
-                            val id = resolve(references[req.type], req.id)
-                            Condition.split(id, min, max, Wildcard.Variables) { Fact.ClockRemaining(it) }
-                        }
-                        "timer" -> {
-                            val id = resolve(references[req.type], req.id)
-                            val value = resolve(references["value"], req.value as? Boolean)
-                            Condition.Equals(Fact.HasTimer(id), value as? Boolean ?: true)
-                        }
-                        "variable" -> {
-                            val id = resolve(references[req.type], req.id)
-                            val default = resolve(references["default"], req.default)
-                            when (val value = resolve(references["value"], req.value)) {
-                                is Int -> Condition.Equals(Fact.IntVariable(id, default as? Int), value)
-                                is String -> Condition.Equals(Fact.StringVariable(id, default as? String), value)
-                                is Double -> Condition.Equals(Fact.DoubleVariable(id, default as? Double), value)
-                                is Boolean -> Condition.Equals(Fact.BoolVariable(id, default as? Boolean), value)
-                                else -> null
-                            }
-                        }
-                        "inventory_space" -> {
-                            val min = resolve(references["inventory_space"], req.min)
-                            Condition.range(Fact.InventorySpace, min, null)
-                        }
-                        "location" -> {
-                            val id = resolve(references["location"], req.id)
-                            Condition.Area(Fact.PlayerTile, id)
-                        }
+            val resolved = resolveReference(req) ?: continue
+            requirements.add(resolved)
+        }
+    }
+
+    private fun BehaviourFragment.resolveReference(req: Condition?): Condition? = when (req) {
+        is Condition.Reference -> {
+            val references = req.references
+            val min = resolve(references["min"], req.min)
+            val max = resolve(references["max"], req.max)
+            when (req.type) {
+                "skill" -> {
+                    val id = resolve(references[req.type], req.id)
+                    Condition.range(Fact.SkillLevel.of(id), min, max)
+                }
+                "carries" -> {
+                    val id = resolve(references[req.type], req.id)
+                    val min = resolve(references["amount"], req.min)
+                    Condition.split(id, min, max, Wildcard.Item) { Fact.InventoryCount(it) }
+                }
+                "equips" -> {
+                    val id = resolve(references[req.type], req.id)
+                    val min = resolve(references["amount"], req.min)
+                    Condition.split(id, min, max, Wildcard.Item) { Fact.EquipCount(it) }
+                }
+                "owns" -> {
+                    val id = resolve(references[req.type], req.id)
+                    val min = resolve(references["amount"], req.min)
+                    Condition.split(id, min, max, Wildcard.Item) { Fact.ItemCount(it) }
+                }
+                "clock" -> {
+                    val id = resolve(references[req.type], req.id)
+                    Condition.split(id, min, max, Wildcard.Variables) { Fact.ClockRemaining(it) }
+                }
+                "timer" -> {
+                    val id = resolve(references[req.type], req.id)
+                    val value = resolve(references["value"], req.value as? Boolean)
+                    Condition.Equals(Fact.HasTimer(id), value as? Boolean ?: true)
+                }
+                "interface" -> {
+                    val id = resolve(references[req.type], req.id)
+                    val value = resolve(references["value"], req.value as? Boolean)
+                    Condition.Equals(Fact.InterfaceOpen(id), value as? Boolean ?: true)
+                }
+                "variable" -> {
+                    val id = resolve(references[req.type], req.id)
+                    val default = resolve(references["default"], req.default)
+                    when (val value = resolve(references["value"], req.value)) {
+                        is Int -> Condition.Equals(Fact.IntVariable(id, default as? Int), value)
+                        is String -> Condition.Equals(Fact.StringVariable(id, default as? String), value)
+                        is Double -> Condition.Equals(Fact.DoubleVariable(id, default as? Double), value)
+                        is Boolean -> Condition.Equals(Fact.BoolVariable(id, default as? Boolean), value)
                         else -> null
                     }
                 }
-                is Condition.Clone -> throw IllegalArgumentException("Unresolved clone requirement in template ${id}.")
-                else -> req
-            } ?: continue
-            requirements.add(resolved)
+                "inventory_space" -> {
+                    val min = resolve(references["inventory_space"], req.min)
+                    Condition.range(Fact.InventorySpace, min, null)
+                }
+                "location" -> {
+                    val id = resolve(references["location"], req.id)
+                    Condition.Area(Fact.PlayerTile, id)
+                }
+                else -> null
+            }
         }
+        is Condition.Clone -> throw IllegalArgumentException("Unresolved clone requirement in template ${id}.")
+        else -> req
     }
 
     private fun String.key(): String {

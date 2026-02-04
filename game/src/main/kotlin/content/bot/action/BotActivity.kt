@@ -68,18 +68,19 @@ fun loadActivities(
                     }
 
                     if (template != null) {
-                        fragments[id] = BehaviourFragment(id, type, capacity, weight, template, requirements, resolvables, actions = actions, fields = fields)
+                        fragments[id] = BehaviourFragment(id, type, capacity, weight, template, requirements, resolvables, actions = actions, fields = fields, produces = produces.toSet())
                     } else if (type == "resolver") {
+                        val resolver = Resolver(id, weight, requirements, resolvables, actions = actions, produces = produces.toSet())
                         for (fact in produces) {
                             for (key in fact.keys()) {
-                                resolvers.getOrPut(key) { mutableListOf() }.add(Resolver(id, weight, requirements, resolvables, actions = actions))
+                                resolvers.getOrPut(key) { mutableListOf() }.add(resolver)
                             }
                         }
                     } else if (type == "shortcut") {
                         require(resolvables.isEmpty()) { "Shortcuts cannot have setup requirements" }
                         shortcuts.add(NavigationShortcut(id, weight, requirements, actions = actions, produces = produces.toSet()))
                     } else {
-                        activities[id] = BotActivity(id, capacity, requirements, resolvables, actions = actions)
+                        activities[id] = BotActivity(id, capacity, requirements, resolvables, actions = actions, produces = produces.toSet())
                     }
                 }
             }
@@ -129,19 +130,25 @@ fun loadActivities(
             fragment.resolveRequirements(resolvables, template.resolve)
             resolvables.sortBy { it.priority() }
 
+            val products = mutableListOf<Condition>()
+            products.addAll(fragment.produces)
+            fragment.resolveRequirements(products, template.produces.toList())
+            products.sortBy { it.priority() }
+
             val actions = mutableListOf<BotAction>()
             actions.addAll(fragment.actions)
             fragment.resolveActions(template, actions)
             when (fragment.type) {
                 "resolver" -> {
-                    for (fact in fragment.produces) {
+                    val resolver = Resolver(id, fragment.weight, requirements, resolvables, actions, products.toSet())
+                    for (fact in products) {
                         for (key in fact.keys()) {
-                            resolvers.getOrPut(key) { mutableListOf() }.add(Resolver(id, fragment.weight, requirements, resolvables, actions))
+                            resolvers.getOrPut(key) { mutableListOf() }.add(resolver)
                         }
                     }
                 }
                 "shortcut" -> shortcuts.add(NavigationShortcut(id, fragment.weight, requirements, actions = actions))
-                else -> activities[id] = BotActivity(id, fragment.capacity, requirements, resolvables, actions)
+                else -> activities[id] = BotActivity(id, template.capacity, requirements, resolvables, actions)
             }
         }
         // Templates aren't selectable activities
@@ -151,7 +158,7 @@ fun loadActivities(
         // Group activities by requirement types
         for (activity in activities.values) {
             for (fact in activity.requires) {
-                for (key in fact.keys()) {
+                for (key in fact.groups()) {
                     groups.getOrPut(key) { mutableListOf() }.add(activity.id)
                 }
             }
@@ -187,7 +194,7 @@ private fun ConfigReader.requirement(exact: Boolean = false): Condition {
     val references = mutableMapOf<String, String>()
     while (nextEntry()) {
         when (val key = key()) {
-            "skill", "carries", "equips", "owns", "clock", "variable", "clone", "location" -> {
+            "skill", "carries", "equips", "interface", "owns", "clock", "variable", "clone", "location" -> {
                 type = key
                 id = string()
                 if (id.contains('$')) {
@@ -244,6 +251,7 @@ private fun getRequirement(type: String, id: String, min: Int?, max: Int?, value
     "equips" -> Condition.split(id, min, max, Wildcard.Item) { Fact.EquipCount(it) }
     "clock" -> Condition.split(id, min, max, Wildcard.Variables) { Fact.ClockRemaining(it) }
     "timer" -> Condition.Equals(Fact.HasTimer(id), value as? Boolean ?: true)
+    "interface" -> Condition.Equals(Fact.InterfaceOpen(id), value as? Boolean ?: true)
     "variable" -> when (value) {
         is Int -> Condition.Equals(Fact.IntVariable(id, default as? Int), value)
         is String -> Condition.Equals(Fact.StringVariable(id, default as? String), value)
@@ -364,7 +372,7 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
             "npc" -> if (option == "Attack") {
                 BotAction.FightNpc(id = id, delay = delay, success = success, healPercentage = heal, lootOverValue = loot, radius = radius)
             } else {
-                BotAction.InteractNpc(id = id, option = option, delay = delay, successCondition = success, radius = radius)
+                BotAction.InteractNpc(id = id, option = option, delay = delay, success = success, radius = radius)
             }
             "tile" -> BotAction.WalkTo(x = x, y = y)
             "object" -> BotAction.InteractObject(id = id, option = option, delay = delay, success = success, radius = radius)

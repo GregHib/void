@@ -7,6 +7,7 @@ import content.bot.interact.path.Graph
 import content.entity.combat.attackers
 import content.entity.player.bank.bank
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -127,7 +128,7 @@ sealed interface BotAction {
         val option: String,
         val id: String,
         val delay: Int = 0,
-        val successCondition: Condition? = null,
+        val success: Condition? = null,
         val radius: Int = 10,
     ) : BotAction {
 
@@ -137,8 +138,8 @@ sealed interface BotAction {
         }
 
         override fun update(bot: Bot, frame: BehaviourFrame) = when {
-            successCondition?.check(bot.player) == true -> BehaviourState.Success
-            bot.mode is PlayerOnNPCInteract -> if (successCondition == null) BehaviourState.Success else BehaviourState.Running
+            success?.check(bot.player) == true -> BehaviourState.Success
+            bot.mode is PlayerOnNPCInteract -> if (success == null) BehaviourState.Success else BehaviourState.Running
             bot.mode is EmptyMode -> search(bot)
             else -> null
         }
@@ -159,12 +160,15 @@ sealed interface BotAction {
             }
             val npc = npcs.randomOrNull(random) ?: return handleNoTarget()
             val index = npc.def(player).options.indexOf(option)
-            bot.player.instructions.trySend(InteractNPC(npc.index, index))
+            if (index == -1) {
+                return BehaviourState.Failed(Reason.NoTarget)
+            }
+            bot.player.instructions.trySend(InteractNPC(npc.index, index + 1))
             return BehaviourState.Running
         }
 
         private fun handleNoTarget(): BehaviourState {
-            if (successCondition == null) {
+            if (success == null) {
                 return BehaviourState.Failed(Reason.NoTarget)
             }
             if (delay > 0) {
@@ -240,12 +244,15 @@ sealed interface BotAction {
             }
             val item = loot.randomOrNull(random)
             if (item != null) {
-                bot.player.instructions.trySend(InteractFloorItem(item.def.id, item.tile.x, item.tile.y, item.def.floorOptions.indexOf("Pick-up")))
+                bot.player.instructions.trySend(InteractFloorItem(item.def.id, item.tile.x, item.tile.y, item.def.floorOptions.indexOf("Pick-up") + 1))
                 return BehaviourState.Running
             }
             val npc = npcs.randomOrNull(random) ?: return handleNoTarget()
             val index = npc.def(player).options.indexOf("Attack")
-            bot.player.instructions.trySend(InteractNPC(npc.index, index))
+            if (index == -1) {
+                return BehaviourState.Failed(Reason.NoTarget)
+            }
+            bot.player.instructions.trySend(InteractNPC(npc.index, index + 1))
             return BehaviourState.Running
         }
 
@@ -297,6 +304,9 @@ sealed interface BotAction {
             }
             val obj = objects.randomOrNull(random) ?: return handleNoTarget()
             val index = obj.def(bot.player).options?.indexOf(option) ?: return BehaviourState.Failed(Reason.NoTarget)
+            if (index == -1) {
+                return BehaviourState.Failed(Reason.NoTarget)
+            }
             bot.player.instructions.trySend(InteractObject(obj.intId, obj.x, obj.y, index + 1))
             return BehaviourState.Running
         }
@@ -321,27 +331,24 @@ sealed interface BotAction {
             }
             val (id, component) = split
             val item = split.getOrNull(2)
-            val def = definitions.getOrNull(id) ?: return BehaviourState.Failed(Reason.NoTarget)
-            val componentId = definitions.getComponentId(id, component) ?: return BehaviourState.Failed(Reason.NoTarget)
-            val componentDef = definitions.getComponent(id, component) ?: return BehaviourState.Failed(Reason.NoTarget)
+            val def = definitions.getOrNull(id) ?: return BehaviourState.Failed(Reason.Invalid("Invalid interface id $id:${component}:${item}."))
+            val componentId = definitions.getComponentId(id, component) ?: return BehaviourState.Failed(Reason.Invalid("Invalid interface component $id:${component}:${item}."))
+            val componentDef = definitions.getComponent(id, component) ?: return BehaviourState.Failed(Reason.Invalid("Invalid interface component definition $id:${component}:${item}."))
             var options = componentDef.options
             if (options == null) {
                 options = componentDef.getOrNull("options") ?: emptyArray()
             }
             val index = options.indexOf(option)
             if (index == -1) {
-                return BehaviourState.Failed(Reason.NoTarget)
+                return BehaviourState.Failed(Reason.Invalid("No interface option $option for $id:$component:${item} options=${options.contentToString()}."))
             }
             val itemDef = if (item != null) ItemDefinitions.getOrNull(item) else null
 
-            val inv = when (id) {
-                "bank" -> bot.player.bank
-                "inventory" -> bot.player.inventory
-                "equipment" -> bot.player.equipment
-                // TODO link up with inv defs
-                else -> null
+            val inv = InterfaceHandler.getInventory(bot.player, id, component, componentDef)
+            var itemSlot = if (item != null && inv != null) bot.player.inventories.inventory(inv).indexOf(item) else -1
+            if (id == "shop") {
+                itemSlot *= 6
             }
-            val itemSlot = if (item != null && inv != null) inv.indexOf(item) else -1
             bot.player.instructions.trySend(
                 InteractInterface(
                     interfaceId = def.id,

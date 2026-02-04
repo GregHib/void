@@ -1,0 +1,77 @@
+[lumbridge_north_trees]
+template = "normal_tree_template"
+fields = { location = "lumbridge_north_trees" }
+
+[lumbridge_cow_trees]
+template = "normal_tree_template"
+fields = { location = "lumbridge_cow_trees" }
+
+[lumbridge_west_trees]
+template = "normal_tree_template"
+fields = { location = "lumbridge_west_trees" }
+
+[lumbridge_east_trees]
+template = "normal_tree_template"
+fields = { location = "lumbridge_east_trees" }
+
+[lumbridge_oak_trees]
+template = "oak_tree_template"
+fields = { location = "lumbridge_north_trees" }
+
+[lumbridge_castle_yew_tree]
+template = "yew_tree_template"
+fields = { location = "lumbridge_north_west_yew_tree" }
+
+[lumbridge_west_yew_tree]
+template = "yew_tree_template"
+fields = { location = "lumbridge_west_yew_tree" }
+
+# Bobs Brilliant Axes
+
+[take_bronze_hatchet_bobs]
+type = "resolver"
+weight = 5
+template = "take_shop_sample"
+fields = { shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "bronze_hatchet" }
+
+[take_bronze_pickaxe_bobs]
+type = "resolver"
+weight = 5
+template = "take_shop_sample"
+fields = { shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "bronze_pickaxe" }
+
+[buy_bronze_pickaxe]
+type = "resolver"
+weight = 10
+template = "buy_from_shop"
+fields = { cost = 1, shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "bronze_pickaxe" }
+requires = [
+    { skill = "mining", min = 1 },
+]
+
+[buy_bronze_hatchet]
+type = "resolver"
+weight = 10
+template = "buy_from_shop"
+fields = { cost = 16, shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "bronze_hatchet" }
+requires = [
+    { skill = "woodcutting", min = 1 },
+]
+
+[buy_iron_hatchet]
+type = "resolver"
+weight = 10
+template = "buy_from_shop"
+fields = { cost = 56, shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "iron_hatchet" }
+requires = [
+    { skill = "woodcutting", min = 1 },
+]
+
+[buy_steel_hatchet]
+type = "resolver"
+weight = 10
+template = "buy_from_shop"
+fields = { cost = 200, shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "steel_hatchet" }
+requires = [
+    { skill = "woodcutting", min = 6 },
+]

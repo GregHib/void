@@ -20,7 +20,7 @@ class InterfaceOptionHandler(
     override fun validate(player: Player, instruction: InteractInterface) {
         val (interfaceId, componentId, itemId, itemSlot, option) = instruction
 
-        var (id, component, item, _, options) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
+        var (id, component, item, options) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
 
         if (options == null) {
             options = interfaceDefinitions.getComponent(id, component)?.getOrNull("options") ?: emptyArray()

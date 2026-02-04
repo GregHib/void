@@ -16,25 +16,37 @@ import world.gregs.voidps.type.Tile
  */
 sealed class Fact<T>(val priority: Int) {
     abstract fun getValue(player: Player): T
+
+    /**
+     * Fact specific identifiers for finding resolvers e.g. inv:bronze_hatchet, bank:coins etc...
+     */
     open fun keys(): Set<String> = emptySet()
 
+    /**
+     * Group types to listen for types of updates e.g. inv:bank, enter:area etc...
+     */
+    open fun groups(): Set<String> = keys()
+
     object InventorySpace : Fact<Int>(10) {
-        override fun keys() = setOf("inv:inventory")
+        override fun keys() = setOf("inventory_space")
         override fun getValue(player: Player) = player.inventory.spaces
     }
 
     data class InventoryCount(val id: String) : Fact<Int>(100) {
-        override fun keys() = setOf("inv:inventory")
+        override fun keys() = setOf("inv:$id")
+        override fun groups() = setOf("inv:inventory")
         override fun getValue(player: Player) = player.inventory.count(id)
     }
 
     data class ItemCount(val id: String) : Fact<Int>(100) {
-        override fun keys() = setOf("inv:inventory", "inv:bank", "inv:equipment")
+        override fun keys() = setOf("inventory:$id", "bank:$id", "worn_equipment:$id")
+        override fun groups() = setOf("inv:inventory", "inv:bank", "inv:worn_equipment")
         override fun getValue(player: Player) = player.inventory.count(id) + player.bank.count(id) + player.equipment.count(id)
     }
 
     data class EquipCount(val id: String) : Fact<Int>(100) {
-        override fun keys() = setOf("inv:equipment")
+        override fun keys() = setOf("worn_equipment:$id")
+        override fun groups() = setOf("inv:worn_equipment")
         override fun getValue(player: Player) = player.equipment.count(id)
     }
 
@@ -66,6 +78,11 @@ sealed class Fact<T>(val priority: Int) {
     data class HasTimer(val timer: String) : Fact<Boolean>(1) {
         override fun keys() = setOf("timer:$timer")
         override fun getValue(player: Player) = player.timers.contains(timer)
+    }
+
+    data class InterfaceOpen(val id: String) : Fact<Boolean>(1) {
+        override fun keys() = setOf("iface:$id")
+        override fun getValue(player: Player) = player.interfaces.contains(id)
     }
 
     object PlayerTile : Fact<Tile>(1000) {

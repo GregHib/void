@@ -15,14 +15,12 @@ class InterfaceHandler(
     private val inventoryDefinitions: InventoryDefinitions,
     private val enumDefinitions: EnumDefinitions,
 ) {
-    private val logger = InlineLogger()
 
     fun getInterfaceItem(player: Player, interfaceId: Int, componentId: Int, itemId: Int, itemSlot: Int): InterfaceData? {
         val id = getOpenInterface(player, interfaceId) ?: return null
         val componentDefinition = getComponentDefinition(player, interfaceId, componentId) ?: return null
         val component = componentDefinition.stringId
         var item = Item.EMPTY
-        var inventory = ""
         if (itemId != -1) {
             when {
                 id.startsWith("summoning_") && id.endsWith("_creation") -> item = Item(ItemDefinitions.get(itemId).stringId)
@@ -38,12 +36,12 @@ class InterfaceHandler(
                 id == "common_item_costs" -> item = Item(ItemDefinitions.get(itemId).stringId)
                 id == "farming_equipment_store" || id == "farming_equipment_store_side" -> {}
                 else -> {
-                    inventory = getInventory(player, id, component, componentDefinition) ?: return null
+                    val inventory = getInventory(player, id, component, componentDefinition) ?: return null
                     item = getInventoryItem(player, id, componentDefinition, inventory, itemId, itemSlot) ?: return null
                 }
             }
         }
-        return InterfaceData(id, component, item, inventory, componentDefinition.options)
+        return InterfaceData(id, component, item, componentDefinition.options)
     }
 
     private fun getOpenInterface(player: Player, interfaceId: Int): String? {
@@ -63,25 +61,6 @@ class InterfaceHandler(
             return null
         }
         return componentDefinition
-    }
-
-    private fun getInventory(player: Player, id: String, component: String, componentDefinition: InterfaceComponentDefinition): String? {
-        if (component.isEmpty()) {
-            logger.info { "No inventory component found [$player, interface=$id, inventory=$component]" }
-            return null
-        }
-        if (id == "shop") {
-            return player["shop"]
-        }
-        var inventory = componentDefinition["inventory", ""]
-        if (id == "grand_exchange") {
-            inventory = "collection_box_${player["grand_exchange_box", -1]}"
-        }
-        if (!player.inventories.contains(inventory)) {
-            logger.info { "Player doesn't have interface inventory [$player, interface=$id, inventory=$inventory]" }
-            return null
-        }
-        return inventory
     }
 
     private fun getInventoryItem(player: Player, id: String, componentDefinition: InterfaceComponentDefinition, inventoryId: String, item: Int, itemSlot: Int): Item? {
@@ -113,13 +92,35 @@ class InterfaceHandler(
         }
         return inventory[slot]
     }
+
+    companion object {
+        private val logger = InlineLogger()
+
+        fun getInventory(player: Player, id: String, component: String, componentDefinition: InterfaceComponentDefinition): String? {
+            if (component.isEmpty()) {
+                logger.info { "No inventory component found [$player, interface=$id, inventory=$component]" }
+                return null
+            }
+            if (id == "shop") {
+                return player["shop"]
+            }
+            var inventory = componentDefinition["inventory", ""]
+            if (id == "grand_exchange") {
+                inventory = "collection_box_${player["grand_exchange_box", -1]}"
+            }
+            if (!player.inventories.contains(inventory)) {
+                logger.info { "Player doesn't have interface inventory [$player, interface=$id, inventory=$inventory]" }
+                return null
+            }
+            return inventory
+        }
+    }
 }
 
 data class InterfaceData(
     val id: String,
     val component: String,
     val item: Item,
-    val inventory: String,
     val options: Array<String?>?,
 ) {
     override fun equals(other: Any?): Boolean {
@@ -131,7 +132,6 @@ data class InterfaceData(
         if (id != other.id) return false
         if (component != other.component) return false
         if (item != other.item) return false
-        if (inventory != other.inventory) return false
         if (options != null) {
             if (other.options == null) return false
             if (!options.contentEquals(other.options)) return false
@@ -146,7 +146,6 @@ data class InterfaceData(
         var result = id.hashCode()
         result = 31 * result + component.hashCode()
         result = 31 * result + item.hashCode()
-        result = 31 * result + inventory.hashCode()
         result = 31 * result + (options?.contentHashCode() ?: 0)
         return result
     }

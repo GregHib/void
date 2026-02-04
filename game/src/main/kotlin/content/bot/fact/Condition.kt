@@ -10,66 +10,77 @@ import kotlin.collections.map
 sealed interface Condition {
     fun check(player: Player): Boolean
     fun keys(): Set<String>
+    fun groups(): Set<String>
     fun priority(): Int
 
     data class Equals<T>(val fact: Fact<T>, val value: T) : Condition {
         override fun check(player: Player) = fact.getValue(player) == value
         override fun priority() = fact.priority
         override fun keys() = fact.keys()
+        override fun groups() = fact.groups()
     }
 
     data class AtLeast(val fact: Fact<Int>, val min: Int) : Condition {
         override fun check(player: Player) = fact.getValue(player) >= min
         override fun priority() = fact.priority
         override fun keys() = fact.keys()
+        override fun groups() = fact.groups()
     }
 
     data class AtMost(val fact: Fact<Int>, val max: Int) : Condition {
         override fun check(player: Player) = fact.getValue(player) <= max
         override fun priority() = fact.priority
         override fun keys() = fact.keys()
+        override fun groups() = fact.groups()
     }
 
     data class Range(val fact: Fact<Int>, val min: Int, val max: Int) : Condition {
         override fun check(player: Player) = fact.getValue(player) in min..max
         override fun priority() = fact.priority
         override fun keys() = fact.keys()
+        override fun groups() = fact.groups()
     }
 
     data class Within(val fact: Fact<Tile>, val tile: Tile, val radius: Int) : Condition {
         override fun check(player: Player) = fact.getValue(player).within(tile, radius)
         override fun priority() = fact.priority
         override fun keys() = fact.keys()
+        override fun groups() = fact.groups()
     }
 
     data class Area(val fact: Fact<Tile>, val area: String) : Condition { // TODO make fact always PlayerTile?
         override fun check(player: Player) = fact.getValue(player) in Areas[area]
         override fun priority() = fact.priority
         override fun keys() = setOf("enter:$area")
+        override fun groups() = setOf("area")
     }
 
     data class OneOf<T>(val fact: Fact<T>, val values: Set<T>) : Condition {
         override fun check(player: Player) = fact.getValue(player) in values
         override fun priority() = fact.priority
         override fun keys() = fact.keys()
+        override fun groups() = fact.groups()
     }
 
     data class Not(val inner: Condition) : Condition {
         override fun check(player: Player) = !inner.check(player)
         override fun priority() = inner.priority()
         override fun keys() = inner.keys()
+        override fun groups() = inner.groups()
     }
 
     data class All(val conditions: List<Condition>) : Condition {
         override fun check(player: Player) = conditions.all { it.check(player) }
         override fun priority() = conditions.first().priority()
         override fun keys() = conditions.flatMap { it.keys() }.toSet()
+        override fun groups() = conditions.flatMap { it.groups() }.toSet()
     }
 
     data class Any(val conditions: List<Condition>) : Condition {
         override fun check(player: Player) = conditions.any { it.check(player) }
         override fun priority() = conditions.first().priority()
         override fun keys() = conditions.flatMap { it.keys() }.toSet()
+        override fun groups() = conditions.flatMap { it.groups() }.toSet()
     }
 
     data class Reference(
@@ -84,12 +95,14 @@ sealed interface Condition {
         override fun check(player: Player) = false
         override fun priority() = -1
         override fun keys() = emptySet<String>()
+        override fun groups() = emptySet<String>()
     }
 
     class Clone(val id: String) : Condition {
         override fun check(player: Player) = false
         override fun priority() = -1
         override fun keys() = emptySet<String>()
+        override fun groups() = emptySet<String>()
     }
 
     companion object {

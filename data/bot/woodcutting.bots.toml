@@ -3,7 +3,7 @@ type = "activity"
 setup = [
     { carries = "$hatchet" },
     { location = "$location" },
-    { inventory_space = 20 },
+    { inventory_space = 27 },
 ]
 actions = [
     { option = "Chop down", object = "$tree", delay = 5, success = { inventory_space = 0 } },
@@ -12,46 +12,78 @@ produces = [
     { skill = "woodcutting" }
 ]
 
-[lumbridge_trees]
-template = "woodcutting_template"
+[normal_tree_template]
+type = "activity"
 capacity = 4
-fields = { hatchet = "iron_hatchet,steel_hatchet", location = "lumbridge_north_trees", tree = "tree*" }
 requires = [
     { skill = "woodcutting", min = 1, max = 15 },
 ]
+setup = [
+    { carries = "steel_hatchet,iron_hatchet,bronze_hatchet" },
+    { location = "$location" },
+    { inventory_space = 27 },
+]
+actions = [
+    { option = "Chop down", object = "tree*", delay = 5, success = { inventory_space = 0 } },
+]
 produces = [
-    { carries = "logs" }
+    { carries = "logs" },
+    { skill = "woodcutting" }
 ]
 
-[lumbridge_oak_trees]
-template = "woodcutting_template"
+[oak_tree_template]
+type = "activity"
 capacity = 2
-fields = { hatchet = "steel_hatchet", location = "lumbridge_north_trees", tree = "oak" }
 requires = [
     { skill = "woodcutting", min = 15, max = 30 },
 ]
+setup = [
+    { carries = "mithril_hatchet,steel_hatchet" },
+    { location = "$location" },
+    { inventory_space = 27 },
+]
+actions = [
+    { option = "Chop down", object = "oak*", delay = 5, success = { inventory_space = 0 } },
+]
 produces = [
-    { carries = "oak_logs" }
+    { carries = "oak_logs" },
+    { skill = "woodcutting" }
 ]
 
-[draynor_oak_trees]
-template = "woodcutting_template"
+[willow_tree_template]
+type = "activity"
 capacity = 2
-fields = { hatchet = "steel_hatchet", location = "draynor_oak_trees", tree = "oak" }
 requires = [
-    { skill = "woodcutting", min = 15, max = 30 },
+    { skill = "woodcutting", min = 30, max = 60 },
+]
+setup = [
+    { carries = "rune_hatchet,adamant_hatchet,mithril_hatchet,steel_hatchet" },
+    { location = "$location" },
+    { inventory_space = 27 },
+]
+actions = [
+    { option = "Chop down", object = "willow*", delay = 5, success = { inventory_space = 0 } },
 ]
 produces = [
-    { carries = "oak_logs" }
+    { carries = "willow_logs" },
+    { skill = "woodcutting" }
 ]
 
-[draynor_willow_trees]
-template = "woodcutting_template"
-capacity = 6
-fields = { hatchet = "steel_hatchet,mithril_hatchet", location = "draynor_willow_trees", tree = "willow*" }
+[yew_tree_template]
+type = "activity"
+capacity = 2
 requires = [
-    { skill = "woodcutting", min = 30, max = 45 },
+    { skill = "woodcutting", min = 60, max = 75 },
+]
+setup = [
+    { carries = "dragon_hatchet,rune_hatchet,adamant_hatchet" },
+    { location = "$location" },
+    { inventory_space = 27 },
+]
+actions = [
+    { option = "Chop down", object = "yew*", delay = 5, success = { inventory_space = 0 } },
 ]
 produces = [
-    { carries = "willow_logs" }
+    { carries = "yew_logs" },
+    { skill = "woodcutting" }
 ]

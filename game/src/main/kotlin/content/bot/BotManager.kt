@@ -102,10 +102,34 @@ class BotManager(
         val activity = if (bot.previous != null && hasRequirements(bot, bot.previous!!)) {
             bot.previous
         } else {
+            if (bot.player["debug", false]) {
+                logger.info { "Picking bot ${bot.player.accountName} new task from available: ${bot.available}." }
+            }
             val id = bot.available.filter {
                 val activity = activities[it]
                 activity != null && hasRequirements(bot, activity)
             }.randomOrNull(random)
+            if (id == null) {
+                if (bot.player["debug", false]) {
+                    logger.info { "Failed to find activity for bot ${bot.player.accountName}. Reasons:" }
+                    for (id in bot.available) {
+                        val activity = activities[id] ?: continue
+                        if (!slots.hasFree(activity)) {
+                            logger.info { "Activity: $id - No available slots." }
+                        } else if (bot.blocked.contains(activity.id)) {
+                            logger.info { "Activity: $id - Blocked." }
+                        } else {
+                            for (requirement in activity.requires) {
+                                if (!requirement.check(bot.player)) {
+                                    logger.info { "Activity: $id - Failed requirement: $requirement" }
+                                    break
+                                }
+                            }
+                        }
+                    }
+                    logger.info { "Picking bot ${bot.player.accountName} new task from available: ${bot.available}." }
+                }
+            }
             activities[id] ?: idle
         }
         if (activity == null) {
@@ -141,18 +165,20 @@ class BotManager(
             }
             val resolver = pickResolver(bot, requirement, frame)
             if (resolver == null) {
+                if (bot.player["debug", false]) {
+                    logger.info { "No resolver found for for ${behaviour.id} keys: ${requirement.keys()} requirement: ${requirement}." }
+                }
                 frame.fail(Reason.Requirement(requirement)) // No way to resolve
                 return
             }
             // Attempt resolution
             AuditLog.event(bot, "start_resolver", resolver.id, behaviour.id)
             if (bot.player["debug", false]) {
-                logger.info { "Starting resolution: ${resolver.id} for ${behaviour.id} req ${requirement}." }
+                logger.info { "Starting resolution: ${resolver.id} for ${behaviour.id} requirement: ${requirement}." }
             }
             frame.blocked.add(resolver.id)
             val resolverFrame = BehaviourFrame(resolver)
             bot.queue(resolverFrame)
-            resolverFrame.start(bot)
             return
         }
         AuditLog.event(bot, "start_activity", behaviour.id)
@@ -194,7 +220,7 @@ class BotManager(
                     Resolver(
                         "withdraw_${condition.fact.id}", 20, actions = listOf(
                             BotAction.GoToNearest("bank"),
-                            BotAction.InteractObject("Use-quickly", "bank_booth*"),
+                            BotAction.InteractObject("Use-quickly", "bank_booth*", success = Condition.Equals(Fact.InterfaceOpen("bank"), true)),
                             BotAction.InterfaceOption("Withdraw-${condition.min}", "bank:inventory:${condition.fact.id}"),
                         )
                     )
@@ -204,7 +230,7 @@ class BotManager(
                     Resolver(
                         "withdraw_${condition.fact.id}", 20, actions = listOf(
                             BotAction.GoToNearest("bank"),
-                            BotAction.InteractObject("Use-quickly", "bank_booth*"),
+                            BotAction.InteractObject("Use-quickly", "bank_booth*", success = Condition.Equals(Fact.InterfaceOpen("bank"), true)),
                             BotAction.InterfaceOption("Withdraw-X", "bank:inventory:${condition.fact.id}"),
                             BotAction.IntEntry(condition.min),
                         )

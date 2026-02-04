@@ -6,7 +6,7 @@ class BotUpdates(val manager: BotManager) : Script {
     init {
         levelChanged { skill, _, _ ->
             if (isBot) {
-                manager.update(bot, skill.name)
+                manager.update(bot, "skill:${skill.name.lowercase()}")
             }
         }
 
