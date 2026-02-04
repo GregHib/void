@@ -111,6 +111,11 @@ data class BehaviourFragment(
                     val min = resolve(references["amount"], req.min)
                     Condition.split(id, min, max, Wildcard.Item) { Fact.ItemCount(it) }
                 }
+                "banked" -> {
+                    val id = resolve(references[req.type], req.id)
+                    val min = resolve(references["amount"], req.min)
+                    Condition.split(id, min, max, Wildcard.Item) { Fact.BankCount(it) }
+                }
                 "clock" -> {
                     val id = resolve(references[req.type], req.id)
                     Condition.split(id, min, max, Wildcard.Variables) { Fact.ClockRemaining(it) }

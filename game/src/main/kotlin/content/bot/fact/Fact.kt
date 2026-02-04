@@ -45,6 +45,12 @@ sealed class Fact<T>(val priority: Int) {
         override fun getValue(player: Player) = player.inventory.count(id) + player.bank.count(id) + player.equipment.count(id)
     }
 
+    data class BankCount(val id: String) : Fact<Int>(100) {
+        override fun keys() = setOf("bank:$id")
+        override fun groups() = setOf("inv:bank")
+        override fun getValue(player: Player) = player.bank.count(id)
+    }
+
     data class EquipCount(val id: String) : Fact<Int>(100) {
         override fun keys() = setOf("worn_equipment:$id")
         override fun groups() = setOf("inv:worn_equipment")

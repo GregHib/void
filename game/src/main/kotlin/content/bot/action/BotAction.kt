@@ -5,7 +5,7 @@ import content.bot.BotManager
 import content.bot.fact.Condition
 import content.bot.interact.path.Graph
 import content.entity.combat.attackers
-import content.entity.player.bank.bank
+import content.entity.combat.dead
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.data.definition.Areas
@@ -15,22 +15,15 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnFloorItemInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnNPCInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
-import world.gregs.voidps.engine.entity.character.mode.move.Movement
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.wildcardEquals
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.map.Spiral
 import world.gregs.voidps.network.client.instruction.*
-import world.gregs.voidps.type.random
-import kotlin.collections.iterator
 
 sealed interface BotAction {
     fun start(bot: Bot, frame: BehaviourFrame): BehaviourState = BehaviourState.Running
@@ -242,7 +235,7 @@ sealed interface BotAction {
                     if (index == -1) {
                         continue
                     }
-                    if (npc.attackers.isNotEmpty() && !npc.attackers.contains(player)) {
+                    if (npc.dead || npc.attackers.isNotEmpty() && !npc.attackers.contains(player)) {
                         continue
                     }
                     bot.player.instructions.trySend(InteractNPC(npc.index, index + 1))

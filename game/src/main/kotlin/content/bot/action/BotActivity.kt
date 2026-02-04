@@ -249,6 +249,7 @@ private fun getRequirement(type: String, id: String, min: Int?, max: Int?, value
     "skill" -> Condition.range(Fact.SkillLevel.of(id), min, max)
     "carries" -> Condition.split(id, min, max, Wildcard.Item) { Fact.InventoryCount(it) }
     "owns" -> Condition.split(id, min, max, Wildcard.Item) { Fact.ItemCount(it) }
+    "banked" -> Condition.split(id, min, max, Wildcard.Item) { Fact.BankCount(it) }
     "equips" -> Condition.split(id, min, max, Wildcard.Item) { Fact.EquipCount(it) }
     "clock" -> Condition.split(id, min, max, Wildcard.Variables) { Fact.ClockRemaining(it) }
     "timer" -> Condition.Equals(Fact.HasTimer(id), value as? Boolean ?: true)

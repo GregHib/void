@@ -1,4 +1,4 @@
-[deposit_all_bank]
+[deposit_carried_items]
 type = "resolver"
 actions = [
     { go_to_nearest = "bank" },
@@ -8,3 +8,14 @@ actions = [
 produces = [
     { inventory_space = 28 }
 ]
+
+#[deposit_worn_items]
+#type = "resolver"
+#actions = [
+#    { go_to_nearest = "bank" },
+#    { option = "Use-quickly", object = "bank_booth*", success = { interface = "bank" } },
+#    { option = "Deposit worn items", interface = "bank:worn", success = { equipment_space = 28 } },
+#]
+#produces = [
+#    { equipment_space = 28 }
+#]

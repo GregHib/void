@@ -197,6 +197,7 @@ class BotManager(
                 addDefaultResolvers(bot, options, condition)
             }
         }
+        options.removeAll { frame.blocked.contains(it.id) || it.requires.any { fact -> !fact.check(bot.player) } }
         for (key in condition.keys()) {
             for (resolver in resolvers[key] ?: emptyList()) {
                 if (frame.blocked.contains(resolver.id)) {
@@ -237,12 +238,25 @@ class BotManager(
                     )
                 )
             }
-        } else if (condition is Condition.AtLeast && condition.fact is Fact.EquipCount && bot.player.inventory.contains(condition.fact.id, condition.min)) {
+        } else if (condition is Condition.AtLeast && condition.fact is Fact.EquipCount) {
             resolvers.add(
                 Resolver(
                     "equip_${condition.fact.id}", weight = 0,
-                    resolve = listOf(Condition.AtLeast(Fact.InventoryCount(condition.fact.id), condition.min)),
+                    requires = listOf(Condition.AtLeast(Fact.InventoryCount(condition.fact.id), condition.min)),
                     actions = listOf(BotAction.InterfaceOption("Equip", "inventory:inventory:${condition.fact.id}"))
+                )
+            )
+            resolvers.add(
+                Resolver(
+                    "withdraw_and_equip_${condition.fact.id}", weight = 0,
+                    requires = listOf(Condition.AtLeast(Fact.BankCount(condition.fact.id), condition.min)),
+                    actions = listOf(
+                        BotAction.GoToNearest("bank"),
+                        BotAction.InteractObject("Use-quickly", "bank_booth*", success = Condition.Equals(Fact.InterfaceOpen("bank"), true)),
+                        BotAction.InterfaceOption("Withdraw-X", "bank:inventory:${condition.fact.id}"),
+                        BotAction.IntEntry(condition.min),
+                        BotAction.InterfaceOption("Equip", "inventory:inventory:${condition.fact.id}")
+                    )
                 )
             )
         }
@@ -251,8 +265,9 @@ class BotManager(
     private fun execute(bot: Bot) {
         val frame = bot.frame()
         val behaviour = frame.behaviour
-        if (bot.player["debug", false]) {
+        if (bot.player["debug", false] && frame.state != bot.get<BehaviourState>("previous_state")) {
             logger.trace { "Bot task: ${behaviour.id} state: ${frame.state} action: ${frame.action()}." }
+            bot["previous_state"] = frame.state
         }
         when (val state = frame.state) {
             BehaviourState.Running -> frame.update(bot)
