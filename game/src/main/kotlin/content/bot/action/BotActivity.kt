@@ -6,6 +6,7 @@ import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.timedLoad
+import kotlin.math.min
 
 /**
  * An activity with a limited number of slots that bots can perform
@@ -211,7 +212,7 @@ private fun ConfigReader.requirement(exact: Boolean = false): Condition {
                 is String if value.contains('$') -> references[key] = value
                 else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
             }
-            "inventory_space" -> {
+            "combat_level", "inventory_space" -> {
                 type = key
                 when (val value = value()) {
                     is Int -> min = value
@@ -262,6 +263,7 @@ private fun getRequirement(type: String, id: String, min: Int?, max: Int?, value
     "clone" -> Condition.Clone(id)
     "inventory_space" -> if (exact && min != null) Condition.Equals(Fact.InventorySpace, min) else Condition.range(Fact.InventorySpace, min, max)
     "location" -> Condition.Area(Fact.PlayerTile, id)
+    "combat_level" -> Condition.AtLeast(Fact.CombatLevel, min ?: 1)
     else -> null
 }
 

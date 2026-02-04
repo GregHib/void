@@ -144,6 +144,9 @@ data class BehaviourFragment(
                     val id = resolve(references["location"], req.id)
                     Condition.Area(Fact.PlayerTile, id)
                 }
+                "combat_level" -> {
+                    Condition.AtLeast(Fact.CombatLevel, resolve(references["combat_level"], req.min) ?: 1)
+                }
                 else -> null
             }
         }

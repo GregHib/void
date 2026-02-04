@@ -1,30 +1,48 @@
-[lumbridge_north_trees]
+# Woodcutting
+[lumbridge_north_tree_cutting]
 template = "normal_tree_template"
 fields = { location = "lumbridge_north_trees" }
 
-[lumbridge_cow_trees]
+[lumbridge_cow_tree_cutting]
 template = "normal_tree_template"
 fields = { location = "lumbridge_cow_trees" }
 
-[lumbridge_west_trees]
+[lumbridge_west_tree_cutting]
 template = "normal_tree_template"
 fields = { location = "lumbridge_west_trees" }
 
-[lumbridge_east_trees]
+[lumbridge_east_tree_cutting]
 template = "normal_tree_template"
 fields = { location = "lumbridge_east_trees" }
 
-[lumbridge_oak_trees]
+[lumbridge_oak_tree_cutting]
 template = "oak_tree_template"
 fields = { location = "lumbridge_north_trees" }
 
-[lumbridge_castle_yew_tree]
+[lumbridge_castle_yew_tree_cutting]
 template = "yew_tree_template"
 fields = { location = "lumbridge_north_west_yew_tree" }
 
-[lumbridge_west_yew_tree]
+[lumbridge_west_yew_tree_cutting]
 template = "yew_tree_template"
 fields = { location = "lumbridge_west_yew_tree" }
+
+# Mining
+[lumbridge_copper_mining]
+template = "copper_ore_template"
+fields = { location = "lumbridge_swamp_east_copper_mine" }
+
+[lumbridge_tin_mining]
+template = "tin_ore_template"
+fields = { location = "lumbridge_swamp_east_tin_mine" }
+
+[lumbridge_coal_mining]
+template = "coal_template"
+fields = { location = "lumbridge_swamp_west_coal_mine" }
+
+[lumbridge_mithril_mining]
+template = "mithril_ore_template"
+fields = { location = "lumbridge_swamp_west_mithril_mine" }
 
 # Bobs Brilliant Axes
 

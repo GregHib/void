@@ -1,17 +1,3 @@
-[woodcutting_template]
-type = "activity"
-setup = [
-    { carries = "$hatchet" },
-    { location = "$location" },
-    { inventory_space = 27 },
-]
-actions = [
-    { option = "Chop down", object = "$tree", delay = 5, success = { inventory_space = 0 } },
-]
-produces = [
-    { skill = "woodcutting" }
-]
-
 [normal_tree_template]
 type = "activity"
 capacity = 4

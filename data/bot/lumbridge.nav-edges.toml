@@ -217,6 +217,8 @@ edges = [
     { from_x = 3283, from_y = 3331, to_x = 3284, to_y = 3313 }, # al_kharid_mine_north_entrance_to_west_path
     { from_x = 3284, from_y = 3313, to_x = 3287, to_y = 3294 }, # al_kharid_mine_west_path_to_south
     { from_x = 3287, from_y = 3294, to_x = 3298, to_y = 3280 }, # al_kharid_mine_west_path_to_entrance
+    { from_x = 3298, from_y = 3280, to_x = 3299, to_y = 3294 },
+    { from_x = 3299, from_y = 3294, to_x = 3300, to_y = 3311 },
     { from_x = 3298, from_y = 3280, to_x = 3299, to_y = 3263 }, # al_kharid_mine_entrance_to_mine_south
     { from_x = 3299, from_y = 3263, to_x = 3294, to_y = 3242 }, # al_kharid_mine_south_to_north_path
     { from_x = 3294, from_y = 3242, to_x = 3278, to_y = 3228 }, # al_kharid_north_path_to_crossroad

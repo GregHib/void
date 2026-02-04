@@ -4,6 +4,7 @@ import content.entity.player.bank.bank
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
@@ -88,6 +89,11 @@ sealed class Fact<T>(val priority: Int) {
     object PlayerTile : Fact<Tile>(1000) {
         override fun keys() = setOf("tile")
         override fun getValue(player: Player) = player.tile
+    }
+
+    object CombatLevel : Fact<Int>(1) {
+        override fun keys() = setOf("combat")
+        override fun getValue(player: Player) = player.combatLevel
     }
 
     object AttackLevel : SkillLevel(Skill.Attack)

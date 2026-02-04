@@ -1,0 +1,151 @@
+[copper_ore_template]
+type = "activity"
+capacity = 4
+requires = [
+    { skill = "mining", min = 1, max = 15 },
+]
+setup = [
+    { carries = "steel_pickaxe,iron_pickaxe,bronze_pickaxe" },
+    { location = "$location" },
+    { inventory_space = 27 },
+]
+actions = [
+    { option = "Mine", object = "copper_rocks*", delay = 5, success = { inventory_space = 0 } },
+]
+produces = [
+    { carries = "copper_ore" },
+    { skill = "mining" }
+]
+
+[tin_ore_template]
+type = "activity"
+capacity = 4
+requires = [
+    { skill = "mining", min = 1, max = 15 },
+]
+setup = [
+    { carries = "steel_pickaxe,iron_pickaxe,bronze_pickaxe" },
+    { location = "$location" },
+    { inventory_space = 27 },
+]
+actions = [
+    { option = "Mine", object = "tin_rocks*", delay = 5, success = { inventory_space = 0 } },
+]
+produces = [
+    { carries = "tin_ore" },
+    { skill = "mining" }
+]
+
+[clay_template]
+type = "activity"
+capacity = 2
+requires = [
+    { skill = "mining", min = 1, max = 15 },
+]
+setup = [
+    { carries = "steel_pickaxe,iron_pickaxe,bronze_pickaxe" },
+    { location = "$location" },
+    { inventory_space = 27 },
+]
+actions = [
+    { option = "Mine", object = "clay_rocks*", delay = 5, success = { inventory_space = 0 } },
+]
+produces = [
+    { carries = "clay" },
+    { skill = "mining" }
+]
+
+[iron_ore_template]
+type = "activity"
+capacity = 2
+requires = [
+    { skill = "mining", min = 15, max = 40 },
+]
+setup = [
+    { carries = "adamant_pickaxe,mithril_pickaxe,steel_pickaxe" },
+    { location = "$location" },
+    { inventory_space = 27 },
+]
+actions = [
+    { option = "Mine", object = "iron_rocks*", delay = 5, success = { inventory_space = 0 } },
+]
+produces = [
+    { carries = "iron_ore" },
+    { skill = "mining" }
+]
+
+[silver_ore_template]
+type = "activity"
+capacity = 2
+requires = [
+    { skill = "mining", min = 20, max = 40 },
+]
+setup = [
+    { carries = "adamant_pickaxe,mithril_pickaxe,steel_pickaxe" },
+    { location = "$location" },
+    { inventory_space = 27 },
+]
+actions = [
+    { option = "Mine", object = "silver_rocks*", delay = 5, success = { inventory_space = 0 } },
+]
+produces = [
+    { carries = "silver_ore" },
+    { skill = "mining" }
+]
+
+[coal_template]
+type = "activity"
+capacity = 4
+requires = [
+    { skill = "mining", min = 30, max = 55 },
+]
+setup = [
+    { carries = "rune_pickaxe,adamant_pickaxe,mithril_pickaxe" },
+    { location = "$location" },
+    { inventory_space = 27 },
+]
+actions = [
+    { option = "Mine", object = "coal_rocks*", delay = 10, success = { inventory_space = 0 } },
+]
+produces = [
+    { carries = "coal" },
+    { skill = "mining" }
+]
+
+[gold_ore_template]
+type = "activity"
+capacity = 3
+requires = [
+    { skill = "mining", min = 40, max = 60 },
+]
+setup = [
+    { carries = "rune_pickaxe,adamant_pickaxe,mithril_pickaxe" },
+    { location = "$location" },
+    { inventory_space = 27 },
+]
+actions = [
+    { option = "Mine", object = "gold_rocks*", delay = 15, success = { inventory_space = 0 } },
+]
+produces = [
+    { carries = "gold_ore" },
+    { skill = "mining" }
+]
+
+[mithril_ore_template]
+type = "activity"
+capacity = 2
+requires = [
+    { skill = "mining", min = 55, max = 70 },
+]
+setup = [
+    { carries = "dragon_pickaxe,rune_pickaxe,adamant_pickaxe" },
+    { location = "$location" },
+    { inventory_space = 27 },
+]
+actions = [
+    { option = "Mine", object = "mithril_rocks*", delay = 15, success = { inventory_space = 0 } },
+]
+produces = [
+    { carries = "mithril_ore" },
+    { skill = "mining" }
+]
