@@ -48,19 +48,19 @@ fields = { location = "lumbridge_swamp_west_mithril_mine" }
 
 [take_bronze_hatchet_bobs]
 type = "resolver"
-weight = 5
+weight = 30
 template = "take_shop_sample"
 fields = { shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "bronze_hatchet" }
 
 [take_bronze_pickaxe_bobs]
 type = "resolver"
-weight = 5
+weight = 30
 template = "take_shop_sample"
 fields = { shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "bronze_pickaxe" }
 
 [buy_bronze_pickaxe]
 type = "resolver"
-weight = 10
+weight = 35
 template = "buy_from_shop"
 fields = { cost = 1, shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "bronze_pickaxe" }
 requires = [
@@ -69,7 +69,7 @@ requires = [
 
 [buy_bronze_hatchet]
 type = "resolver"
-weight = 10
+weight = 35
 template = "buy_from_shop"
 fields = { cost = 16, shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "bronze_hatchet" }
 requires = [
@@ -78,7 +78,7 @@ requires = [
 
 [buy_iron_hatchet]
 type = "resolver"
-weight = 10
+weight = 45
 template = "buy_from_shop"
 fields = { cost = 56, shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "iron_hatchet" }
 requires = [
@@ -87,7 +87,7 @@ requires = [
 
 [buy_steel_hatchet]
 type = "resolver"
-weight = 10
+weight = 50
 template = "buy_from_shop"
 fields = { cost = 200, shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "steel_hatchet" }
 requires = [

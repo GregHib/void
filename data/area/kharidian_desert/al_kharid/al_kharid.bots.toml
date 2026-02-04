@@ -2,55 +2,67 @@
 [al_kharid_iron_mining]
 template = "iron_ore_template"
 capacity = 2
-requires = [
-    { combat_level = 10 }
-]
 fields = { location = "al_kharid_mine" }
 
 [al_kharid_coal_mining]
 template = "coal_template"
 capacity = 1
-requires = [
-    { combat_level = 10 }
-]
 fields = { location = "al_kharid_mine" }
 
 [al_kharid_silver_mining]
 template = "silver_ore_template"
 capacity = 2
-requires = [
-    { combat_level = 10 }
-]
 fields = { location = "al_kharid_mine" }
 
 [al_kharid_north_copper_mining]
 template = "copper_ore_template"
 capacity = 1
-requires = [
-    { combat_level = 10 }
-]
 fields = { location = "al_kharid_mine_north" }
 
 [al_kharid_north_silver_mining]
 template = "silver_ore_template"
 capacity = 1
-requires = [
-    { combat_level = 10 }
-]
 fields = { location = "al_kharid_mine_north" }
 
 [al_kharid_north_iron_mining]
 template = "iron_ore_template"
 capacity = 2
-requires = [
-    { combat_level = 10 }
-]
 fields = { location = "al_kharid_mine_north" }
 
 [al_kharid_north_mithril_mining]
 template = "mithril_ore_template"
 capacity = 2
-requires = [
-    { combat_level = 10 }
-]
 fields = { location = "al_kharid_mine_north" }
+
+# Zekes Superior Scimitars
+[buy_bronze_scimitar]
+type = "resolver"
+template = "buy_from_shop"
+fields = { cost = 32, shop_location = "zekes_scimitar_shop", shopkeeper = "zeke", item = "bronze_scimitar" }
+requires = [
+    { skill = "attack", min = 1 },
+]
+
+[buy_iron_scimitar]
+type = "resolver"
+template = "buy_from_shop"
+fields = { cost = 112, shop_location = "zekes_scimitar_shop", shopkeeper = "zeke", item = "iron_scimitar" }
+requires = [
+    { skill = "attack", min = 1 },
+]
+
+[buy_steel_scimitar]
+type = "resolver"
+template = "buy_from_shop"
+fields = { cost = 400, shop_location = "zekes_scimitar_shop", shopkeeper = "zeke", item = "steel_scimitar" }
+requires = [
+    { skill = "attack", min = 5 },
+]
+
+[buy_mithril_scimitar]
+type = "resolver"
+template = "buy_from_shop"
+fields = { cost = 1040, shop_location = "zekes_scimitar_shop", shopkeeper = "zeke", item = "mithril_scimitar" }
+requires = [
+    { skill = "attack", min = 20 },
+]

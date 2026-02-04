@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnFloorItemInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnNPCInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
+import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -55,16 +56,23 @@ sealed interface BotAction {
             if (bot.tile in def.area) {
                 return BehaviourState.Success
             }
+            return BehaviourState.Running
+        }
+
+        override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState {
+            if (bot.steps.isNotEmpty()) {
+                return BehaviourState.Running
+            }
+            val def = Areas.getOrNull(target) ?: return BehaviourState.Failed(Reason.Invalid("No areas found with id '$target'."))
+            if (bot.tile in def.area) {
+                return BehaviourState.Success
+            }
+
             val manager = get<BotManager>()
             val list = mutableListOf<Int>()
             val graph = manager.graph
             val success = graph.find(bot.player, list, target)
             return queueRoute(success, list, graph, bot, target)
-        }
-
-        override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState? {
-            val def = Areas.getOrNull(target) ?: return BehaviourState.Failed(Reason.Invalid("No areas found with id '$target'."))
-            return if (bot.tile in def.area) BehaviourState.Success else null
         }
 
         companion object {
@@ -105,14 +113,13 @@ sealed interface BotAction {
             if (set.any { bot.tile in it.area }) {
                 return BehaviourState.Success
             }
-            val manager = get<BotManager>()
-            val list = mutableListOf<Int>()
-            val graph = manager.graph
-            val success = graph.findNearest(bot.player, list, tag)
-            return GoTo.queueRoute(success, list, graph, bot, tag)
+            return BehaviourState.Running
         }
 
-        override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState? {
+        override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState {
+            if (bot.steps.isNotEmpty()) {
+                return BehaviourState.Running
+            }
             val set = Areas.tagged(tag)
             if (set.isEmpty()) {
                 return BehaviourState.Failed(Reason.Invalid("No areas tagged with tag '$tag'."))
@@ -120,7 +127,11 @@ sealed interface BotAction {
             if (set.any { bot.tile in it.area }) {
                 return BehaviourState.Success
             }
-            return null
+            val manager = get<BotManager>()
+            val list = mutableListOf<Int>()
+            val graph = manager.graph
+            val success = graph.findNearest(bot.player, list, tag)
+            return GoTo.queueRoute(success, list, graph, bot, tag)
         }
     }
 

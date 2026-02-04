@@ -108,7 +108,7 @@ class BotManager(
             val id = bot.available.filter {
                 val activity = activities[it]
                 activity != null && hasRequirements(bot, activity)
-            }.randomOrNull(random)
+            }.randomOrNull(random) // TODO weight by distance?
             if (id == null) {
                 if (bot.player["debug", false]) {
                     logger.info { "Failed to find activity for bot ${bot.player.accountName}. Reasons:" }
@@ -218,7 +218,7 @@ class BotManager(
             if (condition.min == 1 || condition.min == 5 || condition.min == 10) {
                 resolvers.add(
                     Resolver(
-                        "withdraw_${condition.fact.id}", 20, actions = listOf(
+                        "withdraw_${condition.fact.id}", weight = 20, actions = listOf(
                             BotAction.GoToNearest("bank"),
                             BotAction.InteractObject("Use-quickly", "bank_booth*", success = Condition.Equals(Fact.InterfaceOpen("bank"), true)),
                             BotAction.InterfaceOption("Withdraw-${condition.min}", "bank:inventory:${condition.fact.id}"),
@@ -228,7 +228,7 @@ class BotManager(
             } else {
                 resolvers.add(
                     Resolver(
-                        "withdraw_${condition.fact.id}", 20, actions = listOf(
+                        "withdraw_${condition.fact.id}", weight = 20, actions = listOf(
                             BotAction.GoToNearest("bank"),
                             BotAction.InteractObject("Use-quickly", "bank_booth*", success = Condition.Equals(Fact.InterfaceOpen("bank"), true)),
                             BotAction.InterfaceOption("Withdraw-X", "bank:inventory:${condition.fact.id}"),
@@ -245,7 +245,7 @@ class BotManager(
         val frame = bot.frame()
         val behaviour = frame.behaviour
         if (bot.player["debug", false]) {
-            logger.info { "Bot task: ${behaviour.id} state: ${frame.state} action: ${frame.action()}." }
+            logger.trace { "Bot task: ${behaviour.id} state: ${frame.state} action: ${frame.action()}." }
         }
         when (val state = frame.state) {
             BehaviourState.Running -> frame.update(bot)
@@ -253,7 +253,7 @@ class BotManager(
             BehaviourState.Success -> {
                 val debug = bot.player["debug", false]
                 if (debug) {
-                    logger.info { "Completed action: ${frame.action()} for ${behaviour.id}." }
+                    logger.trace { "Completed action: ${frame.action()} for ${behaviour.id}." }
                 }
                 if (!frame.next()) {
                     AuditLog.event(bot, "completed", frame.behaviour.id)
@@ -264,7 +264,7 @@ class BotManager(
                     }
                 } else {
                     if (debug) {
-                        logger.info { "Next action: ${frame.action()} for ${behaviour.id}." }
+                        logger.trace { "Next action: ${frame.action()} for ${behaviour.id}." }
                     }
                     frame.start(bot)
                 }
@@ -272,7 +272,7 @@ class BotManager(
             is BehaviourState.Failed -> {
                 val action = frame.action()
                 if (bot.player["debug", false]) {
-                    logger.info { "Failed action: ${action::class.simpleName} for ${behaviour.id}, reason: ${state.reason}." }
+                    logger.warn { "Failed action: ${action::class.simpleName} for ${behaviour.id}, reason: ${state.reason}." }
                 }
                 AuditLog.event(bot, "failed", behaviour.id, state.reason, frame.index, action::class.simpleName)
                 if (state.reason is HardReason) {
