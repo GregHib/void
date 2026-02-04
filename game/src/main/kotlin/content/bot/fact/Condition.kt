@@ -2,7 +2,10 @@ package content.bot.fact
 
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Wildcard
+import world.gregs.voidps.engine.event.Wildcards
 import world.gregs.voidps.type.Tile
+import kotlin.collections.map
 
 sealed interface Condition {
     fun check(player: Player): Boolean
@@ -90,6 +93,12 @@ sealed interface Condition {
     }
 
     companion object {
+        fun split(id: String, min: Int?, max: Int?, wildcard: Wildcard, fact: (String) -> Fact<Int>): Condition = when {
+            id.contains(",") -> Any(id.split(",").flatMap { if (id.any { it == '*' || it == '#' }) Wildcards.get(id, wildcard).map { range(fact(id), min, max) } else listOf(range(fact(id), min, max)) })
+            id.any { it == '*' || it == '#' } -> Any(Wildcards.get(id, wildcard).map { range(fact(id), min, max) })
+            else -> range(fact(id), min, max)
+        }
+
         fun range(fact: Fact<Int>, min: Int?, max: Int?) = when {
             min != null && max != null -> Range(fact, min, max)
             min != null -> AtLeast(fact, min)

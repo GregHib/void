@@ -76,35 +76,26 @@ data class BehaviourFragment(
                         "carries" -> {
                             val id = resolve(references[req.type], req.id)
                             val min = resolve(references["amount"], req.min)
-                            if (id.contains(",")) {
-                                Condition.Any(id.split(",").map { Condition.range(Fact.InventoryCount(it), min, max) })
-                            } else if (id.any { it == '*' || it == '#' }) {
-                                Condition.Any(Wildcards.get(id, Wildcard.Item).map { Condition.range(Fact.InventoryCount(it), min, max) })
-                            } else {
-                                Condition.range(Fact.InventoryCount(id), min, max)
-                            }
+                            Condition.split(id, min, max, Wildcard.Item) { Fact.InventoryCount(it) }
                         }
                         "equips" -> {
                             val id = resolve(references[req.type], req.id)
                             val min = resolve(references["amount"], req.min)
-                            if (id.contains(",")) {
-                                Condition.Any(id.split(",").map { Condition.range(Fact.EquipCount(id), min, max) })
-                            } else if (id.any { it == '*' || it == '#' }) {
-                                Condition.Any(Wildcards.get(id, Wildcard.Item).map { Condition.range(Fact.EquipCount(id), min, max) })
-                            } else {
-                                Condition.range(Fact.EquipCount(id), min, max)
-                            }
+                            Condition.split(id, min, max, Wildcard.Item) { Fact.EquipCount(it) }
                         }
                         "owns" -> {
                             val id = resolve(references[req.type], req.id)
                             val min = resolve(references["amount"], req.min)
-                            if (id.contains(",")) {
-                                Condition.Any(id.split(",").map { Condition.range(Fact.ItemCount(id), min, max) })
-                            } else if (id.any { it == '*' || it == '#' }) {
-                                Condition.Any(Wildcards.get(id, Wildcard.Item).map { Condition.range(Fact.ItemCount(id), min, max) })
-                            } else {
-                                Condition.range(Fact.ItemCount(id), min, max)
-                            }
+                            Condition.split(id, min, max, Wildcard.Item) { Fact.ItemCount(it) }
+                        }
+                        "clock" -> {
+                            val id = resolve(references[req.type], req.id)
+                            Condition.split(id, min, max, Wildcard.Variables) { Fact.ClockRemaining(it) }
+                        }
+                        "timer" -> {
+                            val id = resolve(references[req.type], req.id)
+                            val value = resolve(references["value"], req.value as? Boolean)
+                            Condition.Equals(Fact.HasTimer(id), value as? Boolean ?: true)
                         }
                         "variable" -> {
                             val id = resolve(references[req.type], req.id)

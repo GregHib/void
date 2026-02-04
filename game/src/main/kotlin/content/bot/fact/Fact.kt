@@ -1,10 +1,13 @@
 package content.bot.fact
 
 import content.entity.player.bank.bank
+import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.type.Tile
 
 /**
@@ -53,6 +56,16 @@ sealed class Fact<T>(val priority: Int) {
     data class DoubleVariable(val id: String, val default: Double?) : Fact<Double?>(1) {
         override fun keys() = setOf("var:${id}")
         override fun getValue(player: Player) = player.variables.get(id) ?: default
+    }
+
+    data class ClockRemaining(val clock: String, val seconds: Boolean = false) : Fact<Int>(1) {
+        override fun keys() = setOf("var:$clock")
+        override fun getValue(player: Player) = player.remaining(clock, if (seconds) epochSeconds() else GameLoop.tick)
+    }
+
+    data class HasTimer(val timer: String) : Fact<Boolean>(1) {
+        override fun keys() = setOf("timer:$timer")
+        override fun getValue(player: Player) = player.timers.contains(timer)
     }
 
     object PlayerTile : Fact<Tile>(1000) {

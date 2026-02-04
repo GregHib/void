@@ -182,21 +182,14 @@ fun ConfigReader.requirements(list: MutableList<Condition>) {
         val references = mutableMapOf<String, String>()
         while (nextEntry()) {
             when (val key = key()) {
-                "skill", "carries", "equips", "owns", "variable", "clone", "location" -> {
+                "skill", "carries", "equips", "owns", "clock", "variable", "clone", "location" -> {
                     type = key
                     id = string()
                     if (id.contains('$')) {
                         references[key] = id
                     }
                 }
-                "amount" -> when (val value = value()) {
-                    is Int -> {
-                        min = value
-                    }
-                    is String if value.contains('$') -> references[key] = value
-                    else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
-                }
-                "min" -> when (val value = value()) {
+                "amount", "min" -> when (val value = value()) {
                     is Int -> min = value
                     is String if value.contains('$') -> references[key] = value
                     else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
@@ -243,27 +236,11 @@ fun ConfigReader.requirements(list: MutableList<Condition>) {
 
 private fun getRequirement(type: String, id: String, min: Int?, max: Int?, value: Any?, default: Any?): Condition? = when (type) {
     "skill" -> Condition.range(Fact.SkillLevel.of(id), min, max)
-    "carries" -> if (id.contains(",")) {
-        Condition.Any(id.split(",").map { Condition.range(Fact.InventoryCount(it), min, max) })
-    } else if (id.any { it == '*' || it == '#' }) {
-        Condition.Any(Wildcards.get(id, Wildcard.Item).map { Condition.range(Fact.InventoryCount(it), min, max) })
-    } else {
-        Condition.range(Fact.InventoryCount(id), min, max)
-    }
-    "owns" -> if (id.contains(",")) {
-        Condition.Any(id.split(",").map { Condition.range(Fact.ItemCount(it), min, max) })
-    } else if (id.any { it == '*' || it == '#' }) {
-        Condition.Any(Wildcards.get(id, Wildcard.Item).map { Condition.range(Fact.ItemCount(it), min, max) })
-    } else {
-        Condition.range(Fact.ItemCount(id), min, max)
-    }
-    "equips" -> if (id.contains(",")) {
-        Condition.Any(id.split(",").map { Condition.range(Fact.EquipCount(it), min, max) })
-    } else if (id.any { it == '*' || it == '#' }) {
-        Condition.Any(Wildcards.get(id, Wildcard.Item).map { Condition.range(Fact.EquipCount(it), min, max) })
-    } else {
-        Condition.range(Fact.EquipCount(id), min, max)
-    }
+    "carries" -> Condition.split(id, min, max, Wildcard.Item) { Fact.InventoryCount(it) }
+    "owns" -> Condition.split(id, min, max, Wildcard.Item) { Fact.ItemCount(it) }
+    "equips" -> Condition.split(id, min, max, Wildcard.Item) { Fact.EquipCount(it) }
+    "clock" -> Condition.split(id, min, max, Wildcard.Variables) { Fact.ClockRemaining(it) }
+    "timer" -> Condition.Equals(Fact.HasTimer(id), value as? Boolean ?: true)
     "variable" -> when (value) {
         is Int -> Condition.Equals(Fact.IntVariable(id, default as? Int), value)
         is String -> Condition.Equals(Fact.StringVariable(id, default as? String), value)

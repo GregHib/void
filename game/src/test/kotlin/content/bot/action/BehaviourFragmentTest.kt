@@ -225,6 +225,8 @@ class BehaviourFragmentTest {
         Triple(Condition.Reference("carries", "default", min = 1), mapOf("carries" to "item", "amount" to 10), Condition.AtLeast(Fact.InventoryCount("item"), 10)),
         Triple(Condition.Reference("inventory_space", min = 1), mapOf("inventory_space" to 10), Condition.AtLeast(Fact.InventorySpace, 10)),
         Triple(Condition.Reference("location", "default"), mapOf("location" to "area"), Condition.Area(Fact.PlayerTile, "area")),
+        Triple(Condition.Reference("timer", "default"), mapOf("timer" to "tick"), Condition.Equals(Fact.HasTimer("tick"), true)),
+        Triple(Condition.Reference("clock", "default", min = 1), mapOf("clock" to "tock", "min" to 5), Condition.AtLeast(Fact.ClockRemaining("tock"), 5)),
     ).map { (reference, values, expected) ->
         dynamicTest("Resolve ${reference::class.simpleName} references") {
             val fields = values.mapKeys { "ref_${it.key}" }
