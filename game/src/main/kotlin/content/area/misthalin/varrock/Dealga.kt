@@ -37,15 +37,13 @@ class Dealga : Script {
                     }
                     option<Neutral>("Who are you?") {
                         npc<Shifty>(
-                            "The name's Dealga, I shipped over from Ape Atoll a while back when I heard that these 'humans' pay good money for certain wares! " +
-                                    "Thought I'd come over here, and much like the dragon scimitar... make a killing!"
+                            "The name's Dealga, I shipped over from Ape Atoll a while back when I heard that these 'humans' pay good money for certain wares! Thought I'd come over here, and much like the dragon scimitar... make a killing!",
                         )
                         npc<Shifty>("Now, what can I do for you? A nice, keen edged dragon scimitar?")
                     }
                     option<Neutral>("What are you doing here?") {
                         npc<Shifty>(
-                            "Like the keen edged dragon scimitar I'm slashing away the competition! " +
-                                    "If you hairless apes won't come to Ape Atoll, then I'll come to you! I'll soon be overtaking Daga in profitability!"
+                            "Like the keen edged dragon scimitar I'm slashing away the competition! If you hairless apes won't come to Ape Atoll, then I'll come to you! I'll soon be overtaking Daga in profitability!",
                         )
                         npc<Shifty>("Now, what can I do for you? A nice, keen edged dragon scimitar?")
                     }
