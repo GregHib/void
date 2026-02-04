@@ -6,6 +6,7 @@ interface Reason {
     object Invalid : HardReason
     object Cancelled : HardReason
     object NoRoute : HardReason
+    object Timeout : HardReason
     object Stuck : SoftReason
     object NoTarget : SoftReason
     data class Requirement(val fact: Condition) : HardReason

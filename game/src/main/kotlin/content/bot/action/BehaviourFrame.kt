@@ -6,8 +6,8 @@ data class BehaviourFrame(
     val behaviour: Behaviour,
     var state: BehaviourState = BehaviourState.Pending,
     var index: Int = 0,
-    var retries: Int = 0,
     var blocked: MutableSet<String> = mutableSetOf(),
+    var timeout: Int = 0,
 ) {
 
     fun action(): BotAction = behaviour.actions[index]
@@ -16,12 +16,12 @@ data class BehaviourFrame(
 
     fun start(bot: Bot) {
         val action = action()
-        state = action.start(bot)
+        state = action.start(bot, this)
     }
 
     fun update(bot: Bot) {
         val action = action()
-        state = action.update(bot) ?: return
+        state = action.update(bot, this) ?: return
     }
 
     fun next(): Boolean {

@@ -26,18 +26,36 @@ data class BehaviourFragment(
                         id = resolve(action.references["interface"], copy.id),
                         option = resolve(action.references["option"], copy.option),
                     )
-                    is BotAction.InteractNpc -> BotAction.InteractNpc(
-                        option = resolve(action.references["option"], copy.option),
+                    is BotAction.InteractNpc -> {
+                        val option = resolve(action.references["option"], copy.option)
+                        if (option == "Attack") {
+                            BotAction.FightNpc(
+                                id = resolve(action.references["npc"], copy.id),
+                                radius = resolve(action.references["radius"], copy.radius),
+                            )
+                        } else {
+                            BotAction.InteractNpc(
+                                option = option,
+                                id = resolve(action.references["npc"], copy.id),
+                                delay = resolve(action.references["delay"], copy.delay),
+                                successCondition = copy.successCondition,
+                                radius = resolve(action.references["radius"], copy.radius),
+                            )
+                        }
+                    }
+                    is BotAction.FightNpc -> BotAction.FightNpc(
                         id = resolve(action.references["npc"], copy.id),
-                        retryTicks = resolve(action.references["retry_ticks"], copy.retryTicks),
-                        retryMax = resolve(action.references["retry_max"], copy.retryMax),
+                        delay = resolve(action.references["delay"], copy.delay),
+                        success = copy.success,
+                        healPercentage = resolve(action.references["heal_percent"], copy.healPercentage),
+                        lootOverValue = resolve(action.references["loot_over"], copy.lootOverValue),
                         radius = resolve(action.references["radius"], copy.radius),
                     )
                     is BotAction.InteractObject -> BotAction.InteractObject(
                         option = resolve(action.references["option"], copy.option),
                         id = resolve(action.references["object"], copy.id),
-                        retryTicks = resolve(action.references["retry_ticks"], copy.retryTicks),
-                        retryMax = resolve(action.references["retry_max"], copy.retryMax),
+                        delay = resolve(action.references["delay"], copy.delay),
+                        success = copy.success,
                         radius = resolve(action.references["radius"], copy.radius),
                     )
                     is BotAction.WalkTo -> BotAction.WalkTo(

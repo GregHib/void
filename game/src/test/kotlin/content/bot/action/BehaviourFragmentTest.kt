@@ -122,16 +122,14 @@ class BehaviourFragmentTest {
             BotAction.InteractNpc(
                 option = "talk",
                 id = "default",
-                retryTicks = 1,
-                retryMax = 2,
+                delay = 2,
                 radius = 10
             ),
-            mapOf("option" to "Talk-to", "npc" to "bob", "retry_ticks" to 2, "retry_max" to 5, "radius" to 5),
+            mapOf("option" to "Talk-to", "npc" to "bob", "delay" to 5, "radius" to 5),
             BotAction.InteractNpc(
                 option = "Talk-to",
                 id = "bob",
-                retryTicks = 2,
-                retryMax = 5,
+                delay = 5,
                 radius = 5
             )
         ),
@@ -139,16 +137,14 @@ class BehaviourFragmentTest {
             BotAction.InteractObject(
                 option = "interact",
                 id = "default",
-                retryTicks = 1,
-                retryMax = 2,
+                delay = 2,
                 radius = 10
             ),
-            mapOf("option" to "Open", "object" to "door", "retry_ticks" to 2, "retry_max" to 5, "radius" to 5),
+            mapOf("option" to "Open", "object" to "door", "delay" to 5, "radius" to 5),
             BotAction.InteractObject(
                 option = "Open",
                 id = "door",
-                retryTicks = 2,
-                retryMax = 5,
+                delay = 5,
                 radius = 5
             )
         ),

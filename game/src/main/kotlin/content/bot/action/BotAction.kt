@@ -2,6 +2,7 @@ package content.bot.action
 
 import content.bot.Bot
 import content.bot.BotManager
+import content.bot.fact.Condition
 import content.bot.interact.path.Graph
 import content.entity.combat.attackers
 import content.entity.player.bank.bank
@@ -10,9 +11,14 @@ import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnFloorItemInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnNPCInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.item.floor.FloorItem
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.wildcardEquals
@@ -22,34 +28,28 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.map.Spiral
 import world.gregs.voidps.network.client.instruction.*
 import world.gregs.voidps.type.random
+import kotlin.collections.iterator
 
 sealed interface BotAction {
-    fun start(bot: Bot): BehaviourState = BehaviourState.Running
-    fun update(bot: Bot): BehaviourState? = null
-
-    sealed class RetryableAction : BotAction {
-        abstract val retryTicks: Int
-        abstract val retryMax: Int
-    }
+    fun start(bot: Bot, frame: BehaviourFrame): BehaviourState = BehaviourState.Running
+    fun update(bot: Bot, frame: BehaviourFrame): BehaviourState? = null
 
     data class Clone(val id: String) : BotAction {
-        override fun start(bot: Bot) = BehaviourState.Failed(Reason.Cancelled)
-        override fun update(bot: Bot) = BehaviourState.Failed(Reason.Cancelled)
+        override fun start(bot: Bot, frame: BehaviourFrame) = BehaviourState.Failed(Reason.Cancelled)
+        override fun update(bot: Bot, frame: BehaviourFrame) = BehaviourState.Failed(Reason.Cancelled)
     }
 
     data class Reference(val action: BotAction, val references: Map<String, String>) : BotAction {
-        override fun start(bot: Bot) = BehaviourState.Failed(Reason.Cancelled)
-        override fun update(bot: Bot) = BehaviourState.Failed(Reason.Cancelled)
+        override fun start(bot: Bot, frame: BehaviourFrame) = BehaviourState.Failed(Reason.Cancelled)
+        override fun update(bot: Bot, frame: BehaviourFrame) = BehaviourState.Failed(Reason.Cancelled)
     }
 
-    // TODO actions for navigation, combat, gathering, equipping items
-
-    data class Wait(val ticks: Int) : BotAction {
-        override fun start(bot: Bot) = BehaviourState.Wait(ticks, BehaviourState.Success)
+    data class Wait(val ticks: Int, val state: BehaviourState = BehaviourState.Success) : BotAction {
+        override fun start(bot: Bot, frame: BehaviourFrame) = BehaviourState.Wait(ticks, state)
     }
 
     data class GoTo(val target: String) : BotAction {
-        override fun start(bot: Bot): BehaviourState {
+        override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
             val def = Areas.getOrNull(target) ?: return BehaviourState.Failed(Reason.Invalid)
             if (bot.tile in def.area) {
                 return BehaviourState.Success
@@ -91,7 +91,7 @@ sealed interface BotAction {
     }
 
     data class GoToNearest(val tag: String) : BotAction {
-        override fun start(bot: Bot): BehaviourState {
+        override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
             val set = Areas.tagged(tag)
             if (set.isEmpty()) {
                 return BehaviourState.Failed(Reason.Invalid)
@@ -106,7 +106,7 @@ sealed interface BotAction {
             return GoTo.queueRoute(success, list, graph, bot, tag)
         }
 
-        override fun update(bot: Bot): BehaviourState? {
+        override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState? {
             val set = Areas.tagged(tag)
             if (set.isEmpty()) {
                 return BehaviourState.Failed(Reason.Invalid)
@@ -121,26 +121,136 @@ sealed interface BotAction {
     data class InteractNpc(
         val option: String,
         val id: String,
-        override val retryTicks: Int = 0,
-        override val retryMax: Int = 0,
+        val delay: Int = 0,
+        val successCondition: Condition? = null,
         val radius: Int = 10,
-    ) : RetryableAction() {
-        override fun start(bot: Bot): BehaviourState {
+    ) : BotAction {
+
+        override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
+            frame.timeout = 0
+            return BehaviourState.Running
+        }
+
+        override fun update(bot: Bot, frame: BehaviourFrame) = when {
+            bot.mode is PlayerOnNPCInteract -> if (successCondition == null) BehaviourState.Success else BehaviourState.Running
+            bot.mode is EmptyMode -> search(bot)
+            successCondition?.check(bot.player) == true -> BehaviourState.Success
+            else -> null
+        }
+
+        private fun search(bot: Bot): BehaviourState {
             val npcs = mutableListOf<NPC>()
-            for (tile in Spiral.spiral(bot.player.tile, radius)) {
+            val player = bot.player
+            for (tile in Spiral.spiral(player.tile, radius)) {
                 for (npc in NPCs.at(tile)) {
                     if (!wildcardEquals(id, npc.id)) {
                         continue
                     }
-                    if (option == "Attack" && npc.attackers.isNotEmpty() && !npc.attackers.contains(bot.player)) {
+                    if (!npc.def(player).options.contains(option)) {
                         continue
                     }
                     npcs.add(npc)
                 }
             }
-            val npc = npcs.randomOrNull(random) ?: return BehaviourState.Failed(Reason.NoTarget)
-            val index = npc.def(bot.player).options.indexOf(option)
+            val npc = npcs.randomOrNull(random) ?: return handleNoTarget()
+            val index = npc.def(player).options.indexOf(option)
             bot.player.instructions.trySend(InteractNPC(npc.index, index))
+            return BehaviourState.Running
+        }
+
+        private fun handleNoTarget(): BehaviourState {
+            if (successCondition == null) {
+                return BehaviourState.Failed(Reason.NoTarget)
+            }
+            if (delay > 0) {
+                return BehaviourState.Wait(delay, BehaviourState.Running)
+            }
+            return BehaviourState.Running
+        }
+    }
+
+    data class FightNpc(
+        val id: String,
+        val delay: Int = 0,
+        val success: Condition? = null,
+        val radius: Int = 10,
+        val healPercentage: Int = 20,
+        val lootOverValue: Int = 0,
+    ) : BotAction {
+
+        override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
+            frame.timeout = 0
+            return BehaviourState.Running
+        }
+
+        override fun update(bot: Bot, frame: BehaviourFrame) = when {
+            bot.levels.get(Skill.Constitution) <= bot.levels.getMax(Skill.Constitution) / healPercentage-> eat(bot)
+            bot.mode is PlayerOnNPCInteract -> if (success == null) BehaviourState.Success else BehaviourState.Running
+            bot.mode is PlayerOnFloorItemInteract -> BehaviourState.Running
+            bot.mode is EmptyMode -> search(bot)
+            success?.check(bot.player) == true -> BehaviourState.Success
+            else -> null
+        }
+
+        private fun eat(bot: Bot): BehaviourState {
+            val inventory = bot.player.inventory
+            for (index in inventory.indices){
+                val item = inventory[index]
+                val option = item.def.options.indexOf("Eat")
+                if (option == -1) {
+                    continue
+                }
+                bot.player.instructions.trySend(InteractInterface(149, 0, item.def.id, index, option))
+                return BehaviourState.Wait(1, BehaviourState.Running)
+            }
+            return BehaviourState.Running
+        }
+
+        private fun search(bot: Bot): BehaviourState {
+            val npcs = mutableListOf<NPC>()
+            val loot = mutableListOf<FloorItem>()
+            val player = bot.player
+            for (tile in Spiral.spiral(player.tile, radius)) {
+                for (npc in NPCs.at(tile)) {
+                    if (!wildcardEquals(id, npc.id)) {
+                        continue
+                    }
+                    if (!npc.def(player).options.contains("Attack")) {
+                        continue
+                    }
+                    if (npc.attackers.isNotEmpty() && !npc.attackers.contains(player)) {
+                        continue
+                    }
+                    npcs.add(npc)
+                }
+                for (item in FloorItems.at(tile)) {
+                    if (item.owner != player.accountName) {
+                        continue
+                    }
+                    if (item.def.cost <= lootOverValue) {
+                        continue
+                    }
+                    loot.add(item)
+                }
+            }
+            val item = loot.randomOrNull(random)
+            if (item != null) {
+                bot.player.instructions.trySend(InteractFloorItem(item.def.id, item.tile.x, item.tile.y, item.def.floorOptions.indexOf("Pick-up")))
+                return BehaviourState.Running
+            }
+            val npc = npcs.randomOrNull(random) ?: return handleNoTarget()
+            val index = npc.def(player).options.indexOf("Attack")
+            bot.player.instructions.trySend(InteractNPC(npc.index, index))
+            return BehaviourState.Running
+        }
+
+        private fun handleNoTarget(): BehaviourState {
+            if (success == null) {
+                return BehaviourState.Failed(Reason.NoTarget)
+            }
+            if (delay > 0) {
+                return BehaviourState.Wait(delay, BehaviourState.Running)
+            }
             return BehaviourState.Running
         }
     }
@@ -148,38 +258,57 @@ sealed interface BotAction {
     data class InteractObject(
         val option: String,
         val id: String,
-        override val retryTicks: Int = 0,
-        override val retryMax: Int = 0,
+        val delay: Int = 0,
+        val success: Condition? = null,
         val radius: Int = 10,
-    ) : RetryableAction() {
-        override fun start(bot: Bot): BehaviourState {
-            if (bot.mode is PlayerOnObjectInteract) {
-                return BehaviourState.Running
-            }
-            val objects = mutableListOf<GameObject>()
-            for (tile in Spiral.spiral(bot.player.tile, radius)) {
-                for (obj in GameObjects.at(tile)) {
-                    if (wildcardEquals(id, obj.id)) {
-                        objects.add(obj)
-                    }
-                }
-            }
-            val obj = objects.randomOrNull(random) ?: return BehaviourState.Failed(Reason.NoTarget)
-            val index = obj.def(bot.player).options?.indexOf(option) ?: return BehaviourState.Failed(Reason.NoTarget)
-            bot.player.instructions.trySend(InteractObject(obj.intId, obj.x, obj.y, index + 1))
-            return BehaviourState.Wait(2, BehaviourState.Success)
+    ) : BotAction {
+
+        override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
+            frame.timeout = 0
+            return BehaviourState.Running
         }
 
-        override fun update(bot: Bot): BehaviourState {
-            if (bot.mode is PlayerOnObjectInteract) {
-                return BehaviourState.Running
+        override fun update(bot: Bot, frame: BehaviourFrame) = when {
+            bot.mode is PlayerOnObjectInteract -> if (success == null) BehaviourState.Success else BehaviourState.Running
+            bot.mode is EmptyMode -> search(bot)
+            success?.check(bot.player) == true -> BehaviourState.Success
+            else -> null
+        }
+
+        private fun search(bot: Bot): BehaviourState {
+            val objects = mutableListOf<GameObject>()
+            val player = bot.player
+            for (tile in Spiral.spiral(player.tile, radius)) {
+                for (obj in GameObjects.at(tile)) {
+                    if (!wildcardEquals(id, obj.id)) {
+                        continue
+                    }
+                    val options = obj.def(player).options
+                    if (options == null || !options.contains(option)) {
+                        continue
+                    }
+                    objects.add(obj)
+                }
             }
-            return BehaviourState.Failed(Reason.NoTarget)
+            val obj = objects.randomOrNull(random) ?: return handleNoTarget()
+            val index = obj.def(bot.player).options?.indexOf(option) ?: return BehaviourState.Failed(Reason.NoTarget)
+            bot.player.instructions.trySend(InteractObject(obj.intId, obj.x, obj.y, index + 1))
+            return BehaviourState.Running
+        }
+
+        private fun handleNoTarget(): BehaviourState {
+            if (success == null) {
+                return BehaviourState.Failed(Reason.NoTarget)
+            }
+            if (delay > 0) {
+                return BehaviourState.Wait(delay, BehaviourState.Running)
+            }
+            return BehaviourState.Running
         }
     }
 
     data class InterfaceOption(val id: String, val option: String) : BotAction {
-        override fun start(bot: Bot): BehaviourState {
+        override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
             val definitions = get<InterfaceDefinitions>()
             val split = id.split(":")
             val (id, component) = split
@@ -221,26 +350,26 @@ sealed interface BotAction {
     data class WaitFullInventory(val timeout: Int) : BotAction
 
     data class IntEntry(val value: Int) : BotAction {
-        override fun start(bot: Bot): BehaviourState {
+        override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
             bot.player.instructions.trySend(EnterInt(value))
             return BehaviourState.Wait(1, BehaviourState.Success)
         }
     }
 
     data class StringEntry(val value: String) : BotAction {
-        override fun start(bot: Bot): BehaviourState {
+        override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
             bot.player.instructions.trySend(EnterString(value))
             return BehaviourState.Wait(1, BehaviourState.Success)
         }
     }
 
     data class WalkTo(val x: Int, val y: Int, val radius: Int = 4) : BotAction {
-        override fun start(bot: Bot): BehaviourState {
+        override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
             bot.player.instructions.trySend(Walk(x, y))
             return BehaviourState.Running
         }
 
-        override fun update(bot: Bot) = when {
+        override fun update(bot: Bot, frame: BehaviourFrame) = when {
             bot.tile.within(x, y, bot.tile.level, radius) -> BehaviourState.Success
             bot.mode is EmptyMode && GameLoop.tick - bot.steps.last > 10 -> BehaviourState.Failed(Reason.Stuck)
             else -> BehaviourState.Running

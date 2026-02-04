@@ -229,15 +229,7 @@ class BotManager(
                 if (bot.player["debug", false]) {
                     logger.info { "Failed action: ${action::class.simpleName} for ${behaviour.id}, reason: ${state.reason}." }
                 }
-                if (action is BotAction.RetryableAction && action.retryMax > 0) {
-                    frame.state = BehaviourState.Wait(action.retryTicks, BehaviourState.Running)
-                    if (frame.retries++ < action.retryMax) {
-                        frame.start(bot)
-                        AuditLog.event(bot, "retry", frame.behaviour.id, frame.index, frame.retries, action::class.simpleName)
-                        return
-                    }
-                }
-                AuditLog.event(bot, "failed", behaviour.id, state.reason, frame.index, frame.retries, action::class.simpleName)
+                AuditLog.event(bot, "failed", behaviour.id, state.reason, frame.index, action::class.simpleName)
                 if (state.reason is HardReason) {
                     stop(bot)
                 } else {

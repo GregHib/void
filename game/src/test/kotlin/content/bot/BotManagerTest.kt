@@ -49,11 +49,12 @@ class BotManagerTest {
     fun `Pending frame starts running`() {
         val activity = testActivity(
             id = "walk",
-            plan = listOf(BotAction.Wait(1))
+            plan = listOf(BotAction.Wait(1, BehaviourState.Running))
         )
         val manager = BotManager(mutableMapOf(activity.id to activity))
         val bot = testBot(activity)
 
+        manager.tick(bot)
         manager.tick(bot)
         manager.tick(bot)
 
@@ -79,42 +80,7 @@ class BotManagerTest {
 
         assertTrue(advanced)
         assertEquals(1, frame.index)
-        assertEquals(BehaviourState.Pending, frame.state)
-    }
-
-    @Test
-    fun `Retryable action retries before failing`() {
-        val action = BotAction.InteractNpc(
-            option = "Talk",
-            id = "npc",
-            retryTicks = 2,
-            retryMax = 2
-        )
-
-        val activity = testActivity(
-            id = "talk",
-            plan = listOf(action)
-        )
-
-        val manager = BotManager(mutableMapOf(activity.id to activity))
-        val bot = testBot(activity)
-
-        manager.tick(bot)
-        manager.tick(bot)
-
-        val frame = bot.frame()
-        repeat(3) {
-            frame.fail(Reason.Requirement(Condition.Clone("")))
-            manager.tick(bot)
-            assertTrue(frame.state is BehaviourState.Wait)
-            manager.tick(bot) // Tick 1
-            manager.tick(bot) // Tick 2
-            manager.tick(bot) // Pending
-        }
-
-        // after retries exhausted → popped
-        assertEquals("idle", bot.frames.first().behaviour.id)
-        assertTrue("talk" in bot.blocked)
+        assertEquals(BehaviourState.Running, frame.state)
     }
 
     @Test

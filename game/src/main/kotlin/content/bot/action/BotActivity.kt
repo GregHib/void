@@ -5,7 +5,6 @@ import content.bot.fact.Fact
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.event.Wildcard
-import world.gregs.voidps.engine.event.Wildcards
 import world.gregs.voidps.engine.timedLoad
 
 /**
@@ -173,65 +172,69 @@ private fun ConfigReader.fields(): Map<String, Any> {
 
 fun ConfigReader.requirements(list: MutableList<Condition>) {
     while (nextElement()) {
-        var type = ""
-        var id = ""
-        var value: Any? = null
-        var default: Any? = null
-        var min: Int? = null
-        var max: Int? = null
-        val references = mutableMapOf<String, String>()
-        while (nextEntry()) {
-            when (val key = key()) {
-                "skill", "carries", "equips", "owns", "clock", "variable", "clone", "location" -> {
-                    type = key
-                    id = string()
-                    if (id.contains('$')) {
-                        references[key] = id
-                    }
+        list.add(requirement())
+    }
+    list.sortBy { it.priority() }
+}
+
+private fun ConfigReader.requirement(): Condition {
+    var type = ""
+    var id = ""
+    var value: Any? = null
+    var default: Any? = null
+    var min: Int? = null
+    var max: Int? = null
+    val references = mutableMapOf<String, String>()
+    while (nextEntry()) {
+        when (val key = key()) {
+            "skill", "carries", "equips", "owns", "clock", "variable", "clone", "location" -> {
+                type = key
+                id = string()
+                if (id.contains('$')) {
+                    references[key] = id
                 }
-                "amount", "min" -> when (val value = value()) {
+            }
+            "amount", "min" -> when (val value = value()) {
+                is Int -> min = value
+                is String if value.contains('$') -> references[key] = value
+                else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
+            }
+            "max" -> when (val value = value()) {
+                is Int -> max = value
+                is String if value.contains('$') -> references[key] = value
+                else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
+            }
+            "inventory_space" -> {
+                type = key
+                when (val value = value()) {
                     is Int -> min = value
                     is String if value.contains('$') -> references[key] = value
                     else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
                 }
-                "max" -> when (val value = value()) {
-                    is Int -> max = value
+            }
+            "radius" -> {
+                type = "tile"
+                when (val value = value()) {
+                    is Int -> min = value
                     is String if value.contains('$') -> references[key] = value
                     else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
                 }
-                "inventory_space" -> {
-                    type = key
-                    when (val value = value()) {
-                        is Int -> min = value
-                        is String if value.contains('$') -> references[key] = value
-                        else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
-                    }
-                }
-                "radius" -> {
-                    type = "tile"
-                    when (val value = value()) {
-                        is Int -> min = value
-                        is String if value.contains('$') -> references[key] = value
-                        else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
-                    }
-                }
-                "value" -> value = value()
-                "default" -> default = value()
             }
+            "value" -> value = value()
+            "default" -> default = value()
         }
-        var requirement = getRequirement(type, id, min, max, value, default)
-        if (requirement == null) {
-            if (type == "holds") {
-                throw IllegalArgumentException("Unknown requirement type 'holds'; did you mean 'carries' or 'equips'? ${exception()}.")
-            }
-            throw IllegalArgumentException("Unknown requirement type: $type ${exception()}")
-        }
-        if (references.isNotEmpty()) {
-            requirement = Condition.Reference(type, id, value, default, min, max, references)
-        }
-        list.add(requirement)
     }
-    list.sortBy { it.priority() }
+    var requirement = getRequirement(type, id, min, max, value, default)
+    if (requirement == null) {
+        if (type == "holds") {
+            throw IllegalArgumentException("Unknown requirement type 'holds'; did you mean 'carries' or 'equips'? ${exception()}.")
+        }
+        throw IllegalArgumentException("Unknown requirement type: $type ${exception()}")
+    }
+    if (references.isNotEmpty()) {
+        requirement = Condition.Reference(type, id, value, default, min, max, references)
+    }
+    return requirement
 }
 
 private fun getRequirement(type: String, id: String, min: Int?, max: Int?, value: Any?, default: Any?): Condition? = when (type) {
@@ -259,14 +262,16 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
         var type = ""
         var id = ""
         var option = ""
-        var retryTicks = 0
-        var retryMax = 0
         var timeout = 0
         var int = 0
         var ticks = 0
         var radius = 10
+        var delay = 0
+        var heal = 0
+        var loot = 0
         var x = 0
         var y = 0
+        var success: Condition? = null
         val references = mutableMapOf<String, String>()
         while (nextEntry()) {
             when (val key = key()) {
@@ -311,6 +316,7 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
                         references[key] = option
                     }
                 }
+                "success" -> success = requirement()
                 "wait" -> {
                     type = key
                     when (val value = value()) {
@@ -324,16 +330,20 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
                     is String if value.contains('$') -> references[key] = value
                     else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
                 }
-                "retry_ticks" -> when (val value = value()) {
-                    is Int -> retryTicks = value
+                "heal_percent" -> when (val value = value()) {
+                    is Int -> heal = value
                     is String if value.contains('$') -> references[key] = value
                     else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
                 }
-                "retry_max" -> when (val value = value()) {
-                    is Int -> retryMax = value
+                "loot_over" -> when (val value = value()) {
+                    is Int -> loot = value
                     is String if value.contains('$') -> references[key] = value
                     else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
-
+                }
+                "delay" -> when (val value = value()) {
+                    is Int -> delay = value
+                    is String if value.contains('$') -> references[key] = value
+                    else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
                 }
                 "timeout" -> when (val value = value()) {
                     is Int -> timeout = value
@@ -357,9 +367,13 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
             "enter_string" -> BotAction.StringEntry(id)
             "enter_int" -> BotAction.IntEntry(int)
             "wait" -> BotAction.Wait(ticks)
-            "npc" -> BotAction.InteractNpc(id = id, option = option, retryTicks = retryTicks, retryMax = retryMax, radius = radius)
+            "npc" -> if (option == "Attack") {
+                BotAction.FightNpc(id = id, delay = delay, success = success, healPercentage = heal, lootOverValue = loot, radius = radius)
+            } else {
+                BotAction.InteractNpc(id = id, option = option, delay = delay, successCondition = success, radius = radius)
+            }
             "tile" -> BotAction.WalkTo(x = x, y = y)
-            "object" -> BotAction.InteractObject(id = id, option = option, retryTicks = retryTicks, retryMax = retryMax, radius = radius)
+            "object" -> BotAction.InteractObject(id = id, option = option, delay = delay, success = success, radius = radius)
             "interface" -> BotAction.InterfaceOption(id = id, option = option)
             "clone" -> BotAction.Clone(id)
             "wait_for" -> when (id) {

@@ -6,7 +6,7 @@ setup = [
     { inventory_space = 20 },
 ]
 actions = [
-    { option = "Chop down", object = "$tree" },
+    { option = "Chop down", object = "$tree", delay = 5, success = { inventory_space = 0 }, timeout = 30 },
 ]
 produces = [
     { skill = "woodcutting" }
