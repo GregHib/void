@@ -23,22 +23,22 @@ class GraphTest {
           10 / |
             A  | 1
            1 \ |
-               E
+               C
 
          */
         val builder = Graph.Builder()
         val a = 0
         val b = 1
         val c = 2
-        builder.addEdge(a, b, 10)
-        builder.addEdge(a, c, 1)
-        builder.addEdge(c, b, 1)
+        val ab = builder.addEdge(a, b, 10)
+        val ac = builder.addEdge(a, c, 1)
+        val cb = builder.addEdge(c, b, 1)
 //        builder.print()
 
         val output = mutableListOf<Int>()
         val success = builder.build().find(Player(), output, Graph.Node(a), b)
         assertTrue(success)
-        assertEquals(listOf(1, 2), output)
+        assertEquals(listOf(ac, cb), output)
     }
 
     @Test
@@ -164,6 +164,24 @@ class GraphTest {
         assertFalse(success)
     }
 
+    @Test
+    fun `Single edge path without weights`() {
+        /*
+            B
+          1 |
+            A
+         */
+        val builder = Graph.Builder()
+        val a = 0
+        val b = 1
+        val ab = builder.addEdge(a, b, 0)
+//        builder.print()
+
+        val output = mutableListOf<Int>()
+        val success = builder.build().find(Player(), output, Graph.Node(a), b)
+        assertTrue(success)
+        assertEquals(listOf(ab), output)
+    }
 
     @Test
     fun `Multiple starting points`() {

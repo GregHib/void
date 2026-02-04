@@ -89,7 +89,7 @@ class Graph(
         val previousEdge = IntArray(nodeCount)
 
         for (start in startingPoints) {
-            distance[start.index] = 0
+            distance[start.index] = -1
             queue.add(start)
         }
         while (queue.isNotEmpty()) {
@@ -97,7 +97,7 @@ class Graph(
             if (target(node)) {
                 // Reconstruct the path
                 var previous = node
-                while (distance[previous] != 0) {
+                while (distance[previous] != -1) {
                     output.add(0, previousEdge[previous])
                     previous = previousNode[previous]
                 }
