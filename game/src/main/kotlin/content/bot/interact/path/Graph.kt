@@ -83,12 +83,17 @@ class Graph(
         output.clear()
         val queue = PriorityQueue<Node>()
         val visited = BooleanArray(nodeCount)
-        val distance = IntArray(nodeCount)
-        distance.fill(Int.MAX_VALUE)
-        val previousNode = IntArray(nodeCount)
-        val previousEdge = IntArray(nodeCount)
+        val distance = IntArray(nodeCount) { Int.MAX_VALUE }
+        val parentNode = IntArray(nodeCount) { -1 }
+        val previousEdge = IntArray(nodeCount) { -1 }
 
         for (start in startingPoints) {
+            if (target(start.index)) {
+                // As we're queuing all nearby points we don't want select any starting points which are in
+                // the target, otherwise we'll end up with no edges to traverse.
+                // (if this were normal dijkstra we'd produce points not edges and this wouldn't be an issue)
+                continue
+            }
             distance[start.index] = -1
             queue.add(start)
         }
@@ -97,9 +102,9 @@ class Graph(
             if (target(node)) {
                 // Reconstruct the path
                 var previous = node
-                while (distance[previous] != -1) {
+                while (parentNode[previous] != -1) {
                     output.add(0, previousEdge[previous])
-                    previous = previousNode[previous]
+                    previous = parentNode[previous]
                 }
                 return true
             }
@@ -121,7 +126,7 @@ class Graph(
                     continue
                 }
                 distance[to] = cost + weight
-                previousNode[to] = node
+                parentNode[to] = node
                 previousEdge[to] = edge
                 queue.add(Node(to, cost + weight))
             }
