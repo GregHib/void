@@ -156,26 +156,21 @@ sealed interface BotAction {
         }
 
         private fun search(bot: Bot): BehaviourState {
-            val npcs = mutableListOf<NPC>()
             val player = bot.player
             for (tile in Spiral.spiral(player.tile, radius)) {
                 for (npc in NPCs.at(tile)) {
                     if (!wildcardEquals(id, npc.id)) {
                         continue
                     }
-                    if (!npc.def(player).options.contains(option)) {
+                    val index = npc.def(player).options.indexOf(option)
+                    if (index == -1) {
                         continue
                     }
-                    npcs.add(npc)
+                    bot.player.instructions.trySend(InteractNPC(npc.index, index + 1))
+                    return BehaviourState.Running
                 }
             }
-            val npc = npcs.randomOrNull(random) ?: return handleNoTarget()
-            val index = npc.def(player).options.indexOf(option)
-            if (index == -1) {
-                return BehaviourState.Failed(Reason.NoTarget)
-            }
-            bot.player.instructions.trySend(InteractNPC(npc.index, index + 1))
-            return BehaviourState.Running
+            return handleNoTarget()
         }
 
         private fun handleNoTarget(): BehaviourState {
@@ -227,22 +222,8 @@ sealed interface BotAction {
         }
 
         private fun search(bot: Bot): BehaviourState {
-            val npcs = mutableListOf<NPC>()
-            val loot = mutableListOf<FloorItem>()
             val player = bot.player
             for (tile in Spiral.spiral(player.tile, radius)) {
-                for (npc in NPCs.at(tile)) {
-                    if (!wildcardEquals(id, npc.id)) {
-                        continue
-                    }
-                    if (!npc.def(player).options.contains("Attack")) {
-                        continue
-                    }
-                    if (npc.attackers.isNotEmpty() && !npc.attackers.contains(player)) {
-                        continue
-                    }
-                    npcs.add(npc)
-                }
                 for (item in FloorItems.at(tile)) {
                     if (item.owner != player.accountName) {
                         continue
@@ -250,21 +231,25 @@ sealed interface BotAction {
                     if (item.def.cost <= lootOverValue) {
                         continue
                     }
-                    loot.add(item)
+                    bot.player.instructions.trySend(InteractFloorItem(item.def.id, item.tile.x, item.tile.y, item.def.floorOptions.indexOf("Take")))
+                    return BehaviourState.Running
+                }
+                for (npc in NPCs.at(tile)) {
+                    if (!wildcardEquals(id, npc.id)) {
+                        continue
+                    }
+                    val index = npc.def(player).options.indexOf("Attack")
+                    if (index == -1) {
+                        continue
+                    }
+                    if (npc.attackers.isNotEmpty() && !npc.attackers.contains(player)) {
+                        continue
+                    }
+                    bot.player.instructions.trySend(InteractNPC(npc.index, index + 1))
+                    return BehaviourState.Running
                 }
             }
-            val item = loot.randomOrNull(random)
-            if (item != null) {
-                bot.player.instructions.trySend(InteractFloorItem(item.def.id, item.tile.x, item.tile.y, item.def.floorOptions.indexOf("Take")))
-                return BehaviourState.Running
-            }
-            val npc = npcs.randomOrNull(random) ?: return handleNoTarget()
-            val index = npc.def(player).options.indexOf("Attack")
-            if (index == -1) {
-                return BehaviourState.Failed(Reason.NoTarget)
-            }
-            bot.player.instructions.trySend(InteractNPC(npc.index, index + 1))
-            return BehaviourState.Running
+            return handleNoTarget()
         }
 
         private fun handleNoTarget(): BehaviourState {
@@ -299,27 +284,21 @@ sealed interface BotAction {
         }
 
         private fun search(bot: Bot): BehaviourState {
-            val objects = mutableListOf<GameObject>()
             val player = bot.player
             for (tile in Spiral.spiral(player.tile, radius)) {
                 for (obj in GameObjects.at(tile)) {
                     if (!wildcardEquals(id, obj.id)) {
                         continue
                     }
-                    val options = obj.def(player).options
-                    if (options == null || !options.contains(option)) {
+                    val index = obj.def(player).options?.indexOf(option)
+                    if (index == null || index == -1) {
                         continue
                     }
-                    objects.add(obj)
+                    bot.player.instructions.trySend(InteractObject(obj.intId, obj.x, obj.y, index + 1))
+                    return BehaviourState.Running
                 }
             }
-            val obj = objects.randomOrNull(random) ?: return handleNoTarget()
-            val index = obj.def(bot.player).options?.indexOf(option) ?: return BehaviourState.Failed(Reason.NoTarget)
-            if (index == -1) {
-                return BehaviourState.Failed(Reason.NoTarget)
-            }
-            bot.player.instructions.trySend(InteractObject(obj.intId, obj.x, obj.y, index + 1))
-            return BehaviourState.Running
+            return handleNoTarget()
         }
 
         private fun handleNoTarget(): BehaviourState {

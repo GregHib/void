@@ -27,7 +27,7 @@
 
 [teleport_varrock]
 type = "shortcut"
-weight = 75
+weight = 125
 requires = [
     { variable = "spellbook_config", value = 0, default = 0 },
     { carries = "fire_rune", amount = 1 },
@@ -44,7 +44,7 @@ produces = [
 
 [teleport_varrock_via_bank]
 type = "shortcut"
-weight = 100
+weight = 150
 requires = [
     { variable = "spellbook_config", value = 0, default = 0 },
     { owns = "fire_rune", amount = 1 },
