@@ -1506,7 +1506,6 @@ Light
 LightDark99
 LightningL
 Lily
-LimpStiff
 LineCircle
 LinguineL
 Linus
@@ -2561,9 +2560,6 @@ SteppeStan
 StewSteve
 StickShift
 StickyDoor
-StiffFlexi
-StiffLimp
-StiffPliable
 StigStgmoch
 StillMoving
 StockStan
