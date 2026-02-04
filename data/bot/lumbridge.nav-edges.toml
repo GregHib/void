@@ -31,7 +31,7 @@ edges = [
     { from_x = 3229, from_y = 3214, from_level = 1, to_x = 3229, to_y = 3214, to_level = 2, cost = 1, actions = [{ option = "Climb-up", object = "36769", x = 3229, y = 3213 }] }, # lumbridge_south_tower_1st_floor_to_2nd_floor
     { from_x = 3229, from_y = 3214, from_level = 1, to_x = 3229, to_y = 3214, cost = 1, actions = [{ option = "Climb-down", object = "36769", x = 3229, y = 3213 }] }, # lumbridge_south_tower_1st_floor_to_ground_floor
     { from_x = 3229, from_y = 3214, from_level = 2, to_x = 3229, to_y = 3214, to_level = 1, cost = 1, actions = [{ option = "Climb-down", object = "36770", x = 3229, y = 3213 }] }, # lumbridge_south_tower_2nd_floor_to_1st_floor
-    { from_x = 3236, from_y = 3220, to_x = 3236, to_y = 3225 }, # lumbridge_gate_north_to_bridge_west
+    { from_x = 3236, from_y = 3219, to_x = 3236, to_y = 3225 }, # lumbridge_gate_north_to_bridge_west
     { from_x = 3236, from_y = 3225, to_x = 3230, to_y = 3232 }, # lumbridge_bridge_west_to_unstable_house
     { from_x = 3236, from_y = 3225, to_x = 3253, to_y = 3225 }, # lumbridge_bridge_west_to_bridge_east
     { from_x = 3253, from_y = 3225, to_x = 3263, to_y = 3222 }, # lumbridge_bridge_east_to_trees_east
@@ -77,10 +77,10 @@ edges = [
     { from_x = 3136, from_y = 3219, to_x = 3138, to_y = 3227 }, # lumbridge_swamp_west_wall_to_draynor_east_path
     { from_x = 3136, from_y = 3219, to_x = 3119, to_y = 3228 }, # lumbridge_swamp_west_wall_to_draynor_jail_path_south
     { from_x = 3222, from_y = 3218, to_x = 3226, to_y = 3214 }, # lumbridge_courtyard_south_to_tower_door
-    { from_x = 3222, from_y = 3218, to_x = 3222, to_y = 3220 }, # lumbridge_courtyard_south_to_north
+    { from_x = 3222, from_y = 3218, to_x = 3222, to_y = 3219 }, # lumbridge_courtyard_south_to_north
     { from_x = 3222, from_y = 3218, to_x = 3236, to_y = 3218 }, # lumbridge_courtyard_south_to_gate_north
-    { from_x = 3222, from_y = 3220, to_x = 3236, to_y = 3220 }, # lumbridge_courtyard_north_to_gate_north
-    { from_x = 3236, from_y = 3218, to_x = 3236, to_y = 3220 }, # lumbridge_courtyard_gate_south_to_gate_north
+    { from_x = 3222, from_y = 3219, to_x = 3236, to_y = 3219 }, # lumbridge_courtyard_north_to_gate_north
+    { from_x = 3236, from_y = 3218, to_x = 3236, to_y = 3219 }, # lumbridge_courtyard_gate_south_to_gate_north
     { from_x = 3222, from_y = 3218, to_x = 3209, to_y = 3205 }, # lumbridge_courtyard_south_to_grounds_south
     { from_x = 3230, from_y = 3232, to_x = 3222, to_y = 3241 }, # lumbridge_unstable_house_to_general_store_east
     { from_x = 3222, from_y = 3241, to_x = 3217, to_y = 3241, cost = 6, actions = [{ option = "Open", object = "door_720_closed", x = 3219, y = 3241 }, { x = 3217, y = 3241 }] }, # lumbridge_general_store_east_to_general_store

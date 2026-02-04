@@ -1,3 +1,26 @@
+[kill_chickens]
+type = "activity"
+capacity = 4
+requires = [
+    { skill = "attack", min = 1, max = 5 },
+]
+setup = [
+    { equips = "bronze_sword,bronze_dagger,bronze_scimitar" },
+    # TODO food?
+    { location = "lumbridge_chicken_pen" },
+    { inventory_space = 27 },
+]
+actions = [
+    { option = "Select", interface = "combat_styles:style1" },
+    { option = "Attack", npc = "chicken*", delay = 5, success = { inventory_space = 0 } },
+]
+produces = [
+    { carries = "feather" },
+    { carries = "bones" },
+    { carries = "raw_chicken" },
+    { skill = "attack" }
+]
+
 # Woodcutting
 [lumbridge_north_tree_cutting]
 template = "normal_tree_template"

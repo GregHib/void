@@ -237,8 +237,15 @@ class BotManager(
                     )
                 )
             }
+        } else if (condition is Condition.AtLeast && condition.fact is Fact.EquipCount && bot.player.inventory.contains(condition.fact.id, condition.min)) {
+            resolvers.add(
+                Resolver(
+                    "equip_${condition.fact.id}", weight = 0,
+                    resolve = listOf(Condition.AtLeast(Fact.InventoryCount(condition.fact.id), condition.min)),
+                    actions = listOf(BotAction.InterfaceOption("Equip", "inventory:inventory:${condition.fact.id}"))
+                )
+            )
         }
-        // TODO: If in inventory and needs equipped -> equip
     }
 
     private fun execute(bot: Bot) {

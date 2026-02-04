@@ -204,7 +204,7 @@ sealed interface BotAction {
         }
 
         override fun update(bot: Bot, frame: BehaviourFrame) = when {
-            bot.levels.get(Skill.Constitution) <= bot.levels.getMax(Skill.Constitution) / healPercentage -> eat(bot)
+            healPercentage > 0 && bot.levels.get(Skill.Constitution) <= bot.levels.getMax(Skill.Constitution) / healPercentage -> eat(bot)
             success?.check(bot.player) == true -> BehaviourState.Success
             bot.mode is PlayerOnNPCInteract -> if (success == null) BehaviourState.Success else BehaviourState.Running
             bot.mode is PlayerOnFloorItemInteract -> BehaviourState.Running
@@ -255,7 +255,7 @@ sealed interface BotAction {
             }
             val item = loot.randomOrNull(random)
             if (item != null) {
-                bot.player.instructions.trySend(InteractFloorItem(item.def.id, item.tile.x, item.tile.y, item.def.floorOptions.indexOf("Pick-up") + 1))
+                bot.player.instructions.trySend(InteractFloorItem(item.def.id, item.tile.x, item.tile.y, item.def.floorOptions.indexOf("Take")))
                 return BehaviourState.Running
             }
             val npc = npcs.randomOrNull(random) ?: return handleNoTarget()
