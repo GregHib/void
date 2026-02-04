@@ -18,18 +18,22 @@ id = 5890
 
 [archer_lumbridge]
 id = 649
+wander_range = 4
 examine = "She looks quite experienced."
 
 [warrior_lumbridge]
 id = 650
+wander_range = 4
 examine = "He looks big and dumb."
 
 [monk_lumbridge]
 id = 651
+wander_range = 4
 examine = "He looks holy."
 
 [wizard_lumbridge]
 id = 652
+wander_range = 4
 examine = "He looks kind of puny..."
 
 [sergeant_mossfists_2]
