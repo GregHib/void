@@ -81,7 +81,7 @@ class TownCrier : Script {
 
     init {
 
-        npcSpawn("town_crier_falador") {
+        npcSpawn("town_crier*") {
             softTimers.start("town_crier_overhead")
         }
 
@@ -95,7 +95,7 @@ class TownCrier : Script {
             Timer.CONTINUE
         }
 
-        npcOperate("Talk-to", "town_crier_falador") {
+        npcOperate("Talk-to", "town_crier*") {
             npc<Neutral>("Hear ye! Hear ye!")
             npc<Neutral>("Oh, hello citizen. What would you like to know?")
             menu()
