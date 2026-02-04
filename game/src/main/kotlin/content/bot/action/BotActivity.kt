@@ -177,7 +177,7 @@ fun ConfigReader.requirements(list: MutableList<Condition>) {
     list.sortBy { it.priority() }
 }
 
-private fun ConfigReader.requirement(greatThan: Boolean = true): Condition {
+private fun ConfigReader.requirement(exact: Boolean = false): Condition {
     var type = ""
     var id = ""
     var value: Any? = null
@@ -224,7 +224,7 @@ private fun ConfigReader.requirement(greatThan: Boolean = true): Condition {
             "default" -> default = value()
         }
     }
-    var requirement = getRequirement(type, id, min, max, value, default, greatThan)
+    var requirement = getRequirement(type, id, min, max, value, default, exact)
     if (requirement == null) {
         if (type == "holds") {
             throw IllegalArgumentException("Unknown requirement type 'holds'; did you mean 'carries' or 'equips'? ${exception()}.")
@@ -237,7 +237,7 @@ private fun ConfigReader.requirement(greatThan: Boolean = true): Condition {
     return requirement
 }
 
-private fun getRequirement(type: String, id: String, min: Int?, max: Int?, value: Any?, default: Any?, greatThan: Boolean): Condition? = when (type) {
+private fun getRequirement(type: String, id: String, min: Int?, max: Int?, value: Any?, default: Any?, exact: Boolean): Condition? = when (type) {
     "skill" -> Condition.range(Fact.SkillLevel.of(id), min, max)
     "carries" -> Condition.split(id, min, max, Wildcard.Item) { Fact.InventoryCount(it) }
     "owns" -> Condition.split(id, min, max, Wildcard.Item) { Fact.ItemCount(it) }
@@ -252,7 +252,7 @@ private fun getRequirement(type: String, id: String, min: Int?, max: Int?, value
         else -> null
     }
     "clone" -> Condition.Clone(id)
-    "inventory_space" -> Condition.range(Fact.InventorySpace, min, max, greatThan)
+    "inventory_space" -> if (exact && min != null) Condition.Equals(Fact.InventorySpace, min) else Condition.range(Fact.InventorySpace, min, max)
     "location" -> Condition.Area(Fact.PlayerTile, id)
     else -> null
 }
@@ -262,7 +262,6 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
         var type = ""
         var id = ""
         var option = ""
-        var timeout = 0
         var int = 0
         var ticks = 0
         var radius = 10
@@ -316,7 +315,7 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
                         references[key] = option
                     }
                 }
-                "success" -> success = requirement(greatThan = false)
+                "success" -> success = requirement(exact = true)
                 "wait" -> {
                     type = key
                     when (val value = value()) {
@@ -342,11 +341,6 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
                 }
                 "delay" -> when (val value = value()) {
                     is Int -> delay = value
-                    is String if value.contains('$') -> references[key] = value
-                    else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
-                }
-                "timeout" -> when (val value = value()) {
-                    is Int -> timeout = value
                     is String if value.contains('$') -> references[key] = value
                     else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
                 }

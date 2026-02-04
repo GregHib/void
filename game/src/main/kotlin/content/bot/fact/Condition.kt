@@ -105,11 +105,11 @@ sealed interface Condition {
             else -> range(fact(id), min, max)
         }
 
-        fun range(fact: Fact<Int>, min: Int?, max: Int?, greaterThan: Boolean = true) = when {
+        fun range(fact: Fact<Int>, min: Int?, max: Int?) = when {
             min != null && max != null -> Range(fact, min, max)
             min != null -> AtLeast(fact, min)
             max != null -> AtMost(fact, max)
-            else -> if (greaterThan) AtLeast(fact, 1) else AtMost(fact, 1)
+            else -> AtLeast(fact, 1)
         }
     }
 
