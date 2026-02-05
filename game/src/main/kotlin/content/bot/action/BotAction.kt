@@ -7,6 +7,7 @@ import content.bot.interact.path.Graph
 import content.entity.combat.attackers
 import content.entity.combat.dead
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
@@ -159,7 +160,10 @@ sealed interface BotAction {
                     if (index == -1) {
                         continue
                     }
-                    bot.player.instructions.trySend(InteractNPC(npc.index, index + 1))
+                    val valid = get<InstructionHandlers>().handle(bot.player, InteractNPC(npc.index, index + 1))
+                    if (!valid) {
+                        return BehaviourState.Failed(Reason.Invalid("Invalid npc interaction: ${npc.index} ${index + 1}"))
+                    }
                     return BehaviourState.Running
                 }
             }
@@ -208,7 +212,10 @@ sealed interface BotAction {
                 if (option == -1) {
                     continue
                 }
-                bot.player.instructions.trySend(InteractInterface(149, 0, item.def.id, index, option))
+                val valid = get<InstructionHandlers>().handle(bot.player, InteractInterface(149, 0, item.def.id, index, option))
+                if (!valid) {
+                    return BehaviourState.Failed(Reason.Invalid("Invalid inventory interaction: ${item.def.id} $index $option"))
+                }
                 return BehaviourState.Wait(1, BehaviourState.Running)
             }
             return BehaviourState.Running
@@ -224,7 +231,11 @@ sealed interface BotAction {
                     if (item.def.cost <= lootOverValue) {
                         continue
                     }
-                    bot.player.instructions.trySend(InteractFloorItem(item.def.id, item.tile.x, item.tile.y, item.def.floorOptions.indexOf("Take")))
+                    val index = item.def.floorOptions.indexOf("Take")
+                    val valid = get<InstructionHandlers>().handle(bot.player, InteractFloorItem(item.def.id, item.tile.x, item.tile.y, index))
+                    if (!valid) {
+                        return BehaviourState.Failed(Reason.Invalid("Invalid floor item interaction: $item $index"))
+                    }
                     return BehaviourState.Running
                 }
                 for (npc in NPCs.at(tile)) {
@@ -238,7 +249,10 @@ sealed interface BotAction {
                     if (npc.dead || npc.attackers.isNotEmpty() && !npc.attackers.contains(player)) {
                         continue
                     }
-                    bot.player.instructions.trySend(InteractNPC(npc.index, index + 1))
+                    val valid = get<InstructionHandlers>().handle(bot.player, InteractNPC(npc.index, index + 1))
+                    if (!valid) {
+                        return BehaviourState.Failed(Reason.Invalid("Invalid npc interaction: ${npc.index} ${index + 1}"))
+                    }
                     return BehaviourState.Running
                 }
             }
@@ -287,7 +301,10 @@ sealed interface BotAction {
                     if (index == null || index == -1) {
                         continue
                     }
-                    bot.player.instructions.trySend(InteractObject(obj.intId, obj.x, obj.y, index + 1))
+                    val valid = get<InstructionHandlers>().handle(bot.player, InteractObject(obj.intId, obj.x, obj.y, index + 1))
+                    if (!valid) {
+                        return BehaviourState.Failed(Reason.Invalid("Invalid object interaction: $obj ${index + 1}"))
+                    }
                     return BehaviourState.Running
                 }
             }
@@ -332,16 +349,15 @@ sealed interface BotAction {
             if (id == "shop") {
                 itemSlot *= 6
             }
-            bot.player.instructions.trySend(
-                InteractInterface(
-                    interfaceId = def.id,
-                    componentId = componentId,
-                    itemId = itemDef?.id ?: -1,
-                    itemSlot = itemSlot,
-                    option = index
-                )
-            ) // TODO could await actual response, or something to get actual feedback
+            val valid = get<InstructionHandlers>().handle(bot.player, InteractInterface(
+                interfaceId = def.id,
+                componentId = componentId,
+                itemId = itemDef?.id ?: -1,
+                itemSlot = itemSlot,
+                option = index
+            ))
             return when {
+                !valid -> BehaviourState.Failed(Reason.Invalid("Invalid interaction: ${def.id}:${componentId}:${itemDef?.id} slot $itemSlot option ${index}."))
                 success == null -> BehaviourState.Wait(1, BehaviourState.Success)
                 success.check(bot.player) -> BehaviourState.Success
                 else -> BehaviourState.Running
@@ -384,6 +400,18 @@ sealed interface BotAction {
     }
 
     /**
+     * TODO
+     *      firemaking bot
+     *      thieving bot
+     *      bone burying bot
+     *      cooking bot
+     *      cow bot
+     *      fletching bot
+     *      rune mysteries quest bot
+     *      bot saving?
+     *      bot setups
+     *      bot spawning in other locations
+     *
     TODO how to handle repeat actions e.g. repeat Chop-down trees until inv is full - These are actions Gathering, Skilling etc..
     more resolvers like bank all, drop cheap items
     how to handle combat, one task or multiple? - One Fight action
