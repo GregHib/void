@@ -16,6 +16,13 @@ scripts.txt
 /data/saves/
 /images/
 /temp/
+/.jdk/
+/.kotlin/
+/.cs/
+
+# local cache archives (avoid accidentally committing big binaries)
+/cache/*.7z
+/cache/*.zip
 
 # class files
 *.class
@@ -53,3 +60,12 @@ gradle-app.setting
 .gradletasknamecache
 /gradle/
 *.lock
+
+# vendored dependencies (offline builds)
+# Note: we normally ignore all `*.jar` and `*.classpath` above, so explicitly un-ignore vendored artifacts.
+!/vendor/
+!/vendor/**/*
+!/vendor/**/*.jar
+!/vendor/**/*.classpath
+!/vendor/**/SHA256SUMS
+!/vendor/**/deps.coords
