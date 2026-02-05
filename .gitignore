@@ -26,6 +26,8 @@ scripts.txt
 
 # class files
 *.class
+*.pyc
+__pycache__/
 /bin
 /bin/*
 /out

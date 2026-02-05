@@ -1,4 +1,14 @@
 #!/usr/bin/env bash
+# bootstrap-coursier.sh
+#
+# Purpose:
+#   Download a repo-local `coursier` launcher (`cs`) into `./.cs/cs` so the
+#   Makefile build can fetch Maven dependencies without a system install.
+#
+# How it works:
+#   Detects OS/arch, downloads the matching `cs-<arch>-<os>.gz` from the latest
+#   GitHub release, decompresses it, marks it executable, and atomically moves
+#   it into place.
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -43,4 +53,3 @@ Done.
 Use it:
   $DEST_BIN --help
 EOF
-

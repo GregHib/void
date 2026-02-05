@@ -1,4 +1,14 @@
 #!/usr/bin/env bash
+# bootstrap-jdk.sh
+#
+# Purpose:
+#   Download a repo-local Eclipse Temurin JDK into `./.jdk/temurin<MAJOR>`.
+#   This keeps builds reproducible and avoids requiring a system JDK install.
+#
+# How it works:
+#   - Validates the requested major version.
+#   - Detects OS/arch and downloads the matching binary from Adoptium’s API.
+#   - Extracts into a temporary directory and then atomically moves into place.
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"

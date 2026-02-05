@@ -1,4 +1,22 @@
 #!/usr/bin/env python3
+"""
+resolve-maven-deps.py
+
+Purpose:
+  Emit a list of Maven coordinates needed to compile/run the server outside
+  Gradle (for the Ninja + `kotlinc` build).
+
+How it works:
+  - Loads versions and library coordinates from `gradle/libs.versions.toml`.
+  - Scans each module’s `build.gradle.kts` for `implementation(libs.<...>)` and
+    `implementation(libs.bundles.<...>)` usage.
+  - Expands bundles and resolves version refs from the catalog.
+  - Normalizes selected Kotlin Multiplatform deps to explicit JVM artifacts
+    (coursier does not perform Gradle’s variant resolution).
+
+Output:
+  Writes `group:artifact:version` coordinates to stdout (one per line).
+"""
 from __future__ import annotations
 
 import argparse

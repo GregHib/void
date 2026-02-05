@@ -1,4 +1,22 @@
 #!/usr/bin/env bash
+# kotlinc-compile-module.sh
+#
+# Purpose:
+#   Compile one Gradle module using the standalone Kotlin compiler (`kotlinc`)
+#   and package the result as a jar for downstream modules / running.
+#
+# How it works:
+#   - Builds a compile classpath from:
+#       * Kotlin runtime jars (from `KOTLIN_HOME/lib`)
+#       * Maven deps (from `MAVEN_CP_FILE`)
+#       * module jar deps (from `MODULE_DEPS_CP`)
+#   - Compiles `src/main/kotlin` into `build/.../<module>/classes/`
+#   - Copies `src/main/resources` into the classes dir
+#   - For `game`, embeds the generated `scripts.txt` if provided
+#   - Jars the classes/resources into `OUT_JAR`
+#
+# Inputs are passed via env vars: MODULE, OUT_JAR, BUILD_ROOT, KOTLIN_HOME,
+# MAVEN_CP_FILE, MODULE_DEPS_CP, SCRIPTS_TXT_FILE, KOTLINC_JAVA_OPTS.
 set -euo pipefail
 
 ROOT_DIR="${ROOT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"

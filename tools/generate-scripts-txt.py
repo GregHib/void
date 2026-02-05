@@ -1,4 +1,18 @@
 #!/usr/bin/env python3
+"""
+generate-scripts-txt.py
+
+Purpose:
+  Generate `scripts.txt` for the `game` module: a newline-separated list of
+  Kotlin classes that implement `Script` under `game/src/main/kotlin/content`.
+
+How it works:
+  - Recursively scans `.kt` files, strips comments, and finds `class <Name>`
+    declarations whose header includes `: Script`.
+  - Writes a stable, sorted list of fully-qualified names.
+  - Avoids rewriting the output file if the content is unchanged (helps
+    incremental builds).
+"""
 from __future__ import annotations
 
 import argparse

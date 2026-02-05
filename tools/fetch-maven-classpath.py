@@ -1,4 +1,21 @@
 #!/usr/bin/env python3
+"""
+fetch-maven-classpath.py
+
+Purpose:
+  Fetch Maven dependencies using `coursier` and output a single combined
+  `:`-separated classpath (on stdout).
+
+How it works:
+  - Reads a list of Maven coordinates from `--coords` (one per line).
+  - Invokes `cs fetch --classpath` in chunks (to keep command lines manageable).
+  - Collects all jar paths into a set, then prints a sorted classpath.
+
+Notes:
+  - Respects `COURSIER_CACHE` (if set by the caller) for caching downloads.
+  - This script only prints the classpath; callers typically redirect it into a
+    file (e.g. `build/.../maven.classpath`).
+"""
 from __future__ import annotations
 
 import argparse
@@ -63,4 +80,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

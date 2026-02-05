@@ -1,4 +1,18 @@
 #!/usr/bin/env bash
+# bootstrap-cache.sh
+#
+# Purpose:
+#   Ensure the RuneScape cache exists at `./data/cache/` for running the server
+#   (in particular `data/cache/main_file_cache.dat2`).
+#
+# How it works:
+#   - If the sentinel file already exists, it does nothing.
+#   - Otherwise, it tries to populate `./data/cache/` by:
+#       1) promoting an accidentally nested extraction under `data/cache/*/`
+#       2) using `CACHE_DIR` (already-extracted cache directory)
+#       3) extracting `CACHE_ZIP` (supports `.zip` and `.7z`)
+#       4) downloading `CACHE_URL` (expects a direct `.zip`)
+#     plus a small auto-detection path when no vars are provided.
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"

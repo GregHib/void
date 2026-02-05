@@ -1,4 +1,18 @@
 #!/usr/bin/env python3
+"""
+gen-ninja.py
+
+Purpose:
+  Generate `build.ninja` for the Makefile + `kotlinc` build, giving fast
+  incremental rebuilds at the module level (rebuild only the changed module and
+  downstream modules).
+
+How it works:
+  - Enumerates Kotlin sources/resources for each module under `<module>/src/main`.
+  - Emits Ninja rules that call `tools/kotlinc-compile-module.sh` with the right
+    module inputs, module-to-module jar deps, and the Maven classpath file.
+  - Treats the generated `scripts.txt` as an input to the `game` module.
+"""
 from __future__ import annotations
 
 import argparse

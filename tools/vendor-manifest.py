@@ -1,4 +1,17 @@
 #!/usr/bin/env python3
+"""
+vendor-manifest.py
+
+Purpose:
+  Create a `sha256sum`-compatible manifest for vendored jars so offline builds
+  can verify integrity.
+
+How it works:
+  - Reads `vendor/maven.classpath` (or `--vendor-classpath`) to get the list of
+    vendored jar paths.
+  - Computes SHA-256 for each jar and writes `SHA256SUMS` lines of the form:
+      <digest>  <relative-path>
+"""
 from __future__ import annotations
 
 import argparse
@@ -67,4 +80,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

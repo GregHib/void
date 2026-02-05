@@ -1,4 +1,13 @@
 #!/usr/bin/env bash
+# bootstrap-kotlin.sh
+#
+# Purpose:
+#   Download the Kotlin compiler distribution into
+#   `./.kotlin/kotlin-compiler-<VERSION>` for the Makefile + `kotlinc` workflow.
+#
+# How it works:
+#   Downloads the official compiler zip from JetBrains releases, unzips into a
+#   temporary directory, then atomically moves `kotlinc/` into place.
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -43,4 +52,3 @@ Use it:
 Verify:
   kotlinc -version
 EOF
-

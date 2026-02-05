@@ -1,4 +1,19 @@
 #!/usr/bin/env python3
+"""
+vendor-deps.py
+
+Purpose:
+  Vendor resolved Maven jar dependencies into `./vendor/` so builds can run
+  offline (no network / no Maven downloads).
+
+How it works:
+  - Reads a `:`-separated jar classpath from `--classpath-file`.
+  - Copies each jar into `--out-dir` (default `vendor/jars/`), naming files with
+    a short content hash prefix to avoid collisions.
+  - De-duplicates jars by SHA-256 of file content.
+  - Writes a vendored classpath file (`--out-classpath`) pointing at the copied
+    jars, preserving the original classpath order as much as possible.
+"""
 from __future__ import annotations
 
 import argparse
@@ -95,4 +110,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

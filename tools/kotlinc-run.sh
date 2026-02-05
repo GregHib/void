@@ -1,4 +1,13 @@
 #!/usr/bin/env bash
+# kotlinc-run.sh
+#
+# Purpose:
+#   Run the server `Main` class using the classpath produced by the Makefile +
+#   Ninja + `kotlinc` toolchain.
+#
+# How it works:
+#   Reads `<build-root>/run.classpath` (written by `tools/write-run-classpath.sh`)
+#   and executes `java -cp <classpath> Main`.
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"

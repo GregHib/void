@@ -1,4 +1,15 @@
 #!/usr/bin/env bash
+# write-run-classpath.sh
+#
+# Purpose:
+#   Write `<build-root>/run.classpath`, the full runtime classpath used by
+#   `tools/kotlinc-run.sh` to run `Main`.
+#
+# How it works:
+#   - Collects Kotlin runtime jars from `KOTLIN_HOME/lib`.
+#   - Appends Maven deps from `MAVEN_CP_FILE` (may point to `vendor/...`).
+#   - Appends the built module jars in dependency order.
+#   - Writes a single `:`-separated classpath string to `run.classpath`.
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -51,4 +62,3 @@ run_cp="$run_cp:$MODULE_CP"
 mkdir -p "$BUILD_ROOT"
 echo -n "$run_cp" >"$BUILD_ROOT/run.classpath"
 echo "[write-run-classpath] Wrote $BUILD_ROOT/run.classpath" >&2
-
