@@ -151,8 +151,15 @@ examine = "A person sitting an exam."
 
 [cockroach_drone]
 id = 7158
+hitpoints = 110
+att = 3
+str = 3
+def = 3
 categories = ["cockroaches"]
 examine = "A household pest."
+combat_def = "cockroach_drone"
+respawn_delay = 60
+drop_table = "cockroach_drone"
 
 [oracle]
 id = 746

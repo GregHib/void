@@ -1,0 +1,72 @@
+[cockroach_drone_drop_table]
+type = "all"
+drops = [
+    { table = "cockroach_drone_secondary" },
+]
+
+[cockroach_drone_secondary]
+roll = 128
+drops = [
+    { id = "nothing", chance = 13 },
+    { id = "bronze_dagger", chance = 4},
+    { id = "bronze_med_helm", chance = 4 },
+    { id = "air_rune", min = 1, max = 10, chance = 11 },
+    { id = "fire_rune", min = 1, max = 11, chance = 6 },
+    { id = "water_rune", min = 1, max = 8, chance = 18 },
+    { id = "coins", min = 10, max = 30, chance = 53 },
+    { id = "limpwurt_root", chance = 3 },
+    { id = "red_spiders_eggs", chance = 2 },
+    { id = "coal_noted", amount = 2, chance = 15 },
+    { table = "gem_drop_table", chance = 6 },
+    { table = "herb_drop_table", chance = 20, members = true }
+]
+
+[cockroach_worker_drop_table]
+type = "all"
+drops = [
+    { table = "cockroach_worker_secondary"},
+    { table = "easy_clue_scroll", roll = 128 },
+]
+
+[cockroach_worker_secondary]
+roll = 128
+drops = [
+    { id = "mithril_platebody" },
+    { id = "mithril_sq_shield", chance = 4 },
+    { id = "mithril_ore_noted", amount = 2, chance = 2 },
+    { id = "coal_noted", min = 1, max = 2, chance = 10 },
+    { id = "coins", min = 30, max = 130, chance = 47 },
+    { id = "black_full_helm", chance = 2 },
+    { id = "cosmic_rune", min = 1, max = 2, chance = 10 },
+    { id = "earth_rune", min = 1, max = 22, chance = 10 },
+    { id = "nature_rune", min = 1, max = 20, chance = 10 },
+    { id = "chaos_rune", min = 1, max = 18, chance = 10 },
+    { id = "battlestaff", members = true },
+    { table = "herb_drop_table", chance = 13, members = true },
+    { table = "gem_drop_table", chance = 5 },
+]
+
+[cockroach_soldier_drop_table]
+type = "all"
+drops = [
+    { table = "cockroach_soldier_secondary"},
+    { table = "medium_clue_scroll", roll = 128 },
+]
+
+[cockroach_soldier_secondary]
+roll = 128
+drops = [
+    { id = "rune_scimitar"},
+    { id = "rune_sq_shield"},
+    { id = "mithril_med_helm", chance = 4 },
+    { id = "death_rune", min = 1, max = 15, chance = 10},
+    { id = "law_rune", min = 1, max = 20, chance = 10 },
+    { id = "fire_rune", min = 2, max = 59, chance = 10},
+    { id = "blood_rune", min = 2, max = 11, chance = 10, members = true },
+    { id = "mithril_ore_noted", amount = 3, chance = 10 },
+    { id = "adamantite_ore_noted", chance = 4 },
+    { id = "coins", min = 100, max = 400, chance = 62},
+    { id = "bittercap_mushroom", min = 1, max = 3, chance = 3 },
+    { table = "uncommon_seed_drop_table", chance = 8, members = true },
+    { table = "gem_drop_table", chance = 7 },
+]

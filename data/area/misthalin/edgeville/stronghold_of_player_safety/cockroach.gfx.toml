@@ -1,0 +1,7 @@
+[cockroach_soldier_ranged]
+id = 1554
+height = 15
+curve = 5
+end_height = 0
+delay = 10
+time_offset = 20
