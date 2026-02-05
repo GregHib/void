@@ -21,11 +21,11 @@ class NPCOptionHandler : InstructionHandler<InteractNPC>() {
 
     private val logger = InlineLogger()
 
-    override fun validate(player: Player, instruction: InteractNPC) {
+    override fun validate(player: Player, instruction: InteractNPC): Boolean {
         if (player.contains("delay")) {
-            return
+            return false
         }
-        val npc = NPCs.indexed(instruction.npcIndex) ?: return
+        val npc = NPCs.indexed(instruction.npcIndex) ?: return false
         var def = npc.def
         val transform = npc["transform_id", ""]
         if (transform.isNotBlank()) {
@@ -38,19 +38,20 @@ class NPCOptionHandler : InstructionHandler<InteractNPC>() {
         if (selectedOption == null) {
             player.noInterest()
             logger.warn { "Invalid npc option $npc $index ${options.contentToString()}" }
-            return
+            return false
         }
         if (selectedOption == "Listen-to" && player["movement", "walk"] == "music") {
             player.message("You are already resting.")
-            return
+            return false
         }
         if (player.hasClock("stunned")) {
             player.message("You're stunned!", ChatType.Filter)
-            return
+            return false
         }
         player.closeInterfaces()
         player.talkWith(npc, definition)
         player.interactNpc(npc, selectedOption)
+        return true
     }
 }
 

@@ -11,12 +11,13 @@ class DialogueItemContinueHandler : InstructionHandler<InteractDialogueItem>() {
 
     private val logger = InlineLogger()
 
-    override fun validate(player: Player, instruction: InteractDialogueItem) {
+    override fun validate(player: Player, instruction: InteractDialogueItem): Boolean {
         val definition = ItemDefinitions.getOrNull(instruction.item)
         if (definition == null) {
             logger.debug { "Item ${instruction.item} not found for player $player." }
-            return
+            return false
         }
         Dialogues.continueItem(player, definition.stringId)
+        return true
     }
 }

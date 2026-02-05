@@ -21,31 +21,32 @@ class ObjectOptionHandler : InstructionHandler<InteractObject>() {
 
     private val logger = InlineLogger()
 
-    override fun validate(player: Player, instruction: InteractObject) {
+    override fun validate(player: Player, instruction: InteractObject): Boolean {
         if (player.contains("delay")) {
-            return
+            return false
         }
         val (objectId, x, y, option) = instruction
         val tile = player.tile.copy(x = x, y = y)
         val target = getObject(tile, objectId)
         if (target == null) {
             logger.warn { "Invalid object $objectId $tile" }
-            return
+            return false
         }
         val definition = getDefinition(player, ObjectDefinitions, target.def, target.def)
         val options = definition.options
         if (options == null) {
             logger.warn { "Invalid object interaction $target $option ${definition.options.contentToString()}" }
-            return
+            return false
         }
         val index = option - 1
         val selectedOption = options.getOrNull(index)
         if (selectedOption == null) {
             logger.warn { "Invalid object option $target $index ${options.contentToString()}" }
-            return
+            return false
         }
         player.closeInterfaces()
         player.interactObject(target, selectedOption)
+        return true
     }
 
     private fun getObject(tile: Tile, objectId: Int): GameObject? {

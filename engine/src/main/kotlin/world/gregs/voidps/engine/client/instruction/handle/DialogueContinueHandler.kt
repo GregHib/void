@@ -13,20 +13,21 @@ class DialogueContinueHandler(
 
     private val logger = InlineLogger()
 
-    override fun validate(player: Player, instruction: InteractDialogue) {
+    override fun validate(player: Player, instruction: InteractDialogue): Boolean {
         val (interfaceId, componentId) = instruction
         val id = definitions.get(interfaceId).stringId
         if (!player.interfaces.contains(id)) {
             logger.debug { "Dialogue $interfaceId not found for player $player" }
-            return
+            return false
         }
 
         val component = definitions.get(id).components?.get(componentId)
         if (component == null) {
             logger.debug { "Dialogue $interfaceId component $componentId not found for player $player" }
-            return
+            return false
         }
 
         Dialogues.continueDialogue(player, "$id:${component.stringId}")
+        return true
     }
 }

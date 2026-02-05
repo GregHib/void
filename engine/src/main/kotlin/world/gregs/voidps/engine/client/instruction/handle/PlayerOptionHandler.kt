@@ -16,16 +16,16 @@ class PlayerOptionHandler : InstructionHandler<InteractPlayer>() {
 
     private val logger = InlineLogger()
 
-    override fun validate(player: Player, instruction: InteractPlayer) {
+    override fun validate(player: Player, instruction: InteractPlayer): Boolean {
         if (player.contains("delay")) {
-            return
+            return false
         }
-        val target = Players.indexed(instruction.playerIndex) ?: return
+        val target = Players.indexed(instruction.playerIndex) ?: return false
         val optionIndex = instruction.option
         val option = player.options.get(optionIndex)
         if (option == PlayerOptions.EMPTY_OPTION) {
             logger.info { "Invalid player option $optionIndex ${player.options.get(optionIndex)} for $player on $target" }
-            return
+            return false
         }
         player.closeInterfaces()
         if (option == "Follow") {
@@ -33,6 +33,7 @@ class PlayerOptionHandler : InstructionHandler<InteractPlayer>() {
         } else {
             player.interactPlayer(target, option)
         }
+        return true
     }
 }
 

@@ -11,11 +11,11 @@ class InterfaceOnInterfaceOptionHandler(
     private val handler: InterfaceHandler,
 ) : InstructionHandler<InteractInterfaceItem>() {
 
-    override fun validate(player: Player, instruction: InteractInterfaceItem) {
+    override fun validate(player: Player, instruction: InteractInterfaceItem): Boolean {
         val (fromItemId, toItemId, fromSlot, toSlot, fromInterfaceId, fromComponentId, toInterfaceId, toComponentId) = instruction
 
-        val (fromId, fromComponent, fromItem) = handler.getInterfaceItem(player, fromInterfaceId, fromComponentId, fromItemId, fromSlot) ?: return
-        val (_, _, toItem) = handler.getInterfaceItem(player, toInterfaceId, toComponentId, toItemId, toSlot) ?: return
+        val (fromId, fromComponent, fromItem) = handler.getInterfaceItem(player, fromInterfaceId, fromComponentId, fromItemId, fromSlot) ?: return false
+        val (_, _, toItem) = handler.getInterfaceItem(player, toInterfaceId, toComponentId, toItemId, toSlot) ?: return false
 
         player.closeInterfaces()
         player.queue.clearWeak()
@@ -25,5 +25,6 @@ class InterfaceOnInterfaceOptionHandler(
         } else {
             InterfaceApi.itemOnItem(player, fromItem, toItem, fromSlot, toSlot)
         }
+        return true
     }
 }

@@ -17,22 +17,23 @@ class InterfaceOnObjectOptionHandler(
     private val handler: InterfaceHandler,
 ) : InstructionHandler<InteractInterfaceObject>() {
 
-    override fun validate(player: Player, instruction: InteractInterfaceObject) {
+    override fun validate(player: Player, instruction: InteractInterfaceObject): Boolean {
         val (objectId, x, y, interfaceId, componentId, itemId, itemSlot) = instruction
         val tile = Tile(x, y, player.tile.level)
         val obj = GameObjects.findOrNull(tile, objectId)
         if (obj == null) {
             player.noInterest()
-            return
+            return false
         }
 
-        val (id, component, item) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
+        val (id, component, item) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return false
         player.closeInterfaces()
         if (item.isEmpty()) {
             player.interactOn(obj, id, component, itemSlot)
         } else {
             player.interactItemOn(obj, id, component, item, itemSlot)
         }
+        return true
     }
 }
 

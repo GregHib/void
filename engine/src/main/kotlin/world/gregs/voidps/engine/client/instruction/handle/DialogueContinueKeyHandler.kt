@@ -13,15 +13,14 @@ import world.gregs.voidps.network.client.instruction.ContinueKey
 class DialogueContinueKeyHandler(
     private val definitions: InterfaceDefinitions,
 ) : InstructionHandler<ContinueKey>() {
-    override fun validate(player: Player, instruction: ContinueKey) {
-        val dialogue = player.dialogue
-        if (dialogue == null) {
-            return
-        }
+    override fun validate(player: Player, instruction: ContinueKey): Boolean {
+        val dialogue = player.dialogue ?: return false
 
         val option = if (instruction.button == -1) "continue" else "line${instruction.button}"
         if (definitions.get(dialogue).components?.values?.any { it.stringId == option } == true) {
             Dialogues.continueDialogue(player, "$dialogue:$option")
+            return true
         }
+        return false
     }
 }

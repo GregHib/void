@@ -14,11 +14,11 @@ import world.gregs.voidps.network.client.instruction.InteractInterfaceNPC
 
 class InterfaceOnNPCOptionHandler(private val handler: InterfaceHandler) : InstructionHandler<InteractInterfaceNPC>() {
 
-    override fun validate(player: Player, instruction: InteractInterfaceNPC) {
+    override fun validate(player: Player, instruction: InteractInterfaceNPC): Boolean {
         val (npcIndex, interfaceId, componentId, itemId, itemSlot) = instruction
-        val npc = NPCs.indexed(npcIndex) ?: return
+        val npc = NPCs.indexed(npcIndex) ?: return false
 
-        val (id, component, item) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
+        val (id, component, item) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return false
 
         player.closeInterfaces()
         player.talkWith(npc)
@@ -27,6 +27,7 @@ class InterfaceOnNPCOptionHandler(private val handler: InterfaceHandler) : Instr
         } else {
             player.interactItemOn(npc, id, component, item, itemSlot)
         }
+        return true
     }
 }
 

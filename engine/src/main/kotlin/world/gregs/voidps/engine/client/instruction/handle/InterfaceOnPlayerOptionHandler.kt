@@ -12,12 +12,13 @@ class InterfaceOnPlayerOptionHandler(
     private val handler: InterfaceHandler,
 ) : InstructionHandler<InteractInterfacePlayer>() {
 
-    override fun validate(player: Player, instruction: InteractInterfacePlayer) {
+    override fun validate(player: Player, instruction: InteractInterfacePlayer): Boolean {
         val (playerIndex, interfaceId, componentId, itemId, itemSlot) = instruction
-        val target = Players.indexed(playerIndex) ?: return
+        val target = Players.indexed(playerIndex) ?: return false
 
-        val (id, component, item) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
+        val (id, component, item) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return false
         player.closeInterfaces()
         player.mode = ItemOnPlayerInteract(target, "$id:$component", item, itemSlot, player)
+        return true
     }
 }

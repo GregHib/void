@@ -17,10 +17,10 @@ class InterfaceOptionHandler(
 
     private val logger = InlineLogger()
 
-    override fun validate(player: Player, instruction: InteractInterface) {
+    override fun validate(player: Player, instruction: InteractInterface): Boolean {
         val (interfaceId, componentId, itemId, itemSlot, option) = instruction
 
-        var (id, component, item, options) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
+        var (id, component, item, options) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return false
 
         if (options == null) {
             options = interfaceDefinitions.getComponent(id, component)?.getOrNull("options") ?: emptyArray()
@@ -28,7 +28,7 @@ class InterfaceOptionHandler(
 
         if (option !in options.indices) {
             logger.info { "Interface option not found [$player, interface=$interfaceId, component=$componentId, option=$option, options=${options.toList()}]" }
-            return
+            return false
         }
 
         val selectedOption = options.getOrNull(option) ?: ""
@@ -42,5 +42,6 @@ class InterfaceOptionHandler(
         Script.launch {
             InterfaceApi.option(player, event)
         }
+        return true
     }
 }

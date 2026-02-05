@@ -17,29 +17,30 @@ class FloorItemOptionHandler : InstructionHandler<InteractFloorItem>() {
 
     private val logger = InlineLogger()
 
-    override fun validate(player: Player, instruction: InteractFloorItem) {
+    override fun validate(player: Player, instruction: InteractFloorItem): Boolean {
         if (player.contains("delay")) {
-            return
+            return false
         }
         val (id, x, y, optionIndex) = instruction
         val tile = player.tile.copy(x, y)
         val floorItem = FloorItems.at(tile).firstOrNull { it.def.id == id }
         if (floorItem == null) {
             logger.warn { "Invalid floor item $id $tile" }
-            return
+            return false
         }
         val options = floorItem.def.floorOptions
         val selectedOption = options.getOrNull(optionIndex)
         if (selectedOption == null) {
             logger.warn { "Invalid floor item option $optionIndex ${options.contentToString()}" }
-            return
+            return false
         }
         if (selectedOption == "Examine") {
-            player.message(floorItem.def.getOrNull("examine") ?: return, ChatType.ItemExamine)
-            return
+            player.message(floorItem.def.getOrNull("examine") ?: return false, ChatType.ItemExamine)
+            return false
         }
         player.closeInterfaces()
         player.interactFloorItem(floorItem, selectedOption, -1)
+        return true
     }
 }
 
