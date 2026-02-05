@@ -14,6 +14,7 @@ import java.util.zip.Inflater
  */
 internal class DecompressionContext {
     private val gzipInflater = Inflater(true)
+    @Suppress("DEPRECATION")
     private val bzip2Compressor: BZIP2Compressor by lazy { BZIP2Compressor() }
     private val lzmaDecoder: Decoder by lazy { Decoder() }
 
@@ -40,6 +41,7 @@ internal class DecompressionContext {
                     warned.set(true)
                 }
                 val decompressed = ByteArray(decompressedSize)
+                @Suppress("DEPRECATION")
                 bzip2Compressor.decompress(decompressed, decompressedSize, data, 9)
                 return decompressed
             }

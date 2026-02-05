@@ -89,6 +89,59 @@ You can also run in the command line using the gradle wrapper.
 ./gradlew run
 ```
 
+### Make + kotlinc (no Gradle)
+
+If you want to build without Gradle, there is a Makefile-based build that uses a repo-local JDK/Kotlin compiler plus `coursier` for Maven dependencies.
+
+```bash
+make run
+```
+
+This uses Ninja under the hood, so only changed modules are rebuilt.
+
+You still need the RuneScape cache under `./data/cache/` (`main_file_cache.dat2`, etc). `make run` invokes `make cache-bootstrap`, which will try (in order):
+
+- Use an existing `data/cache/main_file_cache.dat2`
+- Promote a nested cache folder if you accidentally extracted under `data/cache/<something>/...`
+- Use `./data/cache.zip` or `./data/cache/cache.zip` if present
+- Use the newest `./cache/*.7z` archive (requires `7z` installed)
+
+If none of those exist, provide one explicitly:
+
+```bash
+make cache-bootstrap CACHE_ZIP=./cache/2025-06-12-void-634-cache.7z
+# or download a zip:
+make cache-bootstrap CACHE_URL=https://example.com/cache.zip
+```
+
+For offline builds (no Maven downloads), vendor dependencies once while online:
+
+```bash
+make vendor-deps
+make run
+```
+
+By default, the Makefile will use `./vendor/maven.classpath` if it exists; set `KT_OFFLINE=0` to force downloads, or `KT_OFFLINE=1` to require vendored deps (no downloads).
+
+Vendored jars and manifests are written under `./vendor/`:
+
+- `vendor/jars/` (jars)
+- `vendor/maven.classpath` (classpath)
+- `vendor/SHA256SUMS` (integrity)
+- `vendor/deps.coords` (requested coordinates)
+
+Verify vendored integrity:
+
+```bash
+make vendor-verify
+```
+
+To vendor DB dependencies too (for `kt-*-db` offline builds), run:
+
+```bash
+make vendor-deps VENDOR_INCLUDE_DB=1
+```
+
 Once the server is up and running; download one of the [prebuilt client.jars](https://github.com/GregHib/void-client/releases) or set up the [void-client repository](https://github.com/GregHib/void-client/) and run to log into the game.
 
 Don't forget to check out our [Contributing guidelines](./CONTRIBUTING.md) before submitting your first pull request!
