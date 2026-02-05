@@ -25,6 +25,14 @@ data class BehaviourFragment(
                         option = resolve(action.references["option"], copy.option),
                         id = resolve(action.references["interface"], copy.id),
                     )
+                    is BotAction.DialogueContinue -> BotAction.DialogueContinue(
+                        option = resolve(action.references["option"], copy.option),
+                        id = resolve(action.references["continue"], copy.id),
+                    )
+                    is BotAction.ItemOnItem -> BotAction.ItemOnItem(
+                        item = resolve(action.references["item"], copy.item),
+                        on = resolve(action.references["on"], copy.on),
+                    )
                     is BotAction.InteractNpc -> {
                         val option = resolve(action.references["option"], copy.option)
                         if (option == "Attack") {

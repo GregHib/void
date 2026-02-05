@@ -118,6 +118,8 @@ class BehaviourFragmentTest {
         Triple(BotAction.GoTo("default"), mapOf("go_to" to "lumbridge"), BotAction.GoTo("lumbridge")),
         Triple(BotAction.GoToNearest("default"), mapOf("go_to_nearest" to "lumbridge"), BotAction.GoToNearest("lumbridge")),
         Triple(BotAction.InterfaceOption(option = "click", id = "something"), mapOf("option" to "Open", "interface" to "bank"), BotAction.InterfaceOption(option = "Open", id = "bank")),
+        Triple(BotAction.DialogueContinue(option = "click", id = "something"), mapOf("option" to "Option", "continue" to "now"), BotAction.DialogueContinue(option = "Option", id = "now")),
+        Triple(BotAction.ItemOnItem(item = "default", on = "on"), mapOf("item" to "item", "on" to "another"), BotAction.ItemOnItem(item = "item", on = "another")),
         Triple(
             BotAction.InteractNpc(
                 option = "talk",

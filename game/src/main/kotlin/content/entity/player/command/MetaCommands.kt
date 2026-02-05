@@ -224,9 +224,6 @@ class MetaCommands(
                 }
             }
         }
-        for (line in list) {
-            println(line)
-        }
         player.questJournal("Commands List", list)
     }
 

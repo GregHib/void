@@ -322,6 +322,45 @@ sealed interface BotAction {
         }
     }
 
+    data class ItemOnItem(val item: String, val on: String, val success: Condition? = null) : BotAction {
+        override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
+            val inventory = bot.player.inventory
+            val fromSlot = inventory.indexOf(item)
+            if (fromSlot == -1) {
+                return BehaviourState.Failed(Reason.Invalid("No inventory item '$item'."))
+            }
+            val toSlot = inventory.indexOf(on)
+            if (toSlot == -1) {
+                return BehaviourState.Failed(Reason.Invalid("No inventory item '$on'."))
+            }
+            val from = inventory[fromSlot]
+            val to = inventory[toSlot]
+            val valid = get<InstructionHandlers>().handle(bot.player, InteractInterfaceItem(
+                from.def.id,
+                to.def.id,
+                fromSlot,
+                toSlot,
+                149,
+                0,
+                149,
+                0
+            ))
+            return when {
+                !valid -> BehaviourState.Failed(Reason.Invalid("Invalid item on item: ${from.def.id}:${fromSlot} -> ${to.def.id}:${toSlot}."))
+                success == null -> BehaviourState.Wait(1, BehaviourState.Success)
+                success.check(bot.player) -> BehaviourState.Success
+                else -> BehaviourState.Running
+            }
+        }
+
+        override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState? {
+            if (success != null && success.check(bot.player)) {
+                return BehaviourState.Success
+            }
+            return super.update(bot, frame)
+        }
+    }
+
     data class InterfaceOption(val option: String, val id: String, val success: Condition? = null) : BotAction {
         override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
             val definitions = get<InterfaceDefinitions>()
@@ -358,6 +397,44 @@ sealed interface BotAction {
             ))
             return when {
                 !valid -> BehaviourState.Failed(Reason.Invalid("Invalid interaction: ${def.id}:${componentId}:${itemDef?.id} slot $itemSlot option ${index}."))
+                success == null -> BehaviourState.Wait(1, BehaviourState.Success)
+                success.check(bot.player) -> BehaviourState.Success
+                else -> BehaviourState.Running
+            }
+        }
+
+        override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState? {
+            if (success != null && success.check(bot.player)) {
+                return BehaviourState.Success
+            }
+            return super.update(bot, frame)
+        }
+    }
+
+    data class DialogueContinue(val option: String, val id: String, val success: Condition? = null) : BotAction {
+        override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
+            val definitions = get<InterfaceDefinitions>()
+            val split = id.split(":")
+            if (split.size < 2) {
+                return BehaviourState.Failed(Reason.Invalid("Invalid interface id '$id'."))
+            }
+            val (id, component) = split
+            val item = split.getOrNull(2)
+            val def = definitions.getOrNull(id) ?: return BehaviourState.Failed(Reason.Invalid("Invalid interface id $id:${component}:${item}."))
+            val componentId = definitions.getComponentId(id, component) ?: return BehaviourState.Failed(Reason.Invalid("Invalid interface component $id:${component}:${item}."))
+            val componentDef = definitions.getComponent(id, component) ?: return BehaviourState.Failed(Reason.Invalid("Invalid interface component definition $id:${component}:${item}."))
+            var options = componentDef.options
+            if (options == null) {
+                options = componentDef.getOrNull("options") ?: emptyArray()
+            }
+            val index = options.indexOf(option)
+            val valid = get<InstructionHandlers>().handle(bot.player, InteractDialogue(
+                interfaceId = def.id,
+                componentId = componentId,
+                option = index
+            ))
+            return when {
+                !valid -> BehaviourState.Failed(Reason.Invalid("Invalid interaction: ${def.id}:${componentId} option=${index}."))
                 success == null -> BehaviourState.Wait(1, BehaviourState.Success)
                 success.check(bot.player) -> BehaviourState.Success
                 else -> BehaviourState.Running

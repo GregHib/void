@@ -285,7 +285,7 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
         val references = mutableMapOf<String, String>()
         while (nextEntry()) {
             when (val key = key()) {
-                "go_to", "go_to_nearest", "enter_string", "interface", "npc", "object", "clone" -> {
+                "go_to", "go_to_nearest", "enter_string", "interface", "npc", "object", "clone", "item", "continue" -> {
                     type = key
                     id = string()
                     if (id.contains('$')) {
@@ -320,7 +320,7 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
                         references[key] = id
                     }
                 }
-                "option" -> {
+                "option", "on" -> {
                     option = string()
                     if (option.contains('$')) {
                         references[key] = option
@@ -380,6 +380,8 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
             "tile" -> BotAction.WalkTo(x = x, y = y)
             "object" -> BotAction.InteractObject(id = id, option = option, delay = delay, success = success, radius = radius)
             "interface" -> BotAction.InterfaceOption(id = id, option = option)
+            "continue" -> BotAction.DialogueContinue(id = id, option = option)
+            "item" -> BotAction.ItemOnItem(item = id, on = option)
             "clone" -> BotAction.Clone(id)
             else -> throw IllegalArgumentException("Unknown action type: $type ${exception()}")
         }
