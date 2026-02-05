@@ -20,7 +20,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.sex
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.*
@@ -99,12 +98,21 @@ class BotSpawns(
     }
 
     fun clear(player: Player, args: List<String>) {
-        val count = args[0].toIntOrNull() ?: MAX_PLAYERS
+        val count = args.getOrNull(0)?.toIntOrNull() ?: MAX_PLAYERS
         World.queue("bot_clear") {
             runBlocking {
-                for (bot in manager.bots.take(count)) {
+                var removed = 0
+                for (bot in manager.bots) {
+                    if (bot.player.client != null && bot.player.client !is DummyClient) {
+                        continue
+                    }
                     manager.remove(bot)
-                    accounts.logout(bot.player, false)
+                    Script.launch {
+                        accounts.logout(bot.player, true)
+                    }
+                    if (++removed >= count) {
+                        break
+                    }
                 }
             }
         }
@@ -153,7 +161,7 @@ class BotSpawns(
             }
             val player = Player(tile = Areas["lumbridge_teleport"].random(), accountName = name)
             val bot = player.initBot()
-            loader.connect(player, if (Settings["development.bots.live", false]) DummyClient() else null)
+            loader.connect(player, DummyClient(), viewport = Settings["development.bots.live", false])
             setAppearance(player)
             if (player.inventory.isEmpty()) {
                 player.inventory.add("coins", 10000)

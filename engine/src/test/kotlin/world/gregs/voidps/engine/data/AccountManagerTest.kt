@@ -26,6 +26,7 @@ import world.gregs.voidps.engine.entity.character.player.equip.AppearanceOverrid
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.ConnectionQueue
+import world.gregs.voidps.network.client.DummyClient
 import world.gregs.voidps.network.login.protocol.encode.logout
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
@@ -99,7 +100,7 @@ class AccountManagerTest : KoinMock() {
     @Test
     fun `Initialise player`() {
         val player = Player(0)
-        manager.setup(player, null, 0)
+        manager.setup(player, DummyClient(), 0, false)
         assertNotNull(player.visuals)
         assertNotNull(player.interfaces)
         assertNotNull(player.interfaceOptions)

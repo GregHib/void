@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.data
 
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
@@ -48,7 +49,7 @@ class AccountManager(
         this["new_player"] = true
     }
 
-    fun setup(player: Player, client: Client?, displayMode: Int): Boolean {
+    fun setup(player: Player, client: Client, displayMode: Int, viewport: Boolean = true): Boolean {
         player.index = Players.index() ?: return false
         player.visuals.hits.self = player.index
         player.interfaces = Interfaces(player, interfaceDefinitions)
@@ -70,10 +71,10 @@ class AccountManager(
             accountDefinitions.add(player)
         }
         player.interfaces.displayMode = displayMode
-        if (client != null) {
+        player.client = client
+        (player.variables as PlayerVariables).client = client
+        if (viewport) {
             player.viewport = Viewport()
-            player.client = client
-            (player.variables as PlayerVariables).client = client
         }
         player.collision = CollisionStrategyProvider.get(character = player)
         return true
@@ -120,7 +121,7 @@ class AccountManager(
         }
         player.client?.disconnect()
         connectionQueue.disconnect {
-            World.queue("logout", 1) {
+            World.queue("logout_${player.accountName}", 1) {
                 Players.remove(player)
             }
             val offset = player.get<Long>("instance_offset")?.let { Delta(it) } ?: Delta.EMPTY

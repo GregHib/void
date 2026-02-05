@@ -1,5 +1,6 @@
 package content.entity.player.command
 
+import content.bot.BotManager
 import content.bot.interact.navigation.graph.NavigationGraph
 import content.entity.obj.ObjectTeleports
 import content.entity.obj.ship.CharterShips
@@ -129,6 +130,7 @@ class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
                 Settings.load()
                 SettingsReload.now()
             }
+            "bots" -> get<BotManager>().load(files)
         }
     }
 

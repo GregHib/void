@@ -48,6 +48,7 @@ import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.timer.setCurrentTime
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.ConnectionQueue
+import world.gregs.voidps.network.client.DummyClient
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import java.io.File
@@ -99,7 +100,7 @@ abstract class WorldTest : KoinTest {
 
     fun createPlayer(tile: Tile = Tile.EMPTY, name: String = "player"): Player {
         val player = Player(tile = tile, accountName = name, passwordHash = "")
-        assertTrue(accounts.setup(player, null, 0))
+        assertTrue(accounts.setup(player, DummyClient(), 0, false))
         accountDefs.add(player)
         tick()
         player["creation"] = -1
