@@ -21,6 +21,36 @@ produces = [
     { skill = "attack" }
 ]
 
+# Fletching
+[lumbridge_fletch_arrow_shafts]
+template = "fletching_arrow_shafts_template"
+capacity = 2
+fields = { location = "lumbridge_castle_bank", logs = "logs" }
+requires = [
+    { skill = "fletching", min = 1 }
+]
+
+[lumbridge_fletch_shortbows]
+template = "fletching_shortbow_template"
+capacity = 2
+fields = { location = "lumbridge_castle_bank", logs = "logs" }
+requires = [
+    { skill = "fletching", min = 5 }
+]
+produces = [
+    { carries = "shortbow_u" }
+]
+
+[lumbridge_fletch_longbows]
+template = "fletching_longbow_template"
+fields = { location = "lumbridge_castle_bank", logs = "logs" }
+requires = [
+    { skill = "fletching", min = 10 }
+]
+produces = [
+    { carries = "longbow_u" }
+]
+
 # Woodcutting
 [lumbridge_north_tree_cutting]
 template = "normal_tree_template"

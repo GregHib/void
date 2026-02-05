@@ -1,0 +1,58 @@
+[fletching_arrow_shafts_template]
+capacity = 2
+requires = [
+    { owns = "$logs", min = 27 }
+]
+setup = [
+    { location = "$location" },
+    { carries = "knife" },
+    { carries = "$logs", min = 27 }
+]
+actions = [
+    { item = "knife", on = "$logs", success = { interface = "dialogue_skill_creation" } },
+    { option = "All", interface = "skill_creation_amount:all" },
+    { continue = "dialogue_skill_creation:choice1" },
+    { restart = true, check = { queue = "fletching" }, success = { inventory_space = 26 } }
+]
+produces = [
+    { carries = "arrow_shafts" },
+    { skill = "fletching" }
+]
+
+[fletching_shortbow_template]
+requires = [
+    { owns = "$logs", min = 27 }
+]
+setup = [
+    { location = "$location" },
+    { carries = "knife" },
+    { carries = "$logs", min = 27 }
+]
+actions = [
+    { item = "knife", on = "$logs" },
+    { option = "All", interface = "skill_creation_amount:all" },
+    { continue = "dialogue_skill_creation:choice2", success = { queue = "fletching" } },
+    { restart = true, success = { inventory_space = 26 } }
+]
+produces = [
+    { skill = "fletching" }
+]
+
+[fletching_longbow_template]
+requires = [
+    { owns = "$logs", min = 27 }
+]
+setup = [
+    { location = "$location" },
+    { carries = "knife" },
+    { carries = "$logs", min = 27 }
+]
+actions = [
+    { item = "knife", on = "$logs", success = { queue = "fletching_make_dialog" } },
+    { option = "All", interface = "skill_creation_amount:all" },
+    { continue = "dialogue_skill_creation:choice3", success = { queue = "fletching" } },
+    { restart = true, success = { inventory_space = 26 } }
+]
+produces = [
+    { skill = "fletching" }
+]
