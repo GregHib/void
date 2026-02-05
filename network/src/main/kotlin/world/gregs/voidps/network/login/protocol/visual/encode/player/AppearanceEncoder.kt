@@ -97,12 +97,6 @@ class AppearanceEncoder : VisualEncoder<PlayerVisuals>(APPEARANCE_MASK, initial 
     }
 
     companion object {
-        fun size(appearance: Appearance): Int =
-            17 + appearance.displayName.length +
-                if (appearance.transform != -1) {
-                    14
-                } else {
-                    (0 until 12).sumOf { if (appearance.body.get(it) == 0) 1 else 2 }
-                }
+        fun size(appearance: Appearance): Int = 17 + appearance.displayName.length + if (appearance.transform != -1) 14 else (0 until 12).sumBy { if (appearance.body.get(it) == 0) 1 else 2 }
     }
 }
