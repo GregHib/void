@@ -7,8 +7,11 @@ import content.bot.interact.path.Graph
 import content.entity.combat.attackers
 import content.entity.combat.dead
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.client.command.playerCommand
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
+import world.gregs.voidps.engine.client.ui.dialogue
+import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -17,6 +20,7 @@ import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnFloorIte
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnNPCInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -25,6 +29,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.map.Spiral
 import world.gregs.voidps.network.client.instruction.*
+import kotlin.to
 
 sealed interface BotAction {
     fun start(bot: Bot, frame: BehaviourFrame): BehaviourState = BehaviourState.Running
@@ -206,7 +211,7 @@ sealed interface BotAction {
 
         private fun eat(bot: Bot): BehaviourState {
             val inventory = bot.player.inventory
-            for (index in inventory.indices){
+            for (index in inventory.indices) {
                 val item = inventory[index]
                 val option = item.def.options.indexOf("Eat")
                 if (option == -1) {
@@ -323,7 +328,10 @@ sealed interface BotAction {
     }
 
     data class ItemOnItem(val item: String, val on: String, val success: Condition? = null) : BotAction {
-        override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
+        override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState? {
+            if (success != null && success.check(bot.player)) {
+                return BehaviourState.Success
+            }
             val inventory = bot.player.inventory
             val fromSlot = inventory.indexOf(item)
             if (fromSlot == -1) {
@@ -335,16 +343,7 @@ sealed interface BotAction {
             }
             val from = inventory[fromSlot]
             val to = inventory[toSlot]
-            val valid = get<InstructionHandlers>().handle(bot.player, InteractInterfaceItem(
-                from.def.id,
-                to.def.id,
-                fromSlot,
-                toSlot,
-                149,
-                0,
-                149,
-                0
-            ))
+            val valid = get<InstructionHandlers>().handle(bot.player, InteractInterfaceItem(from.def.id, to.def.id, fromSlot, toSlot, 149, 0, 149, 0))
             return when {
                 !valid -> BehaviourState.Failed(Reason.Invalid("Invalid item on item: ${from.def.id}:${fromSlot} -> ${to.def.id}:${toSlot}."))
                 success == null -> BehaviourState.Wait(1, BehaviourState.Success)
@@ -352,17 +351,13 @@ sealed interface BotAction {
                 else -> BehaviourState.Running
             }
         }
+    }
 
+    data class InterfaceOption(val option: String, val id: String, val success: Condition? = null) : BotAction {
         override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState? {
             if (success != null && success.check(bot.player)) {
                 return BehaviourState.Success
             }
-            return super.update(bot, frame)
-        }
-    }
-
-    data class InterfaceOption(val option: String, val id: String, val success: Condition? = null) : BotAction {
-        override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
             val definitions = get<InterfaceDefinitions>()
             val split = id.split(":")
             if (split.size < 2) {
@@ -388,13 +383,15 @@ sealed interface BotAction {
             if (id == "shop") {
                 itemSlot *= 6
             }
-            val valid = get<InstructionHandlers>().handle(bot.player, InteractInterface(
-                interfaceId = def.id,
-                componentId = componentId,
-                itemId = itemDef?.id ?: -1,
-                itemSlot = itemSlot,
-                option = index
-            ))
+            val valid = get<InstructionHandlers>().handle(
+                bot.player, InteractInterface(
+                    interfaceId = def.id,
+                    componentId = componentId,
+                    itemId = itemDef?.id ?: -1,
+                    itemSlot = itemSlot,
+                    option = index
+                )
+            )
             return when {
                 !valid -> BehaviourState.Failed(Reason.Invalid("Invalid interaction: ${def.id}:${componentId}:${itemDef?.id} slot $itemSlot option ${index}."))
                 success == null -> BehaviourState.Wait(1, BehaviourState.Success)
@@ -402,17 +399,13 @@ sealed interface BotAction {
                 else -> BehaviourState.Running
             }
         }
-
-        override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState? {
-            if (success != null && success.check(bot.player)) {
-                return BehaviourState.Success
-            }
-            return super.update(bot, frame)
-        }
     }
 
     data class DialogueContinue(val option: String, val id: String, val success: Condition? = null) : BotAction {
-        override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
+        override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState {
+            if (success != null && success.check(bot.player)) {
+                return BehaviourState.Success
+            }
             val definitions = get<InterfaceDefinitions>()
             val split = id.split(":")
             if (split.size < 2) {
@@ -428,24 +421,17 @@ sealed interface BotAction {
                 options = componentDef.getOrNull("options") ?: emptyArray()
             }
             val index = options.indexOf(option)
-            val valid = get<InstructionHandlers>().handle(bot.player, InteractDialogue(
-                interfaceId = def.id,
-                componentId = componentId,
-                option = index
-            ))
-            return when {
-                !valid -> BehaviourState.Failed(Reason.Invalid("Invalid interaction: ${def.id}:${componentId} option=${index}."))
-                success == null -> BehaviourState.Wait(1, BehaviourState.Success)
-                success.check(bot.player) -> BehaviourState.Success
-                else -> BehaviourState.Running
+            val valid = get<InstructionHandlers>().handle(
+                bot.player, InteractDialogue(
+                    interfaceId = def.id,
+                    componentId = componentId,
+                    option = index
+                )
+            )
+            if (!valid) {
+                return BehaviourState.Failed(Reason.Invalid("Invalid interaction: ${def.id}:${componentId} option=${index}."))
             }
-        }
-
-        override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState? {
-            if (success != null && success.check(bot.player)) {
-                return BehaviourState.Success
-            }
-            return super.update(bot, frame)
+            return BehaviourState.Wait(1, BehaviourState.Success)
         }
     }
 
@@ -453,6 +439,39 @@ sealed interface BotAction {
         override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
             bot.player.instructions.trySend(EnterInt(value))
             return BehaviourState.Wait(1, BehaviourState.Success)
+        }
+    }
+
+    object CloseInterface : BotAction {
+        override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState {
+            if (bot.player.menu == null) {
+                return BehaviourState.Success
+            }
+            if (get<InstructionHandlers>().handle(bot.player, InterfaceClosedInstruction)) {
+                return BehaviourState.Success
+            }
+            return BehaviourState.Failed(Reason.NoTarget)
+        }
+    }
+
+    /**
+     * Restarts the current action when [check] doesn't hold true (or bot has no mode) and success state isn't matched.
+     */
+    data class Restart(
+        val check: Condition?,
+        val success: Condition
+    ) : BotAction {
+        override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState {
+            if (success.check(bot.player)) {
+                return BehaviourState.Success
+            }
+            if (check == null && bot.mode !is EmptyMode) {
+                return BehaviourState.Running
+            } else if (check != null && check.check(bot.player)) {
+                return BehaviourState.Running
+            }
+            frame.index = 0
+            return BehaviourState.Running
         }
     }
 

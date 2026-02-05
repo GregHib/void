@@ -77,6 +77,11 @@ data class BehaviourFragment(
                     is BotAction.IntEntry -> BotAction.IntEntry(
                         value = resolve(action.references["value"], copy.value),
                     )
+                    is BotAction.Restart -> BotAction.Restart(
+                        resolveReference(copy.check),
+                        resolveReference(copy.success) ?: throw IllegalArgumentException("Restart action must have success condition.")
+                    )
+                    is BotAction.CloseInterface -> BotAction.CloseInterface
                     is BotAction.Wait -> BotAction.Wait(resolve(action.references["wait"], copy.ticks))
                     is BotAction.Clone, is BotAction.Reference -> throw IllegalArgumentException("Invalid reference action type: ${action.action::class.simpleName}.")
                 }
@@ -132,6 +137,11 @@ data class BehaviourFragment(
                     val id = resolve(references[req.type], req.id)
                     val value = resolve(references["value"], req.value as? Boolean)
                     Condition.Equals(Fact.HasTimer(id), value as? Boolean ?: true)
+                }
+                "queue" -> {
+                    val id = resolve(references[req.type], req.id)
+                    val value = resolve(references["value"], req.value as? Boolean)
+                    Condition.Equals(Fact.HasQueue(id), value as? Boolean ?: true)
                 }
                 "interface" -> {
                     val id = resolve(references[req.type], req.id)

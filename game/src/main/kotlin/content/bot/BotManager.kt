@@ -10,7 +10,9 @@ import content.entity.player.bank.bank
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.event.AuditLog
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.random
+import java.util.concurrent.TimeUnit
 
 /**
  * Each tick checks
@@ -96,14 +98,14 @@ class BotManager(
         return true
     }
 
-    private val idle = BotActivity("idle", 2048, actions = listOf(BotAction.Wait(50))) // 30s
+    private val idle = BotActivity("idle", 2048, actions = listOf(BotAction.Wait(TimeUnit.SECONDS.toTicks(30))))
 
     private fun assignRandom(bot: Bot) {
         val activity = if (bot.previous != null && hasRequirements(bot, bot.previous!!)) {
             bot.previous
         } else {
             if (bot.player["debug", false]) {
-                logger.info { "Picking bot ${bot.player.accountName} new task from available: ${bot.available}." }
+                logger.trace { "Picking bot ${bot.player.accountName} new task from available: ${bot.available}." }
             }
             val id = bot.available.filter {
                 val activity = activities[it]
@@ -111,23 +113,22 @@ class BotManager(
             }.randomOrNull(random) // TODO weight by distance?
             if (id == null) {
                 if (bot.player["debug", false]) {
-                    logger.info { "Failed to find activity for bot ${bot.player.accountName}. Reasons:" }
+                    logger.info { "Failed to find activity for bot ${bot.player.accountName}." }
                     for (id in bot.available) {
                         val activity = activities[id] ?: continue
                         if (!slots.hasFree(activity)) {
-                            logger.info { "Activity: $id - No available slots." }
+                            logger.trace { "Activity: $id - No available slots." }
                         } else if (bot.blocked.contains(activity.id)) {
-                            logger.info { "Activity: $id - Blocked." }
+                            logger.trace { "Activity: $id - Blocked." }
                         } else {
                             for (requirement in activity.requires) {
                                 if (!requirement.check(bot.player)) {
-                                    logger.info { "Activity: $id - Failed requirement: $requirement" }
+                                    logger.trace { "Activity: $id - Failed requirement: $requirement" }
                                     break
                                 }
                             }
                         }
                     }
-                    logger.info { "Picking bot ${bot.player.accountName} new task from available: ${bot.available}." }
                 }
             }
             activities[id] ?: idle
@@ -143,9 +144,9 @@ class BotManager(
 
     private fun assign(bot: Bot, activity: BotActivity) {
         AuditLog.event(bot, "assigned", activity.id)
-        if (bot.player["debug", false]) {
+//        if (bot.player["debug", false]) {
             logger.info { "Assigned bot: '${bot.player.accountName}' task '${activity.id}'." }
-        }
+//        }
         slots.occupy(activity)
         bot.previous = activity
         bot.queue(BehaviourFrame(activity))
@@ -219,21 +220,31 @@ class BotManager(
             if (condition.min == 1 || condition.min == 5 || condition.min == 10) {
                 resolvers.add(
                     Resolver(
-                        "withdraw_${condition.fact.id}", weight = 20, actions = listOf(
+                        "withdraw_${condition.fact.id}", weight = 20,
+                        resolve = listOf(
+                            Condition.AtLeast(Fact.InventorySpace, condition.min),
+                        ),
+                        actions = listOf(
                             BotAction.GoToNearest("bank"),
                             BotAction.InteractObject("Use-quickly", "bank_booth*", success = Condition.Equals(Fact.InterfaceOpen("bank"), true)),
                             BotAction.InterfaceOption("Withdraw-${condition.min}", "bank:inventory:${condition.fact.id}"),
+                            BotAction.CloseInterface,
                         )
                     )
                 )
             } else {
                 resolvers.add(
                     Resolver(
-                        "withdraw_${condition.fact.id}", weight = 20, actions = listOf(
+                        "withdraw_${condition.fact.id}", weight = 20,
+                        resolve = listOf(
+                            Condition.AtLeast(Fact.InventorySpace, condition.min),
+                        ),
+                        actions = listOf(
                             BotAction.GoToNearest("bank"),
                             BotAction.InteractObject("Use-quickly", "bank_booth*", success = Condition.Equals(Fact.InterfaceOpen("bank"), true)),
                             BotAction.InterfaceOption("Withdraw-X", "bank:inventory:${condition.fact.id}"),
                             BotAction.IntEntry(condition.min),
+                            BotAction.CloseInterface,
                         )
                     )
                 )
@@ -250,11 +261,13 @@ class BotManager(
                 Resolver(
                     "withdraw_and_equip_${condition.fact.id}", weight = 0,
                     requires = listOf(Condition.AtLeast(Fact.BankCount(condition.fact.id), condition.min)),
+                    resolve = listOf(Condition.AtLeast(Fact.InventorySpace, condition.min)),
                     actions = listOf(
                         BotAction.GoToNearest("bank"),
                         BotAction.InteractObject("Use-quickly", "bank_booth*", success = Condition.Equals(Fact.InterfaceOpen("bank"), true)),
                         BotAction.InterfaceOption("Withdraw-X", "bank:inventory:${condition.fact.id}"),
                         BotAction.IntEntry(condition.min),
+                        BotAction.CloseInterface,
                         BotAction.InterfaceOption("Equip", "inventory:inventory:${condition.fact.id}")
                     )
                 )
@@ -265,7 +278,7 @@ class BotManager(
     private fun execute(bot: Bot) {
         val frame = bot.frame()
         val behaviour = frame.behaviour
-        if (bot.player["debug", false] && frame.state != bot.get<BehaviourState>("previous_state")) {
+        if (bot.player["debug", false]) {
             logger.trace { "Bot task: ${behaviour.id} state: ${frame.state} action: ${frame.action()}." }
             bot["previous_state"] = frame.state
         }
@@ -275,7 +288,7 @@ class BotManager(
             BehaviourState.Success -> {
                 val debug = bot.player["debug", false]
                 if (debug) {
-                    logger.trace { "Completed action: ${frame.action()} for ${behaviour.id}." }
+                    logger.debug { "Completed action: ${frame.action()} for ${behaviour.id}." }
                 }
                 if (!frame.next()) {
                     AuditLog.event(bot, "completed", frame.behaviour.id)
@@ -286,7 +299,7 @@ class BotManager(
                     }
                 } else {
                     if (debug) {
-                        logger.trace { "Next action: ${frame.action()} for ${behaviour.id}." }
+                        logger.debug { "Next action: ${frame.action()} for ${behaviour.id}." }
                     }
                     frame.start(bot)
                 }

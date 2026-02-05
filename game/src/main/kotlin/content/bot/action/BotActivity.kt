@@ -6,7 +6,6 @@ import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.timedLoad
-import kotlin.math.min
 
 /**
  * An activity with a limited number of slots that bots can perform
@@ -195,7 +194,7 @@ private fun ConfigReader.requirement(exact: Boolean = false): Condition {
     val references = mutableMapOf<String, String>()
     while (nextEntry()) {
         when (val key = key()) {
-            "skill", "carries", "equips", "interface", "owns", "clock", "variable", "clone", "location" -> {
+            "skill", "carries", "equips", "interface", "owns", "clock", "variable", "clone", "location", "queue" -> {
                 type = key
                 id = string()
                 if (id.contains('$')) {
@@ -253,6 +252,7 @@ private fun getRequirement(type: String, id: String, min: Int?, max: Int?, value
     "equips" -> Condition.split(id, min, max, Wildcard.Item) { Fact.EquipCount(it) }
     "clock" -> Condition.split(id, min, max, Wildcard.Variables) { Fact.ClockRemaining(it) }
     "timer" -> Condition.Equals(Fact.HasTimer(id), value as? Boolean ?: true)
+    "queue" -> Condition.Equals(Fact.HasQueue(id), value as? Boolean ?: true)
     "interface" -> Condition.Equals(Fact.InterfaceOpen(id), value as? Boolean ?: true)
     "variable" -> when (value) {
         is Int -> Condition.Equals(Fact.IntVariable(id, default as? Int), value)
@@ -282,6 +282,7 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
         var x = 0
         var y = 0
         var success: Condition? = null
+        var check: Condition? = null
         val references = mutableMapOf<String, String>()
         while (nextEntry()) {
             when (val key = key()) {
@@ -326,7 +327,12 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
                         references[key] = option
                     }
                 }
+                "restart" -> {
+                    require(boolean()) { "Can't have restart = false ${exception()}" }
+                    type = key
+                }
                 "success" -> success = requirement(exact = true)
+                "check" -> check = requirement(exact = true)
                 "wait" -> {
                     type = key
                     when (val value = value()) {
@@ -372,6 +378,7 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
             "enter_string" -> BotAction.StringEntry(id)
             "enter_int" -> BotAction.IntEntry(int)
             "wait" -> BotAction.Wait(ticks)
+            "restart" -> BotAction.Restart(check, success ?: throw IllegalArgumentException("Restart must have success condition."))
             "npc" -> if (option == "Attack") {
                 BotAction.FightNpc(id = id, delay = delay, success = success, healPercentage = heal, lootOverValue = loot, radius = radius)
             } else {

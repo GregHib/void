@@ -87,6 +87,11 @@ sealed class Fact<T>(val priority: Int) {
         override fun getValue(player: Player) = player.timers.contains(timer)
     }
 
+    data class HasQueue(val queue: String) : Fact<Boolean>(1) {
+        override fun keys() = setOf("queue:$queue")
+        override fun getValue(player: Player) = player.queue.contains(queue)
+    }
+
     data class InterfaceOpen(val id: String) : Fact<Boolean>(1) {
         override fun keys() = setOf("iface:$id")
         override fun getValue(player: Player) = player.interfaces.contains(id)

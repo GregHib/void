@@ -108,6 +108,9 @@ class InterfaceHandler(
             if (id == "grand_exchange") {
                 inventory = "collection_box_${player["grand_exchange_box", -1]}"
             }
+            if (inventory == "") {
+                return null
+            }
             if (!player.inventories.contains(inventory)) {
                 logger.info { "Player doesn't have interface inventory [$player, interface=$id, inventory=$inventory]" }
                 return null

@@ -135,6 +135,8 @@ class BotSpawns(
             val bot = player.initBot()
             manager.add(bot)
             if (args.getOrNull(0)?.isNotBlank() == true) {
+                bot.available.clear()
+                bot.available.add(args[0])
                 manager.assign(bot, args[0])
             }
             Bots.start(player)

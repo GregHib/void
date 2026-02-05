@@ -65,6 +65,7 @@ class DialogueInput : Script {
         continueDialogue("dialogue_skill_creation:choice*") {
             val choice = it.substringAfter(":choice").toIntOrNull() ?: 0
             (dialogueSuspension as? IntSuspension)?.resume(choice - 1)
+            closeDialogue()
         }
     }
 }
