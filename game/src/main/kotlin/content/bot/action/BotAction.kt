@@ -499,8 +499,6 @@ sealed interface BotAction {
     /**
      * TODO
      *      firemaking bot
-     *      thieving bot
-     *      bone burying bot
      *      cooking bot
      *      cow bot
      *      rune mysteries quest bot

@@ -1,25 +1,47 @@
-[kill_chickens]
-type = "activity"
-capacity = 4
-requires = [
-    { skill = "attack", min = 1, max = 5 },
-]
-setup = [
-    { equips = "bronze_sword,bronze_dagger,bronze_scimitar" },
-    # TODO food?
-    { location = "lumbridge_chicken_pen" },
-    { inventory_space = 27 },
-]
-actions = [
-    { option = "Select", interface = "combat_styles:style1" },
-    { option = "Attack", npc = "chicken*", delay = 5, success = { inventory_space = 0 } },
-]
-produces = [
-    { carries = "feather" },
-    { carries = "bones" },
-    { carries = "raw_chicken" },
-    { skill = "attack" }
-]
+[kill_freds_chickens_attack]
+template = "kill_chickens"
+capacity = 2
+fields = { skill = "attack", location = "lumbridge_chicken_pen", style = "style1" }
+
+[kill_freds_chickens_strength]
+template = "kill_chickens"
+capacity = 2
+fields = { skill = "strength", location = "lumbridge_chicken_pen", style = "style2" }
+
+[kill_freds_chickens_defence]
+template = "kill_chickens"
+capacity = 2
+fields = { skill = "defence", location = "lumbridge_chicken_pen", style = "style4" }
+
+[kill_millies_cows_attack]
+template = "kill_cows"
+capacity = 2
+fields = { skill = "attack", location = "lumbridge_east_cow_field", style = "style1" }
+
+[kill_millies_cows_strength]
+template = "kill_cows"
+capacity = 2
+fields = { skill = "strength", location = "lumbridge_east_cow_field", style = "style2" }
+
+[kill_millies_cows_defence]
+template = "kill_cows"
+capacity = 2
+fields = { skill = "defence", location = "lumbridge_east_cow_field", style = "style4" }
+
+[kill_bills_cows_attack]
+template = "kill_cows"
+capacity = 2
+fields = { skill = "attack", location = "lumbridge_west_cow_field", style = "style1" }
+
+[kill_bills_cows_strength]
+template = "kill_cows"
+capacity = 2
+fields = { skill = "strength", location = "lumbridge_west_cow_field", style = "style2" }
+
+[kill_bills_cows_defence]
+template = "kill_cows"
+capacity = 2
+fields = { skill = "defence", location = "lumbridge_west_cow_field", style = "style4" }
 
 # Thieving
 [lumbridge_pickpocketing]

@@ -212,3 +212,7 @@ hint = "in the south of the kingdom of Misthalin."
 [lumbridge_thieving_area]
 x = [3220, 3225]
 y = [3236, 3242]
+
+[lumbridge_west_cow_field]
+x = [3156, 3202]
+y = [3316, 3341]

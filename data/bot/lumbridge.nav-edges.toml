@@ -183,6 +183,10 @@ edges = [
     { from_x = 3295, from_y = 3372, to_x = 3293, to_y = 3384 }, # varrock_south_east_mine_path_to_border
     { from_x = 3211, from_y = 3420, to_x = 3210, to_y = 3407 }, # varrock_centre_south_to_dirt_crossroads
     { from_x = 3210, from_y = 3407, to_x = 3211, to_y = 3395 }, # varrock_south_dirt_crossroads_to_blue_moon_inn
+    { from_x = 3210, from_y = 3407, to_x = 3209, to_y = 3399 },
+    { from_x = 3210, from_y = 3407, to_x = 3209, to_y = 3399 },
+    { from_x = 3209, from_y = 3399, to_x = 3207, to_y = 3399, cost = 1, actions = [{ option = "Open", object = "door_444_closed", x = 3209, y = 3399 }, { x = 3207, y = 3399 }] },
+    { from_x = 3211, from_y = 3395, to_x = 3209, to_y = 3399 }, # varrock_sword_shop
     { from_x = 3211, from_y = 3395, to_x = 3211, to_y = 3381 }, # varrock_blue_moon_inn_to_south_border
     { from_x = 3211, from_y = 3381, to_x = 3214, to_y = 3367 }, # varrock_south_border_to_dark_mages
     { from_x = 3214, from_y = 3367, to_x = 3226, to_y = 3352 }, # varrock_south_dark_mages_to_south

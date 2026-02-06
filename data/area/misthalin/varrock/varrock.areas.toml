@@ -63,3 +63,7 @@ x = [3136, 3391]
 y = [3328, 3519]
 tags = ["penguin_area"]
 hint = "in the north of the kingdom of Misthalin."
+
+[varrock_sword_shop]
+x = [3202, 3209]
+y = [3395, 3403]
