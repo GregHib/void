@@ -162,6 +162,7 @@ fun loadActivities(
                     groups.getOrPut(key) { mutableListOf() }.add(activity.id)
                 }
             }
+            println(activity)
         }
         activities.size
     }
@@ -177,14 +178,14 @@ private fun ConfigReader.fields(): Map<String, Any> {
     return map
 }
 
-fun ConfigReader.requirements(list: MutableList<Condition>, exact: Boolean = false) {
+fun ConfigReader.requirements(list: MutableList<Condition>, parentReferences: MutableMap<String, String>? = null, exact: Boolean = false) {
     while (nextElement()) {
-        list.add(requirement(exact))
+        list.add(requirement(parentReferences = parentReferences, exact = exact))
     }
     list.sortBy { it.priority() }
 }
 
-private fun ConfigReader.requirement(exact: Boolean = false): Condition {
+private fun ConfigReader.requirement(parentReferences: MutableMap<String, String>? = null, exact: Boolean = false): Condition {
     var type = ""
     var id = ""
     var value: Any? = null
@@ -227,6 +228,14 @@ private fun ConfigReader.requirement(exact: Boolean = false): Condition {
                     else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
                 }
             }
+            "level" -> {
+                type = key
+                when (val v = value()) {
+                    is Int -> value = v
+                    is String if v.contains('$') -> references[key] = v
+                    else -> throw IllegalArgumentException("Invalid '$key' value: $v ${exception()}")
+                }
+            }
             "value" -> value = value()
             "default" -> default = value()
         }
@@ -240,6 +249,7 @@ private fun ConfigReader.requirement(exact: Boolean = false): Condition {
     }
     if (references.isNotEmpty()) {
         requirement = Condition.Reference(type, id, value, default, min, max, references)
+        parentReferences?.putAll(references)
     }
     return requirement
 }
@@ -270,6 +280,7 @@ private fun getRequirement(type: String, id: String, min: Int?, max: Int?, value
     "clone" -> Condition.Clone(id)
     "inventory_space" -> if (exact && min != null) Condition.Equals(Fact.InventorySpace, min) else Condition.range(Fact.InventorySpace, min, max)
     "location" -> Condition.Area(Fact.PlayerTile, id)
+    "level" -> Condition.Equals(Fact.PlayerLevel, value as Int)
     "combat_level" -> Condition.AtLeast(Fact.CombatLevel, min ?: 1)
     else -> null
 }
@@ -333,12 +344,19 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
                         references[key] = option
                     }
                 }
+                "on_object" -> {
+                    type = "${type}_on_object"
+                    option = string()
+                    if (option.contains('$')) {
+                        references[key] = option
+                    }
+                }
                 "restart" -> {
                     require(boolean()) { "Can't have restart = false ${exception()}" }
                     type = key
                 }
-                "success" -> success = requirement(exact = true)
-                "wait_if" -> requirements(wait, exact = true)
+                "success" -> success = requirement(references, exact = true)
+                "wait_if" -> requirements(wait, references, exact = true)
                 "wait" -> {
                     type = key
                     when (val value = value()) {
@@ -392,9 +410,10 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
             }
             "tile" -> BotAction.WalkTo(x = x, y = y)
             "object" -> BotAction.InteractObject(id = id, option = option, delay = delay, success = success, radius = radius)
-            "interface" -> BotAction.InterfaceOption(id = id, option = option)
-            "continue" -> BotAction.DialogueContinue(id = id, option = option)
-            "item" -> BotAction.ItemOnItem(item = id, on = option)
+            "interface" -> BotAction.InterfaceOption(id = id, option = option, success = success)
+            "continue" -> BotAction.DialogueContinue(id = id, option = option, success = success)
+            "item" -> BotAction.ItemOnItem(item = id, on = option, success = success)
+            "item_on_object" -> BotAction.ItemOnObject(item = id, id = option, success = success)
             "clone" -> BotAction.Clone(id)
             else -> throw IllegalArgumentException("Unknown action type: $type ${exception()}")
         }

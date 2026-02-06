@@ -7,10 +7,9 @@ import content.bot.interact.path.Graph
 import content.entity.combat.attackers
 import content.entity.combat.dead
 import world.gregs.voidps.engine.GameLoop
-import world.gregs.voidps.engine.client.command.playerCommand
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
-import world.gregs.voidps.engine.client.ui.dialogue
+import world.gregs.voidps.engine.client.instruction.handle.ObjectOptionHandler
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
@@ -20,8 +19,8 @@ import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnFloorIte
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnNPCInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.wildcardEquals
@@ -29,7 +28,6 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.map.Spiral
 import world.gregs.voidps.network.client.instruction.*
-import kotlin.to
 
 sealed interface BotAction {
     fun start(bot: Bot, frame: BehaviourFrame): BehaviourState = BehaviourState.Running
@@ -354,6 +352,45 @@ sealed interface BotAction {
         }
     }
 
+    data class ItemOnObject(val item: String, val id: String, val success: Condition? = null) : BotAction {
+        override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState {
+            if (success != null && success.check(bot.player)) {
+                return BehaviourState.Success
+            }
+            val inventory = bot.player.inventory
+            val slot = inventory.indexOf(this@ItemOnObject.item)
+            if (slot == -1) {
+                return BehaviourState.Failed(Reason.Invalid("No inventory item '${this@ItemOnObject.item}'."))
+            }
+            val item = inventory[slot]
+            return search(bot, item, slot)
+        }
+
+        private fun search(bot: Bot, item: Item, slot: Int): BehaviourState {
+            val player = bot.player
+            val ids = if (id.contains(",")) id.split(",") else listOf(id)
+            for (tile in Spiral.spiral(player.tile, 10)) {
+                for (obj in GameObjects.at(tile)) {
+                    if (ids.none { wildcardEquals(it, obj.id) }) {
+                        continue
+                    }
+                    val valid = get<InstructionHandlers>().handle(bot.player, InteractInterfaceObject(obj.intId, obj.x, obj.y, 149, 0, item.def.id, slot))
+                    if (!valid) {
+                        return BehaviourState.Failed(Reason.Invalid("Invalid item on object: ${item.def.id}:${slot} -> ${obj}."))
+                    }
+                    return BehaviourState.Running
+                }
+            }
+            if (success == null) {
+                return BehaviourState.Failed(Reason.NoTarget)
+            }
+            if (success.check(bot.player)) {
+                return BehaviourState.Success
+            }
+            return BehaviourState.Running
+        }
+    }
+
     data class InterfaceOption(val option: String, val id: String, val success: Condition? = null) : BotAction {
         override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState? {
             if (success != null && success.check(bot.player)) {
@@ -500,7 +537,6 @@ sealed interface BotAction {
      * TODO
      *      firemaking bot
      *      cooking bot
-     *      cow bot
      *      rune mysteries quest bot
      *      bot saving?
      *      bot setups

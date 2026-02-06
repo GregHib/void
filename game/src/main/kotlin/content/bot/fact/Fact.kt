@@ -102,6 +102,11 @@ sealed class Fact<T>(val priority: Int) {
         override fun getValue(player: Player) = player.tile
     }
 
+    object PlayerLevel : Fact<Int>(1000) {
+        override fun keys() = setOf("level")
+        override fun getValue(player: Player) = player.tile.level
+    }
+
     object CombatLevel : Fact<Int>(1) {
         override fun keys() = setOf("combat")
         override fun getValue(player: Player) = player.combatLevel
@@ -132,12 +137,13 @@ sealed class Fact<T>(val priority: Int) {
     object ConstructionLevel : SkillLevel(Skill.Construction)
     object SummoningLevel : SkillLevel(Skill.Summoning)
     object DungeoneeringLevel : SkillLevel(Skill.Dungeoneering)
+    data class ReferenceLevel(val key: String) : SkillLevel(null)
 
     abstract class SkillLevel(
-        val skill: Skill,
+        val skill: Skill?,
     ) : Fact<Int>(0) {
-        override fun keys() = setOf("skill:${skill.name.lowercase()}")
-        override fun getValue(player: Player) = player.levels.get(skill)
+        override fun keys() = setOf("skill:${skill!!.name.lowercase()}")
+        override fun getValue(player: Player) = player.levels.get(skill!!)
 
         companion object {
             fun of(skill: String): SkillLevel = when (skill.lowercase()) {
@@ -166,7 +172,7 @@ sealed class Fact<T>(val priority: Int) {
                 "construction" -> ConstructionLevel
                 "summoning" -> SummoningLevel
                 "dungeoneering" -> DungeoneeringLevel
-                else -> throw IllegalArgumentException("Unknown skill: $skill")
+                else -> if (skill.startsWith("$")) ReferenceLevel(skill) else throw IllegalArgumentException("Unknown skill: $skill")
             }
         }
     }

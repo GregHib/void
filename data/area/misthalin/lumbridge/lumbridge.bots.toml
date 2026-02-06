@@ -114,19 +114,34 @@ fields = { location = "lumbridge_west_yew_tree" }
 # Mining
 [lumbridge_copper_mining]
 template = "copper_ore_template"
+capacity = 4
 fields = { location = "lumbridge_swamp_east_copper_mine" }
 
 [lumbridge_tin_mining]
 template = "tin_ore_template"
+capacity = 4
 fields = { location = "lumbridge_swamp_east_tin_mine" }
 
 [lumbridge_coal_mining]
 template = "coal_template"
+capacity = 4
 fields = { location = "lumbridge_swamp_west_coal_mine" }
 
 [lumbridge_mithril_mining]
 template = "mithril_ore_template"
+capacity = 2
 fields = { location = "lumbridge_swamp_west_mithril_mine" }
+
+# Cooking
+[lumbridge_cook_chicken]
+template = "cooking_template"
+capacity = 4
+fields = { raw = "raw_chicken", cooked = "chicken", level = 1, location = "lumbridge_kitchen", obj = "cooking_range_lumbridge_castle" }
+
+[lumbridge_cook_beef]
+template = "beef_template"
+capacity = 4
+fields = { location = "lumbridge_kitchen", obj = "cooking_range_lumbridge_castle" }
 
 # Bobs Brilliant Axes
 

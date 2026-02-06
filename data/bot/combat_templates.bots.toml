@@ -22,7 +22,7 @@ produces = [
 type = "activity"
 capacity = 4
 requires = [
-    { skill = "combat", min = 10 },
+    { combat_level = 10 },
     { skill = "$skill", min = 5, max = 10 },
 ]
 setup = [

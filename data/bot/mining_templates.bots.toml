@@ -113,7 +113,6 @@ produces = [
 ]
 
 [gold_ore_template]
-type = "activity"
 capacity = 3
 requires = [
     { skill = "mining", min = 40, max = 60 },

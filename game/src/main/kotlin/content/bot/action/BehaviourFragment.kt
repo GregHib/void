@@ -24,14 +24,22 @@ data class BehaviourFragment(
                     is BotAction.InterfaceOption -> BotAction.InterfaceOption(
                         option = resolve(action.references["option"], copy.option),
                         id = resolve(action.references["interface"], copy.id),
+                        success = resolveReference(copy.success),
                     )
                     is BotAction.DialogueContinue -> BotAction.DialogueContinue(
                         option = resolve(action.references["option"], copy.option),
                         id = resolve(action.references["continue"], copy.id),
+                        success = resolveReference(copy.success),
                     )
                     is BotAction.ItemOnItem -> BotAction.ItemOnItem(
                         item = resolve(action.references["item"], copy.item),
                         on = resolve(action.references["on"], copy.on),
+                        success = resolveReference(copy.success),
+                    )
+                    is BotAction.ItemOnObject -> BotAction.ItemOnObject(
+                        item = resolve(action.references["item"], copy.item),
+                        id = resolve(action.references["on_object"], copy.id),
+                        success = resolveReference(copy.success),
                     )
                     is BotAction.InteractNpc -> {
                         val option = resolve(action.references["option"], copy.option)
