@@ -144,7 +144,7 @@ price = 21
 limit = 20000
 weight = 0.45
 fishing = { level = 23, xp = 45.0, chance_min = 4, chance_max = 55 }
-cooking = { level = 18, xp = 75.0, chances = { fire = "83-422", range = "88-432", cooks_range = "93-442" }, cooked = "cod", cooked_message = "You successfully cook a cod.", burnt_message = "You accidentally burn the cod." }
+cooking = { level = 18, xp = 75.0, chances = { fire = "83-422", range = "88-432", cooks_range = "93-442" }, cooked = "cod", burnt = "burnt_trout", cooked_message = "You successfully cook a cod.", burnt_message = "You accidentally burn the cod." }
 examine = "I should try cooking this."
 
 [raw_cod_noted]
