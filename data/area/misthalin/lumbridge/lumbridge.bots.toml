@@ -22,10 +22,10 @@ produces = [
 ]
 
 # Thieving
-[lumbridge_pickpocket_men]
+[lumbridge_pickpocketing]
 template = "pickpocketting_template"
 capacity = 2
-fields = { location = "lumbridge_castle", npc = "men*,women*" }
+fields = { location = "lumbridge_thieving_area", npc = "lumbridge_man*,lumbridge_woman*" }
 requires = [
     { skill = "thieving", min = 1 }
 ]

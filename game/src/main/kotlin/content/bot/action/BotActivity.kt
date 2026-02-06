@@ -177,9 +177,9 @@ private fun ConfigReader.fields(): Map<String, Any> {
     return map
 }
 
-fun ConfigReader.requirements(list: MutableList<Condition>) {
+fun ConfigReader.requirements(list: MutableList<Condition>, exact: Boolean = false) {
     while (nextElement()) {
-        list.add(requirement())
+        list.add(requirement(exact))
     }
     list.sortBy { it.priority() }
 }
@@ -254,12 +254,18 @@ private fun getRequirement(type: String, id: String, min: Int?, max: Int?, value
     "timer" -> Condition.Equals(Fact.HasTimer(id), value as? Boolean ?: true)
     "queue" -> Condition.Equals(Fact.HasQueue(id), value as? Boolean ?: true)
     "interface" -> Condition.Equals(Fact.InterfaceOpen(id), value as? Boolean ?: true)
-    "variable" -> when (value) {
-        is Int -> Condition.Equals(Fact.IntVariable(id, default as? Int), value)
-        is String -> Condition.Equals(Fact.StringVariable(id, default as? String), value)
-        is Double -> Condition.Equals(Fact.DoubleVariable(id, default as? Double), value)
-        is Boolean -> Condition.Equals(Fact.BoolVariable(id, default as? Boolean), value)
-        else -> null
+    "variable" -> {
+        if (min != null || max != null) {
+            Condition.range(Fact.IntVariable(id, default as Int), min, max)
+        } else {
+            when (value) {
+                is Int -> Condition.Equals(Fact.IntVariable(id, default as Int), value)
+                is String -> Condition.Equals(Fact.StringVariable(id, default as? String), value)
+                is Double -> Condition.Equals(Fact.DoubleVariable(id, default as? Double), value)
+                is Boolean -> Condition.Equals(Fact.BoolVariable(id, default as? Boolean), value)
+                else -> null
+            }
+        }
     }
     "clone" -> Condition.Clone(id)
     "inventory_space" -> if (exact && min != null) Condition.Equals(Fact.InventorySpace, min) else Condition.range(Fact.InventorySpace, min, max)
@@ -282,8 +288,8 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
         var x = 0
         var y = 0
         var success: Condition? = null
-        var check: Condition? = null
         val references = mutableMapOf<String, String>()
+        val wait = mutableListOf<Condition>()
         while (nextEntry()) {
             when (val key = key()) {
                 "go_to", "go_to_nearest", "enter_string", "interface", "npc", "object", "clone", "item", "continue" -> {
@@ -332,7 +338,7 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
                     type = key
                 }
                 "success" -> success = requirement(exact = true)
-                "check" -> check = requirement(exact = true)
+                "wait_if" -> requirements(wait, exact = true)
                 "wait" -> {
                     type = key
                     when (val value = value()) {
@@ -378,7 +384,7 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
             "enter_string" -> BotAction.StringEntry(id)
             "enter_int" -> BotAction.IntEntry(int)
             "wait" -> BotAction.Wait(ticks)
-            "restart" -> BotAction.Restart(check, success ?: throw IllegalArgumentException("Restart must have success condition."))
+            "restart" -> BotAction.Restart(wait, success ?: throw IllegalArgumentException("Restart must have success condition."))
             "npc" -> if (option == "Attack") {
                 BotAction.FightNpc(id = id, delay = delay, success = success, healPercentage = heal, lootOverValue = loot, radius = radius)
             } else {

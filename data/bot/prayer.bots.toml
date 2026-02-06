@@ -1,0 +1,16 @@
+[bury_bones]
+type = "activity"
+capacity = 5
+requires = [
+    { owns = "bones", amount = 28 },
+]
+setup = [
+    { carries = "bones", amount = 28 },
+]
+actions = [
+    { option = "Bury", interface = "inventory:inventory:bones" },
+    { restart = true, wait_if = [{ variable = "bone_delay", min = 0, default = -1 }], success = { inventory_space = 28 } }
+]
+produces = [
+    { skill = "prayer" }
+]

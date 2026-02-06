@@ -67,7 +67,7 @@ class BotSpawns(
 
         adminCommand("bots", intArg("count", optional = true), desc = "Spawn (count) number of bots", handler = ::spawn)
         adminCommand("clear_bots", intArg("count", optional = true), desc = "Clear all or some amount of bots", handler = ::clear)
-        adminCommand("bot", stringArg("task", optional = true, autofill = tasks.names), desc = "Toggle yourself on/off as a bot player", handler = ::toggle)
+        adminCommand("bot", stringArg("task", optional = true, autofill = manager.activityNames), desc = "Toggle yourself on/off as a bot player", handler = ::toggle)
         adminCommand("bot_info", desc = "Print bot info", handler = ::info)
     }
 
@@ -136,8 +136,10 @@ class BotSpawns(
             manager.add(bot)
             if (args.getOrNull(0)?.isNotBlank() == true) {
                 bot.available.clear()
-                bot.available.add(args[0])
-                manager.assign(bot, args[0])
+                val name = args[0]
+                bot.blocked.remove(name)
+                bot.available.add(name)
+                manager.assign(bot, name)
             }
             Bots.start(player)
             player.message("Bot enabled.")

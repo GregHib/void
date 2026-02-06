@@ -30,6 +30,9 @@ class BotManager(
     val bots = mutableListOf<Bot>()
     private val logger = InlineLogger("BotManager")
 
+    val activityNames: Set<String>
+        get() = activities.keys
+
     fun add(bot: Bot) {
         bots.add(bot)
         for (activity in activities.values) {
@@ -85,7 +88,11 @@ class BotManager(
             assignRandom(bot)
             return
         }
-        execute(bot)
+        try {
+            execute(bot)
+        } catch (exception: Exception) {
+            logger.error(exception) { "Error in bot '${bot.player.accountName}' tick ${bot.frames.map { it.behaviour.id }}." }
+        }
     }
 
     private fun hasRequirements(bot: Bot, activity: BotActivity): Boolean {
@@ -144,9 +151,9 @@ class BotManager(
 
     private fun assign(bot: Bot, activity: BotActivity) {
         AuditLog.event(bot, "assigned", activity.id)
-//        if (bot.player["debug", false]) {
+        if (bot.player["debug", false]) {
             logger.info { "Assigned bot: '${bot.player.accountName}' task '${activity.id}'." }
-//        }
+        }
         slots.occupy(activity)
         bot.previous = activity
         bot.queue(BehaviourFrame(activity))
@@ -164,10 +171,25 @@ class BotManager(
             if (requirement.check(bot.player)) {
                 continue
             }
-            val resolver = pickResolver(bot, requirement, frame)
+            val resolvers = availableResolvers(bot, requirement)
+            val resolver = resolvers
+                .filter { !frame.blocked.contains(it.id) && it.requires.none { fact -> !fact.check(bot.player) } }
+                .minByOrNull { it.weight }
             if (resolver == null) {
                 if (bot.player["debug", false]) {
                     logger.info { "No resolver found for for ${behaviour.id} keys: ${requirement.keys()} requirement: ${requirement}." }
+                    for (resolver in resolvers) {
+                        if (frame.blocked.contains(resolver.id)) {
+                            logger.debug { "Resolver: ${resolver.id} - Blocked by frame behaviour: ${frame.behaviour.id}." }
+                            break
+                        }
+                        for (requirement in resolver.requires) {
+                            if (!requirement.check(bot.player)) {
+                                logger.debug { "Resolver: ${resolver.id} - Failed requirement: $requirement." }
+                                break
+                            }
+                        }
+                    }
                 }
                 frame.fail(Reason.Requirement(requirement)) // No way to resolve
                 return
@@ -190,7 +212,7 @@ class BotManager(
         frame.start(bot)
     }
 
-    private fun pickResolver(bot: Bot, condition: Condition, frame: BehaviourFrame): Behaviour? {
+    private fun availableResolvers(bot: Bot, condition: Condition): MutableList<Resolver> {
         val options = mutableListOf<Resolver>()
         addDefaultResolvers(bot, options, condition)
         if (condition is Condition.Any) {
@@ -198,19 +220,10 @@ class BotManager(
                 addDefaultResolvers(bot, options, condition)
             }
         }
-        options.removeAll { frame.blocked.contains(it.id) || it.requires.any { fact -> !fact.check(bot.player) } }
         for (key in condition.keys()) {
-            for (resolver in resolvers[key] ?: emptyList()) {
-                if (frame.blocked.contains(resolver.id)) {
-                    continue
-                }
-                if (resolver.requires.any { fact -> !fact.check(bot.player) }) {
-                    continue
-                }
-                options.add(resolver)
-            }
+            options.addAll(resolvers[key] ?: continue)
         }
-        return options.minByOrNull { it.weight }
+        return options
     }
 
     private fun addDefaultResolvers(bot: Bot, resolvers: MutableList<Resolver>, condition: Condition) {
@@ -293,6 +306,9 @@ class BotManager(
                 if (!frame.next()) {
                     AuditLog.event(bot, "completed", frame.behaviour.id)
                     bot.frames.pop()
+                    if (!bot.noTask()) {
+                        bot.frame().blocked.remove(behaviour.id)
+                    }
                     if (behaviour is BotActivity) {
                         bot.blocked.remove(behaviour.id)
                         slots.release(behaviour)

@@ -57,7 +57,7 @@ sealed class Fact<T>(val priority: Int) {
         override fun getValue(player: Player) = player.equipment.count(id)
     }
 
-    data class IntVariable(val id: String, val default: Int?) : Fact<Int?>(1) {
+    data class IntVariable(val id: String, val default: Int) : Fact<Int>(1) {
         override fun keys() = setOf("var:${id}")
         override fun getValue(player: Player) = player.variables.get(id) ?: default
     }

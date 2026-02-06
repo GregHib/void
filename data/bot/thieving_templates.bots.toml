@@ -1,14 +1,18 @@
 [pickpocketting_template]
 capacity = 3
+requires = [
+    { skill = "constitution", min = 100 },
+    { skill = "thieving", min = 1, max = 10 },
+]
 setup = [
     { inventory_space = 1 },
     { location = "$location" },
 ]
 actions = [
     { option = "Pickpocket", npc = "$npc" },
-    { restart = true, check = { skill = "constitution", min = 20 }, success = { skill = "thieving", min = 5 } }
+    { restart = true, wait_if = [{ variable = "delay", min = 0, default = -1 }, { clock = "stunned", min = 0 }], success = { skill = "constitution", max = 20 } }
 ]
 produces = [
-    { carries = "arrow_shafts" },
-    { skill = "fletching" }
+    { carries = "coins" },
+    { skill = "thieving" }
 ]

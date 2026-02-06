@@ -156,9 +156,10 @@ sealed interface BotAction {
 
         private fun search(bot: Bot): BehaviourState {
             val player = bot.player
+            val ids = if (id.contains(",")) id.split(",") else listOf(id)
             for (tile in Spiral.spiral(player.tile, radius)) {
                 for (npc in NPCs.at(tile)) {
-                    if (!wildcardEquals(id, npc.id)) {
+                    if (ids.none { wildcardEquals(it, npc.id) }) {
                         continue
                     }
                     val index = npc.def(player).options.indexOf(option)
@@ -458,16 +459,16 @@ sealed interface BotAction {
      * Restarts the current action when [check] doesn't hold true (or bot has no mode) and success state isn't matched.
      */
     data class Restart(
-        val check: Condition?,
-        val success: Condition
+        val wait: List<Condition>,
+        val success: Condition,
     ) : BotAction {
         override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState {
             if (success.check(bot.player)) {
                 return BehaviourState.Success
             }
-            if (check == null && bot.mode !is EmptyMode) {
+            if (wait.isEmpty() && bot.mode !is EmptyMode) {
                 return BehaviourState.Running
-            } else if (check != null && check.check(bot.player)) {
+            } else if (wait.any { it.check(bot.player) }) {
                 return BehaviourState.Running
             }
             frame.index = 0

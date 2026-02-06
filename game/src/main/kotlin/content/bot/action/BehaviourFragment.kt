@@ -78,7 +78,7 @@ data class BehaviourFragment(
                         value = resolve(action.references["value"], copy.value),
                     )
                     is BotAction.Restart -> BotAction.Restart(
-                        resolveReference(copy.check),
+                        copy.wait.map { resolveReference(it) ?: throw IllegalArgumentException("Restart wait must have success condition.") },
                         resolveReference(copy.success) ?: throw IllegalArgumentException("Restart action must have success condition.")
                     )
                     is BotAction.CloseInterface -> BotAction.CloseInterface
@@ -151,12 +151,16 @@ data class BehaviourFragment(
                 "variable" -> {
                     val id = resolve(references[req.type], req.id)
                     val default = resolve(references["default"], req.default)
-                    when (val value = resolve(references["value"], req.value)) {
-                        is Int -> Condition.Equals(Fact.IntVariable(id, default as? Int), value)
-                        is String -> Condition.Equals(Fact.StringVariable(id, default as? String), value)
-                        is Double -> Condition.Equals(Fact.DoubleVariable(id, default as? Double), value)
-                        is Boolean -> Condition.Equals(Fact.BoolVariable(id, default as? Boolean), value)
-                        else -> null
+                    if (min != null || max != null) {
+                        Condition.range(Fact.IntVariable(id, default as Int), min, max)
+                    } else {
+                        when (val value = resolve(references["value"], req.value)) {
+                            is Int -> Condition.Equals(Fact.IntVariable(id, default as Int), value)
+                            is String -> Condition.Equals(Fact.StringVariable(id, default as? String), value)
+                            is Double -> Condition.Equals(Fact.DoubleVariable(id, default as? Double), value)
+                            is Boolean -> Condition.Equals(Fact.BoolVariable(id, default as? Boolean), value)
+                            else -> null
+                        }
                     }
                 }
                 "inventory_space" -> {

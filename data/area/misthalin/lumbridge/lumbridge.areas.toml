@@ -208,3 +208,7 @@ x = [3136, 3263]
 y = [3136, 3327]
 tags = ["penguin_area"]
 hint = "in the south of the kingdom of Misthalin."
+
+[lumbridge_thieving_area]
+x = [3220, 3225]
+y = [3236, 3242]
