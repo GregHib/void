@@ -1,0 +1,14 @@
+[pickpocketting_template]
+capacity = 3
+setup = [
+    { inventory_space = 1 },
+    { location = "$location" },
+]
+actions = [
+    { option = "Pickpocket", npc = "$npc" },
+    { restart = true, check = { skill = "constitution", min = 20 }, success = { skill = "thieving", min = 5 } }
+]
+produces = [
+    { carries = "arrow_shafts" },
+    { skill = "fletching" }
+]

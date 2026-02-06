@@ -502,11 +502,12 @@ sealed interface BotAction {
      *      bone burying bot
      *      cooking bot
      *      cow bot
-     *      fletching bot
      *      rune mysteries quest bot
      *      bot saving?
      *      bot setups
      *      bot spawning in other locations
+     *
+     *  TODO need a better way of managing inventory. Removing unneeded items in favour of required ones vs emptying full inventory every time etc...
      *
     TODO how to handle repeat actions e.g. repeat Chop-down trees until inv is full - These are actions Gathering, Skilling etc..
     more resolvers like bank all, drop cheap items

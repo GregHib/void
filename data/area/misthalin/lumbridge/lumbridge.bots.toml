@@ -21,6 +21,15 @@ produces = [
     { skill = "attack" }
 ]
 
+# Thieving
+[lumbridge_pickpocket_men]
+template = "pickpocketting_template"
+capacity = 2
+fields = { location = "lumbridge_castle", npc = "men*,women*" }
+requires = [
+    { skill = "thieving", min = 1 }
+]
+
 # Fletching
 [lumbridge_fletch_arrow_shafts]
 template = "fletching_arrow_shafts_template"
