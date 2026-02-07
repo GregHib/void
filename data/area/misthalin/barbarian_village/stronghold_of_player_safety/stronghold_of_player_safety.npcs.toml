@@ -61,7 +61,7 @@ att = 5
 str = 5
 def = 5
 style = "crush"
-max_hit_melee = 10
+combat_def = "mugger"
 drop_table = "mugger"
 examine = "He jumps out and attacks people."
 
