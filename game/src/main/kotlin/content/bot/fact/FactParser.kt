@@ -82,14 +82,14 @@ sealed class FactParser<T> {
             } as Fact<Any>
         }
 
-        override fun predicate(map: Map<String, Any>): Predicate<Any> {
+        override fun predicate(map: Map<String, Any>): Predicate<Any>? {
             return when (val default = map["default"]) {
                 is Int -> Predicate.parseInt(map)
                 is String -> Predicate.parseString(map)
                 is Double -> Predicate.parseDouble(map)
                 is Boolean -> Predicate.parseBool(map)
                 else -> error("Invalid default value $default")
-            } as Predicate<Any>
+            } as? Predicate<Any>
         }
     }
 

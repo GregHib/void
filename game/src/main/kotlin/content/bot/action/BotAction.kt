@@ -543,8 +543,7 @@ sealed interface BotAction {
      *      bot spawning in other locations
      *      tidy up old bot code
      *      move tags into edges not areas
-     *
-     *  TODO need a better way of managing inventory. Removing unneeded items in favour of required ones vs emptying full inventory every time etc...
+     *      item tags?
      *
      *  Idea: Reactions?
      *      A separate queue that runs "reactions" e.g.

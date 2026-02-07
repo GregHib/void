@@ -28,26 +28,24 @@
 [teleport_varrock]
 weight = 125
 requires = [
-    { variable = "spellbook_config", value = 0, default = 0 },
-    { carries = "fire_rune", amount = 1 },
-    { carries = "air_rune", amount = 3 },
-    { carries = "law_rune", amount = 1 },
+    { variable = { id = "spellbook_config", equals = 0, default = 0 } },
+    { carries = [{ id = "fire_rune", min = 1 }, { id = "air_rune", min = 3 }, { id = "law_rune", min = 1 }] },
 ]
 actions = [
     { option = "Cast", interface = "modern_spellbook:varrock_teleport" },
     { wait = 5 },
 ]
 produces = [
-    { location = "varrock_teleport" }
+    { area = { id = "varrock_teleport" } }
 ]
 
 [teleport_varrock_via_bank]
 weight = 150
 requires = [
-    { variable = "spellbook_config", value = 0, default = 0 },
-    { owns = "fire_rune", amount = 1 },
-    { owns = "air_rune", amount = 3 },
-    { owns = "law_rune", amount = 1 },
+    { variable = { id = "spellbook_config", equals = 0, default = 0 }},
+    { owns = { id = "fire_rune", min = 1 }},
+    { owns = { id = "air_rune", min = 3 }},
+    { owns = { id = "law_rune", min = 1 }},
 ]
 actions = [
     { go_to_nearest = "bank" },
@@ -61,18 +59,18 @@ actions = [
 #    { wait = { location = "varrock_teleport" } },
 ]
 produces = [
-    { location = "varrock_teleport" }
+    { area = { id = "varrock_teleport" } }
 ]
 
 [teleport_lumbridge]
 weight = 5
 requires = [
-    { variable = "spellbook_config", value = 0, default = 0 },
-    { variable = "lumbridge_cooldown", value = "normal" }, # clock/timer teleport_delay
+    { variable = { id = "spellbook_config", equals = 0, default = 0 } },
+    { clock = { id = "home_teleport_timeout", max = 0 } },
 ]
 actions = [
     { option = "Cast", interface = "modern_spellbook:lumbridge_home_teleport" },
 ]
 produces = [
-    { location = "lumbridge_teleport" }
+    { area = { id = "lumbridge_teleport" } }
 ]

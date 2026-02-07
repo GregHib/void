@@ -84,9 +84,6 @@ private fun loadActivities(activities: MutableMap<String, BotActivity>, template
             val template = templates[fragment.template] ?: error("Unable to find template '${fragment.template}' for ${fragment.id}.")
             activities[fragment.id] = fragment.activity(template)
         }
-        for (activity in activities.values) {
-            println(activity)
-        }
         activities.size
     }
 }
