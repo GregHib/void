@@ -1,7 +1,5 @@
 package content.bot.action
 
-import content.bot.fact.Condition
-
 interface Reason {
     data class Invalid(val message: String) : HardReason
     object Cancelled : HardReason
@@ -9,7 +7,7 @@ interface Reason {
     object Timeout : HardReason
     object Stuck : SoftReason
     object NoTarget : SoftReason
-    data class Requirement(val fact: Condition) : HardReason
+    data class Requirement(val fact: content.bot.fact.Requirement<*>) : HardReason
 }
 interface SoftReason : Reason
 interface HardReason : Reason

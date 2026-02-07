@@ -9,10 +9,10 @@ data class BehaviourFragment(
     val capacity: Int,
     val weight: Int,
     var template: String,
-    override val requires: List<Condition> = emptyList(),
-    override val resolve: List<Condition> = emptyList(),
+    override val requires: List<Requirement<*>> = emptyList(),
+    override val setup: List<Requirement<*>> = emptyList(),
     override val actions: List<BotAction> = emptyList(),
-    override val produces: Set<Condition> = emptySet(),
+    override val produces: Set<Requirement<*>> = emptySet(),
     val fields: Map<String, Any> = emptyMap(),
 ) : Behaviour {
     fun resolveActions(template: BotActivity, actions: MutableList<BotAction>) {

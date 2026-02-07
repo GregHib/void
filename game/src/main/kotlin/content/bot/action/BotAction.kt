@@ -535,14 +535,25 @@ sealed interface BotAction {
 
     /**
      * TODO
+     *      Split edges into separate files
+     *      combat training dummy bots
      *      firemaking bot
-     *      cooking bot
      *      rune mysteries quest bot
      *      bot saving?
      *      bot setups
      *      bot spawning in other locations
+     *      tidy up old bot code
+     *      move tags into edges not areas
      *
      *  TODO need a better way of managing inventory. Removing unneeded items in favour of required ones vs emptying full inventory every time etc...
+     *
+     *  Idea: Reactions?
+     *      A separate queue that runs "reactions" e.g.
+     *      if my hp is low and I have food - eat it
+     *      if I have bones and am not in combat - bury them
+     *      if I have raw food and there's a fire nearby - cook it
+     *
+     *  TODO behaviour loop detection
      *
     TODO how to handle repeat actions e.g. repeat Chop-down trees until inv is full - These are actions Gathering, Skilling etc..
     more resolvers like bank all, drop cheap items

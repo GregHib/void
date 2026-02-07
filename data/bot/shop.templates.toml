@@ -1,26 +1,26 @@
 [buy_from_shop]
 setup = [
-    { carries = "coins", amount = "$cost" },
-    { location = "$shop_location" },
-    { inventory_space = 1 },
+    { carries = { id = "coins", min = "$cost" } },
+    { area = { id = "$shop_location" } },
+    { inventory_space = { min = 1 } },
 ]
 actions = [
     { option = "Trade", npc = "$shopkeeper", success = { interface = "shop" } },
     { option = "Buy-1", interface = "shop:stock:$item", success = { carries = "$item" } },
 ]
 produces = [
-    { carries = "$item" }
+    { carries = { id = "$item" } }
 ]
 
 [take_shop_sample]
 setup = [
-    { location = "$shop_location" },
-    { inventory_space = 1 },
+    { area = { id = "$shop_location" } },
+    { inventory_space = { min = 1 } },
 ]
 actions = [
     { option = "Trade", npc = "$shopkeeper", success = { interface = "shop" } },
     { option = "Take-1", interface = "shop:sample:$item", success = { carries = "$item" } },
 ]
 produces = [
-    { carries = "$item" }
+    { carries = { id = "$item" } }
 ]

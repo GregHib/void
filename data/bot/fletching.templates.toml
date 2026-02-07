@@ -1,12 +1,11 @@
 [fletching_arrow_shafts_template]
-capacity = 2
 requires = [
-    { owns = "$logs", min = 27 }
+    { owns = { id = "$logs", min = 27 } }
 ]
 setup = [
-    { location = "$location" },
-    { carries = "knife" },
-    { carries = "$logs", min = 27 }
+    { area = { id = "$location" } },
+    { carries = { id = "knife" } },
+    { carries = { id = "$logs", min = 27 } }
 ]
 actions = [
     { item = "knife", on = "$logs", success = { interface = "dialogue_skill_creation" } },
@@ -15,18 +14,18 @@ actions = [
     { restart = true, wait_if = [{ queue = "fletching" }], success = { inventory_space = 26 } }
 ]
 produces = [
-    { carries = "arrow_shafts" },
-    { skill = "fletching" }
+    { carries = { id = "arrow_shafts" } },
+    { skill = { id = "fletching" } }
 ]
 
 [fletching_shortbow_template]
 requires = [
-    { owns = "$logs", min = 27 }
+    { owns = { id = "$logs", min = 27 } }
 ]
 setup = [
-    { location = "$location" },
-    { carries = "knife" },
-    { carries = "$logs", min = 27 }
+    { area = { id = "$location" } },
+    { carries = { id = "knife" } },
+    { carries = { id = "$logs", min = 27 } }
 ]
 actions = [
     { item = "knife", on = "$logs" },
@@ -35,17 +34,17 @@ actions = [
     { restart = true, success = { inventory_space = 26 } }
 ]
 produces = [
-    { skill = "fletching" }
+    { skill = { id = "fletching" } }
 ]
 
 [fletching_longbow_template]
 requires = [
-    { owns = "$logs", min = 27 }
+    { owns = { id = "$logs", min = 27 } }
 ]
 setup = [
-    { location = "$location" },
-    { carries = "knife" },
-    { carries = "$logs", min = 27 }
+    { area = { id = "$location" } },
+    { carries = { id = "knife" } },
+    { carries = { id = "$logs", min = 27 } }
 ]
 actions = [
     { item = "knife", on = "$logs", success = { queue = "fletching_make_dialog" } },
@@ -54,5 +53,5 @@ actions = [
     { restart = true, success = { inventory_space = 26 } }
 ]
 produces = [
-    { skill = "fletching" }
+    { skill = { id = "fletching" } }
 ]

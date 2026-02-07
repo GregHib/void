@@ -146,6 +146,7 @@ sealed class Fact<T>(val priority: Int) {
         override fun getValue(player: Player) = player.levels.get(skill!!)
 
         companion object {
+
             fun of(skill: String): SkillLevel = when (skill.lowercase()) {
                 "attack" -> AttackLevel
                 "defence" -> DefenceLevel

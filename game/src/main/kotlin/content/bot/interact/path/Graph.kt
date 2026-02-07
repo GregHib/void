@@ -2,10 +2,9 @@ package content.bot.interact.path
 
 import content.bot.action.BotAction
 import content.bot.action.NavigationShortcut
-import content.bot.action.actions
-import content.bot.action.requirements
 import content.bot.bot
 import content.bot.fact.Condition
+import content.bot.fact.Requirement
 import content.bot.isBot
 import world.gregs.config.Config
 import world.gregs.voidps.engine.data.definition.Areas
@@ -18,7 +17,7 @@ import java.util.PriorityQueue
 class Graph(
     val endNodes: IntArray = intArrayOf(),
     val edgeWeights: IntArray = intArrayOf(),
-    val edgeConditions: Array<List<Condition>?> = emptyArray(),
+    val edgeConditions: Array<List<Requirement<*>>?> = emptyArray(),
     val actions: Array<List<BotAction>?> = emptyArray(),
     val adjacentEdges: Array<IntArray?> = emptyArray(),
     val tiles: IntArray = intArrayOf(),
@@ -28,7 +27,7 @@ class Graph(
 
     fun actions(edge: Int): List<BotAction>? = actions[edge]
 
-    fun conditions(edge: Int): List<Condition>? = edgeConditions[edge]
+    fun conditions(edge: Int): List<Requirement<*>>? = edgeConditions[edge]
 
     fun tile(edge: Int): Tile {
         val nodeIndex = endNodes[edge]
@@ -146,7 +145,7 @@ class Graph(
         // Edges
         val endNodes = mutableListOf<Int>()
         val weights = mutableListOf<Int>()
-        val conditions = mutableListOf<List<Condition>?>()
+        val conditions = mutableListOf<List<Requirement<*>>?>()
         val actions = mutableListOf<List<BotAction>?>()
         val edges = mutableMapOf<Int, MutableList<Int>>()
         var edgeCount = 0
@@ -177,7 +176,7 @@ class Graph(
             addEdge(end, start, weight, actions)
         }
 
-        fun addEdge(from: Tile, to: Tile, weight: Int, actions: List<BotAction>, conditions: List<Condition>?) {
+        fun addEdge(from: Tile, to: Tile, weight: Int, actions: List<BotAction>, conditions: List<Requirement<*>>?) {
             val start = add(from)
             val end = add(to)
             addEdge(start, end, weight, actions, conditions)
@@ -190,7 +189,7 @@ class Graph(
             return tiles.indexOf(tile)
         }
 
-        fun addEdge(start: Int, end: Int, weight: Int, actions: List<BotAction>? = null, conditions: List<Condition>? = null): Int {
+        fun addEdge(start: Int, end: Int, weight: Int, actions: List<BotAction>? = null, conditions: List<Requirement<*>>? = null): Int {
             val edgeIndex = edgeCount++
             nodes.add(start)
             nodes.add(end)
@@ -244,7 +243,7 @@ class Graph(
                                 var toLevel = 0
                                 var cost = 0
                                 val actions: MutableList<BotAction> = mutableListOf()
-                                val requirements: MutableList<Condition> = mutableListOf()
+                                val requirements = mutableListOf<Pair<String, Map<String, Any>>>()
                                 while (nextEntry()) {
                                     when (val key = key()) {
                                         "from_x" -> fromX = int()
@@ -254,8 +253,19 @@ class Graph(
                                         "to_y" -> toY = int()
                                         "to_level" -> toLevel = int()
                                         "cost" -> cost = int()
-                                        "actions" -> actions(actions)
-                                        "conditions" -> requirements(requirements)
+                                        "actions" -> while (nextElement()) {
+                                            while (nextEntry()) {
+                                                val key = key()
+                                                val value = value()
+                                            }
+                                        }
+                                        "conditions" -> while (nextElement()) {
+                                            while (nextEntry()) {
+                                                val key = key()
+                                                val value = map()
+                                                requirements.add(key to value)
+                                            }
+                                        }
                                         else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                                     }
                                 }
@@ -266,7 +276,7 @@ class Graph(
                                         builder.addEdge(Tile(toX, toY, toLevel), Tile(fromX, fromY, fromLevel), cost, listOf(BotAction.WalkTo(fromX, fromY)), null)
                                     }
                                     requirements.isEmpty() -> builder.addEdge(Tile(fromX, fromY, fromLevel), Tile(toX, toY, toLevel), cost, actions, null)
-                                    else -> builder.addEdge(Tile(fromX, fromY, fromLevel), Tile(toX, toY, toLevel), cost, actions, requirements)
+                                    else -> builder.addEdge(Tile(fromX, fromY, fromLevel), Tile(toX, toY, toLevel), cost, actions, Requirement.parse(requirements, exception()))
                                 }
                             }
                         }

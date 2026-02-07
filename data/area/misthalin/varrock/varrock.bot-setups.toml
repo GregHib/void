@@ -1,0 +1,58 @@
+# Varrock sword shop
+
+[take_bronze_sword]
+template = "take_shop_sample"
+type = "resolver"
+weight = 30
+fields = { shop_location = "varrock_sword_shop", shopkeeper = "sword_shop*,dealga", item = "bronze_sword" }
+
+[buy_bronze_sword]
+template = "buy_from_shop"
+type = "resolver"
+weight = 35
+fields = { cost = 26, shop_location = "varrock_sword_shop", shopkeeper = "sword_shop*,dealga", item = "bronze_sword" }
+
+[buy_iron_sword]
+template = "buy_from_shop"
+type = "resolver"
+weight = 35
+fields = { cost = 91, shop_location = "varrock_sword_shop", shopkeeper = "sword_shop*,dealga", item = "iron_sword" }
+
+[buy_steel_sword]
+template = "buy_from_shop"
+type = "resolver"
+weight = 35
+fields = { cost = 325, shop_location = "varrock_sword_shop", shopkeeper = "sword_shop*,dealga", item = "steel_sword" }
+requires = [
+    { skill = { id = "attack", min = 5 } },
+]
+
+[buy_black_sword]
+template = "buy_from_shop"
+type = "resolver"
+weight = 35
+fields = { cost = 624, shop_location = "varrock_sword_shop", shopkeeper = "sword_shop*,dealga", item = "black_sword" }
+requires = [
+    { skill = { id = "attack", min = 10 } },
+]
+
+[buy_bronze_dagger]
+template = "buy_from_shop"
+type = "resolver"
+weight = 35
+fields = { cost = 10, shop_location = "varrock_sword_shop", shopkeeper = "sword_shop*,dealga", item = "bronze_dagger" }
+
+[buy_iron_dagger]
+template = "buy_from_shop"
+type = "resolver"
+weight = 35
+fields = { cost = 35, shop_location = "varrock_sword_shop", shopkeeper = "sword_shop*,dealga", item = "iron_dagger" }
+
+[buy_steel_dagger]
+template = "buy_from_shop"
+type = "resolver"
+weight = 35
+fields = { cost = 125, shop_location = "varrock_sword_shop", shopkeeper = "sword_shop*,dealga", item = "steel_dagger" }
+requires = [
+    { skill = { id = "attack", min = 5 } },
+]

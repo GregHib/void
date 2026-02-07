@@ -1,0 +1,40 @@
+[kill_chickens]
+requires = [
+    { skill = { id = "$skill", min = 1, max = 5 } },
+]
+setup = [
+    { equips = { id = "bronze_sword,bronze_dagger,bronze_scimitar" } },
+    { area = { id = "$location" } },
+    { inventory_space = { min = 27 } },
+]
+actions = [
+    { option = "Select", interface = "combat_styles:$style" },
+    { option = "Attack", npc = "chicken*", delay = 5, success = { inventory_space = 0 } },
+]
+produces = [
+    { carries = { id = "feather" } },
+    { carries = { id = "bones" } },
+    { carries = { id = "raw_chicken" } },
+    { skill = { id = "$skill" } }
+]
+
+[kill_cows]
+requires = [
+    { combat_level = { min = 10 } },
+    { skill = { id = "$skill", min = 5, max = 10 } },
+]
+setup = [
+    { equips = { id = "iron_sword,iron_dagger,iron_scimitar" } },
+    { area = { id = "$location" } },
+    { inventory_space = { min = 27 } },
+]
+actions = [
+    { option = "Select", interface = "combat_styles:style1" },
+    { option = "Attack", npc = "cow*", delay = 5, success = { inventory_space = 0 } },
+]
+produces = [
+    { carries = { id = "bones" } },
+    { carries = { id = "cowhide" } },
+    { carries = { id = "raw_beef" } },
+    { skill = { id = "$skill" } }
+]

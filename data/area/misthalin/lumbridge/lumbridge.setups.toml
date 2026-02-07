@@ -1,0 +1,42 @@
+# Bobs Brilliant Axes
+[take_bronze_hatchet_bobs]
+template = "take_shop_sample"
+weight = 30
+fields = { shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "bronze_hatchet" }
+
+[take_bronze_pickaxe_bobs]
+template = "take_shop_sample"
+weight = 30
+fields = { shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "bronze_pickaxe" }
+
+[buy_bronze_pickaxe]
+template = "buy_from_shop"
+weight = 35
+fields = { cost = 1, shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "bronze_pickaxe" }
+requires = [
+    { skill = { id = "mining", min = 1 } },
+]
+
+[buy_bronze_hatchet]
+template = "buy_from_shop"
+weight = 35
+fields = { cost = 16, shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "bronze_hatchet" }
+requires = [
+    { skill = { id = "woodcutting", min = 1 } },
+]
+
+[buy_iron_hatchet]
+template = "buy_from_shop"
+weight = 45
+fields = { cost = 56, shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "iron_hatchet" }
+requires = [
+    { skill = { id = "woodcutting", min = 1 } },
+]
+
+[buy_steel_hatchet]
+template = "buy_from_shop"
+weight = 50
+fields = { cost = 200, shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "steel_hatchet" }
+requires = [
+    { skill = { id = "woodcutting", min = 6 } },
+]

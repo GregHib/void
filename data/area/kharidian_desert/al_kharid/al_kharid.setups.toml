@@ -1,0 +1,28 @@
+# Zekes Superior Scimitars
+[buy_bronze_scimitar]
+template = "buy_from_shop"
+fields = { cost = 32, shop_location = "zekes_scimitar_shop", shopkeeper = "zeke", item = "bronze_scimitar" }
+requires = [
+    { skill = { id = "attack", min = 1 } },
+]
+
+[buy_iron_scimitar]
+template = "buy_from_shop"
+fields = { cost = 112, shop_location = "zekes_scimitar_shop", shopkeeper = "zeke", item = "iron_scimitar" }
+requires = [
+    { skill = { id = "attack", min = 1 } },
+]
+
+[buy_steel_scimitar]
+template = "buy_from_shop"
+fields = { cost = 400, shop_location = "zekes_scimitar_shop", shopkeeper = "zeke", item = "steel_scimitar" }
+requires = [
+    { skill = { id = "attack", min = 5 } },
+]
+
+[buy_mithril_scimitar]
+template = "buy_from_shop"
+fields = { cost = 1040, shop_location = "zekes_scimitar_shop", shopkeeper = "zeke", item = "mithril_scimitar" }
+requires = [
+    { skill = { id = "attack", min = 20 } },
+]

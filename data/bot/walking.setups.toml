@@ -12,13 +12,12 @@
 #]
 
 [toggle_run]
-type = "resolver"
 requires = [
-    { variable = "movement", value = "walk" }
+    { variable = { id = "movement", equals = "walk", default = "walk" } }
 ]
 actions = [
     { option = "Turn Run mode on", interface = "energy_orb:run_background" }
 ]
 produces = [
-    { variable = "movement", value = "run" }
+    { variable = { id = "movement", equals = "run", default = "walk" } }
 ]

@@ -26,7 +26,6 @@
 #]
 
 [teleport_varrock]
-type = "shortcut"
 weight = 125
 requires = [
     { variable = "spellbook_config", value = 0, default = 0 },
@@ -43,7 +42,6 @@ produces = [
 ]
 
 [teleport_varrock_via_bank]
-type = "shortcut"
 weight = 150
 requires = [
     { variable = "spellbook_config", value = 0, default = 0 },
@@ -67,7 +65,6 @@ produces = [
 ]
 
 [teleport_lumbridge]
-type = "shortcut"
 weight = 5
 requires = [
     { variable = "spellbook_config", value = 0, default = 0 },

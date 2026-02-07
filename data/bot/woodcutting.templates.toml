@@ -1,0 +1,67 @@
+[normal_tree_template]
+requires = [
+    { skill = { id = "woodcutting", min = 1, max = 15 } },
+]
+setup = [
+    { carries = { id = "steel_hatchet,iron_hatchet,bronze_hatchet" } },
+    { area = { id = "$location" } },
+    { inventory_space = { min = 27 } },
+]
+actions = [
+    { option = "Chop down", object = "tree*", delay = 5, success = { inventory_space = 0 } },
+]
+produces = [
+    { carries = { id = "logs" } },
+    { skill = { id = "woodcutting" } }
+]
+
+[oak_tree_template]
+requires = [
+    { skill = { id = "woodcutting", min = 15, max = 30 } },
+]
+setup = [
+    { carries = { id = "mithril_hatchet,steel_hatchet" } },
+    { area = { id = "$location" } },
+    { inventory_space = { min = 27 } },
+]
+actions = [
+    { option = "Chop down", object = "oak*", delay = 5, success = { inventory_space = 0 } },
+]
+produces = [
+    { carries = { id = "oak_logs" } },
+    { skill = { id = "woodcutting" } }
+]
+
+[willow_tree_template]
+requires = [
+    { skill = { id = "woodcutting", min = 30, max = 60 } },
+]
+setup = [
+    { carries = { id = "rune_hatchet,adamant_hatchet,mithril_hatchet,steel_hatchet" } },
+    { area = { id = "$location" } },
+    { inventory_space = { min = 27 } },
+]
+actions = [
+    { option = "Chop down", object = "willow*", delay = 5, success = { inventory_space = 0 } },
+]
+produces = [
+    { carries = { id = "willow_logs" } },
+    { skill = { id = "woodcutting" } }
+]
+
+[yew_tree_template]
+requires = [
+    { skill = { id = "woodcutting", min = 60, max = 75 } },
+]
+setup = [
+    { carries = { id = "dragon_hatchet,rune_hatchet,adamant_hatchet" } },
+    { area = { id = "$location" } },
+    { inventory_space = { min = 27 } },
+]
+actions = [
+    { option = "Chop down", object = "yew*", delay = 5, success = { inventory_space = 0 } },
+]
+produces = [
+    { carries = { id = "yew_logs" } },
+    { skill = { id = "woodcutting" } }
+]

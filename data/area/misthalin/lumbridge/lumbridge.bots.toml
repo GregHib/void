@@ -1,5 +1,4 @@
 [kill_freds_chickens_attack]
-template = "kill_chickens"
 capacity = 2
 fields = { skill = "attack", location = "lumbridge_chicken_pen", style = "style1" }
 
@@ -49,7 +48,7 @@ template = "pickpocketting_template"
 capacity = 2
 fields = { location = "lumbridge_thieving_area", npc = "lumbridge_man*,lumbridge_woman*" }
 requires = [
-    { skill = "thieving", min = 1 }
+    { skill = { id = "thieving", min = 1 } }
 ]
 
 # Fletching
@@ -58,7 +57,7 @@ template = "fletching_arrow_shafts_template"
 capacity = 2
 fields = { location = "lumbridge_castle_bank", logs = "logs" }
 requires = [
-    { skill = "fletching", min = 1 }
+    { skill = { id = "fletching", min = 1 } }
 ]
 
 [lumbridge_fletch_shortbows]
@@ -66,20 +65,20 @@ template = "fletching_shortbow_template"
 capacity = 2
 fields = { location = "lumbridge_castle_bank", logs = "logs" }
 requires = [
-    { skill = "fletching", min = 5 }
+    { skill = { id = "fletching", min = 5 } }
 ]
 produces = [
-    { carries = "shortbow_u" }
+    { carries = { id = "shortbow_u" } }
 ]
 
 [lumbridge_fletch_longbows]
 template = "fletching_longbow_template"
 fields = { location = "lumbridge_castle_bank", logs = "logs" }
 requires = [
-    { skill = "fletching", min = 10 }
+    { skill = { id = "fletching", min = 10 } }
 ]
 produces = [
-    { carries = "longbow_u" }
+    { carries = { id = "longbow_u" } }
 ]
 
 # Woodcutting
@@ -142,53 +141,3 @@ fields = { raw = "raw_chicken", cooked = "chicken", level = 1, location = "lumbr
 template = "beef_template"
 capacity = 4
 fields = { location = "lumbridge_kitchen", obj = "cooking_range_lumbridge_castle" }
-
-# Bobs Brilliant Axes
-
-[take_bronze_hatchet_bobs]
-type = "resolver"
-weight = 30
-template = "take_shop_sample"
-fields = { shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "bronze_hatchet" }
-
-[take_bronze_pickaxe_bobs]
-type = "resolver"
-weight = 30
-template = "take_shop_sample"
-fields = { shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "bronze_pickaxe" }
-
-[buy_bronze_pickaxe]
-type = "resolver"
-weight = 35
-template = "buy_from_shop"
-fields = { cost = 1, shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "bronze_pickaxe" }
-requires = [
-    { skill = "mining", min = 1 },
-]
-
-[buy_bronze_hatchet]
-type = "resolver"
-weight = 35
-template = "buy_from_shop"
-fields = { cost = 16, shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "bronze_hatchet" }
-requires = [
-    { skill = "woodcutting", min = 1 },
-]
-
-[buy_iron_hatchet]
-type = "resolver"
-weight = 45
-template = "buy_from_shop"
-fields = { cost = 56, shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "iron_hatchet" }
-requires = [
-    { skill = "woodcutting", min = 1 },
-]
-
-[buy_steel_hatchet]
-type = "resolver"
-weight = 50
-template = "buy_from_shop"
-fields = { cost = 200, shop_location = "bobs_axe_shop", shopkeeper = "bob", item = "steel_hatchet" }
-requires = [
-    { skill = "woodcutting", min = 6 },
-]

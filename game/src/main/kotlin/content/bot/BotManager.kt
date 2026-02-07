@@ -4,6 +4,8 @@ import com.github.michaelbull.logging.InlineLogger
 import content.bot.action.*
 import content.bot.fact.Condition
 import content.bot.fact.Fact
+import content.bot.fact.Predicate
+import content.bot.fact.Requirement
 import content.bot.interact.path.Graph
 import content.bot.interact.path.Graph.Companion.loadGraph
 import content.entity.player.bank.bank
@@ -72,7 +74,7 @@ class BotManager(
 
     fun load(files: ConfigFiles): BotManager {
         val shortcuts = mutableListOf<NavigationShortcut>()
-        loadActivities(files.list(Settings["bots.definitions"]), activities, groups, resolvers, shortcuts)
+        loadActivities(files, activities, groups, resolvers, shortcuts)
         graph = loadGraph(files.list(Settings["bots.nav.definitions"]), shortcuts)
         return this
     }
@@ -167,7 +169,7 @@ class BotManager(
             frame.fail(Reason.Requirement(requirement))
             return
         }
-        for (requirement in behaviour.resolve) {
+        for (requirement in behaviour.setup) {
             if (requirement.check(bot.player)) {
                 continue
             }
@@ -177,7 +179,7 @@ class BotManager(
                 .minByOrNull { it.weight }
             if (resolver == null) {
                 if (bot.player["debug", false]) {
-                    logger.info { "No resolver found for for ${behaviour.id} keys: ${requirement.keys()} requirement: ${requirement}." }
+                    logger.info { "No resolver found for for ${behaviour.id} keys: ${requirement.fact.keys()} requirement: ${requirement}." }
                     for (resolver in resolvers) {
                         if (frame.blocked.contains(resolver.id)) {
                             logger.debug { "Resolver: ${resolver.id} - Blocked by frame behaviour: ${frame.behaviour.id}." }
@@ -212,35 +214,31 @@ class BotManager(
         frame.start(bot)
     }
 
-    private fun availableResolvers(bot: Bot, condition: Condition): MutableList<Resolver> {
+    private fun availableResolvers(bot: Bot, condition: Requirement<*>): MutableList<Resolver> {
         val options = mutableListOf<Resolver>()
         addDefaultResolvers(bot, options, condition)
-        if (condition is Condition.Any) {
-            for (condition in condition.conditions) {
-                addDefaultResolvers(bot, options, condition)
-            }
-        }
-        for (key in condition.keys()) {
+        for (key in condition.fact.keys()) {
             options.addAll(resolvers[key] ?: continue)
         }
         return options
     }
 
-    private fun addDefaultResolvers(bot: Bot, resolvers: MutableList<Resolver>, condition: Condition) {
-        if (condition is Condition.Area) {
-            resolvers.add(Resolver("go_to_${condition.area}", -1, actions = listOf(BotAction.GoTo(condition.area)), produces = setOf(condition)))
-        } else if (condition is Condition.AtLeast && condition.fact is Fact.InventoryCount && bot.player.bank.contains(condition.fact.id, condition.min)) {
-            if (condition.min == 1 || condition.min == 5 || condition.min == 10) {
+    private fun addDefaultResolvers(bot: Bot, resolvers: MutableList<Resolver>, requirement: Requirement<*>) {
+        val predicate = requirement.predicate
+        if (predicate is Predicate.InArea) {
+            resolvers.add(Resolver("go_to_${predicate.name}", -1, actions = listOf(BotAction.GoTo(predicate.name)), produces = setOf(requirement)))
+        } else if (predicate is Predicate.IntRange && requirement.fact is Fact.InventoryCount && bot.player.bank.contains(requirement.fact.id, predicate.min!!)) {
+            if (predicate.min == 1 || predicate.min == 5 || predicate.min == 10) {
                 resolvers.add(
                     Resolver(
-                        "withdraw_${condition.fact.id}", weight = 20,
-                        resolve = listOf(
-                            Condition.AtLeast(Fact.InventorySpace, condition.min),
+                        "withdraw_${requirement.fact.id}", weight = 20,
+                        setup = listOf(
+                            Requirement(Fact.InventorySpace, Predicate.IntRange(predicate.min))
                         ),
                         actions = listOf(
                             BotAction.GoToNearest("bank"),
                             BotAction.InteractObject("Use-quickly", "bank_booth*", success = Condition.Equals(Fact.InterfaceOpen("bank"), true)),
-                            BotAction.InterfaceOption("Withdraw-${condition.min}", "bank:inventory:${condition.fact.id}"),
+                            BotAction.InterfaceOption("Withdraw-${predicate.min}", "bank:inventory:${requirement.fact.id}"),
                             BotAction.CloseInterface,
                         )
                     )
@@ -248,40 +246,42 @@ class BotManager(
             } else {
                 resolvers.add(
                     Resolver(
-                        "withdraw_${condition.fact.id}", weight = 20,
-                        resolve = listOf(
-                            Condition.AtLeast(Fact.InventorySpace, condition.min),
+                        "withdraw_${requirement.fact.id}", weight = 20,
+                        setup = listOf(
+                            Requirement(Fact.InventorySpace, Predicate.IntRange(predicate.min))
                         ),
                         actions = listOf(
                             BotAction.GoToNearest("bank"),
                             BotAction.InteractObject("Use-quickly", "bank_booth*", success = Condition.Equals(Fact.InterfaceOpen("bank"), true)),
-                            BotAction.InterfaceOption("Withdraw-X", "bank:inventory:${condition.fact.id}"),
-                            BotAction.IntEntry(condition.min),
+                            BotAction.InterfaceOption("Withdraw-X", "bank:inventory:${requirement.fact.id}"),
+                            BotAction.IntEntry(predicate.min),
                             BotAction.CloseInterface,
                         )
                     )
                 )
             }
-        } else if (condition is Condition.AtLeast && condition.fact is Fact.EquipCount) {
+        } else if (predicate is Predicate.IntRange && requirement.fact is Fact.EquipCount) {
             resolvers.add(
                 Resolver(
-                    "equip_${condition.fact.id}", weight = 0,
-                    requires = listOf(Condition.AtLeast(Fact.InventoryCount(condition.fact.id), condition.min)),
-                    actions = listOf(BotAction.InterfaceOption("Equip", "inventory:inventory:${condition.fact.id}"))
+                    "equip_${requirement.fact.id}", weight = 0,
+                    setup = listOf(
+                        Requirement(Fact.InventoryCount(requirement.fact.id), Predicate.IntRange(predicate.min))
+                    ),
+                    actions = listOf(BotAction.InterfaceOption("Equip", "inventory:inventory:${requirement.fact.id}"))
                 )
             )
             resolvers.add(
                 Resolver(
-                    "withdraw_and_equip_${condition.fact.id}", weight = 0,
-                    requires = listOf(Condition.AtLeast(Fact.BankCount(condition.fact.id), condition.min)),
-                    resolve = listOf(Condition.AtLeast(Fact.InventorySpace, condition.min)),
+                    "withdraw_and_equip_${requirement.fact.id}", weight = 0,
+                    requires = listOf(Requirement(Fact.BankCount(requirement.fact.id), Predicate.IntRange(predicate.min))),
+                    setup = listOf(Requirement(Fact.InventorySpace, Predicate.IntRange(predicate.min))),
                     actions = listOf(
                         BotAction.GoToNearest("bank"),
                         BotAction.InteractObject("Use-quickly", "bank_booth*", success = Condition.Equals(Fact.InterfaceOpen("bank"), true)),
-                        BotAction.InterfaceOption("Withdraw-X", "bank:inventory:${condition.fact.id}"),
-                        BotAction.IntEntry(condition.min),
+                        BotAction.InterfaceOption("Withdraw-X", "bank:inventory:${requirement.fact.id}"),
+                        BotAction.IntEntry(predicate.min!!),
                         BotAction.CloseInterface,
-                        BotAction.InterfaceOption("Equip", "inventory:inventory:${condition.fact.id}")
+                        BotAction.InterfaceOption("Equip", "inventory:inventory:${requirement.fact.id}")
                     )
                 )
             )
