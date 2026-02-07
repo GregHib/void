@@ -12,7 +12,13 @@ class StrongholdOfPlayerSafety : Script {
 
     init {
         playerSpawn {
+            sendVariable("stronghold_of_player_safety_poster")
             sendVariable("stronghold_of_player_safety_lever")
+        }
+
+        objectOperate("Use", "stronghold_of_player_safety_jail_entrance_down") {
+            tele(3082, 4229, 0)
+            set("stronghold_of_player_safety_poster", true)
         }
 
         objectOperate("Pull-back", "player_safety_poster") {

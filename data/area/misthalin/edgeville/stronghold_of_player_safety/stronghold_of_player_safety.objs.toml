@@ -1,3 +1,7 @@
+[player_safety_poster_without_entrance]
+id = 29585
+examine = "A pin-up gublinch. Gross!"
+
 [player_safety_poster]
 id = 29586
 examine = "It looks like there's a small hole in the centre of this poster."
@@ -85,10 +89,6 @@ examine = "Yuck. They are covered in bug slime."
 [stronghold_of_player_safety_rope]
 id = 29729
 examine = "I wonder where this leads?"
-
-[stronghold_of_player_safety_an_old_lever_closed]
-id = 29730
-examine = "I wonder what it does."
 
 [stronghold_of_player_safety_an_old_lever_opened]
 id = 29731

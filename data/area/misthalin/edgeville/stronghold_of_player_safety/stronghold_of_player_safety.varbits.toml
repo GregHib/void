@@ -7,3 +7,8 @@ format = "boolean"
 id = 4500
 persist = true
 format = "boolean"
+
+[stronghold_of_player_safety_poster]
+id = 6278
+persist = true
+format = "boolean"

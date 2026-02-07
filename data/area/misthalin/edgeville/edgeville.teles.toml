@@ -140,11 +140,6 @@ option = "Pull"
 tile = { x = 3090, y = 3474 }
 to = { x = 3154, y = 3924 }
 
-[stronghold_of_player_safety_jail_entrance_down]
-option = "Use"
-tile = { x = 3075, y = 3456 }
-to = { x = 3082, y = 4229 }
-
 [trapdoor_80_opened]
 option = "Climb-down"
 tile = { x = 3097, y = 3468 }
