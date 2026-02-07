@@ -3,10 +3,10 @@ package content.area.misthalin.edgeville.stronghold_of_player_safety
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.engine.entity.character.areaSound
 
 class StrongholdOfPlayerSafety : Script {
 
