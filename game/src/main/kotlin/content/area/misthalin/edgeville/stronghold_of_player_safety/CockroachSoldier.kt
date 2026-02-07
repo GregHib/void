@@ -7,7 +7,7 @@ class CockroachSoldier : Script {
 
     init {
         npcCondition("ranged_only") { target ->
-            target is Player && tile.distanceTo(target.tile) > 1
+            target is Player && tile.distanceTo(target.tile) > 2
         }
     }
 }

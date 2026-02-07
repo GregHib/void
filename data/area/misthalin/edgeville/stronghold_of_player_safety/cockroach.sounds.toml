@@ -1,0 +1,29 @@
+[cockroach_worker_death]
+id = 4546
+
+[cockroach_drone_death]
+id = 4547
+
+[cockroach_drone_defend]
+id = 4548
+
+[cockroach_soldier_death]
+id = 4549
+
+[cockroach_drone_attack]
+id = 4550
+
+[cockroach_soldier_attack]
+id = 4551
+
+[cockroach_worker_defend]
+id = 4552
+
+[cockroach_worker_attack]
+id = 4553
+
+[cockroach_soldier_defend]
+id = 4554
+
+[cockroach_soldier_range]
+id = 4555
