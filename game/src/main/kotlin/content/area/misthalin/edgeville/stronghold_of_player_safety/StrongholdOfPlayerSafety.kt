@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.engine.entity.character.areaSound
 
 class StrongholdOfPlayerSafety : Script {
 
@@ -25,8 +26,11 @@ class StrongholdOfPlayerSafety : Script {
         }
         objectOperate("Pull", "stronghold_of_player_safety_an_old_lever_closed") { (target) ->
             arriveDelay()
-            anim("8804")
-            target.anim("8802")
+            anim("pull_ground_lever")
+            target.anim("lever_down")
+            areaSound("lever", target.tile)
+            delay(2)
+            areaSound("unlock", target.tile)
             delay(3)
             target.replace("stronghold_of_player_safety_an_old_lever_opened")
             set("stronghold_of_player_safety_lever", true)
@@ -34,8 +38,11 @@ class StrongholdOfPlayerSafety : Script {
         }
         objectOperate("Pull", "stronghold_of_player_safety_an_old_lever_opened") { (target) ->
             arriveDelay()
-            anim("8805")
-            target.anim("8803")
+            anim("push_ground_lever")
+            target.anim("lever_up")
+            areaSound("lever", target.tile)
+            delay(1)
+            areaSound("unlock", target.tile)
             delay(2)
             target.replace("stronghold_of_player_safety_an_old_lever_closed")
             set("stronghold_of_player_safety_lever", false)
