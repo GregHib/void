@@ -1,6 +1,7 @@
 package content.bot.fact
 
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.type.Tile
 
 sealed class FactParser<T> {
@@ -30,42 +31,48 @@ sealed class FactParser<T> {
         override fun predicate(map: Map<String, Any>) = Predicate.parseInt(map)
     }
 
-    object InventoryItems : FactParser<Array<Item>>() {
+    object InventoryItems : FactParser<ItemView>() {
         override fun parse(map: Map<String, Any>) = Fact.InventoryItems
         override fun predicate(map: Map<String, Any>) = null
-        override fun requirement(list: List<Map<String, Any>>): Requirement<Array<Item>> {
-            return Requirement(Fact.InventoryItems, Predicate.parseItems(list))
+        override fun requirement(list: List<Map<String, Any>>): Requirement<ItemView> {
+            val predicate = Predicate.parseItems(list)
+
+            // TODO how to handle in a more efficient way?
+            if (predicate.entries.size == 1) {
+                val entry = predicate.entries.single()
+                if(entry.count is Predicate.IntRange) {
+
+                } else if(entry.count is Predicate.IntEquals) {
+
+                }
+
+                entry.filter
+            }
+            return Requirement(Fact.InventoryItems, predicate)
         }
     }
 
-    object ItemCount : FactParser<Int>() {
-        override val required = setOf("id")
-        override fun parse(map: Map<String, Any>) = Fact.ItemCount(map["id"] as String)
-        override fun predicate(map: Map<String, Any>): Predicate<Int>? {
-            if (!map.containsKey("min") && !map.containsKey("equals")) {
-                map as MutableMap<String, Any>
-                map["min"] = 1
-            }
-            return Predicate.parseInt(map)
+    object EquipmentItems : FactParser<ItemView>() {
+        override fun parse(map: Map<String, Any>) = Fact.EquipmentItems
+        override fun predicate(map: Map<String, Any>) = null
+        override fun requirement(list: List<Map<String, Any>>): Requirement<ItemView> {
+            return Requirement(Fact.EquipmentItems, Predicate.parseItems(list))
         }
     }
 
-    object BankCount : FactParser<Int>() {
-        override val required = setOf("id")
-        override fun parse(map: Map<String, Any>) = Fact.BankCount(map["id"] as String)
-        override fun predicate(map: Map<String, Any>) = Predicate.parseInt(map)
+    object BankedItems : FactParser<ItemView>() {
+        override fun parse(map: Map<String, Any>) = Fact.BankItems
+        override fun predicate(map: Map<String, Any>) = null
+        override fun requirement(list: List<Map<String, Any>>): Requirement<ItemView> {
+            return Requirement(Fact.BankItems, Predicate.parseItems(list))
+        }
     }
 
-    object EquipCount : FactParser<Int>() {
-        override val required = setOf("id")
-        override fun parse(map: Map<String, Any>) = Fact.EquipCount(map["id"] as String)
-        override fun predicate(map: Map<String, Any>): Predicate<Int>? {
-            if (!map.containsKey("min") && !map.containsKey("equals")) {
-                val mutable = map.toMutableMap()
-                mutable["min"] = 1
-                return Predicate.parseInt(mutable)
-            }
-            return Predicate.parseInt(map)
+    object AllItems : FactParser<ItemView>() {
+        override fun parse(map: Map<String, Any>) = Fact.AllItems
+        override fun predicate(map: Map<String, Any>) = null
+        override fun requirement(list: List<Map<String, Any>>): Requirement<ItemView> {
+            return Requirement(Fact.AllItems, Predicate.parseItems(list))
         }
     }
 
@@ -140,9 +147,9 @@ sealed class FactParser<T> {
         val parsers = mapOf(
             "inventory_space" to InventorySpace,
             "carries" to InventoryItems,
-            "owns" to ItemCount,
-            "banked" to BankCount,
-            "equips" to EquipCount,
+            "owns" to AllItems,
+            "banked" to BankedItems,
+            "equips" to EquipmentItems,
             "variable" to Variable,
             "clock" to Clock,
             "has_timer" to Timer,
@@ -154,4 +161,12 @@ sealed class FactParser<T> {
             "skill" to Skill,
         )
     }
+}
+
+class ItemView(vararg val inventories: Inventory) {
+    fun contains(item: String) = inventories.any { it.contains(item) }
+    fun contains(item: String, amount: Int) = inventories.any { it.contains(item, amount) }
+    fun count(item: String) = inventories.sumOf { it.count(item) }
+    fun count(block: (Item) -> Boolean) = inventories.sumOf { it.items.count(block) }
+    fun size() = inventories.sumOf { it.size }
 }

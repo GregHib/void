@@ -15,7 +15,6 @@ sealed class Predicate<T> {
     open val evaluator: RequirementEvaluator<T>? = null
 
     data class IntRange(val min: Int? = null, val max: Int? = null) : Predicate<Int>() {
-        override val evaluator = RequirementEvaluator.IntEvaluator
         override fun test(player: Player, value: Int): Boolean {
             if (min != null && value < min) return false
             if (max != null && value > max) return false
@@ -24,7 +23,6 @@ sealed class Predicate<T> {
     }
 
     data class IntEquals(val value: Int) : Predicate<Int>() {
-        override val evaluator = RequirementEvaluator.IntEvaluator
         override fun test(player: Player, value: Int) = value == this.value
     }
 
@@ -70,7 +68,7 @@ sealed class Predicate<T> {
         override fun test(player: Player, value: Tile) = value.within(x, y, level, radius)
     }
 
-    data class InventoryItems(val entries: List<Entry>) : Predicate<Array<Item>>() {
+    data class InventoryItems(val entries: List<Entry>) : Predicate<ItemView>() {
         data class Entry(
             val filter: Predicate<Item>,
             val count: Predicate<Int>,
@@ -78,7 +76,7 @@ sealed class Predicate<T> {
         override val evaluator = RequirementEvaluator.InventoryEval
         override val children = entries.map { it.count }.toSet() + entries.map { it.filter }.toSet()
 
-        override fun test(player: Player, value: Array<Item>): Boolean {
+        override fun test(player: Player, value: ItemView): Boolean {
             for (entry in entries) {
                 val count = value.count { entry.filter.test(player, it) }
                 if (!entry.count.test(player, count)) {
@@ -158,35 +156,40 @@ sealed class Predicate<T> {
             else -> null
         }
 
-        fun parseItems(items: List<Map<String, Any>>): Predicate<Array<Item>> {
+        fun parseItems(items: List<Map<String, Any>>): InventoryItems {
             val entries = mutableListOf<InventoryItems.Entry>()
             for (item in items) {
-                require(item.containsKey("id")) { "Item must have field 'id' in map $item" }
-                val id = item["id"] as String
-                var filter = if (id.contains(",")) {
-                    val ids = id.split(",")
-                    AnyItem(ids.flatMap { id ->
-                        if (id.any { char -> char == '*' || char == '#' }) {
-                            Wildcards.get(id, Wildcard.Item)
-                        } else {
-                            setOf(id)
-                        }
-                    }.toSet())
-                } else if (id.any { it == '*' || it == '#' }) {
-                    AnyItem(Wildcards.get(id, Wildcard.Item))
-                } else {
-                    EqualsItem(id)
-                }
-                if (item.containsKey("usable") && item["usable"] as Boolean) {
-                    // TODO lookup values from custom configs e.g. firemaking.level
-                    filter = AllOf(setOf(filter, UsableItem))
-                } else if (item.containsKey("equipable") && item["equipable"] as Boolean) {
-                    filter = AllOf(setOf(filter, EquipableItem))
-                }
+                val filter = itemFilter(item)
                 val counter = parseInt(item) ?: IntRange(min = 1)
                 entries.add(InventoryItems.Entry(filter, counter))
             }
             return InventoryItems(entries)
+        }
+
+        private fun itemFilter(item: Map<String, Any>): Predicate<Item> {
+            require(item.containsKey("id")) { "Item must have field 'id' in map $item" }
+            val id = item["id"] as String
+            var filter = if (id.contains(",")) {
+                val ids = id.split(",")
+                AnyItem(ids.flatMap { id ->
+                    if (id.any { char -> char == '*' || char == '#' }) {
+                        Wildcards.get(id, Wildcard.Item)
+                    } else {
+                        setOf(id)
+                    }
+                }.toSet())
+            } else if (id.any { it == '*' || it == '#' }) {
+                AnyItem(Wildcards.get(id, Wildcard.Item))
+            } else {
+                EqualsItem(id)
+            }
+            if (item.containsKey("usable") && item["usable"] as Boolean) {
+                // TODO lookup values from custom configs e.g. firemaking.level
+                filter = AllOf(setOf(filter, UsableItem))
+            } else if (item.containsKey("equipable") && item["equipable"] as Boolean) {
+                filter = AllOf(setOf(filter, EquipableItem))
+            }
+            return filter
         }
     }
 }

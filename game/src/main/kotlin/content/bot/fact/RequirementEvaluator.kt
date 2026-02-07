@@ -1,8 +1,8 @@
 package content.bot.fact
 
+import content.bot.fact.Deficit.MissingInventory
 import content.bot.fact.Predicate.IntEquals
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.type.Tile
 
 sealed class RequirementEvaluator<T> {
@@ -20,22 +20,10 @@ sealed class RequirementEvaluator<T> {
         }
     }
 
-    object IntEvaluator : RequirementEvaluator<Int>() {
-        override fun evaluate(player: Player, fact: Fact<Int>, predicate: Predicate<Int>): List<Deficit> {
-            return when (fact) {
-                is Fact.EquipCount if predicate is Predicate.IntRange -> listOf(Deficit.MissingItem(Predicate.EqualsItem(fact.id), predicate.min!!))
-                is Fact.InventoryCount if predicate is Predicate.IntRange -> listOf(Deficit.MissingItem(Predicate.EqualsItem(fact.id), predicate.min!!))
-                is Fact.EquipCount if predicate is IntEquals -> listOf(Deficit.MissingItem(Predicate.EqualsItem(fact.id), predicate.value))
-                is Fact.InventoryCount if predicate is IntEquals -> listOf(Deficit.MissingItem(Predicate.EqualsItem(fact.id), predicate.value))
-                else -> emptyList()
-            }
-        }
-    }
-
-    object InventoryEval : RequirementEvaluator<Array<Item>>() {
-        override fun evaluate(player: Player, fact: Fact<Array<Item>>, predicate: Predicate<Array<Item>>): List<Deficit> {
+    object InventoryEval : RequirementEvaluator<ItemView>() {
+        override fun evaluate(player: Player, fact: Fact<ItemView>, predicate: Predicate<ItemView>): List<Deficit> {
             if (predicate is Predicate.InventoryItems) {
-                val deficits = mutableListOf<Deficit>()
+                val entries = mutableListOf<MissingInventory.Entry>()
                 val value = fact.getValue(player)
                 for (entry in predicate.entries) {
                     val have = value.count { entry.filter.test(player, it) }
@@ -48,10 +36,10 @@ sealed class RequirementEvaluator<T> {
                         else -> continue
                     }
                     if (needed > 0) {
-                        deficits += Deficit.MissingItem(entry.filter, needed)
+                        entries += MissingInventory.Entry(entry.filter, needed)
                     }
                 }
-                return deficits
+                return listOf(MissingInventory(entries))
             }
             return emptyList()
         }
