@@ -2,6 +2,7 @@ package content.bot.interact.path
 
 import content.bot.action.BotAction
 import content.bot.action.NavigationShortcut
+import content.bot.action.actions
 import content.bot.bot
 import content.bot.fact.Condition
 import content.bot.fact.Requirement
@@ -253,12 +254,7 @@ class Graph(
                                         "to_y" -> toY = int()
                                         "to_level" -> toLevel = int()
                                         "cost" -> cost = int()
-                                        "actions" -> while (nextElement()) {
-                                            while (nextEntry()) {
-                                                val key = key()
-                                                val value = value()
-                                            }
-                                        }
+                                        "actions" -> actions(actions)
                                         "conditions" -> while (nextElement()) {
                                             while (nextEntry()) {
                                                 val key = key()

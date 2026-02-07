@@ -3,6 +3,7 @@ package content.bot.action
 import content.bot.Bot
 import content.bot.BotManager
 import content.bot.fact.Condition
+import content.bot.fact.Requirement
 import content.bot.interact.path.Graph
 import content.entity.combat.attackers
 import content.entity.combat.dead
@@ -136,7 +137,7 @@ sealed interface BotAction {
         val option: String,
         val id: String,
         val delay: Int = 0,
-        val success: Condition? = null,
+        val success: Requirement<*>? = null,
         val radius: Int = 10,
     ) : BotAction {
 
@@ -188,7 +189,7 @@ sealed interface BotAction {
     data class FightNpc(
         val id: String,
         val delay: Int = 0,
-        val success: Condition? = null,
+        val success: Requirement<*>? = null,
         val radius: Int = 10,
         val healPercentage: Int = 20,
         val lootOverValue: Int = 0,
@@ -278,7 +279,7 @@ sealed interface BotAction {
         val option: String,
         val id: String,
         val delay: Int = 0,
-        val success: Condition? = null,
+        val success: Requirement<*>? = null,
         val radius: Int = 10,
     ) : BotAction {
 
@@ -326,7 +327,7 @@ sealed interface BotAction {
         }
     }
 
-    data class ItemOnItem(val item: String, val on: String, val success: Condition? = null) : BotAction {
+    data class ItemOnItem(val item: String, val on: String, val success: Requirement<*>? = null) : BotAction {
         override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState? {
             if (success != null && success.check(bot.player)) {
                 return BehaviourState.Success
@@ -352,7 +353,7 @@ sealed interface BotAction {
         }
     }
 
-    data class ItemOnObject(val item: String, val id: String, val success: Condition? = null) : BotAction {
+    data class ItemOnObject(val item: String, val id: String, val success: Requirement<*>? = null) : BotAction {
         override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState {
             if (success != null && success.check(bot.player)) {
                 return BehaviourState.Success
@@ -391,7 +392,7 @@ sealed interface BotAction {
         }
     }
 
-    data class InterfaceOption(val option: String, val id: String, val success: Condition? = null) : BotAction {
+    data class InterfaceOption(val option: String, val id: String, val success: Requirement<*>? = null) : BotAction {
         override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState? {
             if (success != null && success.check(bot.player)) {
                 return BehaviourState.Success
@@ -439,7 +440,7 @@ sealed interface BotAction {
         }
     }
 
-    data class DialogueContinue(val option: String, val id: String, val success: Condition? = null) : BotAction {
+    data class DialogueContinue(val option: String, val id: String, val success: Requirement<*>? = null) : BotAction {
         override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState {
             if (success != null && success.check(bot.player)) {
                 return BehaviourState.Success
@@ -496,8 +497,8 @@ sealed interface BotAction {
      * Restarts the current action when [check] doesn't hold true (or bot has no mode) and success state isn't matched.
      */
     data class Restart(
-        val wait: List<Condition>,
-        val success: Condition,
+        val wait: List<Requirement<*>>,
+        val success: Requirement<*>,
     ) : BotAction {
         override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState {
             if (success.check(bot.player)) {

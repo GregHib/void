@@ -98,22 +98,20 @@ sealed class FactParser<T> {
 
     object Timer : FactParser<Boolean>() {
         override val required = setOf("id")
-        override fun parse(map: Map<String, Any>): Fact<Boolean> {
-            return Fact.HasTimer(map["id"] as String)
-        }
-        override fun predicate(map: Map<String, Any>) = Predicate.parseBool(map)
+        override fun parse(map: Map<String, Any>) = Fact.HasTimer(map["id"] as String)
+        override fun predicate(map: Map<String, Any>) = Predicate.BooleanTrue
     }
 
     object Queue : FactParser<Boolean>() {
         override val required = setOf("id")
         override fun parse(map: Map<String, Any>) = Fact.HasQueue(map["id"] as String)
-        override fun predicate(map: Map<String, Any>) = Predicate.parseBool(map)
+        override fun predicate(map: Map<String, Any>) = Predicate.BooleanTrue
     }
 
     object Interface : FactParser<Boolean>() {
         override val required = setOf("id")
         override fun parse(map: Map<String, Any>) = Fact.InterfaceOpen(map["id"] as String)
-        override fun predicate(map: Map<String, Any>) = Predicate.parseBool(map)
+        override fun predicate(map: Map<String, Any>) = Predicate.BooleanTrue
     }
 
     object PlayerTile : FactParser<Tile>() {

@@ -237,7 +237,7 @@ class BotManager(
                         ),
                         actions = listOf(
                             BotAction.GoToNearest("bank"),
-                            BotAction.InteractObject("Use-quickly", "bank_booth*", success = Condition.Equals(Fact.InterfaceOpen("bank"), true)),
+                            BotAction.InteractObject("Use-quickly", "bank_booth*", success = Requirement(Fact.InterfaceOpen("bank"), Predicate.BooleanTrue)),
                             BotAction.InterfaceOption("Withdraw-${predicate.min}", "bank:inventory:${requirement.fact.id}"),
                             BotAction.CloseInterface,
                         )
@@ -252,7 +252,7 @@ class BotManager(
                         ),
                         actions = listOf(
                             BotAction.GoToNearest("bank"),
-                            BotAction.InteractObject("Use-quickly", "bank_booth*", success = Condition.Equals(Fact.InterfaceOpen("bank"), true)),
+                            BotAction.InteractObject("Use-quickly", "bank_booth*", success = Requirement(Fact.InterfaceOpen("bank"), Predicate.BooleanTrue)),
                             BotAction.InterfaceOption("Withdraw-X", "bank:inventory:${requirement.fact.id}"),
                             BotAction.IntEntry(predicate.min),
                             BotAction.CloseInterface,
@@ -277,7 +277,7 @@ class BotManager(
                     setup = listOf(Requirement(Fact.InventorySpace, Predicate.IntRange(predicate.min))),
                     actions = listOf(
                         BotAction.GoToNearest("bank"),
-                        BotAction.InteractObject("Use-quickly", "bank_booth*", success = Condition.Equals(Fact.InterfaceOpen("bank"), true)),
+                        BotAction.InteractObject("Use-quickly", "bank_booth*", success = Requirement(Fact.InterfaceOpen("bank"), Predicate.BooleanTrue)),
                         BotAction.InterfaceOption("Withdraw-X", "bank:inventory:${requirement.fact.id}"),
                         BotAction.IntEntry(predicate.min!!),
                         BotAction.CloseInterface,

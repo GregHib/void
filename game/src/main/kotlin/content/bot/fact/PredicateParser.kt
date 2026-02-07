@@ -5,12 +5,12 @@ import world.gregs.voidps.type.Tile
 sealed class PredicateParser<T> {
     open val required: Set<String> = emptySet()
     open val optional: Set<String> = emptySet()
-    abstract fun parse(map: Map<String, Any>) : Predicate<T>?
+    abstract fun parse(map: Map<String, Any>): Predicate<T>?
 
     object IntegerParser : PredicateParser<Int>() {
         override val optional = setOf("min", "max", "equals")
 
-        override fun parse(map: Map<String, Any>) : Predicate<Int>? {
+        override fun parse(map: Map<String, Any>): Predicate<Int>? {
             if (map.containsKey("min") || map.containsKey("max")) {
                 return Predicate.IntRange(map["min"] as? Int, map["max"] as? Int)
             } else if (map.containsKey("equals")) {
@@ -23,15 +23,17 @@ sealed class PredicateParser<T> {
     object BooleanParser : PredicateParser<Boolean>() {
         override val required = setOf("equals")
 
-        override fun parse(map: Map<String, Any>) : Predicate<Boolean> {
-            return Predicate.BooleanEquals(map["equals"] as Boolean)
+        override fun parse(map: Map<String, Any>) = if (map["equals"] as Boolean) {
+            Predicate.BooleanTrue
+        } else {
+            Predicate.BooleanFalse
         }
     }
 
     object TileParser : PredicateParser<Tile>() {
         override val optional = setOf("x", "y", "level")
 
-        override fun parse(map: Map<String, Any>) : Predicate<Tile> {
+        override fun parse(map: Map<String, Any>): Predicate<Tile> {
             return Predicate.TileEquals(map["x"] as? Int, map["y"] as? Int, map["level"] as? Int)
         }
     }

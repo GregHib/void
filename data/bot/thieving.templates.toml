@@ -9,7 +9,7 @@ setup = [
 ]
 actions = [
     { option = "Pickpocket", npc = "$npc" },
-    { restart = true, wait_if = [{ variable = "delay", min = 0, default = -1 }, { clock = "stunned", min = 0 }], success = { skill = "constitution", max = 20 } }
+    { restart = true, wait_if = [{ variable = { id = "delay", min = 0, default = -1 } }, { clock = { id = "stunned", min = 0 } }], success = { skill = { id = "constitution", max = 20 } } }
 ]
 produces = [
     { carries = { id = "coins" } },

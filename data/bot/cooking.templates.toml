@@ -8,10 +8,10 @@ setup = [
     { area = { id = "$location" } },
 ]
 actions = [
-    { item = "$raw", on_object = "$obj", success = { interface = "dialogue_skill_creation" } },
+    { item = "$raw", on_object = "$obj", success = { interface_open = { id = "dialogue_skill_creation" } } },
     { option = "All", interface = "skill_creation_amount:all" },
     { continue = "dialogue_skill_creation:choice1" },
-    { restart = true, wait_if = [{ queue = "cooking" }], success = { carries = "$raw", max = 0 } }
+    { restart = true, wait_if = [{ has_queue = { id = "cooking" } }], success = { carries = { id = "$raw", max = 0 } } }
 ]
 produces = [
     { skill = { id = "cooking" } },
@@ -29,11 +29,11 @@ setup = [
     { area = { id = "$location" } },
 ]
 actions = [
-    { item = "raw_beef", on_object = "$obj", success = { interface = "dialogue_multi2" } },
-    { option = "Continue", continue = "dialogue_multi2:line2", success = { interface = "dialogue_skill_creation" } },
+    { item = "raw_beef", on_object = "$obj", success = { interface_open = { id = "dialogue_multi2" } } },
+    { option = "Continue", continue = "dialogue_multi2:line2", success = { interface_open = { id = "dialogue_skill_creation" } } },
     { option = "All", interface = "skill_creation_amount:all" },
     { continue = "dialogue_skill_creation:choice1" },
-    { restart = true, wait_if = [{ queue = "cooking" }], success = { carries = "raw_beef", max = 0 } }
+    { restart = true, wait_if = [{ has_queue = { id = "cooking" } }], success = { carries = { id = "raw_beef", max = 0 } } }
 ]
 produces = [
     { skill = { id = "cooking" } },

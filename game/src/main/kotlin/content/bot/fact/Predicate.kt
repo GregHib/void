@@ -34,8 +34,12 @@ sealed interface Predicate<T> {
         override fun test(value: Tile) = value in Areas[name]
     }
 
-    data class BooleanEquals(val value: Boolean) : Predicate<Boolean> {
-        override fun test(value: Boolean) = value == this.value
+    object BooleanTrue : Predicate<Boolean> {
+        override fun test(value: Boolean) = value
+    }
+
+    object BooleanFalse : Predicate<Boolean> {
+        override fun test(value: Boolean) = !value
     }
 
     data class StringEquals(val value: String) : Predicate<String> {
@@ -79,7 +83,7 @@ sealed interface Predicate<T> {
             if (equals !is Boolean) {
                 error("Unsupported equals type: '${equals.let { it::class.simpleName }}'")
             }
-            return BooleanEquals(equals)
+            return if (equals) BooleanTrue else BooleanFalse
         }
 
         fun parseString(map: Map<String, Any>): Predicate<String>? {

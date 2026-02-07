@@ -8,10 +8,10 @@ setup = [
     { carries = { id = "$logs", min = 27 } }
 ]
 actions = [
-    { item = "knife", on = "$logs", success = { interface = "dialogue_skill_creation" } },
+    { item = "knife", on = "$logs", success = { interface_open = { id = "dialogue_skill_creation" } } },
     { option = "All", interface = "skill_creation_amount:all" },
     { continue = "dialogue_skill_creation:choice1" },
-    { restart = true, wait_if = [{ queue = "fletching" }], success = { inventory_space = 26 } }
+    { restart = true, wait_if = [{ has_queue = { id = "fletching" } }], success = { inventory_space = { min = 26 } } }
 ]
 produces = [
     { carries = { id = "arrow_shafts" } },
@@ -30,8 +30,8 @@ setup = [
 actions = [
     { item = "knife", on = "$logs" },
     { option = "All", interface = "skill_creation_amount:all" },
-    { continue = "dialogue_skill_creation:choice2", success = { queue = "fletching" } },
-    { restart = true, success = { inventory_space = 26 } }
+    { continue = "dialogue_skill_creation:choice2", success = { has_queue = { id = "fletching" } } },
+    { restart = true, success = { inventory_space = { min = 26 } } }
 ]
 produces = [
     { skill = { id = "fletching" } }
@@ -47,10 +47,10 @@ setup = [
     { carries = { id = "$logs", min = 27 } }
 ]
 actions = [
-    { item = "knife", on = "$logs", success = { queue = "fletching_make_dialog" } },
+    { item = "knife", on = "$logs", success = { has_queue = { id = "fletching_make_dialog" } } },
     { option = "All", interface = "skill_creation_amount:all" },
-    { continue = "dialogue_skill_creation:choice3", success = { queue = "fletching" } },
-    { restart = true, success = { inventory_space = 26 } }
+    { continue = "dialogue_skill_creation:choice3", success = { has_queue = { id = "fletching" } } },
+    { restart = true, success = { inventory_space = { min = 26 } } }
 ]
 produces = [
     { skill = { id = "fletching" } }

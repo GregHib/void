@@ -9,7 +9,7 @@ setup = [
 ]
 actions = [
     { option = "Select", interface = "combat_styles:$style" },
-    { option = "Attack", npc = "chicken*", delay = 5, success = { inventory_space = 0 } },
+    { option = "Attack", npc = "chicken*", delay = 5, success = { inventory_space = { max = 0 } } },
 ]
 produces = [
     { carries = { id = "feather" } },
@@ -30,7 +30,7 @@ setup = [
 ]
 actions = [
     { option = "Select", interface = "combat_styles:style1" },
-    { option = "Attack", npc = "cow*", delay = 5, success = { inventory_space = 0 } },
+    { option = "Attack", npc = "cow*", delay = 5, success = { inventory_space = { max = 0 } } },
 ]
 produces = [
     { carries = { id = "bones" } },

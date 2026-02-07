@@ -1,4 +1,5 @@
 [kill_freds_chickens_attack]
+template = "kill_chickens"
 capacity = 2
 fields = { skill = "attack", location = "lumbridge_chicken_pen", style = "style1" }
 
