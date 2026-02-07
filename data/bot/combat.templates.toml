@@ -12,9 +12,9 @@ actions = [
     { option = "Attack", npc = "chicken*", delay = 5, success = { inventory_space = { max = 0 } } },
 ]
 produces = [
-    { carries = { id = "feather" } },
-    { carries = { id = "bones" } },
-    { carries = { id = "raw_chicken" } },
+    { carries = [{ id = "feather" }] },
+    { carries = [{ id = "bones" }] },
+    { carries = [{ id = "raw_chicken" }] },
     { skill = { id = "$skill" } }
 ]
 
@@ -33,8 +33,8 @@ actions = [
     { option = "Attack", npc = "cow*", delay = 5, success = { inventory_space = { max = 0 } } },
 ]
 produces = [
-    { carries = { id = "bones" } },
-    { carries = { id = "cowhide" } },
-    { carries = { id = "raw_beef" } },
+    { carries = [{ id = "bones" }] },
+    { carries = [{ id = "cowhide" }] },
+    { carries = [{ id = "raw_beef" }] },
     { skill = { id = "$skill" } }
 ]

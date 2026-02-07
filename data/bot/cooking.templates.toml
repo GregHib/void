@@ -4,18 +4,18 @@ requires = [
     { skill = { id = "cooking", min = "$level" } },
 ]
 setup = [
-    { carries = { id = "$raw", amount = 28 } },
+    { carries = [{ id = "$raw", amount = 28 }] },
     { area = { id = "$location" } },
 ]
 actions = [
     { item = "$raw", on_object = "$obj", success = { interface_open = { id = "dialogue_skill_creation" } } },
     { option = "All", interface = "skill_creation_amount:all" },
     { continue = "dialogue_skill_creation:choice1" },
-    { restart = true, wait_if = [{ has_queue = { id = "cooking" } }], success = { carries = { id = "$raw", max = 0 } } }
+    { restart = true, wait_if = [{ has_queue = { id = "cooking" } }], success = { carries = [{ id = "$raw", max = 0 }] } }
 ]
 produces = [
     { skill = { id = "cooking" } },
-    { carries = { id = "$cooked" } }
+    { carries = [{ id = "$cooked" }] }
 ]
 
 # Beef has a different popup so can't use normal template
@@ -25,7 +25,7 @@ requires = [
     { skill = { id = "cooking", min = 1 } },
 ]
 setup = [
-    { carries = { id = "raw_beef", amount = 28 } },
+    { carries = [{ id = "raw_beef", amount = 28 }] },
     { area = { id = "$location" } },
 ]
 actions = [
@@ -33,9 +33,9 @@ actions = [
     { option = "Continue", continue = "dialogue_multi2:line2", success = { interface_open = { id = "dialogue_skill_creation" } } },
     { option = "All", interface = "skill_creation_amount:all" },
     { continue = "dialogue_skill_creation:choice1" },
-    { restart = true, wait_if = [{ has_queue = { id = "cooking" } }], success = { carries = { id = "raw_beef", max = 0 } } }
+    { restart = true, wait_if = [{ has_queue = { id = "cooking" } }], success = { carries = [{ id = "raw_beef", max = 0 }] } }
 ]
 produces = [
     { skill = { id = "cooking" } },
-    { carries = { id = "beef" } }
+    { carries = [{ id = "beef" }] }
 ]

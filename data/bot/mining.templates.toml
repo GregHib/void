@@ -3,7 +3,7 @@ requires = [
     { skill = { id = "mining", min = 1, max = 15 } },
 ]
 setup = [
-    { carries = { id = "steel_pickaxe,iron_pickaxe,bronze_pickaxe" } },
+    { carries = [{ id = "steel_pickaxe,iron_pickaxe,bronze_pickaxe", usable = true }] },
     { area = { id = "$location" } },
     { inventory_space = { min = 27 } },
 ]
@@ -11,7 +11,7 @@ actions = [
     { option = "Mine", object = "copper_rocks*", delay = 5, success = { inventory_space = { max = 0 } } },
 ]
 produces = [
-    { carries = { id = "copper_ore" } },
+    { carries = [{ id = "copper_ore" }] },
     { skill = { id = "mining" } }
 ]
 
@@ -20,7 +20,7 @@ requires = [
     { skill = { id = "mining", min = 1, max = 15 } },
 ]
 setup = [
-    { carries = { id = "steel_pickaxe,iron_pickaxe,bronze_pickaxe" } },
+    { carries = [{ id = "steel_pickaxe,iron_pickaxe,bronze_pickaxe", usable = true }] },
     { area = { id = "$location" } },
     { inventory_space = { min = 27 } },
 ]
@@ -28,7 +28,7 @@ actions = [
     { option = "Mine", object = "tin_rocks*", delay = 5, success = { inventory_space = { max = 0 } } },
 ]
 produces = [
-    { carries = { id = "tin_ore" } },
+    { carries = [{ id = "tin_ore" }] },
     { skill = { id = "mining" } }
 ]
 
@@ -37,7 +37,7 @@ requires = [
     { skill = { id = "mining", min = 1, max = 15 } },
 ]
 setup = [
-    { carries = { id = "steel_pickaxe,iron_pickaxe,bronze_pickaxe" } },
+    { carries = [{ id = "steel_pickaxe,iron_pickaxe,bronze_pickaxe", usable = true }] },
     { area = { id = "$location" } },
     { inventory_space = { min = 27 } },
 ]
@@ -45,7 +45,7 @@ actions = [
     { option = "Mine", object = "clay_rocks*", delay = 5, success = { inventory_space = { max = 0 } } },
 ]
 produces = [
-    { carries = { id = "clay" } },
+    { carries = [{ id = "clay" }] },
     { skill = { id = "mining" } }
 ]
 
@@ -54,7 +54,7 @@ requires = [
     { skill = { id = "mining", min = 15, max = 40 } },
 ]
 setup = [
-    { carries = { id = "adamant_pickaxe,mithril_pickaxe,steel_pickaxe" } },
+    { carries = [{ id = "adamant_pickaxe,mithril_pickaxe,steel_pickaxe", usable = true }] },
     { area = { id = "$location" } },
     { inventory_space = { min = 27 } },
 ]
@@ -62,7 +62,7 @@ actions = [
     { option = "Mine", object = "iron_rocks*", delay = 5, success = { inventory_space = { max = 0 } } },
 ]
 produces = [
-    { carries = { id = "iron_ore" } },
+    { carries = [{ id = "iron_ore" }] },
     { skill = { id = "mining" } }
 ]
 
@@ -71,7 +71,7 @@ requires = [
     { skill = { id = "mining", min = 20, max = 40 } },
 ]
 setup = [
-    { carries = { id = "adamant_pickaxe,mithril_pickaxe,steel_pickaxe" } },
+    { carries = [{ id = "adamant_pickaxe,mithril_pickaxe,steel_pickaxe", usable = true }] },
     { area = { id = "$location" } },
     { inventory_space = { min = 27 } },
 ]
@@ -79,7 +79,7 @@ actions = [
     { option = "Mine", object = "silver_rocks*", delay = 5, success = { inventory_space = { max = 0 } } },
 ]
 produces = [
-    { carries = { id = "silver_ore" } },
+    { carries = [{ id = "silver_ore" }] },
     { skill = { id = "mining" } }
 ]
 
@@ -88,7 +88,7 @@ requires = [
     { skill = { id = "mining", min = 30, max = 55 } },
 ]
 setup = [
-    { carries = { id = "rune_pickaxe,adamant_pickaxe,mithril_pickaxe" } },
+    { carries = [{ id = "rune_pickaxe,adamant_pickaxe,mithril_pickaxe", usable = true }] },
     { area = { id = "$location" } },
     { inventory_space = { min = 27 } },
 ]
@@ -96,7 +96,7 @@ actions = [
     { option = "Mine", object = "coal_rocks*", delay = 10, success = { inventory_space = { max = 0 } } },
 ]
 produces = [
-    { carries = { id = "coal" } },
+    { carries = [{ id = "coal" }] },
     { skill = { id = "mining" } }
 ]
 
@@ -105,7 +105,7 @@ requires = [
     { skill = { id = "mining", min = 40, max = 60 } },
 ]
 setup = [
-    { carries = { id = "rune_pickaxe,adamant_pickaxe,mithril_pickaxe" } },
+    { carries = [{ id = "rune_pickaxe,adamant_pickaxe,mithril_pickaxe", usable = true }] },
     { area = { id = "$location" } },
     { inventory_space = { min = 27 } },
 ]
@@ -113,7 +113,7 @@ actions = [
     { option = "Mine", object = "gold_rocks*", delay = 15, success = { inventory_space = { max = 0 } } },
 ]
 produces = [
-    { carries = { id = "gold_ore" } },
+    { carries = [{ id = "gold_ore" }] },
     { skill = { id = "mining" } }
 ]
 
@@ -122,7 +122,7 @@ requires = [
     { skill = { id = "mining", min = 55, max = 70 } },
 ]
 setup = [
-    { carries = { id = "dragon_pickaxe,rune_pickaxe,adamant_pickaxe" } },
+    { carries = [{ id = "dragon_pickaxe,rune_pickaxe,adamant_pickaxe", usable = true }] },
     { area = { id = "$location" } },
     { inventory_space = { min = 27 } },
 ]
@@ -130,6 +130,6 @@ actions = [
     { option = "Mine", object = "mithril_rocks*", delay = 15, success = { inventory_space = { max = 0 } } },
 ]
 produces = [
-    { carries = { id = "mithril_ore" } },
+    { carries = [{ id = "mithril_ore" }] },
     { skill = { id = "mining" } }
 ]

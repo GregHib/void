@@ -244,7 +244,7 @@ class Graph(
                                 var toLevel = 0
                                 var cost = 0
                                 val actions: MutableList<BotAction> = mutableListOf()
-                                val requirements = mutableListOf<Pair<String, Map<String, Any>>>()
+                                val requirements = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                                 while (nextEntry()) {
                                     when (val key = key()) {
                                         "from_x" -> fromX = int()
@@ -258,8 +258,15 @@ class Graph(
                                         "conditions" -> while (nextElement()) {
                                             while (nextEntry()) {
                                                 val key = key()
-                                                val value = map()
-                                                requirements.add(key to value)
+                                                if (peek == '[') {
+                                                    val list = mutableListOf<Map<String, Any>>()
+                                                    while (nextElement()) {
+                                                        list.add(map())
+                                                    }
+                                                    requirements.add(key to list)
+                                                } else {
+                                                    requirements.add(key to listOf(map()))
+                                                }
                                             }
                                         }
                                         else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")

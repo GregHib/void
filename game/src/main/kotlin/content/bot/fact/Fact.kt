@@ -6,6 +6,9 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirements
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirementsToUse
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.epochSeconds
@@ -37,6 +40,11 @@ sealed class Fact<T>(val priority: Int) {
         override fun keys() = setOf("inv:$id")
         override fun groups() = setOf("inv:inventory")
         override fun getValue(player: Player) = player.inventory.count(id)
+    }
+
+    object InventoryItems : Fact<Array<Item>>(100) {
+        override fun keys() = setOf("inv:inventory")
+        override fun getValue(player: Player) = player.inventory.items
     }
 
     data class ItemCount(val id: String) : Fact<Int>(100) {

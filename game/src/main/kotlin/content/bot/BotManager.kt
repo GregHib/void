@@ -2,6 +2,7 @@ package content.bot
 
 import com.github.michaelbull.logging.InlineLogger
 import content.bot.action.*
+import content.bot.fact.Deficit
 import content.bot.fact.Fact
 import content.bot.fact.Predicate
 import content.bot.fact.Requirement
@@ -119,25 +120,8 @@ class BotManager(
                 val activity = activities[it]
                 activity != null && hasRequirements(bot, activity)
             }.randomOrNull(random) // TODO weight by distance?
-            if (id == null) {
-                if (bot.player["debug", false]) {
-                    logger.info { "Failed to find activity for bot ${bot.player.accountName}." }
-                    for (id in bot.available) {
-                        val activity = activities[id] ?: continue
-                        if (!slots.hasFree(activity)) {
-                            logger.trace { "Activity: $id - No available slots." }
-                        } else if (bot.blocked.contains(activity.id)) {
-                            logger.trace { "Activity: $id - Blocked." }
-                        } else {
-                            for (requirement in activity.requires) {
-                                if (!requirement.check(bot.player)) {
-                                    logger.trace { "Activity: $id - Failed requirement: $requirement" }
-                                    break
-                                }
-                            }
-                        }
-                    }
-                }
+            if (id == null && bot.player["debug", false]) {
+                debugActivities(bot)
             }
             activities[id] ?: idle
         }
@@ -178,19 +162,7 @@ class BotManager(
                 .minByOrNull { it.weight }
             if (resolver == null) {
                 if (bot.player["debug", false]) {
-                    logger.info { "No resolver found for for ${behaviour.id} keys: ${requirement.fact.keys()} requirement: ${requirement}." }
-                    for (resolver in resolvers) {
-                        if (frame.blocked.contains(resolver.id)) {
-                            logger.debug { "Resolver: ${resolver.id} - Blocked by frame behaviour: ${frame.behaviour.id}." }
-                            break
-                        }
-                        for (requirement in resolver.requires) {
-                            if (!requirement.check(bot.player)) {
-                                logger.debug { "Resolver: ${resolver.id} - Failed requirement: $requirement." }
-                                break
-                            }
-                        }
-                    }
+                    debugResolvers(behaviour, requirement, resolvers, frame, bot)
                 }
                 frame.fail(Reason.Requirement(requirement)) // No way to resolve
                 return
@@ -215,76 +187,13 @@ class BotManager(
 
     private fun availableResolvers(bot: Bot, condition: Requirement<*>): MutableList<Resolver> {
         val options = mutableListOf<Resolver>()
-        addDefaultResolvers(bot, options, condition)
+        for (deficit in condition.deficits(bot.player)) {
+            options.add(deficit.resolve(bot.player) ?: continue)
+        }
         for (key in condition.fact.keys()) {
             options.addAll(resolvers[key] ?: continue)
         }
         return options
-    }
-
-    private fun addDefaultResolvers(bot: Bot, resolvers: MutableList<Resolver>, requirement: Requirement<*>) {
-        val predicate = requirement.predicate
-        if (predicate is Predicate.InArea) {
-            resolvers.add(Resolver("go_to_${predicate.name}", -1, actions = listOf(BotAction.GoTo(predicate.name)), produces = setOf(requirement)))
-        } else if (predicate is Predicate.IntRange && requirement.fact is Fact.InventoryCount && bot.player.bank.contains(requirement.fact.id, predicate.min!!)) {
-            if (predicate.min == 1 || predicate.min == 5 || predicate.min == 10) {
-                resolvers.add(
-                    Resolver(
-                        "withdraw_${requirement.fact.id}", weight = 20,
-                        setup = listOf(
-                            Requirement(Fact.InventorySpace, Predicate.IntRange(predicate.min))
-                        ),
-                        actions = listOf(
-                            BotAction.GoToNearest("bank"),
-                            BotAction.InteractObject("Use-quickly", "bank_booth*", success = Requirement(Fact.InterfaceOpen("bank"), Predicate.BooleanTrue)),
-                            BotAction.InterfaceOption("Withdraw-${predicate.min}", "bank:inventory:${requirement.fact.id}"),
-                            BotAction.CloseInterface,
-                        )
-                    )
-                )
-            } else {
-                resolvers.add(
-                    Resolver(
-                        "withdraw_${requirement.fact.id}", weight = 20,
-                        setup = listOf(
-                            Requirement(Fact.InventorySpace, Predicate.IntRange(predicate.min))
-                        ),
-                        actions = listOf(
-                            BotAction.GoToNearest("bank"),
-                            BotAction.InteractObject("Use-quickly", "bank_booth*", success = Requirement(Fact.InterfaceOpen("bank"), Predicate.BooleanTrue)),
-                            BotAction.InterfaceOption("Withdraw-X", "bank:inventory:${requirement.fact.id}"),
-                            BotAction.IntEntry(predicate.min),
-                            BotAction.CloseInterface,
-                        )
-                    )
-                )
-            }
-        } else if (predicate is Predicate.IntRange && requirement.fact is Fact.EquipCount) {
-            resolvers.add(
-                Resolver(
-                    "equip_${requirement.fact.id}", weight = 0,
-                    setup = listOf(
-                        Requirement(Fact.InventoryCount(requirement.fact.id), Predicate.IntRange(predicate.min))
-                    ),
-                    actions = listOf(BotAction.InterfaceOption("Equip", "inventory:inventory:${requirement.fact.id}"))
-                )
-            )
-            resolvers.add(
-                Resolver(
-                    "withdraw_and_equip_${requirement.fact.id}", weight = 0,
-                    requires = listOf(Requirement(Fact.BankCount(requirement.fact.id), Predicate.IntRange(predicate.min))),
-                    setup = listOf(Requirement(Fact.InventorySpace, Predicate.IntRange(predicate.min))),
-                    actions = listOf(
-                        BotAction.GoToNearest("bank"),
-                        BotAction.InteractObject("Use-quickly", "bank_booth*", success = Requirement(Fact.InterfaceOpen("bank"), Predicate.BooleanTrue)),
-                        BotAction.InterfaceOption("Withdraw-X", "bank:inventory:${requirement.fact.id}"),
-                        BotAction.IntEntry(predicate.min!!),
-                        BotAction.CloseInterface,
-                        BotAction.InterfaceOption("Equip", "inventory:inventory:${requirement.fact.id}")
-                    )
-                )
-            )
-        }
     }
 
     private fun execute(bot: Bot) {
@@ -350,6 +259,41 @@ class BotManager(
             }
         }
         bot.reset()
+    }
+
+    private fun debugResolvers(behaviour: Behaviour, requirement: Requirement<*>, resolvers: MutableList<Resolver>, frame: BehaviourFrame, bot: Bot) {
+        logger.info { "No resolver found for ${behaviour.id} keys: ${requirement.fact.keys()} requirement: ${requirement}." }
+        for (resolver in resolvers) {
+            if (frame.blocked.contains(resolver.id)) {
+                logger.debug { "Resolver: ${resolver.id} - Blocked by frame behaviour: ${frame.behaviour.id}." }
+                break
+            }
+            for (requirement in resolver.requires) {
+                if (!requirement.check(bot.player)) {
+                    logger.debug { "Resolver: ${resolver.id} - Failed requirement: $requirement." }
+                    break
+                }
+            }
+        }
+    }
+
+    private fun debugActivities(bot: Bot) {
+        logger.info { "Failed to find activity for bot ${bot.player.accountName}." }
+        for (id in bot.available) {
+            val activity = activities[id] ?: continue
+            if (!slots.hasFree(activity)) {
+                logger.trace { "Activity: $id - No available slots." }
+            } else if (bot.blocked.contains(activity.id)) {
+                logger.trace { "Activity: $id - Blocked." }
+            } else {
+                for (requirement in activity.requires) {
+                    if (!requirement.check(bot.player)) {
+                        logger.trace { "Activity: $id - Failed requirement: $requirement" }
+                        break
+                    }
+                }
+            }
+        }
     }
 
 }

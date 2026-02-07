@@ -1,6 +1,7 @@
 package content.bot.action
 
 import content.bot.fact.Requirement
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.ConfigFiles
@@ -52,10 +53,10 @@ private fun loadActivities(activities: MutableMap<String, BotActivity>, template
                     var template: String? = null
                     var fields: Map<String, Any>? = null
                     var capacity = 1
-                    val requires = mutableListOf<Pair<String, Map<String, Any>>>()
-                    val setup = mutableListOf<Pair<String, Map<String, Any>>>()
+                    val requires = mutableListOf<Pair<String, List<Map<String, Any>>>>()
+                    val setup = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                     val actions = mutableListOf<BotAction>()
-                    val produces = mutableListOf<Pair<String, Map<String, Any>>>()
+                    val produces = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                     while (nextPair()) {
                         when (val key = key()) {
                             "template" -> template = string()
@@ -100,10 +101,10 @@ private fun loadSetups(resolvers: MutableMap<String, MutableList<Resolver>>, tem
                     var template: String? = null
                     var fields: Map<String, Any>? = null
                     var weight = 1
-                    val requires = mutableListOf<Pair<String, Map<String, Any>>>()
-                    val setup = mutableListOf<Pair<String, Map<String, Any>>>()
+                    val requires = mutableListOf<Pair<String, List<Map<String, Any>>>>()
+                    val setup = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                     val actions = mutableListOf<BotAction>()
-                    val produces = mutableListOf<Pair<String, Map<String, Any>>>()
+                    val produces = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                     while (nextPair()) {
                         when (val key = key()) {
                             "template" -> template = string()
@@ -151,10 +152,10 @@ private fun loadShortcuts(shortcuts: MutableList<NavigationShortcut>, templates:
                     var template: String? = null
                     var fields: Map<String, Any>? = null
                     var weight = 1
-                    val requires = mutableListOf<Pair<String, Map<String, Any>>>()
-                    val setup = mutableListOf<Pair<String, Map<String, Any>>>()
+                    val requires = mutableListOf<Pair<String, List<Map<String, Any>>>>()
+                    val setup = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                     val actions = mutableListOf<BotAction>()
-                    val produces = mutableListOf<Pair<String, Map<String, Any>>>()
+                    val produces = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                     while (nextPair()) {
                         when (val key = key()) {
                             "template" -> template = string()
@@ -170,7 +171,7 @@ private fun loadShortcuts(shortcuts: MutableList<NavigationShortcut>, templates:
                     if (fields != null && template == null) {
                         error("Found fields but no template for $id in ${exception()}")
                     } else if (template != null) {
-                        requireNotNull(fields) { "No fields found for $id ${exception()}"}
+                        requireNotNull(fields) { "No fields found for $id ${exception()}" }
                         fragments.add(Fragment(id, template, fields, weight, requires, setup, actions, produces))
                     } else {
                         val debug = "$id ${exception()}"
@@ -194,10 +195,10 @@ private fun loadTemplates(paths: List<String>): Map<String, Template> {
             Config.fileReader(path) {
                 while (nextSection()) {
                     val id = section()
-                    val requires = mutableListOf<Pair<String, Map<String, Any>>>()
-                    val setup = mutableListOf<Pair<String, Map<String, Any>>>()
+                    val requires = mutableListOf<Pair<String, List<Map<String, Any>>>>()
+                    val setup = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                     val actions = mutableListOf<BotAction>()
-                    val produces = mutableListOf<Pair<String, Map<String, Any>>>()
+                    val produces = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                     while (nextPair()) {
                         when (val key = key()) {
                             "requires" -> requirements(requires)
@@ -216,12 +217,19 @@ private fun loadTemplates(paths: List<String>): Map<String, Template> {
     return templates
 }
 
-private fun ConfigReader.requirements(requires: MutableList<Pair<String, Map<String, Any>>>) {
+private fun ConfigReader.requirements(requires: MutableList<Pair<String, List<Map<String, Any>>>>) {
     while (nextElement()) {
         while (nextEntry()) {
             val key = key()
-            val value = map()
-            requires.add(key to value)
+            if (peek == '[') {
+                val list = ObjectArrayList<Map<String, Any>>()
+                while (nextElement()) {
+                    list.add(map())
+                }
+                requires.add(key to list)
+            } else {
+                requires.add(key to listOf(map()))
+            }
         }
     }
 }
@@ -231,10 +239,10 @@ private data class Fragment(
     val template: String,
     val fields: Map<String, Any>,
     val int: Int,
-    val requires: List<Pair<String, Map<String, Any>>>,
-    val setup: List<Pair<String, Map<String, Any>>>,
+    val requires: List<Pair<String, List<Map<String, Any>>>>,
+    val setup: List<Pair<String, List<Map<String, Any>>>>,
     val actions: List<BotAction>, // Can fragments even have actions?
-    val produces: List<Pair<String, Map<String, Any>>>,
+    val produces: List<Pair<String, List<Map<String, Any>>>>,
 ) {
     fun activity(template: Template) = BotActivity(
         id = id,
@@ -245,25 +253,22 @@ private data class Fragment(
         produces = resolveRequirements(template.produces, produces, requirePredicates = false).toSet(),
     )
 
-    private fun resolveRequirements(templated: List<Pair<String, Map<String, Any>>>, original: List<Pair<String, Map<String, Any>>>, requirePredicates: Boolean = true): List<Requirement<*>> {
-        val combinedList = mutableListOf<Pair<String, Map<String, Any>>>()
-        for ((type, map) in templated) {
-            val combinedMap = mutableMapOf<String, Any>()
-            for ((key, value) in original) {
-                combinedMap[key] = value
+    private fun resolveRequirements(templated: List<Pair<String, List<Map<String, Any>>>>, original: List<Pair<String, List<Map<String, Any>>>>, requirePredicates: Boolean = true): List<Requirement<*>> {
+        val combinedList = mutableListOf<Pair<String, List<Map<String, Any>>>>()
+        combinedList.addAll(original)
+        for ((type, list) in templated) {
+            val resolved = list.map { map ->
+                map.mapValues { (key, value) ->
+                    if (value is String && value.contains('$')) {
+                        val ref = value.reference()
+                        val name = ref.trim('$', '{', '}')
+                        val replacement = fields[name] ?: error("No field found for behaviour=$id type=${type} key=$key ref=$ref")
+                        if (replacement is String) value.replace(ref, replacement) else replacement
+                    } else value
+                }.toMap()
             }
-            for ((key, value) in map) {
-                if (value !is String || !value.contains('$')) {
-                    combinedMap[key] = value
-                    continue
-                }
-                val ref = value.reference()
-                val name = ref.trim('$', '{', '}')
-                val replacement = fields[name] ?: error("No field found for behaviour=$id type=${type} key=$key ref=$ref")
-                combinedMap[key] = if (replacement is String) value.replace(ref, replacement) else replacement
-            }
-            if (combinedMap.isNotEmpty()) {
-                combinedList.add(type to combinedMap)
+            if (resolved.isNotEmpty()) {
+                combinedList.add(type to resolved)
             }
         }
         if (combinedList.isEmpty()) {
@@ -304,10 +309,10 @@ private data class Fragment(
 }
 
 private data class Template(
-    val requires: List<Pair<String, Map<String, Any>>>,
-    val setup: List<Pair<String, Map<String, Any>>>,
+    val requires: List<Pair<String, List<Map<String, Any>>>>,
+    val setup: List<Pair<String, List<Map<String, Any>>>>,
     val actions: List<BotAction>,
-    val produces: List<Pair<String, Map<String, Any>>>,
+    val produces: List<Pair<String, List<Map<String, Any>>>>,
 )
 
 fun ConfigReader.actions(list: MutableList<BotAction>) {
@@ -324,8 +329,8 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
         var x = 0
         var y = 0
         val references = mutableMapOf<String, String>()
-        val wait = mutableListOf<Pair<String, Map<String, Any>>>()
-        val success = mutableListOf<Pair<String, Map<String, Any>>>()
+        val wait = mutableListOf<Pair<String, List<Map<String, Any>>>>()
+        val success = mutableListOf<Pair<String, List<Map<String, Any>>>>()
         while (nextEntry()) {
             when (val key = key()) {
                 "go_to", "go_to_nearest", "enter_string", "interface", "npc", "object", "clone", "item", "continue" -> {
@@ -381,11 +386,29 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
                     type = key
                 }
                 "success" -> while (nextEntry()) {
-                    success.add(key() to map())
+                    val key = key()
+                    if (peek == '[') {
+                        val list = mutableListOf<Map<String, Any>>()
+                        while (nextElement()) {
+                            list.add(map())
+                        }
+                        success.add(key to list)
+                    } else {
+                        success.add(key to listOf(map()))
+                    }
                 }
                 "wait_if" -> while (nextElement()) {
                     while (nextEntry()) {
-                        wait.add(key() to map())
+                        val key = key()
+                        if (peek == '[') {
+                            val list = mutableListOf<Map<String, Any>>()
+                            while (nextElement()) {
+                                list.add(map())
+                            }
+                            wait.add(key to list)
+                        } else {
+                            wait.add(key to listOf(map()))
+                        }
                     }
                 }
                 "wait" -> {
@@ -433,7 +456,7 @@ fun ConfigReader.actions(list: MutableList<BotAction>) {
             "enter_string" -> BotAction.StringEntry(id)
             "enter_int" -> BotAction.IntEntry(int)
             "wait" -> BotAction.Wait(ticks)
-            "restart" -> BotAction.Restart(Requirement.parse(wait, id), Requirement.parse(success, id).singleOrNull() ?: throw IllegalArgumentException("Restart must have success condition."))
+            "restart" -> BotAction.Restart(Requirement.parse(wait, id), Requirement.parse(success, id).singleOrNull() ?: throw IllegalArgumentException("Restart must have success condition. $id ${exception()}"))
             "npc" -> if (option == "Attack") {
                 BotAction.FightNpc(id = id, delay = delay, success = Requirement.parse(success, id).singleOrNull(), healPercentage = heal, lootOverValue = loot, radius = radius)
             } else {

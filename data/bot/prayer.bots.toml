@@ -4,7 +4,7 @@ requires = [
     { owns = { id = "bones", min = 28 } },
 ]
 setup = [
-    { carries = { id = "bones", min = 28 } },
+    { carries = [{ id = "bones", min = 28 }] },
 ]
 actions = [
     { option = "Bury", interface = "inventory:inventory:bones" },

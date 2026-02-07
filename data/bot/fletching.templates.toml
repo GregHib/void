@@ -4,8 +4,7 @@ requires = [
 ]
 setup = [
     { area = { id = "$location" } },
-    { carries = { id = "knife" } },
-    { carries = { id = "$logs", min = 27 } }
+    { carries = [{ id = "knife" }, { id = "$logs", min = 27 }] },
 ]
 actions = [
     { item = "knife", on = "$logs", success = { interface_open = { id = "dialogue_skill_creation" } } },
@@ -24,8 +23,7 @@ requires = [
 ]
 setup = [
     { area = { id = "$location" } },
-    { carries = { id = "knife" } },
-    { carries = { id = "$logs", min = 27 } }
+    { carries = [{ id = "knife" }, { id = "$logs", min = 27 }] },
 ]
 actions = [
     { item = "knife", on = "$logs" },
@@ -43,8 +41,7 @@ requires = [
 ]
 setup = [
     { area = { id = "$location" } },
-    { carries = { id = "knife" } },
-    { carries = { id = "$logs", min = 27 } }
+    { carries = [{ id = "knife" }, { id = "$logs", min = 27 }] },
 ]
 actions = [
     { item = "knife", on = "$logs", success = { has_queue = { id = "fletching_make_dialog" } } },

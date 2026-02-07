@@ -1,15 +1,15 @@
 [buy_from_shop]
 setup = [
-    { carries = { id = "coins", min = "$cost" } },
+    { carries = [{ id = "coins", min = "$cost" }] },
     { area = { id = "$shop_location" } },
     { inventory_space = { min = 1 } },
 ]
 actions = [
     { option = "Trade", npc = "$shopkeeper", success = { interface_open = { id = "shop" } } },
-    { option = "Buy-1", interface = "shop:stock:$item", success = { carries = { id = "$item" } } },
+    { option = "Buy-1", interface = "shop:stock:$item", success = { carries = [{ id = "$item" }] } },
 ]
 produces = [
-    { carries = { id = "$item" } }
+    { carries = [{ id = "$item" }] }
 ]
 
 [take_shop_sample]
@@ -19,8 +19,8 @@ setup = [
 ]
 actions = [
     { option = "Trade", npc = "$shopkeeper", success = { interface_open = { id = "shop" } } },
-    { option = "Take-1", interface = "shop:sample:$item", success = { carries = { id = "$item" } } },
+    { option = "Take-1", interface = "shop:sample:$item", success = { carries = [{ id = "$item" }] } },
 ]
 produces = [
-    { carries = { id = "$item" } }
+    { carries = [{ id = "$item" }] }
 ]

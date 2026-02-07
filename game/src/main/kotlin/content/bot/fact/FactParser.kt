@@ -1,5 +1,6 @@
 package content.bot.fact
 
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.type.Tile
 
 sealed class FactParser<T> {
@@ -7,12 +8,18 @@ sealed class FactParser<T> {
     abstract fun parse(map: Map<String, Any>): Fact<T>
     abstract fun predicate(map: Map<String, Any>): Predicate<T>?
 
-    fun requirement(map: Map<String, Any>) = Requirement(parse(map), predicate(map))
+    open fun requirement(list: List<Map<String, Any>>): Requirement<T> {
+        val map = list.singleOrNull()
+        if (map != null) {
+            return Requirement(parse(map), predicate(map))
+        }
+        throw IllegalStateException("No list requirement implemented for ${this::class.simpleName} fact type")
+    }
 
     fun check(map: Map<String, Any>): String? {
         for (key in required) {
             if (!map.containsKey(key)) {
-                return "missing key '$key' in map ${map}"
+                return "missing key '$key' in map $map"
             }
         }
         return null
@@ -23,15 +30,11 @@ sealed class FactParser<T> {
         override fun predicate(map: Map<String, Any>) = Predicate.parseInt(map)
     }
 
-    object InventoryCount : FactParser<Int>() {
-        override val required = setOf("id")
-        override fun parse(map: Map<String, Any>) = Fact.InventoryCount(map["id"] as String)
-        override fun predicate(map: Map<String, Any>): Predicate<Int>? {
-            if (!map.containsKey("min") && !map.containsKey("equals")) {
-                map as MutableMap<String, Any>
-                map["min"] = 1
-            }
-            return Predicate.parseInt(map)
+    object InventoryItems : FactParser<Array<Item>>() {
+        override fun parse(map: Map<String, Any>) = Fact.InventoryItems
+        override fun predicate(map: Map<String, Any>) = null
+        override fun requirement(list: List<Map<String, Any>>): Requirement<Array<Item>> {
+            return Requirement(Fact.InventoryItems, Predicate.parseItems(list))
         }
     }
 
@@ -58,8 +61,9 @@ sealed class FactParser<T> {
         override fun parse(map: Map<String, Any>) = Fact.EquipCount(map["id"] as String)
         override fun predicate(map: Map<String, Any>): Predicate<Int>? {
             if (!map.containsKey("min") && !map.containsKey("equals")) {
-                map as MutableMap<String, Any>
-                map["min"] = 1
+                val mutable = map.toMutableMap()
+                mutable["min"] = 1
+                return Predicate.parseInt(mutable)
             }
             return Predicate.parseInt(map)
         }
@@ -77,6 +81,7 @@ sealed class FactParser<T> {
                 else -> error("Invalid default value $default")
             } as Fact<Any>
         }
+
         override fun predicate(map: Map<String, Any>): Predicate<Any> {
             return when (val default = map["default"]) {
                 is Int -> Predicate.parseInt(map)
@@ -93,6 +98,7 @@ sealed class FactParser<T> {
         override fun parse(map: Map<String, Any>): Fact<Int> {
             return Fact.ClockRemaining(map["id"] as String, map["seconds"] as? Boolean ?: false)
         }
+
         override fun predicate(map: Map<String, Any>) = Predicate.parseInt(map)
     }
 
@@ -133,7 +139,7 @@ sealed class FactParser<T> {
     companion object {
         val parsers = mapOf(
             "inventory_space" to InventorySpace,
-            "carries" to InventoryCount,
+            "carries" to InventoryItems,
             "owns" to ItemCount,
             "banked" to BankCount,
             "equips" to EquipCount,

@@ -1,53 +1,64 @@
 package content.bot.fact
 
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirements
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirementsToUse
+import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.event.Wildcard
+import world.gregs.voidps.engine.event.Wildcards
 import world.gregs.voidps.type.Tile
 
-sealed interface Predicate<T> {
-    fun test(value: T): Boolean
+sealed class Predicate<T> {
+    abstract fun test(player: Player, value: T): Boolean
+    open val children: Set<Predicate<*>> = emptySet()
+    open val evaluator: RequirementEvaluator<T>? = null
 
-    data class IntRange(val min: Int? = null, val max: Int? = null) : Predicate<Int> {
-        override fun test(value: Int): Boolean {
+    data class IntRange(val min: Int? = null, val max: Int? = null) : Predicate<Int>() {
+        override val evaluator = RequirementEvaluator.IntEvaluator
+        override fun test(player: Player, value: Int): Boolean {
             if (min != null && value < min) return false
             if (max != null && value > max) return false
             return true
         }
     }
 
-    data class IntEquals(val value: Int) : Predicate<Int> {
-        override fun test(value: Int) = value == this.value
+    data class IntEquals(val value: Int) : Predicate<Int>() {
+        override val evaluator = RequirementEvaluator.IntEvaluator
+        override fun test(player: Player, value: Int) = value == this.value
     }
 
-    data class DoubleRange(val min: Double? = null, val max: Double? = null) : Predicate<Double> {
-        override fun test(value: Double): Boolean {
+    data class DoubleRange(val min: Double? = null, val max: Double? = null) : Predicate<Double>() {
+        override fun test(player: Player, value: Double): Boolean {
             if (min != null && value < min) return false
             if (max != null && value > max) return false
             return true
         }
     }
 
-    data class DoubleEquals(val value: Double) : Predicate<Double> {
-        override fun test(value: Double) = value == this.value
+    data class DoubleEquals(val value: Double) : Predicate<Double>() {
+        override fun test(player: Player, value: Double) = value == this.value
     }
 
-    data class InArea(val name: String) : Predicate<Tile> {
-        override fun test(value: Tile) = value in Areas[name]
+    data class InArea(val name: String) : Predicate<Tile>() {
+        override fun test(player: Player, value: Tile) = value in Areas[name]
     }
 
-    object BooleanTrue : Predicate<Boolean> {
-        override fun test(value: Boolean) = value
+    object BooleanTrue : Predicate<Boolean>() {
+        override fun test(player: Player, value: Boolean) = value
     }
 
-    object BooleanFalse : Predicate<Boolean> {
-        override fun test(value: Boolean) = !value
+    object BooleanFalse : Predicate<Boolean>() {
+        override fun test(player: Player, value: Boolean) = !value
     }
 
-    data class StringEquals(val value: String) : Predicate<String> {
-        override fun test(value: String) = value == this.value
+    data class StringEquals(val value: String) : Predicate<String>() {
+        override fun test(player: Player, value: String) = value == this.value
     }
 
-    data class TileEquals(val x: Int? = null, val y: Int? = null, val level: Int? = null) : Predicate<Tile> {
-        override fun test(value: Tile): Boolean {
+    data class TileEquals(val x: Int? = null, val y: Int? = null, val level: Int? = null) : Predicate<Tile>() {
+        override val evaluator = RequirementEvaluator.TileEval
+        override fun test(player: Player, value: Tile): Boolean {
             if (x != null && value.x != x) return false
             if (y != null && value.y != y) return false
             if (level != null && value.level != level) return false
@@ -55,8 +66,51 @@ sealed interface Predicate<T> {
         }
     }
 
-    data class Within(val x: Int, val y: Int, val level: Int, val radius: Int) : Predicate<Tile> {
-        override fun test(value: Tile) = value.within(x, y, level, radius)
+    data class Within(val x: Int, val y: Int, val level: Int, val radius: Int) : Predicate<Tile>() {
+        override fun test(player: Player, value: Tile) = value.within(x, y, level, radius)
+    }
+
+    data class InventoryItems(val entries: List<Entry>) : Predicate<Array<Item>>() {
+        data class Entry(
+            val filter: Predicate<Item>,
+            val count: Predicate<Int>,
+        )
+        override val evaluator = RequirementEvaluator.InventoryEval
+        override val children = entries.map { it.count }.toSet() + entries.map { it.filter }.toSet()
+
+        override fun test(player: Player, value: Array<Item>): Boolean {
+            for (entry in entries) {
+                val count = value.count { entry.filter.test(player, it) }
+                if (!entry.count.test(player, count)) {
+                    return false
+                }
+            }
+            return true
+        }
+    }
+
+    data class AnyItem(private val ids: Set<String>) : Predicate<Item>() {
+        override fun test(player: Player, value: Item) = value.id in ids
+    }
+
+    object EquipableItem : Predicate<Item>() {
+        override fun test(player: Player, value: Item) = player.hasRequirements(value)
+    }
+
+    object UsableItem : Predicate<Item>() {
+        override fun test(player: Player, value: Item) = player.hasRequirementsToUse(value)
+    }
+
+    data class EqualsItem(private val id: String) : Predicate<Item>() {
+        override fun test(player: Player, value: Item) = value.id == id
+    }
+
+    data class AllOf<T>(override val children: Set<Predicate<T>>) : Predicate<T>() {
+        override fun test(player: Player, value: T) = children.all { it.test(player, value) }
+    }
+
+    data class AnyOf<T>(override val children: Set<Predicate<T>>) : Predicate<T>() {
+        override fun test(player: Player, value: T) = children.any { it.test(player, value) }
     }
 
     companion object {
@@ -102,6 +156,37 @@ sealed interface Predicate<T> {
             map.containsKey("id") -> InArea(map["id"] as String)
             map.containsKey("x") || map.containsKey("y") || map.containsKey("level") -> TileEquals(map["x"] as? Int, map["y"] as? Int, map["level"] as? Int)
             else -> null
+        }
+
+        fun parseItems(items: List<Map<String, Any>>): Predicate<Array<Item>> {
+            val entries = mutableListOf<InventoryItems.Entry>()
+            for (item in items) {
+                require(item.containsKey("id")) { "Item must have field 'id' in map $item" }
+                val id = item["id"] as String
+                var filter = if (id.contains(",")) {
+                    val ids = id.split(",")
+                    AnyItem(ids.flatMap { id ->
+                        if (id.any { char -> char == '*' || char == '#' }) {
+                            Wildcards.get(id, Wildcard.Item)
+                        } else {
+                            setOf(id)
+                        }
+                    }.toSet())
+                } else if (id.any { it == '*' || it == '#' }) {
+                    AnyItem(Wildcards.get(id, Wildcard.Item))
+                } else {
+                    EqualsItem(id)
+                }
+                if (item.containsKey("usable") && item["usable"] as Boolean) {
+                    // TODO lookup values from custom configs e.g. firemaking.level
+                    filter = AllOf(setOf(filter, UsableItem))
+                } else if (item.containsKey("equipable") && item["equipable"] as Boolean) {
+                    filter = AllOf(setOf(filter, EquipableItem))
+                }
+                val counter = parseInt(item) ?: IntRange(min = 1)
+                entries.add(InventoryItems.Entry(filter, counter))
+            }
+            return InventoryItems(entries)
         }
     }
 }

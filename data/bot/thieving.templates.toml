@@ -12,6 +12,6 @@ actions = [
     { restart = true, wait_if = [{ variable = { id = "delay", min = 0, default = -1 } }, { clock = { id = "stunned", min = 0 } }], success = { skill = { id = "constitution", max = 20 } } }
 ]
 produces = [
-    { carries = { id = "coins" } },
+    { carries = [{ id = "coins" }] },
     { skill = { id = "thieving" } }
 ]
