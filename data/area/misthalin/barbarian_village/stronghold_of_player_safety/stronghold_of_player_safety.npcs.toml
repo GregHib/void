@@ -53,6 +53,7 @@ categories = ["cockroaches"]
 examine = "Euww! A giant bug."
 respawn_delay = 60
 drop_table = "cockroach_soldier"
+combat_def = "cockroach_soldier"
 
 [mugger_stronghold_of_player_safety]
 id = 7161
