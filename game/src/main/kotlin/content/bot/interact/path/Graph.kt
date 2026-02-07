@@ -4,7 +4,7 @@ import content.bot.action.BotAction
 import content.bot.action.NavigationShortcut
 import content.bot.action.actions
 import content.bot.bot
-import content.bot.fact.Condition
+import content.bot.fact.Predicate
 import content.bot.fact.Requirement
 import content.bot.isBot
 import world.gregs.config.Config
@@ -159,11 +159,11 @@ class Graph(
         }
 
         fun add(shortcut: NavigationShortcut): Int {
-            val first = shortcut.produces.filterIsInstance<Condition.Area>().firstOrNull() ?: throw IllegalArgumentException("Shortcut requires location product ${shortcut.id}")
-            val area = Areas[first.area]
+            val first = shortcut.produces.map { it.predicate }.filterIsInstance<Predicate.InArea>().firstOrNull() ?: throw IllegalArgumentException("Shortcut requires location product ${shortcut.id}")
+            val area = Areas[first.name]
             val end = tiles.indexOfFirst { it in area }
             if (end == -1) {
-                throw IllegalArgumentException("Unable to find nav graph tile in shortcut area '${first.area}'.")
+                throw IllegalArgumentException("Unable to find nav graph tile in shortcut area '${first.name}'.")
             }
             val index = addEdge(0, end, shortcut.weight, shortcut.actions, shortcut.requires)
             shortcuts[index] = shortcut

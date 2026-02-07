@@ -2,7 +2,6 @@ package content.bot
 
 import com.github.michaelbull.logging.InlineLogger
 import content.bot.action.*
-import content.bot.fact.Condition
 import content.bot.fact.Fact
 import content.bot.fact.Predicate
 import content.bot.fact.Requirement

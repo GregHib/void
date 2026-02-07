@@ -1,6 +1,5 @@
 package content.bot.action
 
-import content.bot.fact.Condition
 import content.bot.fact.Requirement
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader

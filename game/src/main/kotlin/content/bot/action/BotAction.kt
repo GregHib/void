@@ -2,7 +2,6 @@ package content.bot.action
 
 import content.bot.Bot
 import content.bot.BotManager
-import content.bot.fact.Condition
 import content.bot.fact.Requirement
 import content.bot.interact.path.Graph
 import content.entity.combat.attackers
@@ -10,7 +9,6 @@ import content.entity.combat.dead
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
-import world.gregs.voidps.engine.client.instruction.handle.ObjectOptionHandler
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions

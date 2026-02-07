@@ -1,8 +1,9 @@
 package content.bot.interact.path
 
 import content.bot.action.NavigationShortcut
-import content.bot.fact.Condition
 import content.bot.fact.Fact
+import content.bot.fact.Predicate
+import content.bot.fact.Requirement
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.definition.AreaDefinition
@@ -137,7 +138,7 @@ class GraphTest {
         builder.addEdge(b, c, 3)
         val cd = builder.addEdge(c, d, 6)
         val ec = builder.addEdge(e, c, 2)
-        builder.addEdge(e, d, 7, conditions = listOf(Condition.Equals(Fact.PlayerTile, Tile(100))))
+        builder.addEdge(e, d, 7, conditions = listOf(Requirement(Fact.PlayerTile, Predicate.TileEquals(100))))
 //        builder.print()
 
         val output = mutableListOf<Int>()
@@ -256,7 +257,7 @@ class GraphTest {
             to = b,
             weight = 1,
             actions = emptyList(),
-            conditions = listOf(Condition.Equals(Fact.PlayerTile, Tile(100)))
+            conditions = listOf(Requirement(Fact.PlayerTile, Predicate.TileEquals(100)))
         )
 
         val graph = builder.build()
@@ -300,8 +301,8 @@ class GraphTest {
         val shortcut = NavigationShortcut(
             id = "teleport",
             weight = 1,
-            requires = listOf(Condition.Equals(Fact.PlayerTile, Tile(50, 50))),
-            produces = setOf(Condition.Area(Fact.PlayerTile, "town"))
+            requires = listOf(Requirement(Fact.PlayerTile, Predicate.TileEquals(50, 50))),
+            produces = setOf(Requirement(Fact.PlayerTile, Predicate.InArea("town")))
         )
 
         val builder = Graph.Builder()

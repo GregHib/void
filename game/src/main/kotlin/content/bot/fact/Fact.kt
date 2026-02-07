@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.type.Tile
 
 /**
- * A bots state which can be a [Condition] for, or a product of performing a [content.bot.action.Behaviour]
+ * A bots state which can be a [Requirement] for, or a product of performing a [content.bot.action.Behaviour]
  * @param priority Ensure bots aren't walking to locations before getting items etc... lower values are prioritised first.
  */
 sealed class Fact<T>(val priority: Int) {

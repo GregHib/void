@@ -1,12 +1,12 @@
 package content.bot
 
 import content.bot.action.*
-import content.bot.fact.Condition
 import content.bot.fact.Fact
+import content.bot.fact.Predicate
+import content.bot.fact.Requirement
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.type.Tile
 
 class BotManagerTest {
 
@@ -158,7 +158,7 @@ class BotManagerTest {
 
         manager.tick(bot)
         manager.tick(bot)
-        bot.frame().fail(Reason.Requirement(Condition.Clone("")))
+        bot.frame().fail(Reason.Requirement(Requirement(Fact.PlayerTile)))
         manager.tick(bot)
         manager.tick(bot)
 
@@ -171,7 +171,7 @@ class BotManagerTest {
         val activity = testActivity(
             id = "test",
             requires = listOf(
-                Condition.Range(Fact.AttackLevel, 99, 99)
+                Requirement(Fact.AttackLevel, Predicate.IntRange(99, 99))
             ),
             plan = listOf(BotAction.Wait(4))
         )
@@ -190,7 +190,7 @@ class BotManagerTest {
 
     @Test
     fun `Resolvable requirement queues resolver before activity starts`() {
-        val condition = Condition.Within(Fact.PlayerTile, Tile(100, 100, 2), 2)
+        val condition = Requirement(Fact.PlayerTile, Predicate.Within(100, 100, 2, 2))
         val resolver = Resolver(
             id = "go_to_area",
             weight = 1,
@@ -204,7 +204,7 @@ class BotManagerTest {
         )
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
-            mutableMapOf(condition.keys().first() to mutableListOf(resolver))
+            mutableMapOf(condition.fact.keys().first() to mutableListOf(resolver))
         )
 
         val bot = testBot(activity)
@@ -217,7 +217,7 @@ class BotManagerTest {
 
     @Test
     fun `Lowest weight resolver is selected`() {
-        val condition = Condition.Within(Fact.PlayerTile, Tile(100, 100, 2), 2)
+        val condition = Requirement(Fact.PlayerTile, Predicate.Within(100, 100, 2, 2))
 
         val bad = Resolver("bad", weight = 10, actions = listOf(BotAction.Clone("")))
         val good = Resolver("good", weight = 1, actions = listOf(BotAction.Clone("")))
@@ -230,7 +230,7 @@ class BotManagerTest {
 
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
-            mutableMapOf(condition.keys().first() to mutableListOf(bad, good))
+            mutableMapOf(condition.fact.keys().first() to mutableListOf(bad, good))
         )
 
         val bot = testBot(activity)
@@ -242,7 +242,7 @@ class BotManagerTest {
 
     @Test
     fun `Blocked resolver is not reselected`() {
-        val condition = Condition.Within(Fact.PlayerTile, Tile(100, 100, 2), 2)
+        val condition = Requirement(Fact.PlayerTile, Predicate.Within(100, 100, 2, 2))
         val resolver = Resolver(id = "get_key", weight = 1, actions = listOf(BotAction.Clone("")))
         val activity = testActivity(
             id = "open_door",
@@ -251,7 +251,7 @@ class BotManagerTest {
         )
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
-            mutableMapOf(condition.keys().first() to mutableListOf(resolver))
+            mutableMapOf(condition.fact.keys().first() to mutableListOf(resolver))
         )
 
         val bot = testBot(activity)
@@ -268,7 +268,7 @@ class BotManagerTest {
 
     @Test
     fun `Hard failure in resolver stops bot`() {
-        val condition = Condition.Within(Fact.PlayerTile, Tile(100, 100, 2), 2)
+        val condition = Requirement(Fact.PlayerTile, Predicate.Within(100, 100, 2, 2))
         val resolver = Resolver(
             id = "walk",
             weight = 1,
@@ -281,7 +281,7 @@ class BotManagerTest {
         )
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
-            mutableMapOf(condition.keys().first() to mutableListOf(resolver))
+            mutableMapOf(condition.fact.keys().first() to mutableListOf(resolver))
         )
 
         val bot = testBot(activity)
@@ -296,7 +296,7 @@ class BotManagerTest {
 
     @Test
     fun `Soft failure in resolver only pops resolver`() {
-        val condition = Condition.Within(Fact.PlayerTile, Tile(100, 100, 2), 2)
+        val condition = Requirement(Fact.PlayerTile, Predicate.Within(100, 100, 2, 2))
         val resolver = Resolver(
             id = "test",
             weight = 1,
@@ -309,7 +309,7 @@ class BotManagerTest {
         )
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
-            mutableMapOf(condition.keys().first() to mutableListOf(resolver))
+            mutableMapOf(condition.fact.keys().first() to mutableListOf(resolver))
         )
 
         val bot = testBot(activity)
@@ -325,12 +325,12 @@ class BotManagerTest {
 
     @Test
     fun `Resolver with unmet mandatory requirements is skipped`() {
-        val condition = Condition.Within(Fact.PlayerTile, Tile(100, 100, 2), 2)
+        val condition = Requirement(Fact.PlayerTile, Predicate.Within(100, 100, 2, 2))
         val resolver = Resolver(
             id = "mine_gem",
             weight = 1,
             actions = listOf(BotAction.Clone("")),
-            requires = listOf(Condition.Range(Fact.MiningLevel, 99, 99))
+            requires = listOf(Requirement(Fact.MiningLevel, Predicate.IntRange(99, 99)))
         )
         val activity = testActivity(
             id = "craft",
@@ -339,7 +339,7 @@ class BotManagerTest {
         )
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
-            mutableMapOf(condition.keys().first() to mutableListOf(resolver))
+            mutableMapOf(condition.fact.keys().first() to mutableListOf(resolver))
         )
 
         val bot = testBot(activity)
@@ -353,7 +353,7 @@ class BotManagerTest {
 
     @Test
     fun `Activity are occupied while resolver is running`() {
-        val condition = Condition.Within(Fact.PlayerTile, Tile(100, 100, 2), 2)
+        val condition = Requirement(Fact.PlayerTile, Predicate.Within(100, 100, 2, 2))
         val resolver = Resolver(
             id = "get_tool",
             weight = 1,
@@ -366,7 +366,7 @@ class BotManagerTest {
         )
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
-            mutableMapOf(condition.keys().first() to mutableListOf(resolver))
+            mutableMapOf(condition.fact.keys().first() to mutableListOf(resolver))
         )
 
         val bot = testBot(activity)
@@ -378,8 +378,8 @@ class BotManagerTest {
 
     fun testActivity(
         id: String,
-        requires: List<Condition> = emptyList(),
-        resolves: List<Condition> = emptyList(),
+        requires: List<Requirement<*>> = emptyList(),
+        resolves: List<Requirement<*>> = emptyList(),
         plan: List<BotAction>,
     ) = BotActivity(id, 1, requires, resolves, plan)
 }

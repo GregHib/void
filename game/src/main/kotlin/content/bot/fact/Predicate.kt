@@ -46,13 +46,17 @@ sealed interface Predicate<T> {
         override fun test(value: String) = value == this.value
     }
 
-    data class TileEquals(val x: Int?, val y: Int?, val level: Int?) : Predicate<Tile> {
+    data class TileEquals(val x: Int? = null, val y: Int? = null, val level: Int? = null) : Predicate<Tile> {
         override fun test(value: Tile): Boolean {
             if (x != null && value.x != x) return false
             if (y != null && value.y != y) return false
             if (level != null && value.level != level) return false
             return true
         }
+    }
+
+    data class Within(val x: Int, val y: Int, val level: Int, val radius: Int) : Predicate<Tile> {
+        override fun test(value: Tile) = value.within(x, y, level, radius)
     }
 
     companion object {
