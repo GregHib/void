@@ -32,12 +32,12 @@ sealed class RequirementEvaluator<T> {
     object InventoryEval : RequirementEvaluator<ItemView>() {
         override fun evaluate(player: Player, fact: Fact<ItemView>, predicate: Predicate<ItemView>): List<Deficit> {
             if (fact is Fact.InventoryItems && predicate is Predicate.InventoryItems) {
-                val entries = mutableListOf<MissingInventory.Entry>()
-                collect(player, fact, predicate) { filter, needed -> entries += MissingInventory.Entry(filter, needed) }
+                val entries = mutableListOf<Deficit.Entry>()
+                collect(player, fact, predicate) { filter, needed -> entries += Deficit.Entry(filter, needed) }
                 return listOf(MissingInventory(entries))
             } else if (fact is Fact.EquipmentItems && predicate is Predicate.InventoryItems) {
-                val entries = mutableListOf<Predicate<Item>>()
-                collect(player, fact, predicate) { filter, _ -> entries += filter }
+                val entries = mutableListOf<Deficit.Entry>()
+                collect(player, fact, predicate) { filter, needed -> entries += Deficit.Entry(filter, needed) }
                 return listOf(Deficit.MissingEquipment(entries))
             }
             return emptyList()

@@ -54,6 +54,13 @@ sealed class ActionParser {
         }
     }
 
+    object CloseInterfaceParser : ActionParser() {
+        override val required = setOf("id")
+        override fun parse(map: Map<String, Any>): BotAction {
+            return BotAction.CloseInterface
+        }
+    }
+
     object DialogueParser : ActionParser() {
         override val required = setOf("id")
         override val optional = setOf("option", "success")
@@ -183,6 +190,7 @@ sealed class ActionParser {
             "wait" to WaitParser,
             "restart" to RestartParser,
             "interface" to InterfaceParser,
+            "interface_close" to CloseInterfaceParser,
             "continue" to DialogueParser,
             "enter" to EnterParser,
         )
