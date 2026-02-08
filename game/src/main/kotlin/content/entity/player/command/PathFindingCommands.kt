@@ -6,9 +6,7 @@ import content.bot.action.BehaviourFrame
 import content.bot.action.BotAction
 import content.bot.action.Resolver
 import content.bot.bot
-import content.bot.interact.path.Dijkstra
-import content.bot.interact.path.EdgeTraversal
-import content.bot.interact.path.NodeTargetStrategy
+import content.bot.interact.path.Graph
 import content.bot.isBot
 import content.entity.gfx.areaGfx
 import org.rsmod.game.pathfinder.PathFinder
@@ -138,36 +136,15 @@ class PathFindingCommands(val patrols: PatrolDefinitions) : Script {
         }
 
         adminCommand("walk_to_bank") {
-            val east = Tile(3179, 3433).toCuboid(15, 14)
-            val west = Tile(3250, 3417).toCuboid(7, 8)
-            val dijkstra: Dijkstra = get()
-            val strategy = object : NodeTargetStrategy() {
-                override fun reached(node: Any): Boolean = if (node is Tile) east.contains(node) || west.contains(node) else false
-            }
+            val graph: Graph = get()
+            val output = mutableListOf<Int>()
             println(
                 "Path took ${
                     measureNanoTime {
-                        dijkstra.find(this, strategy, EdgeTraversal())
+                        graph.findNearest(this, output, "bank")
                     }
                 }ns",
             )
-            /*action { FIXME
-                var first = true
-                while (waypoints.isNotEmpty()) {
-                    val next = waypoints.poll()
-                    suspendCoroutine<Unit> { cont ->
-                        val tile = if (first && !tile.within(next.end as Tile, 20)) {
-                            next.start
-                        } else {
-                            next.end
-                        } as Tile
-                        first = false
-                        scheduler.add {
-                            walkTo(tile)
-                        }
-                    }
-                }
-            }*/
         }
 
         timerTick("show_path") {

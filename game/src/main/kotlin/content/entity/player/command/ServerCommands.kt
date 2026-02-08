@@ -1,7 +1,6 @@
 package content.entity.player.command
 
 import content.bot.BotManager
-import content.bot.interact.navigation.graph.NavigationGraph
 import content.entity.obj.ObjectTeleports
 import content.entity.obj.ship.CharterShips
 import content.entity.player.modal.book.Books
@@ -65,7 +64,7 @@ class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
             handler = ::update,
         )
         val configs = setOf(
-            "books", "teleports", "music_tracks", "fairy_rings", "ships", "objects", "items", "nav_graph", "npcs", "areas", "emotes", "anims", "containers", "graphics",
+            "books", "teleports", "music_tracks", "fairy_rings", "ships", "objects", "items", "bots", "npcs", "areas", "emotes", "anims", "containers", "graphics",
             "item_on_item", "sounds", "quests", "midis", "variables", "music", "interfaces", "spells", "patrols", "prayers", "drops", "client_scripts", "settings",
         )
         adminCommand(
@@ -95,7 +94,6 @@ class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
                 ItemDefinitions.load(files.list(Settings["definitions.items"]))
                 loadItemSpawns(itemSpawns, files.list(Settings["spawns.items"]))
             }
-            "nav_graph", "ai_graph" -> get<NavigationGraph>().load(files.find(Settings["map.navGraph"]))
             "npcs" -> {
                 NPCDefinitions.load(files.list(Settings["definitions.npcs"]))
                 loadNpcSpawns(files, reload = true)

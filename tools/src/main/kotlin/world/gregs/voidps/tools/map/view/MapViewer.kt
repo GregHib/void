@@ -2,8 +2,6 @@ package world.gregs.voidps.tools.map.view
 
 import com.github.weisj.darklaf.LafManager
 import com.github.weisj.darklaf.LafManager.getPreferredThemeStyle
-import content.bot.interact.navigation.graph.NavigationGraph
-import content.bot.interact.path.Graph
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.data.Settings

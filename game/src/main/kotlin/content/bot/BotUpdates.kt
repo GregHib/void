@@ -2,6 +2,9 @@ package content.bot
 
 import world.gregs.voidps.engine.Script
 
+/**
+ * Listen for state changes which would change which activities are available to a bot
+ */
 class BotUpdates(val manager: BotManager) : Script {
     init {
         levelChanged { skill, _, _ ->

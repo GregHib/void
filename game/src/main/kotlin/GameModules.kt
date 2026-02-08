@@ -1,8 +1,4 @@
 import content.bot.BotManager
-import content.bot.TaskManager
-import content.bot.interact.navigation.graph.NavigationGraph
-import content.bot.interact.path.Dijkstra
-import content.bot.interact.path.DijkstraFrontier
 import content.entity.obj.ship.CharterShips
 import content.entity.player.modal.book.Books
 import content.entity.world.music.MusicTracks
@@ -10,33 +6,19 @@ import content.quest.member.fairy_tale_part_2.fairy_ring.FairyRingCodes
 import content.skill.farming.FarmingDefinitions
 import content.social.trade.exchange.GrandExchange
 import content.social.trade.exchange.history.ExchangeHistory
-import kotlinx.io.pool.DefaultPool
 import org.koin.dsl.module
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
-import world.gregs.voidps.engine.data.*
-import world.gregs.voidps.engine.data.definition.ObjectDefinitions
+import world.gregs.voidps.engine.data.ConfigFiles
+import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 import java.io.File
 
 fun gameModule(files: ConfigFiles) = module {
     single { ItemSpawns() }
-    single { TaskManager() }
     single { BotManager().load(files) }
-    single {
-        val size = get<NavigationGraph>().size
-        Dijkstra(
-            get(),
-            object : DefaultPool<DijkstraFrontier>(10) {
-                override fun produceInstance() = DijkstraFrontier(size)
-            },
-        )
-    }
-    single(createdAtStart = true) {
-        get<ObjectDefinitions>()
-        NavigationGraph().load(files.find(Settings["map.navGraph"]))
-    }
     single(createdAtStart = true) { Books().load(files.list(Settings["definitions.books"])) }
     single(createdAtStart = true) { MusicTracks().load(files.find(Settings["map.music"])) }
     single(createdAtStart = true) { FairyRingCodes().load(files.find(Settings["definitions.fairyCodes"])) }

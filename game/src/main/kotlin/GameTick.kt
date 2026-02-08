@@ -78,13 +78,6 @@ fun getTickStages(
     )
 }
 
-object AiTick : Runnable {
-    var method: (() -> Unit)? = null
-    override fun run() {
-        method?.invoke()
-    }
-}
-
 private class SaveLogs : Runnable {
     private val directory = File(Settings["storage.players.logs"])
     private var ticks = TimeUnit.SECONDS.toTicks(Settings["storage.players.logs.seconds", 10])

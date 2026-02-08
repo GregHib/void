@@ -11,7 +11,6 @@ import world.gregs.voidps.network.client.Instruction
 import java.util.Stack
 
 data class Bot(val player: Player) : Character by player {
-    var step: Instruction? = null
     val blocked: MutableSet<String> = mutableSetOf()
     var previous: BotActivity? = null
     val frames = Stack<BehaviourFrame>()
@@ -42,3 +41,9 @@ data class Bot(val player: Player) : Character by player {
         return "BOT ${player.accountName}"
     }
 }
+
+val Player.isBot: Boolean
+    get() = contains("bot")
+
+val Player.bot: Bot
+    get() = get("bot")!!

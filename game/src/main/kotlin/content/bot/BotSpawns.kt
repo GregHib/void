@@ -35,7 +35,6 @@ import kotlin.text.toIntOrNull
 class BotSpawns(
     val enums: EnumDefinitions,
     val structs: StructDefinitions,
-    val tasks: TaskManager,
     val loader: PlayerAccountLoader,
     val manager: BotManager,
     val accounts: AccountManager,
@@ -141,7 +140,6 @@ class BotSpawns(
                 bot.available.add(name)
                 manager.assign(bot, name)
             }
-            Bots.start(player)
             player.message("Bot enabled.")
         }
     }
@@ -170,7 +168,6 @@ class BotSpawns(
             if (player.inventory.isEmpty()) {
                 player.inventory.add("coins", 10000)
             }
-            Bots.start(player)
             player.viewport?.loaded = true
             delay(3)
             manager.add(bot)
