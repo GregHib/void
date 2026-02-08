@@ -25,6 +25,7 @@ class Graph(
     val actions: Array<List<BotAction>?> = emptyArray(),
     val adjacentEdges: Array<IntArray?> = emptyArray(),
     val tiles: IntArray = intArrayOf(),
+    val tags: Array<Set<String>?> = emptyArray(),
     val shortcuts: Map<Int, NavigationShortcut> = emptyMap(),
     var nodeCount: Int = 0,
 ) {
@@ -41,8 +42,7 @@ class Graph(
     fun findNearest(player: Player, output: MutableList<Int>, tag: String): Boolean {
         val start = startingPoints(player)
         return find(player, output, start, target = {
-            val tile = Tile(tiles[it])
-            Areas.tagged(tag).any { a -> tile in a.area } // TODO store tags and/or areas per node
+            tags[it]?.contains(tag) ?: false
         })
     }
 
@@ -145,6 +145,7 @@ class Graph(
         // Nodes
         val tiles = LinkedHashSet<Tile>()
         val nodes = mutableSetOf<Int>()
+        val tags = mutableListOf<Set<String>?>()
 
         // Edges
         val endNodes = mutableListOf<Int>()
@@ -188,6 +189,12 @@ class Graph(
 
         fun add(tile: Tile): Int {
             if (tiles.add(tile)) {
+                val tags = Areas.get(tile.zone).filter { it.area.contains(tile) }.flatMap { it.tags }
+                if (tags.isNotEmpty()) {
+                    this.tags.add(tags.toSet())
+                } else {
+                    this.tags.add(null)
+                }
                 return tiles.size - 1
             }
             return tiles.indexOf(tile)
@@ -213,6 +220,7 @@ class Graph(
             adjacentEdges = Array(nodes.size) { edges[it]?.toIntArray() },
             nodeCount = nodes.size,
             tiles = tiles.map { it.id }.toIntArray(),
+            tags = tags.toTypedArray(),
             shortcuts = shortcuts,
         )
 
