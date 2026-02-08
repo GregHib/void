@@ -156,16 +156,16 @@ sealed class ActionParser {
                 is List<*> -> value as List<Map<String, Any>>
                 else -> return listOf()
             }
-            return Requirement.parse(listOf(key to list), "ActionParser.${key}")
+            return Requirement.parse(listOf(key to list), "ActionParser.$key")
         }
 
         fun parse(list: List<Pair<String, Map<String, Any>>>, name: String): List<BotAction> {
             val actions = mutableListOf<BotAction>()
             for ((type, map) in list) {
-                val parser = parsers[type] ?: error("No action parser for '$type' in ${name}.")
+                val parser = parsers[type] ?: error("No action parser for '$type' in $name.")
                 val error = parser.check(map)
                 if (error != null) {
-                    error("Action '$type' $error in ${name}.")
+                    error("Action '$type' $error in $name.")
                 }
                 val action = parser.parse(map)
                 actions.add(action)

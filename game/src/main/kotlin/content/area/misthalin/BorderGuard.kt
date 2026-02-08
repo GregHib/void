@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
-import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.area.Rectangle
 import kotlin.collections.set

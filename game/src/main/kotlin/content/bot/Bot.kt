@@ -1,10 +1,10 @@
 package content.bot
 
 import content.bot.action.BotAction
-import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.Reason
+import content.bot.behaviour.activity.BotActivity
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import java.util.Stack
@@ -36,9 +36,7 @@ data class Bot(val player: Player) : Character by player {
         frame().state = BehaviourState.Failed(Reason.Cancelled)
     }
 
-    override fun toString(): String {
-        return "BOT ${player.accountName}"
-    }
+    override fun toString(): String = "BOT ${player.accountName}"
 }
 
 val Player.isBot: Boolean

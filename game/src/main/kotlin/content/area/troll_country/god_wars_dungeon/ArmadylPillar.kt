@@ -11,8 +11,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.carriesItem
+import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile

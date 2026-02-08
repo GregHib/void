@@ -159,7 +159,7 @@ class BotSpawns(
                 } else {
                     names.remove(selected)
                 }
-                "${prefix}${selected}"
+                "${prefix}$selected"
             }
             val player = Player(tile = Areas["lumbridge_teleport"].random(), accountName = name)
             val bot = player.initBot()

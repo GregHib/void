@@ -1,7 +1,7 @@
 package content.bot.req.predicate
 
-import content.bot.req.fact.ItemView
 import content.bot.req.RequirementEvaluator
+import content.bot.req.fact.ItemView
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirements
@@ -175,13 +175,15 @@ sealed class Predicate<T> {
             val id = item["id"] as String
             var filter = if (id.contains(",")) {
                 val ids = id.split(",")
-                AnyItem(ids.flatMap { id ->
-                    if (id.any { char -> char == '*' || char == '#' }) {
-                        Wildcards.get(id, Wildcard.Item)
-                    } else {
-                        setOf(id)
-                    }
-                }.toSet())
+                AnyItem(
+                    ids.flatMap { id ->
+                        if (id.any { char -> char == '*' || char == '#' }) {
+                            Wildcards.get(id, Wildcard.Item)
+                        } else {
+                            setOf(id)
+                        }
+                    }.toSet(),
+                )
             } else if (id.any { it == '*' || it == '#' }) {
                 AnyItem(Wildcards.get(id, Wildcard.Item))
             } else {

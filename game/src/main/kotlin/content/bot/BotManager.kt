@@ -2,19 +2,19 @@ package content.bot
 
 import com.github.michaelbull.logging.InlineLogger
 import content.bot.action.*
-import content.bot.behaviour.activity.ActivitySlots
-import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.Behaviour
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.HardReason
 import content.bot.behaviour.Reason
+import content.bot.behaviour.activity.ActivitySlots
+import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.loadBehaviours
-import content.bot.req.Requirement
 import content.bot.behaviour.navigation.Graph
 import content.bot.behaviour.navigation.Graph.Companion.loadGraph
 import content.bot.behaviour.navigation.NavigationShortcut
 import content.bot.behaviour.setup.Resolver
+import content.bot.req.Requirement
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.event.AuditLog
@@ -103,9 +103,7 @@ class BotManager(
         }
     }
 
-    private fun hasRequirements(bot: Bot, activity: BotActivity): Boolean {
-        return slots.hasFree(activity) && !bot.blocked.contains(activity.id) && activity.requires.all { it.check(bot.player) }
-    }
+    private fun hasRequirements(bot: Bot, activity: BotActivity): Boolean = slots.hasFree(activity) && !bot.blocked.contains(activity.id) && activity.requires.all { it.check(bot.player) }
 
     fun assign(bot: Bot, id: String): Boolean {
         val activity = activities[id] ?: return false
@@ -176,7 +174,7 @@ class BotManager(
             // Attempt resolution
             AuditLog.event(bot, "start_resolver", resolver.id, behaviour.id)
             if (bot.player["debug", false]) {
-                logger.info { "Starting resolution: ${resolver.id} for ${behaviour.id} requirement: ${requirement}." }
+                logger.info { "Starting resolution: ${resolver.id} for ${behaviour.id} requirement: $requirement." }
             }
             frame.blocked.add(resolver.id)
             val resolverFrame = BehaviourFrame(resolver)
@@ -268,7 +266,7 @@ class BotManager(
     }
 
     private fun debugResolvers(behaviour: Behaviour, requirement: Requirement<*>, resolvers: MutableList<Resolver>, frame: BehaviourFrame, bot: Bot) {
-        logger.info { "No resolver found for ${behaviour.id} keys: ${requirement.fact.keys()} requirement: ${requirement}." }
+        logger.info { "No resolver found for ${behaviour.id} keys: ${requirement.fact.keys()} requirement: $requirement." }
         for (resolver in resolvers) {
             if (frame.blocked.contains(resolver.id)) {
                 logger.debug { "Resolver: ${resolver.id} - Blocked by frame behaviour: ${frame.behaviour.id}." }
@@ -301,5 +299,4 @@ class BotManager(
             }
         }
     }
-
 }

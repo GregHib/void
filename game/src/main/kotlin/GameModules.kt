@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.Storage
-import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 import java.io.File

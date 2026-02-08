@@ -59,7 +59,7 @@ private fun loadActivities(activities: MutableMap<String, BotActivity>, template
                     requires = Requirement.parse(requires, debug),
                     setup = Requirement.parse(setup, debug),
                     actions = ActionParser.Companion.parse(actions, debug),
-                    produces = Requirement.parse(produces, debug, requirePredicates = false).toSet()
+                    produces = Requirement.parse(produces, debug, requirePredicates = false).toSet(),
                 )
             }
         }
@@ -87,7 +87,7 @@ private fun loadSetups(resolvers: MutableMap<String, MutableList<Resolver>>, tem
                     requires = Requirement.parse(requires, debug),
                     setup = Requirement.parse(setup, debug),
                     actions = ActionParser.Companion.parse(actions, debug),
-                    produces = products.toSet()
+                    produces = products.toSet(),
                 )
                 for (product in products) {
                     for (key in product.fact.keys()) {
@@ -120,8 +120,8 @@ private fun loadShortcuts(shortcuts: MutableList<NavigationShortcut>, templates:
                         requires = Requirement.parse(requires, debug),
                         setup = Requirement.parse(setup, debug),
                         actions = ActionParser.Companion.parse(actions, debug),
-                        produces = Requirement.parse(produces, debug, requirePredicates = false).toSet()
-                    )
+                        produces = Requirement.parse(produces, debug, requirePredicates = false).toSet(),
+                    ),
                 )
             }
         }
@@ -276,7 +276,7 @@ private data class Fragment(
         if (value is String && value.contains('$')) {
             val ref = value.reference()
             val name = ref.trim('$', '{', '}')
-            val replacement = fields[name] ?: error("No field found for behaviour=$id type=${type} key=$key ref=$ref")
+            val replacement = fields[name] ?: error("No field found for behaviour=$id type=$type key=$key ref=$ref")
             if (replacement is String) value.replace(ref, replacement) else replacement
         } else if (value is Map<*, *>) {
             resolve(value as Map<String, Any>, type)

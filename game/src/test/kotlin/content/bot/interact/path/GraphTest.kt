@@ -1,10 +1,10 @@
 package content.bot.interact.path
 
+import content.bot.behaviour.navigation.Graph
 import content.bot.behaviour.navigation.NavigationShortcut
+import content.bot.req.Requirement
 import content.bot.req.fact.Fact
 import content.bot.req.predicate.Predicate
-import content.bot.req.Requirement
-import content.bot.behaviour.navigation.Graph
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.definition.AreaDefinition
@@ -258,7 +258,7 @@ class GraphTest {
             to = b,
             weight = 1,
             actions = emptyList(),
-            conditions = listOf(Requirement(Fact.PlayerTile, Predicate.TileEquals(100)))
+            conditions = listOf(Requirement(Fact.PlayerTile, Predicate.TileEquals(100))),
         )
 
         val graph = builder.build()
@@ -303,7 +303,7 @@ class GraphTest {
             id = "teleport",
             weight = 1,
             requires = listOf(Requirement(Fact.PlayerTile, Predicate.TileEquals(50, 50))),
-            produces = setOf(Requirement(Fact.PlayerTile, Predicate.InArea("town")))
+            produces = setOf(Requirement(Fact.PlayerTile, Predicate.InArea("town"))),
         )
 
         val builder = Graph.Builder()

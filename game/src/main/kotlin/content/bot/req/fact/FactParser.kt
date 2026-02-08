@@ -34,33 +34,25 @@ sealed class FactParser<T> {
     object InventoryItems : FactParser<ItemView>() {
         override fun parse(map: Map<String, Any>) = Fact.InventoryItems
         override fun predicate(map: Map<String, Any>) = null
-        override fun requirement(list: List<Map<String, Any>>): Requirement<ItemView> {
-            return Requirement(Fact.InventoryItems, Predicate.parseItems(list))
-        }
+        override fun requirement(list: List<Map<String, Any>>): Requirement<ItemView> = Requirement(Fact.InventoryItems, Predicate.parseItems(list))
     }
 
     object EquipmentItems : FactParser<ItemView>() {
         override fun parse(map: Map<String, Any>) = Fact.EquipmentItems
         override fun predicate(map: Map<String, Any>) = null
-        override fun requirement(list: List<Map<String, Any>>): Requirement<ItemView> {
-            return Requirement(Fact.EquipmentItems, Predicate.parseItems(list))
-        }
+        override fun requirement(list: List<Map<String, Any>>): Requirement<ItemView> = Requirement(Fact.EquipmentItems, Predicate.parseItems(list))
     }
 
     object BankedItems : FactParser<ItemView>() {
         override fun parse(map: Map<String, Any>) = Fact.BankItems
         override fun predicate(map: Map<String, Any>) = null
-        override fun requirement(list: List<Map<String, Any>>): Requirement<ItemView> {
-            return Requirement(Fact.BankItems, Predicate.parseItems(list))
-        }
+        override fun requirement(list: List<Map<String, Any>>): Requirement<ItemView> = Requirement(Fact.BankItems, Predicate.parseItems(list))
     }
 
     object AllItems : FactParser<ItemView>() {
         override fun parse(map: Map<String, Any>) = Fact.AllItems
         override fun predicate(map: Map<String, Any>) = null
-        override fun requirement(list: List<Map<String, Any>>): Requirement<ItemView> {
-            return Requirement(Fact.AllItems, Predicate.parseItems(list))
-        }
+        override fun requirement(list: List<Map<String, Any>>): Requirement<ItemView> = Requirement(Fact.AllItems, Predicate.parseItems(list))
     }
 
     object Variable : FactParser<Any>() {
@@ -76,22 +68,18 @@ sealed class FactParser<T> {
             } as Fact<Any>
         }
 
-        override fun predicate(map: Map<String, Any>): Predicate<Any>? {
-            return when (val default = map["default"]) {
-                is Int -> Predicate.parseInt(map)
-                is String -> Predicate.parseString(map)
-                is Double -> Predicate.parseDouble(map)
-                is Boolean -> Predicate.parseBool(map)
-                else -> error("Invalid default value $default")
-            } as? Predicate<Any>
-        }
+        override fun predicate(map: Map<String, Any>): Predicate<Any>? = when (val default = map["default"]) {
+            is Int -> Predicate.parseInt(map)
+            is String -> Predicate.parseString(map)
+            is Double -> Predicate.parseDouble(map)
+            is Boolean -> Predicate.parseBool(map)
+            else -> error("Invalid default value $default")
+        } as? Predicate<Any>
     }
 
     object Clock : FactParser<Int>() {
         override val required = setOf("id")
-        override fun parse(map: Map<String, Any>): Fact<Int> {
-            return Fact.ClockRemaining(map["id"] as String, map["seconds"] as? Boolean ?: false)
-        }
+        override fun parse(map: Map<String, Any>): Fact<Int> = Fact.ClockRemaining(map["id"] as String, map["seconds"] as? Boolean ?: false)
 
         override fun predicate(map: Map<String, Any>) = Predicate.parseInt(map)
     }
@@ -126,7 +114,7 @@ sealed class FactParser<T> {
 
     object ObjectExists : FactParser<Boolean>() {
         override val required = setOf("id", "x", "y")
-        override fun parse(map: Map<String, Any>): Fact.ObjectExists{
+        override fun parse(map: Map<String, Any>): Fact.ObjectExists {
             val tile = Tile(map["x"] as Int, map["y"] as Int)
             val id = map["id"] as String
             return Fact.ObjectExists(Predicate.StringEquals(id), tile)

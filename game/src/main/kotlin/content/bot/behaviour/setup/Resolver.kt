@@ -1,7 +1,7 @@
 package content.bot.behaviour.setup
 
-import content.bot.behaviour.Behaviour
 import content.bot.action.BotAction
+import content.bot.behaviour.Behaviour
 import content.bot.req.Requirement
 
 /**

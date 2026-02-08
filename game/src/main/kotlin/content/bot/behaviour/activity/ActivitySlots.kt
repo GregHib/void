@@ -3,9 +3,7 @@ package content.bot.behaviour.activity
 class ActivitySlots {
     private val occupied = mutableMapOf<String, Int>()
 
-    fun hasFree(activity: BotActivity): Boolean {
-        return occupied.getOrDefault(activity.id, 0) < activity.capacity
-    }
+    fun hasFree(activity: BotActivity): Boolean = occupied.getOrDefault(activity.id, 0) < activity.capacity
 
     fun occupy(activity: BotActivity) {
         occupied[activity.id] = (occupied.getOrDefault(activity.id, 0) + 1).coerceAtMost(activity.capacity)

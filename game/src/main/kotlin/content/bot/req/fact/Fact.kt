@@ -56,22 +56,22 @@ sealed class Fact<T>(val priority: Int) {
     }
 
     data class IntVariable(val id: String, val default: Int) : Fact<Int>(1) {
-        override fun keys() = setOf("var:${id}")
+        override fun keys() = setOf("var:$id")
         override fun getValue(player: Player) = player.variables.get(id) ?: default
     }
 
     data class BoolVariable(val id: String, val default: Boolean?) : Fact<Boolean?>(1) {
-        override fun keys() = setOf("var:${id}")
+        override fun keys() = setOf("var:$id")
         override fun getValue(player: Player) = player.variables.get(id) ?: default
     }
 
     data class StringVariable(val id: String, val default: String?) : Fact<String?>(1) {
-        override fun keys() = setOf("var:${id}")
+        override fun keys() = setOf("var:$id")
         override fun getValue(player: Player) = player.variables.get(id) ?: default
     }
 
     data class DoubleVariable(val id: String, val default: Double?) : Fact<Double?>(1) {
-        override fun keys() = setOf("var:${id}")
+        override fun keys() = setOf("var:$id")
         override fun getValue(player: Player) = player.variables.get(id) ?: default
     }
 
@@ -186,5 +186,4 @@ sealed class Fact<T>(val priority: Int) {
             }
         }
     }
-
 }

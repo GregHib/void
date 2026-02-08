@@ -1,6 +1,6 @@
 package content.bot.behaviour
 
-sealed interface BehaviourState  {
+sealed interface BehaviourState {
     object Pending : BehaviourState
     object Running : BehaviourState
     object Success : BehaviourState

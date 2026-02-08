@@ -3,11 +3,11 @@ package content.bot.behaviour.navigation
 import content.bot.action.ActionParser
 import content.bot.action.BotAction
 import content.bot.behaviour.actions
-import content.bot.bot
-import content.bot.req.predicate.Predicate
-import content.bot.req.Requirement
-import content.bot.isBot
 import content.bot.behaviour.requirements
+import content.bot.bot
+import content.bot.isBot
+import content.bot.req.Requirement
+import content.bot.req.predicate.Predicate
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.definition.Areas
@@ -229,7 +229,7 @@ class Graph(
                 for (edge in adj.sorted()) {
                     val end = endNodes[edge]
                     val weight = weights[edge]
-                    println("Edge ${edge}: $start -> $end ($weight)")
+                    println("Edge $edge: $start -> $end ($weight)")
                 }
             }
             println("Nodes: ${nodes.size} edges: $edgeCount")
@@ -297,6 +297,5 @@ class Graph(
             }
             return Tile(x, y, level)
         }
-
     }
 }

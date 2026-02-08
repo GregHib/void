@@ -16,9 +16,7 @@ sealed interface Deficit {
     fun resolve(player: Player): Resolver?
 
     data class NotInArea(val area: String) : Deficit {
-        override fun resolve(player: Player): Resolver {
-            return Resolver("go_to_${area}", -1, actions = listOf(BotAction.GoTo(area)))
-        }
+        override fun resolve(player: Player): Resolver = Resolver("go_to_$area", -1, actions = listOf(BotAction.GoTo(area)))
     }
 
     data class MissingEquipment(val entries: List<Predicate<Item>>) : Deficit {
@@ -44,11 +42,12 @@ sealed interface Deficit {
             val spaceNeeded = withdraw(actions, player, entries, uniqueName)
             if (actions.isNotEmpty()) {
                 return Resolver(
-                    "withdraw$uniqueName", weight = 20,
+                    "withdraw$uniqueName",
+                    weight = 20,
                     setup = listOf(
-                        Requirement(Fact.InventorySpace, Predicate.IntRange(spaceNeeded))
+                        Requirement(Fact.InventorySpace, Predicate.IntRange(spaceNeeded)),
                     ),
-                    actions = actions
+                    actions = actions,
                 )
             }
             return null
@@ -94,7 +93,7 @@ sealed interface Deficit {
             var spaceNeeded = 0
             val actions = mutableListOf(
                 BotAction.GoToNearest("bank"),
-                BotAction.InteractObject("Use-quickly", "bank_booth*", success = Requirement(Fact.InterfaceOpen("bank"), Predicate.BooleanTrue))
+                BotAction.InteractObject("Use-quickly", "bank_booth*", success = Requirement(Fact.InterfaceOpen("bank"), Predicate.BooleanTrue)),
             )
             val uniqueName = StringBuilder()
             for (item in player.bank.items) {
@@ -109,7 +108,7 @@ sealed interface Deficit {
                     spaceNeeded += needed
                     uniqueName.append("_${item.id}")
                     if (needed == 1 || needed == 5 || needed == 10) {
-                        actions.add(BotAction.InterfaceOption("Withdraw-${needed}", "bank:inventory:${item.id}"))
+                        actions.add(BotAction.InterfaceOption("Withdraw-$needed", "bank:inventory:${item.id}"))
                     } else {
                         BotAction.InterfaceOption("Withdraw-X", "bank:inventory:${item.id}")
                         BotAction.IntEntry(needed)
@@ -122,11 +121,12 @@ sealed interface Deficit {
                 }
                 actions.add(BotAction.CloseInterface)
                 return Resolver(
-                    "withdraw_$uniqueName", weight = 20,
+                    "withdraw_$uniqueName",
+                    weight = 20,
                     setup = listOf(
-                        Requirement(Fact.InventorySpace, Predicate.IntRange(spaceNeeded))
+                        Requirement(Fact.InventorySpace, Predicate.IntRange(spaceNeeded)),
                     ),
-                    actions = actions
+                    actions = actions,
                 )
             }
             return null

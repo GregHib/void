@@ -11,4 +11,3 @@ interface Reason {
 }
 interface SoftReason : Reason
 interface HardReason : Reason
-
