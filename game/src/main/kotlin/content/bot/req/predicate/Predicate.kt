@@ -15,6 +15,7 @@ sealed class Predicate<T> {
     abstract fun test(player: Player, value: T): Boolean
     open val children: Set<Predicate<*>> = emptySet()
     open val evaluator: RequirementEvaluator<T>? = null
+    open fun keys(): Set<String> = emptySet()
 
     data class IntRange(val min: Int? = null, val max: Int? = null) : Predicate<Int>() {
         override fun test(player: Player, value: Int): Boolean {
@@ -43,6 +44,7 @@ sealed class Predicate<T> {
     data class InArea(val name: String) : Predicate<Tile>() {
         override val evaluator = RequirementEvaluator.TileEval
         override fun test(player: Player, value: Tile) = value in Areas[name]
+        override fun keys() = setOf("in:${name}")
     }
 
     object BooleanTrue : Predicate<Boolean>() {
@@ -89,10 +91,13 @@ sealed class Predicate<T> {
             }
             return true
         }
+
+        override fun keys() = entries.flatMap { it.filter.keys() }.toSet()
     }
 
     data class AnyItem(private val ids: Set<String>) : Predicate<Item>() {
         override fun test(player: Player, value: Item) = value.id in ids
+        override fun keys() = ids
     }
 
     object EquipableItem : Predicate<Item>() {
@@ -109,10 +114,12 @@ sealed class Predicate<T> {
 
     data class AllOf<T>(override val children: Set<Predicate<T>>) : Predicate<T>() {
         override fun test(player: Player, value: T) = children.all { it.test(player, value) }
+        override fun keys() = children.flatMap { it.keys() }.toSet()
     }
 
     data class AnyOf<T>(override val children: Set<Predicate<T>>) : Predicate<T>() {
         override fun test(player: Player, value: T) = children.any { it.test(player, value) }
+        override fun keys() = children.flatMap { it.keys() }.toSet()
     }
 
     companion object {

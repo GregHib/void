@@ -5,7 +5,7 @@ actions = [
     { interface = { option = "Deposit carried items", id = "bank:carried", success = { inventory_space = { min = 28 } } } },
 ]
 produces = [
-    { inventory_space = { min = 28 } }
+    { inventory_space = { equals = 28 } }
 ]
 
 #[deposit_worn_items]

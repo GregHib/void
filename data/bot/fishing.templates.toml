@@ -1,0 +1,43 @@
+[fish_crayfish]
+requires = [
+    { skill = { id = "fishing", min = 1 } },
+]
+setup = [
+    { carries = { id = "crayfish_cage" } },
+    { area = { id = "$location" } },
+    { inventory_space = { min = 27 } },
+]
+actions = [
+    { npc = { option = "Cage", id = "$spot", delay = 5, success = { inventory_space = { max = 0 } } } },
+]
+produces = [
+    { carries = { id = "raw_crayfish" } },
+    { skill = { id = "fishing" } }
+]
+
+[fish_small_net]
+setup = [
+    { carries = { id = "small_fishing_net" } },
+    { area = { id = "$location" } },
+    { inventory_space = { min = 27 } },
+]
+actions = [
+    { npc = { option = "Net", id = "$spot", delay = 5, success = { inventory_space = { max = 0 } } } },
+]
+produces = [
+    { carries = { id = "raw_shrimp" } },
+    { skill = { id = "fishing" } }
+]
+
+[fish_bait]
+setup = [
+    { carries = { id = "small_fishing_net" } },
+    { area = { id = "$location" } },
+    { inventory_space = { min = 27 } },
+]
+actions = [
+    { npc = { option = "Net", id = "$spot", delay = 5, success = { inventory_space = { max = 0 } } } },
+]
+produces = [
+    { skill = { id = "fishing" } }
+]

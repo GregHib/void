@@ -191,11 +191,17 @@ class BotManager(
 
     private fun availableResolvers(bot: Bot, requirement: Requirement<*>): MutableList<Resolver> {
         val options = mutableListOf<Resolver>()
+        println("Resolvers for $requirement")
+//        FIXME because InventoryItems no longer produces individual keys, there's no way to match resolvers to required items
         for (deficit in requirement.deficits(bot.player)) {
             options.add(deficit.resolve(bot.player) ?: continue)
         }
-        for (key in requirement.fact.keys()) {
-            options.addAll(resolvers[key] ?: continue)
+        println("Check ${requirement.fact} ${requirement.predicate}")
+        for (key in requirement.keys()) {
+            println("Resolvers for $key : ${resolvers[key]}")
+            for (resolver in resolvers[key] ?: continue) {
+                options.add(resolver)
+            }
         }
         return options
     }

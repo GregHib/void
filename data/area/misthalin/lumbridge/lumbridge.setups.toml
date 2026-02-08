@@ -1,3 +1,50 @@
+# Hanks fishing shop
+[take_small_fishing_net_hank]
+template = "take_shop_sample"
+weight = 30
+fields = { shop_location = "hanks_fishing_shop", shopkeeper = "hank", item = "small_fishing_net" }
+
+[take_crayfish_cage_hank]
+template = "take_shop_sample"
+weight = 30
+fields = { shop_location = "hanks_fishing_shop", shopkeeper = "hank", item = "crayfish_cage" }
+
+[buy_small_fishing_net_hank]
+template = "buy_from_shop"
+weight = 35
+fields = { cost = 40, shop_location = "hanks_fishing_shop", shopkeeper = "hank", item = "small_fishing_net" }
+
+[buy_crayfish_cage_hank]
+template = "buy_from_shop"
+weight = 35
+fields = { cost = 20, shop_location = "hanks_fishing_shop", shopkeeper = "hank", item = "crayfish_cage" }
+
+[buy_fishing_bait_hank]
+template = "buy_from_shop"
+weight = 35
+fields = { cost = 3, shop_location = "hanks_fishing_shop", shopkeeper = "hank", item = "fishing_bait" }
+
+[buy_feather_hank]
+template = "buy_from_shop"
+weight = 35
+fields = { cost = 6, shop_location = "hanks_fishing_shop", shopkeeper = "hank", item = "feather" }
+
+[buy_fishing_rod_hank]
+template = "buy_from_shop"
+weight = 35
+fields = { cost = 5, shop_location = "hanks_fishing_shop", shopkeeper = "hank", item = "fishing_rod" }
+requires = [
+    { skill = { id = "fishing", min = 5 } },
+]
+
+[buy_fly_fishing_rod_hank]
+template = "buy_from_shop"
+weight = 35
+fields = { cost = 5, shop_location = "hanks_fishing_shop", shopkeeper = "hank", item = "fishing_rod" }
+requires = [
+    { skill = { id = "fishing", min = 20 } },
+]
+
 # Bobs Brilliant Axes
 [take_bronze_hatchet_bobs]
 template = "take_shop_sample"

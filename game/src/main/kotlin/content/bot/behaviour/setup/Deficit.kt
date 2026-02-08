@@ -19,6 +19,17 @@ sealed interface Deficit {
         override fun resolve(player: Player): Resolver = Resolver("go_to_$area", -1, actions = listOf(BotAction.GoTo(area)))
     }
 
+    /*
+        TODO setup resolution order
+            if equipment
+                deposit all inventory items
+                withdraw needed items
+                equip all needed items
+                deposit all inv items
+            if inventory
+                deposit all items
+                withdraw needed items
+     */
     data class Entry(val filter: Predicate<Item>, val needed: Int)
 
     data class MissingEquipment(val entries: List<Entry>) : Deficit {

@@ -58,7 +58,7 @@ private fun loadActivities(activities: MutableMap<String, BotActivity>, template
                     capacity = capacity,
                     requires = Requirement.parse(requires, debug),
                     setup = Requirement.parse(setup, debug),
-                    actions = ActionParser.Companion.parse(actions, debug),
+                    actions = ActionParser.parse(actions, debug),
                     produces = Requirement.parse(produces, debug, requirePredicates = false).toSet(),
                 )
             }
@@ -86,11 +86,11 @@ private fun loadSetups(resolvers: MutableMap<String, MutableList<Resolver>>, tem
                     weight = weight,
                     requires = Requirement.parse(requires, debug),
                     setup = Requirement.parse(setup, debug),
-                    actions = ActionParser.Companion.parse(actions, debug),
+                    actions = ActionParser.parse(actions, debug),
                     produces = products.toSet(),
                 )
                 for (product in products) {
-                    for (key in product.fact.keys()) {
+                    for (key in product.keys()) {
                         resolvers.getOrPut(key) { mutableListOf() }.add(resolver)
                     }
                 }
@@ -98,7 +98,12 @@ private fun loadSetups(resolvers: MutableMap<String, MutableList<Resolver>>, tem
         }
         for (fragment in fragments) {
             val template = templates[fragment.template] ?: error("Unable to find template '${fragment.template}' for ${fragment.id}.")
-            resolvers.getOrPut(fragment.id) { mutableListOf() }.add(fragment.resolver(template))
+            val resolver = fragment.resolver(template)
+            for (product in resolver.produces) {
+                for (key in product.keys()) {
+                    resolvers.getOrPut(key) { mutableListOf() }.add(resolver)
+                }
+            }
         }
         resolvers.size
     }
@@ -119,7 +124,7 @@ private fun loadShortcuts(shortcuts: MutableList<NavigationShortcut>, templates:
                         weight = weight,
                         requires = Requirement.parse(requires, debug),
                         setup = Requirement.parse(setup, debug),
-                        actions = ActionParser.Companion.parse(actions, debug),
+                        actions = ActionParser.parse(actions, debug),
                         produces = Requirement.parse(produces, debug, requirePredicates = false).toSet(),
                     ),
                 )

@@ -8,6 +8,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 
 data class Requirement<T>(val fact: Fact<T>, val predicate: Predicate<T>? = null) {
 
+    fun keys(): Set<String> = (predicate?.keys() ?: emptySet()) + fact.groups()
+
     fun check(player: Player): Boolean = predicate?.test(player, fact.getValue(player)) ?: false
 
     fun deficits(player: Player): List<Deficit> = predicate?.evaluator?.evaluate(player, fact, predicate) ?: emptyList()
@@ -16,7 +18,7 @@ data class Requirement<T>(val fact: Fact<T>, val predicate: Predicate<T>? = null
         fun parse(list: List<Pair<String, List<Map<String, Any>>>>, name: String, requirePredicates: Boolean = true): List<Requirement<*>> {
             val requirements = mutableListOf<Requirement<*>>()
             for ((type, value) in list) {
-                val parser = FactParser.Companion.parsers[type] ?: error("No fact parser for '$type' in $name.")
+                val parser = FactParser.parsers[type] ?: error("No fact parser for '$type' in $name.")
                 for (map in value) {
                     val error = parser.check(map)
                     if (error != null) {

@@ -14,6 +14,19 @@ import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.type.Tile
 
 /**
+ * TODO what is the purpose of a fact?
+ *  1. provides current state of a player to Requirement/predicate
+ *  2. Allows matching resolvers by specific produces keys
+ *  3. Allows grouping requirements to listen for updates
+ *  4. Determines order of requirements to be checked in
+ *
+ *
+ * TODO you want to define configuration coarse level
+ *      but evaluates at a fine level
+ *      execution is at a course level
+ *
+ *      Coarse desired state expands into fine facts
+ *
  * A bots state which can be a [content.bot.req.Requirement] for, or a product of performing a [content.bot.behaviour.Behaviour]
  * @param priority Ensure bots aren't walking to locations before getting items etc... lower values are prioritised first.
  */
@@ -56,22 +69,22 @@ sealed class Fact<T>(val priority: Int) {
     }
 
     data class IntVariable(val id: String, val default: Int) : Fact<Int>(1) {
-        override fun keys() = setOf("var:$id")
+        override fun keys() = setOf("var:${id}")
         override fun getValue(player: Player) = player.variables.get(id) ?: default
     }
 
     data class BoolVariable(val id: String, val default: Boolean?) : Fact<Boolean?>(1) {
-        override fun keys() = setOf("var:$id")
+        override fun keys() = setOf("var:${id}")
         override fun getValue(player: Player) = player.variables.get(id) ?: default
     }
 
     data class StringVariable(val id: String, val default: String?) : Fact<String?>(1) {
-        override fun keys() = setOf("var:$id")
+        override fun keys() = setOf("var:${id}")
         override fun getValue(player: Player) = player.variables.get(id) ?: default
     }
 
     data class DoubleVariable(val id: String, val default: Double?) : Fact<Double?>(1) {
-        override fun keys() = setOf("var:$id")
+        override fun keys() = setOf("var:${id}")
         override fun getValue(player: Player) = player.variables.get(id) ?: default
     }
 
@@ -186,4 +199,5 @@ sealed class Fact<T>(val priority: Int) {
             }
         }
     }
+
 }

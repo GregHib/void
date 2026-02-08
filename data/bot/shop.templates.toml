@@ -9,7 +9,7 @@ actions = [
     { interface = { option = "Buy-1", id = "shop:stock:$item", success = { carries = [{ id = "$item" }] } } },
 ]
 produces = [
-    { carries = [{ id = "$item" }] }
+    { carries = [{ id = "$item", equals = 1 }] }
 ]
 
 [take_shop_sample]
@@ -22,5 +22,65 @@ actions = [
     { interface = { option = "Take-1", id = "shop:sample:$item", success = { carries = [{ id = "$item" }] } } },
 ]
 produces = [
-    { carries = [{ id = "$item" }] }
+    { carries = [{ id = "$item", equals = 1 }] }
+]
+
+[sell_50_to_shop]
+setup = [
+    { carries = [{ id = "$item", min = "50" }] },
+    { area = { id = "$shop_location" } },
+    { inventory_space = { min = 1 } },
+]
+actions = [
+    { npc = { option = "Trade", id = "$shopkeeper", success = { interface_open = { id = "shop" } } } },
+    { interface = { option = "Sell-50", id = "shop_side:inventory:$item", success = { carries = [{ id = "coins" }] } } },
+    { interface_close = { id = "shop" } }
+]
+produces = [
+    { carries = { id = "coins" } }
+]
+
+[sell_10_to_shop]
+setup = [
+    { carries = [{ id = "$item", min = "10" }] },
+    { area = { id = "$shop_location" } },
+    { inventory_space = { min = 1 } },
+]
+actions = [
+    { npc = { option = "Trade", id = "$shopkeeper", success = { interface_open = { id = "shop" } } } },
+    { interface = { option = "Sell-10", id = "shop_side:inventory:$item", success = { carries = [{ id = "coins" }] } } },
+    { interface_close = { id = "shop" } }
+]
+produces = [
+    { carries = { id = "coins" } }
+]
+
+[sell_5_to_shop]
+setup = [
+    { carries = [{ id = "$item", min = "5" }] },
+    { area = { id = "$shop_location" } },
+    { inventory_space = { min = 1 } },
+]
+actions = [
+    { npc = { option = "Trade", id = "$shopkeeper", success = { interface_open = { id = "shop" } } } },
+    { interface = { option = "Sell-5", id = "shop_side:inventory:$item", success = { carries = [{ id = "coins" }] } } },
+    { interface_close = { id = "shop" } }
+]
+produces = [
+    { carries = { id = "coins" } }
+]
+
+[sell_to_shop]
+setup = [
+    { carries = [{ id = "$item", min = "1" }] },
+    { area = { id = "$shop_location" } },
+    { inventory_space = { min = 1 } },
+]
+actions = [
+    { npc = { option = "Trade", id = "$shopkeeper", success = { interface_open = { id = "shop" } } } },
+    { interface = { option = "Sell-1", id = "shop_side:inventory:$item", success = { carries = [{ id = "coins" }] } } },
+    { interface_close = { id = "shop" } }
+]
+produces = [
+    { carries = { id = "coins" } }
 ]

@@ -185,6 +185,7 @@ tags = ["fire_making", "spaces_2"]
 [lumbridge_kitchen]
 x = [3205, 3212]
 y = [3212, 3217]
+level = 0
 type = "range"
 tags = ["cooking", "spaces_2"]
 

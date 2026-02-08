@@ -52,6 +52,15 @@ requires = [
     { skill = { id = "thieving", min = 1 } }
 ]
 
+# Fishing
+[lumbridge_crayfish]
+template = "fish_crayfish"
+capacity = 4
+fields = { location = "lumbridge_south_river_fishing_spot", spot = "fishing_spot_crayfish_lumbridge" }
+requires = [
+    { skill = { id = "fishing", min = 1, max = 5 } }
+]
+
 # Fletching
 [lumbridge_fletch_arrow_shafts]
 template = "fletching_arrow_shafts_template"
