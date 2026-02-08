@@ -1,6 +1,6 @@
 package content.bot.action
 
-import content.bot.fact.Requirement
+import content.bot.req.Requirement
 
 sealed class ActionParser {
     open val required = emptySet<String>()

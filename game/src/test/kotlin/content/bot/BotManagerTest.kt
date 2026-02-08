@@ -1,9 +1,15 @@
 package content.bot
 
 import content.bot.action.*
-import content.bot.fact.Fact
-import content.bot.fact.Predicate
-import content.bot.fact.Requirement
+import content.bot.behaviour.activity.BotActivity
+import content.bot.behaviour.BehaviourFrame
+import content.bot.behaviour.BehaviourState
+import content.bot.behaviour.Reason
+import content.bot.behaviour.SoftReason
+import content.bot.req.fact.Fact
+import content.bot.req.predicate.Predicate
+import content.bot.req.Requirement
+import content.bot.behaviour.setup.Resolver
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.Player

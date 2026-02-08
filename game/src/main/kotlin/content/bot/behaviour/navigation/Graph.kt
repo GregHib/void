@@ -1,16 +1,15 @@
-package content.bot.interact.path
+package content.bot.behaviour.navigation
 
 import content.bot.action.ActionParser
 import content.bot.action.BotAction
-import content.bot.action.NavigationShortcut
-import content.bot.action.actions
-import content.bot.action.requirements
+import content.bot.behaviour.actions
 import content.bot.bot
-import content.bot.fact.Predicate
-import content.bot.fact.Requirement
-import content.bot.interact.navigation.graph.readTile
+import content.bot.req.predicate.Predicate
+import content.bot.req.Requirement
 import content.bot.isBot
+import content.bot.behaviour.requirements
 import world.gregs.config.Config
+import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.timedLoad
@@ -158,7 +157,7 @@ class Graph(
         val shortcuts = mutableMapOf<Int, NavigationShortcut>()
 
         init {
-            tiles.add(Tile.EMPTY) // Virtual
+            tiles.add(Tile.Companion.EMPTY) // Virtual
             nodes.add(0)
         }
 
@@ -247,8 +246,8 @@ class Graph(
                             val list = key()
                             assert(list == "edges") { "Expected edges list, got: $list ${exception()}" }
                             while (nextElement()) {
-                                var from = Tile.EMPTY
-                                var to = Tile.EMPTY
+                                var from = Tile.Companion.EMPTY
+                                var to = Tile.Companion.EMPTY
                                 var cost = 0
                                 val actions: MutableList<Pair<String, Map<String, Any>>> = mutableListOf()
                                 val requirements = mutableListOf<Pair<String, List<Map<String, Any>>>>()
@@ -268,8 +267,8 @@ class Graph(
                                         builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, listOf(BotAction.WalkTo(to.x, to.y)), null)
                                         builder.addEdge(Tile(to.x, to.y, to.level), Tile(from.x, from.y, from.level), cost, listOf(BotAction.WalkTo(from.x, from.y)), null)
                                     }
-                                    requirements.isEmpty() -> builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, ActionParser.parse(actions, exception()), null)
-                                    else -> builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, ActionParser.parse(actions, exception()), Requirement.parse(requirements, exception()))
+                                    requirements.isEmpty() -> builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, ActionParser.Companion.parse(actions, exception()), null)
+                                    else -> builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, ActionParser.Companion.parse(actions, exception()), Requirement.Companion.parse(requirements, exception()))
                                 }
                             }
                         }
@@ -283,5 +282,21 @@ class Graph(
 //            builder.print()
             return builder.build()
         }
+
+        fun ConfigReader.readTile(): Tile {
+            var x = 0
+            var y = 0
+            var level = 0
+            while (nextEntry()) {
+                when (val key = key()) {
+                    "x" -> x = int()
+                    "y" -> y = int()
+                    "level" -> level = int()
+                    else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
+                }
+            }
+            return Tile(x, y, level)
+        }
+
     }
 }

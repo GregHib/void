@@ -2,9 +2,19 @@ package content.bot
 
 import com.github.michaelbull.logging.InlineLogger
 import content.bot.action.*
-import content.bot.fact.Requirement
-import content.bot.interact.path.Graph
-import content.bot.interact.path.Graph.Companion.loadGraph
+import content.bot.behaviour.activity.ActivitySlots
+import content.bot.behaviour.activity.BotActivity
+import content.bot.behaviour.Behaviour
+import content.bot.behaviour.BehaviourFrame
+import content.bot.behaviour.BehaviourState
+import content.bot.behaviour.HardReason
+import content.bot.behaviour.Reason
+import content.bot.behaviour.loadBehaviours
+import content.bot.req.Requirement
+import content.bot.behaviour.navigation.Graph
+import content.bot.behaviour.navigation.Graph.Companion.loadGraph
+import content.bot.behaviour.navigation.NavigationShortcut
+import content.bot.behaviour.setup.Resolver
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.event.AuditLog

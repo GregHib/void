@@ -1,7 +1,9 @@
-package content.bot.fact
+package content.bot.behaviour.setup
 
 import content.bot.action.BotAction
-import content.bot.action.Resolver
+import content.bot.req.Requirement
+import content.bot.req.fact.Fact
+import content.bot.req.predicate.Predicate
 import content.entity.player.bank.bank
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item

@@ -1,5 +1,9 @@
-package content.bot.fact
+package content.bot.req
 
+import content.bot.behaviour.setup.Deficit
+import content.bot.req.fact.Fact
+import content.bot.req.fact.FactParser
+import content.bot.req.predicate.Predicate
 import world.gregs.voidps.engine.entity.character.player.Player
 
 data class Requirement<T>(val fact: Fact<T>, val predicate: Predicate<T>? = null) {
@@ -16,7 +20,7 @@ data class Requirement<T>(val fact: Fact<T>, val predicate: Predicate<T>? = null
         fun parse(list: List<Pair<String, List<Map<String, Any>>>>, name: String, requirePredicates: Boolean = true): List<Requirement<*>> {
             val requirements = mutableListOf<Requirement<*>>()
             for ((type, value) in list) {
-                val parser = FactParser.parsers[type] ?: error("No fact parser for '$type' in ${name}.")
+                val parser = FactParser.Companion.parsers[type] ?: error("No fact parser for '$type' in ${name}.")
                 for (map in value) {
                     val error = parser.check(map)
                     if (error != null) {

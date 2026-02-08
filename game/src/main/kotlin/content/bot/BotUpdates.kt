@@ -1,6 +1,7 @@
 package content.bot
 
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.network.client.instruction.InteractDialogue
 
 /**
  * Listen for state changes which would change which activities are available to a bot
@@ -34,6 +35,12 @@ class BotUpdates(val manager: BotManager) : Script {
         entered("*") {
             if (isBot) {
                 manager.update(bot, "enter:${it.name}")
+            }
+        }
+
+        interfaceOpened("dialogue_level_up") {
+            if (isBot) {
+                instructions.trySend(InteractDialogue(interfaceId = 740, componentId = 3, option = -1))
             }
         }
     }

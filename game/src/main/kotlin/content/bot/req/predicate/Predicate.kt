@@ -1,5 +1,7 @@
-package content.bot.fact
+package content.bot.req.predicate
 
+import content.bot.req.fact.ItemView
+import content.bot.req.RequirementEvaluator
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirements

@@ -2,11 +2,10 @@ package content.entity.player.command
 
 import content.bot.Bot
 import content.bot.BotManager
-import content.bot.action.BehaviourFrame
+import content.bot.behaviour.BehaviourFrame
 import content.bot.action.BotAction
-import content.bot.action.Resolver
+import content.bot.behaviour.setup.Resolver
 import content.bot.bot
-import content.bot.interact.path.Graph
 import content.bot.isBot
 import content.entity.gfx.areaGfx
 import org.rsmod.game.pathfinder.PathFinder

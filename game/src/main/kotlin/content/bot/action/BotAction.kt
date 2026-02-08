@@ -1,9 +1,14 @@
 package content.bot.action
 
+import content.bot.behaviour.BehaviourFrame
+import content.bot.behaviour.BehaviourState
 import content.bot.Bot
 import content.bot.BotManager
-import content.bot.fact.Requirement
-import content.bot.interact.path.Graph
+import content.bot.behaviour.Reason
+import content.bot.req.Requirement
+import content.bot.behaviour.navigation.Graph
+import content.bot.behaviour.navigation.NavigationShortcut
+import content.bot.behaviour.setup.Resolver
 import content.entity.combat.attackers
 import content.entity.combat.dead
 import world.gregs.voidps.engine.GameLoop

@@ -1,5 +1,7 @@
-package content.bot.fact
+package content.bot.req.fact
 
+import content.bot.req.Requirement
+import content.bot.req.predicate.Predicate
 import world.gregs.voidps.type.Tile
 
 sealed class FactParser<T> {

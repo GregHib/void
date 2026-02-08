@@ -1,9 +1,10 @@
 package content.bot.interact.path
 
-import content.bot.action.NavigationShortcut
-import content.bot.fact.Fact
-import content.bot.fact.Predicate
-import content.bot.fact.Requirement
+import content.bot.behaviour.navigation.NavigationShortcut
+import content.bot.req.fact.Fact
+import content.bot.req.predicate.Predicate
+import content.bot.req.Requirement
+import content.bot.behaviour.navigation.Graph
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.definition.AreaDefinition

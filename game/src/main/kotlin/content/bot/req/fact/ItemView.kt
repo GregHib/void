@@ -1,4 +1,4 @@
-package content.bot.fact
+package content.bot.req.fact
 
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.Inventory

@@ -1,13 +1,12 @@
 package content.bot
 
-import content.bot.action.BehaviourFrame
-import content.bot.action.BehaviourState
 import content.bot.action.BotAction
-import content.bot.action.BotActivity
-import content.bot.action.Reason
+import content.bot.behaviour.activity.BotActivity
+import content.bot.behaviour.BehaviourFrame
+import content.bot.behaviour.BehaviourState
+import content.bot.behaviour.Reason
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.network.client.Instruction
 import java.util.Stack
 
 data class Bot(val player: Player) : Character by player {

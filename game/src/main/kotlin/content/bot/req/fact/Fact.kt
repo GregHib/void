@@ -1,12 +1,12 @@
-package content.bot.fact
+package content.bot.req.fact
 
+import content.bot.req.predicate.Predicate
 import content.entity.player.bank.bank
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.type.Tile
 
 /**
- * A bots state which can be a [Requirement] for, or a product of performing a [content.bot.action.Behaviour]
+ * A bots state which can be a [content.bot.req.Requirement] for, or a product of performing a [content.bot.behaviour.Behaviour]
  * @param priority Ensure bots aren't walking to locations before getting items etc... lower values are prioritised first.
  */
 sealed class Fact<T>(val priority: Int) {

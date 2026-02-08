@@ -1,6 +1,6 @@
 package world.gregs.voidps.tools.map.view.draw
 
-import content.bot.interact.path.Graph
+import content.bot.behaviour.navigation.Graph
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings

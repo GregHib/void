@@ -1,6 +1,4 @@
-package content.bot
-
-import content.bot.action.BotActivity
+package content.bot.behaviour.activity
 
 class ActivitySlots {
     private val occupied = mutableMapOf<String, Int>()

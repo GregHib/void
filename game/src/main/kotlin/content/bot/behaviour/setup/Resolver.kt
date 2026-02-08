@@ -1,6 +1,8 @@
-package content.bot.action
+package content.bot.behaviour.setup
 
-import content.bot.fact.Requirement
+import content.bot.behaviour.Behaviour
+import content.bot.action.BotAction
+import content.bot.req.Requirement
 
 /**
  * An activity that can be performed to resolve a requirement

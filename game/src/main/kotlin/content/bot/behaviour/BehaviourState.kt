@@ -1,4 +1,4 @@
-package content.bot.action
+package content.bot.behaviour
 
 sealed interface BehaviourState  {
     object Pending : BehaviourState

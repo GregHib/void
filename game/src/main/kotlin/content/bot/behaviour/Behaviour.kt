@@ -1,6 +1,11 @@
-package content.bot.action
+package content.bot.behaviour
 
-import content.bot.fact.Requirement
+import content.bot.action.ActionParser
+import content.bot.action.BotAction
+import content.bot.behaviour.activity.BotActivity
+import content.bot.behaviour.navigation.NavigationShortcut
+import content.bot.behaviour.setup.Resolver
+import content.bot.req.Requirement
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
@@ -53,7 +58,7 @@ private fun loadActivities(activities: MutableMap<String, BotActivity>, template
                     capacity = capacity,
                     requires = Requirement.parse(requires, debug),
                     setup = Requirement.parse(setup, debug),
-                    actions = ActionParser.parse(actions, debug),
+                    actions = ActionParser.Companion.parse(actions, debug),
                     produces = Requirement.parse(produces, debug, requirePredicates = false).toSet()
                 )
             }
@@ -81,7 +86,7 @@ private fun loadSetups(resolvers: MutableMap<String, MutableList<Resolver>>, tem
                     weight = weight,
                     requires = Requirement.parse(requires, debug),
                     setup = Requirement.parse(setup, debug),
-                    actions = ActionParser.parse(actions, debug),
+                    actions = ActionParser.Companion.parse(actions, debug),
                     produces = products.toSet()
                 )
                 for (product in products) {
@@ -114,7 +119,7 @@ private fun loadShortcuts(shortcuts: MutableList<NavigationShortcut>, templates:
                         weight = weight,
                         requires = Requirement.parse(requires, debug),
                         setup = Requirement.parse(setup, debug),
-                        actions = ActionParser.parse(actions, debug),
+                        actions = ActionParser.Companion.parse(actions, debug),
                         produces = Requirement.parse(produces, debug, requirePredicates = false).toSet()
                     )
                 )
@@ -263,7 +268,7 @@ private data class Fragment(
         if (combinedList.isEmpty()) {
             return emptyList()
         }
-        return ActionParser.parse(combinedList, "$id template $template")
+        return ActionParser.Companion.parse(combinedList, "$id template $template")
     }
 
     @Suppress("UNCHECKED_CAST")

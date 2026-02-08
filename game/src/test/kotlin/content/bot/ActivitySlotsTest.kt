@@ -1,6 +1,7 @@
 package content.bot
 
-import content.bot.action.BotActivity
+import content.bot.behaviour.activity.BotActivity
+import content.bot.behaviour.activity.ActivitySlots
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

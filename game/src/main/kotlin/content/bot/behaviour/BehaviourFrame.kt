@@ -1,6 +1,7 @@
-package content.bot.action
+package content.bot.behaviour
 
 import content.bot.Bot
+import content.bot.action.BotAction
 
 data class BehaviourFrame(
     val behaviour: Behaviour,

@@ -1,6 +1,6 @@
 package world.gregs.voidps.tools.map.view.draw
 
-import content.bot.interact.path.Graph
+import content.bot.behaviour.navigation.Graph
 import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.collision.CollisionStrategy

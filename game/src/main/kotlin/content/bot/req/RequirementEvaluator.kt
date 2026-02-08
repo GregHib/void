@@ -1,10 +1,15 @@
-package content.bot.fact
+package content.bot.req
 
-import content.bot.fact.Deficit.MissingInventory
-import content.bot.fact.Predicate.IntEquals
+import content.bot.behaviour.setup.Deficit
+import content.bot.behaviour.setup.Deficit.MissingInventory
+import content.bot.req.fact.Fact
+import content.bot.req.fact.ItemView
+import content.bot.req.predicate.Predicate
+import content.bot.req.predicate.Predicate.IntEquals
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.type.Tile
+import kotlin.collections.plusAssign
 
 /**
  * Evaluates [Requirement]'s to produce known [Deficit]'s
