@@ -8,7 +8,7 @@ setup = [
     { inventory_space = { min = 27 } },
 ]
 actions = [
-    { option = "Mine", object = "copper_rocks*", delay = 5, success = { inventory_space = { max = 0 } } },
+    { object = { option = "Mine", id = "copper_rocks*", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
     { carries = [{ id = "copper_ore" }] },
@@ -25,7 +25,7 @@ setup = [
     { inventory_space = { min = 27 } },
 ]
 actions = [
-    { option = "Mine", object = "tin_rocks*", delay = 5, success = { inventory_space = { max = 0 } } },
+    { object = { option = "Mine", id = "tin_rocks*", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
     { carries = [{ id = "tin_ore" }] },
@@ -42,7 +42,7 @@ setup = [
     { inventory_space = { min = 27 } },
 ]
 actions = [
-    { option = "Mine", object = "clay_rocks*", delay = 5, success = { inventory_space = { max = 0 } } },
+    { object = { option = "Mine", id = "clay_rocks*", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
     { carries = [{ id = "clay" }] },
@@ -59,7 +59,7 @@ setup = [
     { inventory_space = { min = 27 } },
 ]
 actions = [
-    { option = "Mine", object = "iron_rocks*", delay = 5, success = { inventory_space = { max = 0 } } },
+    { object = { option = "Mine", id = "iron_rocks*", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
     { carries = [{ id = "iron_ore" }] },
@@ -76,7 +76,7 @@ setup = [
     { inventory_space = { min = 27 } },
 ]
 actions = [
-    { option = "Mine", object = "silver_rocks*", delay = 5, success = { inventory_space = { max = 0 } } },
+    { object = { option = "Mine", id = "silver_rocks*", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
     { carries = [{ id = "silver_ore" }] },
@@ -93,7 +93,7 @@ setup = [
     { inventory_space = { min = 27 } },
 ]
 actions = [
-    { option = "Mine", object = "coal_rocks*", delay = 10, success = { inventory_space = { max = 0 } } },
+    { object = { option = "Mine", id = "coal_rocks*", delay = 10, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
     { carries = [{ id = "coal" }] },
@@ -110,7 +110,7 @@ setup = [
     { inventory_space = { min = 27 } },
 ]
 actions = [
-    { option = "Mine", object = "gold_rocks*", delay = 15, success = { inventory_space = { max = 0 } } },
+    { object = { option = "Mine", id = "gold_rocks*", delay = 15, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
     { carries = [{ id = "gold_ore" }] },
@@ -127,7 +127,7 @@ setup = [
     { inventory_space = { min = 27 } },
 ]
 actions = [
-    { option = "Mine", object = "mithril_rocks*", delay = 15, success = { inventory_space = { max = 0 } } },
+    { object = { option = "Mine", id = "mithril_rocks*", delay = 15, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
     { carries = [{ id = "mithril_ore" }] },

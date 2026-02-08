@@ -5,8 +5,8 @@ setup = [
     { inventory_space = { min = 1 } },
 ]
 actions = [
-    { option = "Trade", npc = "$shopkeeper", success = { interface_open = { id = "shop" } } },
-    { option = "Buy-1", interface = "shop:stock:$item", success = { carries = [{ id = "$item" }] } },
+    { npc = { option = "Trade", id = "$shopkeeper", success = { interface_open = { id = "shop" } } } },
+    { interface = { option = "Buy-1", id = "shop:stock:$item", success = { carries = [{ id = "$item" }] } } },
 ]
 produces = [
     { carries = [{ id = "$item" }] }
@@ -18,8 +18,8 @@ setup = [
     { inventory_space = { min = 1 } },
 ]
 actions = [
-    { option = "Trade", npc = "$shopkeeper", success = { interface_open = { id = "shop" } } },
-    { option = "Take-1", interface = "shop:sample:$item", success = { carries = [{ id = "$item" }] } },
+    { npc = { option = "Trade", id = "$shopkeeper", success = { interface_open = { id = "shop" } } } },
+    { interface = { option = "Take-1", id = "shop:sample:$item", success = { carries = [{ id = "$item" }] } } },
 ]
 produces = [
     { carries = [{ id = "$item" }] }

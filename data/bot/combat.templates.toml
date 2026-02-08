@@ -8,8 +8,8 @@ setup = [
     { inventory_space = { min = 27 } },
 ]
 actions = [
-    { option = "Select", interface = "combat_styles:$style" },
-    { option = "Attack", npc = "chicken*", delay = 5, success = { inventory_space = { max = 0 } } },
+    { interface = { option = "Select", id = "combat_styles:$style" } },
+    { npc = { option = "Attack", id = "chicken*", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
     { carries = [{ id = "feather" }] },
@@ -29,8 +29,8 @@ setup = [
     { inventory_space = { min = 27 } },
 ]
 actions = [
-    { option = "Select", interface = "combat_styles:style1" },
-    { option = "Attack", npc = "cow*", delay = 5, success = { inventory_space = { max = 0 } } },
+    { interface = { option = "Select", id = "combat_styles:style1" } },
+    { npc = { option = "Attack", id = "cow*", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
     { carries = [{ id = "bones" }] },

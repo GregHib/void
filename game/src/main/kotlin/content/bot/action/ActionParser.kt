@@ -1,0 +1,190 @@
+package content.bot.action
+
+import content.bot.fact.Requirement
+
+sealed class ActionParser {
+    open val required = emptySet<String>()
+    open val optional = emptySet<String>()
+
+    abstract fun parse(map: Map<String, Any>): BotAction
+
+    fun check(map: Map<String, Any>): String? {
+        for (key in required) {
+            if (!map.containsKey(key)) {
+                return "missing key '$key' in map $map"
+            }
+        }
+        for (key in map.keys) {
+            if (!map.containsKey(key) && !optional.contains(key)) {
+                return "unexpected key '$key' in map $map"
+            }
+        }
+        return null
+    }
+
+    object InteractNpcParser : ActionParser() {
+        override val required = setOf("id", "option")
+        override val optional = setOf("delay", "success", "radius", "heal_percent", "loot_over_value")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val option = map["option"] as String
+            val id = map["id"] as String
+            val delay = map["delay"] as? Int ?: 0
+            val success = requirement(map, "success").singleOrNull()
+            val radius = map["radius"] as? Int ?: 10
+            return if (option == "Attack") {
+                val healPercent = map["heal_percent"] as? Int ?: 20
+                val lootOverValue = map["loot_over_value"] as? Int ?: 0
+                BotAction.FightNpc(id, delay, success, radius, healPercent, lootOverValue)
+            } else {
+                BotAction.InteractNpc(option, id, delay, success, radius)
+            }
+        }
+    }
+
+    object InterfaceParser : ActionParser() {
+        override val required = setOf("option", "id")
+        override val optional = setOf("success")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val option = map["option"] as String
+            val id = map["id"] as String
+            val success = requirement(map, "success").singleOrNull()
+            return BotAction.InterfaceOption(option, id, success)
+        }
+    }
+
+    object DialogueParser : ActionParser() {
+        override val required = setOf("id")
+        override val optional = setOf("option", "success")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val option = map["option"] as? String ?: ""
+            val id = map["id"] as String
+            val success = requirement(map, "success").singleOrNull()
+            return BotAction.DialogueContinue(option, id, success)
+        }
+    }
+
+    object ItemOnObjectParser : ActionParser() {
+        override val required = setOf("id", "object")
+        override val optional = setOf("success")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val id = map["id"] as String
+            val obj = map["object"] as String
+            val success = requirement(map, "success").singleOrNull()
+            return BotAction.ItemOnObject(id, obj, success)
+        }
+    }
+
+    object ItemOnItemParser : ActionParser() {
+        override val required = setOf("id", "on")
+        override val optional = setOf("success")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val id = map["id"] as String
+            val item = map["on"] as String
+            val success = requirement(map, "success").singleOrNull()
+            return BotAction.ItemOnItem(id, item, success)
+        }
+    }
+
+    object InteractObjectParser : ActionParser() {
+        override val required = setOf("option", "id")
+        override val optional = setOf("delay", "success", "radius")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val option = map["option"] as String
+            val id = map["id"] as String
+            val delay = map["delay"] as? Int ?: 0
+            val success = requirement(map, "success").singleOrNull()
+            val radius = map["radius"] as? Int ?: 10
+            return BotAction.InteractObject(option, id, delay, success, radius)
+        }
+    }
+
+    object GoToParser : ActionParser() {
+        override val optional = setOf("area", "nearest")
+
+        override fun parse(map: Map<String, Any>) = when {
+            map.containsKey("area") -> BotAction.GoTo(map["area"] as String)
+            map.containsKey("nearest") -> BotAction.GoTo(map["nearest"] as String)
+            else -> error("Expected field 'area' or 'nearest', but got '${map["area"]}'")
+        }
+
+    }
+
+    object WalkToParser : ActionParser() {
+        override val required = setOf("x", "y")
+        override val optional = setOf("radius")
+        override fun parse(map: Map<String, Any>) = BotAction.WalkTo(map["x"] as Int, map["y"] as Int, map["radius"] as? Int ?: 4)
+    }
+
+    object WaitParser : ActionParser() {
+        override val required = setOf("ticks")
+        override fun parse(map: Map<String, Any>) = BotAction.Wait(map["ticks"] as Int)
+    }
+
+    object EnterParser : ActionParser() {
+        override val optional = setOf("int", "string")
+        override fun parse(map: Map<String, Any>) = when {
+            map.containsKey("int") -> BotAction.IntEntry(map["int"] as Int)
+            map.containsKey("string") -> BotAction.StringEntry(map["string"] as String)
+            else -> error("Expected field 'int' or 'string', but got '${map["area"]}'")
+        }
+    }
+
+    object RestartParser : ActionParser() {
+        override val required = setOf("success")
+        override val optional = setOf("wait_if")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val requirement = requirement(map, "success").single()
+            return BotAction.Restart(wait = requirement(map, "wait_if"), success = requirement)
+        }
+    }
+
+    companion object {
+        @Suppress("UNCHECKED_CAST")
+        private fun requirement(map: Map<String, Any>, key: String): List<Requirement<*>> {
+            val parent = map[key] as? Map<String, Any> ?: return listOf()
+            val key = parent.keys.single()
+            val value = parent[key] ?: return listOf()
+            val list = when (value) {
+                is Map<*, *> -> listOf(value as Map<String, Any>)
+                is List<*> -> value as List<Map<String, Any>>
+                else -> return listOf()
+            }
+            return Requirement.parse(listOf(key to list), "ActionParser.${key}")
+        }
+
+        fun parse(list: List<Pair<String, Map<String, Any>>>, name: String): List<BotAction> {
+            val actions = mutableListOf<BotAction>()
+            for ((type, map) in list) {
+                val parser = parsers[type] ?: error("No action parser for '$type' in ${name}.")
+                val error = parser.check(map)
+                if (error != null) {
+                    error("Action '$type' $error in ${name}.")
+                }
+                val action = parser.parse(map)
+                actions.add(action)
+            }
+            return actions
+        }
+
+        private val parsers = mapOf(
+            "npc" to InteractNpcParser,
+            "object" to InteractObjectParser,
+            "item_on_object" to ItemOnObjectParser,
+            "item_on_item" to ItemOnItemParser,
+            "go_to" to GoToParser,
+            "tile" to WalkToParser,
+            "wait" to WaitParser,
+            "restart" to RestartParser,
+            "interface" to InterfaceParser,
+            "continue" to DialogueParser,
+            "enter" to EnterParser,
+        )
+    }
+}

@@ -552,7 +552,6 @@ sealed interface BotAction {
      *
      *  TODO behaviour loop detection
      *
-    TODO how to handle repeat actions e.g. repeat Chop-down trees until inv is full - These are actions Gathering, Skilling etc..
     more resolvers like bank all, drop cheap items
     how to handle combat, one task or multiple? - One Fight action
     frames should have tick(): State methods

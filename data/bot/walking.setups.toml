@@ -16,7 +16,7 @@ requires = [
     { variable = { id = "movement", equals = "walk", default = "walk" } }
 ]
 actions = [
-    { option = "Turn Run mode on", interface = "energy_orb:run_background" }
+    { interface = { option = "Turn Run mode on", id = "energy_orb:run_background" } }
 ]
 produces = [
     { variable = { id = "movement", equals = "run", default = "walk" } }

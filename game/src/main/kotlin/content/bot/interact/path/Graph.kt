@@ -1,8 +1,10 @@
 package content.bot.interact.path
 
+import content.bot.action.ActionParser
 import content.bot.action.BotAction
 import content.bot.action.NavigationShortcut
 import content.bot.action.actions
+import content.bot.action.requirements
 import content.bot.bot
 import content.bot.fact.Predicate
 import content.bot.fact.Requirement
@@ -243,7 +245,7 @@ class Graph(
                                 var toY = 0
                                 var toLevel = 0
                                 var cost = 0
-                                val actions: MutableList<BotAction> = mutableListOf()
+                                val actions: MutableList<Pair<String, Map<String, Any>>> = mutableListOf()
                                 val requirements = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                                 while (nextEntry()) {
                                     when (val key = key()) {
@@ -255,20 +257,7 @@ class Graph(
                                         "to_level" -> toLevel = int()
                                         "cost" -> cost = int()
                                         "actions" -> actions(actions)
-                                        "conditions" -> while (nextElement()) {
-                                            while (nextEntry()) {
-                                                val key = key()
-                                                if (peek == '[') {
-                                                    val list = mutableListOf<Map<String, Any>>()
-                                                    while (nextElement()) {
-                                                        list.add(map())
-                                                    }
-                                                    requirements.add(key to list)
-                                                } else {
-                                                    requirements.add(key to listOf(map()))
-                                                }
-                                            }
-                                        }
+                                        "conditions" -> requirements(requirements)
                                         else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                                     }
                                 }
@@ -278,8 +267,8 @@ class Graph(
                                         builder.addEdge(Tile(fromX, fromY, fromLevel), Tile(toX, toY, toLevel), cost, listOf(BotAction.WalkTo(toX, toY)), null)
                                         builder.addEdge(Tile(toX, toY, toLevel), Tile(fromX, fromY, fromLevel), cost, listOf(BotAction.WalkTo(fromX, fromY)), null)
                                     }
-                                    requirements.isEmpty() -> builder.addEdge(Tile(fromX, fromY, fromLevel), Tile(toX, toY, toLevel), cost, actions, null)
-                                    else -> builder.addEdge(Tile(fromX, fromY, fromLevel), Tile(toX, toY, toLevel), cost, actions, Requirement.parse(requirements, exception()))
+                                    requirements.isEmpty() -> builder.addEdge(Tile(fromX, fromY, fromLevel), Tile(toX, toY, toLevel), cost, ActionParser.parse(actions, exception()), null)
+                                    else -> builder.addEdge(Tile(fromX, fromY, fromLevel), Tile(toX, toY, toLevel), cost, ActionParser.parse(actions, exception()), Requirement.parse(requirements, exception()))
                                 }
                             }
                         }

@@ -7,8 +7,8 @@ setup = [
     { carries = [{ id = "bones", min = 28 }] },
 ]
 actions = [
-    { option = "Bury", interface = "inventory:inventory:bones" },
-    { restart = true, wait_if = [{ variable = { id = "bone_delay", min = 0, default = -1 } }], success = { inventory_space = { min = 28 } } }
+    { interface = { option = "Bury", id = "inventory:inventory:bones" } },
+    { restart = { wait_if = [{ variable = { id = "bone_delay", min = 0, default = -1 } }], success = { inventory_space = { min = 28 } } } }
 ]
 produces = [
     { skill = { id = "prayer" } }

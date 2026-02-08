@@ -32,8 +32,8 @@ requires = [
     { carries = [{ id = "fire_rune", min = 1 }, { id = "air_rune", min = 3 }, { id = "law_rune", min = 1 }] },
 ]
 actions = [
-    { option = "Cast", interface = "modern_spellbook:varrock_teleport" },
-    { wait = 5 },
+    { interface = { option = "Cast", id = "modern_spellbook:varrock_teleport" } },
+    { wait = { ticks = 5 } },
 ]
 produces = [
     { area = { id = "varrock_teleport" } }
@@ -48,14 +48,14 @@ requires = [
     { owns = { id = "law_rune", min = 1 }},
 ]
 actions = [
-    { go_to_nearest = "bank" },
-    { option = "Use-quickly", object = "bank_booth*" },
-    { option = "Withdraw-1", interface = "bank:inventory:fire_rune" },
-    { option = "Withdraw-X", interface = "bank:inventory:air_rune" },
-    { enter_int = 3 },
-    { option = "Withdraw-1", interface = "bank:inventory:law_rune" },
-    { option = "Cast", interface = "modern_spellbook:varrock_teleport" },
-    { wait = 5 },
+    { go_to = { nearest = "bank" } },
+    { object = { option = "Use-quickly", id = "bank_booth*" } },
+    { interface = { option = "Withdraw-1", id = "bank:inventory:fire_rune" } },
+    { interface = { option = "Withdraw-X", id = "bank:inventory:air_rune" } },
+    { enter = { int = 3 } },
+    { interface = { option = "Withdraw-1", id = "bank:inventory:law_rune" } },
+    { interface = { option = "Cast", id = "modern_spellbook:varrock_teleport" } },
+    { wait = { ticks = 5 } },
 #    { wait = { location = "varrock_teleport" } },
 ]
 produces = [
@@ -69,7 +69,7 @@ requires = [
     { clock = { id = "home_teleport_timeout", max = 0 } },
 ]
 actions = [
-    { option = "Cast", interface = "modern_spellbook:lumbridge_home_teleport" },
+    { interface = { option = "Cast", id = "modern_spellbook:lumbridge_home_teleport" } },
 ]
 produces = [
     { area = { id = "lumbridge_teleport" } }

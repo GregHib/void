@@ -46,7 +46,14 @@ private fun loadActivities(activities: MutableMap<String, BotActivity>, template
                 fragments.add(Fragment(id, template, fields, capacity, requires, setup, actions, produces))
             } else {
                 val debug = "$id ${exception()}"
-                activities[id] = BotActivity(id, capacity, Requirement.parse(requires, debug), Requirement.parse(setup, debug), actions, Requirement.parse(produces, debug, requirePredicates = false).toSet())
+                activities[id] = BotActivity(
+                    id = id,
+                    capacity = capacity,
+                    requires = Requirement.parse(requires, debug),
+                    setup = Requirement.parse(setup, debug),
+                    actions = ActionParser.parse(actions, debug),
+                    produces = Requirement.parse(produces, debug, requirePredicates = false).toSet()
+                )
             }
         }
         for (fragment in fragments) {
@@ -67,7 +74,14 @@ private fun loadSetups(resolvers: MutableMap<String, MutableList<Resolver>>, tem
             } else {
                 val debug = "$id ${exception()}"
                 val products = Requirement.parse(produces, debug)
-                val resolver = Resolver(id, weight, Requirement.parse(requires, debug), Requirement.parse(setup, debug), actions, products.toSet())
+                val resolver = Resolver(
+                    id = id,
+                    weight = weight,
+                    requires = Requirement.parse(requires, debug),
+                    setup = Requirement.parse(setup, debug),
+                    actions = ActionParser.parse(actions, debug),
+                    produces = products.toSet()
+                )
                 for (product in products) {
                     for (key in product.fact.keys()) {
                         resolvers.getOrPut(key) { mutableListOf() }.add(resolver)
@@ -92,7 +106,16 @@ private fun loadShortcuts(shortcuts: MutableList<NavigationShortcut>, templates:
                 fragments.add(Fragment(id, template, fields, weight, requires, setup, actions, produces))
             } else {
                 val debug = "$id ${exception()}"
-                shortcuts.add(NavigationShortcut(id, weight, Requirement.parse(requires, debug), Requirement.parse(setup, debug), actions, Requirement.parse(produces, debug, requirePredicates = false).toSet()))
+                shortcuts.add(
+                    NavigationShortcut(
+                        id = id,
+                        weight = weight,
+                        requires = Requirement.parse(requires, debug),
+                        setup = Requirement.parse(setup, debug),
+                        actions = ActionParser.parse(actions, debug),
+                        produces = Requirement.parse(produces, debug, requirePredicates = false).toSet()
+                    )
+                )
             }
         }
         for (fragment in fragments) {
@@ -103,7 +126,7 @@ private fun loadShortcuts(shortcuts: MutableList<NavigationShortcut>, templates:
     }
 }
 
-private fun load(paths: List<String>, block: ConfigReader.(String, String?, Map<String, Any>?, Int, List<Pair<String, List<Map<String, Any>>>>, List<Pair<String, List<Map<String, Any>>>>, List<BotAction>, List<Pair<String, List<Map<String, Any>>>>) -> Unit) {
+private fun load(paths: List<String>, block: ConfigReader.(String, String?, Map<String, Any>?, Int, List<Pair<String, List<Map<String, Any>>>>, List<Pair<String, List<Map<String, Any>>>>, List<Pair<String, Map<String, Any>>>, List<Pair<String, List<Map<String, Any>>>>) -> Unit) {
     for (path in paths) {
         Config.fileReader(path) {
             while (nextSection()) {
@@ -113,7 +136,7 @@ private fun load(paths: List<String>, block: ConfigReader.(String, String?, Map<
                 var value = 1
                 val requires = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                 val setup = mutableListOf<Pair<String, List<Map<String, Any>>>>()
-                val actions = mutableListOf<BotAction>()
+                val actions = mutableListOf<Pair<String, Map<String, Any>>>()
                 val produces = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                 while (nextPair()) {
                     when (val key = key()) {
@@ -145,7 +168,7 @@ private fun loadTemplates(paths: List<String>): Map<String, Template> {
                     val id = section()
                     val requires = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                     val setup = mutableListOf<Pair<String, List<Map<String, Any>>>>()
-                    val actions = mutableListOf<BotAction>()
+                    val actions = mutableListOf<Pair<String, Map<String, Any>>>()
                     val produces = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                     while (nextPair()) {
                         when (val key = key()) {
@@ -165,7 +188,7 @@ private fun loadTemplates(paths: List<String>): Map<String, Template> {
     return templates
 }
 
-private fun ConfigReader.requirements(requires: MutableList<Pair<String, List<Map<String, Any>>>>) {
+internal fun ConfigReader.requirements(requires: MutableList<Pair<String, List<Map<String, Any>>>>) {
     while (nextElement()) {
         while (nextEntry()) {
             val key = key()
@@ -182,6 +205,16 @@ private fun ConfigReader.requirements(requires: MutableList<Pair<String, List<Ma
     }
 }
 
+internal fun ConfigReader.actions(list: MutableList<Pair<String, Map<String, Any>>>) {
+    while (nextElement()) {
+        while (nextEntry()) {
+            val type = key()
+            val map = map()
+            list.add(type to map)
+        }
+    }
+}
+
 private data class Fragment(
     val id: String,
     val template: String,
@@ -189,7 +222,7 @@ private data class Fragment(
     val int: Int,
     val requires: List<Pair<String, List<Map<String, Any>>>>,
     val setup: List<Pair<String, List<Map<String, Any>>>>,
-    val actions: List<BotAction>, // Can fragments even have actions?
+    val actions: List<Pair<String, Map<String, Any>>>,
     val produces: List<Pair<String, List<Map<String, Any>>>>,
 ) {
     fun activity(template: Template) = BotActivity(
@@ -197,7 +230,7 @@ private data class Fragment(
         capacity = int,
         requires = resolveRequirements(template.requires, requires),
         setup = resolveRequirements(template.setup, setup),
-        actions = template.actions,
+        actions = resolveActions(template.actions, actions),
         produces = resolveRequirements(template.produces, produces, requirePredicates = false).toSet(),
     )
 
@@ -205,16 +238,7 @@ private data class Fragment(
         val combinedList = mutableListOf<Pair<String, List<Map<String, Any>>>>()
         combinedList.addAll(original)
         for ((type, list) in templated) {
-            val resolved = list.map { map ->
-                map.mapValues { (key, value) ->
-                    if (value is String && value.contains('$')) {
-                        val ref = value.reference()
-                        val name = ref.trim('$', '{', '}')
-                        val replacement = fields[name] ?: error("No field found for behaviour=$id type=${type} key=$key ref=$ref")
-                        if (replacement is String) value.replace(ref, replacement) else replacement
-                    } else value
-                }.toMap()
-            }
+            val resolved = list.map { map -> resolve(map, type) }
             if (resolved.isNotEmpty()) {
                 combinedList.add(type to resolved)
             }
@@ -223,6 +247,46 @@ private data class Fragment(
             return emptyList()
         }
         return Requirement.parse(combinedList, "$id template $template", requirePredicates)
+    }
+
+    private fun resolveActions(templated: List<Pair<String, Map<String, Any>>>, original: List<Pair<String, Map<String, Any>>>, requirePredicates: Boolean = true): List<BotAction> {
+        val combinedList = mutableListOf<Pair<String, Map<String, Any>>>()
+        combinedList.addAll(original)
+        for ((type, map) in templated) {
+            val resolved = resolve(map, type)
+            if (resolved.isNotEmpty()) {
+                combinedList.add(type to resolved)
+            }
+        }
+        if (combinedList.isEmpty()) {
+            return emptyList()
+        }
+        return ActionParser.parse(combinedList, "$id template $template")
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun resolve(map: Map<String, Any>, type: String): Map<String, Any> = map.mapValues { (key, value) ->
+        if (value is String && value.contains('$')) {
+            val ref = value.reference()
+            val name = ref.trim('$', '{', '}')
+            val replacement = fields[name] ?: error("No field found for behaviour=$id type=${type} key=$key ref=$ref")
+            if (replacement is String) value.replace(ref, replacement) else replacement
+        } else if (value is Map<*, *>) {
+            resolve(value as Map<String, Any>, type)
+        } else if (value is List<*>) {
+            resolve(value as List<Any>, type)
+        } else {
+            value
+        }
+    }.toMap()
+
+    @Suppress("UNCHECKED_CAST")
+    private fun resolve(value: List<Any>, type: String): List<Any> = value.map { element ->
+        when (element) {
+            is Map<*, *> -> resolve(element as Map<String, Any>, type)
+            is List<*> -> resolve(element as List<Any>, type)
+            else -> element
+        }
     }
 
     private fun String.reference(): String {
@@ -242,7 +306,7 @@ private data class Fragment(
         weight = int,
         requires = resolveRequirements(template.requires, requires),
         setup = resolveRequirements(template.setup, setup),
-        actions = template.actions,
+        actions = resolveActions(template.actions, actions),
         produces = resolveRequirements(template.produces, produces, requirePredicates = false).toSet(),
     )
 
@@ -251,7 +315,7 @@ private data class Fragment(
         weight = int,
         requires = resolveRequirements(template.requires, requires),
         setup = resolveRequirements(template.setup, setup),
-        actions = template.actions,
+        actions = resolveActions(template.actions, actions),
         produces = resolveRequirements(template.produces, produces, requirePredicates = false).toSet(),
     )
 }
@@ -259,169 +323,6 @@ private data class Fragment(
 private data class Template(
     val requires: List<Pair<String, List<Map<String, Any>>>>,
     val setup: List<Pair<String, List<Map<String, Any>>>>,
-    val actions: List<BotAction>,
+    val actions: List<Pair<String, Map<String, Any>>>,
     val produces: List<Pair<String, List<Map<String, Any>>>>,
 )
-
-fun ConfigReader.actions(list: MutableList<BotAction>) {
-    while (nextElement()) {
-        var type = ""
-        var id = ""
-        var option = ""
-        var int = 0
-        var ticks = 0
-        var radius = 10
-        var delay = 0
-        var heal = 0
-        var loot = 0
-        var x = 0
-        var y = 0
-        val references = mutableMapOf<String, String>()
-        val wait = mutableListOf<Pair<String, List<Map<String, Any>>>>()
-        val success = mutableListOf<Pair<String, List<Map<String, Any>>>>()
-        while (nextEntry()) {
-            when (val key = key()) {
-                "go_to", "go_to_nearest", "enter_string", "interface", "npc", "object", "clone", "item", "continue" -> {
-                    type = key
-                    id = string()
-                    if (id.contains('$')) {
-                        references[key] = id
-                    }
-                }
-                "x" -> {
-                    if (type == "") {
-                        type = "tile"
-                    }
-                    val value = value()
-                    if (value is String && value.contains('$')) {
-                        references[key] = value
-                    } else {
-                        x = value as Int
-                    }
-                }
-                "y" -> {
-                    if (type == "") {
-                        type = "tile"
-                    }
-                    val value = value()
-                    if (value is String && value.contains('$')) {
-                        references[key] = value
-                    } else {
-                        y = value as Int
-                    }
-                }
-                "target", "id" -> {
-                    id = string()
-                    if (id.contains('$')) {
-                        references[key] = id
-                    }
-                }
-                "option", "on" -> {
-                    option = string()
-                    if (option.contains('$')) {
-                        references[key] = option
-                    }
-                }
-                "on_object" -> {
-                    type = "${type}_on_object"
-                    option = string()
-                    if (option.contains('$')) {
-                        references[key] = option
-                    }
-                }
-                "restart" -> {
-                    require(boolean()) { "Can't have restart = false ${exception()}" }
-                    type = key
-                }
-                "success" -> while (nextEntry()) {
-                    val key = key()
-                    if (peek == '[') {
-                        val list = mutableListOf<Map<String, Any>>()
-                        while (nextElement()) {
-                            list.add(map())
-                        }
-                        success.add(key to list)
-                    } else {
-                        success.add(key to listOf(map()))
-                    }
-                }
-                "wait_if" -> while (nextElement()) {
-                    while (nextEntry()) {
-                        val key = key()
-                        if (peek == '[') {
-                            val list = mutableListOf<Map<String, Any>>()
-                            while (nextElement()) {
-                                list.add(map())
-                            }
-                            wait.add(key to list)
-                        } else {
-                            wait.add(key to listOf(map()))
-                        }
-                    }
-                }
-                "wait" -> {
-                    type = key
-                    when (val value = value()) {
-                        is Int -> ticks = value
-                        is String if value.contains('$') -> references[key] = value
-                        else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
-                    }
-                }
-                "radius" -> when (val value = value()) {
-                    is Int -> radius = value
-                    is String if value.contains('$') -> references[key] = value
-                    else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
-                }
-                "heal_percent" -> when (val value = value()) {
-                    is Int -> heal = value
-                    is String if value.contains('$') -> references[key] = value
-                    else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
-                }
-                "loot_over" -> when (val value = value()) {
-                    is Int -> loot = value
-                    is String if value.contains('$') -> references[key] = value
-                    else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
-                }
-                "delay" -> when (val value = value()) {
-                    is Int -> delay = value
-                    is String if value.contains('$') -> references[key] = value
-                    else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
-                }
-                "enter_int" -> {
-                    type = key
-                    when (val value = value()) {
-                        is Int -> int = value
-                        is String if value.contains('$') -> references[key] = value
-                        else -> throw IllegalArgumentException("Invalid '$key' value: $value ${exception()}")
-                    }
-                }
-                else -> throw IllegalArgumentException("Unknown action key: $key ${exception()}")
-            }
-        }
-        var action = when (type) {
-            "go_to" -> BotAction.GoTo(id)
-            "go_to_nearest" -> BotAction.GoToNearest(id)
-            "enter_string" -> BotAction.StringEntry(id)
-            "enter_int" -> BotAction.IntEntry(int)
-            "wait" -> BotAction.Wait(ticks)
-            "restart" -> BotAction.Restart(Requirement.parse(wait, id), Requirement.parse(success, id).singleOrNull() ?: throw IllegalArgumentException("Restart must have success condition. $id ${exception()}"))
-            "npc" -> if (option == "Attack") {
-                BotAction.FightNpc(id = id, delay = delay, success = Requirement.parse(success, id).singleOrNull(), healPercentage = heal, lootOverValue = loot, radius = radius)
-            } else {
-                BotAction.InteractNpc(id = id, option = option, delay = delay, success = Requirement.parse(success, id).singleOrNull(), radius = radius)
-            }
-            "tile" -> BotAction.WalkTo(x = x, y = y)
-            "object" -> BotAction.InteractObject(id = id, option = option, delay = delay, success = Requirement.parse(success, id).singleOrNull(), radius = radius)
-            "interface" -> BotAction.InterfaceOption(id = id, option = option, success = Requirement.parse(success, id).singleOrNull())
-            "continue" -> BotAction.DialogueContinue(id = id, option = option, success = Requirement.parse(success, id).singleOrNull())
-            "item" -> BotAction.ItemOnItem(item = id, on = option, success = Requirement.parse(success, id).singleOrNull())
-            "item_on_object" -> BotAction.ItemOnObject(item = id, id = option, success = Requirement.parse(success, id).singleOrNull())
-            "clone" -> BotAction.Clone(id)
-            else -> throw IllegalArgumentException("Unknown action type: $type ${exception()}")
-        }
-        if (references.isNotEmpty()) {
-            action = BotAction.Reference(action, references)
-        }
-        list.add(action)
-    }
-}

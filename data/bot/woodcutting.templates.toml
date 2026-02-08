@@ -8,7 +8,7 @@ setup = [
     { inventory_space = { min = 27 } },
 ]
 actions = [
-    { option = "Chop down", object = "tree*", delay = 5, success = { inventory_space = { max = 0 } } },
+    { object = { option = "Chop down", id = "tree*", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
     { carries = [{ id = "logs" }] },
@@ -25,7 +25,7 @@ setup = [
     { inventory_space = { min = 27 } },
 ]
 actions = [
-    { option = "Chop down", object = "oak*", delay = 5, success = { inventory_space = { max = 0 } } },
+    { object = { option = "Chop down", id = "oak*", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
     { carries = [{ id = "oak_logs" }] },
@@ -42,7 +42,7 @@ setup = [
     { inventory_space = { min = 27 } },
 ]
 actions = [
-    { option = "Chop down", object = "willow*", delay = 5, success = { inventory_space = { max = 0 } } },
+    { object = { option = "Chop down", id = "willow*", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
     { carries = [{ id = "willow_logs" }] },
@@ -59,7 +59,7 @@ setup = [
     { inventory_space = { min = 27 } },
 ]
 actions = [
-    { option = "Chop down", object = "yew*", delay = 5, success = { inventory_space = { max = 0 } } },
+    { object = { option = "Chop down", id = "yew*", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
     { carries = [{ id = "yew_logs" }] },
