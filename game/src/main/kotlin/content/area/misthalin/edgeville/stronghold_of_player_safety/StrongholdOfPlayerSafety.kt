@@ -17,16 +17,19 @@ class StrongholdOfPlayerSafety : Script {
         }
 
         objectOperate("Use", "stronghold_of_player_safety_jail_entrance_down") {
+            arriveDelay()
             tele(3082, 4229, 0)
             set("stronghold_of_player_safety_poster", true)
         }
 
-        objectOperate("Pull-back", "player_safety_poster") {
+        objectOperate("Pull-back", "player_safety_poster") { (target) ->
+            walkToDelay(target.tile)
             statement("There appears to be a tunnel behind the poster.")
             tele(3140, 4230, 2)
         }
 
-        objectOperate("Climb", "stronghold_of_player_safety_rope") {
+        objectOperate("Climb", "stronghold_of_player_safety_rope") { (target) ->
+            walkToDelay(target.tile)
             set("safety_rope_climbed", true)
             tele(3077, 3462, 0)
         }
@@ -56,6 +59,7 @@ class StrongholdOfPlayerSafety : Script {
         }
 
         objectOperate("Enter", "stronghold_of_player_safety_crevice") {
+            arriveDelay()
             if (get("safety_rope_climbed", false)) {
                 tele(3157, 4279, 3)
             } else {
@@ -63,6 +67,7 @@ class StrongholdOfPlayerSafety : Script {
             }
         }
         objectOperate("Open", "stronghold_of_player_safety_jail_door_locked") { (target) ->
+            arriveDelay()
             if (get("stronghold_of_player_safety_lever", false)) {
                 when (target.tile) {
                     Tile(3178, 4266, 0) -> tele(3177, 4269, 2)
