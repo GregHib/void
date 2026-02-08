@@ -8,6 +8,7 @@ import content.bot.action.requirements
 import content.bot.bot
 import content.bot.fact.Predicate
 import content.bot.fact.Requirement
+import content.bot.interact.navigation.graph.readTile
 import content.bot.isBot
 import world.gregs.config.Config
 import world.gregs.voidps.engine.data.definition.Areas
@@ -238,23 +239,15 @@ class Graph(
                             val list = key()
                             assert(list == "edges") { "Expected edges list, got: $list ${exception()}" }
                             while (nextElement()) {
-                                var fromX = 0
-                                var fromY = 0
-                                var fromLevel = 0
-                                var toX = 0
-                                var toY = 0
-                                var toLevel = 0
+                                var from = Tile.EMPTY
+                                var to = Tile.EMPTY
                                 var cost = 0
                                 val actions: MutableList<Pair<String, Map<String, Any>>> = mutableListOf()
                                 val requirements = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                                 while (nextEntry()) {
                                     when (val key = key()) {
-                                        "from_x" -> fromX = int()
-                                        "from_y" -> fromY = int()
-                                        "from_level" -> fromLevel = int()
-                                        "to_x" -> toX = int()
-                                        "to_y" -> toY = int()
-                                        "to_level" -> toLevel = int()
+                                        "from" -> from = readTile()
+                                        "to" -> to = readTile()
                                         "cost" -> cost = int()
                                         "actions" -> actions(actions)
                                         "conditions" -> requirements(requirements)
@@ -263,12 +256,12 @@ class Graph(
                                 }
                                 when {
                                     actions.isEmpty() -> {
-                                        val cost = Distance.manhattan(fromX, fromY, toX, toY)
-                                        builder.addEdge(Tile(fromX, fromY, fromLevel), Tile(toX, toY, toLevel), cost, listOf(BotAction.WalkTo(toX, toY)), null)
-                                        builder.addEdge(Tile(toX, toY, toLevel), Tile(fromX, fromY, fromLevel), cost, listOf(BotAction.WalkTo(fromX, fromY)), null)
+                                        val cost = Distance.manhattan(from.x, from.y, to.x, to.y)
+                                        builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, listOf(BotAction.WalkTo(to.x, to.y)), null)
+                                        builder.addEdge(Tile(to.x, to.y, to.level), Tile(from.x, from.y, from.level), cost, listOf(BotAction.WalkTo(from.x, from.y)), null)
                                     }
-                                    requirements.isEmpty() -> builder.addEdge(Tile(fromX, fromY, fromLevel), Tile(toX, toY, toLevel), cost, ActionParser.parse(actions, exception()), null)
-                                    else -> builder.addEdge(Tile(fromX, fromY, fromLevel), Tile(toX, toY, toLevel), cost, ActionParser.parse(actions, exception()), Requirement.parse(requirements, exception()))
+                                    requirements.isEmpty() -> builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, ActionParser.parse(actions, exception()), null)
+                                    else -> builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, ActionParser.parse(actions, exception()), Requirement.parse(requirements, exception()))
                                 }
                             }
                         }
