@@ -157,7 +157,8 @@ class Graph(
         val shortcuts = mutableMapOf<Int, NavigationShortcut>()
 
         init {
-            tiles.add(Tile.Companion.EMPTY) // Virtual
+            tiles.add(Tile.EMPTY) // Virtual
+            tags.add(null)
             nodes.add(0)
         }
 
@@ -189,11 +190,7 @@ class Graph(
         fun add(tile: Tile): Int {
             if (tiles.add(tile)) {
                 val tags = Areas.get(tile.zone).filter { it.area.contains(tile) }.flatMap { it.tags }
-                if (tags.isNotEmpty()) {
-                    this.tags.add(tags.toSet())
-                } else {
-                    this.tags.add(null)
-                }
+                this.tags.add(if (tags.isNotEmpty()) tags.toSet() else null)
                 return tiles.size - 1
             }
             return tiles.indexOf(tile)
@@ -246,8 +243,8 @@ class Graph(
                             val list = key()
                             assert(list == "edges") { "Expected edges list, got: $list ${exception()}" }
                             while (nextElement()) {
-                                var from = Tile.Companion.EMPTY
-                                var to = Tile.Companion.EMPTY
+                                var from = Tile.EMPTY
+                                var to = Tile.EMPTY
                                 var cost = 0
                                 val actions: MutableList<Pair<String, Map<String, Any>>> = mutableListOf()
                                 val requirements = mutableListOf<Pair<String, List<Map<String, Any>>>>()
