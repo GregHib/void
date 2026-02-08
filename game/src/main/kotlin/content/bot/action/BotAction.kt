@@ -64,7 +64,7 @@ sealed interface BotAction {
         }
 
         override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState {
-            if (bot.steps.isNotEmpty()) {
+            if (bot.steps.isNotEmpty() || bot.mode != EmptyMode) {
                 return BehaviourState.Running
             }
             val def = Areas.getOrNull(target) ?: return BehaviourState.Failed(Reason.Invalid("No areas found with id '$target'."))
@@ -121,7 +121,7 @@ sealed interface BotAction {
         }
 
         override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState {
-            if (bot.steps.isNotEmpty()) {
+            if (bot.steps.isNotEmpty() || bot.mode != EmptyMode) {
                 return BehaviourState.Running
             }
             val set = Areas.tagged(tag)
@@ -553,14 +553,14 @@ sealed interface BotAction {
      * TODO
      *      combat training dummy bots
      *      firemaking bot
+     *      fishing bot
      *      rune mysteries quest bot
+     *      bot spawning in other locations
+     *      track timeouts by comparing previous to current produce for progress
+     *      remove misc old bot data from areas
      *      bot saving?
      *      bot setups
-     *      bot spawning in other locations
-     *      tidy up old bot code
-     *      move tags into edges not areas
      *      item tags?
-     *      track timeouts by comparing previous to current produce for progress
      *
      *  Idea: Reactions?
      *      A separate queue that runs "reactions" e.g.
@@ -570,62 +570,6 @@ sealed interface BotAction {
      *
      *  TODO behaviour loop detection
      *
-     more resolvers like bank all, drop cheap items
-     how to handle combat, one task or multiple? - One Fight action
-     frames should have tick(): State methods
-     Combat should be an action which has a state machine for eating, retargeting, looting etc..
-     GatheringActivity
-     TravelActivity
-     how to handle navigation in a non-hacky way
-     navigation behaviours
-     make nav-graph points only?
-     combine nav-graph requirements with facts
-     Goal generators
-     Rather than check all req for all activities do it reactively
-     Received an item recently? Add relevant activities to that item to the list of posibilities
-     Been too long since you picked up an item, now remove that goal from the list
-     No possibilities? Now expand search wider
-
-     Open questions:
-     - Complex activities like minigames, quests
-     Minigames:
-     They are closed mechanical systems so they are actions.
-     JoinMinigameLobby - Success, Timeout, Kicked etc..
-     PlayMinigame - Roll selection, objectives, movement, combat, scoring. Fails on game end or leaving/disconnect
-     Trading with players:
-     Outcomes are non-deterministic, waiting on player timing
-     SellingAction
-     TradeAction
-     inits trade
-     trade rules
-     max wait
-     accepted items
-     price bounds
-     reacts to
-     offer chances
-     cancellation
-     terminates with success/failure
-     Quests:
-     Some complex quest mechanics might need custom actions
-     Activities:
-     TalkToCook
-     GetBucket
-     GetMilk
-     GetEgg
-     ReturnToCook
-     - navigation + actions
-     Virtual nodes
-     Create a temp node
-     link the current tile as a weight = 0
-     link any applicable teleports
-     run traversal from temp source node
-     - targeting
-     policy
-     - activity generators - reactive loading
-     Separate mandatory and resolvable requirements
-     mandatory requirements become gates for if activities are in the current pool
-     Listeners wait for state changes on specific mandatory requirements (level up, skill changes) and revaluate adding to activity pool
-     These listeners also check current activity requirements and fail it if no longer gated
 
      */
 }

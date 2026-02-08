@@ -19,7 +19,9 @@ sealed interface Deficit {
         override fun resolve(player: Player): Resolver = Resolver("go_to_$area", -1, actions = listOf(BotAction.GoTo(area)))
     }
 
-    data class MissingEquipment(val entries: List<Predicate<Item>>) : Deficit {
+    data class Entry(val filter: Predicate<Item>, val needed: Int)
+
+    data class MissingEquipment(val entries: List<Entry>) : Deficit {
         override fun resolve(player: Player): Resolver? {
             val entries = entries.toMutableList()
             val actions = mutableListOf<BotAction>()
@@ -30,7 +32,7 @@ sealed interface Deficit {
                 }
                 val iterator = entries.iterator()
                 while (iterator.hasNext()) {
-                    val entry = iterator.next()
+                    val (entry, needed) = iterator.next()
                     if (!entry.test(player, item)) {
                         continue
                     }
@@ -53,7 +55,7 @@ sealed interface Deficit {
             return null
         }
 
-        private fun withdraw(actions: MutableList<BotAction>, player: Player, entries: MutableList<Predicate<Item>>, uniqueName: StringBuilder): Int {
+        private fun withdraw(actions: MutableList<BotAction>, player: Player, entries: MutableList<Entry>, uniqueName: StringBuilder): Int {
             if (entries.isEmpty()) {
                 return 0
             }
@@ -66,12 +68,12 @@ sealed interface Deficit {
                 }
                 val iterator = entries.iterator()
                 while (iterator.hasNext()) {
-                    val entry = iterator.next()
+                    val (entry, needed) = iterator.next()
                     if (!entry.test(player, item)) {
                         continue
                     }
                     iterator.remove()
-                    spaceNeeded++
+                    spaceNeeded += if (player.bank.stackable(item.id)) 1 else needed
                     uniqueName.append("_${item.id}")
                     actions.add(BotAction.InterfaceOption("Withdraw-1", "bank:inventory:${item.id}"))
                 }
@@ -87,8 +89,6 @@ sealed interface Deficit {
     }
 
     data class MissingInventory(val entries: List<Entry>) : Deficit {
-        data class Entry(val filter: Predicate<Item>, val needed: Int)
-
         override fun resolve(player: Player): Resolver? {
             var spaceNeeded = 0
             val actions = mutableListOf(
@@ -105,7 +105,7 @@ sealed interface Deficit {
                         continue
                     }
                     val needed = entry.needed
-                    spaceNeeded += needed
+                    spaceNeeded += if (player.bank.stackable(item.id)) 1 else needed
                     uniqueName.append("_${item.id}")
                     if (needed == 1 || needed == 5 || needed == 10) {
                         actions.add(BotAction.InterfaceOption("Withdraw-$needed", "bank:inventory:${item.id}"))
@@ -115,7 +115,7 @@ sealed interface Deficit {
                     }
                 }
             }
-            if (spaceNeeded > 0) {
+            if (actions.size > 2) {
                 if (player.inventory.spaces < spaceNeeded) {
                     actions.add(2, BotAction.InteractObject("Deposit carried items", "bank:carried", success = Requirement(Fact.InventorySpace, Predicate.IntEquals(28))))
                 }
