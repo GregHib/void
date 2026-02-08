@@ -41,7 +41,7 @@ sealed class Fact<T>(val priority: Int) {
         override fun getValue(player: Player) = ItemView(player.inventory)
     }
 
-    object EquipmentItems : Fact<ItemView>(100) { // TODO equipment need lower priority so items are equipped before inventory setup
+    object EquipmentItems : Fact<ItemView>(90) {
         override fun keys() = setOf("inv:worn_equipment")
         override fun getValue(player: Player) = ItemView(player.equipment)
     }

@@ -1,7 +1,5 @@
 package content.bot.fact
 
-import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.type.Tile
 
 sealed class FactParser<T> {
@@ -35,20 +33,7 @@ sealed class FactParser<T> {
         override fun parse(map: Map<String, Any>) = Fact.InventoryItems
         override fun predicate(map: Map<String, Any>) = null
         override fun requirement(list: List<Map<String, Any>>): Requirement<ItemView> {
-            val predicate = Predicate.parseItems(list)
-
-            // TODO how to handle in a more efficient way?
-            if (predicate.entries.size == 1) {
-                val entry = predicate.entries.single()
-                if(entry.count is Predicate.IntRange) {
-
-                } else if(entry.count is Predicate.IntEquals) {
-
-                }
-
-                entry.filter
-            }
-            return Requirement(Fact.InventoryItems, predicate)
+            return Requirement(Fact.InventoryItems, Predicate.parseItems(list))
         }
     }
 
@@ -161,12 +146,4 @@ sealed class FactParser<T> {
             "skill" to Skill,
         )
     }
-}
-
-class ItemView(vararg val inventories: Inventory) {
-    fun contains(item: String) = inventories.any { it.contains(item) }
-    fun contains(item: String, amount: Int) = inventories.any { it.contains(item, amount) }
-    fun count(item: String) = inventories.sumOf { it.count(item) }
-    fun count(block: (Item) -> Boolean) = inventories.sumOf { it.items.count(block) }
-    fun size() = inventories.sumOf { it.size }
 }

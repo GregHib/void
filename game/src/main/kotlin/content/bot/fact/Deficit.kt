@@ -7,6 +7,9 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.inventory
 
+/**
+ * Missing setup [Requirement]'s which can be produce dynamic [Resolver]'s
+ */
 sealed interface Deficit {
     fun resolve(player: Player): Resolver?
 
@@ -18,7 +21,6 @@ sealed interface Deficit {
 
     data class MissingEquipment(val entries: List<Predicate<Item>>) : Deficit {
         override fun resolve(player: Player): Resolver? {
-            var spaceNeeded = 0
             val entries = entries.toMutableList()
             val actions = mutableListOf<BotAction>()
             val uniqueName = StringBuilder()
@@ -37,29 +39,7 @@ sealed interface Deficit {
                     actions.add(BotAction.InterfaceOption("Wield", "bank:inventory:${item.id}"))
                 }
             }
-            if (entries.isNotEmpty()) {
-                actions.add(BotAction.GoToNearest("bank"))
-                actions.add(BotAction.InteractObject("Use-quickly", "bank_booth*", success = Requirement(Fact.InterfaceOpen("bank"), Predicate.BooleanTrue)))
-                for (item in player.bank.items) {
-                    if (item.isEmpty()) {
-                        continue
-                    }
-                    val iterator = entries.iterator()
-                    while (iterator.hasNext()) {
-                        val entry = iterator.next()
-                        if (!entry.test(player, item)) {
-                            continue
-                        }
-                        iterator.remove()
-                        spaceNeeded += 1
-                        uniqueName.append("_${item.id}")
-                        actions.add(BotAction.InterfaceOption("Withdraw-1", "bank:inventory:${item.id}"))
-                    }
-                }
-                if (spaceNeeded > 0) {
-                    actions.add(BotAction.CloseInterface)
-                }
-            }
+            val spaceNeeded = withdraw(actions, player, entries, uniqueName)
             if (actions.isNotEmpty()) {
                 return Resolver(
                     "withdraw_$uniqueName", weight = 20,
@@ -70,6 +50,35 @@ sealed interface Deficit {
                 )
             }
             return null
+        }
+
+        private fun withdraw(actions: MutableList<BotAction>, player: Player, entries: MutableList<Predicate<Item>>, uniqueName: StringBuilder): Int {
+            if (entries.isEmpty()) {
+                return 0
+            }
+            var spaceNeeded = 0
+            actions.add(BotAction.GoToNearest("bank"))
+            actions.add(BotAction.InteractObject("Use-quickly", "bank_booth*", success = Requirement(Fact.InterfaceOpen("bank"), Predicate.BooleanTrue)))
+            for (item in player.bank.items) {
+                if (item.isEmpty()) {
+                    continue
+                }
+                val iterator = entries.iterator()
+                while (iterator.hasNext()) {
+                    val entry = iterator.next()
+                    if (!entry.test(player, item)) {
+                        continue
+                    }
+                    iterator.remove()
+                    spaceNeeded++
+                    uniqueName.append("_${item.id}")
+                    actions.add(BotAction.InterfaceOption("Withdraw-1", "bank:inventory:${item.id}"))
+                }
+            }
+            if (spaceNeeded > 0) {
+                actions.add(BotAction.CloseInterface)
+            }
+            return spaceNeeded
         }
     }
 

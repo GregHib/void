@@ -2,13 +2,9 @@ package content.bot
 
 import com.github.michaelbull.logging.InlineLogger
 import content.bot.action.*
-import content.bot.fact.Deficit
-import content.bot.fact.Fact
-import content.bot.fact.Predicate
 import content.bot.fact.Requirement
 import content.bot.interact.path.Graph
 import content.bot.interact.path.Graph.Companion.loadGraph
-import content.entity.player.bank.bank
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.event.AuditLog
@@ -74,7 +70,7 @@ class BotManager(
 
     fun load(files: ConfigFiles): BotManager {
         val shortcuts = mutableListOf<NavigationShortcut>()
-        loadActivities(files, activities, groups, resolvers, shortcuts)
+        loadBehaviours(files, activities, groups, resolvers, shortcuts)
         graph = loadGraph(files.list(Settings["bots.nav.definitions"]), shortcuts)
         return this
     }

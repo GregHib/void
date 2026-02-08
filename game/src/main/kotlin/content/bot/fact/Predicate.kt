@@ -71,15 +71,15 @@ sealed class Predicate<T> {
     data class InventoryItems(val entries: List<Entry>) : Predicate<ItemView>() {
         data class Entry(
             val filter: Predicate<Item>,
-            val count: Predicate<Int>,
+            val amount: Predicate<Int>,
         )
         override val evaluator = RequirementEvaluator.InventoryEval
-        override val children = entries.map { it.count }.toSet() + entries.map { it.filter }.toSet()
+        override val children = entries.map { it.amount }.toSet() + entries.map { it.filter }.toSet()
 
         override fun test(player: Player, value: ItemView): Boolean {
-            for (entry in entries) {
-                val count = value.count { entry.filter.test(player, it) }
-                if (!entry.count.test(player, count)) {
+            for ((filter, amount) in entries) {
+                val count = value.count { item -> filter.test(player, item) }
+                if (!amount.test(player, count)) {
                     return false
                 }
             }

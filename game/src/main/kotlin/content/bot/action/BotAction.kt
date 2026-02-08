@@ -534,7 +534,6 @@ sealed interface BotAction {
 
     /**
      * TODO
-     *      Split edges into separate files
      *      combat training dummy bots
      *      firemaking bot
      *      rune mysteries quest bot
