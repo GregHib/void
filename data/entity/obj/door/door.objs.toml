@@ -2955,10 +2955,10 @@ examine = "A strong metal door."
 id = 29320
 examine = "A strong metal door."
 
-[door_514_opened]
+[misthalin_exam_door_opened]
 id = 29733
 
-[door_514_closed]
+[misthalin_exam_door_closed]
 id = 29732
 examine = "The door is closed."
 

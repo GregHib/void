@@ -1,5 +1,6 @@
 package content.area.misthalin.edgeville.stronghold_of_player_safety
 
+import content.entity.obj.door.enterDoor
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -14,6 +15,16 @@ class StrongholdOfPlayerSafety : Script {
         playerSpawn {
             sendVariable("stronghold_of_player_safety_poster")
             sendVariable("stronghold_of_player_safety_lever")
+        }
+
+        objectOperate("Open", "misthalin_exam_door_closed") { (target) ->
+            // From wiki: The main door into the Training Centre, which is locked, preventing players from opening it from the outside, until they talk to the Guard in the jail and go through the entire conversation about reporting rule-breakers
+            if (get("safety_prison_guard_talked", false)) {
+                enterDoor(target)
+            } else {
+                message("The door is locked.")
+                return@objectOperate
+            }
         }
 
         objectOperate("Use", "stronghold_of_player_safety_jail_entrance_down") {
@@ -33,6 +44,7 @@ class StrongholdOfPlayerSafety : Script {
             set("safety_rope_climbed", true)
             tele(3077, 3462, 0)
         }
+
         objectOperate("Pull", "stronghold_of_player_safety_an_old_lever_closed") { (target) ->
             arriveDelay()
             anim("pull_ground_lever")
@@ -45,6 +57,7 @@ class StrongholdOfPlayerSafety : Script {
             set("stronghold_of_player_safety_lever", true)
             message("You hear cogs and gears moving and a distant unlocking sound.")
         }
+
         objectOperate("Pull", "stronghold_of_player_safety_an_old_lever_opened") { (target) ->
             arriveDelay()
             anim("push_ground_lever")
@@ -66,6 +79,7 @@ class StrongholdOfPlayerSafety : Script {
                 message("You're not sure if you should go in there; perhaps you should find another way in.")
             }
         }
+
         objectOperate("Open", "stronghold_of_player_safety_jail_door_locked") { (target) ->
             arriveDelay()
             if (get("stronghold_of_player_safety_lever", false)) {
