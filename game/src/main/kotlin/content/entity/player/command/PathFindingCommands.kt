@@ -136,7 +136,8 @@ class PathFindingCommands(val patrols: PatrolDefinitions) : Script {
         }
 
         adminCommand("walk_to_bank") {
-            val graph: Graph = get()
+            val manager: BotManager = get()
+            val graph = manager.graph
             val output = mutableListOf<Int>()
             println(
                 "Path took ${
