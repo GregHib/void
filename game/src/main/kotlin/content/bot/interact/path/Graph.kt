@@ -250,7 +250,7 @@ class Graph(
                                         "to" -> to = readTile()
                                         "cost" -> cost = int()
                                         "actions" -> actions(actions)
-                                        "conditions" -> requirements(requirements)
+                                        "requires" -> requirements(requirements)
                                         else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                                     }
                                 }
