@@ -29,6 +29,7 @@ data class Requirement<T>(val fact: Fact<T>, val predicate: Predicate<T>? = null
                 }
                 requirements.add(requirement)
             }
+            requirements.sortBy { it.fact.priority }
             return requirements
         }
     }

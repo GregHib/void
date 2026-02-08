@@ -39,6 +39,7 @@ sealed class Predicate<T> {
     }
 
     data class InArea(val name: String) : Predicate<Tile>() {
+        override val evaluator = RequirementEvaluator.TileEval
         override fun test(player: Player, value: Tile) = value in Areas[name]
     }
 
@@ -65,6 +66,7 @@ sealed class Predicate<T> {
     }
 
     data class Within(val x: Int, val y: Int, val level: Int, val radius: Int) : Predicate<Tile>() {
+        override val evaluator = RequirementEvaluator.TileEval
         override fun test(player: Player, value: Tile) = value.within(x, y, level, radius)
     }
 

@@ -26,12 +26,14 @@ fun loadBehaviours(
     val templates = loadTemplates(files.list(Settings["bots.templates"]))
     loadActivities(activities, templates, files.list(Settings["bots.definitions"]))
     // Group activities by requirement types
+    var total = 0
     for (activity in activities.values) {
         for (req in activity.requires) {
             for (key in req.fact.groups()) {
                 groups.getOrPut(key) { mutableListOf() }.add(activity.id)
             }
         }
+        total += activity.capacity
     }
     loadSetups(resolvers, templates, files.list(Settings["bots.setups"]))
     loadShortcuts(shortcuts, templates, files.list(Settings["bots.shortcuts"]))

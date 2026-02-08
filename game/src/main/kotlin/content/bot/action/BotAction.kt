@@ -18,15 +18,18 @@ import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnFloorIte
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnNPCInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.wildcardEquals
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.map.Spiral
 import world.gregs.voidps.network.client.instruction.*
+import kotlin.collections.indexOf
 
 sealed interface BotAction {
     fun start(bot: Bot, frame: BehaviourFrame): BehaviourState = BehaviourState.Running
@@ -279,6 +282,8 @@ sealed interface BotAction {
         val delay: Int = 0,
         val success: Requirement<*>? = null,
         val radius: Int = 10,
+        val x: Int? = null,
+        val y: Int? = null,
     ) : BotAction {
 
         override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
@@ -295,23 +300,28 @@ sealed interface BotAction {
 
         private fun search(bot: Bot): BehaviourState {
             val player = bot.player
-            for (tile in Spiral.spiral(player.tile, radius)) {
+            val start = if (x != null && y != null) player.tile.copy(x = x, y = y) else player.tile
+            for (tile in Spiral.spiral(start, radius)) {
                 for (obj in GameObjects.at(tile)) {
-                    if (!wildcardEquals(id, obj.id)) {
-                        continue
-                    }
-                    val index = obj.def(player).options?.indexOf(option)
-                    if (index == null || index == -1) {
-                        continue
-                    }
-                    val valid = get<InstructionHandlers>().handle(bot.player, InteractObject(obj.intId, obj.x, obj.y, index + 1))
-                    if (!valid) {
-                        return BehaviourState.Failed(Reason.Invalid("Invalid object interaction: $obj ${index + 1}"))
-                    }
-                    return BehaviourState.Running
+                    return interact(player, obj) ?: continue
                 }
             }
             return handleNoTarget()
+        }
+
+        private fun interact(player: Player, obj: GameObject): BehaviourState? {
+            if (!wildcardEquals(id, obj.id)) {
+                return null
+            }
+            val index = obj.def(player).options?.indexOf(option)
+            if (index == null || index == -1) {
+                return null
+            }
+            val valid = get<InstructionHandlers>().handle(player, InteractObject(obj.intId, obj.x, obj.y, index + 1))
+            if (!valid) {
+                return BehaviourState.Failed(Reason.Invalid("Invalid object interaction: $obj ${index + 1}"))
+            }
+            return BehaviourState.Running
         }
 
         private fun handleNoTarget(): BehaviourState {
@@ -543,6 +553,7 @@ sealed interface BotAction {
      *      tidy up old bot code
      *      move tags into edges not areas
      *      item tags?
+     *      track timeouts by comparing previous to current produce for progress
      *
      *  Idea: Reactions?
      *      A separate queue that runs "reactions" e.g.

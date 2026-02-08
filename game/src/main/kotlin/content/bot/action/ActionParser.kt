@@ -91,8 +91,8 @@ sealed class ActionParser {
     }
 
     object InteractObjectParser : ActionParser() {
-        override val required = setOf("option", "id")
-        override val optional = setOf("delay", "success", "radius")
+        override val required = setOf("option", "id", "success")
+        override val optional = setOf("delay", "radius", "x", "y")
 
         override fun parse(map: Map<String, Any>): BotAction {
             val option = map["option"] as String
@@ -100,19 +100,19 @@ sealed class ActionParser {
             val delay = map["delay"] as? Int ?: 0
             val success = requirement(map, "success").singleOrNull()
             val radius = map["radius"] as? Int ?: 10
-            return BotAction.InteractObject(option, id, delay, success, radius)
+            val x = map["x"] as? Int
+            val y = map["y"] as? Int
+            return BotAction.InteractObject(option, id, delay, success, radius, x, y)
         }
     }
 
     object GoToParser : ActionParser() {
         override val optional = setOf("area", "nearest")
-
         override fun parse(map: Map<String, Any>) = when {
             map.containsKey("area") -> BotAction.GoTo(map["area"] as String)
-            map.containsKey("nearest") -> BotAction.GoTo(map["nearest"] as String)
+            map.containsKey("nearest") -> BotAction.GoToNearest(map["nearest"] as String)
             else -> error("Expected field 'area' or 'nearest', but got '${map["area"]}'")
         }
-
     }
 
     object WalkToParser : ActionParser() {
@@ -149,7 +149,7 @@ sealed class ActionParser {
         @Suppress("UNCHECKED_CAST")
         private fun requirement(map: Map<String, Any>, key: String): List<Requirement<*>> {
             val parent = map[key] as? Map<String, Any> ?: return listOf()
-            val key = parent.keys.single()
+            val key = parent.keys.singleOrNull() ?: error("Collection $map has more than one element.")
             val value = parent[key] ?: return listOf()
             val list = when (value) {
                 is Map<*, *> -> listOf(value as Map<String, Any>)

@@ -9,12 +9,12 @@ edges = [
     { from_x = 3162, from_y = 3420, to_x = 3150, to_y = 3416 }, # varrock_west_oak_trees_to_cat_house
     { from_x = 3150, from_y = 3416, to_x = 3135, to_y = 3416 }, # varrock_west_cat_house_to_barbarian_path
     { from_x = 3135, from_y = 3416, to_x = 3128, to_y = 3407 }, # varrock_west_barbarian_path_to_air_altar_ruins
-    { from_x = 3128, from_y = 3407, to_x = 2841, to_y = 4830, cost = 3, actions = [{ object = { option = "null", id = "air_altar_ruins", x = 3126, y = 3404 } }] }, # varrock_west_air_altar_ruins_to_air_altar
+    { from_x = 3128, from_y = 3407, to_x = 2841, to_y = 4830, cost = 3, actions = [{ object = { option = "null", id = "air_altar_ruins", x = 3126, y = 3404, success = { tile = { x = 2841, y = 4830 } } } }] }, # varrock_west_air_altar_ruins_to_air_altar
     { from_x = 2841, from_y = 4830, to_x = 2841, to_y = 4829 }, # varrock_west_air_altar_to_exit
-    { from_x = 2841, from_y = 4829, to_x = 3128, to_y = 3407, cost = 3, actions = [{ object = { option = "Enter", id = "air_altar_portal", x = 2841, y = 4828 } }] }, # varrock_west_air_altar_exit_to_ruins
-    { from_x = 3304, from_y = 3474, to_x = 2655, to_y = 4831, cost = 3, actions = [{ object = { option = "Enter", id = "earth_altar_ruins", x = 3305, y = 3473 } }] }, # varrock_east_earth_altar_ruins_to_altar
+    { from_x = 2841, from_y = 4829, to_x = 3128, to_y = 3407, cost = 3, actions = [{ object = { option = "Enter", id = "air_altar_portal", x = 2841, y = 4828, success = { tile = { x = 3128, y = 3407 } } } }] }, # varrock_west_air_altar_exit_to_ruins
+    { from_x = 3304, from_y = 3474, to_x = 2655, to_y = 4831, cost = 3, actions = [{ object = { option = "Enter", id = "earth_altar_ruins", x = 3305, y = 3473, success = { tile = { x = 2655, y = 4831 } } } }] }, # varrock_east_earth_altar_ruins_to_altar
     { from_x = 2655, from_y = 4831, to_x = 2655, to_y = 4830 }, # varrock_east_earth_altar_to_exit
-    { from_x = 2655, from_y = 4830, to_x = 3304, to_y = 3474, cost = 3, actions = [{ object = { option = "Enter", id = "earth_altar_portal", x = 2655, y = 4829 } }] }, # varrock_east_earth_altar_exit_to_ruins
+    { from_x = 2655, from_y = 4830, to_x = 3304, to_y = 3474, cost = 3, actions = [{ object = { option = "Enter", id = "earth_altar_portal", x = 2655, y = 4829, success = { tile = { x = 3304, y = 3474 } } } }] }, # varrock_east_earth_altar_exit_to_ruins
     { from_x = 3254, from_y = 3422, to_x = 3265, to_y = 3428 }, # varrock_east_bank_to_dirt_crossroad
     { from_x = 3265, from_y = 3428, to_x = 3280, to_y = 3428 }, # varrock_east_dirt_crossroad_to_east_crossroad
     { from_x = 3280, from_y = 3428, to_x = 3287, to_y = 3414 }, # varrock_east_crossroad_to_east_path_south
@@ -46,7 +46,7 @@ edges = [
     { from_x = 3210, from_y = 3407, to_x = 3211, to_y = 3395 }, # varrock_south_dirt_crossroads_to_blue_moon_inn
     { from_x = 3210, from_y = 3407, to_x = 3209, to_y = 3399 },
     { from_x = 3210, from_y = 3407, to_x = 3209, to_y = 3399 },
-    { from_x = 3209, from_y = 3399, to_x = 3207, to_y = 3399, cost = 1, actions = [{ object = { option = "Open", id = "door_444_closed", x = 3209, y = 3399 } }, { tile = { x = 3207, y = 3399 } }] },
+    { from_x = 3209, from_y = 3399, to_x = 3207, to_y = 3399, cost = 1, actions = [{ object = { option = "Open", id = "door_444_closed", x = 3209, y = 3399, success = { object = { id = "door_444_opened", x = 3208, y = 3399 } } } }, { tile = { x = 3207, y = 3399 } }] },
     { from_x = 3211, from_y = 3395, to_x = 3209, to_y = 3399 }, # varrock_sword_shop
     { from_x = 3211, from_y = 3395, to_x = 3211, to_y = 3381 }, # varrock_blue_moon_inn_to_south_border
     { from_x = 3211, from_y = 3381, to_x = 3214, to_y = 3367 }, # varrock_south_border_to_dark_mages

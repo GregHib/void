@@ -49,7 +49,7 @@ requires = [
 ]
 actions = [
     { go_to = { nearest = "bank" } },
-    { object = { option = "Use-quickly", id = "bank_booth*" } },
+    { object = { option = "Use-quickly", id = "bank_booth*", success = { interface_open = { id = "bank" } } } },
     { interface = { option = "Withdraw-1", id = "bank:inventory:fire_rune" } },
     { interface = { option = "Withdraw-X", id = "bank:inventory:air_rune" } },
     { enter = { int = 3 } },
@@ -63,13 +63,14 @@ produces = [
 ]
 
 [teleport_lumbridge]
-weight = 5
+weight = 200
 requires = [
     { variable = { id = "spellbook_config", equals = 0, default = 0 } },
     { clock = { id = "home_teleport_timeout", max = 0 } },
 ]
 actions = [
     { interface = { option = "Cast", id = "modern_spellbook:lumbridge_home_teleport" } },
+    { wait = { ticks = 25 } },
 ]
 produces = [
     { area = { id = "lumbridge_teleport" } }

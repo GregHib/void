@@ -36,13 +36,13 @@ sealed interface Deficit {
                     }
                     iterator.remove()
                     uniqueName.append("_${item.id}")
-                    actions.add(BotAction.InterfaceOption("Wield", "bank:inventory:${item.id}"))
+                    actions.add(BotAction.InterfaceOption("Equip", "inventory:inventory:${item.id}"))
                 }
             }
             val spaceNeeded = withdraw(actions, player, entries, uniqueName)
             if (actions.isNotEmpty()) {
                 return Resolver(
-                    "withdraw_$uniqueName", weight = 20,
+                    "withdraw$uniqueName", weight = 20,
                     setup = listOf(
                         Requirement(Fact.InventorySpace, Predicate.IntRange(spaceNeeded))
                     ),
@@ -76,6 +76,9 @@ sealed interface Deficit {
                 }
             }
             if (spaceNeeded > 0) {
+                if (player.inventory.spaces < spaceNeeded) {
+                    actions.add(2, BotAction.InteractObject("Deposit carried items", "bank:carried", success = Requirement(Fact.InventorySpace, Predicate.IntEquals(28))))
+                }
                 actions.add(BotAction.CloseInterface)
             }
             return spaceNeeded
@@ -112,6 +115,9 @@ sealed interface Deficit {
                 }
             }
             if (spaceNeeded > 0) {
+                if (player.inventory.spaces < spaceNeeded) {
+                    actions.add(2, BotAction.InteractObject("Deposit carried items", "bank:carried", success = Requirement(Fact.InventorySpace, Predicate.IntEquals(28))))
+                }
                 actions.add(BotAction.CloseInterface)
                 return Resolver(
                     "withdraw_$uniqueName", weight = 20,

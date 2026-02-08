@@ -6,9 +6,8 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirements
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirementsToUse
-import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.epochSeconds
@@ -111,6 +110,18 @@ sealed class Fact<T>(val priority: Int) {
         override fun getValue(player: Player) = player.combatLevel
     }
 
+    data class ObjectExists(val filter: Predicate<String>, val tile: Tile) : Fact<Boolean>(1) {
+        override fun keys() = setOf("object")
+        override fun getValue(player: Player): Boolean {
+            for (obj in GameObjects.at(tile)) {
+                if (filter.test(player, obj.id)) {
+                    return true
+                }
+            }
+            return false
+        }
+    }
+
     object AttackLevel : SkillLevel(Skill.Attack)
     object DefenceLevel : SkillLevel(Skill.Defence)
     object StrengthLevel : SkillLevel(Skill.Strength)
@@ -136,7 +147,6 @@ sealed class Fact<T>(val priority: Int) {
     object ConstructionLevel : SkillLevel(Skill.Construction)
     object SummoningLevel : SkillLevel(Skill.Summoning)
     object DungeoneeringLevel : SkillLevel(Skill.Dungeoneering)
-    data class ReferenceLevel(val key: String) : SkillLevel(null)
 
     abstract class SkillLevel(
         val skill: Skill?,
@@ -172,7 +182,7 @@ sealed class Fact<T>(val priority: Int) {
                 "construction" -> ConstructionLevel
                 "summoning" -> SummoningLevel
                 "dungeoneering" -> DungeoneeringLevel
-                else -> if (skill.startsWith("$")) ReferenceLevel(skill) else throw IllegalArgumentException("Unknown skill: $skill")
+                else -> throw IllegalArgumentException("Unknown skill: $skill")
             }
         }
     }

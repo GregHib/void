@@ -122,6 +122,16 @@ sealed class FactParser<T> {
         override fun predicate(map: Map<String, Any>) = Predicate.parseInt(map)
     }
 
+    object ObjectExists : FactParser<Boolean>() {
+        override val required = setOf("id", "x", "y")
+        override fun parse(map: Map<String, Any>): Fact.ObjectExists{
+            val tile = Tile(map["x"] as Int, map["y"] as Int)
+            val id = map["id"] as String
+            return Fact.ObjectExists(Predicate.StringEquals(id), tile)
+        }
+        override fun predicate(map: Map<String, Any>) = Predicate.BooleanTrue
+    }
+
     object Skill : FactParser<Int>() {
         override val required = setOf("id")
         override fun parse(map: Map<String, Any>) = Fact.SkillLevel.of(map["id"] as String)
@@ -144,6 +154,7 @@ sealed class FactParser<T> {
             "area" to PlayerTile,
             "combat_level" to CombatLevel,
             "skill" to Skill,
+            "object" to ObjectExists,
         )
     }
 }

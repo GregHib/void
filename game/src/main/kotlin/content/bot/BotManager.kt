@@ -181,12 +181,12 @@ class BotManager(
         frame.start(bot)
     }
 
-    private fun availableResolvers(bot: Bot, condition: Requirement<*>): MutableList<Resolver> {
+    private fun availableResolvers(bot: Bot, requirement: Requirement<*>): MutableList<Resolver> {
         val options = mutableListOf<Resolver>()
-        for (deficit in condition.deficits(bot.player)) {
+        for (deficit in requirement.deficits(bot.player)) {
             options.add(deficit.resolve(bot.player) ?: continue)
         }
-        for (key in condition.fact.keys()) {
+        for (key in requirement.fact.keys()) {
             options.addAll(resolvers[key] ?: continue)
         }
         return options
