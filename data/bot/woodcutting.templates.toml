@@ -3,9 +3,8 @@ requires = [
     { skill = { id = "woodcutting", min = 1, max = 15 } },
 ]
 setup = [
-    { carries = [{ id = "steel_hatchet,iron_hatchet,bronze_hatchet" }] },
+    { inventory = [{ id = "steel_hatchet,iron_hatchet,bronze_hatchet" }, { id = "", min = 27 }] },
     { area = { id = "$location" } },
-    { inventory_space = { min = 27 } },
 ]
 actions = [
     { object = { option = "Chop down", id = "tree*", delay = 5, success = { inventory_space = { max = 0 } } } },
@@ -20,9 +19,8 @@ requires = [
     { skill = { id = "woodcutting", min = 15, max = 30 } },
 ]
 setup = [
-    { carries = [{ id = "mithril_hatchet,steel_hatchet" }] },
+    { inventory = [{ id = "mithril_hatchet,steel_hatchet" }, { id = "", min = 27 }] },
     { area = { id = "$location" } },
-    { inventory_space = { min = 27 } },
 ]
 actions = [
     { object = { option = "Chop down", id = "oak*", delay = 5, success = { inventory_space = { max = 0 } } } },
@@ -37,9 +35,8 @@ requires = [
     { skill = { id = "woodcutting", min = 30, max = 60 } },
 ]
 setup = [
-    { carries = [{ id = "rune_hatchet,adamant_hatchet,mithril_hatchet,steel_hatchet" }] },
+    { inventory = [{ id = "rune_hatchet,adamant_hatchet,mithril_hatchet,steel_hatchet" }, { id = "", min = 27 }] },
     { area = { id = "$location" } },
-    { inventory_space = { min = 27 } },
 ]
 actions = [
     { object = { option = "Chop down", id = "willow*", delay = 5, success = { inventory_space = { max = 0 } } } },
@@ -54,9 +51,8 @@ requires = [
     { skill = { id = "woodcutting", min = 60, max = 75 } },
 ]
 setup = [
-    { carries = [{ id = "dragon_hatchet,rune_hatchet,adamant_hatchet" }] },
+    { inventory = [{ id = "dragon_hatchet,rune_hatchet,adamant_hatchet" }, { id = "", min = 27 }] },
     { area = { id = "$location" } },
-    { inventory_space = { min = 27 } },
 ]
 actions = [
     { object = { option = "Chop down", id = "yew*", delay = 5, success = { inventory_space = { max = 0 } } } },

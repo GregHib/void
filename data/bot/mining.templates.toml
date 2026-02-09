@@ -3,9 +3,8 @@ requires = [
     { skill = { id = "mining", min = 1, max = 15 } },
 ]
 setup = [
-    { carries = [{ id = "steel_pickaxe,iron_pickaxe,bronze_pickaxe", usable = true }] },
+    { inventory = [{ id = "steel_pickaxe,iron_pickaxe,bronze_pickaxe", usable = true }, { id = "", min = 27 }] },
     { area = { id = "$location" } },
-    { inventory_space = { min = 27 } },
 ]
 actions = [
     { object = { option = "Mine", id = "copper_rocks*", delay = 5, success = { inventory_space = { max = 0 } } } },
@@ -20,9 +19,8 @@ requires = [
     { skill = { id = "mining", min = 1, max = 15 } },
 ]
 setup = [
-    { carries = [{ id = "steel_pickaxe,iron_pickaxe,bronze_pickaxe", usable = true }] },
+    { inventory = [{ id = "steel_pickaxe,iron_pickaxe,bronze_pickaxe", usable = true }, { id = "", min = 27 }] },
     { area = { id = "$location" } },
-    { inventory_space = { min = 27 } },
 ]
 actions = [
     { object = { option = "Mine", id = "tin_rocks*", delay = 5, success = { inventory_space = { max = 0 } } } },
@@ -37,9 +35,8 @@ requires = [
     { skill = { id = "mining", min = 1, max = 15 } },
 ]
 setup = [
-    { carries = [{ id = "steel_pickaxe,iron_pickaxe,bronze_pickaxe", usable = true }] },
+    { inventory = [{ id = "steel_pickaxe,iron_pickaxe,bronze_pickaxe", usable = true }, { id = "", min = 27 }] },
     { area = { id = "$location" } },
-    { inventory_space = { min = 27 } },
 ]
 actions = [
     { object = { option = "Mine", id = "clay_rocks*", delay = 5, success = { inventory_space = { max = 0 } } } },
@@ -54,9 +51,8 @@ requires = [
     { skill = { id = "mining", min = 15, max = 40 } },
 ]
 setup = [
-    { carries = [{ id = "adamant_pickaxe,mithril_pickaxe,steel_pickaxe", usable = true }] },
+    { inventory = [{ id = "adamant_pickaxe,mithril_pickaxe,steel_pickaxe", usable = true }, { id = "", min = 27 }] },
     { area = { id = "$location" } },
-    { inventory_space = { min = 27 } },
 ]
 actions = [
     { object = { option = "Mine", id = "iron_rocks*", delay = 5, success = { inventory_space = { max = 0 } } } },
@@ -71,9 +67,8 @@ requires = [
     { skill = { id = "mining", min = 20, max = 40 } },
 ]
 setup = [
-    { carries = [{ id = "adamant_pickaxe,mithril_pickaxe,steel_pickaxe", usable = true }] },
+    { inventory = [{ id = "adamant_pickaxe,mithril_pickaxe,steel_pickaxe", usable = true }, { id = "", min = 27 }] },
     { area = { id = "$location" } },
-    { inventory_space = { min = 27 } },
 ]
 actions = [
     { object = { option = "Mine", id = "silver_rocks*", delay = 5, success = { inventory_space = { max = 0 } } } },
@@ -88,9 +83,8 @@ requires = [
     { skill = { id = "mining", min = 30, max = 55 } },
 ]
 setup = [
-    { carries = [{ id = "rune_pickaxe,adamant_pickaxe,mithril_pickaxe", usable = true }] },
+    { inventory = [{ id = "rune_pickaxe,adamant_pickaxe,mithril_pickaxe", usable = true }, { id = "", min = 27 }] },
     { area = { id = "$location" } },
-    { inventory_space = { min = 27 } },
 ]
 actions = [
     { object = { option = "Mine", id = "coal_rocks*", delay = 10, success = { inventory_space = { max = 0 } } } },
@@ -105,9 +99,8 @@ requires = [
     { skill = { id = "mining", min = 40, max = 60 } },
 ]
 setup = [
-    { carries = [{ id = "rune_pickaxe,adamant_pickaxe,mithril_pickaxe", usable = true }] },
+    { inventory = [{ id = "rune_pickaxe,adamant_pickaxe,mithril_pickaxe", usable = true }, { id = "", min = 27 }] },
     { area = { id = "$location" } },
-    { inventory_space = { min = 27 } },
 ]
 actions = [
     { object = { option = "Mine", id = "gold_rocks*", delay = 15, success = { inventory_space = { max = 0 } } } },
@@ -122,9 +115,8 @@ requires = [
     { skill = { id = "mining", min = 55, max = 70 } },
 ]
 setup = [
-    { carries = [{ id = "dragon_pickaxe,rune_pickaxe,adamant_pickaxe", usable = true }] },
+    { inventory = [{ id = "dragon_pickaxe,rune_pickaxe,adamant_pickaxe", usable = true }, { id = "", min = 27 }] },
     { area = { id = "$location" } },
-    { inventory_space = { min = 27 } },
 ]
 actions = [
     { object = { option = "Mine", id = "mithril_rocks*", delay = 15, success = { inventory_space = { max = 0 } } } },

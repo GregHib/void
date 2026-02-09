@@ -131,7 +131,7 @@ sealed class FactParser<T> {
     companion object {
         val parsers = mapOf(
             "inventory_space" to InventorySpace,
-            "carries" to InventoryItems,
+            "inventory" to InventoryItems,
             "owns" to AllItems,
             "banked" to BankedItems,
             "equips" to EquipmentItems,

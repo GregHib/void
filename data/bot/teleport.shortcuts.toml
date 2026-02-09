@@ -28,8 +28,8 @@
 [teleport_varrock]
 weight = 125
 requires = [
+    { inventory = [{ id = "fire_rune", min = 1 }, { id = "air_rune", min = 3 }, { id = "law_rune", min = 1 }] },
     { variable = { id = "spellbook_config", equals = 0, default = 0 } },
-    { carries = [{ id = "fire_rune", min = 1 }, { id = "air_rune", min = 3 }, { id = "law_rune", min = 1 }] },
 ]
 actions = [
     { interface = { option = "Cast", id = "modern_spellbook:varrock_teleport" } },
