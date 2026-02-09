@@ -52,6 +52,7 @@ class BotManager(
     }
 
     fun update(bot: Bot, group: String) {
+        // TODO if product produced reset timeout
         val iterator = bot.available.iterator()
         while (iterator.hasNext()) {
             val id = iterator.next()

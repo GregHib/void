@@ -2,6 +2,10 @@ package content.bot.req.fact
 
 import content.bot.req.Requirement
 import content.bot.req.predicate.Predicate
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 
 sealed class FactParser<T> {
@@ -119,6 +123,7 @@ sealed class FactParser<T> {
             val id = map["id"] as String
             return Fact.ObjectExists(Predicate.StringEquals(id), tile)
         }
+
         override fun predicate(map: Map<String, Any>) = Predicate.BooleanTrue
     }
 
@@ -128,7 +133,9 @@ sealed class FactParser<T> {
         override fun predicate(map: Map<String, Any>) = Predicate.parseInt(map)
     }
 
+
     companion object {
+        // Parser creates requirement sealed class which has it all in one
         val parsers = mapOf(
             "inventory_space" to InventorySpace,
             "inventory" to InventoryItems,
@@ -148,3 +155,4 @@ sealed class FactParser<T> {
         )
     }
 }
+
