@@ -7,7 +7,6 @@ import content.bot.behaviour.requirements
 import content.bot.bot
 import content.bot.isBot
 import content.bot.req.Requirement
-import content.bot.req.predicate.Predicate
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.definition.Areas
@@ -163,11 +162,11 @@ class Graph(
         }
 
         fun add(shortcut: NavigationShortcut): Int {
-            val first = shortcut.produces.map { it.predicate }.filterIsInstance<Predicate.InArea>().firstOrNull() ?: throw IllegalArgumentException("Shortcut requires location product ${shortcut.id}")
-            val area = Areas[first.name]
+            val name = shortcut.produces.firstOrNull { it.startsWith("area:") }?.removePrefix("area:") ?: throw IllegalArgumentException("Shortcut requires location product ${shortcut.id}")
+            val area = Areas[name]
             val end = tiles.indexOfFirst { it in area }
             if (end == -1) {
-                throw IllegalArgumentException("Unable to find nav graph tile in shortcut area '${first.name}'.")
+                throw IllegalArgumentException("Unable to find nav graph tile in shortcut area '${name}'.")
             }
             val index = addEdge(0, end, shortcut.weight, shortcut.actions, shortcut.requires)
             shortcuts[index] = shortcut

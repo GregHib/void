@@ -36,7 +36,7 @@ actions = [
     { wait = { ticks = 5 } },
 ]
 produces = [
-    { area = { id = "varrock_teleport" } }
+    { area = "varrock_teleport" }
 ]
 
 [teleport_varrock_via_bank]
@@ -59,7 +59,7 @@ actions = [
 #    { wait = { location = "varrock_teleport" } },
 ]
 produces = [
-    { area = { id = "varrock_teleport" } }
+    { area = "varrock_teleport" }
 ]
 
 [teleport_lumbridge]
@@ -73,5 +73,5 @@ actions = [
     { wait = { ticks = 25 } },
 ]
 produces = [
-    { area = { id = "lumbridge_teleport" } }
+    { area = "lumbridge_teleport" }
 ]

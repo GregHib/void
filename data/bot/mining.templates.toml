@@ -11,8 +11,8 @@ actions = [
     { object = { option = "Mine", id = "copper_rocks*", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
-    { carries = [{ id = "copper_ore" }] },
-    { skill = { id = "mining" } }
+    { item = "copper_ore" },
+    { skill = "mining" }
 ]
 
 [tin_ore_template]
@@ -28,8 +28,8 @@ actions = [
     { object = { option = "Mine", id = "tin_rocks*", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
-    { carries = [{ id = "tin_ore" }] },
-    { skill = { id = "mining" } }
+    { item = "tin_ore" },
+    { skill = "mining" }
 ]
 
 [clay_template]
@@ -45,8 +45,8 @@ actions = [
     { object = { option = "Mine", id = "clay_rocks*", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
-    { carries = [{ id = "clay" }] },
-    { skill = { id = "mining" } }
+    { item = "clay" },
+    { skill = "mining" }
 ]
 
 [iron_ore_template]
@@ -62,8 +62,8 @@ actions = [
     { object = { option = "Mine", id = "iron_rocks*", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
-    { carries = [{ id = "iron_ore" }] },
-    { skill = { id = "mining" } }
+    { item = "iron_ore" },
+    { skill = "mining" }
 ]
 
 [silver_ore_template]
@@ -79,8 +79,8 @@ actions = [
     { object = { option = "Mine", id = "silver_rocks*", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
-    { carries = [{ id = "silver_ore" }] },
-    { skill = { id = "mining" } }
+    { item = "silver_ore" },
+    { skill = "mining" }
 ]
 
 [coal_template]
@@ -96,8 +96,8 @@ actions = [
     { object = { option = "Mine", id = "coal_rocks*", delay = 10, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
-    { carries = [{ id = "coal" }] },
-    { skill = { id = "mining" } }
+    { item = "coal" },
+    { skill = "mining" }
 ]
 
 [gold_ore_template]
@@ -113,8 +113,8 @@ actions = [
     { object = { option = "Mine", id = "gold_rocks*", delay = 15, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
-    { carries = [{ id = "gold_ore" }] },
-    { skill = { id = "mining" } }
+    { item = "gold_ore" },
+    { skill = "mining" }
 ]
 
 [mithril_ore_template]
@@ -130,6 +130,6 @@ actions = [
     { object = { option = "Mine", id = "mithril_rocks*", delay = 15, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
-    { carries = [{ id = "mithril_ore" }] },
-    { skill = { id = "mining" } }
+    { item = "mithril_ore" },
+    { skill = "mining" }
 ]

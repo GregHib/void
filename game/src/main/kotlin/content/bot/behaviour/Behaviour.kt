@@ -18,7 +18,7 @@ interface Behaviour {
     val requires: List<Requirement<*>>
     val setup: List<Requirement<*>>
     val actions: List<BotAction>
-    val produces: Set<Requirement<*>>
+    val produces: Set<String>
 }
 
 fun loadBehaviours(
@@ -59,7 +59,7 @@ private fun loadActivities(activities: MutableMap<String, BotActivity>, template
                     requires = Requirement.parse(requires, debug),
                     setup = Requirement.parse(setup, debug),
                     actions = ActionParser.parse(actions, debug),
-                    produces = Requirement.parse(produces, debug, requirePredicates = false).toSet(),
+                    produces = produces,
                 )
             }
         }
@@ -80,29 +80,24 @@ private fun loadSetups(resolvers: MutableMap<String, MutableList<Resolver>>, tem
                 fragments.add(Fragment(id, template, fields, weight, requires, setup, actions, produces))
             } else {
                 val debug = "$id ${exception()}"
-                val products = Requirement.parse(produces, debug)
                 val resolver = Resolver(
                     id = id,
                     weight = weight,
                     requires = Requirement.parse(requires, debug),
                     setup = Requirement.parse(setup, debug),
                     actions = ActionParser.parse(actions, debug),
-                    produces = products.toSet(),
+                    produces = produces,
                 )
-                for (product in products) {
-                    for (key in product.keys()) {
-                        resolvers.getOrPut(key) { mutableListOf() }.add(resolver)
-                    }
+                for (key in produces) {
+                    resolvers.getOrPut(key) { mutableListOf() }.add(resolver)
                 }
             }
         }
         for (fragment in fragments) {
             val template = templates[fragment.template] ?: error("Unable to find template '${fragment.template}' for ${fragment.id}.")
             val resolver = fragment.resolver(template)
-            for (product in resolver.produces) {
-                for (key in product.keys()) {
-                    resolvers.getOrPut(key) { mutableListOf() }.add(resolver)
-                }
+            for (key in resolver.produces) {
+                resolvers.getOrPut(key) { mutableListOf() }.add(resolver)
             }
         }
         resolvers.size
@@ -125,7 +120,7 @@ private fun loadShortcuts(shortcuts: MutableList<NavigationShortcut>, templates:
                         requires = Requirement.parse(requires, debug),
                         setup = Requirement.parse(setup, debug),
                         actions = ActionParser.parse(actions, debug),
-                        produces = Requirement.parse(produces, debug, requirePredicates = false).toSet(),
+                        produces = produces,
                     ),
                 )
             }
@@ -138,7 +133,7 @@ private fun loadShortcuts(shortcuts: MutableList<NavigationShortcut>, templates:
     }
 }
 
-private fun load(paths: List<String>, block: ConfigReader.(String, String?, Map<String, Any>?, Int, List<Pair<String, List<Map<String, Any>>>>, List<Pair<String, List<Map<String, Any>>>>, List<Pair<String, Map<String, Any>>>, List<Pair<String, List<Map<String, Any>>>>) -> Unit) {
+private fun load(paths: List<String>, block: ConfigReader.(String, String?, Map<String, Any>?, Int, List<Pair<String, List<Map<String, Any>>>>, List<Pair<String, List<Map<String, Any>>>>, List<Pair<String, Map<String, Any>>>, Set<String>) -> Unit) {
     for (path in paths) {
         Config.fileReader(path) {
             while (nextSection()) {
@@ -149,14 +144,14 @@ private fun load(paths: List<String>, block: ConfigReader.(String, String?, Map<
                 val requires = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                 val setup = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                 val actions = mutableListOf<Pair<String, Map<String, Any>>>()
-                val produces = mutableListOf<Pair<String, List<Map<String, Any>>>>()
+                val produces = mutableSetOf<String>()
                 while (nextPair()) {
                     when (val key = key()) {
                         "template" -> template = string()
                         "requires" -> requirements(requires)
                         "setup" -> requirements(setup)
                         "actions" -> actions(actions)
-                        "produces" -> requirements(produces)
+                        "produces" -> produces(produces)
                         "weight", "capacity" -> value = int()
                         "fields" -> fields = map()
                         else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
@@ -181,13 +176,13 @@ private fun loadTemplates(paths: List<String>): Map<String, Template> {
                     val requires = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                     val setup = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                     val actions = mutableListOf<Pair<String, Map<String, Any>>>()
-                    val produces = mutableListOf<Pair<String, List<Map<String, Any>>>>()
+                    val produces = mutableSetOf<String>()
                     while (nextPair()) {
                         when (val key = key()) {
                             "requires" -> requirements(requires)
                             "setup" -> requirements(setup)
                             "actions" -> actions(actions)
-                            "produces" -> requirements(produces)
+                            "produces" -> produces(produces)
                             else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
                     }
@@ -217,6 +212,16 @@ internal fun ConfigReader.requirements(requires: MutableList<Pair<String, List<M
     }
 }
 
+internal fun ConfigReader.produces(requires: MutableSet<String>) {
+    while (nextElement()) {
+        while (nextEntry()) {
+            val key = key()
+            val value = string()
+            requires.add("$key:$value")
+        }
+    }
+}
+
 internal fun ConfigReader.actions(list: MutableList<Pair<String, Map<String, Any>>>) {
     while (nextElement()) {
         while (nextEntry()) {
@@ -235,7 +240,7 @@ private data class Fragment(
     val requires: List<Pair<String, List<Map<String, Any>>>>,
     val setup: List<Pair<String, List<Map<String, Any>>>>,
     val actions: List<Pair<String, Map<String, Any>>>,
-    val produces: List<Pair<String, List<Map<String, Any>>>>,
+    val produces: Set<String>,
 ) {
     fun activity(template: Template) = BotActivity(
         id = id,
@@ -243,8 +248,10 @@ private data class Fragment(
         requires = resolveRequirements(template.requires, requires),
         setup = resolveRequirements(template.setup, setup),
         actions = resolveActions(template.actions, actions),
-        produces = resolveRequirements(template.produces, produces, requirePredicates = false).toSet(),
+        produces = resolve(template.produces) + produces,
     )
+
+    private fun resolve(set: Set<String>): Set<String> = set
 
     private fun resolveRequirements(templated: List<Pair<String, List<Map<String, Any>>>>, original: List<Pair<String, List<Map<String, Any>>>>, requirePredicates: Boolean = true): List<Requirement<*>> {
         val combinedList = mutableListOf<Pair<String, List<Map<String, Any>>>>()
@@ -319,7 +326,7 @@ private data class Fragment(
         requires = resolveRequirements(template.requires, requires),
         setup = resolveRequirements(template.setup, setup),
         actions = resolveActions(template.actions, actions),
-        produces = resolveRequirements(template.produces, produces, requirePredicates = false).toSet(),
+        produces = resolve(template.produces) + produces,
     )
 
     fun shortcut(template: Template) = NavigationShortcut(
@@ -328,7 +335,7 @@ private data class Fragment(
         requires = resolveRequirements(template.requires, requires),
         setup = resolveRequirements(template.setup, setup),
         actions = resolveActions(template.actions, actions),
-        produces = resolveRequirements(template.produces, produces, requirePredicates = false).toSet(),
+        produces = resolve(template.produces) + produces,
     )
 }
 
@@ -336,5 +343,5 @@ private data class Template(
     val requires: List<Pair<String, List<Map<String, Any>>>>,
     val setup: List<Pair<String, List<Map<String, Any>>>>,
     val actions: List<Pair<String, Map<String, Any>>>,
-    val produces: List<Pair<String, List<Map<String, Any>>>>,
+    val produces: Set<String>,
 )

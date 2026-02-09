@@ -11,8 +11,8 @@ actions = [
     { object = { option = "Chop down", id = "tree*", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
-    { carries = [{ id = "logs" }] },
-    { skill = { id = "woodcutting" } }
+    { item = "logs" },
+    { skill = "woodcutting" }
 ]
 
 [oak_tree_template]
@@ -28,8 +28,8 @@ actions = [
     { object = { option = "Chop down", id = "oak*", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
-    { carries = [{ id = "oak_logs" }] },
-    { skill = { id = "woodcutting" } }
+    { item = "oak_logs" },
+    { skill = "woodcutting" }
 ]
 
 [willow_tree_template]
@@ -45,8 +45,8 @@ actions = [
     { object = { option = "Chop down", id = "willow*", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
-    { carries = [{ id = "willow_logs" }] },
-    { skill = { id = "woodcutting" } }
+    { item = "willow_logs" },
+    { skill = "woodcutting" }
 ]
 
 [yew_tree_template]
@@ -62,6 +62,6 @@ actions = [
     { object = { option = "Chop down", id = "yew*", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
-    { carries = [{ id = "yew_logs" }] },
-    { skill = { id = "woodcutting" } }
+    { item = "yew_logs" },
+    { skill = "woodcutting" }
 ]

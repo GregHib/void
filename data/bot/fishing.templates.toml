@@ -11,8 +11,8 @@ actions = [
     { npc = { option = "Cage", id = "$spot", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
-    { carries = { id = "raw_crayfish" } },
-    { skill = { id = "fishing" } }
+    { inventory = "raw_crayfish" },
+    { skill = "fishing" }
 ]
 
 [fish_small_net]
@@ -25,8 +25,8 @@ actions = [
     { npc = { option = "Net", id = "$spot", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
-    { carries = { id = "raw_shrimp" } },
-    { skill = { id = "fishing" } }
+    { inventory = "raw_shrimp" },
+    { skill = "fishing" }
 ]
 
 [fish_bait]
@@ -39,5 +39,34 @@ actions = [
     { npc = { option = "Net", id = "$spot", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
-    { skill = { id = "fishing" } }
+    { skill = "fishing" }
 ]
+
+# Requires
+# Skill range
+# variable = id, equals, default
+# clock = ticks
+
+# Setup
+# area = id
+# inventory = {}
+
+# Actions
+# inventory space max = 0
+# interface open id
+
+# Wait_if
+#variable, id, min, default
+# clock id, min
+
+# Success
+# tile = x, y/level
+# carries coins/amount
+#has_queue = id
+
+# Produces
+# skill = "name"
+# area = "name"
+# item = "name"
+# combine into Set<String> skill:name
+# variable = "value"

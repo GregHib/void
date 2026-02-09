@@ -12,10 +12,10 @@ actions = [
     { npc = { option = "Attack", id = "chicken*", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
-    { carries = [{ id = "feather" }] },
-    { carries = [{ id = "bones" }] },
-    { carries = [{ id = "raw_chicken" }] },
-    { skill = { id = "$skill" } }
+    { item = "feather" },
+    { item = "bones" },
+    { item = "raw_chicken" },
+    { skill = "$skill" }
 ]
 
 [kill_cows]
@@ -33,8 +33,8 @@ actions = [
     { npc = { option = "Attack", id = "cow*", delay = 5, success = { inventory_space = { max = 0 } } } },
 ]
 produces = [
-    { carries = [{ id = "bones" }] },
-    { carries = [{ id = "cowhide" }] },
-    { carries = [{ id = "raw_beef" }] },
-    { skill = { id = "$skill" } }
+    { item = "bones" },
+    { item = "cowhide" },
+    { item = "raw_beef" },
+    { skill = "$skill" }
 ]

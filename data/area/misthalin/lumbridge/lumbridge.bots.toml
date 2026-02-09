@@ -78,7 +78,7 @@ requires = [
     { skill = { id = "fletching", min = 5 } }
 ]
 produces = [
-    { carries = [{ id = "shortbow_u" }] }
+    { item = "shortbow_u" }
 ]
 
 [lumbridge_fletch_longbows]
@@ -88,7 +88,7 @@ requires = [
     { skill = { id = "fletching", min = 10 } }
 ]
 produces = [
-    { carries = [{ id = "longbow_u" }] }
+    { item = "longbow_u" }
 ]
 
 # Woodcutting

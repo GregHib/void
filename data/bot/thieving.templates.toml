@@ -15,6 +15,6 @@ actions = [
     ], success = { skill = { id = "constitution", max = 20 } } } }
 ]
 produces = [
-    { carries = [{ id = "coins" }] },
-    { skill = { id = "thieving" } }
+    { item = "coins" },
+    { skill = "thieving" }
 ]

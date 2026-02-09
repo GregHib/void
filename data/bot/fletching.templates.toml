@@ -13,8 +13,8 @@ actions = [
     { restart = { wait_if = [{ has_queue = { id = "fletching" } }], success = { inventory_space = { min = 26 } } } }
 ]
 produces = [
-    { carries = { id = "arrow_shafts" } },
-    { skill = { id = "fletching" } }
+    { item = "arrow_shafts" },
+    { skill = "fletching" }
 ]
 
 [fletching_shortbow_template]
@@ -32,7 +32,7 @@ actions = [
     { restart = { success = { inventory_space = { min = 26 } } } }
 ]
 produces = [
-    { skill = { id = "fletching" } }
+    { skill = "fletching" }
 ]
 
 [fletching_longbow_template]
@@ -50,5 +50,5 @@ actions = [
     { restart = { success = { inventory_space = { min = 26 } } } }
 ]
 produces = [
-    { skill = { id = "fletching" } }
+    { skill = "fletching" }
 ]

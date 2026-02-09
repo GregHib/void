@@ -10,5 +10,5 @@ data class NavigationShortcut(
     override val requires: List<Requirement<*>> = emptyList(),
     override val setup: List<Requirement<*>> = emptyList(),
     override val actions: List<BotAction> = emptyList(),
-    override val produces: Set<Requirement<*>> = emptySet(),
+    override val produces: Set<String> = emptySet(),
 ) : Behaviour

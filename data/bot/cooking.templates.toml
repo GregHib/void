@@ -14,8 +14,8 @@ actions = [
     { restart = { wait_if = { has_queue = { id = "cooking" } }, success = { carries = { id = "$raw", max = 0 } } } }
 ]
 produces = [
-    { skill = { id = "cooking" } },
-    { carries = { id = "$cooked" } }
+    { skill = "cooking" },
+    { item = "$cooked" }
 ]
 
 # Beef has a different popup so can't use normal template
@@ -36,6 +36,6 @@ actions = [
     { restart = { wait_if = { has_queue = { id = "cooking" } }, success = { carries = { id = "raw_beef", max = 0 } } } }
 ]
 produces = [
-    { skill = { id = "cooking" } },
-    { carries = { id = "beef" } }
+    { skill = "cooking" },
+    { item = "beef" }
 ]

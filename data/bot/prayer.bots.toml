@@ -11,5 +11,5 @@ actions = [
     { restart = { wait_if = [{ variable = { id = "bone_delay", min = 0, default = -1 } }], success = { inventory_space = { min = 28 } } } }
 ]
 produces = [
-    { skill = { id = "prayer" } }
+    { skill = "prayer" }
 ]

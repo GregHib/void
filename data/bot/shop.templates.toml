@@ -9,7 +9,7 @@ actions = [
     { interface = { option = "Buy-1", id = "shop:stock:$item", success = { carries = [{ id = "$item" }] } } },
 ]
 produces = [
-    { carries = [{ id = "$item", equals = 1 }] }
+    { item = "$item" }
 ]
 
 [take_shop_sample]
@@ -22,7 +22,7 @@ actions = [
     { interface = { option = "Take-1", id = "shop:sample:$item", success = { carries = [{ id = "$item" }] } } },
 ]
 produces = [
-    { carries = [{ id = "$item", equals = 1 }] }
+    { item = "$item" }
 ]
 
 [sell_50_to_shop]
@@ -37,7 +37,7 @@ actions = [
     { interface_close = { id = "shop" } }
 ]
 produces = [
-    { carries = { id = "coins" } }
+    { item = "coins" }
 ]
 
 [sell_10_to_shop]
@@ -52,7 +52,7 @@ actions = [
     { interface_close = { id = "shop" } }
 ]
 produces = [
-    { carries = { id = "coins" } }
+    { item = "coins" }
 ]
 
 [sell_5_to_shop]
@@ -67,7 +67,7 @@ actions = [
     { interface_close = { id = "shop" } }
 ]
 produces = [
-    { carries = { id = "coins" } }
+    { item = "coins" }
 ]
 
 [sell_to_shop]
@@ -82,5 +82,5 @@ actions = [
     { interface_close = { id = "shop" } }
 ]
 produces = [
-    { carries = { id = "coins" } }
+    { item = "coins" }
 ]
