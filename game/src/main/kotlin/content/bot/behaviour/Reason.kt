@@ -20,7 +20,7 @@ interface Reason {
         override fun toString() = "NoTarget"
     }
     data class Requirement(val condition: Condition) : HardReason {
-        override fun toString() = "Requirement(${condition})"
+        override fun toString() = "Requirement($condition)"
     }
 }
 interface SoftReason : Reason
