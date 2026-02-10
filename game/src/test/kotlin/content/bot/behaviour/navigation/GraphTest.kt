@@ -1,9 +1,7 @@
-package content.bot.interact.path
+package content.bot.behaviour.navigation
 
-import content.bot.behaviour.navigation.Graph
-import content.bot.behaviour.navigation.NavigationShortcut
-import content.bot.req.Condition
-import org.junit.jupiter.api.Assertions.assertFalse
+import content.bot.behaviour.Condition
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.Areas
@@ -161,7 +159,7 @@ class GraphTest {
 
         val output = mutableListOf<Int>()
         val success = builder.build().find(Player(), output, Graph.Node(b), a)
-        assertFalse(success)
+        Assertions.assertFalse(success)
     }
 
     @Test
@@ -266,7 +264,7 @@ class GraphTest {
         val path = mutableListOf<Int>()
         val found = graph.find(player, path, start = Graph.Node(0), target = 1)
 
-        assertFalse(found, "Edge condition blocks traversal")
+        Assertions.assertFalse(found, "Edge condition blocks traversal")
         assertTrue(path.isEmpty())
     }
 
@@ -290,7 +288,7 @@ class GraphTest {
 
         assertTrue(starts.contains(Graph.Node(1, 9)))
         assertTrue(starts.contains(Graph.Node(2, 10)))
-        assertFalse(starts.contains(Graph.Node(3, 90)))
+        Assertions.assertFalse(starts.contains(Graph.Node(3, 90)))
     }
 
     @Test
@@ -300,6 +298,7 @@ class GraphTest {
         val shortcut = NavigationShortcut(
             id = "teleport",
             weight = 1,
+            timeout = 50,
             requires = listOf(Condition.AtTile(50, 50)),
             produces = setOf("area:town"),
         )

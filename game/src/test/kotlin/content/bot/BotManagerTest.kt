@@ -1,13 +1,13 @@
 package content.bot
 
-import content.bot.action.*
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.Reason
 import content.bot.behaviour.SoftReason
 import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.setup.Resolver
-import content.bot.req.Condition
+import content.bot.behaviour.Condition
+import content.bot.behaviour.action.BotAction
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -384,5 +384,5 @@ class BotManagerTest {
         requires: List<Condition> = emptyList(),
         resolves: List<Condition> = emptyList(),
         plan: List<BotAction>,
-    ) = BotActivity(id, 1, requires, resolves, plan)
+    ) = BotActivity(id, 1, 50, requires, resolves, plan)
 }

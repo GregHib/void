@@ -1,7 +1,5 @@
 package content.bot.behaviour
 
-import content.bot.req.Condition
-
 interface Reason {
     data class Invalid(val message: String) : HardReason
     object Cancelled : HardReason

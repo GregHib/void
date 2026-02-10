@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.text.toIntOrNull
 
-class BotSpawns(
+class BotCommands(
     val enums: EnumDefinitions,
     val structs: StructDefinitions,
     val loader: PlayerAccountLoader,

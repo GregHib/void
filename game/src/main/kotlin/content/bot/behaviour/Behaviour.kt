@@ -1,20 +1,22 @@
 package content.bot.behaviour
 
-import content.bot.action.ActionParser
-import content.bot.action.BotAction
+import content.bot.behaviour.action.ActionParser
+import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.navigation.NavigationShortcut
 import content.bot.behaviour.setup.Resolver
-import content.bot.req.Condition
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.engine.timer.toTicks
+import java.util.concurrent.TimeUnit
 
 interface Behaviour {
     val id: String
+    val timeout: Int
     val requires: List<Condition>
     val setup: List<Condition>
     val actions: List<BotAction>
@@ -47,15 +49,16 @@ fun loadBehaviours(
 private fun loadActivities(activities: MutableMap<String, BotActivity>, templates: Map<String, Template>, paths: List<String>) {
     timedLoad("bot activity") {
         val fragments = mutableListOf<Fragment>()
-        load(paths) { id, template, fields, capacity, requires, setup, actions, produces ->
+        load(paths) { id, template, fields, capacity, timeout, requires, setup, actions, produces ->
             if (template != null) {
                 requireNotNull(fields)
-                fragments.add(Fragment(id, template, fields, capacity, requires, setup, actions, produces))
+                fragments.add(Fragment(id, template, fields, capacity, timeout, requires, setup, actions, produces))
             } else {
                 val debug = "$id ${exception()}"
                 activities[id] = BotActivity(
                     id = id,
                     capacity = capacity,
+                    timeout = timeout,
                     requires = Condition.parse(requires, debug),
                     setup = Condition.parse(setup, debug),
                     actions = ActionParser.parse(actions, debug),
@@ -74,15 +77,16 @@ private fun loadActivities(activities: MutableMap<String, BotActivity>, template
 private fun loadSetups(resolvers: MutableMap<String, MutableList<Resolver>>, templates: Map<String, Template>, paths: List<String>) {
     timedLoad("bot setup") {
         val fragments = mutableListOf<Fragment>()
-        load(paths) { id, template, fields, weight, requires, setup, actions, produces ->
+        load(paths) { id, template, fields, weight, timeout, requires, setup, actions, produces ->
             if (template != null) {
                 requireNotNull(fields)
-                fragments.add(Fragment(id, template, fields, weight, requires, setup, actions, produces))
+                fragments.add(Fragment(id, template, fields, weight, timeout, requires, setup, actions, produces))
             } else {
                 val debug = "$id ${exception()}"
                 val resolver = Resolver(
                     id = id,
                     weight = weight,
+                    timeout = timeout,
                     requires = Condition.parse(requires, debug),
                     setup = Condition.parse(setup, debug),
                     actions = ActionParser.parse(actions, debug),
@@ -107,16 +111,17 @@ private fun loadSetups(resolvers: MutableMap<String, MutableList<Resolver>>, tem
 private fun loadShortcuts(shortcuts: MutableList<NavigationShortcut>, templates: Map<String, Template>, paths: List<String>) {
     timedLoad("bot shortcut") {
         val fragments = mutableListOf<Fragment>()
-        load(paths) { id, template, fields, weight, requires, setup, actions, produces ->
+        load(paths) { id, template, fields, weight, timeout, requires, setup, actions, produces ->
             if (template != null) {
                 requireNotNull(fields) { "No fields found for $id ${exception()}" }
-                fragments.add(Fragment(id, template, fields, weight, requires, setup, actions, produces))
+                fragments.add(Fragment(id, template, fields, weight, timeout, requires, setup, actions, produces))
             } else {
                 val debug = "$id ${exception()}"
                 shortcuts.add(
                     NavigationShortcut(
                         id = id,
                         weight = weight,
+                        timeout = timeout,
                         requires = Condition.parse(requires, debug),
                         setup = Condition.parse(setup, debug),
                         actions = ActionParser.parse(actions, debug),
@@ -133,7 +138,7 @@ private fun loadShortcuts(shortcuts: MutableList<NavigationShortcut>, templates:
     }
 }
 
-private fun load(paths: List<String>, block: ConfigReader.(String, String?, Map<String, Any>?, Int, List<Pair<String, List<Map<String, Any>>>>, List<Pair<String, List<Map<String, Any>>>>, List<Pair<String, Map<String, Any>>>, Set<String>) -> Unit) {
+private fun load(paths: List<String>, block: ConfigReader.(String, String?, Map<String, Any>?, Int, Int, List<Pair<String, List<Map<String, Any>>>>, List<Pair<String, List<Map<String, Any>>>>, List<Pair<String, Map<String, Any>>>, Set<String>) -> Unit) {
     for (path in paths) {
         Config.fileReader(path) {
             while (nextSection()) {
@@ -141,6 +146,7 @@ private fun load(paths: List<String>, block: ConfigReader.(String, String?, Map<
                 var template: String? = null
                 var fields: Map<String, Any>? = null
                 var value = 1
+                var timeout = TimeUnit.SECONDS.toTicks(30)
                 val requires = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                 val setup = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                 val actions = mutableListOf<Pair<String, Map<String, Any>>>()
@@ -153,6 +159,7 @@ private fun load(paths: List<String>, block: ConfigReader.(String, String?, Map<
                         "actions" -> actions(actions)
                         "produces" -> produces(produces)
                         "weight", "capacity" -> value = int()
+                        "timeout" -> timeout = int()
                         "fields" -> fields = map()
                         else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                     }
@@ -160,7 +167,7 @@ private fun load(paths: List<String>, block: ConfigReader.(String, String?, Map<
                 if (fields != null && template == null) {
                     error("Found fields but no template for $id in ${exception()}")
                 }
-                block.invoke(this, id, template, fields, value, requires, setup, actions, produces)
+                block.invoke(this, id, template, fields, value, timeout, requires, setup, actions, produces)
             }
         }
     }
@@ -237,6 +244,7 @@ private data class Fragment(
     val template: String,
     val fields: Map<String, Any>,
     val int: Int,
+    val timeout: Int,
     val requires: List<Pair<String, List<Map<String, Any>>>>,
     val setup: List<Pair<String, List<Map<String, Any>>>>,
     val actions: List<Pair<String, Map<String, Any>>>,
@@ -245,6 +253,7 @@ private data class Fragment(
     fun activity(template: Template) = BotActivity(
         id = id,
         capacity = int,
+        timeout = timeout,
         requires = resolveRequirements(template.requires, requires),
         setup = resolveRequirements(template.setup, setup),
         actions = resolveActions(template.actions, actions),
@@ -323,6 +332,7 @@ private data class Fragment(
     fun resolver(template: Template) = Resolver(
         id = id,
         weight = int,
+        timeout = timeout,
         requires = resolveRequirements(template.requires, requires),
         setup = resolveRequirements(template.setup, setup),
         actions = resolveActions(template.actions, actions),
@@ -332,6 +342,7 @@ private data class Fragment(
     fun shortcut(template: Template) = NavigationShortcut(
         id = id,
         weight = int,
+        timeout = timeout,
         requires = resolveRequirements(template.requires, requires),
         setup = resolveRequirements(template.setup, setup),
         actions = resolveActions(template.actions, actions),

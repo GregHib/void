@@ -1,7 +1,6 @@
 package content.bot
 
 import com.github.michaelbull.logging.InlineLogger
-import content.bot.action.*
 import content.bot.behaviour.Behaviour
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
@@ -15,7 +14,8 @@ import content.bot.behaviour.navigation.Graph.Companion.loadGraph
 import content.bot.behaviour.navigation.NavigationShortcut
 import content.bot.behaviour.setup.DynamicResolvers
 import content.bot.behaviour.setup.Resolver
-import content.bot.req.Condition
+import content.bot.behaviour.Condition
+import content.bot.behaviour.action.BotAction
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.event.AuditLog
@@ -35,36 +35,25 @@ class BotManager(
     private val groups: MutableMap<String, MutableList<String>> = mutableMapOf(),
 ) : Runnable {
     lateinit var graph: Graph
-    val slots = ActivitySlots()
+    internal val slots = ActivitySlots()
     val bots = mutableListOf<Bot>()
     private val logger = InlineLogger("BotManager")
 
     val activityNames: Set<String>
         get() = activities.keys
 
-    fun add(bot: Bot) {
-        bots.add(bot)
-        for (activity in activities.values) {
-            if (activity.requires.any { !it.check(bot.player) }) {
-                continue
-            }
-            bot.available.add(activity.id)
-        }
+    fun load(files: ConfigFiles): BotManager {
+        val shortcuts = mutableListOf<NavigationShortcut>()
+        loadBehaviours(files, activities, groups, resolvers, shortcuts)
+        graph = loadGraph(files.list(Settings["bots.nav.definitions"]), shortcuts)
+        return this
     }
 
-    fun update(bot: Bot, group: String) {
-        // TODO if product produced reset timeout
-        val iterator = bot.available.iterator()
-        while (iterator.hasNext()) {
-            val id = iterator.next()
-            val activity = activities[id] ?: continue
-            // TODO could filter by keys
-            if (activity.requires.any { !it.check(bot.player) }) {
-                iterator.remove()
-            }
-        }
-        for (id in groups[group] ?: return) {
-            val activity = activities[id] ?: continue
+    fun add(bot: Bot) {
+        bots.add(bot)
+        // Update all available activities
+        bot.available.clear()
+        for (activity in activities.values) {
             if (activity.requires.any { !it.check(bot.player) }) {
                 continue
             }
@@ -80,13 +69,6 @@ class BotManager(
         return false
     }
 
-    fun load(files: ConfigFiles): BotManager {
-        val shortcuts = mutableListOf<NavigationShortcut>()
-        loadBehaviours(files, activities, groups, resolvers, shortcuts)
-        graph = loadGraph(files.list(Settings["bots.nav.definitions"]), shortcuts)
-        return this
-    }
-
     override fun run() {
         for (bot in bots) {
             tick(bot)
@@ -94,51 +76,84 @@ class BotManager(
     }
 
     fun tick(bot: Bot) {
-        if (bot.noTask()) {
-            assignRandom(bot)
-            return
-        }
         try {
+            if (bot.noTask()) {
+                assignRandom(bot)
+                return
+            }
             execute(bot)
         } catch (exception: Exception) {
             logger.error(exception) { "Error in bot '${bot.player.accountName}' tick ${bot.frames.map { it.behaviour.id }}." }
         }
     }
 
-    private fun hasRequirements(bot: Bot, activity: BotActivity): Boolean = slots.hasFree(activity) && !bot.blocked.contains(activity.id) && activity.requires.all { it.check(bot.player) }
-
+    /**
+     * Assign activity [id] to [bot]
+     * Useful for debugging
+     */
     fun assign(bot: Bot, id: String): Boolean {
         val activity = activities[id] ?: return false
         assign(bot, activity)
         return true
     }
 
-    private val idle = BotActivity("idle", 2048, actions = listOf(BotAction.Wait(TimeUnit.SECONDS.toTicks(30))))
-
+    /**
+     * Assign a random activity that is available to the [bot].
+     */
     private fun assignRandom(bot: Bot) {
-        val activity = if (bot.previous != null && hasRequirements(bot, bot.previous!!)) {
-            bot.previous
+        if (bot.evaluate.isNotEmpty()) {
+            updateAvailable(bot)
+        }
+        if (bot.player["debug", false]) {
+            logger.trace { "Picking bot ${bot.player.accountName} new task from available: ${bot.available}." }
+        }
+        var activity = if (hasRequirements(bot, bot.previous)) {
+            bot.previous!!
         } else {
-            if (bot.player["debug", false]) {
-                logger.trace { "Picking bot ${bot.player.accountName} new task from available: ${bot.available}." }
-            }
-            val id = bot.available.filter {
-                val activity = activities[it]
-                activity != null && hasRequirements(bot, activity)
-            }.randomOrNull(random) // TODO weight by distance?
-            if (id == null && bot.player["debug", false]) {
-                debugActivities(bot)
-            }
-            activities[id] ?: idle
+            bot.available
+                .filter { hasRequirements(bot, activities[it]) }
+                .randomOrNull(random)
+                ?.let { activities[it] }
         }
         if (activity == null) {
             if (bot.player["debug", false]) {
                 logger.info { "No activities with requirements met for bot: ${bot.player.accountName}." }
+                debugActivities(bot)
             }
-            return
+            activity = idle
         }
         assign(bot, activity)
     }
+
+    /**
+     * Remove invalid activities, check for new valid activities based on recent state changes ready to [Bot.evaluate].
+     */
+    private fun updateAvailable(bot: Bot) {
+        // Remove activities which are no longer available
+        val iterator = bot.available.iterator()
+        while (iterator.hasNext()) {
+            val id = iterator.next()
+            val activity = activities[id] ?: continue
+            if (activity.requires.any { !it.check(bot.player) }) {
+                iterator.remove()
+            }
+        }
+        // Add activities which have become available
+        for (group in bot.evaluate) {
+            for (id in groups[group] ?: return) {
+                val activity = activities[id] ?: continue
+                if (activity.requires.any { !it.check(bot.player) }) {
+                    continue
+                }
+                bot.available.add(activity.id)
+            }
+        }
+        bot.evaluate.clear()
+    }
+
+    private val idle = BotActivity("idle", 2048, timeout = TimeUnit.HOURS.toTicks(1), actions = listOf(BotAction.Wait(TimeUnit.SECONDS.toTicks(30))))
+
+    private fun hasRequirements(bot: Bot, activity: BotActivity?): Boolean = activity != null && slots.hasFree(activity) && !bot.blocked.contains(activity.id) && activity.requires.all { it.check(bot.player) }
 
     private fun assign(bot: Bot, activity: BotActivity) {
         AuditLog.event(bot, "assigned", activity.id)
@@ -150,110 +165,22 @@ class BotManager(
         bot.queue(BehaviourFrame(activity))
     }
 
-    private fun start(bot: Bot, behaviour: Behaviour, frame: BehaviourFrame) {
-        for (requirement in behaviour.requires) {
-            if (requirement.check(bot.player)) {
-                continue
-            }
-            frame.fail(Reason.Requirement(requirement))
-            return
-        }
-        for (requirement in behaviour.setup) {
-            if (requirement.check(bot.player)) {
-                continue
-            }
-            val resolvers = availableResolvers(bot, requirement)
-            val resolver = resolvers
-                .filter { !frame.blocked.contains(it.id) && it.requires.none { fact -> !fact.check(bot.player) } }
-                .minByOrNull { it.weight }
-            if (resolver == null) {
-                if (bot.player["debug", false]) {
-                    debugResolvers(behaviour, requirement, resolvers, frame, bot)
-                }
-                frame.fail(Reason.Requirement(requirement)) // No way to resolve
-                return
-            }
-            // Attempt resolution
-            AuditLog.event(bot, "start_resolver", resolver.id, behaviour.id)
-            if (bot.player["debug", false]) {
-                logger.info { "Starting resolution: ${resolver.id} for ${behaviour.id} requirement: $requirement." }
-            }
-            frame.blocked.add(resolver.id)
-            val resolverFrame = BehaviourFrame(resolver)
-            bot.queue(resolverFrame)
-            return
-        }
-        AuditLog.event(bot, "start_activity", behaviour.id)
-        if (bot.player["debug", false]) {
-            logger.info { "Starting activity: ${behaviour.id}." }
-        }
-        bot.blocked.add(behaviour.id)
-        frame.start(bot)
-    }
-
-    private fun availableResolvers(bot: Bot, requirement: Condition): MutableList<Resolver> {
-        val options = mutableListOf<Resolver>()
-        val dynamic = DynamicResolvers.resolver(bot.player, requirement)
-        if (dynamic != null) {
-            options.add(dynamic)
-        }
-        for (key in requirement.keys()) {
-            for (resolver in resolvers[key] ?: continue) {
-                options.add(resolver)
-            }
-        }
-        return options
-    }
-
+    /**
+     * Check and update [bot]'s current activity and action state
+     */
     private fun execute(bot: Bot) {
         val frame = bot.frame()
-        val behaviour = frame.behaviour
-        if (bot.player["debug", false]) {
-            logger.trace { "Bot task: ${behaviour.id} state: ${frame.state} action: ${frame.action()}." }
-            bot["previous_state"] = frame.state
-        }
         when (val state = frame.state) {
             BehaviourState.Running -> frame.update(bot)
-            BehaviourState.Pending -> start(bot, behaviour, frame)
-            BehaviourState.Success -> {
-                val debug = bot.player["debug", false]
-                if (debug) {
-                    logger.debug { "Completed action: ${frame.action()} for ${behaviour.id}." }
-                }
-                if (!frame.next()) {
-                    AuditLog.event(bot, "completed", frame.behaviour.id)
-                    bot.frames.pop()
-                    if (!bot.noTask()) {
-                        bot.frame().blocked.remove(behaviour.id)
-                    }
-                    if (behaviour is BotActivity) {
-                        bot.blocked.remove(behaviour.id)
-                        slots.release(behaviour)
-                    }
-                } else {
-                    if (debug) {
-                        logger.debug { "Next action: ${frame.action()} for ${behaviour.id}." }
-                    }
-                    frame.start(bot)
-                }
-            }
-            is BehaviourState.Failed -> {
-                val action = frame.action()
-                if (bot.player["debug", false]) {
-                    logger.warn { "Failed action: ${action::class.simpleName} for ${behaviour.id}, reason: ${state.reason}." }
-                }
-                AuditLog.event(bot, "failed", behaviour.id, state.reason, frame.index, action::class.simpleName)
-                if (state.reason is HardReason) {
-                    stop(bot)
-                } else {
-                    bot.frames.pop()
-                }
-                if (behaviour is BotActivity) {
-                    bot.blocked.add(behaviour.id)
-                    slots.release(behaviour)
-                }
-            }
+            BehaviourState.Pending -> start(bot, frame)
+            BehaviourState.Success -> nextAction(bot, frame)
+            is BehaviourState.Failed -> handleFail(bot, frame, state)
             is BehaviourState.Wait -> {
+                val behaviour = frame.behaviour
+                if (bot.player["debug", false]) {
+                    logger.trace { "Bot wait: ${behaviour.id} state: ${frame.state} action: ${frame.action()}." }
+                    bot["previous_state"] = frame.state
+                }
                 if (--state.ticks <= 0) {
                     frame.state = state.next
                 }
@@ -261,6 +188,110 @@ class BotManager(
         }
     }
 
+    /**
+     * Check [bot] has requirements to start the current activity
+     * Find [resolvers] if activity has set up [Condition]s
+     */
+    private fun start(bot: Bot, frame: BehaviourFrame) {
+        val behaviour = frame.behaviour
+        for (requirement in behaviour.requires) {
+            if (requirement.check(bot.player)) {
+                continue
+            }
+            frame.fail(Reason.Requirement(requirement))
+            return
+        }
+        val debug = bot.player["debug", false]
+        for (requirement in behaviour.setup) {
+            if (requirement.check(bot.player)) {
+                continue
+            }
+            frame.blocked.removeAll(DynamicResolvers.ids())
+            val resolvers = buildList {
+                DynamicResolvers.resolver(bot.player, requirement)?.let { add(it) }
+                requirement.keys()
+                    .flatMap { resolvers[it].orEmpty() }
+                    .forEach(::add)
+            }
+            val resolver = resolvers
+                .filter { !frame.blocked.contains(it.id) && it.requires.none { fact -> !fact.check(bot.player) } }
+                .minByOrNull { it.weight }
+            if (resolver == null) {
+                if (debug) {
+                    debugResolvers(behaviour, requirement, resolvers, frame, bot)
+                }
+                frame.fail(Reason.Requirement(requirement)) // No way to resolve
+                return
+            }
+            // Attempt resolution
+            AuditLog.event(bot, "start_resolver", resolver.id, behaviour.id)
+            if (debug) {
+                logger.info { "Starting resolver: ${resolver.id} for ${behaviour.id} requirement: $requirement." }
+            }
+            frame.blocked.add(resolver.id)
+            val resolverFrame = BehaviourFrame(resolver)
+            bot.queue(resolverFrame)
+            return
+        }
+        AuditLog.event(bot, "start_activity", behaviour.id)
+        if (debug) {
+            logger.info { "Starting activity: ${behaviour.id}." }
+        }
+        bot.blocked.add(behaviour.id)
+        frame.start(bot)
+    }
+
+    /**
+     * Move onto the next action in a behaviour or remove the behaviour from the stack if it is completed
+     */
+    private fun nextAction(bot: Bot, frame: BehaviourFrame) {
+        val debug = bot.player["debug", false]
+        if (frame.next()) {
+            if (debug) {
+                logger.debug { "Next action: ${frame.action()} for ${frame.behaviour.id}." }
+            }
+            frame.start(bot)
+            return
+        }
+        val behaviour = frame.behaviour
+        if (debug) {
+            logger.debug { "Completed action: ${frame.action()} for ${behaviour.id}." }
+        }
+        AuditLog.event(bot, "completed", frame.behaviour.id)
+        bot.frames.pop()
+        if (!bot.noTask()) {
+            bot.frame().blocked.remove(behaviour.id)
+        }
+        if (behaviour is BotActivity) {
+            bot.blocked.remove(behaviour.id)
+            slots.release(behaviour)
+        }
+    }
+
+    /**
+     * Stop the current activity or remove the current resolver
+     */
+    private fun handleFail(bot: Bot, frame: BehaviourFrame, state: BehaviourState.Failed) {
+        val behaviour = frame.behaviour
+        val action = frame.action()
+        if (bot.player["debug", false]) {
+            logger.warn { "Failed action: ${action::class.simpleName} for ${behaviour.id}, reason: ${state.reason}." }
+        }
+        AuditLog.event(bot, "failed", behaviour.id, state.reason, frame.index, action::class.simpleName)
+        if (state.reason is HardReason) {
+            stop(bot)
+        } else {
+            bot.frames.pop()
+        }
+        if (behaviour is BotActivity) {
+            bot.blocked.add(behaviour.id)
+            slots.release(behaviour)
+        }
+    }
+
+    /**
+     * Remove all behaviours and free up activity slots
+     */
     private fun stop(bot: Bot) {
         for (frame in bot.frames) {
             if (frame.behaviour is BotActivity) {
@@ -270,7 +301,7 @@ class BotManager(
         bot.reset()
     }
 
-    private fun debugResolvers(behaviour: Behaviour, requirement: Condition, resolvers: MutableList<Resolver>, frame: BehaviourFrame, bot: Bot) {
+    private fun debugResolvers(behaviour: Behaviour, requirement: Condition, resolvers: List<Resolver>, frame: BehaviourFrame, bot: Bot) {
         logger.info { "No resolver found for ${behaviour.id} keys: ${requirement.keys()} requirement: $requirement." }
         for (resolver in resolvers) {
             if (frame.blocked.contains(resolver.id)) {

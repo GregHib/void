@@ -1,8 +1,8 @@
 package content.bot.behaviour.setup
 
-import content.bot.action.BotAction
-import content.bot.req.Condition
-import content.bot.req.Condition.Entry
+import content.bot.behaviour.action.BotAction
+import content.bot.behaviour.Condition
+import content.bot.behaviour.Condition.Entry
 import content.entity.player.bank.bank
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -14,6 +14,8 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 object DynamicResolvers {
+
+    fun ids() = setOf("withdraw_from_bank", "equip_from_bank")
 
     fun resolver(player: Player, condition: Condition) = when (condition) {
         is Condition.InArea -> Resolver("go_to_${condition.id}", -1, actions = listOf(BotAction.GoTo(condition.id)))
@@ -103,7 +105,7 @@ object DynamicResolvers {
             actions.add(BotAction.InteractObject("Use-quickly", "bank_booth*", success = Condition.InterfaceOpen("bank")))
             // Free up inventory space if needed
             if (player.inventory.spaces < equipment.size) {
-                actions.add(BotAction.InterfaceOption("Deposit carried items", "bank:carried", success = Condition.Inventory(listOf(Condition.Entry(setOf("empty"), min = 28)))))
+                actions.add(BotAction.InterfaceOption("Deposit carried items", "bank:carried", success = Condition.Inventory(listOf(Entry(setOf("empty"), min = 28)))))
             }
             val toEquip = mutableSetOf<String>()
             for (item in player.bank.items) {

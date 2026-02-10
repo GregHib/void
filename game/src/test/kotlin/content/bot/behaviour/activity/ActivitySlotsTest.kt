@@ -1,8 +1,6 @@
-package content.bot
+package content.bot.behaviour.activity
 
-import content.bot.behaviour.activity.ActivitySlots
-import content.bot.behaviour.activity.BotActivity
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -19,7 +17,7 @@ class ActivitySlotsTest {
     fun `Unoccupied slots are free`() {
         val activity = BotActivity("test", 2)
 
-        assertTrue(slots.hasFree(activity))
+        Assertions.assertTrue(slots.hasFree(activity))
     }
 
     @Test
@@ -28,7 +26,7 @@ class ActivitySlotsTest {
 
         slots.occupy(activity)
 
-        assertFalse(slots.hasFree(activity))
+        Assertions.assertFalse(slots.hasFree(activity))
     }
 
     @Test
@@ -38,6 +36,6 @@ class ActivitySlotsTest {
         slots.occupy(activity)
         slots.release(activity)
 
-        assertTrue(slots.hasFree(activity))
+        Assertions.assertTrue(slots.hasFree(activity))
     }
 }

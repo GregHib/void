@@ -1,12 +1,12 @@
 package content.bot.behaviour.navigation
 
-import content.bot.action.ActionParser
-import content.bot.action.BotAction
+import content.bot.behaviour.action.ActionParser
+import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.actions
 import content.bot.behaviour.requirements
 import content.bot.bot
 import content.bot.isBot
-import content.bot.req.Condition
+import content.bot.behaviour.Condition
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.definition.Areas

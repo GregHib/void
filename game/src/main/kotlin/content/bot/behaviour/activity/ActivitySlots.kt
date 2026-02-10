@@ -1,5 +1,8 @@
 package content.bot.behaviour.activity
 
+/**
+ * Track bots occupying and releasing access to a fixed number of slots per activity
+ */
 class ActivitySlots {
     private val occupied = mutableMapOf<String, Int>()
 

@@ -1,4 +1,4 @@
-package content.bot.req
+package content.bot.behaviour
 
 import content.entity.player.bank.bank
 import net.pearx.kasechange.toPascalCase
@@ -13,9 +13,9 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRe
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
-import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
+import kotlin.collections.iterator
 
 sealed class Condition(val priority: Int) {
     abstract fun keys(): Set<String>
@@ -244,7 +244,7 @@ sealed class Condition(val priority: Int) {
             val items = mutableMapOf<EquipSlot, Entry>()
             for (map in list) {
                 for ((key, value) in map) {
-                    val slot = EquipSlot.by(key)
+                    val slot = EquipSlot.Companion.by(key)
                     require(slot != EquipSlot.None) { "Invalid equipment slot: $key in $list" }
                     value as? Map<String, Any> ?: error("Equipment $key expecting map, found: $value")
                     val id = value["id"] as? String ?: error("Missing item id in $list")
@@ -358,7 +358,7 @@ sealed class Condition(val priority: Int) {
             val map = list.single()
             if (map.containsKey("id")) {
                 return SkillLevel(
-                    skill = Skill.of((map["id"] as String).toPascalCase()) ?: error("Unknown skill: '${map["id"]}'"),
+                    skill = Skill.Companion.of((map["id"] as String).toPascalCase()) ?: error("Unknown skill: '${map["id"]}'"),
                     min = map["min"] as? Int,
                     max = map["max"] as? Int
                 )

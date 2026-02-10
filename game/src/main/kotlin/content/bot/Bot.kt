@@ -1,6 +1,6 @@
 package content.bot
 
-import content.bot.action.BotAction
+import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.Reason
@@ -14,6 +14,7 @@ data class Bot(val player: Player) : Character by player {
     var previous: BotActivity? = null
     val frames = Stack<BehaviourFrame>()
     val available = mutableSetOf<String>()
+    var evaluate = mutableSetOf<String>()
 
     fun noTask() = frames.isEmpty()
 

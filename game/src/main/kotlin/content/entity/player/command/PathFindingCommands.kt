@@ -2,7 +2,7 @@ package content.entity.player.command
 
 import content.bot.Bot
 import content.bot.BotManager
-import content.bot.action.BotAction
+import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.setup.Resolver
 import content.bot.bot

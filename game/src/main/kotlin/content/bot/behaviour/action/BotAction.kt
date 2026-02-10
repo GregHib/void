@@ -1,4 +1,4 @@
-package content.bot.action
+package content.bot.behaviour.action
 
 import content.bot.Bot
 import content.bot.BotManager
@@ -8,7 +8,7 @@ import content.bot.behaviour.Reason
 import content.bot.behaviour.navigation.Graph
 import content.bot.behaviour.navigation.NavigationShortcut
 import content.bot.behaviour.setup.Resolver
-import content.bot.req.Condition
+import content.bot.behaviour.Condition
 import content.entity.combat.attackers
 import content.entity.combat.dead
 import world.gregs.voidps.engine.GameLoop
@@ -33,8 +33,11 @@ import world.gregs.voidps.engine.event.wildcardEquals
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.map.Spiral
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.client.instruction.*
+import java.util.concurrent.TimeUnit
 import kotlin.collections.indexOf
+import kotlin.collections.iterator
 
 sealed interface BotAction {
     fun start(bot: Bot, frame: BehaviourFrame): BehaviourState = BehaviourState.Running
@@ -95,7 +98,7 @@ sealed interface BotAction {
                     }
                 }
                 if (actions.isNotEmpty()) {
-                    bot.queue(BehaviourFrame(Resolver("go_to_$target", 0, actions = actions)))
+                    bot.queue(BehaviourFrame(Resolver("go_to_$target", 0, TimeUnit.SECONDS.toTicks(60), actions = actions)))
                 }
                 if (nav != null) {
                     bot.queue(BehaviourFrame(nav))
@@ -147,10 +150,7 @@ sealed interface BotAction {
         val radius: Int = 10,
     ) : BotAction {
 
-        override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
-            frame.timeout = 0
-            return BehaviourState.Running
-        }
+        override fun start(bot: Bot, frame: BehaviourFrame) = BehaviourState.Running
 
         override fun update(bot: Bot, frame: BehaviourFrame) = when {
             success?.check(bot.player) == true -> BehaviourState.Success

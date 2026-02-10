@@ -1,7 +1,7 @@
 package content.bot.behaviour
 
 import content.bot.Bot
-import content.bot.action.BotAction
+import content.bot.behaviour.action.BotAction
 
 data class BehaviourFrame(
     val behaviour: Behaviour,
@@ -21,6 +21,10 @@ data class BehaviourFrame(
     }
 
     fun update(bot: Bot) {
+        if (++timeout > behaviour.timeout) {
+            fail(Reason.Timeout)
+            return
+        }
         val action = action()
         state = action.update(bot, this) ?: return
     }
