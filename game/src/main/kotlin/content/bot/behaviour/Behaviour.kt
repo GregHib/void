@@ -152,7 +152,7 @@ private fun load(paths: List<String>, block: ConfigReader.(String, String?, Map<
                 var template: String? = null
                 var fields: Map<String, Any>? = null
                 var value = 1
-                var timeout = TimeUnit.SECONDS.toTicks(30)
+                var timeout = TimeUnit.MINUTES.toTicks(1)
                 val requires = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                 val setup = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                 val actions = mutableListOf<Pair<String, Map<String, Any>>>()

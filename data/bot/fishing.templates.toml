@@ -30,6 +30,7 @@ actions = [
 ]
 produces = [
     { item = "raw_shrimp" },
+    { item = "raw_anchovies" },
     { skill = "fishing" }
 ]
 

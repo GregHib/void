@@ -61,6 +61,14 @@ requires = [
     { skill = { id = "fishing", min = 1, max = 5 } }
 ]
 
+[lumbridge_net_fishing]
+template = "fish_small_net"
+capacity = 5
+fields = { location = "lumbridge_swamp_fishing_area", spot = "fishing_spot_small_net_bait_lumbridge" }
+requires = [
+    { skill = { id = "fishing", min = 1, max = 5 } }
+]
+
 # Fletching
 [lumbridge_fletch_arrow_shafts]
 template = "fletching_arrow_shafts_template"

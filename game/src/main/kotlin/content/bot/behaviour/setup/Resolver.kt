@@ -3,6 +3,8 @@ package content.bot.behaviour.setup
 import content.bot.behaviour.Behaviour
 import content.bot.behaviour.Condition
 import content.bot.behaviour.action.BotAction
+import world.gregs.voidps.engine.timer.toTicks
+import java.util.concurrent.TimeUnit
 
 /**
  * A behaviour that can be performed to resolve a requirement of another [Resolver] or [BotAction]
@@ -12,7 +14,7 @@ import content.bot.behaviour.action.BotAction
 data class Resolver(
     override val id: String,
     val weight: Int,
-    override val timeout: Int = 50,
+    override val timeout: Int = TimeUnit.MINUTES.toTicks(1),
     override val requires: List<Condition> = emptyList(),
     override val setup: List<Condition> = emptyList(),
     override val actions: List<BotAction> = emptyList(),
