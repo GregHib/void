@@ -5,12 +5,12 @@ requires = [
 setup = [
     { inventory = [
         { id = "crayfish_cage" },
-        { id = "", min = 27 }
+        { id = "empty", min = 27 }
     ] },
     { area = { id = "$location" } },
 ]
 actions = [
-    { npc = { option = "Cage", id = "$spot", delay = 5, success = { inventory_space = { max = 0 } } } },
+    { npc = { option = "Cage", id = "$spot", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
 ]
 produces = [
     { inventory = "raw_crayfish" },
@@ -21,12 +21,12 @@ produces = [
 setup = [
     { inventory = [
         { id = "small_fishing_net" },
-        { id = "", min = 27 }
+        { id = "empty", min = 27 }
     ] },
     { area = { id = "$location" } },
 ]
 actions = [
-    { npc = { option = "Net", id = "$spot", delay = 5, success = { inventory_space = { max = 0 } } } },
+    { npc = { option = "Net", id = "$spot", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
 ]
 produces = [
     { inventory = "raw_shrimp" },
@@ -37,12 +37,12 @@ produces = [
 setup = [
     { inventory = [
         { id = "small_fishing_net" },
-        { id = "", min = 27 }
+        { id = "empty", min = 27 }
     ] },
     { area = { id = "$location" } },
 ]
 actions = [
-    { npc = { option = "Net", id = "$spot", delay = 5, success = { inventory_space = { max = 0 } } } },
+    { npc = { option = "Net", id = "$spot", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
 ]
 produces = [
     { skill = "fishing" }
@@ -68,7 +68,7 @@ produces = [
 # Success
 # tile = x, y/level
 # carries coins/amount
-#has_queue = id
+#queue = id
 
 # Produces
 # skill = "name"

@@ -5,7 +5,7 @@ import content.bot.action.BotAction
 import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.navigation.NavigationShortcut
 import content.bot.behaviour.setup.Resolver
-import content.bot.req.Requirement
+import content.bot.req.Condition
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
@@ -15,8 +15,8 @@ import world.gregs.voidps.engine.timedLoad
 
 interface Behaviour {
     val id: String
-    val requires: List<Requirement<*>>
-    val setup: List<Requirement<*>>
+    val requires: List<Condition>
+    val setup: List<Condition>
     val actions: List<BotAction>
     val produces: Set<String>
 }
@@ -34,7 +34,7 @@ fun loadBehaviours(
     var total = 0
     for (activity in activities.values) {
         for (req in activity.requires) {
-            for (key in req.fact.groups()) {
+            for (key in req.events()) {
                 groups.getOrPut(key) { mutableListOf() }.add(activity.id)
             }
         }
@@ -56,8 +56,8 @@ private fun loadActivities(activities: MutableMap<String, BotActivity>, template
                 activities[id] = BotActivity(
                     id = id,
                     capacity = capacity,
-                    requires = Requirement.parse(requires, debug),
-                    setup = Requirement.parse(setup, debug),
+                    requires = Condition.parse(requires, debug),
+                    setup = Condition.parse(setup, debug),
                     actions = ActionParser.parse(actions, debug),
                     produces = produces,
                 )
@@ -83,8 +83,8 @@ private fun loadSetups(resolvers: MutableMap<String, MutableList<Resolver>>, tem
                 val resolver = Resolver(
                     id = id,
                     weight = weight,
-                    requires = Requirement.parse(requires, debug),
-                    setup = Requirement.parse(setup, debug),
+                    requires = Condition.parse(requires, debug),
+                    setup = Condition.parse(setup, debug),
                     actions = ActionParser.parse(actions, debug),
                     produces = produces,
                 )
@@ -117,8 +117,8 @@ private fun loadShortcuts(shortcuts: MutableList<NavigationShortcut>, templates:
                     NavigationShortcut(
                         id = id,
                         weight = weight,
-                        requires = Requirement.parse(requires, debug),
-                        setup = Requirement.parse(setup, debug),
+                        requires = Condition.parse(requires, debug),
+                        setup = Condition.parse(setup, debug),
                         actions = ActionParser.parse(actions, debug),
                         produces = produces,
                     ),
@@ -253,7 +253,7 @@ private data class Fragment(
 
     private fun resolve(set: Set<String>): Set<String> = set
 
-    private fun resolveRequirements(templated: List<Pair<String, List<Map<String, Any>>>>, original: List<Pair<String, List<Map<String, Any>>>>, requirePredicates: Boolean = true): List<Requirement<*>> {
+    private fun resolveRequirements(templated: List<Pair<String, List<Map<String, Any>>>>, original: List<Pair<String, List<Map<String, Any>>>>, requirePredicates: Boolean = true): List<Condition> {
         val combinedList = mutableListOf<Pair<String, List<Map<String, Any>>>>()
         combinedList.addAll(original)
         for ((type, list) in templated) {
@@ -265,7 +265,7 @@ private data class Fragment(
         if (combinedList.isEmpty()) {
             return emptyList()
         }
-        return Requirement.parse(combinedList, "$id template $template", requirePredicates)
+        return Condition.parse(combinedList, "$id template $template")
     }
 
     private fun resolveActions(templated: List<Pair<String, Map<String, Any>>>, original: List<Pair<String, Map<String, Any>>>, requirePredicates: Boolean = true): List<BotAction> {

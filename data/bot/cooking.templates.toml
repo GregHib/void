@@ -1,6 +1,6 @@
 [cooking_template]
 requires = [
-    { owns = { id = "$raw", amount = 28 } },
+    { bank = { id = "$raw", amount = 28 } },
     { skill = { id = "cooking", min = "$level" } },
 ]
 setup = [
@@ -11,17 +11,18 @@ actions = [
     { item_on_object = { id = "$raw", object = "$obj", success = { interface_open = { id = "dialogue_skill_creation" } } } },
     { interface = { option = "All", id = "skill_creation_amount:all" } },
     { continue = { id = "dialogue_skill_creation:choice1" } },
-    { restart = { wait_if = { has_queue = { id = "cooking" } }, success = { inventory = { id = "$raw", max = 0 } } } }
+    { restart = { wait_if = { queue = { id = "cooking" } }, success = { inventory = { id = "$raw", max = 0 } } } }
 ]
 produces = [
     { skill = "cooking" },
-    { item = "$cooked" }
+    { item = "$cooked" },
+    { item = "$burnt" }
 ]
 
-# Beef has a different popup so can't use normal template
+# Beef has a different popup so can't use the normal template
 [beef_template]
 requires = [
-    { owns = { id = "raw_beef", amount = 28 } },
+    { bank = { id = "raw_beef", amount = 28 } },
     { skill = { id = "cooking", min = 1 } },
 ]
 setup = [
@@ -33,9 +34,10 @@ actions = [
     { continue = { option = "Continue", id = "dialogue_multi2:line2", success = { interface_open = { id = "dialogue_skill_creation" } } } },
     { interface = { option = "All", id = "skill_creation_amount:all" } },
     { continue = { id = "dialogue_skill_creation:choice1" } },
-    { restart = { wait_if = { has_queue = { id = "cooking" } }, success = { inventory = { id = "raw_beef", max = 0 } } } }
+    { restart = { wait_if = { queue = { id = "cooking" } }, success = { inventory = { id = "raw_beef", max = 0 } } } }
 ]
 produces = [
     { skill = "cooking" },
-    { item = "beef" }
+    { item = "beef" },
+    { item = "burnt_meat" }
 ]

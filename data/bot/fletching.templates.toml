@@ -1,6 +1,6 @@
 [fletching_arrow_shafts_template]
 requires = [
-    { owns = { id = "$logs", min = 27 } }
+    { bank = { id = "$logs", min = 27 } }
 ]
 setup = [
     { area = { id = "$location" } },
@@ -10,7 +10,7 @@ actions = [
     { item_on_item = { id = "knife", on = "$logs", success = { interface_open = { id = "dialogue_skill_creation" } } } },
     { interface = { option = "All", id = "skill_creation_amount:all" } },
     { continue = { id = "dialogue_skill_creation:choice1" } },
-    { restart = { wait_if = [{ has_queue = { id = "fletching" } }], success = { inventory_space = { min = 26 } } } }
+    { restart = { wait_if = [{ queue = { id = "fletching" } }], success = { inventory = { id = "empty", min = 26 } } } }
 ]
 produces = [
     { item = "arrow_shafts" },
@@ -19,7 +19,7 @@ produces = [
 
 [fletching_shortbow_template]
 requires = [
-    { owns = { id = "$logs", min = 27 } }
+    { bank = { id = "$logs", min = 27 } }
 ]
 setup = [
     { area = { id = "$location" } },
@@ -28,8 +28,8 @@ setup = [
 actions = [
     { item_on_item = { id = "knife", on = "$logs" } },
     { interface = { option = "All", id = "skill_creation_amount:all" } },
-    { continue = { id = "dialogue_skill_creation:choice2", success = { has_queue = { id = "fletching" } } } },
-    { restart = { success = { inventory_space = { min = 26 } } } }
+    { continue = { id = "dialogue_skill_creation:choice2", success = { queue = { id = "fletching" } } } },
+    { restart = { success = { inventory = { id = "empty", min = 26 } } } }
 ]
 produces = [
     { skill = "fletching" }
@@ -37,17 +37,17 @@ produces = [
 
 [fletching_longbow_template]
 requires = [
-    { owns = { id = "$logs", min = 27 } }
+    { bank = { id = "$logs", min = 27 } }
 ]
 setup = [
     { area = { id = "$location" } },
     { inventory = [{ id = "knife" }, { id = "$logs", min = 27 }] },
 ]
 actions = [
-    { item_on_item = { id = "knife", on = "$logs", success = { has_queue = { id = "fletching_make_dialog" } } } },
+    { item_on_item = { id = "knife", on = "$logs", success = { queue = { id = "fletching_make_dialog" } } } },
     { interface = { option = "All", id = "skill_creation_amount:all" } },
-    { continue = { id = "dialogue_skill_creation:choice3", success = { has_queue = { id = "fletching" } } } },
-    { restart = { success = { inventory_space = { min = 26 } } } }
+    { continue = { id = "dialogue_skill_creation:choice3", success = { queue = { id = "fletching" } } } },
+    { restart = { success = { inventory = { id = "empty", min = 26 } } } }
 ]
 produces = [
     { skill = "fletching" }

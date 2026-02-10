@@ -2,10 +2,10 @@
 actions = [
     { go_to = { nearest = "bank" } },
     { object = { option = "Use-quickly", id = "bank_booth*", success = { interface_open = { id = "bank" } } } },
-    { interface = { option = "Deposit carried items", id = "bank:carried", success = { inventory_space = { min = 28 } } } },
+    { interface = { option = "Deposit carried items", id = "bank:carried", success = { inventory = { id = "empty", min = 28 } } } },
 ]
 produces = [
-    { item = "" }
+    { item = "empty" }
 ]
 
 #[deposit_worn_items]

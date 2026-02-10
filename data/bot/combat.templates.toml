@@ -3,13 +3,13 @@ requires = [
     { skill = { id = "$skill", min = 1, max = 5 } },
 ]
 setup = [
-    { equips = { id = "bronze_sword,bronze_dagger,bronze_scimitar" } },
+    { equipment = { weapon = { id = "bronze_sword,bronze_dagger,bronze_scimitar" } } },
     { area = { id = "$location" } },
-    { inventory_space = { min = 27 } },
+    { inventory = { id = "empty", min = 27 } },
 ]
 actions = [
     { interface = { option = "Select", id = "combat_styles:$style" } },
-    { npc = { option = "Attack", id = "chicken*", delay = 5, success = { inventory_space = { max = 0 } } } },
+    { npc = { option = "Attack", id = "chicken*", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
 ]
 produces = [
     { item = "feather" },
@@ -24,13 +24,13 @@ requires = [
     { skill = { id = "$skill", min = 5, max = 10 } },
 ]
 setup = [
-    { equips = { id = "iron_sword,iron_dagger,iron_scimitar" } },
+    { equipment = { weapon = { id = "iron_sword,iron_dagger,iron_scimitar" } } },
     { area = { id = "$location" } },
-    { inventory_space = { min = 27 } },
+    { inventory = { id = "empty", min = 27 } },
 ]
 actions = [
     { interface = { option = "Select", id = "combat_styles:style1" } },
-    { npc = { option = "Attack", id = "cow*", delay = 5, success = { inventory_space = { max = 0 } } } },
+    { npc = { option = "Attack", id = "cow*", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
 ]
 produces = [
     { item = "bones" },

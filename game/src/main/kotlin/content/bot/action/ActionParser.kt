@@ -1,6 +1,6 @@
 package content.bot.action
 
-import content.bot.req.Requirement
+import content.bot.req.Condition
 
 sealed class ActionParser {
     open val required = emptySet<String>()
@@ -154,7 +154,7 @@ sealed class ActionParser {
 
     companion object {
         @Suppress("UNCHECKED_CAST")
-        private fun requirement(map: Map<String, Any>, key: String): List<Requirement<*>> {
+        private fun requirement(map: Map<String, Any>, key: String): List<Condition> {
             val parent = map[key] as? Map<String, Any> ?: return listOf()
             val key = parent.keys.singleOrNull() ?: error("Collection $map has more than one element.")
             val value = parent[key] ?: return listOf()
@@ -163,7 +163,7 @@ sealed class ActionParser {
                 is List<*> -> value as List<Map<String, Any>>
                 else -> return listOf()
             }
-            return Requirement.parse(listOf(key to list), "ActionParser.$key")
+            return Condition.parse(listOf(key to list), "ActionParser.$key in $map")
         }
 
         fun parse(list: List<Pair<String, Map<String, Any>>>, name: String): List<BotAction> {

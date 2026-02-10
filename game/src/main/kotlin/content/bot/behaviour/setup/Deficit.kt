@@ -1,17 +1,10 @@
 package content.bot.behaviour.setup
 
-import content.bot.action.BotAction
-import content.bot.req.Requirement
-import content.bot.req.fact.Fact
-import content.bot.req.predicate.Predicate
-import content.entity.player.bank.bank
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inv.inventory
 
 /**
  * Missing setup [Requirement]'s which can be produce dynamic [Resolver]'s
  */
+/*
 sealed interface Deficit {
     fun resolve(player: Player): Resolver?
 
@@ -19,7 +12,8 @@ sealed interface Deficit {
         override fun resolve(player: Player): Resolver = Resolver("go_to_$area", -1, actions = listOf(BotAction.GoTo(area)))
     }
 
-    /*
+    */
+/*
         TODO setup resolution order
             if equipment
                 deposit all inventory items
@@ -29,7 +23,8 @@ sealed interface Deficit {
             if inventory
                 deposit all items
                 withdraw needed items
-     */
+     *//*
+
     data class Entry(val filter: Predicate<Item>, val needed: Int)
 
     data class MissingEquipment(val entries: List<Entry>) : Deficit {
@@ -58,7 +53,7 @@ sealed interface Deficit {
                     "withdraw$uniqueName",
                     weight = 20,
                     setup = listOf(
-                        Requirement(Fact.InventorySpace, Predicate.IntRange(spaceNeeded)),
+                        Condition.Inventory(listOf(Condition.Entry("empty", min = spaceNeeded))),
                     ),
                     actions = actions,
                 )
@@ -72,7 +67,7 @@ sealed interface Deficit {
             }
             var spaceNeeded = 0
             actions.add(BotAction.GoToNearest("bank"))
-            actions.add(BotAction.InteractObject("Use-quickly", "bank_booth*", success = Requirement(Fact.InterfaceOpen("bank"), Predicate.BooleanTrue)))
+            actions.add(BotAction.InteractObject("Use-quickly", "bank_booth*", success = Condition.InterfaceOpen("bank")))
             for (item in player.bank.items) {
                 if (item.isEmpty()) {
                     continue
@@ -91,7 +86,7 @@ sealed interface Deficit {
             }
             if (spaceNeeded > 0) {
                 if (player.inventory.spaces < spaceNeeded) {
-                    actions.add(2, BotAction.InteractObject("Deposit carried items", "bank:carried", success = Requirement(Fact.InventorySpace, Predicate.IntEquals(28))))
+                    actions.add(2, BotAction.InteractObject("Deposit carried items", "bank:carried", success = Condition.Inventory(listOf(Condition.Entry("empty", min = 28)))))
                 }
                 actions.add(BotAction.CloseInterface)
             }
@@ -104,7 +99,7 @@ sealed interface Deficit {
             var spaceNeeded = 0
             val actions = mutableListOf(
                 BotAction.GoToNearest("bank"),
-                BotAction.InteractObject("Use-quickly", "bank_booth*", success = Requirement(Fact.InterfaceOpen("bank"), Predicate.BooleanTrue)),
+                BotAction.InteractObject("Use-quickly", "bank_booth*", success = Condition.InterfaceOpen("bank")),
             )
             val uniqueName = StringBuilder()
             for (item in player.bank.items) {
@@ -128,15 +123,13 @@ sealed interface Deficit {
             }
             if (actions.size > 2) {
                 if (player.inventory.spaces < spaceNeeded) {
-                    actions.add(2, BotAction.InteractObject("Deposit carried items", "bank:carried", success = Requirement(Fact.InventorySpace, Predicate.IntEquals(28))))
+                    actions.add(2, BotAction.InteractObject("Deposit carried items", "bank:carried", success = Condition.Inventory(listOf(Condition.Entry("empty", min = 28)))))
                 }
                 actions.add(BotAction.CloseInterface)
                 return Resolver(
                     "withdraw_$uniqueName",
                     weight = 20,
-                    setup = listOf(
-                        Requirement(Fact.InventorySpace, Predicate.IntRange(spaceNeeded)),
-                    ),
+                    setup = listOf(Condition.Inventory(listOf(Condition.Entry("empty", min = spaceNeeded)))),
                     actions = actions,
                 )
             }
@@ -144,3 +137,4 @@ sealed interface Deficit {
         }
     }
 }
+*/

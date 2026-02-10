@@ -28,7 +28,11 @@
 [teleport_varrock]
 weight = 125
 requires = [
-    { inventory = [{ id = "fire_rune", min = 1 }, { id = "air_rune", min = 3 }, { id = "law_rune", min = 1 }] },
+    { inventory = [
+        { id = "fire_rune", min = 1 },
+        { id = "air_rune", min = 3 },
+        { id = "law_rune", min = 1 }
+    ] },
     { variable = { id = "spellbook_config", equals = 0, default = 0 } },
 ]
 actions = [
@@ -43,9 +47,11 @@ produces = [
 weight = 150
 requires = [
     { variable = { id = "spellbook_config", equals = 0, default = 0 }},
-    { owns = { id = "fire_rune", min = 1 }},
-    { owns = { id = "air_rune", min = 3 }},
-    { owns = { id = "law_rune", min = 1 }},
+    { bank = [
+        { id = "fire_rune", min = 1 },
+        { id = "air_rune", min = 3 },
+        { id = "law_rune", min = 1 },
+    ]},
 ]
 actions = [
     { go_to = { nearest = "bank" } },

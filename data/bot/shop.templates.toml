@@ -1,6 +1,6 @@
 [buy_from_shop]
 setup = [
-    { inventory = [{ id = "coins", min = "$cost" }, { id = "", min = 1 }] },
+    { inventory = [{ id = "coins", min = "$cost" }, { id = "empty", min = 1 }] },
     { area = { id = "$shop_location" } },
 ]
 actions = [
@@ -13,7 +13,7 @@ produces = [
 
 [take_shop_sample]
 setup = [
-    { inventory = [{ id = "", min = 1 }] },
+    { inventory = [{ id = "empty", min = 1 }] },
     { area = { id = "$shop_location" } },
 ]
 actions = [
@@ -26,7 +26,7 @@ produces = [
 
 [sell_50_to_shop]
 setup = [
-    { inventory = [{ id = "$item", min = "50" }, { id = "", min = 1 }] },
+    { inventory = [{ id = "$item", min = "50" }, { id = "empty", min = 1 }] },
     { area = { id = "$shop_location" } },
 ]
 actions = [
@@ -40,7 +40,7 @@ produces = [
 
 [sell_10_to_shop]
 setup = [
-    { inventory = [{ id = "$item", min = "10" }, { id = "", min = 1 }] },
+    { inventory = [{ id = "$item", min = "10" }, { id = "empty", min = 1 }] },
     { area = { id = "$shop_location" } },
 ]
 actions = [
@@ -54,7 +54,7 @@ produces = [
 
 [sell_5_to_shop]
 setup = [
-    { inventory = [{ id = "$item", min = "5" }, { id = "", min = 1 }] },
+    { inventory = [{ id = "$item", min = "5" }, { id = "empty", min = 1 }] },
     { area = { id = "$shop_location" } },
 ]
 actions = [
@@ -68,7 +68,7 @@ produces = [
 
 [sell_to_shop]
 setup = [
-    { inventory = [{ id = "$item", min = "1" }, { id = "", min = 1 }] },
+    { inventory = [{ id = "$item", min = "1" }, { id = "empty", min = 1 }] },
     { area = { id = "$shop_location" } },
 ]
 actions = [

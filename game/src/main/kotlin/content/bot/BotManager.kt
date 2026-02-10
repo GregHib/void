@@ -13,8 +13,9 @@ import content.bot.behaviour.loadBehaviours
 import content.bot.behaviour.navigation.Graph
 import content.bot.behaviour.navigation.Graph.Companion.loadGraph
 import content.bot.behaviour.navigation.NavigationShortcut
+import content.bot.behaviour.setup.DynamicResolvers
 import content.bot.behaviour.setup.Resolver
-import content.bot.req.Requirement
+import content.bot.req.Condition
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.event.AuditLog
@@ -190,16 +191,13 @@ class BotManager(
         frame.start(bot)
     }
 
-    private fun availableResolvers(bot: Bot, requirement: Requirement<*>): MutableList<Resolver> {
+    private fun availableResolvers(bot: Bot, requirement: Condition): MutableList<Resolver> {
         val options = mutableListOf<Resolver>()
-        println("Resolvers for $requirement")
-//        FIXME because InventoryItems no longer produces individual keys, there's no way to match resolvers to required items
-        for (deficit in requirement.deficits(bot.player)) {
-            options.add(deficit.resolve(bot.player) ?: continue)
+        val dynamic = DynamicResolvers.resolver(bot.player, requirement)
+        if (dynamic != null) {
+            options.add(dynamic)
         }
-        println("Check ${requirement.fact} ${requirement.predicate}")
         for (key in requirement.keys()) {
-            println("Resolvers for $key : ${resolvers[key]}")
             for (resolver in resolvers[key] ?: continue) {
                 options.add(resolver)
             }
@@ -272,8 +270,8 @@ class BotManager(
         bot.reset()
     }
 
-    private fun debugResolvers(behaviour: Behaviour, requirement: Requirement<*>, resolvers: MutableList<Resolver>, frame: BehaviourFrame, bot: Bot) {
-        logger.info { "No resolver found for ${behaviour.id} keys: ${requirement.fact.keys()} requirement: $requirement." }
+    private fun debugResolvers(behaviour: Behaviour, requirement: Condition, resolvers: MutableList<Resolver>, frame: BehaviourFrame, bot: Bot) {
+        logger.info { "No resolver found for ${behaviour.id} keys: ${requirement.keys()} requirement: $requirement." }
         for (resolver in resolvers) {
             if (frame.blocked.contains(resolver.id)) {
                 logger.debug { "Resolver: ${resolver.id} - Blocked by frame behaviour: ${frame.behaviour.id}." }

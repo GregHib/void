@@ -2,7 +2,7 @@ package content.bot.behaviour.setup
 
 import content.bot.action.BotAction
 import content.bot.behaviour.Behaviour
-import content.bot.req.Requirement
+import content.bot.req.Condition
 
 /**
  * An activity that can be performed to resolve a requirement
@@ -12,8 +12,8 @@ import content.bot.req.Requirement
 data class Resolver(
     override val id: String,
     val weight: Int,
-    override val requires: List<Requirement<*>> = emptyList(),
-    override val setup: List<Requirement<*>> = emptyList(),
+    override val requires: List<Condition> = emptyList(),
+    override val setup: List<Condition> = emptyList(),
     override val actions: List<BotAction> = emptyList(),
     override val produces: Set<String> = emptySet(),
 ) : Behaviour

@@ -6,7 +6,7 @@ import content.bot.behaviour.actions
 import content.bot.behaviour.requirements
 import content.bot.bot
 import content.bot.isBot
-import content.bot.req.Requirement
+import content.bot.req.Condition
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.definition.Areas
@@ -19,7 +19,7 @@ import java.util.PriorityQueue
 class Graph(
     val endNodes: IntArray = intArrayOf(),
     val edgeWeights: IntArray = intArrayOf(),
-    val edgeConditions: Array<List<Requirement<*>>?> = emptyArray(),
+    val edgeConditions: Array<List<Condition>?> = emptyArray(),
     val actions: Array<List<BotAction>?> = emptyArray(),
     val adjacentEdges: Array<IntArray?> = emptyArray(),
     val tiles: IntArray = intArrayOf(),
@@ -30,7 +30,7 @@ class Graph(
 
     fun actions(edge: Int): List<BotAction>? = actions[edge]
 
-    fun conditions(edge: Int): List<Requirement<*>>? = edgeConditions[edge]
+    fun conditions(edge: Int): List<Condition>? = edgeConditions[edge]
 
     fun tile(edge: Int): Tile {
         val nodeIndex = endNodes[edge]
@@ -148,7 +148,7 @@ class Graph(
         // Edges
         val endNodes = mutableListOf<Int>()
         val weights = mutableListOf<Int>()
-        val conditions = mutableListOf<List<Requirement<*>>?>()
+        val conditions = mutableListOf<List<Condition>?>()
         val actions = mutableListOf<List<BotAction>?>()
         val edges = mutableMapOf<Int, MutableList<Int>>()
         var edgeCount = 0
@@ -180,7 +180,7 @@ class Graph(
             addEdge(end, start, weight, actions)
         }
 
-        fun addEdge(from: Tile, to: Tile, weight: Int, actions: List<BotAction>, conditions: List<Requirement<*>>?) {
+        fun addEdge(from: Tile, to: Tile, weight: Int, actions: List<BotAction>, conditions: List<Condition>?) {
             val start = add(from)
             val end = add(to)
             addEdge(start, end, weight, actions, conditions)
@@ -195,7 +195,7 @@ class Graph(
             return tiles.indexOf(tile)
         }
 
-        fun addEdge(start: Int, end: Int, weight: Int, actions: List<BotAction>? = null, conditions: List<Requirement<*>>? = null): Int {
+        fun addEdge(start: Int, end: Int, weight: Int, actions: List<BotAction>? = null, conditions: List<Condition>? = null): Int {
             val edgeIndex = edgeCount++
             nodes.add(start)
             nodes.add(end)
@@ -263,8 +263,8 @@ class Graph(
                                         builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, listOf(BotAction.WalkTo(to.x, to.y)), null)
                                         builder.addEdge(Tile(to.x, to.y, to.level), Tile(from.x, from.y, from.level), cost, listOf(BotAction.WalkTo(from.x, from.y)), null)
                                     }
-                                    requirements.isEmpty() -> builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, ActionParser.Companion.parse(actions, exception()), null)
-                                    else -> builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, ActionParser.Companion.parse(actions, exception()), Requirement.Companion.parse(requirements, exception()))
+                                    requirements.isEmpty() -> builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, ActionParser.parse(actions, exception()), null)
+                                    else -> builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, ActionParser.parse(actions, exception()), Condition.parse(requirements, exception()))
                                 }
                             }
                         }

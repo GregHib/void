@@ -3,11 +3,11 @@ requires = [
     { skill = { id = "woodcutting", min = 1, max = 15 } },
 ]
 setup = [
-    { inventory = [{ id = "steel_hatchet,iron_hatchet,bronze_hatchet" }, { id = "", min = 27 }] },
+    { inventory = [{ id = "steel_hatchet,iron_hatchet,bronze_hatchet" }, { id = "empty", min = 27 }] },
     { area = { id = "$location" } },
 ]
 actions = [
-    { object = { option = "Chop down", id = "tree*", delay = 5, success = { inventory_space = { max = 0 } } } },
+    { object = { option = "Chop down", id = "tree*", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
 ]
 produces = [
     { item = "logs" },
@@ -19,11 +19,11 @@ requires = [
     { skill = { id = "woodcutting", min = 15, max = 30 } },
 ]
 setup = [
-    { inventory = [{ id = "mithril_hatchet,steel_hatchet" }, { id = "", min = 27 }] },
+    { inventory = [{ id = "mithril_hatchet,steel_hatchet" }, { id = "empty", min = 27 }] },
     { area = { id = "$location" } },
 ]
 actions = [
-    { object = { option = "Chop down", id = "oak*", delay = 5, success = { inventory_space = { max = 0 } } } },
+    { object = { option = "Chop down", id = "oak*", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
 ]
 produces = [
     { item = "oak_logs" },
@@ -35,11 +35,11 @@ requires = [
     { skill = { id = "woodcutting", min = 30, max = 60 } },
 ]
 setup = [
-    { inventory = [{ id = "rune_hatchet,adamant_hatchet,mithril_hatchet,steel_hatchet" }, { id = "", min = 27 }] },
+    { inventory = [{ id = "rune_hatchet,adamant_hatchet,mithril_hatchet,steel_hatchet" }, { id = "empty", min = 27 }] },
     { area = { id = "$location" } },
 ]
 actions = [
-    { object = { option = "Chop down", id = "willow*", delay = 5, success = { inventory_space = { max = 0 } } } },
+    { object = { option = "Chop down", id = "willow*", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
 ]
 produces = [
     { item = "willow_logs" },
@@ -51,11 +51,11 @@ requires = [
     { skill = { id = "woodcutting", min = 60, max = 75 } },
 ]
 setup = [
-    { inventory = [{ id = "dragon_hatchet,rune_hatchet,adamant_hatchet" }, { id = "", min = 27 }] },
+    { inventory = [{ id = "dragon_hatchet,rune_hatchet,adamant_hatchet" }, { id = "empty", min = 27 }] },
     { area = { id = "$location" } },
 ]
 actions = [
-    { object = { option = "Chop down", id = "yew*", delay = 5, success = { inventory_space = { max = 0 } } } },
+    { object = { option = "Chop down", id = "yew*", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
 ]
 produces = [
     { item = "yew_logs" },

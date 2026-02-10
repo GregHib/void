@@ -4,7 +4,7 @@ requires = [
     { skill = { id = "thieving", min = 1, max = 10 } },
 ]
 setup = [
-    { inventory_space = { min = 1 } },
+    { inventory = { id = "empty", min = 1 } },
     { area = { id = "$location" } },
 ]
 actions = [

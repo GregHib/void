@@ -1,14 +1,30 @@
-[bury_bones]
+[bury_bones_in_bank]
 capacity = 5
 requires = [
-    { owns = { id = "bones", min = 28 } },
+    { bank = { id = "bones", min = 28 } },
 ]
 setup = [
     { inventory = [{ id = "bones", min = 28 }] },
 ]
 actions = [
     { interface = { option = "Bury", id = "inventory:inventory:bones" } },
-    { restart = { wait_if = [{ variable = { id = "bone_delay", min = 0, default = -1 } }], success = { inventory_space = { min = 28 } } } }
+    { restart = { wait_if = [{ variable = { id = "bone_delay", min = 0, default = -1 } }], success = { inventory = { id = "empty", min = 28 } } } }
+]
+produces = [
+    { skill = "prayer" }
+]
+
+[bury_bones]
+capacity = 5
+requires = [
+    { inventory = [{ id = "bones", min = 28 }] },
+]
+setup = [
+    { inventory = [{ id = "bones", min = 28 }] },
+]
+actions = [
+    { interface = { option = "Bury", id = "inventory:inventory:bones" } },
+    { restart = { wait_if = [{ variable = { id = "bone_delay", min = 0, default = -1 } }], success = { inventory = { id = "empty", min = 28 } } } }
 ]
 produces = [
     { skill = "prayer" }
