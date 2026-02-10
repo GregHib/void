@@ -1,8 +1,8 @@
 package content.bot.behaviour.setup
 
-import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.Condition
 import content.bot.behaviour.Condition.Entry
+import content.bot.behaviour.action.BotAction
 import content.entity.player.bank.bank
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -80,7 +80,7 @@ object DynamicResolvers {
             }
             val item = player.equipped(slot)
             if (item.isNotEmpty()) {
-                actions.add(BotAction.InterfaceOption("Remove", "worn_equipment:${slot.name.lowercase()}_slot:${item}"))
+                actions.add(BotAction.InterfaceOption("Remove", "worn_equipment:${slot.name.lowercase()}_slot:$item"))
             }
             equipment.remove(slot)
         }
@@ -138,7 +138,7 @@ object DynamicResolvers {
             actions.add(BotAction.CloseInterface)
             // Equip all items
             for (id in toEquip) {
-                actions.add(BotAction.InterfaceOption("Equip", "inventory:inventory:${id}"))
+                actions.add(BotAction.InterfaceOption("Equip", "inventory:inventory:$id"))
             }
         }
         if (actions.isNotEmpty()) {

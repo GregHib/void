@@ -1,8 +1,8 @@
 package content.bot.behaviour.navigation
 
-import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.Behaviour
 import content.bot.behaviour.Condition
+import content.bot.behaviour.action.BotAction
 
 data class NavigationShortcut(
     override val id: String,

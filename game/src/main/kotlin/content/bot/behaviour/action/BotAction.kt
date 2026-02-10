@@ -1,14 +1,13 @@
 package content.bot.behaviour.action
 
 import content.bot.Bot
-import content.bot.BotManager
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
+import content.bot.behaviour.Condition
 import content.bot.behaviour.Reason
-import content.bot.behaviour.navigation.Graph
+import content.bot.behaviour.navigation.NavigationGraph
 import content.bot.behaviour.navigation.NavigationShortcut
 import content.bot.behaviour.setup.Resolver
-import content.bot.behaviour.Condition
 import content.entity.combat.attackers
 import content.entity.combat.dead
 import world.gregs.voidps.engine.GameLoop
@@ -43,16 +42,6 @@ sealed interface BotAction {
     fun start(bot: Bot, frame: BehaviourFrame): BehaviourState = BehaviourState.Running
     fun update(bot: Bot, frame: BehaviourFrame): BehaviourState? = null
 
-    data class Clone(val id: String) : BotAction {
-        override fun start(bot: Bot, frame: BehaviourFrame) = BehaviourState.Failed(Reason.Cancelled)
-        override fun update(bot: Bot, frame: BehaviourFrame) = BehaviourState.Failed(Reason.Cancelled)
-    }
-
-    data class Reference(val action: BotAction, val references: Map<String, String>) : BotAction {
-        override fun start(bot: Bot, frame: BehaviourFrame) = BehaviourState.Failed(Reason.Cancelled)
-        override fun update(bot: Bot, frame: BehaviourFrame) = BehaviourState.Failed(Reason.Cancelled)
-    }
-
     data class Wait(val ticks: Int, val state: BehaviourState = BehaviourState.Success) : BotAction {
         override fun start(bot: Bot, frame: BehaviourFrame) = BehaviourState.Wait(ticks, state)
     }
@@ -75,26 +64,25 @@ sealed interface BotAction {
                 return BehaviourState.Success
             }
 
-            val manager = get<BotManager>()
+            val graph = get<NavigationGraph>()
             val list = mutableListOf<Int>()
-            val graph = manager.graph
             val success = graph.find(bot.player, list, target)
             return queueRoute(success, list, graph, bot, target)
         }
 
         companion object {
-            internal fun queueRoute(success: Boolean, list: MutableList<Int>, graph: Graph, bot: Bot, target: String): BehaviourState {
+            internal fun queueRoute(success: Boolean, list: MutableList<Int>, graph: NavigationGraph, bot: Bot, target: String): BehaviourState {
                 if (!success) {
                     return BehaviourState.Failed(Reason.NoRoute)
                 }
                 val actions = mutableListOf<BotAction>()
                 var nav: NavigationShortcut? = null
                 for (edge in list) {
-                    val shortcut = graph.shortcuts[edge]
+                    val shortcut = graph.shortcut(edge)
                     if (shortcut != null) {
                         nav = shortcut
                     } else {
-                        actions.addAll(graph.actions[edge] ?: continue)
+                        actions.addAll(graph.actions(edge) ?: continue)
                     }
                 }
                 if (actions.isNotEmpty()) {
@@ -112,21 +100,23 @@ sealed interface BotAction {
     }
 
     data class GoToNearest(val tag: String) : BotAction {
-        override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
-            val set = Areas.tagged(tag)
-            if (set.isEmpty()) {
-                return BehaviourState.Failed(Reason.Invalid("No areas tagged with tag '$tag'."))
-            }
-            if (set.any { bot.tile in it.area }) {
-                return BehaviourState.Success
-            }
-            return BehaviourState.Running
-        }
+        override fun start(bot: Bot, frame: BehaviourFrame) = inArea(bot) ?: BehaviourState.Running
 
         override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState {
             if (bot.steps.isNotEmpty() || bot.mode != EmptyMode) {
                 return BehaviourState.Running
             }
+            val state = inArea(bot)
+            if (state != null) {
+                return state
+            }
+            val graph = get<NavigationGraph>()
+            val list = mutableListOf<Int>()
+            val success = graph.findNearest(bot.player, list, tag)
+            return GoTo.queueRoute(success, list, graph, bot, tag)
+        }
+
+        private fun inArea(bot: Bot): BehaviourState? {
             val set = Areas.tagged(tag)
             if (set.isEmpty()) {
                 return BehaviourState.Failed(Reason.Invalid("No areas tagged with tag '$tag'."))
@@ -134,11 +124,7 @@ sealed interface BotAction {
             if (set.any { bot.tile in it.area }) {
                 return BehaviourState.Success
             }
-            val manager = get<BotManager>()
-            val list = mutableListOf<Int>()
-            val graph = manager.graph
-            val success = graph.findNearest(bot.player, list, tag)
-            return GoTo.queueRoute(success, list, graph, bot, tag)
+            return null
         }
     }
 
@@ -200,11 +186,7 @@ sealed interface BotAction {
         val healPercentage: Int = 20,
         val lootOverValue: Int = 0,
     ) : BotAction {
-
-        override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
-            frame.timeout = 0
-            return BehaviourState.Running
-        }
+        override fun start(bot: Bot, frame: BehaviourFrame) = BehaviourState.Running
 
         override fun update(bot: Bot, frame: BehaviourFrame) = when {
             healPercentage > 0 && bot.levels.get(Skill.Constitution) <= bot.levels.getMax(Skill.Constitution) / healPercentage -> eat(bot)
@@ -290,11 +272,7 @@ sealed interface BotAction {
         val x: Int? = null,
         val y: Int? = null,
     ) : BotAction {
-
-        override fun start(bot: Bot, frame: BehaviourFrame): BehaviourState {
-            frame.timeout = 0
-            return BehaviourState.Running
-        }
+        override fun start(bot: Bot, frame: BehaviourFrame) = BehaviourState.Running
 
         override fun update(bot: Bot, frame: BehaviourFrame) = when {
             success?.check(bot.player) == true -> BehaviourState.Success
@@ -548,28 +526,4 @@ sealed interface BotAction {
             else -> BehaviourState.Running
         }
     }
-
-    /**
-     * TODO
-     *      combat training dummy bots
-     *      firemaking bot
-     *      fishing bot
-     *      rune mysteries quest bot
-     *      bot spawning in other locations
-     *      track timeouts by comparing previous to current produce for progress
-     *      remove misc old bot data from areas
-     *      bot saving?
-     *      bot setups
-     *      item tags?
-     *
-     *  Idea: Reactions?
-     *      A separate queue that runs "reactions" e.g.
-     *      if my hp is low and I have food - eat it
-     *      if I have bones and am not in combat - bury them
-     *      if I have raw food and there's a fire nearby - cook it
-     *
-     *  TODO behaviour loop detection
-     *
-
-     */
 }

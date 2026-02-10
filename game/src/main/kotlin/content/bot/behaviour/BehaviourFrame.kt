@@ -3,6 +3,10 @@ package content.bot.behaviour
 import content.bot.Bot
 import content.bot.behaviour.action.BotAction
 
+/**
+ * Tracks an ongoing [behaviour], it's [state] which action [index] is in progress
+ * [timeout] and any actions which are [blocked] from being retried.
+ */
 data class BehaviourFrame(
     val behaviour: Behaviour,
     var state: BehaviourState = BehaviourState.Pending,

@@ -17,6 +17,11 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import kotlin.collections.iterator
 
+/**
+ * Checks if the world state is as expected or not
+ * Sorted by [priority] (lowest first) to avoid resolvers being executed in a weird order
+ * E.g. going to an area before getting the equipment.
+ */
 sealed class Condition(val priority: Int) {
     abstract fun keys(): Set<String>
     abstract fun events(): Set<String>
@@ -66,13 +71,13 @@ sealed class Condition(val priority: Int) {
     data class Entry(val ids: Set<String>, val min: Int? = null, val max: Int? = null, val usable: Boolean = false, val equippable: Boolean = false)
 
     data class Inventory(val items: List<Entry>) : Condition(100) {
-        override fun keys() = items.flatMap { entry -> entry.ids.map { "item:${it}" } }.toSet()
+        override fun keys() = items.flatMap { entry -> entry.ids.map { "item:$it" } }.toSet()
         override fun events() = setOf("inventory")
         override fun check(player: Player) = contains(player, player.inventory, items)
     }
 
     data class Equipment(val items: Map<EquipSlot, Entry>) : Condition(90) {
-        override fun keys() = items.values.flatMap { entry -> entry.ids.map { "item:${it}" } }.toSet()
+        override fun keys() = items.values.flatMap { entry -> entry.ids.map { "item:$it" } }.toSet()
         override fun events() = setOf("worn_equipment")
 
         override fun check(player: Player): Boolean {
@@ -93,7 +98,7 @@ sealed class Condition(val priority: Int) {
     }
 
     data class Bank(val items: List<Entry>) : Condition(80) {
-        override fun keys() = items.flatMap { entry -> entry.ids.map { "bank:${it}" } }.toSet()
+        override fun keys() = items.flatMap { entry -> entry.ids.map { "bank:$it" } }.toSet()
         override fun events() = setOf("bank")
         override fun check(player: Player) = contains(player, player.bank, items)
     }
@@ -199,28 +204,24 @@ sealed class Condition(val priority: Int) {
             return requirements
         }
 
-        fun parse(type: String, list: List<Map<String, Any>>): Condition? {
-            return when (type) {
-                "inventory" -> parseInventory(list)
-                "equipment" -> parseEquipment(list)
-                "bank" -> parseBank(list)
-                "variable" -> parseVariable(list)
-                "clock" -> parseClock(list)
-                "timer" -> parseTimer(list)
-                "queue" -> parseQueue(list)
-                "area" -> parseArea(list)
-                "tile" -> parseTile(list)
-                "object" -> parseObject(list)
-                "combat_level" -> parseCombat(list)
-                "interface_open" -> parseInterface(list)
-                "skill" -> parseSkills(list)
-                else -> null
-            }
+        fun parse(type: String, list: List<Map<String, Any>>): Condition? = when (type) {
+            "inventory" -> parseInventory(list)
+            "equipment" -> parseEquipment(list)
+            "bank" -> parseBank(list)
+            "variable" -> parseVariable(list)
+            "clock" -> parseClock(list)
+            "timer" -> parseTimer(list)
+            "queue" -> parseQueue(list)
+            "area" -> parseArea(list)
+            "tile" -> parseTile(list)
+            "object" -> parseObject(list)
+            "combat_level" -> parseCombat(list)
+            "interface_open" -> parseInterface(list)
+            "skill" -> parseSkills(list)
+            else -> null
         }
 
-        private fun parseInventory(list: List<Map<String, Any>>): Inventory {
-            return Inventory(parseItems(list))
-        }
+        private fun parseInventory(list: List<Map<String, Any>>): Inventory = Inventory(parseItems(list))
 
         private fun parseItems(list: List<Map<String, Any>>): MutableList<Entry> {
             val items = mutableListOf<Entry>()
@@ -251,16 +252,14 @@ sealed class Condition(val priority: Int) {
                     items[slot] = Entry(
                         ids = toIds(id),
                         min = value["min"] as? Int ?: 0,
-                        max = value["max"] as? Int
+                        max = value["max"] as? Int,
                     )
                 }
             }
             return Equipment(items)
         }
 
-        private fun parseBank(list: List<Map<String, Any>>): Bank {
-            return Bank(parseItems(list))
-        }
+        private fun parseBank(list: List<Map<String, Any>>): Bank = Bank(parseItems(list))
 
         @Suppress("UNCHECKED_CAST")
         private fun parseVariable(list: List<Map<String, Any>>): Condition? {
@@ -312,7 +311,7 @@ sealed class Condition(val priority: Int) {
                 return ObjectExists(
                     id = map["id"] as String,
                     x = map["x"] as Int,
-                    y = map["y"] as Int
+                    y = map["y"] as Int,
                 )
             }
             return null
@@ -360,11 +359,10 @@ sealed class Condition(val priority: Int) {
                 return SkillLevel(
                     skill = Skill.Companion.of((map["id"] as String).toPascalCase()) ?: error("Unknown skill: '${map["id"]}'"),
                     min = map["min"] as? Int,
-                    max = map["max"] as? Int
+                    max = map["max"] as? Int,
                 )
             }
             return null
         }
     }
-
 }

@@ -1,6 +1,6 @@
 package world.gregs.voidps.tools.map.view.draw
 
-import content.bot.behaviour.navigation.Graph
+import content.bot.behaviour.navigation.NavigationGraph
 import org.rsmod.game.pathfinder.StepValidator
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.collision.CollisionStrategy
@@ -19,7 +19,7 @@ class GraphDrawer(
     private val view: MapView,
     private val area: AreaSet,
 ) {
-    private var graph: Graph? = null
+    private var graph: NavigationGraph? = null
 
     private val steps: StepValidator = StepValidator(Collisions.map)
     private val linkColour = Color(0.0f, 0.0f, 1.0f, 0.5f)
@@ -29,7 +29,7 @@ class GraphDrawer(
     private val walkableColour = Color(0.0f, 1.0f, 0.0f, 0.3f)
     private val collisionColour = Color(1.0f, 0.0f, 0.0f, 0.3f)
 
-    fun reload(graph: Graph?) {
+    fun reload(graph: NavigationGraph?) {
         this.graph = graph
     }
 
@@ -50,7 +50,7 @@ class GraphDrawer(
         if (graph != null) {
             val graph = graph!!
             for (i in 1 until graph.nodeCount) {
-                val tile = Tile(graph.tiles[i])
+                val tile = graph.tile(i)
                 if (tile.level != view.level) {
                     continue
                 }
@@ -63,13 +63,13 @@ class GraphDrawer(
                 val height = view.mapToImageY(1)
                 g.fillOval(viewX, viewY, width, height)
 
-                val edges = graph.adjacentEdges[i]
+                val edges = graph.edges(i)
                 edges?.forEachIndexed { index, edge ->
-                    val end = graph.tile(edge)
+                    val end = graph.endTile(edge)
                     if (tile.level != view.level || end.level != view.level) {
                         return@forEachIndexed
                     }
-                    val distance = graph.edgeWeights[edge]
+                    val distance = graph.weight(edge)
                     val endX = view.mapToViewX(end.x) + width / 2
                     val endY = view.mapToViewY(view.flipMapY(end.y)) + height / 2
                     val offset = width / 4

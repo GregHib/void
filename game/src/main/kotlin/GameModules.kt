@@ -1,4 +1,5 @@
 import content.bot.BotManager
+import content.bot.behaviour.loadGraph
 import content.entity.obj.ship.CharterShips
 import content.entity.player.modal.book.Books
 import content.entity.world.music.MusicTracks
@@ -19,6 +20,7 @@ import java.io.File
 fun gameModule(files: ConfigFiles) = module {
     single { ItemSpawns() }
     single { BotManager().load(files) }
+    single { loadGraph(files) }
     single(createdAtStart = true) { Books().load(files.list(Settings["definitions.books"])) }
     single(createdAtStart = true) { MusicTracks().load(files.find(Settings["map.music"])) }
     single(createdAtStart = true) { FairyRingCodes().load(files.find(Settings["definitions.fairyCodes"])) }

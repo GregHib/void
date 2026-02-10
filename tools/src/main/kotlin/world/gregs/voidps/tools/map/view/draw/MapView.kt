@@ -1,6 +1,6 @@
 package world.gregs.voidps.tools.map.view.draw
 
-import content.bot.behaviour.navigation.Graph
+import content.bot.behaviour.navigation.NavigationGraph
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
@@ -93,7 +93,7 @@ class MapView : JPanel() {
     fun reload(files: ConfigFiles = configFiles()) {
         val areaFiles = files.list(Settings["map.areas"])
         AreaSet.load(areaFiles, areaSet)
-        graph.reload(Graph.loadGraph(files.list(Settings["bots.nav.definitions"]), emptyList()))
+        graph.reload(NavigationGraph.loadGraph(files.list(Settings["bots.nav.definitions"]), emptyList()))
     }
 
     fun updateLevel(level: Int) {

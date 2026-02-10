@@ -34,7 +34,7 @@ class BotUpdates : Script {
         variableSet { key, from, to ->
             if (isBot && from != to) {
                 bot.evaluate.add("var:$key")
-                resetTimeout("variable:${key}")
+                resetTimeout("variable:$key")
             }
         }
 

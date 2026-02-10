@@ -1,8 +1,8 @@
 package content.bot.behaviour.setup
 
-import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.Behaviour
 import content.bot.behaviour.Condition
+import content.bot.behaviour.action.BotAction
 
 /**
  * A behaviour that can be performed to resolve a requirement of another [Resolver] or [BotAction]

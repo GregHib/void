@@ -4,37 +4,33 @@ import com.github.michaelbull.logging.InlineLogger
 import content.bot.behaviour.Behaviour
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
+import content.bot.behaviour.Condition
 import content.bot.behaviour.HardReason
 import content.bot.behaviour.Reason
+import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.activity.ActivitySlots
 import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.loadBehaviours
-import content.bot.behaviour.navigation.Graph
-import content.bot.behaviour.navigation.Graph.Companion.loadGraph
-import content.bot.behaviour.navigation.NavigationShortcut
 import content.bot.behaviour.setup.DynamicResolvers
 import content.bot.behaviour.setup.Resolver
-import content.bot.behaviour.Condition
-import content.bot.behaviour.action.BotAction
 import world.gregs.voidps.engine.data.ConfigFiles
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 
 /**
- * Each tick checks
- *  1. Assigns [activities] if a bot has none.
- *  2. Moves bots onto their next action if they have completed their current.
- *  3. Queues [resolvers] when a bot has an activity with unresolved requirements.
+ * Manages [Bot] behaviour execution and activity scheduling
+ * - Assigns [activities] to idle bots when possible.
+ * - Advances the current [BehaviourFrame].
+ * - Resolves unmet [BotActivity.setup] requirements.
+ * - Handles activity completion, failure, and slot allocation.
  */
 class BotManager(
     private val activities: MutableMap<String, BotActivity> = mutableMapOf(),
     private val resolvers: MutableMap<String, MutableList<Resolver>> = mutableMapOf(),
     private val groups: MutableMap<String, MutableList<String>> = mutableMapOf(),
 ) : Runnable {
-    lateinit var graph: Graph
     internal val slots = ActivitySlots()
     val bots = mutableListOf<Bot>()
     private val logger = InlineLogger("BotManager")
@@ -43,9 +39,7 @@ class BotManager(
         get() = activities.keys
 
     fun load(files: ConfigFiles): BotManager {
-        val shortcuts = mutableListOf<NavigationShortcut>()
-        loadBehaviours(files, activities, groups, resolvers, shortcuts)
-        graph = loadGraph(files.list(Settings["bots.nav.definitions"]), shortcuts)
+        loadBehaviours(files, activities, groups, resolvers)
         return this
     }
 

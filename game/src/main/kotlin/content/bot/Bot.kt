@@ -1,9 +1,9 @@
 package content.bot
 
-import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.Reason
+import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.activity.BotActivity
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player

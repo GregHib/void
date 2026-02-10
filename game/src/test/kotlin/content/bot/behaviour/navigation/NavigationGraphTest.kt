@@ -11,7 +11,7 @@ import world.gregs.voidps.type.area.Rectangle
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-class GraphTest {
+class NavigationGraphTest {
 
     @Test
     fun `Shortest path is found`() {
@@ -24,7 +24,7 @@ class GraphTest {
                C
 
          */
-        val builder = Graph.Builder()
+        val builder = NavigationGraph.Builder()
         val a = 0
         val b = 1
         val c = 2
@@ -34,7 +34,7 @@ class GraphTest {
 //        builder.print()
 
         val output = mutableListOf<Int>()
-        val success = builder.build().find(Player(), output, Graph.Node(a), b)
+        val success = builder.build().find(Player(), output, NavigationGraph.Node(a), b)
         assertTrue(success)
         assertEquals(listOf(ac, cb), output)
     }
@@ -50,7 +50,7 @@ class GraphTest {
                D-----F
                   2
          */
-        val builder = Graph.Builder()
+        val builder = NavigationGraph.Builder()
         val a = 0
         val b = 1
         val c = 2
@@ -69,7 +69,7 @@ class GraphTest {
 //        builder.print()
 
         val output = mutableListOf<Int>()
-        val success = builder.build().find(Player(), output, Graph.Node(a), c)
+        val success = builder.build().find(Player(), output, NavigationGraph.Node(a), c)
         assertTrue(success)
         assertEquals(listOf(ab, bd, df, fc), output)
     }
@@ -88,7 +88,7 @@ class GraphTest {
        4  |/
           A
          */
-        val builder = Graph.Builder()
+        val builder = NavigationGraph.Builder()
         val a = 0
         val b = 1
         val c = 2
@@ -107,7 +107,7 @@ class GraphTest {
 //        builder.print()
 
         val output = mutableListOf<Int>()
-        val success = builder.build().find(Player(), output, Graph.Node(f), d)
+        val success = builder.build().find(Player(), output, NavigationGraph.Node(f), d)
         assertTrue(success)
         assertEquals(listOf(fg, gb, bd), output)
     }
@@ -123,7 +123,7 @@ class GraphTest {
                E-----D
                  7-X
          */
-        val builder = Graph.Builder()
+        val builder = NavigationGraph.Builder()
         val a = 0
         val b = 1
         val c = 2
@@ -139,7 +139,7 @@ class GraphTest {
 //        builder.print()
 
         val output = mutableListOf<Int>()
-        val success = builder.build().find(Player(), output, Graph.Node(a), d)
+        val success = builder.build().find(Player(), output, NavigationGraph.Node(a), d)
         assertTrue(success)
         assertEquals(listOf(ae, ec, cd), output)
     }
@@ -151,14 +151,14 @@ class GraphTest {
            1 /
             A
          */
-        val builder = Graph.Builder()
+        val builder = NavigationGraph.Builder()
         val a = 0
         val b = 1
         builder.addEdge(a, b, 10)
 //        builder.print()
 
         val output = mutableListOf<Int>()
-        val success = builder.build().find(Player(), output, Graph.Node(b), a)
+        val success = builder.build().find(Player(), output, NavigationGraph.Node(b), a)
         Assertions.assertFalse(success)
     }
 
@@ -169,14 +169,14 @@ class GraphTest {
           1 |
             A
          */
-        val builder = Graph.Builder()
+        val builder = NavigationGraph.Builder()
         val a = 0
         val b = 1
         val ab = builder.addEdge(a, b, 0)
 //        builder.print()
 
         val output = mutableListOf<Int>()
-        val success = builder.build().find(Player(), output, Graph.Node(a), b)
+        val success = builder.build().find(Player(), output, NavigationGraph.Node(a), b)
         assertTrue(success)
         assertEquals(listOf(ab), output)
     }
@@ -195,7 +195,7 @@ class GraphTest {
        4  |/
           A
          */
-        val builder = Graph.Builder()
+        val builder = NavigationGraph.Builder()
         val a = 0
         val b = 1
         val c = 2
@@ -214,14 +214,14 @@ class GraphTest {
 //        builder.print()
 
         val output = mutableListOf<Int>()
-        val success = builder.build().find(Player(), output, setOf(Graph.Node(f), Graph.Node(a)), d)
+        val success = builder.build().find(Player(), output, setOf(NavigationGraph.Node(f), NavigationGraph.Node(a)), d)
         assertTrue(success)
         assertEquals(listOf(ab, bd), output)
     }
 
     @Test
     fun `Find returns shortest path`() {
-        val builder = Graph.Builder()
+        val builder = NavigationGraph.Builder()
 
         val a = Tile(0)
         val b = Tile(1)
@@ -236,7 +236,7 @@ class GraphTest {
         player.tile = a
 
         val path = mutableListOf<Int>()
-        val found = graph.find(player, path, start = Graph.Node(0), target = 2)
+        val found = graph.find(player, path, start = NavigationGraph.Node(0), target = 2)
 
         assertTrue(found)
         assertEquals(listOf(0, 2), path)
@@ -244,7 +244,7 @@ class GraphTest {
 
     @Test
     fun `Find respects edge conditions`() {
-        val builder = Graph.Builder()
+        val builder = NavigationGraph.Builder()
 
         val a = Tile(0)
         val b = Tile(1)
@@ -262,7 +262,7 @@ class GraphTest {
         player.tile = a
 
         val path = mutableListOf<Int>()
-        val found = graph.find(player, path, start = Graph.Node(0), target = 1)
+        val found = graph.find(player, path, start = NavigationGraph.Node(0), target = 1)
 
         Assertions.assertFalse(found, "Edge condition blocks traversal")
         assertTrue(path.isEmpty())
@@ -270,7 +270,7 @@ class GraphTest {
 
     @Test
     fun `Starting points include nearby tiles`() {
-        val builder = Graph.Builder()
+        val builder = NavigationGraph.Builder()
 
         val a = Tile(1, 1)
         val b = Tile(20, 20)
@@ -286,9 +286,9 @@ class GraphTest {
 
         val starts = graph.startingPoints(player)
 
-        assertTrue(starts.contains(Graph.Node(1, 9)))
-        assertTrue(starts.contains(Graph.Node(2, 10)))
-        Assertions.assertFalse(starts.contains(Graph.Node(3, 90)))
+        assertTrue(starts.contains(NavigationGraph.Node(1, 9)))
+        assertTrue(starts.contains(NavigationGraph.Node(2, 10)))
+        Assertions.assertFalse(starts.contains(NavigationGraph.Node(3, 90)))
     }
 
     @Test
@@ -303,7 +303,7 @@ class GraphTest {
             produces = setOf("area:town"),
         )
 
-        val builder = Graph.Builder()
+        val builder = NavigationGraph.Builder()
         builder.add(Tile(75, 75))
         val edge = builder.add(shortcut)
 
@@ -313,12 +313,12 @@ class GraphTest {
 
         val starts = graph.startingPoints(player)
 
-        assertTrue(starts.contains(Graph.Node(edge)))
+        assertTrue(starts.contains(NavigationGraph.Node(edge)))
     }
 
     @Test
     fun `Path reconstruction produces correct edge order`() {
-        val builder = Graph.Builder()
+        val builder = NavigationGraph.Builder()
 
         val a = Tile(0)
 
@@ -330,7 +330,7 @@ class GraphTest {
         player.tile = a
 
         val path = mutableListOf<Int>()
-        val found = graph.find(player, path, start = Graph.Node(0), target = 2)
+        val found = graph.find(player, path, start = NavigationGraph.Node(0), target = 2)
 
         assertTrue(found)
         assertEquals(listOf(e1, e2), path)
@@ -340,7 +340,7 @@ class GraphTest {
     fun `Complex route`() {
         /*
          */
-        val builder = Graph.Builder()
+        val builder = NavigationGraph.Builder()
         val a = 0
         val b = 1
         val c = 2
@@ -370,7 +370,7 @@ class GraphTest {
 //        builder.print()
 
         val output = mutableListOf<Int>()
-        val success = builder.build().find(Player(), output, Graph.Node(a), h)
+        val success = builder.build().find(Player(), output, NavigationGraph.Node(a), h)
         assertTrue(success)
         assertEquals(listOf(aj, jk, kl, lm, mh), output)
     }

@@ -1,12 +1,12 @@
 package content.bot.behaviour.navigation
 
+import content.bot.behaviour.Condition
 import content.bot.behaviour.action.ActionParser
 import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.actions
 import content.bot.behaviour.requirements
 import content.bot.bot
 import content.bot.isBot
-import content.bot.behaviour.Condition
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.definition.Areas
@@ -16,27 +16,43 @@ import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
 import java.util.PriorityQueue
 
-class Graph(
-    val endNodes: IntArray = intArrayOf(),
-    val edgeWeights: IntArray = intArrayOf(),
-    val edgeConditions: Array<List<Condition>?> = emptyArray(),
-    val actions: Array<List<BotAction>?> = emptyArray(),
-    val adjacentEdges: Array<IntArray?> = emptyArray(),
-    val tiles: IntArray = intArrayOf(),
-    val tags: Array<Set<String>?> = emptyArray(),
-    val shortcuts: Map<Int, NavigationShortcut> = emptyMap(),
+/**
+ * Weighted navigation graph for bot pathfinding.
+ * Represents a directed graph of nodes and edges with:
+ *  - Per-edge weights, actions, and traversal conditions.
+ *  - Optional shortcuts (e.g. teleports) treated as virtual edges.
+ *  - Node metadata such as tiles and area tags.
+ */
+class NavigationGraph(
+    private val endNodes: IntArray = intArrayOf(),
+    private val edgeWeights: IntArray = intArrayOf(),
+    private val edgeConditions: Array<List<Condition>?> = emptyArray(),
+    private val actions: Array<List<BotAction>?> = emptyArray(),
+    private val adjacentEdges: Array<IntArray?> = emptyArray(),
+    private val tiles: IntArray = intArrayOf(),
+    private val tags: Array<Set<String>?> = emptyArray(),
+    private val shortcuts: Map<Int, NavigationShortcut> = emptyMap(),
     var nodeCount: Int = 0,
 ) {
 
+    fun shortcut(edge: Int) = shortcuts[edge]
+
     fun actions(edge: Int): List<BotAction>? = actions[edge]
 
-    fun conditions(edge: Int): List<Condition>? = edgeConditions[edge]
+    fun weight(edge: Int): Int = edgeWeights[edge]
 
-    fun tile(edge: Int): Tile {
+    fun edges(node: Int): IntArray? = adjacentEdges[node]
+
+    fun tile(node: Int): Tile = Tile(tiles[node])
+
+    fun endTile(edge: Int): Tile {
         val nodeIndex = endNodes[edge]
         return Tile(tiles[nodeIndex])
     }
 
+    /**
+     * Find a path to the nearest area with a [tag].
+     */
     fun findNearest(player: Player, output: MutableList<Int>, tag: String): Boolean {
         val start = startingPoints(player)
         return find(player, output, start, target = {
@@ -44,12 +60,16 @@ class Graph(
         })
     }
 
+    /**
+     * Find a path to [area].
+     */
     fun find(player: Player, output: MutableList<Int>, area: String): Boolean {
         val start = startingPoints(player)
         return find(player, output, start, target = { Tile(tiles[it]) in Areas[area] })
     }
 
-    fun startingPoints(player: Player): Set<Node> = buildSet {
+    internal fun startingPoints(player: Player): Set<Node> = buildSet {
+        // Append all nodes within 10 tiles
         for (index in 1 until tiles.size) {
             val tile = Tile(tiles[index])
             if (player.tile.level != tile.level) {
@@ -61,6 +81,7 @@ class Graph(
             }
             add(Node(index, distance.coerceAtLeast(0)))
         }
+        // Check for shortcuts (i.e. item teleports)
         val blocked = if (player.isBot) player.bot.blocked else emptySet()
         for (shortcut in shortcuts.values) {
             if (blocked.contains(shortcut.id)) {
@@ -74,13 +95,19 @@ class Graph(
         }
     }
 
-    fun find(player: Player, output: MutableList<Int>, start: Node, target: Int) = find(player, output, setOf(start)) { it == target }
+    internal fun find(player: Player, output: MutableList<Int>, start: Node, target: Int) = find(player, output, setOf(start)) { it == target }
 
-    fun find(player: Player, output: MutableList<Int>, start: Set<Node>, target: Int) = find(player, output, start) { it == target }
+    internal fun find(player: Player, output: MutableList<Int>, start: Set<Node>, target: Int) = find(player, output, start) { it == target }
 
-    fun find(player: Player, output: MutableList<Int>, start: Node, target: (Int) -> Boolean) = find(player, output, setOf(start), target)
+    internal fun find(player: Player, output: MutableList<Int>, start: Node, target: (Int) -> Boolean) = find(player, output, setOf(start), target)
 
-    fun find(player: Player, output: MutableList<Int>, startingPoints: Set<Node>, target: (Int) -> Boolean): Boolean {
+    /**
+     * Dijkstra algorithm
+     * Searches from a virtual starting node traverses all [adjacentEdges] until a [target] is found.
+     * Appends the completed route of edge indices to [output].
+     * @return successful route found.
+     */
+    internal fun find(player: Player, output: MutableList<Int>, startingPoints: Set<Node>, target: (Int) -> Boolean): Boolean {
         output.clear()
         val queue = PriorityQueue<Node>()
         val visited = BooleanArray(nodeCount)
@@ -90,9 +117,8 @@ class Graph(
 
         for (start in startingPoints) {
             if (target(start.index)) {
-                // As we're queuing all nearby points we don't want select any starting points which are in
-                // the target, otherwise we'll end up with no edges to traverse.
-                // (if this were normal dijkstra we'd produce points not edges and this wouldn't be an issue)
+                // Don't select target starting points, otherwise we'll have no edges to traverse.
+                // Not an issue as we queue all nearby points - normal dijkstra's would produce points not edges.
                 continue
             }
             distance[start.index] = -1
@@ -135,11 +161,11 @@ class Graph(
         return false
     }
 
-    data class Node(val index: Int, val cost: Int = 0) : Comparable<Node> {
+    internal data class Node(val index: Int, val cost: Int = 0) : Comparable<Node> {
         override fun compareTo(other: Node) = cost.compareTo(other.cost)
     }
 
-    class Builder {
+    internal class Builder {
         // Nodes
         val tiles = LinkedHashSet<Tile>()
         val nodes = mutableSetOf<Int>()
@@ -166,7 +192,7 @@ class Graph(
             val area = Areas[name]
             val end = tiles.indexOfFirst { it in area }
             if (end == -1) {
-                throw IllegalArgumentException("Unable to find nav graph tile in shortcut area '${name}'.")
+                throw IllegalArgumentException("Unable to find nav graph tile in shortcut area '$name'.")
             }
             val index = addEdge(0, end, shortcut.weight, shortcut.actions, shortcut.requires)
             shortcuts[index] = shortcut
@@ -207,7 +233,7 @@ class Graph(
             return edgeIndex
         }
 
-        fun build() = Graph(
+        fun build() = NavigationGraph(
             endNodes = endNodes.toIntArray(),
             edgeWeights = weights.toIntArray(),
             edgeConditions = conditions.toTypedArray(),
@@ -233,7 +259,7 @@ class Graph(
     }
 
     companion object {
-        fun loadGraph(paths: List<String>, shortcuts: List<NavigationShortcut>): Graph {
+        fun loadGraph(paths: List<String>, shortcuts: List<NavigationShortcut>): NavigationGraph {
             val builder = Builder()
             timedLoad("nav graph edge") {
                 for (path in paths) {
