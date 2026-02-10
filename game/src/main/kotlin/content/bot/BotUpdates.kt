@@ -1,5 +1,6 @@
 package content.bot
 
+import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.client.instruction.InteractDialogue
@@ -8,6 +9,8 @@ import world.gregs.voidps.network.client.instruction.InteractDialogue
  * Listen for state changes which would change which activities are available to a bot
  */
 class BotUpdates : Script {
+    val logger = InlineLogger()
+
     init {
         /*
             Track state changes to re-evaluate available activities

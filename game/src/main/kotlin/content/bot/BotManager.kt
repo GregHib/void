@@ -99,7 +99,7 @@ class BotManager(
             updateAvailable(bot)
         }
         if (bot.player["debug", false]) {
-            logger.trace { "Picking bot ${bot.player.accountName} new task from available: ${bot.available}." }
+            logger.trace { "Picking new activity from ${bot.available} for bot ${bot.player.accountName}." }
         }
         var activity = if (hasRequirements(bot, bot.previous)) {
             bot.previous!!
@@ -111,7 +111,7 @@ class BotManager(
         }
         if (activity == null) {
             if (bot.player["debug", false]) {
-                logger.info { "No activities with requirements met for bot: ${bot.player.accountName}." }
+                logger.debug { "No activities with requirements met for bot: ${bot.player.accountName}." }
                 debugActivities(bot)
             }
             activity = idle
@@ -152,7 +152,7 @@ class BotManager(
     private fun assign(bot: Bot, activity: BotActivity) {
         AuditLog.event(bot, "assigned", activity.id)
         if (bot.player["debug", false]) {
-            logger.info { "Assigned bot: '${bot.player.accountName}' task '${activity.id}'." }
+            logger.info { "Assigned task '${activity.id}' to bot '${bot.player.accountName}'." }
         }
         slots.occupy(activity)
         bot.previous = activity
@@ -202,7 +202,7 @@ class BotManager(
             }
             frame.blocked.removeAll(DynamicResolvers.ids())
             val resolvers = buildList {
-                DynamicResolvers.resolver(bot.player, requirement)?.let { add(it) }
+                DynamicResolvers.resolver(bot.player, requirement)?.also { add(it) }
                 requirement.keys()
                     .flatMap { resolvers[it].orEmpty() }
                     .forEach(::add)
@@ -220,7 +220,7 @@ class BotManager(
             // Attempt resolution
             AuditLog.event(bot, "start_resolver", resolver.id, behaviour.id)
             if (debug) {
-                logger.info { "Starting resolver: ${resolver.id} for ${behaviour.id} requirement: $requirement." }
+                logger.info { "Starting ${resolver.id} for ${behaviour.id} requirement: $requirement." }
             }
             frame.blocked.add(resolver.id)
             val resolverFrame = BehaviourFrame(resolver)
@@ -269,7 +269,7 @@ class BotManager(
         val behaviour = frame.behaviour
         val action = frame.action()
         if (bot.player["debug", false]) {
-            logger.warn { "Failed action: ${action::class.simpleName} for ${behaviour.id}, reason: ${state.reason}." }
+            logger.warn { "Failed ${behaviour.id} action=${action::class.simpleName}, reason=${state.reason}." }
         }
         AuditLog.event(bot, "failed", behaviour.id, state.reason, frame.index, action::class.simpleName)
         if (state.reason is HardReason) {
@@ -296,18 +296,19 @@ class BotManager(
     }
 
     private fun debugResolvers(behaviour: Behaviour, requirement: Condition, resolvers: List<Resolver>, frame: BehaviourFrame, bot: Bot) {
-        logger.info { "No resolver found for ${behaviour.id} keys: ${requirement.keys()} requirement: $requirement." }
+        logger.warn { "No resolver found for keys=${requirement.keys()} id=${behaviour.id}, requirement=$requirement." }
         for (resolver in resolvers) {
             if (frame.blocked.contains(resolver.id)) {
-                logger.debug { "Resolver: ${resolver.id} - Blocked by frame behaviour: ${frame.behaviour.id}." }
+                logger.debug { "Resolver ${resolver.id} - Blocked by frame behaviour: ${frame.behaviour.id}." }
                 break
             }
             for (requirement in resolver.requires) {
                 if (!requirement.check(bot.player)) {
-                    logger.debug { "Resolver: ${resolver.id} - Failed requirement: $requirement." }
+                    logger.debug { "Resolver ${resolver.id} - Failed requirement: $requirement." }
                     break
                 }
             }
+            logger.debug { "Resolver ${resolver.id} - Available." }
         }
     }
 

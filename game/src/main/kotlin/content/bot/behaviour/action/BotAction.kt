@@ -408,9 +408,14 @@ sealed interface BotAction {
             }
             val itemDef = if (item != null) ItemDefinitions.getOrNull(item) else null
 
-            val inv = InterfaceHandler.getInventory(bot.player, id, component, componentDef)
+            var inv = InterfaceHandler.getInventory(bot.player, id, component, componentDef)
+            if (inv != null && component == "sample") {
+                inv = "${inv}_sample"
+            }
             var itemSlot = if (item != null && inv != null) bot.player.inventories.inventory(inv).indexOf(item) else -1
+            var itemId = itemDef?.id ?: -1
             if (id == "shop") {
+                itemId = -1
                 itemSlot *= 6
             }
             val valid = get<InstructionHandlers>().handle(
@@ -418,13 +423,13 @@ sealed interface BotAction {
                 InteractInterface(
                     interfaceId = def.id,
                     componentId = componentId,
-                    itemId = itemDef?.id ?: -1,
+                    itemId = itemId,
                     itemSlot = itemSlot,
                     option = index,
                 ),
             )
             return when {
-                !valid -> BehaviourState.Failed(Reason.Invalid("Invalid interaction: ${def.id}:$componentId:${itemDef?.id} slot $itemSlot option $index."))
+                !valid -> BehaviourState.Failed(Reason.Invalid("Invalid interaction: ${def.id}:$componentId:${itemDef?.stringId} slot $itemSlot option $index."))
                 success == null -> BehaviourState.Wait(1, BehaviourState.Success)
                 success.check(bot.player) -> BehaviourState.Success
                 else -> BehaviourState.Running

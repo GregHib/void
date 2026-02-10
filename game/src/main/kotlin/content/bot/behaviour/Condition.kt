@@ -230,7 +230,7 @@ sealed class Condition(val priority: Int) {
                 var min = map["min"] as? Int
                 val max = map["max"] as? Int
                 if (min == null && max == null) {
-                    min = 0
+                    min = 1
                 }
                 val ids = toIds(id)
                 items.add(Entry(ids, min, max))
@@ -245,13 +245,13 @@ sealed class Condition(val priority: Int) {
             val items = mutableMapOf<EquipSlot, Entry>()
             for (map in list) {
                 for ((key, value) in map) {
-                    val slot = EquipSlot.Companion.by(key)
+                    val slot = EquipSlot.by(key)
                     require(slot != EquipSlot.None) { "Invalid equipment slot: $key in $list" }
                     value as? Map<String, Any> ?: error("Equipment $key expecting map, found: $value")
                     val id = value["id"] as? String ?: error("Missing item id in $list")
                     items[slot] = Entry(
                         ids = toIds(id),
-                        min = value["min"] as? Int ?: 0,
+                        min = value["min"] as? Int ?: 1,
                         max = value["max"] as? Int,
                     )
                 }
@@ -357,7 +357,7 @@ sealed class Condition(val priority: Int) {
             val map = list.single()
             if (map.containsKey("id")) {
                 return SkillLevel(
-                    skill = Skill.Companion.of((map["id"] as String).toPascalCase()) ?: error("Unknown skill: '${map["id"]}'"),
+                    skill = Skill.of((map["id"] as String).toPascalCase()) ?: error("Unknown skill: '${map["id"]}'"),
                     min = map["min"] as? Int,
                     max = map["max"] as? Int,
                 )

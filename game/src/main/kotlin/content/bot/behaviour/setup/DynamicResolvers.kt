@@ -15,10 +15,10 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 object DynamicResolvers {
 
-    fun ids() = setOf("withdraw_from_bank", "equip_from_bank")
+    fun ids() = setOf("withdraw_from_bank", "equip_from_bank", "go_to_area")
 
     fun resolver(player: Player, condition: Condition) = when (condition) {
-        is Condition.InArea -> Resolver("go_to_${condition.id}", -1, actions = listOf(BotAction.GoTo(condition.id)))
+        is Condition.InArea -> Resolver("go_to_area", -1, actions = listOf(BotAction.GoTo(condition.id)))
         is Condition.Equipment -> resolveEquipment(player, condition.items)
         is Condition.Inventory -> resolveInventory(player, condition.items)
         else -> null
@@ -34,6 +34,7 @@ object DynamicResolvers {
         var found = false
         for (entry in items) {
             if (entry.ids.contains("empty")) {
+                found = true
                 continue
             }
             val index = player.bank.items.indexOfFirst { valid(player, it, entry) }

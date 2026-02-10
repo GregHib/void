@@ -266,9 +266,18 @@ private data class Fragment(
         produces = resolve(template.produces) + produces,
     )
 
-    private fun resolve(set: Set<String>): Set<String> = set
+    private fun resolve(set: Set<String>) = set.map { value ->
+        if (value.contains('$')) {
+            val ref = value.reference()
+            val name = ref.trim('$', '{', '}')
+            val replacement = fields[name] as? String ?: error("No field found for behaviour=$id ref=$ref")
+            value.replace(ref, replacement)
+        } else {
+            value
+        }
+    }.toSet()
 
-    private fun resolveRequirements(templated: List<Pair<String, List<Map<String, Any>>>>, original: List<Pair<String, List<Map<String, Any>>>>, requirePredicates: Boolean = true): List<Condition> {
+    private fun resolveRequirements(templated: List<Pair<String, List<Map<String, Any>>>>, original: List<Pair<String, List<Map<String, Any>>>>): List<Condition> {
         val combinedList = mutableListOf<Pair<String, List<Map<String, Any>>>>()
         combinedList.addAll(original)
         for ((type, list) in templated) {
@@ -283,7 +292,7 @@ private data class Fragment(
         return Condition.parse(combinedList, "$id template $template")
     }
 
-    private fun resolveActions(templated: List<Pair<String, Map<String, Any>>>, original: List<Pair<String, Map<String, Any>>>, requirePredicates: Boolean = true): List<BotAction> {
+    private fun resolveActions(templated: List<Pair<String, Map<String, Any>>>, original: List<Pair<String, Map<String, Any>>>): List<BotAction> {
         val combinedList = mutableListOf<Pair<String, Map<String, Any>>>()
         combinedList.addAll(original)
         for ((type, map) in templated) {
@@ -295,7 +304,7 @@ private data class Fragment(
         if (combinedList.isEmpty()) {
             return emptyList()
         }
-        return ActionParser.Companion.parse(combinedList, "$id template $template")
+        return ActionParser.parse(combinedList, "$id template $template")
     }
 
     @Suppress("UNCHECKED_CAST")
