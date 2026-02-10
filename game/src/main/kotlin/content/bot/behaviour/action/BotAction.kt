@@ -103,7 +103,7 @@ sealed interface BotAction {
         override fun start(bot: Bot, frame: BehaviourFrame) = inArea(bot) ?: BehaviourState.Running
 
         override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState {
-            if (bot.steps.isNotEmpty() || bot.mode != EmptyMode) {
+            if (bot.mode != EmptyMode) {
                 return BehaviourState.Running
             }
             val state = inArea(bot)

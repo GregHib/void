@@ -9,6 +9,7 @@ examine = "Servant of the Duke of Lumbridge."
 id = 519
 categories = ["human"]
 shop = "bobs_brilliant_axes"
+area = "bobs_axe_shop"
 collision = "indoors"
 examine = "An expert on axes."
 
@@ -32,6 +33,7 @@ examine = "Helps sell stuff."
 id = 8864
 categories = ["human"]
 shop = "lumbridge_fishing_supplies"
+area = "hanks_fishing_shop"
 collision = "indoors"
 examine = "A product of a consumerist society."
 

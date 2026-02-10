@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit
  */
 class BotManager(
     private val activities: MutableMap<String, BotActivity> = mutableMapOf(),
-    private val resolvers: MutableMap<String, MutableList<Resolver>> = mutableMapOf(),
+    val resolvers: MutableMap<String, MutableList<Resolver>> = mutableMapOf(),
     private val groups: MutableMap<String, MutableList<String>> = mutableMapOf(),
 ) : Runnable {
     internal val slots = ActivitySlots()

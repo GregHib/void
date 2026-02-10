@@ -53,4 +53,23 @@ object Price {
         }
         return max(price, 1)
     }
+
+    fun of(item: String, currency: String = "coins"): Int {
+        val itemId = getRealItem(item)
+        val enums = get<EnumDefinitions>()
+        var price = enums.get("price_runes").getInt(itemId)
+        if (currency == "tokkul" && price != -1 && price > 0) {
+            return price
+        }
+        price = enums.get("price_garden").getInt(itemId)
+        if (price != -1 && price > 0) {
+            return price
+        }
+        val def = ItemDefinitions.get(itemId)
+        if (def.contains("skill_cape") || def.contains("skill_cape_t")) {
+            return 99000
+        }
+        price = def.cost
+        return max(price, 1)
+    }
 }

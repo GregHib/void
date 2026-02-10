@@ -18,6 +18,7 @@ examine = "Likes you more, the more you spend."
 id = 541
 categories = ["human"]
 shop = "zekes_superior_scimitars"
+area = "zekes_scimitar_shop"
 wander_range = 3
 collision = "indoors"
 examine = "Sells superior scimitars."

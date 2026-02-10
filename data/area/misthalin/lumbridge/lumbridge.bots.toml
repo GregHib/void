@@ -66,7 +66,15 @@ template = "fish_small_net"
 capacity = 5
 fields = { location = "lumbridge_swamp_fishing_area", spot = "fishing_spot_small_net_bait_lumbridge" }
 requires = [
-    { skill = { id = "fishing", min = 1, max = 5 } }
+    { skill = { id = "fishing", min = 1, max = 10 } }
+]
+
+[lumbridge_bait_fishing]
+template = "fish_bait"
+capacity = 3
+fields = { location = "lumbridge_river_fishing_area", spot = "fishing_spot_lure_bait_lumbridge" }
+requires = [
+    { skill = { id = "fishing", min = 25, max = 35 } }
 ]
 
 # Fletching

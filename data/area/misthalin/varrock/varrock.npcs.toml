@@ -221,6 +221,7 @@ examine = "She looks happy."
 [dealga]
 id = 11475
 shop = "dealgas_scimitar_emporium"
+area = "varrock_sword_shop"
 collision = "indoors"
 examine = "A shrewd-looking monkey salesman."
 
@@ -644,11 +645,13 @@ examine = "Sells arrows."
 [sword_shopkeeper_varrock]
 id = 551
 shop = "varrock_sword_shop"
+area = "varrock_sword_shop"
 examine = "Ironically, makes a living from swords."
 
 [sword_shop_assistant_varrock]
 id = 552
 shop = "varrock_sword_shop"
+area = "varrock_sword_shop"
 examine = "Helps the shopkeeper sell swords."
 
 [cook_blue_moon_inn]

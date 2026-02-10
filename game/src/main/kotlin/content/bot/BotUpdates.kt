@@ -1,14 +1,25 @@
 package content.bot
 
 import com.github.michaelbull.logging.InlineLogger
+import content.bot.behaviour.navigation.NavigationGraph
+import content.bot.behaviour.setup.DynamicResolvers
+import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.data.definition.InventoryDefinitions
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.client.instruction.InteractDialogue
+import world.gregs.voidps.type.Tile
 
 /**
  * Listen for state changes which would change which activities are available to a bot
  */
-class BotUpdates : Script {
+class BotUpdates(
+    val inventoryDefinitions: InventoryDefinitions,
+    val graph: NavigationGraph,
+) : Script {
     val logger = InlineLogger()
 
     init {
@@ -55,6 +66,17 @@ class BotUpdates : Script {
                 instructions.trySend(InteractDialogue(interfaceId = 740, componentId = 3, option = -1))
             }
         }
+        // Register shops
+
+        worldSpawn {
+            DynamicResolvers.shopItems.clear()
+        }
+        npcSpawn {
+            if (def.contains("shop")) {
+                val def = inventoryDefinitions.get(def.get<String>("shop"))
+                registerShop(this, def)
+            }
+        }
     }
 
     /**
@@ -68,6 +90,21 @@ class BotUpdates : Script {
         val produces = frame.behaviour.produces
         if (produces.contains(key)) {
             frame.timeout = 0
+        }
+    }
+
+    private fun registerShop(npc: NPC, definition: InventoryDefinition) {
+        val area: String = npc.def.getOrNull("area") ?: return
+        val ids = definition.ids ?: return
+        val amounts = definition.amounts ?: return
+        for (index in ids.indices) {
+            val id = ids[index]
+            val amount = amounts[index]
+            if (amount <= 0) {
+                continue
+            }
+            val def = ItemDefinitions.getOrNull(id) ?: continue
+            DynamicResolvers.shopItems.getOrPut(def.stringId) { mutableListOf() }.add(area to npc.id)
         }
     }
 }

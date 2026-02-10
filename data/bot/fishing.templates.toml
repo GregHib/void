@@ -37,13 +37,14 @@ produces = [
 [fish_bait]
 setup = [
     { inventory = [
-        { id = "small_fishing_net" },
-        { id = "empty", min = 27 }
+        { id = "fishing_rod" },
+        { id = "feather", min = 52 },
+        { id = "empty", min = 25 }
     ] },
     { area = { id = "$location" } },
 ]
 actions = [
-    { npc = { option = "Net", id = "$spot", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
+    { npc = { option = "Bait", id = "$spot", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
 ]
 produces = [
     { skill = "fishing" },
