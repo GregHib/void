@@ -28,6 +28,7 @@
 [teleport_varrock]
 weight = 125
 requires = [
+    { skill = { id = "magic", min = 25 } },
     { inventory = [
         { id = "fire_rune", min = 1 },
         { id = "air_rune", min = 3 },
@@ -46,6 +47,7 @@ produces = [
 [teleport_varrock_via_bank]
 weight = 150
 requires = [
+    { skill = { id = "magic", min = 25 } },
     { variable = { id = "spellbook_config", equals = 0, default = 0 }},
     { bank = [
         { id = "fire_rune", min = 1 },

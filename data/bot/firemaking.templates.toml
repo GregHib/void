@@ -1,5 +1,5 @@
 [firemaking]
-require = [
+requires = [
     { owns = { id = "$logs", min = 54 }}
 ]
 setup = [

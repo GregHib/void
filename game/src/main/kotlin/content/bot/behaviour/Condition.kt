@@ -112,13 +112,13 @@ sealed class Condition(val priority: Int) {
 
     data class Inventory(val items: List<Entry>) : Condition(100) {
         override fun keys() = items.flatMap { entry -> entry.ids.map { "item:$it" } }.toSet()
-        override fun events() = setOf("inventory")
+        override fun events() = setOf("inv:inventory")
         override fun check(player: Player) = contains(player, player.inventory, items)
     }
 
     data class Equipment(val items: Map<EquipSlot, Entry>) : Condition(90) {
         override fun keys() = items.values.flatMap { entry -> entry.ids.map { "item:$it" } }.toSet()
-        override fun events() = setOf("worn_equipment")
+        override fun events() = setOf("inv:worn_equipment")
 
         override fun check(player: Player): Boolean {
             for ((slot, entry) in items) {
@@ -145,13 +145,13 @@ sealed class Condition(val priority: Int) {
 
     data class Bank(val items: List<Entry>) : Condition(80) {
         override fun keys() = items.flatMap { entry -> entry.ids.map { "bank:$it" } }.toSet()
-        override fun events() = setOf("bank")
+        override fun events() = setOf("inv:bank")
         override fun check(player: Player) = contains(player, player.bank, items)
     }
 
     data class Owns(val id: String, val min: Int? = null, val max: Int? = null) : Condition(110) {
         override fun keys() = setOf("item:$id")
-        override fun events() = setOf("worn_equipment", "inventory", "bank")
+        override fun events() = setOf("inv:worn_equipment", "inv:inventory", "inv:bank")
         override fun check(player: Player): Boolean {
             val count = player.inventory.count(id) + player.bank.count(id) + player.equipment.count(id)
             return inRange(count, min, max)
@@ -160,13 +160,13 @@ sealed class Condition(val priority: Int) {
 
     data class Variable(val id: String, val equals: Any, val default: Any) : Condition(1) {
         override fun keys() = setOf("var:$id")
-        override fun events() = setOf("variable")
+        override fun events() = setOf("var:$id")
         override fun check(player: Player) = player.variables.get(id, default) == equals
     }
 
     data class VariableIn(val id: String, val default: Int, val min: Int?, val max: Int?) : Condition(1) {
         override fun keys() = setOf("var:$id")
-        override fun events() = setOf("variable")
+        override fun events() = setOf("var:$id")
         override fun check(player: Player): Boolean {
             val value = player.variables.get(id, default)
             return inRange(value, min, max)
