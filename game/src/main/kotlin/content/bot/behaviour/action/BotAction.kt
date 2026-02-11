@@ -42,20 +42,6 @@ import java.util.concurrent.TimeUnit
 import kotlin.collections.indexOf
 import kotlin.collections.iterator
 
-/**
- * TODO
- *      Can InteractNpc/Object be handled entirely by restart now? - If not entirely what about just leaving search inside interact
- *      firemaking bot
- *      rune mysteries quest bot
- *      improvements:
- *          bot spawning in other locations - banks?
- *          bot saving?
- *          bot tests & coverage
- *          weight dynamic resolvers based on distance (or just for shops)?
- *          Increase world coverage
- *          Bot armour setups
- *          Combat escaping/running away
- **/
 sealed interface BotAction {
     fun start(bot: Bot, frame: BehaviourFrame): BehaviourState = BehaviourState.Running
     fun update(bot: Bot, frame: BehaviourFrame): BehaviourState? = null
