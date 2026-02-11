@@ -56,7 +56,7 @@ sealed interface BotAction {
         }
 
         override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState {
-            if (bot.steps.isNotEmpty() || bot.mode != EmptyMode) {
+            if (bot.mode != EmptyMode) {
                 return BehaviourState.Running
             }
             val def = Areas.getOrNull(target) ?: return BehaviourState.Failed(Reason.Invalid("No areas found with id '$target'."))

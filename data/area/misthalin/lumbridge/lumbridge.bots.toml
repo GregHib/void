@@ -1,3 +1,4 @@
+# Combat
 [kill_freds_chickens_attack]
 template = "kill_chickens"
 capacity = 2
@@ -42,6 +43,79 @@ fields = { skill = "strength", location = "lumbridge_west_cow_field", style = "s
 template = "kill_cows"
 capacity = 2
 fields = { skill = "defence", location = "lumbridge_west_cow_field", style = "style4" }
+
+# Tutors
+[magic_tutor]
+capacity = 2
+requires = [
+    { skill = { id = "magic", min = 1, max = 5 } },
+    { area = { id = "lumbridge_combat_tutors" } }
+]
+setup = [
+    { inventory = [
+        { id = "air_rune", min = 30 },
+        { id = "mind_rune", min = 30 },
+    ] },
+]
+actions = [
+    { interface = { option = "Autocast", id = "modern_spellbook:wind_strike", success = { variable = { id = "autocast", min = 0, default = -1 } } } },
+    { npc = { option = "Attack", id = "magic_dummy", success = { inventory = { id = "empty", min = 28 } } } }
+]
+produces = [
+    { skill = "magic" }
+]
+
+[melee_tutor_attack]
+capacity = 1
+requires = [
+    { skill = { id = "attack", min = 1, max = 5 } },
+    { area = { id = "lumbridge_combat_tutors" } }
+]
+setup = [
+    { equipment = { weapon = { id = "training_sword" }, shield = { id = "training_shield" } } },
+]
+actions = [
+    { interface = { option = "Select", id = "combat_styles:style1" } },
+    { npc = { option = "Attack", id = "melee_dummy", success = { skill = { id = "attack", min = 5 } } } }
+]
+produces = [
+    { skill = "attack" }
+]
+
+[melee_tutor_strength]
+capacity = 1
+requires = [
+    { skill = { id = "strength", min = 1, max = 5 } },
+    { area = { id = "lumbridge_combat_tutors" } }
+]
+setup = [
+    { equipment = { weapon = { id = "training_sword" }, shield = { id = "training_shield" } } },
+]
+actions = [
+    { interface = { option = "Select", id = "combat_styles:style2" } },
+    { npc = { option = "Attack", id = "melee_dummy", success = { skill = { id = "strength", min = 5 } } } }
+]
+produces = [
+    { skill = "strength" }
+]
+
+[ranged_tutor]
+capacity = 1
+requires = [
+    { skill = { id = "ranged", min = 1, max = 5 } },
+    { area = { id = "lumbridge_combat_tutors" } }
+]
+setup = [
+    { equipment = { weapon = { id = "training_bow" }, ammo = { id = "training_arrows", min = 10 } } },
+]
+actions = [
+    { interface = { option = "Select", id = "combat_styles:style1" } },
+    { object = { option = "Shoot-at", id = "archery_target", success = { queue = { id = "archery" } } } },
+    { restart = { wait_if = [{ queue = { id = "archery" } }, { mode = { id = "player_on_object" } }], success = { equipment = { ammo = { id = "empty" } } } } }
+]
+produces = [
+    { skill = "ranged" }
+]
 
 # Thieving
 [lumbridge_pickpocketing]

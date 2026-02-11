@@ -26,7 +26,9 @@ class DialogueContinueHandler(
             logger.debug { "Dialogue $interfaceId component $componentId not found for player $player" }
             return false
         }
-
+        if (player["debug", false]) {
+            logger.info { "$player - $id:${component.stringId}" }
+        }
         Dialogues.continueDialogue(player, "$id:${component.stringId}")
         return true
     }

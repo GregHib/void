@@ -305,7 +305,7 @@ class BotManager(
             for (requirement in resolver.requires) {
                 if (!requirement.check(bot.player)) {
                     logger.debug { "Resolver ${resolver.id} - Failed requirement: $requirement." }
-                    break
+                    return
                 }
             }
             logger.debug { "Resolver ${resolver.id} - Available." }

@@ -1,0 +1,59 @@
+[mikasi_runes]
+requires = [
+    { clock = { id = "claimed_tutor_consumables", max = 0, seconds = true } },
+    { bank = [
+        { id = "air_rune", max = 0 },
+        { id = "mind_rune", max = 0 },
+    ] },
+    { area = { id = "lumbridge_combat_tutors" } }
+]
+actions = [
+    { npc = { option = "Talk-to", id = "mikasi", delay = 5, success = { interface_open = { id = "dialogue_npc_chat3" } } } },
+    { continue = { id = "dialogue_npc_chat3:continue", success = { interface_open = { id = "dialogue_multi4" } } } },
+    { continue = { id = "dialogue_multi4:line3", success = { interface_open = { id = "dialogue_obj_box" } } } },
+    { continue = { id = "dialogue_obj_box:continue", success = { inventory = { id = "air_rune", min = 30 } } } },
+    { continue = { id = "dialogue_obj_box:continue", success = { inventory = { id = "mind_rune", min = 30 } } } },
+]
+produces = [
+    { item = "air_rune" },
+    { item = "mind_rune" }
+]
+
+[harlan_sword]
+requires = [
+    { clock = { id = "claimed_tutor_consumables", max = 0, seconds = true } },
+    { owns = { id = "training_sword", max = 0 } },
+    { owns = { id = "training_shield", max = 0 } },
+    { area = { id = "lumbridge_combat_tutors" } }
+]
+actions = [
+    { npc = { option = "Talk-to", id = "harlan", delay = 5, success = { interface_open = { id = "dialogue_npc_chat2" } } } },
+    { continue = { id = "dialogue_npc_chat2:continue", success = { interface_open = { id = "dialogue_multi5" } } } },
+    { continue = { id = "dialogue_multi5:line4", success = { interface_open = { id = "dialogue_chat1" } } } },
+    { continue = { id = "dialogue_chat1:continue", success = { interface_open = { id = "dialogue_obj_box" } } } },
+    { continue = { id = "dialogue_obj_box:continue", success = { inventory = { id = "training_sword", min = 1 } } } },
+    { continue = { id = "dialogue_obj_box:continue", success = { inventory = { id = "training_shield", min = 1 } } } },
+]
+produces = [
+    { item = "training_sword" },
+    { item = "training_shield" }
+]
+
+[nemarti_bow]
+requires = [
+    { clock = { id = "claimed_tutor_consumables", max = 0, seconds = true } },
+    { owns = { id = "training_bow", max = 0 } },
+    { owns = { id = "training_arrows", max = 0 } },
+    { area = { id = "lumbridge_combat_tutors" } }
+]
+actions = [
+    { npc = { option = "Talk-to", id = "nemarti", delay = 5, success = { interface_open = { id = "dialogue_npc_chat2" } } } },
+    { continue = { id = "dialogue_npc_chat2:continue", success = { interface_open = { id = "dialogue_multi4" } } } },
+    { continue = { id = "dialogue_multi4:line3", success = { interface_open = { id = "dialogue_obj_box" } } } },
+    { continue = { id = "dialogue_obj_box:continue", success = { inventory = { id = "training_bow", min = 1 } } } },
+    { continue = { id = "dialogue_obj_box:continue", success = { inventory = { id = "training_arrows", min = 30 } } } },
+]
+produces = [
+    { item = "training_bow" },
+    { item = "training_arrows" }
+]

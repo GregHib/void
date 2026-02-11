@@ -106,14 +106,10 @@ object DynamicResolvers {
             return resolver
         }
         resolver = equipItems(player, equipment)
-        if (resolver == null) {
-            return resolver
-        }
-        resolver = withdrawEquip(player, equipment)
         if (resolver != null) {
             return resolver
         }
-        resolver = buyItems(player, equipment.values.toList())
+        resolver = resolveInventory(player, equipment.values.toList())
         if (resolver != null) {
             return resolver
         }
@@ -141,56 +137,9 @@ object DynamicResolvers {
         return null
     }
 
-    private fun withdrawEquip(player: Player, equipment: Map<EquipSlot, Entry>): Resolver? {
-        val actions = mutableListOf<BotAction>()
-        actions.add(BotAction.GoToNearest("bank"))
-        actions.add(BotAction.InteractObject("Use-quickly", "bank_booth*", success = Condition.InterfaceOpen("bank")))
-        // Free up inventory space if needed
-        if (player.inventory.spaces < equipment.size) {
-            actions.add(BotAction.InterfaceOption("Deposit carried items", "bank:carried", success = Condition.Inventory(listOf(Entry(setOf("empty"), min = 28)))))
-        }
-        var found = false
-        val toEquip = mutableSetOf<String>()
-        for (item in player.bank.items) {
-            if (item.isEmpty()) {
-                continue
-            }
-            val slot = item.slot
-            if (slot == EquipSlot.None) {
-                continue
-            }
-            if (equipment.isEmpty()) {
-                break
-            }
-            // Check if item meets requirement
-            val entry = equipment[slot] ?: continue
-            if (!entry.ids.contains(item.id)) {
-                continue
-            }
-            if (entry.usable && !player.hasRequirementsToUse(item)) {
-                continue
-            }
-            if (entry.equippable && !player.hasRequirements(item)) {
-                continue
-            }
-            // Withdraw the necessary item
-            withdraw(actions, entry, item)
-            toEquip.add(item.id)
-            found = true
-        }
-        actions.add(BotAction.CloseInterface)
-        // Equip all items
-        for (id in toEquip) {
-            actions.add(BotAction.InterfaceOption("Equip", "inventory:inventory:$id"))
-        }
-        if (found) {
-            return Resolver("equip_from_bank", weight = 20, actions = actions)
-        }
-        return null
-    }
-
     private fun equipItems(player: Player, equipment: Map<EquipSlot, Entry>): Resolver? {
         val actions = mutableListOf<BotAction>()
+        val produces = mutableSetOf<String>()
         for (item in player.inventory.items) {
             val slot = item.slot
             if (slot == EquipSlot.None) {
@@ -200,10 +149,11 @@ object DynamicResolvers {
             if (!entry.ids.contains(item.id)) {
                 continue
             }
-            actions.add(BotAction.InterfaceOption("Equip", "inventory:inventory:${item.id}"))
+            actions.add(BotAction.InterfaceOption("Equip", "inventory:inventory:${item.id}", success = Condition.Equipment(mapOf(slot to entry))))
+            produces.add("equipment:${item.id}")
         }
         if (actions.isNotEmpty()) {
-            Resolver("equip_items", weight = 15, actions = actions)
+            return Resolver("equip_items", weight = 15, actions = actions, produces = produces)
         }
         return null
     }

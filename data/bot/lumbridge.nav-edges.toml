@@ -23,9 +23,9 @@ edges = [
     { from = { x = 3205, y = 3209, level = 1 }, to = { x = 3205, y = 3209, level = 2 }, cost = 1, actions = [{ object = { option = "Climb-up", id = "lumbridge_castle_staircase_south_middle", x = 3204, y = 3207, success = { tile = { level = 2 } } } }] }, # lumbridge_castle_1st_floor_south_stairs_to_2nd_floor
     { from = { x = 3209, y = 3205 }, to = { x = 3199, y = 3218 } }, # lumbridge_castle_grounds_south_to_tower_west
     { from = { x = 3199, y = 3218 }, to = { x = 3184, y = 3225 } }, # lumbridge_castle_tower_west_to_yew_trees
-    { from = { x = 3199, y = 3218 }, to = { x = 3193, y = 3236 } }, # lumbridge_castle_tower_west_to_tree_patch
+    { from = { x = 3199, y = 3218 }, to = { x = 3195, y = 3236 } }, # lumbridge_castle_tower_west_to_tree_patch
     { from = { x = 3184, y = 3225 }, to = { x = 3168, y = 3221 } }, # lumbridge_castle_yew_trees_to_yew_trees_west
-    { from = { x = 3184, y = 3225 }, to = { x = 3193, y = 3236 } }, # lumbridge_castle_yew_trees_to_tree_patch
+    { from = { x = 3184, y = 3225 }, to = { x = 3195, y = 3236 } }, # lumbridge_castle_yew_trees_to_tree_patch
     { from = { x = 3226, y = 3214 }, to = { x = 3227, y = 3214 }, cost = 3, actions = [{ object = { option = "Open", id = "door_627_closed", x = 3226, y = 3214, success = { object = { id = "door_627_opened", x = 3227, y = 3214 } } } }] }, # lumbridge_south_tower_to_ground_floor
     { from = { x = 3227, y = 3214 }, to = { x = 3229, y = 3214, level = 1 }, cost = 1, actions = [{ object = { option = "Climb-up", id = "36768", x = 3229, y = 3213, success = { tile = { level = 1 } } } }] }, # lumbridge_south_tower_ground_floor_to_1st_floor
     { from = { x = 3229, y = 3214, level = 1 }, to = { x = 3229, y = 3214, level = 2 }, cost = 1, actions = [{ object = { option = "Climb-up", id = "36769", x = 3229, y = 3213, success = { tile = { level = 2 } } } }] }, # lumbridge_south_tower_1st_floor_to_2nd_floor
@@ -91,7 +91,7 @@ edges = [
     { from = { x = 3217, y = 3241 }, to = { x = 3204, y = 3247 } }, # lumbridge_general_store_to_task_building
     { from = { x = 3204, y = 3247 }, to = { x = 3194, y = 3247 } }, # lumbridge_task_building_to_fishing_shop_entrance
     { from = { x = 3194, y = 3247 }, to = { x = 3172, y = 3239 } }, # lumbridge_fishing_shop_entrance_to_west_path
-    { from = { x = 3194, y = 3247 }, to = { x = 3193, y = 3236 } }, # lumbridge_fishing_shop_entrance_to_tree_patch
+    { from = { x = 3194, y = 3247 }, to = { x = 3195, y = 3236 } }, # lumbridge_fishing_shop_entrance_to_tree_patch
     { from = { x = 3194, y = 3247 }, to = { x = 3195, y = 3251 } }, # lumbridge_fishing_shop_entrance_to_fishing_shop
     { from = { x = 3172, y = 3239 }, to = { x = 3157, y = 3234 } }, # lumbridge_west_path_to_ham_path
     { from = { x = 3172, y = 3239 }, to = { x = 3184, y = 3225 } }, # lumbridge_west_path_to_yew_trees

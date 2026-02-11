@@ -144,9 +144,21 @@ sealed class ActionParser {
         override val required = setOf("success")
         override val optional = setOf("wait_if")
 
+        @Suppress("UNCHECKED_CAST")
         override fun parse(map: Map<String, Any>): BotAction {
             val requirement = requirement(map, "success").single()
-            return BotAction.Restart(wait = requirement(map, "wait_if"), success = requirement)
+            val wait = map["wait_if"]
+            val waitIf = if (wait is List<*>) {
+                val requirements = mutableListOf<Condition>()
+                wait as List<Map<String, Any>>
+                for(element in wait) {
+                    requirements.addAll(requirement(element))
+                }
+                requirements
+            } else {
+                requirement(map, "wait_if")
+            }
+            return BotAction.Restart(wait = waitIf, success = requirement)
         }
     }
 
@@ -154,8 +166,13 @@ sealed class ActionParser {
         @Suppress("UNCHECKED_CAST")
         private fun requirement(map: Map<String, Any>, key: String): List<Condition> {
             val parent = map[key] as? Map<String, Any> ?: return listOf()
-            val key = parent.keys.singleOrNull() ?: error("Collection $map has more than one element.")
-            val value = parent[key] ?: return listOf()
+            return requirement(parent)
+        }
+
+        @Suppress("UNCHECKED_CAST")
+        private fun requirement(map: Map<String, Any>): List<Condition> {
+            val key = map.keys.singleOrNull() ?: error("Collection $map has more than one element.")
+            val value = map[key] ?: return listOf()
             val list = when (value) {
                 is Map<*, *> -> listOf(value as Map<String, Any>)
                 is List<*> -> value as List<Map<String, Any>>

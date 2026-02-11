@@ -2,8 +2,37 @@ package content.bot.behaviour
 
 import content.entity.player.bank.bank
 import net.pearx.kasechange.toPascalCase
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.Face
+import world.gregs.voidps.engine.entity.character.mode.Follow
+import world.gregs.voidps.engine.entity.character.mode.Patrol
+import world.gregs.voidps.engine.entity.character.mode.PauseMode
+import world.gregs.voidps.engine.entity.character.mode.Rest
+import world.gregs.voidps.engine.entity.character.mode.Retreat
+import world.gregs.voidps.engine.entity.character.mode.Wander
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.mode.interact.InteractOption
+import world.gregs.voidps.engine.entity.character.mode.interact.InterfaceOnFloorItemInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.InterfaceOnNPCInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.InterfaceOnObjectInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.ItemOnFloorItemInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.ItemOnNPCInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.ItemOnObjectInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.ItemOnPlayerInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.NPCOnFloorItemInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.NPCOnNPCInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.NPCOnObjectInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.NPCOnPlayerInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnFloorItemInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnNPCInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnPlayerInteract
+import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -13,7 +42,9 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRe
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
+import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import kotlin.collections.iterator
 
@@ -68,6 +99,15 @@ sealed class Condition(val priority: Int) {
         override fun check(player: Player) = player.hasClock(id)
     }
 
+    data class ClockRemaining(val id: String, val min: Int? = null, val max: Int? = null, val seconds: Boolean = false) : Condition(1) {
+        override fun keys() = setOf("clock:$id")
+        override fun events() = setOf("clock")
+        override fun check(player: Player): Boolean {
+            val remaining = player.remaining(id, if (seconds) epochSeconds() else GameLoop.tick)
+            return inRange(remaining, min, max)
+        }
+    }
+
     data class Entry(val ids: Set<String>, val min: Int? = null, val max: Int? = null, val usable: Boolean = false, val equippable: Boolean = false)
 
     data class Inventory(val items: List<Entry>) : Condition(100) {
@@ -83,6 +123,12 @@ sealed class Condition(val priority: Int) {
         override fun check(player: Player): Boolean {
             for ((slot, entry) in items) {
                 val item = player.equipped(slot)
+                if (entry.ids.contains("empty")) {
+                    if (item.isEmpty()) {
+                        continue
+                    }
+                    return false
+                }
                 if (!entry.ids.contains(item.id)) {
                     return false
                 }
@@ -101,6 +147,15 @@ sealed class Condition(val priority: Int) {
         override fun keys() = items.flatMap { entry -> entry.ids.map { "bank:$it" } }.toSet()
         override fun events() = setOf("bank")
         override fun check(player: Player) = contains(player, player.bank, items)
+    }
+
+    data class Owns(val id: String, val min: Int? = null, val max: Int? = null) : Condition(110) {
+        override fun keys() = setOf("item:$id")
+        override fun events() = setOf("worn_equipment", "inventory", "bank")
+        override fun check(player: Player): Boolean {
+            val count = player.inventory.count(id) + player.bank.count(id) + player.equipment.count(id)
+            return inRange(count, min, max)
+        }
     }
 
     data class Variable(val id: String, val equals: Any, val default: Any) : Condition(1) {
@@ -140,6 +195,41 @@ sealed class Condition(val priority: Int) {
         override fun keys() = setOf("skill:${skill.name}")
         override fun events() = setOf("skill:${skill.name}")
         override fun check(player: Player) = inRange(player.levels.get(skill), min, max)
+    }
+
+    data class HasMode(val id: String) : Condition(1) {
+        override fun keys() = setOf("mode:${id}")
+        override fun events() = setOf("mode")
+        override fun check(player: Player) = when (id) {
+            "empty" -> player.mode == EmptyMode
+            "interact" -> player.mode is Interact
+            "interact_on" -> player.mode is InteractOption
+            "combat_movement" -> player.mode is CombatMovement
+            "interface_on_floor_item" -> player.mode is InterfaceOnFloorItemInteract
+            "interface_on_npc" -> player.mode is InterfaceOnNPCInteract
+            "interface_on_object" -> player.mode is InterfaceOnObjectInteract
+            "item_on_floor_item" -> player.mode is ItemOnFloorItemInteract
+            "item_on_npc" -> player.mode is ItemOnNPCInteract
+            "item_on_object" -> player.mode is ItemOnObjectInteract
+            "item_on_player" -> player.mode is ItemOnPlayerInteract
+            "npc_on_floor_item" -> player.mode is NPCOnFloorItemInteract
+            "npc_on_npc" -> player.mode is NPCOnNPCInteract
+            "npc_on_object" -> player.mode is NPCOnObjectInteract
+            "npc_on_player" -> player.mode is NPCOnPlayerInteract
+            "player_on_floor_item" -> player.mode is PlayerOnFloorItemInteract
+            "player_on_npc" -> player.mode is PlayerOnNPCInteract
+            "player_on_object" -> player.mode is PlayerOnObjectInteract
+            "player_on_player" -> player.mode is PlayerOnPlayerInteract
+            "movement" -> player.mode is Movement
+            "follow" -> player.mode is Follow
+            "face" -> player.mode is Face
+            "patrol" -> player.mode is Patrol
+            "pause" -> player.mode == PauseMode
+            "rest" -> player.mode is Rest
+            "retreat" -> player.mode is Retreat
+            "wander" -> player.mode is Wander
+            else -> false
+        }
     }
 
     companion object {
@@ -208,6 +298,7 @@ sealed class Condition(val priority: Int) {
             "inventory" -> parseInventory(list)
             "equipment" -> parseEquipment(list)
             "bank" -> parseBank(list)
+            "owns" -> parseOwns(list)
             "variable" -> parseVariable(list)
             "clock" -> parseClock(list)
             "timer" -> parseTimer(list)
@@ -217,6 +308,7 @@ sealed class Condition(val priority: Int) {
             "object" -> parseObject(list)
             "combat_level" -> parseCombat(list)
             "interface_open" -> parseInterface(list)
+            "mode" -> parseMode(list)
             "skill" -> parseSkills(list)
             else -> null
         }
@@ -249,10 +341,15 @@ sealed class Condition(val priority: Int) {
                     require(slot != EquipSlot.None) { "Invalid equipment slot: $key in $list" }
                     value as? Map<String, Any> ?: error("Equipment $key expecting map, found: $value")
                     val id = value["id"] as? String ?: error("Missing item id in $list")
+                    var min = value["min"] as? Int
+                    val max = value["max"] as? Int
+                    if (min == null && max == null) {
+                        min = 1
+                    }
                     items[slot] = Entry(
                         ids = toIds(id),
-                        min = value["min"] as? Int ?: 1,
-                        max = value["max"] as? Int,
+                        min = min,
+                        max = max,
                     )
                 }
             }
@@ -260,6 +357,14 @@ sealed class Condition(val priority: Int) {
         }
 
         private fun parseBank(list: List<Map<String, Any>>): Bank = Bank(parseItems(list))
+
+        private fun parseOwns(list: List<Map<String, Any>>): Owns? {
+            val map = list.single()
+            if (map.containsKey("id")) {
+                return Owns(map["id"] as String, min = map["min"] as? Int, max = map["max"] as? Int)
+            }
+            return null
+        }
 
         @Suppress("UNCHECKED_CAST")
         private fun parseVariable(list: List<Map<String, Any>>): Condition? {
@@ -270,7 +375,7 @@ sealed class Condition(val priority: Int) {
                     equals = map["equals"]!!,
                     default = map["default"]!!,
                 )
-            } else if (map.containsKey("min")) {
+            } else if (map.containsKey("min") || map.containsKey("max")) {
                 return VariableIn(
                     id = map["id"] as String,
                     default = map["default"] as Int,
@@ -284,6 +389,14 @@ sealed class Condition(val priority: Int) {
         private fun parseClock(list: List<Map<String, Any>>): Condition? {
             val map = list.single()
             if (map.containsKey("id")) {
+                if (map.containsKey("min") || map.containsKey("max")) {
+                    return ClockRemaining(
+                        id = map["id"] as String,
+                        min = map["min"] as? Int,
+                        max = map["max"] as? Int,
+                        seconds = map["seconds"] as? Boolean ?: false,
+                    )
+                }
                 return Clock(id = map["id"] as String)
             }
             return null
@@ -349,6 +462,14 @@ sealed class Condition(val priority: Int) {
             val map = list.single()
             if (map.containsKey("id")) {
                 return InterfaceOpen(id = map["id"] as String)
+            }
+            return null
+        }
+
+        private fun parseMode(list: List<Map<String, Any>>): Condition? {
+            val map = list.single()
+            if (map.containsKey("id")) {
+                return HasMode(id = map["id"] as String)
             }
             return null
         }

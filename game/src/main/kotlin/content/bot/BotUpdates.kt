@@ -71,6 +71,7 @@ class BotUpdates(
         worldSpawn {
             DynamicResolvers.shopItems.clear()
         }
+
         npcSpawn {
             if (def.contains("shop")) {
                 val def = inventoryDefinitions.get(def.get<String>("shop"))

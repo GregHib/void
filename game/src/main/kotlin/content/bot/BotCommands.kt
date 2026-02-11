@@ -56,6 +56,12 @@ class BotCommands(
             return@worldTimerTick Timer.CONTINUE
         }
 
+        playerDespawn {
+            if (isBot) {
+                manager.remove(bot)
+            }
+        }
+
         worldSpawn {
             loadSettings()
         }
