@@ -10,6 +10,7 @@ import content.bot.behaviour.navigation.NavigationShortcut
 import content.bot.behaviour.setup.Resolver
 import content.entity.combat.attackers
 import content.entity.combat.dead
+import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
@@ -21,6 +22,7 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnFloorItemInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnNPCInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
+import world.gregs.voidps.engine.entity.character.mode.move.canTravel
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -28,16 +30,32 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.event.wildcardEquals
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.map.Spiral
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.client.instruction.*
+import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 import kotlin.collections.indexOf
 import kotlin.collections.iterator
 
+/**
+ * TODO
+ *      Can InteractNpc/Object be handled entirely by restart now? - If not entirely what about just leaving search inside interact
+ *      firemaking bot
+ *      rune mysteries quest bot
+ *      improvements:
+ *          bot spawning in other locations - banks?
+ *          bot saving?
+ *          bot tests & coverage
+ *          weight dynamic resolvers based on distance (or just for shops)?
+ *          Increase world coverage
+ *          Bot armour setups
+ *          Combat escaping/running away
+ **/
 sealed interface BotAction {
     fun start(bot: Bot, frame: BehaviourFrame): BehaviourState = BehaviourState.Running
     fun update(bot: Bot, frame: BehaviourFrame): BehaviourState? = null
@@ -323,23 +341,35 @@ sealed interface BotAction {
             if (success != null && success.check(bot.player)) {
                 return BehaviourState.Success
             }
-            val inventory = bot.player.inventory
-            val fromSlot = inventory.indexOf(item)
-            if (fromSlot == -1) {
-                return BehaviourState.Failed(Reason.Invalid("No inventory item '$item'."))
+            val state = itemOnItem(bot.player, item, on)
+            if (state != null) {
+                return state
             }
-            val toSlot = inventory.indexOf(on)
-            if (toSlot == -1) {
-                return BehaviourState.Failed(Reason.Invalid("No inventory item '$on'."))
-            }
-            val from = inventory[fromSlot]
-            val to = inventory[toSlot]
-            val valid = get<InstructionHandlers>().handle(bot.player, InteractInterfaceItem(from.def.id, to.def.id, fromSlot, toSlot, 149, 0, 149, 0))
             return when {
-                !valid -> BehaviourState.Failed(Reason.Invalid("Invalid item on item: ${from.def.id}:$fromSlot -> ${to.def.id}:$toSlot."))
                 success == null -> BehaviourState.Wait(1, BehaviourState.Success)
                 success.check(bot.player) -> BehaviourState.Success
                 else -> BehaviourState.Running
+            }
+        }
+
+        companion object {
+            fun itemOnItem(player: Player, item: String, on: String): BehaviourState? {
+                val inventory = player.inventory
+                val fromSlot = inventory.indexOf(item)
+                if (fromSlot == -1) {
+                    return BehaviourState.Failed(Reason.Invalid("No inventory item '$item'."))
+                }
+                val toSlot = inventory.indexOf(on)
+                if (toSlot == -1) {
+                    return BehaviourState.Failed(Reason.Invalid("No inventory item '$on'."))
+                }
+                val from = inventory[fromSlot]
+                val to = inventory[toSlot]
+                val valid = get<InstructionHandlers>().handle(player, InteractInterfaceItem(from.def.id, to.def.id, fromSlot, toSlot, 149, 0, 149, 0))
+                if (valid) {
+                    return null
+                }
+                return BehaviourState.Failed(Reason.Invalid("Invalid item on item: ${from.def.id}:$fromSlot -> ${to.def.id}:$toSlot."))
             }
         }
     }
@@ -529,6 +559,41 @@ sealed interface BotAction {
             bot.tile.within(x, y, bot.tile.level, radius) -> BehaviourState.Success
             bot.mode is EmptyMode && GameLoop.tick - bot.steps.last > 10 -> BehaviourState.Failed(Reason.Stuck)
             else -> BehaviourState.Running
+        }
+    }
+
+    data class Firemaking(val item: String, val area: String) : BotAction {
+        override fun update(bot: Bot, frame: BehaviourFrame): BehaviourState {
+            when {
+                bot.mode != EmptyMode -> return BehaviourState.Running
+                cantLightOn(bot.tile) -> {
+                    val handlers = get<InstructionHandlers>()
+                    val steps = get<StepValidator>()
+                    if (steps.canTravel(bot, -1, 0)) {
+                        handlers.handle(bot.player, Walk(bot.tile.x - 1, bot.tile.y))
+                        return BehaviourState.Wait(1, BehaviourState.Running)
+                    }
+                    if (steps.canTravel(bot.tile.level, bot.tile.x - 1, bot.tile.y, -1, 0)) {
+                        handlers.handle(bot.player, Walk(bot.tile.x - 2, bot.tile.y))
+                        return BehaviourState.Wait(1, BehaviourState.Running)
+                    }
+                    val area = Areas[area]
+                    for (tile in area) {
+                        if (cantLightOn(tile)) {
+                            continue
+                        }
+                        handlers.handle(bot.player, Walk(tile.x, tile.y))
+                        return BehaviourState.Wait(1, BehaviourState.Running)
+                    }
+                    return BehaviourState.Failed(Reason.Stuck)
+                }
+                bot.player.inventory.contains(item) -> return ItemOnItem.itemOnItem(bot.player, "tinderbox", item) ?: BehaviourState.Running
+                else -> return BehaviourState.Success
+            }
+        }
+
+        private fun cantLightOn(tile: Tile): Boolean {
+            return GameObjects.getLayer(tile, ObjectLayer.GROUND) != null
         }
     }
 }

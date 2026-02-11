@@ -54,6 +54,16 @@ sealed class ActionParser {
         }
     }
 
+    object Firemaking : ActionParser() {
+        override val required = setOf("id", "area")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val area = map["area"] as String
+            val id = map["id"] as String
+            return BotAction.Firemaking(id, area)
+        }
+    }
+
     object CloseInterfaceParser : ActionParser() {
         override val required = setOf("id")
         override fun parse(map: Map<String, Any>): BotAction = BotAction.CloseInterface
@@ -208,6 +218,7 @@ sealed class ActionParser {
             "interface_close" to CloseInterfaceParser,
             "continue" to DialogueParser,
             "enter" to EnterParser,
+            "firemaking" to Firemaking,
         )
     }
 }

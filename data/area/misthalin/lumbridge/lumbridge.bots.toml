@@ -123,7 +123,7 @@ template = "pickpocketting_template"
 capacity = 2
 fields = { location = "lumbridge_thieving_area", npc = "lumbridge_man*,lumbridge_woman*" }
 requires = [
-    { skill = { id = "thieving", min = 1 } }
+    { skill = { id = "thieving", min = 1, max = 10 } }
 ]
 
 # Fishing
@@ -132,7 +132,7 @@ template = "fish_crayfish"
 capacity = 4
 fields = { location = "lumbridge_south_river_fishing_area", spot = "fishing_spot_crayfish_lumbridge" }
 requires = [
-    { skill = { id = "fishing", min = 1, max = 5 } }
+    { skill = { id = "fishing", min = 1, max = 10 } }
 ]
 
 [lumbridge_net_fishing]
@@ -140,7 +140,7 @@ template = "fish_small_net"
 capacity = 5
 fields = { location = "lumbridge_swamp_fishing_area", spot = "fishing_spot_small_net_bait_lumbridge" }
 requires = [
-    { skill = { id = "fishing", min = 1, max = 10 } }
+    { skill = { id = "fishing", min = 1, max = 15 } }
 ]
 
 [lumbridge_bait_fishing]
@@ -157,7 +157,7 @@ template = "fletching_arrow_shafts_template"
 capacity = 2
 fields = { location = "lumbridge_castle_bank", logs = "logs" }
 requires = [
-    { skill = { id = "fletching", min = 1 } }
+    { skill = { id = "fletching", min = 1, max = 10 } }
 ]
 
 [lumbridge_fletch_shortbows]
@@ -165,7 +165,7 @@ template = "fletching_shortbow_template"
 capacity = 2
 fields = { location = "lumbridge_castle_bank", logs = "logs" }
 requires = [
-    { skill = { id = "fletching", min = 5 } }
+    { skill = { id = "fletching", min = 5, max = 15 } }
 ]
 produces = [
     { item = "shortbow_u" }
@@ -175,7 +175,7 @@ produces = [
 template = "fletching_longbow_template"
 fields = { location = "lumbridge_castle_bank", logs = "logs" }
 requires = [
-    { skill = { id = "fletching", min = 10 } }
+    { skill = { id = "fletching", min = 10, max = 20 } }
 ]
 produces = [
     { item = "longbow_u" }
@@ -230,6 +230,23 @@ fields = { location = "lumbridge_swamp_west_coal_mine" }
 template = "mithril_ore_template"
 capacity = 2
 fields = { location = "lumbridge_swamp_west_mithril_mine" }
+
+# Firemaking
+[lumbridge_firemaking_logs]
+template = "firemaking"
+capacity = 2
+fields = { logs = "logs", location = "lumbridge_firemaking_spot" }
+requires = [
+    { skill = { id = "firemaking", min = 1, max = 15 } },
+]
+
+[lumbridge_firemaking_oak_logs]
+template = "firemaking"
+capacity = 1
+fields = { logs = "oak_logs", location = "lumbridge_firemaking_spot" }
+requires = [
+    { skill = { id = "firemaking", min = 15, max = 25 } },
+]
 
 # Cooking
 [lumbridge_cook_chicken]
