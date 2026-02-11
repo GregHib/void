@@ -634,8 +634,6 @@ sealed interface BotAction {
             }
         }
 
-        private fun cantLightOn(tile: Tile): Boolean {
-            return GameObjects.getLayer(tile, ObjectLayer.GROUND) != null
-        }
+        private fun cantLightOn(tile: Tile): Boolean = GameObjects.getLayer(tile, ObjectLayer.GROUND) != null
     }
 }

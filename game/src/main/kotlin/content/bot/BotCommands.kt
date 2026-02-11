@@ -1,6 +1,5 @@
 package content.bot
 
-import content.entity.player.bank.bank
 import content.quest.questJournal
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.Contexts

@@ -177,7 +177,7 @@ sealed class ActionParser {
             val waitIf = if (wait is List<*>) {
                 val requirements = mutableListOf<Condition>()
                 wait as List<Map<String, Any>>
-                for(element in wait) {
+                for (element in wait) {
                     requirements.addAll(requirement(element))
                 }
                 requirements

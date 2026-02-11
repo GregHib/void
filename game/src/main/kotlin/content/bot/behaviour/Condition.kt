@@ -198,7 +198,7 @@ sealed class Condition(val priority: Int) {
     }
 
     data class HasMode(val id: String) : Condition(1) {
-        override fun keys() = setOf("mode:${id}")
+        override fun keys() = setOf("mode:$id")
         override fun events() = setOf("mode")
         override fun check(player: Player) = when (id) {
             "empty" -> player.mode == EmptyMode

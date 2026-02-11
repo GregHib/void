@@ -65,7 +65,7 @@ object DynamicResolvers {
                             remaining >= 5 -> 5
                             else -> 1
                         }
-                        actions.add(BotAction.InterfaceOption("Take-${amount}", "shop:sample:${id}"))
+                        actions.add(BotAction.InterfaceOption("Take-$amount", "shop:sample:$id"))
                         remaining -= amount
                     }
                     actions.add(BotAction.CloseInterface)
@@ -75,7 +75,7 @@ object DynamicResolvers {
                         weight = 20,
                         setup = listOf(Condition.Inventory(listOf(Entry(setOf("empty"), min = spaces)))),
                         actions = actions,
-                        produces = setOf("item:${id}")
+                        produces = setOf("item:$id"),
                     )
                 }
                 for ((location, npc) in shopItems[id] ?: continue) {
@@ -95,7 +95,7 @@ object DynamicResolvers {
                             remaining >= 5 -> 5
                             else -> 1
                         }
-                        actions.add(BotAction.InterfaceOption("Buy-${amount}", "shop:stock:${id}"))
+                        actions.add(BotAction.InterfaceOption("Buy-$amount", "shop:stock:$id"))
                         remaining -= amount
                     }
                     actions.add(BotAction.CloseInterface)
@@ -105,7 +105,7 @@ object DynamicResolvers {
                         weight = 25,
                         setup = listOf(Condition.Inventory(listOf(Entry(setOf("coins"), min = price * amount), Entry(setOf("empty"), min = spaces)))),
                         actions = actions,
-                        produces = setOf("item:${id}")
+                        produces = setOf("item:$id"),
                     )
                 }
             }
