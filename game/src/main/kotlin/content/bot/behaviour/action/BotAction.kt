@@ -27,6 +27,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -307,6 +308,61 @@ sealed interface BotAction {
             val valid = get<InstructionHandlers>().handle(player, InteractObject(obj.intId, obj.x, obj.y, index + 1))
             if (!valid) {
                 return BehaviourState.Failed(Reason.Invalid("Invalid object interaction: $obj ${index + 1}"))
+            }
+            return BehaviourState.Running
+        }
+
+        private fun handleNoTarget(): BehaviourState {
+            if (success == null) {
+                return BehaviourState.Failed(Reason.NoTarget)
+            }
+            if (delay > 0) {
+                return BehaviourState.Wait(delay, BehaviourState.Running)
+            }
+            return BehaviourState.Running
+        }
+    }
+
+    data class InteractFloorItem(
+        val option: String,
+        val id: String,
+        val delay: Int = 0,
+        val success: Condition? = null,
+        val radius: Int = 10,
+        val x: Int? = null,
+        val y: Int? = null,
+    ) : BotAction {
+        override fun start(bot: Bot, frame: BehaviourFrame) = BehaviourState.Running
+
+        override fun update(bot: Bot, frame: BehaviourFrame) = when {
+            success?.check(bot.player) == true -> BehaviourState.Success
+            bot.mode is PlayerOnFloorItemInteract -> if (success == null) BehaviourState.Success else BehaviourState.Running
+            bot.mode is EmptyMode -> search(bot)
+            else -> null
+        }
+
+        private fun search(bot: Bot): BehaviourState {
+            val player = bot.player
+            val start = if (x != null && y != null) player.tile.copy(x = x, y = y) else player.tile
+            for (tile in Spiral.spiral(start, radius)) {
+                for (obj in FloorItems.at(tile)) {
+                    return interact(player, obj) ?: continue
+                }
+            }
+            return handleNoTarget()
+        }
+
+        private fun interact(player: Player, item: FloorItem): BehaviourState? {
+            if (!wildcardEquals(id, item.id)) {
+                return null
+            }
+            val index = item.def.floorOptions.indexOf(option)
+            if (index == -1) {
+                return null
+            }
+            val valid = get<InstructionHandlers>().handle(player, InteractFloorItem(item.def.id, item.tile.x, item.tile.y, index + 1))
+            if (!valid) {
+                return BehaviourState.Failed(Reason.Invalid("Invalid floor item interaction: $item ${index + 1}"))
             }
             return BehaviourState.Running
         }

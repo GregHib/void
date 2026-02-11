@@ -5,13 +5,11 @@ import content.bot.behaviour.navigation.NavigationGraph
 import content.bot.behaviour.setup.DynamicResolvers
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.client.instruction.InteractDialogue
-import world.gregs.voidps.type.Tile
 
 /**
  * Listen for state changes which would change which activities are available to a bot
@@ -74,8 +72,11 @@ class BotUpdates(
 
         npcSpawn {
             if (def.contains("shop")) {
-                val def = inventoryDefinitions.get(def.get<String>("shop"))
-                registerShop(this, def)
+                val shop = def.get<String>("shop")
+                val def = inventoryDefinitions.get(shop)
+                registerShop(this, def, DynamicResolvers.shopItems)
+                val sample = inventoryDefinitions.getOrNull("${shop}_sample") ?: return@npcSpawn
+                registerShop(this, sample, DynamicResolvers.sampleItems)
             }
         }
     }
@@ -94,7 +95,7 @@ class BotUpdates(
         }
     }
 
-    private fun registerShop(npc: NPC, definition: InventoryDefinition) {
+    private fun registerShop(npc: NPC, definition: InventoryDefinition, map: MutableMap<String, MutableList<Pair<String, String>>>) {
         val area: String = npc.def.getOrNull("area") ?: return
         val ids = definition.ids ?: return
         val amounts = definition.amounts ?: return
@@ -105,7 +106,7 @@ class BotUpdates(
                 continue
             }
             val def = ItemDefinitions.getOrNull(id) ?: continue
-            DynamicResolvers.shopItems.getOrPut(def.stringId) { mutableListOf() }.add(area to npc.id)
+            map.getOrPut(def.stringId) { mutableListOf() }.add(area to npc.id)
         }
     }
 }

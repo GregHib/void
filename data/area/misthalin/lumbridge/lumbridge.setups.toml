@@ -57,3 +57,15 @@ produces = [
     { item = "training_bow" },
     { item = "training_arrows" }
 ]
+
+[pick_up_lumbridge_swamp_fishing_net]
+requires = [
+    { inventory = { id = "empty", min = 1 } },
+    { area = { id = "lumbridge_swamp_fishing_area" } }
+]
+actions = [
+    { floor_item = { option = "Take", id = "small_fishing_net", delay = 10, success = { inventory = { id = "small_fishing_net", min = 1 } } } },
+]
+produces = [
+    { item = "small_fishing_net" },
+]

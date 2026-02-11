@@ -19,6 +19,5 @@ spawns = [
   { id = "swamp_tar", x = 3193, y = 3181, delay = 100, members = true },
 # 12849
   { id = "small_fishing_net", x = 3244, y = 3157, delay = 10 },
-  { id = "small_fishing_net", x = 3244, y = 3160, delay = 10 },
   { id = "leather_gloves", x = 3206, y = 3147, delay = 100 },
 ]

@@ -121,6 +121,22 @@ sealed class ActionParser {
         }
     }
 
+    object InteractFloorItemParser : ActionParser() {
+        override val required = setOf("option", "id", "success")
+        override val optional = setOf("delay", "radius", "x", "y")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val option = map["option"] as String
+            val id = map["id"] as String
+            val delay = map["delay"] as? Int ?: 0
+            val success = requirement(map, "success").singleOrNull()
+            val radius = map["radius"] as? Int ?: 10
+            val x = map["x"] as? Int
+            val y = map["y"] as? Int
+            return BotAction.InteractFloorItem(option, id, delay, success, radius, x, y)
+        }
+    }
+
     object GoToParser : ActionParser() {
         override val optional = setOf("area", "nearest")
         override fun parse(map: Map<String, Any>) = when {
@@ -208,6 +224,7 @@ sealed class ActionParser {
         private val parsers = mapOf(
             "npc" to InteractNpcParser,
             "object" to InteractObjectParser,
+            "floor_item" to InteractFloorItemParser,
             "item_on_object" to ItemOnObjectParser,
             "item_on_item" to ItemOnItemParser,
             "go_to" to GoToParser,

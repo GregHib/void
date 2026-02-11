@@ -1,4 +1,7 @@
 [firemaking]
+require = [
+    { owns = { id = "$logs", min = 54 }}
+]
 setup = [
     { area = { id = "$location" } },
     { inventory = [{ id = "$logs", min = 27 }, { id = "tinderbox", min = 1 }] },
