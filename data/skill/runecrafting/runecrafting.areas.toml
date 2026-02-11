@@ -71,25 +71,15 @@ tags = ["multi_combat"]
 [earth_altar_ruins]
 x = [3304, 3308]
 y = [3472, 3476]
-tags = ["ruins", "earth"]
 
 [air_altar_ruins]
 x = [3125, 3129]
 y = [3403, 3407]
-tags = ["ruins", "air"]
 
 [air_altar]
 x = [2816, 2879]
 y = [4800, 4863]
-tags = ["altar"]
-type = "air"
-spaces = 3
-levels = "1-9"
 
 [earth_altar]
 x = [2624, 2687]
 y = [4800, 4863]
-tags = ["altar"]
-type = "earth"
-spaces = 3
-levels = "9-14"

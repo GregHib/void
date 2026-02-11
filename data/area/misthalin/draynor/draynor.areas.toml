@@ -11,31 +11,18 @@ hint = "around a village between a great tower and a vampyre's manor."
 [draynor_willow_trees]
 x = [3083, 3090]
 y = [3227, 3238]
-tags = ["trees"]
-trees = ["willow"]
-levels = "30-45"
-spaces = 6
 
 [draynor_oak_trees]
 x = [3098, 3103]
 y = [3241, 3253]
-tags = ["trees"]
-trees = ["tree", "oak"]
-levels = "0-30"
 
 [draynor_west_oak_trees]
 x = [3068, 3072]
 y = [3248, 3260]
-tags = ["trees"]
-trees = ["tree", "oak"]
-levels = "0-30"
 
 [draynor_north_trees]
 x = [3075, 3085]
 y = [3265, 3274]
-tags = ["trees"]
-trees = ["tree", "oak"]
-levels = "0-30"
 
 [draynor_bank]
 x = [3088, 3097]
@@ -45,9 +32,6 @@ tags = ["bank"]
 [draynor_fishing_area]
 x = [3085, 3086]
 y = [3227, 3231]
-tags = ["fish"]
-type = "lure_bait"
-spaces = 5
 
 [draynor_village_multi_area]
 x = [3112, 3136, 3136, 3104, 3104, 3112]

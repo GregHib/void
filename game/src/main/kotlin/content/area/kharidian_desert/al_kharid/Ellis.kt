@@ -90,7 +90,6 @@ class Ellis : Script {
             player.message("You don't have any ${item.toLowerSpaceCase()} to tan.")
             return
         }
-        player.softTimers.start("tanning")
         val tanning: Tanning = ItemDefinitions.get(item)["tanning"]
         val (leather, cost) = tanning.prices[if (type.endsWith("_1")) 1 else 0]
         var tanned = 0
@@ -108,7 +107,6 @@ class Ellis : Script {
             }
             tanned++
         }
-        player.softTimers.stop("tanning")
         if (tanned == 1) {
             player.message("The tanner tans your ${item.toLowerSpaceCase()}.")
         } else if (tanned > 0) {

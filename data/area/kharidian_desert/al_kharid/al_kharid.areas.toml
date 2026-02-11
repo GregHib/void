@@ -6,14 +6,10 @@ tags = ["bank"]
 [zekes_scimitar_shop]
 x = [3285, 3290]
 y = [3187, 3192]
-tags = ["shop"]
-items = ["bronze_scimitar", "iron_scimitar", "steel_scimitar", "mithril_scimitar"]
 
 [al_kharid_kebab_shop]
 x = [3271, 3275]
 y = [3179, 3183]
-type = "range"
-tags = ["cooking", "spaces_2"]
 
 [al_kharid_multi_area]
 x = [3264, 3327]
