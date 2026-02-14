@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.type.Tile
 
 class StrongholdOfPlayerSafety : Script {
@@ -47,28 +46,26 @@ class StrongholdOfPlayerSafety : Script {
 
         objectOperate("Pull", "stronghold_of_player_safety_an_old_lever_closed") { (target) ->
             arriveDelay()
-            anim("pull_ground_lever")
+            animDelay("pull_ground_lever")
             target.anim("lever_down")
             areaSound("lever", target.tile)
             delay(2)
             areaSound("unlock", target.tile)
-            delay(3)
-            target.replace("stronghold_of_player_safety_an_old_lever_opened")
-            set("stronghold_of_player_safety_lever", true)
+            delay(1)
             message("You hear cogs and gears moving and a distant unlocking sound.")
+            set("stronghold_of_player_safety_lever", true)
         }
 
         objectOperate("Pull", "stronghold_of_player_safety_an_old_lever_opened") { (target) ->
             arriveDelay()
-            anim("push_ground_lever")
+            animDelay("push_ground_lever")
             target.anim("lever_up")
             areaSound("lever", target.tile)
             delay(1)
             areaSound("unlock", target.tile)
-            delay(2)
-            target.replace("stronghold_of_player_safety_an_old_lever_closed")
-            set("stronghold_of_player_safety_lever", false)
+            delay(1)
             message("You hear cogs and gears moving and the sound of heavy locks falling into place.")
+            set("stronghold_of_player_safety_lever", false)
         }
 
         objectOperate("Enter", "stronghold_of_player_safety_crevice") {

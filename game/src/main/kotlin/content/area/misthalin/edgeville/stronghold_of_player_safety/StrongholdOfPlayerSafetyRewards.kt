@@ -1,15 +1,13 @@
 package content.area.misthalin.edgeville.stronghold_of_player_safety
 
-import content.entity.player.bank.bank
+import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.skillLamp
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
-import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
@@ -27,7 +25,6 @@ class StrongholdOfPlayerSafetyRewards : Script {
                 message("You don't have any room in your inventory for the treasure.")
                 return@objectOperate
             }
-            target.replace("stronghold_of_player_safety_treasure_chest_opened")
             set("stronghold_of_player_safety_chest", true)
             inventory.add("coins", 10000)
             inventory.add("safety_gloves")
@@ -46,7 +43,7 @@ class StrongholdOfPlayerSafetyRewards : Script {
         }
         objectOperate("Search", "stronghold_of_player_safety_treasure_chest_opened") {
             if (get("unlocked_emote_safety_first", false)) {
-                if (bank.contains("safety_gloves") || (inventory.contains("safety_gloves") || (holdsItem("safety_gloves")))) {
+                if (ownsItem("safety_gloves")) {
                     statement("The chest appears to be empty.")
                     message("The chest is already open and empty.")
                 } else {

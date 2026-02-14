@@ -90,6 +90,10 @@ examine = "Yuck. They are covered in bug slime."
 id = 29729
 examine = "I wonder where this leads?"
 
+[stronghold_of_player_safety_an_old_lever_closed]
+id = 29730
+examine = "I wonder what it does."
+
 [stronghold_of_player_safety_an_old_lever_opened]
 id = 29731
 examine = "I wonder what it does."

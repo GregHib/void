@@ -182,42 +182,42 @@ examine = "The guard is watching these stairs."
 id = 29592
 examine = "They help one to rise up or down"
 
-[29671]
+[player_safety_stairs_3rd_floor_down_north]
 id = 29671
 examine = "I wonder where they will take me."
 
-[29672]
+[player_safety_stairs_2nd_floor_up_north]
 id = 29672
 examine = "I wonder where they will take me."
 
-[29660]
+[player_safety_stairs_1st_floor_up_north_west]
 id = 29660
 examine = "I wonder where they will take me."
 
-[29663]
+[player_safety_stairs_2nd_floor_down_south_east]
 id = 29663
 examine = "I wonder where they will take me."
 
-[29664]
+[player_safety_stairs_1st_floor_up_south_east]
 id = 29664
 examine = "I wonder where they will take me."
 
-[29667]
+[player_safety_stairs_2nd_floor_down_north_east]
 id = 29667
 examine = "I wonder where they will take me."
 
-[29668]
+[player_safety_stairs_1st_floor_up_north_east]
 id = 29668
 examine = "I wonder where they will take me."
 
-[29655]
+[player_safety_stairs_2nd_floor_down_south_west]
 id = 29655
 examine = "I wonder where they will take me."
 
-[29656]
+[player_safety_stairs_1st_floor_up_south_west]
 id = 29656
 examine = "I wonder where they will take me."
 
-[29659]
+[player_safety_stairs_2nd_floor_down_north_west]
 id = 29659
 examine = "I wonder where they will take me."

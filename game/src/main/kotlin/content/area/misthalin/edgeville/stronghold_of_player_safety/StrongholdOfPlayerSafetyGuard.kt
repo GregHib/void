@@ -21,6 +21,19 @@ class StrongholdOfPlayerSafetyGuard : Script {
                 choice {
                     option<Happy>("Yes, please.") {
                         reportAbuse()
+                        open("report_abuse_select")
+                        interfaceOpened("report_abuse_select") {
+                            closeDialogue()
+                        }
+                        interfaceClosed("report_abuse_select") {
+                            queue("guard_chat") {
+                                npc<Neutral>("On the first page, simply enter the player's name in the box and then click 'Next'")
+                                npc<Neutral>("On the following page, click on the offence that the player has commited.")
+                                npc<Neutral>("Finally, you'll be given the option to temporarily ignore the player you've reported. That will last until you next log out.")
+                                player<Neutral>("Thank you. I'll bear that in mind.")
+                                closeDialogue()
+                            }
+                        }
                     }
                     option<Neutral>("No thanks.")
                 }
@@ -36,28 +49,27 @@ class StrongholdOfPlayerSafetyGuard : Script {
                 choice {
                     option<Quiz>("What is this Report Abuse thing?") {
                         reportAbuse()
+                        open("report_abuse_select")
+                        interfaceOpened("report_abuse_select") {
+                            closeDialogue()
+                        }
+                        interfaceClosed("report_abuse_select") {
+                            queue("guard_chat") {
+                                npc<Neutral>("On the first page, simply enter the player's name in the box and then click 'Next'")
+                                npc<Neutral>("On the following page, click on the offence that the player has commited.")
+                                npc<Neutral>("Finally, you'll be given the option to temporarily ignore the player you've reported. That will last until you next log out.")
+                                player<Neutral>("Thank you. I'll bear that in mind.")
+                                closeDialogue()
+                            }
+                        }
                     }
                     option<Neutral>("That's interesting. Goodbye.")
                 }
             }
         }
     }
-
     suspend fun Player.reportAbuse() {
         npc<Neutral>("Should you find a player who acts in a way that breaks one of our rules, you should report them.")
         npc<Neutral>("Reporting is very simple and easy to do. Simply click the Report Abuse button at the bottom of the screen and you will be shown the following screens:")
-        open("report_abuse_select")
-        interfaceOpened("report_abuse_select") {
-            closeDialogue()
-        }
-        interfaceClosed("report_abuse_select") {
-            queue("guard_chat") {
-                npc<Neutral>("On the first page, simply enter the player's name in the box and then click 'Next'")
-                npc<Neutral>("On the following page, click on the offence that the player has commited.")
-                npc<Neutral>("Finally, you'll be given the option to temporarily ignore the player you've reported. That will last until you next log out.")
-                player<Neutral>("Thank you. I'll bear that in mind.")
-                closeDialogue()
-            }
-        }
     }
 }

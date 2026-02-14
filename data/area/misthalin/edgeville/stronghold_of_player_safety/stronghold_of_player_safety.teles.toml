@@ -15,47 +15,47 @@ option = "Pull"
 tile = { x = 3153, y = 3923 }
 to = { x = 2562, y = 3311 }
 
-[29660]
+[player_safety_stairs_1st_floor_up_north_west]
 option = "Climb-up"
 tile = { x = 3147, y = 4249, level = 1 }
 delta = { x = 3, y = 2, level = 1 }
 
-[29659]
+[player_safety_stairs_2nd_floor_down_north_west]
 option = "Climb-down"
 tile = { x = 3149, y = 4250, level = 2 }
 delta = { x = -3, y = -2, level = -1 }
 
-[29656]
+[player_safety_stairs_1st_floor_up_south_west]
 option = "Climb-up"
 tile = { x = 3147, y = 4246, level = 1 }
 delta = { x = 3, y = -2, level = 1 }
 
-[29655]
+[player_safety_stairs_2nd_floor_down_south_west]
 option = "Climb-down"
 tile = { x = 3149, y = 4245, level = 2 }
 delta = { x = -3, y = 2, level = -1 }
 
-[29664]
+[player_safety_stairs_1st_floor_up_south_east]
 option = "Climb-up"
 tile = { x = 3157, y = 4246, level = 1 }
 delta = { x = -3, y = -2, level = 1 }
 
-[29663]
+[player_safety_stairs_2nd_floor_down_south_east]
 option = "Climb-down"
 tile = { x = 3157, y = 4245, level = 2 }
 delta = { x = 3, y = 2, level = -1 }
 
-[29668]
+[player_safety_stairs_1st_floor_up_north_east]
 option = "Climb-up"
 tile = { x = 3157, y = 4249, level = 1 }
 delta = { x = -3, y = 2, level = 1 }
 
-[29667]
+[player_safety_stairs_2nd_floor_down_north_east]
 option = "Climb-down"
 tile = { x = 3157, y = 4250, level = 2 }
 delta = { x = 3, y = -2, level = -1 }
 
-[29672]
+[player_safety_stairs_2nd_floor_up_north]
 option = "Climb-up"
 tile = { x = 3171, y = 4273, level = 2 }
 delta = { x = -3, y = -2, level = 1 }
