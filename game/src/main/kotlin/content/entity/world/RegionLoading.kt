@@ -112,7 +112,7 @@ class RegionLoading(val dynamicZones: DynamicZones) : Script {
         if ((dynamic || wasDynamic) && !initial) {
             viewport.npcs.clear()
         }
-        if (!player.isBot) {
+        if (player.networked) {
             viewport.loaded = false
         }
         viewport.lastLoadZone = player.tile.zone

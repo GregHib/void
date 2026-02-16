@@ -27,6 +27,7 @@ import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.client.DummyClient
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.login.protocol.visual.PlayerVisuals
 import world.gregs.voidps.type.Tile
@@ -84,7 +85,7 @@ class Player(
 //    val area: AreaQueue = AreaQueue(this)
 
     val networked: Boolean
-        get() = client != null && viewport != null
+        get() = client !is DummyClient && viewport != null
 
     override var suspension: Suspension? = null
 

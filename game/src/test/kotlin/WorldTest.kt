@@ -100,7 +100,7 @@ abstract class WorldTest : KoinTest {
 
     fun createPlayer(tile: Tile = Tile.EMPTY, name: String = "player"): Player {
         val player = Player(tile = tile, accountName = name, passwordHash = "")
-        assertTrue(accounts.setup(player, DummyClient(), 0, false))
+        assertTrue(accounts.setup(player, DummyClient(), 0, viewport = true))
         accountDefs.add(player)
         tick()
         player["creation"] = -1
@@ -109,7 +109,6 @@ abstract class WorldTest : KoinTest {
         player.softTimers.clear("restore_stats")
         player.softTimers.clear("restore_hitpoints")
         tick()
-        player.viewport = Viewport()
         player.viewport?.loaded = true
         return player
     }
