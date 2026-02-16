@@ -25,7 +25,10 @@ import java.util.concurrent.TimeUnit
 class Potions : Script {
 
     init {
-        consumed("*_4,*_3,*_2,*_1") { item, slot ->
+        consumed("*") { item, slot ->
+            if (!item.id.endsWith("_1") && !item.id.endsWith("_2") && !item.id.endsWith("_3") && !item.id.endsWith("_4")) {
+                return@consumed
+            }
             val doses = item.id.last().digitToInt()
             if (doses != 1) {
                 message("You have ${doses - 1} ${"dose".plural(doses - 1)} of the potion left.")
