@@ -41,7 +41,7 @@ class BotCommands(
     val loader: PlayerAccountLoader,
     val manager: BotManager,
     val accounts: AccountManager,
-    val accountDefinitions: AccountDefinitions,
+    accountDefinitions: AccountDefinitions,
 ) : Script {
 
     val bots = mutableListOf<Player>()

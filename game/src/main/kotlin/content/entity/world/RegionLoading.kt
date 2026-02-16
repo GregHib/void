@@ -1,6 +1,5 @@
 package content.entity.world
 
-import content.bot.isBot
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.update.view.Viewport
