@@ -1,6 +1,6 @@
 package content.quest.member.fairy_tale_part_2.fairy_ring
 
-import content.bot.interact.navigation.graph.readTile
+import content.bot.behaviour.navigation.NavigationGraph.Companion.readTile
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.engine.timedLoad

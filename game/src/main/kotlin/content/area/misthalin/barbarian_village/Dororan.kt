@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.softQueue
@@ -975,7 +975,7 @@ class Dororan : Script {
             engrave()
             return
         }
-        if (holdsItem("ring_from_jeffery")) {
+        if (carriesItem("ring_from_jeffery")) {
             player<Happy>("I have one right here.")
             item("ring_from_jeffery", 600, "You show Dororan the ring from Jeffery.")
             npc<Happy>("Thank you! That's exactly what I need!")

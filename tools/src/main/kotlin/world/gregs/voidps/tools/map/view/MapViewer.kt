@@ -2,7 +2,6 @@ package world.gregs.voidps.tools.map.view
 
 import com.github.weisj.darklaf.LafManager
 import com.github.weisj.darklaf.LafManager.getPreferredThemeStyle
-import content.bot.interact.navigation.graph.NavigationGraph
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.data.Settings
@@ -30,13 +29,14 @@ class MapViewer {
             val files = configFiles()
             ObjectDefinitions.init(decoder).load(files.list(Settings["definitions.objects"]))
             Areas.load(files.list(Settings["map.areas"]))
-            val nav = NavigationGraph().load(files.find(Settings["map.navGraph"]))
             if (DISPLAY_AREA_COLLISIONS || DISPLAY_ALL_COLLISIONS) {
                 ObjectDefinitions.init(ObjectDecoder(member = true, lowDetail = false).load(cache))
                     .load(files.list(Settings["definitions.objects"]))
                 MapDefinitions(CollisionDecoder(), cache).load(files)
             }
-            frame.add(MapView(nav, files.list(Settings["map.areas"])))
+            val view = MapView()
+            view.reload(files)
+            frame.add(view)
             frame.pack()
             frame.setLocationRelativeTo(null)
             frame.isVisible = true

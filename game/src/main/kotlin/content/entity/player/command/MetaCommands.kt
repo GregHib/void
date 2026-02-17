@@ -85,13 +85,13 @@ class MetaCommands(
             message("$found results found for '$search'", ChatType.Console)
         }
 
-        modCommand("players", stringArg("name", desc = "Player name or id to search for", autofill = accountDefinitions.displayNames.keys), desc = "Search all players") { args ->
+        modCommand("accounts", stringArg("name", desc = "Player name or id to search for", optional = true, autofill = accountDefinitions.displayNames.keys), desc = "Search all players") { args ->
             if (hasClock("search_delay")) {
                 return@modCommand
             }
             start("search_delay", 1)
             val search = args.joinToString(" ").lowercase()
-            message("===== Players =====", ChatType.Console)
+            message("===== Accounts =====", ChatType.Console)
             val found = searchPlayers(this, search)
             message("$found results found for '$search'", ChatType.Console)
         }
@@ -223,9 +223,6 @@ class MetaCommands(
                     list.add("")
                 }
             }
-        }
-        for (line in list) {
-            println(line)
         }
         player.questJournal("Commands List", list)
     }

@@ -23,10 +23,11 @@ object ItemDefinitions {
         val decoder = ItemDefinitions.init(ItemDecoder(parameters).load(cache)).load(files.list(Settings["definitions.items"]))
         for (i in decoder.definitions.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.stringId.contains("dragon_plate")) {
+            if (def.stringId.contains("rune_plate")) {
                 //            if (def.get("category", "") != "")
 //            if (/*def.get("category", "") == "throwable" &&*/ def.contains("secondary_use_level"))
-                println("${def.stringId} ${def.extras}")
+//                println("${def.stringId} ${def.extras}")
+                println(def)
             }
 //            if (def.contains("ammo_group")) {
 //                println("${def.stringId} ${def.extras}")

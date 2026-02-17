@@ -19,16 +19,13 @@ object Wildcards {
 
     private var changes = false
 
-    private lateinit var interfaceDefinitions: InterfaceDefinitions
     private lateinit var variableDefinitions: VariableDefinitions
 
     fun load(
         path: String,
-        interfaceDefinitions: InterfaceDefinitions = get(),
         variableDefinitions: VariableDefinitions = get(),
     ) {
         timedLoad("wildcard") {
-            this.interfaceDefinitions = interfaceDefinitions
             this.variableDefinitions = variableDefinitions
             val file = File(path)
             if (!file.exists()) {
@@ -72,11 +69,17 @@ object Wildcards {
         return when (type) {
             Wildcard.Npc -> NPCDefinitions.ids.keys.hashCode()
             Wildcard.Object -> ObjectDefinitions.ids.keys.hashCode()
-            Wildcard.Interface -> interfaceDefinitions.ids.keys.hashCode()
-            Wildcard.Component -> interfaceDefinitions.componentIds.keys.hashCode()
+            Wildcard.Interface -> InterfaceDefinitions.ids.keys.hashCode()
+            Wildcard.Component -> InterfaceDefinitions.componentIds.keys.hashCode()
             Wildcard.Item -> ItemDefinitions.ids.keys.hashCode()
             Wildcard.Variables -> variableDefinitions.definitions.keys.hashCode()
         }
+    }
+
+    fun get(key: String, type: Wildcard): Set<String> {
+        val set = mutableSetOf<String>()
+        find(key, type) { set.add(it) }
+        return set
     }
 
     fun find(key: String, type: Wildcard, block: (String) -> Unit) {
@@ -128,8 +131,8 @@ object Wildcards {
     private fun set(type: Wildcard): Set<String> = when (type) {
         Wildcard.Npc -> NPCDefinitions.ids.keys
         Wildcard.Object -> ObjectDefinitions.ids.keys
-        Wildcard.Interface -> interfaceDefinitions.ids.keys
-        Wildcard.Component -> interfaceDefinitions.componentIds.keys
+        Wildcard.Interface -> InterfaceDefinitions.ids.keys
+        Wildcard.Component -> InterfaceDefinitions.componentIds.keys
         Wildcard.Item -> ItemDefinitions.ids.keys
         Wildcard.Variables -> variableDefinitions.definitions.keys
     }

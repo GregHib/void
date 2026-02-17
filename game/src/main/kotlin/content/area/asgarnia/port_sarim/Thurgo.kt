@@ -6,8 +6,8 @@ import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.contains
-import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
@@ -42,7 +42,7 @@ class Thurgo : Script {
 
     suspend fun Player.menuReplacementSword() {
         choice {
-            if (holdsItem("blurite_sword")) {
+            if (carriesItem("blurite_sword")) {
                 madeSword()
             } else {
                 replacementSword()
@@ -119,7 +119,7 @@ class Thurgo : Script {
 
     fun ChoiceOption.aboutSword() = option<Happy>("About that sword...") {
         npc<Quiz>("Have you got a picture of the sword for me yet?")
-        if (!holdsItem("portrait")) {
+        if (!carriesItem("portrait")) {
             player<Disheartened>("Sorry, not yet.")
             npc<Idle>("Well, come back when you do.")
             return@option
@@ -145,7 +145,7 @@ class Thurgo : Script {
     }
 
     fun ChoiceOption.redberryPie(player: Player) {
-        if (!player.holdsItem("redberry_pie")) {
+        if (!player.carriesItem("redberry_pie")) {
             return
         }
         option<Quiz>("Would you like a redberry pie?") {

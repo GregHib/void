@@ -29,6 +29,7 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
 
     fun init(definitions: Array<ItemDefinition>): ItemDefinitions {
         this.definitions = definitions
+        loaded = true
         return this
     }
 

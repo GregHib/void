@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
@@ -48,7 +48,7 @@ class SirVyvin(
                         npc<Frustrated>("HEY! Just WHAT do you THINK you are DOING??? STAY OUT of MY cupboard!")
                         return@objectOperate
                     }
-                    if (holdsItem("portrait")) {
+                    if (carriesItem("portrait")) {
                         statement("There is just a load of junk in here.")
                     } else {
                         statement("You find a small portrait in here which you take.")

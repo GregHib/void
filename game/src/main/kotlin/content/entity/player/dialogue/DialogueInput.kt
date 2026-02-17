@@ -2,6 +2,7 @@ package content.entity.player.dialogue
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
+import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.suspend.IntSuspension
 import world.gregs.voidps.engine.suspend.NameSuspension
@@ -44,14 +45,17 @@ class DialogueInput : Script {
 
         instruction<EnterInt> { player ->
             (player.dialogueSuspension as? IntSuspension)?.resume(value)
+            player.sendScript("close_entry")
         }
 
         instruction<EnterString> { player ->
             (player.dialogueSuspension as? StringSuspension)?.resume(value)
+            player.sendScript("close_entry")
         }
 
         instruction<EnterName> { player ->
             (player.dialogueSuspension as? NameSuspension)?.resume(value)
+            player.sendScript("close_entry")
         }
 
         continueDialogue("dialogue_confirm_destroy:*") {
@@ -61,6 +65,7 @@ class DialogueInput : Script {
         continueDialogue("dialogue_skill_creation:choice*") {
             val choice = it.substringAfter(":choice").toIntOrNull() ?: 0
             (dialogueSuspension as? IntSuspension)?.resume(choice - 1)
+            closeDialogue()
         }
     }
 }

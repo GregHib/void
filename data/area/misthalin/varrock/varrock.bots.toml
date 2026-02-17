@@ -1,0 +1,35 @@
+# Mining
+[varrock_copper_mining]
+template = "copper_ore_template"
+capacity = 4
+fields = { location = "varrock_south_east_mine" }
+
+[varrock_tin_mining]
+template = "tin_ore_template"
+capacity = 4
+fields = { location = "varrock_south_east_mine" }
+
+[varrock_iron_mining]
+template = "iron_ore_template"
+capacity = 2
+fields = { location = "varrock_south_east_mine" }
+
+[varrock_clay_mining]
+template = "clay_template"
+capacity = 2
+fields = { location = "varrock_south_west_mine" }
+
+[varrock_east_tin_mining]
+template = "tin_ore_template"
+capacity = 4
+fields = { location = "varrock_south_west_mine" }
+
+[varrock_silver_mining]
+template = "silver_ore_template"
+capacity = 3
+fields = { location = "varrock_south_west_mine" }
+
+[varrock_east_iron_mining]
+template = "iron_ore_template"
+capacity = 2
+fields = { location = "varrock_south_west_mine" }

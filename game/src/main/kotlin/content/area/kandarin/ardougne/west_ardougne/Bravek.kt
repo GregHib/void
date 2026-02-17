@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
@@ -88,7 +88,7 @@ class Bravek : Script {
 
     suspend fun Player.hasCurePaper(target: NPC) {
         npc<Confused>("Uurgh! My head still hurts too much to think straight. Oh for one of Trudi's hangover cures!")
-        if (holdsItem("hangover_cure")) {
+        if (carriesItem("hangover_cure")) {
             player<Idle>("Try this.")
             inventory.remove("hangover_cure")
             set("plague_city", "gave_cure")
@@ -105,7 +105,7 @@ class Bravek : Script {
 
     suspend fun Player.gaveCure() {
         npc<Happy>("Thanks again for the hangover cure.")
-        if (holdsItem("warrant")) {
+        if (carriesItem("warrant")) {
             player<Happy>("Not a problem, happy to help out.")
             npc<Happy>("I'm just having a little drop of whisky, then I'll feel really good.")
         } else {

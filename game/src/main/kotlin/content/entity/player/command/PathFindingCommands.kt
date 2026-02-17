@@ -1,8 +1,13 @@
 package content.entity.player.command
 
-import content.bot.interact.path.Dijkstra
-import content.bot.interact.path.EdgeTraversal
-import content.bot.interact.path.NodeTargetStrategy
+import content.bot.Bot
+import content.bot.BotManager
+import content.bot.behaviour.BehaviourFrame
+import content.bot.behaviour.action.BotGoTo
+import content.bot.behaviour.navigation.NavigationGraph
+import content.bot.behaviour.setup.Resolver
+import content.bot.bot
+import content.bot.isBot
 import content.entity.gfx.areaGfx
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
@@ -11,6 +16,7 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.stringArg
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.PatrolDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -118,37 +124,27 @@ class PathFindingCommands(val patrols: PatrolDefinitions) : Script {
             //    println(pf.findPath(3205, 3220, 3205, 3223, 2))
         }
 
-        adminCommand("walk_to_bank") {
-            val east = Tile(3179, 3433).toCuboid(15, 14)
-            val west = Tile(3250, 3417).toCuboid(7, 8)
-            val dijkstra: Dijkstra = get()
-            val strategy = object : NodeTargetStrategy() {
-                override fun reached(node: Any): Boolean = if (node is Tile) east.contains(node) || west.contains(node) else false
+        adminCommand("go_to", stringArg("area-id", autofill = Areas.getAll().map { it.stringId }.toSet(), optional = true), desc = "Bot walk to a location") { args ->
+            val area = args.getOrNull(0) ?: "varrock_teleport"
+            if (!isBot) {
+                val manager = get<BotManager>()
+                val bot = Bot(this)
+                set("bot", bot)
+                manager.add(bot)
             }
+            bot.queue(BehaviourFrame(Resolver("bot_to_$area", 0, actions = listOf(BotGoTo(area)))))
+        }
+
+        adminCommand("walk_to_bank") {
+            val graph: NavigationGraph = get()
+            val output = mutableListOf<Int>()
             println(
                 "Path took ${
                     measureNanoTime {
-                        dijkstra.find(this, strategy, EdgeTraversal())
+                        graph.findNearest(this, output, "bank")
                     }
                 }ns",
             )
-            /*action { FIXME
-                var first = true
-                while (waypoints.isNotEmpty()) {
-                    val next = waypoints.poll()
-                    suspendCoroutine<Unit> { cont ->
-                        val tile = if (first && !tile.within(next.end as Tile, 20)) {
-                            next.start
-                        } else {
-                            next.end
-                        } as Tile
-                        first = false
-                        scheduler.add {
-                            walkTo(tile)
-                        }
-                    }
-                }
-            }*/
         }
 
         timerTick("show_path") {

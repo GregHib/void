@@ -1,0 +1,35 @@
+# Mining
+[al_kharid_iron_mining]
+template = "iron_ore_template"
+capacity = 2
+fields = { location = "al_kharid_mine" }
+
+[al_kharid_coal_mining]
+template = "coal_template"
+capacity = 1
+fields = { location = "al_kharid_mine" }
+
+[al_kharid_silver_mining]
+template = "silver_ore_template"
+capacity = 2
+fields = { location = "al_kharid_mine" }
+
+[al_kharid_north_copper_mining]
+template = "copper_ore_template"
+capacity = 1
+fields = { location = "al_kharid_mine_north" }
+
+[al_kharid_north_silver_mining]
+template = "silver_ore_template"
+capacity = 1
+fields = { location = "al_kharid_mine_north" }
+
+[al_kharid_north_iron_mining]
+template = "iron_ore_template"
+capacity = 2
+fields = { location = "al_kharid_mine_north" }
+
+[al_kharid_north_mithril_mining]
+template = "mithril_ore_template"
+capacity = 2
+fields = { location = "al_kharid_mine_north" }

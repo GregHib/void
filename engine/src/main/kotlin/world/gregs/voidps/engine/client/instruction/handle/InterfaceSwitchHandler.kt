@@ -10,7 +10,7 @@ class InterfaceSwitchHandler(
     private val handler: InterfaceHandler,
 ) : InstructionHandler<MoveInventoryItem>() {
 
-    override fun validate(player: Player, instruction: MoveInventoryItem) {
+    override fun validate(player: Player, instruction: MoveInventoryItem): Boolean {
         var (fromInterfaceId, fromComponentId, fromItemId, fromSlot, toInterfaceId, toComponentId, toItemId, toSlot) = instruction
         if (toInterfaceId == 149) {
             toSlot -= 28
@@ -18,8 +18,9 @@ class InterfaceSwitchHandler(
             fromItemId = toItemId
             toItemId = temp
         }
-        val (fromId, fromComponent) = handler.getInterfaceItem(player, fromInterfaceId, fromComponentId, fromItemId, fromSlot) ?: return
-        val (toId, toComponent) = handler.getInterfaceItem(player, toInterfaceId, toComponentId, toItemId, toSlot) ?: return
+        val (fromId, fromComponent) = handler.getInterfaceItem(player, fromInterfaceId, fromComponentId, fromItemId, fromSlot) ?: return false
+        val (toId, toComponent) = handler.getInterfaceItem(player, toInterfaceId, toComponentId, toItemId, toSlot) ?: return false
         InterfaceApi.swap(player, "$fromId:$fromComponent", "$toId:$toComponent", fromSlot, toSlot)
+        return true
     }
 }

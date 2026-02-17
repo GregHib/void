@@ -1,6 +1,5 @@
 package content.entity.world
 
-import content.bot.isBot
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.update.view.Viewport
@@ -112,7 +111,7 @@ class RegionLoading(val dynamicZones: DynamicZones) : Script {
         if ((dynamic || wasDynamic) && !initial) {
             viewport.npcs.clear()
         }
-        if (!player.isBot) {
+        if (player.networked) {
             viewport.loaded = false
         }
         viewport.lastLoadZone = player.tile.zone

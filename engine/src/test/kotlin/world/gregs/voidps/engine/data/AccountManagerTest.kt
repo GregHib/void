@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
-import org.koin.test.get
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.ui.Interfaces
@@ -26,6 +25,7 @@ import world.gregs.voidps.engine.entity.character.player.equip.AppearanceOverrid
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.ConnectionQueue
+import world.gregs.voidps.network.client.DummyClient
 import world.gregs.voidps.network.login.protocol.encode.logout
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
@@ -38,15 +38,14 @@ class AccountManagerTest : KoinMock() {
     override val modules = listOf(
         module {
             single { ItemDefinitions.init(emptyArray()) }
-            single { InterfaceDefinitions(emptyArray()).apply { ids = emptyMap() } }
         },
     )
 
     @BeforeEach
     fun setup() {
+        InterfaceDefinitions.clear()
         Areas.set(emptyMap(), emptyMap(), mapOf(0 to setOf(AreaDefinition("area", Rectangle(Tile(0), 1, 1), emptySet()))))
-        val inventoryDefinitions = InventoryDefinitions(arrayOf(InventoryDefinition.EMPTY))
-        inventoryDefinitions.ids = mapOf("worn_equipment" to 0)
+        val inventoryDefinitions = InventoryDefinitions.set(arrayOf(InventoryDefinition.EMPTY), mapOf("worn_equipment" to 0))
         connectionQueue = ConnectionQueue(1)
         val storage = object : Storage {
             override fun names(): Map<String, AccountDefinition> = emptyMap()
@@ -77,8 +76,6 @@ class AccountManagerTest : KoinMock() {
         }
         Settings.load(mapOf("world.home.x" to "1234", "world.home.y" to "5432", "world.experienceRate" to "1.0"))
         manager = AccountManager(
-            interfaceDefinitions = get(),
-            inventoryDefinitions = inventoryDefinitions,
             accountDefinitions = AccountDefinitions(),
             variableDefinitions = VariableDefinitions(),
             saveQueue = SaveQueue(storage),
@@ -99,7 +96,7 @@ class AccountManagerTest : KoinMock() {
     @Test
     fun `Initialise player`() {
         val player = Player(0)
-        manager.setup(player, null, 0)
+        manager.setup(player, DummyClient(), 0, false)
         assertNotNull(player.visuals)
         assertNotNull(player.interfaces)
         assertNotNull(player.interfaceOptions)
@@ -110,7 +107,7 @@ class AccountManagerTest : KoinMock() {
     @Test
     fun `Spawn player`() {
         val player = Player(0)
-        player.interfaces = Interfaces(player, definitions = get())
+        player.interfaces = Interfaces(player)
         val client: Client = mockk(relaxed = true)
         manager.spawn(player, client)
         verify {

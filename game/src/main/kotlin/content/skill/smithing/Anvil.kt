@@ -26,7 +26,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.weakQueue
 
-class Anvil(val interfaceDefinitions: InterfaceDefinitions) : Script {
+class Anvil : Script {
 
     val types = listOf(
         "dagger",
@@ -90,13 +90,17 @@ class Anvil(val interfaceDefinitions: InterfaceDefinitions) : Script {
             set("smithing_metal", metal)
             interfaces.sendText("smithing", "title", "${metal.toSentenceCase()} Smithing")
             for (type in types) {
-                val componentDefinition = interfaceDefinitions.getComponent("smithing", type)
+                val componentDefinition = InterfaceDefinitions.getComponent("smithing", type)
                 val itemDefinition = ItemDefinitions.get("${metal}_$type")
                 val id = itemDefinition.id
                 if (id != -1) {
                     val amount = componentDefinition?.getOrNull("amount") ?: 1
                     interfaces.sendItem("smithing", type, id, amount)
-                    val smithing: Smithing = itemDefinition["smithing"]
+                    val smithing: Smithing? = itemDefinition.getOrNull("smithing")
+                    if (smithing == null) {
+                        logger.warn { "Item $id does not have a smithing component." }
+                        continue
+                    }
                     interfaces.sendColour("smithing", "${type}_name", if (has(Skill.Smithing, smithing.level)) Colours.WHITE else Colours.BLACK)
                 }
                 val required = componentDefinition?.getOrNull("bars") ?: 1
@@ -124,16 +128,14 @@ class Anvil(val interfaceDefinitions: InterfaceDefinitions) : Script {
     }
 
     suspend fun Player.smith(metal: String, type: String, amount: Int) {
-        val item = if (metal == "steel" && type == "lantern") {
-            "bullseye_lantern_frame"
-        } else if (metal == "mithril" && type == "grapple") {
-            "mithril_grapple_tip"
-        } else {
-            "${metal}_$type"
+        val item = when (metal) {
+            "steel" if type == "lantern" -> "bullseye_lantern_frame"
+            "mithril" if type == "grapple" -> "mithril_grapple_tip"
+            else -> "${metal}_$type"
         }
         val itemDefinition = ItemDefinitions.get(item)
         val smithing: Smithing = itemDefinition.getOrNull("smithing") ?: return
-        val component = interfaceDefinitions.getComponent("smithing", type)
+        val component = InterfaceDefinitions.getComponent("smithing", type)
         val quantity = component?.getOrNull("amount") ?: 1
         val bars = component?.getOrNull("bars") ?: 1
         val bar = "${metal}_bar"

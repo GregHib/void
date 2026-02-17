@@ -1,0 +1,20 @@
+edges = [
+    { from = { x = 3138, y = 3227 }, to = { x = 3119, y = 3228 } }, # draynor_east_to_jail_path_south
+    { from = { x = 3119, y = 3228 }, to = { x = 3105, y = 3238 } }, # draynor_path_south_to_west
+    { from = { x = 3105, y = 3238 }, to = { x = 3104, y = 3248 } }, # draynor_path_west_to_bank_crossroad
+    { from = { x = 3104, y = 3248 }, to = { x = 3093, y = 3245 } }, # draynor_bank_crossroad_to_bank
+    { from = { x = 3093, y = 3245 }, to = { x = 3079, y = 3249 } }, # draynor_bank_to_stalls
+    { from = { x = 3093, y = 3245 }, to = { x = 3099, y = 3246 } }, # draynor_bank_to_trees
+    { from = { x = 3104, y = 3248 }, to = { x = 3099, y = 3246 } }, # draynor_bank_crossroad_to_trees
+    { from = { x = 3079, y = 3249 }, to = { x = 3071, y = 3266 } }, # draynor_stalls_to_pigsty
+    { from = { x = 3079, y = 3249 }, to = { x = 3086, y = 3237 } }, # draynor_stall_to_willow_trees
+    { from = { x = 3079, y = 3249 }, to = { x = 3072, y = 3250 } }, # draynor_stalls_to_west_trees
+    { from = { x = 3079, y = 3249 }, to = { x = 3079, y = 3265 } }, # draynor_stalls_to_north_trees
+    { from = { x = 3093, y = 3245 }, to = { x = 3086, y = 3237 } }, # draynor_bank_to_willow_trees
+    { from = { x = 3086, y = 3237 }, to = { x = 3097, y = 3235 } }, # draynor_willow_trees_to_south
+    { from = { x = 3086, y = 3237 }, to = { x = 3086, y = 3231 } }, # draynor_willow_trees_to_fishing_spot
+    { from = { x = 3086, y = 3231 }, to = { x = 3097, y = 3235 } }, # draynor_fishing_spot_to_south
+    { from = { x = 3105, y = 3238 }, to = { x = 3097, y = 3235 } }, # draynor_jail_path_west_to_south
+    { from = { x = 3138, y = 3227 }, to = { x = 3153, y = 3216 } }, # draynor_east_path_to_swamp_north_wall
+    { from = { x = 3268, y = 3331 }, to = { x = 3283, y = 3331 } }, # varrock_al_kharid_crossroad_to_north_entrance
+]

@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
@@ -34,7 +34,7 @@ class Ned : Script {
     fun ChoiceOption.wig() {
         option<Quiz>("How about some sort of wig?") {
             npc<Neutral>("Well... that's an interesting thought. Yes, I think I could do something. Give me three balls of wool and I might be able to do it.")
-            if (!holdsItem("ball_of_wool", 3)) {
+            if (!carriesItem("ball_of_wool", 3)) {
                 player<Happy>("Great, I will get some. I think a wig would be useful.")
                 return@option
             }

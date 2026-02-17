@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
@@ -11,12 +12,29 @@ import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.timedLoad
 
-class InterfaceDefinitions(
-    override var definitions: Array<InterfaceDefinition>,
-) : DefinitionsDecoder<InterfaceDefinition> {
+object InterfaceDefinitions : DefinitionsDecoder<InterfaceDefinition> {
 
-    override lateinit var ids: Map<String, Int>
-    lateinit var componentIds: Map<String, Int>
+    override var definitions: Array<InterfaceDefinition> = emptyArray()
+    override var ids: Map<String, Int> = emptyMap()
+    var componentIds: Map<String, Int> = emptyMap()
+
+    fun init(definitions: Array<InterfaceDefinition>): InterfaceDefinitions {
+        this.definitions = definitions
+        return this
+    }
+
+    @TestOnly
+    fun set(definitions: Array<InterfaceDefinition>, ids: Map<String, Int>, components: Map<String, Int> = emptyMap()) {
+        this.definitions = definitions
+        this.ids = ids
+        this.componentIds = components
+    }
+
+    fun clear() {
+        this.definitions = emptyArray()
+        this.ids = emptyMap()
+        this.componentIds = emptyMap()
+    }
 
     fun getComponentId(id: String, component: String) = componentIds["$id:$component"]
 
@@ -25,7 +43,6 @@ class InterfaceDefinitions(
     }
 
     override fun empty() = InterfaceDefinition.EMPTY
-
 
     fun load(paths: List<String>, typePath: String): InterfaceDefinitions {
         timedLoad("interface extra") {

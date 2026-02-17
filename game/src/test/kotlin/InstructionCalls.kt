@@ -38,7 +38,7 @@ fun Player.itemOption(
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
     val item = inventories.inventory(inventory).getOrNull(slot) ?: Item(item)
-    val definition = get<InterfaceDefinitions>().getComponent(id, component) ?: throw Exception("Component $component not found in Interface $id")
+    val definition = InterfaceDefinitions.getComponent(id, component) ?: throw Exception("Component $component not found in Interface $id")
     get<InstructionHandlers>().interactInterface.validate(this, InteractInterface(InterfaceDefinition.id(definition.id), InterfaceDefinition.componentId(definition.id), item.def.id, slot, optionIndex))
 }
 
@@ -51,7 +51,7 @@ fun Player.interfaceOption(
     slot: Int = -1,
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
-    val definition = get<InterfaceDefinitions>().getComponent(id, component) ?: throw Exception("Component $component not found in Interface $id")
+    val definition = InterfaceDefinitions.getComponent(id, component) ?: throw Exception("Component $component not found in Interface $id")
     get<InstructionHandlers>().interactInterface.validate(this, InteractInterface(InterfaceDefinition.id(definition.id), InterfaceDefinition.componentId(definition.id), item.def.id, slot, optionIndex))
 }
 
@@ -129,8 +129,7 @@ private fun getItemOptionIndex(item: String, option: String): Int? {
 }
 
 private fun getOptionIndex(id: String, componentId: String, option: String): Int? {
-    val definitions: InterfaceDefinitions = get()
-    val component = definitions.getComponent(id, componentId) ?: return null
+    val component = InterfaceDefinitions.getComponent(id, componentId) ?: return null
     var options: Array<String?>? = component.options
     if (options != null) {
         val indexOf = options.indexOf(option)

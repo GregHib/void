@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.network.login.protocol.encode.closeInterface
 import world.gregs.voidps.network.login.protocol.encode.openInterface
 
@@ -15,7 +16,7 @@ internal class InterfacesTest : InterfaceTest() {
     @Test
     fun `Unknown interfaces throw exceptions`() {
         val name = "unknown"
-        every { definitions.getOrNull(name) } returns null
+        InterfaceDefinitions.clear()
         assertFalse(interfaces.contains(name))
         assertNull(interfaces.get(name))
         assertFalse(interfaces.close(name))
@@ -31,8 +32,7 @@ internal class InterfacesTest : InterfaceTest() {
     @Test
     fun `Unopened interface can't be interacted`() {
         val name = "zero"
-        every { definitions.getOrNull(name) } returns InterfaceDefinition(type = "type")
-        every { definitions.getOrNull(name) } returns InterfaceDefinition(id = 0)
+        InterfaceDefinitions.set(arrayOf(InterfaceDefinition(type = "type")), mapOf(name to 0), emptyMap())
         assertFalse(interfaces.contains(name))
         assertFalse(interfaces.close(name))
         assertFalse(interfaces.remove(name))
@@ -48,7 +48,7 @@ internal class InterfacesTest : InterfaceTest() {
     fun `Invalid interface`(resizable: Boolean) {
         interfaces.resizable = resizable
         val name = "zero"
-        every { definitions.getOrNull(name) } returns null
+        InterfaceDefinitions.clear()
         assertFalse(interfaces.open(name))
     }
 }

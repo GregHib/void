@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-class Autocast(val interfaceDefinitions: InterfaceDefinitions) : Script {
+class Autocast : Script {
 
     init {
         variableSet("autocast") { _, _, to ->
@@ -25,7 +25,7 @@ class Autocast(val interfaceDefinitions: InterfaceDefinitions) : Script {
     }
 
     fun Player.toggle(id: String, component: String) {
-        val value: Int? = interfaceDefinitions.getComponent(id, component)?.getOrNull("cast_id")
+        val value: Int? = InterfaceDefinitions.getComponent(id, component)?.getOrNull("cast_id")
         if (value == null || get("autocast", 0) == value) {
             clear("autocast")
         } else {

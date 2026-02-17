@@ -12,8 +12,10 @@ import org.koin.test.KoinTest
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.MemoryCache
+import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
+import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
@@ -99,7 +101,7 @@ abstract class WorldTest : KoinTest {
 
     fun createPlayer(tile: Tile = Tile.EMPTY, name: String = "player"): Player {
         val player = Player(tile = tile, accountName = name, passwordHash = "")
-        assertTrue(accounts.setup(player, null, 0))
+        assertTrue(accounts.setup(player, null, 0, viewport = true))
         accountDefs.add(player)
         tick()
         player["creation"] = -1
@@ -108,7 +110,6 @@ abstract class WorldTest : KoinTest {
         player.softTimers.clear("restore_stats")
         player.softTimers.clear("restore_hitpoints")
         tick()
-        player.viewport = Viewport()
         player.viewport?.loaded = true
         return player
     }
@@ -138,6 +139,8 @@ abstract class WorldTest : KoinTest {
     fun beforeAll() {
         settings = Settings.load(properties)
         stopKoin()
+        val (ids, components) = interfaceIds
+        InterfaceDefinitions.set(interfaceDefinitions, ids, components)
         startKoin {
             printLogger(Level.ERROR)
             allowOverride(true)
@@ -153,8 +156,10 @@ abstract class WorldTest : KoinTest {
                     }
                     single(createdAtStart = true) { animationDefinitions }
                     single(createdAtStart = true) { graphicDefinitions }
-                    single(createdAtStart = true) { interfaceDefinitions }
-                    single(createdAtStart = true) { inventoryDefinitions }
+                    single(createdAtStart = true) {
+                        InventoryDefinitions.set(inventoryDefinitions, inventoryIds)
+                        InventoryDefinitions
+                    }
                     single(createdAtStart = true) { structDefinitions }
                     single(createdAtStart = true) { quickChatPhraseDefinitions }
                     single(createdAtStart = true) { weaponStyleDefinitions }
@@ -263,7 +268,7 @@ abstract class WorldTest : KoinTest {
             properties["storage.grand.exchange.offers.claim.path"] = "../temp/data/test-grand_exchange/claimable_offers.toml"
             properties["storage.grand.exchange.offers.path"] = "../temp/data/test-grand_exchange/offers.toml"
             properties["storage.grand.exchange.history.path"] = "../temp/data/test-grand_exchange/price_history/"
-            properties["storage.caching.path"] = "../data/.temp"
+            properties["storage.caching.path"] = "../data/.temp/"
             properties["quests.requirements.skipMissing"] = false
             properties["grandExchange.priceLimit"] = true
             properties["world.npcs.randomWalk"] = false
@@ -312,12 +317,20 @@ abstract class WorldTest : KoinTest {
         private val graphicDefinitions: GraphicDefinitions by lazy {
             GraphicDefinitions(GraphicDecoder().load(cache)).load(configFiles.list(Settings["definitions.graphics"]))
         }
-        private val interfaceDefinitions: InterfaceDefinitions by lazy {
-            InterfaceDefinitions(InterfaceDecoder().load(cache)).load(configFiles.list(Settings["definitions.interfaces"]), configFiles.find(Settings["definitions.interfaces.types"]))
+        private val interfaceDefinitions: Array<InterfaceDefinition> by lazy {
+            InterfaceDecoder().load(cache)
         }
-        private val inventoryDefinitions: InventoryDefinitions by lazy {
+        private val interfaceIds: Pair<Map<String, Int>, Map<String, Int>> by lazy {
+            InterfaceDefinitions.init(interfaceDefinitions).load(configFiles.list(Settings["definitions.interfaces"]), configFiles.find(Settings["definitions.interfaces.types"]))
+            InterfaceDefinitions.ids to InterfaceDefinitions.componentIds
+        }
+        private val inventoryDefinitions: Array<InventoryDefinition> by lazy {
+            InventoryDecoder().load(cache)
+        }
+        private val inventoryIds: Map<String, Int> by lazy {
             itemIds
-            InventoryDefinitions(InventoryDecoder().load(cache)).load(configFiles.list(Settings["definitions.inventories"]), configFiles.list(Settings["definitions.shops"]))
+            InventoryDefinitions.init(inventoryDefinitions).load(configFiles.list(Settings["definitions.inventories"]), configFiles.list(Settings["definitions.shops"]))
+            InventoryDefinitions.ids
         }
         private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder(parameterDefinitions).load(cache)).load(configFiles.find(Settings["definitions.structs"])) }
         private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }

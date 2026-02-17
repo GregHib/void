@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 
@@ -76,7 +76,7 @@ class FatherAereck : Script {
     }
 
     suspend fun Player.foundSkull() {
-        if (holdsItem("ghostspeak_amulet")) {
+        if (carriesItem("ghostspeak_amulet")) {
             npc<Idle>("Have you got rid of the ghost yet?")
             player<Happy>("I've finally found the ghost's skull!")
             npc<Happy>("Great! Put it in the ghost's coffin and see what happens!")

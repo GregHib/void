@@ -31,6 +31,11 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
         this.ids = map
     }
 
+    fun clear() {
+        definitions = emptyArray()
+        ids = emptyMap()
+    }
+
     fun load(
         paths: List<String>,
         dropTables: DropTables? = null,

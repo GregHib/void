@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.mock.declare
-import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.cache.definition.data.FontDefinition
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.variable.MapValues
@@ -57,9 +56,6 @@ class FarmingTest : KoinMock() {
         farmingDefinitions = FarmingDefinitions()
         farming = Farming(variableDefinitions, farmingDefinitions)
         player = Player()
-        val invDefs = mockk<InventoryDefinitions>(relaxed = true)
-        every { invDefs.get(any<String>()) } returns InventoryDefinition.EMPTY
-        player.inventories.definitions = invDefs
         player.inventories.normalStack = ItemDependentStack
         player.inventories.validItemRule = ValidItemRestriction()
         player.inventories.player = player

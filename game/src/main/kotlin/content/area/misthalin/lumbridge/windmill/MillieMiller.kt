@@ -7,7 +7,7 @@ import content.entity.player.dialogue.type.*
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 
 class MillieMiller : Script {
 
@@ -20,7 +20,7 @@ class MillieMiller : Script {
 
     suspend fun Player.menu() {
         choice {
-            if (quest("cooks_assistant") == "started" && !holdsItem("extra_fine_flour")) {
+            if (quest("cooks_assistant") == "started" && !carriesItem("extra_fine_flour")) {
                 option("I'm looking for extra fine flour.") {
                     npc<Quiz>("What's wrong with ordinary flour?")
                     player<Neutral>("Well, I'm no expert chef, but apparently it makes better cakes. This cake, you see, is for Duke Horacio.")

@@ -1,0 +1,127 @@
+[copper_ore_template]
+requires = [
+    { skill = { id = "mining", min = 1, max = 15 } },
+]
+setup = [
+    { inventory = [{ id = "steel_pickaxe,iron_pickaxe,bronze_pickaxe", usable = true }, { id = "empty", min = 27 }] },
+    { area = { id = "$location" } },
+]
+actions = [
+    { object = { option = "Mine", id = "copper_rocks*", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
+]
+produces = [
+    { item = "copper_ore" },
+    { skill = "mining" }
+]
+
+[tin_ore_template]
+requires = [
+    { skill = { id = "mining", min = 1, max = 15 } },
+]
+setup = [
+    { inventory = [{ id = "steel_pickaxe,iron_pickaxe,bronze_pickaxe", usable = true }, { id = "empty", min = 27 }] },
+    { area = { id = "$location" } },
+]
+actions = [
+    { object = { option = "Mine", id = "tin_rocks*", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
+]
+produces = [
+    { item = "tin_ore" },
+    { skill = "mining" }
+]
+
+[clay_template]
+requires = [
+    { skill = { id = "mining", min = 1, max = 15 } },
+]
+setup = [
+    { inventory = [{ id = "steel_pickaxe,iron_pickaxe,bronze_pickaxe", usable = true }, { id = "empty", min = 27 }] },
+    { area = { id = "$location" } },
+]
+actions = [
+    { object = { option = "Mine", id = "clay_rocks*", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
+]
+produces = [
+    { item = "clay" },
+    { skill = "mining" }
+]
+
+[iron_ore_template]
+requires = [
+    { skill = { id = "mining", min = 15, max = 40 } },
+]
+setup = [
+    { inventory = [{ id = "adamant_pickaxe,mithril_pickaxe,steel_pickaxe", usable = true }, { id = "empty", min = 27 }] },
+    { area = { id = "$location" } },
+]
+actions = [
+    { object = { option = "Mine", id = "iron_rocks*", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
+]
+produces = [
+    { item = "iron_ore" },
+    { skill = "mining" }
+]
+
+[silver_ore_template]
+requires = [
+    { skill = { id = "mining", min = 20, max = 40 } },
+]
+setup = [
+    { inventory = [{ id = "adamant_pickaxe,mithril_pickaxe,steel_pickaxe", usable = true }, { id = "empty", min = 27 }] },
+    { area = { id = "$location" } },
+]
+actions = [
+    { object = { option = "Mine", id = "silver_rocks*", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
+]
+produces = [
+    { item = "silver_ore" },
+    { skill = "mining" }
+]
+
+[coal_template]
+requires = [
+    { skill = { id = "mining", min = 30, max = 55 } },
+]
+setup = [
+    { inventory = [{ id = "rune_pickaxe,adamant_pickaxe,mithril_pickaxe", usable = true }, { id = "empty", min = 27 }] },
+    { area = { id = "$location" } },
+]
+actions = [
+    { object = { option = "Mine", id = "coal_rocks*", delay = 10, success = { inventory = { id = "empty", max = 0 } } } },
+]
+produces = [
+    { item = "coal" },
+    { skill = "mining" }
+]
+
+[gold_ore_template]
+requires = [
+    { skill = { id = "mining", min = 40, max = 60 } },
+]
+setup = [
+    { inventory = [{ id = "rune_pickaxe,adamant_pickaxe,mithril_pickaxe", usable = true }, { id = "empty", min = 27 }] },
+    { area = { id = "$location" } },
+]
+actions = [
+    { object = { option = "Mine", id = "gold_rocks*", delay = 15, success = { inventory = { id = "empty", max = 0 } } } },
+]
+produces = [
+    { item = "gold_ore" },
+    { skill = "mining" }
+]
+
+[mithril_ore_template]
+requires = [
+    { skill = { id = "mining", min = 55, max = 70 } },
+]
+setup = [
+    { inventory = [{ id = "dragon_pickaxe,rune_pickaxe,adamant_pickaxe", usable = true }, { id = "empty", min = 27 }] },
+    { area = { id = "$location" } },
+]
+actions = [
+    { object = { option = "Mine", id = "mithril_rocks*", delay = 15, success = { inventory = { id = "empty", max = 0 } } } },
+]
+produces = [
+    { item = "mithril_ore" },
+    { skill = "mining" }
+]

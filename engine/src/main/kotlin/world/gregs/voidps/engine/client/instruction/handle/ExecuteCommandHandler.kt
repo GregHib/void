@@ -10,10 +10,10 @@ import world.gregs.voidps.network.client.instruction.ExecuteCommand
 
 class ExecuteCommandHandler : InstructionHandler<ExecuteCommand>() {
 
-    override fun validate(player: Player, instruction: ExecuteCommand) {
+    override fun validate(player: Player, instruction: ExecuteCommand): Boolean {
         if (instruction.tab) {
             Commands.autofill(player, instruction.command)
-            return
+            return true
         }
         val parts = instruction.command.split(" ")
         val prefix = parts[0]
@@ -26,11 +26,12 @@ class ExecuteCommandHandler : InstructionHandler<ExecuteCommand>() {
             player.tele(x, y, level)
             player["world_map_centre"] = player.tile.id
             player["world_map_marker_player"] = player.tile.id
-            return
+            return true
         }
         Script.launch {
             AuditLog.event(player, "command", "\"${instruction.command}\"")
             Commands.call(player, instruction.command)
         }
+        return true
     }
 }

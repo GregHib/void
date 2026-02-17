@@ -1,0 +1,85 @@
+#[ring_of_duelling_equipped]
+#type = "shortcut"
+#weight = 10
+#requires = [
+#    { equips = "ring_of_duelling_*" }
+#]
+#actions = [
+#    { option = "Castle Wars", interface = "equipment:inventory" },
+#]
+#produces = [
+#    { location = "castle_wars_teleport" }
+#]
+#
+#[ring_of_duelling]
+#type = "shortcut"
+#weight = 8
+#requires = [
+#    { carries = "ring_of_duelling_*" }
+#]
+#actions = [
+#    { option = "Rub", interface = "inventory:inventory" },
+#    { option = "Select", interface = "choice:line1" },
+#]
+#produces = [
+#    { location = "castle_wars_teleport" }
+#]
+
+[teleport_varrock]
+weight = 125
+requires = [
+    { skill = { id = "magic", min = 25 } },
+    { inventory = [
+        { id = "fire_rune", min = 1 },
+        { id = "air_rune", min = 3 },
+        { id = "law_rune", min = 1 }
+    ] },
+    { variable = { id = "spellbook_config", equals = 0, default = 0 } },
+]
+actions = [
+    { interface = { option = "Cast", id = "modern_spellbook:varrock_teleport" } },
+    { wait = { ticks = 5 } },
+]
+produces = [
+    { area = "varrock_teleport" }
+]
+
+[teleport_varrock_via_bank]
+weight = 150
+requires = [
+    { skill = { id = "magic", min = 25 } },
+    { variable = { id = "spellbook_config", equals = 0, default = 0 }},
+    { bank = [
+        { id = "fire_rune", min = 1 },
+        { id = "air_rune", min = 3 },
+        { id = "law_rune", min = 1 },
+    ]},
+]
+actions = [
+    { go_to = { nearest = "bank" } },
+    { object = { option = "Use-quickly", id = "bank_booth*", success = { interface_open = { id = "bank" } } } },
+    { interface = { option = "Withdraw-1", id = "bank:inventory:fire_rune" } },
+    { interface = { option = "Withdraw-X", id = "bank:inventory:air_rune" } },
+    { enter = { int = 3 } },
+    { interface = { option = "Withdraw-1", id = "bank:inventory:law_rune" } },
+    { interface = { option = "Cast", id = "modern_spellbook:varrock_teleport" } },
+    { wait = { ticks = 5 } },
+#    { wait = { location = "varrock_teleport" } },
+]
+produces = [
+    { area = "varrock_teleport" }
+]
+
+[teleport_lumbridge]
+weight = 200
+requires = [
+    { variable = { id = "spellbook_config", equals = 0, default = 0 } },
+    { clock = { id = "home_teleport_timeout", max = 0 } },
+]
+actions = [
+    { interface = { option = "Cast", id = "modern_spellbook:lumbridge_home_teleport" } },
+    { wait = { ticks = 25 } },
+]
+produces = [
+    { area = "lumbridge_teleport" }
+]

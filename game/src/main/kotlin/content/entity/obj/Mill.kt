@@ -51,7 +51,7 @@ class Mill : Script {
                 player<Neutral>("Hmm. I should probably ask that lady downstairs how I can make extra fine flour.")
                 return@itemOnObjectOperate
             }
-            if (holdsItem("extra_fine_flour")) {
+            if (carriesItem("extra_fine_flour")) {
                 message("It'd be best to take the extra fine flour you already have to the cook first.")
                 return@itemOnObjectOperate
             }
@@ -70,13 +70,13 @@ class Mill : Script {
         }
 
         objectOperate("Take-flour", "flour_bin") {
-            if (!holdsItem("empty_pot")) {
+            if (!carriesItem("empty_pot")) {
                 message("You need an empty pot to hold the flour in.")
                 return@objectOperate
             }
             if (quest("cooks_assistant") == "started" && get("cooks_assistant_talked_to_millie", 0) == 1) {
                 inventory.remove("empty_pot")
-                if (holdsItem("extra_fine_flour") || bank.contains("extra_fine_flour")) {
+                if (carriesItem("extra_fine_flour") || bank.contains("extra_fine_flour")) {
                     inventory.add("pot_of_flour")
                     message("You fill a pot with flour from the bin.")
                 } else {

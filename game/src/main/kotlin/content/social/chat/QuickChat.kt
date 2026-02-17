@@ -1,8 +1,11 @@
 package content.social.chat
 
 import com.github.michaelbull.logging.InlineLogger
+import content.bot.bot
+import content.bot.isBot
 import content.social.clan.clan
 import content.social.ignore.ignores
+import world.gregs.voidps.cache.definition.data.QuickChatPhraseDefinition
 import world.gregs.voidps.cache.definition.data.QuickChatType
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
@@ -54,8 +57,10 @@ class QuickChat(
                     val data = generateData(player, file, data)
                     val text = definition.buildString(enums.definitions, ItemDefinitions.definitions, data)
                     AuditLog.event(player, "said_qc", text)
-                    Players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }.forEach {
-                        it.client?.publicQuickChat(player.index, 0x8000, player.rights.ordinal, file, data)
+                    val nearby = Players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }
+                    botResponses(definition, player, nearby)
+                    nearby.forEach { other ->
+                        other.client?.publicQuickChat(player.index, 0x8000, player.rights.ordinal, file, data)
                     }
                 }
                 1 -> {
@@ -80,6 +85,37 @@ class QuickChat(
         }
     }
 
+    private fun botResponses(definition: QuickChatPhraseDefinition, player: Player, players: List<Player>) {
+        when (definition.id) {
+            // What is your skill level
+            0, 7, 12, 15, 22, 29, 33, 40, 46, 54, 61, 69, 73, 78, 84, 91, 95, 102, 104, 110, 115, 119, 126, 134, 141 -> {
+                val nearest = players.filter { it.isBot && it != player }.minByOrNull { it.tile.distanceTo(player.tile) } ?: return
+                nearest.instructions.trySend(QuickChatPublic(0, definition.id + 1, byteArrayOf()))
+            }
+            // Combat level
+            610 -> {
+                val nearest = players.filter { it.isBot && it != player }.minByOrNull { it.tile.distanceTo(player.tile) } ?: return
+                nearest.instructions.trySend(QuickChatPublic(0, 952, byteArrayOf()))
+            }
+            // What are you mining
+            130 -> {
+                val def = phrases.get(definition.id + 1)
+                val type = def.types?.get(0)
+                if (type == QuickChatType.MultipleChoice.id) {
+                    val nearest = players.filter { it.isBot && it != player }.minByOrNull { it.tile.distanceTo(player.tile) } ?: return
+                    val id = def.ids?.get(0)?.get(0) ?: return
+                    val enum = enums.get(id)
+                    val frame = nearest.bot.frames.peek() ?: return
+                    val first = frame.behaviour.produces.firstOrNull { it.startsWith("item:") } ?: return
+                    val ore = first.removePrefix("item:").removeSuffix("_ore")
+                    val (index, _) = enum.map!!.toList().firstOrNull { it.second == ore } ?: return
+                    nearest.instructions.trySend(QuickChatPublic(0, 131, byteArrayOf(0, index.toByte())))
+                }
+            }
+            // TODO will need better enum handling before wanting to add more of these
+        }
+    }
+
     fun generateData(player: Player, file: Int, data: ByteArray): ByteArray {
         val definition = phrases.get(file)
         val types = definition.types ?: return data
@@ -87,7 +123,10 @@ class QuickChat(
             when (definition.getType(0)) {
                 QuickChatType.SkillLevel -> {
                     val skill = Skill.all[definition.ids!!.first().first()]
-                    val level = player.levels.getMax(skill)
+                    var level = player.levels.getMax(skill)
+                    if (skill == Skill.Constitution) {
+                        level /= 10
+                    }
                     return byteArrayOf(level.toByte())
                 }
                 QuickChatType.Varp -> {

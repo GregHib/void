@@ -8,7 +8,7 @@ import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 
 class CaptainRovin : Script {
@@ -82,7 +82,7 @@ class CaptainRovin : Script {
     suspend fun Player.haveYouNotKilledIt() {
         npc<Neutral>("Yes, you said before, haven't you killed it yet?")
         player<Neutral>("I'm going to use the powerful sword Silverlight, which I believe you have one of the keys for?")
-        if (holdsItem("silverlight_key_captain_rovin")) {
+        if (carriesItem("silverlight_key_captain_rovin")) {
             npc<Angry>("I already gave you my key. Check your pockets.")
         } else {
             npc<Neutral>("I already gave you my key. Maybe you left it somewhere. Have you checked your bank account?")

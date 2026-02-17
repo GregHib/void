@@ -38,12 +38,10 @@ class FletchUnfinished : Script {
 
     fun Player.fletch(addItem: String, addItemDef: Fletching, removeItem: String, amount: Int) {
         if (amount <= 0) {
-            softTimers.stop("fletching")
             return
         }
 
         if (!inventory.contains("knife") || !inventory.contains(removeItem)) {
-            softTimers.stop("fletching")
             return
         }
 

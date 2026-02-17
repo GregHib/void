@@ -1,0 +1,67 @@
+[smelt_ores]
+requires = [
+    { owns = { id = "$primary", min = 50 } },
+    { owns = { id = "$secondary", min = 50 } },
+    { skill = { id = "smithing", min = "$level" } },
+]
+setup = [
+    { inventory = [
+        { id = "$primary", min = 14 },
+        { id = "$secondary", min = 14 },
+    ] },
+    { area = { id = "$location" } },
+]
+actions = [
+    { object = { option = "Smelt", id = "$obj", success = { interface_open = { id = "dialogue_skill_creation" } } } },
+    { interface = { option = "All", id = "skill_creation_amount:all" } },
+    { continue = { id = "dialogue_skill_creation:choice1" } },
+    { restart = { wait_if = { queue = { id = "smelting" } }, success = { inventory = [{ id = "$primary", max = 0 }] } } }
+]
+produces = [
+    { skill = "smithing" },
+    { item = "$bar" },
+]
+
+[smelt_bar]
+requires = [
+    { owns = { id = "$primary", min = 50 } },
+    { skill = { id = "smithing", min = "$level" } },
+]
+setup = [
+    { inventory = { id = "$primary", min = 28 } },
+    { area = { id = "$location" } },
+]
+actions = [
+    { object = { option = "Smelt", id = "$obj", success = { interface_open = { id = "dialogue_skill_creation" } } } },
+    { interface = { option = "All", id = "skill_creation_amount:all" } },
+    { continue = { id = "dialogue_skill_creation:choice1" } },
+    { restart = { wait_if = { queue = { id = "smelting" } }, success = { inventory = [{ id = "$primary", max = 0 }] } } }
+]
+produces = [
+    { skill = "smithing" },
+    { item = "$bar" },
+]
+
+[smith_bar]
+requires = [
+    { owns = { id = "$bar", min = 50 } },
+    { skill = { id = "smithing", min = "$level_min", max = "$level_max" } },
+]
+setup = [
+    {
+        inventory = [
+            { id = "hammer", min = 1 },
+            { id = "$bar", min = 27 }
+        ]
+    },
+    { area = { id = "$location" } },
+]
+actions = [
+    { item_on_object = { id = "$bar", object = "$obj", delay = 2, success = { interface_open = { id = "smithing" } } } },
+    { interface = { option = "Make All $name", id = "smithing:${type}_all", success = { interface_closed = { id = "smithing" } } } },
+    { restart = { wait_if = { queue = { id = "smithing" } }, success = { inventory = { id = "$bar", max = "$left_over_bars" } } } }
+]
+produces = [
+    { skill = "smithing" },
+    { item = "$item" },
+]

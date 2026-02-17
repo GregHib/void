@@ -1,6 +1,6 @@
 package content.entity.obj
 
-import content.bot.interact.navigation.graph.readTile
+import content.bot.behaviour.navigation.NavigationGraph.Companion.readTile
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config

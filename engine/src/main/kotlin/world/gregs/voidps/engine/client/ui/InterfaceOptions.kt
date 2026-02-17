@@ -7,16 +7,12 @@ import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import kotlin.math.min
 
-class InterfaceOptions(
-    private val player: Player,
-    private val definitions: InterfaceDefinitions,
-    private val inventoryDefinitions: InventoryDefinitions,
-) {
+class InterfaceOptions(private val player: Player) {
 
     fun send(id: String, component: String) {
-        val comp = definitions.getComponent(id, component) ?: return
+        val comp = InterfaceDefinitions.getComponent(id, component) ?: return
         val script = if (comp["primary", true]) "primary_options" else "secondary_options"
-        val inventory = inventoryDefinitions.get(comp["inventory", ""])
+        val inventory = InventoryDefinitions.get(comp["inventory", ""])
         if (inventory.id != -1) {
             val all = comp.getOrNull("options") ?: emptyArray<String>()
             val options = all.copyOfRange(0, min(9, all.size))
@@ -25,7 +21,7 @@ class InterfaceOptions(
     }
 
     fun unlockAll(id: String, component: String, slots: IntRange = -1..-1) {
-        val comp = definitions.getComponent(id, component) ?: return
+        val comp = InterfaceDefinitions.getComponent(id, component) ?: return
         var setting = 0
         val options: Array<String>? = comp.getOrNull("options")
         if (options != null) {
@@ -43,7 +39,7 @@ class InterfaceOptions(
     }
 
     fun unlock(id: String, component: String, slots: IntRange = -1..-1, options: Set<String>) {
-        val comp = definitions.getComponent(id, component) ?: return
+        val comp = InterfaceDefinitions.getComponent(id, component) ?: return
         var setting = 0
         val opts: Array<String>? = comp.getOrNull("options")
         if (opts != null) {
@@ -57,7 +53,7 @@ class InterfaceOptions(
     }
 
     fun lockAll(id: String, component: String, range: IntRange = -1..-1) {
-        val comp = definitions.getComponent(id, component) ?: return
+        val comp = InterfaceDefinitions.getComponent(id, component) ?: return
         player.sendInterfaceSettings(comp.id, range.first, range.last, 0)
     }
 }

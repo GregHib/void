@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.removeRequest
 import world.gregs.voidps.engine.inv.*
 
-class TradeSync(val interfaceDefinitions: InterfaceDefinitions, val inventoryDefinitions: InventoryDefinitions) : Script {
+class TradeSync(val inventoryDefinitions: InventoryDefinitions) : Script {
 
     init {
         slotChanged("trade_offer") {
@@ -51,7 +51,7 @@ class TradeSync(val interfaceDefinitions: InterfaceDefinitions, val inventoryDef
     }
 
     fun Player.warn(id: String, componentId: String, slot: Int) {
-        val component = interfaceDefinitions.getComponent(id, componentId) ?: return
+        val component = InterfaceDefinitions.getComponent(id, componentId) ?: return
         val inventory = inventoryDefinitions.get(component["inventory", ""])
         sendScript("trade_warning", component.id, inventory["width", 0.0], inventory["height", 0.0], slot)
     }

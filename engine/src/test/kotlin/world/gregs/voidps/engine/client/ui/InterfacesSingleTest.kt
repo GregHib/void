@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.network.login.protocol.encode.closeInterface
 
 internal class InterfacesSingleTest : InterfaceTest() {
@@ -16,7 +17,7 @@ internal class InterfacesSingleTest : InterfaceTest() {
     @BeforeEach
     override fun setup() {
         super.setup()
-        every { definitions.getOrNull(name) } returns InterfaceDefinition(id = 1, stringId = "1", type = "type")
+        InterfaceDefinitions.set(arrayOf(InterfaceDefinition(id = 1, stringId = "1", type = "type")), mapOf(name to 0), emptyMap())
         interfaces.resizable = false
     }
 
@@ -46,7 +47,7 @@ internal class InterfacesSingleTest : InterfaceTest() {
 
     @Test
     fun `Close no longer contains`() {
-        every { definitions.getOrNull(name) } returns InterfaceDefinition(id = 1, stringId = "1", type = "type", resizable = 2, fixed = 2)
+        InterfaceDefinitions.set(arrayOf(InterfaceDefinition(id = 1, stringId = "1", type = "type", resizable = 2, fixed = 2)), mapOf(name to 0), emptyMap())
         open["type"] = name
 
         assertTrue(interfaces.close(name))

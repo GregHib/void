@@ -47,7 +47,7 @@ class HighlightedArea(private val view: MapView, private val area: AreaSet) {
                         is Polygon -> g.drawPolygon(shape)
                         is Rectangle -> g.drawRect(shape.x, shape.y, shape.width, shape.height)
                     }
-                    g.drawString(area.name ?: "", 5, 90 + index * 15)
+                    g.drawString(area.name ?: "", 5, 120 + index * 15)
                 }
             }
         }

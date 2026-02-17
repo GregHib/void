@@ -55,5 +55,17 @@ class OptionsPane(private val view: MapView) : JPanel() {
             )
         }
         add(levelControls)
+
+        val refresh = JPanel().apply {
+            layout = BoxLayout(this, BoxLayout.X_AXIS)
+            add(
+                JButton("Refresh").apply {
+                    addActionListener {
+                        view.reload()
+                    }
+                },
+            )
+        }
+        add(refresh)
     }
 }

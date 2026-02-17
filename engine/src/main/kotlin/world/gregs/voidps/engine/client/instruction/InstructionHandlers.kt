@@ -9,15 +9,14 @@ import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.*
 
 class InstructionHandlers(
-    interfaceDefinitions: InterfaceDefinitions,
     handler: InterfaceHandler,
 ) {
     private val interactFloorItem = FloorItemOptionHandler()
-    private val interactDialogue = DialogueContinueHandler(interfaceDefinitions)
-    private val continueKey = DialogueContinueKeyHandler(interfaceDefinitions)
+    private val interactDialogue = DialogueContinueHandler()
+    private val continueKey = DialogueContinueKeyHandler()
     private val interactDialogueItem = DialogueItemContinueHandler()
     private val closeInterface = InterfaceClosedHandler()
-    val interactInterface = InterfaceOptionHandler(handler, interfaceDefinitions)
+    val interactInterface = InterfaceOptionHandler(handler)
     private val moveInventoryItem = InterfaceSwitchHandler(handler)
     private val interactNPC = NPCOptionHandler()
     private val interactObject = ObjectOptionHandler()
@@ -59,23 +58,24 @@ class InstructionHandlers(
         }
     }
 
-    fun handle(player: Player, instruction: Instruction) {
+    fun handle(player: Player, instruction: Instruction): Boolean {
         when (instruction) {
-            is InteractInterfaceItem -> interactInterfaceItem.validate(player, instruction)
-            is InteractInterfacePlayer -> interactInterfacePlayer.validate(player, instruction)
-            is InteractInterfaceObject -> interactInterfaceObject.validate(player, instruction)
-            is InteractInterfaceNPC -> interactInterfaceNPC.validate(player, instruction)
-            is InteractInterfaceFloorItem -> interactInterfaceFloorItem.validate(player, instruction)
-            is InteractFloorItem -> interactFloorItem.validate(player, instruction)
-            is InteractDialogue -> interactDialogue.validate(player, instruction)
-            is ContinueKey -> continueKey.validate(player, instruction)
-            is InteractDialogueItem -> interactDialogueItem.validate(player, instruction)
-            is InterfaceClosedInstruction -> closeInterface.validate(player, instruction)
-            is InteractInterface -> interactInterface.validate(player, instruction)
-            is MoveInventoryItem -> moveInventoryItem.validate(player, instruction)
-            is InteractNPC -> interactNPC.validate(player, instruction)
-            is InteractObject -> interactObject.validate(player, instruction)
-            is InteractPlayer -> interactPlayer.validate(player, instruction)
+            is InteractInterfaceItem -> return interactInterfaceItem.validate(player, instruction)
+            is InteractInterfacePlayer -> return interactInterfacePlayer.validate(player, instruction)
+            is InteractInterfaceObject -> return interactInterfaceObject.validate(player, instruction)
+            is InteractInterfaceNPC -> return interactInterfaceNPC.validate(player, instruction)
+            is InteractInterfaceFloorItem -> return interactInterfaceFloorItem.validate(player, instruction)
+            is InteractFloorItem -> return interactFloorItem.validate(player, instruction)
+            is InteractDialogue -> return interactDialogue.validate(player, instruction)
+            is ContinueKey -> return continueKey.validate(player, instruction)
+            is InteractDialogueItem -> return interactDialogueItem.validate(player, instruction)
+            is InterfaceClosedInstruction -> return closeInterface.validate(player, instruction)
+            is InteractInterface -> return interactInterface.validate(player, instruction)
+            is MoveInventoryItem -> return moveInventoryItem.validate(player, instruction)
+            is InteractNPC -> return interactNPC.validate(player, instruction)
+            is InteractObject -> return interactObject.validate(player, instruction)
+            is InteractPlayer -> return interactPlayer.validate(player, instruction)
+            is ExecuteCommand -> return executeCommand.validate(player, instruction)
             is ExamineItem -> examineItem.invoke(instruction, player)
             is ExamineNpc -> examineNPC.invoke(instruction, player)
             is ExamineObject -> examineObject.invoke(instruction, player)
@@ -83,7 +83,6 @@ class InstructionHandlers(
             is Walk -> walk.invoke(instruction, player)
             is WorldMapClick -> worldMapClick.invoke(instruction, player)
             is FinishRegionLoad -> finishRegionLoad.invoke(instruction, player)
-            is ExecuteCommand -> executeCommand.validate(player, instruction)
             is EnterString -> enterString.invoke(instruction, player)
             is EnterName -> enterName.invoke(instruction, player)
             is EnterInt -> enterInt.invoke(instruction, player)
@@ -100,7 +99,9 @@ class InstructionHandlers(
             is ClanChatKick -> clanChatKickHandler.invoke(instruction, player)
             is ClanChatRank -> clanChatRankHandler.invoke(instruction, player)
             is SongEnd -> songEndHandler.invoke(instruction, player)
+            else -> return false
         }
+        return true
     }
 }
 

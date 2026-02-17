@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 
 class FatherUrhney : Script {
@@ -42,7 +42,7 @@ class FatherUrhney : Script {
                 if (stage == "ghost" || stage == "mining_spot" || stage == "found_skull" || stage == "completed") {
                     option<Happy>("I've lost the Amulet of Ghostspeak.") {
                         statement("Father Urhney sighs.")
-                        if (holdsItem("ghostspeak_amulet")) {
+                        if (carriesItem("ghostspeak_amulet")) {
                             npc<Angry>("What are you talking about? I can see you've got it with you!")
                             return@option
                         }

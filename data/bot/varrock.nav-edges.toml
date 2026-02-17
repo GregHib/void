@@ -1,0 +1,64 @@
+edges = [
+    { from = { x = 3213, y = 3428 }, to = { x = 3223, y = 3429 } }, # varrock_teleport_to_centre_east
+    { from = { x = 3213, y = 3428 }, to = { x = 3200, y = 3429 } }, # varrock_teleport_to_centre_west
+    { from = { x = 3213, y = 3428 }, to = { x = 3211, y = 3420 } }, # varrock_teleport_to_centre_south
+    { from = { x = 3200, y = 3429 }, to = { x = 3186, y = 3430 } }, # varrock_centre_west_to_west_bank_south_entrance
+    { from = { x = 3186, y = 3430 }, to = { x = 3186, y = 3435 } }, # varrock_west_bank_south_entrance_to_bank_south
+    { from = { x = 3186, y = 3430 }, to = { x = 3171, y = 3429 } }, # varrock_west_bank_south_entrance_to_romeo_crossroad
+    { from = { x = 3171, y = 3429 }, to = { x = 3162, y = 3420 } }, # varrock_west_romeo_crossroads_to_oak_tress
+    { from = { x = 3162, y = 3420 }, to = { x = 3150, y = 3416 } }, # varrock_west_oak_trees_to_cat_house
+    { from = { x = 3150, y = 3416 }, to = { x = 3135, y = 3416 } }, # varrock_west_cat_house_to_barbarian_path
+    { from = { x = 3135, y = 3416 }, to = { x = 3128, y = 3407 } }, # varrock_west_barbarian_path_to_air_altar_ruins
+    { from = { x = 3128, y = 3407 }, to = { x = 2841, y = 4830 }, cost = 3, actions = [{ object = { option = "null", id = "air_altar_ruins", x = 3126, y = 3404, success = { tile = { x = 2841, y = 4830 } } } }] }, # varrock_west_air_altar_ruins_to_air_altar
+    { from = { x = 2841, y = 4830 }, to = { x = 2841, y = 4829 } }, # varrock_west_air_altar_to_exit
+    { from = { x = 2841, y = 4829 }, to = { x = 3128, y = 3407 }, cost = 3, actions = [{ object = { option = "Enter", id = "air_altar_portal", x = 2841, y = 4828, success = { tile = { x = 3128, y = 3407 } } } }] }, # varrock_west_air_altar_exit_to_ruins
+    { from = { x = 3304, y = 3474 }, to = { x = 2655, y = 4831 }, cost = 3, actions = [{ object = { option = "Enter", id = "earth_altar_ruins", x = 3305, y = 3473, success = { tile = { x = 2655, y = 4831 } } } }] }, # varrock_east_earth_altar_ruins_to_altar
+    { from = { x = 2655, y = 4831 }, to = { x = 2655, y = 4830 } }, # varrock_east_earth_altar_to_exit
+    { from = { x = 2655, y = 4830 }, to = { x = 3304, y = 3474 }, cost = 3, actions = [{ object = { option = "Enter", id = "earth_altar_portal", x = 2655, y = 4829, success = { tile = { x = 3304, y = 3474 } } } }] }, # varrock_east_earth_altar_exit_to_ruins
+    { from = { x = 3254, y = 3422 }, to = { x = 3265, y = 3428 } }, # varrock_east_bank_to_dirt_crossroad
+    { from = { x = 3265, y = 3428 }, to = { x = 3280, y = 3428 } }, # varrock_east_dirt_crossroad_to_east_crossroad
+    { from = { x = 3280, y = 3428 }, to = { x = 3287, y = 3414 } }, # varrock_east_crossroad_to_east_path_south
+    { from = { x = 3287, y = 3414 }, to = { x = 3291, y = 3399 } }, # varrock_east_path_to_south
+    { from = { x = 3291, y = 3399 }, to = { x = 3293, y = 3384 } }, # varrock_east_path_south_to_east_border
+    { from = { x = 3280, y = 3428 }, to = { x = 3286, y = 3442 } }, # varrock_east_crossroad_to_path_north
+    { from = { x = 3286, y = 3442 }, to = { x = 3287, y = 3457 } }, # varrock_east_path_to_north
+    { from = { x = 3287, y = 3457 }, to = { x = 3296, y = 3462 } }, # varrock_east_path_north_to_sawmill_crossroad
+    { from = { x = 3296, y = 3462 }, to = { x = 3304, y = 3474 } }, # varrock_east_sawmill_crossroad_to_eath_altar_ruins
+    { from = { x = 3265, y = 3428 }, to = { x = 3246, y = 3429 } }, # varrock_east_dirt_crossroad_to_bank_crossroad
+    { from = { x = 3246, y = 3429 }, to = { x = 3254, y = 3422 } }, # varrock_east_bank_crossroad_to_east_bank
+    { from = { x = 3230, y = 3430 }, to = { x = 3246, y = 3429 } }, # varrock_east_armour_shop_to_bank_crossroad
+    { from = { x = 3230, y = 3430 }, to = { x = 3223, y = 3429 } }, # varrock_east_armour_shop_to_centre_east
+    { from = { x = 3238, y = 3295 }, to = { x = 3238, y = 3304 } }, # lumbridge_chicken_entrance_to_varrock_south_split
+    { from = { x = 3238, y = 3304 }, to = { x = 3251, y = 3319 } }, # varrock_south_split_to_al_kharid_path_west
+    { from = { x = 3238, y = 3304 }, to = { x = 3238, y = 3320 } }, # varrock_south_split_to_al_kharid_path_west
+    { from = { x = 3238, y = 3320 }, to = { x = 3240, y = 3336 } }, # varrock_south_split_to_al_kharid_path_west
+    { from = { x = 3251, y = 3319 }, to = { x = 3268, y = 3331 } }, # varrock_al_kharid_path_west_to_crossroads
+    { from = { x = 3283, y = 3331 }, to = { x = 3295, y = 3334 } }, # al_kharid_north_entrance_to_varrock_north_west
+    { from = { x = 3295, y = 3334 }, to = { x = 3304, y = 3335 } }, # varrock_al_kharid_north_west_to_crossroad
+    { from = { x = 3295, y = 3334 }, to = { x = 3299, y = 3346 } }, # varrock_al_kharid_north_west_to_south_east_path
+    { from = { x = 3304, y = 3335 }, to = { x = 3299, y = 3346 } }, # varrock_al_kharid_north_west_crossroad_to_south_east_path
+    { from = { x = 3299, y = 3346 }, to = { x = 3298, y = 3359 } }, # varrock_south_east_path_to_east_mine_path_south
+    { from = { x = 3298, y = 3359 }, to = { x = 3295, y = 3372 } }, # varrock_south_east_mine_south_to_path
+    { from = { x = 3295, y = 3372 }, to = { x = 3286, y = 3371 } }, # varrock_south_east_mine_path_to_east
+    { from = { x = 3286, y = 3371 }, to = { x = 3293, y = 3384 } }, # varrock_south_east_mine_to_border
+    { from = { x = 3295, y = 3372 }, to = { x = 3293, y = 3384 } }, # varrock_south_east_mine_path_to_border
+    { from = { x = 3211, y = 3420 }, to = { x = 3210, y = 3407 } }, # varrock_centre_south_to_dirt_crossroads
+    { from = { x = 3210, y = 3407 }, to = { x = 3211, y = 3395 } }, # varrock_south_dirt_crossroads_to_blue_moon_inn
+    { from = { x = 3210, y = 3407 }, to = { x = 3209, y = 3399 } },
+    { from = { x = 3210, y = 3407 }, to = { x = 3209, y = 3399 } },
+    { from = { x = 3209, y = 3399 }, to = { x = 3207, y = 3399 }, cost = 1, actions = [{ object = { option = "Open", id = "door_444_closed", x = 3209, y = 3399, success = { object = { id = "door_444_opened", x = 3208, y = 3399 } } } }, { tile = { x = 3207, y = 3399 } }] },
+    { from = { x = 3211, y = 3395 }, to = { x = 3209, y = 3399 } }, # varrock_sword_shop
+    { from = { x = 3211, y = 3395 }, to = { x = 3211, y = 3381 } }, # varrock_blue_moon_inn_to_south_border
+    { from = { x = 3211, y = 3381 }, to = { x = 3214, y = 3367 } }, # varrock_south_border_to_dark_mages
+    { from = { x = 3214, y = 3367 }, to = { x = 3226, y = 3352 } }, # varrock_south_dark_mages_to_south
+    { from = { x = 3214, y = 3367 }, to = { x = 3206, y = 3376 } },
+    { from = { x = 3211, y = 3381 }, to = { x = 3206, y = 3376 } },
+    { from = { x = 3206, y = 3376 }, to = { x = 3197, y = 3373 } },
+    { from = { x = 3197, y = 3373 }, to = { x = 3191, y = 3367 } },
+    { from = { x = 3197, y = 3373 }, to = { x = 3184, y = 3370 } },
+    { from = { x = 3191, y = 3367 }, to = { x = 3184, y = 3370 } },
+    { from = { x = 3226, y = 3352 }, to = { x = 3228, y = 3337 } }, # varrock_dark_mages_to_south_fields_path
+    { from = { x = 3228, y = 3337 }, to = { x = 3240, y = 3336 } }, # varrock_south_fields_path_to_stile
+    { from = { x = 3240, y = 3336 }, to = { x = 3254, y = 3333 } }, # varrock_south_stile_to_path
+    { from = { x = 3254, y = 3333 }, to = { x = 3268, y = 3331 } }, # varrock_south_stile_to_al_kharid_crossroad
+]

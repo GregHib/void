@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.Skill.*
 
-class Stats(val definitions: InterfaceDefinitions) : Script {
+class Stats : Script {
 
     init {
         interfaceOpened("stats") {
@@ -25,7 +25,7 @@ class Stats(val definitions: InterfaceDefinitions) : Script {
         }
 
         interfaceOption("Open subsection", id = "skill_guide:*") {
-            val index = (definitions.getComponent(it.id, it.component)?.index ?: 0) - 10
+            val index = (InterfaceDefinitions.getComponent(it.id, it.component)?.index ?: 0) - 10
             val menuIndex = get("active_skill_guide", 1)
             set("skill_guide", menuIndex + index * 1024)
         }

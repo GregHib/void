@@ -4,7 +4,7 @@ import content.quest.letterScroll
 import content.quest.quest
 import content.quest.questJournal
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.inv.holdsItem
+import world.gregs.voidps.engine.inv.carriesItem
 
 class GunnarsGround : Script {
 
@@ -285,7 +285,7 @@ class GunnarsGround : Script {
                         "<maroon>Gold ring <navy>he Specifically wants a ring from <maroon>Jeffery <navy>in <maroon>Edgeville.",
                         "<navy>Items I need:",
                     )
-                    if (holdsItem("ring_from_jeffery")) {
+                    if (carriesItem("ring_from_jeffery")) {
                         list.add("<str>Ring from Jeffery")
                     } else {
                         list.add("<maroon>Ring from Jeffery")

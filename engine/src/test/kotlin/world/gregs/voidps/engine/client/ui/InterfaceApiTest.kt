@@ -69,10 +69,9 @@ class InterfaceApiTest {
     inner class InterfaceOpenedTest : ScriptTest {
         override val checks = listOf(
             listOf("id"),
-        )
-        override val failedChecks = listOf(
             listOf("*"),
         )
+        override val failedChecks = emptyList<List<String>>()
 
         override fun Script.register(args: List<String>, caller: Caller) {
             interfaceOpened(args[0]) { id ->
@@ -93,10 +92,9 @@ class InterfaceApiTest {
     inner class InterfaceClosedTest : ScriptTest {
         override val checks = listOf(
             listOf("id"),
-        )
-        override val failedChecks = listOf(
             listOf("*"),
         )
+        override val failedChecks = emptyList<List<String>>()
 
         override fun Script.register(args: List<String>, caller: Caller) {
             interfaceClosed(args[0]) { id ->
@@ -248,7 +246,7 @@ class InterfaceApiTest {
             listOf("shop"),
             listOf("*"),
         )
-        override val failedChecks =  emptyList<List<String>>()
+        override val failedChecks = emptyList<List<String>>()
 
         override fun Script.register(args: List<String>, caller: Caller) {
             shopOpen(args[0]) {

@@ -1,0 +1,360 @@
+# Combat
+[kill_freds_chickens_attack]
+template = "kill_chickens"
+capacity = 2
+fields = { skill = "attack", location = "lumbridge_chicken_pen", style = "style1" }
+
+[kill_freds_chickens_strength]
+template = "kill_chickens"
+capacity = 2
+fields = { skill = "strength", location = "lumbridge_chicken_pen", style = "style2" }
+
+[kill_freds_chickens_defence]
+template = "kill_chickens"
+capacity = 2
+fields = { skill = "defence", location = "lumbridge_chicken_pen", style = "style4" }
+
+[kill_millies_cows_attack]
+template = "kill_cows"
+capacity = 2
+fields = { skill = "attack", location = "lumbridge_east_cow_field", style = "style1" }
+
+[kill_millies_cows_strength]
+template = "kill_cows"
+capacity = 2
+fields = { skill = "strength", location = "lumbridge_east_cow_field", style = "style2" }
+
+[kill_millies_cows_defence]
+template = "kill_cows"
+capacity = 2
+fields = { skill = "defence", location = "lumbridge_east_cow_field", style = "style4" }
+
+[kill_bills_cows_attack]
+template = "kill_cows"
+capacity = 2
+fields = { skill = "attack", location = "lumbridge_west_cow_field", style = "style1" }
+
+[kill_bills_cows_strength]
+template = "kill_cows"
+capacity = 2
+fields = { skill = "strength", location = "lumbridge_west_cow_field", style = "style2" }
+
+[kill_bills_cows_defence]
+template = "kill_cows"
+capacity = 2
+fields = { skill = "defence", location = "lumbridge_west_cow_field", style = "style4" }
+
+# Tutors
+[magic_tutor]
+capacity = 2
+requires = [
+    { skill = { id = "magic", min = 1, max = 5 } },
+]
+setup = [
+    { inventory = [
+        { id = "air_rune", min = 30 },
+        { id = "mind_rune", min = 30 },
+    ] },
+    { area = { id = "lumbridge_combat_tutors" } }
+]
+actions = [
+    { interface = { option = "Autocast", id = "modern_spellbook:wind_strike", success = { variable = { id = "autocast", min = 0, default = -1 } } } },
+    { npc = { option = "Attack", id = "magic_dummy", success = { inventory = { id = "empty", min = 28 } } } }
+]
+produces = [
+    { skill = "magic" }
+]
+
+[melee_tutor_attack]
+capacity = 1
+requires = [
+    { skill = { id = "attack", min = 1, max = 5 } },
+]
+setup = [
+    { equipment = { weapon = { id = "training_sword" }, shield = { id = "training_shield" } } },
+    { area = { id = "lumbridge_combat_tutors" } }
+]
+actions = [
+    { interface = { option = "Select", id = "combat_styles:style1" } },
+    { npc = { option = "Attack", id = "melee_dummy", success = { skill = { id = "attack", min = 5 } } } }
+]
+produces = [
+    { skill = "attack" }
+]
+
+[melee_tutor_strength]
+capacity = 1
+requires = [
+    { skill = { id = "strength", min = 1, max = 5 } },
+]
+setup = [
+    { equipment = { weapon = { id = "training_sword" }, shield = { id = "training_shield" } } },
+    { area = { id = "lumbridge_combat_tutors" } }
+]
+actions = [
+    { interface = { option = "Select", id = "combat_styles:style2" } },
+    { npc = { option = "Attack", id = "melee_dummy", success = { skill = { id = "strength", min = 5 } } } }
+]
+produces = [
+    { skill = "strength" }
+]
+
+[ranged_tutor]
+capacity = 1
+requires = [
+    { skill = { id = "ranged", min = 1, max = 5 } },
+]
+setup = [
+    { equipment = { weapon = { id = "training_bow" }, ammo = { id = "training_arrows", min = 10 } } },
+    { area = { id = "lumbridge_combat_tutors" } }
+]
+actions = [
+    { interface = { option = "Select", id = "combat_styles:style1" } },
+    { object = { option = "Shoot-at", id = "archery_target", success = { queue = { id = "archery" } } } },
+    { restart = { wait_if = [{ queue = { id = "archery" } }, { mode = { id = "player_on_object" } }], success = { equipment = { ammo = { id = "empty" } } } } }
+]
+produces = [
+    { skill = "ranged" }
+]
+
+# Thieving
+[lumbridge_pickpocketing]
+template = "pickpocketting_template"
+capacity = 2
+fields = { location = "lumbridge_thieving_area", npc = "lumbridge_man*,lumbridge_woman*" }
+requires = [
+    { skill = { id = "thieving", min = 1, max = 10 } }
+]
+
+# Fishing
+[lumbridge_crayfish]
+template = "fish_crayfish"
+capacity = 4
+fields = { location = "lumbridge_south_river_fishing_area", spot = "fishing_spot_crayfish_lumbridge" }
+requires = [
+    { skill = { id = "fishing", min = 1, max = 10 } }
+]
+
+[lumbridge_net_fishing]
+template = "fish_small_net"
+capacity = 5
+fields = { location = "lumbridge_swamp_fishing_area", spot = "fishing_spot_small_net_bait_lumbridge" }
+requires = [
+    { skill = { id = "fishing", min = 1, max = 15 } }
+]
+
+[lumbridge_bait_fishing]
+template = "fish_bait"
+capacity = 3
+fields = { location = "lumbridge_river_fishing_area", spot = "fishing_spot_lure_bait_lumbridge" }
+requires = [
+    { skill = { id = "fishing", min = 25, max = 35 } }
+]
+
+# Fletching
+[lumbridge_fletch_arrow_shafts]
+template = "fletching_arrow_shafts_template"
+capacity = 2
+fields = { location = "lumbridge_castle_bank", logs = "logs" }
+requires = [
+    { skill = { id = "fletching", min = 1, max = 10 } }
+]
+
+[lumbridge_fletch_shortbows]
+template = "fletching_shortbow_template"
+capacity = 2
+fields = { location = "lumbridge_castle_bank", logs = "logs" }
+requires = [
+    { skill = { id = "fletching", min = 5, max = 15 } }
+]
+produces = [
+    { item = "shortbow_u" }
+]
+
+[lumbridge_fletch_longbows]
+template = "fletching_longbow_template"
+fields = { location = "lumbridge_castle_bank", logs = "logs" }
+requires = [
+    { skill = { id = "fletching", min = 10, max = 20 } }
+]
+produces = [
+    { item = "longbow_u" }
+]
+
+# Woodcutting
+[lumbridge_north_tree_cutting]
+template = "normal_tree_template"
+fields = { location = "lumbridge_north_trees" }
+
+[lumbridge_cow_tree_cutting]
+template = "normal_tree_template"
+fields = { location = "lumbridge_cow_trees" }
+
+[lumbridge_west_tree_cutting]
+template = "normal_tree_template"
+fields = { location = "lumbridge_west_trees" }
+
+[lumbridge_east_tree_cutting]
+template = "normal_tree_template"
+fields = { location = "lumbridge_east_trees" }
+
+[lumbridge_oak_tree_cutting]
+template = "oak_tree_template"
+fields = { location = "lumbridge_north_trees" }
+
+[lumbridge_castle_yew_tree_cutting]
+template = "yew_tree_template"
+fields = { location = "lumbridge_north_west_yew_tree" }
+
+[lumbridge_west_yew_tree_cutting]
+template = "yew_tree_template"
+fields = { location = "lumbridge_west_yew_tree" }
+
+# Mining
+[lumbridge_copper_mining]
+template = "copper_ore_template"
+capacity = 4
+fields = { location = "lumbridge_swamp_east_copper_mine" }
+
+[lumbridge_tin_mining]
+template = "tin_ore_template"
+capacity = 4
+fields = { location = "lumbridge_swamp_east_tin_mine" }
+
+[lumbridge_coal_mining]
+template = "coal_template"
+capacity = 4
+fields = { location = "lumbridge_swamp_west_coal_mine" }
+
+[lumbridge_mithril_mining]
+template = "mithril_ore_template"
+capacity = 2
+fields = { location = "lumbridge_swamp_west_mithril_mine" }
+
+# Firemaking
+[lumbridge_firemaking_logs]
+template = "firemaking"
+capacity = 2
+fields = { logs = "logs", location = "lumbridge_firemaking_spot" }
+requires = [
+    { skill = { id = "firemaking", min = 1, max = 15 } },
+]
+
+[lumbridge_firemaking_oak_logs]
+template = "firemaking"
+capacity = 1
+fields = { logs = "oak_logs", location = "lumbridge_firemaking_spot" }
+requires = [
+    { skill = { id = "firemaking", min = 15, max = 25 } },
+]
+
+# Cooking
+[lumbridge_cook_chicken]
+template = "cooking_template"
+capacity = 4
+fields = { raw = "raw_chicken", cooked = "chicken", level = 1, location = "lumbridge_kitchen", obj = "cooking_range_lumbridge_castle", burnt = "burnt_chicken" }
+
+[lumbridge_cook_crayfish]
+template = "cooking_template"
+capacity = 4
+fields = { raw = "raw_crayfish", cooked = "crayfish", level = 1, location = "lumbridge_kitchen", obj = "cooking_range_lumbridge_castle", burnt = "burnt_crayfish" }
+
+[lumbridge_cook_beef]
+template = "beef_template"
+capacity = 4
+fields = { location = "lumbridge_kitchen", obj = "cooking_range_lumbridge_castle" }
+
+# Smithing
+[lumbridge_smelt_bronze_bars]
+template = "smelt_ores"
+capacity = 2
+fields = {
+    primary = "copper_ore",
+    secondary = "tin_ore",
+    level = 1,
+    location = "lumbridge_furnace",
+    obj = "furnace_lumbridge",
+    bar = "bronze_bar"
+}
+
+[lumbridge_smelt_iron_bars]
+template = "smelt_bar"
+capacity = 2
+fields = {
+    primary = "iron_ore",
+    level = 15,
+    location = "lumbridge_furnace",
+    obj = "furnace_lumbridge",
+    bar = "iron_bar"
+}
+
+[lumbridge_smelt_silver_bars]
+template = "smelt_bar"
+capacity = 2
+fields = {
+    primary = "silver_ore",
+    level = 20,
+    location = "lumbridge_furnace",
+    obj = "furnace_lumbridge",
+    bar = "silver_bar"
+}
+
+[lumbridge_smith_bronze_dagger]
+template = "smith_bar"
+capacity = 1
+fields = {
+    bar = "bronze_bar",
+    left_over_bars = 0,
+    level_min = 1,
+    level_max = 5,
+    location = "lumbridge_furnace",
+    obj = "anvil_lumbridge",
+    name = "Daggers",
+    type = "dagger",
+    item = "bronze_dagger"
+}
+
+[lumbridge_smith_bronze_scimitars]
+template = "smith_bar"
+capacity = 1
+fields = {
+    bar = "bronze_bar",
+    left_over_bars = 0,
+    level_min = 5,
+    level_max = 10,
+    location = "lumbridge_furnace",
+    obj = "anvil_lumbridge",
+    name = "Scimitar",
+    type = "scimitar",
+    item = "bronze_scimitar"
+}
+
+[lumbridge_smith_bronze_sword]
+template = "smith_bar"
+capacity = 1
+fields = {
+    bar = "bronze_bar",
+    left_over_bars = 0,
+    level_min = 4,
+    level_max = 8,
+    location = "lumbridge_furnace",
+    obj = "anvil_lumbridge",
+    name = "Sword",
+    type = "sword",
+    item = "bronze_sword"
+}
+
+[lumbridge_smith_bronze_full_helm]
+template = "smith_bar"
+capacity = 1
+fields = {
+    bar = "bronze_bar",
+    left_over_bars = 0,
+    level_min = 7,
+    level_max = 10,
+    location = "lumbridge_furnace",
+    obj = "anvil_lumbridge",
+    name = "Full helm",
+    type = "full_helm",
+    item = "bronze_full_helm"
+}

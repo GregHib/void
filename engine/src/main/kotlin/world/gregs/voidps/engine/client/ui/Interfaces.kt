@@ -20,7 +20,6 @@ import world.gregs.voidps.network.login.protocol.encode.*
  */
 class Interfaces(
     private val player: Player,
-    internal val definitions: InterfaceDefinitions,
     private val interfaces: MutableMap<String, String> = Object2ObjectOpenHashMap(),
 ) {
     var displayMode = 0
@@ -61,7 +60,7 @@ class Interfaces(
         if (interfaces.remove(getType(id), id)) {
             sendClose(id)
             InterfaceApi.close(player, id)
-            (player as? Player)?.queue?.clearWeak()
+            player.queue.clearWeak()
             return true
         }
         return false
@@ -79,8 +78,8 @@ class Interfaces(
     }
 
     private fun hasOpenOrRootParent(id: String): Boolean {
-        val parent = definitions.getOrNull(id)?.parent(resizable) ?: return false
-        return parent == -1 || contains(definitions.get(InterfaceDefinition.id(parent)).stringId)
+        val parent = InterfaceDefinitions.getOrNull(id)?.parent(resizable) ?: return false
+        return parent == -1 || contains(InterfaceDefinitions.get(InterfaceDefinition.id(parent)).stringId)
     }
 
     private fun sendIfOpened(id: String): Boolean {
@@ -115,18 +114,18 @@ class Interfaces(
     }
 
     private fun getParent(id: String): String {
-        val parent = definitions.getOrNull(id)?.parent(resizable) ?: return ""
+        val parent = InterfaceDefinitions.getOrNull(id)?.parent(resizable) ?: return ""
         return if (parent == -1) {
             ROOT_ID
         } else {
-            definitions.get(InterfaceDefinition.id(parent)).stringId
+            InterfaceDefinitions.get(InterfaceDefinition.id(parent)).stringId
         }
     }
 
-    private fun getType(id: String): String = definitions.getOrNull(id)?.type ?: DEFAULT_TYPE
+    private fun getType(id: String): String = InterfaceDefinitions.getOrNull(id)?.type ?: DEFAULT_TYPE
 
     private fun sendOpen(id: String) {
-        val definition = definitions.getOrNull(id) ?: return
+        val definition = InterfaceDefinitions.getOrNull(id) ?: return
         val parent = definition.parent(resizable)
         if (parent == -1) { // root
             player.client?.updateInterface(definition.id, 0)
@@ -140,7 +139,7 @@ class Interfaces(
     }
 
     private fun sendClose(id: String) {
-        val parent = definitions.getOrNull(id)?.parent(resizable)
+        val parent = InterfaceDefinitions.getOrNull(id)?.parent(resizable)
         if (parent != null && parent != -1) {
             player.client?.closeInterface(parent)
         }
@@ -151,38 +150,38 @@ class Interfaces(
     }
 
     fun sendAnimation(id: String, component: String, animation: Int): Boolean {
-        val comp = definitions.getComponent(id, component) ?: return false
+        val comp = InterfaceDefinitions.getComponent(id, component) ?: return false
         player.client?.animateInterface(comp.id, animation)
         return true
     }
 
     fun sendAnimation(id: String, component: String, animation: String): Boolean {
-        val comp = definitions.getComponent(id, component) ?: return false
+        val comp = InterfaceDefinitions.getComponent(id, component) ?: return false
         val definitions: AnimationDefinitions = get()
         player.client?.animateInterface(comp.id, definitions.get(animation).id)
         return true
     }
 
     fun sendText(id: String, component: String, text: String): Boolean {
-        val comp = definitions.getComponent(id, component) ?: return false
+        val comp = InterfaceDefinitions.getComponent(id, component) ?: return false
         player.client?.interfaceText(comp.id, Colours.replaceCustomTags(text))
         return true
     }
 
     fun sendVisibility(id: String, component: String, visible: Boolean): Boolean {
-        val comp = definitions.getComponent(id, component) ?: return false
+        val comp = InterfaceDefinitions.getComponent(id, component) ?: return false
         player.client?.interfaceVisibility(comp.id, !visible)
         return true
     }
 
     fun sendSprite(id: String, component: String, sprite: Int): Boolean {
-        val comp = definitions.getComponent(id, component) ?: return false
+        val comp = InterfaceDefinitions.getComponent(id, component) ?: return false
         player.client?.interfaceSprite(comp.id, sprite)
         return true
     }
 
     fun sendColour(id: String, component: String, colour: Colour): Boolean {
-        val comp = definitions.getComponent(id, component) ?: return false
+        val comp = InterfaceDefinitions.getComponent(id, component) ?: return false
         val red = (colour and 0xff0000) shr 16
         val green = (colour and 0xff00) shr 8
         val blue = colour and 0xff
@@ -193,7 +192,7 @@ class Interfaces(
     fun sendItem(id: String, component: String, item: Item): Boolean = sendItem(id, component, item.def.id, item.amount)
 
     fun sendItem(id: String, component: String, item: Int, amount: Int = 1): Boolean {
-        val comp = definitions.getComponent(id, component) ?: return false
+        val comp = InterfaceDefinitions.getComponent(id, component) ?: return false
         player.client?.interfaceItem(comp.id, item, amount)
         return true
     }
@@ -227,7 +226,7 @@ class Interfaces(
  * @param close any interfaces open with the same type
  */
 fun Player.open(interfaceId: String, close: Boolean = true): Boolean {
-    val type = interfaces.definitions.getOrNull(interfaceId)?.type
+    val type = InterfaceDefinitions.getOrNull(interfaceId)?.type
     if (close && type != null) {
         interfaces.get(type)?.let {
             interfaces.close(it)

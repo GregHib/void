@@ -9,6 +9,7 @@
 # scripts
 scripts.txt
 /data/wildcards.txt
+/data/.temp/*
 
 # tools
 *.jar
@@ -38,6 +39,7 @@ build/*
 build
 rebel.xml
 rebel-remote.xml
+.kotlin
 
 ### Gradle ###
 .gradle

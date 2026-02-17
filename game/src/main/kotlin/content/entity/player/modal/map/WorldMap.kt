@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.network.client.instruction.WorldMapClick
 import world.gregs.voidps.network.login.protocol.encode.updateInterface
 
-class WorldMap(val definitions: InterfaceDefinitions) : Script {
+class WorldMap : Script {
 
     init {
         timerStart("world_map_check") { 5 }
@@ -73,7 +73,7 @@ class WorldMap(val definitions: InterfaceDefinitions) : Script {
 
         interfaceOption(id = "world_map:close") {
             // Mechanics are unknown, would need tracking last interface to handle inside Interfaces.kt
-            client?.updateInterface(definitions.get(interfaces.gameFrame).id, 2)
+            client?.updateInterface(InterfaceDefinitions.get(interfaces.gameFrame).id, 2)
             open(interfaces.gameFrame, close = false)
         }
 

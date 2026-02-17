@@ -1,0 +1,20 @@
+[pickpocketting_template]
+requires = [
+    { skill = { id = "constitution", min = 100 } },
+    { skill = { id = "thieving", min = 1, max = 10 } },
+]
+setup = [
+    { inventory = { id = "empty", min = 1 } },
+    { area = { id = "$location" } },
+]
+actions = [
+    { npc = { option = "Pickpocket", id = "$npc" } },
+    { restart = { wait_if = [
+        { variable = { id = "delay", min = 0, default = -1 } },
+        { clock = { id = "stunned", min = 0 } }
+    ], success = { skill = { id = "constitution", max = 20 } } } }
+]
+produces = [
+    { item = "coins" },
+    { skill = "thieving" }
+]

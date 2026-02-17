@@ -10,8 +10,8 @@ import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.equipment
-import world.gregs.voidps.engine.inv.holdsItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 
@@ -37,7 +37,7 @@ class Jeffery : Script {
                         choice {
                             option<Neutral>("I was hoping you would trade me a gold ring.") {
                                 npc<Quiz>("Trade you? Trade you for what?")
-                                if (holdsItem("love_poem")) {
+                                if (carriesItem("love_poem")) {
                                     choice {
                                         option<Neutral>("This splendid love poem.") {
                                             lovePoem(target)

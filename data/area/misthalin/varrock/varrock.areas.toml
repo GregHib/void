@@ -16,10 +16,10 @@ tags = ["multi_combat"]
 [varrock_south_east_mine]
 x = [3281, 3290]
 y = [3360, 3371]
-tags = ["mine"]
-rocks = ["copper", "tin", "iron"]
-levels = "1-45"
-spaces = 4
+
+[varrock_south_west_mine]
+x = [3171, 3184]
+y = [3364, 3380]
 
 [varrock_east_bank]
 x = [3250, 3257]
@@ -55,3 +55,7 @@ x = [3136, 3391]
 y = [3328, 3519]
 tags = ["penguin_area"]
 hint = "in the north of the kingdom of Misthalin."
+
+[varrock_sword_shop]
+x = [3202, 3209]
+y = [3395, 3403]

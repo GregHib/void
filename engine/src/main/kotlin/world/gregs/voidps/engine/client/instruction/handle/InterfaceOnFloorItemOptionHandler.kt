@@ -16,21 +16,22 @@ class InterfaceOnFloorItemOptionHandler(private val handler: InterfaceHandler) :
 
     private val logger = InlineLogger()
 
-    override fun validate(player: Player, instruction: InteractInterfaceFloorItem) {
+    override fun validate(player: Player, instruction: InteractInterfaceFloorItem): Boolean {
         val (floorItemId, x, y, interfaceId, componentId, itemId, itemSlot) = instruction
         val tile = player.tile.copy(x, y)
         val floorItem = FloorItems.at(tile).firstOrNull { it.def.id == floorItemId }
         if (floorItem == null) {
             logger.warn { "Invalid floor item $itemId $tile" }
-            return
+            return false
         }
-        val (id, component, item) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return
+        val (id, component, item) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return false
         player.closeInterfaces()
         if (item.isEmpty()) {
             player.interactOn(floorItem, id, component, itemSlot, approachRange = -1)
         } else {
             player.interactItemOn(floorItem, id, component, item, itemSlot, approachRange = -1)
         }
+        return true
     }
 }
 

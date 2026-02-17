@@ -1,4 +1,5 @@
 import com.github.michaelbull.logging.InlineLogger
+import content.bot.BotManager
 import content.social.trade.exchange.GrandExchange
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InstructionTask
@@ -42,6 +43,7 @@ fun getTickStages(
     sequential: Boolean = CharacterTask.DEBUG,
     handlers: InstructionHandlers = get(),
     dynamicZones: DynamicZones = get(),
+    botManager: BotManager = get(),
 ): List<Runnable> {
     val sequentialNpc: TaskIterator<NPC> = SequentialIterator()
     val sequentialPlayer: TaskIterator<Player> = SequentialIterator()
@@ -49,6 +51,7 @@ fun getTickStages(
     return listOf(
         PlayerResetTask(sequentialPlayer),
         NPCResetTask(sequentialNpc),
+        botManager, // Bot must go after reset otherwise flags aren't seen when debugging bots
         hunting,
         grandExchange,
         // Connections/Tick Input
@@ -70,17 +73,9 @@ fun getTickStages(
             PlayerUpdateTask(),
             NPCUpdateTask(npcVisualEncoders()),
         ),
-        AiTick,
         accountSave,
         SaveLogs(),
     )
-}
-
-object AiTick : Runnable {
-    var method: (() -> Unit)? = null
-    override fun run() {
-        method?.invoke()
-    }
 }
 
 private class SaveLogs : Runnable {

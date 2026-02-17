@@ -50,11 +50,11 @@ class ArcheryTarget : Script {
             }
             player.ammo = ""
             val ammo = player.equipped(EquipSlot.Ammo)
-            if (ammo.id != "training_arrows") {
+            if (ammo.isNotEmpty() && ammo.id != "training_arrows") {
                 player.message("You can't use that ammo with your bow.")
                 return@weakQueue
             }
-            if (ammo.amount < 1) {
+            if (ammo.isEmpty()) {
                 player.message("There is no ammo left in your quiver.")
                 return@weakQueue
             }

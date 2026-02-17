@@ -1,0 +1,142 @@
+edges = [
+    { from = { x = 3236, y = 3218 }, to = { x = 3236, y = 3205 } }, # lumbridge_gate_south_to_village
+    { from = { x = 3236, y = 3218 }, to = { x = 3243, y = 3209 } }, # lumbridge_gate_south_to_church
+    { from = { x = 3236, y = 3205 }, to = { x = 3243, y = 3209 } }, # lumbridge_south_village_to_church
+    { from = { x = 3236, y = 3218 }, to = { x = 3250, y = 3212 } }, # lumbridge_gate_south_to_behind_church
+    { from = { x = 3250, y = 3212 }, to = { x = 3258, y = 3206 } }, # lumbridge_behind_church_to_church_fishing_spot
+    { from = { x = 3236, y = 3205 }, to = { x = 3231, y = 3203 }, cost = 5, actions = [{ object = { option = "Open", id = "door_720_closed", x = 3234, y = 3203, success = { object = { id = "door_720_opened", x = 3233, y = 3203 } } } }, { tile = { x = 3231, y = 3203 } }] }, # lumbridge_south_village_to_bobs_axes
+    { from = { x = 3231, y = 3203 }, to = { x = 3236, y = 3205 }, cost = 5, actions = [{ object = { option = "Open", id = "door_720_closed", x = 3234, y = 3203, success = { object = { id = "door_720_opened", x = 3233, y = 3203 } } } }, { tile = { x = 3236, y = 3205 } }] }, # lumbridge_bobs_axes_to_south_village
+    { from = { x = 3236, y = 3205 }, to = { x = 3231, y = 3197 }, cost = 5, actions = [{ object = { option = "Open", id = "door_720_closed", x = 3235, y = 3199, success = { object = { id = "door_720_opened", x = 3235, y = 3198 } } } }, { tile = { x = 3231, y = 3197 } }] }, # lumbridge_south_village_to_south_range_house
+    { from = { x = 3231, y = 3197 }, to = { x = 3236, y = 3205 }, cost = 5, actions = [{ object = { option = "Open", id = "door_720_closed", x = 3235, y = 3199, success = { object = { id = "door_720_opened", x = 3235, y = 3198 } } } }, { tile = { x = 3236, y = 3205 } }] }, # lumbridge_south_range_house_to_south_village
+    { from = { x = 3236, y = 3205 }, to = { x = 3244, y = 3190 } }, # lumbridge_south_village_to_graveyard_exit
+    { from = { x = 3244, y = 3190 }, to = { x = 3253, y = 3200 } }, # lumbridge_graveyard_exit_to_behind_graveyard
+    { from = { x = 3250, y = 3212 }, to = { x = 3253, y = 3200 } }, # lumbridge_behind_church_to_behind_graveyard
+    { from = { x = 3258, y = 3206 }, to = { x = 3253, y = 3200 } }, # lumbridge_church_fishing_spot_to_behind_graveyard
+    { from = { x = 3205, y = 3209, level = 2 }, to = { x = 3205, y = 3209, level = 1 }, cost = 1, actions = [{ object = { option = "Climb-down", id = "lumbridge_staircase_top", x = 3204, y = 3207, success = { tile = { level = 1 } } } }] }, # lumbridge_castle_2nd_floor_south_stairs_to_1st_floor
+    { from = { x = 3208, y = 3219, level = 2 }, to = { x = 3205, y = 3209, level = 2 } }, # lumbridge_castle_2nd_floor_bank_to_south_stairs
+    { from = { x = 3205, y = 3209 }, to = { x = 3205, y = 3209, level = 1 }, cost = 1, actions = [{ object = { option = "Climb-up", id = "lumbridge_staircase", x = 3204, y = 3207, success = { tile = { level = 1 } } } }] }, # lumbridge_castle_ground_floor_south_stairs_to_1st_floor
+    { from = { x = 3205, y = 3209 }, to = { x = 3208, y = 3210 } }, # lumbridge_castle_ground_floor_south_stairs_to_kitchen_corridor
+    { from = { x = 3208, y = 3210 }, to = { x = 3215, y = 3216 } }, # lumbridge_castle_kitchen_corridor_to_castle_south_entrance
+    { from = { x = 3208, y = 3210 }, to = { x = 3211, y = 3214 } }, # lumbridge_castle_kitchen_corridor_to_kitchen
+    { from = { x = 3215, y = 3216 }, to = { x = 3222, y = 3218 } }, # lumbridge_castle_south_entrance_to_courtyard_south
+    { from = { x = 3205, y = 3209, level = 1 }, to = { x = 3205, y = 3209 }, cost = 1, actions = [{ object = { option = "Climb-down", id = "lumbridge_castle_staircase_south_middle", x = 3204, y = 3207, success = { tile = { level = 0 } } } }] }, # lumbridge_castle_1st_floor_south_stairs_to_ground_floor
+    { from = { x = 3205, y = 3209, level = 1 }, to = { x = 3205, y = 3209, level = 2 }, cost = 1, actions = [{ object = { option = "Climb-up", id = "lumbridge_castle_staircase_south_middle", x = 3204, y = 3207, success = { tile = { level = 2 } } } }] }, # lumbridge_castle_1st_floor_south_stairs_to_2nd_floor
+    { from = { x = 3209, y = 3205 }, to = { x = 3199, y = 3218 } }, # lumbridge_castle_grounds_south_to_tower_west
+    { from = { x = 3199, y = 3218 }, to = { x = 3184, y = 3225 } }, # lumbridge_castle_tower_west_to_yew_trees
+    { from = { x = 3199, y = 3218 }, to = { x = 3195, y = 3236 } }, # lumbridge_castle_tower_west_to_tree_patch
+    { from = { x = 3184, y = 3225 }, to = { x = 3168, y = 3221 } }, # lumbridge_castle_yew_trees_to_yew_trees_west
+    { from = { x = 3184, y = 3225 }, to = { x = 3195, y = 3236 } }, # lumbridge_castle_yew_trees_to_tree_patch
+    { from = { x = 3226, y = 3214 }, to = { x = 3227, y = 3214 }, cost = 3, actions = [{ object = { option = "Open", id = "door_627_closed", x = 3226, y = 3214, success = { object = { id = "door_627_opened", x = 3227, y = 3214 } } } }] }, # lumbridge_south_tower_to_ground_floor
+    { from = { x = 3227, y = 3214 }, to = { x = 3229, y = 3214, level = 1 }, cost = 1, actions = [{ object = { option = "Climb-up", id = "36768", x = 3229, y = 3213, success = { tile = { level = 1 } } } }] }, # lumbridge_south_tower_ground_floor_to_1st_floor
+    { from = { x = 3229, y = 3214, level = 1 }, to = { x = 3229, y = 3214, level = 2 }, cost = 1, actions = [{ object = { option = "Climb-up", id = "36769", x = 3229, y = 3213, success = { tile = { level = 2 } } } }] }, # lumbridge_south_tower_1st_floor_to_2nd_floor
+    { from = { x = 3229, y = 3214, level = 1 }, to = { x = 3229, y = 3214 }, cost = 1, actions = [{ object = { option = "Climb-down", id = "36769", x = 3229, y = 3213, success = { tile = { level = 0 } } } }] }, # lumbridge_south_tower_1st_floor_to_ground_floor
+    { from = { x = 3229, y = 3214, level = 2 }, to = { x = 3229, y = 3214, level = 1 }, cost = 1, actions = [{ object = { option = "Climb-down", id = "36770", x = 3229, y = 3213, success = { tile = { level = 1 } } } }] }, # lumbridge_south_tower_2nd_floor_to_1st_floor
+    { from = { x = 3236, y = 3219 }, to = { x = 3236, y = 3225 } }, # lumbridge_gate_north_to_bridge_west
+    { from = { x = 3236, y = 3225 }, to = { x = 3230, y = 3232 } }, # lumbridge_bridge_west_to_unstable_house
+    { from = { x = 3236, y = 3225 }, to = { x = 3253, y = 3225 } }, # lumbridge_bridge_west_to_bridge_east
+    { from = { x = 3253, y = 3225 }, to = { x = 3263, y = 3222 } }, # lumbridge_bridge_east_to_trees_east
+    { from = { x = 3253, y = 3225 }, to = { x = 3260, y = 3228 } }, # lumbridge_bridge_east_to_east_crossroad
+    { from = { x = 3260, y = 3228 }, to = { x = 3263, y = 3222 } }, # lumbridge_east_crossroad_to_trees_east
+    { from = { x = 3260, y = 3228 }, to = { x = 3259, y = 3239 } },
+    { from = { x = 3259, y = 3239 }, to = { x = 3258, y = 3250 } },
+    { from = { x = 3259, y = 3239 }, to = { x = 3256, y = 3247 } },
+    { from = { x = 3256, y = 3247 }, to = { x = 3251, y = 3252 } },
+    { from = { x = 3235, y = 3261 }, to = { x = 3250, y = 3266 } }, # lumbridge_bridge_north_to_cow_entrance
+    { from = { x = 3251, y = 3252 }, to = { x = 3250, y = 3266 } }, # lumbridge_goblin_path_north_to_cow_entrance
+    { from = { x = 3251, y = 3252 }, to = { x = 3258, y = 3250 } },
+    { from = { x = 3250, y = 3266 }, to = { x = 3240, y = 3280 } }, # lumbridge_cow_entrance_to_cow_path
+    { from = { x = 3240, y = 3280 }, to = { x = 3238, y = 3295 } }, # lumbridge_cow_path_to_chicken_entrance
+    { from = { x = 3238, y = 3295 }, to = { x = 3235, y = 3295 }, cost = 0, actions = [{ object = { option = "Open", id = "gate_235_closed", x = 3237, y = 3295, success = { object = { id = "gate_235_opened", x = 3236, y = 3295 } } } }, { tile = { x = 3235, y = 3296 } }] }, # lumbridge_chicken_entrance_to_chicken_pen
+    { from = { x = 3235, y = 3295 }, to = { x = 3238, y = 3295 }, cost = 0, actions = [{ object = { option = "Open", id = "gate_237_closed", x = 3237, y = 3296, success = { object = { id = "gate_235_opened", x = 3236, y = 3295 } } } }, { tile = { x = 3238, y = 3295 } }] }, # lumbridge_chicken_pen_to_chicken_entrance
+    { from = { x = 3250, y = 3266 }, to = { x = 3255, y = 3266 }, cost = 0, actions = [{ object = { option = "Open", id = "gate_241_closed", x = 3252, y = 3266, success = { object = { id = "gate_239_opened", x = 3253, y = 3267 } } } }, { tile = { x = 3255, y = 3266 } }] }, # lumbridge_cow_entrance_to_cow_field
+    { from = { x = 3255, y = 3266 }, to = { x = 3250, y = 3266 }, cost = 0, actions = [{ object = { option = "Open", id = "gate_239_closed", x = 3252, y = 3267, success = { object = { id = "gate_239_opened", x = 3253, y = 3267 } } } }, { tile = { x = 3250, y = 3266 } }] }, # lumbridge_cow_field_to_cow_entrance
+    { from = { x = 3244, y = 3190 }, to = { x = 3241, y = 3176 } }, # lumbridge_graveyard_exit_to_swamp_path
+    { from = { x = 3241, y = 3176 }, to = { x = 3239, y = 3160 } }, # lumbridge_swamp_path_to_swamp_cross_roads
+    { from = { x = 3244, y = 3190 }, to = { x = 3231, y = 3188 } }, # lumbridge_graveyard_exit_to_rats_north_east
+    { from = { x = 3244, y = 3190 }, to = { x = 3231, y = 3181 } }, # lumbridge_graveyard_exit_to_rats_south_east
+    { from = { x = 3241, y = 3176 }, to = { x = 3231, y = 3188 } }, # lumbridge_swamp_path_to_rats_north_east
+    { from = { x = 3241, y = 3176 }, to = { x = 3231, y = 3181 } }, # lumbridge_swamp_path_to_rats_south_east
+    { from = { x = 3231, y = 3188 }, to = { x = 3231, y = 3181 } }, # lumbridge_swamp_rats_north_east_to_south_east
+    { from = { x = 3239, y = 3160 }, to = { x = 3228, y = 3148 } }, # lumbridge_swamp_cross_roads_to_copper_mine
+    { from = { x = 3228, y = 3148 }, to = { x = 3225, y = 3147 } }, # lumbridge_swamp_copper_mine_to_tin_mine
+    { from = { x = 3228, y = 3148 }, to = { x = 3221, y = 3156 } }, # lumbridge_swamp_copper_mine_to_east_mine
+    { from = { x = 3239, y = 3160 }, to = { x = 3221, y = 3156 } }, # lumbridge_swamp_cross_roads_to_east_mine
+    { from = { x = 3239, y = 3160 }, to = { x = 3243, y = 3155 } }, # lumbridge_swamp_cross_roads_to_fishing_spot
+    { from = { x = 3221, y = 3156 }, to = { x = 3201, y = 3155 } }, # lumbridge_swamp_east_mine_to_urhney_house
+    { from = { x = 3201, y = 3155 }, to = { x = 3181, y = 3153 } }, # lumbridge_swamp_urhney_house_to_water_altar
+    { from = { x = 3181, y = 3153 }, to = { x = 3161, y = 3151 } }, # lumbridge_swamp_water_altar_to_south
+    { from = { x = 3161, y = 3151 }, to = { x = 3148, y = 3149 } }, # lumbridge_swamp_south_to_west_mine
+    { from = { x = 3148, y = 3149 }, to = { x = 3146, y = 3147 } }, # lumbridge_swamp_west_mine_to_mithril_mine
+    { from = { x = 3148, y = 3149 }, to = { x = 3146, y = 3150 } }, # lumbridge_swamp_west_mine_to_coal_mine
+    { from = { x = 3148, y = 3149 }, to = { x = 3146, y = 3167 } }, # lumbridge_swamp_west_mine_to_west_1
+    { from = { x = 3146, y = 3167 }, to = { x = 3143, y = 3186 } }, # lumbridge_swamp_west_1_to_2
+    { from = { x = 3143, y = 3186 }, to = { x = 3142, y = 3203 } }, # lumbridge_swamp_west_2_to_west_camp
+    { from = { x = 3142, y = 3203 }, to = { x = 3136, y = 3219 } }, # lumbridge_swamp_west_camp_to_west_wall
+    { from = { x = 3142, y = 3203 }, to = { x = 3153, y = 3216 } }, # lumbridge_swamp_west_camp_to_north_wall
+    { from = { x = 3136, y = 3219 }, to = { x = 3153, y = 3216 } }, # lumbridge_swamp_west_wall_to_north_wall
+    { from = { x = 3136, y = 3219 }, to = { x = 3138, y = 3227 } }, # lumbridge_swamp_west_wall_to_draynor_east_path
+    { from = { x = 3136, y = 3219 }, to = { x = 3119, y = 3228 } }, # lumbridge_swamp_west_wall_to_draynor_jail_path_south
+    { from = { x = 3222, y = 3218 }, to = { x = 3226, y = 3214 } }, # lumbridge_courtyard_south_to_tower_door
+    { from = { x = 3222, y = 3218 }, to = { x = 3222, y = 3219 } }, # lumbridge_courtyard_south_to_north
+    { from = { x = 3222, y = 3218 }, to = { x = 3236, y = 3218 } }, # lumbridge_courtyard_south_to_gate_north
+    { from = { x = 3222, y = 3219 }, to = { x = 3236, y = 3219 } }, # lumbridge_courtyard_north_to_gate_north
+    { from = { x = 3236, y = 3218 }, to = { x = 3236, y = 3219 } }, # lumbridge_courtyard_gate_south_to_gate_north
+    { from = { x = 3222, y = 3218 }, to = { x = 3209, y = 3205 } }, # lumbridge_courtyard_south_to_grounds_south
+    { from = { x = 3230, y = 3232 }, to = { x = 3222, y = 3241 } }, # lumbridge_unstable_house_to_general_store_east
+    { from = { x = 3222, y = 3241 }, to = { x = 3217, y = 3241 }, cost = 6, actions = [{ object = { option = "Open", id = "door_720_closed", x = 3219, y = 3241, success = { object = { id = "door_720_opened", x = 3218, y = 3241 } } } }, { tile = { x = 3217, y = 3241 } }] }, # lumbridge_general_store_east_to_general_store
+    { from = { x = 3217, y = 3241 }, to = { x = 3222, y = 3241 }, cost = 6, actions = [{ object = { option = "Open", id = "door_720_closed", x = 3219, y = 3241, success = { object = { id = "door_720_opened", x = 3218, y = 3241 } } } }, { tile = { x = 3222, y = 3241 } }] }, # lumbridge_general_store_to_general_store_east
+    { from = { x = 3222, y = 3241 }, to = { x = 3226, y = 3245 } }, # lumbridge_general_store_east_to_trees_west
+    { from = { x = 3226, y = 3245 }, to = { x = 3235, y = 3261 } }, # lumbridge_west_village_trees_to_bridge_north
+    { from = { x = 3222, y = 3241 }, to = { x = 3204, y = 3247 } }, # lumbridge_general_store_east_to_task_building
+    { from = { x = 3217, y = 3241 }, to = { x = 3204, y = 3247 } }, # lumbridge_general_store_to_task_building
+    { from = { x = 3204, y = 3247 }, to = { x = 3194, y = 3247 } }, # lumbridge_task_building_to_fishing_shop_entrance
+    { from = { x = 3194, y = 3247 }, to = { x = 3172, y = 3239 } }, # lumbridge_fishing_shop_entrance_to_west_path
+    { from = { x = 3194, y = 3247 }, to = { x = 3195, y = 3236 } }, # lumbridge_fishing_shop_entrance_to_tree_patch
+    { from = { x = 3194, y = 3247 }, to = { x = 3195, y = 3251 } }, # lumbridge_fishing_shop_entrance_to_fishing_shop
+    { from = { x = 3172, y = 3239 }, to = { x = 3157, y = 3234 } }, # lumbridge_west_path_to_ham_path
+    { from = { x = 3172, y = 3239 }, to = { x = 3184, y = 3225 } }, # lumbridge_west_path_to_yew_trees
+    { from = { x = 3172, y = 3239 }, to = { x = 3168, y = 3221 } }, # lumbridge_west_path_to_yew_trees_west
+    { from = { x = 3168, y = 3221 }, to = { x = 3153, y = 3216 } }, # lumbridge_yew_trees_west_to_swamp_north_wall
+    { from = { x = 3157, y = 3234 }, to = { x = 3138, y = 3227 } }, # lumbridge_ham_path_to_draynor_east_path
+    { from = { x = 3222, y = 3241 }, to = { x = 3219, y = 3247 } }, # lumbridge_general_store_east_to_west_crossroad
+    { from = { x = 3219, y = 3247 }, to = { x = 3212, y = 3247 } }, # lumbridge_west_crossroad_to_combat_hall_east_entrance
+    { from = { x = 3212, y = 3247 }, to = { x = 3204, y = 3247 } }, # lumbridge_combat_hall_east_entrance_to_task_building
+    { from = { x = 3212, y = 3247 }, to = { x = 3211, y = 3252 } }, # lumbridge_combat_hall_entrance_to_east
+    { from = { x = 3204, y = 3247 }, to = { x = 3204, y = 3252 } }, # lumbridge_task_building_to_combat_hall_west
+    { from = { x = 3226, y = 3245 }, to = { x = 3225, y = 3252 } }, # lumbridge_village_trees_west_to_smiths_south
+    { from = { x = 3225, y = 3252 }, to = { x = 3222, y = 3255 } }, # lumbridge_smiths_south_to_west
+    { from = { x = 3222, y = 3255 }, to = { x = 3218, y = 3255 } }, # lumbridge_smiths_west_to_smiths_crossroad
+    { from = { x = 3218, y = 3255 }, to = { x = 3219, y = 3247 } }, # lumbridge_smiths_crossroad_to_west_crossroad
+    { from = { x = 3218, y = 3255 }, to = { x = 3223, y = 3260 } },
+    { from = { x = 3223, y = 3260 }, to = { x = 3235, y = 3261 } },
+    { from = { x = 3218, y = 3255 }, to = { x = 3217, y = 3268 } },
+    { from = { x = 3218, y = 3255 }, to = { x = 3220, y = 3258 } },
+    { from = { x = 3217, y = 3268 }, to = { x = 3213, y = 3277 } },
+    { from = { x = 3213, y = 3277 }, to = { x = 3199, y = 3279 } },
+    { from = { x = 3199, y = 3279 }, to = { x = 3190, y = 3283 } },
+    { from = { x = 3190, y = 3283 }, to = { x = 3190, y = 3294 } },
+    { from = { x = 3190, y = 3294 }, to = { x = 3186, y = 3307 } },
+    { from = { x = 3186, y = 3307 }, to = { x = 3177, y = 3315 } },
+    { from = { x = 3177, y = 3315 }, to = { x = 3177, y = 3316 }, cost = 0, actions = [{ object = { option = "Open", id = "gate_235_closed", x = 3177, y = 3316, success = { object = { id = "gate_235_opened", x = 3177, y = 3315 } } } }, { tile = { x = 3177, y = 3316 } }] },
+    { from = { x = 3177, y = 3316 }, to = { x = 3177, y = 3315 }, cost = 0, actions = [{ object = { option = "Open", id = "gate_235_closed", x = 3177, y = 3316, success = { object = { id = "gate_235_opened", x = 3177, y = 3315 } } } }, { tile = { x = 3177, y = 3315 } }] },
+    { from = { x = 3177, y = 3316 }, to = { x = 3179, y = 3326 } },
+    { from = { x = 3179, y = 3326 }, to = { x = 3178, y = 3334 } },
+    { from = { x = 3178, y = 3334 }, to = { x = 3177, y = 3345 } },
+    { from = { x = 3177, y = 3345 }, to = { x = 3177, y = 3357 } },
+    { from = { x = 3177, y = 3357 }, to = { x = 3178, y = 3364 } },
+    { from = { x = 3178, y = 3364 }, to = { x = 3184, y = 3370 } },
+    { from = { x = 3225, y = 3252 }, to = { x = 3219, y = 3247 } }, # lumbridge_smiths_south_to_west_crossroad
+    { from = { x = 3253, y = 3225 }, to = { x = 3245, y = 3238 } }, # lumbridge_bridge_east_to_goblins_river
+    { from = { x = 3253, y = 3225 }, to = { x = 3254, y = 3239 } }, # lumbridge_bridge_east_to_goblins
+    { from = { x = 3254, y = 3239 }, to = { x = 3258, y = 3250 } }, # lumbridge_goblins_to_trees_east
+    { from = { x = 3254, y = 3239 }, to = { x = 3245, y = 3238 } }, # lumbridge_goblins_to_river
+    { from = { x = 3254, y = 3239 }, to = { x = 3251, y = 3252 } }, # lumbridge_goblins_to_path_north
+    { from = { x = 3251, y = 3252 }, to = { x = 3235, y = 3261 } }, # lumbridge_goblins_path_north_to_bridge_north
+    { from = { x = 3235, y = 3261 }, to = { x = 3240, y = 3249 } }, # lumbridge_bridge_north_to_goblin_fishing_spot
+    { from = { x = 3251, y = 3252 }, to = { x = 3240, y = 3249 } }, # lumbridge_goblin_path_north_to_fishing_spot
+    { from = { x = 3240, y = 3249 }, to = { x = 3245, y = 3238 } }, # lumbridge_goblin_fishing_spot_to_river
+    { from = { x = 3260, y = 3228 }, to = { x = 3254, y = 3239 } }, # lumbridge_east_crossroad_to_goblins
+    { from = { x = 3260, y = 3228 }, to = { x = 3267, y = 3227 } }, # lumbridge_east_crossroad_to_tollgate
+    { from = { x = 3260, y = 3228 }, to = { x = 3267, y = 3228 } }, # lumbridge_east_crossroad_to_tollgate_north
+    { from = { x = 3260, y = 3228 }, to = { x = 3263, y = 3222 } }, # lumbridge_east_crossroad_to_trees_east
+]

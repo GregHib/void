@@ -1330,10 +1330,6 @@ examine = "A wooden gate."
 id = 36917
 examine = "A wooden gate."
 
-[gate_208]
-id = 36914
-examine = "A wooden gate."
-
 [gate_209_opened]
 id = 36914
 examine = "A wooden gate."
@@ -1350,20 +1346,12 @@ examine = "A wooden gate."
 id = 36919
 examine = "A wooden gate."
 
-[gate_214]
-id = 37351
-examine = "A wooden gate."
-
 [gate_215_opened]
 id = 37351
 examine = "A wooden gate."
 
 [gate_215_closed]
 id = 37352
-examine = "A wooden gate."
-
-[gate_216]
-id = 37353
 examine = "A wooden gate."
 
 [gate_217_opened]
@@ -1382,10 +1370,6 @@ examine = "The metal bars look strong."
 id = 40746
 examine = "The metal bars look strong."
 
-[gate_226]
-id = 40747
-examine = "The metal bars look strong."
-
 [gate_227_opened]
 id = 40905
 examine = "The metal bars look strong."
@@ -1400,10 +1384,6 @@ examine = "The metal bars look strong."
 
 [gate_230_closed]
 id = 40930
-examine = "The metal bars look strong."
-
-[gate_231]
-id = 40931
 examine = "The metal bars look strong."
 
 [gate_232]
@@ -1422,20 +1402,12 @@ examine = "A wooden gate."
 id = 45206
 examine = "A wooden gate."
 
-[gate_236]
-id = 45207
-examine = "A wooden gate."
-
 [gate_237_opened]
 id = 45209
 examine = "A wooden gate."
 
 [gate_237_closed]
 id = 45208
-examine = "A wooden gate."
-
-[gate_238]
-id = 45209
 examine = "A wooden gate."
 
 [gate_239_opened]
@@ -1446,18 +1418,10 @@ examine = "A wooden gate."
 id = 45210
 examine = "A wooden gate."
 
-[gate_240]
-id = 45211
-examine = "A wooden gate."
-
 [gate_241_opened]
 id = 45213
 examine = "A wooden gate."
 
 [gate_241_closed]
 id = 45212
-examine = "A wooden gate."
-
-[gate_242]
-id = 45213
 examine = "A wooden gate."

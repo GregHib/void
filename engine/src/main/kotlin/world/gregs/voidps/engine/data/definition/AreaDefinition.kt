@@ -7,7 +7,7 @@ import world.gregs.voidps.type.area.Rectangle
 data class AreaDefinition(
     val name: String,
     val area: Area,
-    val tags: Set<String>,
+    val tags: Set<String> = emptySet(),
     override var stringId: String = name,
     override var extras: Map<String, Any>? = null,
 ) : Extra {

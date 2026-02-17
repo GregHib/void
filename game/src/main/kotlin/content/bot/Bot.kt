@@ -1,9 +1,47 @@
 package content.bot
 
+import content.bot.behaviour.BehaviourFrame
+import content.bot.behaviour.BehaviourState
+import content.bot.behaviour.Reason
+import content.bot.behaviour.action.BotAction
+import content.bot.behaviour.activity.BotActivity
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.network.client.Instruction
+import java.util.Stack
 
 data class Bot(val player: Player) : Character by player {
-    var step: Instruction? = null
+    val blocked: MutableSet<String> = mutableSetOf()
+    var previous: BotActivity? = null
+    val frames = Stack<BehaviourFrame>()
+    val available = mutableSetOf<String>()
+    var evaluate = mutableSetOf<String>()
+
+    fun noTask() = frames.isEmpty()
+
+    internal fun action(): BotAction = frames.peek().action()
+
+    internal fun frame(): BehaviourFrame = frames.peek()
+
+    internal fun reset() {
+        frames.clear()
+    }
+
+    internal fun queue(frame: BehaviourFrame) {
+        frames.add(frame)
+    }
+
+    fun stop() {
+        if (noTask()) {
+            return
+        }
+        frame().state = BehaviourState.Failed(Reason.Cancelled)
+    }
+
+    override fun toString(): String = "BOT ${player.accountName}"
 }
+
+val Player.isBot: Boolean
+    get() = contains("bot")
+
+val Player.bot: Bot
+    get() = get("bot")!!

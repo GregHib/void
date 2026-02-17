@@ -31,8 +31,6 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
 class AccountManager(
-    private val interfaceDefinitions: InterfaceDefinitions,
-    private val inventoryDefinitions: InventoryDefinitions,
     private val accountDefinitions: AccountDefinitions,
     private val variableDefinitions: VariableDefinitions,
     private val saveQueue: SaveQueue,
@@ -48,14 +46,13 @@ class AccountManager(
         this["new_player"] = true
     }
 
-    fun setup(player: Player, client: Client?, displayMode: Int): Boolean {
+    fun setup(player: Player, client: Client?, displayMode: Int, viewport: Boolean = true): Boolean {
         player.index = Players.index() ?: return false
         player.visuals.hits.self = player.index
-        player.interfaces = Interfaces(player, interfaceDefinitions)
-        player.interfaceOptions = InterfaceOptions(player, interfaceDefinitions, inventoryDefinitions)
+        player.interfaces = Interfaces(player)
+        player.interfaceOptions = InterfaceOptions(player)
         (player.variables as PlayerVariables).definitions = variableDefinitions
 //        player.area.areaDefinitions = areaDefinitions
-        player.inventories.definitions = inventoryDefinitions
         player.inventories.validItemRule = validItems
         player.inventories.normalStack = ItemDependentStack
         player.inventories.player = player
@@ -70,10 +67,10 @@ class AccountManager(
             accountDefinitions.add(player)
         }
         player.interfaces.displayMode = displayMode
-        if (client != null) {
+        player.client = client
+        (player.variables as PlayerVariables).client = client
+        if (viewport) {
             player.viewport = Viewport()
-            player.client = client
-            (player.variables as PlayerVariables).client = client
         }
         player.collision = CollisionStrategyProvider.get(character = player)
         return true
@@ -95,7 +92,7 @@ class AccountManager(
         val original = player.tile.minus(offset)
         for (def in Areas.get(original.zone)) {
             if (original in def.area) {
-                Moved.enter(player, def.name, def.area)
+                Moved.enter(player, def.name, def)
             }
         }
     }
@@ -120,14 +117,14 @@ class AccountManager(
         }
         player.client?.disconnect()
         connectionQueue.disconnect {
-            World.queue("logout", 1) {
+            World.queue("logout_${player.accountName}", 1) {
                 Players.remove(player)
             }
             val offset = player.get<Long>("instance_offset")?.let { Delta(it) } ?: Delta.EMPTY
             val original = player.tile.minus(offset)
             for (def in Areas.get(original.zone)) {
                 if (original in def.area) {
-                    Moved.exit(player, def.name, def.area)
+                    Moved.exit(player, def.name, def)
                 }
             }
             Despawn.player(player)
