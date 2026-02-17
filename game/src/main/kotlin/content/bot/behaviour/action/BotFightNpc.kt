@@ -6,8 +6,9 @@ import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.BotWorld
 import content.bot.behaviour.Reason
 import content.bot.behaviour.condition.Condition
-import content.entity.combat.attackers
+import content.entity.combat.attacker
 import content.entity.combat.dead
+import content.entity.combat.underAttack
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnFloorItemInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnNPCInteract
@@ -82,7 +83,7 @@ data class BotFightNpc(
                 if (index == -1) {
                     continue
                 }
-                if (npc.dead || npc.attackers.isNotEmpty() && !npc.attackers.contains(player)) {
+                if (npc.dead || (npc.underAttack && npc.attacker != player)) {
                     continue
                 }
                 val valid = world.execute(bot.player, InteractNPC(npc.index, index + 1))
