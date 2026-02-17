@@ -26,7 +26,12 @@ data class BotInteractObject(
     val x: Int? = null,
     val y: Int? = null,
 ) : BotAction {
-    override fun start(bot: Bot, world: BotWorld, frame: BehaviourFrame) = BehaviourState.Running
+    override fun start(bot: Bot, world: BotWorld, frame: BehaviourFrame): BehaviourState {
+        if (success != null && success.check(bot.player)) {
+            return BehaviourState.Success
+        }
+        return BehaviourState.Running
+    }
 
     override fun update(bot: Bot, world: BotWorld, frame: BehaviourFrame) = when {
         success?.check(bot.player) == true -> BehaviourState.Success

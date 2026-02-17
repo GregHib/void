@@ -46,7 +46,7 @@ edges = [
     { from = { x = 3251, y = 3252 }, to = { x = 3258, y = 3250 } },
     { from = { x = 3250, y = 3266 }, to = { x = 3240, y = 3280 } }, # lumbridge_cow_entrance_to_cow_path
     { from = { x = 3240, y = 3280 }, to = { x = 3238, y = 3295 } }, # lumbridge_cow_path_to_chicken_entrance
-    { from = { x = 3238, y = 3295 }, to = { x = 3235, y = 3295 }, cost = 0, actions = [{ object = { option = "Open", id = "gate_235_closed", x = 3237, y = 3295, success = { object = { id = "gate_235_opened", x = 3236, y = 3295 } } } }, { tile = { x = 3235, y = 3295 } }] }, # lumbridge_chicken_entrance_to_chicken_pen
+    { from = { x = 3238, y = 3295 }, to = { x = 3235, y = 3295 }, cost = 0, actions = [{ object = { option = "Open", id = "gate_235_closed", x = 3237, y = 3295, success = { object = { id = "gate_235_opened", x = 3236, y = 3295 } } } }, { tile = { x = 3235, y = 3296 } }] }, # lumbridge_chicken_entrance_to_chicken_pen
     { from = { x = 3235, y = 3295 }, to = { x = 3238, y = 3295 }, cost = 0, actions = [{ object = { option = "Open", id = "gate_237_closed", x = 3237, y = 3296, success = { object = { id = "gate_235_opened", x = 3236, y = 3295 } } } }, { tile = { x = 3238, y = 3295 } }] }, # lumbridge_chicken_pen_to_chicken_entrance
     { from = { x = 3250, y = 3266 }, to = { x = 3255, y = 3266 }, cost = 0, actions = [{ object = { option = "Open", id = "gate_241_closed", x = 3252, y = 3266, success = { object = { id = "gate_239_opened", x = 3253, y = 3267 } } } }, { tile = { x = 3255, y = 3266 } }] }, # lumbridge_cow_entrance_to_cow_field
     { from = { x = 3255, y = 3266 }, to = { x = 3250, y = 3266 }, cost = 0, actions = [{ object = { option = "Open", id = "gate_239_closed", x = 3252, y = 3267, success = { object = { id = "gate_239_opened", x = 3253, y = 3267 } } } }, { tile = { x = 3250, y = 3266 } }] }, # lumbridge_cow_field_to_cow_entrance
@@ -117,8 +117,8 @@ edges = [
     { from = { x = 3190, y = 3283 }, to = { x = 3190, y = 3294 } },
     { from = { x = 3190, y = 3294 }, to = { x = 3186, y = 3307 } },
     { from = { x = 3186, y = 3307 }, to = { x = 3177, y = 3315 } },
-    { from = { x = 3177, y = 3315 }, to = { x = 3177, y = 3316 }, cost = 0, actions = [{ object = { option = "Open", id = "gate_235_closed", x = 3177, y = 3316, success = { object = { id = "gate_235_opened", x = 3177, y = 3315 } } } }] },
-    { from = { x = 3177, y = 3316 }, to = { x = 3177, y = 3315 }, cost = 0, actions = [{ object = { option = "Open", id = "gate_235_closed", x = 3177, y = 3316, success = { object = { id = "gate_235_opened", x = 3177, y = 3315 } } } }] },
+    { from = { x = 3177, y = 3315 }, to = { x = 3177, y = 3316 }, cost = 0, actions = [{ object = { option = "Open", id = "gate_235_closed", x = 3177, y = 3316, success = { object = { id = "gate_235_opened", x = 3177, y = 3315 } } } }, { tile = { x = 3177, y = 3316 } }] },
+    { from = { x = 3177, y = 3316 }, to = { x = 3177, y = 3315 }, cost = 0, actions = [{ object = { option = "Open", id = "gate_235_closed", x = 3177, y = 3316, success = { object = { id = "gate_235_opened", x = 3177, y = 3315 } } } }, { tile = { x = 3177, y = 3315 } }] },
     { from = { x = 3177, y = 3316 }, to = { x = 3179, y = 3326 } },
     { from = { x = 3179, y = 3326 }, to = { x = 3178, y = 3334 } },
     { from = { x = 3178, y = 3334 }, to = { x = 3177, y = 3345 } },
