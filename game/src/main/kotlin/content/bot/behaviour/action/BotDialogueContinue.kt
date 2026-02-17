@@ -38,7 +38,7 @@ data class BotDialogueContinue(val option: String, val id: String, val success: 
             ),
         )
         if (!valid) {
-            return BehaviourState.Failed(Reason.Invalid("Invalid interaction: ${def.id}:$componentId option=$index."))
+            return BehaviourState.Failed(Reason.Invalid("Invalid interaction: ${def.stringId}:${componentDef.stringId} option=$option index=$index."))
         }
         return BehaviourState.Wait(1, BehaviourState.Success)
     }

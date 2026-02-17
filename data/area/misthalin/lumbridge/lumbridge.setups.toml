@@ -1,10 +1,8 @@
 [mikasi_runes]
 requires = [
     { clock = { id = "claimed_tutor_consumables", max = 0, seconds = true } },
-    { bank = [
-        { id = "air_rune", max = 0 },
-        { id = "mind_rune", max = 0 },
-    ] }
+    { owns = { id = "air_rune", max = 0 } },
+    { owns = { id = "mind_rune", max = 0 } },
 ]
 setup = [
     { inventory = { id = "empty", min = 2 } },
