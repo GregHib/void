@@ -414,6 +414,7 @@ examine = "Unfeathered runite crossbow bolts."
 id = 9382
 price = 1
 limit = 10000
+smithing = { level = 21, xp = 50.0 }
 fletch_bolts = { level = 43, xp = 2.5 }
 examine = "Unfeathered silver crossbow bolts."
 

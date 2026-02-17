@@ -96,7 +96,11 @@ class Anvil : Script {
                 if (id != -1) {
                     val amount = componentDefinition?.getOrNull("amount") ?: 1
                     interfaces.sendItem("smithing", type, id, amount)
-                    val smithing: Smithing = itemDefinition["smithing"]
+                    val smithing: Smithing? = itemDefinition.getOrNull("smithing")
+                    if (smithing == null) {
+                        logger.warn { "Item $id does not have a smithing component." }
+                        continue
+                    }
                     interfaces.sendColour("smithing", "${type}_name", if (has(Skill.Smithing, smithing.level)) Colours.WHITE else Colours.BLACK)
                 }
                 val required = componentDefinition?.getOrNull("bars") ?: 1
@@ -124,12 +128,10 @@ class Anvil : Script {
     }
 
     suspend fun Player.smith(metal: String, type: String, amount: Int) {
-        val item = if (metal == "steel" && type == "lantern") {
-            "bullseye_lantern_frame"
-        } else if (metal == "mithril" && type == "grapple") {
-            "mithril_grapple_tip"
-        } else {
-            "${metal}_$type"
+        val item = when (metal) {
+            "steel" if type == "lantern" -> "bullseye_lantern_frame"
+            "mithril" if type == "grapple" -> "mithril_grapple_tip"
+            else -> "${metal}_$type"
         }
         val itemDefinition = ItemDefinitions.get(item)
         val smithing: Smithing = itemDefinition.getOrNull("smithing") ?: return
