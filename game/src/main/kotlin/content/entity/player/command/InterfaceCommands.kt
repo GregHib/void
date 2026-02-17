@@ -30,28 +30,27 @@ import world.gregs.voidps.network.login.protocol.encode.*
 import kotlin.collections.iterator
 
 class InterfaceCommands(
-    val definitions: InterfaceDefinitions,
     val animationDefinitions: AnimationDefinitions,
     val inventoryDefinitions: InventoryDefinitions,
     scriptDefinitions: ClientScriptDefinitions,
 ) : Script {
 
     init {
-        adminCommand("inter", stringArg("interface-id", autofill = definitions.ids.keys), desc = "Open an interface with int or string id", handler = ::open)
+        adminCommand("inter", stringArg("interface-id", autofill = InterfaceDefinitions.ids.keys), desc = "Open an interface with int or string id", handler = ::open)
         commandAlias("inter", "iface")
-        adminCommand("show", stringArg("interface-id", autofill = definitions.ids.keys), stringArg("component-id", autofill = definitions.componentIds.keys), boolArg("visible"), desc = "Toggle visibility of an interface component") { args ->
+        adminCommand("show", stringArg("interface-id", autofill = InterfaceDefinitions.ids.keys), stringArg("component-id", autofill = InterfaceDefinitions.componentIds.keys), boolArg("visible"), desc = "Toggle visibility of an interface component") { args ->
             client?.interfaceVisibility(InterfaceDefinition.pack(args[0].toInt(), args[1].toInt()), !args[2].toBoolean())
         }
 
-        adminCommand("colour", stringArg("iface-id", autofill = definitions.ids.keys), stringArg("comp-id", autofill = definitions.componentIds.keys), intArg("red"), intArg("green"), intArg("blue"), desc = "Set colour of an interface component") { args ->
+        adminCommand("colour", stringArg("iface-id", autofill = InterfaceDefinitions.ids.keys), stringArg("comp-id", autofill = InterfaceDefinitions.componentIds.keys), intArg("red"), intArg("green"), intArg("blue"), desc = "Set colour of an interface component") { args ->
             client?.colourInterface(InterfaceDefinition.pack(args[0].toInt(), args[1].toInt()), args[2].toInt(), args[3].toInt(), args[4].toInt())
         }
 
-        adminCommand("send_text", stringArg("interface-id", autofill = definitions.ids.keys), stringArg("component-id", autofill = definitions.componentIds.keys), stringArg("text", "text to send (use quotes for spaces)"), desc = "Set text of an interface component") { args ->
+        adminCommand("send_text", stringArg("interface-id", autofill = InterfaceDefinitions.ids.keys), stringArg("component-id", autofill = InterfaceDefinitions.componentIds.keys), stringArg("text", "text to send (use quotes for spaces)"), desc = "Set text of an interface component") { args ->
             interfaces.sendText(args[0], args[1], args[2])
         }
 
-        adminCommand("setting", stringArg("id", autofill = definitions.ids.keys), stringArg("comp", autofill = definitions.componentIds.keys), intArg("from"), intArg("to"), intArg("setting", optional = true), intArg("s2", optional = true), intArg("s3", optional = true), desc = "Send settings to an interface component") { args ->
+        adminCommand("setting", stringArg("id", autofill = InterfaceDefinitions.ids.keys), stringArg("comp", autofill = InterfaceDefinitions.componentIds.keys), intArg("from"), intArg("to"), intArg("setting", optional = true), intArg("s2", optional = true), intArg("s3", optional = true), desc = "Send settings to an interface component") { args ->
             val remainder = args.subList(4, args.size).map { it.toIntOrNull() }.requireNoNulls().toIntArray()
             message("Settings sent ${remainder.toList()}", ChatType.Console)
             sendInterfaceSettings(InterfaceDefinition.pack(args[0].toInt(), args[1].toInt()), args[2].toInt(), args[3].toInt(), getHash(*remainder))
@@ -69,10 +68,10 @@ class InterfaceCommands(
             handler = ::sendScript,
         )
 
-        val component = command(stringArg("iface-id", autofill = definitions.ids.keys), stringArg("comp-id", autofill = { definitions.componentIds.keys.map { it.substringAfterLast(":") }.toSet() }), intArg("item"), intArg("amount", optional = true), desc = "Send an item to an interface component") { args ->
+        val component = command(stringArg("iface-id", autofill = InterfaceDefinitions.ids.keys), stringArg("comp-id", autofill = { InterfaceDefinitions.componentIds.keys.map { it.substringAfterLast(":") }.toSet() }), intArg("item"), intArg("amount", optional = true), desc = "Send an item to an interface component") { args ->
             interfaces.sendItem(args[0], args[1], args[2].toInt(), args.getOrNull(3)?.toInt() ?: 1)
         }
-        val inventory = command(stringArg("interface-id", autofill = definitions.ids.keys), desc = "Send an item to an interface component", handler = ::sendInventory)
+        val inventory = command(stringArg("interface-id", autofill = InterfaceDefinitions.ids.keys), desc = "Send an item to an interface component", handler = ::sendInventory)
 
         adminCommands("send_items", component, inventory)
 
@@ -98,12 +97,12 @@ class InterfaceCommands(
         if (id == -1 && closeInterface(player)) {
             return
         }
-        val inter = definitions.get(args[0])
+        val inter = InterfaceDefinitions.get(args[0])
         var parent = if (player.interfaces.resizable) 746 else 548
         var index = if (player.interfaces.resizable) 5 else 8
         val p = inter["parent_${if (player.interfaces.resizable) "resize" else "fixed"}", ""]
         if (p.isNotBlank()) {
-            parent = definitions.get(p).id
+            parent = InterfaceDefinitions.get(p).id
             index = inter["index_${if (player.interfaces.resizable) "resize" else "fixed"}", -1]
         }
         if (id == -1) {
@@ -172,7 +171,7 @@ class InterfaceCommands(
             setting += (2 shl i)
         }
         val options = Array(9) { "Option $it" }
-        val definition = definitions.get(args[0])
+        val definition = InterfaceDefinitions.get(args[0])
         for ((id, component) in definition.components ?: return) {
             if (InterfaceDefinition.componentId(id) == 16) {
                 player.sendScript("primary_options", component.id, 0, 1, 1, 0, -1, *options)

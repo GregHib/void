@@ -39,12 +39,12 @@ class AccountManagerTest : KoinMock() {
     override val modules = listOf(
         module {
             single { ItemDefinitions.init(emptyArray()) }
-            single { InterfaceDefinitions(emptyArray()).apply { ids = emptyMap() } }
         },
     )
 
     @BeforeEach
     fun setup() {
+        InterfaceDefinitions.clear()
         Areas.set(emptyMap(), emptyMap(), mapOf(0 to setOf(AreaDefinition("area", Rectangle(Tile(0), 1, 1), emptySet()))))
         val inventoryDefinitions = InventoryDefinitions(arrayOf(InventoryDefinition.EMPTY))
         inventoryDefinitions.ids = mapOf("worn_equipment" to 0)
@@ -78,7 +78,6 @@ class AccountManagerTest : KoinMock() {
         }
         Settings.load(mapOf("world.home.x" to "1234", "world.home.y" to "5432", "world.experienceRate" to "1.0"))
         manager = AccountManager(
-            interfaceDefinitions = get(),
             inventoryDefinitions = inventoryDefinitions,
             accountDefinitions = AccountDefinitions(),
             variableDefinitions = VariableDefinitions(),
@@ -111,7 +110,7 @@ class AccountManagerTest : KoinMock() {
     @Test
     fun `Spawn player`() {
         val player = Player(0)
-        player.interfaces = Interfaces(player, definitions = get())
+        player.interfaces = Interfaces(player)
         val client: Client = mockk(relaxed = true)
         manager.spawn(player, client)
         verify {

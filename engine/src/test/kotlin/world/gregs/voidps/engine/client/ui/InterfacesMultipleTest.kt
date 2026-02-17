@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_ID
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.network.login.protocol.encode.closeInterface
 import world.gregs.voidps.network.login.protocol.encode.openInterface
 import world.gregs.voidps.network.login.protocol.encode.updateInterface
@@ -18,19 +19,14 @@ internal class InterfacesMultipleTest : InterfaceTest() {
     private val zeroId = "zero"
     private val oneId = "one"
     private val twoId = "two"
+    private val zero = InterfaceDefinition(id = 0, stringId = "zero", type = "0", permanent = false, fixed = InterfaceDefinition.pack(1, 0))
+    private val one = InterfaceDefinition(id = 1, stringId = "one", type = "1", permanent = false, fixed = InterfaceDefinition.pack(2, 0))
+    private val two = InterfaceDefinition(id = 2, stringId = "two", type = "2", permanent = false)
 
     @BeforeEach
     override fun setup() {
         super.setup()
-        every { definitions.get(any<Int>()) } returns InterfaceDefinition(-1)
-        val zero = InterfaceDefinition(id = 0, stringId = "zero", type = "0", permanent = false, fixed = InterfaceDefinition.pack(1, 0))
-        val one = InterfaceDefinition(id = 1, stringId = "one", type = "1", permanent = false, fixed = InterfaceDefinition.pack(2, 0))
-        val two = InterfaceDefinition(id = 2, stringId = "two", type = "2", permanent = false)
-        every { definitions.getOrNull(zeroId) } returns zero
-        every { definitions.getOrNull(oneId) } returns one
-        every { definitions.getOrNull(twoId) } returns two
-        every { definitions.get(1) } returns one
-        every { definitions.get(2) } returns two
+        InterfaceDefinitions.set(arrayOf(zero, one, two), mapOf(zeroId to 0, oneId to 1, twoId to 2), emptyMap())
     }
 
     @Test
@@ -61,7 +57,7 @@ internal class InterfacesMultipleTest : InterfaceTest() {
 
     @Test
     fun `Remove doesn't close children`() {
-        every { definitions.get(ROOT_ID) } returns InterfaceDefinition(id = 0)
+        InterfaceDefinitions.set(arrayOf(InterfaceDefinition(id = 0), one, two), mapOf(zeroId to 0, oneId to 1, twoId to 2), emptyMap())
         interfaces.open(twoId)
         interfaces.open(oneId)
         interfaces.open(zeroId)
@@ -108,7 +104,7 @@ internal class InterfacesMultipleTest : InterfaceTest() {
 
     @Test
     fun `Close closes children and parent`() {
-        every { definitions.get(ROOT_ID) } returns InterfaceDefinition(id = 0)
+        InterfaceDefinitions.set(arrayOf(zero, one, two, InterfaceDefinition(id = 0)), mapOf(zeroId to 0, oneId to 1, twoId to 2, ROOT_ID to 3), emptyMap())
         interfaces.open(twoId)
         interfaces.open(oneId)
         interfaces.open(zeroId)

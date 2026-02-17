@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.network.login.protocol.encode.*
 
 class VariableCommands(
-    val definitions: InterfaceDefinitions,
     val variableDefinitions: VariableDefinitions,
     val accounts: AccountDefinitions,
 ) : Script {
@@ -94,12 +93,12 @@ class VariableCommands(
         if (id == -1 && closeInterface(player)) {
             return
         }
-        val inter = definitions.get(args[0])
+        val inter = InterfaceDefinitions.get(args[0])
         var parent = if (player.interfaces.resizable) 746 else 548
         var index = if (player.interfaces.resizable) 5 else 8
         val p = inter["parent_${if (player.interfaces.resizable) "resize" else "fixed"}", ""]
         if (p.isNotBlank()) {
-            parent = definitions.get(p).id
+            parent = InterfaceDefinitions.get(p).id
             index = inter["index_${if (player.interfaces.resizable) "resize" else "fixed"}", -1]
         }
         if (id == -1) {

@@ -33,7 +33,7 @@ fun engineModule(files: ConfigFiles) = module {
     single {
         SaveQueue(get(), SafeStorage(File(Settings["storage.players.errors"])))
     }
-    single { AccountManager(get(), get(), get(), get(), get(), get(), AppearanceOverrides(get(), get())) }
+    single { AccountManager(get(), get(), get(), get(), get(), AppearanceOverrides(get(), get())) }
     // IO
     single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game) }
     // Map

@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.equipment
 
 class InterfaceHandler(
-    private val interfaceDefinitions: InterfaceDefinitions,
     private val inventoryDefinitions: InventoryDefinitions,
     private val enumDefinitions: EnumDefinitions,
 ) {
@@ -45,7 +44,7 @@ class InterfaceHandler(
     }
 
     private fun getOpenInterface(player: Player, interfaceId: Int): String? {
-        val id = interfaceDefinitions.get(interfaceId).stringId
+        val id = InterfaceDefinitions.get(interfaceId).stringId
         if (!player.interfaces.contains(id)) {
             logger.info { "Player doesn't have interface open [$player, interface=$id]" }
             return null
@@ -54,7 +53,7 @@ class InterfaceHandler(
     }
 
     private fun getComponentDefinition(player: Player, id: Int, componentId: Int): InterfaceComponentDefinition? {
-        val interfaceDefinition = interfaceDefinitions.get(id)
+        val interfaceDefinition = InterfaceDefinitions.get(id)
         val componentDefinition = interfaceDefinition.components?.get(componentId)
         if (componentDefinition == null) {
             logger.info { "Interface doesn't have component [$player, interface=$id, component=$componentId]" }

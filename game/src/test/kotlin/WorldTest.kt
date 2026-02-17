@@ -14,6 +14,7 @@ import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.MemoryCache
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
+import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
@@ -137,6 +138,8 @@ abstract class WorldTest : KoinTest {
     fun beforeAll() {
         settings = Settings.load(properties)
         stopKoin()
+        val (ids, components) = interfaceIds
+        InterfaceDefinitions.set(interfaceDefinitions, ids, components)
         startKoin {
             printLogger(Level.ERROR)
             allowOverride(true)
@@ -152,7 +155,6 @@ abstract class WorldTest : KoinTest {
                     }
                     single(createdAtStart = true) { animationDefinitions }
                     single(createdAtStart = true) { graphicDefinitions }
-                    single(createdAtStart = true) { interfaceDefinitions }
                     single(createdAtStart = true) { inventoryDefinitions }
                     single(createdAtStart = true) { structDefinitions }
                     single(createdAtStart = true) { quickChatPhraseDefinitions }
@@ -311,8 +313,12 @@ abstract class WorldTest : KoinTest {
         private val graphicDefinitions: GraphicDefinitions by lazy {
             GraphicDefinitions(GraphicDecoder().load(cache)).load(configFiles.list(Settings["definitions.graphics"]))
         }
-        private val interfaceDefinitions: InterfaceDefinitions by lazy {
-            InterfaceDefinitions(InterfaceDecoder().load(cache)).load(configFiles.list(Settings["definitions.interfaces"]), configFiles.find(Settings["definitions.interfaces.types"]))
+        private val interfaceDefinitions: Array<InterfaceDefinition> by lazy {
+            InterfaceDecoder().load(cache)
+        }
+        private val interfaceIds: Pair<Map<String, Int>, Map<String, Int>> by lazy {
+            InterfaceDefinitions.init(interfaceDefinitions).load(configFiles.list(Settings["definitions.interfaces"]), configFiles.find(Settings["definitions.interfaces.types"]))
+            InterfaceDefinitions.ids to InterfaceDefinitions.componentIds
         }
         private val inventoryDefinitions: InventoryDefinitions by lazy {
             itemIds

@@ -1,20 +1,27 @@
 package world.gregs.voidps.engine.client.ui
 
-import io.mockk.every
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 
 internal class GameFrameTest : InterfaceTest() {
 
     @BeforeEach
     override fun setup() {
         super.setup()
-        interfaces = Interfaces(player, definitions, open)
-        every { definitions.getOrNull("") } returns InterfaceDefinition()
-        every { definitions.getOrNull("toplevel_full") } returns InterfaceDefinition(id = -1, type = "root")
-        every { definitions.getOrNull("toplevel") } returns InterfaceDefinition(type = "root")
+        interfaces = Interfaces(player, open)
+        InterfaceDefinitions.set(arrayOf(
+            InterfaceDefinition(),
+            InterfaceDefinition(id = -1, type = "root"),
+            InterfaceDefinition(type = "root"),
+        ), mapOf(
+            "" to 0,
+            "toplevel_full" to 1,
+            "toplevel" to 2,
+        ), mapOf()
+        )
     }
 
     @Test

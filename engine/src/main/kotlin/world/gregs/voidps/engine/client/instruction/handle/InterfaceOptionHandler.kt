@@ -12,7 +12,6 @@ import world.gregs.voidps.network.client.instruction.InteractInterface
 
 class InterfaceOptionHandler(
     private val handler: InterfaceHandler,
-    private val interfaceDefinitions: InterfaceDefinitions,
 ) : InstructionHandler<InteractInterface>() {
 
     private val logger = InlineLogger()
@@ -23,7 +22,7 @@ class InterfaceOptionHandler(
         var (id, component, item, options) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return false
 
         if (options == null) {
-            options = interfaceDefinitions.getComponent(id, component)?.getOrNull("options") ?: emptyArray()
+            options = InterfaceDefinitions.getComponent(id, component)?.getOrNull("options") ?: emptyArray()
         }
 
         if (option !in options.indices) {

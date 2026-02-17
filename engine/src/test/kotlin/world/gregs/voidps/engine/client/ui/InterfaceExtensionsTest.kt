@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_ID
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 
 internal class InterfaceExtensionsTest : InterfaceTest() {
 
@@ -18,7 +19,7 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
     override fun setup() {
         super.setup()
         every { player.interfaces } returns interfaces
-        every { definitions.getOrNull(name) } returns InterfaceDefinition(id = 0)
+        InterfaceDefinitions.set(arrayOf(InterfaceDefinition(id = 0)), mapOf(name to 0), emptyMap())
     }
 
     @Test
@@ -30,9 +31,7 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
 
     @Test
     fun `Interface already open with same type is closed first`() {
-        every { definitions.getOrNull(ROOT_ID) } returns InterfaceDefinition(id = -1)
-        every { definitions.getOrNull("first") } returns InterfaceDefinition(id = 0, type = "interface_type")
-        every { definitions.getOrNull("second") } returns InterfaceDefinition(id = 1, type = "interface_type")
+        InterfaceDefinitions.set(arrayOf(InterfaceDefinition(id = -1), InterfaceDefinition(id = 0, type = "interface_type"), InterfaceDefinition(id = 1, type = "interface_type")), mapOf(ROOT_ID to 0, "first" to 1, "second" to 2), emptyMap())
         interfaces.open("first")
         val result = player.open("second")
         verifyOrder {
@@ -64,7 +63,7 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
 
     @Test
     fun `Close interface type`() {
-        every { definitions.getOrNull("second") } returns InterfaceDefinition()
+        InterfaceDefinitions.set(arrayOf(InterfaceDefinition(id = -1), InterfaceDefinition()), mapOf(ROOT_ID to 0, "second" to 1), emptyMap())
         every { interfaces.get("interface_type") } returns "second"
         val result = player.closeType("interface_type")
         verifyOrder {

@@ -18,6 +18,7 @@ import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.suspend.ContinueSuspension
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.protocol.encode.playerDialogueHead
@@ -126,7 +127,11 @@ internal class PlayerChatTest : DialogueTest() {
         mockkStatic("world.gregs.voidps.engine.data.definition.InterfaceDefinitions")
         val client: Client = mockk(relaxed = true)
         player.client = client
-        every { interfaceDefinitions.getComponent("dialogue_chat1", any<String>()) } returns InterfaceComponentDefinition(id = InterfaceDefinition.pack(4, 123))
+        InterfaceDefinitions.set(
+            arrayOf(InterfaceDefinition(components = mutableMapOf(0 to InterfaceComponentDefinition(id = InterfaceDefinition.pack(4, 123))))),
+            mapOf("dialogue_chat1" to 0),
+            mapOf("dialogue_chat1:head_large" to 0, "dialogue_chat1:head" to 0)
+        )
         dialogue {
             player<Neutral>(text = "Text", largeHead = large)
         }

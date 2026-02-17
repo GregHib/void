@@ -24,7 +24,7 @@ class BotManagerTest {
             id = "woodcutting",
             plan = listOf(BotWait(1)),
         )
-        val manager = BotManager(mutableMapOf(activity.id to activity))
+        val manager = BotManager(mutableMapOf(activity.id to activity), world = FakeWorld())
         val bot = testBot(activity)
 
         manager.tick(bot)
@@ -39,7 +39,7 @@ class BotManagerTest {
             id = "mine",
             plan = listOf(BotWait(1)),
         )
-        val manager = BotManager(mutableMapOf(activity.id to activity))
+        val manager = BotManager(mutableMapOf(activity.id to activity), world = FakeWorld())
 
         val bot1 = testBot(activity, name = "bot1")
         val bot2 = testBot(activity, name = "bot2")
@@ -57,7 +57,7 @@ class BotManagerTest {
             id = "walk",
             plan = listOf(BotWait(1, BehaviourState.Running)),
         )
-        val manager = BotManager(mutableMapOf(activity.id to activity))
+        val manager = BotManager(mutableMapOf(activity.id to activity), world = FakeWorld())
         val bot = testBot(activity)
 
         manager.tick(bot)
@@ -94,7 +94,7 @@ class BotManagerTest {
             plan = listOf(BotWait(1)),
         )
 
-        val manager = BotManager(mutableMapOf(activity.id to activity))
+        val manager = BotManager(mutableMapOf(activity.id to activity), world = FakeWorld())
         val bot = testBot(activity)
 
         manager.tick(bot)
@@ -118,7 +118,7 @@ class BotManagerTest {
         )
 
         val activities = mutableMapOf(activity.id to activity, test.id to test)
-        val manager = BotManager(activities)
+        val manager = BotManager(activities, world = FakeWorld())
         val bot = testBot(activity, test)
 
         bot.previous = activity
@@ -138,7 +138,7 @@ class BotManagerTest {
             plan = listOf(BotWait(1)),
         )
 
-        val manager = BotManager(mutableMapOf(activity.id to activity))
+        val manager = BotManager(mutableMapOf(activity.id to activity), world = FakeWorld())
         val bot = testBot(activity)
 
         manager.tick(bot)
@@ -157,7 +157,7 @@ class BotManagerTest {
             plan = listOf(BotWait(1)),
         )
 
-        val manager = BotManager(mutableMapOf(activity.id to activity))
+        val manager = BotManager(mutableMapOf(activity.id to activity), world = FakeWorld())
         val bot = testBot(activity)
 
         manager.tick(bot)
@@ -180,7 +180,7 @@ class BotManagerTest {
             plan = listOf(BotWait(4)),
         )
 
-        val manager = BotManager(mutableMapOf(activity.id to activity))
+        val manager = BotManager(mutableMapOf(activity.id to activity), world = FakeWorld())
         val bot = testBot(activity)
         bot.frames.add(BehaviourFrame(activity))
 
@@ -209,6 +209,7 @@ class BotManagerTest {
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
             mutableMapOf(condition.keys().first() to mutableListOf(resolver)),
+            world = FakeWorld()
         )
 
         val bot = testBot(activity)
@@ -235,6 +236,7 @@ class BotManagerTest {
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
             mutableMapOf(condition.keys().first() to mutableListOf(bad, good)),
+            world = FakeWorld()
         )
 
         val bot = testBot(activity)
@@ -256,6 +258,7 @@ class BotManagerTest {
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
             mutableMapOf(condition.keys().first() to mutableListOf(resolver)),
+            world = FakeWorld()
         )
 
         val bot = testBot(activity)
@@ -286,6 +289,7 @@ class BotManagerTest {
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
             mutableMapOf(condition.keys().first() to mutableListOf(resolver)),
+            world = FakeWorld()
         )
 
         val bot = testBot(activity)
@@ -314,6 +318,7 @@ class BotManagerTest {
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
             mutableMapOf(condition.keys().first() to mutableListOf(resolver)),
+            world = FakeWorld()
         )
 
         val bot = testBot(activity)
@@ -344,6 +349,7 @@ class BotManagerTest {
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
             mutableMapOf(condition.keys().first() to mutableListOf(resolver)),
+            world = FakeWorld()
         )
 
         val bot = testBot(activity)
@@ -371,6 +377,7 @@ class BotManagerTest {
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
             mutableMapOf(condition.keys().first() to mutableListOf(resolver)),
+            world = FakeWorld()
         )
 
         val bot = testBot(activity)

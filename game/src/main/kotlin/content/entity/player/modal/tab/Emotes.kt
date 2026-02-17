@@ -18,7 +18,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
 
-class Emotes(val definitions: InterfaceDefinitions) : Script {
+class Emotes : Script {
 
     companion object {
         val unlockableEmotes = listOf(
@@ -31,7 +31,7 @@ class Emotes(val definitions: InterfaceDefinitions) : Script {
     init {
         interfaceOpened("emotes") { id ->
             for (compId in unlockableEmotes) {
-                val component = definitions.getComponent(id, compId) ?: continue
+                val component = InterfaceDefinitions.getComponent(id, compId) ?: continue
                 sendVariable("unlocked_emote_${component.stringId}")
             }
             sendVariable("unlocked_emote_lost_tribe")
@@ -46,7 +46,7 @@ class Emotes(val definitions: InterfaceDefinitions) : Script {
                 return@interfaceOption
             }
             val id = it.option.toSnakeCase()
-            val componentId = definitions.getComponent(it.id, it.component)!!
+            val componentId = InterfaceDefinitions.getComponent(it.id, it.component)!!
             if (componentId.index > 23 && !unlocked(id, it.option)) {
                 return@interfaceOption
             }

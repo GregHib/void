@@ -10,14 +10,12 @@ import world.gregs.voidps.network.client.instruction.ContinueKey
 /**
  * A slightly hacky way of doing server side dialogue continuing with key presses
  */
-class DialogueContinueKeyHandler(
-    private val definitions: InterfaceDefinitions,
-) : InstructionHandler<ContinueKey>() {
+class DialogueContinueKeyHandler : InstructionHandler<ContinueKey>() {
     override fun validate(player: Player, instruction: ContinueKey): Boolean {
         val dialogue = player.dialogue ?: return false
 
         val option = if (instruction.button == -1) "continue" else "line${instruction.button}"
-        if (definitions.get(dialogue).components?.values?.any { it.stringId == option } == true) {
+        if (InterfaceDefinitions.get(dialogue).components?.values?.any { it.stringId == option } == true) {
             Dialogues.continueDialogue(player, "$dialogue:$option")
             return true
         }

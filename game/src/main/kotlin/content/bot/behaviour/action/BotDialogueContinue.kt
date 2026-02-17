@@ -7,7 +7,6 @@ import content.bot.behaviour.BotWorld
 import content.bot.behaviour.Condition
 import content.bot.behaviour.Reason
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.client.instruction.InteractDialogue
 import kotlin.collections.indexOf
 
@@ -16,16 +15,15 @@ data class BotDialogueContinue(val option: String, val id: String, val success: 
         if (success != null && success.check(bot.player)) {
             return BehaviourState.Success
         }
-        val definitions = get<InterfaceDefinitions>() // TODO static
         val split = id.split(":")
         if (split.size < 2) {
             return BehaviourState.Failed(Reason.Invalid("Invalid interface id '$id'."))
         }
         val (id, component) = split
         val item = split.getOrNull(2)
-        val def = definitions.getOrNull(id) ?: return BehaviourState.Failed(Reason.Invalid("Invalid interface id $id:$component:$item."))
-        val componentId = definitions.getComponentId(id, component) ?: return BehaviourState.Failed(Reason.Invalid("Invalid interface component $id:$component:$item."))
-        val componentDef = definitions.getComponent(id, component) ?: return BehaviourState.Failed(Reason.Invalid("Invalid interface component definition $id:$component:$item."))
+        val def = InterfaceDefinitions.getOrNull(id) ?: return BehaviourState.Failed(Reason.Invalid("Invalid interface id $id:$component:$item."))
+        val componentId = InterfaceDefinitions.getComponentId(id, component) ?: return BehaviourState.Failed(Reason.Invalid("Invalid interface component $id:$component:$item."))
+        val componentDef = InterfaceDefinitions.getComponent(id, component) ?: return BehaviourState.Failed(Reason.Invalid("Invalid interface component definition $id:$component:$item."))
         var options = componentDef.options
         if (options == null) {
             options = componentDef.getOrNull("options") ?: emptyArray()

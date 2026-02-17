@@ -25,12 +25,7 @@ fun gameModule(files: ConfigFiles) = module {
     single(createdAtStart = true) { MusicTracks().load(files.find(Settings["map.music"])) }
     single(createdAtStart = true) { FairyRingCodes().load(files.find(Settings["definitions.fairyCodes"])) }
     single(createdAtStart = true) { CharterShips().load(files.find(Settings["map.ships.prices"])) }
-    single {
-        InstructionHandlers(
-            get(),
-            InterfaceHandler(get(), get(), get()),
-        )
-    }
+    single { InstructionHandlers(InterfaceHandler(get(), get())) }
     single(createdAtStart = true) {
         get<Storage>().offers(Settings["grandExchange.offers.activeDays", 0])
     }

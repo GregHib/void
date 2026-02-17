@@ -23,7 +23,7 @@ import kotlin.math.max
 object SpellRunes {
 
     fun Transaction.removeItems(player: Player, spell: String, message: Boolean = true) {
-        val component = get<InterfaceDefinitions>().getComponent(player.spellBook, spell)
+        val component = InterfaceDefinitions.getComponent(player.spellBook, spell)
         if (component == null || !player.has(Skill.Magic, component.magicLevel, message = message)) {
             error = TransactionError.Deficient(0)
             return

@@ -11,7 +11,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
-import org.koin.dsl.module
 import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 import world.gregs.voidps.cache.definition.data.FontDefinition
@@ -31,7 +30,6 @@ abstract class DialogueTest : KoinMock() {
     lateinit var interfaces: Interfaces
     lateinit var player: Player
     lateinit var continuation: Continuation<Any>
-    lateinit var interfaceDefinitions: InterfaceDefinitions
     lateinit var fontDefinitions: FontDefinitions
     lateinit var clientScriptDefinitions: ClientScriptDefinitions
 
@@ -53,13 +51,10 @@ abstract class DialogueTest : KoinMock() {
         player = spyk(Player())
         interfaces = mockk(relaxed = true)
         player.interfaces = interfaces
-        interfaceDefinitions = spyk(InterfaceDefinitions(arrayOf(InterfaceDefinition(components = mutableMapOf(0 to InterfaceComponentDefinition(id = InterfaceDefinition.pack(4, 321)))))))
-        interfaceDefinitions.ids = mapOf("" to 0, "dialogue_level_up" to 0, "dialogue_npc_chat1" to 0, "dialogue_chat1" to 0)
-        interfaceDefinitions.componentIds = mapOf("" to 0, "dialogue_level_up" to 0, "dialogue_npc_chat1:head_large" to 0, "dialogue_npc_chat1:head" to 0, "dialogue_chat1" to 0)
-        loadModules(
-            module {
-                single { interfaceDefinitions }
-            },
+        InterfaceDefinitions.set(
+            arrayOf(InterfaceDefinition(components = mutableMapOf(0 to InterfaceComponentDefinition(id = InterfaceDefinition.pack(4, 321))))),
+            mapOf("" to 0, "dialogue_level_up" to 0, "dialogue_npc_chat1" to 0, "dialogue_chat1" to 0),
+            mapOf("" to 0, "dialogue_level_up" to 0, "dialogue_npc_chat1:head_large" to 0, "dialogue_npc_chat1:head" to 0, "dialogue_chat1" to 0),
         )
         fontDefinitions = declareMock()
         clientScriptDefinitions = declareMock()

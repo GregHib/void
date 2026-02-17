@@ -9,15 +9,14 @@ import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.*
 
 class InstructionHandlers(
-    interfaceDefinitions: InterfaceDefinitions,
     handler: InterfaceHandler,
 ) {
     private val interactFloorItem = FloorItemOptionHandler()
-    private val interactDialogue = DialogueContinueHandler(interfaceDefinitions)
-    private val continueKey = DialogueContinueKeyHandler(interfaceDefinitions)
+    private val interactDialogue = DialogueContinueHandler()
+    private val continueKey = DialogueContinueKeyHandler()
     private val interactDialogueItem = DialogueItemContinueHandler()
     private val closeInterface = InterfaceClosedHandler()
-    val interactInterface = InterfaceOptionHandler(handler, interfaceDefinitions)
+    val interactInterface = InterfaceOptionHandler(handler)
     private val moveInventoryItem = InterfaceSwitchHandler(handler)
     private val interactNPC = NPCOptionHandler()
     private val interactObject = ObjectOptionHandler()

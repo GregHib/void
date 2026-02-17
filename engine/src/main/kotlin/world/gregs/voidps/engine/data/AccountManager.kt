@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.data
 
-import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
@@ -32,7 +31,6 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
 class AccountManager(
-    private val interfaceDefinitions: InterfaceDefinitions,
     private val inventoryDefinitions: InventoryDefinitions,
     private val accountDefinitions: AccountDefinitions,
     private val variableDefinitions: VariableDefinitions,
@@ -52,8 +50,8 @@ class AccountManager(
     fun setup(player: Player, client: Client?, displayMode: Int, viewport: Boolean = true): Boolean {
         player.index = Players.index() ?: return false
         player.visuals.hits.self = player.index
-        player.interfaces = Interfaces(player, interfaceDefinitions)
-        player.interfaceOptions = InterfaceOptions(player, interfaceDefinitions, inventoryDefinitions)
+        player.interfaces = Interfaces(player)
+        player.interfaceOptions = InterfaceOptions(player, inventoryDefinitions)
         (player.variables as PlayerVariables).definitions = variableDefinitions
 //        player.area.areaDefinitions = areaDefinitions
         player.inventories.definitions = inventoryDefinitions

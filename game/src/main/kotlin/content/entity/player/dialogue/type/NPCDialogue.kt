@@ -66,7 +66,6 @@ private fun getChatHeadComponentName(large: Boolean): String = "head${if (large)
 private fun getInterfaceId(lines: Int, prompt: Boolean): String = "dialogue_npc_chat${if (!prompt) "_np" else ""}$lines"
 
 private fun sendNPCHead(player: Player, id: String, component: String, npc: Int) {
-    val definitions: InterfaceDefinitions = get()
-    val comp = definitions.getComponent(id, component) ?: return
+    val comp = InterfaceDefinitions.getComponent(id, component) ?: return
     player.client?.npcDialogueHead(comp.id, npc)
 }

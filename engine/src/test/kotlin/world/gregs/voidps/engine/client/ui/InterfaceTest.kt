@@ -15,16 +15,14 @@ abstract class InterfaceTest : KoinMock() {
     internal lateinit var player: Player
     internal lateinit var interfaces: Interfaces
     internal lateinit var open: MutableMap<String, String>
-    internal lateinit var definitions: InterfaceDefinitions
 
     @BeforeEach
     open fun setup() {
         client = mockk(relaxed = true)
         player = mockk(relaxed = true)
         every { player.client } returns client
-        definitions = declare { mockk(relaxed = true) }
         open = mutableMapOf()
-        interfaces = spyk(Interfaces(player, definitions, open))
+        interfaces = spyk(Interfaces(player, open))
         mockkObject(InterfaceApi)
         mockkStatic("world.gregs.voidps.network.login.protocol.encode.InterfaceEncodersKt")
         mockkStatic("world.gregs.voidps.engine.client.ui.InterfacesKt")

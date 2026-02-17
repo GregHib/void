@@ -25,7 +25,6 @@ import world.gregs.voidps.engine.inv.stack.ItemStackingRule
 abstract class MagicSpellTest : KoinTest {
 
     private lateinit var inventoryDefinitions: InventoryDefinitions
-    protected lateinit var interfaceDefinitions: InterfaceDefinitions
     private lateinit var fontDefinitions: FontDefinitions
     private var information: Array<Any> = Array(16) { 0 }
     private val itemDefs = Array(100) { ItemDefinition.EMPTY }
@@ -34,14 +33,16 @@ abstract class MagicSpellTest : KoinTest {
 
     @BeforeEach
     fun start() {
-        interfaceDefinitions = InterfaceDefinitions(arrayOf(InterfaceDefinition(0, components = mutableMapOf(0 to InterfaceComponentDefinition(0, information = information)))))
-        interfaceDefinitions.ids = mapOf("unknown_spellbook" to 0)
-        interfaceDefinitions.componentIds = mapOf(
-            "unknown_spellbook:spell" to 0,
-            "unknown_spellbook:spell_bolt" to 0,
-            "unknown_spellbook:spell_blast" to 0,
-            "unknown_spellbook:spell_surge" to 0,
-            "unknown_spellbook:spell_wave" to 0,
+        InterfaceDefinitions.set(
+            arrayOf(InterfaceDefinition(0, components = mutableMapOf(0 to InterfaceComponentDefinition(0, information = information)))),
+            mapOf("unknown_spellbook" to 0),
+            mapOf(
+                "unknown_spellbook:spell" to 0,
+                "unknown_spellbook:spell_bolt" to 0,
+                "unknown_spellbook:spell_blast" to 0,
+                "unknown_spellbook:spell_surge" to 0,
+                "unknown_spellbook:spell_wave" to 0,
+            ),
         )
         inventoryDefinitions = InventoryDefinitions(emptyArray())
         inventoryDefinitions.ids = emptyMap()
@@ -50,7 +51,6 @@ abstract class MagicSpellTest : KoinTest {
         startKoin {
             modules(
                 module {
-                    single { interfaceDefinitions }
                     single { fontDefinitions }
                 },
             )
@@ -99,7 +99,7 @@ abstract class MagicSpellTest : KoinTest {
         val player = Player(
             inventories = Inventories(mapOf("inventory" to Array(28) { Item.EMPTY.copy() }, "worn_equipment" to Array(12) { Item.EMPTY.copy() })),
         )
-        player.interfaces = Interfaces(player, definitions = interfaceDefinitions)
+        player.interfaces = Interfaces(player)
         player.inventories.definitions = inventoryDefinitions
         player.inventories.validItemRule = NoRestrictions
         player.inventories.player = player

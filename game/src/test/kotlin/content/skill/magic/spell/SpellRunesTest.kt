@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource
 import set
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
@@ -37,7 +38,7 @@ class SpellRunesTest : MagicSpellTest() {
         assertFalse(player.hasSpellItems("invalid", message = false))
         assertFalse(player.removeSpellItems("invalid"))
 
-        interfaceDefinitions.definitions.first().components!![0]!!.information = null
+        InterfaceDefinitions.definitions.first().components!![0]!!.information = null
 
         assertFalse(player.hasSpellItems("spell", message = false))
         assertFalse(player.removeSpellItems("spell"))
