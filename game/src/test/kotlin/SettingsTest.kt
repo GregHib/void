@@ -11,6 +11,6 @@ internal class SettingsTest {
         assertTrue(Settings["world.npcs.randomWalk", false])
         assertTrue(Settings["world.npcs.aggression", false])
         assertTrue(Settings["world.npcs.collision", false])
-        assertEquals(10, Settings["bots.count", 0])
+        assertEquals(30, Settings["bots.count", 0])
     }
 }
