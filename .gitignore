@@ -38,6 +38,7 @@ build/*
 build
 rebel.xml
 rebel-remote.xml
+.kotlin
 
 ### Gradle ###
 .gradle
