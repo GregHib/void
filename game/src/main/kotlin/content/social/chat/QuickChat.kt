@@ -87,7 +87,10 @@ class QuickChat(
             when (definition.getType(0)) {
                 QuickChatType.SkillLevel -> {
                     val skill = Skill.all[definition.ids!!.first().first()]
-                    val level = player.levels.getMax(skill)
+                    var level = player.levels.getMax(skill)
+                    if (skill == Skill.Constitution) {
+                        level /= 10
+                    }
                     return byteArrayOf(level.toByte())
                 }
                 QuickChatType.Varp -> {
