@@ -8,10 +8,11 @@ import content.bot.behaviour.Reason
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.network.client.instruction.Walk
+import world.gregs.voidps.type.random
 
 data class BotWalkTo(val x: Int, val y: Int, val radius: Int = 4) : BotAction {
     override fun start(bot: Bot, world: BotWorld, frame: BehaviourFrame): BehaviourState {
-        world.execute(bot.player, Walk(x, y))
+        world.execute(bot.player, Walk(x + random.nextInt(-1, 1), y + random.nextInt(-1, 1)))
         return BehaviourState.Running
     }
 
