@@ -105,7 +105,7 @@ object Areas {
     }
 
     @TestOnly
-    fun set(named: Map<String, AreaDefinition>, tagged: Map<String, Set<AreaDefinition>>, areas: Map<Int, Set<AreaDefinition>>) {
+    fun set(named: Map<String, AreaDefinition>, tagged: Map<String, Set<AreaDefinition>> = emptyMap(), areas: Map<Int, Set<AreaDefinition>> = emptyMap()) {
         this.named = named
         this.tagged = tagged
         this.areas = areas

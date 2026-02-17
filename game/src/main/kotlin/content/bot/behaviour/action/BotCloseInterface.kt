@@ -16,6 +16,6 @@ object BotCloseInterface : BotAction {
         if (world.execute(bot.player, InterfaceClosedInstruction)) {
             return BehaviourState.Success
         }
-        return BehaviourState.Failed(Reason.NoTarget)
+        return BehaviourState.Failed(Reason.Invalid("Failed to close interface"))
     }
 }

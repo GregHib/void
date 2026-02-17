@@ -209,7 +209,7 @@ class BotManagerTest {
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
             mutableMapOf(condition.keys().first() to mutableListOf(resolver)),
-            world = FakeWorld()
+            world = FakeWorld(),
         )
 
         val bot = testBot(activity)
@@ -236,7 +236,7 @@ class BotManagerTest {
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
             mutableMapOf(condition.keys().first() to mutableListOf(bad, good)),
-            world = FakeWorld()
+            world = FakeWorld(),
         )
 
         val bot = testBot(activity)
@@ -258,7 +258,7 @@ class BotManagerTest {
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
             mutableMapOf(condition.keys().first() to mutableListOf(resolver)),
-            world = FakeWorld()
+            world = FakeWorld(),
         )
 
         val bot = testBot(activity)
@@ -289,7 +289,7 @@ class BotManagerTest {
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
             mutableMapOf(condition.keys().first() to mutableListOf(resolver)),
-            world = FakeWorld()
+            world = FakeWorld(),
         )
 
         val bot = testBot(activity)
@@ -318,7 +318,7 @@ class BotManagerTest {
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
             mutableMapOf(condition.keys().first() to mutableListOf(resolver)),
-            world = FakeWorld()
+            world = FakeWorld(),
         )
 
         val bot = testBot(activity)
@@ -349,7 +349,7 @@ class BotManagerTest {
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
             mutableMapOf(condition.keys().first() to mutableListOf(resolver)),
-            world = FakeWorld()
+            world = FakeWorld(),
         )
 
         val bot = testBot(activity)
@@ -377,7 +377,7 @@ class BotManagerTest {
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
             mutableMapOf(condition.keys().first() to mutableListOf(resolver)),
-            world = FakeWorld()
+            world = FakeWorld(),
         )
 
         val bot = testBot(activity)
