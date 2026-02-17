@@ -83,13 +83,14 @@ sealed class ActionParser {
 
     object ItemOnObjectParser : ActionParser() {
         override val required = setOf("id", "object")
-        override val optional = setOf("success")
+        override val optional = setOf("success", "delay")
 
         override fun parse(map: Map<String, Any>): BotAction {
             val id = map["id"] as String
             val obj = map["object"] as String
+            val delay = map["delay"] as? Int ?: 0
             val success = requirement(map, "success").singleOrNull()
-            return BotItemOnObject(id, obj, success)
+            return BotItemOnObject(id, obj, delay, success)
         }
     }
 
@@ -191,7 +192,8 @@ sealed class ActionParser {
     companion object {
         @Suppress("UNCHECKED_CAST")
         private fun requirement(map: Map<String, Any>, key: String): List<Condition> {
-            val parent = map[key] as? Map<String, Any> ?: return listOf()
+            val value = map[key] ?: return listOf()
+            val parent = value as? Map<String, Any> ?: error("Expected map for key $key but found $map")
             return requirement(parent)
         }
 

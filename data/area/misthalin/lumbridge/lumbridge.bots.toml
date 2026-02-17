@@ -263,3 +263,98 @@ fields = { raw = "raw_crayfish", cooked = "crayfish", level = 1, location = "lum
 template = "beef_template"
 capacity = 4
 fields = { location = "lumbridge_kitchen", obj = "cooking_range_lumbridge_castle" }
+
+# Smithing
+[lumbridge_smelt_bronze_bars]
+template = "smelt_ores"
+capacity = 2
+fields = {
+    primary = "copper_ore",
+    secondary = "tin_ore",
+    level = 1,
+    location = "lumbridge_furnace",
+    obj = "furnace_lumbridge",
+    bar = "bronze_bar"
+}
+
+[lumbridge_smelt_iron_bars]
+template = "smelt_bar"
+capacity = 2
+fields = {
+    primary = "iron_ore",
+    level = 15,
+    location = "lumbridge_furnace",
+    obj = "furnace_lumbridge",
+    bar = "iron_bar"
+}
+
+[lumbridge_smelt_silver_bars]
+template = "smelt_bar"
+capacity = 2
+fields = {
+    primary = "silver_ore",
+    level = 20,
+    location = "lumbridge_furnace",
+    obj = "furnace_lumbridge",
+    bar = "silver_bar"
+}
+
+[lumbridge_smith_bronze_dagger]
+template = "smith_bar"
+capacity = 1
+fields = {
+    bar = "bronze_bar",
+    left_over_bars = 0,
+    level_min = 1,
+    level_max = 5,
+    location = "lumbridge_furnace",
+    obj = "anvil_lumbridge",
+    name = "Daggers",
+    type = "dagger",
+    item = "bronze_dagger"
+}
+
+[lumbridge_smith_bronze_scimitars]
+template = "smith_bar"
+capacity = 1
+fields = {
+    bar = "bronze_bar",
+    left_over_bars = 0,
+    level_min = 5,
+    level_max = 10,
+    location = "lumbridge_furnace",
+    obj = "anvil_lumbridge",
+    name = "Scimitar",
+    type = "scimitar",
+    item = "bronze_scimitar"
+}
+
+[lumbridge_smith_bronze_sword]
+template = "smith_bar"
+capacity = 1
+fields = {
+    bar = "bronze_bar",
+    left_over_bars = 0,
+    level_min = 4,
+    level_max = 8,
+    location = "lumbridge_furnace",
+    obj = "anvil_lumbridge",
+    name = "Sword",
+    type = "sword",
+    item = "bronze_sword"
+}
+
+[lumbridge_smith_bronze_full_helm]
+template = "smith_bar"
+capacity = 1
+fields = {
+    bar = "bronze_bar",
+    left_over_bars = 0,
+    level_min = 7,
+    level_max = 10,
+    location = "lumbridge_furnace",
+    obj = "anvil_lumbridge",
+    name = "Full helm",
+    type = "full_helm",
+    item = "bronze_full_helm"
+}

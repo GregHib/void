@@ -14,7 +14,12 @@ import world.gregs.voidps.engine.map.Spiral
 import world.gregs.voidps.network.client.instruction.InteractInterfaceObject
 import kotlin.collections.iterator
 
-data class BotItemOnObject(val item: String, val id: String, val success: Condition? = null) : BotAction {
+data class BotItemOnObject(
+    val item: String,
+    val id: String,
+    val delay: Int = 0,
+    val success: Condition? = null,
+) : BotAction {
     override fun update(bot: Bot, world: BotWorld, frame: BehaviourFrame): BehaviourState {
         if (success != null && success.check(bot.player)) {
             return BehaviourState.Success
@@ -40,6 +45,9 @@ data class BotItemOnObject(val item: String, val id: String, val success: Condit
                 if (!valid) {
                     return BehaviourState.Failed(Reason.Invalid("Invalid item on object: ${item.def.id}:$slot -> $obj."))
                 }
+                if (delay > 0) {
+                    return BehaviourState.Wait(delay, BehaviourState.Running)
+                }
                 return BehaviourState.Running
             }
         }
@@ -48,6 +56,9 @@ data class BotItemOnObject(val item: String, val id: String, val success: Condit
         }
         if (success.check(bot.player)) {
             return BehaviourState.Success
+        }
+        if (delay > 0) {
+            return BehaviourState.Wait(delay, BehaviourState.Running)
         }
         return BehaviourState.Running
     }
