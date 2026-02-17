@@ -1,6 +1,6 @@
 package content.bot.behaviour.navigation
 
-import content.bot.behaviour.Condition
+import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.action.ActionParser
 import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.action.BotWalkTo

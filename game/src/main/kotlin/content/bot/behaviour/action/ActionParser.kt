@@ -1,6 +1,6 @@
 package content.bot.behaviour.action
 
-import content.bot.behaviour.Condition
+import content.bot.behaviour.condition.Condition
 
 sealed class ActionParser {
     open val required = emptySet<String>()

@@ -5,8 +5,8 @@ import content.bot.FakeBehaviour
 import content.bot.FakeWorld
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
-import content.bot.behaviour.Condition
 import content.bot.behaviour.Reason
+import content.bot.behaviour.condition.BotHasClock
 import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -106,10 +106,7 @@ class BotFightNpcTest {
     @Test
     fun `Success condition returns success`() {
         player.start("true", 10)
-        val action = BotFightNpc(
-            id = "cow",
-            success = Condition.Clock("true"),
-        )
+        val action = BotFightNpc(id = "cow", success = BotHasClock("true"))
 
         val state = action.update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))
 
@@ -188,7 +185,7 @@ class BotFightNpcTest {
     fun `No target with success and delay returns wait`() {
         val action = BotFightNpc(
             id = "cow",
-            success = Condition.Clock("false"),
+            success = BotHasClock("false"),
             delay = 5,
         )
 
@@ -204,7 +201,7 @@ class BotFightNpcTest {
     fun `No target with success and no delay returns running`() {
         val action = BotFightNpc(
             id = "cow",
-            success = Condition.Clock("false"),
+            success = BotHasClock("false"),
         )
 
         val state = action.update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))

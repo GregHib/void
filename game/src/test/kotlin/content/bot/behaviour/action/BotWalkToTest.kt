@@ -8,7 +8,10 @@ import content.bot.behaviour.BehaviourState
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.type.Tile
 
 class BotWalkToTest {
 
@@ -17,8 +20,12 @@ class BotWalkToTest {
 
     @BeforeEach
     fun setup() {
-        player = Player()
+        player = Player(tile = Tile(3200, 3200))
         bot = Bot(player)
+        GameLoop.tick = 0
+        bot.mode = EmptyMode
+        bot.steps.last = 0
+        bot.steps.clear()
     }
 
     @Test

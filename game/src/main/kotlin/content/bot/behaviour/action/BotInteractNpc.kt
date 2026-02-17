@@ -4,13 +4,12 @@ import content.bot.Bot
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.BotWorld
-import content.bot.behaviour.Condition
+import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.Reason
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnNPCInteract
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.event.wildcardEquals
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Spiral
 import world.gregs.voidps.network.client.instruction.InteractNPC
 import kotlin.collections.indexOf

@@ -38,7 +38,7 @@ class BotFiremakingTest {
 
     @BeforeEach
     fun setup() {
-        GameObjects.clear()
+        GameObjects.reset()
         Areas.clear()
         player = Player()
         bot = Bot(player)

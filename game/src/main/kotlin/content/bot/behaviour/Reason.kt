@@ -1,5 +1,7 @@
 package content.bot.behaviour
 
+import content.bot.behaviour.condition.Condition
+
 interface Reason {
     data class Invalid(val message: String) : HardReason {
         override fun toString() = "Invalid(\"$message\")"

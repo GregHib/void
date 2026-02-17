@@ -5,8 +5,8 @@ import content.bot.FakeBehaviour
 import content.bot.FakeWorld
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
-import content.bot.behaviour.Condition
 import content.bot.behaviour.Reason
+import content.bot.behaviour.condition.BotHasClock
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -35,11 +35,7 @@ class BotInteractNpcTest {
     fun `Success condition returns success`() {
         player.start("done", 10)
 
-        val action = BotInteractNpc(
-            option = "Talk-to",
-            id = "guide",
-            success = Condition.Clock("done")
-        )
+        val action = BotInteractNpc(option = "Talk-to", id = "guide", success = BotHasClock("done"))
 
         val state = action.update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))
 

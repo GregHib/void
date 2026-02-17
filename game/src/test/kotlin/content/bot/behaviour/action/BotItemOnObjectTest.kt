@@ -29,7 +29,7 @@ class BotItemOnObjectTest {
 
     @BeforeEach
     fun setup() {
-        GameObjects.clear()
+        GameObjects.reset()
         ItemDefinitions.clear()
 
         player = Player()

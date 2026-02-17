@@ -1,6 +1,7 @@
 package content.bot.behaviour.navigation
 
-import content.bot.behaviour.Condition
+import content.bot.behaviour.condition.BotAtTile
+import content.bot.behaviour.condition.Condition
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.definition.AreaDefinition
@@ -135,7 +136,7 @@ class NavigationGraphTest {
         builder.addEdge(b, c, 3)
         val cd = builder.addEdge(c, d, 6)
         val ec = builder.addEdge(e, c, 2)
-        builder.addEdge(e, d, 7, conditions = listOf(Condition.AtTile(100)))
+        builder.addEdge(e, d, 7, conditions = listOf(BotAtTile(100)))
 //        builder.print()
 
         val output = mutableListOf<Int>()
@@ -254,7 +255,7 @@ class NavigationGraphTest {
             to = b,
             weight = 1,
             actions = emptyList(),
-            conditions = listOf(Condition.AtTile(100)),
+            conditions = listOf(BotAtTile(100)),
         )
 
         val graph = builder.build()
@@ -299,7 +300,7 @@ class NavigationGraphTest {
             id = "teleport",
             weight = 1,
             timeout = 50,
-            requires = listOf(Condition.AtTile(50, 50)),
+            requires = listOf(BotAtTile(50, 50)),
             produces = setOf("area:town"),
         )
 

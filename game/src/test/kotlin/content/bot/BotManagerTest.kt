@@ -2,12 +2,14 @@ package content.bot
 
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
-import content.bot.behaviour.Condition
+import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.Reason
 import content.bot.behaviour.SoftReason
 import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.action.BotWait
 import content.bot.behaviour.activity.BotActivity
+import content.bot.behaviour.condition.BotAtTile
+import content.bot.behaviour.condition.BotSkillLevel
 import content.bot.behaviour.setup.Resolver
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
@@ -162,7 +164,7 @@ class BotManagerTest {
 
         manager.tick(bot)
         manager.tick(bot)
-        bot.frame().fail(Reason.Requirement(Condition.AtTile()))
+        bot.frame().fail(Reason.Requirement(BotAtTile()))
         manager.tick(bot)
         manager.tick(bot)
 
@@ -175,7 +177,7 @@ class BotManagerTest {
         val activity = testActivity(
             id = "test",
             requires = listOf(
-                Condition.SkillLevel(Skill.Attack, 99),
+                BotSkillLevel(Skill.Attack, 99),
             ),
             plan = listOf(BotWait(4)),
         )
@@ -194,7 +196,7 @@ class BotManagerTest {
 
     @Test
     fun `Resolvable requirement queues resolver before activity starts`() {
-        val condition = Condition.AtTile(100, 100, 2)
+        val condition = BotAtTile(100, 100, 2)
         val resolver = Resolver(
             id = "go_to_area",
             weight = 1,
@@ -222,7 +224,7 @@ class BotManagerTest {
 
     @Test
     fun `Lowest weight resolver is selected`() {
-        val condition = Condition.AtTile(100, 100, 2)
+        val condition = BotAtTile(100, 100, 2)
 
         val bad = Resolver("bad", weight = 10, actions = listOf(BotWait(1)))
         val good = Resolver("good", weight = 1, actions = listOf(BotWait(1)))
@@ -248,7 +250,7 @@ class BotManagerTest {
 
     @Test
     fun `Blocked resolver is not reselected`() {
-        val condition = Condition.AtTile(100, 100, 2)
+        val condition = BotAtTile(100, 100, 2)
         val resolver = Resolver(id = "get_key", weight = 1, actions = listOf(BotWait(1)))
         val activity = testActivity(
             id = "open_door",
@@ -275,7 +277,7 @@ class BotManagerTest {
 
     @Test
     fun `Hard failure in resolver stops bot`() {
-        val condition = Condition.AtTile(100, 100, 2)
+        val condition = BotAtTile(100, 100, 2)
         val resolver = Resolver(
             id = "walk",
             weight = 1,
@@ -304,7 +306,7 @@ class BotManagerTest {
 
     @Test
     fun `Soft failure in resolver only pops resolver`() {
-        val condition = Condition.AtTile(100, 100, 2)
+        val condition = BotAtTile(100, 100, 2)
         val resolver = Resolver(
             id = "test",
             weight = 1,
@@ -334,12 +336,12 @@ class BotManagerTest {
 
     @Test
     fun `Resolver with unmet mandatory requirements is skipped`() {
-        val condition = Condition.AtTile(100, 100, 2)
+        val condition = BotAtTile(100, 100, 2)
         val resolver = Resolver(
             id = "mine_gem",
             weight = 1,
             actions = listOf(BotWait(1)),
-            requires = listOf(Condition.SkillLevel(Skill.Mining, 99)),
+            requires = listOf(BotSkillLevel(Skill.Mining, 99)),
         )
         val activity = testActivity(
             id = "craft",
@@ -363,7 +365,7 @@ class BotManagerTest {
 
     @Test
     fun `Activity are occupied while resolver is running`() {
-        val condition = Condition.AtTile(100, 100, 2)
+        val condition = BotAtTile(100, 100, 2)
         val resolver = Resolver(
             id = "get_tool",
             weight = 1,

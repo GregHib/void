@@ -6,7 +6,7 @@ import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.BotGameWorld
 import content.bot.behaviour.BotWorld
-import content.bot.behaviour.Condition
+import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.HardReason
 import content.bot.behaviour.Reason
 import content.bot.behaviour.action.BotWait

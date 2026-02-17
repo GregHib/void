@@ -1,7 +1,6 @@
 package content.bot.behaviour.setup
 
-import content.bot.behaviour.Condition
-import content.bot.behaviour.Condition.Entry
+import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.action.BotCloseInterface
 import content.bot.behaviour.action.BotGoTo
@@ -10,6 +9,11 @@ import content.bot.behaviour.action.BotIntEntry
 import content.bot.behaviour.action.BotInteractNpc
 import content.bot.behaviour.action.BotInteractObject
 import content.bot.behaviour.action.BotInterfaceOption
+import content.bot.behaviour.condition.BotItem
+import content.bot.behaviour.condition.BotEquipmentSetup
+import content.bot.behaviour.condition.BotInArea
+import content.bot.behaviour.condition.BotInterfaceOpen
+import content.bot.behaviour.condition.BotInventorySetup
 import content.entity.npc.shop.stock.Price
 import content.entity.player.bank.bank
 import content.entity.player.bank.ownsItem
@@ -31,13 +35,13 @@ object DynamicResolvers {
     val sampleItems = mutableMapOf<String, MutableList<Pair<String, String>>>()
 
     fun resolver(player: Player, condition: Condition): Resolver? = when (condition) {
-        is Condition.InArea -> Resolver("go_to_area", -1, actions = listOf(BotGoTo(condition.id)))
-        is Condition.Equipment -> resolveEquipment(player, condition.items)
-        is Condition.Inventory -> resolveInventory(player, condition.items)
+        is BotInArea -> Resolver("go_to_area", -1, actions = listOf(BotGoTo(condition.id)))
+        is BotEquipmentSetup -> resolveEquipment(player, condition.items)
+        is BotInventorySetup -> resolveInventory(player, condition.items)
         else -> null
     }
 
-    private fun resolveInventory(player: Player, items: List<Entry>): Resolver? {
+    private fun resolveInventory(player: Player, items: List<BotItem>): Resolver? {
         var resolver = withdraw(player, items)
         if (resolver != null) {
             return resolver
@@ -53,7 +57,7 @@ object DynamicResolvers {
         return null
     }
 
-    private fun buyItems(player: Player, items: List<Entry>): Resolver? {
+    private fun buyItems(player: Player, items: List<BotItem>): Resolver? {
         for (entry in items) {
             val amount = entry.min ?: 1
             if (entry.ids.any { id -> player.inventory.contains(id, amount) }) {
@@ -63,7 +67,7 @@ object DynamicResolvers {
                 for ((location, npc) in sampleItems[id] ?: emptyList()) {
                     val actions = mutableListOf<BotAction>()
                     actions.add(BotGoTo(location))
-                    actions.add(BotInteractNpc("Trade", npc, success = Condition.InterfaceOpen("shop")))
+                    actions.add(BotInteractNpc("Trade", npc, success = BotInterfaceOpen("shop")))
                     var remaining = amount
                     while (remaining > 0) {
                         val amount = when {
@@ -80,7 +84,7 @@ object DynamicResolvers {
                     return Resolver(
                         id = "take_from_shop",
                         weight = 20,
-                        setup = listOf(Condition.Inventory(listOf(Entry(setOf("empty"), min = spaces)))),
+                        setup = listOf(BotInventorySetup(listOf(BotItem(setOf("empty"), min = spaces)))),
                         actions = actions,
                         produces = setOf("item:$id"),
                     )
@@ -92,7 +96,7 @@ object DynamicResolvers {
                         continue
                     }
                     actions.add(BotGoTo(location))
-                    actions.add(BotInteractNpc("Trade", npc, success = Condition.InterfaceOpen("shop")))
+                    actions.add(BotInteractNpc("Trade", npc, success = BotInterfaceOpen("shop")))
                     var remaining = amount
                     while (remaining > 0) {
                         val amount = when {
@@ -110,7 +114,7 @@ object DynamicResolvers {
                     return Resolver(
                         id = "buy_from_shop",
                         weight = 25,
-                        setup = listOf(Condition.Inventory(listOf(Entry(setOf("coins"), min = price * amount), Entry(setOf("empty"), min = spaces)))),
+                        setup = listOf(BotInventorySetup(listOf(BotItem(setOf("coins"), min = price * amount), BotItem(setOf("empty"), min = spaces)))),
                         actions = actions,
                         produces = setOf("item:$id"),
                     )
@@ -120,7 +124,7 @@ object DynamicResolvers {
         return null
     }
 
-    internal fun valid(player: Player, item: Item, entry: Entry): Boolean {
+    internal fun valid(player: Player, item: Item, entry: BotItem): Boolean {
         if (item.isEmpty()) {
             return false
         }
@@ -136,7 +140,7 @@ object DynamicResolvers {
         return true
     }
 
-    private fun resolveEquipment(player: Player, equipment: Map<EquipSlot, Entry>): Resolver? {
+    private fun resolveEquipment(player: Player, equipment: Map<EquipSlot, BotItem>): Resolver? {
         val equipment = equipment.toMutableMap()
         var resolver = unequipItems(player, equipment)
         if (resolver != null) {
@@ -153,11 +157,11 @@ object DynamicResolvers {
         return null
     }
 
-    private fun withdraw(player: Player, items: List<Entry>): Resolver? {
+    private fun withdraw(player: Player, items: List<BotItem>): Resolver? {
         val actions = mutableListOf<BotAction>()
         actions.add(BotGoToNearest("bank"))
-        actions.add(BotInteractObject("Use-quickly", "bank_booth*", success = Condition.InterfaceOpen("bank")))
-        actions.add(BotInterfaceOption("Deposit carried items", "bank:carried", success = Condition.Inventory(listOf(Entry(setOf("empty"), min = 28)))))
+        actions.add(BotInteractObject("Use-quickly", "bank_booth*", success = BotInterfaceOpen("bank")))
+        actions.add(BotInterfaceOption("Deposit carried items", "bank:carried", success = BotInventorySetup(listOf(BotItem(setOf("empty"), min = 28)))))
         var found = false
         for (entry in items) {
             val item = player.bank.items.firstOrNull { item -> valid(player, item, entry) }
@@ -174,7 +178,7 @@ object DynamicResolvers {
         return null
     }
 
-    private fun depositItems(player: Player, items: List<Entry>): Resolver? {
+    private fun depositItems(player: Player, items: List<BotItem>): Resolver? {
         val empty = items.firstOrNull { it.ids.contains("empty") } ?: return null
         val spaces = player.inventory.spaces
         if (empty.min != null && spaces > empty.min) {
@@ -182,14 +186,14 @@ object DynamicResolvers {
         }
         val actions = mutableListOf(
             BotGoToNearest("bank"),
-            BotInteractObject("Use-quickly", "bank_booth*", success = Condition.InterfaceOpen("bank")),
-            BotInterfaceOption("Deposit carried items", "bank:carried", success = Condition.Inventory(listOf(Entry(setOf("empty"), min = 28)))),
+            BotInteractObject("Use-quickly", "bank_booth*", success = BotInterfaceOpen("bank")),
+            BotInterfaceOption("Deposit carried items", "bank:carried", success = BotInventorySetup(listOf(BotItem(setOf("empty"), min = 28)))),
             BotCloseInterface,
         )
         return Resolver("deposit_all_bank", weight = 20, actions = actions)
     }
 
-    private fun equipItems(player: Player, equipment: Map<EquipSlot, Entry>): Resolver? {
+    private fun equipItems(player: Player, equipment: Map<EquipSlot, BotItem>): Resolver? {
         val actions = mutableListOf<BotAction>()
         val produces = mutableSetOf<String>()
         for (item in player.inventory.items) {
@@ -201,7 +205,7 @@ object DynamicResolvers {
             if (!entry.ids.contains(item.id)) {
                 continue
             }
-            actions.add(BotInterfaceOption("Equip", "inventory:inventory:${item.id}", success = Condition.Equipment(mapOf(slot to entry))))
+            actions.add(BotInterfaceOption("Equip", "inventory:inventory:${item.id}", success = BotEquipmentSetup(mapOf(slot to entry))))
             produces.add("equipment:${item.id}")
         }
         if (actions.isNotEmpty()) {
@@ -210,7 +214,7 @@ object DynamicResolvers {
         return null
     }
 
-    private fun unequipItems(player: Player, equipment: Map<EquipSlot, Entry>): Resolver? {
+    private fun unequipItems(player: Player, equipment: Map<EquipSlot, BotItem>): Resolver? {
         val actions = mutableListOf<BotAction>()
         for ((slot, entry) in equipment) {
             if (!entry.ids.contains("empty")) {
@@ -227,7 +231,7 @@ object DynamicResolvers {
         return null
     }
 
-    private fun withdraw(actions: MutableList<BotAction>, entry: Entry, item: Item) {
+    private fun withdraw(actions: MutableList<BotAction>, entry: BotItem, item: Item) {
         if (entry.min != null && entry.min > 1) {
             actions.add(BotInterfaceOption("Withdraw-X", "bank:inventory:${item.id}"))
             actions.add(BotIntEntry(entry.min))

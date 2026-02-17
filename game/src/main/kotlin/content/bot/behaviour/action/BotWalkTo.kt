@@ -11,7 +11,7 @@ import world.gregs.voidps.network.client.instruction.Walk
 
 data class BotWalkTo(val x: Int, val y: Int, val radius: Int = 4) : BotAction {
     override fun start(bot: Bot, world: BotWorld, frame: BehaviourFrame): BehaviourState {
-        bot.player.instructions.trySend(Walk(x, y))
+        world.execute(bot.player, Walk(x, y))
         return BehaviourState.Running
     }
 

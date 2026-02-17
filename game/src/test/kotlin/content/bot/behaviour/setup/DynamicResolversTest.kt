@@ -1,11 +1,15 @@
 package content.bot.behaviour.setup
 
-import content.bot.behaviour.Condition
 import content.bot.behaviour.action.BotGoTo
 import content.bot.behaviour.action.BotGoToNearest
 import content.bot.behaviour.action.BotInteractNpc
 import content.bot.behaviour.action.BotInteractObject
 import content.bot.behaviour.action.BotInterfaceOption
+import content.bot.behaviour.condition.BotItem
+import content.bot.behaviour.condition.BotEquipmentSetup
+import content.bot.behaviour.condition.BotInArea
+import content.bot.behaviour.condition.BotInterfaceOpen
+import content.bot.behaviour.condition.BotInventorySetup
 import content.entity.player.bank.bank
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -45,12 +49,12 @@ class DynamicResolversTest {
         player.inventories.inventory(InventoryDefinition(stringId = "worn_equipment", length = 10))
         ItemDefinitions.clear()
         NPCs.clear()
-        GameObjects.clear()
+        GameObjects.reset()
     }
 
     @Test
     fun `Resolve not in area with GoTo`() {
-        val condition = Condition.InArea("target_area")
+        val condition = BotInArea("target_area")
         Areas.set(mapOf("target_area" to AreaDefinition("target_area", player.tile.toCuboid(2))))
         val resolver = DynamicResolvers.resolver(player, condition)
         assertNotNull(resolver)
@@ -59,7 +63,7 @@ class DynamicResolversTest {
 
     @Test
     fun `Ignore unsupported conditions`() {
-        val condition = Condition.InterfaceOpen("shop")
+        val condition = BotInterfaceOpen("shop")
         val resolver = DynamicResolvers.resolver(player, condition)
         assertNull(resolver)
     }
@@ -67,18 +71,18 @@ class DynamicResolversTest {
     @Test
     fun `Resolve missing inventory item with one in bank`() {
         ItemDefinitions.set(arrayOf(ItemDefinition(id = 100)), mapOf("fish" to 0))
-        val entry = Condition.Entry(setOf("fish"))
+        val entry = BotItem(setOf("fish"))
         player.bank.add("fish")
 
-        val resolver = DynamicResolvers.resolver(player, Condition.Inventory(listOf(entry)))
+        val resolver = DynamicResolvers.resolver(player, BotInventorySetup(listOf(entry)))
         assertNotNull(resolver)
         assertTrue(resolver!!.actions.any { it is BotGoToNearest || it is BotInteractObject })
     }
 
     @Test
     fun `Resolve not enough empty inventory spaces with bank deposit`() {
-        val entry = Condition.Entry(setOf("empty"), min = 20)
-        val resolver = DynamicResolvers.resolver(player, Condition.Inventory(listOf(entry)))
+        val entry = BotItem(setOf("empty"), min = 20)
+        val resolver = DynamicResolvers.resolver(player, BotInventorySetup(listOf(entry)))
         assertNotNull(resolver)
         assertEquals("deposit_all_bank", resolver!!.id)
     }
@@ -86,10 +90,10 @@ class DynamicResolversTest {
     @Test
     fun `Resolve unequipped item in inventory by equipping it`() {
         ItemDefinitions.set(arrayOf(ItemDefinition(stringId = "sword", extras = mapOf("slot" to EquipSlot.Weapon))), mapOf("sword" to 0))
-        val entry = Condition.Entry(setOf("sword"))
+        val entry = BotItem(setOf("sword"))
         player.inventory.add("sword")
 
-        val resolver = DynamicResolvers.resolver(player, Condition.Equipment(mapOf(EquipSlot.Weapon to entry)))
+        val resolver = DynamicResolvers.resolver(player, BotEquipmentSetup(mapOf(EquipSlot.Weapon to entry)))
         assertNotNull(resolver)
         assertEquals("equip_items", resolver!!.id)
     }
@@ -98,8 +102,8 @@ class DynamicResolversTest {
     fun `Resolve blank equipment slot by unequipping current item`() {
         ItemDefinitions.set(arrayOf(ItemDefinition(stringId = "sword")), mapOf("sword" to 0))
         player.equipment.set(EquipSlot.Weapon.index, "sword")
-        val entry = Condition.Entry(setOf("empty"))
-        val resolver = DynamicResolvers.resolver(player, Condition.Equipment(mapOf(EquipSlot.Weapon to entry)))
+        val entry = BotItem(setOf("empty"))
+        val resolver = DynamicResolvers.resolver(player, BotEquipmentSetup(mapOf(EquipSlot.Weapon to entry)))
         assertNotNull(resolver)
         assertEquals("unequip_items", resolver!!.id)
     }
@@ -107,9 +111,9 @@ class DynamicResolversTest {
     @Test
     fun `Take free samples from shop before buying items`() {
         DynamicResolvers.sampleItems["fish"] = mutableListOf("market" to "trader")
-        val entry = Condition.Entry(setOf("fish"), min = 5)
+        val entry = BotItem(setOf("fish"), min = 5)
 
-        val resolver = DynamicResolvers.resolver(player, Condition.Inventory(listOf(entry)))
+        val resolver = DynamicResolvers.resolver(player, BotInventorySetup(listOf(entry)))
         assertNotNull(resolver)
         assertEquals("take_from_shop", resolver!!.id)
         assertTrue(resolver.actions.any { it is BotGoTo })
@@ -124,10 +128,10 @@ class DynamicResolversTest {
             mapOf("fish" to 0, "coins" to 1)
         )
         DynamicResolvers.shopItems["fish"] = mutableListOf("market" to "trader")
-        val entry = Condition.Entry(setOf("fish"), min = 5)
+        val entry = BotItem(setOf("fish"), min = 5)
         player.inventory.add("coins", 1000)
 
-        val resolver = DynamicResolvers.resolver(player, Condition.Inventory(listOf(entry)))
+        val resolver = DynamicResolvers.resolver(player, BotInventorySetup(listOf(entry)))
         assertNotNull(resolver)
         assertEquals("buy_from_shop", resolver!!.id)
         assertTrue(resolver.actions.any { it is BotGoTo })
@@ -137,28 +141,28 @@ class DynamicResolversTest {
 
     @Test
     fun `Resolve inventory returns null if no matching resolver`() {
-        val entry = Condition.Entry(setOf("missing"))
-        val resolver = DynamicResolvers.resolver(player, Condition.Inventory(listOf(entry)))
+        val entry = BotItem(setOf("missing"))
+        val resolver = DynamicResolvers.resolver(player, BotInventorySetup(listOf(entry)))
         assertNull(resolver)
     }
 
     @Test
     fun `Valid returns false if item empty`() {
-        val entry = Condition.Entry(setOf("item"))
+        val entry = BotItem(setOf("item"))
         val item = Item()
         assertFalse(DynamicResolvers.valid(player, item, entry))
     }
 
     @Test
     fun `Valid returns false if item id not in entry`() {
-        val entry = Condition.Entry(setOf("other"))
+        val entry = BotItem(setOf("other"))
         val item = Item("item")
         assertFalse(DynamicResolvers.valid(player, item, entry))
     }
 
     @Test
     fun `Valid returns true for matching item`() {
-        val entry = Condition.Entry(setOf("item"))
+        val entry = BotItem(setOf("item"))
         val item = Item("item")
         assertTrue(DynamicResolvers.valid(player, item, entry))
     }

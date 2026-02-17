@@ -1,7 +1,7 @@
 package content.bot.behaviour.navigation
 
 import content.bot.behaviour.Behaviour
-import content.bot.behaviour.Condition
+import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.action.BotAction
 
 data class NavigationShortcut(

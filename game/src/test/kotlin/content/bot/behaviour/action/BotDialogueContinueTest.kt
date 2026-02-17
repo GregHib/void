@@ -5,8 +5,8 @@ import content.bot.FakeBehaviour
 import content.bot.FakeWorld
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
-import content.bot.behaviour.Condition
 import content.bot.behaviour.Reason
+import content.bot.behaviour.condition.BotHasClock
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -47,7 +47,7 @@ class BotDialogueContinueTest {
         val action = BotDialogueContinue(
             option = "Yes",
             id = "test:component",
-            success = Condition.Clock("test"),
+            success = BotHasClock("test"),
         )
 
         val state = action.update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))

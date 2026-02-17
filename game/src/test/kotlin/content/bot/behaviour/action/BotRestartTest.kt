@@ -5,7 +5,7 @@ import content.bot.FakeBehaviour
 import content.bot.FakeWorld
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
-import content.bot.behaviour.Condition
+import content.bot.behaviour.condition.BotHasClock
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -27,10 +27,7 @@ class BotRestartTest {
     fun `Success condition returns success`() {
         player.start("done", 10)
 
-        val action = BotRestart(
-            wait = emptyList(),
-            success = Condition.Clock("done")
-        )
+        val action = BotRestart(wait = emptyList(), success = BotHasClock("done"))
 
         val state = action.update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))
 
@@ -42,8 +39,8 @@ class BotRestartTest {
         player.start("wait", 10)
 
         val action = BotRestart(
-            wait = listOf(Condition.Clock("wait")),
-            success = Condition.Clock("done")
+            wait = listOf(BotHasClock("wait")),
+            success = BotHasClock("done")
         )
 
         val state = action.update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))
@@ -58,7 +55,7 @@ class BotRestartTest {
 
         val action = BotRestart(
             wait = emptyList(),
-            success = Condition.Clock("done")
+            success = BotHasClock("done")
         )
 
         action.update(bot, FakeWorld(), frame)
