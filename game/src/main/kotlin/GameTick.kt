@@ -49,6 +49,9 @@ fun getTickStages(
     val sequentialPlayer: TaskIterator<Player> = SequentialIterator()
     val iterator: TaskIterator<Player> = if (sequential) SequentialIterator() else ParallelIterator()
     return listOf(
+        PlayerResetTask(sequentialPlayer),
+        NPCResetTask(sequentialNpc),
+        botManager, // Bot must go after reset otherwise flags aren't seen when debugging bots
         hunting,
         grandExchange,
         // Connections/Tick Input
@@ -70,9 +73,6 @@ fun getTickStages(
             PlayerUpdateTask(),
             NPCUpdateTask(npcVisualEncoders()),
         ),
-        PlayerResetTask(sequentialPlayer),
-        NPCResetTask(sequentialNpc),
-        botManager, // Bot must go after reset otherwise actions like anims won't be seen when debugging bots
         accountSave,
         SaveLogs(),
     )
