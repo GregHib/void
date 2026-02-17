@@ -1,11 +1,13 @@
 [mikasi_runes]
 requires = [
-    { inventory = { id = "empty", min = 2 } },
     { clock = { id = "claimed_tutor_consumables", max = 0, seconds = true } },
     { bank = [
         { id = "air_rune", max = 0 },
         { id = "mind_rune", max = 0 },
-    ] },
+    ] }
+]
+setup = [
+    { inventory = { id = "empty", min = 2 } },
     { area = { id = "lumbridge_combat_tutors" } }
 ]
 actions = [
@@ -22,10 +24,12 @@ produces = [
 
 [harlan_sword]
 requires = [
-    { inventory = { id = "empty", min = 2 } },
     { clock = { id = "claimed_tutor_consumables", max = 0, seconds = true } },
     { owns = { id = "training_sword", max = 0 } },
     { owns = { id = "training_shield", max = 0 } },
+]
+setup = [
+    { inventory = { id = "empty", min = 2 } },
     { area = { id = "lumbridge_combat_tutors" } }
 ]
 actions = [
@@ -43,10 +47,12 @@ produces = [
 
 [nemarti_bow]
 requires = [
-    { inventory = { id = "empty", min = 2 } },
     { clock = { id = "claimed_tutor_consumables", max = 0, seconds = true } },
     { owns = { id = "training_bow", max = 0 } },
     { owns = { id = "training_arrows", max = 0 } },
+]
+setup = [
+    { inventory = { id = "empty", min = 2 } },
     { area = { id = "lumbridge_combat_tutors" } }
 ]
 actions = [

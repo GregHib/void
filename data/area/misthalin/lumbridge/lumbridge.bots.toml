@@ -49,13 +49,13 @@ fields = { skill = "defence", location = "lumbridge_west_cow_field", style = "st
 capacity = 2
 requires = [
     { skill = { id = "magic", min = 1, max = 5 } },
-    { area = { id = "lumbridge_combat_tutors" } }
 ]
 setup = [
     { inventory = [
         { id = "air_rune", min = 30 },
         { id = "mind_rune", min = 30 },
     ] },
+    { area = { id = "lumbridge_combat_tutors" } }
 ]
 actions = [
     { interface = { option = "Autocast", id = "modern_spellbook:wind_strike", success = { variable = { id = "autocast", min = 0, default = -1 } } } },
@@ -69,10 +69,10 @@ produces = [
 capacity = 1
 requires = [
     { skill = { id = "attack", min = 1, max = 5 } },
-    { area = { id = "lumbridge_combat_tutors" } }
 ]
 setup = [
     { equipment = { weapon = { id = "training_sword" }, shield = { id = "training_shield" } } },
+    { area = { id = "lumbridge_combat_tutors" } }
 ]
 actions = [
     { interface = { option = "Select", id = "combat_styles:style1" } },
@@ -86,10 +86,10 @@ produces = [
 capacity = 1
 requires = [
     { skill = { id = "strength", min = 1, max = 5 } },
-    { area = { id = "lumbridge_combat_tutors" } }
 ]
 setup = [
     { equipment = { weapon = { id = "training_sword" }, shield = { id = "training_shield" } } },
+    { area = { id = "lumbridge_combat_tutors" } }
 ]
 actions = [
     { interface = { option = "Select", id = "combat_styles:style2" } },
@@ -103,10 +103,10 @@ produces = [
 capacity = 1
 requires = [
     { skill = { id = "ranged", min = 1, max = 5 } },
-    { area = { id = "lumbridge_combat_tutors" } }
 ]
 setup = [
     { equipment = { weapon = { id = "training_bow" }, ammo = { id = "training_arrows", min = 10 } } },
+    { area = { id = "lumbridge_combat_tutors" } }
 ]
 actions = [
     { interface = { option = "Select", id = "combat_styles:style1" } },

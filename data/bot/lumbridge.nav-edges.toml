@@ -101,8 +101,8 @@ edges = [
     { from = { x = 3222, y = 3241 }, to = { x = 3219, y = 3247 } }, # lumbridge_general_store_east_to_west_crossroad
     { from = { x = 3219, y = 3247 }, to = { x = 3212, y = 3247 } }, # lumbridge_west_crossroad_to_combat_hall_east_entrance
     { from = { x = 3212, y = 3247 }, to = { x = 3204, y = 3247 } }, # lumbridge_combat_hall_east_entrance_to_task_building
-    { from = { x = 3212, y = 3247 }, to = { x = 3212, y = 3250 } }, # lumbridge_combat_hall_entrance_to_east
-    { from = { x = 3204, y = 3247 }, to = { x = 3204, y = 3250 } }, # lumbridge_task_building_to_combat_hall_west
+    { from = { x = 3212, y = 3247 }, to = { x = 3211, y = 3252 } }, # lumbridge_combat_hall_entrance_to_east
+    { from = { x = 3204, y = 3247 }, to = { x = 3204, y = 3252 } }, # lumbridge_task_building_to_combat_hall_west
     { from = { x = 3226, y = 3245 }, to = { x = 3225, y = 3252 } }, # lumbridge_village_trees_west_to_smiths_south
     { from = { x = 3225, y = 3252 }, to = { x = 3222, y = 3255 } }, # lumbridge_smiths_south_to_west
     { from = { x = 3222, y = 3255 }, to = { x = 3218, y = 3255 } }, # lumbridge_smiths_west_to_smiths_crossroad
