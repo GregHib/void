@@ -21,7 +21,7 @@ class StrongholdOfPlayerSafety : Script {
             if (get("safety_prison_guard_talked", false)) {
                 enterDoor(target)
             } else {
-                message("The door is locked.")
+                message("The door appears to be locked. You'll have to find another way in.")
                 return@objectOperate
             }
         }
@@ -47,7 +47,6 @@ class StrongholdOfPlayerSafety : Script {
         objectOperate("Pull", "stronghold_of_player_safety_an_old_lever_closed") { (target) ->
             arriveDelay()
             animDelay("pull_ground_lever")
-            target.anim("lever_down")
             areaSound("lever", target.tile)
             delay(2)
             areaSound("unlock", target.tile)
@@ -59,7 +58,6 @@ class StrongholdOfPlayerSafety : Script {
         objectOperate("Pull", "stronghold_of_player_safety_an_old_lever_opened") { (target) ->
             arriveDelay()
             animDelay("push_ground_lever")
-            target.anim("lever_up")
             areaSound("lever", target.tile)
             delay(1)
             areaSound("unlock", target.tile)
