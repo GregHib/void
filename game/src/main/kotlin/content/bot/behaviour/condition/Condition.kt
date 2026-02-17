@@ -101,6 +101,7 @@ sealed class Condition(val priority: Int) {
             "object" -> parseObject(list)
             "combat_level" -> parseCombat(list)
             "interface_open" -> parseInterface(list)
+            "interface_closed" -> parseInterfaceClosed(list)
             "mode" -> parseMode(list)
             "skill" -> parseSkills(list)
             else -> null
@@ -255,6 +256,14 @@ sealed class Condition(val priority: Int) {
             val map = list.single()
             if (map.containsKey("id")) {
                 return BotInterfaceOpen(id = map["id"] as String)
+            }
+            return null
+        }
+
+        private fun parseInterfaceClosed(list: List<Map<String, Any>>): Condition? {
+            val map = list.single()
+            if (map.containsKey("id")) {
+                return BotInterfaceClosed(id = map["id"] as String)
             }
             return null
         }
