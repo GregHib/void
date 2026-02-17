@@ -3,7 +3,7 @@ package content.entity.player.command
 import content.bot.Bot
 import content.bot.BotManager
 import content.bot.behaviour.BehaviourFrame
-import content.bot.behaviour.action.BotAction
+import content.bot.behaviour.action.BotGoTo
 import content.bot.behaviour.navigation.NavigationGraph
 import content.bot.behaviour.setup.Resolver
 import content.bot.bot
@@ -132,7 +132,7 @@ class PathFindingCommands(val patrols: PatrolDefinitions) : Script {
                 set("bot", bot)
                 manager.add(bot)
             }
-            bot.queue(BehaviourFrame(Resolver("bot_to_$area", 0, actions = listOf(BotAction.GoTo(area)))))
+            bot.queue(BehaviourFrame(Resolver("bot_to_$area", 0, actions = listOf(BotGoTo(area)))))
         }
 
         adminCommand("walk_to_bank") {

@@ -4,10 +4,12 @@ import com.github.michaelbull.logging.InlineLogger
 import content.bot.behaviour.Behaviour
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
+import content.bot.behaviour.BotGameWorld
+import content.bot.behaviour.BotWorld
 import content.bot.behaviour.Condition
 import content.bot.behaviour.HardReason
 import content.bot.behaviour.Reason
-import content.bot.behaviour.action.BotAction
+import content.bot.behaviour.action.BotWait
 import content.bot.behaviour.activity.ActivitySlots
 import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.loadBehaviours
@@ -30,6 +32,7 @@ class BotManager(
     private val activities: MutableMap<String, BotActivity> = mutableMapOf(),
     val resolvers: MutableMap<String, MutableList<Resolver>> = mutableMapOf(),
     private val groups: MutableMap<String, MutableList<String>> = mutableMapOf(),
+    private val world: BotWorld = BotGameWorld(),
 ) : Runnable {
     internal val slots = ActivitySlots()
     val bots = mutableListOf<Bot>()
@@ -145,7 +148,7 @@ class BotManager(
         bot.evaluate.clear()
     }
 
-    private val idle = BotActivity("idle", 2048, timeout = TimeUnit.HOURS.toTicks(1), actions = listOf(BotAction.Wait(TimeUnit.SECONDS.toTicks(30))))
+    private val idle = BotActivity("idle", 2048, timeout = TimeUnit.HOURS.toTicks(1), actions = listOf(BotWait(TimeUnit.SECONDS.toTicks(30))))
 
     private fun hasRequirements(bot: Bot, activity: BotActivity?): Boolean = activity != null && slots.hasFree(activity) && !bot.blocked.contains(activity.id) && activity.requires.all { it.check(bot.player) }
 
@@ -165,7 +168,7 @@ class BotManager(
     private fun execute(bot: Bot) {
         val frame = bot.frame()
         when (val state = frame.state) {
-            BehaviourState.Running -> frame.update(bot)
+            BehaviourState.Running -> frame.update(bot, world)
             BehaviourState.Pending -> start(bot, frame)
             BehaviourState.Success -> nextAction(bot, frame)
             is BehaviourState.Failed -> handleFail(bot, frame, state)
@@ -232,7 +235,7 @@ class BotManager(
             logger.info { "Starting activity: ${behaviour.id}." }
         }
         bot.blocked.add(behaviour.id)
-        frame.start(bot)
+        frame.start(bot, world)
     }
 
     /**
@@ -244,7 +247,7 @@ class BotManager(
             if (debug) {
                 logger.debug { "Next action: ${frame.action()} for ${frame.behaviour.id}." }
             }
-            frame.start(bot)
+            frame.start(bot, world)
             return
         }
         val behaviour = frame.behaviour

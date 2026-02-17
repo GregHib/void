@@ -19,18 +19,18 @@ data class BehaviourFrame(
 
     fun completed() = index >= behaviour.actions.size
 
-    fun start(bot: Bot) {
+    fun start(bot: Bot, world: BotWorld) {
         val action = action()
-        state = action.start(bot, this)
+        state = action.start(bot, world, this)
     }
 
-    fun update(bot: Bot) {
+    fun update(bot: Bot, world: BotWorld) {
         if (++timeout > behaviour.timeout) {
             fail(Reason.Timeout)
             return
         }
         val action = action()
-        state = action.update(bot, this) ?: return
+        state = action.update(bot, world, this) ?: return
     }
 
     fun next(): Boolean {

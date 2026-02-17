@@ -64,8 +64,8 @@ class BotUpdates(
                 instructions.trySend(InteractDialogue(interfaceId = 740, componentId = 3, option = -1))
             }
         }
-        // Register shops
 
+        // Register shops
         worldSpawn {
             DynamicResolvers.shopItems.clear()
         }

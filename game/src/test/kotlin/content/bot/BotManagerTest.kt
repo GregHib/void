@@ -6,6 +6,7 @@ import content.bot.behaviour.Condition
 import content.bot.behaviour.Reason
 import content.bot.behaviour.SoftReason
 import content.bot.behaviour.action.BotAction
+import content.bot.behaviour.action.BotWait
 import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.setup.Resolver
 import org.junit.jupiter.api.Assertions.*
@@ -21,7 +22,7 @@ class BotManagerTest {
     fun `Taskless bot gets assigned an activity`() {
         val activity = testActivity(
             id = "woodcutting",
-            plan = listOf(BotAction.Wait(1)),
+            plan = listOf(BotWait(1)),
         )
         val manager = BotManager(mutableMapOf(activity.id to activity))
         val bot = testBot(activity)
@@ -36,7 +37,7 @@ class BotManagerTest {
     fun `Activity capacity is respected`() {
         val activity = testActivity(
             id = "mine",
-            plan = listOf(BotAction.Wait(1)),
+            plan = listOf(BotWait(1)),
         )
         val manager = BotManager(mutableMapOf(activity.id to activity))
 
@@ -54,7 +55,7 @@ class BotManagerTest {
     fun `Pending frame starts running`() {
         val activity = testActivity(
             id = "walk",
-            plan = listOf(BotAction.Wait(1, BehaviourState.Running)),
+            plan = listOf(BotWait(1, BehaviourState.Running)),
         )
         val manager = BotManager(mutableMapOf(activity.id to activity))
         val bot = testBot(activity)
@@ -71,12 +72,12 @@ class BotManagerTest {
         val activity = testActivity(
             id = "task",
             plan = listOf(
-                BotAction.Wait(1),
-                BotAction.Wait(1),
+                BotWait(1),
+                BotWait(1),
             ),
         )
         val frame = BehaviourFrame(activity)
-        frame.start(testBot(activity))
+        frame.start(testBot(activity), FakeWorld())
         frame.success()
 
         val advanced = frame.next()
@@ -90,7 +91,7 @@ class BotManagerTest {
     fun `Activity slot released on success`() {
         val activity = testActivity(
             id = "cook",
-            plan = listOf(BotAction.Wait(1)),
+            plan = listOf(BotWait(1)),
         )
 
         val manager = BotManager(mutableMapOf(activity.id to activity))
@@ -109,11 +110,11 @@ class BotManagerTest {
     fun `Completed activity most likely to be reassigned on success`() {
         val activity = testActivity(
             id = "cook",
-            plan = listOf(BotAction.Wait(1)),
+            plan = listOf(BotWait(1)),
         )
         val test = testActivity(
             id = "test",
-            plan = listOf(BotAction.Wait(1)),
+            plan = listOf(BotWait(1)),
         )
 
         val activities = mutableMapOf(activity.id to activity, test.id to test)
@@ -134,7 +135,7 @@ class BotManagerTest {
     fun `Activity slot released on failure`() {
         val activity = testActivity(
             id = "smith",
-            plan = listOf(BotAction.Wait(1)),
+            plan = listOf(BotWait(1)),
         )
 
         val manager = BotManager(mutableMapOf(activity.id to activity))
@@ -153,7 +154,7 @@ class BotManagerTest {
     fun `Failed activity is blocked`() {
         val activity = testActivity(
             id = "fish",
-            plan = listOf(BotAction.Wait(1)),
+            plan = listOf(BotWait(1)),
         )
 
         val manager = BotManager(mutableMapOf(activity.id to activity))
@@ -176,7 +177,7 @@ class BotManagerTest {
             requires = listOf(
                 Condition.SkillLevel(Skill.Attack, 99),
             ),
-            plan = listOf(BotAction.Wait(4)),
+            plan = listOf(BotWait(4)),
         )
 
         val manager = BotManager(mutableMapOf(activity.id to activity))
@@ -197,13 +198,13 @@ class BotManagerTest {
         val resolver = Resolver(
             id = "go_to_area",
             weight = 1,
-            actions = listOf(BotAction.Wait(1)),
+            actions = listOf(BotWait(1)),
             produces = setOf("tile"),
         )
         val activity = testActivity(
             id = "woodcut",
             resolves = listOf(condition),
-            plan = listOf(BotAction.Wait(1)),
+            plan = listOf(BotWait(1)),
         )
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
@@ -222,13 +223,13 @@ class BotManagerTest {
     fun `Lowest weight resolver is selected`() {
         val condition = Condition.AtTile(100, 100, 2)
 
-        val bad = Resolver("bad", weight = 10, actions = listOf(BotAction.Wait(1)))
-        val good = Resolver("good", weight = 1, actions = listOf(BotAction.Wait(1)))
+        val bad = Resolver("bad", weight = 10, actions = listOf(BotWait(1)))
+        val good = Resolver("good", weight = 1, actions = listOf(BotWait(1)))
 
         val activity = testActivity(
             id = "mine",
             resolves = listOf(condition),
-            plan = listOf(BotAction.Wait(1)),
+            plan = listOf(BotWait(1)),
         )
 
         val manager = BotManager(
@@ -246,11 +247,11 @@ class BotManagerTest {
     @Test
     fun `Blocked resolver is not reselected`() {
         val condition = Condition.AtTile(100, 100, 2)
-        val resolver = Resolver(id = "get_key", weight = 1, actions = listOf(BotAction.Wait(1)))
+        val resolver = Resolver(id = "get_key", weight = 1, actions = listOf(BotWait(1)))
         val activity = testActivity(
             id = "open_door",
             resolves = listOf(condition),
-            plan = listOf(BotAction.Wait(1)),
+            plan = listOf(BotWait(1)),
         )
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
@@ -275,12 +276,12 @@ class BotManagerTest {
         val resolver = Resolver(
             id = "walk",
             weight = 1,
-            actions = listOf(BotAction.Wait(1)),
+            actions = listOf(BotWait(1)),
         )
         val activity = testActivity(
             id = "enter_zone",
             resolves = listOf(condition),
-            plan = listOf(BotAction.Wait(1)),
+            plan = listOf(BotWait(1)),
         )
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
@@ -303,12 +304,12 @@ class BotManagerTest {
         val resolver = Resolver(
             id = "test",
             weight = 1,
-            actions = listOf(BotAction.Wait(1)),
+            actions = listOf(BotWait(1)),
         )
         val activity = testActivity(
             id = "smelt",
             resolves = listOf(condition),
-            plan = listOf(BotAction.Wait(1)),
+            plan = listOf(BotWait(1)),
         )
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
@@ -332,13 +333,13 @@ class BotManagerTest {
         val resolver = Resolver(
             id = "mine_gem",
             weight = 1,
-            actions = listOf(BotAction.Wait(1)),
+            actions = listOf(BotWait(1)),
             requires = listOf(Condition.SkillLevel(Skill.Mining, 99)),
         )
         val activity = testActivity(
             id = "craft",
             resolves = listOf(condition),
-            plan = listOf(BotAction.Wait(1)),
+            plan = listOf(BotWait(1)),
         )
         val manager = BotManager(
             mutableMapOf(activity.id to activity),
@@ -360,12 +361,12 @@ class BotManagerTest {
         val resolver = Resolver(
             id = "get_tool",
             weight = 1,
-            actions = listOf(BotAction.Wait(1)),
+            actions = listOf(BotWait(1)),
         )
         val activity = testActivity(
             id = "work",
             resolves = listOf(condition),
-            plan = listOf(BotAction.Wait(1)),
+            plan = listOf(BotWait(1)),
         )
         val manager = BotManager(
             mutableMapOf(activity.id to activity),

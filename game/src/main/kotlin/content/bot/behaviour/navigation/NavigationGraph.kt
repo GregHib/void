@@ -3,6 +3,7 @@ package content.bot.behaviour.navigation
 import content.bot.behaviour.Condition
 import content.bot.behaviour.action.ActionParser
 import content.bot.behaviour.action.BotAction
+import content.bot.behaviour.action.BotWalkTo
 import content.bot.behaviour.actions
 import content.bot.behaviour.requirements
 import content.bot.bot
@@ -286,8 +287,8 @@ class NavigationGraph(
                                 when {
                                     actions.isEmpty() -> {
                                         val cost = Distance.manhattan(from.x, from.y, to.x, to.y)
-                                        builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, listOf(BotAction.WalkTo(to.x, to.y)), null)
-                                        builder.addEdge(Tile(to.x, to.y, to.level), Tile(from.x, from.y, from.level), cost, listOf(BotAction.WalkTo(from.x, from.y)), null)
+                                        builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, listOf(BotWalkTo(to.x, to.y)), null)
+                                        builder.addEdge(Tile(to.x, to.y, to.level), Tile(from.x, from.y, from.level), cost, listOf(BotWalkTo(from.x, from.y)), null)
                                     }
                                     requirements.isEmpty() -> builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, ActionParser.parse(actions, exception()), null)
                                     else -> builder.addEdge(Tile(from.x, from.y, from.level), Tile(to.x, to.y, to.level), cost, ActionParser.parse(actions, exception()), Condition.parse(requirements, exception()))
