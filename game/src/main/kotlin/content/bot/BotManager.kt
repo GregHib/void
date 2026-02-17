@@ -321,7 +321,7 @@ class BotManager(
         val behaviour = frame.behaviour
         val action = frame.action()
         if (bot.player["debug", false]) {
-            logger.warn { "Failed ${behaviour.id} action=${action::class.simpleName}, reason=${state.reason}." }
+            logger.warn { "Failed ${behaviour.id} action=${action::class.simpleName}, reason=${state.reason}, bot=${bot.player.accountName}." }
         }
         AuditLog.event(bot, "failed", behaviour.id, state.reason, frame.index, action::class.simpleName)
         if (state.reason is HardReason) {

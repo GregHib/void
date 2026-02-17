@@ -19,7 +19,7 @@ data class BotInterfaceOption(val option: String, val id: String, val success: C
         }
         val split = id.split(":")
         if (split.size < 2) {
-            return BehaviourState.Failed(Reason.Invalid("Invalid interface id '$id'."))
+            return BehaviourState.Failed(Reason.Invalid("Invalid interface id '$id' use format 'id:component'."))
         }
         val (id, component) = split
         val item = split.getOrNull(2)
@@ -30,12 +30,14 @@ data class BotInterfaceOption(val option: String, val id: String, val success: C
         if (options == null) {
             options = componentDef.getOrNull("options") ?: emptyArray()
         }
-        val index = options.indexOf(option)
-        if (index == -1) {
-            return BehaviourState.Failed(Reason.Invalid("No interface option $option for $id:$component:$item options=${options.contentToString()}."))
-        }
         val itemDef = if (item != null) ItemDefinitions.getOrNull(item) else null
-
+        var index = options.indexOf(option)
+        if (index == -1) {
+            if (itemDef == null || !itemDef.options.contains(option)) {
+                return BehaviourState.Failed(Reason.Invalid("No interface option $option for $id:$component:$item options=${options.contentToString()}."))
+            }
+            index = itemDef.options.indexOf(option)
+        }
         var inv = InterfaceHandler.getInventory(bot.player, id, component, componentDef)
         if (inv != null && component == "sample") {
             inv = "${inv}_sample"
@@ -57,7 +59,7 @@ data class BotInterfaceOption(val option: String, val id: String, val success: C
             ),
         )
         return when {
-            !valid -> BehaviourState.Failed(Reason.Invalid("Invalid interaction: ${def.id}:$componentId:${itemDef?.stringId} slot $itemSlot option $index."))
+            !valid -> BehaviourState.Failed(Reason.Invalid("Invalid interaction: ${def.stringId}:${componentDef.stringId}:${itemDef?.stringId} slot $itemSlot option $option $index."))
             success == null -> BehaviourState.Wait(1, BehaviourState.Success)
             success.check(bot.player) -> BehaviourState.Success
             else -> BehaviourState.Running

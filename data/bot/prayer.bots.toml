@@ -8,7 +8,7 @@ setup = [
 ]
 actions = [
     { interface = { option = "Bury", id = "inventory:inventory:bones" } },
-    { restart = { wait_if = [{ variable = { id = "bone_delay", min = 0, default = -1 } }], success = { inventory = { id = "empty", min = 28 } } } }
+    { restart = { wait_if = [{ variable = { id = "bone_delay", max = 0, default = -1 } }], success = { inventory = { id = "empty", min = 28 } } } }
 ]
 produces = [
     { skill = "prayer" }
@@ -24,7 +24,7 @@ setup = [
 ]
 actions = [
     { interface = { option = "Bury", id = "inventory:inventory:bones" } },
-    { restart = { wait_if = [{ variable = { id = "bone_delay", min = 0, default = -1 } }], success = { inventory = { id = "empty", min = 28 } } } }
+    { restart = { wait_if = [{ variable = { id = "bone_delay", max = 0, default = -1 } }], success = { inventory = { id = "empty", min = 28 } } } }
 ]
 produces = [
     { skill = "prayer" }
