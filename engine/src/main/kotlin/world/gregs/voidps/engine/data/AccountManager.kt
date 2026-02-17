@@ -49,7 +49,7 @@ class AccountManager(
         this["new_player"] = true
     }
 
-    fun setup(player: Player, client: Client, displayMode: Int, viewport: Boolean = true): Boolean {
+    fun setup(player: Player, client: Client?, displayMode: Int, viewport: Boolean = true): Boolean {
         player.index = Players.index() ?: return false
         player.visuals.hits.self = player.index
         player.interfaces = Interfaces(player, interfaceDefinitions)

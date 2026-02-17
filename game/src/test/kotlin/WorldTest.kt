@@ -100,7 +100,7 @@ abstract class WorldTest : KoinTest {
 
     fun createPlayer(tile: Tile = Tile.EMPTY, name: String = "player"): Player {
         val player = Player(tile = tile, accountName = name, passwordHash = "")
-        assertTrue(accounts.setup(player, DummyClient(), 0, viewport = true))
+        assertTrue(accounts.setup(player, null, 0, viewport = true))
         accountDefs.add(player)
         tick()
         player["creation"] = -1
