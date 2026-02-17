@@ -1,6 +1,15 @@
-[report_abuse_name]
+[report_abuse_player_security]
 id = 593
 
-[report_abuse_select]
+[.name]
+id = 32
+
+[.abuse]
+id = 97
+
+[.ignore]
+id = 110
+
+[report_abuse]
 id = 594
 
