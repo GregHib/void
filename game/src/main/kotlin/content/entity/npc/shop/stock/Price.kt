@@ -1,5 +1,6 @@
 package content.entity.npc.shop.stock
 
+import org.koin.mp.KoinPlatformTools
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -56,20 +57,23 @@ object Price {
 
     fun of(item: String, currency: String = "coins"): Int {
         val itemId = getRealItem(item)
-        val enums = get<EnumDefinitions>()
-        var price = enums.get("price_runes").getInt(itemId)
-        if (currency == "tokkul" && price != -1 && price > 0) {
-            return price
-        }
-        price = enums.get("price_garden").getInt(itemId)
-        if (price != -1 && price > 0) {
-            return price
+        val koin = KoinPlatformTools.defaultContext().getOrNull()
+        if (koin != null) {
+            val enums = get<EnumDefinitions>()
+            var price = enums.get("price_runes").getInt(itemId)
+            if (currency == "tokkul" && price != -1 && price > 0) {
+                return price
+            }
+            price = enums.get("price_garden").getInt(itemId)
+            if (price != -1 && price > 0) {
+                return price
+            }
         }
         val def = ItemDefinitions.get(itemId)
         if (def.contains("skill_cape") || def.contains("skill_cape_t")) {
             return 99000
         }
-        price = def.cost
+        val price = def.cost
         return max(price, 1)
     }
 }

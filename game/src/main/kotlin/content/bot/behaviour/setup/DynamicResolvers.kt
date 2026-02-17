@@ -60,7 +60,7 @@ object DynamicResolvers {
                 continue
             }
             for (id in entry.ids) {
-                for ((location, npc) in sampleItems[id] ?: continue) {
+                for ((location, npc) in sampleItems[id] ?: emptyList()) {
                     val actions = mutableListOf<BotAction>()
                     actions.add(BotGoTo(location))
                     actions.add(BotInteractNpc("Trade", npc, success = Condition.InterfaceOpen("shop")))
@@ -120,7 +120,7 @@ object DynamicResolvers {
         return null
     }
 
-    private fun valid(player: Player, item: Item, entry: Entry): Boolean {
+    internal fun valid(player: Player, item: Item, entry: Entry): Boolean {
         if (item.isEmpty()) {
             return false
         }
