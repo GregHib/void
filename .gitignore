@@ -8,7 +8,7 @@
 
 # scripts
 scripts.txt
-/data/wildcards.txt
+/data/.temp/
 
 # tools
 *.jar
