@@ -61,6 +61,7 @@ class BotManager(
             }
             total += activity.capacity
         }
+        logger.info { "Total bot activity capacity: $total" }
     }
 
     fun add(bot: Bot) {

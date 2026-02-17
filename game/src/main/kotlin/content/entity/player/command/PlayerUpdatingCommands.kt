@@ -40,7 +40,7 @@ class PlayerUpdatingCommands(
         }
 
         playerCommand("players", desc = "Get the total and local player counts") {
-            message("Players: ${Players.size}, ${viewport?.players?.localCount}")
+            message("Players: ${Players.size}, local: ${viewport?.players?.localCount ?: 0}, bots: ${Players.count { it.isBot }}")
         }
 
         adminCommand("anim", stringArg("anim-id", autofill = animationDefinitions.ids.keys), desc = "Perform animation (-1 to clear)") { args ->
