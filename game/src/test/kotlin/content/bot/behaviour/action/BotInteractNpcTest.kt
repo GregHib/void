@@ -46,7 +46,7 @@ class BotInteractNpcTest {
     fun `Valid npc interaction returns running`() {
         NPCDefinitions.set(
             arrayOf(NPCDefinition(options = arrayOf("Talk-to"))),
-            mapOf("guide" to 0)
+            mapOf("guide" to 0),
         )
         NPCs.add("guide", player.tile)
         NPCs.run()
@@ -56,7 +56,7 @@ class BotInteractNpcTest {
             execute = { _, instruction ->
                 called = instruction is InteractNPC
                 true
-            }
+            },
         )
 
         val action = BotInteractNpc("Talk-to", "guide")
@@ -71,7 +71,7 @@ class BotInteractNpcTest {
     fun `Execution failure returns failed`() {
         NPCDefinitions.set(
             arrayOf(NPCDefinition(options = arrayOf("Talk-to"))),
-            mapOf("guide" to 0)
+            mapOf("guide" to 0),
         )
         NPCs.add("guide", player.tile)
         NPCs.run()

@@ -1,23 +1,19 @@
 package content.bot
 
 import com.github.michaelbull.logging.InlineLogger
-import content.bot.behaviour.navigation.NavigationGraph
 import content.bot.behaviour.setup.DynamicResolvers
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.network.client.instruction.InteractDialogue
 
 /**
  * Listen for state changes which would change which activities are available to a bot
  */
-class BotUpdates(
-    val inventoryDefinitions: InventoryDefinitions,
-    val graph: NavigationGraph,
-) : Script {
+class BotUpdates : Script {
     val logger = InlineLogger()
 
     init {
@@ -36,12 +32,32 @@ class BotUpdates(
             }
         }
 
+        interfaceOpened("*") {
+            if (isBot) {
+                bot.evaluate.add("iface:$it")
+            }
+        }
+
+        interfaceClosed("*") {
+            if (isBot) {
+                bot.evaluate.add("iface:$it")
+            }
+        }
+
         entered("*") {
             if (isBot) {
+                bot.evaluate.add("area:${it.name}")
                 resetTimeout("area:${it.name}")
+            }
+        }
+
+        exited("*") {
+            if (isBot) {
                 bot.evaluate.add("area:${it.name}")
             }
         }
+
+        // Reset timeout when something is produced
 
         variableSet { key, from, to ->
             if (isBot && from != to) {
@@ -54,6 +70,10 @@ class BotUpdates(
             resetTimeout("item:${it.item.id}")
         }
 
+        itemRemoved(inventory = "inventory") {
+            resetTimeout("item:empty")
+        }
+
         experience { skill, _, _ ->
             resetTimeout("skill:${skill.name.lowercase()}")
         }
@@ -61,23 +81,25 @@ class BotUpdates(
         // Close level-up dialogues
         interfaceOpened("dialogue_level_up") {
             if (isBot) {
-                instructions.trySend(InteractDialogue(interfaceId = 740, componentId = 3, option = -1))
+                close("dialogue_level_up")
             }
         }
 
         // Register shops
         worldSpawn {
             DynamicResolvers.shopItems.clear()
+            DynamicResolvers.sampleItems.clear()
         }
 
         npcSpawn {
-            if (def.contains("shop")) {
-                val shop = def.get<String>("shop")
-                val def = inventoryDefinitions.get(shop)
-                registerShop(this, def, DynamicResolvers.shopItems)
-                val sample = inventoryDefinitions.getOrNull("${shop}_sample") ?: return@npcSpawn
-                registerShop(this, sample, DynamicResolvers.sampleItems)
+            if (!def.contains("shop")) {
+                return@npcSpawn
             }
+            val shop = def.get<String>("shop")
+            val def = InventoryDefinitions.get(shop)
+            registerShop(this, def, DynamicResolvers.shopItems)
+            val sample = InventoryDefinitions.getOrNull("${shop}_sample") ?: return@npcSpawn
+            registerShop(this, sample, DynamicResolvers.sampleItems)
         }
     }
 

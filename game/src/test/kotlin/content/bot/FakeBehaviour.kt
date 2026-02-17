@@ -1,8 +1,8 @@
 package content.bot
 
 import content.bot.behaviour.Behaviour
-import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.action.BotAction
+import content.bot.behaviour.condition.Condition
 
 class FakeBehaviour : Behaviour {
     override val id: String = ""

@@ -4,8 +4,8 @@ import content.bot.Bot
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.BotWorld
-import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.Reason
+import content.bot.behaviour.condition.Condition
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.wildcardEquals

@@ -2,7 +2,6 @@ package content.bot
 
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
-import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.Reason
 import content.bot.behaviour.SoftReason
 import content.bot.behaviour.action.BotAction
@@ -10,6 +9,7 @@ import content.bot.behaviour.action.BotWait
 import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.condition.BotAtTile
 import content.bot.behaviour.condition.BotSkillLevel
+import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.setup.Resolver
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test

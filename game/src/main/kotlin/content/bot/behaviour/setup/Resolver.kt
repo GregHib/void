@@ -1,8 +1,8 @@
 package content.bot.behaviour.setup
 
 import content.bot.behaviour.Behaviour
-import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.action.BotAction
+import content.bot.behaviour.condition.Condition
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 

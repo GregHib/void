@@ -36,7 +36,7 @@ class BotGoToTest {
 
         assertEquals(
             BehaviourState.Failed(Reason.Invalid("No areas found with id 'missing'.")),
-            state
+            state,
         )
     }
 
@@ -75,7 +75,7 @@ class BotGoToTest {
             },
             actions = { _ ->
                 listOf(BotCloseInterface)
-            }
+            },
         )
 
         val action = BotGoTo("home")

@@ -36,7 +36,7 @@ class BotGoToNearestTest {
 
         assertEquals(
             BehaviourState.Failed(Reason.Invalid("No areas tagged with tag 'bank'.")),
-            state
+            state,
         )
     }
 
@@ -78,7 +78,7 @@ class BotGoToNearestTest {
             },
             actions = { _ ->
                 listOf(mockk<BotAction>(relaxed = true))
-            }
+            },
         )
 
         val action = BotGoToNearest("bank")

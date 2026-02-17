@@ -157,13 +157,19 @@ interface InterfaceApi {
         }
 
         fun open(player: Player, id: String) {
-            for (block in opened[id] ?: return) {
+            for (block in opened[id] ?: emptyList()) {
+                block(player, id)
+            }
+            for (block in opened["*"] ?: return) {
                 block(player, id)
             }
         }
 
         fun close(player: Player, id: String) {
-            for (block in closed[id] ?: return) {
+            for (block in closed[id] ?: emptyList()) {
+                block(player, id)
+            }
+            for (block in closed["*"] ?: return) {
                 block(player, id)
             }
         }

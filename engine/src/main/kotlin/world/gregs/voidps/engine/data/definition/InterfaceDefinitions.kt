@@ -24,7 +24,7 @@ object InterfaceDefinitions : DefinitionsDecoder<InterfaceDefinition> {
     }
 
     @TestOnly
-    fun set(definitions: Array<InterfaceDefinition>, ids: Map<String, Int>, components: Map<String, Int>) {
+    fun set(definitions: Array<InterfaceDefinition>, ids: Map<String, Int>, components: Map<String, Int> = emptyMap()) {
         this.definitions = definitions
         this.ids = ids
         this.componentIds = components

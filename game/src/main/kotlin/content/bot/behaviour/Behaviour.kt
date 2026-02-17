@@ -28,21 +28,10 @@ interface Behaviour {
 fun loadBehaviours(
     files: ConfigFiles,
     activities: MutableMap<String, BotActivity>,
-    groups: MutableMap<String, MutableList<String>>,
     resolvers: MutableMap<String, MutableList<Resolver>>,
 ) {
     val templates = loadTemplates(files.list(Settings["bots.templates"]))
     loadActivities(activities, templates, files.list(Settings["bots.definitions"]))
-    // Group activities by requirement types
-    var total = 0
-    for (activity in activities.values) {
-        for (req in activity.requires) {
-            for (key in req.events()) {
-                groups.getOrPut(key) { mutableListOf() }.add(activity.id)
-            }
-        }
-        total += activity.capacity
-    }
     loadSetups(resolvers, templates, files.list(Settings["bots.setups"]))
 }
 

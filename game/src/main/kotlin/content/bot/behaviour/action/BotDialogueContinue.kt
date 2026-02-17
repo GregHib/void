@@ -4,8 +4,8 @@ import content.bot.Bot
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.BotWorld
-import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.Reason
+import content.bot.behaviour.condition.Condition
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.network.client.instruction.InteractDialogue
 import kotlin.collections.indexOf

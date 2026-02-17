@@ -35,18 +35,18 @@ class BotItemOnItemTest {
         player.inventories.player = player
         player.inventories.normalStack = ItemDependentStack
         player.inventories.inventory(
-            InventoryDefinition(stringId = "inventory", length = 10)
+            InventoryDefinition(stringId = "inventory", length = 10),
         )
 
         ItemDefinitions.set(
             arrayOf(
                 ItemDefinition(id = 1),
-                ItemDefinition(id = 2)
+                ItemDefinition(id = 2),
             ),
             mapOf(
                 "knife" to 0,
-                "logs" to 1
-            )
+                "logs" to 1,
+            ),
         )
     }
 
@@ -99,7 +99,7 @@ class BotItemOnItemTest {
 
         assertEquals(
             BehaviourState.Wait(1, BehaviourState.Success),
-            state
+            state,
         )
     }
 

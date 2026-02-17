@@ -1,6 +1,5 @@
 package content.bot.behaviour.setup
 
-import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.action.BotCloseInterface
 import content.bot.behaviour.action.BotGoTo
@@ -9,11 +8,12 @@ import content.bot.behaviour.action.BotIntEntry
 import content.bot.behaviour.action.BotInteractNpc
 import content.bot.behaviour.action.BotInteractObject
 import content.bot.behaviour.action.BotInterfaceOption
-import content.bot.behaviour.condition.BotItem
 import content.bot.behaviour.condition.BotEquipmentSetup
 import content.bot.behaviour.condition.BotInArea
 import content.bot.behaviour.condition.BotInterfaceOpen
 import content.bot.behaviour.condition.BotInventorySetup
+import content.bot.behaviour.condition.BotItem
+import content.bot.behaviour.condition.Condition
 import content.entity.npc.shop.stock.Price
 import content.entity.player.bank.bank
 import content.entity.player.bank.ownsItem

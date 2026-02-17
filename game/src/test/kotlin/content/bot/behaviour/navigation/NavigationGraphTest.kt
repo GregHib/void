@@ -1,7 +1,6 @@
 package content.bot.behaviour.navigation
 
 import content.bot.behaviour.condition.BotAtTile
-import content.bot.behaviour.condition.Condition
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.definition.AreaDefinition

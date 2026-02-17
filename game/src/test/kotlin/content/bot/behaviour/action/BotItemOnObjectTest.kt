@@ -39,12 +39,12 @@ class BotItemOnObjectTest {
         player.inventories.player = player
         player.inventories.normalStack = ItemDependentStack
         player.inventories.inventory(
-            InventoryDefinition(stringId = "inventory", length = 10)
+            InventoryDefinition(stringId = "inventory", length = 10),
         )
 
         ItemDefinitions.set(
             arrayOf(ItemDefinition(id = 1)),
-            mapOf("bucket" to 0)
+            mapOf("bucket" to 0),
         )
     }
 
@@ -63,7 +63,7 @@ class BotItemOnObjectTest {
 
         ObjectDefinitions.set(
             arrayOf(ObjectDefinition(id = 0, stringId = "well")),
-            mapOf("well" to 0)
+            mapOf("well" to 0),
         )
         GameObjects.add("well", player.tile)
 
@@ -72,7 +72,7 @@ class BotItemOnObjectTest {
             execute = { _, instruction ->
                 called = instruction is InteractInterfaceObject
                 true
-            }
+            },
         )
 
         val action = BotItemOnObject("bucket", "well")
@@ -89,7 +89,7 @@ class BotItemOnObjectTest {
 
         ObjectDefinitions.set(
             arrayOf(ObjectDefinition()),
-            mapOf("well" to 0)
+            mapOf("well" to 0),
         )
         GameObjects.add("well", player.tile)
 

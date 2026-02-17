@@ -46,7 +46,7 @@ class BotInteractObjectTest {
     fun `Valid object interaction returns running`() {
         ObjectDefinitions.set(
             arrayOf(ObjectDefinition(id = 0, options = arrayOf("Open"), stringId = "door")),
-            mapOf("door" to 0)
+            mapOf("door" to 0),
         )
         player.mode = EmptyMode
         player.tile = Tile(1234, 1234)
@@ -57,7 +57,7 @@ class BotInteractObjectTest {
             execute = { _, instruction ->
                 called = instruction is InteractObject
                 true
-            }
+            },
         )
 
         val action = BotInteractObject("Open", "door")
@@ -72,7 +72,7 @@ class BotInteractObjectTest {
     fun `Execution failure returns failed`() {
         ObjectDefinitions.set(
             arrayOf(ObjectDefinition(id = 0, options = arrayOf("Open"), stringId = "door")),
-            mapOf("door" to 0)
+            mapOf("door" to 0),
         )
         GameObjects.add("door", player.tile)
 

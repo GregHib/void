@@ -6,12 +6,12 @@ import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.BotGameWorld
 import content.bot.behaviour.BotWorld
-import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.HardReason
 import content.bot.behaviour.Reason
 import content.bot.behaviour.action.BotWait
 import content.bot.behaviour.activity.ActivitySlots
 import content.bot.behaviour.activity.BotActivity
+import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.loadBehaviours
 import content.bot.behaviour.setup.DynamicResolvers
 import content.bot.behaviour.setup.Resolver
@@ -42,8 +42,23 @@ class BotManager(
         get() = activities.keys
 
     fun load(files: ConfigFiles): BotManager {
-        loadBehaviours(files, activities, groups, resolvers)
+        loadBehaviours(files, activities, resolvers)
+        reloadGroups()
         return this
+    }
+
+    internal fun reloadGroups() {
+        groups.clear()
+        // Group activities by requirement types
+        var total = 0
+        for (activity in activities.values) {
+            for (req in activity.requires) {
+                for (key in req.events()) {
+                    groups.getOrPut(key) { mutableListOf() }.add(activity.id)
+                }
+            }
+            total += activity.capacity
+        }
     }
 
     fun add(bot: Bot) {
@@ -125,7 +140,7 @@ class BotManager(
     /**
      * Remove invalid activities, check for new valid activities based on recent state changes ready to [Bot.evaluate].
      */
-    private fun updateAvailable(bot: Bot) {
+    internal fun updateAvailable(bot: Bot) {
         // Remove activities which are no longer available
         val iterator = bot.available.iterator()
         while (iterator.hasNext()) {
@@ -135,17 +150,25 @@ class BotManager(
                 iterator.remove()
             }
         }
+        // Permanent groups to always re-evaluate (often no way to listen for changes)
+        for (group in setOf("clock", "tile", "mode", "queue", "timer", "object")) {
+            makeAvailable(bot, group)
+        }
         // Add activities which have become available
         for (group in bot.evaluate) {
-            for (id in groups[group] ?: return) {
-                val activity = activities[id] ?: continue
-                if (activity.requires.any { !it.check(bot.player) }) {
-                    continue
-                }
-                bot.available.add(activity.id)
-            }
+            makeAvailable(bot, group)
         }
         bot.evaluate.clear()
+    }
+
+    private fun makeAvailable(bot: Bot, group: String) {
+        for (id in groups[group] ?: return) {
+            val activity = activities[id] ?: continue
+            if (activity.requires.any { !it.check(bot.player) }) {
+                continue
+            }
+            bot.available.add(activity.id)
+        }
     }
 
     private val idle = BotActivity("idle", 2048, timeout = TimeUnit.HOURS.toTicks(1), actions = listOf(BotWait(TimeUnit.SECONDS.toTicks(30))))

@@ -46,7 +46,7 @@ class BotInteractFloorItemTest {
     fun `Valid floor item interaction returns running`() {
         ItemDefinitions.set(
             arrayOf(ItemDefinition(floorOptions = arrayOf("Take"))),
-            mapOf("coins" to 0)
+            mapOf("coins" to 0),
         )
         FloorItems.add(player.tile, "coins", 1, owner = player.accountName)
         FloorItems.run()
@@ -56,7 +56,7 @@ class BotInteractFloorItemTest {
             execute = { _, instruction ->
                 called = instruction is InteractFloorItem
                 true
-            }
+            },
         )
 
         val action = BotInteractFloorItem("Take", "coins")
@@ -71,7 +71,7 @@ class BotInteractFloorItemTest {
     fun `Execution failure returns failed`() {
         ItemDefinitions.set(
             arrayOf(ItemDefinition(floorOptions = arrayOf("Take"))),
-            mapOf("coins" to 0)
+            mapOf("coins" to 0),
         )
         FloorItems.add(player.tile, "coins", 1, owner = player.accountName)
         FloorItems.run()
@@ -100,14 +100,14 @@ class BotInteractFloorItemTest {
             option = "Take",
             id = "coins",
             success = BotHasClock("missing"),
-            delay = 5
+            delay = 5,
         )
 
         val state = action.update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))
 
         assertEquals(
             BehaviourState.Wait(5, BehaviourState.Running),
-            state
+            state,
         )
     }
 }

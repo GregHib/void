@@ -9,7 +9,7 @@ data class BotClockRemaining(val id: String, val min: Int? = null, val max: Int?
     override fun keys() = setOf("clock:$id")
     override fun events() = setOf("clock")
     override fun check(player: Player): Boolean {
-        val remaining = player.remaining(id, if (seconds) epochSeconds() else GameLoop.Companion.tick)
+        val remaining = player.remaining(id, if (seconds) epochSeconds() else GameLoop.tick)
         return inRange(remaining, min, max)
     }
 }

@@ -40,7 +40,7 @@ class BotRestartTest {
 
         val action = BotRestart(
             wait = listOf(BotHasClock("wait")),
-            success = BotHasClock("done")
+            success = BotHasClock("done"),
         )
 
         val state = action.update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))
@@ -55,7 +55,7 @@ class BotRestartTest {
 
         val action = BotRestart(
             wait = emptyList(),
-            success = BotHasClock("done")
+            success = BotHasClock("done"),
         )
 
         action.update(bot, FakeWorld(), frame)

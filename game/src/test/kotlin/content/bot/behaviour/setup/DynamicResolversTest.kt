@@ -5,11 +5,11 @@ import content.bot.behaviour.action.BotGoToNearest
 import content.bot.behaviour.action.BotInteractNpc
 import content.bot.behaviour.action.BotInteractObject
 import content.bot.behaviour.action.BotInterfaceOption
-import content.bot.behaviour.condition.BotItem
 import content.bot.behaviour.condition.BotEquipmentSetup
 import content.bot.behaviour.condition.BotInArea
 import content.bot.behaviour.condition.BotInterfaceOpen
 import content.bot.behaviour.condition.BotInventorySetup
+import content.bot.behaviour.condition.BotItem
 import content.entity.player.bank.bank
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -125,7 +125,7 @@ class DynamicResolversTest {
     fun `Resolve unowned item by buying item from shop`() {
         ItemDefinitions.set(
             arrayOf(ItemDefinition(cost = 15), ItemDefinition(stackable = 1)),
-            mapOf("fish" to 0, "coins" to 1)
+            mapOf("fish" to 0, "coins" to 1),
         )
         DynamicResolvers.shopItems["fish"] = mutableListOf("market" to "trader")
         val entry = BotItem(setOf("fish"), min = 5)

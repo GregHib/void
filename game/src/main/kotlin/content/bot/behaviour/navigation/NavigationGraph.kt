@@ -1,10 +1,10 @@
 package content.bot.behaviour.navigation
 
-import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.action.ActionParser
 import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.action.BotWalkTo
 import content.bot.behaviour.actions
+import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.requirements
 import content.bot.bot
 import content.bot.isBot
