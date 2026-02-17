@@ -16,10 +16,12 @@ import content.bot.behaviour.loadBehaviours
 import content.bot.behaviour.setup.DynamicResolvers
 import content.bot.behaviour.setup.Resolver
 import world.gregs.voidps.engine.data.ConfigFiles
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
+import kotlin.collections.filter
 
 /**
  * Manages [Bot] behaviour execution and activity scheduling
@@ -132,9 +134,33 @@ class BotManager(
                 logger.debug { "No activities with requirements met for bot: ${bot.player.accountName}." }
                 debugActivities(bot)
             }
-            activity = idle
+            activity = activityFallback(bot)
         }
         assign(bot, activity)
+    }
+
+    /**
+     * When no available activity is found either idle or spawn requirements for a bot
+     */
+    private fun activityFallback(bot: Bot): BotActivity {
+        if (!Settings["bots.spawnRequirements", false] || bot.player.networked) {
+            return idle
+        }
+        for (activity in activities.values) {
+            if (!slots.hasFree(activity)) {
+                continue
+            }
+            for (requirement in activity.requires) {
+                Condition.grant(bot.player, requirement)
+            }
+            for (requirement in activity.setup) {
+                Condition.grant(bot.player, requirement)
+            }
+            if (hasRequirements(bot, activity)) {
+                return activity
+            }
+        }
+        return idle
     }
 
     /**

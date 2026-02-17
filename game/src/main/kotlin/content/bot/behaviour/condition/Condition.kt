@@ -1,13 +1,18 @@
 package content.bot.behaviour.condition
 
+import content.entity.player.bank.bank
 import net.pearx.kasechange.toPascalCase
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirements
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirementsToUse
 import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
+import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
+import world.gregs.voidps.type.random
 import kotlin.collections.iterator
 
 /**
@@ -125,7 +130,7 @@ sealed class Condition(val priority: Int) {
             val items = mutableMapOf<EquipSlot, BotItem>()
             for (map in list) {
                 for ((key, value) in map) {
-                    val slot = EquipSlot.Companion.by(key)
+                    val slot = EquipSlot.by(key)
                     require(slot != EquipSlot.None) { "Invalid equipment slot: $key in $list" }
                     value as? Map<String, Any> ?: error("Equipment $key expecting map, found: $value")
                     val id = value["id"] as? String ?: error("Missing item id in $list")
@@ -266,12 +271,43 @@ sealed class Condition(val priority: Int) {
             val map = list.single()
             if (map.containsKey("id")) {
                 return BotSkillLevel(
-                    skill = Skill.Companion.of((map["id"] as String).toPascalCase()) ?: error("Unknown skill: '${map["id"]}'"),
+                    skill = Skill.of((map["id"] as String).toPascalCase()) ?: error("Unknown skill: '${map["id"]}'"),
                     min = map["min"] as? Int,
                     max = map["max"] as? Int,
                 )
             }
             return null
+        }
+
+        fun grant(player: Player, condition: Condition) {
+            when (condition) {
+                is BotCombatLevel -> {
+                    val skills = setOf(Skill.Attack, Skill.Strength, Skill.Defence, Skill.Constitution, Skill.Ranged, Skill.Magic, Skill.Prayer)
+                    for (i in 0 until 50) {
+                        val skill = skills.random(random)
+                        val level = (player.levels.getMax(skill) + 5).coerceAtMost(99)
+                        player.levels.set(skill, level)
+                        player.experience.set(skill, Level.experience(skill, level))
+                        if (player.combatLevel > (condition.min ?: break)) {
+                            break
+                        }
+                    }
+                }
+                is BotBankSetup -> for (item in condition.items) {
+                    player.bank.add(item.ids.random(random), item.min ?: 1)
+                }
+                is BotEquipmentSetup -> for (item in condition.items.values) {
+                    player.bank.add(item.ids.random(random), item.min ?: 1)
+                }
+                is BotInventorySetup -> for (item in condition.items) {
+                    player.bank.add(item.ids.random(random), item.min ?: 1)
+                }
+                is BotOwnsItem -> player.bank.add(condition.id, condition.min ?: 1)
+                is BotSkillLevel -> player.levels.set(condition.skill, condition.min ?: 1)
+                is BotVariable -> player[condition.id] = condition.equals
+                is BotVariableIn -> player[condition.id] = condition.min ?: condition.max ?: return
+                else -> return
+            }
         }
     }
 }
