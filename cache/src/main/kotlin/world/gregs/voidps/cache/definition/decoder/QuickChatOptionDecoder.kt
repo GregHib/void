@@ -1,5 +1,6 @@
 package world.gregs.voidps.cache.definition.decoder
 
+import world.gregs.voidps.buffer.Unicode
 import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
@@ -41,8 +42,8 @@ class QuickChatOptionDecoder : DefinitionDecoder<QuickChatOptionDefinition>(QUIC
                 quickReplyOptions = IntArray(length)
                 navigateChars = CharArray(length) { count ->
                     quickReplyOptions!![count] = buffer.readShort()
-                    val b = buffer.readChar()
-                    if (b != 0) b.toChar() else '\u0000'
+                    val b = buffer.readUnsignedByte()
+                    if (b != 0) Unicode.byteToChar(b).toChar() else '\u0000'
                 }
             }
             3 -> {
@@ -50,8 +51,8 @@ class QuickChatOptionDecoder : DefinitionDecoder<QuickChatOptionDefinition>(QUIC
                 dynamicData = IntArray(length)
                 staticData = CharArray(length) { count ->
                     dynamicData!![count] = buffer.readShort()
-                    val b = buffer.readChar()
-                    if (b != 0) b.toChar() else '\u0000'
+                    val b = buffer.readUnsignedByte()
+                    if (b != 0) Unicode.byteToChar(b).toChar() else '\u0000'
                 }
             }
         }
