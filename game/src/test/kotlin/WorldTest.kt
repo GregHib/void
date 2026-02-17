@@ -12,6 +12,7 @@ import org.koin.test.KoinTest
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.MemoryCache
+import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
@@ -155,7 +156,10 @@ abstract class WorldTest : KoinTest {
                     }
                     single(createdAtStart = true) { animationDefinitions }
                     single(createdAtStart = true) { graphicDefinitions }
-                    single(createdAtStart = true) { inventoryDefinitions }
+                    single(createdAtStart = true) {
+                        InventoryDefinitions.set(inventoryDefinitions, inventoryIds)
+                        InventoryDefinitions
+                    }
                     single(createdAtStart = true) { structDefinitions }
                     single(createdAtStart = true) { quickChatPhraseDefinitions }
                     single(createdAtStart = true) { weaponStyleDefinitions }
@@ -320,9 +324,13 @@ abstract class WorldTest : KoinTest {
             InterfaceDefinitions.init(interfaceDefinitions).load(configFiles.list(Settings["definitions.interfaces"]), configFiles.find(Settings["definitions.interfaces.types"]))
             InterfaceDefinitions.ids to InterfaceDefinitions.componentIds
         }
-        private val inventoryDefinitions: InventoryDefinitions by lazy {
+        private val inventoryDefinitions: Array<InventoryDefinition> by lazy {
+            InventoryDecoder().load(cache)
+        }
+        private val inventoryIds: Map<String, Int> by lazy {
             itemIds
-            InventoryDefinitions(InventoryDecoder().load(cache)).load(configFiles.list(Settings["definitions.inventories"]), configFiles.list(Settings["definitions.shops"]))
+            InventoryDefinitions.init(inventoryDefinitions).load(configFiles.list(Settings["definitions.inventories"]), configFiles.list(Settings["definitions.shops"]))
+            InventoryDefinitions.ids
         }
         private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder(parameterDefinitions).load(cache)).load(configFiles.find(Settings["definitions.structs"])) }
         private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }

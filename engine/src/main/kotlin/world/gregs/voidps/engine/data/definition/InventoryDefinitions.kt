@@ -3,15 +3,31 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.engine.timedLoad
 
-class InventoryDefinitions(
-    override var definitions: Array<InventoryDefinition>,
-) : DefinitionsDecoder<InventoryDefinition> {
+object InventoryDefinitions : DefinitionsDecoder<InventoryDefinition> {
 
-    override lateinit var ids: Map<String, Int>
+    override var definitions: Array<InventoryDefinition> = emptyArray()
+    override var ids: Map<String, Int> = emptyMap()
+
+    fun init(definitions: Array<InventoryDefinition>): InventoryDefinitions {
+        this.definitions = definitions
+        return this
+    }
+
+    @TestOnly
+    fun set(definitions: Array<InventoryDefinition>, ids: Map<String, Int>) {
+        this.definitions = definitions
+        this.ids = ids
+    }
+
+    fun clear() {
+        this.definitions = emptyArray()
+        this.ids = emptyMap()
+    }
 
     override fun empty() = InventoryDefinition.EMPTY
 

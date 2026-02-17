@@ -125,9 +125,7 @@ class DropTablesTest {
     @Test
     fun `Item drop with owned item`() {
         val player = Player()
-        val inventoryDefinitions = InventoryDefinitions(arrayOf(InventoryDefinition(length = 10)))
-        inventoryDefinitions.ids = mapOf("inventory" to 0)
-        player.inventories.definitions = inventoryDefinitions
+        InventoryDefinitions.set(arrayOf(InventoryDefinition(length = 10)), mapOf("inventory" to 0))
         ItemDefinitions.set(emptyArray(), mapOf("test" to 0))
         player.inventories.normalStack = ItemDependentStack
         player.inventories.validItemRule = NoRestrictions
@@ -148,9 +146,7 @@ class DropTablesTest {
     @Test
     fun `Item drop lacks item`() {
         val player = Player()
-        val inventoryDefinitions = InventoryDefinitions(arrayOf(InventoryDefinition(length = 10)))
-        inventoryDefinitions.ids = mapOf("inventory" to 0)
-        player.inventories.definitions = inventoryDefinitions
+        InventoryDefinitions.set(arrayOf(InventoryDefinition(length = 10)), mapOf("inventory" to 0))
         ItemDefinitions.set(emptyArray(), mapOf("test" to 0))
         player.inventories.normalStack = ItemDependentStack
         player.inventories.validItemRule = NoRestrictions
@@ -170,9 +166,7 @@ class DropTablesTest {
     @Test
     fun `Item drop owns and lacks items`() {
         val player = Player()
-        val inventoryDefinitions = InventoryDefinitions(arrayOf(InventoryDefinition(length = 10)))
-        inventoryDefinitions.ids = mapOf("inventory" to 0)
-        player.inventories.definitions = inventoryDefinitions
+        InventoryDefinitions.set(arrayOf(InventoryDefinition(length = 10)), mapOf("inventory" to 0))
         ItemDefinitions.set(emptyArray(), mapOf("test" to 0, "unknown" to 1))
         player.inventories.normalStack = ItemDependentStack
         player.inventories.validItemRule = NoRestrictions

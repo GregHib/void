@@ -60,7 +60,7 @@ class Interfaces(
         if (interfaces.remove(getType(id), id)) {
             sendClose(id)
             InterfaceApi.close(player, id)
-            (player as? Player)?.queue?.clearWeak()
+            player.queue.clearWeak()
             return true
         }
         return false

@@ -24,7 +24,7 @@ internal class InventoryDefinitionsTest : DefinitionsDecoderTest<InventoryDefini
 
     override fun empty(): InventoryDefinition = InventoryDefinition(-1)
 
-    override fun definitions(): InventoryDefinitions = InventoryDefinitions(definitions)
+    override fun definitions(): InventoryDefinitions = InventoryDefinitions.init(definitions)
 
     override fun load(definitions: InventoryDefinitions) {
         val uri = InventoryDefinitionsTest::class.java.getResource("test-inventory.toml")!!

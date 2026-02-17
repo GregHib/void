@@ -7,15 +7,12 @@ import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import kotlin.math.min
 
-class InterfaceOptions(
-    private val player: Player,
-    private val inventoryDefinitions: InventoryDefinitions,
-) {
+class InterfaceOptions(private val player: Player) {
 
     fun send(id: String, component: String) {
         val comp = InterfaceDefinitions.getComponent(id, component) ?: return
         val script = if (comp["primary", true]) "primary_options" else "secondary_options"
-        val inventory = inventoryDefinitions.get(comp["inventory", ""])
+        val inventory = InventoryDefinitions.get(comp["inventory", ""])
         if (inventory.id != -1) {
             val all = comp.getOrNull("options") ?: emptyArray<String>()
             val options = all.copyOfRange(0, min(9, all.size))

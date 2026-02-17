@@ -23,14 +23,13 @@ class Inventories(
 
     val instances: MutableMap<String, Inventory> = mutableMapOf()
 
-    lateinit var definitions: InventoryDefinitions
     lateinit var validItemRule: ItemRestrictionRule
     lateinit var player: Player
     lateinit var normalStack: ItemStackingRule
 
     fun start() {
         for ((id, value) in inventories) {
-            instances[id] = create(id, value, definitions.get(id.removePrefix("_")))
+            instances[id] = create(id, value, InventoryDefinitions.get(id.removePrefix("_")))
         }
         (inventories as MutableMap<*, *>).clear()
     }
@@ -43,7 +42,7 @@ class Inventories(
     }
 
     fun inventory(id: String, secondary: Boolean = false): Inventory {
-        val definition = definitions.get(id)
+        val definition = InventoryDefinitions.get(id)
         return inventory(id, definition, secondary)
     }
 

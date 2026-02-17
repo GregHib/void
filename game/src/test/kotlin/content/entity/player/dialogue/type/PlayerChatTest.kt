@@ -130,7 +130,7 @@ internal class PlayerChatTest : DialogueTest() {
         InterfaceDefinitions.set(
             arrayOf(InterfaceDefinition(components = mutableMapOf(0 to InterfaceComponentDefinition(id = InterfaceDefinition.pack(4, 123))))),
             mapOf("dialogue_chat1" to 0),
-            mapOf("dialogue_chat1:head_large" to 0, "dialogue_chat1:head" to 0)
+            mapOf("dialogue_chat1:head_large" to 0, "dialogue_chat1:head" to 0),
         )
         dialogue {
             player<Neutral>(text = "Text", largeHead = large)

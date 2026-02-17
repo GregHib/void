@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
-import org.koin.test.get
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.ui.Interfaces
@@ -46,8 +45,7 @@ class AccountManagerTest : KoinMock() {
     fun setup() {
         InterfaceDefinitions.clear()
         Areas.set(emptyMap(), emptyMap(), mapOf(0 to setOf(AreaDefinition("area", Rectangle(Tile(0), 1, 1), emptySet()))))
-        val inventoryDefinitions = InventoryDefinitions(arrayOf(InventoryDefinition.EMPTY))
-        inventoryDefinitions.ids = mapOf("worn_equipment" to 0)
+        val inventoryDefinitions = InventoryDefinitions.set(arrayOf(InventoryDefinition.EMPTY), mapOf("worn_equipment" to 0))
         connectionQueue = ConnectionQueue(1)
         val storage = object : Storage {
             override fun names(): Map<String, AccountDefinition> = emptyMap()
@@ -78,7 +76,6 @@ class AccountManagerTest : KoinMock() {
         }
         Settings.load(mapOf("world.home.x" to "1234", "world.home.y" to "5432", "world.experienceRate" to "1.0"))
         manager = AccountManager(
-            inventoryDefinitions = inventoryDefinitions,
             accountDefinitions = AccountDefinitions(),
             variableDefinitions = VariableDefinitions(),
             saveQueue = SaveQueue(storage),
