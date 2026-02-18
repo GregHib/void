@@ -45,7 +45,7 @@ id = 134
 [.magic_spellbook]
 id = 135
 
-[.follower_details]
+[.objectives]
 id = 98
 
 [.friends_list]
@@ -195,7 +195,7 @@ id = 7
 [.familiar_options]
 id = 8
 
-[.follower_details]
+[.objectives]
 id = 9
 
 [.call_follower]
