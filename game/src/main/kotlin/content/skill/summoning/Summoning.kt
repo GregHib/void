@@ -52,20 +52,19 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean): NPC? {
 
     val familiarNpc = NPCs.add(familiar.stringId, tile)
     familiarNpc.mode = Follow(familiarNpc, this)
-
     softQueue("summon_familiar", 2) {
         follower = familiarNpc
-
-        follower!!.gfx("summon_familiar_size_${follower!!.size}")
+        familiarNpc.gfx("summon_familiar_size_${familiarNpc.size}")
         player.updateFamiliarInterface()
-        if (!restart) timers.start("familiar_timer")
+        if (!restart) {
+            timers.start("familiar_timer")
+        }
     }
-
     return familiarNpc
 }
 
 /**
- * Dismisses the familiar that is following the player and resets the summoning orb and varbits back to their default
+ * Dismisses the familiar following the player and resets the summoning orb and varbits back to their default
  * states. Also stops the familiar timer.
  */
 fun Player.dismissFamiliar() {
@@ -118,8 +117,10 @@ fun Player.confirmFollowerLeftClickOptions() {
  * Teleports the player's follower to their position
  */
 fun Player.callFollower() {
-    follower!!.tele(steps.follow, clearMode = false)
-    follower!!.clearWatch()
+    val follower = follower ?: return
+    follower.tele(steps.follow, clearMode = false)
+    follower.clearWatch()
+    follower.gfx("summon_familiar_size_${follower.size}")
 }
 
 /**
@@ -127,7 +128,8 @@ fun Player.callFollower() {
  * inventory and rewards xp.
  */
 fun Player.renewFamiliar() {
-    val pouchId = world.gregs.voidps.engine.get<EnumDefinitions>().get("summoning_familiar_ids").getKey(follower!!.def.id)
+    val follower = follower ?: return
+    val pouchId = world.gregs.voidps.engine.get<EnumDefinitions>().get("summoning_familiar_ids").getKey(follower.def.id)
     val pouchItem = Item(ItemDefinitions.get(pouchId).stringId)
 
     if (!inventory.contains(pouchItem.id)) {
@@ -137,9 +139,9 @@ fun Player.renewFamiliar() {
     }
 
     inventory.remove(pouchItem.id)
-    set("familiar_details_minutes_remaining", follower!!.def["summoning_time_minutes", 0])
+    set("familiar_details_minutes_remaining", follower.def["summoning_time_minutes", 0])
     set("familiar_details_seconds_remaining", 0)
-    follower!!.gfx("summon_familiar_size_${follower!!.size}")
+    follower.gfx("summon_familiar_size_${follower.size}")
 }
 
 class Summoning(val enums: EnumDefinitions) : Script {

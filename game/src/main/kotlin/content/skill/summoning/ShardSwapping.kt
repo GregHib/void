@@ -2,6 +2,7 @@ package content.skill.summoning
 
 import content.entity.player.bank.noted
 import content.entity.player.dialogue.type.intEntry
+import content.entity.player.dialogue.type.item
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -12,8 +13,10 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 import kotlin.math.min
 
 class ShardSwapping(val enums: EnumDefinitions) : Script {
@@ -65,6 +68,24 @@ class ShardSwapping(val enums: EnumDefinitions) : Script {
                     swapForShards(this, actualItem, total)
                 }
                 "Trade-All" -> swapForShards(this, actualItem, Int.MAX_VALUE)
+            }
+        }
+
+        itemOption("Open", "spirit_shard_pack") {
+            inventory.transaction {
+                remove(it.item.id)
+                add("spirit_shards", 5000)
+            }
+            // TODO proper message
+        }
+
+        itemOption("Open-All", "spirit_shard_pack") {
+            inventory.transaction {
+                val removed = removeToLimit(it.item.id, it.item.amount)
+                add("spirit_shards", removed * 5000)
+            }
+            if (inventory.transaction.error is TransactionError.Full) {
+                message("You don't have enough inventory space to open all the spirit shards.") // TODO proper message
             }
         }
     }

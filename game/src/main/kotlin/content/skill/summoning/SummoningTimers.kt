@@ -40,7 +40,5 @@ class SummoningTimers : Script {
                 dismissFamiliar()
             }
         }
-
     }
-
 }
