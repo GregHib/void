@@ -1,6 +1,7 @@
 package content.skill.summoning
 
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
@@ -9,12 +10,10 @@ class SummoningTimers : Script {
 
     init {
         timerStart("familiar_timer") { restart ->
-        
-            if(!restart) {
+            if (!restart) {
                 set("familiar_details_minutes_remaining", follower!!.def["summoning_time_minutes", 0])
                 set("familiar_details_seconds_remaining", 0)
             }
-
             return@timerStart TimeUnit.SECONDS.toTicks(30)
         }
 
@@ -33,7 +32,7 @@ class SummoningTimers : Script {
 
         timerStop("familiar_timer") { logout ->
             if (logout) {
-                npcs.remove(follower)
+                NPCs.remove(follower)
                 return@timerStop
             }
         

@@ -21,17 +21,13 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue
 
-val itemDefinitions: ItemDefinitions by inject()
-val npcs: NPCs by inject()
-val enums: EnumDefinitions by inject()
-
 val Character?.isFamiliar: Boolean
     get() = this != null && this is NPC && id.endsWith("_familiar")
 
 var Player.follower: NPC?
     get() {
         val index = get("follower_index", -1)
-        return world.gregs.voidps.engine.get<NPCs>().indexed(index)
+        return NPCs.indexed(index)
     }
     set(value) {
         if (value != null) {
@@ -43,8 +39,8 @@ var Player.follower: NPC?
 /**
  * Summons the given familiar if the player doesn't already have a follower
  *
- * @param familiar: The [NPCDefinition] of the familiar being summoned
- * @param restart: A boolean used to tell if this familiar is being summoned at log in. If set to false will start a new
+ * @param familiar The [NPCDefinition] of the familiar being summoned
+ * @param restart A boolean used to tell if this familiar is being summoned at login. If set to false will start a new
  * familiar timer
  */
 fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean): NPC? {
@@ -54,7 +50,7 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean): NPC? {
         return null
     }
 
-    val familiarNpc = npcs.add(familiar.stringId, tile)
+    val familiarNpc = NPCs.add(familiar.stringId, tile)
     familiarNpc.mode = Follow(familiarNpc, this)
 
     softQueue("summon_familiar", 2) {
@@ -73,7 +69,7 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean): NPC? {
  * states. Also stops the familiar timer.
  */
 fun Player.dismissFamiliar() {
-    npcs.remove(follower)
+    NPCs.remove(follower)
     follower = null
     interfaces.close("familiar_details")
     sendScript("reset_summoning_orb")
@@ -97,7 +93,7 @@ fun Player.updateFamiliarInterface() {
 
     interfaces.open("familiar_details")
 
-    set("follower_details_name", enums.get("summoning_familiar_ids").getKey(follower!!.def.id))
+    set("follower_details_name", world.gregs.voidps.engine.get<EnumDefinitions>().get("summoning_familiar_ids").getKey(follower!!.def.id))
     set("follower_details_chathead", follower!!.def.id)
 
     set("follower_details_chathead_animation", 1)
@@ -131,8 +127,8 @@ fun Player.callFollower() {
  * inventory and rewards xp.
  */
 fun Player.renewFamiliar() {
-    val pouchId = enums.get("summoning_familiar_ids").getKey(follower!!.def.id)
-    val pouchItem = Item(itemDefinitions.get(pouchId).stringId)
+    val pouchId = world.gregs.voidps.engine.get<EnumDefinitions>().get("summoning_familiar_ids").getKey(follower!!.def.id)
+    val pouchItem = Item(ItemDefinitions.get(pouchId).stringId)
 
     if (!inventory.contains(pouchItem.id)) {
         // TODO: Find the actual message used here in 2011
@@ -146,17 +142,14 @@ fun Player.renewFamiliar() {
     follower!!.gfx("summon_familiar_size_${follower!!.size}")
 }
 
-class Summoning : Script {
-
-    val enums: EnumDefinitions by inject()
-    val npcDefinitions: NPCDefinitions by inject()
+class Summoning(val enums: EnumDefinitions) : Script {
 
     init {
         itemOption("Summon", "*_pouch") { option ->
             val familiarLevel = enums.get("summoning_pouch_levels").getInt(option.item.def.id)
             val familiarId = enums.get("summoning_familiar_ids").getInt(option.item.def.id)
             val summoningXp = option.item.def["summon_experience", 0.0]
-            val familiar = npcDefinitions.get(familiarId)
+            val familiar = NPCDefinitions.get(familiarId)
 
             if (levels.get(Skill.Summoning) < familiarLevel) {
                 // TODO: Get actual message
@@ -232,7 +225,7 @@ class Summoning : Script {
                 return@playerSpawn
             }
 
-            val familiarDef = npcDefinitions.get(get("follower_details_chathead", -1))
+            val familiarDef = NPCDefinitions.get(get("follower_details_chathead", -1))
             variables.send("follower_details_name")
             variables.send("follower_details_chathead")
             variables.send("familiar_details_minutes_remaining")
