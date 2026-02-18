@@ -43,6 +43,7 @@ str = 95
 def = 95
 mage = 95
 combat_def = "blue_dragon"
+drop_table = "blue_dragon"
 wander_range = 4
 hunt_mode = "aggressive"
 allowed_under = true

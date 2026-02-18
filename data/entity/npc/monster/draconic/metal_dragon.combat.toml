@@ -24,7 +24,6 @@ target_sound = "dragon_breath"
 chance = 30
 range = 8
 anim = "dragon_shoot"
-gfx = "dragon_breath_shoot"
 projectile = "dragon_breath"
 projectile_origin = "centre"
 target_hit = { offense = "dragonfire", special = true, max = 500 }
