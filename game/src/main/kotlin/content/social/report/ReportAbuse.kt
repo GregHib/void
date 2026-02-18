@@ -13,7 +13,7 @@ class ReportAbuse : Script {
                 message("Please finish what you're doing first.")
                 return@interfaceOption
             }
-            open("report_abuse_select")
+            open("report_abuse_player_security")
         }
     }
 }

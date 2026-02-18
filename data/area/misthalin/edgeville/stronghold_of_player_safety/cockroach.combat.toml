@@ -1,0 +1,49 @@
+[cockroach_drone]
+attack_speed = 4
+defend_anim = "cokroach_drone_defend"
+defend_sound = "cockroach_drone_defend"
+death_anim = "cockroach_drone_death"
+death_sound = "cockroach_drone_death"
+
+[cockroach_drone.attack]
+anim = "cockroach_drone_attack"
+range = 1
+target_hit = { offense = "melee", max = 20 }
+target_sound = "cockroach_drone_attack"
+
+[cockroach_worker]
+defend_anim = "cockroach_worker_defend"
+defend_sound = "cockroach_worker_defend"
+death_anim = "cockroach_worker_death"
+death_sound = "cockroach_worker_death"
+attack_speed = 4
+
+[cockroach_worker.attack]
+anim = "cockroach_worker_attack"
+range = 1
+target_hit = { offense = "melee", max = 60 }
+target_sound = "cockroach_worker_attack"
+
+[cockroach_soldier]
+defend_anim = "cockroach_soldier_defend"
+defend_sound = "cockroach_soldier_defend"
+death_anim = "cockroach_soldier_death"
+death_sound = "cockroach_soldier_death"
+attack_speed = 4
+
+[cockroach_soldier.melee]
+anim = "cockroach_soldier_attack"
+range = 2
+target_hit = { offense = "melee", max = 90 }
+target_sound = "cockroach_soldier_attack"
+
+
+[cockroach_soldier.ranged]
+anim = "cockroach_soldier_ranged"
+projectile = "cockroach_soldier_ranged"
+range = 8
+projectile_origin_y = 1
+projectile_origin_x = 1
+target_hit = { offense = "range", max = 110 }
+condition = "ranged_only"
+target_sound = "cockroach_soldier_range"

@@ -173,3 +173,51 @@ examine = "I can climb down this."
 [lumbridge_church_3rd_floor_ladder_down_west]
 id = 36991
 examine = "I can climb down this."
+
+[stronghold_of_player_safety_stairs_up]
+id = 29589
+examine = "The guard is watching these stairs."
+
+[stronghold_of_player_safety_stairs_down]
+id = 29592
+examine = "They help one to rise up or down"
+
+[player_safety_stairs_3rd_floor_down_north]
+id = 29671
+examine = "I wonder where they will take me."
+
+[player_safety_stairs_2nd_floor_up_north]
+id = 29672
+examine = "I wonder where they will take me."
+
+[player_safety_stairs_1st_floor_up_north_west]
+id = 29660
+examine = "I wonder where they will take me."
+
+[player_safety_stairs_2nd_floor_down_south_east]
+id = 29663
+examine = "I wonder where they will take me."
+
+[player_safety_stairs_1st_floor_up_south_east]
+id = 29664
+examine = "I wonder where they will take me."
+
+[player_safety_stairs_2nd_floor_down_north_east]
+id = 29667
+examine = "I wonder where they will take me."
+
+[player_safety_stairs_1st_floor_up_north_east]
+id = 29668
+examine = "I wonder where they will take me."
+
+[player_safety_stairs_2nd_floor_down_south_west]
+id = 29655
+examine = "I wonder where they will take me."
+
+[player_safety_stairs_1st_floor_up_south_west]
+id = 29656
+examine = "I wonder where they will take me."
+
+[player_safety_stairs_2nd_floor_down_north_west]
+id = 29659
+examine = "I wonder where they will take me."

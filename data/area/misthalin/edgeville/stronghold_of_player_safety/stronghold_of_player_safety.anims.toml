@@ -1,0 +1,11 @@
+[pull_ground_lever]
+id = 8804
+
+[push_ground_lever]
+id = 8805
+
+[lever_down]
+id = 8802
+
+[lever_up]
+id = 8803

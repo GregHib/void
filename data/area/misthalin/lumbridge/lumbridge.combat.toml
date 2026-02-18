@@ -1,17 +1,27 @@
-[lumbridge_guardsman]
-clone = "man"
+[lumbridge_guardsman_attackable]
 attack_speed = 5
 defend_anim = "sword_defend"
+death_anim = "human_death"
 
-[lumbridge_guardsman.melee]
+[lumbridge_guardsman_attackable.melee]
 range = 1
 anim = "sword_slash"
 target_hit = { offense = "slash", max = 16 }
 
+[lumbridge_guardsman_attackable2]
+attack_speed = 5
+defend_anim = "sword_defend"
+death_anim = "human_death"
+
+[lumbridge_guardsman_attackable2.melee]
+range = 1
+anim = "sword_lunge"
+target_hit = { offense = "slash", max = 16 }
+
 [farmer]
-clone = "man"
 attack_speed = 6
 defend_anim = "farmer_defend"
+death_anim = "human_death"
 
 [farmer.melee]
 range = 1

@@ -60,10 +60,6 @@ tile = { x = 3082, y = 3124, level = 1 }
 delta = { level = -1 }
 
 # 12436 tutorial_island
-[29602]
-option = "Leave"
-tile = { x = 3082, y = 4228 }
-to = { x = 3074, y = 3456 }
 
 [3028]
 option = "Climb-up"

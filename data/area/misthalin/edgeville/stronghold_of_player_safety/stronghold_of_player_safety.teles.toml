@@ -4,7 +4,7 @@ option = "Climb-down"
 tile = { x = 3088, y = 3571 }
 to = { x = 3089, y = 9971 }
 
-[29589]
+[stronghold_of_player_safety_stairs_up]
 option = "Climb-up"
 tile = { x = 3086, y = 4244 }
 to = { x = 3083, y = 3452 }
@@ -15,53 +15,62 @@ option = "Pull"
 tile = { x = 3153, y = 3923 }
 to = { x = 2562, y = 3311 }
 
-[29729]
-option = "Climb"
-tile = { x = 3159, y = 4280, level = 3 }
-to = { x = 3077, y = 3462 }
-
-[29660]
+[player_safety_stairs_1st_floor_up_north_west]
 option = "Climb-up"
 tile = { x = 3147, y = 4249, level = 1 }
 delta = { x = 3, y = 2, level = 1 }
 
-[29659]
+[player_safety_stairs_2nd_floor_down_north_west]
 option = "Climb-down"
 tile = { x = 3149, y = 4250, level = 2 }
 delta = { x = -3, y = -2, level = -1 }
 
-[29656]
+[player_safety_stairs_1st_floor_up_south_west]
 option = "Climb-up"
 tile = { x = 3147, y = 4246, level = 1 }
 delta = { x = 3, y = -2, level = 1 }
 
-[29655]
+[player_safety_stairs_2nd_floor_down_south_west]
 option = "Climb-down"
 tile = { x = 3149, y = 4245, level = 2 }
 delta = { x = -3, y = 2, level = -1 }
 
-[29664]
+[player_safety_stairs_1st_floor_up_south_east]
 option = "Climb-up"
 tile = { x = 3157, y = 4246, level = 1 }
 delta = { x = -3, y = -2, level = 1 }
 
-[29663]
+[player_safety_stairs_2nd_floor_down_south_east]
 option = "Climb-down"
 tile = { x = 3157, y = 4245, level = 2 }
 delta = { x = 3, y = 2, level = -1 }
 
-[29668]
+[player_safety_stairs_1st_floor_up_north_east]
 option = "Climb-up"
 tile = { x = 3157, y = 4249, level = 1 }
 delta = { x = -3, y = 2, level = 1 }
 
-[29667]
+[player_safety_stairs_2nd_floor_down_north_east]
 option = "Climb-down"
 tile = { x = 3157, y = 4250, level = 2 }
 delta = { x = 3, y = -2, level = -1 }
 
-[29672]
+[player_safety_stairs_2nd_floor_up_north]
 option = "Climb-up"
 tile = { x = 3171, y = 4273, level = 2 }
 delta = { x = -3, y = -2, level = 1 }
 
+[stronghold_of_player_safety_tunnel]
+option = "Use"
+tile = { x = 3139, y = 4230, level = 2}
+to = { x = 3077, y = 4235 }
+
+[stronghold_of_player_safety_jail_entrance_up]
+option = "Leave"
+tile = { x = 3082, y = 4228 }
+to = { x = 3074, y = 3456 }
+
+[stronghold_of_player_safety_jail_door_locked_2]
+option = "Open"
+tile = { x = 3178, y = 4266 }
+to = { x = 3177, y = 4269, level = 2 }

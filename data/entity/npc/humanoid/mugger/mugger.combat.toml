@@ -9,4 +9,4 @@ death_sound = "mugger_death"
 range = 1
 anim = "mugger_attack"
 target_sound = "mugger_attack"
-target_hit = { offense = "slash", max = 1 }
+target_hit = { offense = "slash", max = 10 }

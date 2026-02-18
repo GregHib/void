@@ -32,13 +32,28 @@ examine = "An imprisoned gublinch."
 
 [cockroach_worker]
 id = 7159
+hitpoints = 540
+att = 22
+str = 22
+def = 22
 categories = ["cockroaches"]
 examine = "Eurgh! A big bug."
+respawn_delay = 60
+combat_def = "cockroach_worker"
+drop_table = "cockroach_worker"
 
 [cockroach_soldier]
 id = 7160
+hitpoints = 960
+att = 50
+str = 50
+def = 50
+range = 50
 categories = ["cockroaches"]
 examine = "Euww! A giant bug."
+respawn_delay = 60
+drop_table = "cockroach_soldier"
+combat_def = "cockroach_soldier"
 
 [mugger_stronghold_of_player_safety]
 id = 7161
@@ -47,8 +62,7 @@ att = 5
 str = 5
 def = 5
 style = "crush"
-max_hit_melee = 10
-hunt_mode = "cowardly"
+combat_def = "mugger"
 drop_table = "mugger"
 examine = "He jumps out and attacks people."
 

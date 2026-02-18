@@ -41,7 +41,7 @@ internal class ObjectTest : WorldTest() {
         val door = GameObjects.getLayer(Tile(3226, 3214), ObjectLayer.WALL)!!
 
         player.objectOption(door, "Open")
-        tick()
+        tick(2)
         handler.walk(Walk(3226, 3214), player)
         tick(2)
 
