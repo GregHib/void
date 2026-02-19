@@ -139,7 +139,7 @@ fun Player.callFollower() {
         return
     }
     follower.tele(target, clearMode = false)
-    follower.clearWatch()
+    follower.watch(this)
     follower.gfx("summon_familiar_size_${follower.size}")
 }
 
