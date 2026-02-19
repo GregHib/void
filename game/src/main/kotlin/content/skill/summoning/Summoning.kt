@@ -1,6 +1,8 @@
 package content.skill.summoning
 
 import content.entity.player.dialogue.type.choice
+import net.pearx.kasechange.toLowerSpaceCase
+import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -15,11 +17,15 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.inject
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.map.collision.canFit
+import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.type.Tile
 
 val Character?.isFamiliar: Boolean
     get() = this != null && this is NPC && id.endsWith("_familiar")
@@ -43,12 +49,14 @@ var Player.follower: NPC?
  * @param restart A boolean used to tell if this familiar is being summoned at login. If set to false will start a new
  * familiar timer
  */
-fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean): NPC? {
+fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean) {
     if (follower != null) {
-        // TODO: Find actual message for this
-        message("You must dismiss your current follower before summoning another.")
-        return null
+        message("You already have a follower.")
+        return
     }
+
+    // TODO summoning energy
+    // message("You don't have enough summoning energy to summon this familiar.")
 
     val familiarNpc = NPCs.add(familiar.stringId, tile)
     familiarNpc.mode = Follow(familiarNpc, this)
@@ -60,7 +68,6 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean): NPC? {
             timers.start("familiar_timer")
         }
     }
-    return familiarNpc
 }
 
 /**
@@ -90,7 +97,7 @@ fun Player.dismissFamiliar() {
 fun Player.updateFamiliarInterface() {
     val follower = follower ?: return
     interfaces.open("familiar_details")
-    set("follower_details_name", world.gregs.voidps.engine.get<EnumDefinitions>().get("summoning_familiar_ids").getKey(follower.def.id))
+    set("follower_details_name", get<EnumDefinitions>().get("summoning_familiar_ids").getKey(follower.def.id))
     set("follower_details_chathead", follower.def.id)
     set("follower_details_chathead_animation", follower.id)
 }
@@ -115,7 +122,23 @@ fun Player.confirmFollowerLeftClickOptions() {
  */
 fun Player.callFollower() {
     val follower = follower ?: return
-    follower.tele(steps.follow, clearMode = false)
+    val steps: StepValidator = get()
+    var target: Tile? = null
+    for (tile in tile.spiral(follower.size)) {
+        if (tile == this.tile) {
+            continue
+        }
+        if (!steps.canFit(tile, follower.collision, follower.size, follower.blockMove)) {
+            continue
+        }
+        target = tile
+        break
+    }
+    if (target == null) {
+        message("Your familiar is too large to fit in the area you are standing in. Move into a larger space and try again.")
+        return
+    }
+    follower.tele(target, clearMode = false)
     follower.clearWatch()
     follower.gfx("summon_familiar_size_${follower.size}")
 }
@@ -126,19 +149,24 @@ fun Player.callFollower() {
  */
 fun Player.renewFamiliar() {
     val follower = follower ?: return
-    val pouchId = world.gregs.voidps.engine.get<EnumDefinitions>().get("summoning_familiar_ids").getKey(follower.def.id)
+    val pouchId = get<EnumDefinitions>().get("summoning_familiar_ids").getKey(follower.def.id)
     val pouchItem = Item(ItemDefinitions.get(pouchId).stringId)
-
-    if (!inventory.contains(pouchItem.id)) {
-        // TODO: Find the actual message used here in 2011
-        message("You don't have the required pouch to renew your familiar.")
+    val remaining = get("familiar_details_minutes_remaining", 0) * 60 + get("familiar_details_seconds_remaining", 0)
+    if (remaining >= 170) {
+        message("You need to have less than 2:50 remaining before you can renew your familiar.")
         return
     }
-
-    inventory.remove(pouchItem.id)
+    if (!inventory.contains(pouchItem.id)) {
+        message("You need a ${pouchItem.def.name.toLowerSpaceCase()} to renew your familiar's timer.")
+        return
+    }
+    if (!inventory.remove(pouchItem.id)) {
+        return
+    }
     set("familiar_details_minutes_remaining", follower.def["summoning_time_minutes", 0])
     set("familiar_details_seconds_remaining", 0)
     follower.gfx("summon_familiar_size_${follower.size}")
+    message("You use your remaining pouch to renew your familiar.")
 }
 
 class Summoning(val enums: EnumDefinitions) : Script {
@@ -149,14 +177,11 @@ class Summoning(val enums: EnumDefinitions) : Script {
             val familiarId = enums.get("summoning_familiar_ids").getInt(option.item.def.id)
             val summoningXp = option.item.def["summon_experience", 0.0]
             val familiar = NPCDefinitions.get(familiarId)
-
-            if (levels.get(Skill.Summoning) < familiarLevel) {
-                // TODO: Get actual message
-                message("You don't have the level needed to summon that familiar...")
+            if (!has(Skill.Summoning, familiarLevel)) {
+                message("You are not high enough level to use this pouch.")
                 return@itemOption
             }
-
-            summonFamiliar(familiar, false) ?: return@itemOption
+            summonFamiliar(familiar, false)
             inventory.remove(option.item.id)
             experience.add(Skill.Summoning, summoningXp)
         }
@@ -232,6 +257,10 @@ class Summoning(val enums: EnumDefinitions) : Script {
             variables.send("follower_details_chathead_animation")
             timers.restart("familiar_timer")
             summonFamiliar(familiarDef, true)
+        }
+
+        interfaceOption("Take BoB", "familiar_details:take_bob_items") {
+            message("<dark_green>Not currently implemented.")
         }
     }
 }

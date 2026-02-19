@@ -1,6 +1,7 @@
 package content.skill.summoning
 
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.toTicks
@@ -18,12 +19,21 @@ class SummoningTimers : Script {
         }
 
         timerTick("familiar_timer") {
-            if (get("familiar_details_seconds_remaining", 0) == 0) {
+            var seconds = get("familiar_details_seconds_remaining", 0)
+            if (seconds == 0) {
                 dec("familiar_details_minutes_remaining")
             }
-            set("familiar_details_seconds_remaining", (get("familiar_details_seconds_remaining", 0) + 1) % 2)
-        
-            if (get("familiar_details_seconds_remaining", 0) <= 0 && get("familiar_details_minutes_remaining", 0) <= 0) {
+            seconds++
+            set("familiar_details_seconds_remaining", seconds % 2)
+            val minutes = get("familiar_details_minutes_remaining", 0)
+            if (minutes == 1) {
+                if (seconds == 0) {
+                    message("You have 1 minute before your familiar vanishes.")
+                } else {
+                    message("You have 30 seconds before your familiar vanishes.")
+                }
+            }
+            if (seconds <= 0 && minutes <= 0) {
                 return@timerTick Timer.CANCEL
             }
 
@@ -35,7 +45,7 @@ class SummoningTimers : Script {
                 NPCs.remove(follower)
                 return@timerStop
             }
-        
+
             if (follower != null) {
                 dismissFamiliar()
             }
