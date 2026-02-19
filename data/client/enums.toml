@@ -332,9 +332,10 @@ id = 1100
 [gravestone_price]
 id = 1101
 
-# From NPC id
-# Lowercase, does not include dungeoneering IDs
-[summoning_familiar_names_lowercase]
+[familiarisation_avoid_npcs_names]
+id = 930
+
+[familiarisation_avoid_npcs_names_lowercase]
 id = 931
 
 # From NPC id, used in interface 662, cs2 751
@@ -370,9 +371,8 @@ id = 1187
 [summoning_scroll_ids_1]
 id = 1188
 
-# Used if varp 4282 > 50, 50 is immediately subtracted from the varp
-# Not sure when these are actually used... When low health, maybe??
-[pet_details_chathead_animations_other]
+# Used if varp 4282 > 50
+[pet_details_chathead_animations_sad]
 id = 1275
 
 # Used if varp 4282 <= 50

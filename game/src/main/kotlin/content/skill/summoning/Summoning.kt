@@ -88,14 +88,11 @@ fun Player.dismissFamiliar() {
  * Updates the familiar interface (663) with the details of the player's current follower
  */
 fun Player.updateFamiliarInterface() {
-    if (follower == null) return
-
+    val follower = follower ?: return
     interfaces.open("familiar_details")
-
-    set("follower_details_name", world.gregs.voidps.engine.get<EnumDefinitions>().get("summoning_familiar_ids").getKey(follower!!.def.id))
-    set("follower_details_chathead", follower!!.def.id)
-
-    set("follower_details_chathead_animation", 1)
+    set("follower_details_name", world.gregs.voidps.engine.get<EnumDefinitions>().get("summoning_familiar_ids").getKey(follower.def.id))
+    set("follower_details_chathead", follower.def.id)
+    set("follower_details_chathead_animation", follower.id)
 }
 
 /**
