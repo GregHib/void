@@ -23,15 +23,13 @@ class SummoningTimers : Script {
             if (seconds == 0) {
                 dec("familiar_details_minutes_remaining")
             }
-            seconds++
-            set("familiar_details_seconds_remaining", seconds % 2)
+            seconds = (seconds + 1) % 2
+            set("familiar_details_seconds_remaining", seconds)
             val minutes = get("familiar_details_minutes_remaining", 0)
-            if (minutes == 1) {
-                if (seconds == 0) {
-                    message("You have 1 minute before your familiar vanishes.")
-                } else {
-                    message("You have 30 seconds before your familiar vanishes.")
-                }
+            if (minutes == 1 && seconds == 0) {
+                message("You have 1 minute before your familiar vanishes.")
+            } else if (minutes == 0 && seconds == 1) {
+                message("You have 30 seconds before your familiar vanishes.")
             }
             if (seconds <= 0 && minutes <= 0) {
                 return@timerTick Timer.CANCEL
