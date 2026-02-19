@@ -51,7 +51,7 @@ fun Area.random(collision: CollisionStrategy = CollisionStrategies.Normal, size:
     val steps = get<StepValidator>()
     var tile = random()
     var exit = 100
-    while (!canFit(steps, tile, collision, size, extraFlag)) {
+    while (!steps.canFit(tile, collision, size, extraFlag)) {
         if (--exit <= 0) {
             return null
         }
@@ -60,25 +60,25 @@ fun Area.random(collision: CollisionStrategy = CollisionStrategies.Normal, size:
     return tile
 }
 
-private fun canFit(steps: StepValidator, tile: Tile, collision: CollisionStrategy, size: Int, extraFlag: Int): Boolean {
+fun StepValidator.canFit(tile: Tile, collision: CollisionStrategy, size: Int, extraFlag: Int): Boolean {
     if (size != 1) {
         for (i in 1 until size) {
-            if (!steps.canTravel(tile.level, tile.x - i, tile.y, 1, 0, size, extraFlag)) {
+            if (!canTravel(tile.level, tile.x - i, tile.y, 1, 0, size, extraFlag)) {
                 return false
             }
-            if (!steps.canTravel(tile.level, tile.x, tile.y - i, 0, 1, size, extraFlag)) {
+            if (!canTravel(tile.level, tile.x, tile.y - i, 0, 1, size, extraFlag)) {
                 return false
             }
-            if (!steps.canTravel(tile.level, tile.x + i, tile.y, -1, 0, size, extraFlag)) {
+            if (!canTravel(tile.level, tile.x + i, tile.y, -1, 0, size, extraFlag)) {
                 return false
             }
-            if (!steps.canTravel(tile.level, tile.x, tile.y + i, 0, -1, size, extraFlag)) {
+            if (!canTravel(tile.level, tile.x, tile.y + i, 0, -1, size, extraFlag)) {
                 return false
             }
         }
         return true
     }
-    return steps.canTravel(x = tile.x, z = tile.y - 1, level = tile.level, offsetX = 0, offsetZ = 1, size = size, collision = collision, extraFlag = extraFlag) || steps.canTravel(x = tile.x, z = tile.y + 1, level = tile.level, offsetX = 0, offsetZ = -1, size = size, collision = collision, extraFlag = extraFlag) || steps.canTravel(
+    return canTravel(x = tile.x, z = tile.y - 1, level = tile.level, offsetX = 0, offsetZ = 1, size = size, collision = collision, extraFlag = extraFlag) || canTravel(x = tile.x, z = tile.y + 1, level = tile.level, offsetX = 0, offsetZ = -1, size = size, collision = collision, extraFlag = extraFlag) || canTravel(
         x = tile.x - 1,
         z = tile.y,
         level = tile.level,
@@ -87,5 +87,5 @@ private fun canFit(steps: StepValidator, tile: Tile, collision: CollisionStrateg
         size = size,
         collision = collision,
         extraFlag = extraFlag
-    ) || steps.canTravel(x = tile.x + 1, z = tile.y, level = tile.level, offsetX = -1, offsetZ = 0, size = size, collision = collision, extraFlag = extraFlag)
+    ) || canTravel(x = tile.x + 1, z = tile.y, level = tile.level, offsetX = -1, offsetZ = 0, size = size, collision = collision, extraFlag = extraFlag)
 }
