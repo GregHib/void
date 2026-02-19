@@ -1,2 +1,38 @@
 [summoning_infuse]
 id = 8500
+
+[expression_wolf_happy]
+id = 8372
+
+[expression_wolf_angry]
+id = 8373
+
+[expression_wolf_sad]
+id = 8374
+
+[expression_wolf_quiz]
+id = 8375
+
+[expression_bird_sad]
+id = 6824
+
+[expression_bird_happy]
+id = 7
+
+[expression_bird_neutral]
+id = 8
+
+[expression_bird_quiz]
+id = 9
+
+[expression_leech_1]
+id = 8411
+
+[expression_leech_sad]
+id = 8412
+
+[expression_leech_neutral]
+id = 8413
+
+[expression_leech_angry]
+id = 8414

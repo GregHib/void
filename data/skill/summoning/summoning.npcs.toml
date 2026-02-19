@@ -42,9 +42,13 @@ id = 6817
 
 [abyssal_parasite_familiar]
 id = 6818
+dialogue = "leech"
+interacts = false
 
 [abyssal_lurker_familiar]
 id = 6820
+dialogue = "bird"
+interacts = false
 
 [unicorn_stallion_familiar]
 id = 6822
@@ -60,6 +64,8 @@ id = 6827
 
 [spirit_wolf_familiar]
 id = 6829
+dialogue = "wolf"
+interacts = false
 
 [desert_wyrm_familiar]
 id = 6831
