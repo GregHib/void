@@ -12,6 +12,7 @@ import content.entity.player.kept.ItemsKeptOnDeath
 import content.entity.proj.shoot
 import content.skill.prayer.getActivePrayerVarKey
 import content.skill.prayer.praying
+import content.skill.summoning.dismissFamiliar
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
@@ -65,6 +66,7 @@ class PlayerDeath(val enums: EnumDefinitions) : Script {
                 timers.stopAll()
                 softTimers.stopAll()
                 clear(getActivePrayerVarKey())
+                dismissFamiliar()
                 if (onDeath.dropItems) {
                     dropItems(player, killer, tile, wilderness)
                 }
