@@ -39,11 +39,244 @@ id = 27
 [summoning_creation]
 id = 79
 
-[pet_details]
+[familiar_details]
 id = 662
+type = "follower_details_tab"
 
-[pet_hunger_details]
+[.call]
+id = 49
+
+[.dismiss]
+id = 51
+
+[.attack]
+id = 65
+
+[.take_bob_items]
+id = 67
+
+[.renew]
+id = 69
+
+[.cast_howl]
+id = 75
+
+[.cast_dreadfowl_strike]
+id = 77
+
+[.cast_rise_from_the_ashes]
+id = 78
+
+[.cast_vampire_touch]
+id = 81
+
+[.cast_herbcall]
+id = 83
+
+[.cast_stony_shell]
+id = 85
+
+[.cast_evil_flames]
+id = 87
+
+[.cast_fruitfall]
+id = 89
+
+[.cast_thieving_fingers]
+id = 91
+
+[.cast_egg_spawn]
+id = 93
+
+[.cast_fish_rain]
+id = 95
+
+[.cast_abyssal_stealth]
+id = 97
+
+[.cast_multichop]
+id = 99
+
+[.cast_unburden]
+id = 101
+
+[.cast_crushing_claw]
+id = 103
+
+[.cast_mantis_strike]
+id = 105
+
+[.cast_famine]
+id = 107
+
+[.cast_sandstorm]
+id = 109
+
+[.cast_venom_shot]
+id = 111
+
+[.cast_cheese_feast]
+id = 113
+
+[.cast_insane_ferocity]
+id = 115
+
+[.cast_toad_bark]
+id = 117
+
+[.cast_arctic_blast]
+id = 119
+
+[.cast_winter_storage]
+id = 121
+
+[.cast_healing_aura]
+id = 123
+
+[.cast_oph_incubation]
+id = 125
+
+[.cast_testudo]
+id = 127
+
+[.cast_slime_spray]
+id = 129
+
+[.cast_electric_lash]
+id = 131
+
+[.cast_dissolve]
+id = 133
+
+[.cast_abyssal_drain]
+id = 135
+
+[.cast_petrifying_gaze]
+id = 137
+
+[.cast_tireless_run]
+id = 139
+
+[.cast_blood_drain]
+id = 141
+
+[.cast_dust_cloud]
+id = 143
+
+[.cast_doomsphere]
+id = 145
+
+[.cast_generate_compost]
+id = 147
+
+[.cast_acorn_missile]
+id = 149
+
+[.cast_poisonous_blast]
+id = 151
+
+[.cast_deadly_claw]
+id = 153
+
+[.cast_regrowth]
+id = 155
+
+[.cast_spike_shot]
+id = 157
+
+[.cast_addy_bull_rush]
+id = 159
+
+[.cast_magic_focus]
+id = 161
+
+[.cast_swallow_whole]
+id = 163
+
+[.cast_swamp_plague]
+id = 165
+
+[.cast_call_to_arms]
+id = 167
+
+[.cast_titans_con]
+id = 169
+
+[.cast_boil]
+id = 171
+
+[.cast_steel_of_legends]
+id = 173
+
+[.cast_explode]
+id = 175
+
+[.cast_goad]
+id = 177
+
+[.cast_ambush]
+id = 179
+
+[.cast_ebon_thunder]
+id = 181
+
+[.cast_volcanic_str]
+id = 183
+
+[.cast_essence_shipment]
+id = 185
+
+[.cast_pester]
+id = 187
+
+[.cast_fireball_assault]
+id = 189
+
+[.cast_rending]
+id = 191
+
+[.cast_iron_within]
+id = 193
+
+[.cast_immense_heat]
+id = 195
+
+[.cast_inferno]
+id = 197
+
+[.cast_clay_deposit]
+id = 199
+
+[.cast_fetch_casket]
+id = 200
+
+[.cast_sundering_strike]
+id = 203
+
+[.cast_poisonous_shot]
+id = 205
+
+[.cast_snaring_wave]
+id = 207
+
+[.cast_aptitude]
+id = 209
+
+[.cast_second_wind]
+id = 211
+
+[.cast_glimmer_of_light]
+id = 213
+
+[pet_details]
 id = 663
+type = "follower_details_tab"
+
+[.call]
+id = 21
+
+[.dismiss]
+id = 23
 
 [summoning_scroll_creation]
 id = 666
@@ -76,8 +309,54 @@ type = "dialogue_box"
 id = 737
 type = "dialogue_box"
 
-[familiar_options]
+[follower_left_click_options]
 id = 880
+type = "overlay_tab"
+
+[.follower_details_circle]
+id = 7
+
+[.follower_details]
+id = 8
+
+[.special_move_circle]
+id = 9
+
+[.special_move]
+id = 10
+
+[.attack_circle]
+id = 11
+
+[.attack]
+id = 12
+
+[.call_follower_circle]
+id = 13
+
+[.call_follower]
+id = 14
+
+[.dismiss_follower_cricle]
+id = 15
+
+[.dismiss_follower]
+id = 16
+
+[.take_bob_cricle]
+id = 17
+
+[.take_bob]
+id = 18
+
+[.renew_familiar_circle]
+id = 19
+
+[.renew_familiar]
+id = 20
+
+[.confirm]
+id = 21
 
 [summoning_side]
 id = 722

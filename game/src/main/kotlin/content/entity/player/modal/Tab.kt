@@ -11,7 +11,7 @@ enum class Tab {
     WornEquipment,
     PrayerList,
     MagicSpellbook,
-    FollowerDetails,
+    Objectives,
     FriendsList,
     IgnoreList,
     ClanChat,

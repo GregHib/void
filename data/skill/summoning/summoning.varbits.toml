@@ -1,0 +1,151 @@
+# 1043 - 1048 hold numbers representing a string. First character will always be capitalized
+# Characters are space as 0 and A-Z as 1-26
+[pet_name_char_1]
+id = 1043
+
+[pet_name_char_2]
+id = 1044
+
+[pet_name_char_3]
+id = 1045
+
+[pet_name_char_4]
+id = 1046
+
+[pet_name_char_6]
+id = 1047
+
+[pet_name_char_7]
+id = 1048
+
+# Displays text from 1043 - 1048 in the pet's name space if set to 1 in the pet details interface (663)
+[override_pet_name]
+id = 1049
+
+[show_summoning_orb]
+id = 4280
+format = "boolean"
+persist = true
+default = true
+
+[follower_details_chathead_animation]
+id = 4282
+format = "map"
+default = "spirit_kyatt"
+persist = true
+values = {
+    spirit_wolf = 7,
+    dreadfowl = 2,
+    spirit_spider = 6,
+    thorny_snail = 12,
+    granite_crab = 3,
+    spirit_mosquito = 8,
+    desert_wyrm = 0,
+    spirit_scorpion = 6,
+    spirit_tz-kih = 32,
+    albino_rat = 0,
+    spirit_kalphite = 8,
+    compost_mound = 20,
+    giant_chinchompa = 0,
+    vampire_bat = 0,
+    honey_badger = 0,
+    beaver = 7,
+    void_ravager = 13,
+    void_spinner = 79,
+    void_torcher = 2,
+    void_shifter = 0,
+    bronze_minotaur = 0,
+    bull_ant = 8,
+    macaw = 2,
+    evil_turnip = 7,
+    spirit_cockatrice = 16,
+    spirit_guthatrice = 16,
+    spirit_saratrice = 16,
+    spirit_zamatrice = 16,
+    spirit_pengatrice = 16,
+    spirit_coraxatrice = 16,
+    spirit_vulatrice = 16,
+    iron_minotaur = 0,
+    pyrelord = 23,
+    magpie = 2,
+    bloated_leech = 14,
+    spirit_terrorbird = 52,
+    abyssal_parasite = 14,
+    spirit_jelly = 13,
+    steel_minotaur = 0,
+    ibis = 52,
+    spirit_kyatt = 0,
+    spirit_larupia = 0,
+    spirit_graahk = 0,
+    karamthulhu_overlord = 17,
+    smoke_devil = 22,
+    abyssal_lurker = 2,
+    spirit_cobra = 11,
+    stranger_plant = 21,
+    mithril_minotaur = 0,
+    barker_toad = 1,
+    war_tortoise = 0,
+    bunyip = 4,
+    fruit_bat = 0,
+    ravenous_locust = 6,
+    arctic_bear = 0,
+    obsidian_golem = 28,
+    granite_lobster = 8,
+    praying_mantis = 8,
+    forge_regent = 84,
+    adamant_minotaur = 0,
+    talon_beast = 0,
+    giant_ent = 18,
+    fire_titan = 23,
+    moss_titan = 24,
+    ice_titan = 26,
+    hydra = 19,
+    spirit_dagannoth = 0,
+    lava_titan = 27,
+    swamp_titan = 0,
+    rune_minotaur = 0,
+    unicorn_stallion = 89,
+    geyser_titan = 25,
+    wolpertinger = 7,
+    abyssal_titan = 27,
+    iron_titan = 27,
+    pack_yak = 0,
+    steel_titan = 27,
+}
+
+[pet_details_growth_percentage]
+id = 4285
+format = "int"
+persist = true
+
+[pet_details_hunger_percentage]
+id = 4286
+format = "int"
+persist = true
+
+# Changes the mouseover info for the cast button in inter 662 (pet_details)
+# E.g. "Level 1: Howl (-->#<-- Special Move points)"
+[summoning_special_points_needed]
+id = 4288
+format = "int"
+persist = true
+
+[familiar_details_seconds_remaining]
+id = 4290
+format = "int"
+persist = true
+
+[familiar_details_minutes_remaining]
+id = 4534
+format = "int"
+persist = true
+
+[summoning_orb_left_click_option]
+id = 6454
+format = "int"
+persist = true
+
+[summoning_menu_left_click_option]
+id = 6455
+format = "int"
+persist = true

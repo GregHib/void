@@ -332,9 +332,15 @@ id = 1100
 [gravestone_price]
 id = 1101
 
+[familiarisation_avoid_npcs_names]
+id = 930
+
+[familiarisation_avoid_npcs_names_lowercase]
+id = 931
+
 # From NPC id, used in interface 662, cs2 751
-# All seem to be in the format 4895####
-[summoning_familiar_hashes_1]
+# Fruit bat (6817) -> 747, 30
+[summoning_orb_packed_components]
 id = 1092
 
 # From index in crafting menu, no difference from summoning_pouch_ids_2
@@ -365,6 +371,14 @@ id = 1187
 [summoning_scroll_ids_1]
 id = 1188
 
+# Used if varp 4282 > 50
+[pet_details_chathead_animations_sad]
+id = 1275
+
+# Used if varp 4282 <= 50
+[pet_details_chathead_animations_normal]
+id = 1276
+
 # From index in the crafting menu, no difference from summoning_pouch_ids_1
 [summoning_pouch_ids_2]
 id = 1277
@@ -378,8 +392,9 @@ id = 1278
 id = 1279
 
 # From NPC id, used in interface 662, cs2 751
-# All seem to be in the format 4338####
-[summoning_familiar_hashes]
+# Fruit bat (6817) -> 662, 88
+# Seems to be 1 off on the component ID. Fruit bat's scroll is ID 89
+[pet_details_use_scroll_packed_components]
 id = 1282
 
 # From associated summoning pouch ID
@@ -434,6 +449,10 @@ id = 1077
 
 [exchange_slot_interfaces]
 id = 1078
+
+# Familiar names from 0 - 77 in alphabetical order (Except phoenix, which is in place 77)
+[summoning_familiar_names_alphabetical]
+id = 1539
 
 [farming_protection]
 id = 2024
