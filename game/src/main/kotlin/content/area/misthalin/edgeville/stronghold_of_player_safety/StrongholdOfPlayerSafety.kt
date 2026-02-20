@@ -47,22 +47,26 @@ class StrongholdOfPlayerSafety : Script {
         objectOperate("Pull", "stronghold_of_player_safety_an_old_lever_closed") { (target) ->
             arriveDelay()
             animDelay("pull_ground_lever")
-            areaSound("lever", target.tile)
+            target.anim("lever_down")
+            areaSound("lever", tile)
             delay(2)
-            areaSound("unlock", target.tile)
+            areaSound("unlock", tile)
             delay(1)
             message("You hear cogs and gears moving and a distant unlocking sound.")
+            target.anim("stronghold_of_player_safety_lever")
             set("stronghold_of_player_safety_lever", true)
         }
 
         objectOperate("Pull", "stronghold_of_player_safety_an_old_lever_opened") { (target) ->
             arriveDelay()
             animDelay("push_ground_lever")
+            target.anim("lever_up")
             areaSound("lever", target.tile)
             delay(1)
             areaSound("unlock", target.tile)
             delay(1)
             message("You hear cogs and gears moving and the sound of heavy locks falling into place.")
+            target.anim("stronghold_of_player_safety_lever")
             set("stronghold_of_player_safety_lever", false)
         }
 
