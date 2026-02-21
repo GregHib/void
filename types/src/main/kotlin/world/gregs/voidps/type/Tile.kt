@@ -23,7 +23,7 @@ value class Tile(val id: Int) {
 
     fun copy(x: Int = this.x, y: Int = this.y, level: Int = this.level) = Tile(x, y, level)
 
-    fun distanceTo(other: Tile, width: Int, height: Int) = distanceTo(Distance.getNearest(other, width, height, this))
+    fun distanceTo(other: Tile, width: Int, height: Int) = distanceTo(Distance.nearest(other, width, height, this))
 
     fun distanceTo(other: Tile): Int {
         if (level != other.level) {
