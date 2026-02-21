@@ -92,7 +92,7 @@ class Delrith : Script {
             }
         }
 
-        npcOperate("Banish", "delrith") { (target) ->
+        npcOperate("Banish", "delrith_weakened") { (target) ->
             if (target.transform != "delrith_weakened") {
                 return@npcOperate
             }
