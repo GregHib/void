@@ -44,20 +44,30 @@ examine = "A holy man."
 
 [guard_edgeville]
 id = 296
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+combat_def = "guard_edgeville"
+drop_table = "edgeville_guard"
+categories = ["human"]
 pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
 examine = "He tries to keep order around here."
 
 [guard_edgeville_2]
 id = 297
 clone = "guard_edgeville"
+combat_def  = "guard_edgeville"
 
 [guard_edgeville_3]
 id = 298
 clone = "guard_edgeville"
+combat_def  = "guard_edgeville"
 
 [guard_edgeville_4]
 id = 299
 clone = "guard_edgeville"
+combat_def  = "guard_edgeville"
 
 [doris_edgeville]
 id = 3381
