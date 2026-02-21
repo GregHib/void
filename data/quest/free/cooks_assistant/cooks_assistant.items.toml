@@ -5,6 +5,7 @@ weight = 0.01
 destroy = "You will need to speak to the cook in Lumbridge Castle to get another."
 examine = "Everything you've always wanted to know about the Cook-o-Matic 25."
 kept = "Vanish"
+book = "cook_o_matic_manual"
 
 [super_large_egg]
 id = 15412
