@@ -1,0 +1,11 @@
+[wise_old_man_task]
+format = "string"
+persist = true
+
+[wise_old_man_amount]
+format = "int"
+persist = true
+
+[wise_old_man_remaining]
+format = "int"
+persist = true
