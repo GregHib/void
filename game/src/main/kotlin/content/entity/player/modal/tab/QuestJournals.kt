@@ -2,15 +2,10 @@ package content.entity.player.modal.tab
 
 import com.github.michaelbull.logging.InlineLogger
 import content.quest.refreshQuestJournal
-import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
-import world.gregs.voidps.engine.client.sendInterfaceSettings
-import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.InterfaceApi
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.Timer
 
 class QuestJournals(val questDefinitions: QuestDefinitions) : Script {
@@ -72,6 +67,5 @@ class QuestJournals(val questDefinitions: QuestDefinitions) : Script {
                 set("quest_journal_order", type)
             }
         }
-
     }
 }
