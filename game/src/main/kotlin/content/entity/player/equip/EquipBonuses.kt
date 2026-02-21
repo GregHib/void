@@ -33,14 +33,12 @@ object EquipBonuses {
     }
 
     fun format(key: String, value: Int, bonuses: Boolean): String = when (key) {
-        "magic_damage", "absorb_melee", "absorb_magic", "absorb_range" -> "${if (value >= 0) "+" else "-"}$value%"
+        "magic_damage", "absorb_melee", "absorb_magic", "absorb_range" -> "${if (value >= 0) "+" else ""}$value%"
         "strength", "ranged_strength" -> "${if (value > 0) {
             "+"
-        } else if (value < 0) {
-            "-"
         } else {
             ""
         }}${value.toDouble()}"
-        else -> if (bonuses) "${if (value >= 0) "+" else "-"}$value" else value.toString()
+        else -> if (bonuses) "${if (value >= 0) "+" else ""}$value" else value.toString()
     }
 }
