@@ -76,6 +76,16 @@ type = "quest_journals_tab"
 id = 18
 options = { View = 0, "View journal" = 1, "Show on world map" = 2 }
 
+[.filter]
+id = 10
+
+[.hide_done]
+id = 12
+
+[.order]
+id = 15
+options = { "Select Free/Members" = 0, "Select Progress" = 1, "Select Difficulty" = 2 }
+
 [quest_scroll]
 id = 275
 type = "wide_screen"

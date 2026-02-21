@@ -103,22 +103,24 @@ class EquipmentBonuses : Script {
     fun updateStats(player: Player, item: Item, add: Boolean) {
         names.forEach { (name, key) ->
             val value = item.def[key, 0]
-            if (value > 0) {
-                val current = player[key, 0]
-                val modified = if (add) {
-                    current + value
-                } else {
-                    current - value
-                }
-                player[key] = modified
-                sendBonus(player, name, key, modified)
+            if (value == 0) {
+                return@forEach
             }
+            val current = player[key, 0]
+            val modified = if (add) {
+                current + value
+            } else {
+                current - value
+            }
+            player[key] = modified
+            sendBonus(player, name, key, modified)
         }
     }
 
     fun sendBonus(player: Player, name: String, key: String, value: Int) {
         if (player.menu == "equipment_bonuses") {
-            player.interfaces.sendText("equipment_bonuses", key, "$name: ${EquipBonuses.format(key, value, true)}")
+            val format = EquipBonuses.format(key, value, true)
+            player.interfaces.sendText("equipment_bonuses", key, "$name: $format")
         }
     }
 

@@ -165,6 +165,7 @@ examine = "A busy-body who loves a bit of gossip."
 
 [martin_the_master_gardener]
 id = 3299
+pickpocket = { level = 38, stun_ticks = 8, stun_hit = 30, xp = 43.0, chance_min = 90, chance_max = 240, table = "master_farmer" }
 examine = "A master at gardening."
 
 [wise_old_man_2]

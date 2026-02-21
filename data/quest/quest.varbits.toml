@@ -307,3 +307,32 @@ values = {
 id = 6924
 persist = true
 format = "boolean"
+
+[quest_journal_reversed]
+id = 4538
+persist = true
+format = "boolean"
+
+[quest_journal_show_all]
+id = 4537
+persist = true
+format = "boolean"
+
+[quest_journal_order]
+id = 4536
+persist = true
+format = "map"
+default = "free_members"
+values = {
+  free_members = 0,
+  progress = 1,
+  difficulty = 2,
+  demo_quests = 3
+}
+
+# This varbit doesn't correctly update
+# on the client side for some reason.
+#[quest_journal_hide_done]
+#id = 7264
+#persist = true
+#format = "boolean"

@@ -191,7 +191,8 @@ open class Movement(
         if ((character !is NPC || !character.def["allowed_under", false]) && Overlap.isUnder(character.tile, character.size, character.size, strategy.tile, strategy.width, strategy.height)) {
             return false
         }
-        if (!character.tile.within(strategy.tile, distance)) {
+        val nearest = strategy.nearest(character)
+        if (!character.tile.within(nearest, distance)) {
             return false
         }
         if (!strategy.requiresLineOfSight()) {

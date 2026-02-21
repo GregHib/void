@@ -20,10 +20,10 @@ internal class BerserkerNecklaceFormulaTest : CombatFormulaTest() {
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon)
 
-        assertEquals(5848, offensiveRating)
+        assertEquals(4988, offensiveRating)
         assertEquals(704, defensiveRating)
         assertEquals(132, maxHit)
-        assertEquals(0.9396, chance, 0.0001)
+        assertEquals(0.9292, chance, 0.0001)
     }
 
     @Test
@@ -36,10 +36,10 @@ internal class BerserkerNecklaceFormulaTest : CombatFormulaTest() {
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon)
 
-        assertEquals(9546, offensiveRating)
+        assertEquals(8686, offensiveRating)
         assertEquals(704, defensiveRating)
         assertEquals(246, maxHit)
-        assertEquals(0.963, chance, 0.0001)
+        assertEquals(0.9594, chance, 0.0001)
     }
 
     @Test
@@ -52,10 +52,10 @@ internal class BerserkerNecklaceFormulaTest : CombatFormulaTest() {
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon)
 
-        assertEquals(12384, offensiveRating)
+        assertEquals(11524, offensiveRating)
         assertEquals(704, defensiveRating)
         assertEquals(318, maxHit)
-        assertEquals(0.9714, chance, 0.0001)
+        assertEquals(0.9694, chance, 0.0001)
     }
 
     @Test
@@ -68,10 +68,10 @@ internal class BerserkerNecklaceFormulaTest : CombatFormulaTest() {
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon)
 
-        assertEquals(10836, offensiveRating)
+        assertEquals(9976, offensiveRating)
         assertEquals(704, defensiveRating)
         assertEquals(260, maxHit)
-        assertEquals(0.9674, chance, 0.0001)
+        assertEquals(0.9646, chance, 0.0001)
     }
 
     @Test
@@ -84,9 +84,9 @@ internal class BerserkerNecklaceFormulaTest : CombatFormulaTest() {
 
         val (offensiveRating, defensiveRating, maxHit, chance) = calculate(player, npc, "melee", weapon)
 
-        assertEquals(9632, offensiveRating)
+        assertEquals(8772, offensiveRating)
         assertEquals(704, defensiveRating)
         assertEquals(225, maxHit)
-        assertEquals(0.9633, chance, 0.0001)
+        assertEquals(0.9598, chance, 0.0001)
     }
 }

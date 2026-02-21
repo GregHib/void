@@ -245,9 +245,9 @@ interface Character :
     }
 
     private fun nearestTile(entity: Entity): Tile = when (entity) {
-        is GameObject -> Distance.getNearest(entity.tile, entity.width, entity.height, this.tile)
-        is NPC -> Distance.getNearest(entity.tile, entity.def.size, entity.def.size, this.tile)
-        is Player -> Distance.getNearest(entity.tile, entity.appearance.size, entity.appearance.size, this.tile)
+        is GameObject -> Distance.nearest(entity.tile, entity.width, entity.height, this.tile)
+        is NPC -> Distance.nearest(entity.tile, entity.def.size, entity.def.size, this.tile)
+        is Player -> Distance.nearest(entity.tile, entity.appearance.size, entity.appearance.size, this.tile)
         else -> entity.tile
     }
 

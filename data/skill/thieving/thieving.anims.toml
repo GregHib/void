@@ -7,3 +7,5 @@ id = 536
 [pick_pocket]
 id = 881
 ticks = 4
+walk = false
+run = false

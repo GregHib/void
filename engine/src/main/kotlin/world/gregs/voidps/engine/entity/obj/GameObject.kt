@@ -49,8 +49,8 @@ value class GameObject(internal val packed: Long) : Entity {
         .add(tile.zone, ObjectAnimation(tile.id, get<AnimationDefinitions>().get(id).id, shape, rotation))
 
     fun nearestTo(tile: Tile) = Tile(
-        x = Distance.getNearest(x, width, tile.x),
-        y = Distance.getNearest(y, height, tile.y),
+        x = Distance.nearest(x, width, tile.x),
+        y = Distance.nearest(y, height, tile.y),
         level = level,
     )
 
