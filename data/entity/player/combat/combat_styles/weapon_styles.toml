@@ -159,3 +159,10 @@ id = 26
 attack_types = [ "jab", "swipe", "fend" ]
 attack_styles = [ "accurate", "aggressive", "defensive" ]
 combat_styles = [ "stab", "slash", "crush" ]
+
+# Custom
+[zamorakian_spear]
+id = 27
+attack_types = [ "lunge", "swipe", "pound", "block" ]
+attack_styles = [ "controlled", "controlled", "controlled", "defensive" ]
+combat_styles = [ "stab", "slash", "crush", "stab" ]

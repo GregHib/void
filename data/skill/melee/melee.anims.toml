@@ -76,6 +76,9 @@ id = 12006
 [zamorakian_spear_lunge]
 id = 12007
 
+[zamorakian_spear_block]
+id = 12005
+
 [zamorakian_spear_defend]
 id = 12008
 
