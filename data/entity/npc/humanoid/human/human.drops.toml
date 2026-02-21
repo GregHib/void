@@ -24,5 +24,7 @@ drops = [
     { id = "copper_ore", chance = 2 },
     { id = "earth_talisman", chance = 2 },
     { id = "cabbage", chance = 1  },
+    { id = "bronze_med_helm", chance = 2 },
+    { id = "iron_dagger" },
     { table = "herb_drop_table", chance = 23 }
 ]
