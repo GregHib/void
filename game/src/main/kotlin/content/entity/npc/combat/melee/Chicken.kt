@@ -23,7 +23,7 @@ class Chicken : Script {
             // Timed on Rs3 but can be inauthentic for 2011
             FloorItems.add(tile, "egg", disappearTicks = 100)
             say("squawk!")
-            areaSound("chicken_defend", tile)
+            areaSound("lay_eggs", tile)
             Timer.CONTINUE
         }
     }
