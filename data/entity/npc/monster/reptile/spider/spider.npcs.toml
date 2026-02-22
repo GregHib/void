@@ -36,6 +36,7 @@ def = 21
 wander_range = 6
 respawn_delay = 30
 combat_def = "giant_spider_mid"
+drop_table = "giant_spider"
 hunt_mode = "cowardly"
 hunt_range = 1
 slayer_xp = 33.0
@@ -58,7 +59,7 @@ hunt_range = 1
 slayer_xp = 50.0
 categories = ["giant_spiders", "spiders"]
 height = 10
-examine = "I think this spider has been magically modified."
+examine = "I think this spider has been genetically modified."
 
 [deadly_red_spider]
 id = 63
@@ -106,7 +107,7 @@ respawn_delay = 27
 slayer_xp = 22.0
 height = 10
 categories = ["spiders"]
-examine = "I think this spider has been genetically modified."
+examine = "Incey wincey... with a nasty bite."
 
 [spider_haunted_woods]
 id = 1221
