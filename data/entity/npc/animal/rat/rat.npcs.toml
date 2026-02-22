@@ -24,12 +24,12 @@ drop_table = "stronghold_rat"
 
 [stronghold_giant_rat]
 id = 4944
-hitpoints = 50
-att = 2
-str = 3
-def = 2
+hitpoints = 250
+att = 22
+str = 23
+def = 22
 combat_def = "giant_rat"
-slayer_xp = 5.0
+slayer_xp = 25.0
 respawn_delay = 30
 categories = ["rats"]
 drop_table = "stronghold_rat"
@@ -59,18 +59,23 @@ drop_table = "giant_rat"
 categories = ["giant_rats", "rats"]
 examine = "Overgrown vermin."
 
-[giant_rat_brimhaven]
-clone = "giant_rat"
-id = 4926
-
 [giant_rat_dark]
-clone = "giant_rat"
 id = 8828
 att = 6
 str = 5
 def = 2
 hitpoints = 100
 slayer_xp = 10.0
+combat_def = "giant_rat"
+wander_range = 10
+drop_table = "giant_rat"
+categories = ["giant_rats", "rats"]
+examine = "Overgrown vermin."
+
+[giant_rat_brimhaven]
+id = 4926
+categories = ["rats"]
+clone = "giant_rat_dark"
 
 [giant_rat_dark_injured]
 clone = "giant_rat_dark"

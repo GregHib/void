@@ -85,7 +85,17 @@ fishing_harpoon = { items = ["harpoon", "barb_tail_harpoon"], bait = { none = ["
 
 [giant_rat_wilderness]
 id = 4927
+att = 6
+str = 5
+def = 2
 categories = ["rats"]
+examine = "Overgrown vermin."
+hitpoints = 100
+slayer_xp = 10.0
+combat_def = "giant_rat"
+wander_range = 10
+drop_table = "giant_rat"
+categories = ["giant_rats", "rats"]
 examine = "Overgrown vermin."
 
 [black_salamander]
