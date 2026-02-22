@@ -2,11 +2,14 @@
 attack_speed = 4
 retreat_range = 11
 defend_anim = "skeleton_defend"
+defend_sound = "skeleton_defend"
 death_anim = "skeleton_death"
+death_sound = "skeleton_death"
 
 [skeleton_unarmed.melee]
 range = 1
 anim = "skeleton_crush"
+target_sound = "skeleton_attack_unarmed"
 target_hit = { offense = "crush", max = 30 }
 
 [skeleton_warlock]
@@ -26,6 +29,34 @@ clone = "skeleton_unarmed"
 [skeleton_mace_shield.melee]
 range = 1
 anim = "skeleton_slash"
+target_sound = "skeleton_mace_attack"
+target_hit = { offense = "slash", max = 40 }
+
+[skeleton_sword_shield]
+clone = "skeleton_unarmed"
+
+[skeleton_sword_shield.melee]
+range = 1
+anim = "skeleton_slash"
+target_sound = "skeleton_armed_attack"
+target_hit = { offense = "slash", max = 40 }
+
+[skeleton_hatchet_shield]
+clone = "skeleton_unarmed"
+
+[skeleton_hatchet_shield.melee]
+range = 1
+anim = "skeleton_slash"
+target_sound = "skeleton_hatcet_attack"
+target_hit = { offense = "slash", max = 40 }
+
+[skeleton_warhammer_shield]
+clone = "skeleton_unarmed"
+
+[skeleton_warhammer_shield.melee]
+range = 1
+anim = "skeleton_slash"
+target_sound = "skeleton_warhammer_attack"
 target_hit = { offense = "slash", max = 40 }
 
 [skeleton_catacombs]

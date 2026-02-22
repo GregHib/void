@@ -14,9 +14,9 @@ hitpoints = 170
 att = 24
 str = 24
 def = 24
-combat_def = "skeleton_mace_shield"
+combat_def = "skeleton_warhammer_shield"
 wander_range = 8
-hunt_mode = "aggressive_intolerant"
+hunt_mode = "cowardly"
 height = 30
 respawn_delay = 60
 categories = ["skeletons", "undead"]
@@ -26,14 +26,22 @@ examine = "Could do with gaining a few pounds."
 [skeleton_flail]
 clone = "skeleton_mace_shield"
 id = 5340
+combat_def = "skeleton_mace_shield"
 
 [skeleton_sword_shield]
 clone = "skeleton_mace_shield"
 id = 5338
+combat_def = "skeleton_sword_shield"
 
-[skeleton_helmet]
+[skeleton_axe_shield]
 clone = "skeleton_mace_shield"
-id = 5332
+id = 5337
+combat_def = "skeleton_hatchet_shield"
+
+[skeleton_longsword]
+clone = "skeleton_mace_shield"
+id = 5339
+combat_def = "skeleton_sword_shield"
 
 [skeleton_unarmed]
 id = 5333
@@ -43,7 +51,7 @@ str = 18
 def = 17
 combat_def = "skeleton_unarmed"
 wander_range = 8
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 hunt_range = 5
 style = "crush"
 height = 30
@@ -52,33 +60,45 @@ slayer_xp = 29.0
 categories = ["skeletons", "undead"]
 examine = "Could do with gaining a few pounds."
 
-[skeleton_unarmed_1]
-clone = "skeleton_unarmed"
-id = 5336
-
 [skeleton_shield_helmet]
 clone = "skeleton_unarmed"
 id = 90
-
-[skeleton_shield_helmet_1]
-clone = "skeleton_unarmed"
-id = 91
 
 [skeleton_shield]
 clone = "skeleton_unarmed"
 id = 5334
 
+[skeleton_helmet_1]
+clone = "skeleton_unarmed"
+id = 5332
+
 [skeleton_builder]
 clone = "skeleton_unarmed"
 id = 3291
 
-[skeleton_axe_shield]
-clone = "skeleton_mace_shield"
-id = 5337
+[skeleton_helmet]
+id = 5335
+hitpoints = 240
+att = 17
+str = 17
+def = 17
+combat_def = "skeleton_unarmed"
+wander_range = 8
+hunt_mode = "cowardly"
+hunt_range = 5
+height = 30
+respawn_delay = 70
+slayer_xp = 24.0
+categories = ["skeletons", "undead"]
+examine = "Could do with gaining a few pounds."
 
-[skeleton_longsword]
-clone = "skeleton_mace_shield"
-id = 5339
+[skeleton_unarmed_1]
+clone = "skeleton_helmet"
+id = 5336
+
+[skeleton_shield_helmet_1]
+clone = "skeleton_helmet"
+id = 91
 
 [skeleton_axe_shield_85]
 id = 5367
@@ -133,10 +153,6 @@ wander_range = 9
 hunt_mode = "cowardly"
 categories = ["skeletons", "undead"]
 examine = "Could do with gaining a few pounds."
-
-[stronghold_skeleton_helmet_1]
-clone = "stronghold_skeleton_helmet"
-id = 5335
 
 [skeleton_hammer_shield]
 clone = "stronghold_skeleton_helmet"

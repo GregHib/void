@@ -26,9 +26,9 @@ clone = "zombie"
 defend_anim = "zombie_weapon_defend"
 death_anim = "zombie_weapon_death"
 
-[zombie_tan_trousers_axe.melee]
-clone = "zombie.melee"
+[zombie_axe.melee]
 anim = "zombie_weapon_attack"
+target_hit = { offense = "slash", max = 50 }
 
 [zombie_tarns_lair_sword]
 clone = "zombie_sword"
