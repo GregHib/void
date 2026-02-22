@@ -9,6 +9,7 @@ import content.entity.effect.toxin.poison
 import content.entity.gfx.areaGfx
 import content.entity.proj.shoot
 import net.pearx.kasechange.toPascalCase
+import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.config.CombatDefinition
@@ -18,19 +19,22 @@ import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
-import world.gregs.voidps.engine.entity.character.mode.move.target.NPCCharacterTargetStrategy
+import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
+import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.map.Overlap
+import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
 class Attack(
     val definitions: CombatDefinitions,
+    val lineValidator: LineValidator,
 ) : Script {
 
     init {
@@ -54,7 +58,8 @@ class Attack(
                 say(attack.say)
             }
             if (attack.approach) {
-                if (tile.within(primaryTarget.tile, attack.range)) {
+                val nearest = Distance.nearest(primaryTarget.tile, primaryTarget.size, primaryTarget.size, tile)
+                if (tile.within(nearest, attack.range)) {
                     clear("attack_range")
                 } else {
                     set("attack_range", attack.range)
@@ -159,18 +164,17 @@ class Attack(
     }
 
     fun selectAttack(source: NPC, target: Character, definition: CombatDefinition): CombatDefinition.CombatAttack? {
-        val distance = source.tile.distanceTo(target)
         val next: String? = source["next_attack"]
         if (next != null) {
             val attack = definition.attacks[next] ?: return null
-            return if (withinRange(source, target, distance, attack)) attack else null
+            return if (withinRange(source, target, attack)) attack else null
         }
         val validAttacks = mutableListOf<Pair<CombatDefinition.CombatAttack, Int>>()
         for (attack in definition.attacks.values) {
             if (!CombatApi.condition(source, target, attack.condition)) {
                 continue
             }
-            if (!attack.approach && !withinRange(source, target, distance, attack)) {
+            if (!attack.approach && !withinRange(source, target, attack)) {
                 continue
             }
             validAttacks.add(attack to attack.chance)
@@ -181,11 +185,24 @@ class Attack(
         return weightedSample(validAttacks)
     }
 
-    fun withinRange(source: NPC, target: Character, distance: Int, attack: CombatDefinition.CombatAttack): Boolean {
-        if (attack.range == 1 && (attack.targetHits.any { Hit.meleeType(it.offense) } || source.size > 1)) {
-            return NPCCharacterTargetStrategy(source).reached(target)
+    fun withinRange(source: NPC, target: Character, attack: CombatDefinition.CombatAttack): Boolean {
+        // Duplicate of Movement.arrived
+        val attackRange = attack.range
+        val strategy = TargetStrategy(source, target)
+        if (attackRange == 1) {
+            return strategy.reached(source)
         }
-        return distance in 1..attack.range
+        if (!source.def["allowed_under", false] && Overlap.isUnder(source.tile, source.size, source.size, strategy.tile, strategy.width, strategy.height)) {
+            return false
+        }
+        val nearest = strategy.nearest(source)
+        if (!source.tile.within(nearest, attackRange)) {
+            return false
+        }
+        if (!strategy.requiresLineOfSight()) {
+            return true
+        }
+        return lineValidator.hasLineOfSight(source, strategy.tile, strategy.width, strategy.height)
     }
 
     @Suppress("UNCHECKED_CAST")

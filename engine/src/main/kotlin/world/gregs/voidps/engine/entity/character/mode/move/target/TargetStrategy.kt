@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
 
 interface TargetStrategy {
@@ -30,20 +31,26 @@ interface TargetStrategy {
 
     fun requiresLineOfSight(): Boolean = true
 
-    fun reached(character: Character): Boolean = ReachStrategy.reached(
-        flags = Collisions.map,
-        srcX = character.tile.x,
-        srcZ = character.tile.y,
-        level = character.tile.level,
-        srcSize = character.size,
-        destX = tile.x,
-        destZ = tile.y,
-        destWidth = sizeX,
-        destHeight = sizeY,
-        objRot = rotation,
-        objShape = shape,
-        blockAccessFlags = bitMask,
-    )
+    fun within(tile: Tile, range: Int): Boolean = tile.within(this.tile, range)
+
+    fun nearest(source: Character): Tile = Distance.nearest(tile, width, height, source.tile)
+
+    fun reached(character: Character): Boolean {
+        return ReachStrategy.reached(
+            flags = Collisions.map,
+            srcX = character.tile.x,
+            srcZ = character.tile.y,
+            level = character.tile.level,
+            srcSize = character.size,
+            destX = tile.x,
+            destZ = tile.y,
+            destWidth = sizeX,
+            destHeight = sizeY,
+            objRot = rotation,
+            objShape = shape,
+            blockAccessFlags = bitMask,
+        )
+    }
 
     companion object {
         operator fun <T : Any> invoke(source: Character, entity: T): TargetStrategy = when (entity) {

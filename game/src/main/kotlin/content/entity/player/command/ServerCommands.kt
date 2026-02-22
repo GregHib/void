@@ -12,6 +12,8 @@ import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.menu
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.SettingsReload
 import world.gregs.voidps.engine.data.configFiles
@@ -79,7 +81,13 @@ class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
         val files = configFiles()
         when (args.joinToString("_")) {
             "combat" -> get<CombatDefinitions>().load(files.list(Settings["definitions.combatAttacks"]))
-            "book", "books" -> get<Books>().load(files.list(Settings["definitions.books"]))
+            "book", "books" -> {
+                get<Books>().load(files.list(Settings["definitions.books"]))
+                val menu = player.menu
+                if (menu != null && menu.startsWith("book_")) {
+                    player.open(menu)
+                }
+            }
             "stairs", "tele", "teles", "teleports" -> get<ObjectTeleports>().load(files.list(Settings["map.teleports"]))
             "tracks", "songs", "music_tracks" -> get<MusicTracks>().load(files.find(Settings["map.music"]))
             "fairy_ring", "fairy_rings", "fairy_codes" -> get<FairyRingCodes>().load(files.find(Settings["definitions.fairyCodes"]))

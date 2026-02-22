@@ -49,7 +49,7 @@ class ObjectTeleports {
 
     fun teleportTile(player: Player, definition: TeleportDefinition): Tile = when {
         definition.delta != Delta.EMPTY && definition.to != Tile.EMPTY ->
-            Distance.getNearest(definition.to, definition.delta.x, definition.delta.y, player.tile)
+            Distance.nearest(definition.to, definition.delta.x, definition.delta.y, player.tile)
         definition.delta != Delta.EMPTY -> player.tile.add(definition.delta)
         definition.to != Tile.EMPTY -> definition.to
         else -> player.tile

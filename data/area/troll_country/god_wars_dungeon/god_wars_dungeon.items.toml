@@ -202,6 +202,7 @@ special = "shove"
 god = "zamorak"
 slot = "Weapon"
 type = "TwoHanded"
+weapon_style = 27
 examine = "A versatile spear wielded by agents of chaos."
 
 [zamorakian_spear_noted]

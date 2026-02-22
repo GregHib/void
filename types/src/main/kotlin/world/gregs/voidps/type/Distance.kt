@@ -10,20 +10,20 @@ object Distance {
     /**
      * Get the nearest point for [tile] with [width], [height] to [target]
      */
-    fun getNearest(tile: Tile, width: Int, height: Int, target: Tile) = tile.copy(
-        x = getNearest(tile.x, width, target.x),
-        y = getNearest(tile.y, height, target.y),
+    fun nearest(tile: Tile, width: Int, height: Int, target: Tile) = tile.copy(
+        x = nearest(tile.x, width, target.x),
+        y = nearest(tile.y, height, target.y),
     )
 
     fun Rectangle.nearestTo(tile: Tile) = Tile(
-        x = getNearest(minX, width, tile.x),
-        y = getNearest(minY, height, tile.y),
+        x = nearest(minX, width, tile.x),
+        y = nearest(minY, height, tile.y),
     )
 
     /**
      * Get the nearest coordinate for axis [source] with [size] to [target]
      */
-    fun getNearest(source: Int, size: Int, target: Int): Int {
+    fun nearest(source: Int, size: Int, target: Int): Int {
         val max = source + size - 1
         return when {
             target > max -> max
