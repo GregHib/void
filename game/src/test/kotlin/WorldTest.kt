@@ -101,7 +101,7 @@ abstract class WorldTest : KoinTest {
         return player to client
     }
 
-    fun createPlayer(tile: Tile = Tile.EMPTY, name: String = "player"): Player {
+    fun createPlayer(tile: Tile = Tile.EMPTY, name: String = "player${Players.size}"): Player {
         if (Players.any { it.accountName == name }) {
             throw IllegalStateException("Player already exists: $name")
         }
