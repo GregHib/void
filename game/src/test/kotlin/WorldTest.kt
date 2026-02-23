@@ -379,7 +379,7 @@ abstract class WorldTest : KoinTest {
             )
         }
         private val dropTables: DropTables by lazy {
-            itemDefinitions
+            itemIds
             DropTables().load(configFiles.list(Settings["spawns.drops"]))
         }
         val emptyTile = Tile(2655, 4640)
