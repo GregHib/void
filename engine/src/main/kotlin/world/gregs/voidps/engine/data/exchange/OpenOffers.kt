@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.data.exchange
 
+import world.gregs.voidps.engine.timer.epochMilliseconds
 import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.math.absoluteValue
@@ -17,7 +18,7 @@ class OpenOffers(
     var counter: Int = 0,
 ) {
 
-    data class Activity(val item: String, val price: Int, val id: Int, var lastActive: Long = System.currentTimeMillis())
+    data class Activity(val item: String, val price: Int, val id: Int, var lastActive: Long = epochMilliseconds())
 
     fun id(): Int = ++counter
 
@@ -28,7 +29,7 @@ class OpenOffers(
         if (days <= 0) {
             return
         }
-        val now = System.currentTimeMillis()
+        val now = epochMilliseconds()
         val it = activity.iterator()
         while (it.hasNext()) {
             val activity = it.next()

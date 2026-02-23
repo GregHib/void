@@ -102,6 +102,9 @@ abstract class WorldTest : KoinTest {
     }
 
     fun createPlayer(tile: Tile = Tile.EMPTY, name: String = "player"): Player {
+        if (Players.any { it.accountName == name }) {
+            throw IllegalStateException("Player already exists: $name")
+        }
         val player = Player(tile = tile, accountName = name, passwordHash = "")
         assertTrue(accounts.setup(player, null, 0, viewport = true))
         accountDefs.add(player)
@@ -375,7 +378,10 @@ abstract class WorldTest : KoinTest {
                 configFiles.list(Settings["definitions.variables.customs"]),
             )
         }
-        private val dropTables: DropTables by lazy { DropTables().load(configFiles.list(Settings["spawns.drops"])) }
+        private val dropTables: DropTables by lazy {
+            itemDefinitions
+            DropTables().load(configFiles.list(Settings["spawns.drops"]))
+        }
         val emptyTile = Tile(2655, 4640)
     }
 }

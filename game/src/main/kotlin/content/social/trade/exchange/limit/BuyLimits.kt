@@ -3,6 +3,7 @@ package content.social.trade.exchange.limit
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.timer.epochMilliseconds
 import java.util.concurrent.TimeUnit
 
 /**
@@ -17,12 +18,12 @@ class BuyLimits {
      */
     private data class BuyLimit(
         var amount: Int = 0,
-        val timestamp: Long = System.currentTimeMillis(),
+        val timestamp: Long = epochMilliseconds(),
     )
 
     private val limits = Object2ObjectOpenHashMap<String, BuyLimit>()
 
-    fun record(account: String, item: String, amount: Int, timestamp: Long = System.currentTimeMillis()) {
+    fun record(account: String, item: String, amount: Int, timestamp: Long = epochMilliseconds()) {
         limits.getOrPut("${account}_$item") { BuyLimit(timestamp = timestamp) }.amount += amount
     }
 
@@ -36,7 +37,7 @@ class BuyLimits {
         if (hours <= 0) {
             return
         }
-        val now = System.currentTimeMillis()
+        val now = epochMilliseconds()
         for ((player, limit) in limits) {
             if (TimeUnit.MILLISECONDS.toHours(now - limit.timestamp) > hours) {
                 limits.remove(player)

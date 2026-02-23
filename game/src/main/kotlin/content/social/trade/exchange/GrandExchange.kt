@@ -104,7 +104,7 @@ class GrandExchange(
      * Update existing [offers] with a new [OpenOffer.lastActive]
      */
     fun login(player: Player) {
-        val now = System.currentTimeMillis()
+        val now = epochMilliseconds()
         var claimed = false
         for (slot in 0 until 6) {
             val offer = player.offers.getOrNull(slot) ?: continue
