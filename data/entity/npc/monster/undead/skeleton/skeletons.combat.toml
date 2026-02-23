@@ -28,7 +28,7 @@ clone = "skeleton_unarmed"
 
 [skeleton_mace_shield.melee]
 range = 1
-anim = "skeleton_slash"
+anim = "skeleton_armed_attack"
 target_sound = "skeleton_mace_attack"
 target_hit = { offense = "slash", max = 40 }
 
@@ -46,7 +46,7 @@ clone = "skeleton_unarmed"
 
 [skeleton_hatchet_shield.melee]
 range = 1
-anim = "skeleton_slash"
+anim = "skeleton_armed_attack"
 target_sound = "skeleton_hatcet_attack"
 target_hit = { offense = "slash", max = 40 }
 
@@ -55,7 +55,7 @@ clone = "skeleton_unarmed"
 
 [skeleton_warhammer_shield.melee]
 range = 1
-anim = "skeleton_slash"
+anim = "skeleton_armed_attack"
 target_sound = "skeleton_warhammer_attack"
 target_hit = { offense = "slash", max = 40 }
 

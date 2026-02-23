@@ -4,6 +4,75 @@ drops = [
     { table = "bones" }
 ]
 
+[skeleton_unarmed_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "skeleton_unarmed_secondary" },
+    { table = "skeleton_tertiary" },
+]
+
+[skeleton_unarmed_secondary]
+roll = 128
+drops = [
+    { id = "bronze_arrow", amount = 2, chance = 7 },
+    { id = "bronze_arrow", amount = 5, chance = 4 },
+    { id = "iron_arrow", chance = 4 },
+    { id = "air_rune", amount = 12, chance = 2 },
+    { id = "earth_rune", amount = 3, chance = 2 },
+    { id = "chaos_rune", amount = 3, chance = 2 },
+    { id = "fire_rune", amount = 2, chance = 2 },
+    { id = "nature_rune", amount = 3 },
+    { id = "steel_arrow" },
+    { id = "coins", amount = 2, chance = 18 },
+    { id = "coins", amount = 12, chance = 15 },
+    { id = "coins", amount = 4, chance = 7 },
+    { id = "coins", amount = 33, chance = 4 },
+    { id = "coins", amount = 25, chance = 4 },
+    { id = "coins", amount = 16, chance = 4 },
+    { id = "coins", amount = 48 },
+    { id = "nothing", amount = 0, chance = 18 },
+    { id = "iron_dagger", chance = 6 },
+    { id = "iron_ore" },
+    { id = "fire_talisman", chance = 2 },
+    { id = "grain" },
+    { table = "herb_drop_table", chance = 21 },
+    { table = "gem_drop_table" },
+]
+
+[skeleton_armed_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "skeleton_armed_secondary" },
+    { table = "skeleton_tertiary" },
+]
+
+[skeleton_armed_secondary]
+roll = 128
+drops = [
+    { id = "iron_med_helm", chance = 6 },
+    { id = "iron_sword", chance = 4 },
+    { id = "iron_hatchet", chance = 2 },
+    { id = "iron_scimitar" },
+    { id = "air_rune", amount = 15, chance = 3 },
+    { id = "water_rune", amount = 9, chance = 3 },
+    { id = "chaos_rune", amount = 5, chance = 3 },
+    { id = "iron_arrow", amount = 12, chance = 2 },
+    { id = "law_rune", amount = 2, chance = 2 },
+    { id = "cosmic_rune", amount = 2 },
+    { id = "coins", amount = 5, chance = 25 },
+    { id = "coins", amount = 10, chance = 24 },
+    { id = "coins", amount = 25, chance = 8 },
+    { id = "coins", amount = 45, chance = 4 },
+    { id = "coins", amount = 65, chance = 3 },
+    { id = "coins", chance = 2 },
+    { id = "bronze_bar", chance = 5 },
+    { id = "nothing", amount = 0, chance = 8 },
+    { table = "herb_drop_table", chance = 20 },
+    { table = "gem_drop_table", chance = 2 },
+]
+
 [skeleton_catacombs_drop_table]
 type = "all"
 drops = [
@@ -50,4 +119,10 @@ drops = [
   { id = "gold_amulet", chance = 2 },
   { id = "holy_symbol", chance = 2 },
   { id = "skeleton_champions_scroll" },
+]
+
+[skeleton_tertiary]
+roll = 5000
+drops = [
+    { id = "skeleton_champions_scroll", members = true, lacks = "skeleton_champions_scroll" },
 ]

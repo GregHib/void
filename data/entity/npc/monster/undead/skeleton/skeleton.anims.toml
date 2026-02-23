@@ -10,6 +10,9 @@ id = 5485
 [skeleton_slash]
 id = 5487
 
+[skeleton_armed_attack]
+id = 11637
+
 [skeleton_catacombs_defend]
 id = 12864
 
