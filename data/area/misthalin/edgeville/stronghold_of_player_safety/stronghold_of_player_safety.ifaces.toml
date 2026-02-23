@@ -1,6 +1,5 @@
 [report_abuse_instructions]
 id = 695
-type = "dialogue_box"
 
 [report_abuse_instructions_2]
 id = 698
