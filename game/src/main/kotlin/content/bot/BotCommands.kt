@@ -36,7 +36,6 @@ import kotlin.coroutines.resume
 import kotlin.text.toIntOrNull
 
 class BotCommands(
-    val enums: EnumDefinitions,
     val loader: PlayerAccountLoader,
     val manager: BotManager,
     val accounts: AccountManager,
@@ -206,10 +205,10 @@ class BotCommands(
         val male = random.nextBoolean()
         player.body.male = male
         val key = "look_hair_${if (male) "male" else "female"}"
-        player.body.setLook(BodyPart.Hair, enums.getStruct(key, random.nextInt(0, enums.get(key).length), "body_look_id"))
-        player.body.setLook(BodyPart.Beard, if (male) enums.get("look_beard_male").randomInt() else -1)
-        val size = enums.get("character_styles").length
-        val style = enums.getStruct("character_styles", (0 until size).random(), "character_creation_sub_style_${player.sex}_0", -1)
+        player.body.setLook(BodyPart.Hair, EnumDefinitions.getStruct(key, random.nextInt(0, EnumDefinitions.get(key).length), "body_look_id"))
+        player.body.setLook(BodyPart.Beard, if (male) EnumDefinitions.get("look_beard_male").randomInt() else -1)
+        val size = EnumDefinitions.get("character_styles").length
+        val style = EnumDefinitions.getStruct("character_styles", (0 until size).random(), "character_creation_sub_style_${player.sex}_0", -1)
         val struct = StructDefinitions.get(style)
         player.body.setLook(BodyPart.Chest, struct["character_style_top"])
         player.body.setLook(BodyPart.Arms, struct["character_style_arms"])
@@ -217,11 +216,11 @@ class BotCommands(
         player.body.setLook(BodyPart.Legs, struct["character_style_legs"])
         player.body.setLook(BodyPart.Feet, struct["character_style_shoes"])
         val offset = random.nextInt(0, 8)
-        player.body.setColour(BodyColour.Hair, enums.get("colour_hair").randomInt())
+        player.body.setColour(BodyColour.Hair, EnumDefinitions.get("colour_hair").randomInt())
         player.body.setColour(BodyColour.Top, struct["character_style_colour_top_$offset"])
         player.body.setColour(BodyColour.Legs, struct["character_style_colour_legs_$offset"])
         player.body.setColour(BodyColour.Feet, struct["character_style_colour_shoes_$offset"])
-        player.body.setColour(BodyColour.Skin, enums.get("character_skin").randomInt())
+        player.body.setColour(BodyColour.Skin, EnumDefinitions.get("character_skin").randomInt())
         player.appearance.emote = 1426
         return player
     }

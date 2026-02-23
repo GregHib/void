@@ -6,7 +6,6 @@ import npcOption
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
-import org.koin.test.get
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -17,15 +16,13 @@ import kotlin.test.assertEquals
 
 class ShardSwappingTest : WorldTest() {
 
-    private lateinit var enums: EnumDefinitions
     private lateinit var pouchMap: Map<Int, Any>
     private lateinit var scrollMap: Map<Int, Any>
 
     @BeforeEach
     fun setup() {
-        enums = get()
-        pouchMap = enums.get("summoning_pouch_ids_1").map!!.filter { (index, _) -> index < 78 }
-        scrollMap = enums.get("summoning_scroll_ids_1").map!!.filter { (index, _) -> index < 78 }
+        pouchMap = EnumDefinitions.get("summoning_pouch_ids_1").map!!.filter { (index, _) -> index < 78 }
+        scrollMap = EnumDefinitions.get("summoning_scroll_ids_1").map!!.filter { (index, _) -> index < 78 }
     }
 
     @TestFactory

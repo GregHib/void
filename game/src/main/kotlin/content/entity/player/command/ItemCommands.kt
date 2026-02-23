@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 
 class ItemCommands(
     val exchange: GrandExchange,
-    val enums: EnumDefinitions,
     val accounts: AccountDefinitions,
 ) : Script {
 

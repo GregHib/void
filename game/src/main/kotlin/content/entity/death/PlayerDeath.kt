@@ -16,7 +16,6 @@ import content.skill.summoning.dismissFamiliar
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -35,7 +34,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
-class PlayerDeath(val enums: EnumDefinitions) : Script {
+class PlayerDeath : Script {
 
     val respawnTile: Tile
         get() = Tile(Settings["world.home.x", 0], Settings["world.home.y", 0], Settings["world.home.level", 0])
@@ -87,7 +86,7 @@ class PlayerDeath(val enums: EnumDefinitions) : Script {
             return
         }
         val items = ItemsKeptOnDeath.getAllOrdered(player)
-        val kept = ItemsKeptOnDeath.kept(player, items, enums)
+        val kept = ItemsKeptOnDeath.kept(player, items)
 
         // Remove kept so they aren't dropped
         for (item in kept) {

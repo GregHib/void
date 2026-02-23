@@ -5,17 +5,16 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.timer.Timer
 
-class ItemsKeptOnDeathScreen(val enums: EnumDefinitions) : Script {
+class ItemsKeptOnDeathScreen : Script {
 
     init {
         interfaceRefresh("items_kept_on_death") {
             val items = ItemsKeptOnDeath.getAllOrdered(this)
-            val savedItems = ItemsKeptOnDeath.kept(this, items, enums)
+            val savedItems = ItemsKeptOnDeath.kept(this, items)
             val carriedWealth = items.sumOf { it.def.cost * it.amount }
             val savedWealth = savedItems.sumOf { it.def.cost * it.amount }
             updateItemsOnDeath(

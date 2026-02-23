@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.event.AuditLog
 
 class TaskSystem(
     val variables: VariableDefinitions,
-    val enumDefinitions: EnumDefinitions,
 ) : Script {
 
     init {
@@ -110,7 +109,7 @@ class TaskSystem(
         interfaceOption("Hint", "task_system:hint_*") {
             val selected = get("task_slot_selected", 0)
             val index = indexOfSlot(this, selected) ?: return@interfaceOption
-            val tile: Int = enumDefinitions.getStructOrNull("task_structs", index, it.component.replace("hint_", "task_hint_tile_")) ?: return@interfaceOption
+            val tile: Int = EnumDefinitions.getStructOrNull("task_structs", index, it.component.replace("hint_", "task_hint_tile_")) ?: return@interfaceOption
             // TODO I expect the functionality is actually minimap highlights not world map
             set("world_map_marker_1", tile)
             set("world_map_marker_text_1", "")
@@ -207,8 +206,8 @@ class TaskSystem(
         player["task_popup"] = index
         val difficulty = definition["task_difficulty", 0]
         val area = definition["task_area", 61]
-        val areaName = enumDefinitions.get("task_area_names").getString(area)
-        val difficultyName = enumDefinitions.get("task_difficulties").getString(difficulty)
+        val areaName = EnumDefinitions.get("task_area_names").getString(area)
+        val difficultyName = EnumDefinitions.get("task_difficulties").getString(difficulty)
         if (areaName.isNotBlank() && difficultyName.isNotBlank()) {
             player.message("You have completed the Task '${definition["task_name", ""]}' in the $difficultyName $areaName set!")
         } else {

@@ -44,7 +44,6 @@ class PlayerCommands(
     val accounts: AccountDefinitions,
     val exchange: GrandExchange,
     val saveQueue: SaveQueue,
-    val enums: EnumDefinitions,
     val variables: VariableDefinitions,
 ) : Script {
 
@@ -298,7 +297,7 @@ class PlayerCommands(
         val target = Players.find(player, args.getOrNull(1)) ?: return
         val type = args[0]
         if (type == "all" || type == "music" || type == "songs" || type == "music tracks" || type == "music_tracks") {
-            enums.get("music_track_names").map?.keys?.forEach { key ->
+            EnumDefinitions.get("music_track_names").map?.keys?.forEach { key ->
                 MusicUnlock.unlockTrack(target, key)
             }
             target.message("All songs unlocked.")

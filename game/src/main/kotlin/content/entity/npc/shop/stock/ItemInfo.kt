@@ -38,9 +38,8 @@ object ItemInfo {
 
     private fun setRequirements(player: Player, def: ItemDefinition) {
         val quest = def["quest_info", -1]
-        val enums: EnumDefinitions = get()
         if (def.contains("equip_req") || def.contains("skillcape_skill") || quest != -1) {
-            player["item_info_requirement_title"] = enums.get("item_info_requirement_titles").getString(def.slot.index)
+            player["item_info_requirement_title"] = EnumDefinitions.get("item_info_requirement_titles").getString(def.slot.index)
             val builder = StringBuilder()
             val requirements = def.getOrNull<Map<Skill, Int>>("equip_req") ?: emptyMap()
             for ((skill, level) in requirements) {
@@ -54,12 +53,12 @@ object ItemInfo {
             }
             if (quest != -1) {
                 val colour = Colours.bool(false)
-                val name: String = enums.getStruct("item_info_quests", quest, "interface_text")
+                val name: String = EnumDefinitions.getStruct("item_info_quests", quest, "interface_text")
                 builder.append("<$colour>Quest complete: $name<br>")
             }
             player["item_info_requirement"] = builder.toString()
         } else {
-            player["item_info_requirement_title"] = enums.get("item_info_titles").getString(def.slot.index)
+            player["item_info_requirement_title"] = EnumDefinitions.get("item_info_titles").getString(def.slot.index)
             player["item_info_requirement"] = ""
         }
     }

@@ -5,11 +5,7 @@ import world.gregs.voidps.cache.definition.data.EnumDefinition
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
 
-class AppearanceOverrides() {
-
-    constructor(enums: EnumDefinitions) : this() {
-        load(enums)
-    }
+class AppearanceOverrides {
 
     private val maleMid: MutableMap<Int, Int> = Int2IntOpenHashMap(32)
     private val femaleMid: MutableMap<Int, Int> = Int2IntOpenHashMap(48)
@@ -24,11 +20,11 @@ class AppearanceOverrides() {
         femaleLow.getOrDefault(current, 243)
     } + 0x100
 
-    private fun load(enums: EnumDefinitions) {
-        load(maleMid, enums.get("look_hair_male"), "body_look_flat_mid")
-        load(femaleMid, enums.get("look_hair_female"), "body_look_flat_mid")
-        load(maleLow, enums.get("look_hair_male"), "body_look_flat_low")
-        load(femaleLow, enums.get("look_hair_female"), "body_look_flat_low")
+    private fun load() {
+        load(maleMid, EnumDefinitions.get("look_hair_male"), "body_look_flat_mid")
+        load(femaleMid, EnumDefinitions.get("look_hair_female"), "body_look_flat_mid")
+        load(maleLow, EnumDefinitions.get("look_hair_male"), "body_look_flat_low")
+        load(femaleLow, EnumDefinitions.get("look_hair_female"), "body_look_flat_low")
     }
 
     private fun load(map: MutableMap<Int, Int>, enum: EnumDefinition, key: String) {

@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.type.Tile
 
-class SpiritTree(val enums: EnumDefinitions) : Script {
+class SpiritTree : Script {
 
     init {
         objectOperate("Talk-to", "spirit_tree,spirit_tree_fullygrown") {
@@ -57,7 +57,7 @@ class SpiritTree(val enums: EnumDefinitions) : Script {
         }
 
         interfaceOption(id = "spirit_tree:text") { (_, itemSlot) ->
-            val enum = enums.get("spirit_tree_destination_tiles")
+            val enum = EnumDefinitions.get("spirit_tree_destination_tiles")
             val map = enum.map ?: return@interfaceOption
             var count = 0
             var index = -1
@@ -89,7 +89,7 @@ class SpiritTree(val enums: EnumDefinitions) : Script {
     fun updatePosition(player: Player) {
         var closest = Int.MAX_VALUE
         var tile = 0
-        for ((_, value) in enums.get("spirit_tree_destination_tiles").map ?: return) {
+        for ((_, value) in EnumDefinitions.get("spirit_tree_destination_tiles").map ?: return) {
             val distance = player.tile.distanceTo(Tile(value as Int))
             if (distance < closest) {
                 tile = value

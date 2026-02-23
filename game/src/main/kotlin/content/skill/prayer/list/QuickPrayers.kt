@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.entity.character.sound
 
-class QuickPrayers(val enums: EnumDefinitions, val definitions: PrayerDefinitions) : Script {
+class QuickPrayers(val definitions: PrayerDefinitions) : Script {
 
     init {
         interfaceOption(id = "prayer_list:regular_prayers") { (_, itemSlot) ->
@@ -105,7 +105,7 @@ class QuickPrayers(val enums: EnumDefinitions, val definitions: PrayerDefinition
             val requiredLevel = definition.level
             if (!hasMax(Skill.Prayer, requiredLevel)) {
                 val enum = if (curses) "curses" else "prayers"
-                val message = enums.getStruct(enum, index, "prayer_requirement_text", "You need a prayer level of $requiredLevel to use $name.")
+                val message = EnumDefinitions.getStruct(enum, index, "prayer_requirement_text", "You need a prayer level of $requiredLevel to use $name.")
                 message(message)
                 return
             }

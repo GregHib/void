@@ -281,9 +281,8 @@ fun Player.closeInterfaces(): Boolean {
 }
 
 fun Player.playTrack(trackIndex: Int) {
-    val enums: EnumDefinitions = get()
-    playMusicTrack(enums.get("music_tracks").getInt(trackIndex))
-    val name = enums.get("music_track_names").getString(trackIndex)
+    playMusicTrack(EnumDefinitions.get("music_tracks").getInt(trackIndex))
+    val name = EnumDefinitions.get("music_track_names").getString(trackIndex)
     interfaces.sendText("music_player", "currently_playing", name)
     this["playing_song"] = true
     this["current_track"] = trackIndex
