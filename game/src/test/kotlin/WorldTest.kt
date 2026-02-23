@@ -13,6 +13,7 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.MemoryCache
 import world.gregs.voidps.cache.config.data.InventoryDefinition
+import world.gregs.voidps.cache.config.data.StructDefinition
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
@@ -160,7 +161,10 @@ abstract class WorldTest : KoinTest {
                         InventoryDefinitions.set(inventoryDefinitions, inventoryIds)
                         InventoryDefinitions
                     }
-                    single(createdAtStart = true) { structDefinitions }
+                    single(createdAtStart = true) {
+                        StructDefinitions.set(structDefinitions, structIds)
+                        StructDefinitions
+                    }
                     single(createdAtStart = true) { quickChatPhraseDefinitions }
                     single(createdAtStart = true) { weaponStyleDefinitions }
                     single(createdAtStart = true) { weaponAnimationDefinitions }
@@ -332,11 +336,17 @@ abstract class WorldTest : KoinTest {
             InventoryDefinitions.init(inventoryDefinitions).load(configFiles.list(Settings["definitions.inventories"]), configFiles.list(Settings["definitions.shops"]))
             InventoryDefinitions.ids
         }
-        private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder(parameterDefinitions).load(cache)).load(configFiles.find(Settings["definitions.structs"])) }
+        private val structDefinitions: Array<StructDefinition> by lazy {
+            StructDecoder(parameterDefinitions).load(cache)
+        }
+        private val structIds: Map<String, Int> by lazy {
+            StructDefinitions.init(structDefinitions).load(configFiles.find(Settings["definitions.structs"]))
+            StructDefinitions.ids
+        }
         private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }
         private val weaponStyleDefinitions: WeaponStyleDefinitions by lazy { WeaponStyleDefinitions().load(configFiles.find(Settings["definitions.weapons.styles"])) }
         private val weaponAnimationDefinitions: WeaponAnimationDefinitions by lazy { WeaponAnimationDefinitions().load(configFiles.find(Settings["definitions.weapons.animations"])) }
-        private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder().load(cache), structDefinitions).load(configFiles.find(Settings["definitions.enums"])) }
+        private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder().load(cache)).load(configFiles.find(Settings["definitions.enums"])) }
         private val objectCollisionAdd: GameObjectCollisionAdd by lazy { GameObjectCollisionAdd() }
         private val objectCollisionRemove: GameObjectCollisionRemove by lazy { GameObjectCollisionRemove() }
         private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder(), cache).load(configFiles) }

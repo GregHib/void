@@ -45,7 +45,6 @@ class PlayerCommands(
     val exchange: GrandExchange,
     val saveQueue: SaveQueue,
     val enums: EnumDefinitions,
-    val structs: StructDefinitions,
     val variables: VariableDefinitions,
 ) : Script {
 
@@ -305,7 +304,7 @@ class PlayerCommands(
             target.message("All songs unlocked.")
         }
         if (type == "all" || type == "tasks" || type == "achievements") {
-            for (struct in structs.definitions) {
+            for (struct in StructDefinitions.definitions) {
                 if (struct.stringId.endsWith("_task")) {
                     target[struct.stringId] = true
                 }

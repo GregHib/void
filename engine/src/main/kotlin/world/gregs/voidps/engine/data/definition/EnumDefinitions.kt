@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.timedLoad
  */
 class EnumDefinitions(
     override var definitions: Array<EnumDefinition>,
-    private val structs: StructDefinitions,
 ) : DefinitionsDecoder<EnumDefinition> {
 
     override lateinit var ids: Map<String, Int>
@@ -20,19 +19,19 @@ class EnumDefinitions(
     fun <T : Any> getStruct(id: String, index: Int, param: String): T {
         val enum = get(id)
         val struct = enum.getInt(index)
-        return structs.get(struct)[param]
+        return StructDefinitions.get(struct)[param]
     }
 
     fun <T : Any?> getStructOrNull(id: String, index: Int, param: String): T? {
         val enum = get(id)
         val struct = enum.getInt(index)
-        return structs.getOrNull(struct)?.getOrNull(param)
+        return StructDefinitions.getOrNull(struct)?.getOrNull(param)
     }
 
     fun <T : Any> getStruct(id: String, index: Int, param: String, default: T): T {
         val enum = get(id)
         val struct = enum.getInt(index)
-        return structs.get(struct)[param, default]
+        return StructDefinitions.get(struct)[param, default]
     }
 
     fun load(path: String): EnumDefinitions {

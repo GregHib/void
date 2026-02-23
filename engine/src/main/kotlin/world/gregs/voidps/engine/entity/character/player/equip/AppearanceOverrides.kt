@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.data.definition.StructDefinitions
 
 class AppearanceOverrides() {
 
-    constructor(enums: EnumDefinitions, structs: StructDefinitions) : this() {
-        load(enums, structs)
+    constructor(enums: EnumDefinitions) : this() {
+        load(enums)
     }
 
     private val maleMid: MutableMap<Int, Int> = Int2IntOpenHashMap(32)
@@ -24,17 +24,17 @@ class AppearanceOverrides() {
         femaleLow.getOrDefault(current, 243)
     } + 0x100
 
-    private fun load(enums: EnumDefinitions, structs: StructDefinitions) {
-        load(maleMid, enums.get("look_hair_male"), structs, "body_look_flat_mid")
-        load(femaleMid, enums.get("look_hair_female"), structs, "body_look_flat_mid")
-        load(maleLow, enums.get("look_hair_male"), structs, "body_look_flat_low")
-        load(femaleLow, enums.get("look_hair_female"), structs, "body_look_flat_low")
+    private fun load(enums: EnumDefinitions) {
+        load(maleMid, enums.get("look_hair_male"), "body_look_flat_mid")
+        load(femaleMid, enums.get("look_hair_female"), "body_look_flat_mid")
+        load(maleLow, enums.get("look_hair_male"), "body_look_flat_low")
+        load(femaleLow, enums.get("look_hair_female"), "body_look_flat_low")
     }
 
-    private fun load(map: MutableMap<Int, Int>, enum: EnumDefinition, structs: StructDefinitions, key: String) {
+    private fun load(map: MutableMap<Int, Int>, enum: EnumDefinition, key: String) {
         for (value in enum.map?.values ?: return) {
             val structId = value as Int
-            val struct = structs.getOrNull(structId) ?: continue
+            val struct = StructDefinitions.getOrNull(structId) ?: continue
             val index: Int = struct.getOrNull("body_look_index") ?: continue
             val replacement: Int = struct.getOrNull(key) ?: continue
             map[index] = replacement

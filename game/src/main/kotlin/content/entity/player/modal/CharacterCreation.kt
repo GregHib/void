@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 
-class CharacterCreation(val enums: EnumDefinitions, val structs: StructDefinitions) : Script {
+class CharacterCreation(val enums: EnumDefinitions) : Script {
 
     init {
         interfaceOpened("character_creation") { id ->
@@ -193,6 +193,6 @@ class CharacterCreation(val enums: EnumDefinitions, val structs: StructDefinitio
         val female = player["makeover_female", false]
         val sex = if (female) "female" else "male"
         val value: Int = enums.getStruct("character_styles", styleIndex, "character_creation_sub_style_${sex}_$subIndex")
-        return structs.get(value)
+        return StructDefinitions.get(value)
     }
 }

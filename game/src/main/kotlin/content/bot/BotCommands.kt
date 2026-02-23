@@ -37,7 +37,6 @@ import kotlin.text.toIntOrNull
 
 class BotCommands(
     val enums: EnumDefinitions,
-    val structs: StructDefinitions,
     val loader: PlayerAccountLoader,
     val manager: BotManager,
     val accounts: AccountManager,
@@ -211,7 +210,7 @@ class BotCommands(
         player.body.setLook(BodyPart.Beard, if (male) enums.get("look_beard_male").randomInt() else -1)
         val size = enums.get("character_styles").length
         val style = enums.getStruct("character_styles", (0 until size).random(), "character_creation_sub_style_${player.sex}_0", -1)
-        val struct = structs.get(style)
+        val struct = StructDefinitions.get(style)
         player.body.setLook(BodyPart.Chest, struct["character_style_top"])
         player.body.setLook(BodyPart.Arms, struct["character_style_arms"])
         player.body.setLook(BodyPart.Hands, struct["character_style_wrists"])

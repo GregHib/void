@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.event.AuditLog
 class TaskSystem(
     val variables: VariableDefinitions,
     val enumDefinitions: EnumDefinitions,
-    val structDefinitions: StructDefinitions,
 ) : Script {
 
     init {
@@ -202,7 +201,7 @@ class TaskSystem(
         Task completion
      */
     fun completeTask(player: Player, id: String) {
-        val definition = structDefinitions.get(id)
+        val definition = StructDefinitions.get(id)
         AuditLog.event(player, "task_completed", id)
         val index = definition["task_index", -1]
         player["task_popup"] = index
