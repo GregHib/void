@@ -357,7 +357,8 @@ abstract class WorldTest : KoinTest {
             EnumDecoder().load(cache)
         }
         private val enumIds: Map<String, Int> by lazy {
-            EnumDefinitions.init(EnumDecoder().load(cache)).load(configFiles.find(Settings["definitions.enums"]))
+            itemIds
+            EnumDefinitions.init(EnumDecoder().load(cache)).load(configFiles.list(Settings["definitions.enums"]))
             EnumDefinitions.ids
         }
         private val objectCollisionAdd: GameObjectCollisionAdd by lazy { GameObjectCollisionAdd() }

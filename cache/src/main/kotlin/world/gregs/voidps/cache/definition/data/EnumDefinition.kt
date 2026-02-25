@@ -23,6 +23,10 @@ data class EnumDefinition(
 
     fun getString(id: Int) = map?.get(id) as? String ?: defaultString
 
+    override fun toString(): String {
+        return "EnumDefinition(id=$id, keyType=${EnumTypes.name(keyType)}, valueType=${EnumTypes.name(valueType)}, defaultString=$defaultString, defaultInt=$defaultInt, length=$length, map=$map, stringId=$stringId, extras=$extras)"
+    }
+
     companion object {
         val EMPTY = EnumDefinition()
     }
