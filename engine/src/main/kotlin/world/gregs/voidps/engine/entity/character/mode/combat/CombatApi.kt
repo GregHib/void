@@ -159,11 +159,11 @@ interface CombatApi {
         }
 
         fun impact(npc: NPC, target: Character, id: String): Boolean {
-            return npcImpact[id]?.invoke(npc, target) ?: return true
+            return npcImpact[id]?.invoke(npc, target) ?: true
         }
 
         fun condition(npc: NPC, target: Character, condition: String): Boolean {
-            return npcCondition[condition]?.invoke(npc, target) ?: return true
+            return npcCondition[condition]?.invoke(npc, target) ?: true
         }
 
         fun attack(npc: NPC, attack: CombatAttack) {

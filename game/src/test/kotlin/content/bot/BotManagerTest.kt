@@ -1,5 +1,6 @@
 package content.bot
 
+import FakeRandom
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.Reason
@@ -12,13 +13,22 @@ import content.bot.behaviour.condition.BotSkillLevel
 import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.setup.Resolver
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.type.setRandom
 
 class BotManagerTest {
 
     fun testBot(vararg activities: BotActivity, name: String = "bot") = Bot(Player(accountName = name)).also { it.available.addAll(activities.map { a -> a.id }) }
+
+    @BeforeEach
+    fun setup() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = 0
+        })
+    }
 
     @Test
     fun `Taskless bot gets assigned an activity`() {

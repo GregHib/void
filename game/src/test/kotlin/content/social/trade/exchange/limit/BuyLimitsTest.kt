@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.timer.epochMilliseconds
+import world.gregs.voidps.engine.timer.setCurrentTime
 import java.util.concurrent.TimeUnit
 
 class BuyLimitsTest {
@@ -14,6 +16,7 @@ class BuyLimitsTest {
 
     @BeforeEach
     fun setup() {
+        setCurrentTime { 1_760_000_000_000L }
         definition = ItemDefinition(stringId = "item")
         ItemDefinitions.set(arrayOf(definition), mapOf("item" to 0))
         buyLimits = BuyLimits()
@@ -51,7 +54,7 @@ class BuyLimitsTest {
 
     @Test
     fun `Tick removes entries older than 4 hours`() {
-        val oldTimestamp = System.currentTimeMillis() - TimeUnit.HOURS.toMillis(5)
+        val oldTimestamp = epochMilliseconds() - TimeUnit.HOURS.toMillis(5)
 
         // Inject old data directly
         definition.extras = mapOf("limit" to 100)
@@ -64,7 +67,7 @@ class BuyLimitsTest {
 
     @Test
     fun `Tick doesn't remove entries newer than 4 hours`() {
-        val recentTimestamp = System.currentTimeMillis() - TimeUnit.HOURS.toMillis(3)
+        val recentTimestamp = epochMilliseconds() - TimeUnit.HOURS.toMillis(3)
 
         definition.extras = mapOf("limit" to 100)
         buyLimits.record("player", "item", 10, recentTimestamp)
