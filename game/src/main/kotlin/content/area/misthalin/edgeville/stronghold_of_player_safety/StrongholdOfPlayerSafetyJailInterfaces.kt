@@ -29,10 +29,12 @@ class StrongholdOfPlayerSafetyJailInterfaces : Script {
                 Tile(3083, 4236, 0) -> open("report_abuse_instructions_6")
                 Tile(3083, 4231, 0) -> open("report_abuse_instructions_2")
             }
-            interfaceClosed("report_abuse_instructions*") {
-                clearCamera()
-            }
         }
+
+        interfaceClosed("report_abuse_instructions*") {
+            clearCamera()
+        }
+
         objectOperate("Read-plaque on", "stronghold_of_player_safety_jail_door") { (target) ->
             when (target.tile) {
                 Tile(3080, 4240, 0) -> moveCamera(Tile(3082, 4240), height = 300, speed = 10, acceleration = 20)
@@ -49,9 +51,6 @@ class StrongholdOfPlayerSafetyJailInterfaces : Script {
                 Tile(3080, 4240, 0) -> open("report_abuse_instructions_5")
                 Tile(3080, 4245, 0) -> open("report_abuse_instructions_7")
                 Tile(3080, 4230, 0) -> open("report_abuse_instructions_3")
-            }
-            interfaceClosed("report_abuse_instructions*") {
-                clearCamera()
             }
         }
     }
