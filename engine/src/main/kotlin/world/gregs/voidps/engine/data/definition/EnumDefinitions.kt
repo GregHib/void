@@ -5,9 +5,11 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
+import world.gregs.voidps.cache.config.data.StructDefinition
 import world.gregs.voidps.cache.definition.data.EnumDefinition
 import world.gregs.voidps.cache.definition.data.EnumTypes
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.type.Tile
 
 /**
  * Also known as DataMap in cs2 or tables
@@ -39,21 +41,63 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
         loaded = false
     }
 
+    private fun key(keyType: Char, key: String) = when (keyType) {
+        EnumTypes.ITEM -> ItemDefinitions.get(key).id
+        EnumTypes.COMPONENT -> InterfaceDefinitions.get(key).id
+        EnumTypes.INV -> InventoryDefinitions.get(key).id
+        EnumTypes.NPC -> NPCDefinitions.get(key).id
+        EnumTypes.STRUCT -> StructDefinitions.get(key).id
+        else -> error("Unsupported enum type: $keyType")
+    }
+
+    fun string(enum: String, key: String): String {
+        val definition = get(enum)
+        val key = key(definition.keyType, key)
+        return definition.string(key)
+    }
+
+    fun int(enum: String, key: String): Int {
+        val definition = get(enum)
+        val key = key(definition.keyType, key)
+        return definition.int(key)
+    }
+
+    fun item(enum: String, key: String): String {
+        val definition = get(enum)
+        assert(definition.valueType == EnumTypes.ITEM || definition.valueType == EnumTypes.ITEM_2) { "Enum $enum value type not Item, found: ${EnumTypes.name(definition.valueType)}" }
+        val key = key(definition.keyType, key)
+        return ItemDefinitions.get(definition.int(key)).stringId
+    }
+
+    fun tile(enum: String, key: String): Tile {
+        val definition = get(enum)
+        assert(definition.valueType == EnumTypes.TILE) { "Enum $enum value type not Tile, found: ${EnumTypes.name(definition.valueType)}" }
+        val key = key(definition.keyType, key)
+        return Tile(definition.int(key))
+    }
+
+    fun struct(enum: String, key: String): StructDefinition {
+        val definition = get(enum)
+        assert(definition.valueType == EnumTypes.TILE) { "Enum $enum value type not Tile, found: ${EnumTypes.name(definition.valueType)}" }
+        val key = key(definition.keyType, key)
+        return StructDefinitions.get(definition.int(key))
+    }
+
     fun <T : Any> getStruct(id: String, index: Int, param: String): T {
         val enum = get(id)
-        val struct = enum.getInt(index)
+        val struct = enum.int(index)
         return StructDefinitions.get(struct)[param]
     }
 
     fun <T : Any?> getStructOrNull(id: String, index: Int, param: String): T? {
         val enum = get(id)
-        val struct = enum.getInt(index)
+        val struct = enum.int(index)
         return StructDefinitions.getOrNull(struct)?.getOrNull(param)
     }
 
     fun <T : Any> getStruct(id: String, index: Int, param: String, default: T): T {
         val enum = get(id)
-        val struct = enum.getInt(index)
+        val struct = enum.int(index)
         return StructDefinitions.get(struct)[param, default]
     }
 
@@ -93,7 +137,7 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
                                 "values" -> while (nextEntry()) {
                                     val key = key()
                                     val keyInt = when (keyType) {
-                                        EnumTypes.ITEM, EnumTypes.ITEM_2 -> ItemDefinitions.get(key).id
+                                        EnumTypes.ITEM, EnumTypes.ITEM_2 -> ItemDefinitions.getOrNull(key)?.id ?: error("Unknown item '$key' ${exception()}")
                                         else -> key.toInt()
                                     }
                                     map[keyInt] = value()

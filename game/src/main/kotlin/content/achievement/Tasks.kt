@@ -37,11 +37,11 @@ object Tasks {
     }
 
     fun <R> forEach(areaId: Int, block: TaskIterator.() -> R?): R? {
-        var next = EnumDefinitions.get("task_area_start_indices").getInt(areaId)
+        var next = EnumDefinitions.get("task_area_start_indices").int(areaId)
         val structs = EnumDefinitions.get("task_structs")
         val iterator = TaskIterator()
         while (next != 4091 && next != 450 && next != 4094) {
-            val struct = structs.getInt(next)
+            val struct = structs.int(next)
             iterator.definition = StructDefinitions.getOrNull(struct) ?: break
             iterator.index = next
             iterator.skip = false

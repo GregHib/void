@@ -18,7 +18,7 @@ class CommonItemCosts(
             val enum = EnumDefinitions.get("exchange_items_$type")
             var index = 1
             for (i in 0 until enum.length) {
-                val item = enum.getInt(i)
+                val item = enum.int(i)
                 val definition = ItemDefinitions.get(item)
                 val price = exchange.history.marketPrice(definition.stringId)
                 sendScript("send_common_item_price", index, i, "${price.toDigitGroupString()} gp")
