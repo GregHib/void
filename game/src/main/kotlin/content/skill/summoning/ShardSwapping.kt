@@ -2,7 +2,6 @@ package content.skill.summoning
 
 import content.entity.player.bank.noted
 import content.entity.player.dialogue.type.intEntry
-import content.entity.player.dialogue.type.item
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -19,7 +18,7 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 import kotlin.math.min
 
-class ShardSwapping(val enums: EnumDefinitions) : Script {
+class ShardSwapping : Script {
 
     init {
         npcOperate("Swap", "bogrog") {
@@ -40,7 +39,7 @@ class ShardSwapping(val enums: EnumDefinitions) : Script {
             val itemType = id.substringAfter(":").removeSuffix("_trade_in")
 
             if (item.id.endsWith("_u")) {
-                val actualItemId = enums.get("summoning_${itemType}_ids_1").getInt(enumIndex)
+                val actualItemId = EnumDefinitions.get("summoning_${itemType}_ids_1").getInt(enumIndex)
                 actualItem = Item(ItemDefinitions.get(actualItemId).stringId)
             }
 
@@ -53,7 +52,7 @@ class ShardSwapping(val enums: EnumDefinitions) : Script {
             val itemType = id.substringAfter(":").removeSuffix("_trade_in")
 
             if (item.id.endsWith("_u")) {
-                val actualItemId = enums.get("summoning_${itemType}_ids_1").getInt(enumIndex)
+                val actualItemId = EnumDefinitions.get("summoning_${itemType}_ids_1").getInt(enumIndex)
                 actualItem = Item(ItemDefinitions.get(actualItemId).stringId)
                 sendValueMessage(this, actualItem, itemType)
                 return@interfaceOption

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.TestFactory
 import playerOption
 import walk
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -42,6 +43,7 @@ internal class TradeTest : WorldTest() {
             }
             assertEquals(Item("coins", 1000), sender.inventory[0])
             assertEquals(Item.EMPTY, receiver.inventory[0])
+            Players.clear()
         }
     }
 
@@ -62,6 +64,7 @@ internal class TradeTest : WorldTest() {
             }
             assertEquals(Item("coins", 1000), sender.inventory[0])
             assertEquals(Item.EMPTY, receiver.inventory[0])
+            Players.clear()
         }
     }
 

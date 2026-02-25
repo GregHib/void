@@ -2,6 +2,7 @@ package content.social.trade.exchange.history
 
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.exchange.PriceHistory
+import world.gregs.voidps.engine.timer.epochMilliseconds
 import java.util.concurrent.TimeUnit
 import kotlin.collections.MutableMap
 import kotlin.collections.component1
@@ -21,12 +22,12 @@ class ExchangeHistory(val history: MutableMap<String, PriceHistory> = mutableMap
 
     fun record(item: String, amount: Int, price: Int) {
         val history = history.getOrPut(item) { PriceHistory() }
-        val timestamp = System.currentTimeMillis()
+        val timestamp = epochMilliseconds()
         history.record(timestamp, price, amount)
     }
 
     fun clean() {
-        val timestamp = System.currentTimeMillis()
+        val timestamp = epochMilliseconds()
         for (item in history.values) {
             item.clean(timestamp)
         }
@@ -42,7 +43,7 @@ class ExchangeHistory(val history: MutableMap<String, PriceHistory> = mutableMap
     }
 
     fun calculatePrices() {
-        val timestamp = System.currentTimeMillis()
+        val timestamp = epochMilliseconds()
         for ((item, history) in history) {
             val previous = marketPrices[item]
             val (time, newest) = history.day.maxByOrNull { it.key } ?: continue

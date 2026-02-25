@@ -4,7 +4,6 @@ import org.koin.mp.KoinPlatformTools
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.get
 import kotlin.math.max
 import kotlin.math.min
 
@@ -19,12 +18,11 @@ object Price {
 
     fun getPrice(player: Player, item: String, index: Int, amount: Int): Int {
         val itemId = getRealItem(item)
-        val enums = get<EnumDefinitions>()
-        var price = enums.get("price_runes").getInt(itemId)
+        var price = EnumDefinitions.get("price_runes").getInt(itemId)
         if (player["shop_currency", "coins"] == "tokkul" && price != -1 && price > 0) {
             return price
         }
-        price = enums.get("price_garden").getInt(itemId)
+        price = EnumDefinitions.get("price_garden").getInt(itemId)
         if (price != -1 && price > 0) {
             return price
         }
@@ -59,12 +57,11 @@ object Price {
         val itemId = getRealItem(item)
         val koin = KoinPlatformTools.defaultContext().getOrNull()
         if (koin != null) {
-            val enums = get<EnumDefinitions>()
-            var price = enums.get("price_runes").getInt(itemId)
+            var price = EnumDefinitions.get("price_runes").getInt(itemId)
             if (currency == "tokkul" && price != -1 && price > 0) {
                 return price
             }
-            price = enums.get("price_garden").getInt(itemId)
+            price = EnumDefinitions.get("price_garden").getInt(itemId)
             if (price != -1 && price > 0) {
                 return price
             }

@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import kotlin.math.min
 
-class SummoningCrafting(val enums: EnumDefinitions) : Script {
+class SummoningCrafting : Script {
 
     val pouchInterfaceId = 672
     val pouchComponentId = 16
@@ -103,7 +103,7 @@ class SummoningCrafting(val enums: EnumDefinitions) : Script {
      * @param amount: The amount of pouches the player is attempting to craft
      */
     fun infusePouches(player: Player, enumIndex: Int, amount: Int) {
-        val pouchItemId = enums.get("summoning_pouch_ids_1").getInt(enumIndex)
+        val pouchItemId = EnumDefinitions.get("summoning_pouch_ids_1").getInt(enumIndex)
         val pouchItem = Item(ItemDefinitions.get(pouchItemId).stringId)
 
         val shards = getShards(pouchItem)
@@ -138,10 +138,10 @@ class SummoningCrafting(val enums: EnumDefinitions) : Script {
      * @param amount: The amount of pouches the player is attempting to turn into scrolls
      */
     fun transformScrolls(player: Player, enumIndex: Int, amount: Int) {
-        val scrollItemId = enums.get("summoning_scroll_ids_1").getInt(enumIndex)
+        val scrollItemId = EnumDefinitions.get("summoning_scroll_ids_1").getInt(enumIndex)
         val scrollItem = Item(ItemDefinitions.get(scrollItemId).stringId)
 
-        val pouchId = enums.get("summoning_scroll_ids_2").getKey(scrollItemId)
+        val pouchId = EnumDefinitions.get("summoning_scroll_ids_2").getKey(scrollItemId)
         val pouchItem = Item(ItemDefinitions.get(pouchId).stringId)
 
         val maxTransformAmount = player.inventory.count(pouchItem.id)
@@ -262,8 +262,8 @@ class SummoningCrafting(val enums: EnumDefinitions) : Script {
      * @param enumIndex: The index of the clicked pouch in the "summoning_pouch_ids_1" enum.
      */
     fun sendIngredientMessage(player: Player, enumIndex: Int) {
-        val realPouchId = enums.get("summoning_pouch_ids_1").getInt(enumIndex)
-        val ingredientString = enums.get("summoning_pouch_crafting_ingredient_strings").getString(realPouchId)
+        val realPouchId = EnumDefinitions.get("summoning_pouch_ids_1").getInt(enumIndex)
+        val ingredientString = EnumDefinitions.get("summoning_pouch_crafting_ingredient_strings").getString(realPouchId)
 
         player.message(ingredientString)
     }

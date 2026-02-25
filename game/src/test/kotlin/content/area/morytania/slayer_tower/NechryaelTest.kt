@@ -3,19 +3,20 @@ package content.area.morytania.slayer_tower
 import FakeRandom
 import WorldTest
 import npcOption
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.setRandom
-import kotlin.test.assertEquals
 
 class NechryaelTest : WorldTest() {
 
     @Test
     fun `Nechryael death spawns`() {
         setRandom(object : FakeRandom() {
+            override fun nextBits(bitCount: Int) = 0
             override fun nextInt(until: Int) = 0
-            override fun nextInt(from: Int, until: Int) = 0
+            override fun nextInt(from: Int, until: Int) = from
         })
         val player = createPlayer(emptyTile)
         player.levels.set(Skill.Constitution, 50)
@@ -34,8 +35,9 @@ class NechryaelTest : WorldTest() {
     @Test
     fun `Death spawns can attack even when in combat`() {
         setRandom(object : FakeRandom() {
+            override fun nextBits(bitCount: Int) = 0
             override fun nextInt(until: Int) = 0
-            override fun nextInt(from: Int, until: Int) = 0
+            override fun nextInt(from: Int, until: Int) = from
         })
         val player = createPlayer(emptyTile)
         player.levels.set(Skill.Constitution, 50)

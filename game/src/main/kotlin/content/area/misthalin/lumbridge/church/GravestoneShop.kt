@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.notEnough
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
-class GravestoneShop(val enums: EnumDefinitions) : Script {
+class GravestoneShop : Script {
 
     init {
         interfaceOpened("gravestone_shop") { id ->
@@ -41,12 +41,12 @@ class GravestoneShop(val enums: EnumDefinitions) : Script {
         }
 
         interfaceOption(id = "gravestone_shop:button") { (_, itemSlot) ->
-            val name = enums.get("gravestone_names").getString(itemSlot)
+            val name = EnumDefinitions.get("gravestone_names").getString(itemSlot)
             val id = name.replace(" ", "_").lowercase()
             if (get("gravestone_current", "memorial_plaque") == id) {
                 return@interfaceOption
             }
-            val cost = enums.get("gravestone_price").getInt(itemSlot)
+            val cost = EnumDefinitions.get("gravestone_price").getInt(itemSlot)
             if (cost > 0 && !inventory.remove("coins", cost)) {
                 notEnough("coins")
                 return@interfaceOption

@@ -17,7 +17,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-class Yrsa(val enums: EnumDefinitions) : Script {
+class Yrsa : Script {
 
     init {
         npcOperate("Talk-to", "yrsa") {
@@ -46,19 +46,19 @@ class Yrsa(val enums: EnumDefinitions) : Script {
         interfaceOpened("yrsas_shoe_store") { id ->
             interfaces.sendText(id, "confirm_text", "Change")
             interfaceOptions.unlockAll(id, "styles", 0 until 40)
-            val colours = enums.get("colour_shoes")
+            val colours = EnumDefinitions.get("colour_shoes")
             interfaceOptions.unlockAll(id, "colours", 0 until colours.length * 2)
             set("makeover_shoes", body.getLook(BodyPart.Feet))
             set("makeover_colour_shoes", body.getColour(BodyColour.Feet))
         }
 
         interfaceOption(id = "yrsas_shoe_store:styles") { (_, itemSlot) ->
-            val value = enums.get("look_shoes_$sex").getInt(itemSlot / 2)
+            val value = EnumDefinitions.get("look_shoes_$sex").getInt(itemSlot / 2)
             set("makeover_shoes", value)
         }
 
         interfaceOption(id = "yrsas_shoe_store:colours") { (_, itemSlot) ->
-            set("makeover_colour_shoes", enums.get("colour_shoes").getInt(itemSlot / 2))
+            set("makeover_colour_shoes", EnumDefinitions.get("colour_shoes").getInt(itemSlot / 2))
         }
 
         interfaceOption("Confirm", "yrsas_shoe_store:confirm") {

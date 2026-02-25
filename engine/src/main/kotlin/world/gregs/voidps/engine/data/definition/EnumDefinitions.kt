@@ -3,36 +3,56 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.EnumDefinition
+import world.gregs.voidps.engine.data.definition.ItemDefinitions.loaded
 import world.gregs.voidps.engine.timedLoad
 
 /**
  * Also known as DataMap in cs2 or tables
  */
-class EnumDefinitions(
-    override var definitions: Array<EnumDefinition>,
-    private val structs: StructDefinitions,
-) : DefinitionsDecoder<EnumDefinition> {
+object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
 
-    override lateinit var ids: Map<String, Int>
+    override var definitions: Array<EnumDefinition> = emptyArray()
+
+    override var ids: Map<String, Int> = emptyMap()
+
+    fun init(definitions: Array<EnumDefinition>): EnumDefinitions {
+        this.definitions = definitions
+        loaded = true
+        return this
+    }
+
+    @TestOnly
+    fun set(definitions: Array<EnumDefinition>, ids: Map<String, Int>) {
+        this.definitions = definitions
+        this.ids = ids
+        loaded = true
+    }
+
+    fun clear() {
+        this.definitions = emptyArray()
+        this.ids = emptyMap()
+        loaded = false
+    }
 
     fun <T : Any> getStruct(id: String, index: Int, param: String): T {
         val enum = get(id)
         val struct = enum.getInt(index)
-        return structs.get(struct)[param]
+        return StructDefinitions.get(struct)[param]
     }
 
     fun <T : Any?> getStructOrNull(id: String, index: Int, param: String): T? {
         val enum = get(id)
         val struct = enum.getInt(index)
-        return structs.getOrNull(struct)?.getOrNull(param)
+        return StructDefinitions.getOrNull(struct)?.getOrNull(param)
     }
 
     fun <T : Any> getStruct(id: String, index: Int, param: String, default: T): T {
         val enum = get(id)
         val struct = enum.getInt(index)
-        return structs.get(struct)[param, default]
+        return StructDefinitions.get(struct)[param, default]
     }
 
     fun load(path: String): EnumDefinitions {

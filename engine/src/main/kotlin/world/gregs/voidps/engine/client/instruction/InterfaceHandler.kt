@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.inv.equipment
 
 class InterfaceHandler(
     private val inventoryDefinitions: InventoryDefinitions,
-    private val enumDefinitions: EnumDefinitions,
 ) {
 
     fun getInterfaceItem(player: Player, interfaceId: Int, componentId: Int, itemId: Int, itemSlot: Int): InterfaceData? {
@@ -25,7 +24,7 @@ class InterfaceHandler(
                 id.startsWith("summoning_") && id.endsWith("_creation") -> item = Item(ItemDefinitions.get(itemId).stringId)
                 id == "summoning_trade_in" -> item = Item(ItemDefinitions.get(itemId).stringId)
                 id == "exchange_item_sets" -> {
-                    val expected = enumDefinitions.get("exchange_item_sets").getInt(itemSlot + 1)
+                    val expected = EnumDefinitions.get("exchange_item_sets").getInt(itemSlot + 1)
                     if (expected != itemId) {
                         logger.info { "Exchange item sets don't match [$player, expected=$expected, actual=$itemId]" }
                         return null

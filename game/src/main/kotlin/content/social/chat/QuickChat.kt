@@ -30,7 +30,6 @@ import world.gregs.voidps.network.login.protocol.encode.publicQuickChat
 class QuickChat(
     val phrases: QuickChatPhraseDefinitions,
     val variables: VariableDefinitions,
-    val enums: EnumDefinitions,
 ) : Script {
 
     val logger = InlineLogger("QuickChat")
@@ -45,7 +44,7 @@ class QuickChat(
             val definition = phrases.get(file)
             val data = generateData(player, file, data)
             player.client?.privateQuickChatTo(target.name, file, data)
-            val text = definition.buildString(enums.definitions, ItemDefinitions.definitions, data)
+            val text = definition.buildString(EnumDefinitions.definitions, ItemDefinitions.definitions, data)
             AuditLog.event(player, "told_qc", target, text)
             target.client?.privateQuickChatFrom(player.name, player.rights.ordinal, file, data)
         }
@@ -55,7 +54,7 @@ class QuickChat(
                 0 -> {
                     val definition = phrases.get(file)
                     val data = generateData(player, file, data)
-                    val text = definition.buildString(enums.definitions, ItemDefinitions.definitions, data)
+                    val text = definition.buildString(EnumDefinitions.definitions, ItemDefinitions.definitions, data)
                     AuditLog.event(player, "said_qc", text)
                     val nearby = Players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }
                     botResponses(definition, player, nearby)
@@ -75,7 +74,7 @@ class QuickChat(
                     }
                     val definition = phrases.get(file)
                     val data = generateData(player, file, data)
-                    val text = definition.buildString(enums.definitions, ItemDefinitions.definitions, data)
+                    val text = definition.buildString(EnumDefinitions.definitions, ItemDefinitions.definitions, data)
                     AuditLog.event(player, "clan_said_qc", clan, text)
                     clan.members.filterNot { it.ignores(player) }.forEach { member ->
                         member.client?.clanQuickChat(player.name, member.clan!!.name, player.rights.ordinal, file, data)
@@ -104,7 +103,7 @@ class QuickChat(
                 if (type == QuickChatType.MultipleChoice.id) {
                     val nearest = players.filter { it.isBot && it != player }.minByOrNull { it.tile.distanceTo(player.tile) } ?: return
                     val id = def.ids?.get(0)?.get(0) ?: return
-                    val enum = enums.get(id)
+                    val enum = EnumDefinitions.get(id)
                     val frame = nearest.bot.frames.peek() ?: return
                     val first = frame.behaviour.produces.firstOrNull { it.startsWith("item:") } ?: return
                     val ore = first.removePrefix("item:").removeSuffix("_ore")

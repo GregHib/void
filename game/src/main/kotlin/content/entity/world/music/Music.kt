@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.client.instruction.SongEnd
 
-class Music(val tracks: MusicTracks, val enums: EnumDefinitions) : Script {
+class Music(val tracks: MusicTracks) : Script {
 
     init {
         playerSpawn {
@@ -86,7 +86,7 @@ class Music(val tracks: MusicTracks, val enums: EnumDefinitions) : Script {
     }
 
     fun unlockDefaultTracks(player: Player) {
-        enums.get("music_track_hints").map?.forEach { (key, value) ->
+        EnumDefinitions.get("music_track_hints").map?.forEach { (key, value) ->
             if (value is String && value == "automatically.") {
                 MusicUnlock.unlockTrack(player, key)
             }
@@ -107,7 +107,7 @@ class Music(val tracks: MusicTracks, val enums: EnumDefinitions) : Script {
     }
 
     fun playNextPlaylistTrack(player: Player, finishedTrackId: Int): Boolean {
-        val finishedTrackIndex = enums.get("music_tracks").getKey(finishedTrackId)
+        val finishedTrackIndex = EnumDefinitions.get("music_tracks").getKey(finishedTrackId)
         val playlistTracks = (1..12).map { player["playlist_slot_$it", 32767] }.filter { it != 32767 }
 
         if (playlistTracks.isEmpty()) return false
@@ -215,14 +215,14 @@ class Music(val tracks: MusicTracks, val enums: EnumDefinitions) : Script {
     }
 
     fun Player.hasUnlocked(musicIndex: Int): Boolean {
-        val name = enums.get("music_track_names").getString(musicIndex)
+        val name = EnumDefinitions.get("music_track_names").getString(musicIndex)
         return containsVarbit("unlocked_music_${musicIndex / 32}", toIdentifier(name))
     }
 
     fun autoPlay(player: Player, track: MusicTracks.Track) {
         val index = track.index
         if (player.addVarbit("unlocked_music_${index / 32}", track.name)) {
-            player.message("<red>You have unlocked a new music track: ${enums.get("music_track_names").getString(index)}.")
+            player.message("<red>You have unlocked a new music track: ${EnumDefinitions.get("music_track_names").getString(index)}.")
         }
         if (!player["playing_song", false]) {
             player.playTrack(index)

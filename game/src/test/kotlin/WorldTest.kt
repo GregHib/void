@@ -13,8 +13,10 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.MemoryCache
 import world.gregs.voidps.cache.config.data.InventoryDefinition
+import world.gregs.voidps.cache.config.data.StructDefinition
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
+import world.gregs.voidps.cache.definition.data.EnumDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.data.NPCDefinition
@@ -99,7 +101,10 @@ abstract class WorldTest : KoinTest {
         return player to client
     }
 
-    fun createPlayer(tile: Tile = Tile.EMPTY, name: String = "player"): Player {
+    fun createPlayer(tile: Tile = Tile.EMPTY, name: String = "player${Players.size}"): Player {
+        if (Players.any { it.accountName == name }) {
+            throw IllegalStateException("Player already exists: $name")
+        }
         val player = Player(tile = tile, accountName = name, passwordHash = "")
         assertTrue(accounts.setup(player, null, 0, viewport = true))
         accountDefs.add(player)
@@ -160,11 +165,17 @@ abstract class WorldTest : KoinTest {
                         InventoryDefinitions.set(inventoryDefinitions, inventoryIds)
                         InventoryDefinitions
                     }
-                    single(createdAtStart = true) { structDefinitions }
+                    single(createdAtStart = true) {
+                        StructDefinitions.set(structDefinitions, structIds)
+                        StructDefinitions
+                    }
                     single(createdAtStart = true) { quickChatPhraseDefinitions }
                     single(createdAtStart = true) { weaponStyleDefinitions }
                     single(createdAtStart = true) { weaponAnimationDefinitions }
-                    single(createdAtStart = true) { enumDefinitions }
+                    single(createdAtStart = true) {
+                        EnumDefinitions.set(enumDefinitions, enumIds)
+                        EnumDefinitions
+                    }
                     single(createdAtStart = true) { fontDefinitions }
                     single(createdAtStart = true) { objectTeleports }
                     single(createdAtStart = true) { itemOnItemDefinitions }
@@ -332,11 +343,23 @@ abstract class WorldTest : KoinTest {
             InventoryDefinitions.init(inventoryDefinitions).load(configFiles.list(Settings["definitions.inventories"]), configFiles.list(Settings["definitions.shops"]))
             InventoryDefinitions.ids
         }
-        private val structDefinitions: StructDefinitions by lazy { StructDefinitions(StructDecoder(parameterDefinitions).load(cache)).load(configFiles.find(Settings["definitions.structs"])) }
+        private val structDefinitions: Array<StructDefinition> by lazy {
+            StructDecoder(parameterDefinitions).load(cache)
+        }
+        private val structIds: Map<String, Int> by lazy {
+            StructDefinitions.init(structDefinitions).load(configFiles.find(Settings["definitions.structs"]))
+            StructDefinitions.ids
+        }
         private val quickChatPhraseDefinitions: QuickChatPhraseDefinitions by lazy { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }
         private val weaponStyleDefinitions: WeaponStyleDefinitions by lazy { WeaponStyleDefinitions().load(configFiles.find(Settings["definitions.weapons.styles"])) }
         private val weaponAnimationDefinitions: WeaponAnimationDefinitions by lazy { WeaponAnimationDefinitions().load(configFiles.find(Settings["definitions.weapons.animations"])) }
-        private val enumDefinitions: EnumDefinitions by lazy { EnumDefinitions(EnumDecoder().load(cache), structDefinitions).load(configFiles.find(Settings["definitions.enums"])) }
+        private val enumDefinitions: Array<EnumDefinition> by lazy {
+            EnumDecoder().load(cache)
+        }
+        private val enumIds: Map<String, Int> by lazy {
+            EnumDefinitions.init(EnumDecoder().load(cache)).load(configFiles.find(Settings["definitions.enums"]))
+            EnumDefinitions.ids
+        }
         private val objectCollisionAdd: GameObjectCollisionAdd by lazy { GameObjectCollisionAdd() }
         private val objectCollisionRemove: GameObjectCollisionRemove by lazy { GameObjectCollisionRemove() }
         private val mapDefinitions: MapDefinitions by lazy { MapDefinitions(CollisionDecoder(), cache).load(configFiles) }
@@ -355,7 +378,10 @@ abstract class WorldTest : KoinTest {
                 configFiles.list(Settings["definitions.variables.customs"]),
             )
         }
-        private val dropTables: DropTables by lazy { DropTables().load(configFiles.list(Settings["spawns.drops"])) }
+        private val dropTables: DropTables by lazy {
+            itemIds
+            DropTables().load(configFiles.list(Settings["spawns.drops"]))
+        }
         val emptyTile = Tile(2655, 4640)
     }
 }

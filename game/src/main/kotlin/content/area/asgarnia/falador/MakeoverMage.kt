@@ -25,7 +25,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 
-class MakeoverMage(val enums: EnumDefinitions) : Script {
+class MakeoverMage : Script {
 
     init {
         npcSpawn("makeover_mage*") {
@@ -69,7 +69,7 @@ class MakeoverMage(val enums: EnumDefinitions) : Script {
         }
 
         interfaceOption(id = "skin_colour:colour_*") {
-            set("makeover_colour_skin", enums.get("character_skin").getInt(it.component.removePrefix("colour_").toInt()))
+            set("makeover_colour_skin", EnumDefinitions.get("character_skin").getInt(it.component.removePrefix("colour_").toInt()))
         }
 
         interfaceOption("Confirm", "skin_colour:confirm") {
@@ -201,8 +201,8 @@ class MakeoverMage(val enums: EnumDefinitions) : Script {
     fun swapSex(player: Player, male: Boolean) {
         player.body.male = male
         val key = "look_hair_${if (male) "male" else "female"}"
-        player.body.setLook(BodyPart.Hair, enums.getStruct(key, random.nextInt(enums.get(key).length), "body_look_id"))
-        player.body.setLook(BodyPart.Beard, if (male) enums.get("look_beard_male").randomInt() else -1)
+        player.body.setLook(BodyPart.Hair, EnumDefinitions.getStruct(key, random.nextInt(EnumDefinitions.get(key).length), "body_look_id"))
+        player.body.setLook(BodyPart.Beard, if (male) EnumDefinitions.get("look_beard_male").randomInt() else -1)
         swapLook(player, male, BodyPart.Arms, "arms")
         swapLook(player, male, BodyPart.Hands, "wrists")
         swapLook(player, male, BodyPart.Legs, "legs")
@@ -211,8 +211,8 @@ class MakeoverMage(val enums: EnumDefinitions) : Script {
     }
 
     fun swapLook(player: Player, male: Boolean, bodyPart: BodyPart, name: String) {
-        val old = enums.get("look_${name}_${if (male) "female" else "male"}")
-        val new = enums.get("look_${name}_${if (male) "male" else "female"}")
+        val old = EnumDefinitions.get("look_${name}_${if (male) "female" else "male"}")
+        val new = EnumDefinitions.get("look_${name}_${if (male) "male" else "female"}")
         val key = old.getKey(player.body.getLook(bodyPart))
         player.body.setLook(bodyPart, new.getInt(key))
     }
