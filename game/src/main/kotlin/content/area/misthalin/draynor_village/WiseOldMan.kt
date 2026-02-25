@@ -1,5 +1,6 @@
 package content.area.misthalin.draynor_village
 
+import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Bored
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Laugh
@@ -8,53 +9,31 @@ import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.Shock
+import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.random
 
-class WiseOldMan(
-    val enums: EnumDefinitions,
-) : Script {
+class WiseOldMan : Script {
     init {
-        npcOperate("Talk-to", "wise_old_man") {
+        npcOperate("Talk-to", "wise_old_man_draynor") {
             npc<Happy>("Greetings, $name.")
             if (get("wise_old_man_met", false)) {
                 choice("What would you like to say?") {
-                    if (contains("wise_old_man_task")) {
-                        option("What did you ask me to do?") {
-                            checkTask()
-                        }
-                    } else {
-                        option<Happy>("Is there anything I can do for you?") {
-                            task()
-                        }
-                    }
-                    option<Happy>("Could you check my items for junk, please?") {
-                        choice {
-                            option<Happy>("Could you check my bank for junk, please?") {
-                                npc<Neutral>("Certainly, but I should warn you that I don't know about all items.")
-                                // TODO add junk search
-                                npc<Neutral>("There doesn't seem to be any junk in your bank at all.")
-                            }
-                            option<Happy>("Could you check my inventory for junk, please?") {
-                                npc<Neutral>("Certainly, but I should warn you that I don't know about all items.")
-                                // TODO add junk search
-                                npc<Neutral>("There doesn't seem to be any junk in your inventory at all.")
-                            }
-//                            if (follower != null) { // TODO and has BoB
-//                                option("Could you check my beast of burden for junk, please?")
-//                            }
-                        }
-                    }
-                    option<Happy>("I'd just like to ask you something.")
+                    anyHelp(this@choice)
+                    findJunk()
+                    ask()
                 }
                 return@npcOperate
             }
@@ -98,13 +77,49 @@ class WiseOldMan(
                     }
                 }
             }
-            option<Happy>("I'd just like to ask you something.") {
-                npc<Happy>("Please do!")
-                topic()
-            }
-            option<Happy>("Is there anything I can do for you?")
-            option<Happy>("Could you check my items for junk, please?")
+            ask()
+            anyHelp(this@choice)
+            findJunk()
             option<Shifty>("Thanks, maybe some other time.")
+        }
+    }
+
+    private fun ChoiceOption.ask() {
+        option<Happy>("I'd just like to ask you something.") {
+            npc<Happy>("Please do!")
+            topic()
+        }
+    }
+
+    private fun Player.anyHelp(option: ChoiceOption) {
+        if (contains("wise_old_man_task")) {
+            option.option("What did you ask me to do?") {
+                checkTask()
+            }
+        } else {
+            option.option<Happy>("Is there anything I can do for you?") {
+                task()
+            }
+        }
+    }
+
+    private fun ChoiceOption.findJunk() {
+        option<Happy>("Could you check my items for junk, please?") {
+            choice {
+                option<Happy>("Could you check my bank for junk, please?") {
+                    npc<Neutral>("Certainly, but I should warn you that I don't know about all items.")
+                    // TODO add junk search
+                    npc<Neutral>("There doesn't seem to be any junk in your bank at all.")
+                }
+                option<Happy>("Could you check my inventory for junk, please?") {
+                    npc<Neutral>("Certainly, but I should warn you that I don't know about all items.")
+                    // TODO add junk search
+                    npc<Neutral>("There doesn't seem to be any junk in your inventory at all.")
+                }
+                //                            if (follower != null) { // TODO and has BoB
+                //                                option("Could you check my beast of burden for junk, please?")
+                //                            }
+            }
         }
     }
 
@@ -280,6 +295,15 @@ class WiseOldMan(
                 }
             }
         }
+
+        itemOnNPCOperate("old_mans_message", "wise_old_man_draynor") {
+            //Do you think I need to keep this?
+            if (contains("wise_old_man_npc")) {
+//                Yes, you're meant to be delivering it for me!
+            } else {
+                // I asked you to deliver that for me. But I may as well take it back now.
+            }
+        }
     }
 
     private suspend fun Player.anythingElse() {
@@ -289,109 +313,163 @@ class WiseOldMan(
         }
     }
 
-    val tasks = setOf(
-        "anchovies",
-        "beer_glass",
-        "bones",
-        "bronze_arrow",
-        "bronze_bar",
-        "bronze_dagger",
-        "bronze_axe",
-        "bronze_mace",
-        "bronze_med_helm",
-        "bronze_spear",
-        "bronze_sword",
-        "beer",
-        "cadava_berries",
-        "cooked_chicken",
-        "cooked_meat",
-        "copper_ore",
-        "cowhide",
-        "egg",
-        "feather",
-        "grain",
-        "iron_bar",
-        "iron_mace",
-        "iron_ore",
-        "soft_clay",
-        "leather_gloves",
-        "logs",
-        "molten_glass",
-        "potato",
-        "raw_rat_meat",
-        "rune_essence",
-        "shrimps",
-        "silk",
-        "leather",
-        "tin_ore",
-        "ball_of_wool",
-        "bow_string",
-        "bread",
-        "bronze_arrowtips",
-        "bronze_knife",
-        "bronze_warhammer",
-        "bronze_wire",
-        "headless_arrow",
-        "swamp_paste",
-        "iron_arrowtips",
-        "iron_knife",
-        "iron_warhammer",
-        "leather_cowl",
-        "pot_of_flour",
-        "unfired_pie_dish",
-        "unfired_pot",
-        "leather_boots",
-    )
 
     suspend fun Player.checkTask() {
+        val npc: String? = get("wise_old_man_npc")
+        if (npc != null) {
+            val intro = EnumDefinitions.string("wise_old_man_npcs", npc)
+            npc<Neutral>(intro)
+            if (npc != "thing_under_the_bed" && !ownsItem("old_mans_message")) {
+                npc<Neutral>("You seem to have mislaid my letter, so here's another copy.")
+                if (!inventory.add("old_mans_message")) {
+                    // TODO
+                }
+            }
+            hintNpc(npc)
+        }
         val item: String = get("wise_old_man_task") ?: return
         val remaining: Int = get("wise_old_man_remaining") ?: return
-        val id = ItemDefinitions.get(item).id
-        val intro = enums.get("wise_old_man_tasks").getString(id)
+        val intro = EnumDefinitions.string("wise_old_man_items", item)
         npc<Happy>("$intro. I still need $remaining.")
-        hint(id)
+        hintItem(item)
     }
 
     suspend fun Player.task() {
         npc<Happy>("I'm sure I can think of a few little jobs. This won't be a quest, mind you, just a little favour...")
-        for (item in tasks) {
-            if (!ItemDefinitions.contains(item)) {
-                println("Doesn't exist: $item")
-            }
-        }
-        if (random.nextInt(100) == 2) {
-            set("wise_old_man_task", "thing_under_the_bed")
-            set("wise_old_man_amount", 1)
-            npc<Neutral>("Well, this is rather embarrassing, but I think there's some kind of monster in my house. Could you go upstairs and get rid of it, please?")
-            choice("What would you like to say?") {
-                option<Quiz>("Where do I need to go?") {
-                    npc<Neutral>("I think it's somewhere upstairs. It kept me awake all last night.")
-                    player<Happy>("Right, I'll see you later.")
+        if (random.nextInt(100) < 16) {
+            val npc = setOf(
+                "father_aereck", "high_priest_entrana", "reldo",
+                "thurgo", "father_lawrence", "abbot_langley",
+                "oracle", "thing_under_the_bed"
+            ).random(random)
+            val intro = EnumDefinitions.string("wise_old_man_npcs", npc)
+            npc<Neutral>(intro)
+            set("wise_old_man_npc", npc)
+            if (npc != "thing_under_the_bed") {
+                npc<Neutral>("Here's the letter")
+                if (!inventory.add("old_mans_message")) {
+                    // TODO
                 }
-                option<Happy>("Right, I'll see you later.")
             }
+            hintNpc(npc)
             return
         }
-        // TODO letters
         val amount = random.nextInt(3, 16)
-        val item = tasks.random(random) // TODO requirements
+        val item = tasks().random(random)
         set("wise_old_man_task", item)
         set("wise_old_man_amount", amount)
         set("wise_old_man_remaining", amount)
-        val id = ItemDefinitions.get(item).id
-        val intro = enums.get("wise_old_man_tasks").getString(id)
+        val intro = EnumDefinitions.string("wise_old_man_items", item)
         npc<Happy>("$intro. Please bring me $amount.")
-        hint(id)
+        hintItem(item)
     }
 
-    private suspend fun Player.hint(id: Int) {
+    private suspend fun Player.hintNpc(npc: String) {
         choice("What would you like to say?") {
-            option<Quiz>("Where can I get that?") {
-                val hint = enums.get("wise_old_man_hints").getString(id)
-                npc<Neutral>(hint)
+            option<Quiz>("Where do I need to go?") {
+                npc<Neutral>(EnumDefinitions.string("wise_old_man_npc_hints", npc))
                 player<Happy>("Right, I'll see you later.")
             }
             option<Happy>("Right, I'll see you later.")
         }
+    }
+
+    private suspend fun Player.hintItem(item: String) {
+        choice("What would you like to say?") {
+            option<Quiz>("Where can I get that?") {
+                npc<Neutral>(EnumDefinitions.string("wise_old_man_item_hints", item))
+                player<Happy>("Right, I'll see you later.")
+            }
+            option<Happy>("Right, I'll see you later.")
+        }
+    }
+
+    private fun Player.tasks(): MutableSet<String> {
+        val tasks = mutableSetOf(
+            "beer_glass",
+            "bones",
+            "bronze_arrow",
+            "bronze_bar",
+            "bronze_dagger",
+            "bronze_hatchet",
+            "beer",
+            "cadava_berries",
+            "cooked_chicken",
+            "cooked_meat",
+            "copper_ore",
+            "cowhide",
+            "egg",
+            "feather",
+            "grain",
+            "soft_clay",
+            "leather_gloves",
+            "logs",
+            "molten_glass",
+            "raw_potato",
+            "raw_rat_meat",
+            "shrimps",
+            "silk",
+            "leather",
+            "tin_ore",
+            "ball_of_wool",
+            "bowstring",
+            "bread",
+            "headless_arrow",
+            "swamp_paste",
+            "pot_of_flour",
+            "unfired_pot",
+        )
+        if (has(Skill.Fishing, 15)) {
+            tasks.add("anchovies")
+        }
+        if (has(Skill.Smithing, 2)) {
+            tasks.add("bronze_mace")
+        }
+        if (has(Skill.Smithing, 3)) {
+            tasks.add("bronze_med_helm")
+        }
+        if (has(Skill.Smithing, 4)) {
+            tasks.add("bronze_wire")
+        }
+        if (has(Skill.Smithing, 5)) {
+            tasks.add("bronze_spear")
+            tasks.add("bronze_sword")
+            tasks.add("bronze_arrowtips")
+        }
+        if (has(Skill.Smithing, 7)) {
+            tasks.add("bronze_knife")
+        }
+        if (has(Skill.Smithing, 9)) {
+            tasks.add("bronze_warhammer")
+        }
+        if (has(Skill.Smithing, 15)) {
+            tasks.add("iron_bar")
+        }
+        if (has(Skill.Smithing, 17)) {
+            tasks.add("iron_mace")
+        }
+        if (has(Skill.Smithing, 20)) {
+            tasks.add("iron_arrowtips")
+        }
+        if (has(Skill.Smithing, 20)) {
+            tasks.add("iron_knife")
+        }
+        if (has(Skill.Smithing, 24)) {
+            tasks.add("iron_warhammer")
+        }
+        if (has(Skill.Mining, 17)) {
+            tasks.add("iron_ore")
+        }
+        if (has(Skill.Crafting, 7)) {
+            tasks.add("unfired_pie_dish")
+            tasks.add("leather_boots")
+        }
+        if (has(Skill.Crafting, 9)) {
+            tasks.add("leather_cowl")
+        }
+        if (questCompleted("rune_mysteries")) {
+            tasks.add("rune_essence")
+        }
+        return tasks
     }
 }

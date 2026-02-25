@@ -2,6 +2,11 @@
 format = "string"
 persist = true
 
+[wise_old_man_npc]
+format = "list"
+persist = true
+values = [ "father_aereck", "high_priest_entrana", "reldo", "thurgo", "father_lawrence", "abbot_langley", "oracle", "thing_under_the_bed" ]
+
 [wise_old_man_amount]
 format = "int"
 persist = true

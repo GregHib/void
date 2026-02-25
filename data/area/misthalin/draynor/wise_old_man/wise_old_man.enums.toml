@@ -1,6 +1,6 @@
-[wise_old_man_tasks]
-key = "items"
-type = "string"
+[wise_old_man_items]
+keyType = "item"
+valueType = "string"
 values = {
     anchovies = "I could do with some freshly cooked anchovies for a salad I'm planning.",
     beer_glass = "My glassware got damaged when I moved here, so I need some new beer glasses.",
@@ -29,7 +29,7 @@ values = {
     leather_gloves = "It's a bit nippy in this house, and my hands are cold. I need some leather gloves.",
     logs = "This house is a bit cold, so I could do with some normal logs to burn.",
     molten_glass = "Some chunks of molten glass would be the ideal patch for my cracked window.",
-    potato = "I need some potatoes, if you'd be so kind.",
+    raw_potato = "I need some potatoes, if you'd be so kind.",
     raw_rat_meat = "I hear pet cats are getting popular these days. I'd like some raw rat in case I get one.",
     rune_essence = "I'd like to study the rune essence that the wizards have been talking about recently, so I need a few pieces.",
     shrimps = "I could do with some freshly cooked shrimps for a salad I'm planning.",
@@ -37,7 +37,7 @@ values = {
     leather = "I'll be needing a few pieces of soft leather.",
     tin_ore = "I need a few lumps of tin ore.",
     ball_of_wool = "I saw an interesting bed in Karamja called a 'hammock'. It seemed to be made out of string, and I'd like some balls of wool so I can make my own.",
-    bow_string = "My shortbow's string is getting a bit worn out, so could you fetch me some bow strings?",
+    bowstring = "My shortbow's string is getting a bit worn out, so could you fetch me some bow strings?",
     bread = "I don't have a decent larder here, so I can't store food very well. Now I'm out of loaves of bread.",
     bronze_arrowtips = "I need a few bronze arrowheads to complete some arrows I was making.",
     bronze_knife = "I'd like some bronze knives to throw at goblins.",
@@ -55,9 +55,9 @@ values = {
     leather_boots = "My footwear is getting a bit worn out, so I need a few pairs of leather boots.",
 }
 
-[wise_old_man_hints]
-key = "items"
-type = "string"
+[wise_old_man_item_hints]
+keyType = "item"
+valueType = "string"
 values = {
     anchovies = "Use a small fishing net to get anchovies from the sea south of here. Then cook them on a fire or range.",
     beer_glass = "If you get some seaweed and a bucket of sand, you'll be able to mix them at a furnace to make molten glass. Then use a glassblowing pipe to make beer glasses. Most of what you need can be found on Entrana.",
@@ -86,7 +86,7 @@ values = {
     leather_gloves = "If you get the tanner in Al Kharid to turn some cowhides into leather, you'll be able to sew the gloves yourself. Buy a needle & thread from the crafting shop in Al Kharid.",
     logs = "I suggest you take a hatchet and chop down some standard trees.",
     molten_glass = "Use a bucket of sand with some soda ash on a furnace.",
-    potato = "There's a field of those north of Lumbridge.",
+    raw_potato = "There's a field of those north of Lumbridge.",
     raw_rat_meat = "You should find some big rats south-east of here in the swamp.",
     rune_essence = "Ask the Archmage in the tower south of here to teleport you to the Rune Essence mine. Then you can mine me some pieces.",
     shrimps = "Use a small fishing net to get shrimps from the sea south of here. Then cook them on a fire or range.",
@@ -94,7 +94,7 @@ values = {
     leather = "There's a tanner in Al Kharid who will turn cowhides into leather.",
     tin_ore = "You shouldn't have any trouble mining tin ore.",
     ball_of_wool = "You can buy shears from the general store east of here. Shear some sheep, then spin the wool into balls on the spinning wheel in Lumbridge Castle.",
-    bow_string = "If you pick some flax, you can use the spinning wheel in Lumbridge Castle to spin it into bowstrings.",
+    bowstring = "If you pick some flax, you can use the spinning wheel in Lumbridge Castle to spin it into bowstrings.",
     bread = "Mix some flour and water to make bread dough, then bake it on a cooking range.",
     bronze_arrowtips = "Try smelting some copper and tin ore to make bronze. Then hammer the bronze on an anvil to make arrowtips.",
     bronze_knife = "Try smelting some copper and tin ore to make bronze. Then hammer the bronze on an anvil to make knives.",
@@ -110,4 +110,32 @@ values = {
     unfired_pie_dish = "Mine some clay. Then use a container full of water to soften it. In the Barbarian Village you'll be able to form this into pie dishes. Just don't bake them.",
     unfired_pot = "Mine some clay. Then use a container full of water to soften it. In the Barbarian Village you'll be able to form this into pots. Just don't bake them.",
     leather_boots = "If you get the tanner in Al Kharid to turn some cowhides into leather, you'll be able to make the boots yourself. Buy needles & thread from the crafting shop in Al Kharid if you need any.",
+}
+
+[wise_old_man_npcs]
+keyType = "npc"
+valueType = "string"
+values = {
+    father_aereck = "Father Aereck in Lumbridge is sure to reward you if you take a note to him for me.",
+    high_priest_entrana = "Could you please take a message to the High Priest of Entrana for me?",
+    reldo = "Reldo, the librarian in Varrock Palace, wrote to me recently about something. I need you to take my reply to him.",
+    thurgo = "Thurgo the dwarf is from an ancient tribe. I've found some of its history that he was asking about, and I need you to deliver the information to him.",
+    father_lawrence = "I hear my old friend Fr Lawrence in Varrock is drinking a bit too much. I'd like to get a letter to him about it.",
+    abbot_langley = "I've written a letter to my old friend Abbot Langley that I'd like you to deliver.",
+    oracle = "I'd like to get a note up to the Oracle on Ice Mountain.",
+    thing_under_the_bed = "Well, this is rather embarrassing, but I think there's some kind of monster in my house. Could you go upstairs and get rid of it, please?"
+}
+
+[wise_old_man_npc_hints]
+keyType = "npc"
+valueType = "string"
+values = {
+    father_aereck = "Just head eastwards to Lumbridge. He'll be in the church.",
+    high_priest_entrana = "There are some monks in Port Sarim, west of here, who will take you there so long as you're not carrying any weapons or armour.",
+    reldo = "The library is on the ground floor of the Palace in Varrock.",
+    thurgo = "Go west to Port Sarim, then southwards to some cliffs. He lives on the beach there.",
+    father_lawrence = "Varrock is a fairly long way north-east of here. The church is at the eastern side of the town, near the Palace.",
+    abbot_langley = "Walk northwards, past Draynor Manor. When you reach the Barbarian Village, go north-west until you find his Monastery. He'll be downstairs.",
+    oracle = "Walk northwards, past Draynor Manor. When you reach the Barbarian Village, go north-west until you see the Ice Mountain. It'll be at the top.",
+    thing_under_the_bed = "I think it's somewhere upstairs. It kept me awake all last night.",
 }
