@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 
 class TaskList(
     val variables: VariableDefinitions,
-    val enumDefinitions: EnumDefinitions,
 ) : Script {
 
     init {
@@ -79,7 +78,7 @@ class TaskList(
         interfaceOption("Hint", "task_list:hint_*") {
             val selected = get("task_slot_selected", 0)
             val index = indexOfSlot(this, selected) ?: return@interfaceOption
-            val tile: Int = enumDefinitions.getStructOrNull("task_structs", index, it.component.replace("hint_", "task_hint_tile_")) ?: return@interfaceOption
+            val tile: Int = EnumDefinitions.getStructOrNull("task_structs", index, it.component.replace("hint_", "task_hint_tile_")) ?: return@interfaceOption
             // TODO I expect the functionality is actually minimap highlights not world map
             set("world_map_marker_1", tile)
             set("world_map_marker_text_1", "")

@@ -38,6 +38,7 @@ class GrandExchangeTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextLong(): Long = 0
         })
+        startTime = 1_760_000_000_000L
         setCurrentTime { startTime }
         settings["grandExchange.tax"] = 0.0
         exchange = get()
@@ -216,9 +217,9 @@ class GrandExchangeTest : WorldTest() {
 
     @Test
     fun `Buying over price will give lowest open sell offer`() {
-        val seller1 = createPlayer(Tile(3164, 3487), "seller")
+        val seller1 = createPlayer(Tile(3164, 3487), "seller1")
         seller1.inventory.add("abyssal_whip")
-        val seller2 = createPlayer(Tile(3164, 3487), "seller")
+        val seller2 = createPlayer(Tile(3164, 3487), "seller2")
         seller2.inventory.add("abyssal_whip")
         val buyer = createPlayer(Tile(3164, 3487), "buyer")
         buyer.inventory.add("coins", 1_000_000)

@@ -2,18 +2,40 @@ package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
+import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.StructDefinition
+import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.data.definition.ItemDefinitions.loaded
 import world.gregs.voidps.engine.timedLoad
 
 /**
  * Also known as AttributeMaps in cs2 or rows
  */
-class StructDefinitions(
-    override var definitions: Array<StructDefinition> = emptyArray(),
-) : DefinitionsDecoder<StructDefinition> {
+object StructDefinitions : DefinitionsDecoder<StructDefinition> {
 
-    override lateinit var ids: Map<String, Int>
+    override var definitions: Array<StructDefinition> = emptyArray()
+
+    override var ids: Map<String, Int> = emptyMap()
+
+    fun init(definitions: Array<StructDefinition>): StructDefinitions {
+        this.definitions = definitions
+        loaded = true
+        return this
+    }
+
+    @TestOnly
+    fun set(definitions: Array<StructDefinition>, ids: Map<String, Int>) {
+        this.definitions = definitions
+        this.ids = ids
+        loaded = true
+    }
+
+    fun clear() {
+        this.definitions = emptyArray()
+        this.ids = emptyMap()
+        loaded = false
+    }
 
     override fun empty() = StructDefinition.EMPTY
 

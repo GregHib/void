@@ -16,7 +16,7 @@ import world.gregs.voidps.network.login.protocol.encode.playMIDI
 import world.gregs.voidps.network.login.protocol.encode.playSoundEffect
 import kotlin.collections.iterator
 
-class SoundCommands(val enums: EnumDefinitions) : Script {
+class SoundCommands : Script {
 
     init {
         adminCommand("sound", stringArg("sound-id"), desc = "Play a sound by int or string id") { args ->
@@ -47,7 +47,7 @@ class SoundCommands(val enums: EnumDefinitions) : Script {
         }
 
         adminCommand("song", stringArg("song-id"), desc = "Play a song by int id") { args ->
-            val names = enums.get("music_track_names").map!!
+            val names = EnumDefinitions.get("music_track_names").map!!
             var id = args[0].toIntOrNull()
             if (id != null) {
                 playTrack(args[0].toInt())

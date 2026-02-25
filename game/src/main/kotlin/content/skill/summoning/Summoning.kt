@@ -97,7 +97,7 @@ fun Player.dismissFamiliar() {
 fun Player.updateFamiliarInterface() {
     val follower = follower ?: return
     interfaces.open("familiar_details")
-    set("follower_details_name", get<EnumDefinitions>().get("summoning_familiar_ids").getKey(follower.def.id))
+    set("follower_details_name", EnumDefinitions.get("summoning_familiar_ids").getKey(follower.def.id))
     set("follower_details_chathead", follower.def.id)
     set("follower_details_chathead_animation", follower.id)
 }
@@ -149,7 +149,7 @@ fun Player.callFollower() {
  */
 fun Player.renewFamiliar() {
     val follower = follower ?: return
-    val pouchId = get<EnumDefinitions>().get("summoning_familiar_ids").getKey(follower.def.id)
+    val pouchId = EnumDefinitions.get("summoning_familiar_ids").getKey(follower.def.id)
     val pouchItem = Item(ItemDefinitions.get(pouchId).stringId)
     val remaining = get("familiar_details_minutes_remaining", 0) * 60 + get("familiar_details_seconds_remaining", 0)
     if (remaining >= 170) {
@@ -169,12 +169,12 @@ fun Player.renewFamiliar() {
     message("You use your remaining pouch to renew your familiar.")
 }
 
-class Summoning(val enums: EnumDefinitions) : Script {
+class Summoning : Script {
 
     init {
         itemOption("Summon", "*_pouch") { option ->
-            val familiarLevel = enums.get("summoning_pouch_levels").getInt(option.item.def.id)
-            val familiarId = enums.get("summoning_familiar_ids").getInt(option.item.def.id)
+            val familiarLevel = EnumDefinitions.get("summoning_pouch_levels").getInt(option.item.def.id)
+            val familiarId = EnumDefinitions.get("summoning_familiar_ids").getInt(option.item.def.id)
             val summoningXp = option.item.def["summon_experience", 0.0]
             val familiar = NPCDefinitions.get(familiarId)
             if (!has(Skill.Summoning, familiarLevel)) {

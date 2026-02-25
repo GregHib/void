@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
-import org.koin.test.get
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -21,15 +20,13 @@ import kotlin.test.assertEquals
 
 class SummoningCraftingTest : WorldTest() {
 
-    private lateinit var enums: EnumDefinitions
     private lateinit var nonDungeoneeringPouchMap: Map<Int, Any>
     private lateinit var nonDungeoneeringScollMap: Map<Int, Any>
 
     @BeforeEach
     fun setup() {
-        enums = get()
-        nonDungeoneeringPouchMap = enums.get("summoning_pouch_ids_1").map!!.filter { (index, _) -> index < 78 }
-        nonDungeoneeringScollMap = enums.get("summoning_scroll_ids_1").map!!.filter { (index, _) -> index < 78 }
+        nonDungeoneeringPouchMap = EnumDefinitions.get("summoning_pouch_ids_1").map!!.filter { (index, _) -> index < 78 }
+        nonDungeoneeringScollMap = EnumDefinitions.get("summoning_scroll_ids_1").map!!.filter { (index, _) -> index < 78 }
     }
 
     @TestFactory
@@ -90,7 +87,7 @@ class SummoningCraftingTest : WorldTest() {
     @TestFactory
     fun `Transform Non-Dungeoneering Scrolls`() = nonDungeoneeringScollMap.map { (index, scrollId) ->
         val scroll = Item(ItemDefinitions.get(scrollId as Int).stringId)
-        val pouchId = enums.get("summoning_scroll_ids_2").getKey(scrollId)
+        val pouchId = EnumDefinitions.get("summoning_scroll_ids_2").getKey(scrollId)
         val pouch = Item(ItemDefinitions.get(pouchId).stringId)
 
         dynamicTest("Transform ${scroll.id}") {

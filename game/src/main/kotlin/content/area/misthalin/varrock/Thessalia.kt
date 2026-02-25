@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 
-class Thessalia(val enums: EnumDefinitions) : Script {
+class Thessalia : Script {
 
     init {
         npcOperate("Talk-to", "thessalia") {
@@ -55,7 +55,7 @@ class Thessalia(val enums: EnumDefinitions) : Script {
         interfaceOpened("thessalias_makeovers") { id ->
             interfaces.sendText(id, "confirm_text", "Change")
             interfaceOptions.unlockAll(id, "styles", 0 until 100)
-            interfaceOptions.unlockAll(id, "colours", 0 until enums.get("colour_top").length * 2)
+            interfaceOptions.unlockAll(id, "colours", 0 until EnumDefinitions.get("colour_top").length * 2)
             set("makeover_top", body.getLook(BodyPart.Chest))
             set("makeover_arms", body.getLook(BodyPart.Arms))
             set("makeover_wrists", body.getLook(BodyPart.Hands))
@@ -78,7 +78,7 @@ class Thessalia(val enums: EnumDefinitions) : Script {
             if ((part == "arms" || part == "wrists") && previous) {
                 return@interfaceOption
             }
-            val value = enums.get("look_${part}_$sex").getInt(itemSlot / 2)
+            val value = EnumDefinitions.get("look_${part}_$sex").getInt(itemSlot / 2)
             if (part == "top") {
                 val current = fullBodyChest(value, male)
                 if (previous && !current) {
@@ -100,7 +100,7 @@ class Thessalia(val enums: EnumDefinitions) : Script {
                 "legs" -> "makeover_colour_legs"
                 else -> return@interfaceOption
             }
-            set(colour, enums.get("colour_$part").getInt(itemSlot / 2))
+            set(colour, EnumDefinitions.get("colour_$part").getInt(itemSlot / 2))
         }
 
         interfaceOption("Confirm", "thessalias_makeovers:confirm") {

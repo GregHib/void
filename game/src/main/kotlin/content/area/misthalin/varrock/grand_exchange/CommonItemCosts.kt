@@ -9,14 +9,13 @@ import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 
 class CommonItemCosts(
-    val enums: EnumDefinitions,
     val exchange: GrandExchange,
 ) : Script {
 
     init {
         interfaceOpened("common_item_costs") { id ->
             val type = get("common_item_costs", "ores")
-            val enum = enums.get("exchange_items_$type")
+            val enum = EnumDefinitions.get("exchange_items_$type")
             var index = 1
             for (i in 0 until enum.length) {
                 val item = enum.getInt(i)

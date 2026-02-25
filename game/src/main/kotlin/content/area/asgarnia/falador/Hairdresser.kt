@@ -16,9 +16,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
-class Hairdresser(
-    val enums: EnumDefinitions,
-) : Script {
+class Hairdresser : Script {
 
     init {
         npcOperate("Talk-to", "hairdresser") {
@@ -40,8 +38,8 @@ class Hairdresser(
 
         interfaceOpened("hairdressers_salon") { id ->
             interfaces.sendText(id, "confirm_text", "Change")
-            val styles = enums.get("style_hair_$sex")
-            val colours = enums.get("colour_hair")
+            val styles = EnumDefinitions.get("style_hair_$sex")
+            val colours = EnumDefinitions.get("colour_hair")
             interfaceOptions.unlockAll(id, "styles", 0 until styles.length * 2)
             interfaceOptions.unlockAll(id, "colours", 0 until colours.length * 2)
             set("makeover_hair", body.getLook(BodyPart.Hair))
@@ -58,15 +56,15 @@ class Hairdresser(
             val type = if (beard) "beard" else "hair"
             val key = "look_${type}_$sex"
             val value = if (beard) {
-                enums.get(key).getInt(itemSlot / 2)
+                EnumDefinitions.get(key).getInt(itemSlot / 2)
             } else {
-                enums.getStruct(key, itemSlot / 2, "body_look_id")
+                EnumDefinitions.getStruct(key, itemSlot / 2, "body_look_id")
             }
             set("makeover_$type", value)
         }
 
         interfaceOption(id = "hairdressers_salon:colours") { (_, itemSlot) ->
-            set("makeover_colour_hair", enums.get("colour_hair").getInt(itemSlot / 2))
+            set("makeover_colour_hair", EnumDefinitions.get("colour_hair").getInt(itemSlot / 2))
         }
 
         interfaceClosed("hairdressers_salon") {

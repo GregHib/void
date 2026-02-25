@@ -18,7 +18,7 @@ object ItemsKeptOnDeath {
         .filter { it.isNotEmpty() }
         .sortedByDescending { it.def.cost }
 
-    fun kept(player: Player, items: List<Item>, enums: EnumDefinitions): List<Item> {
+    fun kept(player: Player, items: List<Item>): List<Item> {
         var save = if (player.skulled) 0 else 3
         if (player.praying("protect_item")) {
             save++
@@ -28,7 +28,7 @@ object ItemsKeptOnDeath {
         }
         val queue = LinkedList(items)
         val kept = mutableListOf<Item>()
-        val alwaysLost = enums.get("items_lost_on_death").map!!
+        val alwaysLost = EnumDefinitions.get("items_lost_on_death").map!!
         var count = 0
         while (count < save) {
             val item = queue.peek() ?: break
