@@ -15,6 +15,7 @@ slayer_xp = 210.0
 slayer_level = 72
 xp_bonus = 0.5
 combat_def = "skeletal_wyvern"
+drop_table = "skeletal_wyvern"
 examine = "A very dangerous pile of animated wyvern bones."
 
 [skeletal_wyvern_horns]

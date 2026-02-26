@@ -14,6 +14,6 @@ spawns = [
   { id = "coins", x = 3088, y = 9899, delay = 100 },
   { id = "bronze_arrow", amount = 3, x = 3130, y = 9903, delay = 100 },
   { id = "bronze_arrow", x = 3135, y = 9916, delay = 100 },
-  { id = "brass_key", x = 3131, y = 9862, delay = 100 },
+  { id = "brass_key", x = 3131, y = 9862, level = 0, delay = 100 },
   { id = "brass_necklace", x = 3122, y = 9881, delay = 100 },
 ]

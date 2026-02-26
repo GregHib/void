@@ -1,0 +1,23 @@
+[skeleton_armed_defend]
+id = 774
+
+[skeleton_armed_attack]
+id = 775
+
+[skeleton_attack_unarmed]
+id = 776
+
+[skeleton_death]
+id = 777
+
+[skeleton_defend]
+id = 779
+
+[skeleton_hatcet_attack]
+id = 3312
+
+[skeleton_warhammer_attack]
+id = 3313
+
+[skeleton_mace_attack]
+id = 3314

@@ -17,13 +17,15 @@ hitpoints = 50
 attack_bonus = -10
 wander_range = 10
 combat_def = "giant_spider"
+drop_table = "giant_spider"
 hunt_mode = "cowardly"
 hunt_range = 1
 slayer_xp = 5.0
 respawn_delay = 45
 categories = ["giant_spiders", "spiders"]
 height = 10
-examine = "I think this spider has been genetically modified."
+##From wiki: 12 October 2010 The examine text of giant spiders outside of the Stronghold of Security have has their examines changed to say "magically modified" instead of "genetically modified".
+examine = "I think this spider has been magically modified."
 
 [giant_spider_mid]
 id = 60
@@ -34,12 +36,13 @@ def = 21
 wander_range = 6
 respawn_delay = 30
 combat_def = "giant_spider_mid"
+drop_table = "giant_spider"
 hunt_mode = "cowardly"
 hunt_range = 1
 slayer_xp = 33.0
 height = 10
 categories = ["giant_spiders", "spiders"]
-examine = "I think this spider has been genetically modified."
+examine = "I think this spider has been magically modified."
 
 [giant_spider_hard]
 id = 4400
@@ -70,7 +73,7 @@ respawn_delay = 30
 slayer_xp = 35.0
 categories = ["giant_spiders", "spiders"]
 height = 10
-examine = "I think this spider has been genetically modified.."
+examine = "I think this spider has been magically modified."
 
 [poison_spider]
 id = 134
@@ -84,7 +87,7 @@ respawn_delay = 30
 slayer_xp = 35.0
 categories = ["spiders"]
 height = 10
-examine = "I think this spider has been genetically modified.."
+examine = "I think this spider has been magically modified."
 
 [spider_underground_pass]
 id = 1004
@@ -104,7 +107,7 @@ respawn_delay = 27
 slayer_xp = 22.0
 height = 10
 categories = ["spiders"]
-examine = "I think this spider has been genetically modified."
+examine = "Incey wincey... with a nasty bite."
 
 [spider_haunted_woods]
 id = 1221

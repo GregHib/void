@@ -7,6 +7,7 @@ drops = [
 ]
 
 [bronze_dragon_primary]
+type = "all"
 drops = [
   { id = "dragon_bones" },
   { id = "bronze_bar", amount = 5 },
@@ -49,6 +50,7 @@ drops = [
 ]
 
 [iron_dragon_primary]
+type = "all"
 drops = [
   { id = "dragon_bones" },
   { id = "iron_bar", amount = 5 },
@@ -97,6 +99,7 @@ drops = [
 ]
 
 [black_dragon_primary]
+type = "all"
 drops = [
   { id = "dragon_bones" },
   { id = "black_dragonhide" },
@@ -142,6 +145,7 @@ drops = [
 ]
 
 [blue_dragon_primary]
+type = "all"
 drops = [
   { id = "blue_dragonhide" },
   { id = "dragon_bones" },
@@ -182,6 +186,7 @@ drops = [
 ]
 
 [green_dragon_primary]
+type = "all"
 drops = [
   { id = "dragon_bones" },
   { id = "green_dragonhide" },
@@ -221,6 +226,7 @@ drops = [
 ]
 
 [steel_dragon_primary]
+type = "all"
 drops = [
   { id = "dragon_bones" },
   { id = "steel_bar", amount = 5 },
@@ -268,6 +274,7 @@ drops = [
 ]
 
 [red_dragon_primary]
+type = "all"
 drops = [
   { id = "dragon_bones" },
   { id = "red_dragonhide" },

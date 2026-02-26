@@ -1,0 +1,11 @@
+[guard_edgeville]
+attack_speed = 4
+defend_anim = "edgeville_guard_defend"
+defend_sound = "man_defend"
+death_anim = "edgeville_guard_death"
+death_sound = "man_death"
+
+[guard_edgeville.melee]
+range = 1
+anim = "edgeville_guard_attack"
+target_hit = { offense = "slash", max = 34 }
