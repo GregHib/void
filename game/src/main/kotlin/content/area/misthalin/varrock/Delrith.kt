@@ -17,9 +17,11 @@ import content.quest.startCutscene
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
+import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.shakeCamera
 import world.gregs.voidps.engine.client.turnCamera
+import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.Areas
@@ -77,6 +79,12 @@ class Delrith : Script {
         }
 
         playerDespawn {
+            if (get("logged_out", false)) {
+                if (contains("demon_slayer_cutscene")) {
+                    tele(defaultTile)
+                }
+            }
+
             val cutscene: Cutscene = remove("demon_slayer_cutscene") ?: return@playerDespawn
             cutscene.destroy()
         }
@@ -109,10 +117,13 @@ class Delrith : Script {
                     val expected = DemonSlayerSpell.getWord(player, index + 1)
                     if (selected != expected) {
                         correct = false
-                        target.anim("delrith_continue")
-                        delay(2)
+                        player.closeInterfaces()
+                        val delrith = NPCs.add("delrith", target.tile, Direction.SOUTH)
                         NPCs.remove(target)
+                        delrith.anim("delrith_continue")
+                        delrith.interactPlayer(player, "Attack")
                         delay(1)
+                        return@weakQueue
                     } else {
                         delay(3)
                     }
