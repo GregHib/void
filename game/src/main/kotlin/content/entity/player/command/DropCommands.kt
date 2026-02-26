@@ -79,7 +79,7 @@ class DropCommands(val tables: DropTables) : Script {
                             val temp = Inventory.debug(capacity = 100)
                             val list = InventoryDelegate(temp)
                             for (i in numbers) {
-                                table.role(list = list, player = player)
+                                table.roll(list = list, player = player)
                             }
                             temp
                         }

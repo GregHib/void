@@ -105,7 +105,7 @@ class Woodcutting(val drops: DropTables) : Script {
         val hasRabbitFoot = player.equipment.contains("strung_rabbit_foot")
         val totalWeight = if (hasRabbitFoot) 95 else 100
 
-        val drop = table.role(totalWeight).firstOrNull() ?: return
+        val drop = table.roll(totalWeight).firstOrNull() ?: return
 
         val source = if (ivy) "ivy" else "tree"
         player.message("<red>A bird's nest falls out of the $source!")
