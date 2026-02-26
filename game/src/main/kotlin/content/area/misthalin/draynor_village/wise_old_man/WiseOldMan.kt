@@ -1,7 +1,8 @@
-package content.area.misthalin.draynor_village
+package content.area.misthalin.draynor_village.wise_old_man
 
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Bored
+import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Laugh
 import content.entity.player.dialogue.Neutral
@@ -15,6 +16,7 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.ui.InterfaceApi.Companion.option
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -23,6 +25,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.random
 
 class WiseOldMan : Script {
@@ -297,13 +300,15 @@ class WiseOldMan : Script {
         }
 
         itemOnNPCOperate("old_mans_message", "wise_old_man_draynor") {
-            //Do you think I need to keep this?
+            player<Quiz>("Do you think I need to keep this?")
             if (contains("wise_old_man_npc")) {
-//                Yes, you're meant to be delivering it for me!
+                npc<Confused>("Yes, you're meant to be delivering it for me!")
             } else {
-                // I asked you to deliver that for me. But I may as well take it back now.
+                inventory.remove("old_mans_message")
+                npc<Confused>("I asked you to deliver that for me. But I may as well take it back now.")
             }
         }
+
     }
 
     private suspend fun Player.anythingElse() {
@@ -322,7 +327,8 @@ class WiseOldMan : Script {
             if (npc != "thing_under_the_bed" && !ownsItem("old_mans_message")) {
                 npc<Neutral>("You seem to have mislaid my letter, so here's another copy.")
                 if (!inventory.add("old_mans_message")) {
-                    // TODO
+                    npc<Happy>("Please make room in your inventory to carry the letter.")
+                    return
                 }
             }
             hintNpc(npc)
@@ -343,12 +349,13 @@ class WiseOldMan : Script {
                 "oracle", "thing_under_the_bed"
             ).random(random)
             val intro = EnumDefinitions.string("wise_old_man_npcs", npc)
-            npc<Neutral>(intro)
+            npc<Happy>(intro)
             set("wise_old_man_npc", npc)
             if (npc != "thing_under_the_bed") {
-                npc<Neutral>("Here's the letter")
+                npc<Happy>("Here's the letter")
                 if (!inventory.add("old_mans_message")) {
-                    // TODO
+                    npc<Happy>("Please make room in your inventory to carry the letter.")
+                    return
                 }
             }
             hintNpc(npc)
