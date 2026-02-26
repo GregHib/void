@@ -21,6 +21,7 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
     override var definitions: Array<ItemDefinition> = emptyArray()
 
     var loaded = false
+        private set
 
     val size: Int
         get() = definitions.size

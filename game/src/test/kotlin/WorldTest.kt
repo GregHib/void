@@ -358,6 +358,10 @@ abstract class WorldTest : KoinTest {
         }
         private val enumIds: Map<String, Int> by lazy {
             itemIds
+            interfaceIds
+            inventoryIds
+            npcIds
+            structIds
             EnumDefinitions.init(EnumDecoder().load(cache)).load(configFiles.list(Settings["definitions.enums"]))
             EnumDefinitions.ids
         }

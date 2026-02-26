@@ -104,6 +104,10 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
     fun load(list: List<String>): EnumDefinitions {
         timedLoad("enum extra") {
             require(ItemDefinitions.loaded) { "Item definitions must be loaded before enum definitions" }
+            require(InterfaceDefinitions.loaded) { "Interface definitions must be loaded before enum definitions" }
+            require(InventoryDefinitions.loaded) { "Inventory definitions must be loaded before enum definitions" }
+            require(NPCDefinitions.loaded) { "NPC definitions must be loaded before enum definitions" }
+            require(StructDefinitions.loaded) { "Struct definitions must be loaded before enum definitions" }
             val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
             for (path in list) {
                 Config.fileReader(path, 250) {
@@ -138,6 +142,10 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
                                     val key = key()
                                     val keyInt = when (keyType) {
                                         EnumTypes.ITEM, EnumTypes.ITEM_2 -> ItemDefinitions.getOrNull(key)?.id ?: error("Unknown item '$key' ${exception()}")
+                                        EnumTypes.COMPONENT -> InterfaceDefinitions.getOrNull(key)?.id ?: error("Unknown interface '$key' ${exception()}")
+                                        EnumTypes.INV -> InventoryDefinitions.getOrNull(key)?.id ?: error("Unknown inventory '$key' ${exception()}")
+                                        EnumTypes.NPC -> NPCDefinitions.getOrNull(key)?.id ?: error("Unknown npc '$key' ${exception()}")
+                                        EnumTypes.STRUCT -> StructDefinitions.getOrNull(key)?.id ?: error("Unknown struct '$key' ${exception()}")
                                         else -> key.toInt()
                                     }
                                     map[keyInt] = value()

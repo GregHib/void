@@ -20,8 +20,12 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
 
     override lateinit var definitions: Array<NPCDefinition>
 
+    var loaded = false
+        private set
+
     fun init(definitions: Array<NPCDefinition>): NPCDefinitions {
         this.definitions = definitions
+        loaded = true
         return this
     }
 
@@ -29,17 +33,19 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
     fun set(definitions: Array<NPCDefinition>, map: Map<String, Int>) {
         this.definitions = definitions
         this.ids = map
+        loaded = true
     }
 
     fun clear() {
         definitions = emptyArray()
         ids = emptyMap()
+        loaded = false
     }
 
     fun load(
         paths: List<String>,
         dropTables: DropTables? = null,
-    ) {
+    ): NPCDefinitions {
         timedLoad("npc extra") {
             val ids = Object2IntOpenHashMap<String>()
             val refs = Object2IntOpenHashMap<String>()
@@ -97,5 +103,6 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
             this.ids = ids
             ids.size
         }
+        return this
     }
 }

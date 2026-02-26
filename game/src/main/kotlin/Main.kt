@@ -126,6 +126,10 @@ object Main {
             single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().load(cache)).load(files.list(Settings["definitions.animations"])) }
             single(createdAtStart = true) {
                 get<ItemDefinitions>()
+                get<InterfaceDefinitions>()
+                get<InventoryDefinitions>()
+                get<NPCDefinitions>()
+                get<StructDefinitions>()
                 EnumDefinitions.init(EnumDecoder().load(cache)).load(files.list(Settings["definitions.enums"]))
             }
             single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(cache)).load(files.list(Settings["definitions.graphics"])) }

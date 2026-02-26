@@ -18,8 +18,12 @@ object InterfaceDefinitions : DefinitionsDecoder<InterfaceDefinition> {
     override var ids: Map<String, Int> = emptyMap()
     var componentIds: Map<String, Int> = emptyMap()
 
+    var loaded = false
+        private set
+
     fun init(definitions: Array<InterfaceDefinition>): InterfaceDefinitions {
         this.definitions = definitions
+        loaded = true
         return this
     }
 
@@ -28,12 +32,14 @@ object InterfaceDefinitions : DefinitionsDecoder<InterfaceDefinition> {
         this.definitions = definitions
         this.ids = ids
         this.componentIds = components
+        loaded = true
     }
 
     fun clear() {
         this.definitions = emptyArray()
         this.ids = emptyMap()
         this.componentIds = emptyMap()
+        loaded = false
     }
 
     fun getComponentId(id: String, component: String) = componentIds["$id:$component"]
