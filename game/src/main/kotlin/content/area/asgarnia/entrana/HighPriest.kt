@@ -20,7 +20,6 @@ class HighPriest : Script {
             npc<Happy>("Enjoy your stay here. May it be spiritually uplifting!")
         }
 
-        // TODO message on npc?
         itemOnNPCOperate(npc = "high_priest_entrana") {
             npc<Neutral>("No thank you, I am not accepting donations for the church at this time.")
         }
