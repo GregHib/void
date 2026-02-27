@@ -1,7 +1,22 @@
 package content.area.misthalin.draynor_village.wise_old_man
 
+import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.statement
+import content.entity.player.inv.item.addOrDrop
 import content.quest.wiseOldManScroll
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.item.drop.DropTables
+import world.gregs.voidps.engine.entity.item.drop.ItemDrop
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.type.random
 
 class OldMansMessage : Script {
     init {
@@ -25,7 +40,7 @@ class OldMansMessage : Script {
                         "*D",
                         "",
                         "",
-                    )
+                    ),
                 )
                 "abbot_langley" -> wiseOldManScroll(
                     listOf(
@@ -45,7 +60,7 @@ class OldMansMessage : Script {
                         "Until our next meeting, then,",
                         "*D",
                         "",
-                    )
+                    ),
                 )
                 "high_priest_entrana" -> wiseOldManScroll(
                     listOf(
@@ -65,7 +80,7 @@ class OldMansMessage : Script {
                         "",
                         "Fare thee well, my young friend, - *D",
                         "",
-                    )
+                    ),
                 )
                 "father_lawrence" -> wiseOldManScroll(
                     listOf(
@@ -85,7 +100,7 @@ class OldMansMessage : Script {
                         "I trust you will heed this message.",
                         "*D",
                         "",
-                    )
+                    ),
                 )
                 "thurgo" -> wiseOldManScroll(
                     listOf(
@@ -105,9 +120,72 @@ class OldMansMessage : Script {
                         "Regards,",
                         "*D",
                         "",
-                    )
+                    ),
                 )
             }
+        }
+    }
+
+    companion object {
+        suspend fun reward(player: Player): String? {
+            if (player.inventory.isFull()) {
+                player.npc<Neutral>("I'd give you a reward, but you don't seem to have any space for it. Come back when you do.")
+                return null
+            }
+            player.inventory.remove("old_mans_message")
+            player.clear("wise_old_man_npc")
+            val drops: DropTables = get()
+            val easy = false
+            val chance = random.nextInt(16)
+            if (chance < 1) { // 6.25%
+                val drops = drops.getValue("wise_old_man_gems").roll()
+                give(player, drops)
+                return drops.first().id
+            } else if (chance < 3) { // 12.5%
+                if (!repeat(player, "wise_old_man_runes", if (easy) 10 else 25)) {
+                    player.statement("Unfortunately you don't have space for all the runes.")
+                }
+                return "runes"
+            } else if (chance < 5) { // 12.5%
+                if (!repeat(player, "wise_old_man_herbs", if (easy) 3 else 10)) {
+                    player.statement("Unfortunately you don't have space for all the herbs.")
+                }
+                return "herbs"
+            } else if (chance < 7) { // 12.5%
+                if (!repeat(player, "wise_old_man_herbs", if (easy) 3 else 10)) {
+                    player.statement("Unfortunately you don't have space for all the seeds.")
+                }
+                return "seeds"
+            } else if (player.has(Skill.Prayer, 3) && chance < 14) { // 43.75%
+                player.exp(Skill.Prayer, 10.0)
+                return "prayer"
+            } else { // 12.5% or 56.25% depending on prayer level
+                val range = if (easy) 185..215 else 990..1020
+                player.inventory.add("coins", range.random(random))
+                return "coins"
+            }
+        }
+
+        private fun repeat(player: Player, table: String, max: Int): Boolean {
+            val tables: DropTables = get()
+            val table = tables.getValue(table)
+            val drops = mutableListOf<ItemDrop>()
+            val count = random.nextInt(1, max + 1)
+            for (i in 0 until count) {
+                table.roll(list = drops)
+            }
+            return give(player, drops)
+        }
+
+        private fun give(player: Player, drops: List<ItemDrop>): Boolean {
+            var dropped = false
+            for (drop in drops) {
+                val item = drop.toItem()
+                if (!player.addOrDrop(item.id, item.amount)) {
+                    dropped = true
+                }
+            }
+            return dropped
         }
     }
 }

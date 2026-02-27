@@ -114,7 +114,7 @@ option = "Climb-down"
 tile = { x = 3069, y = 3517, level = 1 }
 delta = { level = -1 }
 
-[2641]
+[monastery_ladder_up]
 option = "Climb-up"
 tile = { x = 3057, y = 3483 }
 delta = { level = 1 }
@@ -124,7 +124,7 @@ option = "Climb-down"
 tile = { x = 3057, y = 3483, level = 1 }
 delta = { level = -1 }
 
-[2641]
+[monastery_ladder_up]
 option = "Climb-up"
 tile = { x = 3046, y = 3483 }
 delta = { level = 1 }

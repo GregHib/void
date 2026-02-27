@@ -1,24 +1,19 @@
 package content.area.misthalin.lumbridge.church
 
+import content.area.misthalin.draynor_village.wise_old_man.OldMansMessage
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import content.entity.player.inv.item.addOrDrop
 import content.quest.quest
 import content.quest.refreshQuestJournal
+import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.drop.DropTables
-import world.gregs.voidps.engine.entity.item.drop.ItemDrop
-import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
-import world.gregs.voidps.type.random
 
 class FatherAereck(val drops: DropTables) : Script {
 
@@ -62,47 +57,31 @@ class FatherAereck(val drops: DropTables) : Script {
     }
 
     private suspend fun Player.wiseOldManLetter() {
-        if (get("wise_old_man_npc", "") != "father_aereck") {
+        if (get("wise_old_man_npc", "") != "father_aereck" || !carriesItem("old_mans_message")) {
             return
         }
         player<Happy>("The Wise Old Man of Draynor Village said you might reward me if I brought you this.")
         npc<Neutral>("Oh, did he?")
-        if (inventory.isFull()) {
-            npc<Neutral>("I'd give you a reward, but you don't seem to have any space for it. Come back when you do.")
-            return
-        }
-        val easy = false
-        val chance = random.nextInt(16)
-        if (chance < 1) { // 6.25%
-            npc<Quiz>("I suppose gems are always acceptable rewards!")
-
-        } else if (chance < 3) { // 12.5%
-            npc<Quiz>("Well, maybe you'll have a use for these?")
-            val range = if (easy) 1..10 else 1..25
-            val count = range.random(random)
-            val table = drops.getValue("wise_old_man_runes")
-            val drops = mutableListOf<ItemDrop>()
-            for (i in 0 until count) {
-                table.roll(list = drops)
+        val reward = OldMansMessage.reward(this) ?: return
+        when (reward) {
+            "runes" -> {
+                items("nature_rune", "water_rune", "Faether Aereck gives you some runes.")
+                npc<Happy>("Well, maybe you'll have a use for these?")
             }
-            for (drop in drops) {
-                val item = drop.toItem()
-                addOrDrop(item.id, item.amount)
+            "herbs" -> item("grimy_tarromin", 400, "Faether Aereck gives you some herbs.") // TODO proper message
+            "seeds" -> {
+                item("potato_seed", 400, "Faether Aereck gives you some seeds.")
+                npc<Happy>("Well, maybe you'll find a use for these seeds?")
             }
-        } else if (chance < 5) { // 12.5%
-            npc<Quiz>("") // TODO herbs
-            val table = drops.getValue("wise_old_man_gems")
-            table.roll()
-        } else if (chance < 7) { // 12.5%
-            npc<Quiz>("Well, maybe you'll find a use for these seeds?")
-        } else if (has(Skill.Prayer, 3) && chance < 14) { // 43.75%
-            exp(Skill.Prayer, 10.0)
-            clear("wise_old_man_npc")
-            levelUp(Skill.Prayer, "Faether Aereck blesses you.<br>You gain some Prayer xp.")
-            npc<Happy>("Well, it's still nice of you to bring the message here.<br>Here, I shall bless you...")
-        } else { // 12.5% or 56.25% depending on prayer level
-            val range = if (easy) 185..215 else 990..1020
-            inventory.add("coins", range.random(random))
+            "prayer" -> {
+                item(167, "<navy>Father Aereck blesses you.<br>You gain some Prayer xp.")
+                npc<Happy>("Well, it's still nice of you to bring the message here. Here, I shall bless you...")
+            }
+            "coins" -> item("coins_8", 400, "Faether Aereck gives you some coins.")
+            else -> {
+                item(reward, 400, "Father Aereck gives you an ${reward.toSentenceCase()}.")
+                npc<Happy>("I suppose gems are always acceptable rewards!")
+            }
         }
     }
 

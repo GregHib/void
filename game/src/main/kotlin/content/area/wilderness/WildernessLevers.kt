@@ -13,14 +13,13 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.queue.strongQueue
 
 class WildernessLevers(val teleports: ObjectTeleports) : Script {
 
     init {
         objTeleportTakeOff("Pull", "lever_*") { target, option ->
             if (target.def(this).stringId == "lever_ardougne_edgeville" && get("wilderness_lever_warning", true)) {
-                strongQueue("wilderness_lever_warning") {
+                queue("wilderness_lever_warning") {
                     statement("Warning! Pulling the lever will teleport you deep into the Wilderness.")
                     choice("Are you sure you wish to pull it?") {
                         option("Yes I'm brave.") {
