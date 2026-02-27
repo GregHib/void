@@ -60,7 +60,7 @@ class Stalls(val drops: DropTables) : Script {
             }
             val table = drops.get("${target.id}_drop_table")
             if (table != null) {
-                val drops = table.role().map { it.toItem() }
+                val drops = table.roll().map { it.toItem() }
                 inventory.transaction {
                     for (item in drops) {
                         add(item.id, item.amount)

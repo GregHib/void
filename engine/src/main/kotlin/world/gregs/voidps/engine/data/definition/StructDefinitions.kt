@@ -18,6 +18,9 @@ object StructDefinitions : DefinitionsDecoder<StructDefinition> {
 
     override var ids: Map<String, Int> = emptyMap()
 
+    var loaded = false
+        private set
+
     fun init(definitions: Array<StructDefinition>): StructDefinitions {
         this.definitions = definitions
         loaded = true

@@ -39,7 +39,7 @@ class ShardSwapping : Script {
             val itemType = id.substringAfter(":").removeSuffix("_trade_in")
 
             if (item.id.endsWith("_u")) {
-                val actualItemId = EnumDefinitions.get("summoning_${itemType}_ids_1").getInt(enumIndex)
+                val actualItemId = EnumDefinitions.get("summoning_${itemType}_ids_1").int(enumIndex)
                 actualItem = Item(ItemDefinitions.get(actualItemId).stringId)
             }
 
@@ -52,7 +52,7 @@ class ShardSwapping : Script {
             val itemType = id.substringAfter(":").removeSuffix("_trade_in")
 
             if (item.id.endsWith("_u")) {
-                val actualItemId = EnumDefinitions.get("summoning_${itemType}_ids_1").getInt(enumIndex)
+                val actualItemId = EnumDefinitions.get("summoning_${itemType}_ids_1").int(enumIndex)
                 actualItem = Item(ItemDefinitions.get(actualItemId).stringId)
                 sendValueMessage(this, actualItem, itemType)
                 return@interfaceOption

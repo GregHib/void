@@ -44,7 +44,7 @@ class CharacterCreation : Script {
         }
 
         interfaceOption(id = "character_creation:skin_colour") { (_, itemSlot) ->
-            set("makeover_colour_skin", EnumDefinitions.get("character_skin").getInt(itemSlot))
+            set("makeover_colour_skin", EnumDefinitions.get("character_skin").int(itemSlot))
         }
 
         interfaceOption(id = "character_creation:style_*") {
@@ -68,7 +68,7 @@ class CharacterCreation : Script {
             if (part == "beard") {
                 part = "hair"
             }
-            set("makeover_colour_$part", EnumDefinitions.get("character_$part").getInt(itemSlot))
+            set("makeover_colour_$part", EnumDefinitions.get("character_$part").int(itemSlot))
         }
 
         interfaceOption("Choose My Colour", "character_creation:choose_colour") {
@@ -83,7 +83,7 @@ class CharacterCreation : Script {
             val value = if (part == "hair") {
                 EnumDefinitions.getStruct("character_${part}_styles_$sex", itemSlot, "body_look_id")
             } else {
-                EnumDefinitions.get("character_${part}_styles_$sex").getInt(itemSlot)
+                EnumDefinitions.get("character_${part}_styles_$sex").int(itemSlot)
             }
             if (part == "top") {
                 onStyle(value) {
@@ -182,7 +182,7 @@ class CharacterCreation : Script {
         player["character_creation_female"] = female
         val hairStyle = player["character_creation_hair_style", 0]
         val hair: Int = EnumDefinitions.getStruct("character_hair_styles_${if (female) "female" else "male"}", hairStyle, "body_look_id")
-        val beard: Int = if (female) -1 else EnumDefinitions.get("character_beard_styles_male").getInt(hairStyle / 2)
+        val beard: Int = if (female) -1 else EnumDefinitions.get("character_beard_styles_male").int(hairStyle / 2)
         player["makeover_hair"] = hair
         player["makeover_beard"] = beard
         player["character_creation_sub_style"] = 1

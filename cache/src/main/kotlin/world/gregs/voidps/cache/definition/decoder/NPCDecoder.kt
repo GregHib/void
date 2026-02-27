@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.definition.Parameters
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 
 class NPCDecoder(
-    val member: Boolean,
+    val member: Boolean = true,
     private val parameters: Parameters = Parameters.EMPTY,
 ) : DefinitionDecoder<NPCDefinition>(NPCS) {
 

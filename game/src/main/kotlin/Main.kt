@@ -124,7 +124,14 @@ object Main {
             single(createdAtStart = true) { NPCDefinitions.init(NPCDecoder(members, get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.npcs"]), get()) }
             single(createdAtStart = true) { ItemDefinitions.init(ItemDecoder(get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.items"])) }
             single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().load(cache)).load(files.list(Settings["definitions.animations"])) }
-            single(createdAtStart = true) { EnumDefinitions.init(EnumDecoder().load(cache)).load(files.find(Settings["definitions.enums"])) }
+            single(createdAtStart = true) {
+                get<ItemDefinitions>()
+                get<InterfaceDefinitions>()
+                get<InventoryDefinitions>()
+                get<NPCDefinitions>()
+                get<StructDefinitions>()
+                EnumDefinitions.init(EnumDecoder().load(cache)).load(files.list(Settings["definitions.enums"]))
+            }
             single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(cache)).load(files.list(Settings["definitions.graphics"])) }
             single(createdAtStart = true) { InterfaceDefinitions.init(InterfaceDecoder().load(cache)).load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"])) }
             single(createdAtStart = true) {

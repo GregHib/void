@@ -206,8 +206,8 @@ class TaskSystem(
         player["task_popup"] = index
         val difficulty = definition["task_difficulty", 0]
         val area = definition["task_area", 61]
-        val areaName = EnumDefinitions.get("task_area_names").getString(area)
-        val difficultyName = EnumDefinitions.get("task_difficulties").getString(difficulty)
+        val areaName = EnumDefinitions.get("task_area_names").string(area)
+        val difficultyName = EnumDefinitions.get("task_difficulties").string(difficulty)
         if (areaName.isNotBlank() && difficultyName.isNotBlank()) {
             player.message("You have completed the Task '${definition["task_name", ""]}' in the $difficultyName $areaName set!")
         } else {

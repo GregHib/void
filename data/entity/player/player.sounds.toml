@@ -36,3 +36,6 @@ id = 2393
 
 [shearing]
 id = 761
+
+[unarmed_kick]
+id = 2565

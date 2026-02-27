@@ -24,6 +24,15 @@ suspend fun Player.item(item: String, zoom: Int, text: String, sprite: Int? = nu
     close(ITEM_INTERFACE_ID)
 }
 
+suspend fun Player.item(sprite: Int, text: String) {
+    check(open(ITEM_INTERFACE_ID)) { "Unable to open item dialogue for $this" }
+    interfaces.sendSprite(ITEM_INTERFACE_ID, "sprite", sprite)
+    val lines = if (text.contains("\n")) text.trimIndent().replace("\n", "<br>") else get<FontDefinitions>().get("q8_full").splitLines(text, 380).joinToString("<br>")
+    interfaces.sendText(ITEM_INTERFACE_ID, "line1", lines)
+    ContinueSuspension.get(this)
+    close(ITEM_INTERFACE_ID)
+}
+
 suspend fun Player.items(item1: String, item2: String, text: String) {
     check(open(DOUBLE_ITEM_INTERFACE_ID)) { "Unable to open item dialogue for $this" }
     interfaces.sendItem(DOUBLE_ITEM_INTERFACE_ID, "model1", ItemDefinitions.get(item1).id)
