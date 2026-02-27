@@ -31,7 +31,7 @@ class HighPriest : Script {
         }
         player<Happy>("I've got a message for you from the Wise Old Man in Draynor Village.")
         npc<Happy>("How kind of you to bring me a message to this remote island!")
-        val reward = OldMansMessage.reward(this) ?: return
+        val reward = OldMansMessage.rewardLetter(this) ?: return
         when (reward) {
             "runes" -> items("nature_rune", "water_rune", "The High Priest gives you some runes.") // TODO proper message
             "herbs" -> npc<Happy>("Here, let me give you some herbs.")

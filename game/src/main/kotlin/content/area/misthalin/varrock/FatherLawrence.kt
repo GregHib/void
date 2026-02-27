@@ -32,7 +32,7 @@ class FatherLawrence : Script {
         npc<Drunk>("mssge? wha messsge?")
         npc<Drunk>("oh, msesesge for me.")
         message("Oh dear, he doesn't look like he's going to be able to read the message!")
-        val reward = OldMansMessage.reward(this) ?: return
+        val reward = OldMansMessage.rewardLetter(this) ?: return
         when (reward) {
             "runes" -> {
                 items("nature_rune", "water_rune", "Father Lawrence gives you some runes.")

@@ -152,9 +152,6 @@ attack_bonus = 9
 respawn_delay = 50
 examine = "He guards the Draynor Market stalls from thieves."
 
-[bed_draynor]
-id = 2254
-
 [bank_guard_draynor]
 id = 2574
 examine = "He's guarding the bank."
@@ -167,9 +164,6 @@ examine = "A busy-body who loves a bit of gossip."
 id = 3299
 pickpocket = { level = 38, stun_ticks = 8, stun_hit = 30, xp = 43.0, chance_min = 90, chance_max = 240, table = "master_farmer" }
 examine = "A master at gardening."
-
-[wise_old_man_2]
-id = 3820
 
 [fortunato]
 id = 3671
@@ -225,24 +219,11 @@ examine = "The hat's a dead giveaway."
 [chicken_draynor_2]
 id = 288
 
-[wise_old_man_draynor]
-id = 2253
-
-[wise_old_man_2_3]
-id = 11569
-
 [ava_2]
 id = 5198
 
 [scout_draynor_2]
 id = 5569
-
-[thing_under_the_bed]
-id = 2255
-hitpoints = 250
-def = 5
-style = "melee"
-max_hit_melee = 10
 
 [fishing_spot_small_net_bait_draynor]
 id = 327

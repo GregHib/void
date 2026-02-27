@@ -1,0 +1,11 @@
+[thing_under_the_bed]
+attack_speed = 4
+defend_anim = "bed_defend"
+defend_sound = "bed_defend"
+death_anim = "bed_death"
+death_sound = "bed_death"
+
+[thing_under_the_bed.attack]
+anim = "bed_attack"
+target_sound = "bed_attack"
+target_hit = { offense = "melee", max = 10 }

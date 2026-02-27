@@ -109,6 +109,7 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
             require(NPCDefinitions.loaded) { "NPC definitions must be loaded before enum definitions" }
             require(StructDefinitions.loaded) { "Struct definitions must be loaded before enum definitions" }
             val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
+            val custom = mutableListOf<EnumDefinition>()
             for (path in list) {
                 Config.fileReader(path, 250) {
                     while (nextSection()) {
@@ -154,28 +155,34 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
                             }
                         }
                         if (id == -1 && map.isNotEmpty()) {
-                            val index = definitions.size
-                            definitions = Array(index + 1) {
-                                if (it == index) {
-                                    EnumDefinition(
-                                        it,
-                                        keyType = keyType,
-                                        valueType = valueType,
-                                        defaultString = defaultString,
-                                        defaultInt = defaultInt,
-                                        length = map.size,
-                                        map = map,
-                                        extras = extras,
-                                        stringId = stringId,
-                                    )
-                                } else {
-                                    definitions[it]
-                                }
-                            }
-                            ids[stringId] = index
+                            custom.add(
+                                EnumDefinition(
+                                    keyType = keyType,
+                                    valueType = valueType,
+                                    defaultString = defaultString,
+                                    defaultInt = defaultInt,
+                                    length = map.size,
+                                    map = map,
+                                    extras = extras,
+                                    stringId = stringId,
+                                )
+                            )
                         } else {
                             definitions[id].extras = extras
                         }
+                    }
+                }
+            }
+            if (custom.isNotEmpty()) {
+                val index = definitions.size
+                definitions = Array(index + custom.size) { i ->
+                    if (i >= index) {
+                        custom[i - index].also {
+                            ids[it.stringId] = i
+                            it.id = i
+                        }
+                    } else {
+                        definitions[i]
                     }
                 }
             }

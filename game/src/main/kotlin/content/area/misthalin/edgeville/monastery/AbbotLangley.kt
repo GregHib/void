@@ -64,7 +64,7 @@ class AbbotLangley : Script {
         }
         player<Happy>("I've got a message for you from your friend in Draynor Village.")
         npc<Happy>("Gosh, you are very kind to bring a message to my remote monastery!")
-        val reward = OldMansMessage.reward(this) ?: return
+        val reward = OldMansMessage.rewardLetter(this) ?: return
         when (reward) {
             "runes" -> items("nature_rune", "water_rune", "Abbot Langley gives you some runes.") // TODO proper message
             "herbs" -> {

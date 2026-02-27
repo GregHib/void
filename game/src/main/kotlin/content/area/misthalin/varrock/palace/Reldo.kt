@@ -36,7 +36,7 @@ class Reldo : Script {
 
     private suspend fun Player.wiseOldManLetter() {
         npc<Happy>("Ah, I am always delighted to hear from him. You would not imagine the depths of his wisdom!")
-        val reward = OldMansMessage.reward(this) ?: return
+        val reward = OldMansMessage.rewardLetter(this) ?: return
         when (reward) {
             "runes" -> {
                 items("nature_rune", "water_rune", "Reldo gives you some runes.")

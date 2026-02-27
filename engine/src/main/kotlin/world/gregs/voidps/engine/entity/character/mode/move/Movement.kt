@@ -46,7 +46,7 @@ open class Movement(
         if (character is Player && !tile.noCollision) {
             val route = pathFinder.findPath(character, strategy, shape)
             character.steps.queueRoute(route, tile, tile.noCollision, tile.noRun)
-        } else {
+        } else if (tile != Tile.EMPTY) {
             character.steps.queueStep(tile, tile.noCollision, tile.noRun)
         }
         needsCalculation = false

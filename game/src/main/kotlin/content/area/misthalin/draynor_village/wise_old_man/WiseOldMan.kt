@@ -12,27 +12,34 @@ import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.Shock
 import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.item
+import content.entity.player.dialogue.type.items
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.questCompleted
+import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.InterfaceApi.Companion.option
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.inv.removeToLimit
 import world.gregs.voidps.type.random
 
 class WiseOldMan : Script {
     init {
-        npcOperate("Talk-to", "wise_old_man_draynor") {
+        npcOperate("Talk-to", "wise_old_man_draynor") { (target) ->
             npc<Happy>("Greetings, $name.")
             if (get("wise_old_man_met", false)) {
+                checkTaskNpcs(target)
+                checkTaskItems()
                 choice("What would you like to say?") {
                     anyHelp(this@choice)
                     findJunk()
@@ -41,6 +48,81 @@ class WiseOldMan : Script {
                 return@npcOperate
             }
             intro()
+        }
+    }
+
+    suspend fun Player.checkTaskNpcs(npc: NPC) {
+        if (get("wise_old_man_npc", "") != "thing_under_the_bed") {
+            return
+        }
+        if (get("wise_old_man_remaining", 0) != 0) {
+            return
+        }
+        player<Happy>("I've killed a creature that was under your bed.")
+        npc<Happy>("Ah, thank you very much! Now I shall be able to sleep in peace.")
+        npc<Happy>("Allow me to offer you an appropriate reward for your assistance...")
+        npc.anim("bind")
+        clear("wise_old_man_npc")
+        clear("wise_old_man_remaining")
+        exp(Skill.Constitution, (280..300).random(random).toDouble())
+    }
+
+    suspend fun Player.checkTaskItems() {
+        val item: String = get("wise_old_man_task") ?: return
+        if (!inventory.contains(item)) {
+            if (inventory.contains("${item}_noted")) {
+                player<Happy>("Here, I've got the items you wanted.")
+                npc<Neutral>("Those are banknotes! I can't use those!")
+            }
+            return
+        }
+        val remaining: Int = get("wise_old_man_remaining") ?: return
+        if (inventory.count(item) < remaining) {
+            player<Happy>("I've got some of the stuff you wanted.")
+        } else {
+            player<Happy>("I've got all the stuff you asked me to fetch.")
+        }
+        val removed = inventory.removeToLimit(item, remaining)
+        if (removed != remaining) {
+            set("wise_old_man_remaining", remaining - removed)
+            npc<Happy>("Ahh, you are very kind.")
+            player<Happy>("I'll come back when I've got the rest.")
+            return
+        }
+        clear("wise_old_man_remaining")
+        clear("wise_old_man_task")
+        inc("wise_old_man_tasks_completed")
+        when (val reward = OldMansMessage.reward(this, hard.contains(item))) {
+            "runes" -> {
+                items("nature_rune", "water_rune", "The Wise Old Man gives you some runes.")
+                npc<Happy>("Thank you, thank you! Please take these runes as a sign of my gratitude.")
+            }
+            "herbs" -> {
+                item("grimy_tarromin", 400, "<navy>The Wise Old Man gives you some backnotes that can be exchanged for herbs.")
+                npc<Happy>("Thank you, thank you! Please take these herbs as a sign of my gratitude.")
+            }
+            "seeds" -> {
+                item("potato_seed", 400, "<navy>The Wise Old Man gives you some seeds.")
+                npc<Happy>("Thank you, thank you! Please take these seeds as a sign of my gratitude.")
+            }
+            "prayer" -> {
+                item(167, "<navy>The Wise Old Man blesses you.<br>You gain some Prayer xp.")
+                npc<Happy>("Thank you, thank you! In thanks, I shall bestow on you a simple blessing.")
+            }
+            "coins" -> {
+                item("coins_8", 400, "<navy>The Wise Old Man gives you some coins.")
+                npc<Happy>("Thank you, thank you! Please take this money as a sign of my gratitude.")
+            }
+            else -> item(
+                reward,
+                400,
+                "The Wise Old Man gives you an ${reward.toSentenceCase()}${
+                    when {
+                        reward.endsWith("diamond") || reward.endsWith("ruby") || reward.endsWith("emerald") -> "!"
+                        else -> "."
+                    }
+                }",
+            )
         }
     }
 
@@ -119,9 +201,9 @@ class WiseOldMan : Script {
                     // TODO add junk search
                     npc<Neutral>("There doesn't seem to be any junk in your inventory at all.")
                 }
-                //                            if (follower != null) { // TODO and has BoB
-                //                                option("Could you check my beast of burden for junk, please?")
-                //                            }
+                //  if (follower != null) { // TODO and has BoB
+                //      option("Could you check my beast of burden for junk, please?")
+                //  }
             }
         }
     }
@@ -334,7 +416,7 @@ class WiseOldMan : Script {
         val item: String = get("wise_old_man_task") ?: return
         val remaining: Int = get("wise_old_man_remaining") ?: return
         val intro = EnumDefinitions.string("wise_old_man_items", item)
-        npc<Happy>("$intro. I still need $remaining.")
+        npc<Happy>("$intro I still need $remaining.")
         hintItem(item)
     }
 
@@ -360,6 +442,8 @@ class WiseOldMan : Script {
                     npc<Happy>("Please make room in your inventory to carry the letter.")
                     return
                 }
+            } else {
+                set("wise_old_man_remaining", 1)
             }
             hintNpc(npc)
             return
@@ -393,6 +477,26 @@ class WiseOldMan : Script {
             option<Happy>("Right, I'll see you later.")
         }
     }
+
+    private val hard = setOf(
+        "ball_of_wool",
+        "bowstring",
+        "bread",
+        "bronze_arrowtips",
+        "bronze_knife",
+        "bronze_warhammer",
+        "bronze_wire",
+        "headless_arrow",
+        "swamp_paste",
+        "iron_arrowtips",
+        "iron_knife",
+        "iron_warhammer",
+        "leather_cowl",
+        "pot_of_flour",
+        "unfired_pie_dish",
+        "unfired_pot",
+        "leather_boots",
+    )
 
     private fun Player.tasks(): MutableSet<String> {
         val tasks = mutableSetOf(

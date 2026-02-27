@@ -127,40 +127,46 @@ class OldMansMessage : Script {
     }
 
     companion object {
-        suspend fun reward(player: Player): String? {
+        suspend fun rewardLetter(player: Player): String? {
             if (player.inventory.isFull()) {
                 player.npc<Neutral>("I'd give you a reward, but you don't seem to have any space for it. Come back when you do.")
                 return null
             }
             player.inventory.remove("old_mans_message")
             player.clear("wise_old_man_npc")
+            player.inc("wise_old_man_letters_completed")
+            return reward(player, true)
+        }
+
+        suspend fun reward(player: Player, hard: Boolean): String {
             val drops: DropTables = get()
-            val easy = false
             val chance = random.nextInt(16)
             if (chance < 1) { // 6.25%
                 val drops = drops.getValue("wise_old_man_gems").roll()
                 give(player, drops)
                 return drops.first().id
             } else if (chance < 3) { // 12.5%
-                if (!repeat(player, "wise_old_man_runes", if (easy) 10 else 25)) {
+                if (!repeat(player, "wise_old_man_runes", if (hard) 25 else 10)) {
                     player.statement("Unfortunately you don't have space for all the runes.")
                 }
                 return "runes"
             } else if (chance < 5) { // 12.5%
-                if (!repeat(player, "wise_old_man_herbs", if (easy) 3 else 10)) {
+                if (!repeat(player, "wise_old_man_herbs", if (hard) 10 else 3)) {
                     player.statement("Unfortunately you don't have space for all the herbs.")
                 }
                 return "herbs"
             } else if (chance < 7) { // 12.5%
-                if (!repeat(player, "wise_old_man_herbs", if (easy) 3 else 10)) {
+                if (!repeat(player, "wise_old_man_herbs", if (hard) 10 else 3)) {
                     player.statement("Unfortunately you don't have space for all the seeds.")
                 }
                 return "seeds"
             } else if (player.has(Skill.Prayer, 3) && chance < 14) { // 43.75%
-                player.exp(Skill.Prayer, 10.0)
+                val range = if (hard) 215..430 else 185..370
+                val amount = range.random(random)
+                player.exp(Skill.Prayer, amount.toDouble())
                 return "prayer"
             } else { // 12.5% or 56.25% depending on prayer level
-                val range = if (easy) 185..215 else 990..1020
+                val range = if (hard) 990..1020 else 185..215
                 player.inventory.add("coins", range.random(random))
                 return "coins"
             }
@@ -185,7 +191,7 @@ class OldMansMessage : Script {
                     dropped = true
                 }
             }
-            return dropped
+            return !dropped
         }
     }
 }

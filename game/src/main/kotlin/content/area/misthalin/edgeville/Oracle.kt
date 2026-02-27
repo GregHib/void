@@ -62,7 +62,7 @@ class Oracle : Script {
         }
         player<Happy>("I've got a message for you from the Wise Old Man who lives in Draynor Village.")
         npc<Happy>("Many do my wisdom seek; few do their own wisdom to me send!")
-        val reward = OldMansMessage.reward(this) ?: return
+        val reward = OldMansMessage.rewardLetter(this) ?: return
         when (reward) {
             "runes" -> {
                 items("nature_rune", "water_rune", "The Oracle gives you some runes.") // TODO proper message

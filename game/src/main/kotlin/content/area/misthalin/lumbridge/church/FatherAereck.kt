@@ -62,7 +62,7 @@ class FatherAereck(val drops: DropTables) : Script {
         }
         player<Happy>("The Wise Old Man of Draynor Village said you might reward me if I brought you this.")
         npc<Neutral>("Oh, did he?")
-        val reward = OldMansMessage.reward(this) ?: return
+        val reward = OldMansMessage.rewardLetter(this) ?: return
         when (reward) {
             "runes" -> {
                 items("nature_rune", "water_rune", "Faether Aereck gives you some runes.")

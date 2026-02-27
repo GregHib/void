@@ -14,3 +14,15 @@ persist = true
 [wise_old_man_remaining]
 format = "int"
 persist = true
+
+[wise_old_man_tasks_completed]
+format = "int"
+persist = true
+
+[wise_old_man_letters_completed]
+format = "int"
+persist = true
+
+[wise_old_man_bed_kills]
+format = "int"
+persist = true

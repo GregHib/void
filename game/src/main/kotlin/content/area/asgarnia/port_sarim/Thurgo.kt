@@ -49,7 +49,7 @@ class Thurgo : Script {
         }
         player<Happy>("The Wise Old Man says he's got the information you wanted. Here's his message.")
         npc<Happy>("Ooh, thanks. I've been hoping he'd send me that information soon, although I wouldn't mind if he'd send me a pie instead!")
-        val reward = OldMansMessage.reward(this) ?: return
+        val reward = OldMansMessage.rewardLetter(this) ?: return
         when (reward) {
             "runes" -> {
                 items("nature_rune", "water_rune", "Thurgo gives you some runes.") // TODO check always same runes or not?
