@@ -3,7 +3,6 @@ package content.area.asgarnia.port_sarim
 import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
