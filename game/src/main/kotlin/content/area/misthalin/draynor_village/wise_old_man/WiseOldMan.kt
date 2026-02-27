@@ -436,14 +436,14 @@ class WiseOldMan : Script {
             val intro = EnumDefinitions.string("wise_old_man_npcs", npc)
             npc<Happy>(intro)
             set("wise_old_man_npc", npc)
-            if (npc != "thing_under_the_bed") {
+            if (npc == "thing_under_the_bed") {
+                set("wise_old_man_remaining", 1)
+            } else {
                 npc<Happy>("Here's the letter")
                 if (!inventory.add("old_mans_message")) {
                     npc<Happy>("Please make room in your inventory to carry the letter.")
                     return
                 }
-            } else {
-                set("wise_old_man_remaining", 1)
             }
             hintNpc(npc)
             return
@@ -451,7 +451,6 @@ class WiseOldMan : Script {
         val amount = random.nextInt(3, 16)
         val item = tasks().random(random)
         set("wise_old_man_task", item)
-        set("wise_old_man_amount", amount)
         set("wise_old_man_remaining", amount)
         val intro = EnumDefinitions.string("wise_old_man_items", item)
         npc<Happy>("$intro. Please bring me $amount.")

@@ -47,7 +47,7 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
         EnumTypes.INV -> InventoryDefinitions.get(key).id
         EnumTypes.NPC -> NPCDefinitions.get(key).id
         EnumTypes.STRUCT -> StructDefinitions.get(key).id
-        else -> error("Unsupported enum type: $keyType")
+        else -> error("Unsupported enum type: ${keyType.code}")
     }
 
     fun string(enum: String, key: String): String {
