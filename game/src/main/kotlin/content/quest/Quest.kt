@@ -82,7 +82,7 @@ fun Player.wiseOldManScroll(lines: List<String>) {
         return
     }
     for (i in 0..16) {
-        interfaces.sendText("wise_old_man_scroll", "line${i}", lines.getOrNull(i) ?: "")
+        interfaces.sendText("wise_old_man_scroll", "line$i", lines.getOrNull(i) ?: "")
     }
 }
 

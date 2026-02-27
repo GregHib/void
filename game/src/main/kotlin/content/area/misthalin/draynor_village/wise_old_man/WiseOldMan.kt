@@ -308,7 +308,6 @@ class WiseOldMan : Script {
                 npc<Confused>("I asked you to deliver that for me. But I may as well take it back now.")
             }
         }
-
     }
 
     private suspend fun Player.anythingElse() {
@@ -317,7 +316,6 @@ class WiseOldMan : Script {
             option<Shifty>("Thanks, maybe some other time.")
         }
     }
-
 
     suspend fun Player.checkTask() {
         val npc: String? = get("wise_old_man_npc")
@@ -344,9 +342,14 @@ class WiseOldMan : Script {
         npc<Happy>("I'm sure I can think of a few little jobs. This won't be a quest, mind you, just a little favour...")
         if (random.nextInt(100) < 16) {
             val npc = setOf(
-                "father_aereck", "high_priest_entrana", "reldo",
-                "thurgo", "father_lawrence", "abbot_langley",
-                "oracle", "thing_under_the_bed"
+                "father_aereck",
+                "high_priest_entrana",
+                "reldo",
+                "thurgo",
+                "father_lawrence",
+                "abbot_langley",
+                "oracle",
+                "thing_under_the_bed",
             ).random(random)
             val intro = EnumDefinitions.string("wise_old_man_npcs", npc)
             npc<Happy>(intro)
