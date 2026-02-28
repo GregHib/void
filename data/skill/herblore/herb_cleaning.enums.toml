@@ -1,0 +1,45 @@
+[herb_cleaning_level]
+keyType = "item"
+valueType = "int"
+defaultInt = 1
+values = {
+    grimy_guam = 1,
+    grimy_marrentill = 9,
+    grimy_tarromin = 5,
+    grimy_harralander = 20,
+    grimy_ranarr = 25,
+    grimy_irit = 40,
+    grimy_avantoe = 48,
+    grimy_kwuarm = 54,
+    grimy_cadantine = 65,
+    grimy_dwarf_weed = 70,
+    grimy_torstol = 75,
+    grimy_lantadyme = 67,
+    grimy_toadflax = 30,
+    grimy_snapdragon = 59,
+    grimy_wergali = 41,
+    grimy_spirit_weed = 35,
+}
+
+[herb_cleaning_xp]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    grimy_guam = 25,
+    grimy_marrentill = 50,
+    grimy_tarromin = 38,
+    grimy_harralander = 63,
+    grimy_ranarr = 75,
+    grimy_irit = 88,
+    grimy_avantoe = 100,
+    grimy_kwuarm = 113,
+    grimy_cadantine = 125,
+    grimy_dwarf_weed = 138,
+    grimy_torstol = 150,
+    grimy_lantadyme = 131,
+    grimy_toadflax = 80,
+    grimy_snapdragon = 118,
+    grimy_wergali = 95,
+    grimy_spirit_weed = 78,
+}
