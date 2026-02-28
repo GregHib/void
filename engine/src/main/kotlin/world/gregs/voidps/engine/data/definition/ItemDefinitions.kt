@@ -76,7 +76,6 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
                                 "pottery" -> extras[key] = Pottery(this)
                                 "weaving" -> extras[key] = Weaving(this)
                                 "runecrafting" -> extras[key] = Rune(this)
-                                "talisman_tiara" -> extras[key] = Tiara(this)
                                 "skill_req", "equip_req" -> {
                                     val map = Object2IntOpenHashMap<Skill>(1, Hash.VERY_FAST_LOAD_FACTOR)
                                     while (nextEntry()) {

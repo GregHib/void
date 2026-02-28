@@ -1,0 +1,18 @@
+[tiara_xp]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    air_tiara = 250,
+    mind_tiara = 275,
+    water_tiara = 300,
+    body_tiara = 375,
+    earth_tiara = 325,
+    fire_tiara = 350,
+    cosmic_tiara = 400,
+    nature_tiara = 450,
+    chaos_tiara = 425,
+    law_tiara = 475,
+    death_tiara = 500,
+    blood_tiara = 525,
+}
