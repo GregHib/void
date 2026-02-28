@@ -1,0 +1,10 @@
+[imp_catcher_table_before]
+id = 16169
+examine = "A table bearing a curious device."
+
+[imp_catcher_magic_table]
+id = 16170
+examine = "A table bearing Mizgog's beads."
+
+[imp_catcher_table]
+id = 16171
