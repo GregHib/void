@@ -16,4 +16,12 @@ spawns = [
   { id = "bronze_arrow", x = 3135, y = 9916, delay = 100 },
   { id = "brass_key", x = 3131, y = 9862, level = 0, delay = 100 },
   { id = "brass_necklace", x = 3122, y = 9881, delay = 100 },
+  { id = "red_spiders_eggs", x = 3177, y = 9880, level = 0, delay = 100 },
+  { id = "red_spiders_eggs", x = 3179, y = 9881, level = 0, delay = 100 },
+  { id = "earth_rune", amount = 6, x = 3185, y = 9888, level = 0, delay = 100 },
+  { id = "coins", amount = 7, x = 3173, y = 9881, level = 0, delay = 100 },
+  { id = "coins", x = 3173, y = 9897, level = 0, delay = 100 },
+  { id = "coins", amount = 5, x = 3169, y = 9880, level = 0, delay = 100 },
+  { id = "coins", amount = 8, x = 3167, y = 9897, level = 0, delay = 100 },
+  { id = "iron_hatchet", x = 3162, y = 9888, level = 0, delay = 540 },
 ]
