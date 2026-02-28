@@ -56,10 +56,22 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
         return definition.string(key)
     }
 
+    fun stringOrNull(enum: String, key: String): String? {
+        val definition = get(enum)
+        val key = key(definition.keyType, key)
+        return definition.stringOrNull(key)
+    }
+
     fun int(enum: String, key: String): Int {
         val definition = get(enum)
         val key = key(definition.keyType, key)
         return definition.int(key)
+    }
+
+    fun intOrNull(enum: String, key: String): Int? {
+        val definition = get(enum)
+        val key = key(definition.keyType, key)
+        return definition.intOrNull(key)
     }
 
     fun item(enum: String, key: String): String {

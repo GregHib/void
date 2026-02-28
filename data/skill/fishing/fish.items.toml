@@ -15,7 +15,6 @@ id = 317
 price = 5
 limit = 20000
 weight = 0.12
-fishing = { xp = 10.0, chance_min = 48, chance_max = 256 }
 cooking = { xp = 30.0, chances = { fire = "128-512", cooks_range = "138-532" }, cooked = "shrimps", burnt = "burnt_shrimp", cooked_message = "You successfully cook some shrimps.", burnt_message = "You accidentally burn the shrimps." }
 aka = ["raw_shrimp"]
 examine = "I should try cooking this."
@@ -40,7 +39,6 @@ id = 321
 price = 3
 limit = 20000
 weight = 0.12
-fishing = { level = 15, xp = 40.0, chance_min = 24, chance_max = 128 }
 cooking = { xp = 30.0, chances = { fire = "128-512", cooks_range = "138-532" }, cooked = "anchovies", cooked_message = "You successfully cook some anchovies.", burnt_message = "You accidentally burn the anchovies." }
 examine = "I should try cooking this."
 
@@ -71,7 +69,6 @@ id = 327
 price = 18
 limit = 20000
 weight = 0.14
-fishing = { level = 5, xp = 20.0, chance_min = 32, chance_max = 192 }
 cooking = { level = 1, xp = 40.0, chances = { fire = "118-492", cooks_range = "128-512" }, cooked = "sardine", cooked_message = "You successfully cook a sardine.", burnt_message = "You accidentally burn the sardine." }
 examine = "I should try cooking this."
 
@@ -95,7 +92,6 @@ id = 331
 price = 39
 limit = 20000
 weight = 0.55
-fishing = { level = 30, xp = 70.0, chance_min = 16, chance_max = 96 }
 cooking = { level = 25, xp = 90.0, chances = { fire = "68-392", cooks_range = "78-402" }, cooked = "salmon", cooked_message = "You successfully cook a salmon.", burnt_message = "You accidentally burn the salmon." }
 examine = "I should try cooking this."
 
@@ -119,7 +115,6 @@ id = 335
 price = 12
 limit = 20000
 weight = 0.45
-fishing = { level = 20, xp = 50.0, chance_min = 32, chance_max = 192 }
 cooking = { level = 15, xp = 70.0, chances = { fire = "88-432", cooks_range = "98-452" }, cooked = "trout", cooked_message = "You successfully cook a trout.", burnt_message = "You accidentally burn the trout." }
 examine = "I should try cooking this."
 
@@ -143,7 +138,6 @@ id = 341
 price = 21
 limit = 20000
 weight = 0.45
-fishing = { level = 23, xp = 45.0, chance_min = 4, chance_max = 55 }
 cooking = { level = 18, xp = 75.0, chances = { fire = "83-422", range = "88-432", cooks_range = "93-442" }, cooked = "cod", burnt = "burnt_trout", cooked_message = "You successfully cook a cod.", burnt_message = "You accidentally burn the cod." }
 examine = "I should try cooking this."
 
@@ -162,7 +156,6 @@ id = 345
 price = 32
 limit = 20000
 weight = 0.55
-fishing = { level = 10, xp = 30.0, chance_min = 24, chance_max = 128 }
 cooking = { level = 5, xp = 50.0, chances = { fire = "108-472", cooks_range = "118-492" }, cooked = "herring", cooked_message = "You successfully cook a herring.", burnt_message = "You accidentally burn the herring." }
 examine = "I should try cooking this."
 
@@ -186,7 +179,6 @@ id = 349
 price = 32
 limit = 20000
 weight = 0.55
-fishing = { level = 25, xp = 60.0, chance_min = 16, chance_max = 96 }
 cooking = { level = 20, xp = 80.0, chances = { fire = "78-412", cooks_range = "88-432" }, cooked = "pike", cooked_message = "You successfully cook a pike.", burnt_message = "You accidentally burn the pike." }
 examine = "I should try cooking this."
 
@@ -210,7 +202,6 @@ id = 353
 price = 12
 limit = 20000
 weight = 0.35
-fishing = { level = 16, xp = 20.0, chance_min = 5, chance_max = 65 }
 cooking = { level = 10, xp = 60.0, chances = { fire = "98-452", cooks_range = "108-472" }, cooked = "mackerel", burnt = "burnt_herring", cooked_message = "You successfully cook a mackerel.", burnt_message = "You accidentally burn the mackerel." }
 examine = "I should try cooking this."
 
@@ -241,7 +232,6 @@ id = 359
 price = 67
 limit = 20000
 weight = 0.45
-fishing = { level = 35, xp = 80.0, chance_min = 8, chance_max = 64 }
 cooking = { level = 30, xp = 100.0, chances = { fire = "58-372" }, cooked = "tuna", cooked_message = "You manage to cook a tuna.", burnt_message = "You accidentally burn the tuna." }
 examine = "I should try cooking this."
 
@@ -265,7 +255,6 @@ id = 363
 price = 235
 limit = 20000
 weight = 0.4
-fishing = { level = 46, xp = 100.0, chance_min = 3, chance_max = 40 }
 cooking = { level = 43, xp = 130.0, chances = { fire = "33-312" }, cooked = "bass", cooked_message = "You cook a bass.", burnt_message = "You accidentally burn the bass." }
 examine = "I should try cooking this."
 
@@ -303,7 +292,6 @@ id = 371
 price = 176
 limit = 20000
 weight = 0.5
-fishing = { level = 50, xp = 100.0, chance_min = 4, chance_max = 48 }
 cooking = { level = 45, xp = 140.0, chances = { fire = "18-292", range = "30-310" }, cooked = "swordfish", cooked_message = "You successfully cook a swordfish.", burnt_message = "You accidentally burn the swordfish." }
 examine = "I should try cooking this."
 
@@ -334,7 +322,6 @@ id = 377
 price = 107
 limit = 20000
 weight = 0.4
-fishing = { level = 40, xp = 90.0, chance_min = 6, chance_max = 95 }
 cooking = { level = 40, xp = 120.0, chances = { fire = "38-332", gauntlet = "55-368" }, type = "roast", cooked = "lobster", cooked_message = "You roast a lobster.", burnt_message = "You accidentally burn the lobster." }
 examine = "I should try cooking this."
 
@@ -365,7 +352,6 @@ id = 383
 price = 611
 limit = 20000
 weight = 0.7
-fishing = { level = 76, xp = 110.0, chance_min = 3, chance_max = 40 }
 cooking = { level = 80, xp = 210.0, chances = { fire = "1-202", range = "1-232", gauntlet = "15-270" }, cooked = "shark", cooked_message = "You successfully cook a shark.", burnt_message = "You accidentally burn the shark." }
 examine = "I should try cooking this."
 
@@ -396,7 +382,6 @@ id = 389
 price = 2206
 limit = 20000
 weight = 0.45
-fishing = { level = 81, xp = 46.0, chance_min = 2, chance_max = 30 }
 cooking = { level = 91, xp = 216.3, chances = { fire = "1-202", range = "1-222" }, cooked = "manta_ray", cooked_message = "You successfully cook a manta ray.", burnt_message = "You accidentally burn the manta ray." }
 examine = "Tastier when cooked."
 
@@ -427,7 +412,6 @@ id = 395
 price = 2230
 limit = 20000
 weight = 0.4
-fishing = { level = 79, xp = 38.0, chance_min = 3, chance_max = 30 }
 cooking = { level = 82, xp = 211.3, chances = { fire = "1-202", range = "1-222" }, cooked = "sea_turtle", cooked_message = "You successfully cook a sea turtle.", burnt_message = "You accidentally burn the sea turtle." }
 examine = "Looks wrinkly."
 
@@ -458,7 +442,6 @@ id = 3142
 price = 1994
 limit = 20000
 weight = 0.7
-fishing = { level = 65, xp = 50.0, chance_min = 5, chance_max = 160 }
 cooking = { level = 30, xp = 190.0, chances = { fire = "70-255" }, cooked_message = "You cook the karambwan. It looks delicious.", burnt_message = "You accidentally burn the karambwan." }
 examine = "A raw green octopus."
 
@@ -523,7 +506,6 @@ id = 10138
 price = 196
 limit = 20000
 weight = 0.45
-fishing = { level = 38, xp = 80.0, chance_min = 8, chance_max = 64 }
 cooking = { level = 35, xp = 110.0, chances = { fire = "56-370" }, cooked = "rainbow_fish", cooked_message = "You manage to cook a rainbow fish.", burnt_message = "You accidentally burn the rainbow fish." }
 examine = "A colourful fish, attracted to colourful flies."
 
@@ -683,7 +665,6 @@ id = 13435
 price = 17
 limit = 20000
 weight = 0.12
-fishing = { xp = 10.0, chance_min = 48, chance_max = 256 }
 cooking = { xp = 30.0, chances = { fire = "128-512" }, cooked = "crayfish", cooked_message = "You successfully cook some crayfish.", burnt_message = "You accidentally burn the crayfish." }
 examine = "I should try cooking this."
 

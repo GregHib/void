@@ -20,6 +20,8 @@ data class EnumDefinition(
 
     fun int(id: Int) = map?.get(id) as? Int ?: defaultInt
 
+    fun intOrNull(id: Int) = map?.get(id) as? Int
+
     fun randomInt() = map?.values?.random(random) as? Int ?: defaultInt
 
     fun string(id: Int) = map?.get(id) as? String ?: defaultString

@@ -1544,7 +1544,6 @@ id = 2149
 heals = 110
 tradeable = false
 weight = 0.198
-fishing = { level = 53, xp = 60.0, chance_min = 16, chance_max = 96 }
 examine = "Strange, it looks cooler now it's been cooked."
 kept = "Reclaim"
 

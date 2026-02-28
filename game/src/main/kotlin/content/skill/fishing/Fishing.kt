@@ -9,8 +9,8 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.stop
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.data.definition.data.Catch
 import world.gregs.voidps.engine.data.definition.data.Spot
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -106,13 +106,16 @@ class Fishing : Script {
                 first = false
             }
             for (item in catches) {
-                val catch = ItemDefinitions.get(item)["fishing", Catch.EMPTY]
+                val requiredLevel = EnumDefinitions.intOrNull("fishing_levels", item) ?: continue
+                val chanceMin = EnumDefinitions.int("fishing_chance_min", item)
+                val chanceMax = EnumDefinitions.int("fishing_chance_max", item)
+                val experience = EnumDefinitions.int("fishing_experience", item)
                 val level = player.levels.get(Skill.Fishing)
-                if (level >= catch.level && success(level, catch.chance)) {
+                if (level >= requiredLevel && success(level, chanceMin..chanceMax)) {
                     if (bait != "none" && !player.inventory.remove(bait)) {
                         break@fishing
                     }
-                    player.experience.add(Skill.Fishing, catch.xp)
+                    player.experience.add(Skill.Fishing, experience.toDouble())
                     addCatch(player, item)
                     break
                 }
@@ -146,5 +149,5 @@ class Fishing : Script {
         else -> false
     }
 
-    fun Spot.minimumLevel(bait: String): Int? = this.bait[bait]?.minOf { ItemDefinitions.get(it)["fishing", Catch.EMPTY].level }
+    fun Spot.minimumLevel(bait: String): Int? = this.bait[bait]?.minOf { EnumDefinitions.int("fishing_levels", it) }
 }

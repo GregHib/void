@@ -8771,7 +8771,6 @@ id = 17373
 id = 17374
 bank_stacks = false
 weight = 0.5
-fishing = { level = 1, xp = 255.0 }
 examine = "It smells like eating it would kill you."
 
 [vile_fish]
@@ -10584,7 +10583,6 @@ kept = "Always"
 
 [raw_heim_crab]
 id = 17797
-fishing = { level = 1, xp = 9.0 }
 examine = "I should try cooking this."
 
 [raw_heim_crab_noted]
@@ -10592,7 +10590,6 @@ id = 17798
 
 [raw_red_eye]
 id = 17799
-fishing = { level = 10, xp = 27.0 }
 examine = "I should try cooking this."
 
 [raw_red_eye_noted]
@@ -10600,7 +10597,6 @@ id = 17800
 
 [raw_dusk_eel]
 id = 17801
-fishing = { level = 20, xp = 45.0 }
 examine = "I should try cooking this."
 
 [raw_dusk_eel_noted]
@@ -10608,7 +10604,6 @@ id = 17802
 
 [raw_giant_flatfish]
 id = 17803
-fishing = { level = 30, xp = 63.0 }
 examine = "I should try cooking this."
 
 [raw_giant_flatfish_noted]
@@ -10616,7 +10611,6 @@ id = 17804
 
 [raw_short_finned_eel]
 id = 17805
-fishing = { level = 40, xp = 81.0 }
 examine = "I should try cooking this."
 
 [raw_short_finned_eel_noted]
@@ -10624,7 +10618,6 @@ id = 17806
 
 [raw_web_snipper]
 id = 17807
-fishing = { level = 50, xp = 99.0 }
 examine = "I should try cooking this."
 
 [raw_web_snipper_noted]
@@ -10632,7 +10625,6 @@ id = 17808
 
 [raw_bouldabass]
 id = 17809
-fishing = { level = 60, xp = 117.0 }
 examine = "I should try cooking this."
 
 [raw_bouldabass_noted]
@@ -10640,7 +10632,6 @@ id = 17810
 
 [raw_salve_eel]
 id = 17811
-fishing = { level = 70, xp = 135.0 }
 examine = "I should try cooking this."
 
 [raw_salve_eel_noted]
@@ -10648,7 +10639,6 @@ id = 17812
 
 [raw_blue_crab]
 id = 17813
-fishing = { level = 80, xp = 153.0 }
 examine = "I should try cooking this."
 
 [raw_blue_crab_noted]
@@ -10656,7 +10646,6 @@ id = 17814
 
 [raw_cave_moray]
 id = 17815
-fishing = { level = 90, xp = 171.0 }
 examine = "I should try cooking this."
 
 [raw_cave_moray_noted]

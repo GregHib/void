@@ -290,7 +290,6 @@ id = 10978
 price = 270
 limit = 500
 weight = 0.2
-fishing = { level = 33, xp = 1.0, chance_min = 10, chance_max = 10 }
 examine = "Swamp weed found in the caves near Dorgesh-Kaan."
 
 [swamp_weed_noted]

@@ -28,7 +28,6 @@ price = 186
 limit = 1000
 heals = "70-100"
 weight = 0.5
-fishing = { level = 38, xp = 80.0, chance_min = 10, chance_max = 80 }
 examine = "It's a bit slimy."
 
 [frog_spawn]
@@ -36,7 +35,6 @@ id = 5004
 heals = "30-60"
 tradeable = false
 weight = 0.5
-fishing = { level = 33, xp = 75.0, chance_min = 16, chance_max = 96 }
 examine = "That's disgusting!"
 kept = "Reclaim"
 
