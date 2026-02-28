@@ -18,7 +18,6 @@ kept = "Wilderness"
 id = 668
 tradeable = false
 weight = 2.267
-mining = { xp = 17.5, chance_min = 30, chance_max = 375 }
 examine = "Definitely blue."
 kept = "Reclaim"
 

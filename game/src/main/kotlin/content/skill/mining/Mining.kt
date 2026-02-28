@@ -8,8 +8,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.data.definition.data.Ore
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -95,10 +94,12 @@ class Mining : Script {
                     ores = rock.ores.filter { it == name }
                 }
                 for (item in ores) {
-                    val ore = ItemDefinitions.get(item)["mining", Ore.EMPTY]
-                    if (success(levels.get(Skill.Mining), ore.chance)) {
-                        experience.add(Skill.Mining, ore.xp)
-                        ShootingStarHandler.extraOreHandler(this, item, ore.xp)
+                    val chanceMin = EnumDefinitions.int("mining_chance_min", item)
+                    val chanceMax = EnumDefinitions.int("mining_chance_max", item)
+                    if (success(levels.get(Skill.Mining), chanceMin..chanceMax)) {
+                        val xp = EnumDefinitions.int("mining_xp", item) / 10.0
+                        experience.add(Skill.Mining, xp)
+                        ShootingStarHandler.extraOreHandler(this, item, xp)
                         if (!addOre(this, item) || deplete(rock, target)) {
                             clearAnim()
                             break

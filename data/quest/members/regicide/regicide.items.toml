@@ -32,7 +32,6 @@ id = 3211
 price = 114
 limit = 10000
 weight = 2.267
-mining = { xp = 26.5, chance_min = 25, chance_max = 200 }
 examine = "Some limestone."
 
 [limestone_noted]
