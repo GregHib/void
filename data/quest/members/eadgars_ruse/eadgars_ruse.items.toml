@@ -13,7 +13,6 @@ examine = "A pale, tough looking herb."
 id = 3262
 tradeable = false
 weight = 0.001
-cooking = { start = 4, type = "heat", cooked = "dried_thistle", cooked_message = "You dry the troll thistle over the fire." }
 examine = "It's tough and spiky."
 kept = "Wilderness"
 

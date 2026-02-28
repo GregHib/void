@@ -414,7 +414,6 @@ kept = "Reclaim"
 id = 9572
 tradeable = false
 weight = 0.15
-cooking = { level = 53, chances = { range = "255-255" }, cooked = "mixed_saturday_heated" }
 examine = "This Choc Saturday needs heating, and cream and chocolate dust."
 kept = "Reclaim"
 
@@ -443,7 +442,6 @@ kept = "Reclaim"
 id = 9576
 tradeable = false
 weight = 0.15
-cooking = { level = 32, xp = 130.0, chances = { range = "255-255" }, cooked = "drunk_dragon" }
 examine = "This Drunk Dragon needs heating to finish."
 kept = "Reclaim"
 

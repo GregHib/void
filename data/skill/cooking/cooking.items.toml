@@ -3,14 +3,6 @@ id = 1859
 price = 529
 limit = 1000
 weight = 0.8
-cooking = {
-  xp = 40.0,
-  chances = {
-    fire = "40-252",
-    range = "30-253",
-  },
-  cooked = "ugthanki_meat",
-}
 examine = "I need to cook this first."
 kept = "Wilderness"
 
@@ -34,17 +26,6 @@ id = 1863
 price = 89
 limit = 1000
 weight = 0.12
-cooking = {
-  level = 58,
-  xp = 40.0,
-  chances = {
-    range = "118-492"
-  },
-  cooked = "pitta_bread",
-  cooked_message = "You successfully bake some pitta bread.",
-  burnt = "burnt_pitta_bread",
-  burnt_message = "You accidentally burn the pitta dough.",
-}
 examine = "I need to cook this."
 
 [pitta_dough_noted]
@@ -85,17 +66,6 @@ price = 113
 limit = 1000
 heals = 10
 weight = 0.2
-cooking = {
-  level = 42,
-  xp = 60.0,
-  chances = {
-    range = "35-322"
-  },
-  cooked = "fried_onions",
-  cooked_message = "You successfully fry the onion.",
-  burnt = "burnt_onion",
-  burnt_message = "You accidentally burn the onion.",
-}
 examine = "A mixture of onions in a bowl."
 
 [chopped_onion_noted]
@@ -183,18 +153,6 @@ id = 1889
 price = 448
 limit = 1000
 weight = 0.5
-cooking = {
-  level = 40,
-  xp = 180.0,
-  chances = {
-    range = "38-332",
-  },
-  cooked = "cake",
-  cooked_message = "You successfully bake a cake.",
-  burnt = "burnt_cake",
-  burnt_message = "You accidentally burn the uncooked cake.",
-  leftover = "cake_tin",
-}
 examine = "Now all I need to do is cook it."
 
 [uncooked_cake_noted]
@@ -511,16 +469,6 @@ price = 42
 limit = 1000
 weight = 0.5
 heals = 10
-cooking = {
-  level = 7,
-  xp = 15.0,
-  chances = {
-    range = "108-472",
-  },
-  cooked = "baked_potato",
-  cooked_message = "You successfully bake a potato.",
-  burnt_message = "You accidentally burn the potato.",
-}
 farming_xp = 9.0
 farming_chance = "101-180"
 farming_protect_id = "compost"
@@ -894,18 +842,6 @@ id = 2001
 price = 385
 limit = 200
 weight = 1.5
-cooking = {
-  level = 25,
-  xp = 117.0,
-  chances = {
-    fire = "68-392",
-    cooks_range = "78-412",
-  },
-  cooked = "stew",
-  cooked_message = "You cook some stew.",
-  burnt = "burnt_stew",
-  burnt_message = "You accidentally burn the stew.",
-}
 examine = "I need to cook this."
 
 [uncooked_stew_noted]
@@ -945,17 +881,6 @@ id = 2009
 price = 1417
 limit = 200
 weight = 1.5
-cooking = {
-  level = 60,
-  xp = 280.0,
-  chances = {
-    fire = "38-332",
-  },
-  cooked = "curry",
-  cooked_message = "You cook some curry.",
-  burnt = "burnt_curry",
-  burnt_message = "You accidentally burn the curry.",
-}
 examine = "I need to cook this."
 
 [uncooked_curry_noted]
@@ -1405,17 +1330,6 @@ id = 2132
 price = 36
 limit = 1000
 weight = 0.34
-cooking = {
-  xp = 30.0,
-  chances = {
-    fire = "128-512",
-    cooks_range = "138-532",
-  },
-  cooked = "cooked_meat",
-  cooked_message = "You cook a piece of meat.",
-  burnt = "burnt_meat",
-  burnt_message = "You accidentally burn the beef.",
-}
 examine = "I need to cook this first."
 kept = "Wilderness"
 
@@ -1427,17 +1341,6 @@ id = 2134
 price = 35
 limit = 1000
 weight = 0.141
-cooking = {
-  xp = 30.0,
-  chances = {
-    fire = "128-512",
-    cooks_range = "138-532",
-  },
-  cooked = "cooked_meat",
-  cooked_message = "You cook a piece of meat.",
-  burnt = "burnt_meat",
-  burnt_message = "You accidentally burn the rat meat.",
-}
 examine = "I need to cook this first."
 kept = "Wilderness"
 
@@ -1449,17 +1352,6 @@ id = 2136
 price = 255
 limit = 1000
 weight = 0.425
-cooking = {
-  xp = 30.0,
-  chances = {
-    fire = "128-512",
-    cooks_range = "138-532",
-  },
-  cooked = "cooked_meat",
-  cooked_message = "You cook a piece of meat.",
-  burnt = "burnt_meat",
-  burnt_message = "You accidentally burn the bear meat.",
-}
 examine = "I need to cook this first."
 kept = "Wilderness"
 
@@ -1471,15 +1363,6 @@ id = 2138
 price = 54
 limit = 1000
 weight = 0.17
-cooking = {
-  xp = 30.0,
-  chances = {
-    fire = "128-512",
-    cooks_range = "138-532",
-  },
-  cooked_message = "You cook some chicken.",
-  burnt_message = "You accidentally burn the chicken.",
-}
 examine = "I need to cook this first."
 kept = "Wilderness"
 
@@ -1528,14 +1411,6 @@ id = 2147
 id = 2148
 tradeable = false
 weight = 0.226
-cooking = {
-    level = 53,
-    xp = 30.0,
-    chances = {
-      fire = "255..255",
-    },
-    cooked = "lava_eel",
-}
 examine = "A very strange eel."
 kept = "Reclaim"
 
@@ -2072,17 +1947,6 @@ id = 2287
 price = 377
 limit = 1000
 weight = 0.8
-cooking = {
-  level = 35,
-  xp = 143.0,
-  chances = {
-    range = "48-352",
-  },
-  cooked = "plain_pizza",
-  cooked_message = "You successfully bake a pizza.",
-  burnt = "burnt_pizza",
-  burnt_message = "You accidentally burn the uncooked pizza.",
-}
 examine = "This needs cooking."
 
 [uncooked_pizza_noted]
@@ -2196,17 +2060,6 @@ id = 2307
 price = 67
 limit = 1000
 weight = 0.6
-cooking = {
-  xp = 40.0,
-  chances = {
-    range = "11-492",
-    cooks_range = "128-512",
-  },
-  cooked = "bread",
-  cooked_message = "You successfully bake some bread.",
-  burnt = "burnt_bread",
-  burnt_message = "You accidentally burn the bread dough.",
-}
 examine = "Some uncooked dough."
 kept = "Wilderness"
 
@@ -2259,17 +2112,6 @@ id = 2317
 price = 731
 limit = 1000
 weight = 0.5
-cooking = {
-  level = 30,
-  xp = 130.0,
-  chances = {
-    range = "58-372",
-  },
-  cooked = "apple_pie",
-  cooked_message = "You successfully bake a traditional apple pie.",
-  burnt = "burnt_pie",
-  burnt_message = "You accidentally burn the uncooked apple pie.",
-}
 examine = "This would be much tastier cooked."
 
 [uncooked_apple_pie_noted]
@@ -2280,18 +2122,6 @@ id = 2319
 price = 674
 limit = 1000
 weight = 0.5
-cooking = {
-  level = 20,
-  xp = 110.0,
-  chances = {
-    range = "78-412",
-    cooks_range = "88-432",
-  },
-  cooked = "meat_pie",
-  cooked_message = "You successfully bake a tasty meat pie.",
-  burnt = "burnt_pie",
-  burnt_message = "You accidentally burn the uncooked meat pie.",
-}
 examine = "This would be much healthier cooked."
 kept = "Wilderness"
 
@@ -2303,18 +2133,6 @@ id = 2321
 price = 708
 limit = 1000
 weight = 0.5
-cooking = {
-  level = 10,
-  xp = 78.0,
-  chances = {
-    range = "98-452",
-    cooks_range = "108-462",
-  },
-  cooked = "redberry_pie",
-  cooked_message = "You successfully bake a delicious redberry pie.",
-  burnt = "burnt_pie",
-  burnt_message = "You accidentally burn the uncooked berry pie.",
-}
 examine = "This would be much more appetising cooked."
 kept = "Wilderness"
 
@@ -2641,18 +2459,6 @@ id = 7076
 price = 34
 limit = 1000
 weight = 0.5
-cooking = {
-  level = 13,
-  xp = 50.0,
-  chances = {
-    range = "90-438",
-  },
-  cooked = "scrambled_egg",
-  cooked_message = "You successfully scramble the egg.",
-  burnt = "burnt_egg",
-  burnt_message = "You accidentally burn the egg.",
-  start = 0,
-}
 examine = "A bowl of uncooked egg."
 kept = "Wilderness"
 
@@ -2677,17 +2483,6 @@ id = 7080
 price = 146
 limit = 1000
 weight = 0.5
-cooking = {
-  level = 46,
-  xp = 60.0,
-  chances = {
-    range = "28-300",
-  },
-  cooked = "fried_mushrooms",
-  cooked_message = "You successfully fry the mushroom.",
-  burnt = "burnt_mushroom",
-  burnt_message = "You accidentally burn the mushroom.",
-}
 examine = "A bowl of sliced Bittercap mushrooms."
 
 [sliced_mushrooms_noted]

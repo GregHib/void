@@ -352,7 +352,6 @@ id = 6293
 price = 199
 limit = 1000
 weight = 0.9
-cooking = { level = 16, xp = 80.0, chances = { fire = "91-438" }, type = "roast", cooked = "spider_on_stick", burnt = "burnt_spider" }
 examine = "A raw spider threaded onto a skewer stick."
 
 [spider_on_stick_raw_noted]
@@ -363,7 +362,6 @@ id = 6295
 price = 103
 limit = 1000
 weight = 0.9
-cooking = { level = 16, xp = 80.0, chances = { fire = "91-438" }, type = "roast", cooked = "spider_on_shaft", burnt = "spider_on_shaft_burnt" }
 examine = "A raw spider threaded onto an arrow shaft."
 
 [spider_on_shaft_raw_noted]

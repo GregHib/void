@@ -209,7 +209,6 @@ farming_xp = 19.0
 farming_chance = "88-180"
 farming_protect_id = "jute_fibre"
 farming_protect_amount = 10
-cooking = { level = 28, xp = 104.0, chances = { range = "65-382" }, cooked = "cooked_sweetcorn", cooked_message = "You cook some sweetcorn.", burnt = "burnt_sweetcorn", burnt_message = "You accidentally burn the sweetcorn." }
 examine = "Raw sweetcorn."
 
 [sweetcorn_noted]

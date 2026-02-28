@@ -180,7 +180,6 @@ id = 9436
 price = 159
 limit = 1000
 weight = 0.002
-cooking = { xp = 3.0, chances = { range = "255-255" }, type = "heat", cooked = "sinew", cooked_message = "You dry a piece of beef and extract the sinew." }
 examine = "I can use this to make a crossbow string."
 
 [sinew_noted]

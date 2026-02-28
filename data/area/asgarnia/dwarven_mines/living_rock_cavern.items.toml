@@ -9,7 +9,6 @@ id = 15264
 price = 656
 limit = 20000
 weight = 0.35
-cooking = { level = 88, xp = 214.0, chances = { fire = "4-230", gauntlet = "12-269" }, cooked = "cavefish" }
 examine = "I should try cooking this."
 
 [raw_cavefish_noted]
@@ -38,7 +37,6 @@ id = 15270
 price = 1804
 limit = 20000
 weight = 0.4
-cooking = { level = 92, xp = 225.0, chances = { fire = "1-180", gauntlet = "1-269" }, cooked = "rocktail", cooked_message = "You successfully cook a rocktail.", burnt_message = "You accidentally burn the rocktail." }
 examine = "I should try cooking this."
 
 [raw_rocktail_noted]

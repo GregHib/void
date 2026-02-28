@@ -15,7 +15,6 @@ id = 5001
 price = 333
 limit = 1000
 weight = 0.5
-cooking = { level = 38, xp = 115.0, chances = { fire = "38-332" }, cooked = "cave_eel", cooked_message = "You successfully cook a slimy cave eel.", burnt_message = "You accidentally burn the cave eel." }
 examine = "It's incredibly slimy."
 
 [burnt_cave_eel]

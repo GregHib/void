@@ -43,7 +43,6 @@ id = 10816
 price = 28
 limit = 1000
 weight = 0.34
-cooking = { xp = 40.0, chances = { fire = "128-512", cooks_range = "138-532" }, cooked = "cooked_meat", burnt = "burnt_meat" }
 examine = "I need to cook this."
 
 [raw_yak_meat_noted]

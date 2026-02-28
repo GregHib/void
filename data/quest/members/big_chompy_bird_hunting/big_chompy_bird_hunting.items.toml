@@ -308,7 +308,6 @@ id = 7230
 price = 283
 limit = 1000
 weight = 2.5
-cooking = { level = 30, xp = 100.0, chances = { fire = "200-255" }, type = "roast", cooked = "cooked_chompy", burnt = "burnt_chompy" }
 examine = "A skewered chompy bird."
 
 [burnt_rabbit_noted]

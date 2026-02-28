@@ -221,7 +221,6 @@ id = 3363
 price = 648
 limit = 10000
 weight = 2.0
-cooking = { level = 12, xp = 70.0, chances = { fire = "93-444", cooks_range = "103-464" }, cooked = "thin_snail_meat", cooked_message = "You cook the thin snail.", burnt = "burnt_snail", burnt_message = "You accidentally burn the thin snail." }
 examine = "The thin, slimy corpse of a deceased giant snail."
 
 [thin_snail_noted]
@@ -232,7 +231,6 @@ id = 3365
 price = 764
 limit = 1000
 weight = 2.0
-cooking = { level = 17, xp = 80.0, chances = { fire = "93-444", range = "85-428", cooks_range = "95-448" }, cooked = "lean_snail_meat", cooked_message = "You cook the lean snail.", burnt = "burnt_snail", burnt_message = "You accidentally burn the lean snail." }
 examine = "The lean, slimy corpse of a deceased giant snail."
 
 [lean_snail_noted]
@@ -243,7 +241,6 @@ id = 3367
 price = 634
 limit = 10000
 weight = 2.0
-cooking = { level = 22, xp = 95.0, chances = { fire = "73-402", cooks_range = "83-422" }, cooked = "fat_snail_meat", cooked_message = "You cook the fat snail.", burnt = "burnt_snail", burnt_message = "You accidentally burn the fat snail." }
 examine = "The fat, slimy corpse of a deceased giant snail."
 
 [fat_snail_noted]
@@ -304,7 +301,6 @@ id = 3379
 price = 307
 limit = 1000
 weight = 2.0
-cooking = { level = 28, xp = 95.0, chances = { fire = "63-382" }, cooked = "cooked_slimy_eel", cooked_message = "You cook an eel.", burnt = "burnt_eel", burnt_message = "You accidentally burn the slimy eel." }
 examine = "A slime covered eel - yuck!"
 
 [slimy_eel_noted]
