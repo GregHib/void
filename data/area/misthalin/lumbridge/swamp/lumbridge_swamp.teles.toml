@@ -20,3 +20,7 @@ option = "Climb-down"
 tile = { x = 3237, y = 3196, level = 1 }
 delta = { y = 3, level = -1 }
 
+[swamp_cave_climbing_rope]
+option = "Climb"
+tile = { x = 3169, y = 9572 }
+to = { x = 3168, y = 3172 }

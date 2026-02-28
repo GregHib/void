@@ -9,6 +9,7 @@ spawns = [
   { id = "giant_rat", x = 3189, y = 3159 },
   { id = "giant_rat", x = 3197, y = 3162 },
   { id = "giant_rat", x = 3196, y = 3166 },
+  { id = "candle_seller", x = 3170, y = 3176 },
 # 12849
   { id = "father_urhney", x = 3208, y = 3150 },
   { id = "fishing_spot_small_net_bait_lumbridge", x = 3246, y = 3155 },
