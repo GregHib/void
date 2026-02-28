@@ -50,6 +50,12 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
         else -> error("Unsupported enum type: ${keyType.code}")
     }
 
+    fun contains(enum: String, key: String): Boolean {
+        val definition = get(enum)
+        val key = key(definition.keyType, key)
+        return definition.map?.contains(key) == true
+    }
+
     fun string(enum: String, key: String): String {
         val definition = get(enum)
         val key = key(definition.keyType, key)

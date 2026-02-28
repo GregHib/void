@@ -10,7 +10,6 @@ price = 365
 limit = 5000
 weight = 0.226
 compostable = true
-weaving = { amount = 4, to = "empty_sack", level = 21, xp = 38.0 }
 farming_xp = 14.5
 farming_chance = "113-180"
 farming_protect_id = "barley_malt"
@@ -26,7 +25,6 @@ price = 986
 limit = 200
 weight = 0.907
 compostable = true
-weaving = { amount = 6, to = "basket", level = 36, xp = 56.0 }
 examine = "A branch from a willow tree."
 
 [willow_branch_noted]

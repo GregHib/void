@@ -201,3 +201,46 @@ values = {
     magic_roots = "magic_string",
     sinew = "crossbow_string",
 }
+
+[weaving_level]
+keyType = "item"
+valueType = "int"
+defaultInt = 1
+values = {
+    ball_of_wool = 10,
+    flax = 52,
+    jute_fibre = 21,
+    willow_branch = 36,
+}
+
+[weaving_xp]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    ball_of_wool = 120,
+    jute_fibre = 380,
+    willow_branch = 560,
+}
+
+[weaving_amount]
+keyType = "item"
+valueType = "int"
+defaultInt = 1
+values = {
+    ball_of_wool = 2,
+    flax = 5,
+    jute_fibre = 4,
+    willow_branch = 6,
+}
+
+[weaving_product]
+keyType = "item"
+valueType = "string"
+defaultString = ""
+values = {
+    ball_of_wool = "strip_of_cloth",
+    flax = "unfinished_net",
+    jute_fibre = "empty_sack",
+    willow_branch = "basket",
+}
