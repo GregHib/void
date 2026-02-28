@@ -7,14 +7,15 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.data.definition.data.Uncooked
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
@@ -45,41 +46,45 @@ class Cooking : Script {
             } else {
                 item.def
             }
-            val cooking: Uncooked = definition.getOrNull("cooking") ?: return@itemOnObjectOperate
+            EnumDefinitions.intOrNull("cooking_xp", definition.stringId) ?: return@itemOnObjectOperate
             var amount = inventory.count(item.id)
             if (amount != 1) {
+                val type = EnumDefinitions.string("cooking_type", definition.stringId)
                 amount = makeAmount(
                     listOf(item.id),
-                    type = cooking.type.toSentenceCase(),
+                    type = type.toSentenceCase(),
                     maximum = inventory.count(item.id),
-                    text = "How many would you like to ${cooking.type}?",
+                    text = "How many would you like to ${type}?",
                 ).second
             }
             val offset = (4 - (GameLoop.tick - start)).coerceAtLeast(0)
             closeDialogue()
             softTimers.start("cooking")
-            cook(item, amount, target, cooking, offset)
+            cook(item, amount, target, offset)
         }
     }
 
-    fun Player.cook(item: Item, count: Int, obj: GameObject, cooking: Uncooked, offset: Int? = null) {
+    fun Player.cook(item: Item, count: Int, obj: GameObject, offset: Int? = null) {
         if (count <= 0 || GameObjects.findOrNull(obj.tile, obj.id) == null) {
             softTimers.stop("cooking")
             return
         }
 
-        if (!has(Skill.Cooking, cooking.level, true)) {
+        val level = EnumDefinitions.int("cooking_type", item.id)
+        if (!has(Skill.Cooking, level, true)) {
             softTimers.stop("cooking")
             return
         }
 
-        if (cooking.leftover.isNotEmpty() && inventory.isFull()) {
+        val leftover = EnumDefinitions.string("cooking_type", item.id)
+        if (leftover.isNotEmpty() && inventory.isFull()) {
             inventoryFull()
             softTimers.stop("cooking")
             return
         }
 
-        if (cooking.rangeOnly && !obj.cookingRange) {
+        val rangeOnly = EnumDefinitions.int("cooking_type", item.id) == 1
+        if (rangeOnly && !obj.cookingRange) {
             noInterest()
             softTimers.stop("cooking")
             return
@@ -92,29 +97,30 @@ class Cooking : Script {
             }
             val level = levels.get(Skill.Cooking)
             val chance = when {
-                obj.id == "cooking_range_lumbridge_castle" -> cooking.cooksRangeChance
-                equipped(EquipSlot.Hands).id == "cooking_gauntlets" -> cooking.gauntletChance
-                obj.cookingRange -> cooking.rangeChance
-                else -> cooking.chance
+                obj.id == "cooking_range_lumbridge_castle" -> EnumDefinitions.int("cooking_range_chance_min", item.id)..EnumDefinitions.int("cooking_range_chance_max", item.id)
+                equipped(EquipSlot.Hands).id == "cooking_gauntlets" -> EnumDefinitions.int("cooking_cook_o_matic_chance_min", item.id)..EnumDefinitions.int("cooking_cook_o_matic_chance_max", item.id)
+                obj.cookingRange -> EnumDefinitions.int("cooking_range_chance_min", item.id)..EnumDefinitions.int("cooking_range_chance_max", item.id)
+                else -> EnumDefinitions.int("cooking_fire_chance_min", item.id)..EnumDefinitions.int("cooking_fire_chance_max", item.id)
             }
-            if (failedToReplace(item, cooking, Level.success(level, chance))) {
+            if (failedToReplace(item, Level.success(level, chance))) {
                 return@weakQueue
             }
-            if (cooking.leftover.isNotEmpty() && !inventory.add(cooking.leftover)) {
+            if (leftover.isNotEmpty() && !inventory.add(leftover)) {
                 return@weakQueue
             }
-            cook(item, count - 1, obj, cooking)
+            cook(item, count - 1, obj)
         }
     }
 
-    fun Player.failedToReplace(item: Item, raw: Uncooked, cooked: Boolean): Boolean {
-        val id = if (cooked) raw.cooked else raw.burnt
+    fun Player.failedToReplace(item: Item, cooked: Boolean): Boolean {
+        val id = EnumDefinitions.string(if (cooked) "cooked_id" else "burnt_id", item.id)
         val itemId = id.ifEmpty { item.id.replace("raw", if (cooked) "cooked" else "burnt") }
         if (!inventory.replace(item.id, itemId)) {
             return true
         }
-        experience.add(Skill.Cooking, if (cooked) raw.xp else 0.0)
-        val message = if (cooked) raw.cookedMessage else raw.burntMessage
+        val xp = EnumDefinitions.int("cooking_xp", itemId) / 10.0
+        exp(Skill.Cooking, if (cooked) xp else 0.0)
+        val message = EnumDefinitions.string(if (cooked) "cooked_message" else "burnt_message", item.id)
         if (message.isNotEmpty()) {
             message(message, ChatType.Filter)
         }
