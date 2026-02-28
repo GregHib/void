@@ -851,7 +851,6 @@ id = 1794
 price = 100
 limit = 100
 weight = 0.005
-smithing = { level = 4, xp = 12.5 }
 examine = "Useful for crafting items."
 
 [bronze_wire_noted]

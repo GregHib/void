@@ -103,7 +103,6 @@ id = 4540
 price = 17
 limit = 100
 weight = 0.453
-smithing = { level = 26, xp = 25.0 }
 examine = "Add the glass to complete."
 
 [oil_lantern_frame_noted]

@@ -4,7 +4,6 @@ price = 58
 limit = 1000
 weight = 9.071
 aka = ["iron_legs"]
-smithing = { level = 31, xp = 75.0 }
 slot = "Legs"
 material = "metal"
 examine = "These look pretty heavy."
@@ -19,7 +18,6 @@ price = 477
 limit = 100
 weight = 0.015
 aka = ["steel_legs"]
-smithing = { level = 46, xp = 112.5 }
 slot = "Legs"
 material = "metal"
 examine = "A pair of steel platelegs."
@@ -34,7 +32,6 @@ price = 1400
 limit = 100
 weight = 0.015
 aka = ["mithril_legs", "mith_legs"]
-smithing = { level = 66, xp = 150.0 }
 slot = "Legs"
 material = "metal"
 examine = "A pair of mithril platelegs."
@@ -48,7 +45,6 @@ price = 3685
 limit = 100
 weight = 0.015
 aka = ["adamant_legs"]
-smithing = { level = 86, xp = 187.5 }
 slot = "Legs"
 material = "metal"
 examine = "A pair of adamant platelegs."
@@ -62,7 +58,6 @@ price = 23
 limit = 100
 weight = 9.071
 aka = ["bronze_legs"]
-smithing = { level = 16, xp = 37.5 }
 slot = "Legs"
 material = "metal"
 examine = "These look pretty heavy."
@@ -90,7 +85,6 @@ price = 38231
 limit = 100
 weight = 0.015
 aka = ["rune_legs"]
-smithing = { level = 99, xp = 225.0 }
 slot = "Legs"
 material = "metal"
 examine = "A pair of rune platelegs."
@@ -104,7 +98,6 @@ price = 79
 limit = 1000
 weight = 8.164
 aka = ["iron_skirt"]
-smithing = { level = 31, xp = 75.0 }
 slot = "Legs"
 material = "metal"
 examine = "Designer leg protection."
@@ -119,7 +112,6 @@ price = 485
 limit = 100
 weight = 0.015
 aka = ["steel_skirt"]
-smithing = { level = 46, xp = 112.5 }
 slot = "Legs"
 material = "metal"
 examine = "A steel plateskirt."
@@ -134,7 +126,6 @@ price = 1410
 limit = 100
 weight = 0.015
 aka = ["mithril_skirt", "mith_skirt"]
-smithing = { level = 66, xp = 150.0 }
 slot = "Legs"
 material = "metal"
 examine = "A mithril plateskirt."
@@ -148,7 +139,6 @@ price = 31
 limit = 100
 weight = 8.164
 aka = ["bronze_skirt"]
-smithing = { level = 16, xp = 37.5 }
 slot = "Legs"
 material = "metal"
 examine = "Designer leg protection."
@@ -176,7 +166,6 @@ price = 3691
 limit = 100
 weight = 0.015
 aka = ["adamant_skirt", "addy_skirt"]
-smithing = { level = 86, xp = 187.5 }
 slot = "Legs"
 material = "metal"
 examine = "An adamant plateskirt."
@@ -190,7 +179,6 @@ price = 38300
 limit = 100
 weight = 0.015
 aka = ["rune_skirt"]
-smithing = { level = 99, xp = 225.0 }
 slot = "Legs"
 material = "metal"
 examine = "A rune plateskirt."
@@ -203,7 +191,6 @@ id = 1101
 price = 81
 limit = 1000
 weight = 6.803
-smithing = { level = 26, xp = 75.0 }
 slot = "Chest"
 material = "metal"
 type = "Sleeveless"
@@ -218,7 +205,6 @@ id = 1103
 price = 10
 limit = 100
 weight = 6.803
-smithing = { level = 11, xp = 37.5 }
 slot = "Chest"
 material = "metal"
 type = "Sleeveless"
@@ -233,7 +219,6 @@ id = 1105
 price = 330
 limit = 100
 weight = 0.025
-smithing = { level = 41, xp = 112.5 }
 slot = "Chest"
 material = "metal"
 type = "Sleeveless"
@@ -261,7 +246,6 @@ id = 1109
 price = 1043
 limit = 100
 weight = 0.025
-smithing = { level = 61, xp = 150.0 }
 slot = "Chest"
 material = "metal"
 type = "Sleeveless"
@@ -275,7 +259,6 @@ id = 1111
 price = 2745
 limit = 100
 weight = 0.025
-smithing = { level = 81, xp = 187.5 }
 slot = "Chest"
 material = "metal"
 type = "Sleeveless"
@@ -289,7 +272,6 @@ id = 1113
 price = 29800
 limit = 100
 weight = 0.025
-smithing = { level = 96, xp = 225.0 }
 slot = "Chest"
 material = "metal"
 type = "Sleeveless"
@@ -304,7 +286,6 @@ price = 223
 limit = 100
 weight = 9.979
 aka = ["iron_plate"]
-smithing = { level = 33, xp = 125.0 }
 slot = "Chest"
 material = "metal"
 examine = "Provides excellent protection."
@@ -319,7 +300,6 @@ price = 21
 limit = 100
 weight = 9.979
 aka = ["bronze_plate"]
-smithing = { level = 18, xp = 62.5 }
 slot = "Chest"
 material = "metal"
 examine = "Provides excellent protection."
@@ -334,7 +314,6 @@ price = 1084
 limit = 100
 weight = 0.025
 aka = ["steel_plate"]
-smithing = { level = 48, xp = 187.5 }
 slot = "Chest"
 material = "metal"
 examine = "A steel platebody."
@@ -349,7 +328,6 @@ price = 2960
 limit = 100
 weight = 0.025
 aka = ["mithril_plate", "mith_plate"]
-smithing = { level = 68, xp = 250.0 }
 slot = "Chest"
 material = "metal"
 examine = "A mithril platebody."
@@ -363,7 +341,6 @@ price = 9842
 limit = 100
 weight = 0.025
 aka = ["adamant_plate", "addy_plate"]
-smithing = { level = 88, xp = 312.5 }
 slot = "Chest"
 material = "metal"
 examine = "An adamant platebody."
@@ -390,7 +367,6 @@ price = 38900
 limit = 100
 weight = 0.025
 aka = ["rune_plate"]
-smithing = { level = 99, xp = 375.0 }
 slot = "Chest"
 material = "metal"
 examine = "A rune platebody."
@@ -403,7 +379,6 @@ id = 1137
 price = 12
 limit = 1000
 weight = 1.814
-smithing = { level = 18, xp = 25.0 }
 slot = "Hat"
 material = "metal"
 type = "Hair"
@@ -418,7 +393,6 @@ id = 1139
 price = 51
 limit = 100
 weight = 1.814
-smithing = { level = 3, xp = 12.5 }
 slot = "Hat"
 material = "metal"
 type = "Hair"
@@ -433,7 +407,6 @@ id = 1141
 price = 75
 limit = 100
 weight = 0.01
-smithing = { level = 33, xp = 37.5 }
 slot = "Hat"
 material = "metal"
 type = "Hair"
@@ -447,7 +420,6 @@ id = 1142
 id = 1143
 price = 349
 weight = 0.01
-smithing = { level = 53, xp = 50.0 }
 slot = "Hat"
 material = "metal"
 type = "Hair"
@@ -460,7 +432,6 @@ id = 1144
 id = 1145
 price = 1031
 weight = 0.01
-smithing = { level = 73, xp = 62.5 }
 slot = "Hat"
 material = "metal"
 type = "Hair"
@@ -473,7 +444,6 @@ id = 1146
 id = 1147
 price = 11300
 weight = 0.01
-smithing = { level = 88, xp = 75.0 }
 slot = "Hat"
 material = "metal"
 type = "Hair"
@@ -513,7 +483,6 @@ id = 1153
 price = 45
 limit = 1000
 weight = 2.721
-smithing = { level = 22, xp = 50.0 }
 slot = "Hat"
 material = "metal"
 type = "FullFace"
@@ -528,7 +497,6 @@ id = 1155
 price = 12
 limit = 100
 weight = 2.721
-smithing = { level = 7, xp = 25.0 }
 slot = "Hat"
 material = "metal"
 type = "FullFace"
@@ -543,7 +511,6 @@ id = 1157
 price = 204
 limit = 100
 weight = 0.01
-smithing = { level = 37, xp = 75.0 }
 slot = "Hat"
 material = "metal"
 type = "FullFace"
@@ -558,7 +525,6 @@ id = 1159
 price = 739
 limit = 100
 weight = 0.01
-smithing = { level = 57, xp = 100.0 }
 slot = "Hat"
 material = "metal"
 type = "FullFace"
@@ -572,7 +538,6 @@ id = 1161
 price = 1934
 limit = 100
 weight = 0.01
-smithing = { level = 77, xp = 125.0 }
 slot = "Hat"
 material = "metal"
 type = "FullFace"
@@ -586,7 +551,6 @@ id = 1163
 price = 21000
 limit = 100
 weight = 0.01
-smithing = { level = 92, xp = 150.0 }
 slot = "Hat"
 material = "metal"
 type = "FullFace"
@@ -626,7 +590,6 @@ id = 1173
 price = 6
 limit = 100
 weight = 3.628
-smithing = { level = 8, xp = 25.0 }
 slot = "Shield"
 material = "metal"
 examine = "A medium square shield."
@@ -640,7 +603,6 @@ id = 1175
 price = 19
 limit = 1000
 weight = 3.628
-smithing = { level = 23, xp = 50.0 }
 slot = "Shield"
 material = "metal"
 examine = "An iron square shield."
@@ -652,7 +614,6 @@ id = 1176
 [steel_sq_shield]
 id = 1177
 price = 234
-smithing = { level = 38, xp = 75.0 }
 slot = "Shield"
 material = "metal"
 examine = "A medium square shield."
@@ -675,7 +636,6 @@ id = 1180
 [mithril_sq_shield]
 id = 1181
 price = 799
-smithing = { level = 58, xp = 100.0 }
 slot = "Shield"
 material = "metal"
 examine = "A medium square shield."
@@ -686,7 +646,6 @@ id = 1182
 [adamant_sq_shield]
 id = 1183
 price = 2168
-smithing = { level = 78, xp = 125.0 }
 slot = "Shield"
 material = "metal"
 examine = "A medium square shield."
@@ -697,7 +656,6 @@ id = 1184
 [rune_sq_shield]
 id = 1185
 price = 22900
-smithing = { level = 93, xp = 150.0 }
 slot = "Shield"
 material = "metal"
 examine = "A medium square shield."
@@ -724,7 +682,6 @@ price = 11
 limit = 100
 weight = 5.443
 aka = ["bronze_kite"]
-smithing = { level = 12, xp = 37.5 }
 slot = "Shield"
 material = "metal"
 examine = "A large metal shield."
@@ -739,7 +696,6 @@ price = 54
 limit = 1000
 weight = 5.443
 aka = ["iron_kite"]
-smithing = { level = 27, xp = 75.0 }
 slot = "Shield"
 material = "metal"
 examine = "A large metal shield."
@@ -754,7 +710,6 @@ price = 377
 limit = 100
 weight = 0.01
 aka = ["steel_kite"]
-smithing = { level = 42, xp = 112.5 }
 slot = "Shield"
 material = "metal"
 examine = "A steel kiteshield."
@@ -782,7 +737,6 @@ price = 1146
 limit = 100
 weight = 0.01
 aka = ["mithril_kite"]
-smithing = { level = 62, xp = 150.0 }
 slot = "Shield"
 material = "metal"
 examine = "A mithril kiteshield."
@@ -796,7 +750,6 @@ price = 3157
 limit = 100
 weight = 0.01
 aka = ["adamant_kite"]
-smithing = { level = 82, xp = 187.5 }
 slot = "Shield"
 material = "metal"
 examine = "An adamant kiteshield."
@@ -810,7 +763,6 @@ price = 36900
 limit = 100
 weight = 0.01
 aka = ["rune_kite"]
-smithing = { level = 97, xp = 225.0 }
 slot = "Shield"
 material = "metal"
 examine = "A rune kiteshield."

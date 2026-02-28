@@ -284,7 +284,6 @@ id = 7225
 price = 13
 limit = 100
 weight = 1.5
-smithing = { level = 17, xp = 25.0 }
 examine = "An easily-smithed iron spit."
 kept = "Wilderness"
 

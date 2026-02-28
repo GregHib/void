@@ -105,7 +105,6 @@ id = 9420
 price = 60
 limit = 5000
 weight = 1.0
-smithing = { level = 6, xp = 12.5 }
 slot = "Shield"
 examine = "A pair of bronze crossbow limbs."
 
@@ -125,7 +124,6 @@ id = 9423
 price = 37
 limit = 5000
 weight = 1.0
-smithing = { level = 23, xp = 25.0 }
 slot = "Shield"
 examine = "A pair of iron crossbow limbs."
 
@@ -137,7 +135,6 @@ id = 9425
 price = 100
 limit = 5000
 weight = 2.0
-smithing = { level = 36, xp = 37.5 }
 slot = "Shield"
 examine = "A pair of steel crossbow limbs."
 
@@ -149,7 +146,6 @@ id = 9427
 price = 356
 limit = 5000
 weight = 2.0
-smithing = { level = 56, xp = 50.0 }
 slot = "Shield"
 examine = "A pair of mithril crossbow limbs."
 
@@ -161,7 +157,6 @@ id = 9429
 price = 1445
 limit = 5000
 weight = 3.0
-smithing = { level = 76, xp = 62.5 }
 slot = "Shield"
 examine = "A pair of adamantite crossbow limbs."
 
@@ -173,7 +168,6 @@ id = 9431
 price = 9430
 limit = 5000
 weight = 3.0
-smithing = { level = 91, xp = 75.0 }
 aka = ["runite_limbs"]
 slot = "Shield"
 examine = "A pair of rune crossbow limbs."
