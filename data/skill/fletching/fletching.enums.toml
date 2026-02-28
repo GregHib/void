@@ -27,3 +27,30 @@ values = {
     rune_bolts_unf = 100,
     silver_bolts_unf = 25,
 }
+
+[dart_fletching_level]
+keyType = "item"
+valueType = "int"
+defaultInt = 1
+values = {
+    iron_dart_tip = 22,
+    steel_dart_tip = 37,
+    mithril_dart_tip = 52,
+    adamant_dart_tip = 67,
+    rune_dart_tip = 81,
+    dragon_dart_tip = 95,
+}
+
+[dart_fletching_xp]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    bronze_dart_tip = 18,
+    iron_dart_tip = 38,
+    steel_dart_tip = 75,
+    mithril_dart_tip = 112,
+    adamant_dart_tip = 150,
+    rune_dart_tip = 188,
+    dragon_dart_tip = 250,
+}
