@@ -73,7 +73,6 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
                                 "kept" -> extras[key] = ItemKept.by(string())
                                 "smelting" -> extras[key] = Smelting(this)
                                 "smithing" -> extras[key] = Smithing(this)
-                                "firemaking" -> extras[key] = Fire(this)
                                 "mining" -> extras[key] = Ore(this)
                                 "cooking" -> extras[key] = Uncooked(this)
                                 "tanning" -> extras[key] = Tanning(this)

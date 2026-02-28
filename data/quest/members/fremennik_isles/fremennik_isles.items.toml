@@ -13,7 +13,6 @@ id = 10810
 price = 94
 limit = 25000
 weight = 1.36
-firemaking = { level = 42, xp = 125.0, life = 100 }
 examine = "Log cut from an arctic pine."
 
 [arctic_pine_logs_noted]

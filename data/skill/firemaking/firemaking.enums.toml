@@ -1,0 +1,129 @@
+[firemaking_level]
+keyType = "item"
+valueType = "int"
+defaultInt = 1
+values = {
+    eucalyptus_logs = 58,
+    arctic_pine_logs = 42,
+    cursed_magic_logs = 82,
+    seeping_elm_branches = 10,
+    blood_spindle_branches = 20,
+    utuku_branches = 30,
+    spinebeam_branches = 40,
+    bovistrangler_branches = 50,
+    thigat_branches = 60,
+    corpsethorn_branches = 70,
+    entgallow_branches = 80,
+    grave_creeper_branches = 90,
+    magic_logs = 75,
+    yew_logs = 60,
+    maple_logs = 45,
+    willow_logs = 30,
+    oak_logs = 15,
+    mahogany_logs = 50,
+    teak_logs = 35,
+}
+
+[firemaking_xp]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    red_logs = 500,
+    green_logs = 500,
+    blue_logs = 500,
+    white_logs = 500,
+    purple_logs = 500,
+    eucalyptus_logs = 1935,
+    achey_tree_logs = 400,
+    arctic_pine_logs = 1250,
+    cursed_magic_logs = 3038,
+    tangle_gum_branches = 250,
+    seeping_elm_branches = 445,
+    blood_spindle_branches = 656,
+    utuku_branches = 883,
+    spinebeam_branches = 1126,
+    bovistrangler_branches = 1385,
+    thigat_branches = 1660,
+    corpsethorn_branches = 1951,
+    entgallow_branches = 2258,
+    grave_creeper_branches = 2581,
+    logs = 400,
+    magic_logs = 3038,
+    yew_logs = 2025,
+    maple_logs = 1350,
+    willow_logs = 900,
+    oak_logs = 600,
+    mahogany_logs = 1575,
+    teak_logs = 1050,
+}
+
+[firemaking_chance_min]
+keyType = "item"
+valueType = "int"
+defaultInt = 65
+values = {
+    red_logs = 256,
+    green_logs = 256,
+    blue_logs = 256,
+    white_logs = 256,
+    purple_logs = 256,
+}
+
+[firemaking_chance_max]
+keyType = "item"
+valueType = "int"
+defaultInt = 513
+values = {
+    red_logs = 256,
+    green_logs = 256,
+    blue_logs = 256,
+    white_logs = 256,
+    purple_logs = 256,
+}
+
+[firemaking_life]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    red_logs = 60,
+    green_logs = 60,
+    blue_logs = 60,
+    white_logs = 60,
+    purple_logs = 60,
+    eucalyptus_logs = 140,
+    achey_tree_logs = 60,
+    arctic_pine_logs = 100,
+    cursed_magic_logs = 200,
+    tangle_gum_branches = 60,
+    seeping_elm_branches = 75,
+    blood_spindle_branches = 82,
+    utuku_branches = 90,
+    spinebeam_branches = 100,
+    bovistrangler_branches = 120,
+    thigat_branches = 140,
+    corpsethorn_branches = 170,
+    entgallow_branches = 185,
+    grave_creeper_branches = 200,
+    logs = 60,
+    magic_logs = 180,
+    yew_logs = 160,
+    maple_logs = 100,
+    willow_logs = 90,
+    oak_logs = 90,
+    mahogany_logs = 140,
+    teak_logs = 90,
+}
+
+[firemaking_colour]
+keyType = "item"
+valueType = "string"
+defaultString = "orange"
+values = {
+    red_logs = "red",
+    green_logs = "green",
+    blue_logs = "blue",
+    white_logs = "white",
+    purple_logs = "purple",
+}

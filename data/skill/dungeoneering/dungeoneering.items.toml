@@ -10105,7 +10105,6 @@ id = 17681
 
 [tangle_gum_branches]
 id = 17682
-firemaking = { level = 1, xp = 25.0, life = 60 }
 examine = "There's enough wood here to be of use."
 kept = "Always"
 
@@ -10114,7 +10113,6 @@ id = 17683
 
 [seeping_elm_branches]
 id = 17684
-firemaking = { level = 10, xp = 44.5, life = 75 }
 examine = "There's enough wood here to be of use."
 kept = "Always"
 
@@ -10123,7 +10121,6 @@ id = 17685
 
 [blood_spindle_branches]
 id = 17686
-firemaking = { level = 20, xp = 65.6, life = 82 }
 examine = "There's enough wood here to be of use."
 kept = "Always"
 
@@ -10132,7 +10129,6 @@ id = 17687
 
 [utuku_branches]
 id = 17688
-firemaking = { level = 30, xp = 88.3, life = 90 }
 examine = "There's enough wood here to be of use."
 kept = "Always"
 
@@ -10141,7 +10137,6 @@ id = 17689
 
 [spinebeam_branches]
 id = 17690
-firemaking = { level = 40, xp = 112.6, life = 100 }
 examine = "There's enough wood here to be of use."
 kept = "Always"
 
@@ -10150,7 +10145,6 @@ id = 17691
 
 [bovistrangler_branches]
 id = 17692
-firemaking = { level = 50, xp = 138.5, life = 120 }
 examine = "There's enough wood here to be of use."
 kept = "Always"
 
@@ -10159,7 +10153,6 @@ id = 17693
 
 [thigat_branches]
 id = 17694
-firemaking = { level = 60, xp = 166.0, life = 140 }
 examine = "There's enough wood here to be of use."
 kept = "Always"
 
@@ -10168,7 +10161,6 @@ id = 17695
 
 [corpsethorn_branches]
 id = 17696
-firemaking = { level = 70, xp = 195.1, life = 170 }
 examine = "There's enough wood here to be of use."
 kept = "Always"
 
@@ -10177,7 +10169,6 @@ id = 17697
 
 [entgallow_branches]
 id = 17698
-firemaking = { level = 80, xp = 225.8, life = 185 }
 examine = "There's enough wood here to be of use."
 kept = "Always"
 
@@ -10186,7 +10177,6 @@ id = 17699
 
 [grave_creeper_branches]
 id = 17700
-firemaking = { level = 90, xp = 258.1, life = 200 }
 examine = "There's enough wood here to be of use."
 kept = "Always"
 
