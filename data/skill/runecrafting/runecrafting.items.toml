@@ -156,7 +156,6 @@ id = 5523
 price = 37
 limit = 100
 weight = 1.0
-silver_jewellery = { item = "tiara", level = 16, xp = 52.5 }
 examine = "A mould for tiaras."
 
 [tiara_mould_noted]

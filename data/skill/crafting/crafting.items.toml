@@ -13,7 +13,6 @@ id = 1593
 id = 1594
 tradeable = false
 weight = 0.453
-silver_jewellery = { name = "Unholy Symbol mould", item = "unstrung_emblem", quest = "observatory_quest", level = 17, xp = 50.0 }
 examine = "Used to make unholy symbols."
 kept = "Wilderness"
 
@@ -44,7 +43,6 @@ id = 1599
 price = 40
 limit = 100
 weight = 0.453
-silver_jewellery = { name = "Saradomin Symbol", item = "unstrung_symbol", level = 16, xp = 50.0 }
 examine = "Used to make holy symbols of Saradomin."
 kept = "Wilderness"
 

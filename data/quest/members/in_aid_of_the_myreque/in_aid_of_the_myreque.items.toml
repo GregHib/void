@@ -165,7 +165,6 @@ examine = "A fully charged rod."
 id = 7649
 tradeable = false
 weight = 0.05
-silver_jewellery = { item = "silvthril_rod", quest = "in_aid_of_the_myreque", level = 25, xp = 55.0 }
 destroy = "You can make another one of these by using clay on Ivandis' coffin."
 examine = "Rod of Ivandis mould."
 kept = "Reclaim"

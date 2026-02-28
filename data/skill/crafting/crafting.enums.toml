@@ -69,3 +69,83 @@ values = {
     onyx_bracelet = 125,
     ring_of_slaying_8 = 15,
 }
+
+[silver_jewellery_level]
+keyType = "item"
+valueType = "int"
+defaultInt = 1
+values = {
+    conductor_mould = 20,
+    rod_clay_mould = 25,
+    chain_link_mould = 47,
+    sickle_mould = 18,
+    demonic_sigil_mould = 30,
+    unholy_mould = 17,
+    holy_mould = 16,
+    bolt_mould = 21,
+    tiara_mould = 16,
+}
+
+[silver_jewellery_xp]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    conductor_mould = 500,
+    rod_clay_mould = 550,
+    chain_link_mould = 1000,
+    sickle_mould = 500,
+    demonic_sigil_mould = 500,
+    unholy_mould = 500,
+    holy_mould = 500,
+    bolt_mould = 500,
+    tiara_mould = 525,
+}
+
+[silver_jewellery_name]
+keyType = "item"
+valueType = "string"
+values = {
+    conductor_mould = "lightning rod mould",
+    unholy_mould = "Unholy Symbol mould",
+    holy_mould = "Saradomin Symbol",
+    bolt_mould = "crossbow bolt mould",
+}
+
+[silver_jewellery_quest]
+keyType = "item"
+valueType = "string"
+values = {
+    conductor_mould = "creature_of_fenkenstrain",
+    key_mould = "elemental_workshop_iii",
+    rod_clay_mould = "in_aid_of_the_myreque",
+    chain_link_mould = "legacy_of_seergaze",
+    sickle_mould = "nature_spirit",
+    demonic_sigil_mould = "shadow_of_the_storm",
+    unholy_mould = "observatory_quest",
+}
+
+[silver_jewellery_item]
+keyType = "item"
+valueType = "string"
+defaultString = ""
+values = {
+    conductor_mould = "conductor",
+    key_mould = "ragged_silver_key",
+    rod_clay_mould = "silvthril_rod",
+    chain_link_mould = "silvthril_chain",
+    sickle_mould = "silver_sickle",
+    demonic_sigil_mould = "demonic_sigil",
+    unholy_mould = "unstrung_emblem",
+    holy_mould = "unstrung_symbol",
+    bolt_mould = "silver_bolts_unf",
+    tiara_mould = "tiara",
+}
+
+[silver_jewellery_amount]
+keyType = "item"
+valueType = "int"
+defaultInt = 1
+values = {
+    bolt_mould = 10,
+}

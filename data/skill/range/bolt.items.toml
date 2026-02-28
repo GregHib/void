@@ -454,7 +454,6 @@ id = 9434
 price = 83
 limit = 100
 weight = 0.453
-silver_jewellery = { name = "crossbow bolt mould", item = "silver_bolts_unf", amount = 10, level = 21, xp = 50.0 }
 examine = "A mould for creating silver crossbow bolts."
 
 [bolt_mould_noted]
