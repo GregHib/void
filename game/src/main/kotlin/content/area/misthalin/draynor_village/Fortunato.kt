@@ -2,7 +2,6 @@ package content.area.misthalin.draynor_village
 
 import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.Angry
-import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.choice
