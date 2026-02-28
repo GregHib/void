@@ -10,8 +10,10 @@ import world.gregs.voidps.engine.inv.inventory
 val Item.tradeable: Boolean
     get() = def["tradeable", true]
 
-fun Player.addOrDrop(id: String, amount: Int = 1, inventory: Inventory = this.inventory, revealTicks: Int = 100, disappearTicks: Int = 200) {
+fun Player.addOrDrop(id: String, amount: Int = 1, inventory: Inventory = this.inventory, revealTicks: Int = 100, disappearTicks: Int = 200): Boolean {
     if (!inventory.add(id, amount)) {
         FloorItems.add(tile, id, amount, revealTicks = revealTicks, disappearTicks = disappearTicks, owner = this)
+        return false
     }
+    return true
 }

@@ -34,7 +34,7 @@ class OuraniaAltar(val drops: DropTables) : Script {
                 }
                 val runes = mutableListOf<ItemDrop>()
                 for (i in 0 until essence) {
-                    table.role(list = runes)
+                    table.roll(list = runes)
                 }
                 for (drop in runes) {
                     val item = drop.toItem()

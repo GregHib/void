@@ -1,0 +1,20 @@
+[wise_old_man_draynor]
+id = 2253
+
+[wise_old_man_2_3]
+id = 11569
+
+[wise_old_man_2]
+id = 3820
+
+[bed_draynor]
+id = 2254
+hitpoints = 250
+def = 5
+combat_def = "thing_under_the_bed"
+respawn_delay = 0
+examine = "It's a fairly ordinary bed, but..."
+
+[thing_under_the_bed]
+id = 2255
+examine = "It's just like that dream I use to have when I was little."

@@ -173,8 +173,8 @@ class Summoning : Script {
 
     init {
         itemOption("Summon", "*_pouch") { option ->
-            val familiarLevel = EnumDefinitions.get("summoning_pouch_levels").getInt(option.item.def.id)
-            val familiarId = EnumDefinitions.get("summoning_familiar_ids").getInt(option.item.def.id)
+            val familiarLevel = EnumDefinitions.get("summoning_pouch_levels").int(option.item.def.id)
+            val familiarId = EnumDefinitions.get("summoning_familiar_ids").int(option.item.def.id)
             val summoningXp = option.item.def["summon_experience", 0.0]
             val familiar = NPCDefinitions.get(familiarId)
             if (!has(Skill.Summoning, familiarLevel)) {

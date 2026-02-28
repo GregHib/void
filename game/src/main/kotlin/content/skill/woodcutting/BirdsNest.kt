@@ -26,7 +26,7 @@ class BirdsNest(val drops: DropTables) : Script {
 
             val table = drops.get(tableId) ?: return@itemOption
             val items = mutableListOf<ItemDrop>()
-            table.role(list = items)
+            table.roll(list = items)
 
             val drop = items.firstOrNull() ?: return@itemOption
             val itemId = drop.id

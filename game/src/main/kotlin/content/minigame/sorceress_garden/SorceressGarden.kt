@@ -106,8 +106,8 @@ class SorceressGarden(val dropTables: DropTables) : Script {
         val table = dropTables.get("${type}_herbs_drop_table")
         if (table != null) {
             val drops = mutableListOf<ItemDrop>()
-            table.role(list = drops)
-            table.role(list = drops)
+            table.roll(list = drops)
+            table.roll(list = drops)
             inventory.transaction {
                 for (drop in drops) {
                     add(drop.id, 1)

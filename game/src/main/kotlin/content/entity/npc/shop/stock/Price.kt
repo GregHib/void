@@ -18,11 +18,11 @@ object Price {
 
     fun getPrice(player: Player, item: String, index: Int, amount: Int): Int {
         val itemId = getRealItem(item)
-        var price = EnumDefinitions.get("price_runes").getInt(itemId)
+        var price = EnumDefinitions.get("price_runes").int(itemId)
         if (player["shop_currency", "coins"] == "tokkul" && price != -1 && price > 0) {
             return price
         }
-        price = EnumDefinitions.get("price_garden").getInt(itemId)
+        price = EnumDefinitions.get("price_garden").int(itemId)
         if (price != -1 && price > 0) {
             return price
         }
@@ -57,11 +57,11 @@ object Price {
         val itemId = getRealItem(item)
         val koin = KoinPlatformTools.defaultContext().getOrNull()
         if (koin != null) {
-            var price = EnumDefinitions.get("price_runes").getInt(itemId)
+            var price = EnumDefinitions.get("price_runes").int(itemId)
             if (currency == "tokkul" && price != -1 && price > 0) {
                 return price
             }
-            price = EnumDefinitions.get("price_garden").getInt(itemId)
+            price = EnumDefinitions.get("price_garden").int(itemId)
             if (price != -1 && price > 0) {
                 return price
             }

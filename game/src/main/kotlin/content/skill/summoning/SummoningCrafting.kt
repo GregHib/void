@@ -103,7 +103,7 @@ class SummoningCrafting : Script {
      * @param amount: The amount of pouches the player is attempting to craft
      */
     fun infusePouches(player: Player, enumIndex: Int, amount: Int) {
-        val pouchItemId = EnumDefinitions.get("summoning_pouch_ids_1").getInt(enumIndex)
+        val pouchItemId = EnumDefinitions.get("summoning_pouch_ids_1").int(enumIndex)
         val pouchItem = Item(ItemDefinitions.get(pouchItemId).stringId)
 
         val shards = getShards(pouchItem)
@@ -138,7 +138,7 @@ class SummoningCrafting : Script {
      * @param amount: The amount of pouches the player is attempting to turn into scrolls
      */
     fun transformScrolls(player: Player, enumIndex: Int, amount: Int) {
-        val scrollItemId = EnumDefinitions.get("summoning_scroll_ids_1").getInt(enumIndex)
+        val scrollItemId = EnumDefinitions.get("summoning_scroll_ids_1").int(enumIndex)
         val scrollItem = Item(ItemDefinitions.get(scrollItemId).stringId)
 
         val pouchId = EnumDefinitions.get("summoning_scroll_ids_2").getKey(scrollItemId)
@@ -262,8 +262,8 @@ class SummoningCrafting : Script {
      * @param enumIndex: The index of the clicked pouch in the "summoning_pouch_ids_1" enum.
      */
     fun sendIngredientMessage(player: Player, enumIndex: Int) {
-        val realPouchId = EnumDefinitions.get("summoning_pouch_ids_1").getInt(enumIndex)
-        val ingredientString = EnumDefinitions.get("summoning_pouch_crafting_ingredient_strings").getString(realPouchId)
+        val realPouchId = EnumDefinitions.get("summoning_pouch_ids_1").int(enumIndex)
+        val ingredientString = EnumDefinitions.get("summoning_pouch_crafting_ingredient_strings").string(realPouchId)
 
         player.message(ingredientString)
     }

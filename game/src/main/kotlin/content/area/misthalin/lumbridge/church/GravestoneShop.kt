@@ -41,12 +41,12 @@ class GravestoneShop : Script {
         }
 
         interfaceOption(id = "gravestone_shop:button") { (_, itemSlot) ->
-            val name = EnumDefinitions.get("gravestone_names").getString(itemSlot)
+            val name = EnumDefinitions.get("gravestone_names").string(itemSlot)
             val id = name.replace(" ", "_").lowercase()
             if (get("gravestone_current", "memorial_plaque") == id) {
                 return@interfaceOption
             }
-            val cost = EnumDefinitions.get("gravestone_price").getInt(itemSlot)
+            val cost = EnumDefinitions.get("gravestone_price").int(itemSlot)
             if (cost > 0 && !inventory.remove("coins", cost)) {
                 notEnough("coins")
                 return@interfaceOption

@@ -56,7 +56,7 @@ class Hairdresser : Script {
             val type = if (beard) "beard" else "hair"
             val key = "look_${type}_$sex"
             val value = if (beard) {
-                EnumDefinitions.get(key).getInt(itemSlot / 2)
+                EnumDefinitions.get(key).int(itemSlot / 2)
             } else {
                 EnumDefinitions.getStruct(key, itemSlot / 2, "body_look_id")
             }
@@ -64,7 +64,7 @@ class Hairdresser : Script {
         }
 
         interfaceOption(id = "hairdressers_salon:colours") { (_, itemSlot) ->
-            set("makeover_colour_hair", EnumDefinitions.get("colour_hair").getInt(itemSlot / 2))
+            set("makeover_colour_hair", EnumDefinitions.get("colour_hair").int(itemSlot / 2))
         }
 
         interfaceClosed("hairdressers_salon") {

@@ -78,7 +78,7 @@ class Thessalia : Script {
             if ((part == "arms" || part == "wrists") && previous) {
                 return@interfaceOption
             }
-            val value = EnumDefinitions.get("look_${part}_$sex").getInt(itemSlot / 2)
+            val value = EnumDefinitions.get("look_${part}_$sex").int(itemSlot / 2)
             if (part == "top") {
                 val current = fullBodyChest(value, male)
                 if (previous && !current) {
@@ -100,7 +100,7 @@ class Thessalia : Script {
                 "legs" -> "makeover_colour_legs"
                 else -> return@interfaceOption
             }
-            set(colour, EnumDefinitions.get("colour_$part").getInt(itemSlot / 2))
+            set(colour, EnumDefinitions.get("colour_$part").int(itemSlot / 2))
         }
 
         interfaceOption("Confirm", "thessalias_makeovers:confirm") {

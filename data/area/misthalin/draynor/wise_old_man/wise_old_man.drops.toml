@@ -1,0 +1,68 @@
+[wise_old_man_gems]
+roll = 25
+drops = [
+    { id = "uncut_red_topaz", chance = 2 },
+    { id = "uncut_sapphire", chance = 4 },
+    { id = "uncut_opal", chance = 5 },
+    { id = "uncut_emerald", chance = 4 },
+    { id = "uncut_ruby", chance = 4 },
+    { id = "uncut_jade", chance = 5 },
+    { id = "uncut_diamond", chance = 1 },
+]
+
+[wise_old_man_runes]
+roll = 9
+drops = [
+    { id = "air_rune", amount = 3 },
+    { id = "water_rune", amount = 2 },
+    { id = "earth_rune", amount = 2 },
+    { id = "body_rune", amount = 2 },
+    { id = "mind_rune", amount = 2 },
+    { id = "fire_rune", amount = 1 },
+    { id = "law_rune", amount = 1 },
+    { id = "nature_rune", amount = 1 },
+    { id = "chaos_rune", amount = 1 },
+]
+
+[wise_old_man_herbs]
+drops = [
+    { id = "grimy_guam_noted" },
+    { id = "grimy_marrentill_noted" },
+    { id = "grimy_tarromin_noted" },
+    { id = "grimy_ranarr_noted" },
+    { id = "grimy_harralander_noted" },
+]
+
+[wise_old_man_seeds]
+roll = 67
+drops = [
+    { id = "potato_seed", chance = 4 },
+    { id = "onion_seed", chance = 4 },
+    { id = "tomato_seed", chance = 4 },
+    { id = "cabbage_seed", chance = 4 },
+    { id = "marigold_seed", chance = 4 },
+    { id = "yanillian_seed", chance = 2 },
+    { id = "cactus_seed", chance = 2 },
+    { id = "cadavaberry_seed", chance = 2 },
+    { id = "hammerstone_seed", chance = 2 },
+    { id = "jangerberry_seed", chance = 2 },
+    { id = "barley_seed", chance = 2 },
+    { id = "nasturtium_seed", chance = 2 },
+    { id = "strawberry_seed", chance = 2 },
+    { id = "jute_seed", chance = 2 },
+    { id = "woad_seed", chance = 2 },
+    { id = "guam_seed", chance = 2 },
+    { id = "marrentill_seed", chance = 2 },
+    { id = "tarromin_seed", chance = 2 },
+    { id = "toadflax_seed", chance = 2 },
+    { id = "harralander_seed", chance = 2 },
+    { id = "watermelon_seed", chance = 2 },
+    { id = "rosemary_seed", chance = 2 },
+    { id = "redberry_seed", chance = 2 },
+    { id = "dwellberry_seed", chance = 2 },
+    { id = "asgarnian_seed", chance = 2 },
+    { id = "sweetcorn_seed", chance = 2 },
+    { id = "whiteberry_seed", chance = 2 },
+    { id = "wildblood_seed", chance = 2 },
+    { id = "limpwurt_seed", chance = 1 },
+]

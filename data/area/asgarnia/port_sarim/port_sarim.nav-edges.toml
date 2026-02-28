@@ -1,0 +1,136 @@
+edges = [
+    { from = { x = 3071, y = 3266 }, to = { x = 3071, y = 3276 } },
+    { from = { x = 3071, y = 3276 }, to = { x = 3069, y = 3276 } },
+    { from = { x = 3069, y = 3276 }, to = { x = 3066, y = 3269 } },
+    { from = { x = 3066, y = 3269 }, to = { x = 3063, y = 3260 } },
+    { from = { x = 3066, y = 3269 }, to = { x = 3057, y = 3265 } },
+    { from = { x = 3057, y = 3265 }, to = { x = 3051, y = 3265 } },
+    { from = { x = 3063, y = 3260 }, to = { x = 3060, y = 3254 } },
+    { from = { x = 3063, y = 3260 }, to = { x = 3053, y = 3261 } },
+    { from = { x = 3060, y = 3254 }, to = { x = 3053, y = 3247 } },
+    { from = { x = 3053, y = 3247 }, to = { x = 3042, y = 3247 } },
+    { from = { x = 3053, y = 3261 }, to = { x = 3051, y = 3265 } },
+    { from = { x = 3051, y = 3265 }, to = { x = 3041, y = 3263 } },
+    { from = { x = 3041, y = 3263 }, to = { x = 3036, y = 3255 } },
+    { from = { x = 3041, y = 3263 }, to = { x = 3032, y = 3265 } },
+    { from = { x = 3032, y = 3265 }, to = { x = 3027, y = 3268 } },
+    { from = { x = 3027, y = 3268 }, to = { x = 3019, y = 3263 } },
+    { from = { x = 3027, y = 3268 }, to = { x = 3038, y = 3276 } },
+    { from = { x = 3038, y = 3276 }, to = { x = 3055, y = 3276 } },
+    { from = { x = 3055, y = 3276 }, to = { x = 3069, y = 3276 } },
+    { from = { x = 3055, y = 3276 }, to = { x = 3057, y = 3265 } },
+    { from = { x = 3069, y = 3276 }, to = { x = 3071, y = 3276 } },
+    { from = { x = 3019, y = 3263 }, to = { x = 3019, y = 3258 } },
+    { from = { x = 3053, y = 3261 }, to = { x = 3057, y = 3265 } },
+    { from = { x = 3042, y = 3247 }, to = { x = 3035, y = 3248 } },
+    { from = { x = 3042, y = 3247 }, to = { x = 3036, y = 3255 } },
+    { from = { x = 3036, y = 3255 }, to = { x = 3026, y = 3256 } },
+    { from = { x = 3026, y = 3256 }, to = { x = 3019, y = 3258 } },
+    { from = { x = 3019, y = 3258 }, to = { x = 3017, y = 3258 } },
+    { from = { x = 3017, y = 3258 }, to = { x = 3016, y = 3258 },
+        actions = [
+            { object = {
+                option = "Open",
+                id = "door_668_closed",
+                x = 3017,
+                y = 3259,
+                success = { object = { id = "door_668_opened", x = 3016, y = 3259 } }
+            } },
+            { tile = { x = 3016, y = 3258, radius = 1 } }
+        ]
+    },
+    { from = { x = 3016, y = 3258 }, to = { x = 3017, y = 3258 },
+        actions = [
+            { object = {
+                option = "Open",
+                id = "door_668_closed",
+                x = 3017,
+                y = 3259,
+                success = { object = { id = "door_668_opened", x = 3016, y = 3259 } }
+            } },
+            { tile = { x = 3017, y = 3258, radius = 1 } }
+        ]
+    },
+    { from = { x = 3019, y = 3258 }, to = { x = 3019, y = 3247 } },
+    { from = { x = 3035, y = 3248 }, to = { x = 3031, y = 3248 } },
+    { from = { x = 3035, y = 3248 }, to = { x = 3026, y = 3242 } },
+    { from = { x = 3031, y = 3248 }, to = { x = 3026, y = 3242 } },
+    { from = { x = 3031, y = 3248 }, to = { x = 3030, y = 3248 },
+        actions = [
+            { object = {
+                option = "Open",
+                id = "door_668_closed",
+                x = 3031,
+                y = 3248,
+                success = { object = { id = "door_668_opened", x = 3030, y = 3248 } }
+            } },
+            { tile = { x = 3030, y = 3248, radius = 1 } }
+        ]
+    },
+    { from = { x = 3030, y = 3248 }, to = { x = 3031, y = 3248 },
+        actions = [
+            { object = {
+                option = "Open",
+                id = "door_668_closed",
+                x = 3031,
+                y = 3248,
+                success = { object = { id = "door_668_opened", x = 3030, y = 3248 } }
+            } },
+            { tile = { x = 3031, y = 3248, radius = 1 } }
+        ]
+    },
+    { from = { x = 3030, y = 3248 }, to = { x = 3026, y = 3245 } },
+    { from = { x = 3026, y = 3242 }, to = { x = 3026, y = 3244 } },
+    { from = { x = 3026, y = 3242 }, to = { x = 3019, y = 3247 } },
+    { from = { x = 3026, y = 3242 }, to = { x = 3021, y = 3237 } },
+    { from = { x = 3026, y = 3244 }, to = { x = 3026, y = 3245 },
+        actions = [
+            { object = {
+                option = "Open",
+                id = "door_668_closed",
+                x = 3026,
+                y = 3244,
+                success = { object = { id = "door_668_opened", x = 3026, y = 3245 } }
+            } },
+            { tile = { x = 3026, y = 3245, radius = 1 } }
+        ]
+    },
+    { from = { x = 3026, y = 3245 }, to = { x = 3026, y = 3244 },
+        actions = [
+            { object = {
+                option = "Open",
+                id = "door_668_closed",
+                x = 3026,
+                y = 3244,
+                success = { object = { id = "door_668_opened", x = 3026, y = 3245 } }
+            } },
+            { tile = { x = 3026, y = 3244, radius = 1 } }
+        ]
+    },
+    { from = { x = 3019, y = 3247 }, to = { x = 3021, y = 3237 } },
+    { from = { x = 3021, y = 3237 }, to = { x = 3019, y = 3224 } },
+    { from = { x = 3019, y = 3224 }, to = { x = 3016, y = 3217 } },
+    { from = { x = 3016, y = 3217 }, to = { x = 3013, y = 3219 } },
+    { from = { x = 3013, y = 3219 }, to = { x = 3013, y = 3220 },
+        actions = [
+            { object = {
+                option = "Open",
+                id = "door_668_closed",
+                x = 3013,
+                y = 3219,
+                success = { object = { id = "door_668_opened", x = 3013, y = 3220 } }
+            } },
+            { tile = { x = 3013, y = 3220, radius = 1 } }
+        ]
+    },
+    { from = { x = 3013, y = 3220 }, to = { x = 3013, y = 3219 }, actions = [
+        { object = {
+            option = "Open",
+            id = "door_668_closed",
+            x = 3013,
+            y = 3219,
+            success = { object = { id = "door_668_opened", x = 3013, y = 3220 } }
+        } },
+        { tile = { x = 3013, y = 3219, radius = 1 } }
+    ] },
+]

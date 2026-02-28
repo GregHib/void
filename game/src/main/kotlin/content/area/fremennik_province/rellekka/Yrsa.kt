@@ -53,12 +53,12 @@ class Yrsa : Script {
         }
 
         interfaceOption(id = "yrsas_shoe_store:styles") { (_, itemSlot) ->
-            val value = EnumDefinitions.get("look_shoes_$sex").getInt(itemSlot / 2)
+            val value = EnumDefinitions.get("look_shoes_$sex").int(itemSlot / 2)
             set("makeover_shoes", value)
         }
 
         interfaceOption(id = "yrsas_shoe_store:colours") { (_, itemSlot) ->
-            set("makeover_colour_shoes", EnumDefinitions.get("colour_shoes").getInt(itemSlot / 2))
+            set("makeover_colour_shoes", EnumDefinitions.get("colour_shoes").int(itemSlot / 2))
         }
 
         interfaceOption("Confirm", "yrsas_shoe_store:confirm") {

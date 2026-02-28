@@ -26,7 +26,7 @@ data class DropTable(
      * @param list optional list to add the drop to
      * @param player the player for [ItemDrop.predicate]'s
      */
-    fun role(maximumRoll: Int = -1, list: MutableList<ItemDrop> = mutableListOf(), player: Player? = null): MutableList<ItemDrop> {
+    fun roll(maximumRoll: Int = -1, list: MutableList<ItemDrop> = mutableListOf(), player: Player? = null): MutableList<ItemDrop> {
         collect(list, maximumRoll, player, random(maximumRoll))
         return list
     }

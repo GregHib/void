@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.mode.move.target
 
 import org.rsmod.game.pathfinder.PathFinder
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.type.Tile
 
 data class NPCCharacterTargetStrategy(
@@ -21,14 +22,21 @@ data class NPCCharacterTargetStrategy(
     override val sizeY: Int
         get() = character.size
 
-    override fun destination(source: Character) = Tile(PathFinder.naiveDestination(
-        sourceX = source.tile.x,
-        sourceZ = source.tile.y,
-        sourceWidth = source.size,
-        sourceHeight = source.size,
-        targetX = character.tile.x,
-        targetZ = character.tile.y,
-        targetWidth = character.size,
-        targetHeight = character.size
-    ).packed)
+    override fun destination(source: Character): Tile {
+        if (source is NPC && source.id == "bed_draynor") {
+            return Tile.EMPTY
+        }
+        return Tile(
+            PathFinder.naiveDestination(
+                sourceX = source.tile.x,
+                sourceZ = source.tile.y,
+                sourceWidth = source.size,
+                sourceHeight = source.size,
+                targetX = character.tile.x,
+                targetZ = character.tile.y,
+                targetWidth = character.size,
+                targetHeight = character.size
+            ).packed
+        )
+    }
 }

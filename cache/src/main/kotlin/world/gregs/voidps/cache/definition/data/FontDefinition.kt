@@ -148,6 +148,7 @@ data class FontDefinition(
         var wordStart = 0
         var tagStart = -1
         var lastChar = -1
+        var colour: String? = null
         for (index in input.indices) {
             var current: Int = charToByte(input[index]) and 0xff
             var extraWidth = 0
@@ -194,7 +195,12 @@ data class FontDefinition(
                     "euro" -> addKernelWidth(8364)
                     "copy" -> addKernelWidth(169)
                     "reg" -> addKernelWidth(174)
-                    else -> {
+                    "blue", "orange", "green", "red", "red_orange", "yellow", "lime", "gold", "white",
+                    "black", "navy", "maroon", "purple", "brown", "violet", "dark_green", "dark_red",
+                        -> colour = tag
+                    else -> if (tag.startsWith("col=")) {
+                        colour = tag
+                    } else {
                         totalWidth += spriteWidth(tag, icons) ?: continue
                         lastChar = -1
                     }
@@ -215,13 +221,21 @@ data class FontDefinition(
             }
             if (totalWidth > widths[if (widths.size > output.size) output.size else widths.size - 1]) {
                 if (lineLength >= 0) {
-                    output.add(input.substring(lineStart, lineLength + 1 - wordStart))
+                    if (colour != null && output.isNotEmpty()) {
+                        output.add("<${colour}>${input.substring(lineStart, lineLength + 1 - wordStart)}")
+                    } else {
+                        output.add(input.substring(lineStart, lineLength + 1 - wordStart))
+                    }
                     lineStart = lineLength + 1
                     lastChar = -1
                     lineLength = -1
                     totalWidth -= wordWidth
                 } else {
-                    output.add(input.substring(lineStart, currentWidth))
+                    if (colour != null && output.isNotEmpty()) {
+                        output.add("<${colour}>${input.substring(lineStart, currentWidth)}")
+                    } else {
+                        output.add(input.substring(lineStart, currentWidth))
+                    }
                     lineStart = currentWidth
                     lastChar = -1
                     lineLength = -1
@@ -235,7 +249,11 @@ data class FontDefinition(
             }
         }
         if (lineStart < input.length) {
-            output.add(input.substring(lineStart))
+            if (colour != null && output.isNotEmpty()) {
+                output.add("<${colour}>${input.substring(lineStart)}")
+            } else {
+                output.add(input.substring(lineStart))
+            }
         }
         return output
     }

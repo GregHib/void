@@ -1,21 +1,25 @@
 package content.area.misthalin.lumbridge.church
 
+import content.area.misthalin.draynor_village.wise_old_man.OldMansMessage
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
 import content.quest.refreshQuestJournal
+import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 
-class FatherAereck : Script {
+class FatherAereck(val drops: DropTables) : Script {
 
     init {
         npcOperate("Talk-to", "father_aereck") {
+            wiseOldManLetter()
             when (quest("the_restless_ghost")) {
                 "unstarted" -> {
                     npc<Happy>("Welcome to the church of holy Saradomin.")
@@ -48,6 +52,35 @@ class FatherAereck : Script {
                 "mining_spot" -> miningSpot()
                 "found_skull" -> foundSkull()
                 else -> completed()
+            }
+        }
+    }
+
+    private suspend fun Player.wiseOldManLetter() {
+        if (get("wise_old_man_npc", "") != "father_aereck" || !carriesItem("old_mans_message")) {
+            return
+        }
+        player<Happy>("The Wise Old Man of Draynor Village said you might reward me if I brought you this.")
+        npc<Neutral>("Oh, did he?")
+        val reward = OldMansMessage.rewardLetter(this) ?: return
+        when (reward) {
+            "runes" -> {
+                items("nature_rune", "water_rune", "Faether Aereck gives you some runes.")
+                npc<Happy>("Well, maybe you'll have a use for these?")
+            }
+            "herbs" -> item("grimy_tarromin", 400, "Faether Aereck gives you some herbs.") // TODO proper message
+            "seeds" -> {
+                item("potato_seed", 400, "Faether Aereck gives you some seeds.")
+                npc<Happy>("Well, maybe you'll find a use for these seeds?")
+            }
+            "prayer" -> {
+                item(167, "<navy>Father Aereck blesses you.<br>You gain some Prayer xp.")
+                npc<Happy>("Well, it's still nice of you to bring the message here. Here, I shall bless you...")
+            }
+            "coins" -> item("coins_8", 400, "Faether Aereck gives you some coins.")
+            else -> {
+                item(reward, 400, "Father Aereck gives you an ${reward.toSentenceCase()}.")
+                npc<Happy>("I suppose gems are always acceptable rewards!")
             }
         }
     }

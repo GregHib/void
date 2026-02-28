@@ -215,14 +215,14 @@ class Music(val tracks: MusicTracks) : Script {
     }
 
     fun Player.hasUnlocked(musicIndex: Int): Boolean {
-        val name = EnumDefinitions.get("music_track_names").getString(musicIndex)
+        val name = EnumDefinitions.get("music_track_names").string(musicIndex)
         return containsVarbit("unlocked_music_${musicIndex / 32}", toIdentifier(name))
     }
 
     fun autoPlay(player: Player, track: MusicTracks.Track) {
         val index = track.index
         if (player.addVarbit("unlocked_music_${index / 32}", track.name)) {
-            player.message("<red>You have unlocked a new music track: ${EnumDefinitions.get("music_track_names").getString(index)}.")
+            player.message("<red>You have unlocked a new music track: ${EnumDefinitions.get("music_track_names").string(index)}.")
         }
         if (!player["playing_song", false]) {
             player.playTrack(index)

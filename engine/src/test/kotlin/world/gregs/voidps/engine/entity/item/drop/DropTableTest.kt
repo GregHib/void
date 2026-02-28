@@ -90,7 +90,7 @@ internal class DropTableTest {
         val item2 = drop("2", 1)
         val root = DropTable(TableType.First, 5, listOf(item1, item2), 1)
 
-        val list = root.role()
+        val list = root.roll()
 
         assertEquals(listOf(item2), list)
     }
@@ -104,7 +104,7 @@ internal class DropTableTest {
         val item2 = drop("2", 1)
         val root = DropTable(TableType.First, -1, listOf(item1, item2), 1)
 
-        val list = root.role(maximumRoll = 10)
+        val list = root.roll(maximumRoll = 10)
 
         assertTrue(list.isEmpty())
     }

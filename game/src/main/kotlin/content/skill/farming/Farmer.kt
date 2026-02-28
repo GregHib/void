@@ -169,7 +169,7 @@ class Farmer : Script {
         }
         val def = ObjectDefinitions.get("${value.substringBeforeLast("_")}_fullygrown")
         val item: String = def.getOrNull("harvest") ?: return
-        val harvest = EnumDefinitions.get("farming_protection").getString(ItemDefinitions.get(item).id).substringAfter(":")
+        val harvest = EnumDefinitions.get("farming_protection").string(ItemDefinitions.get(item).id).substringAfter(":")
         npc<Neutral>("If you like, but I want $harvest for that.")
         val (required, noted) = requiredItems(item)
         if (!inventory.remove(required) && (noted.isEmpty() || !inventory.remove(noted))) {

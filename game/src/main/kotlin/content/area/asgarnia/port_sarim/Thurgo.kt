@@ -1,8 +1,10 @@
 package content.area.asgarnia.port_sarim
 
+import content.area.misthalin.draynor_village.wise_old_man.OldMansMessage
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
+import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -22,6 +24,7 @@ class Thurgo : Script {
 
     init {
         npcOperate("Talk-to", "thurgo") {
+            wiseOldManLetter()
             when (quest("the_knights_sword")) {
                 "started", "find_thurgo" -> menu()
                 "happy_thurgo" -> menuSword()
@@ -36,6 +39,40 @@ class Thurgo : Script {
                 "find_thurgo" -> menu()
                 "happy_thurgo" -> menuSword()
                 else -> player<Confused>("Why would I give him my pie?")
+            }
+        }
+    }
+
+    private suspend fun Player.wiseOldManLetter() {
+        if (get("wise_old_man_npc", "") != "thurgo" || !carriesItem("old_mans_message")) {
+            return
+        }
+        player<Happy>("The Wise Old Man says he's got the information you wanted. Here's his message.")
+        npc<Happy>("Ooh, thanks. I've been hoping he'd send me that information soon, although I wouldn't mind if he'd send me a pie instead!")
+        val reward = OldMansMessage.rewardLetter(this) ?: return
+        when (reward) {
+            "runes" -> {
+                items("nature_rune", "water_rune", "Thurgo gives you some runes.") // TODO check always same runes or not?
+                npc<Happy>("Magic isn't really my thing. Here, take these.")
+            }
+            "herbs" -> {
+                item("grimy_tarromin", 400, "<navy>Thurgo gives you some banknotes that can be exchanged for herbs.")
+                npc<Happy>("Some guy died down in the hole just north of my house, and he dropped these herbs. Here, take them.")
+            }
+            "seeds" -> {
+                item("potato_seed", 400, "<navy>Thurgo gives you some seeds.")
+                npc<Happy>("I'm not the gardening type. Here, take these.")
+            }
+            "prayer" -> {
+                item(167, "<navy>Thurgo blesses you.<br>You gain some Prayer xp.") // TODO proper message
+            }
+            "coins" -> {
+                item("coins_8", 400, "<navy>Thurgo gives you some coins.")
+                npc<Happy>("Here's some cash for your time.")
+            }
+            else -> {
+                item(reward, 400, "Thurgo gives you an ${reward.toSentenceCase()}!")
+                npc<Happy>("I found this while I was mining. Hope you like it.")
             }
         }
     }

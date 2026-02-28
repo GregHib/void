@@ -30,12 +30,12 @@ data class QuickChatPhraseDefinition(
                         else -> 0
                     }
                     val string = when (type) {
-                        QuickChatType.MultipleChoice -> enums[ids[index].first()].getString(key)
+                        QuickChatType.MultipleChoice -> enums[ids[index].first()].string(key)
                         QuickChatType.AllItems, QuickChatType.TradeItems -> items[key].name
                         QuickChatType.SlayerAssignment -> {
-                            enums[ids[index].first()].getString(key)
+                            enums[ids[index].first()].string(key)
                         }
-                        QuickChatType.ClanRank, QuickChatType.SkillExperience -> enums[ids[index].first()].getString(key)
+                        QuickChatType.ClanRank, QuickChatType.SkillExperience -> enums[ids[index].first()].string(key)
                         else -> key.toString()
                     }
                     append(string)

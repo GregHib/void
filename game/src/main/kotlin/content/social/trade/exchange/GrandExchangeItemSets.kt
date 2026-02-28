@@ -35,7 +35,7 @@ class GrandExchangeItemSets : Script {
 
         interfaceOption("Components", "exchange_item_sets:sets") { (item) ->
             val descriptions = EnumDefinitions.get("exchange_set_descriptions")
-            message(descriptions.getString(item.def.id))
+            message(descriptions.string(item.def.id))
         }
 
         interfaceOption("Exchange", "exchange_item_sets:sets") { (item) ->
@@ -73,7 +73,7 @@ class GrandExchangeItemSets : Script {
 
         interfaceOption("Components", "exchange_sets_side:items") { (item) ->
             val descriptions = EnumDefinitions.get("exchange_set_descriptions")
-            val text = descriptions.getString(item.def.id)
+            val text = descriptions.string(item.def.id)
             if (text != "shop_dummy") {
                 message(text)
             } else {

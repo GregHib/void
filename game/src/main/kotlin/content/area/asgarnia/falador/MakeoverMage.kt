@@ -69,7 +69,7 @@ class MakeoverMage : Script {
         }
 
         interfaceOption(id = "skin_colour:colour_*") {
-            set("makeover_colour_skin", EnumDefinitions.get("character_skin").getInt(it.component.removePrefix("colour_").toInt()))
+            set("makeover_colour_skin", EnumDefinitions.get("character_skin").int(it.component.removePrefix("colour_").toInt()))
         }
 
         interfaceOption("Confirm", "skin_colour:confirm") {
@@ -214,6 +214,6 @@ class MakeoverMage : Script {
         val old = EnumDefinitions.get("look_${name}_${if (male) "female" else "male"}")
         val new = EnumDefinitions.get("look_${name}_${if (male) "male" else "female"}")
         val key = old.getKey(player.body.getLook(bodyPart))
-        player.body.setLook(bodyPart, new.getInt(key))
+        player.body.setLook(bodyPart, new.int(key))
     }
 }

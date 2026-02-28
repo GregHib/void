@@ -13,8 +13,12 @@ object InventoryDefinitions : DefinitionsDecoder<InventoryDefinition> {
     override var definitions: Array<InventoryDefinition> = emptyArray()
     override var ids: Map<String, Int> = emptyMap()
 
+    var loaded = false
+        private set
+
     fun init(definitions: Array<InventoryDefinition>): InventoryDefinitions {
         this.definitions = definitions
+        loaded = true
         return this
     }
 
@@ -22,11 +26,13 @@ object InventoryDefinitions : DefinitionsDecoder<InventoryDefinition> {
     fun set(definitions: Array<InventoryDefinition>, ids: Map<String, Int>) {
         this.definitions = definitions
         this.ids = ids
+        loaded = true
     }
 
     fun clear() {
         this.definitions = emptyArray()
         this.ids = emptyMap()
+        loaded = false
     }
 
     override fun empty() = InventoryDefinition.EMPTY

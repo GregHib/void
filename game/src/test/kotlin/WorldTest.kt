@@ -354,10 +354,17 @@ abstract class WorldTest : KoinTest {
         private val weaponStyleDefinitions: WeaponStyleDefinitions by lazy { WeaponStyleDefinitions().load(configFiles.find(Settings["definitions.weapons.styles"])) }
         private val weaponAnimationDefinitions: WeaponAnimationDefinitions by lazy { WeaponAnimationDefinitions().load(configFiles.find(Settings["definitions.weapons.animations"])) }
         private val enumDefinitions: Array<EnumDefinition> by lazy {
-            EnumDecoder().load(cache)
+            itemIds
+            interfaceIds
+            inventoryIds
+            npcIds
+            structIds
+            EnumDefinitions.init(EnumDecoder().load(cache)).load(configFiles.list(Settings["definitions.enums"]))
+            EnumDefinitions.definitions
         }
+
         private val enumIds: Map<String, Int> by lazy {
-            EnumDefinitions.init(EnumDecoder().load(cache)).load(configFiles.find(Settings["definitions.enums"]))
+            enumDefinitions
             EnumDefinitions.ids
         }
         private val objectCollisionAdd: GameObjectCollisionAdd by lazy { GameObjectCollisionAdd() }
