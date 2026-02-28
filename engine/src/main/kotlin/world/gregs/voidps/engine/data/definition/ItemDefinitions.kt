@@ -72,7 +72,6 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
                                 "type" -> extras[key] = EquipType.by(string())
                                 "kept" -> extras[key] = ItemKept.by(string())
                                 "tanning" -> extras[key] = Tanning(this)
-                                "spinning" -> extras[key] = Spinning(this)
                                 "pottery" -> extras[key] = Pottery(this)
                                 "weaving" -> extras[key] = Weaving(this)
                                 "runecrafting" -> extras[key] = Rune(this)

@@ -490,7 +490,6 @@ limit = 100
 weight = 0.001
 compostable = true
 super_compost = true
-spinning = { to = "crossbow_string", level = 10, xp = 15.0 }
 examine = "The roots of the Oak tree."
 
 [oak_roots_noted]
@@ -503,7 +502,6 @@ limit = 100
 weight = 0.001
 compostable = true
 super_compost = true
-spinning = { to = "crossbow_string", level = 10, xp = 15.0 }
 examine = "The roots of the Willow tree."
 
 [willow_roots_noted]
@@ -516,7 +514,6 @@ limit = 100
 weight = 0.001
 compostable = true
 super_compost = true
-spinning = { to = "crossbow_string", level = 10, xp = 15.0 }
 examine = "The roots of the Maple tree."
 
 [maple_roots_noted]
@@ -529,7 +526,6 @@ limit = 100
 weight = 0.001
 compostable = true
 super_compost = true
-spinning = { to = "crossbow_string", level = 10, xp = 15.0 }
 examine = "The roots of the Yew tree."
 
 [yew_roots_noted]
@@ -542,7 +538,6 @@ limit = 100
 weight = 0.001
 compostable = true
 super_compost = true
-spinning = { to = "magic_string", level = 19, xp = 30.0 }
 examine = "The roots of the Magic tree."
 
 [magic_roots_noted]

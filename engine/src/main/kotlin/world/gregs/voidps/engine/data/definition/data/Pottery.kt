@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.data.definition.data
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.ConfigReader
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 
 data class Pottery(
     val map: Map<String, Ceramic> = emptyMap(),

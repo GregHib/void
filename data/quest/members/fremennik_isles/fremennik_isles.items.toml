@@ -33,7 +33,6 @@ id = 10814
 price = 85
 limit = 1000
 weight = 0.001
-spinning = { to = "rope", level = 30, xp = 25.0 }
 examine = "I can spin this into rope."
 
 [yak_hair_noted]

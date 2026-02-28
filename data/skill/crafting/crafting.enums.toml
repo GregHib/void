@@ -149,3 +149,55 @@ defaultInt = 1
 values = {
     bolt_mould = 10,
 }
+
+[spinning_level]
+keyType = "item"
+valueType = "int"
+defaultInt = 1
+values = {
+    yak_hair = 30,
+    golden_wool = 40,
+    flax = 10,
+    oak_roots = 10,
+    willow_roots = 10,
+    maple_roots = 10,
+    yew_roots = 10,
+    magic_roots = 19,
+    sinew = 10,
+}
+
+[spinning_xp]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    yak_hair = 250,
+    golden_wool = 25,
+    wool = 25,
+    black_wool = 25,
+    flax = 150,
+    oak_roots = 150,
+    willow_roots = 150,
+    maple_roots = 150,
+    yew_roots = 150,
+    magic_roots = 300,
+    sinew = 150,
+}
+
+[spinning_item]
+keyType = "item"
+valueType = "string"
+defaultString = ""
+values = {
+    yak_hair = "rope",
+    golden_wool = "golden_fleece",
+    wool = "ball_of_wool",
+    black_wool = "ball_of_black_wool",
+    flax = "bowstring",
+    oak_roots = "crossbow_string",
+    willow_roots = "crossbow_string",
+    maple_roots = "crossbow_string",
+    yew_roots = "crossbow_string",
+    magic_roots = "magic_string",
+    sinew = "crossbow_string",
+}
