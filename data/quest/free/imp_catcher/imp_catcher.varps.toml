@@ -1,0 +1,5 @@
+[imp_catcher]
+id = 160
+format = "list"
+persist = true
+values = ["unstarted", "started", "given_beads", "completed"]
