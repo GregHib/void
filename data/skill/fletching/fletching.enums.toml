@@ -1,0 +1,29 @@
+[bolt_fletching_level]
+keyType = "item"
+valueType = "int"
+defaultInt = 1
+values = {
+    bronze_bolts_unf = 9,
+    blurite_bolts_unf = 24,
+    iron_bolts_unf = 39,
+    steel_bolts_unf = 46,
+    mithril_bolts_unf = 54,
+    adamant_bolts_unf = 61,
+    rune_bolts_unf = 69,
+    silver_bolts_unf = 43,
+}
+
+[bolt_fletching_xp]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    bronze_bolts_unf = 5,
+    blurite_bolts_unf = 10,
+    iron_bolts_unf = 15,
+    steel_bolts_unf = 35,
+    mithril_bolts_unf = 50,
+    adamant_bolts_unf = 70,
+    rune_bolts_unf = 100,
+    silver_bolts_unf = 25,
+}

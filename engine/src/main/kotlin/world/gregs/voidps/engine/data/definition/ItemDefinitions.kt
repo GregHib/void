@@ -84,7 +84,6 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
                                 "runecrafting" -> extras[key] = Rune(this)
                                 "talisman_tiara" -> extras[key] = Tiara(this)
                                 "fletch_dart" -> extras[key] = FletchDarts(this)
-                                "fletch_bolts" -> extras[key] = FletchBolts(this)
                                 "fletching_unf" -> extras[key] = Fletching(this)
                                 "light_source" -> extras[key] = LightSources(this)
                                 "skill_req", "equip_req" -> {
