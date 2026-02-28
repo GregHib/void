@@ -2,12 +2,12 @@ package content.skill.firemaking
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.data.LightSources
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
+import world.gregs.voidps.engine.inv.replace
 
 class LightSource : Script {
 
@@ -26,27 +26,23 @@ class LightSource : Script {
             append("unlit_torch")
         }
         itemOnItem("tinderbox*", unlitSources) { _, toItem ->
-            val needsFlame: LightSources = toItem.def.getOrNull("light_source") ?: return@itemOnItem
-
-            if (!has(Skill.Firemaking, needsFlame.level, true)) {
+            val lit = EnumDefinitions.stringOrNull("light_source_lit", toItem.id) ?: return@itemOnItem
+            val level = EnumDefinitions.int("light_source_level", lit)
+            if (!has(Skill.Firemaking, level, true)) {
                 return@itemOnItem
             }
-
-            inventory.transaction {
-                replace(toItem.id, needsFlame.onceLit)
+            if (!inventory.replace(toItem.id, lit)) {
+                return@itemOnItem
             }
-
-            val litItem = determineLightSource(needsFlame.onceLit)
+            val litItem = determineLightSource(lit)
             message("You light the $litItem", ChatType.Game)
         }
 
         itemOption("Extinguish") { (item) ->
-            val source: LightSources = item.def.getOrNull("light_source") ?: return@itemOption
-
-            inventory.transaction {
-                replace(item.id, source.onceExtinguish)
+            val extinguished = EnumDefinitions.stringOrNull("light_source_extinguish", item.id) ?: return@itemOption
+            if (!inventory.replace(item.id, extinguished)) {
+                return@itemOption
             }
-
             message("You extinguish the flame.", ChatType.Game)
         }
     }

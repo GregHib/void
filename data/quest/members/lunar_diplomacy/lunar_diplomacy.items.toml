@@ -2,7 +2,6 @@
 id = 9064
 tradeable = false
 weight = 1.36
-light_source = { once_lit = "emerald_lantern_lit", level = 49 }
 examine = "A mystical lantern."
 kept = "Wilderness"
 
@@ -11,7 +10,6 @@ id = 9065
 tradeable = false
 weight = 1.36
 slot = "Shield"
-light_source = { once_extinguish = "emerald_lantern" }
 examine = "A mystical lantern casting a green beam."
 kept = "Wilderness"
 
