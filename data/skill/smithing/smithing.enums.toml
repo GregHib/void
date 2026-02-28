@@ -1,0 +1,96 @@
+[smelting_level]
+keyType = "item"
+valueType = "int"
+defaultInt = 1
+values = {
+    blurite_bar = 13,
+    elemental_bar = 20,
+    iron_bar = 15,
+    steel_bar = 30,
+    silver_bar = 20,
+    gold_bar = 40,
+    mithril_bar = 50,
+    adamant_bar = 70,
+    rune_bar = 85,
+}
+
+[smelting_xp]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    blurite_bar = 80,
+    elemental_bar = 75,
+    bronze_bar = 62,
+    iron_bar = 125,
+    steel_bar = 175,
+    silver_bar = 137,
+    gold_bar = 225,
+    mithril_bar = 300,
+    adamant_bar = 375,
+    rune_bar = 500,
+}
+
+[smelting_chance]
+keyType = "item"
+valueType = "int"
+defaultInt = 255
+values = {
+    iron_bar = 128,
+}
+
+[smelting_message]
+keyType = "item"
+valueType = "string"
+values = {
+    blurite_bar = "You place the blurite and four heaps of coal into the furnace.",
+    elemental_bar = "You place the elemental ore and four heaps of coal into the furnace.",
+    bronze_bar = "You smelt the copper and tin together in the furnace.",
+    iron_bar = "You smelt the iron in the furnace.",
+    steel_bar = "You place the iron and two heaps of coal into the furnace.",
+    silver_bar = "You place the silver into the furnace.",
+    gold_bar = "You place a lump of gold in the furnace.",
+    mithril_bar = "You place the mithril and four heaps of coal into the furnace.",
+    adamant_bar = "You place the adamantite and six heaps of coal into the furnace.",
+    rune_bar = "You place the runite and six heaps of coal into the furnace.",
+}
+
+[smelting_ore_id]
+keyType = "item"
+valueType = "string"
+values = {
+    blurite_bar = "blurite_ore",
+    elemental_bar = "elemental_ore",
+    bronze_bar = "tin_ore",
+    iron_bar = "iron_ore",
+    steel_bar = "iron_ore",
+    silver_bar = "silver_ore",
+    gold_bar = "gold_ore",
+    mithril_bar = "mithril_ore",
+    adamant_bar = "adamantite_ore",
+    rune_bar = "runite_ore",
+}
+
+[smelting_ore_secondary_id]
+keyType = "item"
+valueType = "string"
+values = {
+    elemental_bar = "coal",
+    bronze_bar = "copper_ore",
+    steel_bar = "coal",
+    mithril_bar = "coal",
+    adamant_bar = "coal",
+    rune_bar = "coal",
+}
+
+[smelting_ore_secondary_amount]
+keyType = "item"
+valueType = "int"
+defaultInt = 1
+values = {
+    elemental_bar = 4,
+    steel_bar = 2,
+    mithril_bar = 4,
+    adamant_bar = 6,
+    rune_bar = 8,
+}

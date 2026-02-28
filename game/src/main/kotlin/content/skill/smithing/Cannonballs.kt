@@ -47,7 +47,7 @@ class Cannonballs : Script {
         if (!player.has(Skill.Smithing, 35, message = true)) {
             return
         }
-        player.face(furnaceSide(player, target))
+        player.face(Furnace.furnaceSide(player, target))
         player.anim("furnace_smelt")
         player.sound("smelt_bar")
         player.message("You heat the steel bar into a liquid state.", ChatType.Filter)
