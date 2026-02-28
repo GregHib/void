@@ -180,7 +180,6 @@ limit = 100
 weight = 1.0
 slot = "Hat"
 type = "HairMid"
-talisman_tiara = { xp = 25.0, level = 1 }
 examine = "A tiara infused with the properties of air."
 kept = "Wilderness"
 
@@ -192,7 +191,6 @@ id = 5529
 price = 14
 limit = 100
 weight = 1.0
-talisman_tiara = { xp = 27.5, level = 1 }
 slot = "Hat"
 type = "HairMid"
 examine = "A tiara infused with the properties of the mind."
@@ -206,7 +204,6 @@ id = 5531
 price = 2481
 limit = 100
 weight = 1.0
-talisman_tiara = { xp = 30.0, level = 1 }
 slot = "Hat"
 type = "HairMid"
 examine = "A tiara infused with the properties of water."
@@ -220,7 +217,6 @@ id = 5533
 price = 3
 limit = 100
 weight = 1.0
-talisman_tiara = { xp = 37.5, level = 1 }
 slot = "Hat"
 type = "HairMid"
 examine = "A tiara infused with the properties of the body."
@@ -234,7 +230,6 @@ id = 5535
 price = 4
 limit = 100
 weight = 1.0
-talisman_tiara = { xp = 32.5, level = 1 }
 slot = "Hat"
 type = "HairMid"
 examine = "A tiara infused with the properties of the earth."
@@ -248,7 +243,6 @@ id = 5537
 price = 10
 limit = 100
 weight = 1.0
-talisman_tiara = { xp = 35.0, level = 1 }
 slot = "Hat"
 type = "HairMid"
 examine = "A tiara infused with the properties of fire."
@@ -262,7 +256,6 @@ id = 5539
 price = 4
 limit = 100
 weight = 1.0
-talisman_tiara = { xp = 40.0, level = 1 }
 slot = "Hat"
 type = "HairMid"
 examine = "A tiara infused with the properties of the cosmos."
@@ -275,7 +268,6 @@ id = 5541
 price = 8
 limit = 100
 weight = 1.0
-talisman_tiara = { xp = 45.0, level = 1 }
 slot = "Hat"
 type = "HairMid"
 examine = "A tiara infused with the properties of nature."
@@ -288,7 +280,6 @@ id = 5543
 price = 5
 limit = 100
 weight = 1.0
-talisman_tiara = { xp = 42.5, level = 1 }
 slot = "Hat"
 type = "HairMid"
 examine = "A tiara infused with the properties of chaos."
@@ -301,7 +292,6 @@ id = 5545
 price = 3
 limit = 100
 weight = 1.0
-talisman_tiara = { xp = 47.5, level = 1 }
 slot = "Hat"
 type = "HairMid"
 examine = "A tiara infused with the properties of law."
@@ -314,7 +304,6 @@ id = 5547
 price = 213
 limit = 100
 weight = 1.0
-talisman_tiara = { xp = 50.0, level = 1 }
 slot = "Hat"
 type = "HairMid"
 examine = "A tiara infused with the properties of death."
@@ -327,7 +316,6 @@ id = 5549
 price = 11900
 limit = 100
 weight = 1.0
-talisman_tiara = { xp = 52.5, level = 1 }
 slot = "Hat"
 type = "HairMid"
 examine = "A tiara infused with the properties of blood."
