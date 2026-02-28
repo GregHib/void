@@ -24,6 +24,8 @@ data class EnumDefinition(
 
     fun string(id: Int) = map?.get(id) as? String ?: defaultString
 
+    fun stringOrNull(id: Int) = map?.get(id) as? String
+
     override fun toString(): String {
         return "EnumDefinition(id=$id, keyType=${EnumTypes.name(keyType)}, valueType=${EnumTypes.name(valueType)}, defaultString=$defaultString, defaultInt=$defaultInt, length=$length, map=$map, stringId=$stringId, extras=$extras)"
     }

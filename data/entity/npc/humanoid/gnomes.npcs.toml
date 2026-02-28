@@ -12,14 +12,6 @@ examine = "Small but wise, he is."
 
 [blurberry]
 id = 848
-bar_crawl = {
-  id = "fire_toad_blast",
-  price = 10,
-  insufficient = "I don't have 10 coins right now.",
-  give = "You buy a Fire Toad Blast.",
-  drink = "Your mouth and throat burn as you gulp it down.",
-  effect = "Blurberry signs your card."
-}
 dialogue = "old"
 categories = ["gnome"]
 wander_range = 3

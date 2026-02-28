@@ -1,0 +1,136 @@
+[bar_crawl_ids]
+keyType = "npc"
+valueType = "string"
+values = {
+    barmaid_emily = "hand_of_death_cocktail",
+    barmaid_kaylee = "hand_of_death_cocktail",
+    barmaid_tina = "hand_of_death_cocktail",
+    bartender_rusty_anchor_inn = "black_skull_ale",
+    bartender_dead_mans_chest = "supergrog",
+    bartender_zambo = "ape_bite_liqueur",
+    bartender_jolly_boar_inn = "olde_suspiciouse",
+    bartender_blue_moon_inn = "uncle_humphreys_gutrot",
+    bartender_foresters_arms = "liverbane_ale",
+    bartender_flying_horse_inn = "heart_stopper",
+    bartender_dragon_inn = "fire_brandy",
+    blurberry = "fire_toad_blast",
+}
+
+[bar_crawl_start]
+keyType = "npc"
+valueType = "int"
+values = {
+    bartender_dead_mans_chest = "Fancy a bit of Heart Stopper then do you? It'll only be 8 coins.",
+    bartender_zambo = "Ah, you'll be wanting some Ape Bite Liqueur, then. It's got a lovely banana taste and it'll only cost you 7 coins.",
+    bartender_jolly_boar_inn = "Ah, there seems to be a fair few doing that one these days. My supply of Olde Suspiciouse is starting to run low, it'll cost you 10 coins.",
+    bartender_foresters_arms = "Oh you're a barbarian then. Now which of these barrels contained the Liverbane Ale? That'll be 18 coins please.",
+    bartender_flying_horse_inn = "Fancy a bit of Heart Stopper then do you? It'll only be 8 coins.",
+    bartender_dragon_inn = "I suppose you'll be wanting some Fire Brandy. That'll cost you 12 coins.",
+}
+
+[bar_crawl_prices]
+keyType = "npc"
+valueType = "int"
+values = {
+    barmaid_emily = 70,
+    barmaid_kaylee = 70,
+    barmaid_tina = 70,
+    bartender_rusty_anchor_inn = 8,
+    bartender_dead_mans_chest = 15,
+    bartender_zambo = 7,
+    bartender_jolly_boar_inn = 10,
+    bartender_blue_moon_inn = 50,
+    bartender_foresters_arms = 18,
+    bartender_flying_horse_inn = 8,
+    bartender_dragon_inn = 12,
+    blurberry = 10,
+}
+
+[bar_crawl_insufficient]
+keyType = "npc"
+valueType = "string"
+values = {
+    barmaid_emily = "I don't have that much money on me.",
+    barmaid_kaylee = "I don't have that much money on me.",
+    barmaid_tina = "I don't have that much money on me.",
+    bartender_rusty_anchor_inn = "I don't have 8 coins with me.",
+    bartender_dead_mans_chest = "Sorry I don't have 15 coins.",
+    bartender_zambo = "I don't have 7 coins with me.",
+    bartender_jolly_boar_inn = "I don't have 10 coins right now.",
+    bartender_blue_moon_inn = "Oh dear. I don't seem to have enough money.",
+    bartender_foresters_arms = "Sorry, I don't have 18 coins.",
+    bartender_flying_horse_inn = "Sorry, I don't have 8 coins.",
+    bartender_dragon_inn = "Sorry I don't have 12 coins.",
+    blurberry = "I don't have 10 coins right now.",
+}
+
+[bar_crawl_give]
+keyType = "npc"
+valueType = "string"
+values = {
+    barmaid_emily = "You buy a Hand of Death cocktail.",
+    barmaid_kaylee = "You buy a Hand of Death cocktail.",
+    barmaid_tina = "You buy a Hand of Death cocktail.",
+    bartender_rusty_anchor_inn = "You buy a Black Skull Ale.",
+    bartender_dead_mans_chest = "The bartender serves you a glass of strange thick dark liquid.",
+    bartender_zambo = "You buy some Ape Bite Liqueur.",
+    bartender_jolly_boar_inn = "You buy a pint of Olde Suspiciouse.",
+    bartender_blue_moon_inn = "You buy some Uncle Humphrey's Gutrot.",
+    bartender_foresters_arms = "The bartender gives you a glass of Liverbane Ale.",
+    bartender_flying_horse_inn = "The bartender hands you a shot of Heart Stopper.",
+    bartender_dragon_inn = "The bartender hands you a small glass and sets light to the contents.",
+    blurberry = "You buy a Fire Toad Blast.",
+}
+
+[bar_crawl_drink]
+keyType = "npc"
+valueType = "string"
+values = {
+    barmaid_emily = "You drink the cocktail.",
+    barmaid_kaylee = "You drink the cocktail.",
+    barmaid_tina = "You drink the cocktail.",
+    bartender_rusty_anchor_inn = "You drink your Black Skull Ale...",
+    bartender_dead_mans_chest = "You wince and drink it.",
+    bartender_zambo = "You swirl it around and swallow it.",
+    bartender_jolly_boar_inn = "You gulp it down.",
+    bartender_blue_moon_inn = "You drink the Uncle Humphrey's Gutrot.",
+    bartender_foresters_arms = "You gulp it down.",
+    bartender_flying_horse_inn = "You grimace and drink it.",
+    bartender_dragon_inn = "You blow out the flame and drink it.",
+    blurberry = "Your mouth and throat burn as you gulp it down.",
+}
+
+[bar_crawl_effect]
+keyType = "npc"
+valueType = "string"
+values = {
+    barmaid_emily = "You stumble around the room.",
+    barmaid_kaylee = "You stumble around the room.",
+    barmaid_tina = "You stumble around the room.",
+    bartender_rusty_anchor_inn = "Your vision blurs.",
+    bartender_dead_mans_chest = "You stagger backwards.",
+    bartender_zambo = "Zambo signs your card.",
+    bartender_jolly_boar_inn = "Your head is spinning.",
+    bartender_blue_moon_inn = "Your insides feel terrible.",
+    bartender_foresters_arms = "The room seems to be swaying.",
+    bartender_flying_horse_inn = "You clutch your chest.",
+    bartender_dragon_inn = "Your vision blurs and you stagger slightly.",
+    blurberry = "Blurberry signs your card.",
+}
+
+[bar_crawl_sign]
+keyType = "npc"
+valueType = "string"
+values = {
+    barmaid_emily = "The barmaid giggles and signs your card.",
+    barmaid_kaylee = "The barmaid giggles and signs your card.",
+    barmaid_tina = "The barmaid giggles and signs your card.",
+    bartender_rusty_anchor_inn = "The bartender signs your card.",
+    bartender_dead_mans_chest = "You think you see 2 bartenders signing 2 barcrawl cards.",
+    bartender_jolly_boar_inn = "The bartender signs your card.",
+    bartender_blue_moon_inn = "The bartender signs your card.",
+    bartender_foresters_arms = "The bartender scrawls his signature on your card.",
+    bartender_flying_horse_inn = "Through your tears you see the bartender...",
+    bartender_dragon_inn = "You can just about make out the bartender signing your barcrawl card.",
+}
+

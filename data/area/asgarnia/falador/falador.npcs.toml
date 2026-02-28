@@ -60,15 +60,6 @@ examine = "He wanders around the Crafting Guild pretending to be working."
 
 [barmaid_emily]
 id = 736
-bar_crawl = {
-    id = "hand_of_death_cocktail",
-    price = 70,
-    insufficient = "I don't have that much money on me.",
-    give = "You buy a Hand of Death cocktail.",
-    drink = "You drink the cocktail.",
-    effect = "You stumble around the room.",
-    sign = "The barmaid giggles and signs your card."
-}
 categories = ["human"]
 wander_range = 3
 collision = "indoors"
