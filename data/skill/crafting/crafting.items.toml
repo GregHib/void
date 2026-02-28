@@ -231,7 +231,6 @@ id = 1635
 price = 165
 limit = 10000
 weight = 0.004
-jewellery = { level = 5, xp = 15.0 }
 slot = "Ring"
 examine = "A valuable ring."
 kept = "Wilderness"
@@ -244,7 +243,6 @@ id = 1637
 price = 522
 limit = 5000
 weight = 0.006
-jewellery = { level = 20, xp = 40.0 }
 slot = "Ring"
 examine = "A valuable ring."
 kept = "Wilderness"
@@ -257,7 +255,6 @@ id = 1639
 price = 819
 limit = 10000
 weight = 0.006
-jewellery = { level = 27, xp = 55.0 }
 slot = "Ring"
 examine = "A valuable ring."
 
@@ -269,7 +266,6 @@ id = 1641
 price = 1168
 limit = 5000
 weight = 0.006
-jewellery = { level = 34, xp = 70.0 }
 slot = "Ring"
 examine = "A valuable ring."
 
@@ -281,7 +277,6 @@ id = 1643
 price = 6938
 limit = 5000
 weight = 0.006
-jewellery = { level = 43, xp = 85.0 }
 slot = "Ring"
 examine = "A valuable ring."
 
@@ -293,7 +288,6 @@ id = 1645
 price = 31400
 limit = 500
 weight = 0.006
-jewellery = { level = 55, xp = 100.0 }
 slot = "Ring"
 examine = "A valuable ring."
 
@@ -305,7 +299,6 @@ id = 1654
 price = 177
 limit = 5000
 weight = 0.007
-jewellery = { level = 6, xp = 20.0 }
 slot = "Amulet"
 examine = "I wonder if this is valuable."
 kept = "Wilderness"
@@ -318,7 +311,6 @@ id = 1656
 price = 533
 limit = 5000
 weight = 0.01
-jewellery = { level = 22, xp = 55.0 }
 slot = "Amulet"
 examine = "I wonder if this is valuable."
 
@@ -330,7 +322,6 @@ id = 1658
 price = 750
 limit = 5000
 weight = 0.01
-jewellery = { level = 29, xp = 60.0 }
 slot = "Amulet"
 examine = "I wonder if this is valuable."
 
@@ -342,7 +333,6 @@ id = 1660
 price = 1212
 limit = 5000
 weight = 0.01
-jewellery = { level = 40, xp = 75.0 }
 slot = "Amulet"
 examine = "I wonder if this is valuable."
 
@@ -354,7 +344,6 @@ id = 1662
 price = 7557
 limit = 5000
 weight = 0.01
-jewellery = { level = 56, xp = 90.0 }
 slot = "Amulet"
 examine = "I wonder if this is valuable."
 
@@ -366,7 +355,6 @@ id = 1664
 price = 30300
 limit = 500
 weight = 0.01
-jewellery = { level = 72, xp = 105.0 }
 slot = "Amulet"
 examine = "I wonder if this is valuable."
 
@@ -382,7 +370,6 @@ id = 1673
 price = 172
 limit = 5000
 weight = 0.004
-jewellery = { level = 8, xp = 30.0 }
 aka = ["gold_amulet_u"]
 examine = "It needs a string so I can wear it."
 kept = "Wilderness"
@@ -395,7 +382,6 @@ id = 1675
 price = 468
 limit = 5000
 weight = 0.004
-jewellery = { level = 24, xp = 65.0 }
 aka = ["sapphire_amulet_u"]
 examine = "It needs a string so I can wear it."
 
@@ -407,7 +393,6 @@ id = 1677
 price = 710
 limit = 5000
 weight = 0.004
-jewellery = { level = 31, xp = 70.0 }
 aka = ["emerald_amulet_u"]
 examine = "It needs a string so I can wear it."
 
@@ -419,7 +404,6 @@ id = 1679
 price = 1162
 limit = 5000
 weight = 0.004
-jewellery = { level = 50, xp = 85.0 }
 aka = ["ruby_amulet_u"]
 examine = "It needs a string so I can wear it."
 
@@ -431,7 +415,6 @@ id = 1681
 price = 2991
 limit = 5000
 weight = 0.004
-jewellery = { level = 70, xp = 100.0 }
 aka = ["diamond_amulet_u"]
 examine = "It needs a string so I can wear it."
 
@@ -443,7 +426,6 @@ id = 1683
 price = 41500
 limit = 500
 weight = 0.004
-jewellery = { level = 80, xp = 150.0 }
 aka = ["dragonstone_amulet_u"]
 examine = "It needs a string so I can wear it."
 
@@ -1179,7 +1161,6 @@ id = 6575
 price = 11500000
 limit = 100
 weight = 0.006
-jewellery = { level = 67, xp = 115.0 }
 slot = "Ring"
 examine = "A valuable ring."
 
@@ -1191,7 +1172,6 @@ id = 6577
 price = 4200000
 limit = 100
 weight = 0.01
-jewellery = { level = 82, xp = 120.0 }
 slot = "Amulet"
 examine = "I wonder if this is valuable."
 
@@ -1201,7 +1181,6 @@ id = 6578
 [onyx_amulet_unstrung]
 id = 6579
 weight = 0.004
-jewellery = { level = 90, xp = 165.0 }
 aka = ["onyx_amulet_u"]
 examine = "It needs a string so I can wear it."
 
@@ -1260,7 +1239,6 @@ id = 11069
 price = 221
 limit = 5000
 weight = 0.25
-jewellery = { level = 7, xp = 25.0 }
 slot = "Hands"
 examine = "I wonder if this is valuable."
 kept = "Wilderness"
@@ -1273,7 +1251,6 @@ id = 11072
 price = 567
 limit = 5000
 weight = 0.25
-jewellery = { level = 23, xp = 60.0 }
 slot = "Hands"
 examine = "I wonder if this is valuable."
 
@@ -1296,7 +1273,6 @@ id = 11076
 price = 787
 limit = 5000
 weight = 0.25
-jewellery = { level = 30, xp = 65.0 }
 slot = "Hands"
 examine = "I wonder if this is valuable."
 
@@ -1337,7 +1313,6 @@ id = 11085
 price = 1253
 limit = 5000
 weight = 0.25
-jewellery = { level = 42, xp = 80.0 }
 slot = "Hands"
 examine = "I wonder if this is valuable."
 
@@ -1376,7 +1351,6 @@ id = 11092
 price = 7431
 limit = 5000
 weight = 0.25
-jewellery = { level = 58, xp = 95.0 }
 slot = "Hands"
 examine = "I wonder if this is valuable."
 
@@ -1487,7 +1461,6 @@ id = 11115
 price = 31700
 limit = 500
 weight = 0.25
-jewellery = { level = 74, xp = 110.0 }
 slot = "Hands"
 examine = "I wonder if this is valuable."
 
@@ -1563,7 +1536,6 @@ id = 11130
 price = 884200
 limit = 100
 weight = 0.25
-jewellery = { level = 84, xp = 125.0 }
 slot = "Hands"
 examine = "Yep, this is most definitely valuable!"
 

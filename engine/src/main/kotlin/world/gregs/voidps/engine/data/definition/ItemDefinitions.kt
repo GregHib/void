@@ -79,7 +79,6 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
                                 "spinning" -> extras[key] = Spinning(this)
                                 "pottery" -> extras[key] = Pottery(this)
                                 "weaving" -> extras[key] = Weaving(this)
-                                "jewellery" -> extras[key] = Jewellery(this)
                                 "silver_jewellery" -> extras[key] = Silver(this)
                                 "runecrafting" -> extras[key] = Rune(this)
                                 "talisman_tiara" -> extras[key] = Tiara(this)
