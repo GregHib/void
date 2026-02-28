@@ -712,28 +712,6 @@ id = 1761
 price = 67
 limit = 10000
 weight = 0.907
-pottery = {
-  unfired_pot = {
-    level = 1,
-    xp = 6.3
-  },
-  unfired_pie_dish = {
-    level = 7,
-    xp = 15.0
-  },
-  unfired_bowl = {
-    level = 8,
-    xp = 18.0
-  },
-  unfired_plant_pot = {
-    level = 19,
-    xp = 20.0
-  },
-  unfired_pot_lid = {
-    level = 25,
-    xp = 20.0
-  }
-}
 examine = "Clay soft enough to mould."
 
 [soft_clay_noted]
@@ -807,7 +785,6 @@ id = 1787
 price = 54
 limit = 100
 weight = 0.68
-pottery = { empty_pot = { level = 1, xp = 6.3 } }
 examine = "I need to put this in a pottery oven."
 
 [unfired_pot_noted]
@@ -818,7 +795,6 @@ id = 1789
 price = 88
 limit = 100
 weight = 0.68
-pottery = { bowl = { level = 8, xp = 15.0 } }
 examine = "I need to put this in a pottery oven."
 
 [unfired_pie_dish_noted]
@@ -829,7 +805,6 @@ id = 1791
 price = 60
 limit = 100
 weight = 0.68
-pottery = { bowl = { level = 8, xp = 15.0 } }
 examine = "I need to put this in a pottery oven."
 
 [unfired_bowl_noted]

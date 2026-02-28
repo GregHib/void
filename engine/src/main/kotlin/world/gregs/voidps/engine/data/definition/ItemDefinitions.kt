@@ -71,7 +71,6 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
                                 "slot" -> extras[key] = EquipSlot.by(string())
                                 "type" -> extras[key] = EquipType.by(string())
                                 "kept" -> extras[key] = ItemKept.by(string())
-                                "pottery" -> extras[key] = Pottery(this)
                                 "runecrafting" -> extras[key] = Rune(this)
                                 "skill_req", "equip_req" -> {
                                     val map = Object2IntOpenHashMap<Skill>(1, Hash.VERY_FAST_LOAD_FACTOR)

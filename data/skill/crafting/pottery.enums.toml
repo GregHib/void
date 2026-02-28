@@ -1,0 +1,41 @@
+[pottery_product]
+keyType = "item"
+valueType = "string"
+defaultString = ""
+values = {
+    unfired_pot_lid = "pot_lid",
+    soft_clay = "unfired_pot,unfired_pie_dish,unfired_bowl,unfired_plant_pot,unfired_pot_lid",
+    unfired_pot = "empty_pot",
+    unfired_pie_dish = "bowl",
+    unfired_bowl = "bowl",
+    unfired_plant_pot = "plant_pot_empty",
+}
+
+[pottery_xp]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    pot_lid = 200,
+    unfired_pot = 63,
+    unfired_pie_dish = 150,
+    unfired_bowl = 180,
+    unfired_plant_pot = 200,
+    unfired_pot_lid = 200,
+    empty_pot = 63,
+    bowl = 150,
+    plant_pot_empty = 175,
+}
+
+[pottery_level]
+keyType = "item"
+valueType = "int"
+defaultInt = 1
+values = {
+    unfired_pie_dish = 7,
+    unfired_bowl = 8,
+    unfired_plant_pot = 19,
+    unfired_pot_lid = 25,
+    bowl = 8,
+    plant_pot_empty = 19,
+}

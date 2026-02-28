@@ -157,7 +157,6 @@ id = 4438
 price = 17
 limit = 100
 weight = 0.198
-pottery = { pot_lid = { level = 25, xp = 20.0 } }
 examine = "This needs firing, then it should fit on a normal-sized pot."
 kept = "Wilderness"
 
