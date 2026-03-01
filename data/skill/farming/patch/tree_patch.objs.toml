@@ -276,16 +276,6 @@ examine = "A fully grown Magic Tree."
 
 [magic_tree_fullygrown_2]
 id = 8409
-woodcutting = {
-  log = "magic_logs",
-  level = 75,
-  xp = 250.0,
-  deplete_rate = 0.125,
-  chance_min = 2,
-  chance_max = 6,
-  hatchet_low_dif = "0-1",
-  hatchet_high_dif = "2-3"
-}
 examine = "A fully grown Magic Tree."
 
 [magic_tree_farming_stump]
@@ -427,16 +417,6 @@ examine = "A fully grown Maple tree."
 
 [maple_tree_fullygrown_2]
 id = 8444
-woodcutting = {
-  log = "maple_logs",
-  level = 45,
-  xp = 100.0,
-  deplete_rate = 0.125,
-  chance_min = 8,
-  chance_max = 25,
-  hatchet_low_dif = "2-4",
-  hatchet_high_dif = "6-12"
-}
 examine = "A fully grown Maple tree."
 
 [maple_tree_farming_stump]
@@ -530,16 +510,6 @@ examine = "A fully grown Oak tree."
 
 [oak_tree_fullygrown_2]
 id = 8467
-woodcutting = {
-  log = "oak_logs",
-  level = 15,
-  xp = 37.5,
-  deplete_rate = 0.125,
-  chance_min = 32,
-  chance_max = 100,
-  hatchet_low_dif = "8-16",
-  hatchet_high_dif = "25-50"
-}
 examine = "A fully grown Oak tree."
 
 [oak_tree_farming_stump]
@@ -621,16 +591,6 @@ examine = "A fully grown Willow tree."
 
 [willow_tree_fullygrown_2]
 id = 8488
-woodcutting = {
-  log = "willow_logs",
-  level = 30,
-  xp = 67.5,
-  deplete_rate = 0.125,
-  chance_min = 16,
-  chance_max = 50,
-  hatchet_low_dif = "4-8",
-  hatchet_high_dif = "13-25"
-}
 examine = "A fully grown Willow tree."
 
 [willow_tree_farming_stump]
@@ -732,16 +692,6 @@ examine = "A fully grown Yew tree."
 
 [yew_tree_fullygrown_2]
 id = 8513
-woodcutting = {
-  log = "yew_logs",
-  level = 60,
-  xp = 175.0,
-  deplete_rate = 0.125,
-  chance_min = 4,
-  chance_max = 12,
-  hatchet_low_dif = "1-2",
-  hatchet_high_dif = "3-7"
-}
 examine = "A fully grown Yew tree."
 
 [yew_tree_farming_stump]

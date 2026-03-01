@@ -7,7 +7,6 @@ import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.engine.data.definition.data.Tree
 import world.gregs.voidps.engine.timedLoad
 
 object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
@@ -56,7 +55,6 @@ object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
                         while (nextPair()) {
                             when (val key = key()) {
                                 "id" -> id = int()
-                                "woodcutting" -> extras[key] = Tree(this)
                                 "clone" -> {
                                     val name = string()
                                     val obj = refs.getInt(name)
