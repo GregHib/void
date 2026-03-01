@@ -95,6 +95,8 @@ fun Inventory.clear() = transaction { clear() }
 
 fun Inventory.contains(items: List<Item>) = items.all { item -> contains(item.id, item.amount) }
 
+fun Inventory.any(items: List<Item>) = items.any { item -> contains(item.id, item.amount) }
+
 fun Inventory.charge(player: Player, index: Int, amount: Int = 1) = transaction { charge(player, index, amount) }
 
 fun Inventory.discharge(player: Player, index: Int, amount: Int = 1) = transaction { discharge(player, index, amount) }

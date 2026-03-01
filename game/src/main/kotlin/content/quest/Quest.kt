@@ -17,6 +17,7 @@ val quests = setOf(
     "rune_mysteries",
     "the_knights_sword",
     "prince_ali_rescue",
+    "imp_catcher",
     // members
     "druidic_ritual",
     "plague_city",

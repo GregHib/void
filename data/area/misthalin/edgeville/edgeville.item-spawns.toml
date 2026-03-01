@@ -1,4 +1,6 @@
 spawns = [
-#12342
+    # 12342
     { id = "leather_gloves", x = 3097, y = 3486, delay = 100 },
+    { id = "monks_robe_top", x = 3059, y = 3487, level = 1, delay = 100 },
+    { id = "monks_robe_bottom", x = 3059, y = 3488, level = 1, delay = 100 },
 ]

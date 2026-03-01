@@ -28,6 +28,7 @@ clone = "ram_freds_farm"
 
 [beefy_bill]
 id = 246
+shop = "beefy_bills_supplies"
 examine = "Specialist meat transporter."
 
 [larry_farmer]

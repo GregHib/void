@@ -1,0 +1,9 @@
+[candle_seller_lantern_dialogue]
+id = 284 # osrs
+format = "boolean"
+persist = true
+
+[cave_goblin_rope]
+id = 280 # osrs
+format = "boolean"
+persist = true

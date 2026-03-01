@@ -20,10 +20,16 @@ examine = "A gnome mage on sabbatical."
 [mysterious_ghost_wizards_tower]
 id = 2385
 
-[wizard_mizog]
+[wizard_mizgog]
 id = 706
 shop = "mizgogs_amulets_of_accuracy"
+wander_range = 2
 examine = "An old wizard."
 
 [mysterious_ghost_wizards_tower_2]
 id = 2398
+
+[wizard_grayzag]
+id = 12335
+wander_range = 3
+examine = "Master of Imps."

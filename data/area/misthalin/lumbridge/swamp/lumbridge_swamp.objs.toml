@@ -1,0 +1,7 @@
+[lumbridge_swamp_cave_sign]
+id = 15566
+examine = "Noxious gas hazard! Naked flames may cause an explosion!"
+
+[goblin_cave_entrance]
+id = 5947
+examine = "An entrance to Lumbridge Swamp Caves."
