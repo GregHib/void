@@ -161,7 +161,7 @@ examine = "She's looking for flowers."
 [achtryn]
 id = 8481
 
-[mazchna]
+[mazchna_base]
 id = 8482
 
 [ghoul_canifis]
@@ -188,7 +188,7 @@ id = 1577
 [stranger_3]
 id = 1576
 
-[achtryn_2]
+[mazchna]
 id = 8464
 
 [achtryn_3]

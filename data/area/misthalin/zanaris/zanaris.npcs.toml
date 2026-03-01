@@ -131,7 +131,7 @@ examine = "She tends the wheat."
 id = 6073
 examine = "He looks a little lost."
 
-[otherworldy_being]
+[otherworldly_being]
 id = 126
 hitpoints = 660
 att = 56

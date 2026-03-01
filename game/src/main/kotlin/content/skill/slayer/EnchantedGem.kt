@@ -63,7 +63,7 @@ class EnchantedGem : Script {
 
     fun ChoiceOption.whoAreYou() {
         option<Quiz>("Who are you?") {
-            npc<Neutral>(slayerMaster, "My name's ${slayerMaster.toSentenceCase()}, I'm the Slayer Master best able to train you.")
+            npc<Neutral>(slayerMaster, "My name is ${slayerMaster.toSentenceCase()}, I'm a Slayer Master.")
             choice {
                 howAmIDoing()
                 whereAreYou()
@@ -75,12 +75,15 @@ class EnchantedGem : Script {
 
     fun ChoiceOption.whereAreYou() {
         option<Quiz>("Where are you?") {
-            val location = when (slayerMaster) {
-                "turael" -> "Burthorpe"
-                "duradel" -> "Shilo Village"
-                else -> "unknown"
+            when (slayerMaster) {
+                "turael" -> npc<Neutral>("You'll find me in Burthorpe. I'll be here when you need a new task.")
+                "vannaka" -> npc<Neutral>("You'll find me in Edgeville. I'll be here when you need a new task.")
+                "duradel" -> npc<Neutral>("You'll find me in Shilo Village. I'll be here when you need a new task.")
+                "mazchna" -> npc<Neutral>("You'll find me in Canifis. I'll be here when you need a new task.")
+                "chaeldar" -> npc<Neutral>("You'll find me in Zanaris. I'll be here when you need a new task.")
+                "sumona" -> npc<Neutral>("You'll find me in Pollnivneach. I'll be here when you need a new task.")
+                "kuradal" -> npc<Neutral>("You'll find me in the ancient cavern, near the Dragonkin Forge. I'll be here when you need a new task.")
             }
-            npc<Quiz>("You'll find me in $location. I'll be here when you need a new task.")
             choice {
                 howAmIDoing()
                 whoAreYou()
@@ -93,13 +96,13 @@ class EnchantedGem : Script {
     fun ChoiceOption.anyTips() {
         option<Quiz>("Got any tips for me?") {
             var npc = -1
-            for ((key, value) in EnumDefinitions.get("turael_tasks").map!!) {
+            for ((key, value) in EnumDefinitions.get("${slayerMaster}_tasks").map ?: return@option) {
                 if (value == slayerTask) {
                     npc = key
                     break
                 }
             }
-            val tip = EnumDefinitions.stringOrNull("turael_task_tip", npc) ?: return@option
+            val tip = EnumDefinitions.stringOrNull("slayer_task_tips", npc) ?: return@option
             npc<Neutral>(slayerMaster, tip)
             choice {
                 howAmIDoing()

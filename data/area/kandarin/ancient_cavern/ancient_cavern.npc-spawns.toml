@@ -39,6 +39,6 @@ spawns = [
   { id = "enraged_barbarian_spirit", x = 1751, y = 5331 },
   { id = "enraged_barbarian_spirit", x = 1775, y = 5324 },
   { id = "berserk_barbarian_spirit", x = 1779, y = 5325 },
-  { id = "kuradal_dragon_forge", x = 1738, y = 5312, level = 1, members = true },
+  { id = "kuradal", x = 1738, y = 5312, level = 1, members = true },
   { id = "gargoyle_ancient_cavern", x = 1733, y = 5312, level = 1, members = true },
 ]

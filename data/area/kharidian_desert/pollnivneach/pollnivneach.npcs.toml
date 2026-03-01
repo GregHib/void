@@ -61,7 +61,7 @@ id = 3127
 [bandit_pollnivneach_2]
 id = 7478
 
-[sumona_pollnivneach]
+[sumona]
 id = 7779
 
 [ali_cat_pollnivneach]
@@ -212,7 +212,7 @@ respawn_delay = 50
 [bandit_pollnivneach_2_3]
 id = 6388
 
-[sumona_pollnivneach_2]
+[sumona_2]
 id = 7780
 
 [ali_cat_pollnivneach_2]

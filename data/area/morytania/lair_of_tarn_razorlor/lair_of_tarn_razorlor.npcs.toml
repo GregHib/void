@@ -47,7 +47,7 @@ id = 5391
 categories = ["skeletons"]
 examine = "He obviously hasn't realised he's dead."
 
-[terror_dog_lair_of_tarn_razorlor]
+[terror_dog]
 id = 5417
 hitpoints = 870
 att = 110
@@ -62,7 +62,7 @@ respawn_delay = 50
 drop_table = "terror_dog"
 examine = "A terrifying dog beast."
 
-[terror_dog_lair_of_tarn_razorlor_2]
+[terror_dog_2]
 id = 5418
 hitpoints = 820
 att = 100

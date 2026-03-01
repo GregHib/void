@@ -1,16 +1,16 @@
-[frost_dragon_asgarnian_ice_resource_dungeon]
+[frost_dragon]
 id = 11633
 
-[frost_dragon_asgarnian_ice_resource_dungeon_2]
+[frost_dragon_2]
 id = 11634
 
-[frost_dragon_asgarnian_ice_resource_dungeon_3]
+[frost_dragon_3]
 id = 11635
 
-[frost_dragon_asgarnian_ice_resource_dungeon_4]
+[frost_dragon_4]
 id = 11636
 
-[frost_dragon_asgarnian_ice_resource_dungeon_5]
+[frost_dragon_5]
 id = 51
 categories = ["dragons"]
 examine = "A dragon covered in frost and ice."

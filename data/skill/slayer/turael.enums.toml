@@ -1,61 +1,31 @@
-[turael_tasks]
-keyType = "npc"
-valueType = "string"
-values = {
-    rat = "rats",
-    cave_bug = "cave_bugs",
-    ghost = "ghosts",
-    spider = "spiders",
-    skeleton_heavy = "skeletons",
-    kalphite_worker = "kalphites",
-    lizard = "lizards",
-    guard_dog = "dogs",
-    icefiend = "icefiends",
-    zombie = "zombies",
-    bird_black = "birds",
-    scorpion = "scorpions",
-    monkey_brown = "monkeys",
-    cow_default = "cows",
-    bat = "bats",
-    dwarf = "dwarves",
-    cave_crawler = "cave_crawlers",
-    black_bear = "bears",
-    wolf = "wolves",
-    cave_slime = "cave_slimes",
-    crawling_hand = "crawling_hands",
-    goblin_mohawk_blue = "goblins",
-    banshee = "banshees",
-    minotaur = "minotaurs",
-}
-
 [turael_task_amount]
 keyType = "npc"
 valueType = "string"
 values = {
-    rat = "15-31",
-    cave_bug = "10-31",
-    ghost = "15-31",
-    spider = "15-31",
-    skeleton_heavy = "15-31",
-    kalphite_worker = "15-31",
-    lizard = "15-31",
-    guard_dog = "15-31",
-    icefiend = "15-21",
-    zombie = "15-31",
-    bird_black = "15-31",
-    scorpion = "15-31",
-    monkey_brown = "15-31",
-    cow_default = "15-31",
-    bat = "15-31",
-    dwarf = "10-26",
-    cave_crawler = "15-31",
-    black_bear = "10-21",
-    wolf = "15-31",
-    cave_slime = "10-21",
-    crawling_hand = "15-31",
-    goblin_mohawk_blue = "15-31",
-    banshee = "15-31",
-    minotaur = "10-21",
+    rat = "15-30",
+    cave_bug = "10-30",
+    ghost = "15-30",
+    spider = "15-30",
+    skeleton_heavy = "15-30",
+    kalphite_worker = "15-30",
+    lizard = "15-30",
+    guard_dog = "15-30",
+    icefiend = "15-20",
+    zombie = "15-30",
+    bird_black = "15-30",
+    scorpion = "15-30",
+    monkey_brown = "15-30",
+    cow_default = "15-30",
+    bat = "15-30",
+    dwarf = "10-25",
+    cave_crawler = "15-30",
+    black_bear = "10-20",
+    wolf = "15-30",
+    cave_slime = "10-20",
+    crawling_hand = "15-30",
+    goblin_mohawk_blue = "15-30",
+    banshee = "15-30",
+    minotaur = "10-20",
 }
 
 [turael_task_weight]
@@ -85,65 +55,5 @@ values = {
     crawling_hand = 8,
     goblin_mohawk_blue = 7,
     banshee = 8,
-    minotaur = 7,
-}
-
-[turael_task_tip]
-keyType = "npc"
-valueType = "string"
-values = {
-    rat = "Rats are your everyday pest, but they can get fairly big. Watch out for their sharp piercing teeth.",
-    cave_bug = "Cave Bugs are like Cave Crawlers, except smaller and easier to squish, though they still have a fondness for plants.",
-    ghost = "Ghosts are undead so magic is your best bet against them, there is even a spell specially for fighting the undead.",
-    spider = "Spiders are often poisonous, and many varieties are camouflaged too.",
-    skeleton_heavy = "Skeletons are undead so magic is your best bet against them, there is even a spell specially for fighting the undead.",
-    kalphite_worker = "Kalphite are large insects which live in great hives under the desert sands.",
-    lizard = "Lizards are large reptiles with tough skin. Those found in the desert will need you to douse them with freezing water to finish them off after a tough battle.",
-    guard_dog = "Dogs are much like Wolves, they are pack creatures which will hunt in groups.",
-    icefiend = "Icefiends are beings of ice and freezing rock, they're quick and agile so you'll want to be careful when getting close to them.",
-    zombie = "Zombies are undead so magic is your best bet against them, there is even a spell specially for fighting the undead.",
-    bird_black = "Birds aren't the most intelligent of creatures, but watch out for their sharp stabbing beaks.",
-    scorpion = "Scorpions are almost always poisonous, their hard carapace makes them resistant to crushing and stabbing attacks.",
-    monkey_brown = "Monkeys are tricky creatures, they are agile and fairly fast. Learn to anticipate their movements.",
-    cow_default = "Cows are bigger than you, so they'll often hit fairly hard but are usually fairly slow to react.",
-    bat = "Bats are rarely found on the ground, so you'll have to fight them while they're airborne, which won't be easy for melee.",
-    dwarf = "Dwarves are a small but tough race of miners, often using pickaxes to pierce their opponents armour.",
-    cave_crawler = "Cave Crawlers are small and fast, often hiding in ambush. Avoid their barbed tongue or you'll get poisoned.",
-    black_bear = "Bears are tough creatures and fierce fighters, watch out for their powerful claws.",
-    wolf = "Wolves are pack animals, so you'll always find them in groups. Watch out for their bite, it can be nasty.",
-    cave_slime = "Cave Slimes are the lesser cousins of Jellies, though don't be fooled they can still be dangerous as they're often poisonous.",
-    crawling_hand = "Crawling Hands are undead severed hands, fast and dexterous they claw their victims.",
-    goblin_mohawk_blue = "Goblins are mostly just annoying, but they can be vicious. Watch out for the spears they sometimes carry.",
-    banshee = "Banshees use a piercing scream to shock their enemies, you'll need some Earmuffs to protect yourself from them.",
-    minotaur = "Minotaurs are large manlike creatures but you'll want to be careful of their horns.",
-}
-
-[turael_task_quest]
-keyType = "npc"
-valueType = "string"
-values = {
-    crawling_hand = "priest_in_peril",
-    banshee = "priest_in_peril",
-}
-
-[turael_task_combat_level]
-keyType = "npc"
-valueType = "string"
-valuies = {
-    ghost = 13,
-    skeleton_heavy = 15,
-    kalphite_worker = 15,
-    guard_dog = 15,
-    icefiend = 20,
-    zombie = 10,
-    scorpion = 7,
-    cow_default = 5,
-    bat = 5,
-    dwarf = 6,
-    cave_crawler = 10,
-    black_bear = 13,
-    wolf = 20,
-    cave_slime = 15,
-    banshee = 20,
     minotaur = 7,
 }

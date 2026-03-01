@@ -47,7 +47,7 @@ spawns = [
   { id = "bandit_pollnivneach_2", x = 3357, y = 3001, members = true },
   { id = "bandit_pollnivneach_2", x = 3360, y = 2999, members = true },
   { id = "bandit_pollnivneach_2", x = 3367, y = 2997, members = true },
-  { id = "sumona_pollnivneach", x = 3358, y = 2993, members = true },
+  { id = "sumona", x = 3358, y = 2993, members = true },
   { id = "ali_cat_pollnivneach", x = 3358, y = 2973, members = true },
   { id = "ali_the_dyer", x = 3364, y = 3001, members = true },
   { id = "rug_merchant_north_pollnivneach", x = 3350, y = 3001, members = true },

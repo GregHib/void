@@ -1,6 +1,7 @@
 package content.skill.slayer
 
 import content.quest.questCompleted
+import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
@@ -62,22 +63,32 @@ fun Player.isTask(character: Character?): Boolean {
     return target.categories.contains(slayerTask)
 }
 
+fun assignTask(player: Player, master: String): Pair<Int, Int> {
+    val npc = rollTask(player, master)!!
+    val amount = EnumDefinitions.string("${master}_task_amount", npc).toIntRange(inclusive = true).random(random)
+    player.slayerTasks++
+    player.slayerMaster = master
+    player.slayerTask = EnumDefinitions.string("slayer_tasks_categories", npc)
+    player.slayerTaskRemaining = amount
+    return Pair(npc, amount)
+}
+
 fun rollTask(player: Player, master: String): Int? {
     var total = 0
-    val enum = EnumDefinitions.getOrNull("${master}_tasks") ?: return null
-    for (npc in enum.map!!.keys) {
-        if (!hasRequirements(player, master, npc)) {
+    val weights = EnumDefinitions.getOrNull("${master}_task_weight")?.map ?: return null
+    for ((npc, weight) in weights) {
+        if (!hasRequirements(player, npc)) {
             continue
         }
-        total += EnumDefinitions.int("${master}_task_weight", npc)
+        total += weight as Int
     }
     val roll = random.nextInt(total)
     var count = 0
-    for (npc in enum.map!!.keys) {
-        if (!hasRequirements(player, master, npc)) {
+    for ((npc, weight) in weights) {
+        if (!hasRequirements(player, npc)) {
             continue
         }
-        count += EnumDefinitions.int("${master}_task_weight", npc)
+        count += weight as Int
         if (roll < count) {
             return npc
         }
@@ -85,15 +96,15 @@ fun rollTask(player: Player, master: String): Int? {
     return null
 }
 
-private fun hasRequirements(player: Player, master: String, index: Int): Boolean {
+private fun hasRequirements(player: Player, index: Int): Boolean {
     val slayerLevel = NPCDefinitions.get(index)["slayer_level", 1]
     if (!player.has(Skill.Slayer, slayerLevel)) {
         return false
     }
-    val combatLevel = EnumDefinitions.int("${master}_task_combat_level", index)
+    val combatLevel = EnumDefinitions.int("slayer_task_combat_level", index)
     if (player.combatLevel < combatLevel) {
         return false
     }
-    val quest = EnumDefinitions.stringOrNull("${master}_task_quest", index) ?: return true
+    val quest = EnumDefinitions.stringOrNull("slayer_task_quest", index) ?: return true
     return player.questCompleted(quest)
 }
