@@ -3,8 +3,6 @@ id = 1006
 
 [fishing_spot_fishing_platform]
 id = 316
-fishing_net = { items = ["small_fishing_net"], bait = { none = ["raw_shrimps", "raw_anchovies"] } }
-fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_sardine", "raw_herring"] } }
 
 [bailey_fishing_platform]
 id = 695

@@ -4,7 +4,6 @@ examine = "The imposing Chief of Tai Bwo Wannai."
 
 [fishing_spot_tai_bwo_wannai]
 id = 1174
-fishing_net = { items = ["small_fishing_net"], bait = { none = ["raw_shrimps", "raw_karambwanji"] } }
 
 [tiadeche_tai_bwo_wannai]
 id = 2484

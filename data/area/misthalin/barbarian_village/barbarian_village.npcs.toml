@@ -195,8 +195,6 @@ examine = "An ugly green creature."
 
 [fishing_spot_barbarian_village]
 id = 328
-fishing_lure = { items = ["fly_fishing_rod"], bait = { feather = ["raw_trout", "raw_salmon"], stripy_feather = ["raw_rainbow_fish"] } }
-fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_pike"] } }
 
 [engineering_assistant_barbarian_village]
 id = 3280

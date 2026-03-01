@@ -144,5 +144,3 @@ examine = "Looks a bit lost."
 
 [fishing_spot_al_kharid]
 id = 330
-fishing_net = { items = ["small_fishing_net"], bait = { none = ["raw_shrimps", "raw_anchovies"] } }
-fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_sardine", "raw_herring"] } }

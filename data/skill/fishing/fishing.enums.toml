@@ -213,3 +213,176 @@ values = {
     leather_gloves = 10,
     leather_boots = 10,
 }
+
+[fishing_bait]
+keyType = "item"
+valueType = "string"
+defaultString = "none"
+values = {
+    raw_cave_eel = "fishing_bait",
+    raw_cavefish = "fishing_bait",
+    raw_herring = "fishing_bait",
+    raw_lava_eel = "fishing_bait",
+    raw_pike = "fishing_bait",
+    raw_rainbow_fish = "stripy_feather",
+    raw_rocktail = "living_minerals",
+    raw_salmon = "feather",
+    raw_sardine = "fishing_bait",
+    slimy_eel = "fishing_bait",
+    raw_trout = "feather",
+}
+
+[fishing_tackle_cage]
+keyType = "npc"
+valueType = "string"
+defaultString = "lobster_pot"
+values = {
+    fishing_spot_crayfish_lumbridge = "crayfish_cage",
+}
+
+[fishing_fish_cage]
+keyType = "npc"
+valueType = "string"
+defaultString = "raw_lobster"
+values = {
+    fishing_spot_crayfish_lumbridge = "raw_crayfish",
+}
+
+[fishing_tackle_net]
+keyType = "npc"
+valueType = "string"
+defaultString = "small_fishing_net"
+values = {
+    fishing_spot_ape_atoll = "big_fishing_net",
+    fishing_spot_ape_atoll_2 = "big_fishing_net",
+    fishing_spot_big_net_harpoon_catherby = "big_fishing_net",
+    fishing_spot_big_net_harpoon_feldip_hills = "big_fishing_net",
+    fishing_spot_burgh_de_rott = "big_fishing_net",
+    fishing_spot_burgh_de_rott_2 = "big_fishing_net",
+    fishing_spot_jatizso_big_net = "big_fishing_net",
+    fishing_spot_rellekka_big_net = "big_fishing_net",
+}
+
+[fishing_fish_net]
+keyType = "npc"
+valueType = "string"
+defaultString = ""
+values = {
+    fishing_spot_al_kharid = "raw_shrimps,raw_anchovies",
+    fishing_spot_ape_atoll = "raw_mackerel,raw_cod,raw_bass,oyster,casket,seaweed,leather_gloves,leather_boots",
+    fishing_spot_ape_atoll_2 = "raw_mackerel,raw_cod,raw_bass,oyster,casket,seaweed,leather_gloves,leather_boots",
+    fishing_spot_barbarian_outpost = "raw_shrimps,raw_anchovies",
+    fishing_spot_big_net_harpoon_catherby = "raw_mackerel,raw_cod,raw_bass,oyster,casket,seaweed,leather_gloves,leather_boots",
+    fishing_spot_big_net_harpoon_feldip_hills = "raw_mackerel,raw_cod,raw_bass,oyster,casket,seaweed,leather_gloves,leather_boots",
+    fishing_spot_burgh_de_rott = "raw_mackerel,raw_cod,raw_bass,oyster,casket,seaweed,leather_gloves,leather_boots",
+    fishing_spot_burgh_de_rott_2 = "raw_mackerel,raw_cod,raw_bass,oyster,casket,seaweed,leather_gloves,leather_boots",
+    fishing_spot_dorgesh_kaan_agility_course = "frog_spawn",
+    fishing_spot_dorgesh_kaan_agility_course_2 = "frog_spawn",
+    fishing_spot_entrana_net = "raw_shrimps,raw_anchovies",
+    fishing_spot_fishing_guild = "raw_mackerel,raw_cod,raw_bass,oyster,casket,seaweed,leather_gloves,leather_boots",
+    fishing_spot_fishing_platform = "raw_shrimps,raw_anchovies",
+    fishing_spot_harpoon_small_net_piscatoris = "raw_monkfish",
+    fishing_spot_jatizso_big_net = "raw_mackerel,raw_cod,raw_bass,oyster,casket,seaweed,leather_gloves,leather_boots",
+    fishing_spot_lumbridge_swamp_caves = "frog_spawn",
+    fishing_spot_lumbridge_swamp_caves_2 = "frog_spawn",
+    fishing_spot_mudskipper_point = "raw_shrimps,raw_anchovies",
+    fishing_spot_musa_point = "raw_shrimps,raw_anchovies",
+    fishing_spot_rellekka = "raw_shrimps,raw_anchovies",
+    fishing_spot_rellekka_big_net = "raw_mackerel,raw_cod,raw_bass,oyster,casket,seaweed,leather_gloves,leather_boots",
+    fishing_spot_small_net_bait_catherby = "raw_shrimps,raw_anchovies",
+    fishing_spot_small_net_bait_draynor = "raw_shrimps,raw_anchovies",
+    fishing_spot_small_net_bait_feldip_hills = "raw_shrimps,raw_anchovies",
+    fishing_spot_small_net_bait_lumbridge = "raw_shrimps,raw_anchovies",
+    fishing_spot_tai_bwo_wannai = "raw_shrimps,raw_karambwanji",
+    fishing_spot_tutorial_island = "",
+    fishing_spot_wilderness_bandit_camp = "raw_shrimps,raw_anchovies",
+}
+
+[fishing_tackle_harpoon]
+keyType = "npc"
+valueType = "string"
+defaultString = "harpoon,barb_tail_harpoon"
+
+[fishing_fish_harpoon]
+keyType = "npc"
+valueType = "string"
+defaultString = ""
+values = {
+    fishing_spot_ape_atoll = "raw_shark",
+    fishing_spot_ape_atoll_2 = "raw_shark",
+    fishing_spot_big_net_harpoon_catherby = "raw_shark",
+    fishing_spot_big_net_harpoon_feldip_hills = "raw_shark",
+    fishing_spot_burgh_de_rott = "raw_shark",
+    fishing_spot_burgh_de_rott_2 = "raw_shark",
+    fishing_spot_cage_harpoon_catherby = "raw_tuna,raw_swordfish",
+    fishing_spot_cage_harpoon_feldip_hills = "raw_tuna,raw_swordfish",
+    fishing_spot_cage_harpoon_fishing_guild = "raw_tuna,raw_swordfish",
+    fishing_spot_fishing_guild = "raw_shark",
+    fishing_spot_harpoon_small_net_piscatoris = "raw_tuna,raw_swordfish",
+    fishing_spot_jatizso = "raw_tuna,raw_swordfish",
+    fishing_spot_jatizso_big_net = "raw_shark",
+    fishing_spot_musa_point_2 = "raw_tuna,raw_swordfish",
+    fishing_spot_rellekka_big_net = "raw_shark",
+    fishing_spot_rellekka_cage = "raw_tuna,raw_swordfish",
+    fishing_spot_wilderness = "raw_tuna,raw_swordfish",
+}
+
+[fishing_tackle_bait]
+keyType = "npc"
+valueType = "string"
+defaultString = "fishing_rod"
+values = {
+    fishing_spot_taverley_dungeon = "oily_fishing_rod",
+}
+
+[fishing_fish_bait]
+keyType = "npc"
+valueType = "string"
+defaultString = ""
+values = {
+    cavefish_shoal = "raw_cavefish",
+    fishing_spot_al_kharid = "raw_sardine,raw_herring",
+    fishing_spot_ardougne = "raw_pike",
+    fishing_spot_barbarian_outpost = "raw_sardine,raw_herring",
+    fishing_spot_barbarian_village = "raw_pike",
+    fishing_spot_baxtorian_falls_lure = "raw_pike",
+    fishing_spot_dorgesh_kaan_agility_course = "slimy_eel,raw_cave_eel",
+    fishing_spot_dorgesh_kaan_agility_course_2 = "slimy_eel,raw_cave_eel",
+    fishing_spot_entrana = "raw_pike",
+    fishing_spot_entrana_net = "raw_sardine,raw_herring",
+    fishing_spot_fisher_realm = "raw_pike",
+    fishing_spot_fishing_platform = "raw_sardine,raw_herring",
+    fishing_spot_iorwerth_camp = "raw_pike",
+    fishing_spot_isafdar = "raw_pike",
+    fishing_spot_lumbridge_swamp_caves = "slimy_eel,raw_cave_eel",
+    fishing_spot_lumbridge_swamp_caves_2 = "slimy_eel,raw_cave_eel",
+    fishing_spot_lure_bait_lumbridge = "raw_pike",
+    fishing_spot_meiyerditch_tunnels = "slimy_eel,raw_cave_eel",
+    fishing_spot_mort_myre_swamp = "slimy_eel",
+    fishing_spot_mort_myre_swamp_centre = "slimy_eel",
+    fishing_spot_mort_myre_swamp_south = "slimy_eel",
+    fishing_spot_mudskipper_point = "raw_sardine,raw_herring",
+    fishing_spot_musa_point = "raw_sardine,raw_herring",
+    fishing_spot_observatory = "raw_pike",
+    fishing_spot_rellekka = "raw_sardine,raw_herring",
+    fishing_spot_shilo_village = "raw_pike",
+    fishing_spot_sinclair_mansion = "raw_pike",
+    fishing_spot_small_net_bait_catherby = "raw_sardine,raw_herring",
+    fishing_spot_small_net_bait_draynor = "raw_sardine,raw_herring",
+    fishing_spot_small_net_bait_feldip_hills = "raw_sardine,raw_herring",
+    fishing_spot_small_net_bait_lumbridge = "raw_sardine,raw_herring",
+    fishing_spot_taverley_dungeon = "raw_lava_eel",
+    fishing_spot_tree_gnome_stronghold = "raw_pike",
+    fishing_spot_wilderness_bandit_camp = "raw_sardine,raw_herring",
+    rocktail_shoal = "raw_rocktail",
+}
+
+[fishing_tackle_lure]
+keyType = "npc"
+valueType = "string"
+defaultString = "fly_fishing_rod"
+
+[fishing_fish_lure]
+keyType = "npc"
+valueType = "string"
+defaultString = "raw_trout,raw_salmon,raw_rainbow_fish"

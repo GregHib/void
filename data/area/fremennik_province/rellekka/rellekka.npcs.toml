@@ -247,27 +247,12 @@ examine = "Fearsome predator found only in the Fremennik Province, renowned for 
 
 [fishing_spot_rellekka]
 id = 1331
-fishing_net = { items = ["small_fishing_net"], bait = { none = ["raw_shrimps", "raw_anchovies"] } }
-fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_sardine", "raw_herring"] } }
 
 [fishing_spot_rellekka_cage]
 id = 1332
-fishing_cage = { items = ["lobster_pot"], bait = { none = ["raw_lobster"] } }
-fishing_harpoon = { items = ["harpoon", "barb_tail_harpoon"], bait = { none = ["raw_tuna", "raw_swordfish"] } }
 
 [fishing_spot_rellekka_big_net]
 id = 1333
-fishing_net = { items = ["big_fishing_net"], bait = { none = [
-    "raw_mackerel",
-    "raw_cod",
-    "raw_bass",
-    "oyster",
-    "casket",
-    "seaweed",
-    "leather_gloves",
-    "leather_boots"
-] } }
-fishing_harpoon = { items = ["harpoon", "barb_tail_harpoon"], bait = { none = ["raw_shark"] } }
 
 [rhonen]
 id = 2334
@@ -328,11 +313,9 @@ id = 7575
 
 [fishing_spot_rellekka_4]
 id = 7862
-fishing_cage = { items = ["lobster_pot"], bait = { none = ["raw_lobster"] } }
 
 [fishing_spot_rellekka_5]
 id = 7863
-fishing_cage = { items = ["lobster_pot"], bait = { none = ["raw_lobster"] } }
 
 [larry_rellekka_2]
 id = 8694

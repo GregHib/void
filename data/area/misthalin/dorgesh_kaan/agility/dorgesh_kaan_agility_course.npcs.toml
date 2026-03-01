@@ -28,13 +28,9 @@ examine = "A little, slimy beetle-thing."
 
 [fishing_spot_dorgesh_kaan_agility_course]
 id = 5748
-fishing_net = { items = ["small_fishing_net"], bait = { none = ["frog_spawn"] } }
-fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_slimy_eel", "raw_cave_eel"] } }
 
 [fishing_spot_dorgesh_kaan_agility_course_2]
 id = 5749
-fishing_net = { items = ["small_fishing_net"], bait = { none = ["frog_spawn"] } }
-fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_slimy_eel", "raw_cave_eel"] } }
 
 [turgall_dorgesh_kaan_agility_course]
 id = 5779

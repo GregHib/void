@@ -33,8 +33,6 @@ examine = "He holds up passers by."
 
 [fishing_spot_sinclair_mansion]
 id = 315
-fishing_lure = { items = ["fly_fishing_rod"], bait = { feather = ["raw_trout", "raw_salmon"], stripy_feather = ["raw_rainbow_fish"] } }
-fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_pike"] } }
 
 [guard_sinclair_mansion]
 id = 6191

@@ -92,8 +92,6 @@ id = 2383
 
 [fishing_spot_wilderness_bandit_camp]
 id = 326
-fishing_net = { items = ["small_fishing_net"], bait = { none = ["raw_shrimps", "raw_anchovies"] } }
-fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_sardine", "raw_herring"] } }
 
 [fat_tony]
 id = 596
