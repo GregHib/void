@@ -9,15 +9,16 @@ import content.quest.questCompleted
 import content.skill.slayer.*
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.config.SlayerTaskDefinition
-import world.gregs.voidps.engine.data.definition.SlayerTaskDefinitions
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.type.random
 
-class Turael(val slayerDefinitions: SlayerTaskDefinitions) : Script {
+class Turael : Script {
 
     init {
         npcOperate("Talk-to", "turael") {
@@ -100,11 +101,13 @@ class Turael(val slayerDefinitions: SlayerTaskDefinitions) : Script {
     }
 
     suspend fun Player.roll() {
-        val (definition, amount) = assign(this)
-        npc<Happy>("Excellent, you're doing great. Your new task is to kill $amount ${definition.type.toSentenceCase()}.")
+        val (npc, amount) = assign(this)
+        val type = EnumDefinitions.string("turael_tasks", npc)
+        npc<Happy>("Excellent, you're doing great. Your new task is to kill $amount ${type.toSentenceCase()}.")
         choice {
             option<Quiz>("Got any tips for me?") {
-                npc<Neutral>(definition.tip)
+                val tip = EnumDefinitions.string("turael_task_tip", npc)
+                npc<Neutral>(tip)
             }
             option<Happy>("Okay, great!")
         }
@@ -117,13 +120,15 @@ class Turael(val slayerDefinitions: SlayerTaskDefinitions) : Script {
                 player<Neutral>("Pleeeaasssse!")
                 npc<Neutral>("Oh okay then, you twisted my arm. You'll have to train against specific groups of creatures.")
                 player<Quiz>("Okay, what's first?")
-                val (definition, amount) = assign(this)
-                npc<Neutral>("We'll start you off hunting ${definition.type.toSentenceCase()}, you'll need to kill $amount of them.")
+                val (npc, amount) = assign(this)
+                val type = EnumDefinitions.string("turael_tasks", npc)
+                npc<Neutral>("We'll start you off hunting ${type.toSentenceCase()}, you'll need to kill $amount of them.")
                 npc<Neutral>("You'll also need this enchanted gem, it allows Slayer Masters like myself to contact you and update you on your progress. Don't worry if you lose it, you can buy another from any Slayer Master.")
                 inventory.add("enchanted_gem")
                 choice {
                     option("Got any tips for me?") {
-                        npc<Neutral>(definition.tip)
+                        val tip = EnumDefinitions.string("turael_task_tip", npc)
+                        npc<Neutral>(tip)
                     }
                     option<Neutral>("Okay, great!") {
                         npc<Happy>("Good luck! Don't forget to come back when you need a new assignment.")
@@ -136,14 +141,13 @@ class Turael(val slayerDefinitions: SlayerTaskDefinitions) : Script {
         }
     }
 
-    fun assign(player: Player): Pair<SlayerTaskDefinition, Int> {
-        val definitions = slayerDefinitions.get("turael")
-        val definition = rollTask(player, definitions)
-        val amount = definition.amount.random()
+    fun assign(player: Player): Pair<Int, Int> {
+        val npc = rollTask(player, "turael")!!
+        val amount = EnumDefinitions.string("turael_task_amount", npc).toIntRange().random(random)
         player.slayerTasks++
         player.slayerMaster = "turael"
-        player.slayerTask = definition.type
+        player.slayerTask = EnumDefinitions.string("turael_tasks", npc)
         player.slayerTaskRemaining = amount
-        return Pair(definition, amount)
+        return Pair(npc, amount)
     }
 }
