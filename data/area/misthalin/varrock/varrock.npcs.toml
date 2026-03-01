@@ -215,6 +215,16 @@ examine = "Master of the Champions' Guild."
 
 [giant_rat_varrock]
 id = 2091
+att = 6
+str = 5
+def = 2
+hitpoints = 100
+slayer_xp = 10.0
+combat_def = "giant_rat"
+wander_range = 10
+drop_table = "giant_rat"
+categories = ["giant_rats", "rats"]
+examine = "Overgrown vermin."
 
 [master_farmer_varrock]
 id = 2235

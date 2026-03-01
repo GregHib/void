@@ -1,5 +1,16 @@
 [giant_rat_lumbridge_swamp]
 id = 12348
+att = 2
+str = 3
+def = 2
+combat_def = "giant_rat"
+wander_range = 10
+hitpoints = 50
+slayer_xp = 5.0
+respawn_delay = 30
+drop_table = "giant_rat"
+categories = ["giant_rats", "rats"]
+examine = "Overgrown vermin."
 
 [fremennik_shipmaster_lumbridge_swamp]
 id = 9708
