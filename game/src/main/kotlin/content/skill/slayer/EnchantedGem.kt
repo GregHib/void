@@ -10,11 +10,11 @@ import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.SlayerTaskDefinitions
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.queue.queue
 
-class EnchantedGem(val slayerDefinitions: SlayerTaskDefinitions) : Script {
+class EnchantedGem : Script {
 
     init {
         playerSpawn {
@@ -92,8 +92,15 @@ class EnchantedGem(val slayerDefinitions: SlayerTaskDefinitions) : Script {
 
     fun ChoiceOption.anyTips() {
         option<Quiz>("Got any tips for me?") {
-            val definition = slayerDefinitions.get(slayerMaster)[slayerTask]!!
-            npc<Neutral>(slayerMaster, definition.tip)
+            var npc = -1
+            for ((key, value) in EnumDefinitions.get("turael_tasks").map!!) {
+                if (value == slayerTask) {
+                    npc = key
+                    break
+                }
+            }
+            val tip = EnumDefinitions.stringOrNull("turael_task_tip", npc) ?: return@option
+            npc<Neutral>(slayerMaster, tip)
             choice {
                 howAmIDoing()
                 whoAreYou()
