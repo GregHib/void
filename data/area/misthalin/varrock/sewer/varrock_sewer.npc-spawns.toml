@@ -45,7 +45,7 @@ spawns = [
   { id = "rat", x = 3275, y = 9865 },
   { id = "rat", x = 3277, y = 9863 },
   { id = "giant_rat_dark", x = 3279, y = 9894 },
-  { id = "vannaka_varrock_sewers", x = 3147, y = 9914, direction = "WEST" },
+  { id = "vannaka", x = 3147, y = 9914, direction = "WEST" },
   { id = "giant_rat_varrock", x = 3283, y = 9896, members = true },
   { id = "grimesquit_varrock_sewers", x = 3243, y = 9866, members = true },
   { id = "phingspet_varrock_sewers", x = 3245, y = 9868, members = true },
