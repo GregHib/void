@@ -21,7 +21,7 @@ hitpoints = 870
 combat_def = "greater_demon"
 slayer_xp = 87.0
 drop_table = "greater_demon"
-categories = ["demons"]
+categories = ["demons", "greater_demons"]
 respawn_delay = 15
 hunt_mode = "aggressive"
 height = 60
@@ -53,7 +53,7 @@ combat_def = "lesser_demon"
 wander_range = 4
 drop_table = "lesser_demon"
 hunt_mode = "aggressive"
-categories = ["demons"]
+categories = ["demons", "lesser_demons"]
 respawn_delay = 30
 examine = "Lesser, but still pretty big."
 

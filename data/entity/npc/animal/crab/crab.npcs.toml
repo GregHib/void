@@ -1,6 +1,6 @@
 [crab]
 id = 2706
-categories = ["crab"]
+categories = ["crabs"]
 wander_range = 3
 examine = "Nobody likes crabs..."
 
@@ -8,7 +8,7 @@ examine = "Nobody likes crabs..."
 id = 1265
 wander_range = 5
 hunt_mode = "aggressive"
-categories = ["crab"]
+categories = ["crabs"]
 examine = "No one likes crabs..."
 
 [rock_crab_1]
@@ -26,7 +26,7 @@ combat_def = "rock_crab"
 slayer_xp = 50.0
 hunt_mode = "aggressive"
 hunt_range = 3
-categories = ["crab"]
+categories = ["crabs"]
 drop_table = "rock_crab"
 respawn_delay = 50
 examine = "A rocky outcrop."
@@ -46,7 +46,7 @@ max_hit_crush = 90
 respawn_delay = 50
 wander_range = 5
 hunt_mode = "aggressive"
-categories = ["crab"]
+categories = ["crabs"]
 examine = "No one likes crabs... especially really big ones!"
 
 [giant_rock_crab_light]
@@ -60,7 +60,7 @@ slayer_xp = 198.0
 drop_table = "giant_rock_crab"
 hunt_mode = "aggressive"
 hunt_range = 3
-categories = ["crab"]
+categories = ["crabs"]
 respawn_delay = 50
 examine = "Heavy boulder!"
 
