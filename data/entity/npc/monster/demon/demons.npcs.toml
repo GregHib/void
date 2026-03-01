@@ -6,6 +6,7 @@ str = 10
 def = 5
 combat_def = "delrith"
 categories = ["demons"]
+hunt_mode = "aggressive"
 examine = "A freshly summoned demon."
 
 [delrith_weakened]
