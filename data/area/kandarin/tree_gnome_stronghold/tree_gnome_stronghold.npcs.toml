@@ -26,7 +26,6 @@ hitpoints = 20
 combat_def = "gnome_child"
 attack_bonus = -42
 respawn_delay = 50
-pickpocket = { level = 75, stun_ticks = 8, stun_hit = 10, xp = 133.5, chance_min = 43, chance_max = 175, table = "gnome" }
 drop_table = "bones"
 examine = "Small, even by gnome standards."
 
@@ -68,7 +67,6 @@ hitpoints = 20
 combat_def = "gnome_woman"
 attack_bonus = -42
 respawn_delay = 50
-pickpocket = { level = 75, stun_ticks = 8, stun_hit = 10, xp = 133.5, chance_min = 43, chance_max = 175, table = "gnome" }
 drop_table = "bones"
 examine = "A female gnome."
 

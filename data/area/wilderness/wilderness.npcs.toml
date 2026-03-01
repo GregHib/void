@@ -244,5 +244,4 @@ attack_bonus = 5
 slayer_xp = 17.0
 categories = ["rogues"]
 respawn_delay = 50
-pickpocket = { level = 32, stun_ticks = 8, stun_hit = 20, xp = 36.5, chance_min = 75, chance_max = 240, table = "rouge" }
 examine = "Rogueish."

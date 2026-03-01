@@ -4,7 +4,6 @@ hitpoints = 70
 wander_range = 4
 respawn_delay = 25
 combat_def = "man"
-pickpocket = { stun_hit = 10, stun_ticks = 8, xp = 8.0, chance_min = 180, chance_max = 240 }
 drop_table = "human"
 categories = ["human"]
 examine = "One of Gielinor's many citizens."
@@ -23,7 +22,6 @@ hitpoints = 70
 wander_range = 4
 respawn_delay = 25
 combat_def = "woman"
-pickpocket = { stun_hit = 10, stun_ticks = 8, xp = 8.0, chance_min = 180, chance_max = 240 }
 drop_table = "human"
 categories = ["human"]
 examine = "One of Gielinor's many citizens."

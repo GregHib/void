@@ -7,7 +7,6 @@ import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.NPCDefinition
-import world.gregs.voidps.engine.data.definition.data.Pocket
 import world.gregs.voidps.engine.data.definition.data.Spot
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.timedLoad
@@ -67,7 +66,6 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                                     extras.putAll(definition.extras ?: continue)
                                 }
                                 "id" -> id = int()
-                                "pickpocket" -> extras[key] = Pocket(this)
                                 "fishing_cage", "fishing_net", "fishing_harpoon", "fishing_bait", "fishing_lure" -> {
                                     extras[key] = Spot(this)
                                 }

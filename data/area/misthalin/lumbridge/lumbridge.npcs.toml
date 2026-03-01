@@ -156,7 +156,6 @@ hitpoints = 70
 wander_range = 4
 respawn_delay = 25
 combat_def = "man"
-pickpocket = { stun_hit = 10, stun_ticks = 8, xp = 8.0, chance_min = 180, chance_max = 240 }
 drop_table = "human"
 categories = ["human"]
 examine = "A citizen of Lumbridge."
@@ -191,7 +190,6 @@ hitpoints = 70
 combat_def = "woman"
 wander_range = 4
 respawn_delay = 25
-pickpocket = { stun_hit = 10, stun_ticks = 8, xp = 8.0, chance_min = 180, chance_max = 240 }
 drop_table = "human"
 categories = ["human"]
 examine = "A citizen of Lumbridge."
@@ -229,7 +227,6 @@ def = 8
 combat_def = "farmer"
 attack_bonus = 5
 respawn_delay = 25
-pickpocket = { level = 10, stun_hit = 10, stun_ticks = 8, xp = 14.5, chance_min = 150, chance_max = 240, table = "farmer" }
 examine = "He grows the crops in this area."
 
 [farmer_lumbridge_2]
@@ -275,7 +272,6 @@ examine = "Perhaps this gardener might look after your crops for you."
 
 [farmer_lumbridge_3]
 id = 1758
-pickpocket = { level = 10, stun_hit = 10, stun_ticks = 8, xp = 14.5, chance_min = 150, chance_max = 240, table = "farmer" }
 examine = "He grows the crops in this area."
 
 [sigmund_lumbridge]

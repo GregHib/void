@@ -49,7 +49,6 @@ examine = "He looks like the type of guy who would mind monkeys."
 
 [warrior_woman]
 id = 15
-pickpocket = { level = 25, stun_ticks = 8, stun_hit = 20, xp = 26.0, chance_min = 100, chance_max = 240, table = "warrior" }
 examine = "A woman, who is a warrior."
 
 [milton_the_miller]
@@ -68,7 +67,6 @@ max_hit_melee = 80
 attack_bonus = 20
 xp_bonus = 2.5
 respawn_delay = 50
-pickpocket = { level = 70, stun_ticks = 8, stun_hit = 30, xp = 131.8, chance_min = 40, chance_max = 170, table = "paladin" }
 examine = "A holy warrior."
 
 [hero]
@@ -83,7 +81,6 @@ max_hit_melee = 90
 attack_bonus = 20
 xp_bonus = 2.5
 respawn_delay = 50
-pickpocket = { level = 80, stun_ticks = 10, stun_hit = 30, xp = 163.3, chance_min = 39, chance_max = 160, table = "hero" }
 examine = "Heroic!"
 
 [paladin_2]
@@ -102,7 +99,6 @@ max_hit_melee = 60
 attack_bonus = 8
 respawn_delay = 25
 hunt_mode = "guarding"
-pickpocket = { level = 55, stun_ticks = 10, stun_hit = 30, xp = 84.3, chance_min = 50, chance_max = 240, table = "knight" }
 examine = "A member of Ardougne's militia."
 
 [richard_ardougne]
@@ -187,7 +183,6 @@ max_hit_melee = 30
 attack_bonus = 4
 respawn_delay = 50
 attack_speed = 5
-pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
 examine = "Keeps the peace... kind of."
 
 [edmond_ardougne]

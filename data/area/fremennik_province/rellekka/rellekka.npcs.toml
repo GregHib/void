@@ -134,7 +134,6 @@ examine = "He's strong to the finish, because he eats cabbage."
 
 [agnar_rellekka]
 id = 1305
-pickpocket = { level = 45, stun_ticks = 8, stun_hit = 20, xp = 65.0, chance_min = 90, chance_max = 240, table = "fremmennik" }
 examine = "One of Rellekka's many citizens."
 
 [pontak_rellekka]

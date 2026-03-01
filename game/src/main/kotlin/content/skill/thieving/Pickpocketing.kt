@@ -5,9 +5,10 @@ import content.entity.effect.stun
 import content.skill.slayer.categories
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
-import world.gregs.voidps.engine.data.definition.data.Pocket
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -51,16 +52,18 @@ class Pickpocketing(val combatDefinitions: CombatDefinitions, val dropTables: Dr
             message("You can't pickpocket during combat.")
             return
         }
-        val pocket: Pocket = target.def.getOrNull("pickpocket") ?: return
-        if (!has(Skill.Thieving, pocket.level)) {
+        val type = EnumDefinitions.stringOrNull("pickpocket_type", target.id) ?: return
+        val level = EnumDefinitions.int("pickpocket_level", type)
+        if (!has(Skill.Thieving, level)) {
             return
         }
-        var chances = pocket.chance
+        var chances = EnumDefinitions.string("pickpocket_chance", type).toIntRange()
         if (equipped(EquipSlot.Hands).id == "gloves_of_silence" && equipment.discharge(this, EquipSlot.Hands.index)) {
             chances = (chances.first + (chances.first / 20)).coerceAtMost(255)..(chances.last + (chances.last / 20)).coerceAtMost(255)
         }
         val success = success(levels.get(Skill.Thieving), chances)
-        val drops = getLoot(target, pocket.table) ?: emptyList()
+        val table = EnumDefinitions.stringOrNull("pickpocket_table", type)
+        val drops = getLoot(target, table) ?: emptyList()
         if (success && !canLoot(this, drops)) {
             return
         }
@@ -73,18 +76,24 @@ class Pickpocketing(val combatDefinitions: CombatDefinitions, val dropTables: Dr
                 addLoot(drops)
             }
             message("You pick the $name's pocket.", ChatType.Filter)
-            exp(Skill.Thieving, pocket.xp)
+            val xp = EnumDefinitions.int("pickpocket_xp", type) / 10.0
+            exp(Skill.Thieving, xp)
         } else {
             target.face(this)
-            target.say(pocket.caughtMessage)
+            target.say("What do you think you're doing?")
             target.anim(combatDefinitions.get(target["combat_def", target.id]).defendAnim)
             message("You fail to pick the $name's pocket.", ChatType.Filter)
-            target.stun(this, pocket.stunTicks, pocket.stunHit.random(random))
+            val ticks = EnumDefinitions.int("pickpocket_stun_ticks", type)
+            val damage = EnumDefinitions.string("pickpocket_damage", type).toIntRange()
+            target.stun(this, ticks, damage.random(random))
             delay(2)
         }
     }
 
     fun getLoot(target: NPC, table: String?): List<ItemDrop>? {
+        if (table == null) {
+            return null
+        }
         var id = dropTables.get("${table}_pickpocket")
         if (id != null) {
             return id.roll()

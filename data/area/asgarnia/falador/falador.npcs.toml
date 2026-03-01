@@ -246,7 +246,6 @@ wander_range = 2
 combat_def = "guard"
 respawn_delay = 50
 drop_table = "guard"
-pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
 examine = "He tries to keep order around here."
 
 [guard_falador_2]
