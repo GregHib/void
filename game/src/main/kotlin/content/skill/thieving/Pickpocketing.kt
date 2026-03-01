@@ -91,9 +91,6 @@ class Pickpocketing(val combatDefinitions: CombatDefinitions, val dropTables: Dr
     }
 
     fun getLoot(target: NPC, table: String?): List<ItemDrop>? {
-        if (table == null) {
-            return null
-        }
         var id = dropTables.get("${table}_pickpocket")
         if (id != null) {
             return id.roll()

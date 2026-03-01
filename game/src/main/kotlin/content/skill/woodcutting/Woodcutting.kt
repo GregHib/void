@@ -44,7 +44,7 @@ class Woodcutting(val drops: DropTables) : Script {
 
     suspend fun chopDown(player: Player, interact: PlayerOnObjectInteract) {
         val target = interact.target
-        val log = EnumDefinitions.stringOrNull("woodcutting_log", target.id) ?: return
+        val log = EnumDefinitions.stringOrNull("woodcutting_log", target.def(player).stringId) ?: return
         val hatchet = Hatchet.best(player)
         if (hatchet == null) {
             player.message("You need a hatchet to chop down this tree.")

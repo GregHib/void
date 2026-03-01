@@ -181,22 +181,18 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
                             }
                         }
                         if (id == -1) {
-                            if (map.isNotEmpty()) {
-                                custom.add(
-                                    EnumDefinition(
-                                        keyType = keyType,
-                                        valueType = valueType,
-                                        defaultString = defaultString,
-                                        defaultInt = defaultInt,
-                                        length = map.size,
-                                        map = map,
-                                        extras = extras,
-                                        stringId = stringId,
-                                    )
+                            custom.add(
+                                EnumDefinition(
+                                    keyType = keyType,
+                                    valueType = valueType,
+                                    defaultString = defaultString,
+                                    defaultInt = defaultInt,
+                                    length = map.size,
+                                    map = map,
+                                    extras = extras,
+                                    stringId = stringId,
                                 )
-                            } else {
-                                error("Enum '$stringId' has no values")
-                            }
+                            )
                         } else {
                             definitions[id].extras = extras
                         }

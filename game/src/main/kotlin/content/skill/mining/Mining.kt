@@ -126,7 +126,7 @@ class Mining : Script {
                         val xp = EnumDefinitions.int("mining_xp", item) / 10.0
                         experience.add(Skill.Mining, xp)
                         ShootingStarHandler.extraOreHandler(this, item, xp)
-                        if (!addOre(this, item) || deplete(target, EnumDefinitions.int("mining_life", target.id))) {
+                        if (!addOre(this, item) || deplete(target, EnumDefinitions.int("mining_life", item))) {
                             clearAnim()
                             break
                         }
