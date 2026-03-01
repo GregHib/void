@@ -3,7 +3,6 @@ id = 1203
 price = 6
 limit = 1000
 weight = 0.453
-smithing = { level = 15, xp = 25.0 }
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
@@ -17,7 +16,6 @@ id = 1205
 price = 14
 limit = 100
 weight = 0.453
-smithing = { level = 1, xp = 12.5 }
 slot = "Weapon"
 material = "metal"
 examine = "Short but pointy."
@@ -31,7 +29,6 @@ id = 1207
 price = 16
 limit = 100
 weight = 0.01
-smithing = { level = 30, xp = 37.5 }
 slot = "Weapon"
 material = "metal"
 examine = "A steel dagger."
@@ -45,7 +42,6 @@ id = 1209
 price = 81
 limit = 100
 weight = 0.01
-smithing = { level = 50, xp = 50.0 }
 slot = "Weapon"
 material = "metal"
 examine = "A mithril dagger."
@@ -58,7 +54,6 @@ id = 1211
 price = 361
 limit = 100
 weight = 0.01
-smithing = { level = 70, xp = 62.5 }
 slot = "Weapon"
 material = "metal"
 examine = "An adamant dagger."
@@ -71,7 +66,6 @@ id = 1213
 price = 4658
 limit = 100
 weight = 0.01
-smithing = { level = 85, xp = 75.0 }
 slot = "Weapon"
 material = "metal"
 examine = "A rune dagger."
@@ -211,7 +205,6 @@ id = 1237
 price = 256
 limit = 1000
 weight = 2.267
-smithing = { level = 5, xp = 25.0 }
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A bronze tipped spear."
@@ -225,7 +218,6 @@ id = 1239
 price = 114
 limit = 1000
 weight = 2.267
-smithing = { level = 20, xp = 50.0 }
 slot = "Weapon"
 type = "TwoHanded"
 examine = "An iron tipped spear."
@@ -239,7 +231,6 @@ id = 1241
 price = 107
 limit = 1000
 weight = 2.267
-smithing = { level = 35, xp = 75.0 }
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A steel tipped spear."
@@ -253,7 +244,6 @@ id = 1243
 price = 393
 limit = 1000
 weight = 1.814
-smithing = { level = 55, xp = 100.0 }
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A mithril tipped spear."
@@ -266,7 +256,6 @@ id = 1245
 price = 1134
 limit = 1000
 weight = 2.721
-smithing = { level = 75, xp = 125.0 }
 slot = "Weapon"
 type = "TwoHanded"
 examine = "An adamantite tipped spear."
@@ -279,7 +268,6 @@ id = 1247
 price = 12500
 limit = 100
 weight = 2.267
-smithing = { level = 90, xp = 150.0 }
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A rune tipped spear."
@@ -388,7 +376,6 @@ id = 1277
 price = 7
 limit = 100
 weight = 1.814
-smithing = { level = 4, xp = 12.5 }
 slot = "Weapon"
 material = "metal"
 examine = "A razor-sharp sword."
@@ -402,7 +389,6 @@ id = 1279
 price = 11
 limit = 1000
 weight = 1.814
-smithing = { level = 19, xp = 25.0 }
 slot = "Weapon"
 material = "metal"
 examine = "A razor-sharp sword."
@@ -416,7 +402,6 @@ id = 1281
 price = 93
 limit = 100
 weight = 0.01
-smithing = { level = 34, xp = 37.5 }
 slot = "Weapon"
 material = "metal"
 examine = "A steel sword."
@@ -442,7 +427,6 @@ id = 1285
 price = 374
 limit = 100
 weight = 0.01
-smithing = { level = 54, xp = 50.0 }
 slot = "Weapon"
 material = "metal"
 examine = "A mithril sword."
@@ -455,7 +439,6 @@ id = 1287
 price = 1179
 limit = 100
 weight = 0.01
-smithing = { level = 74, xp = 62.5 }
 slot = "Weapon"
 material = "metal"
 examine = "An adamant sword."
@@ -468,7 +451,6 @@ id = 1289
 price = 12300
 limit = 100
 weight = 0.01
-smithing = { level = 89, xp = 75.0 }
 slot = "Weapon"
 material = "metal"
 examine = "A rune sword."
@@ -481,7 +463,6 @@ id = 1291
 price = 5
 limit = 100
 weight = 1.814
-smithing = { level = 6, xp = 25.0 }
 slot = "Weapon"
 material = "metal"
 examine = "A razor-sharp longsword."
@@ -495,7 +476,6 @@ id = 1293
 price = 15
 limit = 1000
 weight = 1.814
-smithing = { level = 21, xp = 50.0 }
 slot = "Weapon"
 material = "metal"
 examine = "A razor-sharp longsword."
@@ -509,7 +489,6 @@ id = 1295
 price = 182
 limit = 100
 weight = 0.01
-smithing = { level = 36, xp = 75.0 }
 slot = "Weapon"
 material = "metal"
 examine = "A steel longsword."
@@ -535,7 +514,6 @@ id = 1299
 price = 661
 limit = 100
 weight = 0.01
-smithing = { level = 56, xp = 100.0 }
 slot = "Weapon"
 material = "metal"
 examine = "A mithril longsword."
@@ -548,7 +526,6 @@ id = 1301
 price = 1782
 limit = 100
 weight = 0.01
-smithing = { level = 76, xp = 125.0 }
 slot = "Weapon"
 material = "metal"
 examine = "An adamant longsword."
@@ -561,7 +538,6 @@ id = 1303
 price = 19000
 limit = 100
 weight = 0.01
-smithing = { level = 91, xp = 150.0 }
 slot = "Weapon"
 material = "metal"
 examine = "A rune longsword."
@@ -589,7 +565,6 @@ id = 1307
 price = 15
 limit = 1000
 weight = 3.628
-smithing = { level = 14, xp = 37.5 }
 aka = ["bronze_2h"]
 slot = "Weapon"
 material = "metal"
@@ -605,7 +580,6 @@ id = 1309
 price = 52
 limit = 1000
 weight = 3.628
-smithing = { level = 29, xp = 75.0 }
 aka = ["iron_2h"]
 slot = "Weapon"
 material = "metal"
@@ -621,7 +595,6 @@ id = 1311
 price = 472
 limit = 100
 weight = 0.02
-smithing = { level = 44, xp = 112.5 }
 aka = ["steel_2h"]
 slot = "Weapon"
 material = "metal"
@@ -651,7 +624,6 @@ id = 1315
 price = 1424
 limit = 100
 weight = 0.02
-smithing = { level = 64, xp = 150.0 }
 aka = ["mithril_2h", "mith_2h"]
 slot = "Weapon"
 material = "metal"
@@ -666,7 +638,6 @@ id = 1317
 price = 3748
 limit = 100
 weight = 0.02
-smithing = { level = 84, xp = 187.5 }
 aka = ["adamant_2h", "addy_2h"]
 slot = "Weapon"
 material = "metal"
@@ -681,7 +652,6 @@ id = 1319
 price = 38334
 limit = 100
 weight = 0.02
-smithing = { level = 99, xp = 225.0 }
 aka = ["rune_2h"]
 slot = "Weapon"
 material = "metal"
@@ -697,7 +667,6 @@ price = 12
 limit = 100
 weight = 1.814
 aka = ["bronze_scimmy"]
-smithing = { level = 5, xp = 25.0 }
 slot = "Weapon"
 material = "metal"
 examine = "A vicious, curved sword."
@@ -712,7 +681,6 @@ price = 11
 limit = 100
 weight = 1.814
 aka = ["iron_scimmy"]
-smithing = { level = 20, xp = 50.0 }
 slot = "Weapon"
 material = "metal"
 examine = "A vicious, curved sword."
@@ -727,7 +695,6 @@ price = 120
 limit = 100
 weight = 0.01
 aka = ["steel_scimmy"]
-smithing = { level = 35, xp = 75.0 }
 slot = "Weapon"
 material = "metal"
 examine = "A steel scimitar."
@@ -755,7 +722,6 @@ price = 509
 limit = 100
 weight = 0.01
 aka = ["mith_scimmy", "mithril_scimmy"]
-smithing = { level = 55, xp = 100.0 }
 slot = "Weapon"
 material = "metal"
 examine = "A mithril scimitar."
@@ -769,7 +735,6 @@ price = 1883
 limit = 100
 weight = 0.01
 aka = ["addy_scimmy", "adamant_scimmy"]
-smithing = { level = 75, xp = 125.0 }
 slot = "Weapon"
 material = "metal"
 examine = "An adamant scimitar."
@@ -783,7 +748,6 @@ price = 15300
 limit = 100
 weight = 0.01
 aka = ["rune_scimmy"]
-smithing = { level = 90, xp = 150.0 }
 slot = "Weapon"
 material = "metal"
 examine = "A rune scimitar."
@@ -796,7 +760,6 @@ id = 1335
 price = 18
 limit = 1000
 weight = 1.814
-smithing = { level = 24, xp = 75.0 }
 slot = "Weapon"
 examine = "I don't think it's intended for joinery."
 kept = "Wilderness"
@@ -809,7 +772,6 @@ id = 1337
 price = 6
 limit = 100
 weight = 1.814
-smithing = { level = 9, xp = 37.5 }
 slot = "Weapon"
 examine = "I don't think it's intended for joinery."
 kept = "Wilderness"
@@ -822,7 +784,6 @@ id = 1339
 price = 367
 limit = 100
 weight = 0.01
-smithing = { level = 39, xp = 112.5 }
 slot = "Weapon"
 examine = "A steel warhammer."
 kept = "Wilderness"
@@ -846,7 +807,6 @@ id = 1343
 price = 1127
 limit = 100
 weight = 0.01
-smithing = { level = 59, xp = 150.0 }
 slot = "Weapon"
 examine = "A mithril warhammer."
 
@@ -858,7 +818,6 @@ id = 1345
 price = 3031
 limit = 100
 weight = 0.01
-smithing = { level = 79, xp = 187.5 }
 slot = "Weapon"
 examine = "An adamant warhammer."
 
@@ -870,7 +829,6 @@ id = 1347
 price = 24700
 limit = 100
 weight = 1.814
-smithing = { level = 94, xp = 225.0 }
 slot = "Weapon"
 examine = "I don't think it's intended for joinery."
 
@@ -882,7 +840,6 @@ id = 1363
 price = 17
 limit = 1000
 weight = 2.721
-smithing = { level = 25, xp = 75.0 }
 slot = "Weapon"
 examine = "A vicious looking axe."
 kept = "Wilderness"
@@ -895,7 +852,6 @@ id = 1365
 price = 272
 limit = 100
 weight = 0.01
-smithing = { level = 40, xp = 112.5 }
 slot = "Weapon"
 examine = "A steel battleaxe."
 kept = "Wilderness"
@@ -919,7 +875,6 @@ id = 1369
 price = 892
 limit = 100
 weight = 0.01
-smithing = { level = 60, xp = 150.0 }
 slot = "Weapon"
 examine = "A mithril battleaxe."
 
@@ -931,7 +886,6 @@ id = 1371
 price = 2375
 limit = 100
 weight = 0.01
-smithing = { level = 80, xp = 187.5 }
 slot = "Weapon"
 examine = "An adamant battleaxe."
 
@@ -943,7 +897,6 @@ id = 1373
 price = 24900
 limit = 100
 weight = 0.01
-smithing = { level = 95, xp = 225.0 }
 slot = "Weapon"
 examine = "A rune battleaxe."
 
@@ -955,7 +908,6 @@ id = 1375
 price = 4
 limit = 100
 weight = 2.721
-smithing = { level = 10, xp = 37.5 }
 slot = "Weapon"
 examine = "A vicious looking axe."
 kept = "Wilderness"
@@ -991,7 +943,6 @@ id = 1420
 price = 4
 limit = 1000
 weight = 1.814
-smithing = { level = 17, xp = 25.0 }
 slot = "Weapon"
 examine = "A spiky mace."
 kept = "Wilderness"
@@ -1004,7 +955,6 @@ id = 1422
 price = 4
 limit = 100
 weight = 1.814
-smithing = { level = 2, xp = 12.5 }
 slot = "Weapon"
 examine = "A spiky mace."
 kept = "Wilderness"
@@ -1017,7 +967,6 @@ id = 1424
 price = 26
 limit = 100
 weight = 0.01
-smithing = { level = 32, xp = 37.5 }
 slot = "Weapon"
 examine = "A steel mace."
 kept = "Wilderness"
@@ -1041,7 +990,6 @@ id = 1428
 price = 225
 limit = 100
 weight = 0.01
-smithing = { level = 52, xp = 50.0 }
 slot = "Weapon"
 examine = "A mithril mace."
 
@@ -1053,7 +1001,6 @@ id = 1430
 price = 741
 limit = 100
 weight = 0.01
-smithing = { level = 72, xp = 62.5 }
 slot = "Weapon"
 examine = "An adamant mace."
 
@@ -1065,7 +1012,6 @@ id = 1432
 price = 8497
 limit = 100
 weight = 0.01
-smithing = { level = 87, xp = 75.0 }
 slot = "Weapon"
 examine = "A rune mace."
 
@@ -1092,7 +1038,6 @@ id = 3095
 price = 325
 limit = 100
 weight = 0.907
-smithing = { level = 13, xp = 25.0 }
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A right-hand fighting claw. Melee weapon, requires Attack ."
@@ -1103,7 +1048,6 @@ id = 3096
 price = 6
 limit = 1000
 weight = 0.907
-smithing = { level = 28, xp = 50.0 }
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A right-hand fighting claw."
@@ -1113,7 +1057,6 @@ kept = "Wilderness"
 id = 3097
 price = 22
 weight = 0.01
-smithing = { level = 43, xp = 75.0 }
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A pair of steel claws."
@@ -1132,7 +1075,6 @@ examine = "A set of fighting claws."
 id = 3099
 price = 169
 weight = 0.01
-smithing = { level = 63, xp = 100.0 }
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A pair of mithril claws."
@@ -1142,7 +1084,6 @@ id = 3100
 price = 609
 limit = 100
 weight = 0.01
-smithing = { level = 83, xp = 125.0 }
 slot = "Weapon"
 type = "TwoHanded"
 examine = "A pair of adamant claws."
@@ -1151,7 +1092,6 @@ examine = "A pair of adamant claws."
 id = 3101
 price = 7080
 weight = 0.01
-smithing = { level = 98, xp = 150.0 }
 special_damage_mod_1 = 1.1
 special_accuracy_mod = 1.1
 special_energy = 250
@@ -1724,7 +1664,6 @@ id = 11367
 price = 200
 limit = 1000
 weight = 2.267
-smithing = { level = 5, xp = 25.0 }
 slot = "Weapon"
 examine = "A bronze-tipped, one-handed hasta."
 
@@ -1736,7 +1675,6 @@ id = 11369
 price = 25
 limit = 1000
 weight = 2.267
-smithing = { level = 20, xp = 50.0 }
 slot = "Weapon"
 examine = "An iron-tipped, one-handed hasta."
 
@@ -1748,7 +1686,6 @@ id = 11371
 price = 87
 limit = 1000
 weight = 2.267
-smithing = { level = 35, xp = 75.0 }
 slot = "Weapon"
 examine = "A steel-tipped, one-handed hasta."
 
@@ -1760,7 +1697,6 @@ id = 11373
 price = 386
 limit = 1000
 weight = 1.814
-smithing = { level = 55, xp = 100.0 }
 slot = "Weapon"
 examine = "A mithril-tipped, one-handed hasta."
 
@@ -1772,7 +1708,6 @@ id = 11375
 price = 1109
 limit = 1000
 weight = 2.721
-smithing = { level = 75, xp = 125.0 }
 slot = "Weapon"
 examine = "An adamant-tipped, one-handed hasta."
 
@@ -1784,7 +1719,6 @@ id = 11377
 price = 12400
 limit = 100
 weight = 2.267
-smithing = { level = 90, xp = 150.0 }
 slot = "Weapon"
 examine = "A rune-tipped, one-handed hasta."
 

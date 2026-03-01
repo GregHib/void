@@ -7,9 +7,6 @@ import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.engine.data.definition.data.Pickable
-import world.gregs.voidps.engine.data.definition.data.Rock
-import world.gregs.voidps.engine.data.definition.data.Tree
 import world.gregs.voidps.engine.timedLoad
 
 object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
@@ -21,8 +18,12 @@ object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
 
     override fun empty() = ObjectDefinition.EMPTY
 
+    var loaded = false
+        private set
+
     fun init(definitions: Array<ObjectDefinition>): ObjectDefinitions {
         this.definitions = definitions
+        loaded = true
         return this
     }
 
@@ -30,6 +31,13 @@ object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
     fun set(definitions: Array<ObjectDefinition>, ids: Map<String, Int>) {
         this.definitions = definitions
         this.ids = ids
+        loaded = true
+    }
+
+    fun clear() {
+        definitions = emptyArray()
+        ids = emptyMap()
+        loaded = false
     }
 
     fun load(paths: List<String>): ObjectDefinitions {
@@ -47,9 +55,6 @@ object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
                         while (nextPair()) {
                             when (val key = key()) {
                                 "id" -> id = int()
-                                "pickable" -> extras[key] = Pickable(this)
-                                "woodcutting" -> extras[key] = Tree(this)
-                                "mining" -> extras[key] = Rock(this)
                                 "clone" -> {
                                     val name = string()
                                     val obj = refs.getInt(name)

@@ -1,0 +1,144 @@
+[bolt_fletching_level]
+keyType = "item"
+valueType = "int"
+defaultInt = 1
+values = {
+    bronze_bolts_unf = 9,
+    blurite_bolts_unf = 24,
+    iron_bolts_unf = 39,
+    steel_bolts_unf = 46,
+    mithril_bolts_unf = 54,
+    adamant_bolts_unf = 61,
+    rune_bolts_unf = 69,
+    silver_bolts_unf = 43,
+}
+
+[bolt_fletching_xp]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    bronze_bolts_unf = 5,
+    blurite_bolts_unf = 10,
+    iron_bolts_unf = 15,
+    steel_bolts_unf = 35,
+    mithril_bolts_unf = 50,
+    adamant_bolts_unf = 70,
+    rune_bolts_unf = 100,
+    silver_bolts_unf = 25,
+}
+
+[dart_fletching_level]
+keyType = "item"
+valueType = "int"
+defaultInt = 1
+values = {
+    iron_dart_tip = 22,
+    steel_dart_tip = 37,
+    mithril_dart_tip = 52,
+    adamant_dart_tip = 67,
+    rune_dart_tip = 81,
+    dragon_dart_tip = 95,
+}
+
+[dart_fletching_xp]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    bronze_dart_tip = 18,
+    iron_dart_tip = 38,
+    steel_dart_tip = 75,
+    mithril_dart_tip = 112,
+    adamant_dart_tip = 150,
+    rune_dart_tip = 188,
+    dragon_dart_tip = 250,
+}
+
+[unf_fletching_level]
+keyType = "item"
+valueType = "int"
+defaultInt = 1
+values = {
+    longbow_u = 10,
+    shortbow_u = 5,
+    oak_shortbow_u = 20,
+    oak_longbow_u = 25,
+    willow_longbow_u = 40,
+    willow_shortbow_u = 35,
+    maple_longbow_u = 55,
+    maple_shortbow_u = 50,
+    yew_longbow_u = 70,
+    yew_shortbow_u = 65,
+    magic_longbow_u = 85,
+    magic_shortbow_u = 80,
+    wooden_stock = 9,
+    oak_stock = 24,
+    willow_stock = 39,
+    teak_stock = 46,
+    maple_stock = 54,
+    mahogany_stock = 61,
+    yew_stock = 69,
+}
+
+[unf_fletching_xp]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    longbow_u = 100,
+    shortbow_u = 50,
+    arrow_shaft = 50,
+    oak_shortbow_u = 165,
+    oak_longbow_u = 250,
+    willow_longbow_u = 415,
+    willow_shortbow_u = 333,
+    maple_longbow_u = 583,
+    maple_shortbow_u = 500,
+    yew_longbow_u = 750,
+    yew_shortbow_u = 675,
+    magic_longbow_u = 915,
+    magic_shortbow_u = 833,
+    wooden_stock = 60,
+    oak_stock = 160,
+    willow_stock = 220,
+    teak_stock = 270,
+    maple_stock = 320,
+    mahogany_stock = 410,
+    yew_stock = 500,
+}
+
+[unf_fletching_make_amount]
+keyType = "item"
+valueType = "int"
+defaultInt = 1
+values = {
+    arrow_shaft = 15,
+}
+
+[unf_fletching_tick]
+keyType = "item"
+valueType = "int"
+defaultInt = -1
+values = {
+    longbow_u = 3,
+    shortbow_u = 3,
+    arrow_shaft = 2,
+    oak_shortbow_u = 3,
+    oak_longbow_u = 3,
+    willow_longbow_u = 3,
+    willow_shortbow_u = 3,
+    maple_longbow_u = 3,
+    maple_shortbow_u = 3,
+    yew_longbow_u = 3,
+    yew_shortbow_u = 3,
+    magic_longbow_u = 3,
+    magic_shortbow_u = 3,
+    wooden_stock = 3,
+    oak_stock = 3,
+    willow_stock = 3,
+    teak_stock = 3,
+    maple_stock = 3,
+    mahogany_stock = 3,
+    yew_stock = 3,
+}

@@ -50,7 +50,6 @@ kept = "Reclaim"
 id = 3694
 tradeable = false
 weight = 0.012
-spinning = { to = "golden_fleece", level = 40, xp = 2.5 }
 examine = "I can use this to make a lyre."
 kept = "Reclaim"
 

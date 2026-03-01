@@ -2,7 +2,7 @@ package content.skill.fletching
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.data.FletchDarts
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -14,9 +14,10 @@ class Darts : Script {
 
     init {
         itemOnItem("feather", "*_dart_tip") { _, toItem ->
-            val darts: FletchDarts = toItem.def.getOrNull("fletch_dart") ?: return@itemOnItem
+            val xp = EnumDefinitions.intOrNull("dart_fletching_xp", toItem.id) ?: return@itemOnItem
+            val level = EnumDefinitions.int("dart_fletching_level", toItem.id)
 
-            if (!has(Skill.Fletching, darts.level, true)) {
+            if (!has(Skill.Fletching, level, true)) {
                 return@itemOnItem
             }
 
@@ -41,7 +42,7 @@ class Darts : Script {
                 return@itemOnItem
             }
 
-            val totalExperience = darts.xp * actualAmount
+            val totalExperience = (xp / 10.0) * actualAmount
             experience.add(Skill.Fletching, totalExperience)
             message("You finish making $actualAmount darts.", ChatType.Game)
         }

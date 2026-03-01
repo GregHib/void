@@ -13,7 +13,6 @@ heals = 10
 excess = "bowl"
 tradeable = false
 weight = 0.907
-cooking = { level = 20, xp = 52.0, type = "heat", cooked = "nettle_tea", cooked_message = "You boil the water and make nettle tea." }
 empty = "bowl"
 examine = "It's a bowl of water, with some nettles in it."
 kept = "Reclaim"

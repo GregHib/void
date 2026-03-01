@@ -3,7 +3,6 @@ id = 9978
 price = 309
 limit = 10000
 weight = 0.15
-cooking = { level = 11, xp = 62.5, chances = { fire = "155-255" }, type = "roast", cooked = "roast_bird_meat" }
 examine = "This certainly needs cooking!"
 kept = "Wilderness"
 
@@ -45,7 +44,6 @@ id = 9986
 price = 17
 limit = 1000
 weight = 2.0
-cooking = { level = 21, xp = 62.0, chances = { fire = "180-255" }, type = "roast", cooked = "roast_beast_meat" }
 examine = "A slab of raw beast meat."
 
 [raw_beast_meat_noted]
@@ -819,7 +817,6 @@ id = 12535
 price = 8893
 limit = 5000
 weight = 0.34
-cooking = { xp = 30.0, chances = { fire = "128-512", cooks_range = "138-532" }, cooked = "cooked_meat", burnt = "burnt_meat" }
 examine = "Meat from a creature that can be hunted in Isafdar."
 
 [raw_pawya_meat_noted]

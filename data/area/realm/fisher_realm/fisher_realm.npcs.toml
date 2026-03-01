@@ -23,8 +23,6 @@ id = 215
 
 [fishing_spot_fisher_realm]
 id = 314
-fishing_lure = { items = ["fly_fishing_rod"], bait = { feather = ["raw_trout", "raw_salmon"], stripy_feather = ["raw_rainbow_fish"] } }
-fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_pike"] } }
 
 [ram_fisher_realm]
 id = 5168

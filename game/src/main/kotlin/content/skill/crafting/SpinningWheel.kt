@@ -7,7 +7,7 @@ import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.data.Spinning
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -38,16 +38,13 @@ class SpinningWheel : Script {
         Item("yew_roots"),
     )
 
-    val Item.spinning: Spinning
-        get() = def["spinning"]
-
     init {
         objectOperate("Spin", "spinning_wheel*", arrive = false) { (target) ->
             val availableFibres = fibres.filter { fibre ->
                 (fibre.id != "black_wool" || quest("sheep_shearer_miniquest") == "started") && (fibre.id != "golden_wool" || (quest("fremennik_trials") == "started") || (quest("fremennik_trials") == "completed"))
             }
             val strings = availableFibres.map {
-                if (it.id == "tree_roots") "crossbow_string" else it.spinning.to
+                if (it.id == "tree_roots") "crossbow_string" else EnumDefinitions.string("spinning_item", it.id)
             }
             val (index, amount) = makeAmountIndex(
                 items = strings,
@@ -77,7 +74,7 @@ class SpinningWheel : Script {
                 return@itemOnObjectOperate
             }
             val (_, amount) = makeAmount(
-                items = listOf(item.spinning.to),
+                items = listOf(EnumDefinitions.string("spinning_item", item.id)),
                 type = "Make",
                 maximum = inventory.count(item.id),
                 text = "How many would you like to make?",
@@ -87,10 +84,10 @@ class SpinningWheel : Script {
     }
 
     fun start(player: Player, obj: GameObject, fibre: Item, amount: Int) {
-        val data = fibre.spinning
         val current = player.inventory.count(fibre.id)
         if (current <= 0) {
-            player.message("You need some ${fibre.id.toLowerSpaceCase()} in order to make a ${data.to.toLowerSpaceCase()}.")
+            val item = EnumDefinitions.string("spinning_item", fibre.id)
+            player.message("You need some ${fibre.id.toLowerSpaceCase()} in order to make a ${item.toLowerSpaceCase()}.")
             return
         }
         val actualAmount = if (current < amount) current else amount
@@ -101,25 +98,27 @@ class SpinningWheel : Script {
         if (amount <= 0) {
             return
         }
-        val data = fibre.spinning
+        val item = EnumDefinitions.string("spinning_item", fibre.id)
         val current = inventory.count(fibre.id)
         if (current <= 0) {
-            message("You need some ${fibre.id.toLowerSpaceCase()} in order to make a ${data.to.toLowerSpaceCase()}.")
+            message("You need some ${fibre.id.toLowerSpaceCase()} in order to make a ${item.toLowerSpaceCase()}.")
             return
         }
         face(obj)
-        if (!has(Skill.Crafting, data.level)) {
+        val level = EnumDefinitions.int("spinning_level", fibre.id)
+        if (!has(Skill.Crafting, level)) {
             return
         }
         obj.anim("spinning_wheel")
         anim("spinning")
         sound("spinning")
         weakQueue("spin", 3) {
-            if (!inventory.replace(fibre.id, data.to)) {
-                message("You need some ${fibre.id.toLowerSpaceCase()} in order to make a ${data.to.toLowerSpaceCase()}.")
+            if (!inventory.replace(fibre.id, item)) {
+                message("You need some ${fibre.id.toLowerSpaceCase()} in order to make a ${item.toLowerSpaceCase()}.")
                 return@weakQueue
             }
-            exp(Skill.Crafting, data.xp)
+            val xp = EnumDefinitions.int("spinning_xp", fibre.id) / 10.0
+            exp(Skill.Crafting, xp)
             spin(obj, fibre, amount - 1)
         }
     }

@@ -51,7 +51,6 @@ kept = "Wilderness"
 id = 3150
 tradeable = false
 weight = 0.14
-fishing = { level = 5, xp = 5.0, chance_min = 100, chance_max = 250 }
 examine = "Small brightly coloured tropical fish."
 kept = "Reclaim"
 

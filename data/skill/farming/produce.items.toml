@@ -10,7 +10,6 @@ price = 365
 limit = 5000
 weight = 0.226
 compostable = true
-weaving = { amount = 4, to = "empty_sack", level = 21, xp = 38.0 }
 farming_xp = 14.5
 farming_chance = "113-180"
 farming_protect_id = "barley_malt"
@@ -26,7 +25,6 @@ price = 986
 limit = 200
 weight = 0.907
 compostable = true
-weaving = { amount = 6, to = "basket", level = 36, xp = 56.0 }
 examine = "A branch from a willow tree."
 
 [willow_branch_noted]
@@ -209,7 +207,6 @@ farming_xp = 19.0
 farming_chance = "88-180"
 farming_protect_id = "jute_fibre"
 farming_protect_amount = 10
-cooking = { level = 28, xp = 104.0, chances = { range = "65-382" }, cooked = "cooked_sweetcorn", cooked_message = "You cook some sweetcorn.", burnt = "burnt_sweetcorn", burnt_message = "You accidentally burn the sweetcorn." }
 examine = "Raw sweetcorn."
 
 [sweetcorn_noted]
@@ -490,7 +487,6 @@ limit = 100
 weight = 0.001
 compostable = true
 super_compost = true
-spinning = { to = "crossbow_string", level = 10, xp = 15.0 }
 examine = "The roots of the Oak tree."
 
 [oak_roots_noted]
@@ -503,7 +499,6 @@ limit = 100
 weight = 0.001
 compostable = true
 super_compost = true
-spinning = { to = "crossbow_string", level = 10, xp = 15.0 }
 examine = "The roots of the Willow tree."
 
 [willow_roots_noted]
@@ -516,7 +511,6 @@ limit = 100
 weight = 0.001
 compostable = true
 super_compost = true
-spinning = { to = "crossbow_string", level = 10, xp = 15.0 }
 examine = "The roots of the Maple tree."
 
 [maple_roots_noted]
@@ -529,7 +523,6 @@ limit = 100
 weight = 0.001
 compostable = true
 super_compost = true
-spinning = { to = "crossbow_string", level = 10, xp = 15.0 }
 examine = "The roots of the Yew tree."
 
 [yew_roots_noted]
@@ -542,7 +535,6 @@ limit = 100
 weight = 0.001
 compostable = true
 super_compost = true
-spinning = { to = "magic_string", level = 19, xp = 30.0 }
 examine = "The roots of the Magic tree."
 
 [magic_roots_noted]

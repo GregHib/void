@@ -110,7 +110,6 @@ price = 17
 limit = 100
 weight = 2.267
 mining_delay = 8
-smithing = { level = 5, xp = 25.0 }
 aka = ["bronze_pick"]
 slot = "Weapon"
 examine = "Used for mining."
@@ -125,7 +124,6 @@ price = 238
 limit = 100
 weight = 2.267
 mining_delay = 7
-smithing = { level = 35, xp = 50.0 }
 aka = ["iron_pick"]
 slot = "Weapon"
 examine = "Used for mining."
@@ -140,7 +138,6 @@ price = 569
 limit = 100
 weight = 0.01
 mining_delay = 6
-smithing = { level = 35, xp = 75.0 }
 aka = ["steel_pick"]
 slot = "Weapon"
 examine = "Used for mining."
@@ -155,7 +152,6 @@ price = 1781
 limit = 100
 weight = 0.01
 mining_delay = 4
-smithing = { level = 55, xp = 100.0 }
 aka = ["adamant_pick", "addy_pick", "addy_pickaxe"]
 slot = "Weapon"
 examine = "Used for mining."
@@ -169,7 +165,6 @@ price = 669
 limit = 100
 weight = 0.01
 mining_delay = 5
-smithing = { level = 75, xp = 125.0 }
 aka = ["mithril_pick", "mith_pick", "mith_pickaxe"]
 slot = "Weapon"
 examine = "Used for mining."
@@ -183,7 +178,6 @@ price = 19000
 limit = 100
 weight = 0.01
 mining_delay = 3
-smithing = { level = 91, xp = 150.0 }
 aka = ["rune_pick"]
 slot = "Weapon"
 examine = "Used for mining."

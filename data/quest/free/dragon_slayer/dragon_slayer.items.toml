@@ -24,7 +24,6 @@ kept = "Wilderness"
 id = 1539
 price = 34
 limit = 10000
-smithing = { level = 34, xp = 37.5 }
 examine = "Keeps things in place fairly permanently."
 
 [anti_dragon_shield]

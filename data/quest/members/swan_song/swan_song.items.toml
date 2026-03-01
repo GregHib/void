@@ -26,8 +26,6 @@ id = 7944
 price = 339
 limit = 20000
 weight = 0.45
-fishing = { level = 62, xp = 120.0, chance_min = 48, chance_max = 90 }
-cooking = { level = 62, xp = 150.0, chances = { fire = "11-275", range = "13-280", gauntlet = "24-290" }, cooked = "monkfish", cooked_message = "You successfully cook a monkfish.", burnt_message = "You accidentally burn the monkfish." }
 examine = "I should try cooking this."
 
 [raw_monkfish_noted]

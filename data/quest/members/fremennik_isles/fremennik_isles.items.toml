@@ -13,7 +13,6 @@ id = 10810
 price = 94
 limit = 25000
 weight = 1.36
-firemaking = { level = 42, xp = 125.0, life = 100 }
 examine = "Log cut from an arctic pine."
 
 [arctic_pine_logs_noted]
@@ -34,7 +33,6 @@ id = 10814
 price = 85
 limit = 1000
 weight = 0.001
-spinning = { to = "rope", level = 30, xp = 25.0 }
 examine = "I can spin this into rope."
 
 [yak_hair_noted]
@@ -45,7 +43,6 @@ id = 10816
 price = 28
 limit = 1000
 weight = 0.34
-cooking = { xp = 40.0, chances = { fire = "128-512", cooks_range = "138-532" }, cooked = "cooked_meat", burnt = "burnt_meat" }
 examine = "I need to cook this."
 
 [raw_yak_meat_noted]

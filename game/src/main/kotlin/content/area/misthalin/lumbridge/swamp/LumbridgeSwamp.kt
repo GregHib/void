@@ -3,7 +3,6 @@ package content.area.misthalin.lumbridge.swamp
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
-import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.player.dialogue.type.warning
 import content.quest.messageScroll
@@ -19,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.softQueue

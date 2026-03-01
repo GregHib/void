@@ -359,14 +359,11 @@ examine = "Onyx tipped Runite crossbow bolts."
 id = 9375
 price = 3
 limit = 10000
-smithing = { level = 3, xp = 12.5 }
-fletch_bolts = { level = 9, xp = 0.5 }
 examine = "Unfeathered bronze crossbow bolts."
 
 [blurite_bolts_unf]
 id = 9376
 tradeable = false
-fletch_bolts = { level = 24, xp = 1.0 }
 examine = "Unfeathered blurite crossbow bolts."
 kept = "Reclaim"
 
@@ -374,48 +371,36 @@ kept = "Reclaim"
 id = 9377
 price = 12
 limit = 10000
-smithing = { level = 18, xp = 25.0 }
-fletch_bolts = { level = 39, xp = 1.5 }
 examine = "Unfeathered iron crossbow bolts."
 
 [steel_bolts_unf]
 id = 9378
 price = 58
 limit = 10000
-smithing = { level = 33, xp = 37.5 }
-fletch_bolts = { level = 46, xp = 3.5 }
 examine = "Unfeathered steel crossbow bolts."
 
 [mithril_bolts_unf]
 id = 9379
 price = 107
 limit = 10000
-smithing = { level = 53, xp = 50.0 }
-fletch_bolts = { level = 54, xp = 5.0 }
 examine = "Unfeathered mithril crossbow bolts."
 
 [adamant_bolts_unf]
 id = 9380
 price = 223
 limit = 10000
-smithing = { level = 73, xp = 62.5 }
-fletch_bolts = { level = 61, xp = 7.0 }
 examine = "Unfeathered adamantite crossbow bolts."
 
 [rune_bolts_unf]
 id = 9381
 price = 1283
 limit = 10000
-smithing = { level = 88, xp = 75.0 }
-fletch_bolts = { level = 69, xp = 10.0 }
 examine = "Unfeathered runite crossbow bolts."
 
 [silver_bolts_unf]
 id = 9382
 price = 1
 limit = 10000
-smithing = { level = 21, xp = 50.0 }
-fletch_bolts = { level = 43, xp = 2.5 }
 examine = "Unfeathered silver crossbow bolts."
 
 [grapple]
@@ -428,7 +413,6 @@ id = 9416
 price = 426
 limit = 100
 weight = 0.001
-smithing = { level = 59, xp = 50.0 }
 examine = "A mithril grapple tip."
 
 [mithril_grapple_tip_noted]
@@ -462,7 +446,6 @@ id = 9434
 price = 83
 limit = 100
 weight = 0.453
-silver_jewellery = { name = "crossbow bolt mould", item = "silver_bolts_unf", amount = 10, level = 21, xp = 50.0 }
 examine = "A mould for creating silver crossbow bolts."
 
 [bolt_mould_noted]

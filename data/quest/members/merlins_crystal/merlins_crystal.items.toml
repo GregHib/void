@@ -16,7 +16,6 @@ kept = "Wilderness"
 id = 32
 tradeable = false
 weight = 0.028
-light_source = { once_extinguish = "black_candle" }
 examine = "A lit spooky candle."
 kept = "Reclaim"
 
@@ -25,7 +24,6 @@ id = 33
 tradeable = false
 weight = 0.028
 aka = ["candle_lit"]
-light_source = { once_extinguish = "white_candle" }
 examine = "A lit candle."
 kept = "Reclaim"
 
@@ -49,7 +47,6 @@ id = 36
 price = 270
 limit = 100
 weight = 0.028
-light_source = { once_lit = "white_candle_lit", level = 1 }
 examine = "A candle."
 
 [white_candle_noted]
@@ -59,6 +56,5 @@ id = 37
 id = 38
 tradeable = false
 weight = 0.028
-light_source = { once_lit = "black_candle_lit", level = 1 }
 examine = "A spooky candle."
 kept = "Reclaim"

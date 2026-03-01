@@ -4,7 +4,6 @@ price = 41
 limit = 10000
 attack_range = 4
 weapon_type = "knife"
-smithing = { level = 22, xp = 25.0 }
 aka = ["iron_knives"]
 slot = "Weapon"
 examine = "A finely balanced throwing knife."
@@ -15,7 +14,6 @@ price = 37
 limit = 10000
 attack_range = 4
 weapon_type = "knife"
-smithing = { level = 7, xp = 12.5 }
 aka = ["bronze_knives"]
 slot = "Weapon"
 examine = "A finely balanced throwing knife."
@@ -26,7 +24,6 @@ price = 102
 limit = 10000
 attack_range = 4
 weapon_type = "knife"
-smithing = { level = 37, xp = 37.5 }
 aka = ["steel_knives"]
 slot = "Weapon"
 examine = "A finely balanced throwing knife."
@@ -37,7 +34,6 @@ price = 160
 limit = 10000
 attack_range = 4
 weapon_type = "knife"
-smithing = { level = 57, xp = 50.0 }
 aka = ["mithril_knives", "mith_knife", "mith_knives"]
 slot = "Weapon"
 examine = "A finely balanced throwing knife."
@@ -48,7 +44,6 @@ price = 351
 limit = 10000
 attack_range = 4
 weapon_type = "knife"
-smithing = { level = 77, xp = 62.5 }
 aka = ["adamant_knives", "addy_knife", "addy_knives"]
 slot = "Weapon"
 examine = "A finely balanced throwing knife."
@@ -59,7 +54,6 @@ price = 959
 limit = 10000
 attack_range = 4
 weapon_type = "knife"
-smithing = { level = 92, xp = 75.0 }
 aka = ["rune_knives"]
 slot = "Weapon"
 examine = "A finely balanced throwing knife."

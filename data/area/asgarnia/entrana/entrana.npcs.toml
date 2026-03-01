@@ -38,13 +38,9 @@ examine = "Mazion seems to be covered in sand."
 
 [fishing_spot_entrana]
 id = 318
-fishing_lure = { items = ["fly_fishing_rod"], bait = { feather = ["raw_trout", "raw_salmon"], stripy_feather = ["raw_rainbow_fish"] } }
-fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_pike"] } }
 
 [fishing_spot_entrana_net]
 id = 319
-fishing_net = { items = ["small_fishing_net"], bait = { none = ["raw_shrimps", "raw_anchovies"] } }
-fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_sardine", "raw_herring"] } }
 
 [fritz_the_glassblower]
 id = 4909

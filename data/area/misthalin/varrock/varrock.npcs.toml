@@ -183,16 +183,6 @@ examine = "Animal skins are a speciality."
 
 [bartender_jolly_boar_inn]
 id = 731
-bar_crawl = {
-    id = "olde_suspiciouse",
-    price = 10,
-    start = "Ah, there seems to be a fair few doing that one these days. My supply of Olde Suspiciouse is starting to run low, it'll cost you 10 coins.",
-    insufficient = "I don't have 10 coins right now.",
-    give = "You buy a pint of Olde Suspiciouse.",
-    drink = "You gulp it down.",
-    effect = "Your head is spinning.",
-    sign = "The bartender signs your card."
-}
 categories = ["human"]
 wander_range = 5
 collision = "indoors"
@@ -200,15 +190,6 @@ examine = "I could get a beer from him."
 
 [bartender_blue_moon_inn]
 id = 733
-bar_crawl = {
-    id = "uncle_humphreys_gutrot",
-    price = 50,
-    insufficient = "Oh dear. I don't seem to have enough money.",
-    give = "You buy some Uncle Humphrey's Gutrot.",
-    drink = "You drink the Uncle Humphrey's Gutrot.",
-    effect = "Your insides feel terrible.",
-    sign = "The bartender signs your card."
-}
 categories = ["human"]
 wander_range = 4
 collision = "indoors"
@@ -237,7 +218,6 @@ id = 2091
 
 [master_farmer_varrock]
 id = 2235
-pickpocket = { level = 38, stun_ticks = 8, stun_hit = 30, xp = 43.0, chance_min = 90, chance_max = 240, table = "master_farmer" }
 examine = "A master at farming."
 
 [tanner_varrock]
@@ -667,7 +647,6 @@ def = 14
 attack_bonus = 4
 combat_def = "guard_varrock"
 respawn_delay = 50
-pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
 examine = "He tries to keep order around here. His bizarre uniform isn't helping."
 
 [man_varrock_3]
@@ -734,7 +713,6 @@ examine = "Peaceful man!"
 
 [guard_varrock_2]
 id = 5920
-pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
 examine = "He tries to keep order around here. His bizarre uniform isn't helping."
 
 [trainee_guard]

@@ -119,7 +119,6 @@ kept = "Wilderness"
 id = 4200
 tradeable = false
 weight = 0.05
-silver_jewellery = { name = "lightning rod mould", item = "conductor", quest = "creature_of_fenkenstrain", level = 20, xp = 50.0 }
 examine = "A mould for making silver lightning conductors."
 kept = "Wilderness"
 

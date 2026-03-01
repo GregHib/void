@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.data.Fire
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -30,13 +30,12 @@ class Firemaking : Script {
 
     val directions = listOf(Direction.WEST, Direction.EAST, Direction.SOUTH, Direction.NORTH)
 
-    val Item.burnable: Boolean
-        get() = def.contains("firemaking")
+    fun burnable(id: String) = EnumDefinitions.intOrNull("firemaking_xp", id) != null
 
     init {
         itemOnItem("tinderbox*", "*logs*") { fromItem, toItem, fromSlot, toSlot ->
-            val log = if (toItem.burnable) toItem else fromItem
-            val logSlot = if (toItem.burnable) toSlot else fromSlot
+            val log = if (burnable(toItem.id)) toItem else fromItem
+            val logSlot = if (burnable(toItem.id)) toSlot else fromSlot
             closeDialogue()
             queue.clearWeak()
             if (inventory.remove(logSlot, log.id)) {
@@ -46,7 +45,7 @@ class Firemaking : Script {
         }
 
         itemOnFloorItemOperate("tinderbox*", "*log*") { (target) ->
-            if (target.def.contains("firemaking")) {
+            if (burnable(target.id)) {
                 arriveDelay()
                 lightFire(this, target)
             }
@@ -62,15 +61,15 @@ class Firemaking : Script {
         player: Player,
         floorItem: FloorItem,
     ) {
-        if (!floorItem.def.contains("firemaking")) {
+        if (!burnable(floorItem.id)) {
             return
         }
         player.softTimers.start("firemaking")
         val log = Item(floorItem.id)
-        val fire: Fire = log.def.getOrNull("firemaking") ?: return
         var first = true
         while (player.awaitDialogues()) {
-            if (!player.canLight(log.id, fire, floorItem)) {
+            val level = EnumDefinitions.int("firemaking_level", log.id)
+            if (!player.canLight(log.id, level, floorItem)) {
                 break
             }
             val remaining = player.remaining("action_delay")
@@ -85,10 +84,12 @@ class Firemaking : Script {
             } else if (remaining > 0) {
                 player.pause(remaining)
             }
-            if (Level.success(player.levels.get(Skill.Firemaking), fire.chance) && FloorItems.remove(floorItem)) {
+            val chanceMin = EnumDefinitions.int("firemaking_chance_min", log.id)
+            val chanceMax = EnumDefinitions.int("firemaking_chance_max", log.id)
+            if (Level.success(player.levels.get(Skill.Firemaking), chanceMin..chanceMax) && FloorItems.remove(floorItem)) {
                 player.message("The fire catches and the logs begin to burn.", ChatType.Filter)
-                player.exp(Skill.Firemaking, fire.xp)
-                spawnFire(player, floorItem.tile, fire)
+                player.exp(Skill.Firemaking, EnumDefinitions.int("firemaking_xp", log.id) / 10.0)
+                spawnFire(player, floorItem.tile, log.id)
                 break
             }
         }
@@ -96,7 +97,7 @@ class Firemaking : Script {
         player.softTimers.stop("firemaking")
     }
 
-    fun Player.canLight(log: String, fire: Fire, item: FloorItem): Boolean {
+    fun Player.canLight(log: String, level: Int, item: FloorItem): Boolean {
         if (log.endsWith("branches") && !inventory.contains("tinderbox_dungeoneering")) {
             message("You don't have the required items to light this.")
             return false
@@ -105,7 +106,7 @@ class Firemaking : Script {
             message("You don't have the required items to light this.")
             return false
         }
-        if (!has(Skill.Firemaking, fire.level, true)) {
+        if (!has(Skill.Firemaking, level, true)) {
             return false
         }
         if (GameObjects.getLayer(item.tile, ObjectLayer.GROUND) != null) {
@@ -115,9 +116,11 @@ class Firemaking : Script {
         return FloorItems.at(item.tile).contains(item)
     }
 
-    fun spawnFire(player: Player, tile: Tile, fire: Fire) {
-        val obj = GameObjects.add("fire_${fire.colour}", tile, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0, ticks = fire.life)
-        FloorItems.add(tile, "ashes", revealTicks = fire.life, disappearTicks = 60, owner = "")
+    fun spawnFire(player: Player, tile: Tile, id: String) {
+        val colour = EnumDefinitions.string("firemaking_colour", id)
+        val life = EnumDefinitions.int("firemaking_life", id)
+        val obj = GameObjects.add("fire_$colour", tile, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0, ticks = life)
+        FloorItems.add(tile, "ashes", revealTicks = life, disappearTicks = 60, owner = "")
         val interact = player.mode as Interact
         for (dir in directions) {
             if (interact.canStep(dir.delta.x, dir.delta.y)) {

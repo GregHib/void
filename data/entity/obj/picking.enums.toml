@@ -1,0 +1,46 @@
+[pickable_item]
+keyType = "object"
+valueType = "string"
+defaultString = ""
+values = {
+    cabbage_draynor_manor = "cabbage",
+    potato = "raw_potato",
+    wheat = "grain",
+    cabbage = "cabbage",
+    flax = "flax",
+    onion = "onion",
+}
+
+[pickable_message]
+keyType = "object"
+valueType = "string"
+defaultString = ""
+values = {
+    cabbage_draynor_manor = "You pick a cabbage.",
+    potato = "You pick a potato.",
+    wheat = "You pick some wheat.",
+    cabbage = "You pick a cabbage.",
+    flax = "You pick some flax.",
+    onion = "You pick an onion.",
+}
+
+[pickable_chance]
+keyType = "object"
+valueType = "int"
+defaultInt = 1
+values = {
+    flax = 5,
+}
+
+[pickable_respawn_delay]
+keyType = "object"
+valueType = "int"
+defaultInt = -1
+values = {
+    cabbage_draynor_manor = 45,
+    potato = 30,
+    wheat = 30,
+    cabbage = 45,
+    flax = 5,
+    onion = 30,
+}

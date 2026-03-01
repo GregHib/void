@@ -14,7 +14,6 @@ def = 14
 combat_def = "guard"
 attack_bonus = 4
 respawn_delay = 50
-pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
 examine = "Keeping an eye out for suspicious activity."
 
 [port_sarim_guard_1]
@@ -45,15 +44,6 @@ examine = "Keeping an eye out for suspicious activity."
 
 [bartender_rusty_anchor_inn]
 id = 734
-bar_crawl = {
-    id = "black_skull_ale",
-    price = 8,
-    insufficient = "I don't have 8 coins with me.",
-    give = "You buy a Black Skull Ale.",
-    drink = "You drink your Black Skull Ale...",
-    effect = "Your vision blurs.",
-    sign = "The bartender signs your card."
-}
 categories = ["human"]
 wander_range = 4
 collision = "indoors"

@@ -45,17 +45,14 @@ examine = "A deacon in the Humans Against Monsters group. A rather enthusiastic 
 
 [ham_member_ham_cave]
 id = 1714
-pickpocket = { level = 15, stun_ticks = 6, stun_hit_min = 10, stun_hit_max = 30, xp = 22.2, chance_min = 135, chance_max = 239, table = "ham_member" }
 examine = "A member of the 'Humans Against Monsters' group."
 
 [ham_member_ham_cave_2]
 id = 1715
-pickpocket = { level = 15, stun_ticks = 6, stun_hit_min = 10, stun_hit_max = 30, xp = 22.2, chance_min = 135, chance_max = 239, table = "ham_member" }
 examine = "A member of the 'Humans Against Monsters' group."
 
 [ham_member_ham_cave_3]
 id = 1717
-pickpocket = { level = 15, stun_ticks = 6, stun_hit_min = 10, stun_hit_max = 30, xp = 22.2, chance_min = 135, chance_max = 239, table = "ham_member" }
 examine = "A member of the 'Humans Against Monsters' group."
 
 [jimmy_the_chisel_ham_cave]

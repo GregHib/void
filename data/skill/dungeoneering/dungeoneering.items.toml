@@ -8771,7 +8771,6 @@ id = 17373
 id = 17374
 bank_stacks = false
 weight = 0.5
-fishing = { level = 1, xp = 255.0 }
 examine = "It smells like eating it would kill you."
 
 [vile_fish]
@@ -10106,7 +10105,6 @@ id = 17681
 
 [tangle_gum_branches]
 id = 17682
-firemaking = { level = 1, xp = 25.0, life = 60 }
 examine = "There's enough wood here to be of use."
 kept = "Always"
 
@@ -10115,7 +10113,6 @@ id = 17683
 
 [seeping_elm_branches]
 id = 17684
-firemaking = { level = 10, xp = 44.5, life = 75 }
 examine = "There's enough wood here to be of use."
 kept = "Always"
 
@@ -10124,7 +10121,6 @@ id = 17685
 
 [blood_spindle_branches]
 id = 17686
-firemaking = { level = 20, xp = 65.6, life = 82 }
 examine = "There's enough wood here to be of use."
 kept = "Always"
 
@@ -10133,7 +10129,6 @@ id = 17687
 
 [utuku_branches]
 id = 17688
-firemaking = { level = 30, xp = 88.3, life = 90 }
 examine = "There's enough wood here to be of use."
 kept = "Always"
 
@@ -10142,7 +10137,6 @@ id = 17689
 
 [spinebeam_branches]
 id = 17690
-firemaking = { level = 40, xp = 112.6, life = 100 }
 examine = "There's enough wood here to be of use."
 kept = "Always"
 
@@ -10151,7 +10145,6 @@ id = 17691
 
 [bovistrangler_branches]
 id = 17692
-firemaking = { level = 50, xp = 138.5, life = 120 }
 examine = "There's enough wood here to be of use."
 kept = "Always"
 
@@ -10160,7 +10153,6 @@ id = 17693
 
 [thigat_branches]
 id = 17694
-firemaking = { level = 60, xp = 166.0, life = 140 }
 examine = "There's enough wood here to be of use."
 kept = "Always"
 
@@ -10169,7 +10161,6 @@ id = 17695
 
 [corpsethorn_branches]
 id = 17696
-firemaking = { level = 70, xp = 195.1, life = 170 }
 examine = "There's enough wood here to be of use."
 kept = "Always"
 
@@ -10178,7 +10169,6 @@ id = 17697
 
 [entgallow_branches]
 id = 17698
-firemaking = { level = 80, xp = 225.8, life = 185 }
 examine = "There's enough wood here to be of use."
 kept = "Always"
 
@@ -10187,7 +10177,6 @@ id = 17699
 
 [grave_creeper_branches]
 id = 17700
-firemaking = { level = 90, xp = 258.1, life = 200 }
 examine = "There's enough wood here to be of use."
 kept = "Always"
 
@@ -10584,7 +10573,6 @@ kept = "Always"
 
 [raw_heim_crab]
 id = 17797
-fishing = { level = 1, xp = 9.0 }
 examine = "I should try cooking this."
 
 [raw_heim_crab_noted]
@@ -10592,7 +10580,6 @@ id = 17798
 
 [raw_red_eye]
 id = 17799
-fishing = { level = 10, xp = 27.0 }
 examine = "I should try cooking this."
 
 [raw_red_eye_noted]
@@ -10600,7 +10587,6 @@ id = 17800
 
 [raw_dusk_eel]
 id = 17801
-fishing = { level = 20, xp = 45.0 }
 examine = "I should try cooking this."
 
 [raw_dusk_eel_noted]
@@ -10608,7 +10594,6 @@ id = 17802
 
 [raw_giant_flatfish]
 id = 17803
-fishing = { level = 30, xp = 63.0 }
 examine = "I should try cooking this."
 
 [raw_giant_flatfish_noted]
@@ -10616,7 +10601,6 @@ id = 17804
 
 [raw_short_finned_eel]
 id = 17805
-fishing = { level = 40, xp = 81.0 }
 examine = "I should try cooking this."
 
 [raw_short_finned_eel_noted]
@@ -10624,7 +10608,6 @@ id = 17806
 
 [raw_web_snipper]
 id = 17807
-fishing = { level = 50, xp = 99.0 }
 examine = "I should try cooking this."
 
 [raw_web_snipper_noted]
@@ -10632,7 +10615,6 @@ id = 17808
 
 [raw_bouldabass]
 id = 17809
-fishing = { level = 60, xp = 117.0 }
 examine = "I should try cooking this."
 
 [raw_bouldabass_noted]
@@ -10640,7 +10622,6 @@ id = 17810
 
 [raw_salve_eel]
 id = 17811
-fishing = { level = 70, xp = 135.0 }
 examine = "I should try cooking this."
 
 [raw_salve_eel_noted]
@@ -10648,7 +10629,6 @@ id = 17812
 
 [raw_blue_crab]
 id = 17813
-fishing = { level = 80, xp = 153.0 }
 examine = "I should try cooking this."
 
 [raw_blue_crab_noted]
@@ -10656,7 +10636,6 @@ id = 17814
 
 [raw_cave_moray]
 id = 17815
-fishing = { level = 90, xp = 171.0 }
 examine = "I should try cooking this."
 
 [raw_cave_moray_noted]

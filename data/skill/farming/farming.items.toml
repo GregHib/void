@@ -181,7 +181,6 @@ id = 5352
 price = 7
 limit = 100
 weight = 0.907
-pottery = { plant_pot_empty = { level = 19, xp = 17.5 } }
 kept = "Wilderness"
 examine = "An unfired plant pot."
 

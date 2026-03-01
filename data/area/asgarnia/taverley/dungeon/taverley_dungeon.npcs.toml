@@ -13,7 +13,6 @@ examine = "A dusty old suit of armour."
 
 [fishing_spot_taverley_dungeon]
 id = 800
-fishing_bait = { items = ["oily_fishing_rod"], bait = { fishing_bait = ["raw_lava_eel"] } }
 examine = "It looks like there might be eels swimming in the lava."
 
 [kharid_scorpion_taverley_dungeon]

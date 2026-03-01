@@ -150,7 +150,6 @@ id = 7801
 price = 3249
 limit = 10000
 weight = 1.0
-tanning = [{ id = "snakeskin", price = 20}]
 examine = "Scaly but not slimy!"
 
 [snake_hide_swamp_noted]

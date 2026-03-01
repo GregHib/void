@@ -7,8 +7,8 @@ import world.gregs.voidps.cache.definition.Parameters
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 
 open class ObjectDecoder(
-    val member: Boolean,
-    val lowDetail: Boolean,
+    val member: Boolean = true,
+    val lowDetail: Boolean = false,
     private val parameters: Parameters = Parameters.EMPTY,
 ) : DefinitionDecoder<ObjectDefinition>(OBJECTS) {
 

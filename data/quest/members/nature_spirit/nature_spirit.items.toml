@@ -109,7 +109,6 @@ id = 2976
 price = 212
 limit = 100
 weight = 0.453
-silver_jewellery = { item = "silver_sickle", quest = "nature_spirit", level = 18, xp = 50.0, }
 examine = "Used to make sickles."
 
 [sickle_mould_noted]

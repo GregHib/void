@@ -114,7 +114,6 @@ attack_bonus = 10
 respawn_delay = 25
 wander_range = 4
 drop_table = "citizen"
-pickpocket = { level = 25, stun_ticks = 8, stun_hit = 20, xp = 26.0, chance_min = 100, chance_max = 240, table = "warrior" }
 examine = "Part of Al Kharid's elite fighting force."
 
 [man_al_kharid]
@@ -123,7 +122,6 @@ hitpoints = 70
 combat_def = "man"
 wander_range = 4
 respawn_delay = 25
-pickpocket = { stun_hit = 10, stun_ticks = 8, xp = 8.0, chance_min = 180, chance_max = 240 }
 drop_table = "human"
 categories = ["human"]
 examine = "One of the citizens of Al Kharid."
@@ -146,5 +144,3 @@ examine = "Looks a bit lost."
 
 [fishing_spot_al_kharid]
 id = 330
-fishing_net = { items = ["small_fishing_net"], bait = { none = ["raw_shrimps", "raw_anchovies"] } }
-fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_sardine", "raw_herring"] } }

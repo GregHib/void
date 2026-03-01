@@ -52,7 +52,6 @@ combat_def = "guard_edgeville"
 drop_table = "edgeville_guard"
 respawn_delay = 50
 categories = ["human"]
-pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
 examine = "He tries to keep order around here."
 
 [guard_edgeville_2]

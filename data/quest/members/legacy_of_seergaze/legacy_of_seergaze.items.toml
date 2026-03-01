@@ -311,7 +311,6 @@ kept = "Wilderness"
 id = 13153
 tradeable = false
 weight = 1.0
-silver_jewellery = { item = "silvthril_chain", quest = "legacy_of_seergaze", level = 47, xp = 100.0 }
 examine = "Used to make a metal chain."
 kept = "Reclaim"
 

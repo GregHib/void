@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toTag
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
@@ -21,27 +22,27 @@ suspend fun Player.barCrawlDrink(
     effects: suspend Player.() -> Unit = {},
 ) {
     player<Neutral>("I'm doing Alfred Grimhand's Barcrawl.")
-    val info: Map<String, Any> = target.def.getOrNull("bar_crawl") ?: return
-    start?.invoke(this) ?: npc<Neutral>(info["start"] as String)
-    val id = info["id"] as String
-    if (!inventory.remove("coins", info["price"] as Int)) {
-        player<Disheartened>(info["insufficient"] as String)
+    val npcId = target.def.id
+    start?.invoke(this) ?: npc<Neutral>(EnumDefinitions.get("bar_crawl_start").string(npcId))
+    val id = EnumDefinitions.get("bar_crawl_ids").string(npcId)
+    val price = EnumDefinitions.get("bar_crawl_prices").int(npcId)
+    if (!inventory.remove("coins", price)) {
+        player<Disheartened>(EnumDefinitions.get("bar_crawl_insufficient").string(npcId))
         return
     }
-    message(info["give"] as String)
+    message(EnumDefinitions.get("bar_crawl_give").string(npcId))
     delay(4)
-    message(info["drink"] as String)
+    message(EnumDefinitions.get("bar_crawl_drink").string(npcId))
     delay(4)
-    message(info["effect"] as String)
+    message(EnumDefinitions.get("bar_crawl_effect").string(npcId))
     delay(4)
-    (info["sign"] as? String)?.let { message(it) }
+    EnumDefinitions.get("bar_crawl_sign").stringOrNull(npcId)?.let { message(it) }
     addVarbit("barcrawl_signatures", id)
     effects()
 }
 
 val onBarCrawl: Player.(NPC) -> Boolean = filter@{ target ->
-    val info: Map<String, Any> = target.def.getOrNull("bar_crawl") ?: return@filter false
-    val id = info["id"] as String
+    val id = EnumDefinitions.get("bar_crawl_ids").stringOrNull(target.def.id) ?: return@filter false
     quest("alfred_grimhands_barcrawl") == "signatures" && !containsVarbit("barcrawl_signatures", id)
 }
 

@@ -32,7 +32,6 @@ id = 3211
 price = 114
 limit = 10000
 weight = 2.267
-mining = { xp = 26.5, chance_min = 25, chance_max = 200 }
 examine = "Some limestone."
 
 [limestone_noted]
@@ -124,7 +123,6 @@ id = 3226
 price = 583
 limit = 5000
 weight = 0.17
-cooking = { xp = 30.0, chances = { fire = "128-512" }, cooked_message = "You cook the rabbit.", burnt_message = "You accidentally burn the rabbit." }
 examine = "Might taste better cooked."
 
 [raw_rabbit_noted]
@@ -168,17 +166,5 @@ id = 7224
 price = 112
 limit = 1000
 weight = 1.8
-cooking = {
-  level = 16,
-  xp = 72.0,
-  chances = {
-    fire = "160-255",
-  },
-  ticks = 3,
-  type = "roast",
-  cooked = "roast_rabbit",
-  cooked_message = "You roast the skewered rabbit.",
-  burnt = "You accidentally burn the skewered rabbit.",
-}
 examine = "All ready to be used on a fire."
 kept = "Wilderness"

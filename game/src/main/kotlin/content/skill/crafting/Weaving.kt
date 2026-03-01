@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.data.definition.data.Weaving
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -29,12 +29,9 @@ class Weaving : Script {
         Item("ball_of_wool"),
     )
 
-    val Item.weaving: Weaving
-        get() = def["weaving"]
-
     init {
         objectOperate("Weave", "loom_*", arrive = false) { (target) ->
-            val strings = materials.map { it.weaving.to }
+            val strings = EnumDefinitions.get("weaving_product").map!!.values.filterIsInstance<String>()
             val (index, amount) = makeAmountIndex(
                 items = strings,
                 type = "Make",
@@ -46,13 +43,12 @@ class Weaving : Script {
         }
 
         itemOnObjectOperate(obj = "loom_*", arrive = false) { (target, item) ->
-            if (!item.def.contains("weaving")) {
-                return@itemOnObjectOperate
-            }
+            val product = EnumDefinitions.stringOrNull("weaving_product", item.id) ?: return@itemOnObjectOperate
+            val produced = EnumDefinitions.int("weaving_amount", item.id)
             val (_, amount) = makeAmount(
-                items = listOf(item.weaving.to),
+                items = listOf(product),
                 type = "Make",
-                maximum = inventory.count(item.id) / item.weaving.amount,
+                maximum = inventory.count(item.id) / produced,
                 text = "How many would you like to make?",
             )
             weave(target, item, amount)
@@ -63,32 +59,35 @@ class Weaving : Script {
         if (amount <= 0) {
             return
         }
-        val data = item.weaving
         val current = inventory.count(item.id)
-        if (current < data.amount) {
-            val name = data.to.toLowerSpaceCase()
-            message("You need ${data.amount} ${plural(item)} in order to make${name.an()} $name.")
+        val product = EnumDefinitions.string("weaving_product", item.id)
+        val produced = EnumDefinitions.int("weaving_amount", item.id)
+        if (current < produced) {
+            val name = product.toLowerSpaceCase()
+            message("You need $produced ${plural(item)} in order to make${name.an()} $name.")
             return
         }
         face(obj)
-        if (!has(Skill.Crafting, data.level)) {
+        val level = EnumDefinitions.int("weaving_level", item.id)
+        if (!has(Skill.Crafting, level)) {
             return
         }
         anim("weaving")
         weakQueue("weave", 4) {
             inventory.transaction {
-                remove(item.id, data.amount)
-                add(data.to)
+                remove(item.id, produced)
+                add(product)
             }
             when (inventory.transaction.error) {
                 is TransactionError.Full, is TransactionError.Deficient -> {
-                    val name = data.to.toLowerSpaceCase()
-                    message("You need ${data.amount} ${plural(item)} in order to make${name.an()} $name.")
+                    val name = product.toLowerSpaceCase()
+                    message("You need $produced ${plural(item)} in order to make${name.an()} $name.")
                     return@weakQueue
                 }
                 else -> {}
             }
-            exp(Skill.Crafting, data.xp)
+            val xp = EnumDefinitions.int("weaving_xp", item.id) / 10.0
+            exp(Skill.Crafting, xp)
             weave(obj, item, amount - 1)
         }
     }

@@ -10,7 +10,6 @@ kept = "Wilderness"
 id = 18686
 tradeable = false
 weight = 0.01
-silver_jewellery = { item = "ragged_silver_key", quest = "elemental_workshop_iii" }
 destroy = "If you destroy this, you can make another by using soft clay on the ragged book."
 examine = "A key mould, made from a ragged book."
 kept = "Wilderness"

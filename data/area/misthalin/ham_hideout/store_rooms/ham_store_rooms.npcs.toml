@@ -1,6 +1,5 @@
 [guard_ham_store_rooms]
 id = 4307
-pickpocket = { level = 40, stun_ticks = 8, stun_hit = 20, xp = 46.8, chance_min = 50, chance_max = 240, table = "guard" }
 examine = "A guard for the humans against monster group."
 
 [guard_ham_store_rooms_2]

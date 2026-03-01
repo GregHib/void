@@ -17,15 +17,6 @@ examine = "Needs a haircut."
 [bartender_zambo]
 id = 568
 shop = "karamja_wines_spirits_and_beers"
-bar_crawl = {
-    id = "ape_bite_liqueur",
-    price = 7,
-    start = "Ah, you'll be wanting some Ape Bite Liqueur, then. It's got a lovely banana taste and it'll only cost you 7 coins.",
-    insufficient = "I don't have 7 coins with me.",
-    give = "You buy some Ape Bite Liqueur.",
-    drink = "You swirl it around and swallow it.",
-    effect = "Zambo signs your card."
-}
 categories = ["human"]
 wander_range = 3
 collision = "indoors"
@@ -46,13 +37,9 @@ examine = "One of Gielinor's many citizens, apparently trying to be an explorer.
 
 [fishing_spot_musa_point]
 id = 323
-fishing_net = { items = ["small_fishing_net"], bait = { none = ["raw_shrimps", "raw_anchovies"] } }
-fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_sardine", "raw_herring"] } }
 
 [fishing_spot_musa_point_2]
 id = 324
-fishing_cage = { items = ["lobster_pot"], bait = { none = ["raw_lobster"] } }
-fishing_harpoon = { items = ["harpoon", "barb_tail_harpoon"], bait = { none = ["raw_tuna", "raw_swordfish"] } }
 
 [luthas_musa_point]
 id = 379

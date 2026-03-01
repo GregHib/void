@@ -111,27 +111,12 @@ id = 1010
 
 [fishing_spot_big_net_harpoon_feldip_hills]
 id = 7044
-fishing_net = { items = ["big_fishing_net"], bait = { none = [
-    "raw_mackerel",
-    "raw_cod",
-    "raw_bass",
-    "oyster",
-    "casket",
-    "seaweed",
-    "leather_gloves",
-    "leather_boots"
-] } }
-fishing_harpoon = { items = ["harpoon", "barb_tail_harpoon"], bait = { none = ["raw_shark"] } }
 examine = "It looks like there might be fish swimming in the water."
 
 [fishing_spot_small_net_bait_feldip_hills]
 id = 7045
-fishing_net = { items = ["small_fishing_net"], bait = { none = ["raw_shrimps", "raw_anchovies"] } }
-fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_sardine", "raw_herring"] } }
 examine = "It looks like there might be fish swimming in the water."
 
 [fishing_spot_cage_harpoon_feldip_hills]
 id = 7046
-fishing_cage = { items = ["lobster_pot"], bait = { none = ["raw_lobster"] } }
-fishing_harpoon = { items = ["harpoon", "barb_tail_harpoon"], bait = { none = ["raw_tuna", "raw_swordfish"] } }
 examine = "It looks like there might be fish swimming in the water."

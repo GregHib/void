@@ -8,8 +8,8 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.data.definition.data.Silver
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -33,15 +33,12 @@ class SilverCasting : Script {
         Item("key_mould"),
     )
 
-    val Item.silver: Silver?
-        get() = def.getOrNull("silver_jewellery")
-
     init {
         interfaceOpened("silver_mould") { id ->
             for (mould in moulds) {
-                val silver = mould.silver ?: continue
-                val item = silver.item
-                val quest = silver.quest
+                EnumDefinitions.intOrNull("silver_jewellery_xp", mould.id) ?: continue
+                val item = EnumDefinitions.string("silver_jewellery_item", mould.id)
+                val quest = EnumDefinitions.stringOrNull("silver_jewellery_quest", mould.id)
                 interfaces.sendVisibility(id, mould.id, quest == null || quest(quest) != "unstarted")
                 val has = carriesItem(mould.id)
                 interfaces.sendText(
@@ -51,7 +48,8 @@ class SilverCasting : Script {
                         val colour = if (carriesItem("silver_bar")) "green" else "orange"
                         "<$colour>Make ${ItemDefinitions.get(item).name.toTitleCase()}"
                     } else {
-                        "<orange>You need a ${silver.name ?: mould.def.name.lowercase()} to make this item."
+                        val name = EnumDefinitions.stringOrNull("silver_jewellery_name", mould.id)
+                        "<orange>You need a ${name ?: mould.def.name.lowercase()} to make this item."
                     },
                 )
                 interfaces.sendItem(id, "${mould.id}_model", if (has) ItemDefinitions.get(item).id else mould.def.id)
@@ -89,32 +87,35 @@ class SilverCasting : Script {
         if (amount <= 0) {
             return
         }
-        val data = item.silver ?: return
+        val exp = EnumDefinitions.intOrNull("silver_jewellery_xp", item.id) ?: return
+        val product = EnumDefinitions.string("silver_jewellery_item", item.id)
+        val produce = EnumDefinitions.int("silver_jewellery_amount", item.id)
         closeMenu()
         if (!inventory.contains(item.id)) {
-            message("You need a ${item.def.name} in order to make a ${ItemDefinitions.get(data.item).name}.")
+            message("You need a ${item.def.name} in order to make a ${ItemDefinitions.get(product).name}.")
             return
         }
         if (!inventory.contains("silver_bar")) {
-            message("You need a silver bar in order to make a ${ItemDefinitions.get(data.item).name}.")
+            message("You need a silver bar in order to make a ${ItemDefinitions.get(product).name}.")
             return
         }
-        if (!has(Skill.Crafting, data.level)) {
+        val level = EnumDefinitions.int("silver_jewellery_level", item.id)
+        if (!has(Skill.Crafting, level)) {
             return
         }
         if (!inventory.contains("silver_bar")) {
-            message("You have run out of silver bars to make another ${ItemDefinitions.get(data.item).name}.")
+            message("You have run out of silver bars to make another ${ItemDefinitions.get(product).name}.")
             return
         }
         anim("cook_range")
         weakQueue("cast_silver", 3) {
-            if (data.amount >= 1) {
+            if (produce >= 1) {
                 inventory.remove("silver_bar")
-                inventory.add(data.item, data.amount)
+                inventory.add(product, produce)
             } else {
-                inventory.replace("silver_bar", data.item)
+                inventory.replace("silver_bar", product)
             }
-            exp(Skill.Crafting, data.xp)
+            exp(Skill.Crafting, exp / 10.0)
             make(item, amount - 1)
         }
     }

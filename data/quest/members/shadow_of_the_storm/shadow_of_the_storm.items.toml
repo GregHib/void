@@ -23,7 +23,6 @@ kept = "Reclaim"
 id = 6747
 tradeable = false
 weight = 0.453
-silver_jewellery = { item = "demonic_sigil", quest = "shadow_of_the_storm", level = 30, xp = 50.0 }
 examine = "Used to make the sigil of the demon Agrith-Naar."
 kept = "Wilderness"
 

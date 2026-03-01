@@ -168,7 +168,6 @@ id = 12581
 price = 367
 limit = 25000
 weight = 0.001
-firemaking = { level = 58, xp = 193.5, life = 140 }
 examine = "Logs cut from a eucalyptus tree."
 
 [eucalyptus_logs_noted]

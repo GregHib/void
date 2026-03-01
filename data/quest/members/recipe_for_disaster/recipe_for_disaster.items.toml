@@ -500,7 +500,6 @@ kept = "Wilderness"
 id = 7518
 tradeable = false
 weight = 0.907
-cooking = { level = 21, xp = 100.0, chances = { fire = "57-377" }, cooked = "cooked_crab_meat_5", burnt = "burnt_crab_meat" }
 examine = "A smelly meat."
 kept = "Wilderness"
 
@@ -578,7 +577,6 @@ id = 7528
 id = 7529
 tradeable = false
 weight = 0.907
-cooking = { level = 31, xp = 100.0, chances = { fire = "57-377" }, cooked_message = "You manage to cook a fishcake.", burnt_message = "You accidentally burn the uncooked cake." }
 examine = "Would taste nicer if I cooked it."
 kept = "Wilderness"
 
@@ -679,7 +677,6 @@ kept = "Wilderness"
 id = 7543
 tradeable = false
 weight = 0.5
-cooking = { level = 40, xp = 60.0, chances = { range = "255-255" }, type = "bake", cooked = "cake_of_guidance", cooked_message = "You successfully bake a Cake of Guidance.", leftover = "cake_tin" }
 destroy = "Maybe Traiborn will have another."
 examine = "Now all I need to do is cook it."
 kept = "Wilderness"
@@ -794,7 +791,6 @@ id = 7566
 price = 426
 limit = 100
 weight = 10.0
-cooking = { level = 41, xp = 160.0, chances = { fire = "50-260" }, ticks = 6 }
 examine = "The uncooked meat of a Jubbly bird."
 
 [raw_jubbly_noted]

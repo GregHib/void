@@ -3,8 +3,7 @@ package content.skill.fletching
 import content.entity.player.dialogue.type.makeAmount
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.data.definition.data.Fletching
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -27,16 +26,17 @@ class FletchUnfinished : Script {
                     maximum = 27,
                     text = "What would you like to fletch?",
                 )
-                val itemToFletch: Fletching = ItemDefinitions.get(selected).getOrNull("fletching_unf") ?: return@weakQueue
-                if (!has(Skill.Fletching, itemToFletch.level, true)) {
+                EnumDefinitions.intOrNull("unf_fletching_xp", selected) ?: return@weakQueue
+                val level = EnumDefinitions.int("unf_fletching_level", selected)
+                if (!has(Skill.Fletching, level, true)) {
                     return@weakQueue
                 }
-                fletch(selected, itemToFletch, toItem.id, amount)
+                fletch(selected, toItem.id, amount)
             }
         }
     }
 
-    fun Player.fletch(addItem: String, addItemDef: Fletching, removeItem: String, amount: Int) {
+    fun Player.fletch(addItem: String, removeItem: String, amount: Int) {
         if (amount <= 0) {
             return
         }
@@ -45,10 +45,12 @@ class FletchUnfinished : Script {
             return
         }
 
-        weakQueue("fletching", addItemDef.tick) {
+        val tick = EnumDefinitions.int("unf_fletching_tick", addItem)
+        weakQueue("fletching", tick) {
+            val makeAmount = EnumDefinitions.int("unf_fletching_make_amount", addItem)
             val success = inventory.transaction {
                 remove(removeItem)
-                add(addItem, addItemDef.makeAmount)
+                add(addItem, makeAmount)
             }
 
             if (!success) {
@@ -57,9 +59,10 @@ class FletchUnfinished : Script {
 
             val itemCreated = getFletched(addItem)
             message("You carefully cut the wood into $itemCreated.", ChatType.Game)
-            experience.add(Skill.Fletching, addItemDef.xp)
-            anim(addItemDef.animation)
-            fletch(addItem, addItemDef, removeItem, amount - 1)
+            val xp = EnumDefinitions.int("unf_fletching_xp", addItem)
+            experience.add(Skill.Fletching, xp / 10.0)
+            anim("fletching_log")
+            fletch(addItem, removeItem, amount - 1)
         }
     }
 

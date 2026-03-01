@@ -14,12 +14,10 @@ examine = "What are these things?"
 
 [cavefish_shoal]
 id = 8841
-fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_cavefish"] } }
 examine = "It looks like there are fish swimming in the water."
 
 [rocktail_shoal]
 id = 8842
-fishing_bait = { items = ["fishing_rod"], bait = { living_minerals = ["raw_rocktail"] } }
 examine = "It looks like there are fish swimming in the water."
 
 [living_rock_caverns_controller]

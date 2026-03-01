@@ -1,0 +1,246 @@
+[jewellery_level]
+keyType = "item"
+valueType = "int"
+defaultInt = 1
+values = {
+    gold_ring = 5,
+    sapphire_ring = 20,
+    emerald_ring = 27,
+    ruby_ring = 34,
+    diamond_ring = 43,
+    dragonstone_ring = 55,
+    gold_necklace = 6,
+    sapphire_necklace = 22,
+    emerald_necklace = 29,
+    ruby_necklace = 40,
+    diamond_necklace = 56,
+    dragonstone_necklace = 72,
+    gold_amulet_unstrung = 8,
+    sapphire_amulet_unstrung = 24,
+    emerald_amulet_unstrung = 31,
+    ruby_amulet_unstrung = 50,
+    diamond_amulet_unstrung = 70,
+    dragonstone_amulet_unstrung = 80,
+    onyx_ring = 67,
+    onyx_necklace = 82,
+    onyx_amulet_unstrung = 90,
+    gold_bracelet = 7,
+    sapphire_bracelet = 23,
+    emerald_bracelet = 30,
+    ruby_bracelet = 42,
+    diamond_bracelet = 58,
+    dragonstone_bracelet = 74,
+    onyx_bracelet = 84,
+    ring_of_slaying_8 = 75,
+}
+
+[jewellery_xp]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    gold_ring = 15,
+    sapphire_ring = 40,
+    emerald_ring = 55,
+    ruby_ring = 70,
+    diamond_ring = 85,
+    dragonstone_ring = 100,
+    gold_necklace = 20,
+    sapphire_necklace = 55,
+    emerald_necklace = 60,
+    ruby_necklace = 75,
+    diamond_necklace = 90,
+    dragonstone_necklace = 105,
+    gold_amulet_unstrung = 30,
+    sapphire_amulet_unstrung = 65,
+    emerald_amulet_unstrung = 70,
+    ruby_amulet_unstrung = 85,
+    diamond_amulet_unstrung = 100,
+    dragonstone_amulet_unstrung = 150,
+    onyx_ring = 115,
+    onyx_necklace = 120,
+    onyx_amulet_unstrung = 165,
+    gold_bracelet = 25,
+    sapphire_bracelet = 60,
+    emerald_bracelet = 65,
+    ruby_bracelet = 80,
+    diamond_bracelet = 95,
+    dragonstone_bracelet = 110,
+    onyx_bracelet = 125,
+    ring_of_slaying_8 = 15,
+}
+
+[silver_jewellery_level]
+keyType = "item"
+valueType = "int"
+defaultInt = 1
+values = {
+    conductor_mould = 20,
+    rod_clay_mould = 25,
+    chain_link_mould = 47,
+    sickle_mould = 18,
+    demonic_sigil_mould = 30,
+    unholy_mould = 17,
+    holy_mould = 16,
+    bolt_mould = 21,
+    tiara_mould = 16,
+}
+
+[silver_jewellery_xp]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    conductor_mould = 500,
+    rod_clay_mould = 550,
+    chain_link_mould = 1000,
+    sickle_mould = 500,
+    demonic_sigil_mould = 500,
+    unholy_mould = 500,
+    holy_mould = 500,
+    bolt_mould = 500,
+    tiara_mould = 525,
+}
+
+[silver_jewellery_name]
+keyType = "item"
+valueType = "string"
+values = {
+    conductor_mould = "lightning rod mould",
+    unholy_mould = "Unholy Symbol mould",
+    holy_mould = "Saradomin Symbol",
+    bolt_mould = "crossbow bolt mould",
+}
+
+[silver_jewellery_quest]
+keyType = "item"
+valueType = "string"
+values = {
+    conductor_mould = "creature_of_fenkenstrain",
+    key_mould = "elemental_workshop_iii",
+    rod_clay_mould = "in_aid_of_the_myreque",
+    chain_link_mould = "legacy_of_seergaze",
+    sickle_mould = "nature_spirit",
+    demonic_sigil_mould = "shadow_of_the_storm",
+    unholy_mould = "observatory_quest",
+}
+
+[silver_jewellery_item]
+keyType = "item"
+valueType = "string"
+defaultString = ""
+values = {
+    conductor_mould = "conductor",
+    key_mould = "ragged_silver_key",
+    rod_clay_mould = "silvthril_rod",
+    chain_link_mould = "silvthril_chain",
+    sickle_mould = "silver_sickle",
+    demonic_sigil_mould = "demonic_sigil",
+    unholy_mould = "unstrung_emblem",
+    holy_mould = "unstrung_symbol",
+    bolt_mould = "silver_bolts_unf",
+    tiara_mould = "tiara",
+}
+
+[silver_jewellery_amount]
+keyType = "item"
+valueType = "int"
+defaultInt = 1
+values = {
+    bolt_mould = 10,
+}
+
+[spinning_level]
+keyType = "item"
+valueType = "int"
+defaultInt = 1
+values = {
+    yak_hair = 30,
+    golden_wool = 40,
+    flax = 10,
+    oak_roots = 10,
+    willow_roots = 10,
+    maple_roots = 10,
+    yew_roots = 10,
+    magic_roots = 19,
+    sinew = 10,
+}
+
+[spinning_xp]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    yak_hair = 250,
+    golden_wool = 25,
+    wool = 25,
+    black_wool = 25,
+    flax = 150,
+    oak_roots = 150,
+    willow_roots = 150,
+    maple_roots = 150,
+    yew_roots = 150,
+    magic_roots = 300,
+    sinew = 150,
+}
+
+[spinning_item]
+keyType = "item"
+valueType = "string"
+defaultString = ""
+values = {
+    yak_hair = "rope",
+    golden_wool = "golden_fleece",
+    wool = "ball_of_wool",
+    black_wool = "ball_of_black_wool",
+    flax = "bowstring",
+    oak_roots = "crossbow_string",
+    willow_roots = "crossbow_string",
+    maple_roots = "crossbow_string",
+    yew_roots = "crossbow_string",
+    magic_roots = "magic_string",
+    sinew = "crossbow_string",
+}
+
+[weaving_level]
+keyType = "item"
+valueType = "int"
+defaultInt = 1
+values = {
+    ball_of_wool = 10,
+    flax = 52,
+    jute_fibre = 21,
+    willow_branch = 36,
+}
+
+[weaving_xp]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    ball_of_wool = 120,
+    jute_fibre = 380,
+    willow_branch = 560,
+}
+
+[weaving_amount]
+keyType = "item"
+valueType = "int"
+defaultInt = 1
+values = {
+    ball_of_wool = 2,
+    flax = 5,
+    jute_fibre = 4,
+    willow_branch = 6,
+}
+
+[weaving_product]
+keyType = "item"
+valueType = "string"
+defaultString = ""
+values = {
+    ball_of_wool = "strip_of_cloth",
+    flax = "unfinished_net",
+    jute_fibre = "empty_sack",
+    willow_branch = "basket",
+}

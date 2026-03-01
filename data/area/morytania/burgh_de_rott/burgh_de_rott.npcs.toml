@@ -107,31 +107,9 @@ id = 3567
 
 [fishing_spot_burgh_de_rott]
 id = 3574
-fishing_net = { items = ["big_fishing_net"], bait = { none = [
-    "raw_mackerel",
-    "raw_cod",
-    "raw_bass",
-    "oyster",
-    "casket",
-    "seaweed",
-    "leather_gloves",
-    "leather_boots"
-] } }
-fishing_harpoon = { items = ["harpoon", "barb_tail_harpoon"], bait = { none = ["raw_shark"] } }
 
 [fishing_spot_burgh_de_rott_2]
 id = 3575
-fishing_net = { items = ["big_fishing_net"], bait = { none = [
-    "raw_mackerel",
-    "raw_cod",
-    "raw_bass",
-    "oyster",
-    "casket",
-    "seaweed",
-    "leather_gloves",
-    "leather_boots"
-] } }
-fishing_harpoon = { items = ["harpoon", "barb_tail_harpoon"], bait = { none = ["raw_shark"] } }
 
 [vyrewatch]
 id = 7691

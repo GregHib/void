@@ -3,7 +3,6 @@ id = 434
 price = 34
 limit = 25000
 weight = 1.0
-mining = { xp = 5.0, chance_min = 75, chance_max = 300 }
 full = "soft_clay"
 examine = "Some hard dry clay."
 kept = "Wilderness"
@@ -16,7 +15,6 @@ id = 436
 price = 18
 limit = 25000
 weight = 2.267
-mining = { xp = 17.5, chance_min = 40, chance_max = 500 }
 examine = "This needs refining."
 kept = "Wilderness"
 
@@ -28,7 +26,6 @@ id = 438
 price = 20
 limit = 25000
 weight = 2.267
-mining = { xp = 17.5, chance_min = 40, chance_max = 500 }
 examine = "This needs refining."
 kept = "Wilderness"
 
@@ -40,7 +37,6 @@ id = 440
 price = 95
 limit = 25000
 weight = 2.267
-mining = { xp = 35.0, chance_min = 110, chance_max = 350 }
 examine = "This needs refining."
 kept = "Wilderness"
 
@@ -52,7 +48,6 @@ id = 442
 price = 101
 limit = 25000
 weight = 2.267
-mining = { xp = 40.0, chance_min = 25, chance_max = 200 }
 examine = "This needs refining."
 
 [silver_ore_noted]
@@ -63,7 +58,6 @@ id = 444
 price = 209
 limit = 25000
 weight = 2.267
-mining = { xp = 65.0, chance_min = 7, chance_max = 75 }
 examine = "This needs refining."
 
 [gold_ore_noted]
@@ -81,7 +75,6 @@ id = 447
 price = 137
 limit = 25000
 weight = 1.814
-mining = { xp = 80.0, chance_min = 10, chance_max = 75 }
 examine = "This needs refining."
 
 [mithril_ore_noted]
@@ -92,7 +85,6 @@ id = 449
 price = 785
 limit = 25000
 weight = 2.721
-mining = { xp = 95.0, chance_min = 5, chance_max = 55 }
 aka = ["adamant_ore"]
 examine = "This needs refining."
 
@@ -104,7 +96,6 @@ id = 451
 price = 10900
 limit = 25000
 weight = 2.267
-mining = { xp = 125.0, chance_min = 1, chance_max = 18 }
 aka = ["rune_ore"]
 examine = "This needs refining."
 
@@ -116,7 +107,6 @@ id = 453
 price = 247
 limit = 25000
 weight = 2.267
-mining = { xp = 50.0, chance_min = 20, chance_max = 150 }
 examine = "Hmm, a non-renewable energy source!"
 
 [coal_noted]
@@ -127,7 +117,6 @@ id = 6971
 price = 7
 limit = 10000
 weight = 1.0
-mining = { xp = 30.0, chance_min = 25, chance_max = 200 }
 examine = "A tiny chunk of sandstone."
 
 [sandstone_1kg_noted]
@@ -138,7 +127,6 @@ id = 6973
 price = 32
 limit = 10000
 weight = 2.0
-mining = { xp = 40.0, chance_min = 16, chance_max = 100 }
 examine = "A small chunk of sandstone."
 
 [sandstone_2kg_noted]
@@ -149,7 +137,6 @@ id = 6975
 price = 45
 limit = 10000
 weight = 5.0
-mining = { xp = 50.0, chance_min = 8, chance_max = 75 }
 examine = "A medium-sized chunk of sandstone."
 
 [sandstone_5kg_noted]
@@ -160,7 +147,6 @@ id = 6977
 price = 185
 limit = 10000
 weight = 10.0
-mining = { xp = 60.0, chance_min = 4, chance_max = 50 }
 examine = "A large chunk of sandstone."
 
 [sandstone_10kg_noted]
@@ -171,7 +157,6 @@ id = 6979
 price = 280
 limit = 10000
 weight = 0.5
-mining = { xp = 50.0, chance_min = 16, chance_max = 100 }
 examine = "A tiny chunk of granite."
 
 [granite_500g_noted]
@@ -182,7 +167,6 @@ id = 6981
 price = 681
 limit = 10000
 weight = 2.0
-mining = { xp = 60.0, chance_min = 8, chance_max = 75 }
 examine = "A small chunk of granite."
 
 [granite_2kg_noted]
@@ -193,7 +177,6 @@ id = 6983
 price = 2038
 limit = 10000
 weight = 5.0
-mining = { xp = 75.0, chance_min = 6, chance_max = 64 }
 examine = "A medium-sized chunk of granite."
 
 [granite_5kg_noted]

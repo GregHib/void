@@ -304,7 +304,6 @@ abstract class WorldTest : KoinTest {
             ObjectDecoder(member = true, lowDetail = false, parameterDefinitions).load(cache)
         }
         private val objectIds: Map<String, Int> by lazy {
-            ObjectDecoder(member = true, lowDetail = false, parameterDefinitions).load(cache)
             ObjectDefinitions.init(objectDefinitions).load(configFiles.list(Settings["definitions.objects"]))
             ObjectDefinitions.ids
         }
@@ -359,6 +358,7 @@ abstract class WorldTest : KoinTest {
             inventoryIds
             npcIds
             structIds
+            objectIds
             EnumDefinitions.init(EnumDecoder().load(cache)).load(configFiles.list(Settings["definitions.enums"]))
             EnumDefinitions.definitions
         }

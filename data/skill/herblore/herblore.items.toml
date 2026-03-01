@@ -126,7 +126,6 @@ id = 112
 id = 199
 price = 140
 limit = 10000
-cleaning = { level = 1, clean_xp = 2.5 }
 weight = 0.007
 compostable = true
 kept = "Wilderness"
@@ -142,7 +141,6 @@ id = 200
 id = 201
 price = 29
 limit = 10000
-cleaning = { level = 9, clean_xp = 5.0 }
 weight = 0.007
 compostable = true
 kept = "Wilderness"
@@ -158,7 +156,6 @@ id = 202
 id = 203
 price = 307
 limit = 10000
-cleaning = { level = 5, clean_xp = 3.8 }
 weight = 0.007
 compostable = true
 kept = "Wilderness"
@@ -174,7 +171,6 @@ id = 204
 id = 205
 price = 237
 limit = 10000
-cleaning = { level = 20, clean_xp = 6.3 }
 weight = 0.007
 compostable = true
 kept = "Wilderness"
@@ -190,7 +186,6 @@ id = 206
 id = 207
 price = 3423
 limit = 10000
-cleaning = { level = 25, clean_xp = 7.5 }
 weight = 0.007
 compostable = true
 farming_level = 32
@@ -205,7 +200,6 @@ id = 208
 id = 209
 price = 1877
 limit = 10000
-cleaning = { level = 40, clean_xp = 8.8 }
 weight = 0.007
 compostable = true
 farming_level = 44
@@ -220,7 +214,6 @@ id = 210
 id = 211
 price = 3886
 limit = 10000
-cleaning = { level = 48, clean_xp = 10.0 }
 weight = 0.007
 compostable = true
 super_compost = true
@@ -236,7 +229,6 @@ id = 212
 id = 213
 price = 2232
 limit = 10000
-cleaning = { level = 54, clean_xp = 11.3 }
 weight = 0.007
 compostable = true
 super_compost = true
@@ -252,7 +244,6 @@ id = 214
 id = 215
 price = 1184
 limit = 10000
-cleaning = { level = 65, clean_xp = 12.5 }
 weight = 0.007
 compostable = true
 super_compost = true
@@ -268,7 +259,6 @@ id = 216
 id = 217
 price = 4755
 limit = 10000
-cleaning = { level = 70, clean_xp = 13.8 }
 weight = 0.007
 compostable = true
 super_compost = true
@@ -284,7 +274,6 @@ id = 218
 id = 219
 price = 43973
 limit = 10000
-cleaning = { level = 75, clean_xp = 15.0 }
 weight = 0.007
 compostable = true
 super_compost = true
@@ -616,7 +605,6 @@ id = 2484
 id = 2485
 price = 6738
 limit = 10000
-cleaning = { level = 67, clean_xp = 13.1 }
 weight = 0.007
 compostable = true
 super_compost = true
@@ -678,7 +666,6 @@ id = 3005
 id = 3049
 price = 4067
 limit = 10000
-cleaning = { level = 30, clean_xp = 8.0 }
 weight = 0.007
 compostable = true
 super_compost = true
@@ -694,7 +681,6 @@ id = 3050
 id = 3051
 price = 7266
 limit = 10000
-cleaning = { level = 59, clean_xp = 11.8 }
 weight = 0.007
 compostable = true
 super_compost = true
@@ -722,7 +708,6 @@ id = 3139
 id = 14836
 price = 3146
 limit = 10000
-cleaning = { level = 41, clean_xp = 9.5 }
 weight = 0.007
 farming_level = 46
 farming_xp = 51.5

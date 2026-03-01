@@ -36,7 +36,6 @@ id = 5423
 
 [farmer]
 id = 7
-pickpocket = { level = 10, stun_hit = 10, stun_ticks = 8, xp = 14.5, chance_min = 150, chance_max = 240, table = "farmer" }
 examine = "He grows the crops in this area."
 
 [hay_bales_2]
