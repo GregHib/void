@@ -20,8 +20,12 @@ object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
 
     override fun empty() = ObjectDefinition.EMPTY
 
+    var loaded = false
+        private set
+
     fun init(definitions: Array<ObjectDefinition>): ObjectDefinitions {
         this.definitions = definitions
+        loaded = true
         return this
     }
 
@@ -29,6 +33,13 @@ object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
     fun set(definitions: Array<ObjectDefinition>, ids: Map<String, Int>) {
         this.definitions = definitions
         this.ids = ids
+        loaded = true
+    }
+
+    fun clear() {
+        definitions = emptyArray()
+        ids = emptyMap()
+        loaded = false
     }
 
     fun load(paths: List<String>): ObjectDefinitions {

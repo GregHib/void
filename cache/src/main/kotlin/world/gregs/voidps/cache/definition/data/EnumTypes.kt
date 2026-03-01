@@ -19,6 +19,7 @@ object EnumTypes {
     const val NPC = 'n'
     const val ENUM = 'g'
     const val INV = 'v'
+    const val OBJ = 'z' // Custom
 
     fun name(char: Char) = when (char) {
         STRING -> "string"
@@ -39,6 +40,7 @@ object EnumTypes {
         NPC -> "npc"
         ENUM -> "enum"
         INV -> "inv"
+        OBJ -> "object"
         else -> "null"
     }
 
@@ -60,6 +62,7 @@ object EnumTypes {
         "npc" -> NPC
         "enum" -> ENUM
         "inv" -> INV
+        "object" -> OBJ
         else -> null
     }
 }

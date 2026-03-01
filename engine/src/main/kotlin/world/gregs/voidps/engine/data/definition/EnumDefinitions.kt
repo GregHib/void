@@ -42,11 +42,12 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
     }
 
     private fun key(keyType: Char, key: String) = when (keyType) {
-        EnumTypes.ITEM -> ItemDefinitions.get(key).id
+        EnumTypes.ITEM, EnumTypes.ITEM_2 -> ItemDefinitions.get(key).id
         EnumTypes.COMPONENT -> InterfaceDefinitions.get(key).id
         EnumTypes.INV -> InventoryDefinitions.get(key).id
         EnumTypes.NPC -> NPCDefinitions.get(key).id
         EnumTypes.STRUCT -> StructDefinitions.get(key).id
+        EnumTypes.OBJ -> ObjectDefinitions.get(key).id
         else -> error("Unsupported enum type: ${keyType.code}")
     }
 
@@ -131,6 +132,7 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
             require(InventoryDefinitions.loaded) { "Inventory definitions must be loaded before enum definitions" }
             require(NPCDefinitions.loaded) { "NPC definitions must be loaded before enum definitions" }
             require(StructDefinitions.loaded) { "Struct definitions must be loaded before enum definitions" }
+            require(ObjectDefinitions.loaded) { "Object definitions must be loaded before enum definitions" }
             val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
             val custom = mutableListOf<EnumDefinition>()
             for (path in list) {
@@ -170,6 +172,7 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
                                         EnumTypes.INV -> InventoryDefinitions.getOrNull(key)?.id ?: error("Unknown inventory '$key' ${exception()}")
                                         EnumTypes.NPC -> NPCDefinitions.getOrNull(key)?.id ?: error("Unknown npc '$key' ${exception()}")
                                         EnumTypes.STRUCT -> StructDefinitions.getOrNull(key)?.id ?: error("Unknown struct '$key' ${exception()}")
+                                        EnumTypes.OBJ -> ObjectDefinitions.getOrNull(key)?.id ?: error("Unknown struct '$key' ${exception()}")
                                         else -> key.toInt()
                                     }
                                     map[keyInt] = value()
