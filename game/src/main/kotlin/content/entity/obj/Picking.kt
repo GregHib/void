@@ -2,10 +2,9 @@ package content.entity.obj
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.data.Pickable
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -15,19 +14,19 @@ import java.util.concurrent.TimeUnit
 
 class Picking : Script {
 
-    val GameObject.pickable: Pickable?
-        get() = def.getOrNull("pickable")
-
     init {
         objectOperate("Pick") { (target) ->
-            val pickable: Pickable = target.pickable ?: return@objectOperate
-            if (inventory.add(pickable.item)) {
+            val item = EnumDefinitions.stringOrNull("pickable_item", target.id) ?: return@objectOperate
+            if (inventory.add(item)) {
                 sound("pick")
                 anim("climb_down")
-                if (random.nextInt(pickable.chance) == 0) {
-                    target.remove(TimeUnit.SECONDS.toTicks(pickable.respawnDelay))
+                val chance = EnumDefinitions.int("pickable_chance", target.id)
+                if (random.nextInt(chance) == 0) {
+                    val respawnDelay = EnumDefinitions.int("pickable_respawn_delay", target.id)
+                    target.remove(TimeUnit.SECONDS.toTicks(respawnDelay))
                 }
-                message(pickable.message)
+                val message = EnumDefinitions.string("pickable_message", target.id)
+                message(message)
             } else {
                 inventoryFull()
             }
