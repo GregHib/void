@@ -3,12 +3,13 @@ package content.skill.woodcutting
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
-import world.gregs.voidps.engine.data.definition.data.Tree
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -43,7 +44,7 @@ class Woodcutting(val drops: DropTables) : Script {
 
     suspend fun chopDown(player: Player, interact: PlayerOnObjectInteract) {
         val target = interact.target
-        val tree: Tree = target.def(player).getOrNull("woodcutting") ?: return
+        val log = EnumDefinitions.stringOrNull("woodcutting_log", target.def(player).stringId) ?: return
         val hatchet = Hatchet.best(player)
         if (hatchet == null) {
             player.message("You need a hatchet to chop down this tree.")
@@ -52,10 +53,11 @@ class Woodcutting(val drops: DropTables) : Script {
         }
         player.closeDialogue()
         player.softTimers.start("woodcutting")
-        val ivy = tree.log.isEmpty()
+        val ivy = log == "poison_ivy_berries"
         var first = true
         while (player.awaitDialogues()) {
-            if (!GameObjects.contains(target) || !player.has(Skill.Woodcutting, tree.level, true)) {
+            val level = EnumDefinitions.int("woodcutting_level", log)
+            if (!GameObjects.contains(target) || !player.has(Skill.Woodcutting, level, true)) {
                 break
             }
 
@@ -82,10 +84,11 @@ class Woodcutting(val drops: DropTables) : Script {
             if (!GameObjects.contains(target)) {
                 break
             }
-            if (success(player.levels.get(Skill.Woodcutting), hatchet, tree)) {
-                player.experience.add(Skill.Woodcutting, tree.xp)
+            if (success(player.levels.get(Skill.Woodcutting), hatchet, log)) {
+                val xp = EnumDefinitions.int("woodcutting_xp", log) / 10.0
+                player.experience.add(Skill.Woodcutting, xp)
                 tryDropNest(player, ivy)
-                if (!addLog(player, tree) || deplete(player, tree, target)) {
+                if (!addLog(player, log) || deplete(player, log, target)) {
                     break
                 }
                 if (ivy) {
@@ -115,10 +118,13 @@ class Woodcutting(val drops: DropTables) : Script {
         FloorItems.add(tile = dropTile, id = drop.id, amount = drop.amount.first, disappearTicks = 50)
     }
 
-    fun success(level: Int, hatchet: Item, tree: Tree): Boolean {
-        val lowHatchetChance = calculateChance(hatchet, tree.hatchetLowDifference)
-        val highHatchetChance = calculateChance(hatchet, tree.hatchetHighDifference)
-        val chance = tree.chance.first + lowHatchetChance..tree.chance.last + highHatchetChance
+    fun success(level: Int, hatchet: Item, log: String): Boolean {
+        val chanceRange = EnumDefinitions.string("woodcutting_chance", log).toIntRange()
+        val hatchetLowDifference = EnumDefinitions.string("woodcutting_hatchet_dif_low", log).toIntRange()
+        val hatchetHighDifference = EnumDefinitions.string("woodcutting_hatchet_dif_high", log).toIntRange()
+        val lowHatchetChance = calculateChance(hatchet, hatchetLowDifference)
+        val highHatchetChance = calculateChance(hatchet, hatchetHighDifference)
+        val chance = chanceRange.first + lowHatchetChance..chanceRange.last + highHatchetChance
         return Level.success(level, chance)
     }
 
@@ -132,9 +138,8 @@ class Woodcutting(val drops: DropTables) : Script {
      */
     fun calculateHatchetChance(hatchet: Int, treeHatchetDifferences: IntRange): Int = if (hatchet % 4 < 2) treeHatchetDifferences.last else treeHatchetDifferences.first
 
-    fun addLog(player: Player, tree: Tree): Boolean {
-        val log = tree.log
-        if (log.isEmpty()) {
+    fun addLog(player: Player, log: String): Boolean {
+        if (log == "poison_ivy_berries") {
             return true
         }
         val added = player.inventory.add(log)
@@ -146,8 +151,9 @@ class Woodcutting(val drops: DropTables) : Script {
         return added
     }
 
-    fun deplete(player: Player, tree: Tree, obj: GameObject): Boolean {
-        val depleted = random.nextDouble() <= tree.depleteRate
+    fun deplete(player: Player, log: String, obj: GameObject): Boolean {
+        val depleteRate = EnumDefinitions.int("woodcutting_deplete_rate", log) / 1000.0
+        val depleted = random.nextDouble() <= depleteRate
         if (!depleted) {
             return false
         }
@@ -158,7 +164,7 @@ class Woodcutting(val drops: DropTables) : Script {
         }
         val stumpId = "${obj.id}_stump"
         if (ObjectDefinitions.contains(stumpId)) {
-            val delay = getRegrowTickDelay(tree)
+            val delay = getRegrowTickDelay(log)
             GameObjects.replace(obj, stumpId, ticks = delay)
             areaSound("fell_tree", obj.tile)
         }
@@ -168,9 +174,10 @@ class Woodcutting(val drops: DropTables) : Script {
     /**
      * Returns regrow delay based on the type of tree and number of players online
      */
-    fun getRegrowTickDelay(tree: Tree): Int {
-        val delay = tree.respawnDelay
-        return if (tree.level == 1) {
+    fun getRegrowTickDelay(log: String): Int {
+        val delay = EnumDefinitions.string("woodcutting_respawn_delay", log).toIntRange()
+        val level = EnumDefinitions.int("woodcutting_level", log)
+        return if (level == 1) {
             random.nextInt(delay.first, delay.last) // Regular tree's
         } else {
             Interpolation.interpolate(Players.size, delay.last, delay.first, minPlayers, maxPlayers)

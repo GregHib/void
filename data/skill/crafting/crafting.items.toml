@@ -13,7 +13,6 @@ id = 1593
 id = 1594
 tradeable = false
 weight = 0.453
-silver_jewellery = { name = "Unholy Symbol mould", item = "unstrung_emblem", quest = "observatory_quest", level = 17, xp = 50.0 }
 examine = "Used to make unholy symbols."
 kept = "Wilderness"
 
@@ -44,7 +43,6 @@ id = 1599
 price = 40
 limit = 100
 weight = 0.453
-silver_jewellery = { name = "Saradomin Symbol", item = "unstrung_symbol", level = 16, xp = 50.0 }
 examine = "Used to make holy symbols of Saradomin."
 kept = "Wilderness"
 
@@ -136,7 +134,6 @@ id = 1617
 price = 10122
 limit = 5000
 weight = 0.003
-mining = { xp = 65.0, chance_min = 8, chance_max = 8 }
 examine = "An uncut diamond."
 
 [uncut_diamond_noted]
@@ -147,7 +144,6 @@ id = 1619
 price = 2414
 limit = 5000
 weight = 0.003
-mining = { xp = 65.0, chance_min = 10, chance_max = 10 }
 examine = "An uncut ruby."
 
 [uncut_ruby_noted]
@@ -158,7 +154,6 @@ id = 1621
 price = 1189
 limit = 5000
 weight = 0.003
-mining = { xp = 65.0, chance_min = 10, chance_max = 10 }
 examine = "An uncut emerald."
 
 [uncut_emerald_noted]
@@ -169,7 +164,6 @@ id = 1623
 price = 657
 limit = 5000
 weight = 0.003
-mining = { xp = 65.0, chance_min = 18, chance_max = 18 }
 examine = "An uncut sapphire."
 
 [uncut_sapphire_noted]
@@ -180,7 +174,6 @@ id = 1625
 price = 37
 limit = 5000
 weight = 0.003
-mining = { xp = 65.0, chance_min = 120, chance_max = 120 }
 examine = "An uncut opal."
 
 [uncut_opal_noted]
@@ -191,7 +184,6 @@ id = 1627
 price = 129
 limit = 5000
 weight = 0.003
-mining = { xp = 65.0, chance_min = 60, chance_max = 60 }
 examine = "An uncut jade."
 
 [uncut_jade_noted]
@@ -202,7 +194,6 @@ id = 1629
 price = 252
 limit = 5000
 weight = 0.003
-mining = { xp = 65.0, chance_min = 30, chance_max = 30 }
 examine = "An uncut red topaz."
 
 [uncut_red_topaz_noted]
@@ -231,7 +222,6 @@ id = 1635
 price = 165
 limit = 10000
 weight = 0.004
-jewellery = { level = 5, xp = 15.0 }
 slot = "Ring"
 examine = "A valuable ring."
 kept = "Wilderness"
@@ -244,7 +234,6 @@ id = 1637
 price = 522
 limit = 5000
 weight = 0.006
-jewellery = { level = 20, xp = 40.0 }
 slot = "Ring"
 examine = "A valuable ring."
 kept = "Wilderness"
@@ -257,7 +246,6 @@ id = 1639
 price = 819
 limit = 10000
 weight = 0.006
-jewellery = { level = 27, xp = 55.0 }
 slot = "Ring"
 examine = "A valuable ring."
 
@@ -269,7 +257,6 @@ id = 1641
 price = 1168
 limit = 5000
 weight = 0.006
-jewellery = { level = 34, xp = 70.0 }
 slot = "Ring"
 examine = "A valuable ring."
 
@@ -281,7 +268,6 @@ id = 1643
 price = 6938
 limit = 5000
 weight = 0.006
-jewellery = { level = 43, xp = 85.0 }
 slot = "Ring"
 examine = "A valuable ring."
 
@@ -293,7 +279,6 @@ id = 1645
 price = 31400
 limit = 500
 weight = 0.006
-jewellery = { level = 55, xp = 100.0 }
 slot = "Ring"
 examine = "A valuable ring."
 
@@ -305,7 +290,6 @@ id = 1654
 price = 177
 limit = 5000
 weight = 0.007
-jewellery = { level = 6, xp = 20.0 }
 slot = "Amulet"
 examine = "I wonder if this is valuable."
 kept = "Wilderness"
@@ -318,7 +302,6 @@ id = 1656
 price = 533
 limit = 5000
 weight = 0.01
-jewellery = { level = 22, xp = 55.0 }
 slot = "Amulet"
 examine = "I wonder if this is valuable."
 
@@ -330,7 +313,6 @@ id = 1658
 price = 750
 limit = 5000
 weight = 0.01
-jewellery = { level = 29, xp = 60.0 }
 slot = "Amulet"
 examine = "I wonder if this is valuable."
 
@@ -342,7 +324,6 @@ id = 1660
 price = 1212
 limit = 5000
 weight = 0.01
-jewellery = { level = 40, xp = 75.0 }
 slot = "Amulet"
 examine = "I wonder if this is valuable."
 
@@ -354,7 +335,6 @@ id = 1662
 price = 7557
 limit = 5000
 weight = 0.01
-jewellery = { level = 56, xp = 90.0 }
 slot = "Amulet"
 examine = "I wonder if this is valuable."
 
@@ -366,7 +346,6 @@ id = 1664
 price = 30300
 limit = 500
 weight = 0.01
-jewellery = { level = 72, xp = 105.0 }
 slot = "Amulet"
 examine = "I wonder if this is valuable."
 
@@ -382,7 +361,6 @@ id = 1673
 price = 172
 limit = 5000
 weight = 0.004
-jewellery = { level = 8, xp = 30.0 }
 aka = ["gold_amulet_u"]
 examine = "It needs a string so I can wear it."
 kept = "Wilderness"
@@ -395,7 +373,6 @@ id = 1675
 price = 468
 limit = 5000
 weight = 0.004
-jewellery = { level = 24, xp = 65.0 }
 aka = ["sapphire_amulet_u"]
 examine = "It needs a string so I can wear it."
 
@@ -407,7 +384,6 @@ id = 1677
 price = 710
 limit = 5000
 weight = 0.004
-jewellery = { level = 31, xp = 70.0 }
 aka = ["emerald_amulet_u"]
 examine = "It needs a string so I can wear it."
 
@@ -419,7 +395,6 @@ id = 1679
 price = 1162
 limit = 5000
 weight = 0.004
-jewellery = { level = 50, xp = 85.0 }
 aka = ["ruby_amulet_u"]
 examine = "It needs a string so I can wear it."
 
@@ -431,7 +406,6 @@ id = 1681
 price = 2991
 limit = 5000
 weight = 0.004
-jewellery = { level = 70, xp = 100.0 }
 aka = ["diamond_amulet_u"]
 examine = "It needs a string so I can wear it."
 
@@ -443,7 +417,6 @@ id = 1683
 price = 41500
 limit = 500
 weight = 0.004
-jewellery = { level = 80, xp = 150.0 }
 aka = ["dragonstone_amulet_u"]
 examine = "It needs a string so I can wear it."
 
@@ -729,7 +702,6 @@ id = 1759
 price = 59
 limit = 5000
 weight = 0.012
-weaving = { amount = 2, to = "strip_of_cloth", level = 10, xp = 12.0 }
 examine = "Spun from sheeps' wool. You can weave it into cloth at a loom."
 
 [ball_of_wool_noted]
@@ -740,28 +712,6 @@ id = 1761
 price = 67
 limit = 10000
 weight = 0.907
-pottery = {
-  unfired_pot = {
-    level = 1,
-    xp = 6.3
-  },
-  unfired_pie_dish = {
-    level = 7,
-    xp = 15.0
-  },
-  unfired_bowl = {
-    level = 8,
-    xp = 18.0
-  },
-  unfired_plant_pot = {
-    level = 19,
-    xp = 20.0
-  },
-  unfired_pot_lid = {
-    level = 25,
-    xp = 20.0
-  }
-}
 examine = "Clay soft enough to mould."
 
 [soft_clay_noted]
@@ -794,8 +744,6 @@ price = 67
 limit = 25000
 weight = 0.453
 compostable = true
-spinning = { to = "bowstring", level = 10, xp = 15.0 }
-weaving = { amount = 5, to = "unfinished_net", level = 52 }
 examine = "I should use this with a spinning wheel."
 
 [flax_noted]
@@ -837,7 +785,6 @@ id = 1787
 price = 54
 limit = 100
 weight = 0.68
-pottery = { empty_pot = { level = 1, xp = 6.3 } }
 examine = "I need to put this in a pottery oven."
 
 [unfired_pot_noted]
@@ -848,7 +795,6 @@ id = 1789
 price = 88
 limit = 100
 weight = 0.68
-pottery = { bowl = { level = 8, xp = 15.0 } }
 examine = "I need to put this in a pottery oven."
 
 [unfired_pie_dish_noted]
@@ -859,7 +805,6 @@ id = 1791
 price = 60
 limit = 100
 weight = 0.68
-pottery = { bowl = { level = 8, xp = 15.0 } }
 examine = "I need to put this in a pottery oven."
 
 [unfired_bowl_noted]
@@ -878,7 +823,6 @@ id = 1794
 price = 100
 limit = 100
 weight = 0.005
-smithing = { level = 4, xp = 12.5 }
 examine = "Useful for crafting items."
 
 [bronze_wire_noted]
@@ -1179,7 +1123,6 @@ id = 6575
 price = 11500000
 limit = 100
 weight = 0.006
-jewellery = { level = 67, xp = 115.0 }
 slot = "Ring"
 examine = "A valuable ring."
 
@@ -1191,7 +1134,6 @@ id = 6577
 price = 4200000
 limit = 100
 weight = 0.01
-jewellery = { level = 82, xp = 120.0 }
 slot = "Amulet"
 examine = "I wonder if this is valuable."
 
@@ -1201,7 +1143,6 @@ id = 6578
 [onyx_amulet_unstrung]
 id = 6579
 weight = 0.004
-jewellery = { level = 90, xp = 165.0 }
 aka = ["onyx_amulet_u"]
 examine = "It needs a string so I can wear it."
 
@@ -1260,7 +1201,6 @@ id = 11069
 price = 221
 limit = 5000
 weight = 0.25
-jewellery = { level = 7, xp = 25.0 }
 slot = "Hands"
 examine = "I wonder if this is valuable."
 kept = "Wilderness"
@@ -1273,7 +1213,6 @@ id = 11072
 price = 567
 limit = 5000
 weight = 0.25
-jewellery = { level = 23, xp = 60.0 }
 slot = "Hands"
 examine = "I wonder if this is valuable."
 
@@ -1296,7 +1235,6 @@ id = 11076
 price = 787
 limit = 5000
 weight = 0.25
-jewellery = { level = 30, xp = 65.0 }
 slot = "Hands"
 examine = "I wonder if this is valuable."
 
@@ -1337,7 +1275,6 @@ id = 11085
 price = 1253
 limit = 5000
 weight = 0.25
-jewellery = { level = 42, xp = 80.0 }
 slot = "Hands"
 examine = "I wonder if this is valuable."
 
@@ -1376,7 +1313,6 @@ id = 11092
 price = 7431
 limit = 5000
 weight = 0.25
-jewellery = { level = 58, xp = 95.0 }
 slot = "Hands"
 examine = "I wonder if this is valuable."
 
@@ -1487,7 +1423,6 @@ id = 11115
 price = 31700
 limit = 500
 weight = 0.25
-jewellery = { level = 74, xp = 110.0 }
 slot = "Hands"
 examine = "I wonder if this is valuable."
 
@@ -1563,7 +1498,6 @@ id = 11130
 price = 884200
 limit = 100
 weight = 0.25
-jewellery = { level = 84, xp = 125.0 }
 slot = "Hands"
 examine = "Yep, this is most definitely valuable!"
 

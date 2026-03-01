@@ -42,12 +42,19 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
     }
 
     private fun key(keyType: Char, key: String) = when (keyType) {
-        EnumTypes.ITEM -> ItemDefinitions.get(key).id
+        EnumTypes.ITEM, EnumTypes.ITEM_2 -> ItemDefinitions.get(key).id
         EnumTypes.COMPONENT -> InterfaceDefinitions.get(key).id
         EnumTypes.INV -> InventoryDefinitions.get(key).id
         EnumTypes.NPC -> NPCDefinitions.get(key).id
         EnumTypes.STRUCT -> StructDefinitions.get(key).id
+        EnumTypes.OBJ -> ObjectDefinitions.get(key).id
         else -> error("Unsupported enum type: ${keyType.code}")
+    }
+
+    fun contains(enum: String, key: String): Boolean {
+        val definition = get(enum)
+        val key = key(definition.keyType, key)
+        return definition.map?.contains(key) == true
     }
 
     fun string(enum: String, key: String): String {
@@ -56,10 +63,27 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
         return definition.string(key)
     }
 
+    fun stringOrNull(enum: String, key: String): String? {
+        val definition = get(enum)
+        val key = key(definition.keyType, key)
+        return definition.stringOrNull(key)
+    }
+
     fun int(enum: String, key: String): Int {
         val definition = get(enum)
         val key = key(definition.keyType, key)
         return definition.int(key)
+    }
+
+    fun int(enum: String, key: Int): Int {
+        val definition = get(enum)
+        return definition.int(key)
+    }
+
+    fun intOrNull(enum: String, key: String): Int? {
+        val definition = get(enum)
+        val key = key(definition.keyType, key)
+        return definition.intOrNull(key)
     }
 
     fun item(enum: String, key: String): String {
@@ -108,6 +132,7 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
             require(InventoryDefinitions.loaded) { "Inventory definitions must be loaded before enum definitions" }
             require(NPCDefinitions.loaded) { "NPC definitions must be loaded before enum definitions" }
             require(StructDefinitions.loaded) { "Struct definitions must be loaded before enum definitions" }
+            require(ObjectDefinitions.loaded) { "Object definitions must be loaded before enum definitions" }
             val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
             val custom = mutableListOf<EnumDefinition>()
             for (path in list) {
@@ -147,6 +172,7 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
                                         EnumTypes.INV -> InventoryDefinitions.getOrNull(key)?.id ?: error("Unknown inventory '$key' ${exception()}")
                                         EnumTypes.NPC -> NPCDefinitions.getOrNull(key)?.id ?: error("Unknown npc '$key' ${exception()}")
                                         EnumTypes.STRUCT -> StructDefinitions.getOrNull(key)?.id ?: error("Unknown struct '$key' ${exception()}")
+                                        EnumTypes.OBJ -> ObjectDefinitions.getOrNull(key)?.id ?: error("Unknown struct '$key' ${exception()}")
                                         else -> key.toInt()
                                     }
                                     map[keyInt] = value()
@@ -154,7 +180,7 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
                                 else -> extras[key] = value()
                             }
                         }
-                        if (id == -1 && map.isNotEmpty()) {
+                        if (id == -1) {
                             custom.add(
                                 EnumDefinition(
                                     keyType = keyType,

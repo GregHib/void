@@ -19,13 +19,11 @@ style = "crush"
 max_hit_melee = 70
 immune_poison = true
 respawn_delay = 15
-pickpocket = { level = 53, xp = 79.4, table = "desert_bandit" }
 drop_table = "bandit_bandit_camp"
 examine = "A tough-looking criminal."
 
 [bandit_bandit_camp_2]
 id = 1927
-pickpocket = { level = 53, xp = 79.4, table = "desert_bandit" }
 examine = "A tough-looking criminal."
 
 [bandit_bandit_camp_3]

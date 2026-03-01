@@ -9,7 +9,6 @@ import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
-import world.gregs.voidps.engine.data.definition.data.*
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.ItemKept
@@ -71,25 +70,6 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
                                 "slot" -> extras[key] = EquipSlot.by(string())
                                 "type" -> extras[key] = EquipType.by(string())
                                 "kept" -> extras[key] = ItemKept.by(string())
-                                "smelting" -> extras[key] = Smelting(this)
-                                "smithing" -> extras[key] = Smithing(this)
-                                "fishing" -> extras[key] = Catch(this)
-                                "firemaking" -> extras[key] = Fire(this)
-                                "mining" -> extras[key] = Ore(this)
-                                "cooking" -> extras[key] = Uncooked(this)
-                                "tanning" -> extras[key] = Tanning(this)
-                                "spinning" -> extras[key] = Spinning(this)
-                                "pottery" -> extras[key] = Pottery(this)
-                                "weaving" -> extras[key] = Weaving(this)
-                                "jewellery" -> extras[key] = Jewellery(this)
-                                "silver_jewellery" -> extras[key] = Silver(this)
-                                "runecrafting" -> extras[key] = Rune(this)
-                                "talisman_tiara" -> extras[key] = Tiara(this)
-                                "cleaning" -> extras[key] = Cleaning(this)
-                                "fletch_dart" -> extras[key] = FletchDarts(this)
-                                "fletch_bolts" -> extras[key] = FletchBolts(this)
-                                "fletching_unf" -> extras[key] = Fletching(this)
-                                "light_source" -> extras[key] = LightSources(this)
                                 "skill_req", "equip_req" -> {
                                     val map = Object2IntOpenHashMap<Skill>(1, Hash.VERY_FAST_LOAD_FACTOR)
                                     while (nextEntry()) {

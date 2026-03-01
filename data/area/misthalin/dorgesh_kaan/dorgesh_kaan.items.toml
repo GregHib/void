@@ -5,7 +5,6 @@ tradeable = false
 weight = 0.907
 slot = "Hat"
 type = "HairLow"
-light_source = { once_extinguish = "mining_helmet" }
 examine = "A helmet with a lamp on it."
 kept = "Reclaim"
 
@@ -16,7 +15,6 @@ limit = 100
 weight = 0.907
 slot = "Hat"
 type = "HairLow"
-light_source = { once_lit = "mining_helmet_lit", level = 65 }
 examine = "A helmet with an unlit lamp on it."
 
 [mining_helmet_noted]
@@ -290,7 +288,6 @@ id = 10978
 price = 270
 limit = 500
 weight = 0.2
-fishing = { level = 33, xp = 1.0, chance_min = 10, chance_max = 10 }
 examine = "Swamp weed found in the caves near Dorgesh-Kaan."
 
 [swamp_weed_noted]

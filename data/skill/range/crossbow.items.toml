@@ -105,7 +105,6 @@ id = 9420
 price = 60
 limit = 5000
 weight = 1.0
-smithing = { level = 6, xp = 12.5 }
 slot = "Shield"
 examine = "A pair of bronze crossbow limbs."
 
@@ -125,7 +124,6 @@ id = 9423
 price = 37
 limit = 5000
 weight = 1.0
-smithing = { level = 23, xp = 25.0 }
 slot = "Shield"
 examine = "A pair of iron crossbow limbs."
 
@@ -137,7 +135,6 @@ id = 9425
 price = 100
 limit = 5000
 weight = 2.0
-smithing = { level = 36, xp = 37.5 }
 slot = "Shield"
 examine = "A pair of steel crossbow limbs."
 
@@ -149,7 +146,6 @@ id = 9427
 price = 356
 limit = 5000
 weight = 2.0
-smithing = { level = 56, xp = 50.0 }
 slot = "Shield"
 examine = "A pair of mithril crossbow limbs."
 
@@ -161,7 +157,6 @@ id = 9429
 price = 1445
 limit = 5000
 weight = 3.0
-smithing = { level = 76, xp = 62.5 }
 slot = "Shield"
 examine = "A pair of adamantite crossbow limbs."
 
@@ -173,7 +168,6 @@ id = 9431
 price = 9430
 limit = 5000
 weight = 3.0
-smithing = { level = 91, xp = 75.0 }
 aka = ["runite_limbs"]
 slot = "Shield"
 examine = "A pair of rune crossbow limbs."
@@ -186,8 +180,6 @@ id = 9436
 price = 159
 limit = 1000
 weight = 0.002
-spinning = { to = "crossbow_string", level = 10, xp = 15.0 }
-cooking = { xp = 3.0, chances = { range = "255-255" }, type = "heat", cooked = "sinew", cooked_message = "You dry a piece of beef and extract the sinew." }
 examine = "I can use this to make a crossbow string."
 
 [sinew_noted]
@@ -209,7 +201,6 @@ price = 1
 limit = 1000
 weight = 3.0
 slot = "Weapon"
-fletching_unf = { level = 9, xp = 6.0, animation = "fletching_log", make_amount = 1, tick = 3 }
 examine = "A wooden crossbow stock."
 
 [wooden_stock_noted]
@@ -220,7 +211,6 @@ id = 9442
 price = 1
 limit = 1000
 weight = 3.0
-fletching_unf = { level = 24, xp = 16.0, animation = "fletching_log", make_amount = 1, tick = 3 }
 slot = "Weapon"
 examine = "An oak crossbow stock."
 
@@ -232,7 +222,6 @@ id = 9444
 price = 2
 limit = 1000
 weight = 3.0
-fletching_unf = { level = 39, xp = 22.0, animation = "fletching_log", make_amount = 1, tick = 3 }
 slot = "Weapon"
 examine = "A willow crossbow stock."
 
@@ -244,7 +233,6 @@ id = 9446
 price = 8
 limit = 1000
 weight = 3.0
-fletching_unf = { level = 46, xp = 27.0, animation = "fletching_log", make_amount = 1, tick = 3 }
 slot = "Weapon"
 examine = "A teak crossbow stock."
 
@@ -256,7 +244,6 @@ id = 9448
 price = 12
 limit = 1000
 weight = 3.0
-fletching_unf = { level = 54, xp = 32.0, animation = "fletching_log", make_amount = 1, tick = 3 }
 slot = "Weapon"
 examine = "A maple crossbow stock."
 
@@ -268,7 +255,6 @@ id = 9450
 price = 29
 limit = 1000
 weight = 3.0
-fletching_unf = { level = 61, xp = 41.0, animation = "fletching_log", make_amount = 1, tick = 3 }
 slot = "Weapon"
 examine = "A mahogany crossbow stock."
 
@@ -280,7 +266,6 @@ id = 9452
 price = 36
 limit = 1000
 weight = 3.0
-fletching_unf = { level = 69, xp = 50.0, animation = "fletching_log", make_amount = 1, tick = 3 }
 slot = "Weapon"
 examine = "A yew crossbow stock."
 

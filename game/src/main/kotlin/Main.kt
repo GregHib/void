@@ -130,6 +130,7 @@ object Main {
                 get<InventoryDefinitions>()
                 get<NPCDefinitions>()
                 get<StructDefinitions>()
+                get<ObjectDefinitions>()
                 EnumDefinitions.init(EnumDecoder().load(cache)).load(files.list(Settings["definitions.enums"]))
             }
             single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(cache)).load(files.list(Settings["definitions.graphics"])) }

@@ -1,21 +1,8 @@
 [fishing_spot_jatizso]
 id = 5470
-fishing_cage = { items = ["lobster_pot"], bait = { none = ["raw_lobster"] } }
-fishing_harpoon = { items = ["harpoon", "barb_tail_harpoon"], bait = { none = ["raw_tuna", "raw_swordfish"] } }
 
 [fishing_spot_jatizso_big_net]
 id = 5471
-fishing_net = { items = ["big_fishing_net"], bait = { none = [
-    "raw_mackerel",
-    "raw_cod",
-    "raw_bass",
-    "oyster",
-    "casket",
-    "seaweed",
-    "leather_gloves",
-    "leather_boots"
-] } }
-fishing_harpoon = { items = ["harpoon", "barb_tail_harpoon"], bait = { none = ["raw_shark"] } }
 
 [king_gjuki_sorvott_iv]
 id = 5478

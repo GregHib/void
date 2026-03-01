@@ -2,15 +2,13 @@ package content.skill.runecrafting
 
 import com.github.michaelbull.logging.InlineLogger
 import net.pearx.kasechange.toSentenceCase
-import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.data.definition.data.Rune
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -35,25 +33,22 @@ class Runecrafting : Script {
     init {
         itemOnObjectOperate("*_essence", "*_altar") { (target) ->
             val id = target.id.replace("_altar", "_rune")
-            bindRunes(this, id, ItemDefinitions.get(id))
+            bindRunes(this, id)
         }
 
         objectOperate("Craft-rune", "*_altar") { (target) ->
             val id = target.id.replace("_altar", "_rune")
-            bindRunes(this, id, ItemDefinitions.get(id))
+            bindRunes(this, id)
         }
 
         itemOnObjectOperate("*_rune", "*_altar") { (target, item) ->
             val element = item.id.removeSuffix("_rune")
-            val objectElement = target.id.removeSuffix("_altar")
-            val rune: Rune? = item.def.getOrNull("runecrafting")
-            val list = rune?.combinations?.get(objectElement)
-            if (rune == null || list == null || !World.members) {
+            val xp = EnumDefinitions.intOrNull("runecrafting_combination_${target.id}_xp", item.id)
+            val combination = EnumDefinitions.stringOrNull("runecrafting_combination_${target.id}", item.id)
+            if (xp == null || combination == null || !World.members) {
                 noInterest()
                 return@itemOnObjectOperate
             }
-            val combination = list[0] as String
-            val xp = list[1] as Double
             if (!carriesItem("pure_essence")) {
                 message("You need pure essence to bind $combination runes.")
                 return@itemOnObjectOperate
@@ -62,7 +57,7 @@ class Runecrafting : Script {
                 message("You need a $element talisman to bind $combination runes.")
                 return@itemOnObjectOperate
             }
-            val level = rune.levels.first()
+            val level = EnumDefinitions.int("runecrafting_level", item.id)
             if (!has(Skill.Runecrafting, level, message = false)) {
                 message("You need a Runecrafting level of $level to bind $combination runes.")
                 return@itemOnObjectOperate
@@ -86,7 +81,7 @@ class Runecrafting : Script {
                     message("You need pure essence to bind $combination runes.")
                 }
                 TransactionError.None -> {
-                    exp(Skill.Runecrafting, xp * successes)
+                    exp(Skill.Runecrafting, (xp / 10.0) * successes)
                     if (bindingNecklace && equipment.discharge(this, EquipSlot.Amulet.index)) {
                         val charge = equipment.charges(this, EquipSlot.Amulet.index)
                         if (charge > 0) {
@@ -102,23 +97,24 @@ class Runecrafting : Script {
                         message("You bind the temple's power into $combination runes.", ChatType.Filter)
                     }
                 }
-                else -> logger.warn { "Error binding runes $this $rune ${levels.get(Skill.Runecrafting)}" }
+                else -> logger.warn { "Error binding runes $this ${item.id} ${levels.get(Skill.Runecrafting)}" }
             }
         }
     }
 
-    fun Runecrafting.bindRunes(player: Player, id: String, itemDefinition: ItemDefinition) {
-        val rune: Rune = itemDefinition.getOrNull("runecrafting") ?: return
-        if (!player.has(Skill.Runecrafting, rune.levels.first(), message = true)) {
+    fun Runecrafting.bindRunes(player: Player, id: String) {
+        val xp = EnumDefinitions.intOrNull("runecrafting_xp", id) ?: return
+        val level = EnumDefinitions.int("runecrafting_level", id)
+        if (!player.has(Skill.Runecrafting, level, message = true)) {
             return
         }
         player.softTimers.start("runecrafting")
-        val pure = rune.pure || !player.inventory.contains("rune_essence")
+        val pure = EnumDefinitions.contains("runecrafting_pure", id) || !player.inventory.contains("rune_essence")
         val essenceId = if (pure) "pure_essence" else "rune_essence"
         val essence = player.inventory.count(essenceId)
         player.inventory.transaction {
             remove(essenceId, essence)
-            val count = rune.multiplier(player)
+            val count = multiplier(player, id)
             add(id, essence * count)
         }
         player.start("movement_delay", 3)
@@ -127,14 +123,28 @@ class Runecrafting : Script {
                 player.message("You don't have any rune essences to bind.")
             }
             TransactionError.None -> {
-                player.exp(Skill.Runecrafting, rune.xp * essence)
+                player.exp(Skill.Runecrafting, (xp / 10.0) * essence)
                 player.anim("bind_runes")
                 player.gfx("bind_runes")
                 player.sound("bind_runes")
                 player.message("You bind the temple's power into ${id.toSentenceCase().plural()}.", ChatType.Filter)
             }
-            else -> logger.warn { "Error binding runes $player $rune ${player.levels.get(Skill.Runecrafting)} $essence" }
+            else -> logger.warn { "Error binding runes $player $id ${player.levels.get(Skill.Runecrafting)} $essence" }
         }
         player.softTimers.stop("runecrafting")
+    }
+
+    private fun multiplier(player: Player, id: String): Int {
+        val map = EnumDefinitions.getOrNull("runecrafting_multiplier_$id")?.map ?: return 1
+        var multiplier = 1
+        val sorted = map.toList().sortedByDescending { it.first }
+        val rc = player.levels.get(Skill.Runecrafting)
+        for ((index, level) in sorted) {
+            if (rc >= level as Int) {
+                multiplier = index + 1
+                break
+            }
+        }
+        return multiplier
     }
 }

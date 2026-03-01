@@ -5,89 +5,44 @@ examine = "It's a crashed star."
 [crashed_star_tier_9]
 id = 38660
 collect_for_next_layer = 15
-mining = {
-  level = 90,
-  ores = [ "stardust" ],
-  gems = true
-}
 examine = "This is a size-9 star."
 
 [crashed_star_tier_8]
 id = 38661
 collect_for_next_layer = 40
-mining = {
-  level = 80,
-  ores = [ "stardust" ],
-  gems = true
-}
 examine = "This is a size-8 star."
 
 [crashed_star_tier_7]
 id = 38662
 collect_for_next_layer = 40
-mining = {
-  level = 70,
-  ores = [ "stardust" ],
-  gems = true
-}
 examine = "This is a size-7 star."
 
 [crashed_star_tier_6]
 id = 38663
 collect_for_next_layer = 80
-mining = {
-  level = 60,
-  ores = [ "stardust" ],
-  gems = true
-}
 examine = "This is a size-6 star."
 
 [crashed_star_tier_5]
 id = 38664
 collect_for_next_layer = 175
-mining = {
-  level = 50,
-  ores = [ "stardust" ],
-  gems = true
-}
 examine = "This is a size-5 star."
 
 [crashed_star_tier_4]
 id = 38665
 collect_for_next_layer = 250
-mining = {
-  level = 40,
-  ores = [ "stardust" ],
-  gems = true
-}
 examine = "This is a size-4 star."
 
 [crashed_star_tier_3]
 id = 38666
 collect_for_next_layer = 450
-mining = {
-  level = 30,
-  ores = [ "stardust" ],
-  gems = true
-}
 examine = "This is a size-3 star."
 
 [crashed_star_tier_2]
 id = 38667
 collect_for_next_layer = 700
-mining = {
-  level = 20,
-  ores = [ "stardust" ],
-  gems = true
-}
 examine = "This is a size-2 star."
 
 [crashed_star_tier_1]
 id = 38668
 collect_for_next_layer = 1200
-mining = {
-  level = 10,
-  ores = [ "stardust" ],
-  gems = true
-}
 examine = "This is a size-1 star."

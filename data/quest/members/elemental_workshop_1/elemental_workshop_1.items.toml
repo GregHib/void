@@ -52,7 +52,6 @@ kept = "Wilderness"
 id = 2893
 tradeable = false
 weight = 1.814
-smelting = { level = 20, xp = 7.5, items = [{id = "elemental_ore"}, {id = "coal", amount = 4}], message = "You place the elemental ore and four heaps of coal into the furnace.", }
 examine = "It's a bar of refined elemental ore."
 kept = "Wilderness"
 

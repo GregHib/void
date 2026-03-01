@@ -104,48 +104,36 @@ examine = "A deadly throwing dart with a rune tip."
 id = 819
 price = 28
 limit = 5000
-smithing = { level = 4, xp = 12.5 }
-fletch_dart = { level = 1, xp = 1.8 }
 examine = "A deadly looking dart tip made of bronze - needs feathers for flight."
 
 [iron_dart_tip]
 id = 820
 price = 17
 limit = 5000
-smithing = { level = 19, xp = 25.0 }
-fletch_dart = { level = 22, xp = 3.8 }
 examine = "A deadly looking dart tip made of iron - needs feathers for flight."
 
 [steel_dart_tip]
 id = 821
 price = 56
 limit = 5000
-smithing = { level = 34, xp = 37.5 }
-fletch_dart = { level = 37, xp = 7.5 }
 examine = "A deadly-looking dart tip made of steel - needs feathers for flight."
 
 [mithril_dart_tip]
 id = 822
 price = 92
 limit = 5000
-smithing = { level = 54, xp = 50.0 }
-fletch_dart = { level = 52, xp = 11.2 }
 examine = "A deadly looking dart tip made of mithril - needs feathers for flight."
 
 [adamant_dart_tip]
 id = 823
 price = 215
 limit = 5000
-smithing = { level = 74, xp = 62.5 }
-fletch_dart = { level = 67, xp = 15.0 }
 examine = "A deadly-looking dart tip made of adamant - needs feathers for flight."
 
 [rune_dart_tip]
 id = 824
 price = 457
 limit = 5000
-smithing = { level = 89, xp = 75.0 }
-fletch_dart = { level = 81, xp = 18.8 }
 examine = "A deadly-looking dart tip made of runite - needs feathers for flight."
 
 [black_dart]
@@ -298,7 +286,6 @@ examine = "A deadly throwing dart with a dragon tip."
 id = 11232
 price = 622
 limit = 1000
-fletch_dart = { level = 95, xp = 25.0 }
 examine = "A deadly looking dragon dart tip - needs feathers for flight."
 
 [dragon_dart_p+]

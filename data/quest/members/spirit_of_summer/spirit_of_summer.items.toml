@@ -28,7 +28,6 @@ kept = "Wilderness"
 [cursed_magic_logs]
 id = 13567
 weight = 2.0
-firemaking = { level = 82, xp = 303.8, life = 200 }
 examine = "Logs cut from a cursed magic tree."
 
 [cursed_magic_logs_noted]

@@ -26,7 +26,6 @@ hitpoints = 20
 combat_def = "gnome_child"
 attack_bonus = -42
 respawn_delay = 50
-pickpocket = { level = 75, stun_ticks = 8, stun_hit = 10, xp = 133.5, chance_min = 43, chance_max = 175, table = "gnome" }
 drop_table = "bones"
 examine = "Small, even by gnome standards."
 
@@ -68,7 +67,6 @@ hitpoints = 20
 combat_def = "gnome_woman"
 attack_bonus = -42
 respawn_delay = 50
-pickpocket = { level = 75, stun_ticks = 8, stun_hit = 10, xp = 133.5, chance_min = 43, chance_max = 175, table = "gnome" }
 drop_table = "bones"
 examine = "A female gnome."
 
@@ -107,8 +105,6 @@ examine = "They just call him 'Coach'."
 
 [fishing_spot_tree_gnome_stronghold]
 id = 309
-fishing_lure = { items = ["fly_fishing_rod"], bait = { feather = ["raw_trout", "raw_salmon"], stripy_feather = ["raw_rainbow_fish"] } }
-fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_pike"] } }
 
 [devin_mendelberg]
 id = 3828

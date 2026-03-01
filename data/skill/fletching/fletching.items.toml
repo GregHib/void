@@ -3,13 +3,6 @@ id = 48
 price = 10
 limit = 10000
 weight = 1.332
-fletching_unf = {
-  level = 10,
-  xp = 10.0,
-  animation = "fletching_log",
-  make_amount = 1,
-  tick = 3,
-}
 examine = "An unstrung longbow; I need a bowstring for this."
 kept = "Wilderness"
 
@@ -21,13 +14,6 @@ id = 50
 price = 2
 limit = 10000
 weight = 0.992
-fletching_unf = {
-  level = 5,
-  xp = 5.0,
-  animation = "fletching_log",
-  make_amount = 1,
-  tick = 3,
-}
 examine = "I need to find a string for this."
 kept = "Wilderness"
 
@@ -38,13 +24,6 @@ id = 51
 id = 52
 price = 4
 limit = 20000
-fletching_unf = {
-  level = 1,
-  xp = 5.0,
-  animation = "fletching_log",
-  make_amount = 15,
-  tick = 2,
-}
 examine = "A wooden arrow shaft."
 kept = "Wilderness"
 
@@ -60,13 +39,6 @@ id = 54
 price = 6
 limit = 10000
 weight = 0.992
-fletching_unf = {
-  level = 20,
-  xp = 16.5,
-  animation = "fletching_log",
-  make_amount = 1,
-  tick = 3,
-}
 examine = "An unstrung oak shortbow; I need a bowstring for this."
 kept = "Wilderness"
 
@@ -78,13 +50,6 @@ id = 56
 price = 13
 limit = 10000
 weight = 1.332
-fletching_unf = {
-  level = 25,
-  xp = 25.0,
-  animation = "fletching_log",
-  make_amount = 1,
-  tick = 3,
-}
 examine = "An unstrung oak longbow; I need a bowstring for this."
 
 [oak_longbow_u_noted]
@@ -95,13 +60,6 @@ id = 58
 price = 33
 limit = 10000
 weight = 1.332
-fletching_unf = {
-  level = 40,
-  xp = 41.5,
-  animation = "fletching_log",
-  make_amount = 1,
-  tick = 3,
-}
 examine = "An unstrung willow longbow; I need a bowstring for this."
 
 [willow_longbow_u_noted]
@@ -112,13 +70,6 @@ id = 60
 price = 13
 limit = 10000
 weight = 0.992
-fletching_unf = {
-  level = 35,
-  xp = 33.3,
-  animation = "fletching_log",
-  make_amount = 1,
-  tick = 3,
-}
 examine = "An unstrung willow shortbow; I need a bowstring for this."
 
 [willow_shortbow_u_noted]
@@ -129,13 +80,6 @@ id = 62
 price = 89
 limit = 10000
 weight = 1.332
-fletching_unf = {
-  level = 55,
-  xp = 58.3,
-  animation = "fletching_log",
-  make_amount = 1,
-  tick = 3,
-}
 examine = "An unstrung maple bow; I need a bowstring for this."
 
 [maple_longbow_u_noted]
@@ -146,13 +90,6 @@ id = 64
 price = 47
 limit = 10000
 weight = 0.992
-fletching_unf = {
-  level = 50,
-  xp = 50.0,
-  animation = "fletching_log",
-  make_amount = 1,
-  tick = 3,
-}
 examine = "An unstrung maple shortbow; I need a bowstring for this."
 
 [maple_shortbow_u_noted]
@@ -163,13 +100,6 @@ id = 66
 price = 410
 limit = 10000
 weight = 1.332
-fletching_unf = {
-  level = 70,
-  xp = 75.0,
-  animation = "fletching_log",
-  make_amount = 1,
-  tick = 3,
-}
 examine = "An unstrung yew longbow; I need a bowstring for this."
 
 [yew_longbow_u_noted]
@@ -180,13 +110,6 @@ id = 68
 price = 143
 limit = 10000
 weight = 0.992
-fletching_unf = {
-  level = 65,
-  xp = 67.5,
-  animation = "fletching_log",
-  make_amount = 1,
-  tick = 3,
-}
 examine = "An unstrung yew shortbow; I need a bowstring for this."
 
 [yew_shortbow_u_noted]
@@ -197,13 +120,6 @@ id = 70
 price = 1246
 limit = 10000
 weight = 1.332
-fletching_unf = {
-  level = 85,
-  xp = 91.5,
-  animation = "fletching_log",
-  make_amount = 1,
-  tick = 3,
-}
 examine = "An unstrung magic longbow; I need a bowstring for this."
 
 [magic_longbow_u_noted]
@@ -214,13 +130,6 @@ id = 72
 price = 673
 limit = 10000
 weight = 0.992
-fletching_unf = {
-  level = 80,
-  xp = 83.3,
-  animation = "fletching_log",
-  make_amount = 1,
-  tick = 3,
-}
 examine = "An unstrung magic shortbow; I need a bowstring for this."
 
 [magic_shortbow_u_noted]

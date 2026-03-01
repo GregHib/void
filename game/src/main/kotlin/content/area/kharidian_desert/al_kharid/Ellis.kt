@@ -16,8 +16,7 @@ import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.data.definition.data.Tanning
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.inv.carriesItem
@@ -90,8 +89,9 @@ class Ellis : Script {
             player.message("You don't have any ${item.toLowerSpaceCase()} to tan.")
             return
         }
-        val tanning: Tanning = ItemDefinitions.get(item)["tanning"]
-        val (leather, cost) = tanning.prices[if (type.endsWith("_1")) 1 else 0]
+        val primary = if (type.endsWith("_1")) "_secondary" else ""
+        val leather = EnumDefinitions.string("tanning${primary}_product", item)
+        val cost = EnumDefinitions.int("tanning${primary}_price", item)
         var tanned = 0
         var noHides = false
         for (i in 0 until amount) {

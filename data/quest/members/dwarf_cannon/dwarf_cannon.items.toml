@@ -18,7 +18,6 @@ kept = "Wilderness"
 id = 2
 price = 259
 limit = 10000
-smithing = { level = 35, xp = 25.6 }
 examine = "Ammo for the Dwarf Cannon."
 
 [nulodions_notes]

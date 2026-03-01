@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.definition.data.Rock
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
@@ -98,8 +97,7 @@ class ShootingStar : Script {
             val starPayout = target.def["collect_for_next_layer", -1]
             message("You examine the crashed star...")
             delay(4)
-            val star = target.def(this).getOrNull<Rock>("mining")?.ores?.firstOrNull()
-            if (star == null) {
+            if (!target.def(this).stringId.startsWith("crashed_star_tier_")) {
                 message("Star has been mined...")
             } else if (starPayout != -1) {
                 val percentageCollected = getLayerPercentage(totalCollected, starPayout)

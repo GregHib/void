@@ -126,14 +126,12 @@ kept = "Wilderness"
 id = 4819
 price = 10
 limit = 10000
-smithing = { level = 4, xp = 12.5 }
 examine = "Keeps things in place fairly permanently."
 
 [iron_nails]
 id = 4820
 price = 9
 limit = 10000
-smithing = { level = 19, xp = 25.0 }
 examine = "Keeps things in place fairly permanently."
 
 [black_nails]
@@ -146,21 +144,18 @@ examine = "Keeps things in place fairly permanently."
 id = 4822
 price = 51
 limit = 10000
-smithing = { level = 54, xp = 50.0 }
 examine = "Keeps things in place fairly permanently."
 
 [adamant_nails]
 id = 4823
 price = 76
 limit = 10000
-smithing = { level = 74, xp = 62.5 }
 examine = "Keeps things in place fairly permanently."
 
 [rune_nails]
 id = 4824
 price = 127
 limit = 10000
-smithing = { level = 89, xp = 75.0 }
 examine = "Keeps things in place fairly permanently."
 
 [unstrung_comp_bow]

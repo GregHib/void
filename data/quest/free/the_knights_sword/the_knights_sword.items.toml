@@ -18,7 +18,6 @@ kept = "Wilderness"
 id = 668
 tradeable = false
 weight = 2.267
-mining = { xp = 17.5, chance_min = 30, chance_max = 375 }
 examine = "Definitely blue."
 kept = "Reclaim"
 
@@ -26,6 +25,5 @@ kept = "Reclaim"
 id = 9467
 tradeable = false
 weight = 1.814
-smelting = { level = 13, xp = 8.0, items = [{ id = "blurite_ore" }], message = "You place the blurite and four heaps of coal into the furnace." }
 examine = "It's a bar of blurite."
 kept = "Wilderness"

@@ -13,9 +13,9 @@ import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.data.definition.data.Smithing
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -96,12 +96,13 @@ class Anvil : Script {
                 if (id != -1) {
                     val amount = componentDefinition?.getOrNull("amount") ?: 1
                     interfaces.sendItem("smithing", type, id, amount)
-                    val smithing: Smithing? = itemDefinition.getOrNull("smithing")
-                    if (smithing == null) {
+                    val xp = EnumDefinitions.intOrNull("smithing_xp", itemDefinition.stringId)
+                    if (xp == null) {
                         logger.warn { "Item $id does not have a smithing component." }
                         continue
                     }
-                    interfaces.sendColour("smithing", "${type}_name", if (has(Skill.Smithing, smithing.level)) Colours.WHITE else Colours.BLACK)
+                    val level = EnumDefinitions.int("smithing_level", itemDefinition.stringId)
+                    interfaces.sendColour("smithing", "${type}_name", if (has(Skill.Smithing, level)) Colours.WHITE else Colours.BLACK)
                 }
                 val required = componentDefinition?.getOrNull("bars") ?: 1
                 interfaces.sendColour("smithing", "${type}_bar", if (bars < required) Colours.ORANGE else Colours.GREEN)
@@ -133,8 +134,7 @@ class Anvil : Script {
             "mithril" if type == "grapple" -> "mithril_grapple_tip"
             else -> "${metal}_$type"
         }
-        val itemDefinition = ItemDefinitions.get(item)
-        val smithing: Smithing = itemDefinition.getOrNull("smithing") ?: return
+        EnumDefinitions.intOrNull("smithing_xp", item) ?: return
         val component = InterfaceDefinitions.getComponent("smithing", type)
         val quantity = component?.getOrNull("amount") ?: 1
         val bars = component?.getOrNull("bars") ?: 1
@@ -147,11 +147,10 @@ class Anvil : Script {
             softTimers.stop("smithing")
             return
         }
-        smith(smithing, metal, bars, quantity, type, item, actualAmount, true)
+        smith(metal, bars, quantity, type, item, actualAmount, true)
     }
 
     suspend fun Player.smith(
-        smithing: Smithing,
         metal: String,
         bars: Int,
         quantity: Int,
@@ -170,9 +169,10 @@ class Anvil : Script {
             return
         }
 
-        if (!has(Skill.Smithing, smithing.level, message = false)) {
+        val level = EnumDefinitions.int("smithing_level", item)
+        if (!has(Skill.Smithing, level, message = false)) {
             val name = item.removeSuffix("_unf")
-            statement("You need a Smithing level of ${smithing.level} to make${name.an()} ${name.toTitleCase()}.")
+            statement("You need a Smithing level of $level to make${name.an()} ${name.toTitleCase()}.")
             softTimers.stop("smithing")
             return
         }
@@ -187,8 +187,9 @@ class Anvil : Script {
             when (inventory.transaction.error) {
                 is TransactionError.Deficient -> message("You do not have enough bars to smith this item.")
                 TransactionError.None -> {
-                    exp(Skill.Smithing, smithing.xp)
-                    smith(smithing, metal, bars, quantity, type, item, count - 1, false)
+                    val xp = EnumDefinitions.int("smithing_xp", item) / 10.0
+                    exp(Skill.Smithing, xp)
+                    smith(metal, bars, quantity, type, item, count - 1, false)
                     val name = type.removeSuffix("_unf").replace("_", " ")
                     message("You hammer the $metal and make${name.an()} $name.")
                 }

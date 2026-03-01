@@ -31,8 +31,6 @@ examine = "He looks to be in a world of his own."
 
 [fishing_spot_observatory]
 id = 927
-fishing_lure = { items = ["fly_fishing_rod"], bait = { feather = ["raw_trout", "raw_salmon"], stripy_feather = ["raw_rainbow_fish"] } }
-fishing_bait = { items = ["fishing_rod"], bait = { fishing_bait = ["raw_pike"] } }
 
 [observatory_professor_observatory_3]
 id = 488

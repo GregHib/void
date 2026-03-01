@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.definition.data.Jewellery
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
@@ -28,9 +28,6 @@ class Jewellery : Script {
     val gems = listOf("gold", "sapphire", "emerald", "ruby", "diamond", "dragonstone", "onyx", "enchanted_gem")
 
     val logger = InlineLogger()
-
-    val Item.jewellery: Jewellery?
-        get() = def.getOrNull("jewellery")
 
     init {
         itemOnObjectOperate("*_mould", "furnace*", arrive = false) {
@@ -69,8 +66,10 @@ class Jewellery : Script {
                     if (item.id == "enchanted_gem_ring" && contains("ring_bling")) {
                         item = Item("ring_of_slaying_8")
                     }
-                    val jewellery = item.jewellery
-                    if (jewellery == null || !has(Skill.Crafting, jewellery.level)) {
+
+                    val jewellery = EnumDefinitions.intOrNull("jewellery_xp", item.id)
+                    val level = EnumDefinitions.int("jewellery_level", item.id)
+                    if (jewellery == null || !has(Skill.Crafting, level)) {
                         item = Item("blank_$type")
                     }
                     interfaces.sendVisibility(id, "make_${type}_option_$gem", !item.id.startsWith("blank"))
@@ -93,8 +92,9 @@ class Jewellery : Script {
         if (amount <= 0) {
             return
         }
-        val data = item.jewellery ?: return
-        if (!has(Skill.Crafting, data.level, message = true)) {
+        val xp = EnumDefinitions.intOrNull("jewellery_xp", item.id) ?: return
+        val level = EnumDefinitions.int("jewellery_level", item.id)
+        if (!has(Skill.Crafting, level, message = true)) {
             return
         }
         if (!inventory.contains("gold_bar")) {
@@ -115,7 +115,7 @@ class Jewellery : Script {
             }
             when (inventory.transaction.error) {
                 TransactionError.None -> {
-                    exp(Skill.Crafting, data.xp)
+                    exp(Skill.Crafting, xp.toDouble())
                     make(item, gem, amount - 1)
                 }
                 else -> logger.warn { "Error crafting jewellery ${inventory.transaction.error} ${player.name} $item $gem $amount ${player.inventory.items.toList()}" }

@@ -30,7 +30,6 @@ def = 31
 style = "crush"
 max_hit_melee = 40
 respawn_delay = 50
-pickpocket = { level = 65, stun_ticks = 8, stun_hit = 30, xp = 137.5, chance_min = 15, chance_max = 160, table = "watchman" }
 examine = "Watches stuff. But who watches him?"
 
 [soldier_yanille]

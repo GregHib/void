@@ -9,7 +9,6 @@ kept = "Reclaim"
 id = 4701
 tradeable = false
 weight = 1.36
-light_source = { once_lit = "sapphire_lantern_lit", level = 49 }
 examine = "A bullseye lantern with a sapphire for a lens."
 kept = "Reclaim"
 
@@ -17,7 +16,6 @@ kept = "Reclaim"
 id = 4702
 tradeable = false
 weight = 1.36
-light_source = { once_extinguish = "sapphire_lantern_oil" }
 examine = "A lantern casting a bright blue beam."
 kept = "Reclaim"
 

@@ -9,9 +9,8 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.stop
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.data.definition.data.Catch
-import world.gregs.voidps.engine.data.definition.data.Spot
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -31,9 +30,6 @@ import world.gregs.voidps.type.random
 class Fishing : Script {
 
     val logger = InlineLogger()
-
-    val Spot.minimumLevel: Int
-        get() = bait.keys.minOf { minimumLevel(it) ?: Int.MAX_VALUE }
 
     init {
         npcOperate("Bait", "fishing_spot_*") { (target) ->
@@ -55,9 +51,7 @@ class Fishing : Script {
 
     suspend fun fish(player: Player, target: NPC, option: String) {
         player.arriveDelay()
-        if (!target.def.contains("fishing_${option.lowercase()}")) {
-            return
-        }
+        val fish = EnumDefinitions.stringOrNull("fishing_fish_${option.lowercase()}", target.id)?.split(",") ?: return
         target.getOrPut("fishers") { mutableSetOf<String>() }.add(player.name)
         player.softTimers.start("fishing")
         player.closeDialogue()
@@ -73,21 +67,32 @@ class Fishing : Script {
                 break
             }
 
-            val data: Spot = target.def.getOrNull("fishing_${option.lowercase()}") ?: return
-            if (!player.has(Skill.Fishing, data.minimumLevel, true)) {
+            val minimumLevel = fish.minOf { EnumDefinitions.int("fishing_levels", it) }
+            if (!player.has(Skill.Fishing, minimumLevel, true)) {
                 break
             }
 
-            val tackle = data.tackle.firstOrNull { tackle -> player.carriesItem(tackle) }
+            val tackles = EnumDefinitions.string("fishing_tackle_${option.lowercase()}", target.id).split(",")
+            val tackle = tackles.firstOrNull { tackle -> player.carriesItem(tackle) }
             if (tackle == null) {
-                player.message("You need a ${data.tackle.first().toTitleCase()} to catch these fish.")
+                player.message("You need a ${tackles.first().toTitleCase()} to catch these fish.")
                 break@fishing
             }
 
-            val bait = data.bait.keys.firstOrNull { bait -> bait == "none" || player.carriesItem(bait) }
-            val catches = data.bait[bait]
-            if (bait == null || catches == null) {
-                player.message("You don't have any ${data.bait.keys.first().toTitleCase().plural(2)}.")
+            var bait: String? = null
+            var required: String? = null
+            for (fish in fish) {
+                val b = EnumDefinitions.string("fishing_bait", fish)
+                if (required == null && b != "none") {
+                    required = b
+                }
+                if (b == "none" || player.carriesItem(b)) {
+                    bait = b
+                    break
+                }
+            }
+            if (bait == null) {
+                player.message("You don't have any ${required?.toTitleCase()?.plural(2)}.")
                 break
             }
             if (first) {
@@ -105,14 +110,20 @@ class Fishing : Script {
             if (first) {
                 first = false
             }
-            for (item in catches) {
-                val catch = ItemDefinitions.get(item)["fishing", Catch.EMPTY]
+            for (item in fish) {
+                if (bait != EnumDefinitions.string("fishing_bait", item)) {
+                    continue
+                }
+                val requiredLevel = EnumDefinitions.intOrNull("fishing_levels", item) ?: continue
+                val chanceMin = EnumDefinitions.int("fishing_chance_min", item)
+                val chanceMax = EnumDefinitions.int("fishing_chance_max", item)
+                val experience = EnumDefinitions.int("fishing_experience", item)
                 val level = player.levels.get(Skill.Fishing)
-                if (level >= catch.level && success(level, catch.chance)) {
+                if (level >= requiredLevel && success(level, chanceMin..chanceMax)) {
                     if (bait != "none" && !player.inventory.remove(bait)) {
                         break@fishing
                     }
-                    player.experience.add(Skill.Fishing, catch.xp)
+                    player.experience.add(Skill.Fishing, experience.toDouble())
                     addCatch(player, item)
                     break
                 }
@@ -145,6 +156,4 @@ class Fishing : Script {
         catch == "raw_shark" && random.nextInt(5000) == 0 -> true
         else -> false
     }
-
-    fun Spot.minimumLevel(bait: String): Int? = this.bait[bait]?.minOf { ItemDefinitions.get(it)["fishing", Catch.EMPTY].level }
 }

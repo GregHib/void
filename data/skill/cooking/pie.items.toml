@@ -35,18 +35,6 @@ id = 7168
 price = 1625
 limit = 1000
 weight = 0.001
-cooking = {
-  level = 29,
-  xp = 128.0,
-  chances = {
-    range = "58-372",
-  },
-  type = "bake",
-  cooked = "mud_pie",
-  cooked_message = "You successfully bake a mucky mud pie.",
-  burnt = "burnt_pie",
-  burnt_message = "You accidentally burn the mud pie.",
-}
 examine = "Needs to be baked before I can use it."
 
 [raw_mud_pie_noted]
@@ -89,18 +77,6 @@ id = 7176
 price = 839
 limit = 1000
 weight = 0.001
-cooking = {
-  level = 34,
-  xp = 138.0,
-  chances = {
-    range = "48-352",
-  },
-  type = "bake",
-  cooked = "garden_pie",
-  cooked_message = "You successfully bake a tasty garden pie.",
-  burnt = "burnt_pie",
-  burnt_message = "You accidentally burn the garden pie.",
-}
 examine = "Needs cooking before I eat it."
 
 [raw_garden_pie_noted]
@@ -155,18 +131,6 @@ id = 7186
 price = 1046
 limit = 1000
 weight = 0.001
-cooking = {
-  level = 47,
-  xp = 164.0,
-  chances = {
-    range = "38-332",
-  },
-  type = "bake",
-  cooked = "fish_pie",
-  cooked_message = "You successfully bake a tasty fish pie.",
-  burnt = "burnt_pie",
-  burnt_message = "You accidentally burn the fish pie.",
-}
 examine = "Raw fish is risky, better cook it."
 
 [raw_fish_pie_noted]
@@ -221,18 +185,6 @@ id = 7196
 price = 1689
 limit = 1000
 weight = 0.001
-cooking = {
-  level = 70,
-  xp = 210.0,
-  chances = {
-    range = "15-270",
-  },
-  type = "bake",
-  cooked = "admiral_pie",
-  cooked_message = "You successfully bake a tasty fish pie.",
-  burnt = "burnt_pie",
-  burnt_message = "You accidentally burn the admiral pie.",
-}
 examine = "This would taste a lot better cooked."
 
 [raw_admiral_pie_noted]
@@ -287,18 +239,6 @@ id = 7206
 price = 3687
 limit = 1000
 weight = 0.001
-cooking = {
-  level = 85,
-  xp = 240.0,
-  chances = {
-    range = "1-222",
-  },
-  type = "bake",
-  cooked = "wild_pie",
-  cooked_message = "You successfully bake a tasty wild pie.",
-  burnt = "burnt_pie",
-  burnt_message = "You accidentally burn the wild pie.",
-}
 examine = "Good as it looks, I'd better cook it."
 
 [raw_wild_pie_noted]
@@ -353,18 +293,6 @@ id = 7216
 price = 1844
 limit = 1000
 weight = 0.001
-cooking = {
-  level = 95,
-  xp = 260.0,
-  chances = {
-    range = "1-212",
-  },
-  type = "bake",
-  cooked = "summer_pie",
-  cooked_message = "You successfully bake a tasty summer pie.",
-  burnt = "burnt_pie",
-  burnt_message = "You accidentally burn the summer pie.",
-}
 examine = "Fresh fruit may be good for you, but I should really cook this."
 
 [raw_summer_pie_noted]

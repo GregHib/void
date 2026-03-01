@@ -364,7 +364,6 @@ degrade = "ring_of_slaying_7"
 # https://youtu.be/91YaxnEa81k?t=334
 degrade_message = "Your ring of slaying has seven uses left."
 deplete = "teleport"
-jewellery = { level = 75, xp = 15.0 }
 weight = 0.006
 slot = "Ring"
 examine = "An enchanted ring."
