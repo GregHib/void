@@ -83,7 +83,9 @@ class Fishing : Script {
             var required: String? = null
             for (fish in fish) {
                 val b = EnumDefinitions.string("fishing_bait", fish)
-                required = b
+                if (required == null && b != "none") {
+                    required = b
+                }
                 if (b == "none" || player.carriesItem(b)) {
                     bait = b
                     break
@@ -154,5 +156,4 @@ class Fishing : Script {
         catch == "raw_shark" && random.nextInt(5000) == 0 -> true
         else -> false
     }
-
 }

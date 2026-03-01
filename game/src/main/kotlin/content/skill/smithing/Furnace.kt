@@ -204,6 +204,5 @@ class Furnace : Script {
             player.tile.y < target.tile.y -> target.tile.addX(target.width / 2)
             else -> target.tile.add(target.width / 2, target.height / 2)
         }
-
     }
 }

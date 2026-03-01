@@ -119,7 +119,7 @@ class Firemaking : Script {
     fun spawnFire(player: Player, tile: Tile, id: String) {
         val colour = EnumDefinitions.string("firemaking_colour", id)
         val life = EnumDefinitions.int("firemaking_life", id)
-        val obj = GameObjects.add("fire_${colour}", tile, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0, ticks = life)
+        val obj = GameObjects.add("fire_$colour", tile, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0, ticks = life)
         FloorItems.add(tile, "ashes", revealTicks = life, disappearTicks = 60, owner = "")
         val interact = player.mode as Interact
         for (dir in directions) {

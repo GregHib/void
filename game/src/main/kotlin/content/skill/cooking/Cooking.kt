@@ -54,7 +54,7 @@ class Cooking : Script {
                     listOf(item.id),
                     type = type.toSentenceCase(),
                     maximum = inventory.count(item.id),
-                    text = "How many would you like to ${type}?",
+                    text = "How many would you like to $type?",
                 ).second
             }
             val offset = (4 - (GameLoop.tick - start)).coerceAtLeast(0)

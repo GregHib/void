@@ -36,15 +36,26 @@ class Mining : Script {
     )
 
     val gemRocks = setOf(
-        "uncut_opal", "uncut_jade", "uncut_red_topaz", "uncut_sapphire", "uncut_emerald", "uncut_ruby", "uncut_diamond"
+        "uncut_opal",
+        "uncut_jade",
+        "uncut_red_topaz",
+        "uncut_sapphire",
+        "uncut_emerald",
+        "uncut_ruby",
+        "uncut_diamond",
     )
 
     val sandstone = setOf(
-        "sandstone_10kg", "sandstone_5kg", "sandstone_2kg", "sandstone_1kg"
+        "sandstone_10kg",
+        "sandstone_5kg",
+        "sandstone_2kg",
+        "sandstone_1kg",
     )
 
     val granite = setOf(
-        "granite_5kg", "granite_2kg", "granite_500g"
+        "granite_5kg",
+        "granite_2kg",
+        "granite_500g",
     )
 
     init {
