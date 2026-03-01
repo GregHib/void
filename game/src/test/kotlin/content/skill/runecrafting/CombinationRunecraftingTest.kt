@@ -10,8 +10,8 @@ import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import org.koin.test.get
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.data.definition.data.Rune
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
@@ -33,12 +33,11 @@ internal class CombinationRunecraftingTest : WorldTest() {
         })
         teleports = get()
         combinationsList.clear()
-        elements.flatMap { element ->
-            val combinations = ItemDefinitions.get("${element}_rune").get<Rune>("runecrafting").combinations
-            combinations.map { (objectElement, value) ->
-                val type = value[0] as String
-                val xp = value[1] as Double
-                combinationsList.add(listOf(element, objectElement, type, xp))
+        for (objectElement in elements) {
+            for ((rune, out) in EnumDefinitions.get("runecrafting_combination_${objectElement}_altar").map!!) {
+                val xp = EnumDefinitions.int("runecrafting_combination_${objectElement}_altar_xp", rune) / 10.0
+                val element = ItemDefinitions.get(rune).stringId.removeSuffix("_rune")
+                combinationsList.add(listOf(element, objectElement, out as String, xp))
             }
         }
     }

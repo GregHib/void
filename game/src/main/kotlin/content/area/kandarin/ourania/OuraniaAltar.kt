@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.data.Rune
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -38,11 +38,12 @@ class OuraniaAltar(val drops: DropTables) : Script {
                 }
                 for (drop in runes) {
                     val item = drop.toItem()
-                    val rune: Rune = item.def["runecrafting"]
-                    val amount = if (get("ardougne_medium_diary_complete", false) && random.nextDouble(100.0) <= rune.doubleChance) 2 else 1
+                    val doubleChance = EnumDefinitions.int("runecrafting_ourania_double_chance", item.id)
+                    val xp = EnumDefinitions.int("runecrafting_xp", item.id) / 10.0
+                    val amount = if (get("ardougne_medium_diary_complete", false) && random.nextDouble(100.0) <= doubleChance) 2 else 1
                     usedArdougneCloak = usedArdougneCloak || amount == 2
                     add(item.id, amount)
-                    experience += rune.xp * 2.0
+                    experience += xp * 2.0
                 }
             }
             start("movement_delay", 3)

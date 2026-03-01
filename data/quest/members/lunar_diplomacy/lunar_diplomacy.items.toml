@@ -89,7 +89,6 @@ kept = "Reclaim"
 id = 9075
 price = 136
 limit = 25000
-runecrafting = { xp = 8.7, levels = [40, 82], pure = true }
 aka = ["astral_runes", "astral", "astrals"]
 examine = "Used for Lunar Spells"
 

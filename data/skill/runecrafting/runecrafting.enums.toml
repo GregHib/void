@@ -16,3 +16,276 @@ values = {
     death_tiara = 500,
     blood_tiara = 525,
 }
+
+[runecrafting_xp]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    astral_rune = 87,
+    fire_rune = 70,
+    water_rune = 60,
+    air_rune = 50,
+    earth_rune = 65,
+    mind_rune = 55,
+    body_rune = 75,
+    death_rune = 100,
+    nature_rune = 90,
+    chaos_rune = 85,
+    law_rune = 95,
+    cosmic_rune = 80,
+    blood_rune = 105,
+    soul_rune = 297,
+}
+
+[runecrafting_pure]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    astral_rune = 1,
+    death_rune = 1,
+    nature_rune = 1,
+    chaos_rune = 1,
+    law_rune = 1,
+    cosmic_rune = 1,
+    blood_rune = 1,
+    soul_rune = 1,
+}
+
+[runecrafting_level]
+keyType = "item"
+valueType = "int"
+defaultInt = 1
+values = {
+    astral_rune = 40,
+    fire_rune = 14,
+    water_rune = 5,
+    earth_rune = 9,
+    mind_rune = 2,
+    body_rune = 20,
+    death_rune = 65,
+    nature_rune = 44,
+    chaos_rune = 35,
+    law_rune = 54,
+    cosmic_rune = 27,
+    blood_rune = 77,
+    soul_rune = 90,
+    steam_rune = 19,
+    mist_rune = 6,
+    dust_rune = 10,
+    smoke_rune = 15,
+    mud_rune = 13,
+    lava_rune = 23,
+}
+
+[runecrafting_ourania_double_chance]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    fire_rune = 250,
+    water_rune = 250,
+    air_rune = 250,
+    earth_rune = 250,
+    mind_rune = 250,
+    body_rune = 250,
+    death_rune = 175,
+    nature_rune = 225,
+    chaos_rune = 250,
+    law_rune = 200,
+    cosmic_rune = 250,
+    blood_rune = 150,
+    soul_rune = 100,
+}
+
+[runecrafting_multiplier_astral_rune]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    0 = 40,
+    1 = 82,
+}
+
+[runecrafting_multiplier_fire_rune]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    0 = 14,
+    1 = 35,
+    2 = 70,
+}
+
+[runecrafting_multiplier_water_rune]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    0 = 5,
+    1 = 19,
+    2 = 38,
+    3 = 57,
+    4 = 76,
+    5 = 95,
+}
+
+[runecrafting_multiplier_air_rune]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    0 = 1,
+    1 = 11,
+    2 = 22,
+    3 = 33,
+    4 = 44,
+    5 = 55,
+    6 = 66,
+    7 = 77,
+    8 = 88,
+    9 = 99,
+}
+
+[runecrafting_multiplier_earth_rune]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    0 = 9,
+    1 = 26,
+    2 = 52,
+    3 = 78,
+}
+
+[runecrafting_multiplier_mind_rune]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    0 = 2,
+    1 = 14,
+    2 = 28,
+    3 = 42,
+    4 = 56,
+    5 = 84,
+    6 = 98,
+}
+
+[runecrafting_multiplier_body_rune]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    0 = 20,
+    1 = 46,
+    2 = 92,
+}
+
+[runecrafting_multiplier_nature_rune]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    0 = 44,
+    1 = 91,
+}
+
+[runecrafting_multiplier_chaos_rune]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    0 = 35,
+    1 = 74,
+}
+
+[runecrafting_multiplier_cosmic_rune]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    0 = 27,
+    1 = 59,
+}
+
+[runecrafting_combination_water_altar]
+keyType = "item"
+valueType = "string"
+defaultString = ""
+values = {
+    fire_rune = "steam",
+    air_rune = "mist",
+    earth_rune = "mud",
+}
+
+[runecrafting_combination_earth_altar]
+keyType = "item"
+valueType = "string"
+defaultString = ""
+values = {
+    fire_rune = "lava",
+    water_rune = "mud",
+    air_rune = "dust",
+}
+
+[runecrafting_combination_air_altar]
+keyType = "item"
+valueType = "string"
+defaultString = ""
+values = {
+    fire_rune = "smoke",
+    water_rune = "mist",
+    earth_rune = "dust",
+}
+
+[runecrafting_combination_fire_altar]
+keyType = "item"
+valueType = "string"
+defaultString = ""
+values = {
+    water_rune = "steam",
+    air_rune = "smoke",
+    earth_rune = "lava",
+}
+
+[runecrafting_combination_water_altar_xp]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    fire_rune = 93,
+    air_rune = 85,
+    earth_rune = 93,
+}
+
+[runecrafting_combination_earth_altar_xp]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    fire_rune = 100,
+    water_rune = 95,
+    air_rune = 90,
+}
+
+[runecrafting_combination_air_altar_xp]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    fire_rune = 85,
+    water_rune = 80,
+    earth_rune = 83,
+}
+
+[runecrafting_combination_fire_altar_xp]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    water_rune = 100,
+    air_rune = 95,
+    earth_rune = 105,
+}
