@@ -76,14 +76,14 @@ class Cooking : Script {
             return
         }
 
-        val leftover = EnumDefinitions.string("cooking_type", item.id)
+        val leftover = EnumDefinitions.string("cooking_leftover", item.id)
         if (leftover.isNotEmpty() && inventory.isFull()) {
             inventoryFull()
             softTimers.stop("cooking")
             return
         }
 
-        val rangeOnly = EnumDefinitions.int("cooking_type", item.id) == 1
+        val rangeOnly = EnumDefinitions.contains("cooking_range_only", item.id)
         if (rangeOnly && !obj.cookingRange) {
             noInterest()
             softTimers.stop("cooking")
@@ -118,7 +118,7 @@ class Cooking : Script {
         if (!inventory.replace(item.id, itemId)) {
             return true
         }
-        val xp = EnumDefinitions.int("cooking_xp", itemId) / 10.0
+        val xp = EnumDefinitions.int("cooking_xp", item.id) / 10.0
         exp(Skill.Cooking, if (cooked) xp else 0.0)
         val message = EnumDefinitions.string(if (cooked) "cooked_message" else "burnt_message", item.id)
         if (message.isNotEmpty()) {
