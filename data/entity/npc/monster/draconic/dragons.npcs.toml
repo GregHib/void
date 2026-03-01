@@ -10,7 +10,7 @@ wander_range = 4
 hunt_mode = "aggressive"
 allowed_under = true
 slayer_xp = 125.0
-categories = ["dragons"]
+categories = ["dragons", "bronze_dragons"]
 respawn_delay = 30
 examine = "Its scales seem to be made of bronze."
 
@@ -27,7 +27,7 @@ wander_range = 4
 hunt_mode = "aggressive"
 allowed_under = true
 slayer_xp = 199.5
-categories = ["dragons"]
+categories = ["dragons", "black_dragons"]
 respawn_delay = 30
 examine = "A fierce dragon with black scales!"
 
@@ -48,7 +48,7 @@ wander_range = 4
 hunt_mode = "aggressive"
 allowed_under = true
 slayer_xp = 107.6
-categories = ["dragons"]
+categories = ["dragons", "blue_dragons"]
 respawn_delay = 30
 examine = "A mother dragon."
 
@@ -80,7 +80,7 @@ wander_range = 4
 hunt_mode = "aggressive"
 allowed_under = true
 slayer_xp = 75.0
-categories = ["dragons"]
+categories = ["dragons", "green_dragons"]
 respawn_delay = 30
 examine = "Must be related to Elvarg."
 
@@ -112,7 +112,7 @@ wander_range = 2
 hunt_mode = "aggressive"
 allowed_under = true
 slayer_xp = 173.2
-categories = ["dragons"]
+categories = ["dragons", "iron_dragons"]
 respawn_delay = 30
 examine = "Its scales seem to be made of iron."
 
@@ -128,7 +128,7 @@ wander_range = 2
 hunt_mode = "aggressive"
 allowed_under = true
 slayer_xp = 220.5
-categories = ["dragons"]
+categories = ["dragons", "steel_dragons"]
 respawn_delay = 30
 examine = "Its scales seem to be made of steel."
 
@@ -144,7 +144,7 @@ hunt_mode = "aggressive"
 allowed_under = true
 slayer_xp = 143.4
 drop_table = "red_dragon"
-categories = ["dragons"]
+categories = ["dragons", "red_dragons"]
 respawn_delay = 30
 examine = "Its scales seem to be made of iron."
 
@@ -173,7 +173,7 @@ hunt_mode = "cowardly"
 allowed_under = true
 slayer_xp = 50.0
 drop_table = "baby_dragon"
-categories = ["dragons"]
+categories = ["dragons", "dragon_dragons"]
 respawn_delay = 30
 examine = "Young but still dangerous."
 
@@ -198,7 +198,7 @@ hunt_mode = "aggressive"
 allowed_under = true
 slayer_xp = 80.0
 drop_table = "baby_dragon"
-categories = ["dragons"]
+categories = ["dragons", "black_dragons"]
 respawn_delay = 30
 examine = "Young but still dangerous."
 
@@ -214,7 +214,7 @@ hunt_mode = "cowardly"
 allowed_under = true
 slayer_xp = 50.0
 drop_table = "baby_dragon"
-categories = ["dragons"]
+categories = ["dragons", "blue_dragons"]
 respawn_delay = 30
 examine = "Young but still dangerous."
 

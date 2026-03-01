@@ -10,7 +10,7 @@ respawn_delay = 25
 wander_range = 6
 hunt_mode = "cowardly"
 drop_table = "black_knight"
-categories = ["black_knight"]
+categories = ["black_knights"]
 examine = "A dark-hearted knight."
 
 [black_knight_1]
