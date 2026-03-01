@@ -9,12 +9,6 @@ id = 452
 
 [copper_rocks_old_1]
 id = 2090
-mining = {
-  level = 1,
-  life = 4,
-  ores = [ "copper_ore" ],
-  gems = true
-}
 examine = "A rocky outcrop."
 
 [copper_rocks_old_2]
@@ -24,12 +18,6 @@ examine = "A rocky outcrop."
 
 [iron_rocks_old_1]
 id = 2092
-mining = {
-  level = 15,
-  life = 9,
-  ores = [ "iron_ore" ],
-  gems = true
-}
 examine = "A rocky outcrop."
 
 [iron_rocks_old_2]
@@ -39,12 +27,6 @@ examine = "A rocky outcrop."
 
 [tin_rocks_old_1]
 id = 2094
-mining = {
-  level = 1,
-  life = 4,
-  ores = [ "tin_ore" ],
-  gems = true
-}
 examine = "A rocky outcrop."
 
 [tin_rocks_old_2]
@@ -54,12 +36,6 @@ examine = "A rocky outcrop."
 
 [coal_rocks_old_1]
 id = 2096
-mining = {
-  level = 30,
-  life = 50,
-  ores = [ "coal" ],
-  gems = true
-}
 examine = "A rocky outcrop."
 
 [coal_rocks_old_2]
@@ -69,12 +45,6 @@ examine = "A rocky outcrop."
 
 [gold_rocks_old_1]
 id = 2098
-mining = {
-  level = 40,
-  life = 100,
-  ores = [ "gold_ore" ],
-  gems = true
-}
 examine = "A rocky outcrop."
 
 [gold_rocks_old_2]
@@ -84,12 +54,6 @@ examine = "A rocky outcrop."
 
 [silver_rocks_old_1]
 id = 2100
-mining = {
-  level = 20,
-  life = 100,
-  ores = [ "silver_ore" ],
-  gems = true
-}
 examine = "A rocky outcrop."
 
 [silver_rocks_old_2]
@@ -99,12 +63,6 @@ examine = "A rocky outcrop."
 
 [mithril_rocks_old_1]
 id = 2102
-mining = {
-  level = 55,
-  life = 200,
-  ores = [ "mithril_ore" ],
-  gems = true
-}
 examine = "A rocky outcrop."
 
 [mithril_rocks_old_2]
@@ -114,12 +72,6 @@ examine = "A rocky outcrop."
 
 [adamantite_rocks_old_1]
 id = 2104
-mining = {
-  level = 70,
-  life = 400,
-  ores = [ "adamantite_ore" ],
-  gems = true
-}
 examine = "A rocky outcrop."
 
 [adamantite_rocks_old_2]
@@ -129,12 +81,6 @@ examine = "A rocky outcrop."
 
 [runite_rocks_old_1]
 id = 2106
-mining = {
-  level = 85,
-  life = 1200,
-  ores = [ "runite_ore" ],
-  gems = true
-}
 examine = "A rocky outcrop."
 
 [runite_rocks_old_2]
@@ -144,12 +90,6 @@ examine = "A rocky outcrop."
 
 [clay_rocks_old_1]
 id = 2108
-mining = {
-  level = 1,
-  life = 2,
-  ores = [ "clay" ],
-  gems = true
-}
 examine = "A rocky outcrop."
 
 [clay_rocks_old_2]
@@ -163,28 +103,10 @@ examine = "A rocky outcrop."
 
 [gem_rocks_old_2]
 id = 2111
-mining = {
-  level = 40,
-  life = 99,
-  ores = [
-    "uncut_opal",
-    "uncut_jade",
-    "uncut_red_topaz",
-    "uncut_sapphire",
-    "uncut_emerald",
-    "uncut_ruby",
-    "uncut_diamond"
-  ]
-}
 examine = "A rocky outcrop."
 
 [rune_essence_rocks]
 id = 2491
-mining = {
-  level = 1,
-  life = -1,
-  ores = [ "rune_essence", "pure_essence" ]
-}
 examine = "This rock contains essence (the source of all rune stones)."
 
 [gold_rocks_crandor_1]
@@ -351,12 +273,6 @@ examine = "A rocky outcrop."
 
 [blurite_rocks_lumbridge_cellar_1]
 id = 6669
-mining = {
-  level = 10,
-  life = 42,
-  ores = [ "blurite_ore" ],
-  gems = true
-}
 examine = "Stone with blue veins."
 
 [blurite_rocks_lumbridge_cellar_2]
@@ -563,20 +479,10 @@ examine = "A rocky outcrop."
 
 [sandstone_rocks_quarry]
 id = 10946
-mining = {
-  level = 35,
-  life = 7,
-  ores = [ "sandstone_10kg", "sandstone_5kg", "sandstone_2kg", "sandstone_1kg" ]
-}
 examine = "A rocky outcrop."
 
 [granite_rocks_quarry]
 id = 10947
-mining = {
-  level = 45,
-  life = 8,
-  ores = [ "granite_5kg", "granite_2kg", "granite_500g" ]
-}
 examine = "A rocky outcrop."
 
 [coal_rocks_quarry_1]
