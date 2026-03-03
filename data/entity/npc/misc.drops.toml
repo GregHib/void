@@ -194,6 +194,22 @@ drops = [
   { id = "grimy_dwarf_weed", chance = 3 }
 ]
 
+[herb_drop_table_chaos_druid]
+roll = 128
+drops = [
+  { id = "grimy_guam", amount = 2, chance = 32 },
+  { id = "grimy_marrentill", amount = 2, chance = 24 },
+  { id = "grimy_tarromin", amount = 2, chance = 18 },
+  { id = "grimy_harralander", amount = 2, chance = 14 },
+  { id = "grimy_ranarr", amount = 2, chance = 11 },
+  { id = "grimy_irit", amount = 2, chance = 8 },
+  { id = "grimy_avantoe", amount = 2, chance = 6 },
+  { id = "grimy_kwuarm", amount = 2, chance = 5 },
+  { id = "grimy_cadantine", amount = 2, chance = 4 },
+  { id = "grimy_lantadyme", amount = 2, chance = 3 },
+  { id = "grimy_dwarf_weed", amount = 2, chance = 3 }
+]
+
 [useful_herb_drop_table]
 roll = 16
 drops = [

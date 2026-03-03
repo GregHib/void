@@ -7,6 +7,7 @@ death_anim = "human_death"
 [dark_wizard_water.confuse]
 range = 5
 condition = "not_confused"
+anim = "confuse_staff"
 gfx = "confuse_cast"
 target_sound = "confuse_cast"
 projectile = "confuse"

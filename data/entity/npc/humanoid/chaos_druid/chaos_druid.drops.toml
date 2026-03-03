@@ -25,4 +25,6 @@ drops = [
   { id = "snape_grass" },
   { id = "unholy_mould" },
   { table = "gem_drop_table" },
+  { table = "herb_drop_table", chance = 35 },
+  { table = "herb_drop_table_chaos_druid", chance = 11 },
 ]

@@ -1,5 +1,9 @@
 spawns = [
     # 12595
+    { id = "fishing_spot_crayfish_lumbridge", x = 3173, y = 3274, level = 0 },
+    { id = "fishing_spot_crayfish_lumbridge", x = 3174, y = 3274, level = 0 },
+    { id = "fishing_spot_crayfish_lumbridge", x = 3169, y = 3266, level = 0 },
+    { id = "fishing_spot_crayfish_lumbridge", x = 3168, y = 3266, level = 0 },
     { id = "fred_the_farmer_lumbridge", x = 3189, y = 3273 },
     { id = "millie_miller", x = 3169, y = 3306 },
     { id = "sheep", x = 3197, y = 3272 },

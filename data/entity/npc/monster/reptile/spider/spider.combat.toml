@@ -49,10 +49,10 @@ retreat_range = 11
 clone = "giant_spider_mid.melee"
 
 [poison_spider]
-clone = "spider"
+clone = "giant_spider"
 
 [poison_spider.melee]
-clone = "spider.melee"
+clone = "giant_spider.melee"
 target_hit = { offense = "stab", max = 70 }
 
 [poison_spider.melee_poison]
