@@ -5,7 +5,6 @@ import content.entity.effect.transform
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.world.music.playTrack
-import content.quest.clearInstance
 import content.quest.free.demon_slayer.DemonSlayerSpell.getWord
 import content.quest.free.demon_slayer.DemonSlayerSpell.randomiseOrder
 import content.quest.quest
@@ -207,7 +206,7 @@ class GypsyAris : Script {
         statement("", clickToContinue = false)
         delay(2)
         val cutscene = startCutscene("demon_slayer_aris", region)
-        cutscene.onEnd(destroyInstance = false) {
+        cutscene.onEnd {
             start("demon_slayer_instance_exit", 4)
             open("fade_out")
             delay(3)
@@ -215,7 +214,6 @@ class GypsyAris : Script {
             face(Direction.WEST)
             clearCamera()
             clearTransform()
-            clearInstance()
         }
         delay(2)
         tele(cutscene.tile(3225, 3371), clearInterfaces = false)
@@ -275,7 +273,7 @@ class GypsyAris : Script {
         npc<Neutral>("By reciting the correct magical incantation, and thrusting Silverlight into Delrith while he was newly summoned, Wally was able to imprison Delrith in the stone table at the centre of the circle.")
 
         statement("", clickToContinue = false)
-        cutscene.end(destroyInstance = false)
+        cutscene.end()
         set("demon_slayer", "sir_prysin")
         delrithWillCome()
     }

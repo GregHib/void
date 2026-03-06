@@ -13,8 +13,8 @@ import content.quest.Cutscene
 import content.quest.clearInstance
 import content.quest.exitInstance
 import content.quest.free.demon_slayer.DemonSlayerSpell
-import content.quest.instance
 import content.quest.instanceOffset
+import content.quest.quest
 import content.quest.questComplete
 import content.quest.questCompleted
 import content.quest.smallInstance
@@ -54,7 +54,6 @@ import java.util.concurrent.TimeUnit
 class Delrith : Script {
 
     val area = Areas["demon_slayer_stone_circle"]
-    val defaultTile = Tile(3220, 3367)
     val targets = listOf(
         Tile(3227, 3369) to Tile(3224, 3366),
         Tile(3227, 3370) to Tile(3231, 3366),
@@ -66,14 +65,15 @@ class Delrith : Script {
 
     init {
         moved {
-            if (exitArea(this, tile)) {
-                start("demon_slayer_instance_exit", 2)
-                tele(tile.minus(instanceOffset()))
-                clearInstance()
-                val cutscene: Cutscene = remove("demon_slayer_cutscene") ?: return@moved
-                Script.launch {
-                    cutscene.end(destroyInstance = false)
-                }
+            if (!exitArea(this, it, tile)) {
+                return@moved
+            }
+            start("demon_slayer_instance_exit", 2)
+            tele(tile.minus(instanceOffset()))
+            clearInstance()
+            val cutscene: Cutscene = remove("demon_slayer_cutscene") ?: return@moved
+            Script.launch {
+                cutscene.end(destroyInstance = false)
             }
         }
 
@@ -158,12 +158,14 @@ class Delrith : Script {
         npc.mode = PauseMode
     }
 
-    fun exitArea(player: Player, to: Tile): Boolean {
-        if (!area.contains(player.tile)) {
+    fun exitArea(player: Player, from: Tile, to: Tile): Boolean {
+        if (!player.contains("instance") || player.questCompleted("demon_slayer") || player.quest("demon_slayer") == "unstarted") {
             return false
         }
-        player.instance() ?: return false
         val offset = player.instanceOffset()
+        if (!area.contains(from.minus(offset))) {
+            return false
+        }
         val original = to.minus(offset)
         return !area.contains(original) && !player.hasClock("demon_slayer_instance_exit")
     }
