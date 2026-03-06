@@ -102,7 +102,7 @@ class Delrith : Script {
                 player<Angry>("Now what was that incantation again?")
                 var correct = true
                 repeat(5) { index ->
-                    val choice = choice(listOf("Carlem", "Aber", "Camerinthum", "Purchai", "Gabindo"))
+                    val choice = choice(words)
                     val selected = words[choice - 1]
                     val suffix = if (index == 4) "!" else "..."
                     val text = "$selected$suffix"

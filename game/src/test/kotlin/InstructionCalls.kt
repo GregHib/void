@@ -103,7 +103,7 @@ fun Player.equipItem(
 fun Player.dialogueOption(
     component: String,
     option: Int = -1,
-    id: String = dialogue!!,
+    id: String = dialogue ?: error("No dialogue found for $this."),
 ) {
     Dialogues.continueDialogue(this, "$id:$component")
 }

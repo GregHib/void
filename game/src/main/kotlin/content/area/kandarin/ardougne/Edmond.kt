@@ -6,7 +6,6 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.startQuest
-import content.quest.instanceOffset
 import content.quest.quest
 import content.quest.questComplete
 import content.quest.refreshQuestJournal
@@ -16,7 +15,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
-import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
@@ -44,7 +42,6 @@ class Edmond : Script {
             when (quest("plague_city")) {
                 "unstarted" -> {
                     player<Happy>("Hello old man.")
-                    cutscene()
                     npc<Disheartened>("Sorry, I can't stop to talk...")
                     player<Quiz>("Why, what's wrong?")
                     npc<Disheartened>("I've got to find my daughter. I pray that she is still alive...")
