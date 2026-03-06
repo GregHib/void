@@ -33,7 +33,7 @@ class Cutscene(
     val offset: Delta,
 ) {
 
-    constructor(player: Player, name: String, region: Region? = null) : this(player, name, player.smallInstance(region), player.instanceOffset())
+    constructor(player: Player, name: String, region: Region? = null, levels: Int = 4) : this(player, name, player.smallInstance(region, levels), player.instanceOffset())
 
     var block: (suspend () -> Unit)? = null
 
@@ -59,10 +59,10 @@ class Cutscene(
     suspend fun end(destroyInstance: Boolean = true) {
         if (!end) {
             end = true
+            block?.invoke()
             if (destroyInstance) {
                 player.clearInstance()
             }
-            block?.invoke()
             player.open("fade_in")
             showTabs()
             player.queue.clear("${name}_cutscene_end")

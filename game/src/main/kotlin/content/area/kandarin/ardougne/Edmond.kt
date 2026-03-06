@@ -6,14 +6,17 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.startQuest
+import content.quest.instanceOffset
 import content.quest.quest
 import content.quest.questComplete
 import content.quest.refreshQuestJournal
+import content.quest.setInstanceLogout
 import content.quest.startCutscene
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
+import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
@@ -30,6 +33,7 @@ import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.Tile
 
 class Edmond : Script {
 
@@ -40,6 +44,7 @@ class Edmond : Script {
             when (quest("plague_city")) {
                 "unstarted" -> {
                     player<Happy>("Hello old man.")
+                    cutscene()
                     npc<Disheartened>("Sorry, I can't stop to talk...")
                     player<Quiz>("Why, what's wrong?")
                     npc<Disheartened>("I've got to find my daughter. I pray that she is still alive...")
@@ -198,6 +203,7 @@ class Edmond : Script {
         set("plague_city", "grill_open")
         open("fade_out")
         val cutscene = startCutscene("grill", region)
+        setInstanceLogout(Tile(2514, 9740))
         cutscene.onEnd {
             open("fade_out")
             delay(3)

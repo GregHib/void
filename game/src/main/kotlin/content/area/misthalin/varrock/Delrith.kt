@@ -159,6 +159,9 @@ class Delrith : Script {
     }
 
     fun exitArea(player: Player, to: Tile): Boolean {
+        if (!area.contains(player.tile)) {
+            return false
+        }
         player.instance() ?: return false
         val offset = player.instanceOffset()
         val original = to.minus(offset)

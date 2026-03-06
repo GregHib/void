@@ -18,7 +18,7 @@ class Elena : Script {
             npc<Idle>("Go and see my father, I'll make sure he adequately rewards you. Now I'd better leave while I still can.")
             open("fade_out")
             delay(4)
-            set("plaguecity_can_see_edmond_up_top", false)
+            set("plaguecity_hide_edmond_up_top", false)
             set("plaguecity_elena_at_home", true)
             set("plague_city", "freed_elena")
             delay(3)
