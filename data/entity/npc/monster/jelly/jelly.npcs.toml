@@ -15,21 +15,23 @@ examine = "Looks scared to see me."
 
 [jelly_green]
 id = 1638
-categories = ["jellies"]
+clone = "jelly"
 examine = "Doesn't look so tough..."
 
 [jelly_blue]
 id = 1639
-categories = ["jellies"]
+clone = "jelly"
 examine = "Wibbly."
 
 [jelly_grey]
 id = 1640
-categories = ["jellies"]
+clone = "jelly"
 examine = "There's always room for jelly."
 
 [jelly_small_olive]
 id = 1641
+clone = "jelly"
 
 [jelly_small_green]
 id = 1642
+clone = "jelly"
