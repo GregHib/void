@@ -106,7 +106,7 @@ object Main {
         Wildcards.update(Settings["storage.wildcards"])
         Runtime.getRuntime().addShutdownHook(
             thread(start = false) {
-                Despawn.world()
+                World.shutdown()
                 AuditLog.save()
             },
         )
