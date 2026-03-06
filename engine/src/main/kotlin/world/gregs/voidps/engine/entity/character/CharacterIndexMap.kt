@@ -24,6 +24,9 @@ class CharacterIndexMap(size: Int) {
      * Removes from the current set if already present
      */
     fun add(id: Int, index: Int) {
+        if (index < 0) {
+            return
+        }
         val existing = current[index]
         if (existing != INVALID) {
             remove(existing, index)
