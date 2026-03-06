@@ -10,9 +10,14 @@ import content.entity.player.dialogue.type.statement
 import content.entity.proj.shoot
 import content.entity.world.music.playTrack
 import content.quest.Cutscene
+import content.quest.clearInstance
+import content.quest.exitInstance
 import content.quest.free.demon_slayer.DemonSlayerSpell
+import content.quest.instanceOffset
+import content.quest.quest
 import content.quest.questComplete
 import content.quest.questCompleted
+import content.quest.smallInstance
 import content.quest.startCutscene
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
@@ -40,6 +45,7 @@ import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
@@ -48,7 +54,6 @@ import java.util.concurrent.TimeUnit
 class Delrith : Script {
 
     val area = Areas["demon_slayer_stone_circle"]
-    val defaultTile = Tile(3220, 3367)
     val targets = listOf(
         Tile(3227, 3369) to Tile(3224, 3366),
         Tile(3227, 3370) to Tile(3231, 3366),
@@ -60,25 +65,25 @@ class Delrith : Script {
 
     init {
         moved {
-            if (exitArea(this, tile)) {
-                val cutscene: Cutscene = remove("demon_slayer_cutscene") ?: return@moved
-                Script.launch {
-                    cutscene.end()
-                }
+            if (!exitArea(this, it, tile)) {
+                return@moved
+            }
+            start("demon_slayer_instance_exit", 2)
+            tele(tile.minus(instanceOffset()))
+            clearInstance()
+            val cutscene: Cutscene = remove("demon_slayer_cutscene") ?: return@moved
+            Script.launch {
+                cutscene.end(destroyInstance = false)
             }
         }
 
         entered("demon_slayer_stone_circle") {
-            if (!questCompleted("demon_slayer") && get("demon_slayer_silverlight", false) && !hasClock("demon_slayer_instance_exit")) {
+            // Second area check to make sure we're not triggering a second time when entering the instanced area
+            if (!questCompleted("demon_slayer") && get("demon_slayer_silverlight", false) && tile in it.area && !hasClock("demon_slayer_instance_exit")) {
                 Script.launch {
                     cutscene()
                 }
             }
-        }
-
-        playerDespawn {
-            val cutscene: Cutscene = remove("demon_slayer_cutscene") ?: return@playerDespawn
-            cutscene.destroy()
         }
 
         combatPrepare("melee") { target ->
@@ -92,15 +97,12 @@ class Delrith : Script {
             }
         }
 
-        npcOperate("Banish", "delrith") { (target) ->
-            if (target.transform != "delrith_weakened") {
-                return@npcOperate
-            }
+        npcOperate("Banish", "delrith_weakened") { (target) ->
             weakQueue("banish_delrith") {
                 player<Angry>("Now what was that incantation again?")
                 var correct = true
                 repeat(5) { index ->
-                    val choice = choice(listOf("Carlem", "Aber", "Camerinthum", "Purchai", "Gabindo"))
+                    val choice = choice(words)
                     val selected = words[choice - 1]
                     val suffix = if (index == 4) "!" else "..."
                     val text = "$selected$suffix"
@@ -117,23 +119,20 @@ class Delrith : Script {
                         delay(3)
                     }
                 }
-                if (correct) {
-                    target.anim("delrith_death")
-                    sound("demon_slayer_delrith_banished")
-                    statement("Delrith is sucked into the vortex...", clickToContinue = false)
-                    delay(14)
-                    NPCs.remove(target)
-                    statement("...back into the dark dimension from which he came.")
-                    val cutscene: Cutscene? = remove("demon_slayer_cutscene")
-                    if (cutscene != null) {
-                        cutscene.end()
-                    } else {
-                        tele(defaultTile)
-                    }
-                    questComplete()
-                } else {
+                if (!correct) {
                     statement("The vortex collapses. That was the wrong incantation.")
+                    return@weakQueue
                 }
+                target.anim("delrith_death")
+                sound("demon_slayer_delrith_banished")
+                statement("Delrith is sucked into the vortex...", clickToContinue = false)
+                delay(14)
+                NPCs.remove(target)
+                statement("...back into the dark dimension from which he came.")
+                start("demon_slayer_instance_exit", 2)
+                exitInstance()
+                remove<Cutscene>("demon_slayer_cutscene")?.end(destroyInstance = false)
+                questComplete()
             }
         }
 
@@ -159,50 +158,52 @@ class Delrith : Script {
         npc.mode = PauseMode
     }
 
-    fun exitArea(player: Player, to: Tile): Boolean {
-        val cutscene: Cutscene = player["demon_slayer_cutscene"] ?: return false
-        val actual = cutscene.original(to)
-        return !area.contains(actual) && !player.hasClock("demon_slayer_instance_exit")
+    fun exitArea(player: Player, from: Tile, to: Tile): Boolean {
+        if (!player.contains("instance") || player.questCompleted("demon_slayer") || player.quest("demon_slayer") == "unstarted") {
+            return false
+        }
+        val offset = player.instanceOffset()
+        if (!area.contains(from.minus(offset))) {
+            return false
+        }
+        val original = to.minus(offset)
+        return !area.contains(original) && !player.hasClock("demon_slayer_instance_exit")
     }
 
     suspend fun Player.cutscene() {
         val region = Region(12852)
-        val cutscene = startCutscene("demon_slayer_delrith", region)
-        set("demon_slayer_cutscene", cutscene)
+        val instance = smallInstance(region)
+        val offset = instanceOffset()
         steps.clear()
         mode = EmptyMode
-        val wizard1 = NPCs.add("dark_wizard_water", cutscene.tile(3226, 3371), Direction.SOUTH_EAST)
-        val wizard2 = NPCs.add("dark_wizard_water_2", cutscene.tile(3229, 3371), Direction.SOUTH_WEST)
-        val wizard3 = NPCs.add("dark_wizard_earth", cutscene.tile(3226, 3368), Direction.NORTH_EAST)
-        val denath = NPCs.add("denath", cutscene.tile(3229, 3368), Direction.NORTH_WEST)
-        val delrith = NPCs.add("delrith", cutscene.tile(3227, 3369), Direction.SOUTH)
+        val wizard1 = NPCs.add("dark_wizard_water", offset.tile(3226, 3371), Direction.SOUTH_EAST)
+        val wizard2 = NPCs.add("dark_wizard_water_2", offset.tile(3229, 3371), Direction.SOUTH_WEST)
+        val wizard3 = NPCs.add("dark_wizard_earth", offset.tile(3226, 3368), Direction.NORTH_EAST)
+        val denath = NPCs.add("denath", offset.tile(3229, 3368), Direction.NORTH_WEST)
+        val delrith = NPCs.add("delrith", offset.tile(3227, 3369), Direction.SOUTH)
         delrith.hide = true
+        delrith.mode = PauseMode
         val wizards = listOf(wizard1, wizard2, wizard3, denath)
         for (wizard in wizards) {
             wizard.mode = PauseMode
             wizard.steps.clear()
         }
-        spawnEnergyBarrier(cutscene)
+        spawnEnergyBarrier(offset)
         delay(1)
-        cutscene.onEnd {
-            start("demon_slayer_instance_exit", 2)
-            if (tile.region == cutscene.instance) {
-                tele(cutscene.original(tile))
-            } else {
-                tele(defaultTile)
-            }
-            clearCamera()
-        }
         face(Direction.NORTH_EAST)
         playTrack("delrith")
         if (get("demon_slayer_summoned", false)) {
-            queue.clear("demon_slayer_delrith_cutscene_end")
-            delrith.tele(cutscene.tile(3227, 3367))
-            denath.tele(cutscene.tile(3236, 3368))
-            tele(cutscene.convert(tile)) // TODO could be improved by getting nearest tile in inner circle area
+            delrith.tele(offset.tile(3227, 3367))
+            denath.tele(offset.tile(3236, 3368))
+            tele(tile.add(offset)) // TODO could be improved by getting nearest tile in inner circle area
             delrith.hide = false
-            cutscene.showTabs()
+            delrith.mode = EmptyMode
             return
+        }
+        val cutscene = startCutscene("demon_slayer_cutscene", instance, offset)
+        set("demon_slayer_cutscene", cutscene)
+        cutscene.onEnd(destroyInstance = false) {
+            clearCamera()
         }
         tele(cutscene.tile(3222, 3367))
         delay(1)
@@ -279,7 +280,7 @@ class Delrith : Script {
         moveCamera(cutscene.tile(3226, 3383), 1000, 1, 1)
         npc<Shifty>("denath", "I've got to get out of here...")
         queue.clear("demon_slayer_delrith_cutscene_end")
-        cutscene.end()
+        cutscene.end(destroyInstance = false)
         for (wizard in wizards) {
             wizard.mode = EmptyMode
         }
@@ -307,8 +308,8 @@ class Delrith : Script {
     /**
      * Spawns energy barriers in a clockwise ring
      */
-    fun spawnEnergyBarrier(cutscene: Cutscene) {
-        var tile = cutscene.tile(3221, 3367)
+    fun spawnEnergyBarrier(offset: Delta) {
+        var tile = offset.tile(3221, 3367)
         var rotation = 0
         var direction = Direction.NORTH
         while (rotation < 4) {

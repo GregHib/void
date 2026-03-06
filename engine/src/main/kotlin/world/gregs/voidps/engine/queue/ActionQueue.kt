@@ -47,12 +47,13 @@ class ActionQueue(
     }
 
     private fun queuePending() {
-        if (pending.isNotEmpty()) {
-            for (action in pending) {
-                queue.add(action)
-            }
-            pending.clear()
+        if (pending.isEmpty()) {
+            return
         }
+        for (action in pending) {
+            queue.add(action)
+        }
+        pending.clear()
     }
 
     fun contains(priority: ActionPriority): Boolean = queue.any { it.priority == priority } || pending.any { it.priority == priority }

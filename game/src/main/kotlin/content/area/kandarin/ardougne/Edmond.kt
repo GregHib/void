@@ -9,6 +9,7 @@ import content.entity.player.dialogue.type.startQuest
 import content.quest.quest
 import content.quest.questComplete
 import content.quest.refreshQuestJournal
+import content.quest.setInstanceLogout
 import content.quest.startCutscene
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
@@ -30,6 +31,7 @@ import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.Tile
 
 class Edmond : Script {
 
@@ -198,6 +200,7 @@ class Edmond : Script {
         set("plague_city", "grill_open")
         open("fade_out")
         val cutscene = startCutscene("grill", region)
+        setInstanceLogout(Tile(2514, 9740))
         cutscene.onEnd {
             open("fade_out")
             delay(3)

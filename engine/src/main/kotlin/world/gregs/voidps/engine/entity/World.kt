@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
@@ -77,6 +78,10 @@ object World : Entity, VariableStore, Runnable, KoinComponent {
     }
 
     fun shutdown() {
+        // Don't want to do Players.clear() otherwise don't know who to save.
+        for (player in Players) {
+            Despawn.player(player)
+        }
         Despawn.world()
     }
 }

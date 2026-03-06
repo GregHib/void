@@ -53,6 +53,8 @@ value class Delta(val id: Long) {
     fun minus(value: Delta) = minus(value.x, value.y, value.level)
     fun delta(value: Delta) = delta(value.x, value.y, value.level)
 
+    fun tile(x: Int = 0, y: Int = 0, level: Int = 0) = Tile(this.x + x, this.y + y, this.level + level)
+
     fun add(direction: Direction) = add(direction.delta)
     fun minus(direction: Direction) = minus(direction.delta)
     fun delta(direction: Direction) = minus(direction.delta)

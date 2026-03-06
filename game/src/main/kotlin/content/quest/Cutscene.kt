@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.client.clearMinimap
 import world.gregs.voidps.engine.client.minimap
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -28,24 +29,21 @@ import world.gregs.voidps.type.Tile
 class Cutscene(
     private val player: Player,
     val name: String,
-    region: Region,
+    val instance: Region,
+    val offset: Delta,
 ) {
-    val instance: Region = Instances.small()
-    val offset: Delta
+
+    constructor(player: Player, name: String, region: Region? = null, levels: Int = 4) : this(player, name, player.smallInstance(region, levels), player.instanceOffset())
+
     var block: (suspend () -> Unit)? = null
 
     init {
-        if (region != Region.EMPTY) {
-            get<DynamicZones>().copy(region, instance)
-        }
-        offset = instance.offset(region)
         hideTabs()
     }
 
-    fun onEnd(block: suspend () -> Unit) {
+    fun onEnd(destroyInstance: Boolean = true, block: suspend () -> Unit) {
         player.queue("${name}_cutscene_end", 1, LogoutBehaviour.Accelerate) {
-            block.invoke()
-            end()
+            end(destroyInstance)
         }
         this@Cutscene.block = block
     }
@@ -58,24 +56,16 @@ class Cutscene(
 
     private var end = false
 
-    suspend fun end() {
+    suspend fun end(destroyInstance: Boolean = true) {
         if (!end) {
             end = true
-            destroy()
             block?.invoke()
+            if (destroyInstance) {
+                player.clearInstance()
+            }
             player.open("fade_in")
             showTabs()
-        }
-    }
-
-    fun destroy() {
-        Instances.free(instance)
-        get<DynamicZones>().clear(instance)
-        val regionLevel = instance.toLevel(0)
-        NPCs.clear(regionLevel)
-        for (zone in regionLevel.toCuboid().toZones()) {
-            GameObjects.clear(zone)
-            Collisions.clear(zone)
+            player.queue.clear("${name}_cutscene_end")
         }
     }
 
@@ -130,6 +120,24 @@ fun Player.instanceOffset(): Delta {
     return Delta(id)
 }
 
+fun Player.setInstanceLogout(tile: Tile) {
+    set("instance_logout", tile.id)
+}
+
+fun Player.exitInstance() {
+    val tile = instanceOrigin()
+    if (clearInstance()) {
+        tele(tile)
+    }
+}
+
+fun Player.instanceOrigin(): Tile = instanceLogout() ?: tile.minus(instanceOffset())
+
+fun Player.instanceLogout(): Tile? {
+    val logout: Int = get("instance_logout") ?: return null
+    return Tile(logout)
+}
+
 fun Player.instance(): Region? {
     val id: Int = get("instance") ?: return null
     return Region(id)
@@ -141,6 +149,12 @@ fun Player.clearInstance(): Boolean {
     val region = Region(id)
     Instances.free(region)
     get<DynamicZones>().clear(region)
+    val regionLevel = Region(id).toLevel(0)
+    NPCs.clear(regionLevel)
+    for (zone in regionLevel.toCuboid().toZones()) {
+        GameObjects.clear(zone)
+        Collisions.clear(zone)
+    }
     return true
 }
 
@@ -160,3 +174,4 @@ fun Player.closeTabs() {
 }
 
 fun Player.startCutscene(name: String, region: Region = Region.EMPTY): Cutscene = Cutscene(this, name, region)
+fun Player.startCutscene(name: String, region: Region, offset: Delta): Cutscene = Cutscene(this, name, region, offset)

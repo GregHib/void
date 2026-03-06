@@ -10,6 +10,7 @@ import content.entity.gfx.areaGfx
 import content.entity.player.inv.item.tradeable
 import content.entity.player.kept.ItemsKeptOnDeath
 import content.entity.proj.shoot
+import content.quest.instanceLogout
 import content.skill.prayer.getActivePrayerVarKey
 import content.skill.prayer.praying
 import content.skill.summoning.dismissFamiliar
@@ -67,6 +68,7 @@ class PlayerDeath : Script {
                 clear(getActivePrayerVarKey())
                 dismissFamiliar()
                 if (onDeath.dropItems) {
+                    val tile = instanceLogout() ?: tile
                     dropItems(player, killer, tile, wilderness)
                 }
                 levels.clear()

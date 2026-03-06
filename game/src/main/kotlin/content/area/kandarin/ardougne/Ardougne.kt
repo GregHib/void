@@ -107,7 +107,7 @@ class Ardougne : Script {
         tele(Tile(2518, 9760, 0))
         set("plague_city", "sewer")
         set("plaguecity_dug_mud_pile", true)
-        set("plaguecity_can_see_edmond_up_top", true)
+        set("plaguecity_hide_edmond_up_top", true)
         open("fade_in")
         statement("You dig deep into the soft soil... Suddenly it crumbles away! You fall through into the sewer. Edmond follows you down the hole.")
     }

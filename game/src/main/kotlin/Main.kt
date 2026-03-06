@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.*
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
-import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.event.AuditLog
@@ -106,7 +105,7 @@ object Main {
         Wildcards.update(Settings["storage.wildcards"])
         Runtime.getRuntime().addShutdownHook(
             thread(start = false) {
-                Despawn.world()
+                World.shutdown()
                 AuditLog.save()
             },
         )

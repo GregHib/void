@@ -1,57 +1,58 @@
 package world.gregs.voidps.engine.entity.character
 
-import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 
 /**
- * High-performance spatial index for grouping character indices by [world.gregs.voidps.type.Zone] or [world.gregs.voidps.type.Region]
+ * Spatial index for grouping character indices by [world.gregs.voidps.type.Zone] or [world.gregs.voidps.type.Region]
  * i.e. Map<Zone, List<Index>>
- * It's a doubly linked list with head [table] for fast iteration.
  */
 class CharacterIndexMap(size: Int) {
-    private val table = Int2IntOpenHashMap(size)
-    init {
-        table.defaultReturnValue(INVALID)
-    }
-    val next = IntArray(size) { INVALID }
-    val previous = IntArray(size) { INVALID }
+    /**
+     * Table mapping tiles to sets
+     */
+    private val table = Int2ObjectOpenHashMap<MutableSet<Int>>(size)
 
+    /**
+     * Which tile set the index is currently in
+     * Used for moving a character between tiles
+     */
+    private val current = IntArray(size) { INVALID }
+
+    /**
+     * Insert [index] into the set [id]
+     * Removes from the current set if already present
+     */
     fun add(id: Int, index: Int) {
-        previous[index] = INVALID
-        val head = table.get(id)
-        next[index] = head
-        if (head != INVALID) {
-            previous[head] = index
+        if (index < 0) {
+            return
         }
-        table.put(id, index)
+        val existing = current[index]
+        if (existing != INVALID) {
+            remove(existing, index)
+        }
+        table.getOrPut(id) { IntOpenHashSet() }.add(index)
+        current[index] = id
     }
 
+    /**
+     * Removes [index] from set [id]
+     */
     fun remove(id: Int, index: Int) {
-        val p = previous[index]
-        val n = next[index]
-        if (p != INVALID) {
-            next[p] = n
-        } else {
-            table.put(id, n)
+        val set = table.get(id) ?: return
+        if (set.remove(index) && set.isEmpty()) {
+            table.remove(id)
         }
-        if (n != INVALID) {
-            previous[n] = p
-        }
-        previous[index] = INVALID
-        next[index] = INVALID
+        current[index] = INVALID
     }
 
     fun clear() {
         table.clear()
-        next.fill(INVALID)
-        previous.fill(INVALID)
+        current.fill(INVALID)
     }
 
     fun onEach(id: Int, action: (Int) -> Unit) {
-        var index = table.get(id)
-        while (index != INVALID) {
-            action(index)
-            index = next[index]
-        }
+        table.get(id)?.onEach(action)
     }
 
     companion object {

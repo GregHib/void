@@ -28,7 +28,6 @@ object Players : Iterable<Player>, CharacterSearch<Player> {
 
     fun update(player: Player, from: Tile) {
         if (player.tile.zone != from.zone) {
-            map.remove(from.zone.id, player.index)
             map.add(player.tile.zone.id, player.index)
         }
     }

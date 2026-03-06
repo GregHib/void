@@ -86,11 +86,9 @@ object NPCs : Runnable,
 
     fun update(npc: NPC, from: Tile) {
         if (from.regionLevel != npc.tile.regionLevel) {
-            regionMap.remove(from.regionLevel.id, npc.index)
             regionMap.add(npc.tile.regionLevel.id, npc.index)
         }
         if (from.zone != npc.tile.zone) {
-            zoneMap.remove(from.zone.id, npc.index)
             zoneMap.add(npc.tile.zone.id, npc.index)
         }
     }

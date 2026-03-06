@@ -26,8 +26,8 @@ class PlagueCity : Script {
 
     init {
         playerSpawn {
-            if (get("plaguecity_can_see_edmond_up_top", false)) {
-                sendVariable("plaguecity_can_see_edmond_up_top")
+            if (get("plaguecity_hide_edmond_up_top", false)) {
+                sendVariable("plaguecity_hide_edmond_up_top")
             }
             if (get("plaguecity_dug_mud_pile", false)) {
                 sendVariable("plaguecity_dug_mud_pile")

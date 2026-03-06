@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.client.shakeCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.mode.Face
@@ -159,7 +160,7 @@ class GypsyAris : Script {
         player<Idle>("I think so, yes.")
     }
 
-    suspend fun ChoiceOption.notBeliever(): Unit = option<Neutral>("No, I don't believe in that stuff.") {
+    fun ChoiceOption.notBeliever(): Unit = option<Neutral>("No, I don't believe in that stuff.") {
         npc<Sad>("Ok suit yourself.")
     }
 
@@ -206,6 +207,7 @@ class GypsyAris : Script {
         delay(2)
         val cutscene = startCutscene("demon_slayer_aris", region)
         cutscene.onEnd {
+            start("demon_slayer_instance_exit", 4)
             open("fade_out")
             delay(3)
             tele(3203, 3424)
@@ -213,7 +215,7 @@ class GypsyAris : Script {
             clearCamera()
             clearTransform()
         }
-        delay(1)
+        delay(2)
         tele(cutscene.tile(3225, 3371), clearInterfaces = false)
         delay(2)
         transform("wally")
@@ -271,7 +273,6 @@ class GypsyAris : Script {
         npc<Neutral>("By reciting the correct magical incantation, and thrusting Silverlight into Delrith while he was newly summoned, Wally was able to imprison Delrith in the stone table at the centre of the circle.")
 
         statement("", clickToContinue = false)
-        queue.clear("demon_slayer_wally_cutscene_end")
         cutscene.end()
         set("demon_slayer", "sir_prysin")
         delrithWillCome()
