@@ -32,8 +32,7 @@ max_hit_melee = 80
 attack_bonus = 22
 hunt_mode = "cowardly"
 slayer_xp = 48.0
-categories = ["mogres"]
-categories = ["ogres"]
+categories = ["mogres", "ogres"]
 drop_table = "mogre"
 examine = "An angry Ogre in a funny hat."
 

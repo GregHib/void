@@ -10,18 +10,17 @@ import content.skill.slayer.*
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.config.SlayerTaskDefinition
-import world.gregs.voidps.engine.data.definition.SlayerTaskDefinitions
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
-class Turael(val slayerDefinitions: SlayerTaskDefinitions) : Script {
+class SlayerMaster : Script {
 
     init {
-        npcOperate("Talk-to", "turael") {
-            if (slayerTasks == 0) {
+        npcOperate("Talk-to", "turael,mazchna,vannaka,chaeldar,sumona,duradel,kuradal") { (target) ->
+            if (target.id == "turael" && slayerTasks == 0) {
                 player<Quiz>("Who are you?")
                 npc<Neutral>("I'm one of the elite Slayer Masters.")
                 choice {
@@ -29,11 +28,11 @@ class Turael(val slayerDefinitions: SlayerTaskDefinitions) : Script {
                         npc<Sad>("Oh dear, what do they teach you in school?")
                         player<Confused>("Well... er...")
                         npc<Neutral>("I suppose I'll have to educate you then. A slayer is someone who is trained to fight specific creatures. They know these creatures' every weakness and strength. As you can guess it makes killing them a lot easier.")
-                        teachMe()
+                        teachMe(target.id)
                     }
                     option<Neutral>("Never heard of you...") {
                         npc<Neutral>("That's because my foe never lives to tell of me. We slayers are a dangerous bunch.")
-                        teachMe()
+                        teachMe(target.id)
                     }
                 }
                 return@npcOperate
@@ -41,32 +40,47 @@ class Turael(val slayerDefinitions: SlayerTaskDefinitions) : Script {
             npc<Neutral>("'Ello, and what are you after then?")
             choice {
                 option<Neutral>("I need another assignment.") {
-                    if (combatLevel <= 70) {
-                        assignTask()
+                    val nextCombat = when (target.id) {
+                        "turael" -> 50
+                        "mazchna" -> 75
+                        "vannaka" -> 90
+                        "chaeldar" -> 100
+                        "sumona" -> 120
+                        else -> 128
+                    }
+                    if (combatLevel <= nextCombat) {
+                        assignTask(target.id)
                         return@option
                     }
-                    npc<Neutral>("You're actually very strong, are you sure you don't want Chaeldar in Zanaris to assign you a task?")
+                    val next = when (nextCombat) {
+                        50 -> "Mazchna in Canifis"
+                        75 -> "Chaeldar in Zanaris"
+                        90 -> "Sumona in Pollnivneach"
+                        else -> "Duradel in Shilo Village"
+                    }
+                    npc<Neutral>("You're actually very strong, are you sure you don't want $next to assign you a task?")
                     choice {
                         option<Neutral>("No that's okay, I'll take a task from you.") {
-                            assignTask()
+                            assignTask(target.id)
                         }
-                        option<Neutral>("Oh okay then, I'll go talk to Chaeldar.")
+                        option<Neutral>("Oh okay then, I'll go talk to ${next.substringBefore(" in")}.")
                     }
                 }
                 option<Quiz>("Have you any rewards for me, or anything to trade?") {
                     open("slayer_rewards_learn")
                 }
-                if (questCompleted("animal_magnetism")) {
+                if (target.id == "turael" && questCompleted("animal_magnetism")) {
                     option<Neutral>("I'm here about blessed axes again.")
                 }
+                option<Neutral>("Er...nothing... ")
             }
         }
 
-        npcOperate("Get-task", "turael") {
-            assignTask()
+        npcOperate("Get-task", "turael,mazchna,vannaka,chaeldar,sumona,duradel,kuradal") { (target) ->
+            assignTask(target.id)
         }
 
-        npcOperate("Trade", "turael") {
+        npcOperate("Trade", "turael,mazchna,vannaka,chaeldar,sumona,duradel,kuradal") {
             if (contains("broader_fletching")) {
                 openShop("slayer_equipment_broads")
             } else {
@@ -74,14 +88,14 @@ class Turael(val slayerDefinitions: SlayerTaskDefinitions) : Script {
             }
         }
 
-        npcOperate("Rewards", "turael") {
+        npcOperate("Rewards", "turael,mazchna,vannaka,chaeldar,sumona,duradel,kuradal") {
             open("slayer_rewards_learn")
         }
     }
 
-    suspend fun Player.assignTask() {
+    suspend fun Player.assignTask(master: String) {
         if (slayerTask == "nothing") {
-            roll()
+            roll(master)
             return
         }
         npc<Neutral>("You're still hunting ${slayerTask.toSentenceCase()}, you have $slayerTaskRemaining to go.")
@@ -93,37 +107,41 @@ class Turael(val slayerDefinitions: SlayerTaskDefinitions) : Script {
         }
         choice {
             option<Neutral>("Yes, please.") {
-                roll()
+                roll(master)
             }
             option<Neutral>("No, thanks.")
         }
     }
 
-    suspend fun Player.roll() {
-        val (definition, amount) = assign(this)
-        npc<Happy>("Excellent, you're doing great. Your new task is to kill $amount ${definition.type.toSentenceCase()}.")
+    suspend fun Player.roll(master: String) {
+        val (npc, amount) = assignTask(this, master)
+        val type = EnumDefinitions.string("slayer_tasks_categories", npc)
+        npc<Happy>("Excellent, you're doing great. Your new task is to kill $amount ${type.toSentenceCase()}.")
         choice {
             option<Quiz>("Got any tips for me?") {
-                npc<Neutral>(definition.tip)
+                val tip = EnumDefinitions.string("slayer_task_tips", npc)
+                npc<Neutral>(tip)
             }
             option<Happy>("Okay, great!")
         }
     }
 
-    suspend fun Player.teachMe() {
+    suspend fun Player.teachMe(master: String) {
         choice {
             option<Neutral>("Wow, can you teach me?") {
                 npc<Confused>("Hmmm well I'm not so sure...")
                 player<Neutral>("Pleeeaasssse!")
                 npc<Neutral>("Oh okay then, you twisted my arm. You'll have to train against specific groups of creatures.")
                 player<Quiz>("Okay, what's first?")
-                val (definition, amount) = assign(this)
-                npc<Neutral>("We'll start you off hunting ${definition.type.toSentenceCase()}, you'll need to kill $amount of them.")
+                val (npc, amount) = assignTask(this, master)
+                val type = EnumDefinitions.string("slayer_tasks_categories", npc)
+                npc<Neutral>("We'll start you off hunting ${type.toSentenceCase()}, you'll need to kill $amount of them.")
                 npc<Neutral>("You'll also need this enchanted gem, it allows Slayer Masters like myself to contact you and update you on your progress. Don't worry if you lose it, you can buy another from any Slayer Master.")
                 inventory.add("enchanted_gem")
                 choice {
                     option("Got any tips for me?") {
-                        npc<Neutral>(definition.tip)
+                        val tip = EnumDefinitions.string("slayer_task_tips", npc)
+                        npc<Neutral>(tip)
                     }
                     option<Neutral>("Okay, great!") {
                         npc<Happy>("Good luck! Don't forget to come back when you need a new assignment.")
@@ -134,16 +152,5 @@ class Turael(val slayerDefinitions: SlayerTaskDefinitions) : Script {
                 npc<Idle>("Suit yourself.")
             }
         }
-    }
-
-    fun assign(player: Player): Pair<SlayerTaskDefinition, Int> {
-        val definitions = slayerDefinitions.get("turael")
-        val definition = rollTask(player, definitions)
-        val amount = definition.amount.random()
-        player.slayerTasks++
-        player.slayerMaster = "turael"
-        player.slayerTask = definition.type
-        player.slayerTaskRemaining = amount
-        return Pair(definition, amount)
     }
 }

@@ -1,4 +1,4 @@
-[kurask_fremennik_dungeon]
+[kurask]
 id = 1608
 hitpoints = 970
 regen_rate_ticks = 5
@@ -14,6 +14,6 @@ respawn_delay = 15
 drop_table = "kurask"
 examine = "Large, heavy, with sharp things attached to its head."
 
-[kurask_fremennik_dungeon_2]
+[kurask_2]
 id = 1609
-clone = "kurask_fremennik_dungeon"
+clone = "kurask"

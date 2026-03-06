@@ -1,8 +1,8 @@
 spawns = [
-  { id = "tormented_demon_ancient_guthix_temple", x = 2589, y = 5714, members = true },
-  { id = "tormented_demon_ancient_guthix_temple", x = 2589, y = 5734, members = true },
-  { id = "tormented_demon_ancient_guthix_temple", x = 2601, y = 5710, members = true },
-  { id = "tormented_demon_ancient_guthix_temple", x = 2602, y = 5737, members = true },
-  { id = "tormented_demon_ancient_guthix_temple", x = 2610, y = 5710, members = true },
-  { id = "tormented_demon_ancient_guthix_temple", x = 2613, y = 5732, members = true },
+  { id = "tormented_demon", x = 2589, y = 5714, members = true },
+  { id = "tormented_demon", x = 2589, y = 5734, members = true },
+  { id = "tormented_demon", x = 2601, y = 5710, members = true },
+  { id = "tormented_demon", x = 2602, y = 5737, members = true },
+  { id = "tormented_demon", x = 2610, y = 5710, members = true },
+  { id = "tormented_demon", x = 2613, y = 5732, members = true },
 ]

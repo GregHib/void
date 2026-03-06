@@ -12,7 +12,7 @@ slayer_xp = 105.0
 slayer_level = 75
 immune_death = true
 drop_table = "gargoyle"
-categories = ["gargoyle"]
+categories = ["gargoyles"]
 examine = "Flies like a rock."
 
 [gargoyle_smashed]

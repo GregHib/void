@@ -1,7 +1,9 @@
 package content.skill.slayer
 
 import content.quest.questCompleted
-import world.gregs.voidps.engine.data.config.SlayerTaskDefinition
+import world.gregs.voidps.engine.client.ui.chat.toIntRange
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -61,39 +63,48 @@ fun Player.isTask(character: Character?): Boolean {
     return target.categories.contains(slayerTask)
 }
 
-fun rollTask(player: Player, definitions: Map<String, SlayerTaskDefinition>): SlayerTaskDefinition {
+fun assignTask(player: Player, master: String): Pair<Int, Int> {
+    val npc = rollTask(player, master)!!
+    val amount = EnumDefinitions.string("${master}_task_amount", npc).toIntRange(inclusive = true).random(random)
+    player.slayerTasks++
+    player.slayerMaster = master
+    player.slayerTask = EnumDefinitions.string("slayer_tasks_categories", npc)
+    player.slayerTaskRemaining = amount
+    return Pair(npc, amount)
+}
+
+fun rollTask(player: Player, master: String): Int? {
     var total = 0
-    for (definition in definitions.values) {
-        if (!hasRequirements(player, definition)) {
+    val weights = EnumDefinitions.getOrNull("${master}_task_weight")?.map ?: return null
+    for ((npc, weight) in weights) {
+        if (!hasRequirements(player, npc)) {
             continue
         }
-        total += definition.weight
+        total += weight as Int
     }
     val roll = random.nextInt(total)
     var count = 0
-    for (definition in definitions.values) {
-        if (!hasRequirements(player, definition)) {
+    for ((npc, weight) in weights) {
+        if (!hasRequirements(player, npc)) {
             continue
         }
-        count += definition.weight
+        count += weight as Int
         if (roll < count) {
-            return definition
+            return npc
         }
     }
-    return SlayerTaskDefinition.EMPTY
+    return null
 }
 
-private fun hasRequirements(player: Player, definition: SlayerTaskDefinition): Boolean {
-    if (!player.has(Skill.Slayer, definition.slayerLevel)) {
+private fun hasRequirements(player: Player, index: Int): Boolean {
+    val slayerLevel = NPCDefinitions.get(index)["slayer_level", 1]
+    if (!player.has(Skill.Slayer, slayerLevel)) {
         return false
     }
-    if (player.combatLevel < definition.combatLevel) {
+    val combatLevel = EnumDefinitions.int("slayer_task_combat_level", index)
+    if (player.combatLevel < combatLevel) {
         return false
     }
-    for (quest in definition.quests) {
-        if (!player.questCompleted(quest)) {
-            return false
-        }
-    }
-    return true
+    val quest = EnumDefinitions.stringOrNull("slayer_task_quest", index) ?: return true
+    return player.questCompleted(quest)
 }
