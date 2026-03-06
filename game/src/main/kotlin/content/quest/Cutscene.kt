@@ -43,7 +43,6 @@ class Cutscene(
 
     fun onEnd(destroyInstance: Boolean = true, block: suspend () -> Unit) {
         player.queue("${name}_cutscene_end", 1, LogoutBehaviour.Accelerate) {
-            block.invoke()
             end(destroyInstance)
         }
         this@Cutscene.block = block
@@ -60,12 +59,13 @@ class Cutscene(
     suspend fun end(destroyInstance: Boolean = true) {
         if (!end) {
             end = true
-            block?.invoke()
             if (destroyInstance) {
                 player.clearInstance()
             }
+            block?.invoke()
             player.open("fade_in")
             showTabs()
+            player.queue.clear("${name}_cutscene_end")
         }
     }
 

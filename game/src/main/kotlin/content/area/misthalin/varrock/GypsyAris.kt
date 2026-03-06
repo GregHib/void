@@ -5,6 +5,7 @@ import content.entity.effect.transform
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.world.music.playTrack
+import content.quest.clearInstance
 import content.quest.free.demon_slayer.DemonSlayerSpell.getWord
 import content.quest.free.demon_slayer.DemonSlayerSpell.randomiseOrder
 import content.quest.quest
@@ -16,6 +17,7 @@ import world.gregs.voidps.engine.client.shakeCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.mode.Face
@@ -38,6 +40,7 @@ class GypsyAris : Script {
             when (quest("demon_slayer")) {
                 "unstarted" -> {
                     npc<Neutral>("Hello, young one.")
+                    cutscene()
                     npc<Neutral>("Cross my palm with silver and the future will be revealed to you.")
                     if (!inventory.contains("coins")) {
                         player<Sad>("Oh dear. I don't have any money.")
@@ -159,7 +162,7 @@ class GypsyAris : Script {
         player<Idle>("I think so, yes.")
     }
 
-    suspend fun ChoiceOption.notBeliever(): Unit = option<Neutral>("No, I don't believe in that stuff.") {
+    fun ChoiceOption.notBeliever(): Unit = option<Neutral>("No, I don't believe in that stuff.") {
         npc<Sad>("Ok suit yourself.")
     }
 
@@ -205,15 +208,17 @@ class GypsyAris : Script {
         statement("", clickToContinue = false)
         delay(2)
         val cutscene = startCutscene("demon_slayer_aris", region)
-        cutscene.onEnd {
+        cutscene.onEnd(destroyInstance = false) {
+            start("demon_slayer_instance_exit", 4)
             open("fade_out")
             delay(3)
             tele(3203, 3424)
             face(Direction.WEST)
             clearCamera()
             clearTransform()
+            clearInstance()
         }
-        delay(1)
+        delay(2)
         tele(cutscene.tile(3225, 3371), clearInterfaces = false)
         delay(2)
         transform("wally")
@@ -271,8 +276,7 @@ class GypsyAris : Script {
         npc<Neutral>("By reciting the correct magical incantation, and thrusting Silverlight into Delrith while he was newly summoned, Wally was able to imprison Delrith in the stone table at the centre of the circle.")
 
         statement("", clickToContinue = false)
-        queue.clear("demon_slayer_wally_cutscene_end")
-        cutscene.end()
+        cutscene.end(destroyInstance = false)
         set("demon_slayer", "sir_prysin")
         delrithWillCome()
     }
