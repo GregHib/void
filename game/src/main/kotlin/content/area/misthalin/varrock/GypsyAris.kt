@@ -40,7 +40,6 @@ class GypsyAris : Script {
             when (quest("demon_slayer")) {
                 "unstarted" -> {
                     npc<Neutral>("Hello, young one.")
-                    cutscene()
                     npc<Neutral>("Cross my palm with silver and the future will be revealed to you.")
                     if (!inventory.contains("coins")) {
                         player<Sad>("Oh dear. I don't have any money.")
