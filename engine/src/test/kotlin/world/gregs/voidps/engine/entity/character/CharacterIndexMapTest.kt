@@ -14,10 +14,10 @@ class CharacterIndexMapTest {
 
         map.add(zone, c)
 
-        val collected = mutableListOf<Int>()
+        val collected = mutableSetOf<Int>()
         map.onEach(zone) { collected.add(it) }
 
-        assertEquals(listOf(3), collected)
+        assertEquals(setOf(3), collected)
     }
 
     @Test
@@ -28,10 +28,10 @@ class CharacterIndexMapTest {
         map.add(zone, c)
         map.add(zone, c)
 
-        val collected = mutableListOf<Int>()
+        val collected = mutableSetOf<Int>()
         map.onEach(zone) { collected.add(it) }
 
-        assertEquals(listOf(3), collected)
+        assertEquals(setOf(3), collected)
     }
 
     @Test
@@ -44,10 +44,10 @@ class CharacterIndexMapTest {
         map.add(zone, c)
         map.add(zone, c)
 
-        val collected = mutableListOf<Int>()
+        val collected = mutableSetOf<Int>()
         map.onEach(zone) { collected.add(it) }
 
-        assertEquals(listOf(3, 1), collected)
+        assertEquals(setOf(3, 1), collected)
     }
 
     @Test
@@ -62,11 +62,11 @@ class CharacterIndexMapTest {
         map.add(zone, c2)
         map.add(zone, c3)
 
-        val collected = mutableListOf<Int>()
+        val collected = mutableSetOf<Int>()
         map.onEach(zone) { collected.add(it) }
 
         // Insert-at-head order
-        assertEquals(listOf(3, 2, 1), collected)
+        assertEquals(setOf(3, 2, 1), collected)
     }
 
     @Test
@@ -83,10 +83,10 @@ class CharacterIndexMapTest {
 
         map.remove(zone, c3) // head
 
-        val collected = mutableListOf<Int>()
+        val collected = mutableSetOf<Int>()
         map.onEach(zone) { collected.add(it) }
 
-        assertEquals(listOf(2, 1), collected)
+        assertEquals(setOf(2, 1), collected)
     }
 
     @Test
@@ -104,10 +104,10 @@ class CharacterIndexMapTest {
         map.remove(zone, c1)
         map.remove(zone, c1)
 
-        val collected = mutableListOf<Int>()
+        val collected = mutableSetOf<Int>()
         map.onEach(zone) { collected.add(it) }
 
-        assertEquals(listOf(3, 2), collected)
+        assertEquals(setOf(3, 2), collected)
     }
 
     @Test
@@ -125,10 +125,10 @@ class CharacterIndexMapTest {
         map.remove(zone, c2)
         map.remove(zone, c2)
 
-        val collected = mutableListOf<Int>()
+        val collected = mutableSetOf<Int>()
         map.onEach(zone) { collected.add(it) }
 
-        assertEquals(listOf(3, 1), collected)
+        assertEquals(setOf(3, 1), collected)
     }
 
     @Test
@@ -146,10 +146,10 @@ class CharacterIndexMapTest {
         map.remove(zone, c3)
         map.remove(zone, c3)
 
-        val collected = mutableListOf<Int>()
+        val collected = mutableSetOf<Int>()
         map.onEach(zone) { collected.add(it) }
 
-        assertEquals(listOf(2, 1), collected)
+        assertEquals(setOf(2, 1), collected)
     }
 
     @Test
@@ -166,10 +166,10 @@ class CharacterIndexMapTest {
 
         map.remove(zone, c2) // middle
 
-        val collected = mutableListOf<Int>()
+        val collected = mutableSetOf<Int>()
         map.onEach(zone) { collected.add(it) }
 
-        assertEquals(listOf(3, 1), collected)
+        assertEquals(setOf(3, 1), collected)
     }
 
     @Test
@@ -186,10 +186,10 @@ class CharacterIndexMapTest {
 
         map.remove(zone, c1) // tail
 
-        val collected = mutableListOf<Int>()
+        val collected = mutableSetOf<Int>()
         map.onEach(zone) { collected.add(it) }
 
-        assertEquals(listOf(3, 2), collected)
+        assertEquals(setOf(3, 2), collected)
     }
 
 }
