@@ -59,7 +59,6 @@ fun engineModule(files: ConfigFiles) = module {
     single(createdAtStart = true) { SpellDefinitions().load(files.find(Settings["definitions.spells"])) }
     single(createdAtStart = true) { PatrolDefinitions().load(files.list(Settings["definitions.patrols"])) }
     single(createdAtStart = true) { PrayerDefinitions().load(files.find(Settings["definitions.prayers"])) }
-    single(createdAtStart = true) { GearDefinitions().load(files.find(Settings["definitions.gearSets"])) }
     single(createdAtStart = true) {
         get<ItemDefinitions>()
         DiangoCodeDefinitions().load(files.find(Settings["definitions.diangoCodes"]))
