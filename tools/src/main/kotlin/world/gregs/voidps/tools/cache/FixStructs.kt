@@ -83,7 +83,7 @@ object FixStructs {
         )
         val cache = CacheDelegate(library)
         val decoder = StructDecoder()
-        val encoder = StructEncoder((0 until 2000).map { it.toString() to it }.toMap())
+        val encoder = StructEncoder((0 until 2000).associateWith { it })
 
         val fixed = mutableListOf<StructDefinition>()
         for ((id, fixes) in achievementFixes) {
@@ -94,9 +94,9 @@ object FixStructs {
             val extras = definition.extras!! as MutableMap
             for ((key, value) in fixes) {
                 if (value is Skill) {
-                    extras[key.toString()] = Tasks.skills.indexOf(value) + 1
+                    extras[key] = Tasks.skills.indexOf(value) + 1
                 } else {
-                    extras[key.toString()] = value
+                    extras[key] = value
                 }
             }
             fixed.add(definition)

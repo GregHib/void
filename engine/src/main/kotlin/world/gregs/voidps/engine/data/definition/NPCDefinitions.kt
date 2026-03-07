@@ -1,11 +1,13 @@
 package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.Hash
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.timedLoad
@@ -53,7 +55,7 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                 Config.fileReader(path, 150) {
                     while (nextSection()) {
                         val stringId = section()
-                        val extras = Object2ObjectOpenHashMap<String, Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
+                        val extras = Int2ObjectOpenHashMap<Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
                         var id = -1
                         while (nextPair()) {
                             when (val key = key()) {
@@ -70,14 +72,14 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                                     while (nextElement()) {
                                         categories.add(string())
                                     }
-                                    extras["categories"] = categories
+                                    extras[Params.CATEGORIES] = categories
                                 }
                                 "drop_table" -> {
                                     val table = string()
                                     require(dropTables == null || table.isBlank() || dropTables.get("${table}_drop_table") != null) { "Drop table '$table' not found for npc $stringId" }
-                                    extras[key] = table
+                                    extras[Params.DROP_TABLE] = table
                                 }
-                                else -> extras[key] = value()
+                                else -> extras[Params.id(key)] = value()
                             }
                         }
                         require(!ids.containsKey(stringId)) { "Duplicate npc id found '$stringId' at $path." }
@@ -86,7 +88,7 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                         definitions[id].stringId = stringId
                         if (extras.isNotEmpty()) {
                             if (definitions[id].extras != null) {
-                                (definitions[id].extras as MutableMap<String, Any>).putAll(extras)
+                                (definitions[id].extras as MutableMap<Int, Any>).putAll(extras)
                             } else {
                                 definitions[id].extras = extras
                             }

@@ -21,7 +21,7 @@ data class GraphicDefinition(
     override var originalTextureColours: ShortArray? = null,
     override var modifiedTextureColours: ShortArray? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var extras: Map<Int, Any>? = null,
 ) : Definition,
     Recolourable,
     Extra {

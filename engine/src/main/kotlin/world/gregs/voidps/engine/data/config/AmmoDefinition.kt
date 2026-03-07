@@ -7,7 +7,7 @@ data class AmmoDefinition(
     override var id: Int,
     val items: Set<String> = setOf(),
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var extras: Map<Int, Any>? = null,
 ) : Definition,
     Extra {
     companion object {

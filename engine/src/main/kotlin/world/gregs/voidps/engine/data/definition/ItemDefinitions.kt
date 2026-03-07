@@ -1,12 +1,14 @@
 package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.Hash
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import net.pearx.kasechange.toSentenceCase
 import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
@@ -58,7 +60,7 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
                     while (nextSection()) {
                         val stringId = section()
                         var id = -1
-                        val extras = Object2ObjectOpenHashMap<String, Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
+                        val extras = Int2ObjectOpenHashMap<Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
                         while (nextPair()) {
                             when (val key = key()) {
                                 "id" -> {
@@ -67,17 +69,17 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
                                         extras.putAll(definitions[id].extras!!)
                                     }
                                 }
-                                "slot" -> extras[key] = EquipSlot.by(string())
-                                "type" -> extras[key] = EquipType.by(string())
-                                "kept" -> extras[key] = ItemKept.by(string())
+                                "slot" -> extras[Params.SLOT] = EquipSlot.by(string())
+                                "type" -> extras[Params.TYPE] = EquipType.by(string())
+                                "kept" -> extras[Params.KEPT] = ItemKept.by(string())
                                 "skill_req", "equip_req" -> {
                                     val map = Object2IntOpenHashMap<Skill>(1, Hash.VERY_FAST_LOAD_FACTOR)
                                     while (nextEntry()) {
                                         map[Skill.valueOf(key().toSentenceCase())] = int()
                                     }
-                                    extras[key] = map
+                                    extras[Params.id(key)] = map
                                 }
-                                "heals" -> extras[key] = if (peek == '"') {
+                                "heals" -> extras[Params.HEALS] = if (peek == '"') {
                                     string().toIntRange()
                                 } else {
                                     val int = int()
@@ -95,12 +97,12 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
                                 }
                                 "categories" -> {
                                     @Suppress("UNCHECKED_CAST")
-                                    val categories = extras.getOrPut("categories") { ObjectLinkedOpenHashSet<String>(4, Hash.VERY_FAST_LOAD_FACTOR) } as MutableSet<String>
+                                    val categories = extras.getOrPut(Params.CATEGORIES) { ObjectLinkedOpenHashSet<String>(4, Hash.VERY_FAST_LOAD_FACTOR) } as MutableSet<String>
                                     while (nextElement()) {
                                         categories.add(string())
                                     }
                                 }
-                                else -> extras[key] = value()
+                                else -> extras[Params.id(key)] = value()
                             }
                         }
                         require(!ids.containsKey(stringId)) { "Duplicate item id found '$stringId' at $path." }
@@ -119,10 +121,10 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
                 val definition = definitions[cloneId]
                 val id = ids.getInt(item)
                 require(id != -1) { "Unable to find item id '$item'" }
-                val extras = definitions[id].extras as? MutableMap<String, Any>
+                val extras = definitions[id].extras as? MutableMap<Int, Any>
                 if (extras != null) {
                     for (extra in definition.extras ?: continue) {
-                        if (extra.key == "aka") {
+                        if (extra.key == Params.AKA) {
                             continue
                         }
                         if (!extras.containsKey(extra.key)) {
@@ -136,8 +138,8 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
                     val normal = definitions[definition.lendId]
                     if (normal.extras != null) {
                         val lentExtras = Object2ObjectOpenHashMap(normal.extras)
-                        lentExtras.remove("aka")
-                        val extras = definition.extras as? MutableMap<String, Any>
+                        lentExtras.remove(Params.AKA)
+                        val extras = definition.extras as? MutableMap<Int, Any>
                         if (extras != null) {
                             lentExtras.putAll(extras)
                         }

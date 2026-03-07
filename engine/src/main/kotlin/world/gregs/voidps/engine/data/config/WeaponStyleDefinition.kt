@@ -9,7 +9,7 @@ data class WeaponStyleDefinition(
     val attackStyles: Array<String> = emptyArray(),
     val combatStyles: Array<String> = emptyArray(),
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var extras: Map<Int, Any>? = null,
 ) : Definition,
     Extra {
     override fun equals(other: Any?): Boolean {

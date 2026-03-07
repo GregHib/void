@@ -2,12 +2,13 @@ package world.gregs.voidps.engine.data.config
 
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.cache.definition.Params
 
 data class WeaponAnimationDefinition(
     override var id: Int = -1,
-    val attackTypes: Map<String, String> = emptyMap(),
+    val attackTypes: Map<Int, String> = emptyMap(),
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var extras: Map<Int, Any>? = null,
 ) : Definition,
     Extra {
 
@@ -15,8 +16,8 @@ data class WeaponAnimationDefinition(
         val EMPTY = WeaponAnimationDefinition()
 
         @Suppress("UNCHECKED_CAST")
-        fun fromMap(stringId: String, map: Map<String, Any>) = WeaponAnimationDefinition(
-            attackTypes = (map as? Map<String, String>) ?: EMPTY.attackTypes,
+        fun fromMap(stringId: String, map: Map<Int, Any>) = WeaponAnimationDefinition(
+            attackTypes = (map as? Map<Int, String>) ?: EMPTY.attackTypes,
             stringId = stringId,
         )
     }

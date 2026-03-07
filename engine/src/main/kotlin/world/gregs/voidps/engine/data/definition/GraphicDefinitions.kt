@@ -1,9 +1,11 @@
 package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.Hash
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.GraphicDefinition
 import world.gregs.voidps.engine.timedLoad
 
@@ -23,12 +25,12 @@ class GraphicDefinitions(
                     while (nextSection()) {
                         val stringId = section()
                         var id = 0
-                        val extras = Object2ObjectOpenHashMap<String, Any>(0)
+                        val extras = Int2ObjectOpenHashMap<Any>(0)
                         while (nextPair()) {
                             when (val key = key()) {
                                 "id" -> id = int()
                                 "angle" -> throw IllegalArgumentException("Unknown key 'angle' use 'curve' instead. ${exception()}")
-                                else -> extras[key] = value()
+                                else -> extras[Params.id(key)] = value()
                             }
                         }
                         require(!ids.containsKey(stringId)) { "Duplicate graphics id found '$stringId' at $path." }

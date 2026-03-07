@@ -11,7 +11,7 @@ data class InterfaceDefinition(
     var resizable: Int = -1,
     var permanent: Boolean = true,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var extras: Map<Int, Any>? = null,
 ) : Definition,
     Extra {
 

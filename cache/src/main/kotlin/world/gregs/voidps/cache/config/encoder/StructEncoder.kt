@@ -5,7 +5,7 @@ import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.config.ConfigEncoder
 import world.gregs.voidps.cache.config.data.StructDefinition
 
-class StructEncoder(val parameters: Map<String, Int>) : ConfigEncoder<StructDefinition>() {
+class StructEncoder(val parameters: Map<Int, Int>) : ConfigEncoder<StructDefinition>() {
 
     private val logger = InlineLogger()
 

@@ -11,7 +11,7 @@ data class FontDefinition(
     var topPadding: Int = 0,
     var bottomPadding: Int = 0,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var extras: Map<Int, Any>? = null,
 ) : Definition,
     Extra {
 

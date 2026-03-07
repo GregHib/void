@@ -1,11 +1,13 @@
 package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.Hash
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.InventoryDefinition
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.timedLoad
 
 object InventoryDefinitions : DefinitionsDecoder<InventoryDefinition> {
@@ -57,9 +59,9 @@ object InventoryDefinitions : DefinitionsDecoder<InventoryDefinition> {
             while (nextSection()) {
                 val stringId = section()
                 var invId = -1
-                val extras = Object2ObjectOpenHashMap<String, Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
+                val extras = Int2ObjectOpenHashMap<Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
                 if (shop) {
-                    extras["shop"] = true
+                    extras[Params.SHOP] = true
                 }
                 var itemIds: IntArray? = null
                 var amounts: IntArray? = null
@@ -91,8 +93,8 @@ object InventoryDefinitions : DefinitionsDecoder<InventoryDefinition> {
                             }
                         }
                         "length" -> length = int()
-                        "stack", "currency", "title" -> extras[key] = string()
-                        "width", "height" -> extras[key] = int()
+                        "stack", "currency", "title" -> extras[Params.id(key)] = string()
+                        "width", "height" -> extras[Params.id(key)] = int()
                         else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                     }
                 }

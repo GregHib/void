@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.timedLoad
 
 class WeaponAnimationDefinitions {
 
-    private lateinit var definitions: Map<String, WeaponAnimationDefinition>
+    lateinit var definitions: Map<String, WeaponAnimationDefinition>
 
     fun get(key: String) = getOrNull(key) ?: WeaponAnimationDefinition.EMPTY
 

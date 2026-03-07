@@ -11,7 +11,7 @@ data class QuickChatPhraseDefinition(
     var ids: Array<IntArray>? = null,
     var types: IntArray? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var extras: Map<Int, Any>? = null,
 ) : Definition,
     Extra {
 

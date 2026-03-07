@@ -103,7 +103,7 @@ data class InterfaceComponentDefinitionFull(
     var anIntArray4805: IntArray? = null,
     var hasScript: Boolean = false,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var extras: Map<Int, Any>? = null,
 ) : Definition,
     Extra {
     override fun equals(other: Any?): Boolean {

@@ -6,7 +6,7 @@ import world.gregs.voidps.cache.definition.Extra
 data class RenderEmoteDefinition(
     override var id: Int,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var extras: Map<Int, Any>? = null,
 ) : Definition,
     Extra {
     companion object {

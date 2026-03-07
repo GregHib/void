@@ -6,8 +6,8 @@ package world.gregs.voidps.cache.definition
 interface Parameters {
     val parameters: Map<Int, String>
 
-    fun set(extras: MutableMap<String, Any>, name: String, value: Any) {
-        extras[name] = value
+    fun set(extras: MutableMap<Int, Any>, id: Int, value: Any) {
+        extras[id] = value
     }
 
     companion object {

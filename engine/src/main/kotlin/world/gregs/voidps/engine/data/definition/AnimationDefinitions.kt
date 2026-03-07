@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.engine.timedLoad
 
@@ -23,14 +24,14 @@ class AnimationDefinitions(
                     while (nextSection()) {
                         val stringId = section()
                         var id = -1
-                        val extras = Object2ObjectOpenHashMap<String, Any>(2, Hash.VERY_FAST_LOAD_FACTOR)
+                        val extras = Object2ObjectOpenHashMap<Int, Any>(2, Hash.VERY_FAST_LOAD_FACTOR)
                         while (nextPair()) {
                             when (val key = key()) {
                                 "id" -> id = int()
-                                "ticks" -> extras[key] = int()
-                                "infinite" -> extras[key] = boolean()
-                                "walk" -> extras[key] = boolean()
-                                "run" -> extras[key] = boolean()
+                                "ticks" -> extras[Params.TICKS] = int()
+                                "infinite" -> extras[Params.INFINITE] = boolean()
+                                "walk" -> extras[Params.WALK] = boolean()
+                                "run" -> extras[Params.RUN] = boolean()
                                 else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                             }
                         }

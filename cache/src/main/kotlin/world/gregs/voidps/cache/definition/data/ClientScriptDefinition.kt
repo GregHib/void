@@ -18,7 +18,7 @@ data class ClientScriptDefinition(
     var stringOperands: Array<String?>? = null,
     var longOperands: LongArray? = null,
     var intOperands: IntArray? = null,
-    override var extras: Map<String, Any>? = null,
+    override var extras: Map<Int, Any>? = null,
 ) : Definition,
     Extra {
     override fun equals(other: Any?): Boolean {

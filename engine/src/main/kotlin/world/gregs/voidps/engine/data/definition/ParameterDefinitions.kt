@@ -7,6 +7,40 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Parameters
+import world.gregs.voidps.cache.definition.Params
+import world.gregs.voidps.cache.definition.Params.AMMO_GROUP
+import world.gregs.voidps.cache.definition.Params.CATEGORY
+import world.gregs.voidps.cache.definition.Params.EQUIP_LEVEL_1
+import world.gregs.voidps.cache.definition.Params.EQUIP_LEVEL_2
+import world.gregs.voidps.cache.definition.Params.EQUIP_LEVEL_3
+import world.gregs.voidps.cache.definition.Params.EQUIP_LEVEL_4
+import world.gregs.voidps.cache.definition.Params.EQUIP_LEVEL_5
+import world.gregs.voidps.cache.definition.Params.EQUIP_LEVEL_6
+import world.gregs.voidps.cache.definition.Params.EQUIP_SKILL_1
+import world.gregs.voidps.cache.definition.Params.EQUIP_SKILL_2
+import world.gregs.voidps.cache.definition.Params.EQUIP_SKILL_3
+import world.gregs.voidps.cache.definition.Params.EQUIP_SKILL_4
+import world.gregs.voidps.cache.definition.Params.EQUIP_SKILL_5
+import world.gregs.voidps.cache.definition.Params.EQUIP_SKILL_6
+import world.gregs.voidps.cache.definition.Params.MAGIC_STRENGTH
+import world.gregs.voidps.cache.definition.Params.RANGED_STRENGTH
+import world.gregs.voidps.cache.definition.Params.SKILLCAPE_SKILL
+import world.gregs.voidps.cache.definition.Params.USE_LEVEL_1
+import world.gregs.voidps.cache.definition.Params.USE_LEVEL_2
+import world.gregs.voidps.cache.definition.Params.USE_LEVEL_3
+import world.gregs.voidps.cache.definition.Params.USE_LEVEL_4
+import world.gregs.voidps.cache.definition.Params.USE_LEVEL_5
+import world.gregs.voidps.cache.definition.Params.USE_LEVEL_6
+import world.gregs.voidps.cache.definition.Params.USE_SKILL_1
+import world.gregs.voidps.cache.definition.Params.USE_SKILL_2
+import world.gregs.voidps.cache.definition.Params.USE_SKILL_3
+import world.gregs.voidps.cache.definition.Params.USE_SKILL_4
+import world.gregs.voidps.cache.definition.Params.USE_SKILL_5
+import world.gregs.voidps.cache.definition.Params.USE_SKILL_6
+import world.gregs.voidps.cache.definition.Params.WORN_OPTION_1
+import world.gregs.voidps.cache.definition.Params.WORN_OPTION_2
+import world.gregs.voidps.cache.definition.Params.WORN_OPTION_3
+import world.gregs.voidps.cache.definition.Params.WORN_OPTION_4
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.ParameterDefinition
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -50,49 +84,47 @@ class ParameterDefinitions(
     }
 
     @Suppress("UNCHECKED_CAST")
-    override fun set(extras: MutableMap<String, Any>, name: String, value: Any) {
-        when {
-            name.startsWith("equip_skill_") || name.startsWith("equip_level_") -> {
-                val map = extras.getOrPut("equip_req") { Object2IntOpenHashMap<Skill>(6) } as MutableMap<Skill, Int>
-                if (name.startsWith("equip_skill_")) {
-                    val skill = Skill.all[value as Int]
-                    map[skill] = -1
-                } else {
-                    val skill = map.keys.firstOrNull { map[it] == -1 } ?: return logger.warn { "Missing $name $value" }
-                    map[skill] = value as Int
-                }
+    override fun set(extras: MutableMap<Int, Any>, id: Int, value: Any) {
+        when (id) {
+            EQUIP_SKILL_1, EQUIP_SKILL_2, EQUIP_SKILL_3, EQUIP_SKILL_4, EQUIP_SKILL_5, EQUIP_SKILL_6 -> {
+                val map = extras.getOrPut(Params.EQUIP_REQ) { Object2IntOpenHashMap<Skill>(6) } as MutableMap<Skill, Int>
+                val skill = Skill.all[value as Int]
+                map[skill] = -1
             }
-            name.startsWith("use_skill_") || name.startsWith("use_level_") -> {
-                val map = extras.getOrPut("skill_req") { Object2IntOpenHashMap<Skill>(6) } as MutableMap<Skill, Int>
-                if (name.startsWith("use_skill_")) {
-                    val skill = Skill.all[value as Int]
-                    map[skill] = -1
-                } else {
-                    val skill = map.keys.firstOrNull { map[it] == -1 } ?: return logger.warn { "Missing $name $value" }
-                    map[skill] = value as Int
-                }
+            EQUIP_LEVEL_1, EQUIP_LEVEL_2, EQUIP_LEVEL_3, EQUIP_LEVEL_4, EQUIP_LEVEL_5, EQUIP_LEVEL_6 -> {
+                val map = extras.getOrPut(Params.EQUIP_REQ) { Object2IntOpenHashMap<Skill>(6) } as MutableMap<Skill, Int>
+                val skill = map.keys.firstOrNull { map[it] == -1 } ?: return logger.warn { "Missing param $id $value" }
+                map[skill] = value as Int
             }
-            name.endsWith("strength") -> {
-                extras[name] = (value as Int) / 10.0
+            USE_SKILL_1, USE_SKILL_2, USE_SKILL_3, USE_SKILL_4, USE_SKILL_5, USE_SKILL_6 -> {
+                val map = extras.getOrPut(Params.SKILL_REQ) { Object2IntOpenHashMap<Skill>(6) } as MutableMap<Skill, Int>
+                val skill = Skill.all[value as Int]
+                map[skill] = -1
             }
-            name == "skillcape_skill" -> {
-                extras[name] = Skill.all[value as Int]
+            USE_LEVEL_1, USE_LEVEL_2, USE_LEVEL_3, USE_LEVEL_4, USE_LEVEL_5, USE_LEVEL_6 -> {
+                val map = extras.getOrPut(Params.SKILL_REQ) { Object2IntOpenHashMap<Skill>(6) } as MutableMap<Skill, Int>
+                val skill = map.keys.firstOrNull { map[it] == -1 } ?: return logger.warn { "Missing param $id $value" }
+                map[skill] = value as Int
             }
-            name == "category" -> {
+            RANGED_STRENGTH, MAGIC_STRENGTH -> {
+                extras[id] = (value as Int) / 10.0
+            }
+            SKILLCAPE_SKILL -> extras[id] = Skill.all[value as Int]
+            CATEGORY -> {
                 val set = ObjectOpenHashSet<String>()
                 val int = value as Int
                 set.add(categoryDefinitions.get(int).stringId)
-                extras["categories"] = set
+                extras[Params.CATEGORIES] = set
             }
-            name == "ammo_group" -> {
+            AMMO_GROUP -> {
                 val int = value as Int
-                extras[name] = ammoDefinitions.get(int).stringId
+                extras[id] = ammoDefinitions.get(int).stringId
             }
-            name.startsWith("worn_option_") -> {
-                val list = extras.getOrPut("worn_options") { Int2ObjectOpenHashMap<String>(4) } as MutableMap<Int, String>
-                list[name.removePrefix("worn_option_").toInt() - 1] = value as String
+            WORN_OPTION_1, WORN_OPTION_2, WORN_OPTION_3, WORN_OPTION_4 -> {
+                val list = extras.getOrPut(Params.WORN_OPTIONS) { Int2ObjectOpenHashMap<String>(4) } as MutableMap<Int, String>
+                list[id - WORN_OPTION_1] = value as String
             }
-            else -> super.set(extras, name, value)
+            else -> super.set(extras, id, value)
         }
     }
 

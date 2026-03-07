@@ -6,6 +6,7 @@ import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 import content.skill.melee.weapon.attackType
 import content.skill.melee.weapon.weapon
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
@@ -90,7 +91,7 @@ class Ranged(val weaponStyles: WeaponStyleDefinitions, val weaponDefinitions: We
         val type = character.weapon.def.getOrNull("weapon_type") ?: style.stringId
         var animation: String?
         val definition = weaponDefinitions.get(type)
-        animation = definition.attackTypes.getOrDefault(character.attackType, definition.attackTypes["default"])
+        animation = definition.attackTypes.getOrDefault(Params.id(character.attackType), definition.attackTypes[Params.DEFAULT])
         if (animation == null) {
             animation = "${style.stringId}_${character.attackType}"
         }

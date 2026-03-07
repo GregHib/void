@@ -7,7 +7,7 @@ data class InterfaceDefinitionFull(
     override var id: Int = -1,
     var components: Array<InterfaceComponentDefinitionFull>? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var extras: Map<Int, Any>? = null,
 ) : Definition,
     Extra {
 

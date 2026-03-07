@@ -70,7 +70,7 @@ data class NPCDefinitionFull(
     var soundRangeMin: Int = 0,
     override var params: Map<Int, Any>? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var extras: Map<Int, Any>? = null,
 ) : Definition,
     Transforms,
     Recolourable,

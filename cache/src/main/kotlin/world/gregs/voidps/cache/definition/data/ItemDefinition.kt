@@ -19,7 +19,7 @@ data class ItemDefinition(
     var lendTemplateId: Int = -1,
     var equipIndex: Int = -1,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var extras: Map<Int, Any>? = null,
 ) : Definition,
     Extra {
 

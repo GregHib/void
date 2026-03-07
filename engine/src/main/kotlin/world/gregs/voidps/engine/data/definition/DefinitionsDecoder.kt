@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.data.definition
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
@@ -41,13 +42,13 @@ interface DefinitionsDecoder<D> where D : Definition, D : Extra {
 
     fun contains(id: String): Boolean = getOrNull(id) != null
 
-    fun apply(names: Map<Int, String>, extras: Map<String, Map<String, Any>>, block: (D) -> Unit = {}) {
+    fun apply(names: Map<Int, String>, extras: Map<String, Map<Int, Any>>, block: (D) -> Unit = {}) {
         for (i in definitions.indices) {
             val definition = definitions[i]
             val name = names[i]
             definition.stringId = name ?: i.toString()
             val extra = extras[name] ?: continue
-            definition.extras = Object2ObjectOpenHashMap(extra)
+            definition.extras = Int2ObjectOpenHashMap(extra)
             block.invoke(definition)
         }
     }

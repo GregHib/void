@@ -21,7 +21,7 @@ data class NPCDefinition(
     var runSound: Int = -1,
     var soundDistance: Int = 0,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var extras: Map<Int, Any>? = null,
 ) : Definition,
     Transforms,
     Extra {

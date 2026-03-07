@@ -43,7 +43,7 @@ data class WorldMapInfoDefinition(
     var anInt1051: Int = 2147483647,
     var anInt1060: Int = -2147483648,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var extras: Map<Int, Any>? = null,
 ) : Definition,
     Extra {
     override fun equals(other: Any?): Boolean {

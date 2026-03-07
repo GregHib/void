@@ -1,11 +1,13 @@
 package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.Hash
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.StructDefinition
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.EnumDefinition
 import world.gregs.voidps.cache.definition.data.EnumTypes
 import world.gregs.voidps.engine.timedLoad
@@ -154,7 +156,7 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
                         var valueType: Char = 0.toChar()
                         var defaultString = "null"
                         var defaultInt = 0
-                        val extras = Object2ObjectOpenHashMap<String, Any>(2, Hash.VERY_FAST_LOAD_FACTOR)
+                        val extras = Int2ObjectOpenHashMap<Any>(2, Hash.VERY_FAST_LOAD_FACTOR)
                         val map = mutableMapOf<Int, Any>()
                         while (nextPair()) {
                             when (val key = key()) {
@@ -187,7 +189,7 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
                                     }
                                     map[keyInt] = value()
                                 }
-                                else -> extras[key] = value()
+                                else -> extras[Params.id(key)] = value()
                             }
                         }
                         if (id == -1) {

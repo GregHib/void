@@ -71,7 +71,7 @@ data class ItemDefinitionFull(
     var singleNoteTemplateId: Int = -1,
     override var params: Map<Int, Any>? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var extras: Map<Int, Any>? = null,
 ) : Definition,
     Recolourable,
     ColourPalette,

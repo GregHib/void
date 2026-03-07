@@ -7,7 +7,7 @@ data class AnimationDefinition(
     override var id: Int = -1,
     var priority: Int = 5,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var extras: Map<Int, Any>? = null,
 ) : Definition,
     Extra {
 
