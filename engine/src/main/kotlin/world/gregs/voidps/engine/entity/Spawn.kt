@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -12,28 +13,33 @@ import world.gregs.voidps.engine.event.Wildcards
 
 interface Spawn {
     fun playerSpawn(handler: Player.() -> Unit) {
+        Script.checkLoading()
         playerSpawns.add(handler)
     }
 
     fun npcSpawn(id: String = "*", handler: NPC.() -> Unit) {
+        Script.checkLoading()
         Wildcards.find(id, Wildcard.Npc) { key ->
             npcSpawns.getOrPut(key) { mutableListOf() }.add(handler)
         }
     }
 
     fun objectSpawn(id: String = "*", handler: GameObject.() -> Unit) {
+        Script.checkLoading()
         Wildcards.find(id, Wildcard.Object) { key ->
             objectSpawns.getOrPut(key) { mutableListOf() }.add(handler)
         }
     }
 
     fun floorItemSpawn(id: String = "*", handler: FloorItem.() -> Unit) {
+        Script.checkLoading()
         Wildcards.find(id, Wildcard.Item) { key ->
             floorItemSpawns.getOrPut(key) { mutableListOf() }.add(handler)
         }
     }
 
     fun worldSpawn(handler: (ConfigFiles) -> Unit) {
+        Script.checkLoading()
         worldSpawns.add(handler)
     }
 

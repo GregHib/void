@@ -1,10 +1,12 @@
 package world.gregs.voidps.engine.data
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import world.gregs.voidps.engine.Script
 
 interface SettingsReload {
 
     fun settingsReload(handler: () -> Unit) {
+        Script.checkLoading()
         handlers.add(handler)
     }
 

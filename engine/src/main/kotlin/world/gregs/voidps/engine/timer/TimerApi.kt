@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.timer
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 
@@ -10,6 +11,7 @@ interface TimerApi {
      * @return ticks until start or [Timer.CANCEL]
      */
     fun timerStart(timer: String, handler: Player.(restart: Boolean) -> Int) {
+        Script.checkLoading()
         playerStart.getOrPut(timer) { mutableListOf() }.add(handler)
     }
 
@@ -20,6 +22,7 @@ interface TimerApi {
      * @return interval - to change the timers interval until the next tick
      */
     fun timerTick(timer: String, handler: Player.() -> Int) {
+        Script.checkLoading()
         playerTick.getOrPut(timer) { mutableListOf() }.add(handler)
     }
 
@@ -27,6 +30,7 @@ interface TimerApi {
      * [timer] stopped for a player
      */
     fun timerStop(timer: String, handler: Player.(logout: Boolean) -> Unit) {
+        Script.checkLoading()
         playerStop.getOrPut(timer) { mutableListOf() }.add(handler)
     }
 
@@ -36,6 +40,7 @@ interface TimerApi {
      * @return ticks until start or [Timer.CANCEL]
      */
     fun npcTimerStart(timer: String, handler: NPC.(restart: Boolean) -> Int) {
+        Script.checkLoading()
         npcStart.getOrPut(timer) { mutableListOf() }.add(handler)
     }
 
@@ -46,6 +51,7 @@ interface TimerApi {
      * @return interval - to change the timers interval until the next tick
      */
     fun npcTimerTick(timer: String, handler: NPC.() -> Int) {
+        Script.checkLoading()
         npcTick.getOrPut(timer) { mutableListOf() }.add(handler)
     }
 
@@ -53,6 +59,7 @@ interface TimerApi {
      * [timer] stopped for an npc
      */
     fun npcTimerStop(timer: String, handler: NPC.(death: Boolean) -> Unit) {
+        Script.checkLoading()
         npcStop.getOrPut(timer) { mutableListOf() }.add(handler)
     }
 
@@ -62,6 +69,7 @@ interface TimerApi {
      * @return ticks until start or [Timer.CANCEL]
      */
     fun worldTimerStart(timer: String, handler: () -> Int) {
+        Script.checkLoading()
         worldStart.getOrPut(timer) { mutableListOf() }.add(handler)
     }
 
@@ -72,6 +80,7 @@ interface TimerApi {
      * @return interval - to change the timers interval until the next tick
      */
     fun worldTimerTick(timer: String, handler: () -> Int) {
+        Script.checkLoading()
         worldTick.getOrPut(timer) { mutableListOf() }.add(handler)
     }
 
@@ -79,6 +88,7 @@ interface TimerApi {
      * World [timer] stopped
      */
     fun worldTimerStop(timer: String, handler: (shutdown: Boolean) -> Unit) {
+        Script.checkLoading()
         worldStop.getOrPut(timer) { mutableListOf() }.add(handler)
     }
 

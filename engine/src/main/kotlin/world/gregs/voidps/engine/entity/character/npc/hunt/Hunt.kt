@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.npc.hunt
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
@@ -9,18 +10,22 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 interface Hunt {
 
     fun huntFloorItem(mode: String, handler: NPC.(FloorItem) -> Unit) {
+        Script.checkLoading()
         floorItems[mode] = handler
     }
 
     fun huntNPC(mode: String, handler: NPC.(NPC) -> Unit) {
+        Script.checkLoading()
         npcs[mode] = handler
     }
 
     fun huntPlayer(npc: String = "*", mode: String, handler: NPC.(Player) -> Unit) {
+        Script.checkLoading()
         players.getOrPut("$mode:$npc") { mutableListOf() }.add(handler)
     }
 
     fun huntObject(mode: String, handler: NPC.(GameObject) -> Unit) {
+        Script.checkLoading()
         objects[mode] = handler
     }
 

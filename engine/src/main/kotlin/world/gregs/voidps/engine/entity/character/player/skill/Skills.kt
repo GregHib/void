@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.player.skill
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Wildcard
@@ -13,24 +14,29 @@ import world.gregs.voidps.engine.event.Wildcards
 interface Skills {
 
     fun levelChanged(skill: Skill? = null, handler: Player.(skill: Skill, from: Int, to: Int) -> Unit) {
+        Script.checkLoading()
         playerChanged.getOrPut(skill) { mutableListOf() }.add(handler)
     }
 
     fun npcLevelChanged(skill: Skill, id: String = "*", handler: NPC.(skill: Skill, from: Int, to: Int) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(id, Wildcard.Npc) { match ->
             npcChanged.getOrPut("$match:${skill.name}") { mutableListOf() }.add(handler)
         }
     }
 
     fun maxLevelChanged(skill: Skill? = null, handler: Player.(skill: Skill, from: Int, to: Int) -> Unit) {
+        Script.checkLoading()
         playerMaxChanged.getOrPut(skill) { mutableListOf() }.add(handler)
     }
 
     fun experience(handler: Player.(skill: Skill, from: Int, to: Int) -> Unit) {
+        Script.checkLoading()
         experience.add(handler)
     }
 
     fun blockedExperience(handler: Player.(skill: Skill, exp: Int) -> Unit) {
+        Script.checkLoading()
         blockedExperience = handler
     }
 

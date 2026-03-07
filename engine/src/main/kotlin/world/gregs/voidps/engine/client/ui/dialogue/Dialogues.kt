@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.client.ui.dialogue
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.cache.definition.data.NPCDefinition
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Wildcard
@@ -9,11 +10,13 @@ import world.gregs.voidps.engine.event.Wildcards
 
 interface Dialogues {
     fun continueDialogue(id: String = "*", handler: Player.(id: String) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(id, Wildcard.Component) { i ->
             handlers[i] = handler
         }
     }
     fun continueItemDialogue(handler: Player.(String) -> Unit) {
+        Script.checkLoading()
         itemHandler = handler
     }
 

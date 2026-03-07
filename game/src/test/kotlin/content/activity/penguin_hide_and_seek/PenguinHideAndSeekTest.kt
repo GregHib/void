@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertNotNull
 import org.junit.jupiter.api.assertNull
 import org.koin.core.component.get
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
@@ -231,7 +232,9 @@ class PenguinHideAndSeekTest : WorldTest() {
     }
 
     private fun instance(): PenguinHideAndSeek {
+        Script.loading = true
         val instance = PenguinHideAndSeek(get())
+        Script.loading = false
         return instance
     }
 }

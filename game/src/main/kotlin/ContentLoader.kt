@@ -14,6 +14,7 @@ class ContentLoader {
 
     fun load(): List<Script> {
         val start = System.currentTimeMillis()
+        Script.loading = true
         val scriptNames = ContentLoader::class.java.getResourceAsStream("scripts.txt")?.bufferedReader() ?: error("No auto-generated script file found, make sure 'gradle scriptMetadata' is correctly running")
         loadContentApis()
         val scripts = mutableListOf<Script>()
@@ -36,6 +37,7 @@ class ContentLoader {
         if (scripts.isEmpty()) {
             throw NoSuchFileException("No content scripts found.")
         }
+        Script.loading = false
         logger.info { "Loaded ${scripts.size} ${"script".plural(scripts.size)} in ${System.currentTimeMillis() - start}ms" }
         return scripts
     }

@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.mode.interact.*
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -18,16 +19,19 @@ interface Operation {
      */
 
     fun playerOperate(option: String, handler: suspend Player.(PlayerOnPlayerInteract) -> Unit) {
+        Script.checkLoading()
         playerPlayer.getOrPut(option) { mutableListOf() }.add(handler)
     }
 
     fun npcOperate(option: String, npc: String = "*", handler: suspend Player.(PlayerOnNPCInteract) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(npc, Wildcard.Npc) { id ->
             playerNpc.getOrPut("$option:$id") { mutableListOf() }.add(handler)
         }
     }
 
     fun objectOperate(option: String, obj: String = "*", arrive: Boolean = true, handler: suspend Player.(PlayerOnObjectInteract) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(obj, Wildcard.Object) { id ->
             if (!arrive) {
                 noDelays.add("$option:$id")
@@ -37,6 +41,7 @@ interface Operation {
     }
 
     fun floorItemOperate(option: String, handler: suspend Player.(PlayerOnFloorItemInteract) -> Unit) {
+        Script.checkLoading()
         playerFloorItem.getOrPut(option) { mutableListOf() }.add(handler)
     }
 
@@ -45,18 +50,21 @@ interface Operation {
      */
 
     fun onPlayerOperate(id: String = "*", handler: suspend Player.(ItemOnPlayerInteract) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(id, Wildcard.Component) { i ->
             onPlayer.getOrPut(i) { mutableListOf() }.add(handler)
         }
     }
 
     fun itemOnPlayerOperate(item: String = "*", handler: suspend Player.(ItemOnPlayerInteract) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(item, Wildcard.Item) { id ->
             onPlayer.getOrPut(id) { mutableListOf() }.add(handler)
         }
     }
 
     fun onNPCOperate(id: String = "*", npc: String = "*", handler: suspend Player.(InterfaceOnNPCInteract) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(id, Wildcard.Component) { i ->
             Wildcards.find(npc, Wildcard.Npc) { n ->
                 onNpc.getOrPut("$i:$n") { mutableListOf() }.add(handler)
@@ -65,6 +73,7 @@ interface Operation {
     }
 
     fun itemOnNPCOperate(item: String = "*", npc: String = "*", handler: suspend Player.(ItemOnNPCInteract) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(item, Wildcard.Item) { itm ->
             Wildcards.find(npc, Wildcard.Npc) { id ->
                 itemOnNpc.getOrPut("$itm:$id") { mutableListOf() }.add(handler)
@@ -73,6 +82,7 @@ interface Operation {
     }
 
     fun onObjectOperate(id: String = "*", obj: String = "*", handler: suspend Player.(InterfaceOnObjectInteract) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(id, Wildcard.Component) { i ->
             Wildcards.find(obj, Wildcard.Object) { o ->
                 onObject.getOrPut("$i:$o") { mutableListOf() }.add(handler)
@@ -81,6 +91,7 @@ interface Operation {
     }
 
     fun itemOnObjectOperate(item: String = "*", obj: String = "*", arrive: Boolean = true, handler: suspend Player.(ItemOnObjectInteract) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(item, Wildcard.Item) { itm ->
             Wildcards.find(obj, Wildcard.Object) { id ->
                 if (!arrive) {
@@ -92,6 +103,7 @@ interface Operation {
     }
 
     fun onFloorItemOperate(id: String = "*", floorItem: String = "*", handler: suspend Player.(InterfaceOnFloorItemInteract) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(id, Wildcard.Component) { i ->
             Wildcards.find(floorItem, Wildcard.Item) { floor ->
                 onFloorItem.getOrPut("$i:$floor") { mutableListOf() }.add(handler)
@@ -100,6 +112,7 @@ interface Operation {
     }
 
     fun itemOnFloorItemOperate(item: String = "*", floorItem: String = "*", handler: suspend Player.(ItemOnFloorItemInteract) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(item, Wildcard.Item) { itm ->
             Wildcards.find(floorItem, Wildcard.Item) { id ->
                 itemOnFloorItem.getOrPut("$itm:$id") { mutableListOf() }.add(handler)
@@ -112,14 +125,17 @@ interface Operation {
      */
 
     fun npcOperatePlayer(option: String, handler: suspend NPC.(NPCOnPlayerInteract) -> Unit) {
+        Script.checkLoading()
         npcPlayer.getOrPut(option) { mutableListOf() }.add(handler)
     }
 
     fun npcOperateNPC(option: String, handler: suspend NPC.(NPCOnNPCInteract) -> Unit) {
+        Script.checkLoading()
         npcNpc.getOrPut(option) { mutableListOf() }.add(handler)
     }
 
     fun npcOperateObject(option: String, obj: String = "*", arrive: Boolean = true, handler: suspend NPC.(NPCOnObjectInteract) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(obj, Wildcard.Object) { id ->
             if (!arrive) {
                 noDelays.add("$option:$id")
@@ -129,6 +145,7 @@ interface Operation {
     }
 
     fun npcOperateFloorItem(option: String, handler: suspend NPC.(NPCOnFloorItemInteract) -> Unit) {
+        Script.checkLoading()
         npcFloorItem.getOrPut(option) { mutableListOf() }.add(handler)
     }
 

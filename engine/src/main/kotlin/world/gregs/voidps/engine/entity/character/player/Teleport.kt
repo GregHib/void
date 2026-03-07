@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.player
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -14,20 +15,24 @@ import world.gregs.voidps.type.Tile
 interface Teleport {
 
     fun teleportTakeOff(type: String, block: Player.() -> Boolean) {
+        Script.checkLoading()
         takeOff[type] = block
     }
 
     fun teleportLand(type: String, block: Player.() -> Unit) {
+        Script.checkLoading()
         land[type] = block
     }
 
     fun objTeleportTakeOff(option: String = "*", obj: String = "*", block: Player.(obj: GameObject, option: String) -> Int) {
+        Script.checkLoading()
         Wildcards.find(obj, Wildcard.Object) { id ->
             objectTakeOff["$option:$id"] = block
         }
     }
 
     fun objTeleportLand(option: String = "*", obj: String = "*", block: Player.(obj: GameObject, option: String) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(obj, Wildcard.Object) { id ->
             objectLand["$option:$id"] = block
         }

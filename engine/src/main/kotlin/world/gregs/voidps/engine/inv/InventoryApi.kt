@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.inv
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
@@ -14,14 +15,17 @@ interface InventoryApi {
      * For a general "any change" occurred notification use [inventoryUpdated]
      */
     fun slotChanged(inventory: String = "*", slot: Int? = null, handler: Player.(change: InventorySlotChanged) -> Unit) {
+        Script.checkLoading()
         slots.getOrPut("$inventory:${slot ?: "*"}") { mutableListOf() }.add(handler)
     }
 
     fun slotChanged(inventory: String = "*", slot: EquipSlot, handler: Player.(change: InventorySlotChanged) -> Unit) {
+        Script.checkLoading()
         slotChanged(inventory, slot.index, handler)
     }
 
     fun inventoryUpdated(inventory: String = "*", handler: Player.(inventory: String, changed: List<InventorySlotChanged>) -> Unit) {
+        Script.checkLoading()
         updates.getOrPut(inventory) { mutableListOf() }.add(handler)
     }
 
@@ -29,12 +33,14 @@ interface InventoryApi {
      * An item slot updated to add an item to an inventory.
      */
     fun itemAdded(item: String = "*", inventory: String, slot: Int? = null, handler: Player.(ItemAdded) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(item, Wildcard.Item) { id ->
             added.getOrPut("$id:$inventory:${slot ?: "*"}") { mutableListOf() }.add(handler)
         }
     }
 
     fun itemAdded(item: String = "*", inventory: String, slot: EquipSlot, handler: Player.(ItemAdded) -> Unit) {
+        Script.checkLoading()
         itemAdded(item, inventory, slot.index, handler)
     }
 
@@ -42,12 +48,14 @@ interface InventoryApi {
      * An item slot updated to remove an item from an inventory.
      */
     fun itemRemoved(item: String = "*", inventory: String, slot: Int? = null, handler: Player.(ItemRemoved) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(item, Wildcard.Item) { id ->
             removed.getOrPut("$id:$inventory:${slot ?: "*"}") { mutableListOf() }.add(handler)
         }
     }
 
     fun itemRemoved(item: String = "*", inventory: String, slot: EquipSlot, handler: Player.(ItemRemoved) -> Unit) {
+        Script.checkLoading()
         itemRemoved(item, inventory, slot.index, handler)
     }
 
