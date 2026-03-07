@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client.variable
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Wildcard
@@ -11,12 +12,14 @@ interface VariableApi {
      * Variable with name [key] was set to [to] [from] previous value
      */
     fun variableSet(key: String = "*", handler: Player.(key: String, from: Any?, to: Any?) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(key, Wildcard.Variables) { match ->
             setVar.getOrPut(match) { mutableListOf() }.add(handler)
         }
     }
 
     fun npcVariableSet(key: String = "*", id: String = "*", handler: NPC.(key: String, from: Any?, to: Any?) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(key, Wildcard.Variables) { keyMatch ->
             Wildcards.find(id, Wildcard.Npc) { idMatch ->
                 setVarNpc.getOrPut("$keyMatch:$idMatch") { mutableListOf() }.add(handler)
@@ -28,6 +31,7 @@ interface VariableApi {
      * Variable with name [key] had a sub-value [value] added to it
      */
     fun variableBitAdded(key: String, handler: Player.(value: Any) -> Unit) {
+        Script.checkLoading()
         varbitsAdded[key] = handler
     }
 
@@ -35,6 +39,7 @@ interface VariableApi {
      * Variable with name [key] had a sub-value [value] removed from it
      */
     fun variableBitRemoved(key: String, handler: Player.(value: Any) -> Unit) {
+        Script.checkLoading()
         varbitsRemoved[key] = handler
     }
 

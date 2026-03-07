@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.event.Wildcards
 interface InterfaceApi {
 
     fun onItem(id: String, item: String = "*", handler: Player.(item: Item, id: String) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(id, Wildcard.Component) { i ->
             Wildcards.find(item, Wildcard.Item) { itm ->
                 onItem.getOrPut("$i:$itm") { mutableListOf() }.add(handler)
@@ -20,6 +21,7 @@ interface InterfaceApi {
     }
 
     fun itemOnItem(fromItem: String = "*", toItem: String = "*", bidirectional: Boolean = true, handler: Player.(fromItem: Item, toItem: Item, fromSlot: Int, toSlot: Int) -> Unit) {
+        Script.checkLoading()
         val biHandler: Player.(Item, Item, Int, Int) -> Unit = { from, to, fromSlot, toSlot ->
             handler(this, to, from, toSlot, fromSlot)
         }
@@ -27,6 +29,7 @@ interface InterfaceApi {
     }
 
     fun itemOnItem(fromItem: String = "*", toItem: String = "*", bidirectional: Boolean = true, handler: Player.(fromItem: Item, toItem: Item) -> Unit) {
+        Script.checkLoading()
         val single: Player.(Item, Item, Int, Int) -> Unit = { from, to, _, _ ->
             handler(this, from, to)
         }
@@ -43,6 +46,7 @@ interface InterfaceApi {
         biHandler: Player.(Item, Item, Int, Int) -> Unit,
         handler: Player.(from: Item, to: Item, fromSlot: Int, toSlot: Int) -> Unit,
     ) {
+        Script.checkLoading()
         Wildcards.find(fromItem, Wildcard.Item) { from ->
             Wildcards.find(toItem, Wildcard.Item) { to ->
                 if (bidirectional) {
@@ -58,6 +62,7 @@ interface InterfaceApi {
      * @see [interfaceRefresh] for re-opened interfaces
      */
     fun interfaceOpened(id: String, handler: Player.(id: String) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(id, Wildcard.Interface) { i ->
             opened.getOrPut(i) { mutableListOf() }.add(handler)
         }
@@ -67,6 +72,7 @@ interface InterfaceApi {
      * An interface was open and has now been closed
      */
     fun interfaceClosed(id: String, handler: Player.(id: String) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(id, Wildcard.Interface) { i ->
             closed.getOrPut(i) { mutableListOf() }.add(handler)
         }
@@ -77,12 +83,14 @@ interface InterfaceApi {
      * Primarily for interface changes like unlocking.
      */
     fun interfaceRefresh(id: String, handler: Player.(id: String) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(id, Wildcard.Interface) { i ->
             refreshed.getOrPut(i) { mutableListOf() }.add(handler)
         }
     }
 
     fun interfaceSwap(fromId: String = "*", toId: String = "*", handler: Player.(fromId: String, toId: String, fromSlot: Int, toSlot: Int) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(fromId, Wildcard.Component) { from ->
             Wildcards.find(toId, Wildcard.Component) { to ->
                 swapped.getOrPut("$from:$to") { mutableListOf() }.add(handler)
@@ -91,22 +99,26 @@ interface InterfaceApi {
     }
 
     fun interfaceOption(option: String = "*", id: String = "*", handler: suspend Player.(InterfaceOption) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(id, Wildcard.Component) { i ->
             options.getOrPut("$option:$i") { mutableListOf() }.add(handler)
         }
     }
 
     fun itemOption(option: String, item: String = "*", inventory: String = "inventory", handler: suspend Player.(ItemOption) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(item, Wildcard.Item) { i ->
             itemOption.getOrPut("$option:$i:$inventory") { mutableListOf() }.add(handler)
         }
     }
 
     fun questJournalOpen(quest: String, handler: Player.() -> Unit) {
+        Script.checkLoading()
         quests[quest] = handler
     }
 
     fun shopOpen(shop: String = "*", handler: Player.(String) -> Unit) {
+        Script.checkLoading()
         shops[shop] = handler
     }
 

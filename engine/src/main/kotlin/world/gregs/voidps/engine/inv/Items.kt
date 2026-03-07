@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.inv
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.config.ItemOnItemDefinition
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -16,6 +17,7 @@ interface Items {
      * Do something after an item is bought from a shop
      */
     fun bought(item: String = "*", handler: Player.(Item) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(item, Wildcard.Item) { i ->
             bought[i] = handler
         }
@@ -25,6 +27,7 @@ interface Items {
      * Do something after an item is sold to a shop
      */
     fun sold(item: String = "*", handler: Player.(Item) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(item, Wildcard.Item) { i ->
             sold[i] = handler
         }
@@ -34,6 +37,7 @@ interface Items {
      * Check if an item can be dropped
      */
     fun droppable(handler: Player.(Item) -> Boolean) {
+        Script.checkLoading()
         droppable.add(handler)
     }
 
@@ -41,6 +45,7 @@ interface Items {
      * Do something after an item is dropped
      */
     fun dropped(item: String, handler: Player.(Item) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(item, Wildcard.Item) { i ->
             dropped[i] = handler
         }
@@ -50,6 +55,7 @@ interface Items {
      * Check if an item can be destroyed
      */
     fun destructible(item: String, handler: Player.(Item) -> Boolean) {
+        Script.checkLoading()
         Wildcards.find(item, Wildcard.Item) { i ->
             destroyable[i] = handler
         }
@@ -59,6 +65,7 @@ interface Items {
      * Do something after an item is destroyed
      */
     fun destroyed(item: String, handler: Player.(Item) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(item, Wildcard.Item) { i ->
             destroyed[i] = handler
         }
@@ -68,6 +75,7 @@ interface Items {
      * Check if an item can be eaten or drunk
      */
     fun consumable(item: String, handler: Player.(Item) -> Boolean) {
+        Script.checkLoading()
         Wildcards.find(item, Wildcard.Item) { i ->
             consumable[i] = handler
         }
@@ -77,6 +85,7 @@ interface Items {
      * Apply effects after an item has been eaten or drank
      */
     fun consumed(item: String = "*", handler: Player.(Item, slot: Int) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(item, Wildcard.Item) { i ->
             consumed[i] = handler
         }
@@ -86,6 +95,7 @@ interface Items {
      * When an item was taken off of the floor
      */
     fun taken(item: String, handler: Player.(FloorItem) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(item, Wildcard.Item) { i ->
             taken[i] = handler
         }
@@ -95,6 +105,7 @@ interface Items {
      * Returns id of an item to take off of the floor or null to cancel.
      */
     fun takeable(item: String, handler: Player.(item: String) -> String?) {
+        Script.checkLoading()
         Wildcards.find(item, Wildcard.Item) { i ->
             takeable[i] = handler
         }
@@ -104,6 +115,7 @@ interface Items {
      * Do something after items are crafted together
      */
     fun crafted(skill: Skill? = null, handler: suspend Player.(ItemOnItemDefinition) -> Unit) {
+        Script.checkLoading()
         crafted.getOrPut(skill) { mutableListOf() }.add(handler)
     }
 

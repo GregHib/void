@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
@@ -12,32 +13,38 @@ import world.gregs.voidps.engine.event.Wildcards
 interface Despawn {
 
     fun playerDespawn(handler: Player.() -> Unit) {
+        Script.checkLoading()
         playerDespawns.add(handler)
     }
 
     fun playerLogout(handler: Player.() -> Boolean) {
+        Script.checkLoading()
         playerLogout.add(handler)
     }
 
     fun npcDespawn(id: String = "*", handler: NPC.() -> Unit) {
+        Script.checkLoading()
         Wildcards.find(id, Wildcard.Npc) { key ->
             npcDespawns.getOrPut(key) { mutableListOf() }.add(handler)
         }
     }
 
     fun objectDespawn(id: String = "*", handler: GameObject.() -> Unit) {
+        Script.checkLoading()
         Wildcards.find(id, Wildcard.Object) { key ->
             objectDespawns.getOrPut(key) { mutableListOf() }.add(handler)
         }
     }
 
     fun floorItemDespawn(id: String = "*", handler: FloorItem.() -> Unit) {
+        Script.checkLoading()
         Wildcards.find(id, Wildcard.Item) { key ->
             floorItemDespawns.getOrPut(key) { mutableListOf() }.add(handler)
         }
     }
 
     fun worldDespawn(handler: () -> Unit) {
+        Script.checkLoading()
         worldDespawns.add(handler)
     }
 

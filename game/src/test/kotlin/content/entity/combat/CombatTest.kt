@@ -12,7 +12,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertNotNull
 import playerOption
-import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
@@ -120,14 +119,6 @@ internal class CombatTest : WorldTest() {
 
     @Test
     fun `Dragon dagger special attack`() {
-        var hits = 0
-        object : Script {
-            init {
-                npcCombatDamage {
-                    hits++
-                }
-            }
-        }
         val player = createPlayer(emptyTile)
         player.experience.set(Skill.Attack, EXPERIENCE)
         player.levels.set(Skill.Attack, 99)
@@ -140,7 +131,7 @@ internal class CombatTest : WorldTest() {
         player.npcOption(npc, "Attack")
         tick(2)
 
-        assertEquals(2, hits)
+        assertEquals(2, npc.visuals.hits.splats.count { it != null })
     }
 
     @Test

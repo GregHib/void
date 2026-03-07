@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.mode.move
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -15,20 +16,24 @@ interface Moved {
      * Entity moved starting at from and ending at their current tile
      */
     fun moved(handler: Player.(from: Tile) -> Unit) {
+        Script.checkLoading()
         playerMoved.add(handler)
     }
 
     fun npcMoved(id: String = "*", handler: NPC.(from: Tile) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(id, Wildcard.Npc) { match ->
             npcMoved.getOrPut(match) { mutableListOf() }.add(handler)
         }
     }
 
     fun entered(area: String, handler: Player.(area: AreaDefinition) -> Unit) {
+        Script.checkLoading()
         entered.getOrPut(area) { mutableListOf() }.add(handler)
     }
 
     fun exited(area: String, handler: Player.(area: AreaDefinition) -> Unit) {
+        Script.checkLoading()
         exited.getOrPut(area) { mutableListOf() }.add(handler)
     }
 

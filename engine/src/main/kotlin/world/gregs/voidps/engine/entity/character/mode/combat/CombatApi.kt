@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.mode.combat
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -11,10 +12,12 @@ import world.gregs.voidps.engine.event.Wildcards
 interface CombatApi {
 
     fun combatStart(handler: Player.(target: Character) -> Unit) {
+        Script.checkLoading()
         start.add(handler)
     }
 
     fun npcCombatStart(handler: NPC.(target: Character) -> Unit) {
+        Script.checkLoading()
         startNpc.add(handler)
     }
 
@@ -22,10 +25,12 @@ interface CombatApi {
      * Combat movement has stopped
      */
     fun combatStop(handler: Player.(target: Character) -> Unit) {
+        Script.checkLoading()
         stop.add(handler)
     }
 
     fun npcCombatStop(handler: NPC.(target: Character) -> Unit) {
+        Script.checkLoading()
         stopNpc.add(handler)
     }
 
@@ -33,10 +38,12 @@ interface CombatApi {
      * Prepare for combat by checking resources and calculating attack style against [target]
      */
     fun combatPrepare(style: String = "*", handler: Player.(target: Character) -> Boolean) {
+        Script.checkLoading()
         prepare.getOrPut(style) { mutableListOf() }.add(handler)
     }
 
     fun npcCombatPrepare(npc: String = "*", handler: NPC.(target: Character) -> Boolean) {
+        Script.checkLoading()
         Wildcards.find(npc, Wildcard.Npc) { id ->
             prepareNpc.getOrPut(id) { mutableListOf() }.add(handler)
         }
@@ -46,12 +53,14 @@ interface CombatApi {
      * A turn in a combat scenario resulting one or many hits
      */
     fun combatSwing(weapon: String = "*", style: String = "*", handler: Player.(target: Character) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(weapon, Wildcard.Item) { id ->
             swing.getOrPut("$id:$style") { mutableListOf() }.add(handler)
         }
     }
 
     fun npcCombatSwing(handler: NPC.(target: Character) -> Unit) {
+        Script.checkLoading()
         require(swingNpc == null) { "Only one npc swing handler can be registered" }
         swingNpc =  handler
     }
@@ -60,6 +69,7 @@ interface CombatApi {
      * After an [npc] [attack] type
      */
     fun npcAttack(npc: String = "*", attack: String = "*", handler: NPC.(target: Character) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(npc, Wildcard.Npc) { id ->
             npcAttack["$id:$attack"] = handler
         }
@@ -69,6 +79,7 @@ interface CombatApi {
      * After an [npc] [attack] type's impact
      */
     fun npcImpact(npc: String = "*", attack: String = "*", handler: NPC.(target: Character) -> Boolean) {
+        Script.checkLoading()
         Wildcards.find(npc, Wildcard.Npc) { id ->
             npcImpact["$id:$attack"] = handler
         }
@@ -78,6 +89,7 @@ interface CombatApi {
      * Condition required to be able to use a type of [attack]
      */
     fun npcCondition(condition: String, handler: NPC.(target: Character) -> Boolean) {
+        Script.checkLoading()
         npcCondition[condition] = handler
     }
 
@@ -87,10 +99,12 @@ interface CombatApi {
      * @param style the combat type, typically: melee, range or magic
      */
     fun combatAttack(style: String = "*", handler: Player.(CombatAttack) -> Unit) {
+        Script.checkLoading()
         attacks.getOrPut(style) { mutableListOf() }.add(handler)
     }
 
     fun npcCombatAttack(npc: String = "*", handler: NPC.(CombatAttack) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(npc, Wildcard.Npc) { id ->
             attackNpc.getOrPut(id) { mutableListOf() }.add(handler)
         }
@@ -102,24 +116,29 @@ interface CombatApi {
      * @param style the combat type, typically: melee, range or magic
      */
     fun combatDamage(style: String = "*", handler: Player.(CombatDamage) -> Unit) {
+        Script.checkLoading()
         damages.getOrPut(style) { mutableListOf() }.add(handler)
     }
 
     fun npcCombatDamage(npc: String = "*", style: String = "*", handler: NPC.(CombatDamage) -> Unit) {
+        Script.checkLoading()
         Wildcards.find(npc, Wildcard.Npc) { id ->
             damageNpc.getOrPut("$id:$style") { mutableListOf() }.add(handler)
         }
     }
 
     fun specialAttack(id: String = "*", block: Player.(target: Character, id: String) -> Unit) {
+        Script.checkLoading()
         specials[id] = block
     }
 
     fun specialAttackPrepare(id: String = "*", block: Player.(id: String) -> Boolean) {
+        Script.checkLoading()
         prepareSpecial[id] = block
     }
 
     fun specialAttackDamage(id: String = "*", block: Player.(target: Character, damage: Int) -> Unit) {
+        Script.checkLoading()
         damageSpecial[id] = block
     }
 
