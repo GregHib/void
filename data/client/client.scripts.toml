@@ -44,6 +44,9 @@ id = 695
 id = 1465
 
 [quest_journal_refresh]
+id = 2169
+
+[quest_journal_reload]
 id = 2165
 
 [quest_journal_length]
