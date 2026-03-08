@@ -249,8 +249,32 @@ object Params {
     const val SLING = 5246
     const val CHUCK = 5247
     const val LOB = 5248
+    const val MIN_HIT_STAB = 5249
+    const val MIN_HIT_RANGE = 5250
+    const val MIN_HIT_SLASH = 5251
+    const val MIN_HIT_ICY_BREATH = 5252
+    const val MIN_HIT_CRUSH = 5253
+    const val MIN_HIT_MAGIC = 5254
+    const val MIN_HIT_DAMAGE = 5255
+    const val MIN_HIT_MELEE = 5256
+    const val MIN_HIT_TYPELESS_CRUSH = 5257
+    const val MIN_HIT_RANDOM = 5258
+    const val MIN_HIT_NONE = 5259
+    const val MIN_HIT_DRAGONFIRE = 5260
 
     private fun custom(name: String) = when (name) {
+        "min_hit_stab" -> MIN_HIT_STAB
+        "min_hit_range" -> MIN_HIT_RANGE
+        "min_hit_slash" -> MIN_HIT_SLASH
+        "min_hit_icy_breath" -> MIN_HIT_ICY_BREATH
+        "min_hit_crush" -> MIN_HIT_CRUSH
+        "min_hit_magic" -> MIN_HIT_MAGIC
+        "min_hit_damage" -> MIN_HIT_DAMAGE
+        "min_hit_melee" -> MIN_HIT_MELEE
+        "min_hit_typeless_crush" -> MIN_HIT_TYPELESS_CRUSH
+        "min_hit_random" -> MIN_HIT_RANDOM
+        "min_hit_none" -> MIN_HIT_NONE
+        "min_hit_dragonfire" -> MIN_HIT_DRAGONFIRE
         "punch" -> PUNCH
         "kick" -> KICK
         "block" -> BLOCK
