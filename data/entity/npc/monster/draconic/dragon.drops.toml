@@ -132,7 +132,7 @@ drops = [
 [black_dragon_tertiary]
 roll = 10000
 drops = [
-  { table = "hard_clue_scroll", roll = 78 },
+  { table = "hard_clue_scroll", chance = 78 },
   { id = "draconic_visage" },
 ]
 

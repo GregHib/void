@@ -40,7 +40,7 @@ drops = [
 roll = 128
 drops = [
   { id = "dagannoth_ribs", chance = 32 },
-  { table = "medium_clue_scroll", roll = 128 }
+  { table = "medium_clue_scroll", chance = 128 }
 ]
 
 [dagannoth_waterbirth_drop_table]
@@ -89,7 +89,7 @@ drops = [
 roll = 128
 drops = [
   { id = "dagannoth_ribs", chance = 32 },
-  { table = "medium_clue_scroll", roll = 128 }
+  { table = "medium_clue_scroll", chance = 128 }
 ]
 
 [dagannoth_spawn_drop_table]

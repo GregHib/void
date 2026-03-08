@@ -162,6 +162,7 @@ class DropCommands(val tables: DropTables) : Script {
         }
         player.start("search_delay", 1)
         val chances = mutableMapOf<ItemDrop, Double>()
+        println("Table: ${table.print(0, 1.0)}")
         collectChances(player, table, chances)
         for ((drop, chance) in chances) {
             val amount = when {
@@ -174,12 +175,68 @@ class DropCommands(val tables: DropTables) : Script {
     }
 
     fun collectChances(player: Player, table: DropTable, map: MutableMap<ItemDrop, Double>, multiplier: Double = 1.0) {
+        /*
+            [black_dragon_tertiary]
+            roll = 128
+            table = "rare_drop_table", chance = 2
+            // 0.015625
+
+            [rare_drop_table]
+            roll = 128
+            table = "mega_rare_drop_table", chance = 15
+            0.1171875
+
+            30/16384
+
+            [mega_rare_drop_table]
+            roll = 128
+            id = "shield_left_half", chance = 4
+            0.03125
+
+            120/2097152
+
+            // 2/128 - 0.015625
+            DropTable(
+              // 20/128 - 0.15625
+              DropTable(
+                // 1/128 - 0.0078125
+                DropTable(
+                  // 113/128 - 0.8828125
+                  nothing
+                  // 8/128 - 0.0625
+                  rune_spear
+                  // 4/128 - 0.03125 // 2*20*1*4 / 128*128*128*128 = 160/268435456 = 5.960464477539063e-7
+                  shield_left_half
+                  // 3/128 - 0.0234375
+                  dragon_spear
+                )
+              )
+              // 15/128 - 0.1171875
+              DropTable(
+                // 113/128 - 0.8828125
+                nothing
+                // 8/128 - 0.0625
+                rune_spear
+                // 4/128 - 0.03125 // 120/2097152 5.7220458984375e-5 1/17476
+                shield_left_half
+                // 3/128 - 0.0234375
+                dragon_spear/2097152
+              )
+            )
+
+            280/2097152 = 1.33514404296875e-4
+
+            0.00006103515625 ?
+
+         */
+        println("Table: ${table}")
         for (drop in table.drops) {
             if (drop is ItemDrop) {
                 val chance = drop.chance(table) * multiplier
-                map[drop] = chance
+                map[drop] = map.getOrPut(drop) { 0.0 } + chance
             } else if (drop is DropTable) {
-                val chance = if (table.type == TableType.First && drop.chance > 0) table.roll / drop.chance.toDouble() else 1.0
+                val chance = multiplier * if (table.type == TableType.First && drop.chance > 0) drop.chance / drop.roll.toDouble() else 1.0
+                println("Table chance tb_roll=${table.roll} tb_chance=${table.chance} dp_roll=${drop.roll} dp_chance=${drop.chance} - chance = ${drop.chance / drop.roll.toDouble()} * $multiplier")
                 collectChances(player, drop, map, chance)
             }
         }
@@ -192,7 +249,7 @@ class DropCommands(val tables: DropTables) : Script {
         if (chance <= 0) {
             return 0.0
         }
-        return table.roll / chance.toDouble()
+        return chance / table.roll.toDouble()
     }
 
     private class InventoryDelegate(
