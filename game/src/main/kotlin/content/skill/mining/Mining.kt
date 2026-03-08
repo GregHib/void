@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirementsToUse
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.success
@@ -135,7 +136,7 @@ class Mining : Script {
                     val chanceMax = EnumDefinitions.int("mining_chance_max", item)
                     if (success(levels.get(Skill.Mining), chanceMin..chanceMax)) {
                         val xp = EnumDefinitions.int("mining_xp", item) / 10.0
-                        experience.add(Skill.Mining, xp)
+                        exp(Skill.Mining, xp)
                         ShootingStarHandler.extraOreHandler(this, item, xp)
                         if (!addOre(this, item) || deplete(target, EnumDefinitions.int("mining_life", item))) {
                             clearAnim()

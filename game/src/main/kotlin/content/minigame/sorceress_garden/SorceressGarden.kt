@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
@@ -80,10 +81,10 @@ class SorceressGarden(val dropTables: DropTables) : Script {
         sound("osman_pick_high")
         animDelay("picking_high")
         when (type) {
-            "summer" -> experience.add(Skill.Thieving, 60.0)
-            "autumn" -> experience.add(Skill.Thieving, 50.0)
-            "spring" -> experience.add(Skill.Thieving, 40.0)
-            "winter" -> experience.add(Skill.Thieving, 30.0)
+            "summer" -> exp(Skill.Thieving, 60.0)
+            "autumn" -> exp(Skill.Thieving, 50.0)
+            "spring" -> exp(Skill.Thieving, 40.0)
+            "winter" -> exp(Skill.Thieving, 30.0)
         }
         leave()
     }
@@ -124,7 +125,7 @@ class SorceressGarden(val dropTables: DropTables) : Script {
         }
         sound("pick")
         animDelay("climb_down")
-        experience.add(Skill.Farming, 25.0)
+        exp(Skill.Farming, 25.0)
         leave()
     }
 }

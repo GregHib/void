@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -35,7 +36,7 @@ class BoneOffering : Script {
         val xp = item.def["prayer_xp", 0.0]
         repeat(amount) {
             if (inventory.remove(item.id)) {
-                experience.add(Skill.Prayer, xp)
+                exp(Skill.Prayer, xp)
                 anim("offer_bones")
                 areaGfx("bone_offering", tile)
                 message(

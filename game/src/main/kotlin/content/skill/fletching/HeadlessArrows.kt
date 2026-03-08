@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
@@ -62,7 +63,7 @@ class HeadlessArrows : Script {
             }
             val experiencePerArrow = 15.0 / 15
             val totalExperience = experiencePerArrow * actualAmount
-            player.experience.add(Skill.Fletching, totalExperience)
+            player.exp(Skill.Fletching, totalExperience)
             player.message("You attach feathers to $actualAmount arrow shafts.")
             makeHeadlessArrows(player, addItem, amount - 1)
         }
@@ -80,7 +81,7 @@ class HeadlessArrows : Script {
             }
             val experiencePerArrow = 15.0 / 15
             val totalExperience = experiencePerArrow * amount
-            player.experience.add(Skill.Fletching, totalExperience)
+            player.exp(Skill.Fletching, totalExperience)
             player.message("You attach feathers to $amount arrow shafts.")
         }
     }

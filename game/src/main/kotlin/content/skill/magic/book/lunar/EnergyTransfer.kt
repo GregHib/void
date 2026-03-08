@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.type.random
 
@@ -48,7 +49,7 @@ class EnergyTransfer(val definitions: SpellDefinitions) : Script {
             anim("lunar_cast")
             target.gfx("energy_transfer")
             sound("energy_transfer")
-            experience.add(Skill.Magic, definition.experience)
+            exp(Skill.Magic, definition.experience)
             damage(random.nextInt(95, 100))
             specialAttackEnergy = 0
             target.specialAttackEnergy = MAX_SPECIAL_ATTACK

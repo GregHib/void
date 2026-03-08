@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.entity.obj.replace
@@ -29,7 +30,7 @@ object ShootingStarHandler {
         if (getChance() && rewardPlayerBonusOre(player)) {
             player.message("<dark_green>You managed to mine an extra ore from the rock.")
             player.inventory.add(ore)
-            player.experience.add(Skill.Mining, xpReward)
+            player.exp(Skill.Mining, xpReward)
         }
     }
 

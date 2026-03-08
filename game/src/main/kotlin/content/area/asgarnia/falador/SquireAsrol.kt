@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.equipment
@@ -194,7 +195,7 @@ class SquireAsrol : Script {
         AuditLog.event(this, "quest_completed", "the_knights_sword")
         set("the_knights_sword", "completed")
         jingle("quest_complete_1")
-        experience.add(Skill.Smithing, 12725.0)
+        exp(Skill.Smithing, 12725.0)
         refreshQuestJournal()
         inc("quest_points")
         message("Congratulations! Quest complete!")

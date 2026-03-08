@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
@@ -61,7 +62,7 @@ class FletchUnfinished : Script {
             val itemCreated = getFletched(addItem)
             message("You carefully cut the wood into $itemCreated.", ChatType.Game)
             val xp = EnumDefinitions.int("unf_fletching_xp", addItem)
-            experience.add(Skill.Fletching, xp / 10.0)
+            exp(Skill.Fletching, xp / 10.0)
             anim("fletching_log")
             fletch(addItem, removeItem, amount - 1)
         }

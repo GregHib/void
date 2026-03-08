@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.AuditLog
@@ -497,7 +498,7 @@ class Gudrun : Script {
         jingle("quest_complete_3")
         set("gunnars_ground", "completed")
         inc("quest_points", 5)
-        experience.add(Skill.Crafting, 300.0)
+        exp(Skill.Crafting, 300.0)
         softQueue("quest_complete", 1) {
             questComplete(
                 "Gunnar's Ground",

@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -248,7 +249,7 @@ class Edmond : Script {
     suspend fun Player.questComplete() {
         set("plague_city", "completed")
         jingle("quest_complete_2")
-        experience.add(Skill.Mining, 2425.0)
+        exp(Skill.Mining, 2425.0)
         inventory.add("a_magic_scroll")
         refreshQuestJournal()
         inc("quest_points")

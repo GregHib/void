@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.AuditLog
@@ -143,7 +144,7 @@ class LumbridgeChurch : Script {
         set("restless_ghost_coffin", "skull")
         set("the_restless_ghost", "completed")
         jingle("quest_complete_1")
-        experience.add(Skill.Prayer, 1125.0)
+        exp(Skill.Prayer, 1125.0)
         refreshQuestJournal()
         inc("quest_points")
         softQueue("quest_complete", 1) {

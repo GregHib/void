@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
@@ -43,7 +44,7 @@ class Darts : Script {
             }
 
             val totalExperience = (xp / 10.0) * actualAmount
-            experience.add(Skill.Fletching, totalExperience)
+            exp(Skill.Fletching, totalExperience)
             message("You finish making $actualAmount darts.", ChatType.Game)
         }
     }

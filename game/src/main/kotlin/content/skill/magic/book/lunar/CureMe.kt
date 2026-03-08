@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 
 class CureMe(val definitions: SpellDefinitions) : Script {
@@ -25,7 +26,7 @@ class CureMe(val definitions: SpellDefinitions) : Script {
             anim("lunar_cast")
             gfx(spell)
             sound(spell)
-            experience.add(Skill.Magic, definition.experience)
+            exp(Skill.Magic, definition.experience)
             curePoison()
         }
     }

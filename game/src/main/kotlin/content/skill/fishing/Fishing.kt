@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.success
 import world.gregs.voidps.engine.inv.add
@@ -123,7 +124,7 @@ class Fishing : Script {
                     if (bait != "none" && !player.inventory.remove(bait)) {
                         break@fishing
                     }
-                    player.experience.add(Skill.Fishing, experience.toDouble())
+                    player.exp(Skill.Fishing, experience.toDouble())
                     addCatch(player, item)
                     break
                 }

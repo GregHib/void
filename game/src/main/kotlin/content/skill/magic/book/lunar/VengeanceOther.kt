@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.timer.epochSeconds
 
@@ -51,7 +52,7 @@ class VengeanceOther(
         anim("lunar_cast")
         target.gfx("vengeance_other")
         sound("vengeance_other")
-        experience.add(Skill.Magic, definition.experience)
+        exp(Skill.Magic, definition.experience)
         target["vengeance"] = true
         start("vengeance_delay", definition["delay_seconds"], epochSeconds())
     }

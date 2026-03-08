@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
@@ -27,7 +28,7 @@ class Dororan : Script {
                 softQueue("engraving") {
                     item("dororans_engraved_ring", 400, "You engrave 'Gudrun the Fair, Gudrun the Fiery' onto the ring.")
                     anim("engrave")
-                    experience.add(Skill.Crafting, 125.0)
+                    exp(Skill.Crafting, 125.0)
                     inventory.replace("ring_from_jeffery", "dororans_engraved_ring")
                     set("gunnars_ground", "engraved_ring")
                 }
@@ -88,7 +89,7 @@ class Dororan : Script {
                                                 return@option
                                             }
                                             anim("engrave")
-                                            experience.add(Skill.Crafting, 2000.0)
+                                            exp(Skill.Crafting, 2000.0)
                                             set("dororan_ruby_bracelet", 1)
                                             items("chisel", "ruby_bracelet", "You carefully engrave 'With beauty blessed' onto the ruby bracelet.")
                                             npc<Happy>("Magnificent! Outstanding! I will give this to her immediately. Please, come back when you have time")
@@ -118,7 +119,7 @@ class Dororan : Script {
                                         return@option
                                     }
                                     anim("engrave")
-                                    experience.add(Skill.Crafting, 10000.0)
+                                    exp(Skill.Crafting, 10000.0)
                                     set("dororan_dragonstone_necklace", 1)
                                     items("chisel", "dragonstone_necklace", "You skillfully engrave 'Gudrun' onto the dragonstone necklace.")
                                     npc<Happy>("Another astonishing piece of work! Please, come back later to see if I have other crafting tasks.")
@@ -140,7 +141,7 @@ class Dororan : Script {
                                         return@option
                                     }
                                     anim("engrave")
-                                    experience.add(Skill.Crafting, 20000.0)
+                                    exp(Skill.Crafting, 20000.0)
                                     set("dororan_onyx_amulet", 1)
                                     items("chisel", "onyx_amulet", "You expertly engrave 'The most beautiful girl in the room' onto the onyx amulet.")
                                     npc<Happy>("That's fantastic! Excellent work.")

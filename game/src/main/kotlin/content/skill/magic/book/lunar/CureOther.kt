@@ -32,7 +32,7 @@ class CureOther(val definitions: SpellDefinitions) : Script {
             anim("lunar_cast")
             target.gfx("cure_other")
             sound("cure_other")
-            experience.add(Skill.Magic, definition.experience)
+            exp(Skill.Magic, definition.experience)
             target.curePoison()
             target.sound("cure_other_impact")
             target.message("You have been cured by $name.")
