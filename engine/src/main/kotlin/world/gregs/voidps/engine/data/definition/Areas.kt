@@ -77,7 +77,7 @@ object Areas {
                         val definition = if (extras.isEmpty()) {
                             AreaDefinition(name = name, area = area, tags = tags, stringId = name)
                         } else {
-                            AreaDefinition(name = name, area = area, tags = tags, stringId = name, extras = extras)
+                            AreaDefinition(name = name, area = area, tags = tags, stringId = name, params = extras)
                         }
                         named[name] = definition
                         for (tag in tags) {

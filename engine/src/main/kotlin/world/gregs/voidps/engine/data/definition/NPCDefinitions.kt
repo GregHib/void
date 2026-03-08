@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
@@ -64,7 +63,7 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                                     val npc = refs.getInt(name)
                                     require(npc >= 0) { "Cannot find npc to clone with id '$name' in ${path}. Make sure it's in the same file." }
                                     val definition = definitions[npc]
-                                    extras.putAll(definition.extras ?: continue)
+                                    extras.putAll(definition.params ?: continue)
                                 }
                                 "id" -> id = int()
                                 "categories" -> {
@@ -87,10 +86,10 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                         ids[stringId] = id
                         definitions[id].stringId = stringId
                         if (extras.isNotEmpty()) {
-                            if (definitions[id].extras != null) {
-                                (definitions[id].extras as MutableMap<Int, Any>).putAll(extras)
+                            if (definitions[id].params != null) {
+                                (definitions[id].params as MutableMap<Int, Any>).putAll(extras)
                             } else {
-                                definitions[id].extras = extras
+                                definitions[id].params = extras
                             }
                         }
                     }

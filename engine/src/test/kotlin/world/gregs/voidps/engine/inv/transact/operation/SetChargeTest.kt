@@ -17,7 +17,7 @@ internal class SetChargeTest : TransactionOperationTest() {
     @Test
     fun `Set charge after the transaction has failed`() {
         transaction(stackRule = NeverStack)
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf(Params.CHARGES to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGES to 10))
         // Set the transaction to failed
         transaction.set(0, Item("item", 0))
         transaction.error = TransactionError.Invalid
@@ -57,7 +57,7 @@ internal class SetChargeTest : TransactionOperationTest() {
     @Test
     fun `Can't set charge of stackable items`() {
         transaction(stackRule = AlwaysStack)
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf(Params.CHARGES to 50))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGES to 50))
         transaction.set(0, Item("item", 10))
         transaction.setCharge(0, 1)
         assertFalse(transaction.commit())
@@ -68,7 +68,7 @@ internal class SetChargeTest : TransactionOperationTest() {
     @Test
     fun `Set charges overrides existing charge`() {
         transaction(stackRule = NeverStack)
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf(Params.CHARGES to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGES to 10))
         val id = "item"
         val initialAmount = 5
         val amountToSet = 3
@@ -82,7 +82,7 @@ internal class SetChargeTest : TransactionOperationTest() {
     @Test
     fun `Can't charges over charge limit`() {
         transaction(stackRule = NeverStack)
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf(Params.CHARGES to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGES to 10))
         transaction.set(0, Item("item", 1))
         transaction.setCharge(0, 11)
         assertFalse(transaction.commit())

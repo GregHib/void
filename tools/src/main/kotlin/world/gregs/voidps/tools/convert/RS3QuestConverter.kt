@@ -19,7 +19,7 @@ object RS3QuestConverter {
 //        OpenRS2.downloadCache(cache, 1963)
         val decoder = QuestDecoderRS3().load(rs3Cache)
         for (def in decoder.sortedBy { it.listName }) {
-            val extras = def.extras ?: continue
+            val extras = def.params ?: continue
 //            println(def)
             var questId = extras[1345] as? Int
             when (def.id) {

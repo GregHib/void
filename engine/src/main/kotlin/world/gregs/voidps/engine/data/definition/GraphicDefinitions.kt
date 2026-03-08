@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.GraphicDefinition
@@ -36,7 +35,7 @@ class GraphicDefinitions(
                         require(!ids.containsKey(stringId)) { "Duplicate graphics id found '$stringId' at $path." }
                         ids[stringId] = id
                         definitions[id].stringId = stringId
-                        definitions[id].extras = extras.ifEmpty { null }
+                        definitions[id].params = extras.ifEmpty { null }
                     }
                 }
             }

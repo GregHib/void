@@ -1,14 +1,14 @@
 package world.gregs.voidps.engine.data.config
 
-import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.cache.definition.Parameterized
 import world.gregs.voidps.cache.definition.Params
 
 data class SpellDefinition(
     val maxHit: Int = 0,
     val experience: Double = 0.0,
     override var stringId: String = "",
-    override var extras: Map<Int, Any>? = null,
-) : Extra {
+    override var params: Map<Int, Any>? = null,
+) : Parameterized {
     companion object {
         operator fun invoke(key: String, map: Map<Int, Any>): SpellDefinition {
             val extras = map.toMutableMap()

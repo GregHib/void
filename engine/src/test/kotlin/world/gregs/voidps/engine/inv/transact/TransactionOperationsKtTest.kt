@@ -47,7 +47,7 @@ class TransactionOperationsKtTest : TransactionOperationTest() {
 
     @Test
     fun `Add variable charges before item charges`() {
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf(Params.CHARGE to "charge_variable", Params.CHARGES_MAX to 10, Params.CHARGES to 0))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGE to "charge_variable", Params.CHARGES_MAX to 10, Params.CHARGES to 0))
         transaction(capacity = 10, stackRule = NeverStack) {
             set(0, Item("item", 5))
         }
@@ -64,7 +64,7 @@ class TransactionOperationsKtTest : TransactionOperationTest() {
 
     @Test
     fun `Remove variable charges before item charges`() {
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf(Params.CHARGE to "charge_variable", Params.CHARGES to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGE to "charge_variable", Params.CHARGES to 10))
         transaction(capacity = 10, stackRule = NeverStack) {
             add("item", 5)
         }
@@ -81,7 +81,7 @@ class TransactionOperationsKtTest : TransactionOperationTest() {
 
     @Test
     fun `Clear variable charges before item charges`() {
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf(Params.CHARGE to "charge_variable", Params.CHARGES to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGE to "charge_variable", Params.CHARGES to 10))
         transaction(capacity = 10, stackRule = NeverStack) {
             add("item", 5)
         }
@@ -144,7 +144,7 @@ class TransactionOperationsKtTest : TransactionOperationTest() {
 
     @Test
     fun `Add charges reverts on transaction failure`() {
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf(Params.CHARGE to "charge_variable", Params.CHARGES to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGE to "charge_variable", Params.CHARGES to 10))
         transaction(stackRule = NeverStack) {
             set(0, Item("item"))
         }
@@ -162,7 +162,7 @@ class TransactionOperationsKtTest : TransactionOperationTest() {
 
     @Test
     fun `Remove charges reverts on transaction failure`() {
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf(Params.CHARGE to "charge_variable", Params.CHARGES to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGE to "charge_variable", Params.CHARGES to 10))
         transaction(stackRule = NeverStack) {
             set(0, Item("item"))
         }
@@ -180,7 +180,7 @@ class TransactionOperationsKtTest : TransactionOperationTest() {
 
     @Test
     fun `Clear charges reverts on transaction failure`() {
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf(Params.CHARGE to "charge_variable", Params.CHARGES to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGE to "charge_variable", Params.CHARGES to 10))
         transaction(stackRule = NeverStack) {
             set(0, Item("item"))
         }

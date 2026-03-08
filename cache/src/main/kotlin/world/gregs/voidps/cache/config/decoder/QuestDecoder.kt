@@ -4,11 +4,8 @@ import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Config.QUESTS
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.QuestDefinition
-import world.gregs.voidps.cache.definition.Parameters
 
-class QuestDecoder(
-    private val parameters: Parameters = Parameters.EMPTY,
-) : ConfigDecoder<QuestDefinition>(QUESTS) {
+class QuestDecoder : ConfigDecoder<QuestDefinition>(QUESTS) {
 
     override fun create(size: Int) = Array(size) { QuestDefinition(it) }
 
@@ -29,7 +26,7 @@ class QuestDecoder(
             14 -> skillRequirements = Array(buffer.readUnsignedByte()) { IntArray(2) { buffer.readUnsignedByte() } }
             15 -> buffer.readShort()
             17 -> itemSprite = buffer.readShort()
-            249 -> readParameters(buffer, parameters)
+            249 -> readParameters(buffer)
         }
     }
 

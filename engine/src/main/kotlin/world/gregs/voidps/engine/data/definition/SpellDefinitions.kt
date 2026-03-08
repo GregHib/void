@@ -28,7 +28,7 @@ class SpellDefinitions {
                             "clone" -> {
                                 val clone = string()
                                 require(definitions.containsKey(clone)) { "Unable to find spell with id '$clone'" }
-                                extras.putAll(definitions[clone]?.extras ?: continue)
+                                extras.putAll(definitions[clone]?.params ?: continue)
                             }
                             "exp" -> experience = double()
                             "max_hit" -> maxHit = int()
@@ -38,7 +38,7 @@ class SpellDefinitions {
                     if (extras.isEmpty()) {
                         definitions[stringId] = SpellDefinition(maxHit = maxHit, experience = experience, stringId = stringId)
                     } else {
-                        definitions[stringId] = SpellDefinition(maxHit = maxHit, experience = experience, stringId = stringId, extras = extras)
+                        definitions[stringId] = SpellDefinition(maxHit = maxHit, experience = experience, stringId = stringId, params = extras)
                     }
                 }
             }

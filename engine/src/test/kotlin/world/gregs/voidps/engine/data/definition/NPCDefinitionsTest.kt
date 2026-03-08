@@ -14,7 +14,7 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
     override fun expected(): NPCDefinition = NPCDefinition(
         intId,
         stringId = id,
-        extras = mapOf(
+        params = mapOf(
             Params.CATEGORIES to setOf("human"),
             Params.WANDER_RANGE to 4,
             Params.EXAMINE to "Servant of the Duke of Lumbridge.",

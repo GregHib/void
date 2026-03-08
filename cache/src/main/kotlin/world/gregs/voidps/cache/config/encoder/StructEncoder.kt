@@ -10,7 +10,7 @@ class StructEncoder(val parameters: Map<Int, Int>) : ConfigEncoder<StructDefinit
     private val logger = InlineLogger()
 
     override fun Writer.encode(definition: StructDefinition) {
-        val extras = definition.extras
+        val extras = definition.params
         if (!extras.isNullOrEmpty()) {
             writeByte(249)
             val count = extras.count { parameters.containsKey(it.key) && (it.value is String || it.value is Int || it.value is Short || it.value is Byte || it.value is Boolean) }

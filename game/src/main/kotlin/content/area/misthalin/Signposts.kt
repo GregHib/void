@@ -12,7 +12,7 @@ class Signposts : Script {
     init {
         @Suppress("UNCHECKED_CAST")
         objectOperate("Read", "direction_signpost_*") { (target) ->
-            val locations = target.def.extras?.get(Params.LOCATIONS) as? ObjectArrayList<Object2ObjectOpenHashMap<String, String>> ?: return@objectOperate
+            val locations = target.def.params?.get(Params.LOCATIONS) as? ObjectArrayList<Object2ObjectOpenHashMap<String, String>> ?: return@objectOperate
 
             val location =
                 locations.firstOrNull {

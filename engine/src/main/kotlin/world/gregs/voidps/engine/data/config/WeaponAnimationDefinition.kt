@@ -1,16 +1,15 @@
 package world.gregs.voidps.engine.data.config
 
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.definition.Extra
-import world.gregs.voidps.cache.definition.Params
+import world.gregs.voidps.cache.definition.Parameterized
 
 data class WeaponAnimationDefinition(
     override var id: Int = -1,
     val attackTypes: Map<Int, String> = emptyMap(),
     override var stringId: String = "",
-    override var extras: Map<Int, Any>? = null,
+    override var params: Map<Int, Any>? = null,
 ) : Definition,
-    Extra {
+    Parameterized {
 
     companion object {
         val EMPTY = WeaponAnimationDefinition()

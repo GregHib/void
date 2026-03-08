@@ -39,7 +39,7 @@ class AnimationDefinitions(
                         ids[stringId] = id
                         definitions[id].stringId = stringId
                         if (extras.isNotEmpty()) {
-                            definitions[id].extras = extras
+                            definitions[id].params = extras
                         }
                     }
                 }

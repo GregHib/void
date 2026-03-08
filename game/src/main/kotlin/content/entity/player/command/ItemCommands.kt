@@ -32,7 +32,7 @@ class ItemCommands(
         worldSpawn {
             for (id in 0 until ItemDefinitions.size) {
                 val definition = ItemDefinitions.get(id)
-                val list = (definition.extras as? MutableMap<Int, Any>)?.remove(Params.AKA) as? List<String> ?: continue
+                val list = (definition.params as? MutableMap<Int, Any>)?.remove(Params.AKA) as? List<String> ?: continue
                 for (name in list) {
                     alternativeNames[name] = definition.stringId
                 }

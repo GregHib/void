@@ -114,7 +114,7 @@ object InterfaceDefinitions : DefinitionsDecoder<InterfaceDefinition> {
                                     componentExtras[Params.OPTIONS] = optionsArray
                                 }
                                 if (componentExtras.isNotEmpty()) {
-                                    componentDefinition.extras = componentExtras
+                                    componentDefinition.params = componentExtras
                                 }
                             }
                             continue

@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.InventoryDefinition
@@ -102,7 +101,7 @@ object InventoryDefinitions : DefinitionsDecoder<InventoryDefinition> {
                     require(!ids.containsKey(stringId)) { "Duplicate inventory found '$stringId' at $path." }
                     ids[stringId] = invId
                     if (extras.isNotEmpty()) {
-                        definitions[invId].extras = extras
+                        definitions[invId].params = extras
                     }
                     if (itemIds != null) {
                         definitions[invId].ids = itemIds

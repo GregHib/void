@@ -16,7 +16,7 @@ internal class RemoveChargeTest : TransactionOperationTest() {
 
     @Test
     fun `Replace item on degrade`() {
-        every { ItemDefinitions.getOrNull("replaceable") } returns ItemDefinition(extras = mapOf(Params.CHARGES to 5))
+        every { ItemDefinitions.getOrNull("replaceable") } returns ItemDefinition(params = mapOf(Params.CHARGES to 5))
         transaction(stackRule = NeverStack, itemRule = validItems) {
             set(0, Item("replaceable", 1))
         }
@@ -28,7 +28,7 @@ internal class RemoveChargeTest : TransactionOperationTest() {
 
     @Test
     fun `Destroy item on degrade`() {
-        every { ItemDefinitions.getOrNull("destructible") } returns ItemDefinition(extras = mapOf(Params.CHARGES to 5))
+        every { ItemDefinitions.getOrNull("destructible") } returns ItemDefinition(params = mapOf(Params.CHARGES to 5))
         transaction(stackRule = NeverStack, itemRule = validItems) {
             set(0, Item("destructible", 1))
         }
@@ -39,7 +39,7 @@ internal class RemoveChargeTest : TransactionOperationTest() {
 
     @Test
     fun `Remove charges after the transaction has failed`() {
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf(Params.CHARGES to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGES to 10))
         transaction(stackRule = NeverStack) {
             set(0, Item("item", 1))
         }
@@ -59,7 +59,7 @@ internal class RemoveChargeTest : TransactionOperationTest() {
 
     @Test
     fun `Can't discharge invalid amount`() {
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf(Params.CHARGES to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGES to 10))
         transaction(stackRule = NeverStack) {
             set(0, Item("item", 1))
         }
@@ -69,7 +69,7 @@ internal class RemoveChargeTest : TransactionOperationTest() {
 
     @Test
     fun `Can't discharge stackable items`() {
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf(Params.CHARGES to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGES to 10))
         transaction(stackRule = AlwaysStack) {
             set(0, Item("item", 1))
         }
@@ -88,7 +88,7 @@ internal class RemoveChargeTest : TransactionOperationTest() {
 
     @Test
     fun `Can't discharge more charges than available`() {
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf(Params.CHARGES to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGES to 10))
         transaction(stackRule = NeverStack) {
             set(0, Item("item", 4))
         }
@@ -99,7 +99,7 @@ internal class RemoveChargeTest : TransactionOperationTest() {
 
     @Test
     fun `Remove charges from item`() {
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf(Params.CHARGES to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGES to 10))
         transaction(stackRule = NeverStack) {
             set(0, Item("item", 6))
         }

@@ -23,7 +23,7 @@ internal class QuestStartTest : DialogueTest() {
             every { this@declareMock.getOrNull("test_quest") } returns QuestDefinition(
                 id = 1234,
                 name = "magic",
-                extras = mapOf(
+                params = mapOf(
                     Params.NAME to "quest_name",
                 ),
             )

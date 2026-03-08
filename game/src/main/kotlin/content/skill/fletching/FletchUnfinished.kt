@@ -19,7 +19,7 @@ class FletchUnfinished : Script {
     init {
         @Suppress("UNCHECKED_CAST")
         itemOnItem("knife", "*logs*") { _, toItem ->
-            val displayItems = toItem.def.extras?.get(Params.FLETCHABLES) as? List<String> ?: return@itemOnItem
+            val displayItems = toItem.def.params?.get(Params.FLETCHABLES) as? List<String> ?: return@itemOnItem
             weakQueue("fletching_make_dialog") {
                 val (selected, amount) = makeAmount(
                     displayItems,

@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.StructDefinition
@@ -201,12 +200,12 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
                                     defaultInt = defaultInt,
                                     length = map.size,
                                     map = map,
-                                    extras = extras,
+                                    params = extras,
                                     stringId = stringId,
                                 )
                             )
                         } else {
-                            definitions[id].extras = extras
+                            definitions[id].params = extras
                         }
                     }
                 }

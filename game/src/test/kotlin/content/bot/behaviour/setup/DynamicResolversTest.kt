@@ -90,7 +90,7 @@ class DynamicResolversTest {
 
     @Test
     fun `Resolve unequipped item in inventory by equipping it`() {
-        ItemDefinitions.set(arrayOf(ItemDefinition(stringId = "sword", extras = mapOf(Params.SLOT to EquipSlot.Weapon))), mapOf("sword" to 0))
+        ItemDefinitions.set(arrayOf(ItemDefinition(stringId = "sword", params = mapOf(Params.SLOT to EquipSlot.Weapon))), mapOf("sword" to 0))
         val entry = BotItem(setOf("sword"))
         player.inventory.add("sword")
 

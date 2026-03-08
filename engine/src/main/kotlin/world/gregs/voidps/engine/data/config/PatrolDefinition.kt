@@ -1,14 +1,14 @@
 package world.gregs.voidps.engine.data.config
 
-import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.cache.definition.Parameterized
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.type.Tile
 
 data class PatrolDefinition(
     override var stringId: String = "",
     val waypoints: List<Pair<Tile, Int>> = emptyList(),
-    override var extras: Map<Int, Any>? = null,
-) : Extra {
+    override var params: Map<Int, Any>? = null,
+) : Parameterized {
     companion object {
         operator fun invoke(key: String, map: Map<Int, Any>): PatrolDefinition {
             val extras = map.toMutableMap()

@@ -18,7 +18,7 @@ internal class InventoryDefinitionsTest : DefinitionsDecoderTest<InventoryDefini
         length = 7,
         ids = intArrayOf(1, 2, 3, 4, 5, 6, 7),
         amounts = intArrayOf(10, 10, 10, 10, 10, 10, 10),
-        extras = mapOf(
+        params = mapOf(
             Params.SHOP to true,
         ),
     )

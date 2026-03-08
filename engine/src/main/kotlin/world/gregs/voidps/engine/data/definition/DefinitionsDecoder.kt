@@ -1,18 +1,17 @@
 package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.cache.definition.Parameterized
 import world.gregs.voidps.cache.definition.Transforms
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
 
 /**
  * Looks up [Definition]'s using Definitions unique string identifier
- * Sets [Extra] values inside [Definition]
+ * Sets [Parameterized] values inside [Definition]
  */
-interface DefinitionsDecoder<D> where D : Definition, D : Extra {
+interface DefinitionsDecoder<D> where D : Definition, D : Parameterized {
     var definitions: Array<D>
     var ids: Map<String, Int>
 
@@ -48,7 +47,7 @@ interface DefinitionsDecoder<D> where D : Definition, D : Extra {
             val name = names[i]
             definition.stringId = name ?: i.toString()
             val extra = extras[name] ?: continue
-            definition.extras = Int2ObjectOpenHashMap(extra)
+            definition.params = Int2ObjectOpenHashMap(extra)
             block.invoke(definition)
         }
     }

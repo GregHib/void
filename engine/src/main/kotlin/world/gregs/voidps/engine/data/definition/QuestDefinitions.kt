@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.QuestDefinition
 import world.gregs.voidps.cache.definition.Params
@@ -32,7 +31,7 @@ class QuestDefinitions : DefinitionsDecoder<QuestDefinition> {
                     require(!ids.containsKey(stringId)) { "Duplicate quest id found '$stringId' at $path." }
                     ids[stringId] = id
                     if (extras.isNotEmpty()) {
-                        definitions[id] = QuestDefinition(id = id, stringId = stringId, extras = extras)
+                        definitions[id] = QuestDefinition(id = id, stringId = stringId, params = extras)
                     } else {
                         definitions[id] = QuestDefinition(id = id, stringId = stringId)
                     }

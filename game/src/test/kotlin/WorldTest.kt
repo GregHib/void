@@ -186,7 +186,6 @@ abstract class WorldTest : KoinTest {
                         ObjectDefinitions
                     }
                     single { ammoDefinitions }
-                    single { parameterModifier }
                     single { mapDefinitions }
                     single { objectCollisionAdd }
                     single { objectCollisionAdd }
@@ -299,23 +298,22 @@ abstract class WorldTest : KoinTest {
         private val cache: Cache by lazy { MemoryCache(Settings["storage.cache.path"]) }
         private val huffman: Huffman by lazy { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
         private val ammoDefinitions: AmmoDefinitions by lazy { AmmoDefinitions().load(configFiles.find(Settings["definitions.ammoGroups"])) }
-        private val parameterModifier: ParameterModifier by lazy { ParameterModifier(CategoryDefinitions().load(configFiles.find(Settings["definitions.categories"])), ammoDefinitions) }
         private val objectDefinitions: Array<ObjectDefinition> by lazy {
-            ObjectDecoder(member = true, lowDetail = false, parameterModifier).load(cache)
+            ObjectDecoder(member = true, lowDetail = false).load(cache)
         }
         private val objectIds: Map<String, Int> by lazy {
             ObjectDefinitions.init(objectDefinitions).load(configFiles.list(Settings["definitions.objects"]))
             ObjectDefinitions.ids
         }
         private val npcDefinitions: Array<NPCDefinition> by lazy {
-            NPCDecoder(member = true, parameterModifier).load(cache)
+            NPCDecoder(member = true).load(cache)
         }
         private val npcIds: Map<String, Int> by lazy {
             NPCDefinitions.init(npcDefinitions).load(configFiles.list(Settings["definitions.npcs"]))
             NPCDefinitions.ids
         }
         val itemDefinitions: Array<ItemDefinition> by lazy {
-            ItemDecoder(parameterModifier).load(cache)
+            ItemDecoder().load(cache)
         }
         val itemIds: Map<String, Int> by lazy {
             ItemDefinitions.init(itemDefinitions).load(configFiles.list(Settings["definitions.items"]))
@@ -343,7 +341,7 @@ abstract class WorldTest : KoinTest {
             InventoryDefinitions.ids
         }
         private val structDefinitions: Array<StructDefinition> by lazy {
-            StructDecoder(parameterModifier).load(cache)
+            StructDecoder().load(cache)
         }
         private val structIds: Map<String, Int> by lazy {
             StructDefinitions.init(structDefinitions).load(configFiles.find(Settings["definitions.structs"]))

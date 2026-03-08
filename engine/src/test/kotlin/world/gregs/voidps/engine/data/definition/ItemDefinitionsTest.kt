@@ -14,7 +14,7 @@ internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, Item
     override fun expected(): ItemDefinition = ItemDefinition(
         intId,
         stringId = id,
-        extras = mutableMapOf(
+        params = mutableMapOf(
             Params.EXAMINE to "A candle.",
         ),
     )

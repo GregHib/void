@@ -16,7 +16,7 @@ internal class ClearChargeTest : TransactionOperationTest() {
 
     @Test
     fun `Can't clear charges of failed transaction`() {
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf(Params.CHARGES to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGES to 10))
         transaction(stackRule = NeverStack) {
             set(0, Item("item", 1))
         }
@@ -56,7 +56,7 @@ internal class ClearChargeTest : TransactionOperationTest() {
 
     @Test
     fun `Can't clear charges of item with no charges`() {
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf(Params.CHARGES to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGES to 10))
         transaction(stackRule = NeverStack) {
             set(0, Item("item", 0))
         }
@@ -69,7 +69,7 @@ internal class ClearChargeTest : TransactionOperationTest() {
 
     @Test
     fun `Clear charges of an item`() {
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf(Params.CHARGES to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGES to 10))
         transaction(stackRule = NeverStack) {
             set(0, Item("item", 5))
         }

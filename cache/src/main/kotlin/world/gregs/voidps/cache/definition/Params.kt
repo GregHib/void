@@ -56,7 +56,6 @@ object Params {
     const val EFFECT_TICKS = 5053
     const val EMPTY = 5054
     const val END_HEIGHT = 5055
-    const val EQUIP_REQ = 5056
     const val EVENT = 5057
     const val EXAMINE = 5058
     const val EXCESS = 5059
@@ -149,7 +148,6 @@ object Params {
     const val RUN = 5146
     const val SHOP = 5147
     const val SIZE_OFFSET = 5148
-    const val SKILL_REQ = 5149
     const val SLAYER_LEVEL = 5150
     const val SLAYER_XP = 5151
     const val SLOT = 5152
@@ -189,7 +187,6 @@ object Params {
     const val WEAPON_TYPE = 5186
     const val WEIGHT = 5187
     const val WIDTH = 5188
-    const val WORN_OPTIONS = 5189
     const val XP = 5190
     const val XP_BONUS = 5191
     const val OPTIONS = 5192
@@ -390,7 +387,6 @@ object Params {
         "effect_ticks" -> EFFECT_TICKS
         "empty" -> EMPTY
         "end_height" -> END_HEIGHT
-        "equip_req" -> EQUIP_REQ
         "event" -> EVENT
         "examine" -> EXAMINE
         "excess" -> EXCESS
@@ -483,7 +479,6 @@ object Params {
         "run" -> RUN
         "shop" -> SHOP
         "size_offset" -> SIZE_OFFSET
-        "skill_req" -> SKILL_REQ
         "slayer_level" -> SLAYER_LEVEL
         "slayer_xp" -> SLAYER_XP
         "slot" -> SLOT
@@ -523,7 +518,6 @@ object Params {
         "weapon_type" -> WEAPON_TYPE
         "weight" -> WEIGHT
         "width" -> WIDTH
-        "worn_options" -> WORN_OPTIONS
         "xp" -> XP
         "xp_bonus" -> XP_BONUS
         else -> error("No parameter id found for name '$name'")

@@ -1,5 +1,6 @@
 package content.entity.npc.shop.stock
 
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.open
@@ -37,18 +38,21 @@ object ItemInfo {
 
     private fun setRequirements(player: Player, def: ItemDefinition) {
         val quest = def["quest_info", -1]
-        if (def.contains("equip_req") || def.contains("skillcape_skill") || quest != -1) {
+        if (def.contains(Params.EQUIP_SKILL_1) || def.contains(Params.SKILLCAPE_SKILL) || quest != -1) {
             player["item_info_requirement_title"] = EnumDefinitions.get("item_info_requirement_titles").string(def.slot.index)
             val builder = StringBuilder()
-            val requirements = def.getOrNull<Map<Skill, Int>>("equip_req") ?: emptyMap()
-            for ((skill, level) in requirements) {
+            for (i in 1..6) {
+                val index = def.getOrNull<Int>("equip_skill_$i") ?: break
+                val level = def.getOrNull<Int>("equip_level_$i") ?: break
+                val skill = Skill.all[index]
                 val colour = Colours.bool(player.has(skill, level, false))
                 builder.append("<$colour>Level $level ${skill.name.lowercase()}<br>")
             }
-            val maxed: Skill? = def.getOrNull("skillcape_skill")
+            val maxed: Int? = def.getOrNull(Params.SKILLCAPE_SKILL)
             if (maxed != null) {
-                val colour = Colours.bool(player.has(maxed, maxed.maximum(), false))
-                builder.append("<$colour>Level ${maxed.maximum()} ${maxed.name.lowercase()}<br>")
+                val skill = Skill.all[maxed]
+                val colour = Colours.bool(player.has(skill, skill.maximum(), false))
+                builder.append("<$colour>Level ${skill.maximum()} ${skill.name.lowercase()}<br>")
             }
             if (quest != -1) {
                 val colour = Colours.bool(false)

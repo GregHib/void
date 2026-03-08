@@ -35,7 +35,7 @@ class SoundDefinitions : DefinitionsDecoder<SoundDefinition> {
                         }
                         ids[stringId] = id
                         if (area) {
-                            definitions[id] = SoundDefinition(id = id, stringId = stringId, extras = mapOf(Params.AREA to true))
+                            definitions[id] = SoundDefinition(id = id, stringId = stringId, params = mapOf(Params.AREA to true))
                         } else {
                             definitions[id] = SoundDefinition(id = id, stringId = stringId)
                         }

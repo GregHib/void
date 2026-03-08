@@ -91,7 +91,7 @@ object FixStructs {
             val data = library.data(indexId, decoder.getArchive(id), decoder.getFile(id)) ?: continue
             val buffer = ArrayReader(data)
             decoder.readLoop(definition, buffer)
-            val extras = definition.extras!! as MutableMap
+            val extras = definition.params!! as MutableMap
             for ((key, value) in fixes) {
                 if (value is Skill) {
                     extras[key] = Tasks.skills.indexOf(value) + 1
