@@ -32,7 +32,7 @@ drops = [
     { table = "gem_drop_table", chance = 2 },
 ]
 
-[moss_giant_charms]
+[ankou_charms]
 roll = 100000
 drops = [
     { id = "gold_charm", chance = 23887 },
