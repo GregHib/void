@@ -111,16 +111,16 @@ class Ammo(val ammoDefinitions: AmmoDefinitions, val weaponStyles: WeaponStyleDe
         var weaponLevel = 1
         var ammoLevel = 1
         for (i in 1..6) {
-            var index: Int = weapon.def.getOrNull("equip_skill_${i}") ?: break
+            var index: Int = weapon.def.getOrNull("equip_skill_$i") ?: break
             var skill = Skill.all[index]
             if (skill == Skill.Ranged) {
-                weaponLevel = weapon.def.getOrNull("equip_level_${i}") ?: break
+                weaponLevel = weapon.def.getOrNull("equip_level_$i") ?: break
                 break
             }
-            index = ammo.def.getOrNull("equip_skill_${i}") ?: break
+            index = ammo.def.getOrNull("equip_skill_$i") ?: break
             skill = Skill.all[index]
             if (skill == Skill.Ranged) {
-                ammoLevel = ammo.def.getOrNull("equip_level_${i}") ?: break
+                ammoLevel = ammo.def.getOrNull("equip_level_$i") ?: break
                 break
             }
         }
