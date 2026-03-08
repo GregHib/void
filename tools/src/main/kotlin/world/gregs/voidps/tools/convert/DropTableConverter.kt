@@ -3,6 +3,7 @@ package world.gregs.voidps.tools.convert
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.config.*
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
+import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.entity.item.drop.TableType
 import java.util.*
 
@@ -11,19 +12,24 @@ object DropTableConverter {
     @JvmStatic
     fun main(args: Array<String>) {
         val string = """
-===Herbs===
-{{DropsTableHead}}
-{{DropTable|22/128}}
-{{DropsTableBottom}}
+====Charms====
+{{CharmDropTable
+|quantity = 1
+|gold = 90.982/1000
+|green = 318.436/1000
+|crimson = 45.491/1000
+|blue = 9.098/1000
+}}
+
         """.trimIndent()
-        val npc = "moss_giant"
+        val npc = "bloodveld"
         convert(string, npc)
     }
 
     fun convert(string: String, npc: String) {
         val all = mutableListOf<Builder>()
         var builder = Builder()
-        for (line in string.lines()) {
+        for (line in string.replace("\n|", "|").lines()) {
             if (line.startsWith("=")) {
                 val name = toIdentifier(line.replace("=", "").trim())
                 builder.name = name
@@ -59,6 +65,21 @@ object DropTableConverter {
                 builder.withRoll(roll)
                 all.add(builder)
                 builder = Builder()
+            } else if (line.startsWith("{{CharmDropTable")) {
+                val parts = line.trim('{', ' ', '}').split('|')
+                val quantity = parts.firstOrNull { it.startsWith("quantity") }?.split("=")?.last()?.trim()?.toInt() ?: 1
+                val (gold, goldRoll) = charmRate(parts, "gold")
+                val (green, greenRoll) = charmRate(parts, "green")
+                val (crimson, crimsonRoll) = charmRate(parts, "crimson")
+                val (blue, blueRoll) = charmRate(parts, "blue")
+                val multiplier = 100
+                builder.name = "charms"
+                builder.addDrop(Builder.Drop("gold_charm", quantity..quantity, (gold * multiplier).toInt(), roll = goldRoll * multiplier))
+                builder.addDrop(Builder.Drop("green_charm", quantity..quantity, (green * multiplier).toInt(), roll = greenRoll * multiplier))
+                builder.addDrop(Builder.Drop("crimson_charm", quantity..quantity, (crimson * multiplier).toInt(), roll = crimsonRoll * multiplier))
+                builder.addDrop(Builder.Drop("blue_charm", quantity..quantity, (blue * multiplier).toInt(), roll = blueRoll * multiplier))
+                all.add(builder)
+                builder = Builder()
             } else if (line.startsWith("{{DropsTableBottom")) {
                 all.add(builder)
                 builder = Builder()
@@ -68,6 +89,11 @@ object DropTableConverter {
             all.add(builder)
         }
         print(npc, all)
+    }
+
+    private fun charmRate(parts: List<String>, key: String): Pair<Double, Int> {
+        val parts = parts.first { it.startsWith(key) }.split("=").last().trim().split("/")
+        return parts.first().toDouble() to parts.last().toInt()
     }
 
     fun print(npc: String, all: MutableList<Builder>) {
@@ -93,6 +119,10 @@ object DropTableConverter {
         if (tertiary != null) {
             all.remove(tertiary)
         }
+        val charms = all.firstOrNull { it.name == "charms" }
+        if (charms != null) {
+            all.remove(charms)
+        }
         if (all.isNotEmpty()) {
             val combined = Builder(all)
             combined.name = "${npc}_secondary"
@@ -103,6 +133,11 @@ object DropTableConverter {
             tertiary.name = "${npc}_tertiary"
             queue.add(tertiary)
             parent.addDrop(Builder.Drop.table(tertiary.name))
+        }
+        if (charms != null) {
+            charms.name = "${npc}_charms"
+            queue.add(charms)
+            parent.addDrop(Builder.Drop.table(charms.name, members = true))
         }
         while (queue.isNotEmpty()) {
             val table = queue.poll()

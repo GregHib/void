@@ -4,6 +4,7 @@ drops = [
     { id = "ashes" },
     { table = "bloodveld_secondary" },
     { table = "hard_clue_scroll", roll = 256 },
+    { table = "bloodveld_charms" },
 ]
 
 [bloodveld_secondary]
@@ -32,4 +33,13 @@ drops = [
     { id = "gold_ore", chance = 2 },
     { id = "meat_pizza", chance = 3 },
     { table = "gem_drop_table", chance = 4 },
+]
+
+[bloodveld_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 9098 },
+    { id = "green_charm", chance = 31843 },
+    { id = "crimson_charm", chance = 4549 },
+    { id = "blue_charm", chance = 909 },
 ]

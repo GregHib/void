@@ -4,6 +4,7 @@ drops = [
   { id = "ashes" },
   { table = "abyssal_demon_secondary" },
   { table = "abyssal_demon_tertiary" },
+  { table = "abyssal_demon_charms", members = true },
 ]
 
 [abyssal_demon_secondary]
@@ -40,4 +41,13 @@ roll = 6000
 drops = [
   { table = "hard_clue_scroll", chance = 46 },
   { id = "abyssal_head" },
+]
+
+[abyssal_demon_charms]
+roll = 1000
+drops = [
+  { id = "gold_charm", chance = 90 },
+  { id = "green_charm", chance = 45 },
+  { id = "crimson_charm", chance = 314 },
+  { id = "blue_charm", chance = 9 },
 ]

@@ -3,6 +3,7 @@ type = "all"
 drops = [
   { table = "aberrant_spectre_secondary" },
   { table = "hard_clue_scroll", roll = 128 },
+  { table = "aberrant_spectre_charms", members = true },
 ]
 
 [aberrant_spectre_secondary]
@@ -18,4 +19,13 @@ drops = [
   { id = "coins", amount = 460, chance = 4 },
   { id = "nothing", amount = 0, chance = 72 },
   { table = "gem_drop_table", chance = 20 },
+]
+
+[aberrant_spectre_charms]
+roll = 100
+drops = [
+  { id = "gold_charm", chance = 12 },
+  { id = "green_charm", chance = 6 },
+  { id = "crimson_charm", chance = 4 },
+  { id = "blue_charm", chance = 5 },
 ]

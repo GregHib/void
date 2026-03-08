@@ -3,6 +3,7 @@ type = "all"
 drops = [
     { table = "banshee_secondary" },
     { table = "easy_clue_scroll", roll = 128 },
+    { table = "banshee_charms" },
 ]
 
 [banshee_secondary]
@@ -27,4 +28,13 @@ drops = [
     { id = "fishing_bait", amount = 7, chance = 20 },
     { id = "eye_of_newt", chance = 4 },
     { table = "gem_drop_table", chance = 8 },
+]
+
+[banshee_charms]
+roll = 1000
+drops = [
+    { id = "gold_charm", chance = 20 },
+    { id = "green_charm", chance = 70 },
+    { id = "crimson_charm", chance = 10 },
+    { id = "blue_charm", chance = 2 },
 ]
