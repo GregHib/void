@@ -520,7 +520,7 @@ object Params {
         "width" -> WIDTH
         "xp" -> XP
         "xp_bonus" -> XP_BONUS
-        else -> error("No parameter id found for name '$name'")
+        else -> null
     }
 
     // Official
@@ -935,7 +935,9 @@ object Params {
     const val LINKED_SHADOW_NPC = 2098
     const val CATEGORY = 2195
 
-    fun id(name: String) = when (name) {
+    fun id(name: String) = idOrNull(name) ?: error("No parameter id found for name '$name'")
+
+    fun idOrNull(name: String) = when (name) {
         "stab_attack" -> STAB_ATTACK
         "slash_attack" -> SLASH_ATTACK
         "crush_attack" -> CRUSH_ATTACK

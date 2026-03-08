@@ -30,7 +30,7 @@ interface Parameterized {
 
     fun <T : Any> getOrNull(key: Int) = params?.get(key) as? T
 
-    fun <T : Any> getOrNull(key: String) = params?.get(Params.id(key)) as? T
+    fun <T : Any> getOrNull(key: String) = params?.get(Params.idOrNull(key)) as? T
 
     operator fun <T : Any> get(key: Int, defaultValue: T) = getOrNull(key) as? T ?: defaultValue
 
