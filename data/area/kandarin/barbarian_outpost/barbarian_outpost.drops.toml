@@ -65,6 +65,24 @@ drops = [
     { table = "gem_drop_table" },
 ]
 
+[barbarian_lydspor_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 1764 },
+    { id = "green_charm", chance = 7057 },
+    { id = "crimson_charm", chance = 441 },
+    { id = "blue_charm", chance = 88 },
+]
+
+[barbarian_gutrune_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 1308 },
+    { id = "green_charm", chance = 5232 },
+    { id = "crimson_charm", chance = 327 },
+    { id = "blue_charm", chance = 65 },
+]
+
 [ferocious_barbarian_spirit_drop_table]
 type = "all"
 drops = [

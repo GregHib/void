@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.item.drop
 
+import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
@@ -14,6 +15,7 @@ import world.gregs.voidps.engine.timedLoad
 class DropTables {
 
     lateinit var tables: Map<String, DropTable>
+    private val logger = InlineLogger()
 
     fun get(key: String) = tables[key]
 
@@ -36,7 +38,7 @@ class DropTables {
                                 "type" -> type = TableType.byName(string())
                                 "chance" -> chance = int()
                                 "drops" -> while (nextElement()) {
-                                    drops.add(readItemDrop())
+                                    drops.add(readItemDrop(roll))
                                 }
                                 else -> throw IllegalArgumentException("Unexpected table key: '$key' ${exception()}")
                             }
@@ -61,9 +63,11 @@ class DropTables {
         return this
     }
 
-    private data class ReferenceTable(val tableName: String, val roll: Int?, override val chance: Int, override val predicate: ((Player) -> Boolean)?) : Drop
+    private data class ReferenceTable(val tableName: String, val roll: Int?, override val chance: Int, override val predicate: ((Player) -> Boolean)?) : Drop {
+        override fun print(indent: Int, multiplier: Double) = "${"  ".repeat(indent)}Ref($tableName)"
+    }
 
-    private fun ConfigReader.readItemDrop(): Drop {
+    private fun ConfigReader.readItemDrop(tableRoll: Int): Drop {
         var table = ""
         var chance: Int? = null
         var roll: Int? = null
@@ -105,6 +109,9 @@ class DropTables {
                 "within_max" -> withinMax = int()
                 else -> throw IllegalArgumentException("Unexpected drop key: '$dropKey' ${exception()}")
             }
+        }
+        if (roll != null && tableRoll != 1) {
+            logger.warn { "Found roll override inside roll based table. Did you mean to use 'chance' instead? ${exception()}" }
         }
         val predicate = dropPredicate(owns, lacks, variable, negated, eq, default, withinMin, withinMax, members)
         if (table != "") {

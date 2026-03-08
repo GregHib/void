@@ -4,6 +4,7 @@ drops = [
     { table = "bones" },
     { table = "ankou_secondary" },
     { table = "hard_clue_scroll", roll = 512 },
+    { table = "ankou_charms", members = true },
 ]
 
 [ankou_secondary]
@@ -29,4 +30,13 @@ drops = [
     { id = "weapon_poison", chance = 2, members = true },
     { id = "fried_mushrooms", members = true },
     { table = "gem_drop_table", chance = 2 },
+]
+
+[ankou_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 23887 },
+    { id = "green_charm", chance = 746 },
+    { id = "crimson_charm", chance = 1493 },
+    { id = "blue_charm", chance = 149 },
 ]

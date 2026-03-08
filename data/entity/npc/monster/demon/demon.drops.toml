@@ -74,6 +74,7 @@ type = "all"
 drops = [
   { table = "black_demon_secondary" },
   { table = "hard_clue_scroll", roll = 128 },
+    { table = "black_demon_charms" },
 ]
 
 [black_demon_secondary]
@@ -100,4 +101,13 @@ drops = [
   { id = "adamant_bar", chance = 2 },
   { id = "defence_potion_3" },
   { table = "rare_drop_table" },
+]
+
+[black_demon_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 22322 },
+    { id = "green_charm", chance = 11161 },
+    { id = "crimson_charm", chance = 44644 },
+    { id = "blue_charm", chance = 1488 },
 ]

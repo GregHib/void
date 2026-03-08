@@ -4,6 +4,7 @@ drops = [
     { id = "big_bones" },
     { table = "aquanite_secondary" },
     { table = "aquanite_tertiary" },
+    { table = "aquanite_charms" },
 ]
 
 [aquanite_secondary]
@@ -57,8 +58,16 @@ drops = [
 roll = 512
 drops = [
     { table = "hard_clue_scroll", chance = 8 },
-    { id = "clue_scroll_hard", chance = 8 },
     { id = "long_bone", chance = 2 },
     { id = "curved_bone", chance = 2 },
     { id = "starved_ancient_effigy" },
+]
+
+[aquanite_charms]
+roll = 1000
+drops = [
+    { id = "gold_charm", chance = 99 },
+    { id = "green_charm", chance = 47 },
+    { id = "crimson_charm", chance = 47 },
+    { id = "blue_charm", chance = 62 },
 ]

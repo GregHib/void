@@ -4,6 +4,7 @@ drops = [
     { id = "bones" },
     { table = "basilisk_secondary" },
     { table = "basilisk_tertiary" },
+    { table = "basilisk_charms" },
 ]
 
 [basilisk_secondary]
@@ -33,7 +34,16 @@ drops = [
 [basilisk_tertiary]
 roll = 2000
 drops = [
-    { table = "elite_clue_scroll", roll = 2000 },
+    { table = "elite_clue_scroll", chance = 2000 },
     { id = "basilisk_bone", chance = 500, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
     { id = "basilisk_head", variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+]
+
+[basilisk_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 6438 },
+    { id = "green_charm", chance = 19316 },
+    { id = "crimson_charm", chance = 4829 },
+    { id = "blue_charm", chance = 965 },
 ]

@@ -96,6 +96,7 @@ drops = [
   { table = "black_dragon_primary" },
   { table = "black_dragon_secondary" },
   { table = "black_dragon_tertiary" },
+  { table = "black_dragon_charms", members = true },
 ]
 
 [black_dragon_primary]
@@ -132,8 +133,17 @@ drops = [
 [black_dragon_tertiary]
 roll = 10000
 drops = [
-  { table = "hard_clue_scroll", roll = 78 },
+  { table = "hard_clue_scroll", chance = 78 },
   { id = "draconic_visage" },
+]
+
+[black_dragon_charms]
+roll = 1000
+drops = [
+  { id = "gold_charm", amount = 3, chance = 90 },
+  { id = "green_charm", amount = 3, chance = 269 },
+  { id = "crimson_charm", amount = 3, chance = 67 },
+  { id = "blue_charm", amount = 3, chance = 13 },
 ]
 
 [blue_dragon_drop_table]

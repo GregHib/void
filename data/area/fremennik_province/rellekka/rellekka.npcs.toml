@@ -400,7 +400,7 @@ def = 23
 style = "stab"
 max_hit_melee = 30
 respawn_delay = 90
-drop_table = "unicorn"
+drop_table = "black_unicorn"
 examine = "A unicorn with a blackened heart."
 
 [svidi]

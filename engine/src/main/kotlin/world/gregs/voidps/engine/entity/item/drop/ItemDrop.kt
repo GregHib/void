@@ -27,4 +27,28 @@ data class ItemDrop(
         }
         return Item(id, amount.random(random))
     }
+
+    override fun print(indent: Int, multiplier: Double) = "${"  ".repeat(indent)}$id x${if (amount.first == amount.last) amount.first else "${amount.first}..${amount.last}"}"
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as ItemDrop
+
+        if (chance != other.chance) return false
+        if (id != other.id) return false
+        if (amount != other.amount) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = chance
+        result = 31 * result + id.hashCode()
+        result = 31 * result + amount.hashCode()
+        return result
+    }
+
+
 }

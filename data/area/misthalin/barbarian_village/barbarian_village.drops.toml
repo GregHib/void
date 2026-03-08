@@ -11,3 +11,21 @@ roll = 35
 drops = [
     { id = "unicorn_bone", chance = 35, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
 ]
+
+[black_unicorn_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "unicorn_horn" },
+    { table = "unicorn_tertiary" },
+    { table = "black_unicorn_charms", members = true },
+]
+
+[black_unicorn_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 2173 },
+    { id = "green_charm", chance = 8695 },
+    { id = "crimson_charm", chance = 543 },
+    { id = "blue_charm", chance = 108 },
+]

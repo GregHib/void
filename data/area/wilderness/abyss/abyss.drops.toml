@@ -3,7 +3,17 @@ type = "all"
 drops = [
     { table = "ashes" },
     { table = "abyssal_secondary" },
-    { table = "medium_clue_scroll", roll = 256 }
+    { table = "medium_clue_scroll", roll = 256 },
+    { table = "abyssal_walker_charms", members = true },
+]
+
+[abyssal_walker_charms]
+roll = 1000
+drops = [
+    { id = "gold_charm", amount = 2, chance = 52 },
+    { id = "green_charm", amount = 2, chance = 181 },
+    { id = "crimson_charm", amount = 2, chance = 25 },
+    { id = "blue_charm", amount = 2, chance = 5 },
 ]
 
 [abyssal_guardian_drop_table]
@@ -11,7 +21,17 @@ type = "all"
 drops = [
     { table = "ashes" },
     { table = "abyssal_secondary" },
-    { table = "medium_clue_scroll", roll = 256 }
+    { table = "medium_clue_scroll", roll = 256 },
+    { table = "abyssal_guardian_charms", members = true },
+]
+
+[abyssal_guardian_charms]
+roll = 1000
+drops = [
+    { id = "gold_charm", chance = 40 },
+    { id = "green_charm", chance = 122 },
+    { id = "crimson_charm", chance = 30 },
+    { id = "blue_charm", chance = 6 },
 ]
 
 [abyssal_leech_drop_table]
@@ -19,7 +39,8 @@ type = "all"
 drops = [
     { table = "ashes" },
     { table = "abyssal_secondary" },
-    { table = "medium_clue_scroll", roll = 256 }
+    { table = "medium_clue_scroll", roll = 256 },
+    { table = "abyssal_leech_charms", members = true },
 ]
 
 [abyssal_secondary]
@@ -45,4 +66,13 @@ drops = [
     { id = "pure_essence_noted", amount = 10, chance = 4 },
     { id = "pure_essence_noted", amount = 15, chance = 4 },
     { id = "binding_necklace", chance = 3 }
+]
+
+[abyssal_leech_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 752 },
+    { id = "green_charm", chance = 3008 },
+    { id = "crimson_charm", chance = 188 },
+    { id = "blue_charm", chance = 37 },
 ]
