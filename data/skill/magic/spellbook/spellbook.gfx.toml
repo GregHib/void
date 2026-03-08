@@ -1,0 +1,20 @@
+[bones_to_spell]
+id = 141
+height = 58
+
+[tele_grab_cast]
+id = 142
+height = 50
+
+[tele_grab_travel]
+id = 143
+
+[tele_grab_impact]
+id = 144
+height = 20
+
+[high_alch]
+id = 113
+
+[high_alch_staff]
+id = 1693

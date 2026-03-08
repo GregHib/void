@@ -1,0 +1,14 @@
+[bones_to_spell]
+id = 117
+
+[tele_grab_cast]
+id = 3006
+
+[tele_grab_impact]
+id = 3007
+
+[high_level_alchemy]
+id = 97
+
+[low_level_alchemy]
+id = 98

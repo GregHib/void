@@ -74,6 +74,9 @@ id = 35
 [.bind]
 id = 36
 
+[.low_level_alchemy]
+id = 38
+
 [.water_bolt]
 id = 39
 cast_id = 13
@@ -137,6 +140,9 @@ id = 57
 [.earth_blast]
 id = 58
 cast_id = 23
+
+[.high_level_alchemy]
+id = 59
 
 [.watchtower_teleport]
 id = 62

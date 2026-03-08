@@ -30,12 +30,10 @@ class ItemTake : Script {
                 message("Too late - it's gone!")
                 return@floorItemOperate
             }
-
             inventory.transaction {
-                val freeIndex = inventory.freeIndex()
-                add(item, target.amount)
-                if (target.charges > 0) {
-                    setCharge(freeIndex, target.charges)
+                val index = add(item, target.amount)
+                if (target.charges > 0 && index != -1) {
+                    setCharge(index, target.charges)
                 }
             }
             when (inventory.transaction.error) {
