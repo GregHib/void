@@ -7,7 +7,7 @@ internal class GraphicDefinitionsTest : DefinitionsDecoderTest<GraphicDefinition
 
     override var decoder: GraphicDecoder = GraphicDecoder()
     override lateinit var definitions: Array<GraphicDefinition>
-    override val id: String = "teleport_modern"
+    override val id: String = "gfx"
     override val intId: Int = 1576
 
     override fun expected(): GraphicDefinition = GraphicDefinition(intId, stringId = id)

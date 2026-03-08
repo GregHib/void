@@ -23,6 +23,7 @@ import world.gregs.voidps.cache.definition.Params.EQUIP_SKILL_6
 import world.gregs.voidps.cache.definition.Params.MAGIC_STRENGTH
 import world.gregs.voidps.cache.definition.Params.RANGED_STRENGTH
 import world.gregs.voidps.cache.definition.Params.SKILLCAPE_SKILL
+import world.gregs.voidps.cache.definition.Params.STRENGTH
 import world.gregs.voidps.cache.definition.Params.USE_LEVEL_1
 import world.gregs.voidps.cache.definition.Params.USE_LEVEL_2
 import world.gregs.voidps.cache.definition.Params.USE_LEVEL_3
@@ -72,7 +73,7 @@ class ParameterModifier(
                 val skill = map.keys.firstOrNull { map[it] == -1 } ?: return logger.warn { "Missing param $id $value" }
                 map[skill] = value as Int
             }
-            RANGED_STRENGTH, MAGIC_STRENGTH -> {
+            RANGED_STRENGTH, MAGIC_STRENGTH, STRENGTH -> {
                 extras[id] = (value as Int) / 10.0
             }
             SKILLCAPE_SKILL -> extras[id] = Skill.all[value as Int]

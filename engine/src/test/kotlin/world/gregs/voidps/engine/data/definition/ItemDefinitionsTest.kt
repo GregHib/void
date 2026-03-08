@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.data.definition
 
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 
@@ -14,7 +15,7 @@ internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, Item
         intId,
         stringId = id,
         extras = mutableMapOf(
-            "examine" to "A candle.",
+            Params.EXAMINE to "A candle.",
         ),
     )
 
