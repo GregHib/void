@@ -63,7 +63,9 @@ class DropTables {
         return this
     }
 
-    private data class ReferenceTable(val tableName: String, val roll: Int?, override val chance: Int, override val predicate: ((Player) -> Boolean)?) : Drop
+    private data class ReferenceTable(val tableName: String, val roll: Int?, override val chance: Int, override val predicate: ((Player) -> Boolean)?) : Drop {
+        override fun print(indent: Int, multiplier: Double) = "${"  ".repeat(indent)}Ref($tableName)"
+    }
 
     private fun ConfigReader.readItemDrop(tableRoll: Int): Drop {
         var table = ""

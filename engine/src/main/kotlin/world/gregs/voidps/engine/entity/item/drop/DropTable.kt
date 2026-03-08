@@ -67,4 +67,13 @@ data class DropTable(
         }
         return type == TableType.All
     }
+
+    override fun print(indent: Int, multiplier: Double): String = buildString {
+        appendLine("${"  ".repeat(indent)}DropTable(")
+        for (drop in drops) {
+            val chance = multiplier * (drop.chance / roll.toDouble())
+            appendLine("${drop.print(indent + 1, chance)} 1/${(1 / chance).toInt()}")
+        }
+        append("${"  ".repeat(indent)})")
+    }
 }
