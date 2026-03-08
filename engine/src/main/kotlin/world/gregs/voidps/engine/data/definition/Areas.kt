@@ -49,7 +49,7 @@ object Areas {
                         y.clear()
                         var level: Int? = null
                         val tags = ObjectOpenHashSet<String>()
-                        val extras = Int2ObjectOpenHashMap<Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
+                        val params = Int2ObjectOpenHashMap<Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
                         while (nextPair()) {
                             when (val key = key()) {
                                 "x" -> while (nextElement()) {
@@ -62,7 +62,7 @@ object Areas {
                                 "tags" -> while (nextElement()) {
                                     tags.add(string())
                                 }
-                                else -> extras[Params.id(key)] = value()
+                                else -> params[Params.id(key)] = value()
                             }
                         }
                         val area: Area = if (x.size <= 2) {
@@ -74,10 +74,10 @@ object Areas {
                         } else {
                             Polygon(x.toIntArray(), y.toIntArray(), level ?: 0, level ?: 3)
                         }
-                        val definition = if (extras.isEmpty()) {
+                        val definition = if (params.isEmpty()) {
                             AreaDefinition(name = name, area = area, tags = tags, stringId = name)
                         } else {
-                            AreaDefinition(name = name, area = area, tags = tags, stringId = name, params = extras)
+                            AreaDefinition(name = name, area = area, tags = tags, stringId = name, params = params)
                         }
                         named[name] = definition
                         for (tag in tags) {

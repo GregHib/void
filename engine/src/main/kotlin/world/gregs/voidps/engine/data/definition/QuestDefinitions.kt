@@ -21,17 +21,17 @@ class QuestDefinitions : DefinitionsDecoder<QuestDefinition> {
                 while (nextSection()) {
                     val stringId = section()
                     var id = -1
-                    val extras = Int2ObjectOpenHashMap<Any>(16, Hash.VERY_FAST_LOAD_FACTOR)
+                    val params = Int2ObjectOpenHashMap<Any>(16, Hash.VERY_FAST_LOAD_FACTOR)
                     while (nextPair()) {
                         when (val key = key()) {
                             "id" -> id = int()
-                            else -> extras[Params.id(key)] = value()
+                            else -> params[Params.id(key)] = value()
                         }
                     }
                     require(!ids.containsKey(stringId)) { "Duplicate quest id found '$stringId' at $path." }
                     ids[stringId] = id
-                    if (extras.isNotEmpty()) {
-                        definitions[id] = QuestDefinition(id = id, stringId = stringId, params = extras)
+                    if (params.isNotEmpty()) {
+                        definitions[id] = QuestDefinition(id = id, stringId = stringId, params = params)
                     } else {
                         definitions[id] = QuestDefinition(id = id, stringId = stringId)
                     }

@@ -21,12 +21,12 @@ object ItemDefinitions {
             if (def.stringId.contains("rune_plate")) {
                 //            if (def.get("category", "") != "")
 //            if (/*def.get("category", "") == "throwable" &&*/ def.contains("secondary_use_level"))
-//                println("${def.stringId} ${def.extras}")
-//                println(def)
+//                println("${def.stringId} ${def.params}")
+                println(def)
             }
-            if (def.contains("ammo_group")) {
-                println("${def.stringId} ${def.params?.get(Params.AMMO_GROUP)}")
-            }
+//            if (def.contains("ammo_group")) {
+//                println("${def.stringId} ${def.params?.get(Params.AMMO_GROUP)}")
+//            }
         }
     }
 }

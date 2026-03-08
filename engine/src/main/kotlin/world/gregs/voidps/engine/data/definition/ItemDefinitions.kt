@@ -60,35 +60,35 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
                     while (nextSection()) {
                         val stringId = section()
                         var id = -1
-                        val extras = Int2ObjectOpenHashMap<Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
+                        val params = Int2ObjectOpenHashMap<Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
                         while (nextPair()) {
                             when (val key = key()) {
                                 "id" -> {
                                     id = int()
                                     if (definitions[id].params != null) {
-                                        extras.putAll(definitions[id].params!!)
+                                        params.putAll(definitions[id].params!!)
                                     }
                                 }
-                                "slot" -> extras[Params.SLOT] = EquipSlot.by(string())
-                                "type" -> extras[Params.TYPE] = EquipType.by(string())
-                                "kept" -> extras[Params.KEPT] = ItemKept.by(string())
+                                "slot" -> params[Params.SLOT] = EquipSlot.by(string())
+                                "type" -> params[Params.TYPE] = EquipType.by(string())
+                                "kept" -> params[Params.KEPT] = ItemKept.by(string())
                                 "equip_req" -> {
                                     var i = 1
                                     while (nextEntry()) {
-                                        extras[Params.id("equip_skill_${i}")] = Skill.valueOf(key().toSentenceCase()).ordinal
-                                        extras[Params.id("equip_level_${i}")] = int()
+                                        params[Params.id("equip_skill_${i}")] = Skill.valueOf(key().toSentenceCase()).ordinal
+                                        params[Params.id("equip_level_${i}")] = int()
                                         i++
                                     }
                                 }
                                 "skill_req" -> {
                                     var i = 1
                                     while (nextEntry()) {
-                                        extras[Params.id("use_skill_${i}")] = Skill.valueOf(key().toSentenceCase()).ordinal
-                                        extras[Params.id("use_level_${i}")] = int()
+                                        params[Params.id("use_skill_${i}")] = Skill.valueOf(key().toSentenceCase()).ordinal
+                                        params[Params.id("use_level_${i}")] = int()
                                         i++
                                     }
                                 }
-                                "heals" -> extras[Params.HEALS] = if (peek == '"') {
+                                "heals" -> params[Params.HEALS] = if (peek == '"') {
                                     string().toIntRange()
                                 } else {
                                     val int = int()
@@ -101,25 +101,25 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
                                         clones[stringId] = item
                                     } else {
                                         val definition = definitions[itemId]
-                                        extras.putAll(definition.params ?: continue)
+                                        params.putAll(definition.params ?: continue)
                                     }
                                 }
                                 "categories" -> {
                                     @Suppress("UNCHECKED_CAST")
-                                    val categories = extras.getOrPut(Params.CATEGORIES) { ObjectLinkedOpenHashSet<String>(4, Hash.VERY_FAST_LOAD_FACTOR) } as MutableSet<String>
+                                    val categories = params.getOrPut(Params.CATEGORIES) { ObjectLinkedOpenHashSet<String>(4, Hash.VERY_FAST_LOAD_FACTOR) } as MutableSet<String>
                                     while (nextElement()) {
                                         categories.add(string())
                                     }
                                 }
-                                else -> extras[Params.id(key)] = value()
+                                else -> params[Params.id(key)] = value()
                             }
                         }
                         require(!ids.containsKey(stringId)) { "Duplicate item id found '$stringId' at $path." }
                         ids[stringId] = id
                         loaded = true
                         definitions[id].stringId = stringId
-                        if (extras.size > 0) {
-                            definitions[id].params = extras
+                        if (params.size > 0) {
+                            definitions[id].params = params
                         }
                     }
                 }
@@ -130,14 +130,14 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
                 val definition = definitions[cloneId]
                 val id = ids.getInt(item)
                 require(id != -1) { "Unable to find item id '$item'" }
-                val extras = definitions[id].params as? MutableMap<Int, Any>
-                if (extras != null) {
-                    for (extra in definition.params ?: continue) {
-                        if (extra.key == Params.AKA) {
+                val params = definitions[id].params as? MutableMap<Int, Any>
+                if (params != null) {
+                    for (param in definition.params ?: continue) {
+                        if (param.key == Params.AKA) {
                             continue
                         }
-                        if (!extras.containsKey(extra.key)) {
-                            extras[extra.key] = extra.value
+                        if (!params.containsKey(param.key)) {
+                            params[param.key] = param.value
                         }
                     }
                 }
@@ -146,13 +146,13 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
                 if (definition.stringId.endsWith("_lent")) {
                     val normal = definitions[definition.lendId]
                     if (normal.params != null) {
-                        val lentExtras = Object2ObjectOpenHashMap(normal.params)
-                        lentExtras.remove(Params.AKA)
-                        val extras = definition.params as? MutableMap<Int, Any>
-                        if (extras != null) {
-                            lentExtras.putAll(extras)
+                        val lentParams = Object2ObjectOpenHashMap(normal.params)
+                        lentParams.remove(Params.AKA)
+                        val params = definition.params as? MutableMap<Int, Any>
+                        if (params != null) {
+                            lentParams.putAll(params)
                         }
-                        definition.params = lentExtras
+                        definition.params = lentParams
                     }
                 }
             }

@@ -84,7 +84,7 @@ data class QuestDefinition(
         return result
     }
 
-    override fun toString(): String = "QuestDefinition(id=$id, name=$name, listName=$listName, varps=${varps?.contentDeepToString()}, varbits=${varbits?.contentDeepToString()}, subQuest=$subQuest, difficulty=$difficulty, members=$members, questPoints=$questPoints, pathStart=${pathStart?.contentToString()}, otherPathStart=$otherPathStart, questRequirements=${questRequirements?.contentToString()}, skillRequirements=${skillRequirements?.contentDeepToString()}, questPointRequirement=$questPointRequirement, itemSprite=$itemSprite, stringId='$stringId', extras=$params)"
+    override fun toString(): String = "QuestDefinition(id=$id, name=$name, listName=$listName, varps=${varps?.contentDeepToString()}, varbits=${varbits?.contentDeepToString()}, subQuest=$subQuest, difficulty=$difficulty, members=$members, questPoints=$questPoints, pathStart=${pathStart?.contentToString()}, otherPathStart=$otherPathStart, questRequirements=${questRequirements?.contentToString()}, skillRequirements=${skillRequirements?.contentDeepToString()}, questPointRequirement=$questPointRequirement, itemSprite=$itemSprite, stringId='$stringId', params=$params)"
 
     companion object {
         val EMPTY = QuestDefinition()

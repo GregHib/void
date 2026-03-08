@@ -24,22 +24,22 @@ class AnimationDefinitions(
                     while (nextSection()) {
                         val stringId = section()
                         var id = -1
-                        val extras = Object2ObjectOpenHashMap<Int, Any>(2, Hash.VERY_FAST_LOAD_FACTOR)
+                        val params = Object2ObjectOpenHashMap<Int, Any>(2, Hash.VERY_FAST_LOAD_FACTOR)
                         while (nextPair()) {
                             when (val key = key()) {
                                 "id" -> id = int()
-                                "ticks" -> extras[Params.TICKS] = int()
-                                "infinite" -> extras[Params.INFINITE] = boolean()
-                                "walk" -> extras[Params.WALK] = boolean()
-                                "run" -> extras[Params.RUN] = boolean()
+                                "ticks" -> params[Params.TICKS] = int()
+                                "infinite" -> params[Params.INFINITE] = boolean()
+                                "walk" -> params[Params.WALK] = boolean()
+                                "run" -> params[Params.RUN] = boolean()
                                 else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                             }
                         }
                         require(!ids.containsKey(stringId)) { "Duplicate animation id found '$stringId' at $path." }
                         ids[stringId] = id
                         definitions[id].stringId = stringId
-                        if (extras.isNotEmpty()) {
-                            definitions[id].params = extras
+                        if (params.isNotEmpty()) {
+                            definitions[id].params = params
                         }
                     }
                 }

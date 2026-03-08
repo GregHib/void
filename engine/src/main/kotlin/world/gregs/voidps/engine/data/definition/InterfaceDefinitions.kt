@@ -64,7 +64,7 @@ object InterfaceDefinitions : DefinitionsDecoder<InterfaceDefinition> {
                         val interfaceStringId = section()
                         if (interfaceStringId.contains(".")) {
                             val (interfaceId, key) = interfaceStringId.split(".")
-                            val componentExtras = Int2ObjectOpenHashMap<Any>(1, Hash.VERY_FAST_LOAD_FACTOR)
+                            val componentParams = Int2ObjectOpenHashMap<Any>(1, Hash.VERY_FAST_LOAD_FACTOR)
                             var optionsArray = emptyArray<String?>()
                             components.clear()
                             while (nextPair()) {
@@ -98,8 +98,8 @@ object InterfaceDefinitions : DefinitionsDecoder<InterfaceDefinition> {
                                             optionsArray[index] = option
                                         }
                                     }
-                                    "cast_id", "amount", "bars" -> componentExtras[Params.id(componentKey)] = int()
-                                    else -> componentExtras[Params.id(componentKey)] = value()
+                                    "cast_id", "amount", "bars" -> componentParams[Params.id(componentKey)] = int()
+                                    else -> componentParams[Params.id(componentKey)] = value()
                                 }
                             }
                             if (components.isEmpty()) {
@@ -111,10 +111,10 @@ object InterfaceDefinitions : DefinitionsDecoder<InterfaceDefinition> {
                                 require(componentDefinition.stringId == "") { "Found duplicate interface component id $stringId ${componentDefinition.stringId}" }
                                 componentDefinition.stringId = stringId
                                 if (optionsArray.isNotEmpty()) {
-                                    componentExtras[Params.OPTIONS] = optionsArray
+                                    componentParams[Params.OPTIONS] = optionsArray
                                 }
-                                if (componentExtras.isNotEmpty()) {
-                                    componentDefinition.params = componentExtras
+                                if (componentParams.isNotEmpty()) {
+                                    componentDefinition.params = componentParams
                                 }
                             }
                             continue

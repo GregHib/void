@@ -155,7 +155,7 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
                         var valueType: Char = 0.toChar()
                         var defaultString = "null"
                         var defaultInt = 0
-                        val extras = Int2ObjectOpenHashMap<Any>(2, Hash.VERY_FAST_LOAD_FACTOR)
+                        val params = Int2ObjectOpenHashMap<Any>(2, Hash.VERY_FAST_LOAD_FACTOR)
                         val map = mutableMapOf<Int, Any>()
                         while (nextPair()) {
                             when (val key = key()) {
@@ -188,7 +188,7 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
                                     }
                                     map[keyInt] = value()
                                 }
-                                else -> extras[Params.id(key)] = value()
+                                else -> params[Params.id(key)] = value()
                             }
                         }
                         if (id == -1) {
@@ -200,12 +200,12 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
                                     defaultInt = defaultInt,
                                     length = map.size,
                                     map = map,
-                                    params = extras,
+                                    params = params,
                                     stringId = stringId,
                                 )
                             )
                         } else {
-                            definitions[id].params = extras
+                            definitions[id].params = params
                         }
                     }
                 }

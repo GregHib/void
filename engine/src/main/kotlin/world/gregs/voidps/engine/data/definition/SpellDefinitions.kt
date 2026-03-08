@@ -20,7 +20,7 @@ class SpellDefinitions {
             Config.fileReader(path) {
                 while (nextSection()) {
                     val stringId = section()
-                    val extras = Int2ObjectOpenHashMap<Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
+                    val params = Int2ObjectOpenHashMap<Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
                     var maxHit = 0
                     var experience = 0.0
                     while (nextPair()) {
@@ -28,17 +28,17 @@ class SpellDefinitions {
                             "clone" -> {
                                 val clone = string()
                                 require(definitions.containsKey(clone)) { "Unable to find spell with id '$clone'" }
-                                extras.putAll(definitions[clone]?.params ?: continue)
+                                params.putAll(definitions[clone]?.params ?: continue)
                             }
                             "exp" -> experience = double()
                             "max_hit" -> maxHit = int()
-                            else -> extras[Params.id(key)] = value()
+                            else -> params[Params.id(key)] = value()
                         }
                     }
-                    if (extras.isEmpty()) {
+                    if (params.isEmpty()) {
                         definitions[stringId] = SpellDefinition(maxHit = maxHit, experience = experience, stringId = stringId)
                     } else {
-                        definitions[stringId] = SpellDefinition(maxHit = maxHit, experience = experience, stringId = stringId, params = extras)
+                        definitions[stringId] = SpellDefinition(maxHit = maxHit, experience = experience, stringId = stringId, params = params)
                     }
                 }
             }

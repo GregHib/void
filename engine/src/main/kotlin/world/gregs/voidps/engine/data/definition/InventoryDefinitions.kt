@@ -58,9 +58,9 @@ object InventoryDefinitions : DefinitionsDecoder<InventoryDefinition> {
             while (nextSection()) {
                 val stringId = section()
                 var invId = -1
-                val extras = Int2ObjectOpenHashMap<Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
+                val params = Int2ObjectOpenHashMap<Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
                 if (shop) {
-                    extras[Params.SHOP] = true
+                    params[Params.SHOP] = true
                 }
                 var itemIds: IntArray? = null
                 var amounts: IntArray? = null
@@ -92,16 +92,16 @@ object InventoryDefinitions : DefinitionsDecoder<InventoryDefinition> {
                             }
                         }
                         "length" -> length = int()
-                        "stack", "currency", "title" -> extras[Params.id(key)] = string()
-                        "width", "height" -> extras[Params.id(key)] = int()
+                        "stack", "currency", "title" -> params[Params.id(key)] = string()
+                        "width", "height" -> params[Params.id(key)] = int()
                         else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                     }
                 }
                 if (invId > -1) {
                     require(!ids.containsKey(stringId)) { "Duplicate inventory found '$stringId' at $path." }
                     ids[stringId] = invId
-                    if (extras.isNotEmpty()) {
-                        definitions[invId].params = extras
+                    if (params.isNotEmpty()) {
+                        definitions[invId].params = params
                     }
                     if (itemIds != null) {
                         definitions[invId].ids = itemIds

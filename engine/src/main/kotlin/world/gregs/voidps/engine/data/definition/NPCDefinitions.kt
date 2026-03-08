@@ -54,7 +54,7 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                 Config.fileReader(path, 150) {
                     while (nextSection()) {
                         val stringId = section()
-                        val extras = Int2ObjectOpenHashMap<Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
+                        val params = Int2ObjectOpenHashMap<Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
                         var id = -1
                         while (nextPair()) {
                             when (val key = key()) {
@@ -63,7 +63,7 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                                     val npc = refs.getInt(name)
                                     require(npc >= 0) { "Cannot find npc to clone with id '$name' in ${path}. Make sure it's in the same file." }
                                     val definition = definitions[npc]
-                                    extras.putAll(definition.params ?: continue)
+                                    params.putAll(definition.params ?: continue)
                                 }
                                 "id" -> id = int()
                                 "categories" -> {
@@ -71,25 +71,25 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                                     while (nextElement()) {
                                         categories.add(string())
                                     }
-                                    extras[Params.CATEGORIES] = categories
+                                    params[Params.CATEGORIES] = categories
                                 }
                                 "drop_table" -> {
                                     val table = string()
                                     require(dropTables == null || table.isBlank() || dropTables.get("${table}_drop_table") != null) { "Drop table '$table' not found for npc $stringId" }
-                                    extras[Params.DROP_TABLE] = table
+                                    params[Params.DROP_TABLE] = table
                                 }
-                                else -> extras[Params.id(key)] = value()
+                                else -> params[Params.id(key)] = value()
                             }
                         }
                         require(!ids.containsKey(stringId)) { "Duplicate npc id found '$stringId' at $path." }
                         refs[stringId] = id
                         ids[stringId] = id
                         definitions[id].stringId = stringId
-                        if (extras.isNotEmpty()) {
+                        if (params.isNotEmpty()) {
                             if (definitions[id].params != null) {
-                                (definitions[id].params as MutableMap<Int, Any>).putAll(extras)
+                                (definitions[id].params as MutableMap<Int, Any>).putAll(params)
                             } else {
-                                definitions[id].params = extras
+                                definitions[id].params = params
                             }
                         }
                     }

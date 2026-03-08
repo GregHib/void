@@ -52,7 +52,7 @@ object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
                     while (nextSection()) {
                         val stringId = section()
                         var id = -1
-                        val extras = Int2ObjectOpenHashMap<Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
+                        val params = Int2ObjectOpenHashMap<Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
                         while (nextPair()) {
                             when (val key = key()) {
                                 "id" -> id = int()
@@ -61,24 +61,24 @@ object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
                                     val obj = refs.getInt(name)
                                     require(obj >= 0) { "Cannot find object to clone with id '$name' in ${path}. Make sure it's in the same file." }
                                     val definition = definitions[obj]
-                                    extras.putAll(definition.params ?: continue)
+                                    params.putAll(definition.params ?: continue)
                                 }
                                 "categories" -> {
                                     val categories = ObjectLinkedOpenHashSet<String>(2, Hash.VERY_FAST_LOAD_FACTOR)
                                     while (nextElement()) {
                                         categories.add(string())
                                     }
-                                    extras[Params.CATEGORIES] = categories
+                                    params[Params.CATEGORIES] = categories
                                 }
-                                else -> extras[Params.id(key)] = value()
+                                else -> params[Params.id(key)] = value()
                             }
                         }
                         require(!ids.containsKey(stringId)) { "Duplicate object id found '$stringId' at $path." }
                         ids[stringId] = id
                         refs[stringId] = id
                         definitions[id].stringId = stringId
-                        if (extras.isNotEmpty()) {
-                            definitions[id].params = extras
+                        if (params.isNotEmpty()) {
+                            definitions[id].params = params
                         }
                     }
                 }

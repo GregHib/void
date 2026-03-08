@@ -41,13 +41,13 @@ interface DefinitionsDecoder<D> where D : Definition, D : Parameterized {
 
     fun contains(id: String): Boolean = getOrNull(id) != null
 
-    fun apply(names: Map<Int, String>, extras: Map<String, Map<Int, Any>>, block: (D) -> Unit = {}) {
+    fun apply(names: Map<Int, String>, params: Map<String, Map<Int, Any>>, block: (D) -> Unit = {}) {
         for (i in definitions.indices) {
             val definition = definitions[i]
             val name = names[i]
             definition.stringId = name ?: i.toString()
-            val extra = extras[name] ?: continue
-            definition.params = Int2ObjectOpenHashMap(extra)
+            val param = params[name] ?: continue
+            definition.params = Int2ObjectOpenHashMap(param)
             block.invoke(definition)
         }
     }

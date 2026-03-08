@@ -24,18 +24,18 @@ class GraphicDefinitions(
                     while (nextSection()) {
                         val stringId = section()
                         var id = 0
-                        val extras = Int2ObjectOpenHashMap<Any>(0)
+                        val params = Int2ObjectOpenHashMap<Any>(0)
                         while (nextPair()) {
                             when (val key = key()) {
                                 "id" -> id = int()
                                 "angle" -> throw IllegalArgumentException("Unknown key 'angle' use 'curve' instead. ${exception()}")
-                                else -> extras[Params.id(key)] = value()
+                                else -> params[Params.id(key)] = value()
                             }
                         }
                         require(!ids.containsKey(stringId)) { "Duplicate graphics id found '$stringId' at $path." }
                         ids[stringId] = id
                         definitions[id].stringId = stringId
-                        definitions[id].params = extras.ifEmpty { null }
+                        definitions[id].params = params.ifEmpty { null }
                     }
                 }
             }
