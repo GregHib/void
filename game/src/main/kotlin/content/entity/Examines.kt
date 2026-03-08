@@ -35,7 +35,7 @@ class Examines : Script {
         }
 
         objectApproach("Examine") { (target) ->
-            message(target.def.getOrNull("examine") ?: return@objectApproach, ChatType.ObjectExamine)
+            message(target.def(this).getOrNull("examine") ?: return@objectApproach, ChatType.ObjectExamine)
         }
 
         npcApproach("Examine") { (target) ->
