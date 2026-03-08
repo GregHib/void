@@ -5,6 +5,7 @@ import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttack
 import content.skill.melee.weapon.attackType
 import content.skill.melee.weapon.weapon
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
@@ -25,7 +26,7 @@ class Melee(val styleDefinitions: WeaponStyleDefinitions, val animationDefinitio
             }
             val type: String? = weapon.def.getOrNull("weapon_type")
             val definition = if (type != null) animationDefinitions.get(type) else null
-            var animation = definition?.attackTypes?.getOrDefault(attackType, definition.attackTypes["default"])
+            var animation = definition?.attackTypes?.getOrDefault(Params.id(attackType), definition.attackTypes[Params.DEFAULT])
             if (animation == null) {
                 val id = weapon.def["weapon_style", 0]
                 val style = styleDefinitions.get(id)

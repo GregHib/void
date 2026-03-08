@@ -1,6 +1,7 @@
 package content.skill.fletching
 
 import content.entity.player.dialogue.type.makeAmount
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
@@ -18,7 +19,7 @@ class FletchUnfinished : Script {
     init {
         @Suppress("UNCHECKED_CAST")
         itemOnItem("knife", "*logs*") { _, toItem ->
-            val displayItems = toItem.def.extras?.get("fletchables") as? List<String> ?: return@itemOnItem
+            val displayItems = toItem.def.params?.get(Params.FLETCHABLES) as? List<String> ?: return@itemOnItem
             weakQueue("fletching_make_dialog") {
                 val (selected, amount) = makeAmount(
                     displayItems,

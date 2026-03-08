@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import set
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
@@ -127,7 +128,7 @@ class SpellRunesTest : MagicSpellTest() {
     fun `Staff with infinite runes`() {
         val player = player()
         setItems(Item("air_rune"), Item("chaos_rune"))
-        addItemDef(ItemDefinition(stringId = "staff_of_air", extras = mapOf("infinite_air_runes" to 1)))
+        addItemDef(ItemDefinition(stringId = "staff_of_air", params = mapOf(Params.INFINITE_AIR_RUNES to 1)))
 
         player.inventory.add("air_rune", 10)
         player.inventory.add("chaos_rune", 10)

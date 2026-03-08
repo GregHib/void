@@ -119,9 +119,9 @@ object Main {
                 MapDefinitions(CollisionDecoder(), cache).load(files)
             }
             single(createdAtStart = true) { Huffman().load(cache.data(Index.HUFFMAN, 1)!!) }
-            single(createdAtStart = true) { ObjectDefinitions.init(ObjectDecoder(members, lowDetail = false, get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.objects"])) }
-            single(createdAtStart = true) { NPCDefinitions.init(NPCDecoder(members, get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.npcs"]), get()) }
-            single(createdAtStart = true) { ItemDefinitions.init(ItemDecoder(get<ParameterDefinitions>()).load(cache)).load(files.list(Settings["definitions.items"])) }
+            single(createdAtStart = true) { ObjectDefinitions.init(ObjectDecoder(members, lowDetail = false).load(cache)).load(files.list(Settings["definitions.objects"])) }
+            single(createdAtStart = true) { NPCDefinitions.init(NPCDecoder(members).load(cache)).load(files.list(Settings["definitions.npcs"]), get()) }
+            single(createdAtStart = true) { ItemDefinitions.init(ItemDecoder().load(cache)).load(files.list(Settings["definitions.items"])) }
             single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().load(cache)).load(files.list(Settings["definitions.animations"])) }
             single(createdAtStart = true) {
                 get<ItemDefinitions>()
@@ -138,12 +138,11 @@ object Main {
                 get<ItemDefinitions>()
                 InventoryDefinitions.init(InventoryDecoder().load(cache)).load(files.list(Settings["definitions.inventories"]), files.list(Settings["definitions.shops"]))
             }
-            single(createdAtStart = true) { StructDefinitions.init(StructDecoder(get<ParameterDefinitions>()).load(cache)).load(files.find(Settings["definitions.structs"])) }
+            single(createdAtStart = true) { StructDefinitions.init(StructDecoder().load(cache)).load(files.find(Settings["definitions.structs"])) }
             single(createdAtStart = true) { QuickChatPhraseDefinitions(QuickChatPhraseDecoder().load(cache)).load() }
             single(createdAtStart = true) { WeaponStyleDefinitions().load(files.find(Settings["definitions.weapons.styles"])) }
             single(createdAtStart = true) { WeaponAnimationDefinitions().load(files.find(Settings["definitions.weapons.animations"])) }
             single(createdAtStart = true) { AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"])) }
-            single(createdAtStart = true) { ParameterDefinitions(get(), get()).load(files.find(Settings["definitions.parameters"])) }
             single(createdAtStart = true) { FontDefinitions(FontDecoder().load(cache)).load(files.find(Settings["definitions.fonts"])) }
             single(createdAtStart = true) {
                 get<ItemDefinitions>()

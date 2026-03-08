@@ -1,7 +1,7 @@
 package world.gregs.voidps.cache.definition.data
 
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.cache.definition.Parameterized
 
 data class InterfaceDefinition(
     override var id: Int = -1,
@@ -11,9 +11,9 @@ data class InterfaceDefinition(
     var resizable: Int = -1,
     var permanent: Boolean = true,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var params: Map<Int, Any>? = null,
 ) : Definition,
-    Extra {
+    Parameterized {
 
     fun parent(resizable: Boolean) = if (resizable) this.resizable else fixed
 

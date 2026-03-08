@@ -5,9 +5,9 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.DefinitionDecoder
-import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.cache.definition.Parameterized
 
-abstract class DefinitionsDecoderTest<T, S : DefinitionDecoder<T>, D : DefinitionsDecoder<T>> where T : Definition, T : Extra {
+abstract class DefinitionsDecoderTest<T, S : DefinitionDecoder<T>, D : DefinitionsDecoder<T>> where T : Definition, T : Parameterized {
 
     abstract val id: String
 

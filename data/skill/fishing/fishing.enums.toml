@@ -50,6 +50,7 @@ values = {
     oyster = 16,
     leather_gloves = 16,
     leather_boots = 16,
+    sluglings = 50,
 }
 
 [fishing_experience]
@@ -230,6 +231,7 @@ values = {
     raw_sardine = "fishing_bait",
     slimy_eel = "fishing_bait",
     raw_trout = "feather",
+    raw_karambwan = "raw_karambwanji",
 }
 
 [fishing_tackle_cage]
@@ -342,6 +344,9 @@ valueType = "string"
 defaultString = "fishing_rod"
 values = {
     fishing_spot_taverley_dungeon = "oily_fishing_rod",
+    fishing_spot_karamja_karambwan_west = "karambwan_vessel",
+    fishing_spot_karamja_karambwan_east = "karambwan_vessel",
+    fishing_spot_braindeath_island = "fishbowl_and_net",
 }
 
 [fishing_fish_bait]
@@ -383,6 +388,9 @@ values = {
     fishing_spot_taverley_dungeon = "raw_lava_eel",
     fishing_spot_tree_gnome_stronghold = "raw_pike",
     fishing_spot_wilderness_bandit_camp = "raw_sardine,raw_herring",
+    fishing_spot_karamja_karambwan_west = "raw_karambwan",
+    fishing_spot_karamja_karambwan_east = "raw_karambwan",
+    fishing_spot_braindeath_island = "sluglings,karamthulhu",
     rocktail_shoal = "raw_rocktail",
 }
 

@@ -5,17 +5,17 @@ import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.config.ConfigEncoder
 import world.gregs.voidps.cache.config.data.StructDefinition
 
-class StructEncoder(val parameters: Map<String, Int>) : ConfigEncoder<StructDefinition>() {
+class StructEncoder(val parameters: Map<Int, Int>) : ConfigEncoder<StructDefinition>() {
 
     private val logger = InlineLogger()
 
     override fun Writer.encode(definition: StructDefinition) {
-        val extras = definition.extras
-        if (!extras.isNullOrEmpty()) {
+        val params = definition.params
+        if (!params.isNullOrEmpty()) {
             writeByte(249)
-            val count = extras.count { parameters.containsKey(it.key) && (it.value is String || it.value is Int || it.value is Short || it.value is Byte || it.value is Boolean) }
+            val count = params.count { parameters.containsKey(it.key) && (it.value is String || it.value is Int || it.value is Short || it.value is Byte || it.value is Boolean) }
             writeByte(count)
-            for ((key, value) in extras) {
+            for ((key, value) in params) {
                 val id = parameters[key]
                 if (id == null) {
                     logger.warn { "Unknown parameter: $key in struct ${definition.id}" }

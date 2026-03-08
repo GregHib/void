@@ -56,7 +56,7 @@ class Ammo(val ammoDefinitions: AmmoDefinitions, val weaponStyles: WeaponStyleDe
             return false
         }
         val style = weaponStyles.get(player.weapon.def["weapon_style", 0])
-        val group = player.weapon.def["ammo_group", ""]
+        val group = ammoDefinitions.get(player.weapon.def["ammo_group", -1]).stringId
         val slot = when (style.stringId) {
             "pie", "chinchompa", "thrown" -> EquipSlot.Weapon
             "crossbow", "fixed_device", "salamander" -> EquipSlot.Ammo
@@ -108,10 +108,22 @@ class Ammo(val ammoDefinitions: AmmoDefinitions, val weaponStyles: WeaponStyleDe
         if (weapon.def["dungeoneering", 0] != ammo.def["dungeoneering", 0]) {
             return false
         }
-        val weaponReq: Map<Skill, Int>? = weapon.def.getOrNull("equip_req")
-        val weaponLevel = weaponReq?.get(Skill.Ranged) ?: 1
-        val ammoReq: Map<Skill, Int>? = ammo.def.getOrNull("equip_req")
-        val ammoLevel = ammoReq?.get(Skill.Ranged) ?: 1
+        var weaponLevel = 1
+        var ammoLevel = 1
+        for (i in 1..6) {
+            var index: Int = weapon.def.getOrNull("equip_skill_$i") ?: break
+            var skill = Skill.all[index]
+            if (skill == Skill.Ranged) {
+                weaponLevel = weapon.def.getOrNull("equip_level_$i") ?: break
+                break
+            }
+            index = ammo.def.getOrNull("equip_skill_$i") ?: break
+            skill = Skill.all[index]
+            if (skill == Skill.Ranged) {
+                ammoLevel = ammo.def.getOrNull("equip_level_$i") ?: break
+                break
+            }
+        }
         if (ammoLevel > weaponLevel) {
             return false
         }

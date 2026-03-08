@@ -2,7 +2,7 @@ package world.gregs.voidps.cache.definition.data
 
 import world.gregs.voidps.buffer.read.ArrayReader
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.cache.definition.Parameterized
 
 data class QuickChatPhraseDefinition(
     override var id: Int = -1,
@@ -11,9 +11,9 @@ data class QuickChatPhraseDefinition(
     var ids: Array<IntArray>? = null,
     var types: IntArray? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var params: Map<Int, Any>? = null,
 ) : Definition,
-    Extra {
+    Parameterized {
 
     fun buildString(enums: Array<EnumDefinition>, items: Array<ItemDefinition>, data: ByteArray) = buildString(80) {
         val (_, stringParts, _, ids, types) = this@QuickChatPhraseDefinition
@@ -83,7 +83,7 @@ data class QuickChatPhraseDefinition(
             return false
         }
         if (stringId != other.stringId) return false
-        if (extras != other.extras) return false
+        if (params != other.params) return false
 
         return true
     }
@@ -95,7 +95,7 @@ data class QuickChatPhraseDefinition(
         result = 31 * result + (ids?.contentDeepHashCode() ?: 0)
         result = 31 * result + (types?.contentHashCode() ?: 0)
         result = 31 * result + stringId.hashCode()
-        result = 31 * result + (extras?.hashCode() ?: 0)
+        result = 31 * result + (params?.hashCode() ?: 0)
         return result
     }
 

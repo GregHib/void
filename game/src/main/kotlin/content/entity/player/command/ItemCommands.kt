@@ -4,6 +4,7 @@ package content.entity.player.command
 
 import content.social.trade.exchange.GrandExchange
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
@@ -31,7 +32,7 @@ class ItemCommands(
         worldSpawn {
             for (id in 0 until ItemDefinitions.size) {
                 val definition = ItemDefinitions.get(id)
-                val list = (definition.extras as? MutableMap<String, Any>)?.remove("aka") as? List<String> ?: continue
+                val list = (definition.params as? MutableMap<Int, Any>)?.remove(Params.AKA) as? List<String> ?: continue
                 for (name in list) {
                     alternativeNames[name] = definition.stringId
                 }

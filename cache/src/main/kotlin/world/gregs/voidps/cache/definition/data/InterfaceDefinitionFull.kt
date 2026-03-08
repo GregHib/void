@@ -1,15 +1,15 @@
 package world.gregs.voidps.cache.definition.data
 
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.cache.definition.Parameterized
 
 data class InterfaceDefinitionFull(
     override var id: Int = -1,
     var components: Array<InterfaceComponentDefinitionFull>? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var params: Map<Int, Any>? = null,
 ) : Definition,
-    Extra {
+    Parameterized {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -25,7 +25,7 @@ data class InterfaceDefinitionFull(
             return false
         }
         if (stringId != other.stringId) return false
-        if (extras != other.extras) return false
+        if (params != other.params) return false
 
         return true
     }
@@ -34,7 +34,7 @@ data class InterfaceDefinitionFull(
         var result = id
         result = 31 * result + (components?.contentHashCode() ?: 0)
         result = 31 * result + stringId.hashCode()
-        result = 31 * result + (extras?.hashCode() ?: 0)
+        result = 31 * result + (params?.hashCode() ?: 0)
         return result
     }
 

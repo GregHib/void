@@ -1,7 +1,7 @@
 package world.gregs.voidps.cache.definition.data
 
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.cache.definition.Parameterized
 
 data class ClientScriptDefinition(
     override var id: Int = -1,
@@ -18,9 +18,9 @@ data class ClientScriptDefinition(
     var stringOperands: Array<String?>? = null,
     var longOperands: LongArray? = null,
     var intOperands: IntArray? = null,
-    override var extras: Map<String, Any>? = null,
+    override var params: Map<Int, Any>? = null,
 ) : Definition,
-    Extra {
+    Parameterized {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

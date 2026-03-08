@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import world.gregs.config.Config
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.data.config.SoundDefinition
 import world.gregs.voidps.engine.timedLoad
 
@@ -34,7 +35,7 @@ class SoundDefinitions : DefinitionsDecoder<SoundDefinition> {
                         }
                         ids[stringId] = id
                         if (area) {
-                            definitions[id] = SoundDefinition(id = id, stringId = stringId, extras = mapOf("area" to true))
+                            definitions[id] = SoundDefinition(id = id, stringId = stringId, params = mapOf(Params.AREA to true))
                         } else {
                             definitions[id] = SoundDefinition(id = id, stringId = stringId)
                         }

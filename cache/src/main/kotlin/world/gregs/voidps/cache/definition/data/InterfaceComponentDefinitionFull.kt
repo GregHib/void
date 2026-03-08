@@ -1,7 +1,7 @@
 package world.gregs.voidps.cache.definition.data
 
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.cache.definition.Parameterized
 
 data class InterfaceComponentDefinitionFull(
     override var id: Int = -1,
@@ -74,7 +74,6 @@ data class InterfaceComponentDefinitionFull(
     var anInt4839: Int = -1, // Unused
     var anInt4761: Int = -1, // Unused
     var setting: InterfaceComponentSetting = InterfaceComponentSetting(0, -1),
-    val params: HashMap<Long, Any>? = null,
     var information: Array<Any>? = null,
     var mouseEnterHandler: Array<Any>? = null,
     var mouseExitHandler: Array<Any>? = null,
@@ -103,9 +102,9 @@ data class InterfaceComponentDefinitionFull(
     var anIntArray4805: IntArray? = null,
     var hasScript: Boolean = false,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var params: Map<Int, Any>? = null,
 ) : Definition,
-    Extra {
+    Parameterized {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -207,7 +206,6 @@ data class InterfaceComponentDefinitionFull(
         if (anInt4839 != other.anInt4839) return false
         if (anInt4761 != other.anInt4761) return false
         if (setting != other.setting) return false
-        if (params != other.params) return false
         if (information != null) {
             if (other.information == null) return false
             if (!information.contentEquals(other.information)) return false
@@ -366,7 +364,7 @@ data class InterfaceComponentDefinitionFull(
         }
         if (hasScript != other.hasScript) return false
         if (stringId != other.stringId) return false
-        if (extras != other.extras) return false
+        if (params != other.params) return false
 
         return true
     }
@@ -442,7 +440,6 @@ data class InterfaceComponentDefinitionFull(
         result = 31 * result + anInt4839
         result = 31 * result + anInt4761
         result = 31 * result + setting.hashCode()
-        result = 31 * result + (params?.hashCode() ?: 0)
         result = 31 * result + (information?.contentHashCode() ?: 0)
         result = 31 * result + (mouseEnterHandler?.contentHashCode() ?: 0)
         result = 31 * result + (mouseExitHandler?.contentHashCode() ?: 0)
@@ -471,7 +468,7 @@ data class InterfaceComponentDefinitionFull(
         result = 31 * result + (anIntArray4805?.contentHashCode() ?: 0)
         result = 31 * result + hasScript.hashCode()
         result = 31 * result + stringId.hashCode()
-        result = 31 * result + extras.hashCode()
+        result = 31 * result + params.hashCode()
         return result
     }
 }

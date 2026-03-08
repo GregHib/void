@@ -1,7 +1,7 @@
 package world.gregs.voidps.cache.definition.data
 
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.cache.definition.Parameterized
 import world.gregs.voidps.cache.definition.Recolourable
 
 data class GraphicDefinition(
@@ -21,10 +21,10 @@ data class GraphicDefinition(
     override var originalTextureColours: ShortArray? = null,
     override var modifiedTextureColours: ShortArray? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var params: Map<Int, Any>? = null,
 ) : Definition,
     Recolourable,
-    Extra {
+    Parameterized {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -67,7 +67,7 @@ data class GraphicDefinition(
             return false
         }
         if (stringId != other.stringId) return false
-        if (extras != other.extras) return false
+        if (params != other.params) return false
 
         return true
     }
@@ -89,7 +89,7 @@ data class GraphicDefinition(
         result = 31 * result + (originalTextureColours?.contentHashCode() ?: 0)
         result = 31 * result + (modifiedTextureColours?.contentHashCode() ?: 0)
         result = 31 * result + stringId.hashCode()
-        result = 31 * result + extras.hashCode()
+        result = 31 * result + params.hashCode()
         return result
     }
     companion object {

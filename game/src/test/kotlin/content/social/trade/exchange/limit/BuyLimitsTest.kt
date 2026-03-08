@@ -3,6 +3,7 @@ package content.social.trade.exchange.limit
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.timer.epochMilliseconds
@@ -27,7 +28,7 @@ class BuyLimitsTest {
         val itemId = "item"
         val player = "player"
 
-        definition.extras = mapOf("limit" to 100)
+        definition.params = mapOf(Params.LIMIT to 100)
 
         buyLimits.record(player, itemId, 30)
         buyLimits.record(player, itemId, 10)
@@ -40,7 +41,7 @@ class BuyLimitsTest {
 
     @Test
     fun `Limit returns remaining when no record`() {
-        definition.extras = mapOf("limit" to 50)
+        definition.params = mapOf(Params.LIMIT to 50)
 
         val remaining = buyLimits.limit("player", "item")
         assertEquals(50, remaining)
@@ -57,7 +58,7 @@ class BuyLimitsTest {
         val oldTimestamp = epochMilliseconds() - TimeUnit.HOURS.toMillis(5)
 
         // Inject old data directly
-        definition.extras = mapOf("limit" to 100)
+        definition.params = mapOf(Params.LIMIT to 100)
         buyLimits.record("player", "item", 20, oldTimestamp)
 
         buyLimits.tick()
@@ -69,7 +70,7 @@ class BuyLimitsTest {
     fun `Tick doesn't remove entries newer than 4 hours`() {
         val recentTimestamp = epochMilliseconds() - TimeUnit.HOURS.toMillis(3)
 
-        definition.extras = mapOf("limit" to 100)
+        definition.params = mapOf(Params.LIMIT to 100)
         buyLimits.record("player", "item", 10, recentTimestamp)
 
         buyLimits.tick()

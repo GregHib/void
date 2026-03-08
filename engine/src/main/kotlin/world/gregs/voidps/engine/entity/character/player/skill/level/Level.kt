@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.player.skill.level
 
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -78,8 +79,11 @@ object Level {
     }
 
     fun Player.hasRequirementsToUse(item: Item, message: Boolean = false, skills: Set<Skill> = emptySet()): Boolean {
-        val requirements: Map<Skill, Int> = item.def.getOrNull("skill_req") ?: return true
-        for ((skill, level) in requirements) {
+        val def = item.def
+        for (i in 1 .. 6) {
+            val index: Int = def.getOrNull("use_skill_${i}") ?: break
+            val level: Int = def.getOrNull("use_level_${i}") ?: break
+            val skill = Skill.all[index]
             if ((skills.isEmpty() || skills.contains(skill)) && !has(skill, level, message)) {
                 return false
             }
@@ -88,19 +92,23 @@ object Level {
     }
 
     fun Player.hasRequirements(item: Item, message: Boolean = false): Boolean {
-        val requirements: Map<Skill, Int>? = item.def.getOrNull("equip_req")
-        if (requirements != null) {
-            for ((skill, level) in requirements) {
-                if (!hasMax(skill, level, message)) {
-                    return false
-                }
+        val def = item.def
+        for (i in 1 .. 6) {
+            val index: Int = def.getOrNull("equip_skill_${i}") ?: break
+            val level: Int = def.getOrNull("equip_level_${i}") ?: break
+            val skill = Skill.all[index]
+            if (!hasMax(skill, level, message)) {
+                return false
             }
         }
-        val skill = item.def.getOrNull<Skill>("skillcape_skill")
-        if (skill != null && !has(skill, skill.maximum(), message)) {
-            return false
+        val index: Int? = item.def.getOrNull(Params.SKILLCAPE_SKILL)
+        if (index != null) {
+            val skill = Skill.all[index]
+            if (!has(skill, skill.maximum(), message)) {
+                return false
+            }
         }
-        return appearance.combatLevel >= item.def["combat_req", 0]
+        return appearance.combatLevel >= item.def[Params.COMBAT_REQ, 0]
     }
 
     fun Player.hasUseLevel(skill: Skill, item: Item, message: Boolean = false): Boolean {

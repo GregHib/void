@@ -1,7 +1,7 @@
 package world.gregs.voidps.cache.definition.data
 
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.cache.definition.Parameterized
 
 data class FontDefinition(
     override var id: Int = -1,
@@ -11,9 +11,9 @@ data class FontDefinition(
     var topPadding: Int = 0,
     var bottomPadding: Int = 0,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var params: Map<Int, Any>? = null,
 ) : Definition,
-    Extra {
+    Parameterized {
 
     private fun glyphWidth(glyph: Int): Int = glyphWidths[glyph].toInt() and 0xff
 
@@ -276,7 +276,7 @@ data class FontDefinition(
         if (topPadding != other.topPadding) return false
         if (bottomPadding != other.bottomPadding) return false
         if (stringId != other.stringId) return false
-        if (extras != other.extras) return false
+        if (params != other.params) return false
 
         return true
     }
@@ -289,7 +289,7 @@ data class FontDefinition(
         result = 31 * result + topPadding
         result = 31 * result + bottomPadding
         result = 31 * result + stringId.hashCode()
-        result = 31 * result + (extras?.hashCode() ?: 0)
+        result = 31 * result + (params?.hashCode() ?: 0)
         return result
     }
 

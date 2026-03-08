@@ -7,10 +7,7 @@ import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
-import world.gregs.voidps.engine.data.definition.AmmoDefinitions
-import world.gregs.voidps.engine.data.definition.CategoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.data.definition.ParameterDefinitions
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 
 object DropTableDefinitions {
@@ -19,10 +16,7 @@ object DropTableDefinitions {
         Settings.load()
         val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
         val files = configFiles()
-        val categories = CategoryDefinitions().load(files.find(Settings["definitions.categories"]))
-        val ammo = AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"]))
-        val parameters = ParameterDefinitions(categories, ammo).load(files.find(Settings["definitions.parameters"]))
-        val itemDefinitions = ItemDefinitions.init(ItemDecoder(parameters).load(cache)).load(files.list(Settings["definitions.items"]))
+        val itemDefinitions = ItemDefinitions.init(ItemDecoder().load(cache)).load(files.list(Settings["definitions.items"]))
         startKoin {
             modules(
                 module {

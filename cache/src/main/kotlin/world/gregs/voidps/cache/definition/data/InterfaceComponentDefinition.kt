@@ -1,16 +1,16 @@
 package world.gregs.voidps.cache.definition.data
 
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.cache.definition.Parameterized
 
 data class InterfaceComponentDefinition(
     override var id: Int = -1,
     var options: Array<String?>? = null,
     var information: Array<Any>? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var params: Map<Int, Any>? = null,
 ) : Definition,
-    Extra {
+    Parameterized {
 
     val parent: Int
         get() = InterfaceDefinition.id(id)
@@ -38,7 +38,7 @@ data class InterfaceComponentDefinition(
             return false
         }
         if (stringId != other.stringId) return false
-        return extras == other.extras
+        return params == other.params
     }
 
     override fun hashCode(): Int {
@@ -46,7 +46,7 @@ data class InterfaceComponentDefinition(
         result = 31 * result + (options?.contentHashCode() ?: 0)
         result = 31 * result + (information?.contentHashCode() ?: 0)
         result = 31 * result + stringId.hashCode()
-        result = 31 * result + (extras?.hashCode() ?: 0)
+        result = 31 * result + (params?.hashCode() ?: 0)
         return result
     }
 }

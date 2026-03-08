@@ -1,7 +1,7 @@
 package world.gregs.voidps.cache.config.data
 
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.cache.definition.Parameterized
 
 data class QuestDefinition(
     override var id: Int = -1,
@@ -20,9 +20,9 @@ data class QuestDefinition(
     var questPointRequirement: Int = 0,
     var itemSprite: Int = -1,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var params: Map<Int, Any>? = null,
 ) : Definition,
-    Extra {
+    Parameterized {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -64,7 +64,7 @@ data class QuestDefinition(
         }
         if (itemSprite != other.itemSprite) return false
         if (stringId != other.stringId) return false
-        if (extras != other.extras) return false
+        if (params != other.params) return false
 
         return true
     }
@@ -80,11 +80,11 @@ data class QuestDefinition(
         result = 31 * result + (skillRequirements?.contentDeepHashCode() ?: 0)
         result = 31 * result + itemSprite
         result = 31 * result + stringId.hashCode()
-        result = 31 * result + (extras?.hashCode() ?: 0)
+        result = 31 * result + (params?.hashCode() ?: 0)
         return result
     }
 
-    override fun toString(): String = "QuestDefinition(id=$id, name=$name, listName=$listName, varps=${varps?.contentDeepToString()}, varbits=${varbits?.contentDeepToString()}, subQuest=$subQuest, difficulty=$difficulty, members=$members, questPoints=$questPoints, pathStart=${pathStart?.contentToString()}, otherPathStart=$otherPathStart, questRequirements=${questRequirements?.contentToString()}, skillRequirements=${skillRequirements?.contentDeepToString()}, questPointRequirement=$questPointRequirement, itemSprite=$itemSprite, stringId='$stringId', extras=$extras)"
+    override fun toString(): String = "QuestDefinition(id=$id, name=$name, listName=$listName, varps=${varps?.contentDeepToString()}, varbits=${varbits?.contentDeepToString()}, subQuest=$subQuest, difficulty=$difficulty, members=$members, questPoints=$questPoints, pathStart=${pathStart?.contentToString()}, otherPathStart=$otherPathStart, questRequirements=${questRequirements?.contentToString()}, skillRequirements=${skillRequirements?.contentDeepToString()}, questPointRequirement=$questPointRequirement, itemSprite=$itemSprite, stringId='$stringId', params=$params)"
 
     companion object {
         val EMPTY = QuestDefinition()

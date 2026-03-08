@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.data.definition
 
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 
@@ -10,7 +11,7 @@ internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, 
     override val id: String = "door_closed"
     override val intId: Int = 3
 
-    override fun expected(): ObjectDefinition = ObjectDefinition(intId, stringId = id, extras = mutableMapOf("examine" to "The door is closed."))
+    override fun expected(): ObjectDefinition = ObjectDefinition(intId, stringId = id, params = mutableMapOf(Params.EXAMINE to "The door is closed."))
 
     override fun empty(): ObjectDefinition = ObjectDefinition(-1)
 

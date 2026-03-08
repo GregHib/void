@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.data.config
 
-import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.cache.definition.Parameterized
 
 data class PrayerDefinition(
     val index: Int = -1,
@@ -11,8 +11,8 @@ data class PrayerDefinition(
     val bonuses: Map<String, Int> = emptyMap(),
     val members: Boolean = false,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
-) : Extra {
+    override var params: Map<Int, Any>? = null,
+) : Parameterized {
     companion object {
         val EMPTY = PrayerDefinition()
     }

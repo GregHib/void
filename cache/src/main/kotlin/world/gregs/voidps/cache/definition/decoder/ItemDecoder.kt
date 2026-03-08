@@ -4,12 +4,9 @@ import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Index.ITEMS
-import world.gregs.voidps.cache.definition.Parameters
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 
-class ItemDecoder(
-    private val parameters: Parameters = Parameters.EMPTY,
-) : DefinitionDecoder<ItemDefinition>(ITEMS) {
+class ItemDecoder : DefinitionDecoder<ItemDefinition>(ITEMS) {
 
     override fun create(size: Int) = Array(size) { ItemDefinition(it) }
 
@@ -61,7 +58,7 @@ class ItemDecoder(
             122 -> lendTemplateId = buffer.readShort()
             125, 126, 127, 128, 129, 130 -> buffer.skip(3)
             132 -> buffer.skip(buffer.readUnsignedByte() * 2)
-            249 -> readParameters(buffer, parameters)
+            249 -> readParameters(buffer)
         }
     }
 

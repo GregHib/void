@@ -43,7 +43,7 @@ object StructDefinitions : DefinitionsDecoder<StructDefinition> {
     override fun empty() = StructDefinition.EMPTY
 
     fun load(path: String): StructDefinitions {
-        timedLoad("struct extra") {
+        timedLoad("struct config") {
             val ids = Object2IntOpenHashMap<String>(512, Hash.VERY_FAST_LOAD_FACTOR)
             Config.fileReader(path) {
                 while (nextPair()) {

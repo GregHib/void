@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import set
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.item.Item
@@ -32,7 +33,7 @@ class DungeoneeringSpellTest : MagicSpellTest() {
         val player = player()
         val catalyst = if (bolt) "chaos_rune" else "death_rune"
         setItems(Item("fire_rune"), Item("air_rune"), Item(catalyst))
-        addItemDef(ItemDefinition(stringId = "magical_blastbox_bound", extras = mapOf("charges_max" to 1234, "charges" to 10)))
+        addItemDef(ItemDefinition(stringId = "magical_blastbox_bound", params = mapOf(Params.CHARGES_MAX to 1234, Params.CHARGES to 10)))
 
         player.inventory.add("air_rune", 10)
         player.inventory.add("fire_rune", 10)
@@ -51,7 +52,7 @@ class DungeoneeringSpellTest : MagicSpellTest() {
     fun `Remove surge box wave charges`() {
         val player = player()
         setItems(Item("earth_rune", 4), Item("air_rune"), Item("blood_rune"))
-        addItemDef(ItemDefinition(stringId = "celestial_surgebox", extras = mapOf("charges_max" to 1234, "charges" to 10)))
+        addItemDef(ItemDefinition(stringId = "celestial_surgebox", params = mapOf(Params.CHARGES_MAX to 1234, Params.CHARGES to 10)))
 
         player.inventory.add("air_rune", 10)
         player.inventory.add("earth_rune", 10)
@@ -75,7 +76,7 @@ class DungeoneeringSpellTest : MagicSpellTest() {
             Item("death_rune"),
             Item("blood_rune"),
         )
-        addItemDef(ItemDefinition(stringId = "celestial_surgebox", extras = mapOf("charges_max" to 1234, "charges" to 10)))
+        addItemDef(ItemDefinition(stringId = "celestial_surgebox", params = mapOf(Params.CHARGES_MAX to 1234, Params.CHARGES to 10)))
 
         player.inventory.add("air_rune", 10)
         player.inventory.add("earth_rune", 10)
@@ -97,7 +98,7 @@ class DungeoneeringSpellTest : MagicSpellTest() {
     fun `Dungeoneering box charges don't count towards other spells`(box: String) {
         val player = player()
         setItems(Item("air_rune"), Item("chaos_rune"))
-        addItemDef(ItemDefinition(stringId = box, extras = mapOf("charges_max" to 1234, "charges" to 10)))
+        addItemDef(ItemDefinition(stringId = box, params = mapOf(Params.CHARGES_MAX to 1234, Params.CHARGES to 10)))
 
         player.inventory.add("air_rune", 10)
         player.inventory.add("chaos_rune", 10)
@@ -116,7 +117,7 @@ class DungeoneeringSpellTest : MagicSpellTest() {
         val player = player()
         val box = if (spell.endsWith("bolt") || spell.endsWith("blast")) "magic_blastbox" else "celestial_surgebox"
         setItems(Item("air_rune"), Item("chaos_rune"))
-        addItemDef(ItemDefinition(stringId = box, extras = mapOf("charges_max" to 1234, "charges" to 0)))
+        addItemDef(ItemDefinition(stringId = box, params = mapOf(Params.CHARGES_MAX to 1234, Params.CHARGES to 0)))
 
         player.equipment.set(EquipSlot.Shield.index, box, 0)
 
@@ -136,7 +137,7 @@ class DungeoneeringSpellTest : MagicSpellTest() {
             else -> "death_rune"
         }
         setItems(Item("air_rune"), Item(catalytic))
-        addItemDef(ItemDefinition(stringId = box, extras = mapOf("charges_max" to 1234, "charges" to 2)))
+        addItemDef(ItemDefinition(stringId = box, params = mapOf(Params.CHARGES_MAX to 1234, Params.CHARGES to 2)))
 
         player.equipment.set(EquipSlot.Shield.index, box, 2)
 
@@ -151,7 +152,7 @@ class DungeoneeringSpellTest : MagicSpellTest() {
     fun `Dungeoneering staff without charges uses runes`(type: String) {
         val player = player()
         setItems(Item("air_rune", 2), Item("${type}_rune"))
-        addItemDef(ItemDefinition(stringId = "${type}_staff", extras = mapOf("charges_max" to 0)))
+        addItemDef(ItemDefinition(stringId = "${type}_staff", params = mapOf(Params.CHARGES_MAX to 0)))
 
         player.inventory.add("air_rune", 10)
         player.inventory.add("${type}_rune", 10)
@@ -167,7 +168,7 @@ class DungeoneeringSpellTest : MagicSpellTest() {
     fun `Dungeoneering staff uses charges not runes`(type: String) {
         val player = player()
         setItems(Item("air_rune"), Item("${type}_rune", 2))
-        addItemDef(ItemDefinition(stringId = "${type}_staff", extras = mapOf("charges_max" to 10, "charges" to 0)))
+        addItemDef(ItemDefinition(stringId = "${type}_staff", params = mapOf(Params.CHARGES_MAX to 10, Params.CHARGES to 0)))
 
         player.inventory.add("air_rune", 10)
         player.inventory.add("${type}_rune", 10)
@@ -184,7 +185,7 @@ class DungeoneeringSpellTest : MagicSpellTest() {
     fun `Dungeoneering staff in inventory uses runes`(type: String) {
         val player = player()
         setItems(Item("air_rune"), Item("${type}_rune", 2))
-        addItemDef(ItemDefinition(stringId = "${type}_staff", extras = mapOf("charges_max" to 10, "charges" to 0)))
+        addItemDef(ItemDefinition(stringId = "${type}_staff", params = mapOf(Params.CHARGES_MAX to 10, Params.CHARGES to 0)))
 
         player.inventory.add("air_rune", 10)
         player.inventory.add("${type}_rune", 10)
@@ -204,7 +205,7 @@ class DungeoneeringSpellTest : MagicSpellTest() {
         })
         val player = player()
         setItems(Item("${type}_rune"))
-        addItemDef(ItemDefinition(stringId = "${type}_staff", extras = mapOf("charges_max" to 10, "charges" to 0)))
+        addItemDef(ItemDefinition(stringId = "${type}_staff", params = mapOf(Params.CHARGES_MAX to 10, Params.CHARGES to 0)))
         player.equipment.set(EquipSlot.Weapon.index, "${type}_staff", 10)
 
         assertTrue(player.removeSpellItems("spell"))

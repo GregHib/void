@@ -68,15 +68,13 @@ data class NPCDefinitionFull(
     var soundRateMax: Int = 256,
     var pickSizeShift: Int = 0,
     var soundRangeMin: Int = 0,
-    override var params: Map<Int, Any>? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var params: Map<Int, Any>? = null,
 ) : Definition,
     Transforms,
     Recolourable,
     ColourPalette,
-    Parameterized,
-    Extra {
+    Parameterized {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -199,7 +197,7 @@ data class NPCDefinitionFull(
         if (soundRangeMin != other.soundRangeMin) return false
         if (params != other.params) return false
         if (stringId != other.stringId) return false
-        return extras == other.extras
+        return params == other.params
     }
 
     override fun hashCode(): Int {
@@ -269,7 +267,7 @@ data class NPCDefinitionFull(
         result = 31 * result + soundRangeMin
         result = 31 * result + (params?.hashCode() ?: 0)
         result = 31 * result + stringId.hashCode()
-        result = 31 * result + (extras?.hashCode() ?: 0)
+        result = 31 * result + (params?.hashCode() ?: 0)
         return result
     }
 

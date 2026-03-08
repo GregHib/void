@@ -1,7 +1,7 @@
 package world.gregs.voidps.cache.definition.data
 
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.cache.definition.Parameterized
 import world.gregs.voidps.cache.definition.Transforms
 
 data class NPCDefinition(
@@ -21,10 +21,10 @@ data class NPCDefinition(
     var runSound: Int = -1,
     var soundDistance: Int = 0,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var params: Map<Int, Any>? = null,
 ) : Definition,
     Transforms,
-    Extra {
+    Parameterized {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -52,7 +52,7 @@ data class NPCDefinition(
         if (runSound != other.runSound) return false
         if (soundDistance != other.soundDistance) return false
         if (stringId != other.stringId) return false
-        return extras == other.extras
+        return params == other.params
     }
 
     override fun hashCode(): Int {
@@ -72,7 +72,7 @@ data class NPCDefinition(
         result = 31 * result + runSound
         result = 31 * result + soundDistance
         result = 31 * result + stringId.hashCode()
-        result = 31 * result + (extras?.hashCode() ?: 0)
+        result = 31 * result + (params?.hashCode() ?: 0)
         return result
     }
 

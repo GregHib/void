@@ -6,6 +6,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.Interfaces
@@ -51,7 +52,7 @@ object InterfaceDefinitions : DefinitionsDecoder<InterfaceDefinition> {
     override fun empty() = InterfaceDefinition.EMPTY
 
     fun load(paths: List<String>, typePath: String): InterfaceDefinitions {
-        timedLoad("interface extra") {
+        timedLoad("interface config") {
             val ids = Object2IntOpenHashMap<String>()
             ids.defaultReturnValue(-1)
             val componentIds = Object2IntOpenHashMap<String>()
@@ -63,7 +64,7 @@ object InterfaceDefinitions : DefinitionsDecoder<InterfaceDefinition> {
                         val interfaceStringId = section()
                         if (interfaceStringId.contains(".")) {
                             val (interfaceId, key) = interfaceStringId.split(".")
-                            val componentExtras = Object2ObjectOpenHashMap<String, Any>(1, Hash.VERY_FAST_LOAD_FACTOR)
+                            val componentParams = Int2ObjectOpenHashMap<Any>(1, Hash.VERY_FAST_LOAD_FACTOR)
                             var optionsArray = emptyArray<String?>()
                             components.clear()
                             while (nextPair()) {
@@ -97,8 +98,8 @@ object InterfaceDefinitions : DefinitionsDecoder<InterfaceDefinition> {
                                             optionsArray[index] = option
                                         }
                                     }
-                                    "cast_id", "amount", "bars" -> componentExtras[componentKey] = int()
-                                    else -> componentExtras[componentKey] = value()
+                                    "cast_id", "amount", "bars" -> componentParams[Params.id(componentKey)] = int()
+                                    else -> componentParams[Params.id(componentKey)] = value()
                                 }
                             }
                             if (components.isEmpty()) {
@@ -110,10 +111,10 @@ object InterfaceDefinitions : DefinitionsDecoder<InterfaceDefinition> {
                                 require(componentDefinition.stringId == "") { "Found duplicate interface component id $stringId ${componentDefinition.stringId}" }
                                 componentDefinition.stringId = stringId
                                 if (optionsArray.isNotEmpty()) {
-                                    componentExtras["options"] = optionsArray
+                                    componentParams[Params.OPTIONS] = optionsArray
                                 }
-                                if (componentExtras.isNotEmpty()) {
-                                    componentDefinition.extras = componentExtras
+                                if (componentParams.isNotEmpty()) {
+                                    componentDefinition.params = componentParams
                                 }
                             }
                             continue

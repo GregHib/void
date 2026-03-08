@@ -19,21 +19,21 @@ object RS3QuestConverter {
 //        OpenRS2.downloadCache(cache, 1963)
         val decoder = QuestDecoderRS3().load(rs3Cache)
         for (def in decoder.sortedBy { it.listName }) {
-            val extras = def.extras ?: continue
+            val params = def.params ?: continue
 //            println(def)
-            var questId = extras["1345"] as? Int
+            var questId = params[1345] as? Int
             when (def.id) {
                 53 -> questId = 159
             }
             questId ?: continue
             // Filter
-            if (extras.containsKey("7834")) {
+            if (params.containsKey(7834)) {
                 // Filter by date
-                val year = extras["7834"] as Int
+                val year = params[7834] as Int
                 if (year > 2011) {
                     continue
                 }
-                if (year == 2011 && extras["7835"] != 1) {
+                if (year == 2011 && params[7835] != 1) {
                     continue
                 }
             }
@@ -56,8 +56,8 @@ object RS3QuestConverter {
             if (def.difficulty != -1) {
                 println("  difficulty: ${def.difficulty}")
             }
-            if (extras.containsKey("7855")) {
-                println("  length: ${extras["7855"]}")
+            if (params.containsKey(7855)) {
+                println("  length: ${params[7855]}")
             }
             if (def.members) {
                 println("  members: true")
@@ -65,19 +65,19 @@ object RS3QuestConverter {
             if (def.subQuest != -1) {
                 println("  sub_quest: ${identifier(decoder[def.subQuest])}")
             }
-            if (extras.containsKey("7829")) {
-                if ((extras["7829"] as Int) < 4545) {
-                    println("  sprite: ${extras["7829"]}")
+            if (params.containsKey(7829)) {
+                if ((params[7829] as Int) < 4545) {
+                    println("  sprite: ${params[7829]}")
                 }
             }
             if (def.itemSprite != -1) {
                 println("  item_sprite: ${def.itemSprite}")
             }
-            if (extras.containsKey("7854")) {
-                println("  region: ${extras["7854"]}")
+            if (params.containsKey(7854)) {
+                println("  region: ${params[7854]}")
             }
-            if (extras.containsKey("7814")) {
-                println("  start_point: \"${extras["7814"]}\"")
+            if (params.containsKey(7814)) {
+                println("  start_point: \"${params[7814]}\"")
             }
             if (def.pathStart != null) {
                 println("  start_path:")
@@ -106,23 +106,23 @@ object RS3QuestConverter {
                     println("    - ${identifier(decoder[questIdx])}")
                 }
             }
-            if (extras.containsKey("7815")) {
-                println("  req_items: \"${extras["7815"]}\"")
+            if (params.containsKey(7815)) {
+                println("  req_items: \"${params[7815]}\"")
             }
-            if (extras.containsKey("7816")) {
-                println("  req_combat: \"${extras["7816"]}\"")
+            if (params.containsKey(7816)) {
+                println("  req_combat: \"${params[7816]}\"")
             }
             if (def.questPoints != 0) {
                 println("  points: ${def.questPoints}")
             }
-            if (extras.containsKey("7158")) {
-                println("  achievement: ${extras["7158"]}")
+            if (params.containsKey(7158)) {
+                println("  achievement: ${params[7158]}")
             }
-            if (extras.containsKey("7823")) {
-                println("  reward: \"${extras["7823"]}\"")
+            if (params.containsKey(7823)) {
+                println("  reward: \"${params[7823]}\"")
             }
-            if (extras.containsKey("7818")) {
-                println("  xp: \"${extras["7818"]}\"")
+            if (params.containsKey(7818)) {
+                println("  xp: \"${params[7818]}\"")
             }
             if (def.varps != null) {
                 println("  varps:")

@@ -7,22 +7,16 @@ import world.gregs.voidps.buffer.write.ArrayWriter
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.config.data.StructDefinition
 import world.gregs.voidps.cache.config.decoder.StructDecoder
-import world.gregs.voidps.cache.definition.Parameters
 
 class StructEncoderTest {
 
-    private val parameters = object : Parameters {
-        override val parameters: Map<Int, String>
-            get() = mapOf(0 to "test")
-    }
-
-    private val encoder = StructEncoder(mapOf("test" to 0))
-    private val decoder = StructDecoder(parameters)
+    private val encoder = StructEncoder(mapOf(0 to 0))
+    private val decoder = StructDecoder()
 
     @Test
     fun `Complete encoding and decoding a string`() {
         val writer: Writer = ArrayWriter(20)
-        val definition = StructDefinition(extras = mapOf("test" to "string"))
+        val definition = StructDefinition(params = mapOf(0 to "string"))
         with(encoder) {
             writer.encode(definition)
         }
@@ -37,7 +31,7 @@ class StructEncoderTest {
     @Test
     fun `Complete encoding and decoding an integer`() {
         val writer: Writer = ArrayWriter(20)
-        val definition = StructDefinition(extras = mapOf("test" to 1234))
+        val definition = StructDefinition(params = mapOf(0 to 1234))
         with(encoder) {
             writer.encode(definition)
         }
@@ -52,7 +46,7 @@ class StructEncoderTest {
     @Test
     fun `Can't encode a custom parameter`() {
         val writer: Writer = ArrayWriter(20)
-        val definition = StructDefinition(extras = mapOf("custom" to 1234))
+        val definition = StructDefinition(params = mapOf(5000 to 1234))
         with(encoder) {
             writer.encode(definition)
         }
@@ -67,7 +61,7 @@ class StructEncoderTest {
     @Test
     fun `Can't encode a custom value type`() {
         val writer: Writer = ArrayWriter(20)
-        val definition = StructDefinition(extras = mapOf("test" to listOf("")))
+        val definition = StructDefinition(params = mapOf(0 to listOf("")))
         with(encoder) {
             writer.encode(definition)
         }

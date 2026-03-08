@@ -1,7 +1,7 @@
 package world.gregs.voidps.cache.definition.data
 
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.cache.definition.Parameterized
 import world.gregs.voidps.type.random
 
 data class EnumDefinition(
@@ -13,9 +13,9 @@ data class EnumDefinition(
     var length: Int = 0,
     var map: Map<Int, Any>? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var params: Map<Int, Any>? = null,
 ) : Definition,
-    Extra {
+    Parameterized {
     fun getKey(value: Any) = map?.filterValues { it == value }?.keys?.lastOrNull() ?: -1
 
     fun int(id: Int) = map?.get(id) as? Int ?: defaultInt
@@ -29,7 +29,7 @@ data class EnumDefinition(
     fun stringOrNull(id: Int) = map?.get(id) as? String
 
     override fun toString(): String {
-        return "EnumDefinition(id=$id, keyType=${EnumTypes.name(keyType)}, valueType=${EnumTypes.name(valueType)}, defaultString=$defaultString, defaultInt=$defaultInt, length=$length, map=$map, stringId=$stringId, extras=$extras)"
+        return "EnumDefinition(id=$id, keyType=${EnumTypes.name(keyType)}, valueType=${EnumTypes.name(valueType)}, defaultString=$defaultString, defaultInt=$defaultInt, length=$length, map=$map, stringId=$stringId, params=$params)"
     }
 
     companion object {

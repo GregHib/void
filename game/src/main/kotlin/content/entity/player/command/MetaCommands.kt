@@ -3,7 +3,7 @@ package content.entity.player.command
 import content.quest.questJournal
 import content.social.trade.exchange.GrandExchange
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.cache.definition.Parameterized
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.Commands
 import world.gregs.voidps.engine.client.command.commandAlias
@@ -229,7 +229,7 @@ class MetaCommands(
 
     private val utf8Regex = "[^\\x20-\\x7e]".toRegex()
 
-    private fun <T> search(player: Player, definitions: DefinitionsDecoder<T>, search: String, getName: (T) -> String): Int where T : Definition, T : Extra {
+    private fun <T> search(player: Player, definitions: DefinitionsDecoder<T>, search: String, getName: (T) -> String): Int where T : Definition, T : Parameterized {
         var found = 0
         for (id in definitions.definitions.indices) {
             val def = definitions.getOrNull(id) ?: continue

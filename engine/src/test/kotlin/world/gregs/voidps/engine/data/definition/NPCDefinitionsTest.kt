@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.data.definition
 
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 
@@ -13,10 +14,10 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
     override fun expected(): NPCDefinition = NPCDefinition(
         intId,
         stringId = id,
-        extras = mapOf(
-            "categories" to setOf("human"),
-            "wander_range" to 4,
-            "examine" to "Servant of the Duke of Lumbridge.",
+        params = mapOf(
+            Params.CATEGORIES to setOf("human"),
+            Params.WANDER_RANGE to 4,
+            Params.EXAMINE to "Servant of the Duke of Lumbridge.",
         ),
     )
 

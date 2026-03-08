@@ -1,5 +1,6 @@
 package content.entity.player.effect
 
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -22,7 +23,8 @@ class SkillcapeBoost : Script {
                 return@itemOption
             }
 
-            val skill: Skill = item.def["skillcape_skill"]
+            val index: Int = item.def[Params.SKILLCAPE_SKILL]
+            val skill = Skill.all[index]
             if (levels.getOffset(skill) > 0) {
                 message("You already have a boost active.") // Custom message
                 return@itemOption

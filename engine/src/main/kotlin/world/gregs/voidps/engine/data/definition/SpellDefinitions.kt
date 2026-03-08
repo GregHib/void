@@ -1,14 +1,16 @@
 package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.Hash
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.data.config.SpellDefinition
 import world.gregs.voidps.engine.timedLoad
 
 class SpellDefinitions {
 
-    private lateinit var definitions: Map<String, SpellDefinition>
+    lateinit var definitions: Map<String, SpellDefinition>
 
     fun get(key: String) = definitions[key] ?: SpellDefinition()
 
@@ -18,7 +20,7 @@ class SpellDefinitions {
             Config.fileReader(path) {
                 while (nextSection()) {
                     val stringId = section()
-                    val extras = Object2ObjectOpenHashMap<String, Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
+                    val params = Int2ObjectOpenHashMap<Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
                     var maxHit = 0
                     var experience = 0.0
                     while (nextPair()) {
@@ -26,17 +28,17 @@ class SpellDefinitions {
                             "clone" -> {
                                 val clone = string()
                                 require(definitions.containsKey(clone)) { "Unable to find spell with id '$clone'" }
-                                extras.putAll(definitions[clone]?.extras ?: continue)
+                                params.putAll(definitions[clone]?.params ?: continue)
                             }
                             "exp" -> experience = double()
                             "max_hit" -> maxHit = int()
-                            else -> extras[key] = value()
+                            else -> params[Params.id(key)] = value()
                         }
                     }
-                    if (extras.isEmpty()) {
+                    if (params.isEmpty()) {
                         definitions[stringId] = SpellDefinition(maxHit = maxHit, experience = experience, stringId = stringId)
                     } else {
-                        definitions[stringId] = SpellDefinition(maxHit = maxHit, experience = experience, stringId = stringId, extras = extras)
+                        definitions[stringId] = SpellDefinition(maxHit = maxHit, experience = experience, stringId = stringId, params = params)
                     }
                 }
             }

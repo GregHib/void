@@ -15,7 +15,7 @@ class FontDefinitions(
     override fun empty() = FontDefinition.EMPTY
 
     fun load(path: String): FontDefinitions {
-        timedLoad("font extra") {
+        timedLoad("font config") {
             val ids = Object2IntOpenHashMap<String>(20, Hash.VERY_FAST_LOAD_FACTOR)
             Config.fileReader(path) {
                 while (nextPair()) {

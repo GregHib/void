@@ -2,7 +2,6 @@ package world.gregs.voidps.cache.definition.data
 
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.ColourPalette
-import world.gregs.voidps.cache.definition.Extra
 import world.gregs.voidps.cache.definition.Parameterized
 import world.gregs.voidps.cache.definition.Recolourable
 
@@ -69,14 +68,12 @@ data class ItemDefinitionFull(
     var pickSizeShift: Int = 0,
     var singleNoteId: Int = -1,
     var singleNoteTemplateId: Int = -1,
-    override var params: Map<Int, Any>? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var params: Map<Int, Any>? = null,
 ) : Definition,
     Recolourable,
     ColourPalette,
-    Parameterized,
-    Extra {
+    Parameterized {
 
     val noted: Boolean
         get() = notedTemplateId != -1
@@ -197,7 +194,7 @@ data class ItemDefinitionFull(
         if (singleNoteTemplateId != other.singleNoteTemplateId) return false
         if (params != other.params) return false
         if (stringId != other.stringId) return false
-        if (extras != other.extras) return false
+        if (params != other.params) return false
 
         return true
     }
@@ -267,7 +264,7 @@ data class ItemDefinitionFull(
         result = 31 * result + singleNoteTemplateId
         result = 31 * result + (params?.hashCode() ?: 0)
         result = 31 * result + stringId.hashCode()
-        result = 31 * result + extras.hashCode()
+        result = 31 * result + params.hashCode()
         return result
     }
 

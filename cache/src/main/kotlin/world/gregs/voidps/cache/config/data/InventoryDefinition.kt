@@ -1,7 +1,7 @@
 package world.gregs.voidps.cache.config.data
 
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.cache.definition.Parameterized
 
 data class InventoryDefinition(
     override var id: Int = -1,
@@ -9,9 +9,9 @@ data class InventoryDefinition(
     var ids: IntArray? = null,
     var amounts: IntArray? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var params: Map<Int, Any>? = null,
 ) : Definition,
-    Extra {
+    Parameterized {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -33,7 +33,7 @@ data class InventoryDefinition(
             return false
         }
         if (stringId != other.stringId) return false
-        if (extras != other.extras) return false
+        if (params != other.params) return false
 
         return true
     }
@@ -44,7 +44,7 @@ data class InventoryDefinition(
         result = 31 * result + (ids?.contentHashCode() ?: 0)
         result = 31 * result + (amounts?.contentHashCode() ?: 0)
         result = 31 * result + stringId.hashCode()
-        result = 31 * result + extras.hashCode()
+        result = 31 * result + params.hashCode()
         return result
     }
 

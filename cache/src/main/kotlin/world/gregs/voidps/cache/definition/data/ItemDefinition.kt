@@ -1,7 +1,7 @@
 package world.gregs.voidps.cache.definition.data
 
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.cache.definition.Parameterized
 
 data class ItemDefinition(
     override var id: Int = -1,
@@ -19,9 +19,9 @@ data class ItemDefinition(
     var lendTemplateId: Int = -1,
     var equipIndex: Int = -1,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var params: Map<Int, Any>? = null,
 ) : Definition,
-    Extra {
+    Parameterized {
 
     val noted: Boolean
         get() = notedTemplateId != -1
@@ -50,7 +50,7 @@ data class ItemDefinition(
         if (lendTemplateId != other.lendTemplateId) return false
         if (equipIndex != other.equipIndex) return false
         if (stringId != other.stringId) return false
-        return extras == other.extras
+        return params == other.params
     }
 
     override fun hashCode(): Int {
@@ -69,7 +69,7 @@ data class ItemDefinition(
         result = 31 * result + lendTemplateId
         result = 31 * result + equipIndex
         result = 31 * result + stringId.hashCode()
-        result = 31 * result + (extras?.hashCode() ?: 0)
+        result = 31 * result + (params?.hashCode() ?: 0)
         return result
     }
 
@@ -77,7 +77,7 @@ data class ItemDefinition(
         if (item == null || template == null) {
             return
         }
-        extras = item.extras
+        params = item.params
         members = item.members
         floorOptions = item.floorOptions
         options = arrayOfNulls(5)

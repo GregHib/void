@@ -1,10 +1,11 @@
 package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.Hash
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.QuestDefinition
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.timedLoad
 
 class QuestDefinitions : DefinitionsDecoder<QuestDefinition> {
@@ -20,17 +21,17 @@ class QuestDefinitions : DefinitionsDecoder<QuestDefinition> {
                 while (nextSection()) {
                     val stringId = section()
                     var id = -1
-                    val extras = Object2ObjectOpenHashMap<String, Any>(16, Hash.VERY_FAST_LOAD_FACTOR)
+                    val params = Int2ObjectOpenHashMap<Any>(16, Hash.VERY_FAST_LOAD_FACTOR)
                     while (nextPair()) {
                         when (val key = key()) {
                             "id" -> id = int()
-                            else -> extras[key] = value()
+                            else -> params[Params.id(key)] = value()
                         }
                     }
                     require(!ids.containsKey(stringId)) { "Duplicate quest id found '$stringId' at $path." }
                     ids[stringId] = id
-                    if (extras.isNotEmpty()) {
-                        definitions[id] = QuestDefinition(id = id, stringId = stringId, extras = extras)
+                    if (params.isNotEmpty()) {
+                        definitions[id] = QuestDefinition(id = id, stringId = stringId, params = params)
                     } else {
                         definitions[id] = QuestDefinition(id = id, stringId = stringId)
                     }

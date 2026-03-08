@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.data.definition
 
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 
 internal class InventoryDefinitionsTest : DefinitionsDecoderTest<InventoryDefinition, InventoryDecoder, InventoryDefinitions>() {
@@ -17,8 +18,8 @@ internal class InventoryDefinitionsTest : DefinitionsDecoderTest<InventoryDefini
         length = 7,
         ids = intArrayOf(1, 2, 3, 4, 5, 6, 7),
         amounts = intArrayOf(10, 10, 10, 10, 10, 10, 10),
-        extras = mapOf(
-            "shop" to true,
+        params = mapOf(
+            Params.SHOP to true,
         ),
     )
 

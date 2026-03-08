@@ -16,6 +16,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import set
 import world.gregs.voidps.cache.config.data.InventoryDefinition
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.Areas
@@ -89,7 +90,7 @@ class DynamicResolversTest {
 
     @Test
     fun `Resolve unequipped item in inventory by equipping it`() {
-        ItemDefinitions.set(arrayOf(ItemDefinition(stringId = "sword", extras = mapOf("slot" to EquipSlot.Weapon))), mapOf("sword" to 0))
+        ItemDefinitions.set(arrayOf(ItemDefinition(stringId = "sword", params = mapOf(Params.SLOT to EquipSlot.Weapon))), mapOf("sword" to 0))
         val entry = BotItem(setOf("sword"))
         player.inventory.add("sword")
 

@@ -14,7 +14,7 @@ object QuestDefinitions {
         val decoder = QuestDecoder().load(cache)
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.extras != null) {
+            if (def.params != null) {
                 println("$i $def")
             }
         }

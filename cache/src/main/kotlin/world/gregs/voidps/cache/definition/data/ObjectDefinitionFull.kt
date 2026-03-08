@@ -80,15 +80,13 @@ data class ObjectDefinitionFull(
     var anInt3020: Int = 256,
     var aBoolean2992: Boolean = false,
     var anInt2975: Int = 0,
-    override var params: Map<Int, Any>? = null,
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var params: Map<Int, Any>? = null,
 ) : Definition,
     Transforms,
     Recolourable,
     ColourPalette,
-    Parameterized,
-    Extra {
+    Parameterized {
 
     var block: Int = PROJECTILE or ROUTE
 
@@ -259,7 +257,7 @@ data class ObjectDefinitionFull(
         if (anInt2975 != other.anInt2975) return false
         if (params != other.params) return false
         if (stringId != other.stringId) return false
-        if (extras != other.extras) return false
+        if (params != other.params) return false
         return true
     }
 
@@ -342,7 +340,7 @@ data class ObjectDefinitionFull(
         result = 31 * result + anInt2975
         result = 31 * result + (params?.hashCode() ?: 0)
         result = 31 * result + stringId.hashCode()
-        result = 31 * result + (extras?.hashCode() ?: 0)
+        result = 31 * result + (params?.hashCode() ?: 0)
         return result
     }
 

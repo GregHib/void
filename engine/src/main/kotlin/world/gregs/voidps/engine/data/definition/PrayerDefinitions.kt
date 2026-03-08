@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.timedLoad
 
 class PrayerDefinitions {
 
-    private lateinit var definitions: Map<String, PrayerDefinition>
+    lateinit var definitions: Map<String, PrayerDefinition>
     private lateinit var prayers: Array<PrayerDefinition>
     private lateinit var curses: Array<PrayerDefinition>
     private lateinit var groups: Map<Int, Set<String>>

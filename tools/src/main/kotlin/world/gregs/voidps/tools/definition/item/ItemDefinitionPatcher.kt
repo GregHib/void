@@ -2,6 +2,7 @@ package world.gregs.voidps.tools.definition.item
 
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.yaml.Yaml
@@ -24,15 +25,15 @@ object ItemDefinitionPatcher {
             }
         }
 
-        val linkedMap = linkedMapOf<String, Map<String, Any>>()
+        val linkedMap = linkedMapOf<String, Map<Int, Any>>()
         for (id in decoder.indices) {
             val def = current.getOrNull(id) ?: continue
-            val changes = def.extras?.toMutableMap() ?: mutableMapOf()
+            val changes = def.params?.toMutableMap() ?: mutableMapOf()
             val weight = map[id]
             if (weight != null) {
-                changes["weight"] = weight
+                changes[Params.WEIGHT] = weight
             }
-            changes.remove("equip")
+//            changes.remove("equip")
             val name = current.getOrNull(id)?.stringId
             if (name != null) {
                 linkedMap[name] = changes

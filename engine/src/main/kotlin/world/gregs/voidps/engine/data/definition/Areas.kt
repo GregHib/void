@@ -7,6 +7,7 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Zone
@@ -16,7 +17,7 @@ import world.gregs.voidps.type.area.Rectangle
 
 object Areas {
 
-    private var named: Map<String, AreaDefinition> = Object2ObjectOpenHashMap()
+    var named: Map<String, AreaDefinition> = Object2ObjectOpenHashMap()
     private var tagged: Map<String, Set<AreaDefinition>> = Object2ObjectOpenHashMap()
     private var areas: Map<Int, Set<AreaDefinition>> = Int2ObjectOpenHashMap()
 
@@ -48,7 +49,7 @@ object Areas {
                         y.clear()
                         var level: Int? = null
                         val tags = ObjectOpenHashSet<String>()
-                        val extras = Object2ObjectOpenHashMap<String, Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
+                        val params = Int2ObjectOpenHashMap<Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
                         while (nextPair()) {
                             when (val key = key()) {
                                 "x" -> while (nextElement()) {
@@ -61,7 +62,7 @@ object Areas {
                                 "tags" -> while (nextElement()) {
                                     tags.add(string())
                                 }
-                                else -> extras[key] = value()
+                                else -> params[Params.id(key)] = value()
                             }
                         }
                         val area: Area = if (x.size <= 2) {
@@ -73,10 +74,10 @@ object Areas {
                         } else {
                             Polygon(x.toIntArray(), y.toIntArray(), level ?: 0, level ?: 3)
                         }
-                        val definition = if (extras.isEmpty()) {
+                        val definition = if (params.isEmpty()) {
                             AreaDefinition(name = name, area = area, tags = tags, stringId = name)
                         } else {
-                            AreaDefinition(name = name, area = area, tags = tags, stringId = name, extras = extras)
+                            AreaDefinition(name = name, area = area, tags = tags, stringId = name, params = params)
                         }
                         named[name] = definition
                         for (tag in tags) {

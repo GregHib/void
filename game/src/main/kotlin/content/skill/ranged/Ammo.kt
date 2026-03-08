@@ -10,6 +10,7 @@ import content.entity.effect.toxin.poisoned
 import content.entity.player.equip.Equipment
 import content.skill.slayer.undead
 import org.rsmod.game.pathfinder.flag.CollisionFlag
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.Character
@@ -19,6 +20,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -30,7 +32,9 @@ import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 
 object Ammo {
-    fun required(item: Item) = item.def["ammo_group", "none"] != "none" && !item.id.endsWith("chinchompa")
+    private const val AMMO_GROUP_NONE = 106
+
+    fun required(item: Item) = item.def[Params.AMMO_GROUP, AMMO_GROUP_NONE] != AMMO_GROUP_NONE && !item.id.endsWith("chinchompa")
 
     fun requiredAmount(weapon: Item, special: Boolean) = if (weapon.id.startsWith("dark_bow") || (weapon.id.startsWith("magic_shortbow") && special)) 2 else 1
 

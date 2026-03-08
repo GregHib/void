@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.inv.transact.operation
 import io.mockk.every
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
@@ -15,7 +16,7 @@ internal class AddChargeLimitTest : TransactionOperationTest() {
     @Test
     fun `Add charge after the transaction has failed`() {
         transaction(stackRule = NeverStack)
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGES to 10))
         // Set the transaction to failed
         transaction.set(0, Item("item", 0))
         transaction.error = TransactionError.Invalid
@@ -42,7 +43,7 @@ internal class AddChargeLimitTest : TransactionOperationTest() {
     fun `Add charges over charge limit`() {
         transaction(stackRule = NeverStack)
         val chargeMax = 10
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to chargeMax))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGES to chargeMax))
         val id = "item"
         transaction.set(0, Item(id, 5))
 
@@ -55,7 +56,7 @@ internal class AddChargeLimitTest : TransactionOperationTest() {
     @Test
     fun `Add charges over integer limit`() {
         transaction(stackRule = NeverStack)
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to Int.MAX_VALUE))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGES to Int.MAX_VALUE))
         val id = "item"
         transaction.set(0, Item(id, Int.MAX_VALUE - 10))
 
@@ -68,7 +69,7 @@ internal class AddChargeLimitTest : TransactionOperationTest() {
     @Test
     fun `Add valid amount of charges`() {
         transaction(stackRule = NeverStack)
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGES to 10))
         val id = "item"
         transaction.set(0, Item(id, 2))
 

@@ -4,6 +4,7 @@ import io.mockk.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.config.data.InventoryDefinition
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.sendInterfaceSettings
@@ -33,10 +34,10 @@ internal class InterfaceOptionsTest {
                     components = mutableMapOf(
                         0 to InterfaceComponentDefinition(
                             id = InterfaceDefinition.pack(5, 0),
-                            extras = mapOf(
-                                "inventory" to "inventory",
-                                "primary" to false,
-                                "options" to staticOptions,
+                            params = mapOf(
+                                Params.INVENTORY to "inventory",
+                                Params.PRIMARY to false,
+                                Params.OPTIONS to staticOptions,
                             ),
                         )
                     )
@@ -45,10 +46,10 @@ internal class InterfaceOptionsTest {
                     components = mutableMapOf(
                         0 to InterfaceComponentDefinition(
                             id = InterfaceDefinition.pack(5, 0),
-                            extras = mapOf(
-                                "inventory" to "inventory",
-                                "primary" to false,
-                                "options" to arrayOf("one", "two", "three"),
+                            params = mapOf(
+                                Params.INVENTORY to "inventory",
+                                Params.PRIMARY to false,
+                                Params.OPTIONS to arrayOf("one", "two", "three"),
                             ),
                         )
                     )
@@ -62,7 +63,7 @@ internal class InterfaceOptionsTest {
 
     @Test
     fun `Send all options`() {
-        InventoryDefinitions.set(arrayOf(InventoryDefinition(10, extras = mapOf("width" to 2, "height" to 3))), mapOf("inventory" to 0))
+        InventoryDefinitions.set(arrayOf(InventoryDefinition(10, params = mapOf(Params.WIDTH to 2, Params.HEIGHT to 3))), mapOf("inventory" to 0))
         options.send(name, comp)
         verify {
             player.sendScript("secondary_options", (5 shl 16) or 0, 10, 2, 3, 0, -1, "", "", "", "", "", "", "", "", "")
@@ -71,7 +72,7 @@ internal class InterfaceOptionsTest {
 
     @Test
     fun `Unlock all options`() {
-        InventoryDefinitions.set(arrayOf(InventoryDefinition(10, extras = mapOf("width" to 2, "height" to 3))), mapOf(name to 0))
+        InventoryDefinitions.set(arrayOf(InventoryDefinition(10, params = mapOf(Params.WIDTH to 2, Params.HEIGHT to 3))), mapOf(name to 0))
         options.unlockAll(name, comp, 0..27)
         verify {
             player.sendInterfaceSettings(327680, 0, 27, getHash(9))
@@ -80,7 +81,7 @@ internal class InterfaceOptionsTest {
 
     @Test
     fun `Unlock few options`() {
-        InventoryDefinitions.set(arrayOf(InventoryDefinition(10, extras = mapOf("width" to 2, "height" to 3))), mapOf("${name}_2" to 0))
+        InventoryDefinitions.set(arrayOf(InventoryDefinition(10, params = mapOf(Params.WIDTH to 2, Params.HEIGHT to 3))), mapOf("${name}_2" to 0))
         options.unlock("${name}_2", comp, 0..27, "two", "three")
         verify {
             player.sendInterfaceSettings(327680, 0, 27, getHash(1, 2))
@@ -89,7 +90,7 @@ internal class InterfaceOptionsTest {
 
     @Test
     fun `Lock all options`() {
-        InventoryDefinitions.set(arrayOf(InventoryDefinition(10, extras = mapOf("width" to 2, "height" to 3))), mapOf(name to 0))
+        InventoryDefinitions.set(arrayOf(InventoryDefinition(10, params = mapOf(Params.WIDTH to 2, Params.HEIGHT to 3))), mapOf(name to 0))
         options.lockAll(name, comp, 0..27)
         verify {
             player.sendInterfaceSettings(327680, 0, 27, 0)

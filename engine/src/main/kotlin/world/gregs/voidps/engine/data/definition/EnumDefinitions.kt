@@ -1,11 +1,12 @@
 package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.Hash
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.config.data.StructDefinition
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.EnumDefinition
 import world.gregs.voidps.cache.definition.data.EnumTypes
 import world.gregs.voidps.engine.timedLoad
@@ -136,7 +137,7 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
     }
 
     fun load(list: List<String>): EnumDefinitions {
-        timedLoad("enum extra") {
+        timedLoad("enum config") {
             require(ItemDefinitions.loaded) { "Item definitions must be loaded before enum definitions" }
             require(InterfaceDefinitions.loaded) { "Interface definitions must be loaded before enum definitions" }
             require(InventoryDefinitions.loaded) { "Inventory definitions must be loaded before enum definitions" }
@@ -154,7 +155,7 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
                         var valueType: Char = 0.toChar()
                         var defaultString = "null"
                         var defaultInt = 0
-                        val extras = Object2ObjectOpenHashMap<String, Any>(2, Hash.VERY_FAST_LOAD_FACTOR)
+                        val params = Int2ObjectOpenHashMap<Any>(2, Hash.VERY_FAST_LOAD_FACTOR)
                         val map = mutableMapOf<Int, Any>()
                         while (nextPair()) {
                             when (val key = key()) {
@@ -187,7 +188,7 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
                                     }
                                     map[keyInt] = value()
                                 }
-                                else -> extras[key] = value()
+                                else -> params[Params.id(key)] = value()
                             }
                         }
                         if (id == -1) {
@@ -199,12 +200,12 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
                                     defaultInt = defaultInt,
                                     length = map.size,
                                     map = map,
-                                    extras = extras,
+                                    params = params,
                                     stringId = stringId,
                                 )
                             )
                         } else {
-                            definitions[id].extras = extras
+                            definitions[id].params = params
                         }
                     }
                 }

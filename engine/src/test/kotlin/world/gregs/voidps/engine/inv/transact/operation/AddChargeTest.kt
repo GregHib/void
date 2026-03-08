@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.inv.transact.operation
 import io.mockk.every
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
@@ -16,7 +17,7 @@ internal class AddChargeTest : TransactionOperationTest() {
     @Test
     fun `Add charge after the transaction has failed`() {
         transaction(stackRule = NeverStack)
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGES to 10))
         // Set the transaction to failed
         transaction.set(0, Item("item", 0))
         transaction.error = TransactionError.Invalid
@@ -56,7 +57,7 @@ internal class AddChargeTest : TransactionOperationTest() {
     @Test
     fun `Can't charge stackable items`() {
         transaction(stackRule = AlwaysStack)
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 50))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGES to 50))
         transaction.set(0, Item("item", 10))
         transaction.charge(0, 1)
         assertFalse(transaction.commit())
@@ -67,7 +68,7 @@ internal class AddChargeTest : TransactionOperationTest() {
     @Test
     fun `Add multiple charges to existing charge`() {
         transaction(stackRule = NeverStack)
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to 10))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGES to 10))
         val id = "item"
         val initialAmount = 5
         val amountToAdd = 3
@@ -82,7 +83,7 @@ internal class AddChargeTest : TransactionOperationTest() {
     fun `Can't charges over charge limit`() {
         transaction(stackRule = NeverStack)
         val chargeMax = 10
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to chargeMax))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGES to chargeMax))
         val id = "item"
         val initialAmount = 5
         val amountToAdd = 6
@@ -96,7 +97,7 @@ internal class AddChargeTest : TransactionOperationTest() {
     @Test
     fun `Can't charges over integer limit`() {
         transaction(stackRule = NeverStack)
-        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(extras = mapOf("charges" to Int.MAX_VALUE))
+        every { ItemDefinitions.getOrNull("item") } returns ItemDefinition(params = mapOf(Params.CHARGES to Int.MAX_VALUE))
         val id = "item"
         val amountToAdd = 15
         transaction.set(0, Item(id, Int.MAX_VALUE - 10))

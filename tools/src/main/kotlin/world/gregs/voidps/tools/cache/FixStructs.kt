@@ -83,7 +83,7 @@ object FixStructs {
         )
         val cache = CacheDelegate(library)
         val decoder = StructDecoder()
-        val encoder = StructEncoder((0 until 2000).map { it.toString() to it }.toMap())
+        val encoder = StructEncoder((0 until 2000).associateWith { it })
 
         val fixed = mutableListOf<StructDefinition>()
         for ((id, fixes) in achievementFixes) {
@@ -91,12 +91,12 @@ object FixStructs {
             val data = library.data(indexId, decoder.getArchive(id), decoder.getFile(id)) ?: continue
             val buffer = ArrayReader(data)
             decoder.readLoop(definition, buffer)
-            val extras = definition.extras!! as MutableMap
+            val params = definition.params!! as MutableMap
             for ((key, value) in fixes) {
                 if (value is Skill) {
-                    extras[key.toString()] = Tasks.skills.indexOf(value) + 1
+                    params[key] = Tasks.skills.indexOf(value) + 1
                 } else {
-                    extras[key.toString()] = value
+                    params[key] = value
                 }
             }
             fixed.add(definition)

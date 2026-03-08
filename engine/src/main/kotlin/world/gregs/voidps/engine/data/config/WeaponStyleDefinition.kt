@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.data.config
 
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.definition.Extra
+import world.gregs.voidps.cache.definition.Parameterized
 
 data class WeaponStyleDefinition(
     override var id: Int = -1,
@@ -9,9 +9,9 @@ data class WeaponStyleDefinition(
     val attackStyles: Array<String> = emptyArray(),
     val combatStyles: Array<String> = emptyArray(),
     override var stringId: String = "",
-    override var extras: Map<String, Any>? = null,
+    override var params: Map<Int, Any>? = null,
 ) : Definition,
-    Extra {
+    Parameterized {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -23,7 +23,7 @@ data class WeaponStyleDefinition(
         if (!attackStyles.contentEquals(other.attackStyles)) return false
         if (!combatStyles.contentEquals(other.combatStyles)) return false
         if (stringId != other.stringId) return false
-        if (extras != other.extras) return false
+        if (params != other.params) return false
 
         return true
     }
@@ -34,7 +34,7 @@ data class WeaponStyleDefinition(
         result = 31 * result + attackStyles.contentHashCode()
         result = 31 * result + combatStyles.contentHashCode()
         result = 31 * result + stringId.hashCode()
-        result = 31 * result + (extras?.hashCode() ?: 0)
+        result = 31 * result + (params?.hashCode() ?: 0)
         return result
     }
 

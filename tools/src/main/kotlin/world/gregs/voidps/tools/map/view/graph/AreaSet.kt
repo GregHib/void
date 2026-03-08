@@ -80,7 +80,7 @@ class AreaSet {
                         val y = IntArrayList()
                         var level: Int? = null
                         val tags = ObjectOpenHashSet<String>()
-                        val extras = Object2ObjectOpenHashMap<String, Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
+                        val params = Object2ObjectOpenHashMap<String, Any>(0, Hash.VERY_FAST_LOAD_FACTOR)
                         while (nextPair()) {
                             when (val key = key()) {
                                 "x" -> while (nextElement()) {
@@ -93,7 +93,7 @@ class AreaSet {
                                 "tags" -> while (nextElement()) {
                                     tags.add(string())
                                 }
-                                else -> extras[key] = value()
+                                else -> params[key] = value()
                             }
                         }
                         areas.add(

@@ -4,11 +4,8 @@ import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Config.WORLD_MAP_INFO
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.WorldMapInfoDefinition
-import world.gregs.voidps.cache.definition.Parameters
 
-class WorldMapInfoDecoder(
-    private val parameters: Parameters = Parameters.EMPTY,
-) : ConfigDecoder<WorldMapInfoDefinition>(WORLD_MAP_INFO) {
+class WorldMapInfoDecoder : ConfigDecoder<WorldMapInfoDefinition>(WORLD_MAP_INFO) {
 
     override fun create(size: Int) = Array(size) { WorldMapInfoDefinition(it) }
 
@@ -78,7 +75,7 @@ class WorldMapInfoDecoder(
                 anInt1071 = buffer.readUnsignedShort()
                 anInt1092 = buffer.readUnsignedShort()
             }
-            249 -> readParameters(buffer, parameters)
+            249 -> readParameters(buffer)
         }
     }
 
