@@ -53,10 +53,10 @@ object Ammo {
             }
             return
         }
-        when {
-            player.equipped(EquipSlot.Cape).id == "avas_attractor" && !exceptions(ammo) -> remove(player, target, ammo, required, 0.6, 0.2)
-            player.equipped(EquipSlot.Cape).id == "avas_accumulator" && !exceptions(ammo) -> remove(player, target, ammo, required, 0.72, 0.08)
-            player.equipped(EquipSlot.Cape).id == "avas_alerter" -> remove(player, target, ammo, required, 0.8, 0.0)
+        when (player.equipped(EquipSlot.Cape).id) {
+            "avas_attractor" if !exceptions(ammo) -> remove(player, target, ammo, required, 0.6, 0.2)
+            "avas_accumulator" if !exceptions(ammo) -> remove(player, target, ammo, required, 0.72, 0.08)
+            "avas_alerter" -> remove(player, target, ammo, required, 0.8, 0.0)
             else -> remove(player, target, ammo, required, 0.0, 1.0)
         }
     }
