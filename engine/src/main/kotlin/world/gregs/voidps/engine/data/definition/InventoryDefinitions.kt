@@ -39,7 +39,7 @@ object InventoryDefinitions : DefinitionsDecoder<InventoryDefinition> {
     override fun empty() = InventoryDefinition.EMPTY
 
     fun load(paths: List<String>, shopPaths: List<String>): InventoryDefinitions {
-        timedLoad("inventory extra") {
+        timedLoad("inventory config") {
             val ids = Object2IntOpenHashMap<String>()
             for (path in paths) {
                 loadInventories(path, ids, shop = false)

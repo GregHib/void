@@ -42,7 +42,7 @@ object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
     }
 
     fun load(paths: List<String>): ObjectDefinitions {
-        timedLoad("object extra") {
+        timedLoad("object config") {
             val ids = Object2IntOpenHashMap<String>()
             val refs = Object2IntOpenHashMap<String>()
             ids.defaultReturnValue(-1)

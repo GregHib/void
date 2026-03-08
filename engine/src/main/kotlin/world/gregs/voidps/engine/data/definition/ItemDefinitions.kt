@@ -51,7 +51,7 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
     override fun empty() = ItemDefinition.EMPTY
 
     fun load(paths: List<String>): ItemDefinitions {
-        timedLoad("item extra") {
+        timedLoad("item config") {
             val clones = Object2ObjectOpenHashMap<String, String>(100)
             val ids = Object2IntOpenHashMap<String>(18_000)
             ids.defaultReturnValue(-1)

@@ -52,7 +52,7 @@ object InterfaceDefinitions : DefinitionsDecoder<InterfaceDefinition> {
     override fun empty() = InterfaceDefinition.EMPTY
 
     fun load(paths: List<String>, typePath: String): InterfaceDefinitions {
-        timedLoad("interface extra") {
+        timedLoad("interface config") {
             val ids = Object2IntOpenHashMap<String>()
             ids.defaultReturnValue(-1)
             val componentIds = Object2IntOpenHashMap<String>()

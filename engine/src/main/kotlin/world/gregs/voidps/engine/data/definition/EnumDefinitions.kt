@@ -137,7 +137,7 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
     }
 
     fun load(list: List<String>): EnumDefinitions {
-        timedLoad("enum extra") {
+        timedLoad("enum config") {
             require(ItemDefinitions.loaded) { "Item definitions must be loaded before enum definitions" }
             require(InterfaceDefinitions.loaded) { "Interface definitions must be loaded before enum definitions" }
             require(InventoryDefinitions.loaded) { "Inventory definitions must be loaded before enum definitions" }

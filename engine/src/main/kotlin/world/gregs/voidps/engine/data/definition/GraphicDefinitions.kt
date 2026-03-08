@@ -17,7 +17,7 @@ class GraphicDefinitions(
     override fun empty() = GraphicDefinition.EMPTY
 
     fun load(paths: List<String>): GraphicDefinitions {
-        timedLoad("graphic extra") {
+        timedLoad("graphic config") {
             val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
             for (path in paths) {
                 Config.fileReader(path) {
