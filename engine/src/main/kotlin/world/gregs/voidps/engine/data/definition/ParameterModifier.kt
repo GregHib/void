@@ -1,11 +1,9 @@
 package world.gregs.voidps.engine.data.definition
 
 import com.github.michaelbull.logging.InlineLogger
-import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
-import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Parameters
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.Params.AMMO_GROUP
@@ -41,47 +39,15 @@ import world.gregs.voidps.cache.definition.Params.WORN_OPTION_1
 import world.gregs.voidps.cache.definition.Params.WORN_OPTION_2
 import world.gregs.voidps.cache.definition.Params.WORN_OPTION_3
 import world.gregs.voidps.cache.definition.Params.WORN_OPTION_4
-import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.config.ParameterDefinition
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.timedLoad
 
-/**
- * Parameters mainly for [ItemDefinitions], [NPCDefinitions], [ObjectDefinitions] and [StructDefinitions]
- */
-class ParameterDefinitions(
+
+class ParameterModifier(
     private val categoryDefinitions: CategoryDefinitions,
     private val ammoDefinitions: AmmoDefinitions,
-) : DefinitionsDecoder<ParameterDefinition>,
-    Parameters {
+) : Parameters {
 
-    override lateinit var definitions: Array<ParameterDefinition>
-    override lateinit var ids: Map<String, Int>
-    override lateinit var parameters: Map<Int, String>
     private val logger = InlineLogger()
-
-    fun load(path: String = Settings["definitions.parameters"]): ParameterDefinitions {
-        timedLoad("parameter definition") {
-            val ids = Object2IntOpenHashMap<String>(500, Hash.VERY_FAST_LOAD_FACTOR)
-            val parameters = Int2ObjectOpenHashMap<String>(500, Hash.VERY_FAST_LOAD_FACTOR)
-            val definitions = Array(2500) { ParameterDefinition.EMPTY }
-            Config.fileReader(path) {
-                while (nextPair()) {
-                    val stringId = key()
-                    val id = int()
-                    require(!ids.containsKey(stringId)) { "Duplicate parameter id found '$stringId' at $path." }
-                    ids[stringId] = id
-                    definitions[id].stringId = stringId
-                    parameters[id] = stringId
-                }
-            }
-            this.ids = ids
-            this.definitions = definitions
-            this.parameters = parameters
-            ids.size
-        }
-        return this
-    }
 
     @Suppress("UNCHECKED_CAST")
     override fun set(extras: MutableMap<Int, Any>, id: Int, value: Any) {
@@ -127,6 +93,4 @@ class ParameterDefinitions(
             else -> super.set(extras, id, value)
         }
     }
-
-    override fun empty() = ParameterDefinition.EMPTY
 }

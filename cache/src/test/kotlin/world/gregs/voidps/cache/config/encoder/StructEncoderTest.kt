@@ -11,13 +11,9 @@ import world.gregs.voidps.cache.definition.Parameters
 
 class StructEncoderTest {
 
-    private val parameters = object : Parameters {
-        override val parameters: Map<Int, String>
-            get() = mapOf(0 to "test")
-    }
-
     private val encoder = StructEncoder(mapOf(0 to 0))
-    private val decoder = StructDecoder(parameters)
+    private val decoder = StructDecoder(object : Parameters {
+    })
 
     @Test
     fun `Complete encoding and decoding a string`() {

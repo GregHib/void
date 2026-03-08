@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.definition.AmmoDefinitions
 import world.gregs.voidps.engine.data.definition.CategoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.data.definition.ParameterDefinitions
+import world.gregs.voidps.engine.data.definition.ParameterModifier
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 
 object DropTableDefinitions {
@@ -21,7 +21,7 @@ object DropTableDefinitions {
         val files = configFiles()
         val categories = CategoryDefinitions().load(files.find(Settings["definitions.categories"]))
         val ammo = AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"]))
-        val parameters = ParameterDefinitions(categories, ammo).load(files.find(Settings["definitions.parameters"]))
+        val parameters = ParameterModifier(categories, ammo)
         val itemDefinitions = ItemDefinitions.init(ItemDecoder(parameters).load(cache)).load(files.list(Settings["definitions.items"]))
         startKoin {
             modules(

@@ -261,8 +261,12 @@ object Params {
     const val MIN_HIT_RANDOM = 5258
     const val MIN_HIT_NONE = 5259
     const val MIN_HIT_DRAGONFIRE = 5260
+    const val SKILL_CAPE_T = 5261
+    const val QUEST_INFO = 5262
 
     private fun custom(name: String) = when (name) {
+        "quest_info" -> QUEST_INFO
+        "skill_cape_t" -> SKILL_CAPE_T
         "min_hit_stab" -> MIN_HIT_STAB
         "min_hit_range" -> MIN_HIT_RANGE
         "min_hit_slash" -> MIN_HIT_SLASH

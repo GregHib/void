@@ -61,9 +61,6 @@ class SilverCasting : Script {
         }
 
         itemOnObjectOperate(obj = "furnace*") {
-            if (!it.item.def.contains("silver_jewellery")) {
-                return@itemOnObjectOperate
-            }
             make(it.item, 1)
         }
 

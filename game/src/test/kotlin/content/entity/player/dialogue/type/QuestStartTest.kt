@@ -8,6 +8,7 @@ import org.junit.jupiter.api.assertThrows
 import org.koin.test.mock.declareMock
 import stringEntry
 import world.gregs.voidps.cache.config.data.QuestDefinition
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
@@ -23,7 +24,7 @@ internal class QuestStartTest : DialogueTest() {
                 id = 1234,
                 name = "magic",
                 extras = mapOf(
-                    "name" to "quest_name",
+                    Params.NAME to "quest_name",
                 ),
             )
         }

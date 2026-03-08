@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.definition.AmmoDefinitions
 import world.gregs.voidps.engine.data.definition.CategoryDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.engine.data.definition.ParameterDefinitions
+import world.gregs.voidps.engine.data.definition.ParameterModifier
 import kotlin.math.floor
 import kotlin.math.min
 
@@ -21,7 +21,7 @@ object NPCDefinitions {
         val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
         val categories = CategoryDefinitions().load(files.find(Settings["definitions.categories"]))
         val ammo = AmmoDefinitions().load(files.find(Settings["definitions.ammoGroups"]))
-        val parameters = ParameterDefinitions(categories, ammo).load(files.find(Settings["definitions.parameters"]))
+        val parameters = ParameterModifier(categories, ammo)
         val definitions = NPCDecoder(true, parameters).load(cache)
         NPCDefinitions.init(definitions).load(files.getValue(Settings["definitions.npcs"]))
         val renderAnimations = RenderAnimationDecoder().load(cache)
