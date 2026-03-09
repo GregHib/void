@@ -17,7 +17,7 @@ requires = ["chisel"]
 remove = ["uncut_jade"]
 add = ["jade"]
 ticks = 2
-animation = "cut_kade"
+animation = "cut_jade"
 sound = "cut_gem"
 message = "You cut the jade."
 
