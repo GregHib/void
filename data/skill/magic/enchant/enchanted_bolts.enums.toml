@@ -1,4 +1,4 @@
-[bolt_models]
+[enchant_bolt_models]
 keyType = "item"
 valueType = "int"
 values = {
@@ -13,3 +13,20 @@ values = {
     dragon_bolts = 9370,
     onyx_bolts = 9374,
 }
+
+[enchant_bolt_levels]
+keyType = "item"
+valueType = "int"
+values = {
+    opal_bolts = 4,
+    sapphire_bolts = 7,
+    jade_bolts = 14,
+    pearl_bolts = 24,
+    emerald_bolts = 27,
+    topaz_bolts = 29,
+    ruby_bolts = 49,
+    diamond_bolts = 57,
+    dragon_bolts = 68,
+    onyx_bolts = 87,
+}
+

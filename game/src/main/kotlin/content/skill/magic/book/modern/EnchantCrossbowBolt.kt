@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -40,7 +41,7 @@ class EnchantCrossbowBolt(
 
         interfaceOpened("enchant_crossbow_bolts") {
             for (it in set) {
-                interfaces.sendItem("enchant_crossbow_bolts", "${it}_bolt", EnumDefinitions.int("bolt_models", "${it}_bolts"))
+                interfaces.sendItem("enchant_crossbow_bolts", "${it}_bolt", EnumDefinitions.int("enchant_bolt_models", "${it}_bolts"))
             }
         }
 
@@ -59,6 +60,9 @@ class EnchantCrossbowBolt(
 
     fun Player.enchant(type: String, repeat: Int) {
         if (repeat < 1) {
+            return
+        }
+        if (!has(Skill.Magic, EnumDefinitions.int("enchant_bolt_levels", "${type}_bolts"))) {
             return
         }
         val runes = when (type) {
