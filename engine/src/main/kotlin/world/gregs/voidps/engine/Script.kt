@@ -34,7 +34,13 @@ interface Script : Spawn, Despawn, Skills, Moved, VariableApi, TimerApi, Operati
         private val scope: CoroutineScope = CoroutineScope(Dispatchers.Unconfined)
 
         fun launch(block: suspend CoroutineScope.() -> Unit) {
-            scope.launch(errorHandler, block = block)
+            scope.launch(errorHandler) {
+                try {
+                    block()
+                } catch (e: Exception) {
+                    logger.error(e) { "Error in script handler." }
+                }
+            }
         }
 
         private val errorHandler = CoroutineExceptionHandler { _, throwable ->
