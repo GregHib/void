@@ -21,3 +21,31 @@ id = 1693
 
 [enchanted_tipping]
 id = 759
+
+[enchant_ring]
+id = 238
+height = 50
+
+[enchant_jewellery_1]
+id = 114
+height = 50
+
+[enchant_jewellery_2]
+id = 115
+height = 50
+
+[enchant_jewellery_3]
+id = 116
+height = 50
+
+[enchant_jewellery_4]
+id = 153
+height = 50
+
+[enchant_jewellery_5]
+id = 154
+height = 50
+
+[enchant_jewellery_6]
+id = 452
+height = 50

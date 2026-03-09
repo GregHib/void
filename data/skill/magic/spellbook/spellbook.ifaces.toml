@@ -47,6 +47,9 @@ id = 27
 id = 28
 cast_id = 5
 
+[.enchant_level_1]
+id = 29
+
 [.earth_strike]
 id = 30
 cast_id = 7
@@ -83,6 +86,9 @@ cast_id = 13
 
 [.varrock_teleport]
 id = 40
+
+[.enchant_level_2]
+id = 41
 
 [.earth_bolt]
 id = 42
@@ -123,6 +129,9 @@ id = 51
 id = 52
 cast_id = 21
 
+[.enchant_level_3]
+id = 53
+
 [.iban_blast]
 id = 54
 cast_id = 45
@@ -143,6 +152,9 @@ cast_id = 23
 
 [.high_level_alchemy]
 id = 59
+
+[.enchant_level_4]
+id = 61
 
 [.watchtower_teleport]
 id = 62
@@ -180,6 +192,9 @@ cast_id = 29
 [.vulnerability]
 id = 75
 
+[.enchant_level_5]
+id = 76
+
 [.earth_wave]
 id = 77
 cast_id = 31
@@ -210,6 +225,9 @@ id = 86
 [.water_surge]
 id = 87
 cast_id = 49
+
+[.enchant_level_6]
+id = 88
 
 [.earth_surge]
 id = 89

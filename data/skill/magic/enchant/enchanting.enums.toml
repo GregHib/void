@@ -1,0 +1,18 @@
+[enchant_level_1]
+keyType = "item"
+valueType = "item"
+values = {
+    sapphire_ring = "ring_of_recoil",
+}
+
+[enchant_type]
+keyType = "int"
+valueType = "string"
+value = {
+    1 = sapphire,
+    2 = emerald,
+    3 = ruby,
+    4 = diamond,
+    5 = dragonstone,
+    6 = onyx,
+}
