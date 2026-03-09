@@ -33,6 +33,10 @@ fun configFiles(): ConfigFiles {
     val map = Object2ObjectOpenHashMap<String, MutableList<String>>()
     val data = Path.of(Settings["storage.data"])
     val modified = Path.of(Settings["storage.data.modified"])
+    val parent = modified.parent
+    if (parent.notExists()) {
+        parent.createDirectories()
+    }
     val lastUpdated = loadLastUpdate(modified)
     val extensions = mutableSetOf<String>()
     timedLoad("config file path") {
