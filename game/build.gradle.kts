@@ -120,19 +120,20 @@ distributions {
             from(tasks["shadowJar"])
 
             val emptyDirs = setOf("cache", "saves")
-            val data = parent!!
-                .rootDir
-                .resolve("data")
+            val data =
+                parent!!
+                    .rootDir
+                    .resolve("data")
             for (config in data.list()) {
                 if (emptyDirs.contains(config) || config == ".temp") {
                     continue
                 }
                 if (config.contains(".")) {
-                    from("../data/${config}") {
+                    from("../data/$config") {
                         into("data")
                     }
                 } else {
-                    from("../data/${config}/") {
+                    from("../data/$config/") {
                         into("data/$config")
                     }
                 }
