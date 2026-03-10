@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
+import world.gregs.voidps.engine.entity.item.slot
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.Inventory
@@ -53,6 +54,28 @@ fun Player.interfaceOption(
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
     val definition = InterfaceDefinitions.getComponent(id, component) ?: throw Exception("Component $component not found in Interface $id")
     get<InstructionHandlers>().interactInterface.validate(this, InteractInterface(InterfaceDefinition.id(definition.id), InterfaceDefinition.componentId(definition.id), item.def.id, slot, optionIndex))
+}
+
+fun Player.interfaceOnItem(
+    id: String,
+    component: String,
+    item: Item = Item("", -1),
+    slot: Int = -1,
+) {
+    Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
+    val definition = InterfaceDefinitions.getComponent(id, component) ?: throw Exception("Component $component not found in Interface $id")
+    get<InstructionHandlers>().interactInterfaceItem.validate(
+        this, InteractInterfaceItem(
+            fromItem = -1,
+            toItem = item.def.id,
+            fromSlot = -1,
+            toSlot = slot,
+            fromInterfaceId = InterfaceDefinition.id(definition.id),
+            fromComponentId = InterfaceDefinition.componentId(definition.id),
+            toInterfaceId = 149,
+            toComponentId = 0
+        )
+    )
 }
 
 fun Player.skillCreation(

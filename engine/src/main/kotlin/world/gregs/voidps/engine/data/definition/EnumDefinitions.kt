@@ -49,6 +49,7 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
         EnumTypes.NPC -> NPCDefinitions.get(key).id
         EnumTypes.STRUCT -> StructDefinitions.get(key).id
         EnumTypes.OBJ -> ObjectDefinitions.get(key).id
+        EnumTypes.INT -> key.toInt()
         else -> error("Unsupported enum type: ${keyType.code}")
     }
 
@@ -70,13 +71,13 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
     }
 
     fun stringOrNull(enum: String, key: String): String? {
-        val definition = get(enum)
+        val definition = getOrNull(enum) ?: return null
         val key = key(definition.keyType, key)
         return definition.stringOrNull(key)
     }
 
     fun stringOrNull(enum: String, key: Int): String? {
-        val definition = get(enum)
+        val definition = getOrNull(enum) ?: return null
         return definition.stringOrNull(key)
     }
 
@@ -92,7 +93,7 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
     }
 
     fun intOrNull(enum: String, key: String): Int? {
-        val definition = get(enum)
+        val definition = getOrNull(enum) ?: return null
         val key = key(definition.keyType, key)
         return definition.intOrNull(key)
     }
@@ -124,7 +125,7 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
         return StructDefinitions.get(struct)[param]
     }
 
-    fun <T : Any?> getStructOrNull(id: String, index: Int, param: String): T? {
+    fun <T> getStructOrNull(id: String, index: Int, param: String): T? {
         val enum = get(id)
         val struct = enum.int(index)
         return StructDefinitions.getOrNull(struct)?.getOrNull(param)

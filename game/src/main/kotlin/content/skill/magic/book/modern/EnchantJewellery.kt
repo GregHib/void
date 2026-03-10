@@ -6,6 +6,9 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -14,19 +17,22 @@ import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 class EnchantJewellery : Script {
     init {
         onItem("modern_spellbook:enchant_level_*") { item, id ->
-             // TODO levels
             if (hasClock("action_delay")) {
                 return@onItem
             }
             val spell = id.substringAfter(":")
             val enchanted = EnumDefinitions.stringOrNull(spell, item.id)
-            val level = spell.substringAfterLast("_").toInt()
-            val type = EnumDefinitions.int("enchant_type", level)
+            val enchantLevel = spell.substringAfterLast("_").toInt()
+            val type = EnumDefinitions.string("enchant_type", enchantLevel)
             if (enchanted == null) {
                 message("This spell can only be cast on $type amulets, necklaces, rings and bracelets.")
                 return@onItem
             }
-            start("action_delay", 3)
+            val level = EnumDefinitions.int("enchant_level", enchantLevel)
+            if (!has(Skill.Magic, level)) {
+                return@onItem
+            }
+            start("action_delay", 1)
             inventory.transaction {
                 removeItems(this@onItem, spell, message = false)
                 replace(item.id, enchanted)
@@ -39,12 +45,14 @@ class EnchantJewellery : Script {
                 }
                 TransactionError.None -> {
                     if (item.id.endsWith("necklace") || item.id.endsWith("amulet")) {
-                        gfx("enchant_jewellery_${level}")
-                        anim(when (level) {
-                            1 -> "enchant_jewellery_1"
-                            2 -> "enchant_jewellery_2"
-                            else -> "enchant_jewellery_3"
-                        })
+                        gfx("enchant_jewellery_$enchantLevel")
+                        anim(
+                            when (enchantLevel) {
+                                1 -> "enchant_jewellery_1"
+                                2 -> "enchant_jewellery_2"
+                                else -> "enchant_jewellery_3"
+                            },
+                        )
                         sound("enchant_${type}_amulet")
                     } else if (item.id.endsWith("ring")) {
                         gfx("enchant_ring")
@@ -53,12 +61,16 @@ class EnchantJewellery : Script {
                     } else {
                         gfx("enchant_ring")
                         sound("enchant_${type}_amulet")
-                        anim(when (level) {
-                            1 -> "enchant_jewellery_1"
-                            2 -> "enchant_jewellery_2"
-                            else -> "enchant_jewellery_3"
-                        })
+                        anim(
+                            when (enchantLevel) {
+                                1 -> "enchant_jewellery_1"
+                                2 -> "enchant_jewellery_2"
+                                else -> "enchant_jewellery_3"
+                            },
+                        )
                     }
+                    val xp = EnumDefinitions.int("enchant_xp", enchantLevel) / 10.0
+                    exp(Skill.Magic, xp)
                 }
                 else -> return@onItem
             }
