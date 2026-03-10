@@ -45,7 +45,7 @@ class WornEquipment : Script {
     }
 
     fun getEquipmentOption(itemDef: ItemDefinition, optionId: Int): String? {
-        val equipOption: String? = itemDef.getOrNull("worn_option_${optionId - 1}")
+        val equipOption: String? = itemDef.getOrNull("worn_option_$optionId")
         if (equipOption != null) {
             return equipOption
         }
