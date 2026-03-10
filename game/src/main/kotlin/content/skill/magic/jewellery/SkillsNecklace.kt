@@ -3,7 +3,9 @@ package content.skill.magic.jewellery
 import content.entity.player.dialogue.type.choice
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.ItemOption
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 
 class SkillsNecklace : Script {
@@ -34,19 +36,24 @@ class SkillsNecklace : Script {
             }
         }
 
-        itemOption("*", "skills_necklace_#", "worn_equipment") {
-            if (contains("delay")) {
-                return@itemOption
-            }
-            val area = when (it.option) {
-                "Fishing Guild" -> "fishing_guild_teleport"
-                "Mining Guild" -> "mining_guild_teleport"
-                "Crafting Guild" -> "crafting_guild_teleport"
-                "Cooking Guild" -> "cooking_guild_teleport"
-                else -> return@itemOption
-            }
-            message("You rub the necklace...", ChatType.Filter)
-            jewelleryTeleport(this, it.inventory, it.slot, Areas[area])
+        itemOption("Fishing Guild", "skills_necklace_#", "worn_equipment", ::teleport)
+        itemOption("Mining Guild", "skills_necklace_#", "worn_equipment", ::teleport)
+        itemOption("Crafting Guild", "skills_necklace_#", "worn_equipment", ::teleport)
+        itemOption("Cooking Guild", "skills_necklace_#", "worn_equipment", ::teleport)
+    }
+
+    private fun teleport(player: Player, option: ItemOption) {
+        if (player.contains("delay")) {
+            return
         }
+        val area = when (option.option) {
+            "Fishing Guild" -> "fishing_guild_teleport"
+            "Mining Guild" -> "mining_guild_teleport"
+            "Crafting Guild" -> "crafting_guild_teleport"
+            "Cooking Guild" -> "cooking_guild_teleport"
+            else -> return
+        }
+        player.message("You rub the necklace...", ChatType.Filter)
+        jewelleryTeleport(player, option.inventory, option.slot, Areas[area])
     }
 }

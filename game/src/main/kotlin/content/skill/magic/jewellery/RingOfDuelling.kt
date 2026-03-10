@@ -2,7 +2,9 @@ package content.skill.magic.jewellery
 
 import content.entity.player.dialogue.type.choice
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.ui.ItemOption
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.entity.character.player.Player
 
 class RingOfDuelling : Script {
 
@@ -28,18 +30,23 @@ class RingOfDuelling : Script {
             }
         }
 
-        itemOption("*", "ring_of_duelling_#", "worn_equipment") {
-            if (contains("delay")) {
-                return@itemOption
-            }
-            val area = when (it.option) {
-                "Duel Arena" -> "duel_arena_teleport"
-                "Castle Wars" -> "castle_wars_teleport"
-                "Mobilising Armies" -> "mobilising_armies_teleport"
-                "Fist of Guthix" -> "fist_of_guthix_teleport"
-                else -> return@itemOption
-            }
-            jewelleryTeleport(this, it.inventory, it.slot, Areas[area])
+        itemOption("Duel Arena", "ring_of_duelling_#", "worn_equipment", ::teleport)
+        itemOption("Castle Wars", "ring_of_duelling_#", "worn_equipment", ::teleport)
+        itemOption("Mobilising Armies", "ring_of_duelling_#", "worn_equipment", ::teleport)
+        itemOption("Fist of Guthix", "ring_of_duelling_#", "worn_equipment", ::teleport)
+    }
+
+    private fun teleport(player: Player, option: ItemOption) {
+        if (player.contains("delay")) {
+            return
         }
+        val area = when (option.option) {
+            "Duel Arena" -> "duel_arena_teleport"
+            "Castle Wars" -> "castle_wars_teleport"
+            "Mobilising Armies" -> "mobilising_armies_teleport"
+            "Fist of Guthix" -> "fist_of_guthix_teleport"
+            else -> return
+        }
+        jewelleryTeleport(player, option.inventory, option.slot, Areas[area])
     }
 }
