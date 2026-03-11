@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -33,7 +34,7 @@ class Alchemy(val definitions: SpellDefinitions) : Script {
                 message("This spell can not be cast on this item.")
                 return@onItem
             }
-            if (coins >= get("alchemy_warning_limit", 100_000)) {
+            if (coins >= get("alchemy_warning_limit", Settings["magic.alchemy.warningLimit", 25_000])) {
                 queue("alch_warning") {
                     choice("The item you are about to alch has a high value.") {
                         option("I wish to continue.") {
