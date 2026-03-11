@@ -5,6 +5,8 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -16,7 +18,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
-import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.queue.weakQueue
 
 class EnchantCrossbowBolt(
     val spellDefinitions: SpellDefinitions,
@@ -62,6 +64,9 @@ class EnchantCrossbowBolt(
         if (repeat < 1) {
             return
         }
+        if (hasClock("action_delay")) {
+            return
+        }
         if (!has(Skill.Magic, EnumDefinitions.int("enchant_bolt_levels", "${type}_bolts"))) {
             return
         }
@@ -81,6 +86,9 @@ class EnchantCrossbowBolt(
         inventory.transaction {
             removeItems(this@enchant, runes, "enchant_${type}_bolts", message = false)
             val removed = removeToLimit("${type}_bolts", 10)
+            if (removed == 0) {
+                error = TransactionError.Deficient(10)
+            }
             add("${type}_bolts_e", removed)
         }
         when (inventory.transaction.error) {
@@ -93,8 +101,9 @@ class EnchantCrossbowBolt(
                 gfx("enchanted_tipping")
                 sound("enchanted_tipping")
                 val exp = spellDefinitions.get("enchant_${type}_bolts").experience
-                exp(Skill.Fletching, exp)
-                queue("bolt_enchant", 3) {
+                exp(Skill.Magic, exp)
+                start("action_delay", 1)
+                weakQueue("bolt_enchant", 3) {
                     enchant(type, repeat - 1)
                 }
             }
