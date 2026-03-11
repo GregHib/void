@@ -25,7 +25,7 @@ class InstructionHandlers(
     private val interactInterfaceObject = InterfaceOnObjectOptionHandler(handler)
     private val interactInterfacePlayer = InterfaceOnPlayerOptionHandler(handler)
     val interactInterfaceItem = InterfaceOnInterfaceOptionHandler(handler)
-    private val interactInterfaceFloorItem = InterfaceOnFloorItemOptionHandler(handler)
+    val interactInterfaceFloorItem = InterfaceOnFloorItemOptionHandler(handler)
     private val executeCommand = ExecuteCommandHandler()
     var songEndHandler: SongEnd.(Player) -> Unit = empty()
     var finishRegionLoad: FinishRegionLoad.(Player) -> Unit = empty()

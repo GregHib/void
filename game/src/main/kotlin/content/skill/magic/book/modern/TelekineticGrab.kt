@@ -1,10 +1,14 @@
 package content.skill.magic.book.modern
 
 import content.entity.gfx.areaGfx
+import content.entity.player.inv.item.take.ItemTake
 import content.entity.proj.shoot
 import content.skill.magic.spell.SpellRunes.removeItems
 import content.skill.magic.spell.removeSpellItems
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -24,20 +28,26 @@ import world.gregs.voidps.engine.timer.CLIENT_TICKS
 class TelekineticGrab(val definitions: SpellDefinitions) : Script {
     init {
         onFloorItemApproach("modern_spellbook:telekinetic_grab") {
+            approachRange(10)
+            steps.clear()
             val spell = "telekinetic_grab"
             val floorItem = it.target
+            face(floorItem.tile)
             val item = Items.takeable(this, floorItem.id) ?: return@onFloorItemApproach
+            if (hasClock("action_delay")) {
+                return@onFloorItemApproach
+            }
             inventory.transaction.apply {
-                removeItems(this@onFloorItemApproach, spell)
+                start()
                 add(item, floorItem.amount)
+                revert()
             }
             when (inventory.transaction.error) {
                 is TransactionError.Full -> return@onFloorItemApproach inventoryFull("to hold that item")
-                is TransactionError.Invalid -> inventory.transaction.revert()
+                is TransactionError.None -> if (!removeSpellItems(spell)) {
+                    return@onFloorItemApproach
+                }
                 else -> return@onFloorItemApproach
-            }
-            if (!removeSpellItems(spell)) {
-                return@onFloorItemApproach
             }
             val definition = definitions.get(spell)
             anim("tele_grab_cast")
@@ -49,30 +59,26 @@ class TelekineticGrab(val definitions: SpellDefinitions) : Script {
             areaSound("tele_grab_impact", floorItem.tile, delay = clientTicks, radius = 10)
             areaGfx("tele_grab_impact", floorItem.tile, delay = clientTicks)
 
-            softQueue("tele_grab", CLIENT_TICKS.toTicks(clientTicks)) {
-                if (inventory.isFull() && (!inventory.stackable(item) || !inventory.contains(item))) {
-                    inventoryFull()
+            softQueue("tele_grab", CLIENT_TICKS.toTicks(clientTicks) + 1) {
+                if (player.tile.level != floorItem.tile.level) {
+                    message("Your telegrab fizzles as you move too far away.")
                     return@softQueue
                 }
-                if (!FloorItems.remove(floorItem)) {
-//                    message("Too late - it's gone!") TODO message?
+                if (!ItemTake.take(player, floorItem)) {
                     return@softQueue
                 }
-                inventory.transaction {
-                    val index = add(item, floorItem.amount)
-                    if (floorItem.charges > 0 && index != -1) {
-                        setCharge(index, floorItem.charges)
-                    }
+                start("action_delay", 3)
+                AuditLog.event(this@onFloorItemApproach, "telegrab", floorItem, floorItem.tile)
+                if (tile != floorItem.tile) {
+                    face(floorItem.tile.delta(tile))
+                    anim("take")
                 }
-                when (inventory.transaction.error) {
-                    TransactionError.None -> {
-                        AuditLog.event(this@onFloorItemApproach, "telegrab", floorItem, floorItem.tile)
-                        sound("take_item")
-                    }
-                    is TransactionError.Full -> inventoryFull()
-                    else -> {}
-                }
+                Items.take(this@onFloorItemApproach, floorItem)
             }
+        }
+
+        onNPCApproach("modern_spellbook:telekinetic_grab") {
+            message("You can't use Telekineetic Grab on them.")
         }
     }
 }

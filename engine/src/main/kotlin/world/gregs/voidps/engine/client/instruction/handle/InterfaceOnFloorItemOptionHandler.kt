@@ -27,7 +27,7 @@ class InterfaceOnFloorItemOptionHandler(private val handler: InterfaceHandler) :
         val (id, component, item) = handler.getInterfaceItem(player, interfaceId, componentId, itemId, itemSlot) ?: return false
         player.closeInterfaces()
         if (item.isEmpty()) {
-            player.interactOn(floorItem, id, component, itemSlot, approachRange = -1)
+            player.interactOn(floorItem, id, component, itemSlot, approachRange = if (player.tile == tile) -1 else null)
         } else {
             player.interactItemOn(floorItem, id, component, item, itemSlot, approachRange = -1)
         }
