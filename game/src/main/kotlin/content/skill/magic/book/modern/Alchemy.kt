@@ -27,29 +27,30 @@ import world.gregs.voidps.engine.queue.queue
 class Alchemy(val definitions: SpellDefinitions) : Script {
     init {
         onItem("modern_spellbook:*_level_alchemy") { item, id ->
-            tab(Tab.Inventory)
-            val spell = id.substringAfter(":")
-            val coins = (item.def.cost * if (spell == "high_level_alchemy") 0.6 else 0.4).toInt()
             if (item.def.contains("destroy")) {
                 message("This spell can not be cast on this item.")
                 return@onItem
             }
-            if (coins >= get("alchemy_warning_limit", Settings["magic.alchemy.warningLimit", 25_000])) {
+            val spell = id.substringAfter(":")
+            if (item.def.cost >= get("alchemy_warning_limit", Settings["magic.alchemy.warningLimit", 25_000])) {
                 queue("alch_warning") {
                     choice("The item you are about to alch has a high value.") {
                         option("I wish to continue.") {
-                            alch(player, spell, item, coins)
+                            alch(player, spell, item)
                         }
                         option("I do not want to alch this item.")
                     }
                 }
                 return@onItem
             }
-            alch(this, spell, item, coins)
+
+            alch(this, spell, item)
         }
     }
 
-    private fun alch(player: Player, spell: String, item: Item, coins: Int) {
+    private fun alch(player: Player, spell: String, item: Item) {
+        player.tab(Tab.Inventory)
+        val coins = (item.def.cost * if (spell == "high_level_alchemy") 0.6 else 0.4).toInt()
         if (player.hasClock("action_delay")) {
             return
         }

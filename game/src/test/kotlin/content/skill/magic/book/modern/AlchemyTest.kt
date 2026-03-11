@@ -21,20 +21,20 @@ class AlchemyTest : WorldTest() {
         player.levels.set(Skill.Magic, 55)
         player.inventory.add("fire_rune", 5)
         player.inventory.add("nature_rune")
-        player.inventory.add("rune_scimitar")
+        player.inventory.add("adamant_sword")
 
-        player.interfaceOnItem("modern_spellbook", "${level}_level_alchemy", Item("rune_scimitar"), 2)
+        player.interfaceOnItem("modern_spellbook", "${level}_level_alchemy", Item("adamant_sword"), 2)
         tick(2)
 
         assertEquals(0, player.inventory.count("scimitar"))
         assertEquals(0, player.inventory.count("nature_rune"))
         if (level == "low") {
             assertEquals(2, player.inventory.count("fire_rune"))
-            assertEquals(10240, player.inventory.count("coins"))
+            assertEquals(832, player.inventory.count("coins"))
             assertEquals(31.0, player.experience.get(Skill.Magic))
         } else {
             assertEquals(0, player.inventory.count("fire_rune"))
-            assertEquals(15360, player.inventory.count("coins"))
+            assertEquals(1248, player.inventory.count("coins"))
             assertEquals(65.0, player.experience.get(Skill.Magic))
         }
     }
