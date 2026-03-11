@@ -1,6 +1,7 @@
 package content.skill.magic.spell
 
 import content.quest.quest
+import content.quest.questCompleted
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.Script
@@ -102,6 +103,9 @@ class Teleports(val definitions: SpellDefinitions) : Script {
 
     fun Player.cast(id: String, component: String) {
         if (contains("delay") || queue.contains("teleport")) {
+            return
+        }
+        if (component == "ape_atoll_teleport" && !questCompleted("recipe_for_disaster")) {
             return
         }
         closeInterfaces()

@@ -55,7 +55,7 @@ object SpellRunes {
         checkStaves(player, required)
         // Regular runes
         required.keys.removeIf { key ->
-            if (!key.endsWith("_rune")) {
+            if (!key.endsWith("_rune") && key != "banana") {
                 false
             } else {
                 remove(key, required.getValue(key))

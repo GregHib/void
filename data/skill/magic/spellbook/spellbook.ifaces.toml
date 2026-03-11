@@ -185,6 +185,9 @@ id = 69
 id = 70
 cast_id = 27
 
+[.ape_atoll_teleport]
+id = 72
+
 [.water_wave]
 id = 73
 cast_id = 29
