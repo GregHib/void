@@ -3,7 +3,6 @@ package content.skill.magic.book.modern
 import content.entity.gfx.areaGfx
 import content.entity.player.inv.item.take.ItemTake
 import content.entity.proj.shoot
-import content.skill.magic.spell.SpellRunes.removeItems
 import content.skill.magic.spell.removeSpellItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -15,13 +14,11 @@ import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.Items
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import world.gregs.voidps.engine.inv.transact.operation.SetCharge.setCharge
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
 

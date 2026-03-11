@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.data.definition.*
-import world.gregs.voidps.engine.entity.character.mode.interact.InterfaceOnFloorItemInteract
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -66,7 +65,8 @@ fun Player.interfaceOnItem(
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
     val definition = InterfaceDefinitions.getComponent(id, component) ?: throw Exception("Component $component not found in Interface $id")
     get<InstructionHandlers>().interactInterfaceItem.validate(
-        this, InteractInterfaceItem(
+        this,
+        InteractInterfaceItem(
             fromItem = -1,
             toItem = item.def.id,
             fromSlot = -1,
@@ -74,8 +74,8 @@ fun Player.interfaceOnItem(
             fromInterfaceId = InterfaceDefinition.id(definition.id),
             fromComponentId = InterfaceDefinition.componentId(definition.id),
             toInterfaceId = 149,
-            toComponentId = 0
-        )
+            toComponentId = 0,
+        ),
     )
 }
 
@@ -87,7 +87,8 @@ fun Player.interfaceOnFloorItem(
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
     val definition = InterfaceDefinitions.getComponent(id, component) ?: throw Exception("Component $component not found in Interface $id")
     get<InstructionHandlers>().interactInterfaceFloorItem.validate(
-        this, InteractInterfaceFloorItem(
+        this,
+        InteractInterfaceFloorItem(
             floorItem = item.def.id,
             x = item.tile.x,
             y = item.tile.y,
@@ -95,7 +96,7 @@ fun Player.interfaceOnFloorItem(
             componentId = InterfaceDefinition.componentId(definition.id),
             itemId = -1,
             itemSlot = -1,
-        )
+        ),
     )
 }
 

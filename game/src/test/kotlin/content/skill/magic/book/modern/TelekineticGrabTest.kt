@@ -2,8 +2,6 @@ package content.skill.magic.book.modern
 
 import WorldTest
 import interfaceOnFloorItem
-import interfaceOnItem
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill

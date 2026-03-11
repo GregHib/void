@@ -4,7 +4,6 @@ import WorldTest
 import interfaceOption
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DynamicTest.dynamicTest
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -125,5 +124,4 @@ class EnchantCrossbowBoltTest : WorldTest() {
         player.inventory.add("nature_rune", casts)
         player.inventory.add("law_rune", 2 * casts)
     }
-
 }

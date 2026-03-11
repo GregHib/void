@@ -48,8 +48,8 @@ class SpellBookFilter : Script {
         val key = "spellbook_sort"
         if (component.startsWith("sort_")) {
             // Make sure don't sort by multiple at once
-            removeVarbit(key, "${id}:sort_combat", refresh = false)
-            removeVarbit(key, "${id}:sort_teleport", refresh = false)
+            removeVarbit(key, "$id:sort_combat", refresh = false)
+            removeVarbit(key, "$id:sort_teleport", refresh = false)
         }
         if (component != "sort_level") {
             addVarbit(key, "$id:$component", refresh = false)
