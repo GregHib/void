@@ -279,7 +279,7 @@ class MageOfZamorak : Script {
             player.delay(2)
             player.anim("lunar_teleport")
             player.gfx("tele_other_receive")
-            player.sound("teleport_all")
+            player.sound("teleport")
             player.delay(2)
             player["abyss_obstacles"] = random.nextInt(0, 12)
             var tile = Areas["abyss_multi_area"].random(player)

@@ -217,6 +217,9 @@ cast_id = 31
 [.enfeeble]
 id = 78
 
+[.teleother_lumbridge]
+id = 79
+
 [.fire_wave]
 id = 80
 cast_id = 33
@@ -234,6 +237,9 @@ id = 83
 id = 84
 cast_id = 47
 
+[.teleother_falador]
+id = 85
+
 [.teleport_block]
 id = 86
 
@@ -247,6 +253,9 @@ id = 88
 [.earth_surge]
 id = 89
 cast_id = 51
+
+[.teleother_camelot]
+id = 90
 
 [.fire_surge]
 id = 91

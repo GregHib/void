@@ -56,6 +56,17 @@ fun Player.interfaceOption(
     get<InstructionHandlers>().interactInterface.validate(this, InteractInterface(InterfaceDefinition.id(definition.id), InterfaceDefinition.componentId(definition.id), item.def.id, slot, optionIndex))
 }
 
+fun Player.continueDialogue(
+    id: String,
+    component: String,
+    option: String = "",
+    optionIndex: Int = getOptionIndex(id, component, option) ?: -1,
+) {
+    Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
+    val definition = InterfaceDefinitions.getComponent(id, component) ?: throw Exception("Component $component not found in Interface $id")
+    get<InstructionHandlers>().interactDialogue.validate(this, InteractDialogue(InterfaceDefinition.id(definition.id), InterfaceDefinition.componentId(definition.id), optionIndex))
+}
+
 fun Player.interfaceOnItem(
     id: String,
     component: String,
@@ -113,6 +124,25 @@ fun Player.interfaceOnObject(
             objectId = gameObject.intId,
             x = gameObject.tile.x,
             y = gameObject.tile.y,
+            interfaceId = InterfaceDefinition.id(definition.id),
+            componentId = InterfaceDefinition.componentId(definition.id),
+            itemId = -1,
+            itemSlot = -1,
+        ),
+    )
+}
+
+fun Player.interfaceOnPlayer(
+    id: String,
+    component: String,
+    target: Player,
+) {
+    Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
+    val definition = InterfaceDefinitions.getComponent(id, component) ?: throw Exception("Component $component not found in Interface $id")
+    get<InstructionHandlers>().interactInterfacePlayer.validate(
+        this,
+        InteractInterfacePlayer(
+            playerIndex = target.index,
             interfaceId = InterfaceDefinition.id(definition.id),
             componentId = InterfaceDefinition.componentId(definition.id),
             itemId = -1,

@@ -70,3 +70,9 @@ height = 50
 [charge_fire_orb]
 id = 151
 height = 50
+
+[teleport_other_impact]
+id = 342
+
+[teleport_other_casting]
+id = 343

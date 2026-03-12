@@ -89,5 +89,4 @@ class OrbChargingTest : WorldTest() {
             assertEquals(0.0, player.experience.get(Skill.Magic))
         }
     }
-
 }

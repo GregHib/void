@@ -30,3 +30,9 @@ id = 722
 
 [charge_orb]
 id = 726
+
+[teleport_other]
+id = 1818
+
+[teleport_other_impact]
+id = 1816

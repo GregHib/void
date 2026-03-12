@@ -63,3 +63,6 @@ id = 117
 
 [charge_water_orb]
 id = 118
+
+[tele_other_cast]
+id = 199

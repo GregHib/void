@@ -12,7 +12,7 @@ class InstructionHandlers(
     handler: InterfaceHandler,
 ) {
     private val interactFloorItem = FloorItemOptionHandler()
-    private val interactDialogue = DialogueContinueHandler()
+    val interactDialogue = DialogueContinueHandler()
     private val continueKey = DialogueContinueKeyHandler()
     private val interactDialogueItem = DialogueItemContinueHandler()
     private val closeInterface = InterfaceClosedHandler()
@@ -23,7 +23,7 @@ class InstructionHandlers(
     private val interactPlayer = PlayerOptionHandler()
     private val interactInterfaceNPC = InterfaceOnNPCOptionHandler(handler)
     val interactInterfaceObject = InterfaceOnObjectOptionHandler(handler)
-    private val interactInterfacePlayer = InterfaceOnPlayerOptionHandler(handler)
+    val interactInterfacePlayer = InterfaceOnPlayerOptionHandler(handler)
     val interactInterfaceItem = InterfaceOnInterfaceOptionHandler(handler)
     val interactInterfaceFloorItem = InterfaceOnFloorItemOptionHandler(handler)
     private val executeCommand = ExecuteCommandHandler()

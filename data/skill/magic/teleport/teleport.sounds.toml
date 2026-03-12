@@ -6,9 +6,3 @@ id = 201
 
 [teleport_tablet]
 id = 965
-
-[tele_other_cast]
-id = 199
-
-[teleport_all]
-id = 200
