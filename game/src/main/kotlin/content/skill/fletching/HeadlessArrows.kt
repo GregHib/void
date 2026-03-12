@@ -18,7 +18,7 @@ class HeadlessArrows : Script {
         itemOnItem("feather", "arrow_shaft") { fromItem, toItem ->
             if (fromItem.amount <= 15 || toItem.amount <= 15) {
                 val amountToMake = minOf(fromItem.amount, toItem.amount)
-                makeImmediately(this, "headless_arrow", amountToMake)
+                makeHeadlessArrows(this, "headless_arrow", amountToMake)
                 return@itemOnItem
             }
             weakQueue("feather_to_shaft_dialog") {
@@ -66,23 +66,6 @@ class HeadlessArrows : Script {
             player.exp(Skill.Fletching, totalExperience)
             player.message("You attach feathers to $actualAmount arrow shafts.")
             makeHeadlessArrows(player, addItem, amount - 1)
-        }
-    }
-
-    fun makeImmediately(player: Player, addItem: String, amount: Int) {
-        player.weakQueue("feather_to_shaft_create", 2) {
-            val success = player.inventory.transaction {
-                remove("feather", amount)
-                remove("arrow_shaft", amount)
-                add(addItem, amount)
-            }
-            if (!success) {
-                return@weakQueue
-            }
-            val experiencePerArrow = 15.0 / 15
-            val totalExperience = experiencePerArrow * amount
-            player.exp(Skill.Fletching, totalExperience)
-            player.message("You attach feathers to $amount arrow shafts.")
         }
     }
 }
