@@ -22,7 +22,7 @@ class InstructionHandlers(
     private val interactObject = ObjectOptionHandler()
     private val interactPlayer = PlayerOptionHandler()
     private val interactInterfaceNPC = InterfaceOnNPCOptionHandler(handler)
-    private val interactInterfaceObject = InterfaceOnObjectOptionHandler(handler)
+    val interactInterfaceObject = InterfaceOnObjectOptionHandler(handler)
     private val interactInterfacePlayer = InterfaceOnPlayerOptionHandler(handler)
     val interactInterfaceItem = InterfaceOnInterfaceOptionHandler(handler)
     val interactInterfaceFloorItem = InterfaceOnFloorItemOptionHandler(handler)

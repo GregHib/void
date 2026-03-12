@@ -51,3 +51,15 @@ id = 143
 
 [enchant_onyx_ring]
 id = 144
+
+[charge_earth_orb]
+id = 115
+
+[charge_air_orb]
+id = 116
+
+[charge_fire_orb]
+id = 117
+
+[charge_water_orb]
+id = 118

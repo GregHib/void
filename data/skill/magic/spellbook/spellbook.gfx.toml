@@ -54,3 +54,19 @@ height = 50
 [enchant_jewellery_6]
 id = 452
 height = 50
+
+[charge_water_orb]
+id = 149
+height = 50
+
+[charge_air_orb]
+id = 150
+height = 50
+
+[charge_earth_orb]
+id = 151
+height = 50
+
+[charge_fire_orb]
+id = 151
+height = 50

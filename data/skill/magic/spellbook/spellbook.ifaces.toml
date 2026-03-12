@@ -153,6 +153,9 @@ cast_id = 23
 [.high_level_alchemy]
 id = 59
 
+[.charge_water_orb]
+id = 60
+
 [.enchant_level_4]
 id = 61
 
@@ -162,6 +165,9 @@ id = 62
 [.fire_blast]
 id = 63
 cast_id = 25
+
+[.charge_earth_orb]
+id = 64
 
 [.bones_to_peaches]
 id = 65
@@ -185,12 +191,18 @@ id = 69
 id = 70
 cast_id = 27
 
+[.charge_fire_orb]
+id = 71
+
 [.ape_atoll_teleport]
 id = 72
 
 [.water_wave]
 id = 73
 cast_id = 29
+
+[.charge_air_orb]
+id = 74
 
 [.vulnerability]
 id = 75

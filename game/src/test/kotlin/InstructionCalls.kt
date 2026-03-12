@@ -100,6 +100,27 @@ fun Player.interfaceOnFloorItem(
     )
 }
 
+fun Player.interfaceOnObject(
+    id: String,
+    component: String,
+    gameObject: GameObject,
+) {
+    Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
+    val definition = InterfaceDefinitions.getComponent(id, component) ?: throw Exception("Component $component not found in Interface $id")
+    get<InstructionHandlers>().interactInterfaceObject.validate(
+        this,
+        InteractInterfaceObject(
+            objectId = gameObject.intId,
+            x = gameObject.tile.x,
+            y = gameObject.tile.y,
+            interfaceId = InterfaceDefinition.id(definition.id),
+            componentId = InterfaceDefinition.componentId(definition.id),
+            itemId = -1,
+            itemSlot = -1,
+        ),
+    )
+}
+
 fun Player.skillCreation(
     item: String,
     amount: Int = 1,
