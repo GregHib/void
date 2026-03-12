@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.timer.epochSeconds
 
@@ -32,7 +33,7 @@ class Vengeance(val definitions: SpellDefinitions) : Script {
             anim(spell)
             gfx(spell)
             sound(spell)
-            experience.add(Skill.Magic, definition.experience)
+            exp(Skill.Magic, definition.experience)
             set("vengeance", true)
             start("vengeance_delay", definition["delay_seconds"], epochSeconds())
         }

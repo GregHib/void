@@ -1,3 +1,7 @@
 [arhein_ship_gangplank]
 id = 69
 examine = "The tatty gangplank of a tatty ship."
+
+[obelisk_of_water]
+id = 2151
+examine = "A column of elemental power."

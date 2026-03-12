@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
@@ -127,7 +128,7 @@ internal class EquipTest : WorldTest() {
     @Test
     fun `Stack equipped items`() {
         val player = createPlayer()
-        player.experience.add(Skill.Ranged, Experience.MAXIMUM_EXPERIENCE / 10.0)
+        player.exp(Skill.Ranged, Experience.MAXIMUM_EXPERIENCE / 10.0)
         player.levels.set(Skill.Ranged, 99)
         player.equipment.set(EquipSlot.Ammo.index, "rune_arrow", 10)
         player.inventory.add("rune_arrow", 40)

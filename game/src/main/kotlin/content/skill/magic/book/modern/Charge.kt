@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.timer.TICKS
 
@@ -29,7 +30,7 @@ class Charge(val definitions: SpellDefinitions) : Script {
             val definition = definitions.get(spell)
             anim(spell)
             sound(spell)
-            experience.add(Skill.Magic, definition.experience)
+            exp(Skill.Magic, definition.experience)
             start("charge", definition["effect_ticks"])
             start("charge_delay", definition["delay_ticks"])
         }

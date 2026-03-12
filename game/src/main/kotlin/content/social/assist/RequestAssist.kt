@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.req.request
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.timer.TICKS
 import java.util.concurrent.TimeUnit
 import kotlin.math.min
@@ -80,7 +81,7 @@ class RequestAssist : Script {
                 val exp = min(experience / 10.0, (MAX_EXPERIENCE - gained) / 10)
                 gained += exp * 10.0
                 val maxed = exceededMaximum(gained)
-                player.experience.add(skill, exp)
+                player.exp(skill, exp)
                 player["total_xp_earned"] = gained.toInt()
                 if (maxed) {
                     player.interfaces.sendText(

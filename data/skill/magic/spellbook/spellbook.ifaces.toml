@@ -47,6 +47,9 @@ id = 27
 id = 28
 cast_id = 5
 
+[.enchant_level_1]
+id = 29
+
 [.earth_strike]
 id = 30
 cast_id = 7
@@ -74,12 +77,18 @@ id = 35
 [.bind]
 id = 36
 
+[.low_level_alchemy]
+id = 38
+
 [.water_bolt]
 id = 39
 cast_id = 13
 
 [.varrock_teleport]
 id = 40
+
+[.enchant_level_2]
+id = 41
 
 [.earth_bolt]
 id = 42
@@ -120,6 +129,9 @@ id = 51
 id = 52
 cast_id = 21
 
+[.enchant_level_3]
+id = 53
+
 [.iban_blast]
 id = 54
 cast_id = 45
@@ -138,12 +150,24 @@ id = 57
 id = 58
 cast_id = 23
 
+[.high_level_alchemy]
+id = 59
+
+[.charge_water_orb]
+id = 60
+
+[.enchant_level_4]
+id = 61
+
 [.watchtower_teleport]
 id = 62
 
 [.fire_blast]
 id = 63
 cast_id = 25
+
+[.charge_earth_orb]
+id = 64
 
 [.bones_to_peaches]
 id = 65
@@ -167,12 +191,24 @@ id = 69
 id = 70
 cast_id = 27
 
+[.charge_fire_orb]
+id = 71
+
+[.ape_atoll_teleport]
+id = 72
+
 [.water_wave]
 id = 73
 cast_id = 29
 
+[.charge_air_orb]
+id = 74
+
 [.vulnerability]
 id = 75
+
+[.enchant_level_5]
+id = 76
 
 [.earth_wave]
 id = 77
@@ -180,6 +216,9 @@ cast_id = 31
 
 [.enfeeble]
 id = 78
+
+[.teleother_lumbridge]
+id = 79
 
 [.fire_wave]
 id = 80
@@ -198,6 +237,9 @@ id = 83
 id = 84
 cast_id = 47
 
+[.teleother_falador]
+id = 85
+
 [.teleport_block]
 id = 86
 
@@ -205,9 +247,15 @@ id = 86
 id = 87
 cast_id = 49
 
+[.enchant_level_6]
+id = 88
+
 [.earth_surge]
 id = 89
 cast_id = 51
+
+[.teleother_camelot]
+id = 90
 
 [.fire_surge]
 id = 91

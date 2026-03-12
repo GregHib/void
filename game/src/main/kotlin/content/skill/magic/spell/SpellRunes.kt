@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.inv.transact.Transaction
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -33,6 +32,10 @@ object SpellRunes {
             error = TransactionError.Deficient(0)
             return
         }
+        removeItems(player, required, spell, message)
+    }
+
+    fun Transaction.removeItems(player: Player, required: MutableMap<String, Int>, spell: String, message: Boolean = true) {
         checkInfiniteStaff(player, required, "air")
         checkInfiniteStaff(player, required, "water")
         checkInfiniteStaff(player, required, "earth")
@@ -52,7 +55,7 @@ object SpellRunes {
         checkStaves(player, required)
         // Regular runes
         required.keys.removeIf { key ->
-            if (!key.endsWith("_rune")) {
+            if (!key.endsWith("_rune") && key != "banana" && key != "unpowered_orb") {
                 false
             } else {
                 remove(key, required.getValue(key))

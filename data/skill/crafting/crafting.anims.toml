@@ -1,3 +1,18 @@
+[cut_dragonstone]
+id = 885
+
+[cut_diamond]
+id = 886
+
+[cut_ruby]
+id = 887
+
+[cut_sapphire]
+id = 888
+
+[cut_emerald]
+id = 889
+
 [cut_opal]
 id = 890
 
@@ -6,21 +21,6 @@ id = 891
 
 [cut_red_topaz]
 id = 892
-
-[cut_sapphire]
-id = 888
-
-[cut_emerald]
-id = 889
-
-[cut_ruby]
-id = 887
-
-[cut_diamond]
-id = 886
-
-[cut_dragonstone]
-id = 885
 
 [cut_onyx]
 id = 2717

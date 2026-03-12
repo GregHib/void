@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 
 class HealGroup(val definitions: SpellDefinitions) : Script {
@@ -33,7 +34,7 @@ class HealGroup(val definitions: SpellDefinitions) : Script {
             group.forEach { target ->
                 target.gfx(spell)
                 target.sound("heal_other_impact")
-                experience.add(Skill.Magic, definition.experience)
+                exp(Skill.Magic, definition.experience)
                 healed += target.levels.restore(Skill.Constitution, amount / group.size)
                 target.message("You have been healed by $name.")
             }

@@ -1,0 +1,78 @@
+[bones_to_spell]
+id = 141
+height = 58
+
+[tele_grab_cast]
+id = 142
+height = 50
+
+[tele_grab_travel]
+id = 143
+height = 10
+delay = 48
+curve = 16
+time_offset = 42
+multiplier = 1
+
+[tele_grab_impact]
+id = 144
+height = 20
+
+[high_alch]
+id = 113
+
+[high_alch_staff]
+id = 1693
+
+[enchanted_tipping]
+id = 759
+
+[enchant_ring]
+id = 238
+height = 50
+
+[enchant_jewellery_1]
+id = 114
+height = 50
+
+[enchant_jewellery_2]
+id = 115
+height = 50
+
+[enchant_jewellery_3]
+id = 116
+height = 50
+
+[enchant_jewellery_4]
+id = 153
+height = 50
+
+[enchant_jewellery_5]
+id = 154
+height = 50
+
+[enchant_jewellery_6]
+id = 452
+height = 50
+
+[charge_water_orb]
+id = 149
+height = 50
+
+[charge_air_orb]
+id = 150
+height = 50
+
+[charge_earth_orb]
+id = 151
+height = 50
+
+[charge_fire_orb]
+id = 151
+height = 50
+
+[teleport_other_impact]
+id = 342
+
+[teleport_other_casting]
+id = 343

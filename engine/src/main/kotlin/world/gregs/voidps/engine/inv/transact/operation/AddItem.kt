@@ -15,27 +15,25 @@ object AddItem {
      * @param id the identifier of the item to be added.
      * @param amount the number of items to be added. Default value is 1.
      */
-    fun TransactionOperation.add(id: String, amount: Int = 1) {
+    fun TransactionOperation.add(id: String, amount: Int = 1): Int {
         if (failed) {
-            return
+            return -1
         }
         if (inventory.restricted(id) || amount <= inventory.amountBounds.minimum()) {
             error = TransactionError.Invalid
-            return
+            return -1
         }
         // Check if the item is stackable
         if (!inventory.stackable(id)) {
-            addItemsToSlots(id, amount)
-            return
+            return addItemsToSlots(id, amount)
         }
         // Try to add the item to an existing stack
         val index = inventory.indexOf(id)
         if (index != -1) {
-            increaseStack(index, amount)
-            return
+            return increaseStack(index, amount)
         }
         // Add new item stack
-        addItemToEmptySlot(id, amount)
+        return addItemToEmptySlot(id, amount)
     }
 
     /**
@@ -43,19 +41,20 @@ object AddItem {
      * @param index the index of the stack to be increased.
      * @param amount the number of items to be added to the stack.
      */
-    fun TransactionOperation.increaseStack(index: Int, amount: Int) {
+    fun TransactionOperation.increaseStack(index: Int, amount: Int): Int {
         val item = inventory[index]
         if (item.isEmpty()) {
             error = TransactionError.Invalid
-            return
+            return -1
         }
         // Check if the stack would exceed the maximum integer value
         if (item.amount + amount.toLong() > Int.MAX_VALUE) {
             error = TransactionError.Full(Int.MAX_VALUE - item.amount)
-            return
+            return -1
         }
         // Combine the stacks and update the item in the inventory
         set(index, item.copy(amount = item.amount + amount))
+        return index
     }
 
     /**
@@ -63,16 +62,17 @@ object AddItem {
      * @param id the identifier of the item to be added.
      * @param amount the number of items to be added to the stack.
      **/
-    private fun TransactionOperation.addItemToEmptySlot(id: String, amount: Int) {
+    private fun TransactionOperation.addItemToEmptySlot(id: String, amount: Int): Int {
         // Find an empty slot in the inventory
         val emptySlot = inventory.freeIndex()
         if (emptySlot != -1) {
             // Add the item to the empty slot.
             set(emptySlot, Item(id, amount))
-            return
+            return emptySlot
         }
         // No empty slot was found
         error = TransactionError.Full()
+        return -1
     }
 
     /**
@@ -80,16 +80,18 @@ object AddItem {
      * @param id the identifier of the items to be added.
      * @param amount the number of items to be added.
      */
-    private fun TransactionOperation.addItemsToSlots(id: String, amount: Int) {
+    private fun TransactionOperation.addItemsToSlots(id: String, amount: Int): Int {
+        var emptySlot = -1
         for (count in 0 until amount) {
             // Find an empty slot in the inventory
-            val emptySlot = inventory.freeIndex()
+            emptySlot = inventory.freeIndex()
             if (emptySlot == -1) {
                 error = TransactionError.Full(count)
-                return
+                return -1
             }
             // Add one item to the empty slot
             set(emptySlot, Item(id, 1))
         }
+        return emptySlot
     }
 }

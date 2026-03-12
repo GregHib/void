@@ -20,7 +20,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -53,10 +52,10 @@ object Ammo {
             }
             return
         }
-        when {
-            player.equipped(EquipSlot.Cape).id == "avas_attractor" && !exceptions(ammo) -> remove(player, target, ammo, required, 0.6, 0.2)
-            player.equipped(EquipSlot.Cape).id == "avas_accumulator" && !exceptions(ammo) -> remove(player, target, ammo, required, 0.72, 0.08)
-            player.equipped(EquipSlot.Cape).id == "avas_alerter" -> remove(player, target, ammo, required, 0.8, 0.0)
+        when (player.equipped(EquipSlot.Cape).id) {
+            "avas_attractor" if !exceptions(ammo) -> remove(player, target, ammo, required, 0.6, 0.2)
+            "avas_accumulator" if !exceptions(ammo) -> remove(player, target, ammo, required, 0.72, 0.08)
+            "avas_alerter" -> remove(player, target, ammo, required, 0.8, 0.0)
             else -> remove(player, target, ammo, required, 0.0, 1.0)
         }
     }

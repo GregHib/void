@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.inventory
@@ -44,8 +45,8 @@ class SuperheatItem(val spellDefinitions: SpellDefinitions) : Script {
                 anim(spell)
                 gfx(spell)
                 val definition = spellDefinitions.get(spell)
-                experience.add(Skill.Magic, definition.experience)
-                experience.add(Skill.Smithing, Furnace.goldXp(this, bar, xp / 10.0))
+                exp(Skill.Magic, definition.experience)
+                exp(Skill.Smithing, Furnace.goldXp(this, bar, xp / 10.0))
             } else {
                 sound("superheat_fail")
             }

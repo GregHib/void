@@ -12,7 +12,7 @@ class InstructionHandlers(
     handler: InterfaceHandler,
 ) {
     private val interactFloorItem = FloorItemOptionHandler()
-    private val interactDialogue = DialogueContinueHandler()
+    val interactDialogue = DialogueContinueHandler()
     private val continueKey = DialogueContinueKeyHandler()
     private val interactDialogueItem = DialogueItemContinueHandler()
     private val closeInterface = InterfaceClosedHandler()
@@ -22,10 +22,10 @@ class InstructionHandlers(
     private val interactObject = ObjectOptionHandler()
     private val interactPlayer = PlayerOptionHandler()
     private val interactInterfaceNPC = InterfaceOnNPCOptionHandler(handler)
-    private val interactInterfaceObject = InterfaceOnObjectOptionHandler(handler)
-    private val interactInterfacePlayer = InterfaceOnPlayerOptionHandler(handler)
-    private val interactInterfaceItem = InterfaceOnInterfaceOptionHandler(handler)
-    private val interactInterfaceFloorItem = InterfaceOnFloorItemOptionHandler(handler)
+    val interactInterfaceObject = InterfaceOnObjectOptionHandler(handler)
+    val interactInterfacePlayer = InterfaceOnPlayerOptionHandler(handler)
+    val interactInterfaceItem = InterfaceOnInterfaceOptionHandler(handler)
+    val interactInterfaceFloorItem = InterfaceOnFloorItemOptionHandler(handler)
     private val executeCommand = ExecuteCommandHandler()
     var songEndHandler: SongEnd.(Player) -> Unit = empty()
     var finishRegionLoad: FinishRegionLoad.(Player) -> Unit = empty()

@@ -1225,6 +1225,9 @@ price = 641
 limit = 5000
 weight = 0.25
 slot = "Hands"
+charge = "bracelet_of_clay_charges"
+degrade = "destroy"
+# TODO proper message
 examine = "Now I can become a potter."
 
 [bracelet_of_clay_noted]

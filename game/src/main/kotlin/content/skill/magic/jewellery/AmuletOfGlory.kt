@@ -3,7 +3,9 @@ package content.skill.magic.jewellery
 import content.entity.player.dialogue.type.choice
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.ItemOption
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 
 class AmuletOfGlory : Script {
@@ -34,19 +36,24 @@ class AmuletOfGlory : Script {
             }
         }
 
-        itemOption("*", "amulet_of_glory_#", "worn_equipment") {
-            if (contains("delay")) {
-                return@itemOption
-            }
-            val area = when (it.option) {
-                "Edgeville" -> Areas["edgeville_teleport"]
-                "Karamja" -> Areas["karamja_teleport"]
-                "Draynor Village" -> Areas["draynor_village_teleport"]
-                "Al Kharid" -> Areas["al_kharid_teleport"]
-                else -> return@itemOption
-            }
-            message("You rub the amulet...", ChatType.Filter)
-            jewelleryTeleport(this, it.inventory, it.slot, area)
+        itemOption("Edgeville", "amulet_of_glory_#", "worn_equipment", ::teleport)
+        itemOption("Karamja", "amulet_of_glory_#", "worn_equipment", ::teleport)
+        itemOption("Draynor Village", "amulet_of_glory_#", "worn_equipment", ::teleport)
+        itemOption("Al Kharid", "amulet_of_glory_#", "worn_equipment", ::teleport)
+    }
+
+    private fun teleport(player: Player, option: ItemOption) {
+        if (player.contains("delay")) {
+            return
         }
+        val area = when (option.option) {
+            "Edgeville" -> Areas["edgeville_teleport"]
+            "Karamja" -> Areas["karamja_teleport"]
+            "Draynor Village" -> Areas["draynor_village_teleport"]
+            "Al Kharid" -> Areas["al_kharid_teleport"]
+            else -> return
+        }
+        player.message("You rub the amulet...", ChatType.Filter)
+        jewelleryTeleport(player, option.inventory, option.slot, area)
     }
 }

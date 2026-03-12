@@ -1,0 +1,95 @@
+[enchant_level_1]
+keyType = "item"
+valueType = "item"
+values = {
+    sapphire_ring = "ring_of_recoil",
+    sapphire_necklace = "games_necklace_8",
+    sapphire_bracelet = "bracelet_of_clay",
+    sapphire_amulet = "amulet_of_magic",
+}
+
+[enchant_level_2]
+keyType = "item"
+valueType = "item"
+values = {
+    emerald_ring = "ring_of_duelling_8",
+    emerald_necklace = "binding_necklace",
+    emerald_bracelet = "castle_wars_brace_3",
+    emerald_amulet = "amulet_of_defence",
+}
+
+[enchant_level_3]
+keyType = "item"
+valueType = "item"
+values = {
+    ruby_ring = "ring_of_forging",
+    ruby_necklace = "dig_site_pendant_5",
+    ruby_bracelet = "inoculation_brace",
+    ruby_amulet = "amulet_of_strength",
+}
+
+[enchant_level_4]
+keyType = "item"
+valueType = "item"
+values = {
+    diamond_ring = "ring_of_life",
+    diamond_necklace = "phoenix_necklace",
+    diamond_bracelet = "forinthry_bracelet_5",
+    diamond_amulet = "amulet_of_power",
+}
+
+[enchant_level_5]
+keyType = "item"
+valueType = "item"
+values = {
+    dragonstone_ring = "ring_of_wealth",
+    dragon_necklace = "skills_necklace",
+    dragonstone_bracelet = "combat_bracelet",
+    dragonstone_amulet = "amulet_of_glory",
+}
+
+[enchant_level_6]
+keyType = "item"
+valueType = "item"
+values = {
+    onyx_ring = "ring_of_stone",
+    onyx_necklace = "berserker_necklace",
+    onyx_bracelet = "regen_bracelet",
+    onyx_amulet = "amulet_of_fury",
+}
+
+[enchant_level]
+keyType = "int"
+valueType = "int"
+values = {
+    1 = 7,
+    2 = 27,
+    3 = 49,
+    4 = 57,
+    5 = 68,
+    6 = 87,
+}
+
+[enchant_xp]
+keyType = "int"
+valueType = "int"
+values = {
+    1 = 175,
+    2 = 370,
+    3 = 590,
+    4 = 670,
+    5 = 780,
+    6 = 970,
+}
+
+[enchant_type]
+keyType = "int"
+valueType = "string"
+values = {
+    1 = "sapphire",
+    2 = "emerald",
+    3 = "ruby",
+    4 = "diamond",
+    5 = "dragonstone",
+    6 = "onyx",
+}

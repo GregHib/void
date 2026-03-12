@@ -24,6 +24,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.removeToLimit
@@ -291,7 +292,7 @@ class FredTheFarmer : Script {
         npc<Disheartened>("Anyway, I guess I'd better pay you.")
         item("coins1000_2", 500, "Fred gives you some money and teaches you some Crafting techniques.")
         set("sheep_shearer_miniquest", "completed")
-        experience.add(Skill.Crafting, 150.0)
+        exp(Skill.Crafting, 150.0)
         inventory.add("coins", 2000)
         inventory.removeToLimit("black_wool", Int.MAX_VALUE)
         inventory.removeToLimit("ball_of_black_wool", Int.MAX_VALUE)

@@ -2939,22 +2939,6 @@ examine = "A strong metal door."
 id = 29316
 examine = "A strong metal door."
 
-[metal_door_13_opened]
-id = 29317
-examine = "A strong metal door."
-
-[metal_door_13_closed]
-id = 29319
-examine = "A strong metal door."
-
-[metal_door_14_opened]
-id = 29318
-examine = "A strong metal door."
-
-[metal_door_14_closed]
-id = 29320
-examine = "A strong metal door."
-
 [misthalin_exam_door_opened]
 id = 29733
 

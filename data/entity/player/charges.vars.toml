@@ -14,6 +14,10 @@ persist = true
 format = "int"
 persist = true
 
+[bracelet_of_clay_charges]
+format = "int"
+persist = true
+
 [skull_sceptre_charges]
 format = "int"
 persist = true

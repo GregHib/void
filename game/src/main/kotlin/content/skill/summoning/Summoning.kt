@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
@@ -183,7 +184,7 @@ class Summoning : Script {
             }
             summonFamiliar(familiar, false)
             inventory.remove(option.item.id)
-            experience.add(Skill.Summoning, summoningXp)
+            exp(Skill.Summoning, summoningXp)
         }
 
         interfaceOption("Select left-click option", id = "summoning_orb:leftclick_options") {

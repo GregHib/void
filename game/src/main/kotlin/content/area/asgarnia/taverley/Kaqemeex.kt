@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.event.AuditLog
@@ -181,7 +182,7 @@ class Kaqemeex : Script {
         AuditLog.event(this, "quest_completed", "druidic_ritual")
         set("druidic_ritual", "completed")
         jingle("quest_complete_1")
-        experience.add(Skill.Herblore, 250.0)
+        exp(Skill.Herblore, 250.0)
         refreshQuestJournal()
         inc("quest_points", 4)
         softQueue("quest_complete", 1) {

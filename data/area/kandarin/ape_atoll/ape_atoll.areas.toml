@@ -22,3 +22,8 @@ y = [2733, 2741]
 [ape_atoll_west_fishing_area]
 x = [2693, 2700]
 y = [2702, 2715]
+
+[ape_atoll_teleport]
+x = [2796, 2799]
+y = [2798, 2799]
+level = 1

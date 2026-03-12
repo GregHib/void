@@ -1,0 +1,38 @@
+[bones_to_spell]
+id = 722
+
+[tele_grab_cast]
+id = 723
+
+[high_alch]
+id = 713
+
+[high_alch_staff]
+id = 9633
+
+[enchanted_tipping]
+id = 4462
+
+[enchant_ring]
+id = 931
+
+[enchant_jewellery_1]
+id = 719
+
+[enchant_jewellery_2]
+id = 720
+
+[enchant_jewellery_3]
+id = 721
+
+[magic_utility_combine]
+id = 722
+
+[charge_orb]
+id = 726
+
+[teleport_other]
+id = 1818
+
+[teleport_other_impact]
+id = 1816

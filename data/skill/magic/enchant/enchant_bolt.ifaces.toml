@@ -1,0 +1,62 @@
+[enchant_crossbow_bolts]
+id = 432
+
+[.opal]
+id = 14
+
+[.opal_bolt]
+id = 17
+
+[.sapphire]
+id = 29
+
+[.sapphire_bolt]
+id = 31
+
+[.jade]
+id = 18
+
+[.jade_bolt]
+id = 21
+
+[.pearl]
+id = 22
+
+[.pearl_bolt]
+id = 25
+
+[.emerald]
+id = 32
+
+[.emerald_bolt]
+id = 34
+
+[.topaz]
+id = 26
+
+[.topaz_bolt]
+id = 28
+
+[.ruby]
+id = 35
+
+[.ruby_bolt]
+id = 37
+
+[.diamond]
+id = 38
+
+[.diamond_bolt]
+id = 40
+
+[.dragon]
+id = 41
+
+[.dragon_bolt]
+id = 43
+
+[.onyx]
+id = 44
+
+[.onyx_bolt]
+id = 46

@@ -5,3 +5,7 @@ examine = "A dusty old suit of armour."
 [cooking_range_black_knights_base]
 id = 36973
 examine = "Ideal for cooking on."
+
+[obelisk_of_fire]
+id = 2153
+examine = "A column of elemental power."

@@ -24,6 +24,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -59,7 +60,7 @@ class ShootingStar : Script {
             if (target.id.startsWith("crashed_star")) {
                 if (ShootingStarHandler.isEarlyBird()) {
                     message("Congratulations! You were the first person to find this star!")
-                    experience.add(Skill.Mining, levels.get(Skill.Mining) * 75.0)
+                    exp(Skill.Mining, levels.get(Skill.Mining) * 75.0)
                 }
             }
             Timer.CONTINUE

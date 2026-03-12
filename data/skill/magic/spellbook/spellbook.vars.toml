@@ -1,0 +1,3 @@
+[alchemy_warning_limit]
+format = "int"
+persist = true

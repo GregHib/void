@@ -496,10 +496,55 @@ exp = 60.0
 [superheat_item]
 exp = 53.0
 
-[aberrant_spectre_goo]
-max_hit = 119
-graphic = "aberrant_spectre_goo_cast"
-animation = "aberrant_spectre_attack"
-projectiles = [
-    { id = "aberrant_spectre_goo" }
-]
+[bones_to_bananas]
+exp = 25.0
+
+[bones_to_peaches]
+exp = 35.5
+
+[telekinetic_grab]
+exp = 43.0
+
+[low_level_alchemy]
+exp = 31.0
+graphic = "high_alch"
+graphic_staff = "high_alch_staff"
+animation = "high_alch"
+animation_staff = "high_alch_staff"
+
+[high_level_alchemy]
+exp = 65.0
+graphic = "high_alch"
+graphic_staff = "high_alch_staff"
+animation = "high_alch"
+animation_staff = "high_alch_staff"
+
+[enchant_opal_bolts]
+exp = 9.0
+
+[enchant_sapphire_bolts]
+exp = 17.5
+
+[enchant_jade_bolts]
+exp = 19.0
+
+[enchant_pearl_bolts]
+exp = 29.0
+
+[enchant_emerald_bolts]
+exp = 37.0
+
+[enchant_topaz_bolts]
+exp = 33.0
+
+[enchant_ruby_bolts]
+exp = 59.0
+
+[enchant_diamond_bolts]
+exp = 67.0
+
+[enchant_dragon_bolts]
+exp = 78.0
+
+[enchant_onyx_bolts]
+exp = 97.0

@@ -25,6 +25,10 @@ class Warning : Script {
             (dialogueSuspension as StringSuspension).resume("yes")
         }
 
+        interfaceOption("Ok", "warning_*:yes") {
+            (dialogueSuspension as StringSuspension).resume("yes")
+        }
+
         interfaceOption("No", "warning_*:no") {
             (dialogueSuspension as StringSuspension).resume("no")
         }

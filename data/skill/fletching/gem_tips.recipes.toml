@@ -1,0 +1,131 @@
+[opal_bolt_tips]
+skill = "fletching"
+level = 11
+xp = 1.5
+requires = ["chisel"]
+remove = ["opal"]
+add = [{ id = "opal_bolt_tips", amount = 12 }]
+ticks = 2
+animation = "cut_opal"
+sound = "cut_gem"
+message = "You use your chisel to fletch small bolt tips."
+
+[jade_bolt_tips]
+skill = "fletching"
+level = 26
+xp = 2.0
+requires = ["chisel"]
+remove = ["jade"]
+add = [{ id = "jade_bolt_tips", amount = 12 }]
+ticks = 2
+animation = "cut_jade"
+sound = "cut_gem"
+message = "You use your chisel to fletch small bolt tips."
+
+[pearl_bolt_tips]
+skill = "fletching"
+level = 41
+xp = 3.2
+requires = ["chisel"]
+remove = ["oyster_pearl"]
+add = [{ id = "pearl_bolt_tips", amount = 6 }]
+ticks = 2
+animation = "cut_jade"
+sound = "cut_gem"
+message = "You use your chisel to fletch small bolt tips."
+
+[pearl_bolt_tips]
+skill = "fletching"
+level = 41
+xp = 3.2
+requires = ["chisel"]
+remove = ["oyster_pearls"]
+add = [{ id = "pearl_bolt_tips", amount = 24 }]
+ticks = 2
+animation = "cut_jade"
+sound = "cut_gem"
+message = "You use your chisel to fletch small bolt tips."
+
+[red_topaz_bolt_tips]
+skill = "fletching"
+level = 48
+xp = 3.9
+requires = ["chisel"]
+remove = ["red_topaz"]
+add = [{ id = "topaz_bolt_tips", amount = 12 }]
+ticks = 2
+animation = "cut_red_topaz"
+sound = "cut_gem"
+message = "You use your chisel to fletch small bolt tips."
+
+[sapphire_bolt_tips]
+skill = "fletching"
+level = 56
+xp = 4.0
+requires = ["chisel"]
+remove = ["sapphire"]
+add = [{ id = "sapphire_bolt_tips", amount = 12 }]
+ticks = 2
+animation = "cut_sapphire"
+sound = "cut_gem"
+message = "You use your chisel to fletch small bolt tips."
+
+[emerald_bolt_tips]
+skill = "fletching"
+level = 58
+xp = 5.5
+requires = ["chisel"]
+remove = ["emerald"]
+add = [{ id = "emerald_bolt_tips", amount = 12 }]
+ticks = 2
+animation = "cut_emerald"
+sound = "cut_gem"
+message = "You use your chisel to fletch small bolt tips."
+
+[ruby_bolt_tips]
+skill = "fletching"
+level = 63
+xp = 6.3
+requires = ["chisel"]
+remove = ["ruby"]
+add = [{ id = "ruby_bolt_tips", amount = 12 }]
+ticks = 2
+animation = "cut_ruby"
+sound = "cut_gem"
+message = "You use your chisel to fletch small bolt tips."
+
+[diamond_bolt_tips]
+skill = "fletching"
+level = 65
+xp = 7.0
+requires = ["chisel"]
+remove = ["diamond"]
+add = [{ id = "diamond_bolt_tips", amount = 12 }]
+ticks = 2
+animation = "cut_diamond"
+sound = "cut_gem"
+message = "You use your chisel to fletch small bolt tips."
+
+[dragonstone_bolt_tips]
+skill = "fletching"
+level = 71
+xp = 8.2
+requires = ["chisel"]
+remove = ["dragonstone"]
+add = [{ id = "dragon_bolt_tips", amount = 12 }]
+ticks = 2
+animation = "cut_dragonstone"
+sound = "cut_gem"
+message = "You use your chisel to fletch small bolt tips."
+
+[onyx_bolt_tips]
+skill = "fletching"
+level = 73
+xp = 9.4
+requires = ["chisel"]
+remove = ["onyx"]
+add = [{ id = "onyx_bolt_tips", amount = 12 }]
+ticks = 2
+animation = "cut_onyx"
+sound = "cut_gem"
+message = "You use your chisel to fletch small bolt tips."

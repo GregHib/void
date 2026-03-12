@@ -126,7 +126,13 @@ class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
                 files.list(Settings["definitions.variables.customs"]),
             )
             "music", "music effects", "jingles" -> get<JingleDefinitions>().load(files.list(Settings["definitions.jingles"]))
-            "interfaces" -> InterfaceDefinitions.load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"]))
+            "interfaces" -> {
+                InterfaceDefinitions.definitions.onEach { int ->
+                    int.components?.values?.onEach { comp -> comp.stringId = "" }
+                    int.stringId = ""
+                }
+                InterfaceDefinitions.load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"]))
+            }
             "spells" -> get<SpellDefinitions>().load(files.find(Settings["definitions.spells"]))
             "patrols", "paths" -> get<PatrolDefinitions>().load(files.list(Settings["definitions.patrols"]))
             "prayers" -> get<PrayerDefinitions>().load(files.find(Settings["definitions.prayers"]))

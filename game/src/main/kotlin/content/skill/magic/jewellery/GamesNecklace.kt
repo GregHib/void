@@ -4,7 +4,9 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.ui.ItemOption
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.entity.character.player.Player
 
 class GamesNecklace : Script {
 
@@ -36,25 +38,31 @@ class GamesNecklace : Script {
             }
         }
 
-        itemOption("*", "games_necklace_#", "worn_equipment") {
-            if (contains("delay")) {
-                return@itemOption
-            }
-            val area = when (it.option) {
-                "Burthorpe" -> "burthorpe_teleport"
-                "Barbarian Outpost" -> "barbarian_outpost_teleport"
-                "Clan Wars" -> "clan_wars_teleport"
-                "Wilderness Volcano" -> "wilderness_volcano_teleport"
-                "Burgh De Rott" -> {
-                    if (!questCompleted("darkness_of_hallowvale")) {
-                        statement("You need to have completed The Darkness of Hallowvale quest to teleport to this location.")
-                        return@itemOption
-                    }
-                    "burgh_de_rott_teleport"
-                }
-                else -> return@itemOption
-            }
-            jewelleryTeleport(this, it.inventory, it.slot, Areas[area])
+        itemOption("Burthorpe", "games_necklace_#", "worn_equipment", ::teleport)
+        itemOption("Barbarian Outpost", "games_necklace_#", "worn_equipment", ::teleport)
+        itemOption("Clan Wars", "games_necklace_#", "worn_equipment", ::teleport)
+        itemOption("Wilderness Volcano", "games_necklace_#", "worn_equipment", ::teleport)
+        itemOption("Burgh De Rott", "games_necklace_#", "worn_equipment", ::teleport)
+    }
+
+    private suspend fun teleport(player: Player, option: ItemOption) {
+        if (player.contains("delay")) {
+            return
         }
+        val area = when (option.option) {
+            "Burthorpe" -> "burthorpe_teleport"
+            "Barbarian Outpost" -> "barbarian_outpost_teleport"
+            "Clan Wars" -> "clan_wars_teleport"
+            "Wilderness Volcano" -> "wilderness_volcano_teleport"
+            "Burgh De Rott" -> {
+                if (!player.questCompleted("darkness_of_hallowvale")) {
+                    player.statement("You need to have completed The Darkness of Hallowvale quest to teleport to this location.")
+                    return
+                }
+                "burgh_de_rott_teleport"
+            }
+            else -> return
+        }
+        jewelleryTeleport(player, option.inventory, option.slot, Areas[area])
     }
 }

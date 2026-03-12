@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 
 class HealOther(val definitions: SpellDefinitions) : Script {
@@ -37,7 +38,7 @@ class HealOther(val definitions: SpellDefinitions) : Script {
             sound("heal_other")
             target.gfx("heal_other")
             target.sound("heal_other_impact")
-            experience.add(Skill.Magic, definition.experience)
+            exp(Skill.Magic, definition.experience)
             val restored = target.levels.restore(Skill.Constitution, amount)
             target.message("You have been healed by $name.")
             damage(restored, delay = 2)

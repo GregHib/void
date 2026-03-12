@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 
 class CurePlant(val definitions: SpellDefinitions) : Script {
 
@@ -36,7 +37,7 @@ class CurePlant(val definitions: SpellDefinitions) : Script {
             areaSound("lunar_fertilize", target.tile, radius = 10)
             delay(3)
             set(target.id, value.replace("_diseased", ""))
-            experience.add(Skill.Magic, definition.experience)
+            exp(Skill.Magic, definition.experience)
         }
     }
 }

@@ -170,3 +170,27 @@ examine = "Makes you taller."
 [edgeville_lathe]
 id = 26821
 examine = "It's a lathe... What did you expect?"
+
+[edgeville_dungeon_wilderness_west_metal_door_opened]
+id = 29317
+examine = "A strong metal door."
+
+[edgeville_dungeon_wilderness_west_metal_door_closed]
+id = 29319
+examine = "A strong metal door."
+
+[edgeville_dungeon_wilderness_east_metal_door_opened]
+id = 29318
+examine = "A strong metal door."
+
+[edgeville_dungeon_wilderness_east_metal_door_closed]
+id = 29320
+examine = "A strong metal door."
+
+[obelisk_of_earth]
+id = 29415
+examine = "A column of elemental power."
+
+[obelisk_of_air]
+id = 2152
+examine = "A column of elemental power."

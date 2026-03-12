@@ -1,0 +1,68 @@
+[bones_to_spell]
+id = 117
+
+[tele_grab_cast]
+id = 3006
+
+[tele_grab_impact]
+id = 3007
+
+[high_level_alchemy]
+id = 97
+
+[low_level_alchemy]
+id = 98
+
+[enchanted_tipping]
+id = 2921
+
+[enchant_sapphire_amulet]
+id = 136
+
+[enchant_sapphire_ring]
+id = 147
+
+[enchant_emerald_amulet]
+id = 141
+
+[enchant_emerald_ring]
+id = 142
+
+[enchant_ruby_amulet]
+id = 145
+
+[enchant_ruby_ring]
+id = 146
+
+[enchant_diamond_amulet]
+id = 137
+
+[enchant_diamond_ring]
+id = 138
+
+[enchant_dragon_amulet]
+id = 139
+
+[enchant_dragon_ring]
+id = 140
+
+[enchant_onyx_amulet]
+id = 143
+
+[enchant_onyx_ring]
+id = 144
+
+[charge_earth_orb]
+id = 115
+
+[charge_air_orb]
+id = 116
+
+[charge_fire_orb]
+id = 117
+
+[charge_water_orb]
+id = 118
+
+[tele_other_cast]
+id = 199

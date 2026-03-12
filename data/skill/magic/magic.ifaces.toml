@@ -7,8 +7,14 @@ id = 319
 [teleport_other]
 id = 326
 
-[enchant_crossbow_bolts]
-id = 432
+[.name]
+id = 1
+
+[.location]
+id = 3
+
+[.continue]
+id = 5
 
 [monster_stat_spy]
 id = 522
