@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 class Ignatius : Script {
 
     init {
-        npcOperate("Trade", "armour_salesman") {
+        npcOperate("Trade", "ignatius") {
             openShop(
                 "ignatiuss_hot_deals${
                     when {

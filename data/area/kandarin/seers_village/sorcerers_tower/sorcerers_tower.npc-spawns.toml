@@ -1,6 +1,6 @@
 spawns = [
   { id = "thormac_sorcerers_tower", x = 2702, y = 3405, level = 3 },
-  { id = "ignatius_vulcan_sorcerers_tower", x = 2719, y = 3431, members = true },
+  { id = "ignatius", x = 2719, y = 3431, members = true },
   { id = "baby_raccoon_brown", x = 2719, y = 3443, members = true },
   { id = "baby_raccoon_brown", x = 2724, y = 3440, members = true },
   { id = "baby_raccoon_red", x = 2721, y = 3449, members = true },
