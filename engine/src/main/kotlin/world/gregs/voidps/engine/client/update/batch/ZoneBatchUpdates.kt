@@ -18,6 +18,15 @@ import world.gregs.voidps.type.Zone
  * Groups messages by [Zone] to send to all subscribed [Player]s
  * Batched messages are sent and cleared at the end of the tick
  * Initial messages are stored until removed and sent on subscription
+ *
+ * From experimenting with OSRS, it seems like this isn't quite accurate.
+ * - Floor items are updated every change of zone.
+ * - Objects are updated based on a 2-zone radius from the last updated zone.
+ * (Like how region loading is a 4-zone radius)
+ * - Projectiles are sent within a 3-zone radius but not sent when entering a new zone.
+ * It's unclear where the other types fall.
+ *
+ * The types of batched messages would need to be split to replicate this behaviour.
  */
 object ZoneBatchUpdates : Runnable {
     private val batches: MutableMap<Int, MutableList<ZoneUpdate>> = Int2ObjectOpenHashMap()
@@ -41,29 +50,52 @@ object ZoneBatchUpdates : Runnable {
         batches.getOrPut(zone.id) { ObjectArrayList() }.add(update)
     }
 
+    /**
+     * Pre-encode batches of updates
+     */
     override fun run() {
         for ((zone, updates) in batches) {
             encoded[zone] = encodeBatch(updates.filter { !it.private })
         }
     }
 
+    /**
+     * Also send updates each batch zone change
+     */
+    fun send(player: Player) {
+        val viewport = player.viewport!!
+        val from = viewport.lastBatchZone
+        send(player, from)
+        viewport.lastBatchZone = player.tile.zone
+    }
+
+    /**
+     * Send updates each zone change
+     */
     fun run(player: Player) {
-        val previousZone: Zone? = player["previous_zone"]
-        val previous = previousZone?.toRectangle(radius = player.viewport!!.localRadius)?.toZones(previousZone.level)?.toSet()
-        player["previous_zone"] = player.tile.zone
-        for (zone in player.tile.zone.toRectangle(radius = player.viewport!!.localRadius).toZonesReversed(player.tile.level)) {
-            val entered = previous == null || !previous.contains(zone)
-            if (entered) {
+        send(player, player.steps.previous.zone)
+    }
+
+    /**
+     * Send differences between current and previous zones
+     */
+    private fun send(player: Player, from: Zone) {
+        val viewport = player.viewport ?: return
+        val to = player.tile.zone
+        val previous = from.toRectangle(radius = viewport.localRadius).toZones(from.level).toSet()
+        for (zone in to.toRectangle(radius = viewport.localRadius).toZonesReversed(player.tile.level)) {
+            val entered = !previous.contains(zone)
+            if (entered) { // Clear and resend raw data for newly entered areas
                 player.clearZone(zone)
                 for (sender in senders) {
                     sender.send(player, zone)
                 }
             }
             val updates = batches[zone.id]?.filter { it.private && it.visible(player.name) } ?: continue
-            if (!entered) {
+            if (!entered) { // Send batched updates for current regions
                 player.sendBatch(zone)
             }
-            for (update in updates) {
+            for (update in updates) { // Send private updates separately
                 player.client?.send(update)
             }
         }

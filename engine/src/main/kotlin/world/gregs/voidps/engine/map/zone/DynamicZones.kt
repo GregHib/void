@@ -22,7 +22,7 @@ class DynamicZones(
     private val refresh = IntOpenHashSet()
 
     // All recent region changes (including clearing)
-    private val updated = IntOpenHashSet()
+    private var update = false
 
     fun dynamic(region: Region) = regions.contains(region.id)
 
@@ -43,7 +43,7 @@ class DynamicZones(
             regions.add(region.id)
             refresh.add(region.id)
         }
-        updated.add(to.region.id)
+        update = true
     }
 
     /**
@@ -70,7 +70,7 @@ class DynamicZones(
                 regions.remove(region.id)
             }
         }
-        updated.add(zone.region.id)
+        update = true
     }
 
     /**
@@ -86,7 +86,7 @@ class DynamicZones(
             }
         }
         if (regions.remove(region.id)) {
-            updated.add(region.id)
+            update = true
         }
     }
 
@@ -94,13 +94,11 @@ class DynamicZones(
      * Send updated regions to clients
      */
     override fun run() {
-        if (updated.isEmpty()) {
+        if (!update) {
             return
         }
-        for (region in updated.iterator()) {
-            reloadCallback.invoke()
-        }
-        updated.clear()
+        reloadCallback.invoke()
+        update = false
         refresh.clear()
     }
 
