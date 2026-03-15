@@ -24,6 +24,7 @@ class Rockslug : Script {
             }
             salt(this, target)
         }
+
         npcLevelChanged(Skill.Constitution, "rockslug*", ::killingBlow)
     }
 

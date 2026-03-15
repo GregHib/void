@@ -21,12 +21,12 @@ class CombatDummy : Script {
         }
 
         combatPrepare { target ->
-            when {
-                target is NPC && target.id == "magic_dummy" && fightStyle != "magic" -> {
+            when (target) {
+                is NPC if target.id == "magic_dummy" && fightStyle != "magic" -> {
                     message("You can only use Magic against this dummy.")
                     false
                 }
-                target is NPC && target.id == "melee_dummy" && fightStyle != "melee" -> {
+                is NPC if target.id == "melee_dummy" && fightStyle != "melee" -> {
                     message("You can only use Melee against this dummy.")
                     false
                 }
