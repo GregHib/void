@@ -54,16 +54,17 @@ internal class ZoneBatchUpdatesTest : KoinMock() {
         // Given
         val zone = Zone(2, 2)
         ZoneBatchUpdates.add(zone, update)
+        player.viewport!!.lastBatchZone = Zone(10, 10)
         player.tile = Tile(20, 20)
         GameObjects.set(id = 1234, x = 21, y = 20, level = 0, shape = ObjectShape.WALL_DECOR_STRAIGHT_NO_OFFSET, rotation = 0, definition = ObjectDefinition.EMPTY)
         ZoneBatchUpdates.register(GameObjects)
         val added = GameObject(4321, Tile(20, 21), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
-        GameObjects.add(added, collision = false) // Avoid koin
+        GameObjects.add(added, collision = false)
         val removed = GameObject(1234, Tile(21, 20), ObjectShape.WALL_DECOR_STRAIGHT_NO_OFFSET, 0)
         GameObjects.remove(removed, collision = false)
         player["logged_in"] = true
         // When
-        ZoneBatchUpdates.run(player)
+        ZoneBatchUpdates.send(player)
         // Then
         verify(exactly = 1) {
             client.clearZone(2, 2, 0)
@@ -77,14 +78,14 @@ internal class ZoneBatchUpdatesTest : KoinMock() {
         // Given
         val zone = Zone(11, 11, 1)
         val lastZone = Zone(10, 10)
-        player["previous_zone"] = zone
+        player.viewport!!.lastBatchZone = zone
         player.tile = zone.tile
         player.viewport!!.lastLoadZone = lastZone
         // Given
         ZoneBatchUpdates.add(zone, update)
         ZoneBatchUpdates.run()
         // When
-        ZoneBatchUpdates.run(player)
+        ZoneBatchUpdates.send(player)
         // Then
         verify {
             client.sendBatch(any<ByteArray>(), 7, 7, 1)
@@ -97,13 +98,13 @@ internal class ZoneBatchUpdatesTest : KoinMock() {
         val zone = Zone(11, 11, 1)
         val lastZone = Zone(10, 10, 1)
         player.tile = zone.tile
-        player["previous_zone"] = lastZone
+        player.viewport!!.lastBatchZone = lastZone
         every { update.private } returns true
         every { update.visible(player.name) } returns true
         // Given
         ZoneBatchUpdates.add(zone, update)
         // When
-        ZoneBatchUpdates.run(player)
+        ZoneBatchUpdates.send(player)
         // Then
         verify {
             client.send(update)
@@ -119,13 +120,13 @@ internal class ZoneBatchUpdatesTest : KoinMock() {
         val zone = Zone(11, 11, 1)
         val lastZone = Zone(10, 10, 1)
         player.tile = zone.tile
-        player["previous_zone"] = lastZone
+        player.viewport!!.lastBatchZone = lastZone
         every { update.private } returns true
         every { update.visible(player.name) } returns false
         // Given
         ZoneBatchUpdates.add(zone, update)
         // When
-        ZoneBatchUpdates.run(player)
+        ZoneBatchUpdates.send(player)
         // Then
         verify(exactly = 0) {
             client.send(update)

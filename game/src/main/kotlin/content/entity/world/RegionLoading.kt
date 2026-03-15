@@ -2,6 +2,7 @@ package content.entity.world
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
+import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.entity.MAX_PLAYERS
@@ -76,18 +77,26 @@ class RegionLoading(val dynamicZones: DynamicZones) : Script {
     }
 
     fun checkReload(player: Player, to: Tile) {
-        if (player.networked && needsRegionChange(player)) {
+        if (!player.networked) {
+            return
+        }
+        val viewport = player.viewport!!
+        if (needsRegionChange(player)) {
+            // default radius = 4
             updateRegion(player, false, crossedDynamicBoarder(player))
+        }
+        if (viewport.lastBatchZone.level != player.tile.level || !inViewOfZone(player, viewport.lastBatchZone, viewport.localRadius - 1)) {
+            // default radius = 2
+            ZoneBatchUpdates.send(player)
         }
     }
 
-    fun needsRegionChange(player: Player) = !inViewOfZone(player, player.viewport!!.lastLoadZone) || crossedDynamicBoarder(player)
+    fun needsRegionChange(player: Player) = !inViewOfZone(player, player.viewport!!.lastLoadZone, player.viewport!!.zoneRadius - 2) || crossedDynamicBoarder(player)
 
-    fun inViewOfZone(player: Player, zone: Zone): Boolean {
-        val viewport = player.viewport!!
-        val radius: Int = viewport.zoneRadius - 2
-        return Distance.within(player.tile.zone.x, player.tile.zone.y, zone.x, zone.y, radius)
-    }
+    /**
+     * Check if we're within 4 (default) zones of the last loaded zone.
+     */
+    fun inViewOfZone(player: Player, zone: Zone, radius: Int): Boolean = Distance.within(player.tile.zone.x, player.tile.zone.y, zone.x, zone.y, radius)
 
     fun inViewOfRegion(player: Player, region: Region): Boolean {
         val viewport = player.viewport!!
@@ -115,6 +124,7 @@ class RegionLoading(val dynamicZones: DynamicZones) : Script {
             viewport.loaded = false
         }
         viewport.lastLoadZone = player.tile.zone
+        ZoneBatchUpdates.send(player)
     }
 
     fun update(player: Player, initial: Boolean, force: Boolean) {
@@ -170,7 +180,7 @@ class RegionLoading(val dynamicZones: DynamicZones) : Script {
                 append++
             }
         }
-        for (i in 0 until append) {
+        for (i in 0..append) {
             xteaList.add(blankXtea)
         }
         viewport.dynamic = true

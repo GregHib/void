@@ -20,6 +20,7 @@ class Viewport {
     val npcUpdates = ArrayWriter(4000)
 
     var lastLoadZone: Zone = Zone.EMPTY
+    var lastBatchZone: Zone = Zone.EMPTY
     var loaded: Boolean = false
     var dynamic: Boolean = false
     var size: Int = 0
