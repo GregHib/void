@@ -289,3 +289,19 @@ id = 917
 
 [reset_summoning_orb]
 id = 2471
+
+[camera_zoom_reset_black_bars]
+id = 1097
+
+[camera_zoom_out_fov]
+id = 1098
+
+[camera_unlock]
+id = 2611
+params = [
+  "zoom",
+  "unknown"
+]
+
+[camera_zoom_out]
+id = 2619
