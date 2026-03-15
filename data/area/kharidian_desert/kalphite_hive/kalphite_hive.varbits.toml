@@ -1,0 +1,9 @@
+[kalphite_tunnel_rope]
+id = 7262
+format = "boolean"
+persist = true
+
+[kalphite_lair_rope]
+id = 7263
+format = "boolean"
+persist = true
