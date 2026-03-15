@@ -22,7 +22,7 @@ import world.gregs.voidps.type.Zone
  * From experimenting with OSRS, it seems like this isn't quite accurate.
  * - Floor items are updated every change of zone.
  * - Objects are updated based on a 2-zone radius from the last updated zone.
- * (Same how region loading is a 4-zone radius)
+ * (Like how region loading is a 4-zone radius)
  * - Projectiles are sent within a 3-zone radius but not sent when entering a new zone.
  * It's unclear where the other types fall.
  *
