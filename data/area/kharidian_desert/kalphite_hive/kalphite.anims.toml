@@ -31,20 +31,20 @@ id = 6476
 [kalphite_queen_death]
 id = 6242
 
-[kalphite_queen_airborn_ranged]
+[kalphite_queen_airborne_ranged]
 id = 6234
 
-[kalphite_queen_airborn_melee]
+[kalphite_queen_airborne_melee]
 id = 6235
 
-[kalphite_queen_airborn_claws]
+[kalphite_queen_airborne_claws]
 id = 1178
 
-[kalphite_queen_airborn_defend]
+[kalphite_queen_airborne_defend]
 id = 6237
 
-[kalphite_queen_airborn_death]
+[kalphite_queen_airborne_death]
 id = 6233
 
-[kalphite_queen_airborn_spawn]
+[kalphite_queen_emerging]
 id = 6270

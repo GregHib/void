@@ -74,6 +74,8 @@ object Weapon {
             return true
         } else if (type == "range" && source is NPC && target is Player && source.id.startsWith("thrower_troll") && target.equipped(EquipSlot.Shield).id != "fremennik_round_shield") {
             return true
+        } else if ((type == "range" || type == "magic") && source is NPC && source.id == "kalphite_queen") {
+            return true
         }
         return false
     }

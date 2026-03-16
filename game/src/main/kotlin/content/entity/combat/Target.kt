@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.mode.interact.InteractOption
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -38,6 +39,9 @@ object Target {
                     return false
                 }
             } else if (target.def.options[1] != "Attack") {
+                return false
+            }
+            if (target.mode == PauseMode) {
                 return false
             }
             if (target.index == -1) {

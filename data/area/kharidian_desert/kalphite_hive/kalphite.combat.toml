@@ -1,3 +1,17 @@
+[kalphite]
+attack_speed = 4
+retreat_range = 15
+defend_anim = "human_defend"
+defend_sound = "kalphite_defend"
+death_anim = "human_death"
+death_sound = "kalphite_death"
+
+[kalphite.melee]
+range = 1
+anim = "human_attack"
+target_sound = "kalphite_attack"
+target_hit = { offense = "crush", max = 80 }
+
 [kalphite_worker]
 attack_speed = 4
 retreat_range = 8
@@ -27,7 +41,7 @@ impact_poison = 60
 
 [kalphite_queen]
 attack_speed = 4
-retreat_range = 8
+retreat_range = 12
 defend_anim = "kalphite_queen_defend"
 defend_sound = "kalphite_queen_defend"
 death_anim = "kalphite_death"
@@ -42,22 +56,52 @@ target_hit = { offense = "stab", max = 310 }
 [kalphite_queen.claws]
 range = 1
 anim = "kalphite_queen_attack_claws"
-target_sound = "kalthite_queen_attack"
+target_sound = "kalphite_queen_attack"
 target_hit = { offense = "stab", max = 310 }
 
 [kalphite_queen.range]
-range = 1
+range = 10
 anim = "kalphite_queen_attack_ranged"
 target_sound = "kalphite_queen_spines"
 projectile = "kaplhite_queen_spines"
+projectile_origin_x = 2
+projectile_origin_y = 2
+multi_target_area = "kalphite_queen_lair"
 target_hit = { offense = "range", max = 310 }
 
 [kalphite_queen.magic]
-range = 1
+range = 10
 anim = "kalphite_queen_lightning"
 gfx = "kalphite_queen_lightning_cast"
 sound = { id = "kalphite_lighting", radius = 16 }
 projectile = "kalphite_queen_lightning_travel"
+projectile_origin_x = 2
+projectile_origin_y = 2
 impact_sound = { id = "kalphite_lighting_impact", radius = 10 }
 impact_gfx = "kalphite_queen_lightning_impact"
 target_hit = { offense = "magic", max = 310 }
+
+[kalphite_queen_airborne]
+attack_speed = 4
+retreat_range = 12
+defend_anim = "kalphite_queen_airborne_defend"
+defend_sound = "kalphite_queen_defend" # TODO check
+death_anim = "kalphite_queen_airborne_death"
+death_sound = "kalphite_queen_death"
+
+[kalphite_queen_airborne.melee]
+clone = "kalphite_queen.melee"
+anim = "kalphite_queen_airborne_melee"
+
+[kalphite_queen_airborne.claws]
+clone = "kalphite_queen.claws"
+anim = "kalphite_queen_airborne_claws"
+
+[kalphite_queen_airborne.range]
+clone = "kalphite_queen.range"
+anim = "kalphite_queen_airborne_ranged"
+
+[kalphite_queen_airborne.magic]
+clone = "kalphite_queen.magic"
+anim = "kalphite_queen_airborne_ranged"
+gfx = "kalphite_queen_airborne_lightning"

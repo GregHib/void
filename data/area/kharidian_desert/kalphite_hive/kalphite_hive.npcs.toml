@@ -5,6 +5,7 @@ att = 300
 str = 300
 def = 300
 mage = 150
+height = 60
 combat_def = "kalphite_queen"
 xp_bonus = 0.5
 hunt_mode = "aggressive"
@@ -17,11 +18,9 @@ examine = "I don't think insect repellent will work..."
 
 [kalphite_queen_airborne]
 id = 1160
+clone = "kalphite_queen"
+combat_def = "kalphite_queen_airborne"
 xp_bonus = 12.5
-hunt_mode = "aggressive"
-slayer_xp = 535.5
-drop_table = "kalphite_queen"
-examine = "I don't think insect repellent will work..."
 
 [kalphite_worker]
 id = 1153
