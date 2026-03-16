@@ -59,10 +59,12 @@ class NPCDeath(
                 val killer = killer
                 val tile = tile
                 npc["death_tile"] = tile
-                val definition = combatDefinitions.get(npc.def["combat_def", npc.id])
-                val ticks = anim(definition.deathAnim)
-                if (definition.deathSound != null) {
-                    (killer as? Player)?.sound(definition.deathSound!!.id)
+                val id = get("transform_id", npc.id)
+                val def = NPCDefinitions.get(id)
+                val combat = combatDefinitions.get(def["combat_def", get("transform_id", npc.id)])
+                val ticks = anim(combat.deathAnim)
+                if (combat.deathSound != null) {
+                    (killer as? Player)?.sound(combat.deathSound!!.id)
                 }
                 delay(if (ticks <= 0) 4 else ticks)
                 if (killer is Player) {

@@ -6,6 +6,7 @@ import content.entity.combat.hit.hit
 import content.entity.death.weightedSample
 import content.entity.effect.freeze
 import content.entity.effect.toxin.poison
+import content.entity.effect.transform
 import content.entity.gfx.areaGfx
 import content.entity.proj.shoot
 import net.pearx.kasechange.toPascalCase
@@ -41,9 +42,9 @@ class Attack(
         npcCombatSwing { primaryTarget ->
             val defId = if (primaryTarget is Player) {
                 val def = def(primaryTarget)
-                def["combat_def", def.stringId]
+                def["combat_def", get("transform_id", def.stringId)]
             } else {
-                id
+                get("transform_id", id)
             }
             val definition = definitions.getOrNull(defId) ?: return@npcCombatSwing
             if (definition.attacks.isEmpty()) {
