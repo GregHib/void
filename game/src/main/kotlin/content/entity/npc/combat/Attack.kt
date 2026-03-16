@@ -6,6 +6,7 @@ import content.entity.combat.hit.hit
 import content.entity.death.weightedSample
 import content.entity.effect.freeze
 import content.entity.effect.toxin.poison
+import content.entity.effect.transform
 import content.entity.gfx.areaGfx
 import content.entity.proj.shoot
 import net.pearx.kasechange.toPascalCase
