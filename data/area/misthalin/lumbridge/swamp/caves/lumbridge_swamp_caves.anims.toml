@@ -40,3 +40,5 @@ id = 6002
 [cave_goblin_death]
 id = 6003
 
+[insect_swarm]
+id = 1582

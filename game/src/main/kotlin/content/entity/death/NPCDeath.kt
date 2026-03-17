@@ -58,9 +58,9 @@ class NPCDeath(
             val npc = this
             strongQueue(name = "death", 1) {
                 val killer = killer
-                val tile = tile
-                npc["death_tile"] = tile
                 val id = get("transform_id", npc.id)
+                val tile = if (id == "wall_beast") tile.addY(-1) else tile
+                npc["death_tile"] = tile
                 val def = NPCDefinitions.get(id)
                 val combat = combatDefinitions.get(def["combat_def", get("transform_id", npc.id)])
                 val ticks = anim(combat.deathAnim)

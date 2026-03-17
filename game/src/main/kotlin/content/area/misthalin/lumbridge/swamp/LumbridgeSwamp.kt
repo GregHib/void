@@ -117,11 +117,6 @@ class LumbridgeSwamp : Script {
                 }
                 anim("climb_down")
                 delay(2)
-                if (light) {
-                    open("level_one_darkness")
-                } else {
-                    open("level_three_darkness")
-                }
                 tele(3167, 9573)
             } else if (inventory.contains("rope")) {
                 choice("Attach a rope to the top of the hole?") {
@@ -142,7 +137,10 @@ class LumbridgeSwamp : Script {
         }
 
         entered("lumbridge_swamp_caves") {
-            if (interfaces.contains("level_three_darkness")) {
+            if (Light.hasLightSource(this)) {
+                open("level_one_darkness")
+            } else {
+                open("level_three_darkness")
                 timers.start("insect_swarm")
             }
         }

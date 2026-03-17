@@ -19,31 +19,22 @@ clone = "cave_goblin_lumbridge_swamp_caves"
 id = 1825
 clone = "cave_goblin_lumbridge_swamp_caves"
 
-[hole_in_the_wall_lumbridge_swamp_caves]
+[hole_in_the_wall]
 id = 2058
 hitpoints = 1050
 att = 30
 str = 30
 def = 16
-combat_def = "wall_beast"
-hunt_mode = "cowardly"
-slayer_xp = 105.0
-categories = ["wall_beasts"]
-immune_poison = true
-examine = "What could be hiding in that crack in the wall?"
-
-[wall_beast]
-id = 7823
-hitpoints = 1050
-att = 30
-str = 30
-def = 16
-combat_def = "wall_beast"
-hunt_mode = "cowardly"
+respawn_delay = 0
 slayer_xp = 105.0
 categories = ["wall_beasts"]
 immune_poison = true
 drop_table = "wall_beast"
+examine = "What could be hiding in that crack in the wall?"
+
+[wall_beast]
+id = 7823
+combat_def = "wall_beast"
 examine = "A big, scary hand!"
 
 [fishing_spot_lumbridge_swamp_caves]
