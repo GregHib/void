@@ -5,3 +5,7 @@ y = [9542, 9544]
 [lumbridge_swamp_east_fishing_area]
 x = [3245, 3249]
 y = [9568, 9572]
+
+[lumbridge_swamp_caves]
+x = [3136, 3263]
+y = [9536, 9602]
