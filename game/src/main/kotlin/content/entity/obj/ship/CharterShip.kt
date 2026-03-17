@@ -9,6 +9,7 @@ import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
+import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -17,7 +18,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Tile
 
 class CharterShip(val ships: CharterShips, val teles: ObjectTeleports) : Script {
@@ -99,12 +100,13 @@ class CharterShip(val ships: CharterShips, val teles: ObjectTeleports) : Script 
             if (component == currentLocation) {
                 return@interfaceOption
             }
+            closeMenu()
             val price = ships.get(currentLocation, component) ?: return@interfaceOption
             if (!hasQuestRequirements(component)) {
                 return@interfaceOption
             }
             val readablePrice = price.toDigitGroupString()
-            strongQueue("charter_ship") {
+            queue("charter_ship") {
                 if (!inventory.contains("coins", price)) {
                     choice("Sailing to ${component.toTitleCase()} costs $readablePrice coins.") {
                         option("Choose again") {
@@ -112,7 +114,7 @@ class CharterShip(val ships: CharterShips, val teles: ObjectTeleports) : Script 
                         }
                         option("No")
                     }
-                    return@strongQueue
+                    return@queue
                 }
                 statement("To sail to ${component.toTitleCase()} from here will cost you $readablePrice gold. Are you sure you want to pay that?")
                 choice {
