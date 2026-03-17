@@ -14,7 +14,7 @@ class CharacterDeath : Script {
         }
 
         npcLevelChanged(Skill.Constitution) { _, _, to ->
-            if (to <= 0 && !queue.contains("death")) {
+            if (to <= 0 && !queue.contains("death") && Death.canDie(this)) {
                 Death.killed(this)
             }
         }

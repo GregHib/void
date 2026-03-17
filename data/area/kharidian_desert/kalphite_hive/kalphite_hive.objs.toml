@@ -1,0 +1,27 @@
+[kalphite_hive_tunnel]
+id = 3827
+examine = "How am I going to get down there?"
+
+[kalphite_hive_tunnel_rope]
+id = 3828
+
+[kalphite_hive_exit_rope]
+id = 3829
+
+[kalphite_hive_wall_tunnel]
+id = 23596
+
+[kalphite_lair_entrance]
+id = 23609
+
+[kalphite_lair_entrance_rope]
+id = 23610
+
+[kalphite_lair_exit_rope]
+id = 3832
+
+[kalphite_queen_emerging_legs]
+id = 23591
+
+[kalphite_cocoon]
+id = 23611

@@ -1,0 +1,27 @@
+[kalphite_queen_lightning_cast]
+id = 278
+
+[kalphite_queen_airborne_lightning]
+id = 279
+
+[kalphite_queen_lightning_travel]
+id = 280
+curve = 10
+delay = 45
+# Approx
+time_offset = 10
+multiplier = 8
+
+[kalphite_queen_emerging]
+id = 1055
+
+[kalphite_queen_lightning_impact]
+id = 281
+
+[kaplhite_queen_spines]
+id = 288
+curve = 20
+delay = 30
+
+[kaplhite_queen_spines_red]
+id = 289

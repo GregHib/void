@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
@@ -59,10 +60,12 @@ class NPCDeath(
                 val killer = killer
                 val tile = tile
                 npc["death_tile"] = tile
-                val definition = combatDefinitions.get(npc.def["combat_def", npc.id])
-                val ticks = anim(definition.deathAnim)
-                if (definition.deathSound != null) {
-                    (killer as? Player)?.sound(definition.deathSound!!.id)
+                val id = get("transform_id", npc.id)
+                val def = NPCDefinitions.get(id)
+                val combat = combatDefinitions.get(def["combat_def", get("transform_id", npc.id)])
+                val ticks = anim(combat.deathAnim)
+                if (combat.deathSound != null) {
+                    (killer as? Player)?.sound(combat.deathSound!!.id)
                 }
                 delay(if (ticks <= 0) 4 else ticks)
                 if (killer is Player) {
@@ -112,9 +115,16 @@ class NPCDeath(
         if (npc.inMultiCombat && killer is Player && killer["loot_share", false]) {
             shareLoot(killer, npc, tile, drops)
         } else {
-            drops.forEach { item ->
-                if (!item.id.contains("clue_scroll") && item.amount > 0) {
-                    FloorItems.add(tile, item.id, item.amount, charges = item.charges(), revealTicks = if (item.tradeable) 60 else FloorItems.NEVER, disappearTicks = 120, owner = if (killer is Player) killer else null)
+            for (item in drops) {
+                if (item.id.contains("clue_scroll") || item.amount <= 0) {
+                    continue
+                }
+                if (item.def.stackable == 0 && item.amount > 1) {
+                    for (i in 0 until item.amount) {
+                        FloorItems.add(tile, item.id, 1, charges = item.charges(), revealTicks = if (item.tradeable) 60 else FloorItems.NEVER, disappearTicks = 120, owner = killer as? Player)
+                    }
+                } else {
+                    FloorItems.add(tile, item.id, item.amount, charges = item.charges(), revealTicks = if (item.tradeable) 60 else FloorItems.NEVER, disappearTicks = 120, owner = killer as? Player)
                 }
             }
         }

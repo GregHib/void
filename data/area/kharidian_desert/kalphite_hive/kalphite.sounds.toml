@@ -1,0 +1,47 @@
+[kalphite_attack]
+id = 537
+
+[kalphite_death]
+id = 538
+
+[kalphite_defend]
+id = 539
+
+[kalphite_queen_attack]
+id = 563
+
+[kalphite_lighting]
+id = 557
+
+[kalphite_lighting_impact]
+id = 559
+
+[kalphite_queen_defend]
+id = 565
+
+[kalphite_mandibles]
+id = 574
+
+[kalphite_queen_spines]
+id = 555
+
+[kalphite_crack_open]
+id = 552
+
+[kalphite_queen_death]
+id = 564
+
+[kalphite_cocoon_break]
+id = 556
+
+[kalphite_queen_airborne_death]
+id = 553
+
+[kalphite_queen_airborne_defend]
+id = 554
+
+[kalphite_queen_airborne_melee]
+id = 551
+
+[kalphite_queen_lighting_glow]
+id = 558

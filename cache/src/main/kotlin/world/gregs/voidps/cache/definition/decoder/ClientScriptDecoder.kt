@@ -78,10 +78,10 @@ class ClientScriptDecoder(private val revision667: Boolean = false) : Definition
                 if (intOperands == null) {
                     intOperands = IntArray(instructionCount)
                 }
-                if (clientOpcode < 150 && clientOpcode != 21 && clientOpcode != 38 && clientOpcode != 39) {
-                    intOperands!![index] = buffer.readInt()
-                } else {
+                if (clientOpcode >= (if (revision667) 150 else 100) || clientOpcode == 21 || clientOpcode == 38 || clientOpcode == 39) {
                     intOperands!![index] = buffer.readUnsignedByte()
+                } else {
+                    intOperands!![index] = buffer.readInt()
                 }
             }
             instructions[index++] = clientOpcode

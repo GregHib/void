@@ -6,11 +6,14 @@ import content.entity.combat.hit.directHit
 import content.skill.ranged.ammo
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.InterfaceApi
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
@@ -60,7 +63,6 @@ fun Player.antiPoison(duration: Int, timeUnit: TimeUnit) {
 class Poison : Script {
 
     init {
-        // TODO Cure:health_orb:poison
         playerSpawn {
             if (poisonDamage != 0) {
                 timers.restart("poison")
@@ -79,6 +81,26 @@ class Poison : Script {
         npcTimerTick("poison", ::tick)
         timerStop("poison", ::stop)
         npcTimerStop("poison", ::stop)
+
+        interfaceOption("Use Cure", "health_orb:poison") {
+            for (type in listOf("antipoison", "super_antipoison", "antipoison+")) {
+                val index = inventory.items.indexOfFirst { it.id.startsWith(type) }
+                if (index != -1) {
+                    val option = "Drink"
+                    val item = inventory[index]
+                    InterfaceApi.option(this, InterfaceOption(item, index, option, item.def.options.indexOf(option), "inventory:inventory"))
+                    return@interfaceOption
+                }
+            }
+            val index = inventory.indexOf("prayer_book")
+            if (index != -1) {
+                val option = "Recite-prayer"
+                val item = inventory[index]
+                InterfaceApi.option(this, InterfaceOption(item, index, option, item.def.options.indexOf(option), "inventory:inventory"))
+                return@interfaceOption
+            }
+            message("You don't have anything to cure the poison.")
+        }
     }
 
     fun start(character: Character, restart: Boolean): Int {

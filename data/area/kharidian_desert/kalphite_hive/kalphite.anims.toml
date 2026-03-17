@@ -1,0 +1,59 @@
+[kalphite_attack]
+id = 6223
+
+[kalphite_guardian_attack]
+id = 6226
+
+[kalphite_defend]
+id = 6227
+
+[kalphite_death]
+id = 6228
+
+[kalphite_guardian_death]
+id = 6230
+
+[kalphite_queen_defend]
+id = 6232
+
+[kalphite_queen_attack_ranged]
+id = 6240
+
+[kalphite_queen_lightning]
+id = 1172
+
+[kalphite_queen_attack_mandibles]
+id = 6241
+
+[kalphite_queen_attack_claws]
+id = 6476
+
+[kalphite_queen_death]
+id = 6242
+
+[kalphite_queen_airborne_ranged]
+id = 6234
+
+[kalphite_queen_airborne_melee]
+id = 1170
+
+[kalphite_queen_airborne_claws]
+id = 1178
+
+[kalphite_queen_airborne_defend]
+id = 6237
+
+[kalphite_queen_airborne_death]
+id = 6233
+
+[kalphite_queen_emerging]
+id = 6270
+
+[kalphite_cocoon_break]
+id = 6272
+
+[kalphite_cocoon_return]
+id = 6273
+
+[kalphite_cocoon_idle]
+id = 6274

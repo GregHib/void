@@ -482,3 +482,6 @@ id = 42
 id = 49
 options = { Select = 0 }
 
+[orb_of_oculus]
+id = 475
+type = "full_screen"

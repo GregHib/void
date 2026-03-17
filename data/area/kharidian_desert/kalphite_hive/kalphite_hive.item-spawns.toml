@@ -1,0 +1,12 @@
+spawns = [
+    # Hive
+    { id = "potato_cactus", x = 3460, y = 9484, level = 2, delay = 65, members = true },
+    { id = "potato_cactus", x = 3461, y = 9480, level = 2, delay = 65, members = true },
+    { id = "potato_cactus", x = 3465, y = 9477, level = 2, delay = 65, members = true },
+    ## Lair
+    { id = "potato_cactus", x = 3480, y = 9483, delay = 65, members = true },
+    { id = "potato_cactus", x = 3469, y = 9492, delay = 65, members = true },
+    { id = "potato_cactus", x = 3469, y = 9498, delay = 65, members = true },
+    { id = "potato_cactus", x = 3474, y = 9509, delay = 65, members = true },
+    { id = "potato_cactus", x = 3487, y = 9517, delay = 65, members = true },
+]

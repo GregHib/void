@@ -18,10 +18,9 @@ object PrayerConfigs {
     const val QUICK_CURSES = "quick_curses"
 }
 
-fun Character.praying(name: String): Boolean = if (this is Player) {
-    containsVarbit(getActivePrayerVarKey(), name)
-} else {
-    false
+fun Character.praying(name: String): Boolean = when (this) {
+    is Player -> containsVarbit(getActivePrayerVarKey(), name)
+    else -> false
 }
 
 fun Player.getActivePrayerVarKey(): String = if (isCurses()) PrayerConfigs.ACTIVE_CURSES else PrayerConfigs.ACTIVE_PRAYERS

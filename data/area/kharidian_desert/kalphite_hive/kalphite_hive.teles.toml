@@ -1,0 +1,19 @@
+[kalphite_hive_tunnel_rope]
+option = "Climb-down"
+tile = { x = 3227, y = 3108 }
+to = { x = 3484, y = 9510, level = 2 }
+
+[kalphite_hive_exit_rope]
+option = "Climb-up"
+tile = { x = 3483, y = 9510, level = 2 }
+to = { x = 3226, y = 3108 }
+
+[kalphite_lair_entrance_rope]
+option = "Climb-down"
+tile = { x = 3509, y = 9497, level = 2 }
+to = { x = 3507, y = 9494 }
+
+[kalphite_lair_exit_rope]
+option = "Climb-up"
+tile = { x = 3508, y = 9494 }
+to = { x = 3509, y = 9496, level = 2 }
