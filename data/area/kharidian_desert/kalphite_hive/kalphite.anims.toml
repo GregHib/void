@@ -35,7 +35,7 @@ id = 6242
 id = 6234
 
 [kalphite_queen_airborne_melee]
-id = 6235
+id = 1170
 
 [kalphite_queen_airborne_claws]
 id = 1178
@@ -48,3 +48,12 @@ id = 6233
 
 [kalphite_queen_emerging]
 id = 6270
+
+[kalphite_cocoon_break]
+id = 6272
+
+[kalphite_cocoon_return]
+id = 6273
+
+[kalphite_cocoon_idle]
+id = 6274

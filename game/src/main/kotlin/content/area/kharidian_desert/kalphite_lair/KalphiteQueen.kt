@@ -5,7 +5,6 @@ import content.entity.combat.Target
 import content.entity.combat.attackers
 import content.entity.combat.hit.hit
 import content.entity.combat.target
-import content.entity.combat.underAttack
 import content.entity.effect.clearTransform
 import content.entity.effect.transform
 import content.entity.proj.shoot
@@ -17,9 +16,9 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
-import world.gregs.voidps.engine.entity.character.mode.combat.CombatDamage
 import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -27,9 +26,9 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
@@ -41,29 +40,7 @@ class KalphiteQueen(val lineOfSight: LineValidator) : Script {
             if (random.nextInt(20) != 0) {
                 return@npcCombatDamage
             }
-
-            for (eggTile in listOf(
-                Tile(3482, 9502),
-                Tile(3486, 9498),
-                Tile(3490, 9502),
-                Tile(3486, 9506),
-                Tile(3493, 9483),
-                Tile(3480, 9481),
-                Tile(3477, 9481),
-                Tile(3464, 9495),
-                Tile(3472, 9508),
-                Tile(3486, 9518),
-                Tile(3488, 9518),
-                Tile(3502, 9504),
-                Tile(3502, 9501),
-            )) {
-                val nearest = Distance.nearest(tile, size, size, eggTile)
-                val distance = nearest.distanceTo(eggTile)
-                if (distance <= 3) { // TODO actual distance
-                    // TODO Anim ~6269 and spawn worker
-                    return@npcCombatDamage
-                }
-            }
+            spawnWorker(it.source)
         }
 
         npcCombatPrepare("kalphite_queen*") {
@@ -88,13 +65,15 @@ class KalphiteQueen(val lineOfSight: LineValidator) : Script {
             if (to > 10) {
                 return@npcLevelChanged
             }
+            if (transform == "kalphite_queen_airborne") {
+                return@npcLevelChanged
+            }
             val target = target
-            levels.clear()
+            levels.restore(Skill.Constitution, 2550)
             for (attacker in attackers) {
                 attacker.mode = EmptyMode
             }
             mode = PauseMode
-
             steps.clear()
             clearFace()
             clearWatch()
@@ -102,19 +81,18 @@ class KalphiteQueen(val lineOfSight: LineValidator) : Script {
             clearAnim()
             anim("kalphite_queen_death")
             areaSound("kalphite_queen_death", tile, radius = 20)
-            softQueue("emerging", 10) {
+            softQueue("emerging", 14) {
                 if (target is Player) {
                     interactPlayer(target, "Attack")
                 } else {
                     mode = EmptyMode
                 }
             }
-            strongQueue("emerge", 2) {
+            softQueue("emerge", 2) {
                 anim("kalphite_queen_emerging")
                 gfx("kalphite_queen_emerging")
-                GameObjects.add("kalphite_queen_emerging_legs", tile, ticks = 8) // TODO correct time
+                GameObjects.add("kalphite_queen_emerging_legs", tile, ticks = 8)
                 transform("kalphite_queen_airborne")
-                start("delay", 8)
             }
             softTimers.start("kalphite_queen_revert")
         }
@@ -128,7 +106,6 @@ class KalphiteQueen(val lineOfSight: LineValidator) : Script {
             clearTransform()
             Timer.CANCEL
         }
-
     }
 
     fun chainGlow(source: NPC, target: Character) {
@@ -153,4 +130,50 @@ class KalphiteQueen(val lineOfSight: LineValidator) : Script {
         }
     }
 
+    private fun NPC.spawnWorker(source: Character?) {
+        if (queue.contains("cocoon_idle")) {
+            return
+        }
+        for (objTile in listOf(
+            Tile(3482, 9502),
+            Tile(3486, 9498),
+            Tile(3490, 9502),
+            Tile(3486, 9506),
+            Tile(3493, 9483),
+            Tile(3480, 9481),
+            Tile(3477, 9481),
+            Tile(3464, 9495),
+            Tile(3472, 9508),
+            Tile(3486, 9518),
+            Tile(3488, 9518),
+            Tile(3502, 9504),
+            Tile(3502, 9501),
+        )) {
+            val nearest = Distance.nearest(tile, size, size, objTile)
+            val distance = nearest.distanceTo(objTile)
+            if (distance > 4) { // TODO actual distance
+                continue
+            }
+            val cocoon = GameObjects.findOrNull(objTile, "kalphite_cocoon") ?: continue
+            areaSound("kalphite_cocoon_break", cocoon.tile, radius = 10)
+            cocoon.anim("kalphite_cocoon_break")
+            val direction = when (cocoon.rotation) {
+                1 -> Direction.NORTH
+                2 -> Direction.EAST
+                3 -> Direction.SOUTH
+                else -> Direction.WEST
+            }
+            val npc = NPCs.add("kalphite_worker", cocoon.tile.add(direction), direction)
+            if (source is Player) {
+                npc.interactPlayer(source, "Attack")
+            }
+            softQueue("cocoon_respawn", 10) {
+                cocoon.anim("kalphite_cocoon_return")
+            }
+            softQueue("cocoon_idle", 12) {
+                cocoon.anim("kalphite_cocoon_idle")
+            }
+            return
+        }
+    }
 }

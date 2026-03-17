@@ -7,6 +7,11 @@ import world.gregs.voidps.engine.inv.remove
 
 class KalphiteHive : Script {
     init {
+        playerSpawn {
+            sendVariable("kalphite_tunnel_rope")
+            sendVariable("kalphite_lair_rope")
+        }
+
         itemOnObjectOperate("rope", "kalphite_hive_tunnel") {
             if (!get("kalphite_tunnel_rope", false) && inventory.remove("rope")) {
                 set("kalphite_tunnel_rope", true)

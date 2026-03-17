@@ -30,3 +30,18 @@ id = 552
 
 [kalphite_queen_death]
 id = 564
+
+[kalphite_cocoon_break]
+id = 556
+
+[kalphite_queen_airborne_death]
+id = 553
+
+[kalphite_queen_airborne_defend]
+id = 554
+
+[kalphite_queen_airborne_melee]
+id = 551
+
+[kalphite_queen_lighting_glow]
+id = 558
