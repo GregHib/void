@@ -1,0 +1,9 @@
+[cave_exit_mos_le_harmless]
+option = "Exit"
+tile = { x = 3749, y = 9373 }
+to = { x = 3749, y = 2973 }
+
+[cave_exit_2_mos_le_harmless]
+option = "Exit"
+tile = { x = 3749, y = 9374 }
+to = { x = 3749, y = 2973 }

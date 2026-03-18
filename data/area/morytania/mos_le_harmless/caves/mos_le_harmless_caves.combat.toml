@@ -1,0 +1,51 @@
+[cave_horror]
+retreat_range = 8
+attack_speed = 5 # TODO support irregular attack speeds/override
+defend_anim = "cave_horror_defend"
+death_anim = "cave_horror_howl"
+defend_sound = "jungle_horror_defend"
+death_sound = "jungle_horror_death"
+
+[cave_horror.attack]
+range = 1
+anim = "cave_horror_swing"
+target_sound = "jungle_horror_attack"
+target_hit = { offense = "crush", defence = "magic", max = 90 }
+
+[cave_horror.howl]
+condition = "witchwood_icon"
+range = 1
+anim = "cave_horror_howl"
+target_sound = "cave_horror_howl"
+target_hit = { offense = "crush", defence = "magic", max = 90 }
+
+[cave_horror.special]
+condition = "no_witchwood_icon"
+range = 1
+anim = "cave_horror_howl"
+target_sound = "cave_horror_howl"
+target_hit = { offense = "crush", defence = "magic", min = 80, max = 90 }
+# Copied from banshee's, not sure what actually drains as osrs works differently
+impact_drains = [
+    { skill = "attack", multiplier = 0.2 },
+    { skill = "strength", multiplier = 0.2 },
+    { skill = "defence", multiplier = 0.2 },
+    { skill = "ranged", multiplier = 0.2 },
+    { skill = "magic", multiplier = 0.2 },
+    { skill = "prayer", multiplier = 0.1 },
+    { skill = "agility", multiplier = 0.1 },
+]
+
+[giant_mosquito]
+retreat_range = 8
+attack_speed = 12
+defend_anim = "mosquito_defend"
+defend_sound = "mosquito_defend"
+death_anim = "mosquito_death"
+death_sound = "mosquito_death"
+
+[giant_mosquito.attack]
+range = 1
+anim = "mosquito_attack"
+target_sound = "mosquito_attack"
+target_hit = { offense = "crush", max = 10 }
