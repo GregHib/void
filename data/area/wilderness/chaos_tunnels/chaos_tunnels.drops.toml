@@ -84,3 +84,49 @@ drops = [
     { id = "adamant_pickaxe", chance = 4 },
     { id = "rune_pickaxe" },
 ]
+[dust_devil_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "dust_devil_secondary" },
+    { table = "dust_devil_charms" },
+]
+
+[dust_devil_secondary]
+roll = 32768
+drops = [
+    { id = "adamant_hatchet", chance = 768 },
+    { id = "rune_dagger", chance = 512 },
+    { id = "red_dragonhide_vambraces", chance = 512 },
+    { id = "black_dragonhide_vambraces", chance = 256 },
+    { id = "air_battlestaff", chance = 512 },
+    { id = "earth_battlestaff", chance = 512 },
+    { id = "mystic_air_staff", chance = 256 },
+    { id = "mystic_earth_staff", chance = 256 },
+    { id = "dragon_dagger", chance = 256 },
+    { id = "dragon_chainbody" },
+    { id = "dust_rune", amount = 200, chance = 2560 },
+    { id = "earth_rune", amount = 300, chance = 2560 },
+    { id = "fire_rune", amount = 300, chance = 2560 },
+    { id = "fire_rune", amount = 50, chance = 256 },
+    { id = "chaos_rune", amount = 65, chance = 1792 },
+    { id = "rune_arrow", amount = 12, chance = 1280 },
+    { id = "soul_rune", amount = 15, chance = 1024 },
+    { id = "soul_rune", amount = 50, chance = 256 },
+    { table = "herb_drop_table", chance = 4864 },
+    { id = "nothing", amount = 0, chance = 255 },
+    { id = "coins", min = 2000, max = 4000, chance = 7168 },
+    { id = "ugthanki_kebab", amount = 4, chance = 512 },
+    { id = "mithril_bar_noted", amount = 10, chance = 768 },
+    { id = "adamant_bar_noted", amount = 4, chance = 256 },
+    { table = "gem_drop_table", chance = 2816 },
+]
+
+[dust_devil_charms]
+roll = 1000
+drops = [
+    { id = "gold_charm", chance = 121 },
+    { id = "green_charm", chance = 60 },
+    { id = "crimson_charm", chance = 243 },
+    { id = "blue_charm", chance = 8 },
+]

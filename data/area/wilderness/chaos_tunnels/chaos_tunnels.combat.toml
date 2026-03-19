@@ -22,8 +22,28 @@ death_sound = "dust_devil_death"
 
 [dust_devil.attack]
 range = 1
+condition = "face_mask"
 anim = "dust_devil_attack"
+target_sound = "dust_devil_attack"
 target_hit = { offense = "melee", defence = "range", max = 80 }
+
+[dust_devil.special]
+range = 1
+condition = "no_face_mask"
+projectile = "slayer_devil_dust"
+anim = "dust_devil_attack"
+target_sound = "dust_devil_attack"
+target_hit = { offense = "melee", defence = "range", max = 160 }
+impact_regardless = true
+impact_drains = [
+    { skill = "attack", multiplier = 1.0 },
+    { skill = "strength", multiplier = 1.0 },
+    { skill = "defence", multiplier = 0.5 },
+    { skill = "ranged", multiplier = 1.0 },
+    { skill = "magic", multiplier = 1.0 },
+    { skill = "prayer", multiplier = 0.5 },
+    { skill = "agility", multiplier = 0.5 },
+]
 
 [giant_crypt_rat]
 attack_speed = 4
