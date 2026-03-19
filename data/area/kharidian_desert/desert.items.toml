@@ -100,7 +100,7 @@ examine = "Better than factor 50 sun cream."
 [desert_legs_noted]
 id = 6391
 
-[menap_headgear_purple]
+[menaphite_headgear_purple]
 id = 6392
 price = 475
 limit = 100
@@ -109,7 +109,7 @@ slot = "Hat"
 type = "Hair"
 examine = "Good for keeping the sun off my neck."
 
-[menap_headgear_purple_noted]
+[menaphite_headgear_purple_noted]
 id = 6393
 
 [menaphite_top_purple]
@@ -134,7 +134,7 @@ examine = "A cool light Menaphite robe."
 [menaphite_robe_purple_noted]
 id = 6397
 
-[menap_action_kilt_purple]
+[menaphite_action_kilt_purple]
 id = 6398
 price = 265
 limit = 100
@@ -142,10 +142,10 @@ weight = 0.005
 slot = "Legs"
 examine = "Look at those nobbily knees."
 
-[menap_action_kilt_purple_noted]
+[menaphite_action_kilt_purple_noted]
 id = 6399
 
-[menap_headgear_red]
+[menaphite_headgear_red]
 id = 6400
 price = 443
 limit = 100
@@ -154,7 +154,7 @@ slot = "Hat"
 type = "Hair"
 examine = "Good for keeping the sun off my neck."
 
-[menap_headgear_red_noted]
+[menaphite_headgear_red_noted]
 id = 6401
 
 [menaphite_top_red]
@@ -179,7 +179,7 @@ examine = "A cool light Menaphite robe."
 [menaphite_robe_red_noted]
 id = 6405
 
-[menap_action_kilt_red]
+[menaphite_action_kilt_red]
 id = 6406
 price = 249
 limit = 100
@@ -187,7 +187,7 @@ weight = 0.005
 slot = "Legs"
 examine = "Look at those nobbily knees."
 
-[menap_action_kilt_red_noted]
+[menaphite_action_kilt_red_noted]
 id = 6407
 
 [oak_blackjack_o]

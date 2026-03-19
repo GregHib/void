@@ -1,0 +1,29 @@
+[desert_heat_delay]
+keyType = "item"
+valueType = "int"
+values = {
+  desert_disguise = 20,
+  desert_shirt = 20,
+  desert_robe = 20,
+  desert_boots = 20,
+  black_desert_shirt = 20,
+  black_desert_robe = 20,
+  fez = 20,
+  desert_top = 20,
+  desert_legs = 20,
+  desert_top_overcoat = 20,
+  desert_robes = 20,
+  slave_shirt = 10,
+  slave_robe = 10,
+  slave_boots = 10,
+  robe_of_elidinis_top = 20,
+  robe_of_elidinis_bottom = 20,
+  menaphite_headgear_purple = 20,
+  menaphite_top_purple = 20,
+  menaphite_robe_purple = 20,
+  menaphite_action_kilt_purple = 20,
+  menaphite_headgear_red = 20,
+  menaphite_top_red = 20,
+  menaphite_robe_red = 20,
+  menaphite_action_kilt_red = 20,
+}

@@ -36,6 +36,7 @@ class AnimationDefinitions(
                             }
                         }
                         require(!ids.containsKey(stringId)) { "Duplicate animation id found '$stringId' at $path." }
+                        require(id != -1) { "Missing id for animation '$stringId' at $path." }
                         ids[stringId] = id
                         definitions[id].stringId = stringId
                         if (params.isNotEmpty()) {
