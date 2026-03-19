@@ -29,3 +29,13 @@ clone = "goat_kharidian_desert"
 [goat_kharidian_desert_2.melee]
 clone = "goat_kharidian_desert.melee"
 
+[desert_snake]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "snake_defend"
+death_anim = "snake_death"
+
+[desert_snake.melee]
+range = 1
+anim = "snake_attack"
+target_hit = { offense = "stab", max = 10 }
