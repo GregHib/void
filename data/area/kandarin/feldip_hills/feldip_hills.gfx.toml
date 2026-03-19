@@ -1,0 +1,10 @@
+[jungle_strykewyrm_travel]
+id = 2313
+curve = 16
+# startHeight = 41, endHeight = 16, delay = 30, speed = 2
+
+[jungle_strykewyrm_impact]
+id = 2314
+
+[jungle_strykewyrm_poison]
+id = 2309

@@ -84,6 +84,15 @@ id = 8659
 [mound_feldip_hills]
 id = 9466
 
+[jungle_strykewyrm]
+id = 9467
+# Unknown stats
+hitpoints = 1100
+slayer_level = 73
+slayer_xp = 110.0
+immune_poison = true
+examine = "Who said worms were small and harmless?"
+
 [swamp_toad_feldip_hills]
 id = 1013
 examine = "A green skinned croaker, loves the swamp."

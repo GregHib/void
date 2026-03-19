@@ -1,0 +1,17 @@
+[styrkewyrm_attack]
+id = 12791
+
+[styrkewyrm_defend]
+id = 12792
+
+[styrkewyrm_death]
+id = 12792
+
+[strykewyrm_shoot]
+id = 12793
+
+[strykewyrm_surface]
+id = 12795
+
+[strykewyrm_bury]
+id = 12796
