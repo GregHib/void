@@ -32,8 +32,21 @@ data class NPC(
     override val visuals: NPCVisuals = NPCVisuals()
 
     var hide = false
-    override var blockMove: Int = if (def["solid", true]) CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS else 0
-    override var collisionFlag: Int = CollisionFlag.BLOCK_NPCS or if (def["solid", false]) CollisionFlag.FLOOR else 0
+    override val blockMove: Int
+        get() = if (transformDef["solid", true]) CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS else 0
+    override val collisionFlag: Int
+        get() = CollisionFlag.BLOCK_NPCS or if (transformDef["solid", false]) CollisionFlag.FLOOR else 0
+
+    val transformId: String
+        get() = this["transform_id", id]
+
+    val transformDef: NPCDefinition
+        get() {
+            if (contains("transform_id")) {
+                return NPCDefinitions.get(get("transform_id", id))
+            }
+            return def
+        }
 
     init {
         if (index != -1) {
