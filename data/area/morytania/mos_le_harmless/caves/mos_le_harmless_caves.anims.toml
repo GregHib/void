@@ -9,3 +9,22 @@ id = 4235
 
 [cave_horror_howl]
 id = 4237
+
+[mosquito_defend]
+id = 2399
+
+[mosquito_death]
+id = 2398
+
+[mosquito_attack]
+id = 2397
+
+[jungle_horror_death]
+id = 4233
+
+[jungle_horror_defend]
+id = 4232
+
+[jungle_horror_attack]
+id = 4234
+

@@ -16,7 +16,7 @@ spawns = [
   { id = "pirate_pirates_cove", x = 2205, y = 3814 },
   { id = "captain_bentley", x = 2222, y = 3796, level = 2, members = true },
   { id = "birds_eye_jack", x = 2222, y = 3788, level = 1, members = true },
-  { id = "lokar_searunner_pirates_cove", x = 2214, y = 3794 },
+  { id = "lokar_searunner", x = 2214, y = 3794 },
   { id = "cabin_boy", x = 2223, y = 3788, level = 3, members = true },
   { id = "beefy_burns", x = 2222, y = 3789 },
   { id = "eagle_eye_shultz", x = 2224, y = 3813, level = 2 },

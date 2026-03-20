@@ -262,3 +262,13 @@ to = { x = 2652, y = 3280, level = 1  }
 option = "Climb-down"
 tile = { x = 2650, y = 3280, level = 1 }
 to = { x = 2649, y = 3280 }
+
+[trapdoor_mourner_tunnels]
+option = "Open"
+tile = { x = 2542, y = 3327 }
+to = { x = 2044, y = 4649 }
+
+[ladder_mourner_tunnels]
+option = "Climb-up"
+tile = { x = 2044, y = 4650 }
+to = { x = 2543, y = 3327 }

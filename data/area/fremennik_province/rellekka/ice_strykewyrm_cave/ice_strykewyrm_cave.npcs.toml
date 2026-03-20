@@ -1,0 +1,22 @@
+[mound_ice_strykewyrm]
+id = 9462
+hitpoints = 3000
+solid = false
+allowed_under = true
+# Made up stats
+att = 225
+str = 225
+def = 175
+magic = 250
+attack_bonus = 100
+slayer_level = 93
+slayer_xp = 300.0
+height = 60
+drop_table = "ice_strykewyrm"
+categories = ["ice_strykewyrm", "strykewyrm"]
+examine = "I'm pretty sure there's something big under there."
+
+[ice_strykewyrm]
+id = 9463
+combat_def = "ice_strykewyrm"
+examine = "Now that's just cold."

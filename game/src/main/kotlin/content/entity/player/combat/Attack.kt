@@ -28,6 +28,10 @@ class Attack : Script {
                 message("You need a higher slayer level to know how to wound this monster.")
                 return@npcApproach
             }
+            if (timers.contains("insect_swarm")) {
+                message("You can't see to attack anything!")
+                return@npcApproach
+            }
             if (equipped(EquipSlot.Weapon).id.endsWith("_greegree")) {
                 statement("You cannot attack as a monkey.")
                 return@npcApproach

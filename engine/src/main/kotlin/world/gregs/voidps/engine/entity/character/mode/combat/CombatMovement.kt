@@ -49,7 +49,7 @@ class CombatMovement(
         }
         if (character is NPC) {
             val spawn: Tile = character["spawn_tile"] ?: return
-            val definition = get<CombatDefinitions>().get(character.def["combat_def", character.id])
+            val definition = get<CombatDefinitions>().get(character.transformDef["combat_def", character.id])
             if (!withinAggro(this.target, spawn, definition)) {
                 character.mode = EmptyMode
                 return
@@ -101,7 +101,14 @@ class CombatMovement(
         return false
     }
 
-    private fun attackRange(): Int = character["attack_range", if (character is NPC) character.def["attack_range", get<CombatDefinitions>().get(character.def["combat_def", character.id]).attackRange] else 1]
+    private fun attackRange(): Int {
+        val default = if (character is NPC) {
+            val def = character.transformDef
+            val combatDefinition = get<CombatDefinitions>().get(def["combat_def", character.id])
+            def["attack_range", combatDefinition.attackRange]
+        } else 1
+        return character["attack_range", default]
+    }
 
     override fun onCompletion() {
     }

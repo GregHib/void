@@ -1,3 +1,15 @@
 [bank_booth_lunar_isle]
 id = 16700
 examine = "The bank teller will serve you from here."
+
+[lunar_isle_dock_ladder]
+id = 16960
+
+[lunar_isle_dock_ladder_top]
+id = 16962
+
+[lunar_isle_boat_ladder]
+id = 16959
+
+[lunar_isle_boat_ladder_top]
+id = 16961

@@ -115,7 +115,7 @@ class Combat(val combatDefinitions: CombatDefinitions) :
      * [CombatMovement.combatReached] is emitted by [CombatMovement] every tick the [Character] is within range of the target
      */
     fun retaliates(character: Character) = if (character is NPC) {
-        character.def["retaliates", true]
+        character.transformDef["retaliates", true]
     } else {
         character["auto_retaliate", false]
     }
@@ -132,7 +132,7 @@ class Combat(val combatDefinitions: CombatDefinitions) :
         }
         if (character is NPC) {
             // Retreat
-            val definition = combatDefinitions.getOrNull(character.def["combat_def", character.id]) ?: return
+            val definition = combatDefinitions.getOrNull(character.transformDef["combat_def", character.id]) ?: return
             val spawn: Tile = character["spawn_tile"]!!
             if (!CombatMovement.withinAggro(source, spawn, definition)) {
                 if (character.mode !is Retreat || (character.mode as Retreat).target != source) {

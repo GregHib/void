@@ -234,6 +234,10 @@ examine = "A mysterious power emanates from this shrine."
 id = 2488
 examine = "A mysterious power emanates from this shrine."
 
+[astral_altar]
+id = 17010
+examine = "A mysterious power emanates from this shrine."
+
 [blood_altar]
 id = 30624
 examine = "A mysterious power emanates from this shrine."

@@ -1,0 +1,13 @@
+[jungle_horror]
+retreat_range = 8
+attack_speed = 4
+defend_anim = "jungle_horror_defend"
+defend_sound = "jungle_horror_defend"
+death_anim = "jungle_horror_death"
+death_sound = "jungle_horror_death"
+
+[jungle_horror.attack]
+range = 1
+anim = "jungle_horror_attack"
+target_sound = "jungle_horror_attack"
+target_hit = { offense = "stab", defence = "magic", max = 80 }

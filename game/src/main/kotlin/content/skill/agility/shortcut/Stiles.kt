@@ -33,6 +33,10 @@ class Stiles : Script {
             climbStile(target, Direction.EAST)
         }
 
+        objectOperate("Climb-over", "al_kharid_stile") { (target) ->
+            climbStile(target, Direction.EAST)
+        }
+
         objectOperate("Climb-over", "falador_farm_stile") { (target) ->
             val rotation = when (target.rotation) {
                 2 -> Direction.NORTH

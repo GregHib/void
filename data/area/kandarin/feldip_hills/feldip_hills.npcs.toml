@@ -83,6 +83,26 @@ id = 8659
 
 [mound_feldip_hills]
 id = 9466
+hitpoints = 1100
+solid = false
+allowed_under = true
+# Made up stats
+att = 150
+str = 150
+def = 100
+magic = 150
+attack_bonus = 60
+slayer_level = 73
+slayer_xp = 110.0
+height = 60
+drop_table = "jungle_strykewyrm"
+categories = ["jungle_strykewyrm", "strykewyrm"]
+immune_poison = true
+
+[jungle_strykewyrm]
+id = 9467
+combat_def = "jungle_strykewyrm"
+examine = "Who said worms were small and harmless?"
 
 [swamp_toad_feldip_hills]
 id = 1013

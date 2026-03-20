@@ -3,3 +3,7 @@ x = [3648, 3853]
 y = [2880, 3071]
 tags = ["penguin_area"]
 hint = "where pirates feel mostly harmless."
+
+[mos_le_harmless_cave]
+x = [3712, 3839]
+y = [9344, 9741]

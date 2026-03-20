@@ -1,0 +1,8 @@
+[desert_strykewyrm_travel]
+id = 2310
+curve = 16
+delay = 30
+# startHeight = 41, endHeight = 16, delay = 30, speed = 2
+
+[desert_strykewyrm_impact]
+id = 2311

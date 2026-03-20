@@ -102,7 +102,7 @@ class Runecrafting : Script {
         }
     }
 
-    fun Runecrafting.bindRunes(player: Player, id: String) {
+    fun bindRunes(player: Player, id: String) {
         val xp = EnumDefinitions.intOrNull("runecrafting_xp", id) ?: return
         val level = EnumDefinitions.int("runecrafting_level", id)
         if (!player.has(Skill.Runecrafting, level, message = true)) {

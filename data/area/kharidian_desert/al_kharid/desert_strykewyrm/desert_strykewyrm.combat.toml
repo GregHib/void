@@ -1,0 +1,26 @@
+[desert_strykewyrm]
+attack_speed = 4
+retreat_range = 12
+defend_anim = "strykewyrm_defend"
+defend_sound = "strykewyrm_defend"
+death_anim = "strykewyrm_death"
+death_sound = "strykewyrm_death"
+
+[desert_strykewyrm.melee]
+chance = 8
+range = 1
+anim = "strykewyrm_attack"
+target_hit = { offense = "stab", max = 120 }
+
+[desert_strykewyrm.range]
+chance = 8
+range = 8
+anim = "strykewyrm_shoot"
+projectile = "desert_strykewyrm_travel"
+projectile_origin_y = 1
+projectile_origin_x = 1
+impact_gfx = "desert_strykewyrm_impact"
+target_hit = { offense = "range", defence = "magic", max = 125 }
+
+[desert_strykewyrm.dig]
+range = 8

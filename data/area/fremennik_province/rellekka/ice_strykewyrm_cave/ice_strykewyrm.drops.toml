@@ -1,0 +1,87 @@
+[ice_strykewyrm_drop_table]
+type = "all"
+drops = [
+    { table = "ice_strykewyrm_secondary" },
+    { table = "ice_strykewyrm_tertiary" },
+    { table = "ice_strykewyrm_charms" },
+]
+
+[ice_strykewyrm_secondary]
+roll = 512
+drops = [
+    { id = "mithril_battleaxe", chance = 32 },
+    { id = "rune_battleaxe", chance = 2 },
+    { id = "rune_2h_sword", chance = 2 },
+    { id = "staff_of_light", chance = 2 },
+    { id = "rune_sq_shield", chance = 2 },
+    { id = "dragon_med_helm", chance = 2 },
+    { id = "blood_rune", amount = 15, chance = 8 },
+    { id = "law_rune", min = 20, max = 45, chance = 8 },
+    { id = "death_rune", min = 20, max = 45, chance = 8 },
+    { id = "nature_rune", min = 60, max = 79 },
+    { id = "water_talisman_noted", min = 1, max = 3, chance = 8 },
+    { id = "earth_talisman", chance = 2 },
+    { id = "mind_talisman", chance = 2 },
+    { id = "fire_talisman", chance = 2 },
+    { id = "body_talisman", chance = 2 },
+    { id = "air_talisman", chance = 2 },
+    { id = "cosmic_talisman", chance = 2 },
+    { id = "steel_arrow", amount = 150 },
+    { id = "rune_arrow", amount = 42 },
+    { id = "adamant_javelin", amount = 5 },
+    { id = "rune_bar_noted", chance = 8 },
+    { id = "rune_bar", chance = 8 },
+    { id = "grimy_guam_noted", min = 1, max = 4, chance = 32 },
+    { id = "grimy_marrentill_noted", min = 1, max = 4, chance = 32 },
+    { id = "grimy_tarromin_noted", min = 1, max = 4, chance = 32 },
+    { id = "grimy_harralander_noted", min = 1, max = 4, chance = 32 },
+    { id = "grimy_ranarr_noted", min = 1, max = 4, chance = 32 },
+    { id = "grimy_irit_noted", min = 1, max = 4, chance = 32 },
+    { id = "grimy_avantoe_noted", min = 1, max = 4, chance = 32 },
+    { id = "grimy_kwuarm_noted", min = 1, max = 4, chance = 32 },
+    { id = "grimy_cadantine_noted", min = 1, max = 4, chance = 8 },
+    { id = "grimy_lantadyme_noted", min = 1, max = 4, chance = 8 },
+    { id = "grimy_dwarf_weed_noted", min = 1, max = 4, chance = 8 },
+    { id = "watermelon_seed", chance = 32 },
+    { id = "cactus_seed", chance = 32 },
+    { id = "ranarr_seed", chance = 32 },
+    { id = "poison_ivy_seed", chance = 32 },
+    { id = "kwuarm_seed", chance = 32 },
+    { id = "toadflax_seed", chance = 32 },
+    { id = "jangerberry_seed", chance = 32 },
+    { id = "wildblood_seed", chance = 32 },
+    { id = "belladonna_seed", chance = 32 },
+    { id = "whiteberry_seed", chance = 32 },
+    { id = "bittercap_mushroom_spore", chance = 32 },
+    { id = "limpwurt_seed", chance = 8 },
+    { id = "torstol_seed", chance = 2 },
+    { id = "maple_seed", chance = 2 },
+    { id = "spirit_weed_seed", chance = 2 },
+    { id = "snapdragon_seed", chance = 2 },
+    { id = "dwarf_weed_seed", chance = 2 },
+    { id = "coins", min = 200, max = 8001, chance = 32 },
+    { id = "shark", min = 1, max = 6, chance = 32 },
+    { id = "crushed_nest_noted", min = 5, max = 9, chance = 32 },
+    { id = "super_defence_3", chance = 32 },
+    { id = "pure_essence_noted", amount = 200, chance = 32 },
+    { id = "magic_logs_noted", amount = 5, chance = 32 },
+    { table = "rare_drop_table", chance = 25 },
+]
+
+[ice_strykewyrm_tertiary]
+roll = 512
+drops = [
+    { table = "hard_clue_scroll", chance = 2 },
+    { table = "elite_clue_scroll", chance = 2 },
+    { id = "starved_ancient_effigy", chance = 2 },
+    { id = "court_summons" },
+]
+
+[ice_strykewyrm_charms]
+roll = 1000
+drops = [
+    { id = "gold_charm", chance = 56 },
+    { id = "green_charm", chance = 28 },
+    { id = "crimson_charm", chance = 22 },
+    { id = "blue_charm", chance = 90 },
+]

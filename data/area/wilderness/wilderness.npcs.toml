@@ -181,9 +181,6 @@ respawn_delay = 150
 drop_table = "bones"
 examine = "He kills in the name of Guthix."
 
-[mound_wilderness]
-id = 9462
-
 [gull_wilderness]
 id = 9717
 

@@ -52,6 +52,6 @@ drops = [
 [king_black_dragon_clues]
 roll = 10
 drops = [
-    { id = "clue_scroll_elite", chance = 4, lacks = "clue_scroll_elite*" },
+    { table = "elite_clue_scroll", chance = 4 },
     { table = "hard_clue_scroll" }
 ]

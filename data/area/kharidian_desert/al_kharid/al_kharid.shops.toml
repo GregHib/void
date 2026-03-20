@@ -115,14 +115,14 @@ defaults = [
 [alis_discount_wares_menaphite]
 id = 311
 defaults = [
-    { id = "menap_headgear_purple", amount = 30 },
+    { id = "menaphite_headgear_purple", amount = 30 },
     { id = "menaphite_top_purple", amount = 30 },
     { id = "menaphite_robe_purple", amount = 30 },
-    { id = "menap_action_kilt_purple", amount = 30 },
-    { id = "menap_headgear_red", amount = 30 },
+    { id = "menaphite_action_kilt_purple", amount = 30 },
+    { id = "menaphite_headgear_red", amount = 30 },
     { id = "menaphite_top_red", amount = 30 },
     { id = "menaphite_robe_red", amount = 30 },
-    { id = "menap_action_kilt_red", amount = 30 },
+    { id = "menaphite_action_kilt_red", amount = 30 },
 ]
 
 [alis_discount_wares_desert]

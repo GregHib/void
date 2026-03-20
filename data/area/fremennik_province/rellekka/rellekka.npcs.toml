@@ -436,8 +436,9 @@ id = 2437
 [general_khazard_rellekka_2]
 id = 5566
 
-[erjolf_rellekka_2]
+[erjolf]
 id = 7462
+dialogue = "child"
 
 [larry_rellekka_3]
 id = 5425

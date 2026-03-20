@@ -1,7 +1,10 @@
 package world.gregs.voidps.engine.entity.character.mode.move.target
 
 import org.rsmod.game.pathfinder.PathFinder
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.ModeType
+import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.type.Tile
 
@@ -23,8 +26,15 @@ data class NPCCharacterTargetStrategy(
         get() = character.size
 
     override fun destination(source: Character): Tile {
-        if (source is NPC && source.id == "bed_draynor") {
-            return Tile.EMPTY
+        if (source is NPC) {
+            val def = if (source.contains("transform_id")) {
+                NPCDefinitions.get(source["transform_id", source.id])
+            } else {
+                source.def
+            }
+            if (def.walkMode.toInt() == ModeType.EMPTY) {
+                return Tile.EMPTY
+            }
         }
         return Tile(
             PathFinder.naiveDestination(

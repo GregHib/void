@@ -76,6 +76,5 @@ respawn_delay = 30
 drop_table = "brine_rat"
 examine = "Eww, a bald rat!"
 
-[boulder_brine_rat_caverns]
+[olaf_cave_boulder]
 id = 3708
-

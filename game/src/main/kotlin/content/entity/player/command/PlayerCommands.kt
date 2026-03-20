@@ -322,6 +322,7 @@ class PlayerCommands(
                 target[quest] = "completed"
             }
             target["recipe_for_disaster"] = "completed"
+            target["lunar_diplomacy"] = "completed"
             target["quest_points"] = target["quest_points_total", 1]
             target.refreshQuestJournal()
             target.message("All quests unlocked.")

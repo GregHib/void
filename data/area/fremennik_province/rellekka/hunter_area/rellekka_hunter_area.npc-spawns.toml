@@ -63,6 +63,6 @@ spawns = [
   { id = "gnoeals_2", x = 3423, y = 4377, members = true },
   { id = "gnoeals_2", x = 3432, y = 4378, members = true },
   { id = "gnoeals_2", x = 3432, y = 4395, members = true },
-  { id = "erjolf", x = 2695, y = 3794, members = true },
+  { id = "erjolf_base", x = 2695, y = 3794, members = true },
   { id = "natural_historian_rellekka", x = 2735, y = 3824, level = 1, members = true },
 ]

@@ -26,5 +26,5 @@ spawns = [
   { id = "brine_rat", x = 2708, y = 10131, members = true },
   { id = "brine_rat", x = 2710, y = 10134, members = true },
   { id = "brine_rat", x = 2712, y = 10132, members = true },
-  { id = "boulder_brine_rat_caverns", x = 2691, y = 10124, members = true },
+  { id = "olaf_cave_boulder", x = 2691, y = 10124, members = true },
 ]

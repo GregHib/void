@@ -37,6 +37,11 @@ wander_range = 2
 
 [desert_snake]
 id = 1874
+hitpoints = 60
+att = 4
+str = 5
+def = 3
+combat_def = "snake"
 examine = "A slithering serpent."
 
 [desert_phoenix_kharidian_desert]

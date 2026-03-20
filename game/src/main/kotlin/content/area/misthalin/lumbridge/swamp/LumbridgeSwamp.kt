@@ -1,5 +1,6 @@
 package content.area.misthalin.lumbridge.swamp
 
+import content.entity.combat.hit.hit
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
@@ -116,11 +117,6 @@ class LumbridgeSwamp : Script {
                 }
                 anim("climb_down")
                 delay(2)
-                if (light) {
-                    open("level_one_darkness")
-                } else {
-                    open("level_three_darkness")
-                }
                 tele(3167, 9573)
             } else if (inventory.contains("rope")) {
                 choice("Attach a rope to the top of the hole?") {
@@ -140,7 +136,32 @@ class LumbridgeSwamp : Script {
             }
         }
 
-        objTeleportLand("Climb", "swamp_cave_climbing_rope") { _, _ ->
+        entered("lumbridge_swamp_caves") {
+            if (Light.hasLightSource(this)) {
+                open("level_one_darkness")
+            } else {
+                open("level_three_darkness")
+                timers.start("insect_swarm")
+            }
+        }
+
+        timerStart("insect_swarm") {
+            message("Tiny biting insects swarm all over you!")
+            sound("insect_swarm")
+            10
+        }
+
+        timerTick("insect_swarm") {
+            hit(this, damage = 10)
+            sound("insect_bites")
+            1
+        }
+
+        interfaceClosed("level_three_darkness") {
+            timers.stop("insect_swarm")
+        }
+
+        exited("lumbridge_swamp_caves") {
             close("level_one_darkness")
             close("level_three_darkness")
         }

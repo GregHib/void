@@ -1,0 +1,10 @@
+[brine_rat_cavern_exit]
+option = "Exit"
+tile = { x = 2689, y = 10125 }
+to = { x = 2729, y = 3734 }
+
+
+[brine_rat_cavern_exit_cave]
+option = "Exit"
+tile = { x = 2689, y = 10124 }
+to = { x = 2729, y = 3734 }

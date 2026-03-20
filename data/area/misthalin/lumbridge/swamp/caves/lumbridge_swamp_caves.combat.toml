@@ -22,6 +22,6 @@ death_sound = "wall_beast_death"
 
 [wall_beast.melee]
 range = 1
-anim = "wall_beast_attack"
-target_sound = "wall_beast_attack"
+anim = "wall_beast_swipe"
+target_sound = "wall_beast_swipe"
 target_hit = { offense = "crush", max = 40 }

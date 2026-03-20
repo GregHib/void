@@ -1,6 +1,7 @@
 package content.entity.player.equip
 
 import content.entity.combat.hit.Hit
+import content.entity.effect.transform
 import content.entity.player.effect.antifire
 import content.entity.player.effect.superAntifire
 import content.skill.magic.spell.spell
@@ -92,7 +93,7 @@ object Equipment {
             if (source.tile in area && target.tile in area) {
                 damage = (damage * 1.04).toInt()
             }
-        } else if (type == "magic" && target is NPC && target.id == "ice_strykewyrm") {
+        } else if (type == "magic" && target is NPC && target.transform == "ice_strykewyrm") {
             val fireCape = source.equipped(EquipSlot.Cape).id == "fire_cape"
             if (fireCape) {
                 damage += 40
@@ -109,6 +110,8 @@ object Equipment {
     fun isEarmuffs(hat: String) = hat == "masked_earmuffs" || hat == "earmuffs" || hat.startsWith("slayer_helmet") || hat.startsWith("full_slayer_helmet")
 
     fun isNosePeg(hat: String) = hat == "nose_peg" || hat.startsWith("slayer_helmet") || hat.startsWith("full_slayer_helmet")
+
+    fun isFaceMask(hat: String) = hat == "face_mask" || hat.startsWith("slayer_helmet") || hat.startsWith("full_slayer_helmet")
 
     fun dragonFireImmune(target: Character) = target.protectMagic() || antiDragonShield(target) || target.antifire || target.superAntifire
 

@@ -5,3 +5,35 @@ y = [9542, 9544]
 [lumbridge_swamp_east_fishing_area]
 x = [3245, 3249]
 y = [9568, 9572]
+
+[lumbridge_swamp_caves]
+x = [3136, 3263]
+y = [9536, 9602]
+
+[wall_beast_spot_1]
+x = [3161]
+y = [9546]
+
+[wall_beast_spot_2]
+x = [3162]
+y = [9573]
+
+[wall_beast_spot_3]
+x = [3164]
+y = [9555]
+
+[wall_beast_spot_4]
+x = [3198]
+y = [9553]
+
+[wall_beast_spot_5]
+x = [3198]
+y = [9571]
+
+[wall_beast_spot_6]
+x = [3215]
+y = [9559]
+
+[wall_beast_spot_7]
+x = [3216]
+y = [9587]

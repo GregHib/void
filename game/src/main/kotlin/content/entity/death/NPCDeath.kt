@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
-import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
@@ -58,11 +57,9 @@ class NPCDeath(
             val npc = this
             strongQueue(name = "death", 1) {
                 val killer = killer
-                val tile = tile
+                val tile = if (transformId == "wall_beast") tile.addY(-1) else tile
                 npc["death_tile"] = tile
-                val id = get("transform_id", npc.id)
-                val def = NPCDefinitions.get(id)
-                val combat = combatDefinitions.get(def["combat_def", get("transform_id", npc.id)])
+                val combat = combatDefinitions.get(transformDef["combat_def", transformId])
                 val ticks = anim(combat.deathAnim)
                 if (combat.deathSound != null) {
                     (killer as? Player)?.sound(combat.deathSound!!.id)

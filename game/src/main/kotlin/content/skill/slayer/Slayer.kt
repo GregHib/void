@@ -105,6 +105,10 @@ private fun hasRequirements(player: Player, index: Int): Boolean {
     if (player.combatLevel < combatLevel) {
         return false
     }
+    val variable = EnumDefinitions.stringOrNull("slayer_task_variable", index)
+    if (variable != null && !player.contains(variable)) {
+        return false
+    }
     val quest = EnumDefinitions.stringOrNull("slayer_task_quest", index) ?: return true
     return player.questCompleted(quest)
 }

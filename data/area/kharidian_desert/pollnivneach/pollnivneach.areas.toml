@@ -7,3 +7,7 @@ tags = ["teleport", "scroll"]
 x = [3361, 3362]
 y = [2992, 2994]
 tags = ["teleport"]
+
+[smoke_dungeon]
+x = [3200, 3327]
+y = [9344, 9407]

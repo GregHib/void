@@ -1,3 +1,12 @@
 [bank_booth_mos_le_harmless]
 id = 11338
 examine = "The bank teller will serve you from here."
+
+[cave_entrance_mos_le_harmless]
+id = 15767
+
+[cave_exit_mos_le_harmless]
+id = 15811
+
+[cave_exit_2_mos_le_harmless]
+id = 15812

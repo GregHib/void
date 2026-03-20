@@ -4,6 +4,7 @@ drops = [
     { id = "big_bones" },
     { table = "dark_beast_secondary" },
     { table = "dark_beast_tertiary" },
+    { table = "dark_beast_charms" },
 ]
 
 [dark_beast_secondary]
@@ -41,4 +42,13 @@ drops = [
     { id = "long_bone", chance = 12 },
     { table = "elite_clue_scroll", chance = 4 },
     { id = "curved_bone" },
+]
+
+[dark_beast_charms]
+roll = 1000
+drops = [
+    { id = "gold_charm", chance = 84 },
+    { id = "green_charm", chance = 42 },
+    { id = "crimson_charm", chance = 84 },
+    { id = "blue_charm", chance = 134 },
 ]

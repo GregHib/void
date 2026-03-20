@@ -5,3 +5,11 @@ examine = "Where does it go?"
 [desert_obelisk_ladder_up]
 id = 28740
 examine = "Going up?"
+
+[desert_cactus_full]
+id = 2670
+examine = "A succulent cactus."
+
+[desert_cactus_empty]
+id = 2671
+examine = "A less-than-succulent succulent."

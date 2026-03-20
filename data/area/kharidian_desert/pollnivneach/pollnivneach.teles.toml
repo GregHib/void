@@ -1,0 +1,9 @@
+[smoke_dungeon_well]
+option = "Climb-down"
+tile = { x = 3310, y = 2962 }
+to = { x = 3206, y = 9379 }
+
+[smoke_dungeon_rope]
+option = "Climb-up"
+tile = { x = 3205, y = 9379 }
+to = { x = 3310, y = 2961 }

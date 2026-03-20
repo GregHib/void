@@ -170,3 +170,9 @@ examine = "An appliance used for cooking."
 [potters_wheel_ardougne]
 id = 34801
 examine = "Used for fashioning clay items."
+
+[trapdoor_mourner_tunnels]
+id = 8783
+
+[ladder_mourner_tunnels]
+id = 8785

@@ -8,7 +8,16 @@ id = 497
 id = 498
 
 [jungle_horror_death]
-id = 499
+id = 480
 
 [jungle_horror_defend]
 id = 500
+
+[mosquito_attack]
+id = 637
+
+[mosquito_defend]
+id = 821
+
+[mosquito_death]
+id = 820
