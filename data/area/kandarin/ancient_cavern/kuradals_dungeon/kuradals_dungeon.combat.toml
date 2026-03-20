@@ -13,7 +13,8 @@ target_sound = "dark_beast_attack"
 target_hit = { offense = "crush", max = 170 }
 
 [dark_beast.magic]
-range = 1
+range = 8
+condition = "ranged_only"
 anim = "dark_beast_attack"
 target_sound = "dark_beast_attack"
 target_hit = { offense = "magic", max = 80 }
