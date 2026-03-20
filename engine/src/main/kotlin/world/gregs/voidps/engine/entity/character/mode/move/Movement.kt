@@ -72,9 +72,6 @@ open class Movement(
     }
 
     private fun canMove(): Boolean {
-        if (character is NPC && (character as NPC).def.walkMode.toInt() == ModeType.EMPTY) {
-            return false
-        }
         if (!hasDelay() && (character as? Player)?.menu == null) {
             return true
         }

@@ -11,6 +11,7 @@ magic = 250
 attack_bonus = 100
 slayer_level = 93
 slayer_xp = 300.0
+height = 60
 drop_table = "ice_strykewyrm"
 categories = ["ice_strykewyrm", "strykewyrm"]
 examine = "I'm pretty sure there's something big under there."
