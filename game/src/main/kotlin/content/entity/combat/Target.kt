@@ -37,7 +37,7 @@ object Target {
                 return true
             }
             if (source is Player && target.tile in Areas["kuradals_dungeon"] && !target.categories.contains(source.slayerTask)) {
-                source.message("You can only your assigned task in Kuradal's Dungeon.") // TODO proper message
+                source.message("You're not down here to kill those.") // https://youtu.be/GU7I1GyaNEU?t=4
                 return false
             }
             if (target.id == "mound_feldip_hills" && source is Player && source.slayerTask != "jungle_strykewyrm") {
@@ -45,6 +45,10 @@ object Target {
                 return false
             }
             if (target.id == "mound_desert_strykewyrm" && source is Player && source.slayerTask != "desert_strykewyrm") {
+                source.message("You need to have strykewyrm assigned as a task in order to fight them.")
+                return false
+            }
+            if (target.id == "mound_ice_strykewyrm" && source is Player && source.slayerTask != "ice_strykewyrm") {
                 source.message("You need to have strykewyrm assigned as a task in order to fight them.")
                 return false
             }

@@ -1,2 +1,5 @@
 [jump_whirlpool]
 id = 6723
+
+[pass_through_barrier]
+id = 10584

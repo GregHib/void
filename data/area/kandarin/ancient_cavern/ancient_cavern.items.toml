@@ -260,7 +260,7 @@ id = 15398
 slot = "Ring"
 charges = 1
 degrade = "ferocious_ring_4"
-degrade_message = "Your ferocious ring has four uses left." # TODO proper messages
+degrade_message = "Your ferocious ring has four uses left."
 weight = 0.004
 examine = "It looks in pretty good condition."
 
@@ -294,6 +294,6 @@ id = 15402
 slot = "Ring"
 charges = 1
 degrade = "destroy"
-degrade_message = "Your ferocious ring crumbles to dust." # TODO proper message
+degrade_message = "Your ferocious ring crumbles to dust."
 weight = 0.004
 examine = "It looks like it's going to break soon."

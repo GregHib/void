@@ -13,6 +13,7 @@ import content.skill.slayer.slayerTaskRemaining
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
@@ -21,13 +22,13 @@ class KuradalsDungeon : Script {
     init {
         objTeleportTakeOff("Enter", "kuradal_dungeon_cave") { _, _ ->
             if (inventory.items.any { it.id == "cannon_barrels" || it.id == "cannon_furnace" || it.id == "cannon_stand" || it.id == "cannon_base" }) {
-                softQueue("kuradal_cannon_ban") {
+                queue("kuradal_cannon_ban") {
                     npc<Neutral>("kuradal", "No cannons are allowed in there.") // TODO proper message
                 }
                 return@objTeleportTakeOff Teleport.CANCEL
             }
             if (slayerTaskRemaining <= 0 || slayerMaster != "kuradal") {
-                softQueue("kuradal_task_check") {
+                queue("kuradal_task_check") {
                     npc<Neutral>("kuradal", "Sorry, my dungeon is exclusive only to those who need to go in there.")
                     player<Quiz>("Exclusive?")
                     npc<Neutral>("kuradal", "Yes, I only allow pupils of Slayer into this dungeon and only if they need to slayer the creatures I've caught inside.")
@@ -43,7 +44,7 @@ class KuradalsDungeon : Script {
         }
 
         objectOperate("Pass", "kuradal_barrier") { (target) ->
-            // TODO anim?
+            anim("pass_through_barrier")
             if (target.rotation == 2) { // vertical
                 val x = if (tile.x <= target.tile.x) target.tile.x + 1 else target.tile.x
                 val y = tile.y.coerceIn(target.tile.y, target.tile.y + 1)

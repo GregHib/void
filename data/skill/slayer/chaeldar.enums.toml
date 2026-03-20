@@ -1,4 +1,4 @@
-[vannaka_task_amount]
+[chaeldar_task_amount]
 keyType = "npc"
 valueType = "string"
 values = {
@@ -38,7 +38,7 @@ values = {
     warped_terrorbird = "70-130",
 }
 
-[vannaka_task_weight]
+[chaeldar_task_weight]
 keyType = "npc"
 valueType = "int"
 values = {

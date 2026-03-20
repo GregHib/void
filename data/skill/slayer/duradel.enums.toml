@@ -1,4 +1,4 @@
-[vannaka_task_amount]
+[duradel_task_amount]
 keyType = "npc"
 valueType = "string"
 values = {
@@ -33,7 +33,7 @@ values = {
     waterfiend = "130-200",
 }
 
-[vannaka_task_weight]
+[duradel_task_weight]
 keyType = "npc"
 valueType = "int"
 values = {
