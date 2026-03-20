@@ -296,3 +296,10 @@ values = {
     skeletal_wyvern = "elemental_workshop_i",
     ice_strykewyrm = "the_tale_of_the_muspah",
 }
+
+[slayer_task_variable]
+keyType = "npc"
+valueType = "string"
+values = {
+  aquanite = "aquanites",
+}
