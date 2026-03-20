@@ -89,8 +89,9 @@ allowed_under = true
 # Made up stats
 att = 150
 str = 150
-def = 150
-magic = 250
+def = 100
+magic = 150
+attack_bonus = 60
 slayer_level = 73
 slayer_xp = 110.0
 drop_table = "jungle_strykewyrm"

@@ -6,17 +6,15 @@ allowed_under = true
 # Made up stats
 att = 175
 str = 175
-def = 175
-range = 300
-magic = 300
+def = 125
+range = 200
+magic = 150
+attack_bonus = 80
 slayer_level = 77
 slayer_xp = 120.0
 drop_table = "desert_strykewyrm"
 categories = ["desert_strykewyrm", "strykewyrm"]
 examine = "I'm pretty sure there's something under there."
-
-[ice_strykewyrm]
-id = 9463
 
 [desert_strykewyrm]
 id = 9465

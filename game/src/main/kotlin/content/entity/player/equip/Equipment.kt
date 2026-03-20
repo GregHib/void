@@ -1,6 +1,7 @@
 package content.entity.player.equip
 
 import content.entity.combat.hit.Hit
+import content.entity.effect.transform
 import content.entity.player.effect.antifire
 import content.entity.player.effect.superAntifire
 import content.skill.magic.spell.spell
@@ -92,7 +93,7 @@ object Equipment {
             if (source.tile in area && target.tile in area) {
                 damage = (damage * 1.04).toInt()
             }
-        } else if (type == "magic" && target is NPC && target.id == "ice_strykewyrm") {
+        } else if (type == "magic" && target is NPC && target.transform == "ice_strykewyrm") {
             val fireCape = source.equipped(EquipSlot.Cape).id == "fire_cape"
             if (fireCape) {
                 damage += 40

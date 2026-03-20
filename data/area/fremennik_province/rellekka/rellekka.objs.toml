@@ -38,3 +38,20 @@ examine = "Used for spinning thread."
 id = 4310
 examine = "Used for fashioning clay items."
 
+[ice_strykewyrm_cave_entrance]
+id = 48188
+
+[ice_strykewyrm_cave_exit]
+id = 48189
+
+[erjolf_cave_opening]
+id = 42794
+
+[erjolf_cave_opening_exit]
+id = 42795
+
+[erjolf_cave_exit]
+id = 42891
+
+[erjolf_cave_entrance]
+id = 42793

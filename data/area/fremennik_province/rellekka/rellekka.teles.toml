@@ -47,3 +47,33 @@ delta = { level = -1 }
 option = "Climb-up"
 tile = { x = 2672, y = 10099, level = 2 }
 to = { x = 2666, y = 3694 }
+
+[erjolf_cave_entrance]
+option = "Enter"
+tile = { x = 2737, y = 3729 }
+to = { x = 3485, y = 5511 }
+
+[erjolf_cave_exit]
+option = "Leave-cave"
+tile = { x = 3484, y = 5509 }
+to = { x = 2736, y = 3731 }
+
+[ice_strykewyrm_cave_entrance]
+option = "Enter"
+tile = { x = 3510, y = 5514 }
+to = { x = 3435, y = 5646 }
+
+[ice_strykewyrm_cave_exit]
+option = "Enter"
+tile = { x = 3435, y = 5645 }
+to = { x = 3509, y = 5515 }
+
+[erjolf_cave_opening]
+option = "Enter"
+tile = { x = 3470, y = 5524 }
+to = { x = 3471, y = 5531 }
+
+[erjolf_cave_opening_exit]
+option = "Enter"
+tile = { x = 3470, y = 5529 }
+to = { x = 3471, y = 5523 }
