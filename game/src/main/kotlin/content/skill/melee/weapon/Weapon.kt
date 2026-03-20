@@ -253,7 +253,9 @@ var Character.attackRange: Int
         val default = if (this is NPC) {
             val combatDefinition = get<CombatDefinitions>().get(transformDef["combat_def", id])
             transformDef["attack_range", combatDefinition.attackRange]
-        } else 1
+        } else {
+            1
+        }
         return get("attack_range", default)
     }
     set(value) = set("attack_range", value)
