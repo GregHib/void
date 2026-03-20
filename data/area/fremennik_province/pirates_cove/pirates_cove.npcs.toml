@@ -13,7 +13,7 @@ categories = ["pirates"]
 respawn_delay = 25
 examine = "Avast ye scurvy land lubbers!"
 
-[lokar_searunner_pirates_cove]
+[lokar_searunner_after]
 id = 4537
 examine = "Either a very fremennikey pirate, or a very piratey fremennik."
 

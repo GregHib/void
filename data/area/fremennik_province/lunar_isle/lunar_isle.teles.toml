@@ -1,0 +1,19 @@
+[lunar_isle_dock_ladder]
+option = "Climb"
+tile = { x = 2118, y = 3894 }
+to = { x = 2118, y = 3893, level = 1 }
+
+[lunar_isle_dock_ladder_top]
+option = "Climb"
+tile = { x = 2118, y = 3894, level = 1 }
+to = { x = 2118, y = 3895 }
+
+[lunar_isle_boat_ladder]
+option = "Climb"
+tile = { x = 2127, y = 3893, level = 1 }
+to = { x = 2128, y = 3893, level = 2 }
+
+[lunar_isle_boat_ladder_top]
+option = "Climb"
+tile = { x = 2127, y = 3893, level = 2 }
+to = { x = 2126, y = 3893, level = 1 }

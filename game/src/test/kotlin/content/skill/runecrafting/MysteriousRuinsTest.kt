@@ -20,7 +20,7 @@ import kotlin.test.assertEquals
 internal class MysteriousRuinsTest : WorldTest() {
 
     @TestFactory
-    fun `Can enter ruins with talisman`() = RunecraftingTest.altars.map { (type, ruinsTile, altarTile) ->
+    fun `Can enter ruins with talisman`() = RunecraftingTest.altars.filter { it.ruinsTile != Tile.EMPTY }.map { (type, ruinsTile, altarTile) ->
         dynamicTest("Enter $type ruins with talisman") {
             val tile = Areas["${type}_altar_teleport"].random()
             val player = createPlayer(tile)
@@ -39,7 +39,7 @@ internal class MysteriousRuinsTest : WorldTest() {
     }
 
     @TestFactory
-    fun `Can enter ruins with tiara`() = RunecraftingTest.altars.map { (type, ruinsTile, altarTile) ->
+    fun `Can enter ruins with tiara`() = RunecraftingTest.altars.filter { it.ruinsTile != Tile.EMPTY }.map { (type, ruinsTile, altarTile) ->
         dynamicTest("Enter $type ruins with tiara") {
             val tile = Areas["${type}_altar_teleport"].random()
             val player = createPlayer(tile)
@@ -55,7 +55,7 @@ internal class MysteriousRuinsTest : WorldTest() {
     }
 
     @TestFactory
-    fun `Can enter ruins with omni tiara`() = RunecraftingTest.altars.map { (type, ruinsTile, altarTile) ->
+    fun `Can enter ruins with omni tiara`() = RunecraftingTest.altars.filter { it.ruinsTile != Tile.EMPTY }.map { (type, ruinsTile, altarTile) ->
         dynamicTest("Enter $type ruins with omni tiara") {
             val tile = Areas["${type}_altar_teleport"].random()
             val player = createPlayer(tile)
@@ -70,7 +70,7 @@ internal class MysteriousRuinsTest : WorldTest() {
     }
 
     @TestFactory
-    fun `Can enter ruins with omni staff`() = RunecraftingTest.altars.map { (type, ruinsTile, altarTile) ->
+    fun `Can enter ruins with omni staff`() = RunecraftingTest.altars.filter { it.ruinsTile != Tile.EMPTY }.map { (type, ruinsTile, altarTile) ->
         dynamicTest("Enter $type ruins with omni tiara") {
             val tile = Areas["${type}_altar_teleport"].random()
             val player = createPlayer(tile)
@@ -96,7 +96,7 @@ internal class MysteriousRuinsTest : WorldTest() {
     }
 
     @TestFactory
-    fun `Cannot enter ruins with no items`() = RunecraftingTest.altars.map { (type, ruinsTile, altarTile) ->
+    fun `Cannot enter ruins with no items`() = RunecraftingTest.altars.filter { it.ruinsTile != Tile.EMPTY }.map { (type, ruinsTile, altarTile) ->
         dynamicTest("Cannot enter $type ruins") {
             val tile = Areas["${type}_altar_teleport"].random()
             val player = createPlayer(tile)

@@ -1,0 +1,29 @@
+[lunar_isle_boat_ladder_top]
+option = "Climb"
+tile = { x = 2214, y = 3801, level = 2 }
+to = { x = 2214, y = 3802, level = 1 }
+
+[lunar_isle_boat_ladder]
+option = "Climb"
+tile = { x = 2214, y = 3801, level = 1 }
+to = { x = 2214, y = 3800, level = 2 }
+
+[lunar_isle_dock_ladder_top]
+option = "Climb"
+tile = { x = 2212, y = 3809, level = 1 }
+to = { x = 2211, y = 3809 }
+
+[lunar_isle_dock_ladder]
+option = "Climb"
+tile = { x = 2212, y = 3809 }
+to = { x = 2213, y = 3809, level = 1 }
+
+[lunar_isle_dock_ladder_top]
+option = "Climb"
+tile = { x = 2213, y = 3795, level = 1 }
+to = { x = 2213, y = 3794 }
+
+[lunar_isle_dock_ladder]
+option = "Climb"
+tile = { x = 2213, y = 3795 }
+to = { x = 2213, y = 3796, level = 1 }
