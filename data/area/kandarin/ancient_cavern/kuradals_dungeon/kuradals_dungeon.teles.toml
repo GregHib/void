@@ -1,0 +1,19 @@
+[kuradal_dungeon_cave]
+option = "Enter"
+tile = { x = 1733, y = 5311, level = 1 }
+to = { x = 1661, y = 5257 }
+
+[kuradal_dungeon_cave_exit]
+option = "Enter"
+tile = { x = 1662, y = 5256 }
+to = { x = 1735, y = 5313, level = 1 }
+
+[kuradal_dungeon_gap]
+option = "Run-across"
+tile = { x = 1641, y = 5261 }
+to = { x = 1641, y = 5268 }
+
+[kuradal_dungeon_gap]
+option = "Run-across"
+tile = { x = 1641, y = 5267 }
+to = { x = 1641, y = 5260 }

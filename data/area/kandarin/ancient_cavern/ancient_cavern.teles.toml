@@ -1,0 +1,29 @@
+[ancient_cavern_steps]
+option = "Climb-down"
+tile = { x = 1769, y = 5365, level = 1 }
+to = { x = 1772, y = 5366 }
+
+[ancient_cavern_stairs]
+option = "Climb-up"
+tile = { x = 1770, y = 5365 }
+to = { x = 1768, y = 5366, level = 1 }
+
+[ancient_cavern_stairs_bottom]
+option = "Climb-up"
+tile = { x = 1778, y = 5344 }
+to = { x = 1778, y = 5343, level = 1 }
+
+[ancient_cavern_stairs_top]
+option = "Climb-down"
+tile = { x = 1778, y = 5344, level = 1 }
+to = { x = 1778, y = 5346 }
+
+[ancient_cavern_kuradal_stairs]
+option = "Climb-up"
+tile = { x = 1744, y = 5323 }
+to = { x = 1744, y = 5321, level = 1 }
+
+[ancient_cavern_kuradal_steps]
+option = "Climb-down"
+tile = { x = 1744, y = 5322, level = 1 }
+to = { x = 1744, y = 5325 }

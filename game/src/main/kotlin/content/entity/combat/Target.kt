@@ -15,6 +15,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
@@ -34,6 +35,10 @@ object Target {
         if (target is NPC) {
             if (target.id.startsWith("door_support") && NPCDefinitions.get(target.id).options[1] == "Destroy") {
                 return true
+            }
+            if (source is Player && target.tile in Areas["kuradals_dungeon"] && !target.categories.contains(source.slayerTask)) {
+                source.message("You can only your assigned task in Kuradal's Dungeon.") // TODO proper message
+                return false
             }
             if (target.id == "mound_feldip_hills" && source is Player && source.slayerTask != "jungle_strykewyrm") {
                 source.message("You need to have strykewyrm assigned as a task in order to fight them.")
