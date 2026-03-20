@@ -10,6 +10,7 @@ import content.entity.player.equip.Equipment
 import content.skill.melee.weapon.fightStyle
 import content.skill.ranged.ammo
 import content.skill.slayer.categories
+import content.skill.slayer.slayerTask
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.client.message
@@ -33,6 +34,10 @@ object Target {
         if (target is NPC) {
             if (target.id.startsWith("door_support") && NPCDefinitions.get(target.id).options[1] == "Destroy") {
                 return true
+            }
+            if (target.id == "mound_feldip_hills" && source is Player && source.slayerTask != "jungle_strykewyrm") {
+                source.message("You need to have strykewyrm assigned as a task in order to fight them.")
+                return false
             }
             if (target.transform != "") {
                 if (NPCDefinitions.get(target.transform).options[1] != "Attack") {

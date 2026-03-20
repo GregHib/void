@@ -9,9 +9,13 @@ import content.entity.effect.transform
 import content.skill.slayer.slayerTask
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.random
 
@@ -24,35 +28,43 @@ class JungleStrykewyrm : Script {
             }
 
             anim("emote_stomp")
-            target.transform("jungle_strykewyrm")
-            target.anim("strykewyrm_surface")
-            softTimers.start("strykewyrm_revert")
+            target.start("movement_delay", Int.MAX_VALUE)
+            target.mode = EmptyMode
+            target.steps.clear()
+            target.softTimers.start("strykewyrm_revert")
+            target.softQueue("styrkyewyrm_transform", 3) {
+                target.mode = EmptyMode
+                target.transform("jungle_strykewyrm")
+                target.anim("strykewyrm_surface")
+                target.face(this@npcOperate)
+            }
         }
 
-        npcTimerStart("strykewyrm_revert") {
-            20
-        }
+        npcTimerStart("strykewyrm_revert") { 20 }
 
         npcTimerTick("strykewyrm_revert") {
             if (inCombat) {
                 return@npcTimerTick Timer.CONTINUE
             }
             anim("strykewyrm_bury")
-            // TODO what if in combat?
-            clearTransform()
+            softQueue("bury", 3) {
+                clearTransform()
+            }
             Timer.CANCEL
         }
 
         npcAttack("jungle_strykewyrm", "dig") { target ->
-            anim("jungle_strykewyrm_bury")
-            clearTransform()
-            target.target?.mode = EmptyMode
-            val distance = tile.distanceTo(target.tile)
-            walkTo(target.tile)
-            queue("resurface", distance) {
-                anim("jungle_strykewyrm_surface")
-                if (Overlap.isUnder(target.tile, 1, tile, size)) {
-                    directHit(random.nextInt(50, 201))
+            anim("strykewyrm_bury")
+            val temp = mode
+            softQueue("resurface", 3) {
+                clearTransform()
+                mode = PauseMode
+                walkToDelay(target.tile)
+                mode = temp
+                transform("jungle_strykewyrm")
+                anim("strykewyrm_surface")
+                if (tile.toCuboid(size, size).contains(target.tile)) {
+                    target.directHit(random.nextInt(50, 201))
                     poison(target, 88)
                 }
             }
