@@ -66,6 +66,7 @@ drops = [
     { id = "lobster", min = 1, max = 2, chance = 32 },
     { id = "super_defence_1", chance = 32 },
     { id = "mithril_bar_noted", amount = 5, chance = 8 },
+    { table = "rare_drop_table", chance = 10 },
 ]
 
 [jungle_strykewyrm_tertiary]

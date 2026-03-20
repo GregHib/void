@@ -39,6 +39,10 @@ object Target {
                 source.message("You need to have strykewyrm assigned as a task in order to fight them.")
                 return false
             }
+            if (target.id == "mound_desert_strykewyrm" && source is Player && source.slayerTask != "desert_strykewyrm") {
+                source.message("You need to have strykewyrm assigned as a task in order to fight them.")
+                return false
+            }
             if (target.transform != "") {
                 if (NPCDefinitions.get(target.transform).options[1] != "Attack") {
                     return false

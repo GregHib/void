@@ -1,9 +1,25 @@
 [mound_desert_strykewyrm]
 id = 9464
+hitpoints = 1200
+solid = false
+allowed_under = true
+# Made up stats
+att = 175
+str = 175
+def = 175
+range = 300
+magic = 300
+slayer_level = 77
+slayer_xp = 120.0
+drop_table = "desert_strykewyrm"
+categories = ["desert_strykewyrm", "strykewyrm"]
+examine = "I'm pretty sure there's something under there."
 
 [ice_strykewyrm]
 id = 9463
 
 [desert_strykewyrm]
 id = 9465
+combat_def = "desert_strykewyrm"
+examine = "I dread to think of how many of these are in the sand."
 

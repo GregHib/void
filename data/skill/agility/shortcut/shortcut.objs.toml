@@ -6,6 +6,10 @@ examine = "I can climb over the fence with this."
 id = 34776
 examine = "I can climb over the fence with this."
 
+[al_kharid_stile]
+id = 48208
+examine = "I can climb over the fence with this."
+
 [catherby_stile]
 id = 993
 examine = "I can climb over the fence with this."
