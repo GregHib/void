@@ -75,5 +75,5 @@ values = {
 #    tormented_demon = 8,
     tzhaar_mej = 7,
 #    warped_terrorbird = 8,
-#    waterfiend = 9,
+    waterfiend = 9,
 }
