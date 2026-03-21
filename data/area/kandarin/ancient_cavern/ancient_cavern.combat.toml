@@ -26,6 +26,8 @@ chance = 75
 range = 8
 anim = "brutal_dragon_shoot"
 projectile = "water_wave"
+projectile_origin_x = 2
+projectile_origin_y = 2
 target_hit = { offense = "magic", max = 180 }
 target_sound = "dragon_attack"
 
@@ -47,14 +49,14 @@ target_hit = { offense = "crush", max = 150 }
 attack_speed = 4
 retreat_range = 8
 defend_anim = "unarmed_defend"
-defend_sound = "skeleton_defend" # FIXME
+defend_sound = "barbarian_grunt_defend"
 death_anim = "human_death"
-death_sound = "skeleton_death" # FIXME
+death_sound = "barbarian_grunt_death"
 
 [lost_barbarian.melee]
 range = 1
 anim = "unarmed_punch"
-target_sound = "skeleton_attack_unarmed" # FIXME
+target_sound = "barbarian_grunt_attack"
 target_hit = { offense = "crush", max = 150 }
 
 [skeleton_barbarian]
@@ -104,7 +106,7 @@ target_sound = "dragon_attack"
 chance = 20
 range = 8
 condition = "ranged_only"
-anim = "colour_dragon_breath"
+anim = "metal_dragon_breath"
 gfx = "dragon_breath_shoot"
 target_hit = { offense = "dragonfire", special = true, max = 500 }
 target_sound = "dragon_breath"
@@ -112,9 +114,10 @@ target_sound = "dragon_breath"
 [mithril_dragon.magic]
 chance = 40
 range = 8
-anim = "brutal_dragon_shoot"
+anim = "metal_dragon_shoot"
 projectile = "water_wave"
-projectile_origin = "centre"
+projectile_origin_x = 2
+projectile_origin_y = 2
 target_hit = { offense = "magic", max = 180 }
 target_sound = "dragon_attack"
 
@@ -122,8 +125,9 @@ target_sound = "dragon_attack"
 chance = 40
 range = 8
 condition = "ranged_only"
-anim = "brutal_dragon_shoot"
+anim = "metal_dragon_shoot"
 projectile = "ice_arrow"
-projectile_origin = "centre"
+projectile_origin_x = 2
+projectile_origin_y = 2
 target_hit = { offense = "range", defence = "magic", max = 180 }
 target_sound = "dragon_attack"

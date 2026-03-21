@@ -175,7 +175,7 @@ drops = [
     { id = "adamant_chainbody", chance = 8 },
     { id = "blue_dragonhide_vambraces", chance = 8 },
     { id = "mithril_full_helm", chance = 8 },
-    { id = "mith_grapple", chance = 8 },
+    { id = "mithril_grapple", chance = 8 },
     { id = "mithril_warhammer", chance = 8 },
     { id = "rune_med_helm", chance = 8 },
     { id = "staff_of_water", chance = 8 },

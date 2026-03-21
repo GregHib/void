@@ -19,3 +19,9 @@ id = 25340
 
 [ancient_cavern_stairs_bottom]
 id = 25339
+
+[ancient_cavern_skeleton]
+id = 25362
+
+[ancient_cavern_aged_log]
+id = 25216

@@ -150,6 +150,7 @@ str = 268
 def = 268
 mage = 168
 range = 168
+height = 40
 combat_def = "mithril_dragon"
 xp_bonus = 7.5
 hunt_mode = "cowardly"

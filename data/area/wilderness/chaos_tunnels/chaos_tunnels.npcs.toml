@@ -179,6 +179,7 @@ str = 0
 def = 128
 mage = 105
 range = 105
+height = 30
 combat_def = "waterfiend"
 hunt_mode = "cowardly"
 slayer_xp = 128.0

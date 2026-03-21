@@ -43,6 +43,7 @@ drops = [
     { id = "strength_mix_2", chance = 5 },
     { id = "mithril_grapple", amount = 2, chance = 3 },
     { id = "sapphire_ring", chance = 2 },
+    { table = "ancient_cavern_pages", chance = 5 },
     { table = "gem_drop_table", chance = 2 },
 ]
 
@@ -136,12 +137,12 @@ drops = [
     { id = "coins", min = 283, max = 3000, chance = 2048 },
     { id = "rune_bar", amount = 2, chance = 128 },
     { id = "shark", min = 1, max = 6, chance = 512 },
-    { id = "ancient_page", chance = 512 },
+    { table = "ancient_cavern_pages", chance = 512 },
     { id = "chewed_bones", chance = 512 },
     { table = "rare_drop_table", chance = 256 },
 ]
 
-[mithril_dragon_secondary]
+[mithril_dragon_tertiary]
 roll = 10000
 drops = [
     { id = "mithril_dragon_tail_bone", chance = 2500, variable = "fur_n_seek_wish_list", equals = "started", default = "unstarted" },
@@ -160,3 +161,44 @@ drops = [
     { id = "blue_charm", chance = 40 },
 ]
 
+
+[ancient_cavern_pages]
+roll = 26
+drops = [
+    { id = "ancient_page_1" },
+    { id = "ancient_page_2" },
+    { id = "ancient_page_3" },
+    { id = "ancient_page_4" },
+    { id = "ancient_page_5" },
+    { id = "ancient_page_6" },
+    { id = "ancient_page_7" },
+    { id = "ancient_page_8" },
+    { id = "ancient_page_9" },
+    { id = "ancient_page_10" },
+    { id = "ancient_page_11" },
+    { id = "ancient_page_12" },
+    { id = "ancient_page_13" },
+    { id = "ancient_page_14" },
+    { id = "ancient_page_15" },
+    { id = "ancient_page_16" },
+    { id = "ancient_page_17" },
+    { id = "ancient_page_18" },
+    { id = "ancient_page_19" },
+    { id = "ancient_page_20" },
+    { id = "ancient_page_21" },
+    { id = "ancient_page_22" },
+    { id = "ancient_page_23" },
+    { id = "ancient_page_24" },
+    { id = "ancient_page_25" },
+    { id = "ancient_page_26" },
+]
+
+[ancient_cavern_skeleton]
+roll = 512
+drops = [
+    { id = "skeleton_guard", chance = 22 }, # skeleton_heavy
+    { id = "guard_dog", chance = 70 }, # skeleton_hero
+    { id = "bones", chance = 80 },
+    { table = "ancient_cavern_pages", chance = 120 },
+    { id = "mangled_bones", chance = 180 },
+]

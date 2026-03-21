@@ -1,6 +1,12 @@
 [barbarian_grunt_defend]
 id = 3383
 
+[barbarian_grunt_attack]
+id = 3381
+
+[barbarian_grunt_death]
+id = 3382
+
 [dharok_axe_crush]
 id = 1316
 
