@@ -23,7 +23,7 @@ class SpellBookFilter : Script {
         }
 
         interfaceOption(id = "*_spellbook:filter_*") {
-            filter(it.id)
+            filter(it.interfaceComponent)
         }
 
         interfaceOption(id = "*_spellbook:sort_*") {
