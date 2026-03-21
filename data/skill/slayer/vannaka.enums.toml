@@ -18,7 +18,7 @@ values = {
     fever_spider = "30-90",
     fire_giant = "40-90",
     gargoyle = "40-90",
-    ghoul_canifis = "10-40",
+    ghoul = "10-40",
     harpie_bug_swarm = "40-90",
     hellhound = "30-60",
     hill_giant = "40-90",
@@ -44,7 +44,7 @@ values = {
     ice_troll_troll_country = "40-90",
     turoth = "30-90",
     vampyre_juvenile = "10-20",
-    werewolf_boris = "30-60",
+    werewolf = "30-60",
 }
 
 [vannaka_task_weight]
@@ -67,7 +67,7 @@ values = {
 #    fever_spider = 7,
     fire_giant = 7,
     gargoyle = 5,
-#    ghoul_canifis = 7,
+#    ghoul = 7,
 #    harpie_bug_swarm = 8,
     hellhound = 7,
     hill_giant = 7,
@@ -93,5 +93,5 @@ values = {
     ice_troll_troll_country = 7,
     turoth = 8,
 #    vampyre_juvenile = 7,
-#    werewolf_boris = 7,
+    werewolf = 7,
 }

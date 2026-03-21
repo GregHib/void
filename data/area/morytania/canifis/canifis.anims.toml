@@ -1,0 +1,11 @@
+[ghoul_attack]
+id = 442
+
+[ghoul_defend]
+id = 3238
+
+[ghoul_death]
+id = 443
+
+[werewolf_transform]
+id = 6554

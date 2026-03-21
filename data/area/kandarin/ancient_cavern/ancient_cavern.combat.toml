@@ -36,8 +36,8 @@ attack_speed = 4
 retreat_range = 8
 defend_anim = "barbarian_unarmed_defend"
 defend_sound = "barbarian_grunt_defend"
-death_anim = "confused_barbarian_death"
-death_sound = "confused_barbarian_death"
+death_anim = "human_death"
+death_sound = "barbarian_grunt_death"
 
 [skeleton_barbarian_axe.melee]
 range = 1

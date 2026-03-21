@@ -1,3 +1,22 @@
 [bank_booth_canifis]
 id = 24914
 examine = "The bank teller will serve you from here."
+
+
+[gate_mort_myre_opened]
+id = 2040
+
+[gate_mort_myre_closed]
+id = 3506
+gate = false
+material = "iron"
+examine = "A wrought iron gate."
+
+[gate_mort_myre_swamp_opened]
+id = 2042
+
+[gate_mort_myre_swamp_closed]
+id = 3507
+gate = false
+material = "iron"
+examine = "A wrought iron gate."

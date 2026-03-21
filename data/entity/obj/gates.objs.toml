@@ -215,26 +215,12 @@ id = 2040
 id = 2673
 examine = "A solid looking gate."
 
-[gate_80_opened]
-id = 2040
-
-[gate_80_closed]
-id = 3506
-examine = "A wrought iron gate."
-
 [gate_35_opened]
 id = 2042
 
 [gate_35_closed]
 id = 2041
 examine = "It's closed."
-
-[gate_81_opened]
-id = 2042
-
-[gate_81_closed]
-id = 3507
-examine = "A wrought iron gate."
 
 [gate_54_opened]
 id = 2042
