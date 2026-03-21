@@ -56,18 +56,3 @@ attack_bonus = 9
 slayer_xp = 124.0
 categories = ["skeletons"]
 examine = "He's less heavy now."
-
-[skeleton_hero]
-id = 6103
-hitpoints = 1240
-att = 145
-str = 134
-def = 110
-style = "crush"
-max_hit_melee = 180
-attack_bonus = 9
-hunt_mode = "cowardly"
-slayer_xp = 124.0
-categories = ["skeletons"]
-drop_table = "barbarian_spirit"
-examine = "An opponent from the grave. He seems unimpressed by your bone rummaging."

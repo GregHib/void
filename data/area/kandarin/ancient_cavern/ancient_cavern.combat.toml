@@ -29,19 +29,61 @@ projectile = "water_wave"
 target_hit = { offense = "magic", max = 180 }
 target_sound = "dragon_attack"
 
-[confused_barbarian]
+[skeleton_barbarian_axe]
 attack_speed = 4
 retreat_range = 8
-defend_anim = "confused_barbarian_defend"
-defend_sound = "confused_barbarian_defend"
+defend_anim = "barbarian_unarmed_defend"
+defend_sound = "barbarian_grunt_defend"
 death_anim = "confused_barbarian_death"
 death_sound = "confused_barbarian_death"
 
-[confused_barbarian.melee]
+[skeleton_barbarian_axe.melee]
 range = 1
 anim = "dharoks_greataxe_smash"
 target_sound = "dharok_axe_crush"
 target_hit = { offense = "crush", max = 150 }
+
+[lost_barbarian]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "unarmed_defend"
+defend_sound = "skeleton_defend" # FIXME
+death_anim = "human_death"
+death_sound = "skeleton_death" # FIXME
+
+[lost_barbarian.melee]
+range = 1
+anim = "unarmed_punch"
+target_sound = "skeleton_attack_unarmed" # FIXME
+target_hit = { offense = "crush", max = 150 }
+
+[skeleton_barbarian]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "unarmed_defend"
+defend_sound = "skeleton_defend"
+death_anim = "human_death"
+death_sound = "skeleton_death"
+
+[skeleton_barbarian.melee]
+range = 1
+anim = "unarmed_punch"
+target_sound = "skeleton_attack_unarmed"
+target_hit = { offense = "crush", max = 150 }
+
+[barbarian_spirit]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "barbarian_spirit_defend"
+defend_sound = "ghoul_defend"
+death_anim = "barbarian_spirit_death"
+death_sound = "ghoul_defend"
+
+[barbarian_spirit.melee]
+range = 1
+anim = "barbarian_spirit_attack"
+target_sound = "ghoul_attack"
+target_hit = { offense = "crush", max = 180 }
 
 [mithril_dragon]
 attack_speed = 4
