@@ -45,3 +45,18 @@ id = 14269
 
 [baby_dragon_death]
 id = 14271
+
+[metal_dragon_breath]
+id = 14246
+
+[metal_dragon_attack]
+id = 14247
+
+[metal_dragon_death]
+id = 14248
+
+[metal_dragon_defend]
+id = 14249
+
+[metal_dragon_shoot]
+id = 14252
