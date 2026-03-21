@@ -131,3 +131,19 @@ examine = "He looks a tad upset."
 [gargoyle_ancient_cavern]
 id = 9087
 
+[mithril_dragon]
+id = 5363
+hitpoints = 2540
+att = 268
+str = 268
+def = 268
+mage = 168
+range = 168
+combat_def = "mithril_dragon"
+xp_bonus = 7.5
+hunt_mode = "cowardly"
+slayer_xp = 273.0
+categories = ["mithril_dragons"]
+respawn_delay = 30
+drop_table = "mithril_dragon"
+examine = "Experimenting with mithril gone bad!"

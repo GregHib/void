@@ -42,3 +42,46 @@ range = 1
 anim = "dharoks_greataxe_smash"
 target_sound = "dharok_axe_crush"
 target_hit = { offense = "crush", max = 150 }
+
+[mithril_dragon]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "metal_dragon_defend"
+defend_sound = "dragon_defend"
+death_anim = "metal_dragon_death"
+death_sound = "dragon_death"
+
+[mithril_dragon.melee]
+chance = 60
+range = 1
+anim = "metal_dragon_attack"
+target_hit = { offense = "stab", max = 280 }
+target_sound = "dragon_attack"
+
+[mithril_dragon.dragonfire]
+chance = 20
+range = 8
+condition = "ranged_only"
+anim = "colour_dragon_breath"
+gfx = "dragon_breath_shoot"
+target_hit = { offense = "dragonfire", special = true, max = 500 }
+target_sound = "dragon_breath"
+
+[mithril_dragon.magic]
+chance = 40
+range = 8
+anim = "brutal_dragon_shoot"
+projectile = "water_wave"
+projectile_origin = "centre"
+target_hit = { offense = "magic", max = 180 }
+target_sound = "dragon_attack"
+
+[mithril_dragon.range]
+chance = 40
+range = 8
+condition = "ranged_only"
+anim = "brutal_dragon_shoot"
+projectile = "ice_arrow"
+projectile_origin = "centre"
+target_hit = { offense = "range", defence = "magic", max = 180 }
+target_sound = "dragon_attack"
