@@ -6,3 +6,7 @@ id = 2776
 
 [zygomite_death]
 id = 2777
+
+[teleport_puro_puro]
+id = 6601
+ticks = 9

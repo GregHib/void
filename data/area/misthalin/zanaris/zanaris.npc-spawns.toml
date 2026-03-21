@@ -114,7 +114,7 @@ spawns = [
   { id = "jukat", x = 2484, y = 4452 },
   { id = "lunderwin", x = 2475, y = 4465 },
   { id = "irksol", x = 2479, y = 4469 },
-  { id = "fairy_11", x = 2486, y = 4470 },
+  { id = "fairy_attendant", x = 2486, y = 4470 },
   { id = "fairy_aeryka", x = 2426, y = 4442 },
   { id = "wandering_impling", x = 2424, y = 4436, members = true },
   { id = "banker_zanaris_2", x = 2379, y = 4459, members = true },

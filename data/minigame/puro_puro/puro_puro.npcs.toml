@@ -68,11 +68,11 @@ id = 6063
 [dragon_impling_puro_puro]
 id = 6064
 
-[elnock_inquisitor_puro_puro]
+[elnock_inquisitor]
 id = 6070
 examine = "Insurance investigator extraordinaire."
 
-[immenizz_puro_puro]
+[immenizz]
 id = 6071
 examine = "An impling."
 

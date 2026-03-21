@@ -1736,14 +1736,6 @@ examine = "The door is open."
 id = 11993
 examine = "The door is closed."
 
-[magic_door_2_opened]
-id = 12046
-examine = "A magic door."
-
-[magic_door_2_closed]
-id = 12045
-examine = "A magic door."
-
 [door_273_opened]
 id = 34233
 
