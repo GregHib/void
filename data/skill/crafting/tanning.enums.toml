@@ -1,4 +1,3 @@
-
 [tanning_product]
 keyType = "item"
 valueType = "string"
@@ -13,7 +12,7 @@ values = {
     green_dragonhide = "green_dragon_leather",
 }
 
-[tanning_price]
+[ellis_tanning_price]
 keyType = "item"
 valueType = "int"
 defaultInt = 0
@@ -27,6 +26,20 @@ values = {
     green_dragonhide = 20,
 }
 
+[sbott_tanning_price]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    snake_hide = 25,
+    snake_hide_swamp = 25,
+    cowhide = 2,
+    black_dragonhide = 45,
+    red_dragonhide = 45,
+    blue_dragonhide = 45,
+    green_dragonhide = 45,
+}
+
 [tanning_secondary_product]
 keyType = "item"
 valueType = "string"
@@ -35,10 +48,18 @@ values = {
     cowhide = "hard_leather",
 }
 
-[tanning_secondary_price]
+[ellis_tanning_secondary_price]
 keyType = "item"
 valueType = "int"
 defaultInt = 0
 values = {
     cowhide = 3,
+}
+
+[sbott_tanning_secondary_price]
+keyType = "item"
+valueType = "int"
+defaultInt = 0
+values = {
+    cowhide = 5,
 }
