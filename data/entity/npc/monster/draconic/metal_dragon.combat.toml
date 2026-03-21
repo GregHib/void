@@ -1,4 +1,5 @@
 [bronze_dragon]
+attack_speed = 4
 retreat_range = 8
 defend_anim = "metal_dragon_defend"
 defend_sound = "dragon_defend"
