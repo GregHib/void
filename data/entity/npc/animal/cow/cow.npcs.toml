@@ -35,6 +35,7 @@ examine = "Young, but still beefy."
 
 [cow_zanaris]
 clone = "cow_default"
+large_head = true
 id = 3309
 
 [cow_2]

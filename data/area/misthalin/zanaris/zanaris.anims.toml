@@ -10,3 +10,18 @@ id = 2777
 [teleport_puro_puro]
 id = 6601
 ticks = 9
+
+[otherworldly_being_attack]
+id = 14094
+
+[otherworldly_being_defend]
+id = 14095
+
+[otherworldly_being_death]
+id = 14096
+
+[pick_zygomite]
+id = 3335
+
+[zygomite_grow]
+id = 2983

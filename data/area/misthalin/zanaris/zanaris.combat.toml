@@ -10,10 +10,47 @@ death_sound = "zygomite_death"
 range = 1
 anim = "zygomite_attack"
 target_sound = "zygomite_attack"
-target_hit = { offense = "magic", defence = "melee", max = 70 }
+target_hit = { offense = "magic", defence = "melee", max = 80 }
 
 [zygomite.ranged]
 range = 1
 anim = "zygomite_attack"
 target_sound = "zygomite_attack"
+projectile = "zygomite_spores"
+target_hit = { offense = "magic", defence = "range", max = 100 }
+
+[adolescent_zygomite]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "zygomite_defend"
+defend_sound = "adolescent_zygomite_defend"
+death_anim = "zygomite_death"
+death_sound = "adolescent_zygomite_death"
+
+[adolescent_zygomite.melee]
+range = 1
+anim = "zygomite_attack"
+target_sound = "zygomite_attack"
+target_hit = { offense = "magic", defence = "melee", max = 70 }
+
+[adolescent_zygomite.ranged]
+range = 1
+anim = "zygomite_attack"
+target_sound = "adolescent_zygomite_attack"
+projectile = "adolescent_zygomite_spores"
+impact_sound = "adolescent_zygomite_impact"
 target_hit = { offense = "magic", defence = "range", max = 60 }
+
+[otherworldly_being]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "otherworldly_being_defend"
+defend_sound = "otherworldly_being_defend"
+death_anim = "otherworldly_being_death"
+death_sound = "otherworldly_being_death"
+
+[otherworldly_being.melee]
+range = 1
+anim = "otherworldly_being_attack"
+target_sound = "otherworldly_being_attack"
+target_hit = { offense = "crush", max = 70 }

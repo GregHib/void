@@ -46,6 +46,7 @@ examine = "Guardian of the market gate."
 
 [sheep_zanaris]
 id = 3310
+large_head = true
 
 [fairy_queen]
 id = 3314
@@ -68,10 +69,35 @@ examine = "Likes to cook with mushrooms."
 
 [fungi]
 id = 3344
+hitpoints = 650
+att = 65
+str = 65
+def = 65
+mage = 65
+range = 65
+attack_bonus = 30
+slayer_level = 57
+slayer_xp = 65.0
+categories = ["mutated_zygomites"]
+respawn_delay = 30
+drop_table = "zygomite_level_74"
 examine = "A fun guy. No wait, that's awful. Plus it doesn't even make sense."
 
-[fungi_2]
+[fungi_large]
 id = 3345
+hitpoints = 750
+att = 75
+str = 75
+def = 75
+mage = 75
+range = 75
+attack_bonus = 30
+slayer_level = 57
+slayer_xp = 75.0
+categories = ["mutated_zygomites"]
+respawn_delay = 30
+drop_table = "zygomite_level_86"
+examine = "A fun guy. No wait, that's awful. Plus it doesn't even make sense."
 
 [fairy_9]
 id = 4422
@@ -94,6 +120,7 @@ examine = "Fairy ring maintenance division."
 
 [sheep_zanaris_2]
 id = 5164
+large_head = true
 
 [fairy_shopkeeper]
 id = 534
@@ -137,8 +164,7 @@ hitpoints = 660
 att = 56
 str = 56
 def = 46
-style = "crush"
-max_hit_melee = 70
+combat_def = "otherworldly_being"
 slayer_xp = 66.0
 categories = ["otherworldly_beings"]
 respawn_delay = 20
@@ -219,21 +245,11 @@ id = 11434
 
 [zygomite]
 id = 3346
-hitpoints = 650
-att = 65
-str = 65
-def = 65
-mage = 65
-range = 65
-combat_def = "zygomite"
-attack_bonus = 30
-slayer_xp = 65.0
-categories = ["mutated_zygomites"]
-respawn_delay = 30
-drop_table = "zygomite_level_74"
+combat_def = "adolescent_zygomite"
 examine = "A bouncy fungus."
 
-[zygomite_2]
+[zygomite_large]
 id = 3347
 clone = "zygomite"
-drop_table = "zygomite_level_86"
+combat_def = "zygomite"
+examine = "A fun guy. No wait, that's awful.."
