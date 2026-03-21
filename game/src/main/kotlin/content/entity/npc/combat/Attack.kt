@@ -30,7 +30,6 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.type.Distance
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
 class Attack(
@@ -256,5 +255,4 @@ class Attack(
             }
         }
     }
-
 }

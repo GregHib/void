@@ -46,7 +46,7 @@ class KuradalsDungeon : Script {
                 walkOverDelay(tile.copy(y = y))
                 anim("pass_through_barrier")
                 exactMoveDelay(Tile(x, y))
-            } else if (target.rotation == 3) {// horizontal
+            } else if (target.rotation == 3) { // horizontal
                 val x = tile.x.coerceIn(target.tile.x, target.tile.x + 1)
                 val y = if (tile.y >= target.tile.y) target.tile.y - 1 else target.tile.y
                 walkOverDelay(tile.copy(x = x))
