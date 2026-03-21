@@ -39,3 +39,12 @@ id = 5596
 
 [spade_attack]
 id = 5597
+
+[waterfiend_attack]
+id = 299
+
+[waterfiend_death]
+id = 300
+
+[waterfiend_defend]
+id = 301

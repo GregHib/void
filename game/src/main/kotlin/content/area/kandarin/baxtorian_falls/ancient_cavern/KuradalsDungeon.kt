@@ -1,20 +1,16 @@
 package content.area.kandarin.baxtorian_falls.ancient_cavern
 
-import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Laugh
-import content.entity.player.dialogue.Neutral
-import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Unamused
+import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.skill.slayer.slayerMaster
-import content.skill.slayer.slayerTask
 import content.skill.slayer.slayerTaskRemaining
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Teleport
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
@@ -59,6 +55,9 @@ class KuradalsDungeon : Script {
         }
 
         objectOperate("Climb-over", "kuradal_dungeon_low_wall") { (target) ->
+            if (!has(Skill.Agility, 86, message = true)) {
+                return@objectOperate
+            }
             val end = if (tile.y < target.tile.y) Tile(1633, 5294) else Tile(1633, 5292)
             val start = if (tile.y < target.tile.y) Tile(1633, 5292) else Tile(1633, 5294)
             val direction = if (tile.y < target.tile.y) Direction.NORTH else Direction.SOUTH
