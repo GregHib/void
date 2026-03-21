@@ -74,7 +74,7 @@ data class Cuboid(
     override fun random() = Tile(random(minX, maxX), random(minY, maxY), random(minLevel, maxLevel))
 
     companion object {
-        fun random(first: Int, second: Int) = if (first == second) first else random.nextInt(first, second + 1)
+        internal fun random(first: Int, second: Int) = if (first == second) first else random.nextInt(first, second + 1)
     }
 
     override fun toString(): String = "Cuboid($minX..$maxX, $minY..$maxY, $minLevel..$maxLevel)"
