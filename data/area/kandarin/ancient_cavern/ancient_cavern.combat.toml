@@ -1,0 +1,44 @@
+[brutal_green_dragon]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "colour_dragon_defend"
+defend_sound = "dragon_defend"
+death_anim = "colour_dragon_death"
+death_sound = "dragon_death"
+
+[brutal_green_dragon.melee]
+chance = 75
+range = 1
+anim = "colour_dragon_attack"
+target_hit = { offense = "stab", max = 180 }
+target_sound = "dragon_attack"
+
+[brutal_green_dragon.dragonfire]
+chance = 25
+range = 8
+anim = "colour_dragon_breath"
+gfx = "dragon_breath_shoot"
+target_hit = { offense = "dragonfire", special = true, max = 500 }
+target_sound = "dragon_breath"
+
+[brutal_green_dragon.magic]
+chance = 75
+range = 8
+anim = "brutal_dragon_shoot"
+projectile = "water_wave"
+target_hit = { offense = "magic", max = 180 }
+target_sound = "dragon_attack"
+
+[confused_barbarian]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "confused_barbarian_defend"
+defend_sound = "confused_barbarian_defend"
+death_anim = "confused_barbarian_death"
+death_sound = "confused_barbarian_death"
+
+[confused_barbarian.melee]
+range = 1
+anim = "dharoks_greataxe_smash"
+target_sound = "dharok_axe_crush"
+target_hit = { offense = "crush", max = 150 }
