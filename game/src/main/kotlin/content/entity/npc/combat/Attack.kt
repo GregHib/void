@@ -8,6 +8,7 @@ import content.entity.effect.freeze
 import content.entity.effect.toxin.poison
 import content.entity.gfx.areaGfx
 import content.entity.proj.shoot
+import content.entity.proj.shootNearest
 import net.pearx.kasechange.toPascalCase
 import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.Script
@@ -29,7 +30,6 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.type.Distance
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
 class Attack(
@@ -83,7 +83,7 @@ class Attack(
                         continue
                     }
                     val delay = when (origin) {
-                        CombatDefinition.Origin.Centre -> nearestTile(this, target).shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
+                        CombatDefinition.Origin.Centre -> shootNearest(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight)
                         else -> shoot(id = projectile.id, target = target, delay = projectile.delay, curve = projectile.curve?.random(random), endHeight = projectile.endHeight, tileOffsetX = attack.projectileOriginX, tileOffsetY = attack.projectileOriginY)
                     }
                     delays[i] = delay
@@ -254,16 +254,5 @@ class Attack(
                 )
             }
         }
-    }
-
-    /**
-     * Tile the kbd dragon breath originates from.
-     * Looks weird imo, but it's the same as OSRS.
-     */
-    private fun nearestTile(source: Character, target: Character): Tile {
-        val half = source.size / 2
-        val centre = source.tile.add(half, half)
-        val direction = target.tile.delta(centre).toDirection()
-        return centre.add(direction).add(direction)
     }
 }

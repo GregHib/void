@@ -1,4 +1,4 @@
-[vannaka_task_amount]
+[sumona_task_amount]
 keyType = "npc"
 valueType = "string"
 values = {
@@ -38,7 +38,7 @@ values = {
     warped_terrorbird = "120-185",
 }
 
-[vannaka_task_weight]
+[sumona_task_weight]
 keyType = "npc"
 valueType = "int"
 values = {

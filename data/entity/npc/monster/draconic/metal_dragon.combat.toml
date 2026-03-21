@@ -1,21 +1,22 @@
 [bronze_dragon]
+attack_speed = 4
 retreat_range = 8
-defend_anim = "dragon_defend"
+defend_anim = "metal_dragon_defend"
 defend_sound = "dragon_defend"
-death_anim = "dragon_death"
+death_anim = "metal_dragon_death"
 death_sound = "dragon_death"
 
 [bronze_dragon.melee]
 chance = 30
 range = 1
-anim = "dragon_attack"
+anim = "metal_dragon_attack"
 target_hit = { offense = "slash", max = 120 }
 target_sound = "dragon_attack"
 
 [bronze_dragon.dragonfire]
 chance = 30
 range = 1
-anim = "dragon_breath"
+anim = "metal_dragon_breath"
 gfx = "dragon_breath_shoot"
 target_hit = { offense = "dragonfire", special = true, max = 500 }
 target_sound = "dragon_breath"
@@ -23,9 +24,10 @@ target_sound = "dragon_breath"
 [bronze_dragon.fireball]
 chance = 30
 range = 8
-anim = "dragon_shoot"
+anim = "metal_dragon_shoot"
 projectile = "dragon_breath"
-projectile_origin = "centre"
+projectile_origin_x = 2
+projectile_origin_y = 2
 target_hit = { offense = "dragonfire", special = true, max = 500 }
 target_sound = "metal_dragon_fireball"
 

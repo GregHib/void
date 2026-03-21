@@ -15,3 +15,12 @@ id = 415
 
 [dust_devil_defend]
 id = 416
+
+[waterfiend_attack]
+id = 3774
+
+[waterfiend_defend]
+id = 3773
+
+[waterfiend_death]
+id = 3772

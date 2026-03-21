@@ -1,0 +1,133 @@
+[brutal_green_dragon]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "colour_dragon_defend"
+defend_sound = "dragon_defend"
+death_anim = "colour_dragon_death"
+death_sound = "dragon_death"
+
+[brutal_green_dragon.melee]
+chance = 75
+range = 1
+anim = "colour_dragon_attack"
+target_hit = { offense = "stab", max = 180 }
+target_sound = "dragon_attack"
+
+[brutal_green_dragon.dragonfire]
+chance = 25
+range = 8
+anim = "colour_dragon_breath"
+gfx = "dragon_breath_shoot"
+target_hit = { offense = "dragonfire", special = true, max = 500 }
+target_sound = "dragon_breath"
+
+[brutal_green_dragon.magic]
+chance = 75
+range = 8
+anim = "brutal_dragon_shoot"
+projectile = "water_wave"
+projectile_origin_x = 2
+projectile_origin_y = 2
+target_hit = { offense = "magic", max = 180 }
+target_sound = "dragon_attack"
+
+[skeleton_barbarian_axe]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "barbarian_unarmed_defend"
+defend_sound = "barbarian_grunt_defend"
+death_anim = "confused_barbarian_death"
+death_sound = "confused_barbarian_death"
+
+[skeleton_barbarian_axe.melee]
+range = 1
+anim = "dharoks_greataxe_smash"
+target_sound = "dharok_axe_crush"
+target_hit = { offense = "crush", max = 150 }
+
+[lost_barbarian]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "unarmed_defend"
+defend_sound = "barbarian_grunt_defend"
+death_anim = "human_death"
+death_sound = "barbarian_grunt_death"
+
+[lost_barbarian.melee]
+range = 1
+anim = "unarmed_punch"
+target_sound = "barbarian_grunt_attack"
+target_hit = { offense = "crush", max = 150 }
+
+[skeleton_barbarian]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "unarmed_defend"
+defend_sound = "skeleton_defend"
+death_anim = "human_death"
+death_sound = "skeleton_death"
+
+[skeleton_barbarian.melee]
+range = 1
+anim = "unarmed_punch"
+target_sound = "skeleton_attack_unarmed"
+target_hit = { offense = "crush", max = 150 }
+
+[barbarian_spirit]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "barbarian_spirit_defend"
+defend_sound = "ghoul_defend"
+death_anim = "barbarian_spirit_death"
+death_sound = "ghoul_defend"
+
+[barbarian_spirit.melee]
+range = 1
+anim = "barbarian_spirit_attack"
+target_sound = "ghoul_attack"
+target_hit = { offense = "crush", max = 180 }
+
+[mithril_dragon]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "metal_dragon_defend"
+defend_sound = "dragon_defend"
+death_anim = "metal_dragon_death"
+death_sound = "dragon_death"
+
+[mithril_dragon.melee]
+chance = 60
+range = 1
+anim = "metal_dragon_attack"
+target_hit = { offense = "stab", max = 280 }
+target_sound = "dragon_attack"
+
+[mithril_dragon.dragonfire]
+chance = 20
+range = 8
+condition = "ranged_only"
+anim = "metal_dragon_breath"
+gfx = "dragon_breath_shoot"
+target_hit = { offense = "dragonfire", special = true, max = 500 }
+target_sound = "dragon_breath"
+
+[mithril_dragon.magic]
+chance = 40
+range = 8
+anim = "metal_dragon_shoot"
+projectile = "water_wave"
+projectile_origin_x = 2
+projectile_origin_y = 2
+target_hit = { offense = "magic", max = 180 }
+target_sound = "dragon_attack"
+
+[mithril_dragon.range]
+chance = 40
+range = 8
+condition = "ranged_only"
+anim = "metal_dragon_shoot"
+projectile = "ice_arrow"
+projectile_origin_x = 2
+projectile_origin_y = 2
+target_hit = { offense = "range", defence = "magic", max = 180 }
+target_sound = "dragon_attack"

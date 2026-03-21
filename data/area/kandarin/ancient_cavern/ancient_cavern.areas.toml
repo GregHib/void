@@ -1,3 +1,8 @@
 [kuradals_dungeon]
 x = [1600, 1663]
 y = [5248, 5311]
+
+[kuradals_teleport]
+x = [1736, 1739]
+y = [5311, 5313]
+level = 1

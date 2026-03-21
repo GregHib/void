@@ -1,0 +1,20 @@
+[jump_whirlpool]
+id = 6723
+
+[pass_through_barrier]
+id = 10584
+
+[brutal_dragon_shoot]
+id = 4972
+
+[barbarian_unarmed_defend]
+id = 3238
+
+[barbarian_spirit_attack]
+id = 6726
+
+[barbarian_spirit_defend]
+id = 6728
+
+[barbarian_spirit_death]
+id = 6727

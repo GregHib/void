@@ -1,0 +1,14 @@
+[kuradal_dungeon_cave]
+id = 47232
+
+[kuradal_dungeon_cave_exit]
+id = 47231
+
+[kuradal_barrier]
+id = 47236
+
+[kuradal_dungeon_gap]
+id = 47237
+
+[kuradal_dungeon_low_wall]
+id = 47233

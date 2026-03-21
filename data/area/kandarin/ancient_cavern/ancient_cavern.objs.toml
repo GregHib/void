@@ -1,0 +1,27 @@
+[ancient_cavern_whirlpool]
+id = 25274
+examine = "Crazy-looking whirlpool."
+
+[ancient_cavern_steps]
+id = 25338
+
+[ancient_cavern_stairs]
+id = 25336
+
+[ancient_cavern_kuradal_steps]
+id = 39468
+
+[ancient_cavern_kuradal_stairs]
+id = 25337
+
+[ancient_cavern_stairs_top]
+id = 25340
+
+[ancient_cavern_stairs_bottom]
+id = 25339
+
+[ancient_cavern_skeleton]
+id = 25362
+
+[ancient_cavern_aged_log]
+id = 25216

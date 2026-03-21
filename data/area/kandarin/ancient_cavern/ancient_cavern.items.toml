@@ -258,27 +258,42 @@ kept = "Vanish"
 [ferocious_ring_5]
 id = 15398
 slot = "Ring"
-examine = "It looks in pretty good condition."
+charges = 1
+degrade = "ferocious_ring_4"
+degrade_message = "Your ferocious ring has four uses left."
 weight = 0.004
+examine = "It looks in pretty good condition."
 
 [ferocious_ring_4]
 clone = "ferocious_ring_5"
 id = 15399
+charges = 1
+degrade = "ferocious_ring_3"
+degrade_message = "Your ferocious ring has three uses left."
 
 [ferocious_ring_3]
 id = 15400
 slot = "Ring"
-examine = "It looks quite worn."
+charges = 1
+degrade = "ferocious_ring_2"
+degrade_message = "Your ferocious ring has two uses left."
 weight = 0.004
+examine = "It looks quite worn."
 
 [ferocious_ring_2]
 id = 15401
 slot = "Ring"
-examine = "It looks pretty worn."
+charges = 1
+degrade = "ferocious_ring_1"
+degrade_message = "Your ferocious ring has one use left."
 weight = 0.004
+examine = "It looks pretty worn."
 
 [ferocious_ring_1]
 id = 15402
 slot = "Ring"
-examine = "It looks like it's going to break soon."
+charges = 1
+degrade = "destroy"
+degrade_message = "Your ferocious ring crumbles to dust."
 weight = 0.004
+examine = "It looks like it's going to break soon."

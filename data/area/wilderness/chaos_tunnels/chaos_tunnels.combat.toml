@@ -91,3 +91,24 @@ anim = "fire_elemental_attack"
 target_sound = "fire_elemental_attack"
 target_hit = { offense = "slash", max = 40 }
 
+[waterfiend]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "waterfiend_defend"
+defend_sound = "waterfiend_defend"
+death_anim = "waterfiend_death"
+death_sound = "waterfiend_death"
+
+[waterfiend.magic]
+range = 4
+target_sound = "waterfiend_attack"
+projectile = "water_wave"
+target_hit = { offense = "magic", max = 120 }
+impact_gfx = "water_wave_impact"
+miss_sound = "spell_splash"
+
+[waterfiend.range]
+range = 4
+target_sound = "waterfiend_attack"
+projectile = "ice_arrow"
+target_hit = { offense = "range", defence = "magic", max = 120 }

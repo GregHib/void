@@ -130,3 +130,108 @@ drops = [
     { id = "crimson_charm", chance = 243 },
     { id = "blue_charm", chance = 8 },
 ]
+
+[waterfiend_drop_table]
+type = "all"
+drops = [
+    { id = "water_rune" },
+    { table = "waterfiend_secondary" },
+    { table = "waterfiend_tertiary" },
+    { table = "waterfiend_charms" },
+]
+
+[waterfiend_secondary]
+roll = 512
+drops = [
+    { id = "water_rune", amount = 90, chance = 32 },
+    { id = "blood_rune", min = 4, max = 12, chance = 8 },
+    { id = "death_rune", min = 9, max = 19, chance = 8 },
+    { id = "mist_rune", min = 3, max = 10, chance = 8 },
+    { id = "mud_rune", min = 3, max = 9, chance = 8 },
+    { id = "steam_rune", min = 3, max = 10, chance = 8 },
+    { id = "nature_rune", min = 44, max = 100 },
+    { id = "belladonna_seed", chance = 8 },
+    { id = "cactus_seed", chance = 8 },
+    { id = "cadantine_seed", chance = 8 },
+    { id = "dwarf_weed_seed", chance = 8 },
+    { id = "harralander_seed", chance = 8 },
+    { id = "irit_seed", chance = 8 },
+    { id = "jangerberry_seed", chance = 8 },
+    { id = "kwuarm_seed", chance = 8 },
+    { id = "lantadyme_seed", chance = 8 },
+    { id = "limpwurt_seed", chance = 8 },
+    { id = "marrentill_seed", chance = 8 },
+    { id = "bittercap_mushroom_spore", chance = 8 },
+    { id = "poison_ivy_seed", chance = 8 },
+    { id = "spirit_weed_seed", chance = 8 },
+    { id = "strawberry_seed", chance = 8 },
+    { id = "tarromin_seed", chance = 8 },
+    { id = "toadflax_seed", chance = 8 },
+    { id = "whiteberry_seed", chance = 8 },
+    { id = "wildblood_seed", chance = 8 },
+    { id = "watermelon_seed", min = 1, max = 9, chance = 8 },
+    { id = "ranarr_seed", chance = 2 },
+    { id = "mithril_arrow", amount = 90, chance = 32 },
+    { id = "adamant_chainbody", chance = 8 },
+    { id = "blue_dragonhide_vambraces", chance = 8 },
+    { id = "mithril_full_helm", chance = 8 },
+    { id = "mithril_grapple", chance = 8 },
+    { id = "mithril_warhammer", chance = 8 },
+    { id = "rune_med_helm", chance = 8 },
+    { id = "staff_of_water", chance = 8 },
+    { id = "water_battlestaff", chance = 8 },
+    { id = "sapphire_bolts", amount = 15, chance = 8 },
+    { id = "adamant_platebody", chance = 2 },
+    { id = "grimy_guam", min = 1, max = 10, chance = 32 },
+    { id = "grimy_marrentill", chance = 32 },
+    { id = "grimy_tarromin", chance = 32 },
+    { id = "grimy_ranarr", chance = 8 },
+    { id = "grimy_irit", chance = 8 },
+    { id = "grimy_harralander", chance = 8 },
+    { id = "grimy_avantoe", chance = 8 },
+    { id = "grimy_kwuarm", chance = 8 },
+    { id = "grimy_cadantine", chance = 8 },
+    { id = "grimy_dwarf_weed", chance = 8 },
+    { id = "grimy_lantadyme", chance = 8 },
+    { id = "snape_grass_noted", amount = 20, chance = 8 },
+    { id = "mithril_ore_noted", min = 1, max = 5, chance = 8 },
+    { id = "mithril_bar", amount = 2, chance = 8 },
+    { id = "steel_bar_noted", amount = 3, chance = 2 },
+#    { id = "coal_noted", min = 3, max = 6, chance = 8 }, # Ghorrock only
+#    { id = "gold_ore_noted", min = 3, max = 8, chance = 8 },
+    { id = "uncut_sapphire_noted", min = 1, max = 4, chance = 8 },
+    { id = "uncut_diamond_noted", chance = 2 },
+    { id = "uncut_dragonstone" },
+    { id = "coins", min = 97, max = 692, chance = 32 },
+    { id = "water_orb_noted", min = 5, max = 10, chance = 32 },
+    { id = "oyster", chance = 8 },
+    { id = "raw_lobster", min = 5, max = 12, chance = 8 },
+    { id = "raw_shark", min = 3, max = 6, chance = 8 },
+    { id = "seaweed_noted", min = 10, max = 29, chance = 8 },
+    { id = "shark", chance = 8 },
+    { id = "water_talisman", chance = 8 },
+    { id = "nature_talisman", chance = 2 },
+    { id = "vial_of_water_noted", min = 5, max = 10, chance = 8 },
+#    { id = "saradomin_brew_1", chance = 8 },
+#    { id = "zamorak_brew_1", chance = 8 },
+    { id = "fishbowl", chance = 8 },
+#    { id = "cannonball", min = 11, max = 27, chance = 2 },
+    { table = "rare_drop_table", chance = 8 },
+]
+
+[waterfiend_tertiary]
+roll = 256
+drops = [
+    { table = "hard_clue_scroll", chance = 2 },
+    { id = "court_summons", chance = 2 },
+    { id = "starved_ancient_effigy" },
+]
+
+[waterfiend_charms]
+roll = 1000
+drops = [
+    { id = "gold_charm", chance = 99 },
+    { id = "green_charm", chance = 50 },
+    { id = "crimson_charm", chance = 790 },
+    { id = "blue_charm", chance = 20 },
+]

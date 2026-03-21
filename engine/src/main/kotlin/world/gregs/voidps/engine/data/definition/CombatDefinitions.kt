@@ -425,6 +425,8 @@ class CombatDefinitions {
         gfx = original.gfx.ifEmpty { clone.gfx },
         sounds = original.sounds.ifEmpty { clone.sounds },
         projectileOrigin = if (original.projectileOrigin != CombatAttack.EMPTY.projectileOrigin) original.projectileOrigin else clone.projectileOrigin,
+        projectileOriginX = if (original.projectileOriginX != CombatAttack.EMPTY.projectileOriginX) original.projectileOriginX else clone.projectileOriginX,
+        projectileOriginY = if (original.projectileOriginX != CombatAttack.EMPTY.projectileOriginY) original.projectileOriginY else clone.projectileOriginY,
         projectiles = original.projectiles.ifEmpty { clone.projectiles },
         targetAnim = if (original.targetAnim != CombatAttack.EMPTY.targetAnim) original.targetAnim else clone.targetAnim,
         targetGfx = original.targetGfx.ifEmpty { clone.targetGfx },

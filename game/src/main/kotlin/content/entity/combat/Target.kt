@@ -15,6 +15,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
@@ -35,11 +36,19 @@ object Target {
             if (target.id.startsWith("door_support") && NPCDefinitions.get(target.id).options[1] == "Destroy") {
                 return true
             }
+            if (source is Player && target.tile in Areas["kuradals_dungeon"] && !target.categories.contains(source.slayerTask)) {
+                source.message("You're not down here to kill those.") // https://youtu.be/GU7I1GyaNEU?t=4
+                return false
+            }
             if (target.id == "mound_feldip_hills" && source is Player && source.slayerTask != "jungle_strykewyrm") {
                 source.message("You need to have strykewyrm assigned as a task in order to fight them.")
                 return false
             }
             if (target.id == "mound_desert_strykewyrm" && source is Player && source.slayerTask != "desert_strykewyrm") {
+                source.message("You need to have strykewyrm assigned as a task in order to fight them.")
+                return false
+            }
+            if (target.id == "mound_ice_strykewyrm" && source is Player && source.slayerTask != "ice_strykewyrm") {
                 source.message("You need to have strykewyrm assigned as a task in order to fight them.")
                 return false
             }

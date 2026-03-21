@@ -43,6 +43,7 @@ drops = [
     { id = "strength_mix_2", chance = 5 },
     { id = "mithril_grapple", amount = 2, chance = 3 },
     { id = "sapphire_ring", chance = 2 },
+    { table = "ancient_cavern_pages", chance = 5 },
     { table = "gem_drop_table", chance = 2 },
 ]
 
@@ -53,6 +54,7 @@ drops = [
     { id = "green_dragonhide", amount = 2 },
     { table = "brutal_green_dragon_secondary" },
     { table = "hard_clue_scroll", roll = 128 },
+    { table = "brutal_green_dragon_charms" },
 ]
 
 [brutal_green_dragon_secondary]
@@ -84,8 +86,119 @@ drops = [
     { table = "rare_drop_table", chance = 2 },
 ]
 
+[brutal_green_dragon_charms]
+roll = 1000
+drops = [
+    { id = "gold_charm", chance = 143 },
+    { id = "green_charm", chance = 356 },
+    { id = "crimson_charm", chance = 143 },
+    { id = "blue_charm", chance = 28 },
+]
+
 [mangled_bones_drop_table]
 type = "all"
 drops = [
     { id = "mangled_bones" },
+]
+
+
+[mithril_dragon_drop_table]
+type = "all"
+drops = [
+    { id = "dragon_bones" },
+    { id = "mithril_bar", amount = 3 },
+    { table = "mithril_dragon_secondary" },
+    { table = "mithril_dragon_tertiary" },
+    { table = "mithril_dragon_charms" },
+]
+
+[mithril_dragon_secondary]
+roll = 32768
+drops = [
+    { id = "rune_battleaxe", chance = 2048 },
+    { id = "rune_mace", chance = 2048 },
+    { id = "rune_2h_sword", chance = 64 },
+    { id = "rune_dart_p", amount = 14, chance = 2048 },
+    { id = "rune_javelin", amount = 8, chance = 2048 },
+    { id = "adamant_dart_p", amount = 20, chance = 128 },
+    { id = "runite_bolts", min = 10, max = 27, chance = 512 },
+    { id = "rune_knife", min = 8, max = 18, chance = 512 },
+    { id = "rune_arrow", min = 8, max = 42, chance = 512 },
+    { id = "rune_full_helm", chance = 512 },
+    { id = "dragon_full_helm" },
+    { id = "law_rune", min = 4, max = 45, chance = 128 },
+    { id = "death_rune", amount = 45, chance = 128 },
+    { id = "blood_rune", amount = 27, chance = 2048 },
+    { id = "soul_rune", amount = 10, chance = 512 },
+    { id = "super_attack_mix_2", chance = 512 },
+    { id = "super_strength_mix_2", chance = 512 },
+    { id = "super_defence_mix_2", chance = 512 },
+    { id = "prayer_mix_2", chance = 512 },
+    { id = "coins", min = 283, max = 3000, chance = 2048 },
+    { id = "rune_bar", amount = 2, chance = 128 },
+    { id = "shark", min = 1, max = 6, chance = 512 },
+    { table = "ancient_cavern_pages", chance = 512 },
+    { id = "chewed_bones", chance = 512 },
+    { table = "rare_drop_table", chance = 256 },
+]
+
+[mithril_dragon_tertiary]
+roll = 10000
+drops = [
+    { id = "mithril_dragon_tail_bone", chance = 2500, variable = "fur_n_seek_wish_list", equals = "started", default = "unstarted" },
+    { id = "starved_ancient_effigy", chance = 40 },
+    { table = "hard_clue_scroll", chance = 40 },
+    { table = "elite_clue_scroll", chance = 10 },
+    { id = "draconic_visage" },
+]
+
+[mithril_dragon_charms]
+roll = 1000
+drops = [
+    { id = "gold_charm", chance = 198 },
+    { id = "green_charm", chance = 495 },
+    { id = "crimson_charm", chance = 198 },
+    { id = "blue_charm", chance = 40 },
+]
+
+
+[ancient_cavern_pages]
+roll = 26
+drops = [
+    { id = "ancient_page_1" },
+    { id = "ancient_page_2" },
+    { id = "ancient_page_3" },
+    { id = "ancient_page_4" },
+    { id = "ancient_page_5" },
+    { id = "ancient_page_6" },
+    { id = "ancient_page_7" },
+    { id = "ancient_page_8" },
+    { id = "ancient_page_9" },
+    { id = "ancient_page_10" },
+    { id = "ancient_page_11" },
+    { id = "ancient_page_12" },
+    { id = "ancient_page_13" },
+    { id = "ancient_page_14" },
+    { id = "ancient_page_15" },
+    { id = "ancient_page_16" },
+    { id = "ancient_page_17" },
+    { id = "ancient_page_18" },
+    { id = "ancient_page_19" },
+    { id = "ancient_page_20" },
+    { id = "ancient_page_21" },
+    { id = "ancient_page_22" },
+    { id = "ancient_page_23" },
+    { id = "ancient_page_24" },
+    { id = "ancient_page_25" },
+    { id = "ancient_page_26" },
+]
+
+[ancient_cavern_skeleton]
+roll = 512
+drops = [
+    { id = "skeleton_guard", chance = 22 }, # skeleton_heavy
+    { id = "guard_dog", chance = 70 }, # skeleton_hero
+    { id = "bones", chance = 80 },
+    { table = "ancient_cavern_pages", chance = 120 },
+    { id = "mangled_bones", chance = 180 },
 ]

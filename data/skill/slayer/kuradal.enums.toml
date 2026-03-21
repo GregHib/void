@@ -1,4 +1,4 @@
-[vannaka_task_amount]
+[kuradal_task_amount]
 keyType = "npc"
 valueType = "string"
 values = {
@@ -38,7 +38,7 @@ values = {
     waterfiend = "170-250",
 }
 
-[vannaka_task_weight]
+[kuradal_task_weight]
 keyType = "npc"
 valueType = "int"
 values = {
@@ -75,5 +75,5 @@ values = {
 #    tormented_demon = 8,
     tzhaar_mej = 7,
 #    warped_terrorbird = 8,
-#    waterfiend = 9,
+    waterfiend = 9,
 }

@@ -1,0 +1,20 @@
+[barbarian_grunt_defend]
+id = 3383
+
+[barbarian_grunt_attack]
+id = 3381
+
+[barbarian_grunt_death]
+id = 3382
+
+[dharok_axe_crush]
+id = 1316
+
+[ghoul_attack]
+id = 442
+
+[ghoul_defend]
+id = 444
+
+[ghoul_death]
+id = 443

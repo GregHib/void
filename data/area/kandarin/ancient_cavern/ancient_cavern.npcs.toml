@@ -5,12 +5,7 @@ att = 268
 str = 168
 def = 168
 mage = 168
-style = "stab"
-style = "magic"
-style = "dragonfire"
-max_hit_melee = 180
-max_hit_magic = 180
-max_hit_dragonfire = 500
+combat_def = "brutal_green_dragon"
 xp_bonus = 0.5
 hunt_mode = "cowardly"
 slayer_xp = 183.0
@@ -26,8 +21,7 @@ hitpoints = 1240
 att = 115
 str = 114
 def = 110
-style = "crush"
-max_hit_melee = 150
+combat_def = "skeleton_barbarian_axe"
 attack_bonus = 9
 respawn_delay = 50
 drop_table = "mangled_bones"
@@ -39,35 +33,35 @@ hitpoints = 1240
 att = 115
 str = 114
 def = 110
+combat_def = "lost_barbarian"
 style = "crush"
 max_hit_melee = 120
 respawn_delay = 50
 drop_table = "mangled_bones"
 examine = "His face is expressionless."
 
-[skeleton_brute_ancient_cavern]
+[skeleton_brute]
 id = 6104
 hitpoints = 1240
 att = 115
 str = 114
 def = 110
-style = "crush"
-max_hit_melee = 150
+combat_def = "skeleton_barbarian"
 attack_bonus = 9
 hunt_mode = "cowardly"
 slayer_xp = 124.0
 categories = ["skeletons"]
 respawn_delay = 50
+drop_table = "barbarian_spirit"
 examine = "An ex-barbarian, willing to make you ex too."
 
-[skeleton_warlord_ancient_cavern]
+[skeleton_warlord]
 id = 6105
 hitpoints = 1240
 att = 115
 str = 114
 def = 110
-style = "crush"
-max_hit_melee = 150
+combat_def = "skeleton_barbarian_axe"
 attack_bonus = 9
 hunt_mode = "cowardly"
 slayer_xp = 124.0
@@ -76,14 +70,13 @@ respawn_delay = 50
 drop_table = "barbarian_spirit"
 examine = "He's heartless."
 
-[skeleton_thug_ancient_cavern]
+[skeleton_thug]
 id = 6107
 hitpoints = 1240
 att = 115
 str = 114
 def = 110
-style = "crush"
-max_hit_melee = 150
+combat_def = "skeleton_barbarian"
 attack_bonus = 9
 hunt_mode = "cowardly"
 slayer_xp = 124.0
@@ -92,14 +85,28 @@ respawn_delay = 50
 drop_table = "barbarian_spirit"
 examine = "Floats like an anvil, hits like a hammer."
 
+[skeleton_hero]
+id = 6103
+hitpoints = 1240
+att = 145
+str = 134
+def = 110
+combat_def = "skeleton_barbarian_axe"
+max_hit_crush = 180
+attack_bonus = 9
+hunt_mode = "cowardly"
+slayer_xp = 124.0
+categories = ["skeletons"]
+drop_table = "barbarian_spirit"
+examine = "An opponent from the grave. He seems unimpressed by your bone rummaging."
+
 [angry_barbarian]
 id = 749
 hitpoints = 1900
 att = 150
 str = 140
 def = 100
-style = "crush"
-max_hit_melee = 180
+combat_def = "barbarian_spirit"
 attack_bonus = 9
 hunt_mode = "cowardly"
 respawn_delay = 50
@@ -112,8 +119,7 @@ hitpoints = 1900
 att = 150
 str = 140
 def = 100
-style = "crush"
-max_hit_melee = 180
+combat_def = "barbarian_spirit"
 attack_bonus = 9
 hunt_mode = "cowardly"
 respawn_delay = 50
@@ -126,8 +132,7 @@ hitpoints = 1900
 att = 150
 str = 140
 def = 100
-style = "crush"
-max_hit_melee = 180
+combat_def = "barbarian_spirit"
 attack_bonus = 9
 hunt_mode = "cowardly"
 respawn_delay = 50
@@ -137,3 +142,20 @@ examine = "He looks a tad upset."
 [gargoyle_ancient_cavern]
 id = 9087
 
+[mithril_dragon]
+id = 5363
+hitpoints = 2540
+att = 268
+str = 268
+def = 268
+mage = 168
+range = 168
+height = 40
+combat_def = "mithril_dragon"
+xp_bonus = 7.5
+hunt_mode = "cowardly"
+slayer_xp = 273.0
+categories = ["mithril_dragons"]
+respawn_delay = 30
+drop_table = "mithril_dragon"
+examine = "Experimenting with mithril gone bad!"
