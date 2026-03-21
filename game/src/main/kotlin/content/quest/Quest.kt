@@ -21,6 +21,7 @@ val quests = setOf(
     // members
     "druidic_ritual",
     "plague_city",
+    "lost_city",
     // mini-quests
     "enter_the_abyss",
 )

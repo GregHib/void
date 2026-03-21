@@ -590,21 +590,6 @@ id = 15502
 id = 2399
 examine = "A solid looking door."
 
-[door_49_opened]
-id = 10363
-
-[door_49_closed]
-id = 2406
-examine = "A pretty door."
-
-[magic_door_opened]
-id = 31812
-examine = "A large single door."
-
-[magic_door_closed]
-id = 2407
-examine = "The door is closed."
-
 [large_door_17_opened]
 id = 2417
 examine = "A sturdy wooden door."

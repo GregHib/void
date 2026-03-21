@@ -117,6 +117,14 @@ id = 2140
 id = 9603
 ticks = 4
 
+[teleport_fairy]
+id = 3265
+ticks = 3
+
+[teleport_land_fairy]
+id = 3266
+ticks = 2
+
 [teleport_pharaohs_sceptre]
 id = 9596
 ticks = 3

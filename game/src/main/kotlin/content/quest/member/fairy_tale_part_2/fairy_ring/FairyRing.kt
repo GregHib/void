@@ -23,6 +23,9 @@ class FairyRing(val fairyRing: FairyRingCodes, val variableDefinitions: Variable
 
     init {
         objectOperate("Use", "fairy_ring_*") { (target) ->
+            if (target.id == "fairy_ring_zanaris") {
+                return@objectOperate
+            }
             if (quest("fairy_tale_ii") == "unstarted") {
                 message("You don't have permission to use that fairy ring.")
                 return@objectOperate

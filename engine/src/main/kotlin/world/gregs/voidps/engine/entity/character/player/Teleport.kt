@@ -88,14 +88,14 @@ interface Teleport {
                 }
                 player.steps.clear()
                 if (sound) {
-                    player.sound("teleport")
+                    player.sound("teleport_${type}")
                 }
                 player.gfx("teleport_$type")
                 player.animDelay("teleport_$type")
                 player.tele(tile)
                 player.delay(1)
                 if (sound) {
-                    player.sound("teleport_land")
+                    player.sound("teleport_land_${type}")
                 }
                 player.gfx("teleport_land_$type")
                 player.animDelay("teleport_land_$type")

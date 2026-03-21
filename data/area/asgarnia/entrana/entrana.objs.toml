@@ -9,3 +9,18 @@ examine = "Handy for boarding the ship."
 [entrana_gangplank_enter]
 id = 2414
 examine = "Handy for boarding the ship."
+
+[entrana_ladder]
+id = 2408
+
+[dramen_tree]
+id = 1292
+examine = "An ancient magical tree."
+
+[magic_door_opened]
+id = 31812
+examine = "A large single door."
+
+[magic_door_closed]
+id = 2407
+examine = "The door is closed."
