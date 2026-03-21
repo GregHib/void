@@ -668,7 +668,7 @@ examine = "Controls the dangling claw."
 id = 15165
 examine = "A stand for hats."
 
-[wheat_2]
+[wheat_zanaris]
 clone = "wheat"
 id = 15506
 

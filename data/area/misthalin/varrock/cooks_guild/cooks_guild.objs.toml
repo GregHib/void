@@ -1,0 +1,11 @@
+[flour_bin_cooks_guild]
+id = 24070
+
+[hopper_cooks_guild]
+id = 24071
+
+[hopper_controls_cooks_guild]
+id = 24072
+
+[flour_bin_cooks_guild_empty]
+id = 24069

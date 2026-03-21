@@ -176,3 +176,18 @@ id = 8783
 
 [ladder_mourner_tunnels]
 id = 8785
+
+[flour_bin_ardougne]
+id = 1782
+
+[flour_bin_ardougne]
+id = 1782
+
+[hopper_ardougne]
+id = 2717
+
+[hopper_controls_ardougne]
+id = 2721
+
+[flour_bin_ardougne_empty]
+id = 5792
