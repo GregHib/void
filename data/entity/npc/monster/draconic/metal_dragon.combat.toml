@@ -26,7 +26,8 @@ chance = 30
 range = 8
 anim = "metal_dragon_shoot"
 projectile = "dragon_breath"
-projectile_origin = "centre"
+projectile_origin_x = 2
+projectile_origin_y = 2
 target_hit = { offense = "dragonfire", special = true, max = 500 }
 target_sound = "metal_dragon_fireball"
 
