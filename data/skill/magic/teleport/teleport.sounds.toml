@@ -1,7 +1,34 @@
 [teleport]
 id = 200
 
+[teleport_ectophial]
+id = 200
+
+[teleport_jewellery]
+id = 200
+
+[teleport_skull_sceptre]
+id = 200
+
+[teleport_wilderness]
+id = 200
+
+[teleport_fairy]
+id = 1098
+
 [teleport_land]
+id = 201
+
+[teleport_land_ectophial]
+id = 201
+
+[teleport_land_jewellery]
+id = 201
+
+[teleport_land_skull_sceptre]
+id = 201
+
+[teleport_land_wilderness]
 id = 201
 
 [teleport_tablet]

@@ -4,9 +4,13 @@ hitpoints = 850
 att = 90
 str = 95
 def = 80
-style = "crush"
-max_hit_melee = 70
+combat_def = "ghost"
+max_hit_crush = 70
 hunt_mode = "aggressive"
-categories = ["ghosts"]
-drop_table = "tree_spirit"
+categories = ["ghosts", "undead"]
 examine = "Guardian of the dramen tree."
+
+[shamus]
+id = 654
+wander_range = 4
+examine = "A funny little man who lives in a tree."

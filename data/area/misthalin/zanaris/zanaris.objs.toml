@@ -9,3 +9,55 @@ examine = "I could cook up a storm on this."
 [furnace_zanaris]
 id = 52574
 examine = "Very hot!"
+
+[zanaris_crop_circle]
+id = 24991
+
+[zanaris_al_kharid_fairy_ring]
+id = 12003
+
+[puro_puro_exit]
+id = 25014
+
+[magic_door_zanaris_opened]
+id = 12046
+examine = "A magic door."
+
+[zanaris_magic_door_opened]
+id = 12046
+
+[magic_door_zanaris_closed]
+id = 12045
+examine = "A magic door."
+
+[zanaris_magic_door_closed]
+id = 12047
+examine = "A magic door."
+
+[cow_wheel]
+id = 52530
+examine = "She likes the exercise."
+
+[hopper_controls_zanaris]
+id = 52552
+
+[hopper_zanaris]
+id = 52551
+
+[flour_bin_zanaris]
+id = 52550
+
+[flour_bin_zanaris_empty]
+id = 52548
+
+[zanaris_mill_ladder]
+id = 52546
+
+[zanaris_mill_ladder_down]
+id = 52547
+
+[zanaris_damaged_wall]
+id = 12126
+
+[zanaris_jutting_wall]
+id = 12127

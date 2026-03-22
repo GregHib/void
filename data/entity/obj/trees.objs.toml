@@ -351,11 +351,6 @@ examine = "It's hollow..."
 id = 2310
 examine = "This tree has been cut down."
 
-[tree_13]
-clone = "tree"
-id = 2409
-examine = "A gnarly swamp tree."
-
 [tree_13_stump]
 id = 40355
 examine = "This tree has been cut down."

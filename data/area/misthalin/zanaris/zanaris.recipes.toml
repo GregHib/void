@@ -1,0 +1,5 @@
+[fungicide]
+remove = ["fungicide", "fungicide_spray_0"]
+add = ["fungicide_spray_10"]
+message = "You reload the fungicide pump."
+sound = "zygo_reload"

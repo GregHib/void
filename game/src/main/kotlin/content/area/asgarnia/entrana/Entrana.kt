@@ -44,5 +44,11 @@ class Entrana : Script {
             anim("take")
             message("You steal a candle.", ChatType.Filter)
         }
+
+        objectOperate("Open", "magic_door_closed") {
+            message("You feel the world around you dissolve...")
+            tele(3250, 3772)
+            sound("door_open")
+        }
     }
 }

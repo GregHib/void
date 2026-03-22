@@ -89,9 +89,10 @@ class Ellis : Script {
             player.message("You don't have any ${item.toLowerSpaceCase()} to tan.")
             return
         }
+        val tanner = player["tanner", "ellis"]
         val primary = if (type.endsWith("_1")) "_secondary" else ""
         val leather = EnumDefinitions.string("tanning${primary}_product", item)
-        val cost = EnumDefinitions.int("tanning${primary}_price", item)
+        val cost = EnumDefinitions.int("${tanner}_tanning${primary}_price", item)
         var tanned = 0
         var noHides = false
         for (i in 0 until amount) {

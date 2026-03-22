@@ -76,6 +76,12 @@ id = 1688
 [teleport_jewellery]
 id = 1684
 
+[teleport_fairy]
+id = 2670
+
+[teleport_land_fairy]
+id = 2671
+
 [teleport_pharaohs_sceptre]
 id = 715
 

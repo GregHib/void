@@ -162,10 +162,9 @@ fun String.splitSafe(delimiter: Char): List<String> {
     val parts = mutableListOf<String>()
     val sb = StringBuilder()
     while (i < length) {
-        val c = this[i++]
-        when {
-            c == '"' -> inQuotes = !inQuotes
-            c == delimiter && !inQuotes -> {
+        when (val c = this[i++]) {
+            '"' -> inQuotes = !inQuotes
+            delimiter if !inQuotes -> {
                 parts.add(sb.toString())
                 sb.clear()
             }

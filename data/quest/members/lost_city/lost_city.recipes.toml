@@ -1,0 +1,7 @@
+[dramen_staff]
+skill = "crafting"
+level = 31
+requires = ["knife"]
+remove = ["dramen_branch"]
+add = ["dramen_staff"]
+message = "You carve a branch into a staff."

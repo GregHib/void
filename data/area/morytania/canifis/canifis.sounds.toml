@@ -1,0 +1,11 @@
+[ghoul_attack]
+id = 442
+
+[ghoul_defend]
+id = 444
+
+[ghoul_death]
+id = 443
+
+[lycanthropy]
+id = 1736

@@ -5,3 +5,18 @@ examine = "Noxious gas hazard! Naked flames may cause an explosion!"
 [goblin_cave_entrance]
 id = 5947
 examine = "An entrance to Lumbridge Swamp Caves."
+
+[lost_city_tree]
+clone = "tree"
+id = 2409
+examine = "A gnarly swamp tree."
+
+[tools]
+id = 10375
+
+[zanaris_door_opened]
+id = 10363
+
+[zanaris_door_closed]
+id = 2406
+examine = "A pretty door."

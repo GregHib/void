@@ -1,0 +1,4 @@
+[met_fairy_aeryka]
+id = 3728 # osrs
+format = "boolean"
+persist = true

@@ -6,3 +6,51 @@ id = 1969
 
 [zygomite_defend]
 id = 1970
+
+[adolescent_zygomite_death]
+id = 1961
+
+[adolescent_zygomite_defend]
+id = 1962
+
+[adolescent_zygomite_attack]
+id = 1965
+
+[adolescent_zygomite_impact]
+id = 1966
+
+[zygomite_spray]
+id = 1967
+
+[teleport_puro_puro]
+id = 3727
+
+[fill_grain]
+id = 2576
+
+[zygo_grow]
+id = 1963
+
+[zygo_reload]
+id = 1964
+
+[otherworldly_being_defend]
+id = 665
+
+[otherworldly_being_attack]
+id = 662
+
+[otherworldly_being_death]
+id = 663
+
+[spear_trap]
+id = 1394
+
+[human_hit]
+id = 514
+
+[spear_trap_jump]
+id = 2487
+
+[squeeze_out]
+id = 2490

@@ -4,3 +4,12 @@ option = "Climb-down"
 tile = { x = 4316, y = 5475, level = 1 }
 delta = { x = 5, level = -1 }
 
+[zanaris_mill_ladder]
+option= "Climb-up"
+tile = { x = 2403, y = 4458 }
+to = { x = 2403, y = 4457, level = 1}
+
+[zanaris_mill_ladder_down]
+option= "Climb-down"
+tile = { x = 2403, y = 4458, level = 1 }
+to = { x = 2403, y = 4459 }

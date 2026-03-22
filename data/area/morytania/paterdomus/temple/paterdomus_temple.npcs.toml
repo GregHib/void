@@ -52,7 +52,7 @@ id = 1048
 [mercenary_adventurer_normal]
 id = 7664
 
-[ulizius_paterdomus_temple]
+[ulizius]
 id = 1054
 examine = "A slightly nervous guard."
 

@@ -1,0 +1,6 @@
+[lost_city]
+id = 147
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1, find_staff = 2, tree_spirit = 3, spirit_killed = 4, enter_shed = 5, completed = 6 }

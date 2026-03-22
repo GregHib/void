@@ -19,7 +19,7 @@ class MonasteryMonk : Script {
                     message("You feel a little better.")
                     gfx("heal")
                     areaSound("heal", tile, radius = 10)
-                    levels.restore(Skill.Constitution, levels.getOffset(Skill.Constitution))
+                    levels.restore(Skill.Constitution, -levels.getOffset(Skill.Constitution))
                 }
                 option<Quiz>("Isn't this place built a bit out of the way?") {
                     npc<Neutral>("We like it that way actually! We get disturbed less. We still get rather a large amount of travellers looking for sanctuary and healing here as it is!")
