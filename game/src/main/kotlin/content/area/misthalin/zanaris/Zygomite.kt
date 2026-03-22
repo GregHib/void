@@ -5,11 +5,6 @@ import content.entity.combat.attackers
 import content.entity.combat.hit.damage
 import content.entity.combat.underAttack
 import content.entity.effect.transform
-import content.entity.player.dialogue.Angry
-import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Neutral
-import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import jdk.internal.joptsimple.internal.Messages.message
 import world.gregs.voidps.engine.Script

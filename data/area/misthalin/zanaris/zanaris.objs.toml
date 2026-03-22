@@ -55,3 +55,9 @@ id = 52546
 
 [zanaris_mill_ladder_down]
 id = 52547
+
+[zanaris_damaged_wall]
+id = 12126
+
+[zanaris_jutting_wall]
+id = 12127

@@ -25,3 +25,36 @@ id = 3335
 
 [zygomite_grow]
 id = 2983
+
+[spear_trap_side_caught]
+id = 3279
+
+[spear_trap_caught_right]
+id = 3278
+
+[spear_trap_caught_left]
+id = 3279
+
+[spear_trap_jump_left]
+id = 3275
+
+[spear_trap_jump_right]
+id = 3274
+
+[side_hurt_right]
+id = 2592
+
+[side_hurt_left]
+id = 2593
+
+[spear_trap_release]
+id = 459
+
+[spear_trap_walk_left]
+id = 3277
+
+[spear_trap_walk_right]
+id = 3276
+
+[dive_player]
+id = 1115

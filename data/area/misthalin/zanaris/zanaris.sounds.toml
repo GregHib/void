@@ -42,3 +42,15 @@ id = 662
 
 [otherworldly_being_death]
 id = 663
+
+[spear_trap]
+id = 1394
+
+[human_hit]
+id = 514
+
+[spear_trap_jump]
+id = 2487
+
+[squeeze_out]
+id = 2490
