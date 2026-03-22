@@ -73,7 +73,7 @@ class Windmill : Script {
                 message("You need an empty pot to hold the flour in.")
                 return@objectOperate
             }
-            if (target.id == "flour_bin" && quest("cooks_assistant") == "started" && get("cooks_assistant_talked_to_millie", 0) == 1) {
+            if (target.id == "flour_bin_3" && quest("cooks_assistant") == "started" && get("cooks_assistant_talked_to_millie", 0) == 1) {
                 inventory.remove("empty_pot")
                 if (carriesItem("extra_fine_flour") || bank.contains("extra_fine_flour")) {
                     inventory.add("pot_of_flour")

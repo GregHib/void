@@ -5,8 +5,6 @@ import content.entity.combat.attackers
 import content.entity.combat.hit.damage
 import content.entity.combat.underAttack
 import content.entity.effect.transform
-import content.entity.player.dialogue.type.npc
-import jdk.internal.joptsimple.internal.Messages.message
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
