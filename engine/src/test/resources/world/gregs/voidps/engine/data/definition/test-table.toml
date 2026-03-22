@@ -1,11 +1,33 @@
 [header]
-int_field = "int"
-string_field = "string"
-item_field = "item"
+int_field = "Int"
+string_field = "String"
+item_field = "Item"
+obj_field = "GameObject"
+int_list = "List<Int>"
+str_list = "List<String>"
+item_list = "List<Item>"
+obj_list = "List<GameObject>"
+int_int = "Pair<Int, Int>"
+str_int = "Pair<String, Int>"
+int_str = "Pair<Int, String>"
+int_int_list = "List<Pair<Int, Int>>"
+str_int_list = "List<Pair<String, Int>>"
+int_str_list = "List<Pair<Int, String>>"
 
 [.row]
-int_field = 1
 string_field = "text"
+int_field = 1
 item_field = "item_id"
+obj_field = "obj_id"
+int_list = [1, 2, 3]
+str_list = ["one", "two"]
+item_list = ["item_id"]
+obj_list = ["obj_id"]
+int_int = [1, 2]
+str_int = ["one", 2]
+int_str = [1, "two"]
+int_int_list = [[1, 2], [3, 4]]
+str_int_list = [["one", 2], ["three", 4]]
+int_str_list = [[1, "two"], [3, "four"]]
 
 [.row_two]

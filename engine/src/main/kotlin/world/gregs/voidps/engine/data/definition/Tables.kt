@@ -26,6 +26,14 @@ object Tables {
         return row.data[index] != null
     }
 
+    fun int(path: String): Int = get(path, ColumnType.IntType)
+
+    fun intOrNull(path: String): Int? = getOrNull(path, ColumnType.IntType)
+
+    fun string(path: String): String = get(path, ColumnType.StringType)
+
+    fun stringOrNull(path: String): String? = getOrNull(path, ColumnType.StringType)
+
     fun row(path: String): Array<Any?> = Rows.get(get(path, ColumnType.RowType)).data
 
     fun rowOrNull(path: String): Array<Any?>? {
@@ -37,13 +45,49 @@ object Tables {
 
     fun itemOrNull(path: String): String? = getOrNull(path, ColumnType.ItemType)
 
-    fun int(path: String): Int = get(path, ColumnType.IntType)
+    fun obj(path: String): String = get(path, ColumnType.ObjectType)
 
-    fun intOrNull(path: String): Int? = getOrNull(path, ColumnType.IntType)
+    fun objOrNull(path: String): String? = getOrNull(path, ColumnType.ObjectType)
 
-    fun string(path: String): String = get(path, ColumnType.StringType)
+    fun intList(path: String): List<Int> = get(path, ColumnType.IntList)
 
-    fun stringOrNull(path: String): String? = getOrNull(path, ColumnType.StringType)
+    fun intListOrNull(path: String): List<Int>? = getOrNull(path, ColumnType.IntList)
+
+    fun stringList(path: String): List<String> = get(path, ColumnType.StringList)
+
+    fun stringListOrNull(path: String): List<String>? = getOrNull(path, ColumnType.StringList)
+
+    fun itemList(path: String): List<String> = get(path, ColumnType.ItemList)
+
+    fun itemListOrNull(path: String): List<String>? = getOrNull(path, ColumnType.ItemList)
+
+    fun objList(path: String): List<String> = get(path, ColumnType.ObjectList)
+
+    fun objListOrNull(path: String): List<String>? = getOrNull(path, ColumnType.ObjectList)
+
+    fun intPair(path: String): Pair<Int, Int> = get(path, ColumnType.IntIntPair)
+
+    fun intPairOrNull(path: String): Pair<Int, Int>? = getOrNull(path, ColumnType.IntIntPair)
+
+    fun strIntPair(path: String): Pair<String, Int> = get(path, ColumnType.StrIntPair)
+
+    fun strIntPairOrNull(path: String): Pair<String, Int>? = getOrNull(path, ColumnType.StrIntPair)
+
+    fun intStrPair(path: String): Pair<Int, String> = get(path, ColumnType.IntStrPair)
+
+    fun intStrPairOrNull(path: String): Pair<Int, String>? = getOrNull(path, ColumnType.IntStrPair)
+
+    fun intPairList(path: String): List<Pair<Int, Int>> = get(path, ColumnType.IntIntList)
+
+    fun intPairListOrNull(path: String): List<Pair<Int, Int>>? = getOrNull(path, ColumnType.IntIntList)
+
+    fun strIntList(path: String): List<Pair<String, Int>> = get(path, ColumnType.StrIntList)
+
+    fun strIntListOrNull(path: String): List<Pair<String, Int>>? = getOrNull(path, ColumnType.StrIntList)
+
+    fun intStrList(path: String): List<Pair<Int, String>> = get(path, ColumnType.IntStrList)
+
+    fun intStrListOrNull(path: String): List<Pair<Int, String>>? = getOrNull(path, ColumnType.IntStrList)
 
     private fun <T : Any> get(table: String, column: String, row: Int, type: ColumnType<T, *>): T {
         return definitions[table]?.get(column, row, type) ?: error("Table '$table' not found")
@@ -79,6 +123,7 @@ object Tables {
 
     fun load(paths: List<String>): Tables {
         require(ItemDefinitions.loaded) { "Item definitions must be loaded before tables" }
+        require(ObjectDefinitions.loaded) { "Object definitions must be loaded before tables" }
         timedLoad("table config") {
             val definitions = mutableMapOf<String, TableBuilder>()
             val rows = mutableListOf<RowDefinition>()
@@ -117,7 +162,7 @@ object Tables {
             val index = builder.columns[column]
             requireNotNull(index) { "Column '$column' not found in table '$key' at ${reader.exception()}." }
             val type = builder.types[index]
-            row[index] = type.read(reader)
+            row[index] = type.readEncoded(reader)
         }
         require(!ids.containsKey(rowName)) { "Duplicate row id found '$rowName' at ${reader.exception()}." }
         val id = rows.size

@@ -20,12 +20,12 @@ data class TableDefinition(
 
     fun <T : Any> getOrNull(column: String, row: Int, type: ColumnType<T, *>): T? {
         val columnIndex = columns[column] ?: return type.defaultValue
-        require(types[columnIndex] == type) { "Column $column is not of type $type" }
+        require(types[columnIndex] == type) { "Column $column is not of expected type ${types[columnIndex]::class.simpleName}, found ${type::class.simpleName}" }
         return getOrNull(columnIndex, row, type)
     }
 
     fun <T : Any> getOrNull(column: Int, row: Int, type: ColumnType<T, *>): T? {
-        require(types[column] == type) { "Column $column is not of type $type" }
+        require(types[column] == type) { "Column $column is not of expected type ${types[column]::class.simpleName}, found ${type::class.simpleName}" }
         return value(row, column, type)
     }
 
