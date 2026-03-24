@@ -4,181 +4,41 @@ package world.gregs.voidps.engine.data.definition
 
 import world.gregs.config.ConfigReader
 
-sealed interface ColumnType<Access : Any, Encoded : Any> {
-    val size: Int
-    val default: Encoded
-    fun cast(value: Any): Access?
-    fun default(defaults: Array<Any?>, index: Int): Access?
-    fun encode(value: Access): Encoded
-    fun decode(value: Encoded): Access
-    val defaultValue: Access
-        get() = decode(default)
+sealed interface ColumnType<T : Any> {
+    val default: T
+    fun cast(value: Any?): T? = value as? T
 
-    fun default(index: Int): Any = default
-
-    fun read(row: Array<Any?>, index: Int): Access?
-
-    fun add(row: MutableList<Any?>, reader: ConfigReader)
-
-    fun set(row: Array<Any?>, index: Int, reader: ConfigReader)
-
-    sealed class SingleRowType<T : Any> : ColumnType<T, T> {
-        override val size = 1
-        override fun encode(value: T) = value
-        override fun decode(value: T) = value
-        abstract fun read(reader: ConfigReader): T
-
-        override fun add(row: MutableList<Any?>, reader: ConfigReader) {
-            row.add(encode(read(reader)))
-        }
-
-        override fun set(row: Array<Any?>, index: Int, reader: ConfigReader) {
-            val value = read(reader)
-            println("Set $index $value")
-            row[index] = encode(value)
-        }
-
-        override fun read(row: Array<Any?>, index: Int): T? {
-            return cast(row[index] ?: return null)
-        }
-
-        override fun default(defaults: Array<Any?>, index: Int): T? {
-            val default = defaults.getOrNull(index) ?: return null
-            return cast(default)
-        }
-    }
-
-    sealed class IntEncodedString : ColumnType<String, Int> {
-        override val size = 1
-        override val default = -1
-
-        override fun cast(value: Any): String? = (value as? Int)?.let { decode(it) }
-
-        override fun set(row: Array<Any?>, index: Int, reader: ConfigReader) {
-            row[index] = encode(reader.string())
-        }
-
-        override fun add(row: MutableList<Any?>, reader: ConfigReader) {
-            row.add(encode(reader.string()))
-        }
-
-        override fun read(row: Array<Any?>, index: Int): String? {
-            return cast(row[index] ?: return null)
-        }
-
-        override fun default(defaults: Array<Any?>, index: Int): String? {
-            val default = defaults.getOrNull(index) ?: return null
-            return cast(default)
-        }
-    }
-
-    object BooleanType : SingleRowType<Boolean>() {
+    object ColumnBoolean : ColumnType<Boolean> {
         override val default = false
-        override fun read(reader: ConfigReader) = reader.boolean()
-        override fun cast(value: Any) = value as? Boolean
-        override fun toString() = "BooleanType"
+        override fun toString() = "ColumnBoolean"
     }
 
-    object IntType : SingleRowType<Int>() {
+    object ColumnInt : ColumnType<Int> {
         override val default = 0
-        override fun read(reader: ConfigReader) = reader.int()
-        override fun cast(value: Any) = value as? Int
-        override fun toString() = "IntType"
+        override fun toString() = "ColumnInt"
     }
 
-    object StringType : SingleRowType<String>() {
+    object ColumnString : ColumnType<String> {
         override val default = ""
-        override fun read(reader: ConfigReader) = reader.string()
-        override fun cast(value: Any) = value as? String
-        override fun toString() = "StringType"
+        override fun toString() = "ColumnString"
     }
 
-    object ItemType : IntEncodedString() {
-        override fun encode(value: String): Int = ItemDefinitions.getOrNull(value)?.id ?: error("Unknown item: $value")
-        override fun decode(value: Int): String = ItemDefinitions.getOrNull(value)?.stringId ?: error("Unknown item: $value")
-        override fun toString() = "ItemType"
+    object ColumnEntity : ColumnType<Int> {
+        override val default = -1
+        override fun toString() = "ColumnEntity"
     }
 
-    object ObjectType : IntEncodedString() {
-        override fun encode(value: String): Int = ObjectDefinitions.getOrNull(value)?.id ?: error("Unknown object: $value")
-        override fun decode(value: Int): String = ObjectDefinitions.getOrNull(value)?.stringId ?: error("Unknown object: $value")
-        override fun toString() = "ObjectType"
-    }
-
-    object NPCType : IntEncodedString() {
-        override fun encode(value: String): Int = NPCDefinitions.getOrNull(value)?.id ?: error("Unknown object: $value")
-        override fun decode(value: Int): String = NPCDefinitions.getOrNull(value)?.stringId ?: error("Unknown object: $value")
-        override fun toString() = "NPCType"
-    }
-
-    object RowType : IntEncodedString() {
-        override fun encode(value: String): Int = Rows.ids[value] ?: error("Unknown table row: $value")
-        override fun decode(value: Int): String = Rows.getOrNull(value)?.stringId ?: error("Unknown table row: $value")
-        override fun toString() = "RowType"
-    }
-
-    object IntList : RowList<Int>(IntType)
-    object StringList : RowList<String>(StringType)
-    object ItemList : RowList<String>(ItemType)
-    object NPCList : RowList<String>(NPCType)
-    object ObjectList : RowList<String>(ObjectType)
-    object IntIntPair : RowPair<Int, Int>(IntType, IntType)
-    object IntStringPair : RowPair<Int, String>(IntType, StringType)
-    object StringIntPair : RowPair<String, Int>(StringType, IntType)
-    object IntIntList : RowList<Pair<Int, Int>>(RowPair(IntType, IntType))
-    object IntStringList : RowList<Pair<Int, String>>(RowPair(IntType, StringType))
-    object StringIntList : RowList<Pair<String, Int>>(RowPair(StringType, IntType))
-
-    open class RowPair<A : Any, B : Any>(val one: ColumnType<A, *>, val two: ColumnType<B, *>) : SingleRowType<Pair<A, B>>() {
-        override val default = Pair(one.defaultValue, two.defaultValue)
-        override val size: Int = 2
-
-        override fun default(index: Int): Any {
-            return if (index == 0) one.default(index) else two.default(index + 1)
-        }
-
-        override fun read(reader: ConfigReader): Pair<A, B> {
-            throw NotImplementedError("Shouldn't be called")
-        }
-
-        override fun cast(value: Any): Pair<A, B>? {
-            return value as? Pair<A, B>
-        }
-
-        override fun default(defaults: Array<Any?>, index: Int): Pair<A, B>? {
-            val first = one.default(defaults, index) ?: return null
-            val second = two.default(defaults, index + one.size) ?: return null
-            return Pair(first, second)
-        }
-
-        override fun read(row: Array<Any?>, index: Int): Pair<A, B>? {
-            val first = one.read(row, index) ?: return null
-            val second = two.read(row, index + one.size) ?: return null
-            return Pair(first, second)
-        }
-
-        override fun add(row: MutableList<Any?>, reader: ConfigReader) {
-            one.add(row, reader)
-            two.add(row, reader)
-        }
-
-        override fun set(row: Array<Any?>, index: Int, reader: ConfigReader) {
-            var count = 0
-            while (reader.nextElement()) {
-                when (count) {
-                    0 -> one.set(row, index, reader)
-                    1 -> two.set(row, index + one.size, reader)
-                    else -> throw IllegalArgumentException("Unexpected pair index: $count")
-                }
-                count++
-            }
+    open class ColumnPair<A : Any, B : Any>(val one: ColumnType<A>, val two: ColumnType<B>) : ColumnType<Pair<A, B>> {
+        override val default = Pair(one.default, two.default)
+        override fun toString(): String {
+            return "ColumnPair(one=$one, two=$two)"
         }
 
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
             if (javaClass != other?.javaClass) return false
 
-            other as RowPair<*, *>
+            other as ColumnPair<*, *>
 
             if (one != other.one) return false
             if (two != other.two) return false
@@ -192,70 +52,19 @@ sealed interface ColumnType<Access : Any, Encoded : Any> {
             return result
         }
 
-        override fun toString(): String {
-            return "RowPair($one, $two)"
-        }
     }
 
-    open class RowTriple<A : Any, B : Any, C: Any>(val one: ColumnType<A, *>, val two: ColumnType<B, *>, val three: ColumnType<C, *>) : SingleRowType<Triple<A, B, C>>() {
-        override val default = Triple(one.defaultValue, two.defaultValue, three.defaultValue)
-        override val size: Int = 2
-
-        override fun default(index: Int): Any {
-            return when (index) {
-                0 -> one.default(index)
-                1 -> two.default(index + one.size)
-                2 -> three.default(index + one.size + two.size)
-                else -> throw IllegalArgumentException("Unexpected pair index: $index")
-            }
-        }
-
-        override fun read(reader: ConfigReader): Triple<A, B, C> {
-            throw NotImplementedError("Shouldn't be called")
-        }
-
-        override fun cast(value: Any): Triple<A, B, C>? {
-            return value as? Triple<A, B, C>
-        }
-
-        override fun default(defaults: Array<Any?>, index: Int): Triple<A, B, C>? {
-            val first = one.default(defaults, index) ?: return null
-            val second = two.default(defaults, index + one.size) ?: return null
-            val third = three.default(defaults, index + one.size + two.size) ?: return null
-            return Triple(first, second, third)
-        }
-
-        override fun read(row: Array<Any?>, index: Int): Triple<A, B, C>? {
-            val first = one.read(row, index) ?: return null
-            val second = two.read(row, index + one.size) ?: return null
-            val third = three.read(row, index + one.size + two.size) ?: return null
-            return Triple(first, second, third)
-        }
-
-        override fun add(row: MutableList<Any?>, reader: ConfigReader) {
-            one.add(row, reader)
-            two.add(row, reader)
-            three.add(row, reader)
-        }
-
-        override fun set(row: Array<Any?>, index: Int, reader: ConfigReader) {
-            var index = 0
-            while (reader.nextElement()) {
-                when (index) {
-                    0 -> one.set(row, index, reader)
-                    1 -> two.set(row, index + one.size, reader)
-                    2 -> three.set(row, index + one.size + two.size, reader)
-                    else -> throw IllegalArgumentException("Unexpected pair index: $index")
-                }
-                index++
-            }
+    open class ColumnTriple<A : Any, B : Any, C : Any>(val one: ColumnType<A>, val two: ColumnType<B>, val three: ColumnType<C>) : ColumnType<Triple<A, B, C>> {
+        override val default = Triple(one.default, two.default, three.default)
+        override fun toString(): String {
+            return "ColumnTriple(one=$one, two=$two, three=$three)"
         }
 
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
             if (javaClass != other?.javaClass) return false
 
-            other as RowTriple<*, *, *>
+            other as ColumnTriple<*, *, *>
 
             if (one != other.one) return false
             if (two != other.two) return false
@@ -271,64 +80,19 @@ sealed interface ColumnType<Access : Any, Encoded : Any> {
             return result
         }
 
-        override fun toString(): String {
-            return "RowTriple($one, $two, $three)"
-        }
-
     }
 
-    open class RowList<T : Any>(
-        val type: ColumnType<T, *>,
-        size: Int = 0
-    ) : SingleRowType<List<T>>() {
+    open class ColumnList<T : Any>(val type: ColumnType<T>) : ColumnType<List<T>> {
         override val default = emptyList<T>()
-        override val size: Int = (size * type.size) + 1
-
-        override fun read(reader: ConfigReader): List<T> {
-            throw NotImplementedError("Shouldn't be called")
-        }
-
-        override fun cast(value: Any): List<T>? {
-            return value as? List<T>
-        }
-
-        override fun default(defaults: Array<Any?>, index: Int): List<T>? {
-            return read(defaults, index)
-        }
-
-        override fun read(row: Array<Any?>, index: Int): List<T>? {
-            val size = IntType.read(row, index) ?: return null
-            return List(size) { type.read(row, it + 1)!! }
-        }
-
-        override fun add(row: MutableList<Any?>, reader: ConfigReader) {
-            val index = row.size
-            row.add(0) // Placeholder
-            var count = 0
-            while (reader.nextElement()) {
-                type.add(row, reader)
-                count += type.size
-            }
-            row[index] = count
-        }
-
-        override fun set(row: Array<Any?>, index: Int, reader: ConfigReader) {
-            var acc = 0
-            var count = 0
-            while (reader.nextElement()) {
-                type.set(row, index + 1 + acc, reader)
-                acc += type.size
-                count++
-            }
-            println("Set size $index $count")
-            row[index] = count
+        override fun toString(): String {
+            return "ColumnList(type=$type)"
         }
 
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
             if (javaClass != other?.javaClass) return false
 
-            other as RowList<*>
+            other as ColumnList<*>
 
             return type == other.type
         }
@@ -337,31 +101,108 @@ sealed interface ColumnType<Access : Any, Encoded : Any> {
             return type.hashCode()
         }
 
-        override fun toString(): String {
-            return "RowList($type)"
-        }
+    }
 
+    object BooleanList : ColumnList<Boolean>(ColumnBoolean)
+    object IntList : ColumnList<Int>(ColumnInt)
+    object StringList : ColumnList<String>(ColumnString)
+
+    object IntIntPair : ColumnPair<Int, Int>(ColumnInt, ColumnInt)
+    object IntStringPair : ColumnPair<Int, String>(ColumnInt, ColumnString)
+    object StringIntPair : ColumnPair<String, Int>(ColumnString, ColumnInt)
+
+    object IntIntList : ColumnList<Pair<Int, Int>>(ColumnPair(ColumnInt, ColumnInt))
+    object IntStringList : ColumnList<Pair<Int, String>>(ColumnPair(ColumnInt, ColumnString))
+    object StringIntList : ColumnList<Pair<String, Int>>(ColumnPair(ColumnString, ColumnInt))
+}
+
+sealed interface ColumnReader<T : Any> {
+    val type: ColumnType<T>
+    fun list(): MutableList<T>
+    fun read(reader: ConfigReader): T
+
+    object ReaderBoolean : ColumnReader<Boolean> {
+        override val type = ColumnType.ColumnBoolean
+        override fun list() = mutableListOf<Boolean>()
+        override fun read(reader: ConfigReader) = reader.boolean()
+    }
+
+    object ReaderInt : ColumnReader<Int> {
+        override val type = ColumnType.ColumnInt
+        override fun list() = mutableListOf<Int>()
+        override fun read(reader: ConfigReader) = reader.int()
+    }
+
+    class ReaderEntity(val definitions: Map<String, Int>) : ColumnReader<Int> {
+        override val type = ColumnType.ColumnEntity
+        override fun list() = mutableListOf<Int>()
+        override fun read(reader: ConfigReader) = definitions.getValue(reader.string())
+    }
+
+    object ReaderString : ColumnReader<String> {
+        override val type = ColumnType.ColumnString
+        override fun list() = mutableListOf<String>()
+        override fun read(reader: ConfigReader) = reader.string()
+    }
+
+    data class ReaderPair<A : Any, B : Any>(val one: ColumnReader<A>, val two: ColumnReader<B>) : ColumnReader<Pair<A, B>> {
+        override val type = ColumnType.ColumnPair(one.type, two.type)
+        override fun list() = mutableListOf<Pair<A, B>>()
+        override fun read(reader: ConfigReader): Pair<A, B> {
+            reader.nextElement()
+            val one = one.read(reader)
+            reader.nextElement()
+            val two = two.read(reader)
+            reader.nextElement()
+            return Pair(one, two)
+        }
+    }
+
+    data class ReaderTriple<A : Any, B : Any, C : Any>(val one: ColumnReader<A>, val two: ColumnReader<B>, val three: ColumnReader<C>) : ColumnReader<Triple<A, B, C>> {
+        override val type = ColumnType.ColumnTriple(one.type, two.type, three.type)
+        override fun list() = mutableListOf<Triple<A, B, C>>()
+        override fun read(reader: ConfigReader): Triple<A, B, C> {
+            reader.nextElement()
+            val one = one.read(reader)
+            reader.nextElement()
+            val two = two.read(reader)
+            reader.nextElement()
+            val three = three.read(reader)
+            reader.nextElement()
+            return Triple(one, two, three)
+        }
+    }
+
+    data class ReaderList<T : Any>(val read: ColumnReader<T>) : ColumnReader<List<T>> {
+        override val type = ColumnType.ColumnList(read.type)
+        override fun list() = mutableListOf<List<T>>()
+        override fun read(reader: ConfigReader): List<T> {
+            val list = read.list()
+            while (reader.nextElement()) {
+                list.add(read.read(reader))
+            }
+            return list
+        }
     }
 
     companion object {
-        fun type(name: String): ColumnType<*, *> = when (name) {
-            "Boolean" -> BooleanType
-            "Int" -> IntType
-            "String" -> StringType
-            "NPC" -> NPCType
-            "Item" -> ItemType
-            "GameObject" -> ObjectType
-            "Row" -> RowType
+        fun reader(name: String): ColumnReader<*> = when (name) {
+            "Boolean" -> ReaderBoolean
+            "Int" -> ReaderInt
+            "String" -> ReaderString
+            "NPC" -> ReaderEntity(NPCDefinitions.ids)
+            "Item" -> ReaderEntity(ItemDefinitions.ids)
+            "GameObject" -> ReaderEntity(ObjectDefinitions.ids)
+            "Row" -> ReaderEntity(Rows.ids)
             else -> if (name.startsWith("Pair<")) {
                 val (first, second) = name.substringAfter("<").removeSuffix(">").split(",")
-                RowPair(type(first.trim()), type(second.trim()))
+                ReaderPair(reader(first.trim()), reader(second.trim()))
             } else if (name.startsWith("Triple<")) {
                 val (first, second, third) = name.substringAfter("<").removeSuffix(">").split(",")
-                RowTriple(type(first.trim()), type(second.trim()), type(third.trim()))
-            } else if (name.startsWith("List<") && name.contains(">(")) {
-                val type = name.substringAfter("<").substringBefore(">(")
-                val size = name.substringAfter(">(").removeSuffix(")").trim().toInt()
-                RowList(type(type), size)
+                ReaderTriple(reader(first.trim()), reader(second.trim()), reader(third.trim()))
+            } else if (name.startsWith("List<") && name.endsWith(">")) {
+                val type = name.substringAfter("<").substringBefore(">")
+                ReaderList(reader(type))
             } else {
                 throw IllegalArgumentException("Unsupported type '$name'")
             }

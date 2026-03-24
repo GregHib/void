@@ -5,8 +5,6 @@ import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.config.TableDefinition
-import world.gregs.voidps.engine.data.definition.ColumnType.ObjectType
-import world.gregs.voidps.engine.data.definition.ColumnType.RowList
 import world.gregs.voidps.engine.timedLoad
 
 object Tables {
@@ -32,38 +30,50 @@ object Tables {
         Primitives
      */
 
-    fun bool(path: String): Boolean = get(path, ColumnType.BooleanType)
+    fun bool(path: String): Boolean = get(path, ColumnType.ColumnBoolean)
 
-    fun boolOrNull(path: String): Boolean? = getOrNull(path, ColumnType.BooleanType)
+    fun boolOrNull(path: String): Boolean? = getOrNull(path, ColumnType.ColumnBoolean)
 
-    fun int(path: String): Int = get(path, ColumnType.IntType)
+    fun int(path: String): Int = get(path, ColumnType.ColumnInt)
 
-    fun intOrNull(path: String): Int? = getOrNull(path, ColumnType.IntType)
+    fun intOrNull(path: String): Int? = getOrNull(path, ColumnType.ColumnInt)
 
-    fun string(path: String): String = get(path, ColumnType.StringType)
+    fun string(path: String): String = get(path, ColumnType.ColumnString)
 
-    fun stringOrNull(path: String): String? = getOrNull(path, ColumnType.StringType)
+    fun stringOrNull(path: String): String? = getOrNull(path, ColumnType.ColumnString)
 
     /*
         Entities
      */
 
-    fun item(path: String): String = get(path, ColumnType.ItemType)
+    fun item(path: String): String = ItemDefinitions.get(get(path, ColumnType.ColumnEntity)).stringId
 
-    fun itemOrNull(path: String): String? = getOrNull(path, ColumnType.ItemType)
+    fun itemOrNull(path: String): String? {
+        val id = getOrNull(path, ColumnType.ColumnEntity) ?: return null
+        val item = ItemDefinitions.getOrNull(id) ?: return null
+        return item.stringId
+    }
 
-    fun obj(path: String): String = get(path, ObjectType)
+    fun obj(path: String): String = ObjectDefinitions.get(get(path, ColumnType.ColumnEntity)).stringId
 
-    fun objOrNull(path: String): String? = getOrNull(path, ObjectType)
+    fun objOrNull(path: String): String? {
+        val id = getOrNull(path, ColumnType.ColumnEntity) ?: return null
+        val obj = ObjectDefinitions.getOrNull(id) ?: return null
+        return obj.stringId
+    }
 
-    fun npc(path: String): String = get(path, ColumnType.NPCType)
+    fun npc(path: String): String = NPCDefinitions.get(get(path, ColumnType.ColumnEntity)).stringId
 
-    fun npcOrNull(path: String): String? = getOrNull(path, ColumnType.NPCType)
+    fun npcOrNull(path: String): String? {
+        val id = getOrNull(path, ColumnType.ColumnEntity) ?: return null
+        val npc = NPCDefinitions.getOrNull(id) ?: return null
+        return npc.stringId
+    }
 
-    fun row(path: String): Array<Any?> = Rows.get(get(path, ColumnType.RowType)).data
+    fun row(path: String): Array<Any?> = Rows.get(get(path, ColumnType.ColumnInt)).data
 
     fun rowOrNull(path: String): Array<Any?>? {
-        val id = getOrNull(path, ColumnType.RowType) ?: return null
+        val id = getOrNull(path, ColumnType.ColumnInt) ?: return null
         return Rows.getOrNull(id)?.data
     }
 
@@ -84,18 +94,17 @@ object Tables {
         Entity Lists
      */
 
-    fun itemList(path: String): List<String> = get(path, ColumnType.ItemList)
+    fun itemList(path: String): List<String> = get(path, ColumnType.IntList).map { ItemDefinitions.get(it).stringId }
 
-    fun itemListOrNull(path: String): List<String>? = getOrNull(path, ColumnType.ItemList)
+    fun itemListOrNull(path: String): List<String>? = getOrNull(path, ColumnType.IntList)?.map { ItemDefinitions.get(it).stringId }
 
-    fun objList(path: String): List<String> = get(path, ColumnType.ObjectList)
+    fun objList(path: String): List<String> = get(path, ColumnType.IntList).map { ObjectDefinitions.get(it).stringId }
 
-    fun objListOrNull(path: String): List<String>? = getOrNull(path, ColumnType.ObjectList)
+    fun objListOrNull(path: String): List<String>? = getOrNull(path, ColumnType.IntList)?.map { ObjectDefinitions.get(it).stringId }
 
-    fun npcList(path: String): List<String> = get(path, ColumnType.NPCList)
+    fun npcList(path: String): List<String> = get(path, ColumnType.IntList).map { NPCDefinitions.get(it).stringId }
 
-    fun npcListOrNull(path: String): List<String>? = getOrNull(path, ColumnType.NPCList)
-
+    fun npcListOrNull(path: String): List<String>? = getOrNull(path, ColumnType.IntList)?.map { NPCDefinitions.get(it).stringId }
 
     /*
         Primitive Pairs
@@ -125,22 +134,22 @@ object Tables {
 
     fun intStrListOrNull(path: String): List<Pair<Int, String>>? = getOrNull(path, ColumnType.IntStringList)
 
-    private fun <T : Any> get(table: String, column: String, row: Int, type: ColumnType<T, *>): T {
+    private fun <T : Any> get(table: String, column: String, row: Int, type: ColumnType<T>): T {
         return definitions[table]?.get(column, row, type) ?: error("Table '$table' not found")
     }
 
-    private fun <T : Any> getOrNull(table: String, column: String, row: Int, type: ColumnType<T, *>): T? {
+    private fun <T : Any> getOrNull(table: String, column: String, row: Int, type: ColumnType<T>): T? {
         val definition = definitions[table] ?: error("Table '$table' not found")
         return definition.getOrNull(column, row, type)
     }
 
-    fun <T : Any> get(path: String, type: ColumnType<T, *>): T {
+    fun <T : Any> get(path: String, type: ColumnType<T>): T {
         val (table, row, column) = path.split(".")
         val id = Rows.ids[row] ?: error("Row '$row' not found")
         return get(table, column, id, type)
     }
 
-    private fun <T : Any> getOrNull(path: String, type: ColumnType<T, *>): T? {
+    private fun <T : Any> getOrNull(path: String, type: ColumnType<T>): T? {
         val (table, row, column) = path.split(".")
         val id = Rows.ids[row] ?: error("Row '$row' not found")
         return getOrNull(table, column, id, type)
@@ -193,13 +202,13 @@ object Tables {
     private fun readTableRow(reader: ConfigReader, definitions: MutableMap<String, TableBuilder>, rows: MutableList<RowDefinition>, ids: MutableMap<String, Int>, key: String, rowName: String) {
         val builder = definitions[key]
         requireNotNull(builder) { "Table header not found '$key' at ${reader.exception()}." }
-        val row = arrayOfNulls<Any>(builder.types.sumOf { it.size })
+        val row = arrayOfNulls<Any>(builder.readers.size)
         while (reader.nextPair()) {
-            val column = reader.key()
-            val index = builder.columns[column]
-            requireNotNull(index) { "Column '$column' not found in table '$key' at ${reader.exception()}." }
-            val type = builder.types[index]
-            type.set(row, index, reader)
+            val name = reader.key()
+            val index = builder.columns[name]
+            requireNotNull(index) { "Column '$name' not found in table '$key' at ${reader.exception()}." }
+            val column = builder.readers[index]
+            row[index] = column.read(reader)
         }
         require(!ids.containsKey(rowName)) { "Duplicate row id found '$rowName' at ${reader.exception()}." }
         val id = rows.size
@@ -226,7 +235,7 @@ object Tables {
 
     private class TableBuilder {
         val columns = mutableMapOf<String, Int>()
-        val types = mutableListOf<ColumnType<*, *>>()
+        val readers = mutableListOf<ColumnReader<*>>()
         val defaults = mutableListOf<Any?>()
         val rows = mutableListOf<Int>()
         private var columnIndex = 0
@@ -240,21 +249,17 @@ object Tables {
 
         fun addColumn(name: String, type: String) {
             require(!columns.containsKey(name)) { "Duplicate column name $name in table definition" }
-            columns[name] = columnIndex
-            val columnType = ColumnType.type(type)
-            columnIndex += columnType.size
-            println("Add column $name ${columnIndex} ${columnType.size}")
-            for (i in 0 until columnType.size) {
-                types.add(columnType)
-                defaults.add(columnType.default(i))
-            }
+            columns[name] = columnIndex++
+            val reader = ColumnReader.reader(type)
+            readers.add(reader)
+            defaults.add(reader.type.default)
         }
 
         fun addRow(id: Int) = rows.add(id)
 
         fun build() = TableDefinition(
             columns,
-            types.toTypedArray(),
+            readers.map { it.type }.toTypedArray(),
             defaults.toTypedArray(),
             rows.toIntArray(),
         )

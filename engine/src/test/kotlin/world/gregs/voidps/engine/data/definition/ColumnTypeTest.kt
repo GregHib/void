@@ -1,43 +1,32 @@
 package world.gregs.voidps.engine.data.definition
 
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.config.Config
-import world.gregs.config.ConfigReader
-import kotlin.test.assertContentEquals
+import kotlin.test.assertEquals
 
 class ColumnTypeTest {
 
     @Test
     fun `Pair type`() {
-        val type = ColumnType.RowPair(ColumnType.IntType, ColumnType.IntType)
-
-        val array = arrayOfNulls<Any>(type.size)
+        val type = ColumnReader.ReaderPair(ColumnReader.ReaderInt, ColumnReader.ReaderInt)
         Config.stringReader("[1, 4]") {
-            type.set(array, 0, this)
+            assertEquals(Pair(1, 4), type.read(this))
         }
-        assertContentEquals(arrayOf(1, 4), array)
     }
 
     @Test
     fun `List type`() {
-        val type = ColumnType.RowList(ColumnType.IntType)
-
-        val array = arrayOfNulls<Any>(4)
+        val type = ColumnReader.ReaderList(ColumnReader.ReaderInt)
         Config.stringReader("[1, 2, 3]") {
-            type.set(array, 0, this)
+            assertEquals(listOf(1, 2, 3), type.read(this))
         }
-        assertContentEquals(arrayOf(3, 1, 2, 3), array)
     }
 
     @Test
-    fun `Triple list type`() {
-        val type = ColumnType.RowList(ColumnType.RowPair(ColumnType.StringType, ColumnType.IntType))
-
-        val array = arrayOfNulls<Any>(3)
+    fun `Pair list type`() {
+        val type = ColumnReader.ReaderList(ColumnReader.ReaderPair(ColumnReader.ReaderString, ColumnReader.ReaderInt))
         Config.stringReader("[[\"test\", 3]]") {
-            type.set(array, 0, this)
+            assertEquals(listOf(Pair("test", 3)), type.read(this))
         }
-        assertContentEquals(arrayOf(1, "test", 3), array)
     }
 }

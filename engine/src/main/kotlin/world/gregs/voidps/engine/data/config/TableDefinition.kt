@@ -9,38 +9,37 @@ import world.gregs.voidps.engine.data.definition.Rows
  */
 data class TableDefinition(
     val columns: Map<String, Int>,
-    val types: Array<ColumnType<*, *>>,
+    val types: Array<ColumnType<*>>,
     val default: Array<Any?>,
     val rows: IntArray,
 ) {
 
-    fun <T : Any> get(column: String, row: Int, type: ColumnType<T, *>): T = getOrNull(column, row, type) ?: type.defaultValue
+    fun <T : Any> get(column: String, row: Int, type: ColumnType<T>): T = getOrNull(column, row, type) ?: type.default
 
-    fun <T : Any> get(column: Int, row: Int, type: ColumnType<T, *>): T = getOrNull(column, row, type) ?: type.defaultValue
+    fun <T : Any> get(column: Int, row: Int, type: ColumnType<T>): T = getOrNull(column, row, type) ?: type.default
 
-    fun <T : Any> getOrNull(column: String, row: Int, type: ColumnType<T, *>): T? {
-        val columnIndex = columns[column] ?: return type.defaultValue
-        require(types[columnIndex] == type) { "Column $column is not of expected type ${types[columnIndex]}, found $type" }
+    fun <T : Any> getOrNull(column: String, row: Int, type: ColumnType<T>): T? {
+        val columnIndex = columns[column] ?: return null
         return getOrNull(columnIndex, row, type)
     }
 
-    fun <T : Any> getOrNull(column: Int, row: Int, type: ColumnType<T, *>): T? {
-        require(types[column] == type) { "Column $column is not of expected type ${types[column]}, found $type" }
+    fun <T : Any> getOrNull(column: Int, row: Int, type: ColumnType<T>): T? {
         return value(row, column, type)
     }
 
-    private fun <T : Any> value(row: Int, column: Int, type: ColumnType<T, *>): T? {
-        val id = rows.getOrNull(row) ?: return type.default(default, column)
+    private fun <T : Any> value(row: Int, column: Int, type: ColumnType<T>): T? {
+        val id = rows.getOrNull(row) ?: return type.default
         val rows = Rows.getOrNull(id)?.data ?: return null
-        return type.read(rows, column)
+        val value = rows[column]
+        return type.cast(value)
     }
 
-    fun <T : Any> findOrNull(searchColumn: String, value: Any, column: String, type: ColumnType<T, *>): T? {
+    fun <T : Any> findOrNull(searchColumn: String, value: Any, column: String, type: ColumnType<T>): T? {
         val searchIndex = columns[searchColumn] ?: return null
         return findOrNull(searchIndex, value, column, type)
     }
 
-    fun <T : Any> findOrNull(searchColumn: Int, value: Any, column: String, type: ColumnType<T, *>): T? {
+    fun <T : Any> findOrNull(searchColumn: Int, value: Any, column: String, type: ColumnType<T>): T? {
         val columnIndex = columns[column] ?: return null
         val row = findOrNull(searchColumn, value) ?: return null
         return value(row, columnIndex, type)
