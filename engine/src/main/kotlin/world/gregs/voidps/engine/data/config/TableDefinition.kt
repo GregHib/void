@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.data.definition.Rows
 data class TableDefinition(
     val columns: Map<String, Int>,
     val types: Array<ColumnType<*, *>>,
-    val default: Array<Any>,
+    val default: Array<Any?>,
     val rows: IntArray,
 ) {
 
@@ -20,23 +20,19 @@ data class TableDefinition(
 
     fun <T : Any> getOrNull(column: String, row: Int, type: ColumnType<T, *>): T? {
         val columnIndex = columns[column] ?: return type.defaultValue
-        require(types[columnIndex] == type) { "Column $column is not of expected type ${types[columnIndex]::class.simpleName}, found ${type::class.simpleName}" }
+        require(types[columnIndex] == type) { "Column $column is not of expected type ${types[columnIndex]}, found $type" }
         return getOrNull(columnIndex, row, type)
     }
 
     fun <T : Any> getOrNull(column: Int, row: Int, type: ColumnType<T, *>): T? {
-        require(types[column] == type) { "Column $column is not of expected type ${types[column]::class.simpleName}, found ${type::class.simpleName}" }
+        require(types[column] == type) { "Column $column is not of expected type ${types[column]}, found $type" }
         return value(row, column, type)
     }
 
     private fun <T : Any> value(row: Int, column: Int, type: ColumnType<T, *>): T? {
-        val id = rows.getOrNull(row)
-        if (id == null) {
-            val default = default.getOrNull(column) ?: return null
-            return type.cast(default)
-        }
-        val value = Rows.getOrNull(id)?.data[column] ?: return null
-        return type.cast(value)
+        val id = rows.getOrNull(row) ?: return type.default(default, column)
+        val rows = Rows.getOrNull(id)?.data ?: return null
+        return type.read(rows, column)
     }
 
     fun <T : Any> findOrNull(searchColumn: String, value: Any, column: String, type: ColumnType<T, *>): T? {

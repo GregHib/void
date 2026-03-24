@@ -4,8 +4,14 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertNotNull
 import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.data.config.TableDefinition
+import world.gregs.voidps.engine.data.definition.ColumnType.IntType
+import world.gregs.voidps.engine.data.definition.ColumnType.ObjectType
+import world.gregs.voidps.engine.data.definition.ColumnType.RowList
+import world.gregs.voidps.engine.data.definition.ColumnType.RowPair
+import world.gregs.voidps.engine.data.definition.ColumnType.StringType
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -22,6 +28,7 @@ class TablesTest {
     fun `Test loading a table`() {
         ItemDefinitions.set(arrayOf(ItemDefinition(id = 0, stringId = "item_id")), mapOf("item_id" to 0))
         ObjectDefinitions.set(arrayOf(ObjectDefinition(id = 0, stringId = "obj_id")), mapOf("obj_id" to 0))
+        NPCDefinitions.set(arrayOf(NPCDefinition(id = 0, stringId = "npc_id")), mapOf("npc_id" to 0))
         val uri = TablesTest::class.java.getResource("test-table.toml")!!
         Tables.load(listOf(uri.path))
 
@@ -31,20 +38,22 @@ class TablesTest {
         assertNotNull(definition)
         assertColumns(
             listOf(
-                Field("int_field", ColumnType.IntType, 0),
-                Field("string_field", ColumnType.StringType, ""),
-                Field("item_field", ColumnType.ItemType, -1),
-                Field("obj_field", ColumnType.ObjectType, -1),
-                Field("int_list", ColumnType.IntList, emptyList<Int>()),
-                Field("str_list", ColumnType.StringList, emptyList<String>()),
-                Field("item_list", ColumnType.ItemList, IntArray(0)),
-                Field("obj_list", ColumnType.ObjectList, IntArray(0)),
-                Field("int_int", ColumnType.IntIntPair, Pair(0, 0)),
-                Field("str_int", ColumnType.StrIntPair, Pair("", 0)),
-                Field("int_str", ColumnType.IntStrPair, Pair(0, "")),
-                Field("int_int_list", ColumnType.IntIntList, emptyList<Pair<Int, Int>>()),
-                Field("str_int_list", ColumnType.StrIntList, emptyList<Pair<String, Int>>()),
-                Field("int_str_list", ColumnType.IntStrList, emptyList<Pair<Int, String>>()),
+                Field("int_field", ColumnType.IntType, 0), // int_field
+                Field("string_field", StringType, ""), // string_field
+                Field("item_field", ColumnType.ItemType, -1), // item_field
+                Field("obj_field", ColumnType.ObjectType, -1), // obj_field
+                Field("npc_field", ColumnType.NPCType, -1), // npc_field
+                Field("int_list", RowList(IntType, 3), emptyList<Int>()), // int_list
+                Field("str_list", RowList(StringType, 2), emptyList<String>()), // str_list
+                Field("item_list", RowList(ColumnType.ItemType, 1), emptyList<Int>()), // item_list
+                Field("obj_list", RowList(ObjectType, 1), emptyList<Int>()), // obj_list
+                Field("npc_list", RowList(ColumnType.NPCType, 1), emptyList<Int>()), // npc_list
+                Field("int_int", RowPair(IntType, IntType), 0), // int_int
+                Field("str_int", RowPair(StringType, IntType), ""), // str_int
+                Field("int_str", RowPair(IntType, StringType), 0), // int_str
+                Field("int_int_list", ColumnType.RowList(RowPair(IntType, IntType), 2), emptyList<Pair<Int, Int>>()), // int_int_list
+                Field("str_int_list", ColumnType.RowList(RowPair(StringType, IntType), 2), emptyList<Pair<String, Int>>()), // str_int_list
+                Field("int_str_list", ColumnType.RowList(RowPair(IntType, StringType), 2), emptyList<Pair<Int, String>>()), // int_str_list
             ), definition
         )
         assertContentEquals(intArrayOf(0, 1), definition.rows)
@@ -57,19 +66,25 @@ class TablesTest {
             "text",
             0,
             0,
-            listOf(1, 2, 3),
-            listOf("one", "two"),
-            intArrayOf(0),
-            intArrayOf(0),
-            Pair(1, 2),
-            Pair("one", 2),
-            Pair(1, "two"),
-            listOf(Pair(1, 2), Pair(3, 4)),
-            listOf(Pair("one", 2), Pair("three", 4)),
-            listOf(Pair(1, "two"), Pair(3, "four")),
+            0,
+            3, 1, 2, 3, // int list
+            2, "one", "two", // str list
+            1, 0, // item list
+            1, 0, // obj list
+            1, 0, // npc list
+            1, 2, // int pair
+            "one", 2, // str/int pair
+            1, "two", // int/str pair
+            2, 1, 2, 3, 4, // int pair list
+            2, "one", 2, "three", 4, // str/int list
+            2, 1, "two", 3, "four", // int/str list
         )
-        for (i in row.data.indices) {
-            assertAnyEquals(expected[i], row.data[i]!!, i)
+        println(row.data.toList())
+        for (i in expected.indices) {
+            val expect = expected.getOrNull(i) ?: break
+            val actual = row.data[i] ?: break
+            println("${expect} $actual")
+            assertAnyEquals(expect, actual, "${expected[i]} index ${i}")
         }
 
         assertEquals(1, Tables.int("header.row.int_field"))
@@ -104,18 +119,21 @@ class TablesTest {
     }
 
     private fun assertColumns(expected: List<Field>, definition: TableDefinition) {
-        for (i in expected.indices) {
-            assertAnyEquals(expected[i].default, definition.default[i], i)
-            assertAnyEquals(expected[i].type, definition.types[i], i)
+        var i = 0
+        println("Check ${definition.types.toList()}")
+        for (field in expected) {
+            assertAnyEquals(field.default, definition.default[i], "${field} index $i")
+            assertAnyEquals(field.type, definition.types[i], "${field} index $i")
+            assertEquals(i, definition.columns[field.name])
+            i += field.type.size
         }
-        assertEquals(expected.mapIndexed { index, it -> it.name to index }.toMap(), definition.columns)
     }
 
-    private fun assertAnyEquals(expect: Any, actual: Any, index: Int) {
+    private fun assertAnyEquals(expect: Any?, actual: Any?, index: String) {
         if (expect is IntArray && actual is IntArray) {
             assertContentEquals(expect, actual)
         } else {
-            assertEquals(expect, actual, "Failed at index $index")
+            assertEquals(expect, actual, "Failed at $index")
         }
     }
 }
