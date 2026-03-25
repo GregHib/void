@@ -1,0 +1,33 @@
+[picking]
+item = "item"
+message = "string"
+chance = "int"
+chance_default = 1
+respawn = "int"
+respawn_default = -1
+
+[.cabbages]
+item = "cabbage"
+respawn = 45
+message = "You pick a cabbage."
+
+[.potatoes]
+item = "raw_potato"
+respawn = 30
+message = "You pick a potato."
+
+[.wheat]
+item = "grain"
+respawn = 30
+message = "You pick some wheat."
+
+[.flax]
+item = "flax"
+chance = 5
+respawn = 5
+message = "You pick some flax."
+
+[.onions]
+item = "onion"
+respawn = 30
+message = "You pick an onion."

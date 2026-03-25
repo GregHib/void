@@ -154,13 +154,13 @@ object Tables {
 
     fun <T : Any> get(path: String, type: ColumnType<T>): T {
         val (table, row, column) = path.split(".")
-        val id = Rows.ids[row] ?: error("Row '$row' not found")
+        val id = Rows.ids["${table}.${row}"] ?: error("Row '$row' not found for $path")
         return get(table, column, id, type)
     }
 
     private fun <T : Any> getOrNull(path: String, type: ColumnType<T>): T? {
         val (table, row, column) = path.split(".")
-        val id = Rows.ids[row] ?: error("Row '$row' not found")
+        val id = Rows.ids["${table}.${row}"] ?: error("Row '$row' not found for $path")
         return getOrNull(table, column, id, type)
     }
 
@@ -222,7 +222,7 @@ object Tables {
         require(!ids.containsKey(rowName)) { "Duplicate row id found '$rowName' at ${reader.exception()}." }
         val id = rows.size
         ids[rowName] = id
-        rows.add(RowDefinition(row, rowName))
+        rows.add(RowDefinition(id, row, rowName))
         builder.addRow(id)
     }
 

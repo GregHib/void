@@ -364,6 +364,7 @@ abstract class WorldTest : KoinTest {
             npcIds
             structIds
             objectIds
+            tableDefinitions
             EnumDefinitions.init(EnumDecoder().load(cache)).load(configFiles.list(Settings["definitions.enums"]))
             EnumDefinitions.definitions
         }

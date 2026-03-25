@@ -26,9 +26,18 @@ data class TableDefinition(
 
     fun stringOrNull(column: String, row: Int): String? = getOrNull(column, row, ColumnType.ColumnString)
 
-    fun <T : Any> get(column: String, row: Int, type: ColumnType<T>): T = getOrNull(column, row, type) ?: type.default
+    fun <T : Any> get(column: String, row: Int, type: ColumnType<T>): T {
+        val columnIndex = columns[column] ?: throw IllegalArgumentException("Column $column not found")
+        return get(row, columnIndex, type)
+    }
 
-    fun <T : Any> get(column: Int, row: Int, type: ColumnType<T>): T = getOrNull(column, row, type) ?: type.default
+    fun <T : Any> get(column: Int, row: Int, type: ColumnType<T>): T {
+        val default = type.cast(default[column]) ?: type.default
+        val id = rows.getOrNull(row) ?: return default
+        val rows = Rows.getOrNull(id)?.data ?: return default
+        val value = rows[column]
+        return type.cast(value) ?: default
+    }
 
     fun <T : Any> getOrNull(column: String, row: Int, type: ColumnType<T>): T? {
         val columnIndex = columns[column] ?: return null
@@ -36,11 +45,7 @@ data class TableDefinition(
     }
 
     fun <T : Any> getOrNull(column: Int, row: Int, type: ColumnType<T>): T? {
-        return value(row, column, type)
-    }
-
-    private fun <T : Any> value(row: Int, column: Int, type: ColumnType<T>): T? {
-        val id = rows.getOrNull(row) ?: return type.default
+        val id = rows.getOrNull(row) ?: return null
         val rows = Rows.getOrNull(id)?.data ?: return null
         val value = rows[column]
         return type.cast(value)
@@ -54,7 +59,7 @@ data class TableDefinition(
     fun <T : Any> findOrNull(searchColumn: Int, value: Any, column: String, type: ColumnType<T>): T? {
         val columnIndex = columns[column] ?: return null
         val row = findOrNull(searchColumn, value) ?: return null
-        return value(row, columnIndex, type)
+        return getOrNull(row, columnIndex, type)
     }
 
     fun findOrNull(column: Int, value: Any): Int? {

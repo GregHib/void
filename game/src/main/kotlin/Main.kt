@@ -130,6 +130,7 @@ object Main {
                 get<NPCDefinitions>()
                 get<StructDefinitions>()
                 get<ObjectDefinitions>()
+                get<Tables>()
                 EnumDefinitions.init(EnumDecoder().load(cache)).load(files.list(Settings["definitions.enums"]))
             }
             single(createdAtStart = true) {
