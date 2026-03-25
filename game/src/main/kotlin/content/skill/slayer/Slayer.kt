@@ -3,12 +3,15 @@ package content.skill.slayer
 import content.quest.questCompleted
 import world.gregs.voidps.engine.data.config.TableDefinition
 import world.gregs.voidps.engine.data.definition.ColumnType
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.type.random
 
 // shade, zombie, skeleton, ghost, zogre, ankou
@@ -99,18 +102,20 @@ private fun rollTask(player: Player, master: String): Pair<String, Int>? {
 }
 
 private fun hasRequirements(player: Player, table: TableDefinition, row: Int): Boolean {
-//    val slayerLevel = NPCDefinitions.get(index)["slayer_level", 1] // FIXME
-//    if (!player.has(Skill.Slayer, slayerLevel)) {
-//        return false
-//    }
-    val combatLevel = table.int("combat_level", row)
+    val category = Rows.get(row).stringId
+    val npc = Tables.int("slayer_tasks.${category}.npc")
+    val slayerLevel = NPCDefinitions.get(npc)["slayer_level", 1]
+    if (!player.has(Skill.Slayer, slayerLevel)) {
+        return false
+    }
+    val combatLevel = Tables.int("slayer_tasks.${category}.combat_level")
     if (player.combatLevel < combatLevel) {
         return false
     }
-    val variable = table.stringOrNull("variable", row)
+    val variable = Tables.stringOrNull("slayer_tasks.${category}.variable")
     if (variable != null && !player.contains(variable)) {
         return false
     }
-    val quest = table.stringOrNull("quest", row) ?: return true
+    val quest = table.stringOrNull("slayer_tasks.${category}.quest", row) ?: return true
     return player.questCompleted(quest)
 }
