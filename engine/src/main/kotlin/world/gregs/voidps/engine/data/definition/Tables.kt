@@ -184,7 +184,7 @@ object Tables {
             val rows = mutableListOf<RowDefinition>()
             val ids = mutableMapOf<String, Int>()
             for (path in paths) {
-                Config.fileReader(path, 256) {
+                Config.fileReader(path, 512) {
                     try {
                         while (nextSection()) {
                             val stringId = section()
