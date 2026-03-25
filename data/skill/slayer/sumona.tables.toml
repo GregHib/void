@@ -63,6 +63,11 @@ amount = [150, 250]
 weight = 4
 tip = "Crocodiles are large reptiles that live near water. You'll want to have a stabbing weapon handy for puncturing their thick, scaly hides. These are desert beasts, so seek them there."
 
+[.desert_strykewyrm]
+amount = [90, 110]
+weight = 14
+tip = "These things are the curse of the desert! Head north to find them on the hills above the Shantay Pass. Watch out for their vicious ranged attacks."
+
 [.dust_devils]
 amount = [120, 185]
 weight = 15
@@ -102,6 +107,11 @@ tip = "Hellhounds are a cross between dogs and demons, and are dangerous with a 
 amount = [30, 60]
 weight = 7
 tip = "Iron dragons are some of the weaker metallic dragons, but their iron scales are far thicker than normal iron armour. Brimhaven Dungeon has a few of these creatures in residence; I think they should be exterminated because they bore me."
+
+[.jungle_strykewyrm]
+amount = [90, 120]
+weight = 12
+tip = "These tricky creatures burrow beneath the jungle north west of Oo'glog. Be careful, as these poisonous jungle wyrms like to use magical attacks from a distance, while they should be weak to stab attacks."
 
 [.kalphites]
 amount = [120, 185]

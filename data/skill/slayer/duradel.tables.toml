@@ -43,6 +43,11 @@ amount = [130, 200]
 weight = 15
 tip = "Dark beasts are large, dog-like predators with massively muscled bodies that protect them from crushing weapons. You'll find them near the Temple of Light, attracted to the power of the Death Altar."
 
+[.desert_strykewyrm]
+amount = [90, 140]
+weight = 11
+tip = "Head east of Al Kharid to find them on the hills above the Shantay Pass. Watch out for their vicious ranged attacks."
+
 [.dust_devils]
 amount = [130, 200]
 weight = 10
@@ -78,10 +83,21 @@ amount = [130, 200]
 weight = 9
 tip = "Hellhounds are a cross between dogs and demons; they are also dangerous with a fierce bite. Make them know fear."
 
+[.ice_strykewyrm]
+amount = [100, 200]
+weight = 8
+# TODO req fire cape or unlock
+tip = "The strongest and coldest of their kind, they are found beneath the Fremennik mountains. Be careful of all their attacks; but, as they are beings of ice, I've found my fire spells inflict far more damage against them."
+
 [.iron_dragons]
 amount = [40, 80]
 weight = 9
 tip = "Iron dragons are some of the weaker metallic dragons; their iron scales are far thicker than normal iron armour. Their fiery breath and sharp claws can be negated by a number of means. If you haven't visited Brimhaven Dungeon's depths then I advise you do - if only for the interesting creatures like these to kill there."
+
+[.jungle_strykewyrm]
+amount = [90, 120]
+weight = 10
+tip = "These tricky creatures burrow beneath the jungle north west of Oo'glog. Be careful, as these poisonous jungle wyrms like to use magical attacks from a distance, while they should be weak to stab attacks."
 
 [.kalphites]
 amount = [130, 200]

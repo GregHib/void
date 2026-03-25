@@ -48,6 +48,11 @@ amount = [150, 250]
 weight = 12
 tip = "The last Dark beast I killed I found a crossbow with bolts took them down effectively.<br>Dark beasts are large, dog-like predators with massively muscled bodies that protect them from crushing weapons. I've managed to trap a few in the dungeon I'm guarding."
 
+[.desert_strykewyrm]
+amount = [90, 160]
+weight = 7
+tip = "You'll find these East of Al Kharid, atop the mountain. Watch out for their vicious ranged attacks!"
+
 [.dust_devils]
 amount = [150, 250]
 weight = 10
@@ -83,10 +88,20 @@ amount = [130, 220]
 weight = 10
 tip = "Hellhounds are a cross between dogs and demons; they are also dangerous with a fierce bite. I've managed to trap a few in the dungeon I'm guarding."
 
+[.ice_strykewyrm]
+amount = [100, 200]
+weight = 9
+tip = "The coldest of their kind, they are found beneath the Fremennik mountains. As they are beings of ice, I've found that fire spells inflict far more damage against them."
+
 [.iron_dragons]
 amount = [60, 110]
 weight = 9
 tip = "Iron dragons are some of the weaker metallic dragons, with iron scales that are far thicker than normal iron armour. Their fiery breath and sharp claws can be negated by a number of means. I've managed to trap a few in the dungeon I'm guarding."
+
+[.jungle_strykewyrm]
+amount = [90, 130]
+weight = 8
+tip = "These tricky creatures burrow beneath the jungle north west of Oo'glog. Be careful, as these poisonous jungle wyrms like to use magical attacks from a distance, while they should be weak to stab attacks."
 
 [.kalphites]
 amount = [170, 250]
@@ -142,6 +157,11 @@ tip = "Suqahs can only be found on the mystical Lunar Isle. They use melee and m
 amount = [80, 110]
 weight = 7
 tip = "The TzHaar contains some mighty warriors, prove yourself against them. You'll find them deep within the Karamja volcano."
+
+#[.tormented_demon]
+#amount = [40, 60]
+#weight = 8
+#tip = "Tormented demons are powerful creatures that use magic, ranged and melee attacks. They also have the ability to shield themselves. You can find them below the Tears of Guthix cave."
 
 [.waterfiends]
 amount = [170, 250]

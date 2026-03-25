@@ -103,6 +103,11 @@ amount = [70, 130]
 weight = 10
 tip = "Jungle horrors can be found all over Mos Le'Harmless. They are strong and aggressive, but you should be heroic enough to make short work of them."
 
+[.jungle_strykewyrm]
+amount = [80, 110]
+weight = 12
+tip = "These tricky creatures burrow beneath the jungle north west of Oo'glog. Be careful, as these poisonous jungle wyrms like to use magical attacks from a distance, while they should be weak to stab attacks."
+
 [.kalphites]
 amount = [70, 130]
 weight = 11
