@@ -6,107 +6,107 @@ tip = "string"
 [.aberrant_spectre]
 amount = [150, 250]
 weight = 10
-tip = "Aberrant Spectres are fetid, vile ghosts. The very smell of them will paralyse and harm you. A nosepeg will help ignore their stink."
+tip = "Aberrant spectres are fetid, vile ghosts. The very smell of them will paralyse and harm you. A nosepeg will help ignore their stink when fighting them. They can be found in the Slayer Tower near Canifis and I have heard rumours that they also live beneath Pollnivneach in the desert."
 
 [.abyssal_demon]
 amount = [150, 250]
 weight = 10
-tip = "Abyssal Demons are nasty creatures to fight. They aren't really part of this realm, and are able to move very quickly to trap their prey."
+tip = "Abyssal demons are nasty creatures to deal with. They aren't really part of this realm and are able to move very quickly to trap their prey. I've managed to trap a few in the dungeon I'm guarding."
 
 [.aquanites]
 amount = [160, 200]
 weight = 10
-tip = "Aquanites rely on their lures for both offensive and defensive purposes. Whilst their hides are resistant to slashing attacks, a well timed cut is capable of severing the lure."
+tip = "Aquanites are amphibious creatures that attract prey using the glowing lures on their heads. They attack stronger opponents from a distance with water magic, and dislike those who pray against it. They dwell in the Fremennik Slayer Dungeon, in a chamber past the kurasks."
 
 [.aviansies]
 amount = [125, 150]
 weight = 9
-tip = "Aviansies are bird-like creatures found in the icy dungeons of the north. Melee weapons can't reach them, so use Magic or Ranged attacks."
+tip = "Aviansies can be found in the Godwars Dungeon north of Trollheim. As they are flying, you'll find melee attacks are not going to cut it."
 
 [.bloodvelds]
 amount = [180, 250]
 weight = 10
-tip = "Bloodveld are strange demonic creatures, their long rasping tongue has magical properties so it pierces straight through physical defences."
+tip = "Bloodvelds are strange, demonic creatures. They use their long, rasping tongue to feed on just about anything they can find. Remember that their tongues are magical in nature, but, more so, they deserve to die."
 
 [.black_demons]
 amount = [190, 250]
 weight = 10
-tip = "Powerful weapons known as demonbane weapons can be used to quickly defeat even powerful demons like the Black Demon with greater ease."
+tip = "Black demons are weak to ranged attacks. They're still the strongest demon and very dangerous, however. Seek them out in the Edgeville or Brimhaven dungeons."
 
 [.black_dragons]
 amount = [40, 90]
 weight = 5
-tip = "Black Dragons are the strongest dragons and very fierce, watch out for their fiery breath."
+tip = "Black dragons are among the strongest dragons and are very fierce. Watch out for their fiery breath. I am sure you will have seen them in your travels and have honed your techniques on lesser dragons."
 
 [.blue_dragons]
 amount = [120, 200]
 weight = 7
-tip = "Like all dragons, Blue Dragons have thick scales and a powerful fiery breath. Stabbing weapons and heavy bolts are best suited to piercing their defences."
+tip = "Blue dragons aren't as strong as other dragons, but they're still very powerful. I've managed to trap a few in the dungeon I'm guarding."
 
 [.dark_beasts]
 amount = [150, 250]
 weight = 12
-tip = "Dark Beasts are large, dog-like predators. Their massively muscled bodies protect them from crushing weapons."
+tip = "The last Dark beast I killed I found a crossbow with bolts took them down effectively.<br>Dark beasts are large, dog-like predators with massively muscled bodies that protect them from crushing weapons. I've managed to trap a few in the dungeon I'm guarding."
 
 [.dust_devils]
 amount = [150, 250]
 weight = 10
-tip = "Dust Devils use clouds of dust, sand, ash, and whatever else they can inhale to blind and disorientate their victims. Make sure to wear a facemask when fighting them."
+tip = "Dust devils use clouds of dust, sand, ash and whatever else they can inhale to blind and disorientate their victims. Good luck on obtaining a dragon chainmail from their dusty remains."
 
 [.dagannoth]
 amount = [170, 240]
 weight = 10
-tip = "Dagannoth are large sea dwelling creatures which are very aggressive. You'll often find them in caves near sea water."
+tip = "Dagannoth are large, sea-dwelling creatures that are very aggressive. You'll often find them in caves near sea water. There is no joy so great as to cleanse these from the face of Gielinor."
 
 #[.elves]
 #amount = [120, 150]
 #weight = 12
-#tip = "Elves are quick, agile, and vicious fighters which often favour bows and polearms."
+#tip = "Elves are skilled fighters across all disciplines from whom you could learn a lot. I recommend challenging only one type of elf combatant at a time."
 
 [.fire_giant]
 amount = [170, 250]
 weight = 10
-tip = "Like other giants, Fire Giants have little to no magical ability, and they're particularly weak to water spells."
+tip = "Like other giants, fire giants often wield large weapons. Learn to recognise what kind of weapon it is and act accordingly. Remember the days when these were a challenge to you and laugh."
 
 [.gargoyles]
 amount = [150, 250]
 weight = 12
-tip = "Gargoyles are winged creatures of stone. You'll need to fight them to near death before breaking them apart with a Rock Hammer."
+tip = "Gargoyles are winged creatures of stone. You'll need to fight them until they are close to death before breaking them apart with a rock hammer. I've managed to trap a few in the dungeon I'm guarding."
 
 [.greater_demons]
 amount = [150, 250]
 weight = 11
-tip = "Demons are particularly weak to water spells. Though Greater Demons are not the strongest type of demon they are still dangerous."
+tip = "Greater demons are weak to ranged attacks. Though not the strongest of demons, they are still dangerous. I've managed to trap a few in the dungeon I'm guarding."
 
 [.hellhounds]
 amount = [130, 220]
 weight = 10
-tip = "Hellhounds are a cross between Dogs and Demons. They are dangerous with a fierce bite, but have all of the same weaknesses as most demons."
+tip = "Hellhounds are a cross between dogs and demons; they are also dangerous with a fierce bite. I've managed to trap a few in the dungeon I'm guarding."
 
 [.iron_dragons]
 amount = [60, 110]
 weight = 9
-tip = "Iron Dragons are some of the weaker metallic dragons, their iron scales are far thicker than normal iron armour."
+tip = "Iron dragons are some of the weaker metallic dragons, with iron scales that are far thicker than normal iron armour. Their fiery breath and sharp claws can be negated by a number of means. I've managed to trap a few in the dungeon I'm guarding."
 
 [.kalphites]
 amount = [170, 250]
 weight = 5
-tip = "Kalphite are large insects which live in great hives under the desert sands."
+tip = "Kalphites are large insects that live in hives under the desert sands. I am sure that, by now, you have seen them to the south-west of Shantay Pass."
 
 #[.living_rock_creatures]
 #amount = [120, 170]
 #weight = 10
-#tip = "Found beneath the Dwarven mines, these are tough beings of rock. They can use ranged or melee attacks against you, so plan accordingly! "
+#tip = "Found beneath the Dwarven mines, these are tough beings of rock. They can use ranged or melee attacks against you, so plan accordingly!"
 
 [.mithril_dragons]
 amount = [30, 35]
 weight = 8
-tip = "Mithril dragons are more vulnerable to magic and to stab-based melee attacks than to anything else."
+tip = "Mithril dragons are very dangerous opponents. They live just north of where we are now. You are a battle master - test your skills."
 
 [.nechryael]
 amount = [140, 220]
 weight = 10
-tip = "Nechryael are demons of decay which summon small winged beings to help them fight their victims. Their minions can bypass protective prayers so be sure to wear thick armour."
+tip = "Nechryael are demons of decay that summon small winged beings to help them fight their victims. They can be found in the Chaos Tunnels or in Canifis Slayer Tower."
 
 #[.scabarites]
 #amount = [80, 120]
@@ -116,22 +116,22 @@ tip = "Nechryael are demons of decay which summon small winged beings to help th
 [.skeletal_wyverns]
 amount = [40, 90]
 weight = 5
-tip = "Skeletal Wyverns are extremely dangerous and they are hard to hit with arrows as they slip right through. To stand a good chance of surviving you'll need some elemental shielding from its icy breath."
+tip = "Skeletal wyverns are extremely dangerous, and they are hard to hit with arrows as they slip right through. To stand a good chance of surviving, you'll need some elemental shielding from their icy breath."
 
 [.spiritual_creatures]
 amount = [120, 185]
 weight = 10
-tip = "Spiritual Creatures can be found in the icy caverns near Trollheim, supporting the cause of their chosen god. Wearing equipment aligned with each of the gods can help you avoid undesired conflict."
+tip = "Spiritual mages are the strongest of the spiritual guardians. They are devastating against warriors, but a smart ranger can sometimes defeat them. Of course, Prayer might serve you well, too. They can be found in the icy caverns near Trollheim, supporting the cause of their chosen god."
 
 [.steel_dragons]
 amount = [40, 100]
 weight = 9
-tip = "Steel Dragons are dangerous metallic dragons, their steel scales are far thicker than normal steel armour."
+tip = "Steel dragons are dangerous and metallic, with steel scales that are far thicker than normal steel armour. I've managed to trap a few in the dungeon I'm guarding."
 
 [.suqahs]
 amount = [50, 100]
 weight = 5
-tip = "Suqahs can only be found on the mystical Lunar Isle. They are capable of melee and magic attacks and often drop hide, teeth and herbs!"
+tip = "Suqahs can only be found on the mystical Lunar Isle. They use melee and magical attacks, and they often drop hide, teeth and herbs."
 
 #[.terror_dogs]
 #amount = [60, 70]
@@ -141,13 +141,13 @@ tip = "Suqahs can only be found on the mystical Lunar Isle. They are capable of 
 [.tzhaar]
 amount = [80, 110]
 weight = 7
-tip = "Tzhaar reside in their cave under the Karamja volcano. Beware as they can call to their fellows for aid."
+tip = "The TzHaar contains some mighty warriors, prove yourself against them. You'll find them deep within the Karamja volcano."
 
 [.waterfiends]
 amount = [170, 250]
 weight = 9
-tip = "Waterfiends are creatures of water, which live under the Baxtorian Lake. Their watery form is well defended against slashing and piercing weapons, so use something blunt."
+tip = "Waterfiends are creatures of water that live just north of us. Those followed by familiars are keen to slay these elemental forces."
 
 [.warped_creatures]
 amount = [150, 240]
-tip = "Warped Creatures can supposedly be found within a mysterious dungeon on the eastern edge of the Poison Waste. Be aware that to defeat them, you'll need to purify them in some way."
+tip = "Warped tortoises are creatures tainted by magical waste. They are vulnerable to an elven chime. I know you have seen them in your adventures, so go crack some carapace."

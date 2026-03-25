@@ -21,7 +21,7 @@ tip = "Bats are rarely found on the ground, so you'll have to fight them while t
 [.birds]
 amount = [15, 30]
 weight = 6
-tip = "Birds aren't the most intelligent of creatures, but watch out for their sharp stabbing beaks."
+tip = "Birds aren't the most intelligent of creatures, but watch out for their sharp, stabbing beaks. Even the chickens in Lumbridge are after your blood, so get them before they get you."
 
 [.cave_bugs]
 amount = [10, 30]
@@ -41,12 +41,12 @@ tip = "Cave Slimes are the lesser cousins of Jellies, though don't be fooled the
 [.cows]
 amount = [15, 30]
 weight = 8
-tip = "Cows are bigger than you, so they'll often hit fairly hard but are usually fairly slow to react."
+tip = "Cows are bigger than you, and they'll often hit hard but react fairly slowly. You can slaughter the ones in Lumbridge - I bet they are up to no good."
 
 [.crawling_hands]
 amount = [15, 30]
 weight = 8
-tip = "Crawling Hands are undead severed hands, fast and dexterous they claw their victims."
+tip = "Crawling hands are undead severed hands; fast and dexterous, they claw their victims. They can be found in the Slayer Tower, north-east of the entrance to Morytania."
 
 [.dogs]
 amount = [15, 30]
@@ -116,7 +116,7 @@ tip = "Spiders are often poisonous, and many varieties are camouflaged too."
 [.wolves]
 amount = [15, 30]
 weight = 7
-tip = "Wolves are pack animals, so you'll always find them in groups. Watch out for their bite, it can be nasty."
+tip = "Wolves are pack animals, so you'll always find them in groups. Watch out for their bite, it can be nasty. There are plenty to kill on White Wolf Mountain."
 
 [.zombies]
 amount = [15, 30]

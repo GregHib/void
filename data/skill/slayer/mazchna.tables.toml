@@ -6,7 +6,7 @@ tip = "string"
 [.banshees]
 amount = [30, 50]
 weight = 8
-tip = "Banshees use a piercing scream to shock their enemies, you'll need some Earmuffs to protect yourself from them."
+tip = "Banshees use a piercing scream to shock their enemies; you'll need some earmuffs to protect yourself from them. Their cries echo throughout the Slayer Tower in Morytania."
 
 [.bears]
 amount = [30, 50]
@@ -31,7 +31,7 @@ tip = "Cave Bugs are like Cave Crawlers, except smaller and easier to squish, th
 [.cave_crawlers]
 amount = [30, 50]
 weight = 8
-tip = "Cave Crawlers are small and fast, often hiding in ambush. Avoid their barbed tongue or you'll get poisoned."
+tip = "Cave crawlers are small and fast, often seen creeping around in the Rellekka Slayer Dungeon. Avoid their barbed tongue or you'll get poisoned."
 
 [.cave_slimes]
 amount = [10, 20]
@@ -41,7 +41,7 @@ tip = "Cave Slimes are the lesser cousins of Jellies, though don't be fooled the
 [.cockatrice]
 amount = [30, 50]
 weight = 8
-tip = "Cockatrice, like Basilisks, have a gaze which will paralyse and harm their prey. You'll need a Mirror Shield to protect you."
+tip = "Cockatrices, like basilisks, have a gaze which will paralyse and harm their prey. You'll need a mirror shield to protect you. If you are brave enough, head to Slayer Caves east of Rellekka."
 
 [.crawling_hands]
 amount = [30, 50]
@@ -56,7 +56,7 @@ tip = "Crabs can be found all across Gielinor. They don't hit very hard but they
 [.dogs]
 amount = [30, 50]
 weight = 7
-tip = "Dogs are much like Wolves, they are pack creatures which will hunt in groups."
+tip = "Dogs are much like wolves; they are pack creatures that will hunt in groups. I've heard there are fearsome wild dogs beneath Karamja, or near Ardougne if you are less adventurous."
 
 [.flesh_crawlers]
 amount = [15, 25]
@@ -71,7 +71,7 @@ tip = "Ghosts are undead so magic is your best bet against them, there is even a
 [.ghouls]
 amount = [10, 20]
 weight = 7
-tip = "Ghouls aren't undead but they are stronger and tougher than they look. However they're also very cowardly and will run if they're losing a fight."
+tip = "Ghouls aren't undead, but they are stronger and tougher than they look. They're also very cowardly and will run if they're losing a fight. They wait to ambush those entering the graveyard to the North of Canifis."
 
 [.hill_giants]
 amount = [30, 50]
@@ -86,7 +86,7 @@ tip = "Hobgoblins carrying spears are often trained warriors. If you want less o
 [.ice_warriors]
 amount = [40, 50]
 weight = 7
-tip = "Ice Warriors are a kind of ice elemental, shatter them with blunt weapons or melt them with fire."
+tip = "Ice warriors are a kind of ice elemental. Thurgo the dwarf recently spotted some in the caves south of Port Sarim."
 
 [.kalphites]
 amount = [30, 50]
@@ -96,12 +96,12 @@ tip = "Kalphite are large insects which live in great hives under the desert san
 #[.killerwatts]
 #amount = [30, 50]
 #weight = 6
-#tip = "Killerwatts store huge amounts of energy in their bodies, which is released if they are touched. You'll need to wear heavily insulated boots to counter this shocking effect."
+#tip = "Killerwatts store huge amounts of energy in their bodies, which is released if they are touched. You'll need to wear heavily insulated boots to counter this shocking effect, plus they can attack speedily with both magic and missiles. To access their cloudy plane, you'll need to explore Draynor Manor."
 
 [.lizards]
 amount = [30, 50]
 weight = 8
-tip = "Lizards are large reptiles with tough skin. Those found in the desert will need you to douse them with freezing water to finish them off after a tough battle."
+tip = "Desert lizards are large reptiles with tough skin. They're cold-blooded, so dousing them with freezing water will finish them off after a tough battle. You can find them to the east of Sophanem."
 
 #[.mogres]
 #amount = [30, 50]
@@ -111,7 +111,7 @@ tip = "Lizards are large reptiles with tough skin. Those found in the desert wil
 [.pyrefiends]
 amount = [30, 50]
 weight = 8
-tip = "Pyrefiends are beings of fire and molten rock, they're quick and agile but weak to water spells."
+tip = "Pyrefiends are magical beings of fire and molten rock. They're quick and agile so try attacking them with a crossbow and bolts. You can find some fiends in the Rellekka Slayer Caves."
 
 [.rockslugs]
 amount = [30, 50]
@@ -126,7 +126,7 @@ tip = "Scorpions are almost always poisonous, their hard carapace makes them res
 #[.shades]
 #amount = [30, 70]
 #weight = 8
-#tip = "Shades are undead so magic is your best bet against them. You can find Shades at Mort'ton."
+#tip = "Shades are undead - The town of Mort'ton in Morytania is plagued by these creatures, so help if you can. There are some shades in the Stronghold of Security too, but you won't learn much from fighting those; stick to Mort'ton."
 
 [.skeletons]
 amount = [30, 50]
@@ -136,7 +136,7 @@ tip = "Skeletons are undead so magic is your best bet against them, there is eve
 #[.vampyres]
 #amount = [10, 20]
 #weight = 6
-#tip = "Vampyres are extremely powerful beings. An underground group known as the Myreque have been searching for tools to defeat them, which they may be willing to share if you can find them."
+#tip = "Vampyres are extremely powerful beings. They feed on the blood of the living, so watch that you don't get bitten. Look in the woods of Morytania."
 
 [.wolves]
 amount = [30, 50]

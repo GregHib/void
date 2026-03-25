@@ -96,12 +96,12 @@ tip = "Hellhounds are a cross between Dogs and Demons. They are dangerous with a
 [.hill_giants]
 amount = [40, 90]
 weight = 7
-tip = "Hill Giants often wield large weapons, learn to recognise what kind of weapon it is and act accordingly."
+tip = "Hill giants use crude weapons or tools so prepare accordingly. There is a colony of them, deep inside the Edgeville tunnels; all good folk will approve if you clean it out."
 
 [.hobgoblins]
 amount = [40, 90]
 weight = 7
-tip = "Hobgoblins carrying spears are often trained warriors. If you want less of a challenge, fight the ones that are unarmed."
+tip = "Hobgoblins are larger and stronger then their brethren. There is a peninsula, south-west of Falador, where these creatures have a hideout."
 
 #[.harpie_bug_swarms]
 #amount = [40, 90]
@@ -116,12 +116,12 @@ tip = "Infernal Mages are dangerous spell users, beware of their magic spells an
 [.ice_giant]
 amount = [30, 80]
 weight = 7
-tip = "Like other giants, Ice Giants have little to no magical ability, and they're particularly weak to fire spells."
+tip = "Like other giants, ice giants often wield large weapons. Try using fire spells to melt them before they can hit you. Ice giants can be found underground to the south of Port Sarim."
 
 [.ice_warriors]
 amount = [40, 90]
 weight = 7
-tip = "Ice Warriors are a kind of ice elemental, shatter them with blunt weapons or melt them with fire."
+tip = "Ice warriors are a kind of ice elemental. Thurgo the dwarf recently spotted some in the caves south of Port Sarim."
 
 [.jellies]
 amount = [40, 90]
@@ -136,7 +136,7 @@ tip = "Jungle Horrors can be found all over Mos Le'Harmless. They are strong and
 [.kalphites]
 amount = [40, 90]
 weight = 7
-tip = "Kalphite are large insects which live in great hives under the desert sands."
+tip = "Kalphite are large insects that live in hives under the desert sands. You can best enter their hive south-west of Shantay Pass, but try not to go too deep."
 
 [.kurask]
 amount = [40, 90]
@@ -151,12 +151,12 @@ tip = "Demons are weak to magical attacks. Though Lesser Demons are relatively w
 #[.mogres]
 #amount = [40, 90]
 #weight = 7
-#tip = "Mogres are a type of aquatic Ogre that is often mistaken for a giant mudskipper. You have to force them out of the water with a fishing explosive."
+#tip = "Mogres are a type of aquatic ogre that is often mistaken for a giant mudskipper. You have to force them out of the water with a fishing explosive. You can find them on the peninsula to the south of Port Sarim."
 
 [.moss_giants]
 amount = [40, 90]
 weight = 7
-tip = "Like other giants, Moss Giants have little to no magical ability, and they're particularly weak to fire spells."
+tip = "Like other giants, moss giants often wield large weapons. Use fire spells to burn them to cinders before they can damage you. Strangely for giants, some have been seen at the end of the Varrock sewers."
 
 [.nechryael]
 amount = [40, 90]
