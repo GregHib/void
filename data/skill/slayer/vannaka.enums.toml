@@ -43,7 +43,7 @@ values = {
     spiritual_mage_zamorak = "40-90",
     ice_troll_troll_country = "40-90",
     turoth = "30-90",
-    vampyre_juvenile = "10-20",
+    vampyre_juvinate = "10-20",
     werewolf = "30-60",
 }
 
@@ -92,6 +92,6 @@ values = {
     spiritual_mage_zamorak = 8,
     ice_troll_troll_country = 7,
     turoth = 8,
-#    vampyre_juvenile = 7,
+#    vampyre_juvinate = 7,
     werewolf = 7,
 }

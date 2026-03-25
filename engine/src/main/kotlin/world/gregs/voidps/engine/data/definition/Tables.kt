@@ -6,6 +6,7 @@ import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.config.TableDefinition
 import world.gregs.voidps.engine.timedLoad
+import kotlin.collections.set
 
 object Tables {
 
@@ -26,6 +27,10 @@ object Tables {
         return row.data[index] != null
     }
 
+    fun get(table: String) = definitions[table] ?: error("Table '$table' not found")
+
+    fun getOrNull(table: String) = definitions[table]
+
     /*
         Primitives
      */
@@ -41,6 +46,10 @@ object Tables {
     fun string(path: String): String = get(path, ColumnType.ColumnString)
 
     fun stringOrNull(path: String): String? = getOrNull(path, ColumnType.ColumnString)
+
+    fun intRange(path: String): IntRange = get(path, ColumnType.ColumnIntRange)
+
+    fun intRangeOrNull(path: String): IntRange? = getOrNull(path, ColumnType.ColumnIntRange)
 
     /*
         Entities
@@ -180,8 +189,8 @@ object Tables {
                         while (nextSection()) {
                             val stringId = section()
                             if (stringId.contains(".")) {
-                                val (key, rowName) = stringId.split(".")
-                                readTableRow(this, definitions, rows, ids, key, rowName)
+                                val table = stringId.substringBefore(".")
+                                readTableRow(this, definitions, rows, ids, table, stringId)
                             } else {
                                 readTableHeader(this, definitions, stringId)
                             }

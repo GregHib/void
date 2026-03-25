@@ -1,0 +1,219 @@
+[vannaka_slayer_tasks]
+amount = "range"
+weight = "int"
+tip = "string"
+
+[.aberrant_spectre]
+amount = [40, 90]
+weight = 8
+tip = "Aberrant Spectres are fetid, vile ghosts. The very smell of them will paralyse and harm you. A nosepeg will help ignore their stink."
+
+[.abyssal_demon]
+amount = [40, 90]
+weight = 5
+tip = "Abyssal Demons are nasty creatures to fight. They aren't really part of this realm, and are able to move very quickly to trap their prey."
+
+[.ankou]
+amount = [25, 35]
+weight = 8
+tip = "Ankou are undead skeletal ghosts. Their blows can be powerful but they have limited defences, so killing them quickly is often the best way to protect yourself."
+
+[.basilisks]
+amount = [40, 90]
+weight = 8
+tip = "Basilisks, like Cockatrice, have a gaze which will paralyse and harm their prey. You'll need a Mirror Shield to protect you."
+
+[.bloodvelds]
+amount = [40, 90]
+weight = 8
+tip = "Bloodveld are strange demonic creatures, their long rasping tongue has magical properties so it pierces straight through physical defences."
+
+[.brine_rats]
+amount = [40, 90]
+weight = 7
+tip = "Brine Rats can be found in caves that are near the sea. They are hairless, bad-tempered and generally unfriendly."
+
+[.black_dragons]
+amount = [40, 90]
+weight = 7
+tip = "Black Dragons are the strongest dragons and very fierce, watch out for their fiery breath."
+
+[.cockatrice]
+amount = [40, 90]
+weight = 8
+tip = "Cockatrice, like Basilisks, have a gaze which will paralyse and harm their prey. You'll need a Mirror Shield to protect you."
+
+[.crabs]
+amount = [40, 90]
+weight = 7
+tip = "Crabs can be found all across Gielinor. They don't hit very hard but they can take a while to kill."
+
+[.crocodiles]
+amount = [40, 90]
+weight = 6
+tip = "Crocodiles are large reptiles which live near water. You'll want to have a stabbing weapon handy for puncturing their thick scaly hides."
+
+[.dust_devils]
+amount = [40, 90]
+weight = 8
+tip = "Dust Devils use clouds of dust, sand, ash, and whatever else they can inhale to blind and disorientate their victims. Make sure to wear a facemask when fighting them."
+
+[.dagannoth]
+amount = [40, 90]
+weight = 7
+tip = "Dagannoth are large sea dwelling creatures which are very aggressive. You'll often find them in caves near sea water."
+
+#[.elves]
+#amount = [30, 70]
+#weight = 7
+#tip = "Elves are quick, agile, and vicious fighters which often favour bows and polearms."
+
+[.fire_giant]
+amount = [40, 90]
+weight = 7
+tip = "Like other giants, Fire Giants have little to no magical ability, and they're particularly weak to water spells."
+
+#[.fever_spiders]
+#amount = [30, 90]
+#weight = 7
+#tip = "Fever Spiders are giant spiders that carry the deadly Spider Fever. If you don't want to catch it I suggest you wear Slayer Gloves to fight them."
+
+[.gargoyles]
+amount = [40, 90]
+weight = 5
+tip = "Gargoyles are winged creatures of stone. You'll need to fight them to near death before breaking them apart with a Rock Hammer."
+
+[.ghouls]
+amount = [10, 40]
+weight = 7
+tip = "Ghouls aren't undead but they are stronger and tougher than they look. However they're also very cowardly and will run if they're losing a fight."
+
+[.hellhounds]
+amount = [30, 60]
+weight = 7
+tip = "Hellhounds are a cross between Dogs and Demons. They are dangerous with a fierce bite, but have all of the same weaknesses as most demons."
+
+[.hill_giants]
+amount = [40, 90]
+weight = 7
+tip = "Hill Giants often wield large weapons, learn to recognise what kind of weapon it is and act accordingly."
+
+[.hobgoblins]
+amount = [40, 90]
+weight = 7
+tip = "Hobgoblins carrying spears are often trained warriors. If you want less of a challenge, fight the ones that are unarmed."
+
+#[.harpie_bug_swarms]
+#amount = [40, 90]
+#weight = 8
+#tip = "Harpie Bug Swarms are pesky critters that are hard to hit. You need a lit bug lantern to distract them with its hypnotic light."
+
+[.infernal_mage]
+amount = [40, 90]
+weight = 8
+tip = "Infernal Mages are dangerous spell users, beware of their magic spells and go properly prepared."
+
+[.ice_giant]
+amount = [30, 80]
+weight = 7
+tip = "Like other giants, Ice Giants have little to no magical ability, and they're particularly weak to fire spells."
+
+[.ice_warriors]
+amount = [40, 90]
+weight = 7
+tip = "Ice Warriors are a kind of ice elemental, shatter them with blunt weapons or melt them with fire."
+
+[.jellies]
+amount = [40, 90]
+weight = 8
+tip = "Jellies are nasty cube-like gelatinous creatures which absorb everything they come across into themselves. Their magical acids bypass physical defences."
+
+[.jungle_horrors]
+amount = [40, 90]
+weight = 8
+tip = "Jungle Horrors can be found all over Mos Le'Harmless. They are strong and aggressive, so watch out!"
+
+[.kalphites]
+amount = [40, 90]
+weight = 7
+tip = "Kalphite are large insects which live in great hives under the desert sands."
+
+[.kurask]
+amount = [40, 90]
+weight = 7
+tip = "Kurask are large brutal creatures with very thick hides. You'll need a Leaf-Tipped Spear or Battle-axe, Broad Arrows, or a Magic Dart to harm it."
+
+[.lesser_demons]
+amount = [40, 90]
+weight = 7
+tip = "Demons are weak to magical attacks. Though Lesser Demons are relatively weak they are still dangerous."
+
+#[.mogres]
+#amount = [40, 90]
+#weight = 7
+#tip = "Mogres are a type of aquatic Ogre that is often mistaken for a giant mudskipper. You have to force them out of the water with a fishing explosive."
+
+[.moss_giants]
+amount = [40, 90]
+weight = 7
+tip = "Like other giants, Moss Giants have little to no magical ability, and they're particularly weak to fire spells."
+
+[.nechryael]
+amount = [40, 90]
+weight = 5
+tip = "Nechryael are demons of decay which summon small winged beings to help them fight their victims. Their minions can bypass protective prayers so be sure to wear thick armour."
+
+[.ogres]
+amount = [40, 90]
+weight = 7
+tip = "Ogres are brutal creatures, favouring large blunt maces and clubs, they often attack without warning."
+
+[.otherworldly_beings]
+amount = [40, 90]
+weight = 8
+tip = "Otherworldly Beings are ethereal beings making them weak to magical attack."
+
+[.pyrefiends]
+amount = [40, 90]
+weight = 8
+tip = "Pyrefiends are beings of fire and molten rock, they're quick and agile but weak to water spells."
+
+#[.sea_snakes]
+#amount = [40, 90]
+#weight = 6
+#tip = "Sea Snakes are long and slithery with a venomous bite. The larger ones are more poisonous, so keep an eye on your health."
+
+#[.shades]
+#amount = [40, 90]
+#weight = 8
+#tip = "Shades are undead so magic is your best bet against them. You can find Shades at Mort'ton."
+
+[.shadow_warriors]
+amount = [30, 80]
+weight = 8
+tip = "Shadow Warriors are dark and mysterious. They wear spectral plate armour, so crush weapons and magic will give them trouble."
+
+[.spiritual_creatures]
+amount = [40, 90]
+weight = 8
+tip = "Spiritual Creatures can be found in the icy caverns near Trollheim, supporting the cause of their chosen god. Wearing equipment aligned with each of the gods can help you avoid undesired conflict."
+
+[.turoth]
+amount = [30, 90]
+weight = 8
+tip = "Turoth are large vicious creatures with thick hides. You'll need a Leaf-Tipped Spear or Sword, Broad Arrows, or a Magic Dart to harm them."
+
+[.trolls]
+amount = [40, 90]
+weight = 7
+tip = "Trolls regenerate damage quickly and have some level of magical defences, but this is easily bypassed by their weakness to fire."
+
+#[.vampyres]
+#amount = [10, 20]
+#weight = 7
+#tip = "Vampyres are extremely powerful beings. An underground group known as the Myreque have been searching for tools to defeat them, which they may be willing to share if you can find them."
+
+[.werewolves]
+amount = [30, 60]
+weight = 7
+tip = "Werewolves are feral creatures, they are strong and tough with sharp claws and teeth."

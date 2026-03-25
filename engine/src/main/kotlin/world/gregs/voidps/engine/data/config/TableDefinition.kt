@@ -14,6 +14,18 @@ data class TableDefinition(
     val rows: IntArray,
 ) {
 
+    fun bool(column: String, row: Int): Boolean = get(column, row, ColumnType.ColumnBoolean)
+
+    fun boolOrNull(column: String, row: Int): Boolean? = getOrNull(column, row, ColumnType.ColumnBoolean)
+
+    fun int(column: String, row: Int): Int = get(column, row, ColumnType.ColumnInt)
+
+    fun intOrNull(column: String, row: Int): Int? = getOrNull(column, row, ColumnType.ColumnInt)
+
+    fun string(column: String, row: Int): String = get(column, row, ColumnType.ColumnString)
+
+    fun stringOrNull(column: String, row: Int): String? = getOrNull(column, row, ColumnType.ColumnString)
+
     fun <T : Any> get(column: String, row: Int, type: ColumnType<T>): T = getOrNull(column, row, type) ?: type.default
 
     fun <T : Any> get(column: Int, row: Int, type: ColumnType<T>): T = getOrNull(column, row, type) ?: type.default

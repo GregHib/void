@@ -1,0 +1,134 @@
+[duradel_slayer_tasks]
+amount = "range"
+weight = "int"
+tip = "string"
+
+[.aberrant_spectre]
+amount = [130, 200]
+weight = 10
+tip = "Aberrant Spectres are fetid, vile ghosts. The very smell of them will paralyse and harm you. A nosepeg will help ignore their stink."
+
+[.abyssal_demon]
+amount = [130, 200]
+weight = 15
+tip = "Abyssal Demons are nasty creatures to fight. They aren't really part of this realm, and are able to move very quickly to trap their prey."
+
+[.aquanites]
+amount = [130, 200]
+weight = 9
+tip = "Aquanites rely on their lures for both offensive and defensive purposes. Whilst their hides are resistant to slashing attacks, a well timed cut is capable of severing the lure."
+
+[.aviansies]
+amount = [100, 125]
+weight = 8
+tip = "Aviansies are bird-like creatures found in the icy dungeons of the north. Melee weapons can't reach them, so use Magic or Ranged attacks."
+
+[.bloodvelds]
+amount = [130, 200]
+weight = 10
+tip = "Bloodveld are strange demonic creatures, their long rasping tongue has magical properties so it pierces straight through physical defences."
+
+[.black_demons]
+amount = [130, 200]
+weight = 10
+tip = "Powerful weapons known as demonbane weapons can be used to quickly defeat even powerful demons like the Black Demon with greater ease."
+
+[.black_dragons]
+amount = [40, 80]
+weight = 9
+tip = "Black Dragons are the strongest dragons and very fierce, watch out for their fiery breath."
+
+[.dark_beasts]
+amount = [130, 200]
+weight = 15
+tip = "Dark Beasts are large, dog-like predators. Their massively muscled bodies protect them from crushing weapons."
+
+[.dust_devils]
+amount = [130, 200]
+weight = 10
+tip = "Dust Devils use clouds of dust, sand, ash, and whatever else they can inhale to blind and disorientate their victims. Make sure to wear a facemask when fighting them."
+
+[.dagannoth]
+amount = [130, 200]
+weight = 10
+tip = "Dagannoth are large sea dwelling creatures which are very aggressive. You'll often find them in caves near sea water."
+
+[.fire_giant]
+amount = [130, 200]
+weight = 10
+tip = "Like other giants, Fire Giants have little to no magical ability, and they're particularly weak to water spells."
+
+[.gargoyles]
+amount = [130, 200]
+weight = 10
+tip = "Gargoyles are winged creatures of stone. You'll need to fight them to near death before breaking them apart with a Rock Hammer."
+
+[.gorak]
+amount = [40, 80]
+weight = 5
+tip = "Goraks are extremely aggressive creatures. They have been imprisoned on an alternative plane, which is only accesible by using the fairyrings. Be extremely careful, their touch drains health as well as skills! "
+
+[.greater_demons]
+amount = [130, 200]
+weight = 10
+tip = "Demons are particularly weak to water spells. Though Greater Demons are not the strongest type of demon they are still dangerous."
+
+[.hellhounds]
+amount = [130, 200]
+weight = 9
+tip = "Hellhounds are a cross between Dogs and Demons. They are dangerous with a fierce bite, but have all of the same weaknesses as most demons."
+
+[.iron_dragons]
+amount = [40, 80]
+weight = 9
+tip = "Iron Dragons are some of the weaker metallic dragons, their iron scales are far thicker than normal iron armour."
+
+[.kalphites]
+amount = [130, 200]
+weight = 10
+tip = "Kalphite are large insects which live in great hives under the desert sands."
+
+[.mithril_dragons]
+amount = [4, 8]
+weight = 7
+tip = "Mithril dragons are more vulnerable to magic and to stab-based melee attacks than to anything else."
+
+[.nechryael]
+amount = [130, 200]
+weight = 10
+tip = "Nechryael are demons of decay which summon small winged beings to help them fight their victims. Their minions can bypass protective prayers so be sure to wear thick armour."
+
+#[.scabarites]
+#amount = [40, 80]
+#weight = 10
+#tip = "Scabarites are insectoid creatures, found beyond the Kharidian deserts. Make sure not to fall into one of their pitfall traps or you'll be quickly overwhelmed."
+
+[.skeletal_wyverns]
+amount = [40, 80]
+weight = 5
+tip = "Skeletal Wyverns are extremely dangerous and they are hard to hit with arrows as they slip right through. To stand a good chance of surviving you'll need some elemental shielding from its icy breath."
+
+[.spiritual_creatures]
+amount = [120, 185]
+weight = 10
+tip = "Spiritual Creatures can be found in the icy caverns near Trollheim, supporting the cause of their chosen god. Wearing equipment aligned with each of the gods can help you avoid undesired conflict."
+
+[.steel_dragons]
+amount = [40, 80]
+weight = 7
+tip = "Steel Dragons are dangerous metallic dragons, their steel scales are far thicker than normal steel armour."
+
+[.suqahs]
+amount = [40, 80]
+weight = 5
+tip = "Suqahs can only be found on the mystical Lunar Isle. They are capable of melee and magic attacks and often drop hide, teeth and herbs!"
+
+[.waterfiends]
+amount = [130, 200]
+weight = 10
+tip = "Waterfiends are creatures of water, which live under the Baxtorian Lake. Their watery form is well defended against slashing and piercing weapons, so use something blunt."
+
+#[.warped_creatures]
+#amount = [130, 200]
+#weight = 9
+#tip = "Warped Creatures can supposedly be found within a mysterious dungeon on the eastern edge of the Poison Waste. Be aware that to defeat them, you'll need to purify them in some way."

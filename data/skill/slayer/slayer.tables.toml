@@ -1,0 +1,366 @@
+[slayer_tasks]
+combat_level = "int"
+defence_level = "int"
+quest = "string"
+variable = "string"
+tip = "string"
+
+[.aberrant_spectre]
+combat_level = 65
+quest = "priest_in_peril"
+tip = "Aberrant Spectres are fetid, vile ghosts. The very smell of them will paralyse and harm you. A nosepeg will help ignore their stink."
+
+[.abyssal_demon]
+tip = "Abyssal Demons are nasty creatures to fight. They aren't really part of this realm, and are able to move very quickly to trap their prey."
+
+[.aquanites]
+variable = "aquanites"
+tip = "Aquanites rely on their lures for both offensive and defensive purposes. Whilst their hides are resistant to slashing attacks, a well timed cut is capable of severing the lure."
+
+[.ankou]
+tip = "Ankou are undead skeletal ghosts. Their blows can be powerful but they have limited defences, so killing them quickly is often the best way to protect yourself."
+
+[.aviansies]
+combat_level = 70
+tip = "Aviansies are bird-like creatures found in the icy dungeons of the north. Melee weapons can't reach them, so use Magic or Ranged attacks."
+
+[.bandits]
+tip = "Bandits band together for protection against enemies such as yourself."
+
+[.basilisks]
+tip = "Basilisks, like Cockatrice, have a gaze which will paralyse and harm their prey. You'll need a Mirror Shield to protect you."
+
+[.banshees]
+combat_level = 20
+quest = "priest_in_peril"
+tip = "Banshees use a piercing scream to shock their enemies, you'll need some Earmuffs to protect yourself from them."
+
+[.bloodvelds]
+tip = "Bloodveld are strange demonic creatures, their long rasping tongue has magical properties so it pierces straight through physical defences."
+
+[.brine_rats]
+tip = "Brine Rats can be found in caves that are near the sea. They are hairless, bad-tempered and generally unfriendly."
+
+[.bears]
+combat_level = 13
+tip = "Bears are tough creatures and fierce fighters, watch out for their powerful claws."
+
+[.bats]
+combat_level = 5
+tip = "Bats are rarely found on the ground, so you'll have to fight them while they're airborne, which won't be easy for melee."
+
+[.birds]
+tip = "Birds aren't the most intelligent of creatures, but watch out for their sharp stabbing beaks."
+
+[.black_demons]
+combat_level = 100
+tip = "Powerful weapons known as demonbane weapons can be used to quickly defeat even powerful demons like the Black Demon with greater ease."
+
+[.black_dragons]
+tip = "Black Dragons are the strongest dragons and very fierce, watch out for their fiery breath."
+
+[.black_knights]
+tip = "Black Knights like using black armour and weapons, this makes them susceptible to magic attacks."
+
+[.blue_dragons]
+tip = "Like all dragons, Blue Dragons have thick scales and a powerful fiery breath. Stabbing weapons and heavy bolts are best suited to piercing their defences."
+
+[.bronze_dragons]
+tip = "Bronze Dragons are the weakest of the metallic dragons, their bronze scales are far thicker than normal bronze armour."
+
+[.catablepons]
+combat_level = 35
+tip = "Catablepon are mythical, cow like, magical creatures. Beware their weakening glare."
+
+[.cave_bugs]
+tip = "Cave Bugs are like Cave Crawlers, except smaller and easier to squish, though they still have a fondness for plants."
+
+[.cave_crawlers]
+combat_level = 10
+tip = "Cave Crawlers are small and fast, often hiding in ambush. Avoid their barbed tongue or you'll get poisoned."
+
+[.cave_horrors]
+quest = "cabin_fever"
+tip = "Cave Horrors can be found under Mos Le'Harmless. You will need a Witchwood Icon to fight them effectively."
+
+[.cave_slimes]
+combat_level = 15
+tip = "Cave Slimes are the lesser cousins of Jellies, though don't be fooled they can still be dangerous as they're often poisonous."
+
+[.cockatrice]
+combat_level = 25
+defence_level = 20
+tip = "Cockatrice, like Basilisks, have a gaze which will paralyse and harm their prey. You'll need a Mirror Shield to protect you."
+
+[.cows]
+combat_level = 5
+tip = "Cows are bigger than you, so they'll often hit fairly hard but are usually fairly slow to react."
+
+[.crawling_hands]
+quest = "priest_in_peril"
+tip = "Crawling Hands are undead severed hands, fast and dexterous they claw their victims."
+
+[.chaos_druid]
+tip = "Chaos Druids are druids who've turned to evil. Some of them have spells that can harm you, or even teleport you back to them if you flee."
+
+[.crabs]
+tip = "Crabs can be found all across Gielinor. They don't hit very hard but they can take a while to kill."
+
+[.crocodiles]
+combat_level = 40
+tip = "Crocodiles are large reptiles which live near water. You'll want to have a stabbing weapon handy for puncturing their thick scaly hides."
+
+[.dark_beasts]
+quest = "mournings_end_part_ii"
+tip = "Dark Beasts are large, dog-like predators. Their massively muscled bodies protect them from crushing weapons."
+
+[.dust_devils]
+quest = "what_lies_below"
+tip = "Dust Devils use clouds of dust, sand, ash, and whatever else they can inhale to blind and disorientate their victims. Make sure to wear a facemask when fighting them."
+
+[.dagannoth]
+quest = "horror_from_the_deep"
+tip = "Dagannoth are large sea dwelling creatures which are very aggressive. You'll often find them in caves near sea water."
+
+[.dark_warriors]
+tip = "Dark Warriors wear protective armour. If you want to fight them with melee, try crush-based attacks. Or try magic instead."
+
+[.dogs]
+combat_level = 15
+tip = "Dogs are much like Wolves, they are pack creatures which will hunt in groups."
+
+[.dwarves]
+combat_level = 6
+tip = "Dwarves are a small but tough race of miners, often using pickaxes to pierce their opponents armour."
+
+[.earth_warrior]
+tip = "Earth Warriors are a kind of earth elemental, grind them to dust with blunt weapons."
+
+[.elves]
+quest = "regicide"
+tip = "Elves are quick, agile, and vicious fighters which often favour bows and polearms."
+
+[.fire_giant]
+tip = "Like other giants, Fire Giants have little to no magical ability, and they're particularly weak to water spells."
+
+[.flesh_crawlers]
+combat_level = 15
+tip = "Fleshcrawlers are scavengers and will eat you - and anyone else, given the chance."
+
+[.fever_spiders]
+tip = "Fever Spiders are giant spiders that carry the deadly Spider Fever. If you don't want to catch it I suggest you wear Slayer Gloves to fight them."
+
+[.frost_dragons]
+tip = "Frost dragons reside beneath the island of Grimstone. They have thick scales and powerful icy breath. Dragonfire protection is a must."
+
+[.ghosts]
+combat_level = 13
+tip = "Ghosts are undead so magic is your best bet against them, there is even a spell specially for fighting the undead."
+
+[.gargoyles]
+quest = "priest_in_peril"
+tip = "Gargoyles are winged creatures of stone. You'll need to fight them to near death before breaking them apart with a Rock Hammer."
+
+[.ghouls]
+combat_level = 25
+quest = "priest_in_peril"
+tip = "Ghouls aren't undead but they are stronger and tougher than they look. However they're also very cowardly and will run if they're losing a fight."
+
+[.goblin]
+tip = "Goblins are mostly just annoying, but they can be vicious. Watch out for the spears they sometimes carry."
+
+[.gorak]
+tip = "Goraks are extremely aggressive creatures. They have been imprisoned on an alternative plane, which is only accesible by using the fairyrings. Be extremely careful, their touch drains health as well as skills! "
+
+[.greater_demons]
+tip = "Demons are particularly weak to water spells. Though Greater Demons are not the strongest type of demon they are still dangerous."
+
+[.green_dragons]
+tip = "Like all dragons, Green Dragons have thick scales and a powerful fiery breath. Unless you can stay out of their reach, bringing dragonfire protection is a must."
+
+[.hellhounds]
+tip = "Hellhounds are a cross between Dogs and Demons. They are dangerous with a fierce bite, but have all of the same weaknesses as most demons."
+
+[.hill_giants]
+combat_level = 25
+tip = "Hill Giants often wield large weapons, learn to recognise what kind of weapon it is and act accordingly."
+
+[.hobgoblins]
+combat_level = 20
+tip = "Hobgoblins carrying spears are often trained warriors. If you want less of a challenge, fight the ones that are unarmed."
+
+[.harpie_bug_swarms]
+tip = "Harpie Bug Swarms are pesky critters that are hard to hit. You need a lit bug lantern to distract them with its hypnotic light."
+
+[.infernal_mage]
+tip = "Infernal Mages are dangerous spell users, beware of their magic spells and go properly prepared."
+
+[.ice_giant]
+tip = "Like other giants, Ice Giants have little to no magical ability, and they're particularly weak to fire spells."
+
+[.ice_warriors]
+combat_level = 45
+tip = "Ice Warriors are a kind of ice elemental, shatter them with blunt weapons or melt them with fire."
+
+[.icefiends]
+combat_level = 20
+tip = "Icefiends are beings of ice and freezing rock, they're quick and agile so you'll want to be careful when getting close to them."
+
+[.iron_dragons]
+tip = "Iron Dragons are some of the weaker metallic dragons, their iron scales are far thicker than normal iron armour."
+
+[.jellies]
+tip = "Jellies are nasty cube-like gelatinous creatures which absorb everything they come across into themselves. Their magical acids bypass physical defences."
+
+[.jungle_horrors]
+tip = "Jungle Horrors can be found all over Mos Le'Harmless. They are strong and aggressive, so watch out!"
+
+[.kalphites]
+combat_level = 15
+tip = "Kalphite are large insects which live in great hives under the desert sands."
+
+[.killerwatts]
+combat_level = 50
+quest = "ernest_the_chicken"
+tip = "Killerwatts store huge amounts of energy in their bodies, which is released if they are touched. You'll need to wear heavily insulated boots to counter this shocking effect."
+
+[.kurask]
+tip = "Kurask are large brutal creatures with very thick hides. You'll need a Leaf-Tipped Spear or Battle-axe, Broad Arrows, or a Magic Dart to harm it."
+
+[.lesser_demons]
+tip = "Demons are weak to magical attacks. Though Lesser Demons are relatively weak they are still dangerous."
+
+[.lizards]
+combat_level = 20
+tip = "Lizards are large reptiles with tough skin. Those found in the desert will need you to douse them with freezing water to finish them off after a tough battle."
+
+[.magic_axe]
+tip = "Magic Axes have a mind of their own. You may find magic or slash-based melee attacks are slightly more effective against them."
+
+[.mogres]
+combat_level = 30
+quest = "skippy_and_the_mogres"
+tip = "Mogres are a type of aquatic Ogre that is often mistaken for a giant mudskipper. You have to force them out of the water with a fishing explosive."
+
+[.mutated_zygomites]
+tip = "Mutated Zygomites are hard to destroy. They regenerate quickly so you will need to finish them with fungicide."
+
+[.minotaurs]
+combat_level = 7
+tip = "Minotaurs are large manlike creatures but you'll want to be careful of their horns."
+
+[.mithril_dragons]
+combat_level = 100
+tip = "Mithril dragons are more vulnerable to magic and to stab-based melee attacks than to anything else."
+
+[.monkeys]
+tip = "Monkeys are tricky creatures, they are agile and fairly fast. Learn to anticipate their movements."
+
+[.moss_giants]
+tip = "Like other giants, Moss Giants have little to no magical ability, and they're particularly weak to fire spells."
+
+[.nechryael]
+quest = "what_lies_below"
+tip = "Nechryael are demons of decay which summon small winged beings to help them fight their victims. Their minions can bypass protective prayers so be sure to wear thick armour."
+
+[.ogres]
+tip = "Ogres are brutal creatures, favouring large blunt maces and clubs, they often attack without warning."
+
+[.otherworldly_beings]
+tip = "Otherworldly Beings are ethereal beings making them weak to magical attack."
+
+[.pirates]
+tip = "Pirates can be found near the sea. They like to collect coins among other things."
+
+[.pyrefiends]
+combat_level = 25
+tip = "Pyrefiends are beings of fire and molten rock, they're quick and agile but weak to water spells."
+
+[.rats]
+tip = "Rats are your everyday pest, but they can get fairly big. Watch out for their sharp piercing teeth."
+
+[.red_dragons]
+tip = "Red Dragons are very powerful, stronger than most dragons, watch out for their fiery breath."
+
+[.rogues]
+tip = "Rogues are found in lawless areas, such as the deep Wilderness. They can be very protective of their loot."
+
+[.rockslugs]
+combat_level = 20
+tip = "Rockslugs are strange stoney slugs. You'll need to fight them to near death before finishing them off with Salt."
+
+[.scabarites]
+quest = "dealing_with-scabaras"
+tip = "Scabarites are insectoid creatures, found beyond the Kharidian deserts. Make sure not to fall into one of their pitfall traps or you'll be quickly overwhelmed."
+
+[.scorpions]
+combat_level = 10
+tip = "Scorpions are almost always poisonous, their hard carapace makes them resistant to crushing and stabbing attacks."
+
+[.sea_snakes]
+tip = "Sea Snakes are long and slithery with a venomous bite. The larger ones are more poisonous, so keep an eye on your health."
+
+[.skeletal_wyverns]
+combat_level = 100
+quest = "elemental_workshop_i"
+tip = "Skeletal Wyverns are extremely dangerous and they are hard to hit with arrows as they slip right through. To stand a good chance of surviving you'll need some elemental shielding from its icy breath."
+
+[.shades]
+combat_level = 30
+tip = "Shades are undead so magic is your best bet against them. You can find Shades at Mort'ton."
+
+[.shadow_warriors]
+tip = "Shadow Warriors are dark and mysterious. They wear spectral plate armour, so crush weapons and magic will give them trouble."
+
+[.skeletons]
+combat_level = 15
+tip = "Skeletons are undead so magic is your best bet against them, there is even a spell specially for fighting the undead."
+
+[.spiritual_creatures]
+tip = "Spiritual Creatures can be found in the icy caverns near Trollheim, supporting the cause of their chosen god. Wearing equipment aligned with each of the gods can help you avoid undesired conflict."
+
+[.spiders]
+tip = "Spiders are often poisonous, and many varieties are camouflaged too."
+
+[.steel_dragons]
+tip = "Steel Dragons are dangerous metallic dragons, their steel scales are far thicker than normal steel armour."
+
+[.suqahs]
+quest = "lunar_diplomacy"
+tip = "Suqahs can only be found on the mystical Lunar Isle. They are capable of melee and magic attacks and often drop hide, teeth and herbs!"
+
+[.turoth]
+tip = "Turoth are large vicious creatures with thick hides. You'll need a Leaf-Tipped Spear or Sword, Broad Arrows, or a Magic Dart to harm them."
+
+[.trolls]
+tip = "Trolls regenerate damage quickly and have some level of magical defences, but this is easily bypassed by their weakness to fire."
+
+[.tzhaar]
+tip = "Tzhaar reside in their cave under the Karamja volcano. Beware as they can call to their fellows for aid."
+
+[.vampyres]
+tip = "Vampyres are extremely powerful beings. An underground group known as the Myreque have been searching for tools to defeat them, which they may be willing to share if you can find them."
+
+[.waterfiends]
+quest = "what_lies_below"
+tip = "Waterfiends are creatures of water, which live under the Baxtorian Lake. Their watery form is well defended against slashing and piercing weapons, so use something blunt."
+
+[.werewolves]
+tip = "Werewolves are feral creatures, they are strong and tough with sharp claws and teeth."
+
+[.wolves]
+combat_level = 20
+tip = "Wolves are pack animals, so you'll always find them in groups. Watch out for their bite, it can be nasty."
+
+[.wall_beasts]
+combat_level = 30
+defence_level = 5
+tip = "Wall Beasts are really much larger creatures but you'll only see their arms. You'll want something sharp on your head to stop them grabbing you."
+
+[.warped_creatures]
+quest = "the_path_of_glouphrie"
+tip = "Warped Creatures can supposedly be found within a mysterious dungeon on the eastern edge of the Poison Waste. Be aware that to defeat them, you'll need to purify them in some way."
+
+[.zombies]
+combat_level = 10
+tip = "Zombies are undead so magic is your best bet against them, there is even a spell specially for fighting the undead."

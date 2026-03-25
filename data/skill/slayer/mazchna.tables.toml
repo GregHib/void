@@ -1,0 +1,154 @@
+[mazchna_slayer_tasks]
+amount = "range"
+weight = "int"
+tip = "string"
+
+[.banshees]
+amount = [30, 50]
+weight = 8
+tip = "Banshees use a piercing scream to shock their enemies, you'll need some Earmuffs to protect yourself from them."
+
+[.bears]
+amount = [30, 50]
+weight = 6
+tip = "Bears are tough creatures and fierce fighters, watch out for their powerful claws."
+
+[.bats]
+amount = [30, 50]
+weight = 7
+tip = "Bats are rarely found on the ground, so you'll have to fight them while they're airborne, which won't be easy for melee."
+
+[.catablepons]
+amount = [20, 30]
+weight = 8
+tip = "Catablepon are mythical, cow like, magical creatures. Beware their weakening glare."
+
+[.cave_bugs]
+amount = [10, 20]
+weight = 8
+tip = "Cave Bugs are like Cave Crawlers, except smaller and easier to squish, though they still have a fondness for plants."
+
+[.cave_crawlers]
+amount = [30, 50]
+weight = 8
+tip = "Cave Crawlers are small and fast, often hiding in ambush. Avoid their barbed tongue or you'll get poisoned."
+
+[.cave_slimes]
+amount = [10, 20]
+weight = 8
+tip = "Cave Slimes are the lesser cousins of Jellies, though don't be fooled they can still be dangerous as they're often poisonous."
+
+[.cockatrice]
+amount = [30, 50]
+weight = 8
+tip = "Cockatrice, like Basilisks, have a gaze which will paralyse and harm their prey. You'll need a Mirror Shield to protect you."
+
+[.crawling_hands]
+amount = [30, 50]
+weight = 8
+tip = "Crawling Hands are undead severed hands, fast and dexterous they claw their victims."
+
+[.crabs]
+amount = [30, 50]
+weight = 8
+tip = "Crabs can be found all across Gielinor. They don't hit very hard but they can take a while to kill."
+
+[.dogs]
+amount = [30, 50]
+weight = 7
+tip = "Dogs are much like Wolves, they are pack creatures which will hunt in groups."
+
+[.flesh_crawlers]
+amount = [15, 25]
+weight = 7
+tip = "Fleshcrawlers are scavengers and will eat you - and anyone else, given the chance."
+
+[.ghosts]
+amount = [30, 50]
+weight = 7
+tip = "Ghosts are undead so magic is your best bet against them, there is even a spell specially for fighting the undead."
+
+[.ghouls]
+amount = [10, 20]
+weight = 7
+tip = "Ghouls aren't undead but they are stronger and tougher than they look. However they're also very cowardly and will run if they're losing a fight."
+
+[.hill_giants]
+amount = [30, 50]
+weight = 7
+tip = "Hill Giants often wield large weapons, learn to recognise what kind of weapon it is and act accordingly."
+
+[.hobgoblins]
+amount = [30, 50]
+weight = 7
+tip = "Hobgoblins carrying spears are often trained warriors. If you want less of a challenge, fight the ones that are unarmed."
+
+[.ice_warriors]
+amount = [40, 50]
+weight = 7
+tip = "Ice Warriors are a kind of ice elemental, shatter them with blunt weapons or melt them with fire."
+
+[.kalphites]
+amount = [30, 50]
+weight = 6
+tip = "Kalphite are large insects which live in great hives under the desert sands."
+
+#[.killerwatts]
+#amount = [30, 50]
+#weight = 6
+#tip = "Killerwatts store huge amounts of energy in their bodies, which is released if they are touched. You'll need to wear heavily insulated boots to counter this shocking effect."
+
+[.lizards]
+amount = [30, 50]
+weight = 8
+tip = "Lizards are large reptiles with tough skin. Those found in the desert will need you to douse them with freezing water to finish them off after a tough battle."
+
+#[.mogres]
+#amount = [30, 50]
+#weight = 8
+#tip = "Mogres are a type of aquatic Ogre that is often mistaken for a giant mudskipper. You have to force them out of the water with a fishing explosive."
+
+[.pyrefiends]
+amount = [30, 50]
+weight = 8
+tip = "Pyrefiends are beings of fire and molten rock, they're quick and agile but weak to water spells."
+
+[.rockslugs]
+amount = [30, 50]
+weight = 8
+tip = "Rockslugs are strange stoney slugs. You'll need to fight them to near death before finishing them off with Salt."
+
+[.scorpions]
+amount = [30, 50]
+weight = 7
+tip = "Scorpions are almost always poisonous, their hard carapace makes them resistant to crushing and stabbing attacks."
+
+#[.shades]
+#amount = [30, 70]
+#weight = 8
+#tip = "Shades are undead so magic is your best bet against them. You can find Shades at Mort'ton."
+
+[.skeletons]
+amount = [30, 50]
+weight = 7
+tip = "Skeletons are undead so magic is your best bet against them, there is even a spell specially for fighting the undead."
+
+#[.vampyres]
+#amount = [10, 20]
+#weight = 6
+#tip = "Vampyres are extremely powerful beings. An underground group known as the Myreque have been searching for tools to defeat them, which they may be willing to share if you can find them."
+
+[.wolves]
+amount = [30, 50]
+weight = 7
+tip = "Wolves are pack animals, so you'll always find them in groups. Watch out for their bite, it can be nasty."
+
+[.wall_beasts]
+amount = [10, 20]
+weight = 7
+tip = "Wall Beasts are really much larger creatures but you'll only see their arms. You'll want something sharp on your head to stop them grabbing you."
+
+[.zombies]
+amount = [30, 50]
+weight = 7
+tip = "Zombies are undead so magic is your best bet against them, there is even a spell specially for fighting the undead."

@@ -1,15 +1,14 @@
 package content.skill.slayer
 
 import content.quest.questCompleted
-import world.gregs.voidps.engine.client.ui.chat.toIntRange
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.data.config.TableDefinition
+import world.gregs.voidps.engine.data.definition.ColumnType
+import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.type.random
 
 // shade, zombie, skeleton, ghost, zogre, ankou
@@ -63,52 +62,55 @@ fun Player.isTask(character: Character?): Boolean {
     return target.categories.contains(slayerTask)
 }
 
-fun assignTask(player: Player, master: String): Pair<Int, Int> {
-    val npc = rollTask(player, master)!!
-    val amount = EnumDefinitions.string("${master}_task_amount", npc).toIntRange(inclusive = true).random(random)
+fun assignTask(player: Player, master: String): Pair<String, Int> {
+    val pair = rollTask(player, master) ?: error("No task found for $master")
     player.slayerTasks++
     player.slayerMaster = master
-    player.slayerTask = EnumDefinitions.string("slayer_tasks_categories", npc)
-    player.slayerTaskRemaining = amount
-    return Pair(npc, amount)
+    player.slayerTask = pair.first
+    player.slayerTaskRemaining = pair.second
+    return pair
 }
 
-fun rollTask(player: Player, master: String): Int? {
+private fun rollTask(player: Player, master: String): Pair<String, Int>? {
     var total = 0
-    val weights = EnumDefinitions.getOrNull("${master}_task_weight")?.map ?: return null
-    for ((npc, weight) in weights) {
-        if (!hasRequirements(player, npc)) {
+    val table = Tables.getOrNull("${master}_slayer_tasks") ?: return null
+    for (row in table.rows) {
+        val weight = table.int("weight", row)
+        if (!hasRequirements(player, table, row)) {
             continue
         }
-        total += weight as Int
+        total += weight
     }
     val roll = random.nextInt(total)
     var count = 0
-    for ((npc, weight) in weights) {
-        if (!hasRequirements(player, npc)) {
+    for (row in table.rows) {
+        if (!hasRequirements(player, table, row)) {
             continue
         }
-        count += weight as Int
+        val weight = table.int("weight", row)
+        count += weight
         if (roll < count) {
-            return npc
+            val range = table.get("amount", row, ColumnType.ColumnIntRange)
+            val row = Rows.get(row)
+            return Pair(row.stringId, range.random(random))
         }
     }
     return null
 }
 
-private fun hasRequirements(player: Player, index: Int): Boolean {
-    val slayerLevel = NPCDefinitions.get(index)["slayer_level", 1]
-    if (!player.has(Skill.Slayer, slayerLevel)) {
-        return false
-    }
-    val combatLevel = EnumDefinitions.int("slayer_task_combat_level", index)
+private fun hasRequirements(player: Player, table: TableDefinition, row: Int): Boolean {
+//    val slayerLevel = NPCDefinitions.get(index)["slayer_level", 1] // FIXME
+//    if (!player.has(Skill.Slayer, slayerLevel)) {
+//        return false
+//    }
+    val combatLevel = table.int("combat_level", row)
     if (player.combatLevel < combatLevel) {
         return false
     }
-    val variable = EnumDefinitions.stringOrNull("slayer_task_variable", index)
+    val variable = table.stringOrNull("variable", row)
     if (variable != null && !player.contains(variable)) {
         return false
     }
-    val quest = EnumDefinitions.stringOrNull("slayer_task_quest", index) ?: return true
+    val quest = table.stringOrNull("quest", row) ?: return true
     return player.questCompleted(quest)
 }

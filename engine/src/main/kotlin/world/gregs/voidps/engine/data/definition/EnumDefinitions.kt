@@ -98,6 +98,11 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
         return definition.intOrNull(key)
     }
 
+    fun intOrNull(enum: String, key: Int): Int? {
+        val definition = getOrNull(enum) ?: return null
+        return definition.intOrNull(key)
+    }
+
     fun item(enum: String, key: String): String {
         val definition = get(enum)
         assert(definition.valueType == EnumTypes.ITEM || definition.valueType == EnumTypes.ITEM_2) { "Enum $enum value type not Item, found: ${EnumTypes.name(definition.valueType)}" }

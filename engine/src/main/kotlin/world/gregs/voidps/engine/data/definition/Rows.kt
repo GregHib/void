@@ -26,7 +26,7 @@ object Rows {
     fun getOrNull(id: Int) = definitions.getOrNull(id)
 
     @TestOnly
-    fun set(definitions: Array<RowDefinition>, ids: Map<String, Int>, ) {
+    fun set(definitions: Array<RowDefinition>, ids: Map<String, Int>) {
         this.definitions = definitions
         this.ids = ids
         loaded = true

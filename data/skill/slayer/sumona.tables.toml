@@ -1,0 +1,164 @@
+[sumona_slayer_tasks]
+amount = "range"
+weight = "int"
+tip = "string"
+
+[.aberrant_spectre]
+amount = [120, 185]
+weight = 15
+tip = "Aberrant Spectres are fetid, vile ghosts. The very smell of them will paralyse and harm you. A nosepeg will help ignore their stink."
+
+[.abyssal_demon]
+amount = [120, 185]
+weight = 10
+tip = "Abyssal Demons are nasty creatures to fight. They aren't really part of this realm, and are able to move very quickly to trap their prey."
+
+[.aquanites]
+amount = [120, 185]
+weight = 10
+tip = "Aquanites rely on their lures for both offensive and defensive purposes. Whilst their hides are resistant to slashing attacks, a well timed cut is capable of severing the lure."
+
+[.aviansies]
+amount = [50, 100]
+weight = 7
+tip = "Aviansies are bird-like creatures found in the icy dungeons of the north. Melee weapons can't reach them, so use Magic or Ranged attacks."
+
+[.basilisks]
+amount = [120, 185]
+weight = 15
+tip = "Basilisks, like Cockatrice, have a gaze which will paralyse and harm their prey. You'll need a Mirror Shield to protect you."
+
+[.banshees]
+amount = [120, 185]
+weight = 15
+tip = "Banshees use a piercing scream to shock their enemies, you'll need some Earmuffs to protect yourself from them."
+
+[.bloodvelds]
+amount = [120, 185]
+weight = 10
+tip = "Bloodveld are strange demonic creatures, their long rasping tongue has magical properties so it pierces straight through physical defences."
+
+[.black_demons]
+amount = [120, 185]
+weight = 10
+tip = "Powerful weapons known as demonbane weapons can be used to quickly defeat even powerful demons like the Black Demon with greater ease."
+
+[.blue_dragons]
+amount = [120, 185]
+weight = 5
+tip = "Like all dragons, Blue Dragons have thick scales and a powerful fiery breath. Stabbing weapons and heavy bolts are best suited to piercing their defences."
+
+[.cave_crawlers]
+amount = [120, 185]
+weight = 15
+tip = "Cave Crawlers are small and fast, often hiding in ambush. Avoid their barbed tongue or you'll get poisoned."
+
+[.cave_horrors]
+amount = [120, 185]
+weight = 15
+tip = "Cave Horrors can be found under Mos Le'Harmless. You will need a Witchwood Icon to fight them effectively."
+
+[.crocodiles]
+amount = [150, 250]
+weight = 4
+tip = "Crocodiles are large reptiles which live near water. You'll want to have a stabbing weapon handy for puncturing their thick scaly hides."
+
+[.dust_devils]
+amount = [120, 185]
+weight = 15
+tip = "Dust Devils use clouds of dust, sand, ash, and whatever else they can inhale to blind and disorientate their victims. Make sure to wear a facemask when fighting them."
+
+[.dagannoth]
+amount = [120, 185]
+weight = 10
+tip = "Dagannoth are large sea dwelling creatures which are very aggressive. You'll often find them in caves near sea water."
+
+#[.elves]
+#amount = [60, 90]
+#weight = 10
+#tip = "Elves are quick, agile, and vicious fighters which often favour bows and polearms."
+
+[.fire_giant]
+amount = [120, 185]
+weight = 10
+tip = "Like other giants, Fire Giants have little to no magical ability, and they're particularly weak to water spells."
+
+[.gargoyles]
+amount = [120, 195]
+weight = 10
+tip = "Gargoyles are winged creatures of stone. You'll need to fight them to near death before breaking them apart with a Rock Hammer."
+
+[.greater_demons]
+amount = [120, 195]
+weight = 10
+tip = "Demons are particularly weak to water spells. Though Greater Demons are not the strongest type of demon they are still dangerous."
+
+[.hellhounds]
+amount = [120, 185]
+weight = 10
+tip = "Hellhounds are a cross between Dogs and Demons. They are dangerous with a fierce bite, but have all of the same weaknesses as most demons."
+
+[.iron_dragons]
+amount = [30, 60]
+weight = 7
+tip = "Iron Dragons are some of the weaker metallic dragons, their iron scales are far thicker than normal iron armour."
+
+[.kalphites]
+amount = [120, 185]
+weight = 10
+tip = "Kalphite are large insects which live in great hives under the desert sands."
+
+[.kurask]
+amount = [120, 185]
+weight = 15
+tip = "Kurask are large brutal creatures with very thick hides. You'll need a Leaf-Tipped Spear or Battle-axe, Broad Arrows, or a Magic Dart to harm it."
+
+[.lizards]
+amount = [90, 110]
+weight = 4
+tip = "Lizards are large reptiles with tough skin. Those found in the desert will need you to douse them with freezing water to finish them off after a tough battle."
+
+[.nechryael]
+amount = [120, 185]
+weight = 10
+tip = "Nechryael are demons of decay which summon small winged beings to help them fight their victims. Their minions can bypass protective prayers so be sure to wear thick armour."
+
+[.red_dragons]
+amount = [30, 60]
+weight = 5
+tip = "Red Dragons are very powerful, stronger than most dragons, watch out for their fiery breath."
+
+#[.scabarites]
+#amount = [80, 120]
+#weight = 5
+#tip = "Scabarites are insectoid creatures, found beyond the Kharidian deserts. Make sure not to fall into one of their pitfall traps or you'll be quickly overwhelmed."
+
+[.scorpions]
+amount = [150, 250]
+weight = 4
+tip = "Scorpions are almost always poisonous, their hard carapace makes them resistant to crushing and stabbing attacks."
+
+[.spiritual_creatures]
+amount = [120, 185]
+weight = 10
+tip = "Spiritual Creatures can be found in the icy caverns near Trollheim, supporting the cause of their chosen god. Wearing equipment aligned with each of the gods can help you avoid undesired conflict."
+
+#[.terror_dogs]
+#amount = [30, 60]
+#weight = 10
+#tip = "Terror dogs are, unsurprisingly, dogs that terrorise the weak. You'll find them in the Haunted Mine, near Tarn's lair."
+
+[.turoth]
+amount = [120, 185]
+weight = 15
+tip = "Turoth are large vicious creatures with thick hides. You'll need a Leaf-Tipped Spear or Sword, Broad Arrows, or a Magic Dart to harm them."
+
+[.trolls]
+amount = [120, 185]
+weight = 10
+tip = "Trolls regenerate damage quickly and have some level of magical defences, but this is easily bypassed by their weakness to fire."
+
+#[.warped_creatures]
+#amount = [120, 185]
+#weight = 10
+#tip = "Warped Creatures can supposedly be found within a mysterious dungeon on the eastern edge of the Poison Waste. Be aware that to defeat them, you'll need to purify them in some way."

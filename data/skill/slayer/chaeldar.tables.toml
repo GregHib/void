@@ -1,0 +1,169 @@
+[chaeldar_slayer_tasks]
+amount = "range"
+weight = "int"
+tip = "string"
+
+[.aberrant_spectre]
+amount = [70, 130]
+weight = 8
+tip = "Aberrant Spectres are fetid, vile ghosts. The very smell of them will paralyse and harm you. A nosepeg will help ignore their stink."
+
+[.abyssal_demon]
+amount = [70, 130]
+weight = 12
+tip = "Abyssal Demons are nasty creatures to fight. They aren't really part of this realm, and are able to move very quickly to trap their prey."
+
+[.aviansies]
+amount = [70, 130]
+weight = 9
+tip = "Aviansies are bird-like creatures found in the icy dungeons of the north. Melee weapons can't reach them, so use Magic or Ranged attacks."
+
+[.basilisks]
+amount = [70, 130]
+weight = 7
+tip = "Basilisks, like Cockatrice, have a gaze which will paralyse and harm their prey. You'll need a Mirror Shield to protect you."
+
+[.bloodvelds]
+amount = [70, 130]
+weight = 8
+tip = "Bloodveld are strange demonic creatures, their long rasping tongue has magical properties so it pierces straight through physical defences."
+
+[.brine_rats]
+amount = [70, 130]
+weight = 7
+tip = "Brine Rats can be found in caves that are near the sea. They are hairless, bad-tempered and generally unfriendly."
+
+[.black_demons]
+amount = [70, 130]
+weight = 10
+tip = "Powerful weapons known as demonbane weapons can be used to quickly defeat even powerful demons like the Black Demon with greater ease."
+
+[.blue_dragons]
+amount = [70, 130]
+weight = 8
+tip = "Like all dragons, Blue Dragons have thick scales and a powerful fiery breath. Stabbing weapons and heavy bolts are best suited to piercing their defences."
+
+[.cave_horrors]
+amount = [70, 130]
+weight = 10
+tip = "Cave Horrors can be found under Mos Le'Harmless. You will need a Witchwood Icon to fight them effectively."
+
+[.crabs]
+amount = [70, 130]
+weight = 8
+tip = "Crabs can be found all across Gielinor. They don't hit very hard but they can take a while to kill."
+
+[.dust_devils]
+amount = [70, 130]
+weight = 9
+tip = "Dust Devils use clouds of dust, sand, ash, and whatever else they can inhale to blind and disorientate their victims. Make sure to wear a facemask when fighting them."
+
+[.dagannoth]
+amount = [70, 130]
+weight = 11
+tip = "Dagannoth are large sea dwelling creatures which are very aggressive. You'll often find them in caves near sea water."
+
+#[.elves]
+#amount = [70, 130]
+#weight = 8
+#tip = "Elves are quick, agile, and vicious fighters which often favour bows and polearms."
+
+[.fire_giant]
+amount = [70, 130]
+weight = 12
+tip = "Like other giants, Fire Giants have little to no magical ability, and they're particularly weak to water spells."
+
+#[.fever_spiders]
+#amount = [70, 130]
+#weight = 7
+#tip = "Fever Spiders are giant spiders that carry the deadly Spider Fever. If you don't want to catch it I suggest you wear Slayer Gloves to fight them."
+
+[.gargoyles]
+amount = [70, 130]
+weight = 11
+tip = "Gargoyles are winged creatures of stone. You'll need to fight them to near death before breaking them apart with a Rock Hammer."
+
+[.greater_demons]
+amount = [70, 130]
+weight = 9
+tip = "Demons are particularly weak to water spells. Though Greater Demons are not the strongest type of demon they are still dangerous."
+
+[.hellhounds]
+amount = [70, 130]
+weight = 9
+tip = "Hellhounds are a cross between Dogs and Demons. They are dangerous with a fierce bite, but have all of the same weaknesses as most demons."
+
+[.jellies]
+amount = [70, 130]
+weight = 10
+tip = "Jellies are nasty cube-like gelatinous creatures which absorb everything they come across into themselves. Their magical acids bypass physical defences."
+
+[.jungle_horrors]
+amount = [70, 130]
+weight = 10
+tip = "Jungle Horrors can be found all over Mos Le'Harmless. They are strong and aggressive, so watch out!"
+
+[.kalphites]
+amount = [70, 130]
+weight = 11
+tip = "Kalphite are large insects which live in great hives under the desert sands."
+
+[.kurask]
+amount = [70, 130]
+weight = 12
+tip = "Kurask are large brutal creatures with very thick hides. You'll need a Leaf-Tipped Spear or Battle-axe, Broad Arrows, or a Magic Dart to harm it."
+
+[.lesser_demons]
+amount = [70, 130]
+weight = 9
+tip = "Demons are weak to magical attacks. Though Lesser Demons are relatively weak they are still dangerous."
+
+[.mutated_zygomites]
+amount = [8, 15]
+weight = 7
+tip = "Mutated Zygomites are hard to destroy. They regenerate quickly so you will need to finish them with fungicide."
+
+[.nechryael]
+amount = [70, 130]
+weight = 12
+tip = "Nechryael are demons of decay which summon small winged beings to help them fight their victims. Their minions can bypass protective prayers so be sure to wear thick armour."
+
+[.skeletal_wyverns]
+amount = [10, 20]
+weight = 7
+tip = "Skeletal Wyverns are extremely dangerous and they are hard to hit with arrows as they slip right through. To stand a good chance of surviving you'll need some elemental shielding from its icy breath."
+
+[.shadow_warriors]
+amount = [70, 130]
+weight = 8
+tip = "Shadow Warriors are dark and mysterious. They wear spectral plate armour, so crush weapons and magic will give them trouble."
+
+[.spiritual_creatures]
+amount = [70, 130]
+weight = 12
+tip = "Spiritual Creatures can be found in the icy caverns near Trollheim, supporting the cause of their chosen god. Wearing equipment aligned with each of the gods can help you avoid undesired conflict."
+
+[.turoth]
+amount = [70, 130]
+weight = 10
+tip = "Turoth are large vicious creatures with thick hides. You'll need a Leaf-Tipped Spear or Sword, Broad Arrows, or a Magic Dart to harm them."
+
+[.trolls]
+amount = [70, 130]
+weight = 11
+tip = "Trolls regenerate damage quickly and have some level of magical defences, but this is easily bypassed by their weakness to fire."
+
+[.tzhaar]
+amount = [90, 150]
+weight = 8
+tip = "Tzhaar reside in their cave under the Karamja volcano. Beware as they can call to their fellows for aid."
+
+#[.vampyres]
+#amount = [80, 100]
+#weight = 6
+#tip = "Vampyres are extremely powerful beings. An underground group known as the Myreque have been searching for tools to defeat them, which they may be willing to share if you can find them."
+
+#[.warped_creatures]
+#amount = [70, 130]
+#weight = 6
+#tip = "Warped Creatures can supposedly be found within a mysterious dungeon on the eastern edge of the Poison Waste. Be aware that to defeat them, you'll need to purify them in some way."
