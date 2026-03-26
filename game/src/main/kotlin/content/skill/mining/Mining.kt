@@ -9,6 +9,8 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -76,13 +78,13 @@ class Mining : Script {
                     message("Your inventory is too full to hold any more ore.")
                     break
                 }
-
-                val ore = EnumDefinitions.stringOrNull("mining_ores", target.id) ?: break
+                val type = EnumDefinitions.stringOrNull("mining_ores", target.id) ?: break
+                val ore = Rows.getOrNull("ores.$type") ?: break
                 val stringId = target.def(this).stringId
                 val level = if (stringId.startsWith("crashed_star_tier_")) {
                     stringId.removePrefix("crashed_star_tier_").toInt() * 10
                 } else {
-                    EnumDefinitions.int("mining_level", ore)
+                    ore.int("level")
                 }
                 if (!has(Skill.Mining, level, true)) {
                     break
@@ -110,7 +112,7 @@ class Mining : Script {
                 if (!GameObjects.contains(target)) {
                     break
                 }
-                if (EnumDefinitions.contains("mining_gems", target.id)) {
+                if (ore.bool("gems")) {
                     val glory = equipped(EquipSlot.Amulet).id.startsWith("amulet_of_glory_")
                     if (success(levels.get(Skill.Mining), if (glory) 3..3 else 1..1)) {
                         addOre(this, gems.random())
@@ -126,19 +128,18 @@ class Mining : Script {
                             ores.add("rune_essence")
                         }
                     }
-                    ore == "granite_500g" -> ores.addAll(granite)
-                    ore == "sandstone_1kg" -> ores.addAll(sandstone)
-                    ore == "uncut_opal" -> ores.addAll(gemRocks)
-                    else -> ores.add(ore)
+                    ore.itemId == "granite_500g" -> ores.addAll(granite)
+                    ore.itemId == "sandstone_1kg" -> ores.addAll(sandstone)
+                    ore.itemId == "uncut_opal" -> ores.addAll(gemRocks)
+                    else -> ores.add(ore.itemId)
                 }
                 for (item in ores) {
-                    val chanceMin = EnumDefinitions.int("mining_chance_min", item)
-                    val chanceMax = EnumDefinitions.int("mining_chance_max", item)
-                    if (success(levels.get(Skill.Mining), chanceMin..chanceMax)) {
-                        val xp = EnumDefinitions.int("mining_xp", item) / 10.0
+                    val chance = Tables.intRange("mining_ores.${item}.chance")
+                    if (success(levels.get(Skill.Mining), chance)) {
+                        val xp = Tables.int("mining_ores.${item}.xp") / 10.0
                         exp(Skill.Mining, xp)
                         ShootingStarHandler.extraOreHandler(this, item, xp)
-                        if (!addOre(this, item) || deplete(target, EnumDefinitions.int("mining_life", item))) {
+                        if (!addOre(this, item) || deplete(target, Tables.int("mining_ores.${item}.life"))) {
                             clearAnim()
                             break
                         }
@@ -161,11 +162,11 @@ class Mining : Script {
             }
             message("You examine the rock for ores...")
             delay(4)
-            val ore = EnumDefinitions.stringOrNull("mining_ores", target.def(this).stringId)
+            val ore = Rows.getOrNull("mining_ores.${target.def(this).stringId}")
             if (ore == null) {
                 message("This rock contains no ore.")
             } else {
-                message("This rock contains ${ore.toLowerSpaceCase()}.")
+                message("This rock contains ${ore.itemId.toLowerSpaceCase()}.")
             }
         }
     }

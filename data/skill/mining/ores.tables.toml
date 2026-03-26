@@ -1,0 +1,190 @@
+[ores]
+row_id = "item"
+level = "int"
+xp = "int"
+gems = "boolean"
+life = "int"
+life_default = -1
+chance = "range"
+
+[.stardust]
+level = 1
+xp = 800
+gems = true
+chance = [10, 75]
+
+[.blurite_ore]
+level = 10
+xp = 175
+gems = true
+life = 42
+chance = [30, 375]
+
+[.limestone]
+level = 1
+xp = 265
+chance = [25, 200]
+
+[.uncut_diamond]
+level = 1
+xp = 650
+life = 99
+chance = [8, 8]
+
+[.uncut_ruby]
+level = 1
+xp = 650
+life = 99
+chance = [10, 10]
+
+[.uncut_emerald]
+level = 1
+xp = 650
+life = 99
+chance = [10, 10]
+
+[.uncut_sapphire]
+level = 1
+xp = 650
+life = 99
+chance = [18, 18]
+
+[.uncut_opal]
+level = 40
+xp = 650
+life = 99
+chance = [120, 120]
+
+[.uncut_jade]
+level = 1
+xp = 650
+life = 99
+chance = [60, 60]
+
+[.uncut_red_topaz]
+level = 1
+xp = 650
+life = 99
+chance = [30, 30]
+
+[.clay]
+level = 1
+xp = 50
+gems = true
+life = 2
+chance = [75, 300]
+
+[.copper_ore]
+level = 1
+xp = 175
+gems = true
+life = 4
+chance = [40, 500]
+
+[.tin_ore]
+level = 1
+xp = 175
+gems = true
+life = 4
+chance = [40, 500]
+
+[.iron_ore]
+level = 15
+xp = 350
+gems = true
+life = 9
+chance = [110, 350]
+
+[.silver_ore]
+level = 20
+xp = 400
+gems = true
+life = 100
+chance = [25, 200]
+
+[.gold_ore]
+level = 40
+xp = 650
+gems = true
+life = 100
+chance = [7, 75]
+
+[.mithril_ore]
+level = 55
+xp = 800
+gems = true
+life = 200
+chance = [10, 75]
+
+[.adamantite_ore]
+level = 70
+xp = 950
+gems = true
+life = 400
+chance = [5, 55]
+
+[.runite_ore]
+level = 85
+xp = 1250
+gems = true
+life = 1200
+chance = [1, 18]
+
+[.coal]
+level = 30
+xp = 500
+gems = true
+life = 50
+chance = [20, 150]
+
+[.sandstone_1kg]
+level = 35
+xp = 300
+life = 7
+chance = [25, 200]
+
+[.sandstone_2kg]
+level = 1
+xp = 400
+life = 7
+chance = [16, 100]
+
+[.sandstone_5kg]
+level = 1
+xp = 500
+life = 7
+chance = [8, 75]
+
+[.sandstone_10kg]
+level = 1
+xp = 600
+life = 7
+chance = [4, 50]
+
+[.granite_500g]
+level = 45
+xp = 500
+life = 8
+chance = [16, 100]
+
+[.granite_2kg]
+level = 1
+xp = 600
+life = 8
+chance = [8, 75]
+
+[.granite_5kg]
+level = 1
+xp = 750
+life = 8
+chance = [6, 64]
+
+[.rune_essence]
+level = 1
+xp = 50
+chance = [200, 400]
+
+[.pure_essence]
+level = 1
+xp = 50
+chance = [150, 350]
