@@ -11,9 +11,17 @@ data class RowDefinition(
     val stringId: String
 ) {
 
+    fun bool(column: String) = Tables.bool("${stringId}.$column")
+
+    fun boolOrNull(column: String) = Tables.boolOrNull("${stringId}.$column")
+
     fun int(column: String) = Tables.int("${stringId}.$column")
 
     fun intOrNull(column: String) = Tables.intOrNull("${stringId}.$column")
+
+    fun intRange(column: String) = Tables.intRange("${stringId}.$column")
+
+    fun intRangeOrNull(column: String) = Tables.intRangeOrNull("${stringId}.$column")
 
     fun itemPair(column: String) = Tables.itemPair("${stringId}.$column")
 
