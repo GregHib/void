@@ -1,0 +1,63 @@
+[spinning]
+row_id = "item"
+level = "int"
+xp = "int"
+quest = "string"
+product = "item"
+
+[.black_wool]
+level = 1
+xp = 25
+quest = "shear_shearer_miniquest"
+product = "ball_of_black_wool"
+
+[.flax]
+level = 10
+xp = 150
+product = "bowstring"
+
+[.golden_wool]
+level = 40
+xp = 25
+quest = "fremennik_trials"
+product = "golden_fleece"
+
+[.magic_roots]
+level = 19
+xp = 300
+product = "magic_string"
+
+[.maple_roots]
+level = 10
+xp = 150
+product = "crossbow_string"
+
+[.oak_roots]
+level = 10
+xp = 150
+product = "crossbow_string"
+
+[.sinew]
+level = 10
+xp = 150
+product = "crossbow_string"
+
+[.willow_roots]
+level = 10
+xp = 150
+product = "crossbow_string"
+
+[.wool]
+level = 1
+xp = 25
+product = "ball_of_wool"
+
+[.yak_hair]
+level = 30
+xp = 250
+product = "rope"
+
+[.yew_roots]
+level = 10
+xp = 150
+product = "crossbow_string"

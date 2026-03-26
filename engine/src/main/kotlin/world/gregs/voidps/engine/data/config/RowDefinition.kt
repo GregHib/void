@@ -11,6 +11,8 @@ data class RowDefinition(
     val stringId: String
 ) {
 
+    val itemId: String get() = stringId.substringAfterLast('.')
+
     fun bool(column: String) = Tables.bool("${stringId}.$column")
 
     fun boolOrNull(column: String) = Tables.boolOrNull("${stringId}.$column")
