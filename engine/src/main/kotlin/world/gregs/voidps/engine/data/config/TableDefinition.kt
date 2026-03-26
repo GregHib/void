@@ -14,6 +14,8 @@ data class TableDefinition(
     val rows: IntArray,
 ) {
 
+    fun rows(): List<RowDefinition> = rows.map { Rows.get(it) }
+
     fun bool(column: String, row: Int): Boolean = get(column, row, ColumnType.ColumnBoolean)
 
     fun boolOrNull(column: String, row: Int): Boolean? = getOrNull(column, row, ColumnType.ColumnBoolean)

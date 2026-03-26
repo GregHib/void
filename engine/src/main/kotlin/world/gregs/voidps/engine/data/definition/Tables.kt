@@ -218,6 +218,11 @@ object Tables {
     private fun readTableRow(reader: ConfigReader, definitions: MutableMap<String, TableBuilder>, rows: MutableList<RowDefinition>, ids: MutableMap<String, Int>, key: String, rowName: String) {
         val builder = definitions[key]
         requireNotNull(builder) { "Table header not found '$key' at ${reader.exception()}." }
+        val idReader = builder.idReader
+        if (idReader != null) {
+            val rowId = rowName.substringAfter(".")
+            requireNotNull(idReader.definitions[rowId]) { "Unable to find entity '$rowId' for row id" }
+        }
         val row = arrayOfNulls<Any>(builder.readers.size)
         while (reader.nextPair()) {
             val name = reader.key()
@@ -239,7 +244,12 @@ object Tables {
         definitions[stringId] = builder
         while (reader.nextPair()) {
             val key = reader.key()
-            if (key.endsWith("_default")) {
+            if (key == "row_id") {
+                val reader = ColumnReader.reader(reader.string())
+                if (reader is ColumnReader.ReaderEntity) {
+                    builder.idReader = reader
+                }
+            } else if (key.endsWith("_default")) {
                 val default = reader.value()
                 builder.setDefault(key.removeSuffix("_default"), default)
             } else {
@@ -255,6 +265,7 @@ object Tables {
         val defaults = mutableListOf<Any?>()
         val rows = mutableListOf<Int>()
         private var columnIndex = 0
+        var idReader: ColumnReader.ReaderEntity? = null
 
         fun setDefault(name: String, value: Any) {
             val index = columns[name]
