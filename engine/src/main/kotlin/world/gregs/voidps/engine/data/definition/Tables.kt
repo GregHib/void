@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.config.TableDefinition
 import world.gregs.voidps.engine.timedLoad
 import kotlin.collections.set
+import kotlin.math.exp
 
 object Tables {
 
@@ -221,7 +222,7 @@ object Tables {
         val idReader = builder.idReader
         if (idReader != null) {
             val rowId = rowName.substringAfter(".")
-            requireNotNull(idReader.definitions[rowId]) { "Unable to find entity '$rowId' for row id" }
+            requireNotNull(idReader.ids[rowId]) { "Unable to find entity '$rowId' for row id" }
         }
         val row = arrayOfNulls<Any>(builder.readers.size)
         while (reader.nextPair()) {
@@ -250,8 +251,12 @@ object Tables {
                     builder.idReader = reader
                 }
             } else if (key.endsWith("_default")) {
-                val default = reader.value()
-                builder.setDefault(key.removeSuffix("_default"), default)
+                val name = key.removeSuffix("_default")
+                val index = builder.columns[name]
+                requireNotNull(index) { "Column '$name' not found for default at ${reader.exception()}." }
+                val read = builder.readers[index]
+                val value = read.read(reader)
+                builder.setDefault(index, name, value)
             } else {
                 val type = reader.string()
                 builder.addColumn(key, type)
@@ -267,9 +272,7 @@ object Tables {
         private var columnIndex = 0
         var idReader: ColumnReader.ReaderEntity? = null
 
-        fun setDefault(name: String, value: Any) {
-            val index = columns[name]
-            requireNotNull(index) { "Default column not found '$name'" }
+        fun setDefault(index: Int, name: String, value: Any) {
             require(index < columnIndex) { "Default column index out of bounds '$name' - has type been set?" }
             defaults[index] = value
         }

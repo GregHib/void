@@ -1,0 +1,260 @@
+[fishing]
+row_id = "item"
+level = "int"
+xp = "int"
+chance = "range"
+bait = "item"
+bait_default = "empty_box_fish"
+
+[.casket]
+level = 16
+chance = [1, 2]
+
+[.cave_eel]
+level = 38
+xp = 80
+chance = [10, 80]
+
+[.frog_spawn]
+level = 33
+xp = 75
+chance = [16, 96]
+
+[.lava_eel]
+level = 53
+xp = 60
+chance = [16, 96]
+
+[.leaping_salmon]
+level = 58
+xp = 70
+chance = [16, 96]
+
+[.leaping_sturgeon]
+level = 70
+xp = 80
+chance = [8, 64]
+
+[.leaping_trout]
+level = 48
+xp = 50
+chance = [32, 192]
+
+[.leather_boots]
+level = 16
+xp = 1
+chance = [10, 10]
+
+[.leather_gloves]
+level = 16
+xp = 1
+chance = [10, 10]
+
+[.oyster]
+level = 16
+xp = 10
+chance = [3, 7]
+
+[.raw_anchovies]
+level = 15
+xp = 40
+chance = [24, 128]
+
+[.raw_bass]
+level = 46
+xp = 100
+chance = [3, 40]
+
+[.raw_blue_crab]
+level = 80
+xp = 153
+chance = [1, 1]
+
+[.raw_bouldabass]
+level = 60
+xp = 117
+chance = [1, 1]
+
+[.raw_cave_eel]
+bait = "fishing_bait"
+
+[.raw_cave_moray]
+level = 90
+xp = 171
+chance = [1, 1]
+
+[.raw_cavefish]
+level = 85
+xp = 300
+chance = [2, 24]
+bait = "fishing_bait"
+
+[.raw_cod]
+level = 23
+xp = 45
+chance = [4, 55]
+
+[.raw_crayfish]
+level = 0
+xp = 10
+chance = [48, 256]
+
+[.raw_dusk_eel]
+level = 20
+xp = 45
+chance = [1, 1]
+
+[.raw_giant_flatfish]
+level = 30
+xp = 63
+chance = [1, 1]
+
+[.raw_heim_crab]
+level = 1
+xp = 9
+chance = [1, 1]
+
+[.raw_herring]
+level = 10
+xp = 30
+chance = [24, 128]
+bait = "fishing_bait"
+
+[.raw_karambwan]
+level = 65
+xp = 50
+chance = [5, 160]
+bait = "raw_karambwanji"
+
+[.raw_karambwanji]
+level = 5
+xp = 5
+chance = [100, 250]
+
+[.raw_lava_eel]
+bait = "fishing_bait"
+
+[.raw_lobster]
+level = 40
+xp = 90
+chance = [6, 95]
+
+[.raw_mackerel]
+level = 16
+xp = 20
+chance = [5, 65]
+
+[.raw_manta_ray]
+level = 81
+xp = 46
+chance = [2, 30]
+
+[.raw_monkfish]
+level = 62
+xp = 120
+chance = [48, 90]
+
+[.raw_pike]
+level = 25
+xp = 60
+chance = [16, 96]
+bait = "fishing_bait"
+
+[.raw_rainbow_fish]
+level = 38
+xp = 80
+chance = [8, 64]
+bait = "stripy_feather"
+
+[.raw_red_eye]
+level = 10
+xp = 27
+chance = [1, 1]
+
+[.raw_rocktail]
+level = 90
+xp = 380
+chance = [1, 16]
+bait = "living_minerals"
+
+[.raw_salmon]
+level = 30
+xp = 70
+chance = [16, 96]
+bait = "feather"
+
+[.raw_salve_eel]
+level = 70
+xp = 135
+chance = [1, 1]
+
+[.raw_sardine]
+level = 5
+xp = 20
+chance = [32, 192]
+bait = "fishing_bait"
+
+[.raw_sea_turtle]
+level = 79
+xp = 38
+chance = [3, 30]
+
+[.raw_shark]
+level = 76
+xp = 110
+chance = [3, 40]
+
+[.raw_short_finned_eel]
+level = 40
+xp = 81
+chance = [1, 1]
+
+[.raw_shrimps]
+level = 0
+xp = 10
+chance = [48, 256]
+
+[.raw_swordfish]
+level = 50
+xp = 100
+chance = [4, 48]
+
+[.raw_trout]
+level = 20
+xp = 50
+chance = [32, 192]
+bait = "feather"
+
+[.raw_tuna]
+level = 35
+xp = 80
+chance = [8, 64]
+
+[.raw_vile_fish]
+level = 1
+xp = 255
+chance = [1, 1]
+
+[.raw_web_snipper]
+level = 50
+xp = 99
+chance = [1, 1]
+
+[.seaweed]
+level = 16
+xp = 1
+chance = [10, 10]
+
+[.slimy_eel]
+level = 28
+xp = 65
+chance = [10, 80]
+bait = "fishing_bait"
+
+[.sluglings]
+level = 50
+
+[.swamp_weed]
+level = 33
+xp = 1
+chance = [10, 10]

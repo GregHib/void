@@ -32,10 +32,10 @@ sealed interface ColumnReader<T : Any> {
         }
     }
 
-    class ReaderEntity(val definitions: Map<String, Int>) : ColumnReader<Int> {
+    class ReaderEntity(val ids: Map<String, Int>) : ColumnReader<Int> {
         override val type = ColumnType.ColumnEntity
         override fun list() = mutableListOf<Int>()
-        override fun read(reader: ConfigReader) = definitions.getValue(reader.string())
+        override fun read(reader: ConfigReader) = ids.getValue(reader.string())
     }
 
     object ReaderString : ColumnReader<String> {

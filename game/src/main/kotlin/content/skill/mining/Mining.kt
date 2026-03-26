@@ -134,12 +134,12 @@ class Mining : Script {
                     else -> ores.add(ore.itemId)
                 }
                 for (item in ores) {
-                    val chance = Tables.intRange("mining_ores.${item}.chance")
+                    val chance = Tables.intRange("ores.${item}.chance")
                     if (success(levels.get(Skill.Mining), chance)) {
-                        val xp = Tables.int("mining_ores.${item}.xp") / 10.0
+                        val xp = Tables.int("ores.${item}.xp") / 10.0
                         exp(Skill.Mining, xp)
                         ShootingStarHandler.extraOreHandler(this, item, xp)
-                        if (!addOre(this, item) || deplete(target, Tables.int("mining_ores.${item}.life"))) {
+                        if (!addOre(this, item) || deplete(target, Tables.int("ores.${item}.life"))) {
                             clearAnim()
                             break
                         }

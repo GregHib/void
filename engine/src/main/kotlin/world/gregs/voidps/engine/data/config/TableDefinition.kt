@@ -46,8 +46,7 @@ data class TableDefinition(
     }
 
     fun <T : Any> getOrNull(column: Int, row: Int, type: ColumnType<T>): T? {
-        val id = rows.getOrNull(row) ?: return null
-        val rows = Rows.getOrNull(id)?.data ?: return null
+        val rows = Rows.getOrNull(row)?.data ?: return null
         val value = rows[column]
         return type.cast(value)
     }
@@ -60,7 +59,7 @@ data class TableDefinition(
     fun <T : Any> findOrNull(searchColumn: Int, value: Any, column: String, type: ColumnType<T>): T? {
         val columnIndex = columns[column] ?: return null
         val row = findOrNull(searchColumn, value) ?: return null
-        return getOrNull(row, columnIndex, type)
+        return getOrNull(columnIndex, row, type)
     }
 
     fun findOrNull(column: Int, value: Any): Int? {
