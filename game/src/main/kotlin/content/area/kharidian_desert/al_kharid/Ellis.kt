@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.inv.carriesItem
@@ -90,9 +90,9 @@ class Ellis : Script {
             return
         }
         val tanner = player["tanner", "ellis"]
-        val primary = if (type.endsWith("_1")) "_secondary" else ""
-        val leather = EnumDefinitions.string("tanning${primary}_product", item)
-        val cost = EnumDefinitions.int("${tanner}_tanning${primary}_price", item)
+        val primary = if (type.endsWith("_1")) "hard_" else ""
+        val leather = Tables.item("tanning.${item}.${primary}leather")
+        val cost = Tables.int("tanning.${item}.${primary}price_${tanner}")
         var tanned = 0
         var noHides = false
         for (i in 0 until amount) {
