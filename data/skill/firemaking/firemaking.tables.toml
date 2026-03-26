@@ -1,0 +1,175 @@
+[firemaking]
+row_id = "item"
+level = "int"
+xp = "int"
+life = "int"
+colour = "string"
+colour_default = "orange"
+chance = "range"
+
+[.red_logs]
+level = 1
+xp = 500
+life = 60
+colour = "red"
+chance = [256, 256]
+
+[.green_logs]
+level = 1
+xp = 500
+life = 60
+colour = "green"
+chance = [256, 256]
+
+[.blue_logs]
+level = 1
+xp = 500
+life = 60
+colour = "blue"
+chance = [256, 256]
+
+[.white_logs]
+level = 1
+xp = 500
+life = 60
+colour = "white"
+chance = [256, 256]
+
+[.purple_logs]
+level = 1
+xp = 500
+life = 60
+colour = "purple"
+chance = [256, 256]
+
+[.eucalyptus_logs]
+level = 58
+xp = 1935
+life = 140
+chance = [65, 513]
+
+[.achey_tree_logs]
+level = 1
+xp = 400
+life = 60
+chance = [65, 513]
+
+[.arctic_pine_logs]
+level = 42
+xp = 1250
+life = 100
+chance = [65, 513]
+
+[.cursed_magic_logs]
+level = 82
+xp = 3038
+life = 200
+chance = [65, 513]
+
+[.tangle_gum_branches]
+level = 1
+xp = 250
+life = 60
+chance = [65, 513]
+
+[.seeping_elm_branches]
+level = 10
+xp = 445
+life = 75
+chance = [65, 513]
+
+[.blood_spindle_branches]
+level = 20
+xp = 656
+life = 82
+chance = [65, 513]
+
+[.utuku_branches]
+level = 30
+xp = 883
+life = 90
+chance = [65, 513]
+
+[.spinebeam_branches]
+level = 40
+xp = 1126
+life = 100
+chance = [65, 513]
+
+[.bovistrangler_branches]
+level = 50
+xp = 1385
+life = 120
+chance = [65, 513]
+
+[.thigat_branches]
+level = 60
+xp = 1660
+life = 140
+chance = [65, 513]
+
+[.corpsethorn_branches]
+level = 70
+xp = 1951
+life = 170
+chance = [65, 513]
+
+[.entgallow_branches]
+level = 80
+xp = 2258
+life = 185
+chance = [65, 513]
+
+[.grave_creeper_branches]
+level = 90
+xp = 2581
+life = 200
+chance = [65, 513]
+
+[.logs]
+level = 1
+xp = 400
+life = 60
+chance = [65, 513]
+
+[.magic_logs]
+level = 75
+xp = 3038
+life = 180
+chance = [65, 513]
+
+[.yew_logs]
+level = 60
+xp = 2025
+life = 160
+chance = [65, 513]
+
+[.maple_logs]
+level = 45
+xp = 1350
+life = 100
+chance = [65, 513]
+
+[.willow_logs]
+level = 30
+xp = 900
+life = 90
+chance = [65, 513]
+
+[.oak_logs]
+level = 15
+xp = 600
+life = 90
+chance = [65, 513]
+
+[.mahogany_logs]
+level = 50
+xp = 1575
+life = 140
+chance = [65, 513]
+
+[.teak_logs]
+level = 35
+xp = 1050
+life = 90
+chance = [65, 513]
