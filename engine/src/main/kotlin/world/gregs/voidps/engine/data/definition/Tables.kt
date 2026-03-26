@@ -119,6 +119,13 @@ object Tables {
         Primitive Pairs
      */
 
+    fun itemPair(path: String): Pair<String, String> {
+        val pair = get(path, ColumnType.IntIntPair)
+        val first = ItemDefinitions.get(pair.first).stringId
+        val second = ItemDefinitions.get(pair.second).stringId
+        return Pair(first, second)
+    }
+
     fun intPair(path: String): Pair<Int, Int> = get(path, ColumnType.IntIntPair)
 
     fun intPairOrNull(path: String): Pair<Int, Int>? = getOrNull(path, ColumnType.IntIntPair)

@@ -28,13 +28,12 @@ data class TableDefinition(
 
     fun <T : Any> get(column: String, row: Int, type: ColumnType<T>): T {
         val columnIndex = columns[column] ?: throw IllegalArgumentException("Column $column not found")
-        return get(row, columnIndex, type)
+        return get(columnIndex, row, type)
     }
 
     fun <T : Any> get(column: Int, row: Int, type: ColumnType<T>): T {
         val default = type.cast(default[column]) ?: type.default
-        val id = rows.getOrNull(row) ?: return default
-        val rows = Rows.getOrNull(id)?.data ?: return default
+        val rows = Rows.getOrNull(row)?.data ?: return default
         val value = rows[column]
         return type.cast(value) ?: default
     }

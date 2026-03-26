@@ -94,13 +94,13 @@ sealed interface ColumnReader<T : Any> {
             "item" -> ReaderEntity(ItemDefinitions.ids)
             "obj" -> ReaderEntity(ObjectDefinitions.ids)
             "row" -> ReaderEntity(Rows.ids)
-            else -> if (name.startsWith("Pair<")) {
+            else -> if (name.startsWith("pair<", ignoreCase = true)) {
                 val (first, second) = name.substringAfter("<").removeSuffix(">").split(",")
                 ReaderPair(reader(first.trim()), reader(second.trim()))
-            } else if (name.startsWith("Triple<")) {
+            } else if (name.startsWith("triple<", ignoreCase = true)) {
                 val (first, second, third) = name.substringAfter("<").removeSuffix(">").split(",")
                 ReaderTriple(reader(first.trim()), reader(second.trim()), reader(third.trim()))
-            } else if (name.startsWith("List<") && name.endsWith(">")) {
+            } else if (name.startsWith("list<", ignoreCase = true) && name.endsWith(">")) {
                 val type = name.substringAfter("<").substringBefore(">")
                 ReaderList(reader(type))
             } else {

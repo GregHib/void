@@ -15,6 +15,8 @@ data class RowDefinition(
 
     fun intOrNull(column: String) = Tables.intOrNull("${stringId}.$column")
 
+    fun itemPair(column: String) = Tables.itemPair("${stringId}.$column")
+
     fun string(column: String) = Tables.string("${stringId}.$column")
 
     fun stringOrNull(column: String) = Tables.stringOrNull("${stringId}.$column")
