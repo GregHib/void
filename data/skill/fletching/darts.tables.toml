@@ -4,6 +4,10 @@ level = "int"
 level_default = 1
 xp = "int"
 
+[.bronze_dart_tip]
+level = 1
+xp = 18
+
 [.iron_dart_tip]
 level = 22
 xp = 18

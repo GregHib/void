@@ -1,11 +1,11 @@
 package content.skill.fletching
 
 import content.entity.player.dialogue.type.makeAmount
-import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -21,7 +21,7 @@ class FletchUnfinished : Script {
     init {
         @Suppress("UNCHECKED_CAST")
         itemOnItem("knife", "*logs*") { _, toItem ->
-            val displayItems = toItem.def.params?.get(Params.FLETCHABLES) as? List<String> ?: return@itemOnItem
+            val displayItems = Tables.itemListOrNull("fletchables.${toItem.id}.products") ?: return@itemOnItem
             weakQueue("fletching_make_dialog") {
                 val (selected, amount) = makeAmount(
                     displayItems,
@@ -29,7 +29,7 @@ class FletchUnfinished : Script {
                     maximum = 27,
                     text = "What would you like to fletch?",
                 )
-                val unf = Rows.getOrNull("fletching_unf.${toItem.id}") ?: return@weakQueue
+                val unf = Rows.getOrNull("fletching_unf.${selected}") ?: return@weakQueue
                 if (!has(Skill.Fletching, unf.int("level"), true)) {
                     return@weakQueue
                 }
@@ -47,7 +47,7 @@ class FletchUnfinished : Script {
             return
         }
 
-        weakQueue("fletching", unf.int("tick")) {
+        weakQueue("fletching", unf.int("ticks")) {
             val makeAmount = unf.int("amount")
             val success = inventory.transaction {
                 remove(removeItem)

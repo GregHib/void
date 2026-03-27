@@ -69,7 +69,6 @@ object Params {
     const val FARMING_PROTECT_AMOUNT = 5067
     const val FARMING_PROTECT_ID = 5068
     const val FARMING_XP = 5069
-    const val FLETCHABLES = 5070
     const val FLIGHT_TIME = 5071
     const val FOOD = 5072
     const val FOOD2 = 5073
@@ -400,7 +399,6 @@ object Params {
         "farming_protect_amount" -> FARMING_PROTECT_AMOUNT
         "farming_protect_id" -> FARMING_PROTECT_ID
         "farming_xp" -> FARMING_XP
-        "fletchables" -> FLETCHABLES
         "flight_time" -> FLIGHT_TIME
         "food" -> FOOD
         "food2" -> FOOD2
