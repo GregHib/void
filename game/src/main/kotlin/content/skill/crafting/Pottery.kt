@@ -4,7 +4,8 @@ import content.entity.player.dialogue.type.makeAmount
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -39,7 +40,7 @@ class Pottery : Script {
     }
 
     suspend fun Player.make(target: GameObject, animation: String, item: Item) {
-        val products = EnumDefinitions.stringOrNull("pottery_product", item.id)?.split(",") ?: return
+        val products = Tables.itemListOrNull("firing.${item.id}.products") ?: return
         val (id, amount) = makeAmount(
             items = products,
             type = "Make",
@@ -67,7 +68,8 @@ class Pottery : Script {
             return
         }
         face(obj)
-        val level = EnumDefinitions.int("pottery_level", id)
+        val pottery = Rows.getOrNull("pottery.${id}") ?: return
+        val level = pottery.int("level")
         if (!has(Skill.Crafting, level)) {
             message("You need a Crafting level of $level to make a ${id.toLowerSpaceCase()}.")
             softTimers.stop("pottery")
@@ -81,7 +83,7 @@ class Pottery : Script {
                 return@weakQueue
             }
             player.sound("pottery")
-            val xp = EnumDefinitions.int("pottery_xp", id) / 10.0
+            val xp = pottery.int("xp") / 10.0
             exp(Skill.Crafting, xp)
             make(animation, obj, item, id, amount - 1)
             message("You make the clay into a ${id.toLowerSpaceCase()}.")
