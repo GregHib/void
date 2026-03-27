@@ -3,7 +3,7 @@ package content.skill.smithing
 import content.skill.magic.spell.SpellRunes.removeItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -27,8 +27,8 @@ class SuperheatItem(val spellDefinitions: SpellDefinitions) : Script {
             if (bar == "iron_bar" && inventory.count("coal") >= 2) {
                 bar = "steel_bar"
             }
-            val xp = EnumDefinitions.intOrNull("smelting_xp", bar) ?: return@onItem
-            val level = EnumDefinitions.int("smelting_level", bar)
+            val row = Rows.getOrNull("bars.${bar}") ?: return@onItem
+            val level = row.int("level")
             if (!has(Skill.Smithing, level, message = true)) {
                 sound("superheat_fail")
                 return@onItem
@@ -45,8 +45,9 @@ class SuperheatItem(val spellDefinitions: SpellDefinitions) : Script {
                 anim(spell)
                 gfx(spell)
                 val definition = spellDefinitions.get(spell)
+                val xp = row.int("xp") / 10.0
                 exp(Skill.Magic, definition.experience)
-                exp(Skill.Smithing, Furnace.goldXp(this, bar, xp / 10.0))
+                exp(Skill.Smithing, Furnace.goldXp(this, bar, xp))
             } else {
                 sound("superheat_fail")
             }

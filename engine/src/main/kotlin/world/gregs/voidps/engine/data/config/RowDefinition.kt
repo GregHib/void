@@ -19,6 +19,8 @@ data class RowDefinition(
 
     fun int(column: String) = Tables.int("${stringId}.$column")
 
+    fun intList(column: String) = Tables.intList("${stringId}.$column")
+
     fun intOrNull(column: String) = Tables.intOrNull("${stringId}.$column")
 
     fun intRange(column: String) = Tables.intRange("${stringId}.$column")
