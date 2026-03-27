@@ -1,0 +1,36 @@
+[wise_old_man_npcs]
+row_id = "npc"
+intro = "string"
+hint = "string"
+
+[.father_aereck]
+intro = "Father Aereck in Lumbridge is sure to reward you if you take a note to him for me."
+hint = "Just head eastwards to Lumbridge. He'll be in the church."
+
+[.high_priest_entrana]
+intro = "Could you please take a message to the High Priest of Entrana for me?"
+hint = "There are some monks in Port Sarim, west of here, who will take you there so long as you're not carrying any weapons or armour."
+
+[.reldo]
+intro = "Reldo, the librarian in Varrock Palace, wrote to me recently about something. I need you to take my reply to him."
+hint = "The library is on the ground floor of the Palace in Varrock."
+
+[.thurgo]
+intro = "Thurgo the dwarf is from an ancient tribe. I've found some of its history that he was asking about, and I need you to deliver the information to him."
+hint = "Go west to Port Sarim, then southwards to some cliffs. He lives on the beach there."
+
+[.father_lawrence]
+intro = "I hear my old friend Fr Lawrence in Varrock is drinking a bit too much. I'd like to get a letter to him about it."
+hint = "Varrock is a fairly long way north-east of here. The church is at the eastern side of the town, near the Palace."
+
+[.abbot_langley]
+intro = "I've written a letter to my old friend Abbot Langley that I'd like you to deliver."
+hint = "Walk northwards, past Draynor Manor. When you reach the Barbarian Village, go north-west until you find his Monastery. He'll be downstairs."
+
+[.oracle]
+intro = "I'd like to get a note up to the Oracle on Ice Mountain."
+hint = "Walk northwards, past Draynor Manor. When you reach the Barbarian Village, go north-west until you see the Ice Mountain. It'll be at the top."
+
+[.thing_under_the_bed]
+intro = "Well, this is rather embarrassing, but I think there's some kind of monster in my house. Could you go upstairs and get rid of it, please?"
+hint = "I think it's somewhere upstairs. It kept me awake all last night."

@@ -19,7 +19,7 @@ import content.entity.player.dialogue.type.player
 import content.quest.questCompleted
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -92,7 +92,8 @@ class WiseOldMan : Script {
         clear("wise_old_man_remaining")
         clear("wise_old_man_task")
         inc("wise_old_man_tasks_completed")
-        when (val reward = OldMansMessage.reward(this, hard.contains(item))) {
+
+        when (val reward = OldMansMessage.reward(this, Tables.bool("wise_old_man_items.${item}.hard"))) {
             "runes" -> {
                 items("nature_rune", "water_rune", "The Wise Old Man gives you some runes.")
                 npc<Happy>("Thank you, thank you! Please take these runes as a sign of my gratitude.")
@@ -402,8 +403,7 @@ class WiseOldMan : Script {
     suspend fun Player.checkTask() {
         val npc: String? = get("wise_old_man_npc")
         if (npc != null) {
-            val intro = EnumDefinitions.string("wise_old_man_npcs", npc)
-            npc<Neutral>(intro)
+            npc<Neutral>(Tables.string("wise_old_man_npcs.$npc.intro"))
             if (npc != "thing_under_the_bed" && !ownsItem("old_mans_message")) {
                 npc<Neutral>("You seem to have mislaid my letter, so here's another copy.")
                 if (!inventory.add("old_mans_message")) {
@@ -415,8 +415,7 @@ class WiseOldMan : Script {
         }
         val item: String = get("wise_old_man_task") ?: return
         val remaining: Int = get("wise_old_man_remaining") ?: return
-        val intro = EnumDefinitions.string("wise_old_man_items", item)
-        npc<Happy>("$intro I still need $remaining.")
+        npc<Happy>("${Tables.string("wise_old_man_items.$item.intro")} I still need $remaining.")
         hintItem(item)
     }
 
@@ -433,7 +432,7 @@ class WiseOldMan : Script {
                 "oracle",
                 "thing_under_the_bed",
             ).random(random)
-            val intro = EnumDefinitions.string("wise_old_man_npcs", npc)
+            val intro = Tables.string("wise_old_man_npcs.$npc.intro")
             npc<Happy>(intro)
             set("wise_old_man_npc", npc)
             if (npc == "thing_under_the_bed") {
@@ -452,7 +451,7 @@ class WiseOldMan : Script {
         val item = tasks().random(random)
         set("wise_old_man_task", item)
         set("wise_old_man_remaining", amount)
-        val intro = EnumDefinitions.string("wise_old_man_items", item)
+        val intro = Tables.string("wise_old_man_items.$item.intro")
         npc<Happy>("$intro. Please bring me $amount.")
         hintItem(item)
     }
@@ -460,7 +459,7 @@ class WiseOldMan : Script {
     private suspend fun Player.hintNpc(npc: String) {
         choice("What would you like to say?") {
             option<Quiz>("Where do I need to go?") {
-                npc<Neutral>(EnumDefinitions.string("wise_old_man_npc_hints", npc))
+                npc<Neutral>(Tables.string("wise_old_man_npcs.$npc.hint"))
                 player<Happy>("Right, I'll see you later.")
             }
             option<Happy>("Right, I'll see you later.")
@@ -470,118 +469,29 @@ class WiseOldMan : Script {
     private suspend fun Player.hintItem(item: String) {
         choice("What would you like to say?") {
             option<Quiz>("Where can I get that?") {
-                npc<Neutral>(EnumDefinitions.string("wise_old_man_item_hints", item))
+                npc<Neutral>(Tables.string("wise_old_man_items.$item.hint"))
                 player<Happy>("Right, I'll see you later.")
             }
             option<Happy>("Right, I'll see you later.")
         }
     }
 
-    private val hard = setOf(
-        "ball_of_wool",
-        "bowstring",
-        "bread",
-        "bronze_arrowtips",
-        "bronze_knife",
-        "bronze_warhammer",
-        "bronze_wire",
-        "headless_arrow",
-        "swamp_paste",
-        "iron_arrowtips",
-        "iron_knife",
-        "iron_warhammer",
-        "leather_cowl",
-        "pot_of_flour",
-        "unfired_pie_dish",
-        "unfired_pot",
-        "leather_boots",
-    )
-
     private fun Player.tasks(): MutableSet<String> {
-        val tasks = mutableSetOf(
-            "beer_glass",
-            "bones",
-            "bronze_arrow",
-            "bronze_bar",
-            "bronze_dagger",
-            "bronze_hatchet",
-            "beer",
-            "cadava_berries",
-            "cooked_chicken",
-            "cooked_meat",
-            "copper_ore",
-            "cowhide",
-            "egg",
-            "feather",
-            "grain",
-            "soft_clay",
-            "leather_gloves",
-            "logs",
-            "molten_glass",
-            "raw_potato",
-            "raw_rat_meat",
-            "shrimps",
-            "silk",
-            "leather",
-            "tin_ore",
-            "ball_of_wool",
-            "bowstring",
-            "bread",
-            "headless_arrow",
-            "swamp_paste",
-            "pot_of_flour",
-            "unfired_pot",
-        )
-        if (has(Skill.Fishing, 15)) {
-            tasks.add("anchovies")
-        }
-        if (has(Skill.Smithing, 2)) {
-            tasks.add("bronze_mace")
-        }
-        if (has(Skill.Smithing, 3)) {
-            tasks.add("bronze_med_helm")
-        }
-        if (has(Skill.Smithing, 4)) {
-            tasks.add("bronze_wire")
-        }
-        if (has(Skill.Smithing, 5)) {
-            tasks.add("bronze_spear")
-            tasks.add("bronze_sword")
-            tasks.add("bronze_arrowtips")
-        }
-        if (has(Skill.Smithing, 7)) {
-            tasks.add("bronze_knife")
-        }
-        if (has(Skill.Smithing, 9)) {
-            tasks.add("bronze_warhammer")
-        }
-        if (has(Skill.Smithing, 15)) {
-            tasks.add("iron_bar")
-        }
-        if (has(Skill.Smithing, 17)) {
-            tasks.add("iron_mace")
-        }
-        if (has(Skill.Smithing, 20)) {
-            tasks.add("iron_arrowtips")
-        }
-        if (has(Skill.Smithing, 20)) {
-            tasks.add("iron_knife")
-        }
-        if (has(Skill.Smithing, 24)) {
-            tasks.add("iron_warhammer")
-        }
-        if (has(Skill.Mining, 17)) {
-            tasks.add("iron_ore")
-        }
-        if (has(Skill.Crafting, 7)) {
-            tasks.add("unfired_pie_dish")
-            tasks.add("leather_boots")
-        }
-        if (has(Skill.Crafting, 9)) {
-            tasks.add("leather_cowl")
-        }
-        if (questCompleted("rune_mysteries")) {
-            tasks.add("rune_essence")
+        val tasks = mutableSetOf<String>()
+        for (row in Tables.get("wise_old_man_items").rows()) {
+            val quest = row.stringOrNull("quest")
+            if (quest != null && !questCompleted(quest)) {
+                continue
+            }
+            val requirement = row.skillPairOrNull("skill_req")
+            if (requirement == null) {
+                tasks.add(row.itemId)
+                continue
+            }
+            val (skill, level) = requirement
+            if (has(skill, level)) {
+                tasks.add(row.itemId)
+            }
         }
         return tasks
     }
