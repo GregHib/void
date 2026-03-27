@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
@@ -38,29 +37,6 @@ class Mining : Script {
         "uncut_diamond",
     )
 
-    val gemRocks = setOf(
-        "uncut_opal",
-        "uncut_jade",
-        "uncut_red_topaz",
-        "uncut_sapphire",
-        "uncut_emerald",
-        "uncut_ruby",
-        "uncut_diamond",
-    )
-
-    val sandstone = setOf(
-        "sandstone_10kg",
-        "sandstone_5kg",
-        "sandstone_2kg",
-        "sandstone_1kg",
-    )
-
-    val granite = setOf(
-        "granite_5kg",
-        "granite_2kg",
-        "granite_500g",
-    )
-
     init {
         objectOperate("Mine") { (target) ->
             if (target.id.startsWith("depleted")) {
@@ -78,8 +54,9 @@ class Mining : Script {
                     message("Your inventory is too full to hold any more ore.")
                     break
                 }
-                val type = EnumDefinitions.stringOrNull("mining_ores", target.id) ?: break
-                val ore = Rows.getOrNull("ores.$type") ?: break
+
+                val ores = Tables.itemListOrNull("rocks.${target.id}.ores") ?: break
+                val ore = Rows.getOrNull("ores.${ores.last()}") ?: break
                 val stringId = target.def(this).stringId
                 val level = if (stringId.startsWith("crashed_star_tier_")) {
                     stringId.removePrefix("crashed_star_tier_").toInt() * 10
@@ -119,27 +96,20 @@ class Mining : Script {
                         continue
                     }
                 }
-                var ores = mutableListOf<String>()
-                when {
-                    target.id == "rune_essence_rocks" -> {
-                        if (World.members && has(Skill.Mining, 30)) {
-                            ores.add("pure_essence")
-                        } else {
-                            ores.add("rune_essence")
-                        }
-                    }
-                    ore.itemId == "granite_500g" -> ores.addAll(granite)
-                    ore.itemId == "sandstone_1kg" -> ores.addAll(sandstone)
-                    ore.itemId == "uncut_opal" -> ores.addAll(gemRocks)
-                    else -> ores.add(ore.itemId)
-                }
                 for (item in ores) {
-                    val chance = Tables.intRange("ores.${item}.chance")
+                    if (item == "pure_essence" && !World.members) {
+                        continue
+                    }
+                    val ore = Rows.getOrNull("ores.$item") ?: continue
+                    if (!has(Skill.Mining, ore.int("level"))) {
+                        continue
+                    }
+                    val chance = ore.intRange("chance")
                     if (success(levels.get(Skill.Mining), chance)) {
-                        val xp = Tables.int("ores.${item}.xp") / 10.0
+                        val xp = ore.int("xp") / 10.0
                         exp(Skill.Mining, xp)
                         ShootingStarHandler.extraOreHandler(this, item, xp)
-                        if (!addOre(this, item) || deplete(target, Tables.int("ores.${item}.life"))) {
+                        if (!addOre(this, item) || deplete(target, ore.int("life"))) {
                             clearAnim()
                             break
                         }
@@ -162,7 +132,7 @@ class Mining : Script {
             }
             message("You examine the rock for ores...")
             delay(4)
-            val ore = Rows.getOrNull("mining_ores.${target.def(this).stringId}")
+            val ore = Rows.getOrNull("ores.${target.def(this).stringId}")
             if (ore == null) {
                 message("This rock contains no ore.")
             } else {

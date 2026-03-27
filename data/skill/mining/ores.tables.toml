@@ -21,30 +21,30 @@ life = 42
 chance = [30, 375]
 
 [.limestone]
-level = 1
+level = 10
 xp = 265
 chance = [25, 200]
 
 [.uncut_diamond]
-level = 1
+level = 40
 xp = 650
 life = 99
 chance = [8, 8]
 
 [.uncut_ruby]
-level = 1
+level = 40
 xp = 650
 life = 99
 chance = [10, 10]
 
 [.uncut_emerald]
-level = 1
+level = 40
 xp = 650
 life = 99
 chance = [10, 10]
 
 [.uncut_sapphire]
-level = 1
+level = 40
 xp = 650
 life = 99
 chance = [18, 18]
@@ -56,13 +56,13 @@ life = 99
 chance = [120, 120]
 
 [.uncut_jade]
-level = 1
+level = 40
 xp = 650
 life = 99
 chance = [60, 60]
 
 [.uncut_red_topaz]
-level = 1
+level = 40
 xp = 650
 life = 99
 chance = [30, 30]
@@ -144,19 +144,19 @@ life = 7
 chance = [25, 200]
 
 [.sandstone_2kg]
-level = 1
+level = 35
 xp = 400
 life = 7
 chance = [16, 100]
 
 [.sandstone_5kg]
-level = 1
+level = 35
 xp = 500
 life = 7
 chance = [8, 75]
 
 [.sandstone_10kg]
-level = 1
+level = 35
 xp = 600
 life = 7
 chance = [4, 50]
@@ -168,13 +168,13 @@ life = 8
 chance = [16, 100]
 
 [.granite_2kg]
-level = 1
+level = 45
 xp = 600
 life = 8
 chance = [8, 75]
 
 [.granite_5kg]
-level = 1
+level = 45
 xp = 750
 life = 8
 chance = [6, 64]
@@ -185,6 +185,6 @@ xp = 50
 chance = [200, 400]
 
 [.pure_essence]
-level = 1
+level = 30
 xp = 50
 chance = [150, 350]

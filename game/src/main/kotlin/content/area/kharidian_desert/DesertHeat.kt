@@ -4,7 +4,7 @@ import content.entity.combat.hit.directHit
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -98,6 +98,6 @@ class DesertHeat : Script {
         if (item == "") {
             return 0
         }
-        return EnumDefinitions.intOrNull("desert_heat_delay", item) ?: default
+        return Tables.intOrNull("desert_clothing.${item}.heat_delay") ?: default
     }
 }
