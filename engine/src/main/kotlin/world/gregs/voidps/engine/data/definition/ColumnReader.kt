@@ -1,6 +1,8 @@
 package world.gregs.voidps.engine.data.definition
 
+import net.pearx.kasechange.toSentenceCase
 import world.gregs.config.ConfigReader
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
 sealed interface ColumnReader<T : Any> {
     val type: ColumnType<T>
@@ -90,6 +92,7 @@ sealed interface ColumnReader<T : Any> {
             "int" -> ReaderInt
             "range" -> ReaderIntRange
             "string" -> ReaderString
+            "skill" -> ReaderEntity(Skill.map)
             "npc" -> ReaderEntity(NPCDefinitions.ids)
             "item" -> ReaderEntity(ItemDefinitions.ids)
             "obj" -> ReaderEntity(ObjectDefinitions.ids)

@@ -5,6 +5,7 @@ import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.config.TableDefinition
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.timedLoad
 import kotlin.collections.set
 import kotlin.math.exp
@@ -80,6 +81,13 @@ object Tables {
         return npc.stringId
     }
 
+    fun skill(path: String): Skill = Skill.all[get(path, ColumnType.ColumnEntity)]
+
+    fun skillOrNull(path: String): Skill? {
+        val id = getOrNull(path, ColumnType.ColumnEntity) ?: return null
+        return Skill.all[id]
+    }
+
     fun row(path: String): Array<Any?> = Rows.get(get(path, ColumnType.ColumnInt)).data
 
     fun rowOrNull(path: String): Array<Any?>? {
@@ -125,6 +133,16 @@ object Tables {
         val first = ItemDefinitions.get(pair.first).stringId
         val second = ItemDefinitions.get(pair.second).stringId
         return Pair(first, second)
+    }
+
+    fun skillPair(path: String): Pair<Skill, Int> {
+        val (id, level) = get(path, ColumnType.IntIntPair)
+        return Pair(Skill.all[id], level)
+    }
+
+    fun skillPairOrNull(path: String): Pair<Skill, Int>? {
+        val (id, level) = getOrNull(path, ColumnType.IntIntPair) ?: return null
+        return Pair(Skill.all[id], level)
     }
 
     fun intPair(path: String): Pair<Int, Int> = get(path, ColumnType.IntIntPair)

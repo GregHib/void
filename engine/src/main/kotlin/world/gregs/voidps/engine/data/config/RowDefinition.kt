@@ -19,6 +19,10 @@ data class RowDefinition(
 
     fun int(column: String) = Tables.int("${stringId}.$column")
 
+    fun skillPair(column: String) = Tables.skillPair("${stringId}.$column")
+
+    fun skillPairOrNull(column: String) = Tables.skillPairOrNull("${stringId}.$column")
+
     fun intList(column: String) = Tables.intList("${stringId}.$column")
 
     fun intListOrNull(column: String) = Tables.intListOrNull("${stringId}.$column")
