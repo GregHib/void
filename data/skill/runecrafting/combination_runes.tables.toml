@@ -1,0 +1,42 @@
+[combination_runes]
+row_id = "obj"
+air_rune = "item"
+air_rune_xp = "int"
+earth_rune = "item"
+earth_rune_xp = "int"
+fire_rune = "item"
+fire_rune_xp = "int"
+water_rune = "item"
+water_rune_xp = "int"
+
+[.water_altar]
+fire_rune = "steam_rune"
+fire_rune_xp = 93
+air_rune = "mist_rune"
+air_rune_xp = 85
+earth_rune = "mud_rune"
+earth_rune_xp = 93
+
+[.earth_altar]
+fire_rune = "lava_rune"
+fire_rune_xp = 100
+water_rune = "mud_rune"
+water_rune_xp = 95
+air_rune = "dust_rune"
+air_rune_xp = 90
+
+[.air_altar]
+fire_rune = "smoke_rune"
+fire_rune_xp = 85
+water_rune = "mist_rune"
+water_rune_xp = 80
+earth_rune = "dust_rune"
+earth_rune_xp = 83
+
+[.fire_altar]
+water_rune = "steam_rune"
+water_rune_xp = 100
+air_rune = "smoke_rune"
+water_rune_xp = 95
+earth_rune = "lava_rune"
+earth_rune_xp = 105

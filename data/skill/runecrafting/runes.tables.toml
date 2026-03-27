@@ -1,0 +1,113 @@
+[runes]
+row_id = "item"
+level = "int"
+xp = "int"
+ourania_double_chance = "int"
+multipliers = "list<int>"
+pure_essence = "boolean"
+
+[.fire_rune]
+level = 14
+xp = 70
+ourania_double_chance = 250
+multipliers = [14, 35, 70]
+
+[.water_rune]
+level = 5
+xp = 60
+ourania_double_chance = 250
+multipliers = [5, 19, 38, 57, 76, 95]
+
+[.air_rune]
+level = 1
+xp = 50
+ourania_double_chance = 250
+multipliers = [1, 11, 22, 33, 44, 55, 66, 77, 88, 99]
+
+[.earth_rune]
+level = 9
+xp = 65
+ourania_double_chance = 250
+multipliers = [9, 26, 52, 78]
+
+[.mind_rune]
+level = 2
+xp = 55
+ourania_double_chance = 250
+multipliers = [2, 14, 28, 42, 56, 84, 98]
+
+[.body_rune]
+level = 20
+xp = 75
+ourania_double_chance = 250
+multipliers = [20, 46, 92]
+
+[.astral_rune]
+level = 40
+xp = 87
+pure_essence = true
+multipliers = [40, 82]
+
+[.death_rune]
+level = 65
+xp = 100
+ourania_double_chance = 175
+pure_essence = true
+
+[.nature_rune]
+level = 44
+xp = 90
+ourania_double_chance = 225
+pure_essence = true
+multipliers = [44, 91]
+
+[.chaos_rune]
+level = 35
+xp = 85
+ourania_double_chance = 250
+pure_essence = true
+multipliers = [35, 74]
+
+[.law_rune]
+level = 54
+xp = 95
+ourania_double_chance = 200
+pure_essence = true
+
+[.cosmic_rune]
+level = 27
+xp = 80
+ourania_double_chance = 250
+pure_essence = true
+multipliers = [27, 59]
+
+[.blood_rune]
+level = 77
+xp = 105
+ourania_double_chance = 150
+pure_essence = true
+
+[.soul_rune]
+level = 90
+xp = 297
+ourania_double_chance = 100
+pure_essence = true
+
+[.steam_rune]
+level = 19
+
+[.mist_rune]
+level = 6
+
+[.dust_rune]
+level = 10
+
+[.smoke_rune]
+level = 15
+
+[.mud_rune]
+level = 13
+
+[.lava_rune]
+level = 23
+
