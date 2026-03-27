@@ -1,0 +1,37 @@
+[fletching_bolts]
+row_id = "item"
+level = "int"
+level_default = 1
+xp = "int"
+
+[.bronze_bolts_unf]
+level = 9
+xp = 5
+
+[.blurite_bolts_unf]
+level = 24
+xp = 10
+
+[.iron_bolts_unf]
+level = 39
+xp = 15
+
+[.steel_bolts_unf]
+level = 46
+xp = 35
+
+[.mithril_bolts_unf]
+level = 54
+xp = 50
+
+[.adamant_bolts_unf]
+level = 61
+xp = 70
+
+[.rune_bolts_unf]
+level = 69
+xp = 100
+
+[.silver_bolts_unf]
+level = 43
+xp = 25
