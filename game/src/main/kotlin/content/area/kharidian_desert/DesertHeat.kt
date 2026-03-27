@@ -98,6 +98,6 @@ class DesertHeat : Script {
         if (item == "") {
             return 0
         }
-        return Tables.intOrNull("desert_clothing.${item}.heat_delay") ?: default
+        return Tables.intOrNull("desert_clothing.$item.heat_delay") ?: default
     }
 }

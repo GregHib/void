@@ -52,7 +52,7 @@ class EnchantJewellery : Script {
                                 "enchant_level_1" -> "enchant_jewellery_1"
                                 "enchant_level_2" -> "enchant_jewellery_2"
                                 else -> "enchant_jewellery_3"
-                            }
+                            },
                         )
                         sound("enchant_${type}_amulet")
                     } else if (item.id.endsWith("ring")) {
@@ -67,7 +67,7 @@ class EnchantJewellery : Script {
                                 "enchant_level_1" -> "enchant_jewellery_1"
                                 "enchant_level_2" -> "enchant_jewellery_2"
                                 else -> "enchant_jewellery_3"
-                            }
+                            },
                         )
                     }
                     val xp = Tables.int("jewellery_enchant.$spell.xp") / 10.0

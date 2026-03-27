@@ -87,5 +87,4 @@ class Weaving : Script {
             weave(obj, row, amount - 1)
         }
     }
-
 }

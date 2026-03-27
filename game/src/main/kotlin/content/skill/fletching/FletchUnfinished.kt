@@ -29,7 +29,7 @@ class FletchUnfinished : Script {
                     maximum = 27,
                     text = "What would you like to fletch?",
                 )
-                val unf = Rows.getOrNull("fletching_unf.${selected}") ?: return@weakQueue
+                val unf = Rows.getOrNull("fletching_unf.$selected") ?: return@weakQueue
                 if (!has(Skill.Fletching, unf.int("level"), true)) {
                     return@weakQueue
                 }

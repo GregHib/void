@@ -32,7 +32,7 @@ class Firemaking : Script {
 
     val directions = listOf(Direction.WEST, Direction.EAST, Direction.SOUTH, Direction.NORTH)
 
-    fun burnable(id: String) = Tables.intOrNull("firemaking.${id}.xp") != null
+    fun burnable(id: String) = Tables.intOrNull("firemaking.$id.xp") != null
 
     init {
         itemOnItem("tinderbox*", "*logs*") { fromItem, toItem, fromSlot, toSlot ->

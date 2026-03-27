@@ -103,19 +103,19 @@ private fun rollTask(player: Player, master: String): Pair<String, Int>? {
 
 private fun hasRequirements(player: Player, table: TableDefinition, row: Int): Boolean {
     val category = Rows.get(row).itemId
-    val npc = Tables.int("slayer_tasks.${category}.npc")
+    val npc = Tables.int("slayer_tasks.$category.npc")
     val slayerLevel = NPCDefinitions.get(npc)["slayer_level", 1]
     if (!player.has(Skill.Slayer, slayerLevel)) {
         return false
     }
-    val combatLevel = Tables.int("slayer_tasks.${category}.combat_level")
+    val combatLevel = Tables.int("slayer_tasks.$category.combat_level")
     if (player.combatLevel < combatLevel) {
         return false
     }
-    val variable = Tables.stringOrNull("slayer_tasks.${category}.variable")
+    val variable = Tables.stringOrNull("slayer_tasks.$category.variable")
     if (variable != null && !player.contains(variable)) {
         return false
     }
-    val quest = table.stringOrNull("slayer_tasks.${category}.quest", row) ?: return true
+    val quest = table.stringOrNull("slayer_tasks.$category.quest", row) ?: return true
     return player.questCompleted(quest)
 }

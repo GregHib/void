@@ -91,8 +91,8 @@ class Ellis : Script {
         }
         val tanner = player["tanner", "ellis"]
         val primary = if (type.endsWith("_1")) "hard_" else ""
-        val leather = Tables.item("tanning.${item}.${primary}leather")
-        val cost = Tables.int("tanning.${item}.${primary}price_${tanner}")
+        val leather = Tables.item("tanning.$item.${primary}leather")
+        val cost = Tables.int("tanning.$item.${primary}price_$tanner")
         var tanned = 0
         var noHides = false
         for (i in 0 until amount) {

@@ -27,7 +27,7 @@ class SuperheatItem(val spellDefinitions: SpellDefinitions) : Script {
             if (bar == "iron_bar" && inventory.count("coal") >= 2) {
                 bar = "steel_bar"
             }
-            val row = Rows.getOrNull("bars.${bar}") ?: return@onItem
+            val row = Rows.getOrNull("bars.$bar") ?: return@onItem
             val level = row.int("level")
             if (!has(Skill.Smithing, level, message = true)) {
                 sound("superheat_fail")

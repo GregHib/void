@@ -1,7 +1,6 @@
 package content.skill.herblore
 
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp

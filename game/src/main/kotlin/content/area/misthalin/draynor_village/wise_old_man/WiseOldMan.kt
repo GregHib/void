@@ -93,7 +93,7 @@ class WiseOldMan : Script {
         clear("wise_old_man_task")
         inc("wise_old_man_tasks_completed")
 
-        when (val reward = OldMansMessage.reward(this, Tables.bool("wise_old_man_items.${item}.hard"))) {
+        when (val reward = OldMansMessage.reward(this, Tables.bool("wise_old_man_items.$item.hard"))) {
             "runes" -> {
                 items("nature_rune", "water_rune", "The Wise Old Man gives you some runes.")
                 npc<Happy>("Thank you, thank you! Please take these runes as a sign of my gratitude.")

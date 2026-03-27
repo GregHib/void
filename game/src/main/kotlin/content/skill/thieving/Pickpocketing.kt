@@ -53,7 +53,7 @@ class Pickpocketing(val combatDefinitions: CombatDefinitions, val dropTables: Dr
             return
         }
         val type = Tables.stringOrNull("pickpocket.${target.id}.type") ?: return
-        val pickpocket = Rows.getOrNull("thieving_types.${type}") ?: return
+        val pickpocket = Rows.getOrNull("thieving_types.$type") ?: return
         val level = pickpocket.int("level")
         if (!has(Skill.Thieving, level)) {
             return

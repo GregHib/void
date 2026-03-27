@@ -136,7 +136,7 @@ class Anvil : Script {
             "mithril" if type == "grapple" -> "mithril_grapple_tip"
             else -> "${metal}_$type"
         }
-        val row = Rows.getOrNull("smithing.${item}") ?: return
+        val row = Rows.getOrNull("smithing.$item") ?: return
         val component = InterfaceDefinitions.getComponent("smithing", type)
         val quantity = component?.getOrNull("amount") ?: 1
         val bars = component?.getOrNull("bars") ?: 1

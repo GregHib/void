@@ -102,7 +102,7 @@ class Furnace : Script {
             return
         }
 
-        val row = Rows.getOrNull("bars.${id}") ?: return
+        val row = Rows.getOrNull("bars.$id") ?: return
         val level = row.int("level")
         if (!player.has(Skill.Smithing, level, message = true)) {
             player.softTimers.stop("smelting")
@@ -151,7 +151,7 @@ class Furnace : Script {
         target: GameObject,
         id: String,
         items: List<Item>,
-        xp: Double
+        xp: Double,
     ): Boolean {
         if (target.id != "furnace_edgeville" || !player.inventory.contains(items)) {
             return false
@@ -189,7 +189,7 @@ class Furnace : Script {
         }
 
         internal fun requiredOres(id: String): MutableList<Item> {
-            val row = Rows.getOrNull("bars.${id}") ?: return mutableListOf()
+            val row = Rows.getOrNull("bars.$id") ?: return mutableListOf()
             val items = mutableListOf<Item>()
             val ores = row.itemList("ore")
             val amounts = row.intList("amount")

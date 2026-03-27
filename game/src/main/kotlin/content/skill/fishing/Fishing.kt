@@ -85,7 +85,7 @@ class Fishing : Script {
             var bait: String? = null
             var required: String? = null
             for (fish in fish) {
-                val b = Tables.item("fishing.${fish}.bait")
+                val b = Tables.item("fishing.$fish.bait")
                 if (required == null && b != "empty_box_fish") {
                     required = b
                 }

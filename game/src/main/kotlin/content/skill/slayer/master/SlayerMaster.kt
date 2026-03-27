@@ -118,7 +118,7 @@ class SlayerMaster : Script {
         npc<Happy>("Excellent, you're doing great. Your new task is to kill $amount ${type.toSentenceCase()}.")
         choice {
             option<Quiz>("Got any tips for me?") {
-                val tip = Tables.string("${master}_slayer_tasks.${type}.tip")
+                val tip = Tables.string("${master}_slayer_tasks.$type.tip")
                 npc<Neutral>(tip)
             }
             option<Happy>("Okay, great!")
@@ -138,7 +138,7 @@ class SlayerMaster : Script {
                 inventory.add("enchanted_gem")
                 choice {
                     option("Got any tips for me?") {
-                        val tip = Tables.string("${master}_slayer_tasks.${type}.tip")
+                        val tip = Tables.string("${master}_slayer_tasks.$type.tip")
                         npc<Neutral>(tip)
                     }
                     option<Neutral>("Okay, great!") {

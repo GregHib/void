@@ -10,7 +10,6 @@ import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.queue.queue
@@ -96,7 +95,7 @@ class EnchantedGem : Script {
 
     fun ChoiceOption.anyTips() {
         option<Quiz>("Got any tips for me?") {
-            val tip = Tables.stringOrNull("${slayerMaster}_slayer_tasks.${slayerTask}.tip") ?: return@option
+            val tip = Tables.stringOrNull("${slayerMaster}_slayer_tasks.$slayerTask.tip") ?: return@option
             npc<Neutral>(slayerMaster, tip)
             choice {
                 howAmIDoing()

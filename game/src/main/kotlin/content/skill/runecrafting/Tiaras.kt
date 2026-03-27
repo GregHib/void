@@ -26,7 +26,7 @@ class Tiaras : Script {
     }
 
     fun Tiaras.bindTiara(player: Player, id: String) {
-        val xp = Tables.intOrNull("tiaras.${id}.xp") ?: return
+        val xp = Tables.intOrNull("tiaras.$id.xp") ?: return
         player.softTimers.start("runecrafting")
         val tiaraId = "tiara"
         val talismanId = id.replace("_tiara", "_talisman")

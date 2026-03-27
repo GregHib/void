@@ -68,7 +68,7 @@ class Pottery : Script {
             return
         }
         face(obj)
-        val pottery = Rows.getOrNull("pottery.${id}") ?: return
+        val pottery = Rows.getOrNull("pottery.$id") ?: return
         val level = pottery.int("level")
         if (!has(Skill.Crafting, level)) {
             message("You need a Crafting level of $level to make a ${id.toLowerSpaceCase()}.")
