@@ -88,11 +88,11 @@ object Tables {
         return Skill.all[id]
     }
 
-    fun row(path: String): Array<Any?> = Rows.get(get(path, ColumnType.ColumnInt)).data
+    fun row(path: String): RowDefinition = Rows.get(get(path, ColumnType.ColumnString))
 
-    fun rowOrNull(path: String): Array<Any?>? {
-        val id = getOrNull(path, ColumnType.ColumnInt) ?: return null
-        return Rows.getOrNull(id)?.data
+    fun rowOrNull(path: String): RowDefinition? {
+        val id = getOrNull(path, ColumnType.ColumnString) ?: return null
+        return Rows.getOrNull(id)
     }
 
     /*

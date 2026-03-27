@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.data.definition
 
-import net.pearx.kasechange.toSentenceCase
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
@@ -96,7 +95,7 @@ sealed interface ColumnReader<T : Any> {
             "npc" -> ReaderEntity(NPCDefinitions.ids)
             "item" -> ReaderEntity(ItemDefinitions.ids)
             "obj" -> ReaderEntity(ObjectDefinitions.ids)
-            "row" -> ReaderEntity(Rows.ids)
+            "row" -> ReaderString
             else -> if (name.startsWith("pair<", ignoreCase = true)) {
                 val (first, second) = name.substringAfter("<").removeSuffix(">").split(",")
                 ReaderPair(reader(first.trim()), reader(second.trim()))
