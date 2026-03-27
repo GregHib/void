@@ -1,6 +1,7 @@
 package content.quest.miniquest
 
 import WorldTest
+import dialogueContinue
 import dialogueOption
 import npcOption
 import objectOption
@@ -36,12 +37,9 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         tickIf { player.dialogue == null }
         player.dialogueOption("continue")
         player.dialogueOption("line1") // I want to come through this gate
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
+        player.dialogueContinue(2)
         player.dialogueOption("line2") // Looks can be deceiving
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
+        player.dialogueContinue(3)
         assertEquals("signatures", player["alfred_grimhands_barcrawl", "unstarted"])
         assertTrue(player.inventory.contains("barcrawl_card"))
         assertTrue(player["barcrawl_signatures", emptyList<String>()].isEmpty())
@@ -53,9 +51,7 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         tickIf { player.dialogue == null }
         player.dialogueOption("continue")
         player.dialogueOption("line3") // Doing bar crawl
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
+        player.dialogueContinue(3)
         assertEquals(950, player.inventory.count("coins"))
         tick(12)
         assertTrue(player.containsVarbit("barcrawl_signatures", "uncle_humphreys_gutrot"))
@@ -65,12 +61,9 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         bartender = findNpc(player, "blurberry")
         player.npcOption(bartender, 0) // Talk-to
         tick(2)
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
+        player.dialogueContinue(3)
         player.dialogueOption("line2") // Doing bar crawl
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
+        player.dialogueContinue(2)
         assertEquals(940, player.inventory.count("coins"))
         tick(12)
         assertTrue(player.containsVarbit("barcrawl_signatures", "fire_toad_blast"))
@@ -80,9 +73,7 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         bartender = findNpc(player, "blurberry")
         player.npcOption(bartender, 0) // Talk-to
         tickIf { player.dialogue == null }
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
+        player.dialogueContinue(3)
         player.dialogueOption("line2") // Doing bar crawl
         player.dialogueOption("continue")
         assertEquals(940, player.inventory.count("coins"))
@@ -94,9 +85,7 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         bartender = findNpc(player, "blurberry")
         player.npcOption(bartender, 0) // Talk-to
         tickIf { player.dialogue == null }
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
+        player.dialogueContinue(3)
         player.dialogueOption("line2") // Doing bar crawl
         player.dialogueOption("continue")
         assertEquals(940, player.inventory.count("coins"))
@@ -110,8 +99,7 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         tickIf { player.dialogue == null }
         player.dialogueOption("continue")
         player.dialogueOption("line4") // Doing bar crawl
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
+        player.dialogueContinue(2)
         assertEquals(925, player.inventory.count("coins"))
         tick(12)
         assertTrue(player.containsVarbit("barcrawl_signatures", "supergrog"))
@@ -121,12 +109,9 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         bartender = findNpc(player, "bartender_dragon_inn")
         player.npcOption(bartender, 0) // Talk-to
         tickIf { player.dialogue == null }
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
+        player.dialogueContinue(3)
         player.dialogueOption("line5") // Doing bar crawl
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
+        player.dialogueContinue(2)
         assertEquals(913, player.inventory.count("coins"))
         tick(12)
         assertTrue(player.containsVarbit("barcrawl_signatures", "fire_brandy"))
@@ -136,12 +121,9 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         bartender = findNpc(player, "bartender_flying_horse_inn")
         player.npcOption(bartender, 0) // Talk-to
         tickIf { player.dialogue == null }
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
+        player.dialogueContinue(3)
         player.dialogueOption("line3") // Doing bar crawl
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
+        player.dialogueContinue(2)
         assertEquals(905, player.inventory.count("coins"))
         tick(12)
         assertTrue(player.containsVarbit("barcrawl_signatures", "heart_stopper"))
@@ -153,8 +135,7 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         tickIf { player.dialogue == null }
         player.dialogueOption("continue")
         player.dialogueOption("line3") // Doing bar crawl
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
+        player.dialogueContinue(2)
         assertEquals(887, player.inventory.count("coins"))
         tick(12)
         assertTrue(player.containsVarbit("barcrawl_signatures", "liverbane_ale"))
@@ -166,8 +147,7 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         tickIf { player.dialogue == null }
         player.dialogueOption("continue")
         player.dialogueOption("line4") // Doing bar crawl
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
+        player.dialogueContinue(2)
         assertEquals(877, player.inventory.count("coins"))
         tick(12)
         player.dialogueOption("continue")
@@ -180,8 +160,7 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         tickIf { player.dialogue == null }
         player.dialogueOption("continue")
         player.dialogueOption("line3") // Doing bar crawl
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
+        player.dialogueContinue(2)
         assertEquals(870, player.inventory.count("coins"))
         tick(12)
         assertTrue(player.containsVarbit("barcrawl_signatures", "ape_bite_liqueur"))
@@ -193,9 +172,7 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         tickIf { player.dialogue == null }
         player.dialogueOption("continue")
         player.dialogueOption("line2") // Doing bar crawl
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
+        player.dialogueContinue(3)
         assertEquals(800, player.inventory.count("coins"))
         tick(12)
         assertTrue(player.containsVarbit("barcrawl_signatures", "hand_of_death_cocktail"))
@@ -206,10 +183,7 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         player.npcOption(bartender, 0) // Talk-to
         tickIf { player.dialogue == null }
         player.dialogueOption("line3") // Doing bar crawl
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
+        player.dialogueContinue(4)
         assertEquals(792, player.inventory.count("coins"))
         tick(12)
         assertTrue(player.containsVarbit("barcrawl_signatures", "black_skull_ale"))
@@ -218,9 +192,7 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         player.tele(2542, 3569)
         player.npcOption(guard, 0) // Talk-to
         tickIf { player.dialogue == null }
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
-        player.dialogueOption("continue")
+        player.dialogueContinue(3)
         assertEquals("completed", player["alfred_grimhands_barcrawl", "unstarted"])
     }
 
