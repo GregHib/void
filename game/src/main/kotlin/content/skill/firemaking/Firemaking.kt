@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.config.RowDefinition
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -32,7 +32,7 @@ class Firemaking : Script {
 
     val directions = listOf(Direction.WEST, Direction.EAST, Direction.SOUTH, Direction.NORTH)
 
-    fun burnable(id: String) = EnumDefinitions.intOrNull("firemaking_xp", id) != null
+    fun burnable(id: String) = Tables.intOrNull("firemaking.${id}.xp") != null
 
     init {
         itemOnItem("tinderbox*", "*logs*") { fromItem, toItem, fromSlot, toSlot ->

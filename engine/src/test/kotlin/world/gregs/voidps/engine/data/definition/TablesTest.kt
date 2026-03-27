@@ -53,7 +53,7 @@ class TablesTest {
         assertContentEquals(intArrayOf(0, 1), definition.rows)
 
         assertTrue(Rows.loaded)
-        val row = Rows.getOrNull("row")
+        val row = Rows.getOrNull("header.row")
         assertNotNull(row)
         val expected = arrayOf(
             1,

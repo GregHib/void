@@ -37,6 +37,6 @@ earth_rune_xp = 83
 water_rune = "steam_rune"
 water_rune_xp = 100
 air_rune = "smoke_rune"
-water_rune_xp = 95
+air_rune_xp = 95
 earth_rune = "lava_rune"
 earth_rune_xp = 105

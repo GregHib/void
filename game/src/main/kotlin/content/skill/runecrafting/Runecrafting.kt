@@ -82,7 +82,7 @@ class Runecrafting : Script {
                     message("You need pure essence to bind $combination runes.")
                 }
                 TransactionError.None -> {
-                    exp(Skill.Runecrafting, (combo.int("xp") / 10.0) * successes)
+                    exp(Skill.Runecrafting, (combo.int("${item.id}_xp") / 10.0) * successes)
                     if (bindingNecklace && equipment.discharge(this, EquipSlot.Amulet.index)) {
                         val charge = equipment.charges(this, EquipSlot.Amulet.index)
                         if (charge > 0) {
