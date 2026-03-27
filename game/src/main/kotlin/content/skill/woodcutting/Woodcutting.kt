@@ -8,9 +8,9 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.config.RowDefinition
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -46,7 +46,7 @@ class Woodcutting(val drops: DropTables) : Script {
 
     suspend fun chopDown(player: Player, interact: PlayerOnObjectInteract) {
         val target = interact.target
-        val id = EnumDefinitions.stringOrNull("woodcutting_log", target.def(player).stringId) ?: return
+        val id = Tables.itemOrNull("trees.${target.def(player).stringId}.logs") ?: return
         val log = Rows.getOrNull("logs.$id") ?: return
         val hatchet = Hatchet.best(player)
         if (hatchet == null) {
