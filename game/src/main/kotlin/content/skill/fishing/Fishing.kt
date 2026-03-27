@@ -115,7 +115,7 @@ class Fishing : Script {
             }
             for (item in fish) {
                 val row = Rows.getOrNull("fishing.$item") ?: continue
-                if (bait != row.itemOrNull("bait")) {
+                if (bait != row.item("bait")) {
                     continue
                 }
                 val requiredLevel = row.int("level")
@@ -123,7 +123,7 @@ class Fishing : Script {
                 val experience = row.int("xp")
                 val level = player.levels.get(Skill.Fishing)
                 if (level >= requiredLevel && success(level, chance)) {
-                    if (bait != "none" && !player.inventory.remove(bait)) {
+                    if (bait != "empty_box_fish" && !player.inventory.remove(bait)) {
                         break@fishing
                     }
                     player.exp(Skill.Fishing, experience.toDouble())

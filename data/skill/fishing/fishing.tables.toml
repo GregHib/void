@@ -95,7 +95,7 @@ xp = 45
 chance = [4, 55]
 
 [.raw_crayfish]
-level = 0
+level = 1
 xp = 10
 chance = [48, 256]
 
@@ -210,7 +210,7 @@ xp = 81
 chance = [1, 1]
 
 [.raw_shrimps]
-level = 0
+level = 1
 xp = 10
 chance = [48, 256]
 
