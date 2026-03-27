@@ -31,3 +31,28 @@ message = "You pick some flax."
 item = "onion"
 respawn = 30
 message = "You pick an onion."
+
+[pickables]
+row_id = "obj"
+type = "row"
+
+[.cabbage_draynor_manor]
+type = "picking.cabbages"
+
+[.potato]
+type = "picking.potatoes"
+
+[.wheat]
+type = "picking.wheat"
+
+[.wheat_zanaris]
+type = "picking.wheat"
+
+[.cabbage]
+type = "picking.cabbages"
+
+[.flax]
+type = "picking.flax"
+
+[.onion]
+type = "picking.onions"
