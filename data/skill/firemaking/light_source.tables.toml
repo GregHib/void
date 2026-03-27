@@ -1,0 +1,97 @@
+[light_source]
+row_id = "item"
+lit = "item"
+level = "int"
+type = "string"
+
+[.oil_lamp_oil]
+lit = "oil_lamp"
+level = 12
+type = "lamp"
+
+[.candle_lantern_white]
+lit = "candle_lantern_lit_white"
+level = 4
+type = "lantern"
+
+[.candle_lantern_black]
+lit = "candle_lantern_lit_black"
+level = 4
+type = "lantern"
+
+[.oil_lantern_oil]
+lit = "oil_lantern"
+level = 26
+type = "lantern"
+
+[.bullseye_lantern_oil]
+lit = "bullseye_lantern_lit"
+level = 49
+type = "lantern"
+
+[.mining_helmet]
+lit = "mining_helmet_lit"
+level = 65
+type = "helmet"
+
+[.emerald_lantern]
+lit = "emerald_lantern_lit"
+level = 49
+type = "lantern"
+
+[.white_candle]
+lit = "white_candle_lit"
+level = 1
+type = "candle"
+
+[.sapphire_lantern_oil]
+lit = "sapphire_lantern_lit"
+level = 49
+type = "lantern"
+
+[.black_candle]
+lit = "black_candle_lit"
+level = 1
+type = "candle"
+
+[.unlit_torch]
+lit = "lit_torch"
+level = 1
+type = "torch"
+
+[extinguish]
+row_id = "item"
+unlit = "item"
+
+[.oil_lamp]
+unlit = "oil_lamp_oil"
+
+[.candle_lantern_lit_white]
+unlit = "candle_lantern_white"
+
+[.candle_lantern_lit_black]
+unlit = "candle_lantern_black"
+
+[.oil_lantern]
+unlit = "oil_lantern_oil"
+
+[.bullseye_lantern_lit]
+unlit = "bullseye_lantern_oil"
+
+[.mining_helmet_lit]
+unlit = "mining_helmet"
+
+[.emerald_lantern_lit]
+unlit = "emerald_lantern"
+
+[.black_candle_lit]
+unlit = "black_candle"
+
+[.white_candle_lit]
+unlit = "white_candle"
+
+[.sapphire_lantern_lit]
+unlit = "sapphire_lantern_oil"
+
+[.lit_torch]
+unlit = "unlit_torch"
