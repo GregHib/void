@@ -10,7 +10,8 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toTag
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
@@ -22,27 +23,25 @@ suspend fun Player.barCrawlDrink(
     effects: suspend Player.() -> Unit = {},
 ) {
     player<Neutral>("I'm doing Alfred Grimhand's Barcrawl.")
-    val npcId = target.def.id
-    start?.invoke(this) ?: npc<Neutral>(EnumDefinitions.get("bar_crawl_start").string(npcId))
-    val id = EnumDefinitions.get("bar_crawl_ids").string(npcId)
-    val price = EnumDefinitions.get("bar_crawl_prices").int(npcId)
-    if (!inventory.remove("coins", price)) {
-        player<Disheartened>(EnumDefinitions.get("bar_crawl_insufficient").string(npcId))
+    val bar = Rows.getOrNull("bar_crawl.${target.id}") ?: return
+    start?.invoke(this) ?: npc<Neutral>(bar.string("start"))
+    if (!inventory.remove("coins", bar.int("price"))) {
+        player<Disheartened>(bar.string("insufficient"))
         return
     }
-    message(EnumDefinitions.get("bar_crawl_give").string(npcId))
+    message(bar.string("give"))
     delay(4)
-    message(EnumDefinitions.get("bar_crawl_drink").string(npcId))
+    message(bar.string("drink"))
     delay(4)
-    message(EnumDefinitions.get("bar_crawl_effect").string(npcId))
+    message(bar.string("effect"))
     delay(4)
-    EnumDefinitions.get("bar_crawl_sign").stringOrNull(npcId)?.let { message(it) }
-    addVarbit("barcrawl_signatures", id)
+    bar.stringOrNull("sign")?.let { message(it) }
+    addVarbit("barcrawl_signatures", bar.string("id"))
     effects()
 }
 
 val onBarCrawl: Player.(NPC) -> Boolean = filter@{ target ->
-    val id = EnumDefinitions.get("bar_crawl_ids").stringOrNull(target.def.id) ?: return@filter false
+    val id = Tables.stringOrNull("bar_crawl.${target.id}.id") ?: return@filter false
     quest("alfred_grimhands_barcrawl") == "signatures" && !containsVarbit("barcrawl_signatures", id)
 }
 

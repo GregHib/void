@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -43,7 +43,7 @@ class EnchantCrossbowBolt(
 
         interfaceOpened("enchant_crossbow_bolts") {
             for (it in set) {
-                interfaces.sendItem("enchant_crossbow_bolts", "${it}_bolt", EnumDefinitions.int("enchant_bolt_models", "${it}_bolts"))
+                interfaces.sendItem("enchant_crossbow_bolts", "${it}_bolt", Tables.int("enchant_bolts.${it}_bolts.model"))
             }
         }
 
@@ -67,7 +67,8 @@ class EnchantCrossbowBolt(
         if (hasClock("action_delay")) {
             return
         }
-        if (!has(Skill.Magic, EnumDefinitions.int("enchant_bolt_levels", "${type}_bolts"))) {
+
+        if (!has(Skill.Magic, Tables.int("enchant_bolts.${type}_bolts.level"))) {
             return
         }
         val runes = when (type) {

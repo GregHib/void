@@ -5,11 +5,13 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
@@ -21,21 +23,20 @@ class EnchantJewellery : Script {
                 return@onItem
             }
             val spell = id.substringAfter(":")
-            val enchanted = EnumDefinitions.stringOrNull(spell, item.id)
-            val enchantLevel = spell.substringAfterLast("_").toInt()
-            val type = EnumDefinitions.string("enchant_type", enchantLevel)
-            if (enchanted == null) {
+            val product = find(item)
+            val type = Tables.string("jewellery_enchant.$spell.type")
+            if (product == null) {
                 message("This spell can only be cast on $type amulets, necklaces, rings and bracelets.")
                 return@onItem
             }
-            val level = EnumDefinitions.int("enchant_level", enchantLevel)
+            val level = Tables.int("jewellery_enchant.$spell.level")
             if (!has(Skill.Magic, level)) {
                 return@onItem
             }
             start("action_delay", 1)
             inventory.transaction {
                 removeItems(this@onItem, spell, message = false)
-                replace(item.id, enchanted)
+                replace(item.id, product)
             }
             when (inventory.transaction.error) {
                 is TransactionError.Deficient -> {
@@ -45,11 +46,11 @@ class EnchantJewellery : Script {
                 }
                 TransactionError.None -> {
                     if (item.id.endsWith("necklace") || item.id.endsWith("amulet")) {
-                        gfx("enchant_jewellery_$enchantLevel")
+                        gfx(spell.replace("_level_", "_jewellery_"))
                         anim(
-                            when (enchantLevel) {
-                                1 -> "enchant_jewellery_1"
-                                2 -> "enchant_jewellery_2"
+                            when (spell) {
+                                "enchant_level_1" -> "enchant_jewellery_1"
+                                "enchant_level_2" -> "enchant_jewellery_2"
                                 else -> "enchant_jewellery_3"
                             },
                         )
@@ -62,18 +63,42 @@ class EnchantJewellery : Script {
                         gfx("enchant_ring")
                         sound("enchant_${type}_amulet")
                         anim(
-                            when (enchantLevel) {
-                                1 -> "enchant_jewellery_1"
-                                2 -> "enchant_jewellery_2"
+                            when (spell) {
+                                "enchant_level_1" -> "enchant_jewellery_1"
+                                "enchant_level_2" -> "enchant_jewellery_2"
                                 else -> "enchant_jewellery_3"
                             },
                         )
                     }
-                    val xp = EnumDefinitions.int("enchant_xp", enchantLevel) / 10.0
+                    val xp = Tables.int("jewellery_enchant.$spell.xp") / 10.0
                     exp(Skill.Magic, xp)
                 }
                 else -> return@onItem
             }
         }
+    }
+
+    private fun find(item: Item): String? {
+        val enchanted = Tables.getOrNull("jewellery_enchant") ?: return null
+        for (id in enchanted.rows) {
+            val row = Rows.get(id)
+            val (ring, enchantedRing) = row.itemPair("ring")
+            if (ring == item.id) {
+                return enchantedRing
+            }
+            val (necklace, enchantedNecklace) = row.itemPair("necklace")
+            if (necklace == item.id) {
+                return enchantedNecklace
+            }
+            val (bracelet, enchantedBracelet) = row.itemPair("bracelet")
+            if (bracelet == item.id) {
+                return enchantedBracelet
+            }
+            val (amulet, enchantedAmulet) = row.itemPair("amulet")
+            if (amulet == item.id) {
+                return enchantedAmulet
+            }
+        }
+        return null
     }
 }

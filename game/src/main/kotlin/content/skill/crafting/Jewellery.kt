@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
@@ -67,9 +67,8 @@ class Jewellery : Script {
                         item = Item("ring_of_slaying_8")
                     }
 
-                    val jewellery = EnumDefinitions.intOrNull("jewellery_xp", item.id)
-                    val level = EnumDefinitions.int("jewellery_level", item.id)
-                    if (jewellery == null || !has(Skill.Crafting, level)) {
+                    val row = Rows.getOrNull("jewellery.${item.id}")
+                    if (row == null || !has(Skill.Crafting, row.int("level"))) {
                         item = Item("blank_$type")
                     }
                     interfaces.sendVisibility(id, "make_${type}_option_$gem", !item.id.startsWith("blank"))
@@ -92,8 +91,9 @@ class Jewellery : Script {
         if (amount <= 0) {
             return
         }
-        val xp = EnumDefinitions.intOrNull("jewellery_xp", item.id) ?: return
-        val level = EnumDefinitions.int("jewellery_level", item.id)
+        val rows = Rows.getOrNull("jewellery.${item.id}") ?: return
+        val xp = rows.int("xp")
+        val level = rows.int("level")
         if (!has(Skill.Crafting, level, message = true)) {
             return
         }

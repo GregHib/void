@@ -1,0 +1,33 @@
+[fletching_darts]
+row_id = "item"
+level = "int"
+level_default = 1
+xp = "int"
+
+[.bronze_dart_tip]
+level = 1
+xp = 18
+
+[.iron_dart_tip]
+level = 22
+xp = 18
+
+[.steel_dart_tip]
+level = 37
+xp = 38
+
+[.mithril_dart_tip]
+level = 52
+xp = 75
+
+[.adamant_dart_tip]
+level = 67
+xp = 112
+
+[.rune_dart_tip]
+level = 81
+xp = 150
+
+[.dragon_dart_tip]
+level = 95
+xp = 188

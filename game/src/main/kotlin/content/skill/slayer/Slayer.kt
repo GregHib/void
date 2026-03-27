@@ -1,9 +1,11 @@
 package content.skill.slayer
 
 import content.quest.questCompleted
-import world.gregs.voidps.engine.client.ui.chat.toIntRange
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.config.TableDefinition
+import world.gregs.voidps.engine.data.definition.ColumnType
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -63,52 +65,57 @@ fun Player.isTask(character: Character?): Boolean {
     return target.categories.contains(slayerTask)
 }
 
-fun assignTask(player: Player, master: String): Pair<Int, Int> {
-    val npc = rollTask(player, master)!!
-    val amount = EnumDefinitions.string("${master}_task_amount", npc).toIntRange(inclusive = true).random(random)
+fun assignTask(player: Player, master: String): Pair<String, Int> {
+    val pair = rollTask(player, master) ?: error("No task found for $master")
     player.slayerTasks++
     player.slayerMaster = master
-    player.slayerTask = EnumDefinitions.string("slayer_tasks_categories", npc)
-    player.slayerTaskRemaining = amount
-    return Pair(npc, amount)
+    player.slayerTask = pair.first
+    player.slayerTaskRemaining = pair.second
+    return pair
 }
 
-fun rollTask(player: Player, master: String): Int? {
+private fun rollTask(player: Player, master: String): Pair<String, Int>? {
     var total = 0
-    val weights = EnumDefinitions.getOrNull("${master}_task_weight")?.map ?: return null
-    for ((npc, weight) in weights) {
-        if (!hasRequirements(player, npc)) {
+    val table = Tables.getOrNull("${master}_slayer_tasks") ?: return null
+    for (row in table.rows) {
+        val weight = table.int("weight", row)
+        if (!hasRequirements(player, table, row)) {
             continue
         }
-        total += weight as Int
+        total += weight
     }
     val roll = random.nextInt(total)
     var count = 0
-    for ((npc, weight) in weights) {
-        if (!hasRequirements(player, npc)) {
+    for (row in table.rows) {
+        if (!hasRequirements(player, table, row)) {
             continue
         }
-        count += weight as Int
+        val weight = table.int("weight", row)
+        count += weight
         if (roll < count) {
-            return npc
+            val range = table.get("amount", row, ColumnType.ColumnIntRange)
+            val row = Rows.get(row)
+            return Pair(row.itemId, range.random(random))
         }
     }
     return null
 }
 
-private fun hasRequirements(player: Player, index: Int): Boolean {
-    val slayerLevel = NPCDefinitions.get(index)["slayer_level", 1]
+private fun hasRequirements(player: Player, table: TableDefinition, row: Int): Boolean {
+    val category = Rows.get(row).itemId
+    val npc = Tables.int("slayer_tasks.$category.npc")
+    val slayerLevel = NPCDefinitions.get(npc)["slayer_level", 1]
     if (!player.has(Skill.Slayer, slayerLevel)) {
         return false
     }
-    val combatLevel = EnumDefinitions.int("slayer_task_combat_level", index)
+    val combatLevel = Tables.int("slayer_tasks.$category.combat_level")
     if (player.combatLevel < combatLevel) {
         return false
     }
-    val variable = EnumDefinitions.stringOrNull("slayer_task_variable", index)
+    val variable = Tables.stringOrNull("slayer_tasks.$category.variable")
     if (variable != null && !player.contains(variable)) {
         return false
     }
-    val quest = EnumDefinitions.stringOrNull("slayer_task_quest", index) ?: return true
+    val quest = table.stringOrNull("slayer_tasks.$category.quest", row) ?: return true
     return player.questCompleted(quest)
 }

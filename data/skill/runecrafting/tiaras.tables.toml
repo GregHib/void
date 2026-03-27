@@ -1,0 +1,39 @@
+[tiaras]
+row_id = "item"
+xp = "int"
+
+[.air_tiara]
+xp = 250
+
+[.mind_tiara]
+xp = 275
+
+[.water_tiara]
+xp = 300
+
+[.body_tiara]
+xp = 375
+
+[.earth_tiara]
+xp = 325
+
+[.fire_tiara]
+xp = 350
+
+[.cosmic_tiara]
+xp = 400
+
+[.nature_tiara]
+xp = 450
+
+[.chaos_tiara]
+xp = 425
+
+[.law_tiara]
+xp = 475
+
+[.death_tiara]
+xp = 500
+
+[.blood_tiara]
+xp = 525

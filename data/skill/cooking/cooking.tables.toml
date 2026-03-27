@@ -1,0 +1,798 @@
+[cooking]
+level = "int"
+xp = "int"
+cooked = "item"
+cooked_message = "string"
+leftover = "item"
+burnt = "item"
+burnt_message = "string"
+start_ticks = "int"
+ticks = "int"
+type = "string"
+type_default = "cook"
+range_only = "boolean"
+chance_fire = "range"
+chance_range = "range"
+chance_cook_o_matic = "range"
+chance_gauntlet = "range"
+
+[.bread_dough]
+level = 1
+xp = 400
+range_only = true
+chance_range = [11, 491]
+chance_cook_o_matic = [128, 511]
+chance_gauntlet = [11, 491]
+cooked = "bread"
+cooked_message = "You successfully bake some bread."
+burnt = "burnt_bread"
+burnt_message = "You accidentally burn the bread dough."
+
+[.chopped_onion]
+level = 42
+xp = 600
+range_only = true
+chance_range = [35, 321]
+chance_cook_o_matic = [35, 321]
+chance_gauntlet = [35, 321]
+cooked = "fried_onions"
+cooked_message = "You successfully fry the onion."
+burnt = "burnt_onion"
+burnt_message = "You accidentally burn the onion."
+
+[.crab_meat]
+level = 21
+xp = 1000
+chance_fire = [57, 376]
+chance_range = [57, 376]
+chance_cook_o_matic = [57, 376]
+chance_gauntlet = [57, 376]
+cooked = "cooked_crab_meat_5"
+burnt = "burnt_crab_meat"
+
+[.fat_snail]
+level = 22
+xp = 950
+chance_fire = [73, 401]
+chance_range = [73, 401]
+chance_cook_o_matic = [83, 421]
+chance_gauntlet = [73, 401]
+cooked = "fat_snail_meat"
+cooked_message = "You cook the fat snail."
+burnt = "burnt_snail"
+burnt_message = "You accidentally burn the fat snail."
+
+[.lean_snail]
+level = 17
+xp = 800
+chance_fire = [93, 443]
+chance_range = [85, 427]
+chance_cook_o_matic = [95, 447]
+chance_gauntlet = [85, 427]
+cooked = "lean_snail_meat"
+cooked_message = "You cook the lean snail."
+burnt = "burnt_snail"
+burnt_message = "You accidentally burn the lean snail."
+
+[.mixed_dragon_garnished]
+level = 32
+xp = 1300
+range_only = true
+chance_range = [255, 254]
+chance_cook_o_matic = [255, 254]
+chance_gauntlet = [255, 254]
+cooked = "drunk_dragon"
+
+[.nettle_water]
+level = 20
+xp = 520
+type = "heat"
+chance_range = [255, 255]
+chance_cook_o_matic = [255, 255]
+chance_gauntlet = [255, 255]
+cooked = "nettle_tea"
+cooked_message = "You boil the water and make nettle tea."
+
+[.pitta_dough]
+level = 58
+xp = 400
+range_only = true
+chance_range = [118, 491]
+chance_cook_o_matic = [118, 491]
+chance_gauntlet = [118, 491]
+cooked = "pitta_bread"
+cooked_message = "You successfully bake some pitta bread."
+burnt = "burnt_pitta_bread"
+burnt_message = "You accidentally burn the pitta dough."
+
+[.raw_admiral_pie]
+level = 70
+xp = 2100
+type = "bake"
+range_only = true
+chance_range = [15, 269]
+chance_cook_o_matic = [15, 269]
+chance_gauntlet = [15, 269]
+cooked = "admiral_pie"
+cooked_message = "You successfully bake a tasty fish pie."
+burnt = "burnt_pie"
+burnt_message = "You accidentally burn the admiral pie."
+
+[.raw_anchovies]
+level = 1
+xp = 300
+chance_fire = [128, 511]
+chance_range = [128, 511]
+chance_cook_o_matic = [138, 531]
+chance_gauntlet = [128, 511]
+cooked = "anchovies"
+cooked_message = "You successfully cook some anchovies."
+burnt_message = "You accidentally burn the anchovies."
+
+[.raw_bass]
+level = 43
+xp = 1300
+chance_fire = [33, 311]
+chance_range = [33, 311]
+chance_cook_o_matic = [33, 311]
+chance_gauntlet = [33, 311]
+cooked = "bass"
+cooked_message = "You cook a bass."
+burnt_message = "You accidentally burn the bass."
+
+[.raw_bear_meat]
+level = 1
+xp = 300
+chance_fire = [128, 511]
+chance_range = [128, 511]
+chance_cook_o_matic = [138, 531]
+chance_gauntlet = [128, 511]
+cooked = "cooked_meat"
+cooked_message = "You cook a piece of meat."
+burnt = "burnt_meat"
+burnt_message = "You accidentally burn the bear meat."
+
+[.raw_beast_meat]
+level = 21
+xp = 620
+type = "roast"
+chance_fire = [180, 254]
+chance_range = [180, 254]
+chance_cook_o_matic = [180, 254]
+chance_gauntlet = [180, 254]
+cooked = "roast_beast_meat"
+
+[.raw_beef]
+level = 1
+xp = 300
+chance_fire = [128, 511]
+chance_range = [128, 511]
+chance_cook_o_matic = [138, 531]
+chance_gauntlet = [128, 511]
+cooked = "cooked_meat"
+cooked_message = "You cook a piece of meat."
+burnt = "burnt_meat"
+burnt_message = "You accidentally burn the beef."
+
+[.raw_bird_meat]
+level = 11
+xp = 625
+type = "roast"
+chance_fire = [155, 254]
+chance_range = [155, 254]
+chance_cook_o_matic = [155, 254]
+chance_gauntlet = [155, 254]
+cooked = "roast_bird_meat"
+
+[.raw_cave_eel]
+level = 38
+xp = 1150
+chance_fire = [38, 331]
+chance_range = [38, 331]
+chance_cook_o_matic = [38, 331]
+chance_gauntlet = [38, 331]
+cooked = "cave_eel"
+cooked_message = "You successfully cook a slimy cave eel."
+burnt_message = "You accidentally burn the cave eel."
+
+[.raw_cavefish]
+level = 88
+xp = 2140
+chance_fire = [4, 229]
+chance_range = [4, 229]
+chance_cook_o_matic = [4, 229]
+chance_gauntlet = [12, 268]
+cooked = "cavefish"
+
+[.raw_chicken]
+level = 1
+xp = 300
+chance_fire = [128, 511]
+chance_range = [128, 511]
+chance_cook_o_matic = [138, 531]
+chance_gauntlet = [128, 511]
+cooked_message = "You cook some chicken."
+burnt_message = "You accidentally burn the chicken."
+
+[.raw_cod]
+level = 18
+xp = 750
+chance_fire = [83, 421]
+chance_range = [88, 431]
+chance_cook_o_matic = [93, 441]
+chance_gauntlet = [88, 431]
+cooked = "cod"
+cooked_message = "You successfully cook a cod."
+burnt = "burnt_trout"
+burnt_message = "You accidentally burn the cod."
+
+[.raw_crayfish]
+level = 1
+xp = 300
+chance_fire = [128, 511]
+chance_range = [128, 511]
+chance_cook_o_matic = [128, 511]
+chance_gauntlet = [128, 511]
+cooked = "crayfish"
+cooked_message = "You successfully cook some crayfish."
+burnt_message = "You accidentally burn the crayfish."
+
+[.raw_fish_pie]
+level = 47
+xp = 1640
+type = "bake"
+range_only = true
+chance_range = [38, 331]
+chance_cook_o_matic = [38, 331]
+chance_gauntlet = [38, 331]
+cooked = "fish_pie"
+cooked_message = "You successfully bake a tasty fish pie."
+burnt = "burnt_pie"
+burnt_message = "You accidentally burn the fish pie."
+
+[.raw_fishcake]
+level = 31
+xp = 1000
+chance_fire = [57, 376]
+chance_range = [57, 376]
+chance_cook_o_matic = [57, 376]
+chance_gauntlet = [57, 376]
+cooked_message = "You manage to cook a fishcake."
+burnt_message = "You accidentally burn the uncooked cake."
+
+[.raw_garden_pie]
+level = 34
+xp = 1380
+type = "bake"
+range_only = true
+chance_range = [48, 351]
+chance_cook_o_matic = [48, 351]
+chance_gauntlet = [48, 351]
+cooked = "garden_pie"
+cooked_message = "You successfully bake a tasty garden pie."
+burnt = "burnt_pie"
+burnt_message = "You accidentally burn the garden pie."
+
+[.raw_guide_cake]
+level = 40
+xp = 600
+type = "bake"
+range_only = true
+chance_range = [255, 254]
+chance_cook_o_matic = [255, 254]
+chance_gauntlet = [255, 254]
+cooked = "cake_of_guidance"
+cooked_message = "You successfully bake a Cake of Guidance."
+leftover = "cake_tin"
+
+[.raw_herring]
+level = 5
+xp = 500
+chance_fire = [108, 471]
+chance_range = [108, 471]
+chance_cook_o_matic = [118, 491]
+chance_gauntlet = [108, 471]
+cooked = "herring"
+cooked_message = "You successfully cook a herring."
+burnt_message = "You accidentally burn the herring."
+
+[.raw_jubbly]
+level = 41
+xp = 1600
+ticks = 6
+chance_fire = [50, 259]
+chance_range = [50, 259]
+chance_cook_o_matic = [50, 259]
+chance_gauntlet = [50, 259]
+
+[.raw_karambwan]
+level = 30
+xp = 1900
+chance_fire = [70, 254]
+chance_range = [70, 254]
+chance_cook_o_matic = [70, 254]
+chance_gauntlet = [70, 254]
+cooked_message = "You cook the karambwan. It looks delicious."
+burnt_message = "You accidentally burn the karambwan."
+
+[.raw_lava_eel]
+level = 53
+xp = 300
+chance_fire = [0, -1]
+chance_range = [0, -1]
+chance_cook_o_matic = [0, -1]
+chance_gauntlet = [0, -1]
+cooked = "lava_eel"
+
+[.raw_lobster]
+level = 40
+xp = 1200
+type = "roast"
+chance_fire = [38, 331]
+chance_range = [38, 331]
+chance_cook_o_matic = [38, 331]
+chance_gauntlet = [55, 367]
+cooked = "lobster"
+cooked_message = "You roast a lobster."
+burnt_message = "You accidentally burn the lobster."
+
+[.raw_mackerel]
+level = 10
+xp = 600
+chance_fire = [98, 451]
+chance_range = [98, 451]
+chance_cook_o_matic = [108, 471]
+chance_gauntlet = [98, 451]
+cooked = "mackerel"
+cooked_message = "You successfully cook a mackerel."
+burnt = "burnt_herring"
+burnt_message = "You accidentally burn the mackerel."
+
+[.raw_manta_ray]
+level = 91
+xp = 2163
+chance_fire = [1, 201]
+chance_range = [1, 221]
+chance_cook_o_matic = [1, 221]
+chance_gauntlet = [1, 221]
+cooked = "manta_ray"
+cooked_message = "You successfully cook a manta ray."
+burnt_message = "You accidentally burn the manta ray."
+
+[.raw_monkfish]
+level = 62
+xp = 1500
+chance_fire = [11, 274]
+chance_range = [13, 279]
+chance_cook_o_matic = [13, 279]
+chance_gauntlet = [24, 289]
+cooked = "monkfish"
+cooked_message = "You successfully cook a monkfish."
+burnt_message = "You accidentally burn the monkfish."
+
+[.raw_mud_pie]
+level = 29
+xp = 1280
+type = "bake"
+range_only = true
+chance_range = [58, 371]
+chance_cook_o_matic = [58, 371]
+chance_gauntlet = [58, 371]
+cooked = "mud_pie"
+cooked_message = "You successfully bake a mucky mud pie."
+burnt = "burnt_pie"
+burnt_message = "You accidentally burn the mud pie."
+
+[.raw_pawya_meat]
+level = 1
+xp = 300
+chance_fire = [128, 511]
+chance_range = [128, 511]
+chance_cook_o_matic = [138, 531]
+chance_gauntlet = [128, 511]
+cooked = "cooked_meat"
+burnt = "burnt_meat"
+
+[.raw_pike]
+level = 20
+xp = 800
+chance_fire = [78, 411]
+chance_range = [78, 411]
+chance_cook_o_matic = [88, 431]
+chance_gauntlet = [78, 411]
+cooked = "pike"
+cooked_message = "You successfully cook a pike."
+burnt_message = "You accidentally burn the pike."
+
+[.raw_potato]
+level = 7
+xp = 150
+range_only = true
+chance_range = [108, 471]
+chance_cook_o_matic = [108, 471]
+chance_gauntlet = [108, 471]
+cooked = "baked_potato"
+cooked_message = "You successfully bake a potato."
+burnt_message = "You accidentally burn the potato."
+
+[.raw_rabbit]
+level = 1
+xp = 300
+chance_fire = [128, 511]
+chance_range = [128, 511]
+chance_cook_o_matic = [128, 511]
+chance_gauntlet = [128, 511]
+cooked_message = "You cook the rabbit."
+burnt_message = "You accidentally burn the rabbit."
+
+[.raw_rainbow_fish]
+level = 35
+xp = 1100
+chance_fire = [56, 369]
+chance_range = [56, 369]
+chance_cook_o_matic = [56, 369]
+chance_gauntlet = [56, 369]
+cooked = "rainbow_fish"
+cooked_message = "You manage to cook a rainbow fish."
+burnt_message = "You accidentally burn the rainbow fish."
+
+[.raw_rat_meat]
+level = 1
+xp = 300
+chance_fire = [128, 511]
+chance_range = [128, 511]
+chance_cook_o_matic = [138, 531]
+chance_gauntlet = [128, 511]
+cooked = "cooked_meat"
+cooked_message = "You cook a piece of meat."
+burnt = "burnt_meat"
+burnt_message = "You accidentally burn the rat meat."
+
+[.raw_rocktail]
+level = 92
+xp = 2250
+chance_fire = [1, 179]
+chance_range = [1, 179]
+chance_cook_o_matic = [1, 179]
+chance_gauntlet = [1, 268]
+cooked = "rocktail"
+cooked_message = "You successfully cook a rocktail."
+burnt_message = "You accidentally burn the rocktail."
+
+[.raw_salmon]
+level = 25
+xp = 900
+chance_fire = [68, 391]
+chance_range = [68, 391]
+chance_cook_o_matic = [78, 401]
+chance_gauntlet = [68, 391]
+cooked = "salmon"
+cooked_message = "You successfully cook a salmon."
+burnt_message = "You accidentally burn the salmon."
+
+[.raw_sardine]
+level = 1
+xp = 400
+chance_fire = [118, 491]
+chance_range = [118, 491]
+chance_cook_o_matic = [128, 511]
+chance_gauntlet = [118, 491]
+cooked = "sardine"
+cooked_message = "You successfully cook a sardine."
+burnt_message = "You accidentally burn the sardine."
+
+[.raw_sea_turtle]
+level = 82
+xp = 2113
+chance_fire = [1, 201]
+chance_range = [1, 221]
+chance_cook_o_matic = [1, 221]
+chance_gauntlet = [1, 221]
+cooked = "sea_turtle"
+cooked_message = "You successfully cook a sea turtle."
+burnt_message = "You accidentally burn the sea turtle."
+
+[.raw_shark]
+level = 80
+xp = 2100
+chance_fire = [1, 201]
+chance_range = [1, 231]
+chance_cook_o_matic = [1, 231]
+chance_gauntlet = [15, 269]
+cooked = "shark"
+cooked_message = "You successfully cook a shark."
+burnt_message = "You accidentally burn the shark."
+
+[.raw_shrimps]
+level = 1
+xp = 300
+chance_fire = [128, 511]
+chance_range = [128, 511]
+chance_cook_o_matic = [138, 531]
+chance_gauntlet = [128, 511]
+cooked = "shrimps"
+cooked_message = "You successfully cook some shrimps."
+burnt = "burnt_shrimp"
+burnt_message = "You accidentally burn the shrimps."
+
+[.raw_summer_pie]
+level = 95
+xp = 2600
+type = "bake"
+range_only = true
+chance_range = [1, 211]
+chance_cook_o_matic = [1, 211]
+chance_gauntlet = [1, 211]
+cooked = "summer_pie"
+cooked_message = "You successfully bake a tasty summer pie."
+burnt = "burnt_pie"
+burnt_message = "You accidentally burn the summer pie."
+
+[.raw_swordfish]
+level = 45
+xp = 1400
+chance_fire = [18, 291]
+chance_range = [30, 309]
+chance_cook_o_matic = [30, 309]
+chance_gauntlet = [30, 309]
+cooked = "swordfish"
+cooked_message = "You successfully cook a swordfish."
+burnt_message = "You accidentally burn the swordfish."
+
+[.raw_trout]
+level = 15
+xp = 700
+chance_fire = [88, 431]
+chance_range = [88, 431]
+chance_cook_o_matic = [98, 451]
+chance_gauntlet = [88, 431]
+cooked = "trout"
+cooked_message = "You successfully cook a trout."
+burnt_message = "You accidentally burn the trout."
+
+[.raw_tuna]
+level = 30
+xp = 1000
+chance_fire = [58, 371]
+chance_range = [58, 371]
+chance_cook_o_matic = [58, 371]
+chance_gauntlet = [58, 371]
+cooked = "tuna"
+cooked_message = "You manage to cook a tuna."
+burnt_message = "You accidentally burn the tuna."
+
+[.raw_ugthanki_meat]
+level = 1
+xp = 400
+chance_fire = [40, 251]
+chance_range = [30, 252]
+chance_cook_o_matic = [30, 252]
+chance_gauntlet = [30, 252]
+cooked = "ugthanki_meat"
+
+[.raw_wild_pie]
+level = 85
+xp = 2400
+type = "bake"
+range_only = true
+chance_range = [1, 221]
+chance_cook_o_matic = [1, 221]
+chance_gauntlet = [1, 221]
+cooked = "wild_pie"
+cooked_message = "You successfully bake a tasty wild pie."
+burnt = "burnt_pie"
+burnt_message = "You accidentally burn the wild pie."
+
+[.raw_yak_meat]
+level = 1
+xp = 400
+chance_fire = [128, 511]
+chance_range = [128, 511]
+chance_cook_o_matic = [138, 531]
+chance_gauntlet = [128, 511]
+cooked = "cooked_meat"
+burnt = "burnt_meat"
+
+[.sinew]
+level = 1
+xp = 30
+type = "heat"
+range_only = true
+chance_range = [255, 254]
+chance_cook_o_matic = [255, 254]
+chance_gauntlet = [255, 254]
+cooked = "sinew"
+cooked_message = "You dry a piece of beef and extract the sinew."
+
+[.skewered_chompy]
+level = 30
+xp = 1000
+type = "roast"
+chance_fire = [200, 254]
+chance_range = [200, 254]
+chance_cook_o_matic = [200, 254]
+chance_gauntlet = [200, 254]
+cooked = "cooked_chompy"
+burnt = "burnt_chompy"
+
+[.skewered_rabbit]
+level = 16
+xp = 720
+type = "roast"
+ticks = 3
+chance_fire = [160, 254]
+chance_range = [160, 254]
+chance_cook_o_matic = [160, 254]
+chance_gauntlet = [160, 254]
+cooked = "roast_rabbit"
+cooked_message = "You roast the skewered rabbit."
+burnt = "burnt_rabbit"
+burnt_message = "You accidentally burn the skewered rabbit."
+
+[.sliced_mushrooms]
+level = 46
+xp = 600
+range_only = true
+chance_range = [28, 299]
+chance_cook_o_matic = [28, 299]
+chance_gauntlet = [28, 299]
+cooked = "fried_mushrooms"
+cooked_message = "You successfully fry the mushroom."
+burnt = "burnt_mushroom"
+burnt_message = "You accidentally burn the mushroom."
+
+[.slimy_eel]
+level = 28
+xp = 950
+chance_fire = [63, 381]
+chance_range = [63, 381]
+chance_cook_o_matic = [63, 381]
+chance_gauntlet = [63, 381]
+cooked = "cooked_slimy_eel"
+cooked_message = "You cook an eel."
+burnt = "burnt_eel"
+burnt_message = "You accidentally burn the slimy eel."
+
+[.spider_on_shaft_raw]
+level = 16
+xp = 800
+type = "roast"
+chance_fire = [91, 437]
+chance_range = [91, 437]
+chance_cook_o_matic = [91, 437]
+chance_gauntlet = [91, 437]
+cooked = "spider_on_shaft"
+burnt = "spider_on_shaft_burnt"
+
+[.spider_on_stick_raw]
+level = 16
+xp = 800
+type = "roast"
+chance_fire = [91, 437]
+chance_range = [91, 437]
+chance_cook_o_matic = [91, 437]
+chance_gauntlet = [91, 437]
+cooked = "spider_on_stick"
+burnt = "burnt_spider"
+
+[.sweetcorn]
+level = 28
+xp = 1040
+range_only = true
+chance_range = [65, 381]
+chance_cook_o_matic = [65, 381]
+chance_gauntlet = [65, 381]
+cooked = "cooked_sweetcorn"
+cooked_message = "You cook some sweetcorn."
+burnt = "burnt_sweetcorn"
+burnt_message = "You accidentally burn the sweetcorn."
+
+[.thin_snail]
+level = 12
+xp = 700
+chance_fire = [93, 443]
+chance_range = [93, 443]
+chance_cook_o_matic = [103, 463]
+chance_gauntlet = [93, 443]
+cooked = "thin_snail_meat"
+cooked_message = "You cook the thin snail."
+burnt = "burnt_snail"
+burnt_message = "You accidentally burn the thin snail."
+
+[.uncooked_apple_pie]
+level = 30
+xp = 1300
+range_only = true
+chance_range = [58, 371]
+chance_cook_o_matic = [58, 371]
+chance_gauntlet = [58, 371]
+cooked = "apple_pie"
+cooked_message = "You successfully bake a traditional apple pie."
+burnt = "burnt_pie"
+burnt_message = "You accidentally burn the uncooked apple pie."
+
+[.uncooked_berry_pie]
+level = 10
+xp = 780
+range_only = true
+chance_range = [98, 451]
+chance_cook_o_matic = [108, 461]
+chance_gauntlet = [98, 451]
+cooked = "redberry_pie"
+cooked_message = "You successfully bake a delicious redberry pie."
+burnt = "burnt_pie"
+burnt_message = "You accidentally burn the uncooked berry pie."
+
+[.uncooked_cake]
+level = 40
+xp = 1800
+range_only = true
+chance_range = [38, 331]
+chance_cook_o_matic = [38, 331]
+chance_gauntlet = [38, 331]
+cooked = "cake"
+cooked_message = "You successfully bake a cake."
+leftover = "cake_tin"
+burnt = "burnt_cake"
+burnt_message = "You accidentally burn the uncooked cake."
+
+[.uncooked_curry]
+level = 60
+xp = 2800
+chance_fire = [38, 331]
+chance_range = [38, 331]
+chance_cook_o_matic = [38, 331]
+chance_gauntlet = [38, 331]
+cooked = "curry"
+cooked_message = "You cook some curry."
+burnt = "burnt_curry"
+burnt_message = "You accidentally burn the curry."
+
+[.uncooked_egg]
+level = 13
+xp = 500
+start_ticks = 0
+range_only = true
+chance_range = [90, 437]
+chance_cook_o_matic = [90, 437]
+chance_gauntlet = [90, 437]
+cooked = "scrambled_egg"
+cooked_message = "You successfully scramble the egg."
+burnt = "burnt_egg"
+burnt_message = "You accidentally burn the egg."
+
+[.uncooked_meat_pie]
+level = 20
+xp = 1100
+range_only = true
+chance_range = [78, 411]
+chance_cook_o_matic = [88, 431]
+chance_gauntlet = [78, 411]
+cooked = "meat_pie"
+cooked_message = "You successfully bake a tasty meat pie."
+burnt = "burnt_pie"
+burnt_message = "You accidentally burn the uncooked meat pie."
+
+[.uncooked_pizza]
+level = 35
+xp = 1430
+range_only = true
+chance_range = [48, 351]
+chance_cook_o_matic = [48, 351]
+chance_gauntlet = [48, 351]
+cooked = "plain_pizza"
+cooked_message = "You successfully bake a pizza."
+burnt = "burnt_pizza"
+burnt_message = "You accidentally burn the uncooked pizza."
+
+[.uncooked_stew]
+level = 25
+xp = 1170
+chance_fire = [68, 391]
+chance_range = [68, 391]
+chance_cook_o_matic = [78, 411]
+chance_gauntlet = [68, 391]
+cooked = "stew"
+cooked_message = "You cook some stew."
+burnt = "burnt_stew"
+burnt_message = "You accidentally burn the stew."

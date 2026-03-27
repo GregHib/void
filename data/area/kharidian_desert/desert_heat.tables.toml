@@ -1,0 +1,75 @@
+[desert_clothing]
+row_id = "item"
+heat_delay = "int"
+
+[.desert_disguise]
+heat_delay = 20
+
+[.desert_shirt]
+heat_delay = 20
+
+[.desert_robe]
+heat_delay = 20
+
+[.desert_boots]
+heat_delay = 20
+
+[.black_desert_shirt]
+heat_delay = 20
+
+[.black_desert_robe]
+heat_delay = 20
+
+[.fez]
+heat_delay = 20
+
+[.desert_top]
+heat_delay = 20
+
+[.desert_legs]
+heat_delay = 20
+
+[.desert_top_overcoat]
+heat_delay = 20
+
+[.desert_robes]
+heat_delay = 20
+
+[.slave_shirt]
+heat_delay = 10
+
+[.slave_robe]
+heat_delay = 10
+
+[.slave_boots]
+heat_delay = 10
+
+[.robe_of_elidinis_top]
+heat_delay = 20
+
+[.robe_of_elidinis_bottom]
+heat_delay = 20
+
+[.menaphite_headgear_purple]
+heat_delay = 20
+
+[.menaphite_top_purple]
+heat_delay = 20
+
+[.menaphite_robe_purple]
+heat_delay = 20
+
+[.menaphite_action_kilt_purple]
+heat_delay = 20
+
+[.menaphite_headgear_red]
+heat_delay = 20
+
+[.menaphite_top_red]
+heat_delay = 20
+
+[.menaphite_robe_red]
+heat_delay = 20
+
+[.menaphite_action_kilt_red]
+heat_delay = 20

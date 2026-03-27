@@ -9,6 +9,8 @@ import world.gregs.voidps.cache.config.data.StructDefinition
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.EnumDefinition
 import world.gregs.voidps.cache.definition.data.EnumTypes
+import world.gregs.voidps.engine.data.config.RowDefinition
+import world.gregs.voidps.engine.data.config.TableDefinition
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Tile
 
@@ -76,6 +78,20 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
         return definition.stringOrNull(key)
     }
 
+    fun tableOrNull(enum: String, key: String): TableDefinition? {
+        val definition = getOrNull(enum) ?: return null
+        val key = key(definition.keyType, key)
+        val id = definition.stringOrNull(key) ?: return null
+        return Tables.getOrNull(id)
+    }
+
+    fun rowOrNull(enum: String, key: String): RowDefinition? {
+        val definition = getOrNull(enum) ?: return null
+        val key = key(definition.keyType, key)
+        val id = definition.stringOrNull(key) ?: return null
+        return Rows.getOrNull(id)
+    }
+
     fun stringOrNull(enum: String, key: Int): String? {
         val definition = getOrNull(enum) ?: return null
         return definition.stringOrNull(key)
@@ -95,6 +111,11 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
     fun intOrNull(enum: String, key: String): Int? {
         val definition = getOrNull(enum) ?: return null
         val key = key(definition.keyType, key)
+        return definition.intOrNull(key)
+    }
+
+    fun intOrNull(enum: String, key: Int): Int? {
+        val definition = getOrNull(enum) ?: return null
         return definition.intOrNull(key)
     }
 
@@ -145,6 +166,7 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
             require(NPCDefinitions.loaded) { "NPC definitions must be loaded before enum definitions" }
             require(StructDefinitions.loaded) { "Struct definitions must be loaded before enum definitions" }
             require(ObjectDefinitions.loaded) { "Object definitions must be loaded before enum definitions" }
+            require(Tables.loaded) { "Tables must be loaded before enum definitions" }
             val ids = Object2IntOpenHashMap<String>(definitions.size, Hash.VERY_FAST_LOAD_FACTOR)
             val custom = mutableListOf<EnumDefinition>()
             for (path in list) {
@@ -185,6 +207,7 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
                                         EnumTypes.NPC -> NPCDefinitions.getOrNull(key)?.id ?: error("Unknown npc '$key' ${exception()}")
                                         EnumTypes.STRUCT -> StructDefinitions.getOrNull(key)?.id ?: error("Unknown struct '$key' ${exception()}")
                                         EnumTypes.OBJ -> ObjectDefinitions.getOrNull(key)?.id ?: error("Unknown struct '$key' ${exception()}")
+                                        EnumTypes.DBROW -> Rows.getOrNull(key)?.id ?: error("Unknown table row '$key' ${exception()}")
                                         else -> key.toInt()
                                     }
                                     map[keyInt] = value()

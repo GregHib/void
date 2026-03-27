@@ -1,0 +1,77 @@
+[bars]
+row_id = "item"
+level = "int"
+xp = "int"
+ore = "list<item>"
+amount = "list<int>"
+amount_default = [1]
+chance = "int"
+chance_default = 255 # 100%
+message = "string"
+
+[.bronze_bar]
+level = 1
+xp = 62
+ore = ["tin_ore", "copper_ore"]
+amount = [1, 1]
+message = "You smelt the copper and tin together in the furnace."
+
+[.blurite_bar]
+level = 13
+xp = 80
+ore = ["blurite_ore"]
+message = "You place the blurite and four heaps of coal into the furnace."
+
+[.elemental_bar]
+level = 20
+xp = 75
+ore = ["elemental_ore", "coal"]
+amount = [1, 4]
+message = "You place the elemental ore and four heaps of coal into the furnace."
+
+[.iron_bar]
+level = 15
+xp = 125
+chance = 128 # 50%
+ore = ["iron_ore"]
+message = "You smelt the iron in the furnace."
+
+[.steel_bar]
+level = 30
+xp = 175
+ore = ["iron_ore", "coal"]
+amount = [1, 2]
+message = "You place the iron and two heaps of coal into the furnace."
+
+[.silver_bar]
+level = 20
+xp = 137
+ore = ["silver_ore"]
+message = "You place the silver into the furnace."
+
+[.gold_bar]
+level = 40
+xp = 225
+ore = ["gold_ore"]
+message = "You place a lump of gold in the furnace."
+
+[.mithril_bar]
+level = 50
+xp = 300
+ore = ["mithril_ore", "coal"]
+amount = [1, 4]
+message = "You place the mithril and four heaps of coal into the furnace."
+
+[.adamant_bar]
+level = 70
+xp = 375
+ore = ["adamantite_ore", "coal"]
+amount = [1, 6]
+message = "You place the adamantite and six heaps of coal into the furnace."
+
+[.rune_bar]
+level = 85
+xp = 500
+ore = ["runite_ore", "coal"]
+amount = [1, 8]
+message = "You place the runite and six heaps of coal into the furnace."

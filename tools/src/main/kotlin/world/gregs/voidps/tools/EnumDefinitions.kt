@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 
 object EnumDefinitions {
 
@@ -32,6 +33,7 @@ object EnumDefinitions {
         NPCDefinitions.init(NPCDecoder().load(cache)).load(files.list(Settings["definitions.npcs"]))
         StructDefinitions.init(StructDecoder().load(cache)).load(files.find(Settings["definitions.structs"]))
         ObjectDefinitions.init(ObjectDecoder().load(cache)).load(files.list(Settings["definitions.objects"]))
+        Tables.load(files.list(Settings["definitions.tables"]))
         val definitions = EnumDefinitions.init(EnumDecoder().load(cache)).load(files.list(Settings["definitions.enums"]))
         for (i in definitions.definitions.indices) {
             val def = definitions.getOrNull(i) ?: continue

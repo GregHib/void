@@ -8,7 +8,8 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -43,9 +44,9 @@ class Runecrafting : Script {
 
         itemOnObjectOperate("*_rune", "*_altar") { (target, item) ->
             val element = item.id.removeSuffix("_rune")
-            val xp = EnumDefinitions.intOrNull("runecrafting_combination_${target.id}_xp", item.id)
-            val combination = EnumDefinitions.stringOrNull("runecrafting_combination_${target.id}", item.id)
-            if (xp == null || combination == null || !World.members) {
+            val combo = Rows.getOrNull("combination_runes.${target.id}")
+            val combination = combo?.itemOrNull(item.id)?.removeSuffix("_rune")
+            if (combo == null || combination == null || !World.members) {
                 noInterest()
                 return@itemOnObjectOperate
             }
@@ -57,7 +58,7 @@ class Runecrafting : Script {
                 message("You need a $element talisman to bind $combination runes.")
                 return@itemOnObjectOperate
             }
-            val level = EnumDefinitions.int("runecrafting_level", item.id)
+            val level = Tables.int("runes.${item.id}.level")
             if (!has(Skill.Runecrafting, level, message = false)) {
                 message("You need a Runecrafting level of $level to bind $combination runes.")
                 return@itemOnObjectOperate
@@ -81,7 +82,7 @@ class Runecrafting : Script {
                     message("You need pure essence to bind $combination runes.")
                 }
                 TransactionError.None -> {
-                    exp(Skill.Runecrafting, (xp / 10.0) * successes)
+                    exp(Skill.Runecrafting, (combo.int("${item.id}_xp") / 10.0) * successes)
                     if (bindingNecklace && equipment.discharge(this, EquipSlot.Amulet.index)) {
                         val charge = equipment.charges(this, EquipSlot.Amulet.index)
                         if (charge > 0) {
@@ -103,18 +104,18 @@ class Runecrafting : Script {
     }
 
     fun bindRunes(player: Player, id: String) {
-        val xp = EnumDefinitions.intOrNull("runecrafting_xp", id) ?: return
-        val level = EnumDefinitions.int("runecrafting_level", id)
+        val rune = Rows.getOrNull("runes.$id") ?: return
+        val level = rune.int("level")
         if (!player.has(Skill.Runecrafting, level, message = true)) {
             return
         }
         player.softTimers.start("runecrafting")
-        val pure = EnumDefinitions.contains("runecrafting_pure", id) || !player.inventory.contains("rune_essence")
+        val pure = rune.bool("pure_essence") || !player.inventory.contains("rune_essence")
         val essenceId = if (pure) "pure_essence" else "rune_essence"
         val essence = player.inventory.count(essenceId)
         player.inventory.transaction {
             remove(essenceId, essence)
-            val count = multiplier(player, id)
+            val count = multiplier(player, rune.intListOrNull("multipliers"))
             add(id, essence * count)
         }
         player.start("movement_delay", 3)
@@ -123,7 +124,7 @@ class Runecrafting : Script {
                 player.message("You don't have any rune essences to bind.")
             }
             TransactionError.None -> {
-                player.exp(Skill.Runecrafting, (xp / 10.0) * essence)
+                player.exp(Skill.Runecrafting, (rune.int("xp") / 10.0) * essence)
                 player.anim("bind_runes")
                 player.gfx("bind_runes")
                 player.sound("bind_runes")
@@ -134,13 +135,12 @@ class Runecrafting : Script {
         player.softTimers.stop("runecrafting")
     }
 
-    private fun multiplier(player: Player, id: String): Int {
-        val map = EnumDefinitions.getOrNull("runecrafting_multiplier_$id")?.map ?: return 1
+    private fun multiplier(player: Player, list: List<Int>?): Int {
+        val sorted = list?.withIndex()?.sortedByDescending { it.index } ?: return 1
         var multiplier = 1
-        val sorted = map.toList().sortedByDescending { it.first }
         val rc = player.levels.get(Skill.Runecrafting)
         for ((index, level) in sorted) {
-            if (rc >= level as Int) {
+            if (rc >= level) {
                 multiplier = index + 1
                 break
             }

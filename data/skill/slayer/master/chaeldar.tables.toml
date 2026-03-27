@@ -1,0 +1,174 @@
+[chaeldar_slayer_tasks]
+amount = "range"
+weight = "int"
+tip = "string"
+
+[.aberrant_spectre]
+amount = [70, 130]
+weight = 8
+tip = "Aberrant spectres are fetid, vile ghosts. The very smell of them will paralyse and harm you. A nosepeg will help negate their stink and their attacks are most definitely magical in nature. You'll be able to make the world more fragrant if you kill the ones lurking in the Slayer Tower near Canifis."
+
+[.abyssal_demon]
+amount = [70, 130]
+weight = 12
+tip = "Abyssal Demons are nasty creatures to fight. They aren't really part of this realm, and are able to move very quickly to trap their prey."
+
+[.aviansies]
+amount = [70, 130]
+weight = 9
+tip = "Aviansies are bird-like creatures found in the icy dungeons of the north. Melee weapons can't reach them, so use Magic or Ranged attacks."
+
+[.basilisks]
+amount = [70, 130]
+weight = 7
+tip = "Basilisks, like cockatrices, have a gaze that will paralyse and harm their prey. You'll need a mirror shield to protect you. I am sure you know that there is a Basilisk colony in the Rellekka Slayer Caves."
+
+[.bloodvelds]
+amount = [70, 130]
+weight = 8
+tip = "Bloodveld are strange, demonic creatures. They use their long, rasping tongue to feed on just about anything they can find. Their tongue assaults physically, so using magic attacks might be the best choice. If you can stand being licked by a half-ton demon, you should take a trip to the Slayer Tower near Canifis."
+
+[.brine_rats]
+amount = [70, 130]
+weight = 7
+tip = "Brine rats can be found in caves that are near the sea. They are hairless, bad-tempered and generally unfriendly. You may have spotted them while looking for pirate treasures."
+
+[.black_demons]
+amount = [70, 130]
+weight = 10
+tip = "Powerful weapons known as demonbane weapons can be used to quickly defeat even powerful demons like the Black Demon with greater ease."
+
+[.blue_dragons]
+amount = [70, 130]
+weight = 8
+tip = "Blue dragons aren't as strong as other dragons, but they're still very powerful. Watch out for their fiery breath. Taverley Dungeon has a clutch of these creatures, which it can be profitable to slay."
+
+[.cave_horrors]
+amount = [70, 130]
+weight = 10
+tip = "Cave horrors can be found in the caves under Mos Le'Harmless which favour the use of missiles or Magic. You will need a witchwood icon to fight them effectively. They drop the famous black Slayer mask, so the trip may be worth it."
+
+[.crabs]
+amount = [70, 130]
+weight = 8
+tip = "Crabs can be found all across Gielinor. They don't hit very hard but they can take a while to kill."
+
+[.dust_devils]
+amount = [70, 130]
+weight = 9
+tip = "Dust devils use clouds of dust, sand, ash and whatever else they can inhale to blind and disorientate their victims. They typically lurk in the smoky dungeon west of Pollnivneach."
+
+[.dagannoth]
+amount = [70, 130]
+weight = 11
+tip = "Dagannoth are large, sea-dwelling creatures that are very aggressive. You'll often find them in caves near sea water. I can tell that you've seen the vile creatures, so you know where to go. Remember: they attack with missiles, so protect yourself accordingly."
+
+#[.elves]
+#amount = [70, 130]
+#weight = 8
+#tip = "Elves are quick, agile, and vicious fighters who often favour bows and polearms. They also irritate me intensely, so slaughtering them is definitely a good thing. They live in the forests far, far to the west of human lands."
+
+[.fire_giant]
+amount = [70, 130]
+weight = 12
+tip = "Like other giants, Fire giants often wield large weapons. Learn to recognise what kind of weapon it is and act accordingly. The smoke dungeon to the west of Pollnivneach has a population of these large and irritating creatures, so go smite them."
+
+#[.fever_spiders]
+#amount = [70, 130]
+#weight = 7
+#tip = "Fever spiders are giant spiders that carry the deadly spider fever. If you don't want to catch it, I suggest you wear Slayer gloves to fight them. I've heard they cause problems in breweries, if you want to find some."
+
+[.gargoyles]
+amount = [70, 130]
+weight = 11
+tip = "Gargoyles are winged creatures of stone. You'll need to fight them until they are close to death before breaking them apart with a rock hammer. There is a thriving population of Gargoyles in the Slayer Tower near Canifis."
+
+[.greater_demons]
+amount = [70, 130]
+weight = 9
+tip = "Demons are particularly weak to water spells. Though Greater Demons are not the strongest type of demon they are still dangerous."
+
+[.hellhounds]
+amount = [70, 130]
+weight = 9
+tip = "Hellhounds are a cross between Dogs and Demons. They are dangerous with a fierce bite, but have all of the same weaknesses as most demons."
+
+[.jellies]
+amount = [70, 130]
+weight = 10
+tip = "Jellies are nasty, cube-like, gelatinous creatures which absorb everything they come across. Rellekka's caves are known to harbour these unnatural abominations. You can consider their attacks to be a form of Ranged and protect yourself with this in mind."
+
+[.jungle_horrors]
+amount = [70, 130]
+weight = 10
+tip = "Jungle horrors can be found all over Mos Le'Harmless. They are strong and aggressive, but you should be heroic enough to make short work of them."
+
+[.jungle_strykewyrm]
+amount = [80, 110]
+weight = 12
+tip = "These tricky creatures burrow beneath the jungle north west of Oo'glog. Be careful, as these poisonous jungle wyrms like to use magical attacks from a distance, while they should be weak to stab attacks."
+
+[.kalphites]
+amount = [70, 130]
+weight = 11
+tip = "Kalphites are large insects that live in hives under the desert sands. South-west of Shantay Pass they swarm and make themselves a nuisance. Enter deeper into the lair if you are looking for a suitable challenge."
+
+[.kurask]
+amount = [70, 130]
+weight = 12
+tip = "Kurasks are large, brutal creatures with very thick hides. You'll need a leaf-bladed weapon, broad arrows or a magic dart to harm them. Kurask may be found in the caverns east of Rellekka. As they are so large, you may be able to kill them when they cannot reach you."
+
+[.lesser_demons]
+amount = [70, 130]
+weight = 9
+tip = "Lesser demons are weak to ranged attacks. Although they're relatively weak, they are still dangerous. Taverley's underworld is infested with these hellish pests."
+
+[.mutated_zygomites]
+amount = [8, 15]
+weight = 7
+tip = "Mutated zygomites are hard to destroy and attack with mainly magical damage. They regenerate quickly, so you will need to finish them off with fungicide. We have a bit of a problem with them here in Zanaris."
+
+[.nechryael]
+amount = [70, 130]
+weight = 12
+tip = "Nechryael are demons of decay which summon small winged beings to help them fight their victims. Their minions can bypass protective prayers so be sure to wear thick armour."
+
+[.skeletal_wyverns]
+amount = [10, 20]
+weight = 7
+tip = "Skeletal Wyverns are extremely dangerous and they are hard to hit with arrows as they slip right through. To stand a good chance of surviving you'll need some elemental shielding from its icy breath."
+
+[.shadow_warriors]
+amount = [70, 130]
+weight = 8
+tip = "Shadow warriors are dark and mysterious. They hide in the shadows, so be wary of ambushes. Apparently, a large number may be found lurking beneath the Legends' Guild."
+
+[.spiritual_creatures]
+amount = [70, 130]
+weight = 12
+tip = "Spiritual Creatures can be found in the icy caverns near Trollheim, supporting the cause of their chosen god. Wearing equipment aligned with each of the gods can help you avoid undesired conflict."
+
+[.turoth]
+amount = [70, 130]
+weight = 10
+tip = "Turoths are large, vicious creatures with thick hides. You'll need a leaf-bladed weapon, broad arrows, or a magic dart to harm them. Seek them out in the Rellekka Slayer Caves."
+
+[.trolls]
+amount = [70, 130]
+weight = 11
+tip = "Trolls regenerate quickly but are still vulnerable to poisons. They usually use crushing weapons. Perhaps you should head to the snowy islands where these creatures are both fierce and aggressive."
+
+[.tzhaar]
+amount = [90, 150]
+weight = 8
+tip = "Tzhaar reside in their cave under the Karamja volcano. Beware as they can call to their fellows for aid."
+
+#[.vampyres]
+#amount = [80, 100]
+#weight = 6
+#tip = "Vampyres are extremely powerful beings. An underground group known as the Myreque have been searching for tools to defeat them, which they may be willing to share if you can find them."
+
+#[.warped_creatures]
+#amount = [70, 130]
+#weight = 6
+#tip = "Warped tortoises are creatures tainted by magical waste. They are vulnerable to an elven chime."

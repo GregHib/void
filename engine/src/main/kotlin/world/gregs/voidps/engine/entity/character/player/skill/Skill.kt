@@ -38,6 +38,7 @@ enum class Skill {
         val all = entries.toTypedArray()
         val nonHealth = entries.filter { it != Constitution }.toTypedArray()
         val count = all.size
+        val map = all.mapIndexed { index, skill -> skill.name.lowercase() to index }.toMap()
 
         private val skills = mapOf(
             "Attack" to Attack,

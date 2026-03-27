@@ -1,0 +1,219 @@
+[logs]
+row_id = "item"
+level = "int"
+xp = "int"
+deplete_rate = "int"
+respawn_delay = "range"
+chance = "range"
+chance_hatchet_dif_low = "range"
+chance_hatchet_dif_high = "range"
+
+[.achey_tree_logs]
+xp = 250
+deplete_rate = 1000
+respawn_delay = [30, 60]
+chance = [64, 200]
+chance_hatchet_dif_low = [16, 32]
+chance_hatchet_dif_high = [50, 100]
+
+[.arctic_pine_logs]
+level = 56
+xp = 1400
+deplete_rate = 125
+respawn_delay = [80, 160]
+chance = [6, 30]
+chance_hatchet_dif_low = [1, 2]
+chance_hatchet_dif_high = [7, 14]
+
+[.bark]
+level = 45
+xp = 825
+deplete_rate = 125
+respawn_delay = [75, 150]
+chance = [18, 26]
+chance_hatchet_dif_low = [4, 10]
+chance_hatchet_dif_high = [11, 14]
+
+[.blood_spindle_branches]
+level = 20
+xp = 850
+deplete_rate = 125
+respawn_delay = [0, 1]
+chance_hatchet_dif_low = [0, 1]
+chance_hatchet_dif_high = [0, 1]
+
+[.bovistrangler_branches]
+level = 50
+xp = 1750
+deplete_rate = 125
+respawn_delay = [0, 1]
+chance_hatchet_dif_low = [0, 1]
+chance_hatchet_dif_high = [0, 1]
+
+[.corpsethorn_branches]
+level = 70
+xp = 2450
+deplete_rate = 125
+respawn_delay = [0, 1]
+chance_hatchet_dif_low = [0, 1]
+chance_hatchet_dif_high = [0, 1]
+
+[.cursed_magic_logs]
+level = 82
+xp = 2750
+deplete_rate = 125
+respawn_delay = [150, 300]
+chance_hatchet_dif_low = [0, 1]
+chance_hatchet_dif_high = [0, 1]
+
+[.dream_log]
+level = 55
+deplete_rate = 1000
+respawn_delay = [30, 60]
+chance = [64, 200]
+chance_hatchet_dif_low = [16, 32]
+chance_hatchet_dif_high = [50, 100]
+
+[.entgallow_branches]
+level = 80
+xp = 2850
+deplete_rate = 125
+respawn_delay = [0, 1]
+chance_hatchet_dif_low = [0, 1]
+chance_hatchet_dif_high = [0, 1]
+
+[.eucalyptus_logs]
+level = 58
+xp = 1650
+deplete_rate = 125
+respawn_delay = [90, 180]
+chance = [5, 16]
+chance_hatchet_dif_low = [1, 3]
+chance_hatchet_dif_high = [4, 9]
+
+[.grave_creeper_branches]
+level = 90
+xp = 3300
+deplete_rate = 125
+respawn_delay = [0, 1]
+chance_hatchet_dif_low = [0, 1]
+chance_hatchet_dif_high = [0, 1]
+
+[.logs]
+xp = 250
+deplete_rate = 1000
+respawn_delay = [30, 60]
+chance = [64, 200]
+chance_hatchet_dif_low = [16, 32]
+chance_hatchet_dif_high = [50, 100]
+
+[.magic_logs]
+level = 75
+xp = 2500
+deplete_rate = 125
+respawn_delay = [200, 387]
+chance = [2, 6]
+chance_hatchet_dif_low = [0, 1]
+chance_hatchet_dif_high = [2, 3]
+
+[.mahogany_logs]
+level = 50
+xp = 1250
+deplete_rate = 125
+respawn_delay = [70, 140]
+chance = [8, 25]
+chance_hatchet_dif_low = [2, 4]
+chance_hatchet_dif_high = [9, 13]
+
+[.maple_logs]
+level = 45
+xp = 1000
+deplete_rate = 125
+respawn_delay = [58, 125]
+chance = [8, 25]
+chance_hatchet_dif_low = [2, 4]
+chance_hatchet_dif_high = [6, 12]
+
+[.oak_logs]
+level = 15
+xp = 375
+deplete_rate = 125
+respawn_delay = [23, 45]
+chance = [32, 100]
+chance_hatchet_dif_low = [8, 16]
+chance_hatchet_dif_high = [25, 50]
+
+[.poison_ivy_berries]
+level = 68
+xp = 3325
+deplete_rate = 125
+respawn_delay = [60, 60]
+chance = [7, 11]
+chance_hatchet_dif_low = [2, 2]
+chance_hatchet_dif_high = [2, 6]
+
+[.seeping_elm_branches]
+level = 10
+xp = 600
+deplete_rate = 125
+respawn_delay = [0, 1]
+chance_hatchet_dif_low = [0, 1]
+chance_hatchet_dif_high = [0, 1]
+
+[.spinebeam_branches]
+level = 40
+xp = 1450
+deplete_rate = 125
+respawn_delay = [0, 1]
+chance_hatchet_dif_low = [0, 1]
+chance_hatchet_dif_high = [0, 1]
+
+[.tangle_gum_branches]
+xp = 350
+deplete_rate = 125
+respawn_delay = [0, 1]
+chance_hatchet_dif_low = [0, 1]
+chance_hatchet_dif_high = [0, 1]
+
+[.teak_logs]
+level = 35
+xp = 850
+deplete_rate = 125
+respawn_delay = [40, 80]
+chance = [15, 46]
+chance_hatchet_dif_low = [4, 8]
+chance_hatchet_dif_high = [15, 24]
+
+[.thigat_branches]
+level = 60
+xp = 2100
+deplete_rate = 125
+respawn_delay = [0, 1]
+chance_hatchet_dif_low = [0, 1]
+chance_hatchet_dif_high = [0, 1]
+
+[.utuku_branches]
+level = 30
+xp = 1150
+deplete_rate = 125
+respawn_delay = [0, 1]
+chance_hatchet_dif_low = [0, 1]
+chance_hatchet_dif_high = [0, 1]
+
+[.willow_logs]
+level = 30
+xp = 675
+deplete_rate = 125
+respawn_delay = [0, 1]
+chance = [16, 50]
+chance_hatchet_dif_low = [4, 8]
+chance_hatchet_dif_high = [13, 25]
+
+[.yew_logs]
+level = 60
+xp = 1750
+deplete_rate = 125
+respawn_delay = [100, 200]
+chance = [4, 12]
+chance_hatchet_dif_low = [1, 2]
+chance_hatchet_dif_high = [3, 7]

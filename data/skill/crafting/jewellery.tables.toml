@@ -1,0 +1,120 @@
+[jewellery]
+row_id = "item"
+level = "int"
+xp = "int"
+
+[.gold_ring]
+level = 5
+xp = 15
+
+[.sapphire_ring]
+level = 20
+xp = 40
+
+[.emerald_ring]
+level = 27
+xp = 55
+
+[.ruby_ring]
+level = 34
+xp = 70
+
+[.diamond_ring]
+level = 43
+xp = 85
+
+[.dragonstone_ring]
+level = 55
+xp = 100
+
+[.gold_necklace]
+level = 6
+xp = 20
+
+[.sapphire_necklace]
+level = 22
+xp = 55
+
+[.emerald_necklace]
+level = 29
+xp = 60
+
+[.ruby_necklace]
+level = 40
+xp = 75
+
+[.diamond_necklace]
+level = 56
+xp = 90
+
+[.dragonstone_necklace]
+level = 72
+xp = 105
+
+[.gold_amulet_unstrung]
+level = 8
+xp = 30
+
+[.sapphire_amulet_unstrung]
+level = 24
+xp = 65
+
+[.emerald_amulet_unstrung]
+level = 31
+xp = 70
+
+[.ruby_amulet_unstrung]
+level = 50
+xp = 85
+
+[.diamond_amulet_unstrung]
+level = 70
+xp = 100
+
+[.dragonstone_amulet_unstrung]
+level = 80
+xp = 150
+
+[.onyx_ring]
+level = 67
+xp = 115
+
+[.onyx_necklace]
+level = 82
+xp = 120
+
+[.onyx_amulet_unstrung]
+level = 90
+xp = 165
+
+[.gold_bracelet]
+level = 7
+xp = 25
+
+[.sapphire_bracelet]
+level = 23
+xp = 60
+
+[.emerald_bracelet]
+level = 30
+xp = 65
+
+[.ruby_bracelet]
+level = 42
+xp = 80
+
+[.diamond_bracelet]
+level = 58
+xp = 95
+
+[.dragonstone_bracelet]
+level = 74
+xp = 110
+
+[.onyx_bracelet]
+level = 84
+xp = 125
+
+[.ring_of_slaying_8]
+level = 75
+xp = 15

@@ -1,0 +1,71 @@
+[silver_casting]
+row_id = "item"
+level = "int"
+xp = "int"
+amount = "int"
+amount_default = 1
+name = "string"
+quest = "string"
+product = "item"
+
+[.bolt_mould]
+level = 21
+xp = 500
+amount = 10
+name = "crossbow bolt mould"
+product = "silver_bolts_unf"
+
+[.chain_link_mould]
+level = 47
+xp = 1000
+quest = "legacy_of_seergaze"
+product = "silvthril_chain"
+
+[.conductor_mould]
+level = 20
+xp = 500
+name = "lightning rod mould"
+quest = "creature_of_fenkenstrain"
+product = "conductor"
+
+[.demonic_sigil_mould]
+level = 30
+xp = 500
+quest = "shadow_of_the_storm"
+product = "demonic_sigil"
+
+[.holy_mould]
+level = 16
+xp = 500
+name = "Saradomin Symbol"
+product = "unstrung_symbol"
+
+[.key_mould]
+level = 1
+xp = 0
+quest = "elemental_workshop_iii"
+product = "ragged_silver_key"
+
+[.rod_clay_mould]
+level = 25
+xp = 550
+quest = "in_aid_of_the_myreque"
+product = "silvthril_rod"
+
+[.sickle_mould]
+level = 18
+xp = 500
+quest = "nature_spirit"
+product = "silver_sickle"
+
+[.tiara_mould]
+level = 16
+xp = 525
+product = "tiara"
+
+[.unholy_mould]
+level = 17
+xp = 500
+name = "Unholy Symbol mould"
+quest = "observatory_quest"
+product = "unstrung_emblem"

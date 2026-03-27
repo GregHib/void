@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.dialogue.type.makeAmount
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -102,8 +102,8 @@ class Furnace : Script {
             return
         }
 
-        val xp = EnumDefinitions.intOrNull("smelting_xp", id) ?: return
-        val level = EnumDefinitions.int("smelting_level", id)
+        val row = Rows.getOrNull("bars.$id") ?: return
+        val level = row.int("level")
         if (!player.has(Skill.Smithing, level, message = true)) {
             player.softTimers.stop("smelting")
             return
@@ -111,12 +111,12 @@ class Furnace : Script {
         player.face(furnaceSide(player, target))
         player.anim("furnace_smelt")
         player.sound("smelt_bar")
-        val message = EnumDefinitions.stringOrNull("smelting_message", id)
+        val message = row.stringOrNull("message")
         if (message != null) {
             player.message(message, ChatType.Filter)
         }
         player.weakQueue("smelting", 4) {
-            val chance = EnumDefinitions.int("smelting_chance", id)
+            val chance = row.int("chance")
             val success = random.nextInt(255) < chance
             val items = requiredOres(id)
             player.inventory.transaction {
@@ -129,9 +129,10 @@ class Furnace : Script {
                 TransactionError.None -> {
                     var removed = 1
                     if (success) {
-                        player.exp(Skill.Smithing, goldXp(player, id, xp / 10.0))
+                        val xp = row.int("xp") / 10.0
+                        player.exp(Skill.Smithing, goldXp(player, id, xp))
                         player.message("You retrieve a bar of ${id.removeSuffix("_bar")}.")
-                        if (amount - 1 > 0 && varrockArmour(player, target, id, items)) {
+                        if (amount - 1 > 0 && varrockArmour(player, target, id, items, xp)) {
                             removed = 2
                         }
                     } else {
@@ -150,6 +151,7 @@ class Furnace : Script {
         target: GameObject,
         id: String,
         items: List<Item>,
+        xp: Double,
     ): Boolean {
         if (target.id != "furnace_edgeville" || !player.inventory.contains(items)) {
             return false
@@ -171,8 +173,7 @@ class Furnace : Script {
                 remove(items)
                 add(id)
             }
-            val xp = EnumDefinitions.int("smelting_xp", id)
-            player.exp(Skill.Smithing, xp / 10.0)
+            player.exp(Skill.Smithing, xp)
             player.message("The magic of the Varrock armour enables you to smelt 2 bars at the same time.")
             return true
         }
@@ -188,11 +189,14 @@ class Furnace : Script {
         }
 
         internal fun requiredOres(id: String): MutableList<Item> {
+            val row = Rows.getOrNull("bars.$id") ?: return mutableListOf()
             val items = mutableListOf<Item>()
-            items.add(Item(EnumDefinitions.string("smelting_ore_id", id)))
-            val secondary = EnumDefinitions.stringOrNull("smelting_ore_secondary_id", id)
-            if (secondary != null) {
-                items.add(Item(secondary, EnumDefinitions.int("smelting_ore_secondary_amount", id)))
+            val ores = row.itemList("ore")
+            val amounts = row.intList("amount")
+            for (i in ores.indices) {
+                val ore = ores[i]
+                val amount = amounts[i]
+                items.add(Item(ore, amount))
             }
             return items
         }

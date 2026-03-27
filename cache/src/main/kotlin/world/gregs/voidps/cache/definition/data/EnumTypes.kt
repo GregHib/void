@@ -20,6 +20,7 @@ object EnumTypes {
     const val ENUM = 'g'
     const val INV = 'v'
     const val OBJ = 'z' // Custom
+    const val DBROW = 'y' // Custom
 
     fun name(char: Char) = when (char) {
         STRING -> "string"
@@ -41,6 +42,7 @@ object EnumTypes {
         ENUM -> "enum"
         INV -> "inv"
         OBJ -> "object"
+        DBROW -> "row"
         else -> "null"
     }
 
@@ -63,6 +65,7 @@ object EnumTypes {
         "enum" -> ENUM
         "inv" -> INV
         "object" -> OBJ
+        "row" -> DBROW
         else -> null
     }
 }

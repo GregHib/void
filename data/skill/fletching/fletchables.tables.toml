@@ -1,0 +1,27 @@
+[fletchables]
+row_id = "item"
+products = "list<item>"
+
+[.logs]
+products = ["arrow_shaft", "shortbow_u", "longbow_u", "wooden_stock"]
+
+[.oak_logs]
+products = ["arrow_shaft", "oak_shortbow_u", "oak_longbow_u", "oak_stock"]
+
+[.willow_logs]
+products = ["arrow_shaft", "willow_shortbow_u", "willow_longbow_u", "willow_stock"]
+
+[.maple_logs]
+products = ["arrow_shaft", "maple_shortbow_u", "maple_longbow_u", "maple_stock"]
+
+[.mahogany_logs]
+products = ["arrow_shaft", "mahogany_stock"]
+
+[.teak_logs]
+products = ["arrow_shaft", "teak_stock"]
+
+[.yew_logs]
+products = ["arrow_shaft", "yew_shortbow_u", "yew_longbow_u", "yew_stock"]
+
+[.magic_logs]
+products = ["arrow_shaft", "magic_shortbow_u", "magic_longbow_u"]

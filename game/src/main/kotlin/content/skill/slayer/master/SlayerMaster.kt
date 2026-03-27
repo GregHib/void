@@ -10,7 +10,7 @@ import content.skill.slayer.*
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.inv.add
@@ -114,12 +114,11 @@ class SlayerMaster : Script {
     }
 
     suspend fun Player.roll(master: String) {
-        val (npc, amount) = assignTask(this, master)
-        val type = EnumDefinitions.string("slayer_tasks_categories", npc)
+        val (type, amount) = assignTask(this, master)
         npc<Happy>("Excellent, you're doing great. Your new task is to kill $amount ${type.toSentenceCase()}.")
         choice {
             option<Quiz>("Got any tips for me?") {
-                val tip = EnumDefinitions.string("slayer_task_tips", npc)
+                val tip = Tables.string("${master}_slayer_tasks.$type.tip")
                 npc<Neutral>(tip)
             }
             option<Happy>("Okay, great!")
@@ -133,14 +132,13 @@ class SlayerMaster : Script {
                 player<Neutral>("Pleeeaasssse!")
                 npc<Neutral>("Oh okay then, you twisted my arm. You'll have to train against specific groups of creatures.")
                 player<Quiz>("Okay, what's first?")
-                val (npc, amount) = assignTask(this, master)
-                val type = EnumDefinitions.string("slayer_tasks_categories", npc)
+                val (type, amount) = assignTask(this, master)
                 npc<Neutral>("We'll start you off hunting ${type.toSentenceCase()}, you'll need to kill $amount of them.")
                 npc<Neutral>("You'll also need this enchanted gem, it allows Slayer Masters like myself to contact you and update you on your progress. Don't worry if you lose it, you can buy another from any Slayer Master.")
                 inventory.add("enchanted_gem")
                 choice {
                     option("Got any tips for me?") {
-                        val tip = EnumDefinitions.string("slayer_task_tips", npc)
+                        val tip = Tables.string("${master}_slayer_tasks.$type.tip")
                         npc<Neutral>(tip)
                     }
                     option<Neutral>("Okay, great!") {

@@ -9,8 +9,9 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.stop
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -52,7 +53,8 @@ class Fishing : Script {
 
     suspend fun fish(player: Player, target: NPC, option: String) {
         player.arriveDelay()
-        val fish = EnumDefinitions.stringOrNull("fishing_fish_${option.lowercase()}", target.id)?.split(",") ?: return
+        val spot = Rows.getOrNull("fishing_spots.${target.id}") ?: return
+        val fish = spot.itemList(option.lowercase())
         target.getOrPut("fishers") { mutableSetOf<String>() }.add(player.name)
         player.softTimers.start("fishing")
         player.closeDialogue()
@@ -68,12 +70,12 @@ class Fishing : Script {
                 break
             }
 
-            val minimumLevel = fish.minOf { EnumDefinitions.int("fishing_levels", it) }
+            val minimumLevel = fish.minOf { Tables.int("fishing.$it.level") }
             if (!player.has(Skill.Fishing, minimumLevel, true)) {
                 break
             }
 
-            val tackles = EnumDefinitions.string("fishing_tackle_${option.lowercase()}", target.id).split(",")
+            val tackles = spot.itemList("${option.lowercase()}_tackle")
             val tackle = tackles.firstOrNull { tackle -> player.carriesItem(tackle) }
             if (tackle == null) {
                 player.message("You need a ${tackles.first().toTitleCase()} to catch these fish.")
@@ -83,11 +85,11 @@ class Fishing : Script {
             var bait: String? = null
             var required: String? = null
             for (fish in fish) {
-                val b = EnumDefinitions.string("fishing_bait", fish)
-                if (required == null && b != "none") {
+                val b = Tables.item("fishing.$fish.bait")
+                if (required == null && b != "empty_box_fish") {
                     required = b
                 }
-                if (b == "none" || player.carriesItem(b)) {
+                if (b == "empty_box_fish" || player.carriesItem(b)) {
                     bait = b
                     break
                 }
@@ -112,16 +114,16 @@ class Fishing : Script {
                 first = false
             }
             for (item in fish) {
-                if (bait != EnumDefinitions.string("fishing_bait", item)) {
+                val row = Rows.getOrNull("fishing.$item") ?: continue
+                if (bait != row.item("bait")) {
                     continue
                 }
-                val requiredLevel = EnumDefinitions.intOrNull("fishing_levels", item) ?: continue
-                val chanceMin = EnumDefinitions.int("fishing_chance_min", item)
-                val chanceMax = EnumDefinitions.int("fishing_chance_max", item)
-                val experience = EnumDefinitions.int("fishing_experience", item)
+                val requiredLevel = row.int("level")
+                val chance = row.intRange("chance")
+                val experience = row.int("xp")
                 val level = player.levels.get(Skill.Fishing)
-                if (level >= requiredLevel && success(level, chanceMin..chanceMax)) {
-                    if (bait != "none" && !player.inventory.remove(bait)) {
+                if (level >= requiredLevel && success(level, chance)) {
+                    if (bait != "empty_box_fish" && !player.inventory.remove(bait)) {
                         break@fishing
                     }
                     player.exp(Skill.Fishing, experience.toDouble())

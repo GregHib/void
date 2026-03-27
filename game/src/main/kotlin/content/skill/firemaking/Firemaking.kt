@@ -6,7 +6,9 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.config.RowDefinition
+import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -30,7 +32,7 @@ class Firemaking : Script {
 
     val directions = listOf(Direction.WEST, Direction.EAST, Direction.SOUTH, Direction.NORTH)
 
-    fun burnable(id: String) = EnumDefinitions.intOrNull("firemaking_xp", id) != null
+    fun burnable(id: String) = Tables.intOrNull("firemaking.$id.xp") != null
 
     init {
         itemOnItem("tinderbox*", "*logs*") { fromItem, toItem, fromSlot, toSlot ->
@@ -45,14 +47,10 @@ class Firemaking : Script {
         }
 
         itemOnFloorItemOperate("tinderbox*", "*log*") { (target) ->
-            if (burnable(target.id)) {
-                arriveDelay()
-                lightFire(this, target)
-            }
+            lightFire(this, target)
         }
 
         floorItemOperate("Light") { (target) ->
-            arriveDelay()
             lightFire(this, target)
         }
     }
@@ -61,14 +59,13 @@ class Firemaking : Script {
         player: Player,
         floorItem: FloorItem,
     ) {
-        if (!burnable(floorItem.id)) {
-            return
-        }
+        val row = Rows.getOrNull("firemaking.${floorItem.id}") ?: return
+        player.arriveDelay()
         player.softTimers.start("firemaking")
         val log = Item(floorItem.id)
         var first = true
         while (player.awaitDialogues()) {
-            val level = EnumDefinitions.int("firemaking_level", log.id)
+            val level = row.int("level")
             if (!player.canLight(log.id, level, floorItem)) {
                 break
             }
@@ -84,12 +81,11 @@ class Firemaking : Script {
             } else if (remaining > 0) {
                 player.pause(remaining)
             }
-            val chanceMin = EnumDefinitions.int("firemaking_chance_min", log.id)
-            val chanceMax = EnumDefinitions.int("firemaking_chance_max", log.id)
-            if (Level.success(player.levels.get(Skill.Firemaking), chanceMin..chanceMax) && FloorItems.remove(floorItem)) {
+            val chance = row.intRange("chance")
+            if (Level.success(player.levels.get(Skill.Firemaking), chance) && FloorItems.remove(floorItem)) {
                 player.message("The fire catches and the logs begin to burn.", ChatType.Filter)
-                player.exp(Skill.Firemaking, EnumDefinitions.int("firemaking_xp", log.id) / 10.0)
-                spawnFire(player, floorItem.tile, log.id)
+                player.exp(Skill.Firemaking, row.int("xp") / 10.0)
+                spawnFire(player, floorItem.tile, row)
                 break
             }
         }
@@ -116,9 +112,9 @@ class Firemaking : Script {
         return FloorItems.at(item.tile).contains(item)
     }
 
-    fun spawnFire(player: Player, tile: Tile, id: String) {
-        val colour = EnumDefinitions.string("firemaking_colour", id)
-        val life = EnumDefinitions.int("firemaking_life", id)
+    fun spawnFire(player: Player, tile: Tile, row: RowDefinition) {
+        val colour = row.string("colour")
+        val life = row.int("life")
         val obj = GameObjects.add("fire_$colour", tile, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0, ticks = life)
         FloorItems.add(tile, "ashes", revealTicks = life, disappearTicks = 60, owner = "")
         val interact = player.mode as Interact

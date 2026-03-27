@@ -1,0 +1,255 @@
+[fishing_spots]
+row_id = "npc"
+bait = "list<item>"
+cage = "list<item>"
+net = "list<item>"
+harpoon = "list<item>"
+lure = "list<item>"
+bait_tackle = "list<item>"
+bait_tackle_default = ["fishing_rod"]
+cage_tackle = "list<item>"
+cage_tackle_default = ["lobster_pot"]
+net_tackle = "list<item>"
+net_tackle_default = ["small_fishing_net"]
+harpoon_tackle = "list<item>"
+harpoon_tackle_default = ["harpoon", "barb_tail_harpoon"]
+lure_tackle = "list<item>"
+lure_tackle_default = ["fly_fishing_rod"]
+
+[.fishing_spot_crayfish_lumbridge]
+cage_tackle = ["crayfish_cage"]
+cage = ["raw_crayfish"]
+
+[.fishing_spot_ape_atoll]
+net_tackle = ["big_fishing_net"]
+net = ["raw_mackerel", "raw_cod", "raw_bass", "oyster", "casket", "seaweed", "leather_gloves", "leather_boots"]
+harpoon = ["raw_shark"]
+
+[.fishing_spot_ape_atoll_2]
+net_tackle = ["big_fishing_net"]
+net = ["raw_mackerel", "raw_cod", "raw_bass", "oyster", "casket", "seaweed", "leather_gloves", "leather_boots"]
+harpoon = ["raw_shark"]
+
+[.fishing_spot_big_net_harpoon_catherby]
+net_tackle = ["big_fishing_net"]
+net = ["raw_mackerel", "raw_cod", "raw_bass", "oyster", "casket", "seaweed", "leather_gloves", "leather_boots"]
+harpoon = ["raw_shark"]
+
+[.fishing_spot_big_net_harpoon_feldip_hills]
+net_tackle = ["big_fishing_net"]
+net = ["raw_mackerel", "raw_cod", "raw_bass", "oyster", "casket", "seaweed", "leather_gloves", "leather_boots"]
+harpoon = ["raw_shark"]
+
+[.fishing_spot_burgh_de_rott]
+net_tackle = ["big_fishing_net"]
+net = ["raw_mackerel", "raw_cod", "raw_bass", "oyster", "casket", "seaweed", "leather_gloves", "leather_boots"]
+harpoon = ["raw_shark"]
+
+[.fishing_spot_burgh_de_rott_2]
+net_tackle = ["big_fishing_net"]
+net = ["raw_mackerel", "raw_cod", "raw_bass", "oyster", "casket", "seaweed", "leather_gloves", "leather_boots"]
+harpoon = ["raw_shark"]
+
+[.fishing_spot_jatizso_big_net]
+net_tackle = ["big_fishing_net"]
+net = ["raw_mackerel", "raw_cod", "raw_bass", "oyster", "casket", "seaweed", "leather_gloves", "leather_boots"]
+harpoon = ["raw_shark"]
+
+[.fishing_spot_rellekka_big_net]
+net_tackle = ["big_fishing_net"]
+net = ["raw_mackerel", "raw_cod", "raw_bass", "oyster", "casket", "seaweed", "leather_gloves", "leather_boots"]
+harpoon = ["raw_shark"]
+
+[.fishing_spot_taverley_dungeon]
+bait_tackle = ["oily_fishing_rod"]
+bait = ["raw_lava_eel"]
+
+[.fishing_spot_karamja_karambwan_west]
+bait_tackle = ["karambwan_vessel"]
+bait = ["raw_karambwan"]
+
+[.fishing_spot_karamja_karambwan_east]
+bait_tackle = ["karambwan_vessel"]
+bait = ["raw_karambwan"]
+
+[.fishing_spot_braindeath_island]
+bait_tackle = ["fishbowl_and_net"]
+bait = ["sluglings", "karamthulhu"]
+
+[.fishing_spot_cage_harpoon_catherby]
+cage = ["raw_lobster"]
+harpoon = ["raw_tuna", "raw_swordfish"]
+
+[.fishing_spot_cage_harpoon_feldip_hills]
+cage = ["raw_lobster"]
+harpoon = ["raw_tuna", "raw_swordfish"]
+
+[.fishing_spot_jatizso]
+cage = ["raw_lobster"]
+harpoon = ["raw_tuna", "raw_swordfish"]
+
+[.fishing_spot_rellekka_cage]
+cage = ["raw_lobster"]
+harpoon = ["raw_tuna", "raw_swordfish"]
+
+[.fishing_spot_rellekka_4]
+cage = ["raw_lobster"]
+
+[.fishing_spot_rellekka_5]
+cage = ["raw_lobster"]
+
+[.fishing_spot_cage_harpoon_fishing_guild]
+cage = ["raw_lobster"]
+harpoon = ["raw_tuna", "raw_swordfish"]
+
+[.fishing_spot_musa_point_2]
+cage = ["raw_lobster"]
+harpoon = ["raw_tuna", "raw_swordfish"]
+
+[.fishing_spot_wilderness]
+cage = ["raw_lobster"]
+harpoon = ["raw_tuna", "raw_swordfish"]
+
+[.fishing_spot_al_kharid]
+net = ["raw_shrimps", "raw_anchovies"]
+bait = ["raw_sardine", "raw_herring"]
+
+[.fishing_spot_barbarian_outpost]
+bait = ["raw_sardine", "raw_herring"]
+net = ["raw_shrimps", "raw_anchovies"]
+
+[.fishing_spot_dorgesh_kaan_agility_course]
+net = ["frog_spawn"]
+bait = ["slimy_eel", "raw_cave_eel"]
+
+[.fishing_spot_dorgesh_kaan_agility_course_2]
+net = ["frog_spawn"]
+bait = ["slimy_eel", "raw_cave_eel"]
+
+[.fishing_spot_entrana_net]
+net = ["raw_shrimps", "raw_anchovies"]
+bait = ["raw_sardine", "raw_herring"]
+
+[.fishing_spot_fishing_guild]
+net = ["raw_mackerel", "raw_cod", "raw_bass", "oyster", "casket", "seaweed", "leather_gloves", "leather_boots"]
+harpoon = ["raw_shark"]
+
+[.fishing_spot_fishing_platform]
+net = ["raw_shrimps", "raw_anchovies"]
+bait = ["raw_sardine", "raw_herring"]
+
+[.fishing_spot_harpoon_small_net_piscatoris]
+net = ["raw_monkfish"]
+harpoon = ["raw_tuna", "raw_swordfish"]
+
+[.fishing_spot_lumbridge_swamp_caves]
+net = ["frog_spawn"]
+bait = ["slimy_eel", "raw_cave_eel"]
+
+[.fishing_spot_lumbridge_swamp_caves_2]
+net = ["frog_spawn"]
+bait = ["slimy_eel", "raw_cave_eel"]
+
+[.fishing_spot_mudskipper_point]
+net = ["raw_shrimps", "raw_anchovies"]
+bait = ["raw_sardine", "raw_herring"]
+
+[.fishing_spot_musa_point]
+net = ["raw_shrimps", "raw_anchovies"]
+bait = ["raw_sardine", "raw_herring"]
+
+[.fishing_spot_rellekka]
+net = ["raw_shrimps", "raw_anchovies"]
+bait = ["raw_sardine", "raw_herring"]
+
+[.fishing_spot_small_net_bait_catherby]
+net = ["raw_shrimps", "raw_anchovies"]
+bait = ["raw_sardine", "raw_herring"]
+
+[.fishing_spot_small_net_bait_draynor]
+net = ["raw_shrimps", "raw_anchovies"]
+bait = ["raw_sardine", "raw_herring"]
+
+[.fishing_spot_small_net_bait_feldip_hills]
+net = ["raw_shrimps", "raw_anchovies"]
+bait = ["raw_sardine", "raw_herring"]
+
+[.fishing_spot_small_net_bait_lumbridge]
+net = ["raw_shrimps", "raw_anchovies"]
+bait = ["raw_sardine", "raw_herring"]
+
+[.fishing_spot_tai_bwo_wannai]
+net = ["raw_shrimps", "raw_karambwanji"]
+
+[.fishing_spot_tutorial_island]
+net = []
+
+[.fishing_spot_wilderness_bandit_camp]
+net = ["raw_shrimps", "raw_anchovies"]
+bait = ["raw_sardine", "raw_herring"]
+
+[.cavefish_shoal]
+bait = ["raw_cavefish"]
+
+[.fishing_spot_ardougne]
+bait = ["raw_pike"]
+lure = ["raw_trout", "raw_salmon", "raw_rainbow_fish"]
+
+[.fishing_spot_barbarian_village]
+bait = ["raw_pike"]
+lure = ["raw_trout", "raw_salmon", "raw_rainbow_fish"]
+
+[.fishing_spot_baxtorian_falls_lure]
+bait = ["raw_pike"]
+lure = ["raw_trout", "raw_salmon", "raw_rainbow_fish"]
+
+[.fishing_spot_entrana]
+bait = ["raw_pike"]
+lure = ["raw_trout", "raw_salmon", "raw_rainbow_fish"]
+
+[.fishing_spot_fisher_realm]
+bait = ["raw_pike"]
+lure = ["raw_trout", "raw_salmon", "raw_rainbow_fish"]
+
+[.fishing_spot_iorwerth_camp]
+bait = ["raw_pike"]
+lure = ["raw_trout", "raw_salmon", "raw_rainbow_fish"]
+
+[.fishing_spot_isafdar]
+bait = ["raw_pike"]
+lure = ["raw_trout", "raw_salmon", "raw_rainbow_fish"]
+
+[.fishing_spot_lure_bait_lumbridge]
+bait = ["raw_pike"]
+lure = ["raw_trout", "raw_salmon", "raw_rainbow_fish"]
+
+[.fishing_spot_meiyerditch_tunnels]
+bait = ["slimy_eel", "raw_cave_eel"]
+
+[.fishing_spot_mort_myre_swamp]
+bait = ["slimy_eel"]
+
+[.fishing_spot_mort_myre_swamp_centre]
+bait = ["slimy_eel"]
+
+[.fishing_spot_mort_myre_swamp_south]
+bait = ["slimy_eel"]
+
+[.fishing_spot_observatory]
+bait = ["raw_pike"]
+lure = ["raw_trout", "raw_salmon", "raw_rainbow_fish"]
+
+[.fishing_spot_shilo_village]
+bait = ["raw_pike"]
+lure = ["raw_trout", "raw_salmon", "raw_rainbow_fish"]
+
+[.fishing_spot_sinclair_mansion]
+bait = ["raw_pike"]
+lure = ["raw_trout", "raw_salmon", "raw_rainbow_fish"]
+
+[.fishing_spot_tree_gnome_stronghold]
+bait = ["raw_pike"]
+lure = ["raw_trout", "raw_salmon", "raw_rainbow_fish"]
+
+[.rocktail_shoal]
+bait = ["raw_rocktail"]

@@ -1,0 +1,174 @@
+[sumona_slayer_tasks]
+amount = "range"
+weight = "int"
+tip = "string"
+
+[.aberrant_spectre]
+amount = [120, 185]
+weight = 15
+tip = "Aberrant spectres are fetid, vile ghosts. The very smell of them will paralyse and harm you, while a nosepeg will help ignore their stink. If you sniff carefully, you may be able to detect their aroma beneath the town's well. Kill a few of them, as they offend my nose."
+
+[.abyssal_demon]
+amount = [120, 185]
+weight = 10
+tip = "Abyssal demons are nasty creatures to deal with. They aren't really part of this realm and are able to move very quickly to trap their prey. I'm sure you'd love a nice abyssal whip or two, so cull these demons in the Slayer Tower near Canifis."
+
+[.aquanites]
+amount = [120, 185]
+weight = 10
+tip = "Aquanites are amphibious creatures that attract prey using the glowing lures on their heads. They attack stronger opponents from a distance with water magic, and dislike those who pray against it. You'll find these despicable, slimy creatures in the Fremennik Slayer Dungeon, in a chamber past the kurasks."
+
+[.aviansies]
+amount = [50, 100]
+weight = 7
+tip = "Aviansies can be found in the Godwars Dungeon north of Trollheim. As they are flying, you'll find melee attacks are not going to cut it."
+
+[.basilisks]
+amount = [120, 185]
+weight = 15
+tip = "Basilisks, like Cockatrices, have a gaze which will paralyse and harm their prey. You'll need a mirror shield to protect you. Conveniently, you can have some combat fun with these brutes in the dungeon beneath the town well."
+
+[.banshees]
+amount = [120, 185]
+weight = 15
+tip = "Banshees use a piercing scream to shock their enemies, so you'll need some earmuffs to protect yourself. I am sometimes disturbed in my sleep by their wails, so do me a favour and thin out those beneath us."
+
+[.bloodvelds]
+amount = [120, 185]
+weight = 10
+tip = "Bloodveld are strange, demonic creatures that use their long rasping tongue to feed on just about anything. They are rather robust but frankly feeble and have been seen in the Slayer Tower near Canifis, among other places. I never liked the look of them, so off you go and wipe them out."
+
+[.black_demons]
+amount = [120, 185]
+weight = 10
+tip = "Black demons are creatures that are weak to ranged attacks. They're the strongest type of demon and are therefore very dangerous. Prove yourself more dangerous by slaying these demons in their lairs beneath Taverley or Edgeville."
+
+[.blue_dragons]
+amount = [120, 185]
+weight = 5
+tip = "Blue dragons aren't as strong as other dragons, but they're still very powerful. Watch out for their fiery breath! Taverley is home to these pests - I'm sure you'll enjoy murdering a few."
+
+[.cave_crawlers]
+amount = [120, 185]
+weight = 15
+tip = "Cave crawlers are small and fast, often hiding in ambush. Avoid their barbed tongue or you'll get poisoned. The ones in the caves below here have grown large and fat in blissful isolation - go and be a force of natural selection."
+
+[.cave_horrors]
+amount = [120, 185]
+weight = 15
+tip = "Cave horrors can be found under Mos Le'Harmless. You will need a witchwood icon to fight them effectively. If you want to make a nice Slayer helmet, you'll need the black mask they drop."
+
+[.crocodiles]
+amount = [150, 250]
+weight = 4
+tip = "Crocodiles are large reptiles that live near water. You'll want to have a stabbing weapon handy for puncturing their thick, scaly hides. These are desert beasts, so seek them there."
+
+[.desert_strykewyrm]
+amount = [90, 110]
+weight = 14
+tip = "These things are the curse of the desert! Head north to find them on the hills above the Shantay Pass. Watch out for their vicious ranged attacks."
+
+[.dust_devils]
+amount = [120, 185]
+weight = 15
+tip = "Dust devils use clouds of dust, sand, ash and whatever else they can inhale to blind and disorientate their victims. You'll be able to test your skills on them in the smoky dungeon to the west. Get going!"
+
+[.dagannoth]
+amount = [120, 185]
+weight = 10
+tip = "Dagannoth are large, sea-dwelling creatures that are very aggressive. You'll often find them in caves near sea water. You'll cackle with glee if you set up a cannon and massacre them."
+
+#[.elves]
+#amount = [60, 90]
+#weight = 10
+#tip = "Elves are quick, agile and vicious fighters that often favour bows, polearms and snide remarks. Their dedication to trees, bushes and music is an affront to me, so go and cause havoc in their vile villages. You'll need to travel far to the west."
+
+[.fire_giant]
+amount = [120, 185]
+weight = 10
+tip = "Like other giants, Fire giants often wield large weapons. Learn to recognise what kind of weapon it is and act accordingly. Prove that bigger isn't always better by defeating some. They lurk in the smoke dungeon, west of here, telling tales of your weakness."
+
+[.gargoyles]
+amount = [120, 195]
+weight = 10
+tip = "Gargoyles are winged creatures of stone. You'll need to fight them until they are close to death, before breaking them apart with a rock hammer. They refuse to serve me, so smite them in my name. They are hiding out in the Slayer Tower near Canifis."
+
+[.greater_demons]
+amount = [120, 195]
+weight = 10
+tip = "Greater demons are creatures that are weak to ranged attacks. Though not the strongest of demons, they are still dangerous. Prove yourself by doing away with them. If you don't know, a large number live in the Brimhaven Dungeon."
+
+[.hellhounds]
+amount = [120, 185]
+weight = 10
+tip = "Hellhounds are a cross between dogs and demons, and are dangerous with a fierce bite. Although they are not cats, they deserve to die anyway. You'll be doing Gielinor a favour if you slay Hellhounds beneath Taverley."
+
+[.iron_dragons]
+amount = [30, 60]
+weight = 7
+tip = "Iron dragons are some of the weaker metallic dragons, but their iron scales are far thicker than normal iron armour. Brimhaven Dungeon has a few of these creatures in residence; I think they should be exterminated because they bore me."
+
+[.jungle_strykewyrm]
+amount = [90, 120]
+weight = 12
+tip = "These tricky creatures burrow beneath the jungle north west of Oo'glog. Be careful, as these poisonous jungle wyrms like to use magical attacks from a distance, while they should be weak to stab attacks."
+
+[.kalphites]
+amount = [120, 185]
+weight = 10
+tip = "Kalphites are large insects that live in hives under the desert sands. Their Queen is rumoured to be quite powerful. Show people that you are a force to be feared by slaying her brood in the hive to the north-west."
+
+[.kurask]
+amount = [120, 185]
+weight = 15
+tip = "Kurasks are large, brutal creatures with very thick hides. You'll need a leaf-bladed weapon, broad arrows, or a magic dart to harm them. Unluckily for kurasks, I am sending you to kill them. Luckily for you, kurasks thrive in the dungeons below Pollnivneach."
+
+[.lizards]
+amount = [90, 110]
+weight = 4
+tip = "Desert lizards are large reptiles with tough skin. They're cold-blooded, so dousing them with freezing water will finish them off after a tough battle."
+
+[.nechryael]
+amount = [120, 185]
+weight = 10
+tip = "Nechryael are demons of decay that summon small-winged beings to help them fight their victims. I don't like them much, so kill a few as a personal favour. You can find them up to no good in the Slayer Tower near Canifis."
+
+[.red_dragons]
+amount = [30, 60]
+weight = 5
+tip = "Red dragons are fearsome firebreathers, stronger than green or blue. I'm sure that you'll have fun pitting your skills against their claws in either Brimhaven's depths or the ravaged lands far to the north."
+
+#[.scabarites]
+#amount = [80, 120]
+#weight = 5
+#tip = The last Scabaras lancer I killed I found fire spells took them down effectively.<br>Scabarites are the followers of Scabaras and consist of anything from the lowliest dung beetle to the vilest scarab mage. They are most commonly found near and under Sophanem. They are traitorous creatures in the main, so commit genocide upon them."
+
+[.scorpions]
+amount = [150, 250]
+weight = 4
+tip = "Scorpions are almost always venomous and usually found in groups. Last I heard there was a large group near the mine north of Al Kharid."
+
+[.spiritual_creatures]
+amount = [120, 185]
+weight = 10
+tip = "Spiritual warriors are fighters that have dedicated their souls to their deity; however, they still retain a fighter's weakness to Magic. They can be found fighting for the god whose cause they support. Kill them all and let their gods lament."
+
+#[.terror_dogs]
+#amount = [30, 60]
+#weight = 10
+#tip = "Terror dogs are, unsurprisingly, dogs that terrorise the weak. They are the servants of Tarn, who annoyed me when he was young. Be a force of vengeance for me by cleaning his lair of these pathetic servitors."
+
+[.turoth]
+amount = [120, 185]
+weight = 15
+tip = "Turoths are large vicious creatures with thick hides. You'll need a leaf-bladed weapon, broad arrows, or a magic dart to harm them. I am sure you'll make yourself useful by killing the ones beneath our feet."
+
+[.trolls]
+amount = [120, 185]
+weight = 10
+tip = "The last Mountain troll I killed I found water spells took them down effectively.<br>Trolls regenerate quickly but are still vulnerable to poisons and usually use crushing weapons. I've nothing much against them but their ridiculous names. Unluckily for them, that's enough of a reason to put a few in their graves."
+
+#[.warped_creatures]
+#amount = [120, 185]
+#weight = 10
+#tip = "Warped tortoises are creatures tainted by magical waste. They are vulnerable to an elven chime. I know you have seen them in your adventures, so go crack some carapace."

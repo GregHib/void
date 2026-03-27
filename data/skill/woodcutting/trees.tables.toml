@@ -1,0 +1,357 @@
+[trees]
+row_id = "obj"
+logs = "item"
+
+[.achey_tree]
+logs = "achey_tree_logs"
+
+[.achey_tree_2]
+logs = "achey_tree_logs"
+
+[.achey_tree_3]
+logs = "achey_tree_logs"
+
+[.arctic_pine]
+logs = "arctic_pine_logs"
+
+[.blood_spindle_tree]
+logs = "blood_spindle_branches"
+
+[.blood_spindle_tree_2]
+logs = "blood_spindle_branches"
+
+[.blood_spindle_tree_3]
+logs = "blood_spindle_branches"
+
+[.bovistrangler_tree]
+logs = "bovistrangler_branches"
+
+[.bovistrangler_tree_2]
+logs = "bovistrangler_branches"
+
+[.bovistrangler_tree_3]
+logs = "bovistrangler_branches"
+
+[.corpsethorn_tree]
+logs = "corpsethorn_branches"
+
+[.corpsethorn_tree_2]
+logs = "corpsethorn_branches"
+
+[.corpsethorn_tree_3]
+logs = "corpsethorn_branches"
+
+[.cursed_magic_tree]
+logs = "cursed_magic_logs"
+
+[.dead_tree]
+logs = "logs"
+
+[.dead_tree_10]
+logs = "logs"
+
+[.dead_tree_11]
+logs = "logs"
+
+[.dead_tree_12]
+logs = "logs"
+
+[.dead_tree_2]
+logs = "logs"
+
+[.dead_tree_25]
+logs = "logs"
+
+[.dead_tree_26]
+logs = "logs"
+
+[.dead_tree_27]
+logs = "logs"
+
+[.dead_tree_28]
+logs = "logs"
+
+[.dead_tree_3]
+logs = "logs"
+
+[.dead_tree_37]
+logs = "logs"
+
+[.dead_tree_38]
+logs = "logs"
+
+[.dead_tree_39]
+logs = "logs"
+
+[.dead_tree_4]
+logs = "logs"
+
+[.dead_tree_40]
+logs = "logs"
+
+[.dead_tree_5]
+logs = "logs"
+
+[.dead_tree_8]
+logs = "logs"
+
+[.dead_tree_9]
+logs = "logs"
+
+[.dead_tree_covered_in_snow]
+logs = "logs"
+
+[.dream_tree]
+logs = "dream_log"
+
+[.dying_tree]
+logs = "logs"
+
+[.entgallow_tree]
+logs = "entgallow_branches"
+
+[.entgallow_tree_2]
+logs = "entgallow_branches"
+
+[.entgallow_tree_3]
+logs = "entgallow_branches"
+
+[.eucalyptus_tree]
+logs = "eucalyptus_logs"
+
+[.eucalyptus_tree_2]
+logs = "eucalyptus_logs"
+
+[.eucalyptus_tree_3]
+logs = "eucalyptus_logs"
+
+[.evergreen]
+logs = "logs"
+
+[.evergreen_2]
+logs = "logs"
+
+[.evergreen_3]
+logs = "logs"
+
+[.evergreen_4]
+logs = "logs"
+
+[.grave_creeper_tree]
+logs = "grave_creeper_branches"
+
+[.grave_creeper_tree_2]
+logs = "grave_creeper_branches"
+
+[.grave_creeper_tree_3]
+logs = "grave_creeper_branches"
+
+[.hollow_tree]
+logs = "bark"
+
+[.hollow_tree_2]
+logs = "bark"
+
+[.ivy]
+logs = "poison_ivy_berries"
+
+[.jungle_tree]
+logs = "logs"
+
+[.jungle_tree_2]
+logs = "logs"
+
+[.jungle_tree_3]
+logs = "logs"
+
+[.jungle_tree_5]
+logs = "logs"
+
+[.jungle_tree_6]
+logs = "logs"
+
+[.jungle_tree_7]
+logs = "logs"
+
+[.jungle_tree_8]
+logs = "logs"
+
+[.jungle_tree_9]
+logs = "logs"
+
+[.magic_tree]
+logs = "magic_logs"
+
+[.magic_tree_fullygrown_2]
+logs = "magic_logs"
+
+[.magic_tree_two]
+logs = "magic_logs"
+
+[.mahogany_tree]
+logs = "mahogany_logs"
+
+[.mahogany_tree_2]
+logs = "mahogany_logs"
+
+[.maple_tree]
+logs = "maple_logs"
+
+[.maple_tree_fullygrown_2]
+logs = "maple_logs"
+
+[.maple_tree_three]
+logs = "maple_logs"
+
+[.maple_tree_two]
+logs = "maple_logs"
+
+[.oak]
+logs = "oak_logs"
+
+[.oak_tree_dark]
+logs = "oak_logs"
+
+[.oak_tree_fullygrown_2]
+logs = "oak_logs"
+
+[.oak_tree_pale]
+logs = "oak_logs"
+
+[.oak_tree_three]
+logs = "oak_logs"
+
+[.seeping_elm_tree]
+logs = "seeping_elm_branches"
+
+[.seeping_elm_tree_2]
+logs = "seeping_elm_branches"
+
+[.seeping_elm_tree_3]
+logs = "seeping_elm_branches"
+
+[.spinebeam_tree]
+logs = "spinebeam_branches"
+
+[.spinebeam_tree_2]
+logs = "spinebeam_branches"
+
+[.spinebeam_tree_3]
+logs = "spinebeam_branches"
+
+[.tangle_gum_tree]
+logs = "tangle_gum_branches"
+
+[.tangle_gum_tree_2]
+logs = "tangle_gum_branches"
+
+[.tangle_gum_tree_3]
+logs = "tangle_gum_branches"
+
+[.teak]
+logs = "teak_logs"
+
+[.teak_2]
+logs = "teak_logs"
+
+[.teak_3]
+logs = "teak_logs"
+
+[.thigat_tree]
+logs = "thigat_branches"
+
+[.thigat_tree_2]
+logs = "thigat_branches"
+
+[.thigat_tree_3]
+logs = "thigat_branches"
+
+[.tree]
+logs = "logs"
+
+[.tree_10]
+logs = "logs"
+
+[.tree_11]
+logs = "logs"
+
+[.tree_12]
+logs = "logs"
+
+[.tree_14]
+logs = "logs"
+
+[.tree_15]
+logs = "logs"
+
+[.tree_18]
+logs = "logs"
+
+[.tree_19]
+logs = "logs"
+
+[.tree_21]
+logs = "logs"
+
+[.tree_22]
+logs = "logs"
+
+[.tree_23]
+logs = "logs"
+
+[.tree_24]
+logs = "logs"
+
+[.tree_3]
+logs = "logs"
+
+[.tree_4]
+logs = "logs"
+
+[.tree_5]
+logs = "logs"
+
+[.tree_66]
+logs = "logs"
+
+[.tree_96]
+logs = "logs"
+
+[.tree_97]
+logs = "logs"
+
+[.tree_98]
+logs = "logs"
+
+[.utuku_tree]
+logs = "utuku_branches"
+
+[.utuku_tree_2]
+logs = "utuku_branches"
+
+[.utuku_tree_3]
+logs = "utuku_branches"
+
+[.willow]
+logs = "willow_logs"
+
+[.willow_2]
+logs = "willow_logs"
+
+[.willow_3]
+logs = "willow_logs"
+
+[.willow_5]
+logs = "willow_logs"
+
+[.willow_tree_fullygrown_2]
+logs = "willow_logs"
+
+[.yew]
+logs = "yew_logs"
+
+[.yew_2]
+logs = "yew_logs"
+
+[.yew_tree_fullygrown_2]
+logs = "yew_logs"

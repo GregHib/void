@@ -1,0 +1,154 @@
+[mazchna_slayer_tasks]
+amount = "range"
+weight = "int"
+tip = "string"
+
+[.banshees]
+amount = [30, 50]
+weight = 8
+tip = "Banshees use a piercing scream to shock their enemies; you'll need some earmuffs to protect yourself from them. Their cries echo throughout the Slayer Tower in Morytania."
+
+[.bears]
+amount = [30, 50]
+weight = 6
+tip = "Bears are tough creatures and fierce fighters, watch out for their powerful claws."
+
+[.bats]
+amount = [30, 50]
+weight = 7
+tip = "Bats are rarely found on the ground, so you'll have to fight them while they're airborne, which won't be easy for melee."
+
+[.catablepons]
+amount = [20, 30]
+weight = 8
+tip = "Catablepon are mythical, cow like, magical creatures. Beware their weakening glare."
+
+[.cave_bugs]
+amount = [10, 20]
+weight = 8
+tip = "Cave Bugs are like Cave Crawlers, except smaller and easier to squish, though they still have a fondness for plants."
+
+[.cave_crawlers]
+amount = [30, 50]
+weight = 8
+tip = "Cave crawlers are small and fast, often seen creeping around in the Rellekka Slayer Dungeon. Avoid their barbed tongue or you'll get poisoned."
+
+[.cave_slimes]
+amount = [10, 20]
+weight = 8
+tip = "Cave Slimes are the lesser cousins of Jellies, though don't be fooled they can still be dangerous as they're often poisonous."
+
+[.cockatrice]
+amount = [30, 50]
+weight = 8
+tip = "Cockatrices, like basilisks, have a gaze which will paralyse and harm their prey. You'll need a mirror shield to protect you. If you are brave enough, head to Slayer Caves east of Rellekka."
+
+[.crawling_hands]
+amount = [30, 50]
+weight = 8
+tip = "Crawling Hands are undead severed hands, fast and dexterous they claw their victims."
+
+[.crabs]
+amount = [30, 50]
+weight = 8
+tip = "Crabs can be found all across Gielinor. They don't hit very hard but they can take a while to kill."
+
+[.dogs]
+amount = [30, 50]
+weight = 7
+tip = "Dogs are much like wolves; they are pack creatures that will hunt in groups. I've heard there are fearsome wild dogs beneath Karamja, or near Ardougne if you are less adventurous."
+
+[.flesh_crawlers]
+amount = [15, 25]
+weight = 7
+tip = "Fleshcrawlers are scavengers and will eat you - and anyone else, given the chance."
+
+[.ghosts]
+amount = [30, 50]
+weight = 7
+tip = "Ghosts are undead so magic is your best bet against them, there is even a spell specially for fighting the undead."
+
+[.ghouls]
+amount = [10, 20]
+weight = 7
+tip = "Ghouls aren't undead, but they are stronger and tougher than they look. They're also very cowardly and will run if they're losing a fight. They wait to ambush those entering the graveyard to the North of Canifis."
+
+[.hill_giants]
+amount = [30, 50]
+weight = 7
+tip = "Hill Giants often wield large weapons, learn to recognise what kind of weapon it is and act accordingly."
+
+[.hobgoblins]
+amount = [30, 50]
+weight = 7
+tip = "Hobgoblins carrying spears are often trained warriors. If you want less of a challenge, fight the ones that are unarmed."
+
+[.ice_warriors]
+amount = [40, 50]
+weight = 7
+tip = "Ice warriors are a kind of ice elemental. Thurgo the dwarf recently spotted some in the caves south of Port Sarim."
+
+[.kalphites]
+amount = [30, 50]
+weight = 6
+tip = "Kalphite are large insects which live in great hives under the desert sands."
+
+#[.killerwatts]
+#amount = [30, 50]
+#weight = 6
+#tip = "Killerwatts store huge amounts of energy in their bodies, which is released if they are touched. You'll need to wear heavily insulated boots to counter this shocking effect, plus they can attack speedily with both magic and missiles. To access their cloudy plane, you'll need to explore Draynor Manor."
+
+[.lizards]
+amount = [30, 50]
+weight = 8
+tip = "Desert lizards are large reptiles with tough skin. They're cold-blooded, so dousing them with freezing water will finish them off after a tough battle. You can find them to the east of Sophanem."
+
+#[.mogres]
+#amount = [30, 50]
+#weight = 8
+#tip = "Mogres are a type of aquatic Ogre that is often mistaken for a giant mudskipper. You have to force them out of the water with a fishing explosive."
+
+[.pyrefiends]
+amount = [30, 50]
+weight = 8
+tip = "Pyrefiends are magical beings of fire and molten rock. They're quick and agile so try attacking them with a crossbow and bolts. You can find some fiends in the Rellekka Slayer Caves."
+
+[.rockslugs]
+amount = [30, 50]
+weight = 8
+tip = "Rockslugs are strange stoney slugs. You'll need to fight them to near death before finishing them off with Salt."
+
+[.scorpions]
+amount = [30, 50]
+weight = 7
+tip = "Scorpions are almost always poisonous, their hard carapace makes them resistant to crushing and stabbing attacks."
+
+#[.shades]
+#amount = [30, 70]
+#weight = 8
+#tip = "Shades are undead - The town of Mort'ton in Morytania is plagued by these creatures, so help if you can. There are some shades in the Stronghold of Security too, but you won't learn much from fighting those; stick to Mort'ton."
+
+[.skeletons]
+amount = [30, 50]
+weight = 7
+tip = "Skeletons are undead so magic is your best bet against them, there is even a spell specially for fighting the undead."
+
+#[.vampyres]
+#amount = [10, 20]
+#weight = 6
+#tip = "Vampyres are extremely powerful beings. They feed on the blood of the living, so watch that you don't get bitten. Look in the woods of Morytania."
+
+[.wolves]
+amount = [30, 50]
+weight = 7
+tip = "Wolves are pack animals, so you'll always find them in groups. Watch out for their bite, it can be nasty."
+
+[.wall_beasts]
+amount = [10, 20]
+weight = 7
+tip = "Wall Beasts are really much larger creatures but you'll only see their arms. You'll want something sharp on your head to stop them grabbing you."
+
+[.zombies]
+amount = [30, 50]
+weight = 7
+tip = "Zombies are undead so magic is your best bet against them, there is even a spell specially for fighting the undead."

@@ -8,7 +8,8 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -36,29 +37,6 @@ class Mining : Script {
         "uncut_diamond",
     )
 
-    val gemRocks = setOf(
-        "uncut_opal",
-        "uncut_jade",
-        "uncut_red_topaz",
-        "uncut_sapphire",
-        "uncut_emerald",
-        "uncut_ruby",
-        "uncut_diamond",
-    )
-
-    val sandstone = setOf(
-        "sandstone_10kg",
-        "sandstone_5kg",
-        "sandstone_2kg",
-        "sandstone_1kg",
-    )
-
-    val granite = setOf(
-        "granite_5kg",
-        "granite_2kg",
-        "granite_500g",
-    )
-
     init {
         objectOperate("Mine") { (target) ->
             if (target.id.startsWith("depleted")) {
@@ -77,12 +55,13 @@ class Mining : Script {
                     break
                 }
 
-                val ore = EnumDefinitions.stringOrNull("mining_ores", target.id) ?: break
+                val ores = Tables.itemListOrNull("rocks.${target.id}.ores") ?: break
+                val ore = Rows.getOrNull("ores.${ores.last()}") ?: break
                 val stringId = target.def(this).stringId
                 val level = if (stringId.startsWith("crashed_star_tier_")) {
                     stringId.removePrefix("crashed_star_tier_").toInt() * 10
                 } else {
-                    EnumDefinitions.int("mining_level", ore)
+                    ore.int("level")
                 }
                 if (!has(Skill.Mining, level, true)) {
                     break
@@ -110,35 +89,27 @@ class Mining : Script {
                 if (!GameObjects.contains(target)) {
                     break
                 }
-                if (EnumDefinitions.contains("mining_gems", target.id)) {
+                if (ore.bool("gems")) {
                     val glory = equipped(EquipSlot.Amulet).id.startsWith("amulet_of_glory_")
                     if (success(levels.get(Skill.Mining), if (glory) 3..3 else 1..1)) {
                         addOre(this, gems.random())
                         continue
                     }
                 }
-                var ores = mutableListOf<String>()
-                when {
-                    target.id == "rune_essence_rocks" -> {
-                        if (World.members && has(Skill.Mining, 30)) {
-                            ores.add("pure_essence")
-                        } else {
-                            ores.add("rune_essence")
-                        }
-                    }
-                    ore == "granite_500g" -> ores.addAll(granite)
-                    ore == "sandstone_1kg" -> ores.addAll(sandstone)
-                    ore == "uncut_opal" -> ores.addAll(gemRocks)
-                    else -> ores.add(ore)
-                }
                 for (item in ores) {
-                    val chanceMin = EnumDefinitions.int("mining_chance_min", item)
-                    val chanceMax = EnumDefinitions.int("mining_chance_max", item)
-                    if (success(levels.get(Skill.Mining), chanceMin..chanceMax)) {
-                        val xp = EnumDefinitions.int("mining_xp", item) / 10.0
+                    if (item == "pure_essence" && !World.members) {
+                        continue
+                    }
+                    val ore = Rows.getOrNull("ores.$item") ?: continue
+                    if (!has(Skill.Mining, ore.int("level"))) {
+                        continue
+                    }
+                    val chance = ore.intRange("chance")
+                    if (success(levels.get(Skill.Mining), chance)) {
+                        val xp = ore.int("xp") / 10.0
                         exp(Skill.Mining, xp)
                         ShootingStarHandler.extraOreHandler(this, item, xp)
-                        if (!addOre(this, item) || deplete(target, EnumDefinitions.int("mining_life", item))) {
+                        if (!addOre(this, item) || deplete(target, ore.int("life"))) {
                             clearAnim()
                             break
                         }
@@ -161,11 +132,11 @@ class Mining : Script {
             }
             message("You examine the rock for ores...")
             delay(4)
-            val ore = EnumDefinitions.stringOrNull("mining_ores", target.def(this).stringId)
+            val ore = Rows.getOrNull("ores.${target.def(this).stringId}")
             if (ore == null) {
                 message("This rock contains no ore.")
             } else {
-                message("This rock contains ${ore.toLowerSpaceCase()}.")
+                message("This rock contains ${ore.itemId.toLowerSpaceCase()}.")
             }
         }
     }

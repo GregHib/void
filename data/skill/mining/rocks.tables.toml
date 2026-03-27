@@ -1,0 +1,1095 @@
+[rocks]
+row_id = "obj"
+ores = "list<item>"
+
+[.adamantite_rocks_black_1]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_black_2]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_black_3]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_crandor_1]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_crandor_2]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_crandor_3]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_dirt_1]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_dirt_2]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_dirt_3]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_dungeon_1]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_dungeon_2]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_dungeon_3]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_falador_mine_1]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_falador_mine_3]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_grey_1]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_grey_2]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_grey_3]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_lava_maze_dungeon_1]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_lava_maze_dungeon_2]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_lava_maze_dungeon_3]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_light_1]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_light_2]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_light_3]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_old_1]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_old_2]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_rock_1]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_rock_2]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_rock_3]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_tourist_trap_1]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_tourist_trap_2]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_tourist_trap_3]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_tzhaar_1]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_tzhaar_2]
+ores = ["adamantite_ore"]
+
+[.adamantite_rocks_tzhaar_3]
+ores = ["adamantite_ore"]
+
+[.blurite_rocks_asgarnian_ice_1]
+ores = ["blurite_ore"]
+
+[.blurite_rocks_asgarnian_ice_2]
+ores = ["blurite_ore"]
+
+[.blurite_rocks_ice_1]
+ores = ["blurite_ore"]
+
+[.blurite_rocks_ice_2]
+ores = ["blurite_ore"]
+
+[.blurite_rocks_lumbridge_cellar_1]
+ores = ["blurite_ore"]
+
+[.blurite_rocks_lumbridge_cellar_2]
+ores = ["blurite_ore"]
+
+[.blurite_rocks_lumbridge_cellar_3]
+ores = ["blurite_ore"]
+
+[.clay_rocks_dirt_1]
+ores = ["clay"]
+
+[.clay_rocks_dirt_2]
+ores = ["clay"]
+
+[.clay_rocks_dirt_3]
+ores = ["clay"]
+
+[.clay_rocks_falador_mine_1]
+ores = ["clay"]
+
+[.clay_rocks_falador_mine_2]
+ores = ["clay"]
+
+[.clay_rocks_lava_maze_dungeon_1]
+ores = ["clay"]
+
+[.clay_rocks_lava_maze_dungeon_2]
+ores = ["clay"]
+
+[.clay_rocks_lava_maze_dungeon_3]
+ores = ["clay"]
+
+[.clay_rocks_light_1]
+ores = ["clay"]
+
+[.clay_rocks_light_2]
+ores = ["clay"]
+
+[.clay_rocks_light_3]
+ores = ["clay"]
+
+[.clay_rocks_mud_1]
+ores = ["clay"]
+
+[.clay_rocks_mud_2]
+ores = ["clay"]
+
+[.clay_rocks_mud_3]
+ores = ["clay"]
+
+[.clay_rocks_old_1]
+ores = ["clay"]
+
+[.clay_rocks_old_2]
+ores = ["clay"]
+
+[.clay_rocks_piscatoris_1]
+ores = ["clay"]
+
+[.clay_rocks_piscatoris_2]
+ores = ["clay"]
+
+[.clay_rocks_quarry_2]
+ores = ["clay"]
+
+[.clay_rocks_rimmington_1]
+ores = ["clay"]
+
+[.clay_rocks_rimmington_2]
+ores = ["clay"]
+
+[.clay_rocks_rimmington_3]
+ores = ["clay"]
+
+[.clay_rocks_rock_1]
+ores = ["clay"]
+
+[.clay_rocks_rock_2]
+ores = ["clay"]
+
+[.clay_rocks_rock_3]
+ores = ["clay"]
+
+[.coal_rocks_black_1]
+ores = ["coal"]
+
+[.coal_rocks_black_2]
+ores = ["coal"]
+
+[.coal_rocks_black_3]
+ores = ["coal"]
+
+[.coal_rocks_crandor_1]
+ores = ["coal"]
+
+[.coal_rocks_crandor_2]
+ores = ["coal"]
+
+[.coal_rocks_crandor_3]
+ores = ["coal"]
+
+[.coal_rocks_dirt_1]
+ores = ["coal"]
+
+[.coal_rocks_dirt_2]
+ores = ["coal"]
+
+[.coal_rocks_dirt_3]
+ores = ["coal"]
+
+[.coal_rocks_dungeon_1]
+ores = ["coal"]
+
+[.coal_rocks_dungeon_2]
+ores = ["coal"]
+
+[.coal_rocks_dungeon_3]
+ores = ["coal"]
+
+[.coal_rocks_falador_mine_1]
+ores = ["coal"]
+
+[.coal_rocks_falador_mine_2]
+ores = ["coal"]
+
+[.coal_rocks_falador_mine_3]
+ores = ["coal"]
+
+[.coal_rocks_lava_maze_dungeon_1]
+ores = ["coal"]
+
+[.coal_rocks_lava_maze_dungeon_2]
+ores = ["coal"]
+
+[.coal_rocks_lava_maze_dungeon_3]
+ores = ["coal"]
+
+[.coal_rocks_light_1]
+ores = ["coal"]
+
+[.coal_rocks_light_2]
+ores = ["coal"]
+
+[.coal_rocks_light_3]
+ores = ["coal"]
+
+[.coal_rocks_misc_expansion_1]
+ores = ["coal"]
+
+[.coal_rocks_misc_expansion_2]
+ores = ["coal"]
+
+[.coal_rocks_misc_expansion_3]
+ores = ["coal"]
+
+[.coal_rocks_mud_1]
+ores = ["coal"]
+
+[.coal_rocks_mud_2]
+ores = ["coal"]
+
+[.coal_rocks_mud_3]
+ores = ["coal"]
+
+[.coal_rocks_old_1]
+ores = ["coal"]
+
+[.coal_rocks_old_2]
+ores = ["coal"]
+
+[.coal_rocks_quarry_1]
+ores = ["coal"]
+
+[.coal_rocks_rat_pit_1]
+ores = ["coal"]
+
+[.coal_rocks_rat_pit_2]
+ores = ["coal"]
+
+[.coal_rocks_rock_1]
+ores = ["coal"]
+
+[.coal_rocks_rock_2]
+ores = ["coal"]
+
+[.coal_rocks_rock_3]
+ores = ["coal"]
+
+[.coal_rocks_sand_1]
+ores = ["coal"]
+
+[.coal_rocks_sand_2]
+ores = ["coal"]
+
+[.coal_rocks_sand_3]
+ores = ["coal"]
+
+[.coal_rocks_tzhaar_1]
+ores = ["coal"]
+
+[.coal_rocks_tzhaar_2]
+ores = ["coal"]
+
+[.coal_rocks_tzhaar_3]
+ores = ["coal"]
+
+[.copper_rocks_crandor_1]
+ores = ["copper_ore"]
+
+[.copper_rocks_crandor_2]
+ores = ["copper_ore"]
+
+[.copper_rocks_crandor_3]
+ores = ["copper_ore"]
+
+[.copper_rocks_dungeon_1]
+ores = ["copper_ore"]
+
+[.copper_rocks_dungeon_2]
+ores = ["copper_ore"]
+
+[.copper_rocks_dungeon_3]
+ores = ["copper_ore"]
+
+[.copper_rocks_falador_mine_1]
+ores = ["copper_ore"]
+
+[.copper_rocks_falador_mine_2]
+ores = ["copper_ore"]
+
+[.copper_rocks_falador_mine_3]
+ores = ["copper_ore"]
+
+[.copper_rocks_lava_maze_dungeon_1]
+ores = ["copper_ore"]
+
+[.copper_rocks_lava_maze_dungeon_2]
+ores = ["copper_ore"]
+
+[.copper_rocks_lava_maze_dungeon_3]
+ores = ["copper_ore"]
+
+[.copper_rocks_light_1]
+ores = ["copper_ore"]
+
+[.copper_rocks_light_2]
+ores = ["copper_ore"]
+
+[.copper_rocks_light_2_1]
+ores = ["copper_ore"]
+
+[.copper_rocks_light_2_2]
+ores = ["copper_ore"]
+
+[.copper_rocks_light_2_3]
+ores = ["copper_ore"]
+
+[.copper_rocks_light_3]
+ores = ["copper_ore"]
+
+[.copper_rocks_light_3_1]
+ores = ["copper_ore"]
+
+[.copper_rocks_mud_1]
+ores = ["copper_ore"]
+
+[.copper_rocks_mud_2]
+ores = ["copper_ore"]
+
+[.copper_rocks_mud_3]
+ores = ["copper_ore"]
+
+[.copper_rocks_old_1]
+ores = ["copper_ore"]
+
+[.copper_rocks_old_2]
+ores = ["copper_ore"]
+
+[.copper_rocks_piscatoris_1]
+ores = ["copper_ore"]
+
+[.copper_rocks_piscatoris_2]
+ores = ["copper_ore"]
+
+[.copper_rocks_rimmington_1]
+ores = ["copper_ore"]
+
+[.copper_rocks_rimmington_2]
+ores = ["copper_ore"]
+
+[.copper_rocks_rimmington_3]
+ores = ["copper_ore"]
+
+[.copper_rocks_rock_1]
+ores = ["copper_ore"]
+
+[.copper_rocks_rock_2]
+ores = ["copper_ore"]
+
+[.copper_rocks_rock_3]
+ores = ["copper_ore"]
+
+[.copper_rocks_sand_1]
+ores = ["copper_ore"]
+
+[.copper_rocks_sand_2]
+ores = ["copper_ore"]
+
+[.copper_rocks_sand_3]
+ores = ["copper_ore"]
+
+[.copper_rocks_tourist_trap_1]
+ores = ["copper_ore"]
+
+[.copper_rocks_tourist_trap_2]
+ores = ["copper_ore"]
+
+[.copper_rocks_tourist_trap_3]
+ores = ["copper_ore"]
+
+[.copper_rocks_tutorial_island_1]
+ores = ["copper_ore"]
+
+[.crashed_star_tier_1]
+ores = ["stardust"]
+
+[.crashed_star_tier_2]
+ores = ["stardust"]
+
+[.crashed_star_tier_3]
+ores = ["stardust"]
+
+[.crashed_star_tier_4]
+ores = ["stardust"]
+
+[.crashed_star_tier_5]
+ores = ["stardust"]
+
+[.crashed_star_tier_6]
+ores = ["stardust"]
+
+[.crashed_star_tier_7]
+ores = ["stardust"]
+
+[.crashed_star_tier_8]
+ores = ["stardust"]
+
+[.crashed_star_tier_9]
+ores = ["stardust"]
+
+[.gem_rocks_ingneous_1]
+ores = ["uncut_opal", "uncut_jade", "uncut_red_topaz", "uncut_sapphire", "uncut_emerald", "uncut_ruby", "uncut_diamond"]
+
+[.gem_rocks_ingneous_2]
+ores = ["uncut_opal", "uncut_jade", "uncut_red_topaz", "uncut_sapphire", "uncut_emerald", "uncut_ruby", "uncut_diamond"]
+
+[.gem_rocks_ingneous_2_1]
+ores = ["uncut_opal", "uncut_jade", "uncut_red_topaz", "uncut_sapphire", "uncut_emerald", "uncut_ruby", "uncut_diamond"]
+
+[.gem_rocks_ingneous_2_2]
+ores = ["uncut_opal", "uncut_jade", "uncut_red_topaz", "uncut_sapphire", "uncut_emerald", "uncut_ruby", "uncut_diamond"]
+
+[.gem_rocks_ingneous_2_3]
+ores = ["uncut_opal", "uncut_jade", "uncut_red_topaz", "uncut_sapphire", "uncut_emerald", "uncut_ruby", "uncut_diamond"]
+
+[.gem_rocks_ingneous_3]
+ores = ["uncut_opal", "uncut_jade", "uncut_red_topaz", "uncut_sapphire", "uncut_emerald", "uncut_ruby", "uncut_diamond"]
+
+[.gem_rocks_lumbridge_cellar_1]
+ores = ["uncut_opal", "uncut_jade", "uncut_red_topaz", "uncut_sapphire", "uncut_emerald", "uncut_ruby", "uncut_diamond"]
+
+[.gem_rocks_lumbridge_cellar_2]
+ores = ["uncut_opal", "uncut_jade", "uncut_red_topaz", "uncut_sapphire", "uncut_emerald", "uncut_ruby", "uncut_diamond"]
+
+[.gem_rocks_lumbridge_cellar_3]
+ores = ["uncut_opal", "uncut_jade", "uncut_red_topaz", "uncut_sapphire", "uncut_emerald", "uncut_ruby", "uncut_diamond"]
+
+[.gem_rocks_old_2]
+ores = ["uncut_opal", "uncut_jade", "uncut_red_topaz", "uncut_sapphire", "uncut_emerald", "uncut_ruby", "uncut_diamond"]
+
+[.gold_rocks_crandor_1]
+ores = ["gold_ore"]
+
+[.gold_rocks_crandor_2]
+ores = ["gold_ore"]
+
+[.gold_rocks_crandor_3]
+ores = ["gold_ore"]
+
+[.gold_rocks_dirt_1]
+ores = ["gold_ore"]
+
+[.gold_rocks_dirt_2]
+ores = ["gold_ore"]
+
+[.gold_rocks_dirt_3]
+ores = ["gold_ore"]
+
+[.gold_rocks_dungeon_1]
+ores = ["gold_ore"]
+
+[.gold_rocks_dungeon_3]
+ores = ["gold_ore"]
+
+[.gold_rocks_falador_mine_1]
+ores = ["gold_ore"]
+
+[.gold_rocks_falador_mine_2]
+ores = ["gold_ore"]
+
+[.gold_rocks_grey_1]
+ores = ["gold_ore"]
+
+[.gold_rocks_grey_2]
+ores = ["gold_ore"]
+
+[.gold_rocks_grey_3]
+ores = ["gold_ore"]
+
+[.gold_rocks_ingneous_1]
+ores = ["gold_ore"]
+
+[.gold_rocks_ingneous_2]
+ores = ["gold_ore"]
+
+[.gold_rocks_ingneous_3]
+ores = ["gold_ore"]
+
+[.gold_rocks_lava_maze_dungeon_1]
+ores = ["gold_ore"]
+
+[.gold_rocks_lava_maze_dungeon_2]
+ores = ["gold_ore"]
+
+[.gold_rocks_lava_maze_dungeon_3]
+ores = ["gold_ore"]
+
+[.gold_rocks_light_1]
+ores = ["gold_ore"]
+
+[.gold_rocks_light_2]
+ores = ["gold_ore"]
+
+[.gold_rocks_light_3]
+ores = ["gold_ore"]
+
+[.gold_rocks_mud_1]
+ores = ["gold_ore"]
+
+[.gold_rocks_mud_2]
+ores = ["gold_ore"]
+
+[.gold_rocks_mud_3]
+ores = ["gold_ore"]
+
+[.gold_rocks_old_1]
+ores = ["gold_ore"]
+
+[.gold_rocks_old_2]
+ores = ["gold_ore"]
+
+[.gold_rocks_rimmington_1]
+ores = ["gold_ore"]
+
+[.gold_rocks_rimmington_2]
+ores = ["gold_ore"]
+
+[.gold_rocks_rimmington_3]
+ores = ["gold_ore"]
+
+[.gold_rocks_rock_1]
+ores = ["gold_ore"]
+
+[.gold_rocks_rock_3]
+ores = ["gold_ore"]
+
+[.gold_rocks_sand_1]
+ores = ["gold_ore"]
+
+[.gold_rocks_sand_2]
+ores = ["gold_ore"]
+
+[.gold_rocks_sand_3]
+ores = ["gold_ore"]
+
+[.gold_rocks_tzhaar_1]
+ores = ["gold_ore"]
+
+[.gold_rocks_tzhaar_2]
+ores = ["gold_ore"]
+
+[.gold_rocks_tzhaar_3]
+ores = ["gold_ore"]
+
+[.granite_rocks_quarry]
+ores = ["granite_5kg", "granite_2kg", "granite_500g"]
+
+[.iron_rocks_black_1]
+ores = ["iron_ore"]
+
+[.iron_rocks_black_2]
+ores = ["iron_ore"]
+
+[.iron_rocks_black_3]
+ores = ["iron_ore"]
+
+[.iron_rocks_crandor_1]
+ores = ["iron_ore"]
+
+[.iron_rocks_crandor_2]
+ores = ["iron_ore"]
+
+[.iron_rocks_crandor_3]
+ores = ["iron_ore"]
+
+[.iron_rocks_dirt_1]
+ores = ["iron_ore"]
+
+[.iron_rocks_dirt_2]
+ores = ["iron_ore"]
+
+[.iron_rocks_dirt_3]
+ores = ["iron_ore"]
+
+[.iron_rocks_dungeon_1]
+ores = ["iron_ore"]
+
+[.iron_rocks_dungeon_2]
+ores = ["iron_ore"]
+
+[.iron_rocks_dungeon_3]
+ores = ["iron_ore"]
+
+[.iron_rocks_falador_mine_1]
+ores = ["iron_ore"]
+
+[.iron_rocks_falador_mine_2]
+ores = ["iron_ore"]
+
+[.iron_rocks_falador_mine_3]
+ores = ["iron_ore"]
+
+[.iron_rocks_light_1]
+ores = ["iron_ore"]
+
+[.iron_rocks_light_2]
+ores = ["iron_ore"]
+
+[.iron_rocks_light_3]
+ores = ["iron_ore"]
+
+[.iron_rocks_lumbridge_cellar_1]
+ores = ["iron_ore"]
+
+[.iron_rocks_lumbridge_cellar_2]
+ores = ["iron_ore"]
+
+[.iron_rocks_mud_1]
+ores = ["iron_ore"]
+
+[.iron_rocks_mud_2]
+ores = ["iron_ore"]
+
+[.iron_rocks_mud_3]
+ores = ["iron_ore"]
+
+[.iron_rocks_old_1]
+ores = ["iron_ore"]
+
+[.iron_rocks_old_2]
+ores = ["iron_ore"]
+
+[.iron_rocks_piscatoris_1]
+ores = ["iron_ore"]
+
+[.iron_rocks_piscatoris_2]
+ores = ["iron_ore"]
+
+[.iron_rocks_piscatoris_2_1]
+ores = ["iron_ore"]
+
+[.iron_rocks_piscatoris_2_2]
+ores = ["iron_ore"]
+
+[.iron_rocks_rat_pit_1]
+ores = ["iron_ore"]
+
+[.iron_rocks_rat_pit_2]
+ores = ["iron_ore"]
+
+[.iron_rocks_rimmington_1]
+ores = ["iron_ore"]
+
+[.iron_rocks_rimmington_2]
+ores = ["iron_ore"]
+
+[.iron_rocks_rimmington_3]
+ores = ["iron_ore"]
+
+[.iron_rocks_rock_1]
+ores = ["iron_ore"]
+
+[.iron_rocks_rock_2]
+ores = ["iron_ore"]
+
+[.iron_rocks_rock_3]
+ores = ["iron_ore"]
+
+[.iron_rocks_sand_1]
+ores = ["iron_ore"]
+
+[.iron_rocks_sand_2]
+ores = ["iron_ore"]
+
+[.iron_rocks_sand_3]
+ores = ["iron_ore"]
+
+[.mithril_rocks_black_1]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_black_2]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_black_3]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_dirt_1]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_dirt_2]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_dirt_3]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_dungeon_1]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_dungeon_2]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_dungeon_3]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_falador_mine_1]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_falador_mine_2]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_falador_mine_3]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_lava_maze_dungeon_1]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_lava_maze_dungeon_2]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_lava_maze_dungeon_3]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_light_1]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_light_2]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_light_3]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_mud_1]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_mud_2]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_mud_3]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_old_1]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_old_2]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_rock_1]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_rock_2]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_rock_3]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_tourist_trap_1]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_tourist_trap_2]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_tourist_trap_3]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_tzhaar_1]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_tzhaar_2]
+ores = ["mithril_ore"]
+
+[.mithril_rocks_tzhaar_3]
+ores = ["mithril_ore"]
+
+[.rune_essence_rocks]
+ores = ["pure_essence", "rune_essence"]
+
+[.runite_rocks_black_1]
+ores = ["runite_ore"]
+
+[.runite_rocks_black_2]
+ores = ["runite_ore"]
+
+[.runite_rocks_black_3]
+ores = ["runite_ore"]
+
+[.runite_rocks_dirt_1]
+ores = ["runite_ore"]
+
+[.runite_rocks_dirt_2]
+ores = ["runite_ore"]
+
+[.runite_rocks_dungeon_1]
+ores = ["runite_ore"]
+
+[.runite_rocks_dungeon_3]
+ores = ["runite_ore"]
+
+[.runite_rocks_grey_1]
+ores = ["runite_ore"]
+
+[.runite_rocks_grey_2]
+ores = ["runite_ore"]
+
+[.runite_rocks_grey_3]
+ores = ["runite_ore"]
+
+[.runite_rocks_lava_maze_dungeon_1]
+ores = ["runite_ore"]
+
+[.runite_rocks_lava_maze_dungeon_2]
+ores = ["runite_ore"]
+
+[.runite_rocks_lava_maze_dungeon_3]
+ores = ["runite_ore"]
+
+[.runite_rocks_old_1]
+ores = ["runite_ore"]
+
+[.runite_rocks_old_2]
+ores = ["runite_ore"]
+
+[.sandstone_rocks_quarry]
+ores = ["sandstone_10kg", "sandstone_5kg", "sandstone_2kg", "sandstone_1kg"]
+
+[.silver_rocks_dirt_1]
+ores = ["silver_ore"]
+
+[.silver_rocks_dirt_2]
+ores = ["silver_ore"]
+
+[.silver_rocks_dirt_3]
+ores = ["silver_ore"]
+
+[.silver_rocks_dungeon_1]
+ores = ["silver_ore"]
+
+[.silver_rocks_dungeon_2]
+ores = ["silver_ore"]
+
+[.silver_rocks_dungeon_3]
+ores = ["silver_ore"]
+
+[.silver_rocks_ingneous_1]
+ores = ["silver_ore"]
+
+[.silver_rocks_ingneous_2]
+ores = ["silver_ore"]
+
+[.silver_rocks_ingneous_3]
+ores = ["silver_ore"]
+
+[.silver_rocks_lava_maze_dungeon_1]
+ores = ["silver_ore"]
+
+[.silver_rocks_lava_maze_dungeon_2]
+ores = ["silver_ore"]
+
+[.silver_rocks_lava_maze_dungeon_3]
+ores = ["silver_ore"]
+
+[.silver_rocks_light_1]
+ores = ["silver_ore"]
+
+[.silver_rocks_light_2]
+ores = ["silver_ore"]
+
+[.silver_rocks_light_3]
+ores = ["silver_ore"]
+
+[.silver_rocks_lumbridge_cellar_1]
+ores = ["silver_ore"]
+
+[.silver_rocks_lumbridge_cellar_2]
+ores = ["silver_ore"]
+
+[.silver_rocks_mud_1]
+ores = ["silver_ore"]
+
+[.silver_rocks_mud_2]
+ores = ["silver_ore"]
+
+[.silver_rocks_mud_3]
+ores = ["silver_ore"]
+
+[.silver_rocks_old_1]
+ores = ["silver_ore"]
+
+[.silver_rocks_old_2]
+ores = ["silver_ore"]
+
+[.silver_rocks_rimmington_1]
+ores = ["silver_ore"]
+
+[.silver_rocks_rimmington_2]
+ores = ["silver_ore"]
+
+[.silver_rocks_rimmington_2_1]
+ores = ["silver_ore"]
+
+[.silver_rocks_rimmington_2_2]
+ores = ["silver_ore"]
+
+[.silver_rocks_rimmington_2_3]
+ores = ["silver_ore"]
+
+[.silver_rocks_rimmington_3]
+ores = ["silver_ore"]
+
+[.silver_rocks_rock_1]
+ores = ["silver_ore"]
+
+[.silver_rocks_rock_2]
+ores = ["silver_ore"]
+
+[.silver_rocks_rock_2_1]
+ores = ["silver_ore"]
+
+[.silver_rocks_rock_3]
+ores = ["silver_ore"]
+
+[.silver_rocks_tzhaar_1]
+ores = ["silver_ore"]
+
+[.silver_rocks_tzhaar_2]
+ores = ["silver_ore"]
+
+[.silver_rocks_tzhaar_3]
+ores = ["silver_ore"]
+
+[.tin_rocks_crandor_1]
+ores = ["tin_ore"]
+
+[.tin_rocks_crandor_2]
+ores = ["tin_ore"]
+
+[.tin_rocks_crandor_3]
+ores = ["tin_ore"]
+
+[.tin_rocks_dungeon_1]
+ores = ["tin_ore"]
+
+[.tin_rocks_dungeon_2]
+ores = ["tin_ore"]
+
+[.tin_rocks_dungeon_3]
+ores = ["tin_ore"]
+
+[.tin_rocks_falador_mine_1]
+ores = ["tin_ore"]
+
+[.tin_rocks_falador_mine_2]
+ores = ["tin_ore"]
+
+[.tin_rocks_falador_mine_3]
+ores = ["tin_ore"]
+
+[.tin_rocks_lava_maze_dungeon_1]
+ores = ["tin_ore"]
+
+[.tin_rocks_lava_maze_dungeon_2]
+ores = ["tin_ore"]
+
+[.tin_rocks_lava_maze_dungeon_3]
+ores = ["tin_ore"]
+
+[.tin_rocks_light_1]
+ores = ["tin_ore"]
+
+[.tin_rocks_light_2]
+ores = ["tin_ore"]
+
+[.tin_rocks_light_2_1]
+ores = ["tin_ore"]
+
+[.tin_rocks_light_2_2]
+ores = ["tin_ore"]
+
+[.tin_rocks_light_2_3]
+ores = ["tin_ore"]
+
+[.tin_rocks_light_3]
+ores = ["tin_ore"]
+
+[.tin_rocks_light_3_1]
+ores = ["tin_ore"]
+
+[.tin_rocks_mud_1]
+ores = ["tin_ore"]
+
+[.tin_rocks_mud_2]
+ores = ["tin_ore"]
+
+[.tin_rocks_mud_3]
+ores = ["tin_ore"]
+
+[.tin_rocks_old_1]
+ores = ["tin_ore"]
+
+[.tin_rocks_old_2]
+ores = ["tin_ore"]
+
+[.tin_rocks_piscatoris_1]
+ores = ["tin_ore"]
+
+[.tin_rocks_piscatoris_2]
+ores = ["tin_ore"]
+
+[.tin_rocks_rock_1]
+ores = ["tin_ore"]
+
+[.tin_rocks_rock_2]
+ores = ["tin_ore"]
+
+[.tin_rocks_rock_3]
+ores = ["tin_ore"]
+
+[.tin_rocks_sand_1]
+ores = ["tin_ore"]
+
+[.tin_rocks_sand_2]
+ores = ["tin_ore"]
+
+[.tin_rocks_sand_3]
+ores = ["tin_ore"]
+
+[.tin_rocks_tourist_trap_1]
+ores = ["tin_ore"]
+
+[.tin_rocks_tourist_trap_2]
+ores = ["tin_ore"]
+
+[.tin_rocks_tourist_trap_3]
+ores = ["tin_ore"]
+
+[.tin_rocks_tutorial_island_1]
+ores = ["tin_ore"]

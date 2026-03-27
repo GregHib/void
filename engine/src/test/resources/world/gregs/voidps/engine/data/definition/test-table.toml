@@ -1,0 +1,37 @@
+[header]
+int_field = "int"
+string_field = "string"
+item_field = "item"
+obj_field = "obj"
+npc_field = "npc"
+int_list = "list<int>"
+str_list = "list<string>"
+item_list = "list<item>"
+obj_list = "list<obj>"
+npc_list = "list<npc>"
+int_int = "pair<int, int>"
+str_int = "pair<string, int>"
+int_str = "pair<int, string>"
+int_int_list = "list<pair<int, int>>"
+str_int_list = "list<pair<string, int>>"
+int_str_list = "list<pair<int, string>>"
+
+[.row]
+string_field = "text"
+int_field = 1
+item_field = "item_id"
+obj_field = "obj_id"
+npc_field = "npc_id"
+int_list = [1, 2, 3]
+str_list = ["one", "two"]
+item_list = ["item_id"]
+obj_list = ["obj_id"]
+npc_list = ["npc_id"]
+int_int = [1, 2]
+str_int = ["one", 2]
+int_str = [1, "two"]
+int_int_list = [[1, 2], [3, 4]]
+str_int_list = [["one", 2], ["three", 4]]
+int_str_list = [[1, "two"], [3, "four"]]
+
+[.row_two]

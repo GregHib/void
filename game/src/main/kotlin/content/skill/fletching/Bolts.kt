@@ -2,7 +2,7 @@ package content.skill.fletching
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -15,10 +15,9 @@ class Bolts : Script {
 
     init {
         itemOnItem("feather", "*_bolts_unf") { _, toItem ->
-            val xp = EnumDefinitions.intOrNull("bolt_fletching_xp", toItem.id) ?: return@itemOnItem
-            val level = EnumDefinitions.int("bolt_fletching_level", toItem.id)
+            val bolt = Rows.getOrNull("fletching_bolts.${toItem.id}") ?: return@itemOnItem
 
-            if (!has(Skill.Fletching, level, true)) {
+            if (!has(Skill.Fletching, bolt.int("level"), true)) {
                 return@itemOnItem
             }
 
@@ -43,7 +42,7 @@ class Bolts : Script {
                 return@itemOnItem
             }
 
-            val totalExperience = (xp / 10.0) * actualAmount
+            val totalExperience = (bolt.int("xp") / 10.0) * actualAmount
             exp(Skill.Fletching, totalExperience)
             message("You fletch $actualAmount bolts.", ChatType.Game)
         }

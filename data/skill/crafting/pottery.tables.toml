@@ -1,0 +1,60 @@
+[firing]
+row_id = "item"
+products = "list<item>"
+
+[.unfired_pot_lid]
+products = ["pot_lid"]
+
+[.soft_clay]
+products = ["unfired_pot", "unfired_pie_dish", "unfired_bowl", "unfired_plant_pot", "unfired_pot_lid"]
+
+[.unfired_pot]
+products = ["empty_pot"]
+
+[.unfired_pie_dish]
+products = ["bowl"]
+
+[.unfired_bowl]
+products = ["bowl"]
+
+[.unfired_plant_pot]
+products = ["plant_pot_empty"]
+
+[pottery]
+row_id = "item"
+xp = "int"
+level = "int"
+level_default = 1
+
+[.pot_lid]
+xp = 200
+
+[.unfired_pot]
+xp = 63
+
+[.unfired_pie_dish]
+level = 7
+xp = 150
+
+[.unfired_bowl]
+level = 8
+xp = 180
+
+[.unfired_plant_pot]
+level = 19
+xp = 200
+
+[.unfired_pot_lid]
+level = 25
+xp = 200
+
+[.empty_pot]
+xp = 63
+
+[.bowl]
+level = 8
+xp = 150
+
+[.plant_pot_empty]
+level = 19
+xp = 175

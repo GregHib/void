@@ -1,0 +1,160 @@
+[thieving_types]
+level = "int"
+xp = "int"
+stun_ticks = "int"
+chance = "range"
+table = "string"
+damage = "range"
+
+[.fremmennik]
+level = 45
+xp = 650
+stun_ticks = 8
+chance = [90, 240]
+damage = [20, 20]
+table = "fremmennik"
+
+[.desert_bandit]
+level = 53
+xp = 794
+chance = [255, 255]
+damage = [10, 10]
+table = "desert_bandit"
+
+[.bearded_bandit]
+level = 45
+xp = 650
+chance = [255, 255]
+damage = [10, 10]
+table = "bearded_bandit"
+
+[.bandit]
+level = 55
+xp = 843
+chance = [255, 255]
+damage = [10, 10]
+table = "bandit"
+
+[.cave_goblin]
+level = 36
+xp = 400
+stun_ticks = 8
+chance = [80, 240]
+damage = [10, 10]
+table = "cave_goblin"
+
+[.workman]
+level = 25
+xp = 104
+stun_ticks = 8
+chance = [100, 240]
+damage = [10, 10]
+table = "workman"
+
+[.farmer]
+level = 10
+xp = 145
+stun_ticks = 8
+chance = [150, 240]
+damage = [10, 10]
+table = "farmer"
+
+[.gnome]
+level = 75
+xp = 1335
+stun_ticks = 8
+chance = [43, 175]
+damage = [10, 10]
+table = "gnome"
+
+[.guard]
+level = 40
+xp = 468
+stun_ticks = 8
+chance = [50, 240]
+damage = [20, 20]
+table = "guard"
+
+[.ham_member]
+level = 15
+xp = 222
+stun_ticks = 6
+chance = [135, 239]
+damage = [10, 30]
+table = "ham_member"
+
+[.hero]
+level = 80
+xp = 1633
+stun_ticks = 10
+chance = [39, 160]
+table = "hero"
+
+[.knight]
+level = 55
+xp = 843
+stun_ticks = 10
+chance = [50, 240]
+damage = [30, 30]
+table = "knight"
+
+[.human]
+xp = 80
+stun_ticks = 8
+chance = [180, 240]
+damage = [10, 10]
+table = "man"
+
+[.master_farmer]
+level = 38
+xp = 430
+stun_ticks = 8
+chance = [90, 240]
+damage = [30, 30]
+table = "master_farmer"
+
+[.thug]
+level = 65
+xp = 1375
+chance = [255, 255]
+damage = [50, 50]
+table = "thug"
+
+[.paladin]
+level = 70
+xp = 1318
+stun_ticks = 8
+chance = [40, 170]
+damage = [30, 30]
+table = "paladin"
+
+[.rouge]
+level = 32
+xp = 365
+stun_ticks = 8
+chance = [75, 240]
+damage = [20, 20]
+table = "rouge"
+
+[.villager]
+level = 30
+xp = 80
+chance = [255, 255]
+damage = [10, 10]
+table = "villager"
+
+[.warrior]
+level = 25
+xp = 260
+stun_ticks = 8
+chance = [100, 240]
+damage = [20, 20]
+table = "warrior"
+
+[.watchman]
+level = 65
+xp = 1375
+stun_ticks = 8
+chance = [15, 160]
+damage = [30, 30]
+table = "watchman"

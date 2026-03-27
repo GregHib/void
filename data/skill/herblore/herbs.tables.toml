@@ -1,0 +1,68 @@
+[herbs]
+row_id = "item"
+level = "int"
+xp = "int"
+
+[.grimy_guam]
+level = 1
+xp = 25
+
+[.grimy_marrentill]
+level = 9
+xp = 50
+
+[.grimy_tarromin]
+level = 5
+xp = 38
+
+[.grimy_harralander]
+level = 20
+xp = 63
+
+[.grimy_ranarr]
+level = 25
+xp = 75
+
+[.grimy_irit]
+level = 40
+xp = 88
+
+[.grimy_avantoe]
+level = 48
+xp = 100
+
+[.grimy_kwuarm]
+level = 54
+xp = 113
+
+[.grimy_cadantine]
+level = 65
+xp = 125
+
+[.grimy_dwarf_weed]
+level = 70
+xp = 138
+
+[.grimy_torstol]
+level = 75
+xp = 150
+
+[.grimy_lantadyme]
+level = 67
+xp = 131
+
+[.grimy_toadflax]
+level = 30
+xp = 80
+
+[.grimy_snapdragon]
+level = 59
+xp = 118
+
+[.grimy_wergali]
+level = 41
+xp = 95
+
+[.grimy_spirit_weed]
+level = 35
+xp = 78

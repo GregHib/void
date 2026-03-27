@@ -1,0 +1,372 @@
+[slayer_tasks]
+npc = "npc"
+combat_level = "int"
+defence_level = "int"
+quest = "string"
+variable = "string"
+tip = "string"
+
+[.aberrant_spectre]
+npc = "aberrant_spectre"
+combat_level = 65
+quest = "priest_in_peril"
+
+[.abyssal_demon]
+npc = "abyssal_demon"
+
+[.aquanites]
+npc = "aquanite"
+variable = "aquanites"
+
+[.ankou]
+npc = "ankou"
+
+[.aviansies]
+npc = "aviansie_god_wars"
+# TODO req god wars dungeon knight varbit
+combat_level = 70
+
+[.bandits]
+npc = "guard_bandit"
+
+[.basilisks]
+npc = "basilisk"
+
+[.banshees]
+npc = "banshee"
+combat_level = 20
+quest = "priest_in_peril"
+
+[.bloodvelds]
+npc = "bloodveld"
+
+[.brine_rats]
+npc = "brine_rat"
+
+[.bears]
+npc = "black_bear"
+combat_level = 13
+
+[.bats]
+npc = "bat"
+combat_level = 5
+
+[.birds]
+npc = "bird_black"
+
+[.black_demons]
+npc = "black_demon"
+combat_level = 100
+
+[.black_dragons]
+npc = "black_dragon"
+
+[.black_knights]
+npc = "black_knight"
+
+[.blue_dragons]
+npc = "blue_dragon"
+
+[.bronze_dragons]
+npc = "bronze_dragon"
+
+[.catablepons]
+npc = "catablepon"
+combat_level = 35
+
+[.cave_bugs]
+npc = "cave_bug"
+
+[.cave_crawlers]
+npc = "cave_crawler"
+combat_level = 10
+
+[.cave_horrors]
+npc = "cave_horror"
+quest = "cabin_fever"
+
+[.cave_slimes]
+npc = "cave_slime"
+combat_level = 15
+
+[.cockatrice]
+npc = "cockatrice"
+combat_level = 25
+defence_level = 20
+
+[.cows]
+npc = "cow_default"
+combat_level = 5
+
+[.crawling_hands]
+npc = "crawling_hand"
+quest = "priest_in_peril"
+
+[.chaos_druid]
+npc = "chaos_druid"
+
+[.crabs]
+npc = "rock_crab"
+
+[.crocodiles]
+npc = "crocodile_kharidian_desert"
+combat_level = 40
+
+[.dark_beasts]
+npc = "dark_beast"
+quest = "mournings_end_part_ii"
+
+[.dust_devils]
+npc = "dust_devil"
+quest = "what_lies_below"
+
+[.dagannoth]
+npc = "dagannoth_lighthouse_range_74"
+quest = "horror_from_the_deep"
+
+[.dark_warriors]
+npc = "dark_warrior"
+
+[.dogs]
+npc = "guard_dog"
+combat_level = 15
+
+[.dwarves]
+npc = "dwarf"
+combat_level = 6
+
+[.earth_warrior]
+npc = "earth_warrior"
+
+[.elves]
+npc = "elf_warrior"
+quest = "regicide"
+
+[.fire_giant]
+npc = "fire_giant"
+
+[.flesh_crawlers]
+npc = "flesh_crawler"
+combat_level = 15
+
+[.fever_spiders]
+npc = "fever_spider"
+
+[.frost_dragons]
+npc = "frost_dragon"
+
+[.ghosts]
+npc = "ghost"
+combat_level = 13
+
+[.gargoyles]
+npc = "gargoyle"
+quest = "priest_in_peril"
+
+[.ghouls]
+npc = "ghoul"
+combat_level = 25
+quest = "priest_in_peril"
+
+[.goblin]
+npc = "goblin_mohawk_blue"
+
+[.gorak]
+npc = "gorak"
+
+[.greater_demons]
+npc = "greater_demon"
+
+[.green_dragons]
+npc = "green_dragon"
+
+[.hellhounds]
+npc = "hellhound"
+
+[.hill_giants]
+npc = "hill_giant"
+combat_level = 25
+
+[.hobgoblins]
+npc = "hobgoblin_unarmed"
+combat_level = 20
+
+[.harpie_bug_swarms]
+npc = "harpie_bug_swarm"
+
+[.infernal_mage]
+npc = "infernal_mage"
+
+[.ice_giant]
+npc = "ice_giant"
+
+[.ice_warriors]
+npc = "ice_warrior"
+combat_level = 45
+
+[.icefiends]
+npc = "icefiend"
+combat_level = 20
+
+[.iron_dragons]
+npc = "iron_dragon"
+
+[.jellies]
+npc = "jelly"
+
+[.jungle_horrors]
+npc = "jungle_horror"
+
+[.kalphites]
+npc = "kalphite_worker"
+combat_level = 15
+
+[.killerwatts]
+npc = "killerwatt"
+combat_level = 50
+quest = "ernest_the_chicken"
+
+[.kurask]
+npc = "kurask"
+
+[.lesser_demons]
+npc = "lesser_demon"
+
+[.lizards]
+npc = "lizard"
+combat_level = 20
+
+[.magic_axe]
+npc = "magic_axe"
+
+[.mogres]
+npc = "mogre"
+combat_level = 30
+quest = "skippy_and_the_mogres"
+
+[.mutated_zygomites]
+npc = "zygomite"
+
+[.minotaurs]
+npc = "minotaur"
+combat_level = 7
+
+[.mithril_dragons]
+npc = "mithril_dragon"
+# TODO barbarian training varbit
+combat_level = 100
+
+[.monkeys]
+npc = "monkey_brown"
+
+[.moss_giants]
+npc = "moss_giant"
+
+[.nechryael]
+npc = "nechryael"
+quest = "what_lies_below"
+
+[.ogres]
+npc = "ogre_chieftain"
+
+[.otherworldly_beings]
+npc = "otherworldly_being"
+
+[.pirates]
+npc = "pirate_pirates_cove"
+
+[.pyrefiends]
+npc = "pyrefiend_large"
+combat_level = 25
+
+[.rats]
+npc = "rat"
+
+[.red_dragons]
+npc = "red_dragon"
+
+[.rogues]
+npc = "rogue_castle"
+
+[.rockslugs]
+npc = "rockslug"
+combat_level = 20
+
+[.scabarites]
+npc = "giant_scarab_normal"
+quest = "dealing_with-scabaras"
+
+[.scorpions]
+npc = "scorpion"
+combat_level = 10
+
+[.sea_snakes]
+npc = "sea_snake_young"
+
+[.skeletal_wyverns]
+npc = "skeletal_wyvern"
+combat_level = 100
+quest = "elemental_workshop_i"
+
+[.shades]
+npc = "asyn_shade"
+combat_level = 30
+
+[.shadow_warriors]
+npc = "shadow_warrior"
+
+[.skeletons]
+npc = "skeleton_heavy"
+combat_level = 15
+
+[.spiritual_creatures]
+npc = "spiritual_mage_zamorak"
+# TODO req god wars dungeon knight varbit
+
+[.spiders]
+npc = "spider"
+
+[.steel_dragons]
+npc = "steel_dragon"
+
+[.suqahs]
+npc = "suqah"
+quest = "lunar_diplomacy"
+
+[.turoth]
+npc = "turoth"
+
+[.trolls]
+npc = "ice_troll_troll_country"
+
+[.tzhaar]
+npc = "tzhaar_mej"
+
+[.vampyres]
+npc = "vampyre_juvinate"
+combat_level = 35
+quest = "priest_in_peril"
+
+[.waterfiends]
+npc = "waterfiend"
+quest = "what_lies_below"
+
+[.werewolves]
+npc = "werewolf"
+
+[.wolves]
+npc = "wolf"
+combat_level = 20
+
+[.wall_beasts]
+npc = "wall_beast"
+combat_level = 30
+defence_level = 5
+
+[.warped_creatures]
+npc = "warped_terrorbird"
+quest = "the_path_of_glouphrie"
+
+[.zombies]
+npc = "zombie"
+combat_level = 10

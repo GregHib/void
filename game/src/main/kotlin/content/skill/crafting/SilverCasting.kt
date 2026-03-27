@@ -8,8 +8,9 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -20,39 +21,26 @@ import world.gregs.voidps.engine.queue.weakQueue
 
 class SilverCasting : Script {
 
-    val moulds = listOf(
-        Item("holy_mould"),
-        Item("sickle_mould"),
-        Item("tiara_mould"),
-        Item("demonic_sigil_mould"),
-        Item("chain_link_mould"),
-        Item("unholy_mould"),
-        Item("conductor_mould"),
-        Item("rod_clay_mould"),
-        Item("bolt_mould"),
-        Item("key_mould"),
-    )
-
     init {
         interfaceOpened("silver_mould") { id ->
-            for (mould in moulds) {
-                EnumDefinitions.intOrNull("silver_jewellery_xp", mould.id) ?: continue
-                val item = EnumDefinitions.string("silver_jewellery_item", mould.id)
-                val quest = EnumDefinitions.stringOrNull("silver_jewellery_quest", mould.id)
-                interfaces.sendVisibility(id, mould.id, quest == null || quest(quest) != "unstarted")
-                val has = carriesItem(mould.id)
+            for (row in Tables.get("silver_casting").rows()) {
+                val item = row.item("product")
+                val quest = row.stringOrNull("quest")
+                interfaces.sendVisibility(id, row.stringId, quest == null || quest(quest) != "unstarted")
+                val has = carriesItem(row.itemId)
+                val mould = ItemDefinitions.get(row.itemId)
                 interfaces.sendText(
                     id,
-                    "${mould.id}_text",
+                    "${row.itemId}_text",
                     if (has) {
                         val colour = if (carriesItem("silver_bar")) "green" else "orange"
                         "<$colour>Make ${ItemDefinitions.get(item).name.toTitleCase()}"
                     } else {
-                        val name = EnumDefinitions.stringOrNull("silver_jewellery_name", mould.id)
-                        "<orange>You need a ${name ?: mould.def.name.lowercase()} to make this item."
+                        val name = row.stringOrNull("name")
+                        "<orange>You need a ${name ?: mould.name.lowercase()} to make this item."
                     },
                 )
-                interfaces.sendItem(id, "${mould.id}_model", if (has) ItemDefinitions.get(item).id else mould.def.id)
+                interfaces.sendItem(id, "${row.itemId}_model", if (has) ItemDefinitions.get(item).id else mould.id)
             }
         }
 
@@ -84,9 +72,10 @@ class SilverCasting : Script {
         if (amount <= 0) {
             return
         }
-        val exp = EnumDefinitions.intOrNull("silver_jewellery_xp", item.id) ?: return
-        val product = EnumDefinitions.string("silver_jewellery_item", item.id)
-        val produce = EnumDefinitions.int("silver_jewellery_amount", item.id)
+        val row = Rows.getOrNull("silver_casting.${item.id}") ?: return
+        val exp = row.int("xp")
+        val product = row.item("product")
+        val produce = row.int("amount")
         closeMenu()
         if (!inventory.contains(item.id)) {
             message("You need a ${item.def.name} in order to make a ${ItemDefinitions.get(product).name}.")
@@ -96,7 +85,7 @@ class SilverCasting : Script {
             message("You need a silver bar in order to make a ${ItemDefinitions.get(product).name}.")
             return
         }
-        val level = EnumDefinitions.int("silver_jewellery_level", item.id)
+        val level = row.int("level")
         if (!has(Skill.Crafting, level)) {
             return
         }

@@ -26,6 +26,8 @@ import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.data.*
+import world.gregs.voidps.engine.data.config.RowDefinition
+import world.gregs.voidps.engine.data.config.TableDefinition
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.World
@@ -175,6 +177,11 @@ abstract class WorldTest : KoinTest {
                     single(createdAtStart = true) {
                         EnumDefinitions.set(enumDefinitions, enumIds)
                         EnumDefinitions
+                    }
+                    single(createdAtStart = true) {
+                        Tables.set(tableDefinitions)
+                        Rows.set(rowDefinitions, rowIds)
+                        Tables
                     }
                     single(createdAtStart = true) { fontDefinitions }
                     single(createdAtStart = true) { objectTeleports }
@@ -357,8 +364,27 @@ abstract class WorldTest : KoinTest {
             npcIds
             structIds
             objectIds
+            tableDefinitions
             EnumDefinitions.init(EnumDecoder().load(cache)).load(configFiles.list(Settings["definitions.enums"]))
             EnumDefinitions.definitions
+        }
+
+        private val tableDefinitions: Map<String, TableDefinition> by lazy {
+            itemIds
+            npcIds
+            objectIds
+            Tables.load(configFiles.list(Settings["definitions.tables"]))
+            Tables.definitions
+        }
+
+        private val rowDefinitions: Array<RowDefinition> by lazy {
+            tableDefinitions
+            Rows.definitions
+        }
+
+        private val rowIds: Map<String, Int> by lazy {
+            tableDefinitions
+            Rows.ids
         }
 
         private val enumIds: Map<String, Int> by lazy {

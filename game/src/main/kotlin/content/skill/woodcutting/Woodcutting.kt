@@ -3,13 +3,14 @@ package content.skill.woodcutting
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.chat.toIntRange
 import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -45,7 +46,8 @@ class Woodcutting(val drops: DropTables) : Script {
 
     suspend fun chopDown(player: Player, interact: PlayerOnObjectInteract) {
         val target = interact.target
-        val log = EnumDefinitions.stringOrNull("woodcutting_log", target.def(player).stringId) ?: return
+        val id = Tables.itemOrNull("trees.${target.def(player).stringId}.logs") ?: return
+        val log = Rows.getOrNull("logs.$id") ?: return
         val hatchet = Hatchet.best(player)
         if (hatchet == null) {
             player.message("You need a hatchet to chop down this tree.")
@@ -54,10 +56,10 @@ class Woodcutting(val drops: DropTables) : Script {
         }
         player.closeDialogue()
         player.softTimers.start("woodcutting")
-        val ivy = log == "poison_ivy_berries"
+        val ivy = log.itemId == "poison_ivy_berries"
         var first = true
         while (player.awaitDialogues()) {
-            val level = EnumDefinitions.int("woodcutting_level", log)
+            val level = log.int("level")
             if (!GameObjects.contains(target) || !player.has(Skill.Woodcutting, level, true)) {
                 break
             }
@@ -86,10 +88,10 @@ class Woodcutting(val drops: DropTables) : Script {
                 break
             }
             if (success(player.levels.get(Skill.Woodcutting), hatchet, log)) {
-                val xp = EnumDefinitions.int("woodcutting_xp", log) / 10.0
+                val xp = log.int("xp") / 10.0
                 player.exp(Skill.Woodcutting, xp)
                 tryDropNest(player, ivy)
-                if (!addLog(player, log) || deplete(player, log, target)) {
+                if (!addLog(player, log.itemId) || deplete(player, log, target)) {
                     break
                 }
                 if (ivy) {
@@ -119,10 +121,10 @@ class Woodcutting(val drops: DropTables) : Script {
         FloorItems.add(tile = dropTile, id = drop.id, amount = drop.amount.first, disappearTicks = 50)
     }
 
-    fun success(level: Int, hatchet: Item, log: String): Boolean {
-        val chanceRange = EnumDefinitions.string("woodcutting_chance", log).toIntRange()
-        val hatchetLowDifference = EnumDefinitions.string("woodcutting_hatchet_dif_low", log).toIntRange()
-        val hatchetHighDifference = EnumDefinitions.string("woodcutting_hatchet_dif_high", log).toIntRange()
+    fun success(level: Int, hatchet: Item, log: RowDefinition): Boolean {
+        val chanceRange = log.intRange("chance")
+        val hatchetLowDifference = log.intRange("chance_hatchet_dif_low")
+        val hatchetHighDifference = log.intRange("chance_hatchet_dif_high")
         val lowHatchetChance = calculateChance(hatchet, hatchetLowDifference)
         val highHatchetChance = calculateChance(hatchet, hatchetHighDifference)
         val chance = chanceRange.first + lowHatchetChance..chanceRange.last + highHatchetChance
@@ -152,8 +154,8 @@ class Woodcutting(val drops: DropTables) : Script {
         return added
     }
 
-    fun deplete(player: Player, log: String, obj: GameObject): Boolean {
-        val depleteRate = EnumDefinitions.int("woodcutting_deplete_rate", log) / 1000.0
+    fun deplete(player: Player, log: RowDefinition, obj: GameObject): Boolean {
+        val depleteRate = log.int("deplete_rate") / 1000.0
         val depleted = random.nextDouble() <= depleteRate
         if (!depleted) {
             return false
@@ -175,9 +177,9 @@ class Woodcutting(val drops: DropTables) : Script {
     /**
      * Returns regrow delay based on the type of tree and number of players online
      */
-    fun getRegrowTickDelay(log: String): Int {
-        val delay = EnumDefinitions.string("woodcutting_respawn_delay", log).toIntRange()
-        val level = EnumDefinitions.int("woodcutting_level", log)
+    fun getRegrowTickDelay(log: RowDefinition): Int {
+        val delay = log.intRange("respawn_delay")
+        val level = log.int("level")
         return if (level == 1) {
             random.nextInt(delay.first, delay.last) // Regular tree's
         } else {

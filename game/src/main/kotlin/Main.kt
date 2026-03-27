@@ -130,7 +130,14 @@ object Main {
                 get<NPCDefinitions>()
                 get<StructDefinitions>()
                 get<ObjectDefinitions>()
+                get<Tables>()
                 EnumDefinitions.init(EnumDecoder().load(cache)).load(files.list(Settings["definitions.enums"]))
+            }
+            single(createdAtStart = true) {
+                get<ItemDefinitions>()
+                get<NPCDefinitions>()
+                get<ObjectDefinitions>()
+                Tables.load(files.list(Settings["definitions.tables"]))
             }
             single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(cache)).load(files.list(Settings["definitions.graphics"])) }
             single(createdAtStart = true) { InterfaceDefinitions.init(InterfaceDecoder().load(cache)).load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"])) }

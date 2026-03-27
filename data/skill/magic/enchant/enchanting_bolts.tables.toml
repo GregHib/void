@@ -1,0 +1,43 @@
+[enchant_bolts]
+model = "int"
+level = "int"
+
+[.opal_bolts]
+model = 3818
+level = 4
+
+[.sapphire_bolts]
+model = 9354
+level = 7
+
+[.jade_bolts]
+model = 9346
+level = 14
+
+[.pearl_bolts]
+model = 3822
+level = 24
+
+[.emerald_bolts]
+model = 9358
+level = 27
+
+[.topaz_bolts]
+model = 9350
+level = 29
+
+[.ruby_bolts]
+model = 9362
+level = 49
+
+[.diamond_bolts]
+model = 9366
+level = 57
+
+[.dragon_bolts]
+model = 9370
+level = 68
+
+[.onyx_bolts]
+model = 9374
+level = 87

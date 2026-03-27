@@ -1,0 +1,62 @@
+[jewellery_enchant]
+level = "int"
+xp = "int"
+type = "string"
+ring = "pair<item, item>"
+necklace = "pair<item, item>"
+bracelet = "pair<item, item>"
+amulet = "pair<item, item>"
+
+[.enchant_level_1]
+level = 7
+xp = 175
+type = "sapphire"
+ring = ["sapphire_ring", "ring_of_recoil"]
+necklace = ["sapphire_necklace", "games_necklace_8"]
+bracelet = ["sapphire_bracelet", "bracelet_of_clay"]
+amulet = ["sapphire_amulet", "amulet_of_magic"]
+
+[.enchant_level_2]
+level = 27
+xp = 370
+type = "emerald"
+ring = ["emerald_ring", "ring_of_duelling_8"]
+necklace = ["emerald_necklace", "binding_necklace"]
+bracelet = ["emerald_bracelet", "castle_wars_brace_3"]
+amulet = ["emerald_amulet", "amulet_of_defence"]
+
+[.enchant_level_3]
+level = 49
+xp = 590
+type = "ruby"
+ring = ["ruby_ring", "ring_of_forging"]
+necklace = ["ruby_necklace", "dig_site_pendant_5"]
+bracelet = ["ruby_bracelet", "inoculation_brace"]
+amulet = ["ruby_amulet", "amulet_of_strength"]
+
+[.enchant_level_4]
+level = 57
+xp = 670
+type = "diamond"
+ring = ["diamond_ring", "ring_of_life"]
+necklace = ["diamond_necklace", "phoenix_necklace"]
+bracelet = ["diamond_bracelet", "forinthry_bracelet_5"]
+amulet = ["diamond_amulet", "amulet_of_power"]
+
+[.enchant_level_5]
+level = 68
+xp = 780
+type = "dragonstone"
+ring = ["dragonstone_ring", "ring_of_wealth"]
+necklace = ["dragon_necklace", "skills_necklace"]
+bracelet = ["dragonstone_bracelet", "combat_bracelet"]
+amulet = ["dragonstone_amulet", "amulet_of_glory"]
+
+[.enchant_level_6]
+level = 87
+xp = 970
+type = "onyx"
+ring = ["onyx_ring", "ring_of_stone"]
+necklace = ["onyx_necklace", "berserker_necklace"]
+bracelet = ["onyx_bracelet", "regen_bracelet"]
+amulet = ["onyx_amulet", "amulet_of_fury"]
