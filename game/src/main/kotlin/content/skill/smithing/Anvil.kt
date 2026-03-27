@@ -13,9 +13,11 @@ import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -96,12 +98,12 @@ class Anvil : Script {
                 if (id != -1) {
                     val amount = componentDefinition?.getOrNull("amount") ?: 1
                     interfaces.sendItem("smithing", type, id, amount)
-                    val xp = EnumDefinitions.intOrNull("smithing_xp", itemDefinition.stringId)
+                    val xp = Tables.intOrNull("smithing.${itemDefinition.stringId}.xp")
                     if (xp == null) {
                         logger.warn { "Item $id does not have a smithing component." }
                         continue
                     }
-                    val level = EnumDefinitions.int("smithing_level", itemDefinition.stringId)
+                    val level = Tables.int("smithing.${itemDefinition.stringId}.level")
                     interfaces.sendColour("smithing", "${type}_name", if (has(Skill.Smithing, level)) Colours.WHITE else Colours.BLACK)
                 }
                 val required = componentDefinition?.getOrNull("bars") ?: 1
@@ -134,7 +136,7 @@ class Anvil : Script {
             "mithril" if type == "grapple" -> "mithril_grapple_tip"
             else -> "${metal}_$type"
         }
-        EnumDefinitions.intOrNull("smithing_xp", item) ?: return
+        val row = Rows.getOrNull("smithing.${item}") ?: return
         val component = InterfaceDefinitions.getComponent("smithing", type)
         val quantity = component?.getOrNull("amount") ?: 1
         val bars = component?.getOrNull("bars") ?: 1
@@ -147,7 +149,7 @@ class Anvil : Script {
             softTimers.stop("smithing")
             return
         }
-        smith(metal, bars, quantity, type, item, actualAmount, true)
+        smith(metal, bars, quantity, type, row, actualAmount, true)
     }
 
     suspend fun Player.smith(
@@ -155,7 +157,7 @@ class Anvil : Script {
         bars: Int,
         quantity: Int,
         type: String,
-        item: String,
+        row: RowDefinition,
         count: Int,
         first: Boolean,
     ) {
@@ -169,9 +171,9 @@ class Anvil : Script {
             return
         }
 
-        val level = EnumDefinitions.int("smithing_level", item)
+        val level = row.int("level")
         if (!has(Skill.Smithing, level, message = false)) {
-            val name = item.removeSuffix("_unf")
+            val name = row.itemId.removeSuffix("_unf")
             statement("You need a Smithing level of $level to make${name.an()} ${name.toTitleCase()}.")
             softTimers.stop("smithing")
             return
@@ -182,18 +184,17 @@ class Anvil : Script {
         weakQueue("smithing", if (first) 0 else 5) {
             inventory.transaction {
                 remove(bar, bars)
-                add(item, quantity)
+                add(row.itemId, quantity)
             }
             when (inventory.transaction.error) {
                 is TransactionError.Deficient -> message("You do not have enough bars to smith this item.")
                 TransactionError.None -> {
-                    val xp = EnumDefinitions.int("smithing_xp", item) / 10.0
-                    exp(Skill.Smithing, xp)
-                    smith(metal, bars, quantity, type, item, count - 1, false)
+                    exp(Skill.Smithing, row.int("xp") / 10.0)
+                    smith(metal, bars, quantity, type, row, count - 1, false)
                     val name = type.removeSuffix("_unf").replace("_", " ")
                     message("You hammer the $metal and make${name.an()} $name.")
                 }
-                else -> logger.warn { "Error smithing ${this@smith} $item ${inventory.transaction.error} ${inventory.items.contentToString()}" }
+                else -> logger.warn { "Error smithing ${this@smith} ${row.itemId} ${inventory.transaction.error} ${inventory.items.contentToString()}" }
             }
         }
     }

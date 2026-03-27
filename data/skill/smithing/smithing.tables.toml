@@ -1,0 +1,680 @@
+[smithing]
+row_id = "item"
+level = "int"
+xp = "int"
+
+[.adamant_2h_sword]
+level = 84
+xp = 1875
+
+[.adamant_arrowtips]
+level = 75
+xp = 625
+
+[.adamant_battleaxe]
+level = 80
+xp = 1875
+
+[.adamant_bolts_unf]
+level = 73
+xp = 625
+
+[.adamant_chainbody]
+level = 81
+xp = 1875
+
+[.adamant_claws]
+level = 83
+xp = 1250
+
+[.adamant_dagger]
+level = 70
+xp = 625
+
+[.adamant_dart_tip]
+level = 74
+xp = 625
+
+[.adamant_full_helm]
+level = 77
+xp = 1250
+
+[.adamant_hasta]
+level = 75
+xp = 1250
+
+[.adamant_hatchet]
+level = 71
+xp = 625
+
+[.adamant_kiteshield]
+level = 82
+xp = 1875
+
+[.adamant_knife]
+level = 77
+xp = 625
+
+[.adamant_limbs]
+level = 76
+xp = 625
+
+[.adamant_longsword]
+level = 76
+xp = 1250
+
+[.adamant_mace]
+level = 72
+xp = 625
+
+[.adamant_med_helm]
+level = 73
+xp = 625
+
+[.adamant_nails]
+level = 74
+xp = 625
+
+[.adamant_pickaxe]
+level = 55
+xp = 1000
+
+[.adamant_platebody]
+level = 88
+xp = 3125
+
+[.adamant_platelegs]
+level = 86
+xp = 1875
+
+[.adamant_plateskirt]
+level = 86
+xp = 1875
+
+[.adamant_scimitar]
+level = 75
+xp = 1250
+
+[.adamant_spear]
+level = 75
+xp = 1250
+
+[.adamant_sq_shield]
+level = 78
+xp = 1250
+
+[.adamant_sword]
+level = 74
+xp = 625
+
+[.adamant_warhammer]
+level = 79
+xp = 1875
+
+[.bronze_2h_sword]
+level = 14
+xp = 375
+
+[.bronze_arrowtips]
+level = 5
+xp = 125
+
+[.bronze_battleaxe]
+level = 10
+xp = 375
+
+[.bronze_bolts_unf]
+level = 3
+xp = 125
+
+[.bronze_chainbody]
+level = 11
+xp = 375
+
+[.bronze_claws]
+level = 13
+xp = 250
+
+[.bronze_dagger]
+level = 1
+xp = 125
+
+[.bronze_dart_tip]
+level = 4
+xp = 125
+
+[.bronze_full_helm]
+level = 7
+xp = 250
+
+[.bronze_hasta]
+level = 5
+xp = 250
+
+[.bronze_hatchet]
+level = 1
+xp = 125
+
+[.bronze_kiteshield]
+level = 12
+xp = 375
+
+[.bronze_knife]
+level = 7
+xp = 125
+
+[.bronze_limbs]
+level = 6
+xp = 125
+
+[.bronze_longsword]
+level = 6
+xp = 250
+
+[.bronze_mace]
+level = 2
+xp = 125
+
+[.bronze_med_helm]
+level = 3
+xp = 125
+
+[.bronze_nails]
+level = 4
+xp = 125
+
+[.bronze_pickaxe]
+level = 5
+xp = 250
+
+[.bronze_platebody]
+level = 18
+xp = 625
+
+[.bronze_platelegs]
+level = 16
+xp = 375
+
+[.bronze_plateskirt]
+level = 16
+xp = 375
+
+[.bronze_scimitar]
+level = 5
+xp = 250
+
+[.bronze_spear]
+level = 5
+xp = 250
+
+[.bronze_sq_shield]
+level = 8
+xp = 250
+
+[.bronze_sword]
+level = 4
+xp = 125
+
+[.bronze_warhammer]
+level = 9
+xp = 375
+
+[.bronze_wire]
+level = 4
+xp = 125
+
+[.cannonball]
+level = 35
+xp = 256
+
+[.iron_2h_sword]
+level = 29
+xp = 750
+
+[.iron_arrowtips]
+level = 20
+xp = 250
+
+[.iron_battleaxe]
+level = 25
+xp = 750
+
+[.iron_bolts_unf]
+level = 18
+xp = 250
+
+[.iron_chainbody]
+level = 26
+xp = 750
+
+[.iron_claws]
+level = 28
+xp = 500
+
+[.iron_dagger]
+level = 15
+xp = 250
+
+[.iron_dart_tip]
+level = 19
+xp = 250
+
+[.iron_full_helm]
+level = 22
+xp = 500
+
+[.iron_hasta]
+level = 20
+xp = 500
+
+[.iron_hatchet]
+level = 16
+xp = 250
+
+[.iron_kiteshield]
+level = 27
+xp = 750
+
+[.iron_knife]
+level = 22
+xp = 250
+
+[.iron_limbs]
+level = 23
+xp = 250
+
+[.iron_longsword]
+level = 21
+xp = 500
+
+[.iron_mace]
+level = 17
+xp = 250
+
+[.iron_med_helm]
+level = 18
+xp = 250
+
+[.iron_nails]
+level = 19
+xp = 250
+
+[.iron_pickaxe]
+level = 35
+xp = 500
+
+[.iron_platebody]
+level = 33
+xp = 1250
+
+[.iron_platelegs]
+level = 31
+xp = 750
+
+[.iron_plateskirt]
+level = 31
+xp = 750
+
+[.iron_scimitar]
+level = 20
+xp = 500
+
+[.iron_spear]
+level = 20
+xp = 500
+
+[.iron_spit]
+level = 17
+xp = 250
+
+[.iron_sq_shield]
+level = 23
+xp = 500
+
+[.iron_sword]
+level = 19
+xp = 250
+
+[.iron_warhammer]
+level = 24
+xp = 750
+
+[.mithril_2h_sword]
+level = 64
+xp = 1500
+
+[.mithril_arrowtips]
+level = 55
+xp = 500
+
+[.mithril_battleaxe]
+level = 60
+xp = 1500
+
+[.mithril_bolts_unf]
+level = 53
+xp = 500
+
+[.mithril_chainbody]
+level = 61
+xp = 1500
+
+[.mithril_claws]
+level = 63
+xp = 1000
+
+[.mithril_dagger]
+level = 50
+xp = 500
+
+[.mithril_dart_tip]
+level = 54
+xp = 500
+
+[.mithril_full_helm]
+level = 57
+xp = 1000
+
+[.mithril_grapple_tip]
+level = 59
+xp = 500
+
+[.mithril_hasta]
+level = 55
+xp = 1000
+
+[.mithril_hatchet]
+level = 51
+xp = 500
+
+[.mithril_kiteshield]
+level = 62
+xp = 1500
+
+[.mithril_knife]
+level = 57
+xp = 500
+
+[.mithril_limbs]
+level = 56
+xp = 500
+
+[.mithril_longsword]
+level = 56
+xp = 1000
+
+[.mithril_mace]
+level = 52
+xp = 500
+
+[.mithril_med_helm]
+level = 53
+xp = 500
+
+[.mithril_nails]
+level = 54
+xp = 500
+
+[.mithril_pickaxe]
+level = 75
+xp = 1250
+
+[.mithril_platebody]
+level = 68
+xp = 2500
+
+[.mithril_platelegs]
+level = 66
+xp = 1500
+
+[.mithril_plateskirt]
+level = 66
+xp = 1500
+
+[.mithril_scimitar]
+level = 55
+xp = 1000
+
+[.mithril_spear]
+level = 55
+xp = 1000
+
+[.mithril_sq_shield]
+level = 58
+xp = 1000
+
+[.mithril_sword]
+level = 54
+xp = 500
+
+[.mithril_warhammer]
+level = 59
+xp = 1500
+
+[.oil_lantern_frame]
+level = 26
+xp = 250
+
+[.rune_2h_sword]
+level = 99
+xp = 2250
+
+[.rune_arrowtips]
+level = 90
+xp = 750
+
+[.rune_battleaxe]
+level = 95
+xp = 2250
+
+[.rune_bolts_unf]
+level = 88
+xp = 750
+
+[.rune_chainbody]
+level = 96
+xp = 2250
+
+[.rune_claws]
+level = 98
+xp = 1500
+
+[.rune_dagger]
+level = 85
+xp = 750
+
+[.rune_dart_tip]
+level = 89
+xp = 750
+
+[.rune_full_helm]
+level = 92
+xp = 1500
+
+[.rune_hasta]
+level = 90
+xp = 1500
+
+[.rune_hatchet]
+level = 86
+xp = 750
+
+[.rune_kiteshield]
+level = 97
+xp = 2250
+
+[.rune_knife]
+level = 92
+xp = 750
+
+[.rune_limbs]
+level = 91
+xp = 750
+
+[.rune_longsword]
+level = 91
+xp = 1500
+
+[.rune_mace]
+level = 87
+xp = 750
+
+[.rune_med_helm]
+level = 88
+xp = 750
+
+[.rune_nails]
+level = 89
+xp = 750
+
+[.rune_pickaxe]
+level = 91
+xp = 1500
+
+[.rune_platebody]
+level = 99
+xp = 3750
+
+[.rune_platelegs]
+level = 99
+xp = 2250
+
+[.rune_plateskirt]
+level = 99
+xp = 2250
+
+[.rune_scimitar]
+level = 90
+xp = 1500
+
+[.rune_spear]
+level = 90
+xp = 1500
+
+[.rune_sq_shield]
+level = 93
+xp = 1500
+
+[.rune_sword]
+level = 89
+xp = 750
+
+[.rune_warhammer]
+level = 94
+xp = 2250
+
+[.silver_bolts_unf]
+level = 21
+xp = 500
+
+[.steel_2h_sword]
+level = 44
+xp = 1125
+
+[.steel_arrowtips]
+level = 35
+xp = 375
+
+[.steel_battleaxe]
+level = 40
+xp = 1125
+
+[.steel_bolts_unf]
+level = 33
+xp = 375
+
+[.steel_chainbody]
+level = 41
+xp = 1125
+
+[.steel_claws]
+level = 43
+xp = 750
+
+[.steel_dagger]
+level = 30
+xp = 375
+
+[.steel_dart_tip]
+level = 34
+xp = 375
+
+[.steel_full_helm]
+level = 37
+xp = 750
+
+[.steel_hasta]
+level = 35
+xp = 750
+
+[.steel_hatchet]
+level = 31
+xp = 375
+
+[.steel_kiteshield]
+level = 42
+xp = 1125
+
+[.steel_knife]
+level = 37
+xp = 375
+
+[.steel_limbs]
+level = 36
+xp = 375
+
+[.steel_longsword]
+level = 36
+xp = 750
+
+[.steel_mace]
+level = 32
+xp = 375
+
+[.steel_med_helm]
+level = 33
+xp = 375
+
+[.steel_nails]
+level = 34
+xp = 375
+
+[.steel_pickaxe]
+level = 35
+xp = 750
+
+[.steel_platebody]
+level = 48
+xp = 1875
+
+[.steel_platelegs]
+level = 46
+xp = 1125
+
+[.steel_plateskirt]
+level = 46
+xp = 1125
+
+[.steel_scimitar]
+level = 35
+xp = 750
+
+[.steel_spear]
+level = 35
+xp = 750
+
+[.steel_sq_shield]
+level = 38
+xp = 750
+
+[.steel_studs]
+level = 36
+xp = 375
+
+[.steel_sword]
+level = 34
+xp = 375
+
+[.steel_warhammer]
+level = 39
+xp = 1125
