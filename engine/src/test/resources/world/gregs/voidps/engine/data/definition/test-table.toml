@@ -4,6 +4,7 @@ string_field = "string"
 item_field = "item"
 obj_field = "obj"
 npc_field = "npc"
+tile_field = "tile"
 int_list = "list<int>"
 str_list = "list<string>"
 item_list = "list<item>"
@@ -22,6 +23,7 @@ int_field = 1
 item_field = "item_id"
 obj_field = "obj_id"
 npc_field = "npc_id"
+tile_field = { x = 1, y = 2, level = 3 }
 int_list = [1, 2, 3]
 str_list = ["one", "two"]
 item_list = ["item_id"]

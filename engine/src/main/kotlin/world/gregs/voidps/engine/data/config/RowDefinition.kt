@@ -23,6 +23,10 @@ data class RowDefinition(
 
     fun skillPairOrNull(column: String) = Tables.skillPairOrNull("${stringId}.$column")
 
+    fun tile(column: String) = Tables.tile("${stringId}.$column")
+
+    fun tileOrNull(column: String) = Tables.tileOrNull("${stringId}.$column")
+
     fun intList(column: String) = Tables.intList("${stringId}.$column")
 
     fun intListOrNull(column: String) = Tables.intListOrNull("${stringId}.$column")
