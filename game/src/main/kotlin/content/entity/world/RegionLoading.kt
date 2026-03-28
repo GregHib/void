@@ -168,13 +168,9 @@ class RegionLoading(val dynamicZones: DynamicZones) : Script {
         var append = 0
         val xtea = blankXtea
         for (lvl in 0..3) {
-            for (x in view.x..view.x + zoneSize) {
-                for (y in view.y..view.y + zoneSize) {
-                    if (x !in 0..2048 || y !in 0..2048) {
-                        zones.add(null)
-                        continue
-                    }
-                    val zone = Zone(x, y, lvl)
+            for (x in 0 until zoneSize) {
+                for (y in 0 until zoneSize) {
+                    val zone = Zone(view.x + x, view.y + y, lvl)
                     val target = dynamicZones.dynamicZone(zone)
                     if (target == null) {
                         zones.add(null)
