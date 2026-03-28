@@ -119,6 +119,7 @@ class CombatDefinitions {
         var impactRegardless = false
         var freeze = 0
         var poison = 0
+        var disease = 0
         var message = ""
         val definition = definitions.getOrPut(stringId) { CombatDefinition(npc = stringId) }
         val attacks = definition.attacks as MutableMap<String, CombatAttack>
@@ -173,6 +174,7 @@ class CombatDefinitions {
                 "impact_regardless" -> impactRegardless = boolean()
                 "impact_freeze" -> freeze = int()
                 "impact_poison" -> poison = int()
+                "impact_disease" -> disease = int()
                 "impact_message" -> message = string()
                 "miss_gfx" -> graphic(missGraphics)
                 "miss_gfxs" -> graphics(missGraphics)
@@ -212,6 +214,7 @@ class CombatDefinitions {
             impactDrainSkills = drainSkills,
             impactFreeze = freeze,
             impactPoison = poison,
+            impactDisease = disease,
             impactMessage = message,
         )
     }

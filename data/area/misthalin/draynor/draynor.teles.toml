@@ -65,3 +65,8 @@ delta = { x = -35, y = 6421 }
 option = "Climb-down"
 tile = { x = 3092, y = 3362 }
 delta = { x = 25, y = 6392 }
+
+[portal_home]
+option = "Enter"
+tile = { x = 2678, y = 5214, level = 2 }
+to = { x = 3110, y = 3363, level = 2 }

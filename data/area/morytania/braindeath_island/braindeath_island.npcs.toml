@@ -17,21 +17,27 @@ id = 2830
 
 [zombie_protester]
 id = 2831
+hunt_mode = "spotted"
 
 [zombie_protester_2]
 id = 2832
+hunt_mode = "spotted"
 
 [zombie_protester_3]
 id = 2833
+hunt_mode = "spotted"
 
 [zombie_protester_4]
 id = 2834
+hunt_mode = "spotted"
 
 [zombie_protester_5]
 id = 2835
+hunt_mode = "spotted"
 
 [zombie_protester_6]
 id = 2836
+hunt_mode = "spotted"
 
 [zombie_pirate]
 id = 2837
@@ -39,12 +45,12 @@ hitpoints = 520
 att = 49
 str = 50
 def = 50
-style = "crush"
-max_hit_melee = 60
+combat_def = "zombie_pirate"
 hunt_mode = "cowardly"
 slayer_xp = 52.0
 categories = ["zombies"]
 respawn_delay = 50
+drop_table = "pirate"
 examine = "An undead sea scoundrel."
 
 [zombie_pirate_2]
@@ -73,11 +79,11 @@ hitpoints = 500
 att = 45
 str = 50
 def = 50
-style = "crush"
-max_hit_melee = 60
+combat_def = "zombie_pirate"
 slayer_xp = 50.0
 categories = ["zombies"]
 respawn_delay = 37
+drop_table = "pirate"
 examine = "He talks a good fight."
 
 [zombie_swab_2]

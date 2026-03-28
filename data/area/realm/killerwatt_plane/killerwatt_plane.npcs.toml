@@ -6,12 +6,17 @@ str = 50
 def = 40
 mage = 67
 range = 67
-combat_def = "killerwatt"
 attack_bonus = 30
 slayer_xp = 51.0
 categories = ["killerwatts"]
 respawn_delay = 30
 examine = "A ball of electrical energy."
+
+[killerwatt_attacking]
+id = 3201
+combat_def = "killerwatt"
+drop_table = "killerwatt"
+examine = "An angry electrical shock!"
 
 [storm_cloud_killerwatt_plane]
 id = 3203

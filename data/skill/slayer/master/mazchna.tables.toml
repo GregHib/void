@@ -93,10 +93,10 @@ amount = [30, 50]
 weight = 6
 tip = "Kalphite are large insects which live in great hives under the desert sands."
 
-#[.killerwatts]
-#amount = [30, 50]
-#weight = 6
-#tip = "Killerwatts store huge amounts of energy in their bodies, which is released if they are touched. You'll need to wear heavily insulated boots to counter this shocking effect, plus they can attack speedily with both magic and missiles. To access their cloudy plane, you'll need to explore Draynor Manor."
+[.killerwatts]
+amount = [30, 50]
+weight = 6
+tip = "Killerwatts store huge amounts of energy in their bodies, which is released if they are touched. You'll need to wear heavily insulated boots to counter this shocking effect, plus they can attack speedily with both magic and missiles. To access their cloudy plane, you'll need to explore Draynor Manor."
 
 [.lizards]
 amount = [30, 50]
@@ -133,10 +133,10 @@ amount = [30, 50]
 weight = 7
 tip = "Skeletons are undead so magic is your best bet against them, there is even a spell specially for fighting the undead."
 
-#[.vampyres]
-#amount = [10, 20]
-#weight = 6
-#tip = "Vampyres are extremely powerful beings. They feed on the blood of the living, so watch that you don't get bitten. Look in the woods of Morytania."
+[.vampyres]
+amount = [10, 20]
+weight = 6
+tip = "Vampyres are extremely powerful beings. They feed on the blood of the living, so watch that you don't get bitten. Look in the woods of Morytania."
 
 [.wolves]
 amount = [30, 50]

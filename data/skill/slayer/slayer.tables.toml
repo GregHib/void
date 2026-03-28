@@ -1,7 +1,7 @@
 [slayer_tasks]
 npc = "npc"
 combat_level = "int"
-defence_level = "int"
+skill = "pair<skill, int>"
 quest = "string"
 variable = "string"
 tip = "string"
@@ -92,7 +92,7 @@ combat_level = 15
 [.cockatrice]
 npc = "cockatrice"
 combat_level = 25
-defence_level = 20
+skill = ["defence", 20]
 
 [.cows]
 npc = "cow_default"
@@ -151,6 +151,7 @@ combat_level = 15
 
 [.fever_spiders]
 npc = "fever_spider"
+quest = "rum_deal"
 
 [.frost_dragons]
 npc = "frost_dragon"
@@ -193,6 +194,7 @@ combat_level = 20
 
 [.harpie_bug_swarms]
 npc = "harpie_bug_swarm"
+skill = ["firemaking", 33]
 
 [.infernal_mage]
 npc = "infernal_mage"
@@ -361,7 +363,7 @@ combat_level = 20
 [.wall_beasts]
 npc = "wall_beast"
 combat_level = 30
-defence_level = 5
+skill = ["defence", 5]
 
 [.warped_creatures]
 npc = "warped_terrorbird"

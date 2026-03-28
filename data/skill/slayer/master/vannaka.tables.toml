@@ -73,10 +73,10 @@ amount = [40, 90]
 weight = 7
 tip = "Like other giants, Fire Giants have little to no magical ability, and they're particularly weak to water spells."
 
-#[.fever_spiders]
-#amount = [30, 90]
-#weight = 7
-#tip = "Fever Spiders are giant spiders that carry the deadly Spider Fever. If you don't want to catch it I suggest you wear Slayer Gloves to fight them."
+[.fever_spiders]
+amount = [30, 90]
+weight = 7
+tip = "Fever Spiders are giant spiders that carry the deadly Spider Fever. If you don't want to catch it I suggest you wear Slayer Gloves to fight them."
 
 [.gargoyles]
 amount = [40, 90]
@@ -103,10 +103,10 @@ amount = [40, 90]
 weight = 7
 tip = "Hobgoblins are larger and stronger then their brethren. There is a peninsula, south-west of Falador, where these creatures have a hideout."
 
-#[.harpie_bug_swarms]
-#amount = [40, 90]
-#weight = 8
-#tip = "Harpie Bug Swarms are pesky critters that are hard to hit. You need a lit bug lantern to distract them with its hypnotic light."
+[.harpie_bug_swarms]
+amount = [40, 90]
+weight = 8
+tip = "Harpie Bug Swarms are pesky critters that are hard to hit. You need a lit bug lantern to distract them with its hypnotic light."
 
 [.infernal_mage]
 amount = [40, 90]
@@ -208,10 +208,10 @@ amount = [40, 90]
 weight = 7
 tip = "Trolls regenerate damage quickly and have some level of magical defences, but this is easily bypassed by their weakness to fire."
 
-#[.vampyres]
-#amount = [10, 20]
-#weight = 7
-#tip = "Vampyres are extremely powerful beings. An underground group known as the Myreque have been searching for tools to defeat them, which they may be willing to share if you can find them."
+[.vampyres]
+amount = [10, 20]
+weight = 7
+tip = "Vampyres are extremely powerful beings. An underground group known as the Myreque have been searching for tools to defeat them, which they may be willing to share if you can find them."
 
 [.werewolves]
 amount = [30, 60]

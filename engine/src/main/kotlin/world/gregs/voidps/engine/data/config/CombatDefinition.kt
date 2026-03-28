@@ -101,6 +101,7 @@ data class CombatDefinition(
         val impactDrainSkills: List<Drain> = emptyList(),
         val impactFreeze: Int = 0,
         val impactPoison: Int = 0,
+        val impactDisease: Int = 0,
         val impactMessage: String = "",
     ) {
         companion object {

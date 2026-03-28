@@ -1,0 +1,36 @@
+[fever_spider]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "spider_large_defend"
+defend_sound = "insect_defend"
+death_anim = "spider_large_death"
+death_sound = "insect_death"
+
+[fever_spider.melee]
+condition = "slayer_gloves"
+range = 1
+anim = "spider_large_attack"
+target_sound = "insect_attack"
+target_hit = { offense = "stab", max = 70 }
+
+[fever_spider.disease]
+condition = "no_slayer_gloves"
+range = 1
+anim = "spider_large_attack"
+target_sound = "insect_attack"
+impact_regardless = true
+impact_disease = 80
+
+[zombie_pirate]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "zombie_pirate_defend"
+defend_sound = "zombie_pirate_defend"
+death_anim = "zombie_pirate_death"
+death_sound = "zombie_pirate_death"
+
+[zombie_pirate.melee]
+range = 1
+anim = "zombie_pirate_attack"
+target_sound = "zombie_pirate_attack"
+target_hit = { offense = "crush", max = 60 }

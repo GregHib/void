@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.inv.replace
 class LightSource : Script {
     init {
         val unlitSources = Tables.get("light_source").rows().joinToString(",") { it.itemId }
+
         itemOnItem("tinderbox*", unlitSources) { _, toItem ->
             val source = Rows.getOrNull("light_source.${toItem.id}") ?: return@itemOnItem
             if (!has(Skill.Firemaking, source.int("level"), true)) {
@@ -25,7 +26,7 @@ class LightSource : Script {
         }
 
         itemOption("Extinguish") { (item) ->
-            val extinguished = Tables.itemOrNull("extinguish.${item.id}") ?: return@itemOption
+            val extinguished = Tables.itemOrNull("extinguish.${item.id}.unlit") ?: return@itemOption
             if (!inventory.replace(item.id, extinguished)) {
                 return@itemOption
             }

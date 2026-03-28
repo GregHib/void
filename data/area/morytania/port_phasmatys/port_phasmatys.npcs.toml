@@ -26,14 +26,13 @@ examine = "A master bowman."
 id = 1697
 examine = "A spooky ghost villager."
 
-[tortured_soul_port_phasmatys]
+[tortured_soul]
 id = 1698
 hitpoints = 510
 att = 52
 str = 62
 def = 38
-style = "crush"
-max_hit_melee = 70
+combat_def = "tortured_soul"
 slayer_xp = 51.0
 categories = ["ghosts"]
 respawn_delay = 50
@@ -68,7 +67,7 @@ id = 1705
 id = 1706
 examine = "This ghost guards the gates of Port Phasmatys."
 
-[pirate_pete_port_phasmatys]
+[pirate_pete]
 id = 2825
 examine = "A shifty-looking character."
 

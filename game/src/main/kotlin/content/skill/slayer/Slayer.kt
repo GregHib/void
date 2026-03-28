@@ -112,6 +112,10 @@ private fun hasRequirements(player: Player, table: TableDefinition, row: Int): B
     if (player.combatLevel < combatLevel) {
         return false
     }
+    val pair = Tables.skillPairOrNull("slayer_tasks.$category.skill")
+    if (pair != null && !player.has(pair.first, pair.second)) {
+        return false
+    }
     val variable = Tables.stringOrNull("slayer_tasks.$category.variable")
     if (variable != null && !player.contains(variable)) {
         return false

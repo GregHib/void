@@ -1,10 +1,10 @@
-[kalphite_attack]
+[insect_attack]
 id = 537
 
-[kalphite_death]
+[insect_death]
 id = 538
 
-[kalphite_defend]
+[insect_defend]
 id = 539
 
 [kalphite_queen_attack]

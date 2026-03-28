@@ -73,10 +73,10 @@ amount = [70, 130]
 weight = 12
 tip = "Like other giants, Fire giants often wield large weapons. Learn to recognise what kind of weapon it is and act accordingly. The smoke dungeon to the west of Pollnivneach has a population of these large and irritating creatures, so go smite them."
 
-#[.fever_spiders]
-#amount = [70, 130]
-#weight = 7
-#tip = "Fever spiders are giant spiders that carry the deadly spider fever. If you don't want to catch it, I suggest you wear Slayer gloves to fight them. I've heard they cause problems in breweries, if you want to find some."
+[.fever_spiders]
+amount = [70, 130]
+weight = 7
+tip = "Fever spiders are giant spiders that carry the deadly spider fever. If you don't want to catch it, I suggest you wear Slayer gloves to fight them. I've heard they cause problems in breweries, if you want to find some."
 
 [.gargoyles]
 amount = [70, 130]
@@ -163,10 +163,10 @@ amount = [90, 150]
 weight = 8
 tip = "Tzhaar reside in their cave under the Karamja volcano. Beware as they can call to their fellows for aid."
 
-#[.vampyres]
-#amount = [80, 100]
-#weight = 6
-#tip = "Vampyres are extremely powerful beings. An underground group known as the Myreque have been searching for tools to defeat them, which they may be willing to share if you can find them."
+[.vampyres]
+amount = [80, 100]
+weight = 6
+tip = "Vampyres are extremely powerful beings. An underground group known as the Myreque have been searching for tools to defeat them, which they may be willing to share if you can find them."
 
 #[.warped_creatures]
 #amount = [70, 130]

@@ -5,6 +5,7 @@ import content.entity.combat.hit.Hit
 import content.entity.combat.hit.hit
 import content.entity.death.weightedSample
 import content.entity.effect.freeze
+import content.entity.effect.toxin.disease
 import content.entity.effect.toxin.poison
 import content.entity.gfx.areaGfx
 import content.entity.proj.shoot
@@ -154,6 +155,9 @@ class Attack(
                     }
                     if (attack.impactPoison != 0) {
                         poison(target, attack.impactPoison)
+                    }
+                    if (attack.impactDisease != 0) {
+                        disease(target, attack.impactDisease)
                     }
                     if (attack.impactMessage != "") {
                         target.message(attack.impactMessage)
