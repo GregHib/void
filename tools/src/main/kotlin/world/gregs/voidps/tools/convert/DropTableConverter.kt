@@ -12,17 +12,70 @@ object DropTableConverter {
     @JvmStatic
     fun main(args: Array<String>) {
         val string = """
-====Charms====
-{{CharmDropTable
-|quantity = 1
-|gold = 90.982/1000
-|green = 318.436/1000
-|crimson = 45.491/1000
-|blue = 9.098/1000
-}}
+==Drops (variant 1)==
+{{DropLogProject|kills=2280172}}
+
+This version is found throughout the area north of Neitiznot and Jatizso.
+
+{{Average drop value|mob=Ice troll male#Variant 1}}
+
+===100%===
+{{DropsTableHead|dropversion=Variant 1}}
+{{DropsLine|name=Big bones|quantity=1|rarity=Always}}
+{{DropsTableBottom}}
+
+===Weapons and armour===
+{{DropsTableHead|dropversion=Variant 1}}
+{{DropsLine|name=Adamant full helm|quantity=1|rarity=10/128}}
+{{DropsLine|name=Steel platebody|quantity=1|rarity=10/128}}
+{{DropsLine|name=Mithril warhammer|quantity=1|rarity=5/128}}
+{{DropsLine|name=Adamant axe|quantity=1|rarity=5/128}}
+{{DropsLine|name=Rune kiteshield|quantity=1|rarity=2/128}}
+{{DropsLine|name=Granite shield|quantity=1|rarity=1/128}}
+{{DropsLine|name=Rune warhammer|quantity=1|rarity=1/128}}
+{{DropsTableBottom}}
+
+===Runes===
+{{DropsTableHead|dropversion=Variant 1}}
+{{DropsLine|name=Earth rune|quantity=8-14|rarity=10/128}}
+{{DropsLine|name=Earth rune|quantity=12-36|rarity=10/128}}
+{{DropsLine|name=Nature rune|quantity=4-12|rarity=5/128}}
+{{DropsLine|name=Law rune|quantity=4-8|rarity=5/128}}
+{{DropsTableBottom}}
+
+===Herbs===
+{{HerbDropTableInfo|2/128}}
+{{DropsTableHead|dropversion=Variant 1}}
+{{HerbDropLines|2/128}}
+{{DropsTableBottom}}
+
+===Seeds===
+{{UncommonSeedDropTableInfo|11/128}}
+{{DropsTableHead|dropversion=Variant 1}}
+{{UncommonSeedDropLines|11/128}}
+{{DropsTableBottom}}
+
+===Other===
+{{DropsTableHead|dropversion=Variant 1}}
+{{DropsLine|name=Coins|quantity=200|rarity=20/128|gemw=No}}
+{{DropsLine|name=Raw shark|quantity=2-8 (noted)|rarity=10/128}}
+{{DropsLine|name=Seaweed|quantity=3-9 (noted)|rarity=10/128}}
+{{DropsLine|name=Ball of wool|quantity=18-42 (noted)|rarity=10/128}}
+{{DropsTableBottom}}
+
+===Gem drop table===
+{{GemDropTable|1/128|naturetalisman=yes|chaostalisman=yes|dropversion=Variant 1}}
+
+===Tertiary===
+{{DropsTableHead|dropversion=Variant 1}}
+{{DropsLine|name=Arctic pine logs|quantity=2-4 (noted)|rarity=1/14|approx=yes}}
+{{DropsLine|name=Ensouled troll head|quantity=1|rarity=1/20}}
+{{DropsLine|name=Long bone|quantity=1|rarity=1/400|gemw=No}}
+{{DropsLine|name=Curved bone|quantity=1|rarity=1/5012.5|gemw=No}}
+{{DropsTableBottom}}
 
         """.trimIndent()
-        val npc = "bloodveld"
+        val npc = "ice_troll_male"
         convert(string, npc)
     }
 

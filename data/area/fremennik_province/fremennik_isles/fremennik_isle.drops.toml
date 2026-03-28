@@ -4,6 +4,7 @@ drops = [
     { id = "big_bones" },
     { table = "ice_troll_female_secondary" },
     { table = "ice_troll_female_tertiary" },
+    { table = "ice_troll_charms" },
 ]
 
 [ice_troll_female_secondary]
@@ -44,6 +45,7 @@ drops = [
     { id = "big_bones" },
     { table = "ice_troll_male_secondary" },
     { table = "ice_troll_male_tertiary" },
+    { table = "ice_troll_charms" },
 ]
 
 [ice_troll_male_secondary]
@@ -134,4 +136,13 @@ drops = [
     { id = "arctic_pine_logs_noted", min = 2, max = 4, chance = 358 },
     { id = "long_bone", chance = 12 },
     { id = "curved_bone" },
+]
+
+[ice_troll_charms]
+roll = 1000
+drops = [
+    { id = "gold_charm", chance = 6 },
+    { id = "green_charm", chance = 6 },
+    { id = "crimson_charm", chance = 4 },
+    { id = "blue_charm", chance = 2 },
 ]

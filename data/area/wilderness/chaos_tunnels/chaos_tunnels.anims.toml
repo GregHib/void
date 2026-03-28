@@ -16,6 +16,15 @@ id = 1271
 [leech_death]
 id = 1272
 
+[bloodworm_attack]
+id = 2070
+
+[bloodworm_defend]
+id = 2072
+
+[bloodworm_death]
+id = 2073
+
 [giant_crypt_rat_attack]
 id = 4933
 
@@ -48,3 +57,12 @@ id = 300
 
 [waterfiend_defend]
 id = 301
+
+[mummy_defend]
+id = 5550
+
+[mummy_attack]
+id = 5549
+
+[mummy_death]
+id = 5563

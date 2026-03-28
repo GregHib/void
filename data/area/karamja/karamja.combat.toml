@@ -26,3 +26,16 @@ anim = "shaikahan_attack"
 target_sound = "shaikahan_attack"
 target_hit = { offense = "slash", max = 90 }
 
+[giant_ant]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "giant_ant_defend"
+defend_sound = "giant_ant_defend"
+death_anim = "giant_ant_death"
+death_sound = "giant_ant_death"
+
+[giant_ant.melee]
+range = 1
+anim = "giant_ant_attack"
+target_sound = "giant_ant_attack"
+target_hit = { offense = "crush", max = 60 }

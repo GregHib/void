@@ -1,9 +1,6 @@
 [ice_warrior_ice_queens_lair]
 id = 145
 
-[ice_giant_ice_queens_lair]
-id = 4685
-
 [ice_queen]
 id = 795
 hitpoints = 1040

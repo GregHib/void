@@ -35,14 +35,13 @@ immune_cannon = true
 drop_table = "turoth"
 examine = "He's one big leg short!"
 
-[bloodworm_chaos_tunnels]
+[bloodworm]
 id = 2031
 hitpoints = 450
 att = 80
 str = 20
 def = 35
-style = "stab"
-max_hit_melee = 30
+combat_def = "leech"
 hunt_mode = "cowardly"
 respawn_delay = 50
 examine = "I think I should keep my distance..."
@@ -117,17 +116,24 @@ clone = "possessed_pickaxe"
 combat_def = "animated_spade"
 drop_table = "animated_spade"
 
-[dagonhai_monk_chaos_tunnels]
+[dagonhai_monk]
 id = 7138
+hitpoints = 880
+# Made up stats
+magic = 100
+def = 80
+combat_def = "dagonhai_monk"
+drop_table = "dagonhai_monk"
+hunt_mode = "cowardly"
 examine = "A monk of the Dagon'hai."
 
-[dagonhai_monk_chaos_tunnels_2]
+[dagonhai_monk_beardiest]
 id = 7139
-examine = "A monk of the Dagon'hai."
+clone = "dagonhai_monk"
 
-[dagonhai_monk_chaos_tunnels_3]
+[dagonhai_monk_beard]
 id = 7140
-examine = "A monk of the Dagon'hai."
+clone = "dagonhai_monk"
 
 [fire_elemental]
 id = 1019
@@ -148,11 +154,11 @@ hitpoints = 900
 att = 90
 str = 90
 def = 90
-style = "crush"
-max_hit_melee = 240
+combat_def = "mummy"
 hunt_mode = "cowardly"
 categories = ["zombies"]
 drop_table = "mummy"
+respawn_delay = 30
 examine = "A tightly-wrapped monster."
 
 [mummy_2]
@@ -160,14 +166,30 @@ id = 1962
 clone = "mummy"
 examine = "Spooky, bandaged dead dude."
 
-[mummy_3]
+[mummy_female]
 id = 1963
 clone = "mummy"
 examine = "A victim of poor first aid."
 
-[mummy_4]
+[mummy_female_2]
 id = 1964
 clone = "mummy"
+examine = "But who's the daddy?"
+
+[mummy_alight]
+id = 1965
+examine = "Spooky, bandaged dead dude."
+
+[mummy_2_alight]
+id = 1966
+examine = "Spooky, bandaged dead dude."
+
+[mummy_female_alight]
+id = 1967
+examine = "A victim of poor first aid."
+
+[mummy_female_2_alight]
+id = 1968
 examine = "But who's the daddy?"
 
 [waterfiend]
@@ -187,5 +209,16 @@ examine = "A fiendish embodiment of water."
 
 [skeleton_chaos_tunnels]
 id = 5386
-categories = ["skeletons"]
+hitpoints = 800
+att = 72
+str = 60
+def = 60
+combat_def = "skeleton_sword_shield"
+wander_range = 8
+hunt_mode = "cowardly"
+drop_table = "skeleton_armed"
+height = 30
+respawn_delay = 60
+categories = ["skeletons", "undead"]
+slayer_xp = 80.0
 examine = "Achingly thin."

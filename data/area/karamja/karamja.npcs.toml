@@ -107,10 +107,24 @@ examine = "I wouldn't want to be footing that bill."
 
 [giant_ant_worker]
 id = 6379
+hitpoints = 300
+# Made up stats
+att = 80
+str = 40
+def = 50
+combat_def = "giant_ant"
 examine = "I wonder how much he can lift."
 
 [giant_ant_soldier]
 id = 6380
+hitpoints = 540
+# Made up stats
+att = 140
+str = 70
+def = 50
+hunt_mode = "aggressive"
+combat_def = "giant_ant"
+max_hit_crush = 130
 examine = "Gi-ant-ant-ant-ant..."
 
 [giant_wasp]

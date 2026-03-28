@@ -11,6 +11,7 @@ slayer_xp = 69.0
 hunt_mode = "aggressive"
 respawn_delay = 90
 categories = ["wolves"]
+drop_table = "wolf_bones"
 examine = "Not man's best friend."
 
 [white_wolf]

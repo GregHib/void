@@ -1,12 +1,13 @@
-[dire_wolf_isafdar]
+[dire_wolf]
 id = 1198
 hitpoints = 850
 att = 75
 str = 75
 def = 75
-style = "stab"
-max_hit_melee = 80
+combat_def = "white_wolf"
+max_hit_stab = 80
 hunt_mode = "cowardly"
+drop_table = "wolf_bones"
 slayer_xp = 85.0
 categories = ["wolves"]
 respawn_delay = 90

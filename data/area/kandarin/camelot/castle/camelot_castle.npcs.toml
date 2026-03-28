@@ -39,11 +39,6 @@ examine = "Legendary King of the Britons."
 [sir_palomedes_camelot_castle]
 id = 3787
 
-[ice_giant_camelot_castle]
-id = 4686
-categories = ["ice_giants"]
-examine = "He's got icicles in his beard."
-
 [sir_bedivere]
 id = 6177
 hitpoints = 900

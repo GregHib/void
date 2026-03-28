@@ -12,9 +12,3 @@ drops = [
     { table = "herb_drop_table", roll = 20 },
     { table = "elite_clue_scroll" },
 ]
-
-[desert_wolf_drop_table]
-type = "all"
-drops = [
-    { id = "wolf_bones" }
-]
