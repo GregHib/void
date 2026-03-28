@@ -59,6 +59,11 @@ lit = "lit_torch"
 level = 1
 type = "torch"
 
+[.unlit_bug_lantern]
+lit = "lit_bug_lantern"
+level = 33
+type = "lantern"
+
 [extinguish]
 row_id = "item"
 unlit = "item"
@@ -95,3 +100,6 @@ unlit = "sapphire_lantern_oil"
 
 [.lit_torch]
 unlit = "unlit_torch"
+
+[.lit_bug_lantern]
+unlit = "unlit_bug_lantern"

@@ -194,7 +194,7 @@ object Tables {
 
     private fun <T : Any> getOrNull(path: String, type: ColumnType<T>): T? {
         val (table, row, column) = path.split(".")
-        val id = Rows.ids["${table}.${row}"] ?: error("Row '$row' not found for $path")
+        val id = Rows.ids["${table}.${row}"] ?: return null
         return getOrNull(table, column, id, type)
     }
 
