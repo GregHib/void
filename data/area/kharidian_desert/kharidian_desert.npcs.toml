@@ -129,7 +129,7 @@ hunt_mode = "cowardly"
 slayer_xp = 34.0
 categories = ["wolves"]
 respawn_delay = 50
-drop_table = "desert_wolf"
+drop_table = "wolf_bones"
 examine = "A vicious desert wolf."
 
 [desert_wolf_dark]

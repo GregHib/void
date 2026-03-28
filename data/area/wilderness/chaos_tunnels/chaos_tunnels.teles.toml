@@ -1,0 +1,589 @@
+[chaos_tunnels_rift]
+option = "Enter"
+tile = { x = 3165, y = 3561 }
+to = { x = 3293, y = 5480 }
+
+[chaos_tunnels_exit]
+option = "Climb-up"
+tile = { x = 3292, y = 5479 }
+to = { x = 3166, y = 3561 }
+
+[chaos_tunnels_rift_east]
+option = "Enter"
+tile = { x = 3119, y = 3571 }
+to = { x = 3249, y = 5491 }
+
+[chaos_tunnels_exit]
+option = "Climb-up"
+tile = { x = 3248, y = 5490 }
+to = { x = 3120, y = 3571 }
+
+[chaos_tunnels_rift_west]
+option = "Enter"
+tile = { x = 3059, y = 3550 }
+to = { x = 3184, y = 5471 }
+
+[chaos_tunnels_exit]
+option = "Climb-up"
+tile = { x = 3183, y = 5470 }
+to = { x = 3060, y = 3550 }
+
+[chaos_tunnels_rift_east]
+option = "Enter"
+tile = { x = 3107, y = 3639 }
+to = { x = 3235, y = 5560 }
+
+[chaos_tunnels_exit]
+option = "Climb-up"
+tile = { x = 3234, y = 5559 }
+to = { x = 3107, y = 3640 }
+
+[chaos_tunnels_rift]
+option = "Enter"
+tile = { x = 3165, y = 3618 }
+to = { x = 3290, y = 5539 }
+
+[chaos_tunnels_exit]
+option = "Climb-up"
+tile = { x = 3291, y = 5538 }
+to = { x = 3166, y = 3618 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3321, y = 5554 }
+to = { x = 3315, y = 5552 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3315, y = 5552 }
+to = { x = 3321, y = 5554 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3297, y = 5536 }
+to = { x = 3299, y = 5533 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3299, y = 5533 }
+to = { x = 3297, y = 5536 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3323, y = 5531 }
+to = { x = 3325, y = 5518 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3325, y = 5518 }
+to = { x = 3323, y = 5531 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3297, y = 5510 }
+to = { x = 3300, y = 5514 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3300, y = 5514 }
+to = { x = 3297, y = 5510 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3289, y = 5533 }
+to = { x = 3288, y = 5536 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3288, y = 5536 }
+to = { x = 3289, y = 5533 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3285, y = 5556 }
+to = { x = 3291, y = 5555 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3291, y = 5555 }
+to = { x = 3285, y = 5556 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3266, y = 5552 }
+to = { x = 3262, y = 5552 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3262, y = 5552 }
+to = { x = 3266, y = 5552 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3256, y = 5561 }
+to = { x = 3253, y = 5561 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3253, y = 5561 }
+to = { x = 3256, y = 5561 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3249, y = 5546 }
+to = { x = 3252, y = 5543 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3252, y = 5543 }
+to = { x = 3249, y = 5546 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3261, y = 5536 }
+to = { x = 3268, y = 5534 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3268, y = 5534 }
+to = { x = 3261, y = 5536 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3282, y = 5531 }
+to = { x = 3285, y = 5527 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3285, y = 5527 }
+to = { x = 3282, y = 5531 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3285, y = 5508 }
+to = { x = 3280, y = 5501 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3280, y = 5501 }
+to = { x = 3285, y = 5508 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3265, y = 5491 }
+to = { x = 3260, y = 5491 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3265, y = 5491 }
+to = { x = 3259, y = 5446 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3259, y = 5446 }
+to = { x = 3265, y = 5491 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3266, y = 5446 }
+to = { x = 3260, y = 5491 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3260, y = 5491 }
+to = { x = 3266, y = 5446 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3254, y = 5451 }
+to = { x = 3250, y = 5448 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3250, y = 5448 }
+to = { x = 3254, y = 5451 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3241, y = 5445 }
+to = { x = 3233, y = 5445 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3233, y = 5445 }
+to = { x = 3241, y = 5445 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3212, y = 5452 }
+to = { x = 3214, y = 5456 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3214, y = 5456 }
+to = { x = 3212, y = 5452 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3229, y = 5454 }
+to = { x = 3235, y = 5457 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3235, y = 5457 }
+to = { x = 3229, y = 5454 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3241, y = 5469 }
+to = { x = 3233, y = 5470 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3233, y = 5470 }
+to = { x = 3241, y = 5469 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3244, y = 5495 }
+to = { x = 3239, y = 5498 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3239, y = 5498 }
+to = { x = 3244, y = 5495 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3218, y = 5497 }
+to = { x = 3222, y = 5488 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3222, y = 5488 }
+to = { x = 3218, y = 5497 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3232, y = 5501 }
+to = { x = 3238, y = 5507 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3238, y = 5507 }
+to = { x = 3232, y = 5501 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3241, y = 5529 }
+to = { x = 3243, y = 5526 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3243, y = 5526 }
+to = { x = 3241, y = 5529 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3230, y = 5547 }
+to = { x = 3226, y = 5553 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3226, y = 5553 }
+to = { x = 3230, y = 5547 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3206, y = 5553 }
+to = { x = 3204, y = 5546 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3204, y = 5546 }
+to = { x = 3206, y = 5553 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3211, y = 5533 }
+to = { x = 3214, y = 5533 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3214, y = 5533 }
+to = { x = 3211, y = 5533 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3208, y = 5527 }
+to = { x = 3211, y = 5523 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3211, y = 5523 }
+to = { x = 3208, y = 5527 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3202, y = 5515 }
+to = { x = 3196, y = 5512 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3196, y = 5512 }
+to = { x = 3202, y = 5515 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3190, y = 5515 }
+to = { x = 3190, y = 5519 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3190, y = 5519 }
+to = { x = 3190, y = 5515 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3187, y = 5531 }
+to = { x = 3182, y = 5530 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3182, y = 5530 }
+to = { x = 3187, y = 5531 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3181, y = 5517 }
+to = { x = 3185, y = 5518 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3185, y = 5518 }
+to = { x = 3181, y = 5517 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3165, y = 5515 }
+to = { x = 3173, y = 5530 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3173, y = 5530 }
+to = { x = 3165, y = 5515 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3156, y = 5523 }
+to = { x = 3152, y = 5520 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3152, y = 5520 }
+to = { x = 3156, y = 5523 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3148, y = 5533 }
+to = { x = 3153, y = 5537 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3153, y = 5537 }
+to = { x = 3148, y = 5533 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3168, y = 5541 }
+to = { x = 3171, y = 5542 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3171, y = 5542 }
+to = { x = 3168, y = 5541 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3190, y = 5549 }
+to = { x = 3190, y = 5554 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3190, y = 5554 }
+to = { x = 3190, y = 5549 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3180, y = 5557 }
+to = { x = 3174, y = 5558 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3174, y = 5558 }
+to = { x = 3180, y = 5557 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3166, y = 5553 }
+to = { x = 3162, y = 5545 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3162, y = 5557 }
+to = { x = 3158, y = 5561 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3158, y = 5561 }
+to = { x = 3162, y = 5557 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3147, y = 5541 }
+to = { x = 3143, y = 5535 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3143, y = 5535 }
+to = { x = 3147, y = 5541 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3169, y = 5510 }
+to = { x = 3159, y = 5501 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3159, y = 5501 }
+to = { x = 3169, y = 5510 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3142, y = 5489 }
+to = { x = 3141, y = 5480 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3141, y = 5480 }
+to = { x = 3142, y = 5489 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3142, y = 5462 }
+to = { x = 3154, y = 5462 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3154, y = 5462 }
+to = { x = 3142, y = 5462 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3143, y = 5443 }
+to = { x = 3155, y = 5449 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3155, y = 5449 }
+to = { x = 3143, y = 5443 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3168, y = 5456 }
+to = { x = 3178, y = 5460 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3178, y = 5460 }
+to = { x = 3168, y = 5456 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3187, y = 5460 }
+to = { x = 3189, y = 5444 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3189, y = 5444 }
+to = { x = 3187, y = 5460 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3192, y = 5472 }
+to = { x = 3186, y = 5472 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3186, y = 5472 }
+to = { x = 3192, y = 5472 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3185, y = 5478 }
+to = { x = 3191, y = 5482 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3191, y = 5482 }
+to = { x = 3185, y = 5478 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3191, y = 5495 }
+to = { x = 3194, y = 5490 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3194, y = 5490 }
+to = { x = 3191, y = 5495 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3210, y = 5477 }
+to = { x = 3208, y = 5471 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3208, y = 5471 }
+to = { x = 3210, y = 5477 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3215, y = 5475 }
+to = { x = 3218, y = 5478 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3218, y = 5478 }
+to = { x = 3215, y = 5475 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3224, y = 5479 }
+to = { x = 3222, y = 5474 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3222, y = 5474 }
+to = { x = 3224, y = 5479 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3318, y = 5481 }
+to = { x = 3322, y = 5480 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+to = { x = 3318, y = 5481 }
+tile = { x = 3322, y = 5480 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+to = { x = 3299, y = 5484 }
+tile = { x = 3303, y = 5477 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+to = { x = 3303, y = 5477 }
+tile = { x = 3299, y = 5484 }

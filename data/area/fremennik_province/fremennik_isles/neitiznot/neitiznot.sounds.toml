@@ -6,3 +6,9 @@ id = 3379
 
 [yak_defend]
 id = 3380
+
+[ice_troll_defend]
+id = 849
+
+[ice_troll_attack]
+id = 2399

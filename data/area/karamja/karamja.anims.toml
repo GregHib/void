@@ -12,3 +12,12 @@ id = 1584
 
 [harpie_bug_swarm_death]
 id = 1585
+
+[giant_ant_attack]
+id = 7237
+
+[giant_ant_defend]
+id = 7239
+
+[giant_ant_death]
+id = 7238

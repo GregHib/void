@@ -21,3 +21,11 @@ clone = "ice_giant"
 [ice_giant_hair]
 id = 4687
 clone = "ice_giant"
+
+[ice_giant_light]
+id = 4685
+clone = "ice_giant"
+
+[ice_giant_light_hair]
+id = 4686
+clone = "ice_giant"

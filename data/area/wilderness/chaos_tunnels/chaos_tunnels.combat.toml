@@ -12,6 +12,20 @@ anim = "leech_attack"
 target_sound = "leech_attack"
 target_hit = { offense = "stab", max = 30 }
 
+[bloodworm]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "bloodworm_defend"
+defend_sound = "leech_defend"
+death_anim = "bloodworm_death"
+death_sound = "leech_death"
+
+[bloodworm.melee]
+range = 1
+anim = "bloodworm_attack"
+target_sound = "leech_attack"
+target_hit = { offense = "stab", max = 30 }
+
 [dust_devil]
 attack_speed = 4
 retreat_range = 8
@@ -112,3 +126,35 @@ range = 4
 target_sound = "waterfiend_attack"
 projectile = "ice_arrow"
 target_hit = { offense = "range", defence = "magic", max = 120 }
+
+[dagonhai_monk]
+attack_speed = 6
+retreat_range = 8
+defend_anim = "human_defend"
+defend_sound = "human_defend"
+death_anim = "human_death"
+death_sound = "human_death"
+
+[dagonhai_monk.magic]
+range = 10
+# TODO check if earth strike or different gfx
+gfx = "earth_strike_cast"
+anim = "earth_spell"
+projectile = "earth_strike"
+target_hit = { offense = "magic", max = 110 }
+impact_gfx = "earth_strike_impact"
+miss_gfx = "spell_splash"
+
+[mummy]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "mummy_defend"
+defend_sound = "mummy_defend"
+death_anim = "mummy_death"
+death_sound = "mummy_death"
+
+[mummy.attack]
+range = 1
+anim = "mummy_attack"
+target_sound = "mummy_attack"
+target_hit = { offense = "crush", max = 240 }

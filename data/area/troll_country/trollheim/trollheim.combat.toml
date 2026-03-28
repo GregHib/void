@@ -1,10 +1,10 @@
 [thrower_troll]
 attack_speed = 7
 retreat_range = 8
-defend_anim = "thrower_troll_defend"
+defend_anim = "troll_defend"
 defend_sound = "thrower_troll_defend"
-death_anim = "thrower_troll_death"
-death_sound = "thrower_troll_death"
+death_anim = "troll_death"
+death_sound = "troll_death"
 
 [thrower_troll.ranged]
 chance = 90

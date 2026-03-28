@@ -24,3 +24,15 @@ id = 3773
 
 [waterfiend_death]
 id = 3772
+
+[mummy_defend]
+id = 643
+
+[mummy_attack]
+id = 641
+
+[mummy_death]
+id = 644
+
+[mummy_ash]
+id = 638

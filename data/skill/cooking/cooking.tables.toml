@@ -127,6 +127,7 @@ chance_cook_o_matic = [138, 531]
 chance_gauntlet = [128, 511]
 cooked = "anchovies"
 cooked_message = "You successfully cook some anchovies."
+burnt = "burnt_anchovies"
 burnt_message = "You accidentally burn the anchovies."
 
 [.raw_bass]
@@ -138,6 +139,7 @@ chance_cook_o_matic = [33, 311]
 chance_gauntlet = [33, 311]
 cooked = "bass"
 cooked_message = "You cook a bass."
+burnt = "burnt_tuna"
 burnt_message = "You accidentally burn the bass."
 
 [.raw_bear_meat]
@@ -161,6 +163,7 @@ chance_range = [180, 254]
 chance_cook_o_matic = [180, 254]
 chance_gauntlet = [180, 254]
 cooked = "roast_beast_meat"
+burnt = "burnt_beast_meat"
 
 [.raw_beef]
 level = 1
@@ -183,6 +186,7 @@ chance_range = [155, 254]
 chance_cook_o_matic = [155, 254]
 chance_gauntlet = [155, 254]
 cooked = "roast_bird_meat"
+burnt = "burnt_bird_meat"
 
 [.raw_cave_eel]
 level = 38
@@ -193,6 +197,7 @@ chance_cook_o_matic = [38, 331]
 chance_gauntlet = [38, 331]
 cooked = "cave_eel"
 cooked_message = "You successfully cook a slimy cave eel."
+burnt = "burnt_cave_eel"
 burnt_message = "You accidentally burn the cave eel."
 
 [.raw_cavefish]
@@ -203,6 +208,7 @@ chance_range = [4, 229]
 chance_cook_o_matic = [4, 229]
 chance_gauntlet = [12, 268]
 cooked = "cavefish"
+burnt = "burnt_cavefish"
 
 [.raw_chicken]
 level = 1
@@ -212,6 +218,7 @@ chance_range = [128, 511]
 chance_cook_o_matic = [138, 531]
 chance_gauntlet = [128, 511]
 cooked_message = "You cook some chicken."
+burnt = "burnt_chicken"
 burnt_message = "You accidentally burn the chicken."
 
 [.raw_cod]
@@ -235,6 +242,7 @@ chance_cook_o_matic = [128, 511]
 chance_gauntlet = [128, 511]
 cooked = "crayfish"
 cooked_message = "You successfully cook some crayfish."
+burnt = "burnt_crayfish"
 burnt_message = "You accidentally burn the crayfish."
 
 [.raw_fish_pie]
@@ -258,6 +266,7 @@ chance_range = [57, 376]
 chance_cook_o_matic = [57, 376]
 chance_gauntlet = [57, 376]
 cooked_message = "You manage to cook a fishcake."
+burnt = "burnt_fishcake"
 burnt_message = "You accidentally burn the uncooked cake."
 
 [.raw_garden_pie]
@@ -294,6 +303,7 @@ chance_cook_o_matic = [118, 491]
 chance_gauntlet = [108, 471]
 cooked = "herring"
 cooked_message = "You successfully cook a herring."
+burnt = "burnt_herring"
 burnt_message = "You accidentally burn the herring."
 
 [.raw_jubbly]
@@ -304,6 +314,8 @@ chance_fire = [50, 259]
 chance_range = [50, 259]
 chance_cook_o_matic = [50, 259]
 chance_gauntlet = [50, 259]
+cooked = "cooked_jubbly"
+burnt = "burnt_jubbly"
 
 [.raw_karambwan]
 level = 30
@@ -313,7 +325,9 @@ chance_range = [70, 254]
 chance_cook_o_matic = [70, 254]
 chance_gauntlet = [70, 254]
 cooked_message = "You cook the karambwan. It looks delicious."
+cooked = "cooked_karambwan"
 burnt_message = "You accidentally burn the karambwan."
+burnt = "burnt_karambwan"
 
 [.raw_lava_eel]
 level = 53
@@ -334,6 +348,7 @@ chance_cook_o_matic = [38, 331]
 chance_gauntlet = [55, 367]
 cooked = "lobster"
 cooked_message = "You roast a lobster."
+burnt = "burnt_lobster"
 burnt_message = "You accidentally burn the lobster."
 
 [.raw_mackerel]
@@ -357,6 +372,7 @@ chance_cook_o_matic = [1, 221]
 chance_gauntlet = [1, 221]
 cooked = "manta_ray"
 cooked_message = "You successfully cook a manta ray."
+burnt = "burnt_manta_ray"
 burnt_message = "You accidentally burn the manta ray."
 
 [.raw_monkfish]
@@ -368,6 +384,7 @@ chance_cook_o_matic = [13, 279]
 chance_gauntlet = [24, 289]
 cooked = "monkfish"
 cooked_message = "You successfully cook a monkfish."
+burnt = "burnt_monkfish"
 burnt_message = "You accidentally burn the monkfish."
 
 [.raw_mud_pie]
@@ -402,6 +419,7 @@ chance_cook_o_matic = [88, 431]
 chance_gauntlet = [78, 411]
 cooked = "pike"
 cooked_message = "You successfully cook a pike."
+burnt = "burnt_trout"
 burnt_message = "You accidentally burn the pike."
 
 [.raw_potato]
@@ -413,6 +431,7 @@ chance_cook_o_matic = [108, 471]
 chance_gauntlet = [108, 471]
 cooked = "baked_potato"
 cooked_message = "You successfully bake a potato."
+burnt = "burnt_potato"
 burnt_message = "You accidentally burn the potato."
 
 [.raw_rabbit]
@@ -422,7 +441,9 @@ chance_fire = [128, 511]
 chance_range = [128, 511]
 chance_cook_o_matic = [128, 511]
 chance_gauntlet = [128, 511]
+cooked = "rabbit"
 cooked_message = "You cook the rabbit."
+burnt = "burnt_rabbit"
 burnt_message = "You accidentally burn the rabbit."
 
 [.raw_rainbow_fish]
@@ -434,6 +455,7 @@ chance_cook_o_matic = [56, 369]
 chance_gauntlet = [56, 369]
 cooked = "rainbow_fish"
 cooked_message = "You manage to cook a rainbow fish."
+burnt = "burnt_rainbow_fish"
 burnt_message = "You accidentally burn the rainbow fish."
 
 [.raw_rat_meat]
@@ -457,6 +479,7 @@ chance_cook_o_matic = [1, 179]
 chance_gauntlet = [1, 268]
 cooked = "rocktail"
 cooked_message = "You successfully cook a rocktail."
+burnt = "burnt_rocktail"
 burnt_message = "You accidentally burn the rocktail."
 
 [.raw_salmon]
@@ -468,6 +491,7 @@ chance_cook_o_matic = [78, 401]
 chance_gauntlet = [68, 391]
 cooked = "salmon"
 cooked_message = "You successfully cook a salmon."
+burnt = "burnt_trout"
 burnt_message = "You accidentally burn the salmon."
 
 [.raw_sardine]
@@ -479,6 +503,7 @@ chance_cook_o_matic = [128, 511]
 chance_gauntlet = [118, 491]
 cooked = "sardine"
 cooked_message = "You successfully cook a sardine."
+burnt = "burnt_sardine"
 burnt_message = "You accidentally burn the sardine."
 
 [.raw_sea_turtle]
@@ -490,6 +515,7 @@ chance_cook_o_matic = [1, 221]
 chance_gauntlet = [1, 221]
 cooked = "sea_turtle"
 cooked_message = "You successfully cook a sea turtle."
+burnt = "burnt_sea_turtle"
 burnt_message = "You accidentally burn the sea turtle."
 
 [.raw_shark]
@@ -501,6 +527,7 @@ chance_cook_o_matic = [1, 231]
 chance_gauntlet = [15, 269]
 cooked = "shark"
 cooked_message = "You successfully cook a shark."
+burnt = "burnt_shark"
 burnt_message = "You accidentally burn the shark."
 
 [.raw_shrimps]
@@ -537,6 +564,7 @@ chance_cook_o_matic = [30, 309]
 chance_gauntlet = [30, 309]
 cooked = "swordfish"
 cooked_message = "You successfully cook a swordfish."
+burnt = "burnt_swordfish"
 burnt_message = "You accidentally burn the swordfish."
 
 [.raw_trout]
@@ -548,6 +576,7 @@ chance_cook_o_matic = [98, 451]
 chance_gauntlet = [88, 431]
 cooked = "trout"
 cooked_message = "You successfully cook a trout."
+burnt = "burnt_trout"
 burnt_message = "You accidentally burn the trout."
 
 [.raw_tuna]
@@ -559,6 +588,7 @@ chance_cook_o_matic = [58, 371]
 chance_gauntlet = [58, 371]
 cooked = "tuna"
 cooked_message = "You manage to cook a tuna."
+burnt = "burnt_tuna"
 burnt_message = "You accidentally burn the tuna."
 
 [.raw_ugthanki_meat]
@@ -569,6 +599,7 @@ chance_range = [30, 252]
 chance_cook_o_matic = [30, 252]
 chance_gauntlet = [30, 252]
 cooked = "ugthanki_meat"
+burnt = "burnt_meat"
 
 [.raw_wild_pie]
 level = 85

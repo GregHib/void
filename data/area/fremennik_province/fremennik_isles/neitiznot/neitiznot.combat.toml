@@ -11,3 +11,32 @@ range = 1
 anim = "yak_attack"
 target_sound = "yak_attack"
 target_hit = { offense = "crush", max = 20 }
+
+[ice_troll]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "troll_defend"
+defend_sound = "ice_troll_defend"
+death_anim = "troll_death"
+death_sound = "troll_death"
+
+[ice_troll.melee]
+range = 1
+anim = "troll_attack"
+target_sound = "ice_troll_attack"
+target_hit = { offense = "crush", max = 170 }
+
+[ice_troll_female]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "troll_defend"
+defend_sound = "ice_troll_defend"
+death_anim = "troll_death"
+death_sound = "troll_death"
+
+[ice_troll_female.melee]
+range = 8
+anim = "thrower_troll_attack"
+sound = { id = "thrower_troll_attack", radius = 10 }
+projectile = "troll_rock"
+target_hit = { offense = "range", max = 170 }
