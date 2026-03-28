@@ -1,0 +1,13 @@
+[tortured_soul]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "human_defend"
+defend_sound = "ghost_defend"
+death_anim = "human_death"
+death_sound = "ghost_death"
+
+[tortured_soul.melee]
+range = 1
+anim = "unarmed_punch"
+target_sound = "ghost_attack2"
+target_hit = { offense = "crush", max = 70 }

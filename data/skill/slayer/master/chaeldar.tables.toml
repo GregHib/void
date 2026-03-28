@@ -73,10 +73,10 @@ amount = [70, 130]
 weight = 12
 tip = "Like other giants, Fire giants often wield large weapons. Learn to recognise what kind of weapon it is and act accordingly. The smoke dungeon to the west of Pollnivneach has a population of these large and irritating creatures, so go smite them."
 
-#[.fever_spiders]
-#amount = [70, 130]
-#weight = 7
-#tip = "Fever spiders are giant spiders that carry the deadly spider fever. If you don't want to catch it, I suggest you wear Slayer gloves to fight them. I've heard they cause problems in breweries, if you want to find some."
+[.fever_spiders]
+amount = [70, 130]
+weight = 7
+tip = "Fever spiders are giant spiders that carry the deadly spider fever. If you don't want to catch it, I suggest you wear Slayer gloves to fight them. I've heard they cause problems in breweries, if you want to find some."
 
 [.gargoyles]
 amount = [70, 130]

@@ -73,10 +73,10 @@ amount = [40, 90]
 weight = 7
 tip = "Like other giants, Fire Giants have little to no magical ability, and they're particularly weak to water spells."
 
-#[.fever_spiders]
-#amount = [30, 90]
-#weight = 7
-#tip = "Fever Spiders are giant spiders that carry the deadly Spider Fever. If you don't want to catch it I suggest you wear Slayer Gloves to fight them."
+[.fever_spiders]
+amount = [30, 90]
+weight = 7
+tip = "Fever Spiders are giant spiders that carry the deadly Spider Fever. If you don't want to catch it I suggest you wear Slayer Gloves to fight them."
 
 [.gargoyles]
 amount = [40, 90]

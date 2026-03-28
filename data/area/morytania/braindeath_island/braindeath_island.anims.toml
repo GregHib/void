@@ -1,0 +1,17 @@
+[spider_large_defend]
+id = 5320
+
+[spider_large_attack]
+id = 5319
+
+[spider_large_death]
+id = 5321
+
+[zombie_pirate_defend]
+id = 5653
+
+[zombie_pirate_attack]
+id = 5651
+
+[zombie_pirate_death]
+id = 5654

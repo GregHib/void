@@ -2,14 +2,14 @@
 attack_speed = 4
 retreat_range = 8
 defend_anim = "kalphite_defend"
-defend_sound = "kalphite_defend"
+defend_sound = "insect_defend"
 death_anim = "kalphite_death"
-death_sound = "kalphite_death"
+death_sound = "insect_death"
 
 [kalphite_worker.melee]
 range = 1
 anim = "kalphite_attack"
-target_sound = "kalphite_attack"
+target_sound = "insect_attack"
 target_hit = { offense = "crush", max = 30 }
 
 [kalphite_guardian]

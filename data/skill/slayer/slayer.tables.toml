@@ -151,6 +151,7 @@ combat_level = 15
 
 [.fever_spiders]
 npc = "fever_spider"
+quest = "rum_deal"
 
 [.frost_dragons]
 npc = "frost_dragon"

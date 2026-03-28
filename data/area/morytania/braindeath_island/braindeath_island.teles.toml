@@ -1,0 +1,69 @@
+[braindeath_island_wooden_stair_down]
+option = "Climb-down"
+tile = { x = 2152, y = 5109, level = 1 }
+to = { x = 2150, y = 5109 }
+
+[braindeath_island_wooden_stair_up]
+option = "Climb-up"
+tile = { x = 2151, y = 5109 }
+to = { x = 2153, y = 5108, level = 1 }
+
+[braindeath_island_wooden_stair_down]
+option = "Climb-down"
+tile = { x = 2163, y = 5088, level = 1 }
+to = { x = 2166, y = 5088 }
+
+[braindeath_island_wooden_stair_up]
+option = "Climb-up"
+tile = { x = 2163, y = 5088 }
+to = { x = 2163, y = 5089, level = 1 }
+
+[braindeath_island_wooden_stair_down]
+option = "Climb-down"
+tile = { x = 2149, y = 5088, level = 1 }
+to = { x = 2152, y = 5088 }
+
+[braindeath_island_wooden_stair_up]
+option = "Climb-up"
+tile = { x = 2149, y = 5088 }
+to = { x = 2149, y = 5089, level = 1 }
+
+[braindeath_island_wooden_stair_down]
+option = "Climb-down"
+tile = { x = 2137, y = 5088, level = 1 }
+to = { x = 2140, y = 5088 }
+
+[braindeath_island_wooden_stair_up]
+option = "Climb-up"
+tile = { x = 2137, y = 5088 }
+to = { x = 2137, y = 5089, level = 1 }
+
+[braindeath_island_wooden_stair_down]
+option = "Climb-down"
+tile = { x = 2129, y = 5095, level = 1 }
+to = { x = 2129, y = 5093 }
+
+[braindeath_island_wooden_stair_up]
+option = "Climb-up"
+tile = { x = 2129, y = 5094 }
+to = { x = 2130, y = 5096, level = 1 }
+
+[braindeath_island_ladder_up]
+option = "Climb-up"
+tile = { x = 2163, y = 5092, level = 1 }
+to = { x = 2162, y = 5092, level = 2 }
+
+[braindeath_island_ladder_down]
+option = "Climb-down"
+tile = { x = 2163, y = 5092, level = 2 }
+to = { x = 2162, y = 5092, level = 1 }
+
+[braindeath_island_ladder_up]
+option = "Climb-up"
+tile = { x = 2139, y = 5105 }
+to = { x = 2138, y = 5105, level = 1 }
+
+[braindeath_island_ladder_down]
+option = "Climb-down"
+tile = { x = 2139, y = 5105, level = 1 }
+to = { x = 2138, y = 5105 }

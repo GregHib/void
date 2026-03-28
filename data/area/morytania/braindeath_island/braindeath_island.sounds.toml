@@ -1,0 +1,8 @@
+[zombie_pirate_defend]
+id = 926
+
+[zombie_pirate_attack]
+id = 924
+
+[zombie_pirate_death]
+id = 925
