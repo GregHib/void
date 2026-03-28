@@ -8,13 +8,13 @@ id = 1557
 id = 1558
 
 [leech_attack]
-id = 2070
+id = 1273
 
 [leech_defend]
-id = 2072
+id = 1271
 
 [leech_death]
-id = 2073
+id = 1272
 
 [giant_crypt_rat_attack]
 id = 4933
