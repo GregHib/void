@@ -1,0 +1,60 @@
+[desert_dungeon_boss]
+row_id = "npc"
+region = "int"
+player_spawn = "tile"
+npc_spawn = "tile"
+exit = "tile"
+type = "string"
+
+[.monstrous_cave_crawler]
+type = "cave_crawler"
+region = 12356
+player_spawn = { x = 3123, y = 4381 }
+npc_spawn = { x = 3121, y = 4384 }
+exit = { x = 3319, y = 4370 }
+
+[.turoth_mightiest]
+type = "turoth"
+region = 12355
+player_spawn = { x = 3089, y = 4318 }
+npc_spawn = { x = 3088, y = 4324 }
+exit = { x = 3275, y = 4335 }
+
+[.basilisk_boss]
+type = "basilisk"
+region = 12355
+player_spawn = { x = 3123, y = 4333 }
+npc_spawn = { x = 3115, y = 4322 }
+exit = { x = 3315, y = 4335 }
+
+[.kurask_overlord]
+type = "kurask"
+region = 12356
+player_spawn = { x = 3082, y = 4380 }
+npc_spawn = { x = 3084, y = 4381 }
+exit = { x = 3277, y = 4371 }
+
+[dessert_dungeon_barriers]
+tile = "tile"
+inside = "tile"
+boss = "npc"
+
+[.turoth]
+tile = { x = 3274, y = 4334 }
+inside = { x = 3082, y = 4334 }
+boss = "turoth_mightiest"
+
+[.basilisk]
+tile = { x = 3314, y = 4334 }
+inside = { x = 3122, y = 4334 }
+boss = "basilisk_boss"
+
+[.cave_crawler]
+tile = { x = 3318, y = 4371 }
+inside = { x = 3126, y = 4371 }
+boss = "monstrous_cave_crawler"
+
+[.kurask]
+tile = { x = 3276, y = 4372 }
+inside = { x = 3084, y = 4372 }
+boss = "kurask_overlord"

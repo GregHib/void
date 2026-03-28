@@ -6,6 +6,7 @@ id = 1662
 
 [basilisk_boss_travel]
 id = 1663
+delay = 45
 
 [basilisk_boss_impact]
 id = 1664
@@ -15,6 +16,7 @@ id = 1653
 
 [monstrous_cave_crawler_travel]
 id = 1654
+delay = 30
 
 [monstrous_cave_crawler_impact]
 id = 1655

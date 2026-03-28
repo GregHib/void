@@ -10,7 +10,7 @@ death_sound = "cave_crawler_death"
 range = 1
 anim = "monstrous_cave_crawler_attack"
 target_sound = "cave_crawler_attack"
-target_hit = { offense = "stab", max = 240 }
+target_hit = { offense = "stab", defence = "range", max = 240 }
 
 [monstrous_cave_crawler.poison]
 range = 8
@@ -48,6 +48,7 @@ target_hit = { offense = "slash", max = 300 }
 clone = "basilisk.piercing_gaze"
 
 [basilisk_boss.gaze]
+range = 8
 condition = "mirror_shield"
 anim = "basilisk_boss_attack"
 gfx = "basilisk_boss_cast"

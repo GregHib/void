@@ -11,3 +11,22 @@ tags = ["teleport"]
 [smoke_dungeon]
 x = [3200, 3327]
 y = [9344, 9407]
+
+[pollnivneach_dungeon_boss]
+x = [3072, 3135]
+y = [4288, 4415]
+tags = ["multi_combat"]
+
+[mightiest_turoth_boss]
+x = [3086, 3096]
+y = [4318, 4326]
+
+[pollnivneach_dungeon_lower]
+x = [3264, 3327]
+y = [4288, 4415]
+tags = ["multi_combat"]
+
+[pollnivneach_dungeon_upper]
+x = [3328, 3391]
+y = [9344, 9471]
+tags = ["multi_combat"]
