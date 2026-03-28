@@ -7,3 +7,23 @@ to = { x = 3206, y = 9379 }
 option = "Climb-up"
 tile = { x = 3205, y = 9379 }
 to = { x = 3310, y = 2961 }
+
+[pollnivneach_bucket_rope]
+option = "Climb-up"
+tile = { x = 3358, y = 9352 }
+to = { x = 3359, y = 2970 }
+
+[pollnivneach_well]
+option = "Climb-down"
+tile = { x = 3358, y = 2971 }
+to = { x = 3358, y = 9354 }
+
+[dark_stairs]
+option = "Enter"
+tile = { x = 3337, y = 9350 }
+to = { x = 3318, y = 9355 }
+
+[smoke_dungeon_dark_hole]
+option = "Enter"
+tile = { x = 3318, y = 9356 }
+to = { x = 3338, y = 9350 }

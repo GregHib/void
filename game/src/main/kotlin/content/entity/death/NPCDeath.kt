@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.Death
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -50,11 +51,15 @@ class NPCDeath(
     val logger = InlineLogger()
 
     init {
-        npcDeath {
+        npcLevelChanged(Skill.Constitution) { _, _, to ->
+            if (to > 0 || queue.contains("death") || !Death.canDie(this)) {
+                return@npcLevelChanged
+            }
             mode = PauseMode
             dead = true
             steps.clear()
             val npc = this
+            Death.killed(npc)
             strongQueue(name = "death", 1) {
                 val killer = killer
                 val tile = if (transformId == "wall_beast") tile.addY(-1) else tile

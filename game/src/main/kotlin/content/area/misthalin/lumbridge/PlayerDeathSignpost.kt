@@ -11,6 +11,7 @@ class PlayerDeathSignpost : Script {
         playerDeath {
             playerDeathsToday += 1
         }
+
         objectOperate("Read", "lumbridge_signpost_death") {
             if (playerDeathsToday > 0) {
                 statement("So far today, $playerDeathsToday unlucky adventurers have died on ${Settings["server.name"]} and been sent to their respawn location. Be careful out there.")

@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.data.definition
 
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.type.Tile
 
 sealed interface ColumnReader<T : Any> {
     val type: ColumnType<T>
@@ -18,6 +19,24 @@ sealed interface ColumnReader<T : Any> {
         override val type = ColumnType.ColumnInt
         override fun list() = mutableListOf<Int>()
         override fun read(reader: ConfigReader) = reader.int()
+    }
+
+    object ReaderTile : ColumnReader<Int> {
+        override val type = ColumnType.ColumnInt
+        override fun list() = mutableListOf<Int>()
+        override fun read(reader: ConfigReader): Int {
+            var x = 0
+            var y = 0
+            var level = 0
+            while (reader.nextEntry()) {
+                when (reader.key()) {
+                    "x" -> x = reader.int()
+                    "y" -> y = reader.int()
+                    "level" -> level = reader.int()
+                }
+            }
+            return Tile.id(x, y, level)
+        }
     }
 
     object ReaderIntRange : ColumnReader<IntRange> {
@@ -90,6 +109,7 @@ sealed interface ColumnReader<T : Any> {
             "boolean" -> ReaderBoolean
             "int" -> ReaderInt
             "range" -> ReaderIntRange
+            "tile" -> ReaderTile
             "string" -> ReaderString
             "skill" -> ReaderEntity(Skill.map)
             "npc" -> ReaderEntity(NPCDefinitions.ids)

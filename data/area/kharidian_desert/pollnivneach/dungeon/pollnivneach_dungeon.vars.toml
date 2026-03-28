@@ -1,0 +1,15 @@
+[killed_monstrous_cave_crawler]
+format = "boolean"
+persist = true
+
+[killed_turoth_mightiest]
+format = "boolean"
+persist = true
+
+[killed_basilisk_boss]
+format = "boolean"
+persist = true
+
+[killed_kurask_overlord]
+format = "boolean"
+persist = true

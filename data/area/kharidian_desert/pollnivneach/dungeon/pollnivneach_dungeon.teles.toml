@@ -1,0 +1,59 @@
+[pollnivneach_stairs_down]
+option = "Climb-down"
+tile = { x = 3377, y = 9367 }
+to = { x = 3322, y = 4340 }
+
+[pollnivneach_stairs_up]
+option = "Climb-up"
+tile = { x = 3318, y = 4339 }
+to = { x = 3376, y = 9368 }
+
+[pollnivneach_stairs_down]
+option = "Climb-down"
+tile = { x = 3338, y = 9368 }
+to = { x = 3270, y = 4340 }
+
+[pollnivneach_stairs_up]
+option = "Climb-up"
+tile = { x = 3271, y = 4339 }
+to = { x = 3342, y = 9369 }
+
+[pollnivneach_stairs_down]
+option = "Climb-down"
+tile = { x = 3340, y = 9426 }
+to = { x = 3276, y = 4368 }
+
+[pollnivneach_stairs_up]
+option = "Climb-up"
+tile = { x = 3277, y = 4367 }
+to = { x = 3344, y = 9427 }
+
+[pollnivneach_stairs_down]
+option = "Climb-down"
+tile = { x = 3374, y = 9426 }
+to = { x = 3321, y = 4365 }
+
+[pollnivneach_stairs_up]
+option = "Climb-up"
+tile = { x = 3317, y = 4364 }
+to = { x = 3373, y = 9427 }
+
+[pollnivneach_markings]
+option = "Enter"
+tile = { x = 3294, y = 4293 }
+to = { x = 2741, y = 10008 }
+
+[pollnivneach_markings]
+option = "Enter"
+tile = { x = 3325, y = 4391 }
+to = { x = 2800, y = 9998 }
+
+[pollnivneach_markings]
+option = "Enter"
+tile = { x = 3295, y = 4407 }
+to = { x = 2703, y = 9995 }
+
+[pollnivneach_markings]
+option = "Enter"
+tile = { x = 3288, y = 4293 }
+to = { x = 2714, y = 10012 }

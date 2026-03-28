@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.config.TableDefinition
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.type.Tile
 import kotlin.collections.set
 import kotlin.math.exp
 
@@ -63,6 +64,13 @@ object Tables {
         val id = getOrNull(path, ColumnType.ColumnEntity) ?: return null
         val item = ItemDefinitions.getOrNull(id) ?: return null
         return item.stringId
+    }
+
+    fun tile(path: String): Tile = Tile(get(path, ColumnType.ColumnInt))
+
+    fun tileOrNull(path: String): Tile? {
+        val id = getOrNull(path, ColumnType.ColumnInt) ?: return null
+        return Tile(id)
     }
 
     fun obj(path: String): String = ObjectDefinitions.get(get(path, ColumnType.ColumnEntity)).stringId

@@ -1,0 +1,17 @@
+[monstrous_cave_crawler_attack]
+id = 9414
+
+[monstrous_cave_crawler_defend]
+id = 9416
+
+[monstrous_cave_crawler_death]
+id = 9418
+
+[monstrous_cave_crawler_fling]
+id = 9419
+
+[basilisk_boss_attack]
+id = 9533
+
+[mightest_turoth_attack]
+id = 9413

@@ -6,6 +6,7 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.data.config.TableDefinition
+import world.gregs.voidps.type.Tile
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -32,22 +33,23 @@ class TablesTest {
         assertNotNull(definition)
         assertColumns(
             listOf(
-                Field("int_field", ColumnType.ColumnInt, 0), // int_field
-                Field("string_field", ColumnType.ColumnString, ""), // string_field
-                Field("item_field", ColumnType.ColumnEntity, -1), // item_field
-                Field("obj_field", ColumnType.ColumnEntity, -1), // obj_field
-                Field("npc_field", ColumnType.ColumnEntity, -1), // npc_field
-                Field("int_list", ColumnType.ColumnList(ColumnType.ColumnInt), emptyList<Int>()), // int_list
-                Field("str_list", ColumnType.ColumnList(ColumnType.ColumnString), emptyList<String>()), // str_list
-                Field("item_list", ColumnType.ColumnList(ColumnType.ColumnEntity), emptyList<Int>()), // item_list
-                Field("obj_list", ColumnType.ColumnList(ColumnType.ColumnEntity), emptyList<Int>()), // obj_list
-                Field("npc_list", ColumnType.ColumnList(ColumnType.ColumnEntity), emptyList<Int>()), // npc_list
-                Field("int_int", ColumnType.ColumnPair(ColumnType.ColumnInt, ColumnType.ColumnInt), Pair(0, 0)), // int_int
-                Field("str_int", ColumnType.ColumnPair(ColumnType.ColumnString, ColumnType.ColumnInt), Pair("", 0)), // str_int
-                Field("int_str", ColumnType.ColumnPair(ColumnType.ColumnInt, ColumnType.ColumnString), Pair(0, "")), // int_str
-                Field("int_int_list", ColumnType.ColumnList(ColumnType.ColumnPair(ColumnType.ColumnInt, ColumnType.ColumnInt)), emptyList<Pair<Int, Int>>()), // int_int_list
-                Field("str_int_list", ColumnType.ColumnList(ColumnType.ColumnPair(ColumnType.ColumnString, ColumnType.ColumnInt)), emptyList<Pair<String, Int>>()), // str_int_list
-                Field("int_str_list", ColumnType.ColumnList(ColumnType.ColumnPair(ColumnType.ColumnInt, ColumnType.ColumnString)), emptyList<Pair<Int, String>>()), // int_str_list
+                Field("int_field", ColumnType.ColumnInt, 0),
+                Field("string_field", ColumnType.ColumnString, ""),
+                Field("item_field", ColumnType.ColumnEntity, -1),
+                Field("obj_field", ColumnType.ColumnEntity, -1),
+                Field("npc_field", ColumnType.ColumnEntity, -1),
+                Field("tile_field", ColumnType.ColumnInt, 0),
+                Field("int_list", ColumnType.ColumnList(ColumnType.ColumnInt), emptyList<Int>()),
+                Field("str_list", ColumnType.ColumnList(ColumnType.ColumnString), emptyList<String>()),
+                Field("item_list", ColumnType.ColumnList(ColumnType.ColumnEntity), emptyList<Int>()),
+                Field("obj_list", ColumnType.ColumnList(ColumnType.ColumnEntity), emptyList<Int>()),
+                Field("npc_list", ColumnType.ColumnList(ColumnType.ColumnEntity), emptyList<Int>()),
+                Field("int_int", ColumnType.ColumnPair(ColumnType.ColumnInt, ColumnType.ColumnInt), Pair(0, 0)),
+                Field("str_int", ColumnType.ColumnPair(ColumnType.ColumnString, ColumnType.ColumnInt), Pair("", 0)),
+                Field("int_str", ColumnType.ColumnPair(ColumnType.ColumnInt, ColumnType.ColumnString), Pair(0, "")),
+                Field("int_int_list", ColumnType.ColumnList(ColumnType.ColumnPair(ColumnType.ColumnInt, ColumnType.ColumnInt)), emptyList<Pair<Int, Int>>()),
+                Field("str_int_list", ColumnType.ColumnList(ColumnType.ColumnPair(ColumnType.ColumnString, ColumnType.ColumnInt)), emptyList<Pair<String, Int>>()),
+                Field("int_str_list", ColumnType.ColumnList(ColumnType.ColumnPair(ColumnType.ColumnInt, ColumnType.ColumnString)), emptyList<Pair<Int, String>>()),
             ), definition
         )
         assertContentEquals(intArrayOf(0, 1), definition.rows)
@@ -58,9 +60,10 @@ class TablesTest {
         val expected = arrayOf(
             1,
             "text",
-            0,
-            0,
-            0,
+            0, // item_field
+            0, // obj_field
+            0, // npc_field
+            Tile.id(1, 2, 3), // tile_field
             listOf(1, 2, 3), // int list
             listOf("one", "two"), // str list
             listOf(0), // item list
@@ -83,6 +86,8 @@ class TablesTest {
         assertEquals("text", Tables.string("header.row.string_field"))
         assertEquals("item_id", Tables.item("header.row.item_field"))
         assertEquals("obj_id", Tables.obj("header.row.obj_field"))
+        assertEquals("npc_id", Tables.npc("header.row.npc_field"))
+        assertEquals(Tile(1, 2, 3), Tables.tile("header.row.tile_field"))
         assertEquals(listOf(1, 2, 3), Tables.intList("header.row.int_list"))
         assertEquals(listOf("one", "two"), Tables.stringList("header.row.str_list"))
         assertEquals(listOf("item_id"), Tables.itemList("header.row.item_list"))
@@ -97,6 +102,9 @@ class TablesTest {
         assertEquals(0, Tables.int("header.row_two.int_field"))
         assertEquals("", Tables.string("header.row_two.string_field"))
         assertEquals("", Tables.item("header.row_two.item_field"))
+        assertEquals("", Tables.obj("header.row_two.obj_field"))
+        assertEquals("", Tables.npc("header.row_two.npc_field"))
+        assertEquals(Tile.EMPTY, Tables.tile("header.row_two.tile_field"))
         assertEquals(emptyList(), Tables.intList("header.row_two.int_list"))
         assertEquals(emptyList(), Tables.stringList("header.row_two.str_list"))
         assertEquals(emptyList(), Tables.itemList("header.row_two.item_list"))

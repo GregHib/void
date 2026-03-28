@@ -36,6 +36,7 @@ import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.data.definition.RenderEmoteDefinitions
 import world.gregs.voidps.engine.data.definition.SoundDefinitions
 import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
@@ -143,6 +144,7 @@ class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
                 SettingsReload.now()
             }
             "bots" -> get<BotManager>().load(files)
+            "tables", "rows", "dbs" -> Tables.load(files.list(Settings["definitions.tables"]))
         }
     }
 

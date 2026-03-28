@@ -1,0 +1,28 @@
+[pass_barrier_red]
+id = 1659
+
+[basilisk_boss_cast]
+id = 1662
+
+[basilisk_boss_travel]
+id = 1663
+delay = 45
+
+[basilisk_boss_impact]
+id = 1664
+
+[monstrous_cave_crawler_cast]
+id = 1653
+
+[monstrous_cave_crawler_travel]
+id = 1654
+delay = 30
+
+[monstrous_cave_crawler_impact]
+id = 1655
+
+[mightiest_turoth_spawn]
+id = 1638
+
+[turoth_minion_spawn]
+id = 1639

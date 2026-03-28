@@ -4,7 +4,7 @@ id = 13214
 [iwazaru_pollninveach_dungeon]
 id = 13225
 
-[basilisk_pollninveach_dungeon]
+[basilisk_pollninveach]
 id = 1617
 hitpoints = 750
 att = 30
@@ -20,17 +20,32 @@ examine = "The eyes of evil."
 [catolax_pollninveach_dungeon]
 id = 7783
 
-[aberrant_spectre_pollninveach_dungeon]
+[aberrant_spectre_pollninveach]
 id = 7801
+str = 70
+def = 90
+mage = 115
+combat_def = "aberrant_spectre"
+hunt_mode = "aggressive"
+wander_range = 4
+respawn_delay = 30
+slayer_xp = 110.0
+slayer_level = 60
+drop_table = "aberrant_spectre"
+categories = ["aberrant_spectre"]
+examine = "A very smelly ghost."
 
-[aberrant_spectre_pollninveach_dungeon_2]
+[aberrant_spectre_pollninveach_2]
 id = 7802
+clone = "aberrant_spectre_pollninveach"
 
-[aberrant_spectre_pollninveach_dungeon_3]
+[aberrant_spectre_pollninveach_3]
 id = 7803
+clone = "aberrant_spectre_pollninveach"
 
-[aberrant_spectre_pollninveach_dungeon_4]
+[aberrant_spectre_pollninveach_4]
 id = 7804
+clone = "aberrant_spectre_pollninveach"
 
 [catolax_pollninveach_dungeon_2]
 id = 7782
@@ -40,3 +55,92 @@ id = 13215
 
 [iwazaru_pollninveach_dungeon_2]
 id = 13226
+
+[monstrous_cave_crawler]
+id = 7798
+hitpoints = 2650
+slayer_level = 10
+slayer_xp = 1000.0
+# Made up stats
+range = 200
+categories = ["cave_crawler"]
+hunt_mode = "aggressive"
+combat_def = "monstrous_cave_crawler"
+examine = "It oozes venom from every pore."
+
+[kurask_overlord]
+id = 7797
+hitpoints = 2500
+slayer_level = 70
+slayer_xp = 1000.0
+# Made up stats
+att = 220
+str = 220
+def = 200
+categories = ["kurask"]
+hunt_mode = "aggressive"
+combat_def = "kurask"
+max_hit_crush = 300
+examine = "A bulky Kurask."
+
+[kurask_minion]
+id = 7805
+hitpoints = 950
+slayer_level = 70
+slayer_xp = 95.0
+# Made up stats
+att = 150
+str = 150
+def = 100
+categories = ["kurask"]
+hunt_mode = "aggressive"
+combat_def = "kurask_minion"
+drop_table = "bones"
+examine = "Large, heavy, with sharp things attached to its head."
+
+[basilisk_boss]
+id = 7799
+hitpoints = 2700
+slayer_level = 40
+slayer_xp = 1000.0
+# Made up stats
+att = 200
+str = 200
+def = 175
+magic = 210
+height = 10
+categories = ["basilisk"]
+hunt_mode = "aggressive"
+combat_def = "basilisk_boss"
+drop_table = "bones"
+examine = "It radiates an unhealthy aura."
+
+[turoth_mightiest]
+id = 7800
+hitpoints = 1750
+slayer_level = 55
+slayer_xp = 391.0
+# Made up stats
+att = 160
+str = 180
+def = 150
+categories = ["turoth"]
+immune_poison = true
+hunt_mode = "aggressive"
+combat_def = "mightiest_turoth"
+examine = "Something tells you it has many minions"
+
+[turoth_swarming]
+id = 1611
+hitpoints = 100
+slayer_level = 55
+slayer_xp = 10.0
+# Made up stats
+att = 100
+str = 100
+def = 80
+drop_table = "bones"
+hunt_mode = "aggressive"
+combat_def = "turoth_small"
+max_hit_stab = 110
+examine = "A vicious bite on a feeble body."

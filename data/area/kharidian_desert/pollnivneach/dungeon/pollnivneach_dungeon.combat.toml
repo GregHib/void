@@ -1,0 +1,68 @@
+[monstrous_cave_crawler]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "monstrous_cave_crawler_defend"
+defend_sound = "cave_crawler_defend"
+death_anim = "monstrous_cave_crawler_death"
+death_sound = "cave_crawler_death"
+
+[monstrous_cave_crawler.melee]
+range = 1
+anim = "monstrous_cave_crawler_attack"
+target_sound = "cave_crawler_attack"
+target_hit = { offense = "stab", defence = "range", max = 240 }
+
+[monstrous_cave_crawler.poison]
+range = 8
+anim = "monstrous_cave_crawler_fling"
+gfx = "monstrous_cave_crawler_cast"
+target_sound = "cave_crawler_attack"
+projectile = "monstrous_cave_crawler_travel"
+impact_gfx = "monstrous_cave_crawler_impact"
+target_hit = { offense = "range", max = 240 }
+impact_poison = 80
+
+[kurask_minion]
+attack_speed = 6
+clone = "kurask"
+
+[kurask_minion.attack]
+clone = "kurask.attack"
+target_hit = { offense = "crush", max = 110 }
+
+[basilisk_boss]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "basilisk_defend"
+defend_sound = "basilisk_defend"
+death_anim = "basilisk_death"
+death_sound = "basilisk_death"
+
+[basilisk_boss.attack]
+condition = "mirror_shield"
+anim = "basilisk_attack"
+target_sound = "basilisk_attack"
+target_hit = { offense = "slash", max = 300 }
+
+[basilisk_boss.piercing_gaze]
+clone = "basilisk.piercing_gaze"
+
+[basilisk_boss.gaze]
+range = 8
+condition = "mirror_shield"
+anim = "basilisk_boss_attack"
+gfx = "basilisk_boss_cast"
+projectile = "basilisk_boss_travel"
+target_hit = { offense = "magic", max = 300 }
+impact_gfx = "basilisk_boss_impact"
+impact_drains = [
+    { skill = "random", min = 1, max = 3 },
+]
+
+[mightiest_turoth]
+clone = "turoth_large"
+
+[mightiest_turoth.attack]
+anim = "mightest_turoth_attack"
+target_sound = "turoth_attack"
+target_hit = { offense = "stab", max = 165 }
