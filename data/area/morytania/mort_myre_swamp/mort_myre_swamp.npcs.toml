@@ -165,5 +165,15 @@ id = 1568
 
 [vampire]
 id = 1223
+hitpoints = 400
+att = 55
+str = 60
+def = 55
+magic = 40
+range = 1
+slayer_xp = 40.0
+combat_def = "vampyre"
+drop_table = "vampyre"
+categories = ["vampyres"]
 examine = "A feral vampyre. It looks really hungry!"
 

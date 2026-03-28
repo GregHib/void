@@ -4,5 +4,8 @@ id = 879
 [vampyre_defend]
 id = 884
 
+[vampyre_suck]
+id = 886
+
 [vampyre_death]
 id = 882

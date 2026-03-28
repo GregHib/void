@@ -208,10 +208,10 @@ amount = [40, 90]
 weight = 7
 tip = "Trolls regenerate damage quickly and have some level of magical defences, but this is easily bypassed by their weakness to fire."
 
-#[.vampyres]
-#amount = [10, 20]
-#weight = 7
-#tip = "Vampyres are extremely powerful beings. An underground group known as the Myreque have been searching for tools to defeat them, which they may be willing to share if you can find them."
+[.vampyres]
+amount = [10, 20]
+weight = 7
+tip = "Vampyres are extremely powerful beings. An underground group known as the Myreque have been searching for tools to defeat them, which they may be willing to share if you can find them."
 
 [.werewolves]
 amount = [30, 60]

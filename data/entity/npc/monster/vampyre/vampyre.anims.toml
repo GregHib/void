@@ -1,8 +1,11 @@
-[vampyre_god_wars_attack]
+[vampyre_attack]
 id = 1264
+
+[vampyre_bite]
+id = 1263
 
 [vampyre_god_wars_defend]
 id = 403
 
-[vampyre_god_wars_death]
+[vampyre_death]
 id = 836
