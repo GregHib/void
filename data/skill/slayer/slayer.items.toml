@@ -219,8 +219,9 @@ limit = 100
 tradeable = false
 weight = 2.267
 slot = "Shield"
-examine = "A lantern to aid attacking Harpie bugs."
+aka = ["bug_lantern"]
 kept = "Reclaim"
+examine = "A lantern to aid attacking Harpie bugs."
 
 [insulated_boots]
 id = 7159

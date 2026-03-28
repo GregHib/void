@@ -103,10 +103,10 @@ amount = [40, 90]
 weight = 7
 tip = "Hobgoblins are larger and stronger then their brethren. There is a peninsula, south-west of Falador, where these creatures have a hideout."
 
-#[.harpie_bug_swarms]
-#amount = [40, 90]
-#weight = 8
-#tip = "Harpie Bug Swarms are pesky critters that are hard to hit. You need a lit bug lantern to distract them with its hypnotic light."
+[.harpie_bug_swarms]
+amount = [40, 90]
+weight = 8
+tip = "Harpie Bug Swarms are pesky critters that are hard to hit. You need a lit bug lantern to distract them with its hypnotic light."
 
 [.infernal_mage]
 amount = [40, 90]
