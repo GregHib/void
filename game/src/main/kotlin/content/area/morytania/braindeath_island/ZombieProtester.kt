@@ -1,7 +1,6 @@
 package content.area.morytania.braindeath_island
 
 import content.entity.player.dialogue.Drunk
-import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -47,7 +46,7 @@ class ZombieProtester : Script {
                     6 -> "Ye'll never beat us all!"
                     7 -> "United we stagger!"
                     else -> "Rum, rum, we want rum!"
-                }
+                },
             )
             if (mode is Follow) {
                 Timer.CONTINUE

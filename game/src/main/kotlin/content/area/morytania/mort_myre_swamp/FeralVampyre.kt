@@ -30,6 +30,5 @@ class FeralVampyre : Script {
             levels.drain(Skill.Magic, multiplier = 0.25)
             target.message("The vampyre is weakened by your holy symbol of Saradomin.")
         }
-
     }
 }
