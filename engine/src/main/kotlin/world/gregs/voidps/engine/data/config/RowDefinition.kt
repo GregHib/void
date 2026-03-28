@@ -27,6 +27,10 @@ data class RowDefinition(
 
     fun tileOrNull(column: String) = Tables.tileOrNull("${stringId}.$column")
 
+    fun npc(column: String) = Tables.npc("${stringId}.$column")
+
+    fun npcOrNull(column: String) = Tables.npcOrNull("${stringId}.$column")
+
     fun intList(column: String) = Tables.intList("${stringId}.$column")
 
     fun intListOrNull(column: String) = Tables.intListOrNull("${stringId}.$column")

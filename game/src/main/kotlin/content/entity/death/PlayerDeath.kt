@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.Death
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -41,8 +42,12 @@ class PlayerDeath : Script {
         get() = Tile(Settings["world.home.x", 0], Settings["world.home.y", 0], Settings["world.home.level", 0])
 
     init {
-        playerDeath { onDeath ->
+        levelChanged(Skill.Constitution) { _, _, to ->
+            if (to > 0 || queue.contains("death")) {
+                return@levelChanged
+            }
             dead = true
+            val onDeath = Death.killed(this@levelChanged)
             strongQueue("death") {
                 steps.clear()
                 val dealer = damageDealers.maxByOrNull { it.value }
