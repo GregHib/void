@@ -1,6 +1,7 @@
 [slayer_tasks]
 npc = "npc"
 combat_level = "int"
+skill = "pair<skill, int>"
 quest = "string"
 variable = "string"
 tip = "string"

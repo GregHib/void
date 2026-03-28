@@ -13,6 +13,9 @@ id = 71
 [irondoor_locked]
 id = 72
 
+[big_door_close]
+id = 45
+
 [gate_close]
 id = 66
 

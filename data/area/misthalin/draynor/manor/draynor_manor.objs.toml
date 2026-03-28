@@ -1,0 +1,19 @@
+[draynor_manor_door_sign_closed]
+id = 47421
+examine = "A large double door."
+
+[draynor_manor_door_sign_opened]
+id = 47423
+examine = "A large double door."
+
+[draynor_manor_door_opened]
+id = 47425
+examine = "A large double door."
+
+[draynor_manor_door_closed]
+id = 47424
+examine = "A large double door."
+
+[portal_home]
+id = 11356
+examine = "A gateway back to Gielinor."

@@ -3834,14 +3834,6 @@ id = 46308
 id = 46307
 examine = "The entrance to the sawmill training area."
 
-[large_door_118_opened]
-id = 47425
-examine = "A large double door."
-
-[large_door_118_closed]
-id = 47424
-examine = "A large double door."
-
 [door_768_opened]
 id = 47444
 examine = "The door is open."
