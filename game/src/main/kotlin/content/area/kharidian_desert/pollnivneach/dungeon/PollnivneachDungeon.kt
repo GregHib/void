@@ -21,11 +21,11 @@ class PollnivneachDungeon : Script {
         objectOperate("Pass", "pollnivneach_dungeon_barrier_north") { (target) ->
             val offset = instanceOffset()
             val boss = boss(target.tile.minus(offset), "tile") ?: return@objectOperate
-            if (!get("killed_${boss}", false)) {
+            if (!get("killed_$boss", false)) {
                 statement("This portal leads to the lair of a ferocious creature. Are you sure you want to do battle?")
                 choice("Do you want to head into the fray?") {
                     option("Yes, I feel brave.") {
-                        val row = Rows.get("desert_dungeon_boss.${boss}")
+                        val row = Rows.get("desert_dungeon_boss.$boss")
                         smallInstance(Region(row.int("region")))
                         setInstanceLogout(row.tile("exit"))
                         delay(3)
@@ -74,7 +74,6 @@ class PollnivneachDungeon : Script {
             message("You descend into the somewhat smoky depths of the well, to the accompaniment of eery wails.")
             // TODO quest req, smoke interface + damage
         }
-
     }
 
     private fun boss(tile: Tile, key: String): String? {

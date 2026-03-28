@@ -110,5 +110,4 @@ class PollnivneachDungeonTest : WorldTest() {
         tick(2)
         assertEquals(Tile(3315, 4333), player.tile)
     }
-
 }
