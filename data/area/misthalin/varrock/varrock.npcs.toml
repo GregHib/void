@@ -158,12 +158,6 @@ categories = ["human"]
 collision = "indoors"
 examine = "A powerful wizard."
 
-[surok_magis_dagon_hai]
-id = 5835
-categories = ["human"]
-collision = "indoors"
-examine = "Leader of the Dagon'hai Order."
-
 [surok_magis]
 id = 5853
 collision = "indoors"

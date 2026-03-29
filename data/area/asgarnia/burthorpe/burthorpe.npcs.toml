@@ -136,8 +136,7 @@ hitpoints = 220
 att = 19
 str = 18
 def = 14
-style = "stab"
-max_hit_melee = 30
+combat_def = "guard"
 attack_bonus = 4
 respawn_delay = 50
 drop_table = "guard"
@@ -167,16 +166,17 @@ examine = "Commander of the Imperial Guard."
 
 [archer_burthorpe_clean]
 id = 1073
-wander_range = 3
-examine = "A Burthorpe Castle Archer."
+clone = "archer_burthorpe"
 
 [archer_burthorpe_beard]
 id = 1074
-wander_range = 3
-examine = "A Burthorpe Castle Archer."
+clone = "archer_burthorpe"
 
 [archer_burthorpe]
 id = 1075
+hitpoints = 500
+def = 40
+range = 40
 wander_range = 3
 examine = "A Burthorpe Castle Archer."
 
