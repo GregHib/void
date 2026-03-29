@@ -109,7 +109,7 @@ class Bork : Script {
         npcTimerTick("legion_war_cries") {
             say(
                 when (random.nextInt(5)) {
-                    0 -> "We are the collctive!"
+                    0 -> "We are the collective!"
                     1 -> "Form a triangle!!"
                     2 -> "Steady lads!"
                     3 -> "Hup! 2... 3... 4!!"
