@@ -49,7 +49,7 @@ class RockCrabs : Script {
      */
     fun resetToRock(npc: NPC) {
         npc.softQueue("rock_inactive", TimeUnit.SECONDS.toTicks(30)) {
-            if (npc.target != null || npc.inCombat) {// still fighting? reschedule
+            if (npc.target != null || npc.inCombat) { // still fighting? reschedule
                 resetToRock(npc)
                 return@softQueue
             }
@@ -57,5 +57,4 @@ class RockCrabs : Script {
             npc.mode = EmptyMode
         }
     }
-
 }
