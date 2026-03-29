@@ -56,10 +56,12 @@ class Cutscene(
 
     private var end = false
 
-    suspend fun end(destroyInstance: Boolean = true) {
+    suspend fun end(destroyInstance: Boolean = true, invokeEnd: Boolean = true) {
         if (!end) {
             end = true
-            block?.invoke()
+            if (invokeEnd) {
+                block?.invoke()
+            }
             if (destroyInstance) {
                 player.clearInstance()
             }
