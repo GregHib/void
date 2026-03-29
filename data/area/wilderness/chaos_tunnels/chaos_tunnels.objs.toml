@@ -10,6 +10,9 @@ id = 28893
 [chaos_tunnels_rift_west]
 id = 28891
 
+[bork_exit_portal]
+id = 29537
+
 [chaos_tunnels_portal]
 id = 28779
 

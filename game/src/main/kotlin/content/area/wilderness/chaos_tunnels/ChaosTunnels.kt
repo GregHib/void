@@ -7,13 +7,10 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.type.equals
 
 class ChaosTunnels(val teleports: ObjectTeleports) : Script {
     init {
-        objTeleportLand("Enter", "chaos_tunnels_portal") { _, _ ->
-            gfx("curse_impact")
-        }
-
         objTeleportTakeOff("Enter", "chaos_tunnels_rift_west") { target, _ ->
             rift(target, "west")
         }

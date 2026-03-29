@@ -279,3 +279,43 @@ drops = [
     { id = "dagonhai_hat" },
     { id = "coins", amount = 30 },
 ]
+
+[ork_legion_drop_table]
+type = "all"
+drops = [
+    { table = "ork_legion_charms" },
+]
+
+[ork_legion_charms]
+roll = 11
+drops = [
+    { id = "gold_charm", chance = 7 },
+    { id = "green_charm", chance = 3 },
+    { id = "crimson_charm", chance = 1 },
+]
+
+[bork_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { id = "coins", min = 2000, max = 10000 },
+    { id = "blue_charm", amount = 5 },
+    { id = "crimson_charm", amount = 7, variable = "wearing_ring_of_wealth", equals = false, default = false },
+    { id = "green_charm", amount = 2 },
+    { id = "uncut_ruby", variable = "wearing_ring_of_wealth", equals = false, default = false },
+    { id = "uncut_emerald", variable = "wearing_ring_of_wealth", equals = false, default = false },
+    { id = "uncut_sapphire", variable = "wearing_ring_of_wealth", equals = false, default = false },
+#     Ring of wealth
+    { id = "crimson_charm", amount = 10, variable = "wearing_ring_of_wealth", equals = true, default = false },
+    { id = "uncut_ruby", amount = 2, variable = "wearing_ring_of_wealth", equals = true, default = false },
+    { id = "uncut_emerald", amount = 3, variable = "wearing_ring_of_wealth", equals = true, default = false },
+    { id = "uncut_diamond", variable = "wearing_ring_of_wealth", equals = true, default = false },
+    { table = "bork_tertiary" },
+]
+
+[bork_tertiary]
+roll = 512
+drops = [
+    { id = "femur_bone", chance = 32, variable = "fur_n_seek_wish_list", equals = "started", default = "unstarted" },
+    { table = "rare_drop_table" },
+]

@@ -587,3 +587,13 @@ tile = { x = 3303, y = 5477 }
 option = "Enter"
 to = { x = 3303, y = 5477 }
 tile = { x = 3299, y = 5484 }
+
+[chaos_tunnels_portal]
+option = "Enter"
+tile = { x = 3142, y = 5545 }
+to = { x = 3115, y = 5528 }
+
+[bork_exit_portal]
+option = "Enter"
+tile = { x = 3115, y = 5528 }
+to = { x = 3142, y = 5545 }
