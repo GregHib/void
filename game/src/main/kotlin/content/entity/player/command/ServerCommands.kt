@@ -107,6 +107,9 @@ class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
                 NPCDefinitions.load(files.list(Settings["definitions.npcs"]))
                 loadNpcSpawns(files, reload = true)
             }
+            "npc_defs" -> {
+                NPCDefinitions.load(files.list(Settings["definitions.npcs"]))
+            }
             "areas" -> Areas.load(files.list(Settings["map.areas"]))
             "emotes", "render_anims", "render_emotes" -> get<RenderEmoteDefinitions>().load(files.find(Settings["definitions.renderEmotes"]))
             "anim_defs", "anims", "animations" -> get<AnimationDefinitions>().load(files.list(Settings["definitions.animations"]))

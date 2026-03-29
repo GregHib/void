@@ -21,8 +21,9 @@ object NPCDefinitions {
         val renderAnimations = RenderAnimationDecoder().load(cache)
         for (i in NPCDefinitions.definitions.indices) {
             val def = NPCDefinitions.getOrNull(i) ?: continue
-            if (def.name.contains("wizard", ignoreCase = true)) {
+            if (def.name.contains("legion", ignoreCase = true)) {
                 println(def)
+                println(renderAnimations.getOrNull(def.renderEmote))
                 val att = def["att", 0]
                 val str = def["str", 0]
                 val defence = def["def", 0]

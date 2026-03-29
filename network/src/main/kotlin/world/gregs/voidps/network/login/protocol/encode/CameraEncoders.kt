@@ -55,7 +55,7 @@ fun Client.turnCamera(
 
 /**
  * @param intensity shake intensity
- * @param type shake type
+ * @param type shake type 0 = horizontal, 1 = depth, 2 = vertical, 3 = pan/turn, 4 = tilt
  * @param cycle
  * @param movement Movement intensity
  * @param speed

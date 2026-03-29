@@ -2,6 +2,7 @@ package content.entity.player.command
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
+import world.gregs.voidps.engine.client.command.commandAlias
 import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.client.command.modCommand
 import world.gregs.voidps.engine.client.moveCamera
@@ -16,6 +17,7 @@ class CameraCommands : Script {
         modCommand("camera_reset", desc = "Reset camera to normal") {
             client?.clearCamera()
         }
+        commandAlias("camera_reset", "cam_reset", "clear_cam", "cam_clear", "clear_camera", "camera_clear")
 
         adminCommand("move_to", intArg("x"), intArg("y"), intArg("height"), intArg("c-speed"), intArg("v-speed"), desc = "Move camera to look at coordinates") { args ->
             val viewport = viewport!!
