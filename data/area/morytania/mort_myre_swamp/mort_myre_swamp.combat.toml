@@ -1,0 +1,14 @@
+[snail]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "snail_defend"
+defend_sound = "snail_defend"
+death_anim = "snail_death"
+death_sound = "snail_death"
+
+[snail.range]
+range = 4
+anim = "snail_attack"
+projectile = "curse"
+target_sound = {id = "snail_spit", radius = 10 }
+target_hit = { offense = "range", max = 20 }
