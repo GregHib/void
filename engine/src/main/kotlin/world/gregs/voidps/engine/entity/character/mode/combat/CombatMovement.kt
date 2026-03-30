@@ -30,6 +30,8 @@ class CombatMovement(
     val strategy: TargetStrategy = TargetStrategy(character, target),
 ) : Movement(character, strategy) {
 
+    private var started = false
+
     override fun start() {
         if (character is NPC) {
             character.steps.clear()
@@ -114,6 +116,9 @@ class CombatMovement(
     }
 
     override fun stop(replacement: Mode) {
+        if (!started) {
+            return
+        }
         if (replacement !is CombatMovement || replacement.target != target) {
             if (character is Player) {
                 CombatApi.stop(character, target)
