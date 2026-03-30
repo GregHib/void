@@ -108,10 +108,10 @@ amount = [170, 250]
 weight = 5
 tip = "Kalphites are large insects that live in hives under the desert sands. I am sure that, by now, you have seen them to the south-west of Shantay Pass."
 
-#[.living_rock_creatures]
-#amount = [120, 170]
-#weight = 10
-#tip = "Found beneath the Dwarven mines, these are tough beings of rock. They can use ranged or melee attacks against you, so plan accordingly!"
+[.living_rock_creatures]
+amount = [120, 170]
+weight = 10
+tip = "Found beneath the Dwarven mines, these are tough beings of rock. They can use ranged or melee attacks against you, so plan accordingly!"
 
 [.mithril_dragons]
 amount = [30, 35]

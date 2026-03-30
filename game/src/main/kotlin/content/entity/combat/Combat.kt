@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.Death
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.mode.Retreat
@@ -82,10 +83,7 @@ class Combat(val combatDefinitions: CombatDefinitions) :
             this.target = null
         }
 
-        playerDeath {
-            stop(this)
-        }
-
+        playerDeath(handler = ::stop)
         npcDeath(handler = ::stop)
 
         combatDamage(handler = ::damage)
@@ -102,7 +100,7 @@ class Combat(val combatDefinitions: CombatDefinitions) :
         }
     }
 
-    fun stop(character: Character) {
+    fun stop(character: Character, onDeath: Death.OnDeath) {
         character.stop("under_attack")
         for (attacker in character.attackers) {
             if (attacker.target == character) {

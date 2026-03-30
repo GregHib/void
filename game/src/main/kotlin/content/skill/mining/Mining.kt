@@ -5,6 +5,7 @@ import content.entity.player.bank.bank
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
@@ -18,15 +19,15 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirementsToUse
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.success
-import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.addToLimit
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
+import kotlin.random.nextInt
 
 class Mining : Script {
 
@@ -67,11 +68,7 @@ class Mining : Script {
                     break
                 }
 
-                val pickaxe = Pickaxe.best(this)
-                if (!hasRequirements(this, pickaxe, true) || pickaxe == null) {
-                    break
-                }
-
+                val pickaxe = Pickaxe.bestRequirements(this, message = true) ?: break
                 val delay = if (pickaxe.id == "dragon_pickaxe" && random.nextInt(6) == 0) 2 else pickaxe.def["mining_delay", 8]
                 if (first) {
                     message("You swing your pickaxe at the rock.", ChatType.Filter)
@@ -92,7 +89,7 @@ class Mining : Script {
                 if (ore.bool("gems")) {
                     val glory = equipped(EquipSlot.Amulet).id.startsWith("amulet_of_glory_")
                     if (success(levels.get(Skill.Mining), if (glory) 3..3 else 1..1)) {
-                        addOre(this, gems.random())
+                        addOre(this, gems.random(), target)
                         continue
                     }
                 }
@@ -107,9 +104,12 @@ class Mining : Script {
                     val chance = ore.intRange("chance")
                     if (success(levels.get(Skill.Mining), chance)) {
                         val xp = ore.int("xp") / 10.0
-                        exp(Skill.Mining, xp)
                         ShootingStarHandler.extraOreHandler(this, item, xp)
-                        if (!addOre(this, item) || deplete(target, ore.int("life"))) {
+                        val added = addOre(this, item, target)
+                        if (added > 0) {
+                            exp(Skill.Mining, xp * added)
+                        }
+                        if (added < 1 || deplete(target, ore.int("life"))) {
                             clearAnim()
                             break
                         }
@@ -127,11 +127,12 @@ class Mining : Script {
                 message("There is currently no ore available in this rock.")
                 return@objectApproach
             }
-            if (queue.contains("prospect")) {
-                return@objectApproach
-            }
             message("You examine the rock for ores...")
             delay(4)
+            if (target.id.startsWith("mineral_deposit_")) {
+                message("This rock contains ${target.id.removePrefix("mineral_deposit_").toLowerSpaceCase()}.")
+                return@objectApproach
+            }
             val ore = Rows.getOrNull("ores.${target.def(this).stringId}")
             if (ore == null) {
                 message("This rock contains no ore.")
@@ -141,38 +142,57 @@ class Mining : Script {
         }
     }
 
-    fun hasRequirements(player: Player, pickaxe: Item?, message: Boolean = false): Boolean {
-        if (pickaxe == null) {
-            if (message) {
-                player.message("You need a pickaxe to mine this rock.")
-                player.message("You do not have a pickaxe which you have the mining level to use.")
-            }
-            return false
-        }
-        return player.hasRequirementsToUse(pickaxe, message, setOf(Skill.Mining, Skill.Firemaking))
-    }
-
-    fun addOre(player: Player, ore: String): Boolean {
+    fun addOre(player: Player, ore: String, target: GameObject): Int {
         if (ore == "stardust") {
             ShootingStarHandler.addStarDustCollected()
             val totalStarDust = player.inventory.count(ore) + player.bank.count(ore)
             if (totalStarDust >= 200) {
                 player.message("You have the maximum amount of stardust but was still rewarded experience.")
-                return true
+                return -1
             }
         }
-        val added = player.inventory.add(ore)
-        if (added) {
-            player.message("You manage to mine some ${ore.toLowerSpaceCase()}.")
-        } else {
-            player.inventoryFull()
+        var amount = when (target.id) {
+            "mineral_deposit_gold" -> random.nextInt(1..4)
+            "mineral_deposit_coal" -> random.nextInt(1..2)
+            else -> 1
+        }
+        val added = player.inventory.addToLimit(ore, amount)
+        when (added) {
+            1 -> player.message("You manage to mine some ${ore.toLowerSpaceCase()}.")
+            2 -> player.message("You manage to mine two ${ore.toLowerSpaceCase().plural(added)}!")
+            3 -> player.message("You manage to mine three ${ore.toLowerSpaceCase().plural(added)}!")
+            else -> player.inventoryFull()
+        }
+        if (diaryDoubleOre(player, ore)) {
+            player.message("Your Varrock armour allows you to mine an additional ore.")
+            amount++
+        }
+        if (added < amount) {
+            FloorItems.add(player.tile, ore, amount - added)
+            return amount
         }
         return added
+    }
+
+    private fun diaryDoubleOre(player: Player, ore: String): Boolean {
+        val level1 = ore == "copper_ore" || ore == "tin_ore" || ore == "iron_ore" || ore == "coal"
+        val level2 = level1 || ore == "mithril_ore"
+        val level3 = level2 || ore == "adamant_ore"
+        return when (player.equipped(EquipSlot.Chest).id) {
+            "varrock_armour_1" if (level1 && random.nextInt(100) < 8) -> true
+            "varrock_armour_2" if (level2 && random.nextInt(100) < 10) -> true
+            "varrock_armour_3" if (level3 && random.nextInt(100) < 12) -> true
+            "varrock_armour_4" if (level3 && random.nextInt(100) < 14) -> true
+            else -> false
+        }
     }
 
     fun deplete(obj: GameObject, life: Int): Boolean {
         if (obj.id.startsWith("crashed_star_tier_")) {
             ShootingStarHandler.handleMinedStarDust(obj)
+            return false
+        }
+        if (obj.id.startsWith("mineral_deposit_")) {
             return false
         }
         if (life >= 0) {

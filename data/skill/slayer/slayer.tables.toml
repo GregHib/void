@@ -296,7 +296,7 @@ combat_level = 20
 
 [.scabarites]
 npc = "giant_scarab_normal"
-quest = "dealing_with-scabaras"
+quest = "contact"
 
 [.scorpions]
 npc = "scorpion"

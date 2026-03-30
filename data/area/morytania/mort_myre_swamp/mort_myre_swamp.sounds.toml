@@ -1,0 +1,14 @@
+[snail_defend]
+id = 789
+
+[snail_spit]
+id = 790
+
+[snail_death]
+id = 787
+
+[ghast_attack]
+id = 433
+
+[food_rot]
+id = 1494

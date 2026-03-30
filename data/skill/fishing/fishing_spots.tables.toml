@@ -188,7 +188,7 @@ net = []
 net = ["raw_shrimps", "raw_anchovies"]
 bait = ["raw_sardine", "raw_herring"]
 
-[.cavefish_shoal]
+[.fishing_spot_cavefish_shoal]
 bait = ["raw_cavefish"]
 
 [.fishing_spot_ardougne]
@@ -251,5 +251,5 @@ lure = ["raw_trout", "raw_salmon", "raw_rainbow_fish"]
 bait = ["raw_pike"]
 lure = ["raw_trout", "raw_salmon", "raw_rainbow_fish"]
 
-[.rocktail_shoal]
+[.fishing_spot_rocktail_shoal]
 bait = ["raw_rocktail"]

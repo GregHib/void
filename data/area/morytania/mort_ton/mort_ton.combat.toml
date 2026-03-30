@@ -1,0 +1,27 @@
+[afflicted]
+attack_speed = 5
+retreat_range = 8
+defend_anim = "unarmed_defend"
+defend_sound = "zombie_defend"
+death_anim = "human_death"
+death_sound = "zombie_death"
+
+[afflicted.melee]
+range = 1
+anim = "unarmed_punch"
+target_sound = "zombie_attack"
+target_hit = { offense = "crush", max = 40 }
+
+[shade]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "shade_defend"
+defend_sound = "shade_defend"
+death_anim = "shade_death"
+death_sound = "shade_death"
+
+[shade.melee]
+range = 1
+anim = "shade_attack"
+target_sound = "shade_attack"
+target_hit = { offense = "crush", max = 40 }

@@ -178,7 +178,7 @@ fun Source.readShortAdd(): Int = (readByte().toInt() shl 8) or readByteAdd()
 
 fun Source.readShortAddLittle(): Int = ((readByte().toInt() - 128) and 0xff) or (readByte().toInt() shl 8)
 
-fun Source.readUnsignedShortAdd(): Int = (readByte().toInt() shl 8) or ((readByte() - 128) and 0xff)
+fun Source.readUnsignedShortAdd(): Int = (readUByte().toInt() shl 8) or ((readUByte().toInt() - 128) and 0xff)
 
 fun Source.readUnsignedShortLittle(): Int = readUByte().toInt() or (readUByte().toInt() shl 8)
 

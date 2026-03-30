@@ -9,3 +9,7 @@ y = [3407, 3417]
 [mort_myre_swamp_south_fishing_spot]
 x = [3437, 3445]
 y = [3270, 3280]
+
+[mort_myre_swamp]
+x = [3392, 3519]
+y = [3329, 3454]

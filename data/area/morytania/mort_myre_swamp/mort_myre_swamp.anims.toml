@@ -1,0 +1,11 @@
+[snail_defend]
+id = 1278
+
+[snail_attack]
+id = 1277
+
+[snail_death]
+id = 1279
+
+[ghast_attack]
+id = 1093

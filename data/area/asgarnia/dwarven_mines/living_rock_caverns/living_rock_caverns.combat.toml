@@ -1,0 +1,38 @@
+[living_rock_protector]
+attack_speed = 6
+retreat_range = 8
+defend_anim = "protector_defend"
+death_anim = "protector_death"
+
+[living_rock_protector.attack]
+range = 1
+anim = "protector_attack"
+target_hit = { offense = "crush", max = 120 }
+
+[living_rock_striker]
+attack_speed = 6
+retreat_range = 8
+defend_anim = "striker_defend"
+death_anim = "protector_death"
+
+[living_rock_striker.attack]
+range = 1
+anim = "protector_attack"
+target_hit = { offense = "crush", max = 90 }
+
+[living_rock_striker.range]
+range = 6
+anim = "striker_throw"
+#projectile = ""
+target_hit = { offense = "range", max = 140 }
+
+[living_rock_patriarch]
+attack_speed = 6
+retreat_range = 8
+defend_anim = "patriarch_defend"
+death_anim = "patriarch_death"
+
+[living_rock_patriarch.attack]
+range = 1
+anim = "patriarch_attack"
+target_hit = { offense = "crush", max = 160 }
