@@ -95,7 +95,7 @@ class Attack(
                     val hit = attack.targetHits[i]
                     delay = delays.getOrNull(i) ?: -1
                     if (delay == -1) {
-                        delay = if (Hit.meleeType(hit.offense)) 0 else 64
+                        delay = if (Hit.meleeType(hit.offense) || hit.offense == "damage") 0 else 64
                     }
                     if (hit.delay != null) {
                         delay += hit.delay!!

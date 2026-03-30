@@ -1,7 +1,7 @@
-[ghast_mort_myre_swamp]
+[ghast]
 id = 1052
 categories = ["ghosts"]
-hunt_mode = "spotted"
+hunt_mode = "aggressive"
 examine = "Arrghhh... A Ghast."
 
 [ghast_level_30]

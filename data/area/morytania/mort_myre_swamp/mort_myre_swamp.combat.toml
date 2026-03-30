@@ -10,5 +10,50 @@ death_sound = "snail_death"
 range = 4
 anim = "snail_attack"
 projectile = "curse"
-target_sound = {id = "snail_spit", radius = 10 }
+target_sound = { id = "snail_spit", radius = 10 }
 target_hit = { offense = "range", max = 20 }
+
+[ghast]
+attack_speed = 20
+retreat_range = 8
+defend_anim = "ghast_defend"
+defend_sound = "ghast_defend"
+death_anim = "ghast_death"
+death_sound = "ghast_death"
+
+[ghast.skip]
+chance = 10
+range = 1
+
+[ghast.miss]
+chance = 7
+range = 1
+say = "OOooooohhh"
+anim = "ghast_attack"
+target_sound = "ghast_attack"
+impact_regardless = true
+impact_message = "An attacking Ghast just misses you."
+
+[ghast.rot]
+condition = "has_food"
+chance = 3
+range = 1
+anim = "ghast_attack"
+say = "Oouuaarrr!"
+target_sounds = [
+    { id = "ghast_attack" },
+    { id = "food_rot" },
+]
+impact_regardless = true
+impact_message = "You feel something attacking your backpack, and smell a terrible stench."
+
+[ghast.energy]
+condition = "has_no_food"
+chance = 3
+range = 1
+anim = "ghast_attack"
+say = "OOooooohhh"
+target_sound = "ghast_attack"
+impact_regardless = true
+target_hit = { offense = "damage", min = 10, max = 20, accuracy_roll = false }
+impact_message = "A supernatural force draws energy from you."
