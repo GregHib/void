@@ -173,16 +173,18 @@ class BankDeposit : Script {
                         deposit(player, player.inventory, it.item, 5, check = false)
                     }
                 }
-                option("X") {
-                    val amount = intEntry("How many would you like to deposit? 1 - ${count.toDigitGroupString()}")
-                    if (amount > 0) {
-                        anim("human_lever_down")
-                        deposit(player, player.inventory, it.item, amount, check = false)
+                if (count > 2) {
+                    option("X") {
+                        val amount = intEntry("How many would you like to deposit? 1 - ${count.toDigitGroupString()}")
+                        if (amount > 0) {
+                            anim("human_lever_down")
+                            deposit(player, player.inventory, it.item, amount, check = false)
+                        }
                     }
-                }
-                option("All") {
-                    anim("human_lever_down")
-                    deposit(player, player.inventory, it.item, count, check = false)
+                    option("All") {
+                        anim("human_lever_down")
+                        deposit(player, player.inventory, it.item, count, check = false)
+                    }
                 }
             }
         }
