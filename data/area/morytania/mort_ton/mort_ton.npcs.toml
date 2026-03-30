@@ -35,8 +35,7 @@ hitpoints = 300
 att = 30
 str = 30
 def = 40
-style = "crush"
-max_hit_melee = 40
+combat_def = "afflicted"
 hunt_mode = "cowardly"
 respawn_delay = 25
 drop_table = "afflicted"
@@ -44,42 +43,27 @@ examine = "A local villager of Mort'ton."
 
 [afflicted_2]
 id = 1258
+clone = "afflicted"
 hitpoints = 280
 att = 28
 str = 28
 def = 38
-style = "crush"
-max_hit_melee = 40
-hunt_mode = "cowardly"
-respawn_delay = 25
-drop_table = "afflicted"
-examine = "A local villager of Mort'ton."
 
 [afflicted_3]
 id = 1261
+clone = "afflicted"
 hitpoints = 260
 att = 26
 str = 26
-def = 36
-style = "crush"
-max_hit_melee = 40
-hunt_mode = "cowardly"
-respawn_delay = 25
-drop_table = "afflicted"
-examine = "A local villager of Mort'ton."
 
 [afflicted_4]
 id = 1262
+clone = "afflicted"
 hitpoints = 240
 att = 24
 str = 24
 def = 34
-style = "crush"
-max_hit_melee = 30
-hunt_mode = "cowardly"
-respawn_delay = 25
-drop_table = "afflicted"
-examine = "A local villager of Mort'ton."
+max_hit_crush = 30
 
 [ulsquire_shauncy]
 id = 7898

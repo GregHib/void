@@ -3,7 +3,6 @@ id = 789
 
 [snail_spit]
 id = 790
-radius = 10
 
 [snail_death]
 id = 787
