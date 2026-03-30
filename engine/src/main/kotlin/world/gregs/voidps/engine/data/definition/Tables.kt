@@ -124,6 +124,10 @@ object Tables {
 
     fun itemListOrNull(path: String): List<String>? = getOrNull(path, ColumnType.IntList)?.map { ItemDefinitions.get(it).stringId }
 
+    fun tileList(path: String): List<Tile> = get(path, ColumnType.IntList).map { Tile(it) }
+
+    fun tileListOrNull(path: String): List<Tile>? = getOrNull(path, ColumnType.IntList)?.map { Tile(it) }
+
     fun objList(path: String): List<String> = get(path, ColumnType.IntList).map { ObjectDefinitions.get(it).stringId }
 
     fun objListOrNull(path: String): List<String>? = getOrNull(path, ColumnType.IntList)?.map { ObjectDefinitions.get(it).stringId }
