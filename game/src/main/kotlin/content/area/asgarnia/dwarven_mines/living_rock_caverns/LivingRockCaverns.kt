@@ -99,5 +99,4 @@ class LivingRockCaverns : Script {
             GameObjects.add("mineral_deposit_$type", tile, ticks = if (minutes <= 0) GameObjects.NEVER else TimeUnit.MINUTES.toTicks(minutes))
         }
     }
-
 }

@@ -102,7 +102,6 @@ class BankDeposit : Script {
         }
     }
 
-
     fun bankAll(player: Player, inventory: Inventory) {
         for (index in inventory.indices) {
             val item = inventory[index]
