@@ -65,9 +65,12 @@ class LivingRockCaverns : Script {
 
     fun update() {
         val minutes = Settings["events.livingRockCaverns.respawnTimeMinutes", 60]
+        if (minutes < 0) {
+            return
+        }
         rockSpawn(minutes, "coal")
         rockSpawn(minutes, "gold")
-        if (minutes <= 0) {
+        if (minutes == 0) {
             return
         }
         World.queue("living_rock_caverns_timer", TimeUnit.MINUTES.toTicks(minutes)) {

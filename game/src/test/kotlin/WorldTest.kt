@@ -290,6 +290,7 @@ abstract class WorldTest : KoinTest {
             properties["grandExchange.priceLimit"] = true
             properties["world.npcs.randomWalk"] = false
             properties["events.shootingStars.enabled"] = false
+            properties["events.livingRockCaverns.respawnTimeMinutes"] = "-1"
             properties["events.penguinHideAndSeek.enabled"] = false
             properties["storage.autoSave.minutes"] = 0
             properties["storage.disabled"] = true
