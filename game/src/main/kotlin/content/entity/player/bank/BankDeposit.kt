@@ -2,10 +2,13 @@ package content.entity.player.bank
 
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.bank.Bank.tabIndex
+import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.intEntry
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.menu
+import world.gregs.voidps.engine.entity.character.mode.interact.ItemOnObjectInteract
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.Inventory
@@ -17,8 +20,6 @@ import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimi
 import world.gregs.voidps.engine.inv.transact.operation.ShiftItem.shift
 
 class BankDeposit : Script {
-
-    val logger = InlineLogger()
 
     init {
         interfaceOption(id = "bank_side:inventory") { (item, _, option) ->
@@ -101,52 +102,88 @@ class BankDeposit : Script {
         }
     }
 
-    fun deposit(player: Player, inventory: Inventory, item: Item, amount: Int): Boolean {
-        if ((player.menu != "bank" && player.menu != "bank_deposit_box") || amount < 1) {
-            return true
-        }
-
-        if (item.def["unbankable", 0] == 1) {
-            player.message("This item cannot be banked.")
-            return true
-        }
-
-        val notNoted = if (item.isNote) item.noted else item
-        if (notNoted == null) {
-            logger.warn { "Issue depositing noted item $item" }
-            return true
-        }
-
-        val tab = player["open_bank_tab", 1] - 1
-        val bank = player.bank
-        var shifted = false
-        inventory.transaction {
-            val existing = bank.indexOf(notNoted.id)
-            val moved = moveToLimit(item.id, amount, bank, notNoted.id)
-            if (moved == 0) {
-                error = TransactionError.Full()
-            } else if (moved > 0 && tab > 0 && existing == -1) {
-                // Shift item into tab
-                val index = bank.freeIndex() - 1
-                val to = tabIndex(player, tab + 1)
-                link(bank).shift(index, to)
-                shifted = true
-            }
-        }
-        when (inventory.transaction.error) {
-            TransactionError.None -> if (shifted) player.inc("bank_tab_$tab")
-            is TransactionError.Full -> player.message("Your bank is too full to deposit any more.")
-            TransactionError.Invalid -> logger.info { "Bank deposit issue: $player $item $amount $inventory " }
-            else -> {}
-        }
-        return true
-    }
 
     fun bankAll(player: Player, inventory: Inventory) {
         for (index in inventory.indices) {
             val item = inventory[index]
             if (item.isNotEmpty()) {
                 deposit(player, inventory, item, item.amount)
+            }
+        }
+    }
+
+    companion object {
+        private val logger = InlineLogger()
+
+        private fun deposit(player: Player, inventory: Inventory, item: Item, amount: Int, check: Boolean = true) {
+            if ((check && player.menu != "bank" && player.menu != "bank_deposit_box") || amount < 1) {
+                return
+            }
+
+            if (item.def["unbankable", 0] == 1) {
+                player.message("This item cannot be banked.")
+                return
+            }
+
+            val notNoted = if (item.isNote) item.noted else item
+            if (notNoted == null) {
+                logger.warn { "Issue depositing noted item $item" }
+                return
+            }
+
+            val tab = player["open_bank_tab", 1] - 1
+            val bank = player.bank
+            var shifted = false
+            inventory.transaction {
+                val existing = bank.indexOf(notNoted.id)
+                val moved = moveToLimit(item.id, amount, bank, notNoted.id)
+                if (moved == 0) {
+                    error = TransactionError.Full()
+                } else if (moved > 0 && tab > 0 && existing == -1) {
+                    // Shift item into tab
+                    val index = bank.freeIndex() - 1
+                    val to = tabIndex(player, tab + 1)
+                    link(bank).shift(index, to)
+                    shifted = true
+                }
+            }
+            when (inventory.transaction.error) {
+                TransactionError.None -> if (shifted) player.inc("bank_tab_$tab")
+                is TransactionError.Full -> player.message("Your bank is too full to deposit any more.")
+                TransactionError.Invalid -> logger.info { "Bank deposit issue: $player $item $amount $inventory " }
+                else -> {}
+            }
+        }
+
+        suspend fun itemOnDeposit(player: Player, it: ItemOnObjectInteract) {
+            val count = player.inventory.count(it.item.id)
+            player.choice("How many would you like to deposit?") {
+                option("One") {
+                    anim("human_lever_down")
+                    deposit(player, player.inventory, it.item, 1, check = false)
+                }
+                if (count == 2) {
+                    option("Both") {
+                        anim("human_lever_down")
+                        deposit(player, player.inventory, it.item, 2, check = false)
+                    }
+                } else if (count > 5) {
+                    option("Five") {
+                        anim("human_lever_down")
+                        deposit(player, player.inventory, it.item, 5, check = false)
+                    }
+                }
+                option("X") {
+                    val amount = intEntry("How many would you like to deposit? 1 - ${count.toDigitGroupString()}")
+                    if (amount > 0) {
+                        anim("human_lever_down")
+                        deposit(player, player.inventory, it.item, amount, check = false)
+                    }
+                }
+                option("All") {
+                    anim("human_lever_down")
+                    deposit(player, player.inventory, it.item, count, check = false)
+                }
             }
         }
     }

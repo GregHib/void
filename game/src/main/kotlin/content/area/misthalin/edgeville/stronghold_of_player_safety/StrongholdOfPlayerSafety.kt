@@ -47,7 +47,7 @@ class StrongholdOfPlayerSafety : Script {
         objectOperate("Pull", "stronghold_of_player_safety_an_old_lever_closed") { (target) ->
             arriveDelay()
             animDelay("pull_ground_lever")
-            target.anim("lever_down")
+            target.anim("stronghold_lever_down")
             areaSound("lever", tile)
             delay(2)
             areaSound("unlock", tile)
@@ -60,7 +60,7 @@ class StrongholdOfPlayerSafety : Script {
         objectOperate("Pull", "stronghold_of_player_safety_an_old_lever_opened") { (target) ->
             arriveDelay()
             animDelay("push_ground_lever")
-            target.anim("lever_up")
+            target.anim("stronghold_lever_up")
             areaSound("lever", target.tile)
             delay(1)
             areaSound("unlock", target.tile)

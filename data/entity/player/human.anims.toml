@@ -66,3 +66,6 @@ id = 810
 
 [open_chest_mid]
 id = 2094
+
+[human_lever_down]
+id = 834
