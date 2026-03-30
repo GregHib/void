@@ -1,0 +1,11 @@
+[shade_attack]
+id = 1283
+
+[shade_defend]
+id = 1286
+
+[shade_death]
+id = 1287
+
+[shade_rise]
+id = 1288

@@ -183,10 +183,10 @@ tip = "Pyrefiends are beings of fire and molten rock, they're quick and agile bu
 #weight = 6
 #tip = "Sea Snakes are long and slithery with a venomous bite. The larger ones are more poisonous, so keep an eye on your health."
 
-#[.shades]
-#amount = [40, 90]
-#weight = 8
-#tip = "Shades are undead so magic is your best bet against them. You can find Shades at Mort'ton."
+[.shades]
+amount = [40, 90]
+weight = 8
+tip = "Shades are undead so magic is your best bet against them. You can find Shades at Mort'ton."
 
 [.shadow_warriors]
 amount = [30, 80]

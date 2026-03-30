@@ -123,10 +123,10 @@ amount = [30, 50]
 weight = 7
 tip = "Scorpions are almost always poisonous, their hard carapace makes them resistant to crushing and stabbing attacks."
 
-#[.shades]
-#amount = [30, 70]
-#weight = 8
-#tip = "Shades are undead - The town of Mort'ton in Morytania is plagued by these creatures, so help if you can. There are some shades in the Stronghold of Security too, but you won't learn much from fighting those; stick to Mort'ton."
+[.shades]
+amount = [30, 70]
+weight = 8
+tip = "Shades are undead - The town of Mort'ton in Morytania is plagued by these creatures, so help if you can. There are some shades in the Stronghold of Security too, but you won't learn much from fighting those; stick to Mort'ton."
 
 [.skeletons]
 amount = [30, 50]

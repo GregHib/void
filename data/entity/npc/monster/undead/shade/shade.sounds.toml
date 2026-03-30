@@ -1,8 +1,8 @@
-[shade_defend]
+[stronghold_shade_defend]
 id = 439
 
-[shade_attack]
+[stronghold_shade_attack]
 id = 2548
 
-[shade_death]
+[stronghold_shade_death]
 id = 438
