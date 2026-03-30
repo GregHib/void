@@ -1,24 +1,65 @@
 [living_rock_protector]
 id = 8832
+hitpoints = 2250
+slayer_xp = 225.0
+hunt_mode = "aggressive"
+hunt_range = 1
+combat_def = "living_rock_protector"
 categories = ["living_rock_creatures"]
+immune_poison = true
+# Made up stats
+att = 130
+str = 130
+def = 80
 examine = "A being of ore and minerals."
+
+[living_rock_protector_remains]
+id = 8837
 
 [living_rock_striker]
 id = 8833
+hitpoints = 3160
+slayer_xp = 316.0
+hunt_mode = "aggressive"
+hunt_range = 1
+immune_poison = true
+combat_def = "living_rock_striker"
+categories = ["living_rock_creatures"]
+# Made up stats
+att = 150
+str = 150
+def = 80
+range = 100
+examine = "A being of ore and minerals."
+
+[living_rock_striker_remains]
+id = 8838
+
+[living_rock_patriarch]
+id = 8834
+hitpoints = 4000
+slayer_xp = 530.0
+hunt_mode = "aggressive"
+hunt_range = 1
+immune_poison = true
+combat_def = "living_rock_patriarch"
 categories = ["living_rock_creatures"]
 examine = "A being of ore and minerals."
+
+[living_rock_patriarch_remains]
+id = 8839
 
 [rock_critter]
 id = 8840
 examine = "What are these things?"
 
-[cavefish_shoal]
+[fishing_spot_cavefish_shoal]
 id = 8841
 examine = "It looks like there are fish swimming in the water."
 
-[rocktail_shoal]
+[fishing_spot_rocktail_shoal]
 id = 8842
 examine = "It looks like there are fish swimming in the water."
 
-[living_rock_caverns_controller]
+[farli]
 id = 8831

@@ -1093,3 +1093,9 @@ ores = ["tin_ore"]
 
 [.tin_rocks_tutorial_island_1]
 ores = ["tin_ore"]
+
+[.mineral_deposit_coal]
+ores = ["coal"]
+
+[.mineral_deposit_gold]
+ores = ["gold_ore"]

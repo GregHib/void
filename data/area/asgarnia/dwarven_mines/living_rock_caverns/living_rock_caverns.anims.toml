@@ -1,0 +1,50 @@
+[living_rock_caverns_climb_rope]
+id = 2413
+
+[living_rock_caverns_climb_ledge]
+id = 12216
+
+[living_rock_caverns_rope_drop]
+id = 12225
+
+[living_rock_caverns_rope]
+id = 12217
+
+[living_rock_protector_idle]
+id = 12193
+
+[living_rock_striker_idle]
+id = 12202
+
+[protector_defend]
+id = 12194
+
+[protector_attack]
+id = 12204
+
+[striker_throw]
+id = 12196
+
+[living_rock_protector_fade]
+id = 12197
+
+[living_rock_striker_fade]
+id = 12198
+
+[protector_death]
+id = 12199
+
+[striker_defend]
+id = 12201
+
+[living_rock_patriarch_fade]
+id = 12222
+
+[patriarch_defend]
+id = 12208
+
+[patriarch_death]
+id = 12206
+
+[patriarch_attack]
+id = 12205
