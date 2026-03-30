@@ -137,12 +137,11 @@ death_sound = "human_death"
 
 [dagonhai_monk.magic]
 range = 10
-# TODO check if earth strike or different gfx
-gfx = "earth_strike_cast"
-anim = "earth_spell"
-projectile = "earth_strike"
+gfx = "dagonhai_monk_cast"
+anim = "dagonhai_monk_attack"
+projectile = "dagonhai_monk_travel"
 target_hit = { offense = "magic", max = 110 }
-impact_gfx = "earth_strike_impact"
+impact_gfx = "dagonhai_monk_impact"
 miss_gfx = "spell_splash"
 
 [mummy]
@@ -158,3 +157,55 @@ range = 1
 anim = "mummy_attack"
 target_sound = "mummy_attack"
 target_hit = { offense = "crush", max = 240 }
+
+[bork]
+attack_speed = 6
+retreat_range = 14
+defend_anim = "bork_defend"
+defend_sound = "giant_defend"
+death_anim = "bork_death"
+death_sound = "giant_death"
+
+[bork.attack]
+range = 1
+anim = "bork_attack"
+target_sound = "bork_attack"
+target_hit = { offense = "crush", max = 254 }
+
+[dagonhai_elite]
+attack_speed = 36
+retreat_range = 14
+defend_anim = "human_defend"
+defend_sound = "human_defend"
+death_anim = "human_death"
+death_sound = "human_death"
+
+[dagonhai_elite.attack]
+range = 10
+anim = "dagonhai_elite_attack"
+gfx = "dagonhai_elite_cast"
+projectile = { id = "dagonhai_elite_travel", delay = 110, end_height = 0 }
+impact_gfx = "dagonhai_elite_impact"
+target_hit = { offense = "magic", min = 100, max = 250, accuracy_roll = false }
+
+[ork_legion]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "ork_legion_defend"
+death_anim = "ork_legion_death"
+
+[ork_legion.attack]
+range = 1
+anim = "ork_legion_attack"
+target_sound = "ork_legion_attack"
+target_hits = [
+    { offense = "crush", max = 82 },
+    { offense = "crush", max = 82 },
+    { offense = "crush", max = 82 },
+]
+
+[ork_legion.range]
+range = 8
+anim = "ork_legion_range"
+projectile = { id = "bork_minion_sword_travel", end_height = 0 }
+target_hit = { offense = "range", max = 82 }

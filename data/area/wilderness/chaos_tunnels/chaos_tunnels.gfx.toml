@@ -1,3 +1,38 @@
 [slayer_devil_dust]
 id = 73
 height = 50
+
+[bork_minion_aid]
+id = 1551
+
+[bork_minion_spawn]
+id = 1552
+
+[bork_minion_sword_travel]
+id = 1550
+delay = 70
+
+[surok_shield]
+id = 1549
+
+[dagonhai_monk_cast]
+id = 1546
+
+[dagonhai_monk_travel]
+id = 1547
+delay = 50
+height = 20
+
+[dagonhai_monk_impact]
+id = 1548
+
+[dagonhai_elite_cast]
+id = 1009
+delay = 50
+
+[dagonhai_elite_travel]
+id = 1010
+delay = 110
+
+[dagonhai_elite_impact]
+id = 1011

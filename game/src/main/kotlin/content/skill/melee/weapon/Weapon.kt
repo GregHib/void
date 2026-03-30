@@ -242,7 +242,7 @@ var Character.weapon: Item
 
 val Character.attackSpeed: Int
     get() = when {
-        this is NPC -> def["attack_speed", get<CombatDefinitions>().get(def["combat_def", id]).attackSpeed]
+        this is NPC -> def["attack_speed", get<CombatDefinitions>().get(transformDef["combat_def", id]).attackSpeed]
         fightStyle == "magic" -> 5
         this is Player && specialAttack && weapon.id.startsWith("granite_maul") -> 1
         else -> weapon.def["attack_speed", 4] - (attackType == "rapid" || attackType == "medium_fuse").toInt()

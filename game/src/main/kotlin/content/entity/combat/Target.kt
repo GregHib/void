@@ -53,7 +53,7 @@ object Target {
                 return false
             }
             if (target.transform != "") {
-                if (NPCDefinitions.get(target.transform).options[1] != "Attack") {
+                if (!NPCDefinitions.get(target.transform).options.contains("Attack")) {
                     return false
                 }
             } else if (target.def.options[1] != "Attack") {

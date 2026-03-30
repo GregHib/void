@@ -66,3 +66,39 @@ id = 5549
 
 [mummy_death]
 id = 5563
+
+[dagonhai_monk_attack]
+id = 8767
+
+[dagonhai_elite_attack]
+id = 1084
+
+[bork_attack]
+id = 8754
+
+[bork_defend]
+id = 8755
+
+[bork_death]
+id = 8756
+
+[bork_summon]
+id = 8757
+
+[bork_death_slow_mo]
+id = 8758
+
+[ork_legion_range]
+id = 8751
+
+[ork_legion_attack]
+id = 8760
+
+[ork_legion_death]
+id = 8761
+
+[ork_legion_defend]
+id = 8762
+
+[ork_legion_spawn]
+id = 8765

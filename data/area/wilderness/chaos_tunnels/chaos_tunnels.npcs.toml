@@ -222,3 +222,58 @@ respawn_delay = 60
 categories = ["skeletons", "undead"]
 slayer_xp = 80.0
 examine = "Achingly thin."
+
+[bork_surok]
+id = 7133
+hitpoints = 3000
+slayer_xp = 5000.0
+hunt_mode = "aggressive"
+immune_poison = true
+categories = ["ork"]
+# Made up stats (weakened version of graardor)
+att = 180
+str = 250
+def = 150
+combat_def = "bork"
+examine = "That's one big Ork..."
+
+[bork]
+id = 7134
+clone = "bork_surok"
+slayer_xp = 250.0
+
+[surok_magis_dagon_hai]
+id = 5835
+hitpoints = 10000
+damage_cap = 0
+height = 0
+categories = ["human"]
+collision = "indoors"
+examine = "Leader of the Dagon'hai Order."
+
+[surok_magis_attack]
+id = 7136
+combat_def = "dagonhai_elite"
+
+[dagonhai_elite_attack]
+id = 7137
+combat_def = "dagonhai_elite"
+
+[ork_legion]
+id = 7135
+hitpoints = 500
+slayer_level = 44
+slayer_xp = 50.0
+hunt_mode = "aggressive"
+immune_poison = true
+categories = ["ork"]
+height = 20
+# Made up stats (weakend grimspike)
+att = 60
+str = 60
+def = 102
+mage = 40
+range = 100
+combat_def = "ork_legion"
+drop_table = "ork_legion"
+examine = "Aww, aren't they the cutest li- Argh!"

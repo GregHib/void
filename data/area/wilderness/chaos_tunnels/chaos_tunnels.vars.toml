@@ -1,0 +1,7 @@
+[bork_cooldown]
+format = "int"
+persist = true
+
+[bork_kill_count]
+format = "int"
+persist = true

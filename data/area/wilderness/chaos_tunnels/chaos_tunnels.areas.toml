@@ -1,0 +1,14 @@
+[chaos_tunnels]
+x = [3136, 3327]
+y = [5440, 5567]
+tags = ["multi_combat"]
+
+[bork_cavern]
+x = [3072, 3135]
+y = [5504, 5567]
+tags = ["multi_combat"]
+
+[bork_legion_spawn]
+x = [3093, 3106]
+y = [5531, 5540]
+tags = ["multi_combat"]

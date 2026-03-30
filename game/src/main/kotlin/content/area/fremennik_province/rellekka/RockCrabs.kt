@@ -1,10 +1,12 @@
 package content.area.fremennik_province.rellekka
 
+import content.entity.combat.inCombat
 import content.entity.combat.target
-import content.entity.combat.underAttack
+import content.entity.effect.clearTransform
 import content.entity.effect.transform
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
@@ -13,6 +15,9 @@ import java.util.concurrent.TimeUnit
 class RockCrabs : Script {
 
     init {
+        /**
+         * Rock crabs disguised as rocks – hatch into combat form when a player walks near.
+         */
         huntPlayer("rock*", "aggressive") { target ->
             // already a crab? just aggro the player
             if (transform.startsWith("rock_crab")) {
@@ -44,22 +49,12 @@ class RockCrabs : Script {
      */
     fun resetToRock(npc: NPC) {
         npc.softQueue("rock_inactive", TimeUnit.SECONDS.toTicks(30)) {
-            // still fighting? reschedule
-            if (npc.target != null || npc.underAttack) {
+            if (npc.target != null || npc.inCombat) { // still fighting? reschedule
                 resetToRock(npc)
                 return@softQueue
             }
-            // transform back into correct rock disguise
-            val disguise = when (npc.transform) {
-                "rock_crab" -> "rock"
-                "rock_crab_1" -> "rock_1"
-                else -> return@softQueue // already a rock
-            }
-            npc.transform(disguise)
+            npc.clearTransform()
+            npc.mode = EmptyMode
         }
     }
-
-    /**
-     * Rock crabs disguised as rocks – hatch into combat form when a player walks near.
-     */
 }
