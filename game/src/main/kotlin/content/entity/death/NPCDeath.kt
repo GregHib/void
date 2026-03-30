@@ -59,7 +59,7 @@ class NPCDeath(
             dead = true
             steps.clear()
             val npc = this
-            Death.killed(npc)
+            val onDeath = Death.killed(npc)
             strongQueue(name = "death", 1) {
                 val killer = killer
                 val tile = if (transformId == "wall_beast") tile.addY(-1) else tile
@@ -73,13 +73,18 @@ class NPCDeath(
                 if (killer is Player) {
                     AuditLog.event(killer, "killed", npc, tile)
                     slay(killer, npc)
-                    dropLoot(npc, killer, tile)
+                    if (onDeath.dropItems) {
+                        dropLoot(npc, killer, tile)
+                    }
                 }
                 attackers.clear()
                 softTimers.stopAll()
+                if (Death.afterDeath(npc)) {
+                    return@strongQueue
+                }
                 hide = true
                 val respawn = get<Tile>("respawn_tile")
-                if (respawn != null) {
+                if (respawn != null && onDeath.respawn) {
                     tele(respawn)
                     delay(npc["respawn_delay", 60])
                     clearAnim()
