@@ -1,7 +1,5 @@
 [white_lantern_make]
 skill = "firemaking"
-level = 1
-xp = 0.0
 ticks = 1
 remove = ["white_candle", "candle_lantern_empty"]
 add = ["candle_lantern_white"]
@@ -9,8 +7,6 @@ message = "You add the candle to the empty lantern frame."
 
 [black_lantern_make]
 skill = "firemaking"
-level = 1
-xp = 0.0
 ticks = 1
 remove = ["black_candle", "candle_lantern_empty"]
 add = ["candle_lantern_black"]
@@ -27,8 +23,6 @@ message = "You add the lens to the bullseye lantern frame."
 
 [emerald_bullseye_lantern_make]
 skill = "crafting"
-level = 1
-xp = 0.0
 ticks = 1
 remove = ["bullseye_lantern_frame", "emerald_lens"]
 add = ["emerald_lantern"]
@@ -36,17 +30,81 @@ message = "You add the lens to the bullseye lantern frame."
 
 [sapphire_bullseye_lantern_make]
 skill = "crafting"
-level = 1
-xp = 0.0
 ticks = 1
 remove = ["bullseye_lantern_frame", "sapphire"]
 add = ["sapphire_lantern_empty"]
 message = "You add the lens to the bullseye lantern frame."
 
+[sapphire_bullseye_lantern_empty]
+skill = "crafting"
+ticks = 1
+remove = [ "bullseye_lantern_empty", "sapphire"]
+add = ["sapphire_lantern_empty", "lantern_lens"]
+message = "You replace the lantern lens with a sapphire."
+
+[sapphire_bullseye_lantern_empty]
+skill = "crafting"
+ticks = 1
+remove = [ "sapphire_lantern_empty", "lantern_lens"]
+add = ["bullseye_lantern_empty", "sapphire"]
+message = "You replace the sapphire with a lantern lens."
+
+[sapphire_bullseye_lantern_oil]
+skill = "crafting"
+ticks = 1
+remove = [ "bullseye_lantern_oil", "sapphire"]
+add = ["sapphire_lantern_oil", "lantern_lens"]
+message = "You replace the lantern lens with a sapphire."
+
+[sapphire_bullseye_lantern_oil_lens]
+skill = "crafting"
+ticks = 1
+remove = [ "sapphire_lantern_oil", "lantern_lens"]
+add = ["bullseye_lantern_oil", "sapphire"]
+message = "You replace the sapphire with a lantern lens."
+
+[sapphire_bullseye_lantern_lit]
+skill = "crafting"
+ticks = 1
+requires = [ "bullseye_lantern_lit", "sapphire"]
+message = "The lantern is too hot to do that while it is lit."
+
+[emerald_bullseye_lantern_empty]
+skill = "crafting"
+ticks = 1
+remove = [ "bullseye_lantern_empty", "emerald"]
+add = ["emerald_lantern_empty", "lantern_lens"]
+message = "You replace the lantern lens with a emerald."
+
+[emerald_bullseye_lantern_empty]
+skill = "crafting"
+ticks = 1
+remove = [ "emerald_lantern_empty", "lantern_lens"]
+add = ["bullseye_lantern_empty", "emerald"]
+message = "You replace the emerald with a lantern lens."
+
+[emerald_bullseye_lantern_oil]
+skill = "crafting"
+ticks = 1
+remove = [ "bullseye_lantern_oil", "emerald"]
+add = ["emerald_lantern_oil", "lantern_lens"]
+message = "You replace the lantern lens with a emerald."
+
+[emerald_bullseye_lantern_oil_lens]
+skill = "crafting"
+ticks = 1
+remove = [ "emerald_lantern_oil", "lantern_lens"]
+add = ["bullseye_lantern_oil", "emerald"]
+message = "You replace the emerald with a lantern lens."
+
+[emerald_bullseye_lantern_lit]
+skill = "crafting"
+ticks = 1
+requires = [ "bullseye_lantern_lit", "emerald"]
+message = "The lantern is too hot to do that while it is lit."
+
 [default_bullseye_lantern_oiled_make]
 skill = "crafting"
-level = 1
-xp = 0.0
 ticks = 2
 remove = ["swamp_tar", "bullseye_lantern_empty"]
 add = ["bullseye_lantern_oil"]
