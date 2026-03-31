@@ -6,6 +6,7 @@ hunt_mode = "aggressive"
 hunt_range = 1
 combat_def = "living_rock_protector"
 categories = ["living_rock_creatures"]
+drop_table = "living_rock_creature"
 immune_poison = true
 # Made up stats
 att = 130
@@ -25,6 +26,7 @@ hunt_range = 1
 immune_poison = true
 combat_def = "living_rock_striker"
 categories = ["living_rock_creatures"]
+drop_table = "living_rock_creature"
 # Made up stats
 att = 150
 str = 150
@@ -44,6 +46,7 @@ hunt_range = 1
 immune_poison = true
 combat_def = "living_rock_patriarch"
 categories = ["living_rock_creatures"]
+drop_table = "living_rock_patriarch"
 examine = "A being of ore and minerals."
 
 [living_rock_patriarch_remains]

@@ -1,0 +1,52 @@
+[living_rock_creature_drop_table]
+type = "all"
+drops = [
+    { table = "living_rock_creature_secondary" },
+    { table = "living_rock_creature_tertiary" },
+    { table = "living_rock_creature_charms" },
+]
+
+[living_rock_creature_secondary]
+roll = 512
+drops = [
+    { id = "mud_rune", min = 3, max = 8, chance = 32 },
+    { id = "death_rune", min = 3, max = 8, chance = 8 },
+    { id = "nature_rune", min = 3, max = 10, chance = 2 },
+    { id = "gold_ore_noted", amount = 3, chance = 32 },
+    { id = "coal_noted", amount = 3, chance = 32 },
+    { id = "mithril_ore_noted", amount = 3, chance = 32 },
+    { id = "adamantite_ore_noted", chance = 32 },
+    { id = "silver_ore_noted", amount = 3, chance = 2 },
+    { id = "uncut_sapphire_noted", chance = 8 },
+    { id = "uncut_emerald_noted", chance = 8 },
+    { id = "uncut_ruby_noted", chance = 2 },
+    { id = "uncut_diamond_noted", chance = 2 },
+    { id = "mithril_pickaxe", chance = 8 },
+    { id = "adamant_pickaxe", chance = 2 },
+    { id = "rune_pickaxe" },
+]
+
+[living_rock_creature_charms]
+roll = 1000
+drops = [
+    { id = "gold_charm", chance = 122 },
+    { id = "green_charm", chance = 305 },
+    { id = "crimson_charm", chance = 49 },
+    { id = "blue_charm", chance = 24 },
+]
+
+[living_rock_creature_tertiary]
+roll = 512
+drops = [
+    { id = "starved_ancient_effigy" },
+    { id = "court_summons" },
+]
+
+[living_rock_patriarch_drop_table]
+type = "all"
+drops = [
+    { id = "runite_ore_noted", amount = 3 },
+    { id = "uncut_diamond_noted", amount = 8 },
+    { id = "blood_rune", amount = 125 },
+    { id = "mud_rune", amount = 125 },
+]
