@@ -89,7 +89,7 @@ class LivingRockCaverns : Script {
                 }
             }
             if (!patriarchSpawned) {
-                NPCs.add("living_rock_patriarch", Tables.tileList("living_rock_cavern_spawns.patriarch").random(random))
+                NPCs.add("living_rock_patriarch", Tables.tileList("living_rock_cavern_spawns.patriarch.tiles").random(random))
             }
         }
     }
