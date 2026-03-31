@@ -1,0 +1,10 @@
+[tear_of_guthix_snake_open_close]
+id = 2055
+
+[tears_lean_forward_bowl]
+id = 2043
+walk = false
+infinite = true
+
+[tears_lean_back_bowl]
+id = 2044

@@ -1,0 +1,92 @@
+[tears_of_guthix]
+tiles = "list<tile>"
+
+[.spawns]
+tiles = [
+    { x = 3257, y = 9520, level = 2 },
+    { x = 3258, y = 9520, level = 2 },
+    { x = 3259, y = 9520, level = 2 },
+    { x = 3261, y = 9518, level = 2 },
+    { x = 3261, y = 9517, level = 2 },
+    { x = 3261, y = 9516, level = 2 },
+    { x = 3259, y = 9514, level = 2 },
+    { x = 3258, y = 9514, level = 2 },
+    { x = 3257, y = 9514, level = 2 },
+]
+
+[tears_of_guthix_messages]
+row_id = "skill"
+message = "string"
+
+[.cooking]
+message = "You have a brief urge to cook some food."
+
+[.crafting]
+message = "Your fingers feel nimble and suited to delicate work."
+
+[.firemaking]
+message = "You have a brief urge to set light to something!"
+
+[.fishing]
+message = "You gain a deep understanding of the creatures of the sea."
+
+[.magic]
+message = "You feel magical power coursing through your body."
+
+[.mining]
+message = "You gain a deep understanding of the stones of the earth."
+
+[.prayer]
+message = "You suddenly feel very close to the gods."
+
+[.ranged]
+message = "Your aim improves."
+
+[.runecrafting]
+message = "You gain a deep understanding of runes."
+
+[.smithing]
+message = "You gain a deep understanding of metal."
+
+[.woodcutting]
+message = "You gain a deep understanding of the trees in the forest."
+
+[.agility]
+message = "You feel very nimble."
+
+[.herblore]
+message = "You gain a deep understanding of all kinds of strange plants."
+
+[.fletching]
+message = "You gain a deep understanding of wooden sticks."
+
+[.thieving]
+message = "You feel your respect for others' property slipping away."
+
+[.slayer]
+message = "You gain a deep understanding of many strange creatures."
+
+[.attack]
+message = "You feel a brief surge of aggression!"
+
+[.defence]
+message = "You feel very defensive!"
+
+[.strength]
+message = "Your muscles bulge!"
+
+[.constitution]
+message = "You feel more healthy."
+
+[.farming]
+message = "You gain a deep understanding of the cycles of nature."
+
+[.construction]
+message = "You feel homesick."
+
+[.hunter]
+message = "You briefly experience the joy of the hunt."
+
+[.dungeoneering]
+message = "You feel the mysteries of Daemonheim unravel."
+

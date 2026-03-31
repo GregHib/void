@@ -1,0 +1,16 @@
+# 12950 lumbridge_basement
+[lumbridge_basement_ladder_up]
+option = "Climb-up"
+tile = { x = 3232, y = 5091 }
+to = { x = 3368, y = 3268 }
+
+[cave_goblin_city_door_left]
+option = "Open"
+tile = { x = 3318, y = 9601 }
+to = { x = 2748, y = 5374 }
+
+[cave_goblin_city_door_right]
+option = "Open"
+tile = { x = 3316, y = 9601 }
+to = { x = 2747, y = 5374 }
+# message("You enter Dorgesh-Kaan.", type = ChatType.Filter)

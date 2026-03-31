@@ -1,0 +1,17 @@
+[chasm_of_tears_climb_slope_up]
+id = 2049
+
+[chasm_of_tears_climb_slope_down]
+id = 2050
+
+[float_up]
+id = 2046
+
+[float_down]
+id = 2047
+
+[light_creature_grow]
+id = 2052
+
+[light_creature_shrink]
+id = 2053

@@ -1,0 +1,5 @@
+[tears_of_guthix]
+id = 451
+persist = true
+format = "list"
+values = [ "unstarted", "stage2", "completed" ]

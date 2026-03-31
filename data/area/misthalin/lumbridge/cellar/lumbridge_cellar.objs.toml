@@ -1,3 +1,15 @@
 [culinaromancers_chest]
 id = 12309
 examine = "It's open."
+
+[lost_tribe_cellar_wall]
+id = 6898
+
+[lost_tribe_cellar_hole]
+id = 6905
+
+[cave_goblin_city_door_left]
+id = 32953
+
+[cave_goblin_city_door_right]
+id = 32952
