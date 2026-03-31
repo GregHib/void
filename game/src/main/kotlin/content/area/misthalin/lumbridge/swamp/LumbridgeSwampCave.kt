@@ -11,9 +11,11 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.type.Direction
 
 class LumbridgeSwampCave : Script {
     init {
@@ -77,6 +79,20 @@ class LumbridgeSwampCave : Script {
         exited("lumbridge_swamp_caves") {
             close("level_one_darkness")
             close("level_three_darkness")
+        }
+
+        objectApproach("Jump-across", "lumbridge_cave_stepping_stone") { (target) ->
+            val direction = if (tile.y > target.tile.y) Direction.SOUTH else Direction.NORTH
+            walkToDelay(target.tile.add(direction.inverse()).add(direction.inverse()))
+            face(direction)
+            message("You leap across with a mighty leap!", type = ChatType.Filter)
+            anim("stepping_stone_step", delay = 30)
+            sound("jump", delay = 35)
+            exactMoveDelay(target.tile, startDelay = 58, delay = 70, direction = direction)
+            delay(2)
+            anim("stepping_stone_step", delay = 30)
+            sound("jump", delay = 35)
+            exactMoveDelay(target.tile.add(direction).add(direction), startDelay = 58, delay = 70, direction = direction)
         }
     }
 }

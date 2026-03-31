@@ -3,6 +3,7 @@ package content.area.misthalin.lumbridge.castle
 import content.entity.npc.shop.openShop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.type.Direction
 
 class LumbridgeCellar : Script {
     init {
@@ -16,6 +17,14 @@ class LumbridgeCellar : Script {
 
         objectOperate("Buy-items", "culinaromancers_chest") {
             openShop("culinaromancers_chest_9")
+        }
+
+        objectOperate("Squeeze-through", "lost_tribe_cellar_hole") { (target) ->
+            walkToDelay(target.tile)
+            val direction = if (target.tile.x == 3219) Direction.EAST else Direction.WEST
+            face(direction)
+            anim("climb_through_pipe")
+            exactMove(target.tile.add(direction).add(direction))
         }
     }
 }
