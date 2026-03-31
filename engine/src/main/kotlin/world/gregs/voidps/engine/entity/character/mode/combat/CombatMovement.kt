@@ -30,7 +30,7 @@ class CombatMovement(
     val strategy: TargetStrategy = TargetStrategy(character, target),
 ) : Movement(character, strategy) {
 
-    private var started = false
+    var started = false
 
     override fun start() {
         if (character is NPC) {
