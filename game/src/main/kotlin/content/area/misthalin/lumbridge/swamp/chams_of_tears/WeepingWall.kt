@@ -41,9 +41,10 @@ class WeepingWall : Script {
                         inc("tears_of_guthix_points")
                         sound("collect_good_tear")
                     } else if (tears.id.startsWith("green_tears")) {
-                        dec("tears_of_guthix_points")
-                        // TODO add fail when reached min points
-                        sound("collect_bad_tear")
+                        val amount = dec("tears_of_guthix_points")
+                        if (amount != 0) {
+                            sound("collect_bad_tear")
+                        }
                     }
                     pause(1)
                     start("action_delay", 2)
@@ -58,7 +59,7 @@ class WeepingWall : Script {
         settingsReload {
             if (Settings["events.tearsOfGuthix.active", false] && active.isEmpty()) {
                 setupMinigame()
-            } else if(!Settings["events.tearsOfGuthix.active", false] && active.isNotEmpty()) {
+            } else if (!Settings["events.tearsOfGuthix.active", false] && active.isNotEmpty()) {
                 active.clear()
                 nextToMove = 0
             }
@@ -101,7 +102,7 @@ class WeepingWall : Script {
         active.clear()
         active.addAll(findWall(noTears = true))
         active.shuffle(random)
-        val juna = NPCs.findOrNull(Tile(3252, 9517, 2), "juna") ?: return
+        val juna = NPCs.findOrNull(Tile(3252, 9517, 1), "juna") ?: return
         if (!juna.softTimers.contains("tears_of_guthix")) {
             juna.softTimers.start("tears_of_guthix")
         }

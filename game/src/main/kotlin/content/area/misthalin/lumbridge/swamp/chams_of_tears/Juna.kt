@@ -1,14 +1,19 @@
 package content.area.misthalin.lumbridge.swamp.chams_of_tears
 
 import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import content.quest.closeTabs
 import content.quest.openTabs
+import content.quest.quest
+import content.quest.questComplete
 import content.quest.questCompleted
+import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.command.adminCommand
@@ -24,6 +29,7 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Tables
+import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -37,7 +43,10 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.event.AuditLog
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.Timer
@@ -56,6 +65,8 @@ class Juna : Script {
         }
 
         objectOperate("Talk-to", "juna_tears,juna") { (target) ->
+            talkWith(junaNpc())
+            // TODO snake expressions
             if (equipped(EquipSlot.Weapon).id == "stone_bowl") {
                 npc<Neutral>("I will not permit you to be in the cave for long. Collect as many tears as you can.")
                 choice {
@@ -66,14 +77,32 @@ class Juna : Script {
                 }
                 return@objectOperate
             }
-            val juna = junaNpc()
-            talkWith(juna)
+            if (quest("tears_of_guthix") == "stone_bowl") {
+                npc<Happy>("Before you can collect the Tears of Guthix you must make a bowl out of the stone in the cave on the south of the chasm.")
+                if (carriesItem("stone_bowl")) {
+                    player<Neutral>("I have a bowl.")
+                    npc<Neutral>("I will keep your bowl for you, so that you may collect the tears many times in the future.")
+                    npc<Neutral>("Now... tell me another story, and I will let you collect the tears for the first time.")
+                    questComplete()
+                }
+                return@objectOperate
+            }
             npc<Neutral>("Tell me... a story...")
             choice {
-                option<Quiz>("Okay...") {
-                    start(target)
+                okay(target)
+                option<Quiz>("A story?") {
+                    npc<Bored>("I have been waiting here three thousand years, guarding the Tears of Guthix. I serve my master faithfully, but I am bored.")
+                    npc<Neutral>("An adventurer such as yourself must have many tales to tell. If you can entertain me, I will let you into the cave for a time.")
+                    npc<Neutral>("The more I enjoy your story, the more time I will give you in the cave.")
+                    npc<Happy>("Then you can drink of the power of balance, which will make you stronger in whatever area you are weakest.")
+                    choice {
+                        okay(target)
+                        option<Quiz>("What are the Tears of Guthix?") {
+                            tearsStory()
+                        }
+                        option<Neutral>("Not now.")
+                    }
                 }
-                option<Neutral>("A story?") {} // TODO
                 option<Neutral>("You tell me a story.") {
                     val stories = get("juna_stories", 0)
                     choice {
@@ -176,6 +205,19 @@ class Juna : Script {
         }
     }
 
+    private fun ChoiceOption.okay(target: GameObject) {
+        option<Quiz>("Okay...") {
+            if (get("quest_points", 0) < 44) {
+                player<Confused>("Well... Um...")
+                statement("You try to tell a story, but Juna does not seem impressed.")
+                npc<Bored>("Hmm. Maybe you should come back when you can tell a good story.")
+                statement("You need at least 43 Quest Points to start this quest.") // TODO proper message
+                return@option
+            }
+            start(target)
+        }
+    }
+
     private suspend fun Player.lightCreatureStory() {
         npc<Neutral>("I will tell you the story of the light-creatures.")
         npc<Happy>("Myriad and beautiful were the creatures and civilizations of the early ages of the world. Gielinor was a work of art, shaped lovingly over the millennia by the creative mind of Guthix.")
@@ -209,6 +251,25 @@ class Juna : Script {
         npc<Neutral>("So He set me, His servant, to guard the cave, and He entrusted to me the task of judging who was and was not worthy to access the tears.")
     }
 
+    private fun Player.questComplete() {
+        AuditLog.event(this, "quest_completed", "tears_of_guthix")
+        inventory.remove("stone_bowl")
+        set("tears_of_guthix", "completed")
+        jingle("quest_complete_1")
+        exp(Skill.Crafting, 1000.0)
+        inc("quest_points")
+        message("Congratulations, you've completed a quest: <navy>tears of guthix")
+        refreshQuestJournal()
+        questComplete(
+            "tears of guthix",
+            "1 Quest Point",
+            "1000 Crafting XP",
+            "Access to the Tears of Guthix",
+            "cave",
+            item = "stone_bowl",
+        )
+    }
+
     private suspend fun Player.start(target: GameObject) {
         if (questCompleted("tears_of_guthix") && (equipped(EquipSlot.Weapon).isNotEmpty() || equipped(EquipSlot.Shield).isNotEmpty())) {
             npc<Neutral>("Perhaps you should empty your hands before you begin.")
@@ -236,6 +297,7 @@ class Juna : Script {
             turnCamera(Tile(3227, 9493, 2), height = 200, speed = 5, acceleration = 5)
             npc<Neutral>("There is a cave on the south side of the chasm that is similarly infused with the power of Guthix. The stone in that cave is the only substance that can catch the Tears of Guthix.")
             clearCamera()
+            set("tears_of_guthix", "stone_bowl")
             npc<Neutral>("Mine some stone from that cave, make it into a bowl, and bring it to me, and then I will let you catch the Tears.")
             return
         }
@@ -289,12 +351,14 @@ class Juna : Script {
             }
         }
         val points = get("tears_of_guthix_points", 0)
+        if (points <= 0) {
+            return
+        }
         val rate = (10 + ((1.0 / 10.0) * floor((lowestXp / 10.0) / 27)).toInt()).coerceAtMost(60).toDouble()
         exp(lowest, rate * points)
         message(message)
         start("tears_of_guthix_cooldown", TimeUnit.DAYS.toSeconds(7).toInt(), epochSeconds())
     }
 
-    private fun junaNpc(): NPC = NPCs.find(Tile(3252, 9517, 2), "juna")
-
+    private fun junaNpc(): NPC = NPCs.find(Tile(3252, 9517, 1), "juna")
 }

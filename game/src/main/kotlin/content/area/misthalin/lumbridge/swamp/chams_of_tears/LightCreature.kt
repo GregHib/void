@@ -4,7 +4,6 @@ import content.entity.effect.clearTransform
 import content.entity.effect.transform
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
 import world.gregs.voidps.engine.entity.character.player.renderEmote
@@ -21,6 +20,7 @@ class LightCreature : Script {
             }
             val destination = if (tile.y > 9515) Tile(3224, 9504, 2) else Tile(3224, 9530, 2)
             message("The light creature is attracted to your beam and comes towards you...")
+            target.steps.clear()
             target.mode = PauseMode
             target.walkOverDelay(tile)
             target.anim("light_creature_grow")

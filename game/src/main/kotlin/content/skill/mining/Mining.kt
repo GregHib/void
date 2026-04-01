@@ -2,6 +2,8 @@ package content.skill.mining
 
 import content.activity.shooting_star.ShootingStarHandler
 import content.entity.player.bank.bank
+import content.entity.player.bank.ownsItem
+import content.quest.questCompleted
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -42,6 +44,11 @@ class Mining : Script {
         objectOperate("Mine") { (target) ->
             if (target.id.startsWith("depleted")) {
                 message("There is currently no ore available in this rock.")
+                return@objectOperate
+            }
+            if (target.id.startsWith("magic_rocks") && (ownsItem("magical_stone") || ownsItem("stone_bowl") || questCompleted("tears_of_guthix"))) {
+                // https://youtu.be/0fQ4ewyy_Ps?t=366
+                message("You have already mined some stone. You don't need any more.")
                 return@objectOperate
             }
             softTimers.start("mining")
@@ -136,6 +143,9 @@ class Mining : Script {
             val ore = Rows.getOrNull("ores.${target.def(this).stringId}")
             if (ore == null) {
                 message("This rock contains no ore.")
+            } else if (ore.itemId == "magical_stone") {
+                // https://youtu.be/0fQ4ewyy_Ps?t=366
+                message("This rock contains a magical kind of stone.")
             } else {
                 message("This rock contains ${ore.itemId.toLowerSpaceCase()}.")
             }

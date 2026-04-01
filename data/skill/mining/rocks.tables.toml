@@ -116,14 +116,14 @@ ores = ["blurite_ore"]
 [.blurite_rocks_ice_2]
 ores = ["blurite_ore"]
 
-[.blurite_rocks_lumbridge_cellar_1]
-ores = ["blurite_ore"]
+[.magic_rocks_chasm_of_tears_1]
+ores = ["magical_stone"]
 
-[.blurite_rocks_lumbridge_cellar_2]
-ores = ["blurite_ore"]
+[.magic_rocks_chasm_of_tears_2]
+ores = ["magical_stone"]
 
-[.blurite_rocks_lumbridge_cellar_3]
-ores = ["blurite_ore"]
+[.magic_rocks_chasm_of_tears_3]
+ores = ["magical_stone"]
 
 [.clay_rocks_dirt_1]
 ores = ["clay"]

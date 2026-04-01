@@ -271,20 +271,6 @@ clone = "mithril_rocks_old_1"
 id = 5786
 examine = "A rocky outcrop."
 
-[blurite_rocks_lumbridge_cellar_1]
-id = 6669
-examine = "Stone with blue veins."
-
-[blurite_rocks_lumbridge_cellar_2]
-clone = "blurite_rocks_lumbridge_cellar_1"
-id = 6670
-examine = "Stone with blue veins."
-
-[blurite_rocks_lumbridge_cellar_3]
-clone = "blurite_rocks_lumbridge_cellar_1"
-id = 6671
-examine = "Stone with blue veins."
-
 [iron_rocks_lumbridge_cellar_1]
 clone = "iron_rocks_old_1"
 id = 6943
@@ -448,12 +434,10 @@ id = 10582
 examine = "A rocky outcrop."
 
 [blurite_rocks_ice_1]
-clone = "blurite_rocks_lumbridge_cellar_1"
 id = 10583
 examine = "A rocky outcrop."
 
 [blurite_rocks_ice_2]
-clone = "blurite_rocks_lumbridge_cellar_1"
 id = 10584
 examine = "A rocky outcrop."
 
@@ -1896,12 +1880,12 @@ id = 33079
 examine = "A rocky outcrop."
 
 [blurite_rocks_asgarnian_ice_1]
-clone = "blurite_rocks_lumbridge_cellar_1"
+clone = "magic_rocks_chasm_of_tears_1"
 id = 33220
 examine = "A rocky outcrop."
 
 [blurite_rocks_asgarnian_ice_2]
-clone = "blurite_rocks_lumbridge_cellar_1"
+clone = "magic_rocks_chasm_of_tears_1"
 id = 33221
 examine = "A rocky outcrop."
 

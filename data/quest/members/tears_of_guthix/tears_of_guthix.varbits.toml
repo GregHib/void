@@ -2,4 +2,4 @@
 id = 451
 persist = true
 format = "list"
-values = [ "unstarted", "stage2", "completed" ]
+values = [ "unstarted", "stone_bowl", "completed" ]

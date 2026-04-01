@@ -2,10 +2,10 @@
 row_id = "item"
 level = "int"
 xp = "int"
-gems = "boolean"
-life = "int"
+gems = "boolean" # can recieve random gems with glory equipped
+life = "int" # respawn time in ticks
 life_default = -1
-chance = "range"
+chance = "range" # Chance at level 1 and 99
 
 [.stardust]
 level = 1
@@ -19,6 +19,12 @@ xp = 175
 gems = true
 life = 42
 chance = [30, 375]
+
+[.magical_stone]
+level = 20
+xp = 0
+life = 90
+chance = [200, 375]
 
 [.limestone]
 level = 10

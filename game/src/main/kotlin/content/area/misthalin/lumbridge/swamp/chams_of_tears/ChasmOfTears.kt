@@ -10,7 +10,7 @@ class ChasmOfTears : Script {
         objectOperate("Climb", "chasm_of_tears_rocks") { (target) ->
             val direction = if (tile.x < target.tile.x) Direction.EAST else Direction.WEST
             walkToDelay(target.tile.add(direction.inverse()))
-            anim("tears_of_guthix_climb_slope_${if (direction == Direction.EAST) "down" else "up"}")
+            anim("chasm_of_tears_climb_slope_${if (direction == Direction.EAST) "down" else "up"}")
             face(direction)
             sound("climbing_loop", repeat = 5)
             exactMoveDelay(target.tile.add(direction), delay = 100, direction = Direction.WEST)

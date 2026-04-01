@@ -19,7 +19,7 @@ weight = 1.36
 examine = "A lantern casting a bright blue beam."
 kept = "Reclaim"
 
-[magic_stone_tears_of_guthix]
+[magical_stone]
 id = 4703
 tradeable = false
 weight = 2.267

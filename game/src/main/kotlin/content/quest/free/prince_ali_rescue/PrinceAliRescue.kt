@@ -222,7 +222,7 @@ class PrinceAliRescue(val fontDefinitions: FontDefinitions) : Script {
                     "<str>him to safety. I returned to Al Kharid, where Hassan rewarded",
                     "<str>me for my work.",
                     "",
-                    "<col=ff0000>QUEST COMPLETE!",
+                    "<red>QUEST COMPLETE!",
                 )
                 else -> listOf("<navy>I can start his quest by talking to <maroon>Chancellor Hassan<navy> in <maroon>Al Kharid Palace<navy>.")
             }

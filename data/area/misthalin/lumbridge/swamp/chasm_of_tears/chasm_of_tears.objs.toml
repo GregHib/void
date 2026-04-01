@@ -21,3 +21,29 @@ id = 31302
 
 [juna]
 id = 31303
+
+[depleted_rocks_chasm_of_tears_1]
+id = 6947
+examine = "Stoney!"
+
+[depleted_rocks_chasm_of_tears_2]
+id = 6948
+examine = "Stoney!"
+
+[depleted_rocks_chasm_of_tears_3]
+id = 11193
+examine = "A rocky outcrop."
+
+[magic_rocks_chasm_of_tears_1]
+id = 6669
+examine = "Stone with blue veins."
+
+[magic_rocks_chasm_of_tears_2]
+clone = "magic_rocks_chasm_of_tears_1"
+id = 6670
+examine = "Stone with blue veins."
+
+[magic_rocks_chasm_of_tears_3]
+clone = "magic_rocks_chasm_of_tears_1"
+id = 6671
+examine = "Stone with blue veins."
