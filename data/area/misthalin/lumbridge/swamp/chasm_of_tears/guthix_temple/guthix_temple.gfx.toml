@@ -2,6 +2,7 @@
 id = 1884
 curve = 16
 delay = 30
+height = 30
 time_offset = 10
 multiplier = 10
 
@@ -15,6 +16,7 @@ id = 1888
 id = 1887
 curve = 16
 delay = 60
+height = 30
 time_offset = 10
 multiplier = 10
 
