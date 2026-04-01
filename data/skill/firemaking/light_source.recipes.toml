@@ -72,29 +72,8 @@ message = "The lantern is too hot to do that while it is lit."
 [emerald_bullseye_lantern_empty]
 skill = "crafting"
 ticks = 1
-remove = [ "bullseye_lantern_empty", "emerald"]
-add = ["emerald_lantern_empty", "lantern_lens"]
-message = "You replace the lantern lens with a emerald."
-
-[emerald_bullseye_lantern_empty]
-skill = "crafting"
-ticks = 1
 remove = [ "emerald_lantern_empty", "lantern_lens"]
 add = ["bullseye_lantern_empty", "emerald"]
-message = "You replace the emerald with a lantern lens."
-
-[emerald_bullseye_lantern_oil]
-skill = "crafting"
-ticks = 1
-remove = [ "bullseye_lantern_oil", "emerald"]
-add = ["emerald_lantern_oil", "lantern_lens"]
-message = "You replace the lantern lens with a emerald."
-
-[emerald_bullseye_lantern_oil_lens]
-skill = "crafting"
-ticks = 1
-remove = [ "emerald_lantern_oil", "lantern_lens"]
-add = ["bullseye_lantern_oil", "emerald"]
 message = "You replace the emerald with a lantern lens."
 
 [emerald_bullseye_lantern_lit]
