@@ -171,14 +171,13 @@ class Attack(
         val next: String? = source["next_attack"]
         if (next != null) {
             val attack = definition.attacks[next] ?: return null
-            return if (withinRange(source, target, attack)) attack else null
+            if (valid(source, target, attack)) {
+                return attack
+            }
         }
         val validAttacks = mutableListOf<Pair<CombatDefinition.CombatAttack, Int>>()
         for (attack in definition.attacks.values) {
-            if (!CombatApi.condition(source, target, attack.condition)) {
-                continue
-            }
-            if (!attack.approach && !withinRange(source, target, attack)) {
+            if (!valid(source, target, attack)) {
                 continue
             }
             validAttacks.add(attack to attack.chance)
@@ -187,6 +186,16 @@ class Attack(
             return null
         }
         return weightedSample(validAttacks)
+    }
+
+    private fun valid(source: NPC, target: Character, attack: CombatDefinition.CombatAttack): Boolean {
+        if (!CombatApi.condition(source, target, attack.condition)) {
+            return false
+        }
+        if (!attack.approach && !withinRange(source, target, attack)) {
+            return false
+        }
+        return true
     }
 
     fun withinRange(source: NPC, target: Character, attack: CombatDefinition.CombatAttack): Boolean {
