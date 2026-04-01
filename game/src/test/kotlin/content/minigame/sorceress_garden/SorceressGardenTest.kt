@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
 class SorceressGardenTest : WorldTest() {
@@ -42,6 +43,22 @@ class SorceressGardenTest : WorldTest() {
             tick(5)
             assertEquals(Tile(2911, 5470), player.tile)
             assertEquals(26, player.inventory.spaces)
+        }
+    }
+
+    @TestFactory
+    fun `Elementals catch players when seen`() = listOf(
+        "spring",
+        "autumn",
+        "winter",
+        "summer",
+    ).map { season ->
+        dynamicTest("Get caught by $season elemental") {
+            val player = createPlayer(Tile(2908, 5470))
+            val elemental = createNPC("${season}_elemental", Tile(2908, 5471))
+            elemental.face(Direction.SOUTH)
+            tick(5)
+            assertEquals(Tile(2911, 5470), player.tile)
         }
     }
 }

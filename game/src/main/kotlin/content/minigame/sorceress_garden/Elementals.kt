@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.PatrolDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.sound
@@ -23,22 +24,22 @@ class Elementals(val patrols: PatrolDefinitions) : Script {
             val direction = direction
             // Catch all players two tiles in-front
             for (player in Players.at(tile.add(direction))) {
-                catch(player)
+                catch(this, player)
             }
             for (player in Players.at(tile.add(direction).add(direction))) {
-                catch(player)
+                catch(this, player)
             }
         }
     }
 
-    fun catch(player: Player) {
+    fun catch(elemental: NPC, player: Player) {
         if (player.queue.contains("sorceress_garden_caught")) {
             return
         }
         player.strongQueue("sorceress_garden_caught") {
-            player.anim("elemental_pointing")
+            elemental.anim("elemental_pointing")
             player.sound("stun_all")
-            player.shoot("curse", player.tile)
+            elemental.shoot("curse", player.tile)
             player.gfx("curse_impact")
             player.open("fade_out")
             player.delay(4)
