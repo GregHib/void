@@ -14,15 +14,18 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 
 class TormentedDemon : Script {
     init {
         npcSpawn("tormented_demon_melee") {
             set("tormented_style", "magic")
+            transform("tormented_demon_melee")
+            softTimers.start("tds_change_attack")
         }
 
-        npcTimerStart("tds_change_attack") { 26 }
+        npcTimerStart("tds_change_attack") { random.nextInt(14, 30) }
 
         npcTimerTick("tds_change_attack") {
             anim("tormented_demon_change")
@@ -35,7 +38,7 @@ class TormentedDemon : Script {
                 },
             )
             start("action_delay", 6)
-            Timer.CONTINUE
+            26
         }
 
         npcCondition("tormented_melee") { get("tormented_style", "magic") == "melee" }
@@ -43,7 +46,6 @@ class TormentedDemon : Script {
         npcCondition("tormented_magic") { get("tormented_style", "magic") == "magic" }
 
         npcCombatDamage("tormented_demon_*") {
-            softTimers.startIfAbsent("tds_change_attack")
             var damage = it.damage
             if (!hasClock("shield_cooldown")) {
                 gfx("tormented_demon_shield")
