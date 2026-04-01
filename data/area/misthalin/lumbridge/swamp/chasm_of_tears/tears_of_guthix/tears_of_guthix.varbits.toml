@@ -1,0 +1,7 @@
+[tears_of_guthix_time]
+id = 454
+format = "int"
+
+[tears_of_guthix_points]
+id = 455
+format = "int"

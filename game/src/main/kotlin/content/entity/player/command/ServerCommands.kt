@@ -117,7 +117,7 @@ class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
                 get<InventoryDefinitions>().load(files.list(Settings["definitions.inventories"]), files.list(Settings["definitions.shops"]))
             }
             "graphic_defs", "graphics", "gfx", "gfxs" -> get<GraphicDefinitions>().load(files.list(Settings["definitions.graphics"]))
-            "item_on_item", "item-on-item", "ioi" -> get<ItemOnItemDefinitions>().load(files.list(Settings["definitions.itemOnItem"]))
+            "item_on_item", "item-on-item", "ioi", "recipes" -> get<ItemOnItemDefinitions>().load(files.list(Settings["definitions.itemOnItem"]))
             "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load(files.list(Settings["definitions.sounds"]))
             "produce", "farming" -> get<FarmingDefinitions>().load(files.find(Settings["definitions.produce"]))
             "quest", "quests" -> get<QuestDefinitions>().load(files.find(Settings["definitions.quests"]))

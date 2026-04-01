@@ -1,0 +1,41 @@
+[light_creature_white]
+id = 8454
+collision = "sky"
+examine = "A shimmering creature of blue light."
+
+[light_creature_white_carry]
+id = 8455
+
+[wgs_tormented_demon_melee]
+id = 8349
+
+[wgs_tormented_demon_magic]
+id = 8350
+
+[wgs_tormented_demon_range]
+id = 8351
+
+[tormented_demon_melee]
+id = 8352
+hitpoints = 3260
+att = 255
+str = 255
+def = 150
+magic = 255
+range = 255
+slayer_xp = 1065.0
+height = 60
+hunt_mode = "aggressive"
+categories = ["greater_demons", "tormented_demon"]
+respawn_delay = 21
+combat_def = "tormented_demon"
+drop_table = "tormented_demon"
+examine = "Lucien must be incredibly powerful if he can bind such demons to his will."
+
+[tormented_demon_magic]
+id = 8353
+clone = "tormented_demon_melee"
+
+[tormented_demon_range]
+id = 8354
+clone = "tormented_demon_melee"

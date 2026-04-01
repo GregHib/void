@@ -292,6 +292,7 @@ abstract class WorldTest : KoinTest {
             properties["events.shootingStars.enabled"] = false
             properties["events.livingRockCaverns.respawnTimeMinutes"] = "-1"
             properties["events.penguinHideAndSeek.enabled"] = false
+            properties["events.tearsOfGuthix.active"] = false
             properties["storage.autoSave.minutes"] = 0
             properties["storage.disabled"] = true
             properties["bots.count"] = 0

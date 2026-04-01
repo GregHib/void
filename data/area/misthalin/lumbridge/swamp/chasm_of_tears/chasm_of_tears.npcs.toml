@@ -1,9 +1,15 @@
-[light_creature_tears_of_guthix_cavern]
+[juna]
+id = 2023
+dialogue = "old"
+
+[light_creature]
 id = 2021
+collision = "sky"
 examine = "A shimmering creature of blue light."
 
-[juna_tears_of_guthix_cavern]
-id = 2023
+[light_creature_carry]
+id = 2022
+examine = "That one is carrying someone!"
 
 [zanik_tears_of_guthix_cavern]
 id = 3363

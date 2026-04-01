@@ -1,0 +1,14 @@
+[chasm_of_tears_tunnel]
+option = "Enter"
+tile = { x = 3218, y = 9533, level = 2 }
+to = { x = 3226, y = 9542 }
+
+[chasm_of_tears_cave_entrance]
+option = "Go-through"
+tile = { x = 3249, y = 9499, level = 2 }
+to = { x = 2372, y = 4276 }
+
+[chosen_commander_cave_exit]
+option = "Go-through"
+tile = { x = 2370, y = 4274 }
+to = { x = 3248, y = 9500, level = 2 }

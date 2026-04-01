@@ -1,0 +1,6 @@
+[enchanted_vials]
+ticks = 1
+requires = [{ id = "golden_bowl_blessed_water", charges = 1 }]
+remove = ["enchanted_vial"]
+add = ["holy_water"]
+message = "You decant some water from the golden bowl into the vial."

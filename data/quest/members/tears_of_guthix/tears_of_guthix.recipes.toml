@@ -1,0 +1,6 @@
+[stone_bowl]
+requires = ["chisel"]
+remove = ["magical_stone"]
+add = ["stone_bowl"]
+ticks = 1
+message = "You make a stone bowl."

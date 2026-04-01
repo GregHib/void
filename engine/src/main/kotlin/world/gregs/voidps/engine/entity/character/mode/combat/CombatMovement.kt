@@ -30,6 +30,8 @@ class CombatMovement(
     val strategy: TargetStrategy = TargetStrategy(character, target),
 ) : Movement(character, strategy) {
 
+    var started = false
+
     override fun start() {
         if (character is NPC) {
             character.steps.clear()
@@ -104,7 +106,7 @@ class CombatMovement(
     private fun attackRange(): Int {
         val default = if (character is NPC) {
             val def = character.transformDef
-            val combatDefinition = get<CombatDefinitions>().get(def["combat_def", character.id])
+            val combatDefinition = get<CombatDefinitions>().get(def["combat_def", character["transform_id", def.stringId]])
             def["attack_range", combatDefinition.attackRange]
         } else 1
         return character["attack_range", default]
@@ -114,6 +116,9 @@ class CombatMovement(
     }
 
     override fun stop(replacement: Mode) {
+        if (!started) {
+            return
+        }
         if (replacement !is CombatMovement || replacement.target != target) {
             if (character is Player) {
                 CombatApi.stop(character, target)

@@ -5,29 +5,29 @@ level_default = 1
 xp = "int"
 
 [.bronze_dart_tip]
-level = 1
+level = 10
 xp = 18
 
 [.iron_dart_tip]
 level = 22
-xp = 18
+xp = 38
 
 [.steel_dart_tip]
 level = 37
-xp = 38
+xp = 75
 
 [.mithril_dart_tip]
 level = 52
-xp = 75
+xp = 112
 
 [.adamant_dart_tip]
 level = 67
-xp = 112
+xp = 150
 
 [.rune_dart_tip]
 level = 81
-xp = 150
+xp = 188
 
 [.dragon_dart_tip]
 level = 95
-xp = 188
+xp = 250

@@ -160,18 +160,24 @@ fun Player.clearInstance(): Boolean {
     return true
 }
 
-fun Player.openTabs() {
+fun Player.openTabs(options: Boolean = false) {
     for (tab in tabs) {
         open(tab)
+    }
+    if (options) {
+        open("options")
     }
     open(get("spell_book", "modern_spellbook"))
 }
 
-fun Player.closeTabs() {
+fun Player.closeTabs(options: Boolean = false) {
     for (tab in tabs) {
         close(tab)
     }
     set("spell_book", spellBook)
+    if (options) {
+        close("options")
+    }
     close(spellBook)
 }
 

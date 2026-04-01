@@ -3,6 +3,7 @@ package content.area.misthalin.varrock.palace
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
+import content.entity.player.inv.item.addOrDrop
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
@@ -44,9 +45,33 @@ class SirPrysin : Script {
                 }
                 "completed" -> {
                     npc<Idle>("Hello. I've heard you stopped the demon, well done.")
-                    player<Idle>("Yes, that's right.")
-                    npc<Idle>("A good job well done then.")
-                    player<Idle>("Thank you.")
+                    choice {
+                        option<Idle>("Yes, that's right.") {
+                            npc<Idle>("A good job well done then.")
+                            player<Idle>("Thank you.")
+                        }
+                        option<Sad>("Yes, although I'm afraid I've lost Silverlight.") {
+                            npc<Angry>("Yes, news of your carelessness is almost as widespread as knowledge of your victory. Fortunately for you, the sword has come back into my possession.")
+                            choice {
+                                option<Happy>("Phew, that's a relief.")
+                                option<Quiz>("Is there any chance of me borrowing it again?") {
+                                    npc<Angry>("I'm not going to just give it away, it's far too important to be treated so disrespectfully. Especially now your fight with Agrith-Naar has increased its powers, turning it into Darklight!")
+                                    npc<Neutral>("If you wish to make use of the sword again, it will cost you 1000 coins. Maybe that will encourage you to look after it.")
+                                    choice {
+                                        option<Neutral>("No way, it's not worth that much.")
+                                        option<Neutral>("Okay, I'll pay.") {
+                                            if (!inventory.remove("coins", 1000)) {
+                                                npc<Sad>("I'll be here when you actually have that much money to pay me.")
+                                                return@option
+                                            }
+                                            addOrDrop("darklight")
+                                            npc<Neutral>("May you make good use of it.")
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
                 else -> {
                     npc<Neutral>("Hello, who are you?")

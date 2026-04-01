@@ -1,0 +1,15 @@
+[juna_stories]
+format = "int"
+persist = true
+
+[tears_of_guthix_cooldown]
+format = "int"
+persist = true
+
+[tears_reminder_cooldown]
+format = "int"
+persist = true
+
+[tears_reminder]
+format = "bool"
+persist = true

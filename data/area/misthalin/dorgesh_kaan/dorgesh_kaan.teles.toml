@@ -1,0 +1,4 @@
+[dorgesh_kaan_bone_door]
+option = "Open"
+tile = { x = 2747, y = 5375 }
+to = { x = 3317, y = 9602 }

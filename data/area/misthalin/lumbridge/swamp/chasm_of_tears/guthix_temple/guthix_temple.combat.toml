@@ -1,0 +1,39 @@
+[tormented_demon]
+attack_speed = 6
+retreat_range = 8
+defend_anim = "tormented_demon_defend"
+death_anim = "tormented_demon_death"
+
+[tormented_demon.melee]
+condition = "tormented_melee"
+chance = 20
+range = 1
+anim = "tormented_demon_slash"
+gfx = "tormented_demon_slash"
+approach = true
+target_hit = { offense = "stab", max = 189 }
+
+[tormented_demon.range]
+condition = "tormented_range"
+chance = 20
+range = 8
+anim = "tormented_demon_range"
+gfx = "tormented_demon_range_throw"
+projectile = "tormented_demon_range_travel"
+target_hit = { offense = "range", max = 269 }
+
+[tormented_demon.magic]
+condition = "tormented_magic"
+chance = 20
+range = 8
+anim = "tormented_demon_magic"
+projectile = "tormented_demon_magic_travel"
+projectile_origin_x = 1
+projectile_origin_y = 1
+impact_gfx = "tormented_demon_magic_impact"
+target_hit = { offense = "magic", max = 269 }
+
+[tormented_demon.special]
+chance = 1
+range = 8
+anim = "tormented_demon_magic"

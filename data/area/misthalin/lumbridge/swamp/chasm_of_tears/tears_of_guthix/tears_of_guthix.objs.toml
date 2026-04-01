@@ -1,0 +1,20 @@
+[blue_tears]
+id = 6665
+
+[blue_tears_centre]
+id = 6661
+
+[green_tears]
+id = 6662
+
+[green_tears_centre]
+id = 6666
+
+[no_tears]
+id = 6663
+
+[no_tears_centre]
+id = 6667
+
+[weeping_wall]
+id = 6660

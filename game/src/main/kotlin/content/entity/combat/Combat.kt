@@ -167,6 +167,7 @@ class Combat(val combatDefinitions: CombatDefinitions) :
             if (character.hasClock("action_delay")) {
                 return
             }
+            (character.mode as? CombatMovement)?.started = true
             val prepared = when (character) {
                 is Player -> CombatApi.prepare(character, target, character.fightStyle)
                 is NPC -> CombatApi.prepare(character, target)

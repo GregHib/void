@@ -31,3 +31,6 @@ id = 22683
 [furnace_dorgesh_kaan]
 id = 22721
 examine = "	A very hot furnace."
+
+[dorgesh_kaan_bone_door]
+id = 22945

@@ -1,0 +1,23 @@
+[guthix_temple_jump_up]
+id = 5039
+
+[guthix_temple_jump_down]
+id = 5040
+
+[tormented_demon_change]
+id = 10917
+
+[tormented_demon_magic]
+id = 10918
+
+[tormented_demon_range]
+id = 10919
+
+[tormented_demon_slash]
+id = 10922
+
+[tormented_demon_defend]
+id = 10923
+
+[tormented_demon_death]
+id = 10924

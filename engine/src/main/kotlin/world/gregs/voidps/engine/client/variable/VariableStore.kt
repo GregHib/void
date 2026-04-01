@@ -27,9 +27,9 @@ interface VariableStore {
         return value + amount
     }
 
-    fun dec(key: String, amount: Int = 1, refresh: Boolean = true): Int {
+    fun dec(key: String, amount: Int = 1, refresh: Boolean = true, min: Int = 0): Int {
         val value: Int = variables.get(key, 0)
-        variables.set(key, value - amount, refresh)
+        variables.set(key, (value - amount).coerceAtLeast(min), refresh)
         return value - amount
     }
 

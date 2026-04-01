@@ -1,0 +1,10 @@
+[swamp_cave_climbing_rope]
+id = 5946
+examine = "You see a circle of light at the top."
+
+[lumbridge_cave_stepping_stone]
+id = 5949
+
+[lumbridge_cave_tunnel]
+id = 32944
+examine = "A tunnel leading into the depths of the earth."

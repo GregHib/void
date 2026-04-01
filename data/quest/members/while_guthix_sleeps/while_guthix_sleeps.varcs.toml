@@ -1,0 +1,4 @@
+[decend_cutscene_direction]
+id = 97
+format = "list"
+values = ["", "fade", "down", "light", "up", "dark"]

@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.data.definition.HuntModeDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterSearch
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
@@ -67,7 +68,7 @@ class Hunting(
             if (definition.checkNotCombatSelf && npc.mode is CombatMovement) {
                 continue
             }
-            if (!definition.findKeepHunting && npc.mode !is EmptyMode && npc.mode !is Wander) {
+            if (!definition.findKeepHunting && npc.mode !is EmptyMode && npc.mode !is Wander && npc.mode !is Patrol) {
                 continue
             }
             val range = npc.def["hunt_range", 5]
@@ -180,8 +181,8 @@ class Hunting(
         characters: CharacterSearch<T>,
         range: Int,
         definition: HuntModeDefinition,
-        targets: Array<T?>
-    ) : T? {
+        targets: Array<T?>,
+    ): T? {
         listCharacters(npc, characters, range, definition, targets)
         if (count == 0) {
             return null
@@ -198,7 +199,7 @@ class Hunting(
         characterList: CharacterSearch<T>,
         range: Int,
         definition: HuntModeDefinition,
-        targets: Array<T?>
+        targets: Array<T?>,
     ) {
         count = 0
         for (zone in npc.tile.zone.toRectangle(ceil(range / 8.0).toInt()).toZonesReversed(npc.tile.level)) {
