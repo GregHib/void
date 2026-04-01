@@ -1,7 +1,10 @@
-[light_creature_guthixian_temple]
+[light_creature_white]
 id = 8454
 collision = "sky"
 examine = "A shimmering creature of blue light."
+
+[light_creature_white_carry]
+id = 8455
 
 [wgs_tormented_demon_melee]
 id = 8349

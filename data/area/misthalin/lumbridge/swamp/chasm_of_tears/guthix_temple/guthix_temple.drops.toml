@@ -10,7 +10,6 @@ drops = [
 [tormented_demon_secondary]
 roll = 512
 drops = [
-    { id = "infernal_ashes", chance = 512 },
     { id = "dragon_claws", chance = 2 },
     { id = "adamant_battleaxe", chance = 32 },
     { id = "rune_mace", chance = 32 },
