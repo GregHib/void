@@ -66,7 +66,6 @@ class Juna : Script {
 
         objectOperate("Talk-to", "juna_tears,juna") { (target) ->
             talkWith(junaNpc())
-            // TODO snake expressions
             if (equipped(EquipSlot.Weapon).id == "stone_bowl") {
                 npc<Neutral>("I will not permit you to be in the cave for long. Collect as many tears as you can.")
                 choice {
