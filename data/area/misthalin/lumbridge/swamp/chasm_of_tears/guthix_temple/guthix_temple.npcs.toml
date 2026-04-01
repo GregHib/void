@@ -24,6 +24,7 @@ def = 150
 magic = 255
 range = 255
 slayer_xp = 1065.0
+height = 100 # TODO check
 hunt_mode = "aggressive"
 categories = ["greater_demons", "tormented_demon"]
 respawn_delay = 21

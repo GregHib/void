@@ -1,5 +1,9 @@
 [tormented_demon_magic_travel]
 id = 1884
+curve = 16
+delay = 30
+time_offset = 10
+multiplier = 10
 
 [tormented_demon_magic_impact]
 id = 1883
@@ -9,6 +13,10 @@ id = 1888
 
 [tormented_demon_range_travel]
 id = 1887
+curve = 16
+delay = 60
+time_offset = 10
+multiplier = 10
 
 [tormented_demon_shield]
 id = 1885
