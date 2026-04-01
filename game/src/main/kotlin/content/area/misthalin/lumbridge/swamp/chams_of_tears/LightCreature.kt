@@ -2,9 +2,11 @@ package content.area.misthalin.lumbridge.swamp.chams_of_tears
 
 import content.entity.effect.clearTransform
 import content.entity.effect.transform
+import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
 import world.gregs.voidps.engine.entity.character.player.renderEmote
 import world.gregs.voidps.engine.entity.character.sound
@@ -18,7 +20,15 @@ class LightCreature : Script {
                 message("That light creature is too far away to see you clearly.")
                 return@itemOnNPCApproach
             }
-            val destination = if (tile.y > 9515) Tile(3224, 9504, 2) else Tile(3224, 9530, 2)
+
+            val temple = questCompleted("tears_of_guthix")
+            val destination = if (temple) {
+                Tile(3224, 9527, 2)
+            } else if (tile.y > 9515) {
+                Tile(3224, 9504, 2)
+            } else {
+                Tile(3224, 9530, 2)
+            }
             message("The light creature is attracted to your beam and comes towards you...")
             target.steps.clear()
             target.mode = PauseMode
@@ -32,6 +42,11 @@ class LightCreature : Script {
             target.walkOverDelay(tile.add(Direction.SOUTH_WEST))
             target.walkTo(destination.add(Direction.SOUTH_WEST), noCollision = true, forceWalk = true)
             walkOverDelay(destination)
+            if (temple) {
+                // TOOD interface
+                tele(2538, 5884)
+                return@itemOnNPCApproach
+            }
             target.anim("light_creature_shrink")
             anim("float_down")
             sound("light_creature_down")

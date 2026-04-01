@@ -1,6 +1,7 @@
 package content.skill.prayer
 
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
@@ -20,6 +21,12 @@ object PrayerConfigs {
 
 fun Character.praying(name: String): Boolean = when (this) {
     is Player -> containsVarbit(getActivePrayerVarKey(), name)
+    is NPC -> when (name) {
+        "protect_from_melee", "deflect_melee" -> id == "tormented_demon_melee"
+        "protect_from_magic", "deflect_magic" -> id == "tormented_demon_magic"
+        "protect_from_missiles", "deflect_missiles" -> id == "tormented_demon_range"
+        else -> false
+    }
     else -> false
 }
 

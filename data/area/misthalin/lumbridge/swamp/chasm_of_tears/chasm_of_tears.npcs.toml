@@ -1,6 +1,6 @@
 [juna]
 id = 2023
-large_head = true # TODO anims
+dialogue = "snake"
 
 [light_creature]
 id = 2021
@@ -9,6 +9,7 @@ examine = "A shimmering creature of blue light."
 
 [light_creature_large]
 id = 2022
+examine = "That one is carrying someone!"
 
 [zanik_tears_of_guthix_cavern]
 id = 3363

@@ -1,7 +1,10 @@
 package content.area.misthalin.lumbridge.castle
 
 import content.entity.npc.shop.openShop
+import content.entity.player.dialogue.type.warning
+import content.skill.firemaking.Light
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.type.Direction
 
@@ -20,6 +23,11 @@ class LumbridgeCellar : Script {
         }
 
         objectOperate("Squeeze-through", "lost_tribe_cellar_hole") { (target) ->
+            val light = Light.hasLightSource(this)
+            if (!light && !warning("lumbridge_cellar")) {
+                message("You should find a light source and a tinderbox before going down there.")
+                return@objectOperate
+            }
             walkToDelay(target.tile)
             val direction = if (target.tile.x == 3219) Direction.EAST else Direction.WEST
             face(direction)

@@ -65,6 +65,9 @@ object Equipment {
                 damage = (damage * multiplier.coerceAtLeast(0.0)).toInt()
             }
         }
+        if (source is Player && target is NPC && target.id.startsWith("tormented_demon") && !target.contains("shield_cooldown")) {
+            damage = (damage * 0.25).toInt()
+        }
         if (Hit.meleeType(type) && target.softTimers.contains("power_of_light")) {
             damage = (damage * 0.5).toInt()
         }

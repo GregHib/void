@@ -1,0 +1,87 @@
+[tormented_demon_drop_table]
+type = "all"
+drops = [
+    { id = "ashes" },
+    { table = "tormented_demon_secondary" },
+    { table = "tormented_demon_tertiary" },
+    { table = "tormented_demon_charms" },
+]
+
+[tormented_demon_secondary]
+roll = 512
+drops = [
+    { id = "infernal_ashes", chance = 512 },
+    { id = "dragon_claws", chance = 2 },
+    { id = "adamant_battleaxe", chance = 32 },
+    { id = "rune_mace", chance = 32 },
+    { id = "rune_sword", chance = 32 },
+    { id = "rune_battleaxe" },
+    { id = "rune_2h_sword" },
+    { id = "rune_sq_shield", chance = 32 },
+    { id = "rune_chainbody", chance = 8 },
+    { id = "rune_med_helm", chance = 8 },
+    { id = "dragon_med_helm" },
+    { id = "rune_kiteshield" },
+    { id = "shark", min = 5, max = 15, chance = 8 },
+    { id = "super_defence_3", min = 1, max = 6, chance = 32 },
+    { id = "prayer_potion_3", min = 1, max = 3, chance = 8 },
+    { id = "avantoe_seed", min = 1, max = 2, chance = 32 },
+    { id = "belladonna_seed", chance = 32 },
+    { id = "harralander_seed", min = 1, max = 2, chance = 32 },
+    { id = "jangerberry_seed", min = 1, max = 3, chance = 32 },
+    { id = "marrentill_seed", min = 1, max = 2, chance = 32 },
+    { id = "bittercap_mushroom_spore", chance = 32 },
+    { id = "wildblood_seed", min = 1, max = 3, chance = 32 },
+    { id = "kwuarm_seed", min = 1, max = 2, chance = 32 },
+    { id = "cactus_seed", min = 4, max = 10, chance = 8 },
+    { id = "limpwurt_seed", min = 1, max = 2, chance = 8 },
+    { id = "ranarr_seed", min = 1, max = 3, chance = 8 },
+    { id = "spirit_weed_seed", min = 1, max = 2, chance = 8 },
+    { id = "strawberry_seed", min = 1, max = 4, chance = 8 },
+    { id = "toadflax_seed", min = 1, max = 2, chance = 8 },
+    { id = "whiteberry_seed", min = 1, max = 3, chance = 8 },
+    { id = "dwarf_weed_seed", min = 1, max = 2, chance = 8 },
+    { id = "lantadyme_seed", min = 1, max = 2, chance = 8 },
+    { id = "cadantine_seed", min = 1, max = 2, chance = 2 },
+    { id = "grimy_guam_noted", min = 1, max = 11, chance = 32 },
+    { id = "grimy_marrentill_noted", min = 1, max = 11, chance = 32 },
+    { id = "grimy_tarromin_noted", min = 1, max = 11, chance = 32 },
+    { id = "grimy_harralander_noted", min = 1, max = 11, chance = 32 },
+    { id = "grimy_irit_noted", min = 1, max = 11, chance = 32 },
+    { id = "grimy_avantoe_noted", min = 1, max = 11, chance = 32 },
+    { id = "grimy_kwuarm_noted", min = 1, max = 11, chance = 32 },
+    { id = "grimy_cadantine_noted", min = 1, max = 11, chance = 32 },
+    { id = "grimy_lantadyme_noted", min = 1, max = 11, chance = 32 },
+    { id = "grimy_ranarr_noted", min = 1, max = 11, chance = 8 },
+    { id = "grimy_dwarf_weed_noted", min = 1, max = 11, chance = 8 },
+    { id = "diamond_noted", min = 3, max = 5, chance = 32 },
+    { id = "adamant_bar", min = 3, max = 7, chance = 32 },
+    { id = "death_rune", min = 20, max = 40, chance = 32 },
+    { id = "lava_rune", min = 20, max = 45, chance = 32 },
+    { id = "law_rune", min = 20, max = 45, chance = 32 },
+    { id = "fire_talisman_noted", min = 2, max = 5, chance = 32 },
+    { id = "blood_rune", min = 10, max = 20, chance = 8 },
+    { id = "soul_rune", amount = 20 },
+    { id = "coins", min = 3000, max = 15000, chance = 32 },
+]
+
+[tormented_demon_tertiary]
+roll = 512
+drops = [
+    { table = "hard_clue_scroll", chance = 8 },
+    { id = "starved_ancient_effigy", chance = 8 },
+    { id = "ruined_dragon_armour_slice", chance = 2 },
+    { id = "ruined_dragon_armour_lump", chance = 2 },
+    { id = "ruined_dragon_armour_shard", chance = 2 },
+    { table = "elite_clue_scroll" },
+    { id = "court_summons" },
+]
+
+[tormented_demon_charms]
+roll = 1000
+drops = [
+    { id = "gold_charm", amount = 3, chance = 224 },
+    { id = "green_charm", amount = 3, chance = 112 },
+    { id = "crimson_charm", amount = 3, chance = 224 },
+    { id = "blue_charm", amount = 3, chance = 358 },
+]

@@ -8,4 +8,10 @@ spawns = [
   { id = "light_creature_guthixian_temple", x = 2542, y = 5884, members = true },
   { id = "light_creature_guthixian_temple", x = 2542, y = 5885, members = true },
   { id = "light_creature_guthixian_temple", x = 2542, y = 5886, members = true },
+  { id = "tormented_demon_melee", x = 2589, y = 5714, members = true },
+  { id = "tormented_demon_melee", x = 2589, y = 5734, members = true },
+  { id = "tormented_demon_melee", x = 2601, y = 5710, members = true },
+  { id = "tormented_demon_melee", x = 2602, y = 5737, members = true },
+  { id = "tormented_demon_melee", x = 2610, y = 5710, members = true },
+  { id = "tormented_demon_melee", x = 2613, y = 5732, members = true },
 ]
