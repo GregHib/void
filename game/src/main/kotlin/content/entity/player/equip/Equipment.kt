@@ -35,6 +35,9 @@ object Equipment {
     }
 
     fun shieldDamageReductionModifiers(source: Character, target: Character, type: String, baseDamage: Int): Int {
+        if (baseDamage <= 0) {
+            return baseDamage
+        }
         var damage = baseDamage
         when (source) {
             is NPC if type == "dragonfire" && source.isFamiliar -> damage = (damage * 0.7).toInt()
