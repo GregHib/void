@@ -1,6 +1,5 @@
 package content.area.misthalin.varrock.palace
 
-import content.entity.npc.shop.buy
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*

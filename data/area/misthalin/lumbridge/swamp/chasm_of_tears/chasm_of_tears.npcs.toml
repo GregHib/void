@@ -7,7 +7,7 @@ id = 2021
 collision = "sky"
 examine = "A shimmering creature of blue light."
 
-[light_creature_large]
+[light_creature_carry]
 id = 2022
 examine = "That one is carrying someone!"
 

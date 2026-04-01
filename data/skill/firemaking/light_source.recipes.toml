@@ -69,13 +69,6 @@ ticks = 1
 requires = [ "bullseye_lantern_lit", "sapphire"]
 message = "The lantern is too hot to do that while it is lit."
 
-[emerald_bullseye_lantern_empty]
-skill = "crafting"
-ticks = 1
-remove = [ "emerald_lantern_empty", "lantern_lens"]
-add = ["bullseye_lantern_empty", "emerald"]
-message = "You replace the emerald with a lantern lens."
-
 [emerald_bullseye_lantern_lit]
 skill = "crafting"
 ticks = 1
