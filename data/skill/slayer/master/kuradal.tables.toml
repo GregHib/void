@@ -158,10 +158,10 @@ amount = [80, 110]
 weight = 7
 tip = "The TzHaar contains some mighty warriors, prove yourself against them. You'll find them deep within the Karamja volcano."
 
-#[.tormented_demon]
-#amount = [40, 60]
-#weight = 8
-#tip = "Tormented demons are powerful creatures that use magic, ranged and melee attacks. They also have the ability to shield themselves. You can find them below the Tears of Guthix cave."
+[.tormented_demon]
+amount = [40, 60]
+weight = 8
+tip = "Tormented demons are powerful creatures that use magic, ranged and melee attacks. They also have the ability to shield themselves. You can find them below the Tears of Guthix cave."
 
 [.waterfiends]
 amount = [170, 250]
