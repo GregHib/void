@@ -1,6 +1,5 @@
 package content.area.misthalin.lumbridge.swamp
 
-import content.entity.combat.hit.hit
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.statement
@@ -8,8 +7,6 @@ import content.entity.player.dialogue.type.warning
 import content.skill.firemaking.Light
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.sound
@@ -49,36 +46,6 @@ class LumbridgeSwampCave : Script {
             } else {
                 statement("There is a sheer drop below the hole. You will need a rope.")
             }
-        }
-
-        entered("lumbridge_swamp_caves") {
-            if (Light.hasLightSource(this)) {
-                open("level_one_darkness")
-            } else {
-                open("level_three_darkness")
-                timers.start("insect_swarm")
-            }
-        }
-
-        timerStart("insect_swarm") {
-            message("Tiny biting insects swarm all over you!")
-            sound("insect_swarm")
-            10
-        }
-
-        timerTick("insect_swarm") {
-            hit(this, damage = 10)
-            sound("insect_bites")
-            1
-        }
-
-        interfaceClosed("level_three_darkness") {
-            timers.stop("insect_swarm")
-        }
-
-        exited("lumbridge_swamp_caves") {
-            close("level_one_darkness")
-            close("level_three_darkness")
         }
 
         objectApproach("Jump-across", "lumbridge_cave_stepping_stone") { (target) ->

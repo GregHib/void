@@ -67,39 +67,52 @@ type = "lantern"
 [extinguish]
 row_id = "item"
 unlit = "item"
+type = "string"
 
 [.oil_lamp]
 unlit = "oil_lamp_oil"
+type = "lamp"
 
 [.candle_lantern_lit_white]
 unlit = "candle_lantern_white"
+type = "lantern"
 
 [.candle_lantern_lit_black]
 unlit = "candle_lantern_black"
+type = "lantern"
 
 [.oil_lantern]
 unlit = "oil_lantern_oil"
+type = "lantern"
 
 [.bullseye_lantern_lit]
 unlit = "bullseye_lantern_oil"
+type = "lantern"
 
 [.mining_helmet_lit]
 unlit = "mining_helmet"
+type = "helmet"
 
 [.emerald_lantern_lit]
 unlit = "emerald_lantern"
+type = "lantern"
 
 [.black_candle_lit]
 unlit = "black_candle"
+type = "candle"
 
 [.white_candle_lit]
 unlit = "white_candle"
+type = "candle"
 
 [.sapphire_lantern_lit]
 unlit = "sapphire_lantern_oil"
+type = "lantern"
 
 [.lit_torch]
 unlit = "unlit_torch"
+type = "torch"
 
 [.lit_bug_lantern]
 unlit = "unlit_bug_lantern"
+type = "lantern"

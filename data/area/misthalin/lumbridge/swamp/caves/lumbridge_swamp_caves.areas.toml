@@ -9,6 +9,7 @@ y = [9568, 9572]
 [lumbridge_swamp_caves]
 x = [3136, 3263]
 y = [9536, 9602]
+tags = ["darkness"]
 
 [wall_beast_spot_1]
 x = [3161]
