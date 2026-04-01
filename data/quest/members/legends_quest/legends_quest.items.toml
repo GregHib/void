@@ -81,6 +81,9 @@ kept = "Wilderness"
 id = 725
 tradeable = false
 weight = 1.0
+charges = 10
+degrade = "blessed_gold_bowl"
+degrade_message = "The golden bowl is empty. There's no sacred water left."
 empty = "blessed_gold_bowl"
 examine = "A blessed golden bowl. It has water in it."
 kept = "Wilderness"
@@ -118,6 +121,7 @@ kept = "Wilderness"
 id = 730
 tradeable = false
 weight = 0.51
+book = "book_of_binding"
 examine = "An ancient tome on Demonology."
 kept = "Wilderness"
 
