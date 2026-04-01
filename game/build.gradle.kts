@@ -97,14 +97,16 @@ tasks {
     }
 
     register("printVersion") {
+        val version = project.version.toString()
         doLast {
-            println(project.version)
+            println(version)
         }
     }
 
     register("printCacheVersion") {
+        val message = libs.versions.cacheVersion.get()
         doLast {
-            println(libs.versions.cacheVersion.get())
+            println(message)
         }
     }
 
@@ -164,7 +166,6 @@ distributions {
             val shell = resourcesDir.file("run-server.sh").asFile
             val tempShell = File(tempDir, "run-server.sh")
             tempShell.writeText(shell.readText().replace("-dev.jar", "-$version.jar"))
-            println("Bundling $tempShell")
             from(tempShell)
         }
     }
