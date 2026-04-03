@@ -11,7 +11,7 @@ class Doors(val teleports: ObjectTeleports) : Script {
         }
 
         objectOperate("Open") { (target) ->
-            if (teleports.teleport(this, target, "Open")) {
+            if (teleports.contains(target.id, target.tile, "Open")) {
                 return@objectOperate
             }
             openDoor(target)
