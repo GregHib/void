@@ -65,4 +65,5 @@ fun Player.openBook(name: String) {
     this["book_page"] = 0
     val type = get<Books>().type(name)
     open(if (type == "normal") "book" else "book_$type")
+    anim("human_read_book")
 }
