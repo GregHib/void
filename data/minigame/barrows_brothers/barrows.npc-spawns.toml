@@ -1,5 +1,5 @@
 spawns = [
-  { id = "cyreg_paddlehorn_barrows", x = 3522, y = 3284, members = true },
+  { id = "cyreg_paddlehorn", x = 3522, y = 3284, members = true },
   { id = "strange_old_man_barrows", x = 3565, y = 3288 },
   { id = "bloodworm", x = 3548, y = 9675 },
   { id = "bloodworm", x = 3549, y = 9679 },

@@ -1,0 +1,15 @@
+[swamp_wooden_doors_closed]
+id = 30265
+material = "iron"
+
+[swamp_wooden_doors_opened]
+id = 30266
+
+[swamp_bridge_tree]
+id = 5005
+
+[swampy_boat_hollows]
+id = 6970
+
+[swamp_boat_mort_ton]
+id = 6969
