@@ -12,3 +12,9 @@ id = 5213
 
 [impling_spawn]
 id = 6618
+
+[lay_trap]
+id = 5208
+
+[take_trap]
+id = 5207
