@@ -52,6 +52,30 @@ object Target {
                 source.message("You need to have strykewyrm assigned as a task in order to fight them.")
                 return false
             }
+            if (target.id == "dharok_the_wretched" && source is Player && source.get<NPC>("dharok_spawn") != target) {
+                source.message("") // TODO message
+                return false
+            }
+            if (target.id == "verac_the_defiled" && source is Player && source.get<NPC>("verac_spawn") != target) {
+                source.message("") // TODO message
+                return false
+            }
+            if (target.id == "ahrim_the_blighted" && source is Player && source.get<NPC>("ahrim_spawn") != target) {
+                source.message("") // TODO message
+                return false
+            }
+            if (target.id == "guthan_the_infested" && source is Player && source.get<NPC>("guthan_spawn") != target) {
+                source.message("") // TODO message
+                return false
+            }
+            if (target.id == "torag_the_corrupted" && source is Player && source.get<NPC>("torag_spawn") != target) {
+                source.message("") // TODO message
+                return false
+            }
+            if (target.id == "karil_the_tainted" && source is Player && source.get<NPC>("karil_spawn") != target) {
+                source.message("") // TODO message
+                return false
+            }
             if (target.transform != "") {
                 if (!NPCDefinitions.get(target.transform).options.contains("Attack")) {
                     return false

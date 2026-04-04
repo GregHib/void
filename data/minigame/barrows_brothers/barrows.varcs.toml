@@ -1,0 +1,19 @@
+[barrows_brother_head]
+id = 1043
+format = "map"
+default = "clear"
+values = {
+    clear = -1,
+    ahrims = 4761,
+    ahrims_tunnels = 4762,
+    dharok = 4763,
+    dharok_tunnels = 4764,
+    guthan = 4765,
+    guthan_tunnels = 4766,
+    karil = 4767,
+    karil_tunnels = 4768,
+    torag = 4769,
+    torag_tunnels = 4770,
+    verac = 4771,
+    verac_tunnels = 4772,
+}

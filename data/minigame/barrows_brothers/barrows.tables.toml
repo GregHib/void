@@ -1,0 +1,27 @@
+[barrows_brothers]
+crypt = "tile"
+npc = "npc"
+
+[.dharoks]
+crypt = { x = 3556, y = 9718, level = 3 }
+npc = "dharok_the_wretched"
+
+[.veracs]
+crypt = { x = 3578, y = 9706, level = 3 }
+npc = "verac_the_defiled"
+
+[.ahrims]
+crypt = { x = 3557, y = 9703, level = 3 }
+npc = "ahrim_the_blighted"
+
+[.guthans]
+crypt = { x = 3534, y = 9704, level = 3 }
+npc = "guthan_the_infested"
+
+[.torags]
+crypt = { x = 3568, y = 9683, level = 3 }
+npc = "torag_the_corrupted"
+
+[.karils]
+crypt = { x = 3546, y = 9684, level = 3 }
+npc = "karil_the_tainted"

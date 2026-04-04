@@ -1,0 +1,29 @@
+[ahrim_killed]
+id = 457
+format = "boolean"
+persist = true
+
+[dharok_killed]
+id = 458
+format = "boolean"
+persist = true
+
+[guthan_killed]
+id = 459
+format = "boolean"
+persist = true
+
+[karil_killed]
+id = 460
+format = "boolean"
+persist = true
+
+[torag_killed]
+id = 461
+format = "boolean"
+persist = true
+
+[verac_killed]
+id = 462
+format = "boolean"
+persist = true

@@ -1,0 +1,14 @@
+[torag_attack]
+id = 1330
+
+[wight_defend]
+id = 1339
+
+[wight_death]
+id = 1338
+
+[verac_attack]
+id = 1333
+
+[guthan_attack]
+id = 1325

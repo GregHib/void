@@ -1,0 +1,35 @@
+[dharok_stairs]
+id = 6703
+
+[dharok_sarcophagus]
+id = 6771
+
+[verac_stairs]
+id = 6707
+
+[verac_sarcophagus]
+id = 6823
+
+[ahrim_stairs]
+id = 6702
+
+[ahrim_sarcophagus]
+id = 6821
+
+[guthan_stairs]
+id = 6704
+
+[guthan_sarcophagus]
+id = 6773
+
+[karil_stairs]
+id = 6705
+
+[karil_sarcophagus]
+id = 6882
+
+[torag_stairs]
+id = 6706
+
+[torag_sarcophagus]
+id = 6772
