@@ -1,0 +1,59 @@
+[traps]
+trap = "string"
+level = "int"
+fail = "obj"
+setup = "anim"
+take_down = "anim"
+items = "list<item>"
+
+[.snare]
+trap = "snare_trap"
+fail = "box_trap_fail"
+setup = "lay_trap"
+take_down = "take_trap"
+items = ["bird_snare"]
+
+[.box_trap]
+level = 27
+trap = "box_trap"
+fail = "box_trap_fail"
+setup = "lay_trap"
+take_down = "lay_trap"
+items = ["box_trap"]
+
+[.swamp_net]
+level = 29
+trap = "swamp_net_setup"
+fail = "swamp_net_fail"
+setup = "climb_down"
+take_down = "climb_down"
+items = ["rope", "small_fishing_net"]
+
+[.orange_net]
+level = 47
+trap = "orange_net_setup"
+setup = "climb_down"
+take_down = "climb_down"
+items = ["rope", "small_fishing_net"]
+
+[.red_net]
+level = 59
+trap = "red_net_setup"
+setup = "climb_down"
+take_down = "climb_down"
+items = ["rope", "small_fishing_net"]
+
+[.black_net]
+level = 59
+trap = "black_net_setup"
+setup = "climb_down"
+take_down = "climb_down"
+items = ["rope", "small_fishing_net"]
+
+[.boulder_trap]
+level = 23
+trap = "boulder_trap_setup"
+fail = "boulder_trap_fail"
+setup = "lay_trap"
+take_down = "lay_trap"
+items = ["logs"]

@@ -1,0 +1,47 @@
+[box_trap]
+id = 19187
+
+[box_trap_fail]
+id = 19192
+
+[snare_trap]
+id = 19175
+
+[snare_trap_fail]
+id = 19174
+
+[swamp_net]
+id = 19679
+
+[swamp_net_setup]
+id = 19678
+
+[swamp_net_fail]
+id = 19677
+
+[orange_net]
+id = 19652
+
+[orange_net_setup]
+id = 19650
+
+[red_net]
+id = 19663
+
+[red_net_setup]
+id = 19662
+
+[black_net]
+id = 19671
+
+[black_net_setup]
+id = 19670
+
+[boulder_trap]
+id = 19205
+
+[boulder_trap_setup]
+id = 19206
+
+[boulder_trap_fail]
+id = 19219
