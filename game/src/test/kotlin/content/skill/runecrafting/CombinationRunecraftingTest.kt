@@ -36,7 +36,7 @@ internal class CombinationRunecraftingTest : WorldTest() {
             for (element in elements) {
                 val combined = row.itemOrNull("${element}_rune") ?: continue
                 val xp = row.int("${element}_rune_xp") / 10.0
-                combinationsList.add(listOf(element, row.itemId.removeSuffix("_altar"), combined.removeSuffix("_rune"), xp))
+                combinationsList.add(listOf(element, row.rowId.removeSuffix("_altar"), combined.removeSuffix("_rune"), xp))
             }
         }
     }

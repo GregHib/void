@@ -95,14 +95,14 @@ private fun rollTask(player: Player, master: String): Pair<String, Int>? {
         if (roll < count) {
             val range = table.get("amount", row, ColumnType.ColumnIntRange)
             val row = Rows.get(row)
-            return Pair(row.itemId, range.random(random))
+            return Pair(row.rowId, range.random(random))
         }
     }
     return null
 }
 
 private fun hasRequirements(player: Player, table: TableDefinition, row: Int): Boolean {
-    val category = Rows.get(row).itemId
+    val category = Rows.get(row).rowId
     val npc = Tables.int("slayer_tasks.$category.npc")
     val slayerLevel = NPCDefinitions.get(npc)["slayer_level", 1]
     if (!player.has(Skill.Slayer, slayerLevel)) {

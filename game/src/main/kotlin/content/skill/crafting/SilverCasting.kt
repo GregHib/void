@@ -27,11 +27,11 @@ class SilverCasting : Script {
                 val item = row.item("product")
                 val quest = row.stringOrNull("quest")
                 interfaces.sendVisibility(id, row.stringId, quest == null || quest(quest) != "unstarted")
-                val has = carriesItem(row.itemId)
-                val mould = ItemDefinitions.get(row.itemId)
+                val has = carriesItem(row.rowId)
+                val mould = ItemDefinitions.get(row.rowId)
                 interfaces.sendText(
                     id,
-                    "${row.itemId}_text",
+                    "${row.rowId}_text",
                     if (has) {
                         val colour = if (carriesItem("silver_bar")) "green" else "orange"
                         "<$colour>Make ${ItemDefinitions.get(item).name.toTitleCase()}"
@@ -40,7 +40,7 @@ class SilverCasting : Script {
                         "<orange>You need a ${name ?: mould.name.lowercase()} to make this item."
                     },
                 )
-                interfaces.sendItem(id, "${row.itemId}_model", if (has) ItemDefinitions.get(item).id else mould.id)
+                interfaces.sendItem(id, "${row.rowId}_model", if (has) ItemDefinitions.get(item).id else mould.id)
             }
         }
 

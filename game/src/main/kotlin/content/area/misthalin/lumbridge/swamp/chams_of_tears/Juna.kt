@@ -335,7 +335,7 @@ class Juna : Script {
         var lowestXp = Int.MAX_VALUE
         var message = ""
         for (row in Tables.get("tears_of_guthix_messages").rows()) {
-            val skill = Skill.all[Skill.map[row.itemId] ?: continue]
+            val skill = Skill.all[Skill.map[row.rowId] ?: continue]
             if (skill == Skill.Herblore && !questCompleted("druidic_ritual")) {
                 continue
             }

@@ -173,7 +173,7 @@ class Anvil : Script {
 
         val level = row.int("level")
         if (!has(Skill.Smithing, level, message = false)) {
-            val name = row.itemId.removeSuffix("_unf")
+            val name = row.rowId.removeSuffix("_unf")
             statement("You need a Smithing level of $level to make${name.an()} ${name.toTitleCase()}.")
             softTimers.stop("smithing")
             return
@@ -184,7 +184,7 @@ class Anvil : Script {
         weakQueue("smithing", if (first) 0 else 5) {
             inventory.transaction {
                 remove(bar, bars)
-                add(row.itemId, quantity)
+                add(row.rowId, quantity)
             }
             when (inventory.transaction.error) {
                 is TransactionError.Deficient -> message("You do not have enough bars to smith this item.")
@@ -194,7 +194,7 @@ class Anvil : Script {
                     val name = type.removeSuffix("_unf").replace("_", " ")
                     message("You hammer the $metal and make${name.an()} $name.")
                 }
-                else -> logger.warn { "Error smithing ${this@smith} ${row.itemId} ${inventory.transaction.error} ${inventory.items.contentToString()}" }
+                else -> logger.warn { "Error smithing ${this@smith} ${row.rowId} ${inventory.transaction.error} ${inventory.items.contentToString()}" }
             }
         }
     }

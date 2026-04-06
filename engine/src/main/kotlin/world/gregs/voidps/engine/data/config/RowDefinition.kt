@@ -11,7 +11,7 @@ data class RowDefinition(
     val stringId: String
 ) {
 
-    val itemId: String get() = stringId.substringAfterLast('.')
+    val rowId: String get() = stringId.substringAfterLast('.')
 
     fun bool(column: String) = Tables.bool("${stringId}.$column")
 
@@ -52,6 +52,8 @@ data class RowDefinition(
     fun itemOrNull(column: String) = Tables.itemOrNull("${stringId}.$column")
 
     fun itemList(column: String) = Tables.itemList("${stringId}.$column")
+
+    fun stringList(column: String) = Tables.stringList("${stringId}.$column")
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
