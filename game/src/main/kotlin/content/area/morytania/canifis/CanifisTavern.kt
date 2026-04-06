@@ -18,7 +18,7 @@ class CanifisTavern : Script {
             sound("locked")
             delay(1)
             target.replace(target.id.replace("_closed", "_opened"), ticks = 3)
-            val other = DoubleDoor.get(target, target.def, 0)
+            val other = DoubleDoor.get(this, target, target.def, 0)
             other?.replace(other.id.replace("_closed", "_opened"), ticks = 3)
             delay(2)
             tele(3509, 3449)
