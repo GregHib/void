@@ -90,6 +90,7 @@ class EncodersTest {
         { sendInterfaceSettings(InterfaceDefinition.pack(1234, 456), 2345, 6789, 12345) },
         { sendInterfaceScroll(InterfaceDefinition.pack(123, 456), 23456) },
         { interfaceSprite(InterfaceDefinition.pack(123, 456), 12345) },
+        { interfaceModel(InterfaceDefinition.pack(123, 456), 12345) },
         { interfaceText(InterfaceDefinition.pack(123, 456), "text") },
         { updateInterface(123, 456) },
         { interfaceVisibility(InterfaceDefinition.pack(123, 456), true) },

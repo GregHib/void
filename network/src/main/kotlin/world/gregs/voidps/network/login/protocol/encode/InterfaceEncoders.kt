@@ -187,6 +187,19 @@ fun Client.interfaceSprite(
 }
 
 /**
+ * Sends a model to an interface component
+ * @param interfaceComponent Packed component index and id of the parent window
+ * @param model The model id
+ */
+fun Client.interfaceModel(
+    interfaceComponent: Int,
+    model: Int,
+) = send(Protocol.INTERFACE_MODEL) {
+    writeShortAdd(model)
+    writeIntMiddle(interfaceComponent)
+}
+
+/**
  * Update the text of an interface component
  * @param interfaceComponent Packed component index and id of the parent window
  * @param text The text to send
