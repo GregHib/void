@@ -1225,22 +1225,6 @@ id = 20339
 id = 6625
 examine = "Hmm. A door."
 
-[door_175_opened]
-id = 6713
-examine = "I wonder what is awaiting me on the other side."
-
-[door_175_closed]
-id = 6714
-examine = "I wonder what is awaiting me on the other side."
-
-[door_178_opened]
-id = 6732
-examine = "I wonder what awaits me on the other side."
-
-[door_178_closed]
-id = 6733
-examine = "I wonder what awaits me on the other side."
-
 [ogre_stone_door_opened]
 id = 6873
 

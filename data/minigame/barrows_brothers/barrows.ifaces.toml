@@ -1,3 +1,24 @@
 [barrows_overlay]
 id = 24
 type = "overlay"
+
+[barrows_puzzle]
+id = 25
+
+[.option1]
+id = 6
+
+[.option2]
+id = 7
+
+[.option3]
+id = 8
+
+[.choice1]
+id = 2
+
+[.choice2]
+id = 3
+
+[.choice3]
+id = 5
