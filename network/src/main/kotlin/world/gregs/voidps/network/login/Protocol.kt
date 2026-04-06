@@ -85,6 +85,7 @@ object Protocol {
     const val MINIMAP_STATE = 104
     const val GRAND_EXCHANGE_SLOT = 101
     const val SYSTEM_UPDATE = 56
+    const val HINT_ARROW = 69
 
     object Batch {
         const val FLOOR_ITEM_REMOVE = 0
@@ -117,7 +118,6 @@ object Protocol {
     const val WORLD_LIST_FULL = 98 // size -2
     const val UNKNOWN_16 = 12 // size 0 - clear all players
     const val UNKNOWN_19 = 49 // size 4
-    const val UNKNOWN_20 = 69 // size 12
     const val UNKNOWN_21 = 64 // size 2
     const val UNKNOWN_22 = 115 // size 11
     const val UNKNOWN_23 = 26 // size 11
