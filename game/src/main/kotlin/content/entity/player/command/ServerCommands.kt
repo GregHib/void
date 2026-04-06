@@ -122,13 +122,7 @@ class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
             "produce", "farming" -> get<FarmingDefinitions>().load(files.find(Settings["definitions.produce"]))
             "quest", "quests" -> get<QuestDefinitions>().load(files.find(Settings["definitions.quests"]))
             "midi", "midis" -> get<MidiDefinitions>().load(files.list(Settings["definitions.midis"]))
-            "vars", "variables" -> VariableDefinitions.load(
-                files.list(Settings["definitions.variables.players"]),
-                files.list(Settings["definitions.variables.bits"]),
-                files.list(Settings["definitions.variables.clients"]),
-                files.list(Settings["definitions.variables.strings"]),
-                files.list(Settings["definitions.variables.customs"]),
-            )
+            "vars", "variables" -> VariableDefinitions.load(files)
             "music", "music effects", "jingles" -> get<JingleDefinitions>().load(files.list(Settings["definitions.jingles"]))
             "interfaces" -> {
                 InterfaceDefinitions.definitions.onEach { int ->

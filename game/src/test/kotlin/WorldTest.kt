@@ -375,6 +375,7 @@ abstract class WorldTest : KoinTest {
             itemIds
             npcIds
             objectIds
+            variableDefinitions
             Tables.load(configFiles.list(Settings["definitions.tables"]))
             Tables.definitions
         }
@@ -403,13 +404,7 @@ abstract class WorldTest : KoinTest {
             ItemOnItemDefinitions().load(configFiles.list(Settings["definitions.itemOnItem"]))
         }
         private val variableDefinitions: VariableDefinitions by lazy {
-            VariableDefinitions.load(
-                configFiles.list(Settings["definitions.variables.players"]),
-                configFiles.list(Settings["definitions.variables.bits"]),
-                configFiles.list(Settings["definitions.variables.clients"]),
-                configFiles.list(Settings["definitions.variables.strings"]),
-                configFiles.list(Settings["definitions.variables.customs"]),
-            )
+            VariableDefinitions.load(configFiles)
         }
         private val dropTables: DropTables by lazy {
             itemIds

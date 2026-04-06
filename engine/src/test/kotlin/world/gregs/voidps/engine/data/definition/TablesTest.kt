@@ -24,6 +24,7 @@ class TablesTest {
         ItemDefinitions.set(arrayOf(ItemDefinition(id = 0, stringId = "item_id")), mapOf("item_id" to 0))
         ObjectDefinitions.set(arrayOf(ObjectDefinition(id = 0, stringId = "obj_id")), mapOf("obj_id" to 0))
         NPCDefinitions.set(arrayOf(NPCDefinition(id = 0, stringId = "npc_id")), mapOf("npc_id" to 0))
+        VariableDefinitions.set(emptyMap(), emptyMap(), emptyMap())
         val uri = TablesTest::class.java.getResource("test-table.toml")!!
         Tables.load(listOf(uri.path))
 

@@ -2,9 +2,10 @@ package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.engine.client.variable.VariableValues
+import world.gregs.voidps.engine.data.ConfigFiles
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.timedLoad
 
@@ -17,13 +18,6 @@ object VariableDefinitions {
     var loaded = false
         private set
 
-    fun init(definitions: Map<String, VariableDefinition>): VariableDefinitions {
-        this.definitions = definitions
-        loaded = true
-        return this
-    }
-
-    @TestOnly
     fun set(definitions: Map<String, VariableDefinition>, varbits: Map<Int, String>, varps: Map<Int, String>) {
         this.definitions = definitions
         this.varbitIds = varbits
@@ -43,6 +37,14 @@ object VariableDefinitions {
     fun getVarbit(id: Int) = varbitIds[id]
 
     fun getVarp(id: Int) = varpIds[id]
+
+    fun load(files: ConfigFiles) = load(
+        files.list(Settings["definitions.variables.players"]),
+        files.list(Settings["definitions.variables.bits"]),
+        files.list(Settings["definitions.variables.clients"]),
+        files.list(Settings["definitions.variables.strings"]),
+        files.list(Settings["definitions.variables.customs"]),
+    )
 
     fun load(players: List<String>, playerBits: List<String>, clients: List<String>, clientStrings: List<String>, custom: List<String>): VariableDefinitions {
         timedLoad("variable definition") {
