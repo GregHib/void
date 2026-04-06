@@ -3,9 +3,13 @@ package content.area.kandarin.baxtorian_falls.ancient_cavern
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.skill.slayer.categories
 import content.skill.slayer.slayerMaster
+import content.skill.slayer.slayerTask
 import content.skill.slayer.slayerTaskRemaining
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -67,6 +71,15 @@ class KuradalsDungeon : Script {
             delay()
             anim("rocks_pile_climb") // TODO proper anim
             exactMoveDelay(end, 30, direction = direction)
+        }
+
+        canAttack("mound_feldip_hills") { target ->
+            if (target.tile in Areas["kuradals_dungeon"] && !target.categories.contains(slayerTask)) {
+                message("You're not down here to kill those.") // https://youtu.be/GU7I1GyaNEU?t=4
+                false
+            } else {
+                true
+            }
         }
     }
 }

@@ -2,6 +2,7 @@ package content.area.fremennik_province.rellekka
 
 import content.area.kandarin.feldip_hills.JungleStrykewyrm
 import content.entity.combat.hit.directHit
+import content.skill.slayer.slayerTask
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 
@@ -24,6 +25,15 @@ class IceStrykewyrm : Script {
         objTeleportTakeOff("Enter", "ice_strykewyrm_cave_entrance") { _, _ ->
             message("You follow the cave down deeper.")
             0
+        }
+
+        canAttack("mound_ice_strykewyrm") {
+            if (slayerTask != "ice_strykewyrm") {
+                message("You need to have strykewyrm assigned as a task in order to fight them.")
+                false
+            } else {
+                true
+            }
         }
     }
 }

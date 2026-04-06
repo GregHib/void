@@ -1,9 +1,11 @@
 package content.area.troll_country.god_wars_dungeon
 
 import content.entity.combat.killer
+import content.skill.melee.weapon.fightStyle
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Areas
@@ -76,6 +78,15 @@ class GodwarsAggression : Script {
                 if (god != "") {
                     killer.inc("${god}_killcount")
                 }
+            }
+        }
+
+        canAttack("aviansie*,kree_arra,flight_kilisa,wingman_skree,flockleader_geerin") {
+            if (fightStyle == "melee") {
+                message("The Aviansie is flying too high for you to attack using melee.")
+                false
+            } else {
+                true
             }
         }
     }

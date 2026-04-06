@@ -8,8 +8,19 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
+import kotlin.collections.emptyList
 
 interface CombatApi {
+
+    /**
+     * Check if a player can attack [npc]
+     */
+    fun canAttack(npc: String = "*", handler: Player.(target: NPC) -> Boolean) {
+        Script.checkLoading()
+        Wildcards.find(npc, Wildcard.Npc) { id ->
+            canAttack[id] = handler
+        }
+    }
 
     fun combatStart(handler: Player.(target: Character) -> Unit) {
         Script.checkLoading()
@@ -163,6 +174,11 @@ interface CombatApi {
         private val npcAttack = Object2ObjectOpenHashMap<String, NPC.(Character) -> Unit>(30)
         private val npcImpact = Object2ObjectOpenHashMap<String, NPC.(Character) -> Boolean>(30)
         private val npcCondition = Object2ObjectOpenHashMap<String, NPC.(Character) -> Boolean>(30)
+        private val canAttack = Object2ObjectOpenHashMap<String, Player.(NPC) -> Boolean>()
+
+        fun canAttack(player: Player, npc: NPC): Boolean {
+            return canAttack[npc.id]?.invoke(player, npc) ?: true
+        }
 
         fun attack(player: Player, attack: CombatAttack) {
             for (handler in attacks[attack.type] ?: emptyList()) {
