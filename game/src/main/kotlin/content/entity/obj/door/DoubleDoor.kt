@@ -4,6 +4,7 @@ import content.entity.obj.Replace
 import content.entity.obj.door.Door.isDoor
 import content.entity.obj.door.Gate.isGate
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Direction
@@ -13,26 +14,26 @@ object DoubleDoor {
     /**
      * Get the neighbouring door given either one of the door [gameObject]'s
      */
-    fun get(gameObject: GameObject, def: ObjectDefinition, clockwise: Int): GameObject? {
+    fun get(player: Player, gameObject: GameObject, def: ObjectDefinition, clockwise: Int): GameObject? {
         var orientation = Direction.cardinal[gameObject.rotation(clockwise)]
         var door = GameObjects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
-        if (door != null && door.def.isDoor()) {
+        if (door != null && door.def(player).isDoor()) {
             return door
         }
         orientation = orientation.inverse()
         door = GameObjects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
-        if (door != null && door.def.isDoor()) {
+        if (door != null && door.def(player).isDoor()) {
             return door
         }
         if (def.isGate()) {
             orientation = orientation.rotate(2)
             door = GameObjects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
-            if (door != null && door.def.isGate()) {
+            if (door != null && door.def(player).isGate()) {
                 return door
             }
             orientation = orientation.inverse()
             door = GameObjects.getShape(gameObject.tile.add(orientation.delta), gameObject.shape)
-            if (door != null && door.def.isGate()) {
+            if (door != null && door.def(player).isGate()) {
                 return door
             }
         }
@@ -42,16 +43,16 @@ object DoubleDoor {
     /**
      * Open a pair of double doors [obj] and [double]
      */
-    fun open(obj: GameObject, def: ObjectDefinition, double: GameObject, ticks: Int, collision: Boolean = true) {
+    fun open(player: Player, obj: GameObject, def: ObjectDefinition, double: GameObject, ticks: Int, collision: Boolean = true) {
         val delta = obj.tile.delta(double.tile)
         val dir = Direction.cardinal[obj.rotation]
         val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
         if (def.isGate()) {
-            Gate.replace(obj, double, flip, ticks, collision, "_closed", "_opened", 3, 1, 1)
+            Gate.replace(player, obj, double, flip, ticks, collision, "_closed", "_opened", 3, 1, 1)
         } else {
             Replace.objects(
-                obj, obj.id.replace("_closed", "_opened"), Door.tile(obj, 1), obj.rotation(if (flip) 1 else 3),
-                double, double.id.replace("_closed", "_opened"), Door.tile(double, 1), double.rotation(if (flip) 3 else 1),
+                obj, def.stringId.replace("_closed", "_opened"), Door.tile(obj, 1), obj.rotation(if (flip) 1 else 3),
+                double, double.def(player).stringId.replace("_closed", "_opened"), Door.tile(double, 1), double.rotation(if (flip) 3 else 1),
                 ticks,
                 collision,
             )
@@ -61,17 +62,17 @@ object DoubleDoor {
     /**
      * Close a pair of double doors [obj] and [double]
      */
-    fun close(obj: GameObject, def: ObjectDefinition, double: GameObject, ticks: Int, collision: Boolean = true) {
+    fun close(player: Player, obj: GameObject, def: ObjectDefinition, double: GameObject, ticks: Int, collision: Boolean = true) {
         val delta = obj.tile.delta(double.tile)
         val dir = Direction.cardinal[obj.rotation]
         val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
         if (def.isGate()) {
-            Gate.replace(obj, double, flip, ticks, collision, "_opened", "_closed", 1, 2, 3)
+            Gate.replace(player, obj, double, flip, ticks, collision, "_opened", "_closed", 1, 2, 3)
         } else {
             val mirror = def.mirrored
             Replace.objects(
                 obj,
-                obj.id.replace("_opened", "_closed"),
+                def.stringId.replace("_opened", "_closed"),
                 Door.tile(obj, if (mirror) 2 else 0),
                 obj.rotation(if (flip || mirror) 1 else 3),
                 double,
