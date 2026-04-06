@@ -2,17 +2,41 @@ package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.engine.client.variable.VariableValues
 import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.timedLoad
-import kotlin.collections.set
 
-class VariableDefinitions {
+object VariableDefinitions {
 
     var definitions: Map<String, VariableDefinition> = emptyMap()
     private var varbitIds: Map<Int, String> = emptyMap()
     private var varpIds: Map<Int, String> = emptyMap()
+
+    var loaded = false
+        private set
+
+    fun init(definitions: Map<String, VariableDefinition>): VariableDefinitions {
+        this.definitions = definitions
+        loaded = true
+        return this
+    }
+
+    @TestOnly
+    fun set(definitions: Map<String, VariableDefinition>, varbits: Map<Int, String>, varps: Map<Int, String>) {
+        this.definitions = definitions
+        this.varbitIds = varbits
+        this.varpIds = varps
+        loaded = true
+    }
+
+    fun clear() {
+        definitions = emptyMap()
+        varbitIds = emptyMap()
+        varpIds = emptyMap()
+        loaded = false
+    }
 
     fun get(key: String) = definitions[key]
 
@@ -52,15 +76,13 @@ class VariableDefinitions {
                     definitions[stringId] = VariableDefinition.CustomVariableDefinition(values, default, persist)
                 }
             }
-            this.varbitIds = varbitIds
-            this.varpIds = varpIds
-            this.definitions = definitions
+            set(definitions, varbitIds, varpIds)
             this.definitions.size
         }
         return this
     }
 
-    fun load(path: String, block: (Int, String, VariableValues, Any?, Boolean, Boolean) -> Unit) {
+    private fun load(path: String, block: (Int, String, VariableValues, Any?, Boolean, Boolean) -> Unit) {
         Config.fileReader(path) {
             while (nextSection()) {
                 val stringId = section()

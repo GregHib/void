@@ -403,7 +403,7 @@ abstract class WorldTest : KoinTest {
             ItemOnItemDefinitions().load(configFiles.list(Settings["definitions.itemOnItem"]))
         }
         private val variableDefinitions: VariableDefinitions by lazy {
-            VariableDefinitions().load(
+            VariableDefinitions.load(
                 configFiles.list(Settings["definitions.variables.players"]),
                 configFiles.list(Settings["definitions.variables.bits"]),
                 configFiles.list(Settings["definitions.variables.clients"]),

@@ -8,9 +8,7 @@ import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 
-class TaskList(
-    val variables: VariableDefinitions,
-) : Script {
+class TaskList : Script {
 
     init {
         playerSpawn {
@@ -118,7 +116,7 @@ class TaskList(
         refreshCompletedCount(player)
     }
 
-    fun areaId(player: Player) = variables.get("task_list_area")!!.values.toInt(player["task_list_area", "unstable_foundations"])
+    fun areaId(player: Player) = VariableDefinitions.get("task_list_area")!!.values.toInt(player["task_list_area", "unstable_foundations"])
 
     fun pin(player: Player, slot: Int) {
         val index = indexOfSlot(player, slot) ?: return

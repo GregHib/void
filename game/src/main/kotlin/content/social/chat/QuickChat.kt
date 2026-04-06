@@ -29,7 +29,6 @@ import world.gregs.voidps.network.login.protocol.encode.publicQuickChat
 
 class QuickChat(
     val phrases: QuickChatPhraseDefinitions,
-    val variables: VariableDefinitions,
 ) : Script {
 
     val logger = InlineLogger("QuickChat")
@@ -131,8 +130,8 @@ class QuickChat(
                 QuickChatType.Varp -> {
                     try {
                         val variable = definition.ids!!.first().first()
-                        val key = variables.getVarp(variable)!!
-                        val def = variables.get(key)!!
+                        val key = VariableDefinitions.getVarp(variable)!!
+                        val def = VariableDefinitions.get(key)!!
                         val int = def.values.toInt(player[key, def.defaultValue!!])
                         return int(int)
                     } catch (e: Exception) {
@@ -143,8 +142,8 @@ class QuickChat(
                 QuickChatType.Varbit -> {
                     try {
                         val variable = definition.ids!!.first().first()
-                        val key = variables.getVarbit(variable)!!
-                        val def = variables.get(key)!!
+                        val key = VariableDefinitions.getVarbit(variable)!!
+                        val def = VariableDefinitions.get(key)!!
                         val int = def.values.toInt(player[key, def.defaultValue!!])
                         return int(int)
                     } catch (e: Exception) {
@@ -154,7 +153,7 @@ class QuickChat(
                 }
                 QuickChatType.CombatLevel -> return byteArrayOf(player.combatLevel.toByte())
                 QuickChatType.SlayerAssignment -> {
-                    val int = (variables.get("slayer_target")!!.values as MapValues).values[player["slayer_target"]] ?: 0
+                    val int = (VariableDefinitions.get("slayer_target")!!.values as MapValues).values[player["slayer_target"]] ?: 0
                     return int(int)
                 }
                 QuickChatType.ClanRank,

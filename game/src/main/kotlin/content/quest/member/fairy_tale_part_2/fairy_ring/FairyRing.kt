@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.suspend.StringSuspension
 import world.gregs.voidps.type.Tile
 
-class FairyRing(val fairyRing: FairyRingCodes, val variableDefinitions: VariableDefinitions) : Script {
+class FairyRing(val fairyRing: FairyRingCodes) : Script {
 
     val Player.code: String
         get() = "${get("fairy_ring_code_1", "a")}${get("fairy_ring_code_2", "j")}${get("fairy_ring_code_3", "r")}"
@@ -75,7 +75,7 @@ class FairyRing(val fairyRing: FairyRingCodes, val variableDefinitions: Variable
     }
 
     fun rotate(player: Player, codeIndex: Int, amount: Int) {
-        val definition = variableDefinitions.get("fairy_ring_code_$codeIndex") ?: return
+        val definition = VariableDefinitions.get("fairy_ring_code_$codeIndex") ?: return
         val list = definition.values as ListValues
         val current = player["fairy_ring_code_$codeIndex", list.default()]
         val valueIndex = list.values.indexOf(current)

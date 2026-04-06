@@ -14,9 +14,7 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.AuditLog
 
-class TaskSystem(
-    val variables: VariableDefinitions,
-) : Script {
+class TaskSystem : Script {
 
     init {
         interfaceOpened("task_system") {
@@ -194,7 +192,7 @@ class TaskSystem(
         return pinned != -1 && slot == pinned
     }
 
-    fun areaId(player: Player) = variables.get("task_area")!!.values.toInt(player["task_area", "empty"])
+    fun areaId(player: Player) = VariableDefinitions.get("task_area")!!.values.toInt(player["task_area", "empty"])
 
     /*
         Task completion

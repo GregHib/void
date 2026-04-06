@@ -26,7 +26,6 @@ class MetaCommands(
     val fontDefinitions: FontDefinitions,
     val accountDefinitions: AccountDefinitions,
     val grandExchange: GrandExchange,
-    val variableDefinitions: VariableDefinitions,
 ) : Script {
 
     init {
@@ -279,7 +278,7 @@ class MetaCommands(
 
     private fun searchVariables(player: Player, content: String): Int {
         var found = 0
-        for ((name, definition) in variableDefinitions.definitions) {
+        for ((name, definition) in VariableDefinitions.definitions) {
             if (name.contains(content, ignoreCase = true)) {
                 player.message("[$name] - id: ${definition.id}, default: ${definition.defaultValue}, persist: ${definition.persist}, values: ${definition.values}", ChatType.Console)
                 found++

@@ -12,7 +12,6 @@ import world.gregs.voidps.network.client.Client
 
 internal class VariablesTest {
 
-    private lateinit var definitions: VariableDefinitions
     private lateinit var variables: PlayerVariables
     private lateinit var variable: VariableDefinition
     private lateinit var player: Player
@@ -33,14 +32,12 @@ internal class VariablesTest {
         every { variable.transmit } returns true
         every { variable.persistent } returns true
         every { variable.defaultValue } returns 0
-        definitions = mockk(relaxed = true)
+        VariableDefinitions.init(mapOf(KEY to variable))
         player = mockk(relaxed = true)
         variables = spyk(PlayerVariables(player, map))
         variables.bits = VariableBits(variables, player)
         client = mockk(relaxed = true)
         every { player.variables } returns variables
-        every { definitions.get(KEY) } returns variable
-        variables.definitions = definitions
         variables.client = client
         calls = mutableListOf()
         object : VariableApi {
@@ -124,7 +121,7 @@ internal class VariablesTest {
     @Test
     fun `Get no variable`() {
         // Given
-        every { definitions.get(KEY) } returns null
+        VariableDefinitions.init(emptyMap())
         // When
         val result = variables.get(KEY, -1)
         // Then
@@ -136,7 +133,7 @@ internal class VariablesTest {
         // Given
         val variable = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
         map[KEY] = arrayListOf<Any>()
-        every { definitions.get(KEY) } returns variable
+        VariableDefinitions.init(mapOf(KEY to variable))
         // When
         assertTrue(variables.bits.set(KEY, "First", true))
         // Then
@@ -152,7 +149,7 @@ internal class VariablesTest {
         // Given
         val variable = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
         map[KEY] = arrayListOf("First")
-        every { definitions.get(KEY) } returns variable
+        VariableDefinitions.init(mapOf(KEY to variable))
         // When
         assertTrue(variables.bits.set(KEY, "Second", true))
         // Then
@@ -168,7 +165,7 @@ internal class VariablesTest {
         // Given
         val variable = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
         map[KEY] = arrayListOf("First")
-        every { definitions.get(KEY) } returns variable
+        VariableDefinitions.init(mapOf(KEY to variable))
         // When
         assertFalse(variables.bits.set(KEY, "First", true))
         // Then
@@ -181,7 +178,7 @@ internal class VariablesTest {
         // Given
         val variable = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
         map[KEY] = arrayListOf<Any>()
-        every { definitions.get(KEY) } returns variable
+        VariableDefinitions.init(mapOf(KEY to variable))
         // When
         assertTrue(variables.bits.set(KEY, "First", false))
         // Then
@@ -194,7 +191,7 @@ internal class VariablesTest {
         // Given
         val variable = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
         map[KEY] = arrayListOf("First")
-        every { definitions.get(KEY) } returns variable
+        VariableDefinitions.init(mapOf(KEY to variable))
         // When
         assertTrue(variables.bits.remove(KEY, "First", true))
         // Then
@@ -210,7 +207,7 @@ internal class VariablesTest {
         // Given
         val variable = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
         map[KEY] = arrayListOf("First")
-        every { definitions.get(KEY) } returns variable
+        VariableDefinitions.init(mapOf(KEY to variable))
         // When
         assertTrue(variables.bits.remove(KEY, "First", false))
         // Then
@@ -223,7 +220,7 @@ internal class VariablesTest {
         // Given
         val variable = VariableDefinition.VarpDefinition(id, values, default, false, transmit)
         variables.temp[KEY] = arrayListOf("First")
-        every { definitions.get(KEY) } returns variable
+        VariableDefinitions.init(mapOf(KEY to variable))
         // When
         assertTrue(variables.bits.remove(KEY, "First", false))
         // Then
@@ -236,7 +233,7 @@ internal class VariablesTest {
         // Given
         val variable = VariableDefinition.VarpDefinition(id, values, arrayListOf<Any>(), persist, transmit)
         map[KEY] = arrayListOf("Third")
-        every { definitions.get(KEY) } returns variable
+        VariableDefinitions.init(mapOf(KEY to variable))
         // When
         variables.clear(KEY, true)
         // Then

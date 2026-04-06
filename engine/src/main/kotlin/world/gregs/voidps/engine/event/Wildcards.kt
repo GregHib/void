@@ -19,14 +19,9 @@ object Wildcards {
 
     private var changes = false
 
-    private lateinit var variableDefinitions: VariableDefinitions
-
-    fun load(
-        path: String,
-        variableDefinitions: VariableDefinitions = get(),
-    ) {
+    fun load(path: String) {
+        require(VariableDefinitions.loaded) { "Variable definitions must be loaded before wildcards" }
         timedLoad("wildcard") {
-            this.variableDefinitions = variableDefinitions
             val file = File(path)
             if (!file.exists()) {
                 return@timedLoad 0
@@ -72,7 +67,7 @@ object Wildcards {
             Wildcard.Interface -> InterfaceDefinitions.ids.keys.hashCode()
             Wildcard.Component -> InterfaceDefinitions.componentIds.keys.hashCode()
             Wildcard.Item -> ItemDefinitions.ids.keys.hashCode()
-            Wildcard.Variables -> variableDefinitions.definitions.keys.hashCode()
+            Wildcard.Variables -> VariableDefinitions.definitions.keys.hashCode()
         }
     }
 
@@ -134,7 +129,7 @@ object Wildcards {
         Wildcard.Interface -> InterfaceDefinitions.ids.keys
         Wildcard.Component -> InterfaceDefinitions.componentIds.keys
         Wildcard.Item -> ItemDefinitions.ids.keys
-        Wildcard.Variables -> variableDefinitions.definitions.keys
+        Wildcard.Variables -> VariableDefinitions.definitions.keys
     }
 
     private fun resolve(wildcard: String, type: Wildcard): List<String> {

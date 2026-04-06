@@ -26,7 +26,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 
-class ExplorerJack(val variableDefinitions: VariableDefinitions) : Script {
+class ExplorerJack : Script {
 
     init {
         npcOperate("Talk-to", "explorer_jack") {
@@ -121,7 +121,7 @@ class ExplorerJack(val variableDefinitions: VariableDefinitions) : Script {
                 else -> 2560
             }
         }
-        val values = (variableDefinitions.get("task_reward_items")!!.values as BitwiseValues).values
+        val values = (VariableDefinitions.get("task_reward_items")!!.values as BitwiseValues).values
         inventory.transaction {
             add("coins", coins)
             if (contains("task_reward_items")) {

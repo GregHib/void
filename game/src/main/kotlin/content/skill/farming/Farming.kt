@@ -23,7 +23,6 @@ import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 
 class Farming(
-    val variableDefinitions: VariableDefinitions,
     val farmingDefinitions: FarmingDefinitions,
 ) : Script {
 
@@ -240,7 +239,7 @@ class Farming(
     }
 
     private fun varbitMap(varbit: String): Map<String, Int>? {
-        val definition = variableDefinitions.get(varbit) ?: return null
+        val definition = VariableDefinitions.get(varbit) ?: return null
         return (definition.values as MapValues).values as Map<String, Int>
     }
 

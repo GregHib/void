@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.client.instruction.InteractObject
 import world.gregs.voidps.type.Tile
 
@@ -64,19 +63,17 @@ class ObjectOptionHandler : InstructionHandler<InteractObject>() {
 
     companion object {
         private fun getVarbitIndex(player: Player, id: Int): Int {
-            val definitions: VariableDefinitions = get()
-            val key = definitions.getVarbit(id) ?: return 0
-            return getInt(definitions, key, player)
+            val key = VariableDefinitions.getVarbit(id) ?: return 0
+            return getInt(key, player)
         }
 
         private fun getVarpIndex(player: Player, id: Int): Int {
-            val definitions: VariableDefinitions = get()
-            val key = definitions.getVarp(id) ?: return 0
-            return getInt(definitions, key, player)
+            val key = VariableDefinitions.getVarp(id) ?: return 0
+            return getInt(key, player)
         }
 
-        private fun getInt(definitions: VariableDefinitions, key: String, player: Player): Int {
-            val variable = definitions.get(key) ?: return 0
+        private fun getInt(key: String, player: Player): Int {
+            val variable = VariableDefinitions.get(key) ?: return 0
             val value = player.variables.get<Any>(key) ?: return 0
             return variable.values.toInt(value)
         }

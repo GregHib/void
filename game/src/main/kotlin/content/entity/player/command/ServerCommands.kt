@@ -122,7 +122,7 @@ class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
             "produce", "farming" -> get<FarmingDefinitions>().load(files.find(Settings["definitions.produce"]))
             "quest", "quests" -> get<QuestDefinitions>().load(files.find(Settings["definitions.quests"]))
             "midi", "midis" -> get<MidiDefinitions>().load(files.list(Settings["definitions.midis"]))
-            "vars", "variables" -> get<VariableDefinitions>().load(
+            "vars", "variables" -> VariableDefinitions.load(
                 files.list(Settings["definitions.variables.players"]),
                 files.list(Settings["definitions.variables.bits"]),
                 files.list(Settings["definitions.variables.clients"]),

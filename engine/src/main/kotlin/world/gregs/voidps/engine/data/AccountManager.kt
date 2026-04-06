@@ -32,7 +32,6 @@ import world.gregs.voidps.type.Tile
 
 class AccountManager(
     private val accountDefinitions: AccountDefinitions,
-    private val variableDefinitions: VariableDefinitions,
     private val saveQueue: SaveQueue,
     private val connectionQueue: ConnectionQueue,
     private val overrides: AppearanceOverrides,
@@ -51,7 +50,6 @@ class AccountManager(
         player.visuals.hits.self = player.index
         player.interfaces = Interfaces(player)
         player.interfaceOptions = InterfaceOptions(player)
-        (player.variables as PlayerVariables).definitions = variableDefinitions
 //        player.area.areaDefinitions = areaDefinitions
         player.inventories.validItemRule = validItems
         player.inventories.normalStack = ItemDependentStack

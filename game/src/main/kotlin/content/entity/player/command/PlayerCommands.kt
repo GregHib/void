@@ -44,7 +44,6 @@ class PlayerCommands(
     val accounts: AccountDefinitions,
     val exchange: GrandExchange,
     val saveQueue: SaveQueue,
-    val variables: VariableDefinitions,
 ) : Script {
 
     init {
@@ -82,14 +81,14 @@ class PlayerCommands(
         adminCommand("prayers", stringArg("prayer-type", autofill = prayers, optional = true), stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Switch prayers", handler = ::prayers)
         adminCommand(
             "variables",
-            stringArg("var-name", desc = "The variable name to search for", optional = true, autofill = variables.definitions.keys),
+            stringArg("var-name", desc = "The variable name to search for", optional = true, autofill = VariableDefinitions.definitions.keys),
             stringArg("player-name", optional = true, autofill = accounts.displayNames.keys),
             desc = "Search the players set variables",
             handler = ::listVariables,
         )
         adminCommand(
             "timers",
-            stringArg("timer-name", desc = "The timer name to search for", optional = true, autofill = variables.definitions.keys),
+            stringArg("timer-name", desc = "The timer name to search for", optional = true, autofill = VariableDefinitions.definitions.keys),
             stringArg("player-name", optional = true, autofill = accounts.displayNames.keys),
             desc = "Search the players active timers",
             handler = ::listTimers,

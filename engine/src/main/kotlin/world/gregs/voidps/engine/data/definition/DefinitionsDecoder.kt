@@ -5,7 +5,6 @@ import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Parameterized
 import world.gregs.voidps.cache.definition.Transforms
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.get
 
 /**
  * Looks up [Definition]'s using Definitions unique string identifier
@@ -69,9 +68,8 @@ interface DefinitionsDecoder<D> where D : Definition, D : Parameterized {
     }
 
     private fun index(player: Player, id: Int, varbit: Boolean): Int {
-        val definitions: VariableDefinitions = get()
-        val key = (if (varbit) definitions.getVarbit(id) else definitions.getVarp(id)) ?: return 0
-        val definition = definitions.get(key)
+        val key = (if (varbit) VariableDefinitions.getVarbit(id) else VariableDefinitions.getVarp(id)) ?: return 0
+        val definition = VariableDefinitions.get(key)
         val value = player.variables.get<Any>(key) ?: return 0
         return definition?.values?.toInt(value) ?: 0
     }

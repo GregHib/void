@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit
 object Tasks {
 
     fun isCompleted(player: Player, id: String): Boolean {
-        val variable = get<VariableDefinitions>().get(id)?.values ?: return false
+        val variable = VariableDefinitions.get(id)?.values ?: return false
         return when (variable) {
             is BooleanValues -> player[id, false]
             is MapValues -> player[id, "unstarted"] == "completed"
@@ -161,7 +161,7 @@ object Tasks {
         else -> true
     }
 
-    private fun Player.getInt(id: String, default: String): Int = get<VariableDefinitions>().get(id)!!.values.toInt(this[id, default])
+    private fun Player.getInt(id: String, default: String): Int = VariableDefinitions.get(id)!!.values.toInt(this[id, default])
 
     private fun minutes() = TimeUnit.MILLISECONDS.toMinutes(System.currentTimeMillis())
 
