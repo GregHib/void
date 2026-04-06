@@ -62,12 +62,12 @@ impact_drains = [
 [giant_crypt_rat]
 attack_speed = 4
 retreat_range = 8
-defend_anim = "giant_crypt_rat_defend"
-death_anim = "giant_crypt_rat_death"
+defend_anim = "giant_rat_defend"
+death_anim = "giant_rat_death"
 
 [giant_crypt_rat.melee]
 range = 1
-anim = "giant_crypt_rat_attack"
+anim = "giant_rat_attack"
 target_hit = { offense = "stab", max = 30 }
 
 [possessed_pickaxe]

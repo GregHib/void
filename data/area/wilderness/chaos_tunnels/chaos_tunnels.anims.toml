@@ -25,15 +25,6 @@ id = 2072
 [bloodworm_death]
 id = 2073
 
-[giant_crypt_rat_attack]
-id = 4933
-
-[giant_crypt_rat_defend]
-id = 4934
-
-[giant_crypt_rat_death]
-id = 4935
-
 [possessed_pickaxe_defend]
 id = 5590
 
