@@ -43,3 +43,11 @@ anim = "frost_dragon_shoot"
 projectile = "frost_dragon_water"
 target_hit = { offense = "magic", max = 250 }
 target_sound = "dragon_breath"
+
+[frost_dragon.orb]
+condition = "frost_dragon_orb"
+chance = 100
+range = 10
+gfx = "frost_dragon.orb"
+impact_regardless = true
+target_hit = { offense = "none", max = 0 }

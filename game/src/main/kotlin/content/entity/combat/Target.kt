@@ -167,6 +167,7 @@ object Target {
             Hit.meleeType(type) && !weapon.id.startsWith("leaf_bladed") -> 0
             else -> damage
         }
+        is NPC if target.id.startsWith("frost_dragon") && target["orb_protection", false] -> 0
         is NPC if target.id == "harpie_bug_swarm" && source is Player && source.equipped(EquipSlot.Shield).id != "lit_bug_lantern" -> 0
         is NPC if target.def.contains("damage_cap") -> damage.coerceAtMost(target.def["damage_cap"])
         is NPC if target.def.contains("immune_death") -> damage.coerceAtMost(target.levels.get(Skill.Constitution) - 10)
