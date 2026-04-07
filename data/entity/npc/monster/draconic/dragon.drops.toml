@@ -324,18 +324,11 @@ drops = [
 [frost_dragon_drop_table]
 type = "all"
 drops = [
-  { table = "frost_dragon_primary" },
+  { id = "frost_dragon_bones" },
   { table = "frost_dragon_secondary" },
   { table = "frost_dragon_tertiary" },
   { table = "hard_clue_scroll", chance = 128 },
 ]
-
-[frost_dragon_primary]
-type = "all"
-drops = [
-  { id = "frost_dragon_bones"},
-]
-
 [frost_dragon_secondary]
 roll = 512
 drops = [
