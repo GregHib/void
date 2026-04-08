@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.Timer
@@ -48,9 +49,19 @@ class BarrowsCrypts : Script {
                 }
             } else if (!contains("${brother}_spawn") && !get("${brother}_killed", false)) {
                 val tile = Tables.tile("barrows_brothers.$brother.spawn").toCuboid(2).random(CollisionStrategies.Normal)
-                spawn(brother, tile)
+                spawnBrother(this, brother, tile)
             } else {
                 message("You don't find anything.", type = ChatType.Filter)
+            }
+        }
+
+        npcSpawn("ahrim_the_blighted,dharok_the_wretched,guthan_the_infested,karil_the_tainted,torag_the_corrupted,verac_the_defiled") {
+            val brother = id.substringBefore("_the_")
+            set("${brother}_set_effect", true)
+            when (brother) {
+                "dharok" -> set("weapon", Item("dharok_greataxe"))
+                "karil" -> set("weapon", Item("karils_crossbow"))
+                "torag" -> set("weapon", Item("torags_hammers"))
             }
         }
 
@@ -161,7 +172,7 @@ class BarrowsCrypts : Script {
                     if (get("${brother}_killed", false) || contains("${brother}_spawn")) {
                         continue
                     }
-                    spawn(brother, spawn)
+                    spawnBrother(this, brother, spawn)
                     break
                 }
                 return@objectOperate
@@ -176,17 +187,6 @@ class BarrowsCrypts : Script {
             npc.softQueue("despawn", TimeUnit.MINUTES.toTicks(2)) {
                 NPCs.remove(npc)
             }
-        }
-    }
-
-    private fun Player.spawn(brother: String, tile: Tile?) {
-        val id = Tables.npc("barrows_brothers.$brother.npc")
-        val npc = NPCs.add(id, tile ?: this.tile)
-        npc.say(if (npc.tile.level == 3) "You dare disturb my rest!" else "You dare steal from us!")
-        npc.interactPlayer(this, "Attack")
-        set("${brother}_spawn", npc)
-        softQueue("hint_delay", 1) {
-            hint(npc) // Have to wait for index to be registered before sending hint
         }
     }
 
@@ -256,5 +256,18 @@ class BarrowsCrypts : Script {
         }
         val npc = remove<NPC>(brother)
         NPCs.remove(npc)
+    }
+
+    companion object {
+        internal fun spawnBrother(player: Player, brother: String, tile: Tile?) {
+            val id = Tables.npc("barrows_brothers.$brother.npc")
+            val npc = NPCs.add(id, tile ?: player.tile)
+            npc.say(if (npc.tile.level == 3) "You dare disturb my rest!" else "You dare steal from us!")
+            npc.interactPlayer(player, "Attack")
+            player["${brother}_spawn"] = npc
+            player.softQueue("hint_delay", 1) {
+                player.hint(npc) // Have to wait for index to be registered before sending hint
+            }
+        }
     }
 }

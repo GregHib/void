@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.shakeCamera
 import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
@@ -13,6 +14,7 @@ import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.random
+import kotlin.random.nextInt
 
 class BarrowsChest(val drops: DropTables) : Script {
     init {
@@ -25,22 +27,29 @@ class BarrowsChest(val drops: DropTables) : Script {
         }
 
         objectOperate("Search", "barrows_chest_open") {
-            if (!interfaces.contains("barrows_overlay")) {
+            if (!interfaces.contains("barrows_overlay") || get("barrows_looted", false)) {
                 message("The chest is empty.")
                 return@objectOperate
             }
+            val brother = get("barrows_selected_brother", "dharok")
+            if (!get("${brother}_killed", false) || !contains("${brother}_spawn")) {
+                val tile = Areas["barrows_chest"].random()
+                BarrowsCrypts.spawnBrother(this, brother, tile)
+                return@objectOperate
+            }
+
             val drops = reward(this)
             AuditLog.event(this, "barrows_chest", *drops.toTypedArray())
             for (drop in drops) {
                 addOrDrop(drop.id, drop.amount)
             }
             reset(this)
-            shakeCamera(type = 0, intensity = 5)
             softTimers.start("barrows_cave_shake")
             set("barrows_looted", true)
         }
 
         timerStart("barrows_cave_shake") {
+            shakeCamera(type = 0, intensity = 5)
             message("The cave begins to collapse!")
             9
         }
@@ -48,7 +57,7 @@ class BarrowsChest(val drops: DropTables) : Script {
         timerTick("barrows_cave_shake") {
             gfx("falling_rocks")
             say("Ouch!")
-            directHit(30 + random.nextInt(21))
+            directHit(random.nextInt(30..50))
             message("Some rocks fall from the ceiling and hit you.")
             Timer.CONTINUE
         }
@@ -57,6 +66,10 @@ class BarrowsChest(val drops: DropTables) : Script {
             if (get("barrows_looted", false)) {
                 softTimers.restart("barrows_cave_shake")
             }
+        }
+
+        exited("barrows_tunnels") {
+            set("barrows_chest_open", false)
         }
     }
 
