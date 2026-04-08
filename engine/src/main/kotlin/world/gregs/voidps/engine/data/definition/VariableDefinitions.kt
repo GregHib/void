@@ -18,7 +18,7 @@ object VariableDefinitions {
     var loaded = false
         private set
 
-    fun set(definitions: Map<String, VariableDefinition>, varbits: Map<Int, String>, varps: Map<Int, String>) {
+    fun set(definitions: Map<String, VariableDefinition>, varbits: Map<Int, String> = emptyMap(), varps: Map<Int, String> = emptyMap()) {
         this.definitions = definitions
         this.varbitIds = varbits
         this.varpIds = varps

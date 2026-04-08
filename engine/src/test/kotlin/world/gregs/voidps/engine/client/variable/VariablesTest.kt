@@ -32,7 +32,7 @@ internal class VariablesTest {
         every { variable.transmit } returns true
         every { variable.persistent } returns true
         every { variable.defaultValue } returns 0
-        VariableDefinitions.init(mapOf(KEY to variable))
+        VariableDefinitions.set(mapOf(KEY to variable), emptyMap(), emptyMap())
         player = mockk(relaxed = true)
         variables = spyk(PlayerVariables(player, map))
         variables.bits = VariableBits(variables, player)
@@ -121,7 +121,7 @@ internal class VariablesTest {
     @Test
     fun `Get no variable`() {
         // Given
-        VariableDefinitions.init(emptyMap())
+        VariableDefinitions.set(emptyMap())
         // When
         val result = variables.get(KEY, -1)
         // Then
@@ -133,7 +133,7 @@ internal class VariablesTest {
         // Given
         val variable = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
         map[KEY] = arrayListOf<Any>()
-        VariableDefinitions.init(mapOf(KEY to variable))
+        VariableDefinitions.set(mapOf(KEY to variable))
         // When
         assertTrue(variables.bits.set(KEY, "First", true))
         // Then
@@ -149,7 +149,7 @@ internal class VariablesTest {
         // Given
         val variable = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
         map[KEY] = arrayListOf("First")
-        VariableDefinitions.init(mapOf(KEY to variable))
+        VariableDefinitions.set(mapOf(KEY to variable))
         // When
         assertTrue(variables.bits.set(KEY, "Second", true))
         // Then
@@ -165,7 +165,7 @@ internal class VariablesTest {
         // Given
         val variable = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
         map[KEY] = arrayListOf("First")
-        VariableDefinitions.init(mapOf(KEY to variable))
+        VariableDefinitions.set(mapOf(KEY to variable))
         // When
         assertFalse(variables.bits.set(KEY, "First", true))
         // Then
@@ -178,7 +178,7 @@ internal class VariablesTest {
         // Given
         val variable = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
         map[KEY] = arrayListOf<Any>()
-        VariableDefinitions.init(mapOf(KEY to variable))
+        VariableDefinitions.set(mapOf(KEY to variable))
         // When
         assertTrue(variables.bits.set(KEY, "First", false))
         // Then
@@ -191,7 +191,7 @@ internal class VariablesTest {
         // Given
         val variable = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
         map[KEY] = arrayListOf("First")
-        VariableDefinitions.init(mapOf(KEY to variable))
+        VariableDefinitions.set(mapOf(KEY to variable))
         // When
         assertTrue(variables.bits.remove(KEY, "First", true))
         // Then
@@ -207,7 +207,7 @@ internal class VariablesTest {
         // Given
         val variable = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
         map[KEY] = arrayListOf("First")
-        VariableDefinitions.init(mapOf(KEY to variable))
+        VariableDefinitions.set(mapOf(KEY to variable))
         // When
         assertTrue(variables.bits.remove(KEY, "First", false))
         // Then
@@ -220,7 +220,7 @@ internal class VariablesTest {
         // Given
         val variable = VariableDefinition.VarpDefinition(id, values, default, false, transmit)
         variables.temp[KEY] = arrayListOf("First")
-        VariableDefinitions.init(mapOf(KEY to variable))
+        VariableDefinitions.set(mapOf(KEY to variable))
         // When
         assertTrue(variables.bits.remove(KEY, "First", false))
         // Then
@@ -233,7 +233,7 @@ internal class VariablesTest {
         // Given
         val variable = VariableDefinition.VarpDefinition(id, values, arrayListOf<Any>(), persist, transmit)
         map[KEY] = arrayListOf("Third")
-        VariableDefinitions.init(mapOf(KEY to variable))
+        VariableDefinitions.set(mapOf(KEY to variable))
         // When
         variables.clear(KEY, true)
         // Then

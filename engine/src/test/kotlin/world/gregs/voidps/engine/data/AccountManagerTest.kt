@@ -77,7 +77,6 @@ class AccountManagerTest : KoinMock() {
         Settings.load(mapOf("world.home.x" to "1234", "world.home.y" to "5432", "world.experienceRate" to "1.0"))
         manager = AccountManager(
             accountDefinitions = AccountDefinitions(),
-            variableDefinitions = VariableDefinitions(),
             saveQueue = SaveQueue(storage),
             connectionQueue = connectionQueue,
             overrides = AppearanceOverrides(),
