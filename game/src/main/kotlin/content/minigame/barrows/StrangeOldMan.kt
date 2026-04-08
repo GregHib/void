@@ -17,7 +17,7 @@ import world.gregs.voidps.type.random
 class StrangeOldMan : Script {
     init {
         npcOperate("Talk-to", "strange_old_man") {
-            when(random.nextInt(4)) {
+            when (random.nextInt(4)) {
                 0 -> {
                     npc<Neutral>("Knock knock.")
                     player<Quiz>("Who's there?")
