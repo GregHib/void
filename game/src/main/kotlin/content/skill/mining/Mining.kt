@@ -141,14 +141,14 @@ class Mining : Script {
                 message("This rock contains ${target.id.removePrefix("mineral_deposit_").toLowerSpaceCase()}.")
                 return@objectApproach
             }
-            val ore = Rows.getOrNull("ores.${target.def(this).stringId}")
-            if (ore == null) {
+            val ore = Tables.itemListOrNull("rocks.${target.def(this).stringId}.ores")
+            if (ore.isNullOrEmpty()) {
                 message("This rock contains no ore.")
-            } else if (ore.rowId == "magical_stone") {
+            } else if (ore.contains("magical_stone")) {
                 // https://youtu.be/0fQ4ewyy_Ps?t=366
                 message("This rock contains a magical kind of stone.")
             } else {
-                message("This rock contains ${ore.rowId.toLowerSpaceCase()}.")
+                message("This rock contains ${ore.first().toLowerSpaceCase()}.")
             }
         }
     }
