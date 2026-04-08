@@ -3,6 +3,7 @@ package content.minigame.barrows
 import content.entity.combat.hit.directHit
 import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.shakeCamera
 import world.gregs.voidps.engine.client.ui.close
@@ -62,6 +63,10 @@ class BarrowsChest(val drops: DropTables) : Script {
             Timer.CONTINUE
         }
 
+        timerStop("barrows_cave_shake") {
+            clearCamera()
+        }
+
         entered("barrows_tunnels") {
             if (get("barrows_looted", false)) {
                 softTimers.restart("barrows_cave_shake")
@@ -69,6 +74,7 @@ class BarrowsChest(val drops: DropTables) : Script {
         }
 
         exited("barrows_tunnels") {
+            softTimers.stop("barrows_cave_shake")
             set("barrows_chest_open", false)
         }
     }
