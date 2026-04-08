@@ -8,12 +8,20 @@ death_sound = "wight_death"
 
 [ahrim_the_blighted.magic]
 range = 10
-anim = "ahrim_attack"
-impact_sound = "fire_wave_impact"
+anim = "fire_spell_staff"
+target_sound = "fire_wave_cast"
+projectile = "fire_wave_1"
 target_hit = { offense = "magic", max = 200 }
+impact_sound = "fire_wave_impact"
+impact_gfx = "fire_wave_impact"
+miss_gfx = "giant_splash"
+miss_sound = "spell_splash"
 
 [ahrim_the_blighted.confuse]
 clone = "dark_wizard_water.confuse"
+
+[ahrim_the_blighted.weaken]
+clone = "dark_wizard_earth.weaken"
 
 [dharok_the_wretched]
 attack_speed = 7

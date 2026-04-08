@@ -78,3 +78,12 @@ id = 6727
 
 [barrows_puzzle_door_8]
 id = 6746
+
+[barrows_chest]
+id = 10284
+
+[barrows_chest_closed]
+id = 6774
+
+[barrows_chest_open]
+id = 6775

@@ -6,12 +6,8 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.Minimap
-import world.gregs.voidps.engine.client.clearMinimap
-import world.gregs.voidps.engine.client.hint
+import world.gregs.voidps.engine.client.*
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
-import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.minimap
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Areas
@@ -35,7 +31,7 @@ import java.util.concurrent.TimeUnit
 class BarrowsCrypts : Script {
     init {
         objectOperate("Search", "dharok_sarcophagus,verac_sarcophagus,ahrim_sarcophagus,guthan_sarcophagus,karil_sarcophagus,torag_sarcophagus") { (target) ->
-            if (!contains("barrows_selected_brother")) {
+            if (!contains("barrows_selected_brother") || get("barrows_looted", false)) {
                 val brother = Tables.get("barrows_brothers").rows().random(random)
                 set("barrows_selected_brother", brother.rowId)
                 shufflePuzzle()
@@ -63,6 +59,18 @@ class BarrowsCrypts : Script {
             val brother = id.substringBefore("_the_")
             player["${brother}_killed"] = true
             player.clear("${brother}_spawn")
+            player.inc("barrows_kills")
+            player.inc("barrows_killed_monsters")
+            player.inc("barrows_kill_levels", def.combat)
+        }
+
+        npcDeath("bloodworm,crypt_rat_barrows,giant_crypt_rat_chaos_tunnels,crypt_spider,giant_crypt_spider,skeleton_barrows,skeleton_barrows_2,giant_crypt_rat_chaos_tunnels_2,giant_crypt_rat_chaos_tunnels_3,skeleton_barrows_3,skeleton_barrows_4") {
+            val player = killer as? Player ?: return@npcDeath
+            if (tile !in Areas["barrows_tunnels"]) {
+                return@npcDeath
+            }
+            player.inc("barrows_killed_monsters")
+            player.inc("barrows_kill_levels", def.combat)
         }
 
         objectOperate("Climb-up", "dharok_stairs,verac_stairs,ahrim_stairs,guthan_stairs,karil_stairs,torag_stairs") {
@@ -78,11 +86,11 @@ class BarrowsCrypts : Script {
             softTimers.start("barrows_prayer_drain")
             send()
             minimap(Minimap.HideMap)
-            sendVariable("barrows_in_tunnel")
         }
 
         exited("barrows_crypts") {
             softTimers.stop("barrows_prayer_drain")
+            softTimers.stop("barrows_cave_shake")
             if (tile !in Areas["barrows"]) {
                 close("barrows_overlay")
                 removeAll()
@@ -140,8 +148,11 @@ class BarrowsCrypts : Script {
                 }
             }
             sound("barrows_door_close")
+            val start = tile
             enterDoor(target, target.def(this))
             toggle("barrows_in_tunnel")
+            val direction = tile.delta(start).toDirection()
+            val spawn = tile.add(if (target.rotation == 0 || target.rotation == 2) direction.horizontal() else direction.vertical())
             // Spawn npc
             val random = random.nextInt(128)
             if (random < 12) { // 12/128
@@ -150,7 +161,7 @@ class BarrowsCrypts : Script {
                     if (get("${brother}_killed", false) || contains("${brother}_spawn")) {
                         continue
                     }
-                    spawn(brother, tile.toCuboid(2).random(CollisionStrategies.Normal))
+                    spawn(brother, spawn)
                     break
                 }
                 return@objectOperate
@@ -160,8 +171,8 @@ class BarrowsCrypts : Script {
                 random < 76 -> "bloodworm" // 32/128
                 else -> "skeleton_barrows" // 52/128
             }
-            // TODO constrain spawn to other side of door and prevent teleporting through walls
-            val npc = NPCs.add(id, tile.toCuboid(2).random(CollisionStrategies.Normal) ?: tile)
+            val npc = NPCs.add(id, spawn)
+            npc.interactPlayer(this, "Attack")
             npc.softQueue("despawn", TimeUnit.MINUTES.toTicks(2)) {
                 NPCs.remove(npc)
             }
@@ -171,10 +182,12 @@ class BarrowsCrypts : Script {
     private fun Player.spawn(brother: String, tile: Tile?) {
         val id = Tables.npc("barrows_brothers.$brother.npc")
         val npc = NPCs.add(id, tile ?: this.tile)
-        npc.say("You dare disturb my rest!")
+        npc.say(if (npc.tile.level == 3) "You dare disturb my rest!" else "You dare steal from us!")
         npc.interactPlayer(this, "Attack")
         set("${brother}_spawn", npc)
-        hint(npc)
+        softQueue("hint_delay", 1) {
+            hint(npc) // Have to wait for index to be registered before sending hint
+        }
     }
 
     private fun Player.removeAll() {
@@ -233,6 +246,8 @@ class BarrowsCrypts : Script {
                 sendVariable(variable)
             }
         }
+        sendVariable("barrows_in_tunnel")
+        sendVariable("barrows_killed_monsters")
     }
 
     private fun Player.removeBrother(brother: String) {

@@ -12,8 +12,8 @@ hitpoints = 350
 att = 70
 str = 20
 def = 20
-style = "stab"
-max_hit_melee = 30
+combat_def = "rat"
+max_hit_stab = 30
 hunt_mode = "cowardly"
 slayer_xp = 35.0
 categories = ["rats"]
@@ -22,22 +22,22 @@ examine = "A nasty little rodent."
 
 [skeleton_barrows]
 id = 2036
-categories = ["skeletons"]
+clone = "skeleton_unarmed"
 examine = "Could do with gaining a few pounds."
 
 [skeleton_barrows_2]
 id = 2037
-categories = ["skeletons"]
+clone = "skeleton_mace_shield"
 examine = "Could do with gaining a few pounds."
 
 [skeleton_barrows_3]
 id = 5381
-categories = ["skeletons"]
+clone = "skeleton_unarmed"
 examine = "Could do with gaining a few pounds."
 
 [skeleton_barrows_4]
 id = 5422
-categories = ["skeletons"]
+clone = "skeleton_longsword"
 examine = "Could do with gaining a few pounds."
 
 [ahrim_the_blighted]

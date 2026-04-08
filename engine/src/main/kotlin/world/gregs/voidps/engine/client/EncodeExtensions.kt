@@ -190,11 +190,11 @@ fun Player.turnCamera(
 }
 
 fun Player.shakeCamera(
-    intensity: Int,
-    type: Int,
-    cycle: Int,
-    movement: Int,
-    speed: Int,
+    intensity: Int = 0,
+    type: Int = 0,
+    cycle: Int = 0,
+    movement: Int = 0,
+    speed: Int = 0,
 ) = client?.shakeCamera(intensity, type, cycle, movement, speed) ?: Unit
 
 fun Player.clearCamera() = client?.clearCamera() ?: Unit

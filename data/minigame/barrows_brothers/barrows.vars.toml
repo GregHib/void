@@ -4,3 +4,11 @@ format = "boolean"
 [barrows_selected_brother]
 format = "string"
 persist = true
+
+[barrows_kill_levels]
+format = "int"
+persist = true
+
+[barrows_looted]
+format = "boolean"
+persist = true

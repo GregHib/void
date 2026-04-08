@@ -33,6 +33,11 @@ id = 5028
 format = "boolean"
 persist = true
 
+[barrows_kills]
+id = 463
+format = "int"
+persist = true
+
 [barrows_killed_monsters]
 id = 464
 format = "int"
@@ -135,5 +140,10 @@ persist = true
 
 [barrows_rope_north_east]
 id = 466
+format = "boolean"
+persist = true
+
+[barrows_chest_open]
+id = 1394
 format = "boolean"
 persist = true
