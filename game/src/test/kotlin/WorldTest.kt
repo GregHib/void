@@ -291,6 +291,7 @@ abstract class WorldTest : KoinTest {
             properties["world.npcs.randomWalk"] = false
             properties["events.shootingStars.enabled"] = false
             properties["events.livingRockCaverns.respawnTimeMinutes"] = "-1"
+            properties["events.livingRockCaverns.patriarchTimeMinutes"] = "-1"
             properties["events.penguinHideAndSeek.enabled"] = false
             properties["events.tearsOfGuthix.active"] = false
             properties["storage.autoSave.minutes"] = 0
