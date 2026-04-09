@@ -48,6 +48,6 @@ target_sound = "dragon_breath"
 condition = "frost_dragon_orb"
 chance = 100
 range = 10
-gfx = "frost_dragon.orb"
+gfx = "frost_dragon_orb"
 impact_regardless = true
 target_hit = { offense = "none", max = 0 }
