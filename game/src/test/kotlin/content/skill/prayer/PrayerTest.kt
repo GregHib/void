@@ -2,13 +2,17 @@ package content.skill.prayer
 
 import WorldTest
 import interfaceOption
+import itemOption
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
 
 internal class PrayerTest : WorldTest() {
 
+    
     @Test
     fun `Active prayers drain prayer points`() {
         val player = createPlayer()
@@ -36,5 +40,17 @@ internal class PrayerTest : WorldTest() {
 
         assertEquals(0, player.levels.get(Skill.Prayer))
         assertFalse(player.praying("turmoil"))
+    }
+
+    @Test
+    fun `Bury bone grants prayer experience`() {
+        val player = createPlayer()
+        player.inventory.add("bones")
+
+        player.itemOption("Bury", "bones")
+        tick()
+
+        assertNotEquals(0.0, player.experience.get(Skill.Prayer))
+        assertFalse(player.inventory.contains("bones"))
     }
 }
