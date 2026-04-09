@@ -13,5 +13,20 @@ class FrostDragons : Script {
                 clear("orb_protection")
             }
         }
+        npcCondition("frost_magic") { get("frost_style", "magic") == "magic" }
+
+        npcCondition("frost_range") { get("frost_style", "range") == "range" }
+
+        npcAttack("frost_dragon", "ice_arrows") {
+            set("frost_style", "range")
+        }
+
+        npcAttack("frost_dragon", "magic") {
+            set("frost_style", "magic")
+        }
+
+        npcDeath("frost_dragon*") {
+            clear("frost_style")
+        }
     }
 }

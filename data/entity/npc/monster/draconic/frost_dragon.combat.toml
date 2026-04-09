@@ -29,6 +29,7 @@ target_hit = { offense = "dragonfire", special = true, max = 650 }
 target_sound = "dragon_breath"
 
 [frost_dragon.ice_arrows]
+condition = "frost_range"
 chance = 25
 range = 10
 anim = "frost_dragon_shoot"
@@ -37,6 +38,7 @@ target_hit = { offense = "range", max = 250 }
 target_sound = "dragon_attack"
 
 [frost_dragon.magic]
+condition = "frost_magic"
 chance = 25
 range = 10
 anim = "frost_dragon_shoot"
@@ -48,6 +50,5 @@ target_sound = "dragon_breath"
 condition = "frost_dragon_orb"
 chance = 100
 range = 10
-gfx = "frost_dragon_orb"
 impact_regardless = true
 target_hit = { offense = "none", max = 0 }
