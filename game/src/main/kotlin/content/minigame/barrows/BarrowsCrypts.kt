@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -254,8 +253,8 @@ class BarrowsCrypts : Script {
         if (!contains("${brother}_spawn")) {
             return
         }
-        val npc = remove<NPC>(brother)
-        NPCs.remove(npc)
+        val index = remove<Int>(brother) ?: return
+        NPCs.remove(NPCs.indexed(index))
     }
 
     companion object {
@@ -264,10 +263,8 @@ class BarrowsCrypts : Script {
             val npc = NPCs.add(id, tile ?: player.tile)
             npc.say(if (npc.tile.level == 3) "You dare disturb my rest!" else "You dare steal from us!")
             npc.interactPlayer(player, "Attack")
-            player["${brother}_spawn"] = npc
-            player.softQueue("hint_delay", 1) {
-                player.hint(npc) // Have to wait for index to be registered before sending hint
-            }
+            player["${brother}_spawn"] = npc.index
+            player.hint(npc)
         }
     }
 }
