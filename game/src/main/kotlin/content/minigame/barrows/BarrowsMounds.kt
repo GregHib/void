@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.npc.NPC
 
 class BarrowsMounds : Script {
     init {
