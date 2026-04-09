@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.shakeCamera
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
@@ -33,8 +34,11 @@ class BarrowsChest(val drops: DropTables) : Script {
                 return@objectOperate
             }
             val brother = get("barrows_selected_brother", "dharok")
-            if (!get("${brother}_killed", false) || !contains("${brother}_spawn")) {
-                val tile = Areas["barrows_chest"].random()
+            if (!get("${brother}_killed", false) && !contains("${brother}_spawn")) {
+                var tile = Areas["barrows_chest"].random()
+                if (tile == this.tile) {
+                    tile = tile.addX(1)
+                }
                 BarrowsCrypts.spawnBrother(this, brother, tile)
                 return@objectOperate
             }
@@ -71,6 +75,7 @@ class BarrowsChest(val drops: DropTables) : Script {
             if (get("barrows_looted", false)) {
                 softTimers.restart("barrows_cave_shake")
             }
+            sendVariable("barrows_chest_open")
         }
 
         exited("barrows_tunnels") {
@@ -85,11 +90,13 @@ class BarrowsChest(val drops: DropTables) : Script {
         val kills = player["barrows_kills", 0]
         val items = mutableListOf<ItemDrop>()
         repeat(kills) {
-            armour.roll(maximumRoll = 450 - (58 * kills), list = items)
+            armour.roll(maximumRoll = 450 - (58 * kills), list = items, player = player)
         }
         val runes = drops.getValue("barrows_chest_runes")
         val levels = player["barrows_kill_levels", 0]
-        runes.roll(maximumRoll = levels.coerceAtMost(1012), list = items)
+        if (levels > 0) {
+            runes.roll(maximumRoll = levels.coerceAtMost(1012), list = items, player = player)
+        }
         return items.map { it.toItem() }
     }
 
@@ -98,5 +105,8 @@ class BarrowsChest(val drops: DropTables) : Script {
         player.clear("barrows_kill_levels")
         player.clear("barrows_killed_monsters")
         player.clear("barrows_kills")
+        for (row in Tables.get("barrows_brothers").rows()) {
+            player.clear("${row.rowId}_killed")
+        }
     }
 }
