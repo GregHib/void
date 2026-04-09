@@ -21,7 +21,7 @@ class NPCsTest {
         val npc = NPCs.add("test", Tile(1))
         assertEquals("test", npc.id)
         assertEquals(Tile(1), npc.tile)
-        assertEquals(-1, npc.index)
+        assertEquals(1, npc.index)
         assertNull(NPCs.indexed(1))
         NPCs.run()
 
