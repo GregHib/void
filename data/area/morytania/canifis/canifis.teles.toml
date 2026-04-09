@@ -1,4 +1,3 @@
-
 [trapdoor_89_opened]
 option = "Climb-down"
 tile = { x = 3405, y = 3507 }
@@ -23,3 +22,13 @@ to = { x = 3425, y = 3484 }
 option = "Climb-down"
 tile = { x = 3422, y = 3484 }
 to = { x = 3440, y = 9888 }
+
+[canifis_tavern_trapdoor]
+option = "Open"
+tile = { x = 3495, y = 3465 }
+to = { x = 3477, y = 9845 }
+
+[canifis_tavern_ladder]
+option = "Climb-up"
+tile = { x = 3477, y = 9846 }
+to = { x = 3495, y = 3466 }

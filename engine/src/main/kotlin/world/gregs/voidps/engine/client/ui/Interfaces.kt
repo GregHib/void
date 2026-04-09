@@ -180,6 +180,12 @@ class Interfaces(
         return true
     }
 
+    fun sendModel(id: String, component: String, model: Int): Boolean {
+        val comp = InterfaceDefinitions.getComponent(id, component) ?: return false
+        player.client?.interfaceModel(comp.id, model)
+        return true
+    }
+
     fun sendColour(id: String, component: String, colour: Colour): Boolean {
         val comp = InterfaceDefinitions.getComponent(id, component) ?: return false
         val red = (colour and 0xff0000) shr 16

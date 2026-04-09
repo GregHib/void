@@ -1,0 +1,149 @@
+[ahrim_killed]
+id = 457
+format = "boolean"
+persist = true
+
+[dharok_killed]
+id = 458
+format = "boolean"
+persist = true
+
+[guthan_killed]
+id = 459
+format = "boolean"
+persist = true
+
+[karil_killed]
+id = 460
+format = "boolean"
+persist = true
+
+[torag_killed]
+id = 461
+format = "boolean"
+persist = true
+
+[verac_killed]
+id = 462
+format = "boolean"
+persist = true
+
+[barrows_in_tunnel]
+id = 5028
+format = "boolean"
+persist = true
+
+[barrows_kills]
+id = 463
+format = "int"
+persist = true
+
+[barrows_killed_monsters]
+id = 464
+format = "int"
+persist = true
+
+[barrows_door_a]
+id = 469
+format = "boolean"
+persist = true
+
+[barrows_door_b]
+id = 470
+format = "boolean"
+persist = true
+
+[barrows_door_c]
+id = 471
+format = "boolean"
+persist = true
+
+[barrows_door_d]
+id = 472
+format = "boolean"
+persist = true
+
+[barrows_door_e]
+id = 473
+format = "boolean"
+persist = true
+
+[barrows_door_f]
+id = 474
+format = "boolean"
+persist = true
+
+[barrows_door_g]
+id = 475
+format = "boolean"
+persist = true
+
+[barrows_door_h]
+id = 476
+format = "boolean"
+persist = true
+
+[barrows_door_i]
+id = 477
+format = "boolean"
+persist = true
+
+[barrows_door_j]
+id = 478
+format = "boolean"
+persist = true
+
+[barrows_door_k]
+id = 479
+format = "boolean"
+persist = true
+
+[barrows_door_l]
+id = 480
+format = "boolean"
+persist = true
+
+[barrows_door_m]
+id = 481
+format = "boolean"
+persist = true
+
+[barrows_door_n]
+id = 482
+format = "boolean"
+persist = true
+
+[barrows_door_o]
+id = 483
+format = "boolean"
+persist = true
+
+[barrows_door_p]
+id = 484
+format = "boolean"
+persist = true
+
+[barrows_rope_south_east]
+id = 468
+format = "boolean"
+persist = true
+
+[barrows_rope_south_west]
+id = 467
+format = "boolean"
+persist = true
+
+[barrows_rope_north_west]
+id = 465
+format = "boolean"
+persist = true
+
+[barrows_rope_north_east]
+id = 466
+format = "boolean"
+persist = true
+
+[barrows_chest_open]
+id = 1394
+format = "boolean"
+persist = true

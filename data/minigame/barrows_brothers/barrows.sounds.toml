@@ -1,0 +1,26 @@
+[torag_attack]
+id = 1330
+
+[wight_defend]
+id = 1339
+
+[wight_death]
+id = 1338
+
+[verac_attack]
+id = 1333
+
+[guthan_attack]
+id = 1325
+
+[dharok_attack]
+id = 1319
+
+[barrows_door_unlock]
+id = 37
+
+[barrows_door_close]
+id = 41
+
+[barrows_door_open]
+id = 62

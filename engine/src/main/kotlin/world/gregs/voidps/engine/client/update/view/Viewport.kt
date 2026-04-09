@@ -13,6 +13,7 @@ class Viewport {
     val npcs = IntLinkedOpenHashSet(LOCAL_NPC_CAP)
     val idlePlayers: IntArray = IntArray(MAX_PLAYERS)
     private val lastSeen = IntArray(MAX_PLAYERS)
+    val hints = IntArray(8)
 
     val playerChanges = ArrayWriter(3000)
     val playerUpdates = ArrayWriter(7500)

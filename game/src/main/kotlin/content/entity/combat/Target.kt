@@ -7,18 +7,16 @@ import content.area.wilderness.inWilderness
 import content.entity.combat.hit.Hit
 import content.entity.effect.transform
 import content.entity.player.equip.Equipment
-import content.skill.melee.weapon.fightStyle
 import content.skill.ranged.ammo
 import content.skill.slayer.categories
-import content.skill.slayer.slayerTask
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
-import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.mode.interact.InteractOption
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -36,20 +34,7 @@ object Target {
             if (target.id.startsWith("door_support") && NPCDefinitions.get(target.id).options[1] == "Destroy") {
                 return true
             }
-            if (source is Player && target.tile in Areas["kuradals_dungeon"] && !target.categories.contains(source.slayerTask)) {
-                source.message("You're not down here to kill those.") // https://youtu.be/GU7I1GyaNEU?t=4
-                return false
-            }
-            if (target.id == "mound_feldip_hills" && source is Player && source.slayerTask != "jungle_strykewyrm") {
-                source.message("You need to have strykewyrm assigned as a task in order to fight them.")
-                return false
-            }
-            if (target.id == "mound_desert_strykewyrm" && source is Player && source.slayerTask != "desert_strykewyrm") {
-                source.message("You need to have strykewyrm assigned as a task in order to fight them.")
-                return false
-            }
-            if (target.id == "mound_ice_strykewyrm" && source is Player && source.slayerTask != "ice_strykewyrm") {
-                source.message("You need to have strykewyrm assigned as a task in order to fight them.")
+            if (source is Player && !CombatApi.canAttack(source, target)) {
                 return false
             }
             if (target.transform != "") {
@@ -66,10 +51,6 @@ object Target {
                 return false
             }
             if (NPCs.indexed(target.index) == null) {
-                return false
-            }
-            if (source.fightStyle == "melee" && target.categories.contains("aviansie")) {
-                source.message("The Aviansie is flying too high for you to attack using melee.")
                 return false
             }
         }

@@ -137,6 +137,7 @@ object Main {
                 get<ItemDefinitions>()
                 get<NPCDefinitions>()
                 get<ObjectDefinitions>()
+                get<VariableDefinitions>()
                 Tables.load(files.list(Settings["definitions.tables"]))
             }
             single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(cache)).load(files.list(Settings["definitions.graphics"])) }
@@ -156,13 +157,7 @@ object Main {
                 ItemOnItemDefinitions().load(files.list(Settings["definitions.itemOnItem"]))
             }
             single(createdAtStart = true) {
-                VariableDefinitions().load(
-                    files.list(Settings["definitions.variables.players"]),
-                    files.list(Settings["definitions.variables.bits"]),
-                    files.list(Settings["definitions.variables.clients"]),
-                    files.list(Settings["definitions.variables.strings"]),
-                    files.list(Settings["definitions.variables.customs"]),
-                )
+                VariableDefinitions.load(files)
             }
             single(createdAtStart = true) {
                 get<ItemDefinitions>()

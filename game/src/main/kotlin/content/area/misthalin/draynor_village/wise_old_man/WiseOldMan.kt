@@ -485,12 +485,12 @@ class WiseOldMan : Script {
             }
             val requirement = row.skillPairOrNull("skill_req")
             if (requirement == null) {
-                tasks.add(row.itemId)
+                tasks.add(row.rowId)
                 continue
             }
             val (skill, level) = requirement
             if (has(skill, level)) {
-                tasks.add(row.itemId)
+                tasks.add(row.rowId)
             }
         }
         return tasks

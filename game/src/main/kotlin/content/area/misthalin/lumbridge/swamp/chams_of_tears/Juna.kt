@@ -309,7 +309,7 @@ class Juna : Script {
         renderEmote("water_bowl")
         walkOverDelay(Tile(3251, 9516, 2))
         tab(Tab.WornEquipment)
-        closeTabs(options = true)
+        closeTabs(Tab.Options)
         open("tears_of_guthix_water_bowl")
         walkOverDelay(Tile(3253, 9516, 2))
         walkOverDelay(Tile(3253, 9517, 2))
@@ -323,7 +323,7 @@ class Juna : Script {
         equipment.remove(EquipSlot.Weapon.index, "stone_bowl")
         clearRenderEmote()
         close("tears_of_guthix_water_bowl")
-        openTabs(options = true)
+        openTabs(Tab.Options)
         val target = GameObjects.find(Tile(3252, 9516, 2), "juna_base")
         target.anim("tear_of_guthix_snake_open_close")
         walkOverDelay(Tile(3251, 9516, 2))
@@ -335,7 +335,7 @@ class Juna : Script {
         var lowestXp = Int.MAX_VALUE
         var message = ""
         for (row in Tables.get("tears_of_guthix_messages").rows()) {
-            val skill = Skill.all[Skill.map[row.itemId] ?: continue]
+            val skill = Skill.all[Skill.map[row.rowId] ?: continue]
             if (skill == Skill.Herblore && !questCompleted("druidic_ritual")) {
                 continue
             }

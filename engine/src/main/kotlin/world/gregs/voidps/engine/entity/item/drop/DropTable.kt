@@ -27,13 +27,13 @@ data class DropTable(
      * @param player the player for [ItemDrop.predicate]'s
      */
     fun roll(maximumRoll: Int = -1, list: MutableList<ItemDrop> = mutableListOf(), player: Player? = null): MutableList<ItemDrop> {
-        collect(list, maximumRoll, player, random(maximumRoll))
+        collect(list, player, random(maximumRoll))
         return list
     }
 
-    fun random(maximum: Int): Int = random.nextInt(0, if (roll <= 0 && maximum != -1) maximum else roll)
+    fun random(maximum: Int) = random.nextInt(0, if (roll <= 0 && maximum != -1) maximum else roll)
 
-    fun collect(list: MutableList<ItemDrop>, value: Int, player: Player?, roll: Int = random(value)): Boolean {
+    fun collect(list: MutableList<ItemDrop>, player: Player?, roll: Int): Boolean {
         var count = 0
         for (drop in drops) {
             if (drop.chance == 0) {
@@ -50,7 +50,7 @@ data class DropTable(
                         continue
                     }
                 }
-                if (drop.collect(list, value, player) && type == TableType.First) {
+                if (drop.collect(list, player, drop.random(-1)) && type == TableType.First) {
                     return true
                 }
             } else if (drop is ItemDrop) {

@@ -37,7 +37,7 @@ class Weaving : Script {
 
         itemOnObjectOperate(obj = "loom_*", arrive = false) { (target, item) ->
             val rows = Tables.get("weaving").rows()
-            val row = rows.firstOrNull { it.itemId == item.id } ?: return@itemOnObjectOperate
+            val row = rows.firstOrNull { it.rowId == item.id } ?: return@itemOnObjectOperate
             val product = row.item("product")
             val produced = row.int("amount")
             val (_, amount) = makeAmount(
@@ -54,7 +54,7 @@ class Weaving : Script {
         if (amount <= 0) {
             return
         }
-        val current = inventory.count(row.itemId)
+        val current = inventory.count(row.rowId)
         val product = row.item("product")
         val produced = row.int("amount")
         val plural = row.string("plural")
@@ -71,7 +71,7 @@ class Weaving : Script {
         anim("weaving")
         weakQueue("weave", 4) {
             inventory.transaction {
-                remove(row.itemId, produced)
+                remove(row.rowId, produced)
                 add(product)
             }
             when (inventory.transaction.error) {

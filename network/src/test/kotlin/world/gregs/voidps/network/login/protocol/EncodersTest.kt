@@ -90,6 +90,7 @@ class EncodersTest {
         { sendInterfaceSettings(InterfaceDefinition.pack(1234, 456), 2345, 6789, 12345) },
         { sendInterfaceScroll(InterfaceDefinition.pack(123, 456), 23456) },
         { interfaceSprite(InterfaceDefinition.pack(123, 456), 12345) },
+        { interfaceModel(InterfaceDefinition.pack(123, 456), 12345) },
         { interfaceText(InterfaceDefinition.pack(123, 456), "text") },
         { updateInterface(123, 456) },
         { interfaceVisibility(InterfaceDefinition.pack(123, 456), true) },
@@ -121,6 +122,7 @@ class EncodersTest {
         { weight(12345) },
         { clearZone(123, 234, 12) },
         { updateZone(123, 234, 12) },
+        { arrowHint(2, 1, 3, -1, 100, 123, 2, 50, 2, 1234) },
     ).mapIndexed { index, packet ->
         random = Random(0)
         val (name, expected) = packets[index]

@@ -16,12 +16,11 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.network.login.protocol.encode.*
 
 class VariableCommands(
-    val variableDefinitions: VariableDefinitions,
     val accounts: AccountDefinitions,
 ) : Script {
 
     init {
-        modCommand("vars", stringArg("variable-name", optional = true, autofill = variableDefinitions.definitions.keys), stringArg("player-name", "target player (default self)", optional = true, autofill = accounts.displayNames.keys), desc = "Search players variables") { args ->
+        modCommand("vars", stringArg("variable-name", optional = true, autofill = VariableDefinitions.definitions.keys), stringArg("player-name", "target player (default self)", optional = true, autofill = accounts.displayNames.keys), desc = "Search players variables") { args ->
             val target = Players.find(this, args.getOrNull(1)) ?: return@modCommand
             val search = args.getOrNull(0)
             for ((key, value) in target.variables.data) {
@@ -32,17 +31,17 @@ class VariableCommands(
             }
         }
 
-        adminCommand("var", stringArg("variable-name", autofill = variableDefinitions.definitions.keys), stringArg("value"), desc = "Set a variable") { args ->
+        adminCommand("var", stringArg("variable-name", autofill = VariableDefinitions.definitions.keys), stringArg("value"), desc = "Set a variable") { args ->
             set(args.first(), args.last().toBooleanStrictOrNull() ?: args.last().toIntOrNull() ?: args.last())
         }
 
-        adminCommand("varp", stringArg("id", autofill = variableDefinitions.definitions.keys), intArg("value"), desc = "Send player-variable to client") { args ->
+        adminCommand("varp", stringArg("id", autofill = VariableDefinitions.definitions.keys), intArg("value"), desc = "Send player-variable to client") { args ->
             val intId = args.first().toIntOrNull()
             if (intId == null) {
                 variables.set(args.first(), args.last().toInt())
                 return@adminCommand
             }
-            val name = variableDefinitions.getVarp(intId)
+            val name = VariableDefinitions.getVarp(intId)
             if (name == null) {
                 client?.sendVarp(intId, args.last().toInt())
             } else {
@@ -50,13 +49,13 @@ class VariableCommands(
             }
         }
 
-        adminCommand("varbit", stringArg("id", autofill = variableDefinitions.definitions.keys), intArg("value"), desc = "Send variable-bit to client") { args ->
+        adminCommand("varbit", stringArg("id", autofill = VariableDefinitions.definitions.keys), intArg("value"), desc = "Send variable-bit to client") { args ->
             val intId = args.first().toIntOrNull()
             if (intId == null) {
                 variables.set(args.first(), args.last().toInt())
                 return@adminCommand
             }
-            val name = variableDefinitions.getVarbit(intId)
+            val name = VariableDefinitions.getVarbit(intId)
             if (name == null) {
                 client?.sendVarbit(intId, args.last().toInt())
             } else {
@@ -64,7 +63,7 @@ class VariableCommands(
             }
         }
 
-        adminCommand("varc", stringArg("id", autofill = variableDefinitions.definitions.keys), intArg("value"), desc = "Send client-variable to client") { args ->
+        adminCommand("varc", stringArg("id", autofill = VariableDefinitions.definitions.keys), intArg("value"), desc = "Send client-variable to client") { args ->
             val intId = args.first().toIntOrNull()
             if (intId == null) {
                 variables.set(args.first(), args.last().toInt())
@@ -73,7 +72,7 @@ class VariableCommands(
             }
         }
 
-        adminCommand("varcstr", stringArg("id", autofill = variableDefinitions.definitions.keys), stringArg("value"), desc = "Send variable-client-string to client") { args ->
+        adminCommand("varcstr", stringArg("id", autofill = VariableDefinitions.definitions.keys), stringArg("value"), desc = "Send variable-client-string to client") { args ->
             val intId = args.first().toIntOrNull()
             val string = args.drop(1).joinToString(" ")
             if (intId == null) {

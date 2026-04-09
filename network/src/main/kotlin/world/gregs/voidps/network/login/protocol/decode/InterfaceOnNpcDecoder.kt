@@ -17,7 +17,7 @@ class InterfaceOnNpcDecoder : Decoder(11) {
         val packed = packet.readInt()
         val npc = packet.readShortLittleEndian().toInt()
         val run = packet.readBooleanAdd()
-        val itemId = packet.readUnsignedShortAdd()
+        val itemId = packet.readUnsignedShortAdd().toShort().toInt()
         return InteractInterfaceNPC(
             npc,
             InterfaceDefinition.id(packed),

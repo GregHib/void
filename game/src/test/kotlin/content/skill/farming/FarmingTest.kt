@@ -51,10 +51,8 @@ class FarmingTest : KoinMock() {
             fonts
         }
         definitions = mutableMapOf()
-        val variableDefinitions = VariableDefinitions()
-        variableDefinitions.definitions = definitions
         farmingDefinitions = FarmingDefinitions()
-        farming = Farming(variableDefinitions, farmingDefinitions)
+        farming = Farming(farmingDefinitions)
         player = Player()
         player.inventories.normalStack = ItemDependentStack
         player.inventories.validItemRule = ValidItemRestriction()

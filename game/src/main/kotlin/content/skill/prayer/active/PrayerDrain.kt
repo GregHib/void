@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.timer.Timer
 
-class PrayerDrain(val definitions: PrayerDefinitions, val variableDefinitions: VariableDefinitions) : Script {
+class PrayerDrain(val definitions: PrayerDefinitions) : Script {
 
     init {
         timerStart("prayer_drain") { 1 }
@@ -48,7 +48,7 @@ class PrayerDrain(val definitions: PrayerDefinitions, val variableDefinitions: V
 
     fun getTotalDrainEffect(player: Player): Int {
         val listKey = player.getActivePrayerVarKey()
-        val variable = variableDefinitions.get(listKey)
+        val variable = VariableDefinitions.get(listKey)
         val values = (variable?.values as BitwiseValues).values
         var total = 0
         for (prayer in values) {

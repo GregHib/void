@@ -1,0 +1,107 @@
+[barrows_brothers]
+crypt = "tile"
+npc = "npc"
+spawn = "tile"
+
+[.dharok]
+crypt = { x = 3556, y = 9718, level = 3 }
+npc = "dharok_the_wretched"
+spawn = { x = 3556, y = 9716, level = 3 }
+
+[.verac]
+crypt = { x = 3578, y = 9706, level = 3 }
+npc = "verac_the_defiled"
+spawn = { x = 3576, y = 9706, level = 3 }
+
+[.ahrim]
+crypt = { x = 3557, y = 9703, level = 3 }
+npc = "ahrim_the_blighted"
+spawn = { x = 3556, y = 9701, level = 3 }
+
+[.guthan]
+crypt = { x = 3534, y = 9704, level = 3 }
+npc = "guthan_the_infested"
+spawn = { x = 3537, y = 9704, level = 3 }
+
+[.torag]
+crypt = { x = 3568, y = 9683, level = 3 }
+npc = "torag_the_corrupted"
+spawn = { x = 3568, y = 9685, level = 3 }
+
+[.karil]
+crypt = { x = 3546, y = 9684, level = 3 }
+npc = "karil_the_tainted"
+spawn = { x = 3549, y = 9683, level = 3 }
+
+[barrows_doors]
+tile = "tile"
+vars = "list<var>"
+
+[.puzzles]
+vars = [
+    "barrows_door_i",
+    "barrows_door_j",
+    "barrows_door_e",
+    "barrows_door_l"
+]
+
+[.north_east]
+tile = { x = 3568, y = 9711 }
+vars = [
+    "barrows_door_h",
+    "barrows_door_a",
+    "barrows_door_g",
+    "barrows_door_f",
+]
+
+[.north_west]
+tile = { x = 3534, y = 9711 }
+vars = [
+    "barrows_door_a",
+    "barrows_door_b",
+    "barrows_door_d",
+    "barrows_door_c",
+]
+
+[.south_west]
+tile = { x = 3534, y = 9677 }
+vars = [
+    "barrows_door_p",
+    "barrows_door_b",
+    "barrows_door_n",
+    "barrows_door_k",
+]
+
+[.south_east]
+tile = { x = 3568, y = 9677 }
+vars = [
+    "barrows_door_h",
+    "barrows_door_p",
+    "barrows_door_m",
+    "barrows_door_o",
+]
+
+[barrows_puzzles]
+options = "list<int>"
+choices = "list<int>"
+answer = "int"
+
+[.squares]
+options = [6722, 6723, 6724]
+choices = [6719, 6721, 6720]
+answer = 6719
+
+[.arrows]
+options = [6716, 6717, 6718]
+choices = [6715, 6714, 6713]
+answer = 6713
+
+[.rectangles]
+options = [6728, 6729, 6730]
+choices = [6727, 6726, 6725]
+answer = 6725
+
+[.shapes]
+options = [6734, 6735, 6736]
+choices = [6732, 6731, 6733]
+answer = 6731

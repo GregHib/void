@@ -4,21 +4,47 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.engine.client.variable.VariableValues
+import world.gregs.voidps.engine.data.ConfigFiles
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.timedLoad
-import kotlin.collections.set
 
-class VariableDefinitions {
+object VariableDefinitions {
 
     var definitions: Map<String, VariableDefinition> = emptyMap()
     private var varbitIds: Map<Int, String> = emptyMap()
     private var varpIds: Map<Int, String> = emptyMap()
+
+    var loaded = false
+        private set
+
+    fun set(definitions: Map<String, VariableDefinition>, varbits: Map<Int, String> = emptyMap(), varps: Map<Int, String> = emptyMap()) {
+        this.definitions = definitions
+        this.varbitIds = varbits
+        this.varpIds = varps
+        loaded = true
+    }
+
+    fun clear() {
+        definitions = emptyMap()
+        varbitIds = emptyMap()
+        varpIds = emptyMap()
+        loaded = false
+    }
 
     fun get(key: String) = definitions[key]
 
     fun getVarbit(id: Int) = varbitIds[id]
 
     fun getVarp(id: Int) = varpIds[id]
+
+    fun load(files: ConfigFiles) = load(
+        files.list(Settings["definitions.variables.players"]),
+        files.list(Settings["definitions.variables.bits"]),
+        files.list(Settings["definitions.variables.clients"]),
+        files.list(Settings["definitions.variables.strings"]),
+        files.list(Settings["definitions.variables.customs"]),
+    )
 
     fun load(players: List<String>, playerBits: List<String>, clients: List<String>, clientStrings: List<String>, custom: List<String>): VariableDefinitions {
         timedLoad("variable definition") {
@@ -52,15 +78,13 @@ class VariableDefinitions {
                     definitions[stringId] = VariableDefinition.CustomVariableDefinition(values, default, persist)
                 }
             }
-            this.varbitIds = varbitIds
-            this.varpIds = varpIds
-            this.definitions = definitions
+            set(definitions, varbitIds, varpIds)
             this.definitions.size
         }
         return this
     }
 
-    fun load(path: String, block: (Int, String, VariableValues, Any?, Boolean, Boolean) -> Unit) {
+    private fun load(path: String, block: (Int, String, VariableValues, Any?, Boolean, Boolean) -> Unit) {
         Config.fileReader(path) {
             while (nextSection()) {
                 val stringId = section()

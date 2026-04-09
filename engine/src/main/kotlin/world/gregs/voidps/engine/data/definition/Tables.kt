@@ -217,6 +217,7 @@ object Tables {
         require(ItemDefinitions.loaded) { "Item definitions must be loaded before tables" }
         require(ObjectDefinitions.loaded) { "Object definitions must be loaded before tables" }
         require(NPCDefinitions.loaded) { "NPC definitions must be loaded before tables" }
+        require(VariableDefinitions.loaded) { "Variable definitions must be loaded before tables" }
         timedLoad("table config") {
             val definitions = mutableMapOf<String, TableBuilder>()
             val rows = mutableListOf<RowDefinition>()

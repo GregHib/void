@@ -1,0 +1,89 @@
+[dharok_stairs]
+id = 6703
+
+[dharok_sarcophagus]
+id = 6771
+
+[verac_stairs]
+id = 6707
+
+[verac_sarcophagus]
+id = 6823
+
+[ahrim_stairs]
+id = 6702
+
+[ahrim_sarcophagus]
+id = 6821
+
+[guthan_stairs]
+id = 6704
+
+[guthan_sarcophagus]
+id = 6773
+
+[karil_stairs]
+id = 6705
+
+[karil_sarcophagus]
+id = 6822
+
+[torag_stairs]
+id = 6706
+
+[torag_sarcophagus]
+id = 6772
+
+[barrows_rope]
+id = 6708
+
+[barrows_door_left_opened]
+id = 6713
+examine = "I wonder what is awaiting me on the other side."
+
+[barrows_door_left_closed]
+id = 6714
+material = "barrows"
+examine = "I wonder what is awaiting me on the other side."
+
+[barrows_door_right_opened]
+id = 6732
+examine = "I wonder what awaits me on the other side."
+
+[barrows_door_right_closed]
+id = 6733
+material = "barrows"
+examine = "I wonder what awaits me on the other side."
+
+[barrows_puzzle_door_1]
+id = 6739
+
+[barrows_puzzle_door_2]
+id = 6720
+
+[barrows_puzzle_door_3]
+id = 6725
+
+[barrows_puzzle_door_4]
+id = 6744
+
+[barrows_puzzle_door_5]
+id = 6724
+
+[barrows_puzzle_door_6]
+id = 6743
+
+[barrows_puzzle_door_7]
+id = 6727
+
+[barrows_puzzle_door_8]
+id = 6746
+
+[barrows_chest]
+id = 10284
+
+[barrows_chest_closed]
+id = 6774
+
+[barrows_chest_open]
+id = 6775

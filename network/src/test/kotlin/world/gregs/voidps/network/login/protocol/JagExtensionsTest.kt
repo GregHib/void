@@ -3,6 +3,7 @@ package world.gregs.voidps.network.login.protocol
 import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.test.runTest
+import kotlinx.io.readByteArray
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
@@ -46,7 +47,7 @@ class JagExtensionsTest {
         channel.writeByte(true)
         channel.writeByte(false)
         channel.close()
-        val packet = ByteReadPacket(channel.readRemaining().readBytes())
+        val packet = ByteReadPacket(channel.readRemaining().readByteArray())
         assertTrue(packet.readBoolean())
         assertFalse(packet.readBoolean())
     }
@@ -56,7 +57,7 @@ class JagExtensionsTest {
         val channel = ByteChannel(autoFlush = true)
         channel.writeByteAdd(10)
         channel.close()
-        val packet = ByteReadPacket(channel.readRemaining().readBytes())
+        val packet = ByteReadPacket(channel.readRemaining().readByteArray())
         assertEquals(10, packet.readByteAdd())
     }
 
@@ -66,7 +67,7 @@ class JagExtensionsTest {
         val text = "Hello"
         channel.writeText(text)
         channel.close()
-        val packet = ByteReadPacket(channel.readRemaining().readBytes())
+        val packet = ByteReadPacket(channel.readRemaining().readByteArray())
         assertEquals(text, packet.readString())
     }
 
@@ -97,7 +98,7 @@ class JagExtensionsTest {
         val value = 0x1234
         channel.writeShortAddLittle(value)
         channel.close()
-        val array = channel.readRemaining().readBytes()
+        val array = channel.readRemaining().readByteArray()
         val packet = ByteReadPacket(array)
         assertEquals(value, packet.readShortAddLittle())
     }
@@ -108,7 +109,7 @@ class JagExtensionsTest {
         val value = -1
         channel.writeShortAddLittle(value)
         channel.close()
-        val array = channel.readRemaining().readBytes()
+        val array = channel.readRemaining().readByteArray()
         val packet = ByteReadPacket(array)
         assertEquals(value, packet.readShortAddLittle())
     }

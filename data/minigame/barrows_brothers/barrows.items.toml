@@ -2,6 +2,7 @@
 id = 4707
 tradeable = false
 weight = 0.51
+book = "crumbling_tomb"
 aka = ["legend_of_the_brothers"]
 examine = "This book must be really old!"
 kept = "Reclaim"

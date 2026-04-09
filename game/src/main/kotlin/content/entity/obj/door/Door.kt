@@ -43,7 +43,7 @@ object Door : AutoCloseable {
      * Attempt to close [door]
      */
     fun closeDoor(player: Player, door: GameObject, def: ObjectDefinition = door.def, ticks: Int = doorResetDelay, collision: Boolean = true): Boolean {
-        val double = DoubleDoor.get(door, def, 1)
+        val double = DoubleDoor.get(player, door, def, 1)
         if (resetExisting(door, double)) {
             sound(player, def, "close")
             return true
@@ -58,7 +58,7 @@ object Door : AutoCloseable {
 
         // Double doors
         if (double != null && door.id.endsWith("_opened") && double.id.endsWith("_opened")) {
-            DoubleDoor.close(door, def, double, ticks, collision)
+            DoubleDoor.close(player, door, def, double, ticks, collision)
             sound(player, def, "close")
             return true
         }
@@ -70,22 +70,22 @@ object Door : AutoCloseable {
      * Attempt to open [door]
      */
     fun openDoor(player: Player, door: GameObject, def: ObjectDefinition = door.def, ticks: Int = doorResetDelay, collision: Boolean = true): Boolean {
-        val double = DoubleDoor.get(door, def, 0)
+        val double = DoubleDoor.get(player, door, def, 0)
         if (resetExisting(door, double)) {
             sound(player, def, "open")
             return true
         }
 
         // Single door
-        if (double == null && door.id.endsWith("_closed")) {
+        if (double == null && def.stringId.endsWith("_closed")) {
             replace(door, def, "_closed", "_opened", 1, 1, ticks, collision)
             sound(player, def, "open")
             return true
         }
 
         // Double doors
-        if (double != null && door.id.endsWith("_closed") && double.id.endsWith("_closed")) {
-            DoubleDoor.open(door, def, double, ticks, collision)
+        if (double != null && def.stringId.endsWith("_closed") && double.def(player).stringId.endsWith("_closed")) {
+            DoubleDoor.open(player, door, def, double, ticks, collision)
             sound(player, def, "open")
             return true
         }
@@ -112,7 +112,7 @@ object Door : AutoCloseable {
     private fun replace(obj: GameObject, def: ObjectDefinition, current: String, next: String, tileRotation: Int, objRotation: Int, ticks: Int, collision: Boolean = true) {
         val hinged = !def.stringId.contains("single")
         obj.replace(
-            id = obj.id.replace(current, next),
+            id = def.stringId.replace(current, next),
             tile = if (hinged) tile(obj, tileRotation) else obj.tile,
             rotation = if (hinged) obj.rotation(objRotation) else obj.rotation,
             ticks = ticks,
@@ -158,16 +158,16 @@ object Door : AutoCloseable {
  * Walks a player through a door which other players can't walk through
  */
 private fun Player.enter(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3): Tile? {
-    if (door.id.endsWith("_opened")) {
+    if (def.stringId.endsWith("_opened")) {
         return null
     }
-    val target = doorTarget(this, door)
+    val target = doorTarget(this, door, def)
     openDoor(this, door, def, ticks, collision = false)
     return target
 }
 
-fun doorTarget(player: Player, door: GameObject): Tile? {
-    if (door.id.endsWith("_opened")) {
+fun doorTarget(player: Player, door: GameObject, def: ObjectDefinition = door.def): Tile? {
+    if (def.stringId.endsWith("_opened")) {
         return null
     }
     val direction = door.tile.delta(player.tile).toDirection()
@@ -180,8 +180,8 @@ fun doorTarget(player: Player, door: GameObject): Tile? {
     return target
 }
 
-private fun doorStart(player: Player, door: GameObject): Tile? {
-    if (door.id.endsWith("_opened")) {
+private fun doorStart(player: Player, door: GameObject, def: ObjectDefinition): Tile? {
+    if (def.stringId.endsWith("_opened")) {
         return null
     }
     val direction = door.tile.delta(player.tile).toDirection()
@@ -196,7 +196,7 @@ private fun doorStart(player: Player, door: GameObject): Tile? {
  * Enter through a doorway
  */
 suspend fun Player.enterDoor(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3) {
-    walkOverDelay(doorStart(this, door) ?: return)
+    walkOverDelay(doorStart(this, door, def) ?: return)
     val tile = enter(door, def, ticks) ?: return
     walkOverDelay(tile)
 }
@@ -205,7 +205,7 @@ suspend fun Player.enterDoor(door: GameObject, def: ObjectDefinition = door.def,
  * Enter through a door with fixed [delay]
  */
 suspend fun Player.enterDoor(door: GameObject, def: ObjectDefinition = door.def, ticks: Int = 3, delay: Int) {
-    walkOverDelay(doorStart(this, door) ?: return)
+    walkOverDelay(doorStart(this, door, def) ?: return)
     val tile = enter(door, def, ticks) ?: return
     walkTo(tile, noCollision = true, forceWalk = true)
     delay(delay)

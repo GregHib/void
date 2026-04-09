@@ -56,7 +56,7 @@ class Woodcutting(val drops: DropTables) : Script {
         }
         player.closeDialogue()
         player.softTimers.start("woodcutting")
-        val ivy = log.itemId == "poison_ivy_berries"
+        val ivy = log.rowId == "poison_ivy_berries"
         var first = true
         while (player.awaitDialogues()) {
             val level = log.int("level")
@@ -91,7 +91,7 @@ class Woodcutting(val drops: DropTables) : Script {
                 val xp = log.int("xp") / 10.0
                 player.exp(Skill.Woodcutting, xp)
                 tryDropNest(player, ivy)
-                if (!addLog(player, log.itemId) || deplete(player, log, target)) {
+                if (!addLog(player, log.rowId) || deplete(player, log, target)) {
                     break
                 }
                 if (ivy) {

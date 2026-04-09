@@ -58,6 +58,16 @@ sealed interface ColumnReader<T : Any> {
         override fun read(reader: ConfigReader) = ids.getValue(reader.string())
     }
 
+    class ReaderValidString(val ids: Set<String>) : ColumnReader<String> {
+        override val type = ColumnType.ColumnString
+        override fun list() = mutableListOf<String>()
+        override fun read(reader: ConfigReader): String {
+            val id = reader.string()
+            require(id in ids) { "Id '$id' not found" }
+            return id
+        }
+    }
+
     object ReaderString : ColumnReader<String> {
         override val type = ColumnType.ColumnString
         override fun list() = mutableListOf<String>()
@@ -115,6 +125,7 @@ sealed interface ColumnReader<T : Any> {
             "npc" -> ReaderEntity(NPCDefinitions.ids)
             "item" -> ReaderEntity(ItemDefinitions.ids)
             "obj" -> ReaderEntity(ObjectDefinitions.ids)
+            "var" -> ReaderValidString(VariableDefinitions.definitions.keys)
             "row" -> ReaderString
             else -> if (name.startsWith("pair<", ignoreCase = true)) {
                 val (first, second) = name.substringAfter("<").removeSuffix(">").split(",")

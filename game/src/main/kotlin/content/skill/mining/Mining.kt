@@ -1,6 +1,7 @@
 package content.skill.mining
 
 import content.activity.shooting_star.ShootingStarHandler
+import content.entity.combat.underAttack
 import content.entity.player.bank.bank
 import content.entity.player.bank.ownsItem
 import content.quest.questCompleted
@@ -53,7 +54,7 @@ class Mining : Script {
             }
             softTimers.start("mining")
             var first = true
-            while (true) {
+            while (!underAttack) {
                 if (!GameObjects.contains(target)) {
                     break
                 }
@@ -140,14 +141,14 @@ class Mining : Script {
                 message("This rock contains ${target.id.removePrefix("mineral_deposit_").toLowerSpaceCase()}.")
                 return@objectApproach
             }
-            val ore = Rows.getOrNull("ores.${target.def(this).stringId}")
-            if (ore == null) {
+            val ore = Tables.itemListOrNull("rocks.${target.def(this).stringId}.ores")
+            if (ore.isNullOrEmpty()) {
                 message("This rock contains no ore.")
-            } else if (ore.itemId == "magical_stone") {
+            } else if (ore.contains("magical_stone")) {
                 // https://youtu.be/0fQ4ewyy_Ps?t=366
                 message("This rock contains a magical kind of stone.")
             } else {
-                message("This rock contains ${ore.itemId.toLowerSpaceCase()}.")
+                message("This rock contains ${ore.first().toLowerSpaceCase()}.")
             }
         }
     }

@@ -69,3 +69,6 @@ id = 2094
 
 [human_lever_down]
 id = 834
+
+[human_read_book]
+id = 1350

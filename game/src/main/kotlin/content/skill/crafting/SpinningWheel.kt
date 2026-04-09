@@ -67,7 +67,7 @@ class SpinningWheel : Script {
                 }
                 item = root
             }
-            val row = Tables.get("spinning").rows().firstOrNull { it.itemId == item.id } ?: return@objectOperate
+            val row = Tables.get("spinning").rows().firstOrNull { it.rowId == item.id } ?: return@objectOperate
             start(this, target, row, amount)
         }
 
@@ -76,7 +76,7 @@ class SpinningWheel : Script {
                 return@itemOnObjectOperate
             }
             val rows = Tables.get("spinning").rows()
-            val row = rows.firstOrNull { it.itemId == item.id } ?: return@itemOnObjectOperate
+            val row = rows.firstOrNull { it.rowId == item.id } ?: return@itemOnObjectOperate
             val product = row.item("product")
             val (_, amount) = makeAmount(
                 items = listOf(product),
@@ -89,7 +89,7 @@ class SpinningWheel : Script {
     }
 
     fun start(player: Player, obj: GameObject, row: RowDefinition, amount: Int) {
-        val id = row.itemId
+        val id = row.rowId
         val current = player.inventory.count(id)
         if (current <= 0) {
             val item = row.item("product")
@@ -101,7 +101,7 @@ class SpinningWheel : Script {
     }
 
     fun Player.spin(obj: GameObject, row: RowDefinition, amount: Int) {
-        val id = row.itemId
+        val id = row.rowId
         if (amount <= 0) {
             return
         }

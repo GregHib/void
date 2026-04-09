@@ -4,10 +4,12 @@ import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.data.definition.ClientScriptDefinitions
 import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.login.protocol.encode.*
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import java.util.*
 
@@ -188,11 +190,11 @@ fun Player.turnCamera(
 }
 
 fun Player.shakeCamera(
-    intensity: Int,
-    type: Int,
-    cycle: Int,
-    movement: Int,
-    speed: Int,
+    intensity: Int = 0,
+    type: Int = 0,
+    cycle: Int = 0,
+    movement: Int = 0,
+    speed: Int = 0,
 ) = client?.shakeCamera(intensity, type, cycle, movement, speed) ?: Unit
 
 fun Player.clearCamera() = client?.clearCamera() ?: Unit
@@ -208,3 +210,54 @@ fun Player.minimap(vararg states: Minimap) {
 }
 
 fun Player.clearMinimap() = client?.sendMinimapState(0) ?: Unit
+
+/**
+ * Add an [arrow] hint to a [tile] with [radius]
+ */
+fun Player.hint(tile: Tile, radius: Int = 1, arrow: Int = HintArrow.FILLED, direction: Direction = Direction.NONE, height: Int = 0) {
+    val viewport = viewport ?: return
+    val index = viewport.hints.firstOrNull { it == 0 } ?: return
+    val type = when (direction) {
+        Direction.WEST -> 3
+        Direction.EAST -> 4
+        Direction.SOUTH -> 5
+        Direction.NORTH -> 6
+        else -> 2
+    }
+    viewport.hints[index] = type
+    client?.arrowHint(type, index, sprite = arrow, x = tile.x, y = tile.y, level = tile.level, z = height, radius = radius)
+}
+
+/**
+ * Add an [arrow] hint over [character]
+ */
+fun Player.hint(character: Character, arrow: Int = HintArrow.FILLED) {
+    val viewport = viewport ?: return
+    val index = viewport.hints.firstOrNull { it == 0 } ?: return
+    val type = when (character) {
+        is Player -> 10
+        is NPC -> 1
+        else -> return
+    }
+    viewport.hints[index] = type
+    client?.arrowHint(type, index, sprite = arrow, entityIndex = character.index)
+}
+
+/**
+ * Clear the hint at [index] (or all if -1)
+ */
+fun Player.clearHint(index: Int = -1) {
+    val viewport = viewport ?: return
+    if (index == -1) {
+        for (i in viewport.hints.indices) {
+            if (viewport.hints[i] == 0) {
+                continue
+            }
+            client?.arrowHint(0, i)
+            viewport.hints[i] = 0
+        }
+    } else {
+        client?.arrowHint(0, index)
+        viewport.hints[index] = 0
+    }
+}

@@ -1,0 +1,7 @@
+[rock_travel]
+id = 2139
+delay = 40
+curve = 16
+
+[rock_impact]
+id = 1565

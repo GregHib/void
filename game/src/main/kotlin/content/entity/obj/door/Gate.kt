@@ -3,6 +3,7 @@ package content.entity.obj.door
 import content.entity.obj.Replace
 import content.entity.obj.door.Door.rotation
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 
 object Gate {
@@ -10,6 +11,7 @@ object Gate {
      * Replace an open or closed gate with the alternative
      */
     fun replace(
+        player: Player,
         obj: GameObject,
         double: GameObject,
         flip: Boolean,
@@ -26,11 +28,11 @@ object Gate {
         val tile = Door.tile(first, hingeTileRotation)
         Replace.objects(
             first,
-            first.id.replace(current, next),
+            first.def(player).stringId.replace(current, next),
             tile,
             first.rotation(objRotation),
             second,
-            second.id.replace(current, next),
+            second.def(player).stringId.replace(current, next),
             Door.tile(tile, second.rotation, tileRotation),
             second.rotation(objRotation),
             ticks,

@@ -47,9 +47,18 @@ class JungleStrykewyrm : Script {
                 poison(target, 88)
             }
         }
-    }
-    companion object {
 
+        canAttack("mound_feldip_hills") {
+            if (slayerTask != "jungle_strykewyrm") {
+                message("You need to have strykewyrm assigned as a task in order to fight them.")
+                false
+            } else {
+                true
+            }
+        }
+    }
+
+    companion object {
         fun burrow(source: NPC, target: Character, block: () -> Unit = {}) {
             source.anim("strykewyrm_bury")
             val temp = source.mode

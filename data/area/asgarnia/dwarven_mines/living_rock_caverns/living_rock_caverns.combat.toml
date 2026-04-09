@@ -23,7 +23,8 @@ target_hit = { offense = "crush", max = 90 }
 [living_rock_striker.range]
 range = 6
 anim = "striker_throw"
-#projectile = ""
+projectile = "rock_travel"
+impact_gfx = "rock_impact"
 target_hit = { offense = "range", max = 140 }
 
 [living_rock_patriarch]

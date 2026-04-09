@@ -38,6 +38,7 @@ impact_sound = "earth_strike_impact"
 [dark_wizard_earth.weaken]
 range = 5
 condition = "not_weakened"
+anim = "confuse_staff"
 gfx = "weaken_cast"
 target_sound = "weaken_cast"
 projectile = "weaken"

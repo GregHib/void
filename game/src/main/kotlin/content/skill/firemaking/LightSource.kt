@@ -19,7 +19,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class LightSource : Script {
     init {
-        val unlitSources = Tables.get("light_source").rows().joinToString(",") { it.itemId }
+        val unlitSources = Tables.get("light_source").rows().joinToString(",") { it.rowId }
 
         itemOnItem("tinderbox*", unlitSources) { _, toItem ->
             val source = Rows.getOrNull("light_source.${toItem.id}") ?: return@itemOnItem
@@ -37,7 +37,7 @@ class LightSource : Script {
             val type = Tables.string("extinguish.${item.id}.type")
             if (Areas.get(tile.zone).any { it.tags.contains("darkness") }) {
                 var lightSources = 0
-                val set = Tables.get("extinguish").rows().map { it.itemId }.toSet()
+                val set = Tables.get("extinguish").rows().map { it.rowId }.toSet()
                 for (item in inventory.items) {
                     if (!set.contains(item.id)) {
                         continue

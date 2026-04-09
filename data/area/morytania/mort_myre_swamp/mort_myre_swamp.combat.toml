@@ -22,7 +22,7 @@ death_anim = "ghast_death"
 death_sound = "ghast_death"
 
 [ghast.skip]
-chance = 10
+chance = 20
 range = 1
 
 [ghast.miss]

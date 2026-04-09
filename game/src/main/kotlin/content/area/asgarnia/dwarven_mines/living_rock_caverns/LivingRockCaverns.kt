@@ -45,14 +45,20 @@ class LivingRockCaverns : Script {
         }
 
         worldSpawn {
-            update()
+            respawn()
+            bossSpawn()
         }
 
         settingsReload {
             if (Settings["events.livingRockCaverns.respawnTimeMinutes", 60] > 0 && !World.contains("living_rock_caverns_timer")) {
-                update()
+                respawn()
             } else if (Settings["events.livingRockCaverns.respawnTimeMinutes", 60] <= 0 && World.contains("living_rock_caverns_timer")) {
                 World.clearQueue("living_rock_caverns_timer")
+            }
+            if (Settings["events.livingRockCaverns.patriarchTimeMinutes", 60] > 0 && !World.contains("living_rock_patriarch_timer")) {
+                bossSpawn()
+            } else if (Settings["events.livingRockCaverns.patriarchTimeMinutes", 60] <= 0 && World.contains("living_rock_patriarch_timer")) {
+                World.clearQueue("living_rock_patriarch_timer")
             }
         }
 
@@ -63,17 +69,12 @@ class LivingRockCaverns : Script {
         itemOnObjectOperate(obj = "pulley_lift", handler = BankDeposit::itemOnDeposit)
     }
 
-    fun update() {
-        val minutes = Settings["events.livingRockCaverns.respawnTimeMinutes", 60]
-        if (minutes < 0) {
+    fun bossSpawn() {
+        val minutes = Settings["events.livingRockCaverns.patriarchTimeMinutes", 60]
+        if (minutes <= 0) {
             return
         }
-        rockSpawn(minutes, "coal")
-        rockSpawn(minutes, "gold")
-        if (minutes == 0) {
-            return
-        }
-        World.queue("living_rock_caverns_timer", TimeUnit.MINUTES.toTicks(minutes)) {
+        World.queue("living_rock_patriarch_timer", TimeUnit.MINUTES.toTicks(minutes)) {
             var patriarchSpawned = false
             for (region in Areas["living_rock_caverns"].toRegions()) {
                 for (npc in NPCs.at(region.toLevel(0))) {
@@ -91,6 +92,21 @@ class LivingRockCaverns : Script {
             if (!patriarchSpawned) {
                 NPCs.add("living_rock_patriarch", Tables.tileList("living_rock_cavern_spawns.patriarch.tiles").random(random))
             }
+        }
+    }
+
+    fun respawn() {
+        val minutes = Settings["events.livingRockCaverns.respawnTimeMinutes", 60]
+        if (minutes < 0) {
+            return
+        }
+        rockSpawn(minutes, "coal")
+        rockSpawn(minutes, "gold")
+        if (minutes == 0) {
+            return
+        }
+        World.queue("living_rock_caverns_timer", TimeUnit.MINUTES.toTicks(minutes)) {
+            respawn()
         }
     }
 

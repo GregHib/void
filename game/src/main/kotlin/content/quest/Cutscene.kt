@@ -1,7 +1,9 @@
 package content.quest
 
+import content.entity.player.modal.Tab
 import content.quest.Cutscene.Companion.tabs
 import content.skill.magic.spell.spellBook
+import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.Minimap
 import world.gregs.voidps.engine.client.clearMinimap
 import world.gregs.voidps.engine.client.minimap
@@ -160,23 +162,23 @@ fun Player.clearInstance(): Boolean {
     return true
 }
 
-fun Player.openTabs(options: Boolean = false) {
+fun Player.openTabs(vararg others: Tab) {
     for (tab in tabs) {
         open(tab)
     }
-    if (options) {
-        open("options")
+    for (other in others) {
+        open(other.name.toSnakeCase())
     }
     open(get("spell_book", "modern_spellbook"))
 }
 
-fun Player.closeTabs(options: Boolean = false) {
+fun Player.closeTabs(vararg others: Tab) {
     for (tab in tabs) {
         close(tab)
     }
     set("spell_book", spellBook)
-    if (options) {
-        close("options")
+    for (other in others) {
+        close(other.name.toSnakeCase())
     }
     close(spellBook)
 }

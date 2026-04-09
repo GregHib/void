@@ -63,7 +63,8 @@ object NPCs : Runnable,
 
     fun add(id: String, tile: Tile, direction: Direction = Direction.SOUTH): NPC {
         val def = NPCDefinitions.getOrNull(id) ?: return NPC(id, tile, NPCDefinition.EMPTY)
-        val npc = NPC(id, tile, def)
+        val index = index() ?: return NPC(id, tile, NPCDefinition.EMPTY)
+        val npc = NPC(id, tile, def, index)
         if (spawnIndex < spawnQueue.size) {
             spawnQueue[spawnIndex++] = npc
         }
@@ -149,9 +150,7 @@ object NPCs : Runnable,
     }
 
     private fun spawn(npc: NPC): Boolean {
-        val index = index() ?: return false
-        indexArray[index] = npc
-        npc.index = index
+        indexArray[npc.index] = npc
         npc.levels.link(npc, NPCLevels(npc.def))
         npc.levels.clear(Skill.Constitution)
         npc.levels.clear(Skill.Attack)

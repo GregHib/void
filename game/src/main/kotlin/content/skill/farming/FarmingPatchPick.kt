@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.weakQueue
 
-class FarmingPatchPick(val variableDefinitions: VariableDefinitions) : Script {
+class FarmingPatchPick : Script {
 
     init {
         objectOperate("Harvest", "*_fullygrown") { (target) ->
@@ -112,7 +112,7 @@ class FarmingPatchPick(val variableDefinitions: VariableDefinitions) : Script {
                     }
                     val int = stage.removePrefix("life").toIntOrNull() ?: 0
                     ScrollOfLife.checkLife(player, type, chop = false)
-                    val keys = (variableDefinitions.get(obj.id)?.values as? MapValues)?.values?.keys as? Set<String> ?: emptySet()
+                    val keys = (VariableDefinitions.get(obj.id)?.values as? MapValues)?.values?.keys as? Set<String> ?: emptySet()
                     val next = "${type}_life${int + 1}"
                     if (!keys.contains(next)) {
                         message("The ${obj.patchName()} is now empty.")

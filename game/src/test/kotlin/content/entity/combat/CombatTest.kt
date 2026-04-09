@@ -51,7 +51,7 @@ internal class CombatTest : WorldTest() {
         player.npcOption(npc, "Attack")
         tickIf { npc.levels.get(Skill.Constitution) > 0 }
         val tile = npc["death_tile", npc.tile]
-        tick(6) // npc death
+        tick(7) // npc death
 
         assertEquals(emptyTile, player.tile)
         assertTrue(player.experience.get(Skill.Magic) > EXPERIENCE)

@@ -1,0 +1,42 @@
+[barrows_chest_armour]
+roll = 0
+drops = [
+    { id = "ahrims_hood", variable = "ahrim_killed", equals = true, default = false },
+    { id = "ahrims_robe_top", variable = "ahrim_killed", equals = true, default = false },
+    { id = "ahrims_robe_skirt", variable = "ahrim_killed", equals = true, default = false },
+    { id = "ahrims_staff", variable = "ahrim_killed", equals = true, default = false },
+    { id = "dharoks_helm", variable = "dharok_killed", equals = true, default = false },
+    { id = "dharoks_platebody", variable = "dharok_killed", equals = true, default = false },
+    { id = "dharoks_platelegs", variable = "dharok_killed", equals = true, default = false },
+    { id = "dharoks_greataxe", variable = "dharok_killed", equals = true, default = false },
+    { id = "guthans_helm", variable = "guthan_killed", equals = true, default = false },
+    { id = "guthans_platebody", variable = "guthan_killed", equals = true, default = false },
+    { id = "guthans_chainskirt", variable = "guthan_killed", equals = true, default = false },
+    { id = "guthans_warspear", variable = "guthan_killed", equals = true, default = false },
+    { id = "karils_coif", variable = "karil_killed", equals = true, default = false },
+    { id = "karils_top", variable = "karil_killed", equals = true, default = false },
+    { id = "karils_skirt", variable = "karil_killed", equals = true, default = false },
+    { id = "karils_crossbow", variable = "karil_killed", equals = true, default = false },
+    { id = "torags_helm", variable = "torag_killed", equals = true, default = false },
+    { id = "torags_platebody", variable = "torag_killed", equals = true, default = false },
+    { id = "torags_platelegs", variable = "torag_killed", equals = true, default = false },
+    { id = "torags_hammers", variable = "torag_killed", equals = true, default = false },
+    { id = "veracs_helm", variable = "verac_killed", equals = true, default = false },
+    { id = "veracs_brassard", variable = "verac_killed", equals = true, default = false },
+    { id = "veracs_plateskirt", variable = "verac_killed", equals = true, default = false },
+    { id = "veracs_flail", variable = "verac_killed", equals = true, default = false },
+]
+
+[barrows_chest_runes]
+roll = 0
+drops = [
+    { id = "coins", min = 2, max = 774, chance = 380 },
+    { id = "mind_rune", min = 253, max = 336, chance = 125 },
+    { id = "chaos_rune", min = 112, max = 139, chance = 125 },
+    { id = "death_rune", min = 70, max = 83, chance = 125 },
+    { id = "blood_rune", min = 37, max = 43, chance = 125 },
+    { id = "bolt_rack", min = 35, max = 40, chance = 125 },
+    { id = "loop_half_of_a_key", chance = 3 },
+    { id = "tooth_half_of_a_key", chance = 3 },
+    { id = "dragon_med_helm" },
+]
