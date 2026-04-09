@@ -30,7 +30,7 @@ class BarrowsMounds : Script {
 
         canAttack("dharok_the_wretched,verac_the_defiled,ahrim_the_blighted,guthan_the_infested,torag_the_corrupted,karil_the_tainted") { target ->
             val brother = target.id.substringBefore("_the_")
-            if (get<NPC>("${brother}_spawn") != target) {
+            if (get<Int>("${brother}_spawn") != target.index) {
                 message("Someone else is fighting that.")
                 false
             } else {

@@ -32,6 +32,7 @@ class BarrowsTest : WorldTest() {
 
         player.itemOption("Dig", "spade")
         tick(2)
+        assertEquals(3, player.tile.level)
         val dharok = GameObjects.find(Tile(3554, 9714, 3), "dharok_sarcophagus")
         player.objectOption(dharok, "Search")
         tick(8)
@@ -40,6 +41,7 @@ class BarrowsTest : WorldTest() {
         player.tele(3557, 3297)
         player.itemOption("Dig", "spade")
         tick(2)
+        assertEquals(3, player.tile.level)
         val verac = GameObjects.find(Tile(3573, 9705, 3), "verac_sarcophagus")
         player.objectOption(verac, "Search")
         tick(8)
@@ -48,6 +50,7 @@ class BarrowsTest : WorldTest() {
         player.tele(3565, 3289)
         player.itemOption("Dig", "spade")
         tick(2)
+        assertEquals(3, player.tile.level)
         val ahrim = GameObjects.find(Tile(3555, 9698, 3), "ahrim_sarcophagus")
         player.objectOption(ahrim, "Search")
         tick(8)
@@ -56,6 +59,7 @@ class BarrowsTest : WorldTest() {
         player.tele(3566, 3276)
         player.itemOption("Dig", "spade")
         tick(2)
+        assertEquals(3, player.tile.level)
         val karil = GameObjects.find(Tile(3550, 9682, 3), "karil_sarcophagus")
         player.objectOption(karil, "Search")
         tick(8)
@@ -64,6 +68,7 @@ class BarrowsTest : WorldTest() {
         player.tele(3577, 3283)
         player.itemOption("Dig", "spade")
         tick(2)
+        assertEquals(3, player.tile.level)
         val guthan = GameObjects.find(Tile(3538, 9703, 3), "guthan_sarcophagus")
         player.objectOption(guthan, "Search")
         tick(8)
@@ -72,6 +77,7 @@ class BarrowsTest : WorldTest() {
         player.tele(3553, 3283)
         player.itemOption("Dig", "spade")
         tick(2)
+        assertEquals(3, player.tile.level)
         val torag = GameObjects.find(Tile(3569, 9685, 3), "torag_sarcophagus")
         player.objectOption(torag, "Search")
         tick(1)
@@ -89,8 +95,6 @@ class BarrowsTest : WorldTest() {
         assertTrue(player["torag_killed", false])
         player.objectOption(chest, "Search")
         tick(2)
-
-        println(player.inventory.items.toList())
         assertTrue(player.containsMessage("The cave begins to collapse"))
     }
 }

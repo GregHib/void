@@ -31,7 +31,7 @@ data class DropTable(
         return list
     }
 
-    fun random(maximum: Int) = random.nextInt(0, if (roll <= 1 && maximum != -1) maximum else roll)
+    fun random(maximum: Int) = random.nextInt(0, if (roll <= 0 && maximum != -1) maximum else roll)
 
     fun collect(list: MutableList<ItemDrop>, player: Player?, roll: Int): Boolean {
         var count = 0

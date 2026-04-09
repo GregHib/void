@@ -1,4 +1,5 @@
 [barrows_chest_armour]
+roll = 0
 drops = [
     { id = "ahrims_hood", variable = "ahrim_killed", equals = true, default = false },
     { id = "ahrims_robe_top", variable = "ahrim_killed", equals = true, default = false },
@@ -27,6 +28,7 @@ drops = [
 ]
 
 [barrows_chest_runes]
+roll = 0
 drops = [
     { id = "coins", min = 2, max = 774, chance = 380 },
     { id = "mind_rune", min = 253, max = 336, chance = 125 },
