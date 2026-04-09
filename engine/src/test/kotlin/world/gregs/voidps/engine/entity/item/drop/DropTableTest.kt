@@ -31,7 +31,7 @@ internal class DropTableTest {
         val root = DropTable(TableType.All, -1, listOf(item1, item2), 1)
 
         val list = mutableListOf<ItemDrop>()
-        root.collect(list, -1, null, -1)
+        root.collect(list, null, -1)
 
         assertTrue(list.contains(item1))
         assertTrue(list.contains(item2))
@@ -45,7 +45,7 @@ internal class DropTableTest {
         val root = DropTable(TableType.All, -1, listOf(item1, item2), 1)
 
         val list = mutableListOf<ItemDrop>()
-        root.collect(list, -1, player, -1)
+        root.collect(list, player, -1)
 
         assertFalse(list.contains(item1))
         assertTrue(list.contains(item2))
@@ -60,7 +60,7 @@ internal class DropTableTest {
         val root = DropTable(TableType.First, -1, listOf(subTable1, subTable2), 1)
 
         val list = mutableListOf<ItemDrop>()
-        root.collect(list, -1, null, -1)
+        root.collect(list, null, -1)
 
         assertTrue(list.contains(item1))
         assertFalse(list.contains(item2))
@@ -75,7 +75,7 @@ internal class DropTableTest {
         val root = DropTable(TableType.All, -1, listOf(subTable1, subTable2), 1)
 
         val list = mutableListOf<ItemDrop>()
-        root.collect(list, -1, null, -1)
+        root.collect(list, null, -1)
 
         assertTrue(list.contains(item1))
         assertTrue(list.contains(item2))
@@ -115,7 +115,7 @@ internal class DropTableTest {
         val table = DropTable(TableType.First, -1, listOf(item1), 1)
 
         val list = mutableListOf<ItemDrop>()
-        table.collect(list, -1, null, 100)
+        table.collect(list, null, 100)
 
         assertFalse(list.contains(item1))
     }
@@ -129,7 +129,7 @@ internal class DropTableTest {
         val root = DropTable(TableType.All, -1, listOf(item1, item2, item3), 1)
 
         val list = mutableListOf<ItemDrop>()
-        root.collect(list, -1, Player(), -1)
+        root.collect(list, Player(), -1)
 
         assertTrue(list.contains(item1))
         assertTrue(list.contains(item2))
@@ -145,7 +145,7 @@ internal class DropTableTest {
         val root = DropTable(TableType.All, -1, listOf(item1, item2, item3), 1)
 
         val list = mutableListOf<ItemDrop>()
-        root.collect(list, -1, Player(), -1)
+        root.collect(list, Player(), -1)
 
         assertTrue(list.contains(item1))
         assertFalse(list.contains(item2))
