@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
@@ -46,6 +47,7 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
         dropTables: DropTables? = null,
     ): NPCDefinitions {
         timedLoad("npc config") {
+            val clones = Object2ObjectOpenHashMap<String, String>(100)
             val ids = Object2IntOpenHashMap<String>()
             val refs = Object2IntOpenHashMap<String>()
             ids.defaultReturnValue(-1)
@@ -60,10 +62,13 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                             when (val key = key()) {
                                 "clone" -> {
                                     val name = string()
-                                    val npc = refs.getInt(name)
-                                    require(npc >= 0) { "Cannot find npc to clone with id '$name' in ${path}. Make sure it's in the same file." }
-                                    val definition = definitions[npc]
-                                    params.putAll(definition.params ?: continue)
+                                    val npcId = ids.getInt(name)
+                                    if (npcId == -1) {
+                                        clones[stringId] = name
+                                    } else {
+                                        val definition = definitions[npcId]
+                                        params.putAll(definition.params ?: continue)
+                                    }
                                 }
                                 "id" -> id = int()
                                 "categories" -> {
@@ -90,6 +95,25 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                                 (definitions[id].params as MutableMap<Int, Any>).putAll(params)
                             } else {
                                 definitions[id].params = params
+                            }
+                        }
+                    }
+                }
+
+                for ((item, clone) in clones) {
+                    val cloneId = ids.getInt(clone)
+                    require(cloneId != -1) { "Unable to find npc id to clone '$clone'" }
+                    val definition = definitions[cloneId]
+                    val id = ids.getInt(item)
+                    require(id != -1) { "Unable to find npc id '$item'" }
+                    val params = definitions[id].params as? MutableMap<Int, Any>
+                    if (params != null) {
+                        for (param in definition.params ?: continue) {
+                            if (param.key == Params.AKA) {
+                                continue
+                            }
+                            if (!params.containsKey(param.key)) {
+                                params[param.key] = param.value
                             }
                         }
                     }
