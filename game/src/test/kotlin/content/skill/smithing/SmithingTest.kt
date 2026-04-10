@@ -4,19 +4,13 @@ import WorldTest
 import interfaceOption
 import itemOnObject
 import net.pearx.kasechange.toSentenceCase
-import objectOption
 import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.DynamicTest.dynamicTest
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
-import skillCreation
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 
@@ -50,5 +44,4 @@ class SmithingTest : WorldTest() {
             assertNotEquals(0.0, player.experience.get(Skill.Smithing))
         }
     }
-
 }

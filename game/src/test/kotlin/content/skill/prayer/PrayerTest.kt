@@ -54,7 +54,7 @@ internal class PrayerTest : WorldTest() {
         "dragon_bones",
         "babydragon_bones",
         "frost_dragon_bones",
-        "wyvern_bones"
+        "wyvern_bones",
     )
 
     @TestFactory

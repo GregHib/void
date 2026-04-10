@@ -1,21 +1,11 @@
 package content.skill.crafting
 
 import WorldTest
-import containsMessage
 import continueDialogue
-import intEntry
-import interfaceOption
 import itemOnItem
-import itemOnObject
-import net.pearx.kasechange.toLowerSpaceCase
-import objectOption
 import org.junit.jupiter.api.Assertions.assertNotEquals
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
@@ -62,5 +52,4 @@ class CraftingTest : WorldTest() {
         assertEquals(1, player.inventory.count("red_dragonhide_vambraces"))
         assertNotEquals(0.0, player.experience.get(Skill.Crafting))
     }
-
 }
