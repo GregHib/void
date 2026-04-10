@@ -290,6 +290,5 @@ fun Player.playTrack(trackIndex: Int) {
     playMusicTrack(EnumDefinitions.get("music_tracks").int(trackIndex))
     val name = EnumDefinitions.get("music_track_names").string(trackIndex)
     interfaces.sendText("music_player", "currently_playing", name)
-    this["playing_song"] = true
     this["current_track"] = trackIndex
 }
