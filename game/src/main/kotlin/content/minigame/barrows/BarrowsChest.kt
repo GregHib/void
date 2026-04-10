@@ -22,6 +22,15 @@ class BarrowsChest(val drops: DropTables) : Script {
     init {
         objectOperate("Open", "barrows_chest_closed") {
             set("barrows_chest_open", true)
+            val brother = get("barrows_selected_brother", "dharok")
+            if (!get("${brother}_killed", false) && !contains("${brother}_spawn")) {
+                var tile = Areas["barrows_chest"].random()
+                if (tile == this.tile) {
+                    tile = tile.addX(1)
+                }
+                BarrowsCrypts.spawnBrother(this, brother, tile)
+                return@objectOperate
+            }
         }
 
         objectOperate("Close", "barrows_chest_open") {
@@ -31,15 +40,6 @@ class BarrowsChest(val drops: DropTables) : Script {
         objectOperate("Search", "barrows_chest_open") {
             if (!interfaces.contains("barrows_overlay") || get("barrows_looted", false)) {
                 message("The chest is empty.")
-                return@objectOperate
-            }
-            val brother = get("barrows_selected_brother", "dharok")
-            if (!get("${brother}_killed", false) && !contains("${brother}_spawn")) {
-                var tile = Areas["barrows_chest"].random()
-                if (tile == this.tile) {
-                    tile = tile.addX(1)
-                }
-                BarrowsCrypts.spawnBrother(this, brother, tile)
                 return@objectOperate
             }
 
