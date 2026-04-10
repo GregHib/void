@@ -7,11 +7,15 @@ import dialogueContinue
 import dialogueOption
 import itemOption
 import objectOption
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertNull
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import kotlin.test.assertEquals
@@ -96,5 +100,28 @@ class BarrowsTest : WorldTest() {
         player.objectOption(chest, "Search")
         tick(2)
         assertTrue(player.containsMessage("The cave begins to collapse"))
+    }
+
+    @Test
+    fun `Leaving area removes brother`() {
+        setRandom(object : FakeRandom() {
+            override fun nextBits(bitCount: Int): Int = bitCount
+        })
+        val player = createPlayer(Tile(3574, 3298))
+        player["god_mode"] = true
+        player.inventory.add("spade")
+
+        player.itemOption("Dig", "spade")
+        tick(2)
+        assertEquals(3, player.tile.level)
+        val dharok = GameObjects.find(Tile(3554, 9714, 3), "dharok_sarcophagus")
+        player.objectOption(dharok, "Search")
+        tick(8)
+        assertTrue(player.contains("dharok_spawn"))
+        val stairs = GameObjects.find(Tile(3557, 9718, 3), "dharok_stairs")
+        player.objectOption(stairs, "Climb-up")
+        tick(3)
+        assertFalse(player.contains("dharok_spawn"))
+        assertNull(NPCs.findOrNull(Region(14231).toLevel(3), "dharok_the_wretched"))
     }
 }

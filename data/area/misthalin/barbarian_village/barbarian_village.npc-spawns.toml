@@ -10,7 +10,7 @@ spawns = [
   { id = "chieftain_gunthor", x = 3078, y = 3444 },
   { id = "haakon_the_champion", x = 3081, y = 3444 },
   { id = "kjell", x = 3079, y = 3414, direction = "NORTH_EAST" },
-  { id = "tassie_slipcast_barbarian_village", x = 3084, y = 3408, members = true },
+  { id = "tassie_slipcast", x = 3084, y = 3408, members = true },
   { id = "barbarian_barbarian_outpost", x = 3079, y = 3444 },
   { id = "barbarian_barbarian_outpost_2", x = 3079, y = 3409 },
   { id = "barbarian_barbarian_outpost_3", x = 3079, y = 3437 },

@@ -72,9 +72,6 @@ class SpinningWheel : Script {
         }
 
         itemOnObjectOperate(obj = "spinning_wheel*", arrive = false) { (target, item) ->
-            if (!item.def.contains("spinning")) {
-                return@itemOnObjectOperate
-            }
             val rows = Tables.get("spinning").rows()
             val row = rows.firstOrNull { it.rowId == item.id } ?: return@itemOnObjectOperate
             val product = row.item("product")

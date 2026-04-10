@@ -30,6 +30,7 @@ class Sheep : Script {
             arriveDelay()
             shear(target, "white")
         }
+
         npcOperate("Shear", "black_sheep") { (target) ->
             arriveDelay()
             if (quest("sheep_shearer_miniquest") != "started") {
@@ -40,18 +41,22 @@ class Sheep : Script {
             }
             shear(target, "black")
         }
+
         npcOperate("Talk-to", "sheep_penguin") {
             player<Idle>("That's a sheep...I think. I can't talk to sheep.")
         }
+
         npcSpawn("sheep*,black_sheep") {
-            if (id != "sheep_penguin") {
+            if (id != "sheep_penguin" && id != "sheepdog") {
                 softTimers.start("baa_sound")
             }
         }
+
         npcTimerStart("baa_sound") {
             // Don't have authentic data.
             random.nextInt(50, 120)
         }
+
         npcTimerTick("baa_sound") {
             say("Baa!")
             // In Rs3 it has two different baa sounds maybe authentic as well in 2011

@@ -3,28 +3,33 @@ row_id = "item"
 level = "int"
 xp = "int"
 amount = "int"
+amount_default = 1
 product = "item"
 plural = "string"
 
 [.ball_of_wool]
 level = 10
 xp = 120
+amount = 4
 product = "strip_of_cloth"
 plural = "balls of wool"
 
 [.flax]
 level = 52
+amount = 5
 product = "unfinished_net"
 plural = "flax"
 
 [.jute_fibre]
 level = 21
 xp = 380
+amount = 4
 product = "empty_sack"
 plural = "jute fibres"
 
 [.willow_branch]
 level = 36
 xp = 560
+amount = 6
 product = "basket"
 plural = "willow branches"

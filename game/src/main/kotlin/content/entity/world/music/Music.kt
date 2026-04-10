@@ -24,12 +24,13 @@ class Music(val tracks: MusicTracks) : Script {
         }
 
         moved { from ->
-            if (!isBot) {
-                val tracks = tracks[tile.region]
-                for (track in tracks) {
-                    if (!track.area.contains(from) && track.area.contains(tile)) {
-                        autoPlay(this, track)
-                    }
+            if (isBot) {
+                return@moved
+            }
+            val tracks = tracks[tile.region]
+            for (track in tracks) {
+                if (!track.area.contains(from) && track.area.contains(tile)) {
+                    autoPlay(this, track)
                 }
             }
         }
@@ -37,6 +38,7 @@ class Music(val tracks: MusicTracks) : Script {
         interfaceOption("Play", "music_player:tracks") { (_, itemSlot) ->
             val index = itemSlot / 2
             if (hasUnlocked(index)) {
+                this["playing_song"] = true
                 playTrack(index)
             }
         }
@@ -44,6 +46,7 @@ class Music(val tracks: MusicTracks) : Script {
         interfaceOption("Play", "music_player:playlist") { (_, itemSlot) ->
             val index = get("playlist_slot_${itemSlot + 1}", 32767)
             if (hasUnlocked(index)) {
+                this["playing_song"] = true
                 playTrack(index)
             }
         }
@@ -77,10 +80,10 @@ class Music(val tracks: MusicTracks) : Script {
         }
 
         instruction<SongEnd> { player ->
-            player["playing_song"] = false
             if (player["playlist_enabled", false] && playNextPlaylistTrack(player, songIndex)) {
                 return@instruction
             }
+            player["playing_song"] = false
             playAreaTrack(player)
         }
     }

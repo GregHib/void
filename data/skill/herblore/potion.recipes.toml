@@ -34,7 +34,7 @@ level = 12
 xp = 50.0
 ticks = 2
 remove = ["harralander_potion_unf", "red_spiders_eggs"]
-add = ["strength_potion_3"]
+add = ["restore_potion_3"]
 animation = "mixing_potion"
 message = "You mix the limpwurt root into your potion."
 
@@ -98,7 +98,7 @@ add = ["agility_potion_3"]
 animation = "mixing_potion"
 message = "You mix the toads legs into your potion."
 
-[combat_potion_finished_finished]
+[combat_potion_finished]
 skill = "herblore"
 level = 36
 xp = 84.0
@@ -218,7 +218,7 @@ add = ["magic_essence_3"]
 animation = "mixing_potion"
 message = "You mix the gorak claw powder into your potion."
 
-[fletching_potion_finished_finished]
+[fletching_potion_finished]
 skill = "herblore"
 level = 58
 xp = 132.0
@@ -383,7 +383,7 @@ skill = "herblore"
 level = 84
 xp = 200.0
 ticks = 2
-remove = ["cw_super_energy_potion_3", "papaya_fruit"]
+remove = ["super_energy_3", "papaya_fruit"]
 add = ["recover_special_3"]
 animation = "mixing_potion"
 message = "You mix the papaya fruit into your potion"

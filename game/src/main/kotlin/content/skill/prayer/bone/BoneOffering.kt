@@ -17,7 +17,7 @@ import world.gregs.voidps.type.Tile
 class BoneOffering : Script {
 
     init {
-        itemOnObjectOperate(obj = "altar*") { (target, item) ->
+        itemOnObjectOperate(obj = "prayer_altar*") { (target, item) ->
             if (!item.def.contains("prayer_xp")) {
                 return@itemOnObjectOperate
             }
