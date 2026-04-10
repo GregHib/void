@@ -107,7 +107,7 @@ class Notes : Script {
     private fun Player.delete(slot: Int) {
         clear("note_$slot")
         clear("note_colour_$slot")
-        for (i in slot + 1 .. 30) {
+        for (i in slot + 1..30) {
             val next = get<String>("note_$i")
             if (next == null) {
                 clear("note_${i - 1}")
