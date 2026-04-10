@@ -10,13 +10,14 @@ class Thread : Script {
 
     init {
         crafted(Skill.Crafting) { def ->
-            if (def.add.any { it.id == "thread" }) {
-                val value = inc("thread_used")
-                if (value == 5) {
-                    clear("thread_used")
-                    inventory.remove("thread")
-                    message("You use up one of your reels of thread.")
-                }
+            if (def.requires.none { it.id == "thread" }) {
+                return@crafted
+            }
+            val value = inc("thread_used")
+            if (value == 5) {
+                clear("thread_used")
+                inventory.remove("thread")
+                message("You use up one of your reels of thread.")
             }
         }
     }

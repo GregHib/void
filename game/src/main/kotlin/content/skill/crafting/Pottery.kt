@@ -34,7 +34,7 @@ class Pottery : Script {
         }
 
         objectOperate("Fire", "pottery_oven*", arrive = false) { (target) ->
-            val item = inventory.items.firstOrNull { it.def.contains("pottery") && it.id != "soft_clay" } ?: return@objectOperate
+            val item = inventory.items.firstOrNull { Rows.getOrNull("pottery.${it.id}") != null && it.id != "soft_clay" } ?: return@objectOperate
             make(target, "cook_range", item)
         }
     }

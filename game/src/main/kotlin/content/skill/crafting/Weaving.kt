@@ -1,5 +1,6 @@
 package content.skill.crafting
 
+import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.dialogue.type.makeAmount
 import content.entity.player.dialogue.type.makeAmountIndex
 import net.pearx.kasechange.toLowerSpaceCase
@@ -21,10 +22,12 @@ import world.gregs.voidps.engine.queue.weakQueue
 
 class Weaving : Script {
 
+    val logger = InlineLogger()
+
     init {
         objectOperate("Weave", "loom_*", arrive = false) { (target) ->
             val rows = Tables.get("weaving").rows()
-            val strings = rows.map { it.stringId }
+            val strings = rows.map { it.item("product") }
             val (index, amount) = makeAmountIndex(
                 items = strings,
                 type = "Make",
@@ -80,11 +83,13 @@ class Weaving : Script {
                     message("You need $produced $plural in order to make${name.an()} $name.")
                     return@weakQueue
                 }
-                else -> {}
+                is TransactionError.None -> {
+                    val xp = row.int("xp") / 10.0
+                    exp(Skill.Crafting, xp)
+                    weave(obj, row, amount - 1)
+                }
+                else -> logger.warn { "Error making $row" }
             }
-            val xp = row.int("xp") / 10.0
-            exp(Skill.Crafting, xp)
-            weave(obj, row, amount - 1)
         }
     }
 }
