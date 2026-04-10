@@ -67,6 +67,9 @@ id = 109
 [string_entry]
 id = 110
 
+[set_entry_string]
+id = 1564
+
 [dialogue_item_zoom]
 id = 3449
 
