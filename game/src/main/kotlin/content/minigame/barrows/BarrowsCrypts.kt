@@ -104,8 +104,8 @@ class BarrowsCrypts : Script {
             softTimers.stop("barrows_cave_shake")
             if (tile !in Areas["barrows"]) {
                 close("barrows_overlay")
-                removeAll()
             }
+            removeAll()
             clearMinimap()
             set("barrows_in_tunnel", false)
         }
@@ -191,12 +191,9 @@ class BarrowsCrypts : Script {
     }
 
     private fun Player.removeAll() {
-        removeBrother("ahrim")
-        removeBrother("dharok")
-        removeBrother("guthan")
-        removeBrother("karil")
-        removeBrother("torag")
-        removeBrother("verac")
+        for (row in Tables.get("barrows_brothers").rows()) {
+            removeBrother(row.rowId)
+        }
     }
 
     fun Player.shufflePuzzle(incorrect: Boolean = false) {
@@ -254,7 +251,7 @@ class BarrowsCrypts : Script {
         if (!contains("${brother}_spawn")) {
             return
         }
-        val index = remove<Int>(brother) ?: return
+        val index = remove<Int>("${brother}_spawn") ?: return
         NPCs.remove(NPCs.indexed(index))
     }
 
