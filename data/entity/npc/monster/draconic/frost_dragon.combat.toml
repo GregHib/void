@@ -51,4 +51,3 @@ condition = "frost_dragon_orb"
 chance = 100
 range = 10
 impact_regardless = true
-target_hit = { offense = "none", max = 0 }
