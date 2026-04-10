@@ -32,6 +32,7 @@ class BarrowsCrypts : Script {
     init {
         objectOperate("Search", "dharok_sarcophagus,verac_sarcophagus,ahrim_sarcophagus,guthan_sarcophagus,karil_sarcophagus,torag_sarcophagus") { (target) ->
             if (!contains("barrows_selected_brother") || get("barrows_looted", false)) {
+                clear("barrows_looted")
                 val brother = Tables.get("barrows_brothers").rows().random(random)
                 set("barrows_selected_brother", brother.rowId)
                 shufflePuzzle()

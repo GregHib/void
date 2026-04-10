@@ -87,7 +87,7 @@ class BarrowsChest(val drops: DropTables) : Script {
     private fun reward(player: Player): List<Item> {
         // This is based off of the osrs algorithm which differs from rs2, but the original alg isn't known
         val armour = drops.getValue("barrows_chest_armour")
-        val kills = player["barrows_kills", 0]
+        val kills = player["barrows_kills", 0].coerceAtMost(6)
         val items = mutableListOf<ItemDrop>()
         repeat(kills) {
             armour.roll(maximumRoll = 450 - (58 * kills), list = items, player = player)
