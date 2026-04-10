@@ -60,3 +60,18 @@ id = 14249
 
 [metal_dragon_shoot]
 id = 14252
+
+[frost_dragon_attack]
+id = 13151
+
+[frost_dragon_breath_close]
+id = 13152
+
+[frost_dragon_death]
+id = 13153
+
+[frost_dragon_block]
+id = 13154
+
+[frost_dragon_shoot]
+id = 13155

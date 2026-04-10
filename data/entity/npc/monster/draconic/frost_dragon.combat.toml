@@ -1,0 +1,53 @@
+[frost_dragon]
+retreat_range = 8
+defend_anim = "frost_dragon_block"
+defend_sound = "dragon_defend"
+death_anim = "frost_dragon_death"
+death_sound = "dragon_death"
+
+[frost_dragon.melee]
+chance = 75
+range = 1
+anim = "frost_dragon_attack"
+target_hit = { offense = "slash", max = 650 }
+target_sound = "dragon_attack"
+
+[frost_dragon.breath_swipe]
+chance = 25
+range = 1
+anim = "frost_dragon_breath_close"
+gfx = "dragon_breath_shoot"
+target_hit = { offense = "dragonfire", special = true, max = 650 }
+target_sound = "dragon_breath"
+
+[frost_dragon.dragonfire_ranged]
+chance = 25
+range = 10
+anim = "frost_dragon_shoot"
+projectile = "frost_dragon_breath_ranged"
+target_hit = { offense = "dragonfire", special = true, max = 650 }
+target_sound = "dragon_breath"
+
+[frost_dragon.ice_arrows]
+condition = "frost_range"
+chance = 25
+range = 10
+anim = "frost_dragon_shoot"
+projectile = "frost_dragon_ice_arrow"
+target_hit = { offense = "range", max = 250 }
+target_sound = "dragon_attack"
+
+[frost_dragon.magic]
+condition = "frost_magic"
+chance = 25
+range = 10
+anim = "frost_dragon_shoot"
+projectile = "frost_dragon_water"
+target_hit = { offense = "magic", max = 250 }
+target_sound = "dragon_breath"
+
+[frost_dragon.orb]
+condition = "frost_dragon_orb"
+chance = 100
+range = 10
+impact_regardless = true

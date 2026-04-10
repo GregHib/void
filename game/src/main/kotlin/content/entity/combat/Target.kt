@@ -5,6 +5,7 @@ import content.area.wilderness.inPvp
 import content.area.wilderness.inSingleCombat
 import content.area.wilderness.inWilderness
 import content.entity.combat.hit.Hit
+import content.entity.combat.hit.directHit
 import content.entity.effect.transform
 import content.entity.player.equip.Equipment
 import content.skill.ranged.ammo
@@ -147,6 +148,10 @@ object Target {
             type == "range" && source.ammo != "broad_tipped_bolts" && source.ammo != "broad_arrows" -> 0
             Hit.meleeType(type) && !weapon.id.startsWith("leaf_bladed") -> 0
             else -> damage
+        }
+        is NPC if target.id.startsWith("frost_dragon") && target["orb_protection", false] -> {
+            source.directHit(damage, "deflect", source = target)
+            0
         }
         is NPC if target.id == "harpie_bug_swarm" && source is Player && source.equipped(EquipSlot.Shield).id != "lit_bug_lantern" -> 0
         is NPC if target.def.contains("damage_cap") -> damage.coerceAtMost(target.def["damage_cap"])

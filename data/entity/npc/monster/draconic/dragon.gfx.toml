@@ -32,3 +32,15 @@ multiplier = 0
 
 [dragon_breath_shoot]
 id = 2465
+
+[frost_dragon_water]
+id = 2705
+
+[frost_dragon_ice_arrow]
+id = 16
+
+[frost_dragon_breath_ranged]
+id = 2464
+
+[frost_dragon_orb]
+id = 2875
