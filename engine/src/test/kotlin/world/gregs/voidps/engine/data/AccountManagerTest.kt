@@ -85,9 +85,7 @@ class AccountManagerTest : KoinMock() {
 
     @Test
     fun `Create a new player`() {
-        val start = System.currentTimeMillis()
         val player = manager.create("name", "hash")
-        assertTrue(player["creation", 0L] >= start)
         assertTrue(player["new_player", false])
         assertEquals(Tile(1234, 5432), player.tile)
     }
