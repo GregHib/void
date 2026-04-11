@@ -74,9 +74,7 @@ open class Movement(
     }
 
     /**
-     * Whether a random step should be queued after clearing, or just the clear itself is sufficient.
-     * Overridden by [world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement]
-     * to skip queuing when the target is already moving toward the NPC.
+     * Whether [stepOut] should queue a random step after clearing, or let normal recalculation handle repositioning.
      */
     protected open fun shouldQueueStepOut(): Boolean = true
 
