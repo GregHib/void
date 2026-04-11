@@ -2,10 +2,33 @@
 id = 34
 type = "notes_tab"
 
+[.add]
+id = 3
+
 [.delete]
 id = 8
 
 [.notes]
 id = 9
-options = { Option1 = 0, Option2 = 1, Option3 = 2, Option4 = 3, Option5 = 18, Option6 = 20 }
+options = { Select = 0, Edit = 1, Colour = 2, Delete = 3, Option5 = 18, Option6 = 20 }
 
+[.colours]
+id = 16
+
+[.white]
+id = 35
+
+[.green]
+id = 37
+
+[.amber]
+id = 39
+
+[.red]
+id = 41
+
+[.close]
+id = 43
+
+[.overlay]
+id = 44

@@ -4,7 +4,10 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.StringSuspension
 
-suspend fun Player.stringEntry(text: String): String {
+suspend fun Player.stringEntry(text: String, placeholder: String? = null): String {
     sendScript("string_entry", text)
+    if (placeholder != null) {
+        sendScript("set_entry_string", placeholder)
+    }
     return StringSuspension.get(this)
 }
