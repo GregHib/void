@@ -146,7 +146,7 @@ format = "int"
 [warning_clan_wars_ffa_dangerous]
 id = 5295
 persist = true
-format = "boolean"
+format = "int"
 
 [warning_living_rock_caverns]
 id = 6500

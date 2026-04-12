@@ -2,6 +2,14 @@
 id = 38698
 examine = "A portal to a safe free-for-all fighting area."
 
+[clan_wars_portal_ffa_dangerous]
+id = 38699
+examine = "A portal to a dangerous free-for-all fighting area."
+
+[clan_wars_challenge_portal]
+id = 28213
+examine = "A portal to the Clan Wars arena."
+
 [clan_wars_portal_ffa_safe_exit]
 id = 38700
-examine = "Leave the free-for-all safe area."
+examine = "Leave the free-for-all fighting area."
