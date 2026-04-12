@@ -101,7 +101,7 @@ format = "int"
 [warning_clan_wars_ffa_safe]
 id = 5294
 persist = true
-format = "boolean"
+format = "int"
 
 [warning_ranging_guild_tower]
 id = 3871
