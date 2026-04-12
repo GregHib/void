@@ -1,0 +1,7 @@
+[clan_wars_portal_ffa_safe]
+id = 38698
+examine = "A portal to a safe free-for-all fighting area."
+
+[clan_wars_portal_ffa_safe_exit]
+id = 38700
+examine = "Leave the free-for-all safe area."

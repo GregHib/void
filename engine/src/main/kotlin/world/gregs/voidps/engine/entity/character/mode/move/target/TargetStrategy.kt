@@ -62,6 +62,8 @@ interface TargetStrategy {
                 "gnome_obstacle_pipe_east", "gnome_obstacle_pipe_west" -> TileTargetStrategy(entity.tile.addY(-1))
                 "lumbridge_church_bell" -> TileTargetStrategy(entity.tile.addY(-1))
                 "wall_pipe" -> TileTargetStrategy(entity.tile.addY(-1))
+                "clan_wars_portal_ffa_safe" -> TileTargetStrategy(entity.tile.addY(-1))
+                "clan_wars_portal_ffa_safe_exit" -> TileTargetStrategy(entity.tile.addY(entity.height))
                 else -> ObjectTargetStrategy(entity)
             }
             is FloorItem -> FloorItemTargetStrategy(entity)
