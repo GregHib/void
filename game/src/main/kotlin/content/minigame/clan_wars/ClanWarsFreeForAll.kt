@@ -117,15 +117,4 @@ class ClanWarsFreeForAll : Script {
             it.teleport = outside
         }
 
-        // On login: restore overlay and pvp state if still inside either arena
-        playerSpawn {
-            if (tile in Areas["clan_wars_ffa"]) {
-                open("clan_wars")
-                if (tile in Areas["clan_wars_ffa_safe_arena"] || tile in Areas["clan_wars_ffa_dangerous_arena"]) {
-                    set("in_pvp", true)
-                    options.set(1, "Attack")
-                }
-            }
-        }
-    }
 }
