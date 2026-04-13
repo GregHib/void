@@ -56,6 +56,7 @@ fun Tile.shoot(
     endHeight: Int? = null,
     curve: Int? = null,
     offset: Int? = null,
+    width: Int? = null,
 ) = projectile(
     id = id,
     flightTime = flightTime,
@@ -66,6 +67,7 @@ fun Tile.shoot(
     offset = offset,
     targetTile = tile,
     sourceTile = this,
+    width = width ?: 1,
 )
 
 fun Character.shootNearest(

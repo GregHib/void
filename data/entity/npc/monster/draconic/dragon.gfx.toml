@@ -32,3 +32,10 @@ multiplier = 0
 
 [dragon_breath_shoot]
 id = 2465
+
+[frost_dragon_breath_ranged]
+id = 2464
+delay = 40
+
+[frost_dragon_orb]
+id = 2875
