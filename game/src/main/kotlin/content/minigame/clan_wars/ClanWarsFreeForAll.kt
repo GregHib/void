@@ -24,7 +24,7 @@ class ClanWarsFreeForAll : Script {
                 return@objectOperate
             }
             set("clan_wars_ffa_portal", 0)
-            if (get("warning_clan_wars_ffa_safe", 0) == 7) {
+            if (warning("clan_wars_ffa_safe")) {
                 tele(safeArena)
                 return@objectOperate
             }
