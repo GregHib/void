@@ -320,3 +320,64 @@ type = "all"
 drops = [
     { id = "babydragon_bones" }
 ]
+
+[frost_dragon_drop_table]
+type = "all"
+drops = [
+  { id = "frost_dragon_bones" },
+  { table = "frost_dragon_secondary" },
+  { table = "frost_dragon_tertiary" },
+  { table = "hard_clue_scroll", chance = 128 },
+]
+[frost_dragon_secondary]
+roll = 512
+drops = [
+  { id = "adamant_kiteshield", chance = 8 },
+  { id = "adamant_platebody", chance = 8 },
+  { id = "rune_dagger", chance = 2 },
+  { id = "rune_longsword", chance = 8 },
+  { id = "rune_spear" },
+  { id = "rune_arrow", amount = 12, chance = 32 },
+  { id = "rune_javelin", amount = 5, chance = 2 },
+  { id = "water_rune", amount = 14, chance = 2 },
+  { id = "law_rune", amount = 10, chance = 8 },
+  { id = "blood_rune", amount = 10, chance = 8 },
+  { id = "death_rune", min = 10, max = 15, chance = 32 },
+  { id = "water_talisman_noted", amount = 2, chance = 32 },
+  { id = "air_talisman_noted", amount = 2, chance = 32 },
+  { id = "pure_essence_noted", amount = 50, chance = 8 },
+  { id = "nature_talisman", chance = 8 },
+  { id = "uncut_sapphire", chance = 8 },
+  { id = "uncut_emerald", chance = 8 },
+  { id = "uncut_ruby", chance = 8 },
+  { id = "uncut_diamond", chance = 2 },
+  { id = "uncut_dragonstone"},
+  { id = "silver_ore_noted", amount = 100 },
+  { id = "adamant_bar_noted", amount = 3, chance = 2 },
+  { id = "grimy_guam_noted", chance = 32 },
+  { id = "grimy_marrentill_noted", chance = 32 },
+  { id = "grimy_tarromin_noted", chance = 32 },
+  { id = "grimy_harralander_noted", chance = 32 },
+  { id = "grimy_ranarr_noted", chance = 32 },
+  { id = "grimy_irit_noted", chance = 32 },
+  { id = "grimy_avantoe_noted", chance = 32 },
+  { id = "grimy_kwuarm_noted", chance = 32 },
+  { id = "grimy_cadantine_noted", chance = 32 },
+  { id = "grimy_lantadyme_noted", chance = 32 },
+  { id = "grimy_dwarf_weed_noted", chance = 32 },
+]
+
+[frost_dragon_tertiary]
+roll = 10000
+drops = [
+  { id = "coins", min = 200, max = 1337, chance = 32 },
+  { id = "draconic_visage" },
+  { id = "limpwurt_root_noted", chance = 8 },
+  { id = "mahogany_logs_noted", amount = 3, chance = 8 },
+  { id = "shark", min = 1, max = 2, chance = 32 },
+  { id = "shield_left_half" },
+  { id = "water_orb_noted", amount = 2, chance = 8 },
+  { id = "tooth_half_of_a_key" },
+  { id = "loop_half_of_a_key" },
+  { id = "starved_ancient_effigy", chance = 2 },
+]
