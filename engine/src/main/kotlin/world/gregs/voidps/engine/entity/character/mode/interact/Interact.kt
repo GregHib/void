@@ -8,14 +8,10 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.cantReach
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
-import world.gregs.voidps.engine.map.Overlap
 import world.gregs.voidps.engine.suspend.resumeSuspension
-import world.gregs.voidps.type.Direction
-import world.gregs.voidps.type.random
 
 /**
  * Moves a player within interact distance of [target]
@@ -91,14 +87,7 @@ open class Interact(
         }
         updateRange = false
         val target = target
-        val npc = character as? NPC
-        if (npc != null && !npc.def["allowed_under", false] && target is Character &&
-            Overlap.isUnder(npc.tile, npc.size, target.tile, target.size)) {
-            clearSteps()
-            val direction = Direction.cardinal.random(random)
-            if (canStep(direction.delta.x, direction.delta.y)) {
-                character.steps.queueStep(npc.tile.add(direction))
-            }
+        if (stepOut()) {
             super.tick()
             return
         }
