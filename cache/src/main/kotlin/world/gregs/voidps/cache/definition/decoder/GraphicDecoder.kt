@@ -15,7 +15,7 @@ class GraphicDecoder : DefinitionDecoder<GraphicDefinition>(GRAPHICS) {
 
     override fun GraphicDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
-            1 -> modelId = buffer.readShort()
+            1 -> modelId = buffer.readUnsignedShort()
             2 -> animationId = buffer.readShort()
             4 -> sizeXY = buffer.readShort()
             5 -> sizeZ = buffer.readShort()

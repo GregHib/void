@@ -168,7 +168,7 @@ object Target {
             Hit.meleeType(type) && !weapon.id.startsWith("leaf_bladed") -> 0
             else -> damage
         }
-        is NPC if target.id.startsWith("frost_dragon") && target["orb_protection", false] -> {
+        is NPC if target.id.startsWith("frost_dragon") && target.hasClock("orb_protection") -> {
             source.directHit(damage, "deflect", source = target)
             0
         }

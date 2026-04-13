@@ -5,6 +5,7 @@ att = 180
 str = 150
 def = 150
 mage = 150
+height = 25
 combat_def = "frost_dragon"
 drop_table = "frost_dragon"
 wander_range = 4
