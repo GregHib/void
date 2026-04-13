@@ -2,3 +2,25 @@
 x = [3266, 3270]
 y = [3679, 3682]
 tags = ["teleport"]
+
+[clan_wars_ffa]
+x = [2740, 3090]
+y = [5490, 5640]
+
+[clan_wars_ffa_safe_arena]
+x = [2756, 2878]
+y = [5512, 5630]
+
+[clan_wars_ffa_safe_multi]
+x = [2756, 2878]
+y = [5571, 5630]
+tags = ["multi_combat"]
+
+[clan_wars_ffa_dangerous_arena]
+x = [2948, 3071]
+y = [5512, 5631]
+
+[clan_wars_ffa_dangerous_multi]
+x = [2948, 3071]
+y = [5571, 5631]
+tags = ["multi_combat"]

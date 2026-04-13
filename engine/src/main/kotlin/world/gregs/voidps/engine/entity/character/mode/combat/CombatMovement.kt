@@ -16,9 +16,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.cantReach
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.Overlap
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.random
 import kotlin.math.abs
 
 /**
@@ -60,7 +58,6 @@ class CombatMovement(
         if (!attack()) {
             var skip: Boolean
             if (Overlap.isUnder(character.tile, character.size, target.tile, target.size)) {
-                stepOut()
                 skip = true
             } else {
                 val wasEmpty = character.steps.isEmpty()
@@ -81,17 +78,8 @@ class CombatMovement(
         }
     }
 
-    private fun stepOut() {
-        clearSteps()
-        if (target.mode is CombatMovement || target.mode is Interact) {
-            return
-        }
-        val direction = Direction.cardinal.random(random)
-        if (!canStep(direction.delta.x, direction.delta.y)) {
-            return
-        }
-        character.steps.queueStep(strategy.tile.add(direction))
-    }
+    override fun shouldQueueStepOut(): Boolean =
+        target.mode !is CombatMovement && target.mode !is Interact
 
     private fun attack(): Boolean {
         val attackRange = attackRange()
