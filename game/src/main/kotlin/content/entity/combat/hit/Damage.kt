@@ -130,7 +130,7 @@ object Damage {
 
         damage = Bonus.slayerModifier(source, target, type, damage, damage = true)
 
-        damage = Weapon.weaponDamageModifiers(source, target, type, weapon, special, damage)
+        damage = Weapon.weaponDamageModifiers(source, target, type, weapon, special, damage) // after here
 
         damage = Equipment.damageModifiers(source, target, type, damage)
 
@@ -138,7 +138,7 @@ object Damage {
 
         damage = Prayer.damageModifiers(source, target, type, weapon, special, damage)
 
-        damage = Target.damageModifiers(source, target, damage)
+        damage = Target.damageModifiers(source, target, type, weapon, damage)
 
         damage = BarrowsArmour.damageModifiers(source, target, weapon, damage)
 

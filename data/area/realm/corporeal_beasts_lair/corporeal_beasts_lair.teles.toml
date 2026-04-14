@@ -1,0 +1,9 @@
+[corporeal_beast_lair_entrance_open]
+option = "Go-through"
+tile = { x = 3209, y = 3780 }
+to = { x = 2885, y = 4372, level = 2 }
+
+[corporeal_beast_lair_exit]
+option = "Go-through"
+tile = { x = 2883, y = 4370, level = 2 }
+to = { x = 3214, y = 3782 }

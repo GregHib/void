@@ -1,0 +1,53 @@
+[corporeal_beast]
+attack_speed = 4
+retreat_range = 16
+defend_anim = "corporeal_beast_defend"
+defend_sound = "corporeal_beast_defend"
+death_anim = "corporeal_beast_death"
+death_sound = "corporeal_beast_death"
+
+[corporeal_beast.melee]
+chance = 40
+range = 1
+anim = "corporeal_beast_swipe"
+target_hit = { offense = "crush", max = 330 }
+
+[corporeal_beast.magic]
+chance = 20
+range = 10
+anim = "corporeal_beast_magic"
+projectile_origin = "centre"
+projectile = "corporeal_beast_magic_travel"
+target_hit = { offense = "magic", max = 650 }
+
+[corporeal_beast.prayer_drain]
+chance = 10
+range = 10
+anim = "corporeal_beast_magic"
+projectile_origin = "centre"
+projectile = "corporeal_beast_stat_travel"
+target_hit = { offense = "magic", max = 550 }
+impact_drain = { skill = "prayer", min = 1, max = 2 }
+
+[corporeal_beast.magic_drain]
+clone = "corporeal_beast.prayer_drain"
+impact_drain = { skill = "magic", min = 1, max = 2 }
+
+[corporeal_beast.magic_area]
+chance = 20
+range = 10
+anim = "corporeal_beast_magic"
+
+[dark_energy_core]
+attack_speed = 2
+death_anim = "dark_core_death"
+
+[dark_energy_core.attack]
+chance = 10
+range = 3
+multi_radius = 3
+target_hit = { offense = "damage", min = 10, max = 130 }
+impact_message = "The dark core creature steals some life from you for its master."
+
+[dark_energy_core.hop]
+range = 20

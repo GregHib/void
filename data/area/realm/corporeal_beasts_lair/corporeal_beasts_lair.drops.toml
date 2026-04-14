@@ -1,0 +1,73 @@
+[corporeal_beast_drop_table]
+type = "all"
+drops = [
+    { table = "corporeal_beast_secondary" },
+    { table = "corporeal_beast_tertiary" },
+    { table = "corporeal_beast_charms" },
+]
+
+[corporeal_beast_secondary]
+roll = 512
+drops = [
+    { id = "mystic_air_staff", chance = 10 },
+    { id = "mystic_water_staff", chance = 10 },
+    { id = "mystic_earth_staff", chance = 10 },
+    { id = "mystic_fire_staff", chance = 10 },
+    { id = "spirit_shield", chance = 8 },
+    { id = "holy_elixir", chance = 3 },
+    { id = "adamant_arrow", amount = 750, chance = 16 },
+    { id = "runite_bolts", amount = 250, chance = 25 },
+    { id = "cannonball", amount = 2000, chance = 17 },
+    { id = "mystic_robe_top_blue", chance = 18 },
+    { id = "mystic_robe_bottom_blue", min = 1, max = 2, chance = 18 },
+    { id = "regen_bracelet", chance = 19 },
+    { id = "onyx_bolts_e", amount = 175, chance = 20 },
+    { id = "pure_essence_noted", amount = 2500, chance = 21 },
+    { id = "law_rune", amount = 250, chance = 17 },
+    { id = "cosmic_rune", amount = 500, chance = 17 },
+    { id = "death_rune", amount = 300, chance = 17 },
+    { id = "soul_rune", amount = 250, chance = 32 },
+    { id = "adamantite_ore_noted", amount = 125, chance = 17 },
+    { id = "runite_ore_noted", amount = 20, chance = 12 },
+    { id = "adamant_bar_noted", amount = 35, chance = 18 },
+    { id = "teak_plank_noted", amount = 100, chance = 10 },
+    { id = "mahogany_logs_noted", amount = 150, chance = 12 },
+    { id = "magic_logs_noted", amount = 75, chance = 12 },
+    { id = "raw_shark_noted", amount = 70, chance = 21 },
+    { id = "white_berries_noted", amount = 120, chance = 15 },
+    { id = "desert_goat_horn_noted", amount = 120, chance = 15 },
+    { id = "watermelon_seed", amount = 24, chance = 15 },
+    { id = "ranarr_seed", min = 10, max = 15, chance = 5 },
+    { id = "tuna_potato", amount = 30, chance = 21 },
+    { id = "green_dragonhide_noted", amount = 100, chance = 18 },
+    { id = "antipoison++_4_noted", amount = 40, chance = 10 },
+    { id = "coins", min = 20000, max = 50000, chance = 10 },
+    { id = "crystal_key" },
+    { table = "corporeal_beast_sigils" },
+    { table = "gem_drop_table", chance = 12 },
+]
+
+[corporeal_beast_sigils]
+roll = 5
+drops = [
+    { id = "spectral_sigil", chance = 2 },
+    { id = "arcane_sigil" },
+    { id = "elysian_sigil" },
+    { id = "divine_sigil" },
+]
+
+[corporeal_beast_tertiary]
+roll = 512
+drops = [
+    { table = "hard_clue_scroll", chance = 2 },
+    { table = "elite_clue_scroll", chance = 2 },
+]
+
+[corporeal_beast_charms]
+roll = 1000
+drops = [
+    { id = "gold_charm", amount = 13, chance = 239 },
+    { id = "green_charm", amount = 13, chance = 119 },
+    { id = "crimson_charm", amount = 13, chance = 239 },
+    { id = "blue_charm", amount = 13, chance = 382 },
+]

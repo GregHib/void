@@ -105,7 +105,6 @@ object Params {
     const val LOCATIONS = 5104
     const val LOWER = 5105
     const val MAGE = 5106
-    const val MAGIC = 5107
     const val MATERIAL = 5108
     const val MAX_HEAL = 5109
     const val MAX_HIT_CRUSH = 5110
@@ -435,7 +434,6 @@ object Params {
         "locations" -> LOCATIONS
         "lower" -> LOWER
         "mage" -> MAGE
-        "magic" -> MAGIC
         "material" -> MATERIAL
         "max_heal" -> MAX_HEAL
         "max_hit_crush" -> MAX_HIT_CRUSH
