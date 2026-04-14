@@ -67,6 +67,11 @@ object Prayer {
         }
         when (source) {
             is NPC if usingProtectionPrayer(source, target, type) -> {
+                if (source.id == "corporeal_beast" && type == "magic") {
+                    val reduced = damage / 3
+                    target["protected_damage"] = reduced
+                    return damage - reduced
+                }
                 target["protected_damage"] = damage
                 return 0
             }

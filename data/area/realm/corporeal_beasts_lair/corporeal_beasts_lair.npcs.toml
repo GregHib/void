@@ -4,11 +4,25 @@ hitpoints = 20000
 att = 320
 str = 320
 def = 310
-magic = 350
+mage = 350
 range = 150
 attack_bonus = 50
-hunt_mode = "aggressive"
+hunt_mode = "aggressive_retarget"
+allowed_under = true
+combat_def = "corporeal_beast"
+respawn_delay = 50
+immune_poison = true
 examine = "A vision of supernatural horror."
 
 [dark_energy_core]
 id = 8127
+hitpoints = 250
+att = 1
+str = 1
+def = 20
+mage = 1
+range = 1
+combat_def = "dark_energy_core"
+hunt_mode = "aggressive_retarget"
+drop_table = "ashes"
+examine = "A small being of dark energy."

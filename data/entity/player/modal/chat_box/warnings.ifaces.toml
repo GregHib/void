@@ -524,3 +524,18 @@ id = 21
 [.dont_ask]
 id = 20
 
+[warning_corporeal_beast]
+id = 650
+type = "main_screen"
+
+[.yes]
+id = 17
+
+[.no]
+id = 18
+
+[.ask_again]
+id = 21
+
+[.dont_ask]
+id = 20

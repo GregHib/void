@@ -1,5 +1,5 @@
 [corporeal_beast_stomp]
-id = 10496 # gfx 1834
+id = 10496
 
 [corporeal_beast_slap]
 id = 10057
@@ -8,10 +8,16 @@ id = 10057
 id = 10058
 
 [corporeal_beast_magic]
-id = 10410 # gfx 1823+
+id = 10410
 
 [corporeal_beast_defend]
 id = 10386
 
 [corporeal_beast_death]
 id = 10385
+
+[dark_core_take_off]
+id = 10393
+
+[dark_core_death]
+id = 10391
