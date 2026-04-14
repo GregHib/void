@@ -65,9 +65,11 @@ open class Movement(
         if (!Overlap.isUnder(npc.tile, npc.size, npc.size, strategy.tile, strategy.width, strategy.height)) return false
         clearSteps()
         if (shouldQueueStepOut()) {
-            val direction = Direction.cardinal.random(random)
-            if (canStep(direction.delta.x, direction.delta.y)) {
-                character.steps.queueStep(npc.tile.add(direction))
+            for (direction in Direction.cardinal.shuffled(random)) {
+                if (canStep(direction.delta.x, direction.delta.y)) {
+                    character.steps.queueStep(npc.tile.add(direction))
+                    break
+                }
             }
         }
         return true
