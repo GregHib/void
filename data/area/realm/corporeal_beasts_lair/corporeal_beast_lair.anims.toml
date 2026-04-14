@@ -1,0 +1,17 @@
+[corporeal_beast_stomp]
+id = 10496 # gfx 1834
+
+[corporeal_beast_slap]
+id = 10057
+
+[corporeal_beast_swipe]
+id = 10058
+
+[corporeal_beast_magic]
+id = 10410 # gfx 1823+
+
+[corporeal_beast_defend]
+id = 10386
+
+[corporeal_beast_death]
+id = 10385
