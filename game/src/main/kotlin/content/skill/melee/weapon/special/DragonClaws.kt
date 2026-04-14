@@ -5,8 +5,6 @@ import content.entity.combat.hit.Hit
 import content.entity.combat.hit.hit
 import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.queue.strongQueue
-import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.type.random
 
@@ -49,7 +47,7 @@ class DragonClaws : Script {
             hit(target, damage = hit1)
             hit(target, damage = hit2)
             hit(target, damage = hit3, delay = TICKS.toClientTicks(2))
-            hit(target, damage = hit4 ,delay = TICKS.toClientTicks(2))
+            hit(target, damage = hit4, delay = TICKS.toClientTicks(2))
         }
     }
 }
