@@ -25,12 +25,15 @@ import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.map.Overlap
+import world.gregs.voidps.engine.map.spiral
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
 class Attack(
@@ -69,7 +72,7 @@ class Attack(
             } else {
                 clear("attack_range")
             }
-            val targets = targets(primaryTarget, attack.multiTargetArea)
+            val targets = targets(primaryTarget, attack.multiTargetArea, attack.multiTargetRadius, attack.multiRadius)
             // Target(s)
             for (target in targets) {
                 target.play(attack.targetAnim)
@@ -130,7 +133,7 @@ class Attack(
             val source = if (target is Player) def(target).stringId else id
             val definition = definitions.getOrNull(def["combat_def", source]) ?: return@npcCombatAttack
             val attack = definition.attacks[attackName] ?: return@npcCombatAttack
-            val targets = targets(target, attack.multiTargetArea)
+            val targets = targets(target, attack.multiTargetArea, attack.multiTargetRadius, attack.multiRadius)
             for (target in targets) {
                 if (!CombatApi.impact(this, target, "${definition.npc}:${attack.id}")) {
                     continue
@@ -220,16 +223,31 @@ class Attack(
     }
 
     @Suppress("UNCHECKED_CAST")
-    private fun NPC.targets(target: Character, area: String): Set<Character> {
+    private fun NPC.targets(target: Character, area: String, targetRadius: Int, radius: Int): Set<Character> {
         if (area == "") {
+            if (targetRadius != 0) {
+                return targets(target.tile, radius)
+            } else if (radius != 0) {
+                return targets(tile, radius)
+            }
             return setOf(target)
         }
         val area = Areas.getOrNull(area)?.area ?: return setOf(target)
-        val list = mutableSetOf(target)
+        val set = mutableSetOf(target)
         for (zone in area.toZones(tile.level)) {
-            list.addAll(Players.at(zone))
+            set.addAll(Players.at(zone))
         }
-        return list
+        return set
+    }
+
+    private fun NPC.targets(tile: Tile, radius: Int): Set<Character> {
+        val set = mutableSetOf<Character>()
+        for (tile in tile.spiral(radius)) {
+            set.addAll(NPCs.at(tile))
+            set.addAll(Players.at(tile))
+        }
+        set.remove(this) // Not including the attacker
+        return set
     }
 
     private fun Character.play(anim: String) {

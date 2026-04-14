@@ -55,6 +55,8 @@ data class CombatDefinition(
      *  @param targetSounds sounds played on the target when the swing is executed.
      *  @param targetHits damage hit queued when the swing is executed.
      *  @param multiTargetArea The area to find multiple targets within.
+     *  @param multiTargetRadius The radius within the target to find multiple targets.
+     *  @param multiRadius The radius within the attack to find multiple targets within.
      *  == Impact ==
      *  @param impactAnim animation played on the target when the [targetHits] impacts.
      *  @param impactGfx gfx played on the target [targetHits] after the hit's delay.
@@ -90,6 +92,8 @@ data class CombatDefinition(
         val targetSounds: List<CombatSound> = emptyList(),
         val targetHits: List<CombatHit> = emptyList(),
         val multiTargetArea: String = "",
+        val multiTargetRadius: Int = 0,
+        val multiRadius: Int = 0,
         // Impact
         val impactAnim: String = "",
         val impactGfx: List<CombatGfx> = emptyList(),

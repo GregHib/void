@@ -116,6 +116,8 @@ class CombatDefinitions {
         val drainSkills = mutableListOf<CombatDefinition.Drain>()
         val targetHits = mutableListOf<CombatHit>()
         var targetArea = ""
+        var targetRadius = 0
+        var radius = 0
         var impactRegardless = false
         var freeze = 0
         var poison = 0
@@ -151,6 +153,8 @@ class CombatDefinitions {
                 "target_sound" -> sound(targetSounds)
                 "target_sounds" -> sounds(targetSounds)
                 "multi_target_area" -> targetArea = string()
+                "multi_target_radius" -> targetRadius = int()
+                "multi_radius" -> radius = int()
                 // Damage
                 "projectile" -> projectile(projectiles)
                 "projectiles" -> projectiles(projectiles)
@@ -205,6 +209,8 @@ class CombatDefinitions {
             targetSounds = targetSounds,
             targetHits = targetHits,
             multiTargetArea = targetArea,
+            multiTargetRadius = targetRadius,
+            multiRadius = radius,
             impactAnim = impactAnim,
             missGfx = missGraphics,
             impactGfx = impactGraphics,
@@ -436,6 +442,8 @@ class CombatDefinitions {
         targetSounds = original.targetSounds.ifEmpty { clone.targetSounds },
         targetHits = original.targetHits.ifEmpty { clone.targetHits },
         multiTargetArea = if (original.multiTargetArea != CombatAttack.EMPTY.multiTargetArea) original.multiTargetArea else clone.multiTargetArea,
+        multiTargetRadius = if (original.multiTargetRadius != CombatAttack.EMPTY.multiTargetRadius) original.multiTargetRadius else clone.multiTargetRadius,
+        multiRadius = if (original.multiRadius != CombatAttack.EMPTY.multiRadius) original.multiRadius else clone.multiRadius,
         impactAnim = if (original.impactAnim != CombatAttack.EMPTY.impactAnim) original.impactAnim else clone.impactAnim,
         impactGfx = original.impactGfx.ifEmpty { clone.impactGfx },
         impactSounds = original.impactSounds.ifEmpty { clone.impactSounds },
