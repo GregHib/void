@@ -441,6 +441,19 @@ id = 82
 [.living_rock_caverns]
 id = 83
 
+[warning_clan_wars_ffa_safe]
+id = 793
+type = "main_screen"
+
+[.yes]
+id = 15
+
+[.no]
+id = 14
+
+[.dont_ask]
+id = 9
+
 [warning_godwars_wilderness_agility_route]
 id = 600
 type = "main_screen"

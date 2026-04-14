@@ -123,6 +123,9 @@ class TzhaarFightCave(
                 return@npcDespawn
             }
             val wave = killer.wave
+            if (wave == -1) {
+                return@npcDespawn
+            }
             if (wave == 63 && id == "tztok_jad") {
                 killer.leave(wave, true)
             } else if (wave < 63) {
