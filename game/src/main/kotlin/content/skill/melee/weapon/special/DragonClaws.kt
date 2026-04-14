@@ -6,6 +6,8 @@ import content.entity.combat.hit.hit
 import content.skill.melee.weapon.weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.engine.timer.CLIENT_TICKS
+import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.type.random
 
 class DragonClaws : Script {
@@ -14,8 +16,6 @@ class DragonClaws : Script {
         specialAttack("slice_and_dice") { target, id ->
             anim("${id}_special")
             gfx("${id}_special")
-
-            val source = this
             val weapon = weapon
             var (hit1, hit2, hit3, hit4) = intArrayOf(0, 0, 0, 0)
             val maxHit = Damage.maximum(this, target, "melee", weapon)
@@ -46,13 +46,10 @@ class DragonClaws : Script {
                 // All four miss: fourth hit almost always lands between 1 and 7.
                 hit4 = random.nextInt(1, 8)
             }
-
             hit(target, damage = hit1)
             hit(target, damage = hit2)
-            target.strongQueue("claws_second_pair", 0) {
-                source.hit(target, weapon = weapon, damage = hit3)
-                source.hit(target, weapon = weapon, damage = hit4)
-            }
+            hit(target, damage = hit3, delay = TICKS.toClientTicks(2))
+            hit(target, damage = hit4 ,delay = TICKS.toClientTicks(2))
         }
     }
 }
