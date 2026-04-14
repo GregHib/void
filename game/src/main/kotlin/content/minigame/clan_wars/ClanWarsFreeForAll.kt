@@ -24,7 +24,7 @@ class ClanWarsFreeForAll : Script {
                 return@objectOperate
             }
             set("clan_wars_ffa_portal", 0)
-            if (warning("clan_wars_ffa_safe")) {
+            if (get("warning_clan_wars_ffa_safe", 0) == 1) {
                 tele(safeArena)
                 return@objectOperate
             }
@@ -37,7 +37,7 @@ class ClanWarsFreeForAll : Script {
                 return@objectOperate
             }
             set("clan_wars_ffa_portal", 1)
-            if (get("warning_clan_wars_ffa_dangerous", 0) == 7) {
+            if (get("warning_clan_wars_ffa_dangerous", 0) == 1) {
                 tele(dangerousArena)
                 return@objectOperate
             }
@@ -58,7 +58,7 @@ class ClanWarsFreeForAll : Script {
         // "Don't show again" checkbox - toggles the varbit for whichever portal opened the dialog
         interfaceOption("Toggle warning", "warning_clan_wars_ffa_safe:dont_ask") {
             val key = if (get("clan_wars_ffa_portal", 0) == 1) "warning_clan_wars_ffa_dangerous" else "warning_clan_wars_ffa_safe"
-            set(key, if (get(key, 0) == 7) 0 else 7)
+            set(key, if (get(key, 0) == 1) 0 else 1)
         }
 
         // Clan Wars challenge portal - not yet implemented
@@ -116,5 +116,5 @@ class ClanWarsFreeForAll : Script {
             if (tile !in Areas["clan_wars_ffa_dangerous_arena"]) return@playerDeath
             it.teleport = outside
         }
-
+    }
 }
