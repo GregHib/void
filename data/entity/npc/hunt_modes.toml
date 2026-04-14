@@ -109,3 +109,13 @@ check_not_too_strong = false
 check_not_combat = false
 check_not_combat_self = false
 check_not_busy = false
+
+# Aggressive and continue hunting
+[aggressive_retarget]
+type = "player"
+check_visual = "line_of_sight"
+check_not_too_strong = false
+check_not_combat = false
+check_not_combat_self = false
+check_not_busy = false
+find_keep_hunting = true

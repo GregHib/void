@@ -15,8 +15,10 @@ class Aggression : Script {
 
     init {
         huntPlayer(mode = "aggressive", handler = ::playerHandler)
-
         huntPlayer(mode = "aggressive_intolerant", handler = ::playerHandler)
+        huntPlayer(mode = "aggressive_retarget") {
+            playerHandler(this, it, switch = true)
+        }
 
         huntPlayer(mode = "cowardly") { target ->
             if (!Settings["world.npcs.aggression", true] || attacking(this, target)) {
@@ -30,7 +32,6 @@ class Aggression : Script {
 
         huntNPC(mode = "aggressive", handler = ::npcHandler)
         huntNPC(mode = "aggressive_intolerant", handler = ::npcHandler)
-
         huntNPC(mode = "cowardly") { target ->
             if (attacking(this, target)) {
                 return@huntNPC
@@ -39,8 +40,8 @@ class Aggression : Script {
         }
     }
 
-    fun playerHandler(npc: NPC, target: Player) {
-        if (!Settings["world.npcs.aggression", true] || attacking(npc, target)) {
+    fun playerHandler(npc: NPC, target: Player, switch: Boolean = false) {
+        if (!Settings["world.npcs.aggression", true] || !switch && attacking(npc, target)) {
             return
         }
         if (Settings["world.npcs.safeZone", false] && npc.tile in Areas["lumbridge"]) {
