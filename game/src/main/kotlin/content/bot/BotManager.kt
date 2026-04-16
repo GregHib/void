@@ -13,6 +13,7 @@ import content.bot.behaviour.activity.ActivitySlots
 import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.loadBehaviours
+import content.bot.behaviour.perception.BotCombatContextBuilder
 import content.bot.behaviour.setup.DynamicResolvers
 import content.bot.behaviour.setup.Resolver
 import world.gregs.voidps.engine.data.ConfigFiles
@@ -96,9 +97,18 @@ class BotManager(
                 assignRandom(bot)
                 return
             }
+            updateCombatContext(bot)
             execute(bot)
         } catch (exception: Exception) {
             logger.error(exception) { "Error in bot '${bot.player.accountName}' tick ${bot.frames.map { it.behaviour.id }}." }
+        }
+    }
+
+    private fun updateCombatContext(bot: Bot) {
+        if (bot.previous?.id?.startsWith("pvp_") == true) {
+            bot.combatContext = BotCombatContextBuilder.build(bot)
+        } else if (bot.combatContext != null) {
+            bot.combatContext = null
         }
     }
 

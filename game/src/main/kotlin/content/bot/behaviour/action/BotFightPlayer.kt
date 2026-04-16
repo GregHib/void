@@ -11,6 +11,7 @@ import content.entity.combat.dead
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnFloorItemInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnPlayerInteract
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -19,6 +20,7 @@ import world.gregs.voidps.engine.map.Spiral
 import world.gregs.voidps.network.client.instruction.InteractFloorItem
 import world.gregs.voidps.network.client.instruction.InteractInterface
 import world.gregs.voidps.network.client.instruction.InteractPlayer
+import world.gregs.voidps.type.Tile
 
 data class BotFightPlayer(
     val delay: Int = 0,
@@ -74,13 +76,7 @@ data class BotFightPlayer(
             if (attackOption == -1) {
                 continue
             }
-            for (target in Players.at(tile)) {
-                if (target === player || target.dead) {
-                    continue
-                }
-                if (!Target.attackable(player, target)) {
-                    continue
-                }
+            for (target in enemiesAt(bot, tile)) {
                 val valid = world.execute(bot.player, InteractPlayer(target.index, attackOption))
                 if (!valid) {
                     return BehaviourState.Failed(Reason.Invalid("Invalid player interaction: ${target.index} $attackOption"))
@@ -89,6 +85,15 @@ data class BotFightPlayer(
             }
         }
         return handleNoTarget()
+    }
+
+    private fun enemiesAt(bot: Bot, tile: Tile): List<Player> {
+        val context = bot.combatContext
+        if (context != null) {
+            return context.enemiesByTile[tile.id] ?: emptyList()
+        }
+        val player = bot.player
+        return Players.at(tile).filter { it !== player && !it.dead && Target.attackable(player, it) }
     }
 
     private fun handleNoTarget(): BehaviourState {
