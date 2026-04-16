@@ -1,0 +1,4 @@
+[clan_wars_ffa_safe_basic_melee]
+template = "pvp_basic_melee"
+capacity = 6
+fields = { style = "style2", area = "clan_wars_ffa_safe_arena" }
