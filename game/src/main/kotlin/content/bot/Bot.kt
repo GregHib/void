@@ -5,6 +5,7 @@ import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.Reason
 import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.activity.BotActivity
+import content.bot.behaviour.perception.BotCombatContext
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import java.util.Stack
@@ -15,6 +16,7 @@ data class Bot(val player: Player) : Character by player {
     val frames = Stack<BehaviourFrame>()
     val available = mutableSetOf<String>()
     var evaluate = mutableSetOf<String>()
+    var combatContext: BotCombatContext? = null
 
     fun noTask() = frames.isEmpty()
 
