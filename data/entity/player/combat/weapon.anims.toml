@@ -82,6 +82,9 @@ id = 390
 [sword_defend]
 id = 388
 
+[1h_defend]
+id = 387
+
 [2h_chop]
 id = 7041
 
@@ -93,6 +96,9 @@ id = 7042
 
 [2h_block]
 id = 7041
+
+[2h_battle_axe_pummel]
+id = 7048
 
 [2h_defend]
 id = 7050

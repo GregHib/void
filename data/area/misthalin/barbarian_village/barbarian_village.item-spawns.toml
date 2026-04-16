@@ -1,0 +1,10 @@
+spawns = [
+# 12341
+    { id = "empty_pot", x = 3074, y = 3431, delay = 100 },
+    { id = "bronze_pickaxe", x = 3081, y = 3429, delay = 228 },
+    { id = "beer", x = 3077, y = 3439, delay = 100 },
+    { id = "cooked_meat", x = 3077, y = 3441, delay = 100 },
+    { id = "beer", x = 3077, y = 3443, delay = 100 },
+    { id = "cooked_meat", x = 3080, y = 3443, delay = 100 },
+    { id = "beer", x = 3080, y = 3441, delay = 100 },
+]

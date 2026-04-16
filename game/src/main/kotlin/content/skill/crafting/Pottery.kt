@@ -25,7 +25,7 @@ class Pottery : Script {
         }
 
         itemOnObjectOperate(obj = "pottery_oven*", arrive = false) { (target, item) ->
-            if (!item.def.contains("pottery")) {
+            if (!item.id.contains("unfired")) {
                 return@itemOnObjectOperate
             }
             if (item.id != "soft_clay") {
