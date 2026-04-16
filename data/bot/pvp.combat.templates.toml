@@ -1,0 +1,24 @@
+[pvp_basic_melee]
+requires = [
+    { skill = { id = "attack", min = 50 } },
+    { skill = { id = "strength", min = 50 } },
+    { skill = { id = "constitution", min = 50 } },
+    { skill = { id = "defence", min = 40 } },
+]
+setup = [
+    { equipment = { weapon = { id = "rune_scimitar,rune_longsword" }, body = { id = "rune_platebody" }, legs = { id = "rune_platelegs" }, head = { id = "rune_full_helm" } } },
+    { inventory = [
+        { id = "shark", min = 12 },
+        { id = "super_strength_4", min = 1 },
+    ] },
+    { area = { id = "$area" } },
+]
+actions = [
+    { interface = { option = "Select", id = "combat_styles:$style" } },
+    { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 20, success = { area = { id = "$area", present = false } } } },
+    { restart = { success = { area = { id = "$area" } } } },
+]
+produces = [
+    { skill = "attack" },
+    { skill = "strength" },
+]

@@ -239,7 +239,8 @@ sealed class Condition(val priority: Int) {
         private fun parseArea(list: List<Map<String, Any>>): Condition? {
             val map = list.single()
             if (map.containsKey("id")) {
-                return BotInArea(id = map["id"] as String)
+                val present = map["present"] as? Boolean ?: true
+                return BotInArea(id = map["id"] as String, present = present)
             }
             return null
         }

@@ -42,6 +42,22 @@ sealed class ActionParser {
         }
     }
 
+    object InteractPlayerParser : ActionParser() {
+        override val required = setOf("option")
+        override val optional = setOf("delay", "success", "radius", "heal_percent", "loot_over_value")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val option = map["option"] as String
+            require(option == "Attack") { "Only 'Attack' option is supported for 'player' actions, got '$option'." }
+            val delay = map["delay"] as? Int ?: 0
+            val success = requirement(map, "success").singleOrNull()
+            val radius = map["radius"] as? Int ?: 10
+            val healPercent = map["heal_percent"] as? Int ?: 20
+            val lootOverValue = map["loot_over_value"] as? Int ?: 0
+            return BotFightPlayer(delay, success, radius, healPercent, lootOverValue)
+        }
+    }
+
     object InterfaceParser : ActionParser() {
         override val required = setOf("option", "id")
         override val optional = setOf("success")
@@ -225,6 +241,7 @@ sealed class ActionParser {
 
         private val parsers = mapOf(
             "npc" to InteractNpcParser,
+            "player" to InteractPlayerParser,
             "object" to InteractObjectParser,
             "floor_item" to InteractFloorItemParser,
             "item_on_object" to ItemOnObjectParser,
