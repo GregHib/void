@@ -69,6 +69,33 @@ sealed class ActionParser {
         }
     }
 
+    object SwitchSetupParser : ActionParser() {
+        override val required = setOf("equipment")
+        override val optional = setOf("if")
+
+        @Suppress("UNCHECKED_CAST")
+        override fun parse(map: Map<String, Any>): BotAction {
+            val raw = map["equipment"] as? Map<String, Any>
+                ?: error("switch_setup 'equipment' must be a map in $map.")
+            val setup = Condition.parse(listOf("equipment" to listOf(raw)), "SwitchSetupParser").single()
+            val equipment = (setup as content.bot.behaviour.condition.BotEquipmentSetup).items
+            val condition = requirement(map, "if").singleOrNull()
+            return BotSwitchSetup(equipment, condition)
+        }
+    }
+
+    object RetreatParser : ActionParser() {
+        override val required = setOf("safe_area", "regroup_hp_percent")
+        override val optional = setOf("if")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val safeArea = map["safe_area"] as String
+            val regroup = map["regroup_hp_percent"] as Int
+            val condition = requirement(map, "if").singleOrNull()
+            return BotRetreat(safeArea, regroup, condition)
+        }
+    }
+
     object InterfaceParser : ActionParser() {
         override val required = setOf("option", "id")
         override val optional = setOf("success")
@@ -263,6 +290,8 @@ sealed class ActionParser {
             "restart" to RestartParser,
             "interface" to InterfaceParser,
             "pray" to PrayParser,
+            "switch_setup" to SwitchSetupParser,
+            "retreat" to RetreatParser,
             "interface_close" to CloseInterfaceParser,
             "continue" to DialogueParser,
             "enter" to EnterParser,

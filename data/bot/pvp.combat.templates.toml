@@ -25,7 +25,7 @@ produces = [
 
 [pvp_intermediate_melee]
 template = "pvp_basic_melee"
-fields = { style = "$style", area = "$area" }
+fields = { style = "$style", area = "$area", safe_area = "$safe_area" }
 requires = [
     { skill = { id = "attack", min = 60 } },
     { skill = { id = "strength", min = 60 } },
@@ -39,6 +39,8 @@ setup = [
         { id = "shark", min = 14 },
         { id = "super_restore_4", min = 2 },
         { id = "super_strength_4", min = 1 },
+        { id = "rune_crossbow", min = 1, equippable = true },
+        { id = "adamant_bolts", min = 100 },
     ] },
     { area = { id = "$area" } },
 ]
@@ -47,6 +49,8 @@ actions = [
     { pray = { id = "protect_from_melee", if = { attacker_style = { equals = "melee" } } } },
     { pray = { id = "protect_from_missiles", if = { attacker_style = { equals = "ranged" } } } },
     { pray = { id = "protect_from_magic", if = { attacker_style = { equals = "magic" } } } },
+    { switch_setup = { equipment = { weapon = { id = "rune_crossbow" }, ammo = { id = "adamant_bolts" } }, if = { target_armor_type = { equals = "metal" } } } },
+    { retreat = { safe_area = "$safe_area", regroup_hp_percent = 70, if = { outmatched = { attackers_min = 2, own_hp_percent_max = 0.30 } } } },
     { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 30, success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area" } } } },
 ]
