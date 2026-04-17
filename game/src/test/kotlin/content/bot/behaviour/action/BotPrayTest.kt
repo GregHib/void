@@ -6,9 +6,11 @@ import content.bot.FakeWorld
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.Reason
+import content.bot.behaviour.condition.BotAlliesOnTile
 import content.skill.prayer.PrayerConfigs
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -123,5 +125,51 @@ class BotPrayTest {
         val state = BotPray("not_a_prayer").update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))
 
         assertTrue(state is BehaviourState.Failed)
+    }
+
+    @Test
+    fun `Gated condition true activates prayer`() {
+        player.experience.set(Skill.Prayer, Level.experience(Skill.Prayer, 70))
+        player.levels.set(Skill.Prayer, 70)
+
+        val state = BotPray("protect_from_melee", BotAlliesOnTile(min = 0)).update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))
+
+        assertEquals(BehaviourState.Success, state)
+        assertTrue(player.containsVarbit(PrayerConfigs.ACTIVE_PRAYERS, "protect_from_melee"))
+    }
+
+    @Test
+    fun `Gated condition false deactivates prayer when on`() {
+        player.experience.set(Skill.Prayer, Level.experience(Skill.Prayer, 70))
+        player.levels.set(Skill.Prayer, 70)
+        player.addVarbit(PrayerConfigs.ACTIVE_PRAYERS, "protect_from_melee", refresh = false)
+
+        val state = BotPray("protect_from_melee", BotAlliesOnTile(min = 5)).update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))
+
+        assertEquals(BehaviourState.Success, state)
+        assertFalse(player.containsVarbit(PrayerConfigs.ACTIVE_PRAYERS, "protect_from_melee"))
+    }
+
+    @Test
+    fun `Gated condition false leaves prayer off`() {
+        player.experience.set(Skill.Prayer, Level.experience(Skill.Prayer, 70))
+        player.levels.set(Skill.Prayer, 70)
+
+        val state = BotPray("protect_from_melee", BotAlliesOnTile(min = 5)).update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))
+
+        assertEquals(BehaviourState.Success, state)
+        assertFalse(player.containsVarbit(PrayerConfigs.ACTIVE_PRAYERS, "protect_from_melee"))
+    }
+
+    @Test
+    fun `Gated no prayer points returns success silently`() {
+        player.experience.set(Skill.Prayer, Level.experience(Skill.Prayer, 70))
+        player.levels.set(Skill.Prayer, 70)
+        player.levels.drain(Skill.Prayer, 70)
+
+        val state = BotPray("protect_from_melee", BotAlliesOnTile(min = 0)).update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))
+
+        assertEquals(BehaviourState.Success, state)
+        assertFalse(player.containsVarbit(PrayerConfigs.ACTIVE_PRAYERS, "protect_from_melee"))
     }
 }

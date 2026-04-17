@@ -60,10 +60,12 @@ sealed class ActionParser {
 
     object PrayParser : ActionParser() {
         override val required = setOf("id")
+        override val optional = setOf("if")
 
         override fun parse(map: Map<String, Any>): BotAction {
             val id = map["id"] as String
-            return BotPray(id)
+            val condition = requirement(map, "if").singleOrNull()
+            return BotPray(id, condition)
         }
     }
 
