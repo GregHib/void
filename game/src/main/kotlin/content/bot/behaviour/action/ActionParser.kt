@@ -73,6 +73,19 @@ sealed class ActionParser {
         }
     }
 
+    object SpecAttackParser : ActionParser() {
+        override val required = setOf("weapon", "fallback")
+        override val optional = setOf("min_energy", "if")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val weapon = map["weapon"] as String
+            val fallback = map["fallback"] as String
+            val minEnergy = map["min_energy"] as? Int ?: 250
+            val condition = requirement(map, "if").singleOrNull()
+            return BotSpecAttack(weapon, fallback, minEnergy, condition)
+        }
+    }
+
     object SwitchSetupParser : ActionParser() {
         override val required = setOf("equipment")
         override val optional = setOf("if")
@@ -304,6 +317,7 @@ sealed class ActionParser {
             "restart" to RestartParser,
             "interface" to InterfaceParser,
             "pray" to PrayParser,
+            "spec_attack" to SpecAttackParser,
             "switch_setup" to SwitchSetupParser,
             "retreat" to RetreatParser,
             "reposition" to RepositionParser,

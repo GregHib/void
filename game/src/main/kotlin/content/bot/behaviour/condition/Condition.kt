@@ -108,6 +108,7 @@ sealed class Condition(val priority: Int) {
             "target_armor_type" -> parseTargetArmorType(list)
             "outmatched" -> parseOutmatched(list)
             "allies_on_tile" -> parseAlliesOnTile(list)
+            "target_hp_percent" -> parseTargetHpPercent(list)
             "role" -> parseRole(list)
             else -> null
         }
@@ -140,6 +141,14 @@ sealed class Condition(val priority: Int) {
             val map = list.single()
             if (!map.containsKey("min") && !map.containsKey("max")) return null
             return BotAlliesOnTile(min = map["min"] as? Int, max = map["max"] as? Int)
+        }
+
+        private fun parseTargetHpPercent(list: List<Map<String, Any>>): Condition? {
+            val map = list.single()
+            val min = (map["min"] as? Number)?.toDouble()
+            val max = (map["max"] as? Number)?.toDouble()
+            if (min == null && max == null) return null
+            return BotTargetHpPercent(min = min, max = max)
         }
 
         private fun parseRole(list: List<Map<String, Any>>): Condition? {

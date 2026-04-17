@@ -32,7 +32,7 @@ data class BotFightPlayer(
     val targetScorer: TargetScorer? = null,
 ) : BotAction {
     override fun update(bot: Bot, world: BotWorld, frame: BehaviourFrame) = when {
-        healPercentage > 0 && bot.levels.get(Skill.Constitution) <= bot.levels.getMax(Skill.Constitution) / healPercentage -> eat(bot, world)
+        healPercentage > 0 && bot.levels.get(Skill.Constitution) <= bot.levels.getMax(Skill.Constitution) * healPercentage / 100 -> eat(bot, world)
         success?.check(bot.player) == true -> BehaviourState.Success
         bot.mode is PlayerOnPlayerInteract -> handleEngaged(bot, world)
         bot.mode is PlayerOnFloorItemInteract -> BehaviourState.Running
