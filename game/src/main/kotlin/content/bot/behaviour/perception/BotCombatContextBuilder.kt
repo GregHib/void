@@ -5,7 +5,7 @@ import content.entity.combat.Target
 import content.entity.combat.attacker
 import content.entity.combat.dead
 import content.entity.combat.underAttack
-import content.skill.melee.weapon.combatStyle
+import content.skill.melee.weapon.Weapon
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -41,13 +41,13 @@ object BotCombatContextBuilder {
             nearbyAllies = allies,
             enemiesByTile = byTile,
             incomingAttacker = attacker,
-            incomingAttackStyle = attacker?.let { categorize(it.combatStyle) },
+            incomingAttackStyle = attacker?.let { categorize(it) },
             lastHitReceivedTick = -1,
         )
     }
 
-    private fun categorize(style: String): String? = when (style) {
-        "stab", "slash", "crush" -> "melee"
+    private fun categorize(attacker: Player): String? = when (Weapon.type(attacker)) {
+        "melee" -> "melee"
         "range" -> "ranged"
         "magic" -> "magic"
         else -> null
