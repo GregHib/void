@@ -88,6 +88,16 @@ sealed class ActionParser {
         }
     }
 
+    object RepositionParser : ActionParser() {
+        override val optional = setOf("radius", "if")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val radius = map["radius"] as? Int ?: 1
+            val condition = requirement(map, "if").singleOrNull()
+            return BotReposition(radius, condition)
+        }
+    }
+
     object RetreatParser : ActionParser() {
         override val required = setOf("safe_area", "regroup_hp_percent")
         override val optional = setOf("if")
@@ -296,6 +306,7 @@ sealed class ActionParser {
             "pray" to PrayParser,
             "switch_setup" to SwitchSetupParser,
             "retreat" to RetreatParser,
+            "reposition" to RepositionParser,
             "interface_close" to CloseInterfaceParser,
             "continue" to DialogueParser,
             "enter" to EnterParser,
