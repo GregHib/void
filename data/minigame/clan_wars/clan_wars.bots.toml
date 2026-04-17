@@ -6,14 +6,34 @@ fields = { style = "style2", area = "clan_wars_ffa_safe_arena" }
 [clan_wars_ffa_safe_intermediate_melee]
 template = "pvp_intermediate_melee"
 capacity = 4
-fields = { style = "style2", area = "clan_wars_ffa_safe_arena", safe_area = "clan_wars_ffa_lobby" }
+fields = { style = "style2", area = "clan_wars_ffa_safe_arena", safe_area = "clan_wars_ffa_safe_lobby" }
 
 [clan_wars_ffa_safe_advanced_tank]
 template = "pvp_advanced_tank"
 capacity = 2
-fields = { style = "style2", area = "clan_wars_ffa_safe_arena", safe_area = "clan_wars_ffa_lobby" }
+fields = { style = "style2", area = "clan_wars_ffa_safe_arena", safe_area = "clan_wars_ffa_safe_lobby" }
 
 [clan_wars_ffa_safe_advanced_pure]
 template = "pvp_advanced_pure"
 capacity = 2
-fields = { style = "style2", area = "clan_wars_ffa_safe_arena", safe_area = "clan_wars_ffa_lobby" }
+fields = { style = "style2", area = "clan_wars_ffa_safe_arena", safe_area = "clan_wars_ffa_safe_lobby" }
+
+[clan_wars_ffa_dangerous_basic_melee]
+template = "pvp_basic_melee"
+capacity = 6
+fields = { style = "style2", area = "clan_wars_ffa_dangerous_arena" }
+
+[clan_wars_ffa_dangerous_intermediate_melee]
+template = "pvp_intermediate_melee"
+capacity = 4
+fields = { style = "style2", area = "clan_wars_ffa_dangerous_arena", safe_area = "clan_wars_ffa_dangerous_lobby" }
+
+[clan_wars_ffa_dangerous_advanced_tank]
+template = "pvp_advanced_tank"
+capacity = 2
+fields = { style = "style2", area = "clan_wars_ffa_dangerous_arena", safe_area = "clan_wars_ffa_dangerous_lobby" }
+
+[clan_wars_ffa_dangerous_advanced_pure]
+template = "pvp_advanced_pure"
+capacity = 2
+fields = { style = "style2", area = "clan_wars_ffa_dangerous_arena", safe_area = "clan_wars_ffa_dangerous_lobby" }

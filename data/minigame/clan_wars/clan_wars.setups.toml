@@ -27,3 +27,20 @@ actions = [
 produces = [
     { area = "clan_wars_ffa_safe_arena" },
 ]
+
+[enter_clan_wars_ffa_dangerous]
+weight = 100
+requires = [
+    { combat_level = { min = 30 } },
+]
+setup = [
+    { variable = { id = "warning_clan_wars_ffa_dangerous", equals = 0, default = 0 } },
+    { area = { id = "clan_wars_teleport" } },
+]
+actions = [
+    { object = { option = "Enter", id = "clan_wars_portal_ffa_dangerous", success = { interface_open = { id = "warning_clan_wars_ffa_safe" } } } },
+    { interface = { option = "Go in", id = "warning_clan_wars_ffa_safe:yes", success = { area = { id = "clan_wars_ffa_dangerous_arena" } } } },
+]
+produces = [
+    { area = "clan_wars_ffa_dangerous_arena" },
+]
