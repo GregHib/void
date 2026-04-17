@@ -143,6 +143,17 @@ class BotManager(
      * Assign a random activity that is available to the [bot].
      */
     private fun assignRandom(bot: Bot) {
+        val pinned = bot.pinned
+        if (pinned != null) {
+            bot.evaluate.clear()
+            val pinnedActivity = activities[pinned]
+            if (pinnedActivity != null && hasRequirements(bot, pinnedActivity)) {
+                assign(bot, pinnedActivity)
+            } else {
+                assign(bot, activityFallback(bot))
+            }
+            return
+        }
         if (bot.evaluate.isNotEmpty()) {
             updateAvailable(bot)
         }
@@ -366,7 +377,7 @@ class BotManager(
     /**
      * Remove all behaviours and free up activity slots
      */
-    private fun stop(bot: Bot) {
+    fun stop(bot: Bot) {
         for (frame in bot.frames) {
             if (frame.behaviour is BotActivity) {
                 slots.release(frame.behaviour)

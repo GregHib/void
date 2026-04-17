@@ -83,6 +83,10 @@ class BotCommands(
             val tier = pvpBotTiers[accountName] ?: return@playerDeath
             it.dropItems = false
             applyTier(bot, tier)
+            manager.stop(bot)
+            bot.blocked.remove(tier.activityId)
+            bot.evaluate.clear()
+            bot.previous = null
         }
 
         worldSpawn {
@@ -260,6 +264,7 @@ class BotCommands(
             pvpBotTiers[bot.player.accountName] = tier
             applyTier(bot, tier)
             manager.add(bot)
+            bot.pinned = tier.activityId
             bot.available.clear()
             bot.available.add(tier.activityId)
             bot.blocked.remove(tier.activityId)
@@ -340,35 +345,6 @@ class BotCommands(
     }
 
     companion object {
-        private val MELEE_BASIC = mapOf(
-            Skill.Attack to 70,
-            Skill.Strength to 70,
-            Skill.Defence to 60,
-            Skill.Constitution to 70,
-            Skill.Prayer to 43,
-        )
-        private val MELEE_INTERMEDIATE = mapOf(
-            Skill.Attack to 75,
-            Skill.Strength to 75,
-            Skill.Defence to 65,
-            Skill.Constitution to 75,
-            Skill.Prayer to 55,
-            Skill.Ranged to 65,
-        )
-        private val TANK = mapOf(
-            Skill.Attack to 70,
-            Skill.Strength to 70,
-            Skill.Defence to 80,
-            Skill.Constitution to 85,
-            Skill.Prayer to 55,
-        )
-        private val PURE = mapOf(
-            Skill.Attack to 75,
-            Skill.Strength to 95,
-            Skill.Defence to 1,
-            Skill.Constitution to 85,
-            Skill.Prayer to 70,
-        )
         private val ZERKER = mapOf(
             Skill.Attack to 60,
             Skill.Strength to 80,
@@ -413,13 +389,6 @@ class BotCommands(
         )
 
         private val SAFE_TIERS = listOf(
-            PvpTier("clan_wars_ffa_safe_basic_melee", MELEE_BASIC, "slash"),
-            PvpTier("clan_wars_ffa_safe_basic_melee", MELEE_BASIC, "slash"),
-            PvpTier("clan_wars_ffa_safe_basic_melee", MELEE_BASIC, "slash"),
-            PvpTier("clan_wars_ffa_safe_intermediate_melee", MELEE_INTERMEDIATE, "slash"),
-            PvpTier("clan_wars_ffa_safe_intermediate_melee", MELEE_INTERMEDIATE, "slash"),
-            PvpTier("clan_wars_ffa_safe_advanced_tank", TANK, "slash"),
-            PvpTier("clan_wars_ffa_safe_advanced_pure", PURE, "slash"),
             PvpTier("clan_wars_ffa_safe_zerker", ZERKER, "slash"),
             PvpTier("clan_wars_ffa_safe_dharoker", DHAROKER, "slash"),
             PvpTier("clan_wars_ffa_safe_ags_main", AGS_MAIN, "slash"),
@@ -429,13 +398,6 @@ class BotCommands(
         )
 
         private val DANGEROUS_TIERS = listOf(
-            PvpTier("clan_wars_ffa_dangerous_basic_melee", MELEE_BASIC, "slash"),
-            PvpTier("clan_wars_ffa_dangerous_basic_melee", MELEE_BASIC, "slash"),
-            PvpTier("clan_wars_ffa_dangerous_basic_melee", MELEE_BASIC, "slash"),
-            PvpTier("clan_wars_ffa_dangerous_intermediate_melee", MELEE_INTERMEDIATE, "slash"),
-            PvpTier("clan_wars_ffa_dangerous_intermediate_melee", MELEE_INTERMEDIATE, "slash"),
-            PvpTier("clan_wars_ffa_dangerous_advanced_tank", TANK, "slash"),
-            PvpTier("clan_wars_ffa_dangerous_advanced_pure", PURE, "slash"),
             PvpTier("clan_wars_ffa_dangerous_zerker", ZERKER, "slash"),
             PvpTier("clan_wars_ffa_dangerous_dharoker", DHAROKER, "slash"),
             PvpTier("clan_wars_ffa_dangerous_ags_main", AGS_MAIN, "slash"),

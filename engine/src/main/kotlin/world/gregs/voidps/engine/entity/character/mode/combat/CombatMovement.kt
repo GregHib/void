@@ -47,6 +47,10 @@ class CombatMovement(
             character.mode = EmptyMode
             return
         }
+        if (target["dead", false]) {
+            character.mode = EmptyMode
+            return
+        }
         if (character is NPC) {
             val spawn: Tile = character["spawn_tile"] ?: return
             val definition = get<CombatDefinitions>().get(character.transformDef["combat_def", character.id])
