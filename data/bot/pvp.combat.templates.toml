@@ -22,3 +22,31 @@ produces = [
     { skill = "attack" },
     { skill = "strength" },
 ]
+
+[pvp_intermediate_melee]
+template = "pvp_basic_melee"
+fields = { style = "$style", area = "$area" }
+requires = [
+    { skill = { id = "attack", min = 60 } },
+    { skill = { id = "strength", min = 60 } },
+    { skill = { id = "constitution", min = 60 } },
+    { skill = { id = "defence", min = 50 } },
+    { skill = { id = "prayer", min = 43 } },
+]
+setup = [
+    { equipment = { weapon = { id = "rune_scimitar,rune_longsword" }, body = { id = "rune_platebody" }, legs = { id = "rune_platelegs" }, head = { id = "rune_full_helm" } } },
+    { inventory = [
+        { id = "shark", min = 14 },
+        { id = "super_restore_4", min = 2 },
+        { id = "super_strength_4", min = 1 },
+    ] },
+    { area = { id = "$area" } },
+]
+actions = [
+    { interface = { option = "Select", id = "combat_styles:$style" } },
+    { pray = { id = "protect_from_melee", if = { attacker_style = { equals = "melee" } } } },
+    { pray = { id = "protect_from_missiles", if = { attacker_style = { equals = "ranged" } } } },
+    { pray = { id = "protect_from_magic", if = { attacker_style = { equals = "magic" } } } },
+    { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 30, success = { area = { id = "$area", present = false } } } },
+    { restart = { success = { area = { id = "$area" } } } },
+]

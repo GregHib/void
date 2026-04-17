@@ -2,3 +2,8 @@
 template = "pvp_basic_melee"
 capacity = 6
 fields = { style = "style2", area = "clan_wars_ffa_safe_arena" }
+
+[clan_wars_ffa_safe_intermediate_melee]
+template = "pvp_intermediate_melee"
+capacity = 4
+fields = { style = "style2", area = "clan_wars_ffa_safe_arena" }
