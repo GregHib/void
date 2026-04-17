@@ -13,6 +13,8 @@ import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.restrict.ValidItemRestriction
@@ -131,5 +133,19 @@ class BotPerceptionConditionsTest {
         setContext()
         assertTrue(BotTargetArmorType(setOf("none")).check(player))
         assertFalse(BotTargetArmorType(setOf("metal")).check(player))
+    }
+
+    @Test
+    fun `Role condition matches detected role`() {
+        setLevel(Skill.Attack, 60)
+        setLevel(Skill.Strength, 90)
+        setLevel(Skill.Defence, 1)
+        assertTrue(BotRoleCondition(setOf("pure")).check(player))
+        assertFalse(BotRoleCondition(setOf("tank")).check(player))
+    }
+
+    private fun setLevel(skill: Skill, level: Int) {
+        player.experience.set(skill, Level.experience(skill, level))
+        player.levels.set(skill, level)
     }
 }

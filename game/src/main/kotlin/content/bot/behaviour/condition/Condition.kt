@@ -108,6 +108,7 @@ sealed class Condition(val priority: Int) {
             "target_armor_type" -> parseTargetArmorType(list)
             "outmatched" -> parseOutmatched(list)
             "allies_on_tile" -> parseAlliesOnTile(list)
+            "role" -> parseRole(list)
             else -> null
         }
 
@@ -139,6 +140,11 @@ sealed class Condition(val priority: Int) {
             val map = list.single()
             if (!map.containsKey("min") && !map.containsKey("max")) return null
             return BotAlliesOnTile(min = map["min"] as? Int, max = map["max"] as? Int)
+        }
+
+        private fun parseRole(list: List<Map<String, Any>>): Condition? {
+            val equals = parseEnumSet(list) ?: return null
+            return BotRoleCondition(equals.map { it.lowercase() }.toSet())
         }
 
         private fun parseInventory(list: List<Map<String, Any>>): BotInventorySetup = BotInventorySetup(parseItems(list))
