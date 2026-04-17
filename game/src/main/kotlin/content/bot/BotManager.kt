@@ -100,14 +100,29 @@ class BotManager(
                 return
             }
             updateCombatContext(bot)
+            runReactive(bot)
             execute(bot)
         } catch (exception: Exception) {
             logger.error(exception) { "Error in bot '${bot.player.accountName}' tick ${bot.frames.map { it.behaviour.id }}." }
         }
     }
 
+    private fun runReactive(bot: Bot) {
+        val rootFrame = bot.frames.firstOrNull() ?: return
+        val reactive = rootFrame.behaviour.reactive
+        if (reactive.isEmpty()) return
+        for (action in reactive) {
+            try {
+                action.update(bot, world, rootFrame)
+            } catch (exception: Exception) {
+                logger.error(exception) { "Reactive action failed for bot '${bot.player.accountName}' activity=${rootFrame.behaviour.id} action=$action." }
+            }
+        }
+    }
+
     private fun updateCombatContext(bot: Bot) {
-        if (bot.previous?.id?.startsWith("pvp_") == true) {
+        val activity = bot.frames.firstOrNull()?.behaviour
+        if (activity != null && activity.reactive.isNotEmpty()) {
             bot.combatContext = BotCombatContextBuilder.build(bot)
         } else if (bot.combatContext != null) {
             bot.combatContext = null
