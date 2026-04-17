@@ -44,6 +44,8 @@ class BotManager(
     val activityNames: Set<String>
         get() = activities.keys
 
+    fun activity(id: String): BotActivity? = activities[id]
+
     fun load(files: ConfigFiles): BotManager {
         loadBehaviours(files, activities, resolvers)
         reloadGroups()
