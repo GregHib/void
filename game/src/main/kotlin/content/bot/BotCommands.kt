@@ -271,8 +271,9 @@ class BotCommands(
     private fun applyTier(bot: Bot, tier: PvpTier) {
         val target = bot.player
         for ((skill, level) in tier.levels) {
-            target.experience.set(skill, Level.experience(skill, level))
-            target.levels.set(skill, if (skill == Skill.Constitution) level * 10 else level)
+            val stored = if (skill == Skill.Constitution) level * 10 else level
+            target.experience.set(skill, Level.experience(skill, stored))
+            target.levels.set(skill, stored)
         }
         target["combat_style"] = tier.style
         val activity = manager.activity(tier.activityId) ?: return
@@ -368,6 +369,48 @@ class BotCommands(
             Skill.Constitution to 85,
             Skill.Prayer to 70,
         )
+        private val ZERKER = mapOf(
+            Skill.Attack to 60,
+            Skill.Strength to 80,
+            Skill.Defence to 45,
+            Skill.Constitution to 75,
+            Skill.Prayer to 44,
+        )
+        private val DHAROKER = mapOf(
+            Skill.Attack to 70,
+            Skill.Strength to 70,
+            Skill.Defence to 70,
+            Skill.Constitution to 70,
+            Skill.Prayer to 43,
+        )
+        private val AGS_MAIN = mapOf(
+            Skill.Attack to 75,
+            Skill.Strength to 85,
+            Skill.Defence to 75,
+            Skill.Constitution to 85,
+            Skill.Prayer to 55,
+        )
+        private val OBBY_PURE = mapOf(
+            Skill.Attack to 1,
+            Skill.Strength to 80,
+            Skill.Defence to 1,
+            Skill.Constitution to 70,
+        )
+        private val MSB_PURE = mapOf(
+            Skill.Attack to 1,
+            Skill.Strength to 1,
+            Skill.Defence to 1,
+            Skill.Constitution to 70,
+            Skill.Ranged to 70,
+        )
+        private val KARILS_TANK = mapOf(
+            Skill.Attack to 1,
+            Skill.Strength to 1,
+            Skill.Defence to 70,
+            Skill.Constitution to 75,
+            Skill.Ranged to 75,
+            Skill.Prayer to 44,
+        )
 
         private val SAFE_TIERS = listOf(
             PvpTier("clan_wars_ffa_safe_basic_melee", MELEE_BASIC, "slash"),
@@ -377,6 +420,12 @@ class BotCommands(
             PvpTier("clan_wars_ffa_safe_intermediate_melee", MELEE_INTERMEDIATE, "slash"),
             PvpTier("clan_wars_ffa_safe_advanced_tank", TANK, "slash"),
             PvpTier("clan_wars_ffa_safe_advanced_pure", PURE, "slash"),
+            PvpTier("clan_wars_ffa_safe_zerker", ZERKER, "slash"),
+            PvpTier("clan_wars_ffa_safe_dharoker", DHAROKER, "slash"),
+            PvpTier("clan_wars_ffa_safe_ags_main", AGS_MAIN, "slash"),
+            PvpTier("clan_wars_ffa_safe_obby_pure", OBBY_PURE, "crush"),
+            PvpTier("clan_wars_ffa_safe_msb_pure", MSB_PURE, "rapid"),
+            PvpTier("clan_wars_ffa_safe_karils_tank", KARILS_TANK, "rapid"),
         )
 
         private val DANGEROUS_TIERS = listOf(
@@ -387,6 +436,12 @@ class BotCommands(
             PvpTier("clan_wars_ffa_dangerous_intermediate_melee", MELEE_INTERMEDIATE, "slash"),
             PvpTier("clan_wars_ffa_dangerous_advanced_tank", TANK, "slash"),
             PvpTier("clan_wars_ffa_dangerous_advanced_pure", PURE, "slash"),
+            PvpTier("clan_wars_ffa_dangerous_zerker", ZERKER, "slash"),
+            PvpTier("clan_wars_ffa_dangerous_dharoker", DHAROKER, "slash"),
+            PvpTier("clan_wars_ffa_dangerous_ags_main", AGS_MAIN, "slash"),
+            PvpTier("clan_wars_ffa_dangerous_obby_pure", OBBY_PURE, "crush"),
+            PvpTier("clan_wars_ffa_dangerous_msb_pure", MSB_PURE, "rapid"),
+            PvpTier("clan_wars_ffa_dangerous_karils_tank", KARILS_TANK, "rapid"),
         )
 
         private val PVP_ARENAS = mapOf(

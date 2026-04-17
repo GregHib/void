@@ -1,95 +1,61 @@
-[pvp_basic_melee]
-requires = [
-    { skill = { id = "attack", min = 50 } },
-    { skill = { id = "strength", min = 50 } },
-    { skill = { id = "constitution", min = 50 } },
-    { skill = { id = "defence", min = 40 } },
-]
-setup = [
-    { equipment = { weapon = { id = "rune_scimitar,rune_longsword" }, chest = { id = "rune_platebody" }, legs = { id = "rune_platelegs" }, hat = { id = "rune_full_helm" } } },
-    { inventory = [
-        { id = "shark", min = 12 },
-        { id = "super_strength_4", min = 1 },
-    ] },
-    { area = { id = "$area" } },
-]
-actions = [
-    { interface = { option = "Select", id = "combat_styles:$style" } },
-    { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 20, success = { area = { id = "$area", present = false } } } },
-    { restart = { success = { area = { id = "$area", present = false } } } },
-]
-produces = [
-    { skill = "attack" },
-    { skill = "strength" },
-]
-
-[pvp_intermediate_melee]
+[pvp_zerker]
 requires = [
     { skill = { id = "attack", min = 60 } },
-    { skill = { id = "strength", min = 60 } },
-    { skill = { id = "constitution", min = 60 } },
-    { skill = { id = "defence", min = 50 } },
-    { skill = { id = "prayer", min = 43 } },
-]
-setup = [
-    { equipment = { weapon = { id = "rune_scimitar,rune_longsword" }, chest = { id = "rune_platebody" }, legs = { id = "rune_platelegs" }, hat = { id = "rune_full_helm" } } },
-    { inventory = [
-        { id = "shark", min = 14 },
-        { id = "super_restore_4", min = 2 },
-        { id = "super_strength_4", min = 1 },
-        { id = "rune_crossbow", min = 1, equippable = true },
-        { id = "adamant_bolts", min = 100 },
-    ] },
-    { area = { id = "$area" } },
-]
-actions = [
-    { interface = { option = "Select", id = "combat_styles:$style" } },
-    { switch_setup = { equipment = { weapon = { id = "rune_crossbow" }, ammo = { id = "adamant_bolts" } }, if = { target_armor_type = { equals = "metal" } } } },
-    { retreat = { safe_area = "$safe_area", regroup_hp_percent = 70, if = { outmatched = { attackers_min = 2, own_hp_percent_max = 0.30 } } } },
-    { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 30, success = { area = { id = "$area", present = false } } } },
-    { restart = { success = { area = { id = "$area", present = false } } } },
-]
-reactive = [
-    { pray = { id = "protect_from_melee", if = { attacker_style = { equals = "melee" } } } },
-    { pray = { id = "protect_from_missiles", if = { attacker_style = { equals = "ranged" } } } },
-    { pray = { id = "protect_from_magic", if = { attacker_style = { equals = "magic" } } } },
-]
-produces = [
-    { skill = "attack" },
-    { skill = "strength" },
-]
-
-[pvp_advanced_tank]
-requires = [
-    { role = { equals = "tank" } },
-    { skill = { id = "attack", min = 60 } },
-    { skill = { id = "strength", min = 60 } },
-    { skill = { id = "defence", min = 70 } },
+    { skill = { id = "strength", min = 80 } },
+    { skill = { id = "defence", min = 45, max = 45 } },
     { skill = { id = "constitution", min = 75 } },
-    { skill = { id = "prayer", min = 43 } },
+    { skill = { id = "prayer", min = 44 } },
 ]
 setup = [
-    { equipment = { weapon = { id = "rune_scimitar,rune_longsword" }, chest = { id = "rune_platebody" }, legs = { id = "rune_platelegs" }, hat = { id = "rune_full_helm" } } },
+    { equipment = { weapon = { id = "abyssal_whip" }, chest = { id = "fighter_torso" }, legs = { id = "rune_platelegs" }, hat = { id = "helm_of_neitiznot" }, feet = { id = "dragon_boots" }, amulet = { id = "amulet_of_fury" }, ring = { id = "berserker_ring" }, cape = { id = "obsidian_cape" } } },
     { inventory = [
         { id = "shark", min = 16 },
         { id = "super_restore_4", min = 2 },
-        { id = "super_strength_4", min = 1 },
+        { id = "super_strength_4", min = 2 },
+        { id = "dragon_dagger_p++", min = 1, equippable = true },
+        { id = "granite_maul", min = 1, equippable = true },
     ] },
     { area = { id = "$area" } },
 ]
 actions = [
     { interface = { option = "Select", id = "combat_styles:$style" } },
-    { reposition = { radius = 1, if = { allies_on_tile = { min = 1 } } } },
-    { retreat = { safe_area = "$safe_area", regroup_hp_percent = 80, if = { outmatched = { attackers_min = 3 } } } },
-    { player = {
-        option = "Attack", radius = 10, delay = 1, heal_percent = 40,
-        target_score = [
-            { input = "attacker_of_ally", curve = { type = "linear" }, weight = 4 },
-            { input = "target_hp_percent", curve = { type = "logistic", midpoint = 0.4, steepness = 8 }, weight = 2 },
-            { input = "distance", curve = { type = "exponential", base = 0.9 }, weight = 1 },
-        ],
-        success = { area = { id = "$area", present = false } },
-    } },
+    { retreat = { safe_area = "$safe_area", regroup_hp_percent = 60, if = { outmatched = { attackers_min = 2, own_hp_percent_max = 0.25 } } } },
+    { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 40, success = { area = { id = "$area", present = false } } } },
+    { restart = { success = { area = { id = "$area", present = false } } } },
+]
+reactive = [
+    { pray = { id = "protect_from_melee", if = { attacker_style = { equals = "melee" } } } },
+    { pray = { id = "protect_from_missiles", if = { attacker_style = { equals = "ranged" } } } },
+    { pray = { id = "protect_from_magic", if = { attacker_style = { equals = "magic" } } } },
+    { spec_attack = { weapon = "dragon_dagger_p++", fallback = "abyssal_whip", min_energy = 250, if = { target_hp_percent = { max = 0.25 } } } },
+]
+produces = [
+    { skill = "attack" },
+    { skill = "strength" },
+]
+
+[pvp_dharoker]
+requires = [
+    { skill = { id = "attack", min = 70 } },
+    { skill = { id = "strength", min = 70 } },
+    { skill = { id = "defence", min = 70 } },
+    { skill = { id = "constitution", min = 70 } },
+    { skill = { id = "prayer", min = 43 } },
+]
+setup = [
+    { equipment = { weapon = { id = "dharoks_greataxe" }, chest = { id = "dharoks_platebody" }, legs = { id = "dharoks_platelegs" }, hat = { id = "dharoks_helm" }, feet = { id = "dragon_boots" }, cape = { id = "obsidian_cape" } } },
+    { inventory = [
+        { id = "shark", min = 16 },
+        { id = "super_restore_4", min = 2 },
+        { id = "super_strength_4", min = 1 },
+        { id = "dwarven_rock_cake", min = 1 },
+    ] },
+    { area = { id = "$area" } },
+]
+actions = [
+    { interface = { option = "Select", id = "combat_styles:$style" } },
+    { retreat = { safe_area = "$safe_area", regroup_hp_percent = 70, if = { outmatched = { attackers_min = 3 } } } },
+    { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 25, success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area", present = false } } } },
 ]
 reactive = [
@@ -98,43 +64,125 @@ reactive = [
     { pray = { id = "protect_from_magic", if = { attacker_style = { equals = "magic" } } } },
 ]
 produces = [
-    { skill = "defence" },
-    { skill = "constitution" },
+    { skill = "strength" },
 ]
 
-[pvp_advanced_pure]
+[pvp_ags_main]
 requires = [
-    { role = { equals = "pure" } },
-    { skill = { id = "attack", min = 60 } },
+    { skill = { id = "attack", min = 75 } },
     { skill = { id = "strength", min = 85 } },
-    { skill = { id = "defence", max = 1 } },
+    { skill = { id = "defence", min = 75 } },
+    { skill = { id = "constitution", min = 85 } },
+    { skill = { id = "prayer", min = 55 } },
 ]
 setup = [
-    { equipment = { weapon = { id = "rune_scimitar,rune_longsword" } } },
+    { equipment = { weapon = { id = "armadyl_godsword" }, chest = { id = "torva_platebody,bandos_chestplate" }, legs = { id = "torva_platelegs,bandos_tassets" }, hat = { id = "torva_full_helm,helm_of_neitiznot" }, feet = { id = "bandos_boots" }, amulet = { id = "amulet_of_fury" }, ring = { id = "berserker_ring" }, cape = { id = "obsidian_cape" } } },
     { inventory = [
         { id = "shark", min = 16 },
         { id = "super_restore_4", min = 2 },
+        { id = "saradomin_brew_4", min = 2 },
+        { id = "overload_4", min = 1 },
+        { id = "abyssal_whip", min = 1, equippable = true },
+    ] },
+    { area = { id = "$area" } },
+]
+actions = [
+    { interface = { option = "Select", id = "combat_styles:$style" } },
+    { retreat = { safe_area = "$safe_area", regroup_hp_percent = 70, if = { outmatched = { attackers_min = 3 } } } },
+    { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 40, success = { area = { id = "$area", present = false } } } },
+    { restart = { success = { area = { id = "$area", present = false } } } },
+]
+reactive = [
+    { pray = { id = "protect_from_melee", if = { attacker_style = { equals = "melee" } } } },
+    { pray = { id = "protect_from_missiles", if = { attacker_style = { equals = "ranged" } } } },
+    { pray = { id = "protect_from_magic", if = { attacker_style = { equals = "magic" } } } },
+    { spec_attack = { weapon = "armadyl_godsword", fallback = "armadyl_godsword", min_energy = 500, if = { target_hp_percent = { max = 0.25 } } } },
+]
+produces = [
+    { skill = "attack" },
+    { skill = "strength" },
+]
+
+[pvp_obby_pure]
+requires = [
+    { skill = { id = "strength", min = 80 } },
+    { skill = { id = "defence", max = 1 } },
+    { skill = { id = "constitution", min = 70 } },
+]
+setup = [
+    { equipment = { weapon = { id = "granite_maul" }, cape = { id = "obsidian_cape" } } },
+    { inventory = [
+        { id = "shark", min = 18 },
         { id = "super_strength_4", min = 2 },
     ] },
     { area = { id = "$area" } },
 ]
 actions = [
-    { interface = { option = "Select", id = "combat_styles:$style" } },
-    { reposition = { radius = 1, if = { allies_on_tile = { min = 1 } } } },
     { retreat = { safe_area = "$safe_area", regroup_hp_percent = 60, if = { outmatched = { attackers_min = 2, own_hp_percent_max = 0.25 } } } },
-    { player = {
-        option = "Attack", radius = 12, delay = 1, heal_percent = 50,
-        target_score = [
-            { input = "target_hp_percent", curve = { type = "logistic", midpoint = 0.35, steepness = 10 }, weight = 4 },
-            { input = "combat_level_delta", curve = { type = "linear", min = -20, max = 20 }, weight = 1 },
-        ],
-        success = { area = { id = "$area", present = false } },
-    } },
+    { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 40, success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area", present = false } } } },
-]
-reactive = [
-    { pray = { id = "piety", if = { skill = { id = "prayer", min = 70 } } } },
 ]
 produces = [
     { skill = "strength" },
+]
+
+[pvp_msb_pure]
+requires = [
+    { skill = { id = "ranged", min = 70 } },
+    { skill = { id = "defence", max = 1 } },
+    { skill = { id = "constitution", min = 70 } },
+]
+setup = [
+    { equipment = { weapon = { id = "magic_shortbow" }, chest = { id = "black_dragonhide_body" }, legs = { id = "black_dragonhide_chaps" }, hat = { id = "archer_helm" }, feet = { id = "ranger_boots" }, hands = { id = "black_dragonhide_vambraces" }, ammo = { id = "rune_arrow" }, cape = { id = "avas_accumulator" } } },
+    { inventory = [
+        { id = "shark", min = 16 },
+        { id = "super_restore_4", min = 1 },
+        { id = "rune_arrow", min = 300 },
+    ] },
+    { area = { id = "$area" } },
+]
+actions = [
+    { interface = { option = "Select", id = "combat_styles:$style" } },
+    { retreat = { safe_area = "$safe_area", regroup_hp_percent = 50, if = { outmatched = { attackers_min = 2, own_hp_percent_max = 0.25 } } } },
+    { player = { option = "Attack", radius = 12, delay = 1, heal_percent = 40, success = { area = { id = "$area", present = false } } } },
+    { restart = { success = { area = { id = "$area", present = false } } } },
+]
+reactive = [
+    { pray = { id = "protect_from_melee", if = { attacker_style = { equals = "melee" } } } },
+    { pray = { id = "protect_from_missiles", if = { attacker_style = { equals = "ranged" } } } },
+    { pray = { id = "protect_from_magic", if = { attacker_style = { equals = "magic" } } } },
+]
+produces = [
+    { skill = "ranged" },
+]
+
+[pvp_karils_tank]
+requires = [
+    { skill = { id = "ranged", min = 75 } },
+    { skill = { id = "defence", min = 70 } },
+    { skill = { id = "constitution", min = 75 } },
+    { skill = { id = "prayer", min = 44 } },
+]
+setup = [
+    { equipment = { weapon = { id = "rune_crossbow" }, chest = { id = "karils_top" }, legs = { id = "karils_skirt" }, hat = { id = "karils_coif" }, feet = { id = "ranger_boots" }, hands = { id = "black_dragonhide_vambraces" }, ammo = { id = "runite_bolts" }, amulet = { id = "amulet_of_fury" }, cape = { id = "avas_accumulator" } } },
+    { inventory = [
+        { id = "shark", min = 16 },
+        { id = "super_restore_4", min = 2 },
+        { id = "runite_bolts", min = 300 },
+    ] },
+    { area = { id = "$area" } },
+]
+actions = [
+    { interface = { option = "Select", id = "combat_styles:$style" } },
+    { retreat = { safe_area = "$safe_area", regroup_hp_percent = 70, if = { outmatched = { attackers_min = 3 } } } },
+    { player = { option = "Attack", radius = 12, delay = 1, heal_percent = 40, success = { area = { id = "$area", present = false } } } },
+    { restart = { success = { area = { id = "$area", present = false } } } },
+]
+reactive = [
+    { pray = { id = "protect_from_melee", if = { attacker_style = { equals = "melee" } } } },
+    { pray = { id = "protect_from_missiles", if = { attacker_style = { equals = "ranged" } } } },
+    { pray = { id = "protect_from_magic", if = { attacker_style = { equals = "magic" } } } },
+]
+produces = [
+    { skill = "ranged" },
 ]

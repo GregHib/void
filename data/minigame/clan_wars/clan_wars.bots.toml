@@ -1,39 +1,59 @@
-[clan_wars_ffa_safe_basic_melee]
-template = "pvp_basic_melee"
-capacity = 6
-fields = { style = "style2", area = "clan_wars_ffa_safe_arena" }
-
-[clan_wars_ffa_safe_intermediate_melee]
-template = "pvp_intermediate_melee"
-capacity = 4
-fields = { style = "style2", area = "clan_wars_ffa_safe_arena", safe_area = "clan_wars_ffa_safe_lobby" }
-
-[clan_wars_ffa_safe_advanced_tank]
-template = "pvp_advanced_tank"
+[clan_wars_ffa_safe_zerker]
+template = "pvp_zerker"
 capacity = 2
 fields = { style = "style2", area = "clan_wars_ffa_safe_arena", safe_area = "clan_wars_ffa_safe_lobby" }
 
-[clan_wars_ffa_safe_advanced_pure]
-template = "pvp_advanced_pure"
+[clan_wars_ffa_safe_dharoker]
+template = "pvp_dharoker"
 capacity = 2
 fields = { style = "style2", area = "clan_wars_ffa_safe_arena", safe_area = "clan_wars_ffa_safe_lobby" }
 
-[clan_wars_ffa_dangerous_basic_melee]
-template = "pvp_basic_melee"
-capacity = 6
-fields = { style = "style2", area = "clan_wars_ffa_dangerous_arena" }
+[clan_wars_ffa_safe_ags_main]
+template = "pvp_ags_main"
+capacity = 2
+fields = { style = "style2", area = "clan_wars_ffa_safe_arena", safe_area = "clan_wars_ffa_safe_lobby" }
 
-[clan_wars_ffa_dangerous_intermediate_melee]
-template = "pvp_intermediate_melee"
-capacity = 4
+[clan_wars_ffa_safe_obby_pure]
+template = "pvp_obby_pure"
+capacity = 2
+fields = { area = "clan_wars_ffa_safe_arena", safe_area = "clan_wars_ffa_safe_lobby" }
+
+[clan_wars_ffa_safe_msb_pure]
+template = "pvp_msb_pure"
+capacity = 2
+fields = { style = "style2", area = "clan_wars_ffa_safe_arena", safe_area = "clan_wars_ffa_safe_lobby" }
+
+[clan_wars_ffa_safe_karils_tank]
+template = "pvp_karils_tank"
+capacity = 2
+fields = { style = "style2", area = "clan_wars_ffa_safe_arena", safe_area = "clan_wars_ffa_safe_lobby" }
+
+[clan_wars_ffa_dangerous_zerker]
+template = "pvp_zerker"
+capacity = 2
 fields = { style = "style2", area = "clan_wars_ffa_dangerous_arena", safe_area = "clan_wars_ffa_dangerous_lobby" }
 
-[clan_wars_ffa_dangerous_advanced_tank]
-template = "pvp_advanced_tank"
+[clan_wars_ffa_dangerous_dharoker]
+template = "pvp_dharoker"
 capacity = 2
 fields = { style = "style2", area = "clan_wars_ffa_dangerous_arena", safe_area = "clan_wars_ffa_dangerous_lobby" }
 
-[clan_wars_ffa_dangerous_advanced_pure]
-template = "pvp_advanced_pure"
+[clan_wars_ffa_dangerous_ags_main]
+template = "pvp_ags_main"
+capacity = 2
+fields = { style = "style2", area = "clan_wars_ffa_dangerous_arena", safe_area = "clan_wars_ffa_dangerous_lobby" }
+
+[clan_wars_ffa_dangerous_obby_pure]
+template = "pvp_obby_pure"
+capacity = 2
+fields = { area = "clan_wars_ffa_dangerous_arena", safe_area = "clan_wars_ffa_dangerous_lobby" }
+
+[clan_wars_ffa_dangerous_msb_pure]
+template = "pvp_msb_pure"
+capacity = 2
+fields = { style = "style2", area = "clan_wars_ffa_dangerous_arena", safe_area = "clan_wars_ffa_dangerous_lobby" }
+
+[clan_wars_ffa_dangerous_karils_tank]
+template = "pvp_karils_tank"
 capacity = 2
 fields = { style = "style2", area = "clan_wars_ffa_dangerous_arena", safe_area = "clan_wars_ffa_dangerous_lobby" }
