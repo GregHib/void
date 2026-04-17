@@ -115,11 +115,13 @@ class BotRepositionTest {
         val allies = mutableListOf<Player>()
         repeat(3) { allies.add(ally(origin)) }
         repeat(2) { allies.add(ally(busyNeighbor)) }
-        for (dx in -1..1) for (dy in -1..1) {
-            if (dx == 0 && dy == 0) continue
-            if (dx == 1 && dy == 0) continue
-            if (dx == -1 && dy == 0) continue
-            allies.add(ally(origin.add(dx, dy)))
+        for (dx in -1..1) {
+            for (dy in -1..1) {
+                if (dx == 0 && dy == 0) continue
+                if (dx == 1 && dy == 0) continue
+                if (dx == -1 && dy == 0) continue
+                allies.add(ally(origin.add(dx, dy)))
+            }
         }
         bot.combatContext = BotCombatContext.EMPTY.copy(nearbyAllies = allies)
 
