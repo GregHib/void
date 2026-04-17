@@ -1,6 +1,7 @@
 package content.bot.behaviour.action
 
 import content.bot.behaviour.condition.Condition
+import content.bot.behaviour.utility.UtilityCurveParser
 
 sealed class ActionParser {
     open val required = emptySet<String>()
@@ -44,8 +45,9 @@ sealed class ActionParser {
 
     object InteractPlayerParser : ActionParser() {
         override val required = setOf("option")
-        override val optional = setOf("delay", "success", "radius", "heal_percent", "loot_over_value")
+        override val optional = setOf("delay", "success", "radius", "heal_percent", "loot_over_value", "target_score")
 
+        @Suppress("UNCHECKED_CAST")
         override fun parse(map: Map<String, Any>): BotAction {
             val option = map["option"] as String
             require(option == "Attack") { "Only 'Attack' option is supported for 'player' actions, got '$option'." }
@@ -54,7 +56,9 @@ sealed class ActionParser {
             val radius = map["radius"] as? Int ?: 10
             val healPercent = map["heal_percent"] as? Int ?: 20
             val lootOverValue = map["loot_over_value"] as? Int ?: 0
-            return BotFightPlayer(delay, success, radius, healPercent, lootOverValue)
+            val rawScore = map["target_score"] as? List<Map<String, Any>>
+            val scorer = rawScore?.let { UtilityCurveParser.parseScorer(it) }
+            return BotFightPlayer(delay, success, radius, healPercent, lootOverValue, scorer)
         }
     }
 
