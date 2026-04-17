@@ -2,7 +2,9 @@
 
 package content.bot
 
-import content.bot.behaviour.condition.Condition
+import com.github.michaelbull.logging.InlineLogger
+import content.bot.behaviour.condition.BotEquipmentSetup
+import content.bot.behaviour.condition.BotInventorySetup
 import content.quest.questJournal
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.Contexts
@@ -28,8 +30,12 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.sex
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
 import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.network.client.DummyClient
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
@@ -47,8 +53,10 @@ class BotCommands(
     accountDefinitions: AccountDefinitions,
 ) : Script {
 
+    private val pvpLogger = InlineLogger("PvpBots")
     val bots = mutableListOf<Player>()
     val names = mutableListOf<String>()
+    private val pvpBotTiers = mutableMapOf<String, PvpTier>()
 
     var counter = 0
 
@@ -66,7 +74,15 @@ class BotCommands(
         playerDespawn {
             if (isBot) {
                 manager.remove(bot)
+                pvpBotTiers.remove(accountName)
             }
+        }
+
+        playerDeath {
+            pvpLogger.info { "playerDeath fired for '$accountName', tier=${pvpBotTiers[accountName]?.activityId}, keys=${pvpBotTiers.keys}" }
+            val tier = pvpBotTiers[accountName] ?: return@playerDeath
+            it.dropItems = false
+            applyTier(bot, tier)
         }
 
         worldSpawn {
@@ -237,10 +253,11 @@ class BotCommands(
             val bot = Player(tile = spawn, accountName = name).initBot()
             loader.connect(bot.player, DummyClient(), viewport = Settings["development.bots.live", false])
             setAppearance(bot.player)
-            bot.player.inventory.add("coins", 10000)
             bot.player.viewport?.loaded = true
+            bot.player["debug"] = true
             delay(3)
             val tier = arena.tiers.random(random)
+            pvpBotTiers[bot.player.accountName] = tier
             applyTier(bot, tier)
             manager.add(bot)
             bot.available.clear()
@@ -255,15 +272,35 @@ class BotCommands(
         val target = bot.player
         for ((skill, level) in tier.levels) {
             target.experience.set(skill, Level.experience(skill, level))
-            target.levels.set(skill, level)
+            target.levels.set(skill, if (skill == Skill.Constitution) level * 10 else level)
         }
         target["combat_style"] = tier.style
         val activity = manager.activity(tier.activityId) ?: return
-        for (requirement in activity.requires) {
-            Condition.grant(target, requirement)
+        target.inventory.transaction { clear() }
+        target.equipment.transaction { clear() }
+        target.inventory.add("coins", 10000)
+        for (condition in activity.setup) {
+            when (condition) {
+                is BotEquipmentSetup -> target.equipment.transaction {
+                    for ((slot, item) in condition.items) {
+                        val id = item.ids.filter { it != "empty" }.randomOrNull() ?: continue
+                        set(slot.index, Item(id, item.min ?: 1))
+                    }
+                }.also { ok -> if (!ok) pvpLogger.warn { "equipment transaction failed for ${target.accountName}: ${target.equipment.transaction.error}" } }
+                is BotInventorySetup -> target.inventory.transaction {
+                    for (item in condition.items) {
+                        val id = item.ids.filter { it != "empty" }.randomOrNull() ?: continue
+                        add(id, item.min ?: 1)
+                    }
+                }.also { ok -> if (!ok) pvpLogger.warn { "inventory transaction failed for ${target.accountName}: ${target.inventory.transaction.error}" } }
+                else -> Unit
+            }
         }
-        for (requirement in activity.setup) {
-            Condition.grant(target, requirement)
+        pvpLogger.info { "applyTier ${tier.activityId} for ${target.accountName}: levels=${tier.levels.map { "${it.key}=cur${target.levels.get(it.key)}/max${target.levels.getMax(it.key)}" }}" }
+        pvpLogger.info { "  inventory=${(0 until target.inventory.size).mapNotNull { target.inventory.getOrNull(it) }.filter { it.id.isNotEmpty() }.map { "${it.id}x${it.amount}" }}" }
+        pvpLogger.info { "  equipment=${(0 until target.equipment.size).mapNotNull { target.equipment.getOrNull(it) }.filter { it.id.isNotEmpty() }.map { "${it.id}x${it.amount}" }}" }
+        for (condition in activity.setup) {
+            pvpLogger.info { "  setup.check ${condition::class.simpleName} = ${condition.check(target)}" }
         }
     }
 
@@ -303,20 +340,33 @@ class BotCommands(
 
     companion object {
         private val MELEE_BASIC = mapOf(
-            Skill.Attack to 70, Skill.Strength to 70, Skill.Defence to 60,
-            Skill.Constitution to 70, Skill.Prayer to 43,
+            Skill.Attack to 70,
+            Skill.Strength to 70,
+            Skill.Defence to 60,
+            Skill.Constitution to 70,
+            Skill.Prayer to 43,
         )
         private val MELEE_INTERMEDIATE = mapOf(
-            Skill.Attack to 75, Skill.Strength to 75, Skill.Defence to 65,
-            Skill.Constitution to 75, Skill.Prayer to 55, Skill.Ranged to 65,
+            Skill.Attack to 75,
+            Skill.Strength to 75,
+            Skill.Defence to 65,
+            Skill.Constitution to 75,
+            Skill.Prayer to 55,
+            Skill.Ranged to 65,
         )
         private val TANK = mapOf(
-            Skill.Attack to 70, Skill.Strength to 70, Skill.Defence to 80,
-            Skill.Constitution to 85, Skill.Prayer to 55,
+            Skill.Attack to 70,
+            Skill.Strength to 70,
+            Skill.Defence to 80,
+            Skill.Constitution to 85,
+            Skill.Prayer to 55,
         )
         private val PURE = mapOf(
-            Skill.Attack to 75, Skill.Strength to 95, Skill.Defence to 1,
-            Skill.Constitution to 85, Skill.Prayer to 70,
+            Skill.Attack to 75,
+            Skill.Strength to 95,
+            Skill.Defence to 1,
+            Skill.Constitution to 85,
+            Skill.Prayer to 70,
         )
 
         private val SAFE_TIERS = listOf(

@@ -6,7 +6,7 @@ requires = [
     { skill = { id = "defence", min = 40 } },
 ]
 setup = [
-    { equipment = { weapon = { id = "rune_scimitar,rune_longsword" }, body = { id = "rune_platebody" }, legs = { id = "rune_platelegs" }, head = { id = "rune_full_helm" } } },
+    { equipment = { weapon = { id = "rune_scimitar,rune_longsword" }, chest = { id = "rune_platebody" }, legs = { id = "rune_platelegs" }, hat = { id = "rune_full_helm" } } },
     { inventory = [
         { id = "shark", min = 12 },
         { id = "super_strength_4", min = 1 },
@@ -16,7 +16,7 @@ setup = [
 actions = [
     { interface = { option = "Select", id = "combat_styles:$style" } },
     { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 20, success = { area = { id = "$area", present = false } } } },
-    { restart = { success = { area = { id = "$area" } } } },
+    { restart = { success = { area = { id = "$area", present = false } } } },
 ]
 produces = [
     { skill = "attack" },
@@ -24,8 +24,6 @@ produces = [
 ]
 
 [pvp_intermediate_melee]
-template = "pvp_basic_melee"
-fields = { style = "$style", area = "$area", safe_area = "$safe_area" }
 requires = [
     { skill = { id = "attack", min = 60 } },
     { skill = { id = "strength", min = 60 } },
@@ -34,7 +32,7 @@ requires = [
     { skill = { id = "prayer", min = 43 } },
 ]
 setup = [
-    { equipment = { weapon = { id = "rune_scimitar,rune_longsword" }, body = { id = "rune_platebody" }, legs = { id = "rune_platelegs" }, head = { id = "rune_full_helm" } } },
+    { equipment = { weapon = { id = "rune_scimitar,rune_longsword" }, chest = { id = "rune_platebody" }, legs = { id = "rune_platelegs" }, hat = { id = "rune_full_helm" } } },
     { inventory = [
         { id = "shark", min = 14 },
         { id = "super_restore_4", min = 2 },
@@ -52,16 +50,30 @@ actions = [
     { switch_setup = { equipment = { weapon = { id = "rune_crossbow" }, ammo = { id = "adamant_bolts" } }, if = { target_armor_type = { equals = "metal" } } } },
     { retreat = { safe_area = "$safe_area", regroup_hp_percent = 70, if = { outmatched = { attackers_min = 2, own_hp_percent_max = 0.30 } } } },
     { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 30, success = { area = { id = "$area", present = false } } } },
-    { restart = { success = { area = { id = "$area" } } } },
+    { restart = { success = { area = { id = "$area", present = false } } } },
+]
+produces = [
+    { skill = "attack" },
+    { skill = "strength" },
 ]
 
 [pvp_advanced_tank]
-template = "pvp_intermediate_melee"
-fields = { style = "$style", area = "$area", safe_area = "$safe_area" }
 requires = [
     { role = { equals = "tank" } },
+    { skill = { id = "attack", min = 60 } },
+    { skill = { id = "strength", min = 60 } },
     { skill = { id = "defence", min = 70 } },
     { skill = { id = "constitution", min = 75 } },
+    { skill = { id = "prayer", min = 43 } },
+]
+setup = [
+    { equipment = { weapon = { id = "rune_scimitar,rune_longsword" }, chest = { id = "rune_platebody" }, legs = { id = "rune_platelegs" }, hat = { id = "rune_full_helm" } } },
+    { inventory = [
+        { id = "shark", min = 16 },
+        { id = "super_restore_4", min = 2 },
+        { id = "super_strength_4", min = 1 },
+    ] },
+    { area = { id = "$area" } },
 ]
 actions = [
     { interface = { option = "Select", id = "combat_styles:$style" } },
@@ -79,17 +91,28 @@ actions = [
         ],
         success = { area = { id = "$area", present = false } },
     } },
-    { restart = { success = { area = { id = "$area" } } } },
+    { restart = { success = { area = { id = "$area", present = false } } } },
+]
+produces = [
+    { skill = "defence" },
+    { skill = "constitution" },
 ]
 
 [pvp_advanced_pure]
-template = "pvp_intermediate_melee"
-fields = { style = "$style", area = "$area", safe_area = "$safe_area" }
 requires = [
     { role = { equals = "pure" } },
     { skill = { id = "attack", min = 60 } },
     { skill = { id = "strength", min = 85 } },
     { skill = { id = "defence", max = 1 } },
+]
+setup = [
+    { equipment = { weapon = { id = "rune_scimitar,rune_longsword" } } },
+    { inventory = [
+        { id = "shark", min = 16 },
+        { id = "super_restore_4", min = 2 },
+        { id = "super_strength_4", min = 2 },
+    ] },
+    { area = { id = "$area" } },
 ]
 actions = [
     { interface = { option = "Select", id = "combat_styles:$style" } },
@@ -104,5 +127,8 @@ actions = [
         ],
         success = { area = { id = "$area", present = false } },
     } },
-    { restart = { success = { area = { id = "$area" } } } },
+    { restart = { success = { area = { id = "$area", present = false } } } },
+]
+produces = [
+    { skill = "strength" },
 ]

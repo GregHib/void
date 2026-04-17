@@ -12,34 +12,56 @@ produces = [
 ]
 
 [enter_clan_wars_ffa_safe]
-weight = 100
+weight = -10
 requires = [
     { combat_level = { min = 30 } },
-]
-setup = [
-    { variable = { id = "warning_clan_wars_ffa_safe", equals = 0, default = 0 } },
     { area = { id = "clan_wars_teleport" } },
 ]
 actions = [
-    { object = { option = "Enter", id = "clan_wars_portal_ffa_safe", success = { interface_open = { id = "warning_clan_wars_ffa_safe" } } } },
-    { interface = { option = "Go in", id = "warning_clan_wars_ffa_safe:yes", success = { area = { id = "clan_wars_ffa_safe_arena" } } } },
+    { object = { option = "Enter", id = "clan_wars_portal_ffa_safe", radius = 15, success = { interface_open = { id = "warning_clan_wars_ffa_safe" } } } },
+    { interface = { option = "Go in", id = "warning_clan_wars_ffa_safe:yes", success = { area = { id = "clan_wars_ffa_safe_lobby" } } } },
+    { tile = { x = 2815, y = 5515, radius = 2 } },
+]
+produces = [
+    { area = "clan_wars_ffa_safe_arena" },
+]
+
+[enter_clan_wars_ffa_safe_from_lobby]
+weight = -10
+requires = [
+    { combat_level = { min = 30 } },
+    { area = { id = "clan_wars_ffa_safe_lobby" } },
+]
+actions = [
+    { tile = { x = 2815, y = 5515, radius = 2 } },
 ]
 produces = [
     { area = "clan_wars_ffa_safe_arena" },
 ]
 
 [enter_clan_wars_ffa_dangerous]
-weight = 100
+weight = -10
 requires = [
     { combat_level = { min = 30 } },
-]
-setup = [
-    { variable = { id = "warning_clan_wars_ffa_dangerous", equals = 0, default = 0 } },
     { area = { id = "clan_wars_teleport" } },
 ]
 actions = [
-    { object = { option = "Enter", id = "clan_wars_portal_ffa_dangerous", success = { interface_open = { id = "warning_clan_wars_ffa_safe" } } } },
-    { interface = { option = "Go in", id = "warning_clan_wars_ffa_safe:yes", success = { area = { id = "clan_wars_ffa_dangerous_arena" } } } },
+    { object = { option = "Enter", id = "clan_wars_portal_ffa_dangerous", radius = 15, success = { interface_open = { id = "warning_clan_wars_ffa_safe" } } } },
+    { interface = { option = "Go in", id = "warning_clan_wars_ffa_safe:yes", success = { area = { id = "clan_wars_ffa_dangerous_lobby" } } } },
+    { tile = { x = 3007, y = 5515, radius = 2 } },
+]
+produces = [
+    { area = "clan_wars_ffa_dangerous_arena" },
+]
+
+[enter_clan_wars_ffa_dangerous_from_lobby]
+weight = -10
+requires = [
+    { combat_level = { min = 30 } },
+    { area = { id = "clan_wars_ffa_dangerous_lobby" } },
+]
+actions = [
+    { tile = { x = 3007, y = 5515, radius = 2 } },
 ]
 produces = [
     { area = "clan_wars_ffa_dangerous_arena" },
