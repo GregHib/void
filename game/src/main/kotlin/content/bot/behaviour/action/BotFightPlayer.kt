@@ -6,6 +6,7 @@ import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.BotWorld
 import content.bot.behaviour.Reason
 import content.bot.behaviour.condition.Condition
+import content.bot.behaviour.utility.TargetScorer
 import content.entity.combat.Target
 import content.entity.combat.dead
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -28,14 +29,33 @@ data class BotFightPlayer(
     val radius: Int = 10,
     val healPercentage: Int = 20,
     val lootOverValue: Int = 0,
+    val targetScorer: TargetScorer? = null,
 ) : BotAction {
     override fun update(bot: Bot, world: BotWorld, frame: BehaviourFrame) = when {
         healPercentage > 0 && bot.levels.get(Skill.Constitution) <= bot.levels.getMax(Skill.Constitution) / healPercentage -> eat(bot, world)
         success?.check(bot.player) == true -> BehaviourState.Success
-        bot.mode is PlayerOnPlayerInteract -> if (success == null) BehaviourState.Success else BehaviourState.Running
+        bot.mode is PlayerOnPlayerInteract -> handleEngaged(bot, world)
         bot.mode is PlayerOnFloorItemInteract -> BehaviourState.Running
         bot.mode is EmptyMode -> search(bot, world)
         else -> null
+    }
+
+    private fun handleEngaged(bot: Bot, world: BotWorld): BehaviourState {
+        if (targetScorer != null) {
+            val context = bot.combatContext
+            val mode = bot.mode as PlayerOnPlayerInteract
+            if (context != null && context.nearbyEnemies.isNotEmpty()) {
+                val best = targetScorer.pick(bot.player, context.nearbyEnemies, context)
+                if (best != null && best !== mode.target) {
+                    val attackOption = bot.player.options.indexOf("Attack")
+                    if (attackOption != -1) {
+                        world.execute(bot.player, InteractPlayer(best.index, attackOption))
+                        return BehaviourState.Running
+                    }
+                }
+            }
+        }
+        return if (success == null) BehaviourState.Success else BehaviourState.Running
     }
 
     private fun eat(bot: Bot, world: BotWorld): BehaviourState {
@@ -73,18 +93,31 @@ data class BotFightPlayer(
                 }
                 return BehaviourState.Running
             }
-            if (attackOption == -1) {
-                continue
+        }
+        if (attackOption == -1) {
+            return handleNoTarget()
+        }
+        val target = pickTarget(bot)
+        if (target != null) {
+            val valid = world.execute(bot.player, InteractPlayer(target.index, attackOption))
+            if (!valid) {
+                return BehaviourState.Failed(Reason.Invalid("Invalid player interaction: ${target.index} $attackOption"))
             }
-            for (target in enemiesAt(bot, tile)) {
-                val valid = world.execute(bot.player, InteractPlayer(target.index, attackOption))
-                if (!valid) {
-                    return BehaviourState.Failed(Reason.Invalid("Invalid player interaction: ${target.index} $attackOption"))
-                }
-                return BehaviourState.Running
-            }
+            return BehaviourState.Running
         }
         return handleNoTarget()
+    }
+
+    private fun pickTarget(bot: Bot): Player? {
+        val context = bot.combatContext
+        if (targetScorer != null && context != null && context.nearbyEnemies.isNotEmpty()) {
+            return targetScorer.pick(bot.player, context.nearbyEnemies, context)
+        }
+        for (tile in Spiral.spiral(bot.player.tile, radius)) {
+            val first = enemiesAt(bot, tile).firstOrNull()
+            if (first != null) return first
+        }
+        return null
     }
 
     private fun enemiesAt(bot: Bot, tile: Tile): List<Player> {

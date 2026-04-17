@@ -54,3 +54,49 @@ actions = [
     { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 30, success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area" } } } },
 ]
+
+[pvp_advanced_tank]
+template = "pvp_intermediate_melee"
+fields = { style = "$style", area = "$area", safe_area = "$safe_area" }
+requires = [
+    { role = { equals = "tank" } },
+    { skill = { id = "defence", min = 70 } },
+    { skill = { id = "constitution", min = 75 } },
+]
+actions = [
+    { interface = { option = "Select", id = "combat_styles:$style" } },
+    { pray = { id = "protect_from_melee", if = { attacker_style = { equals = "melee" } } } },
+    { pray = { id = "protect_from_missiles", if = { attacker_style = { equals = "ranged" } } } },
+    { pray = { id = "protect_from_magic", if = { attacker_style = { equals = "magic" } } } },
+    { retreat = { safe_area = "$safe_area", regroup_hp_percent = 80, if = { outmatched = { attackers_min = 3 } } } },
+    { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 40,
+        target_score = [
+            { input = "attacker_of_ally", curve = { type = "linear" }, weight = 4 },
+            { input = "target_hp_percent", curve = { type = "logistic", midpoint = 0.4, steepness = 8 }, weight = 2 },
+            { input = "distance", curve = { type = "exponential", base = 0.9 }, weight = 1 },
+        ],
+        success = { area = { id = "$area", present = false } } } },
+    { restart = { success = { area = { id = "$area" } } } },
+]
+
+[pvp_advanced_pure]
+template = "pvp_intermediate_melee"
+fields = { style = "$style", area = "$area", safe_area = "$safe_area" }
+requires = [
+    { role = { equals = "pure" } },
+    { skill = { id = "attack", min = 60 } },
+    { skill = { id = "strength", min = 85 } },
+    { skill = { id = "defence", max = 1 } },
+]
+actions = [
+    { interface = { option = "Select", id = "combat_styles:$style" } },
+    { pray = { id = "piety", if = { skill = { id = "prayer", min = 70 } } } },
+    { retreat = { safe_area = "$safe_area", regroup_hp_percent = 60, if = { outmatched = { attackers_min = 2, own_hp_percent_max = 0.25 } } } },
+    { player = { option = "Attack", radius = 12, delay = 1, heal_percent = 50,
+        target_score = [
+            { input = "target_hp_percent", curve = { type = "logistic", midpoint = 0.35, steepness = 10 }, weight = 4 },
+            { input = "combat_level_delta", curve = { type = "linear", min = -20, max = 20 }, weight = 1 },
+        ],
+        success = { area = { id = "$area", present = false } } } },
+    { restart = { success = { area = { id = "$area" } } } },
+]
