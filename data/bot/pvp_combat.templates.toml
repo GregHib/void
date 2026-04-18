@@ -110,10 +110,11 @@ requires = [
     { skill = { id = "constitution", min = 70 } },
 ]
 setup = [
-    { equipment = { weapon = { id = "granite_maul" }, cape = { id = "obsidian_cape" } } },
+    { equipment = { weapon = { id = "tzhaar_ket_om" }, chest = { id = "iron_platebody" }, legs = { id = "iron_platelegs" }, hat = { id = "bearhead" }, amulet = { id = "berserker_necklace" }, cape = { id = "obsidian_cape" } } },
     { inventory = [
         { id = "shark", min = 18 },
         { id = "super_strength_4", min = 2 },
+        { id = "granite_maul", min = 1, equippable = true },
     ] },
     { area = { id = "$area" } },
 ]
@@ -121,6 +122,9 @@ actions = [
     { retreat = { safe_area = "$safe_area", regroup_hp_percent = 60, if = { outmatched = { attackers_min = 2, own_hp_percent_max = 0.25 } } } },
     { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 40, success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area", present = false } } } },
+]
+reactive = [
+    { spec_attack = { weapon = "granite_maul", fallback = "tzhaar_ket_om", min_energy = 500, if = { target_hp_percent = { max = 0.35 } } } },
 ]
 produces = [
     { skill = "strength" },
@@ -133,11 +137,11 @@ requires = [
     { skill = { id = "constitution", min = 70 } },
 ]
 setup = [
-    { equipment = { weapon = { id = "magic_shortbow" }, chest = { id = "black_dragonhide_body" }, legs = { id = "black_dragonhide_chaps" }, hat = { id = "archer_helm" }, feet = { id = "ranger_boots" }, hands = { id = "black_dragonhide_vambraces" }, ammo = { id = "rune_arrow" }, cape = { id = "avas_accumulator" } } },
+    { equipment = { weapon = { id = "magic_shortbow" }, chest = { id = "black_dragonhide_body" }, legs = { id = "black_dragonhide_chaps" }, hat = { id = "archer_helm" }, feet = { id = "ranger_boots" }, hands = { id = "black_dragonhide_vambraces" }, ammo = { id = "rune_arrow", min = 10000 }, cape = { id = "avas_accumulator" } } },
     { inventory = [
         { id = "shark", min = 16 },
         { id = "super_restore_4", min = 1 },
-        { id = "rune_arrow", min = 300 },
+        { id = "rune_arrow", min = 10000 },
     ] },
     { area = { id = "$area" } },
 ]
@@ -164,11 +168,11 @@ requires = [
     { skill = { id = "prayer", min = 44 } },
 ]
 setup = [
-    { equipment = { weapon = { id = "rune_crossbow" }, chest = { id = "karils_top" }, legs = { id = "karils_skirt" }, hat = { id = "karils_coif" }, feet = { id = "ranger_boots" }, hands = { id = "black_dragonhide_vambraces" }, ammo = { id = "runite_bolts" }, amulet = { id = "amulet_of_fury" }, cape = { id = "avas_accumulator" } } },
+    { equipment = { weapon = { id = "rune_crossbow" }, chest = { id = "karils_top" }, legs = { id = "karils_skirt" }, hat = { id = "karils_coif" }, feet = { id = "ranger_boots" }, hands = { id = "black_dragonhide_vambraces" }, ammo = { id = "runite_bolts", min = 10000 }, amulet = { id = "amulet_of_fury" }, cape = { id = "avas_accumulator" } } },
     { inventory = [
         { id = "shark", min = 16 },
         { id = "super_restore_4", min = 2 },
-        { id = "runite_bolts", min = 300 },
+        { id = "runite_bolts", min = 10000 },
     ] },
     { area = { id = "$area" } },
 ]
