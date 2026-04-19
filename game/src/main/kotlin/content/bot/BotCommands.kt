@@ -265,6 +265,7 @@ class BotCommands(
             applyTier(bot, tier)
             manager.add(bot)
             bot.pinned = tier.activityId
+            bot.refresh = { applyTier(bot, tier) }
             bot.available.clear()
             bot.available.add(tier.activityId)
             bot.blocked.remove(tier.activityId)

@@ -14,6 +14,7 @@ import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.loadBehaviours
 import content.bot.behaviour.perception.BotCombatContextBuilder
+import content.bot.behaviour.condition.BotInArea
 import content.bot.behaviour.setup.DynamicResolvers
 import content.bot.behaviour.setup.Resolver
 import world.gregs.voidps.engine.data.ConfigFiles
@@ -290,8 +291,16 @@ class BotManager(
             return
         }
         val debug = bot.player["debug", false]
+        var refreshed = false
         for (requirement in behaviour.setup) {
             if (requirement.check(bot.player)) {
+                continue
+            }
+            if (bot.pinned == behaviour.id && requirement !is BotInArea) {
+                if (!refreshed) {
+                    bot.refresh?.invoke()
+                    refreshed = true
+                }
                 continue
             }
             frame.blocked.removeAll(DynamicResolvers.ids())

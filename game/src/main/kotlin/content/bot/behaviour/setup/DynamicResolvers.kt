@@ -1,5 +1,6 @@
 package content.bot.behaviour.setup
 
+import content.area.wilderness.inPvp
 import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.action.BotCloseInterface
 import content.bot.behaviour.action.BotGoTo
@@ -36,8 +37,8 @@ object DynamicResolvers {
 
     fun resolver(player: Player, condition: Condition): Resolver? = when (condition) {
         is BotInArea -> Resolver("go_to_area", -1, actions = listOf(BotGoTo(condition.id)))
-        is BotEquipmentSetup -> resolveEquipment(player, condition.items)
-        is BotInventorySetup -> resolveInventory(player, condition.items)
+        is BotEquipmentSetup -> if (player.inPvp) null else resolveEquipment(player, condition.items)
+        is BotInventorySetup -> if (player.inPvp) null else resolveInventory(player, condition.items)
         else -> null
     }
 
