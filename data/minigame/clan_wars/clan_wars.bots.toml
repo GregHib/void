@@ -69,3 +69,27 @@ template = "pvp_karils_tank"
 capacity = 3
 timeout = 500
 fields = { style = "style2", area = "clan_wars_ffa_dangerous_arena", safe_area = "clan_wars_ffa_dangerous_lobby" }
+
+[clan_wars_ffa_safe_ancient_tank]
+template = "pvp_ancient_tank"
+capacity = 3
+timeout = 500
+fields = { area = "clan_wars_ffa_safe_arena", safe_area = "clan_wars_ffa_safe_lobby" }
+
+[clan_wars_ffa_safe_ancient_hybrid]
+template = "pvp_ancient_hybrid"
+capacity = 3
+timeout = 500
+fields = { area = "clan_wars_ffa_safe_arena", safe_area = "clan_wars_ffa_safe_lobby" }
+
+[clan_wars_ffa_dangerous_ancient_tank]
+template = "pvp_ancient_tank"
+capacity = 3
+timeout = 500
+fields = { area = "clan_wars_ffa_dangerous_arena", safe_area = "clan_wars_ffa_dangerous_lobby" }
+
+[clan_wars_ffa_dangerous_ancient_hybrid]
+template = "pvp_ancient_hybrid"
+capacity = 3
+timeout = 500
+fields = { area = "clan_wars_ffa_dangerous_arena", safe_area = "clan_wars_ffa_dangerous_lobby" }

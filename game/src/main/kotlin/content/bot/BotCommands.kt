@@ -387,6 +387,21 @@ class BotCommands(
             Skill.Ranged to 75,
             Skill.Prayer to 44,
         )
+        private val ANCIENT_TANK = mapOf(
+            Skill.Magic to 94,
+            Skill.Defence to 70,
+            Skill.Constitution to 80,
+            Skill.Prayer to 43,
+        )
+        private val ANCIENT_HYBRID = mapOf(
+            Skill.Magic to 94,
+            Skill.Attack to 75,
+            Skill.Strength to 80,
+            Skill.Ranged to 75,
+            Skill.Defence to 70,
+            Skill.Constitution to 85,
+            Skill.Prayer to 55,
+        )
 
         private val SAFE_TIERS = listOf(
             PvpTier("clan_wars_ffa_safe_zerker", ZERKER, "slash"),
@@ -395,6 +410,8 @@ class BotCommands(
             PvpTier("clan_wars_ffa_safe_obby_pure", OBBY_PURE, "crush"),
             PvpTier("clan_wars_ffa_safe_msb_pure", MSB_PURE, "rapid"),
             PvpTier("clan_wars_ffa_safe_karils_tank", KARILS_TANK, "rapid"),
+            PvpTier("clan_wars_ffa_safe_ancient_tank", ANCIENT_TANK, "accurate"),
+            PvpTier("clan_wars_ffa_safe_ancient_hybrid", ANCIENT_HYBRID, "accurate"),
         )
 
         private val DANGEROUS_TIERS = listOf(
@@ -404,6 +421,8 @@ class BotCommands(
             PvpTier("clan_wars_ffa_dangerous_obby_pure", OBBY_PURE, "crush"),
             PvpTier("clan_wars_ffa_dangerous_msb_pure", MSB_PURE, "rapid"),
             PvpTier("clan_wars_ffa_dangerous_karils_tank", KARILS_TANK, "rapid"),
+            PvpTier("clan_wars_ffa_dangerous_ancient_tank", ANCIENT_TANK, "accurate"),
+            PvpTier("clan_wars_ffa_dangerous_ancient_hybrid", ANCIENT_HYBRID, "accurate"),
         )
 
         private val PVP_ARENAS = mapOf(
