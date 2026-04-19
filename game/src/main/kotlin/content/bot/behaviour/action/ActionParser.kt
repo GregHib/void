@@ -86,6 +86,24 @@ sealed class ActionParser {
         }
     }
 
+    object CastSpellParser : ActionParser() {
+        override val optional = setOf("delay", "success", "radius", "heal_percent", "target_score", "family", "kite", "area")
+
+        @Suppress("UNCHECKED_CAST")
+        override fun parse(map: Map<String, Any>): BotAction {
+            val delay = map["delay"] as? Int ?: 0
+            val success = requirement(map, "success").singleOrNull()
+            val radius = map["radius"] as? Int ?: 10
+            val healPercent = map["heal_percent"] as? Int ?: 40
+            val rawScore = map["target_score"] as? List<Map<String, Any>>
+            val scorer = rawScore?.let { UtilityCurveParser.parseScorer(it) }
+            val family = map["family"] as? String ?: "ice"
+            val kite = map["kite"] as? Boolean ?: true
+            val area = map["area"] as? String
+            return BotCastSpell(delay, success, radius, healPercent, scorer, family, kite, area)
+        }
+    }
+
     object SwitchSetupParser : ActionParser() {
         override val required = setOf("equipment")
         override val optional = setOf("if")
@@ -318,6 +336,7 @@ sealed class ActionParser {
             "interface" to InterfaceParser,
             "pray" to PrayParser,
             "spec_attack" to SpecAttackParser,
+            "cast_spell" to CastSpellParser,
             "switch_setup" to SwitchSetupParser,
             "retreat" to RetreatParser,
             "reposition" to RepositionParser,

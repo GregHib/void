@@ -190,3 +190,81 @@ reactive = [
 produces = [
     { skill = "ranged" },
 ]
+
+[pvp_ancient_tank]
+requires = [
+    { skill = { id = "magic", min = 94 } },
+    { skill = { id = "defence", min = 70 } },
+    { skill = { id = "constitution", min = 80 } },
+    { skill = { id = "prayer", min = 43 } },
+]
+setup = [
+    { equipment = { weapon = { id = "ancient_staff" }, chest = { id = "ahrims_robe_top" }, legs = { id = "ahrims_robe_skirt" }, hat = { id = "ahrims_hood" }, feet = { id = "infinity_boots" }, amulet = { id = "amulet_of_fury" }, cape = { id = "obsidian_cape" } } },
+    { inventory = [
+        { id = "shark", min = 14 },
+        { id = "saradomin_brew_4", min = 2 },
+        { id = "super_restore_4", min = 2 },
+        { id = "blood_rune", min = 10000 },
+        { id = "death_rune", min = 10000 },
+        { id = "water_rune", min = 10000 },
+        { id = "chaos_rune", min = 10000 },
+        { id = "air_rune", min = 10000 },
+    ] },
+    { area = { id = "$area" } },
+]
+actions = [
+    { retreat = { safe_area = "$safe_area", regroup_hp_percent = 60, if = { outmatched = { attackers_min = 3 } } } },
+    { cast_spell = { family = "ice", radius = 12, delay = 1, heal_percent = 40, kite = true, area = "$area", success = { area = { id = "$area", present = false } } } },
+    { restart = { success = { area = { id = "$area", present = false } } } },
+]
+reactive = [
+    { pray = { id = "protect_from_melee", if = { attacker_style = { equals = "melee" } } } },
+    { pray = { id = "protect_from_missiles", if = { attacker_style = { equals = "ranged" } } } },
+    { pray = { id = "protect_from_magic", if = { attacker_style = { equals = "magic" } } } },
+]
+produces = [
+    { skill = "magic" },
+]
+
+[pvp_ancient_hybrid]
+requires = [
+    { skill = { id = "magic", min = 94 } },
+    { skill = { id = "attack", min = 75 } },
+    { skill = { id = "strength", min = 80 } },
+    { skill = { id = "ranged", min = 75 } },
+    { skill = { id = "defence", min = 70 } },
+    { skill = { id = "constitution", min = 85 } },
+    { skill = { id = "prayer", min = 55 } },
+]
+setup = [
+    { equipment = { weapon = { id = "ancient_staff" }, chest = { id = "virtus_robe_top,ahrims_robe_top" }, legs = { id = "virtus_robe_legs,ahrims_robe_skirt" }, hat = { id = "virtus_mask,ahrims_hood" }, feet = { id = "infinity_boots" }, amulet = { id = "amulet_of_fury" }, ring = { id = "berserker_ring" }, cape = { id = "obsidian_cape" } } },
+    { inventory = [
+        { id = "shark", min = 14 },
+        { id = "saradomin_brew_4", min = 2 },
+        { id = "super_restore_4", min = 2 },
+        { id = "blood_rune", min = 10000 },
+        { id = "death_rune", min = 10000 },
+        { id = "water_rune", min = 10000 },
+        { id = "chaos_rune", min = 10000 },
+        { id = "air_rune", min = 10000 },
+        { id = "armadyl_godsword", min = 1, equippable = true },
+        { id = "dark_bow", min = 1, equippable = true },
+        { id = "dragon_arrow", min = 50 },
+    ] },
+    { area = { id = "$area" } },
+]
+actions = [
+    { retreat = { safe_area = "$safe_area", regroup_hp_percent = 65, if = { outmatched = { attackers_min = 3 } } } },
+    { cast_spell = { family = "ice", radius = 12, delay = 1, heal_percent = 40, kite = true, area = "$area", success = { area = { id = "$area", present = false } } } },
+    { restart = { success = { area = { id = "$area", present = false } } } },
+]
+reactive = [
+    { pray = { id = "protect_from_melee", if = { attacker_style = { equals = "melee" } } } },
+    { pray = { id = "protect_from_missiles", if = { attacker_style = { equals = "ranged" } } } },
+    { pray = { id = "protect_from_magic", if = { attacker_style = { equals = "magic" } } } },
+    { spec_attack = { weapon = "armadyl_godsword", fallback = "ancient_staff", min_energy = 500, if = { target_frozen = { hp_max = 0.30 } } } },
+    { spec_attack = { weapon = "dark_bow", fallback = "ancient_staff", min_energy = 550, if = { target_frozen = { hp_max = 0.30 } } } },
+]
+produces = [
+    { skill = "magic" },
+]
