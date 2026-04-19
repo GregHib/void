@@ -369,7 +369,10 @@ class BotManager(
             bot.frames.pop()
         }
         if (behaviour is BotActivity) {
-            bot.blocked.add(behaviour.id)
+            val pinnedTimeout = state.reason is Reason.Timeout && bot.pinned == behaviour.id
+            if (!pinnedTimeout) {
+                bot.blocked.add(behaviour.id)
+            }
             slots.release(behaviour)
         }
     }
