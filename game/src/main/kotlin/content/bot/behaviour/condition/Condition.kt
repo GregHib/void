@@ -111,7 +111,25 @@ sealed class Condition(val priority: Int) {
             "target_hp_percent" -> parseTargetHpPercent(list)
             "target_frozen" -> parseTargetFrozen(list)
             "role" -> parseRole(list)
+            "any" -> parseAny(list)
             else -> null
+        }
+
+        @Suppress("UNCHECKED_CAST")
+        private fun parseAny(list: List<Map<String, Any>>): Condition {
+            val children = mutableListOf<Condition>()
+            for (map in list) {
+                val key = map.keys.singleOrNull() ?: error("any child must be single-key map: $map")
+                val value = map[key]
+                val subList: List<Map<String, Any>> = when (value) {
+                    is Map<*, *> -> listOf(value as Map<String, Any>)
+                    is List<*> -> value as List<Map<String, Any>>
+                    else -> error("any child value must be map or list: $map")
+                }
+                val child = parse(key, subList) ?: error("No condition parser for '$key' in any.")
+                children.add(child)
+            }
+            return BotAnyCondition(children)
         }
 
         private fun parseEnumSet(list: List<Map<String, Any>>): Set<String>? {

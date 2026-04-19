@@ -289,7 +289,8 @@ class BotCommands(
             when (condition) {
                 is BotEquipmentSetup -> target.equipment.transaction {
                     for ((slot, item) in condition.items) {
-                        val id = item.ids.filter { it != "empty" }.randomOrNull() ?: continue
+                        val usable = item.ids.filter { it != "empty" && !it.endsWith("_noted") && !it.endsWith("_broken") }
+                        val id = usable.randomOrNull() ?: item.ids.filter { it != "empty" }.randomOrNull() ?: continue
                         set(slot.index, Item(id, item.min ?: 1))
                     }
                 }.also { ok -> if (!ok) pvpLogger.warn { "equipment transaction failed for ${target.accountName}: ${target.equipment.transaction.error}" } }
