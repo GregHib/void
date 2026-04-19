@@ -18,6 +18,7 @@ data class Bot(val player: Player) : Character by player {
     var evaluate = mutableSetOf<String>()
     var combatContext: BotCombatContext? = null
     var pinned: String? = null
+    var refresh: (() -> Unit)? = null
 
     fun noTask() = frames.isEmpty()
 
