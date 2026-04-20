@@ -146,12 +146,12 @@ class PlayerCommands(
         player.message("${target.tile} Zone(${target.tile.zone.id}) ${target.tile.region}")
         println(target.tile)
     }
-
+    
     fun prayers(player: Player, args: List<String>) {
         val target = Players.find(player, args.getOrNull(1)) ?: return
-        val name = args.getOrNull(0)?.removeSuffix("s") ?: "normal"
-        if (name == "regular" || name == "modern") {
-            player.message("Unknown prayer type '$name'. Did you mean 'normal'?", ChatType.Console)
+        val name = args.getOrNull(0) ?: "normal"
+        if (name !in setOf("normal", "curses")) {
+            player.message("Unknown prayer type '$name'. Expected 'normal' or 'curses'.", ChatType.Console)
             return
         }
         target[PRAYERS] = name
