@@ -19,7 +19,9 @@ import world.gregs.voidps.engine.get
 object Magic {
     fun castSpell(source: Character, target: Character): Boolean {
         if (source.spell.isNotBlank() && source is Player && !source.removeSpellItems(source.spell)) {
-            source.clear("autocast")
+            if (!source.contains("spell")) {
+                source.clear("autocast")
+            }
             source.clear("spell")
             source.clear("one_time")
             return false
