@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.map.Spiral
 
 object BotCombatContextBuilder {
-    const val DEFAULT_RADIUS = 10
+    const val DEFAULT_RADIUS = 15
 
     fun build(bot: Bot, radius: Int = DEFAULT_RADIUS): BotCombatContext {
         val player = bot.player

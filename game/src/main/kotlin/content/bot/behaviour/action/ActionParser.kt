@@ -45,7 +45,7 @@ sealed class ActionParser {
 
     object InteractPlayerParser : ActionParser() {
         override val required = setOf("option")
-        override val optional = setOf("delay", "success", "radius", "heal_percent", "loot_over_value", "target_score")
+        override val optional = setOf("delay", "success", "radius", "heal_percent", "loot_over_value", "target_score", "area")
 
         @Suppress("UNCHECKED_CAST")
         override fun parse(map: Map<String, Any>): BotAction {
@@ -58,7 +58,8 @@ sealed class ActionParser {
             val lootOverValue = map["loot_over_value"] as? Int ?: 0
             val rawScore = map["target_score"] as? List<Map<String, Any>>
             val scorer = rawScore?.let { UtilityCurveParser.parseScorer(it) }
-            return BotFightPlayer(delay, success, radius, healPercent, lootOverValue, scorer)
+            val area = map["area"] as? String
+            return BotFightPlayer(delay, success, radius, healPercent, lootOverValue, scorer, area)
         }
     }
 
