@@ -30,6 +30,7 @@ data class BotFightPlayer(
     val healPercentage: Int = 20,
     val lootOverValue: Int = 0,
     val targetScorer: TargetScorer? = null,
+    val area: String? = null,
 ) : BotAction {
     override fun update(bot: Bot, world: BotWorld, frame: BehaviourFrame) = when {
         healPercentage > 0 && bot.levels.get(Skill.Constitution) <= bot.levels.getMax(Skill.Constitution) * healPercentage / 100 -> eat(bot, world)
@@ -55,6 +56,7 @@ data class BotFightPlayer(
                 }
             }
         }
+        BotArenaCenter.maybeRecenter(bot, world, area)
         return if (success == null) BehaviourState.Success else BehaviourState.Running
     }
 
@@ -105,6 +107,7 @@ data class BotFightPlayer(
             }
             return BehaviourState.Running
         }
+        if (BotArenaCenter.maybeRecenter(bot, world, area)) return BehaviourState.Running
         return handleNoTarget()
     }
 

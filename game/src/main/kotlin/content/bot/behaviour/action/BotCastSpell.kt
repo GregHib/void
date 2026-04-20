@@ -78,7 +78,9 @@ data class BotCastSpell(
 
         anchorIfNeeded(bot, currentTarget)
         ensureAutocast(bot.player, chooseSpell(bot, currentTarget))
-        maybeKite(bot, world, currentTarget)
+        if (!BotArenaCenter.maybeRecenter(bot, world, area)) {
+            maybeKite(bot, world, currentTarget)
+        }
 
         return if (success == null) BehaviourState.Success else BehaviourState.Running
     }
@@ -122,7 +124,10 @@ data class BotCastSpell(
         val player = bot.player
         val attackOption = player.options.indexOf("Attack")
         if (attackOption == -1) return handleNoTarget()
-        val target = pickTarget(bot) ?: return handleNoTarget()
+        val target = pickTarget(bot) ?: run {
+            if (BotArenaCenter.maybeRecenter(bot, world, area)) return BehaviourState.Running
+            return handleNoTarget()
+        }
         ensureAutocast(player, chooseSpell(bot, target))
         anchorIfNeeded(bot, target)
         val valid = world.execute(player, InteractPlayer(target.index, attackOption))
