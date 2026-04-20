@@ -10,6 +10,8 @@ class SpellRunes : Script {
         combatPrepare(style = "magic") { _ ->
             if (spell.isNotBlank() && !hasSpellItems(spell)) {
                 clear("autocast")
+                clear("spell")
+                clear("one_time")
                 false
             } else {
                 true

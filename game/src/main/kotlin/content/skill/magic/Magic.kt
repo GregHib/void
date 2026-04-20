@@ -20,6 +20,8 @@ object Magic {
     fun castSpell(source: Character, target: Character): Boolean {
         if (source.spell.isNotBlank() && source is Player && !source.removeSpellItems(source.spell)) {
             source.clear("autocast")
+            source.clear("spell")
+            source.clear("one_time")
             return false
         }
         val spell = source.spell

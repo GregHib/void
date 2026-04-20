@@ -204,9 +204,12 @@ class Combat(val combatDefinitions: CombatDefinitions) :
             } else if (character is Player) {
                 val style = character.fightStyle
                 if (style == "magic" || style == "blaze") {
-                    if (Magic.castSpell(character, target)) {
-                        CombatApi.swing(character, target, character.weapon.id, style)
+                    if (!Magic.castSpell(character, target)) {
+                        character.mode = EmptyMode
+                        character.target = null
+                        return
                     }
+                    CombatApi.swing(character, target, character.weapon.id, style)
                 } else {
                     CombatApi.swing(character, target, character.weapon.id, style)
                 }
