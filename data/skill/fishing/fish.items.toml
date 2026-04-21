@@ -437,6 +437,8 @@ price = 867
 limit = 10000
 heals = 180
 combo = true
+attack_delay = 2
+eat_delay = 3
 weight = 0.65
 examine = "Cooked octopus. It looks very nutritious."
 
