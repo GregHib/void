@@ -23,7 +23,9 @@ class Spells : Script {
             if (spell.endsWith("_burst") || spell.endsWith("_barrage")) {
                 val targets = multiTargets(target, 9)
                 for (targ in targets) {
-                    targ.directHit(this, random.nextInt(0..damage), type, weapon, spell)
+                    // damage can be -1 on a miss — clamp to 0
+                    val splash = if (damage > 0) random.nextInt(0..damage) else 0
+                    targ.directHit(this, splash, type, weapon, spell)
                 }
             }
         }
