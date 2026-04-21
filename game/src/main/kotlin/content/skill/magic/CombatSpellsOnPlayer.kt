@@ -1,13 +1,14 @@
-package content.skill.magic.spell
+package content.skill.magic
 
 import com.github.michaelbull.logging.InlineLogger
-import content.skill.magic.Magic
+import content.skill.magic.spell.spell
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.Approachable
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.player.name
 
 class CombatSpellsOnPlayer : Script {
@@ -36,9 +37,12 @@ class CombatSpellsOnPlayer : Script {
             this.spell = spell
             set("one_time", true)
 
-            interact.updateInteraction {
-                start("action_delay", 4)
-                Magic.castSpell(this@add, interact.target)
+            start("action_delay", 4)
+            Magic.castSpell(this@add, interact.target)
+
+            // End Interact, let Combat mode handle subsequent casts
+            if (mode == interact) {
+                mode = EmptyMode
             }
         }
     }

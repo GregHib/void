@@ -130,7 +130,8 @@ open class Interact(
             interacted = false
             clearInteracted = false
         }
-        if (!character.hasMenuOpen()) {
+        // Don't move if we just interacted at range
+        if (!character.hasMenuOpen() && !interacted) {
             super.tick()
         }
         if (!interacted || updateRange) {
