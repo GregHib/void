@@ -21,7 +21,7 @@ class Spells : Script {
                 return@combatAttack
             }
             if (spell.endsWith("_burst") || spell.endsWith("_barrage")) {
-                val targets = multiTargets(target, 9)
+                val targets = multiTargets(this, target, 9)
                 for (targ in targets) {
                     // damage can be -1 on a miss — clamp to 0
                     val splash = if (damage > 0) random.nextInt(0..damage) else 0
