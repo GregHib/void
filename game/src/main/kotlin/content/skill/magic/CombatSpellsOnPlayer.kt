@@ -35,10 +35,11 @@ class CombatSpellsOnPlayer : Script {
             logger.debug { "Spell $id ($spell) on ${interact.target.name}" }
             approachRange(10)
             this.spell = spell
-            set("one_time", true)
+//            set("one_time", true)
 
             start("action_delay", 4)
             Magic.castSpell(this@add, interact.target)
+            this.spell = ""
 
             // End Interact, let Combat mode handle subsequent casts
             if (mode == interact) {
