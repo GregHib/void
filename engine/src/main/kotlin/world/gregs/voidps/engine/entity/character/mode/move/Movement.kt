@@ -92,7 +92,7 @@ open class Movement(
         if (character is Player && character.viewport?.loaded == false) {
             return
         }
-        if (hasDelay() && !canMove() && !character.steps.destination.noCollision) {
+        if (!canMove()) {
             return
         }
         if (!stepOut()) {
@@ -108,16 +108,15 @@ open class Movement(
     }
 
     private fun canMove(): Boolean {
-        if (!hasDelay() && (character as? Player)?.menu == null) {
-            return true
+        if (character.hasClock("movement_delay")) {
+            return false
         }
-        if (character.queue.isEmpty()) {
-            return true
+        if (character.contains("delay")) {
+            // Inactive delays block movement unless there's a queue in action
+            return character.delay != null || !character.queue.isEmpty()
         }
-        return character.delay != null
+        return true
     }
-
-    private fun hasDelay() = character.hasClock("movement_delay") || character.contains("delay")
 
     /**
      * Applies one step
