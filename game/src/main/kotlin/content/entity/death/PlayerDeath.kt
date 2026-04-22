@@ -17,6 +17,7 @@ import content.skill.summoning.dismissFamiliar
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Death
 import world.gregs.voidps.engine.entity.character.jingle
@@ -32,9 +33,11 @@ import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.map.Spiral
 import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
+import java.util.concurrent.TimeUnit
 
 class PlayerDeath : Script {
 
@@ -103,7 +106,11 @@ class PlayerDeath : Script {
         }
 
         // Spawn grave
-        val time = if (!inWilderness || killer !is Player) Gravestone.spawn(player, tile) else 0
+        val time = when {
+            inWilderness && killer is Player -> 0
+            tile in Areas["corporeal_beasts_lair"] -> TimeUnit.SECONDS.toTicks(210)
+            else -> Gravestone.spawn(player, tile)
+        }
         // Drop everything
         drop(player, Item("bones"), tile, inWilderness, killer, time)
         drop(player, player.inventory, tile, inWilderness, killer, time)

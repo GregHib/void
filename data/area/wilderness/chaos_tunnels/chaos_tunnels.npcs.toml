@@ -103,7 +103,7 @@ att = 40
 str = 55
 def = 40
 range = 1
-magic = 1
+mage = 1
 combat_def = "possessed_pickaxe"
 respawn_delay = 30
 drop_table = "possessed_pickaxe"
@@ -120,7 +120,7 @@ drop_table = "animated_spade"
 id = 7138
 hitpoints = 880
 # Made up stats
-magic = 100
+mage = 100
 def = 80
 combat_def = "dagonhai_monk"
 drop_table = "dagonhai_monk"

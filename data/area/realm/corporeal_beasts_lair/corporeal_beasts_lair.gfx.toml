@@ -1,0 +1,31 @@
+[corporeal_beast_stomp]
+id = 1834
+
+[corporeal_beast_stat_travel]
+id = 1823
+curve = 16
+time_offset = 10
+multiplier = 15
+
+[corporeal_beast_area_travel]
+id = 1824
+curve = 16
+end_height = 0
+time_offset = 10
+multiplier = 15
+
+[corporeal_beast_magic_travel]
+id = 1825
+curve = 16
+time_offset = 10
+multiplier = 15
+
+[dark_energy_core_travel]
+id = 1828
+height = 40
+time_offset = 10
+multiplier = 15
+
+[corporeal_beast_magic_impact]
+id = 1806
+height = 0
