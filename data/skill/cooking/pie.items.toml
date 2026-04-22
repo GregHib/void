@@ -88,6 +88,7 @@ price = 898
 limit = 1000
 heals = 60
 excess = "garden_pie_half"
+eat_delay = 1
 examine = "What I wouldn't give for a good steak about now..."
 weight = 0.001
 
@@ -100,6 +101,7 @@ price = 322
 limit = 1000
 heals = 60
 excess = "pie_dish"
+eat_delay = 1
 examine = "What I wouldn't give for a good steak about now..."
 weight = 0.001
 
@@ -142,6 +144,7 @@ price = 76
 limit = 1000
 heals = 60
 excess = "fish_pie_half"
+eat_delay = 1
 examine = "Bounty of the sea."
 weight = 0.001
 
@@ -154,6 +157,7 @@ price = 52
 limit = 1000
 heals = 60
 excess = "pie_dish"
+eat_delay = 1
 examine = "Bounty of the sea."
 weight = 0.001
 
@@ -196,6 +200,7 @@ price = 144
 limit = 1000
 heals = 80
 excess = "admiral_pie_half"
+eat_delay = 1
 weight = 0.001
 examine = "Much tastier than a normal fish pie."
 
@@ -208,6 +213,7 @@ price = 106
 limit = 1000
 heals = 80
 excess = "pie_dish"
+eat_delay = 1
 weight = 0.001
 examine = "Much tastier than a normal fish pie."
 
@@ -250,6 +256,7 @@ price = 604
 limit = 1000
 heals = 110
 excess = "wild_pie_half"
+eat_delay = 1
 examine = "A triumph of man over nature."
 weight = 0.001
 
@@ -262,6 +269,7 @@ price = 113
 limit = 1000
 heals = 110
 excess = "pie_dish"
+eat_delay = 1
 examine = "A triumph of man over nature."
 weight = 0.001
 
@@ -304,6 +312,7 @@ price = 499
 limit = 1000
 heals = 110
 excess = "summer_pie_half"
+eat_delay = 1
 examine = "All the fruits of a very small forest."
 weight = 0.001
 
@@ -316,6 +325,7 @@ price = 256
 limit = 1000
 heals = 110
 excess = "pie_dish"
+eat_delay = 1
 examine = "All the fruits of a very small forest."
 weight = 0.001
 
