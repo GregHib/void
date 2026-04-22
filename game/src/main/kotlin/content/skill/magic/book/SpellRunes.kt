@@ -9,7 +9,7 @@ class SpellRunes : Script {
     init {
         combatPrepare(style = "magic") { _ ->
             if (spell.isNotBlank() && !hasSpellItems(spell)) {
-                clear("autocast")
+                clear("spell")
                 false
             } else {
                 true
