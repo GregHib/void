@@ -59,17 +59,24 @@ open class Movement(
      */
     protected open fun stepOut(): Boolean {
         val strategy = strategy ?: return false
-        if (strategy.shape != -2) return false
+        if (strategy.shape != -2) {
+            return false
+        }
         val npc = character as? NPC ?: return false
-        if (npc.def["allowed_under", false]) return false
-        if (!Overlap.isUnder(npc.tile, npc.size, npc.size, strategy.tile, strategy.width, strategy.height)) return false
+        if (npc.def["allowed_under", false]) {
+            return false
+        }
+        if (!Overlap.isUnder(npc.tile, npc.size, npc.size, strategy.tile, strategy.width, strategy.height)) {
+            return false
+        }
         clearSteps()
-        if (shouldQueueStepOut()) {
-            for (direction in Direction.cardinal.shuffled(random)) {
-                if (canStep(direction.delta.x, direction.delta.y)) {
-                    character.steps.queueStep(npc.tile.add(direction))
-                    break
-                }
+        if (!shouldQueueStepOut()) {
+            return true
+        }
+        for (direction in Direction.cardinal.shuffled(random)) {
+            if (canStep(direction.delta.x, direction.delta.y)) {
+                character.steps.queueStep(npc.tile.add(direction))
+                break
             }
         }
         return true
