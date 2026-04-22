@@ -53,7 +53,7 @@ class EffectCommands(
         if (player.poisoned || ticks < 0) {
             target.softTimers.clear("movement_delay")
         } else {
-            target.freeze(ticks, force = true)
+            player.freeze(target, ticks, force = true)
         }
     }
 
