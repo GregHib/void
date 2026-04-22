@@ -1,0 +1,13 @@
+[unicorn]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "unicorn_defend"
+defend_sound = "unicorn_defend"
+death_anim = "unicorn_death"
+death_sound = "unicorn_death"
+
+[unicorn.melee]
+range = 1
+anim = "unicorn_attack"
+target_sound = "unicorn_attack"
+target_hit = { offense = "stab", max = 20 }

@@ -91,79 +91,82 @@ examine = "His furs look very damp."
 id = 1793
 examine = "A hard-working potter."
 
-[barbarian_barbarian_village]
+[barbarian_siegmund]
 id = 3249
 hitpoints = 240
 att = 15
 str = 14
 def = 10
-style = "crush"
-max_hit_melee = 30
 attack_bonus = 9
 respawn_delay = 50
+combat_def = "barbarian_two_hand_mace_high"
 drop_table = "barbarian_high"
 examine = "Siegmund, a guard in the Barbarian Village."
 
-[barbarian_barbarian_village_2]
+##fun fact sword barbarians: patch 1 February 2011 (Update):
+#
+#    Barbarians no longer swing two-handed swords with one hand.
+#so authentic that they hit with their one hand
+[barbarian_lydspor]
 id = 3251
 hitpoints = 180
 att = 8
 str = 7
 def = 3
 style = "crush"
-max_hit_melee = 20
 attack_bonus = 9
 respawn_delay = 50
+drop_table = "barbarian_low"
+combat_def = "barbarian_two_hand_sword_low"
 examine = "Lydspor, a well-travelled barbarian warrior."
 
-[barbarian_barbarian_village_3]
+[barbarian_hagen]
 id = 3252
-clone = "barbarian_barbarian_village_2"
+clone = "barbarian_lydspor"
+combat_def = "barbarian_two_hand_axe_low"
 examine = "Hagen, a guard in the Barbarian Village."
 
 [hunding_barbarian_village]
 id = 3254
 examine = "Likes a good fight."
 
-[barbarian_barbarian_village_4]
+[barbarian_wotan]
 id = 3255
-clone = "barbarian_barbarian_village_2"
+clone = "barbarian_lydspor"
+combat_def = "barbarian_two_hand_mace_low"
 examine = "Wotan, a sturdy barbarian warrior."
 
-[barbarian_barbarian_village_5]
+[barbarian_acelin]
 id = 3256
-clone = "barbarian_barbarian_village_2"
+clone = "barbarian_lydspor"
 examine = "Acelin, a guard in the Barbarian Village."
 
-[barbarian_barbarian_village_6]
+[barbarian_adelino]
 id = 3257
-clone = "barbarian_barbarian_village_2"
+clone = "barbarian_hagen"
 examine = "Adelino, a barbarian warrior with a big axe."
 
-[barbarian_barbarian_village_7]
+[barbarian_adolpho]
 id = 3258
-clone = "barbarian_barbarian_village_2"
+clone = "barbarian_wotan"
 examine = "Adolpho, a barbarian warrior with a warhammer."
 
-[barbarian_barbarian_village_8]
+[barbarian_aitan]
 id = 3259
 hitpoints = 240
 att = 15
 str = 3
 def = 10
 range = 15
-style = "range"
-weapon_style = "bow"
-ammo = "bronze_arrow"
-attack_range = 8
-max_hit_range = 10
 attack_bonus = 9
 respawn_delay = 50
+combat_def = "barbarian_bow"
+drop_table = "barbarian_high"
 examine = "Aitan, a barbarian archer."
 
-[barbarian_barbarian_village_9]
+[barbarian_gutrune]
 id = 3261
-clone = "barbarian_barbarian_village_2"
+clone = "barbarian_sieglinde"
 examine = "Gutrune, a mighty barbarian warrior."
 
 [barbarian_sieglinde]
@@ -172,10 +175,10 @@ hitpoints = 200
 att = 6
 str = 7
 def = 3
-style = "crush"
-max_hit_melee = 20
 attack_bonus = 9
 respawn_delay = 50
+combat_def = "barbarian_spear_low"
+drop_table = "barbarian_low"
 examine = "Sieglinde, a muscular barbarian warrior."
 
 [goblin_barbarian_village]
@@ -242,8 +245,7 @@ hitpoints = 190
 att = 11
 str = 13
 def = 13
-style = "stab"
-max_hit_melee = 20
+combat_def = "unicorn"
 respawn_delay = 90
 drop_table = "unicorn"
 examine = "Horse with a horn."

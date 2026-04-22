@@ -1,0 +1,14 @@
+[barbarian_defend]
+id = 504
+
+[barbarian_death]
+id = 502
+
+[barbarian_female_defend]
+id = 501
+
+[staff_stab]
+id = 2562
+
+[warhammer_crush]
+id = 2567
