@@ -113,7 +113,7 @@ open class Movement(
         }
         if (character.contains("delay")) {
             // Inactive delays block movement unless there's a queue in action
-            return character.delay != null || !character.queue.isEmpty()
+            return character.delay != null || !character.queue.isEmpty() || character.steps.destination.noCollision
         }
         return true
     }
