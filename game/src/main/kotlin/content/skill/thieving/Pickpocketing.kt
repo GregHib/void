@@ -45,7 +45,7 @@ class Pickpocketing(val combatDefinitions: CombatDefinitions, val dropTables: Dr
 
     private suspend fun Player.approach(target: NPC) {
         approachRange(2)
-        // food_delay and action_delay stay separate: eating outside combat should not extend the attack timer.
+        // food_delay and action_delay stay separate.
         if (hasClock("food_delay") || hasClock("action_delay")) {
             return
         }
