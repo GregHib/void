@@ -86,7 +86,6 @@ open class Interact(
             return
         }
         updateRange = false
-        val target = target
         if (stepOut()) {
             super.tick()
             return

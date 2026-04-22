@@ -59,17 +59,24 @@ open class Movement(
      */
     protected open fun stepOut(): Boolean {
         val strategy = strategy ?: return false
-        if (strategy.shape != -2) return false
+        if (strategy.shape != -2) {
+            return false
+        }
         val npc = character as? NPC ?: return false
-        if (npc.def["allowed_under", false]) return false
-        if (!Overlap.isUnder(npc.tile, npc.size, npc.size, strategy.tile, strategy.width, strategy.height)) return false
+        if (npc.def["allowed_under", false]) {
+            return false
+        }
+        if (!Overlap.isUnder(npc.tile, npc.size, npc.size, strategy.tile, strategy.width, strategy.height)) {
+            return false
+        }
         clearSteps()
-        if (shouldQueueStepOut()) {
-            for (direction in Direction.cardinal.shuffled(random)) {
-                if (canStep(direction.delta.x, direction.delta.y)) {
-                    character.steps.queueStep(npc.tile.add(direction))
-                    break
-                }
+        if (!shouldQueueStepOut()) {
+            return true
+        }
+        for (direction in Direction.cardinal.shuffled(random)) {
+            if (canStep(direction.delta.x, direction.delta.y)) {
+                character.steps.queueStep(npc.tile.add(direction))
+                break
             }
         }
         return true
@@ -85,7 +92,7 @@ open class Movement(
         if (character is Player && character.viewport?.loaded == false) {
             return
         }
-        if (hasDelay() && !canMove() && !character.steps.destination.noCollision) {
+        if (!canMove()) {
             return
         }
         if (!stepOut()) {
@@ -101,16 +108,15 @@ open class Movement(
     }
 
     private fun canMove(): Boolean {
-        if (!hasDelay() && (character as? Player)?.menu == null) {
-            return true
+        if (character.hasClock("movement_delay")) {
+            return false
         }
-        if (character.queue.isEmpty()) {
-            return true
+        if (character.contains("delay")) {
+            // Inactive delays block movement unless there's a queue in action
+            return character.delay != null || !character.queue.isEmpty() || character.steps.destination.noCollision
         }
-        return character.delay != null
+        return true
     }
-
-    private fun hasDelay() = character.hasClock("movement_delay") || character.contains("delay")
 
     /**
      * Applies one step

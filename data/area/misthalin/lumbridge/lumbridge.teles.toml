@@ -4,7 +4,7 @@ option = "Enter"
 tile = { x = 3184, y = 3164 }
 to = { x = 3494, y = 4832 }
 
-[36768]
+[lumbridge_tower_ladder_south]
 option = "Climb-up"
 tile = { x = 3198, y = 3219 }
 delta = { level = 1 }
@@ -90,7 +90,7 @@ option = "Climb-down"
 tile = { x = 3207, y = 3223, level = 3 }
 delta = { y = 2, level = -1 }
 
-[36768]
+[lumbridge_tower_ladder_south]
 option = "Climb-up"
 tile = { x = 3229, y = 3213 }
 delta = { level = 1 }
@@ -110,7 +110,7 @@ option = "Climb-down"
 tile = { x = 3229, y = 3213, level = 2 }
 delta = { level = -1 }
 
-[36768]
+[lumbridge_tower_ladder_south]
 option = "Climb-up"
 tile = { x = 3229, y = 3224 }
 delta = { level = 1 }
