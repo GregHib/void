@@ -85,6 +85,10 @@ open class Movement(
         if (character is Player && character.viewport?.loaded == false) {
             return
         }
+        if (character.hasClock("movement_delay")) {
+            character.steps.clear()
+            return
+        }
         if (hasDelay() && !canMove() && !character.steps.destination.noCollision) {
             return
         }

@@ -59,6 +59,7 @@ class Freeze : Script {
 
     fun start(character: Character, restart: Boolean): Int {
         character.start("movement_delay", -1)
+        character.steps.clear()
         return 1
     }
 

@@ -1,9 +1,12 @@
 package content.entity
 
 import content.area.misthalin.Border
+import content.entity.effect.frozen
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeInterfaces
+import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.Character
@@ -48,9 +51,12 @@ class Movement : Script {
                 }
             }
         }
-
         instruction<Walk> { player ->
-            if (player.contains("delay")) {
+            val frozen = player.hasClock("movement_delay")
+            if (frozen || player.contains("delay")) {
+                if (frozen) {
+                    player.message("A magical force stops you from moving.")
+                }
                 return@instruction
             }
             if (player.mode is PlayerOnObjectInteract) {
