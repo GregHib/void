@@ -14,8 +14,26 @@ import world.gregs.voidps.engine.map.Spiral
 object BotCombatContextBuilder {
     const val DEFAULT_RADIUS = 15
 
+    /**
+     * Builds the cheap part of the context immediately and defers the spiral scan to first access
+     * of [BotCombatContext.nearbyEnemies] / nearbyAllies / enemiesByTile. Reactive actions that only
+     * need [BotCombatContext.incomingAttackStyle] or ownHp% pay nothing for the scan.
+     */
     fun build(bot: Bot, radius: Int = DEFAULT_RADIUS): BotCombatContext {
         val player = bot.player
+        val attacker = (player.attacker as? Player)?.takeIf { player.underAttack }
+        return BotCombatContext(
+            ownHp = player.levels.get(Skill.Constitution),
+            ownMaxHp = player.levels.getMax(Skill.Constitution),
+            ownPrayerPoints = player.levels.get(Skill.Prayer),
+            incomingAttacker = attacker,
+            incomingAttackStyle = attacker?.let { categorize(it) },
+            lastHitReceivedTick = -1,
+            spiralScanner = { scan(player, radius) },
+        )
+    }
+
+    private fun scan(player: Player, radius: Int): BotCombatContext.SpiralScan {
         val enemies = mutableListOf<Player>()
         val allies = mutableListOf<Player>()
         val byTile = mutableMapOf<Int, MutableList<Player>>()
@@ -32,18 +50,7 @@ object BotCombatContextBuilder {
                 }
             }
         }
-        val attacker = (player.attacker as? Player)?.takeIf { player.underAttack }
-        return BotCombatContext(
-            ownHp = player.levels.get(Skill.Constitution),
-            ownMaxHp = player.levels.getMax(Skill.Constitution),
-            ownPrayerPoints = player.levels.get(Skill.Prayer),
-            nearbyEnemies = enemies,
-            nearbyAllies = allies,
-            enemiesByTile = byTile,
-            incomingAttacker = attacker,
-            incomingAttackStyle = attacker?.let { categorize(it) },
-            lastHitReceivedTick = -1,
-        )
+        return BotCombatContext.SpiralScan(enemies, allies, byTile)
     }
 
     private fun categorize(attacker: Player): String? = when (Weapon.type(attacker)) {
