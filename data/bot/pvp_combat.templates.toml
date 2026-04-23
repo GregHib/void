@@ -1,3 +1,8 @@
+# Each template ends with { restart = { success = { area = { id = "$area", present = false } } } }.
+# The restart loop is bounded by three signals: area exit (success condition above), death
+# (BotRetreat returns Failed(Cancelled) when bot.player.dead), and activity timeout (reset by
+# the `produces` skill events listed per-template, so idle bots eventually fail).
+
 [pvp_zerker]
 requires = [
     { skill = { id = "attack", min = 60 } },
