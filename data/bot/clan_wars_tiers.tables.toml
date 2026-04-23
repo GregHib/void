@@ -1,7 +1,7 @@
 [clan_wars_tiers]
 row_id = "string"
 combat_style = "string"
-skills = "list<skill>"
+skills = "list<string>"
 levels = "list<int>"
 
 [.clan_wars_ffa_safe_zerker]
