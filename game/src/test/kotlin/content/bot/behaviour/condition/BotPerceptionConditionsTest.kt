@@ -136,12 +136,12 @@ class BotPerceptionConditionsTest {
     }
 
     @Test
-    fun `Role condition matches detected role`() {
+    fun `ClanWarRole condition matches detected role`() {
         setLevel(Skill.Attack, 60)
         setLevel(Skill.Strength, 90)
         setLevel(Skill.Defence, 1)
-        assertTrue(BotRoleCondition(setOf("pure")).check(player))
-        assertFalse(BotRoleCondition(setOf("tank")).check(player))
+        assertTrue(BotClanWarRoleCondition(setOf("pure")).check(player))
+        assertFalse(BotClanWarRoleCondition(setOf("tank")).check(player))
     }
 
     private fun setLevel(skill: Skill, level: Int) {

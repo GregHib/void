@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.restrict.ValidItemRestriction
 import world.gregs.voidps.engine.inv.stack.ItemDependentStack
 
-class BotRoleTest {
+class BotClanWarRoleTest {
 
     private lateinit var player: Player
 
@@ -46,7 +46,7 @@ class BotRoleTest {
         setLevel(Skill.Attack, 60)
         setLevel(Skill.Strength, 85)
         setLevel(Skill.Defence, 1)
-        assertEquals(BotRole.PURE, BotRole.detect(player))
+        assertEquals(BotClanWarRole.PURE, BotClanWarRole.detect(player))
     }
 
     @Test
@@ -54,7 +54,7 @@ class BotRoleTest {
         setLevel(Skill.Defence, 75)
         setLevel(Skill.Constitution, 80)
         player["combat_style"] = "slash"
-        assertEquals(BotRole.TANK, BotRole.detect(player))
+        assertEquals(BotClanWarRole.TANK, BotClanWarRole.detect(player))
     }
 
     @Test
@@ -67,7 +67,7 @@ class BotRoleTest {
         setLevel(Skill.Magic, 80)
         player["combat_style"] = "magic"
         player.inventory.set(0, "shark", 4)
-        assertEquals(BotRole.HEALER, BotRole.detect(player))
+        assertEquals(BotClanWarRole.HEALER, BotClanWarRole.detect(player))
     }
 
     @Test
@@ -75,7 +75,7 @@ class BotRoleTest {
         setLevel(Skill.Attack, 70)
         setLevel(Skill.Ranged, 70)
         setLevel(Skill.Defence, 50)
-        assertEquals(BotRole.HYBRID, BotRole.detect(player))
+        assertEquals(BotClanWarRole.HYBRID, BotClanWarRole.detect(player))
     }
 
     @Test
@@ -83,7 +83,7 @@ class BotRoleTest {
         setLevel(Skill.Attack, 1)
         setLevel(Skill.Strength, 1)
         setLevel(Skill.Defence, 1)
-        assertEquals(BotRole.HYBRID, BotRole.detect(player))
+        assertEquals(BotClanWarRole.HYBRID, BotClanWarRole.detect(player))
     }
 
     @Test
@@ -92,6 +92,6 @@ class BotRoleTest {
         setLevel(Skill.Strength, 90)
         setLevel(Skill.Defence, 1)
         setLevel(Skill.Ranged, 70)
-        assertEquals(BotRole.PURE, BotRole.detect(player))
+        assertEquals(BotClanWarRole.PURE, BotClanWarRole.detect(player))
     }
 }

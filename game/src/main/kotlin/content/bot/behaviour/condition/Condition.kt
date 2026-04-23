@@ -110,7 +110,7 @@ sealed class Condition(val priority: Int) {
             "allies_on_tile" -> parseAlliesOnTile(list)
             "target_hp_percent" -> parseTargetHpPercent(list)
             "target_frozen" -> parseTargetFrozen(list)
-            "role" -> parseRole(list)
+            "clan_war_role" -> parseClanWarRole(list)
             "any" -> parseAny(list)
             else -> null
         }
@@ -177,9 +177,9 @@ sealed class Condition(val priority: Int) {
             return BotTargetFrozen(hpMin = hpMin, hpMax = hpMax)
         }
 
-        private fun parseRole(list: List<Map<String, Any>>): Condition? {
+        private fun parseClanWarRole(list: List<Map<String, Any>>): Condition? {
             val equals = parseEnumSet(list) ?: return null
-            return BotRoleCondition(equals.map { it.lowercase() }.toSet())
+            return BotClanWarRoleCondition(equals.map { it.lowercase() }.toSet())
         }
 
         private fun parseInventory(list: List<Map<String, Any>>): BotInventorySetup = BotInventorySetup(parseItems(list))

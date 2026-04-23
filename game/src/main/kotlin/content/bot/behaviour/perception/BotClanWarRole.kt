@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.inventory
 
-enum class BotRole {
+enum class BotClanWarRole {
     TANK,
     PURE,
     HYBRID,
@@ -13,7 +13,7 @@ enum class BotRole {
     ;
 
     companion object {
-        fun detect(player: Player): BotRole {
+        fun detect(player: Player): BotClanWarRole {
             val attack = player.levels.getMax(Skill.Attack)
             val strength = player.levels.getMax(Skill.Strength)
             val defence = player.levels.getMax(Skill.Defence)
