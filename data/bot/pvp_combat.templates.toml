@@ -32,6 +32,9 @@ reactive = [
 produces = [
     { skill = "attack" },
     { skill = "strength" },
+    { skill = "defence" },
+    { skill = "constitution" },
+    { skill = "prayer" },
 ]
 
 [pvp_dharoker]
@@ -64,7 +67,11 @@ reactive = [
     { pray = { id = "protect_from_magic", if = { attacker_style = { equals = "magic" } } } },
 ]
 produces = [
+    { skill = "attack" },
     { skill = "strength" },
+    { skill = "defence" },
+    { skill = "constitution" },
+    { skill = "prayer" },
 ]
 
 [pvp_ags_main]
@@ -101,6 +108,9 @@ reactive = [
 produces = [
     { skill = "attack" },
     { skill = "strength" },
+    { skill = "defence" },
+    { skill = "constitution" },
+    { skill = "prayer" },
 ]
 
 [pvp_obby_pure]
@@ -128,6 +138,7 @@ reactive = [
 ]
 produces = [
     { skill = "strength" },
+    { skill = "constitution" },
 ]
 
 [pvp_msb_pure]
@@ -158,6 +169,8 @@ reactive = [
 ]
 produces = [
     { skill = "ranged" },
+    { skill = "constitution" },
+    { skill = "prayer" },
 ]
 
 [pvp_karils_tank]
@@ -189,6 +202,9 @@ reactive = [
 ]
 produces = [
     { skill = "ranged" },
+    { skill = "defence" },
+    { skill = "constitution" },
+    { skill = "prayer" },
 ]
 
 [pvp_ancient_tank]
@@ -224,6 +240,9 @@ reactive = [
 ]
 produces = [
     { skill = "magic" },
+    { skill = "defence" },
+    { skill = "constitution" },
+    { skill = "prayer" },
 ]
 
 [pvp_ancient_hybrid]
@@ -267,4 +286,10 @@ reactive = [
 ]
 produces = [
     { skill = "magic" },
+    { skill = "attack" },
+    { skill = "strength" },
+    { skill = "ranged" },
+    { skill = "defence" },
+    { skill = "constitution" },
+    { skill = "prayer" },
 ]
