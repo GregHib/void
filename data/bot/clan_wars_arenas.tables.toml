@@ -1,0 +1,30 @@
+[clan_wars_arenas]
+row_id = "string"
+spawn_area = "string"
+tiers = "list<string>"
+
+[.clan_wars_ffa_safe]
+spawn_area = "clan_wars_teleport"
+tiers = [
+    "clan_wars_ffa_safe_zerker",
+    "clan_wars_ffa_safe_dharoker",
+    "clan_wars_ffa_safe_ags_main",
+    "clan_wars_ffa_safe_obby_pure",
+    "clan_wars_ffa_safe_msb_pure",
+    "clan_wars_ffa_safe_karils_tank",
+    "clan_wars_ffa_safe_ancient_tank",
+    "clan_wars_ffa_safe_ancient_hybrid",
+]
+
+[.clan_wars_ffa_dangerous]
+spawn_area = "clan_wars_teleport"
+tiers = [
+    "clan_wars_ffa_dangerous_zerker",
+    "clan_wars_ffa_dangerous_dharoker",
+    "clan_wars_ffa_dangerous_ags_main",
+    "clan_wars_ffa_dangerous_obby_pure",
+    "clan_wars_ffa_dangerous_msb_pure",
+    "clan_wars_ffa_dangerous_karils_tank",
+    "clan_wars_ffa_dangerous_ancient_tank",
+    "clan_wars_ffa_dangerous_ancient_hybrid",
+]
