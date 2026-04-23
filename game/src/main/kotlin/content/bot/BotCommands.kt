@@ -16,10 +16,12 @@ import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.running
@@ -57,6 +59,7 @@ class BotCommands(
     val bots = mutableListOf<Player>()
     val names = mutableListOf<String>()
     private val pvpBotTiers = mutableMapOf<String, PvpTier>()
+    private val pvpArenas = mutableMapOf<String, PvpArena>()
 
     var counter = 0
 
@@ -101,7 +104,7 @@ class BotCommands(
         adminCommand("clear_bots", intArg("count", optional = true), desc = "Clear all or some amount of bots", handler = ::clear)
         adminCommand("bot", stringArg("task", optional = true, autofill = manager.activityNames), desc = "Toggle yourself on/off as a bot player", handler = ::toggle)
         adminCommand("bot_info", stringArg("name", optional = true, desc = "Filter by bot name", autofill = accountDefinitions.displayNames.keys), desc = "Print bot info", handler = ::info)
-        adminCommand("pvpbots", stringArg("arena", autofill = PVP_ARENAS.keys), intArg("count", optional = true), desc = "Spawn PvP bots for a named arena", handler = ::pvpBots)
+        adminCommand("pvpbots", stringArg("arena", autofill = { pvpArenas.keys }), intArg("count", optional = true), desc = "Spawn PvP bots for a named arena", handler = ::pvpBots)
     }
 
     private fun loadSettings() {
@@ -112,6 +115,35 @@ class BotCommands(
             names.clear()
             names.addAll(File(Settings["bots.names"]).readLines())
         }
+        loadPvpArenas()
+    }
+
+    private fun loadPvpArenas() {
+        pvpArenas.clear()
+        val arenaTable = Tables.getOrNull("clan_wars_arenas") ?: return
+        val tierTable = Tables.getOrNull("clan_wars_tiers") ?: return
+        val tiersById = tierTable.rows().associate { row -> row.rowId to row.toPvpTier() }
+        for (row in arenaTable.rows()) {
+            val spawnArea = row.string("spawn_area")
+            val tiers = row.stringList("tiers").mapNotNull { tiersById[it] }
+            if (tiers.isEmpty()) {
+                pvpLogger.warn { "No tiers resolved for arena '${row.rowId}'." }
+                continue
+            }
+            pvpArenas[row.rowId] = PvpArena(spawnArea, tiers)
+        }
+    }
+
+    private fun RowDefinition.toPvpTier(): PvpTier {
+        val skillNames = stringList("skills")
+        val values = intList("levels")
+        require(skillNames.size == values.size) { "clan_wars_tiers.$rowId: skills/levels size mismatch." }
+        val levels = LinkedHashMap<Skill, Int>(skillNames.size)
+        for ((index, name) in skillNames.withIndex()) {
+            val skillId = Skill.map[name] ?: error("clan_wars_tiers.$rowId: unknown skill '$name'.")
+            levels[Skill.all[skillId]] = values[index]
+        }
+        return PvpTier(activityId = rowId, levels = levels, style = string("combat_style"))
     }
 
     @Suppress("UNUSED_PARAMETER")
@@ -232,9 +264,9 @@ class BotCommands(
     fun pvpBots(player: Player, args: List<String>) {
         val arenaKey = args[0]
         val count = args.getOrNull(1)?.toIntOrNull() ?: 14
-        val arena = PVP_ARENAS[arenaKey]
+        val arena = pvpArenas[arenaKey]
         if (arena == null) {
-            player.message("Unknown arena '$arenaKey'. Options: ${PVP_ARENAS.keys.joinToString()}.", ChatType.Console)
+            player.message("Unknown arena '$arenaKey'. Options: ${pvpArenas.keys.joinToString()}.", ChatType.Console)
             return
         }
         GlobalScope.launch {
@@ -346,92 +378,6 @@ class BotCommands(
         return player
     }
 
-    companion object {
-        private val ZERKER = mapOf(
-            Skill.Attack to 60,
-            Skill.Strength to 80,
-            Skill.Defence to 45,
-            Skill.Constitution to 75,
-            Skill.Prayer to 44,
-        )
-        private val DHAROKER = mapOf(
-            Skill.Attack to 70,
-            Skill.Strength to 70,
-            Skill.Defence to 70,
-            Skill.Constitution to 70,
-            Skill.Prayer to 43,
-        )
-        private val AGS_MAIN = mapOf(
-            Skill.Attack to 75,
-            Skill.Strength to 85,
-            Skill.Defence to 75,
-            Skill.Constitution to 85,
-            Skill.Prayer to 55,
-        )
-        private val OBBY_PURE = mapOf(
-            Skill.Attack to 1,
-            Skill.Strength to 80,
-            Skill.Defence to 1,
-            Skill.Constitution to 70,
-        )
-        private val MSB_PURE = mapOf(
-            Skill.Attack to 1,
-            Skill.Strength to 1,
-            Skill.Defence to 1,
-            Skill.Constitution to 70,
-            Skill.Ranged to 70,
-        )
-        private val KARILS_TANK = mapOf(
-            Skill.Attack to 1,
-            Skill.Strength to 1,
-            Skill.Defence to 70,
-            Skill.Constitution to 75,
-            Skill.Ranged to 75,
-            Skill.Prayer to 44,
-        )
-        private val ANCIENT_TANK = mapOf(
-            Skill.Magic to 94,
-            Skill.Defence to 70,
-            Skill.Constitution to 80,
-            Skill.Prayer to 43,
-        )
-        private val ANCIENT_HYBRID = mapOf(
-            Skill.Magic to 94,
-            Skill.Attack to 75,
-            Skill.Strength to 80,
-            Skill.Ranged to 75,
-            Skill.Defence to 70,
-            Skill.Constitution to 85,
-            Skill.Prayer to 55,
-        )
-
-        private val SAFE_TIERS = listOf(
-            PvpTier("clan_wars_ffa_safe_zerker", ZERKER, "slash"),
-            PvpTier("clan_wars_ffa_safe_dharoker", DHAROKER, "slash"),
-            PvpTier("clan_wars_ffa_safe_ags_main", AGS_MAIN, "slash"),
-            PvpTier("clan_wars_ffa_safe_obby_pure", OBBY_PURE, "crush"),
-            PvpTier("clan_wars_ffa_safe_msb_pure", MSB_PURE, "rapid"),
-            PvpTier("clan_wars_ffa_safe_karils_tank", KARILS_TANK, "rapid"),
-            PvpTier("clan_wars_ffa_safe_ancient_tank", ANCIENT_TANK, "accurate"),
-            PvpTier("clan_wars_ffa_safe_ancient_hybrid", ANCIENT_HYBRID, "accurate"),
-        )
-
-        private val DANGEROUS_TIERS = listOf(
-            PvpTier("clan_wars_ffa_dangerous_zerker", ZERKER, "slash"),
-            PvpTier("clan_wars_ffa_dangerous_dharoker", DHAROKER, "slash"),
-            PvpTier("clan_wars_ffa_dangerous_ags_main", AGS_MAIN, "slash"),
-            PvpTier("clan_wars_ffa_dangerous_obby_pure", OBBY_PURE, "crush"),
-            PvpTier("clan_wars_ffa_dangerous_msb_pure", MSB_PURE, "rapid"),
-            PvpTier("clan_wars_ffa_dangerous_karils_tank", KARILS_TANK, "rapid"),
-            PvpTier("clan_wars_ffa_dangerous_ancient_tank", ANCIENT_TANK, "accurate"),
-            PvpTier("clan_wars_ffa_dangerous_ancient_hybrid", ANCIENT_HYBRID, "accurate"),
-        )
-
-        private val PVP_ARENAS = mapOf(
-            "clan_wars_ffa_safe" to PvpArena("clan_wars_teleport", SAFE_TIERS),
-            "clan_wars_ffa_dangerous" to PvpArena("clan_wars_teleport", DANGEROUS_TIERS),
-        )
-    }
 }
 
 private data class PvpArena(val spawnArea: String, val tiers: List<PvpTier>)
