@@ -34,6 +34,7 @@ object BotCombatContextBuilder {
     }
 
     private fun scan(player: Player, radius: Int): BotCombatContext.SpiralScan {
+        content.bot.BotMetrics.incScans()
         val enemies = mutableListOf<Player>()
         val allies = mutableListOf<Player>()
         val byTile = mutableMapOf<Int, MutableList<Player>>()

@@ -17,6 +17,7 @@ data class TargetScorer(val components: List<ScoreComponent>) {
     }
 
     fun pick(scorer: Player, candidates: List<Player>, context: BotCombatContext): Player? {
+        content.bot.BotMetrics.incPicks()
         var best: Player? = null
         var bestScore = Double.NEGATIVE_INFINITY
         for (candidate in candidates) {
