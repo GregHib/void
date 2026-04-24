@@ -105,6 +105,39 @@ class BotCommands(
         adminCommand("bot", stringArg("task", optional = true, autofill = manager.activityNames), desc = "Toggle yourself on/off as a bot player", handler = ::toggle)
         adminCommand("bot_info", stringArg("name", optional = true, desc = "Filter by bot name", autofill = accountDefinitions.displayNames.keys), desc = "Print bot info", handler = ::info)
         adminCommand("pvpbots", stringArg("arena", autofill = { pvpArenas.keys }), intArg("count", optional = true), desc = "Spawn PvP bots for a named arena", handler = ::pvpBots)
+        adminCommand("bot_stress", intArg("ticks", optional = true), intArg("warmup", optional = true), desc = "Measure BotManager perf for N ticks (default 500); optional warmup ticks delay measurement.", handler = ::botStress)
+    }
+
+    @Suppress("UNUSED_PARAMETER")
+    fun botStress(player: Player, args: List<String>) {
+        val ticks = args.getOrNull(0)?.toIntOrNull() ?: 500
+        val warmup = args.getOrNull(1)?.toIntOrNull() ?: 0
+        if (ticks <= 0) {
+            player.message("bot_stress: ticks must be > 0.", ChatType.Console)
+            return
+        }
+        if (BotMetrics.measuring) {
+            player.message("bot_stress: a measurement is already running.", ChatType.Console)
+            return
+        }
+        val invokerName = player.accountName
+        val onComplete: (List<String>) -> Unit = { lines ->
+            val target = world.gregs.voidps.engine.entity.character.player.Players.find(invokerName)
+            if (target != null) {
+                for (line in lines) {
+                    target.message(line, ChatType.Console)
+                }
+            }
+        }
+        if (warmup > 0) {
+            player.message("bot_stress: warmup=$warmup ticks, then measure ticks=$ticks.", ChatType.Console)
+            World.queue("bot_stress_warmup", initialDelay = warmup) {
+                BotMetrics.start(ticks, label = "bots=${manager.bots.size}", onComplete = onComplete)
+            }
+        } else {
+            player.message("bot_stress: measuring ticks=$ticks (bots=${manager.bots.size}).", ChatType.Console)
+            BotMetrics.start(ticks, label = "bots=${manager.bots.size}", onComplete = onComplete)
+        }
     }
 
     private fun loadSettings() {

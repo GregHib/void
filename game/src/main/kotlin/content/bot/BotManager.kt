@@ -89,9 +89,17 @@ class BotManager(
     }
 
     override fun run() {
+        BotMetrics.beginRun()
         for (bot in bots) {
-            tick(bot)
+            if (BotMetrics.measuring) {
+                val start = System.nanoTime()
+                tick(bot)
+                BotMetrics.recordBotTick(System.nanoTime() - start)
+            } else {
+                tick(bot)
+            }
         }
+        BotMetrics.endRun(bots.size)
     }
 
     fun tick(bot: Bot) {
