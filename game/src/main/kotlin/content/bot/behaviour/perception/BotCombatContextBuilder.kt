@@ -9,7 +9,6 @@ import content.skill.melee.weapon.Weapon
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.map.Spiral
 
 object BotCombatContextBuilder {
     const val DEFAULT_RADIUS = 15
@@ -38,17 +37,15 @@ object BotCombatContextBuilder {
         val enemies = mutableListOf<Player>()
         val allies = mutableListOf<Player>()
         val byTile = mutableMapOf<Int, MutableList<Player>>()
-        for (tile in Spiral.spiral(player.tile, radius)) {
-            for (other in Players.at(tile)) {
-                if (other === player || other.dead) {
-                    continue
-                }
-                if (Target.attackable(player, other)) {
-                    enemies.add(other)
-                    byTile.getOrPut(tile.id) { mutableListOf() }.add(other)
-                } else {
-                    allies.add(other)
-                }
+        Players.forEachInRadius(player.tile, radius) { other ->
+            if (other === player || other.dead) {
+                return@forEachInRadius
+            }
+            if (Target.attackable(player, other)) {
+                enemies.add(other)
+                byTile.getOrPut(other.tile.id) { mutableListOf() }.add(other)
+            } else {
+                allies.add(other)
             }
         }
         return BotCombatContext.SpiralScan(enemies, allies, byTile)
