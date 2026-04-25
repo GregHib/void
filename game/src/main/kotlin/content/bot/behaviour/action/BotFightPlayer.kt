@@ -42,9 +42,9 @@ data class BotFightPlayer(
     }
 
     private fun handleEngaged(bot: Bot, world: BotWorld): BehaviourState {
-        if (targetScorer != null) {
+        val mode = bot.mode as PlayerOnPlayerInteract
+        if (targetScorer != null && shouldRepick(bot, mode.target)) {
             val context = bot.combatContext
-            val mode = bot.mode as PlayerOnPlayerInteract
             if (context != null && context.nearbyEnemies.isNotEmpty()) {
                 val best = targetScorer.pick(bot.player, context.nearbyEnemies, context)
                 if (best != null && best !== mode.target) {
@@ -58,6 +58,13 @@ data class BotFightPlayer(
         }
         BotArenaCenter.maybeRecenter(bot, world, area)
         return if (success == null) BehaviourState.Success else BehaviourState.Running
+    }
+
+    private fun shouldRepick(bot: Bot, current: Player): Boolean {
+        if (current.dead) return true
+        if (current.tile.level != bot.player.tile.level) return true
+        if (bot.player.tile.distanceTo(current.tile) > radius) return true
+        return !Target.attackable(bot.player, current, message = false)
     }
 
     private fun eat(bot: Bot, world: BotWorld): BehaviourState {
