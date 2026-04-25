@@ -151,7 +151,7 @@ data class BotCastSpell(
         val context = bot.combatContext
         if (context != null) return context.enemiesByTile[tile.id] ?: emptyList()
         val player = bot.player
-        return Players.at(tile).filter { it !== player && !it.dead && Target.attackable(player, it) }
+        return Players.at(tile).filter { it !== player && !it.dead && Target.attackable(player, it, message = false) }
     }
 
     private fun handleNoTarget(): BehaviourState {

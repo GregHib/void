@@ -41,7 +41,7 @@ object BotCombatContextBuilder {
             if (other === player || other.dead) {
                 return@forEachInRadius
             }
-            if (Target.attackable(player, other)) {
+            if (Target.attackable(player, other, message = false)) {
                 enemies.add(other)
                 byTile.getOrPut(other.tile.id) { mutableListOf() }.add(other)
             } else {
