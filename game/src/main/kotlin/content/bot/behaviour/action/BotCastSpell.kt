@@ -60,7 +60,7 @@ data class BotCastSpell(
 
     private fun handleCombat(bot: Bot, world: BotWorld, currentTarget: Player): BehaviourState {
         if (currentTarget.dead) return BehaviourState.Running
-        if (targetScorer != null) {
+        if (targetScorer != null && shouldRepick(bot, currentTarget)) {
             val context = bot.combatContext
             if (context != null && context.nearbyEnemies.isNotEmpty()) {
                 val best = targetScorer.pick(bot.player, context.nearbyEnemies, context)
@@ -83,6 +83,12 @@ data class BotCastSpell(
         }
 
         return if (success == null) BehaviourState.Success else BehaviourState.Running
+    }
+
+    private fun shouldRepick(bot: Bot, current: Player): Boolean {
+        if (current.tile.level != bot.player.tile.level) return true
+        if (bot.player.tile.distanceTo(current.tile) > radius) return true
+        return !Target.attackable(bot.player, current, message = false)
     }
 
     private fun maybeKite(bot: Bot, world: BotWorld, target: Player) {
