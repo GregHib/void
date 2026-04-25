@@ -5,6 +5,7 @@ package content.bot
 import com.github.michaelbull.logging.InlineLogger
 import content.bot.behaviour.condition.BotEquipmentSetup
 import content.bot.behaviour.condition.BotInventorySetup
+import content.entity.combat.killer
 import content.quest.questJournal
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.Contexts
@@ -14,6 +15,7 @@ import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.RowDefinition
@@ -90,6 +92,14 @@ class BotCommands(
             bot.blocked.remove(tier.activityId)
             bot.evaluate.clear()
             bot.previous = null
+        }
+
+        playerDeath {
+            // PvP bots have dropItems=false in the prior handler, so no loot to scan for.
+            if (isBot) return@playerDeath
+            val slayer = killer as? Player ?: return@playerDeath
+            if (!slayer.isBot) return@playerDeath
+            slayer.start("loot_pending", LOOT_PENDING_TICKS)
         }
 
         worldSpawn {
@@ -412,6 +422,8 @@ class BotCommands(
     }
 
 }
+
+private const val LOOT_PENDING_TICKS = 60
 
 private data class PvpArena(val spawnArea: String, val tiers: List<PvpTier>)
 

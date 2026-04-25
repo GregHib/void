@@ -125,6 +125,7 @@ class BotFightPlayerTest {
         ItemDefinitions.set(arrayOf(ItemDefinition(cost = 1000, floorOptions = arrayOf("Take"), stackable = 1)), mapOf("coins" to 0))
         FloorItems.add(player.tile, "coins", 100, owner = player.accountName)
         FloorItems.run()
+        player.start("loot_pending", 60)
 
         var called = false
         val world = FakeWorld(
