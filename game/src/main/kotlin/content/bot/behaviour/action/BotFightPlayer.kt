@@ -9,8 +9,6 @@ import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.utility.TargetScorer
 import content.entity.combat.Target
 import content.entity.combat.dead
-import world.gregs.voidps.engine.client.variable.hasClock
-import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnFloorItemInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnPlayerInteract
@@ -89,23 +87,20 @@ data class BotFightPlayer(
     private fun search(bot: Bot, world: BotWorld): BehaviourState {
         val player = bot.player
         val attackOption = player.options.indexOf("Attack")
-        if (player.hasClock("loot_pending")) {
-            for (tile in Spiral.spiral(player.tile, radius)) {
-                for (item in FloorItems.at(tile)) {
-                    if (item.owner != player.accountName) {
-                        continue
-                    }
-                    if (item.def.cost <= lootOverValue) {
-                        continue
-                    }
-                    val index = item.def.floorOptions.indexOf("Take")
-                    val valid = world.execute(bot.player, InteractFloorItem(item.def.id, item.tile.x, item.tile.y, index))
-                    if (!valid) {
-                        return BehaviourState.Failed(Reason.Invalid("Invalid floor item interaction: $item $index"))
-                    }
-                    player.stop("loot_pending")
-                    return BehaviourState.Running
+        for (tile in Spiral.spiral(player.tile, radius)) {
+            for (item in FloorItems.at(tile)) {
+                if (item.owner != player.accountName) {
+                    continue
                 }
+                if (item.def.cost <= lootOverValue) {
+                    continue
+                }
+                val index = item.def.floorOptions.indexOf("Take")
+                val valid = world.execute(bot.player, InteractFloorItem(item.def.id, item.tile.x, item.tile.y, index))
+                if (!valid) {
+                    return BehaviourState.Failed(Reason.Invalid("Invalid floor item interaction: $item $index"))
+                }
+                return BehaviourState.Running
             }
         }
         if (attackOption == -1) {
