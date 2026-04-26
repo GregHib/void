@@ -2,6 +2,7 @@ package content.entity.player.kept
 
 import content.area.wilderness.inFullPvp
 import content.entity.player.effect.skulled
+import world.gregs.voidps.engine.data.definition.Areas
 import content.skill.prayer.praying
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -19,7 +20,9 @@ object ItemsKeptOnDeath {
         .sortedByDescending { it.def.cost }
 
     fun kept(player: Player, items: List<Item>): List<Item> {
-        var save = if (player.skulled) 0 else 3
+        // Dangerous-arena deaths use skull-equivalent drop rules without applying the visible skull.
+        val skullRules = player.skulled || player.tile in Areas["clan_wars_ffa_dangerous_arena"]
+        var save = if (skullRules) 0 else 3
         if (player.praying("protect_item")) {
             save++
         }

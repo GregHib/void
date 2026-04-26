@@ -1,6 +1,6 @@
 package content.entity.player.effect
 
-import content.area.wilderness.inFullPvp
+import content.area.wilderness.inWilderness
 import content.entity.combat.attackers
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -37,7 +37,7 @@ class Skull : Script {
         }
 
         combatStart { target ->
-            if (inFullPvp && target is Player && !attackers.contains(target)) {
+            if (inWilderness && target is Player && !attackers.contains(target)) {
                 skull()
             }
         }
