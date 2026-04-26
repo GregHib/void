@@ -116,8 +116,9 @@ data class BotFightPlayer(
         if (player.hasClock("loot_pending")) {
             val lootResult = takeLoot(bot, world)
             if (lootResult != null) return lootResult
-            // Nothing eligible found this tick; stop scanning until the next kill.
+            // Nothing eligible at the recorded drop tile; stop scanning until the next kill.
             player.stop("loot_pending")
+            player.clear("loot_drop_tile")
         }
         if (attackOption == -1) {
             return handleNoTarget()
@@ -139,19 +140,19 @@ data class BotFightPlayer(
 
     private fun takeLoot(bot: Bot, world: BotWorld): BehaviourState? {
         val player = bot.player
+        val packed = player.get<Int>("loot_drop_tile") ?: return null
+        val dropTile = Tile(packed)
         var bestItem: FloorItem? = null
         var bestScore = Long.MIN_VALUE
-        for (tile in Spiral.spiral(player.tile, radius)) {
-            for (item in FloorItems.at(tile)) {
-                if (!isLootable(player, item)) continue
-                if (!lootStrategy.ranks()) {
-                    return executeTake(bot, world, item)
-                }
-                val score = lootStrategy.score(item)
-                if (score > bestScore) {
-                    bestScore = score
-                    bestItem = item
-                }
+        for (item in FloorItems.at(dropTile)) {
+            if (!isLootable(player, item)) continue
+            if (!lootStrategy.ranks()) {
+                return executeTake(bot, world, item)
+            }
+            val score = lootStrategy.score(item)
+            if (score > bestScore) {
+                bestScore = score
+                bestItem = item
             }
         }
         return bestItem?.let { executeTake(bot, world, it) }
