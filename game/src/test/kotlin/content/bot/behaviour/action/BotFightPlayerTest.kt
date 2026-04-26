@@ -129,6 +129,7 @@ class BotFightPlayerTest {
         FloorItems.add(player.tile, "coins", 100, owner = player.accountName)
         FloorItems.run()
         player.start("loot_pending", 60)
+        player["loot_drop_tile"] = player.tile.id
 
         var called = false
         val world = FakeWorld(
@@ -160,6 +161,7 @@ class BotFightPlayerTest {
         FloorItems.add(player.tile, "rune", 1, owner = player.accountName)
         FloorItems.run()
         player.start("loot_pending", 60)
+        player["loot_drop_tile"] = player.tile.id
 
         var pickedId = -1
         val world = FakeWorld(
@@ -188,6 +190,7 @@ class BotFightPlayerTest {
         FloorItems.add(player.tile, "rune_axe", 1, owner = player.accountName)
         FloorItems.run()
         player.start("loot_pending", 60)
+        player["loot_drop_tile"] = player.tile.id
 
         var called = false
         val world = FakeWorld(
@@ -218,6 +221,7 @@ class BotFightPlayerTest {
         FloorItems.add(player.tile, "diamond", 1, owner = player.accountName)
         FloorItems.run()
         player.start("loot_pending", 60)
+        player["loot_drop_tile"] = player.tile.id
 
         var pickedId = -1
         val world = FakeWorld(
@@ -255,6 +259,7 @@ class BotFightPlayerTest {
         FloorItems.add(player.tile, "super_restore_4", 1, owner = player.accountName)
         FloorItems.run()
         player.start("loot_pending", 60)
+        player["loot_drop_tile"] = player.tile.id
 
         var called = false
         val world = FakeWorld(
@@ -289,6 +294,7 @@ class BotFightPlayerTest {
         FloorItems.add(player.tile, "drop", 1, owner = player.accountName)
         FloorItems.run()
         player.start("loot_pending", 60)
+        player["loot_drop_tile"] = player.tile.id
 
         var called = false
         val world = FakeWorld(
@@ -323,6 +329,7 @@ class BotFightPlayerTest {
         FloorItems.add(player.tile, "coins", 100, owner = player.accountName)
         FloorItems.run()
         player.start("loot_pending", 60)
+        player["loot_drop_tile"] = player.tile.id
 
         var pickedId = -1
         val world = FakeWorld(
@@ -345,6 +352,7 @@ class BotFightPlayerTest {
     fun `Empty ground clears the loot_pending clock`() {
         initInventory()
         player.start("loot_pending", 60)
+        player["loot_drop_tile"] = player.tile.id
 
         val action = BotFightPlayer()
 
