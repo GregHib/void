@@ -9,12 +9,15 @@ import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.utility.TargetScorer
 import content.entity.combat.Target
 import content.entity.combat.dead
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnFloorItemInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnPlayerInteract
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.map.Spiral
@@ -29,6 +32,7 @@ data class BotFightPlayer(
     val radius: Int = 10,
     val healPercentage: Int = 20,
     val lootOverValue: Int = 0,
+    val lootStrategy: BotLootStrategy = BotLootStrategy.DEFAULT,
     val targetScorer: TargetScorer? = null,
     val area: String? = null,
 ) : BotAction {
@@ -87,21 +91,11 @@ data class BotFightPlayer(
     private fun search(bot: Bot, world: BotWorld): BehaviourState {
         val player = bot.player
         val attackOption = player.options.indexOf("Attack")
-        for (tile in Spiral.spiral(player.tile, radius)) {
-            for (item in FloorItems.at(tile)) {
-                if (item.owner != player.accountName) {
-                    continue
-                }
-                if (item.def.cost <= lootOverValue) {
-                    continue
-                }
-                val index = item.def.floorOptions.indexOf("Take")
-                val valid = world.execute(bot.player, InteractFloorItem(item.def.id, item.tile.x, item.tile.y, index))
-                if (!valid) {
-                    return BehaviourState.Failed(Reason.Invalid("Invalid floor item interaction: $item $index"))
-                }
-                return BehaviourState.Running
-            }
+        if (player.hasClock("loot_pending")) {
+            val lootResult = takeLoot(bot, world)
+            if (lootResult != null) return lootResult
+            // Nothing eligible found this tick; stop scanning until the next kill.
+            player.stop("loot_pending")
         }
         if (attackOption == -1) {
             return handleNoTarget()
@@ -116,6 +110,46 @@ data class BotFightPlayer(
         }
         if (BotArenaCenter.maybeRecenter(bot, world, area)) return BehaviourState.Running
         return handleNoTarget()
+    }
+
+    private fun takeLoot(bot: Bot, world: BotWorld): BehaviourState? {
+        val player = bot.player
+        var bestItem: FloorItem? = null
+        var bestScore = Long.MIN_VALUE
+        for (tile in Spiral.spiral(player.tile, radius)) {
+            for (item in FloorItems.at(tile)) {
+                if (!isLootable(player, item)) continue
+                if (!lootStrategy.ranks()) {
+                    return executeTake(bot, world, item)
+                }
+                val score = lootStrategy.score(item)
+                if (score > bestScore) {
+                    bestScore = score
+                    bestItem = item
+                }
+            }
+        }
+        return bestItem?.let { executeTake(bot, world, it) }
+    }
+
+    private fun isLootable(player: Player, item: FloorItem): Boolean {
+        if (item.owner != player.accountName) return false
+        if (item.def.cost <= lootOverValue) return false
+        if (!lootStrategy.accepts(item)) return false
+        // Reserve one inventory slot (e.g. for weapon switches) unless the item can stack onto an existing pile.
+        val inv = player.inventory
+        val canStack = item.def.stackable == 1 && inv.indexOf(item.id) >= 0
+        if (inv.spaces <= 1 && !canStack) return false
+        return true
+    }
+
+    private fun executeTake(bot: Bot, world: BotWorld, item: FloorItem): BehaviourState {
+        val index = item.def.floorOptions.indexOf("Take")
+        val valid = world.execute(bot.player, InteractFloorItem(item.def.id, item.tile.x, item.tile.y, index))
+        if (!valid) {
+            return BehaviourState.Failed(Reason.Invalid("Invalid floor item interaction: $item $index"))
+        }
+        return BehaviourState.Running
     }
 
     private fun pickTarget(bot: Bot): Player? {
