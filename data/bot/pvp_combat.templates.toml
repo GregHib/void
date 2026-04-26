@@ -24,7 +24,6 @@ setup = [
 ]
 actions = [
     { interface = { option = "Select", id = "combat_styles:$style" } },
-    { retreat = { safe_area = "$safe_area", regroup_hp_percent = 60, if = { outmatched = { attackers_min = 2, own_hp_percent_max = 0.25 } } } },
     { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 40, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area", present = false } } } },
 ]
@@ -62,7 +61,6 @@ setup = [
 ]
 actions = [
     { interface = { option = "Select", id = "combat_styles:$style" } },
-    { retreat = { safe_area = "$safe_area", regroup_hp_percent = 70, if = { outmatched = { attackers_min = 3 } } } },
     { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 25, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area", present = false } } } },
 ]
@@ -100,7 +98,6 @@ setup = [
 ]
 actions = [
     { interface = { option = "Select", id = "combat_styles:$style" } },
-    { retreat = { safe_area = "$safe_area", regroup_hp_percent = 70, if = { outmatched = { attackers_min = 3 } } } },
     { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 40, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area", present = false } } } },
 ]
@@ -134,7 +131,6 @@ setup = [
     { area = { id = "$area" } },
 ]
 actions = [
-    { retreat = { safe_area = "$safe_area", regroup_hp_percent = 60, if = { outmatched = { attackers_min = 2, own_hp_percent_max = 0.25 } } } },
     { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 40, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area", present = false } } } },
 ]
@@ -163,7 +159,6 @@ setup = [
 ]
 actions = [
     { interface = { option = "Select", id = "combat_styles:$style" } },
-    { retreat = { safe_area = "$safe_area", regroup_hp_percent = 50, if = { outmatched = { attackers_min = 2, own_hp_percent_max = 0.25 } } } },
     { player = { option = "Attack", radius = 12, delay = 1, heal_percent = 40, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area", present = false } } } },
 ]
@@ -196,7 +191,6 @@ setup = [
 ]
 actions = [
     { interface = { option = "Select", id = "combat_styles:$style" } },
-    { retreat = { safe_area = "$safe_area", regroup_hp_percent = 70, if = { outmatched = { attackers_min = 3 } } } },
     { player = { option = "Attack", radius = 12, delay = 1, heal_percent = 40, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area", present = false } } } },
 ]
@@ -234,7 +228,6 @@ setup = [
     { area = { id = "$area" } },
 ]
 actions = [
-    { retreat = { safe_area = "$safe_area", regroup_hp_percent = 60, if = { outmatched = { attackers_min = 3 } } } },
     { cast_spell = { family = "ice", radius = 12, delay = 1, heal_percent = 40, kite = true, area = "$area", success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area", present = false } } } },
 ]
@@ -278,7 +271,6 @@ setup = [
     { area = { id = "$area" } },
 ]
 actions = [
-    { retreat = { safe_area = "$safe_area", regroup_hp_percent = 65, if = { outmatched = { attackers_min = 3 } } } },
     { cast_spell = { family = "ice", radius = 12, delay = 1, heal_percent = 40, kite = true, area = "$area", success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area", present = false } } } },
 ]

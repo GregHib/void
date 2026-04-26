@@ -111,6 +111,7 @@ sealed class Condition(val priority: Int) {
             "target_hp_percent" -> parseTargetHpPercent(list)
             "target_frozen" -> parseTargetFrozen(list)
             "clan_war_role" -> parseClanWarRole(list)
+            "pvp_retreat_needed" -> BotPvpRetreatNeeded()
             "any" -> parseAny(list)
             else -> null
         }

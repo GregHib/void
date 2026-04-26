@@ -39,36 +39,54 @@ template = "pvp_zerker"
 capacity = 3
 timeout = 500
 fields = { style = "style2", area = "clan_wars_ffa_dangerous_arena", safe_area = "clan_wars_ffa_dangerous_lobby" }
+actions = [
+    { object = { option = "Leave", id = "clan_wars_portal_ffa_safe_exit", radius = 50, if = { pvp_retreat_needed = {} }, success = { area = { id = "clan_wars_teleport" } } } },
+]
 
 [clan_wars_ffa_dangerous_dharoker]
 template = "pvp_dharoker"
 capacity = 3
 timeout = 500
 fields = { style = "style2", area = "clan_wars_ffa_dangerous_arena", safe_area = "clan_wars_ffa_dangerous_lobby" }
+actions = [
+    { object = { option = "Leave", id = "clan_wars_portal_ffa_safe_exit", radius = 50, if = { pvp_retreat_needed = {} }, success = { area = { id = "clan_wars_teleport" } } } },
+]
 
 [clan_wars_ffa_dangerous_ags_main]
 template = "pvp_ags_main"
 capacity = 3
 timeout = 500
 fields = { style = "style2", area = "clan_wars_ffa_dangerous_arena", safe_area = "clan_wars_ffa_dangerous_lobby" }
+actions = [
+    { object = { option = "Leave", id = "clan_wars_portal_ffa_safe_exit", radius = 50, if = { pvp_retreat_needed = {} }, success = { area = { id = "clan_wars_teleport" } } } },
+]
 
 [clan_wars_ffa_dangerous_obby_pure]
 template = "pvp_obby_pure"
 capacity = 3
 timeout = 500
 fields = { area = "clan_wars_ffa_dangerous_arena", safe_area = "clan_wars_ffa_dangerous_lobby" }
+actions = [
+    { object = { option = "Leave", id = "clan_wars_portal_ffa_safe_exit", radius = 50, if = { pvp_retreat_needed = {} }, success = { area = { id = "clan_wars_teleport" } } } },
+]
 
 [clan_wars_ffa_dangerous_msb_pure]
 template = "pvp_msb_pure"
 capacity = 3
 timeout = 500
 fields = { style = "style2", area = "clan_wars_ffa_dangerous_arena", safe_area = "clan_wars_ffa_dangerous_lobby" }
+actions = [
+    { object = { option = "Leave", id = "clan_wars_portal_ffa_safe_exit", radius = 50, if = { pvp_retreat_needed = {} }, success = { area = { id = "clan_wars_teleport" } } } },
+]
 
 [clan_wars_ffa_dangerous_karils_tank]
 template = "pvp_karils_tank"
 capacity = 3
 timeout = 500
 fields = { style = "style2", area = "clan_wars_ffa_dangerous_arena", safe_area = "clan_wars_ffa_dangerous_lobby" }
+actions = [
+    { object = { option = "Leave", id = "clan_wars_portal_ffa_safe_exit", radius = 50, if = { pvp_retreat_needed = {} }, success = { area = { id = "clan_wars_teleport" } } } },
+]
 
 [clan_wars_ffa_safe_ancient_tank]
 template = "pvp_ancient_tank"
@@ -87,9 +105,15 @@ template = "pvp_ancient_tank"
 capacity = 3
 timeout = 500
 fields = { area = "clan_wars_ffa_dangerous_arena", safe_area = "clan_wars_ffa_dangerous_lobby" }
+actions = [
+    { object = { option = "Leave", id = "clan_wars_portal_ffa_safe_exit", radius = 50, if = { pvp_retreat_needed = {} }, success = { area = { id = "clan_wars_teleport" } } } },
+]
 
 [clan_wars_ffa_dangerous_ancient_hybrid]
 template = "pvp_ancient_hybrid"
 capacity = 3
 timeout = 500
 fields = { area = "clan_wars_ffa_dangerous_arena", safe_area = "clan_wars_ffa_dangerous_lobby" }
+actions = [
+    { object = { option = "Leave", id = "clan_wars_portal_ffa_safe_exit", radius = 50, if = { pvp_retreat_needed = {} }, success = { area = { id = "clan_wars_teleport" } } } },
+]

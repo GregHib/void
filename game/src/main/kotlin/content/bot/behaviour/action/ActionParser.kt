@@ -209,7 +209,7 @@ sealed class ActionParser {
 
     object InteractObjectParser : ActionParser() {
         override val required = setOf("option", "id", "success")
-        override val optional = setOf("delay", "radius", "x", "y")
+        override val optional = setOf("delay", "radius", "x", "y", "if")
 
         override fun parse(map: Map<String, Any>): BotAction {
             val option = map["option"] as String
@@ -219,7 +219,8 @@ sealed class ActionParser {
             val radius = map["radius"] as? Int ?: 10
             val x = map["x"] as? Int
             val y = map["y"] as? Int
-            return BotInteractObject(option, id, delay, success, radius, x, y)
+            val condition = requirement(map, "if").singleOrNull()
+            return BotInteractObject(option, id, delay, success, radius, x, y, condition)
         }
     }
 
