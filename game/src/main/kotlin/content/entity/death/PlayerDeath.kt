@@ -108,16 +108,18 @@ class PlayerDeath : Script {
             }
         }
 
+        // Treat the Clan Wars FFA dangerous arena as a PvP drop zone: no grave, drops go to the killer.
+        val pvpDrop = inWilderness || tile in Areas["clan_wars_ffa_dangerous_arena"]
         // Spawn grave
         val time = when {
-            inWilderness && killer is Player -> 0
+            pvpDrop && killer is Player -> 0
             tile in Areas["corporeal_beasts_lair"] -> TimeUnit.SECONDS.toTicks(210)
             else -> Gravestone.spawn(player, tile)
         }
         // Drop everything
-        drop(player, Item("bones"), tile, inWilderness, killer, time)
-        drop(player, player.inventory, tile, inWilderness, killer, time)
-        drop(player, player.equipment, tile, inWilderness, killer, time)
+        drop(player, Item("bones"), tile, pvpDrop, killer, time)
+        drop(player, player.inventory, tile, pvpDrop, killer, time)
+        drop(player, player.equipment, tile, pvpDrop, killer, time)
         // Clear everything
         player.inventory.clear()
         player.equipment.clear()
