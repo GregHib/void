@@ -95,8 +95,10 @@ class BotCommands(
         }
 
         playerDeath {
-            pvpLogger.info { "playerDeath fired for '$accountName', tier=${pvpBotTiers[accountName]?.activityId}, keys=${pvpBotTiers.keys}" }
             val tier = pvpBotTiers[accountName] ?: return@playerDeath
+            if (get("debug", false)) {
+                pvpLogger.info { "playerDeath fired for '$accountName', tier=${tier.activityId}, keys=${pvpBotTiers.keys}" }
+            }
             it.dropItems = false
             applyTier(bot, tier)
             manager.stop(bot)
@@ -358,8 +360,6 @@ class BotCommands(
             val bot = Player(tile = spawn, accountName = name).initBot()
             loader.connect(bot.player, DummyClient(), viewport = Settings["development.bots.live", false])
             setAppearance(bot.player)
-            bot.player.viewport?.loaded = true
-            bot.player["debug"] = true
             delay(3)
             val tier = arena.tiers.random(random)
             pvpBotTiers[bot.player.accountName] = tier
@@ -405,11 +405,13 @@ class BotCommands(
                 else -> Unit
             }
         }
-        pvpLogger.info { "applyTier ${tier.activityId} for ${target.accountName}: levels=${tier.levels.map { "${it.key}=cur${target.levels.get(it.key)}/max${target.levels.getMax(it.key)}" }}" }
-        pvpLogger.info { "  inventory=${(0 until target.inventory.size).mapNotNull { target.inventory.getOrNull(it) }.filter { it.id.isNotEmpty() }.map { "${it.id}x${it.amount}" }}" }
-        pvpLogger.info { "  equipment=${(0 until target.equipment.size).mapNotNull { target.equipment.getOrNull(it) }.filter { it.id.isNotEmpty() }.map { "${it.id}x${it.amount}" }}" }
-        for (condition in activity.setup) {
-            pvpLogger.info { "  setup.check ${condition::class.simpleName} = ${condition.check(target)}" }
+        if (bot["debug", false]) {
+            pvpLogger.info { "applyTier ${tier.activityId} for ${target.accountName}: levels=${tier.levels.map { "${it.key}=cur${target.levels.get(it.key)}/max${target.levels.getMax(it.key)}" }}" }
+            pvpLogger.info { "  inventory=${(0 until target.inventory.size).mapNotNull { target.inventory.getOrNull(it) }.filter { it.id.isNotEmpty() }.map { "${it.id}x${it.amount}" }}" }
+            pvpLogger.info { "  equipment=${(0 until target.equipment.size).mapNotNull { target.equipment.getOrNull(it) }.filter { it.id.isNotEmpty() }.map { "${it.id}x${it.amount}" }}" }
+            for (condition in activity.setup) {
+                pvpLogger.info { "  setup.check ${condition::class.simpleName} = ${condition.check(target)}" }
+            }
         }
     }
 
