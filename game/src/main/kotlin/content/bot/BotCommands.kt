@@ -76,6 +76,17 @@ class BotCommands(
             return@worldTimerTick Timer.CONTINUE
         }
 
+        for (arenaKey in PVP_AUTOSPAWN_ARENAS) {
+            val timerName = "pvp_spawn_$arenaKey"
+            worldTimerStart(timerName) {
+                TimeUnit.SECONDS.toTicks(Settings["bots.pvp.$arenaKey.spawnSeconds", 2])
+            }
+            worldTimerTick(timerName) {
+                maintainPvpArena(arenaKey)
+                Timer.CONTINUE
+            }
+        }
+
         playerDespawn {
             if (isBot) {
                 manager.remove(bot)
@@ -159,6 +170,21 @@ class BotCommands(
             names.addAll(File(Settings["bots.names"]).readLines())
         }
         loadPvpArenas()
+        for (arenaKey in PVP_AUTOSPAWN_ARENAS) {
+            if (Settings["bots.pvp.$arenaKey.count", 0] > 0) {
+                World.timers.start("pvp_spawn_$arenaKey")
+            }
+        }
+    }
+
+    private fun maintainPvpArena(arenaKey: String) {
+        val target = Settings["bots.pvp.$arenaKey.count", 0]
+        if (target <= 0) return
+        val arena = pvpArenas[arenaKey] ?: return
+        val tierPrefix = "${arenaKey}_"
+        val current = pvpBotTiers.values.count { it.activityId.startsWith(tierPrefix) }
+        if (current >= target) return
+        spawnPvpBot(arena)
     }
 
     private fun loadPvpArenas() {
@@ -424,6 +450,8 @@ class BotCommands(
 }
 
 private const val LOOT_PENDING_TICKS = 60
+
+private val PVP_AUTOSPAWN_ARENAS = listOf("clan_wars_ffa_safe", "clan_wars_ffa_dangerous")
 
 private data class PvpArena(val spawnArea: String, val tiers: List<PvpTier>)
 
