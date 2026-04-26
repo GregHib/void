@@ -1,5 +1,6 @@
 package content.area.wilderness
 
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
@@ -34,6 +35,14 @@ val Character.inPvp: Boolean
 
 val Character.inWilderness: Boolean
     get() = get("in_wilderness", false)
+
+/**
+ * True when wilderness-style PvP consequences apply: combat-start skull and full item drops on
+ * death. Wilderness itself, plus the Clan Wars FFA dangerous arena. Distinct from [inPvp], which
+ * only gates "can you attack here" and is also true in safer arenas (FFA safe, etc.).
+ */
+val Character.inFullPvp: Boolean
+    get() = inWilderness || tile in Areas["clan_wars_ffa_dangerous_arena"]
 
 val Character.inMultiCombat: Boolean
     get() = contains("in_multi_combat")

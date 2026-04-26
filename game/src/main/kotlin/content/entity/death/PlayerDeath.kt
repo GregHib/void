@@ -2,7 +2,7 @@ package content.entity.death
 
 import content.area.misthalin.lumbridge.church.Gravestone
 import content.area.wilderness.inMultiCombat
-import content.area.wilderness.inWilderness
+import content.area.wilderness.inFullPvp
 import content.entity.combat.*
 import content.entity.combat.Target
 import content.entity.combat.hit.directHit
@@ -63,7 +63,6 @@ class PlayerDeath : Script {
                 }
                 val tile = tile.copy()
                 set("death_tile", tile)
-                val wilderness = inWilderness
                 retribution(player)
                 wrath(player)
                 message("Oh dear, you are dead!")
@@ -79,7 +78,7 @@ class PlayerDeath : Script {
                 dismissFamiliar()
                 if (onDeath.dropItems) {
                     val tile = instanceLogout() ?: tile
-                    dropItems(player, killer, tile, wilderness)
+                    dropItems(player, killer, tile)
                 }
                 levels.clear()
                 runEnergy = MAX_RUN_ENERGY
@@ -94,7 +93,7 @@ class PlayerDeath : Script {
         }
     }
 
-    fun dropItems(player: Player, killer: Character?, tile: Tile, inWilderness: Boolean) {
+    fun dropItems(player: Player, killer: Character?, tile: Tile) {
         if (player.isAdmin()) {
             return
         }
@@ -108,8 +107,8 @@ class PlayerDeath : Script {
             }
         }
 
-        // Treat the Clan Wars FFA dangerous arena as a PvP drop zone: no grave, drops go to the killer.
-        val pvpDrop = inWilderness || tile in Areas["clan_wars_ffa_dangerous_arena"]
+        // inFullPvp covers wilderness + the Clan Wars FFA dangerous arena: no grave, drops go to the killer.
+        val pvpDrop = player.inFullPvp
         // Spawn grave
         val time = when {
             pvpDrop && killer is Player -> 0

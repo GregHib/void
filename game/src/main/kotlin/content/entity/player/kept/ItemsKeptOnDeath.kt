@@ -1,6 +1,6 @@
 package content.entity.player.kept
 
-import content.area.wilderness.inWilderness
+import content.area.wilderness.inFullPvp
 import content.entity.player.effect.skulled
 import content.skill.prayer.praying
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
@@ -42,7 +42,7 @@ object ItemsKeptOnDeath {
                     continue
                 }
                 ItemKept.Always, ItemKept.Reclaim, ItemKept.Wilderness -> {
-                    if (type == ItemKept.Wilderness && player.inWilderness) {
+                    if (type == ItemKept.Wilderness && player.inFullPvp) {
                         queue.pop()
                         continue
                     }
