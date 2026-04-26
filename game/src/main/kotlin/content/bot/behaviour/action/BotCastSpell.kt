@@ -6,6 +6,7 @@ import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.BotWorld
 import content.bot.behaviour.Reason
 import content.bot.behaviour.condition.Condition
+import content.area.wilderness.inMultiCombat
 import content.bot.behaviour.utility.TargetScorer
 import content.entity.combat.Target
 import content.entity.combat.dead
@@ -167,18 +168,18 @@ data class BotCastSpell(
     }
 
     private fun chooseSpell(bot: Bot, target: Player): String? {
-        val magic = bot.levels.get(Skill.Magic)
+        val player = bot.player
         val maxHp = bot.levels.getMax(Skill.Constitution)
         val hpFraction = if (maxHp > 0) bot.levels.get(Skill.Constitution).toDouble() / maxHp else 1.0
-        val context = bot.combatContext
-        val multi = if (context != null) {
-            var n = 0
-            for (dx in -1..1) for (dy in -1..1) {
-                n += context.enemiesByTile[target.tile.add(dx, dy).id]?.size ?: 0
-            }
-            n >= 2
-        } else false
-
+        // Re-evaluate only when target identity, frozen state, or HP bucket changes; otherwise reuse last spell.
+        val hpBucket = (hpFraction * 4).toInt().coerceIn(0, 4)
+        val targetKey = (target.index shl 3) or (hpBucket shl 1) or (if (target.frozen) 1 else 0)
+        if (player.get("autocast_choice_key", Int.MIN_VALUE) == targetKey) {
+            return player.get<String>("autocast_choice_spell")
+        }
+        val magic = bot.levels.get(Skill.Magic)
+        // Multi-target spells only matter in multi-combat zones; skip the spiral scan otherwise.
+        val multi = bot.player.inMultiCombat
         val fam = when {
             hpFraction < 0.50 && magic >= 68 -> "blood"
             !target.frozen && magic >= 58 -> "ice"
@@ -191,7 +192,10 @@ data class BotCastSpell(
             magic >= 58 -> "rush"
             else -> null
         } ?: return null
-        return "${fam}_${tier}"
+        val spell = "${fam}_${tier}"
+        player["autocast_choice_key"] = targetKey
+        player["autocast_choice_spell"] = spell
+        return spell
     }
 
     private fun ensureAutocast(player: Player, spell: String?) {
