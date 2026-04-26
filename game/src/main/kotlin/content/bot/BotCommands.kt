@@ -99,7 +99,11 @@ class BotCommands(
             if (get("debug", false)) {
                 pvpLogger.info { "playerDeath fired for '$accountName', tier=${tier.activityId}, keys=${pvpBotTiers.keys}" }
             }
-            it.dropItems = false
+            // Bots in dangerous arenas drop their kit on death (loot piñata for the killer);
+            // bots elsewhere keep their items so applyTier doesn't duplicate the kit on the floor.
+            if (!isDangerousArenaDeath(this, tier)) {
+                it.dropItems = false
+            }
             applyTier(bot, tier)
             manager.stop(bot)
             bot.blocked.remove(tier.activityId)
@@ -187,6 +191,11 @@ class BotCommands(
         val current = pvpBotTiers.values.count { it.activityId.startsWith(tierPrefix) }
         if (current >= target) return
         spawnPvpBot(arena)
+    }
+
+    private fun isDangerousArenaDeath(deceased: Player, tier: PvpTier): Boolean {
+        if (tier.activityId.startsWith("clan_wars_ffa_dangerous_")) return true
+        return deceased.tile in Areas["clan_wars_ffa_dangerous_arena"]
     }
 
     private fun loadPvpArenas() {
