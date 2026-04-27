@@ -145,13 +145,14 @@ sealed class ActionParser {
 
     object InterfaceParser : ActionParser() {
         override val required = setOf("option", "id")
-        override val optional = setOf("success")
+        override val optional = setOf("success", "if")
 
         override fun parse(map: Map<String, Any>): BotAction {
             val option = map["option"] as String
             val id = map["id"] as String
             val success = requirement(map, "success").singleOrNull()
-            return BotInterfaceOption(option, id, success)
+            val condition = requirement(map, "if").singleOrNull()
+            return BotInterfaceOption(option, id, success, condition)
         }
     }
 

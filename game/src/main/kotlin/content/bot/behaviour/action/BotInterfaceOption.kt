@@ -12,8 +12,11 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.network.client.instruction.InteractInterface
 import kotlin.collections.indexOf
 
-data class BotInterfaceOption(val option: String, val id: String, val success: Condition? = null) : BotAction {
+data class BotInterfaceOption(val option: String, val id: String, val success: Condition? = null, val condition: Condition? = null) : BotAction {
     override fun update(bot: Bot, world: BotWorld, frame: BehaviourFrame): BehaviourState? {
+        if (condition != null && !condition.check(bot.player)) {
+            return BehaviourState.Success
+        }
         if (success != null && success.check(bot.player)) {
             return BehaviourState.Success
         }
