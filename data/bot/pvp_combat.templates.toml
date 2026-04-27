@@ -19,6 +19,7 @@ setup = [
         { id = "super_strength_4", min = 2 },
         { id = "dragon_dagger_p++", min = 1, equippable = true },
         { id = "granite_maul", min = 1, equippable = true },
+        { id = "games_necklace_6", min = 1, equippable = true },
     ] },
     { area = { id = "$area" } },
 ]
@@ -56,6 +57,7 @@ setup = [
         { id = "super_restore_4", min = 2 },
         { id = "super_strength_4", min = 1 },
         { id = "dwarven_rock_cake", min = 1 },
+        { id = "games_necklace_6", min = 1, equippable = true },
     ] },
     { area = { id = "$area" } },
 ]
@@ -93,6 +95,7 @@ setup = [
         { id = "saradomin_brew_4", min = 2 },
         { id = "overload_4", min = 1 },
         { id = "abyssal_whip", min = 1, equippable = true },
+        { id = "games_necklace_6", min = 1, equippable = true },
     ] },
     { area = { id = "$area" } },
 ]
@@ -127,6 +130,7 @@ setup = [
         { id = "shark", min = 18 },
         { id = "super_strength_4", min = 2 },
         { id = "granite_maul", min = 1, equippable = true },
+        { id = "games_necklace_6", min = 1, equippable = true },
     ] },
     { area = { id = "$area" } },
 ]
@@ -154,6 +158,7 @@ setup = [
         { id = "shark", min = 16 },
         { id = "super_restore_4", min = 1 },
         { id = "rune_arrow", min = 10000 },
+        { id = "games_necklace_6", min = 1, equippable = true },
     ] },
     { area = { id = "$area" } },
 ]
@@ -186,6 +191,7 @@ setup = [
         { id = "shark", min = 16 },
         { id = "super_restore_4", min = 2 },
         { id = "runite_bolts", min = 10000 },
+        { id = "games_necklace_6", min = 1, equippable = true },
     ] },
     { area = { id = "$area" } },
 ]
@@ -224,6 +230,7 @@ setup = [
         { id = "water_rune", min = 10000 },
         { id = "chaos_rune", min = 10000 },
         { id = "air_rune", min = 10000 },
+        { id = "games_necklace_6", min = 1, equippable = true },
     ] },
     { area = { id = "$area" } },
 ]
@@ -267,6 +274,7 @@ setup = [
         { id = "armadyl_godsword", min = 1, equippable = true },
         { id = "dark_bow", min = 1, equippable = true },
         { id = "dragon_arrow", min = 50 },
+        { id = "games_necklace_6", min = 1, equippable = true },
     ] },
     { area = { id = "$area" } },
 ]
