@@ -119,6 +119,12 @@ class BotCommands(
             slayer.start("loot_pending", LOOT_PENDING_TICKS)
         }
 
+        entered("clan_wars_teleport") {
+            val tier = pvpBotTiers[accountName] ?: return@entered
+            if (!tier.activityId.startsWith("clan_wars_ffa_dangerous_")) return@entered
+            pvpLogger.info { "PvP bot retreat: '$accountName' tier=${tier.activityId} teleported to clan_wars_teleport" }
+        }
+
         worldSpawn {
             loadSettings()
         }
