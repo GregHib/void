@@ -25,6 +25,7 @@ import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -63,6 +64,10 @@ class BotUpdatesTest {
         manager.add(bot)
         assertTrue(bot.available.contains("kill_chickens"))
 
+        // BotSkillLevel.check reads max (XP-driven), so XP needs to grow past the cap, not just
+        // the boosted current level — otherwise drained Constitution/Prayer would knock pinned
+        // PvP bots out of their requires gate after every fight.
+        bot.player.experience.set(Skill.Attack, Level.experience(Skill.Attack, 10))
         bot.levels.set(Skill.Attack, 10)
         manager.updateAvailable(bot)
 

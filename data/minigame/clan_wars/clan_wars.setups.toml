@@ -19,7 +19,7 @@ requires = [
 ]
 actions = [
     { object = { option = "Enter", id = "clan_wars_portal_ffa_safe", radius = 15, success = { any = [{ interface_open = { id = "warning_clan_wars_ffa_safe" } }, { area = { id = "clan_wars_ffa_safe_lobby" } }, { area = { id = "clan_wars_ffa_safe_arena" } }] } } },
-    { interface = { option = "Go in", id = "warning_clan_wars_ffa_safe:yes", success = { any = [{ area = { id = "clan_wars_ffa_safe_lobby" } }, { area = { id = "clan_wars_ffa_safe_arena" } }] } } },
+    { interface = { option = "Go in", id = "warning_clan_wars_ffa_safe:yes", if = { interface_open = { id = "warning_clan_wars_ffa_safe" } }, success = { any = [{ area = { id = "clan_wars_ffa_safe_lobby" } }, { area = { id = "clan_wars_ffa_safe_arena" } }] } } },
     { tile = { x = 2815, y = 5515, radius = 2 } },
 ]
 produces = [
@@ -47,7 +47,7 @@ requires = [
 ]
 actions = [
     { object = { option = "Enter", id = "clan_wars_portal_ffa_dangerous", radius = 15, success = { any = [{ interface_open = { id = "warning_clan_wars_ffa_safe" } }, { area = { id = "clan_wars_ffa_dangerous_lobby" } }, { area = { id = "clan_wars_ffa_dangerous_arena" } }] } } },
-    { interface = { option = "Go in", id = "warning_clan_wars_ffa_safe:yes", success = { any = [{ area = { id = "clan_wars_ffa_dangerous_lobby" } }, { area = { id = "clan_wars_ffa_dangerous_arena" } }] } } },
+    { interface = { option = "Go in", id = "warning_clan_wars_ffa_safe:yes", if = { interface_open = { id = "warning_clan_wars_ffa_safe" } }, success = { any = [{ area = { id = "clan_wars_ffa_dangerous_lobby" } }, { area = { id = "clan_wars_ffa_dangerous_arena" } }] } } },
     { tile = { x = 3007, y = 5515, radius = 2 } },
 ]
 produces = [

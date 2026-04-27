@@ -35,11 +35,22 @@ data class BotInterfaceOption(val option: String, val id: String, val success: C
         }
         val itemDef = if (item != null) ItemDefinitions.getOrNull(item) else null
         var index = options.indexOf(option)
-        if (index == -1) {
-            if (itemDef == null || !itemDef.options.contains(option)) {
-                return BehaviourState.Failed(Reason.Invalid("No interface option $option for $id:$component:$item options=${options.contentToString()}."))
-            }
+        if (index == -1 && itemDef != null && itemDef.options.contains(option)) {
             index = itemDef.options.indexOf(option)
+        }
+        if (index == -1 && itemDef != null) {
+            // Worn-equipment options ("Burthorpe", "Clan Wars", etc. on jewellery, etc.) live in
+            // item params under keys "worn_option_1".."worn_option_5"; the server reads the param
+            // by raw option index (see WornEquipment.getEquipmentOption).
+            for (n in 1..5) {
+                if (itemDef.getOrNull<String>("worn_option_$n") == option) {
+                    index = n
+                    break
+                }
+            }
+        }
+        if (index == -1) {
+            return BehaviourState.Failed(Reason.Invalid("No interface option $option for $id:$component:$item options=${options.contentToString()}."))
         }
         var inv = InterfaceHandler.getInventory(bot.player, id, component, componentDef)
         if (inv != null && component == "sample") {

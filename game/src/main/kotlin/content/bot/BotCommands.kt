@@ -7,6 +7,9 @@ import content.bot.behaviour.condition.BotEquipmentSetup
 import content.bot.behaviour.condition.BotInventorySetup
 import content.entity.combat.dead
 import content.entity.combat.killer
+import content.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import content.entity.player.combat.special.specialAttack
+import content.entity.player.combat.special.specialAttackEnergy
 import content.quest.questJournal
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.Contexts
@@ -400,6 +403,12 @@ class BotCommands(
             target.experience.set(skill, Level.experience(skill, stored))
             target.levels.set(skill, stored)
         }
+        // Belt-and-braces full restore: HP + prayer to max (in case the tier omits one), special
+        // attack energy to 100%, and clear any half-pressed spec toggle from the previous round.
+        target.levels.clear(Skill.Constitution)
+        target.levels.clear(Skill.Prayer)
+        target.specialAttackEnergy = MAX_SPECIAL_ATTACK
+        target.specialAttack = false
         target["combat_style"] = tier.style
         val activity = manager.activity(tier.activityId) ?: return
         target.inventory.transaction { clear() }
