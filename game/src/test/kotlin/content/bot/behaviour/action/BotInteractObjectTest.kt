@@ -93,4 +93,46 @@ class BotInteractObjectTest {
 
         assertEquals(BehaviourState.Failed(Reason.NoTarget), state)
     }
+
+    @Test
+    fun `Skips action when if-condition is false`() {
+        ObjectDefinitions.set(
+            arrayOf(ObjectDefinition(id = 0, options = arrayOf("Open"), stringId = "door")),
+            mapOf("door" to 0),
+        )
+        GameObjects.add("door", player.tile)
+
+        var called = false
+        val world = FakeWorld(execute = { _, _ -> called = true; true })
+
+        // BotHasClock("never_set") returns false -> action should Success-skip without searching.
+        val action = BotInteractObject("Open", "door", condition = BotHasClock("never_set"))
+
+        val state = action.update(bot, world, BehaviourFrame(FakeBehaviour()))
+
+        assertEquals(BehaviourState.Success, state)
+        assertFalse(called)
+    }
+
+    @Test
+    fun `Runs action when if-condition is true`() {
+        ObjectDefinitions.set(
+            arrayOf(ObjectDefinition(id = 0, options = arrayOf("Open"), stringId = "door")),
+            mapOf("door" to 0),
+        )
+        player.mode = EmptyMode
+        player.tile = Tile(1234, 1234)
+        GameObjects.add("door", player.tile)
+        player.start("ready", 10)
+
+        var called = false
+        val world = FakeWorld(execute = { _, instruction -> called = instruction is InteractObject; true })
+
+        val action = BotInteractObject("Open", "door", condition = BotHasClock("ready"))
+
+        val state = action.update(bot, world, BehaviourFrame(FakeBehaviour()))
+
+        assertTrue(called)
+        assertEquals(BehaviourState.Running, state)
+    }
 }
