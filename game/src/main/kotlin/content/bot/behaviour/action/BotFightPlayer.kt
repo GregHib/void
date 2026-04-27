@@ -37,8 +37,10 @@ data class BotFightPlayer(
     val area: String? = null,
 ) : BotAction {
     override fun update(bot: Bot, world: BotWorld, frame: BehaviourFrame) = when {
-        healPercentage > 0 && bot.levels.get(Skill.Constitution) <= bot.levels.getMax(Skill.Constitution) * healPercentage / 100 -> eat(bot, world)
+        // Success first so a retreat-by-teleport (bot now outside `area`) can complete the
+        // activity even at low HP — otherwise eat() spins forever when food is exhausted.
         success?.check(bot.player) == true -> BehaviourState.Success
+        healPercentage > 0 && bot.levels.get(Skill.Constitution) <= bot.levels.getMax(Skill.Constitution) * healPercentage / 100 -> eat(bot, world)
         bot.mode is PlayerOnPlayerInteract -> handleEngaged(bot, world)
         bot.mode is PlayerOnFloorItemInteract -> BehaviourState.Running
         bot.mode is EmptyMode -> search(bot, world)
@@ -60,6 +62,12 @@ data class BotFightPlayer(
                 }
             }
         }
+        if (targetScorer == null && targetGone(bot, mode.target)) {
+            // Target has clearly left (different level or far outside our scan radius — typical
+            // sign of a teleport-out). Clear the stale interact so search() picks a new target
+            // when the activity loops back via restart.
+            bot.player.mode = EmptyMode
+        }
         BotArenaCenter.maybeRecenter(bot, world, area)
         return if (success == null) BehaviourState.Success else BehaviourState.Running
     }
@@ -69,6 +77,16 @@ data class BotFightPlayer(
         if (current.tile.level != bot.player.tile.level) return true
         if (bot.player.tile.distanceTo(current.tile) > radius) return true
         return !Target.attackable(bot.player, current, message = false)
+    }
+
+    /**
+     * Cheap, non-throwing "target obviously left" check used when no [targetScorer] is configured.
+     * Avoids the heavier attackable/dead checks in [shouldRepick] to stay compatible with relaxed
+     * mocks in tests where those properties aren't stubbed.
+     */
+    private fun targetGone(bot: Bot, target: Player): Boolean {
+        if (target.tile.level != bot.player.tile.level) return true
+        return bot.player.tile.distanceTo(target.tile) > radius * 2
     }
 
     private fun eat(bot: Bot, world: BotWorld): BehaviourState {

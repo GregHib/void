@@ -41,10 +41,12 @@ data class BotCastSpell(
     val area: String? = null,
 ) : BotAction {
     override fun update(bot: Bot, world: BotWorld, frame: BehaviourFrame): BehaviourState? {
+        // Success first so a retreat-by-teleport (bot now outside `area`) can complete the
+        // activity even at low HP — otherwise eat() spins forever when food is exhausted.
+        if (success?.check(bot.player) == true) return BehaviourState.Success
         if (healPercentage > 0 && bot.levels.get(Skill.Constitution) <= bot.levels.getMax(Skill.Constitution) * healPercentage / 100) {
             return eat(bot, world)
         }
-        if (success?.check(bot.player) == true) return BehaviourState.Success
         val target = engagedTarget(bot)
         if (target != null) return handleCombat(bot, world, target)
         if (bot.mode is PlayerOnFloorItemInteract) return BehaviourState.Running
@@ -76,6 +78,12 @@ data class BotCastSpell(
                 }
             }
         }
+        if (targetScorer == null && targetGone(bot, currentTarget)) {
+            // Target left (teleport-out etc.). Clear the stale interact so search() picks a new
+            // target when the activity loops back.
+            bot.player.mode = EmptyMode
+            return if (success == null) BehaviourState.Success else BehaviourState.Running
+        }
 
         anchorIfNeeded(bot, currentTarget)
         ensureAutocast(bot.player, chooseSpell(bot, currentTarget))
@@ -90,6 +98,15 @@ data class BotCastSpell(
         if (current.tile.level != bot.player.tile.level) return true
         if (bot.player.tile.distanceTo(current.tile) > radius) return true
         return !Target.attackable(bot.player, current, message = false)
+    }
+
+    /**
+     * Cheap, non-throwing "target obviously left" check used when no [targetScorer] is configured.
+     * See [BotFightPlayer.targetGone].
+     */
+    private fun targetGone(bot: Bot, target: Player): Boolean {
+        if (target.tile.level != bot.player.tile.level) return true
+        return bot.player.tile.distanceTo(target.tile) > radius * 2
     }
 
     private fun maybeKite(bot: Bot, world: BotWorld, target: Player) {

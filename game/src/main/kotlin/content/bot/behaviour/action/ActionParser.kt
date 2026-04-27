@@ -156,6 +156,19 @@ sealed class ActionParser {
         }
     }
 
+    object JewelleryTeleportParser : ActionParser() {
+        override val required = setOf("item", "area")
+        override val optional = setOf("if", "success")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val item = map["item"] as String
+            val area = map["area"] as String
+            val condition = requirement(map, "if").singleOrNull()
+            val success = requirement(map, "success").singleOrNull()
+            return BotJewelleryTeleport(item, area, condition, success)
+        }
+    }
+
     object Firemaking : ActionParser() {
         override val required = setOf("id", "area")
 
@@ -338,6 +351,7 @@ sealed class ActionParser {
             "wait" to WaitParser,
             "restart" to RestartParser,
             "interface" to InterfaceParser,
+            "jewellery_teleport" to JewelleryTeleportParser,
             "pray" to PrayParser,
             "spec_attack" to SpecAttackParser,
             "cast_spell" to CastSpellParser,
