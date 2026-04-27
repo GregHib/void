@@ -5,6 +5,7 @@ package content.bot
 import com.github.michaelbull.logging.InlineLogger
 import content.bot.behaviour.condition.BotEquipmentSetup
 import content.bot.behaviour.condition.BotInventorySetup
+import content.entity.combat.dead
 import content.entity.combat.killer
 import content.quest.questJournal
 import kotlinx.coroutines.*
@@ -122,6 +123,8 @@ class BotCommands(
         entered("clan_wars_teleport") {
             val tier = pvpBotTiers[accountName] ?: return@entered
             if (!tier.activityId.startsWith("clan_wars_ffa_dangerous_")) return@entered
+            // Death sequence also teles to clan_wars_teleport while dead is still true; skip those.
+            if (dead) return@entered
             pvpLogger.info { "PvP bot retreat: '$accountName' tier=${tier.activityId} teleported to clan_wars_teleport" }
         }
 
