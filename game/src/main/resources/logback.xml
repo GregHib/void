@@ -7,7 +7,7 @@
             <pattern>%colour(%level) %green([%logger{0}]) %message(%msg){}%n%red(%ex)</pattern>
         </encoder>
     </appender>
-    <root level="debug">
+    <root level="info">
         <appender-ref ref="console"/>
     </root>
     <logger name="org.jetbrains.exposed" level="WARN"/>
