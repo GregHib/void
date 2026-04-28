@@ -296,10 +296,7 @@ private data class Fragment(
         val combinedList = mutableListOf<Pair<String, Map<String, Any>>>()
         combinedList.addAll(original)
         for ((type, map) in templated) {
-            val resolved = resolve(map, type)
-            if (resolved.isNotEmpty()) {
-                combinedList.add(type to resolved)
-            }
+            combinedList.add(type to resolve(map, type))
         }
         if (combinedList.isEmpty()) {
             return emptyList()
