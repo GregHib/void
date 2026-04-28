@@ -66,16 +66,12 @@ class TelekineticGrab(val definitions: SpellDefinitions) : Script {
                 }
                 start("action_delay", 3)
                 AuditLog.event(this@onFloorItemApproach, "telegrab", floorItem, floorItem.tile)
-                if (tile != floorItem.tile) {
-                    face(floorItem.tile.delta(tile))
-                    anim("take")
-                }
                 Items.take(this@onFloorItemApproach, floorItem)
             }
         }
 
         onNPCApproach("modern_spellbook:telekinetic_grab") {
-            message("You can't use Telekineetic Grab on them.")
+            message("You can't use Telekinetic Grab on them.")
         }
     }
 }
