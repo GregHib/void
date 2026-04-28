@@ -22,4 +22,5 @@ tiers = [
     "clan_wars_ffa_dangerous_melee",
     "clan_wars_ffa_dangerous_ranged",
     "clan_wars_ffa_dangerous_magic",
+    "clan_wars_ffa_dangerous_hybrid",
 ]

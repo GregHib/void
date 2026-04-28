@@ -405,6 +405,54 @@ produces = [
     { skill = "prayer" },
 ]
 
+[pvp_dangerous_hybrid]
+requires = [
+    { skill = { id = "attack", min = 75 } },
+    { skill = { id = "strength", min = 80 } },
+    { skill = { id = "ranged", min = 75 } },
+    { skill = { id = "magic", min = 94 } },
+    { skill = { id = "defence", min = 60 } },
+    { skill = { id = "constitution", min = 80 } },
+    { skill = { id = "prayer", min = 55 } },
+]
+hybrid_starting_loadout = "melee"
+hybrid_swap_cooldown = 3
+hybrid_swap_per_tick = 4
+setup = [
+    { equipment = { weapon = { id = "abyssal_whip" }, chest = { id = "fighter_torso" }, legs = { id = "rune_platelegs" }, hat = { id = "helm_of_neitiznot" }, feet = { id = "dragon_boots" }, amulet = { id = "amulet_of_glory_4" }, cape = { id = "obsidian_cape" } } },
+    { inventory = [
+        { id = "shark", min = 7 },
+        { id = "super_restore_4", min = 2 },
+        { id = "saradomin_brew_4", min = 1 },
+        { id = "games_necklace_6", min = 1, equippable = true },
+    ] },
+    { area = { id = "$area" } },
+]
+loadouts = { melee  = { equipment = { weapon = { id = "abyssal_whip" }, chest = { id = "fighter_torso" }, legs = { id = "rune_platelegs" }, hat = { id = "helm_of_neitiznot" }, feet = { id = "dragon_boots" } } },
+             magic  = { equipment = { weapon = { id = "ancient_staff" }, chest = { id = "mystic_robe_top_blue" }, legs = { id = "mystic_robe_bottom_blue" }, hat = { id = "mystic_hat_blue" }, feet = { id = "mystic_boots_blue" } },
+                        inventory = [ { id = "blood_rune", min = 2000 }, { id = "death_rune", min = 2000 }, { id = "water_rune", min = 5000 }],
+                        autocast = "ice_barrage" },
+             ranged = { equipment = { weapon = { id = "magic_shortbow" }, chest = { id = "black_dragonhide_body" }, legs = { id = "black_dragonhide_chaps" }, hat = { id = "archer_helm" }, ammo = { id = "rune_arrow", min = 200 } } } }
+actions = [
+    { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 40, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
+    { restart = { success = { area = { id = "$area", present = false } } } },
+]
+reactive = [
+    { switch_loadout = { counter_attacker = true } },
+    { pray = { id = "protect_from_melee",    if = { attacker_style = { equals = "melee"  } } } },
+    { pray = { id = "protect_from_missiles", if = { attacker_style = { equals = "ranged" } } } },
+    { pray = { id = "protect_from_magic",    if = { attacker_style = { equals = "magic"  } } } },
+]
+produces = [
+    { skill = "attack" },
+    { skill = "strength" },
+    { skill = "ranged" },
+    { skill = "magic" },
+    { skill = "defence" },
+    { skill = "constitution" },
+    { skill = "prayer" },
+]
+
 [pvp_dangerous_magic]
 requires = [
     { skill = { id = "magic", min = 94 } },

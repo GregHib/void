@@ -3,6 +3,9 @@ package content.bot.behaviour
 import content.bot.behaviour.action.ActionParser
 import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.activity.BotActivity
+import content.bot.behaviour.activity.Loadout
+import content.bot.behaviour.condition.BotEquipmentSetup
+import content.bot.behaviour.condition.BotInventorySetup
 import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.navigation.NavigationGraph
 import content.bot.behaviour.navigation.NavigationShortcut
@@ -187,6 +190,10 @@ private fun loadTemplates(paths: List<String>): Map<String, Template> {
                     val actions = mutableListOf<Pair<String, Map<String, Any>>>()
                     val reactive = mutableListOf<Pair<String, Map<String, Any>>>()
                     val produces = mutableSetOf<String>()
+                    var loadouts: Map<String, Any> = emptyMap()
+                    var hybridStartingLoadout: String? = null
+                    var hybridSwapCooldown: Int? = null
+                    var hybridSwapPerTick: Int? = null
                     while (nextPair()) {
                         when (val key = key()) {
                             "requires" -> requirements(requires)
@@ -194,10 +201,14 @@ private fun loadTemplates(paths: List<String>): Map<String, Template> {
                             "actions" -> actions(actions)
                             "reactive" -> actions(reactive)
                             "produces" -> produces(produces)
+                            "loadouts" -> loadouts = map()
+                            "hybrid_starting_loadout" -> hybridStartingLoadout = string()
+                            "hybrid_swap_cooldown" -> hybridSwapCooldown = int()
+                            "hybrid_swap_per_tick" -> hybridSwapPerTick = int()
                             else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
                     }
-                    templates[id] = Template(requires, setup, actions, reactive, produces)
+                    templates[id] = Template(requires, setup, actions, reactive, produces, loadouts, hybridStartingLoadout, hybridSwapCooldown, hybridSwapPerTick)
                 }
             }
         }
@@ -264,7 +275,30 @@ private data class Fragment(
         actions = resolveActions(template.actions, actions),
         reactive = resolveActions(template.reactive, reactive),
         produces = resolve(template.produces) + produces,
+        loadouts = resolveLoadouts(template),
+        hybridStartingLoadout = template.hybridStartingLoadout,
+        hybridSwapCooldown = template.hybridSwapCooldown ?: 3,
+        hybridSwapPerTick = template.hybridSwapPerTick ?: 1,
     )
+
+    @Suppress("UNCHECKED_CAST")
+    private fun resolveLoadouts(template: Template): Map<String, Loadout> {
+        if (template.loadouts.isEmpty()) return emptyMap()
+        val out = LinkedHashMap<String, Loadout>(template.loadouts.size)
+        val debug = "$id template ${this.template} loadouts"
+        for ((name, raw) in template.loadouts) {
+            val map = raw as? Map<String, Any> ?: error("Loadout '$name' must be a map in $debug, got $raw.")
+            val resolved = resolve(map, "loadouts.$name")
+            val eqRaw = resolved["equipment"] as? Map<String, Any>
+                ?: error("Loadout '$name' missing 'equipment' map in $debug.")
+            val equipment = Condition.parse(listOf("equipment" to listOf(eqRaw)), debug).single() as BotEquipmentSetup
+            val invRaw = resolved["inventory"] as? List<Map<String, Any>>
+            val inventory = if (invRaw.isNullOrEmpty()) null else Condition.parse(listOf("inventory" to invRaw), debug).single() as BotInventorySetup
+            val autocast = resolved["autocast"] as? String
+            out[name] = Loadout(name, equipment, inventory, autocast)
+        }
+        return out
+    }
 
     private fun resolve(set: Set<String>) = set.map { value ->
         if (value.contains('$')) {
@@ -370,4 +404,8 @@ private data class Template(
     val actions: List<Pair<String, Map<String, Any>>>,
     val reactive: List<Pair<String, Map<String, Any>>>,
     val produces: Set<String>,
+    val loadouts: Map<String, Any> = emptyMap(),
+    val hybridStartingLoadout: String? = null,
+    val hybridSwapCooldown: Int? = null,
+    val hybridSwapPerTick: Int? = null,
 )

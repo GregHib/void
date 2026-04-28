@@ -75,3 +75,13 @@ reactive = [
     { interface = { option = "Wear", id = "inventory:inventory:games_necklace_6", if = { pvp_retreat_needed = {} }, success = { any = [{ area = { id = "clan_wars_teleport" } }, { equipment = { amulet = { id = "games_necklace_*" } } }] } } },
     { jewellery_teleport = { item = "games_necklace_6", area = "clan_wars_teleport", if = { pvp_retreat_needed = {} }, success = { area = { id = "clan_wars_teleport" } } } },
 ]
+
+[clan_wars_ffa_dangerous_hybrid]
+template = "pvp_dangerous_hybrid"
+capacity = 3
+timeout = 500
+fields = { area = "clan_wars_ffa_dangerous_arena", safe_area = "clan_wars_ffa_dangerous_lobby" }
+reactive = [
+    { interface = { option = "Wear", id = "inventory:inventory:games_necklace_6", if = { pvp_retreat_needed = {} }, success = { any = [{ area = { id = "clan_wars_teleport" } }, { equipment = { amulet = { id = "games_necklace_*" } } }] } } },
+    { jewellery_teleport = { item = "games_necklace_6", area = "clan_wars_teleport", if = { pvp_retreat_needed = {} }, success = { area = { id = "clan_wars_teleport" } } } },
+]

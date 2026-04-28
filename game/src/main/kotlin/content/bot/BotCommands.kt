@@ -432,6 +432,27 @@ class BotCommands(
                 else -> Unit
             }
         }
+        val starting = activity.hybridStartingLoadout
+        if (starting != null) {
+            target["current_loadout"] = starting
+            target["last_loadout_swap_tick"] = -10_000
+        }
+        for ((name, loadout) in activity.loadouts) {
+            if (name == starting) continue
+            target.inventory.transaction {
+                for ((_, item) in loadout.equipment.items) {
+                    val usable = item.ids.filter { it != "empty" && !it.endsWith("_noted") && !it.endsWith("_broken") }
+                    val id = usable.randomOrNull() ?: item.ids.filter { it != "empty" }.randomOrNull() ?: continue
+                    if (target.equipment.contains(id)) continue
+                    if (target.inventory.contains(id)) continue
+                    add(id, item.min ?: 1)
+                }
+                loadout.extraInventory?.items?.forEach { item ->
+                    val id = item.ids.filter { it != "empty" }.randomOrNull() ?: return@forEach
+                    add(id, item.min ?: 1)
+                }
+            }.also { ok -> if (!ok) pvpLogger.warn { "loadout '$name' didn't fit for ${target.accountName}: ${target.inventory.transaction.error}" } }
+        }
         if (bot["debug", false]) {
             pvpLogger.info { "applyTier ${tier.activityId} for ${target.accountName}: levels=${tier.levels.map { "${it.key}=cur${target.levels.get(it.key)}/max${target.levels.getMax(it.key)}" }}" }
             pvpLogger.info { "  inventory=${(0 until target.inventory.size).mapNotNull { target.inventory.getOrNull(it) }.filter { it.id.isNotEmpty() }.map { "${it.id}x${it.amount}" }}" }
