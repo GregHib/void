@@ -109,14 +109,19 @@ internal class PlayerChatTest : DialogueTest() {
     }
 
     @Test
-    fun `Sending five or more lines to chat throws exception`() {
-        assertThrows<IllegalStateException> {
-            dialogueBlocking {
-                player<Neutral>(text = "\nOne\nTwo\nThree\nFour\nFive")
-            }
+    fun `Sending five or more lines to splits into multiple messages`() {
+        dialogue {
+            player<Neutral>(text = "\nOne\nTwo\nThree\nFour\nFive")
         }
-        verify(exactly = 0) {
-            player.open(any())
+        (player.dialogueSuspension as ContinueSuspension).resume(Unit)
+        verifyOrder {
+            player.open("dialogue_chat4")
+            interfaces.sendText("dialogue_chat4", "line1", "One")
+            interfaces.sendText("dialogue_chat4", "line2", "Two")
+            interfaces.sendText("dialogue_chat4", "line3", "Three")
+            interfaces.sendText("dialogue_chat4", "line4", "Four")
+            player.open("dialogue_chat1")
+            interfaces.sendText("dialogue_chat1", "line1", "Five")
         }
     }
 
