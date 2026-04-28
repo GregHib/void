@@ -19,6 +19,7 @@ class ClanWarsDangerousLoadoutCostTest : WorldTest() {
                 while (nextPair()) {
                     when (key()) {
                         "setup" -> collectItems(value(), items)
+                        "loadouts" -> collectLoadoutItems(value(), items)
                         else -> value()
                     }
                 }
@@ -75,6 +76,15 @@ class ClanWarsDangerousLoadoutCostTest : WorldTest() {
                     ((slot as? Map<*, *>)?.get("id") as? String)?.let(items::add)
                 }
             }
+        }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun collectLoadoutItems(loadouts: Any?, items: MutableSet<String>) {
+        val map = loadouts as? Map<String, Any> ?: return
+        for ((_, raw) in map) {
+            val entry = raw as? Map<String, Any> ?: continue
+            collectItems(listOf(entry), items)
         }
     }
 

@@ -58,3 +58,8 @@ levels = [70, 40, 70, 43]
 combat_style = "accurate"
 skills = ["magic", "defence", "constitution", "prayer"]
 levels = [94, 40, 70, 43]
+
+[.clan_wars_ffa_dangerous_hybrid]
+combat_style = "slash"
+skills = ["attack", "strength", "ranged", "magic", "defence", "constitution", "prayer"]
+levels = [75, 80, 75, 94, 60, 80, 55]

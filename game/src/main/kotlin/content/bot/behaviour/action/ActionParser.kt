@@ -141,6 +141,18 @@ sealed class ActionParser {
         }
     }
 
+    object SwitchLoadoutParser : ActionParser() {
+        override val optional = setOf("to", "counter_attacker", "if")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val to = map["to"] as? String
+            val counterAttacker = map["counter_attacker"] as? Boolean ?: false
+            require(to != null || counterAttacker) { "switch_loadout: must set 'to' or 'counter_attacker' in $map" }
+            val condition = requirement(map, "if").singleOrNull()
+            return BotSwitchLoadout(to, counterAttacker, condition)
+        }
+    }
+
     object RepositionParser : ActionParser() {
         override val optional = setOf("radius", "if")
 
@@ -378,6 +390,7 @@ sealed class ActionParser {
             "cast_vengeance" to CastVengeanceParser,
             "cast_spell" to CastSpellParser,
             "switch_setup" to SwitchSetupParser,
+            "switch_loadout" to SwitchLoadoutParser,
             "retreat" to RetreatParser,
             "reposition" to RepositionParser,
             "interface_close" to CloseInterfaceParser,

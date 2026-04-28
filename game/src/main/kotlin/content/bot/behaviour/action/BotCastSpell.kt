@@ -12,10 +12,7 @@ import content.entity.combat.Target
 import content.entity.combat.dead
 import content.entity.combat.target
 import content.entity.effect.frozen
-import content.skill.magic.spell.spellBook
-import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Areas
-import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnFloorItemInteract
@@ -215,14 +212,4 @@ data class BotCastSpell(
         return spell
     }
 
-    private fun ensureAutocast(player: Player, spell: String?) {
-        if (spell == null) return
-        if (player.spellBook != "ancient_spellbook") {
-            player.open("ancient_spellbook")
-        }
-        val castId: Int = InterfaceDefinitions.getComponent("ancient_spellbook", spell)?.getOrNull("cast_id") ?: return
-        if (player.get("autocast", 0) == castId) return
-        player.set("autocast_spell", spell)
-        player.set("autocast", castId)
-    }
 }

@@ -19,4 +19,8 @@ data class BotActivity(
     override val actions: List<BotAction> = emptyList(),
     override val reactive: List<BotAction> = emptyList(),
     override val produces: Set<String> = emptySet(),
+    val loadouts: Map<String, Loadout> = emptyMap(),
+    val hybridStartingLoadout: String? = null,
+    val hybridSwapCooldown: Int = 3,
+    val hybridSwapPerTick: Int = 1,
 ) : Behaviour
