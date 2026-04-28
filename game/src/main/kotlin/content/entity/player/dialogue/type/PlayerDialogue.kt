@@ -18,9 +18,19 @@ suspend inline fun <reified E : Expression> Player.player(text: String, largeHea
     player(expression, text, largeHead, clickToContinue, title)
 }
 
+@JvmName("playerExpression")
 suspend fun Player.player(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val lines = if (text.contains("\n")) text.trimIndent().lines() else get<FontDefinitions>().get("q8_full").splitLines(text, 380)
-    check(lines.size <= 4) { "Maximum player chat lines exceeded ${lines.size} for $this" }
+    if (lines.size > 4) {
+        for (chunk in lines.chunked(4)) {
+            player(expression, chunk, largeHead, clickToContinue, title)
+        }
+    } else {
+        player(expression, lines, largeHead, clickToContinue, title)
+    }
+}
+
+private suspend fun Player.player(expression: String, lines: List<String>, largeHead: Boolean, clickToContinue: Boolean, title: String?) {
     val id = getInterfaceId(lines.size, clickToContinue)
     check(open(id)) { "Unable to open player dialogue for $this" }
     val head = getChatHeadComponentName(largeHead)
