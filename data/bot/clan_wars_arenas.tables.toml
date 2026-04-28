@@ -19,12 +19,7 @@ tiers = [
 [.clan_wars_ffa_dangerous]
 spawn_area = "clan_wars_teleport"
 tiers = [
-    "clan_wars_ffa_dangerous_zerker",
-    "clan_wars_ffa_dangerous_dharoker",
-    "clan_wars_ffa_dangerous_ags_main",
-    "clan_wars_ffa_dangerous_obby_pure",
-    "clan_wars_ffa_dangerous_msb_pure",
-    "clan_wars_ffa_dangerous_karils_tank",
-    "clan_wars_ffa_dangerous_ancient_tank",
-    "clan_wars_ffa_dangerous_ancient_hybrid",
+    "clan_wars_ffa_dangerous_melee",
+    "clan_wars_ffa_dangerous_ranged",
+    "clan_wars_ffa_dangerous_magic",
 ]
