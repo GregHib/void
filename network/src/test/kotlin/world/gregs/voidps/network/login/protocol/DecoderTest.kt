@@ -119,8 +119,7 @@ class DecoderTest {
                 val decoders = decoders(huffman)
                 val decoder = decoders[id]
                 assertNotNull(decoder)
-                val size = decoder!!.length
-                when (size) {
+                when (decoder!!.length) {
                     Decoder.BYTE -> assertTrue(data.size <= Byte.MAX_VALUE)
                     Decoder.SHORT -> assertTrue(data.size <= Short.MAX_VALUE)
                     else -> assertEquals(decoder.length, data.size)

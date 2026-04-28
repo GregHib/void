@@ -7,7 +7,6 @@ import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.instruction.InteractInterfaceFloorItem
 import world.gregs.voidps.network.login.protocol.Decoder
 import world.gregs.voidps.network.login.protocol.readBoolean
-import world.gregs.voidps.network.login.protocol.readShortAdd
 import world.gregs.voidps.network.login.protocol.readUnsignedIntMiddle
 import world.gregs.voidps.network.login.protocol.readUnsignedShortAdd
 
@@ -19,7 +18,11 @@ class InterfaceOnFloorItemDecoder : Decoder(15) {
         val itemSlot = packet.readShortLittleEndian().toInt()
         val y = packet.readShort().toInt()
         val run = packet.readBoolean()
-        val item = packet.readShortAdd()
+        var item = packet.readUnsignedShortAdd()
+        if (item == 65535) {
+            // readShortAdd doesn't seem to decode > 20k correctly, but client always sends -1 anyway
+            item = -1
+        }
         val packed = packet.readUnsignedIntMiddle()
         return InteractInterfaceFloorItem(
             floorItem,
