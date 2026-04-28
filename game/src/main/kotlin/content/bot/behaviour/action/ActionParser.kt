@@ -104,6 +104,10 @@ sealed class ActionParser {
         }
     }
 
+    object CastVengeanceParser : ActionParser() {
+        override fun parse(map: Map<String, Any>): BotAction = BotCastVengeance
+    }
+
     object CastSpellParser : ActionParser() {
         override val optional = setOf("delay", "success", "radius", "heal_percent", "target_score", "family", "kite", "area")
 
@@ -371,6 +375,7 @@ sealed class ActionParser {
             "pray" to PrayParser,
             "spec_attack" to SpecAttackParser,
             "drink_potion" to DrinkPotionParser,
+            "cast_vengeance" to CastVengeanceParser,
             "cast_spell" to CastSpellParser,
             "switch_setup" to SwitchSetupParser,
             "retreat" to RetreatParser,
