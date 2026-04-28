@@ -16,7 +16,9 @@ setup = [
     { inventory = [
         { id = "shark", min = 16 },
         { id = "super_restore_4", min = 2 },
-        { id = "super_strength_4", min = 2 },
+        { id = "super_attack_4", min = 1 },
+        { id = "super_strength_4", min = 1 },
+        { id = "super_defence_4", min = 1 },
         { id = "dragon_dagger_p++", min = 1, equippable = true },
         { id = "granite_maul", min = 1, equippable = true },
         { id = "games_necklace_6", min = 1, equippable = true },
@@ -33,6 +35,9 @@ reactive = [
     { pray = { id = "protect_from_missiles", if = { attacker_style = { equals = "ranged" } } } },
     { pray = { id = "protect_from_magic", if = { attacker_style = { equals = "magic" } } } },
     { spec_attack = { weapon = "dragon_dagger_p++", fallback = "abyssal_whip", min_energy = 250, if = { target_hp_percent = { max = 0.25 } } } },
+    { drink_potion = { item = "super_attack_*", skill = "attack" } },
+    { drink_potion = { item = "super_strength_*", skill = "strength" } },
+    { drink_potion = { item = "super_defence_*", skill = "defence" } },
 ]
 produces = [
     { skill = "attack" },
@@ -55,7 +60,9 @@ setup = [
     { inventory = [
         { id = "shark", min = 16 },
         { id = "super_restore_4", min = 2 },
+        { id = "super_attack_4", min = 1 },
         { id = "super_strength_4", min = 1 },
+        { id = "super_defence_4", min = 1 },
         { id = "dwarven_rock_cake", min = 1 },
         { id = "games_necklace_6", min = 1, equippable = true },
     ] },
@@ -70,6 +77,9 @@ reactive = [
     { pray = { id = "protect_from_melee", if = { attacker_style = { equals = "melee" } } } },
     { pray = { id = "protect_from_missiles", if = { attacker_style = { equals = "ranged" } } } },
     { pray = { id = "protect_from_magic", if = { attacker_style = { equals = "magic" } } } },
+    { drink_potion = { item = "super_attack_*", skill = "attack" } },
+    { drink_potion = { item = "super_strength_*", skill = "strength" } },
+    { drink_potion = { item = "super_defence_*", skill = "defence" } },
 ]
 produces = [
     { skill = "attack" },
@@ -140,6 +150,7 @@ actions = [
 ]
 reactive = [
     { spec_attack = { weapon = "granite_maul", fallback = "tzhaar_ket_om", min_energy = 500, if = { target_hp_percent = { max = 0.35 } } } },
+    { drink_potion = { item = "super_strength_*", skill = "strength" } },
 ]
 produces = [
     { skill = "strength" },
@@ -157,6 +168,7 @@ setup = [
     { inventory = [
         { id = "shark", min = 16 },
         { id = "super_restore_4", min = 1 },
+        { id = "super_ranging_potion_4", min = 2 },
         { id = "rune_arrow", min = 10000 },
         { id = "games_necklace_6", min = 1, equippable = true },
     ] },
@@ -172,6 +184,7 @@ reactive = [
     { pray = { id = "protect_from_missiles", if = { attacker_style = { equals = "ranged" } } } },
     { pray = { id = "protect_from_magic", if = { attacker_style = { equals = "magic" } } } },
     { spec_attack = { weapon = "magic_shortbow", fallback = "magic_shortbow", min_energy = 500, if = { target_hp_percent = { max = 0.25 } } } },
+    { drink_potion = { item = "super_ranging_potion_*", skill = "ranged" } },
 ]
 produces = [
     { skill = "ranged" },
@@ -191,6 +204,7 @@ setup = [
     { inventory = [
         { id = "shark", min = 16 },
         { id = "super_restore_4", min = 2 },
+        { id = "super_ranging_potion_4", min = 2 },
         { id = "runite_bolts", min = 10000 },
         { id = "games_necklace_6", min = 1, equippable = true },
     ] },
@@ -205,6 +219,7 @@ reactive = [
     { pray = { id = "protect_from_melee", if = { attacker_style = { equals = "melee" } } } },
     { pray = { id = "protect_from_missiles", if = { attacker_style = { equals = "ranged" } } } },
     { pray = { id = "protect_from_magic", if = { attacker_style = { equals = "magic" } } } },
+    { drink_potion = { item = "super_ranging_potion_*", skill = "ranged" } },
 ]
 produces = [
     { skill = "ranged" },
@@ -226,6 +241,7 @@ setup = [
         { id = "shark", min = 14 },
         { id = "saradomin_brew_4", min = 2 },
         { id = "super_restore_4", min = 2 },
+        { id = "super_magic_potion_4", min = 2 },
         { id = "blood_rune", min = 10000 },
         { id = "death_rune", min = 10000 },
         { id = "water_rune", min = 10000 },
@@ -243,6 +259,7 @@ reactive = [
     { pray = { id = "protect_from_melee", if = { attacker_style = { equals = "melee" } } } },
     { pray = { id = "protect_from_missiles", if = { attacker_style = { equals = "ranged" } } } },
     { pray = { id = "protect_from_magic", if = { attacker_style = { equals = "magic" } } } },
+    { drink_potion = { item = "super_magic_potion_*", skill = "magic" } },
 ]
 produces = [
     { skill = "magic" },
@@ -315,7 +332,9 @@ setup = [
     { inventory = [
         { id = "shark", min = 16 },
         { id = "super_restore_4", min = 2 },
-        { id = "super_strength_4", min = 2 },
+        { id = "super_attack_4", min = 1 },
+        { id = "super_strength_4", min = 1 },
+        { id = "super_defence_4", min = 1 },
         { id = "dragon_dagger_p++", min = 1, equippable = true },
         { id = "granite_maul", min = 1, equippable = true },
         { id = "games_necklace_6", min = 1, equippable = true },
@@ -332,6 +351,9 @@ reactive = [
     { pray = { id = "protect_from_missiles", if = { attacker_style = { equals = "ranged" } } } },
     { pray = { id = "protect_from_magic", if = { attacker_style = { equals = "magic" } } } },
     { spec_attack = { weapon = "dragon_dagger_p++", fallback = "abyssal_whip", min_energy = 250, if = { target_hp_percent = { max = 0.25 } } } },
+    { drink_potion = { item = "super_attack_*", skill = "attack" } },
+    { drink_potion = { item = "super_strength_*", skill = "strength" } },
+    { drink_potion = { item = "super_defence_*", skill = "defence" } },
 ]
 produces = [
     { skill = "attack" },
@@ -353,6 +375,7 @@ setup = [
     { inventory = [
         { id = "shark", min = 16 },
         { id = "super_restore_4", min = 1 },
+        { id = "super_ranging_potion_4", min = 2 },
         { id = "rune_arrow", min = 10000 },
         { id = "games_necklace_6", min = 1, equippable = true },
     ] },
@@ -368,6 +391,7 @@ reactive = [
     { pray = { id = "protect_from_missiles", if = { attacker_style = { equals = "ranged" } } } },
     { pray = { id = "protect_from_magic", if = { attacker_style = { equals = "magic" } } } },
     { spec_attack = { weapon = "magic_shortbow", fallback = "magic_shortbow", min_energy = 500, if = { target_hp_percent = { max = 0.25 } } } },
+    { drink_potion = { item = "super_ranging_potion_*", skill = "ranged" } },
 ]
 produces = [
     { skill = "ranged" },
@@ -388,6 +412,7 @@ setup = [
     { inventory = [
         { id = "shark", min = 14 },
         { id = "super_restore_4", min = 2 },
+        { id = "super_magic_potion_4", min = 2 },
         { id = "blood_rune", min = 2500 },
         { id = "death_rune", min = 2500 },
         { id = "water_rune", min = 10000 },
@@ -405,6 +430,7 @@ reactive = [
     { pray = { id = "protect_from_melee", if = { attacker_style = { equals = "melee" } } } },
     { pray = { id = "protect_from_missiles", if = { attacker_style = { equals = "ranged" } } } },
     { pray = { id = "protect_from_magic", if = { attacker_style = { equals = "magic" } } } },
+    { drink_potion = { item = "super_magic_potion_*", skill = "magic" } },
 ]
 produces = [
     { skill = "magic" },

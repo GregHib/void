@@ -2,6 +2,8 @@ package content.bot.behaviour.action
 
 import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.utility.UtilityCurveParser
+import net.pearx.kasechange.toPascalCase
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
 sealed class ActionParser {
     open val required = emptySet<String>()
@@ -85,6 +87,20 @@ sealed class ActionParser {
             val minEnergy = map["min_energy"] as? Int ?: 250
             val condition = requirement(map, "if").singleOrNull()
             return BotSpecAttack(weapon, fallback, minEnergy, condition)
+        }
+    }
+
+    object DrinkPotionParser : ActionParser() {
+        override val required = setOf("item", "skill")
+        override val optional = setOf("if")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val item = map["item"] as String
+            val skillName = map["skill"] as String
+            val skill = Skill.of(skillName.toPascalCase())
+                ?: error("Unknown skill '$skillName' in drink_potion action.")
+            val condition = requirement(map, "if").singleOrNull()
+            return BotDrinkPotion(item, skill, condition)
         }
     }
 
@@ -354,6 +370,7 @@ sealed class ActionParser {
             "jewellery_teleport" to JewelleryTeleportParser,
             "pray" to PrayParser,
             "spec_attack" to SpecAttackParser,
+            "drink_potion" to DrinkPotionParser,
             "cast_spell" to CastSpellParser,
             "switch_setup" to SwitchSetupParser,
             "retreat" to RetreatParser,
