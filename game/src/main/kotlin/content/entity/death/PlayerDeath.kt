@@ -7,6 +7,8 @@ import content.entity.combat.*
 import content.entity.combat.Target
 import content.entity.combat.hit.directHit
 import content.entity.gfx.areaGfx
+import content.entity.player.effect.energy.MAX_RUN_ENERGY
+import content.entity.player.effect.energy.runEnergy
 import content.entity.player.inv.item.tradeable
 import content.entity.player.kept.ItemsKeptOnDeath
 import content.entity.proj.shoot
@@ -80,6 +82,7 @@ class PlayerDeath : Script {
                     dropItems(player, killer, tile, wilderness)
                 }
                 levels.clear()
+                runEnergy = MAX_RUN_ENERGY
                 if (onDeath.teleport != null) {
                     tele(onDeath.teleport!!)
                 } else {

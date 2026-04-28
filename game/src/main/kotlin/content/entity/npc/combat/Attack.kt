@@ -47,7 +47,7 @@ class Attack(
                 val def = def(primaryTarget)
                 def["combat_def", get("transform_id", def.stringId)]
             } else {
-                get("transform_id", id)
+                def["combat_def", get("transform_id", id)]
             }
             val definition = definitions.getOrNull(defId) ?: return@npcCombatSwing
             if (definition.attacks.isEmpty()) {
