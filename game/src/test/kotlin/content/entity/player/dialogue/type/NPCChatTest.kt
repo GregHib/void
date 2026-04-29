@@ -33,23 +33,25 @@ internal class NPCChatTest : DialogueTest() {
         super.setup()
         npc = NPC(id = "jim", index = -1, def = NPCDefinition(id = 123, stringId = "jim", name = "Jim"))
         player.talkWith(npc)
-        declareMock<AnimationDefinitions> {
-            every { this@declareMock.get(any<String>()) } returns AnimationDefinition()
-            every { this@declareMock.get("expression_neutral").id } returns 9803
-            every { this@declareMock.getOrNull("expression_neutral1")?.id } returns 9803
-            every { this@declareMock.getOrNull("expression_neutral2")?.id } returns 9803
-            every { this@declareMock.getOrNull("expression_neutral3")?.id } returns 9803
-            every { this@declareMock.getOrNull("expression_neutral4")?.id } returns 9803
-            every { this@declareMock.get("expression_cackle").id } returns 9840
-            every { this@declareMock.getOrNull("expression_cackle1") } returns null
-            every { this@declareMock.getOrNull("expression_cackle2") } returns null
-            every { this@declareMock.getOrNull("expression_cackle3") } returns null
-            every { this@declareMock.getOrNull("expression_cackle4") } returns null
-            every { this@declareMock.getOrNull("expression_laugh1")?.id } returns 9840
-            every { this@declareMock.getOrNull("expression_laugh2")?.id } returns 9840
-            every { this@declareMock.getOrNull("expression_laugh3")?.id } returns 9840
-            every { this@declareMock.getOrNull("expression_laugh4")?.id } returns 9840
-        }
+        AnimationDefinitions.set(
+            arrayOf(
+                AnimationDefinition(9803, stringId = "expression_neutral"),
+                AnimationDefinition(9840, stringId = "expression_cackle"),
+                AnimationDefinition(9840, stringId = "expression_laugh"),
+            ),
+            mapOf(
+                "expression_neutral" to 0,
+                "expression_neutral1" to 0,
+                "expression_neutral2" to 0,
+                "expression_neutral3" to 0,
+                "expression_neutral4" to 0,
+                "expression_cackle" to 1,
+                "expression_laugh1" to 2,
+                "expression_laugh2" to 2,
+                "expression_laugh3" to 2,
+                "expression_laugh4" to 2,
+            )
+        )
         NPCDefinitions.set(Array(124) { if (it == 123) NPCDefinition(id = 123, name = "Jim") else NPCDefinition.EMPTY }, mapOf("jim" to 123))
     }
 

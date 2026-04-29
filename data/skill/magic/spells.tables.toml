@@ -1,0 +1,568 @@
+[spells]
+xp = "int"
+max_hit = "int"
+npc_message = "string"
+player_message = "string"
+max_heal = "int"
+animation = "anim"
+animation_staff = "anim"
+graphic = "gfx"
+graphic_staff = "gfx"
+freeze_ticks = "int"
+delay_ticks = "int"
+poison_damage = "int"
+effect_seconds = "int"
+projectiles = "list<gfx>"
+drain_skill = "skill"
+drain_percent = "int"
+
+[blood_rush]
+max_hit = 150
+xp = 330
+max_heal = 40
+animation = "ancient_spell"
+
+[blood_burst]
+max_hit = 210
+xp = 390
+max_heal = 50
+animation = "ancient_spell_multi"
+
+[blood_blitz]
+max_hit = 250
+xp = 450
+max_heal = 60
+animation = "ancient_spell"
+
+[blood_barrage]
+max_hit = 290
+xp = 510
+max_heal = 119
+animation = "ancient_spell_multi"
+
+[ice_rush]
+max_hit = 160
+xp = 340
+freeze_ticks = 3
+animation = "ancient_spell"
+
+[ice_burst]
+max_hit = 220
+xp = 400
+freeze_ticks = 6
+animation = "ancient_spell_multi"
+
+[ice_blitz]
+max_hit = 260
+xp = 460
+freeze_ticks = 9
+animation = "ancient_spell"
+
+[ice_barrage]
+max_hit = 300
+xp = 520
+freeze_ticks = 12
+animation = "ancient_spell_multi"
+projectiles = [
+    { id = "ice_barrage", end_height = 0 }
+]
+
+[miasmic_rush]
+max_hit = 180
+xp = 360
+effect_seconds = 12
+animation = "miasmic_rush_cast"
+
+[miasmic_burst]
+max_hit = 240
+xp = 420
+effect_seconds = 24
+animation = "miasmic_burst_cast"
+
+[miasmic_blitz]
+max_hit = 280
+xp = 480
+effect_seconds = 36
+animation = "miasmic_blitz_cast"
+
+[miasmic_barrage]
+max_hit = 320
+xp = 540
+effect_seconds = 48
+animation = "miasmic_barrage_cast"
+
+[shadow_rush]
+max_hit = 140
+xp = 310
+drain_skill = "Attack"
+drain_percent = 10
+animation = "ancient_spell"
+
+[shadow_burst]
+max_hit = 180
+xp = 370
+drain_skill = "Attack"
+drain_percent = 10
+animation = "ancient_spell_multi"
+
+[shadow_blitz]
+max_hit = 240
+xp = 430
+drain_skill = "Attack"
+drain_percent = 10
+animation = "ancient_spell"
+
+[shadow_barrage]
+max_hit = 280
+xp = 480
+drain_skill = "Attack"
+drain_percent = 15
+animation = "ancient_spell_multi"
+
+[smoke_rush]
+max_hit = 130
+xp = 300
+poison_damage = 20
+animation = "ancient_spell"
+
+[smoke_burst]
+max_hit = 170
+xp = 360
+poison_damage = 20
+animation = "ancient_spell_multi"
+
+[smoke_blitz]
+max_hit = 230
+xp = 420
+poison_damage = 48
+animation = "ancient_spell"
+
+[smoke_barrage]
+max_hit = 270
+xp = 480
+poison_damage = 40
+animation = "ancient_spell_multi"
+
+[bind]
+damage = -1
+xp = 300
+freeze_ticks = 8
+graphic = "bind_cast"
+animation = "bind"
+animation_staff = "bind_staff"
+projectiles = [
+    { id = "bind", end_height = 0 }
+]
+
+[snare]
+clone = "bind"
+max_hit = 20
+xp = 605
+freeze_ticks = 16
+
+[entangle]
+clone = "bind"
+max_hit = 50
+xp = 910
+freeze_ticks = 24
+
+[confuse]
+damage = -1
+xp = 130
+drain_skill = "Attack"
+drain_percent = 5
+animation = "confuse"
+animation_staff = "confuse_staff"
+graphic = "confuse_cast"
+
+[crumble_undead]
+max_hit = 150
+xp = 245
+animation = "crumble_undead"
+graphic = "crumble_undead_cast"
+
+[curse]
+damage = -1
+xp = 290
+drain_skill = "Defence"
+drain_percent = 5
+animation = "curse"
+animation_staff = "curse_staff"
+graphic = "curse_cast"
+
+[wind_rush]
+max_hit = 10
+xp = 27
+graphic = "wind_spell_cast"
+animation = "wind_spell"
+animation_staff = "wind_spell_staff"
+
+[wind_strike]
+clone = "wind_rush"
+max_hit = 20
+xp = 55
+
+[wind_bolt]
+clone = "wind_rush"
+max_hit = 90
+xp = 135
+
+[wind_blast]
+clone = "wind_rush"
+max_hit = 130
+xp = 255
+
+[wind_wave]
+clone = "wind_rush"
+max_hit = 170
+xp = 360
+
+[wind_surge]
+clone = "wind_rush"
+max_hit = 220
+xp = 750
+
+[water_strike]
+graphic = "water_spell_cast"
+graphic_staff = "water_spell_staff_cast"
+animation = "water_spell"
+animation_staff = "water_spell_staff"
+max_hit = 40
+xp = 75
+
+[water_bolt]
+clone = "water_strike"
+max_hit = 100
+xp = 165
+
+[water_blast]
+clone = "water_strike"
+max_hit = 140
+xp = 285
+
+[water_wave]
+clone = "water_strike"
+max_hit = 180
+xp = 385
+
+[water_surge]
+clone = "water_strike"
+max_hit = 240
+xp = 800
+
+[earth_strike]
+max_hit = 60
+xp = 95
+graphic = "earth_strike_cast"
+animation = "earth_spell"
+animation_staff = "earth_spell_staff"
+
+[earth_bolt]
+clone = "earth_strike"
+max_hit = 110
+xp = 195
+graphic = "earth_bolt_cast"
+
+[earth_blast]
+clone = "earth_strike"
+max_hit = 150
+xp = 315
+graphic = "earth_blast_cast"
+
+[earth_wave]
+clone = "earth_strike"
+max_hit = 190
+xp = 410
+graphic = "earth_wave_cast"
+
+[earth_surge]
+clone = "earth_strike"
+max_hit = 260
+xp = 850
+graphic = "earth_surge_cast"
+
+[fire_strike]
+max_hit = 80
+xp = 115
+graphic = "fire_spell_cast"
+animation = "fire_spell"
+animation_staff = "fire_spell_staff"
+
+[fire_bolt]
+clone = "fire_strike"
+max_hit = 120
+xp = 225
+
+[fire_blast]
+clone = "fire_strike"
+max_hit = 160
+xp = 345
+projectiles = [
+    { id = "fire_blast_1" },
+    { id = "fire_blast_2" },
+]
+
+[fire_wave]
+clone = "fire_strike"
+max_hit = 200
+xp = 435
+projectiles = [
+    { id = "fire_blast_1", delay = 54, curve = 16 },
+    { id = "fire_blast_1", curve = -10 },
+    { id = "fire_blast_2" },
+]
+
+[fire_surge]
+clone = "fire_strike"
+max_hit = 280
+xp = 900
+graphic = "fire_spell_cast"
+projectiles = [
+    { id = "fire_blast_1", delay = 54, curve = 16 },
+    { id = "fire_blast_1", curve = -10 },
+    { id = "fire_blast_2" },
+]
+
+[enfeeble]
+max_hit = 50
+xp = 830
+drain_skill = "Strength"
+drain_percent = 10
+animation = "enfeeble"
+animation_staff = "enfeeble_staff"
+graphic = "enfeeble_cast"
+
+[claws_of_guthix]
+max_hit = 200
+xp = 350
+animation = "cast_god_spell"
+
+[flames_of_zamorak]
+max_hit = 200
+xp = 350
+animation = "cast_god_spell"
+
+[saradomin_strike]
+max_hit = 200
+xp = 350
+animation = "cast_god_spell"
+
+[iban_blast]
+max_hit = 250
+xp = 350
+animation = "iban_blast"
+graphic = "iban_blast_cast"
+
+[magic_dart]
+damage = -1
+xp = 300
+animation = "magic_dart"
+graphic = "magic_dart_cast"
+
+[stun]
+max_hit = 50
+xp = 900
+drain_skill = "Attack"
+drain_percent = 10
+animation = "stun"
+animation_staff = "stun_staff"
+graphic = "stun_cast"
+
+[teleport_block]
+max_hit = 30
+xp = 800
+block_ticks = 500
+animation = "teleport_block_cast"
+graphic = "teleport_block_cast"
+
+[vulnerability]
+max_hit = 50
+xp = 760
+drain_skill = "Attack"
+drain_percent = 10
+animation = "vulnerability"
+animation_staff = "vulnerability_staff"
+graphic = "vulnerability_cast"
+
+[weaken]
+damage = -1
+xp = 210
+drain_skill = "Strength"
+drain_percent = 5
+animation = "weaken"
+animation_staff = "weaken_staff"
+graphic = "weaken_cast"
+
+[charge]
+xp = 1800
+effect_ticks = 252
+delay_ticks = 36
+
+[lumbridge_home_teleport]
+xp = 00
+
+[varrock_teleport]
+xp = 350
+
+[lumbridge_teleport]
+xp = 410
+
+[falador_teleport]
+xp = 480
+
+[teleport_to_house]
+xp = 300
+
+[camelot_teleport]
+xp = 555
+
+[ardougne_teleport]
+xp = 610
+
+[watchtower_teleport]
+xp = 680
+
+[trollheim_teleport]
+xp = 680
+
+[ape_atoll_teleport]
+xp = 740
+
+[edgeville_home_teleport]
+xp = 00
+
+[paddewwa_teleport]
+xp = 640
+
+[senntisten_teleport]
+xp = 700
+
+[kharyrll_teleport]
+xp = 760
+
+[lassar_teleport]
+xp = 820
+
+[dareeyak_teleport]
+xp = 880
+
+[carrallangar_teleport]
+xp = 940
+
+[annakarl_teleport]
+xp = 1000
+
+[ghorrock_teleport]
+xp = 1060
+
+[lunar_home_teleport]
+xp = 00
+
+[moonclan_teleport]
+xp = 660
+
+[ourania_teleport]
+xp = 690
+
+[waterbirth_teleport]
+xp = 710
+
+[barbarian_teleport]
+xp = 760
+
+[khazard_teleport]
+xp = 800
+
+[fishing_guild_teleport]
+xp = 890
+
+[catherby_teleport]
+xp = 920
+
+[ice_plateau_teleport]
+xp = 960
+
+[vengeance]
+xp = 1120
+delay_seconds = 30
+
+[vengeance_other]
+xp = 1080
+delay_seconds = 30
+
+[cure_other]
+xp = 650
+
+[cure_me]
+xp = 690
+
+[cure_group]
+xp = 740
+
+[heal_other]
+xp = 1010
+
+[heal_group]
+xp = 1240
+
+[energy_transfer]
+xp = 1000
+
+[cure_plant]
+xp = 600
+
+[superheat_item]
+xp = 530
+
+[bones_to_bananas]
+xp = 250
+
+[bones_to_peaches]
+xp = 355
+
+[telekinetic_grab]
+xp = 430
+
+[low_level_alchemy]
+xp = 310
+graphic = "high_alch"
+graphic_staff = "high_alch_staff"
+animation = "high_alch"
+animation_staff = "high_alch_staff"
+
+[high_level_alchemy]
+xp = 650
+graphic = "high_alch"
+graphic_staff = "high_alch_staff"
+animation = "high_alch"
+animation_staff = "high_alch_staff"
+
+[enchant_opal_bolts]
+xp = 90
+
+[enchant_sapphire_bolts]
+xp = 175
+
+[enchant_jade_bolts]
+xp = 190
+
+[enchant_pearl_bolts]
+xp = 290
+
+[enchant_emerald_bolts]
+xp = 370
+
+[enchant_topaz_bolts]
+xp = 330
+
+[enchant_ruby_bolts]
+xp = 590
+
+[enchant_diamond_bolts]
+xp = 670
+
+[enchant_dragon_bolts]
+xp = 780
+
+[enchant_onyx_bolts]
+xp = 970

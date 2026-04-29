@@ -125,6 +125,8 @@ sealed interface ColumnReader<T : Any> {
             "npc" -> ReaderEntity(NPCDefinitions.ids)
             "item" -> ReaderEntity(ItemDefinitions.ids)
             "obj" -> ReaderEntity(ObjectDefinitions.ids)
+            "gfx" -> ReaderEntity(GraphicDefinitions.ids)
+            "anim" -> ReaderEntity(AnimationDefinitions.ids)
             "var" -> ReaderValidString(VariableDefinitions.definitions.keys)
             "row" -> ReaderString
             else -> if (name.startsWith("pair<", ignoreCase = true)) {

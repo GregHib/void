@@ -30,7 +30,6 @@ import world.gregs.voidps.network.login.protocol.encode.*
 import kotlin.collections.iterator
 
 class InterfaceCommands(
-    val animationDefinitions: AnimationDefinitions,
     val inventoryDefinitions: InventoryDefinitions,
     scriptDefinitions: ClientScriptDefinitions,
 ) : Script {
@@ -77,7 +76,7 @@ class InterfaceCommands(
 
         adminCommand(
             "expr",
-            stringArg("expression-id", autofill = { animationDefinitions.definitions.filter { it.stringId.startsWith("expression_") }.map { it.stringId.removePrefix("expression_") }.toSet() }),
+            stringArg("expression-id", autofill = { AnimationDefinitions.definitions.filter { it.stringId.startsWith("expression_") }.map { it.stringId.removePrefix("expression_") }.toSet() }),
             stringArg("npc-id", autofill = { NPCDefinitions.ids.keys }, optional = true),
             desc = "Display dialogue head with an animation expression",
             handler = ::expression,

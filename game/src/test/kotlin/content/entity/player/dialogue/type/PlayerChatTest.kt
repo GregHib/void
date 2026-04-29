@@ -30,23 +30,25 @@ internal class PlayerChatTest : DialogueTest() {
     override fun setup() {
         super.setup()
         player.accountName = "John"
-        declareMock<AnimationDefinitions> {
-            every { this@declareMock.get(any<String>()) } returns AnimationDefinition()
-            every { this@declareMock.get("expression_neutral").id } returns 9803
-            every { this@declareMock.getOrNull("expression_neutral1")?.id } returns 9803
-            every { this@declareMock.getOrNull("expression_neutral2")?.id } returns 9803
-            every { this@declareMock.getOrNull("expression_neutral3")?.id } returns 9803
-            every { this@declareMock.getOrNull("expression_neutral4")?.id } returns 9803
-            every { this@declareMock.get("expression_laugh").id } returns 9840
-            every { this@declareMock.getOrNull("expression_laugh1") } returns null
-            every { this@declareMock.getOrNull("expression_laugh2") } returns null
-            every { this@declareMock.getOrNull("expression_laugh3") } returns null
-            every { this@declareMock.getOrNull("expression_laugh4") } returns null
-            every { this@declareMock.getOrNull("expression_cackle1")?.id } returns 9840
-            every { this@declareMock.getOrNull("expression_cackle2")?.id } returns 9840
-            every { this@declareMock.getOrNull("expression_cackle3")?.id } returns 9840
-            every { this@declareMock.getOrNull("expression_cackle4")?.id } returns 9840
-        }
+        AnimationDefinitions.set(
+            arrayOf(
+                AnimationDefinition(9803, stringId = "expression_neutral"),
+                AnimationDefinition(9840, stringId = "expression_cackle"),
+                AnimationDefinition(9840, stringId = "expression_laugh"),
+            ),
+            mapOf(
+                "expression_neutral" to 0,
+                "expression_neutral1" to 0,
+                "expression_neutral2" to 0,
+                "expression_neutral3" to 0,
+                "expression_neutral4" to 0,
+                "expression_cackle" to 1,
+                "expression_laugh1" to 2,
+                "expression_laugh2" to 2,
+                "expression_laugh3" to 2,
+                "expression_laugh4" to 2,
+            )
+        )
     }
 
     @TestFactory

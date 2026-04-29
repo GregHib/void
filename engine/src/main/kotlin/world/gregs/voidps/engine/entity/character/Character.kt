@@ -101,10 +101,10 @@ interface Character :
 
     /**
      * Apply [id] graphical effect (aka spotanim) to the character with optional [delay]
-     * @see GraphicDefinitions for adjusting height, rotation and refresh
+     * @see GraphicDefinitions for adjusting height, rotation, and refresh
      */
     fun gfx(id: String, delay: Int? = null) {
-        val definition = get<GraphicDefinitions>().getOrNull(id) ?: return
+        val definition = GraphicDefinitions.getOrNull(id) ?: return
         val mask = if (this is Player) VisualMask.PLAYER_GRAPHIC_1_MASK else VisualMask.NPC_GRAPHIC_1_MASK
         val graphic = if (visuals.flagged(mask)) visuals.primaryGraphic else visuals.secondaryGraphic
         graphic.id = definition.id
@@ -135,7 +135,7 @@ interface Character :
      * with optional [delay] and [override]ing of the previous animation
      */
     fun anim(id: String, delay: Int? = null, override: Boolean = false): Int {
-        val definition = get<AnimationDefinitions>().getOrNull(id) ?: return -1
+        val definition = AnimationDefinitions.getOrNull(id) ?: return -1
         val anim = visuals.animation
         if (!override && definition.priority < anim.priority) {
             return -1

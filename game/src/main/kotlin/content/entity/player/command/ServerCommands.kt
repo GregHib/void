@@ -112,11 +112,11 @@ class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
             }
             "areas" -> Areas.load(files.list(Settings["map.areas"]))
             "emotes", "render_anims", "render_emotes" -> get<RenderEmoteDefinitions>().load(files.find(Settings["definitions.renderEmotes"]))
-            "anim_defs", "anims", "animations" -> get<AnimationDefinitions>().load(files.list(Settings["definitions.animations"]))
+            "anim_defs", "anims", "animations" -> AnimationDefinitions.load(files.list(Settings["definitions.animations"]))
             "container_defs", "containers", "inventory_defs", "inventories", "inv_defs", "invs", "shop", "shops" -> {
                 get<InventoryDefinitions>().load(files.list(Settings["definitions.inventories"]), files.list(Settings["definitions.shops"]))
             }
-            "graphic_defs", "graphics", "gfx", "gfxs" -> get<GraphicDefinitions>().load(files.list(Settings["definitions.graphics"]))
+            "graphic_defs", "graphics", "gfx", "gfxs" -> GraphicDefinitions.load(files.list(Settings["definitions.graphics"]))
             "item_on_item", "item-on-item", "ioi", "recipes" -> get<ItemOnItemDefinitions>().load(files.list(Settings["definitions.itemOnItem"]))
             "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load(files.list(Settings["definitions.sounds"]))
             "produce", "farming" -> get<FarmingDefinitions>().load(files.find(Settings["definitions.produce"]))
