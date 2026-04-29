@@ -4,12 +4,14 @@ import content.entity.gfx.areaGfx
 import content.entity.player.inv.item.take.ItemTake
 import content.entity.proj.shoot
 import content.skill.magic.spell.removeSpellItems
+import content.skill.magic.spell.spell
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.areaSound
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -69,8 +71,15 @@ class TelekineticGrab : Script {
             }
         }
 
-        onNPCApproach("modern_spellbook:telekinetic_grab") {
-            message("You can't use Telekinetic Grab on them.")
+        combatPrepare("magic") { target ->
+            if (spell == "telekinetic_grab") {
+                if (target is NPC) {
+                    message("You can't use Telekinetic Grab on them.")
+                }
+                false
+            } else {
+                true
+            }
         }
     }
 }

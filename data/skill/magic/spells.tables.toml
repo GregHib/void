@@ -563,3 +563,12 @@ xp = 780
 
 [.enchant_onyx_bolts]
 xp = 970
+
+[.teleother_lumbridge]
+xp = 840
+
+[.teleother_falador]
+xp = 920
+
+[.teleother_camelot]
+xp = 1000
