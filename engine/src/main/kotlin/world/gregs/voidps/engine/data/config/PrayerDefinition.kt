@@ -10,6 +10,7 @@ data class PrayerDefinition(
     val drains: Map<String, Int> = emptyMap(),
     val bonuses: Map<String, Int> = emptyMap(),
     val members: Boolean = false,
+    val isCurse: Boolean = false,
     override var stringId: String = "",
     override var params: Map<Int, Any>? = null,
 ) : Parameterized {
