@@ -18,8 +18,8 @@ class Chinchompa : Script {
         npcCombatDamage(style = "range", handler = ::damage)
 
         combatAttack("range") { (target, damage, type, weapon, spell) ->
-            if (weapon.id.endsWith("chinchompa") && target.inMultiCombat) {
-                val targets = multiTargets(target, if (target is Player) 9 else 11)
+            if (weapon.id.endsWith("chinchompa") && damage > 0 && target.inMultiCombat) {
+                val targets = multiTargets(this, target, if (target is Player) 9 else 11)
                 for (targ in targets) {
                     targ.directHit(this, random.nextInt(0..damage), type, weapon, spell)
                 }

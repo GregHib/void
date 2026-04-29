@@ -26,6 +26,7 @@ import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
+import world.gregs.voidps.type.random
 import kotlin.math.sign
 
 open class Movement(
@@ -53,15 +54,50 @@ open class Movement(
         needsCalculation = false
     }
 
+    /**
+     * Clears steps and queues a random cardinal step when an NPC overlaps its character target and isn't permitted to stand there.
+     */
+    protected open fun stepOut(): Boolean {
+        val strategy = strategy ?: return false
+        if (strategy.shape != -2) {
+            return false
+        }
+        val npc = character as? NPC ?: return false
+        if (npc.def["allowed_under", false]) {
+            return false
+        }
+        if (!Overlap.isUnder(npc.tile, npc.size, npc.size, strategy.tile, strategy.width, strategy.height)) {
+            return false
+        }
+        clearSteps()
+        if (!shouldQueueStepOut()) {
+            return true
+        }
+        for (direction in Direction.cardinal.shuffled(random)) {
+            if (canStep(direction.delta.x, direction.delta.y)) {
+                character.steps.queueStep(npc.tile.add(direction))
+                break
+            }
+        }
+        return true
+    }
+
+    /**
+     * Whether [stepOut] should queue a random step after clearing, or let normal recalculation handle repositioning.
+     */
+    protected open fun shouldQueueStepOut(): Boolean = true
+
     override fun tick() {
         val character = character
         if (character is Player && character.viewport?.loaded == false) {
             return
         }
-        if (hasDelay() && !canMove() && !character.steps.destination.noCollision) {
+        if (!canMove()) {
             return
         }
-        calculate()
+        if (!stepOut()) {
+            calculate()
+        }
         if (step(runStep = false) && character.running) {
             if (character.steps.isNotEmpty()) {
                 step(runStep = true)
@@ -72,16 +108,15 @@ open class Movement(
     }
 
     private fun canMove(): Boolean {
-        if (!hasDelay() && (character as? Player)?.menu == null) {
-            return true
+        if (character.hasClock("movement_delay")) {
+            return false
         }
-        if (character.queue.isEmpty()) {
-            return true
+        if (character.contains("delay")) {
+            // Inactive delays block movement unless there's a queue in action
+            return character.delay != null || !character.queue.isEmpty() || character.steps.destination.noCollision
         }
-        return character.delay != null
+        return true
     }
-
-    private fun hasDelay() = character.hasClock("movement_delay") || character.contains("delay")
 
     /**
      * Applies one step

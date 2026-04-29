@@ -89,3 +89,8 @@ tags = ["teleport", "obelisk"]
 [wilderness_fishing_area]
 x = [3347, 3368]
 y = [3793, 3817]
+
+[clan_wars]
+x = [3264, 3279]
+y = [3672, 3695]
+tags = ["safe_zone"]

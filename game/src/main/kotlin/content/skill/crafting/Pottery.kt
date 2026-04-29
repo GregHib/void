@@ -25,9 +25,7 @@ class Pottery : Script {
         }
 
         itemOnObjectOperate(obj = "pottery_oven*", arrive = false) { (target, item) ->
-            if (!item.def.contains("pottery")) {
-                return@itemOnObjectOperate
-            }
+            Rows.getOrNull("pottery.${item.id}") ?: return@itemOnObjectOperate
             if (item.id != "soft_clay") {
                 make(target, "cook_range", item)
             }

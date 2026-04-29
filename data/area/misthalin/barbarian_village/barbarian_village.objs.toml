@@ -9,3 +9,131 @@ examine = "The entrance to the Stronghold of Security."
 [spinning_wheel_barbarian_village]
 id = 5707
 examine = "Used for spinning thread."
+
+[barrel_barbarian_village]
+id = 11589
+examine = "A wooden barrel for storage."
+
+[barrel_barbarian_village_2]
+id = 364
+examine = "It's got ale in it."
+
+[barrel_barbarian_village_3]
+id = 5698
+examine = "A wooden barrel for storage."
+
+[closed_chest_barbarian_village]
+id = 375
+examine = "I wonder what's inside."
+
+[opened_chest_barbarian_village]
+id = 378
+examine = "Perhaps I should search it."
+
+[boxes_barbarian_village]
+id = 361
+examine = "A pile of boxes for storage."
+
+[sacks_barbarian_village]
+id = 365
+examine = "These may have something in them."
+
+[sacks_barbarian_village_2]
+id = 7512
+examine = "A pair of sacks."
+
+[stool_barbarian_village]
+id = 1102
+examine = "Good for sitting on."
+
+[wooden_pieces_barbarian_village]
+id = 28645
+examine = "These are never going to be fixed."
+
+[shelves_barbarian_village]
+id = 1015
+examine = "Storage for all needs."
+
+[shelves_barbarian_village_2]
+id = 1016
+examine = "Storage for all needs."
+
+[shelves_barbarian_village_3]
+id = 1017
+examine = "Storage for all needs."
+
+[shelves_barbarian_village_4]
+id = 1018
+examine = "Storage for all needs."
+
+[shelves_barbarian_village_5]
+id = 5704
+examine = "Storage for all needs."
+
+[shelves_barbarian_village_6]
+id = 5705
+examine = "Storage for all needs."
+
+[shelves_barbarian_village_7]
+id = 5706
+examine = "Storage for all needs."
+
+[anvil_barbarian_village]
+id = 25349
+examine = "A barbarian's anvil"
+
+[stool_barbarian_viallge]
+id = 5701
+examine = "A wooden stool."
+
+[small_table_barbarian_village]
+id = 5703
+examine = "A small wooden table."
+
+[counter_barbarian_village]
+id = 11626
+examine = "Items are for sale here."
+
+[crates_barbarian_village]
+id = 5699
+examine = "Convenient for storage."
+
+[crates_barbarian_village_2]
+id = 11600
+examine = "Convenient for storage."
+
+[bed_barbarian_village]
+id = 422
+examine = "Technically a bed."
+
+[bear_rug_barbarian_village]
+id = 5712
+examine = "Roooooaarrrrr!"
+
+[bear_rug_barbarian_village_2]
+id = 5713
+examine = "Roooooaarrrrr!"
+
+[bear_rug_barbarian_village_3]
+id = 5714
+examine = "Roooooaarrrrr!"
+
+[bear_rug_barbarian_village_4]
+id = 5715
+examine = "Roooooaarrrrr!"
+
+[bear_rug_barbarian_village_5]
+id = 5716
+examine = "Roooooaarrrrr!"
+
+[bear_rug_barbarian_village_6]
+id = 5717
+examine = "Roooooaarrrrr!"
+
+[bulls_head_barbarian_village]
+id = 906
+examine = "Looks like the bull lost."
+
+[table_barbarian_village]
+id = 5702
+examine = "Generally used for putting things on."

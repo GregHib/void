@@ -1,0 +1,17 @@
+[corporeal_beast_lair_entrance]
+id = 38815
+
+[corporeal_beast_lair_entrance_open]
+id = 37749
+
+[corporeal_beast_lair_entrance_collapsed]
+id = 37750
+
+[corporeal_beast_lair_exit]
+id = 37928
+
+[corporeal_beast_lair_passage]
+id = 37929
+
+[corporeal_beast_lair_door]
+id = 38811

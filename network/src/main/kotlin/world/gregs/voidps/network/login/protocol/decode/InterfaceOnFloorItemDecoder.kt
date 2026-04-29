@@ -18,7 +18,11 @@ class InterfaceOnFloorItemDecoder : Decoder(15) {
         val itemSlot = packet.readShortLittleEndian().toInt()
         val y = packet.readShort().toInt()
         val run = packet.readBoolean()
-        val item = packet.readUnsignedShortAdd()
+        var item = packet.readUnsignedShortAdd()
+        if (item == 65535) {
+            // readShortAdd doesn't seem to decode > 20k correctly, but client always sends -1 anyway
+            item = -1
+        }
         val packed = packet.readUnsignedIntMiddle()
         return InteractInterfaceFloorItem(
             floorItem,

@@ -165,6 +165,7 @@ limit = 1000
 weight = 0.3
 heals = 40
 excess = "cake_two_thirds"
+eat_delay = 2
 eat_message = "You eat part of the cake."
 examine = "A plain sponge cake."
 
@@ -178,6 +179,7 @@ limit = 1000
 weight = 0.2
 heals = 40
 excess = "slice_of_cake"
+eat_delay = 2
 eat_message = "You eat part of the cake."
 examine = "Someone has eaten a big chunk of this cake."
 
@@ -190,6 +192,7 @@ price = 26
 limit = 1000
 weight = 0.1
 heals = 40
+eat_delay = 3
 eat_message = "You eat the remaining part of the cake."
 examine = "I'd rather have a whole cake."
 
@@ -203,6 +206,7 @@ limit = 1000
 weight = 0.3
 heals = 50
 excess = "chocolate_cake_two_thirds"
+eat_delay = 2
 eat_message = "You eat part of the cake."
 examine = "This looks very tasty."
 
@@ -216,6 +220,7 @@ limit = 1000
 weight = 0.2
 heals = 50
 excess = "chocolate_slice"
+eat_delay = 2
 eat_message = "You eat part of the cake."
 examine = "Someone has eaten a big chunk of this cake."
 
@@ -228,6 +233,7 @@ price = 13
 limit = 1000
 weight = 0.1
 heals = 50
+eat_delay = 3
 eat_message = "You eat the remaining part of the cake."
 examine = "I'd rather have a whole cake."
 
@@ -1438,6 +1444,9 @@ price = 221
 limit = 1000
 heals = 30
 weight = 0.15
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "They're a gnome delicacy apparently."
 
 [toads_legs_noted]
@@ -1566,6 +1575,9 @@ price = 2539
 limit = 1000
 heals = 150
 weight = 0.35
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "Full of creamy, chocolately goodness."
 
 [chocolate_bomb_noted]
@@ -1577,6 +1589,9 @@ price = 959
 limit = 1000
 heals = 150
 weight = 0.35
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "It actually smells quite good."
 
 [tangled_toads_legs_noted]
@@ -1592,6 +1607,9 @@ price = 390
 limit = 1000
 heals = 120
 weight = 0.35
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "It actually smells quite good."
 
 [worm_hole_noted]
@@ -1607,6 +1625,9 @@ price = 420
 limit = 1000
 heals = 120
 weight = 0.35
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "This looks pretty healthy."
 
 [veg_ball_noted]
@@ -1652,6 +1673,9 @@ price = 235
 limit = 1000
 heals = 80
 weight = 0.25
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "It actually smells quite good."
 
 [worm_crunchies_noted]
@@ -1667,6 +1691,9 @@ price = 688
 limit = 1000
 heals = 70
 weight = 0.25
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "Yum... smells good."
 
 [chocchip_crunchies_noted]
@@ -1682,6 +1709,9 @@ price = 100
 limit = 1000
 heals = 70
 weight = 0.25
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "Yum... smells spicy."
 
 [spicy_crunchies_noted]
@@ -1697,6 +1727,9 @@ price = 262
 limit = 1000
 heals = 80
 weight = 0.25
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "It actually smells quite good."
 
 [toad_crunchies_noted]
@@ -1708,6 +1741,9 @@ price = 130
 limit = 1000
 heals = 110
 weight = 0.25
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "A premade Worm Batta."
 
 [premade_worm_batta_noted]
@@ -1719,6 +1755,9 @@ price = 127
 limit = 1000
 heals = 110
 weight = 0.25
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "A Premade Toad Batta."
 
 [premade_toad_batta_noted]
@@ -1730,6 +1769,9 @@ price = 136
 limit = 1000
 heals = 110
 weight = 0.25
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "A Premade Cheese and Tomato Batta."
 
 [premade_cheese_and_tomato_batta_noted]
@@ -1741,6 +1783,9 @@ price = 131
 limit = 1000
 heals = 110
 weight = 0.25
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "A premade Fruit Batta."
 
 [premade_fruit_batta_noted]
@@ -1752,6 +1797,9 @@ price = 134
 limit = 1000
 heals = 110
 weight = 0.25
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "A Premade Vegetable Batta."
 
 [premade_veg_batta_noted]
@@ -1763,6 +1811,9 @@ price = 923
 limit = 1000
 heals = 150
 weight = 0.35
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "A premade Chocolate Bomb."
 
 [premade_choc_bomb_noted]
@@ -1774,6 +1825,9 @@ price = 746
 limit = 1000
 heals = 150
 weight = 0.35
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "A premade Tangled Toads Legs."
 
 [premade_ttl_noted]
@@ -1785,6 +1839,9 @@ price = 226
 limit = 1000
 heals = 120
 weight = 0.35
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "A premade Worm Hole."
 
 [premade_worm_hole_noted]
@@ -1796,6 +1853,9 @@ price = 227
 limit = 1000
 heals = 120
 weight = 0.35
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "A premade Vegetable Ball."
 
 [premade_veg_ball_noted]
@@ -1807,6 +1867,9 @@ price = 76
 limit = 1000
 heals = 80
 weight = 0.25
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "Some Premade Worm Crunchies."
 
 [premade_worm_crunchies_noted]
@@ -1818,6 +1881,9 @@ price = 91
 limit = 1000
 heals = 70
 weight = 0.25
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "Some Premade chocchip crunchies."
 
 [premade_chocolate_chip_crunchies_noted]
@@ -1829,6 +1895,9 @@ price = 97
 limit = 1000
 heals = 70
 weight = 0.25
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "Some premade Spicy Crunchies."
 
 [premade_spicy_crunchies_noted]
@@ -1840,6 +1909,9 @@ price = 42
 limit = 1000
 heals = 70
 weight = 0.25
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "Some premade Toad Crunchies."
 
 [premade_toad_crunchies_noted]
@@ -1872,6 +1944,9 @@ price = 155
 limit = 1000
 heals = 110
 weight = 0.25
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "It actually smells quite good."
 
 [worm_batta_noted]
@@ -1883,6 +1958,9 @@ price = 254
 limit = 1000
 heals = 110
 weight = 0.25
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "It actually smells quite good."
 
 [toad_batta_noted]
@@ -1894,6 +1972,9 @@ price = 242
 limit = 1000
 heals = 110
 weight = 0.25
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "This smells really good."
 
 [cheese_and_tomato_batta_noted]
@@ -1905,6 +1986,9 @@ price = 295
 limit = 1000
 heals = 110
 weight = 0.25
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "It actually smells quite good."
 
 [fruit_batta_noted]
@@ -1916,6 +2000,9 @@ price = 223
 limit = 1000
 heals = 110
 weight = 0.25
+combo = true
+attack_delay = 2
+eat_delay = 3
 examine = "Well... it looks healthy."
 
 [vegetable_batta_noted]
@@ -1959,7 +2046,7 @@ limit = 1000
 weight = 0.8
 heals = 70
 excess = "plain_pizza_half"
-combo = true
+eat_delay = 1
 examine = "A cheese and tomato pizza."
 
 [plain_pizza_noted]
@@ -1971,6 +2058,7 @@ price = 295
 limit = 1000
 heals = 70
 weight = 0.4
+eat_delay = 2
 examine = "Half of this plain pizza has been eaten."
 
 [plain_pizza_half_noted]
@@ -1983,7 +2071,7 @@ limit = 1000
 weight = 0.9
 heals = 80
 excess = "meat_pizza_half"
-combo = true
+eat_delay = 1
 examine = "A pizza with bits of meat on it."
 
 [meat_pizza_noted]
@@ -1995,6 +2083,7 @@ price = 386
 limit = 1000
 weight = 0.45
 heals = 80
+eat_delay = 2
 examine = "Half of this meat pizza has been eaten."
 
 [meat_pizza_half_noted]
@@ -2007,7 +2096,7 @@ limit = 1000
 weight = 0.9
 heals = 90
 excess = "anchovy_pizza_half"
-combo = true
+eat_delay = 1
 examine = "A pizza with anchovies."
 
 [anchovy_pizza_noted]
@@ -2019,6 +2108,7 @@ price = 31
 limit = 1000
 weight = 0.45
 heals = 90
+eat_delay = 2
 examine = "Half of this anchovy pizza has been eaten."
 
 [anchovy_pizza_half_noted]
@@ -2031,7 +2121,7 @@ limit = 1000
 weight = 0.9
 heals = 110
 excess = "pineapple_pizza_half"
-combo = true
+eat_delay = 1
 examine = "A tropicana pizza."
 
 [pineapple_pizza_noted]
@@ -2043,6 +2133,7 @@ price = 205
 limit = 1000
 weight = 0.45
 heals = 110
+eat_delay = 2
 examine = "Half of this pineapple pizza has been eaten."
 
 [pineapple_pizza_half_noted]
@@ -2145,6 +2236,7 @@ price = 104
 limit = 1000
 heals = 70
 excess = "apple_pie_half"
+eat_delay = 1
 eat_message = "You eat half of the apple pie."
 weight = 0.45
 examine = "Mmm Apple pie."
@@ -2217,6 +2309,7 @@ price = 101
 limit = 1000
 heals = 70
 excess = "pie_dish"
+eat_delay = 2
 eat_message = "You eat the remaining half of the apple pie."
 weight = 0.225
 examine = "Mmm half an apple pie."

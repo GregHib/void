@@ -38,23 +38,23 @@ fun Character.freeze(target: Character, ticks: Int, force: Boolean = false): Boo
 fun Character.freeze(ticks: Int, force: Boolean = false) {
     val protect = praying("protect_from_magic") || praying("deflect_magic")
     movementDelay = if (force || !protect) ticks else ticks / 2
-    softTimers.start("movement_delay")
+    softTimers.start("frozen")
 }
 
 fun Character.freezeImmune(ticks: Int) {
     movementDelay = -ticks
-    softTimers.start("movement_delay")
+    softTimers.start("frozen")
 }
 
 class Freeze : Script {
 
     init {
-        timerStart("movement_delay", ::start)
-        npcTimerStart("movement_delay", ::start)
-        timerTick("movement_delay", ::tick)
-        npcTimerTick("movement_delay", ::tick)
-        timerStop("movement_delay", ::stop)
-        npcTimerStop("movement_delay", ::stop)
+        timerStart("frozen", ::start)
+        npcTimerStart("frozen", ::start)
+        timerTick("frozen", ::tick)
+        npcTimerTick("frozen", ::tick)
+        timerStop("frozen", ::stop)
+        npcTimerStop("frozen", ::stop)
     }
 
     fun start(character: Character, restart: Boolean): Int {

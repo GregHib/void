@@ -14,38 +14,38 @@ examine = "He maintains this agility course."
 [fishing_spot_barbarian_outpost]
 id = 2724
 
-[barbarian_barbarian_outpost]
+[barbarian_alberich]
 id = 3246
 hitpoints = 240
 att = 15
 str = 14
 def = 10
 style = "crush"
-max_hit_melee = 30
 attack_bonus = 9
 respawn_delay = 50
 drop_table = "barbarian_high"
+combat_def = "barbarian_two_hand_axe_high"
 examine = "Alberich, a fierce barbarian warrior."
 
-[barbarian_barbarian_outpost_2]
+[barbarian_fafner]
 id = 3247
 hitpoints = 180
 att = 8
 str = 7
 def = 3
 style = "crush"
-max_hit_melee = 20
 attack_bonus = 9
 respawn_delay = 50
 drop_table = "barbarian_low"
+combat_def = "barbarian_two_hand_sword_low"
 examine = "Fafner, a tough barbarian warrior."
 
-[barbarian_barbarian_outpost_3]
+[barbarian_fasolt]
 id = 3248
-clone = "barbarian_barbarian_outpost"
+clone = "barbarian_alberich"
 examine = "Fasolt, a strong barbarian warrior."
 
-[barbarian_barbarian_outpost_4]
+[barbarian_siegfried]
 id = 3250
 hitpoints = 180
 att = 8
@@ -56,21 +56,25 @@ max_hit_melee = 20
 attack_bonus = 9
 respawn_delay = 50
 drop_table = "barbarian_low"
+combat_def = "barbarian_two_hand_axe_low"
 examine = "Siegfried, a young guard in the Barbarian Village."
 
-[barbarian_barbarian_outpost_5]
+[barbarian_minarch]
 id = 3253
-clone = "barbarian_barbarian_outpost"
+clone = "barbarian_alberich"
+combat_def = "barbarian_two_hand_mace_high"
 examine = "Minarch, a barbarian who likes his beer."
 
-[barbarian_barbarian_outpost_6]
+[barbarian_brunnhilde]
 id = 3260
-clone = "barbarian_barbarian_outpost"
+clone = "barbarian_alberich"
+combat_def = "barbarian_spear_high"
 examine = "Brunnhilde, a fierce barbarian warrior."
 
-[barbarian_barbarian_outpost_7]
+[barbarian_edelschwarz]
 id = 3262
-clone = "barbarian_barbarian_outpost_4"
+clone = "barbarian_siegfried"
+combat_def = "barbarian_spear_low"
 examine = "Edelschwarz, a barbarian warrior with a spear."
 
 [kharid_scorpion_barbarian_outpost]

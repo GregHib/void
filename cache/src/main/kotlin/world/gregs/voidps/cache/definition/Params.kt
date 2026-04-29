@@ -12,6 +12,7 @@ object Params {
     const val AREA = 5009
     const val ATT = 5010
     const val ATTACK_BONUS = 5011
+    const val ATTACK_DELAY = 5056
     const val ATTACK_RANGE = 5012
     const val BANK_STACKS = 5013
     const val BLOCK_TICKS = 5014
@@ -51,6 +52,7 @@ object Params {
     const val DRAIN_SKILL = 5048
     const val DROP_TABLE = 5049
     const val DROPS = 5050
+    const val EAT_DELAY = 5070
     const val EAT_MESSAGE = 5051
     const val EFFECT_SECONDS = 5052
     const val EFFECT_TICKS = 5053
@@ -105,7 +107,6 @@ object Params {
     const val LOCATIONS = 5104
     const val LOWER = 5105
     const val MAGE = 5106
-    const val MAGIC = 5107
     const val MATERIAL = 5108
     const val MAX_HEAL = 5109
     const val MAX_HIT_CRUSH = 5110
@@ -342,6 +343,7 @@ object Params {
         "area" -> AREA
         "att" -> ATT
         "attack_bonus" -> ATTACK_BONUS
+        "attack_delay" -> ATTACK_DELAY
         "attack_range" -> ATTACK_RANGE
         "bank_stacks" -> BANK_STACKS
         "block_ticks" -> BLOCK_TICKS
@@ -381,6 +383,7 @@ object Params {
         "drain_skill" -> DRAIN_SKILL
         "drop_table" -> DROP_TABLE
         "drops" -> DROPS
+        "eat_delay" -> EAT_DELAY
         "eat_message" -> EAT_MESSAGE
         "effect_seconds" -> EFFECT_SECONDS
         "effect_ticks" -> EFFECT_TICKS
@@ -435,7 +438,6 @@ object Params {
         "locations" -> LOCATIONS
         "lower" -> LOWER
         "mage" -> MAGE
-        "magic" -> MAGIC
         "material" -> MATERIAL
         "max_heal" -> MAX_HEAL
         "max_hit_crush" -> MAX_HIT_CRUSH

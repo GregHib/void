@@ -45,7 +45,8 @@ class Pickpocketing(val combatDefinitions: CombatDefinitions, val dropTables: Dr
 
     private suspend fun Player.approach(target: NPC) {
         approachRange(2)
-        if (hasClock("food_delay") || hasClock("action_delay")) { // Should action_delay and food_delay be the same??
+        // food_delay and action_delay stay separate.
+        if (hasClock("food_delay") || hasClock("action_delay")) {
             return
         }
         if (hasClock("under_attack")) {

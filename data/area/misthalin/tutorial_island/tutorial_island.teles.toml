@@ -4,7 +4,7 @@ option = "Climb-up"
 tile = { x = 3043, y = 10328 }
 delta = { y = -6400 }
 
-[36768]
+[lumbridge_tower_ladder_south]
 option = "Climb-up"
 tile = { x = 3126, y = 3124, level = 1 }
 delta = { level = 1 }
@@ -72,7 +72,7 @@ option = "Climb-up"
 tile = { x = 3088, y = 9971 }
 to = { x = 3089, y = 3571 }
 
-[36768]
+[lumbridge_tower_ladder_south]
 option = "Climb-up"
 tile = { x = 3139, y = 3078 }
 delta = { level = 1 }

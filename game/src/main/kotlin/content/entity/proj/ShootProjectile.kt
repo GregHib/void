@@ -91,6 +91,30 @@ fun Character.shootNearest(
     sourceHeight = this.height,
     targetHeight = target.height,
     targetTile = target.tile,
+    sourceTile = nearestTile(this, target.tile),
+)
+
+fun Character.shootNearest(
+    id: String,
+    target: Tile,
+    delay: Int? = null,
+    flightTime: Int? = null,
+    height: Int? = null,
+    endHeight: Int? = null,
+    curve: Int? = null,
+    offset: Int? = null,
+    size: Int = 1,
+) = projectile(
+    id = id,
+    flightTime = flightTime,
+    delay = delay,
+    startHeight = height,
+    endHeight = endHeight,
+    curve = curve,
+    offset = offset,
+    sourceHeight = this.height,
+    targetHeight = size,
+    targetTile = target,
     sourceTile = nearestTile(this, target),
 )
 
@@ -126,10 +150,10 @@ fun Character.shoot(
  * Tile dragon breath originates from.
  * Looks weird imo, but it's the same as OSRS.
  */
-private fun nearestTile(source: Character, target: Character): Tile {
+private fun nearestTile(source: Character, target: Tile): Tile {
     val half = source.size / 2
     val centre = source.tile.add(half, half)
-    val direction = target.tile.delta(centre).toDirection()
+    val direction = target.delta(centre).toDirection()
     return centre.add(direction).add(direction)
 }
 

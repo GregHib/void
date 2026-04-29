@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.ItemOption
 import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -34,15 +35,21 @@ class Eating : Script {
             drink -> "drink_delay"
             else -> "food_delay"
         }
-        val ticks = when {
+        val defaultEatTicks = when {
             combo -> 1
             drink -> 2
             else -> 3
         }
+        val eatTicks = item.def["eat_delay", defaultEatTicks]
         if (player.hasClock(delay)) {
             return
         }
-        player.start(delay, ticks)
+        player.start(delay, eatTicks)
+        val attackTicks = item.def["attack_delay", if (drink) 0 else 3]
+        val actionRemaining = player.remaining("action_delay")
+        if (actionRemaining > 0 && attackTicks > 0) {
+            player.start("action_delay", actionRemaining + attackTicks)
+        }
         if (!Items.consumable(player, item)) {
             return
         }

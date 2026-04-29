@@ -102,6 +102,17 @@ class Attack : Script {
             it.combatInteraction(target)
         }
 
+        onPlayerApproach("*_spellbook:*") {
+            val (target, id) = it
+            approachRange(8, update = false)
+            spell = id.substringAfter(":")
+            set("attack_speed", 5)
+            set("one_time", true)
+            attackRange = 8
+            face(target)
+            it.combatInteraction(target)
+        }
+
         combatPrepare {
             if (contains("one_time")) {
                 mode = EmptyMode

@@ -86,6 +86,10 @@ open class Interact(
             return
         }
         updateRange = false
+        if (stepOut()) {
+            super.tick()
+            return
+        }
         calculate()
         val interacted = processInteraction()
         if (interacted && interactionFinished()) {

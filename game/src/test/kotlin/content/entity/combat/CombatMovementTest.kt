@@ -129,6 +129,16 @@ internal class CombatMovementTest : WorldTest() {
         assertTrue(npc.mode is CombatMovement)
     }
 
+    @Test
+    fun `Npc spawned under player steps out to attack`() {
+        val player = createPlayer(emptyTile)
+        val npc = createNPC("guard_falador", emptyTile)
+        npc.interactPlayer(player, "Attack")
+        tick(2)
+        assertTrue(npc.tile != emptyTile)
+        assertTrue(npc.mode is CombatMovement)
+    }
+
     companion object {
         private const val MAX_EXP = 14000000.0
     }

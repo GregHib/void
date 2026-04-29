@@ -8,6 +8,7 @@ import content.entity.combat.hit.Hit
 import content.entity.combat.hit.directHit
 import content.entity.effect.transform
 import content.entity.player.equip.Equipment
+import content.skill.melee.weapon.combatStyle
 import content.skill.ranged.ammo
 import content.skill.slayer.categories
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
@@ -126,14 +127,21 @@ object Target {
      * Damage caps which Guthans doesn't work on
      * E.g. Kurask & Turoth
      */
-    fun damageModifiers(source: Character, target: Character, damage: Int): Int {
-        if (source is NPC && target is Player) {
-            val hat = target.equipped(EquipSlot.Hat).id
-            if (source.id == "banshee" && !Equipment.isEarmuffs(hat)) {
-                return 80
+    fun damageModifiers(source: Character, target: Character, type: String, weapon: Item, damage: Int): Int {
+        if (source is NPC) {
+            if (target is Player) {
+                val hat = target.equipped(EquipSlot.Hat).id
+                if (source.id == "banshee" && !Equipment.isEarmuffs(hat)) {
+                    return 80
+                } else if (source.id == "aberrant_spectre" && !Equipment.isNosePeg(hat)) {
+                    return 160
+                }
             }
-            if (source.id == "aberrant_spectre" && !Equipment.isNosePeg(hat)) {
-                return 160
+            if (source.id == "corporeal_beast" && (Hit.meleeType(type) || type == "magic")) {
+                if (target is Player && Equipment.isCorpbaneWeapon(weapon.id) && target.combatStyle == "stab") {
+                    return damage
+                }
+                return damage / 2
             }
         }
         return damage

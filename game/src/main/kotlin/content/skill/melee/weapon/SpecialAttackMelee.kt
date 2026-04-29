@@ -8,13 +8,13 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.map.spiral
 
-fun multiTargets(target: Character, hits: Int): List<Character> {
+fun multiTargets(source: Character, target: Character, hits: Int): List<Character> {
     val group = if (target is Player) Players else NPCs
     val targets = mutableListOf<Character>()
     for (tile in target.tile.spiral(1)) {
         val characters = group.at(tile)
         for (character in characters) {
-            if (character == target || !character.inMultiCombat) {
+            if (character == target || character == source || !character.inMultiCombat) {
                 continue
             }
             targets.add(character)

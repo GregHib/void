@@ -38,7 +38,7 @@ class BankTabs : Script {
             set("bank_item_mode", if (value == "insert") "swap" else "insert")
         }
 
-        interfaceSwap("bank:tab_#") { _, toId, fromSlot, _ ->
+        interfaceSwap("bank:inventory", "bank:tab_#") { _, toId, fromSlot, _ ->
             val fromTab = Bank.getTab(this, fromSlot)
             val toTab = toId.substringAfter(":").removePrefix("tab_").toInt() - 1
             val toIndex = if (toTab == Bank.MAIN_TAB) bank.freeIndex() else Bank.tabIndex(this, toTab + 1)
