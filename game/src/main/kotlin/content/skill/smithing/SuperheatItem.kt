@@ -4,7 +4,7 @@ import content.skill.magic.spell.SpellRunes.removeItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.Rows
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.remove
 
-class SuperheatItem(val spellDefinitions: SpellDefinitions) : Script {
+class SuperheatItem : Script {
 
     init {
         onItem("modern_spellbook:superheat_item") { item, _ ->
@@ -44,9 +44,8 @@ class SuperheatItem(val spellDefinitions: SpellDefinitions) : Script {
                 sound("superheat_all")
                 anim(spell)
                 gfx(spell)
-                val definition = spellDefinitions.get(spell)
                 val xp = row.int("xp") / 10.0
-                exp(Skill.Magic, definition.experience)
+                exp(Skill.Magic, Tables.int("spells.${spell}.xp") / 10.0)
                 exp(Skill.Smithing, Furnace.goldXp(this, bar, xp))
             } else {
                 sound("superheat_fail")

@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.timer.epochSeconds
 
 class VengeanceOther(
     val accounts: AccountDefinitions,
-    val definitions: SpellDefinitions,
 ) : Script {
 
     init {
@@ -47,14 +46,14 @@ class VengeanceOther(
     }
 
     private fun Player.vengeance(target: Player) {
-        val definition = definitions.get("vengeance_other")
+        val row = Rows.get("spells.vengeance_other")
         start("movement_delay", 2)
         anim("lunar_cast")
         target.gfx("vengeance_other")
         sound("vengeance_other")
-        exp(Skill.Magic, definition.experience)
+        exp(Skill.Magic, row.int("xp") / 10.0)
         target["vengeance"] = true
-        start("vengeance_delay", definition["delay_seconds"], epochSeconds())
+        start("vengeance_delay", row.int("delay_seconds"), epochSeconds())
     }
 
     fun veng(player: Player, args: List<String>) {

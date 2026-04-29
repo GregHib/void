@@ -118,6 +118,13 @@ object Tables {
         return Rows.getOrNull(id)
     }
 
+    fun rowList(path: String): List<RowDefinition> = get(path, ColumnType.StringList).map { Rows.get(it) }
+
+    fun rowListOrNull(path: String): List<RowDefinition>? {
+        val ids = getOrNull(path, ColumnType.StringList) ?: return null
+        return ids.mapNotNull { Rows.getOrNull(it) }
+    }
+
     /*
         Primitive Lists
      */

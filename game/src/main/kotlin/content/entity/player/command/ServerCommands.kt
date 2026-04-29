@@ -35,7 +35,6 @@ import world.gregs.voidps.engine.data.definition.PrayerDefinitions
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.data.definition.RenderEmoteDefinitions
 import world.gregs.voidps.engine.data.definition.SoundDefinitions
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.World
@@ -131,7 +130,6 @@ class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
                 }
                 InterfaceDefinitions.load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"]))
             }
-            "spells" -> get<SpellDefinitions>().load(files.find(Settings["definitions.spells"]))
             "patrols", "paths" -> get<PatrolDefinitions>().load(files.list(Settings["definitions.patrols"]))
             "prayers" -> get<PrayerDefinitions>().load(files.find(Settings["definitions.prayers"]))
             "drops", "drop_tables" -> get<DropTables>().load(files.list(Settings["spawns.drops"]))
@@ -141,7 +139,7 @@ class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
                 SettingsReload.now()
             }
             "bots" -> get<BotManager>().load(files)
-            "tables", "rows", "dbs" -> Tables.load(files.list(Settings["definitions.tables"]))
+            "tables", "rows", "dbs", "spells" -> Tables.load(files.list(Settings["definitions.tables"]))
         }
     }
 

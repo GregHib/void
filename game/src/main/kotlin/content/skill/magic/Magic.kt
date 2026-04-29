@@ -8,13 +8,12 @@ import content.skill.magic.spell.removeSpellItems
 import content.skill.magic.spell.spell
 import content.skill.melee.weapon.weapon
 import content.skill.slayer.categories
-import world.gregs.voidps.engine.data.config.SpellDefinition
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.data.config.RowDefinition
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.get
 
 object Magic {
     fun castSpell(source: Character, target: Character): Boolean {
@@ -23,20 +22,20 @@ object Magic {
             return false
         }
         val spell = source.spell
-        val definition = get<SpellDefinitions>().get(spell)
-
-        val time = time(source, target, definition)
-        source.anim(animation(source, definition))
-        source.gfx(graphic(source, definition))
+        val row = Rows.get("spells.${spell}")
+        val time = time(source, target, row)
+        source.anim(animation(source, row))
+        source.gfx(graphic(source, row))
         target.sound("${spell}_cast")
         source.sound("${spell}_cast")
         val damage = source.hit(target, delay = if (time == -1) 64 else time)
         if (damage != -1) {
-            if (definition.contains("drain_multiplier")) {
+            val percent = row.intOrNull("drain_percent")
+            val ticks = row.intOrNull("effect_ticks")
+            if (percent != null) {
                 Spell.drain(source, target, spell)
-            } else if (definition.contains("block_ticks")) {
-                val duration: Int = definition["block_ticks"]
-                (source as? Player)?.teleBlock(target, duration)
+            } else if (ticks != null) {
+                (source as? Player)?.teleBlock(target, ticks)
             }
         }
         source.clear("spell")
@@ -46,28 +45,30 @@ object Magic {
         return true
     }
 
-    fun animation(source: Character, definition: SpellDefinition): String {
+    fun animation(source: Character, row: RowDefinition): String {
         if (source.weapon.def["weapon_type", ""] == "salamander" && source.spell.isBlank()) {
             return "salamander_scorch"
         }
         val staff = source.weapon.def["category", ""] == "staff"
-        return if (staff && definition.contains("animation_staff")) {
-            definition["animation_staff"]
+        val anim = row.anim("animation")
+        return if (staff) {
+            row.animOrNull("animation_staff") ?: anim
         } else {
-            definition["animation", ""]
+            anim
         }
     }
 
-    fun graphic(source: Character, definition: SpellDefinition): String {
+    fun graphic(source: Character, row: RowDefinition): String {
         if (source.weapon.def["weapon_type", ""] == "salamander" && source.spell.isBlank()) {
             return "salamander_blaze"
         }
         if (source is Player || source is NPC && source.categories.contains("human")) {
             val staff = source.weapon.def["category", ""] == "staff"
-            return if (staff && definition.contains("graphic_staff")) {
-                definition["graphic_staff"]
+            val anim = row.gfx("graphic")
+            return if (staff) {
+                row.gfxOrNull("graphic_staff") ?: anim
             } else {
-                definition["graphic", ""]
+                anim
             }
         } else if (source is NPC) {
             return source.def["combat_gfxs", ""]
@@ -75,30 +76,29 @@ object Magic {
         return ""
     }
 
-    fun time(source: Character, target: Character, definition: SpellDefinition): Int {
+    fun time(source: Character, target: Character, row: RowDefinition): Int {
         if (source.weapon.def["weapon_type", ""] == "salamander" && source.spell.isBlank()) {
             return 0
         }
-        if (definition.contains("projectiles")) {
-            val projectiles: List<Map<String, Any>> = definition["projectiles"]
-            var time = -1
-            for (projectile in projectiles) {
-                val id = projectile.getValue("id") as String
-                val delay = projectile["delay"] as? Int
-                val curve = projectile["curve"] as? Int
-                val end = projectile["end_height"] as? Int
-                val flightTime = if (id == "ice_barrage") {
-                    target.tile.shoot(id = id, target = target, delay = delay, curve = curve, endHeight = end)
-                } else {
-                    source.shoot(id = id, target = target, delay = delay, curve = curve, endHeight = end)
-                }
-                if (time == -1) {
-                    time = flightTime
-                }
-            }
-            return time
-        } else {
-            return source.shoot(id = definition.stringId, target = target)
+        val projectiles = row.rowList("projectiles")
+        if (projectiles.isEmpty()) {
+            return source.shoot(id = row.rowId, target = target)
         }
+        var time = -1
+        for (projectile in projectiles) {
+            val id = projectile.gfx("gfx")
+            val delay = projectile.intOrNull("delay")
+            val curve = projectile.intOrNull("curve")
+            val end = projectile.intOrNull("end_height")
+            val flightTime = if (id == "ice_barrage") {
+                target.tile.shoot(id = id, target = target, delay = delay, curve = curve, endHeight = end)
+            } else {
+                source.shoot(id = id, target = target, delay = delay, curve = curve, endHeight = end)
+            }
+            if (time == -1) {
+                time = flightTime
+            }
+        }
+        return time
     }
 }

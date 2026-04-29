@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.Areas
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -27,7 +27,7 @@ import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.timer.epochSeconds
 import java.util.concurrent.TimeUnit
 
-class Teleports(val definitions: SpellDefinitions) : Script {
+class Teleports : Script {
 
     init {
         interfaceOption("Cast", "*_spellbook:*_teleport") {
@@ -113,8 +113,7 @@ class Teleports(val definitions: SpellDefinitions) : Script {
             if (!removeSpellItems(component)) {
                 return@queue
             }
-            val definition = definitions.get(component)
-            exp(Skill.Magic, definition.experience)
+            exp(Skill.Magic, Tables.int("spells.${component}.xp") / 10.0)
             val book = id.removeSuffix("_spellbook")
             sound("teleport")
             gfx("teleport_$book")

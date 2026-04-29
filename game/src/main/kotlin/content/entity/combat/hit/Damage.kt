@@ -12,14 +12,13 @@ import content.skill.melee.armour.barrows.BarrowsArmour
 import content.skill.melee.weapon.Weapon
 import content.skill.prayer.Prayer
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
@@ -75,7 +74,7 @@ object Damage {
         type == "magic" && weapon.id.startsWith("saradomin_sword") -> 160
         type == "magic" && spell == "magic_dart" -> effectiveLevel(source, Skill.Magic) + 100
         type == "magic" -> {
-            var damage = get<SpellDefinitions>().get(spell).maxHit
+            var damage = Tables.int("spells.${spell}.max_hit")
             if (damage == -1) {
                 damage = 0
             }

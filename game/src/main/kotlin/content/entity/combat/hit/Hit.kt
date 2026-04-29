@@ -142,7 +142,7 @@ object Hit {
  * @param offensiveType attack type used for calculating offensive rating and damage
  * @param defensiveType attack type used for rolling the [target]s defensive rating
  * @param delay Hit delay in client ticks
- * @param spell The type of maigc spell used
+ * @param spell The type of magic spell used
  * @param special Special attack
  * @param damage The amount of damage dealt
  * @return The actual amount damage dealt after bonuses and protections applied
@@ -157,6 +157,9 @@ fun Character.hit(
     defensiveType: String = offensiveType,
     damage: Int = Damage.roll(this, target, offensiveType, weapon, spell, special, defensiveType),
 ): Int {
+    if (spell == "melee") {
+        println("Hmm")
+    }
     val actualDamage = Damage.modify(this, target, offensiveType, damage, weapon, spell, special)
         .coerceAtMost(target.levels.get(Skill.Constitution))
     if (this is Player) {

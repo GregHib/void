@@ -7,13 +7,13 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.timer.epochSeconds
 
-class Vengeance(val definitions: SpellDefinitions) : Script {
+class Vengeance : Script {
 
     init {
         interfaceOption("Cast", "lunar_spellbook:vengeance") {
@@ -29,13 +29,13 @@ class Vengeance(val definitions: SpellDefinitions) : Script {
             if (!removeSpellItems(spell)) {
                 return@interfaceOption
             }
-            val definition = definitions.get(spell)
+            val row = Rows.get("spells.${spell}")
             anim(spell)
             gfx(spell)
             sound(spell)
-            exp(Skill.Magic, definition.experience)
+            exp(Skill.Magic, row.int("xp") / 10.0)
             set("vengeance", true)
-            start("vengeance_delay", definition["delay_seconds"], epochSeconds())
+            start("vengeance_delay", row.int("delay_seconds"), epochSeconds())
         }
 
         combatDamage { (source, type, damage) ->

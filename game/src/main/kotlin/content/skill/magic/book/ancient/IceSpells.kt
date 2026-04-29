@@ -2,11 +2,11 @@ package content.skill.magic.book.ancient
 
 import content.entity.effect.freeze
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack
 
-class IceSpells(val definitions: SpellDefinitions) : Script {
+class IceSpells : Script {
 
     init {
         combatAttack("magic", handler = ::attack)
@@ -17,7 +17,10 @@ class IceSpells(val definitions: SpellDefinitions) : Script {
         if (damage <= 0 || !spell.startsWith("ice_")) {
             return
         }
-        val ticks: Int = definitions.get(spell)["freeze_ticks"]
+        val ticks = Tables.int("spells.${spell}.freeze_ticks")
+        if (ticks <= 0) {
+            return
+        }
         source.freeze(target, ticks)
     }
 }

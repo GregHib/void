@@ -67,6 +67,12 @@ data class RowDefinition(
 
     fun stringList(column: String) = Tables.stringList("${stringId}.$column")
 
+    fun stringListOrNull(column: String) = Tables.stringListOrNull("${stringId}.$column")
+
+    fun rowList(column: String) = Tables.rowList("${stringId}.$column")
+
+    fun rowListOrNull(column: String) = Tables.rowListOrNull("${stringId}.$column")
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

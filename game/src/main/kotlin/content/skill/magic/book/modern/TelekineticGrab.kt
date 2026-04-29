@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
 
-class TelekineticGrab(val definitions: SpellDefinitions) : Script {
+class TelekineticGrab : Script {
     init {
         onFloorItemApproach("modern_spellbook:telekinetic_grab") {
             approachRange(10)
@@ -46,11 +46,10 @@ class TelekineticGrab(val definitions: SpellDefinitions) : Script {
                 }
                 else -> return@onFloorItemApproach
             }
-            val definition = definitions.get(spell)
             anim("tele_grab_cast")
             gfx("tele_grab_cast")
             sound("tele_grab_cast")
-            exp(Skill.Magic, definition.experience)
+            exp(Skill.Magic, Tables.int("spells.${spell}.xp") / 10.0)
 
             val clientTicks = shoot("tele_grab_travel", floorItem.tile)
             areaSound("tele_grab_impact", floorItem.tile, delay = clientTicks, radius = 10)
