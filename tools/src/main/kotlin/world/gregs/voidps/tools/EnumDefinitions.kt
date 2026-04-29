@@ -4,14 +4,18 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
+import world.gregs.voidps.cache.definition.decoder.AnimationDecoder
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
+import world.gregs.voidps.cache.definition.decoder.GraphicDecoder
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.GraphicDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
@@ -28,6 +32,8 @@ object EnumDefinitions {
         Settings.load()
         val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
         val files = configFiles()
+        AnimationDefinitions.init(AnimationDecoder().load(cache)).load(files.list(Settings["definitions.animations"]))
+        GraphicDefinitions.init(GraphicDecoder().load(cache)).load(files.list(Settings["definitions.graphics"]))
         ItemDefinitions.init(ItemDecoder().load(cache)).load(files.list(Settings["definitions.items"]))
         InterfaceDefinitions.init(InterfaceDecoder().load(cache)).load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"]))
         InventoryDefinitions.init(InventoryDecoder().load(cache)).load(files.list(Settings["definitions.inventories"]), files.list(Settings["definitions.shops"]))

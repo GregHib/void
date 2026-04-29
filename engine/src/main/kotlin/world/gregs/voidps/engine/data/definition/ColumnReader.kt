@@ -74,6 +74,12 @@ sealed interface ColumnReader<T : Any> {
         override fun read(reader: ConfigReader) = reader.string()
     }
 
+    object ReaderClone : ColumnReader<String> {
+        override val type = ColumnType.ColumnString
+        override fun list() = mutableListOf<String>()
+        override fun read(reader: ConfigReader) = reader.string()
+    }
+
     data class ReaderPair<A : Any, B : Any>(val one: ColumnReader<A>, val two: ColumnReader<B>) : ColumnReader<Pair<A, B>> {
         override val type = ColumnType.ColumnPair(one.type, two.type)
         override fun list() = mutableListOf<Pair<A, B>>()
@@ -129,6 +135,7 @@ sealed interface ColumnReader<T : Any> {
             "anim" -> ReaderEntity(AnimationDefinitions.ids)
             "var" -> ReaderValidString(VariableDefinitions.definitions.keys)
             "row" -> ReaderString
+            "clone" -> ReaderClone
             else -> if (name.startsWith("pair<", ignoreCase = true)) {
                 val (first, second) = name.substringAfter("<").removeSuffix(">").split(",")
                 ReaderPair(reader(first.trim()), reader(second.trim()))

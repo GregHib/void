@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Tile
 import kotlin.collections.set
-import kotlin.math.exp
 
 object Tables {
 
@@ -87,6 +86,22 @@ object Tables {
         val id = getOrNull(path, ColumnType.ColumnEntity) ?: return null
         val npc = NPCDefinitions.getOrNull(id) ?: return null
         return npc.stringId
+    }
+
+    fun anim(path: String): String = AnimationDefinitions.get(get(path, ColumnType.ColumnEntity)).stringId
+
+    fun animOrNull(path: String): String? {
+        val id = getOrNull(path, ColumnType.ColumnEntity) ?: return null
+        val anim = AnimationDefinitions.getOrNull(id) ?: return null
+        return anim.stringId
+    }
+
+    fun gfx(path: String): String = GraphicDefinitions.get(get(path, ColumnType.ColumnEntity)).stringId
+
+    fun gfxOrNull(path: String): String? {
+        val id = getOrNull(path, ColumnType.ColumnEntity) ?: return null
+        val gfx = GraphicDefinitions.getOrNull(id) ?: return null
+        return gfx.stringId
     }
 
     fun skill(path: String): Skill = Skill.all[get(path, ColumnType.ColumnEntity)]
@@ -218,6 +233,8 @@ object Tables {
         require(ObjectDefinitions.loaded) { "Object definitions must be loaded before tables" }
         require(NPCDefinitions.loaded) { "NPC definitions must be loaded before tables" }
         require(VariableDefinitions.loaded) { "Variable definitions must be loaded before tables" }
+        require(AnimationDefinitions.loaded) { "Animation definitions must be loaded before tables" }
+        require(GraphicDefinitions.loaded) { "Graphic definitions must be loaded before tables" }
         timedLoad("table config") {
             val definitions = mutableMapOf<String, TableBuilder>()
             val rows = mutableListOf<RowDefinition>()
@@ -261,7 +278,18 @@ object Tables {
             val index = builder.columns[name]
             requireNotNull(index) { "Column '$name' not found in table '$key' at ${reader.exception()}." }
             val column = builder.readers[index]
-            row[index] = column.read(reader)
+            if (column is ColumnReader.ReaderClone) {
+                val rowId = column.read(reader)
+                val clone = rows.firstOrNull { it.rowId == rowId }?.data
+                requireNotNull(clone) { "Row '$rowId' to clone not found in table '$key' at ${reader.exception()}." }
+                for (i in row.indices) {
+                    if (row[i] == null) {
+                        row[i] = clone[i]
+                    }
+                }
+            } else {
+                row[index] = column.read(reader)
+            }
         }
         require(!ids.containsKey(rowName)) { "Duplicate row id found '$rowName' at ${reader.exception()}." }
         val id = rows.size

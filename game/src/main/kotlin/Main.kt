@@ -124,6 +124,8 @@ object Main {
             single(createdAtStart = true) { ItemDefinitions.init(ItemDecoder().load(cache)).load(files.list(Settings["definitions.items"])) }
             single(createdAtStart = true) { AnimationDefinitions.init(AnimationDecoder().load(cache)).load(files.list(Settings["definitions.animations"])) }
             single(createdAtStart = true) {
+                get<AnimationDefinitions>()
+                get<GraphicDefinitions>()
                 get<ItemDefinitions>()
                 get<InterfaceDefinitions>()
                 get<InventoryDefinitions>()
@@ -134,6 +136,8 @@ object Main {
                 EnumDefinitions.init(EnumDecoder().load(cache)).load(files.list(Settings["definitions.enums"]))
             }
             single(createdAtStart = true) {
+                get<AnimationDefinitions>()
+                get<GraphicDefinitions>()
                 get<ItemDefinitions>()
                 get<NPCDefinitions>()
                 get<ObjectDefinitions>()

@@ -377,6 +377,8 @@ abstract class WorldTest : KoinTest {
         private val weaponStyleDefinitions: WeaponStyleDefinitions by lazy { WeaponStyleDefinitions().load(configFiles.find(Settings["definitions.weapons.styles"])) }
         private val weaponAnimationDefinitions: WeaponAnimationDefinitions by lazy { WeaponAnimationDefinitions().load(configFiles.find(Settings["definitions.weapons.animations"])) }
         private val enumDefinitions: Array<EnumDefinition> by lazy {
+            animationIds
+            graphicIds
             itemIds
             interfaceIds
             inventoryIds

@@ -19,6 +19,10 @@ data class RowDefinition(
 
     fun int(column: String) = Tables.int("${stringId}.$column")
 
+    fun skill(column: String) = Tables.skill("${stringId}.$column")
+
+    fun skillOrNull(column: String) = Tables.skillOrNull("${stringId}.$column")
+
     fun skillPair(column: String) = Tables.skillPair("${stringId}.$column")
 
     fun skillPairOrNull(column: String) = Tables.skillPairOrNull("${stringId}.$column")
@@ -46,6 +50,14 @@ data class RowDefinition(
     fun string(column: String) = Tables.string("${stringId}.$column")
 
     fun stringOrNull(column: String) = Tables.stringOrNull("${stringId}.$column")
+
+    fun anim(column: String) = Tables.anim("${stringId}.$column")
+
+    fun animOrNull(column: String) = Tables.animOrNull("${stringId}.$column")
+
+    fun gfx(column: String) = Tables.gfx("${stringId}.$column")
+
+    fun gfxOrNull(column: String) = Tables.gfxOrNull("${stringId}.$column")
 
     fun item(column: String) = Tables.item("${stringId}.$column")
 
