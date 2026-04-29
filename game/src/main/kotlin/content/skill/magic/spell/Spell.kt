@@ -3,7 +3,6 @@ package content.skill.magic.spell
 import content.entity.player.equip.Equipment
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
-import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -15,7 +14,7 @@ import kotlin.math.roundToInt
 object Spell {
 
     fun canDrain(target: Character, spell: String): Boolean? {
-        val row = Rows.getOrNull("spells.${spell}") ?: return null
+        val row = Rows.getOrNull("spells.$spell") ?: return null
         val skill = row.skillOrNull("drain_skill") ?: return null
         val multiplier: Double = row.int("drain_percent") / 100.0
         val maxDrain = multiplier * target.levels.getMax(skill)
@@ -23,7 +22,7 @@ object Spell {
     }
 
     fun drain(source: Character, target: Character, spell: String) {
-        val def = Rows.getOrNull("spells.${spell}") ?: return
+        val def = Rows.getOrNull("spells.$spell") ?: return
         val multiplier: Double = def.int("drain_percent") / 100.0
         val skill = def.skill("drain_skill")
         val drained = target.levels.drain(skill, multiplier = multiplier, stack = target is Player)

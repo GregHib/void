@@ -33,7 +33,7 @@ class HealGroup : Script {
             group.forEach { target ->
                 target.gfx(spell)
                 target.sound("heal_other_impact")
-                exp(Skill.Magic, Tables.int("spells.${spell}.xp") / 10.0)
+                exp(Skill.Magic, Tables.int("spells.$spell.xp") / 10.0)
                 healed += target.levels.restore(Skill.Constitution, amount / group.size)
                 target.message("You have been healed by $name.")
             }

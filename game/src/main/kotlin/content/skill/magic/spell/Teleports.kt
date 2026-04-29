@@ -113,7 +113,7 @@ class Teleports : Script {
             if (!removeSpellItems(component)) {
                 return@queue
             }
-            exp(Skill.Magic, Tables.int("spells.${component}.xp") / 10.0)
+            exp(Skill.Magic, Tables.int("spells.$component.xp") / 10.0)
             val book = id.removeSuffix("_spellbook")
             sound("teleport")
             gfx("teleport_$book")

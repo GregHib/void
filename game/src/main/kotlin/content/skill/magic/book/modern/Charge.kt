@@ -27,7 +27,7 @@ class Charge : Script {
                 return@interfaceOption
             }
 
-            val row = Rows.get("spells.${spell}")
+            val row = Rows.get("spells.$spell")
             anim(spell)
             sound(spell)
             exp(Skill.Magic, row.int("xp") / 10.0)

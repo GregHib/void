@@ -17,7 +17,7 @@ class BloodSpells : Script {
         if (damage <= 0 || !spell.startsWith("blood_")) {
             return
         }
-        val maxHeal = Tables.int("spells.${spell}.max_heal")
+        val maxHeal = Tables.int("spells.$spell.max_heal")
         if (maxHeal <= 0) {
             return
         }

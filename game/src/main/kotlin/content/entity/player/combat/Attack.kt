@@ -87,7 +87,7 @@ class Attack : Script {
         onNPCApproach("*_spellbook:*") {
             val (target, id) = it
             val component = id.substringAfter(":")
-            val row = Rows.getOrNull("spells.${component}") ?: return@onNPCApproach
+            val row = Rows.getOrNull("spells.$component") ?: return@onNPCApproach
             val message = row.stringOrNull("npc_message")
             if (message != null) {
                 if (message.isNotEmpty()) {
@@ -115,7 +115,7 @@ class Attack : Script {
         onPlayerApproach("*_spellbook:*") {
             val (target, id) = it
             val component = id.substringAfter(":")
-            val row = Rows.getOrNull("spells.${component}") ?: return@onPlayerApproach
+            val row = Rows.getOrNull("spells.$component") ?: return@onPlayerApproach
             val message = row.stringOrNull("player_message")
             if (message != null) {
                 if (message.isNotEmpty()) {

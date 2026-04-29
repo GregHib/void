@@ -17,7 +17,7 @@ class IceSpells : Script {
         if (damage <= 0 || !spell.startsWith("ice_")) {
             return
         }
-        val ticks = Tables.int("spells.${spell}.freeze_ticks")
+        val ticks = Tables.int("spells.$spell.freeze_ticks")
         if (ticks <= 0) {
             return
         }

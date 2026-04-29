@@ -10,7 +10,6 @@ import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.cache.definition.data.NPCDefinition
@@ -50,7 +49,7 @@ internal class NPCChatTest : DialogueTest() {
                 "expression_laugh2" to 2,
                 "expression_laugh3" to 2,
                 "expression_laugh4" to 2,
-            )
+            ),
         )
         NPCDefinitions.set(Array(124) { if (it == 123) NPCDefinition(id = 123, name = "Jim") else NPCDefinition.EMPTY }, mapOf("jim" to 123))
     }

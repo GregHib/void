@@ -45,7 +45,7 @@ class SuperheatItem : Script {
                 anim(spell)
                 gfx(spell)
                 val xp = row.int("xp") / 10.0
-                exp(Skill.Magic, Tables.int("spells.${spell}.xp") / 10.0)
+                exp(Skill.Magic, Tables.int("spells.$spell.xp") / 10.0)
                 exp(Skill.Smithing, Furnace.goldXp(this, bar, xp))
             } else {
                 sound("superheat_fail")

@@ -18,7 +18,7 @@ class MiasmicSpells : Script {
         if (damage <= 0 || !spell.startsWith("miasmic_")) {
             return
         }
-        val seconds = Tables.int("spells.${spell}.effect_seconds")
+        val seconds = Tables.int("spells.$spell.effect_seconds")
         if (seconds <= 0) {
             return
         }

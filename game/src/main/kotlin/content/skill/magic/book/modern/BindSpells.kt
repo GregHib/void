@@ -16,6 +16,6 @@ class BindSpells : Script {
         if (damage <= 0 || (spell != "bind" && spell != "snare" && spell != "entangle")) {
             return
         }
-        source.freeze(target, Tables.int("spells.${spell}.freeze_ticks"))
+        source.freeze(target, Tables.int("spells.$spell.freeze_ticks"))
     }
 }

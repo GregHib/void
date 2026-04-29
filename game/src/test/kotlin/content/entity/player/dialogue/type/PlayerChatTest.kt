@@ -11,7 +11,6 @@ import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
@@ -47,7 +46,7 @@ internal class PlayerChatTest : DialogueTest() {
                 "expression_laugh2" to 2,
                 "expression_laugh3" to 2,
                 "expression_laugh4" to 2,
-            )
+            ),
         )
     }
 

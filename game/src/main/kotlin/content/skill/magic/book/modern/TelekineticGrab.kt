@@ -51,7 +51,7 @@ class TelekineticGrab : Script {
             anim("tele_grab_cast")
             gfx("tele_grab_cast")
             sound("tele_grab_cast")
-            exp(Skill.Magic, Tables.int("spells.${spell}.xp") / 10.0)
+            exp(Skill.Magic, Tables.int("spells.$spell.xp") / 10.0)
 
             val clientTicks = shoot("tele_grab_travel", floorItem.tile)
             areaSound("tele_grab_impact", floorItem.tile, delay = clientTicks, radius = 10)

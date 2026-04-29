@@ -66,7 +66,7 @@ class Alchemy : Script {
             TransactionError.None -> {
                 player.start("action_delay", 3)
                 AuditLog.event(player, "alched", item, coins, spell == "high_level_alchemy", player.tile)
-                val row = Rows.get("spells.${spell}")
+                val row = Rows.get("spells.$spell")
                 player.anim(Magic.animation(player, row))
                 player.gfx(Magic.graphic(player, row))
                 player.sound(spell)

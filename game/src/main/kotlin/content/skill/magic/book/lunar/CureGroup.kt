@@ -22,7 +22,7 @@ class CureGroup : Script {
             }
             anim("lunar_cast_group")
             sound(spell)
-            exp(Skill.Magic, Tables.int("spells.${spell}.xp") / 10.0)
+            exp(Skill.Magic, Tables.int("spells.$spell.xp") / 10.0)
             Players
                 .filter { other -> other.tile.within(tile, 1) && other.poisoned && get("accept_aid", true) }
                 .forEach { target ->

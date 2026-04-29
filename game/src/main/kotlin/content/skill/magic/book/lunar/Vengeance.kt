@@ -29,7 +29,7 @@ class Vengeance : Script {
             if (!removeSpellItems(spell)) {
                 return@interfaceOption
             }
-            val row = Rows.get("spells.${spell}")
+            val row = Rows.get("spells.$spell")
             anim(spell)
             gfx(spell)
             sound(spell)

@@ -22,7 +22,7 @@ object Magic {
             return false
         }
         val spell = source.spell
-        val row = Rows.get("spells.${spell}")
+        val row = Rows.get("spells.$spell")
         val time = time(source, target, row)
         source.anim(animation(source, row))
         source.gfx(graphic(source, row))

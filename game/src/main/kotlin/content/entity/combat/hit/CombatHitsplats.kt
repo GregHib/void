@@ -14,7 +14,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 import kotlin.collections.set
 import kotlin.math.floor
 
-class CombatHitsplats() : Script {
+class CombatHitsplats : Script {
 
     init {
         combatDamage(handler = ::hit)
@@ -37,7 +37,7 @@ class CombatHitsplats() : Script {
                 mark = HitSplat.Mark.Missed,
             )
         } else {
-            if (type == "magic" && Tables.intOrNull("spells.${spell}.max_hit") == -1) {
+            if (type == "magic" && Tables.intOrNull("spells.$spell.max_hit") == -1) {
                 return
             }
             var soak = 0

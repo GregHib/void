@@ -19,7 +19,7 @@ class SmokeSpells : Script {
             return
         }
         if (random.nextDouble() <= 0.2) {
-            val damage = Tables.int("spells.${spell}.poison_damage")
+            val damage = Tables.int("spells.$spell.poison_damage")
             if (damage <= 0) {
                 return
             }

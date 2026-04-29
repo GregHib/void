@@ -46,7 +46,7 @@ class TeleportOther : Script {
             anim("teleport_other")
             gfx("teleport_other_casting")
             areaSound("tele_other_cast", tile = tile, radius = 1)
-            exp(Skill.Magic, Tables.int("spells.${spell}.xp") / 10.0)
+            exp(Skill.Magic, Tables.int("spells.$spell.xp") / 10.0)
             start("action_delay", 3)
             val location = spell.removePrefix("teleother_")
             target.interfaces.sendText("teleport_other", "name", name)
@@ -70,7 +70,6 @@ class TeleportOther : Script {
                 tele(Areas["${location}_teleport"])
             }
         }
-
 
         combatPrepare("magic") { target ->
             if (spell.startsWith("teleother")) {
