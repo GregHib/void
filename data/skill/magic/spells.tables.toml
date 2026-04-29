@@ -149,7 +149,7 @@ freeze_ticks = 8
 graphic = "bind_cast"
 animation = "bind"
 animation_staff = "bind_staff"
-projectiles = ["spell_projectiles.bind"]
+projectiles = ["spell_projectiles.bind_projectile"]
 
 [.snare]
 clone = "bind"
