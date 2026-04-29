@@ -459,7 +459,7 @@ setup = [
 loadouts = { melee  = { equipment = { weapon = { id = "abyssal_whip" }, chest = { id = "fighter_torso" }, legs = { id = "rune_platelegs" }, hat = { id = "helm_of_neitiznot" }, feet = { id = "dragon_boots" } } },
              magic  = { equipment = { weapon = { id = "ancient_staff" }, chest = { id = "mystic_robe_top_blue" }, legs = { id = "mystic_robe_bottom_blue" }, hat = { id = "mystic_hat_blue" }, feet = { id = "mystic_boots_blue" } },
                         inventory = [ { id = "blood_rune", min = 2000 }, { id = "death_rune", min = 2000 }, { id = "water_rune", min = 5000 }],
-                        autocast = "ice_barrage" }
+                        autocast = "ice_barrage" },
             }
 
 actions = [
