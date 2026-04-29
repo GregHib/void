@@ -110,7 +110,7 @@ class Attack(
                         offense = listOf("crush", "range", "magic").random(random)
                         defence = offense
                     }
-                    val spell = if (offense == "magic") attack.id else ""
+                    val spell = if (offense == "magic" || defence == "magic") attack.id else ""
                     val damage = if (hit.max == 0) {
                         hit(target = target, delay = delay, offensiveType = offense, defensiveType = defence, special = hit.special, spell = spell)
                     } else {

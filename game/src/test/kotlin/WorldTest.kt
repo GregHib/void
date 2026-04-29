@@ -391,6 +391,8 @@ abstract class WorldTest : KoinTest {
         }
 
         private val tableDefinitions: Map<String, TableDefinition> by lazy {
+            animationIds
+            graphicIds
             itemIds
             npcIds
             objectIds
