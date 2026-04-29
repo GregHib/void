@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 class Yohnus : Script {
 
     init {
-
         npcOperate("Talk-to", "yohnus_shilo_village") {
             npc<Neutral>("Sorry but the blacksmiths is closed. But I can let you use the furnace at the cost of 20 gold pieces.")
             choice {
@@ -37,7 +36,7 @@ class Yohnus : Script {
             }
         }
         objectOperate("Open", "blacksmiths_door_closed") { (target) ->
-            if (tile.y >= target.tile.y) {
+            if (tile.y > target.tile.y) {
                 enterDoor(target)
                 return@objectOperate
             }
