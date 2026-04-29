@@ -18,7 +18,9 @@ import world.gregs.voidps.engine.GameLoop
  * - Explicit: `to = "magic"` always picks the named loadout.
  * - Auto-counter: `counter_attacker = true` reads `incomingAttackStyle` and picks the counter from
  *   the OSRS combat triangle (melee→magic, ranged→melee, magic→ranged). Loadout names must be
- *   "melee" / "ranged" / "magic" for this to resolve.
+ *   "melee" / "ranged" / "magic" for this to resolve. If the counter loadout isn't declared on
+ *   this activity (e.g. a melee/magic-only hybrid hit by magic looks up "ranged"), falls back
+ *   to the "magic" loadout so the bot still moves to a defensive kit.
  *
  * Once the rails clear, delegates to [BotSwitchSetup] for the per-slot equip (up to
  * [BotActivity.hybridSwapPerTick] slots committed per tick). When the target loadout declares an
@@ -37,7 +39,11 @@ data class BotSwitchLoadout(
 
         val resolved = if (counterAttacker) {
             val style = bot.combatContext?.incomingAttackStyle ?: return BehaviourState.Success
-            COUNTERS[style] ?: return BehaviourState.Success
+            val counter = COUNTERS[style] ?: return BehaviourState.Success
+            // If the counter loadout isn't declared on this activity, fall back to "magic"
+            // (better defensive coverage than staying in the wrong kit). Explicit `to` lookups
+            // are not subject to this fallback — they should fail loudly if misconfigured.
+            if (activity.loadouts.containsKey(counter)) counter else COUNTER_FALLBACK
         } else {
             to ?: return BehaviourState.Success
         }
@@ -61,12 +67,13 @@ data class BotSwitchLoadout(
     }
 
     companion object {
-        // OSRS combat triangle: each style is countered by the one that beats it.
+        // Combat triangle: each style is countered by the one that beats it.
         // melee > ranged > magic > melee (cycle). Bot picks counter to attacker's style.
         private val COUNTERS = mapOf(
             "melee" to "magic",
             "ranged" to "melee",
             "magic" to "ranged",
         )
+        private const val COUNTER_FALLBACK = "melee"
     }
 }
