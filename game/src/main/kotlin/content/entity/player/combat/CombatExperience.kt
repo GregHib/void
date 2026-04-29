@@ -22,7 +22,7 @@ class CombatExperience : Script {
                 return@combatAttack
             }
             if (type == "magic" || type == "blaze") {
-                val base = Tables.int("spells.$spell.xp") / 10.0
+                val base = (Tables.intOrNull("spells.$spell.xp") ?: 0) / 10.0
                 if (get("defensive_cast", false)) {
                     grant(this, target, Skill.Magic, base + damage / 7.5)
                     grant(this, target, Skill.Defence, damage / 10.0)

@@ -44,7 +44,7 @@ class BonesTo : Script {
             anim("bones_to_spell")
             gfx("bones_to_spell")
             sound("bones_to_spell")
-            exp(Skill.Magic, Tables.int("spells$spell.xp") / 10.0)
+            exp(Skill.Magic, Tables.int("spells.$spell.xp") / 10.0)
         }
     }
 }

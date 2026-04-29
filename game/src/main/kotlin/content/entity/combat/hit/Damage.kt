@@ -74,7 +74,7 @@ object Damage {
         type == "magic" && weapon.id.startsWith("saradomin_sword") -> 160
         type == "magic" && spell == "magic_dart" -> effectiveLevel(source, Skill.Magic) + 100
         type == "magic" -> {
-            var damage = Tables.int("spells.$spell.max_hit")
+            var damage = Tables.intOrNull("spells.$spell.max_hit") ?: 0
             if (damage == -1) {
                 damage = 0
             }
