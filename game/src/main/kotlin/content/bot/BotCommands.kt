@@ -32,6 +32,7 @@ import world.gregs.voidps.engine.entity.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
@@ -108,11 +109,22 @@ class BotCommands(
             if (!isDangerousArenaDeath(this, tier)) {
                 it.dropItems = false
             }
-            applyTier(bot, tier)
-            manager.stop(bot)
-            bot.blocked.remove(tier.activityId)
-            bot.evaluate.clear()
-            bot.previous = null
+            // Override default home respawn — drop the bot back inside the arena's spawn area
+            val arena = pvpArenas.values.firstOrNull { a -> a.tiers.any { t -> t.activityId == tier.activityId } }
+            if (arena != null) {
+                it.teleport = Areas[arena.spawnArea].random()
+            }
+            val capturedAccount = accountName
+            World.queue("respawn_tier_$capturedAccount", initialDelay = 10) {
+                val target = Players.find(capturedAccount) ?: return@queue
+                if (!target.isBot) return@queue
+                val freshBot = target.bot
+                applyTier(freshBot, tier)
+                manager.stop(freshBot)
+                freshBot.blocked.remove(tier.activityId)
+                freshBot.evaluate.clear()
+                freshBot.previous = null
+            }
         }
 
         playerDeath {
@@ -161,7 +173,7 @@ class BotCommands(
         }
         val invokerName = player.accountName
         val onComplete: (List<String>) -> Unit = { lines ->
-            val target = world.gregs.voidps.engine.entity.character.player.Players.find(invokerName)
+            val target = Players.find(invokerName)
             if (target != null) {
                 for (line in lines) {
                     target.message(line, ChatType.Console)
@@ -387,7 +399,12 @@ class BotCommands(
             applyTier(bot, tier)
             manager.add(bot)
             bot.pinned = tier.activityId
-            bot.refresh = { applyTier(bot, tier) }
+            // Intentionally leave bot.refresh = null. BotManager.start's refresh path was
+            // re-running applyTier every Pending tick whenever a setup item differed from
+            // the template (e.g. dose-decremented potions, mid-fight spec weapon swaps),
+            // which spun bots into a drink/eat/refresh loop. The surrounding `continue`
+            // in start() still keeps pinned PvP bots out of bank-chest resolvers without
+            // needing refresh; legitimate tier resets happen in the `playerDeath` handler.
             bot.available.clear()
             bot.available.add(tier.activityId)
             bot.blocked.remove(tier.activityId)

@@ -24,7 +24,13 @@ data class BotDrinkPotion(
     override fun update(bot: Bot, world: BotWorld, frame: BehaviourFrame): BehaviourState {
         val player = bot.player
         if (player.hasClock("drink_delay")) return BehaviourState.Success
-        if (player.levels.get(skill) > player.levels.getMax(skill)) return BehaviourState.Success
+        // Prayer caps at max (super_restore can't overshoot), so drinking at current == max
+        // wastes a dose. Boost potions overshoot, so for them the original `current > max`
+        // check is correct (drink while at-or-below-max means boost has decayed).
+        val current = player.levels.get(skill)
+        val maxLevel = player.levels.getMax(skill)
+        val full = if (skill == Skill.Prayer) current >= maxLevel else current > maxLevel
+        if (full) return BehaviourState.Success
         if (condition != null && !condition.check(player)) return BehaviourState.Success
         val inv = player.inventory
         for (index in inv.indices) {
