@@ -287,7 +287,7 @@ object Tables {
             val column = builder.readers[index]
             if (column is ColumnReader.ReaderClone) {
                 val rowId = column.read(reader)
-                val clone = rows.firstOrNull { it.rowId == rowId }?.data
+                val clone = ids["$key.$rowId"]?.let { rows[it].data }
                 requireNotNull(clone) { "Row '$rowId' to clone not found in table '$key' at ${reader.exception()}." }
                 for (i in row.indices) {
                     if (row[i] == null) {
