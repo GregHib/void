@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.login.protocol.encode.*
 
 /**
@@ -157,8 +156,7 @@ class Interfaces(
 
     fun sendAnimation(id: String, component: String, animation: String): Boolean {
         val comp = InterfaceDefinitions.getComponent(id, component) ?: return false
-        val definitions: AnimationDefinitions = get()
-        player.client?.animateInterface(comp.id, definitions.get(animation).id)
+        player.client?.animateInterface(comp.id, AnimationDefinitions.get(animation).id)
         return true
     }
 

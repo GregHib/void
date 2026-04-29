@@ -110,11 +110,12 @@ class Attack(
                         offense = listOf("crush", "range", "magic").random(random)
                         defence = offense
                     }
+                    val spell = if (offense == "magic" || defence == "magic") attack.id else ""
                     val damage = if (hit.max == 0) {
-                        hit(target = target, delay = delay, offensiveType = offense, defensiveType = defence, special = hit.special, spell = attack.id) // Reuse spell for attack name
+                        hit(target = target, delay = delay, offensiveType = offense, defensiveType = defence, special = hit.special, spell = spell)
                     } else {
                         val damage = Damage.roll(source = this, target = target, offensiveType = offense, weapon = Item.EMPTY, special = hit.special, defensiveType = defence, range = hit.min..hit.max, skipAccuracyRoll = !hit.accuracyRoll)
-                        hit(target = target, delay = delay, offensiveType = offense, defensiveType = defence, special = hit.special, damage = damage, spell = attack.id)
+                        hit(target = target, delay = delay, offensiveType = offense, defensiveType = defence, special = hit.special, damage = damage, spell = spell)
                     }
                     if (damage > 0) {
                         miss = false

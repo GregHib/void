@@ -2,6 +2,8 @@ package world.gregs.voidps.engine.data.definition
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertNotNull
+import world.gregs.voidps.cache.definition.data.AnimationDefinition
+import world.gregs.voidps.cache.definition.data.GraphicDefinition
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
@@ -21,6 +23,8 @@ class TablesTest {
 
     @Test
     fun `Test loading a table`() {
+        AnimationDefinitions.set(arrayOf(AnimationDefinition(id = 0, stringId = "anim_id")), mapOf("anim_id" to 0))
+        GraphicDefinitions.set(arrayOf(GraphicDefinition(id = 0, stringId = "gfx_id")), mapOf("gfx_id" to 0))
         ItemDefinitions.set(arrayOf(ItemDefinition(id = 0, stringId = "item_id")), mapOf("item_id" to 0))
         ObjectDefinitions.set(arrayOf(ObjectDefinition(id = 0, stringId = "obj_id")), mapOf("obj_id" to 0))
         NPCDefinitions.set(arrayOf(NPCDefinition(id = 0, stringId = "npc_id")), mapOf("npc_id" to 0))
@@ -39,6 +43,8 @@ class TablesTest {
                 Field("item_field", ColumnType.ColumnEntity, -1),
                 Field("obj_field", ColumnType.ColumnEntity, -1),
                 Field("npc_field", ColumnType.ColumnEntity, -1),
+                Field("anim_field", ColumnType.ColumnEntity, -1),
+                Field("gfx_field", ColumnType.ColumnEntity, -1),
                 Field("tile_field", ColumnType.ColumnInt, 0),
                 Field("int_list", ColumnType.ColumnList(ColumnType.ColumnInt), emptyList<Int>()),
                 Field("str_list", ColumnType.ColumnList(ColumnType.ColumnString), emptyList<String>()),
@@ -53,7 +59,7 @@ class TablesTest {
                 Field("int_str_list", ColumnType.ColumnList(ColumnType.ColumnPair(ColumnType.ColumnInt, ColumnType.ColumnString)), emptyList<Pair<Int, String>>()),
             ), definition
         )
-        assertContentEquals(intArrayOf(0, 1), definition.rows)
+        assertContentEquals(intArrayOf(0, 1, 2), definition.rows)
 
         assertTrue(Rows.loaded)
         val row = Rows.getOrNull("header.row")
@@ -64,6 +70,8 @@ class TablesTest {
             0, // item_field
             0, // obj_field
             0, // npc_field
+            0, // anim_field
+            0, // gfx_field
             Tile.id(1, 2, 3), // tile_field
             listOf(1, 2, 3), // int list
             listOf("one", "two"), // str list
@@ -88,6 +96,8 @@ class TablesTest {
         assertEquals("item_id", Tables.item("header.row.item_field"))
         assertEquals("obj_id", Tables.obj("header.row.obj_field"))
         assertEquals("npc_id", Tables.npc("header.row.npc_field"))
+        assertEquals("anim_id", Tables.anim("header.row.anim_field"))
+        assertEquals("gfx_id", Tables.gfx("header.row.gfx_field"))
         assertEquals(Tile(1, 2, 3), Tables.tile("header.row.tile_field"))
         assertEquals(listOf(1, 2, 3), Tables.intList("header.row.int_list"))
         assertEquals(listOf("one", "two"), Tables.stringList("header.row.str_list"))
@@ -105,6 +115,8 @@ class TablesTest {
         assertEquals("", Tables.item("header.row_two.item_field"))
         assertEquals("", Tables.obj("header.row_two.obj_field"))
         assertEquals("", Tables.npc("header.row_two.npc_field"))
+        assertEquals("", Tables.anim("header.row_two.anim_field"))
+        assertEquals("", Tables.gfx("header.row_two.gfx_field"))
         assertEquals(Tile.EMPTY, Tables.tile("header.row_two.tile_field"))
         assertEquals(emptyList(), Tables.intList("header.row_two.int_list"))
         assertEquals(emptyList(), Tables.stringList("header.row_two.str_list"))
@@ -115,6 +127,10 @@ class TablesTest {
         assertEquals(emptyList(), Tables.intPairList("header.row_two.int_int_list"))
         assertEquals(emptyList(), Tables.strIntList("header.row_two.str_int_list"))
         assertEquals(emptyList(), Tables.intStrList("header.row_two.int_str_list"))
+
+
+        assertEquals(3, Tables.int("header.row_three.int_field"))
+        assertEquals("text", Tables.string("header.row_three.string_field"))
     }
 
     private fun assertColumns(expected: List<Field>, definition: TableDefinition) {

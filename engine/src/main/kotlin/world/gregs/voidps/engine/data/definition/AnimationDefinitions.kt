@@ -3,18 +3,43 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.engine.timedLoad
 
-class AnimationDefinitions(
-    override var definitions: Array<AnimationDefinition>,
-) : DefinitionsDecoder<AnimationDefinition> {
+object AnimationDefinitions : DefinitionsDecoder<AnimationDefinition> {
 
-    override lateinit var ids: Map<String, Int>
+    override var definitions: Array<AnimationDefinition> = emptyArray()
+    override var ids: Map<String, Int> = emptyMap()
+
+    var loaded = false
+        private set
+
+    val size: Int
+        get() = ItemDefinitions.definitions.size
 
     override fun empty() = AnimationDefinition.EMPTY
+
+    fun init(definitions: Array<AnimationDefinition>): AnimationDefinitions {
+        this.definitions = definitions
+        loaded = true
+        return this
+    }
+
+    @TestOnly
+    fun set(definitions: Array<AnimationDefinition>, ids: Map<String, Int>) {
+        this.definitions = definitions
+        this.ids = ids
+        loaded = true
+    }
+
+    fun clear() {
+        this.definitions = emptyArray()
+        this.ids = emptyMap()
+        loaded = false
+    }
 
     fun load(paths: List<String>): AnimationDefinitions {
         timedLoad("animation config") {

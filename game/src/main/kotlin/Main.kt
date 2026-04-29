@@ -122,8 +122,10 @@ object Main {
             single(createdAtStart = true) { ObjectDefinitions.init(ObjectDecoder(members, lowDetail = false).load(cache)).load(files.list(Settings["definitions.objects"])) }
             single(createdAtStart = true) { NPCDefinitions.init(NPCDecoder(members).load(cache)).load(files.list(Settings["definitions.npcs"]), get()) }
             single(createdAtStart = true) { ItemDefinitions.init(ItemDecoder().load(cache)).load(files.list(Settings["definitions.items"])) }
-            single(createdAtStart = true) { AnimationDefinitions(AnimationDecoder().load(cache)).load(files.list(Settings["definitions.animations"])) }
+            single(createdAtStart = true) { AnimationDefinitions.init(AnimationDecoder().load(cache)).load(files.list(Settings["definitions.animations"])) }
             single(createdAtStart = true) {
+                get<AnimationDefinitions>()
+                get<GraphicDefinitions>()
                 get<ItemDefinitions>()
                 get<InterfaceDefinitions>()
                 get<InventoryDefinitions>()
@@ -134,13 +136,15 @@ object Main {
                 EnumDefinitions.init(EnumDecoder().load(cache)).load(files.list(Settings["definitions.enums"]))
             }
             single(createdAtStart = true) {
+                get<AnimationDefinitions>()
+                get<GraphicDefinitions>()
                 get<ItemDefinitions>()
                 get<NPCDefinitions>()
                 get<ObjectDefinitions>()
                 get<VariableDefinitions>()
                 Tables.load(files.list(Settings["definitions.tables"]))
             }
-            single(createdAtStart = true) { GraphicDefinitions(GraphicDecoder().load(cache)).load(files.list(Settings["definitions.graphics"])) }
+            single(createdAtStart = true) { GraphicDefinitions.init(GraphicDecoder().load(cache)).load(files.list(Settings["definitions.graphics"])) }
             single(createdAtStart = true) { InterfaceDefinitions.init(InterfaceDecoder().load(cache)).load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"])) }
             single(createdAtStart = true) {
                 get<ItemDefinitions>()

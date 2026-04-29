@@ -17,10 +17,7 @@ import world.gregs.voidps.engine.entity.character.setTimeBar
 import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 import world.gregs.voidps.type.Delta
 
-class NPCUpdatingCommands(
-    animationDefinitions: AnimationDefinitions,
-    graphicDefinitions: GraphicDefinitions,
-) : Script {
+class NPCUpdatingCommands : Script {
 
     init {
         adminCommand("npc_tfm", stringArg("transform-id", autofill = NPCDefinitions.ids.keys)) { args ->
@@ -33,7 +30,7 @@ class NPCUpdatingCommands(
             npc.face(Delta(args[0].toInt(), args[1].toInt()))
         }
 
-        adminCommand("npc_anim", stringArg("anim-id", autofill = animationDefinitions.ids.keys)) { args ->
+        adminCommand("npc_anim", stringArg("anim-id", autofill = AnimationDefinitions.ids.keys)) { args ->
             val npc = NPCs.at(tile.addY(1)).first()
             npc.anim(args[0]) // 863
         }
@@ -48,7 +45,7 @@ class NPCUpdatingCommands(
             npc.say(args.getOrNull(0) ?: "Testing")
         }
 
-        adminCommand("npc_gfx", stringArg("gfx-id", autofill = graphicDefinitions.ids.keys)) { args ->
+        adminCommand("npc_gfx", stringArg("gfx-id", autofill = GraphicDefinitions.ids.keys)) { args ->
             val npc = NPCs.at(tile.addY(1)).first()
             npc.gfx(args[0]) // 93
         }

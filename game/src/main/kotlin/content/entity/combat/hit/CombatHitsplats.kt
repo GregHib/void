@@ -4,7 +4,7 @@ import content.entity.combat.damageDealers
 import content.skill.melee.weapon.Weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.flagHits
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatDamage
@@ -14,7 +14,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 import kotlin.collections.set
 import kotlin.math.floor
 
-class CombatHitsplats(val definitions: SpellDefinitions) : Script {
+class CombatHitsplats : Script {
 
     init {
         combatDamage(handler = ::hit)
@@ -37,7 +37,7 @@ class CombatHitsplats(val definitions: SpellDefinitions) : Script {
                 mark = HitSplat.Mark.Missed,
             )
         } else {
-            if (type == "magic" && definitions.get(spell).maxHit == -1) {
+            if (type == "magic" && Tables.intOrNull("spells.$spell.max_hit") == -1) {
                 return
             }
             var soak = 0

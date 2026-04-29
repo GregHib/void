@@ -8,6 +8,7 @@ import content.skill.melee.weapon.fightStyle
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
@@ -85,12 +86,21 @@ class Attack : Script {
 
         onNPCApproach("*_spellbook:*") {
             val (target, id) = it
+            val component = id.substringAfter(":")
+            val row = Rows.getOrNull("spells.$component") ?: return@onNPCApproach
+            val message = row.stringOrNull("npc_message")
+            if (message != null) {
+                if (message.isNotEmpty()) {
+                    message(message)
+                }
+                return@onNPCApproach
+            }
             if (!has(Skill.Slayer, target.def["slayer_level", 0])) {
                 message("You need a higher slayer level to know how to wound this monster.")
                 return@onNPCApproach
             }
             approachRange(8, update = false)
-            spell = id.substringAfter(":")
+            spell = component
             if (target.id.endsWith("_dummy") && !handleCombatDummies(target)) {
                 clear("spell")
                 return@onNPCApproach
@@ -104,6 +114,15 @@ class Attack : Script {
 
         onPlayerApproach("*_spellbook:*") {
             val (target, id) = it
+            val component = id.substringAfter(":")
+            val row = Rows.getOrNull("spells.$component") ?: return@onPlayerApproach
+            val message = row.stringOrNull("player_message")
+            if (message != null) {
+                if (message.isNotEmpty()) {
+                    message(message)
+                }
+                return@onPlayerApproach
+            }
             approachRange(8, update = false)
             spell = id.substringAfter(":")
             set("attack_speed", 5)

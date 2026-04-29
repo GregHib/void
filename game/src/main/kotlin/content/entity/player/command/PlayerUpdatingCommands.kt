@@ -19,10 +19,7 @@ import world.gregs.voidps.engine.entity.character.setTimeBar
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 
-class PlayerUpdatingCommands(
-    animationDefinitions: AnimationDefinitions,
-    graphicDefinitions: GraphicDefinitions,
-) : Script {
+class PlayerUpdatingCommands : Script {
 
     init {
         adminCommand("kill", desc = "Remove all bots") {
@@ -43,7 +40,7 @@ class PlayerUpdatingCommands(
             message("Players: ${Players.size}, local: ${viewport?.players?.localCount ?: 0}, bots: ${Players.count { it.isBot }}")
         }
 
-        adminCommand("anim", stringArg("anim-id", autofill = animationDefinitions.ids.keys), desc = "Perform animation (-1 to clear)") { args ->
+        adminCommand("anim", stringArg("anim-id", autofill = AnimationDefinitions.ids.keys), desc = "Perform animation (-1 to clear)") { args ->
             when (args[0]) {
                 "-1", "" -> clearAnim()
                 else -> anim(args[0], override = true) // 863
@@ -57,14 +54,14 @@ class PlayerUpdatingCommands(
             }
         }
 
-        adminCommand("gfx", stringArg("gfx-id", autofill = graphicDefinitions.ids.keys), desc = "Perform graphic effect (-1 to clear)") { args ->
+        adminCommand("gfx", stringArg("gfx-id", autofill = GraphicDefinitions.ids.keys), desc = "Perform graphic effect (-1 to clear)") { args ->
             when (args[0]) {
                 "-1", "" -> clearGfx()
                 else -> gfx(args[0]) // 93
             }
         }
 
-        adminCommand("proj", stringArg("gfx-id", autofill = graphicDefinitions.ids.keys), desc = "Shoot projectile (-1 to clear)") { args ->
+        adminCommand("proj", stringArg("gfx-id", autofill = GraphicDefinitions.ids.keys), desc = "Shoot projectile (-1 to clear)") { args ->
             shoot(args[0], tile.add(0, 5), delay = 0, flightTime = 400)
         }
         commandAlias("proj", "shoot")

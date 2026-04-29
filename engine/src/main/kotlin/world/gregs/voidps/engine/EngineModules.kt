@@ -56,7 +56,6 @@ fun engineModule(files: ConfigFiles) = module {
     single(createdAtStart = true) { RenderEmoteDefinitions().load(files.find(Settings["definitions.renderEmotes"])) }
     single(createdAtStart = true) { MidiDefinitions().load(files.list(Settings["definitions.midis"])) }
     single(createdAtStart = true) { JingleDefinitions().load(files.list(Settings["definitions.jingles"])) }
-    single(createdAtStart = true) { SpellDefinitions().load(files.find(Settings["definitions.spells"])) }
     single(createdAtStart = true) { PatrolDefinitions().load(files.list(Settings["definitions.patrols"])) }
     single(createdAtStart = true) { PrayerDefinitions().load(files.find(Settings["definitions.prayers"])) }
     single(createdAtStart = true) {

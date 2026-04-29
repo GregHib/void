@@ -3,18 +3,44 @@ package world.gregs.voidps.engine.data.definition
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
+import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
+import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.cache.definition.data.GraphicDefinition
 import world.gregs.voidps.engine.timedLoad
 
-class GraphicDefinitions(
-    override var definitions: Array<GraphicDefinition>,
-) : DefinitionsDecoder<GraphicDefinition> {
+object GraphicDefinitions : DefinitionsDecoder<GraphicDefinition> {
 
-    override lateinit var ids: Map<String, Int>
+    override var definitions: Array<GraphicDefinition> = emptyArray()
+    override var ids: Map<String, Int> = emptyMap()
+
+    var loaded = false
+        private set
+
+    val size: Int
+        get() = ItemDefinitions.definitions.size
 
     override fun empty() = GraphicDefinition.EMPTY
+
+    fun init(definitions: Array<GraphicDefinition>): GraphicDefinitions {
+        this.definitions = definitions
+        loaded = true
+        return this
+    }
+
+    @TestOnly
+    fun set(definitions: Array<GraphicDefinition>, ids: Map<String, Int>) {
+        this.definitions = definitions
+        this.ids = ids
+        loaded = true
+    }
+
+    fun clear() {
+        this.definitions = emptyArray()
+        this.ids = emptyMap()
+        loaded = false
+    }
 
     fun load(paths: List<String>): GraphicDefinitions {
         timedLoad("graphic config") {

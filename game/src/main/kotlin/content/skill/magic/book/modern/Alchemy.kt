@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -24,7 +24,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.queue
 
-class Alchemy(val definitions: SpellDefinitions) : Script {
+class Alchemy : Script {
     init {
         onItem("modern_spellbook:*_level_alchemy") { item, id ->
             if (item.def.contains("destroy")) {
@@ -66,11 +66,11 @@ class Alchemy(val definitions: SpellDefinitions) : Script {
             TransactionError.None -> {
                 player.start("action_delay", 3)
                 AuditLog.event(player, "alched", item, coins, spell == "high_level_alchemy", player.tile)
-                val definition = definitions.get(spell)
-                player.anim(Magic.animation(player, definition))
-                player.gfx(Magic.graphic(player, definition))
+                val row = Rows.get("spells.$spell")
+                player.anim(Magic.animation(player, row))
+                player.gfx(Magic.graphic(player, row))
                 player.sound(spell)
-                player.exp(Skill.Magic, definition.experience)
+                player.exp(Skill.Magic, row.int("xp") / 10.0)
                 player.tab(Tab.MagicSpellbook)
             }
         }

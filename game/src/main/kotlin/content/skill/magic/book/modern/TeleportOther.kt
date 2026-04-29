@@ -1,6 +1,7 @@
 package content.skill.magic.book.modern
 
 import content.skill.magic.spell.removeSpellItems
+import content.skill.magic.spell.spell
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -11,9 +12,11 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -43,14 +46,7 @@ class TeleportOther : Script {
             anim("teleport_other")
             gfx("teleport_other_casting")
             areaSound("tele_other_cast", tile = tile, radius = 1)
-            exp(
-                Skill.Magic,
-                when (spell) {
-                    "teleother_falador" -> 92.0
-                    "teleother_camelot" -> 100.0
-                    else -> 84.0
-                },
-            )
+            exp(Skill.Magic, Tables.int("spells.$spell.xp") / 10.0)
             start("action_delay", 3)
             val location = spell.removePrefix("teleother_")
             target.interfaces.sendText("teleport_other", "name", name)
@@ -75,8 +71,15 @@ class TeleportOther : Script {
             }
         }
 
-        onNPCApproach("modern_spellbook:teleother*") {
-            message("This spell can only be cast on other players.") // TODO proper message
+        combatPrepare("magic") { target ->
+            if (spell.startsWith("teleother")) {
+                if (target is NPC) {
+                    message("This spell can only be cast on other players.") // TODO proper message
+                }
+                false
+            } else {
+                true
+            }
         }
     }
 }
