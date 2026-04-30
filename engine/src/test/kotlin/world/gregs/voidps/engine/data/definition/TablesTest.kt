@@ -133,6 +133,22 @@ class TablesTest {
         assertEquals("text", Tables.string("header.row_three.string_field"))
     }
 
+    @Test
+    fun `Clone resolves within own table when rowId collides across tables`() {
+        AnimationDefinitions.set(emptyArray(), emptyMap())
+        GraphicDefinitions.set(emptyArray(), emptyMap())
+        ItemDefinitions.set(emptyArray(), emptyMap())
+        ObjectDefinitions.set(emptyArray(), emptyMap())
+        NPCDefinitions.set(emptyArray(), emptyMap())
+        VariableDefinitions.set(emptyMap(), emptyMap(), emptyMap())
+        val other = TablesTest::class.java.getResource("test-table-clone-other.toml")!!
+        val main = TablesTest::class.java.getResource("test-table-clone-main.toml")!!
+        Tables.load(listOf(other.path, main.path))
+
+        assertEquals(1, Tables.int("main.cloned.int_field"))
+        assertEquals("main_text", Tables.string("main.cloned.string_field"))
+    }
+
     private fun assertColumns(expected: List<Field>, definition: TableDefinition) {
         for ((i, field) in expected.withIndex()) {
             assertAnyEquals(field.default, definition.default[i], "$field index $i")
