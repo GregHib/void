@@ -3,6 +3,7 @@ package content.entity.death
 import content.area.misthalin.lumbridge.church.Gravestone
 import content.area.wilderness.inMultiCombat
 import content.area.wilderness.inFullPvp
+import content.bot.isBot
 import content.entity.combat.*
 import content.entity.combat.Target
 import content.entity.combat.hit.directHit
@@ -149,10 +150,13 @@ class PlayerDeath : Script {
     ) {
         AuditLog.event(player, "lost", item)
         if (inWilderness && killer is Player) {
+            // PvP bot kills: drops stay private to the killer until despawn — never revealed to others.
+            // Real players keep the standard 180-tick private window before becoming public loot.
+            val reveal = if (player.isBot) FloorItems.NEVER else 180
             if (item.tradeable) {
-                FloorItems.add(tile, item.id, item.amount, revealTicks = 180, disappearTicks = 240, owner = killer)
+                FloorItems.add(tile, item.id, item.amount, revealTicks = reveal, disappearTicks = 240, owner = killer)
             } else {
-                FloorItems.add(tile, "coins", item.amount * item.def.cost, revealTicks = 180, disappearTicks = 240, owner = killer)
+                FloorItems.add(tile, "coins", item.amount * item.def.cost, revealTicks = reveal, disappearTicks = 240, owner = killer)
             }
         } else {
             FloorItems.add(tile, item.id, item.amount, revealTicks = time, disappearTicks = time + 60, owner = player)
