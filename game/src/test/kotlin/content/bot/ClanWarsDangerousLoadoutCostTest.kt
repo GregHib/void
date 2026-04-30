@@ -111,7 +111,7 @@ class ClanWarsDangerousLoadoutCostTest : WorldTest() {
 
     companion object {
         private const val MAX_COST = 1_000_000
-        private const val TEMPLATES_PATH = "../data/bot/pvp_combat.templates.toml"
+        private const val TEMPLATES_PATH = "../data/bot/minigame_combat.templates.toml"
         private const val BOTS_PATH = "../data/minigame/clan_wars/clan_wars.bots.toml"
     }
 }
