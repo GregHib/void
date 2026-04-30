@@ -104,6 +104,7 @@ sealed class Condition(val priority: Int) {
             "interface_closed" -> parseInterfaceClosed(list)
             "mode" -> parseMode(list)
             "skill" -> parseSkills(list)
+            "skill_percent" -> parseSkillPercent(list)
             "attacker_style" -> parseAttackerStyle(list)
             "target_armor_type" -> parseTargetArmorType(list)
             "outmatched" -> parseOutmatched(list)
@@ -363,6 +364,17 @@ sealed class Condition(val priority: Int) {
                 )
             }
             return null
+        }
+
+        private fun parseSkillPercent(list: List<Map<String, Any>>): Condition? {
+            val map = list.single()
+            if (!map.containsKey("id")) return null
+            if (!map.containsKey("min_percent") && !map.containsKey("max_percent")) return null
+            return BotSkillPercent(
+                skill = Skill.of((map["id"] as String).toPascalCase()) ?: error("Unknown skill: '${map["id"]}'"),
+                minPercent = map["min_percent"] as? Int,
+                maxPercent = map["max_percent"] as? Int,
+            )
         }
 
         fun grant(player: Player, condition: Condition) {

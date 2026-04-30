@@ -43,6 +43,15 @@ data class BotDrinkPotion(
             if (!valid) {
                 return BehaviourState.Failed(Reason.Invalid("Invalid potion drink: ${slotItem.id} $index $option"))
             }
+            // Track Saradomin-brew dose count vs the last restore so templates can fire a
+            // super_restore once brews have stacked enough combat-stat debuff to matter.
+            // Restore potions reset the counter (they undo the debuff).
+            val drunkId = slotItem.id
+            if (drunkId.startsWith("saradomin_brew")) {
+                player["brew_doses_since_restore"] = (player.get<Int>("brew_doses_since_restore") ?: 0) + 1
+            } else if (drunkId.startsWith("super_restore") || drunkId.startsWith("restore_potion")) {
+                player["brew_doses_since_restore"] = 0
+            }
             return BehaviourState.Wait(1, BehaviourState.Running)
         }
         return BehaviourState.Success
