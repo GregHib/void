@@ -138,9 +138,18 @@ class BotCommands(
         entered("clan_wars_teleport") {
             val tier = pvpBotTiers[accountName] ?: return@entered
             if (!tier.activityId.startsWith("clan_wars_ffa_dangerous_")) return@entered
-            // Death sequence also teles to clan_wars_teleport while dead is still true; skip those.
+            // Death sequence also teles to clan_wars_teleport while dead is still true; skip those —
+            // playerDeath already schedules a delayed applyTier and we don't want to double up.
             if (dead) return@entered
             pvpLogger.info { "PvP bot retreat: '$accountName' tier=${tier.activityId} teleported to clan_wars_teleport" }
+            // Restock kit before the portal-entry resolver walks the bot back into the arena;
+            // without this the bot re-enters with empty inventory and gets stuck/killed.
+            val freshBot = bot
+            applyTier(freshBot, tier)
+            manager.stop(freshBot)
+            freshBot.blocked.remove(tier.activityId)
+            freshBot.evaluate.clear()
+            freshBot.previous = null
         }
 
         worldSpawn {
