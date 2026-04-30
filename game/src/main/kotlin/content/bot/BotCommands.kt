@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.RowDefinition
@@ -436,6 +437,8 @@ class BotCommands(
         target.specialAttackEnergy = MAX_SPECIAL_ATTACK
         target.specialAttack = false
         target["combat_style"] = tier.style
+        target["brew_doses_since_restore"] = 0
+        target.stop("just_ate_food")
         val activity = manager.activity(tier.activityId) ?: return
         target.inventory.transaction { clear() }
         target.equipment.transaction { clear() }

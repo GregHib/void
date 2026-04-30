@@ -9,6 +9,7 @@ import content.bot.behaviour.condition.Condition
 import content.entity.combat.attacker
 import content.entity.combat.dead
 import content.entity.combat.underAttack
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnFloorItemInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnNPCInteract
@@ -53,6 +54,8 @@ data class BotFightNpc(
             if (!valid) {
                 return BehaviourState.Failed(Reason.Invalid("Invalid inventory interaction: ${item.def.id} $index $option"))
             }
+            // Window for a follow-up brew reactive to chain on top of the food (overheal stack).
+            bot.player.start("just_ate_food", 2)
             return BehaviourState.Wait(1, BehaviourState.Running)
         }
         return BehaviourState.Running
@@ -90,6 +93,7 @@ data class BotFightNpc(
                 if (!valid) {
                     return BehaviourState.Failed(Reason.Invalid("Invalid npc interaction: ${npc.index} ${index + 1}"))
                 }
+                bot.player.start("fight_starting", 5)
                 return BehaviourState.Running
             }
         }

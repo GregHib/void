@@ -10,6 +10,7 @@ import content.bot.behaviour.utility.TargetScorer
 import content.entity.combat.Target
 import content.entity.combat.dead
 import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnFloorItemInteract
@@ -57,6 +58,7 @@ data class BotFightPlayer(
                     val attackOption = bot.player.options.indexOf("Attack")
                     if (attackOption != -1) {
                         world.execute(bot.player, InteractPlayer(best.index, attackOption))
+                        bot.player.start("fight_starting", 5)
                         return BehaviourState.Running
                     }
                 }
@@ -101,6 +103,8 @@ data class BotFightPlayer(
             if (!valid) {
                 return BehaviourState.Failed(Reason.Invalid("Invalid inventory interaction: ${item.def.id} $index $option"))
             }
+            // Window for a follow-up brew reactive to chain on top of the food (overheal stack).
+            bot.player.start("just_ate_food", 2)
             return BehaviourState.Wait(1, BehaviourState.Running)
         }
         return BehaviourState.Running
@@ -124,6 +128,9 @@ data class BotFightPlayer(
             if (!valid) {
                 return BehaviourState.Failed(Reason.Invalid("Invalid player interaction: ${target.index} $attackOption"))
             }
+            // Open a brief window for fight-start reactives (e.g. boost potions) to fire once
+            // per new engagement; gated on this clock so they don't re-drink on every decay tick.
+            bot.player.start("fight_starting", 5)
             return BehaviourState.Running
         }
         if (BotArenaCenter.maybeRecenter(bot, world, area)) return BehaviourState.Running

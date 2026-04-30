@@ -12,6 +12,7 @@ import content.entity.combat.Target
 import content.entity.combat.dead
 import content.entity.combat.target
 import content.entity.effect.frozen
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
@@ -70,6 +71,7 @@ data class BotCastSpell(
                         ensureAutocast(bot.player, chooseSpell(bot, best))
                         anchorIfNeeded(bot, best)
                         world.execute(bot.player, InteractPlayer(best.index, attackOption))
+                        bot.player.start("fight_starting", 5)
                         return BehaviourState.Running
                     }
                 }
@@ -153,6 +155,9 @@ data class BotCastSpell(
         anchorIfNeeded(bot, target)
         val valid = world.execute(player, InteractPlayer(target.index, attackOption))
         if (!valid) return BehaviourState.Failed(Reason.Invalid("Invalid player interaction: ${target.index} $attackOption"))
+        // Open a brief window for fight-start reactives (e.g. boost potions) to fire once
+        // per new engagement; gated on this clock so they don't re-drink on every decay tick.
+        player.start("fight_starting", 5)
         return BehaviourState.Running
     }
 

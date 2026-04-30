@@ -45,11 +45,15 @@ class BotDrinkPotionTest {
                 ItemDefinition(id = 200, options = arrayOf("Drink")),
                 ItemDefinition(id = 201, options = arrayOf("Drink")),
                 ItemDefinition(id = 300, options = arrayOf("Wield")),
+                ItemDefinition(id = 400, options = arrayOf("Drink")),
+                ItemDefinition(id = 500, options = arrayOf("Drink")),
             ),
             mapOf(
                 "super_strength_4" to 0,
                 "super_strength_3" to 1,
                 "whip" to 2,
+                "saradomin_brew_4" to 3,
+                "super_restore_4" to 4,
             ),
         )
         player.experience.set(Skill.Strength, Level.experience(Skill.Strength, 80))
@@ -132,5 +136,52 @@ class BotDrinkPotionTest {
 
         assertTrue(state is BehaviourState.Wait)
         assertEquals(201, instruction?.itemId)
+    }
+
+    @Test
+    fun `Drinking saradomin brew increments brew_doses_since_restore`() {
+        player.inventory.add("saradomin_brew_4")
+        val world = FakeWorld(execute = { _, _ -> true })
+
+        BotDrinkPotion(item = "saradomin_brew_*", skill = Skill.Constitution)
+            .update(bot, world, BehaviourFrame(FakeBehaviour()))
+
+        assertEquals(1, player.get<Int>("brew_doses_since_restore"))
+    }
+
+    @Test
+    fun `Multiple brew drinks accumulate the counter`() {
+        player["brew_doses_since_restore"] = 2
+        player.inventory.add("saradomin_brew_4")
+        val world = FakeWorld(execute = { _, _ -> true })
+
+        BotDrinkPotion(item = "saradomin_brew_*", skill = Skill.Constitution)
+            .update(bot, world, BehaviourFrame(FakeBehaviour()))
+
+        assertEquals(3, player.get<Int>("brew_doses_since_restore"))
+    }
+
+    @Test
+    fun `Drinking super_restore zeroes the brew counter`() {
+        player["brew_doses_since_restore"] = 4
+        player.inventory.add("super_restore_4")
+        val world = FakeWorld(execute = { _, _ -> true })
+
+        BotDrinkPotion(item = "super_restore_*", skill = Skill.Strength)
+            .update(bot, world, BehaviourFrame(FakeBehaviour()))
+
+        assertEquals(0, player.get<Int>("brew_doses_since_restore"))
+    }
+
+    @Test
+    fun `Drinking an unrelated potion leaves the brew counter unchanged`() {
+        player["brew_doses_since_restore"] = 2
+        player.inventory.add("super_strength_4")
+        val world = FakeWorld(execute = { _, _ -> true })
+
+        BotDrinkPotion(item = "super_strength_*", skill = Skill.Strength)
+            .update(bot, world, BehaviourFrame(FakeBehaviour()))
+
+        assertEquals(2, player.get<Int>("brew_doses_since_restore"))
     }
 }
