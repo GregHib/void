@@ -1,39 +1,69 @@
+import org.gradle.kotlin.dsl.application
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import kotlin.text.set
+
 plugins {
     id("shared")
+    alias(libs.plugins.compose)
+    alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.composeHotReload)
 }
 
-dependencies {
-    implementation(project(":buffer"))
-    implementation(project(":cache"))
-    implementation(project(":engine"))
-    implementation(project(":game"))
-    implementation(project(":network"))
-    implementation(project(":config"))
-    implementation(project(":types"))
+kotlin {
+    jvmToolchain(21)
+    dependencies {
+        implementation(project(":buffer"))
+        implementation(project(":cache"))
+        implementation(project(":engine"))
+        implementation(project(":game"))
+        implementation(project(":network"))
+        implementation(project(":config"))
+        implementation(project(":types"))
 
-    implementation("org.seleniumhq.selenium:selenium-java:4.16.1")
+        implementation(libs.bundles.compose)
+        implementation(compose.desktop.currentOs)
 
-    implementation(libs.kotlinx.io)
-    implementation(libs.kotlinx.coroutines)
+        implementation("org.seleniumhq.selenium:selenium-java:4.16.1")
 
-    implementation("org.apache.commons:commons-compress:1.24.0")
-    implementation("org.jsoup:jsoup:1.17.2")
-    implementation("org.sweble.wikitext:swc-engine:3.1.9")
-    implementation("com.github.weisj:darklaf-core:2.7.3")
-    implementation("javax.xml.bind:jaxb-api:2.3.1")
-    implementation(libs.kasechange)
+        implementation(libs.kotlinx.io)
+        implementation(libs.kotlinx.coroutines)
 
-    implementation(libs.koin)
-    implementation(libs.displee.cache)
-    implementation("com.fasterxml.jackson.core:jackson-core:2.16.1")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.16.1")
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.16.1")
-    implementation(libs.fastutil)
-    implementation(libs.rsmod.pathfinder)
+        implementation("org.apache.commons:commons-compress:1.24.0")
+        implementation("org.jsoup:jsoup:1.17.2")
+        implementation("org.sweble.wikitext:swc-engine:3.1.9")
+        implementation("com.github.weisj:darklaf-core:2.7.3")
+        implementation("javax.xml.bind:jaxb-api:2.3.1")
+        implementation(libs.kasechange)
 
-    testImplementation(libs.mockk)
+        implementation(libs.koin)
+        implementation(libs.displee.cache)
+        implementation("com.fasterxml.jackson.core:jackson-core:2.16.1")
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.16.1")
+        implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.16.1")
+        implementation(libs.fastutil)
+        implementation(libs.rsmod.pathfinder)
+
+        testImplementation(libs.mockk)
+    }
 }
 
 tasks.withType<AbstractTestTask>().configureEach {
     failOnNoDiscoveredTests = false
+}
+
+tasks.withType<JavaExec> {
+    workingDir = projectDir
+}
+
+compose {
+    desktop {
+        application {
+            mainClass = "world.gregs.voidps.tools.MainKt" // The entry point of your app
+            nativeDistributions {
+                targetFormats(TargetFormat.Msi, TargetFormat.Deb)
+                packageName = "MyComposeApp"
+                packageVersion = "1.0.0"
+            }
+        }
+    }
 }
