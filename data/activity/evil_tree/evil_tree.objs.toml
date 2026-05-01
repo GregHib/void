@@ -1,0 +1,163 @@
+[evil_tree_normal_full]
+id = 11434
+upgrade_time = 50
+examine = "This looks like a challenge anyone can deal with."
+
+[evil_tree_normal_half]
+id = 11435
+examine = "This looks like a challenge anyone can deal with."
+
+[evil_tree_normal_weak]
+id = 11436
+examine = "This looks like a challenge anyone can deal with."
+
+[evil_tree_normal_death]
+id = 11925
+
+[evil_tree_normal_stump]
+id = 12713
+
+#[evil_tree_normal_stump]
+#id = 14839
+
+[evil_oak_tree]
+id = 11437
+examine = "His bite looks tougher than his bark."
+
+[evil_oak_tree_stump]
+id = 11438
+examine = "His bite looks tougher than his bark."
+
+[evil_oak_tree_2]
+id = 11438
+examine = "His bite looks tougher than his bark."
+
+[evil_oak_tree_2_stump]
+id = 11439
+examine = "His bite looks tougher than his bark."
+
+[evil_oak_tree_three]
+id = 11439
+examine = "His bite looks tougher than his bark."
+
+[evil_oak_tree_three_stump]
+id = 11926
+
+[evil_willow_tree]
+id = 11440
+examine = "He'll weep when he's done being evil!"
+
+[evil_willow_tree_stump]
+id = 11441
+examine = "He'll weep when he's done being evil!"
+
+[evil_willow_tree_2]
+id = 11441
+examine = "He'll weep when he's done being evil!"
+
+[evil_willow_tree_2_stump]
+id = 11442
+examine = "He'll weep when he's done being evil!"
+
+[evil_willow_tree_3]
+id = 11442
+examine = "He'll weep when he's done being evil!"
+
+[evil_willow_tree_3_stump]
+id = 11927
+
+[evil_maple_tree]
+id = 11443
+examine = "Where did his red leaves go?"
+
+[evil_maple_tree_stump]
+id = 11444
+examine = "Where did his red leaves go?"
+
+[evil_maple_tree_2]
+id = 11444
+examine = "Where did his red leaves go?"
+
+[evil_maple_tree_2_stump]
+id = 11915
+examine = "Where did his red leaves go?"
+
+[dead_tree_18]
+id = 11510
+examine = "This tree has long been dead."
+
+[evil_maple_tree_3]
+id = 11915
+examine = "Where did his red leaves go?"
+
+[evil_maple_tree_3_stump]
+id = 11928
+
+[evil_yew_tree]
+id = 11916
+examine = "A tough evil tree!"
+
+[evil_yew_tree_stump]
+id = 11917
+examine = "A tough evil tree!"
+
+[evil_yew_tree_2]
+id = 11917
+examine = "A tough evil tree!"
+
+[evil_yew_tree_2_stump]
+id = 11918
+examine = "A tough evil tree!"
+
+[evil_yew_tree_3]
+id = 11918
+examine = "A tough evil tree!"
+
+[evil_yew_tree_3_stump]
+id = 11929
+
+[evil_magic_tree]
+id = 11919
+examine = "An incredibly tough challenge!"
+
+[evil_magic_tree_stump]
+id = 11920
+examine = "An incredibly tough challenge!"
+
+[evil_magic_tree_2]
+id = 11920
+examine = "An incredibly tough challenge!"
+
+[evil_magic_tree_2_stump]
+id = 11921
+examine = "An incredibly tough challenge!"
+
+[evil_magic_tree_3]
+id = 11921
+examine = "An incredibly tough challenge!"
+
+[evil_magic_tree_3_stump]
+id = 12711
+
+[evil_elder_tree]
+id = 11922
+examine = "The most fearsome of evil trees!"
+
+[evil_elder_tree_stump]
+id = 11923
+examine = "The most fearsome of evil trees!"
+
+[evil_elder_tree_2]
+id = 11923
+examine = "The most fearsome of evil trees!"
+
+[evil_elder_tree_2_stump]
+id = 11924
+examine = "The most fearsome of evil trees!"
+
+[evil_elder_tree_3]
+id = 11924
+examine = "The most fearsome of evil trees!"
+
+[evil_elder_tree_3_stump]
+id = 12712
