@@ -74,7 +74,7 @@ class Movement : Script {
                 if (player.tile == target && player.mode != EmptyMode && player.mode != PauseMode) {
                     player.mode = EmptyMode
                 }
-                player.walkTo(target, forceWalk = player.equipped(EquipSlot.Weapon).id == "stone_bowl")
+                player.walkTo(target, forceWalk = walk || player.equipped(EquipSlot.Weapon).id == "stone_bowl")
             }
         }
 

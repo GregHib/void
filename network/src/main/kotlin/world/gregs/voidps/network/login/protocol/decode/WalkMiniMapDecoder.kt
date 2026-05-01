@@ -12,7 +12,7 @@ class WalkMiniMapDecoder : Decoder(18) {
 
     override suspend fun decode(packet: Source): Instruction {
         val y = packet.readShortLittleEndian().toInt()
-        val running = packet.readBooleanAdd()
+        val forceWalk = packet.readBooleanAdd()
         val x = packet.readUnsignedShortAdd()
         packet.readByte() // -1
         packet.readByte() // -1
@@ -24,6 +24,6 @@ class WalkMiniMapDecoder : Decoder(18) {
         packet.readShort() // X in region?
         packet.readShort() // Y in region?
         packet.readByte() // 63
-        return Walk(x, y, minimap = true)
+        return Walk(x, y, forceWalk, minimap = true)
     }
 }

@@ -26,18 +26,10 @@ class PlagueCity : Script {
 
     init {
         playerSpawn {
-            if (get("plaguecity_hide_edmond_up_top", false)) {
-                sendVariable("plaguecity_hide_edmond_up_top")
-            }
-            if (get("plaguecity_dug_mud_pile", false)) {
-                sendVariable("plaguecity_dug_mud_pile")
-            }
-            if (get("plaguecity_checked_grill", false)) {
-                sendVariable("plaguecity_checked_grill")
-            }
-            if (get("plaguecity_key_asked", false)) {
-                sendVariable("plaguecity_key_asked")
-            }
+            sendVariable("plaguecity_hide_edmond_up_top")
+            sendVariable("plaguecity_dug_mud_pile")
+            sendVariable("plaguecity_checked_grill")
+            sendVariable("plaguecity_key_asked")
             sendVariable("plaguecity_pipe")
             sendVariable("plaguecity_elena_at_home")
             sendVariable("plague_city")
