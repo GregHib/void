@@ -99,7 +99,9 @@ class CombatBotContextsTest {
 
         override val subscribedAreas: Set<String> get() = subscribed
         override fun handles(tier: CombatTier): Boolean = tier.activityId.startsWith(prefix)
-        override fun load() { loaded = true }
+        override fun load() {
+            loaded = true
+        }
         override fun arenaKeys(): Set<String> = arenaKeys
         override fun arenaSpawn(arenaKey: String): Tile? = null
         override fun arenaTiers(arenaKey: String): List<CombatTier> = emptyList()

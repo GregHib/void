@@ -2,8 +2,8 @@ package content.entity.player.kept
 
 import content.area.wilderness.inFullPvp
 import content.entity.player.effect.skulled
-import world.gregs.voidps.engine.data.definition.Areas
 import content.skill.prayer.praying
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item

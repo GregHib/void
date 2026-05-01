@@ -11,10 +11,10 @@ import content.bot.behaviour.Reason
 import content.bot.behaviour.action.BotWait
 import content.bot.behaviour.activity.ActivitySlots
 import content.bot.behaviour.activity.BotActivity
+import content.bot.behaviour.condition.BotInArea
 import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.loadBehaviours
 import content.bot.behaviour.perception.BotCombatContextBuilder
-import content.bot.behaviour.condition.BotInArea
 import content.bot.behaviour.setup.DynamicResolvers
 import content.bot.behaviour.setup.Resolver
 import world.gregs.voidps.engine.data.ConfigFiles

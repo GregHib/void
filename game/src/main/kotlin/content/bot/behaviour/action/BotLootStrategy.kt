@@ -14,7 +14,9 @@ enum class BotLootStrategy {
     SURVIVAL,
 
     /** Loot any owned item above the value threshold, picking the highest total value first. */
-    WEALTH;
+    WEALTH,
+
+    ;
 
     /** Whether [item] is eligible to be looted under this strategy. */
     fun accepts(item: FloorItem): Boolean = when (this) {

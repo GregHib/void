@@ -6,7 +6,6 @@ import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.BotWorld
 import content.bot.behaviour.Reason
 import content.bot.behaviour.condition.Condition
-import content.bot.behaviour.utility.TargetScorer
 import content.entity.combat.Target
 import content.entity.combat.dead
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -34,7 +33,6 @@ data class BotFightPlayer(
     val healPercentage: Int = 20,
     val lootOverValue: Int = 0,
     val lootStrategy: BotLootStrategy = BotLootStrategy.DEFAULT,
-    val targetScorer: TargetScorer? = null,
     val area: String? = null,
 ) : BotAction {
     override fun update(bot: Bot, world: BotWorld, frame: BehaviourFrame) = when {
@@ -50,21 +48,7 @@ data class BotFightPlayer(
 
     private fun handleEngaged(bot: Bot, world: BotWorld): BehaviourState {
         val mode = bot.mode as PlayerOnPlayerInteract
-        if (targetScorer != null && shouldRepick(bot, mode.target)) {
-            val context = bot.combatContext
-            if (context != null && context.nearbyEnemies.isNotEmpty()) {
-                val best = targetScorer.pick(bot.player, context.nearbyEnemies, context)
-                if (best != null && best !== mode.target) {
-                    val attackOption = bot.player.options.indexOf("Attack")
-                    if (attackOption != -1) {
-                        world.execute(bot.player, InteractPlayer(best.index, attackOption))
-                        bot.player.start("fight_starting", 5)
-                        return BehaviourState.Running
-                    }
-                }
-            }
-        }
-        if (targetScorer == null && targetGone(bot, mode.target)) {
+        if (targetGone(bot, mode.target)) {
             // Target has clearly left (different level or far outside our scan radius — typical
             // sign of a teleport-out). Clear the stale interact so search() picks a new target
             // when the activity loops back via restart.
@@ -74,17 +58,9 @@ data class BotFightPlayer(
         return if (success == null) BehaviourState.Success else BehaviourState.Running
     }
 
-    private fun shouldRepick(bot: Bot, current: Player): Boolean {
-        if (current.dead) return true
-        if (current.tile.level != bot.player.tile.level) return true
-        if (bot.player.tile.distanceTo(current.tile) > radius) return true
-        return !Target.attackable(bot.player, current, message = false)
-    }
-
     /**
-     * Cheap, non-throwing "target obviously left" check used when no [targetScorer] is configured.
-     * Avoids the heavier attackable/dead checks in [shouldRepick] to stay compatible with relaxed
-     * mocks in tests where those properties aren't stubbed.
+     * Cheap, non-throwing "target obviously left" check. Avoids the heavier attackable/dead
+     * checks to stay compatible with relaxed mocks in tests where those properties aren't stubbed.
      */
     private fun targetGone(bot: Bot, target: Player): Boolean {
         if (target.tile.level != bot.player.tile.level) return true
@@ -179,10 +155,6 @@ data class BotFightPlayer(
     }
 
     private fun pickTarget(bot: Bot): Player? {
-        val context = bot.combatContext
-        if (targetScorer != null && context != null && context.nearbyEnemies.isNotEmpty()) {
-            return targetScorer.pick(bot.player, context.nearbyEnemies, context)
-        }
         for (tile in Spiral.spiral(bot.player.tile, radius)) {
             val first = enemiesAt(bot, tile).firstOrNull()
             if (first != null) return first

@@ -57,13 +57,11 @@ class ClanWarsBotContext : CombatBotContext {
 
     override fun autospawnArenaKeys(): List<String> = AUTOSPAWN_ARENAS
 
-    override fun autospawnIntervalTicks(arenaKey: String): Int =
-        TimeUnit.SECONDS.toTicks(Settings["bots.combat.$arenaKey.spawnSeconds", 2])
+    override fun autospawnIntervalTicks(arenaKey: String): Int = TimeUnit.SECONDS.toTicks(Settings["bots.combat.$arenaKey.spawnSeconds", 2])
 
     override fun autospawnTarget(arenaKey: String): Int = Settings["bots.combat.$arenaKey.count", 0]
 
-    override fun arenaContains(arenaKey: String, tier: CombatTier): Boolean =
-        tier.activityId.startsWith("${arenaKey}_")
+    override fun arenaContains(arenaKey: String, tier: CombatTier): Boolean = tier.activityId.startsWith("${arenaKey}_")
 
     override fun shouldDropItems(player: Player, tier: CombatTier): Boolean {
         if (tier.activityId.startsWith("clan_wars_ffa_dangerous_")) return true
@@ -89,8 +87,7 @@ class ClanWarsBotContext : CombatBotContext {
      * Dangerous-arena retreat: bot teleported out via jewellery → restock before it walks
      * back through the portal so it doesn't re-enter the arena empty-inventory.
      */
-    override fun shouldRefreshOnAreaEntered(player: Player, tier: CombatTier, areaId: String): Boolean =
-        areaId == "clan_wars_teleport" && tier.activityId.startsWith("clan_wars_ffa_dangerous_")
+    override fun shouldRefreshOnAreaEntered(player: Player, tier: CombatTier, areaId: String): Boolean = areaId == "clan_wars_teleport" && tier.activityId.startsWith("clan_wars_ffa_dangerous_")
 
     private fun RowDefinition.toCombatTier(): CombatTier {
         val skillNames = stringList("skills")

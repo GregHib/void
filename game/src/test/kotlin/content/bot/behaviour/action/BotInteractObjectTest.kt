@@ -103,7 +103,10 @@ class BotInteractObjectTest {
         GameObjects.add("door", player.tile)
 
         var called = false
-        val world = FakeWorld(execute = { _, _ -> called = true; true })
+        val world = FakeWorld(execute = { _, _ ->
+            called = true
+            true
+        })
 
         // BotHasClock("never_set") returns false -> action should Success-skip without searching.
         val action = BotInteractObject("Open", "door", condition = BotHasClock("never_set"))
@@ -126,7 +129,10 @@ class BotInteractObjectTest {
         player.start("ready", 10)
 
         var called = false
-        val world = FakeWorld(execute = { _, instruction -> called = instruction is InteractObject; true })
+        val world = FakeWorld(execute = { _, instruction ->
+            called = instruction is InteractObject
+            true
+        })
 
         val action = BotInteractObject("Open", "door", condition = BotHasClock("ready"))
 

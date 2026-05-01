@@ -513,7 +513,6 @@ class BotCommands(
         player.appearance.emote = 1426
         return player
     }
-
 }
 
 private const val LOOT_PENDING_TICKS = 60

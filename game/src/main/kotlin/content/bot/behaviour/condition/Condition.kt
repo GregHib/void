@@ -106,12 +106,8 @@ sealed class Condition(val priority: Int) {
             "skill" -> parseSkills(list)
             "skill_percent" -> parseSkillPercent(list)
             "attacker_style" -> parseAttackerStyle(list)
-            "target_armor_type" -> parseTargetArmorType(list)
-            "outmatched" -> parseOutmatched(list)
-            "allies_on_tile" -> parseAlliesOnTile(list)
             "target_hp_percent" -> parseTargetHpPercent(list)
             "target_frozen" -> parseTargetFrozen(list)
-            "clan_war_role" -> parseClanWarRole(list)
             "pvp_retreat_needed" -> BotPvpRetreatNeeded()
             "any" -> parseAny(list)
             else -> null
@@ -145,25 +141,6 @@ sealed class Condition(val priority: Int) {
             return BotAttackerStyle(equals)
         }
 
-        private fun parseTargetArmorType(list: List<Map<String, Any>>): Condition? {
-            val equals = parseEnumSet(list) ?: return null
-            return BotTargetArmorType(equals)
-        }
-
-        private fun parseOutmatched(list: List<Map<String, Any>>): Condition? {
-            val map = list.single()
-            val attackersMin = map["attackers_min"] as? Int
-            val ownHpPercentMax = (map["own_hp_percent_max"] as? Number)?.toDouble()
-            if (attackersMin == null && ownHpPercentMax == null) return null
-            return BotOutmatched(attackersMin = attackersMin, ownHpPercentMax = ownHpPercentMax)
-        }
-
-        private fun parseAlliesOnTile(list: List<Map<String, Any>>): Condition? {
-            val map = list.single()
-            if (!map.containsKey("min") && !map.containsKey("max")) return null
-            return BotAlliesOnTile(min = map["min"] as? Int, max = map["max"] as? Int)
-        }
-
         private fun parseTargetHpPercent(list: List<Map<String, Any>>): Condition? {
             val map = list.single()
             val min = (map["min"] as? Number)?.toDouble()
@@ -177,11 +154,6 @@ sealed class Condition(val priority: Int) {
             val hpMin = (map["hp_min"] as? Number)?.toDouble()
             val hpMax = (map["hp_max"] as? Number)?.toDouble()
             return BotTargetFrozen(hpMin = hpMin, hpMax = hpMax)
-        }
-
-        private fun parseClanWarRole(list: List<Map<String, Any>>): Condition? {
-            val equals = parseEnumSet(list) ?: return null
-            return BotClanWarRoleCondition(equals.map { it.lowercase() }.toSet())
         }
 
         private fun parseInventory(list: List<Map<String, Any>>): BotInventorySetup = BotInventorySetup(parseItems(list))

@@ -1,13 +1,12 @@
 package content.bot.behaviour.action
 
+import content.area.wilderness.inMultiCombat
 import content.bot.Bot
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.BotWorld
 import content.bot.behaviour.Reason
 import content.bot.behaviour.condition.Condition
-import content.area.wilderness.inMultiCombat
-import content.bot.behaviour.utility.TargetScorer
 import content.entity.combat.Target
 import content.entity.combat.dead
 import content.entity.combat.target
@@ -33,7 +32,6 @@ data class BotCastSpell(
     val success: Condition? = null,
     val radius: Int = 10,
     val healPercentage: Int = 40,
-    val targetScorer: TargetScorer? = null,
     val family: String = "ice",
     val kite: Boolean = true,
     val area: String? = null,
@@ -61,23 +59,7 @@ data class BotCastSpell(
 
     private fun handleCombat(bot: Bot, world: BotWorld, currentTarget: Player): BehaviourState {
         if (currentTarget.dead) return BehaviourState.Running
-        if (targetScorer != null && shouldRepick(bot, currentTarget)) {
-            val context = bot.combatContext
-            if (context != null && context.nearbyEnemies.isNotEmpty()) {
-                val best = targetScorer.pick(bot.player, context.nearbyEnemies, context)
-                if (best != null && best !== currentTarget) {
-                    val attackOption = bot.player.options.indexOf("Attack")
-                    if (attackOption != -1) {
-                        ensureAutocast(bot.player, chooseSpell(bot, best))
-                        anchorIfNeeded(bot, best)
-                        world.execute(bot.player, InteractPlayer(best.index, attackOption))
-                        bot.player.start("fight_starting", 5)
-                        return BehaviourState.Running
-                    }
-                }
-            }
-        }
-        if (targetScorer == null && targetGone(bot, currentTarget)) {
+        if (targetGone(bot, currentTarget)) {
             // Target left (teleport-out etc.). Clear the stale interact so search() picks a new
             // target when the activity loops back.
             bot.player.mode = EmptyMode
@@ -93,15 +75,8 @@ data class BotCastSpell(
         return if (success == null) BehaviourState.Success else BehaviourState.Running
     }
 
-    private fun shouldRepick(bot: Bot, current: Player): Boolean {
-        if (current.tile.level != bot.player.tile.level) return true
-        if (bot.player.tile.distanceTo(current.tile) > radius) return true
-        return !Target.attackable(bot.player, current, message = false)
-    }
-
     /**
-     * Cheap, non-throwing "target obviously left" check used when no [targetScorer] is configured.
-     * See [BotFightPlayer.targetGone].
+     * Cheap, non-throwing "target obviously left" check. See [BotFightPlayer.targetGone].
      */
     private fun targetGone(bot: Bot, target: Player): Boolean {
         if (target.tile.level != bot.player.tile.level) return true
@@ -162,10 +137,6 @@ data class BotCastSpell(
     }
 
     private fun pickTarget(bot: Bot): Player? {
-        val context = bot.combatContext
-        if (targetScorer != null && context != null && context.nearbyEnemies.isNotEmpty()) {
-            return targetScorer.pick(bot.player, context.nearbyEnemies, context)
-        }
         for (tile in Spiral.spiral(bot.player.tile, radius)) {
             val first = enemiesAt(bot, tile).firstOrNull()
             if (first != null) return first
@@ -211,10 +182,9 @@ data class BotCastSpell(
             magic >= 58 -> "rush"
             else -> null
         } ?: return null
-        val spell = "${fam}_${tier}"
+        val spell = "${fam}_$tier"
         player["autocast_choice_key"] = targetKey
         player["autocast_choice_spell"] = spell
         return spell
     }
-
 }
