@@ -1,7 +1,6 @@
 package content.bot.behaviour.action
 
 import content.bot.behaviour.condition.Condition
-import content.bot.behaviour.utility.UtilityCurveParser
 import net.pearx.kasechange.toPascalCase
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
@@ -47,9 +46,8 @@ sealed class ActionParser {
 
     object InteractPlayerParser : ActionParser() {
         override val required = setOf("option")
-        override val optional = setOf("delay", "success", "radius", "heal_percent", "loot_over_value", "loot_strategy", "target_score", "area")
+        override val optional = setOf("delay", "success", "radius", "heal_percent", "loot_over_value", "loot_strategy", "area")
 
-        @Suppress("UNCHECKED_CAST")
         override fun parse(map: Map<String, Any>): BotAction {
             val option = map["option"] as String
             require(option == "Attack") { "Only 'Attack' option is supported for 'player' actions, got '$option'." }
@@ -59,10 +57,8 @@ sealed class ActionParser {
             val healPercent = map["heal_percent"] as? Int ?: 20
             val lootOverValue = map["loot_over_value"] as? Int ?: 0
             val lootStrategy = BotLootStrategy.of(map["loot_strategy"] as? String)
-            val rawScore = map["target_score"] as? List<Map<String, Any>>
-            val scorer = rawScore?.let { UtilityCurveParser.parseScorer(it) }
             val area = map["area"] as? String
-            return BotFightPlayer(delay, success, radius, healPercent, lootOverValue, lootStrategy, scorer, area)
+            return BotFightPlayer(delay, success, radius, healPercent, lootOverValue, lootStrategy, area)
         }
     }
 
@@ -109,20 +105,17 @@ sealed class ActionParser {
     }
 
     object CastSpellParser : ActionParser() {
-        override val optional = setOf("delay", "success", "radius", "heal_percent", "target_score", "family", "kite", "area")
+        override val optional = setOf("delay", "success", "radius", "heal_percent", "family", "kite", "area")
 
-        @Suppress("UNCHECKED_CAST")
         override fun parse(map: Map<String, Any>): BotAction {
             val delay = map["delay"] as? Int ?: 0
             val success = requirement(map, "success").singleOrNull()
             val radius = map["radius"] as? Int ?: 10
             val healPercent = map["heal_percent"] as? Int ?: 40
-            val rawScore = map["target_score"] as? List<Map<String, Any>>
-            val scorer = rawScore?.let { UtilityCurveParser.parseScorer(it) }
             val family = map["family"] as? String ?: "ice"
             val kite = map["kite"] as? Boolean ?: true
             val area = map["area"] as? String
-            return BotCastSpell(delay, success, radius, healPercent, scorer, family, kite, area)
+            return BotCastSpell(delay, success, radius, healPercent, family, kite, area)
         }
     }
 
@@ -150,16 +143,6 @@ sealed class ActionParser {
             require(to != null || counterAttacker) { "switch_loadout: must set 'to' or 'counter_attacker' in $map" }
             val condition = requirement(map, "if").singleOrNull()
             return BotSwitchLoadout(to, counterAttacker, condition)
-        }
-    }
-
-    object RepositionParser : ActionParser() {
-        override val optional = setOf("radius", "if")
-
-        override fun parse(map: Map<String, Any>): BotAction {
-            val radius = map["radius"] as? Int ?: 1
-            val condition = requirement(map, "if").singleOrNull()
-            return BotReposition(radius, condition)
         }
     }
 
@@ -392,7 +375,6 @@ sealed class ActionParser {
             "switch_setup" to SwitchSetupParser,
             "switch_loadout" to SwitchLoadoutParser,
             "retreat" to RetreatParser,
-            "reposition" to RepositionParser,
             "interface_close" to CloseInterfaceParser,
             "continue" to DialogueParser,
             "enter" to EnterParser,

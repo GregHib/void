@@ -6,7 +6,7 @@ import content.bot.FakeWorld
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.Reason
-import content.bot.behaviour.condition.BotAlliesOnTile
+import content.bot.behaviour.condition.BotSkillLevel
 import content.skill.prayer.PrayerConfigs
 import content.skill.prayer.isCurses
 import org.junit.jupiter.api.AfterEach
@@ -148,7 +148,7 @@ class BotPrayTest {
         player.experience.set(Skill.Prayer, Level.experience(Skill.Prayer, 70))
         player.levels.set(Skill.Prayer, 70)
 
-        val state = BotPray("protect_from_melee", BotAlliesOnTile(min = 0)).update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))
+        val state = BotPray("protect_from_melee", BotSkillLevel(Skill.Prayer, min = 1)).update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))
 
         assertEquals(BehaviourState.Success, state)
         assertTrue(player.containsVarbit(PrayerConfigs.ACTIVE_PRAYERS, "protect_from_melee"))
@@ -160,7 +160,7 @@ class BotPrayTest {
         player.levels.set(Skill.Prayer, 70)
         player.addVarbit(PrayerConfigs.ACTIVE_PRAYERS, "protect_from_melee", refresh = false)
 
-        val state = BotPray("protect_from_melee", BotAlliesOnTile(min = 5)).update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))
+        val state = BotPray("protect_from_melee", BotSkillLevel(Skill.Prayer, min = 9999)).update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))
 
         assertEquals(BehaviourState.Success, state)
         assertFalse(player.containsVarbit(PrayerConfigs.ACTIVE_PRAYERS, "protect_from_melee"))
@@ -171,7 +171,7 @@ class BotPrayTest {
         player.experience.set(Skill.Prayer, Level.experience(Skill.Prayer, 70))
         player.levels.set(Skill.Prayer, 70)
 
-        val state = BotPray("protect_from_melee", BotAlliesOnTile(min = 5)).update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))
+        val state = BotPray("protect_from_melee", BotSkillLevel(Skill.Prayer, min = 9999)).update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))
 
         assertEquals(BehaviourState.Success, state)
         assertFalse(player.containsVarbit(PrayerConfigs.ACTIVE_PRAYERS, "protect_from_melee"))
@@ -183,7 +183,7 @@ class BotPrayTest {
         player.levels.set(Skill.Prayer, 70)
         player.levels.drain(Skill.Prayer, 70)
 
-        val state = BotPray("protect_from_melee", BotAlliesOnTile(min = 0)).update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))
+        val state = BotPray("protect_from_melee", BotSkillLevel(Skill.Prayer, min = 1)).update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))
 
         assertEquals(BehaviourState.Success, state)
         assertFalse(player.containsVarbit(PrayerConfigs.ACTIVE_PRAYERS, "protect_from_melee"))

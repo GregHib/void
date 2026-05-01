@@ -58,7 +58,6 @@ object BotMetrics {
     private var heapUsedEnd: Long = 0L
 
     private var scans: Long = 0
-    private var picks: Long = 0
     private var totalBotTicksCounted: Long = 0
 
     private var onComplete: ((List<String>) -> Unit)? = null
@@ -84,7 +83,6 @@ object BotMetrics {
         heapUsedPeak = heapUsedStart
         heapUsedEnd = heapUsedStart
         scans = 0
-        picks = 0
         totalBotTicksCounted = 0
         this.onComplete = onComplete
         // Set last so any begin/end on a parallel game-thread call sees a fully-initialized state.
@@ -139,10 +137,6 @@ object BotMetrics {
         if (measuring) scans++
     }
 
-    fun incPicks() {
-        if (measuring) picks++
-    }
-
     private fun usedHeapBytes(): Long {
         val rt = Runtime.getRuntime()
         return rt.totalMemory() - rt.freeMemory()
@@ -169,7 +163,6 @@ object BotMetrics {
             "  samples=$totalBotTicksCounted  perTick=${"%.1f".format(perTickAvg)}" +
             if (botTickSamplesDropped > 0) "  dropped=$botTickSamplesDropped" else ""
         lines += "spiralScans   : $scans  perBotTick=${ratio(scans, totalBotTicksCounted)}"
-        lines += "targetPicks   : $picks  perBotTick=${ratio(picks, totalBotTicksCounted)}"
         lines += formatAllocLine()
         lines += formatHeapLine()
         lines += "================================================="
@@ -205,8 +198,7 @@ object BotMetrics {
         else -> "%.0fB".format(bytes)
     }
 
-    private fun ratio(num: Long, denom: Long): String =
-        if (denom <= 0) "n/a" else "%.2f".format(num.toDouble() / denom)
+    private fun ratio(num: Long, denom: Long): String = if (denom <= 0) "n/a" else "%.2f".format(num.toDouble() / denom)
 
     private fun formatStats(values: LongArray, count: Int, divisorNs: Double, decimals: Int): String {
         if (count <= 0) return "no samples"

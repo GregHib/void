@@ -6,7 +6,7 @@ import content.bot.FakeWorld
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.Reason
-import content.bot.behaviour.condition.BotAlliesOnTile
+import content.bot.behaviour.condition.BotHasClock
 import content.entity.combat.dead
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -43,7 +43,7 @@ class BotRetreatTest {
     fun `Gated condition false short-circuits success`() {
         Areas.set(mapOf("lobby" to AreaDefinition("lobby", Rectangle(999, 999, 999, 999))))
 
-        val action = BotRetreat("lobby", regroupHpPercent = 70, condition = BotAlliesOnTile(min = 5))
+        val action = BotRetreat("lobby", regroupHpPercent = 70, condition = BotHasClock(id = "never_set"))
 
         val state = action.start(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))
 

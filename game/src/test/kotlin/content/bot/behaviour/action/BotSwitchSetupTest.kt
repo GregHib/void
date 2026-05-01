@@ -5,7 +5,7 @@ import content.bot.FakeBehaviour
 import content.bot.FakeWorld
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
-import content.bot.behaviour.condition.BotAlliesOnTile
+import content.bot.behaviour.condition.BotHasClock
 import content.bot.behaviour.condition.BotItem
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
@@ -45,7 +45,7 @@ class BotSwitchSetupTest {
         )
         val action = BotSwitchSetup(
             equipment = mapOf(EquipSlot.Weapon to BotItem(setOf("rune_scimitar"), min = 1)),
-            condition = BotAlliesOnTile(min = 5),
+            condition = BotHasClock(id = "never_set"),
         )
 
         val state = action.update(bot, FakeWorld(), BehaviourFrame(FakeBehaviour()))

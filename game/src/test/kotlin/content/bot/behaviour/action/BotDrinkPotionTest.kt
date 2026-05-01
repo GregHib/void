@@ -86,7 +86,10 @@ class BotDrinkPotionTest {
         player.inventory.add("super_strength_4")
         player.levels.set(Skill.Strength, 95)
         var called = false
-        val world = FakeWorld(execute = { _, _ -> called = true; true })
+        val world = FakeWorld(execute = { _, _ ->
+            called = true
+            true
+        })
 
         val state = BotDrinkPotion(item = "super_strength_*", skill = Skill.Strength)
             .update(bot, world, BehaviourFrame(FakeBehaviour()))
@@ -99,7 +102,10 @@ class BotDrinkPotionTest {
     fun `No-ops when no matching dose remains`() {
         player.inventory.add("whip")
         var called = false
-        val world = FakeWorld(execute = { _, _ -> called = true; true })
+        val world = FakeWorld(execute = { _, _ ->
+            called = true
+            true
+        })
 
         val state = BotDrinkPotion(item = "super_strength_*", skill = Skill.Strength)
             .update(bot, world, BehaviourFrame(FakeBehaviour()))
@@ -113,7 +119,10 @@ class BotDrinkPotionTest {
         player.inventory.add("super_strength_4")
         player.start("drink_delay", 2)
         var called = false
-        val world = FakeWorld(execute = { _, _ -> called = true; true })
+        val world = FakeWorld(execute = { _, _ ->
+            called = true
+            true
+        })
 
         val state = BotDrinkPotion(item = "super_strength_*", skill = Skill.Strength)
             .update(bot, world, BehaviourFrame(FakeBehaviour()))

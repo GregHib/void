@@ -1,8 +1,8 @@
 package content.entity.death
 
 import content.area.misthalin.lumbridge.church.Gravestone
-import content.area.wilderness.inMultiCombat
 import content.area.wilderness.inFullPvp
+import content.area.wilderness.inMultiCombat
 import content.bot.isBot
 import content.entity.combat.*
 import content.entity.combat.Target

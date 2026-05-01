@@ -35,7 +35,10 @@ class BotCastVengeanceTest {
     fun `Skips when magic below 94`() {
         player.levels.set(Skill.Magic, 93)
         var called = false
-        val world = FakeWorld(execute = { _, _ -> called = true; true })
+        val world = FakeWorld(execute = { _, _ ->
+            called = true
+            true
+        })
 
         val state = BotCastVengeance.update(bot, world, BehaviourFrame(FakeBehaviour()))
 
@@ -47,7 +50,10 @@ class BotCastVengeanceTest {
     fun `Skips when vengeance already cast`() {
         player.set("vengeance", true)
         var called = false
-        val world = FakeWorld(execute = { _, _ -> called = true; true })
+        val world = FakeWorld(execute = { _, _ ->
+            called = true
+            true
+        })
 
         val state = BotCastVengeance.update(bot, world, BehaviourFrame(FakeBehaviour()))
 
@@ -59,7 +65,10 @@ class BotCastVengeanceTest {
     fun `Skips while vengeance_delay cooldown active`() {
         player.start("vengeance_delay", 30, epochSeconds())
         var called = false
-        val world = FakeWorld(execute = { _, _ -> called = true; true })
+        val world = FakeWorld(execute = { _, _ ->
+            called = true
+            true
+        })
 
         val state = BotCastVengeance.update(bot, world, BehaviourFrame(FakeBehaviour()))
 

@@ -146,7 +146,7 @@ class PlayerCommands(
         player.message("${target.tile} Zone(${target.tile.zone.id}) ${target.tile.region}")
         println(target.tile)
     }
-    
+
     fun prayers(player: Player, args: List<String>) {
         val target = Players.find(player, args.getOrNull(1)) ?: return
         val name = args.getOrNull(0) ?: "normal"
