@@ -31,6 +31,7 @@ fun main() = application {
             - Fix filtering by null not working
             - Select/Copy from details panel
             - Support for enum replacements e.g. component.type/contentType, anims.replayMode etc...
+            - Reverse lookup, e.g. all npcs with render emote X
      */
     var screen by remember { mutableStateOf(AppScreen.PICKER) }
     var tabs by remember { mutableStateOf<List<DefinitionTab<*>>>(emptyList()) }

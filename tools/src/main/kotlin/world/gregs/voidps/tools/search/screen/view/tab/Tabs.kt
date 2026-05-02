@@ -123,7 +123,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
         DefinitionTab(
             label = Tabs.EMOTES,
             clazz = RenderAnimationDefinition::class.java,
-            defaultColumns = listOf("id", "primaryIdle", "primaryWalk", "run"),
+            defaultColumns = listOf("id", "stringId", "primaryIdle", "primaryWalk", "run"),
             fieldLinks = listOf(
                 FieldLink("primaryIdle", Tabs.ANIMS),
                 FieldLink("primaryWalk", Tabs.ANIMS),
@@ -135,7 +135,17 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
                 FieldLink("sideStepRight", Tabs.ANIMS),
             )
         ) {
-            RenderAnimationDecoder().load(cache).toList()
+            val definitions = RenderAnimationDecoder().load(cache)
+            if (loadConfig) {
+                val emoteDefinitions = RenderEmoteDefinitions()
+                emoteDefinitions.load(files.find(Settings["definitions.renderEmotes"]))
+                definitions.map {
+                    val def = emoteDefinitions.getOrNull(it.id)
+                    it.copy(stringId = def?.stringId ?: "", params = def?.params)
+                }
+            } else {
+                definitions.toList()
+            }
         },
         DefinitionTab(
             label = Tabs.GFX,
@@ -170,8 +180,8 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
                 FieldLink(
                     "components", Tabs.COMPONENTS,
                     targetFilters = listOf(
-                        "id" to "\$self",    // component.id == clicked value
-                        "parent" to "id",        // component.parent == interfaceDefinition.id
+                        "id" to "\$self",
+                        "parent" to "id",
                     ),
                     resolveByFields = listOf("parent"),
                 )

@@ -1,6 +1,7 @@
 package world.gregs.voidps.cache.config.data
 
 import world.gregs.voidps.cache.Definition
+import world.gregs.voidps.cache.definition.Parameterized
 
 data class RenderAnimationDefinition(
     override var id: Int = -1,
@@ -49,7 +50,10 @@ data class RenderAnimationDefinition(
     var anInt3291: Int = 0,
     var anIntArray3255: IntArray? = null,
     var anIntArrayArray3249: Array<IntArray?>? = null,
-) : Definition {
+    override var stringId: String = "",
+    override var params: Map<Int, Any>? = null
+) : Definition,
+    Parameterized {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
