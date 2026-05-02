@@ -90,13 +90,15 @@ fun DefinitionBrowser(
         if (idx == -1) return
         selectedIdx = idx + 1
         tabStates[idx].apply {
-            val newFilters = filters.entries.fold(columnFilters) { acc, (field, value) ->
+            val newFilters = filters.entries.fold(emptyMap<String, FieldFilter>()) { acc, (field, value) ->
                 acc + (field to FieldFilter(field, value, MatchMode.EXACT))
             }
             columnFilters = newFilters
             // Ensure all filtered fields are visible
             val missingCols = filters.keys.filter { it !in visibleColumns }
-            if (missingCols.isNotEmpty()) visibleColumns = missingCols + visibleColumns
+            if (missingCols.isNotEmpty()) {
+                visibleColumns = missingCols + visibleColumns
+            }
         }
     }
 

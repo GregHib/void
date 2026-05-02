@@ -19,6 +19,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -43,10 +44,12 @@ import world.gregs.voidps.tools.search.BorderColor
 import world.gregs.voidps.tools.search.TextMuted
 import world.gregs.voidps.tools.search.TextPrimary
 import world.gregs.voidps.tools.search.TextSecond
+import world.gregs.voidps.tools.search.screen.view.table.filter.SearchField
 
 @Composable
 fun ColumnPickerButton(allFields: List<String>, visibleColumns: List<String>, onToggle: (String, Boolean) -> Unit) {
     var show by remember { mutableStateOf(false) }
+    var search by remember { mutableStateOf("") }
     Box {
         Row(
             modifier = Modifier
@@ -66,9 +69,18 @@ fun ColumnPickerButton(allFields: List<String>, visibleColumns: List<String>, on
             onDismissRequest = { show = false },
             modifier = Modifier.width(200.dp).background(BgPanel).border(0.5.dp, BorderColor),
         ) {
+            SearchField(
+                value = search,
+                onValueChange = { search = it },
+                placeholder = "Find field…",
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 6.dp),
+            )
+            HorizontalDivider(color = BorderColor, thickness = 0.5.dp)
+            val filteredFields = allFields.filter { it.contains(search, ignoreCase = true) }
+
             Text("Toggle columns", fontSize = 11.sp, color = TextMuted, modifier = Modifier.padding(start = 8.dp, top = 8.dp, bottom = 6.dp))
             Column(modifier = Modifier.heightIn(max = 340.dp).verticalScroll(rememberScrollState()).padding(8.dp)) {
-                allFields.forEach { field ->
+                filteredFields.forEach { field ->
                     val checked = field in visibleColumns
                     Row(
                         modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(3.dp))

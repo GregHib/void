@@ -19,7 +19,10 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
@@ -42,6 +45,7 @@ import world.gregs.voidps.tools.search.TextSecond
 import world.gregs.voidps.tools.search.displayValue
 import world.gregs.voidps.tools.search.screen.view.resolveDisplayName
 import world.gregs.voidps.tools.search.screen.view.resolveNavigationFilters
+import world.gregs.voidps.tools.search.screen.view.table.filter.SearchField
 import kotlin.collections.forEach
 import kotlin.reflect.KProperty1
 
@@ -52,6 +56,7 @@ fun DetailPanel(
     fieldLinks: List<FieldLink>,
     onNavigate: (targetLabel: String, filters: Map<String, String>) -> Unit,
 ) {
+    var fieldSearch by remember { mutableStateOf("") }
     Column(
         modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(14.dp),
     ) {
@@ -73,7 +78,22 @@ fun DetailPanel(
 
         HorizontalDivider(color = BorderColor, thickness = 0.5.dp, modifier = Modifier.padding(bottom = 10.dp))
 
-        properties.forEach { prop ->
+        // Search bar for fields
+        SearchField(
+            value = fieldSearch,
+            onValueChange = { fieldSearch = it },
+            placeholder = "Find field…",
+            modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp),
+        )
+
+        val visibleProperties = remember(fieldSearch, properties) {
+            if (fieldSearch.isBlank()) properties
+            else properties.filter { prop ->
+                prop.name.contains(fieldSearch, ignoreCase = true)
+            }
+        }
+
+        visibleProperties.forEach { prop ->
             val raw = try {
                 prop.get(item)
             } catch (_: Exception) {
