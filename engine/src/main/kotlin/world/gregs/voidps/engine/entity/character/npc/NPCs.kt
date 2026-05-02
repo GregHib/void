@@ -73,7 +73,10 @@ object NPCs : Runnable,
     }
 
     fun remove(npc: NPC?): Boolean {
-        if (npc == null || npc.index == -1) {
+        if (npc == null) {
+            return false
+        }
+        if (npc.index == -1) {
             logger.warn { "Unable to remove npc $npc." }
             return false
         }

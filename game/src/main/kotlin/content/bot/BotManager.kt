@@ -11,8 +11,10 @@ import content.bot.behaviour.Reason
 import content.bot.behaviour.action.BotWait
 import content.bot.behaviour.activity.ActivitySlots
 import content.bot.behaviour.activity.BotActivity
+import content.bot.behaviour.condition.BotInArea
 import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.loadBehaviours
+import content.bot.behaviour.perception.BotCombatContextBuilder
 import content.bot.behaviour.setup.DynamicResolvers
 import content.bot.behaviour.setup.Resolver
 import world.gregs.voidps.engine.data.ConfigFiles
@@ -42,6 +44,8 @@ class BotManager(
 
     val activityNames: Set<String>
         get() = activities.keys
+
+    fun activity(id: String): BotActivity? = activities[id]
 
     fun load(files: ConfigFiles): BotManager {
         loadBehaviours(files, activities, resolvers)
@@ -85,9 +89,17 @@ class BotManager(
     }
 
     override fun run() {
+        BotMetrics.beginRun()
         for (bot in bots) {
-            tick(bot)
+            if (BotMetrics.measuring) {
+                val start = System.nanoTime()
+                tick(bot)
+                BotMetrics.recordBotTick(System.nanoTime() - start)
+            } else {
+                tick(bot)
+            }
         }
+        BotMetrics.endRun(bots.size)
     }
 
     fun tick(bot: Bot) {
@@ -96,9 +108,33 @@ class BotManager(
                 assignRandom(bot)
                 return
             }
+            updateCombatContext(bot)
+            runReactive(bot)
             execute(bot)
         } catch (exception: Exception) {
             logger.error(exception) { "Error in bot '${bot.player.accountName}' tick ${bot.frames.map { it.behaviour.id }}." }
+        }
+    }
+
+    private fun runReactive(bot: Bot) {
+        val rootFrame = bot.frames.firstOrNull() ?: return
+        val reactive = rootFrame.behaviour.reactive
+        if (reactive.isEmpty()) return
+        for (action in reactive) {
+            try {
+                action.update(bot, world, rootFrame)
+            } catch (exception: Exception) {
+                logger.error(exception) { "Reactive action failed for bot '${bot.player.accountName}' activity=${rootFrame.behaviour.id} action=$action." }
+            }
+        }
+    }
+
+    private fun updateCombatContext(bot: Bot) {
+        val activity = bot.frames.firstOrNull()?.behaviour
+        if (activity != null && activity.reactive.isNotEmpty()) {
+            bot.combatContext = BotCombatContextBuilder.build(bot)
+        } else if (bot.combatContext != null) {
+            bot.combatContext = null
         }
     }
 
@@ -116,6 +152,17 @@ class BotManager(
      * Assign a random activity that is available to the [bot].
      */
     private fun assignRandom(bot: Bot) {
+        val pinned = bot.pinned
+        if (pinned != null) {
+            bot.evaluate.clear()
+            val pinnedActivity = activities[pinned]
+            if (pinnedActivity != null && hasRequirements(bot, pinnedActivity)) {
+                assign(bot, pinnedActivity)
+            } else {
+                assign(bot, activityFallback(bot))
+            }
+            return
+        }
         if (bot.evaluate.isNotEmpty()) {
             updateAvailable(bot)
         }
@@ -144,6 +191,9 @@ class BotManager(
      * When no available activity is found either idle or spawn requirements for a bot
      */
     private fun activityFallback(bot: Bot): BotActivity {
+        if (bot.pinned != null) {
+            return idle
+        }
         if (!Settings["bots.spawnRequirements", false] || bot.player.networked) {
             return idle
         }
@@ -249,8 +299,16 @@ class BotManager(
             return
         }
         val debug = bot.player["debug", false]
+        var refreshed = false
         for (requirement in behaviour.setup) {
             if (requirement.check(bot.player)) {
+                continue
+            }
+            if (bot.pinned == behaviour.id && requirement !is BotInArea) {
+                if (!refreshed) {
+                    bot.refresh?.invoke()
+                    refreshed = true
+                }
                 continue
             }
             frame.blocked.removeAll(DynamicResolvers.ids())
@@ -331,7 +389,15 @@ class BotManager(
             bot.frames.pop()
         }
         if (behaviour is BotActivity) {
-            bot.blocked.add(behaviour.id)
+            val pinnedSoft = bot.pinned == behaviour.id && state.reason !is Reason.Cancelled
+            if (!pinnedSoft) {
+                bot.blocked.add(behaviour.id)
+            } else {
+                // start() blocked the activity when it began (line 345); fail-paths never run the
+                // matching remove from nextAction. For a pinned bot we want it to be reassignable
+                // next tick, so undo the start-time block here.
+                bot.blocked.remove(behaviour.id)
+            }
             slots.release(behaviour)
         }
     }
@@ -339,7 +405,7 @@ class BotManager(
     /**
      * Remove all behaviours and free up activity slots
      */
-    private fun stop(bot: Bot) {
+    fun stop(bot: Bot) {
         for (frame in bot.frames) {
             if (frame.behaviour is BotActivity) {
                 slots.release(frame.behaviour)

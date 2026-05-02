@@ -3,6 +3,9 @@ package content.bot.behaviour
 import content.bot.behaviour.action.ActionParser
 import content.bot.behaviour.action.BotAction
 import content.bot.behaviour.activity.BotActivity
+import content.bot.behaviour.activity.Loadout
+import content.bot.behaviour.condition.BotEquipmentSetup
+import content.bot.behaviour.condition.BotInventorySetup
 import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.navigation.NavigationGraph
 import content.bot.behaviour.navigation.NavigationShortcut
@@ -22,6 +25,7 @@ interface Behaviour {
     val requires: List<Condition>
     val setup: List<Condition>
     val actions: List<BotAction>
+    val reactive: List<BotAction>
     val produces: Set<String>
 }
 
@@ -45,10 +49,10 @@ fun loadGraph(files: ConfigFiles): NavigationGraph {
 private fun loadActivities(activities: MutableMap<String, BotActivity>, templates: Map<String, Template>, paths: List<String>) {
     timedLoad("bot activity") {
         val fragments = mutableListOf<Fragment>()
-        load(paths) { id, template, fields, capacity, timeout, requires, setup, actions, produces ->
+        load(paths) { id, template, fields, capacity, timeout, requires, setup, actions, reactive, produces ->
             if (template != null) {
                 requireNotNull(fields)
-                fragments.add(Fragment(id, template, fields, capacity, timeout, requires, setup, actions, produces))
+                fragments.add(Fragment(id, template, fields, capacity, timeout, requires, setup, actions, reactive, produces))
             } else {
                 val debug = "$id ${exception()}"
                 activities[id] = BotActivity(
@@ -58,6 +62,7 @@ private fun loadActivities(activities: MutableMap<String, BotActivity>, template
                     requires = Condition.parse(requires, debug),
                     setup = Condition.parse(setup, debug),
                     actions = ActionParser.parse(actions, debug),
+                    reactive = ActionParser.parse(reactive, debug),
                     produces = produces,
                 )
             }
@@ -73,10 +78,10 @@ private fun loadActivities(activities: MutableMap<String, BotActivity>, template
 private fun loadSetups(resolvers: MutableMap<String, MutableList<Resolver>>, templates: Map<String, Template>, paths: List<String>) {
     timedLoad("bot setup") {
         val fragments = mutableListOf<Fragment>()
-        load(paths) { id, template, fields, weight, timeout, requires, setup, actions, produces ->
+        load(paths) { id, template, fields, weight, timeout, requires, setup, actions, reactive, produces ->
             if (template != null) {
                 requireNotNull(fields)
-                fragments.add(Fragment(id, template, fields, weight, timeout, requires, setup, actions, produces))
+                fragments.add(Fragment(id, template, fields, weight, timeout, requires, setup, actions, reactive, produces))
             } else {
                 val debug = "$id ${exception()}"
                 val resolver = Resolver(
@@ -86,6 +91,7 @@ private fun loadSetups(resolvers: MutableMap<String, MutableList<Resolver>>, tem
                     requires = Condition.parse(requires, debug),
                     setup = Condition.parse(setup, debug),
                     actions = ActionParser.parse(actions, debug),
+                    reactive = ActionParser.parse(reactive, debug),
                     produces = produces,
                 )
                 for (key in produces) {
@@ -107,10 +113,10 @@ private fun loadSetups(resolvers: MutableMap<String, MutableList<Resolver>>, tem
 private fun loadShortcuts(shortcuts: MutableList<NavigationShortcut>, templates: Map<String, Template>, paths: List<String>) {
     timedLoad("bot shortcut") {
         val fragments = mutableListOf<Fragment>()
-        load(paths) { id, template, fields, weight, timeout, requires, setup, actions, produces ->
+        load(paths) { id, template, fields, weight, timeout, requires, setup, actions, reactive, produces ->
             if (template != null) {
                 requireNotNull(fields) { "No fields found for $id ${exception()}" }
-                fragments.add(Fragment(id, template, fields, weight, timeout, requires, setup, actions, produces))
+                fragments.add(Fragment(id, template, fields, weight, timeout, requires, setup, actions, reactive, produces))
             } else {
                 val debug = "$id ${exception()}"
                 shortcuts.add(
@@ -121,6 +127,7 @@ private fun loadShortcuts(shortcuts: MutableList<NavigationShortcut>, templates:
                         requires = Condition.parse(requires, debug),
                         setup = Condition.parse(setup, debug),
                         actions = ActionParser.parse(actions, debug),
+                        reactive = ActionParser.parse(reactive, debug),
                         produces = produces,
                     ),
                 )
@@ -134,7 +141,7 @@ private fun loadShortcuts(shortcuts: MutableList<NavigationShortcut>, templates:
     }
 }
 
-private fun load(paths: List<String>, block: ConfigReader.(String, String?, Map<String, Any>?, Int, Int, List<Pair<String, List<Map<String, Any>>>>, List<Pair<String, List<Map<String, Any>>>>, List<Pair<String, Map<String, Any>>>, Set<String>) -> Unit) {
+private fun load(paths: List<String>, block: ConfigReader.(String, String?, Map<String, Any>?, Int, Int, List<Pair<String, List<Map<String, Any>>>>, List<Pair<String, List<Map<String, Any>>>>, List<Pair<String, Map<String, Any>>>, List<Pair<String, Map<String, Any>>>, Set<String>) -> Unit) {
     for (path in paths) {
         Config.fileReader(path) {
             while (nextSection()) {
@@ -146,6 +153,7 @@ private fun load(paths: List<String>, block: ConfigReader.(String, String?, Map<
                 val requires = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                 val setup = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                 val actions = mutableListOf<Pair<String, Map<String, Any>>>()
+                val reactive = mutableListOf<Pair<String, Map<String, Any>>>()
                 val produces = mutableSetOf<String>()
                 while (nextPair()) {
                     when (val key = key()) {
@@ -153,6 +161,7 @@ private fun load(paths: List<String>, block: ConfigReader.(String, String?, Map<
                         "requires" -> requirements(requires)
                         "setup" -> requirements(setup)
                         "actions" -> actions(actions)
+                        "reactive" -> actions(reactive)
                         "produces" -> produces(produces)
                         "weight", "capacity" -> value = int()
                         "timeout" -> timeout = int()
@@ -163,7 +172,7 @@ private fun load(paths: List<String>, block: ConfigReader.(String, String?, Map<
                 if (fields != null && template == null) {
                     error("Found fields but no template for $id in ${exception()}")
                 }
-                block.invoke(this, id, template, fields, value, timeout, requires, setup, actions, produces)
+                block.invoke(this, id, template, fields, value, timeout, requires, setup, actions, reactive, produces)
             }
         }
     }
@@ -179,17 +188,27 @@ private fun loadTemplates(paths: List<String>): Map<String, Template> {
                     val requires = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                     val setup = mutableListOf<Pair<String, List<Map<String, Any>>>>()
                     val actions = mutableListOf<Pair<String, Map<String, Any>>>()
+                    val reactive = mutableListOf<Pair<String, Map<String, Any>>>()
                     val produces = mutableSetOf<String>()
+                    var loadouts: Map<String, Any> = emptyMap()
+                    var hybridStartingLoadout: String? = null
+                    var hybridSwapCooldown: Int? = null
+                    var hybridSwapPerTick: Int? = null
                     while (nextPair()) {
                         when (val key = key()) {
                             "requires" -> requirements(requires)
                             "setup" -> requirements(setup)
                             "actions" -> actions(actions)
+                            "reactive" -> actions(reactive)
                             "produces" -> produces(produces)
+                            "loadouts" -> loadouts = map()
+                            "hybrid_starting_loadout" -> hybridStartingLoadout = string()
+                            "hybrid_swap_cooldown" -> hybridSwapCooldown = int()
+                            "hybrid_swap_per_tick" -> hybridSwapPerTick = int()
                             else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
                     }
-                    templates[id] = Template(requires, setup, actions, produces)
+                    templates[id] = Template(requires, setup, actions, reactive, produces, loadouts, hybridStartingLoadout, hybridSwapCooldown, hybridSwapPerTick)
                 }
             }
         }
@@ -244,6 +263,7 @@ private data class Fragment(
     val requires: List<Pair<String, List<Map<String, Any>>>>,
     val setup: List<Pair<String, List<Map<String, Any>>>>,
     val actions: List<Pair<String, Map<String, Any>>>,
+    val reactive: List<Pair<String, Map<String, Any>>>,
     val produces: Set<String>,
 ) {
     fun activity(template: Template) = BotActivity(
@@ -253,8 +273,32 @@ private data class Fragment(
         requires = resolveRequirements(template.requires, requires),
         setup = resolveRequirements(template.setup, setup),
         actions = resolveActions(template.actions, actions),
+        reactive = resolveActions(template.reactive, reactive),
         produces = resolve(template.produces) + produces,
+        loadouts = resolveLoadouts(template),
+        hybridStartingLoadout = template.hybridStartingLoadout,
+        hybridSwapCooldown = template.hybridSwapCooldown ?: 3,
+        hybridSwapPerTick = template.hybridSwapPerTick ?: 1,
     )
+
+    @Suppress("UNCHECKED_CAST")
+    private fun resolveLoadouts(template: Template): Map<String, Loadout> {
+        if (template.loadouts.isEmpty()) return emptyMap()
+        val out = LinkedHashMap<String, Loadout>(template.loadouts.size)
+        val debug = "$id template ${this.template} loadouts"
+        for ((name, raw) in template.loadouts) {
+            val map = raw as? Map<String, Any> ?: error("Loadout '$name' must be a map in $debug, got $raw.")
+            val resolved = resolve(map, "loadouts.$name")
+            val eqRaw = resolved["equipment"] as? Map<String, Any>
+                ?: error("Loadout '$name' missing 'equipment' map in $debug.")
+            val equipment = Condition.parse(listOf("equipment" to listOf(eqRaw)), debug).single() as BotEquipmentSetup
+            val invRaw = resolved["inventory"] as? List<Map<String, Any>>
+            val inventory = if (invRaw.isNullOrEmpty()) null else Condition.parse(listOf("inventory" to invRaw), debug).single() as BotInventorySetup
+            val autocast = resolved["autocast"] as? String
+            out[name] = Loadout(name, equipment, inventory, autocast)
+        }
+        return out
+    }
 
     private fun resolve(set: Set<String>) = set.map { value ->
         if (value.contains('$')) {
@@ -286,10 +330,7 @@ private data class Fragment(
         val combinedList = mutableListOf<Pair<String, Map<String, Any>>>()
         combinedList.addAll(original)
         for ((type, map) in templated) {
-            val resolved = resolve(map, type)
-            if (resolved.isNotEmpty()) {
-                combinedList.add(type to resolved)
-            }
+            combinedList.add(type to resolve(map, type))
         }
         if (combinedList.isEmpty()) {
             return emptyList()
@@ -341,6 +382,7 @@ private data class Fragment(
         requires = resolveRequirements(template.requires, requires),
         setup = resolveRequirements(template.setup, setup),
         actions = resolveActions(template.actions, actions),
+        reactive = resolveActions(template.reactive, reactive),
         produces = resolve(template.produces) + produces,
     )
 
@@ -351,6 +393,7 @@ private data class Fragment(
         requires = resolveRequirements(template.requires, requires),
         setup = resolveRequirements(template.setup, setup),
         actions = resolveActions(template.actions, actions),
+        reactive = resolveActions(template.reactive, reactive),
         produces = resolve(template.produces) + produces,
     )
 }
@@ -359,5 +402,10 @@ private data class Template(
     val requires: List<Pair<String, List<Map<String, Any>>>>,
     val setup: List<Pair<String, List<Map<String, Any>>>>,
     val actions: List<Pair<String, Map<String, Any>>>,
+    val reactive: List<Pair<String, Map<String, Any>>>,
     val produces: Set<String>,
+    val loadouts: Map<String, Any> = emptyMap(),
+    val hybridStartingLoadout: String? = null,
+    val hybridSwapCooldown: Int? = null,
+    val hybridSwapPerTick: Int? = null,
 )

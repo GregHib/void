@@ -25,8 +25,12 @@ data class BotInteractObject(
     val radius: Int = 10,
     val x: Int? = null,
     val y: Int? = null,
+    val condition: Condition? = null,
 ) : BotAction {
     override fun start(bot: Bot, world: BotWorld, frame: BehaviourFrame): BehaviourState {
+        if (condition != null && !condition.check(bot.player)) {
+            return BehaviourState.Success
+        }
         if (success != null && success.check(bot.player)) {
             return BehaviourState.Success
         }
@@ -34,6 +38,7 @@ data class BotInteractObject(
     }
 
     override fun update(bot: Bot, world: BotWorld, frame: BehaviourFrame) = when {
+        condition != null && !condition.check(bot.player) -> BehaviourState.Success
         success?.check(bot.player) == true -> BehaviourState.Success
         bot.mode is PlayerOnObjectInteract -> if (success == null) BehaviourState.Success else BehaviourState.Running
         bot.mode is EmptyMode -> search(bot, world)

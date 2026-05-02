@@ -1,6 +1,8 @@
 package content.bot.behaviour.action
 
 import content.bot.behaviour.condition.Condition
+import net.pearx.kasechange.toPascalCase
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
 sealed class ActionParser {
     open val required = emptySet<String>()
@@ -42,15 +44,143 @@ sealed class ActionParser {
         }
     }
 
+    object InteractPlayerParser : ActionParser() {
+        override val required = setOf("option")
+        override val optional = setOf("delay", "success", "radius", "heal_percent", "loot_over_value", "loot_strategy", "area")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val option = map["option"] as String
+            require(option == "Attack") { "Only 'Attack' option is supported for 'player' actions, got '$option'." }
+            val delay = map["delay"] as? Int ?: 0
+            val success = requirement(map, "success").singleOrNull()
+            val radius = map["radius"] as? Int ?: 10
+            val healPercent = map["heal_percent"] as? Int ?: 20
+            val lootOverValue = map["loot_over_value"] as? Int ?: 0
+            val lootStrategy = BotLootStrategy.of(map["loot_strategy"] as? String)
+            val area = map["area"] as? String
+            return BotFightPlayer(delay, success, radius, healPercent, lootOverValue, lootStrategy, area)
+        }
+    }
+
+    object PrayParser : ActionParser() {
+        override val required = setOf("id")
+        override val optional = setOf("if")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val id = map["id"] as String
+            val condition = requirement(map, "if").singleOrNull()
+            return BotPray(id, condition)
+        }
+    }
+
+    object SpecAttackParser : ActionParser() {
+        override val required = setOf("weapon", "fallback")
+        override val optional = setOf("min_energy", "if")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val weapon = map["weapon"] as String
+            val fallback = map["fallback"] as String
+            val minEnergy = map["min_energy"] as? Int ?: 250
+            val condition = requirement(map, "if").singleOrNull()
+            return BotSpecAttack(weapon, fallback, minEnergy, condition)
+        }
+    }
+
+    object DrinkPotionParser : ActionParser() {
+        override val required = setOf("item", "skill")
+        override val optional = setOf("if")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val item = map["item"] as String
+            val skillName = map["skill"] as String
+            val skill = Skill.of(skillName.toPascalCase())
+                ?: error("Unknown skill '$skillName' in drink_potion action.")
+            val condition = requirement(map, "if").singleOrNull()
+            return BotDrinkPotion(item, skill, condition)
+        }
+    }
+
+    object CastVengeanceParser : ActionParser() {
+        override fun parse(map: Map<String, Any>): BotAction = BotCastVengeance
+    }
+
+    object CastSpellParser : ActionParser() {
+        override val optional = setOf("delay", "success", "radius", "heal_percent", "family", "kite", "area")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val delay = map["delay"] as? Int ?: 0
+            val success = requirement(map, "success").singleOrNull()
+            val radius = map["radius"] as? Int ?: 10
+            val healPercent = map["heal_percent"] as? Int ?: 40
+            val family = map["family"] as? String ?: "ice"
+            val kite = map["kite"] as? Boolean ?: true
+            val area = map["area"] as? String
+            return BotCastSpell(delay, success, radius, healPercent, family, kite, area)
+        }
+    }
+
+    object SwitchSetupParser : ActionParser() {
+        override val required = setOf("equipment")
+        override val optional = setOf("if")
+
+        @Suppress("UNCHECKED_CAST")
+        override fun parse(map: Map<String, Any>): BotAction {
+            val raw = map["equipment"] as? Map<String, Any>
+                ?: error("switch_setup 'equipment' must be a map in $map.")
+            val setup = Condition.parse(listOf("equipment" to listOf(raw)), "SwitchSetupParser").single()
+            val equipment = (setup as content.bot.behaviour.condition.BotEquipmentSetup).items
+            val condition = requirement(map, "if").singleOrNull()
+            return BotSwitchSetup(equipment, condition)
+        }
+    }
+
+    object SwitchLoadoutParser : ActionParser() {
+        override val optional = setOf("to", "counter_attacker", "if")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val to = map["to"] as? String
+            val counterAttacker = map["counter_attacker"] as? Boolean ?: false
+            require(to != null || counterAttacker) { "switch_loadout: must set 'to' or 'counter_attacker' in $map" }
+            val condition = requirement(map, "if").singleOrNull()
+            return BotSwitchLoadout(to, counterAttacker, condition)
+        }
+    }
+
+    object RetreatParser : ActionParser() {
+        override val required = setOf("safe_area", "regroup_hp_percent")
+        override val optional = setOf("if")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val safeArea = map["safe_area"] as String
+            val regroup = map["regroup_hp_percent"] as Int
+            val condition = requirement(map, "if").singleOrNull()
+            return BotRetreat(safeArea, regroup, condition)
+        }
+    }
+
     object InterfaceParser : ActionParser() {
         override val required = setOf("option", "id")
-        override val optional = setOf("success")
+        override val optional = setOf("success", "if")
 
         override fun parse(map: Map<String, Any>): BotAction {
             val option = map["option"] as String
             val id = map["id"] as String
             val success = requirement(map, "success").singleOrNull()
-            return BotInterfaceOption(option, id, success)
+            val condition = requirement(map, "if").singleOrNull()
+            return BotInterfaceOption(option, id, success, condition)
+        }
+    }
+
+    object JewelleryTeleportParser : ActionParser() {
+        override val required = setOf("item", "area")
+        override val optional = setOf("if", "success")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val item = map["item"] as String
+            val area = map["area"] as String
+            val condition = requirement(map, "if").singleOrNull()
+            val success = requirement(map, "success").singleOrNull()
+            return BotJewelleryTeleport(item, area, condition, success)
         }
     }
 
@@ -108,7 +238,7 @@ sealed class ActionParser {
 
     object InteractObjectParser : ActionParser() {
         override val required = setOf("option", "id", "success")
-        override val optional = setOf("delay", "radius", "x", "y")
+        override val optional = setOf("delay", "radius", "x", "y", "if")
 
         override fun parse(map: Map<String, Any>): BotAction {
             val option = map["option"] as String
@@ -118,7 +248,8 @@ sealed class ActionParser {
             val radius = map["radius"] as? Int ?: 10
             val x = map["x"] as? Int
             val y = map["y"] as? Int
-            return BotInteractObject(option, id, delay, success, radius, x, y)
+            val condition = requirement(map, "if").singleOrNull()
+            return BotInteractObject(option, id, delay, success, radius, x, y, condition)
         }
     }
 
@@ -225,6 +356,7 @@ sealed class ActionParser {
 
         private val parsers = mapOf(
             "npc" to InteractNpcParser,
+            "player" to InteractPlayerParser,
             "object" to InteractObjectParser,
             "floor_item" to InteractFloorItemParser,
             "item_on_object" to ItemOnObjectParser,
@@ -234,6 +366,15 @@ sealed class ActionParser {
             "wait" to WaitParser,
             "restart" to RestartParser,
             "interface" to InterfaceParser,
+            "jewellery_teleport" to JewelleryTeleportParser,
+            "pray" to PrayParser,
+            "spec_attack" to SpecAttackParser,
+            "drink_potion" to DrinkPotionParser,
+            "cast_vengeance" to CastVengeanceParser,
+            "cast_spell" to CastSpellParser,
+            "switch_setup" to SwitchSetupParser,
+            "switch_loadout" to SwitchLoadoutParser,
+            "retreat" to RetreatParser,
             "interface_close" to CloseInterfaceParser,
             "continue" to DialogueParser,
             "enter" to EnterParser,

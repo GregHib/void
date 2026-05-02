@@ -1,0 +1,729 @@
+# =============================================================================
+# Minigame Combat templates — how this file works
+# =============================================================================
+#
+# Each [section] below is a TEMPLATE. Templates are blueprints, not running
+# activities. They get instantiated by entries in *.bots.toml (e.g.
+# data/minigame/clan_wars/clan_wars.bots.toml) which set:
+#
+#     [clan_wars_ffa_safe_zerker]
+#     template = "pvp_zerker"      # name of a template below
+#     capacity = 3                 # max concurrent bots in this activity
+#     timeout  = 500               # ticks of no progress before fail
+#     fields   = { style = "style2", area = "clan_wars_ffa_safe_arena", ... }
+#
+# Every "$name" string in a template is replaced with fields[name] at load
+# time (see Fragment.resolve in game/.../bot/behaviour/Behaviour.kt). One
+# template can drive many arenas just by varying `fields`.
+#
+# Top-level keys allowed in a template:
+#   requires  array  Bot-level prerequisites (skill levels, owned items).
+#                    Filtered against `bot.player` when the activity is picked
+#                    by BotManager.assignRandom; failing it makes the activity
+#                    invisible to that bot.
+#   setup     array  Per-engagement state the bot must be in BEFORE `actions`
+#                    can start. A failing setup row triggers a resolver
+#                    sub-frame (e.g. "be in $area" → BotGoTo). Resolvers live
+#                    in *.setups.toml and clan_wars.setups.toml.
+#   actions   array  Sequential body of the activity, advanced once per tick
+#                    by BotManager.execute. The last entry is conventionally
+#                    `restart` so the activity loops until `success` fires.
+#   reactive  array  Runs every tick alongside `actions` via
+#                    BotManager.runReactive — REACTIVES RUN BEFORE THE MAIN
+#                    ACTION each tick, and entries iterate top-to-bottom.
+#                    Used for short-lived decisions (prayer toggles, drinks,
+#                    spec attacks). Each reactive's `if` gates execution.
+#   produces  array  Tags ({ skill = "..." } etc.) the activity emits, used
+#                    by BotManager.updateAvailable to recompute eligibility
+#                    after the bot's state changes.
+#   loadouts                map  Hybrid templates only — named gear/inventory
+#   hybrid_starting_loadout str  variants (see pvp_dangerous_hybrid).
+#   hybrid_swap_cooldown    int  Default 3 ticks between loadout swaps.
+#   hybrid_swap_per_tick    int  Default 1 equipment slot changed per tick.
+#
+# Lifecycle of one tick (BotManager.tick):
+#   1. If no active frame, assignRandom() picks an activity (honouring
+#      bot.pinned for PvP bots).
+#   2. runReactive() — every entry in `reactive` fires once. Reactives queue
+#      instructions but don't change the main frame's state.
+#   3. execute() — advances the main frame:
+#        Pending → check `setup`; failures spawn a resolver sub-frame.
+#        Running → call current action's update().
+#        Wait    → countdown, then transition to the inner state.
+#        Success → step to the next action in `actions`.
+#        Failed  → handle per Reason; pinned bots stay pinned.
+#
+# The pvp_zerker template below is fully annotated as a worked example. The
+# rest of this file relies on the same vocabulary; refer back here when in
+# doubt. Catalog of every condition / action type is in:
+#   game/src/main/kotlin/content/bot/behaviour/condition/Condition.kt   (parse)
+#   game/src/main/kotlin/content/bot/behaviour/action/ActionParser.kt   (parsers map)
+#
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# pvp_zerker — annotated worked example
+# -----------------------------------------------------------------------------
+[pvp_zerker]
+
+# `requires` rows are checked against bot.player when picking an activity.
+# These are absolute base levels (BotSkillLevel uses levels.getMax, the
+# XP-driven level — not the current decayed/boosted value). A drained skill
+# therefore won't deactivate the activity mid-fight.
+#   { skill = { id, min, max } }      → absolute level bounds
+#   { skill_percent = { id, max_percent = 30 } }  → current vs max as percent
+#   { combat_level = { min, max } } / { equipment = ... } / { inventory = ... }
+#   etc. Full list: Condition.kt parse switch.
+requires = [
+    { skill = { id = "attack",       min = 60 } },
+    { skill = { id = "strength",     min = 80 } },
+    { skill = { id = "defence",      min = 45, max = 45 } },  # zerker: defence pinned to 45
+    { skill = { id = "constitution", min = 75 } },
+    { skill = { id = "prayer",       min = 95 } },
+]
+
+# `setup` rows are the engagement preconditions. Each row that doesn't pass
+# triggers the matching resolver to run as a sub-frame. The activity blocks
+# at Pending until every setup row checks true (or a resolver fails — which
+# fails the activity).
+#
+# `equipment` and `inventory` rows here also drive applyTier in BotCommands.kt
+# at spawn time: the bot is given exactly this kit when its tier is applied.
+#
+# Items support `min`, `max`, `equippable`, `usable`. Use `equippable = true`
+# for items the bot will swap to mid-fight (granite_maul, dragon_dagger_p++)
+# so the requirement pre-checks the bot can actually wear them.
+setup = [
+    { equipment = {
+        weapon = { id = "abyssal_whip" },
+        chest  = { id = "fighter_torso" },
+        legs   = { id = "rune_platelegs" },
+        hat    = { id = "helm_of_neitiznot" },
+        feet   = { id = "dragon_boots" },
+        amulet = { id = "amulet_of_fury" },
+        ring   = { id = "berserker_ring" },
+        cape   = { id = "obsidian_cape" },
+    } },
+    { inventory = [
+        { id = "shark",            min = 16 },                     # food: BotFightPlayer.eat() picks the first "Eat" option it finds
+        { id = "super_restore_4",  min = 2 },                      # prayer + safety-net restore
+        { id = "super_attack_4",   min = 1 },                      # boost — drunk by reactive below
+        { id = "super_strength_4", min = 1 },
+        { id = "super_defence_4",  min = 1 },
+        { id = "dragon_dagger_p++", min = 1, equippable = true },  # spec weapon (BotSpecAttack swaps to it)
+        { id = "granite_maul",      min = 1, equippable = true },  # alt spec weapon if the activity wants one
+        { id = "games_necklace_6",  min = 1, equippable = true },  # retreat teleport (used by jewellery_teleport reactives in *.bots.toml)
+    ] },
+    # `area` is the BotInArea condition. The matching resolver
+    # (enter_clan_wars_ffa_safe / _dangerous in clan_wars.setups.toml) walks
+    # the bot from the staging area through the portal into `$area`.
+    { area = { id = "$area" } },
+]
+
+# `actions` is the sequential body. Per tick BotManager.execute advances
+# whichever action is current; on Success the next one starts.
+actions = [
+    # One-shot per restart: clicks the combat-style tab so subsequent attacks
+    # use the right style (`$style` is e.g. style2 = aggressive). The
+    # `interface` action targets "interface:component[:item]" ids.
+    { interface = { option = "Select", id = "combat_styles:$style" } },
+
+    # The long-running engagement loop — BotFightPlayer. Picks a target via
+    # spiral search within `radius`, attacks, eats when HP <= heal_percent
+    # of max, loots own kills (loot_strategy = survival prefers consumables).
+    # `success` here is what flips this action to Success early — the
+    # bot leaving `$area` (retreat or teleport-out) ends the fight cleanly
+    # so the next action (`restart`) can decide whether to loop.
+    { player = {
+        option        = "Attack",
+        radius        = 10,
+        delay         = 1,
+        heal_percent  = 40,
+        loot_strategy = "survival",
+        area          = "$area",
+        success       = { area = { id = "$area", present = false } },
+    } },
+
+    # `restart` loops the body. Without this, the activity runs once and ends.
+    # Its own `success` is what ENDS the activity (vs continuing); same area-
+    # exit condition as `player.success` above means: while the bot is in
+    # the arena, restart the engagement; once it leaves, exit cleanly.
+    { restart = { success = { area = { id = "$area", present = false } } } },
+]
+
+# Reactives fire every tick in the order written. Earlier entries get to
+# fire first — and once a reactive uses an interface that sets `drink_delay`
+# (any potion drink) or otherwise blocks subsequent reactives, later entries
+# no-op for that tick.
+reactive = [
+    # Overhead prayer: matches the most recent attacker's style. attacker_style
+    # reads the same source as the `Player.attackerStyle` debug. These three
+    # rows are mutually exclusive — only one matches per tick.
+    { pray = { id = "deflect_melee",    if = { attacker_style = { equals = "melee"  } } } },
+    { pray = { id = "deflect_missiles", if = { attacker_style = { equals = "ranged" } } } },
+    { pray = { id = "deflect_magic",    if = { attacker_style = { equals = "magic"  } } } },
+
+    # Damage-boosting curse — kept on while inside the arena, off elsewhere
+    # (so it doesn't drain prayer in the lobby). $area is replaced per arena.
+    { pray = { id = "berserker", if = { area = { id = "$area" } } } },
+    { pray = { id = "turmoil",   if = { area = { id = "$area" } } } },
+
+    # Spec attack: equips `weapon` (uses `fallback` between specs), checks
+    # min_energy + the `if` condition, then flips player.specialAttack = true
+    # so the next combat swing consumes spec energy. target_hp_percent.max=0.25
+    # = "target HP at 25% or below" → finisher window.
+    { spec_attack = { weapon = "dragon_dagger_p++", fallback = "abyssal_whip", min_energy = 250, if = { target_hp_percent = { max = 0.25 } } } },
+
+    # ---- Boost-potion gating rule (PvP-wide) -------------------------------
+    # Boosts are drunk ONLY at the start of a fight or right before a spec —
+    # never on plain decay during regular combat.
+    #
+    # `fight_starting` is a 5-tick clock set by BotFightPlayer.search() (and
+    # equivalents in BotCastSpell/BotFightNpc) every time a NEW InteractPlayer
+    # is queued. Five ticks gives `drink_delay` (~2 ticks per drink) room to
+    # sequence two-three drinks before the clock expires.
+    #
+    # super_strength is the spec-scaling stat for the dagger spec, so it
+    # ALSO fires inside the spec window via `any[fight_starting, target_hp...]`.
+    # super_attack/super_defence don't scale the spec, so they fight-start only.
+    { drink_potion = { item = "super_attack_*",   skill = "attack",   if = { clock = { id = "fight_starting" } } } },
+    { drink_potion = { item = "super_strength_*", skill = "strength", if = { any = [{ clock = { id = "fight_starting" } }, { target_hp_percent = { max = 0.25 } }] } } },
+    { drink_potion = { item = "super_defence_*",  skill = "defence",  if = { clock = { id = "fight_starting" } } } },
+
+    # Prayer restore: unconditional — BotDrinkPotion treats Skill.Prayer
+    # specially (drinks while current >= max), so any drained point fires it.
+    { drink_potion = { item = "super_restore_*", skill = "prayer" } },
+
+    # Safety-net restore: if a primary combat stat is dragged below 30% of
+    # max (e.g. after curse leeches or stacked saradomin brews on a brew
+    # template), drink super_restore even though prayer is already full.
+    # `skill_percent` reads current vs base/max as a percentage —
+    # see BotSkillPercent. Templates that carry brews additionally OR-in
+    # `variable brew_doses_since_restore.min=3` here; pvp_zerker has no brews.
+    { drink_potion = { item = "super_restore_*", skill = "strength", if = { skill_percent = { id = "strength", max_percent = 30 } } } },
+]
+
+# `produces` = events the activity emits when the bot's state changes. These
+# names ("skill:attack" etc.) are matched against the keys/events sets each
+# Condition declares; activities listed in `groups[event]` get re-evaluated
+# in BotManager.updateAvailable. Tag every skill the bot trains/drinks here
+# so the manager doesn't blacklist the activity after a successful fight.
+produces = [
+    { skill = "attack" },
+    { skill = "strength" },
+    { skill = "defence" },
+    { skill = "constitution" },
+    { skill = "prayer" },
+]
+# -----------------------------------------------------------------------------
+# End of pvp_zerker worked example. The templates below use the same
+# vocabulary — refer to the comments above when reading them.
+# -----------------------------------------------------------------------------
+
+[pvp_dharoker]
+requires = [
+    { skill = { id = "attack", min = 70 } },
+    { skill = { id = "strength", min = 70 } },
+    { skill = { id = "defence", min = 70 } },
+    { skill = { id = "constitution", min = 70 } },
+    { skill = { id = "prayer", min = 95 } },
+]
+setup = [
+    { equipment = { weapon = { id = "dharoks_greataxe" }, chest = { id = "dharoks_platebody" }, legs = { id = "dharoks_platelegs" }, hat = { id = "dharoks_helm" }, feet = { id = "dragon_boots" }, cape = { id = "obsidian_cape" } } },
+    { inventory = [
+        { id = "shark", min = 16 },
+        { id = "super_restore_4", min = 2 },
+        { id = "super_attack_4", min = 1 },
+        { id = "super_strength_4", min = 1 },
+        { id = "super_defence_4", min = 1 },
+        { id = "dwarven_rock_cake", min = 1 },
+        { id = "games_necklace_6", min = 1, equippable = true },
+    ] },
+    { area = { id = "$area" } },
+]
+actions = [
+    { interface = { option = "Select", id = "combat_styles:$style" } },
+    { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 25, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
+    { restart = { success = { area = { id = "$area", present = false } } } },
+]
+reactive = [
+    { pray = { id = "berserker", if = { area = { id = "$area" } } } },
+    { pray = { id = "soul_split", if = { area = { id = "$area" } } } },
+    { pray = { id = "turmoil", if = { area = { id = "$area" } } } },
+    # Boost potions only at fight start; dharoker has no spec.
+    { drink_potion = { item = "super_attack_*", skill = "attack", if = { clock = { id = "fight_starting" } } } },
+    { drink_potion = { item = "super_strength_*", skill = "strength", if = { clock = { id = "fight_starting" } } } },
+    { drink_potion = { item = "super_defence_*", skill = "defence", if = { clock = { id = "fight_starting" } } } },
+    { drink_potion = { item = "super_restore_*", skill = "prayer" } },
+    { drink_potion = { item = "super_restore_*", skill = "strength", if = { skill_percent = { id = "strength", max_percent = 30 } } } },
+]
+produces = [
+    { skill = "attack" },
+    { skill = "strength" },
+    { skill = "defence" },
+    { skill = "constitution" },
+    { skill = "prayer" },
+]
+
+[pvp_ags_main]
+requires = [
+    { skill = { id = "attack", min = 75 } },
+    { skill = { id = "strength", min = 85 } },
+    { skill = { id = "defence", min = 75 } },
+    { skill = { id = "constitution", min = 85 } },
+    { skill = { id = "prayer", min = 95 } },
+]
+setup = [
+    { equipment = { weapon = { id = "armadyl_godsword" }, chest = { id = "torva_platebody,bandos_chestplate" }, legs = { id = "torva_platelegs,bandos_tassets" }, hat = { id = "torva_full_helm,helm_of_neitiznot" }, feet = { id = "bandos_boots" }, amulet = { id = "amulet_of_fury" }, ring = { id = "berserker_ring" }, cape = { id = "obsidian_cape" } } },
+    { inventory = [
+        { id = "shark", min = 16 },
+        { id = "super_restore_4", min = 2 },
+        { id = "saradomin_brew_4", min = 2 },
+        { id = "overload_4", min = 1 },
+        { id = "abyssal_whip", min = 1, equippable = true },
+        { id = "games_necklace_6", min = 1, equippable = true },
+    ] },
+    { area = { id = "$area" } },
+]
+actions = [
+    { interface = { option = "Select", id = "combat_styles:$style" } },
+    { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 40, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
+    { restart = { success = { area = { id = "$area", present = false } } } },
+]
+reactive = [
+    { pray = { id = "deflect_melee", if = { attacker_style = { equals = "melee" } } } },
+    { pray = { id = "deflect_missiles", if = { attacker_style = { equals = "ranged" } } } },
+    { pray = { id = "deflect_magic", if = { attacker_style = { equals = "magic" } } } },
+    { pray = { id = "berserker", if = { area = { id = "$area" } } } },
+    { pray = { id = "turmoil", if = { area = { id = "$area" } } } },
+    { spec_attack = { weapon = "armadyl_godsword", fallback = "armadyl_godsword", min_energy = 500, if = { target_hp_percent = { max = 0.25 } } } },
+    # Overload at fight start or pre-spec; covers atk/str/def in one drink.
+    { drink_potion = { item = "overload_*", skill = "strength", if = { any = [{ clock = { id = "fight_starting" } }, { target_hp_percent = { max = 0.25 } }] } } },
+    { drink_potion = { item = "super_restore_*", skill = "prayer" } },
+    # Brew→food chain: food eaten this/last tick → drink brew next, stacking the overheal.
+    { drink_potion = { item = "saradomin_brew_*", skill = "constitution", if = { clock = { id = "just_ate_food" } } } },
+    # Restore once 3 brews have stacked enough debuff OR the primary combat stat dips below 30% max.
+    { drink_potion = { item = "super_restore_*", skill = "strength", if = { any = [{ variable = { id = "brew_doses_since_restore", default = 0, min = 3 } }, { skill_percent = { id = "strength", max_percent = 30 } }] } } },
+]
+produces = [
+    { skill = "attack" },
+    { skill = "strength" },
+    { skill = "defence" },
+    { skill = "constitution" },
+    { skill = "prayer" },
+]
+
+[pvp_obby_pure]
+requires = [
+    { skill = { id = "strength", min = 80 } },
+    { skill = { id = "defence", max = 1 } },
+    { skill = { id = "constitution", min = 70 } },
+]
+setup = [
+    { equipment = { weapon = { id = "tzhaar_ket_om" }, chest = { id = "iron_platebody" }, legs = { id = "iron_platelegs" }, hat = { id = "bearhead" }, amulet = { id = "berserker_necklace" }, cape = { id = "obsidian_cape" } } },
+    { inventory = [
+        { id = "shark", min = 18 },
+        { id = "super_strength_4", min = 2 },
+        { id = "granite_maul", min = 1, equippable = true },
+        { id = "games_necklace_6", min = 1, equippable = true },
+    ] },
+    { area = { id = "$area" } },
+]
+actions = [
+    { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 40, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
+    { restart = { success = { area = { id = "$area", present = false } } } },
+]
+reactive = [
+    { spec_attack = { weapon = "granite_maul", fallback = "tzhaar_ket_om", min_energy = 500, if = { target_hp_percent = { max = 0.35 } } } },
+    # Boost only at fight start or pre-spec; obby_pure has no super_restore so no safety-net.
+    { drink_potion = { item = "super_strength_*", skill = "strength", if = { any = [{ clock = { id = "fight_starting" } }, { target_hp_percent = { max = 0.35 } }] } } },
+]
+produces = [
+    { skill = "strength" },
+    { skill = "constitution" },
+]
+
+[pvp_msb_pure]
+requires = [
+    { skill = { id = "ranged", min = 70 } },
+    { skill = { id = "defence", max = 1 } },
+    { skill = { id = "constitution", min = 70 } },
+    { skill = { id = "prayer", min = 95 } },
+]
+setup = [
+    { equipment = { weapon = { id = "magic_shortbow" }, chest = { id = "black_dragonhide_body" }, legs = { id = "black_dragonhide_chaps" }, hat = { id = "archer_helm" }, feet = { id = "ranger_boots" }, hands = { id = "black_dragonhide_vambraces" }, ammo = { id = "rune_arrow", min = 10000 }, cape = { id = "avas_accumulator" } } },
+    { inventory = [
+        { id = "shark", min = 16 },
+        { id = "super_restore_4", min = 1 },
+        { id = "super_ranging_potion_4", min = 2 },
+        { id = "rune_arrow", min = 10000 },
+        { id = "games_necklace_6", min = 1, equippable = true },
+    ] },
+    { area = { id = "$area" } },
+]
+actions = [
+    { interface = { option = "Select", id = "combat_styles:$style" } },
+    { player = { option = "Attack", radius = 12, delay = 1, heal_percent = 40, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
+    { restart = { success = { area = { id = "$area", present = false } } } },
+]
+reactive = [
+    { pray = { id = "deflect_melee", if = { attacker_style = { equals = "melee" } } } },
+    { pray = { id = "deflect_missiles", if = { attacker_style = { equals = "ranged" } } } },
+    { pray = { id = "deflect_magic", if = { attacker_style = { equals = "magic" } } } },
+    { pray = { id = "berserker", if = { area = { id = "$area" } } } },
+    { pray = { id = "leech_ranged", if = { area = { id = "$area" } } } },
+    { spec_attack = { weapon = "magic_shortbow", fallback = "magic_shortbow", min_energy = 500, if = { target_hp_percent = { max = 0.25 } } } },
+    # Ranged boost at fight start or pre-spec; no decay redose during regular combat.
+    { drink_potion = { item = "super_ranging_potion_*", skill = "ranged", if = { any = [{ clock = { id = "fight_starting" } }, { target_hp_percent = { max = 0.25 } }] } } },
+    { drink_potion = { item = "super_restore_*", skill = "prayer" } },
+    { drink_potion = { item = "super_restore_*", skill = "ranged", if = { skill_percent = { id = "ranged", max_percent = 30 } } } },
+]
+produces = [
+    { skill = "ranged" },
+    { skill = "constitution" },
+    { skill = "prayer" },
+]
+
+[pvp_karils_tank]
+requires = [
+    { skill = { id = "ranged", min = 75 } },
+    { skill = { id = "defence", min = 70 } },
+    { skill = { id = "constitution", min = 75 } },
+    { skill = { id = "prayer", min = 95 } },
+]
+setup = [
+    { equipment = { weapon = { id = "rune_crossbow" }, chest = { id = "karils_top" }, legs = { id = "karils_skirt" }, hat = { id = "karils_coif" }, feet = { id = "ranger_boots" }, hands = { id = "black_dragonhide_vambraces" }, ammo = { id = "runite_bolts", min = 10000 }, amulet = { id = "amulet_of_fury" }, cape = { id = "avas_accumulator" } } },
+    { inventory = [
+        { id = "shark", min = 16 },
+        { id = "super_restore_4", min = 2 },
+        { id = "super_ranging_potion_4", min = 2 },
+        { id = "runite_bolts", min = 10000 },
+        { id = "games_necklace_6", min = 1, equippable = true },
+    ] },
+    { area = { id = "$area" } },
+]
+actions = [
+    { interface = { option = "Select", id = "combat_styles:$style" } },
+    { player = { option = "Attack", radius = 12, delay = 1, heal_percent = 40, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
+    { restart = { success = { area = { id = "$area", present = false } } } },
+]
+reactive = [
+    { pray = { id = "deflect_melee", if = { attacker_style = { equals = "melee" } } } },
+    { pray = { id = "deflect_missiles", if = { attacker_style = { equals = "ranged" } } } },
+    { pray = { id = "deflect_magic", if = { attacker_style = { equals = "magic" } } } },
+    { pray = { id = "berserker", if = { area = { id = "$area" } } } },
+    { pray = { id = "leech_ranged", if = { area = { id = "$area" } } } },
+    # Karil's tank has no spec, so the ranged boost only fires at fight start.
+    { drink_potion = { item = "super_ranging_potion_*", skill = "ranged", if = { clock = { id = "fight_starting" } } } },
+    { drink_potion = { item = "super_restore_*", skill = "prayer" } },
+    { drink_potion = { item = "super_restore_*", skill = "ranged", if = { skill_percent = { id = "ranged", max_percent = 30 } } } },
+]
+produces = [
+    { skill = "ranged" },
+    { skill = "defence" },
+    { skill = "constitution" },
+    { skill = "prayer" },
+]
+
+[pvp_ancient_tank]
+requires = [
+    { skill = { id = "magic", min = 94 } },
+    { skill = { id = "defence", min = 70 } },
+    { skill = { id = "constitution", min = 80 } },
+    { skill = { id = "prayer", min = 95 } },
+]
+setup = [
+    { equipment = { weapon = { id = "ancient_staff" }, shield = { id = "zamoraks_book_of_chaos" }, chest = { id = "ahrims_robe_top*" }, legs = { id = "ahrims_robe_skirt*" }, hat = { id = "ahrims_hood*" }, feet = { id = "infinity_boots" }, amulet = { id = "amulet_of_fury" }, cape = { id = "obsidian_cape" } } },
+    { inventory = [
+        { id = "shark", min = 14 },
+        { id = "saradomin_brew_4", min = 2 },
+        { id = "super_restore_4", min = 2 },
+        { id = "super_magic_potion_4", min = 2 },
+        { id = "blood_rune", min = 10000 },
+        { id = "death_rune", min = 10000 },
+        { id = "water_rune", min = 10000 },
+        { id = "chaos_rune", min = 10000 },
+        { id = "air_rune", min = 10000 },
+        { id = "games_necklace_6", min = 1, equippable = true },
+    ] },
+    { area = { id = "$area" } },
+]
+actions = [
+    { cast_spell = { family = "ice", radius = 12, delay = 1, heal_percent = 40, kite = true, area = "$area", success = { area = { id = "$area", present = false } } } },
+    { restart = { success = { area = { id = "$area", present = false } } } },
+]
+reactive = [
+    { pray = { id = "deflect_melee", if = { attacker_style = { equals = "melee" } } } },
+    { pray = { id = "deflect_missiles", if = { attacker_style = { equals = "ranged" } } } },
+    { pray = { id = "deflect_magic", if = { attacker_style = { equals = "magic" } } } },
+    { pray = { id = "berserker", if = { area = { id = "$area" } } } },
+    { pray = { id = "leech_magic", if = { area = { id = "$area" } } } },
+    # Magic boost only at fight start (ancient_tank has no spec).
+    { drink_potion = { item = "super_magic_potion_*", skill = "magic", if = { clock = { id = "fight_starting" } } } },
+    { drink_potion = { item = "super_restore_*", skill = "prayer" } },
+    # Brew→food chain: food eaten this/last tick → drink brew next, stacking the overheal.
+    { drink_potion = { item = "saradomin_brew_*", skill = "constitution", if = { clock = { id = "just_ate_food" } } } },
+    # Restore on 3 brew doses OR magic dipped below 30% max.
+    { drink_potion = { item = "super_restore_*", skill = "magic", if = { any = [{ variable = { id = "brew_doses_since_restore", default = 0, min = 3 } }, { skill_percent = { id = "magic", max_percent = 30 } }] } } },
+]
+produces = [
+    { skill = "magic" },
+    { skill = "defence" },
+    { skill = "constitution" },
+    { skill = "prayer" },
+]
+
+[pvp_ancient_hybrid]
+requires = [
+    { skill = { id = "magic", min = 94 } },
+    { skill = { id = "attack", min = 75 } },
+    { skill = { id = "strength", min = 80 } },
+    { skill = { id = "ranged", min = 75 } },
+    { skill = { id = "defence", min = 70 } },
+    { skill = { id = "constitution", min = 85 } },
+    { skill = { id = "prayer", min = 95 } },
+]
+setup = [
+    { equipment = { weapon = { id = "ancient_staff" }, shield = { id = "zamoraks_book_of_chaos" }, chest = { id = "virtus_robe_top*,ahrims_robe_top*" }, legs = { id = "virtus_robe_legs*,ahrims_robe_skirt*" }, hat = { id = "virtus_mask*,ahrims_hood*" }, feet = { id = "infinity_boots" }, amulet = { id = "amulet_of_fury" }, ring = { id = "berserker_ring" }, cape = { id = "obsidian_cape" } } },
+    { inventory = [
+        { id = "shark", min = 14 },
+        { id = "saradomin_brew_4", min = 2 },
+        { id = "super_restore_4", min = 2 },
+        { id = "blood_rune", min = 10000 },
+        { id = "death_rune", min = 10000 },
+        { id = "water_rune", min = 10000 },
+        { id = "chaos_rune", min = 10000 },
+        { id = "air_rune", min = 10000 },
+        { id = "armadyl_godsword", min = 1, equippable = true },
+        { id = "dark_bow", min = 1, equippable = true },
+        { id = "dragon_arrow", min = 50 },
+        { id = "games_necklace_6", min = 1, equippable = true },
+    ] },
+    { area = { id = "$area" } },
+]
+actions = [
+    { cast_spell = { family = "ice", radius = 12, delay = 1, heal_percent = 40, kite = true, area = "$area", success = { area = { id = "$area", present = false } } } },
+    { restart = { success = { area = { id = "$area", present = false } } } },
+]
+reactive = [
+    { pray = { id = "deflect_melee", if = { attacker_style = { equals = "melee" } } } },
+    { pray = { id = "deflect_missiles", if = { attacker_style = { equals = "ranged" } } } },
+    { pray = { id = "deflect_magic", if = { attacker_style = { equals = "magic" } } } },
+    { pray = { id = "berserker", if = { area = { id = "$area" } } } },
+    { pray = { id = "leech_strength", if = { area = { id = "$area" } } } },
+    { pray = { id = "soul_split", if = { area = { id = "$area" } } } },
+    { pray = { id = "turmoil", if = { area = { id = "$area" } } } },
+    { spec_attack = { weapon = "armadyl_godsword", fallback = "ancient_staff", min_energy = 500, if = { target_frozen = { hp_max = 0.30 } } } },
+    { spec_attack = { weapon = "dark_bow", fallback = "ancient_staff", min_energy = 550, if = { target_frozen = { hp_max = 0.30 } } } },
+    { drink_potion = { item = "super_restore_*", skill = "prayer" } },
+    # Brew→food chain: food eaten this/last tick → drink brew next, stacking the overheal.
+    { drink_potion = { item = "saradomin_brew_*", skill = "constitution", if = { clock = { id = "just_ate_food" } } } },
+    # Restore on 3 brew doses OR magic dipped below 30% max.
+    { drink_potion = { item = "super_restore_*", skill = "magic", if = { any = [{ variable = { id = "brew_doses_since_restore", default = 0, min = 3 } }, { skill_percent = { id = "magic", max_percent = 30 } }] } } },
+]
+produces = [
+    { skill = "magic" },
+    { skill = "attack" },
+    { skill = "strength" },
+    { skill = "ranged" },
+    { skill = "defence" },
+    { skill = "constitution" },
+    { skill = "prayer" },
+]
+
+# Dangerous-arena Clan Wars Templates
+
+[pvp_dangerous_melee]
+requires = [
+    { skill = { id = "attack", min = 60 } },
+    { skill = { id = "strength", min = 70 } },
+    { skill = { id = "defence", min = 40 } },
+    { skill = { id = "constitution", min = 70 } },
+    { skill = { id = "prayer", min = 95 } },
+    { skill = { id = "magic", min = 94 } },
+]
+setup = [
+    { equipment = { weapon = { id = "abyssal_whip" }, chest = { id = "fighter_torso" }, legs = { id = "rune_platelegs" }, hat = { id = "helm_of_neitiznot" }, feet = { id = "dragon_boots" }, amulet = { id = "amulet_of_glory_4" }, cape = { id = "obsidian_cape" } } },
+    { inventory = [
+        { id = "shark", min = 13 },
+        { id = "super_restore_4", min = 2 },
+        { id = "super_attack_4", min = 1 },
+        { id = "super_strength_4", min = 1 },
+        { id = "super_defence_4", min = 1 },
+        { id = "death_rune", min = 400 },
+        { id = "astral_rune", min = 400 },
+        { id = "earth_rune", min = 400 },
+        { id = "dragon_dagger_p++", min = 1, equippable = true },
+        { id = "games_necklace_6", min = 1, equippable = true },
+    ] },
+    { area = { id = "$area" } },
+]
+actions = [
+    { interface = { option = "Select", id = "combat_styles:$style" } },
+    { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 40, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
+    { restart = { success = { area = { id = "$area", present = false } } } },
+]
+reactive = [
+    { pray = { id = "deflect_melee", if = { attacker_style = { equals = "melee" } } } },
+    { pray = { id = "deflect_missiles", if = { attacker_style = { equals = "ranged" } } } },
+    { pray = { id = "deflect_magic", if = { attacker_style = { equals = "magic" } } } },
+    { pray = { id = "berserker", if = { area = { id = "$area" } } } },
+    { pray = { id = "turmoil", if = { area = { id = "$area" } } } },
+    { spec_attack = { weapon = "dragon_dagger_p++", fallback = "abyssal_whip", min_energy = 250, if = { target_hp_percent = { max = 0.25 } } } },
+    # Boost potions only at fight start (fight_starting clock) or pre-spec; no decay redose.
+    { drink_potion = { item = "super_attack_*", skill = "attack", if = { clock = { id = "fight_starting" } } } },
+    { drink_potion = { item = "super_strength_*", skill = "strength", if = { any = [{ clock = { id = "fight_starting" } }, { target_hp_percent = { max = 0.25 } }] } } },
+    { drink_potion = { item = "super_defence_*", skill = "defence", if = { clock = { id = "fight_starting" } } } },
+    { drink_potion = { item = "super_restore_*", skill = "prayer" } },
+    { drink_potion = { item = "super_restore_*", skill = "strength", if = { skill_percent = { id = "strength", max_percent = 30 } } } },
+    { cast_vengeance = { } },
+]
+produces = [
+    { skill = "attack" },
+    { skill = "strength" },
+    { skill = "defence" },
+    { skill = "constitution" },
+    { skill = "prayer" },
+    { skill = "magic" },
+]
+
+[pvp_dangerous_ranged]
+requires = [
+    { skill = { id = "ranged", min = 70 } },
+    { skill = { id = "defence", min = 40 } },
+    { skill = { id = "constitution", min = 70 } },
+    { skill = { id = "prayer", min = 95 } },
+]
+setup = [
+    { equipment = { weapon = { id = "magic_shortbow" }, chest = { id = "black_dragonhide_body" }, legs = { id = "black_dragonhide_chaps" }, hat = { id = "archer_helm" }, feet = { id = "snakeskin_boots" }, hands = { id = "black_dragonhide_vambraces" }, ammo = { id = "rune_arrow", min = 10000 }, amulet = { id = "amulet_of_glory_4" }, cape = { id = "avas_accumulator" } } },
+    { inventory = [
+        { id = "shark", min = 16 },
+        { id = "super_restore_4", min = 1 },
+        { id = "super_ranging_potion_4", min = 2 },
+        { id = "rune_arrow", min = 10000 },
+        { id = "games_necklace_6", min = 1, equippable = true },
+    ] },
+    { area = { id = "$area" } },
+]
+actions = [
+    { interface = { option = "Select", id = "combat_styles:$style" } },
+    { player = { option = "Attack", radius = 12, delay = 1, heal_percent = 40, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
+    { restart = { success = { area = { id = "$area", present = false } } } },
+]
+reactive = [
+    { pray = { id = "deflect_melee", if = { attacker_style = { equals = "melee" } } } },
+    { pray = { id = "deflect_missiles", if = { attacker_style = { equals = "ranged" } } } },
+    { pray = { id = "deflect_magic", if = { attacker_style = { equals = "magic" } } } },
+    { pray = { id = "berserker", if = { area = { id = "$area" } } } },
+    { pray = { id = "leech_ranged", if = { area = { id = "$area" } } } },
+    { spec_attack = { weapon = "magic_shortbow", fallback = "magic_shortbow", min_energy = 500, if = { target_hp_percent = { max = 0.25 } } } },
+    { drink_potion = { item = "super_ranging_potion_*", skill = "ranged", if = { any = [{ clock = { id = "fight_starting" } }, { target_hp_percent = { max = 0.25 } }] } } },
+    { drink_potion = { item = "super_restore_*", skill = "prayer" } },
+    { drink_potion = { item = "super_restore_*", skill = "ranged", if = { skill_percent = { id = "ranged", max_percent = 30 } } } },
+]
+produces = [
+    { skill = "ranged" },
+    { skill = "defence" },
+    { skill = "constitution" },
+    { skill = "prayer" },
+]
+
+[pvp_dangerous_hybrid]
+requires = [
+    { skill = { id = "attack", min = 75 } },
+    { skill = { id = "strength", min = 80 } },
+    { skill = { id = "ranged", min = 75 } },
+    { skill = { id = "magic", min = 94 } },
+    { skill = { id = "defence", min = 60 } },
+    { skill = { id = "constitution", min = 80 } },
+    { skill = { id = "prayer", min = 95 } },
+]
+hybrid_starting_loadout = "melee"
+hybrid_swap_cooldown = 3
+hybrid_swap_per_tick = 4
+setup = [
+    { equipment = { weapon = { id = "abyssal_whip" }, chest = { id = "fighter_torso" }, legs = { id = "rune_platelegs" }, hat = { id = "helm_of_neitiznot" }, feet = { id = "dragon_boots" }, amulet = { id = "amulet_of_glory_4" }, cape = { id = "obsidian_cape" } } },
+    { inventory = [
+        { id = "shark", min = 5 },
+        { id = "super_restore_4", min = 2 },
+        { id = "saradomin_brew_4", min = 2 },
+        { id = "games_necklace_6", min = 1, equippable = true },
+    ] },
+    { area = { id = "$area" } },
+]
+loadouts = { melee  = { equipment = { weapon = { id = "abyssal_whip" }, chest = { id = "fighter_torso" }, legs = { id = "rune_platelegs" }, hat = { id = "helm_of_neitiznot" }, feet = { id = "dragon_boots" } } },
+             magic  = { equipment = { weapon = { id = "ancient_staff" }, chest = { id = "mystic_robe_top_blue" }, legs = { id = "mystic_robe_bottom_blue" }, hat = { id = "mystic_hat_blue" }, feet = { id = "mystic_boots_blue" } },
+                        inventory = [ { id = "blood_rune", min = 2000 }, { id = "death_rune", min = 2000 }, { id = "water_rune", min = 5000 }],
+                        autocast = "ice_barrage" },
+            }
+
+actions = [
+    { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 40, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
+    { restart = { success = { area = { id = "$area", present = false } } } },
+]
+reactive = [
+    { switch_loadout = { counter_attacker = true } },
+    { pray = { id = "deflect_melee",    if = { attacker_style = { equals = "melee"  } } } },
+    { pray = { id = "deflect_missiles", if = { attacker_style = { equals = "ranged" } } } },
+    { pray = { id = "deflect_magic",    if = { attacker_style = { equals = "magic"  } } } },
+    { pray = { id = "berserker", if = { area = { id = "$area" } } } },
+    { pray = { id = "leech_strength", if = { area = { id = "$area" } } } },
+    { drink_potion = { item = "super_restore_*", skill = "prayer" } },
+    # Brew→food chain: food eaten this/last tick → drink brew next, stacking the overheal.
+    { drink_potion = { item = "saradomin_brew_*", skill = "constitution", if = { clock = { id = "just_ate_food" } } } },
+    # Restore on 3 brew doses OR strength dipped below 30% max.
+    { drink_potion = { item = "super_restore_*", skill = "strength", if = { any = [{ variable = { id = "brew_doses_since_restore", default = 0, min = 3 } }, { skill_percent = { id = "strength", max_percent = 30 } }] } } },
+]
+produces = [
+    { skill = "attack" },
+    { skill = "strength" },
+    { skill = "ranged" },
+    { skill = "magic" },
+    { skill = "defence" },
+    { skill = "constitution" },
+    { skill = "prayer" },
+]
+
+[pvp_dangerous_magic]
+requires = [
+    { skill = { id = "magic", min = 94 } },
+    { skill = { id = "defence", min = 40 } },
+    { skill = { id = "constitution", min = 70 } },
+    { skill = { id = "prayer", min = 95 } },
+]
+setup = [
+    { equipment = { weapon = { id = "ancient_staff" }, shield = { id = "zamoraks_book_of_chaos" }, chest = { id = "mystic_robe_top_blue" }, legs = { id = "mystic_robe_bottom_blue" }, hat = { id = "mystic_hat_blue" }, feet = { id = "mystic_boots_blue" }, hands = { id = "mystic_gloves_blue" }, amulet = { id = "amulet_of_glory_4" }, cape = { id = "saradomin_cape" } } },
+    { inventory = [
+        { id = "shark", min = 14 },
+        { id = "super_restore_4", min = 2 },
+        { id = "super_magic_potion_4", min = 2 },
+        { id = "blood_rune", min = 2500 },
+        { id = "death_rune", min = 2500 },
+        { id = "water_rune", min = 10000 },
+        { id = "chaos_rune", min = 2500 },
+        { id = "air_rune", min = 10000 },
+        { id = "games_necklace_6", min = 1, equippable = true },
+    ] },
+    { area = { id = "$area" } },
+]
+actions = [
+    { cast_spell = { family = "ice", radius = 12, delay = 1, heal_percent = 40, kite = true, area = "$area", success = { area = { id = "$area", present = false } } } },
+    { restart = { success = { area = { id = "$area", present = false } } } },
+]
+reactive = [
+    { pray = { id = "deflect_melee", if = { attacker_style = { equals = "melee" } } } },
+    { pray = { id = "deflect_missiles", if = { attacker_style = { equals = "ranged" } } } },
+    { pray = { id = "deflect_magic", if = { attacker_style = { equals = "magic" } } } },
+    { pray = { id = "berserker", if = { area = { id = "$area" } } } },
+    { pray = { id = "leech_magic", if = { area = { id = "$area" } } } },
+    # Magic boost only at fight start; pvp_dangerous_magic has no spec.
+    { drink_potion = { item = "super_magic_potion_*", skill = "magic", if = { clock = { id = "fight_starting" } } } },
+    { drink_potion = { item = "super_restore_*", skill = "prayer" } },
+    { drink_potion = { item = "super_restore_*", skill = "magic", if = { skill_percent = { id = "magic", max_percent = 30 } } } },
+]
+produces = [
+    { skill = "magic" },
+    { skill = "defence" },
+    { skill = "constitution" },
+    { skill = "prayer" },
+]

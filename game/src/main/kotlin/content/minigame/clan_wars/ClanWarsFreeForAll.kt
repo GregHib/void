@@ -108,13 +108,13 @@ class ClanWarsFreeForAll : Script {
         playerDeath {
             if (tile !in Areas["clan_wars_ffa_safe_arena"]) return@playerDeath
             it.dropItems = false
-            it.teleport = outside
+            it.teleport = Areas["clan_wars_teleport"].random()
         }
 
         // On death in dangerous arena: drop items, respawn outside
         playerDeath {
             if (tile !in Areas["clan_wars_ffa_dangerous_arena"]) return@playerDeath
-            it.teleport = outside
+            it.teleport = Areas["clan_wars_teleport"].random()
         }
     }
 }

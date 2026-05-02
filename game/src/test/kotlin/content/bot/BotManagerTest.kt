@@ -17,11 +17,18 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.type.setRandom
 
 class BotManagerTest {
 
-    fun testBot(vararg activities: BotActivity, name: String = "bot") = Bot(Player(accountName = name)).also { it.available.addAll(activities.map { a -> a.id }) }
+    fun testBot(vararg activities: BotActivity, name: String = "bot") = Bot(Player(accountName = name)).also {
+        // Real players link levels at login; mirror that here so BotSkillLevel.check (which reads
+        // levels.getMax) doesn't throw on the lateinit `level` property.
+        it.player.experience.player = it.player
+        it.player.levels.link(it.player, PlayerLevels(it.player.experience))
+        it.available.addAll(activities.map { a -> a.id })
+    }
 
     @BeforeEach
     fun setup() {

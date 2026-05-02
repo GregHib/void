@@ -9,9 +9,9 @@ import world.gregs.voidps.type.Zone
 
 object Players : Iterable<Player>, CharacterSearch<Player> {
     private val players = mutableListOf<Player>()
-    private val indexArray: Array<Player?> = arrayOfNulls(MAX_PLAYERS)
+    @PublishedApi internal val indexArray: Array<Player?> = arrayOfNulls(MAX_PLAYERS)
     private var indexer = 1
-    private val map = CharacterIndexMap(MAX_PLAYERS)
+    @PublishedApi internal val map = CharacterIndexMap(MAX_PLAYERS)
     val size: Int
         get() = players.size
 
@@ -69,6 +69,34 @@ object Players : Iterable<Player>, CharacterSearch<Player> {
             list.add(indexed(index) ?: return@onEach)
         }
         return list
+    }
+
+    /**
+     * Non-allocating chebyshev-radius scan centred on [center]. Iterates only the zones whose
+     * bounds overlap `[center.x ± radius]` × `[center.y ± radius]` on [center]'s level, then
+     * filters each zone's players by exact tile bounds.
+     *
+     * Dramatically cheaper than calling [at] per-tile in a spiral: one zone lookup per overlapping
+     * zone (≤ 25 for radius 15) versus 961 tile lookups each scanning the full zone.
+     */
+    inline fun forEachInRadius(center: Tile, radius: Int, action: (Player) -> Unit) {
+        val minZx = (center.x - radius) shr 3
+        val maxZx = (center.x + radius) shr 3
+        val minZy = (center.y - radius) shr 3
+        val maxZy = (center.y + radius) shr 3
+        val level = center.level
+        for (zx in minZx..maxZx) {
+            for (zy in minZy..maxZy) {
+                map.onEach(Zone.id(zx, zy, level)) { index ->
+                    val player = indexArray[index] ?: return@onEach
+                    val dx = player.tile.x - center.x
+                    if (dx < -radius || dx > radius) return@onEach
+                    val dy = player.tile.y - center.y
+                    if (dy < -radius || dy > radius) return@onEach
+                    action(player)
+                }
+            }
+        }
     }
 
     fun clear() {

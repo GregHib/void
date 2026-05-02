@@ -31,7 +31,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 object Target {
-    fun attackable(source: Character, target: Character): Boolean {
+    fun attackable(source: Character, target: Character, message: Boolean = true): Boolean {
         if (target is NPC) {
             if (target.id.startsWith("door_support") && NPCDefinitions.get(target.id).options[1] == "Destroy") {
                 return true
@@ -64,18 +64,20 @@ object Target {
         }
         if (source is Player && target is Player) {
             if (!source.inPvp && !source.inWilderness) {
-                source.message("You can only attack players in a player-vs-player area.")
+                if (message) source.message("You can only attack players in a player-vs-player area.")
                 return false
             }
             if (!target.inPvp && !target.inWilderness) {
-                source.message("That player is not in the wilderness.")
+                if (message) source.message("That player is not in the wilderness.")
                 return false
             }
             if (target.inWilderness) {
                 val range = Wilderness.combatRange(source)
                 if (target.combatLevel !in range) {
-                    source.message("Your level difference is too great!")
-                    source.message("You need to move deeper into the Wilderness.")
+                    if (message) {
+                        source.message("Your level difference is too great!")
+                        source.message("You need to move deeper into the Wilderness.")
+                    }
                     return false
                 }
             }
@@ -85,16 +87,18 @@ object Target {
         }
         // If the target I'm trying to attack is already in combat and I am not the attacker
         if (target.inSingleCombat && target.underAttack && target.attacker != source) {
-            if (target is NPC) {
-                (source as? Player)?.message("Someone else is fighting that.")
-            } else {
-                (source as? Player)?.message("That player is already under attack.")
+            if (message) {
+                if (target is NPC) {
+                    (source as? Player)?.message("Someone else is fighting that.")
+                } else {
+                    (source as? Player)?.message("That player is already under attack.")
+                }
             }
             return false
         }
         // If I am already in combat and my attempted target is not my attacker
         if (source.inSingleCombat && source.underAttack && source.attacker != target) {
-            (source as? Player)?.message("You are already in combat.")
+            if (message) (source as? Player)?.message("You are already in combat.")
             return false
         }
         // PVP area, slayer requirements, in combat etc..
