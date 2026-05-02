@@ -30,6 +30,7 @@ fun main() = application {
             - Scroll to top/bottom button
             - Fix filtering by null not working
             - Select/Copy from details panel
+            - Support for enum replacements e.g. component.type/contentType, anims.replayMode etc...
      */
     var screen by remember { mutableStateOf(AppScreen.PICKER) }
     var tabs by remember { mutableStateOf<List<DefinitionTab<*>>>(emptyList()) }

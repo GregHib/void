@@ -58,10 +58,10 @@ tasks.withType<JavaExec> {
 compose {
     desktop {
         application {
-            mainClass = "world.gregs.voidps.tools.search.MainKt" // The entry point of your app
+            mainClass = "world.gregs.voidps.tools.search.AppKt"
             nativeDistributions {
                 targetFormats(TargetFormat.Msi, TargetFormat.Deb)
-                packageName = "MyComposeApp"
+                packageName = "DefinitionBrowser"
                 packageVersion = "1.0.0"
             }
         }

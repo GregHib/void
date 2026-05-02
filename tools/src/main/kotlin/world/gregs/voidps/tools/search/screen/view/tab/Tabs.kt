@@ -37,7 +37,6 @@ object Tabs {
     const val VARS = "Vars"
     const val INVS = "Invs"
     const val STRUCTS = "Structs"
-    const val TABLES = "Tables"
 }
 
 fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
@@ -217,13 +216,13 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
         DefinitionTab(
             label = Tabs.ENUMS,
             clazz = EnumDefinition::class.java,
-            defaultColumns = listOf("id", "stringId"),
+            defaultColumns = listOf("id", "stringId", "keyType", "valueType", "map"),
             dependsOn = listOf(Tabs.ITEMS, Tabs.IFACES, Tabs.INVS, Tabs.NPCS, Tabs.OBJS, Tabs.STRUCTS)
         ) {
             EnumDefinitions.init(EnumDecoder().load(cache))
             if (loadConfig) {
-                // TODO tables
-                // EnumDefinitions.load(files.list(Settings["definitions.enums"]))
+                Tables.load(files.list(Settings["definitions.tables"]))
+                EnumDefinitions.load(files.list(Settings["definitions.enums"]))
             }
             EnumDefinitions.definitions.toList()
         },
@@ -290,7 +289,7 @@ private fun <T, F> decodeFull(
     cache: CacheDelegate,
     decoder: DefinitionDecoder<F>,
     definitions: DefinitionsDecoder<T>,
-): List<F> where T : Definition, T : Parameterized, F: Definition, F : Parameterized {
+): List<F> where T : Definition, T : Parameterized, F : Definition, F : Parameterized {
     return decoder.load(cache).map { full ->
         val def = definitions.getOrNull(full.id)
         val loaded = def?.params ?: return@map full
