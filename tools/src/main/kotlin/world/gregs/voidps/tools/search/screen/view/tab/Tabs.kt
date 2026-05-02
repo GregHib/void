@@ -43,6 +43,21 @@ import java.io.File
 import kotlin.collections.component1
 import kotlin.collections.component2
 
+object Tabs {
+    const val ITEMS = "Items"
+    const val NPCS = "NPCs"
+    const val OBJS = "Objs"
+    const val ANIMS = "Anims"
+    const val EMOTES = "Emotes"
+    const val GFX = "Gfx"
+    const val SOUNDS = "Sounds"
+    const val IFACES = "Ifaces"
+    const val COMPONENTS = "Components"
+    const val ENUMS = "Enums"
+    const val VARS = "Vars"
+    const val INVS = "Invs"
+}
+
 fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
     val file = File(path)
     val cachePath: String = when {
@@ -61,12 +76,12 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
 
     listOf(
         DefinitionTab(
-            label = "Items",
+            label = Tabs.ITEMS,
             clazz = ItemDefinition::class.java,
             defaultColumns = listOf("id", "stringId", "name"),
             fieldLinks = listOf(
-                FieldLink("noteId", "Items"),
-                FieldLink("lendId", "Items"),
+                FieldLink("noteId", Tabs.ITEMS),
+                FieldLink("lendId", Tabs.ITEMS),
             )
         ) {
             ItemDefinitions.init(ItemDecoder().load(cache))
@@ -76,18 +91,18 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
             ItemDefinitions.definitions.toList()
         },
         DefinitionTab(
-            label = "NPCs",
+            label = Tabs.NPCS,
             clazz = NPCDefinition::class.java,
             defaultColumns = listOf("id", "stringId", "name"),
             fieldLinks = listOf(
-                FieldLink("renderEmote", "Emotes"),
-                FieldLink("idleSound", "Sounds"),
-                FieldLink("crawlSound", "Sounds"),
-                FieldLink("walkSound", "Sounds"),
-                FieldLink("runSound", "Sounds"),
-                FieldLink("transforms", "NPCs"),
-                FieldLink("varbit", "Vars"),
-                FieldLink("varp", "Vars"),
+                FieldLink("renderEmote", Tabs.EMOTES),
+                FieldLink("idleSound", Tabs.SOUNDS),
+                FieldLink("crawlSound", Tabs.SOUNDS),
+                FieldLink("walkSound", Tabs.SOUNDS),
+                FieldLink("runSound", Tabs.SOUNDS),
+                FieldLink("transforms", Tabs.NPCS),
+                FieldLink("varbit", Tabs.VARS),
+                FieldLink("varp", Tabs.VARS),
             )
         ) {
             NPCDefinitions.init(NPCDecoder(true).load(cache))
@@ -97,13 +112,13 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
             NPCDefinitions.definitions.toList()
         },
         DefinitionTab(
-            label = "Objects",
+            label = Tabs.OBJS,
             clazz = ObjectDefinition::class.java,
             defaultColumns = listOf("id", "stringId", "name", "varbit", "varp"),
             fieldLinks = listOf(
-                FieldLink("transforms", "Objects"),
-                FieldLink("varbit", "Vars"),
-                FieldLink("varp", "Vars"),
+                FieldLink("transforms", Tabs.OBJS),
+                FieldLink("varbit", Tabs.VARS),
+                FieldLink("varp", Tabs.VARS),
             )
         ) {
             ObjectDefinitions.init(ObjectDecoder(member = true, lowDetail = false).load(cache))
@@ -113,7 +128,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
             ObjectDefinitions.definitions.toList()
         },
         DefinitionTab(
-            label = "Anims",
+            label = Tabs.ANIMS,
             clazz = AnimationDefinition::class.java,
             defaultColumns = listOf("id", "stringId", "priority")
         ) {
@@ -124,27 +139,27 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
             AnimationDefinitions.definitions.toList()
         },
         DefinitionTab(
-            label = "Emotes",
+            label = Tabs.EMOTES,
             clazz = RenderAnimationDefinition::class.java,
             defaultColumns = listOf("id", "primaryIdle", "primaryWalk", "run"),
             fieldLinks = listOf(
-                FieldLink("primaryIdle", "Anims"),
-                FieldLink("primaryWalk", "Anims"),
-                FieldLink("secondaryWalk", "Anims"),
-                FieldLink("run", "Anims"),
-                FieldLink("turning", "Anims"),
-                FieldLink("sideStepLeft", "Anims"),
-                FieldLink("sideStepRight", "Anims"),
+                FieldLink("primaryIdle", Tabs.ANIMS),
+                FieldLink("primaryWalk", Tabs.ANIMS),
+                FieldLink("secondaryWalk", Tabs.ANIMS),
+                FieldLink("run", Tabs.ANIMS),
+                FieldLink("turning", Tabs.ANIMS),
+                FieldLink("sideStepLeft", Tabs.ANIMS),
+                FieldLink("sideStepRight", Tabs.ANIMS),
             )
         ) {
             RenderAnimationDecoder().load(cache).toList()
         },
         DefinitionTab(
-            label = "Gfx",
+            label = Tabs.GFX,
             clazz = GraphicDefinition::class.java,
             defaultColumns = listOf("id", "stringId"),
             fieldLinks = listOf(
-                FieldLink("animationId", "Anims")
+                FieldLink("animationId", Tabs.ANIMS)
             )
         ) {
             GraphicDefinitions.init(GraphicDecoder().load(cache))
@@ -154,7 +169,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
             GraphicDefinitions.definitions.toList()
         },
         DefinitionTab(
-            label = "Sounds",
+            label = Tabs.SOUNDS,
             clazz = SoundDefinition::class.java,
             defaultColumns = listOf("id", "stringId")
         ) {
@@ -165,11 +180,18 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
             }
         },
         DefinitionTab(
-            label = "Ifaces",
+            label = Tabs.IFACES,
             clazz = InterfaceWrapper::class.java,
             defaultColumns = listOf("id", "stringId"),
             fieldLinks = listOf(
-                FieldLink("components", "Components")
+                FieldLink(
+                    "components", Tabs.COMPONENTS,
+                    targetFilters = listOf(
+                        "id" to "\$self",    // component.id == clicked value
+                        "parent" to "id",        // component.parent == interfaceDefinition.id
+                    ),
+                    resolveByFields = listOf("id", "parent"),
+                )
             ),
         ) {
             InterfaceDefinitions.init(InterfaceDecoder().load(cache))
@@ -193,11 +215,11 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
             }
         },
         DefinitionTab(
-            label = "Components",
+            label = Tabs.COMPONENTS,
             clazz = ComponentWrapper::class.java,
             defaultColumns = listOf("parent", "id", "stringId"),
-            fieldLinks = listOf(FieldLink("parent", "Ifaces")),
-            dependsOn = listOf("Ifaces")
+            fieldLinks = listOf(FieldLink("parent", Tabs.IFACES)),
+            dependsOn = listOf(Tabs.IFACES)
         ) {
             InterfaceDefinitions.definitions.flatMap { iface ->
                 iface.components?.map { (id, comp) ->
@@ -212,18 +234,22 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
                 } ?: emptyList()
             }
         },
-        DefinitionTab("Enums", EnumDefinition::class.java, listOf("id", "stringId")) {
+        DefinitionTab(
+            label = Tabs.ENUMS,
+            clazz = EnumDefinition::class.java,
+            defaultColumns = listOf("id", "stringId"),
+            dependsOn = listOf(Tabs.ITEMS, Tabs.IFACES, Tabs.INVS, Tabs.NPCS, Tabs.OBJS)
+        ) {
             EnumDefinitions.init(EnumDecoder().load(cache))
             if (loadConfig) {
                 // EnumDefinitions.load(files.list(Settings["definitions.enums"]))
             }
             EnumDefinitions.definitions.toList()
         },
-        DefinitionTab("Vars", VariableWrapper::class.java, listOf("id", "stringId", "type", "values")) {
+        DefinitionTab(Tabs.VARS, VariableWrapper::class.java, listOf("id", "stringId", "type", "values")) {
             if (loadConfig) {
                 VariableDefinitions.load(files)
             }
-            println(VariableDefinitions.definitions.keys)
             VariableDefinitions.definitions.map { (stringId, def) ->
                 VariableWrapper(
                     id = def.id,
@@ -250,11 +276,11 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
             }
         },
         DefinitionTab(
-            label = "Invs",
+            label = Tabs.INVS,
             clazz = InventoryDefinition::class.java,
             defaultColumns = listOf("id", "stringId"),
-            dependsOn = listOf("Items"),
-            fieldLinks = listOf(FieldLink("ids", "Items"))
+            dependsOn = listOf(Tabs.ITEMS),
+            fieldLinks = listOf(FieldLink("ids", Tabs.ITEMS))
         ) {
             InventoryDefinitions.init(InventoryDecoder().load(cache))
             if (loadConfig) {

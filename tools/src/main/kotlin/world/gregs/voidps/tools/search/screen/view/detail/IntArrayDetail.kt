@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.painterResource
 import world.gregs.void.tools.generated.resources.Res
 import world.gregs.void.tools.generated.resources.open_in_new
+import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.tools.search.BorderColor
 import world.gregs.voidps.tools.search.LinkColor
 import world.gregs.voidps.tools.search.TagBg
@@ -29,13 +30,14 @@ import world.gregs.voidps.tools.search.TagText
 import world.gregs.voidps.tools.search.TextSecond
 import world.gregs.voidps.tools.search.WarnAmber
 import world.gregs.voidps.tools.search.screen.view.resolveDisplayName
+import world.gregs.voidps.tools.search.screen.view.resolveNavigationFilters
 
 @Composable
 fun IntArrayDetail(
     arr: IntArray,
-    /** If set, each element is clickable and navigates to this tab */
-    linkTargetTab: String? = null,
-    onNavigate: ((String, Int) -> Unit)? = null,
+    link: FieldLink? = null,
+    sourceDef: Definition? = null,
+    onNavigate: ((String, Map<String, String>) -> Unit)? = null,
 ) {
     Column {
         Text("IntArray[${arr.size}]", fontSize = 10.sp, color = WarnAmber.copy(alpha = 0.7f), modifier = Modifier.padding(bottom = 3.dp))
@@ -43,14 +45,15 @@ fun IntArrayDetail(
             horizontalArrangement = Arrangement.spacedBy(4.dp),
             verticalArrangement = Arrangement.spacedBy(4.dp),
         ) {
+            val linkTargetTab = link?.targetTabLabel
             arr.forEach { v ->
                 val canLink = linkTargetTab != null && onNavigate != null && v != -1
-                val resolved = if (canLink) resolveDisplayName(linkTargetTab, v) else null
+                val resolved = if (canLink) resolveDisplayName(link.targetTabLabel, v, link) else null
                 Box(
                     Modifier
                         .background(if (canLink) LinkColor.copy(alpha = 0.1f) else TagBg, RoundedCornerShape(3.dp))
                         .border(0.5.dp, if (canLink) LinkColor.copy(alpha = 0.4f) else BorderColor, RoundedCornerShape(3.dp))
-                        .then(if (canLink) Modifier.clickable { onNavigate(linkTargetTab, v) } else Modifier)
+                        .then(if (canLink) Modifier.clickable { onNavigate(linkTargetTab, resolveNavigationFilters(link, v, sourceDef)) } else Modifier)
                         .padding(horizontal = 5.dp, vertical = 1.dp)
                 ) {
                     Row(

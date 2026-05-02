@@ -41,6 +41,7 @@ import world.gregs.voidps.tools.search.TextPrimary
 import world.gregs.voidps.tools.search.TextSecond
 import world.gregs.voidps.tools.search.displayValue
 import world.gregs.voidps.tools.search.screen.view.resolveDisplayName
+import world.gregs.voidps.tools.search.screen.view.resolveNavigationFilters
 import kotlin.collections.forEach
 import kotlin.reflect.KProperty1
 
@@ -49,7 +50,7 @@ fun DetailPanel(
     item: Definition,
     properties: List<KProperty1<Definition, *>>,
     fieldLinks: List<FieldLink>,
-    onNavigate: (targetLabel: String, filterId: Int) -> Unit,
+    onNavigate: (targetLabel: String, filters: Map<String, String>) -> Unit,
 ) {
     Column(
         modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(14.dp),
@@ -93,14 +94,14 @@ fun DetailPanel(
                         canLink -> LinkColor; faded -> TextMuted; else -> TextSecond
                     },
                     modifier = Modifier.weight(0.35f).then(
-                        if (canLink) Modifier.clickable { onNavigate(link.targetTabLabel, rawInt) } else Modifier
+                        if (canLink) Modifier.clickable { onNavigate(link.targetTabLabel, resolveNavigationFilters(link, rawInt, item)) } else Modifier
                     ))
                 Spacer(Modifier.width(8.dp))
 
                 Box(modifier = Modifier.weight(0.65f)) {
                     when {
                         prop.name == "params" && raw is Map<*, *> ->
-                            ParamsDetail(raw, fieldLinks, prop.name, onNavigate)
+                            ParamsDetail(raw, fieldLinks, prop.name, onNavigate, item)
 
                         raw is Boolean -> Box(
                             Modifier.background(
@@ -112,7 +113,8 @@ fun DetailPanel(
                         raw is IntArray -> {
                             IntArrayDetail(
                                 arr = raw,
-                                linkTargetTab = link?.targetTabLabel,
+                                link = link,
+                                sourceDef = item,
                                 onNavigate = if (link != null) onNavigate else null,
                             )
                         }
@@ -126,7 +128,7 @@ fun DetailPanel(
                                 Row(
                                     verticalAlignment = Alignment.CenterVertically,
                                     horizontalArrangement = Arrangement.spacedBy(5.dp),
-                                    modifier = Modifier.clickable { onNavigate(link.targetTabLabel, rawInt) }
+                                    modifier = Modifier.clickable { onNavigate(link.targetTabLabel, resolveNavigationFilters(link, rawInt, item)) }
                                 ) {
                                     Text(raw.toString(), fontSize = 12.sp, color = LinkColor, fontFamily = FontFamily.Monospace)
                                     Icon(painterResource(Res.drawable.open_in_new), null, tint = LinkColor.copy(alpha = 0.55f), modifier = Modifier.size(11.dp))

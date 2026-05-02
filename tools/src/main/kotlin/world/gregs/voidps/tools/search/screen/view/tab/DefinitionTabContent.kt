@@ -80,7 +80,7 @@ import kotlin.reflect.KProperty1
 
 @Suppress("UNCHECKED_CAST")
 @Composable
-fun DefinitionTabContent(state: TabState, onNavigate: (String, Int) -> Unit) {
+fun DefinitionTabContent(state: TabState, onNavigate: (String, Map<String, String>) -> Unit) {
     val clazz = state.clazz as Class<Definition>
     val properties: List<KProperty1<Definition, *>> = remember(clazz) { getProperties(clazz) }
     val allFieldNames = remember(clazz) { properties.map { it.name } }

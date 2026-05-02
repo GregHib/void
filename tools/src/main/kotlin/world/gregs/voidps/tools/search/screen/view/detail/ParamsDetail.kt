@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.painterResource
 import world.gregs.void.tools.generated.resources.Res
 import world.gregs.void.tools.generated.resources.open_in_new
+import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.tools.search.LinkColor
 import world.gregs.voidps.tools.search.ParamKey
 import world.gregs.voidps.tools.search.ParamVal
@@ -28,13 +29,15 @@ import world.gregs.voidps.tools.search.TagText
 import world.gregs.voidps.tools.search.TextMuted
 import world.gregs.voidps.tools.search.TextSecond
 import world.gregs.voidps.tools.search.screen.view.resolveDisplayName
+import world.gregs.voidps.tools.search.screen.view.resolveNavigationFilters
 
 @Composable
 fun ParamsDetail(
     map: Map<*, *>,
     fieldLinks: List<FieldLink>,
     fieldName: String,
-    onNavigate: (String, Int) -> Unit,
+    onNavigate: (String, Map<String, String>) -> Unit,
+    item: Definition
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
         map.entries.forEach { (k, v) ->
@@ -66,7 +69,7 @@ fun ParamsDetail(
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
-                        modifier = Modifier.clickable { onNavigate(link.targetTabLabel, valueInt) }
+                        modifier = Modifier.clickable { onNavigate(link.targetTabLabel, resolveNavigationFilters(link, valueInt, item)) }
                     ) {
                         Text(v.toString(), fontSize = 12.sp, color = LinkColor, fontFamily = FontFamily.Monospace)
                         val resolved = resolveDisplayName(link.targetTabLabel, valueInt)

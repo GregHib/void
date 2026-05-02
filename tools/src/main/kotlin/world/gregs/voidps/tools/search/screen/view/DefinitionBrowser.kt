@@ -51,6 +51,7 @@ import world.gregs.voidps.tools.search.BorderColor
 import world.gregs.voidps.tools.search.TextMuted
 import world.gregs.voidps.tools.search.TextPrimary
 import world.gregs.voidps.tools.search.TextSecond
+import world.gregs.voidps.tools.search.screen.view.detail.FieldLink
 import world.gregs.voidps.tools.search.screen.view.tab.DefinitionTab
 import world.gregs.voidps.tools.search.screen.view.tab.DefinitionTabContent
 import world.gregs.voidps.tools.search.screen.view.tab.TabState
@@ -96,7 +97,7 @@ fun DefinitionBrowser(
                         @Suppress("UNCHECKED_CAST")
                         state.definitions = (tabs[idx] as DefinitionTab<Definition>).loader()
                         // Update reverse lookup index
-                        tabDefinitionIndex[state.label] = state.definitions.associateBy { it.id }
+                        tabDefinitionIndex[state.label] = state.definitions.groupBy { it.id }
                     } catch (e: Exception) {
                         e.printStackTrace()
                         state.error = e.message ?: "Unknown error"
@@ -112,13 +113,18 @@ fun DefinitionBrowser(
         }
     }
 
-    fun navigateTo(targetLabel: String, filterId: Int) {
+    fun navigateTo(targetLabel: String, filters: Map<String, String>) {
         val idx = tabStates.indexOfFirst { it.label == targetLabel }
         if (idx == -1) return
         selectedIdx = idx
         tabStates[idx].apply {
-            columnFilters = columnFilters + ("id" to FieldFilter("id", filterId.toString(), MatchMode.EXACT))
-            if ("id" !in visibleColumns) visibleColumns = listOf("id") + visibleColumns
+            val newFilters = filters.entries.fold(columnFilters) { acc, (field, value) ->
+                acc + (field to FieldFilter(field, value, MatchMode.EXACT))
+            }
+            columnFilters = newFilters
+            // Ensure all filtered fields are visible
+            val missingCols = filters.keys.filter { it !in visibleColumns }
+            if (missingCols.isNotEmpty()) visibleColumns = missingCols + visibleColumns
         }
     }
 
@@ -210,21 +216,52 @@ fun DefinitionBrowser(
     }
 }
 
-
 /** Set once after all tabs finish loading; used by detail panel for name resolution. */
-val tabDefinitionIndex: MutableMap<String, Map<Int, Definition>> = mutableMapOf()
+val tabDefinitionIndex: MutableMap<String, Map<Int, List<Definition>>> = mutableMapOf()
 
-fun resolveDefinition(tabLabel: String, id: Int): Definition? =
-    tabDefinitionIndex[tabLabel]?.get(id)
-
-fun resolveDisplayName(tabLabel: String, id: Int): String? {
-    val def = resolveDefinition(tabLabel, id) ?: return null
-    println("Resolve $tabLabel $id $def")
-    // Try "stringId" then "name" fields via reflection
-    val properties = def.javaClass.declaredFields.mapNotNull { it.kotlinProperty }
-    return (properties.firstOrNull { it.name == "stringId" } ?: properties.firstOrNull { it.name == "name" })
-        ?.let {
-            @Suppress("UNCHECKED_CAST")
-            (it as? KProperty1<Any, *>)?.get(def)?.toString()?.takeIf { s -> s.isNotBlank() && s != "null" }
+@Suppress("UNCHECKED_CAST")
+fun resolveDisplayName(tabLabel: String, id: Int, link: FieldLink? = null): String? {
+    val indices = tabDefinitionIndex[tabLabel]?.get(id) ?: return null
+    val def = if (link == null || link.resolveByFields == listOf("id")) {
+        indices.firstOrNull()
+    } else {
+        val list = indices.filter { def ->
+            link.resolveByFields.any { field ->
+                val fieldVal = def.javaClass.declaredFields
+                    .firstOrNull { it.name == field }
+                    ?.also { it.isAccessible = true }
+                    ?.get(def)
+                    ?.toString()
+                fieldVal == id.toString()
+            }
         }
+        list.firstOrNull()
+    }
+    def ?: return null
+    return def.javaClass.declaredFields
+        .mapNotNull { it.kotlinProperty }
+        .let { props ->
+            (props.firstOrNull { it.name == "stringId" } ?: props.firstOrNull { it.name == "name" })
+                ?.let { (it as? KProperty1<Any, *>)?.get(def)?.toString() }
+                ?.takeIf { it.isNotBlank() && it != "null" && it != def.id.toString() }
+        }
+}
+
+fun resolveNavigationFilters(
+    link: FieldLink,
+    clickedValue: Int,
+    sourceDef: Definition?,
+): Map<String, String> = link.targetFilters.associate { (targetField, sourceExpr) ->
+    val value = if (sourceExpr == "\$self") {
+        clickedValue.toString()
+    } else {
+        // Read the named field from the source definition
+        sourceDef?.javaClass?.declaredFields
+            ?.firstOrNull { it.name == sourceExpr }
+            ?.also { it.isAccessible = true }
+            ?.get(sourceDef)
+            ?.toString()
+            ?: clickedValue.toString()
+    }
+    targetField to value
 }
