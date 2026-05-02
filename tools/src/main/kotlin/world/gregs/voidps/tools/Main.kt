@@ -49,8 +49,12 @@ import world.gregs.voidps.cache.definition.Parameterized
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.*
 import world.gregs.voidps.cache.definition.decoder.*
+import world.gregs.voidps.engine.client.variable.BitwiseValues
+import world.gregs.voidps.engine.client.variable.ListValues
+import world.gregs.voidps.engine.client.variable.MapValues
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.SoundDefinition
+import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
@@ -143,10 +147,10 @@ fun resolveDefinition(tabLabel: String, id: Int): Definition? =
 
 fun resolveDisplayName(tabLabel: String, id: Int): String? {
     val def = resolveDefinition(tabLabel, id) ?: return null
-    // Try "name" then "stringId" fields via reflection
-    return def.javaClass.declaredFields
-        .mapNotNull { it.kotlinProperty }
-        .firstOrNull { it.name == "name" || it.name == "stringId" }
+    println("Resolve $tabLabel $id $def")
+    // Try "stringId" then "name" fields via reflection
+    val properties = def.javaClass.declaredFields.mapNotNull { it.kotlinProperty }
+    return (properties.firstOrNull { it.name == "stringId" } ?: properties.firstOrNull { it.name == "name" })
         ?.let {
             @Suppress("UNCHECKED_CAST")
             (it as? KProperty1<Any, *>)?.get(def)?.toString()?.takeIf { s -> s.isNotBlank() && s != "null" }
@@ -608,12 +612,22 @@ fun ResultRow(
             }
             columns.forEach { prop ->
                 val singleVal = displayValue(
-                    try { prop.get(item) } catch (_: Exception) { null },
+                    try {
+                        prop.get(item)
+                    } catch (_: Exception) {
+                        null
+                    },
                     prop.name == "params"
                 )
                 val copyText = if (isMulti) {
                     targets.joinToString("\n") { row ->
-                        displayValue(try { prop.get(row) } catch (_: Exception) { null }, prop.name == "params")
+                        displayValue(
+                            try {
+                                prop.get(row)
+                            } catch (_: Exception) {
+                                null
+                            }, prop.name == "params"
+                        )
                     }
                 } else singleVal
 
@@ -647,7 +661,13 @@ fun ResultRow(
                     },
                     onClick = {
                         val all = columns.joinToString("\t") { prop ->
-                            displayValue(try { prop.get(item) } catch (_: Exception) { null }, prop.name == "params")
+                            displayValue(
+                                try {
+                                    prop.get(item)
+                                } catch (_: Exception) {
+                                    null
+                                }, prop.name == "params"
+                            )
                         }
                         copyToClipboard(all)
                         showMenu = false
@@ -700,10 +720,10 @@ fun ParamsDetail(
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
-                        modifier = Modifier.clickable { onNavigate(link!!.targetTabLabel, valueInt!!) }
+                        modifier = Modifier.clickable { onNavigate(link.targetTabLabel, valueInt) }
                     ) {
                         Text(v.toString(), fontSize = 12.sp, color = LinkColor, fontFamily = FontFamily.Monospace)
-                        val resolved = resolveDisplayName(link!!.targetTabLabel, valueInt!!)
+                        val resolved = resolveDisplayName(link.targetTabLabel, valueInt)
                         if (resolved != null) {
                             Text("($resolved)", fontSize = 10.sp, color = TextSecond)
                         }
@@ -846,7 +866,7 @@ fun DetailPanel(
                         canLink -> LinkColor; faded -> TextMuted; else -> TextSecond
                     },
                     modifier = Modifier.weight(0.35f).then(
-                        if (canLink) Modifier.clickable { onNavigate(link!!.targetTabLabel, rawInt) } else Modifier
+                        if (canLink) Modifier.clickable { onNavigate(link.targetTabLabel, rawInt) } else Modifier
                     ))
                 Spacer(Modifier.width(8.dp))
 
@@ -875,7 +895,7 @@ fun DetailPanel(
 
                         canLink -> {
                             // Single int with link — show id + resolved name
-                            val resolved = resolveDisplayName(link!!.targetTabLabel, rawInt)
+                            val resolved = resolveDisplayName(link.targetTabLabel, rawInt)
                             Column(verticalArrangement = Arrangement.spacedBy(1.dp)) {
                                 Row(
                                     verticalAlignment = Alignment.CenterVertically,
@@ -1465,7 +1485,15 @@ private fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatchin
     val cache = CacheDelegate(cachePath)
 
     listOf(
-        DefinitionTab("Items", ItemDefinition::class.java, listOf("id", "stringId", "name")) {
+        DefinitionTab(
+            label = "Items",
+            clazz = ItemDefinition::class.java,
+            defaultColumns = listOf("id", "stringId", "name"),
+            fieldLinks = listOf(
+                FieldLink("noteId", "Items"),
+                FieldLink("lendId", "Items"),
+            )
+        ) {
             ItemDefinitions.init(ItemDecoder().load(cache))
             if (loadConfig) {
                 ItemDefinitions.load(files.list(Settings["definitions.items"]))
@@ -1473,14 +1501,18 @@ private fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatchin
             ItemDefinitions.definitions.toList()
         },
         DefinitionTab(
-            "NPCs", NPCDefinition::class.java, listOf("id", "stringId", "name"),
-            listOf(
+            label = "NPCs",
+            clazz = NPCDefinition::class.java,
+            defaultColumns = listOf("id", "stringId", "name"),
+            fieldLinks = listOf(
                 FieldLink("renderEmote", "Emotes"),
                 FieldLink("idleSound", "Sounds"),
                 FieldLink("crawlSound", "Sounds"),
                 FieldLink("walkSound", "Sounds"),
                 FieldLink("runSound", "Sounds"),
-                FieldLink("transforms", "NPCs"),   // IntArray — each element clickable
+                FieldLink("transforms", "NPCs"),
+                FieldLink("varbit", "Vars"),
+                FieldLink("varp", "Vars"),
             )
         ) {
             NPCDefinitions.init(NPCDecoder(true).load(cache))
@@ -1489,38 +1521,82 @@ private fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatchin
             }
             NPCDefinitions.definitions.toList()
         },
-        DefinitionTab("Objects", ObjectDefinition::class.java, listOf("id", "stringId", "name", "varbit", "varp")) {
+        DefinitionTab(
+            label = "Objects",
+            clazz = ObjectDefinition::class.java,
+            defaultColumns = listOf("id", "stringId", "name", "varbit", "varp"),
+            fieldLinks = listOf(
+                FieldLink("transforms", "Objects"),
+                FieldLink("varbit", "Vars"),
+                FieldLink("varp", "Vars"),
+            )
+        ) {
             ObjectDefinitions.init(ObjectDecoder(member = true, lowDetail = false).load(cache))
             if (loadConfig) {
                 ObjectDefinitions.load(files.getValue(Settings["definitions.objects"]))
             }
             ObjectDefinitions.definitions.toList()
         },
-        DefinitionTab("Anims", AnimationDefinition::class.java, listOf("id", "stringId", "priority")) {
+        DefinitionTab(
+            label = "Anims",
+            clazz = AnimationDefinition::class.java,
+            defaultColumns = listOf("id", "stringId", "priority")
+        ) {
             AnimationDefinitions.init(AnimationDecoder().load(cache))
             if (loadConfig) {
                 AnimationDefinitions.load(files.getValue(Settings["definitions.animations"]))
             }
             AnimationDefinitions.definitions.toList()
         },
-        DefinitionTab("Emotes", RenderAnimationDefinition::class.java, listOf("id", "primaryIdle", "primaryWalk", "run")) {
+        DefinitionTab(
+            label = "Emotes",
+            clazz = RenderAnimationDefinition::class.java,
+            defaultColumns = listOf("id", "primaryIdle", "primaryWalk", "run"),
+            fieldLinks = listOf(
+                FieldLink("primaryIdle", "Anims"),
+                FieldLink("primaryWalk", "Anims"),
+                FieldLink("secondaryWalk", "Anims"),
+                FieldLink("run", "Anims"),
+                FieldLink("turning", "Anims"),
+                FieldLink("sideStepLeft", "Anims"),
+                FieldLink("sideStepRight", "Anims"),
+            )
+        ) {
             RenderAnimationDecoder().load(cache).toList()
         },
-        DefinitionTab("Gfx", GraphicDefinition::class.java, listOf("id", "stringId")) {
+        DefinitionTab(
+            label = "Gfx",
+            clazz = GraphicDefinition::class.java,
+            defaultColumns = listOf("id", "stringId"),
+            fieldLinks = listOf(
+                FieldLink("animationId", "Anims")
+            )
+        ) {
             GraphicDefinitions.init(GraphicDecoder().load(cache))
             if (loadConfig) {
                 GraphicDefinitions.load(files.list(Settings["definitions.graphics"]))
             }
             GraphicDefinitions.definitions.toList()
         },
-        DefinitionTab("Sounds", SoundDefinition::class.java, listOf("id", "stringId")) {
+        DefinitionTab(
+            label = "Sounds",
+            clazz = SoundDefinition::class.java,
+            defaultColumns = listOf("id", "stringId")
+        ) {
             if (loadConfig) {
                 SoundDefinitions().load(files.list(Settings["definitions.sounds"])).definitions.toList()
             } else {
                 emptyList()
             }
         },
-        DefinitionTab("Ifaces", InterfaceDefinition::class.java, listOf("id", "stringId")) {
+        DefinitionTab(
+            label = "Ifaces",
+            clazz = InterfaceWrapper::class.java,
+            defaultColumns = listOf("id", "stringId"),
+            fieldLinks = listOf(
+                FieldLink("components", "Components")
+            ),
+        ) {
             InterfaceDefinitions.init(InterfaceDecoder().load(cache))
             if (loadConfig) {
                 InterfaceDefinitions.load(
@@ -1528,7 +1604,38 @@ private fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatchin
                     files.find(Settings["definitions.interfaces.types"])
                 )
             }
-            InterfaceDefinitions.definitions.toList()
+            InterfaceDefinitions.definitions.map {
+                InterfaceWrapper(
+                    id = it.id,
+                    components = it.components?.keys?.toIntArray(),
+                    type = it.type,
+                    fixed = it.fixed,
+                    resizable = it.resizable,
+                    permanent = it.permanent,
+                    stringId = it.stringId,
+                    params = it.params
+                )
+            }
+        },
+        DefinitionTab(
+            label = "Components",
+            clazz = ComponentWrapper::class.java,
+            defaultColumns = listOf("parent", "id", "stringId"),
+            fieldLinks = listOf(FieldLink("parent", "Ifaces")),
+            dependsOn = listOf("Ifaces")
+        ) {
+            InterfaceDefinitions.definitions.flatMap { iface ->
+                iface.components?.map { (id, comp) ->
+                    ComponentWrapper(
+                        id = InterfaceDefinition.componentId(id),
+                        parent = iface.id,
+                        options = comp.options,
+                        information = comp.information,
+                        stringId = comp.stringId,
+                        params = comp.params
+                    )
+                } ?: emptyList()
+            }
         },
         DefinitionTab("Enums", EnumDefinition::class.java, listOf("id", "stringId")) {
             EnumDefinitions.init(EnumDecoder().load(cache))
@@ -1536,6 +1643,36 @@ private fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatchin
                 // EnumDefinitions.load(files.list(Settings["definitions.enums"]))
             }
             EnumDefinitions.definitions.toList()
+        },
+        DefinitionTab("Vars", VariableWrapper::class.java, listOf("id", "stringId", "type", "values")) {
+            if (loadConfig) {
+                VariableDefinitions.load(files)
+            }
+            println(VariableDefinitions.definitions.keys)
+            VariableDefinitions.definitions.map { (stringId, def) ->
+                VariableWrapper(
+                    id = def.id,
+                    type = when (def) {
+                        is VariableDefinition.VarbitDefinition -> "varbit"
+                        is VariableDefinition.VarpDefinition -> "varp"
+                        is VariableDefinition.VarcDefinition -> "varc"
+                        is VariableDefinition.VarcStrDefinition -> "varcstr"
+                        is VariableDefinition.CustomVariableDefinition -> "custom"
+                        else -> "unknown"
+                    },
+                    valueType = def.values::class.simpleName?.removeSuffix("Values")?.lowercase() ?: "",
+                    values = when (val vals = def.values) {
+                        is ListValues -> vals.values
+                        is MapValues -> vals.values
+                        is BitwiseValues -> vals.values
+                        else -> null
+                    },
+                    default = def.defaultValue,
+                    persist = def.persistent,
+                    transmit = def.transmit,
+                    stringId = stringId,
+                )
+            }
         },
         // Improvement 4: Inventories depend on Items (so item names resolve in detail panel)
         DefinitionTab(
@@ -1556,6 +1693,38 @@ private fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatchin
         },
     )
 }
+
+data class ComponentWrapper(
+    override var id: Int = -1,
+    var parent: Int = -1,
+    var options: Array<String?>? = null,
+    var information: Array<Any>? = null,
+    override var stringId: String = "",
+    override var params: Map<Int, Any>? = null,
+) : Definition, Parameterized
+
+data class InterfaceWrapper(
+    override var id: Int = -1,
+    var components: IntArray? = null,
+    var type: String? = null,
+    var fixed: Int = -1,
+    var resizable: Int = -1,
+    var permanent: Boolean = true,
+    override var stringId: String = "",
+    override var params: Map<Int, Any>? = null,
+) : Definition, Parameterized
+
+data class VariableWrapper(
+    override var id: Int,
+    val type: String,
+    val valueType: String,
+    val values: Any? = null,
+    val default: Any? = null,
+    val persist: Boolean,
+    val transmit: Boolean,
+    override var stringId: String,
+    override var params: Map<Int, Any>? = null,
+) : Definition, Parameterized
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Entry point
