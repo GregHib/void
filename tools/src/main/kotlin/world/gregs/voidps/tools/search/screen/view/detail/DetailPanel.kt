@@ -123,7 +123,7 @@ fun DetailPanel(
 
                         canLink -> {
                             // Single int with link — show id + resolved name
-                            val resolved = resolveDisplayName(link.targetTabLabel, rawInt)
+                            val resolved = resolveDisplayName(link.targetTabLabel, rawInt, link = link, item = item)
                             Column(verticalArrangement = Arrangement.spacedBy(1.dp)) {
                                 Row(
                                     verticalAlignment = Alignment.CenterVertically,

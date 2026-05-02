@@ -48,7 +48,7 @@ fun IntArrayDetail(
             val linkTargetTab = link?.targetTabLabel
             arr.forEach { v ->
                 val canLink = linkTargetTab != null && onNavigate != null && v != -1
-                val resolved = if (canLink) resolveDisplayName(link.targetTabLabel, v, link) else null
+                val resolved = if (canLink) resolveDisplayName(link.targetTabLabel, v, link, sourceDef) else null
                 Box(
                     Modifier
                         .background(if (canLink) LinkColor.copy(alpha = 0.1f) else TagBg, RoundedCornerShape(3.dp))

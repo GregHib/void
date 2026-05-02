@@ -66,7 +66,7 @@ fun OverflowTabBar(
             .border(BorderStroke(0.5.dp, BorderColor))
     ) {
         // Reserve space for the actions slot (Reload + Load path buttons) and more button
-        val actionsWidth = 55.dp
+        val actionsWidth = 75.dp
         val availableForTabs = maxWidth - actionsWidth - moreButtonWidth
 
         // Greedily fit tabs left-to-right at tabMinWidth each

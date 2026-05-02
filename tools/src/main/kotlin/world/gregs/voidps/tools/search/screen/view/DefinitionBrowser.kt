@@ -169,19 +169,28 @@ fun DefinitionBrowser(
 val tabDefinitionIndex: MutableMap<String, Map<Int, List<Definition>>> = mutableMapOf()
 
 @Suppress("UNCHECKED_CAST")
-fun resolveDisplayName(tabLabel: String, id: Int, link: FieldLink? = null): String? {
+fun resolveDisplayName(tabLabel: String, id: Int, link: FieldLink? = null, item: Definition? = null): String? {
     val indices = tabDefinitionIndex[tabLabel]?.get(id) ?: return null
     val def = if (link == null || link.resolveByFields == listOf("id")) {
         indices.firstOrNull()
     } else {
         val list = indices.filter { def ->
-            link.resolveByFields.any { field ->
+            link.resolveByFields.all { field ->
                 val fieldVal = def.javaClass.declaredFields
                     .firstOrNull { it.name == field }
                     ?.also { it.isAccessible = true }
                     ?.get(def)
                     ?.toString()
-                fieldVal == id.toString()
+
+                val to = link.targetFilters.firstOrNull { it.first == field }?.second
+                val itemVal = if (item != null && to != null) {
+                    item.javaClass.declaredFields
+                        .firstOrNull { it.name == to }
+                        ?.also { it.isAccessible = true }
+                        ?.get(item)
+                        ?.toString()
+                } else id.toString()
+                fieldVal == itemVal
             }
         }
         list.firstOrNull()

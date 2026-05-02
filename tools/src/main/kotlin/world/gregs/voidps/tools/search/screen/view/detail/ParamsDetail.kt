@@ -72,7 +72,7 @@ fun ParamsDetail(
                         modifier = Modifier.clickable { onNavigate(link.targetTabLabel, resolveNavigationFilters(link, valueInt, item)) }
                     ) {
                         Text(v.toString(), fontSize = 12.sp, color = LinkColor, fontFamily = FontFamily.Monospace)
-                        val resolved = resolveDisplayName(link.targetTabLabel, valueInt)
+                        val resolved = resolveDisplayName(link.targetTabLabel, valueInt, item = item)
                         if (resolved != null) {
                             Text("($resolved)", fontSize = 10.sp, color = TextSecond)
                         }

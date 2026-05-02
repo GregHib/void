@@ -2,6 +2,7 @@ package world.gregs.voidps.tools.search.screen.view.tab
 
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Definition
+import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.cache.config.data.RenderAnimationDefinition
 import world.gregs.voidps.cache.config.data.StructDefinition
@@ -9,20 +10,8 @@ import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.RenderAnimationDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.Parameterized
-import world.gregs.voidps.cache.definition.data.AnimationDefinition
-import world.gregs.voidps.cache.definition.data.EnumDefinition
-import world.gregs.voidps.cache.definition.data.GraphicDefinition
-import world.gregs.voidps.cache.definition.data.InterfaceDefinition
-import world.gregs.voidps.cache.definition.data.ItemDefinition
-import world.gregs.voidps.cache.definition.data.NPCDefinition
-import world.gregs.voidps.cache.definition.data.ObjectDefinition
-import world.gregs.voidps.cache.definition.decoder.AnimationDecoder
-import world.gregs.voidps.cache.definition.decoder.EnumDecoder
-import world.gregs.voidps.cache.definition.decoder.GraphicDecoder
-import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
-import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.cache.definition.decoder.NPCDecoder
-import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
+import world.gregs.voidps.cache.definition.data.*
+import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.engine.client.variable.BitwiseValues
 import world.gregs.voidps.engine.client.variable.ListValues
 import world.gregs.voidps.engine.client.variable.MapValues
@@ -30,21 +19,9 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.SoundDefinition
 import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.data.configFiles
-import world.gregs.voidps.engine.data.definition.AnimationDefinitions
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
-import world.gregs.voidps.engine.data.definition.GraphicDefinitions
-import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.data.definition.InventoryDefinitions
-import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.engine.data.definition.ObjectDefinitions
-import world.gregs.voidps.engine.data.definition.SoundDefinitions
-import world.gregs.voidps.engine.data.definition.StructDefinitions
-import world.gregs.voidps.engine.data.definition.VariableDefinitions
+import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.tools.search.screen.view.detail.FieldLink
 import java.io.File
-import kotlin.collections.component1
-import kotlin.collections.component2
 
 object Tabs {
     const val ITEMS = "Items"
@@ -79,10 +56,11 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
     }
     val cache = CacheDelegate(cachePath)
 
+
     listOf(
         DefinitionTab(
             label = Tabs.ITEMS,
-            clazz = ItemDefinition::class.java,
+            clazz = ItemDefinitionFull::class.java,
             defaultColumns = listOf("id", "stringId", "name"),
             fieldLinks = listOf(
                 FieldLink("noteId", Tabs.ITEMS),
@@ -93,11 +71,11 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
             if (loadConfig) {
                 ItemDefinitions.load(files.list(Settings["definitions.items"]))
             }
-            ItemDefinitions.definitions.toList()
+            decodeFull(cache, ItemDecoderFull(), ItemDefinitions)
         },
         DefinitionTab(
             label = Tabs.NPCS,
-            clazz = NPCDefinition::class.java,
+            clazz = NPCDefinitionFull::class.java,
             defaultColumns = listOf("id", "stringId", "name"),
             fieldLinks = listOf(
                 FieldLink("renderEmote", Tabs.EMOTES),
@@ -114,11 +92,11 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
             if (loadConfig) {
                 NPCDefinitions.load(files.getValue(Settings["definitions.npcs"]))
             }
-            NPCDefinitions.definitions.toList()
+            decodeFull(cache, NPCDecoderFull(), NPCDefinitions)
         },
         DefinitionTab(
             label = Tabs.OBJS,
-            clazz = ObjectDefinition::class.java,
+            clazz = ObjectDefinitionFull::class.java,
             defaultColumns = listOf("id", "stringId", "name", "varbit", "varp"),
             fieldLinks = listOf(
                 FieldLink("transforms", Tabs.OBJS),
@@ -130,18 +108,18 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
             if (loadConfig) {
                 ObjectDefinitions.load(files.getValue(Settings["definitions.objects"]))
             }
-            ObjectDefinitions.definitions.toList()
+            decodeFull(cache, ObjectDecoderFull(), ObjectDefinitions)
         },
         DefinitionTab(
             label = Tabs.ANIMS,
-            clazz = AnimationDefinition::class.java,
+            clazz = AnimationDefinitionFull::class.java,
             defaultColumns = listOf("id", "stringId", "priority")
         ) {
             AnimationDefinitions.init(AnimationDecoder().load(cache))
             if (loadConfig) {
                 AnimationDefinitions.load(files.getValue(Settings["definitions.animations"]))
             }
-            AnimationDefinitions.definitions.toList()
+            decodeFull(cache, AnimationDecoderFull(), AnimationDefinitions)
         },
         DefinitionTab(
             label = Tabs.EMOTES,
@@ -195,7 +173,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
                         "id" to "\$self",    // component.id == clicked value
                         "parent" to "id",        // component.parent == interfaceDefinition.id
                     ),
-                    resolveByFields = listOf("id", "parent"),
+                    resolveByFields = listOf("parent"),
                 )
             ),
         ) {
@@ -221,22 +199,18 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
         },
         DefinitionTab(
             label = Tabs.COMPONENTS,
-            clazz = ComponentWrapper::class.java,
+            clazz = InterfaceComponentDefinitionFull::class.java,
             defaultColumns = listOf("parent", "id", "stringId"),
             fieldLinks = listOf(FieldLink("parent", Tabs.IFACES)),
             dependsOn = listOf(Tabs.IFACES)
         ) {
-            InterfaceDefinitions.definitions.flatMap { iface ->
-                iface.components?.map { (id, comp) ->
-                    ComponentWrapper(
-                        id = InterfaceDefinition.componentId(id),
-                        parent = iface.id,
-                        options = comp.options,
-                        information = comp.information,
-                        stringId = comp.stringId,
-                        params = comp.params
-                    )
-                } ?: emptyList()
+            decodeFull(cache, InterfaceDecoderFull(), InterfaceDefinitions).flatMap { iface ->
+                val def = InterfaceDefinitions.getOrNull(iface.id)
+                iface.components?.mapIndexed { index, comp ->
+                    val c = def?.components?.get(index)
+                    val params = comp.params.orEmpty() + def?.params.orEmpty()
+                    comp.copy(id = index, parent = iface.id, stringId = c?.stringId ?: "", params = params)
+                }?.toList() ?: emptyList()
             }
         },
         DefinitionTab(
@@ -247,6 +221,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
         ) {
             EnumDefinitions.init(EnumDecoder().load(cache))
             if (loadConfig) {
+                // TODO tables
                 // EnumDefinitions.load(files.list(Settings["definitions.enums"]))
             }
             EnumDefinitions.definitions.toList()
@@ -310,14 +285,22 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
     )
 }
 
-data class ComponentWrapper(
-    override var id: Int = -1,
-    var parent: Int = -1,
-    var options: Array<String?>? = null,
-    var information: Array<Any>? = null,
-    override var stringId: String = "",
-    override var params: Map<Int, Any>? = null,
-) : Definition, Parameterized
+private fun <T, F> decodeFull(
+    cache: CacheDelegate,
+    decoder: DefinitionDecoder<F>,
+    definitions: DefinitionsDecoder<T>,
+): List<F> where T : Definition, T : Parameterized, F: Definition, F : Parameterized {
+    return decoder.load(cache).map { full ->
+        val loaded = definitions.getOrNull(full.id)?.params ?: return@map full
+        val params = full.params
+        if (params != null) {
+            (params as MutableMap).putAll(loaded)
+        } else {
+            full.params = params
+        }
+        full
+    }
+}
 
 data class InterfaceWrapper(
     override var id: Int = -1,
