@@ -7,7 +7,7 @@ root_xp = "int"
 tree_xp = "int"
 buff = "int"
 
-[normal]
+[.normal]
 woodcutting = 1
 farming = 1
 nurture_xp = 200
@@ -16,7 +16,7 @@ root_xp = 30
 tree_xp = 30
 buff = 6
 
-[oak]
+[.oak]
 woodcutting = 15
 farming = 7
 nurture_xp = 450
@@ -25,7 +25,7 @@ root_xp = 64
 tree_xp = 64
 buff = 10
 
-[willow]
+[.willow]
 woodcutting = 30
 farming = 15
 nurture_xp = 660
@@ -34,7 +34,7 @@ root_xp = 91
 tree_xp = 91
 buff = 14
 
-[maple]
+[.maple]
 woodcutting = 45
 farming = 22
 nurture_xp = 1215
@@ -43,7 +43,7 @@ root_xp = 111
 tree_xp = 111
 buff = 18
 
-[yew]
+[.yew]
 woodcutting = 60
 farming = 30
 nurture_xp = 1725
@@ -52,7 +52,7 @@ root_xp = 175
 tree_xp = 175
 buff = 22
 
-[magic]
+[.magic]
 woodcutting = 75
 farming = 37
 nurture_xp = 3115
@@ -61,7 +61,7 @@ root_xp = 250
 tree_xp = 250
 buff = 26
 
-[elder]
+[.elder]
 woodcutting = 90
 farming = 42
 nurture_xp = 7300
@@ -73,7 +73,7 @@ buff = 30
 
 [evil_tree_place]
 hint = "string"
-tile = "list<tile>"
+tiles = "list<tile>"
 
 [.yew]
 hint = "Close to a collection of yew trees"
