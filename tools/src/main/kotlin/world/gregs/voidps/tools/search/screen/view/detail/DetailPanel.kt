@@ -93,12 +93,12 @@ fun DetailPanel(
                     color = when {
                         canLink -> LinkColor; faded -> TextMuted; else -> TextSecond
                     },
-                    modifier = Modifier.weight(0.35f).then(
+                    modifier = Modifier.weight(0.25f).then(
                         if (canLink) Modifier.clickable { onNavigate(link.targetTabLabel, resolveNavigationFilters(link, rawInt, item)) } else Modifier
                     ))
                 Spacer(Modifier.width(8.dp))
 
-                Box(modifier = Modifier.weight(0.65f)) {
+                Box(modifier = Modifier.weight(0.75f)) {
                     when {
                         prop.name == "params" && raw is Map<*, *> ->
                             ParamsDetail(raw, fieldLinks, prop.name, onNavigate, item)

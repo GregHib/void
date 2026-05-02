@@ -9,7 +9,7 @@ import world.gregs.voidps.tools.search.screen.view.detail.FieldLink
 
 class TabState(
     val label: String,
-    val clazz: Class<out Definition>,
+    val clazz: Class<Definition>,
     val defaultColumns: List<String>,
     val fieldLinks: List<FieldLink>,
 ) {

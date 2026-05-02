@@ -4,8 +4,10 @@ import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.cache.config.data.RenderAnimationDefinition
+import world.gregs.voidps.cache.config.data.StructDefinition
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.RenderAnimationDecoder
+import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.Parameterized
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.cache.definition.data.EnumDefinition
@@ -37,6 +39,7 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.SoundDefinitions
+import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.tools.search.screen.view.detail.FieldLink
 import java.io.File
@@ -56,6 +59,8 @@ object Tabs {
     const val ENUMS = "Enums"
     const val VARS = "Vars"
     const val INVS = "Invs"
+    const val STRUCTS = "Structs"
+    const val TABLES = "Tables"
 }
 
 fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
@@ -182,7 +187,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
         DefinitionTab(
             label = Tabs.IFACES,
             clazz = InterfaceWrapper::class.java,
-            defaultColumns = listOf("id", "stringId"),
+            defaultColumns = listOf("id", "stringId", "type"),
             fieldLinks = listOf(
                 FieldLink(
                     "components", Tabs.COMPONENTS,
@@ -238,7 +243,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
             label = Tabs.ENUMS,
             clazz = EnumDefinition::class.java,
             defaultColumns = listOf("id", "stringId"),
-            dependsOn = listOf(Tabs.ITEMS, Tabs.IFACES, Tabs.INVS, Tabs.NPCS, Tabs.OBJS)
+            dependsOn = listOf(Tabs.ITEMS, Tabs.IFACES, Tabs.INVS, Tabs.NPCS, Tabs.OBJS, Tabs.STRUCTS)
         ) {
             EnumDefinitions.init(EnumDecoder().load(cache))
             if (loadConfig) {
@@ -290,6 +295,17 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
                 )
             }
             InventoryDefinitions.definitions.toList()
+        },
+        DefinitionTab(
+            label = Tabs.STRUCTS,
+            clazz = StructDefinition::class.java,
+            defaultColumns = listOf("id", "stringId", "params"),
+        ) {
+            StructDefinitions.init(StructDecoder().load(cache))
+            if (loadConfig) {
+                StructDefinitions.load(files.find(Settings["definitions.structs"]))
+            }
+            StructDefinitions.definitions.toList()
         },
     )
 }
