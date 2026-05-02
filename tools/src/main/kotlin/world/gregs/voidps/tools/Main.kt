@@ -25,7 +25,6 @@ import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.isSecondaryPressed
-import androidx.compose.ui.input.pointer.isShiftPressed
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.TextStyle
@@ -69,6 +68,8 @@ import java.util.prefs.Preferences
 import javax.swing.JFileChooser
 import javax.swing.UIManager
 import kotlin.reflect.KProperty1
+import kotlin.reflect.full.companionObject
+import kotlin.reflect.full.declaredMemberProperties
 import kotlin.reflect.jvm.kotlinProperty
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -158,10 +159,10 @@ fun resolveDisplayName(tabLabel: String, id: Int): String? {
 
 @Suppress("UNCHECKED_CAST")
 fun <T : Any> getProperties(clazz: Class<T>): List<KProperty1<T, *>> {
-    val mapNotNull = clazz.declaredFields
+    val companionProperties = clazz.kotlin.companionObject?.declaredMemberProperties?.toSet() ?: emptySet()
+    return clazz.declaredFields
         .mapNotNull { it.kotlinProperty as? KProperty1<T, *> }
-    println(mapNotNull)
-    return mapNotNull
+        .filter { !companionProperties.contains(it) }
 }
 
 fun propertyTypeLabel(prop: KProperty1<*, *>): String =
