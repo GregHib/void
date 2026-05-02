@@ -61,26 +61,6 @@ fun DetailPanel(
     onNavigate: (targetLabel: String, filters: Map<String, String>) -> Unit,
 ) {
     var fieldSearch by remember { mutableStateOf("") }
-    val textMeasurer = rememberTextMeasurer()
-    val keyStyle = TextStyle(fontSize = 11.sp, fontFamily = FontFamily.Monospace)
-
-    val visibleProperties = remember(fieldSearch, properties) {
-        if (fieldSearch.isBlank()) properties
-        else properties.filter { it.name.contains(fieldSearch, ignoreCase = true) }
-    }
-
-    val keyColumnWidth: Dp = remember(visibleProperties) {
-        val longest = visibleProperties.maxOfOrNull { prop ->
-            textMeasurer.measure(prop.name, keyStyle).size.width
-        } ?: 0
-        // px → dp conversion happens inside the composable via LocalDensity
-        // We'll do it with BoxWithConstraints below; store raw px for now.
-        longest.toFloat()
-    }.let { px ->
-        // Convert to Dp — we need density, so do this inside composition
-        with(LocalDensity.current) { px.toDp() }
-            .coerceIn(48.dp, 160.dp)    // never narrower than 48dp or wider than 160dp
-    }
     Column(
         modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(14.dp),
     ) {
@@ -129,67 +109,28 @@ fun DetailPanel(
             val link = fieldLinks.find { it.fieldName == prop.name }
             val rawInt = raw as? Int
             val canLink = link != null && rawInt != null && rawInt != -1
-
-            Row(modifier = Modifier.fillMaxWidth().padding(vertical = 3.dp), verticalAlignment = Alignment.Top) {
-                // Field name — clickable if linkable (single int)
-                Text(
-                    prop.name, fontSize = 11.sp, fontFamily = FontFamily.Monospace,
-                    color = when { canLink -> LinkColor; faded -> TextMuted; else -> TextSecond },
-                    softWrap = false,          // never wrap the key
-                    modifier = Modifier
-                        .width(keyColumnWidth)
-                        .then(if (canLink) Modifier.clickable { onNavigate(link.targetTabLabel, resolveNavigationFilters(link, rawInt, item)) } else Modifier)
+            val layout = layoutFor(raw)
+            when (layout) {
+                DetailLayout.Inline -> InlineDetailRow(
+                    prop = prop,
+                    raw = raw,
+                    faded = faded,
+                    link = link,
+                    rawInt = rawInt,
+                    canLink = canLink,
+                    item = item,
+                    onNavigate = onNavigate,
                 )
-                Spacer(Modifier.width(8.dp))
-
-                Box(modifier = Modifier.weight(1f)) {
-                    when {
-                        prop.name == "params" && raw is Map<*, *> ->
-                            ParamsDetail(raw, fieldLinks, prop.name, onNavigate, item)
-
-                        raw is Boolean -> Box(
-                            Modifier.background(
-                                if (raw) SuccessGreen.copy(alpha = 0.15f) else TextMuted.copy(alpha = 0.1f),
-                                RoundedCornerShape(3.dp)
-                            ).padding(horizontal = 6.dp, vertical = 1.dp)
-                        ) { Text(raw.toString(), fontSize = 11.sp, color = if (raw) SuccessGreen else TextMuted) }
-
-                        raw is IntArray -> {
-                            IntArrayDetail(
-                                arr = raw,
-                                link = link,
-                                sourceDef = item,
-                                onNavigate = if (link != null) onNavigate else null,
-                            )
-                        }
-
-                        raw is Array<*> -> StringArrayDetail(raw)
-
-                        canLink -> {
-                            // Single int with link — show id + resolved name
-                            val resolved = resolveDisplayName(link.targetTabLabel, rawInt, link = link, item = item)
-                            Column(verticalArrangement = Arrangement.spacedBy(1.dp)) {
-                                Row(
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    horizontalArrangement = Arrangement.spacedBy(5.dp),
-                                    modifier = Modifier.clickable { onNavigate(link.targetTabLabel, resolveNavigationFilters(link, rawInt, item)) }
-                                ) {
-                                    Text(raw.toString(), fontSize = 12.sp, color = LinkColor, fontFamily = FontFamily.Monospace)
-                                    Icon(painterResource(Res.drawable.open_in_new), null, tint = LinkColor.copy(alpha = 0.55f), modifier = Modifier.size(11.dp))
-                                }
-                                if (resolved != null) {
-                                    Text(resolved, fontSize = 10.sp, color = TextSecond)
-                                }
-                            }
-                        }
-
-                        else -> Text(
-                            displayValue(raw), fontSize = 12.sp,
-                            color = if (faded) TextMuted else TextPrimary,
-                            fontFamily = if (raw is Number) FontFamily.Monospace else FontFamily.Default
-                        )
-                    }
-                }
+                DetailLayout.Block -> BlockDetailRow(
+                    prop = prop,
+                    raw = raw,
+                    link = link,
+                    item = item,
+                    canLink = canLink,
+                    faded = faded,
+                    fieldLinks = fieldLinks,
+                    onNavigate = onNavigate,
+                )
             }
         }
     }

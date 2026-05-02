@@ -24,6 +24,13 @@ fun main() = application {
     Settings.rebase("../")
     ParamLookup.load()
 
+    /*
+        Improvements:
+            - Filter nested array fields
+            - Scroll to top/bottom button
+            - Fix filtering by null not working
+            - Select/Copy from details panel
+     */
     var screen by remember { mutableStateOf(AppScreen.PICKER) }
     var tabs by remember { mutableStateOf<List<DefinitionTab<*>>>(emptyList()) }
     var loadError by remember { mutableStateOf<String?>(null) }

@@ -129,6 +129,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
                 FieldLink("primaryIdle", Tabs.ANIMS),
                 FieldLink("primaryWalk", Tabs.ANIMS),
                 FieldLink("secondaryWalk", Tabs.ANIMS),
+                FieldLink("walkBackwards", Tabs.ANIMS),
                 FieldLink("run", Tabs.ANIMS),
                 FieldLink("turning", Tabs.ANIMS),
                 FieldLink("sideStepLeft", Tabs.ANIMS),

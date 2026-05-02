@@ -34,13 +34,12 @@ import world.gregs.voidps.tools.search.screen.view.resolveNavigationFilters
 
 @Composable
 fun IntArrayDetail(
-    arr: IntArray,
+    arr: Iterable<Number>,
     link: FieldLink? = null,
     sourceDef: Definition? = null,
     onNavigate: ((String, Map<String, String>) -> Unit)? = null,
 ) {
     Column {
-        Text("IntArray[${arr.size}]", fontSize = 10.sp, color = WarnAmber.copy(alpha = 0.7f), modifier = Modifier.padding(bottom = 3.dp))
         FlowRow(
             horizontalArrangement = Arrangement.spacedBy(4.dp),
             verticalArrangement = Arrangement.spacedBy(4.dp),

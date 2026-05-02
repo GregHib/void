@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.Divider
@@ -32,6 +33,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -52,6 +54,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import world.gregs.void.tools.generated.resources.Res
 import world.gregs.void.tools.generated.resources.arrow_drop_down
@@ -213,7 +216,9 @@ fun GlobalSearchTab(
 
         Divider(color = BorderColor, thickness = 0.5.dp)
 
-        val grouped = results.groupBy { it.tabLabel }
+        val grouped = remember(results) { results.groupBy { it.tabLabel } }
+        val listState = rememberLazyListState()
+        val scope = rememberCoroutineScope()
         // Status row
         if (debouncedQuery.isNotBlank()) {
             Row(
@@ -259,9 +264,7 @@ fun GlobalSearchTab(
 
             Row(modifier = Modifier.fillMaxSize()) {
                 // Results list
-                LazyColumn(modifier = Modifier.weight(1f).fillMaxHeight()) {
-
-
+                LazyColumn(state = listState, modifier = Modifier.weight(1f).fillMaxHeight()) {
                     if (debouncedQuery.isBlank() || searching) {
                         item {
                             Box(
@@ -288,16 +291,30 @@ fun GlobalSearchTab(
                         grouped.forEach { (tabLabel, groupResults) ->
                             val isCollapsed = tabLabel in globalState.collapsedSections
                             // Group header
-                            stickyHeader {
+                            stickyHeader(key = "header_${tabLabel}") {
                                 Row(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .background(BgPanel)
                                         .clickable {
-                                            globalState.collapsedSections = if (isCollapsed)
+                                            val wasCollapsed = tabLabel in globalState.collapsedSections
+                                            globalState.collapsedSections = if (isCollapsed) {
+
                                                 globalState.collapsedSections - tabLabel
-                                            else
+                                            } else {
                                                 globalState.collapsedSections + tabLabel
+                                            }
+                                            scope.launch {
+                                                var idx = 0
+                                                for ((label, results) in grouped) {
+                                                    if (label == tabLabel) break
+                                                    idx += 1  // the header
+                                                    if (label !in globalState.collapsedSections) {
+                                                        idx += results.size  // its items, using the NEW collapsed state
+                                                    }
+                                                }
+                                                listState.animateScrollToItem(idx)
+                                            }
                                         }
                                         .padding(horizontal = 12.dp, vertical = 5.dp),
                                     verticalAlignment = Alignment.CenterVertically,
@@ -325,7 +342,9 @@ fun GlobalSearchTab(
                             }
 
                             if (!isCollapsed) {
-                                items(groupResults) { result ->
+                                items(groupResults,
+                                    key = { "${it.tabLabel}_${it.definition.id}" }
+                                ) { result ->
                                     val isSelected = globalState.selectedItem == result.definition
                                     val def = result.definition
                                     Row(

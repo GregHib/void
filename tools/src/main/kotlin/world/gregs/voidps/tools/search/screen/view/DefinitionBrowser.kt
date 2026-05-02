@@ -179,7 +179,7 @@ fun DefinitionBrowser(
 val tabDefinitionIndex: MutableMap<String, Map<Int, List<Definition>>> = mutableMapOf()
 
 @Suppress("UNCHECKED_CAST")
-fun resolveDisplayName(tabLabel: String, id: Int, link: FieldLink? = null, item: Definition? = null): String? {
+fun resolveDisplayName(tabLabel: String, id: Number, link: FieldLink? = null, item: Definition? = null): String? {
     val indices = tabDefinitionIndex[tabLabel]?.get(id) ?: return null
     val def = if (link == null || link.resolveByFields == listOf("id")) {
         indices.firstOrNull()
@@ -221,7 +221,7 @@ fun resolveDisplayName(tabLabel: String, id: Int, link: FieldLink? = null, item:
 
 fun resolveNavigationFilters(
     link: FieldLink,
-    clickedValue: Int,
+    clickedValue: Number,
     sourceDef: Definition?,
 ): Map<String, String> = link.targetFilters.associate { (targetField, sourceExpr) ->
     val value = if (sourceExpr == "\$self") {
