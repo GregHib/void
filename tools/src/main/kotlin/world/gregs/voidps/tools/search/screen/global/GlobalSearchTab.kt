@@ -24,6 +24,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.Divider
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -49,7 +50,9 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 import world.gregs.void.tools.generated.resources.Res
 import world.gregs.void.tools.generated.resources.arrow_drop_down
 import world.gregs.void.tools.generated.resources.arrow_right
@@ -97,35 +100,52 @@ fun GlobalSearchTab(
         debouncedQuery = globalState.query
     }
 
-    val results: List<GlobalResult> = remember(debouncedQuery, tabStates.map { it.definitions }) {
-        if (debouncedQuery.isBlank()) return@remember emptyList()
-        val q = debouncedQuery.trim().lowercase()
-        tabStates
-            .filter { !it.loading && it.error == null }
-            .flatMap { state ->
-                val props = getProperties(state.clazz)
-                state.definitions.mapNotNull { def ->
-                    val matched = props.filter { prop ->
-                        val raw = try {
-                            prop.get(def)
-                        } catch (_: Exception) {
-                            null
-                        }
-                        displayValue(raw, prop.name == "params").lowercase().contains(q)
-                    }.map { it.name }
-                    if (matched.isNotEmpty()) GlobalResult(def, state.label, matched) else null
+    var results by remember { mutableStateOf(emptyList<GlobalResult>()) }
+    var searching by remember { mutableStateOf(false) }
+    LaunchedEffect(debouncedQuery, tabStates.map { it.searchIndex }) {
+        if (debouncedQuery.isBlank()) {
+            results = emptyList()
+            return@LaunchedEffect
+        }
+        searching = true
+        results = withContext(Dispatchers.Default) {
+            val q = debouncedQuery.trim().lowercase()
+            tabStates
+                .filter { !it.loading && it.error == null && it.searchIndex.isNotEmpty() }
+                .flatMap { state ->
+                    val matchingDefs = state.definitions.filter { def ->
+                        state.searchIndex[def.id]?.contains(q) == true
+                    }
+                    if (matchingDefs.isEmpty()) {
+                        return@flatMap emptyList()
+                    }
+                    val props = getProperties(state.clazz)
+                    matchingDefs.map { def ->
+                        val matched = props.filter { prop ->
+                            displayValue(
+                                try {
+                                    prop.get(def)
+                                } catch (_: Exception) {
+                                    null
+                                },
+                                prop.name == "params"
+                            ).lowercase().contains(q)
+                        }.map { it.name }
+                        GlobalResult(def, state.label, matched)
+                    }
                 }
-            }
-            // Sort: name/stringId matches first, then id matches, then others
-            .sortedWith(
-                compareBy(
-                    { if (it.matchedFields.any { f -> f == "name" || f == "stringId" }) 0 else 1 },
-                    { if (it.matchedFields.contains("id")) 0 else 1 },
-                    { it.tabLabel },
-                    { it.definition.id },
+                // Sort: name/stringId matches first, then id matches, then others
+                .sortedWith(
+                    compareBy(
+                        { if (it.matchedFields.any { f -> f == "name" || f == "stringId" }) 0 else 1 },
+                        { if (it.matchedFields.contains("id")) 0 else 1 },
+                        { it.tabLabel },
+                        { it.definition.id },
+                    )
                 )
-            )
-            .take(500)  // cap results to keep the list snappy
+                .take(500)  // cap results to keep the list snappy
+        }
+        searching = false
     }
 
     // Which tab's properties to show in the detail panel for the selected item
@@ -192,8 +212,8 @@ fun GlobalSearchTab(
         }
 
         Divider(color = BorderColor, thickness = 0.5.dp)
-        val grouped = results.groupBy { it.tabLabel }
 
+        val grouped = results.groupBy { it.tabLabel }
         // Status row
         if (debouncedQuery.isNotBlank()) {
             Row(
@@ -230,7 +250,6 @@ fun GlobalSearchTab(
             }
             Divider(color = BorderColor, thickness = 0.5.dp)
         }
-
         BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
             val totalWidth = maxWidth
             val minPanelWidth = totalWidth * 0.20f
@@ -241,7 +260,9 @@ fun GlobalSearchTab(
             Row(modifier = Modifier.fillMaxSize()) {
                 // Results list
                 LazyColumn(modifier = Modifier.weight(1f).fillMaxHeight()) {
-                    if (debouncedQuery.isBlank()) {
+
+
+                    if (debouncedQuery.isBlank() || searching) {
                         item {
                             Box(
                                 Modifier.fillMaxWidth().padding(64.dp),
@@ -251,6 +272,9 @@ fun GlobalSearchTab(
                                     horizontalAlignment = Alignment.CenterHorizontally,
                                     verticalArrangement = Arrangement.spacedBy(8.dp)
                                 ) {
+                                    if (searching) {
+                                        CircularProgressIndicator(color = AccentBlue, modifier = Modifier.size(12.dp), strokeWidth = 1.5.dp)
+                                    }
                                     Text("Search across all tabs", fontSize = 14.sp, color = TextSecond)
                                     Text(
                                         "Matches name, stringId, id, and all other fields",

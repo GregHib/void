@@ -24,6 +24,7 @@ class TabState(
     var sortField: String? by mutableStateOf(null)
     var sortAscending: Boolean by mutableStateOf(true)
     val listState: LazyListState = LazyListState()
+    var searchIndex: Map<Int, String> by mutableStateOf(emptyMap())
 }
 
 val TabState.selectedItem: Definition? get() = selectedItems.lastOrNull()

@@ -70,6 +70,14 @@ fun DefinitionBrowser(
                         state.definitions = (tabs[idx] as DefinitionTab<Definition>).loader()
                         // Update reverse lookup index
                         tabDefinitionIndex[state.label] = state.definitions.groupBy { it.id }
+
+                        // Build search index off the main thread — still inside the launch block
+                        val props = getProperties(state.clazz)
+                        state.searchIndex = state.definitions.associate { def ->
+                            def.id to props.joinToString(" ") { prop ->
+                                displayValue(try { prop.get(def) } catch (_: Exception) { null }, prop.name == "params")
+                            }.lowercase()
+                        }
                     } catch (e: Exception) {
                         e.printStackTrace()
                         state.error = e.message ?: "Unknown error"
