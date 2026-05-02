@@ -85,6 +85,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
                 FieldLink("transforms", Tabs.NPCS),
                 FieldLink("varbit", Tabs.VARS),
                 FieldLink("varp", Tabs.VARS),
+                FieldLink("stackIds", Tabs.ITEMS),
             )
         ) {
             NPCDefinitions.init(NPCDecoder(true).load(cache))
@@ -112,7 +113,12 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
         DefinitionTab(
             label = Tabs.ANIMS,
             clazz = AnimationDefinitionFull::class.java,
-            defaultColumns = listOf("id", "stringId", "priority")
+            defaultColumns = listOf("id", "stringId"),
+            fieldLinks = listOf(
+                FieldLink("leftHandItem", Tabs.ITEMS),
+                FieldLink("rightHandItem", Tabs.ITEMS),
+                FieldLink("sounds", Tabs.SOUNDS),
+            )
         ) {
             AnimationDefinitions.init(AnimationDecoder().load(cache))
             if (loadConfig) {
@@ -133,6 +139,17 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
                 FieldLink("turning", Tabs.ANIMS),
                 FieldLink("sideStepLeft", Tabs.ANIMS),
                 FieldLink("sideStepRight", Tabs.ANIMS),
+                FieldLink("anInt3262", Tabs.ANIMS),
+                FieldLink("anInt3297", Tabs.ANIMS),
+                FieldLink("anInt3269", Tabs.ANIMS),
+                FieldLink("anInt3304", Tabs.ANIMS),
+                FieldLink("anInt3271", Tabs.ANIMS),
+                FieldLink("anInt3270", Tabs.ANIMS),
+                FieldLink("anInt3282", Tabs.ANIMS),
+                FieldLink("anInt3253", Tabs.ANIMS),
+                FieldLink("anInt3293", Tabs.ANIMS),
+                FieldLink("anInt3298", Tabs.ANIMS),
+                FieldLink("anInt3305", Tabs.ANIMS),
             )
         ) {
             val definitions = RenderAnimationDecoder().load(cache)
@@ -211,7 +228,13 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
             label = Tabs.COMPONENTS,
             clazz = InterfaceComponentDefinitionFull::class.java,
             defaultColumns = listOf("parent", "id", "stringId"),
-            fieldLinks = listOf(FieldLink("parent", Tabs.IFACES)),
+            fieldLinks = listOf(
+                FieldLink("parent", Tabs.IFACES),
+                FieldLink("animation", Tabs.ANIMS),
+                FieldLink("clientVarp", Tabs.VARS),
+                FieldLink("clientVarc", Tabs.VARS),
+                FieldLink("inventories", Tabs.INVS),
+            ),
             dependsOn = listOf(Tabs.IFACES)
         ) {
             decodeFull(cache, InterfaceDecoderFull(), InterfaceDefinitions).flatMap { iface ->

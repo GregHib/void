@@ -35,6 +35,8 @@ fun main() = application {
             - Select/Copy from details panel
             - Support for enum replacements e.g. component.type/contentType, anims.replayMode etc...
             - Reverse lookup, e.g. all npcs with render emote X
+            - Column size adjusting
+            - Support for non-definition types like Tables
      */
     var screen by remember { mutableStateOf(AppScreen.PICKER) }
     var tabs by remember { mutableStateOf<List<DefinitionTab<*>>>(emptyList()) }

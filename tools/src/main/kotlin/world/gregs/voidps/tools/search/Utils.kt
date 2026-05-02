@@ -25,6 +25,7 @@ fun propertyTypeLabel(prop: KProperty1<*, *>): String =
 fun displayValue(value: Any?, resolveParams: Boolean = false): String = when (value) {
     null -> "null"
     is Array<*> -> value.joinToString(", ") { it?.toString() ?: "null" }
+    is ByteArray -> value.joinToString(", ")
     is IntArray -> value.joinToString(", ")
     is ShortArray -> value.joinToString(", ")
     is Map<*, *> -> if (resolveParams) {

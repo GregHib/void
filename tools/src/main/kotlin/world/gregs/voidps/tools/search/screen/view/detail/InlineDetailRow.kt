@@ -112,9 +112,6 @@ fun InlineValue(
         ) {
             Text(raw.toString(), fontSize = 11.sp, color = if (raw) SuccessGreen else TextMuted)
         }
-        raw is IntArray -> smallArray(raw.asIterable())
-        raw is ShortArray -> smallArray(raw.asIterable())
-        raw is ByteArray -> smallArray(raw.asIterable())
         canLink -> {
             val resolved = resolveDisplayName(link!!.targetTabLabel, rawInt!!, link)
             Row(
@@ -129,7 +126,9 @@ fun InlineValue(
                 Icon(painterResource(Res.drawable.open_in_new), null, tint = LinkColor.copy(0.55f), modifier = Modifier.size(10.dp))
             }
         }
-
+        raw is IntArray -> smallArray(raw.asIterable())
+        raw is ShortArray -> smallArray(raw.asIterable())
+        raw is ByteArray -> smallArray(raw.asIterable())
         else -> Text(
             displayValue(raw),
             fontSize = 12.sp,

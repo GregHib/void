@@ -10,9 +10,6 @@ fun layoutFor(raw: Any?): DetailLayout = when (raw) {
     is Boolean -> DetailLayout.Inline
     is Number -> DetailLayout.Inline
     is String if raw.length <= 60 -> DetailLayout.Inline
-    is IntArray if raw.size <= 3 -> DetailLayout.Inline
-    is ShortArray if raw.size <= 3 -> DetailLayout.Inline
-    is ByteArray if raw.size <= 3 -> DetailLayout.Inline
     is Array<*> if raw.size <= 1 -> {
         val first = raw.firstOrNull()
         if (first is Array<*> || first is ByteArray || first is ShortArray || first is IntArray) {

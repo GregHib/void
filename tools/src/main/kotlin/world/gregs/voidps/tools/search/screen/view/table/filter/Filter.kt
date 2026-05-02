@@ -12,16 +12,26 @@ fun matchesFilter(rawValue: Any?, filter: FieldFilter): Boolean {
         MatchMode.EXACT -> displayValue(rawValue).equals(query, ignoreCase = true)
         MatchMode.GREATER_THAN -> query.toLongOrNull()?.let { n ->
             when (rawValue) {
-                is Number -> rawValue.toLong() > n; is IntArray -> rawValue.any { it > n }; else -> false
+                is Number -> rawValue.toLong() > n
+                is IntArray -> rawValue.any { it > n }
+                is ShortArray -> rawValue.any { it > n }
+                is ByteArray -> rawValue.any { it > n }
+                else -> false
             }
         } ?: false
         MatchMode.LESS_THAN -> query.toLongOrNull()?.let { n ->
             when (rawValue) {
-                is Number -> rawValue.toLong() < n; is IntArray -> rawValue.any { it < n }; else -> false
+                is Number -> rawValue.toLong() < n
+                is IntArray -> rawValue.any { it < n }
+                is ShortArray -> rawValue.any { it < n }
+                is ByteArray -> rawValue.any { it < n }
+                else -> false
             }
         } ?: false
         MatchMode.HAS_VALUE -> when (rawValue) {
             is IntArray -> rawValue.any { it.toString().contains(query, ignoreCase = true) }
+            is ShortArray -> rawValue.any { it.toString().contains(query, ignoreCase = true) }
+            is ByteArray -> rawValue.any { it.toString().contains(query, ignoreCase = true) }
             is Array<*> -> rawValue.any { it?.toString()?.contains(query, ignoreCase = true) == true }
             is Map<*, *> -> rawValue.keys.any { it.toString().contains(query, ignoreCase = true) } ||
                     rawValue.values.any { it.toString().contains(query, ignoreCase = true) }
@@ -45,6 +55,8 @@ fun matchesFilter(rawValue: Any?, filter: FieldFilter): Boolean {
             is String -> rawValue.isNotBlank()
             is Array<*> -> rawValue.isNotEmpty()
             is IntArray -> rawValue.isNotEmpty()
+            is ShortArray -> rawValue.isNotEmpty()
+            is ByteArray -> rawValue.isNotEmpty()
             is Map<*, *> -> rawValue.isNotEmpty()
             else -> rawValue.toString().let { it != "null" && it != "-1" && it.isNotBlank() }
         }
