@@ -107,18 +107,21 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Map<String, Strin
         state.visibleColumns.mapNotNull { propsByName[it] }
     }
 
-    val filteredResults: List<Definition> = remember(state.definitions, state.columnFilters) {
-        state.definitions.filter { def ->
+    val filteredResults: List<Definition> = remember(state.definitions, state.columnFilters, state.sortField, state.sortAscending) {
+        val filtered = state.definitions.filter { def ->
             state.columnFilters.values.all { f ->
                 if (f.value.isBlank()) return@all true
-                val raw = try {
-                    propsByName[f.fieldName]?.get(def)
-                } catch (_: Exception) {
-                    null
-                }
+                val raw = try { propsByName[f.fieldName]?.get(def) } catch (_: Exception) { null }
                 matchesFilter(raw, f)
             }
         }
+        val sortProp = state.sortField?.let { propsByName[it] } ?: return@remember filtered
+        filtered.sortedWith(Comparator { a, b ->
+            val av = try { sortProp.get(a) } catch (_: Exception) { null }
+            val bv = try { sortProp.get(b) } catch (_: Exception) { null }
+            val cmp = compareValues(av, bv)
+            if (state.sortAscending) cmp else -cmp
+        })
     }
 
     val activeFilters = state.columnFilters.values.count { it.value.isNotBlank() }
@@ -236,8 +239,8 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Map<String, Strin
                                 state.columnFilters = if (updated == null) state.columnFilters - prop.name
                                 else state.columnFilters + (prop.name to updated)
                             },
-                            onRemoveColumn = { state.visibleColumns = state.visibleColumns.filter { it != prop.name } },
                             weight = if (prop.name == "id") 0.5f else 1f,
+                            state = state,
                         )
                         if (idx < visibleProps.lastIndex) Spacer(Modifier.width(8.dp))
                     }
@@ -364,4 +367,14 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Map<String, Strin
             }
         }
     }
+}
+
+// Helper for null-safe comparison:
+@Suppress("UNCHECKED_CAST")
+private fun compareValues(a: Any?, b: Any?): Int = when {
+    a == null && b == null -> 0
+    a == null -> 1
+    b == null -> -1
+    a is Comparable<*> -> (a as Comparable<Any>).compareTo(b)
+    else -> a.toString().compareTo(b.toString())
 }

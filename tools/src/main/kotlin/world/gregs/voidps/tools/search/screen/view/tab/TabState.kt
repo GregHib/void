@@ -18,8 +18,10 @@ class TabState(
     var error: String? by mutableStateOf(null)
     var visibleColumns: List<String> by mutableStateOf(defaultColumns)
     var columnFilters: Map<String, FieldFilter> by mutableStateOf(emptyMap())
-    var selectedItems: List<Definition> by mutableStateOf(emptyList())   // multi-select
-    var lastClickedIndex: Int by mutableStateOf(-1)                      // for shift-range
+    var selectedItems: List<Definition> by mutableStateOf(emptyList())
+    var lastClickedIndex: Int by mutableStateOf(-1) // for shift-range
+    var sortField: String? by mutableStateOf(null)
+    var sortAscending: Boolean by mutableStateOf(true)
 }
 
 val TabState.selectedItem: Definition? get() = selectedItems.lastOrNull()

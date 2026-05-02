@@ -15,7 +15,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Divider
 import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -40,6 +42,7 @@ import world.gregs.voidps.tools.search.TagBg
 import world.gregs.voidps.tools.search.TagText
 import world.gregs.voidps.tools.search.TextMuted
 import world.gregs.voidps.tools.search.TextSecond
+import world.gregs.voidps.tools.search.screen.view.tab.TabState
 import world.gregs.voidps.tools.search.screen.view.table.filter.FieldFilter
 import world.gregs.voidps.tools.search.screen.view.table.filter.MatchMode
 import world.gregs.voidps.tools.search.screen.view.table.filter.ModeChip
@@ -52,8 +55,8 @@ fun RowScope.ColumnHeader(
     typeStr: String,
     filter: FieldFilter?,
     onFilterChange: (FieldFilter?) -> Unit,
-    onRemoveColumn: () -> Unit,
     weight: Float,
+    state: TabState,
 ) {
     var showDropdown by remember { mutableStateOf(false) }
     val hasFilter = filter != null && filter.value.isNotBlank()
@@ -153,6 +156,29 @@ fun RowScope.ColumnHeader(
                     Text(
                         "clear filter", fontSize = 10.sp, color = AccentBlue,
                         modifier = Modifier.clickable { onFilterChange(null) })
+                }
+                val isSorted = state.sortField == fieldName   // pass state into ColumnHeader
+                HorizontalDivider(color = BorderColor, thickness = 0.5.dp, modifier = Modifier.padding(vertical = 6.dp))
+                Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                    ModeChip(
+                        label = "↑ asc",
+                        selected = isSorted && state.sortAscending,
+                        onClick = {
+                            state.sortField = fieldName
+                            state.sortAscending = true
+                        }
+                    )
+                    ModeChip(
+                        label = "↓ desc",
+                        selected = isSorted && !state.sortAscending,
+                        onClick = {
+                            state.sortField = fieldName
+                            state.sortAscending = false
+                        }
+                    )
+                    if (isSorted) {
+                        ModeChip(label = "clear", selected = false, onClick = { state.sortField = null })
+                    }
                 }
             }
         }
