@@ -39,6 +39,14 @@ open class Settings {
 
     operator fun get(name: String, default: Boolean): Boolean = getOrNull(name)?.toBooleanStrictOrNull() ?: default
 
+    fun rebase(base: String) {
+        for ((key, value) in properties) {
+            if (value is String) {
+                properties[key] = value.replace("./", base)
+            }
+        }
+    }
+
     fun clear() {
         properties.clear()
     }
