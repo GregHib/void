@@ -126,7 +126,7 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Map<String, Strin
 
     val activeFilters = state.columnFilters.values.count { it.value.isNotBlank() }
 
-    val listState: LazyListState = rememberLazyListState()
+    val listState: LazyListState = state.listState
     val focusRequester = remember { FocusRequester() }
     val scope = rememberCoroutineScope()
 

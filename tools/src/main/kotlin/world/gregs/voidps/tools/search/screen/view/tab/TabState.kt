@@ -1,5 +1,6 @@
 package world.gregs.voidps.tools.search.screen.view.tab
 
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -22,6 +23,7 @@ class TabState(
     var lastClickedIndex: Int by mutableStateOf(-1) // for shift-range
     var sortField: String? by mutableStateOf(null)
     var sortAscending: Boolean by mutableStateOf(true)
+    val listState: LazyListState = LazyListState()
 }
 
 val TabState.selectedItem: Definition? get() = selectedItems.lastOrNull()

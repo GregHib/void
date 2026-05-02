@@ -25,8 +25,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.rememberTextMeasurer
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.painterResource
@@ -57,6 +61,26 @@ fun DetailPanel(
     onNavigate: (targetLabel: String, filters: Map<String, String>) -> Unit,
 ) {
     var fieldSearch by remember { mutableStateOf("") }
+    val textMeasurer = rememberTextMeasurer()
+    val keyStyle = TextStyle(fontSize = 11.sp, fontFamily = FontFamily.Monospace)
+
+    val visibleProperties = remember(fieldSearch, properties) {
+        if (fieldSearch.isBlank()) properties
+        else properties.filter { it.name.contains(fieldSearch, ignoreCase = true) }
+    }
+
+    val keyColumnWidth: Dp = remember(visibleProperties) {
+        val longest = visibleProperties.maxOfOrNull { prop ->
+            textMeasurer.measure(prop.name, keyStyle).size.width
+        } ?: 0
+        // px → dp conversion happens inside the composable via LocalDensity
+        // We'll do it with BoxWithConstraints below; store raw px for now.
+        longest.toFloat()
+    }.let { px ->
+        // Convert to Dp — we need density, so do this inside composition
+        with(LocalDensity.current) { px.toDp() }
+            .coerceIn(48.dp, 160.dp)    // never narrower than 48dp or wider than 160dp
+    }
     Column(
         modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(14.dp),
     ) {
@@ -110,15 +134,15 @@ fun DetailPanel(
                 // Field name — clickable if linkable (single int)
                 Text(
                     prop.name, fontSize = 11.sp, fontFamily = FontFamily.Monospace,
-                    color = when {
-                        canLink -> LinkColor; faded -> TextMuted; else -> TextSecond
-                    },
-                    modifier = Modifier.weight(0.25f).then(
-                        if (canLink) Modifier.clickable { onNavigate(link.targetTabLabel, resolveNavigationFilters(link, rawInt, item)) } else Modifier
-                    ))
+                    color = when { canLink -> LinkColor; faded -> TextMuted; else -> TextSecond },
+                    softWrap = false,          // never wrap the key
+                    modifier = Modifier
+                        .width(keyColumnWidth)
+                        .then(if (canLink) Modifier.clickable { onNavigate(link.targetTabLabel, resolveNavigationFilters(link, rawInt, item)) } else Modifier)
+                )
                 Spacer(Modifier.width(8.dp))
 
-                Box(modifier = Modifier.weight(0.75f)) {
+                Box(modifier = Modifier.weight(1f)) {
                     when {
                         prop.name == "params" && raw is Map<*, *> ->
                             ParamsDetail(raw, fieldLinks, prop.name, onNavigate, item)
