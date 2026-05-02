@@ -4,7 +4,9 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.MaterialTheme
@@ -14,15 +16,22 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.input.key.*
+import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.PointerIcon
+import androidx.compose.ui.input.pointer.isSecondaryPressed
+import androidx.compose.ui.input.pointer.isShiftPressed
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Window
@@ -72,7 +81,7 @@ data class FieldLink(
 )
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Tab descriptor  (async loader keeps tab order stable)
+// Tab descriptor — dependencies allow ordering async loaders
 // ─────────────────────────────────────────────────────────────────────────────
 
 data class DefinitionTab<T : Definition>(
@@ -80,11 +89,13 @@ data class DefinitionTab<T : Definition>(
     val clazz: Class<T>,
     val defaultColumns: List<String>,
     val fieldLinks: List<FieldLink> = emptyList(),
+    /** Labels of tabs that must finish loading before this tab starts */
+    val dependsOn: List<String> = emptyList(),
     val loader: suspend () -> List<T>,
 )
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Per-tab mutable state — survives tab switches (lives outside the composable)
+// Per-tab mutable state
 // ─────────────────────────────────────────────────────────────────────────────
 
 class TabState(
@@ -98,14 +109,20 @@ class TabState(
     var error: String? by mutableStateOf(null)
     var visibleColumns: List<String> by mutableStateOf(defaultColumns)
     var columnFilters: Map<String, FieldFilter> by mutableStateOf(emptyMap())
-    var selectedItem: Definition? by mutableStateOf(null)
+    var selectedItems: List<Definition> by mutableStateOf(emptyList())   // multi-select
+    var lastClickedIndex: Int by mutableStateOf(-1)                      // for shift-range
 }
+
+// Convenience: single selected item (last in selection)
+val TabState.selectedItem: Definition? get() = selectedItems.lastOrNull()
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Filter model
 // ─────────────────────────────────────────────────────────────────────────────
 
-enum class MatchMode { CONTAINS, EXACT, GREATER_THAN, LESS_THAN, HAS_VALUE, PARAM_KEY, PARAM_VALUE }
+enum class MatchMode {
+    CONTAINS, EXACT, GREATER_THAN, LESS_THAN, HAS_VALUE, PARAM_KEY, PARAM_VALUE, NOT_NULL, NOT_EMPTY
+}
 
 data class FieldFilter(
     val fieldName: String,
@@ -114,12 +131,38 @@ data class FieldFilter(
 )
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Reverse-lookup: tabLabel -> (id -> Definition) for resolving IDs to names
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** Set once after all tabs finish loading; used by detail panel for name resolution. */
+val tabDefinitionIndex: MutableMap<String, Map<Int, Definition>> = mutableMapOf()
+
+fun resolveDefinition(tabLabel: String, id: Int): Definition? =
+    tabDefinitionIndex[tabLabel]?.get(id)
+
+fun resolveDisplayName(tabLabel: String, id: Int): String? {
+    val def = resolveDefinition(tabLabel, id) ?: return null
+    // Try "name" then "stringId" fields via reflection
+    return def.javaClass.declaredFields
+        .mapNotNull { it.kotlinProperty }
+        .firstOrNull { it.name == "name" || it.name == "stringId" }
+        ?.let {
+            @Suppress("UNCHECKED_CAST")
+            (it as? KProperty1<Any, *>)?.get(def)?.toString()?.takeIf { s -> s.isNotBlank() && s != "null" }
+        }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Reflection helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
 @Suppress("UNCHECKED_CAST")
-fun <T : Any> getProperties(clazz: Class<T>): List<KProperty1<T, *>> = clazz.declaredFields
-    .mapNotNull { it.kotlinProperty as? KProperty1<T, *> }
+fun <T : Any> getProperties(clazz: Class<T>): List<KProperty1<T, *>> {
+    val mapNotNull = clazz.declaredFields
+        .mapNotNull { it.kotlinProperty as? KProperty1<T, *> }
+    println(mapNotNull)
+    return mapNotNull
+}
 
 fun propertyTypeLabel(prop: KProperty1<*, *>): String =
     prop.returnType.toString()
@@ -175,6 +218,15 @@ fun matchesFilter(rawValue: Any?, filter: FieldFilter): Boolean {
             if (rawValue !is Map<*, *>) return false
             rawValue.values.any { it.toString().contains(query, ignoreCase = true) }
         }
+        MatchMode.NOT_NULL -> rawValue != null && rawValue.toString() != "null" && rawValue.toString() != "-1"
+        MatchMode.NOT_EMPTY -> when (rawValue) {
+            null -> false
+            is String -> rawValue.isNotBlank()
+            is Array<*> -> rawValue.isNotEmpty()
+            is IntArray -> rawValue.isNotEmpty()
+            is Map<*, *> -> rawValue.isNotEmpty()
+            else -> rawValue.toString().let { it != "null" && it != "-1" && it.isNotBlank() }
+        }
     }
 }
 
@@ -193,6 +245,7 @@ private val BgDark = Color(0xFF0F1117)
 private val BgPanel = Color(0xFF161B27)
 private val BgCard = Color(0xFF1E2535)
 private val BgSelected = Color(0xFF1A3A5C)
+private val BgMultiSelected = Color(0xFF122840)
 private val AccentBlue = Color(0xFF4A9EFF)
 private val AccentLight = Color(0xFF7BBEFF)
 private val TextPrimary = Color(0xFFE8EDF5)
@@ -260,7 +313,7 @@ fun CopyButton(text: String, label: String) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Column header  (click → dropdown filter + remove column)
+// Column header
 // ─────────────────────────────────────────────────────────────────────────────
 
 @Composable
@@ -280,10 +333,10 @@ fun RowScope.ColumnHeader(
     val isNumeric = listOf("Int", "Long", "Double", "Float", "Byte", "Short").any { typeStr.contains(it) }
 
     val modes: List<MatchMode> = when {
-        isParams -> listOf(MatchMode.PARAM_KEY, MatchMode.PARAM_VALUE, MatchMode.CONTAINS)
-        isArray -> listOf(MatchMode.HAS_VALUE, MatchMode.CONTAINS)
-        isNumeric -> listOf(MatchMode.EXACT, MatchMode.GREATER_THAN, MatchMode.LESS_THAN, MatchMode.CONTAINS)
-        else -> listOf(MatchMode.CONTAINS, MatchMode.EXACT)
+        isParams -> listOf(MatchMode.PARAM_KEY, MatchMode.PARAM_VALUE, MatchMode.CONTAINS, MatchMode.NOT_EMPTY)
+        isArray -> listOf(MatchMode.HAS_VALUE, MatchMode.CONTAINS, MatchMode.NOT_EMPTY)
+        isNumeric -> listOf(MatchMode.EXACT, MatchMode.GREATER_THAN, MatchMode.LESS_THAN, MatchMode.CONTAINS, MatchMode.NOT_NULL)
+        else -> listOf(MatchMode.CONTAINS, MatchMode.EXACT, MatchMode.NOT_EMPTY)
     }
 
     Box(modifier = Modifier.weight(weight)) {
@@ -312,7 +365,6 @@ fun RowScope.ColumnHeader(
             modifier = Modifier.width(230.dp).background(BgPanel).border(0.5.dp, BorderColor, RoundedCornerShape(6.dp)),
         ) {
             Column(Modifier.padding(10.dp)) {
-                // Header row
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Box(Modifier.background(TagBg, RoundedCornerShape(3.dp)).padding(horizontal = 5.dp, vertical = 1.dp)) {
                         Text(fieldName, fontSize = 11.sp, color = TagText, fontFamily = FontFamily.Monospace)
@@ -324,6 +376,7 @@ fun RowScope.ColumnHeader(
                 Spacer(Modifier.height(8.dp))
 
                 val currentMode = filter?.mode ?: modes.first()
+                val noInputNeeded = currentMode == MatchMode.NOT_NULL || currentMode == MatchMode.NOT_EMPTY
                 Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                     modes.forEach { m ->
                         ModeChip(
@@ -335,9 +388,14 @@ fun RowScope.ColumnHeader(
                                 MatchMode.HAS_VALUE -> "has"
                                 MatchMode.PARAM_KEY -> "key"
                                 MatchMode.PARAM_VALUE -> "value"
+                                MatchMode.NOT_NULL -> "not null"
+                                MatchMode.NOT_EMPTY -> "not empty"
                             },
                             selected = currentMode == m,
-                            onClick = { onFilterChange((filter ?: FieldFilter(fieldName)).copy(mode = m)) },
+                            onClick = {
+                                val sentinel = if (m == MatchMode.NOT_NULL || m == MatchMode.NOT_EMPTY) "*" else filter?.value ?: ""
+                                onFilterChange(FieldFilter(fieldName, sentinel, m))
+                            },
                         )
                     }
                 }
@@ -346,17 +404,19 @@ fun RowScope.ColumnHeader(
                     Spacer(Modifier.height(4.dp))
                     Text("name (e.g. AKA) or numeric id", fontSize = 10.sp, color = TextMuted)
                 }
-                Spacer(Modifier.height(6.dp))
+                if (!noInputNeeded) {
+                    Spacer(Modifier.height(6.dp))
 
-                SearchField(
-                    value = filter?.value ?: "",
-                    onValueChange = { v ->
-                        if (v.isEmpty()) onFilterChange(null)
-                        else onFilterChange(FieldFilter(fieldName, v, currentMode))
-                    },
-                    placeholder = "filter…",
-                    modifier = Modifier.fillMaxWidth(),
-                )
+                    SearchField(
+                        value = filter?.value ?: "",
+                        onValueChange = { v ->
+                            if (v.isEmpty()) onFilterChange(null)
+                            else onFilterChange(FieldFilter(fieldName, v, currentMode))
+                        },
+                        placeholder = "filter…",
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                }
 
                 if (hasFilter) {
                     Spacer(Modifier.height(4.dp))
@@ -418,42 +478,182 @@ fun ColumnPickerButton(allFields: List<String>, visibleColumns: List<String>, on
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Result row
+// Result row — right-click context menu, multi-select support
 // ─────────────────────────────────────────────────────────────────────────────
 
 @Composable
 fun ResultRow(
     item: Definition,
-    selected: Boolean,
+    isSelected: Boolean,
+    isInMultiSelection: Boolean,
+    selectedItems: List<Definition>,
     columns: List<KProperty1<Definition, *>>,
     onClick: () -> Unit,
 ) {
-    Row(
-        modifier = Modifier.fillMaxWidth()
-            .background(if (selected) BgSelected else Color.Transparent)
-            .clickable(onClick = onClick)
-            .padding(horizontal = 12.dp, vertical = 7.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        columns.forEachIndexed { idx, prop ->
-            val raw = try {
-                prop.get(item)
-            } catch (_: Exception) {
-                null
+    var showMenu by remember { mutableStateOf(false) }
+    var menuOffset by remember { mutableStateOf(DpOffset.Zero) }
+
+    val bgColor = when {
+        isSelected -> BgSelected
+        isInMultiSelection -> BgMultiSelected
+        else -> Color.Transparent
+    }
+
+    Box {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(bgColor)
+                .pointerInput(showMenu) {
+                    awaitPointerEventScope {
+                        while (true) {
+                            val event = awaitPointerEvent(PointerEventPass.Initial)
+                            if (event.type == PointerEventType.Press
+                                && event.buttons.isSecondaryPressed
+                            ) {
+                                val pos = event.changes.first().position
+                                menuOffset = DpOffset(pos.x.toDp(), 0.dp)  // y=0 so it anchors below the row naturally
+                                showMenu = true
+                                // consume only the right-click
+                                event.changes.forEach { it.consume() }
+                            }
+                        }
+                    }
+                }
+                .clickable(
+                    onClick = {
+                        // Check shift state via pointer position isn't available here,
+                        // so we use a separate hover-tracked shift state (see below)
+                        onClick()
+                    }
+                )
+                .padding(horizontal = 12.dp, vertical = 7.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            columns.forEachIndexed { idx, prop ->
+                val raw = try {
+                    prop.get(item)
+                } catch (_: Exception) {
+                    null
+                }
+                val isParams = prop.name == "params"
+                val txt = displayValue(raw, resolveParams = isParams)
+                val isId = prop.name == "id"
+                Box(modifier = Modifier.weight(if (isId) 0.5f else 1f)) {
+                    Text(
+                        txt, fontSize = 12.sp, maxLines = 1,
+                        color = when {
+                            isId -> AccentBlue; txt == "null" || txt == "-1" -> TextMuted; else -> TextPrimary
+                        },
+                        fontFamily = if (isId) FontFamily.Monospace else FontFamily.Default
+                    )
+                }
+                if (idx < columns.lastIndex) Spacer(Modifier.width(8.dp))
             }
-            val isParams = prop.name == "params"
-            val txt = displayValue(raw, resolveParams = isParams)
-            val isId = prop.name == "id"
-            Box(modifier = Modifier.weight(if (isId) 0.5f else 1f)) {
+        }
+
+        // Right-click context menu — one entry per visible column
+        DropdownMenu(
+            expanded = showMenu,
+            onDismissRequest = { showMenu = false },
+            offset = menuOffset,
+            modifier = Modifier.background(BgPanel).border(0.5.dp, BorderColor, RoundedCornerShape(6.dp)),
+        ) {
+            val targets = if (selectedItems.size > 1) selectedItems else listOf(item)
+            val isMulti = targets.size > 1
+            if (isMulti) {
                 Text(
-                    txt, fontSize = 12.sp, maxLines = 1,
-                    color = when {
-                        isId -> AccentBlue; txt == "null" || txt == "-1" -> TextMuted; else -> TextPrimary
+                    "${targets.size} rows selected",
+                    fontSize = 10.sp, color = TextMuted,
+                    modifier = Modifier.padding(start = 10.dp, top = 6.dp, bottom = 4.dp)
+                )
+                Divider(color = BorderColor, thickness = 0.5.dp, modifier = Modifier.padding(bottom = 4.dp))
+                // Copy all selected as TSV (with header)
+                DropdownMenuItem(
+                    text = {
+                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
+                            Icon(painterResource(Res.drawable.content_copy), null, tint = AccentBlue, modifier = Modifier.size(12.dp))
+                            Text("Copy ${targets.size} rows (TSV)", fontSize = 11.sp, color = AccentBlue)
+                        }
                     },
-                    fontFamily = if (isId) FontFamily.Monospace else FontFamily.Default
+                    onClick = {
+                        val header = columns.joinToString("\t") { it.name }
+                        val rows = targets.joinToString("\n") { row ->
+                            columns.joinToString("\t") { prop ->
+                                displayValue(
+                                    try {
+                                        prop.get(row)
+                                    } catch (_: Exception) {
+                                        null
+                                    }, prop.name == "params"
+                                )
+                            }
+                        }
+                        copyToClipboard("$header\n$rows")
+                        showMenu = false
+                    },
+                    modifier = Modifier.height(30.dp),
+                )
+                // Copy a single field across all selected rows
+                Text(
+                    "Copy column across selection",
+                    fontSize = 10.sp, color = TextMuted,
+                    modifier = Modifier.padding(start = 10.dp, top = 8.dp, bottom = 4.dp)
+                )
+                Divider(color = BorderColor, thickness = 0.5.dp, modifier = Modifier.padding(bottom = 4.dp))
+            } else {
+                Text("Copy value", fontSize = 10.sp, color = TextMuted, modifier = Modifier.padding(start = 10.dp, top = 6.dp, bottom = 4.dp))
+                Divider(color = BorderColor, thickness = 0.5.dp, modifier = Modifier.padding(bottom = 4.dp))
+            }
+            columns.forEach { prop ->
+                val singleVal = displayValue(
+                    try { prop.get(item) } catch (_: Exception) { null },
+                    prop.name == "params"
+                )
+                val copyText = if (isMulti) {
+                    targets.joinToString("\n") { row ->
+                        displayValue(try { prop.get(row) } catch (_: Exception) { null }, prop.name == "params")
+                    }
+                } else singleVal
+
+                DropdownMenuItem(
+                    text = {
+                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
+                            Text(
+                                prop.name, fontSize = 11.sp, color = TextSecond,
+                                fontFamily = FontFamily.Monospace,
+                                modifier = Modifier.widthIn(min = 60.dp)
+                            )
+                            Text(
+                                if (isMulti) "(${targets.size} values)"
+                                else singleVal.take(40) + if (singleVal.length > 40) "…" else "",
+                                fontSize = 11.sp, color = if (isMulti) TextSecond else TextPrimary
+                            )
+                        }
+                    },
+                    onClick = { copyToClipboard(copyText); showMenu = false },
+                    modifier = Modifier.height(30.dp),
                 )
             }
-            if (idx < columns.lastIndex) Spacer(Modifier.width(8.dp))
+            if (!isMulti) {
+                Divider(color = BorderColor, thickness = 0.5.dp, modifier = Modifier.padding(vertical = 4.dp))
+                DropdownMenuItem(
+                    text = {
+                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
+                            Icon(painterResource(Res.drawable.content_copy), null, tint = AccentBlue, modifier = Modifier.size(12.dp))
+                            Text("Copy all fields", fontSize = 11.sp, color = AccentBlue)
+                        }
+                    },
+                    onClick = {
+                        val all = columns.joinToString("\t") { prop ->
+                            displayValue(try { prop.get(item) } catch (_: Exception) { null }, prop.name == "params")
+                        }
+                        copyToClipboard(all)
+                        showMenu = false
+                    },
+                    modifier = Modifier.height(30.dp),
+                )
+            }
         }
     }
 }
@@ -463,11 +663,25 @@ fun ResultRow(
 // ─────────────────────────────────────────────────────────────────────────────
 
 @Composable
-fun ParamsDetail(map: Map<*, *>) {
+fun ParamsDetail(
+    map: Map<*, *>,
+    fieldLinks: List<FieldLink>,
+    fieldName: String,
+    onNavigate: (String, Int) -> Unit,
+) {
     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
         map.entries.forEach { (k, v) ->
             val keyInt = k as? Int
             val paramName = keyInt?.let { nameOfParam(it) }
+            // Check if this param value is itself a link target
+            val link = fieldLinks.find { it.fieldName == fieldName }
+            val valueInt = when (v) {
+                is Int -> v
+                is Number -> v.toInt()
+                else -> v.toString().toIntOrNull()
+            }
+            val canLinkValue = link != null && valueInt != null && valueInt != -1
+
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)) {
                 if (paramName != null) {
                     Box(Modifier.background(ParamKey.copy(alpha = 0.15f), RoundedCornerShape(3.dp)).padding(horizontal = 5.dp, vertical = 1.dp)) {
@@ -480,29 +694,73 @@ fun ParamsDetail(map: Map<*, *>) {
                     }
                 }
                 Text("=", fontSize = 11.sp, color = TextMuted)
-                Text(v.toString(), fontSize = 12.sp, color = ParamVal)
+                if (canLinkValue) {
+                    // Clickable value
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        modifier = Modifier.clickable { onNavigate(link!!.targetTabLabel, valueInt!!) }
+                    ) {
+                        Text(v.toString(), fontSize = 12.sp, color = LinkColor, fontFamily = FontFamily.Monospace)
+                        val resolved = resolveDisplayName(link!!.targetTabLabel, valueInt!!)
+                        if (resolved != null) {
+                            Text("($resolved)", fontSize = 10.sp, color = TextSecond)
+                        }
+                        Icon(painterResource(Res.drawable.open_in_new), null, tint = LinkColor.copy(0.55f), modifier = Modifier.size(10.dp))
+                    }
+                } else {
+                    Text(v.toString(), fontSize = 12.sp, color = ParamVal)
+                }
             }
         }
     }
 }
 
 @Composable
-fun IntArrayDetail(arr: IntArray) {
+fun IntArrayDetail(
+    arr: IntArray,
+    /** If set, each element is clickable and navigates to this tab */
+    linkTargetTab: String? = null,
+    onNavigate: ((String, Int) -> Unit)? = null,
+) {
     Column {
         Text("IntArray[${arr.size}]", fontSize = 10.sp, color = WarnAmber.copy(alpha = 0.7f), modifier = Modifier.padding(bottom = 3.dp))
-        Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-            arr.take(20).forEach { v ->
-                Box(Modifier.background(TagBg, RoundedCornerShape(3.dp)).padding(horizontal = 5.dp, vertical = 1.dp)) {
-                    Text(v.toString(), fontSize = 11.sp, color = TagText, fontFamily = FontFamily.Monospace)
+        // Improvement 8: wrap instead of truncate
+        FlowRow(
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp),
+        ) {
+            arr.forEach { v ->
+                val canLink = linkTargetTab != null && onNavigate != null && v != -1
+                val resolved = if (canLink) resolveDisplayName(linkTargetTab!!, v) else null
+                Box(
+                    Modifier
+                        .background(if (canLink) LinkColor.copy(alpha = 0.1f) else TagBg, RoundedCornerShape(3.dp))
+                        .border(0.5.dp, if (canLink) LinkColor.copy(alpha = 0.4f) else BorderColor, RoundedCornerShape(3.dp))
+                        .then(if (canLink) Modifier.clickable { onNavigate!!(linkTargetTab!!, v) } else Modifier)
+                        .padding(horizontal = 5.dp, vertical = 1.dp)
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(3.dp),
+                    ) {
+                        Text(v.toString(), fontSize = 11.sp, color = if (canLink) LinkColor else TagText, fontFamily = FontFamily.Monospace)
+                        if (resolved != null) {
+                            Text(resolved, fontSize = 10.sp, color = TextSecond)
+                        }
+                        if (canLink) {
+                            Icon(painterResource(Res.drawable.open_in_new), null, tint = LinkColor.copy(0.45f), modifier = Modifier.size(9.dp))
+                        }
+                    }
                 }
             }
-            if (arr.size > 20) Text("…+${arr.size - 20}", fontSize = 11.sp, color = TextMuted)
         }
     }
 }
 
 @Composable
 fun StringArrayDetail(arr: Array<*>) {
+    // Improvement 8: wrap long arrays
     Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
         arr.forEachIndexed { i, v ->
             if (v != null) Row {
@@ -516,6 +774,27 @@ fun StringArrayDetail(arr: Array<*>) {
 // ─────────────────────────────────────────────────────────────────────────────
 // Detail panel
 // ─────────────────────────────────────────────────────────────────────────────
+fun resolveLabel(item: Definition, properties: List<KProperty1<Definition, *>>): String {
+    fun valueOf(fieldName: String) = properties.find { it.name == fieldName }
+        ?.let {
+            try {
+                it.get(item)?.toString()
+            } catch (_: Exception) {
+                null
+            }
+        }
+        ?.takeIf { it.isNotBlank() && it != "null" }
+
+    val stringId = valueOf("stringId")
+    val name = valueOf("name")
+    val idStr = item.id.toString()
+
+    return when {
+        !stringId.isNullOrBlank() && stringId != idStr -> stringId
+        !name.isNullOrBlank() && name != idStr -> name
+        else -> ""
+    }
+}
 
 @Composable
 fun DetailPanel(
@@ -533,14 +812,8 @@ fun DetailPanel(
                 Text("#${item.id}", fontSize = 15.sp, fontWeight = FontWeight.Bold, color = AccentBlue, fontFamily = FontFamily.Monospace)
             }
             Spacer(Modifier.width(8.dp))
-            val nameVal = properties.find { it.name == "name" }?.let {
-                try {
-                    it.get(item)?.toString()
-                } catch (_: Exception) {
-                    null
-                }
-            } ?: ""
-            Text(nameVal, fontSize = 14.sp, fontWeight = FontWeight.Medium, color = TextPrimary)
+            val label = remember(item) { resolveLabel(item, properties) }
+            Text(label, fontSize = 14.sp, fontWeight = FontWeight.Medium, color = TextPrimary)
         }
 
         // Clipboard buttons
@@ -565,32 +838,58 @@ fun DetailPanel(
             val canLink = link != null && rawInt != null && rawInt != -1
 
             Row(modifier = Modifier.fillMaxWidth().padding(vertical = 3.dp), verticalAlignment = Alignment.Top) {
-                // Field name — clickable if linkable
+                // Field name — clickable if linkable (single int)
                 Text(
                     prop.name, fontSize = 11.sp, fontFamily = FontFamily.Monospace,
                     color = when {
                         canLink -> LinkColor; faded -> TextMuted; else -> TextSecond
                     },
                     modifier = Modifier.weight(0.35f).then(
-                        if (canLink) Modifier.clickable { onNavigate(link.targetTabLabel, rawInt) } else Modifier
+                        if (canLink) Modifier.clickable { onNavigate(link!!.targetTabLabel, rawInt) } else Modifier
                     ))
                 Spacer(Modifier.width(8.dp))
 
                 Box(modifier = Modifier.weight(0.65f)) {
                     when {
-                        prop.name == "params" && raw is Map<*, *> -> ParamsDetail(raw)
+                        prop.name == "params" && raw is Map<*, *> ->
+                            ParamsDetail(raw, fieldLinks, prop.name, onNavigate)
+
                         raw is Boolean -> Box(
                             Modifier.background(
                                 if (raw) SuccessGreen.copy(alpha = 0.15f) else TextMuted.copy(alpha = 0.1f),
                                 RoundedCornerShape(3.dp)
                             ).padding(horizontal = 6.dp, vertical = 1.dp)
                         ) { Text(raw.toString(), fontSize = 11.sp, color = if (raw) SuccessGreen else TextMuted) }
-                        raw is IntArray -> IntArrayDetail(raw)
-                        raw is Array<*> -> StringArrayDetail(raw)
-                        canLink -> Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)) {
-                            Text(raw.toString(), fontSize = 12.sp, color = LinkColor, fontFamily = FontFamily.Monospace)
-                            Icon(painterResource(Res.drawable.open_in_new), null, tint = LinkColor.copy(alpha = 0.55f), modifier = Modifier.size(11.dp))
+
+                        raw is IntArray -> {
+                            // Improvement 9: if there's a FieldLink for this array field, each element is clickable
+                            IntArrayDetail(
+                                arr = raw,
+                                linkTargetTab = link?.targetTabLabel,
+                                onNavigate = if (link != null) onNavigate else null,
+                            )
                         }
+
+                        raw is Array<*> -> StringArrayDetail(raw)
+
+                        canLink -> {
+                            // Single int with link — show id + resolved name
+                            val resolved = resolveDisplayName(link!!.targetTabLabel, rawInt)
+                            Column(verticalArrangement = Arrangement.spacedBy(1.dp)) {
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(5.dp),
+                                    modifier = Modifier.clickable { onNavigate(link.targetTabLabel, rawInt) }
+                                ) {
+                                    Text(raw.toString(), fontSize = 12.sp, color = LinkColor, fontFamily = FontFamily.Monospace)
+                                    Icon(painterResource(Res.drawable.open_in_new), null, tint = LinkColor.copy(alpha = 0.55f), modifier = Modifier.size(11.dp))
+                                }
+                                if (resolved != null) {
+                                    Text(resolved, fontSize = 10.sp, color = TextSecond)
+                                }
+                            }
+                        }
+
                         else -> Text(
                             displayValue(raw), fontSize = 12.sp,
                             color = if (faded) TextMuted else TextPrimary,
@@ -614,8 +913,8 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Int) -> Unit) {
     val properties: List<KProperty1<Definition, *>> = remember(clazz) { getProperties(clazz) }
     val allFieldNames = remember(clazz) { properties.map { it.name } }
     val propsByName = remember(clazz) { properties.associateBy { it.name } }
+    var isShiftHeld by remember { mutableStateOf(false) }
 
-    // Loading / error states
     if (state.loading) {
         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -652,21 +951,74 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Int) -> Unit) {
 
     val activeFilters = state.columnFilters.values.count { it.value.isNotBlank() }
 
+    val listState: LazyListState = rememberLazyListState()
+    val focusRequester = remember { FocusRequester() }
+    val scope = rememberCoroutineScope()
+
+    // Keep focused so arrow keys work immediately
+    LaunchedEffect(state.label) { focusRequester.requestFocus() }
+
     BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
-        val totalWidth = maxWidth  // 'maxWidth' here is the BoxWithConstraints receiver
+        val totalWidth = maxWidth
         val minPanelWidth = totalWidth * 0.20f
         val maxPanelWidth = totalWidth * 0.80f
-
         var detailPanelFraction by remember { mutableStateOf(0.30f) }
-        val detailPanelWidth = totalWidth * detailPanelFraction
-
-        // Clamp in case window is resized
-        val clampedWidth = detailPanelWidth.coerceIn(minPanelWidth, maxPanelWidth)
+        val clampedWidth = (totalWidth * detailPanelFraction).coerceIn(minPanelWidth, maxPanelWidth)
 
         Row(modifier = Modifier.fillMaxSize()) {
             // ── Table ─────────────────────────────────────────────────────────
-            Column(modifier = Modifier.weight(1f).fillMaxHeight().background(BgDark)) {
-
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+                    .background(BgDark)
+                    // Improvement 3: arrow key navigation
+                    .focusRequester(focusRequester)
+                    .focusable()
+                    .onKeyEvent { event ->
+                        isShiftHeld = event.isShiftPressed
+                        if (event.type != KeyEventType.KeyDown) return@onKeyEvent false
+                        if (event.isCtrlPressed && event.key == Key.C) {
+                            if (state.selectedItems.isNotEmpty()) {
+                                val rows = state.selectedItems.joinToString("\n") { item ->
+                                    visibleProps.joinToString("\t") { prop ->
+                                        displayValue(
+                                            try {
+                                                prop.get(item)
+                                            } catch (_: Exception) {
+                                                null
+                                            }, prop.name == "params"
+                                        )
+                                    }
+                                }
+                                copyToClipboard(rows)
+                            }
+                            return@onKeyEvent true
+                        }
+                        val currentIndex = state.lastClickedIndex
+                        val newIndex = when (event.key) {
+                            Key.DirectionDown -> (currentIndex + 1).coerceAtMost(filteredResults.lastIndex)
+                            Key.DirectionUp -> (currentIndex - 1).coerceAtLeast(0)
+                            else -> return@onKeyEvent false
+                        }
+                        if (newIndex != currentIndex && filteredResults.isNotEmpty()) {
+                            val item = filteredResults[newIndex]
+                            if (event.isShiftPressed) {
+                                // Extend selection
+                                val range = if (newIndex > state.lastClickedIndex)
+                                    (state.lastClickedIndex..newIndex)
+                                else
+                                    (newIndex..state.lastClickedIndex)
+                                state.selectedItems = filteredResults.slice(range)
+                            } else {
+                                state.selectedItems = listOf(item)
+                            }
+                            state.lastClickedIndex = newIndex
+                            scope.launch { listState.scrollToItem(newIndex) }
+                            true
+                        } else false
+                    }
+            ) {
                 // Toolbar
                 Row(
                     modifier = Modifier.fillMaxWidth().background(BgPanel).padding(horizontal = 10.dp, vertical = 6.dp),
@@ -677,6 +1029,9 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Int) -> Unit) {
                         "${filteredResults.size} / ${state.definitions.size}", fontSize = 12.sp,
                         color = if (activeFilters > 0) AccentBlue else TextSecond, fontWeight = FontWeight.Medium
                     )
+                    if (state.selectedItems.size > 1) {
+                        Text("· ${state.selectedItems.size} selected", fontSize = 12.sp, color = AccentLight)
+                    }
                     Text("results", fontSize = 12.sp, color = TextMuted)
                     Spacer(Modifier.weight(1f))
                     if (activeFilters > 0) {
@@ -719,11 +1074,37 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Int) -> Unit) {
 
                 Divider(color = BorderColor, thickness = 0.5.dp)
 
-                LazyColumn(modifier = Modifier.fillMaxSize()) {
+                LazyColumn(state = listState, modifier = Modifier.fillMaxSize()) {
                     items(filteredResults) { item ->
-                        ResultRow(item, state.selectedItem == item, visibleProps) {
-                            state.selectedItem = if (state.selectedItem == item) null else item
-                        }
+                        val itemIndex = filteredResults.indexOf(item)
+                        val isSelected = state.selectedItems.lastOrNull() == item
+                        val isInMulti = item in state.selectedItems
+                        ResultRow(
+                            item = item,
+                            isSelected = isSelected,
+                            isInMultiSelection = isInMulti && !isSelected,
+                            selectedItems = state.selectedItems,
+                            columns = visibleProps,
+                            onClick = {
+                                if (isShiftHeld) {
+                                    // Improvement 2: shift-click = range selection
+                                    if (state.lastClickedIndex == -1) {
+                                        state.selectedItems = listOf(item)
+                                        state.lastClickedIndex = itemIndex
+                                    } else {
+                                        val lo = minOf(state.lastClickedIndex, itemIndex)
+                                        val hi = maxOf(state.lastClickedIndex, itemIndex)
+                                        state.selectedItems = filteredResults.slice(lo..hi)
+                                    }
+                                    focusRequester.requestFocus()
+                                } else {
+                                    // Improvement 2: normal click = single selection
+                                    state.selectedItems = listOf(item)
+                                    state.lastClickedIndex = itemIndex
+                                    focusRequester.requestFocus()
+                                }
+                            },
+                        )
                         Divider(color = BorderColor.copy(alpha = 0.35f), thickness = 0.5.dp)
                     }
                     if (filteredResults.isEmpty()) {
@@ -761,20 +1142,17 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Int) -> Unit) {
                                             change.consume()
                                             val dragDelta = change.position.x - change.previousPosition.x
                                             val deltaDp = dragDelta.toDp()
-                                            // Read fraction directly — no stale captured Dp value
                                             val newWidth = (totalWidth * detailPanelFraction - deltaDp)
                                                 .coerceIn(minPanelWidth, maxPanelWidth)
-                                            detailPanelFraction = (newWidth / totalWidth)
-                                                .coerceIn(0.20f, 0.80f)
+                                            detailPanelFraction = (newWidth / totalWidth).coerceIn(0.20f, 0.80f)
                                         }
                                     }
                                 }
                             }
                         }
-                        .pointerHoverIcon(PointerIcon.Hand), // shows resize cursor on hover
+                        .pointerHoverIcon(PointerIcon.Hand),
                     contentAlignment = Alignment.Center,
                 ) {
-                    // Subtle grip dots
                     Column(verticalArrangement = Arrangement.spacedBy(3.dp)) {
                         repeat(4) {
                             Box(Modifier.size(2.dp).background(if (isDragging) AccentBlue else BorderColor, RoundedCornerShape(1.dp)))
@@ -782,7 +1160,7 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Int) -> Unit) {
                     }
                 }
 
-                // ── Detail panel ──────────────────────────────────────────────────
+                // ── Detail panel ───────────────────────────────────────────────
                 state.selectedItem?.let { item ->
                     Column(
                         modifier = Modifier
@@ -796,10 +1174,19 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Int) -> Unit) {
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text("Detail", fontSize = 13.sp, fontWeight = FontWeight.Medium, color = TextPrimary)
+                            if (state.selectedItems.size > 1) {
+                                Spacer(Modifier.width(6.dp))
+                                Box(
+                                    Modifier.background(AccentBlue.copy(0.15f), RoundedCornerShape(3.dp))
+                                        .padding(horizontal = 5.dp, vertical = 1.dp)
+                                ) {
+                                    Text("${state.selectedItems.size} selected", fontSize = 10.sp, color = AccentLight)
+                                }
+                            }
                             Spacer(Modifier.weight(1f))
                             Icon(
                                 painterResource(Res.drawable.close), null, tint = TextSecond,
-                                modifier = Modifier.size(16.dp).clickable { state.selectedItem = null })
+                                modifier = Modifier.size(16.dp).clickable { state.selectedItems = emptyList() })
                         }
                         Divider(color = BorderColor, thickness = 0.5.dp)
                         DetailPanel(item, properties, state.fieldLinks, onNavigate)
@@ -811,39 +1198,61 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Int) -> Unit) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Browser shell
+// Browser shell — Improvement 5: Reload + Load new path buttons
 // ─────────────────────────────────────────────────────────────────────────────
 
 @Composable
-fun DefinitionBrowser(tabs: List<DefinitionTab<*>>) {
+fun DefinitionBrowser(
+    tabs: List<DefinitionTab<*>>,
+    onReload: () -> Unit,
+    onChangePath: () -> Unit,
+) {
     var selectedIdx by remember { mutableStateOf(0) }
     val scope = rememberCoroutineScope()
 
-    // Persistent state per tab — not recreated on tab switch
     val tabStates = remember(tabs) {
-        tabs.map { tab ->
-            TabState(tab.label, tab.clazz, tab.defaultColumns, tab.fieldLinks)
-        }
+        tabs.map { tab -> TabState(tab.label, tab.clazz, tab.defaultColumns, tab.fieldLinks) }
     }
 
-    // Kick off async loaders once
+    // Improvement 4: dependency-aware async loading
     LaunchedEffect(tabStates) {
-        tabStates.forEachIndexed { idx, state ->
-            scope.launch {
-                try {
-                    @Suppress("UNCHECKED_CAST")
-                    state.definitions = (tabs[idx] as DefinitionTab<Definition>).loader()
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    state.error = e.message ?: "Unknown error"
-                } finally {
-                    state.loading = false
+        // Build label -> index map
+        val labelToIdx = tabs.mapIndexed { i, t -> t.label to i }.toMap()
+        // Track which tabs have finished
+        val finished = mutableSetOf<String>()
+        // We need to repeatedly poll until all are done; use a simple launch-when-ready approach
+        val pending = tabs.indices.toMutableSet()
+
+        while (pending.isNotEmpty()) {
+            val toStart = pending.filter { idx ->
+                val deps = tabs[idx].dependsOn
+                deps.all { it in finished }
+            }
+            if (toStart.isEmpty()) break // circular or impossible dep — break to avoid infinite loop
+            toStart.forEach { idx ->
+                pending.remove(idx)
+                val state = tabStates[idx]
+                scope.launch {
+                    try {
+                        @Suppress("UNCHECKED_CAST")
+                        state.definitions = (tabs[idx] as DefinitionTab<Definition>).loader()
+                        // Update reverse lookup index
+                        tabDefinitionIndex[state.label] = state.definitions.associateBy { it.id }
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        state.error = e.message ?: "Unknown error"
+                    } finally {
+                        state.loading = false
+                        finished.add(tabs[idx].label)
+                    }
                 }
             }
+            // Yield and wait for at least one to finish before re-checking deps
+            // Simple approach: wait a short tick then retry
+            kotlinx.coroutines.delay(50)
         }
     }
 
-    // Cross-tab navigation: switch to target tab and inject an id=X filter
     fun navigateTo(targetLabel: String, filterId: Int) {
         val idx = tabStates.indexOfFirst { it.label == targetLabel }
         if (idx == -1) return
@@ -857,7 +1266,7 @@ fun DefinitionBrowser(tabs: List<DefinitionTab<*>>) {
     MaterialTheme(colors = darkColors(background = BgDark, surface = BgPanel, primary = AccentBlue)) {
         Column(modifier = Modifier.fillMaxSize().background(BgDark)) {
 
-            // Tab bar
+            // Tab bar + action buttons
             Row(
                 modifier = Modifier.fillMaxWidth().height(40.dp)
                     .background(BgPanel).border(BorderStroke(0.5.dp, BorderColor)),
@@ -888,17 +1297,53 @@ fun DefinitionBrowser(tabs: List<DefinitionTab<*>>) {
                             )
                             when {
                                 state.loading -> CircularProgressIndicator(
-                                    color = TextMuted,
-                                    modifier = Modifier.size(8.dp), strokeWidth = 1.5.dp
+                                    color = TextMuted, modifier = Modifier.size(8.dp), strokeWidth = 1.5.dp
                                 )
                                 hasFilters -> Box(Modifier.size(6.dp).background(AccentBlue, RoundedCornerShape(3.dp)))
                             }
                         }
                     }
                 }
+
+                Spacer(Modifier.weight(1f))
+
+                // Improvement 5: Reload + Load new path buttons
+                Row(
+                    modifier = Modifier.padding(end = 8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    // Reload
+                    Row(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(4.dp))
+                            .background(BgCard)
+                            .border(0.5.dp, BorderColor, RoundedCornerShape(4.dp))
+                            .clickable { onReload() }
+                            .padding(horizontal = 8.dp, vertical = 4.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    ) {
+                        Icon(painterResource(Res.drawable.refresh), null, tint = TextSecond, modifier = Modifier.size(13.dp))
+                        Text("Reload", fontSize = 11.sp, color = TextSecond)
+                    }
+                    // Load new path
+                    Row(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(4.dp))
+                            .background(AccentBlue.copy(alpha = 0.15f))
+                            .border(0.5.dp, AccentBlue.copy(alpha = 0.4f), RoundedCornerShape(4.dp))
+                            .clickable { onChangePath() }
+                            .padding(horizontal = 8.dp, vertical = 4.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    ) {
+                        Icon(painterResource(Res.drawable.folder_open), null, tint = AccentLight, modifier = Modifier.size(13.dp))
+                        Text("Load path…", fontSize = 11.sp, color = AccentLight)
+                    }
+                }
             }
 
-            // Content — no key{} reset: state persists across tab switches
             DefinitionTabContent(
                 state = tabStates[selectedIdx],
                 onNavigate = ::navigateTo,
@@ -907,13 +1352,16 @@ fun DefinitionBrowser(tabs: List<DefinitionTab<*>>) {
     }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Cache picker screen
+// ─────────────────────────────────────────────────────────────────────────────
+
 @Composable
 fun CachePickerScreen(
     initialPath: String?,
     error: String?,
     onDirectorySelected: (String) -> Unit,
 ) {
-    // Immediately open the native directory chooser
     fun openChooser() {
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName())
         val chooser = JFileChooser().apply {
@@ -933,10 +1381,8 @@ fun CachePickerScreen(
         ) {
             Text("Definition Browser", fontSize = 22.sp, fontWeight = FontWeight.Bold, color = TextPrimary)
             Text("Select a cache directory to begin", fontSize = 13.sp, color = TextSecond)
-
             Spacer(Modifier.height(8.dp))
 
-            // Show last used path as a hint
             if (initialPath != null) {
                 Box(
                     Modifier
@@ -948,7 +1394,6 @@ fun CachePickerScreen(
                 }
             }
 
-            // ── Error banner ──────────────────────────────────────────────
             if (error != null) {
                 Row(
                     modifier = Modifier
@@ -974,14 +1419,16 @@ fun CachePickerScreen(
             ) {
                 Text(
                     if (initialPath != null) "Change directory" else "Load cache directory",
-                    fontSize = 13.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.Medium,
+                    fontSize = 13.sp, color = Color.White, fontWeight = FontWeight.Medium,
                 )
             }
         }
     }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// App screen state
+// ─────────────────────────────────────────────────────────────────────────────
 
 private enum class AppScreen { PICKER, BROWSER }
 
@@ -996,15 +1443,16 @@ object AppPrefs {
         }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Tab builder — Improvement 4: dependsOn wiring for Invs -> Items
+// ─────────────────────────────────────────────────────────────────────────────
+
 private fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
     val file = File(path)
-    val cachePath: String
-    if (file.resolve("cache").exists()) {
-        cachePath = file.resolve("cache").absolutePath
-    } else if (file.resolve("main_file_cache.dat2").exists()) {
-        cachePath = path
-    } else {
-        error("No cache found in dir: '$path'")
+    val cachePath: String = when {
+        file.resolve("cache").exists() -> file.resolve("cache").absolutePath
+        file.resolve("main_file_cache.dat2").exists() -> path
+        else -> error("No cache found in dir: '$path'")
     }
     var loadConfig = false
     val files = if (file.resolve("dirs.txt").exists()) {
@@ -1014,6 +1462,7 @@ private fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatchin
         configFiles()
     }
     val cache = CacheDelegate(cachePath)
+
     listOf(
         DefinitionTab("Items", ItemDefinition::class.java, listOf("id", "stringId", "name")) {
             ItemDefinitions.init(ItemDecoder().load(cache))
@@ -1030,7 +1479,7 @@ private fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatchin
                 FieldLink("crawlSound", "Sounds"),
                 FieldLink("walkSound", "Sounds"),
                 FieldLink("runSound", "Sounds"),
-                FieldLink("transforms", "NPCs"),
+                FieldLink("transforms", "NPCs"),   // IntArray — each element clickable
             )
         ) {
             NPCDefinitions.init(NPCDecoder(true).load(cache))
@@ -1071,24 +1520,36 @@ private fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatchin
             }
         },
         DefinitionTab("Ifaces", InterfaceDefinition::class.java, listOf("id", "stringId")) {
-            // TODO support Components
             InterfaceDefinitions.init(InterfaceDecoder().load(cache))
             if (loadConfig) {
-                InterfaceDefinitions.load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"]))
+                InterfaceDefinitions.load(
+                    files.list(Settings["definitions.interfaces"]),
+                    files.find(Settings["definitions.interfaces.types"])
+                )
             }
             InterfaceDefinitions.definitions.toList()
         },
         DefinitionTab("Enums", EnumDefinition::class.java, listOf("id", "stringId")) {
             EnumDefinitions.init(EnumDecoder().load(cache))
             if (loadConfig) {
-//                EnumDefinitions.load(files.list(Settings["definitions.enums"]))
+                // EnumDefinitions.load(files.list(Settings["definitions.enums"]))
             }
             EnumDefinitions.definitions.toList()
         },
-        DefinitionTab("Invs", InventoryDefinition::class.java, listOf("id", "stringId")) {
+        // Improvement 4: Inventories depend on Items (so item names resolve in detail panel)
+        DefinitionTab(
+            label = "Invs",
+            clazz = InventoryDefinition::class.java,
+            defaultColumns = listOf("id", "stringId"),
+            dependsOn = listOf("Items"),
+            fieldLinks = listOf(FieldLink("ids", "Items"))
+        ) {
             InventoryDefinitions.init(InventoryDecoder().load(cache))
             if (loadConfig) {
-                InventoryDefinitions.load(files.list(Settings["definitions.inventories"]), files.list(Settings["definitions.shops"]))
+                InventoryDefinitions.load(
+                    files.list(Settings["definitions.inventories"]),
+                    files.list(Settings["definitions.shops"])
+                )
             }
             InventoryDefinitions.definitions.toList()
         },
@@ -1096,7 +1557,7 @@ private fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatchin
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Entry point — wire up your actual loaded arrays here
+// Entry point
 // ─────────────────────────────────────────────────────────────────────────────
 
 private val paramLookup = mutableMapOf<Int, String>()
@@ -1111,32 +1572,32 @@ fun main() = application {
     params.filter { it.isConst }.forEach {
         paramLookup[it.getter.call() as Int] = it.name.lowercase()
     }
+
     var screen by remember { mutableStateOf(AppScreen.PICKER) }
     var tabs by remember { mutableStateOf<List<DefinitionTab<*>>>(emptyList()) }
     var loadError by remember { mutableStateOf<String?>(null) }
+    var currentPath by remember { mutableStateOf<String?>(null) }
 
     fun tryLoad(path: String) {
         buildTabs(path)
             .onSuccess { result ->
                 loadError = null
                 AppPrefs.cacheDir = path
+                currentPath = path
                 tabs = result
                 screen = AppScreen.BROWSER
             }
             .onFailure { e ->
                 loadError = e.message ?: "Failed to load cache"
-                // Don't persist a path that didn't work
             }
     }
 
-    // If we have a saved path, skip straight to the browser
     LaunchedEffect(Unit) {
         AppPrefs.cacheDir?.let { tryLoad(it) }
     }
-    val state = rememberWindowState(
-        width = 1000.dp,
-        height = 600.dp,
-    )
+
+    val state = rememberWindowState(width = 1000.dp, height = 600.dp)
+
     Window(onCloseRequest = ::exitApplication, title = "Definition Browser", state = state) {
         MaterialTheme(colors = darkColors(background = BgDark, surface = BgPanel, primary = AccentBlue)) {
             when (screen) {
@@ -1145,7 +1606,13 @@ fun main() = application {
                     error = loadError,
                     onDirectorySelected = { tryLoad(it) }
                 )
-                AppScreen.BROWSER -> DefinitionBrowser(tabs = tabs)
+                AppScreen.BROWSER -> DefinitionBrowser(
+                    tabs = tabs,
+                    // Improvement 5: Reload reloads the same path
+                    onReload = { currentPath?.let { tryLoad(it) } },
+                    // Improvement 5: Change path goes back to picker
+                    onChangePath = { screen = AppScreen.PICKER }
+                )
             }
         }
     }
