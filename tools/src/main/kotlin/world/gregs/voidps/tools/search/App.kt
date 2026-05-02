@@ -11,6 +11,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
+import org.jetbrains.compose.resources.painterResource
+import world.gregs.void.tools.generated.resources.Res
+import world.gregs.void.tools.generated.resources.void_icon
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.tools.search.screen.AppScreen
 import world.gregs.voidps.tools.search.screen.pick.CachePickerScreen
@@ -58,7 +61,7 @@ fun main() = application {
 
     val state = rememberWindowState(width = 1000.dp, height = 600.dp)
 
-    Window(onCloseRequest = ::exitApplication, title = "Definition Browser", state = state) {
+    Window(onCloseRequest = ::exitApplication, title = "Void Definition Browser", state = state, icon = painterResource(Res.drawable.void_icon)) {
         MaterialTheme(colors = darkColors(background = BgDark, surface = BgPanel, primary = AccentBlue)) {
             when (screen) {
                 AppScreen.PICKER -> CachePickerScreen(

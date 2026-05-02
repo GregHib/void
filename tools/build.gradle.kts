@@ -1,6 +1,4 @@
-import org.gradle.kotlin.dsl.application
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import kotlin.text.set
 
 plugins {
     id("shared")
@@ -61,8 +59,16 @@ compose {
             mainClass = "world.gregs.voidps.tools.search.AppKt"
             nativeDistributions {
                 targetFormats(TargetFormat.Msi, TargetFormat.Deb)
-                packageName = "DefinitionBrowser"
+                packageName = "VoidDefinitionBrowser"
                 packageVersion = "1.0.0"
+                val icon = project.file("src/main/composeResources/drawable/void_icon.png")
+                windows {
+                    includeAllModules = true
+                    iconFile.set(icon)
+                }
+                linux {
+                    iconFile.set(icon)
+                }
             }
         }
     }

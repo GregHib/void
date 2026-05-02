@@ -3,7 +3,7 @@ package world.gregs.voidps.tools.search
 import java.util.prefs.Preferences
 
 object AppPrefs {
-    private val prefs = Preferences.userRoot().node("world/gregs/voidps/tools/definition-browser")
+    private val prefs = Preferences.userRoot().node("world/gregs/voidps/tools/search/definition-browser")
     private const val KEY_CACHE_DIR = "cacheDir"
 
     var cacheDir: String?

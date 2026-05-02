@@ -343,7 +343,7 @@ fun GlobalSearchTab(
 
                             if (!isCollapsed) {
                                 items(groupResults,
-                                    key = { "${it.tabLabel}_${it.definition.id}" }
+                                    key = { "${it.tabLabel}_${it.definition.id}_${it.definition.hashCode()}" }
                                 ) { result ->
                                     val isSelected = globalState.selectedItem == result.definition
                                     val def = result.definition
