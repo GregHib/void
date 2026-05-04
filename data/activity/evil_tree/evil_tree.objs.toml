@@ -1,3 +1,23 @@
+[evil_tree_seedling]
+id = 11391
+examine = "A small seedling emerging from the ground."
+
+[evil_tree_sapling]
+id = 11392
+examine = "A strange sapling emerging from the ground."
+
+[evil_tree_sapling_large]
+id = 11393
+examine = "A fast-growing sapling emerging from the ground."
+
+[evil_tree_young]
+id = 11394
+examine = "A young tree emerging from the ground."
+
+[evil_tree_young_large]
+id = 11395
+examine = "A fast-growing sapling emerging from the ground."
+
 [evil_tree_normal_full]
 id = 11434
 upgrade_time = 50
@@ -15,149 +35,173 @@ examine = "This looks like a challenge anyone can deal with."
 id = 11925
 
 [evil_tree_normal_stump]
+id = 14846
+
+[evil_tree_normal_stump_blank]
 id = 12713
+examine = "It looks better dead than alive."
 
-#[evil_tree_normal_stump]
-#id = 14839
+[evil_tree_normal_stump_reward]
+id = 14839
+examine = "Looks like there's rewards to be had!"
 
-[evil_oak_tree]
+[evil_tree_oak_full]
 id = 11437
 examine = "His bite looks tougher than his bark."
 
-[evil_oak_tree_stump]
+[evil_tree_oak_half]
 id = 11438
 examine = "His bite looks tougher than his bark."
 
-[evil_oak_tree_2]
-id = 11438
-examine = "His bite looks tougher than his bark."
-
-[evil_oak_tree_2_stump]
+[evil_tree_oak_weak]
 id = 11439
 examine = "His bite looks tougher than his bark."
 
-[evil_oak_tree_three]
-id = 11439
-examine = "His bite looks tougher than his bark."
-
-[evil_oak_tree_three_stump]
+[evil_tree_oak_death]
 id = 11926
 
-[evil_willow_tree]
+[evil_tree_oak_stump]
+id = 14847
+
+[evil_tree_oak_stump_blank]
+id = 12714
+examine = "It looks better dead than alive."
+
+[evil_tree_oak_stump_reward]
+id = 14840
+examine = "Looks like there's rewards to be had!"
+
+[evil_tree_willow_full]
 id = 11440
 examine = "He'll weep when he's done being evil!"
 
-[evil_willow_tree_stump]
+[evil_tree_willow_half]
 id = 11441
 examine = "He'll weep when he's done being evil!"
 
-[evil_willow_tree_2]
-id = 11441
-examine = "He'll weep when he's done being evil!"
-
-[evil_willow_tree_2_stump]
+[evil_tree_willow_weak]
 id = 11442
 examine = "He'll weep when he's done being evil!"
 
-[evil_willow_tree_3]
-id = 11442
-examine = "He'll weep when he's done being evil!"
-
-[evil_willow_tree_3_stump]
+[evil_tree_willow_death]
 id = 11927
 
-[evil_maple_tree]
+[evil_tree_willow_stump]
+id = 14848
+
+[evil_tree_willow_stump_blank]
+id = 12715
+examine = "It looks better dead than alive."
+
+[evil_tree_willow_stump_reward]
+id = 14841
+examine = "Looks like there's rewards to be had!"
+
+[evil_tree_maple_full]
 id = 11443
 examine = "Where did his red leaves go?"
 
-[evil_maple_tree_stump]
+[evil_tree_maple_half]
 id = 11444
 examine = "Where did his red leaves go?"
 
-[evil_maple_tree_2]
-id = 11444
+[evil_tree_maple_weak]
+id = 11445
 examine = "Where did his red leaves go?"
 
-[evil_maple_tree_2_stump]
-id = 11915
-examine = "Where did his red leaves go?"
-
-[dead_tree_18]
-id = 11510
-examine = "This tree has long been dead."
-
-[evil_maple_tree_3]
-id = 11915
-examine = "Where did his red leaves go?"
-
-[evil_maple_tree_3_stump]
+[evil_tree_maple_death]
 id = 11928
 
-[evil_yew_tree]
+[evil_tree_maple_stump]
+id = 14849
+
+[evil_tree_maple_stump_blank]
+id = 14835
+examine = "It looks better dead than alive."
+
+[evil_tree_maple_stump_reward]
+id = 14842
+examine = "Looks like there's rewards to be had!"
+
+[evil_tree_yew_full]
 id = 11916
 examine = "A tough evil tree!"
 
-[evil_yew_tree_stump]
+[evil_tree_yew_half]
 id = 11917
 examine = "A tough evil tree!"
 
-[evil_yew_tree_2]
-id = 11917
-examine = "A tough evil tree!"
-
-[evil_yew_tree_2_stump]
+[evil_tree_yew_weak]
 id = 11918
 examine = "A tough evil tree!"
 
-[evil_yew_tree_3]
-id = 11918
-examine = "A tough evil tree!"
-
-[evil_yew_tree_3_stump]
+[evil_tree_yew_death]
 id = 11929
 
-[evil_magic_tree]
+[evil_tree_yew_stump]
+id = 14883
+
+[evil_tree_yew_stump_blank]
+id = 14836
+examine = "It looks better dead than alive."
+
+[evil_tree_yew_stump_reward]
+id = 14843
+examine = "Looks like there's rewards to be had!"
+
+[evil_tree_magic_full]
 id = 11919
 examine = "An incredibly tough challenge!"
 
-[evil_magic_tree_stump]
+[evil_tree_magic_half]
 id = 11920
 examine = "An incredibly tough challenge!"
 
-[evil_magic_tree_2]
-id = 11920
-examine = "An incredibly tough challenge!"
-
-[evil_magic_tree_2_stump]
+[evil_tree_magic_weak]
 id = 11921
 examine = "An incredibly tough challenge!"
 
-[evil_magic_tree_3]
-id = 11921
-examine = "An incredibly tough challenge!"
-
-[evil_magic_tree_3_stump]
+[evil_tree_magic_death]
 id = 12711
 
-[evil_elder_tree]
+[evil_tree_magic_stump]
+id = 14884
+
+[evil_tree_magic_stump_blank]
+id = 14837
+examine = "It looks better dead than alive."
+
+[evil_tree_magic_stump_reward]
+id = 14844
+examine = "Looks like there's rewards to be had!"
+
+[evil_tree_elder_full]
 id = 11922
 examine = "The most fearsome of evil trees!"
 
-[evil_elder_tree_stump]
+[evil_tree_elder_half]
 id = 11923
 examine = "The most fearsome of evil trees!"
 
-[evil_elder_tree_2]
-id = 11923
-examine = "The most fearsome of evil trees!"
-
-[evil_elder_tree_2_stump]
+[evil_tree_elder_weak]
 id = 11924
 examine = "The most fearsome of evil trees!"
 
-[evil_elder_tree_3]
-id = 11924
-examine = "The most fearsome of evil trees!"
-
-[evil_elder_tree_3_stump]
+[evil_tree_elder_death]
 id = 12712
+
+[evil_tree_elder_stump]
+id = 14885
+
+[evil_tree_elder_stump_blank]
+id = 14838
+examine = "It looks better dead than alive."
+
+[evil_tree_elder_stump_reward]
+id = 14845
+examine = "Looks like there's rewards to be had!"
+
+[evil_branches_west_spawn]
+id = 11427
+
+[]
