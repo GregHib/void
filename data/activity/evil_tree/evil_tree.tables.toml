@@ -6,6 +6,7 @@ burn_xp = "int"
 root_xp = "int"
 tree_xp = "int"
 buff = "int"
+health = "int"
 
 [.normal]
 woodcutting = 1
@@ -15,6 +16,7 @@ burn_xp = 2000
 root_xp = 30
 tree_xp = 30
 buff = 6
+health = 150
 
 [.oak]
 woodcutting = 15
@@ -24,6 +26,7 @@ burn_xp = 3000
 root_xp = 64
 tree_xp = 64
 buff = 10
+health = 300
 
 [.willow]
 woodcutting = 30
@@ -33,6 +36,7 @@ burn_xp = 4500
 root_xp = 91
 tree_xp = 91
 buff = 14
+health = 450
 
 [.maple]
 woodcutting = 45
@@ -42,6 +46,7 @@ burn_xp = 6750
 root_xp = 111
 tree_xp = 111
 buff = 18
+health = 600
 
 [.yew]
 woodcutting = 60
@@ -51,6 +56,7 @@ burn_xp = 10125
 root_xp = 175
 tree_xp = 175
 buff = 22
+health = 750
 
 [.magic]
 woodcutting = 75
@@ -60,6 +66,7 @@ burn_xp = 15175
 root_xp = 250
 tree_xp = 250
 buff = 26
+health = 750
 
 [.elder]
 woodcutting = 90
@@ -69,6 +76,7 @@ burn_xp = 26005
 root_xp = 325
 tree_xp = 325
 buff = 30
+health = 900
 
 
 [evil_tree_place]
@@ -200,3 +208,16 @@ tiles = [
     { x = 2452, y = 3346 },
     { x = 2520, y = 3102 },
 ]
+
+[evil_branches]
+tile = "tile"
+spawn = "obj"
+fight = "obj"
+
+[.west]
+tile = { x = -1, y =  1 }
+spawn = 11427
+11427
+11429 { x = 1, y = -1 }
+11431 { x = 3, y =  1 }
+11433 { x = 1, y =  3 }
