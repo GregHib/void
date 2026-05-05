@@ -1,5 +1,6 @@
 package content.area.morytania.mort_myre_swamp
 
+import content.entity.combat.hit.directHit
 import content.entity.combat.hit.hit
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -43,7 +44,7 @@ class SwampDecay : Script {
             }
             if (tile in Areas["mort_myre_swamp"]) {
                 message("The swamp decays you!")
-                hit(this, weapon = Item.EMPTY, spell = "", special = false, offensiveType = "damage", damage = random.nextInt(10..30))
+                directHit(random.nextInt(10..30))
                 gfx("swamp_decay")
                 Timer.CONTINUE
             } else {
