@@ -76,22 +76,25 @@ class DarkMage : Script {
         option<Neutral>("I need your help with something.") {
             npc<Angry>("What? Oh... very well. What did you want?")
             choice {
-                option<Quiz>("Can I have another Abyssal book?") {
-                    if (ownsItem("abyssal_book")) {
-                        npc<Neutral>("You already have one, don't waste my time.") // TODO proper message (not in osrs)
-                    } else if (inventory.isFull()) {
-                        npc<Angry>("Don't waste my time if you don't have enough free space to take it.")
-                    } else {
-                        npc<Neutral>("Here, take it. It is important to pool our research.")
-                        if (inventory.add("abyssal_book")) {
-                            item("abyssal_book", 400, "You have been given a book.")
+                if (!ownsItem("abyssal_book")) {
+                    option<Quiz>("Can I have another Abyssal book?") {
+                        if (inventory.isFull()) {
+                            npc<Angry>("Don't waste my time if you don't have enough free space to take it.")
                         } else {
-                            item("abyssal_book", 400, "The mage tries to hand you a book, but you don't have enough room to take it.") // TODO proper message
-                        }
-                        choice {
-                            askForPouch()
-                            option<Idle>("Thanks.") {
-                                npc<Quiz>("Now can you leave me alone? I can't keep affording these distractions!")
+                            if (inventory.spaces < 1) {
+                                item("abyssal_book", 400, "Don't waste my time if you don't have enough free space to take it.")
+                                return@option
+                            }
+                            if (inventory.add("abyssal_book")) {
+                                npc<Neutral>("Here, take it. It is important to pool our research.")
+                                item("abyssal_book", 400, "You have been given a book.")
+                                npc<Neutral>("Now leave me be, I must concentrate!")
+                            }
+                            choice {
+                                askForPouch()
+                                option<Idle>("Thanks.") {
+                                    npc<Quiz>("Now can you leave me alone? I can't keep affording these distractions!")
+                                }
                             }
                         }
                     }

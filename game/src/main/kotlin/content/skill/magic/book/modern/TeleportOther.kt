@@ -71,15 +71,8 @@ class TeleportOther : Script {
             }
         }
 
-        combatPrepare("magic") { target ->
-            if (spell.startsWith("teleother")) {
-                if (target is NPC) {
-                    message("This spell can only be cast on other players.") // TODO proper message
-                }
-                false
-            } else {
-                true
-            }
+        combatPrepare("magic") {
+            !spell.startsWith("teleother")
         }
     }
 }

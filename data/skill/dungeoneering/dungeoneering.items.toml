@@ -12834,6 +12834,7 @@ charges = 30000
 degrade = "chaotic_rapier_broken"
 deplete = "combat"
 slot = "Weapon"
+# "Your chaotic rapoier has 39.5% of its charges left."
 examine = "A razor-sharp rapier."
 
 [chaotic_rapier_broken]

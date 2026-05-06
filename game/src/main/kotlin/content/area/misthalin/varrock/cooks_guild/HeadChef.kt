@@ -36,8 +36,11 @@ class HeadChef : Script {
                                     add("cooking_hood")
                                 }
                                 when (inventory.transaction.error) {
-                                    is TransactionError.Deficient -> player<Sad>("I'm afraid you don't have enough coins on me at the moment.") // TODO proper message
-                                    is TransactionError.Full -> npc<Sad>("I'm afraid you don't have enough inventory spaces to take the cape and hood.") // TODO proper message
+                                    is TransactionError.Deficient -> {
+                                        player<Sad>("But, unfortunately, I don't have enough coins.")
+                                        npc<Neutral>("Well, come back and see me when you do.")
+                                    }
+                                    is TransactionError.Full -> npc<Sad>("Unfortunately all skillcapes are only available with a free hood, it's part of a skill promotion deal; buy one get one free, you know. So you'll need to free up some backpack space before I can sell you one.")
                                     TransactionError.None -> npc<Happy>("Now you can use the title Master Chef.")
                                     else -> {}
                                 }

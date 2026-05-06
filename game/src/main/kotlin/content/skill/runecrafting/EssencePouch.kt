@@ -90,11 +90,11 @@ class EssencePouch : Script {
             set("${id}_essence", essence - added)
         }
 
-        itemOnItem("pure_essence", pouches.joinToString(",")) { fromItem, toItem, fromSlot, toSlot ->
+        itemOnItem("pure_essence", pouches.joinToString(","), bidirectional = false) { fromItem, toItem, fromSlot, toSlot ->
             addSingle(fromSlot, fromItem, toSlot, toItem)
         }
 
-        itemOnItem("rune_essence", pouches.joinToString(",")) { fromItem, toItem, fromSlot, toSlot ->
+        itemOnItem("rune_essence", pouches.joinToString(","), bidirectional = false) { fromItem, toItem, fromSlot, toSlot ->
             addSingle(fromSlot, fromItem, toSlot, toItem)
         }
 
