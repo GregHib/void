@@ -9,24 +9,24 @@ class AbyssalRift : Script {
 
     init {
         objTeleportTakeOff("Exit-through", "*_rift") { obj, _ ->
-            when {
-                obj.def(this).stringId == "cosmic_rift" && !questCompleted("lost_city") -> {
+            when (obj.def(this).stringId) {
+                "cosmic_rift" if !questCompleted("lost_city") -> {
                     message("You need to have completed the Lost City Quest to use this rift.")
                     return@objTeleportTakeOff Teleport.CANCEL
                 }
-                obj.def(this).stringId == "law_rift" -> {
+                "law_rift" -> {
                     message("The power of Saradomin prevents you taking armour or weaponry to Entrana.")
                     return@objTeleportTakeOff Teleport.CANCEL
                 }
-                obj.def(this).stringId == "death_rift" && !questCompleted("mournings_end_part_2") -> {
+                "death_rift" if !questCompleted("mournings_end_part_2") -> {
                     message("A strange power blocks your exit.")
                     return@objTeleportTakeOff Teleport.CANCEL
                 }
-                obj.def(this).stringId == "blood_rift" && !questCompleted("legacy_of_seergaze") -> {
+                "blood_rift" if !questCompleted("legacy_of_seergaze") -> {
                     message("You need to have completed the Legacy of Seergaze quest to use this rift.")
                     return@objTeleportTakeOff Teleport.CANCEL
                 }
-                obj.def(this).stringId == "soul_rift" -> {
+                "soul_rift" -> {
                     return@objTeleportTakeOff Teleport.CANCEL
                 }
             }

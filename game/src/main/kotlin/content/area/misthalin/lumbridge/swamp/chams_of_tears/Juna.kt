@@ -8,6 +8,7 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
+import content.quest.clearInstance
 import content.quest.closeTabs
 import content.quest.openTabs
 import content.quest.quest

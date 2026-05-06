@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.inv.add
@@ -31,16 +32,15 @@ class SlayerRewards : Script {
         interfaceOption("Buy XP", "slayer_rewards:buy_xp_*") {
             if (slayerPoints < 400) {
                 message("Sorry. That would cost 400 and you only have $slayerPoints Slayer ${"Point".plural(slayerPoints)}.")
-            } else if (inventory.add("ring_of_slaying_8")) {
+            } else {
                 slayerPoints -= 400
                 exp(Skill.Slayer, 10_000.0)
-                // TODO message
+                message("You now have more knowledge of the Slayer skill. Congratulations.")
             }
         }
 
         interfaceOption("Buy Ring", "slayer_rewards:buy_ring_*") {
-            buy(this, 75, "Here are your ring. Use it wisely.") {
-                // TODO proper message
+            buy(this, 75, "Here's your ring. Use it wisely.") {
                 add("ring_of_slaying_8")
             }
         }
@@ -54,14 +54,12 @@ class SlayerRewards : Script {
 
         interfaceOption("Buy Bolts", "slayer_rewards:buy_bolts_*") {
             buy(this, 35, "Here are your bolts. Use them wisely.") {
-                // TODO proper message
                 add("broad_tipped_bolts", 250)
             }
         }
 
         interfaceOption("Buy Arrows", "slayer_rewards:buy_arrows_*") {
             buy(this, 35, "Here are your arrows. Use them wisely.") {
-                // TODO proper message
                 add("broad_arrow", 250)
             }
         }
@@ -92,6 +90,8 @@ class SlayerRewards : Script {
         if (player.inventory.transaction(transaction)) {
             player.slayerPoints -= points
             player.message(message)
+        } else {
+            player.inventoryFull()
         }
     }
 }

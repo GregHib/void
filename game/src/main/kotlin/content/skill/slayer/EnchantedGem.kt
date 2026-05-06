@@ -1,5 +1,6 @@
 package content.skill.slayer
 
+import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
@@ -38,7 +39,7 @@ class EnchantedGem : Script {
 
         itemOption("Kills-left", "enchanted_gem,ring_of_slaying_*") {
             if (slayerTask == "nothing") {
-                message("") // TODO
+                message("You need something new to hunt; return to a Slayer master.")
             } else {
                 message("Your current assignment is: ${slayerTask.lowercase()}; only $slayerTaskRemaining more to go.")
             }
@@ -48,7 +49,7 @@ class EnchantedGem : Script {
     fun ChoiceOption.howAmIDoing() {
         option<Quiz>("How am I doing so far?") {
             if (slayerTask == "nothing") {
-                // TODO
+                npc<Confused>(slayerMaster, "You need something new to hunt. Come and see me when you can and I'll give you a new task.")
             } else {
                 npc<Happy>(slayerMaster, "You're currently assigned to kill ${slayerTask.toLowerSpaceCase()}; only $slayerTaskRemaining more to go. Your reward point tally is $slayerPoints.")
             }
