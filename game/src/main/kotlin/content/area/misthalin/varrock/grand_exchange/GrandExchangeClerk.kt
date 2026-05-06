@@ -6,6 +6,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.male
@@ -45,12 +46,20 @@ class GrandExchangeClerk : Script {
 
         npcApproach("Exchange", "grand_exchange_clerk*") {
             approachRange(2)
-            open("grand_exchange")
+            if (Settings["grandExchange.enabled", false]) {
+                open("grand_exchange")
+            } else {
+                message("This feature is currently disabled.")
+            }
         }
 
         npcApproach("History", "grand_exchange_clerk*") {
             approachRange(2)
-            open("exchange_history")
+            if (Settings["grandExchange.enabled", false]) {
+                open("exchange_history")
+            } else {
+                message("This feature is currently disabled.")
+            }
         }
 
         npcApproach("Sets", "grand_exchange_clerk*") {
