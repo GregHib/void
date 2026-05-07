@@ -210,14 +210,96 @@ tiles = [
 ]
 
 [evil_branches]
-tile = "tile"
+deltaX = "int"
+deltaY = "int"
 spawn = "obj"
-fight = "obj"
+dir = "int"
 
 [.west]
-tile = { x = -1, y =  1 }
-spawn = 11427
-11427
-11429 { x = 1, y = -1 }
-11431 { x = 3, y =  1 }
-11433 { x = 1, y =  3 }
+deltaX = -1
+deltaY = 1
+spawn = "evil_branches_west_spawn"
+dir = 0
+
+[.south]
+deltaX = 1
+deltaY = -1
+spawn = "evil_branches_south_spawn"
+dir = 3
+
+[.east]
+deltaX = 3
+deltaY = 1
+spawn = "evil_branches_east_spawn"
+dir = 2
+
+[.north]
+deltaX = 1
+deltaY = 3
+spawn = "evil_branches_north_spawn"
+dir = 1
+
+[evil_fires]
+deltaX = "int"
+deltaY = "int"
+dir = "int"
+
+[.zero]
+deltaX = -1
+deltaY = 1
+dir = 2
+
+[.one]
+deltaX = -1
+deltaY = 0
+dir = 2
+
+[.two]
+deltaX = 0
+deltaY = -1
+dir = 1
+
+[.three]
+deltaX = 1
+deltaY = -1
+dir = 1
+
+[.four]
+deltaX = 2
+deltaY = -1
+dir = 1
+
+[.five]
+deltaX = 3
+deltaY = 0
+dir = 0
+
+[.six]
+deltaX = 3
+deltaY = 1
+dir = 0
+
+[.seven]
+deltaX = 3
+deltaY = 2
+dir = 0
+
+[.eight]
+deltaX = 2
+deltaY = 3
+dir = 3
+
+[.nine]
+deltaX = 1
+deltaY = 3
+dir = 3
+
+[.ten]
+deltaX = 0
+deltaY = 3
+dir = 3
+
+[.eleven]
+deltaX = -1
+deltaY = 2
+dir = 2
