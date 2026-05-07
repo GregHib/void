@@ -2,3 +2,7 @@
 id = 1545
 format = "boolean"
 persist = true
+
+[evil_tree_rewards]
+id = 1542
+format = "boolean"

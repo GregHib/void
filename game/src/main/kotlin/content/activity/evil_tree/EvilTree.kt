@@ -23,6 +23,7 @@ class EvilTree : Script {
     var tree: GameObject = GameObject(0)
     var spawnTile: Tile = Tile.EMPTY
     var type: String = "normal"
+    val roots = arrayOfNulls<GameObject>(4)
 
     init {
         worldSpawn {
@@ -46,6 +47,15 @@ class EvilTree : Script {
         objectOperate("Chop", "evil_tree_*") { (target) ->
             nextStage(target)
         }
+
+        objectDespawn("evil_branches_*_spawn") {
+            for (root in roots) {
+                root ?: continue
+                root.replace(root.id.removeSuffix("_spawn"))
+            }
+        }
+
+        // TODO controller on leprechaun to do branch attacks
     }
 
     private fun nextStage(target: GameObject) {
@@ -66,20 +76,41 @@ class EvilTree : Script {
                 target.replace("evil_tree_young", spawnTile)
             }
             target.id == "evil_tree_young" -> target.replace("evil_tree_young_large", spawnTile)
-            target.id == "evil_tree_young_large" -> target.replace("evil_tree_${type}_full")
+            target.id == "evil_tree_young_large" -> {
+                var index = 0
+                for (branch in Tables.get("evil_branches").rows()) {
+                    val spawn = branch.obj("spawn")
+                    val dir = branch.int("dir")
+                    val tile = target.tile.add(branch.int("deltaX"), branch.int("deltaY"))
+                    roots[index++] = GameObjects.add(spawn, tile, rotation = dir, ticks = 2)
+                }
+                target.replace("evil_tree_${type}_full")
+            }
             target.id.endsWith("full") -> target.replace(target.id.replace("_full", "_half"))
             target.id.endsWith("half") -> target.replace(target.id.replace("_half", "_weak"))
             target.id.endsWith("weak") -> target.replace(target.id.replace("_weak", "_stump"))
-            target.id.endsWith("stump") -> target.replace(target.id.replace("_stump", "_death"))
+            target.id.endsWith("stump") -> {
+                clearRoots()
+                target.replace(target.id.replace("_stump", "_death"))
+            }
             else -> return
         }
     }
+
 
     fun clear() {
         GameObjects.remove(tree)
         tree = GameObject(0)
         spawnTile = Tile.EMPTY
         type = "normal"
+        clearRoots()
+    }
+
+    private fun clearRoots() {
+        for (root in roots) {
+            GameObjects.remove(root ?: continue)
+        }
+        roots.fill(null)
     }
 
     fun start() {

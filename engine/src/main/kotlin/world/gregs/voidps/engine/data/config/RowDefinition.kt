@@ -39,6 +39,10 @@ data class RowDefinition(
 
     fun npcOrNull(column: String) = Tables.npcOrNull("${stringId}.$column")
 
+    fun obj(column: String) = Tables.obj("${stringId}.$column")
+
+    fun objOrNull(column: String) = Tables.objOrNull("${stringId}.$column")
+
     fun intList(column: String) = Tables.intList("${stringId}.$column")
 
     fun intListOrNull(column: String) = Tables.intListOrNull("${stringId}.$column")

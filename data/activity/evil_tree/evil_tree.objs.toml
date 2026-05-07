@@ -106,7 +106,7 @@ id = 11444
 examine = "Where did his red leaves go?"
 
 [evil_tree_maple_weak]
-id = 11445
+id = 11915
 examine = "Where did his red leaves go?"
 
 [evil_tree_maple_death]
@@ -201,7 +201,29 @@ examine = "It looks better dead than alive."
 id = 14845
 examine = "Looks like there's rewards to be had!"
 
+[evil_branches_west]
+id = 11426
+
 [evil_branches_west_spawn]
 id = 11427
 
-[]
+[evil_branches_south]
+id = 11428
+
+[evil_branches_south_spawn]
+id = 11429
+
+[evil_branches_east]
+id = 11430
+
+[evil_branches_east_spawn]
+id = 11431
+
+[evil_branches_north]
+id = 11432
+
+[evil_branches_north_spawn]
+id = 11433
+
+[evil_tree_fire]
+id = 11425
