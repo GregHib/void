@@ -7,6 +7,7 @@ root_xp = "int"
 tree_xp = "int"
 buff = "int"
 health = "int"
+seed_health = "int"
 
 [.normal]
 woodcutting = 1
@@ -17,6 +18,7 @@ root_xp = 30
 tree_xp = 30
 buff = 6
 health = 150
+seed_health = 2
 
 [.oak]
 woodcutting = 15
@@ -27,6 +29,7 @@ root_xp = 64
 tree_xp = 64
 buff = 10
 health = 300
+seed_health = 4
 
 [.willow]
 woodcutting = 30
@@ -37,6 +40,7 @@ root_xp = 91
 tree_xp = 91
 buff = 14
 health = 450
+seed_health = 6
 
 [.maple]
 woodcutting = 45
@@ -47,6 +51,7 @@ root_xp = 111
 tree_xp = 111
 buff = 18
 health = 600
+seed_health = 8
 
 [.yew]
 woodcutting = 60
@@ -57,6 +62,7 @@ root_xp = 175
 tree_xp = 175
 buff = 22
 health = 750
+seed_health = 10
 
 [.magic]
 woodcutting = 75
@@ -67,6 +73,7 @@ root_xp = 250
 tree_xp = 250
 buff = 26
 health = 750
+seed_health = 12
 
 [.elder]
 woodcutting = 90
@@ -77,7 +84,7 @@ root_xp = 325
 tree_xp = 325
 buff = 30
 health = 900
-
+seed_health = 14
 
 [evil_tree_place]
 hint = "string"
