@@ -91,126 +91,126 @@ hint = "string"
 tiles = "list<tile>"
 
 [.yew]
-hint = "Close to a collection of yew trees"
+hint = "close to a collection of yew trees"
 tiles = [
     { x = 2754, y = 3424 },
     { x = 3174, y = 3211 },
 ]
 
 [.dungeon]
-hint = "Close to a dungeon, entrance<br>and within a tropical jungle"
+hint = "close to a dungeon, entrance<br>and within a tropical jungle"
 tiles = [
     { x = 2760, y = 2697 },
     { x = 2737, y = 3157 },
 ]
 
 [.willow]
-hint = "Close to a large collection of<br>willow trees"
+hint = "close to a large collection of<br>willow trees"
 tiles = [
     { x = 2707, y = 3506 },
     { x = 3096, y = 3227 },
 ]
 
 [.mine]
-hint = "Close to a mine on the outskirts<br>of a city"
+hint = "close to a mine on the outskirts<br>of a city"
 tiles = [
     { x = 2723, y = 3330 },
     { x = 2917, y = 3366 },
 ]
 
 [.runecrafting]
-hint = "Close to a Runecrafting altar"
+hint = "close to a Runecrafting altar"
 tiles = [
     { x = 3050, y = 3456 },
     { x = 2830, y = 3013 },
 ]
 
 [.legends]
-hint = "Close to the home of 'Legends'"
+hint = "close to the home of 'Legends'"
 tiles = [
     { x = 2720, y = 3407 },
     { x = 2723, y = 3330 },
 ]
 
 [.yanille]
-hint = "Close to the town you call Yanille"
+hint = "close to the town you call Yanille"
 tiles = [
     { x = 2602, y = 3117 },
     { x = 2520, y = 3102 },
 ]
 
 [.seers]
-hint = "Close to the village you call 'Seers'"
+hint = "close to the village you call 'Seers'"
 tiles = [
     { x = 2664, y = 3486 },
     { x = 2707, y = 3506 },
 ]
 
 [.draynor]
-hint = "Close to the village you humans call 'Draynor'"
+hint = "close to the village you humans call 'Draynor'"
 tiles = [
     { x = 3092, y = 3312 },
     { x = 3096, y = 3227 },
 ]
 
 [.lumbridge]
-hint = "Due west of the town you call Lumbridge"
+hint = "due west of the town you call Lumbridge"
 tiles = [
     { x = 3096, y = 3227 },
     { x = 3174, y = 3211 },
 ]
 
 [.ogre]
-hint = "In a location with rare trees<br>and ogres nearby"
+hint = "in a location with rare trees<br>and ogres nearby"
 tiles = [
     { x = 2375, y = 3054 },
     { x = 2467, y = 2841 },
 ]
 
 [.elves]
-hint = "In the lands inhabited by elves"
+hint = "in the lands inhabited by elves"
 tiles = [
     { x = 2212, y = 3174 },
     { x = 2290, y = 3122 },
 ]
 
 [.varrock]
-hint = "Just outside of the city<br>you call Varrock"
+hint = "just outside of the city<br>you call Varrock"
 tiles = [
     { x = 3320, y = 3457 },
     { x = 3220, y = 3511 },
 ]
 
 [.rellekka]
-hint = "North as the crow flies<br>from Seers' Village"
+hint = "north as the crow flies<br>from Seers' Village"
 tiles = [
     { x = 2702, y = 3640 },
     { x = 2707, y = 3506 },
 ]
 
 [.ardougne]
-hint = "North as the crow flies<br>from the market of Ardougne"
+hint = "north as the crow flies<br>from the market of Ardougne"
 tiles = [
     { x = 2664, y = 3486 },
     { x = 2653, y = 3415 },
 ]
 
 [.karamja]
-hint = "On the island known as Karamja"
+hint = "on the island known as Karamja"
 tiles = [
     { x = 2913, y = 2897 },
     { x = 2830, y = 3013 },
 ]
 
 [.island]
-hint = "On the southern coast of a tropical island"
+hint = "on the southern coast of a tropical island"
 tiles = [
     { x = 2760, y = 2697 },
     { x = 2913, y = 2897 },
 ]
 
 [.gnome]
-hint = "To the south of a tree<br>gnome settlement"
+hint = "to the south of a tree gnome settlement"
 tiles = [
     { x = 2452, y = 3346 },
     { x = 2520, y = 3102 },
