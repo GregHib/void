@@ -2,11 +2,17 @@ package content.activity.evil_tree
 
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.effect.transform
+import content.entity.player.dialogue.type.statement
+import content.skill.woodcutting.Hatchet
+import net.pearx.kasechange.toCamelCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.toTag
+import world.gregs.voidps.engine.client.variable.remaining
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -19,6 +25,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.Spiral
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.awaitDialogues
@@ -31,12 +39,20 @@ class EvilTree : Script {
 
     val logger = InlineLogger()
 
-    var tree: GameObject = GameObject(0)
-    var spawnTile: Tile = Tile.EMPTY
-    var type: String = "normal"
-    val roots = arrayOfNulls<GameObject>(4)
-    var health = 100
-    var leprechaun = NPC()
+    companion object {
+        var place = ""
+        var tree: GameObject = GameObject(0)
+        var spawnTile: Tile = Tile.EMPTY
+        var type: String = "normal"
+        val roots = arrayOfNulls<GameObject>(4)
+        var health = 100
+        var leprechaun = NPC()
+
+        fun isSapling() = when (tree.id) {
+            "evil_tree_seedling", "strange_sapling", "evil_tree_sapling_large", "evil_tree_young", "evil_tree_young_large" -> true
+            else -> false
+        }
+    }
 
     init {
         // TODO spawn roots on players with 2x2 regions
@@ -63,6 +79,11 @@ class EvilTree : Script {
             }
             message("You begin tending to the sapling.", ChatType.Filter)
             nurture(target)
+        }
+
+        objectOperate("Inspect", "evil_tree_*") {
+            val level = Tables.int("evil_tree_type.${type}.woodcutting")
+            statement("This is an Evil${if (type == "normal") "" else " ${type.toCamelCase()}"} tree. A Woodcutting / Firemaking level of at least ${level} is required to interact with this tree and the surrounding roots.")
         }
 
         objectOperate("Chop", "evil_tree_*") { (target) ->
@@ -117,12 +138,77 @@ class EvilTree : Script {
     }
 
     suspend fun Player.chop(target: GameObject) {
+        val hatchet = Hatchet.best(this)
+        if (hatchet == null) {
+            message("You need a hatchet to chop down this tree.")
+            message("You do not have a hatchet which you have the woodcutting level to use.")
+            return
+        }
+        val row = Rows.get("evil_tree_type.${type}")
         while (awaitDialogues()) {
-            if (!GameObjects.contains(target)) {
+            val level = row.int("woodcutting")
+            if (!GameObjects.contains(target) || !has(Skill.Woodcutting, level, message = true)) {
                 return
             }
-
+            if (!Hatchet.hasRequirements(this, hatchet, message = true)) {
+                break
+            }
+            val remaining = remaining("action_delay")
+            if (remaining < 0) {
+                anim("${hatchet.id}_chop")
+                start("action_delay", 3)
+                pause(3)
+            } else if (remaining > 0) {
+                pause(remaining)
+            }
+            if (!GameObjects.contains(target)) {
+                break
+            }
+//            if (success(player.levels.get(Skill.Woodcutting), hatchet, log)) {
+            exp(Skill.Woodcutting, row.int("tree_xp") / 10.0)
+//            }
             // TODO branch attacks when chopping root
+        }
+    }
+
+    suspend fun Player.light(target: GameObject) {
+        val row = Rows.get("evil_tree_type.${type}")
+        var first = true
+        while (awaitDialogues()) {
+            val level = row.int("woodcutting")
+            if (!GameObjects.contains(target) || !has(Skill.Firemaking, level, message = " to set fire to this evil tree")) {
+                return
+            }
+//            message("That part of the tree is already on fire!")
+            if (!inventory.contains("tinderbox")) {
+                message("You need a tinderbox in order to light a fire.")
+                return
+            }
+            if (!inventory.contains("kindling")) {
+                message("You don't have the required items to light this.")
+                return
+            }
+            val remaining = remaining("action_delay")
+            if (remaining < 0) {
+                if (first) {
+                    message("You crouch to light the kindling")
+                    first = false
+                }
+                anim("light_fire")
+                start("action_delay", 4)
+                pause(4)
+            } else if (remaining > 0) {
+                pause(remaining)
+            }
+            if (!GameObjects.contains(target) || health < 0) {
+                break
+            }
+            "You dive out of the way as a new root bursts from the ground."
+            "The logs are magically escorted to your bank."
+//            if (success(player.levels.get(Skill.Woodcutting), hatchet, log)) {
+            inventory.remove("kindling")
+            exp(Skill.Firemaking, row.int("burn_xp") / 10.0)
+//            }
         }
     }
 
@@ -144,6 +230,7 @@ class EvilTree : Script {
                 for (player in Players.at(centre)) {
                     player.walkTo(centre.add(Direction.SOUTH).add(Direction.SOUTH))
                 }
+                // TODO npcs too
                 for (tile in Spiral.spiral(centre, 1)) {
                     for (player in Players.at(tile)) {
                         val dir = player.tile.delta(centre).toDirection()
@@ -209,6 +296,7 @@ class EvilTree : Script {
             return
         }
         val place = Tables.get("evil_tree_place").rows().random(random)
+        EvilTree.place = place.rowId
         if (Settings["world.messages", false]) {
             for (player in Players) {
                 val hint = place.string("hint").replaceFirstChar { it.lowercase() }.replace("<br>", " ")
@@ -218,7 +306,7 @@ class EvilTree : Script {
         spawnTile = place.tileList("tiles").random(random)
         val type = Tables.get("evil_tree_type").rows().random(random)
         logger.info { "Evil tree event has started at: ${place.rowId} (${spawnTile.x}, ${spawnTile.y}) type ${type.rowId}." }
-        this.type = type.rowId
+        EvilTree.type = type.rowId
         val centre = spawnTile.add(1, 1)
         tree = GameObjects.add("evil_tree_seedling", centre)
         // Push players out
