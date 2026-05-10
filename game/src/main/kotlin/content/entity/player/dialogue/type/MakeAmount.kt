@@ -32,7 +32,9 @@ suspend fun Player.makeAmountIndex(
     allowAll: Boolean = true,
     names: List<String>? = null,
 ): Pair<Int, Int> {
-    check(open(INTERFACE_ID) && open(INTERFACE_AMOUNT_ID)) { "Unable to open make amount dialogue for $this" }
+    if (!open(INTERFACE_ID) || !open(INTERFACE_AMOUNT_ID)) {
+        return Pair(-1, 0)
+    }
     if (allowAll) {
         interfaceOptions.unlockAll(INTERFACE_AMOUNT_ID, "all")
     }

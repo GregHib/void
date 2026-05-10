@@ -20,7 +20,9 @@ suspend fun Player.statement(text: String, clickToContinue: Boolean = true) {
     }
     check(lines.size <= MAXIMUM_STATEMENT_SIZE) { "Maximum statement lines exceeded ${lines.size} for $this" }
     val id = getInterfaceId(lines.size, clickToContinue)
-    check(open(id)) { "Unable to open statement dialogue $id for $this" }
+    if (!open(id)) {
+        return
+    }
     interfaces.sendLines(id, lines)
     if (clickToContinue) {
         ContinueSuspension.get(this)

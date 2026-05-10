@@ -17,7 +17,9 @@ import world.gregs.voidps.engine.suspend.StringSuspension
 private const val QUEST_START_ID = "quest_intro"
 
 suspend fun Player.startQuest(questId: String): Boolean {
-    check(open(QUEST_START_ID)) { "Unable to open destroy dialogue for $questId $this" }
+    if (!open(QUEST_START_ID)) {
+        return false
+    }
     val questDefinitions: QuestDefinitions = get()
     val quest = questDefinitions.getOrNull(questId)
     check(quest != null) { "Unable to find quest with id $questId $this" }

@@ -50,7 +50,9 @@ suspend fun Player.npc(npcId: String, expression: String, text: String, largeHea
 private suspend fun Player.npc(lines: List<String>, clickToContinue: Boolean, npcId: String, largeHead: Boolean?, expression: String, title: String?) {
     check(lines.size <= 4) { "Maximum npc chat lines exceeded ${lines.size} for $this" }
     val id = getInterfaceId(lines.size, clickToContinue)
-    check(open(id)) { "Unable to open npc dialogue $id for $this" }
+    if (!open(id)) {
+        return
+    }
     val npcDef = NPCDefinitions.get(npcId)
     val head = getChatHeadComponentName(largeHead ?: npcDef["large_head", false])
     sendNPCHead(this, id, head, npcDef.id)

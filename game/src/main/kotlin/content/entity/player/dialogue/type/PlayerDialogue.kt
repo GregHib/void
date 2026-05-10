@@ -32,7 +32,9 @@ suspend fun Player.player(expression: String, text: String, largeHead: Boolean =
 
 private suspend fun Player.player(expression: String, lines: List<String>, largeHead: Boolean, clickToContinue: Boolean, title: String?) {
     val id = getInterfaceId(lines.size, clickToContinue)
-    check(open(id)) { "Unable to open player dialogue for $this" }
+    if (!open(id)) {
+        return
+    }
     val head = getChatHeadComponentName(largeHead)
     sendPlayerHead(this, id, head)
     interfaces.sendChat(id, head, expression, title ?: name, lines)

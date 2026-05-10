@@ -30,6 +30,9 @@ suspend fun Player.choice(title: String? = null, block: suspend ChoiceOption.() 
         return
     }
     val choice = choice(lines, title)
+    if (choice == -1) {
+        return
+    }
     builder.invoke(choice - 1, this)
 }
 
@@ -46,7 +49,9 @@ suspend fun Player.choice(lines: List<String>, title: String? = null): Int {
     val multilineTitle = question?.contains("<br>") ?: false
     val multilineOptions = lines.any { isMultiline(it) }
     val id = getChoiceId(multilineTitle, multilineOptions, lines.size)
-    check(open(id)) { "Unable to open choice dialogue for $this" }
+    if (!open(id)) {
+        return -1
+    }
     if (question != null) {
         val longestLine = question.split("<br>").maxByOrNull { it.length }?.length ?: 0
         val wide = longestLine > APPROXIMATE_WIDE_TITLE_LENGTH
