@@ -18,3 +18,7 @@ persist = true
 format = "list"
 persist = true
 values = ["tank", "tactician", "berserker", "sniper", "keen_eye", "desperado", "blazer", "blaster", "blitzer", "medic", "gatherer", "artisan"]
+
+[kinship_reset_count]
+format = "int"
+persist = true

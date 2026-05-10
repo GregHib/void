@@ -1636,6 +1636,7 @@ id = 137
 
 [.upgrade_1]
 id = 139
+options = { "Switch-to" = 0, "Quick-switch" = 1 }
 
 [.switch_2]
 id = 44
@@ -1687,6 +1688,18 @@ id = 298
 
 [.upgrade_cost]
 id = 277
+
+[.reset_text]
+id = 18
+
+[.reset_count]
+id = 20
+
+[.reset_confirm]
+id = 22
+
+[.reset_disabled]
+id = 305
 
 [herbicide]
 id = 1006

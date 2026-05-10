@@ -61,3 +61,9 @@ persist = true
 id = 8064
 format = "int"
 persist = true
+
+[kinship_class]
+id = 8065
+format = "list"
+persist = true
+values = ["none", "tank", "tactician", "berserker", "sniper", "keen_eye", "desperado", "blazer", "blaster", "blitzer", "medic", "gatherer", "artisan"]
