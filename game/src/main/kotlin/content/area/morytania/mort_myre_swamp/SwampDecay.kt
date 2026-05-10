@@ -1,7 +1,6 @@
 package content.area.morytania.mort_myre_swamp
 
 import content.entity.combat.hit.directHit
-import content.entity.combat.hit.hit
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.Areas
