@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inv.charge
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -96,7 +95,7 @@ class RewardsTrader : Script {
                         charge(it.slot, total - charges)
                     }
                     when (inventory.transaction.error) {
-                        is TransactionError.Deficient -> TODO()
+                        is TransactionError.Deficient -> message("Don't have enough coins") // TODO proper message
                         TransactionError.None -> {
                             npc<Teary>("All done. Move on. Please...")
                         }

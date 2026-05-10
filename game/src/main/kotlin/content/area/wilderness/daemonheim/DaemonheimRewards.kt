@@ -63,7 +63,6 @@ class DaemonheimRewards : Script {
         }
 
         interfaceOption("Confirm", "daemonheim_rewards:confirm") {
-            // TODO clear selection description too?
             interfaces.sendVisibility(it.id, "confirm_panel", false)
             interfaces.sendVisibility(it.id, "buy_panel", false)
             val slot: Int = get("daemonheim_reward_slot") ?: return@interfaceOption
