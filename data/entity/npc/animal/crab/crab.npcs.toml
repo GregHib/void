@@ -9,6 +9,7 @@ id = 1265
 wander_range = 5
 hunt_mode = "aggressive"
 categories = ["crabs"]
+combat_def = "rock_crab"
 examine = "No one likes crabs..."
 
 [rock_crab_1]
