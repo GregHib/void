@@ -64,6 +64,7 @@ class TeleportCommands(
         "shantay_pass" to Tile(3304, 3119),
         "uzer" to Tile(3484, 3092),
         "pollnivneach" to Tile(3357, 2968),
+        "daemonheim" to Tile(3450, 3710),
     )
 
     init {

@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 class Banker : Script {
 
     init {
-        npcApproach("Talk-to", "banker*") {
+        npcApproach("Talk-to", "banker*,fremennik_banker") {
             approachRange(2)
             npc<Quiz>("Good day. How may I help you?")
             val loanReturned = getSecondsRemaining(this, "lend_timeout") < 0
