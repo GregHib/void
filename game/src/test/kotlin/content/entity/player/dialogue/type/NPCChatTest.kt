@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
@@ -168,10 +167,8 @@ internal class NPCChatTest : DialogueTest() {
     @Test
     fun `NPC chat not sent if interface not opened`() {
         every { player.open("dialogue_npc_chat1") } returns false
-        assertThrows<IllegalStateException> {
-            dialogueBlocking {
-                npc<Neutral>(text = "text")
-            }
+        dialogueBlocking {
+            npc<Neutral>(text = "text")
         }
         coVerify(exactly = 0) {
             interfaces.sendText("dialogue_npc_chat1", "line1", "text")

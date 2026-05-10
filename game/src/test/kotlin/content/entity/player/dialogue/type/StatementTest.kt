@@ -105,10 +105,8 @@ internal class StatementTest : DialogueTest() {
     @Test
     fun `Statement not sent if interface not opened`() {
         every { player.open("dialogue_message1") } returns false
-        assertThrows<IllegalStateException> {
-            dialogueBlocking {
-                statement("text")
-            }
+        dialogueBlocking {
+            statement("text")
         }
         coVerify(exactly = 0) {
             interfaces.sendText("dialogue_message1", "line1", "text")

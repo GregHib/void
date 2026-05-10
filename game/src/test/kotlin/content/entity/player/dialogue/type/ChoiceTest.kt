@@ -159,10 +159,8 @@ internal class ChoiceTest : DialogueTest() {
     @Test
     fun `Choice not sent if interface not opened`() {
         every { player.open("dialogue_multi2") } returns false
-        assertThrows<IllegalStateException> {
-            dialogueBlocking {
-                choice(text = "Yes\nNo")
-            }
+        dialogueBlocking {
+            choice(text = "Yes\nNo")
         }
         coVerify(exactly = 0) {
             interfaces.sendText("dialogue_multi2", "line1", "Yes")

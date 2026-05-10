@@ -17,21 +17,23 @@ import world.gregs.voidps.engine.suspend.ContinueSuspension
 private const val LEVEL_UP_INTERFACE_ID = "dialogue_level_up"
 
 suspend fun Player.levelUp(skill: Skill, text: String) {
-    levelUp(this, skill, text)
-    ContinueSuspension.get(this)
-    close(LEVEL_UP_INTERFACE_ID)
+    if (levelUp(this, skill, text)) {
+        ContinueSuspension.get(this)
+        close(LEVEL_UP_INTERFACE_ID)
+    }
 }
 
-fun levelUp(player: Player, skill: Skill, text: String) {
+fun levelUp(player: Player, skill: Skill, text: String): Boolean {
     val lines = text.trimIndent().lines()
     player["level_up_icon"] = skill.name
     player.sendVariable("level_up_icon")
     if (!player.open(LEVEL_UP_INTERFACE_ID)) {
-        return
+        return false
     }
     for ((index, line) in lines.withIndex()) {
         player.interfaces.sendText(LEVEL_UP_INTERFACE_ID, "line${index + 1}", line)
     }
+    return true
 }
 
 class LevelUp : Script {

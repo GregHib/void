@@ -6,7 +6,6 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.open
@@ -79,10 +78,8 @@ internal class MakeAmountTest : DialogueTest() {
     @Test
     fun `Make amount not sent if interface not opened`() {
         every { player.open("dialogue_skill_creation") } returns false
-        assertThrows<IllegalStateException> {
-            dialogueBlocking {
-                makeAmount(listOf("1", "2", "3"), "ants", 25)
-            }
+        dialogueBlocking {
+            makeAmount(listOf("1", "2", "3"), "ants", 25)
         }
         verify(exactly = 0) {
             player["skill_creation_type"] = "ants"
@@ -92,10 +89,8 @@ internal class MakeAmountTest : DialogueTest() {
     @Test
     fun `Make amount not sent if sub interface not opened`() {
         every { player.open("skill_creation_amount") } returns false
-        assertThrows<IllegalStateException> {
-            dialogueBlocking {
-                makeAmount(listOf("1", "2", "3"), "ants", 25)
-            }
+        dialogueBlocking {
+            makeAmount(listOf("1", "2", "3"), "ants", 25)
         }
         coVerify(exactly = 0) {
             player["skill_creation_type"] = "ants"

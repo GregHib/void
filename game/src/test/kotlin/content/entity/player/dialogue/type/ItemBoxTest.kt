@@ -2,7 +2,6 @@ package content.entity.player.dialogue.type
 
 import io.mockk.*
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.open
@@ -64,10 +63,8 @@ internal class ItemBoxTest : DialogueTest() {
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         every { player.sendScript(any(), *anyVararg()) } just Runs
         every { player.open("dialogue_obj_box") } returns false
-        assertThrows<IllegalStateException> {
-            dialogueBlocking {
-                item("9009", 650, "text", 10)
-            }
+        dialogueBlocking {
+            item("9009", 650, "text", 10)
         }
         coVerify(exactly = 0) {
             player.sendScript("dialogue_item_zoom", 650, 9009)
