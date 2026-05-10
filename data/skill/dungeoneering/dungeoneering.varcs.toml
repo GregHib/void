@@ -1,3 +1,48 @@
+[dungeoneering_floor]
+id = 1180
+format = "int"
+persist = true
+
+[dungeoneering_current_progress]
+id = 1181
+format = "int"
+persist = true
+
+[dungeoneering_previous_progress]
+id = 1182
+format = "int"
+persist = true
+
+[dungeoneering_complexity]
+id = 1183
+format = "int"
+persist = true
+
+[kinship_customisation_tab]
+id = 1184
+format = "list"
+values = [ "none", "melee", "ranged", "magic", "skiller" ]
+
+[dungeoneering_member_disabled_xp_share_0]
+id = 1175
+format = "boolean"
+
+[dungeoneering_member_disabled_xp_share_1]
+id = 1176
+format = "boolean"
+
+[dungeoneering_member_disabled_xp_share_1]
+id = 1177
+format = "boolean"
+
+[dungeoneering_member_disabled_xp_share_1]
+id = 1178
+format = "boolean"
+
+[dungeoneering_member_disabled_xp_share_1]
+id = 1179
+format = "boolean"
+
 [nature_staff_charges]
 id = 1234
 format = "int"

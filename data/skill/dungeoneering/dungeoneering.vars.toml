@@ -13,3 +13,8 @@ persist = true
 [celestial_surgebox_mode_dungeoneering]
 format = "boolean"
 persist = true
+
+[kinship_quick_switch_class]
+format = "list"
+persist = true
+values = ["tank", "tactician", "berserker", "sniper", "keen_eye", "desperado", "blazer", "blaster", "blitzer", "medic", "gatherer", "artisan"]

@@ -1,0 +1,101 @@
+[kinship_group_melee]
+id = 3084
+keyType = "int"
+valueType = "struct"
+defaultInt = 0
+
+[kinship_group_ranged]
+id = 3085
+keyType = "int"
+valueType = "struct"
+defaultInt = 0
+
+[kinship_group_magic]
+id = 3086
+keyType = "int"
+valueType = "struct"
+defaultInt = 0
+
+[kinship_group_skiller]
+id = 3087
+keyType = "int"
+valueType = "struct"
+defaultInt = 0
+
+[kinship_upgrades_tank]
+id = 3089
+keyType = "int"
+valueType = "struct"
+defaultInt = 0
+
+[kinship_upgrades_tactician]
+id = 3090
+keyType = "int"
+valueType = "struct"
+defaultInt = 0
+
+[kinship_upgrades_berserker]
+id = 3091
+keyType = "int"
+valueType = "struct"
+defaultInt = 0
+
+[kinship_upgrades_sniper]
+id = 3092
+keyType = "int"
+valueType = "struct"
+defaultInt = 0
+
+[kinship_upgrades_keen_eye]
+id = 3093
+keyType = "int"
+valueType = "struct"
+defaultInt = 0
+
+[kinship_upgrades_desperado]
+id = 3094
+keyType = "int"
+valueType = "struct"
+defaultInt = 0
+
+[kinship_upgrades_blazer]
+id = 3095
+keyType = "int"
+valueType = "struct"
+defaultInt = 0
+
+[kinship_upgrades_blaster]
+id = 3096
+keyType = "int"
+valueType = "struct"
+defaultInt = 0
+
+[kinship_upgrades_blitzer]
+id = 3097
+keyType = "int"
+valueType = "struct"
+defaultInt = 0
+
+[kinship_upgrades_medic]
+id = 3098
+keyType = "int"
+valueType = "struct"
+defaultInt = 0
+
+[kinship_upgrades_gatherer]
+id = 3099
+keyType = "int"
+valueType = "struct"
+defaultInt = 0
+
+[kinship_upgrades_artisan]
+id = 3100
+keyType = "int"
+valueType = "struct"
+defaultInt = 0
+
+[kinship_upgrade_costs]
+id = 3101
+keyType = "int"
+valueType = "int"
+defaultInt = 0

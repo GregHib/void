@@ -1,0 +1,48 @@
+[camera_tab]
+id = 822
+format = "boolean"
+
+[stat_tab]
+id = 233
+format = "map"
+default = "stats"
+values = {
+    stats = 0,
+    squad_commands = 1,
+    turn_options = 4,
+    command_options = 5
+}
+
+[quest_tab]
+id = 234
+format = "map"
+default = "quest_journals"
+values = {
+    quest_journals = 0,
+    special_units = 1,
+    troop_details = 2,
+    party_organiser = 3,
+    book = 4,
+}
+
+[inventory_tab]
+id = 235
+format = "map"
+default = "inventory"
+values = {
+    inventory = 0,
+    my_squads = 1,
+    commands = 2,
+}
+
+[equipment_tab]
+id = 236
+format = "map"
+default = "worn_equipment"
+values = {
+    worn_equipment = 0,
+    acrobat_emotes = 1,
+    forfeit = 2,
+    diplomacy = 3,
+    retreat = 4,
+}
