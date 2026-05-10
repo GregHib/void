@@ -27,7 +27,7 @@ class RingOfKinship : Script {
         }
 
         itemOption("Open party interface", "ring_of_kinship") {
-            if (tile !in Areas["daemonheim_courtyard"]) {
+            if (tile !in Areas["daemonheim_castle"]) {
                 message("You must be inside of Daemonheim to do this.")
                 return@itemOption
             }

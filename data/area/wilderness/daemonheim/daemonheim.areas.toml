@@ -4,6 +4,6 @@ y = [3612, 3839, 3839, 3648, 3648, 3612]
 tags = ["penguin_area"]
 hint = "where the Fremennik 'heim' and seek."
 
-[daemonheim_courtyard]
+[daemonheim_castle]
 x = [3445, 3454, 3454, 3459, 3459, 3440, 3440, 3445]
-y = [3722, 3722, 3725, 3725, 3737, 3737, 3725, 3725]
+y = [3707, 3707, 3725, 3725, 3737, 3737, 3725, 3725]

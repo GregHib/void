@@ -1,7 +1,6 @@
 package content.area.kharidian_desert.al_kharid
 
 import content.entity.player.dialogue.Angry
-import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Pleased
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.ChoiceOption

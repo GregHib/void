@@ -234,7 +234,7 @@ id = 94
 id = 95
 
 [.reset]
-id = 939
+id = 87
 
 [.form_party]
 id = 45
@@ -244,6 +244,29 @@ id = 112
 
 [daemonheim_rewards]
 id = 940
+
+[.items]
+id = 2
+options = { Select = 0 }
+
+[.buy]
+id = 64
+
+[.buy_panel]
+id = 41
+
+[.confirm_panel]
+id = 42
+
+[.confirm]
+id = 48
+
+[.cancel]
+id = 50
+
+[.tokens]
+id = 31
+
 
 [dungeoneering_smelt]
 id = 941
@@ -1456,6 +1479,15 @@ id = 107
 
 [dungeon_party_invite]
 id = 949
+
+[.accept]
+id = 65
+
+[.decline]
+id = 63
+
+[.decline_forever]
+id = 61
 
 [dungeoneering_spellbook]
 id = 950

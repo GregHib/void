@@ -3,11 +3,9 @@ package content.area.wilderness.daemonheim
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Laugh
 import content.entity.player.dialogue.Neutral
-import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele

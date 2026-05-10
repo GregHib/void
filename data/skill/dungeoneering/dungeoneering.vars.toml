@@ -22,3 +22,7 @@ values = ["tank", "tactician", "berserker", "sniper", "keen_eye", "desperado", "
 [kinship_reset_count]
 format = "int"
 persist = true
+
+[dungeoneering_tokens]
+format = "int"
+persist = true

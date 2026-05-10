@@ -39,12 +39,12 @@ class Banker : Script {
             menu()
         }
 
-        npcApproach("Bank", "banker*") {
+        npcApproach("Bank", "banker*,fremennik_banker") {
             approachRange(2)
             open("bank")
         }
 
-        npcApproach("Collect", "banker*") {
+        npcApproach("Collect", "banker*,fremennik_banker") {
             approachRange(2)
             open("collection_box")
         }

@@ -2,7 +2,6 @@ package content.area.wilderness.daemonheim
 
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Angry
-import content.entity.player.dialogue.Condescending
 import content.entity.player.dialogue.Frustrated
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
@@ -12,7 +11,6 @@ import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearHint
 import world.gregs.voidps.engine.client.hint
@@ -22,7 +20,6 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.network.login.protocol.encode.arrowHint
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
@@ -30,13 +27,13 @@ class DungeoneeringTutor : Script {
     init {
         npcOperate("Talk-to", "dungeoneering_tutor") {
             npc<Frustrated>("Greetings, adventurer.")
-            if (ownsItem("ring_of_kinship")) {
-                npc<Condescending>("Before we carry on, let me give you this.")
+            if (!ownsItem("ring_of_kinship")) {
+                npc<Neutral>("Before we carry on, let me give you this.")
                 if (!inventory.add("ring_of_kinship")) {
                     npc<Sad>("Oh, your hands are full? Come back when you've got space in your inventory.")
                     return@npcOperate
                 }
-                item("ring_of_kinship", 400, "He hands you a ring.")
+                item("ring_of_kinship", 300, "He hands you a ring.")
             }
             menu()
         }

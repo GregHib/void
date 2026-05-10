@@ -1,7 +1,6 @@
 package content.area.wilderness.daemonheim
 
 import content.entity.player.dialogue.Neutral
-import content.entity.player.dialogue.Pleased
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.npc
