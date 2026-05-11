@@ -21,11 +21,6 @@ import world.gregs.voidps.engine.inv.replace
 
 class RingOfKinship : Script {
     init {
-        itemOption("Customise", "ring_of_kinship") {
-            message("You must be inside of Daemonheim to do this.")
-            return@itemOption
-        }
-
         itemOption("Open party interface", "ring_of_kinship") {
             if (tile !in Areas["daemonheim_castle"]) {
                 message("You must be inside of Daemonheim to do this.")
@@ -35,12 +30,18 @@ class RingOfKinship : Script {
             tab(Tab.QuestJournals)
         }
 
+        itemOption("Customise", "ring_of_kinship") {
+            message("You must be inside of Daemonheim to do this.")
+            return@itemOption
+        }
+
         itemOption("Customise", "ring_of_kinship_*") {
             open("kinship_customisation")
         }
 
         itemOption("Quick-switch", "ring_of_kinship_*") {
             closeMenu()
+            // TODO
             message("Switched to Ring of kinship (berserker).")
         }
 
@@ -122,7 +123,7 @@ class RingOfKinship : Script {
                 message("You are already using that ring.")
                 return@interfaceOption
             }
-            val quickSwitch = get("kinship_quick_switch_class", "tank")
+            val quickSwitch: String? = get("kinship_quick_switch_class")
             if (type == quickSwitch) {
                 message("As that was your quick-switch ring choice, your quick-switch has now reset.")
                 if (quickSwitch == "tank") {
@@ -137,16 +138,20 @@ class RingOfKinship : Script {
 
             // FIXME: manual text changing and text changing using 3494.cs2 doesn't work for some reason.
             message("Switching to ${type.replace("_", "-")} ring.")
-            // For some reason 3494.cs2 doesn't work as expected.
-            for (i in 1 until 4) {
-                interfaceOptions.unlockAll(it.id, "upgrade_$i")
-                interfaces.sendText(it.id, "upgrade_$i", "In use")
-            }
         }
 
         interfaceOption("Quick-switch", "kinship_customisation:switch_*") {
             val index = it.component.removePrefix("switch_").toInt()
-            val tab: String = get("kinship_customisation_tab") ?: return@interfaceOption
+            val tab: String? = get("kinship_customisation_tab")
+            if (tab == null) {
+                message("You have no ring selected to quick-switch to. Select 'Customise' and pick a secondary ring to quick-switch to.")
+                return@interfaceOption
+            }
+            val currentClass: String? = get("kinship_class")
+            if (tab == currentClass) {
+                message("This ring is already in use.")
+                return@interfaceOption
+            }
             val type = className(tab, index)
             set("kinship_quick_switch_class", type)
             message("Quick-switch ring set to ${type.replace("_", "-")}.")

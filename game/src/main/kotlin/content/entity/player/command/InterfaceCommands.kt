@@ -41,6 +41,10 @@ class InterfaceCommands(
             client?.interfaceVisibility(InterfaceDefinition.pack(args[0].toInt(), args[1].toInt()), !args[2].toBoolean())
         }
 
+        adminCommand("set_pos", stringArg("interface-id", autofill = InterfaceDefinitions.ids.keys), stringArg("component-id", autofill = InterfaceDefinitions.componentIds.keys), intArg("x"), intArg("y"), desc = "Set position of an interface component") { args ->
+            client?.interfacePosition(InterfaceDefinition.pack(args[0].toInt(), args[1].toInt()), args[2].toInt(), args[3].toInt())
+        }
+
         adminCommand("colour", stringArg("iface-id", autofill = InterfaceDefinitions.ids.keys), stringArg("comp-id", autofill = InterfaceDefinitions.componentIds.keys), intArg("red"), intArg("green"), intArg("blue"), desc = "Set colour of an interface component") { args ->
             client?.colourInterface(InterfaceDefinition.pack(args[0].toInt(), args[1].toInt()), args[2].toInt(), args[3].toInt(), args[4].toInt())
         }

@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
@@ -36,6 +35,14 @@ class DungeoneeringTutor : Script {
                 item("ring_of_kinship", 300, "He hands you a ring.")
             }
             menu()
+        }
+
+        timerStart("dungeoneering_tutor_hint_timeout") {
+            TimeUnit.SECONDS.toTicks(30)
+        }
+
+        timerStop("dungeoneering_tutor_hint_timeout") {
+            clearHint()
         }
     }
 
@@ -63,10 +70,8 @@ class DungeoneeringTutor : Script {
             choice {
                 option<Happy>("Yes, please.") {
                     npc<Happy>("It's this way.")
-                    val index = hint(Tile(3449, 3744), radius = 2)
-                    softQueue("hint_timeout", TimeUnit.SECONDS.toTicks(30)) {
-                        clearHint(index)
-                    }
+                    hint(Tile(3449, 3744), radius = 2)
+                    softTimers.start("dungeoneering_tutor_hint_timeout")
                 }
                 option<Neutral>("No thanks, not right now.") {
                     npc<Frustrated>("Suit yourself.")

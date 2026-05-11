@@ -77,7 +77,6 @@ class Thok : Script {
                                 npc<Sad>("Unfortunately all Skillcapes are only available with a free hood, it's part of a skill promotion deal; buy one get one free, you know. So you'll need to free up some inventory space before I can sell you one.")
                             }
                         }
-
                     }
                 }
             }

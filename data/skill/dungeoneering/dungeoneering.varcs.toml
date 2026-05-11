@@ -1,5 +1,10 @@
-[dungeoneering_floor]
+[dungeoneering_party_floor]
 id = 1180
+format = "int"
+persist = true
+
+[dungeoneering_party_complexity]
+id = 1183
 format = "int"
 persist = true
 
@@ -10,11 +15,6 @@ persist = true
 
 [dungeoneering_previous_progress]
 id = 1182
-format = "int"
-persist = true
-
-[dungeoneering_complexity]
-id = 1183
 format = "int"
 persist = true
 
@@ -31,15 +31,15 @@ format = "boolean"
 id = 1176
 format = "boolean"
 
-[dungeoneering_member_disabled_xp_share_1]
+[dungeoneering_member_disabled_xp_share_2]
 id = 1177
 format = "boolean"
 
-[dungeoneering_member_disabled_xp_share_1]
+[dungeoneering_member_disabled_xp_share_3]
 id = 1178
 format = "boolean"
 
-[dungeoneering_member_disabled_xp_share_1]
+[dungeoneering_member_disabled_xp_share_4]
 id = 1179
 format = "boolean"
 
