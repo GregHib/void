@@ -8,6 +8,10 @@ hint = "where the Fremennik 'heim' and seek."
 x = [3427, 3472]
 y = [3707, 3755]
 
+[daemonheim_teleport]
+x = [3444, 3448]
+y = [3693, 3698]
+
 [daemonheim_castle_exit]
 x = [3454, 3465]
 y = [3717, 3724]

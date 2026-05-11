@@ -31,6 +31,8 @@ class DungeonEntrance : Script {
                 return@objectOperate
             }
 
+            message("<red_orange>Not yet implemented.")
+            return@objectOperate
 //            statement("You have just entered a dungeon. In the starting room, you'll find a smuggler to trade with, and some starting supplies in your inventory and about the room. If you want to leave, there is a ladder that will take you back to the surface. For more information speak to the smuggler.")
 //            item("ring_of_kinship", 300, "You have unlocked more features and opportunities within Daemonheim. You can now reach complexity level 2.")
 

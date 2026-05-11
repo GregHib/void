@@ -1,7 +1,9 @@
 package content.area.wilderness.daemonheim
 
+import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.inDungeoneering
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
+import content.skill.magic.jewellery.itemTeleport
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
@@ -21,8 +23,12 @@ import world.gregs.voidps.engine.inv.replace
 
 class RingOfKinship : Script {
     init {
-        itemOption("Open party interface", "ring_of_kinship") {
-            if (tile !in Areas["daemonheim_castle"]) {
+        itemOption("Teleport to Daemonheim", "ring_of_kinship", "*") {
+            itemTeleport(this, Areas["daemonheim_teleport"], "kinship")
+        }
+
+        itemOption("Open party interface", "ring_of_kinship*", "*") {
+            if (!inDungeoneering && tile !in Areas["daemonheim_castle"]) {
                 message("You must be inside of Daemonheim to do this.")
                 return@itemOption
             }
@@ -30,19 +36,31 @@ class RingOfKinship : Script {
             tab(Tab.QuestJournals)
         }
 
-        itemOption("Customise", "ring_of_kinship") {
-            message("You must be inside of Daemonheim to do this.")
-            return@itemOption
-        }
-
-        itemOption("Customise", "ring_of_kinship_*") {
+        itemOption("Customise", "ring_of_kinship*", "*") {
+            if (!inDungeoneering) {
+                message("You must be inside of Daemonheim to do this.")
+                return@itemOption
+            }
             open("kinship_customisation")
         }
 
-        itemOption("Quick-switch", "ring_of_kinship_*") {
+        itemOption("Quick-switch", "ring_of_kinship_*", "*") {
+            if (!inDungeoneering) {
+                message("You must be inside of Daemonheim to do this.")
+                return@itemOption
+            }
             closeMenu()
-            // TODO
-            message("Switched to Ring of kinship (berserker).")
+            val quickSwitch: String? = get("kinship_quick_switch_class")
+            if (quickSwitch == null) {
+                message("You have no ring selected to quick-switch to. Select 'Customise' and pick a secondary ring to quick-switch to.")
+                return@itemOption
+            }
+            val currentClass: String = get("kinship_class") ?: return@itemOption
+            val inventory = inventories.inventory(it.inventory)
+            inventory.replace("ring_of_kinship_${currentClass}", "ring_of_kinship_$quickSwitch")
+            set("kinship_class", quickSwitch)
+            set("kinship_quick_switch_class", currentClass)
+            message("Switched to Ring of kinship (${quickSwitch.replace("_", "-")}).")
         }
 
         interfaceOpened("kinship_customisation") {
