@@ -195,6 +195,9 @@ id = 8204
 
 [shady_stranger]
 id = 8339
+hitpoints = 300
+combat_def = "man"
+max_hit_crush = 60
 examine = "He seems to be trying to watch everyone at once."
 
 [suspicious_outsider]
@@ -202,7 +205,6 @@ id = 8436
 hitpoints = 440
 combat_def = "man"
 max_hit_crush = 60
-combat_def = "suspicious_outsider"
 examine = "Haven't seen his sort around here before; what's he doing here?"
 
 [ruantun_draynor_sewers]
