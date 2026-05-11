@@ -1,0 +1,8 @@
+[phoenix_defend]
+id = 6810
+
+[phoenix_attack]
+id = 6811
+
+[phoenix_death]
+id = 6812

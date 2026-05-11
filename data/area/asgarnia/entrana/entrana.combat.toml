@@ -1,0 +1,10 @@
+[firebird]
+attack_speed = 4
+retreat_range = 4
+defend_anim = "phoenix_defend"
+death_anim = "phoenix_death"
+
+[firebird.melee]
+range = 1
+anim = "phoenix_attack"
+target_hit = { offense = "stab", max = 10 }

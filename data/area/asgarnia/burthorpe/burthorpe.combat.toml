@@ -1,0 +1,10 @@
+[imperial_soldier]
+attack_speed = 4
+retreat_range = 4
+defend_anim = "claws_defend"
+death_anim = "human_death"
+
+[imperial_soldier.melee]
+range = 1
+anim = "claws_chop"
+target_hit = { offense = "slash", max = 60 }
