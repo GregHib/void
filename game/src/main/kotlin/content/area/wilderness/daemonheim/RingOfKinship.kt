@@ -57,7 +57,7 @@ class RingOfKinship : Script {
             }
             val currentClass: String = get("kinship_class") ?: return@itemOption
             val inventory = inventories.inventory(it.inventory)
-            inventory.replace("ring_of_kinship_${currentClass}", "ring_of_kinship_$quickSwitch")
+            inventory.replace("ring_of_kinship_$currentClass", "ring_of_kinship_$quickSwitch")
             set("kinship_class", quickSwitch)
             set("kinship_quick_switch_class", currentClass)
             message("Switched to Ring of kinship (${quickSwitch.replace("_", "-")}).")
