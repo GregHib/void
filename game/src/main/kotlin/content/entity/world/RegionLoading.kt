@@ -1,5 +1,6 @@
 package content.entity.world
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
@@ -33,7 +34,7 @@ class RegionLoading(val dynamicZones: DynamicZones) : Script {
     init {
         worldSpawn {
             // Do on world spawn to ensure runs first
-            Moved.playerMoved.addFirst(::checkReload)
+            Moved.playerMoved.add(0, ::checkReload)
         }
         /*
             Player regions
