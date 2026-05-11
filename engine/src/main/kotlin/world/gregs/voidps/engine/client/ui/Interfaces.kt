@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.network.login.protocol.encode.*
 
@@ -125,8 +124,6 @@ class Interfaces(
     private fun getType(id: String): String = InterfaceDefinitions.getOrNull(id)?.type ?: DEFAULT_TYPE
 
     private fun sendOpen(id: String) {
-        if (player.name == "Greg")
-        println("Send open $id")
         val definition = InterfaceDefinitions.getOrNull(id) ?: return
         val parent = definition.parent(resizable)
         if (parent == -1) { // root
@@ -141,8 +138,6 @@ class Interfaces(
     }
 
     private fun sendClose(id: String) {
-        if (player.name == "Greg")
-            println("Send close $id")
         val parent = InterfaceDefinitions.getOrNull(id)?.parent(resizable)
         if (parent != null && parent != -1) {
             player.client?.closeInterface(parent)
