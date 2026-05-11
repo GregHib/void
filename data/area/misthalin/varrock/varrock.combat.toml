@@ -58,3 +58,13 @@ range = 1
 anim = "varrock_guard_attack"
 target_hit = { offense = "stab", max = 30 }
 
+[weaponsmaster]
+attack_speed = 5
+retreat_range = 4
+defend_anim = "human_defend"
+death_anim = "human_death"
+
+[weaponsmaster.melee]
+range = 1
+anim = "sword_lunge"
+target_hit = { offense = "crush", max = 30 }
