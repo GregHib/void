@@ -4,6 +4,7 @@ import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonLe
 import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonMembers
 import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.inParty
 import content.entity.player.dialogue.type.stringEntry
+import content.social.chat.privateStatus
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeMenu
@@ -24,7 +25,6 @@ import java.util.concurrent.TimeUnit
 
 class DungeonPartyInvite : Script {
     init {
-        // TODO declining/accepting should remove timeout
         entered("daemonheim_castle") {
             options.set(1, "Invite")
         }
@@ -34,7 +34,6 @@ class DungeonPartyInvite : Script {
         }
 
         playerOperate("Invite") { (target) ->
-            // FIXME
             if (target.hasRequest(this, "invite")) {
                 if (inParty(this)) {
                     target.message("$name is already in a party and cannot join yours.")
@@ -57,13 +56,13 @@ class DungeonPartyInvite : Script {
             invite(target)
         }
 
-        interfaceOption("Invite", "dungeoneering_party:invite_player") {
+        interfaceOption("Invite-player", "dungeoneering_party:invite_player") {
             if (!inParty(this)) {
                 return@interfaceOption
             }
             val name = stringEntry("Enter name:")
             val target = Players.find(name)
-            if (target == null) { // TODO check private status
+            if (target == null || target.privateStatus == "off") {
                 message("That player is offline, or has privacy mode enabled.")
                 return@interfaceOption
             }
@@ -133,6 +132,10 @@ class DungeonPartyInvite : Script {
     }
 
     private fun Player.invite(target: Player) {
+        if (dungeonMembers.contains(target)) {
+            message("${target.name} is already in your party.")
+            return
+        }
         if (get("dungeon_party_complexity", 1) > target["dungeoneering_complexity", 1]) {
             message("${target.name} cannot access that complexity level.")
             return
@@ -163,6 +166,7 @@ class DungeonPartyInvite : Script {
             }
         }
         request(target, "invite") { requester, acceptor ->
+            requester.queue.clear("invite_${acceptor.name}")
             acceptor.open("dungeon_party_invite")
             acceptor["dungeon_inviter"] = requester.name
         }
@@ -177,6 +181,7 @@ class DungeonPartyInvite : Script {
         closeMenu()
         val inviter = inviter() ?: return
         clear("dungeon_inviter")
+        inviter.queue.clear("invite_$name")
         inviter.message("$name has declined your invitation.")
         message("You decline the invitation from ${inviter.name}")
     }

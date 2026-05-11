@@ -44,7 +44,6 @@ class DungeoneeringParty : Script {
                 return@interfaceOption
             }
             setLeader(this)
-            refreshDetails()
         }
 
         interfaceOption("Leave-party", "dungeoneering_party:leave_party,dungeoneering_party:leave_party_button") {
@@ -336,6 +335,7 @@ class DungeoneeringParty : Script {
             player["dungeoneering_party_floor"] = player["dungeoneering_floor", 1]
             player["dungeoneering_party_complexity"] = player["dungeoneering_complexity", 1]
             player.message("You have been set as the party leader.")
+            player.refreshDetails()
         }
 
         fun promote(leader: Player, promote: Player, leave: Boolean = false) {
