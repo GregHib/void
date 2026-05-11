@@ -4,12 +4,12 @@ import world.gregs.voidps.engine.Script
 
 class DungeonJournal : Script {
     init {
-        interfaceOpened("dungeon_journal") {
-            interfaces.sendText("dungeon_journal", "bilrach", "Chronicles of Bilrach")
-            interfaces.sendText("dungeon_journal", "marmaros", "Marmaros and Thok")
-            interfaces.sendText("dungeon_journal", "stalker", "Stalker Notes")
-            interfaces.sendText("dungeon_journal", "behemoth", "Behemoth Notes")
-            interfaces.sendText("dungeon_journal", "kalgerion", "Kal'Gerion Notes")
+        interfaceOpened("dungeon_journals") {
+            interfaces.sendText(it, "bilrach", "Chronicles of Bilrach")
+            interfaces.sendText(it, "marmaros", "Marmaros and Thok")
+            interfaces.sendText(it, "stalker", "Stalker Notes")
+            interfaces.sendText(it, "behemoth", "Behemoth Notes")
+            interfaces.sendText(it, "kalgerion", "Kal'Gerion Notes")
         }
     }
 }
