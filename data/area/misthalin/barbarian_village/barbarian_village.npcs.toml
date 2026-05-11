@@ -103,10 +103,10 @@ combat_def = "barbarian_two_hand_mace_high"
 drop_table = "barbarian_high"
 examine = "Siegmund, a guard in the Barbarian Village."
 
-##fun fact sword barbarians: patch 1 February 2011 (Update):
+## fun fact sword barbarians: patch 1 February 2011 (Update):
 #
-#    Barbarians no longer swing two-handed swords with one hand.
-#so authentic that they hit with their one hand
+#  Barbarians no longer swing two-handed swords with one hand.
+#  so authentic that they hit with their one hand
 [barbarian_lydspor]
 id = 3251
 hitpoints = 180
@@ -183,17 +183,17 @@ examine = "Sieglinde, a muscular barbarian warrior."
 
 [goblin_barbarian_village]
 id = 3265
-categories = ["goblins"]
+clone = "goblin_orange_hat_spear"
 examine = "An ugly green creature."
 
 [goblin_barbarian_village_2]
 id = 3266
-categories = ["goblins"]
+clone = "goblin_orange_hat_spear"
 examine = "An ugly green creature."
 
 [goblin_barbarian_village_3]
 id = 3267
-categories = ["goblins"]
+clone = "goblin_orange_hat_spear"
 examine = "An ugly green creature."
 
 [fishing_spot_barbarian_village]
