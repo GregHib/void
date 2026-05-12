@@ -151,7 +151,7 @@ class Delrith : Script {
         if (npc.queue.contains("death")) {
             npc.queue.clear("death")
         }
-        npc.strongQueue("death", TimeUnit.MINUTES.toTicks(5)) {
+        npc.queue("death", TimeUnit.MINUTES.toTicks(5)) {
             Death.killed(npc)
         }
         //    player.playSound("demon_slayer_portal_open")

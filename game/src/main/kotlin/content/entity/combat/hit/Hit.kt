@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
 import kotlin.math.floor
@@ -167,7 +167,7 @@ fun Character.hit(
     } else if (this is NPC) {
         CombatApi.attack(this, CombatAttack(target, actualDamage, offensiveType, weapon, spell, special, delay))
     }
-    target.strongQueue("hit", if (delay == 0) 0 else CLIENT_TICKS.toTicks(delay) + 1) {
+    target.queue("hit", if (delay == 0) 0 else CLIENT_TICKS.toTicks(delay) + 1) {
         target.directHit(this@hit, actualDamage, offensiveType, weapon, spell, special)
     }
     return actualDamage

@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import kotlin.ranges.IntRange
@@ -172,7 +172,7 @@ object Damage {
  * Damages player closing any interfaces they have open
  */
 fun Character.damage(damage: Int, delay: Int = 0, type: String = "damage", source: Character = this) {
-    strongQueue("hit", delay) {
+    queue("hit", delay) {
         directHit(damage, type, source = source)
     }
 }

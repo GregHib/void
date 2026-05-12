@@ -147,27 +147,26 @@ class ActionQueue(
     }
 }
 
-// TODO deprecate soft/strong for NPCs
 fun <C : Character> C.queue(name: String, initialDelay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, onCancel: (() -> Unit)? = { clearAnim() }, block: suspend Action<C>.() -> Unit) {
     queue.add(Action(this, name, ActionPriority.Normal, initialDelay, behaviour, onCancel = onCancel, action = block as suspend Action<*>.() -> Unit))
 }
 
-fun <C : Character> C.weakQueue(
+fun Player.weakQueue(
     name: String,
     initialDelay: Int = 0,
     behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
     onCancel: (() -> Unit)? = { clearAnim() },
-    block: suspend Action<C>.() -> Unit,
+    block: suspend Action<Player>.() -> Unit,
 ) {
     queue.add(Action(this, name, ActionPriority.Weak, initialDelay, behaviour, onCancel = onCancel, action = block as suspend Action<*>.() -> Unit))
 }
 
-fun <C : Character> C.strongQueue(
+fun Player.strongQueue(
     name: String,
     initialDelay: Int = 0,
     behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
     onCancel: (() -> Unit)? = { clearAnim() },
-    block: suspend Action<C>.() -> Unit,
+    block: suspend Action<Player>.() -> Unit,
 ) {
     queue.add(Action(this, name, ActionPriority.Strong, initialDelay, behaviour, onCancel = onCancel, action = block as suspend Action<*>.() -> Unit))
 }

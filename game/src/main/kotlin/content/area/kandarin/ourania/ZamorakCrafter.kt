@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.data.definition.PatrolDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 
@@ -22,7 +22,7 @@ class ZamorakCrafter(val patrols: PatrolDefinitions) : Script {
 
     fun checkRoute(npc: NPC, from: Tile) {
         if (npc.tile.equals(3314, 4811)) {
-            npc.strongQueue("craft_runes") {
+            npc.queue("craft_runes") {
                 val altar = GameObjects.findOrNull(Tile(3315, 4810), "ourania_altar")
                 if (altar != null) {
                     npc.face(altar)
@@ -35,7 +35,7 @@ class ZamorakCrafter(val patrols: PatrolDefinitions) : Script {
                 npc.mode = Patrol(npc, patrol.waypoints)
             }
         } else if (npc.tile.equals(3270, 4856)) {
-            npc.strongQueue("return_home") {
+            npc.queue("return_home") {
                 npc.delay(5)
                 val patrol = patrols.get("zamorak_crafter_to_altar")
                 npc.mode = Patrol(npc, patrol.waypoints)
