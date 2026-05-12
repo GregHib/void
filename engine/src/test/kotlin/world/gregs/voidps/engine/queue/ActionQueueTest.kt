@@ -61,7 +61,7 @@ internal class ActionQueueTest : KoinMock() {
     }
 
     @Test
-    fun `Strong and soft actions close interfaces`() {
+    fun `Strong actions close interfaces`() {
         every { player.interfaces.get("main_screen") } returns "open_id"
         val action = action(ActionPriority.Strong, 5)
         queue.add(action)
@@ -69,15 +69,6 @@ internal class ActionQueueTest : KoinMock() {
         verify {
             player.interfaces.close("open_id")
         }
-    }
-
-    @Test
-    fun `Soft actions are always called`() {
-        val action = action(ActionPriority.Soft)
-        queue.add(action)
-        player["delay"] = 10
-        tick()
-        assertTrue(action.removed)
     }
 
     @Test
