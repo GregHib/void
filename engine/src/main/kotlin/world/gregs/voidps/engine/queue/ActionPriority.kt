@@ -17,9 +17,4 @@ enum class ActionPriority(
      * Closes interfaces and cancels [Weak] actions before execution
      */
     Strong(closeInterfaces = true),
-
-    /**
-     * Closes interfaces and can't be paused or cancelled by anything other than suspensions
-     */
-    Soft(closeInterfaces = true),
 }

@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.map.collision.random
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
@@ -184,7 +184,7 @@ class BarrowsCrypts : Script {
             }
             val npc = NPCs.add(id, spawn)
             npc.interactPlayer(this, "Attack")
-            npc.softQueue("despawn", TimeUnit.MINUTES.toTicks(2)) {
+            npc.queue("despawn", TimeUnit.MINUTES.toTicks(2)) {
                 NPCs.remove(npc)
             }
         }

@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 
 class Bravek : Script {
 
@@ -94,7 +94,7 @@ class Bravek : Script {
             set("plague_city", "gave_cure")
             target.say("Grruurgh!")
             target.transform("bravek_hangover_cure_anim")
-            target.softQueue("bravek_transform", 5) {
+            target.queue("bravek_transform", 5) {
                 target.clearTransform()
             }
             item("hangover_cure", 600, "You give Bravek the hangover cure. Bravek gulps down the foul looking liquid.")

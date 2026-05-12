@@ -20,7 +20,8 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.LogoutBehaviour
+import world.gregs.voidps.engine.queue.queue
 
 class Kaqemeex : Script {
 
@@ -185,7 +186,7 @@ class Kaqemeex : Script {
         exp(Skill.Herblore, 250.0)
         refreshQuestJournal()
         inc("quest_points", 4)
-        softQueue("quest_complete", 1) {
+        queue("quest_complete", 1, LogoutBehaviour.Accelerate) {
             questComplete(
                 "Druidic Ritual",
                 "4 Quest Points",

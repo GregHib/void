@@ -41,7 +41,8 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.LogoutBehaviour
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.timer.toTicks
@@ -295,7 +296,7 @@ class Delrith : Script {
         set("demon_slayer", "completed")
         inc("quest_points", 3)
         DemonSlayerSpell.clear(this)
-        softQueue("quest_complete", 1) {
+        queue("quest_complete", 1, LogoutBehaviour.Accelerate) {
             player.questComplete(
                 "Demon Slayer",
                 "3 Quest Points",

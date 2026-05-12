@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.type.Tile
 
 class WestArdougne : Script {
@@ -141,9 +140,8 @@ class WestArdougne : Script {
 
         objectOperate("Open", "ardougne_wall_door_2_closed,ardougne_wall_door_closed") {
             message("You pull on the large wooden doors...")
-            softQueue("ardougne_wall_door", 2) {
-                message("...But they will not open.")
-            }
+            delay(2)
+            message("...But they will not open.")
         }
     }
 }

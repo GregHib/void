@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
@@ -200,7 +200,7 @@ class LadyKeli : Script {
         inventory.remove("rope")
         set("prince_ali_rescue", "keli_tied_up")
         target.hide = true
-        target.softQueue("keli_respawn", TimeUnit.SECONDS.toTicks(60)) {
+        target.queue("keli_respawn", TimeUnit.SECONDS.toTicks(60)) {
             target.hide = false
         }
     }

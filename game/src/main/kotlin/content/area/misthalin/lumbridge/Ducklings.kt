@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
@@ -38,7 +38,7 @@ class Ducklings : Script {
         parent["ducklings"] = npc
         if (random.nextInt(300) < 1) {
             parent.say("Quack?")
-            npc.softQueue("quack", 1) {
+            npc.queue("quack", 1) {
                 npc.say(if (random.nextBoolean()) "Cheep Cheep!" else "Eep!")
             }
         }

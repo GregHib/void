@@ -17,7 +17,8 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.LogoutBehaviour
+import world.gregs.voidps.engine.queue.queue
 
 class Doric : Script {
 
@@ -150,7 +151,7 @@ class Doric : Script {
         inventory.add("coins", 180)
         refreshQuestJournal()
         inc("quest_points")
-        softQueue("quest_complete", 1) {
+        queue("quest_complete", 1, LogoutBehaviour.Accelerate) {
             questComplete(
                 "Doric's Quest",
                 "1 Quest Point",

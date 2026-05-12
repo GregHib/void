@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.random
 
@@ -102,7 +102,7 @@ class Sheep : Script {
         delay(1)
         areaSound("sheep_baa${if (colour == "black") "" else "2"}", target.tile)
         target.say("Baa!")
-        target.softQueue("regrow_wool", Settings["world.npcs.sheep.regrowTicks", 50]) {
+        target.queue("regrow_wool", Settings["world.npcs.sheep.regrowTicks", 50]) {
             target.clearTransform()
         }
     }

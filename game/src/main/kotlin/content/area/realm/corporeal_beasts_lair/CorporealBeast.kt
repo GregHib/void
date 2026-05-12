@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Direction
@@ -82,7 +82,7 @@ class CorporealBeast : Script {
     }
 
     fun areaOfEffect(source: NPC, i: Int, tile: Tile, time: Int, damage: Int) {
-        source.softQueue("area_of_effect_$i", CLIENT_TICKS.toTicks(time)) {
+        source.queue("area_of_effect_$i", CLIENT_TICKS.toTicks(time)) {
             for (player in Players.at(tile)) {
                 source.hit(player, delay = 0, offensiveType = "magic", damage = Damage.roll(source, player, offensiveType = "magic", range = 0..damage))
             }
@@ -104,7 +104,7 @@ class CorporealBeast : Script {
         }
         val tile = target.tile
         val delay = source.shoot("dark_energy_core_travel", target)
-        source.softQueue("core_spawn", CLIENT_TICKS.toTicks(delay)) {
+        source.queue("core_spawn", CLIENT_TICKS.toTicks(delay)) {
             NPCs.add("dark_energy_core", tile)
         }
     }

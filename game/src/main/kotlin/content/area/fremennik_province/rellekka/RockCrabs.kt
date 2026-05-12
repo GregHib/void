@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
@@ -36,7 +36,7 @@ class RockCrabs : Script {
             transform(combatForm)
 
             // short stand-up delay before attacking
-            softQueue("rock_stand_up", 2) {
+            queue("rock_stand_up", 2) {
                 interactPlayer(target, "Attack")
                 resetToRock(this@huntPlayer) // start inactivity timer for disguise reset
             }
@@ -48,10 +48,10 @@ class RockCrabs : Script {
      * just like real RuneScape behaviour.
      */
     fun resetToRock(npc: NPC) {
-        npc.softQueue("rock_inactive", TimeUnit.SECONDS.toTicks(30)) {
+        npc.queue("rock_inactive", TimeUnit.SECONDS.toTicks(30)) {
             if (npc.target != null || npc.inCombat) { // still fighting? reschedule
                 resetToRock(npc)
-                return@softQueue
+                return@queue
             }
             npc.clearTransform()
             npc.mode = EmptyMode

@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.suspend.resumeSuspension
 import java.util.concurrent.ConcurrentLinkedQueue
 import kotlin.coroutines.resume
@@ -94,13 +95,13 @@ class ActionQueue(
         if (action.priority.closeInterfaces) {
             (character as? Player)?.closeInterfaces()
         }
-        if (canProcess(action) && action.process()) {
+        if (canProcess() && action.process()) {
             scope.launch(action)
         }
         return action.removed
     }
 
-    private fun canProcess(action: Action<*>) = action.priority == ActionPriority.Soft || (noDelay() && noInterrupt())
+    private fun canProcess() = noDelay() && noInterrupt()
 
     private fun noDelay() = !character.contains("delay")
 
@@ -146,18 +147,9 @@ class ActionQueue(
     }
 }
 
+// TODO deprecate soft/strong for NPCs
 fun <C : Character> C.queue(name: String, initialDelay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, onCancel: (() -> Unit)? = { clearAnim() }, block: suspend Action<C>.() -> Unit) {
     queue.add(Action(this, name, ActionPriority.Normal, initialDelay, behaviour, onCancel = onCancel, action = block as suspend Action<*>.() -> Unit))
-}
-
-fun <C : Character> C.softQueue(
-    name: String,
-    initialDelay: Int = 0,
-    behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
-    onCancel: (() -> Unit)? = { clearAnim() },
-    block: suspend Action<C>.() -> Unit,
-) {
-    queue.add(Action(this, name, ActionPriority.Soft, initialDelay, behaviour, onCancel = onCancel, action = block as suspend Action<*>.() -> Unit))
 }
 
 fun <C : Character> C.weakQueue(

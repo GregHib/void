@@ -25,7 +25,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.canFit
 import world.gregs.voidps.engine.map.spiral
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Tile
 
 val Character?.isFamiliar: Boolean
@@ -61,7 +61,7 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean) {
 
     val familiarNpc = NPCs.add(familiar.stringId, tile)
     familiarNpc.mode = Follow(familiarNpc, this)
-    softQueue("summon_familiar", 2) {
+    queue("summon_familiar", 2) {
         follower = familiarNpc
         familiarNpc.gfx("summon_familiar_size_${familiarNpc.size}")
         player.updateFamiliarInterface()
@@ -83,7 +83,7 @@ fun Player.dismissFamiliar() {
 
     // Need to wait for the above sendScript to reach the client before resetting
     // Cast option for previous familiar will not be cleared from summoning_orb right-click menu otherwise
-    softQueue("reset_familiar_vars", 1) {
+    queue("reset_familiar_vars", 1) {
         player["follower_details_name"] = 0
         player["follower_details_chathead"] = 0
         player["familiar_details_minutes_remaining"] = 0
