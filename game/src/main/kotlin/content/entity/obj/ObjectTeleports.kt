@@ -27,6 +27,10 @@ class ObjectTeleports {
         if (definition.id != id) {
             return false
         }
+        return teleport(player, target, definition)
+    }
+
+    suspend fun teleport(player: Player, target: GameObject, definition: TeleportDefinition): Boolean {
         val delay = Teleport.takeOff(player, target, definition.option)
         if (delay == Teleport.CANCEL) {
             return false

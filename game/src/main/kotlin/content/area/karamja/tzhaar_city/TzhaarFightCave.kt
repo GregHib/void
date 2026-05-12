@@ -203,7 +203,7 @@ class TzhaarFightCave(
             }
             it.dropItems = false
             it.teleport = outside
-            queue("fire_cave_death", 3, LogoutBehaviour.Accelerate) {
+            strongQueue("fight_cave_death", 3, LogoutBehaviour.Accelerate) {
                 leave(wave)
             }
         }

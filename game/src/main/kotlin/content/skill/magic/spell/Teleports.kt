@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.timer.epochSeconds
 import java.util.concurrent.TimeUnit
@@ -89,7 +90,7 @@ class Teleports : Script {
         val scrolls = Areas.tagged("scroll")
         val type = if (scrolls.contains(definition)) "scroll" else "tablet"
         val map = definition.area
-        player.queue("teleport", onCancel = null) {
+        player.strongQueue("teleport", onCancel = null) {
             if (player.inventory.remove(option.item.id)) {
                 player.sound("teleport_$type")
                 player.gfx("teleport_$type")
@@ -109,9 +110,9 @@ class Teleports : Script {
             return
         }
         closeInterfaces()
-        queue("teleport", onCancel = null) {
+        strongQueue("teleport", onCancel = null) {
             if (!removeSpellItems(component)) {
-                return@queue
+                return@strongQueue
             }
             exp(Skill.Magic, Tables.int("spells.$component.xp") / 10.0)
             val book = id.removeSuffix("_spellbook")

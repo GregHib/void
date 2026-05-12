@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -51,13 +52,11 @@ class MysteriousRuins(val teleports: ObjectTeleports) : Script {
             message("You hold the ${item.id.toSentenceCase()} towards the mysterious ruins.")
             anim("climb_down")
             delay(2)
-            set("${item.id.removeSuffix("_talisman")}_altar_ruins", refresh = false, value = true)
-            interactObject(target, "Enter", approachRange = -1)
-            delay(2)
-            set("${item.id.removeSuffix("_talisman")}_altar_ruins", refresh = false, value = false)
+            val def = teleports.get("${target.id}_enter", "Enter").single()
+            teleports.teleport(this, target, def)
         }
 
-        objTeleportTakeOff("Enter", "*_altar_ruins_enter") { _, _ ->
+        objTeleportTakeOff("Enter", "*_altar_ruins*") { _, _ ->
             clearAnim()
             sound("teleport")
             message("You feel a powerful force talk hold of you...")
