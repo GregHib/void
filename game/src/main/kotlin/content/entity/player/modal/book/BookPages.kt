@@ -46,7 +46,7 @@ class BookPages(val books: Books) : Script {
             open(id)
         }
 
-        interfaceClosed("book") {
+        interfaceClosed("book,book_long,book_indexed") {
             clearAnim()
         }
     }
