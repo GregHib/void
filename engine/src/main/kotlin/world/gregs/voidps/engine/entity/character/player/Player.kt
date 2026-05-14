@@ -7,6 +7,7 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.client.instruction.InstructionTask
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
+import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.client.variable.Variables
@@ -66,6 +67,11 @@ class Player(
         }
     }
 
+    fun closeModal() {
+        closeMenu()
+        queue.clearWeak()
+    }
+
     override val size: Int
         get() = appearance.size
 
@@ -95,7 +101,7 @@ class Player(
 
     var dialogueSuspension: DialogueSuspension<*>? = null
 
-    override var queue = ActionQueue(this)
+    override var queue: ActionQueue<*> = ActionQueue(this)
 
     /**
      * Always ticks

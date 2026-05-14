@@ -80,7 +80,7 @@ class Pottery : Script {
                 softTimers.stop("pottery")
                 return@weakQueue
             }
-            player.sound("pottery")
+            sound("pottery")
             val xp = pottery.int("xp") / 10.0
             exp(Skill.Crafting, xp)
             make(animation, obj, item, id, amount - 1)

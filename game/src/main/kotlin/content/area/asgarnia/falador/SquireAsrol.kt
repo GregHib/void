@@ -201,7 +201,7 @@ class SquireAsrol : Script {
         inc("quest_points")
         message("Congratulations! Quest complete!")
         queue("quest_complete", 1, LogoutBehaviour.Accelerate) {
-            player.questComplete(
+            questComplete(
                 "The Knight's Sword Quest",
                 "1 Quest Point",
                 "12,725 Smithing XP",

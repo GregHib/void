@@ -59,6 +59,7 @@ class Movement : Script {
             player.closeInterfaces()
             player.clearWatch()
             player.queue.clearWeak()
+            player.delay = null
             player.suspension = null
             if (minimap && !player["a_world_in_microcosm_task", false]) {
                 player["a_world_in_microcosm_task"] = true

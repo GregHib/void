@@ -77,6 +77,7 @@ class NPCDeath(
                         dropLoot(npc, killer, tile)
                     }
                 }
+                queue.clear()
                 attackers.clear()
                 softTimers.stopAll()
                 if (Death.afterDeath(npc)) {

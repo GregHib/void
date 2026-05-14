@@ -32,7 +32,7 @@ class Imp : Script {
             if (levels.get(Skill.Constitution) - damage > 0 && random.nextDouble() < retreatChance) {
                 if (levels.get(Skill.Constitution) - damage < 10) {
                     queue("imp_retreat") {
-                        mode = Retreat(npc, source)
+                        mode = Retreat(this, source)
                     }
                 } else if (mode !is Retreat) {
                     teleportImp(this, teleportChanceHit)

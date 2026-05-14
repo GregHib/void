@@ -36,11 +36,8 @@ abstract class CharacterTask<C : Character>(
     }
 
     protected fun checkDelay(character: Character) {
-        if (!character.contains("delay")) {
-            return
-        }
         val tick = character["delay", -1]
-        if (tick == 1) {
+        if (tick == -1 || tick == 1) {
             character.clear("delay")
             val delay = character.delay
             if (delay != null) {

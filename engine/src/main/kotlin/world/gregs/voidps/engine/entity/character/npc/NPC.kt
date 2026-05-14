@@ -62,7 +62,7 @@ data class NPC(
             value.start()
         }
 
-    override var queue = ActionQueue(this)
+    override var queue: ActionQueue<*> = ActionQueue(this)
     override var softTimers: Timers = TimerSlot(this)
     override var delay: Continuation<Unit>? = null
     override var suspension: Suspension? = null

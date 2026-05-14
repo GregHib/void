@@ -57,17 +57,18 @@ class PlayerDeath : Script {
                 steps.clear()
                 val dealer = damageDealers.maxByOrNull { it.value }
                 val killer = dealer?.key
-                AuditLog.event(player, "died", tile, killer)
+                AuditLog.event(this, "died", tile, killer)
                 while (true) {
                     instructions.tryReceive().getOrNull() ?: break
                 }
                 val tile = tile.copy()
                 set("death_tile", tile)
                 val wilderness = inWilderness
-                retribution(player)
-                wrath(player)
+                retribution(this)
+                wrath(this)
                 message("Oh dear, you are dead!")
                 anim("human_death")
+                queue.clear()
                 delay(5)
                 clearAnim()
                 attackers.clear()
@@ -79,7 +80,7 @@ class PlayerDeath : Script {
                 dismissFamiliar()
                 if (onDeath.dropItems) {
                     val tile = instanceLogout() ?: tile
-                    dropItems(player, killer, tile, wilderness)
+                    dropItems(this, killer, tile, wilderness)
                 }
                 levels.clear()
                 runEnergy = MAX_RUN_ENERGY

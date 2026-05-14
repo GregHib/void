@@ -109,7 +109,7 @@ class Delrith : Script {
                     val text = "$selected$suffix"
                     say(text)
                     player<Neutral>(text, largeHead = true, clickToContinue = false)
-                    val expected = DemonSlayerSpell.getWord(player, index + 1)
+                    val expected = DemonSlayerSpell.getWord(this, index + 1)
                     if (selected != expected) {
                         correct = false
                         target.anim("delrith_continue")
@@ -297,7 +297,7 @@ class Delrith : Script {
         inc("quest_points", 3)
         DemonSlayerSpell.clear(this)
         queue("quest_complete", 1, LogoutBehaviour.Accelerate) {
-            player.questComplete(
+            questComplete(
                 "Demon Slayer",
                 "3 Quest Points",
                 "Silverlight",

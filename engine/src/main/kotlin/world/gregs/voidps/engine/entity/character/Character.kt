@@ -48,7 +48,7 @@ interface Character :
     val levels: Levels
     var collision: CollisionStrategy
     var mode: Mode
-    var queue: ActionQueue
+    var queue: ActionQueue<*>
     var softTimers: Timers
     var suspension: Suspension?
     var delay: Continuation<Unit>?
@@ -286,11 +286,13 @@ interface Character :
      * Prevents non-interface player input and most processing
      * Cannot be cancelled.
      */
-    suspend fun delay(ticks: Int = 1) {
+    suspend fun delay(ticks: Int = 1, cancellable: Boolean = false) {
         if (ticks <= 0) {
             return
         }
-        this["delay"] = ticks
+        if (!cancellable) {
+            this["delay"] = ticks
+        }
         suspendCancellableCoroutine {
             delay = it
         }

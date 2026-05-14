@@ -93,12 +93,12 @@ class FarmingPatchPick : Script {
                 return@weakQueue
             }
             if (tree) {
-                player.message("You pick ${item.id.an()} ${item.def.name.lowercase()}.", ChatType.Filter)
+                message("You pick ${item.id.an()} ${item.def.name.lowercase()}.", ChatType.Filter)
             }
-            player.exp(Skill.Farming, item.def["farming_xp", 0.0])
+            exp(Skill.Farming, item.def["farming_xp", 0.0])
             val chance = item.def.getOrNull<String>("farming_chance")?.toIntRange(inclusive = true)
-            if (chance == null || !saveLife(player, chance, obj)) {
-                val value = player[obj.id, "weeds_life3"]
+            if (chance == null || !saveLife(this, chance, obj)) {
+                val value = get(obj.id, "weeds_life3")
                 val type = value.substringBeforeLast("_")
                 if (removeVarbit("patch_super_compost", obj.id)) {
                     addVarbit("patch_compost", obj.id)
@@ -107,20 +107,20 @@ class FarmingPatchPick : Script {
                     if (!stage.startsWith("life")) {
                         message("The ${obj.patchName()} is now empty.")
                         clearAnim()
-                        player[obj.id] = "weeds_0"
+                        set(obj.id, "weeds_0")
                         return@weakQueue
                     }
                     val int = stage.removePrefix("life").toIntOrNull() ?: 0
-                    ScrollOfLife.checkLife(player, type, chop = false)
+                    ScrollOfLife.checkLife(this, type, chop = false)
                     val keys = (VariableDefinitions.get(obj.id)?.values as? MapValues)?.values?.keys as? Set<String> ?: emptySet()
                     val next = "${type}_life${int + 1}"
                     if (!keys.contains(next)) {
                         message("The ${obj.patchName()} is now empty.")
                         clearAnim()
-                        player[obj.id] = "weeds_0"
+                        set(obj.id, "weeds_0")
                         return@weakQueue
                     }
-                    player[obj.id] = next
+                    set(obj.id, next)
                 }
             }
             harvest(item, obj, tree)

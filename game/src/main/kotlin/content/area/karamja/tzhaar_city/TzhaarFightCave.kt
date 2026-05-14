@@ -190,8 +190,8 @@ class TzhaarFightCave(
                 tele(centre.add(instanceOffset()))
             }
             strongQueue("fight_cave_start", TimeUnit.SECONDS.toTicks(2)) {
-                startWave(player, wave, start = true)
-                player.sendVariable("fight_cave_wave")
+                startWave(this, wave, start = true)
+                sendVariable("fight_cave_wave")
             }
         }
 
