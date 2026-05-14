@@ -36,7 +36,7 @@ class Alchemy : Script {
                 queue("alch_warning") {
                     choice("The item you are about to alch has a high value.") {
                         option("I wish to continue.") {
-                            alch(player, spell, item)
+                            alch(this, spell, item)
                         }
                         option("I do not want to alch this item.")
                     }

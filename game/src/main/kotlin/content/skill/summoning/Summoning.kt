@@ -64,7 +64,7 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean) {
     queue("summon_familiar", 2) {
         follower = familiarNpc
         familiarNpc.gfx("summon_familiar_size_${familiarNpc.size}")
-        player.updateFamiliarInterface()
+        updateFamiliarInterface()
         if (!restart) {
             timers.start("familiar_timer")
         }
@@ -84,10 +84,10 @@ fun Player.dismissFamiliar() {
     // Need to wait for the above sendScript to reach the client before resetting
     // Cast option for previous familiar will not be cleared from summoning_orb right-click menu otherwise
     queue("reset_familiar_vars", 1) {
-        player["follower_details_name"] = 0
-        player["follower_details_chathead"] = 0
-        player["familiar_details_minutes_remaining"] = 0
-        player["familiar_details_seconds_remaining"] = 0
+        set("follower_details_name", 0)
+        set("follower_details_chathead", 0)
+        set("familiar_details_minutes_remaining", 0)
+        set("familiar_details_seconds_remaining", 0)
     }
     timers.stop("familiar_timer")
 }

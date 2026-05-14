@@ -70,11 +70,10 @@ class MysteriousRuins(val teleports: ObjectTeleports) : Script {
                     choice("Are you sure you wish to use this portal?") {
                         option("Yes, I'm brave.") {
                             start("chaos_altar_skip", 1)
-                            teleports.teleport(player, target, option, target.def(player))
+                            teleports.teleport(this, target, option, target.def(this))
                         }
                         option("Eeep! The Wilderness... No thank you.") {
                             message("You decide not to use this portal.")
-                            cancel()
                         }
                     }
                 }

@@ -58,11 +58,11 @@ class TelekineticGrab : Script {
 
             delay(3)
             queue("tele_grab", 3) {
-                if (player.tile.level != floorItem.tile.level) {
+                if (tile.level != floorItem.tile.level) {
                     message("Your telegrab fizzles as you move too far away.")
                     return@queue
                 }
-                if (!ItemTake.take(player, floorItem)) {
+                if (!ItemTake.take(this, floorItem)) {
                     return@queue
                 }
                 start("action_delay", 3)
