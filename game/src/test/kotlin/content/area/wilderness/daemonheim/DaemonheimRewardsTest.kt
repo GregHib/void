@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.suspend.IntSuspension
+import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -51,7 +51,7 @@ class DaemonheimRewardsTest : WorldTest() {
 
         player.interfaceOption("daemonheim_rewards", "items", "Select", slot = 205)
         player.interfaceOption("daemonheim_rewards", "buy", "Buy")
-        (player.dialogueSuspension as IntSuspension).resume(500)
+        (player.suspension as Suspension.IntEntry).resume(500)
 
         assertEquals(500.0, player.experience.get(Skill.Dungeoneering))
         assertEquals(500, player["dungeoneering_tokens", 0])
