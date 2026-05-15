@@ -33,6 +33,8 @@ class ActionList<C : Character> {
         }
         action.previous?.next = action.next
         action.next?.previous = action.previous
+        action.next = null
+        action.previous = null
     }
 
     private fun any(filter: (Action<C>) -> Boolean): Boolean {

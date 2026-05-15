@@ -18,9 +18,9 @@ class ActionQueue<C : Character>(
             throwable.printStackTrace()
         }
     }
-    var queue = ActionList<C>()
-    var weakQueue = ActionList<C>()
-    var engineQueue = ActionList<C>()
+    private val queue = ActionList<C>()
+    private val weakQueue = ActionList<C>()
+    private val engineQueue = ActionList<C>()
 
     fun isEmpty() = queue.isEmpty()
 
@@ -44,7 +44,7 @@ class ActionQueue<C : Character>(
         var action = queue.peek()
         while (action != null) {
             val end = action.next == null
-            if (canProcess() && action.process()) {
+            if (action.process() && canProcess()) {
                 queue.remove(action)
                 scope.launch(action)
             }
