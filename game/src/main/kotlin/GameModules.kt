@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.Storage
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 import java.io.File
@@ -67,6 +68,12 @@ fun gameModule(files: ConfigFiles) = module {
         }
     }
     single(createdAtStart = true) { FarmingDefinitions().load(files.find(Settings["definitions.produce"])) }
-    single(createdAtStart = true) { PetDefinitions().load(files.find(Settings["definitions.pets"])) }
-    single(createdAtStart = true) { IncubatorDefinitions().load(files.find(Settings["definitions.incubator"])) }
+    single(createdAtStart = true) {
+        get<Tables>()
+        PetDefinitions().load()
+    }
+    single(createdAtStart = true) {
+        get<Tables>()
+        IncubatorDefinitions().load()
+    }
 }

@@ -1,17 +1,11 @@
 package content.skill.summoning.pet
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import world.gregs.config.Config
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.timedLoad
 
 enum class PetStage { Baby, Grown, Overgrown }
 
-/**
- * One pet variant (kitten/cat/overgrown cat is a single entry with three stages).
- *
- * [id] is the persistence key; per-pet attributes are keyed `pet_hunger_<id>`,
- * `pet_growth_<id>`, `pet_unlocked_<id>` so growth state survives metamorphosis.
- */
 data class PetDefinition(
     val id: String,
     val babyItem: String,
@@ -27,7 +21,6 @@ data class PetDefinition(
     val idlePhrases: List<String> = emptyList(),
     val talkLines: List<String> = emptyList(),
 ) {
-    /** Phrases the pet randomly says while idling; falls back to [hungryPhrase] for silent variety. */
     val ambientPhrases: List<String>
         get() = idlePhrases.ifEmpty { listOfNotNull(hungryPhrase) }
 
@@ -85,77 +78,33 @@ class PetDefinitions {
     fun forItem(item: String): PetDefinition? = itemIndex[item]
     fun forNpc(npc: String): PetDefinition? = npcIndex[npc]
 
-    fun load(path: String): PetDefinitions {
+    fun load(): PetDefinitions {
+        require(Tables.loaded) { "Tables must be loaded before pet definitions." }
         timedLoad("pet definition") {
-            Config.fileReader(path) {
-                while (nextSection()) {
-                    val id = section()
-                    var babyItem = ""
-                    var babyNpc = ""
-                    var grownItem: String? = null
-                    var grownNpc: String? = null
-                    var overgrownItem: String? = null
-                    var overgrownNpc: String? = null
-                    var growthRate = 0.0
-                    var summoningLevel = 0
-                    var food: List<String> = emptyList()
-                    var hungryPhrase: String? = null
-                    var idlePhrases: List<String> = emptyList()
-                    var talkLines: List<String> = emptyList()
-                    while (nextPair()) {
-                        when (key()) {
-                            "baby_item" -> babyItem = string()
-                            "baby_npc" -> babyNpc = string()
-                            "grown_item" -> grownItem = string()
-                            "grown_npc" -> grownNpc = string()
-                            "overgrown_item" -> overgrownItem = string()
-                            "overgrown_npc" -> overgrownNpc = string()
-                            "growth_rate" -> growthRate = double()
-                            "summoning_level" -> summoningLevel = int()
-                            "food" -> {
-                                val list = mutableListOf<String>()
-                                while (nextElement()) list.add(string())
-                                food = list
-                            }
-                            "hungry_phrase" -> hungryPhrase = string()
-                            "idle_phrases" -> {
-                                val list = mutableListOf<String>()
-                                while (nextElement()) list.add(string())
-                                idlePhrases = list
-                            }
-                            "talk_lines" -> {
-                                val list = mutableListOf<String>()
-                                while (nextElement()) list.add(string())
-                                talkLines = list
-                            }
-                        }
-                    }
-                    require(babyItem.isNotBlank() && babyNpc.isNotBlank()) {
-                        "Pet '$id' requires baby_item and baby_npc."
-                    }
-                    val def = PetDefinition(
-                        id = id,
-                        babyItem = babyItem,
-                        babyNpc = babyNpc,
-                        grownItem = grownItem,
-                        grownNpc = grownNpc,
-                        overgrownItem = overgrownItem,
-                        overgrownNpc = overgrownNpc,
-                        growthRate = growthRate,
-                        summoningLevel = summoningLevel,
-                        food = food,
-                        hungryPhrase = hungryPhrase,
-                        idlePhrases = idlePhrases,
-                        talkLines = talkLines,
-                    )
-                    byId[id] = def
-                    itemIndex[babyItem] = def
-                    grownItem?.let { itemIndex[it] = def }
-                    overgrownItem?.let { itemIndex[it] = def }
-                    npcIndex[babyNpc] = def
-                    grownNpc?.let { npcIndex[it] = def }
-                    overgrownNpc?.let { npcIndex[it] = def }
-                }
+            for (row in Tables.get("pets").rows()) {
+                val id = row.rowId
+                val def = PetDefinition(
+                    id = id,
+                    babyItem = row.item("baby_item"),
+                    babyNpc = row.npc("baby_npc"),
+                    grownItem = row.itemOrNull("grown_item"),
+                    grownNpc = row.npcOrNull("grown_npc"),
+                    overgrownItem = row.itemOrNull("overgrown_item"),
+                    overgrownNpc = row.npcOrNull("overgrown_npc"),
+                    growthRate = row.double("growth_rate"),
+                    summoningLevel = row.int("summoning_level"),
+                    food = row.itemList("food"),
+                    hungryPhrase = row.stringOrNull("hungry_phrase")?.takeIf { it.isNotBlank() },
+                    idlePhrases = row.stringList("idle_phrases"),
+                    talkLines = row.stringList("talk_lines"),
+                )
+                byId[id] = def
+                itemIndex[def.babyItem] = def
+                def.grownItem?.let { itemIndex[it] = def }
+                def.overgrownItem?.let { itemIndex[it] = def }
+                npcIndex[def.babyNpc] = def
+                def.grownNpc?.let { npcIndex[it] = def }
+                def.overgrownNpc?.let { npcIndex[it] = def }
             }
             byId.size
         }
