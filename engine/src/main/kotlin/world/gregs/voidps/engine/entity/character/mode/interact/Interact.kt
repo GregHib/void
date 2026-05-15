@@ -91,6 +91,7 @@ open class Interact(
             return
         }
         calculate()
+        character.walkTrigger()
         val interacted = processInteraction()
         if (interacted && interactionFinished()) {
             clear()

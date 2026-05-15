@@ -107,6 +107,7 @@ class Player(
     override var variables: Variables = PlayerVariables(this, variables)
 
     override val steps = Steps(this)
+    override var walkTrigger: (() -> Unit)? = null
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

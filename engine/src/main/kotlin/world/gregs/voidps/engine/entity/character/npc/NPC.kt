@@ -66,6 +66,7 @@ data class NPC(
     override var suspension: Suspension? = null
     override var variables: Variables = Variables(this)
     override val steps: Steps = Steps(this)
+    override var walkTrigger: (() -> Unit)? = null
 
     override lateinit var collision: CollisionStrategy
 

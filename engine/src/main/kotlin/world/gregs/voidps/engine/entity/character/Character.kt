@@ -56,8 +56,18 @@ interface Character :
     val size: Int
     val blockMove: Int
     val collisionFlag: Int
+    var walkTrigger: (() -> Unit)?
 
     override fun compareTo(other: Character): Int = index.compareTo(other.index)
+
+    fun walkTrigger() {
+        if (suspension != null) {
+            return
+        }
+        val trigger = walkTrigger ?: return
+        walkTrigger = null
+        trigger.invoke()
+    }
 
     /**
      * Gradually move the characters appeared location to [delta] over [delay] time
@@ -280,6 +290,12 @@ interface Character :
         flagWatch()
     }
 
+    /**
+     * Trigger something on next attempted [world.gregs.voidps.network.client.instruction.Walk].
+     */
+    fun walkTrigger(block: () -> Unit) {
+        this.walkTrigger = block
+    }
 
     /**
      * Prevents non-interface player input and most processing

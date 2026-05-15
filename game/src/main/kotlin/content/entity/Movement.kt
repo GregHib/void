@@ -76,6 +76,10 @@ class Movement : Script {
                 }
                 player.walkTo(target, forceWalk = walk || player.equipped(EquipSlot.Weapon).id == "stone_bowl")
             }
+            if (player.suspension == null) {
+                player.walkTrigger?.invoke()
+                player.walkTrigger = null
+            }
         }
 
         playerDespawn {
