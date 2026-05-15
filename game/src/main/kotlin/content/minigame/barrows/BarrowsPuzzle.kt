@@ -5,14 +5,15 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.suspend.IntSuspension
+import world.gregs.voidps.engine.suspend.Suspension
+import world.gregs.voidps.engine.suspend.pauseInt
 import world.gregs.voidps.type.random
 
 class BarrowsPuzzle : Script {
     init {
         interfaceOption("Choose", "barrows_puzzle:choice*") {
             val int = it.component.removePrefix("choice").toInt()
-            (dialogueSuspension as? IntSuspension)?.resume(int)
+            (suspension as? Suspension.IntEntry)?.resume(int)
         }
     }
 }
@@ -29,7 +30,7 @@ suspend fun Player.puzzle(): Boolean {
     for (i in 0 until 3) {
         interfaces.sendModel(id, "choice${i + 1}", choices[i])
     }
-    val result = IntSuspension.get(this)
+    val result = pauseInt()
     close(id)
     val pick = choices[result - 1]
     return pick == puzzle.int("answer")

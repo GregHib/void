@@ -103,9 +103,16 @@ class ActionQueue<C : Character>(
         while (action != null) {
             if (action.priority == ActionPriority.Long) {
                 scope.launch(action)
-                while (character.delay != null) {
-                    character.delay?.resume(Unit)
-                    character.delay = null
+                var suspension = character.suspension
+                while (suspension != null) {
+                    character.suspension = null
+                    when (suspension) {
+                        is Suspension.Continue -> suspension.resume()
+                        is Suspension.Custom -> suspension.resume()
+                        is Suspension.Delay -> suspension.resume()
+                        else -> {}
+                    }
+                    suspension = character.suspension
                 }
             }
             action = action.next

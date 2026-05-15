@@ -10,7 +10,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.suspend.StringSuspension
+import world.gregs.voidps.engine.suspend.Suspension
+import world.gregs.voidps.engine.suspend.pauseString
 
 class Eniola : Script {
 
@@ -98,7 +99,7 @@ class Eniola : Script {
         }
 
         continueDialogue("ourania_bank_charge:*_rune") {
-            (dialogueSuspension as? StringSuspension)?.resume(it.substringAfter(":"))
+            (suspension as? Suspension.StringEntry)?.resume(it.substringAfter(":"))
         }
 
         interfaceOption(id = "ourania_bank_charge:*_rune") {
@@ -144,7 +145,7 @@ class Eniola : Script {
 
     suspend fun Player.runePayment(): Boolean {
         open("ourania_bank_charge")
-        val rune = StringSuspension.get(this)
+        val rune = pauseString()
         close("ourania_bank_charge")
 
         if (!inventory.remove(rune, 20)) {

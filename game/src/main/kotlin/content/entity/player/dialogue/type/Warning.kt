@@ -5,7 +5,8 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.suspend.StringSuspension
+import world.gregs.voidps.engine.suspend.Suspension
+import world.gregs.voidps.engine.suspend.pauseString
 
 suspend fun Player.warning(id: String): Boolean {
     val count = get("warning_$id", 0)
@@ -16,7 +17,7 @@ suspend fun Player.warning(id: String): Boolean {
         return false
     }
     interfaces.sendVisibility("warning_$id", "ask_again", count == 6)
-    val result = StringSuspension.get(this) == "yes"
+    val result = pauseString() == "yes"
     close("warning_$id")
     return result
 }
@@ -26,25 +27,25 @@ class Warning : Script {
     init {
         interfaceOption("Yes", "warning_*:yes") {
             info(it.id)
-            (dialogueSuspension as StringSuspension).resume("yes")
+            (suspension as Suspension.StringEntry).resume("yes")
         }
 
         interfaceOption("Ok", "warning_*:yes") {
             info(it.id)
-            (dialogueSuspension as StringSuspension).resume("yes")
+            (suspension as Suspension.StringEntry).resume("yes")
         }
 
         interfaceOption("No", "warning_*:no") {
-            (dialogueSuspension as StringSuspension).resume("no")
+            (suspension as Suspension.StringEntry).resume("no")
         }
 
         continueDialogue("warning_*:yes") {
             info(it)
-            (dialogueSuspension as StringSuspension).resume("yes")
+            (suspension as Suspension.StringEntry).resume("yes")
         }
 
         continueDialogue("warning_*:no") {
-            (dialogueSuspension as StringSuspension).resume("no")
+            (suspension as Suspension.StringEntry).resume("no")
         }
 
         interfaceOption("Off/On", "warning_*:dont_ask") {

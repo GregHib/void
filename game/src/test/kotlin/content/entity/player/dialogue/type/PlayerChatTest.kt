@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.suspend.ContinueSuspension
+import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.protocol.encode.playerDialogueHead
 import kotlin.test.assertTrue
@@ -113,7 +113,7 @@ internal class PlayerChatTest : DialogueTest() {
         dialogue {
             player<Neutral>(text = "\nOne\nTwo\nThree\nFour\nFive")
         }
-        (player.dialogueSuspension as ContinueSuspension).resume(Unit)
+        (player.suspension as Suspension.Continue).resume()
         verifyOrder {
             player.open("dialogue_chat4")
             interfaces.sendText("dialogue_chat4", "line1", "One")
@@ -166,7 +166,7 @@ internal class PlayerChatTest : DialogueTest() {
             player<Cackle>(text = "text", largeHead = true)
             resumed = true
         }
-        (player.dialogueSuspension as ContinueSuspension).resume(Unit)
+        (player.suspension as Suspension.Continue).resume()
         coVerify {
             interfaces.sendText("dialogue_chat1", "title", "Jim")
             interfaces.sendAnimation("dialogue_chat1", "head_large", 9840)

@@ -3,8 +3,7 @@ package content.entity.player.dialogue
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.suspend.ContinueSuspension
+import world.gregs.voidps.engine.suspend.Suspension
 
 fun Interfaces.sendLines(id: String, lines: List<String>) {
     for ((index, line) in lines.withIndex()) {
@@ -26,5 +25,5 @@ fun Interfaces.sendChat(
 }
 
 fun Player.continueDialogue() {
-    (dialogueSuspension as? ContinueSuspension)?.resume(Unit)
+    (suspension as? Suspension.Continue)?.resume()
 }

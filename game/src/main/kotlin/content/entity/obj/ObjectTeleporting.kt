@@ -15,7 +15,7 @@ class ObjectTeleporting(val teleports: ObjectTeleports) : Script {
         }
 
         objTeleportTakeOff { _, _ ->
-            if (delay != null) {
+            if (suspension != null) {
                 start("teleport_delay", 1)
             }
             return@objTeleportTakeOff Teleport.CONTINUE

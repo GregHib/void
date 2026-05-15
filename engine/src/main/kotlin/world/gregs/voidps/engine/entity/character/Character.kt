@@ -51,7 +51,6 @@ interface Character :
     var queue: ActionQueue<*>
     var softTimers: Timers
     var suspension: Suspension?
-    var delay: Continuation<Unit>?
     override var variables: Variables
     val steps: Steps
     val size: Int
@@ -294,7 +293,7 @@ interface Character :
             this["delay"] = ticks
         }
         suspendCancellableCoroutine {
-            delay = it
+            suspension = Suspension.Delay(it, ticks)
         }
     }
 
@@ -371,7 +370,8 @@ interface Character :
      * interaction will have finished and there will be nothing to resume the suspension
      */
     suspend fun pause(ticks: Int) {
-        Suspension.start(this, ticks)
+        delay(ticks, cancellable = true)
+//        Suspension.start(this, ticks)
     }
 
     /**

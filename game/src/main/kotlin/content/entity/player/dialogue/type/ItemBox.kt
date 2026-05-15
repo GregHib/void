@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.suspend.ContinueSuspension
+import world.gregs.voidps.engine.suspend.pauseButton
 
 private const val ITEM_INTERFACE_ID = "dialogue_obj_box"
 private const val DOUBLE_ITEM_INTERFACE_ID = "dialogue_double_obj_box"
@@ -22,7 +22,7 @@ suspend fun Player.item(item: String, zoom: Int, text: String, sprite: Int? = nu
     }
     val lines = if (text.contains("\n")) text.trimIndent().replace("\n", "<br>") else get<FontDefinitions>().get("q8_full").splitLines(text, 380).joinToString("<br>")
     interfaces.sendText(ITEM_INTERFACE_ID, "line1", lines)
-    ContinueSuspension.get(this)
+    pauseButton()
     close(ITEM_INTERFACE_ID)
 }
 
@@ -33,7 +33,7 @@ suspend fun Player.item(sprite: Int, text: String) {
     interfaces.sendSprite(ITEM_INTERFACE_ID, "sprite", sprite)
     val lines = if (text.contains("\n")) text.trimIndent().replace("\n", "<br>") else get<FontDefinitions>().get("q8_full").splitLines(text, 380).joinToString("<br>")
     interfaces.sendText(ITEM_INTERFACE_ID, "line1", lines)
-    ContinueSuspension.get(this)
+    pauseButton()
     close(ITEM_INTERFACE_ID)
 }
 
@@ -45,6 +45,6 @@ suspend fun Player.items(item1: String, item2: String, text: String) {
     interfaces.sendItem(DOUBLE_ITEM_INTERFACE_ID, "model2", ItemDefinitions.get(item2).id)
     val lines = if (text.contains("\n")) text.trimIndent().replace("\n", "<br>") else get<FontDefinitions>().get("q8_full").splitLines(text, 380).joinToString("<br>")
     interfaces.sendText(DOUBLE_ITEM_INTERFACE_ID, "line1", lines)
-    ContinueSuspension.get(this)
+    pauseButton()
     close(DOUBLE_ITEM_INTERFACE_ID)
 }

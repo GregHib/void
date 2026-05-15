@@ -4,7 +4,7 @@ import io.mockk.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.sendScript
-import world.gregs.voidps.engine.suspend.IntSuspension
+import world.gregs.voidps.engine.suspend.Suspension
 import kotlin.test.assertTrue
 
 internal class IntEntryTest : DialogueTest() {
@@ -16,7 +16,7 @@ internal class IntEntryTest : DialogueTest() {
         dialogue {
             intEntry("text")
         }
-        assertTrue(player.dialogueSuspension is IntSuspension)
+        assertTrue(player.suspension is Suspension.IntEntry)
         verify {
             player.sendScript("int_entry", "text")
         }
@@ -30,7 +30,7 @@ internal class IntEntryTest : DialogueTest() {
         dialogue {
             result = intEntry("text")
         }
-        val suspend = player.dialogueSuspension as IntSuspension
+        val suspend = player.suspension as Suspension.IntEntry
         suspend.resume(123)
         assertEquals(123, result)
     }

@@ -8,7 +8,8 @@ import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.suspend.ContinueSuspension
+import world.gregs.voidps.engine.suspend.Suspension
+import world.gregs.voidps.engine.suspend.pauseButton
 
 class BrugsenBurson : Script {
 
@@ -44,19 +45,19 @@ class BrugsenBurson : Script {
         }
 
         interfaceOption("Continue", "exchange_offers_tutorial:continue*") {
-            (dialogueSuspension as? ContinueSuspension)?.resume(Unit)
+            (suspension as? Suspension.Continue)?.resume()
         }
 
         interfaceOption("Continue", "exchange_buy_tutorial:continue*") {
-            (dialogueSuspension as? ContinueSuspension)?.resume(Unit)
+            (suspension as? Suspension.Continue)?.resume()
         }
 
         interfaceOption("Continue", "exchange_confirm_tutorial:continue*") {
-            (dialogueSuspension as? ContinueSuspension)?.resume(Unit)
+            (suspension as? Suspension.Continue)?.resume()
         }
 
         interfaceOption("Continue", "exchange_wait_tutorial:continue*") {
-            (dialogueSuspension as? ContinueSuspension)?.resume(Unit)
+            (suspension as? Suspension.Continue)?.resume()
         }
     }
 
@@ -74,25 +75,25 @@ class BrugsenBurson : Script {
         interfaces.sendText("exchange_offers_tutorial", "summary", "First you will see a selection of boxes, each of which represent a possible offer you can place.")
         interfaces.sendVisibility("exchange_offers_tutorial", "summary_layer", true)
         interfaces.sendVisibility("exchange_offers_tutorial", "box_highlight", true)
-        ContinueSuspension.get(this)
+        pauseButton()
         interfaces.sendVisibility("exchange_offers_tutorial", "offer_highlight", true)
         interfaces.sendText("exchange_offers_tutorial", "summary", "Upon clicking on one of the boxes, you will see two buttons appear - one to make a buy offer and one to make a sell offer.")
-        ContinueSuspension.get(this)
+        pauseButton()
         open("exchange_buy_tutorial")
         interfaces.sendText("exchange_buy_tutorial", "summary", "If you selected the buy option you would then see this screen. Here you define what to buy by clicking on the box with the magnifying glass and choosing an item.")
-        ContinueSuspension.get(this)
+        pauseButton()
         open("exchange_confirm_tutorial")
         interfaces.sendText("exchange_confirm_tutorial", "summary", "In this example we have selected a staff of air. You can then define the quantity, and the cost before selecting the `Confirm Offer` button.")
-        ContinueSuspension.get(this)
+        pauseButton()
         open("exchange_offers_tutorial")
         interfaces.sendText("exchange_offers_tutorial", "summary", "Now the offer is placed! You can click on this anytime you want to see the details of your offer. The progress is shown with a progress bar underneath.")
-        ContinueSuspension.get(this)
+        pauseButton()
         closeMenu()
         npc<Neutral>("Selling items is very much a similar process, just that you are picking an item you already have.")
         npc<Neutral>("<maroon>Step 3</maroon>: The clerks will have taken the items or money off you and will look for someone to complete the trade.")
         npc<Neutral>("<maroon>Step 4</maroon>: You then need to wait perhaps a matter of moments or maybe days until someone is looking for what you have offered.")
         open("exchange_wait_tutorial")
-        ContinueSuspension.get(this)
+        pauseButton()
         closeMenu()
         npc<Neutral>("<maroon>Step 5</maroon>: When the trade is complete, we will let you know with a message and you can pick up your winnings by talking to the clerks or by visiting any banker in ${Settings["server.name"]}.")
         npc<Neutral>("To see costs of commonly traded items, you can talk to one of the characters around the outside of the building.")

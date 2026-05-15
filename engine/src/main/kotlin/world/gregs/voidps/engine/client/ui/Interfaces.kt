@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.network.login.protocol.encode.*
 
 /**
@@ -272,8 +273,8 @@ val Player.menu: String?
     get() = interfaces.get("main_screen") ?: interfaces.get("wide_screen") ?: interfaces.get("underlay")
 
 fun Player.closeDialogue(): Boolean {
-    if (dialogueSuspension != null) {
-        dialogueSuspension = null
+    if (suspension is Suspension.Continue || suspension is Suspension.IntEntry || suspension is Suspension.StringEntry || suspension is Suspension.NameEntry) {
+        suspension = null
     }
     sendScript("close_entry")
     return closeType("dialogue_box") || closeType("dialogue_box_small")

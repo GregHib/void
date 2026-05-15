@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.timer.TimerSlot
 import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.network.login.protocol.visual.NPCVisuals
 import world.gregs.voidps.type.Tile
-import kotlin.coroutines.Continuation
 
 /**
  * A non-player character
@@ -64,7 +63,6 @@ data class NPC(
 
     override var queue: ActionQueue<*> = ActionQueue(this)
     override var softTimers: Timers = TimerSlot(this)
-    override var delay: Continuation<Unit>? = null
     override var suspension: Suspension? = null
     override var variables: Variables = Variables(this)
     override val steps: Steps = Steps(this)
