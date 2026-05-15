@@ -5,11 +5,9 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.equip.equipped

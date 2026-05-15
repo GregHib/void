@@ -7,9 +7,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.queue.longQueue
-import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.queue.weakQueue
 import kotlin.random.Random
 
 class Morphing : Script {

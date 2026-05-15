@@ -49,11 +49,11 @@ class Teleports : Script {
             }
             var total = 0
             for (i in 1 until 18) {
-                val delay = AnimationDefinitions.get("home_tele_${i}")["ticks", 0]
+                val delay = AnimationDefinitions.get("home_tele_$i")["ticks", 0]
                 weakQueue("home_teleport", total) {
                     start("teleport_delay", 1)
-                    gfx("home_tele_${i}")
-                    anim("home_tele_${i}")
+                    gfx("home_tele_$i")
+                    anim("home_tele_$i")
                 }
                 total += delay
             }

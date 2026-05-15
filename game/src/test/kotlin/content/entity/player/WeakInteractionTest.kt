@@ -5,7 +5,6 @@ import content.entity.player.dialogue.Pleased
 import content.entity.player.dialogue.type.npc
 import interfaceOption
 import interfaceSwitch
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
@@ -16,7 +15,6 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import kotlin.test.assertEquals
