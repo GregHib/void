@@ -58,6 +58,7 @@ class NPCDeath(
             mode = PauseMode
             dead = true
             steps.clear()
+            clearWatch()
             val npc = this
             val onDeath = Death.killed(npc)
             queue(name = "death", 1) {

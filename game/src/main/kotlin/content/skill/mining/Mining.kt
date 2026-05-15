@@ -1,7 +1,6 @@
 package content.skill.mining
 
 import content.activity.shooting_star.ShootingStarHandler
-import content.entity.combat.underAttack
 import content.entity.player.bank.bank
 import content.entity.player.bank.ownsItem
 import content.quest.questCompleted
