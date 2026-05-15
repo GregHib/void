@@ -12,6 +12,11 @@ enum class ActionPriority {
     Normal,
 
     /**
+     * Area triggers and other internal actions
+     */
+    Engine,
+
+    /**
      * Normal but executed immediately on logout
      */
     Long,

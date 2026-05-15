@@ -20,13 +20,15 @@ class ActionQueue<C : Character>(
     }
     var queue = ActionList<C>()
     var weakQueue = ActionList<C>()
+    var engineQueue = ActionList<C>()
 
     fun isEmpty() = queue.isEmpty()
 
-    fun add(action: Action<*>): Boolean = if (action.priority == ActionPriority.Weak) {
-        weakQueue.add(action as Action<C>)
-    } else {
-        queue.add(action as Action<C>)
+    @Suppress("UNCHECKED_CAST")
+    fun add(action: Action<*>): Boolean = when (action.priority) {
+        ActionPriority.Weak -> weakQueue.add(action as Action<C>)
+        ActionPriority.Engine -> engineQueue.add(action as Action<C>)
+        else -> queue.add(action as Action<C>)
     }
 
     fun tick() {
@@ -53,9 +55,13 @@ class ActionQueue<C : Character>(
         }
     }
 
-    fun contains(name: String): Boolean = queue.contains(name) || weakQueue.contains(name)
+    fun engineTick() {
+        process(engineQueue)
+    }
 
-    fun contains(priority: ActionPriority): Boolean = queue.contains(priority) || weakQueue.contains(priority)
+    fun contains(name: String): Boolean = queue.contains(name) || weakQueue.contains(name) || engineQueue.contains(name)
+
+    fun contains(priority: ActionPriority): Boolean = queue.contains(priority) || weakQueue.contains(priority) || engineQueue.contains(priority)
 
     fun clearWeak() {
         clear(ActionPriority.Weak)
@@ -75,11 +81,12 @@ class ActionQueue<C : Character>(
         }
     }
 
-    fun clear(name: String): Boolean = queue.clear(name) || weakQueue.clear(name)
+    fun clear(name: String): Boolean = queue.clear(name) || weakQueue.clear(name) || engineQueue.clear(name)
 
     fun clear() {
         queue.clear()
         weakQueue.clear()
+        engineQueue.clear()
     }
 
     private fun canProcess() = noDelay() && noInterrupt()
@@ -147,4 +154,18 @@ fun Player.strongQueue(
     block: suspend Player.() -> Unit,
 ) {
     queue.add(Action(name, initialDelay, ActionPriority.Strong, action = block))
+}
+
+/**
+ * An action which is not cancelled but speeds up on logout.
+ */
+fun Player.longQueue(name: String, initialDelay: Int = 0, block: suspend Player.() -> Unit) {
+    queue.add(Action(name, initialDelay, ActionPriority.Long, action = block))
+}
+
+/**
+ * Internal queue used for actions which should happen at a different point in the tick, e.g. area changes.
+ */
+fun Player.engineQueue(name: String, initialDelay: Int = 0, block: suspend Player.() -> Unit) {
+    queue.add(Action(name, initialDelay, ActionPriority.Engine, action = block))
 }
