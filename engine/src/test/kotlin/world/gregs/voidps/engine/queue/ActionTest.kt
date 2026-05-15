@@ -30,8 +30,8 @@ internal class ActionTest {
         assertTrue(action.process(), "Should still process and go to negative")
         assertEquals(-1, action.remaining)
 
-        assertFalse(action.process(), "Should return false and stay at -1")
-        assertEquals(-1, action.remaining)
+        assertTrue(action.process(), "Should return true and stay decreasing")
+        assertEquals(-2, action.remaining)
     }
 
     private fun action(priority: ActionPriority = ActionPriority.Normal, delay: Int = 0, action: suspend Player.() -> Unit = {}): Action<Player> = Action("action", delay, priority, action)

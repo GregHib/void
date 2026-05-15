@@ -15,6 +15,6 @@ data class Action<C : Character>(
      * Executes action once the delay has reached zero
      * @return if action was executed this call
      */
-    fun process(): Boolean = remaining != -1 && --remaining <= 0
+    fun process(): Boolean = --remaining <= 0
 
 }

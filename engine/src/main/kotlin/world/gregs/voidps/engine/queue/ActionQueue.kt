@@ -43,10 +43,13 @@ class ActionQueue<C : Character>(
     private fun process(queue: ActionList<C>) {
         var action = queue.peek()
         while (action != null) {
+            // Cache end to exit before the last action can add any children
             val end = action.next == null
             if (action.process() && canProcess()) {
+                val next = action.next
                 queue.remove(action)
                 scope.launch(action)
+                action = next ?: break
             }
             if (end) {
                 break
@@ -131,7 +134,7 @@ class ActionQueue<C : Character>(
 /**
  * A normal action that waits for open interfaces before continuing
  */
-fun <C: Character> C.queue(name: String, initialDelay: Int = 0, block: suspend C.() -> Unit) {
+fun <C : Character> C.queue(name: String, initialDelay: Int = 0, block: suspend C.() -> Unit) {
     queue.add(Action(name, initialDelay, ActionPriority.Normal, action = block))
 }
 
