@@ -24,7 +24,7 @@ class KittenInteract(definitions: PetDefinitions) : Script {
         for (def in definitions.all) {
             if (!def.isCatLike) continue
             if (!registered.add(def.babyNpc)) continue
-            npcOperate("Interact", def.babyNpc) { interact ->
+            npcOperate("Interact-with", def.babyNpc) { interact ->
                 if (pet?.index != interact.target.index) {
                     message("This isn't your pet.")
                     return@npcOperate
