@@ -1,0 +1,13 @@
+# Persistent player state for pets.
+
+[pet_active_item]
+format = "string"
+persist = true
+transmit = false
+
+# Comma-separated `<pet_id>:<hunger>:<growth>:<warn>` entries; one per pet the
+# player has ever raised. See readPetStats / writePetStats in Pet.kt.
+[pet_stats]
+format = "string"
+persist = true
+transmit = false

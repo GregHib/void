@@ -1,0 +1,21 @@
+# Persistent incubator state, per region.
+
+[incubator_egg_taverley]
+format = "string"
+persist = true
+transmit = false
+
+[incubator_end_taverley]
+format = "long"
+persist = true
+transmit = false
+
+[incubator_egg_yanille]
+format = "string"
+persist = true
+transmit = false
+
+[incubator_end_yanille]
+format = "long"
+persist = true
+transmit = false
