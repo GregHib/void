@@ -1,6 +1,6 @@
 [pet_cat_baby]
 id = 761
-options = { "Pick-up" = 1, "Talk-to" = 2 }
+options = { "Pick-up" = 1, "Talk-to" = 2, "Interact-with" = 3 }
 
 [pet_cat]
 id = 768
@@ -12,7 +12,7 @@ options = { "Pick-up" = 1, "Talk-to" = 2 }
 
 [pet_cat_1_baby]
 id = 762
-options = { "Pick-up" = 1, "Talk-to" = 2 }
+options = { "Pick-up" = 1, "Talk-to" = 2, "Interact-with" = 3 }
 
 [pet_cat_1]
 id = 769
@@ -24,7 +24,7 @@ options = { "Pick-up" = 1, "Talk-to" = 2 }
 
 [pet_cat_2_baby]
 id = 763
-options = { "Pick-up" = 1, "Talk-to" = 2 }
+options = { "Pick-up" = 1, "Talk-to" = 2, "Interact-with" = 3 }
 
 [pet_cat_2]
 id = 770
@@ -36,7 +36,7 @@ options = { "Pick-up" = 1, "Talk-to" = 2 }
 
 [pet_cat_3_baby]
 id = 764
-options = { "Pick-up" = 1, "Talk-to" = 2 }
+options = { "Pick-up" = 1, "Talk-to" = 2, "Interact-with" = 3 }
 
 [pet_cat_3]
 id = 771
@@ -48,7 +48,7 @@ options = { "Pick-up" = 1, "Talk-to" = 2 }
 
 [pet_cat_4_baby]
 id = 765
-options = { "Pick-up" = 1, "Talk-to" = 2 }
+options = { "Pick-up" = 1, "Talk-to" = 2, "Interact-with" = 3 }
 
 [pet_cat_4]
 id = 772
@@ -60,7 +60,7 @@ options = { "Pick-up" = 1, "Talk-to" = 2 }
 
 [pet_cat_5_baby]
 id = 766
-options = { "Pick-up" = 1, "Talk-to" = 2 }
+options = { "Pick-up" = 1, "Talk-to" = 2, "Interact-with" = 3 }
 
 [pet_cat_5]
 id = 773
@@ -72,7 +72,7 @@ options = { "Pick-up" = 1, "Talk-to" = 2 }
 
 [pet_hellcat_baby]
 id = 3505
-options = { "Pick-up" = 1, "Talk-to" = 2 }
+options = { "Pick-up" = 1, "Talk-to" = 2, "Interact-with" = 3 }
 
 [pet_hellcat]
 id = 3504
@@ -84,7 +84,7 @@ options = { "Pick-up" = 1, "Talk-to" = 2 }
 
 [pet_cat_6_baby]
 id = 8217
-options = { "Pick-up" = 1, "Talk-to" = 2 }
+options = { "Pick-up" = 1, "Talk-to" = 2, "Interact-with" = 3 }
 
 [pet_cat_6]
 id = 8214
