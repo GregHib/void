@@ -1,10 +1,9 @@
 package content.skill.summoning.pet
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import world.gregs.config.Config
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.timedLoad
 
-/** A single egg the player can place in an incubator. */
 data class IncubatorEgg(
     val id: String,
     val egg: String,
@@ -23,30 +22,19 @@ class IncubatorDefinitions {
     fun get(id: String): IncubatorEgg? = byId[id]
     fun forEgg(item: String): IncubatorEgg? = byEgg[item]
 
-    fun load(path: String): IncubatorDefinitions {
+    fun load(): IncubatorDefinitions {
+        require(Tables.loaded) { "Tables must be loaded before incubator definitions." }
         timedLoad("incubator egg definition") {
-            Config.fileReader(path) {
-                while (nextSection()) {
-                    val id = section()
-                    var egg = ""
-                    var product = ""
-                    var level = 0
-                    var seconds = 0
-                    while (nextPair()) {
-                        when (key()) {
-                            "egg" -> egg = string()
-                            "product" -> product = string()
-                            "summoning_level" -> level = int()
-                            "incubation_seconds" -> seconds = int()
-                        }
-                    }
-                    require(egg.isNotBlank() && product.isNotBlank()) {
-                        "Incubator egg '$id' requires egg and product."
-                    }
-                    val def = IncubatorEgg(id, egg, product, level, seconds)
-                    byId[id] = def
-                    byEgg[egg] = def
-                }
+            for (row in Tables.get("incubator_eggs").rows()) {
+                val def = IncubatorEgg(
+                    id = row.rowId,
+                    egg = row.item("egg"),
+                    product = row.item("product"),
+                    summoningLevel = row.int("summoning_level"),
+                    incubationSeconds = row.int("incubation_seconds"),
+                )
+                byId[def.id] = def
+                byEgg[def.egg] = def
             }
             byId.size
         }

@@ -1,4 +1,18 @@
-[cat]
+[pets]
+baby_item = "item"
+baby_npc = "npc"
+grown_item = "item"
+grown_npc = "npc"
+overgrown_item = "item"
+overgrown_npc = "npc"
+growth_rate = "double"
+summoning_level = "int"
+food = "list<item>"
+hungry_phrase = "string"
+idle_phrases = "list<string>"
+talk_lines = "list<string>"
+
+[.cat]
 baby_item = "pet_kitten"
 baby_npc = "pet_cat_baby"
 grown_item = "pet_cat"
@@ -16,7 +30,7 @@ talk_lines = [
 ]
 food = ["raw_anchovies", "anchovies", "raw_bass", "bass", "raw_cod", "cod", "raw_cavefish", "raw_herring", "herring", "raw_lobster", "lobster", "raw_mackerel", "mackerel", "raw_manta_ray", "manta_ray", "raw_monkfish", "monkfish", "raw_pike", "pike", "raw_salmon", "salmon", "raw_sardine", "sardine", "raw_sea_turtle", "sea_turtle", "raw_shark", "shark", "raw_shrimps", "shrimps", "raw_swordfish", "swordfish", "raw_trout", "trout", "raw_tuna", "tuna", "raw_cavefish", "raw_rocktail", "bucket_of_milk"]
 
-[cat_1]
+[.cat_1]
 baby_item = "pet_kitten_2"
 baby_npc = "pet_cat_1_baby"
 grown_item = "pet_cat_2"
@@ -34,7 +48,7 @@ talk_lines = [
 ]
 food = ["raw_anchovies", "anchovies", "raw_bass", "bass", "raw_cod", "cod", "raw_cavefish", "raw_herring", "herring", "raw_lobster", "lobster", "raw_mackerel", "mackerel", "raw_manta_ray", "manta_ray", "raw_monkfish", "monkfish", "raw_pike", "pike", "raw_salmon", "salmon", "raw_sardine", "sardine", "raw_sea_turtle", "sea_turtle", "raw_shark", "shark", "raw_shrimps", "shrimps", "raw_swordfish", "swordfish", "raw_trout", "trout", "raw_tuna", "tuna", "raw_cavefish", "raw_rocktail", "bucket_of_milk"]
 
-[cat_2]
+[.cat_2]
 baby_item = "pet_kitten_3"
 baby_npc = "pet_cat_2_baby"
 grown_item = "pet_cat_3"
@@ -52,7 +66,7 @@ talk_lines = [
 ]
 food = ["raw_anchovies", "anchovies", "raw_bass", "bass", "raw_cod", "cod", "raw_cavefish", "raw_herring", "herring", "raw_lobster", "lobster", "raw_mackerel", "mackerel", "raw_manta_ray", "manta_ray", "raw_monkfish", "monkfish", "raw_pike", "pike", "raw_salmon", "salmon", "raw_sardine", "sardine", "raw_sea_turtle", "sea_turtle", "raw_shark", "shark", "raw_shrimps", "shrimps", "raw_swordfish", "swordfish", "raw_trout", "trout", "raw_tuna", "tuna", "raw_cavefish", "raw_rocktail", "bucket_of_milk"]
 
-[cat_3]
+[.cat_3]
 baby_item = "pet_kitten_4"
 baby_npc = "pet_cat_3_baby"
 grown_item = "pet_cat_4"
@@ -70,7 +84,7 @@ talk_lines = [
 ]
 food = ["raw_anchovies", "anchovies", "raw_bass", "bass", "raw_cod", "cod", "raw_cavefish", "raw_herring", "herring", "raw_lobster", "lobster", "raw_mackerel", "mackerel", "raw_manta_ray", "manta_ray", "raw_monkfish", "monkfish", "raw_pike", "pike", "raw_salmon", "salmon", "raw_sardine", "sardine", "raw_sea_turtle", "sea_turtle", "raw_shark", "shark", "raw_shrimps", "shrimps", "raw_swordfish", "swordfish", "raw_trout", "trout", "raw_tuna", "tuna", "raw_cavefish", "raw_rocktail", "bucket_of_milk"]
 
-[cat_4]
+[.cat_4]
 baby_item = "pet_kitten_5"
 baby_npc = "pet_cat_4_baby"
 grown_item = "pet_cat_5"
@@ -88,7 +102,7 @@ talk_lines = [
 ]
 food = ["raw_anchovies", "anchovies", "raw_bass", "bass", "raw_cod", "cod", "raw_cavefish", "raw_herring", "herring", "raw_lobster", "lobster", "raw_mackerel", "mackerel", "raw_manta_ray", "manta_ray", "raw_monkfish", "monkfish", "raw_pike", "pike", "raw_salmon", "salmon", "raw_sardine", "sardine", "raw_sea_turtle", "sea_turtle", "raw_shark", "shark", "raw_shrimps", "shrimps", "raw_swordfish", "swordfish", "raw_trout", "trout", "raw_tuna", "tuna", "raw_cavefish", "raw_rocktail", "bucket_of_milk"]
 
-[cat_5]
+[.cat_5]
 baby_item = "pet_kitten_6"
 baby_npc = "pet_cat_5_baby"
 grown_item = "pet_cat_6"
@@ -106,7 +120,7 @@ talk_lines = [
 ]
 food = ["raw_anchovies", "anchovies", "raw_bass", "bass", "raw_cod", "cod", "raw_cavefish", "raw_herring", "herring", "raw_lobster", "lobster", "raw_mackerel", "mackerel", "raw_manta_ray", "manta_ray", "raw_monkfish", "monkfish", "raw_pike", "pike", "raw_salmon", "salmon", "raw_sardine", "sardine", "raw_sea_turtle", "sea_turtle", "raw_shark", "shark", "raw_shrimps", "shrimps", "raw_swordfish", "swordfish", "raw_trout", "trout", "raw_tuna", "tuna", "raw_cavefish", "raw_rocktail", "bucket_of_milk"]
 
-[hellcat]
+[.hellcat]
 baby_item = "hell_kitten"
 baby_npc = "pet_hellcat_baby"
 grown_item = "hellcat"
@@ -124,7 +138,7 @@ talk_lines = [
 ]
 food = ["raw_anchovies", "anchovies", "raw_bass", "bass", "raw_cod", "cod", "raw_cavefish", "raw_herring", "herring", "raw_lobster", "lobster", "raw_mackerel", "mackerel", "raw_manta_ray", "manta_ray", "raw_monkfish", "monkfish", "raw_pike", "pike", "raw_salmon", "salmon", "raw_sardine", "sardine", "raw_sea_turtle", "sea_turtle", "raw_shark", "shark", "raw_shrimps", "shrimps", "raw_swordfish", "swordfish", "raw_trout", "trout", "raw_tuna", "tuna", "raw_cavefish", "raw_rocktail", "bucket_of_milk"]
 
-[cat_6]
+[.cat_6]
 baby_item = "pet_kitten_7"
 baby_npc = "pet_cat_6_baby"
 grown_item = "pet_cat_7"
@@ -140,7 +154,7 @@ talk_lines = [
 ]
 food = ["raw_anchovies", "anchovies", "raw_bass", "bass", "raw_cod", "cod", "raw_cavefish", "raw_herring", "herring", "raw_lobster", "lobster", "raw_mackerel", "mackerel", "raw_manta_ray", "manta_ray", "raw_monkfish", "monkfish", "raw_pike", "pike", "raw_salmon", "salmon", "raw_sardine", "sardine", "raw_sea_turtle", "sea_turtle", "raw_shark", "shark", "raw_shrimps", "shrimps", "raw_swordfish", "swordfish", "raw_trout", "trout", "raw_tuna", "tuna", "raw_cavefish", "raw_rocktail", "bucket_of_milk"]
 
-[clockwork_cat]
+[.clockwork_cat]
 baby_item = "clockwork_cat"
 baby_npc = "pet_clockwork_cat_baby"
 growth_rate = 0.0
@@ -152,7 +166,7 @@ talk_lines = [
     "It paces stiffly in a perfect circle.",
 ]
 
-[bulldog]
+[.bulldog]
 baby_item = "bulldog_puppy_white"
 baby_npc = "pet_bulldog_baby"
 grown_item = "bulldog_white"
@@ -168,7 +182,7 @@ talk_lines = [
 ]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
-[bulldog_1]
+[.bulldog_1]
 baby_item = "bulldog_puppy_grey"
 baby_npc = "pet_bulldog_1_baby"
 grown_item = "bulldog_navy"
@@ -184,7 +198,7 @@ talk_lines = [
 ]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
-[bulldog_2]
+[.bulldog_2]
 baby_item = "bulldog_puppy_navy"
 baby_npc = "pet_bulldog_2_baby"
 grown_item = "bulldog_grey"
@@ -200,7 +214,7 @@ talk_lines = [
 ]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
-[dalmatian]
+[.dalmatian]
 baby_item = "dalmatian_puppy_black"
 baby_npc = "pet_dalmatian_baby"
 grown_item = "dalmatian_black"
@@ -216,7 +230,7 @@ talk_lines = [
 ]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
-[dalmatian_1]
+[.dalmatian_1]
 baby_item = "dalmatian_puppy_blue"
 baby_npc = "pet_dalmatian_1_baby"
 grown_item = "dalmatian_blue"
@@ -232,7 +246,7 @@ talk_lines = [
 ]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
-[dalmatian_2]
+[.dalmatian_2]
 baby_item = "dalmatian_puppy_red"
 baby_npc = "pet_dalmatian_2_baby"
 grown_item = "dalmatian_red"
@@ -248,7 +262,7 @@ talk_lines = [
 ]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
-[greyhound]
+[.greyhound]
 baby_item = "greyhound_puppy_brown"
 baby_npc = "pet_greyhound_baby"
 grown_item = "greyhound_brown"
@@ -264,7 +278,7 @@ talk_lines = [
 ]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
-[greyhound_1]
+[.greyhound_1]
 baby_item = "greyhound_puppy_grey"
 baby_npc = "pet_greyhound_1_baby"
 grown_item = "greyhound_grey"
@@ -280,7 +294,7 @@ talk_lines = [
 ]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
-[greyhound_2]
+[.greyhound_2]
 baby_item = "greyhound_puppy_dark"
 baby_npc = "pet_greyhound_2_baby"
 grown_item = "greyhound_dark"
@@ -296,7 +310,7 @@ talk_lines = [
 ]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
-[labrador]
+[.labrador]
 baby_item = "labrador_puppy_yellow"
 baby_npc = "pet_labrador_baby"
 grown_item = "labrador_yellow"
@@ -312,7 +326,7 @@ talk_lines = [
 ]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
-[labrador_1]
+[.labrador_1]
 baby_item = "labrador_puppy_black"
 baby_npc = "pet_labrador_1_baby"
 grown_item = "labrador_black"
@@ -328,7 +342,7 @@ talk_lines = [
 ]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
-[labrador_2]
+[.labrador_2]
 baby_item = "labrador_puppy_grey"
 baby_npc = "pet_labrador_2_baby"
 grown_item = "labrador_grey"
@@ -344,7 +358,7 @@ talk_lines = [
 ]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
-[sheepdog]
+[.sheepdog]
 baby_item = "sheepdog_puppy_black"
 baby_npc = "pet_sheepdog_baby"
 grown_item = "sheepdog_black"
@@ -360,7 +374,7 @@ talk_lines = [
 ]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
-[sheepdog_1]
+[.sheepdog_1]
 baby_item = "sheepdog_puppy_grey"
 baby_npc = "pet_sheepdog_1_baby"
 grown_item = "sheepdog_grey"
@@ -376,7 +390,7 @@ talk_lines = [
 ]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
-[sheepdog_2]
+[.sheepdog_2]
 baby_item = "sheepdog_puppy_yellow"
 baby_npc = "pet_sheepdog_2_baby"
 grown_item = "sheepdog_yellow"
@@ -392,7 +406,7 @@ talk_lines = [
 ]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
-[terrier]
+[.terrier]
 baby_item = "terrier_puppy_2"
 baby_npc = "pet_terrier_baby"
 grown_item = "terrier"
@@ -408,7 +422,7 @@ talk_lines = [
 ]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
-[terrier_1]
+[.terrier_1]
 baby_item = "terrier_puppy_3"
 baby_npc = "pet_terrier_1_baby"
 grown_item = "terrier_2"
@@ -424,7 +438,7 @@ talk_lines = [
 ]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
-[terrier_2]
+[.terrier_2]
 baby_item = "terrier_puppy_4"
 baby_npc = "pet_terrier_2_baby"
 grown_item = "terrier_3"
@@ -440,7 +454,7 @@ talk_lines = [
 ]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
-[gecko]
+[.gecko]
 baby_item = "baby_gecko_orange_2"
 baby_npc = "pet_gecko_baby"
 grown_item = "gecko_orange_2"
@@ -456,7 +470,7 @@ talk_lines = [
 ]
 food = ["flies", "beetle_bits"]
 
-[gecko_1]
+[.gecko_1]
 baby_item = "baby_gecko_orange"
 baby_npc = "pet_gecko_1_baby"
 grown_item = "gecko_orange"
@@ -472,7 +486,7 @@ talk_lines = [
 ]
 food = ["flies", "beetle_bits"]
 
-[gecko_2]
+[.gecko_2]
 baby_item = "baby_gecko_green"
 baby_npc = "pet_gecko_2_baby"
 grown_item = "gecko_green"
@@ -488,7 +502,7 @@ talk_lines = [
 ]
 food = ["flies", "beetle_bits"]
 
-[gecko_3]
+[.gecko_3]
 baby_item = "baby_gecko_red"
 baby_npc = "pet_gecko_3_baby"
 grown_item = "gecko_red"
@@ -504,7 +518,7 @@ talk_lines = [
 ]
 food = ["flies", "beetle_bits"]
 
-[gecko_4]
+[.gecko_4]
 baby_item = "baby_gecko_blue"
 baby_npc = "pet_gecko_4_baby"
 grown_item = "gecko_blue"
@@ -520,7 +534,7 @@ talk_lines = [
 ]
 food = ["flies", "beetle_bits"]
 
-[platypus]
+[.platypus]
 baby_item = "baby_platypus_brown"
 baby_npc = "pet_platypus_baby"
 grown_item = "platypus_brown"
@@ -536,7 +550,7 @@ talk_lines = [
 ]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail", "ground_fishing_bait"]
 
-[platypus_1]
+[.platypus_1]
 baby_item = "baby_platypus_tan"
 baby_npc = "pet_platypus_1_baby"
 grown_item = "platypus_tan"
@@ -552,7 +566,7 @@ talk_lines = [
 ]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail", "ground_fishing_bait"]
 
-[platypus_2]
+[.platypus_2]
 baby_item = "baby_platypus_grey"
 baby_npc = "pet_platypus_2_baby"
 grown_item = "platypus_grey"
@@ -568,7 +582,7 @@ talk_lines = [
 ]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail", "ground_fishing_bait"]
 
-[broav]
+[.broav]
 baby_item = "broav"
 baby_npc = "pet_broav_baby"
 growth_rate = 0.0
@@ -581,7 +595,7 @@ talk_lines = [
 ]
 food = ["mort_myre_fungus"]
 
-[penguin]
+[.penguin]
 baby_item = "pet_penguin_baby"
 baby_npc = "pet_penguin_baby"
 grown_item = "penguin_grey"
@@ -597,7 +611,7 @@ talk_lines = [
 ]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
 
-[penguin_1]
+[.penguin_1]
 baby_item = "penguin_brown"
 baby_npc = "pet_penguin_1_baby"
 grown_item = "pet_penguin_1"
@@ -613,7 +627,7 @@ talk_lines = [
 ]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
 
-[penguin_2]
+[.penguin_2]
 baby_item = "penguin_blue"
 baby_npc = "pet_penguin_2_baby"
 grown_item = "pet_penguin_2"
@@ -629,7 +643,7 @@ talk_lines = [
 ]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
 
-[giant_crab]
+[.giant_crab]
 baby_item = "baby_giant_crab_beige"
 baby_npc = "pet_giant_crab_baby"
 grown_item = "giant_crab_red"
@@ -645,7 +659,7 @@ talk_lines = [
 ]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
 
-[giant_crab_1]
+[.giant_crab_1]
 baby_item = "baby_giant_crab_grey"
 baby_npc = "pet_giant_crab_1_baby"
 grown_item = "giant_crab_beige"
@@ -661,7 +675,7 @@ talk_lines = [
 ]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
 
-[giant_crab_2]
+[.giant_crab_2]
 baby_item = "baby_giant_crab_green"
 baby_npc = "pet_giant_crab_2_baby"
 grown_item = "giant_crab_grey"
@@ -677,7 +691,7 @@ talk_lines = [
 ]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
 
-[giant_crab_3]
+[.giant_crab_3]
 baby_item = "baby_giant_crab_yellow"
 baby_npc = "pet_giant_crab_3_baby"
 grown_item = "giant_crab_green"
@@ -693,7 +707,7 @@ talk_lines = [
 ]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
 
-[giant_crab_4]
+[.giant_crab_4]
 baby_item = "baby_giant_crab_6"
 baby_npc = "pet_giant_crab_4_baby"
 grown_item = "giant_crab_yellow"
@@ -709,7 +723,7 @@ talk_lines = [
 ]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
 
-[raven]
+[.raven]
 baby_item = "raven_chick_blue"
 baby_npc = "pet_raven_baby"
 grown_item = "raven_blue"
@@ -725,7 +739,7 @@ talk_lines = [
 ]
 food = ["fishing_bait", "ground_fishing_bait"]
 
-[raven_1]
+[.raven_1]
 baby_item = "raven_chick_blue_crest"
 baby_npc = "pet_raven_1_baby"
 grown_item = "raven_blue_crest"
@@ -741,7 +755,7 @@ talk_lines = [
 ]
 food = ["fishing_bait", "ground_fishing_bait"]
 
-[raven_2]
+[.raven_2]
 baby_item = "raven_chick_black"
 baby_npc = "pet_raven_2_baby"
 grown_item = "raven_black"
@@ -757,7 +771,7 @@ talk_lines = [
 ]
 food = ["fishing_bait", "ground_fishing_bait"]
 
-[raven_3]
+[.raven_3]
 baby_item = "raven_chick_black_crest"
 baby_npc = "pet_raven_3_baby"
 grown_item = "raven_black_crest"
@@ -773,7 +787,7 @@ talk_lines = [
 ]
 food = ["fishing_bait", "ground_fishing_bait"]
 
-[raven_4]
+[.raven_4]
 baby_item = "raven_chick_red"
 baby_npc = "pet_raven_4_baby"
 grown_item = "raven_red"
@@ -789,7 +803,7 @@ talk_lines = [
 ]
 food = ["fishing_bait", "ground_fishing_bait"]
 
-[raven_5]
+[.raven_5]
 baby_item = "raven_chick_red_crest"
 baby_npc = "pet_raven_5_baby"
 grown_item = "raven_red_crest"
@@ -805,7 +819,7 @@ talk_lines = [
 ]
 food = ["fishing_bait", "ground_fishing_bait"]
 
-[squirrel]
+[.squirrel]
 baby_item = "baby_squirrel"
 baby_npc = "pet_squirrel_baby"
 grown_item = "squirrel_light_brown"
@@ -821,7 +835,7 @@ talk_lines = [
 ]
 food = ["nuts"]
 
-[squirrel_1]
+[.squirrel_1]
 baby_item = "baby_squirrel_2"
 baby_npc = "pet_squirrel_1_baby"
 grown_item = "squirrel_white"
@@ -837,7 +851,7 @@ talk_lines = [
 ]
 food = ["nuts"]
 
-[squirrel_2]
+[.squirrel_2]
 baby_item = "baby_squirrel_3"
 baby_npc = "pet_squirrel_2_baby"
 grown_item = "squirrel_dark_grey"
@@ -853,7 +867,7 @@ talk_lines = [
 ]
 food = ["nuts"]
 
-[squirrel_3]
+[.squirrel_3]
 baby_item = "baby_squirrel_4"
 baby_npc = "pet_squirrel_3_baby"
 grown_item = "squirrel_dark_brown"
@@ -869,7 +883,7 @@ talk_lines = [
 ]
 food = ["nuts"]
 
-[squirrel_4]
+[.squirrel_4]
 baby_item = "baby_squirrel_5"
 baby_npc = "pet_squirrel_4_baby"
 grown_item = "squirrel_6"
@@ -885,7 +899,7 @@ talk_lines = [
 ]
 food = ["nuts"]
 
-[saradomin_owl]
+[.saradomin_owl]
 baby_item = "saradomin_chick"
 baby_npc = "pet_saradomin_owl_baby"
 grown_item = "saradomin_bird"
@@ -903,7 +917,7 @@ talk_lines = [
 ]
 food = ["fishing_bait", "ground_fishing_bait"]
 
-[zamorak_hawk]
+[.zamorak_hawk]
 baby_item = "zamorak_chick"
 baby_npc = "pet_zamorak_hawk_baby"
 grown_item = "zamorak_bird"
@@ -921,7 +935,7 @@ talk_lines = [
 ]
 food = ["fishing_bait", "ground_fishing_bait"]
 
-[guthix_raptor]
+[.guthix_raptor]
 baby_item = "guthix_chick"
 baby_npc = "pet_guthix_raptor_baby"
 grown_item = "guthix_bird"
@@ -939,7 +953,7 @@ talk_lines = [
 ]
 food = ["fishing_bait", "ground_fishing_bait"]
 
-[ex_ex_parrot]
+[.ex_ex_parrot]
 baby_item = "ex_ex_parrot"
 baby_npc = "pet_ex_ex_parrot_baby"
 growth_rate = 0.0
@@ -952,7 +966,7 @@ talk_lines = [
 ]
 food = ["rock_fragments"]
 
-[cute_phoenix_eggling]
+[.cute_phoenix_eggling]
 baby_item = "phoenix_eggling_2"
 baby_npc = "pet_cute_phoenix_eggling_baby"
 growth_rate = 0.0
@@ -964,7 +978,7 @@ talk_lines = [
     "It glows faintly warm to the touch.",
 ]
 
-[mean_phoenix_eggling]
+[.mean_phoenix_eggling]
 baby_item = "phoenix_eggling"
 baby_npc = "pet_mean_phoenix_eggling_baby"
 growth_rate = 0.0
@@ -976,7 +990,7 @@ talk_lines = [
     "It glares at you with tiny fierce eyes.",
 ]
 
-[raccoon]
+[.raccoon]
 baby_item = "baby_raccoon_grey"
 baby_npc = "pet_raccoon_baby"
 grown_item = "raccoon_grey"
@@ -992,7 +1006,7 @@ talk_lines = [
 ]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail", "raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat"]
 
-[raccoon_1]
+[.raccoon_1]
 baby_item = "baby_raccoon_brown"
 baby_npc = "pet_raccoon_1_baby"
 grown_item = "raccoon_brown"
@@ -1008,7 +1022,7 @@ talk_lines = [
 ]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail", "raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat"]
 
-[raccoon_2]
+[.raccoon_2]
 baby_item = "baby_raccoon_red"
 baby_npc = "pet_raccoon_2_baby"
 grown_item = "raccoon_red"
@@ -1024,7 +1038,7 @@ talk_lines = [
 ]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail", "raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat"]
 
-[vulture]
+[.vulture]
 baby_item = "pet_vulture_baby"
 baby_npc = "pet_vulture_baby"
 grown_item = "vulture_grey"
@@ -1040,7 +1054,7 @@ talk_lines = [
 ]
 food = ["fishing_bait", "ground_fishing_bait"]
 
-[vulture_1]
+[.vulture_1]
 baby_item = "pet_vulture_1_baby"
 baby_npc = "pet_vulture_1_baby"
 grown_item = "vulture_grey_striped"
@@ -1056,7 +1070,7 @@ talk_lines = [
 ]
 food = ["fishing_bait", "ground_fishing_bait"]
 
-[vulture_2]
+[.vulture_2]
 baby_item = "pet_vulture_2_baby"
 baby_npc = "pet_vulture_2_baby"
 grown_item = "vulture_brown"
@@ -1072,7 +1086,7 @@ talk_lines = [
 ]
 food = ["fishing_bait", "ground_fishing_bait"]
 
-[vulture_3]
+[.vulture_3]
 baby_item = "pet_vulture_3_baby"
 baby_npc = "pet_vulture_3_baby"
 grown_item = "vulture_brown_striped"
@@ -1088,7 +1102,7 @@ talk_lines = [
 ]
 food = ["fishing_bait", "ground_fishing_bait"]
 
-[vulture_4]
+[.vulture_4]
 baby_item = "pet_vulture_4_baby"
 baby_npc = "pet_vulture_4_baby"
 grown_item = "vulture_pink"
@@ -1104,7 +1118,7 @@ talk_lines = [
 ]
 food = ["fishing_bait", "ground_fishing_bait"]
 
-[vulture_5]
+[.vulture_5]
 baby_item = "pet_vulture_5_baby"
 baby_npc = "pet_vulture_5_baby"
 grown_item = "vulture_pink_striped"
@@ -1120,7 +1134,7 @@ talk_lines = [
 ]
 food = ["fishing_bait", "ground_fishing_bait"]
 
-[chameleon]
+[.chameleon]
 baby_item = "baby_chameleon"
 baby_npc = "pet_chameleon_baby"
 grown_item = "chameleon"
@@ -1136,7 +1150,7 @@ talk_lines = [
 ]
 food = ["flies"]
 
-[monkey]
+[.monkey]
 baby_item = "baby_monkey_grey_and_beige"
 baby_npc = "pet_monkey_baby"
 grown_item = "monkey_grey_and_beige"
@@ -1152,7 +1166,7 @@ talk_lines = [
 ]
 food = ["banana"]
 
-[monkey_1]
+[.monkey_1]
 baby_item = "baby_monkey_brown_and_beige"
 baby_npc = "pet_monkey_1_baby"
 grown_item = "monkey_brown_and_beige"
@@ -1168,7 +1182,7 @@ talk_lines = [
 ]
 food = ["banana"]
 
-[monkey_2]
+[.monkey_2]
 baby_item = "baby_monkey_black_and_brown"
 baby_npc = "pet_monkey_2_baby"
 grown_item = "monkey_black_and_brown"
@@ -1184,7 +1198,7 @@ talk_lines = [
 ]
 food = ["banana"]
 
-[monkey_3]
+[.monkey_3]
 baby_item = "baby_monkey_beige"
 baby_npc = "pet_monkey_3_baby"
 grown_item = "monkey_beige"
@@ -1200,7 +1214,7 @@ talk_lines = [
 ]
 food = ["banana"]
 
-[monkey_4]
+[.monkey_4]
 baby_item = "baby_monkey_tan_and_beige"
 baby_npc = "pet_monkey_4_baby"
 grown_item = "monkey_tan_and_beige"
@@ -1216,7 +1230,7 @@ talk_lines = [
 ]
 food = ["banana"]
 
-[monkey_5]
+[.monkey_5]
 baby_item = "baby_monkey_grey_and_white"
 baby_npc = "pet_monkey_5_baby"
 grown_item = "monkey_grey_and_white"
@@ -1232,7 +1246,7 @@ talk_lines = [
 ]
 food = ["banana"]
 
-[monkey_6]
+[.monkey_6]
 baby_item = "baby_monkey_blue_and_grey"
 baby_npc = "pet_monkey_6_baby"
 grown_item = "monkey_blue_and_grey"
@@ -1248,7 +1262,7 @@ talk_lines = [
 ]
 food = ["banana"]
 
-[monkey_7]
+[.monkey_7]
 baby_item = "baby_monkey_black_and_white"
 baby_npc = "pet_monkey_7_baby"
 grown_item = "monkey_black_and_white"
@@ -1264,7 +1278,7 @@ talk_lines = [
 ]
 food = ["banana"]
 
-[monkey_8]
+[.monkey_8]
 baby_item = "baby_monkey_orange"
 baby_npc = "pet_monkey_8_baby"
 grown_item = "monkey_orange"
@@ -1280,7 +1294,7 @@ talk_lines = [
 ]
 food = ["banana"]
 
-[monkey_9]
+[.monkey_9]
 baby_item = "baby_monkey_blue_and_white"
 baby_npc = "pet_monkey_9_baby"
 grown_item = "monkey_blue_and_white"
@@ -1296,7 +1310,7 @@ talk_lines = [
 ]
 food = ["banana"]
 
-[baby_dragon]
+[.baby_dragon]
 baby_item = "hatchling_dragon_red"
 baby_npc = "pet_baby_dragon_baby"
 grown_item = "baby_dragon_red"
@@ -1312,7 +1326,7 @@ talk_lines = [
 ]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
 
-[baby_dragon_1]
+[.baby_dragon_1]
 baby_item = "hatchling_dragon_blue"
 baby_npc = "pet_baby_dragon_1_baby"
 grown_item = "baby_dragon_blue"
@@ -1328,7 +1342,7 @@ talk_lines = [
 ]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
 
-[baby_dragon_2]
+[.baby_dragon_2]
 baby_item = "hatchling_dragon_green"
 baby_npc = "pet_baby_dragon_2_baby"
 grown_item = "baby_dragon_green"
@@ -1344,7 +1358,7 @@ talk_lines = [
 ]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
 
-[baby_dragon_3]
+[.baby_dragon_3]
 baby_item = "hatchling_dragon_black"
 baby_npc = "pet_baby_dragon_3_baby"
 grown_item = "baby_dragon_black"
