@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.LogoutBehaviour
+import world.gregs.voidps.engine.queue.longQueue
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
@@ -148,7 +148,7 @@ class LumbridgeChurch : Script {
         exp(Skill.Prayer, 1125.0)
         refreshQuestJournal()
         inc("quest_points")
-        queue("quest_complete", 1, LogoutBehaviour.Accelerate) {
+        longQueue("quest_complete", 1) {
             questComplete(
                 "The Restless Ghost",
                 "1 Quest Point",

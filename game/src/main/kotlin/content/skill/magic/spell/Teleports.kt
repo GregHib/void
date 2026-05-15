@@ -87,7 +87,8 @@ class Teleports : Script {
         val scrolls = Areas.tagged("scroll")
         val type = if (scrolls.contains(definition)) "scroll" else "tablet"
         val map = definition.area
-        player.strongQueue("teleport", onCancel = null) {
+        player.steps.clear()
+        player.strongQueue("teleport") {
             if (player.inventory.remove(option.item.id)) {
                 player.sound("teleport_$type")
                 player.gfx("teleport_$type")
@@ -107,7 +108,7 @@ class Teleports : Script {
             return
         }
         closeInterfaces()
-        strongQueue("teleport", onCancel = null) {
+        strongQueue("teleport") {
             if (!removeSpellItems(component)) {
                 return@strongQueue
             }

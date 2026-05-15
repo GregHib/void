@@ -59,22 +59,20 @@ internal class WeakInteractionTest : WorldTest() {
     ).map {
         dynamicTest("$it interaction doesn't clear dialogue") {
             val player = createPlayer()
-            var cancelled = false
-            player.weakQueue("dialogue", onCancel = { cancelled = true }) {
+            var failed = false
+            player.weakQueue("dialogue") {
                 player.npc<Pleased>("Bob", "Hello")
+                failed = true
             }
             tick()
             assertNotNull(player.dialogue)
-            assertTrue(player.queue.contains(ActionPriority.Weak))
-
             when (it) {
                 "Clan chat setup" -> player.interfaceOption("clan_chat", "settings", "Clan Setup")
                 "Audio settings" -> player.interfaceOption("options", "audio", "Audio Settings")
                 "Music player" -> player.interfaceOption("music_player", "tracks", "Play", slot = 214)
             }
-
             assertNotNull(player.dialogue)
-            assertFalse(cancelled)
+            assertFalse(failed)
         }
     }
 

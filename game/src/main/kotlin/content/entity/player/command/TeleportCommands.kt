@@ -51,6 +51,7 @@ class TeleportCommands(
         "neitiznot" to Tile(2325, 3804),
         "keldagrim" to Tile(2902, 10199),
         "lunar_isle" to Tile(2107, 3915),
+        "tears_of_guthix" to Tile(3250, 9516, 2),
         "rellekka" to Tile(2661, 3658),
         "ape_atoll" to Tile(2762, 2784),
         "ardougne" to Tile(2662, 3304),

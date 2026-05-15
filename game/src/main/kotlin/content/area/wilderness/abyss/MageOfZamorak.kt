@@ -270,7 +270,7 @@ class MageOfZamorak : Script {
             return
         }
         player.closeInterfaces()
-        player.queue("teleport", onCancel = null) {
+        player.queue("teleport") {
             target.face(player)
             target.gfx("tele_other")
             target.anim("tele_other")

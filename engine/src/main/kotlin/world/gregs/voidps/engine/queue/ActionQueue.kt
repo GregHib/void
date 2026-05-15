@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import kotlin.coroutines.resume
+import world.gregs.voidps.engine.suspend.Suspension
 
 class ActionQueue<C : Character>(
     private val character: C,
@@ -128,31 +128,24 @@ class ActionQueue<C : Character>(
     }
 }
 
-fun <C: Character> C.queue(name: String, initialDelay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, onCancel: (() -> Unit)? = { clearAnim() }, block: suspend C.() -> Unit) {
-    if (behaviour == LogoutBehaviour.Accelerate) {
-        queue.add(Action(name, initialDelay, ActionPriority.Normal, action = block))
-    } else {
-        queue.add(Action(name, initialDelay, ActionPriority.Normal, action = block))
-    }
+/**
+ * A normal action that waits for open interfaces before continuing
+ */
+fun <C: Character> C.queue(name: String, initialDelay: Int = 0, block: suspend C.() -> Unit) {
+    queue.add(Action(name, initialDelay, ActionPriority.Normal, action = block))
 }
 
-fun Player.weakQueue(
-    name: String,
-    initialDelay: Int = 0,
-    behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
-    onCancel: (() -> Unit)? = { clearAnim() },
-    block: suspend Player.() -> Unit,
-) {
+/**
+ * An action that can be interrupted or removed by a [strongQueue].
+ */
+fun Player.weakQueue(name: String, initialDelay: Int = 0, block: suspend Player.() -> Unit) {
     queue.add(Action(name, initialDelay, ActionPriority.Weak, action = block))
 }
 
-fun Player.strongQueue(
-    name: String,
-    initialDelay: Int = 0,
-    behaviour: LogoutBehaviour = LogoutBehaviour.Discard,
-    onCancel: (() -> Unit)? = { clearAnim() },
-    block: suspend Player.() -> Unit,
-) {
+/**
+ * An action that removes open interfaces and weak queues to start faster
+ */
+fun Player.strongQueue(name: String, initialDelay: Int = 0, block: suspend Player.() -> Unit) {
     queue.add(Action(name, initialDelay, ActionPriority.Strong, action = block))
 }
 

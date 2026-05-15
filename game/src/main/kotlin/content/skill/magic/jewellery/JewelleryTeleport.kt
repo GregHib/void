@@ -35,7 +35,7 @@ fun itemTeleport(player: Player, tile: Tile, type: String, force: Boolean = fals
         return false
     }
     player.closeInterfaces()
-    player.strongQueue("teleport_$type", onCancel = null) {
+    player.strongQueue("teleport_$type") {
         player.sound("teleport_$type")
         player.gfx("teleport_$type")
         player.animDelay("teleport_$type")

@@ -60,7 +60,7 @@ class TeleportOther : Script {
             if (queue.contains("teleport")) {
                 return@continueDialogue
             }
-            queue("teleport", onCancel = null) {
+            queue("teleport") {
                 areaSound("teleport", tile = tile, radius = 10)
                 anim("teleport_other_impact")
                 gfx("teleport_other_impact")

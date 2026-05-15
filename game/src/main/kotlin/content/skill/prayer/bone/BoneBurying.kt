@@ -39,7 +39,7 @@ class BoneBurying : Script {
             exp(Skill.Prayer, xp)
             sound("bury_bones")
             set("i_wonder_if_itll_sprout_task", true)
-            strongQueue("bury", 2, onCancel = null) {
+            strongQueue("bury", 2) {
                 message("You bury the ${item.def.name.lowercase()}.", ChatType.Filter)
             }
         }

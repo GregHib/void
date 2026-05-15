@@ -18,8 +18,7 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.clear
 import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.map.zone.DynamicZones
-import world.gregs.voidps.engine.queue.LogoutBehaviour
-import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.queue.longQueue
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
@@ -44,7 +43,7 @@ class Cutscene(
     }
 
     fun onEnd(destroyInstance: Boolean = true, block: suspend () -> Unit) {
-        player.queue("${name}_cutscene_end", 1, LogoutBehaviour.Accelerate) {
+        player.longQueue("${name}_cutscene_end", 1) {
             end(destroyInstance)
         }
         this@Cutscene.block = block

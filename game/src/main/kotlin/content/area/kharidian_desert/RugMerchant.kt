@@ -24,8 +24,7 @@ import world.gregs.voidps.engine.entity.character.player.renderEmote
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.LogoutBehaviour
-import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.engine.queue.longQueue
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
@@ -133,7 +132,7 @@ class RugMerchant : Script {
                 // Note: This allows fast travel by relogging, osrs keeps the
                 // player logged in until travelling has completed.
                 val dest: String = get("magic_carpet_destination") ?: return@playerDespawn
-                strongQueue("magic_carpet_logout", behaviour = LogoutBehaviour.Accelerate) {
+                longQueue("magic_carpet_logout") {
                     land(dest)
                 }
             }

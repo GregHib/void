@@ -39,7 +39,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.map.collision.random
-import world.gregs.voidps.engine.queue.LogoutBehaviour
+import world.gregs.voidps.engine.queue.longQueue
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.epochMilliseconds
@@ -203,7 +203,7 @@ class TzhaarFightCave(
             }
             it.dropItems = false
             it.teleport = outside
-            strongQueue("fight_cave_death", 3, LogoutBehaviour.Accelerate) {
+            longQueue("fight_cave_death", 3) {
                 leave(wave)
             }
         }

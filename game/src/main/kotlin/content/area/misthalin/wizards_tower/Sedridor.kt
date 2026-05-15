@@ -20,8 +20,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.LogoutBehaviour
-import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.queue.longQueue
 
 class Sedridor : Script {
 
@@ -266,7 +265,7 @@ class Sedridor : Script {
         inc("quest_points")
         message("Congratulations, you've completed a quest: <col=081190>Rune Mysteries</col>")
         refreshQuestJournal()
-        queue("quest_complete", 1, LogoutBehaviour.Accelerate) {
+        longQueue("quest_complete", 1) {
             questComplete(
                 "Rune Mysteries",
                 "1 Quest Point",

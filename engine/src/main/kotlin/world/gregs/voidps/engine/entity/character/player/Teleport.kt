@@ -82,7 +82,7 @@ interface Teleport {
                 return
             }
             player.closeInterfaces()
-            player.strongQueue("teleport", onCancel = null) {
+            player.strongQueue("teleport") {
                 if (!takeOff(player, type)) {
                     return@strongQueue
                 }

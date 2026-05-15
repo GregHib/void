@@ -11,8 +11,7 @@ import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.queue.LogoutBehaviour
-import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.queue.longQueue
 
 class Hassan : Script {
 
@@ -40,7 +39,7 @@ class Hassan : Script {
                     set("prince_ali_rescue", "completed")
                     inc("quest_points", 3)
                     message("Congratulations! Quest complete!")
-                    queue("quest_complete", 1, LogoutBehaviour.Accelerate) {
+                    longQueue("quest_complete", 1) {
                         questComplete(
                             "Prince Ali Rescue",
                             "3 Quest Points",
