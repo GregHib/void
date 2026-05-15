@@ -2,8 +2,6 @@ package content.skill.magic.spell
 
 import content.quest.quest
 import content.quest.questCompleted
-import kotlinx.coroutines.NonCancellable
-import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.ItemOption
@@ -12,6 +10,7 @@ import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -22,7 +21,6 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.random
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.timer.epochSeconds
@@ -46,25 +44,24 @@ class Teleports : Script {
             if (hasClock("teleport_delay")) {
                 return@interfaceOption
             }
-            weakQueue("home_teleport") {
-                if (!removeSpellItems(component)) {
-                    cancel()
-                    return@weakQueue
-                }
-                onCancel = {
+            if (!removeSpellItems(component)) {
+                return@interfaceOption
+            }
+            var total = 0
+            for (i in 1 until 18) {
+                val delay = AnimationDefinitions.get("home_tele_${i}")["ticks", 0]
+                weakQueue("home_teleport", total) {
                     start("teleport_delay", 1)
+                    gfx("home_tele_${i}")
+                    anim("home_tele_${i}")
                 }
-                start("teleport_delay", 17)
-                repeat(17) {
-                    gfx("home_tele_${it + 1}")
-                    val ticks = anim("home_tele_${it + 1}")
-                    pause(ticks)
-                }
-                withContext(NonCancellable) {
-                    tele(Areas["lumbridge_teleport"].random())
-                    set("click_your_heels_three_times_task", true)
-                    start("home_teleport_timeout", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
-                }
+                total += delay
+            }
+            weakQueue("home_teleport", total) {
+                start("teleport_delay", 1)
+                tele(Areas["lumbridge_teleport"].random())
+                set("click_your_heels_three_times_task", true)
+                start("home_teleport_timeout", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
             }
         }
 
@@ -119,7 +116,7 @@ class Teleports : Script {
             sound("teleport")
             gfx("teleport_$book")
             animDelay("teleport_$book")
-            tele(Areas[component].random(player)!!)
+            tele(Areas[component].random(this)!!)
             delay(1)
             sound("teleport_land")
             gfx("teleport_land_$book")

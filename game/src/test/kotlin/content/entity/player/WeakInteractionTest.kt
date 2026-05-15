@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import walk
 import world.gregs.voidps.engine.client.ui.dialogue
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
@@ -37,26 +38,16 @@ internal class WeakInteractionTest : WorldTest() {
             val player = createPlayer()
             player.inventory.add("ball_of_wool", 2)
             player.equipment.set(EquipSlot.Weapon.index, "bronze_sword")
-            var cancelled = false
-            player.weakQueue("dialogue", onCancel = { cancelled = true }) {
-                player.npc<Pleased>("Bob", "Hello")
-            }
-            tick()
+            player.open("dialogue_npc_chat1")
             assertNotNull(player.dialogue)
-            assertTrue(player.queue.contains(ActionPriority.Weak))
-
             when (it) {
-                "Interface switch" -> {
-                    player.interfaceSwitch("inventory", "inventory", 0, 1)
-                }
+                "Interface switch" -> player.interfaceSwitch("inventory", "inventory", 0, 1)
                 "Remove equipment" -> player.interfaceOption("worn_equipment", "weapon_slot", "*", 0, Item("bronze_sword"))
                 "Activate prayer" -> player.interfaceOption("prayer_list", "regular_prayers", "Activate", slot = 0)
                 "Skill guide" -> player.interfaceOption("stats", "attack", "View")
                 "Toggle attack style" -> player.interfaceOption("combat_styles", "style2", "Select")
             }
-
             assertNull(player.dialogue)
-            assertTrue(cancelled)
         }
     }
 

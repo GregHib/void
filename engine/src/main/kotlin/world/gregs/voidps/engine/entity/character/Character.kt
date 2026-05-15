@@ -295,6 +295,7 @@ interface Character :
         suspendCancellableCoroutine {
             suspension = Suspension.Delay(it, ticks)
         }
+        suspension = null
     }
 
     /**

@@ -52,14 +52,18 @@ class ActionList<C : Character> {
 
     fun clear(name: String): Boolean {
         var next = head
+        var found = false
         while (next != null) {
             if (next.name == name) {
+                val skip = next.next
                 remove(next)
-                return true
+                found = true
+                next = skip
+                continue
             }
             next = next.next
         }
-        return false
+        return found
     }
 
     fun clear() {

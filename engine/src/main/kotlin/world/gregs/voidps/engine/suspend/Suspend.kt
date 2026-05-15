@@ -22,6 +22,7 @@ suspend fun Player.awaitDialogues(): Boolean {
     suspendCancellableCoroutine {
         suspension = Suspension.Custom(it) { dialogue == null }
     }
+    suspension = null
     return true
 }
 
