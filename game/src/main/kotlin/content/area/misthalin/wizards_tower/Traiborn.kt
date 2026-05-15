@@ -132,7 +132,7 @@ class Traiborn : Script {
         if (inventory.transaction.error != TransactionError.None) {
             FloorItems.add(tile, "spinach_roll", disappearTicks = 300)
         }
-        item("spinach_roll", 400, "Traiborn digs around in the pockets of his robes. After a few moments he triumphantly presents you with a spinach roll.")
+        item("spinach_roll", "Traiborn digs around in the pockets of his robes. After a few moments he triumphantly presents you with a spinach roll.")
         player<Idle>("Thank you very much.")
         betterBeOffChoice()
     }
@@ -198,7 +198,7 @@ class Traiborn : Script {
         obj.anim("demon_slayer_cupboard_disappear")
         sound("demon_slayer_cupboard_disappear")
         target.watch(this)
-        item("silverlight_key_wizard_traiborn", 400, "Traiborn hands you a key.")
+        item("silverlight_key_wizard_traiborn", "Traiborn hands you a key.")
         player<Idle>("Thank you very much.")
         npc<Idle>("Not a problem for a friend of Sir What's-his-face.")
     }

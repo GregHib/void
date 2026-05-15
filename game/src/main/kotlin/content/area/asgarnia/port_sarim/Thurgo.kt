@@ -56,22 +56,22 @@ class Thurgo : Script {
                 npc<Happy>("Magic isn't really my thing. Here, take these.")
             }
             "herbs" -> {
-                item("grimy_tarromin", 400, "<navy>Thurgo gives you some banknotes that can be exchanged for herbs.")
+                item("grimy_tarromin", "<navy>Thurgo gives you some banknotes that can be exchanged for herbs.")
                 npc<Happy>("Some guy died down in the hole just north of my house, and he dropped these herbs. Here, take them.")
             }
             "seeds" -> {
-                item("potato_seed", 400, "<navy>Thurgo gives you some seeds.")
+                item("potato_seed", "<navy>Thurgo gives you some seeds.")
                 npc<Happy>("I'm not the gardening type. Here, take these.")
             }
             "prayer" -> {
                 item(167, "<navy>Thurgo blesses you.<br>You gain some Prayer xp.") // TODO proper message
             }
             "coins" -> {
-                item("coins_8", 400, "<navy>Thurgo gives you some coins.")
+                item("coins_8", "<navy>Thurgo gives you some coins.")
                 npc<Happy>("Here's some cash for your time.")
             }
             else -> {
-                item(reward, 400, "Thurgo gives you an ${reward.toSentenceCase()}!")
+                item(reward, "Thurgo gives you an ${reward.toSentenceCase()}!")
                 npc<Happy>("I found this while I was mining. Hope you like it.")
             }
         }
@@ -101,7 +101,7 @@ class Thurgo : Script {
                 remove(items)
                 add("blurite_sword")
             }
-            item("blurite_sword", 600, "You give the blurite ore and iron bars to Thurgo. Thurgo makes you a sword.")
+            item("blurite_sword", "You give the blurite ore and iron bars to Thurgo. Thurgo makes you a sword.")
             player<Happy>("Thank you very much!")
             npc<Happy>("Just remember to call in with more pie some time!")
             return@option
@@ -162,7 +162,7 @@ class Thurgo : Script {
             return@option
         }
         player<Idle>("I have found a picture of the sword I would like you to make.")
-        item("portrait", 600, "You give the portrait to Thurgo. Thurgo studies the portrait.")
+        item("portrait", "You give the portrait to Thurgo. Thurgo studies the portrait.")
         set("the_knights_sword", "blurite_sword")
         inventory.remove("portrait")
         npc<Idle>("You'll need to get me some stuff to make this. I'll need two iron bars to make the sword, to start with. I'll also need an ore called blurite.")

@@ -87,10 +87,10 @@ class MagicTutor : Script {
             inventoryFull()
             return@option
         }
-        item("air_rune", 400, "Mikasi gives you 30 air runes.")
+        item("air_rune", "Mikasi gives you 30 air runes.")
         inventory.add("air_rune", 30)
         start("claimed_tutor_consumables", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
-        item("mind_rune", 400, "Mikasi gives you 30 mind runes.")
+        item("mind_rune", "Mikasi gives you 30 mind runes.")
         inventory.add("mind_rune", 30)
     }
 
@@ -105,7 +105,7 @@ class MagicTutor : Script {
             banked = true
         }
         if (banked) {
-            item("bank_icon", 1200, "You have some runes in your bank. Climb the stairs in Lumbridge Castle until you see this icon on your minimap. There you will find a bank.")
+            item("bank_icon", "You have some runes in your bank. Climb the stairs in Lumbridge Castle until you see this icon on your minimap. There you will find a bank.")
             return
         }
         if (inventory.contains("mind_rune")) {

@@ -12,11 +12,12 @@ import world.gregs.voidps.engine.suspend.pauseButton
 private const val ITEM_INTERFACE_ID = "dialogue_obj_box"
 private const val DOUBLE_ITEM_INTERFACE_ID = "dialogue_double_obj_box"
 
-suspend fun Player.item(item: String, zoom: Int, text: String, sprite: Int? = null) {
+suspend fun Player.item(item: String, text: String, sprite: Int? = null) {
     if (!open(ITEM_INTERFACE_ID)) {
         return
     }
-    sendScript("dialogue_item_zoom", ItemDefinitions.get(item).id, zoom)
+    val def = ItemDefinitions.get(item)
+    sendScript("dialogue_item_zoom", def.id, def.spriteScale / 2)
     if (sprite != null) {
         interfaces.sendSprite(ITEM_INTERFACE_ID, "sprite", sprite)
     }

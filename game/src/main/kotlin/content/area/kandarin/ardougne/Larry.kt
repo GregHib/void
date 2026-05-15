@@ -48,7 +48,7 @@ class Larry : Script {
             player<Neutral>("I only turned around for a second...")
             npc<Sad>("Be more careful next time, who knows what would have happened if it go into the wrong hands!") // TODO proper message (not in osrs)
             if (inventory.add("spy_notebook")) {
-                item("spy_notebook", 600, "Larry hands you a small notebook.")
+                item("spy_notebook", "Larry hands you a small notebook.")
             }
         }
         // https://youtu.be/s8tOI3CM9pc?si=Hv6ACh2QgWFLLAj8&t=264
@@ -160,7 +160,7 @@ class Larry : Script {
         set("penguin_hide_and_seek_explained", true)
         npc<Happy>("Hold on, there. Take this notebook to record how many penguins you've found.")
         if (inventory.add("spy_notebook")) {
-            item("spy_notebook", 600, "Larry hands you a small notebook.")
+            item("spy_notebook", "Larry hands you a small notebook.")
         }
     }
 

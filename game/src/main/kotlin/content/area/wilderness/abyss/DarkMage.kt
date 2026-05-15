@@ -82,12 +82,12 @@ class DarkMage : Script {
                             npc<Angry>("Don't waste my time if you don't have enough free space to take it.")
                         } else {
                             if (inventory.spaces < 1) {
-                                item("abyssal_book", 400, "Don't waste my time if you don't have enough free space to take it.")
+                                item("abyssal_book", "Don't waste my time if you don't have enough free space to take it.")
                                 return@option
                             }
                             if (inventory.add("abyssal_book")) {
                                 npc<Neutral>("Here, take it. It is important to pool our research.")
-                                item("abyssal_book", 400, "You have been given a book.")
+                                item("abyssal_book", "You have been given a book.")
                                 npc<Neutral>("Now leave me be, I must concentrate!")
                             }
                             choice {
@@ -119,7 +119,7 @@ class DarkMage : Script {
                 npc<Angry>("You already have a Pouch. Are you aware of the dimensional turmoil you can cause by using too many pouches at the same time?")
             } else {
                 npc<Neutral>("Here. Be more careful with your belongings in future.")
-                item("small_pouch", 400, "You have been given a pouch.")
+                item("small_pouch", "You have been given a pouch.")
             }
         }
     }

@@ -52,21 +52,21 @@ class ArmadylPillar : Script {
             val hasGrapple = carriesItem("mithril_grapple")
             if (!hasCrossbow || !hasGrapple) {
                 if (inventory.add("bronze_crossbow", "mithril_grapple")) {
-                    item("bronze_crossbow", 400, "Inside the crate you find a bronze crossbow and a grappling hook.")
+                    item("bronze_crossbow", "Inside the crate you find a bronze crossbow and a grappling hook.")
                 } else if (inventory.add("bronze_crossbow")) {
-                    item("bronze_crossbow", 400, "Inside the crate is a crossbow and grappling hook; unfortunately, you are already carrying too much to pick them up.")
+                    item("bronze_crossbow", "Inside the crate is a crossbow and grappling hook; unfortunately, you are already carrying too much to pick them up.")
                 } else {
                     statement("Inside the crate you find a bronze crossbow; there is also a grappling hook, but you don't have room to carry it.")
                 }
             } else if (!hasCrossbow) {
                 if (inventory.add("bronze_crossbow")) {
-                    item("bronze_crossbow", 400, "You notice a bronze crossbow in the crate, which you add to the stuff in your backpack.")
+                    item("bronze_crossbow", "You notice a bronze crossbow in the crate, which you add to the stuff in your backpack.")
                 } else {
                     statement("Inside the crate is a bronze crossbow; unfortunately you have no room to carry it.")
                 }
             } else if (!hasGrapple) {
                 if (inventory.add("mithril_grapple")) {
-                    item("mithril_grapple", 400, "You notice a grappling hook in the crate, which you add to the stuff in your backpack.")
+                    item("mithril_grapple", "You notice a grappling hook in the crate, which you add to the stuff in your backpack.")
                 } else {
                     statement("Inside the crate is a grappling hook; unfortunately you have no room to carry it.")
                 }

@@ -68,7 +68,7 @@ class Ardougne : Script {
                 if (quest("plague_city") == "four_bucket_of_water") {
                     dig()
                 } else {
-                    item("spade", 800, "You dig the soil... <br> The ground is rather hard.")
+                    item("spade", "You dig the soil... <br> The ground is rather hard.")
                 }
             }
         }
@@ -91,10 +91,10 @@ class Ardougne : Script {
                     player<Idle>("I think I've still got one of Alrena's gas masks in my bank.")
                 } else {
                     if (!inventory.add("gas_mask")) {
-                        item("gas_mask", 300, "You find a protective mask but you don't have enough room to take it.")
+                        item("gas_mask", "You find a protective mask but you don't have enough room to take it.")
                         return@objectOperate
                     }
-                    item("gas_mask", 300, "You find a protective mask.")
+                    item("gas_mask", "You find a protective mask.")
                 }
             }
         }

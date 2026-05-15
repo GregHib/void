@@ -105,7 +105,7 @@ class MageOfZamorak : Script {
                     }
                     set("enter_the_abyss", "orb_inspect")
                     message("You hand the orb to the Mage of Zamorak.")
-                    item("scrying_orb", 400, "You hand the orb to the Mage of Zamorak.")
+                    item("scrying_orb", "You hand the orb to the Mage of Zamorak.")
                     npc<Neutral>("Right, let's take a look at this orb...")
                     npc<Happy>("Yes, this will do nicely. Once again, the Zamorak Magical Institute has overcome the Order of Wizards!")
                     set("enter_abyss_taken_orb", true)
@@ -113,7 +113,7 @@ class MageOfZamorak : Script {
                 } else if (!ownsItem("scrying_orb")) {
                     player<Sad>("I lost it. Could I have another?")
                     npc<Angry>("Fool! Take this, and don't lose it this time!")
-                    item("scrying_orb", 400, "The Mage of Zamorak hands you an orb.")
+                    item("scrying_orb", "The Mage of Zamorak hands you an orb.")
                     inventory.add("scrying_orb")
                 } else {
                     player<Neutral>("Not yet.")
@@ -308,9 +308,9 @@ class MageOfZamorak : Script {
                 player<Confused>(if (get("last_npc_teleport_to_rune_essence_mine", "aubury") != "aubury") "I think so?" else "Maybe?")
                 npc<Neutral>("Well if not, I'm sure one of those fools in the Order of Wizards can tell you. Now, here's the orb.")
                 if (!inventory.add("scrying_orb")) {
-                    item("scrying_orb", 400, "The Mage of Zamorak tries to hand you an orb, but you don't have enough room to take it.")
+                    item("scrying_orb", "The Mage of Zamorak tries to hand you an orb, but you don't have enough room to take it.")
                 } else {
-                    item("scrying_orb", 400, "The Mage of Zamorak hands you an orb.")
+                    item("scrying_orb", "The Mage of Zamorak hands you an orb.")
                     set("enter_the_abyss", "scrying")
                     set("enter_abyss_has_orb", true)
                 }

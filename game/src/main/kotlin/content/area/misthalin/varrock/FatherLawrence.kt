@@ -39,21 +39,21 @@ class FatherLawrence : Script {
                 npc<Drunk>("Whee! Mmmgic power, kazamm...")
             }
             "herbs" -> {
-                item("grimy_tarromin", 400, "<navy>Father Lawrence gives you some herbs.") // TODO proper message
+                item("grimy_tarromin", "<navy>Father Lawrence gives you some herbs.") // TODO proper message
             }
             "seeds" -> {
-                item("potato_seed", 400, "<navy>Father Lawrence gives you some seeds.") // TODO proper message
+                item("potato_seed", "<navy>Father Lawrence gives you some seeds.") // TODO proper message
             }
             "prayer" -> {
                 item(167, "<navy>Father lawrence blesses you.<br>You gain some Prayer xp.")
                 npc<Drunk>("in nomine saradomini, blah blah blah...")
             }
             "coins" -> {
-                item("coins_8", 400, "<navy>Father Lawrence gives you some coins.")
+                item("coins_8", "<navy>Father Lawrence gives you some coins.")
                 npc<Drunk>("here, hve som munny.")
             }
             else -> {
-                item(reward, 400, "Father Lawrence gives you an ${reward.toSentenceCase()}!") // TODO proper message
+                item(reward, "Father Lawrence gives you an ${reward.toSentenceCase()}!") // TODO proper message
                 npc<Happy>("I found this while I was mining. Hope you like it.")
             }
         }

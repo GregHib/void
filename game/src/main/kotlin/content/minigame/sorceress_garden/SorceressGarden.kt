@@ -36,7 +36,7 @@ class SorceressGarden(val dropTables: DropTables) : Script {
 
         objectOperate("Open", "sorceress_gate_spring") { (target) ->
             if (levels.get(Skill.Thieving) < 25) {
-                item("highwayman_mask", 145, "You need a Thieving level of 25 to pick the lock of this gate.")
+                item("highwayman_mask", "You need a Thieving level of 25 to pick the lock of this gate.")
             } else {
                 enterGarden(target, this)
             }
@@ -44,7 +44,7 @@ class SorceressGarden(val dropTables: DropTables) : Script {
 
         objectOperate("Open", "sorceress_gate_autumn") { (target) ->
             if (levels.get(Skill.Thieving) < 45) {
-                item("highwayman_mask", 145, "You need a Thieving level of 45 to pick the lock of this gate.")
+                item("highwayman_mask", "You need a Thieving level of 45 to pick the lock of this gate.")
             } else {
                 enterGarden(target, this)
             }
@@ -52,7 +52,7 @@ class SorceressGarden(val dropTables: DropTables) : Script {
 
         objectOperate("Open", "sorceress_gate_summer") { (target) ->
             if (levels.get(Skill.Thieving) < 65) {
-                item("highwayman_mask", 145, "You need a Thieving level of 65 to pick the lock of this gate.")
+                item("highwayman_mask", "You need a Thieving level of 65 to pick the lock of this gate.")
             } else {
                 enterGarden(target, this)
             }

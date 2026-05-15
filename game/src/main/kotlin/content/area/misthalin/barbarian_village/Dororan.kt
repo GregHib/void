@@ -27,7 +27,7 @@ class Dororan : Script {
                 return@itemOnItem
             }
             queue("engraving") {
-                item("dororans_engraved_ring", 400, "You engrave 'Gudrun the Fair, Gudrun the Fiery' onto the ring.")
+                item("dororans_engraved_ring", "You engrave 'Gudrun the Fair, Gudrun the Fiery' onto the ring.")
                 anim("engrave")
                 exp(Skill.Crafting, 125.0)
                 inventory.replace("ring_from_jeffery", "dororans_engraved_ring")
@@ -84,7 +84,7 @@ class Dororan : Script {
                                     choice {
                                         option("Engrave the bracelet.") {
                                             if (levels.get(Skill.Crafting) < 72) {
-                                                item("ruby_bracelet", 400, "you need a Crafting level of at least 42 to engrave the ruby bracelet.")
+                                                item("ruby_bracelet", "you need a Crafting level of at least 42 to engrave the ruby bracelet.")
                                                 npc<Disheartened>("That's a shame. Maybe you can try again another time.")
                                                 return@option
                                             }
@@ -114,7 +114,7 @@ class Dororan : Script {
                             choice {
                                 option("Engrave the necklace.") {
                                     if (levels.get(Skill.Crafting) < 42) {
-                                        item("dragonstone_necklace", 400, "you need a Crafting level of at least 72 to engrave the dragonstone necklace.")
+                                        item("dragonstone_necklace", "you need a Crafting level of at least 72 to engrave the dragonstone necklace.")
                                         npc<Disheartened>("That's a shame. Maybe you can try again another time.")
                                         return@option
                                     }
@@ -136,7 +136,7 @@ class Dororan : Script {
                             choice {
                                 option("Engrave the amulet.") {
                                     if (levels.get(Skill.Crafting) < 90) {
-                                        item("onyx_amulet", 400, "you need a Crafting level of at least 90 to engrave the onyx amulet.")
+                                        item("onyx_amulet", "you need a Crafting level of at least 90 to engrave the onyx amulet.")
                                         npc<Disheartened>("That's a shame. Maybe you can try again another time.")
                                         return@option
                                     }
@@ -175,7 +175,7 @@ class Dororan : Script {
             }
             inventory.add("gunnars_ground")
             anim("pocket_item")
-            item("gunnars_ground", 600, "Dororan gives you another poem.")
+            item("gunnars_ground", "Dororan gives you another poem.")
             npc<Neutral>("Try not to lose this one.")
             return
         }
@@ -198,7 +198,7 @@ class Dororan : Script {
         set("gunnars_ground", "poem")
         inventory.add("gunnars_ground")
         anim("pocket_item")
-        item("gunnars_ground", 400, "Dororan hands you the poem.")
+        item("gunnars_ground", "Dororan hands you the poem.")
         choice {
             option<Neutral>("I'll get right on it.")
             option<Neutral>("This had better be the last time.")
@@ -829,19 +829,19 @@ class Dororan : Script {
         }
         choice {
             option<Neutral>("It's come out perfectly.") {
-                item("dororans_engraved_ring", 400, "You show Dororan the engraved ring.")
+                item("dororans_engraved_ring", "You show Dororan the engraved ring.")
                 npc<Happy>("You're right! It's perfect!")
                 npc<Happy>("Will you do one more thing for me?")
                 oneMoreThing()
             }
             option<Neutral>("How does this look?") {
-                item("dororans_engraved_ring", 400, "You show Dororan the engraved ring.")
+                item("dororans_engraved_ring", "You show Dororan the engraved ring.")
                 npc<Happy>("Brilliant! That's perfect")
                 npc<Happy>("Will you do one more thing for me?")
                 oneMoreThing()
             }
             option<Neutral>("It's a complete disaster.") {
-                item("dororans_engraved_ring", 400, "You show Dororan the engraved ring.")
+                item("dororans_engraved_ring", "You show Dororan the engraved ring.")
                 npc<Happy>("I don't know what you mean: it's perfect!")
                 npc<Happy>("Will you do one more thing for me?")
                 oneMoreThing()
@@ -913,7 +913,7 @@ class Dororan : Script {
         set("gunnars_ground", "love_poem")
         inventory.add("love_poem")
         anim("pocket_item")
-        item("love_poem", 600, "Dororan gives you a poem.")
+        item("love_poem", "Dororan gives you a poem.")
         choice {
             option<Idle>("I have some questions.") {
                 npc<Pleased>("By all means.")
@@ -972,13 +972,13 @@ class Dororan : Script {
             inventory.add("ring_from_jeffery")
             anim("pocket_item")
             // playSound("") // TODO
-            item("ring_from_jeffery", 600, "Dororan gives you back the ring.")
+            item("ring_from_jeffery", "Dororan gives you back the ring.")
             engrave()
             return
         }
         if (carriesItem("ring_from_jeffery")) {
             player<Happy>("I have one right here.")
-            item("ring_from_jeffery", 600, "You show Dororan the ring from Jeffery.")
+            item("ring_from_jeffery", "You show Dororan the ring from Jeffery.")
             npc<Happy>("Thank you! That's exactly what I need!")
             engrave()
             return
@@ -993,7 +993,7 @@ class Dororan : Script {
                     }
                     inventory.add("love_poem")
                     anim("pocket_item")
-                    item("love_poem", 600, "Dororan gives you another poem.")
+                    item("love_poem", "Dororan gives you another poem.")
                     npc<Neutral>("Try to be more careful with this one.")
                     return@option
                 }
@@ -1061,7 +1061,7 @@ class Dororan : Script {
         } else {
             inventory.add("chisel")
             anim("pocket_item")
-            item("chisel", 600, "Dororan gives you a chisel.")
+            item("chisel", "Dororan gives you a chisel.")
         }
         choice {
             option<Idle>("Isn't a chisel a bit clumsy for that?") {
@@ -1185,7 +1185,7 @@ class Dororan : Script {
                 }
                 inventory.add("gunnars_ground")
                 anim("pocket_item")
-                item("gunnars_ground", 600, "Dororan gives you a copy of the poem.")
+                item("gunnars_ground", "Dororan gives you a copy of the poem.")
                 npc<Pleased>("There you go!")
             }
             if (!ownsItem("swanky_boots")) {
@@ -1197,7 +1197,7 @@ class Dororan : Script {
                     }
                     anim("pocket_item")
                     inventory.add("swanky_boots")
-                    item("swanky_boots", 600, "Dororan gives you some more boots.")
+                    item("swanky_boots", "Dororan gives you some more boots.")
                     npc<Happy>("Be more careful with these ones! I don't have an infinite supply.")
                 }
             }
@@ -1214,7 +1214,7 @@ class Dororan : Script {
         }
         inventory.add("dororans_engraved_ring")
         anim("pocket_item")
-        item("dororans_engraved_ring", 400, "Dororan hands you back the engraved ring.")
+        item("dororans_engraved_ring", "Dororan hands you back the engraved ring.")
         return true
     }
 

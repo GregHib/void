@@ -70,9 +70,9 @@ class Bravek : Script {
         npc<Confused>("Hmmm let me think... Ouch! Thinking isn't clever. Ah here, she did scribble it down for me.")
         set("plague_city", "has_cure_paper")
         if (inventory.add("a_scruffy_note")) {
-            item("a_scruffy_note", 600, "Bravek hands you a tatty piece of paper.")
+            item("a_scruffy_note", "Bravek hands you a tatty piece of paper.")
         } else {
-            item("a_scruffy_note", 600, "Bravek waves a tatty piece of paper at you, but you don't have room to take it.")
+            item("a_scruffy_note", "Bravek waves a tatty piece of paper at you, but you don't have room to take it.")
         }
     }
 
@@ -97,7 +97,7 @@ class Bravek : Script {
             target.queue("bravek_transform", 5) {
                 target.clearTransform()
             }
-            item("hangover_cure", 600, "You give Bravek the hangover cure. Bravek gulps down the foul looking liquid.")
+            item("hangover_cure", "You give Bravek the hangover cure. Bravek gulps down the foul looking liquid.")
             npc<Happy>("Ooh that's much better! Thanks, that's the clearest my head has felt in a month. Ah now, what was it you wanted me to do for you?")
             gaveCureMenu()
         }
@@ -151,9 +151,9 @@ class Bravek : Script {
         npc<Confused>("Hmmm, well I guess they're not taking the issue of a kidnapping seriously enough. They do go a bit far sometimes.")
         npc<Idle>("I've heard of Elena, she has helped us a lot... Okay, I'll give you this warrant to enter the house.")
         if (inventory.add("warrant")) {
-            item("warrant", 600, "Bravek hands you a warrant.")
+            item("warrant", "Bravek hands you a warrant.")
         } else {
-            item("warrant", 600, "Bravek waves a warrant at you, but you don't have room to take it.")
+            item("warrant", "Bravek waves a warrant at you, but you don't have room to take it.")
         }
     }
 

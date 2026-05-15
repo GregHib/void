@@ -18,7 +18,7 @@ class LegendsQuest : Script {
 
     init {
         itemOption("Enchant-Vials", "binding_book") {
-            item("binding_book", 400, "You prepare an incantation from the page...")
+            item("binding_book", "You prepare an incantation from the page...")
             if (levels.get(Skill.Prayer) < 10) {
                 statement("You need a Prayer level of at least 10 to cast this enchantment.")
                 return@itemOption

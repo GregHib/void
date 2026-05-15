@@ -39,7 +39,7 @@ class BartenderDragonInn : Script {
                 option<Neutral>("One cheap beer please!") {
                     npc<Neutral>("That'll be 2 gold coins please!")
                     if (buy("beer", 2)) {
-                        item("beer", 325, "You buy a pint of cheap beer.")
+                        item("beer", "You buy a pint of cheap beer.")
                         npc<Neutral>("Have a super day!")
                     }
                 }

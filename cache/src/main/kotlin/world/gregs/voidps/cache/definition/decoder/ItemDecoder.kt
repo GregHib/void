@@ -27,8 +27,9 @@ class ItemDecoder : DefinitionDecoder<ItemDefinition>(ITEMS) {
 
     override fun ItemDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
-            1, 4, 5, 6, 7, 8, 18, 24, 26, 78, 79, 90, 91, 92, 93, 95, 110, 111, 112, 139, 140 -> buffer.skip(2)
+            1, 5, 6, 7, 8, 18, 24, 26, 78, 79, 90, 91, 92, 93, 95, 110, 111, 112, 139, 140 -> buffer.skip(2)
             2 -> name = buffer.readString()
+            4 -> spriteScale = buffer.readShort()
             11 -> stackable = 1
             12 -> cost = buffer.readInt()
             16 -> members = true

@@ -32,7 +32,7 @@ class DungeoneeringTutor : Script {
                     npc<Sad>("Oh, your hands are full? Come back when you've got space in your inventory.")
                     return@npcOperate
                 }
-                item("ring_of_kinship", 300, "He hands you a ring.")
+                item("ring_of_kinship", "He hands you a ring.")
             }
             menu()
         }

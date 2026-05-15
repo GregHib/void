@@ -192,7 +192,7 @@ class Leela : Script {
             add("bronze_key_prince_ali_rescue")
         }
         when (inventory.transaction.error) {
-            TransactionError.None -> item("bronze_key_prince_ali_rescue", 400, "Leela gives you a key.")
+            TransactionError.None -> item("bronze_key_prince_ali_rescue", "Leela gives you a key.")
             else -> {
                 statement("Leela tries to give you a key, but you don't have enough room for it.")
                 return true

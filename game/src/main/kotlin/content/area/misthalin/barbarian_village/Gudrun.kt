@@ -274,7 +274,7 @@ class Gudrun : Script {
             player<Neutral>("It's a poem; a story to convince your father to settle down. You could recite it to him.")
             npc<Amazed>("Let me see that.")
             anim("hand_over_item")
-            item("gunnars_ground", 400, "You show Gudrun the poem")
+            item("gunnars_ground", "You show Gudrun the poem")
             npc<Neutral>("'Gunnar's Ground'")
             npc<Pleased>("Yes! I think this could work. I'll go to the longhouse right away!")
             inventory.remove("gunnars_ground")
@@ -346,7 +346,7 @@ class Gudrun : Script {
         if (carriesItem("dororans_engraved_ring")) {
             player<Pleased>("This is for you.")
             anim("hand_over_item")
-            item("dororans_engraved_ring", 400, "You show Gudrun the ring.")
+            item("dororans_engraved_ring", "You show Gudrun the ring.")
             npc<Happy>("It's lovely! There's something written on it:")
             npc<Pleased>("'Gudrun the Fair, Gudrun the Fiery.' Is it about me?")
             choice {

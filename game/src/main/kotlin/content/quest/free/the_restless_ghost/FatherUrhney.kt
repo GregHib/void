@@ -55,7 +55,7 @@ class FatherUrhney : Script {
                         } else {
                             npc<Angry>("How careless can you get? Those things aren't easy to come by you know! It's a good job I've got a spare.")
                             inventory.add("ghostspeak_amulet")
-                            item("ghostspeak_amulet", 200, "Father Urhney hands you an amulet.")
+                            item("ghostspeak_amulet", "Father Urhney hands you an amulet.")
                             set("i_cant_hear_dead_people_task", true)
                             npc<Angry>("Be more careful this time.")
                             player<Idle>("Okay, I'll try to be.")
@@ -98,7 +98,7 @@ class FatherUrhney : Script {
         } else {
             inventory.add("ghostspeak_amulet")
         }
-        item("ghostspeak_amulet", 200, "Father Urhney hands you an amulet.")
+        item("ghostspeak_amulet", "Father Urhney hands you an amulet.")
         npc<Idle>("It is an Amulet of Ghostspeak.")
         npc<Idle>("So called, because when you wear it you can speak to ghosts. A lot of ghosts are doomed to be ghosts because they have left some important task uncompleted.")
         npc<Idle>("Maybe if you know what this task is, you can get rid of the ghost. I'm not making any guarantees mind you, but it is the best I can do right now.")

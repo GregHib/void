@@ -67,7 +67,7 @@ class Aubury : Script {
         if (ownsItem("research_package_rune_mysteries")) {
             set("rune_mysteries", "package_delivered")
             inventory.remove("research_package_rune_mysteries")
-            item("research_package_rune_mysteries", 600, "You hand the package to Aubury.")
+            item("research_package_rune_mysteries", "You hand the package to Aubury.")
             npc<Happy>("Now, let's have a look...")
             researchPackage()
         } else {
@@ -78,7 +78,7 @@ class Aubury : Script {
     }
 
     suspend fun Player.researchPackage() {
-        item("research_package_rune_mysteries", 600, "Aubury goes through the package of research notes.")
+        item("research_package_rune_mysteries", "Aubury goes through the package of research notes.")
         npc<Shock>("This... this is incredible.")
         npc<Happy>("My gratitude to you adventurer for bringing me these research notes. Thanks to you, I think we finally have it.")
         player<Quiz>("You mean the incantation?")
@@ -86,12 +86,12 @@ class Aubury : Script {
         npc<Idle>("No, no, I'm getting ahead of myself. The signs are promising, but let's not jump to any conclusions just yet.")
         npc<Quiz>("Here, take these notes back to Sedridor. They should hopefully give him everything he needs.")
         if (inventory.isFull()) {
-            item("research_notes_rune_mysteries", 600, "Aubury tries to hand you some research notes, but you don't have enough room to take them.")
+            item("research_notes_rune_mysteries", "Aubury tries to hand you some research notes, but you don't have enough room to take them.")
             return
         }
         set("rune_mysteries", "research_notes")
         inventory.add("research_notes_rune_mysteries")
-        item("research_notes_rune_mysteries", 600, "Aubury hands you some research notes.")
+        item("research_notes_rune_mysteries", "Aubury hands you some research notes.")
     }
 
     suspend fun Player.checkNotes() {
@@ -108,14 +108,14 @@ class Aubury : Script {
             player<Disheartened>("Sorry, but I lost them.")
             npc<Idle>("Well, luckily I have duplicates. It's a good thing they are written in code. I wouldn't want the wrong kind of person to get access to the information contained within.")
             if (inventory.isFull()) {
-                item("research_notes_rune_mysteries", 600, "Aubury tries to hand you some research notes, but you don't have enough room to take them.")
+                item("research_notes_rune_mysteries", "Aubury tries to hand you some research notes, but you don't have enough room to take them.")
                 return
             }
             if (bank.contains("research_notes_rune_mysteries")) {
                 bank.remove("research_notes_rune_mysteries")
             }
             inventory.add("research_notes_rune_mysteries")
-            item("research_notes_rune_mysteries", 600, "Aubury hands you some research notes.")
+            item("research_notes_rune_mysteries", "Aubury hands you some research notes.")
         }
     }
 
