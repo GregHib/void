@@ -5,6 +5,8 @@ import content.entity.player.modal.book.Books
 import content.entity.world.music.MusicTracks
 import content.quest.member.fairy_tale_part_2.fairy_ring.FairyRingCodes
 import content.skill.farming.FarmingDefinitions
+import content.skill.summoning.pet.IncubatorDefinitions
+import content.skill.summoning.pet.PetDefinitions
 import content.social.trade.exchange.GrandExchange
 import content.social.trade.exchange.history.ExchangeHistory
 import org.koin.dsl.module
@@ -42,7 +44,7 @@ fun gameModule(files: ConfigFiles) = module {
             try {
                 clazz = Class.forName("world.gregs.voidps.storage.DatabaseStorage")
                 companion = Class.forName("${clazz.name}\$Companion")
-            } catch (e: ClassNotFoundException) {
+            } catch (_: ClassNotFoundException) {
                 throw IllegalStateException("Database class not found; are you compiling using `-PincludeDb`?")
             }
             val method = companion.declaredMethods.first { it.name == "connect" }
@@ -65,4 +67,6 @@ fun gameModule(files: ConfigFiles) = module {
         }
     }
     single(createdAtStart = true) { FarmingDefinitions().load(files.find(Settings["definitions.produce"])) }
+    single(createdAtStart = true) { PetDefinitions().load(files.find(Settings["definitions.pets"])) }
+    single(createdAtStart = true) { IncubatorDefinitions().load(files.find(Settings["definitions.incubator"])) }
 }

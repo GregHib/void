@@ -1,0 +1,7 @@
+# Pet interaction animations.
+
+[pet_stroke_player]
+id = 9224
+
+[pet_stroke_kitten]
+id = 9173

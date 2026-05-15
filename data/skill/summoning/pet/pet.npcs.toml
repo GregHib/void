@@ -1,0 +1,700 @@
+[pet_cat_baby]
+id = 761
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_cat]
+id = 768
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_cat_overgrown]
+id = 774
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_cat_1_baby]
+id = 762
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_cat_1]
+id = 769
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_cat_1_overgrown]
+id = 775
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_cat_2_baby]
+id = 763
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_cat_2]
+id = 770
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_cat_2_overgrown]
+id = 776
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_cat_3_baby]
+id = 764
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_cat_3]
+id = 771
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_cat_3_overgrown]
+id = 777
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_cat_4_baby]
+id = 765
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_cat_4]
+id = 772
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_cat_4_overgrown]
+id = 778
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_cat_5_baby]
+id = 766
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_cat_5]
+id = 773
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_cat_5_overgrown]
+id = 779
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_hellcat_baby]
+id = 3505
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_hellcat]
+id = 3504
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_hellcat_overgrown]
+id = 3503
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_cat_6_baby]
+id = 8217
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_cat_6]
+id = 8214
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_clockwork_cat_baby]
+id = 3598
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_bulldog_baby]
+id = 6969
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_bulldog]
+id = 6968
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_bulldog_1_baby]
+id = 7259
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_bulldog_1]
+id = 7257
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_bulldog_2_baby]
+id = 7260
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_bulldog_2]
+id = 7258
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_dalmatian_baby]
+id = 6964
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_dalmatian]
+id = 6965
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_dalmatian_1_baby]
+id = 7249
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_dalmatian_1]
+id = 7250
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_dalmatian_2_baby]
+id = 7251
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_dalmatian_2]
+id = 7252
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_greyhound_baby]
+id = 6960
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_greyhound]
+id = 6961
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_greyhound_1_baby]
+id = 7241
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_greyhound_1]
+id = 7242
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_greyhound_2_baby]
+id = 7243
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_greyhound_2]
+id = 7244
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_labrador_baby]
+id = 6962
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_labrador]
+id = 6963
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_labrador_1_baby]
+id = 7245
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_labrador_1]
+id = 7246
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_labrador_2_baby]
+id = 7247
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_labrador_2]
+id = 7248
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_sheepdog_baby]
+id = 6966
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_sheepdog]
+id = 6967
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_sheepdog_1_baby]
+id = 7253
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_sheepdog_1]
+id = 7254
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_sheepdog_2_baby]
+id = 7255
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_sheepdog_2]
+id = 7256
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_terrier_baby]
+id = 6958
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_terrier]
+id = 6959
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_terrier_1_baby]
+id = 7237
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_terrier_1]
+id = 7238
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_terrier_2_baby]
+id = 7239
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_terrier_2]
+id = 7240
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_gecko_baby]
+id = 6915
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_gecko]
+id = 6916
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_gecko_1_baby]
+id = 7277
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_gecko_1]
+id = 7281
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_gecko_2_baby]
+id = 7278
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_gecko_2]
+id = 7282
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_gecko_3_baby]
+id = 7279
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_gecko_3]
+id = 7283
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_gecko_4_baby]
+id = 7280
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_gecko_4]
+id = 7284
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_platypus_baby]
+id = 7018
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_platypus]
+id = 7015
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_platypus_1_baby]
+id = 7019
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_platypus_1]
+id = 7016
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_platypus_2_baby]
+id = 7020
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_platypus_2]
+id = 7017
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_broav_baby]
+id = 8491
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_penguin_baby]
+id = 6908
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_penguin]
+id = 6909
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_penguin_1_baby]
+id = 7313
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_penguin_1]
+id = 7314
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_penguin_2_baby]
+id = 7316
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_penguin_2]
+id = 7317
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_giant_crab_baby]
+id = 6947
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_giant_crab]
+id = 6948
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_giant_crab_1_baby]
+id = 7293
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_giant_crab_1]
+id = 7294
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_giant_crab_2_baby]
+id = 7295
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_giant_crab_2]
+id = 7296
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_giant_crab_3_baby]
+id = 7297
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_giant_crab_3]
+id = 7298
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_giant_crab_4_baby]
+id = 7299
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_giant_crab_4]
+id = 7300
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_raven_baby]
+id = 6911
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_raven]
+id = 6912
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_raven_1_baby]
+id = 7261
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_raven_1]
+id = 7262
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_raven_2_baby]
+id = 7263
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_raven_2]
+id = 7264
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_raven_3_baby]
+id = 7265
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_raven_3]
+id = 7266
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_raven_4_baby]
+id = 7267
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_raven_4]
+id = 7268
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_raven_5_baby]
+id = 7269
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_raven_5]
+id = 7270
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_squirrel_baby]
+id = 6919
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_squirrel]
+id = 6920
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_squirrel_1_baby]
+id = 7301
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_squirrel_1]
+id = 7302
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_squirrel_2_baby]
+id = 7303
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_squirrel_2]
+id = 7304
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_squirrel_3_baby]
+id = 7305
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_squirrel_3]
+id = 7306
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_squirrel_4_baby]
+id = 7307
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_squirrel_4]
+id = 7308
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_saradomin_owl_baby]
+id = 6949
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_saradomin_owl]
+id = 6950
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_saradomin_owl_overgrown]
+id = 6951
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_zamorak_hawk_baby]
+id = 6952
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_zamorak_hawk]
+id = 6953
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_zamorak_hawk_overgrown]
+id = 6954
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_guthix_raptor_baby]
+id = 6955
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_guthix_raptor]
+id = 6956
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_guthix_raptor_overgrown]
+id = 6957
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_ex_ex_parrot_baby]
+id = 7844
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_cute_phoenix_eggling_baby]
+id = 8578
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_mean_phoenix_eggling_baby]
+id = 8577
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_raccoon_baby]
+id = 6913
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_raccoon]
+id = 6914
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_raccoon_1_baby]
+id = 7271
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_raccoon_1]
+id = 7272
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_raccoon_2_baby]
+id = 7273
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_raccoon_2]
+id = 7274
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_vulture_baby]
+id = 6945
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_vulture]
+id = 6946
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_vulture_1_baby]
+id = 7319
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_vulture_1]
+id = 7320
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_vulture_2_baby]
+id = 7321
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_vulture_2]
+id = 7322
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_vulture_3_baby]
+id = 7323
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_vulture_3]
+id = 7324
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_vulture_4_baby]
+id = 7325
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_vulture_4]
+id = 7326
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_vulture_5_baby]
+id = 7327
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_vulture_5]
+id = 7328
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_chameleon_baby]
+id = 6922
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_chameleon]
+id = 6923
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_monkey_baby]
+id = 6942
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_monkey]
+id = 6943
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_monkey_1_baby]
+id = 7210
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_monkey_1]
+id = 7211
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_monkey_2_baby]
+id = 7212
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_monkey_2]
+id = 7213
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_monkey_3_baby]
+id = 7214
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_monkey_3]
+id = 7215
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_monkey_4_baby]
+id = 7216
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_monkey_4]
+id = 7217
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_monkey_5_baby]
+id = 7218
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_monkey_5]
+id = 7219
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_monkey_6_baby]
+id = 7220
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_monkey_6]
+id = 7221
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_monkey_7_baby]
+id = 7222
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_monkey_7]
+id = 7223
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_monkey_8_baby]
+id = 7224
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_monkey_8]
+id = 7225
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_monkey_9_baby]
+id = 7226
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_monkey_9]
+id = 7227
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_baby_dragon_baby]
+id = 6900
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_baby_dragon]
+id = 6901
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_baby_dragon_1_baby]
+id = 6902
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_baby_dragon_1]
+id = 6903
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_baby_dragon_2_baby]
+id = 6904
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_baby_dragon_2]
+id = 6905
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_baby_dragon_3_baby]
+id = 6906
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+
+[pet_baby_dragon_3]
+id = 6907
+options = { "Pick-up" = 1, "Talk-to" = 2 }
+

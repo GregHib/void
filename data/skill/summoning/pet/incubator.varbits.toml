@@ -1,0 +1,8 @@
+# Per-incubator state varbits.
+# 0 = empty, 1 = incubating, 2 = finished hatching.
+
+[taverley_incubator_state]
+id = 4277
+
+[yanille_incubator_state]
+id = 4221
