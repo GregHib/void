@@ -16,8 +16,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ClientScriptDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.script.KoinMock
-import kotlin.math.max
 
 @OptIn(ExperimentalCoroutinesApi::class)
 internal class ActionQueueTest {
@@ -31,8 +29,8 @@ internal class ActionQueueTest {
     fun setup() {
         player = Player()
         queue = ActionQueue(player, testScope)
-        InterfaceDefinitions.set(arrayOf(InterfaceDefinition(id = 0)), mapOf("test" to 0))
-        player.interfaces = Interfaces(player, mutableMapOf("test" to "main_screen"))
+        InterfaceDefinitions.set(arrayOf(InterfaceDefinition(id = 0, type = "main_screen")), mapOf("test" to 0))
+        player.interfaces = Interfaces(player, mutableMapOf())
     }
 
     @Test
