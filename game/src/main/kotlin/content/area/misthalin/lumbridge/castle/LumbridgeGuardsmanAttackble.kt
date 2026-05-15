@@ -1,4 +1,4 @@
-package content.entity.npc.combat.melee
+package content.area.misthalin.lumbridge.castle
 
 import content.entity.combat.killer
 import world.gregs.voidps.engine.Script
@@ -18,6 +18,7 @@ class LumbridgeGuardsmanAttackble : Script {
                 interactNpc(target, "Attack")
             }
         }
+
         npcDeath("goblin*,giant_rat") {
             val guard = killer as? NPC ?: return@npcDeath
             when {
