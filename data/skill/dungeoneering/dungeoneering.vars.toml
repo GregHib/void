@@ -41,11 +41,6 @@ format = "int"
 persist = true
 default = 1
 
-[dungeoneering_floor_progress]
-format = "int"
-persist = true
-default = 1
-
 [dungeoneering_guide_mode]
 format = "boolean"
 persist = true

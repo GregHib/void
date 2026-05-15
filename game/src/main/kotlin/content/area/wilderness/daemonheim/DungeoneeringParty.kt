@@ -53,6 +53,10 @@ class DungeoneeringParty : Script {
             leave(this)
         }
 
+        playerDespawn {
+            leave(this)
+        }
+
         /*
             Dungeon settings
          */
@@ -166,6 +170,7 @@ class DungeoneeringParty : Script {
                 option("No.")
             }
         }
+
     }
 
     companion object {
@@ -186,7 +191,7 @@ class DungeoneeringParty : Script {
 
         val Player.inDungeoneering: Boolean
             get() {
-                return false
+                return get("in_dungeoneering", false)
             }
 
         var Player.dungeonMembers: List<Player>
@@ -303,7 +308,7 @@ class DungeoneeringParty : Script {
             interfaces.sendVisibility(ID, "change_complexity_disabled", !inParty && !inDungeoneering)
             interfaces.sendVisibility(ID, "guide_mode_selected", dungeonLeader?.get("dungeoneering_guide_mode") ?: false)
             interfaces.sendVisibility(ID, "guide_mode_disabled", !inParty && dungeonLeader != this)
-            interfaces.sendVisibility(ID, "reset_disabled", tile !in Areas["daemonheim_castle"])
+            interfaces.sendVisibility(ID, "reset_disabled", tile !in Areas["daemonheim"])
             sendVariable("dungeoneering_current_progress")
             sendVariable("dungeoneering_previous_progress")
             sendMembers()
@@ -340,7 +345,6 @@ class DungeoneeringParty : Script {
 
         fun promote(leader: Player, promote: Player, leave: Boolean = false) {
             val members = leader.dungeonMembers.toMutableList()
-            println("Promote $promote! in $members")
             if (members.size > 1) {
                 members.remove(promote)
                 members.addFirst(promote)
@@ -354,7 +358,6 @@ class DungeoneeringParty : Script {
                     member.message("${promote.name} has been promoted.")
                 }
             }
-            println("Promoted ${promote.dungeonMembers} ${promote.dungeonLeader}")
         }
     }
 }

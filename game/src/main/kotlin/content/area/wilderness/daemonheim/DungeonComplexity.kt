@@ -46,7 +46,7 @@ class DungeonComplexity : Script {
             }
             val index = it.component.removePrefix("complexity_").toInt()
             for (member in dungeonMembers) {
-                if (index > member["complexity_progress", 1]) {
+                if (index > member["dungeoneering_complexity", 1]) {
                     if (member == this) {
                         message("<red_orange>To access complexity level $index, you must complete one dungeon floor on complexity level ${index - 1}.")
                     } else {
@@ -63,11 +63,11 @@ class DungeonComplexity : Script {
                 message("<red_orange>Only the party leader can change these settings.")
                 return@interfaceOption
             }
-            closeMenu()
             val complexity: Int = get("dungeon_temp_complexity") ?: return@interfaceOption
             for (member in dungeonMembers) {
                 member["dungeoneering_party_complexity"] = complexity
             }
+            closeMenu()
         }
     }
 

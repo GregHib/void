@@ -54,7 +54,6 @@ class DungeonFloor : Script {
         }
 
         interfaceOption("Confirm", "dungeon_floor:confirm") {
-            closeMenu()
             if (dungeonLeader != this) {
                 message("<red_orange>Only the party leader change these settings.")
                 return@interfaceOption
@@ -63,6 +62,7 @@ class DungeonFloor : Script {
             for (member in dungeonMembers) {
                 member["dungeoneering_party_floor"] = floor
             }
+            closeMenu()
         }
     }
 

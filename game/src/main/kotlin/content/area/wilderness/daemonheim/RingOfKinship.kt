@@ -55,7 +55,7 @@ class RingOfKinship : Script {
                 message("You have no ring selected to quick-switch to. Select 'Customise' and pick a secondary ring to quick-switch to.")
                 return@itemOption
             }
-            val currentClass: String = get("kinship_class") ?: return@itemOption
+            val currentClass: String = get("kinship_class") ?: it.item.id.removePrefix("ring_of_kinship_")
             val inventory = inventories.inventory(it.inventory)
             inventory.replace("ring_of_kinship_$currentClass", "ring_of_kinship_$quickSwitch")
             set("kinship_class", quickSwitch)
@@ -150,8 +150,9 @@ class RingOfKinship : Script {
                     clear("kinship_quick_switch_class")
                 }
             }
-            inventory.replace("ring_of_kinship_$currentClass", "ring_of_kinship_$type")
-            equipment.replace("ring_of_kinship_$currentClass", "ring_of_kinship_$type")
+            val current = if (currentClass == "none") "ring_of_kinship" else "ring_of_kinship_${currentClass}"
+            inventory.replace(current, "ring_of_kinship_$type")
+            equipment.replace(current, "ring_of_kinship_$type")
             set("kinship_class", type)
 
             // FIXME: manual text changing and text changing using 3494.cs2 doesn't work for some reason.
