@@ -12,7 +12,7 @@ import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-class DaemonheimRewardsTest : WorldTest()  {
+class DaemonheimRewardsTest : WorldTest() {
 
     @Test
     fun `Buy reward`() {

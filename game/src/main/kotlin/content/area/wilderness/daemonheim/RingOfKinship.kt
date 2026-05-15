@@ -150,7 +150,7 @@ class RingOfKinship : Script {
                     clear("kinship_quick_switch_class")
                 }
             }
-            val current = if (currentClass == "none") "ring_of_kinship" else "ring_of_kinship_${currentClass}"
+            val current = if (currentClass == "none") "ring_of_kinship" else "ring_of_kinship_$currentClass"
             inventory.replace(current, "ring_of_kinship_$type")
             equipment.replace(current, "ring_of_kinship_$type")
             set("kinship_class", type)

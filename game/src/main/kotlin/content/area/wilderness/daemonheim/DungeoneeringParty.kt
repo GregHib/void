@@ -170,7 +170,6 @@ class DungeoneeringParty : Script {
                 option("No.")
             }
         }
-
     }
 
     companion object {
