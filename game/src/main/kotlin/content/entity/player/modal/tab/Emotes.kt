@@ -5,6 +5,7 @@ import content.entity.effect.transform
 import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.type.statement
 import net.pearx.kasechange.toSnakeCase
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
@@ -81,7 +82,7 @@ class Emotes : Script {
         }
 
         slotChanged("worn_equipment", EquipSlot.Cape) {
-            set("unlocked_emote_skillcape", it.item.def.contains("skill_cape") || it.item.def.contains("skill_cape_t") || it.item.id == "quest_point_cape")
+            set("unlocked_emote_skillcape", it.item.def.contains(Params.SKILLCAPE_SKILL) || it.item.id == "quest_point_cape")
         }
     }
 
