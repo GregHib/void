@@ -51,10 +51,10 @@ class Emotes : Script {
                 return@interfaceOption
             }
             strongQueue("emote") {
-                when {
-                    id == "skillcape" -> {
+                when (id) {
+                    "skillcape" -> {
                         val cape = equipped(EquipSlot.Cape)
-                        val skill: Skill? = cape.def.getOrNull("skillcape_skill")
+                        val skill: Skill? = cape.def.getOrNull<Int>("skillcape_skill")?.let { int -> Skill.all[int] }
                         when {
                             cape.id == "quest_point_cape" -> playSkillCapeEmote("quest_point")
                             cape.id == "dungeoneering_master_cape" -> playDungeoneeringMasterCapeEmote()
@@ -62,13 +62,13 @@ class Emotes : Script {
                             skill != null -> playSkillCapeEmote(skill.name.lowercase())
                         }
                     }
-                    id == "seal_of_approval" -> playSealOfApprovalEmote()
-                    id == "give_thanks" -> playGiveThanksEmote()
-                    id == "angry" && equipped(EquipSlot.Hat).id == "a_powdered_wig" -> playEnhancedEmote(id)
-                    id == "yawn" && equipped(EquipSlot.Hat).id == "sleeping_cap" -> playEnhancedYawnEmote()
-                    id == "bow" && equipped(EquipSlot.Legs).id == "pantaloons" -> playEnhancedEmote(id)
-                    id == "dance" && equipped(EquipSlot.Legs).id == "flared_trousers" -> playEnhancedEmote(id)
-                    id == "flap" && equipped(EquipSlot.Feet).id == "chicken_feet" && equipped(EquipSlot.Legs).id == "chicken_legs" && equipped(EquipSlot.Chest).id == "chicken_wings" && equipped(EquipSlot.Hat).id == "chicken_head" -> playEnhancedEmote(id)
+                    "seal_of_approval" -> playSealOfApprovalEmote()
+                    "give_thanks" -> playGiveThanksEmote()
+                    "angry" if equipped(EquipSlot.Hat).id == "a_powdered_wig" -> playEnhancedEmote(id)
+                    "yawn" if equipped(EquipSlot.Hat).id == "sleeping_cap" -> playEnhancedYawnEmote()
+                    "bow" if equipped(EquipSlot.Legs).id == "pantaloons" -> playEnhancedEmote(id)
+                    "dance" if equipped(EquipSlot.Legs).id == "flared_trousers" -> playEnhancedEmote(id)
+                    "flap" if equipped(EquipSlot.Feet).id == "chicken_feet" && equipped(EquipSlot.Legs).id == "chicken_legs" && equipped(EquipSlot.Chest).id == "chicken_wings" && equipped(EquipSlot.Hat).id == "chicken_head" -> playEnhancedEmote(id)
                     else -> {
                         if (id == "air_guitar") {
                             jingle(id)
