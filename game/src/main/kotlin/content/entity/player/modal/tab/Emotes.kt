@@ -75,7 +75,7 @@ class Emotes : Script {
                             jingle(id)
                         }
                         gfx("emote_$id")
-                        anim("emote_$id")
+                        animDelay("emote_$id")
                     }
                 }
             }
@@ -214,27 +214,26 @@ class Emotes : Script {
 
     suspend fun Player.playDungeoneeringMasterCapeEmote() {
         val direction = direction
-
         transform("sagittarian_ranger")
         gfx("emote_dung_master_bow")
         var tile = tile.add(direction.rotate(1))
-        var rotation = tile.delta(tile).toDirection().rotate(2)
+        var rotation = this.tile.delta(tile).toDirection().rotate(2).inverse()
         areaGfx("emote_dung_master_hobgoblin", tile, rotation = rotation)
         animDelay("emote_dung_master_bow")
 
         transform("celestial_mage")
         gfx("emote_dung_master_spell")
-        tile = tile.add(direction.rotate(7))
-        rotation = tile.delta(tile).toDirection().rotate(4)
+        tile = this.tile.add(direction.rotate(7))
+        rotation = this.tile.delta(tile).toDirection().rotate(4).inverse()
         areaGfx("emote_dung_master_gravecreeper", tile, rotation = rotation)
         animDelay("emote_dung_master_spell")
 
         transform("primal_warrior")
         gfx("emote_dung_master_return")
-        tile = tile.add(direction)
+        tile = this.tile.add(direction)
         rotation = direction.inverse().rotate(7)
         areaGfx("emote_dung_master_flesh_spoiler", tile, rotation = rotation)
-        tile = tile.add(direction.inverse())
+        tile = this.tile.add(direction.inverse())
         rotation = direction.rotate(3)
         areaGfx("emote_dung_master_cursebearer", tile, rotation = rotation)
         animDelay("emote_dung_master_sword")

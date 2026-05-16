@@ -372,7 +372,7 @@ run = false
 
 [emote_dungeoneering_start]
 id = 13190
-ticks = 2
+ticks = 1
 walk = false
 run = false
 
@@ -546,7 +546,7 @@ run = false
 
 [emote_dung_master_bow]
 id = 14588
-ticks = 3
+ticks = 2
 walk = false
 run = false
 
