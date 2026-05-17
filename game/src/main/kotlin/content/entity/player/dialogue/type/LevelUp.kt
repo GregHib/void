@@ -78,11 +78,5 @@ class LevelUp : Script {
                 )
             }
         }
-
-        combatDamage {
-            if (!(menu ?: dialogue).isNullOrBlank()) {
-                closeInterfaces()
-            }
-        }
     }
 }

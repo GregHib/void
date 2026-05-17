@@ -9,7 +9,9 @@ import world.gregs.voidps.engine.inv.any
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.Timer
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.random
+import java.util.concurrent.TimeUnit
 import kotlin.random.nextInt
 
 class SwampDecay : Script {
@@ -34,7 +36,7 @@ class SwampDecay : Script {
         }
 
         timerStart("swamp_decay") {
-            230 // 2 minutes 18 seconds
+            TimeUnit.SECONDS.toTicks(138) // 2 minutes 18 seconds
         }
 
         timerTick("swamp_decay") {
