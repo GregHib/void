@@ -3,7 +3,6 @@ package content.entity.player.dialogue.type
 import content.entity.player.dialogue.Expression
 import content.entity.player.dialogue.sendChat
 import net.pearx.kasechange.toSnakeCase
-import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.FontDefinitions
