@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.queue.weakQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 private const val SCAN_RADIUS = 10
@@ -123,13 +123,13 @@ class KittenInteract(definitions: PetDefinitions) : Script {
         nearbyRat.say("Eeek!")
         cat.mode = EmptyMode
         cat.walkTo(nearbyRat.tile)
-        weakQueue("kitten_chase", 4) {
+        queue("kitten_chase", 4) {
             val current = pet
             if (current != null && current.index == cat.index && nearbyRat.tile.distanceTo(current.tile) <= 1) {
                 current.face(nearbyRat)
                 current.anim("pet_pounce_kitten")
             }
-            weakQueue("kitten_chase_resolve", 1) {
+            queue("kitten_chase_resolve", 1) {
                 val resolved = pet
                 if (resolved != null && resolved.index == cat.index) {
                     resolved.mode = Follow(resolved, this)
