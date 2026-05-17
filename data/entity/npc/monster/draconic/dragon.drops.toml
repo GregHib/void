@@ -150,7 +150,7 @@ drops = [
 [black_dragon_pet_egg]
 roll = 2000
 drops = [
-  { id = "black_dragon_egg" },
+  { id = "black_dragon_egg", skill = "summoning", equals = 99 },
 ]
 
 [blue_dragon_drop_table]

@@ -15,7 +15,6 @@ sealed class VariableValues {
         @Suppress("UNCHECKED_CAST")
         operator fun invoke(values: Any?, format: String?, default: Any?): VariableValues = when (format ?: default?.apply { this::class.java.simpleName.lowercase() }) {
             "int", "integer" -> IntValues
-            "double" -> DoubleValues
             "string" -> StringValues
             "boolean" -> BooleanValues
             "list" -> ListValues(values as List<Any>, default)
@@ -34,11 +33,6 @@ data object NoValues : VariableValues() {
 data object IntValues : VariableValues() {
     override fun default() = 0
     override fun toInt(value: Any) = value as Int
-}
-
-data object DoubleValues : VariableValues() {
-    override fun default() = 0.0
-    override fun toInt(value: Any) = (value as Double).toInt()
 }
 
 data object StringValues : VariableValues() {

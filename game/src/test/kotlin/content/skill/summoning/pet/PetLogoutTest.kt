@@ -29,18 +29,16 @@ internal class PetLogoutTest : WorldTest() {
     @Test
     fun `pet stats persist as per-pet hunger growth warn vars`() {
         val player = createPlayer(emptyTile)
-        player.updatePetStats("cat") {
-            hunger = 42.5
-            growth = 17.0
-            warn = 1
-        }
+        player.set("pet_cat_hunger", 4250)
+        player.set("pet_cat_growth", 1700)
+        player.set("pet_cat_warn", 1)
 
         val persisted = player.variables.data
-        assertEquals(42.5, persisted["pet_cat_hunger"])
-        assertEquals(17.0, persisted["pet_cat_growth"])
+        assertEquals(4250, persisted["pet_cat_hunger"])
+        assertEquals(1700, persisted["pet_cat_growth"])
         assertEquals(1, persisted["pet_cat_warn"])
-        assertEquals(42.5, player.getPetHunger("cat"))
-        assertEquals(17.0, player.getPetGrowth("cat"))
+        assertEquals(4250, player.getPetHunger("cat"))
+        assertEquals(1700, player.getPetGrowth("cat"))
         assertEquals(1, player.getPetWarn("cat"))
     }
 

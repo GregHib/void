@@ -3,8 +3,6 @@ package world.gregs.voidps.engine.data
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.*
-import world.gregs.voidps.engine.client.variable.IntValues
-import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.data.exchange.ExchangeHistory
 import world.gregs.voidps.engine.data.exchange.ExchangeOffer
 import world.gregs.voidps.engine.data.exchange.OfferState
@@ -235,11 +233,7 @@ data class PlayerSave(
                         "experience" -> {
                             var index = 0
                             while (nextElement()) {
-                                var int = int()
-                                if (peek == '.') {
-                                    int = ((int + double()) * 10.0).toInt()
-                                }
-                                experience[index++] = int
+                                experience[index++] = int()
                             }
                         }
                         "blocked_skills" -> while (nextElement()) {
@@ -286,16 +280,7 @@ data class PlayerSave(
                         }
                         "variables" -> {
                             while (nextPair()) {
-                                val key = key()
-                                var value = value()
-                                // Legacy XP migration (PR #799): old saves stored experience as
-                                // fractional doubles; new schema is int * 10. Only collapse the
-                                // double when the current schema actually expects an int for this
-                                // key — otherwise we'd corrupt vars genuinely typed as double.
-                                if (value is Double && VariableDefinitions.get(key)?.values is IntValues) {
-                                    value = (value * 10.0).toInt().coerceAtLeast(0)
-                                }
-                                variables[key] = value
+                                variables[key()] = value()
                             }
                         }
                         "inventories" -> {

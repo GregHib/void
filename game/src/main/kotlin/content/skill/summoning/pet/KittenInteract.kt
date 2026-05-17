@@ -9,13 +9,13 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
@@ -23,13 +23,7 @@ private const val SCAN_RADIUS = 10
 private const val CHASE_RADIUS = 8
 private const val CATCH_CHANCE = 0.33
 
-private fun NPC.isRat(): Boolean {
-    val id = this.id
-    return id == "rat" ||
-        id.startsWith("rat_") ||
-        id.endsWith("_rat") ||
-        "_rat_" in id
-}
+private fun NPC.isRat(): Boolean = id.startsWith("rat")
 
 fun Player.hasCatspeakAmulet(): Boolean {
     val id = equipped(EquipSlot.Amulet).id
@@ -37,19 +31,19 @@ fun Player.hasCatspeakAmulet(): Boolean {
 }
 
 fun Player.isAdultCat(npc: NPC): Boolean {
-    val def = get<PetDefinitions>().forNpc(npc.id) ?: return false
-    if (!def.isCatLike) return false
-    val stage = def.stageForNpc(npc.id) ?: return false
+    val row = petRowForNpc(npc.id) ?: return false
+    if (!row.isCatLike()) return false
+    val stage = row.stageForNpc(npc.id) ?: return false
     return stage == PetStage.Grown || stage == PetStage.Overgrown
 }
 
-class KittenInteract(definitions: PetDefinitions) : Script {
+class KittenInteract : Script {
 
     init {
         val registered = mutableSetOf<String>()
-        for (def in definitions.all) {
-            if (!def.isCatLike) continue
-            for (npcId in listOfNotNull(def.babyNpc, def.grownNpc, def.overgrownNpc)) {
+        for (row in allPetRows()) {
+            if (!row.isCatLike()) continue
+            for (npcId in listOfNotNull(row.npcOrNull("baby_npc"), row.npcOrNull("grown_npc"), row.npcOrNull("overgrown_npc"))) {
                 if (!registered.add(npcId)) continue
                 npcOperate("Interact-with", npcId) { interact ->
                     if (pet?.index != interact.target.index) {
@@ -136,8 +130,7 @@ class KittenInteract(definitions: PetDefinitions) : Script {
                 }
                 if (caught && nearbyRat.tile.distanceTo(resolved?.tile ?: nearbyRat.tile) <= 1) {
                     NPCs.remove(nearbyRat)
-                    val count = get("pet_rats_caught", 0) + 1
-                    set("pet_rats_caught", count)
+                    val count = inc("pet_rats_caught", 1)
                     player<Happy>("Hey well done puss, you got it!")
                     resolved?.say("MeeeoooooW!")
                     if (count % 10 == 0) {
@@ -166,54 +159,52 @@ class KittenInteract(definitions: PetDefinitions) : Script {
     }
 }
 
-/** Adult-cat catspeak Talk-to: 4-option chathead loop. */
+/** Adult-cat catspeak Talk-to: 4-option chathead tree that recurses until the player picks the quit option. */
 suspend fun Player.talkToCatWithAmulet(cat: NPC) {
-    while (true) {
-        var keepGoing = true
-        choice("What would you like to ask?") {
-            option("How are you doing?") {
-                player<Quiz>("How are you doing?")
-                npc<Happy>(cat.id, "I'm good. But could we go adventuring soon? I'd like to chase things and eat them.")
-            }
-            option("How old are you now?") {
-                player<Quiz>("How old are you now?")
-                npc<Happy>(cat.id, "I'm not too old, and not too young. The perfect age really.")
-            }
-            option("Where do you want to go?") {
-                player<Quiz>("Where do you want to go?")
-                npc<Happy>(cat.id, "Can we go to Varrock Sewer and chase some rats?")
-            }
-            option("What do you want to do now?") {
-                player<Quiz>("What do you want to do now?")
-                npc<Happy>(cat.id, "I want to go chase things, kill them and then eat them.")
-                player<Quiz>("Always with the hunting...")
-            }
-            option("That's enough talking for now.") {
-                keepGoing = false
-            }
+    choice("What would you like to ask?") {
+        option("How are you doing?") {
+            player<Quiz>("How are you doing?")
+            npc<Happy>(cat.id, "I'm good. But could we go adventuring soon? I'd like to chase things and eat them.")
+            talkToCatWithAmulet(cat)
         }
-        if (!keepGoing) return
+        option("How old are you now?") {
+            player<Quiz>("How old are you now?")
+            npc<Happy>(cat.id, "I'm not too old, and not too young. The perfect age really.")
+            talkToCatWithAmulet(cat)
+        }
+        option("Where do you want to go?") {
+            player<Quiz>("Where do you want to go?")
+            npc<Happy>(cat.id, "Can we go to Varrock Sewer and chase some rats?")
+            talkToCatWithAmulet(cat)
+        }
+        option("What do you want to do now?") {
+            player<Quiz>("What do you want to do now?")
+            npc<Happy>(cat.id, "I want to go chase things, kill them and then eat them.")
+            player<Quiz>("Always with the hunting...")
+            talkToCatWithAmulet(cat)
+        }
+        option("That's enough talking for now.")
     }
 }
 
-/** Simple talk for kittens / adult cats without the amulet. */
+/** Simple talk for kittens and adult cats without the amulet. */
 suspend fun Player.talkToCatPlain(cat: NPC) {
     player<Happy>("Hey puss! Any news?")
     cat.say("Purr.")
     cat.say("Meow!")
 }
 
-/** "Pick-up" with the amulet equipped — adult cat only. */
-suspend fun Player.pickupCatWithAmulet(cat: NPC, definitions: PetDefinitions) {
+/** Pick-up with the amulet equipped, adult cat only. */
+suspend fun Player.pickupCatWithAmulet(cat: NPC) {
     player<Happy>("Come here furball.")
     npc<Happy>(cat.id, "Can we go adventuring together again, soon?")
     player<Happy>("Soon, I promise.")
-    pickupPet(definitions)
+    pickupPet()
 }
 
 /** Adult cat summon (Drop / Release item) with the amulet equipped. */
-suspend fun Player.summonCatWithAmulet(def: PetDefinition, itemId: String) {
-    val npcId = def.grownNpc ?: def.babyNpc
+suspend fun Player.summonCatWithAmulet(row: RowDefinition, itemId: String) {
+    val npcId = row.npcOrNull("grown_npc") ?: row.npcOrNull("baby_npc") ?: return
     player<Quiz>("Hey cat, do you fancy stretching your legs a bit?")
     npc<Happy>(npcId, "Miaaow, Are we going adventuring?")
     player<Happy>("We'll see puss, we'll see.")

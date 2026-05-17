@@ -19,12 +19,6 @@ import java.util.concurrent.TimeUnit
 
 private val SUFFIXES = listOf("taverley", "yanille")
 
-private fun Player.incubatorSuffix(): String? = when (tile.region.id) {
-    11573 -> "taverley"
-    10288 -> "yanille"
-    else -> null
-}
-
 private fun egg(id: String): RowDefinition? = Rows.getOrNull("incubator_eggs.$id")
 
 private fun eggForItem(itemId: String): RowDefinition? = Tables.get("incubator_eggs").rows().firstOrNull { it.item("egg") == itemId }
@@ -33,9 +27,7 @@ class Incubator : Script {
 
     init {
         objectOperate("Inspect", "incubator_*") {
-            val suffix = incubatorSuffix() ?: return@objectOperate run {
-                message("This incubator isn't ready to be used.")
-            }
+            val suffix = it.target.id.removePrefix("incubator_")
             when (get("incubator_state_$suffix", "empty")) {
                 "finished" -> message("The egg inside has finished incubating.")
                 "incubating" -> {
@@ -48,7 +40,7 @@ class Incubator : Script {
         }
 
         objectOperate("Take-egg", "incubator_*") {
-            val suffix = incubatorSuffix() ?: return@objectOperate
+            val suffix = it.target.id.removePrefix("incubator_")
             if (get("incubator_state_$suffix", "empty") != "finished") {
                 message("That egg hasn't finished incubating!")
                 return@objectOperate
@@ -65,9 +57,7 @@ class Incubator : Script {
         }
 
         itemOnObjectOperate(obj = "incubator_*") { interact ->
-            val suffix = incubatorSuffix() ?: return@itemOnObjectOperate run {
-                message("This incubator isn't ready to be used.")
-            }
+            val suffix = interact.target.id.removePrefix("incubator_")
             val def = eggForItem(interact.item.id) ?: return@itemOnObjectOperate
             if (get("incubator_state_$suffix", "empty") != "empty") {
                 message("You already have an egg in this incubator.")
