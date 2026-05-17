@@ -19,7 +19,7 @@ internal class IncubatorUseEggTest : WorldTest() {
 
     @Test
     fun `using penguin egg on incubator places it`() {
-        val incubator = createObject("incubator_empty", taverleyIncubatorTile)
+        val incubator = createObject("incubator_taverley", taverleyIncubatorTile)
         val player = createPlayer(Tile(taverleyIncubatorTile.x + 1, taverleyIncubatorTile.y, 0))
         player.levels.set(Skill.Summoning, 99)
         player.inventory.add("penguin_egg")
@@ -33,7 +33,7 @@ internal class IncubatorUseEggTest : WorldTest() {
 
     @Test
     fun `take-egg on finished incubator yields baby pet item`() {
-        val activeIncubator = createObject("incubator_active", taverleyIncubatorTile)
+        val activeIncubator = createObject("incubator_taverley", taverleyIncubatorTile)
         val player = createPlayer(Tile(taverleyIncubatorTile.x + 1, taverleyIncubatorTile.y, 0))
         // Pre-populate as if an egg was placed and has finished incubating.
         player.set("incubator_egg_taverley", "penguin")

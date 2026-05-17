@@ -6,6 +6,7 @@ import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -36,17 +37,18 @@ var Player.pet: NPC?
         }
     }
 
-fun Player.summonPet(def: PetDefinition, itemId: String, restart: Boolean = false): Boolean {
+fun Player.summonPet(row: RowDefinition, itemId: String, restart: Boolean = false): Boolean {
     if (pet != null || follower != null) {
         if (!restart) message("You already have a follower.")
         return false
     }
-    if (!has(Skill.Summoning, def.summoningLevel)) {
-        message("You need a Summoning level of ${def.summoningLevel} to raise this pet.")
+    val level = row.int("summoning_level")
+    if (!has(Skill.Summoning, level)) {
+        message("You need a Summoning level of $level to raise this pet.")
         return false
     }
-    val stage = def.stageForItem(itemId) ?: return false
-    val npcStringId = def.npcFor(stage) ?: return false
+    val stage = row.stageForItem(itemId) ?: return false
+    val npcStringId = row.npcFor(stage) ?: return false
     val spawned = NPCs.add(npcStringId, tile)
     spawned.mode = Follow(spawned, this)
     set("pet_active_item", itemId)
@@ -61,13 +63,11 @@ fun Player.summonPet(def: PetDefinition, itemId: String, restart: Boolean = fals
     return true
 }
 
-fun Player.pickupPet(): Boolean = pickupPet(get<PetDefinitions>())
-
-fun Player.pickupPet(definitions: PetDefinitions): Boolean {
+fun Player.pickupPet(): Boolean {
     val npc = pet ?: return false
-    val def = definitions.forNpc(npc.id) ?: return false
-    val stage = def.stageForNpc(npc.id) ?: return false
-    val itemId = def.itemFor(stage) ?: return false
+    val row = petRowForNpc(npc.id) ?: return false
+    val stage = row.stageForNpc(npc.id) ?: return false
+    val itemId = row.itemFor(stage) ?: return false
     if (!inventory.add(itemId)) {
         message("You don't have enough room in your inventory.")
         return false
@@ -95,20 +95,21 @@ fun Player.updatePetInterface() {
 fun Player.sendPetDetailsStats() {
     val itemStringId = get("pet_active_item", "")
     if (itemStringId.isBlank()) return
-    val def = get<PetDefinitions>().forItem(itemStringId) ?: return
-    val growth = getPetGrowth(def.id).toInt().coerceIn(0, 100)
-    val hunger = getPetHunger(def.id).toInt().coerceIn(0, 100)
+    val row = petRowForItem(itemStringId) ?: return
+    val growth = (getPetGrowth(row.rowId) / 100).coerceIn(0, 100)
+    val hunger = (getPetHunger(row.rowId) / 100).coerceIn(0, 100)
     val packed = (growth shl 1) or (hunger shl 9)
     set("pet_details_stats", packed)
     variables.send("pet_details_stats")
 }
 
-suspend fun Player.talkToPet(def: PetDefinition, pet: NPC) {
-    if (def.talkLines.isEmpty()) {
-        def.ambientPhrases.randomOrNull()?.let { pet.say(it) }
+suspend fun Player.talkToPet(row: RowDefinition, pet: NPC) {
+    val talkLines = row.stringList("talk_lines")
+    if (talkLines.isEmpty()) {
+        row.ambientPhrases().randomOrNull()?.let { pet.say(it) }
         return
     }
-    for (line in def.talkLines) {
+    for (line in talkLines) {
         if (line.startsWith("pet:")) {
             pet.say(line.removePrefix("pet:").trim())
         } else {
@@ -157,14 +158,14 @@ private fun Player.deactivateSummoningOrb() {
     }
 }
 
-private suspend fun Player.dropPet(def: PetDefinition, itemId: String) {
+private suspend fun Player.dropPet(row: RowDefinition, itemId: String) {
     val amulet = hasCatspeakAmulet()
-    if (def.isCatLike && amulet) {
-        summonCatWithAmulet(def, itemId)
+    if (row.isCatLike() && amulet) {
+        summonCatWithAmulet(row, itemId)
     }
-    if (summonPet(def, itemId, restart = false)) {
+    if (summonPet(row, itemId, restart = false)) {
         inventory.remove(itemId)
-        if (def.isCatLike && !amulet) {
+        if (row.isCatLike() && !amulet) {
             // pet is wired up in summonPet's own +2 weakQueue; wait a tick past
             // that so pet?.say() targets the newly-summoned NPC.
             weakQueue("cat_drop_meow", 3) {
@@ -174,23 +175,24 @@ private suspend fun Player.dropPet(def: PetDefinition, itemId: String) {
     }
 }
 
-class PetScripts(private val definitions: PetDefinitions) : Script {
+class PetScripts : Script {
 
     init {
-        val itemIds = definitions.all.flatMap {
-            listOfNotNull(it.babyItem, it.grownItem, it.overgrownItem)
+        val rows = allPetRows()
+        val itemIds = rows.flatMap {
+            listOfNotNull(it.itemOrNull("baby_item"), it.itemOrNull("grown_item"), it.itemOrNull("overgrown_item"))
         }.toSet().joinToString(",")
-        val npcIds = definitions.all.flatMap {
-            listOfNotNull(it.babyNpc, it.grownNpc, it.overgrownNpc)
+        val npcIds = rows.flatMap {
+            listOfNotNull(it.npcOrNull("baby_npc"), it.npcOrNull("grown_npc"), it.npcOrNull("overgrown_npc"))
         }.toSet().joinToString(",")
 
         itemOption("Drop", itemIds) { (item) ->
-            val def = definitions.forItem(item.id) ?: return@itemOption
-            dropPet(def, item.id)
+            val row = petRowForItem(item.id) ?: return@itemOption
+            dropPet(row, item.id)
         }
         itemOption("Release", itemIds) { (item) ->
-            val def = definitions.forItem(item.id) ?: return@itemOption
-            dropPet(def, item.id)
+            val row = petRowForItem(item.id) ?: return@itemOption
+            dropPet(row, item.id)
         }
 
         npcOperate("Pick-up", npcIds) { interact ->
@@ -200,9 +202,9 @@ class PetScripts(private val definitions: PetDefinitions) : Script {
                 return@npcOperate
             }
             if (hasCatspeakAmulet() && isAdultCat(owner)) {
-                pickupCatWithAmulet(owner, definitions)
+                pickupCatWithAmulet(owner)
             } else {
-                pickupPet(definitions)
+                pickupPet()
             }
         }
         npcOperate("Talk-to", npcIds) { interact ->
@@ -211,27 +213,27 @@ class PetScripts(private val definitions: PetDefinitions) : Script {
                 message("This isn't your pet.")
                 return@npcOperate
             }
-            val def = definitions.forNpc(interact.target.id) ?: return@npcOperate
-            if (def.isCatLike) {
+            val row = petRowForNpc(interact.target.id) ?: return@npcOperate
+            if (row.isCatLike()) {
                 if (hasCatspeakAmulet() && isAdultCat(owner)) {
                     talkToCatWithAmulet(owner)
                 } else {
                     talkToCatPlain(owner)
                 }
             } else {
-                talkToPet(def, owner)
+                talkToPet(row, owner)
             }
         }
 
         playerSpawn {
             val itemId = get("pet_active_item", "")
             if (itemId.isBlank()) return@playerSpawn
-            val def = definitions.forItem(itemId) ?: return@playerSpawn
+            val row = petRowForItem(itemId) ?: return@playerSpawn
             set("pet_index", -1)
             variables.send("follower_details_name")
             variables.send("follower_details_chathead")
             variables.send("follower_details_chathead_animation")
-            summonPet(def, itemId, restart = true)
+            summonPet(row, itemId, restart = true)
         }
     }
 }

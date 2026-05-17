@@ -1,18 +1,19 @@
 # Pet incubator scenery.
-# Cache transforms (verified): 28550 and 28352 are base objects with varbit-driven
-# transforms; the player never sees them directly. The displayed object is:
-#   varbit = 0  ->  28336  (idle, no egg)
-#   varbit >= 1 ->  28359  (active: incubating or finished hatching)
-# Right-click options (Take-egg, Inspect, Examine) live on 28359 only.
+# Each site has a distinct base (incubator_taverley / incubator_yanille) so
+# `target.id.removePrefix("incubator_")` resolves the region suffix. The
+# `incubator_idle` / `incubator_active` transforms below are the varbit-driven
+# rendered meshes shared by both sites; they need string ids registered so the
+# operate dispatch (which keys on the displayed def) lands on the same handler
+# set as the base.
+
+[incubator_taverley]
+id = 28550
+
+[incubator_yanille]
+id = 28352
 
 [incubator_idle]
 id = 28336
 
 [incubator_active]
 id = 28359
-
-[incubator_empty]
-id = 28550
-
-[incubator_incubating]
-id = 28352

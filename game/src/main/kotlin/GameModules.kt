@@ -5,7 +5,6 @@ import content.entity.player.modal.book.Books
 import content.entity.world.music.MusicTracks
 import content.quest.member.fairy_tale_part_2.fairy_ring.FairyRingCodes
 import content.skill.farming.FarmingDefinitions
-import content.skill.summoning.pet.PetDefinitions
 import content.social.trade.exchange.GrandExchange
 import content.social.trade.exchange.history.ExchangeHistory
 import org.koin.dsl.module
@@ -66,5 +65,4 @@ fun gameModule(files: ConfigFiles) = module {
         }
     }
     single(createdAtStart = true) { FarmingDefinitions().load(files.find(Settings["definitions.produce"])) }
-    single { PetDefinitions() }
 }
