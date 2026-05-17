@@ -1,8 +1,7 @@
 package content.skill.summoning.pet
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.Tables
-import world.gregs.voidps.engine.timedLoad
 
 enum class PetStage { Baby, Grown, Overgrown }
 
@@ -64,50 +63,40 @@ data class PetDefinition(
 
     val isCatLike: Boolean
         get() = id == "hellcat" || id == "cat" || id.startsWith("cat_")
+
+    companion object {
+        fun from(row: RowDefinition) = PetDefinition(
+            id = row.rowId,
+            babyItem = row.item("baby_item"),
+            babyNpc = row.npc("baby_npc"),
+            grownItem = row.itemOrNull("grown_item"),
+            grownNpc = row.npcOrNull("grown_npc"),
+            overgrownItem = row.itemOrNull("overgrown_item"),
+            overgrownNpc = row.npcOrNull("overgrown_npc"),
+            growthRate = row.double("growth_rate"),
+            summoningLevel = row.int("summoning_level"),
+            food = row.itemList("food"),
+            hungryPhrase = row.stringOrNull("hungry_phrase")?.takeIf { it.isNotBlank() },
+            idlePhrases = row.stringList("idle_phrases"),
+            talkLines = row.stringList("talk_lines"),
+        )
+    }
 }
 
 class PetDefinitions {
 
-    private val byId = Object2ObjectOpenHashMap<String, PetDefinition>()
-    private val itemIndex = Object2ObjectOpenHashMap<String, PetDefinition>()
-    private val npcIndex = Object2ObjectOpenHashMap<String, PetDefinition>()
-
-    val all: Collection<PetDefinition> get() = byId.values
-
-    fun get(id: String): PetDefinition? = byId[id]
-    fun forItem(item: String): PetDefinition? = itemIndex[item]
-    fun forNpc(npc: String): PetDefinition? = npcIndex[npc]
-
-    fun load(): PetDefinitions {
+    val all: List<PetDefinition> by lazy {
         require(Tables.loaded) { "Tables must be loaded before pet definitions." }
-        timedLoad("pet definition") {
-            for (row in Tables.get("pets").rows()) {
-                val id = row.rowId
-                val def = PetDefinition(
-                    id = id,
-                    babyItem = row.item("baby_item"),
-                    babyNpc = row.npc("baby_npc"),
-                    grownItem = row.itemOrNull("grown_item"),
-                    grownNpc = row.npcOrNull("grown_npc"),
-                    overgrownItem = row.itemOrNull("overgrown_item"),
-                    overgrownNpc = row.npcOrNull("overgrown_npc"),
-                    growthRate = row.double("growth_rate"),
-                    summoningLevel = row.int("summoning_level"),
-                    food = row.itemList("food"),
-                    hungryPhrase = row.stringOrNull("hungry_phrase")?.takeIf { it.isNotBlank() },
-                    idlePhrases = row.stringList("idle_phrases"),
-                    talkLines = row.stringList("talk_lines"),
-                )
-                byId[id] = def
-                itemIndex[def.babyItem] = def
-                def.grownItem?.let { itemIndex[it] = def }
-                def.overgrownItem?.let { itemIndex[it] = def }
-                npcIndex[def.babyNpc] = def
-                def.grownNpc?.let { npcIndex[it] = def }
-                def.overgrownNpc?.let { npcIndex[it] = def }
-            }
-            byId.size
-        }
-        return this
+        Tables.get("pets").rows().map { PetDefinition.from(it) }
+    }
+
+    fun get(id: String): PetDefinition? = all.firstOrNull { it.id == id }
+
+    fun forItem(item: String): PetDefinition? = all.firstOrNull {
+        it.babyItem == item || it.grownItem == item || it.overgrownItem == item
+    }
+
+    fun forNpc(npc: String): PetDefinition? = all.firstOrNull {
+        it.babyNpc == npc || it.grownNpc == npc || it.overgrownNpc == npc
     }
 }

@@ -252,7 +252,7 @@ class Summoning : Script {
             renewFamiliar()
         }
 
-        interfaceOption("*", "familiar_details:dismiss") { option ->
+        interfaceOption("*", "*_details:dismiss") { option ->
             when (option.option) {
                 "Dismiss Familiar" -> {
                     if (follower != null) {

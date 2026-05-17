@@ -27,7 +27,7 @@ internal class PetLogoutTest : WorldTest() {
     }
 
     @Test
-    fun `pet_stats blob encodes hunger growth warn and persists`() {
+    fun `pet stats persist as per-pet hunger growth warn vars`() {
         val player = createPlayer(emptyTile)
         player.updatePetStats("cat") {
             hunger = 42.5
@@ -35,8 +35,10 @@ internal class PetLogoutTest : WorldTest() {
             warn = 1
         }
 
-        val blob = player.variables.data["pet_stats"] as? String
-        assertEquals("cat:42.5:17.0:1", blob)
+        val persisted = player.variables.data
+        assertEquals(42.5, persisted["pet_cat_hunger"])
+        assertEquals(17.0, persisted["pet_cat_growth"])
+        assertEquals(1, persisted["pet_cat_warn"])
         assertEquals(42.5, player.getPetHunger("cat"))
         assertEquals(17.0, player.getPetGrowth("cat"))
         assertEquals(1, player.getPetWarn("cat"))
@@ -46,11 +48,11 @@ internal class PetLogoutTest : WorldTest() {
     fun `incubator state persists per region`() {
         val player = createPlayer(emptyTile)
         player.set("incubator_egg_taverley", "penguin")
-        player.set("incubator_end_taverley", 1_700_000_000_000L)
+        player.set("incubator_end_taverley", 12_345)
 
         val persisted = player.variables.data
         assertEquals("penguin", persisted["incubator_egg_taverley"])
-        assertEquals(1_700_000_000_000L, persisted["incubator_end_taverley"])
+        assertEquals(12_345, persisted["incubator_end_taverley"])
         assertTrue("incubator_egg_yanille" !in persisted)
     }
 }
