@@ -101,7 +101,7 @@ class KittenInteract(definitions: PetDefinitions) : Script {
             npc<Happy>(cat.id, "Yesss, food.")
         } else {
             player<Quiz>("Do you fancy a bit of hunting?")
-            cat.say("Meoowww. Yeah! Let's go kick some fur!")
+            npc<Happy>(cat.id, "Meoowww. Yeah! Let's go kick some fur!")
             player<Happy>("Take it easy sport, just don't hurt yourself.")
         }
 
@@ -132,10 +132,10 @@ class KittenInteract(definitions: PetDefinitions) : Script {
                 NPCs.remove(nearbyRat)
                 val count = get("pet_rats_caught", 0) + 1
                 set("pet_rats_caught", count)
-                say("Hey well done puss, you got it!")
+                player<Happy>("Hey well done puss, you got it!")
                 current?.say("MeeeoooooW!")
                 if (count % 10 == 0) {
-                    say("Well done puss! $count horrible rodents caught!")
+                    player<Happy>("Well done puss! $count horrible rodents caught!")
                 }
             } else {
                 message("The rat manages to get away!")
