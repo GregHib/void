@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.canFit
 import world.gregs.voidps.engine.map.spiral
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.type.Tile
 
 var Player.pet: NPC?
@@ -53,10 +53,10 @@ fun Player.summonPet(def: PetDefinition, itemId: String, restart: Boolean = fals
     if (!restart) {
         anim("climb_down")
     }
-    softQueue("summon_pet", 2) {
-        player.pet = spawned
-        player.timers.start("pet_tick")
-        player.updatePetInterface()
+    weakQueue("summon_pet", 2) {
+        pet = spawned
+        timers.start("pet_tick")
+        updatePetInterface()
     }
     return true
 }
@@ -148,12 +148,12 @@ private fun Player.deactivateSummoningOrb() {
     interfaces.close("pet_details")
     interfaces.close("familiar_details")
     sendScript("reset_summoning_orb")
-    softQueue("reset_familiar_vars", 1) {
-        player["follower_details_name"] = 0
-        player["follower_details_chathead"] = 0
-        player["familiar_details_minutes_remaining"] = 0
-        player["familiar_details_seconds_remaining"] = 0
-        player["pet_details_stats"] = 0
+    weakQueue("reset_familiar_vars", 1) {
+        this["follower_details_name"] = 0
+        this["follower_details_chathead"] = 0
+        this["familiar_details_minutes_remaining"] = 0
+        this["familiar_details_seconds_remaining"] = 0
+        this["pet_details_stats"] = 0
     }
 }
 

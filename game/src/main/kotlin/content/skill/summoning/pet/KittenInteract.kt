@@ -12,10 +12,19 @@ import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.weakQueue
 
 private const val SCAN_RADIUS = 10
 private const val CHASE_RADIUS = 8
+private const val CATCH_CHANCE = 0.33
+
+private fun NPC.isRat(): Boolean {
+    val id = this.id
+    return id == "rat" ||
+        id.startsWith("rat_") ||
+        id.endsWith("_rat") ||
+        "_rat_" in id
+}
 
 class KittenInteract(definitions: PetDefinitions) : Script {
 
@@ -61,23 +70,29 @@ class KittenInteract(definitions: PetDefinitions) : Script {
     private fun Player.chaseVermin(kitten: NPC) {
         say("Go on puss...kill that rat!")
         val nearbyRat = NPCs.at(tile.regionLevel)
-            .filter { it.id.contains("rat") }
+            .filter { it.isRat() }
             .filter { it.tile.distanceTo(tile) <= SCAN_RADIUS }
             .minByOrNull { it.tile.distanceTo(kitten.tile) }
         if (nearbyRat == null || nearbyRat.tile.distanceTo(kitten.tile) > CHASE_RADIUS) {
             message("Your cat cannot get to its prey.")
             return
         }
+        val caught = Math.random() < CATCH_CHANCE
         kitten.say("Meeeoooooowwww!")
         nearbyRat.say("Eeek!")
         kitten.mode = EmptyMode
         kitten.walkTo(nearbyRat.tile)
-        softQueue("kitten_chase", 5) {
-            val current = player.pet
+        weakQueue("kitten_chase", 5) {
+            val current = pet
             if (current != null && current.index == kitten.index) {
-                current.mode = Follow(current, player)
+                current.mode = Follow(current, this)
             }
-            player.message("The rat manages to get away!")
+            if (caught && nearbyRat.tile.distanceTo(current?.tile ?: nearbyRat.tile) <= 1) {
+                NPCs.remove(nearbyRat)
+                message("Your cat has caught the rat.")
+            } else {
+                message("The rat manages to get away!")
+            }
         }
     }
 
