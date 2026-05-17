@@ -44,7 +44,7 @@ class Aggie : Script {
                                             remove("redberries")
                                             add("paste")
                                         }
-                                        item("paste", 400, "Aggie hands you the skin paste.")
+                                        item("paste", "Aggie hands you the skin paste.")
                                         npc<Happy>("There you go dearie. That will make you look good at the Varrock dances.")
                                     }
                                     option<Neutral>("No thank you. I don't need any skin paste right now.") {
@@ -69,14 +69,14 @@ class Aggie : Script {
                         npc<Angry>("Oh, you like to call a witch names do you?")
                         target.anim("pick_pocket")
                         sound("pick")
-                        item("pot_of_flour", 600, "Aggie waves her hands about, and you seem to have a pot of flour less.")
+                        item("pot_of_flour", "Aggie waves her hands about, and you seem to have a pot of flour less.")
                         npc<Neutral>("Thank you for your kind present of some flour. I am sure you never meant to insult me.")
                     } else if (inventory.contains("coins", 101)) {
                         inventory.remove("coins", 20)
                         npc<Angry>("Oh, you like to call a witch names do you?")
                         target.anim("pick_pocket")
                         sound("pick")
-                        item("coins", 600, "Aggie waves her hands about, and you seem to be 20 coins poorer.")
+                        item("coins", "Aggie waves her hands about, and you seem to be 20 coins poorer.")
                         npc<Neutral>("That's a fine for insulting a witch. You should learn some respect.")
                     } else {
                         npc<Angry>("You should be careful about insulting a witch. You never know what shape you could wake up in.")
@@ -221,7 +221,7 @@ class Aggie : Script {
                 remove("onion", 2)
                 add("yellow_dye")
             }
-            item("yellow_dye", 380, "You hand the onions and payment to Aggie. Aggie produces a yellow bottle and hands it to you.")
+            item("yellow_dye", "You hand the onions and payment to Aggie. Aggie produces a yellow bottle and hands it to you.")
         }
     }
 
@@ -241,7 +241,7 @@ class Aggie : Script {
                 remove("redberries", 3)
                 add("red_dye")
             }
-            item("red_dye", 380, "You hand the berries and payment to Aggie. Aggie produces a red bottle and hands it to you.")
+            item("red_dye", "You hand the berries and payment to Aggie. Aggie produces a red bottle and hands it to you.")
         }
     }
 
@@ -261,7 +261,7 @@ class Aggie : Script {
             if (!inventory.add("blue_dye")) {
                 FloorItems.add(tile, "blue_dye", disappearTicks = 300, owner = this)
             }
-            item("blue_dye", 380, "You hand the woad leaves and payment to Aggie. Aggie produces a blue bottle and hands it to you.")
+            item("blue_dye", "You hand the woad leaves and payment to Aggie. Aggie produces a blue bottle and hands it to you.")
         }
     }
 }

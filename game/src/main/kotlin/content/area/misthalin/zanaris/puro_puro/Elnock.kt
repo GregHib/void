@@ -70,7 +70,7 @@ class Elnock : Script {
                     return@option
                 }
                 if (inventory.add("impling_scroll")) {
-                    item("impling_scroll", 400, "Elnock gives you a scroll. If you check it whilst in the maze, you will see how many of each impling you have captured.") // 11273
+                    item("impling_scroll", "Elnock gives you a scroll. If you check it whilst in the maze, you will see how many of each impling you have captured.") // 11273
                 } else {
                     // TODO
                 }

@@ -24,7 +24,7 @@ class Satchel : Script {
             val cake = if (charges and cake != 0) "one" else "no"
             val banana = if (charges and banana != 0) "one" else "no"
             val sandwich = if (charges and sandwich != 0) "one" else "no"
-            item(it.item.id, 400, "The ${it.item.id.toLowerSpaceCase()}!<br>(Containing: $sandwich sandwich, $cake cake, and $banana banana)")
+            item(it.item.id, "The ${it.item.id.toLowerSpaceCase()}!<br>(Containing: $sandwich sandwich, $cake cake, and $banana banana)")
         }
 
         itemOption("Empty", "*_satchel") {

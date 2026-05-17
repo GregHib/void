@@ -49,19 +49,19 @@ class Cook : Script {
     suspend fun Player.started() {
         npc<Sad>("how are you getting on with finding the ingredients?")
         if (carriesItem("top_quality_milk")) {
-            item("top_quality_milk", 500, "You give the top-quality milk to the cook.")
+            item("top_quality_milk", "You give the top-quality milk to the cook.")
             inventory.remove("top_quality_milk")
             set("cooks_assistant_milk", 1)
             player<Happy>("Here's some top-quality milk.")
         }
         if (carriesItem("extra_fine_flour")) {
-            item("extra_fine_flour", 500, "You give the extra fine flour to the cook.")
+            item("extra_fine_flour", "You give the extra fine flour to the cook.")
             inventory.remove("extra_fine_flour")
             set("cooks_assistant_flour", 1)
             player<Happy>("Here's the extra fine flour.")
         }
         if (carriesItem("super_large_egg")) {
-            item("super_large_egg", 500, "You give the super large egg to the cook.")
+            item("super_large_egg", "You give the super large egg to the cook.")
             inventory.remove("super_large_egg")
             set("cooks_assistant_egg", 1)
             player<Happy>("Here's a super large egg.")
@@ -193,7 +193,7 @@ class Cook : Script {
         } else {
             npc<Happy>("Here, take this manual. It should tell you everything you need to know about this range.")
             inventory.add("cook_o_matic_manual")
-            item("cook_o_matic_manual", 500, "The cook hands you a manual.")
+            item("cook_o_matic_manual", "The cook hands you a manual.")
         }
         player<Neutral>("Thanks!")
     }

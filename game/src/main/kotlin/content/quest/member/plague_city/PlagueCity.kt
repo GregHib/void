@@ -545,7 +545,7 @@ class PlagueCity : Script {
                 set("plague_city", "completed_with_spell")
                 sound("wom_bless")
                 inventory.remove("a_magic_scroll")
-                item("a_magic_scroll", 600, "You memorise what is written on the scroll. You can now use the Ardougne Teleport Spell.")
+                item("a_magic_scroll", "You memorise what is written on the scroll. You can now use the Ardougne Teleport Spell.")
             }
         }
 
@@ -567,7 +567,7 @@ class PlagueCity : Script {
         crafted { def ->
             if (def.add.any { it.id == "chocolatey_milk" }) {
                 queue("milk") {
-                    item("chocolatey_milk", 400, "You mix the chocolate into the bucket.")
+                    item("chocolatey_milk", "You mix the chocolate into the bucket.")
                 }
             }
         }
@@ -575,7 +575,7 @@ class PlagueCity : Script {
         crafted { def ->
             if (def.add.any { it.id == "hangover_cure" }) {
                 queue("cure") {
-                    item("hangover_cure", 400, "You mix the snape grass into the bucket.")
+                    item("hangover_cure", "You mix the snape grass into the bucket.")
                 }
             }
         }
@@ -591,6 +591,6 @@ class PlagueCity : Script {
         set("plaguecity_pipe", "grill_rope")
         set("plague_city", "grill_rope")
         inventory.remove("rope", 1)
-        item("rope", 600, "You tie the end of the rope to the sewer pipe's grill.")
+        item("rope", "You tie the end of the rope to the sewer pipe's grill.")
     }
 }

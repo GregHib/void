@@ -164,7 +164,7 @@ class Shantay : Script {
         }
         when (inventory.transaction.error) {
             is TransactionError.Full -> npc<Neutral>("Sorry friend, you'll need more inventory space to buy a pass.")
-            TransactionError.None -> item("shantay_pass", 400, "You purchase a Shantay Pass.")
+            TransactionError.None -> item("shantay_pass", "You purchase a Shantay Pass.")
             else -> npc<Neutral>("Sorry friend, the Shantay Pass is 5 gold coins. You don't seem to have enough money!")
         }
     }

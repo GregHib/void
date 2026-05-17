@@ -43,21 +43,21 @@ class Reldo : Script {
                 npc<Happy>("My old friend Aubury sent me some runes in return for some books he wanted. Perhaps you'd like them?")
             }
             "herbs" -> {
-                item("grimy_tarromin", 400, "<navy>Reldo gives you some herbs.") // TODO proper message
+                item("grimy_tarromin", "<navy>Reldo gives you some herbs.") // TODO proper message
             }
             "seeds" -> {
-                item("potato_seed", 400, "<navy>Reldo gives you some seeds.")
+                item("potato_seed", "<navy>Reldo gives you some seeds.")
                 npc<Happy>("These little things seem to be everywhere these days! Perhaps you'd like them?")
             }
             "prayer" -> {
                 item(167, "<navy>Reldo blesses you.<br>You gain some Prayer xp.") // TODO proper message
             }
             "coins" -> {
-                item("coins_8", 400, "<navy>Reldo gives you some coins.")
+                item("coins_8", "<navy>Reldo gives you some coins.")
                 npc<Happy>("King Roald has been very generous with my salary, so I can spare you some coins for your trouble.")
             }
             else -> {
-                item(reward, 400, "Reldo gives you an ${reward.toSentenceCase()}!") // TODO proper message
+                item(reward, "Reldo gives you an ${reward.toSentenceCase()}!") // TODO proper message
             }
         }
     }

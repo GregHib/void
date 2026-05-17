@@ -15,12 +15,11 @@ internal class ItemBoxTest : DialogueTest() {
     fun `Send item box`() {
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         var resumed = false
-        ItemDefinitions.set(arrayOf(ItemDefinition(id = 9009, name = "item_name")), mapOf("item_name" to 0))
+        ItemDefinitions.set(arrayOf(ItemDefinition(id = 9009, name = "item_name", spriteScale = 1300)), mapOf("item_name" to 0))
         every { player.sendScript(any(), *anyVararg()) } just Runs
         dialogue {
             item(
                 "item_name",
-                650,
                 """
                 An item
                 description
@@ -64,7 +63,7 @@ internal class ItemBoxTest : DialogueTest() {
         every { player.sendScript(any(), *anyVararg()) } just Runs
         every { player.open("dialogue_obj_box") } returns false
         dialogueBlocking {
-            item("9009", 650, "text", 10)
+            item("9009", "text", 10)
         }
         coVerify(exactly = 0) {
             player.sendScript("dialogue_item_zoom", 650, 9009)

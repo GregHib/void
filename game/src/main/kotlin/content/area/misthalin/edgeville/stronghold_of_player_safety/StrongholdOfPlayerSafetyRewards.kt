@@ -31,7 +31,7 @@ class StrongholdOfPlayerSafetyRewards : Script {
             inventory.add("antique_lamp_misthalin_training_centre_of_excellence")
             inventory.add("antique_lamp_misthalin_training_centre_of_excellence_2")
             set("unlocked_emote_safety_first", true)
-            item("safety_gloves", 400, "You open the chest to find a large pile of gold, along with a pair of safety gloves and two antique lamps. Also in the chest is the secret of the 'Safety First' emote.")
+            item("safety_gloves", "You open the chest to find a large pile of gold, along with a pair of safety gloves and two antique lamps. Also in the chest is the secret of the 'Safety First' emote.")
         }
 
         itemOption("Rub", "antique_lamp_misthalin_training_centre_of_excellence*") { (item, slot) ->

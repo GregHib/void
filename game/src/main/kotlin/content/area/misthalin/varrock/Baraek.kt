@@ -47,7 +47,7 @@ class Baraek : Script {
             option<Idle>("Yeah, OK, here you go.") {
                 if (inventory.remove("coins", 20)) {
                     inventory.add("bear_fur")
-                    item("bear_fur", 645, "Baraek sells you a fur.")
+                    item("bear_fur", "Baraek sells you a fur.")
                 } else {
                     player<Disheartened>("Oh dear, I don't have enough money!")
                     npc<Idle>("Well, my best price is 18 coins.")
@@ -55,7 +55,7 @@ class Baraek : Script {
                         option<Idle>("OK, here you go.") {
                             if (inventory.remove("coins", 18)) {
                                 inventory.add("bear_fur")
-                                item("bear_fur", 645, "Baraek sells you a fur.")
+                                item("bear_fur", "Baraek sells you a fur.")
                             } else {
                                 player<Disheartened>("Oh dear, I don't have that either.")
                                 npc<Disheartened>("Well, I can't go any cheaper than that mate. I've got a family to feed.")
@@ -76,7 +76,7 @@ class Baraek : Script {
 
     suspend fun Player.buyFur() {
         npc<Idle>("Let's have a look at it.")
-        item("bear_fur", 645, "You hand Baraek your fur to look at.")
+        item("bear_fur", "You hand Baraek your fur to look at.")
         // wait 4sec and cant move
         npc<Idle>("It's not in the best condition. I guess I could give you 12 coins for it.")
         choice {

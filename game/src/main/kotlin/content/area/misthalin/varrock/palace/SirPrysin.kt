@@ -284,7 +284,7 @@ class SirPrysin : Script {
         set("demon_slayer_silverlight", true)
         set("demon_slayer_sir_prysin_sword", false)
         inventory.add("silverlight")
-        item("silverlight", 600, "Sir Prysin hands you a very shiny sword.")
+        item("silverlight", "Sir Prysin hands you a very shiny sword.")
         anim("silverlight_showoff")
         gfx("silverlight_sparkle")
         sound("equip_silverlight")

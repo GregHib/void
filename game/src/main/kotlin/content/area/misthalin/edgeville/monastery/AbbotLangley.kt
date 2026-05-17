@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.equip.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.inv.carriesItem
@@ -68,16 +67,16 @@ class AbbotLangley : Script {
         when (reward) {
             "runes" -> items("nature_rune", "water_rune", "Abbot Langley gives you some runes.") // TODO proper message
             "herbs" -> {
-                item("grimy_tarromin", 400, "<navy>Abbot Langley gives you some banknotes that can be exchanged for herbs.")
+                item("grimy_tarromin", "<navy>Abbot Langley gives you some banknotes that can be exchanged for herbs.")
                 npc<Happy>("I grow a few herbs in my little cabbage patch; please take some as a sign of my gratitude.")
             }
-            "seeds" -> item("potato_seed", 400, "<navy>Abbot Langley gives you some seeds.") // TODO proper message
+            "seeds" -> item("potato_seed", "<navy>Abbot Langley gives you some seeds.") // TODO proper message
             "prayer" -> {
                 item(167, "<navy>Abbot Langley blesses you.<br>You gain some Prayer xp.")
                 npc<Happy>("Allow me to bestow on you Saradomin's blessings...")
             }
-            "coins" -> item("coins_8", 400, "<navy>Abbot Langley gives you some coins.")
-            else -> item(reward, 400, "Abbot Langley gives you an ${reward.toSentenceCase()}!") // TODO proper message
+            "coins" -> item("coins_8", "<navy>Abbot Langley gives you some coins.")
+            else -> item(reward, "Abbot Langley gives you an ${reward.toSentenceCase()}!") // TODO proper message
         }
     }
 }

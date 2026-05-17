@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.npc
 
 import com.github.michaelbull.logging.InlineLogger
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.Despawn
@@ -30,6 +31,7 @@ object NPCs : Runnable,
         private set
     private val zoneMap = CharacterIndexMap(MAX_NPCS)
     internal val regionMap = CharacterIndexMap(MAX_NPCS)
+    internal val spawns = Int2IntOpenHashMap(MAX_NPCS)
     private val logger = InlineLogger()
 
     override fun run() {
@@ -98,6 +100,20 @@ object NPCs : Runnable,
 
     fun findOrNull(tile: Tile, id: String) = firstOrNull(tile) { it.id == id }
 
+    fun findBySpawn(tile: Tile, id: String) = findBySpawnOrNull(tile, id)!!
+
+    fun findBySpawnOrNull(tile: Tile, id: String): NPC? {
+        val index = spawns[tile.id]
+        if (index <= 0) {
+            return null
+        }
+        val npc = indexed(index) ?: return null
+        if (npc.id == id) {
+            return npc
+        }
+        return null
+    }
+
     override fun at(tile: Tile): List<NPC> {
         val list = mutableListOf<NPC>()
         zoneMap.onEach(tile.zone.id) { index ->
@@ -158,6 +174,7 @@ object NPCs : Runnable,
         npc.levels.clear(Skill.Defence)
         npc.levels.clear(Skill.Ranged)
         npc.levels.clear(Skill.Magic)
+        spawns[npc.tile.id] = npc.index
         npc["spawn_tile"] = npc.tile
         if (npc.mode == EmptyMode && Wander.wanders(npc)) {
             npc.mode = Wander(npc, npc.tile)

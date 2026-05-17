@@ -11,7 +11,7 @@ class DungeonEntrance : Script {
     init {
         objectOperate("Climb-down", "daemonheim_dungeon_entrance") {
             if (!ownsItem("ring_of_kinship")) {
-                item("ring_of_kinship", 300, "To join or create a party, you need a ring of kinship. You can get one form the dungeoneering tutor, on the right of the entrance to Daemonheim castle.")
+                item("ring_of_kinship", "To join or create a party, you need a ring of kinship. You can get one form the dungeoneering tutor, on the right of the entrance to Daemonheim castle.")
                 return@objectOperate
             }
             if (!DungeoneeringParty.inParty(this)) {

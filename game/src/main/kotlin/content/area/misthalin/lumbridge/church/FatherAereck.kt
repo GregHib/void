@@ -68,18 +68,18 @@ class FatherAereck(val drops: DropTables) : Script {
                 items("nature_rune", "water_rune", "Faether Aereck gives you some runes.")
                 npc<Happy>("Well, maybe you'll have a use for these?")
             }
-            "herbs" -> item("grimy_tarromin", 400, "Faether Aereck gives you some herbs.") // TODO proper message
+            "herbs" -> item("grimy_tarromin", "Faether Aereck gives you some herbs.") // TODO proper message
             "seeds" -> {
-                item("potato_seed", 400, "Faether Aereck gives you some seeds.")
+                item("potato_seed", "Faether Aereck gives you some seeds.")
                 npc<Happy>("Well, maybe you'll find a use for these seeds?")
             }
             "prayer" -> {
                 item(167, "<navy>Father Aereck blesses you.<br>You gain some Prayer xp.")
                 npc<Happy>("Well, it's still nice of you to bring the message here. Here, I shall bless you...")
             }
-            "coins" -> item("coins_8", 400, "Faether Aereck gives you some coins.")
+            "coins" -> item("coins_8", "Faether Aereck gives you some coins.")
             else -> {
-                item(reward, 400, "Father Aereck gives you an ${reward.toSentenceCase()}.")
+                item(reward, "Father Aereck gives you an ${reward.toSentenceCase()}.")
                 npc<Happy>("I suppose gems are always acceptable rewards!")
             }
         }

@@ -34,16 +34,16 @@ class BarbarianGuard : Script {
                 npc<Quiz>("Barbarians only. Are you a barbarian? You don't look like one.")
                 choice {
                     option<Neutral>("Hmm, yep you've got me there.")
-                    option<Neutral>("Looks can be deceiving, I am in fact a barbarian.") iAm@{
+                    option<Neutral>("Looks can be deceiving, I am in fact a barbarian.") {
                         if (inventory.isFull()) {
                             npc<Neutral>("Are you, now? Free up some space so you can carry something, and we'll see how barbarian you really are.")
-                            return@iAm
+                            return@option
                         }
                         npc<Neutral>("If you're a barbarian you need to be able to drink like one. We barbarians like a good drink.")
                         npc<Happy>("I have the perfect challenge for you... The Alfred Grimhand Barcrawl! First completed by Alfred Grimhand.")
                         if (inventory.add("barcrawl_card")) {
                             set("alfred_grimhands_barcrawl", "signatures")
-                            item("barcrawl_card", 400, "The guard hands you a Barcrawl card.")
+                            item("barcrawl_card", "The guard hands you a Barcrawl card.")
                         }
                         npc<Neutral>("Take that card to each of the bars named on it. The bartenders will know what it means. We're kinda well known.")
                         npc<Neutral>("They'll give you their strongest drink and sign your card. When you've done all that, we'll be happy to let you in.")
@@ -87,7 +87,7 @@ class BarbarianGuard : Script {
         npc<Quiz>("So, how's the Barcrawl coming along?")
         player<Drunk>("I tink I jusht 'bout done dem all... but I losht count...")
         if (inventory.remove("barcrawl_card")) {
-            item("barcrawl_card", 400, "You give the card to the barbarian.")
+            item("barcrawl_card", "You give the card to the barbarian.")
             set("alfred_grimhands_barcrawl", "completed")
             clear("barcrawl_signatures")
         }
@@ -117,7 +117,7 @@ class BarbarianGuard : Script {
         npc<Quiz>("What are you like? You're gonna have to start all over now.")
         if (inventory.add("barcrawl_card")) {
             clear("barcrawl_signatures")
-            item("barcrawl_card", 400, "The guard hands you a Barcrawl card.")
+            item("barcrawl_card", "The guard hands you a Barcrawl card.")
         }
     }
 }

@@ -27,7 +27,6 @@ class ItemDiscard : Script {
             val loan = ItemDefinitions.get(item.def.lendId).stringId
             item(
                 loan,
-                900,
                 """
                 <col=00007f>~ Loan expires ${getExpiryMessage(this)} ~</col>
                 If you discard this item, it will disappear.

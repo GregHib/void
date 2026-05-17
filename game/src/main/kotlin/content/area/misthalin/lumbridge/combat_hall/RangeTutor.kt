@@ -95,10 +95,10 @@ class RangeTutor : Script {
             return
         }
         if (!ownsItem("training_bow")) {
-            item("training_bow", 400, "Nemarti gives you a Training shortbow.")
+            item("training_bow", "Nemarti gives you a Training shortbow.")
             inventory.add("training_bow")
         }
-        item("training_arrows", 400, "Mikasi gives you 25 arrows. They can only be used with the Training shortbow.")
+        item("training_arrows", "Mikasi gives you 25 arrows. They can only be used with the Training shortbow.")
         inventory.add("training_arrows", 25)
         start("claimed_tutor_consumables", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
     }
@@ -114,7 +114,7 @@ class RangeTutor : Script {
             banked = true
         }
         if (banked) {
-            item("bank_icon", 1200, "You have some arrows in your bank. Climb the stairs in Lumbridge Castle until you see this icon on your minimap. There you will find a bank.")
+            item("bank_icon", "You have some arrows in your bank. Climb the stairs in Lumbridge Castle until you see this icon on your minimap. There you will find a bank.")
             return
         }
         if (inventory.contains("training_arrows") || equipment.contains("training_arrows")) {

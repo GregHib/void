@@ -79,11 +79,11 @@ class Sedridor : Script {
         player<Idle>("Okay, here you are.")
         if (inventory.contains("air_talisman")) {
             set("rune_mysteries", "talisman_delivered")
-            item("air_talisman", 600, "You hand the talisman to Sedridor.")
+            item("air_talisman", "You hand the talisman to Sedridor.")
             inventory.remove("air_talisman")
             npc<Confused>("Hmm... Doesn't seem to be anything too special. Just a normal air talisman by the looks of things. Still, looks can be deceiving. Let me take a closer look...")
             sound("enchant_emerald_ring")
-            item("air_talisman", 600, "Sedridor murmurs some sort of incantation and the talisman glows slightly.")
+            item("air_talisman", "Sedridor murmurs some sort of incantation and the talisman glows slightly.")
             npc<Confused>("How interesting... It would appear I spoke too soon. There's more to this talisman than meets the eye. In fact, it may well be the last piece of the puzzle.")
             player<Quiz>("Puzzle?")
             npc<Happy>("Indeed! The lost legacy of the first tower. This talisman may in fact be key to finding the forgotten essence mine!")
@@ -150,14 +150,14 @@ class Sedridor : Script {
             player<Disheartened>("I lost it. Could I have another?")
             npc<Idle>("Well it's a good job I have copies of everything.")
             if (inventory.isFull()) {
-                item("research_package_rune_mysteries", 600, "Sedridor tries to hand you a package, but you don't have enough room to take it.")
+                item("research_package_rune_mysteries", "Sedridor tries to hand you a package, but you don't have enough room to take it.")
                 return
             }
             if (bank.contains("research_package_rune_mysteries")) {
                 bank.remove("research_package_rune_mysteries")
             }
             inventory.add("research_package_rune_mysteries")
-            item("research_package_rune_mysteries", 600, "Sedridor hands you a package.")
+            item("research_package_rune_mysteries", "Sedridor hands you a package.")
             npc<Happy>("Best of luck, $name.")
         }
     }
@@ -167,7 +167,7 @@ class Sedridor : Script {
         player<Idle>("Yes, I have. He gave me some notes to give to you.")
         npc<Happy>("Wonderful! Let's have a look then.")
         if (carriesItem("research_notes_rune_mysteries")) {
-            item("research_notes_rune_mysteries", 600, "You hand the notes to Sedridor.")
+            item("research_notes_rune_mysteries", "You hand the notes to Sedridor.")
             npc<Happy>("Alright, let's see what Aubury has for us...")
             npc<Shock>("Yes, this is it! The lost incantation!")
             player<Quiz>("So you'll be able to access that essence mine now?")
@@ -197,11 +197,11 @@ class Sedridor : Script {
         set("rune_mysteries", "research_package")
         npc<Happy>("He runs a rune shop in the south east of Varrock. Please, take this package of research notes to him. If all goes well, the secrets of the essence mine may soon be ours once more!")
         if (inventory.isFull()) {
-            item("research_package_rune_mysteries", 600, "Sedridor tries to hand you a package, but you don't have enough room to take it.")
+            item("research_package_rune_mysteries", "Sedridor tries to hand you a package, but you don't have enough room to take it.")
             return@option
         }
         inventory.add("research_package_rune_mysteries")
-        item("research_package_rune_mysteries", 600, "Sedridor hands you a package.")
+        item("research_package_rune_mysteries", "Sedridor hands you a package.")
         npc<Happy>("Best of luck, $name.")
     }
 

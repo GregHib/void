@@ -76,7 +76,7 @@ class WysonTheGardener : Script {
             if (!inventory.add("woad_leaf")) {
                 FloorItems.add(tile, "woad_leaf", disappearTicks = 300, owner = this)
             }
-            item("woad_leaf", 290, "You buy a woad leaf from Wyson.")
+            item("woad_leaf", "You buy a woad leaf from Wyson.")
             player<Happy>("Thanks.")
             npc<Idle>("I'll be around if you have any more gardening needs.")
         } else {
@@ -90,7 +90,7 @@ class WysonTheGardener : Script {
             if (!inventory.add("woad_leaf", 2)) {
                 FloorItems.add(tile, "woad_leaf", 2, disappearTicks = 300, owner = this)
             }
-            item("woad_leaf", 290, "You buy a pair of woad leaves from Wyson.")
+            item("woad_leaf", "You buy a pair of woad leaves from Wyson.")
             player<Happy>("Thanks.")
         } else {
             player<Disheartened>("I don't have enough coins to buy the leaves. I'll come back later.")

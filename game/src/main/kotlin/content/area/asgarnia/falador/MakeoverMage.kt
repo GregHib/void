@@ -168,7 +168,7 @@ class MakeoverMage : Script {
                     add("yin_yang_amulet")
                 }
                 when (inventory.transaction.error) {
-                    TransactionError.None -> item("yin_yang_amulet", 300, "You receive an amulet in exchange for $cost coins")
+                    TransactionError.None -> item("yin_yang_amulet", "You receive an amulet in exchange for $cost coins")
                     is TransactionError.Deficient -> notEnough("coins")
                     is TransactionError.Full -> {
                         npc<Quiz>("Um...you don't seem to have room to take the amulet. Maybe you should buy it some other time.")

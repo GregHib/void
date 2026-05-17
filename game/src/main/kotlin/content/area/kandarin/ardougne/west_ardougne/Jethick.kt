@@ -71,7 +71,7 @@ class Jethick : Script {
     }
 
     private suspend fun Player.showPicture() {
-        item("picture_plague_city", 600, "You show Jethick the picture.")
+        item("picture_plague_city", "You show Jethick the picture.")
         npc<Idle>("Ah yes. She came over here to help the plague victims. I think she is staying over with the Rehnison family.")
         set("plague_city", "spoken_to_jethick")
         spokenToJethick()
@@ -84,9 +84,9 @@ class Jethick : Script {
             choice {
                 option<Happy>("Yes, I'll return it for you.") {
                     if (inventory.add("book_turnip_growing_for_beginners")) {
-                        item("book_turnip_growing_for_beginners", 500, "Jethick gives you a book.")
+                        item("book_turnip_growing_for_beginners", "Jethick gives you a book.")
                     } else {
-                        item("book_turnip_growing_for_beginners", 500, "Jethick shows you the book, but you don't have room to take it.")
+                        item("book_turnip_growing_for_beginners", "Jethick shows you the book, but you don't have room to take it.")
                     }
                 }
                 option<Happy>("No, I don't have time for that.")

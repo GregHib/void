@@ -137,7 +137,7 @@ class Doric : Script {
     }
 
     suspend fun Player.takeOre() {
-        item("copper_ore", 600, "You hand the clay, copper, and iron to Doric.")
+        item("copper_ore", "You hand the clay, copper, and iron to Doric.")
         inventory.remove(ores)
         questComplete()
     }

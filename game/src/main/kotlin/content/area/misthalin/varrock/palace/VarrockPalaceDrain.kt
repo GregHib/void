@@ -66,7 +66,7 @@ class VarrockPalaceDrain : Script {
         objectOperate("Take", "demon_slayer_rusty_key") {
             if (inventory.add("silverlight_key_sir_prysin")) {
                 set("demon_slayer_drain_dislodged", false)
-                item("silverlight_key_sir_prysin", 400, "You pick up an old rusty key.")
+                item("silverlight_key_sir_prysin", "You pick up an old rusty key.")
             }
         }
     }
