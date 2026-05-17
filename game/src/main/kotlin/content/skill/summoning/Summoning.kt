@@ -2,8 +2,8 @@ package content.skill.summoning
 
 import content.entity.player.dialogue.type.choice
 import content.skill.summoning.pet.callPet
+import content.skill.summoning.pet.dismissPet
 import content.skill.summoning.pet.pet
-import content.skill.summoning.pet.pickupPet
 import content.skill.summoning.pet.updatePetInterface
 import net.pearx.kasechange.toLowerSpaceCase
 import org.rsmod.game.pathfinder.StepValidator
@@ -243,7 +243,7 @@ class Summoning : Script {
         interfaceOption("Dismiss", id = "summoning_orb:*dismiss_follower") {
             when {
                 follower != null -> dismissFamiliar()
-                pet != null -> pickupPet()
+                pet != null -> dismissPet()
                 else -> message("You don't have a follower.")
             }
         }
@@ -254,7 +254,12 @@ class Summoning : Script {
 
         interfaceOption("*", "*_details:dismiss") { option ->
             when {
-                pet != null -> pickupPet()
+                pet != null -> choice("Are you sure you want to release your pet?") {
+                    option("Yes.") {
+                        dismissPet()
+                    }
+                    option("No.")
+                }
                 follower != null -> when (option.option) {
                     "Dismiss Now" -> dismissFamiliar()
                     else -> choice("Are you sure you want to dismiss your familiar?") {
