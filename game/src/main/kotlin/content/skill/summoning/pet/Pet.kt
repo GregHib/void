@@ -157,6 +157,23 @@ private fun Player.deactivateSummoningOrb() {
     }
 }
 
+private suspend fun Player.dropPet(def: PetDefinition, itemId: String) {
+    val amulet = hasCatspeakAmulet()
+    if (def.isCatLike && amulet) {
+        summonCatWithAmulet(def, itemId)
+    }
+    if (summonPet(def, itemId, restart = false)) {
+        inventory.remove(itemId)
+        if (def.isCatLike && !amulet) {
+            // pet is wired up in summonPet's own +2 weakQueue; wait a tick past
+            // that so pet?.say() targets the newly-summoned NPC.
+            weakQueue("cat_drop_meow", 3) {
+                pet?.say("Miaow!")
+            }
+        }
+    }
+}
+
 class PetScripts(private val definitions: PetDefinitions) : Script {
 
     init {
@@ -169,21 +186,11 @@ class PetScripts(private val definitions: PetDefinitions) : Script {
 
         itemOption("Drop", itemIds) { (item) ->
             val def = definitions.forItem(item.id) ?: return@itemOption
-            if (def.isCatLike && hasCatspeakAmulet() && def.stageForItem(item.id) != PetStage.Baby) {
-                summonCatWithAmulet(def, item.id)
-            }
-            if (summonPet(def, item.id, restart = false)) {
-                inventory.remove(item.id)
-            }
+            dropPet(def, item.id)
         }
         itemOption("Release", itemIds) { (item) ->
             val def = definitions.forItem(item.id) ?: return@itemOption
-            if (def.isCatLike && hasCatspeakAmulet() && def.stageForItem(item.id) != PetStage.Baby) {
-                summonCatWithAmulet(def, item.id)
-            }
-            if (summonPet(def, item.id, restart = false)) {
-                inventory.remove(item.id)
-            }
+            dropPet(def, item.id)
         }
 
         npcOperate("Pick-up", npcIds) { interact ->
