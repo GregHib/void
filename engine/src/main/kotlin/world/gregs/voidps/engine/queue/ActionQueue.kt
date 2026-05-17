@@ -100,11 +100,7 @@ class ActionQueue<C : Character>(
 
     private fun CoroutineScope.launch(action: Action<C>) {
         launch(errorHandler) {
-            try {
-                action.action.invoke(character)
-            } finally {
-                character.suspension = null
-            }
+            action.action.invoke(character)
         }
     }
 
@@ -115,7 +111,6 @@ class ActionQueue<C : Character>(
                 scope.launch(action)
                 var suspension = character.suspension
                 while (suspension != null) {
-                    character.suspension = null
                     when (suspension) {
                         is Suspension.Continue -> suspension.resume()
                         is Suspension.Custom -> suspension.resume()

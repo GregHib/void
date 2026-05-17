@@ -8,17 +8,18 @@ import world.gregs.voidps.engine.entity.character.player.Player
 fun Character.resumeSuspension(): Boolean {
     val suspend = suspension ?: return false
     if (suspend is Suspension.Delay && suspend.ready()) {
-        suspension = null
         suspend.resume()
     }
     if (suspend is Suspension.Custom && suspend.ready()) {
-        suspension = null
         suspend.resume()
     }
     return true
 }
 
 suspend fun Player.awaitDialogues(): Boolean {
+    if (dialogue == null) {
+        return true
+    }
     suspendCancellableCoroutine {
         suspension = Suspension.Custom(it) { dialogue == null }
     }
