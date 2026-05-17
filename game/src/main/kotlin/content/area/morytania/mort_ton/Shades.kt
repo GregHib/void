@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 
 class Shades : Script {
     init {
@@ -20,7 +20,7 @@ class Shades : Script {
             source.mode = EmptyMode
             mode = PauseMode
             transform(id.replace("_shadow", "_shade"))
-            softQueue("shade_transform", 1) {
+            queue("shade_transform", 1) {
                 if (source is Player) {
                     interactPlayer(source, "Attack")
                 }

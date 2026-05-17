@@ -44,7 +44,9 @@ id = 3215
 
 [giant_rat_ardounge_sewer]
 id = 4922
+clone = "giant_rat_lumbridge_swamp"
 
 [giant_rat_ardounge_sewer_stubby]
 id = 4923
+clone = "giant_rat_lumbridge_swamp"
 

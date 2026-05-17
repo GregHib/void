@@ -5,7 +5,6 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
@@ -13,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.equals
 
@@ -51,14 +50,11 @@ class MysteriousRuins(val teleports: ObjectTeleports) : Script {
             message("You hold the ${item.id.toSentenceCase()} towards the mysterious ruins.")
             anim("climb_down")
             delay(2)
-            set("${item.id.removeSuffix("_talisman")}_altar_ruins", refresh = false, value = true)
-            interactObject(target, "Enter", approachRange = -1)
-            softQueue("clear_alter_varbit", 5) {
-                set("${item.id.removeSuffix("_talisman")}_altar_ruins", refresh = false, value = false)
-            }
+            val def = teleports.get("${target.id}_enter", "Enter").single()
+            teleports.teleport(this, target, def)
         }
 
-        objTeleportTakeOff("Enter", "*_altar_ruins_enter") { _, _ ->
+        objTeleportTakeOff("Enter", "*_altar_ruins*") { _, _ ->
             clearAnim()
             sound("teleport")
             message("You feel a powerful force talk hold of you...")
@@ -67,16 +63,15 @@ class MysteriousRuins(val teleports: ObjectTeleports) : Script {
 
         objTeleportTakeOff("Enter", "*_altar_portal") { target, option ->
             if (target.id == "chaos_altar_portal" && !hasClock("chaos_altar_skip")) {
-                softQueue("chaos_altar_check") {
+                queue("chaos_altar_check") {
                     statement("Warning! This portal will teleport you into the Wilderness.")
                     choice("Are you sure you wish to use this portal?") {
                         option("Yes, I'm brave.") {
                             start("chaos_altar_skip", 1)
-                            teleports.teleport(player, target, option, target.def(player))
+                            teleports.teleport(this, target, option, target.def(this))
                         }
                         option("Eeep! The Wilderness... No thank you.") {
                             message("You decide not to use this portal.")
-                            cancel()
                         }
                     }
                 }

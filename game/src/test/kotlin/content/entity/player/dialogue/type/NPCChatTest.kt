@@ -17,7 +17,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.suspend.ContinueSuspension
+import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.protocol.encode.npcDialogueHead
 import kotlin.test.assertTrue
@@ -117,7 +117,7 @@ internal class NPCChatTest : DialogueTest() {
         dialogue {
             npc<Neutral>(text = "\nOne\nTwo\nThree\nFour\nFive")
         }
-        (player.dialogueSuspension as ContinueSuspension).resume(Unit)
+        (player.suspension as Suspension.Continue).resume()
         verify(exactly = 2) {
             player.open(any())
         }
@@ -156,7 +156,7 @@ internal class NPCChatTest : DialogueTest() {
             npc<Cackle>(text = "text", largeHead = true)
             resumed = true
         }
-        (player.dialogueSuspension as ContinueSuspension).resume(Unit)
+        (player.suspension as Suspension.Continue).resume()
         coVerify {
             interfaces.sendText("dialogue_npc_chat1", "title", "Jim")
             interfaces.sendAnimation("dialogue_npc_chat1", "head_large", 9840)

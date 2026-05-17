@@ -98,6 +98,10 @@ open class Movement(
         if (!stepOut()) {
             calculate()
         }
+        if (character is NPC && character.walkTrigger != null && character.suspension != null) {
+            character.walkTrigger?.invoke()
+            character.walkTrigger = null
+        }
         if (step(runStep = false) && character.running) {
             if (character.steps.isNotEmpty()) {
                 step(runStep = true)
@@ -113,7 +117,7 @@ open class Movement(
         }
         if (character.contains("delay")) {
             // Inactive delays block movement unless there's a queue in action
-            return character.delay != null || !character.queue.isEmpty() || character.steps.destination.noCollision
+            return character.suspension != null || !character.queue.isEmpty() || character.steps.destination.noCollision
         }
         return true
     }

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.suspend.IntSuspension
+import world.gregs.voidps.engine.suspend.Suspension
 import kotlin.test.assertEquals
 
 internal class ChoiceTest : DialogueTest() {
@@ -174,7 +174,7 @@ internal class ChoiceTest : DialogueTest() {
         dialogue {
             result = choice(text = "Yes\nNo")
         }
-        val suspend = player.dialogueSuspension as IntSuspension
+        val suspend = player.suspension as Suspension.IntEntry
         suspend.resume(1)
         assertEquals(1, result)
         coVerify {

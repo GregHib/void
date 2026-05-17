@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.suspend.IntSuspension
+import world.gregs.voidps.engine.suspend.pauseInt
 
 private const val INTERFACE_ID = "dialogue_skill_creation"
 private const val INTERFACE_AMOUNT_ID = "skill_creation_amount"
@@ -45,7 +45,7 @@ suspend fun Player.makeAmountIndex(
 
     setItemOptions(this, items, names)
     setMax(this, maximum.coerceAtLeast(1))
-    val choice: Int = IntSuspension.get(this)
+    val choice: Int = pauseInt()
     close(INTERFACE_ID)
     close(INTERFACE_AMOUNT_ID)
     val amount = get("skill_creation_amount", 1)

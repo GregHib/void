@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.longQueue
 
 class SquireAsrol : Script {
 
@@ -199,8 +199,8 @@ class SquireAsrol : Script {
         refreshQuestJournal()
         inc("quest_points")
         message("Congratulations! Quest complete!")
-        softQueue("quest_complete", 1) {
-            player.questComplete(
+        longQueue("quest_complete", 1) {
+            questComplete(
                 "The Knight's Sword Quest",
                 "1 Quest Point",
                 "12,725 Smithing XP",

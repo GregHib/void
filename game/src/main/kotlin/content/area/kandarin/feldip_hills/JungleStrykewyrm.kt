@@ -6,6 +6,7 @@ import content.entity.effect.clearTransform
 import content.entity.effect.toxin.poison
 import content.entity.effect.transform
 import content.skill.slayer.slayerTask
+import kotlinx.coroutines.delay
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
@@ -16,7 +17,7 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.random
@@ -36,7 +37,7 @@ class JungleStrykewyrm : Script {
                 return@npcTimerTick Timer.CONTINUE
             }
             anim("strykewyrm_bury")
-            softQueue("bury", 3) {
+            queue("bury", 3) {
                 clearTransform()
             }
             Timer.CANCEL
@@ -64,7 +65,7 @@ class JungleStrykewyrm : Script {
             val temp = source.mode
             val type = source.transform
             source.start("action_delay", 8)
-            source.softQueue("burrow", 3) {
+            source.queue("burrow", 3) {
                 source.clearTransform()
                 source.mode = PauseMode
                 target.mode = EmptyMode
@@ -81,12 +82,11 @@ class JungleStrykewyrm : Script {
             }
         }
 
-        fun investigate(source: Player, target: NPC, to: String) {
+        suspend fun investigate(source: Player, target: NPC, to: String) {
             if (Settings["slayer.strykewyrmReqTask", false] && source.slayerTask != to) {
                 source.anim("emote_stomp")
-                source.softQueue("stomp_mound", 3) {
-                    source.anim("emote_think")
-                }
+                source.delay(3)
+                source.anim("emote_think")
                 source.message("You need to have strykewyrm assigned as a task in order to fight them.")
                 return
             }
@@ -95,14 +95,13 @@ class JungleStrykewyrm : Script {
             target.mode = EmptyMode
             target.steps.clear()
             target.softTimers.start("strykewyrm_revert")
-            target.softQueue("strykewyrm_transform", 3) {
-                target.mode = EmptyMode
-                target.transform(to)
-                target.anim("strykewyrm_surface")
-                target.face(source)
-                target.start("action_delay", TimeUnit.SECONDS.toTicks(3))
-                target.interactPlayer(source, "Attack")
-            }
+            source.delay(3)
+            target.mode = EmptyMode
+            target.transform(to)
+            target.anim("strykewyrm_surface")
+            target.face(source)
+            target.start("action_delay", TimeUnit.SECONDS.toTicks(3))
+            target.interactPlayer(source, "Attack")
         }
     }
 }

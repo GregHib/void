@@ -26,7 +26,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.longQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
@@ -499,7 +499,7 @@ class Gudrun : Script {
         set("gunnars_ground", "completed")
         inc("quest_points", 5)
         exp(Skill.Crafting, 300.0)
-        softQueue("quest_complete", 1) {
+        longQueue("quest_complete", 1) {
             questComplete(
                 "Gunnar's Ground",
                 "5 Quest Points",

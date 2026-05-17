@@ -91,6 +91,7 @@ class Firemaking : Script {
         }
         player.start("action_delay", 1)
         player.softTimers.stop("firemaking")
+        player.clearAnim()
     }
 
     fun Player.canLight(log: String, level: Int, item: FloorItem): Boolean {
@@ -117,10 +118,10 @@ class Firemaking : Script {
         val life = row.int("life")
         val obj = GameObjects.add("fire_$colour", tile, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0, ticks = life)
         FloorItems.add(tile, "ashes", revealTicks = life, disappearTicks = 60, owner = "")
-        val interact = player.mode as Interact
+        val interact = player.mode as? Interact ?: return
         for (dir in directions) {
             if (interact.canStep(dir.delta.x, dir.delta.y)) {
-                player.steps.queueStep(tile.add(dir))
+                player.walkTo(tile.add(dir))
                 break
             }
         }

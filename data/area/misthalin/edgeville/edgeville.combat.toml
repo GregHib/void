@@ -9,3 +9,15 @@ death_sound = "man_death"
 range = 1
 anim = "edgeville_guard_attack"
 target_hit = { offense = "slash", max = 34 }
+
+[outlaw]
+attack_speed = 4
+defend_anim = "sword_defend"
+defend_sound = "man_defend"
+death_anim = "human_death"
+death_sound = "man_death"
+
+[outlaw.melee]
+range = 1
+anim = "sword_chop"
+target_hit = { offense = "crush", max = 34 }

@@ -34,6 +34,7 @@ class Follow(
             character.tele(strategy.tile, clearMode = false)
             character.clearWatch()
         }
+        character.walkTrigger()
         if (!smart) {
             character.steps.clearDestination()
         }

@@ -1,7 +1,6 @@
 package content.skill.mining
 
 import content.activity.shooting_star.ShootingStarHandler
-import content.entity.combat.underAttack
 import content.entity.player.bank.bank
 import content.entity.player.bank.ownsItem
 import content.quest.questCompleted
@@ -54,7 +53,7 @@ class Mining : Script {
             }
             softTimers.start("mining")
             var first = true
-            while (!underAttack) {
+            while (true) {
                 if (!GameObjects.contains(target)) {
                     break
                 }
@@ -118,6 +117,7 @@ class Mining : Script {
                             exp(Skill.Mining, xp * added)
                         }
                         if (added < 1 || deplete(target, ore.int("life"))) {
+                            println("Depleted")
                             clearAnim()
                             break
                         }

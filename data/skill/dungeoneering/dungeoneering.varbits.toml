@@ -1,3 +1,69 @@
 [dungeoneering_current_floor]
 id = 7550
 format = "int"
+
+[kinship_tank_level]
+id = 8053
+format = "int"
+persist = true
+
+[kinship_tactician_level]
+id = 8054
+format = "int"
+persist = true
+
+[kinship_berserker_level]
+id = 8055
+format = "int"
+persist = true
+
+[kinship_sniper_level]
+id = 8056
+format = "int"
+persist = true
+
+[kinship_keen_eye_level]
+id = 8057
+format = "int"
+persist = true
+
+[kinship_desperado_level]
+id = 8058
+format = "int"
+persist = true
+
+[kinship_blazer_level]
+id = 8059
+format = "int"
+persist = true
+
+[kinship_blaster_level]
+id = 8060
+format = "int"
+persist = true
+
+[kinship_blitzer_level]
+id = 8061
+format = "int"
+persist = true
+
+[kinship_medic_level]
+id = 8062
+format = "int"
+persist = true
+
+[kinship_gatherer_level]
+id = 8063
+format = "int"
+persist = true
+
+[kinship_artisan_level]
+id = 8064
+format = "int"
+persist = true
+
+[kinship_class]
+id = 8065
+format = "list"
+persist = true
+values = ["none", "tank", "tactician", "berserker", "sniper", "keen_eye", "desperado", "blazer", "blaster", "blitzer", "medic", "gatherer", "artisan"]

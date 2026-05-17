@@ -22,7 +22,7 @@ class TelekineticGrabTest : WorldTest() {
         tick()
 
         player.interfaceOnFloorItem("modern_spellbook", "telekinetic_grab", item)
-        tick(5)
+        tick(6)
 
         assertEquals(0, player.inventory.count("law_rune"))
         assertEquals(0, player.inventory.count("air_rune"))
@@ -41,7 +41,7 @@ class TelekineticGrabTest : WorldTest() {
         tick()
 
         player.interfaceOnFloorItem("modern_spellbook", "telekinetic_grab", item)
-        tick(5)
+        tick(6)
 
         assertEquals(1, player.inventory.count("bronze_sword"))
         assertEquals(43.0, player.experience.get(Skill.Magic))
@@ -58,7 +58,7 @@ class TelekineticGrabTest : WorldTest() {
         tick()
 
         player.interfaceOnFloorItem("modern_spellbook", "telekinetic_grab", item)
-        tick(5)
+        tick(6)
 
         assertEquals(1, player.inventory.count("law_rune"))
         assertEquals(1, player.inventory.count("air_rune"))

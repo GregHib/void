@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
@@ -120,7 +120,7 @@ class MakeoverMage : Script {
         npc.transform(if (toFemale) "makeover_mage_female" else "makeover_mage_male")
         npc.gfx("curse_impact", delay = 15)
         npc.anim("bind_staff")
-        npc.softQueue("transform", 1) {
+        npc.queue("transform", 1) {
             npc.say(if (toFemale) "Ooh!" else "Aha!")
         }
         return Timer.CONTINUE

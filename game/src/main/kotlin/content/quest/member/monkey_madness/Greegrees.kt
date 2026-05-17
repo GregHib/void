@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.*
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class Greegrees : Script {
@@ -86,7 +86,7 @@ class Greegrees : Script {
         }
         val item = equipped(EquipSlot.Weapon).id
         if (item.endsWith("_greegree")) {
-            softQueue("remove_greegree") {
+            queue("remove_greegree") {
                 statement("The Monkey Greegree wrenches itself from your hand as its power begins to fade...")
             }
             if (!equipment.move(EquipSlot.Weapon.index, inventory)) {

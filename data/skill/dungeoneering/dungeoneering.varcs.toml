@@ -1,3 +1,48 @@
+[dungeoneering_party_floor]
+id = 1180
+format = "int"
+persist = true
+
+[dungeoneering_party_complexity]
+id = 1183
+format = "int"
+persist = true
+
+[dungeoneering_current_progress]
+id = 1181
+format = "int"
+persist = true
+
+[dungeoneering_previous_progress]
+id = 1182
+format = "int"
+persist = true
+
+[kinship_customisation_tab]
+id = 1184
+format = "list"
+values = [ "none", "melee", "ranged", "magic", "skiller" ]
+
+[dungeoneering_member_disabled_xp_share_0]
+id = 1175
+format = "boolean"
+
+[dungeoneering_member_disabled_xp_share_1]
+id = 1176
+format = "boolean"
+
+[dungeoneering_member_disabled_xp_share_2]
+id = 1177
+format = "boolean"
+
+[dungeoneering_member_disabled_xp_share_3]
+id = 1178
+format = "boolean"
+
+[dungeoneering_member_disabled_xp_share_4]
+id = 1179
+format = "boolean"
+
 [nature_staff_charges]
 id = 1234
 format = "int"
@@ -23,3 +68,69 @@ format = "int"
 [celestial_surgebox_surge]
 id = 1403
 format = "int"
+
+[dungeon_party_combat_0]
+id = 1153
+
+[dungeon_party_combat_1]
+id = 1154
+
+[dungeon_party_combat_2]
+id = 1155
+
+[dungeon_party_combat_3]
+id = 1156
+
+[dungeon_party_combat_4]
+id = 1157
+
+[dungeon_party_level_0]
+id = 1158
+
+[dungeon_party_level_1]
+id = 1159
+
+[dungeon_party_level_2]
+id = 1160
+
+[dungeon_party_level_3]
+id = 1161
+
+[dungeon_party_level_4]
+id = 1162
+
+[dungeon_party_highest_0]
+id = 1163
+
+[dungeon_party_highest_1]
+id = 1164
+
+[dungeon_party_highest_2]
+id = 1165
+
+[dungeon_party_highest_3]
+id = 1166
+
+[dungeon_party_highest_4]
+id = 1167
+
+[dungeon_party_total_0]
+id = 1168
+
+[dungeon_party_total_1]
+id = 1169
+
+[dungeon_party_total_2]
+id = 1170
+
+[dungeon_party_total_3]
+id = 1171
+
+[dungeon_party_total_4]
+id = 1172
+
+[dungeon_party_floor]
+id = 1173
+
+[dungeon_party_complexity]
+id = 1174

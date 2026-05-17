@@ -1,8 +1,10 @@
 [chicken_daemonheim]
 id = 11256
+examine = "Yep, definitely a chicken."
 
 [chicken_daemonheim_2]
 id = 11257
+examine = "Who are you calling chicken?"
 
 [fremennik_shipmaster_daemonheim]
 id = 9707
@@ -24,10 +26,11 @@ examine = "Your contact for forming parties in Daemonheim."
 id = 9714
 examine = "She is finding it hard to hide her boredom."
 
-[sonje_daemonheim]
+[sonje]
 id = 9715
+examine = "I wouldn't pick a fight with her."
 
-[wiglaf_daemonheim]
+[wiglaf]
 id = 9716
 examine = "He's cooking up a storm."
 
@@ -36,3 +39,4 @@ id = 9718
 
 [thok_master_of_dungeoneering]
 id = 9713
+examine = "The self-proclaimed master of Dungeoneering."

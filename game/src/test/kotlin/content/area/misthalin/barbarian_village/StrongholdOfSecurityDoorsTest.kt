@@ -12,7 +12,7 @@ import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.suspend.ContinueSuspension
+import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import kotlin.test.assertNotEquals
@@ -75,14 +75,14 @@ class StrongholdOfSecurityDoorsTest : WorldTest() {
             player.objectOption(door, "Open")
             tick()
             var counter = 0
-            while (player.dialogueSuspension is ContinueSuspension && counter++ < 10) {
+            while (player.suspension is Suspension.Continue && counter++ < 10) {
                 player.continueDialogue()
                 tick()
             }
             player.intEntry(answer)
 
             counter = 0
-            while (player.dialogueSuspension is ContinueSuspension && counter++ < 10) {
+            while (player.suspension is Suspension.Continue && counter++ < 10) {
                 player.continueDialogue()
                 tick()
             }

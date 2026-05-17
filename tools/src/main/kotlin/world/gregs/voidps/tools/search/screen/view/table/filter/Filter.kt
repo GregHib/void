@@ -39,7 +39,7 @@ fun matchesFilter(rawValue: Any?, filter: FieldFilter): Boolean {
         }
         MatchMode.PARAM_KEY -> {
             if (rawValue !is Map<*, *>) return false
-            val queryId = Params.id(query).takeIf { it != -1 } ?: query.toIntOrNull()
+            val queryId = Params.idOrNull(query)?.takeIf { it != -1 } ?: query.toIntOrNull()
             rawValue.keys.any { k ->
                 k.toString() == queryId?.toString() ||
                         (k is Int && ParamLookup.of(k)?.contains(query, ignoreCase = true) == true)

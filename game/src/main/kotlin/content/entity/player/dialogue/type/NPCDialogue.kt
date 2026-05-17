@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.character.mode.Face
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.suspend.ContinueSuspension
+import world.gregs.voidps.engine.suspend.pauseButton
 import world.gregs.voidps.network.login.protocol.encode.npcDialogueHead
 
 suspend inline fun <reified E : Expression> Player.npc(text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
@@ -58,7 +58,7 @@ private suspend fun Player.npc(lines: List<String>, clickToContinue: Boolean, np
     sendNPCHead(this, id, head, npcDef.id)
     interfaces.sendChat(id, head, if (npcDef.contains("dialogue")) "${npcDef["dialogue", ""]}_$expression" else expression, title ?: npcDef.name, lines)
     if (clickToContinue) {
-        ContinueSuspension.get(this)
+        pauseButton()
         close(id)
     }
 }

@@ -49,10 +49,8 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
         timedLoad("npc config") {
             val clones = Object2ObjectOpenHashMap<String, String>(100)
             val ids = Object2IntOpenHashMap<String>()
-            val refs = Object2IntOpenHashMap<String>()
             ids.defaultReturnValue(-1)
             for (path in paths) {
-                refs.clear()
                 Config.fileReader(path, 150) {
                     while (nextSection()) {
                         val stringId = section()
@@ -87,7 +85,6 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                             }
                         }
                         require(!ids.containsKey(stringId)) { "Duplicate npc id found '$stringId' at $path." }
-                        refs[stringId] = id
                         ids[stringId] = id
                         definitions[id].stringId = stringId
                         if (params.isNotEmpty()) {
@@ -99,22 +96,21 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                         }
                     }
                 }
-
-                for ((item, clone) in clones) {
-                    val cloneId = ids.getInt(clone)
-                    require(cloneId != -1) { "Unable to find npc id to clone '$clone'" }
-                    val definition = definitions[cloneId]
-                    val id = ids.getInt(item)
-                    require(id != -1) { "Unable to find npc id '$item'" }
-                    val params = definitions[id].params as? MutableMap<Int, Any>
-                    if (params != null) {
-                        for (param in definition.params ?: continue) {
-                            if (param.key == Params.AKA) {
-                                continue
-                            }
-                            if (!params.containsKey(param.key)) {
-                                params[param.key] = param.value
-                            }
+            }
+            for ((npc, clone) in clones) {
+                val cloneId = ids.getInt(clone)
+                require(cloneId != -1) { "Unable to find npc id to clone '$clone'" }
+                val definition = definitions[cloneId]
+                val id = ids.getInt(npc)
+                require(id != -1) { "Unable to find npc id '$npc'" }
+                val params = definitions[id].params as? MutableMap<Int, Any>
+                if (params != null) {
+                    for (param in definition.params ?: continue) {
+                        if (param.key == Params.AKA) {
+                            continue
+                        }
+                        if (!params.containsKey(param.key)) {
+                            params[param.key] = param.value
                         }
                     }
                 }

@@ -38,7 +38,7 @@ class LevelUpInteractTest : WorldTest() {
         assertEquals(1, player.inventory.count("oak_logs"))
         player.dialogueContinue()
         tick(10)
-        assertEquals(3, player.inventory.count("oak_logs"))
+        assertEquals(4, player.inventory.count("oak_logs"))
     }
 
     @Test

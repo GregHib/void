@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.client.instruction.ChangeDisplayMode
 
 class GameFrame : Script {
@@ -61,9 +60,12 @@ class GameFrame : Script {
 
         interfaceRefresh("toplevel*,dialogue_npc*") {
             interfaces.sendVisibility(interfaces.gameFrame, "wilderness_level", false)
-            weakQueue("wild_level", 1, onCancel = null) {
-                interfaces.sendVisibility(interfaces.gameFrame, "wilderness_level", false)
-            }
+            softTimers.start("wilderness_level_refresh")
+        }
+
+        timerStart("wilderness_level_refresh") { 1 }
+        timerStop("wilderness_level_refresh") {
+            interfaces.sendVisibility(interfaces.gameFrame, "wilderness_level", false)
         }
     }
 

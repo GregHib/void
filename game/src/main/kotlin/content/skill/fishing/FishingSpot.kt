@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.random
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
@@ -41,7 +41,7 @@ class FishingSpot : Script {
     }
 
     fun move(npc: NPC, area: Area) {
-        npc.softQueue("spot_move", random.nextInt(minRespawnTick, maxRespawnTick)) {
+        npc.queue("spot_move", random.nextInt(minRespawnTick, maxRespawnTick)) {
             area.random(npc)?.let { tile ->
                 npc.tele(tile)
             }

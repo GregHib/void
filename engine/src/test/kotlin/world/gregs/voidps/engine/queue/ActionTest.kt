@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.queue
 
-import io.mockk.mockk
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -15,23 +15,24 @@ internal class ActionTest {
     }
 
     @Test
-    fun `Process returns true after delay hits zero`() {
-        val action = action(delay = 4)
-        assertFalse(action.process())
-        assertFalse(action.process())
-        assertFalse(action.process())
-        assertTrue(action.process())
-        assertTrue(action.process())
+    fun `Process decrements remaining and returns true at zero`() {
+        val action = Action<Player>("test", 3, ActionPriority.Normal) {}
+
+        assertFalse(action.process(), "Should be false at remaining 2")
+        assertEquals(2, action.remaining)
+
+        assertFalse(action.process(), "Should be false at remaining 1")
+        assertEquals(1, action.remaining)
+
+        assertTrue(action.process(), "Should be true at remaining 0")
+        assertEquals(0, action.remaining)
+
+        assertTrue(action.process(), "Should still process and go to negative")
+        assertEquals(-1, action.remaining)
+
+        assertTrue(action.process(), "Should return true and stay decreasing")
+        assertEquals(-2, action.remaining)
     }
 
-    @Test
-    fun `Cancel stops processing and marks for removal`() {
-        val action = action(delay = 0)
-        assertTrue(action.process())
-        action.cancel()
-        assertFalse(action.process())
-        assertTrue(action.removed)
-    }
-
-    private fun action(priority: ActionPriority = ActionPriority.Normal, delay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, action: suspend Action<Player>.() -> Unit = {}): Action<Player> = Action(mockk(relaxed = true), "action", priority, delay, behaviour, null, action as suspend Action<*>.() -> Unit)
+    private fun action(priority: ActionPriority = ActionPriority.Normal, delay: Int = 0, action: suspend Player.() -> Unit = {}): Action<Player> = Action("action", delay, priority, action)
 }

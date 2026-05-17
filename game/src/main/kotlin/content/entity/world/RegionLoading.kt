@@ -33,7 +33,7 @@ class RegionLoading(val dynamicZones: DynamicZones) : Script {
     init {
         worldSpawn {
             // Do on world spawn to ensure runs first
-            Moved.playerMoved.addFirst(::checkReload)
+            Moved.playerMoved.add(0, ::checkReload)
         }
         /*
             Player regions

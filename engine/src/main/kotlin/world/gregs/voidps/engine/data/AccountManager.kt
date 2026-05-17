@@ -108,7 +108,7 @@ class AccountManager(
         player["logged_out"] = true
         if (safely) {
             player.client?.logout()
-            player.strongQueue("logout", onCancel = null) {
+            player.strongQueue("logout") {
                 // Make sure nothing else starts
             }
         }

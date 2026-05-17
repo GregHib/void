@@ -35,7 +35,7 @@ import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.charges
-import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
@@ -58,9 +58,10 @@ class NPCDeath(
             mode = PauseMode
             dead = true
             steps.clear()
+            clearWatch()
             val npc = this
             val onDeath = Death.killed(npc)
-            strongQueue(name = "death", 1) {
+            queue(name = "death", 1) {
                 val killer = killer
                 val tile = if (transformId == "wall_beast") tile.addY(-1) else tile
                 npc["death_tile"] = tile
@@ -77,10 +78,11 @@ class NPCDeath(
                         dropLoot(npc, killer, tile)
                     }
                 }
+                queue.clear()
                 attackers.clear()
                 softTimers.stopAll()
                 if (Death.afterDeath(npc)) {
-                    return@strongQueue
+                    return@queue
                 }
                 hide = true
                 val respawn = get<Tile>("respawn_tile")

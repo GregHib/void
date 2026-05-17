@@ -18,7 +18,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.suspend.StringSuspension
+import world.gregs.voidps.engine.suspend.Suspension
+import world.gregs.voidps.engine.suspend.pauseString
 import world.gregs.voidps.type.Direction
 
 class Canoes(val stations: CanoeDefinitions) : Script {
@@ -77,7 +78,7 @@ class Canoes(val stations: CanoeDefinitions) : Script {
 
         interfaceOption("Select", "canoe:a_*") {
             val type = it.component.removePrefix("a_")
-            (dialogueSuspension as? StringSuspension)?.resume(type)
+            (suspension as? Suspension.StringEntry)?.resume(type)
         }
 
         objectOperate("Shape-canoe", "canoe_station_fallen") { (target) ->
@@ -96,7 +97,7 @@ class Canoes(val stations: CanoeDefinitions) : Script {
             val location = target.id.removePrefix("canoe_station_")
             face(Direction.cardinal[target.rotation])
             open("canoe")
-            val canoe = StringSuspension.get(this)
+            val canoe = pauseString()
             closeMenu()
             val required = when (canoe) {
                 "log" -> 12

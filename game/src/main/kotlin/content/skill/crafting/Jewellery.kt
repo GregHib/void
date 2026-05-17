@@ -118,7 +118,7 @@ class Jewellery : Script {
                     exp(Skill.Crafting, xp.toDouble())
                     make(item, gem, amount - 1)
                 }
-                else -> logger.warn { "Error crafting jewellery ${inventory.transaction.error} ${player.name} $item $gem $amount ${player.inventory.items.toList()}" }
+                else -> logger.warn { "Error crafting jewellery ${inventory.transaction.error} $name $item $gem $amount ${inventory.items.toList()}" }
             }
         }
     }

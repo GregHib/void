@@ -48,17 +48,26 @@ interface Character :
     val levels: Levels
     var collision: CollisionStrategy
     var mode: Mode
-    var queue: ActionQueue
+    var queue: ActionQueue<*>
     var softTimers: Timers
     var suspension: Suspension?
-    var delay: Continuation<Unit>?
     override var variables: Variables
     val steps: Steps
     val size: Int
     val blockMove: Int
     val collisionFlag: Int
+    var walkTrigger: (() -> Unit)?
 
     override fun compareTo(other: Character): Int = index.compareTo(other.index)
+
+    fun walkTrigger() {
+        if (suspension != null) {
+            return
+        }
+        val trigger = walkTrigger ?: return
+        walkTrigger = null
+        trigger.invoke()
+    }
 
     /**
      * Gradually move the characters appeared location to [delta] over [delay] time
@@ -281,19 +290,28 @@ interface Character :
         flagWatch()
     }
 
+    /**
+     * Trigger something on next attempted [world.gregs.voidps.network.client.instruction.Walk].
+     */
+    fun walkTrigger(block: () -> Unit) {
+        this.walkTrigger = block
+    }
 
     /**
      * Prevents non-interface player input and most processing
      * Cannot be cancelled.
      */
-    suspend fun delay(ticks: Int = 1) {
+    suspend fun delay(ticks: Int = 1, cancellable: Boolean = false) {
         if (ticks <= 0) {
             return
         }
-        this["delay"] = ticks
-        suspendCancellableCoroutine {
-            delay = it
+        if (!cancellable) {
+            this["delay"] = ticks
         }
+        suspendCancellableCoroutine {
+            suspension = Suspension.Delay(it, ticks)
+        }
+        suspension = null
     }
 
     /**
@@ -369,7 +387,8 @@ interface Character :
      * interaction will have finished and there will be nothing to resume the suspension
      */
     suspend fun pause(ticks: Int) {
-        Suspension.start(this, ticks)
+        delay(ticks, cancellable = true)
+//        Suspension.start(this, ticks)
     }
 
     /**

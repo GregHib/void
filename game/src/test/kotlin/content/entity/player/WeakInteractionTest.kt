@@ -5,17 +5,16 @@ import content.entity.player.dialogue.Pleased
 import content.entity.player.dialogue.type.npc
 import interfaceOption
 import interfaceSwitch
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import walk
 import world.gregs.voidps.engine.client.ui.dialogue
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import kotlin.test.assertEquals
@@ -37,26 +36,16 @@ internal class WeakInteractionTest : WorldTest() {
             val player = createPlayer()
             player.inventory.add("ball_of_wool", 2)
             player.equipment.set(EquipSlot.Weapon.index, "bronze_sword")
-            var cancelled = false
-            player.weakQueue("dialogue", onCancel = { cancelled = true }) {
-                player.npc<Pleased>("Bob", "Hello")
-            }
-            tick()
+            player.open("dialogue_npc_chat1")
             assertNotNull(player.dialogue)
-            assertTrue(player.queue.contains(ActionPriority.Weak))
-
             when (it) {
-                "Interface switch" -> {
-                    player.interfaceSwitch("inventory", "inventory", 0, 1)
-                }
+                "Interface switch" -> player.interfaceSwitch("inventory", "inventory", 0, 1)
                 "Remove equipment" -> player.interfaceOption("worn_equipment", "weapon_slot", "*", 0, Item("bronze_sword"))
                 "Activate prayer" -> player.interfaceOption("prayer_list", "regular_prayers", "Activate", slot = 0)
                 "Skill guide" -> player.interfaceOption("stats", "attack", "View")
                 "Toggle attack style" -> player.interfaceOption("combat_styles", "style2", "Select")
             }
-
             assertNull(player.dialogue)
-            assertTrue(cancelled)
         }
     }
 
@@ -68,22 +57,20 @@ internal class WeakInteractionTest : WorldTest() {
     ).map {
         dynamicTest("$it interaction doesn't clear dialogue") {
             val player = createPlayer()
-            var cancelled = false
-            player.weakQueue("dialogue", onCancel = { cancelled = true }) {
+            var failed = false
+            player.weakQueue("dialogue") {
                 player.npc<Pleased>("Bob", "Hello")
+                failed = true
             }
             tick()
             assertNotNull(player.dialogue)
-            assertTrue(player.queue.contains(ActionPriority.Weak))
-
             when (it) {
                 "Clan chat setup" -> player.interfaceOption("clan_chat", "settings", "Clan Setup")
                 "Audio settings" -> player.interfaceOption("options", "audio", "Audio Settings")
                 "Music player" -> player.interfaceOption("music_player", "tracks", "Play", slot = 214)
             }
-
             assertNotNull(player.dialogue)
-            assertFalse(cancelled)
+            assertFalse(failed)
         }
     }
 

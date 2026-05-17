@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.queue.softQueue
 
 class WizardCromperty : Script {
 
@@ -79,9 +78,8 @@ class WizardCromperty : Script {
                     target.gfx("curse_cast")
                     target.say("Dipsolum sententa sententi!")
                     target.shoot("curse", tile, offset = 64)
-                    softQueue("cromperty_teleport", 2) {
-                        player.tele(2649, 3271)
-                    }
+                    delay(2)
+                    tele(2649, 3271)
                 }
                 option<Shock>("That sounds dangerous. Leave me here.") {
                     npc<Neutral>("As you wish.")

@@ -99,9 +99,8 @@ hitpoints = 170
 att = 14
 str = 13
 def = 12
-style = "melee"
-style = "crush"
-max_hit_melee = 20
+combat_def = "man"
+max_hit_crush = 20
 respawn_delay = 25
 examine = "Known for his light-fingered qualities."
 
@@ -123,8 +122,7 @@ hitpoints = 200
 att = 20
 str = 20
 def = 20
-style = "slash"
-max_hit_melee = 30
+combat_def = "pirate_sword"
 attack_bonus = 10
 slayer_xp = 20.0
 categories = ["pirates"]
@@ -141,8 +139,7 @@ hitpoints = 80
 att = 5
 str = 5
 def = 5
-style = "crush"
-max_hit_melee = 10
+combat_def = "man"
 hunt_mode = "cowardly"
 drop_table = "mugger"
 examine = "He jumps out and attacks people."
@@ -234,6 +231,9 @@ id = 11699
 
 [gerrant_2]
 id = 12261
+shop = "gerrants_fishy_business"
+collision = "indoors"
+examine = "A Fishing expert."
 
 [brian_port_sarim]
 id = 559
@@ -284,8 +284,7 @@ examine = "A young sailor."
 [wormbrain_port_sarim]
 id = 745
 hitpoints = 50
-style = "crush"
-max_hit_melee = 10
+combat_def = "goblin"
 slayer_xp = 5.0
 categories = ["goblins"]
 examine = "A badly-behaved goblin."

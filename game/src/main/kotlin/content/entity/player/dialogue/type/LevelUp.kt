@@ -12,13 +12,13 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill.*
 import world.gregs.voidps.engine.entity.character.player.skill.Skills
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.suspend.ContinueSuspension
+import world.gregs.voidps.engine.suspend.pauseButton
 
 private const val LEVEL_UP_INTERFACE_ID = "dialogue_level_up"
 
 suspend fun Player.levelUp(skill: Skill, text: String) {
     if (levelUp(this, skill, text)) {
-        ContinueSuspension.get(this)
+        pauseButton()
         close(LEVEL_UP_INTERFACE_ID)
     }
 }

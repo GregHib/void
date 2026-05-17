@@ -21,8 +21,7 @@ import world.gregs.voidps.engine.inv.Items
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.timer.CLIENT_TICKS
+import world.gregs.voidps.engine.queue.queue
 
 class TelekineticGrab : Script {
     init {
@@ -57,13 +56,14 @@ class TelekineticGrab : Script {
             areaSound("tele_grab_impact", floorItem.tile, delay = clientTicks, radius = 10)
             areaGfx("tele_grab_impact", floorItem.tile, delay = clientTicks)
 
-            softQueue("tele_grab", CLIENT_TICKS.toTicks(clientTicks) + 1) {
-                if (player.tile.level != floorItem.tile.level) {
+            delay(3)
+            queue("tele_grab", 3) {
+                if (tile.level != floorItem.tile.level) {
                     message("Your telegrab fizzles as you move too far away.")
-                    return@softQueue
+                    return@queue
                 }
-                if (!ItemTake.take(player, floorItem)) {
-                    return@softQueue
+                if (!ItemTake.take(this, floorItem)) {
+                    return@queue
                 }
                 start("action_delay", 3)
                 AuditLog.event(this@onFloorItemApproach, "telegrab", floorItem, floorItem.tile)

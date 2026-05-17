@@ -70,7 +70,7 @@ ticks = 1
 id = 8939
 ticks = 3
 
-[`teleport_land_modern`]
+[teleport_land_modern]
 id = 8941
 ticks = 2
 

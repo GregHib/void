@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.suspend.ContinueSuspension
+import world.gregs.voidps.engine.suspend.pauseButton
 
 private const val MAXIMUM_STATEMENT_SIZE = 5
 
@@ -25,7 +25,7 @@ suspend fun Player.statement(text: String, clickToContinue: Boolean = true) {
     }
     interfaces.sendLines(id, lines)
     if (clickToContinue) {
-        ContinueSuspension.get(this)
+        pauseButton()
         close(id)
     }
 }

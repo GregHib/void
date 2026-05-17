@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
@@ -45,7 +45,7 @@ class LumbridgeSwamp : Script {
             set("restless_ghost_warlock", warlock.index)
             warlock.anim("restless_ghost_warlock_spawn")
             val player = this
-            warlock.softQueue("delayed_attack", 4) {
+            warlock.queue("delayed_attack", 4) {
                 warlock.interactPlayer(player, "Attack")
             }
             World.queue("skeleton_warlock", TimeUnit.SECONDS.toTicks(60)) {

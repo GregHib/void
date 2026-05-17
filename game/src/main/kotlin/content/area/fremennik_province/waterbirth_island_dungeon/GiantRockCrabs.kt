@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
@@ -26,7 +26,7 @@ class GiantRockCrabs : Script {
             transform(id.replace("boulder", "giant_rock_crab"))
 
             // Give a short delay before attacking (they "stand up")
-            softQueue("stand_up", 2) {
+            queue("stand_up", 2) {
                 interactPlayer(target, "Attack")
                 scheduleReset(this@huntPlayer) // start reset countdown
             }
@@ -37,10 +37,10 @@ class GiantRockCrabs : Script {
      * Reset the Rock Crab to its disguised form if out of combat for 30s.
      */
     fun scheduleReset(npc: NPC) {
-        npc.softQueue("reset_to_boulder", TimeUnit.SECONDS.toTicks(30)) {
+        npc.queue("reset_to_boulder", TimeUnit.SECONDS.toTicks(30)) {
             if (npc.target != null || npc.inCombat) {
                 scheduleReset(npc) // still in combat, reschedule
-                return@softQueue
+                return@queue
             }
             npc.clearTransform()
             npc.mode = EmptyMode

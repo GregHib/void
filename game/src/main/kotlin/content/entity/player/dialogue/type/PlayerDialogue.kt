@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.suspend.ContinueSuspension
+import world.gregs.voidps.engine.suspend.pauseButton
 import world.gregs.voidps.network.login.protocol.encode.playerDialogueHead
 
 suspend inline fun <reified E : Expression> Player.player(text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
@@ -39,7 +39,7 @@ private suspend fun Player.player(expression: String, lines: List<String>, large
     sendPlayerHead(this, id, head)
     interfaces.sendChat(id, head, expression, title ?: name, lines)
     if (clickToContinue) {
-        ContinueSuspension.get(this)
+        pauseButton()
         close(id)
     }
 }

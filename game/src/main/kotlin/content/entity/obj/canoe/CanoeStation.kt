@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.suspend.StringSuspension
+import world.gregs.voidps.engine.suspend.pauseString
 import kotlin.math.abs
 
 private val stations = listOf(
@@ -37,7 +37,7 @@ internal suspend fun Player.canoeStationMap(canoe: String, station: String): Str
         interfaces.sendVisibility(INTERFACE_ID, "you_are_here_$name", here)
         interfaces.sendVisibility(INTERFACE_ID, "${name}_group", !here && reachable)
     }
-    val selection = StringSuspension.get(this)
+    val selection = pauseString()
     close(INTERFACE_ID)
     if (selection == station) {
         return null

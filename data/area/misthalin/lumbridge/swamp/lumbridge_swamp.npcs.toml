@@ -12,7 +12,7 @@ drop_table = "giant_rat"
 categories = ["giant_rats", "rats"]
 examine = "Overgrown vermin."
 
-[fremennik_shipmaster_lumbridge_swamp]
+[fremennik_shipmaster_al_kharid]
 id = 9708
 
 [ilona]

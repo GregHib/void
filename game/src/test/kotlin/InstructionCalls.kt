@@ -18,8 +18,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.suspend.IntSuspension
-import world.gregs.voidps.engine.suspend.StringSuspension
+import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.network.client.instruction.*
 import world.gregs.voidps.type.Tile
 
@@ -292,11 +291,11 @@ fun Player.floorItemOption(floorItem: FloorItem, option: String) = runTest {
 fun Inventory.set(index: Int, id: String, amount: Int = 1) = transaction { set(index, Item(id, amount)) }
 
 fun Player.intEntry(int: Int) {
-    (dialogueSuspension as? IntSuspension)?.resume(int)
+    (suspension as? Suspension.IntEntry)?.resume(int)
 }
 
 fun Player.stringEntry(string: String) {
-    (dialogueSuspension as? StringSuspension)?.resume(string)
+    (suspension as? Suspension.StringEntry)?.resume(string)
 }
 
 fun Player.containsMessage(message: String) = messages.any { it.contains(message) }

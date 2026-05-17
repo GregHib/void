@@ -29,7 +29,7 @@ class WildernessLevers(val teleports: ObjectTeleports) : Script {
                             return@option
                         }
                         option("Yes please, don't show this message again.") {
-                            player["wilderness_lever_warning"] = false
+                            set("wilderness_lever_warning", false)
                             pullLever(target)
                         }
                     }
@@ -39,13 +39,13 @@ class WildernessLevers(val teleports: ObjectTeleports) : Script {
             pullLever(this)
             queue("pull_lever") {
                 val definition = teleports.get("Pull")[target.tile.id]!!
-                val tile = teleports.teleportTile(player, definition)
+                val tile = teleports.teleportTile(this, definition)
                 anim("teleport_modern")
                 sound("teleport")
                 gfx("teleport_modern")
                 delay(3)
                 tele(tile)
-                Teleport.land(player, target, option)
+                Teleport.land(this, target, option)
             }
             return@objTeleportTakeOff Teleport.CANCEL
         }

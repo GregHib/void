@@ -58,7 +58,10 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
             type = type and 0x7f
             buffer.readString()
         }
-        buffer.skip(10)
+        buffer.skip(2)
+        baseX = buffer.readUnsignedShort()
+        baseY = buffer.readUnsignedShort()
+        buffer.skip(4)
         val horizontalSizeMode = buffer.readByte()
         val verticalSizeMode = buffer.readByte()
         buffer.skip(5)
@@ -73,7 +76,9 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
             buffer.readString()
             buffer.skip(9)
         } else if (type == 5) {
-            buffer.skip(19)
+            defaultImage = buffer.readInt()
+            empty = false
+            buffer.skip(15)
         } else if (type == 6) {
             buffer.skip(2)
             val data = buffer.readUnsignedByte()

@@ -337,9 +337,8 @@ hitpoints = 170
 att = 14
 str = 13
 def = 12
-style = "melee"
-style = "crush"
-max_hit_melee = 20
+combat_def = "man"
+max_hit_crush = 20
 respawn_delay = 25
 examine = "Known for his light-fingered qualities."
 
@@ -489,10 +488,8 @@ hitpoints = 200
 att = 21
 str = 21
 def = 21
-attack_speed = 5
-style = "crush"
-max_hit_melee = 30
 attack_bonus = 8
+combat_def = "weaponsmaster"
 respawn_delay = 350
 drop_table = "bones"
 examine = "Looks kind of obsessive..."
@@ -688,8 +685,8 @@ examine = "Looks down on his luck."
 [jonny_the_beard]
 id = 645
 hitpoints = 80
-style = "crush"
-max_hit_melee = 10
+combat_def = "man"
+max_hit_crush = 80
 respawn_delay = 37
 drop_table = "jonny_the_beard"
 examine = "Looks kind of shifty..."
@@ -717,7 +714,7 @@ examine = "Peaceful man!"
 
 [guard_varrock_2]
 id = 5920
-examine = "He tries to keep order around here. His bizarre uniform isn't helping."
+clone = "guard_varrock"
 
 [trainee_guard]
 id = 5921
@@ -733,8 +730,7 @@ hitpoints = 750
 att = 35
 str = 30
 def = 30
-style = "crush"
-max_hit_melee = 30
+combat_def = "man"
 hunt_mode = "cowardly"
 immune_poison = true
 examine = "Varrock's resident monarch. He looks strangely evil!"

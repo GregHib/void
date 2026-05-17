@@ -13,3 +13,38 @@ persist = true
 [celestial_surgebox_mode_dungeoneering]
 format = "boolean"
 persist = true
+
+[kinship_quick_switch_class]
+format = "list"
+persist = true
+values = ["none", "tank", "tactician", "berserker", "sniper", "keen_eye", "desperado", "blazer", "blaster", "blitzer", "medic", "gatherer", "artisan"]
+
+[kinship_reset_count]
+format = "int"
+persist = true
+
+[dungeoneering_tokens]
+format = "int"
+persist = true
+
+[dungeoneering_exchange_coins]
+format = "boolean"
+persist = true
+
+[dungeoneering_floor]
+format = "int"
+persist = true
+default = 1
+
+[dungeoneering_complexity]
+format = "int"
+persist = true
+default = 1
+
+[dungeoneering_guide_mode]
+format = "boolean"
+persist = true
+
+[dungeoneering_disable_xp_share]
+format = "boolean"
+persist = true

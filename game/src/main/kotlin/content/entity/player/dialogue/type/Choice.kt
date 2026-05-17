@@ -4,7 +4,7 @@ import content.entity.player.dialogue.sendLines
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.suspend.IntSuspension
+import world.gregs.voidps.engine.suspend.pauseInt
 
 private val CHOICE_LINE_RANGE = 2..5
 private const val APPROXIMATE_WIDE_TITLE_LENGTH = 30
@@ -60,7 +60,7 @@ suspend fun Player.choice(lines: List<String>, title: String? = null): Int {
         interfaces.sendText(id, "title", question)
     }
     interfaces.sendLines(id, lines)
-    val result = IntSuspension.get(this)
+    val result = pauseInt()
     close(id)
     return result
 }

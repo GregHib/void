@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.suspend.ContinueSuspension
+import world.gregs.voidps.engine.suspend.Suspension
 import kotlin.test.assertTrue
 
 internal class StatementTest : DialogueTest() {
@@ -94,7 +94,7 @@ internal class StatementTest : DialogueTest() {
             statement("text")
             resumed = true
         }
-        (player.dialogueSuspension as ContinueSuspension).resume(Unit)
+        (player.suspension as Suspension.Continue).resume()
         coVerify {
             player.open("dialogue_message1")
             interfaces.sendText("dialogue_message1", "line1", "text")

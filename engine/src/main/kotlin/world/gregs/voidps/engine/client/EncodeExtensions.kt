@@ -214,9 +214,9 @@ fun Player.clearMinimap() = client?.sendMinimapState(0) ?: Unit
 /**
  * Add an [arrow] hint to a [tile] with [radius]
  */
-fun Player.hint(tile: Tile, radius: Int = 1, arrow: Int = HintArrow.FILLED, direction: Direction = Direction.NONE, height: Int = 0) {
-    val viewport = viewport ?: return
-    val index = viewport.hints.firstOrNull { it == 0 } ?: return
+fun Player.hint(tile: Tile, radius: Int = 1, arrow: Int = HintArrow.FILLED, direction: Direction = Direction.NONE, height: Int = 0): Int {
+    val viewport = viewport ?: return -1
+    val index = viewport.hints.firstOrNull { it == 0 } ?: return -1
     val type = when (direction) {
         Direction.WEST -> 3
         Direction.EAST -> 4
@@ -226,6 +226,7 @@ fun Player.hint(tile: Tile, radius: Int = 1, arrow: Int = HintArrow.FILLED, dire
     }
     viewport.hints[index] = type
     client?.arrowHint(type, index, sprite = arrow, x = tile.x, y = tile.y, level = tile.level, z = height, radius = radius)
+    return index
 }
 
 /**

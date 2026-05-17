@@ -39,8 +39,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.map.collision.random
+import world.gregs.voidps.engine.queue.longQueue
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.epochMilliseconds
 import world.gregs.voidps.engine.timer.epochSeconds
@@ -190,8 +190,8 @@ class TzhaarFightCave(
                 tele(centre.add(instanceOffset()))
             }
             strongQueue("fight_cave_start", TimeUnit.SECONDS.toTicks(2)) {
-                startWave(player, wave, start = true)
-                player.sendVariable("fight_cave_wave")
+                startWave(this, wave, start = true)
+                sendVariable("fight_cave_wave")
             }
         }
 
@@ -203,7 +203,7 @@ class TzhaarFightCave(
             }
             it.dropItems = false
             it.teleport = outside
-            softQueue("fire_cave_death", 3) {
+            longQueue("fight_cave_death", 3) {
                 leave(wave)
             }
         }

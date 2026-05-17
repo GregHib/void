@@ -14,6 +14,7 @@ import org.junit.jupiter.api.assertNotNull
 import playerOption
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.add
@@ -131,7 +132,7 @@ internal class CombatTest : WorldTest() {
         player.npcOption(npc, "Attack")
         tick(2)
 
-        assertEquals(2, npc.visuals.hits.splats.count { it != null })
+        assertEquals(1, npc.visuals.hits.splats.count { it != null })
     }
 
     @Test
@@ -237,6 +238,42 @@ internal class CombatTest : WorldTest() {
         assertEquals(EXPERIENCE, player.experience.get(Skill.Attack))
         assertEquals(EXPERIENCE, player.experience.get(Skill.Strength))
         assertEquals(EXPERIENCE, player.experience.get(Skill.Defence))
+    }
+
+    @Test
+    fun `Npc should die after one tick from a final hit`() {
+        val player = createPlayer(emptyTile)
+        val npc = createNPC("goblin_turquoise_grey_ponytail", emptyTile.addY(1))
+        player.equipment.set(EquipSlot.Weapon.index, "dragon_claws")
+        player.levels.set(Skill.Strength, Level.MAX_LEVEL)
+        player.levels.set(Skill.Attack, Level.MAX_LEVEL)
+
+        player.npcOption(npc, "Attack")
+        tick(1) // attack
+        assertFalse(npc.dead)
+        tick(1) // npc death
+        assertTrue(npc.dead)
+        assertFalse(npc.contains("death_tile"))
+        tick(1) // death queue
+        assertEquals(npc.tile, npc["death_tile"])
+    }
+
+    @Test
+    fun `Npc should die instantly from multiple hits`() {
+        // Due to the behaviour of ActionQueue caching whether to end iterating before the last action was processed.
+        val player = createPlayer(emptyTile)
+        val npc = createNPC("goblin_turquoise_grey_ponytail", emptyTile.addY(1))
+        player.equipment.set(EquipSlot.Weapon.index, "dragon_claws")
+        player.levels.set(Skill.Strength, Level.MAX_LEVEL)
+        player.levels.set(Skill.Attack, Level.MAX_LEVEL)
+        player.interfaceOption("combat_styles", "special_attack_bar", "Use")
+
+        player.npcOption(npc, "Attack")
+        tick(1) // attack + death
+        assertFalse(npc.dead)
+        tick(1) // npc death + queue
+        assertTrue(npc.dead)
+        assertEquals(npc.tile, npc["death_tile"])
     }
 
     companion object {

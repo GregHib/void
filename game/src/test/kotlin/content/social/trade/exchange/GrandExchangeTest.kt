@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.suspend.IntSuspension
+import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.timer.setCurrentTime
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
@@ -123,7 +123,7 @@ class GrandExchangeTest : WorldTest() {
 
         sell(seller, "rune_longsword")
         seller.interfaceOption("grand_exchange", "offer_x", "Edit Price")
-        (seller.dialogueSuspension as? IntSuspension)?.resume(500_000_000)
+        (seller.suspension as? Suspension.IntEntry)?.resume(500_000_000)
         confirm(seller)
         val expectedSell = ExchangeOffer(1, "rune_longsword", 1, 500_000_000, OfferState.PendingSell)
         assertOffer(expectedSell, seller, 1)
@@ -133,7 +133,7 @@ class GrandExchangeTest : WorldTest() {
         buy(buyer, "rune_longsword")
         buyer.interfaceOption("grand_exchange", "add_1", "Add 1")
         buyer.interfaceOption("grand_exchange", "offer_x", "Edit Price")
-        (buyer.dialogueSuspension as? IntSuspension)?.resume(500_000_000)
+        (buyer.suspension as? Suspension.IntEntry)?.resume(500_000_000)
         confirm(buyer)
 
         val expectedBuy = ExchangeOffer(2, "rune_longsword", 1, 500_000_000, OfferState.PendingBuy)
@@ -411,7 +411,7 @@ class GrandExchangeTest : WorldTest() {
 
         buy(buyer, "spirit_shards")
         buyer.interfaceOption("grand_exchange", "add_x", "Edit Quantity")
-        (buyer.dialogueSuspension as? IntSuspension)?.resume(1_500)
+        (buyer.suspension as? Suspension.IntEntry)?.resume(1_500)
         confirm(buyer)
         val expectedBuy = ExchangeOffer(3, "spirit_shards", 1_500, 24, OfferState.PendingBuy)
         assertOffer(expectedBuy, buyer, 0)

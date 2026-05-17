@@ -25,7 +25,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.spiral
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
@@ -81,14 +81,14 @@ class KalphiteQueen(val lineOfSight: LineValidator) : Script {
             clearAnim()
             anim("kalphite_queen_death")
             areaSound("kalphite_queen_death", tile, radius = 20)
-            softQueue("emerging", 14) {
+            queue("emerging", 14) {
                 if (target is Player) {
                     interactPlayer(target, "Attack")
                 } else {
                     mode = EmptyMode
                 }
             }
-            softQueue("emerge", 2) {
+            queue("emerge", 2) {
                 anim("kalphite_queen_emerging")
                 gfx("kalphite_queen_emerging")
                 GameObjects.add("kalphite_queen_emerging_legs", tile, ticks = 8)
@@ -167,10 +167,10 @@ class KalphiteQueen(val lineOfSight: LineValidator) : Script {
             if (source is Player) {
                 npc.interactPlayer(source, "Attack")
             }
-            softQueue("cocoon_respawn", 10) {
+            queue("cocoon_respawn", 10) {
                 cocoon.anim("kalphite_cocoon_return")
             }
-            softQueue("cocoon_idle", 12) {
+            queue("cocoon_idle", 12) {
                 cocoon.anim("kalphite_cocoon_idle")
             }
             return
