@@ -126,6 +126,7 @@ class KittenInteract(definitions: PetDefinitions) : Script {
         weakQueue("kitten_chase", 4) {
             val current = pet
             if (current != null && current.index == cat.index && nearbyRat.tile.distanceTo(current.tile) <= 1) {
+                current.face(nearbyRat)
                 current.anim("pet_pounce_kitten")
             }
             weakQueue("kitten_chase_resolve", 1) {
