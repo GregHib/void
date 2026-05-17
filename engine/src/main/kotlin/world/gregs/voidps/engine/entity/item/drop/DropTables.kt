@@ -4,11 +4,13 @@ import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import net.pearx.kasechange.toPascalCase
 import world.gregs.config.Config
 import world.gregs.config.ConfigReader
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.wildcardEquals
 import world.gregs.voidps.engine.timedLoad
 
@@ -78,6 +80,7 @@ class DropTables {
         var owns: String? = null
         var lacks: String? = null
         var variable: String? = null
+        var skill: String? = null
         var eq: Any? = null
         var default: Any? = null
         var withinMin: Int? = null
@@ -99,6 +102,7 @@ class DropTables {
                 "owns" -> owns = string()
                 "members" -> members = boolean()
                 "variable" -> variable = string()
+                "skill" -> skill = string()
                 "equals" -> eq = value()
                 "not_equals" -> {
                     eq = value()
@@ -113,7 +117,7 @@ class DropTables {
         if (roll != null && tableRoll != 1) {
             logger.warn { "Found roll override inside roll based table. Did you mean to use 'chance' instead? ${exception()}" }
         }
-        val predicate = dropPredicate(owns, lacks, variable, negated, eq, default, withinMin, withinMax, members)
+        val predicate = dropPredicate(owns, lacks, variable, skill, negated, eq, default, withinMin, withinMax, members)
         if (table != "") {
             return ReferenceTable(table, roll, chance ?: -1, predicate)
         }
@@ -130,6 +134,7 @@ class DropTables {
         owns: String? = null,
         lacks: String? = null,
         variable: String? = null,
+        skill: String? = null,
         negated: Boolean = false,
         eq: Any? = null,
         default: Any? = null,
@@ -143,6 +148,27 @@ class DropTables {
         }
         if (members != null) {
             predicates.add { World.members == members }
+        }
+        if (skill != null) {
+            val skill = Skill.of(skill.toPascalCase())!!
+            if (negated) {
+                if (eq != null) {
+                    when (default) {
+                        is Int -> predicates.add { it.levels.getMax(skill) != eq }
+                        else -> {}
+                    }
+                }
+            } else {
+                if (eq != null) {
+                    when (default) {
+                        is Int -> predicates.add { it.levels.getMax(skill) == eq }
+                        else -> {}
+                    }
+                } else if (withinMin != null && withinMax != null) {
+                    val within = withinMin..withinMax
+                    predicates.add { it.levels.getMax(skill) !in within }
+                }
+            }
         }
         if (variable != null) {
             if (negated) {
