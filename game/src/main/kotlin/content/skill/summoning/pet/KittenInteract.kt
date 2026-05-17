@@ -123,22 +123,28 @@ class KittenInteract(definitions: PetDefinitions) : Script {
         nearbyRat.say("Eeek!")
         cat.mode = EmptyMode
         cat.walkTo(nearbyRat.tile)
-        weakQueue("kitten_chase", 5) {
+        weakQueue("kitten_chase", 4) {
             val current = pet
-            if (current != null && current.index == cat.index) {
-                current.mode = Follow(current, this)
+            if (current != null && current.index == cat.index && nearbyRat.tile.distanceTo(current.tile) <= 1) {
+                current.anim("pet_pounce_kitten")
             }
-            if (caught && nearbyRat.tile.distanceTo(current?.tile ?: nearbyRat.tile) <= 1) {
-                NPCs.remove(nearbyRat)
-                val count = get("pet_rats_caught", 0) + 1
-                set("pet_rats_caught", count)
-                player<Happy>("Hey well done puss, you got it!")
-                current?.say("MeeeoooooW!")
-                if (count % 10 == 0) {
-                    player<Happy>("Well done puss! $count horrible rodents caught!")
+            weakQueue("kitten_chase_resolve", 1) {
+                val resolved = pet
+                if (resolved != null && resolved.index == cat.index) {
+                    resolved.mode = Follow(resolved, this)
                 }
-            } else {
-                message("The rat manages to get away!")
+                if (caught && nearbyRat.tile.distanceTo(resolved?.tile ?: nearbyRat.tile) <= 1) {
+                    NPCs.remove(nearbyRat)
+                    val count = get("pet_rats_caught", 0) + 1
+                    set("pet_rats_caught", count)
+                    player<Happy>("Hey well done puss, you got it!")
+                    resolved?.say("MeeeoooooW!")
+                    if (count % 10 == 0) {
+                        player<Happy>("Well done puss! $count horrible rodents caught!")
+                    }
+                } else {
+                    message("The rat manages to get away!")
+                }
             }
         }
     }
