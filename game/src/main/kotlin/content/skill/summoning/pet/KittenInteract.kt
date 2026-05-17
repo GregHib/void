@@ -67,7 +67,11 @@ class KittenInteract(definitions: PetDefinitions) : Script {
         }
     }
 
-    private fun Player.chaseVermin(kitten: NPC) {
+    private suspend fun Player.chaseVermin(kitten: NPC) {
+        player<Quiz>("Do you fancy a bit of hunting?")
+        kitten.say("Meoowww. Yeah! Let's go kick some fur!")
+        player<Happy>("Take it easy sport, just don't hurt yourself.")
+
         say("Go on puss...kill that rat!")
         val nearbyRat = NPCs.at(tile.regionLevel)
             .filter { it.isRat() }
@@ -89,7 +93,13 @@ class KittenInteract(definitions: PetDefinitions) : Script {
             }
             if (caught && nearbyRat.tile.distanceTo(current?.tile ?: nearbyRat.tile) <= 1) {
                 NPCs.remove(nearbyRat)
-                message("Your cat has caught the rat.")
+                val count = get("pet_rats_caught", 0) + 1
+                set("pet_rats_caught", count)
+                say("Hey well done puss, you got it!")
+                current?.say("MeeeoooooW!")
+                if (count % 10 == 0) {
+                    say("Well done puss! $count horrible rodents caught!")
+                }
             } else {
                 message("The rat manages to get away!")
             }
