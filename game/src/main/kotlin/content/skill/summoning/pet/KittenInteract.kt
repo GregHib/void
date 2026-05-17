@@ -43,9 +43,11 @@ class KittenInteract(definitions: PetDefinitions) : Script {
     }
 
     private suspend fun Player.stroke(kitten: NPC) {
+        steps.clear()
         kitten.steps.clear()
         kitten.mode = EmptyMode
         kitten.watch(this)
+        face(kitten)
         anim("pet_stroke_player")
         kitten.anim("pet_stroke_kitten")
         kitten.say("Purr...purr...")
