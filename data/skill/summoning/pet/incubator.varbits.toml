@@ -1,8 +1,13 @@
-# Per-incubator state varbits.
-# 0 = empty, 1 = incubating, 2 = finished hatching.
+# Per-incubator state varbits, driving the client-side scenery transform.
 
-[taverley_incubator_state]
+[incubator_state_taverley]
 id = 4277
+format = "list"
+default = "empty"
+values = [ "empty", "incubating", "finished" ]
 
-[yanille_incubator_state]
+[incubator_state_yanille]
 id = 4221
+format = "list"
+default = "empty"
+values = [ "empty", "incubating", "finished" ]

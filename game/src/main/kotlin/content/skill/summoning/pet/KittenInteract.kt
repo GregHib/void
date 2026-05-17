@@ -43,12 +43,17 @@ class KittenInteract(definitions: PetDefinitions) : Script {
     }
 
     private suspend fun Player.stroke(kitten: NPC) {
+        kitten.steps.clear()
+        kitten.mode = EmptyMode
         kitten.watch(this)
         anim("pet_stroke_player")
         kitten.anim("pet_stroke_kitten")
         kitten.say("Purr...purr...")
         player<Happy>("That cat sure loves to be stroked.")
-        if (pet?.index == kitten.index) kitten.say("Miaow!")
+        if (pet?.index == kitten.index) {
+            kitten.say("Miaow!")
+            kitten.mode = Follow(kitten, this)
+        }
     }
 
     private fun Player.chaseVermin(kitten: NPC) {

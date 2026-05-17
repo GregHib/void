@@ -37,14 +37,13 @@ internal class IncubatorUseEggTest : WorldTest() {
         val player = createPlayer(Tile(taverleyIncubatorTile.x + 1, taverleyIncubatorTile.y, 0))
         // Pre-populate as if an egg was placed and has finished incubating.
         player.set("incubator_egg_taverley", "penguin")
-        player.set("incubator_end_taverley", 1L) // long in the past
-        player.set("taverley_incubator_state", 1) // INCUBATING; currentState() will see it as FINISHED via end-time check
+        player.set("incubator_state_taverley", "finished")
 
         player.objectOption(activeIncubator, "Take-egg")
         tick(5)
 
         assertTrue(player.inventory.contains("pet_penguin_baby"), "product baby pet item should be added")
         assertEquals("", player.get("incubator_egg_taverley", ""), "egg state should clear")
-        assertEquals(0, player.get("taverley_incubator_state", -1), "varbit should reset to EMPTY")
+        assertEquals("empty", player.get("incubator_state_taverley", "empty"), "state should reset to empty")
     }
 }
