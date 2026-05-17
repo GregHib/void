@@ -3,6 +3,8 @@ package world.gregs.voidps.engine.data
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.*
+import world.gregs.voidps.engine.client.variable.IntValues
+import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.data.exchange.ExchangeHistory
 import world.gregs.voidps.engine.data.exchange.ExchangeOffer
 import world.gregs.voidps.engine.data.exchange.OfferState
@@ -286,7 +288,11 @@ data class PlayerSave(
                             while (nextPair()) {
                                 val key = key()
                                 var value = value()
-                                if (value is Double) {
+                                // Legacy XP migration (PR #799): old saves stored experience as
+                                // fractional doubles; new schema is int * 10. Only collapse the
+                                // double when the current schema actually expects an int for this
+                                // key — otherwise we'd corrupt vars genuinely typed as double.
+                                if (value is Double && VariableDefinitions.get(key)?.values is IntValues) {
                                     value = (value * 10.0).toInt().coerceAtLeast(0)
                                 }
                                 variables[key] = value
