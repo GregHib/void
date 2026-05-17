@@ -28,7 +28,7 @@ data class PlayerOnObjectInteract(
     private fun invoke(noDelays: Set<String>, map: Map<String, List<suspend Player.(PlayerOnObjectInteract) -> Unit>>) {
         Script.launch {
             val id = target.def(player).stringId
-            if (!noDelays.contains("$option:$id") && (!noDelays.contains("$option:*") && !map.containsKey("$option:$id"))) {
+            if (!noDelays.contains("$option:$id") && !noDelays.contains("$option:*")) {
                 player.arriveDelay()
             }
             for (block in map["$option:$id"] ?: map["$option:*"] ?: return@launch) {
