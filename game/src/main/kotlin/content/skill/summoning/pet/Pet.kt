@@ -169,12 +169,18 @@ class PetScripts(private val definitions: PetDefinitions) : Script {
 
         itemOption("Drop", itemIds) { (item) ->
             val def = definitions.forItem(item.id) ?: return@itemOption
+            if (def.isCatLike && hasCatspeakAmulet() && def.stageForItem(item.id) != PetStage.Baby) {
+                summonCatWithAmulet(def, item.id)
+            }
             if (summonPet(def, item.id, restart = false)) {
                 inventory.remove(item.id)
             }
         }
         itemOption("Release", itemIds) { (item) ->
             val def = definitions.forItem(item.id) ?: return@itemOption
+            if (def.isCatLike && hasCatspeakAmulet() && def.stageForItem(item.id) != PetStage.Baby) {
+                summonCatWithAmulet(def, item.id)
+            }
             if (summonPet(def, item.id, restart = false)) {
                 inventory.remove(item.id)
             }
@@ -186,7 +192,11 @@ class PetScripts(private val definitions: PetDefinitions) : Script {
                 message("This isn't your pet.")
                 return@npcOperate
             }
-            pickupPet(definitions)
+            if (hasCatspeakAmulet() && isAdultCat(owner)) {
+                pickupCatWithAmulet(owner, definitions)
+            } else {
+                pickupPet(definitions)
+            }
         }
         npcOperate("Talk-to", npcIds) { interact ->
             val owner = pet
@@ -195,7 +205,15 @@ class PetScripts(private val definitions: PetDefinitions) : Script {
                 return@npcOperate
             }
             val def = definitions.forNpc(interact.target.id) ?: return@npcOperate
-            talkToPet(def, owner)
+            if (def.isCatLike) {
+                if (hasCatspeakAmulet() && isAdultCat(owner)) {
+                    talkToCatWithAmulet(owner)
+                } else {
+                    talkToCatPlain(owner)
+                }
+            } else {
+                talkToPet(def, owner)
+            }
         }
 
         playerSpawn {
