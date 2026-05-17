@@ -34,10 +34,10 @@ class BarbarianGuard : Script {
                 npc<Quiz>("Barbarians only. Are you a barbarian? You don't look like one.")
                 choice {
                     option<Neutral>("Hmm, yep you've got me there.")
-                    option<Neutral>("Looks can be deceiving, I am in fact a barbarian.") iAm@{
+                    option<Neutral>("Looks can be deceiving, I am in fact a barbarian.") {
                         if (inventory.isFull()) {
                             npc<Neutral>("Are you, now? Free up some space so you can carry something, and we'll see how barbarian you really are.")
-                            return@iAm
+                            return@option
                         }
                         npc<Neutral>("If you're a barbarian you need to be able to drink like one. We barbarians like a good drink.")
                         npc<Happy>("I have the perfect challenge for you... The Alfred Grimhand Barcrawl! First completed by Alfred Grimhand.")

@@ -35,7 +35,7 @@ internal class AlfredGrimhandsBarCrawlTest : WorldTest() {
         val guard = findNpc(player, "barbarian_guard")
         player.npcOption(guard, 0) // Talk-to
         tickIf { player.dialogue == null }
-        player.dialogueOption("continue")
+        player.dialogueContinue()
         player.dialogueOption("line1") // I want to come through this gate
         player.dialogueContinue(2)
         player.dialogueOption("line2") // Looks can be deceiving

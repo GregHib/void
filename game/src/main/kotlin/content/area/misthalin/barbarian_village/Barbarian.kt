@@ -11,7 +11,8 @@ import world.gregs.voidps.type.random
 
 class Barbarian : Script {
     init {
-        npcOperate("Talk-to", "barbarian_*") { (target) ->
+        val barbarians = "barbarian_alberich,barbarian_fafner,barbarian_fasolt,barbarian_siegfried,barbarian_minarch,barbarian_brunnhilde,barbarian_edelschwarz"
+        npcOperate("Talk-to", barbarians) { (target) ->
             when (random.nextInt(5)) {
                 0 -> npc<Quiz>("Wanna fight?")
                 1 -> npc<Quiz>("Ah, you come for fight, ja?")
@@ -22,6 +23,7 @@ class Barbarian : Script {
             }
             target.interactPlayer(this, "Attack")
         }
+
         npcCombatStart {
             if (!id.startsWith("barbarian")) {
                 return@npcCombatStart
@@ -42,7 +44,7 @@ class Barbarian : Script {
             Timer.CONTINUE
         }
 
-        npcDeath {
+        npcDeath(barbarians) {
             softTimers.stop("barbarian_war_cry")
         }
     }
