@@ -4,3 +4,8 @@
 format = "string"
 persist = true
 transmit = false
+
+[pet_rats_caught]
+format = "int"
+persist = true
+transmit = false
