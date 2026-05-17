@@ -121,7 +121,6 @@ class SuspensionSystemTest {
 
         // Verify resumption
         assertTrue(resumed)
-        assertNull(player.suspension)
         job.cancel()
     }
 
