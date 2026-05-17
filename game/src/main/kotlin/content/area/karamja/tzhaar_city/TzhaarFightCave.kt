@@ -29,6 +29,7 @@ import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -39,7 +40,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.map.collision.random
-import world.gregs.voidps.engine.queue.longQueue
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.epochMilliseconds
@@ -203,7 +203,8 @@ class TzhaarFightCave(
             }
             it.dropItems = false
             it.teleport = outside
-            longQueue("fight_cave_death", 3) {
+            World.queue("fight_cave_death_$index", 3) {
+                queue.clear()
                 leave(wave)
             }
         }
