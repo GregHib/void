@@ -29,7 +29,7 @@ suspend inline fun <reified E : Expression> Player.npc(npcId: String, text: Stri
 @JvmName("npcExpression")
 suspend fun Player.npc(expression: String, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
     val target: NPC = get("dialogue_target") ?: throw IllegalArgumentException("No npc specified for dialogue. Please use player.talkWith(npc) or npc(npcId, text).")
-    val id = target["transform_id", get<NPCDefinition>("dialogue_def")?.stringId ?: target.id]
+    val id = target["transform_id", get("dialogue_def") ?: target.id]
     if (target.def["interacts", true]) {
         target.mode = Face(target, this, target.def["interact_range", 1])
     }
