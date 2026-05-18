@@ -95,7 +95,7 @@ class PetShopOwner : Script {
             option<Quiz>("So, what sorts of pets are available?") {
                 availablePets(owner)
             }
-            option<Quiz>("Are you interested in buying spirit shards?") {
+            option("Are you interested in buying spirit shards?") {
                 spiritShards(owner)
             }
         }
