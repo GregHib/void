@@ -223,9 +223,7 @@ data class PlayerSave(
             val ignores = ObjectArrayList<String>()
             val offers = Array(6) { ExchangeOffer.EMPTY }
             val history = ObjectArrayList<ExchangeHistory>()
-            // 8192 buffer accommodates long player-variable values (e.g. encoded
-            // pet_stats blob holding hunger/growth for every pet ever raised).
-            Config.fileReader(file, maxStringLength = 8192) {
+            Config.fileReader(file) {
                 while (nextPair()) {
                     when (val key = key()) {
                         "accountName" -> name = string()
@@ -233,7 +231,11 @@ data class PlayerSave(
                         "experience" -> {
                             var index = 0
                             while (nextElement()) {
-                                experience[index++] = int()
+                                var int = int()
+                                if (peek == '.') {
+                                    int = ((int + double()) * 10.0).toInt()
+                                }
+                                experience[index++] = int
                             }
                         }
                         "blocked_skills" -> while (nextElement()) {
@@ -280,7 +282,12 @@ data class PlayerSave(
                         }
                         "variables" -> {
                             while (nextPair()) {
-                                variables[key()] = value()
+                                val key = key()
+                                var value = value()
+                                if (value is Double) {
+                                    value = (value * 10.0).toInt().coerceAtLeast(0)
+                                }
+                                variables[key] = value
                             }
                         }
                         "inventories" -> {
