@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.timer.Timer
+import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
@@ -70,7 +71,7 @@ class Incubator : Script {
             }
             if (!inventory.remove(def.item("egg"))) return@itemOnObjectOperate
             set("incubator_egg_$suffix", def.rowId)
-            start("incubator_end_$suffix", TimeUnit.SECONDS.toTicks(def.int("incubation_seconds")))
+            start("incubator_end_$suffix", def.int("incubation_seconds"), base = epochSeconds())
             set("incubator_state_$suffix", "incubating")
             timers.start("incubator_check")
             message("You place the egg in the incubator.")
@@ -90,7 +91,7 @@ class Incubator : Script {
                     active = true
                     continue
                 }
-                if (remaining("incubator_end_$suffix") <= 0) {
+                if (remaining("incubator_end_$suffix", epochSeconds()) <= 0) {
                     val productName = egg(eggId)?.item("product")?.replace('_', ' ') ?: "egg"
                     message("<col=00cc00>Your $productName egg has finished hatching.</col>")
                     set("incubator_state_$suffix", "finished")
@@ -102,21 +103,10 @@ class Incubator : Script {
 
         playerSpawn {
             for (suffix in SUFFIXES) {
-                if (contains("incubator_egg_$suffix")) {
-                    // GameLoop.tick resets to 0 on server boot, so the stored
-                    // tick clock is meaningless after a restart. Reset the
-                    // clock fresh for any egg the player left mid-incubation
-                    // so they keep the egg but start the countdown over.
-                    if (get("incubator_state_$suffix", "empty") == "incubating") {
-                        val eggId = get("incubator_egg_$suffix", "")
-                        val seconds = egg(eggId)?.int("incubation_seconds") ?: 0
-                        if (seconds > 0) {
-                            start("incubator_end_$suffix", TimeUnit.SECONDS.toTicks(seconds))
-                        }
-                    }
+                if (get("incubator_state_$suffix", "empty") == "incubating") {
                     timers.restart("incubator_check")
+                    return@playerSpawn
                 }
-                variables.send("incubator_state_$suffix")
             }
         }
     }
