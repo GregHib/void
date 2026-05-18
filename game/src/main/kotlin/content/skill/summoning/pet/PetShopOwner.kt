@@ -45,8 +45,6 @@ private val BREEDS = listOf(
     Breed("Labrador", "labrador", "labrador_puppy_yellow"),
 )
 
-private val BREED_INDEX = BREEDS.withIndex().associate { (i, breed) -> breed.petId to i }
-
 private fun Player.alreadyHasDog(): Boolean {
     val active = get("pet_active_item", "")
     if (active.isNotBlank() && BREEDS.any { active.startsWith(it.petId) }) return true
@@ -74,13 +72,13 @@ class PetShopOwner : Script {
         // iface 668 may emit either a continue-dialogue packet or a regular
         // interface-option packet depending on how the cache wires up each
         // button, so register both dispatch paths against the same resume.
-        for ((breedId, index) in BREED_INDEX) {
-            continueDialogue("dialogue_pick_a_puppy:$breedId") {
-                (suspension as? Suspension.IntEntry)?.resume(index)
-            }
-            interfaceOption(id = "dialogue_pick_a_puppy:$breedId") {
-                (suspension as? Suspension.IntEntry)?.resume(index)
-            }
+        continueDialogue("dialogue_pick_a_puppy:*") { id ->
+            val index = BREEDS.indexOfFirst { it.petId == id.substringAfter(":") }
+            if (index >= 0) (suspension as? Suspension.IntEntry)?.resume(index)
+        }
+        interfaceOption(id = "dialogue_pick_a_puppy:*") { option ->
+            val index = BREEDS.indexOfFirst { it.petId == option.component }
+            if (index >= 0) (suspension as? Suspension.IntEntry)?.resume(index)
         }
     }
 
