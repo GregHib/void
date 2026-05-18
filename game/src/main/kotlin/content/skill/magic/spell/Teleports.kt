@@ -90,9 +90,7 @@ class Teleports : Script {
         teleportRemoveItems("tablet", ::removeItem)
     }
 
-    fun removeItem(player: Player, item: String): Boolean {
-        return player.inventory.remove(item)
-    }
+    fun removeItem(player: Player, item: String): Boolean = player.inventory.remove(item)
 
     fun teleport(player: Player, option: ItemOption) {
         val definition = Areas.getOrNull(option.item.id) ?: return
