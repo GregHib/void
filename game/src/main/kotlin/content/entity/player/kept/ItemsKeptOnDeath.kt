@@ -50,7 +50,7 @@ object ItemsKeptOnDeath {
                         kept.add(queue.pop())
                     } else if (item.amount > 1) {
                         queue.pop()
-                        queue.addFirst(item.copy(amount = item.amount - 1))
+                        queue.add(0, item.copy(amount = item.amount - 1))
                         kept.add(item.copy(amount = 1))
                     }
                 }

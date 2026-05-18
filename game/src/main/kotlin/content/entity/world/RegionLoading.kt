@@ -144,7 +144,6 @@ class RegionLoading(val dynamicZones: DynamicZones) : Script {
         }
 
         viewport.dynamic = false
-
         player.client?.mapRegion(
             zoneX = zoneX,
             zoneY = zoneY,
@@ -160,12 +159,12 @@ class RegionLoading(val dynamicZones: DynamicZones) : Script {
     fun updateDynamic(player: Player, initial: Boolean, force: Boolean) {
         val viewport = player.viewport ?: return
 
+        val distinct = mutableSetOf<Int>()
         val xteaList = mutableListOf<IntArray>()
         val zones = mutableListOf<Int?>()
 
         val view = player.tile.zone.minus(viewport.zoneRadius, viewport.zoneRadius)
         val zoneSize = viewport.zoneArea
-        var append = 0
         val xtea = blankXtea
         for (lvl in 0..3) {
             for (x in 0 until zoneSize) {
@@ -177,16 +176,12 @@ class RegionLoading(val dynamicZones: DynamicZones) : Script {
                         continue
                     }
                     zones.add(target)
-                    if (!xteaList.contains(xtea)) {
+                    val original = DynamicZones.getZone(target).region
+                    if (distinct.add(original.id)) {
                         xteaList.add(xtea)
-                    } else {
-                        append++
                     }
                 }
             }
-        }
-        for (i in 0..append) {
-            xteaList.add(xtea)
         }
         viewport.dynamic = true
         player.client?.dynamicMapRegion(
