@@ -38,7 +38,10 @@ var Player.pet: NPC?
     }
 
 fun Player.summonPet(row: RowDefinition, itemId: String, restart: Boolean = false): Boolean {
-    if (pet != null || follower != null) {
+    if (pet != null ||
+        follower != null ||
+        (!restart && get("pet_active_item", "").isNotBlank())
+    ) {
         if (!restart) message("You already have a follower.")
         return false
     }
@@ -51,12 +54,15 @@ fun Player.summonPet(row: RowDefinition, itemId: String, restart: Boolean = fals
     val npcStringId = row.npcFor(stage) ?: return false
     val spawned = NPCs.add(npcStringId, tile)
     spawned.mode = Follow(spawned, this)
+    // Set the pet index synchronously so a second drop on the same tick sees
+    // pet != null and trips the "You already have a follower." gate, instead
+    // of slipping through and spawning a parallel NPC.
+    pet = spawned
     set("pet_active_item", itemId)
     if (!restart) {
         anim("climb_down")
     }
     weakQueue("summon_pet", 2) {
-        pet = spawned
         timers.start("pet_tick")
         updatePetInterface()
     }

@@ -102,10 +102,21 @@ class Incubator : Script {
 
         playerSpawn {
             for (suffix in SUFFIXES) {
-                variables.send("incubator_state_$suffix")
                 if (contains("incubator_egg_$suffix")) {
+                    // GameLoop.tick resets to 0 on server boot, so the stored
+                    // tick clock is meaningless after a restart. Reset the
+                    // clock fresh for any egg the player left mid-incubation
+                    // so they keep the egg but start the countdown over.
+                    if (get("incubator_state_$suffix", "empty") == "incubating") {
+                        val eggId = get("incubator_egg_$suffix", "")
+                        val seconds = egg(eggId)?.int("incubation_seconds") ?: 0
+                        if (seconds > 0) {
+                            start("incubator_end_$suffix", TimeUnit.SECONDS.toTicks(seconds))
+                        }
+                    }
                     timers.restart("incubator_check")
                 }
+                variables.send("incubator_state_$suffix")
             }
         }
     }
