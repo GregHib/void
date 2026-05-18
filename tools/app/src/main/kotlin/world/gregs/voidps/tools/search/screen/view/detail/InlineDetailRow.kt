@@ -22,8 +22,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.painterResource
-import world.gregs.void.tools.generated.resources.Res
-import world.gregs.void.tools.generated.resources.open_in_new
+import world.gregs.void.app.generated.resources.Res
+import world.gregs.void.app.generated.resources.open_in_new
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.tools.search.BorderColor
 import world.gregs.voidps.tools.search.LinkColor

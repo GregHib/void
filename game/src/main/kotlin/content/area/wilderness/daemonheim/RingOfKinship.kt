@@ -3,7 +3,6 @@ package content.area.wilderness.daemonheim
 import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.inDungeoneering
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
-import content.skill.magic.jewellery.itemTeleport
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
@@ -17,6 +16,7 @@ import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.StructDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
@@ -24,7 +24,7 @@ import world.gregs.voidps.engine.inv.replace
 class RingOfKinship : Script {
     init {
         itemOption("Teleport to Daemonheim", "ring_of_kinship", "*") {
-            itemTeleport(this, Areas["daemonheim_teleport"], "kinship")
+            Teleport.teleport(this, "daemonheim_teleport", "kinship")
         }
 
         itemOption("Open party interface", "ring_of_kinship*", "*") {

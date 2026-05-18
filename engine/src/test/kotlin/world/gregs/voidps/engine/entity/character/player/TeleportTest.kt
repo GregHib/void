@@ -29,7 +29,7 @@ class TeleportTest {
         }
 
         override fun invoke(args: List<String>) {
-            assertTrue(Teleport.takeOff(Player(), "tele"))
+            assertTrue(Teleport.takeOff(Player(), "tele", "spell"))
         }
 
         override val apis = listOf(Teleport)

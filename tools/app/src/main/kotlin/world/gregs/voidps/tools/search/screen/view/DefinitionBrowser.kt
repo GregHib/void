@@ -18,9 +18,9 @@ import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
-import world.gregs.void.tools.generated.resources.Res
-import world.gregs.void.tools.generated.resources.folder_open
-import world.gregs.void.tools.generated.resources.refresh
+import world.gregs.void.app.generated.resources.Res
+import world.gregs.void.app.generated.resources.folder_open
+import world.gregs.void.app.generated.resources.refresh
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.tools.search.*
 import world.gregs.voidps.tools.search.screen.global.GlobalSearchState
