@@ -21,6 +21,14 @@ defend_sound = "ghast_defend"
 death_anim = "ghast_death"
 death_sound = "ghast_death"
 
+[ghast_level_30]
+attack_speed = 20
+retreat_range = 8
+defend_anim = "ghast_defend"
+defend_sound = "ghast_defend"
+death_anim = "ghast_death"
+death_sound = "ghast_death"
+
 [ghast.skip]
 chance = 20
 range = 1
