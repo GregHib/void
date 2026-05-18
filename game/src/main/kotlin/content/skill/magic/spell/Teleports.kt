@@ -15,12 +15,15 @@ import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
+import world.gregs.voidps.engine.inv.discharge
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.random
+import world.gregs.voidps.engine.queue.ActionPriority
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.timer.epochSeconds
@@ -31,20 +34,18 @@ class Teleports : Script {
     init {
         interfaceOption("Cast", "*_spellbook:*_teleport") {
             val component = it.component
+            if (component == "ardougne_teleport" && quest("plague_city") != "completed_with_spell") {
+                message("You haven't learnt how to cast this spell yet.")
+                return@interfaceOption
+            }
             if (component != "lumbridge_home_teleport") {
                 cast(it.id, it.component)
                 return@interfaceOption
             }
-            val seconds = remaining("home_teleport_timeout", epochSeconds())
-            if (seconds > 0) {
-                val remaining = TimeUnit.SECONDS.toMinutes(seconds.toLong())
-                message("You have to wait $remaining ${"minute".plural(remaining)} before trying this again.")
+            if (!Teleport.takeOff(this, component)) {
                 return@interfaceOption
             }
-            if (hasClock("teleport_delay")) {
-                return@interfaceOption
-            }
-            if (!removeSpellItems(component)) {
+            if (!Teleport.removeItems(this, component, component)) {
                 return@interfaceOption
             }
             var total = 0
@@ -65,67 +66,71 @@ class Teleports : Script {
             }
         }
 
-        interfaceOption("Cast", "*_spellbook:ardougne_teleport") {
-            if (quest("plague_city") != "completed_with_spell") {
-                message("You haven't learnt how to cast this spell yet.")
-                return@interfaceOption
+        teleportTakeOff("lumbridge_home_teleport") {
+            val seconds = remaining("home_teleport_timeout", epochSeconds())
+            if (seconds > 0) {
+                val remaining = TimeUnit.SECONDS.toMinutes(seconds.toLong())
+                message("You have to wait $remaining ${"minute".plural(remaining)} before trying this again.")
+                false
             } else {
-                cast(it.id, it.component)
+                !hasClock("teleport_delay")
             }
         }
 
         itemOption("Read", "*_teleport", handler = ::teleport)
         itemOption("Break", "*_teleport", handler = ::teleport)
+
+        val teleportSpells = listOf(
+            "lumbridge_home_teleport",
+            "ardougne_teleport",
+            "mobilising_armies_teleport",
+            "lumbridge_teleport",
+            "falador_teleport",
+            "camelot_teleport",
+            "ardougne_teleport",
+            "watchtower_teleport",
+            "trollheim_teleport",
+            "edgeville_home_teleport",
+            "paddewwa_teleport",
+            "senntisten_teleport",
+            "kharyrll_teleport",
+            "lassar_teleport",
+            "dareeyak_teleport",
+            "carrallanger_teleport",
+            "annakarl_teleport",
+            "ghorrock_teleport",
+            "lunar_home_teleport",
+            "moonclan_teleport",
+            "ourania_teleport",
+            "waterbirth_teleport",
+            "barbarian_teleport",
+            "khazard_teleport",
+            "fishing_guild_teleport",
+            "catherby_teleport",
+            "ice_plateau_teleport",
+        )
+        for (spell in teleportSpells) {
+            teleportRemoveItems(spell) { removeSpellItems(spell) }
+        }
+        teleportRemoveItems("ape_atoll_teleport") { questCompleted("recipe_for_disaster") && removeSpellItems("ape_atoll_teleport") }
+
+        teleportRemoveItems("teleport_scroll", ::removeItem)
+        teleportRemoveItems("teleport_tablet", ::removeItem)
+    }
+
+    fun removeItem(player: Player, item: String): Boolean {
+        return player.inventory.remove(item)
     }
 
     fun teleport(player: Player, option: ItemOption) {
-        if (player.contains("delay") || player.queue.contains("teleport")) {
-            return
-        }
-        player.closeInterfaces()
         val definition = Areas.getOrNull(option.item.id) ?: return
-        val scrolls = Areas.tagged("scroll")
-        val type = if (scrolls.contains(definition)) "scroll" else "tablet"
-        val map = definition.area
-        player.steps.clear()
-        player.strongQueue("teleport") {
-            if (player.inventory.remove(option.item.id)) {
-                player.sound("teleport_$type")
-                player.gfx("teleport_$type")
-                player.anim("teleport_$type")
-                player.delay(3)
-                player.tele(map.random(player)!!)
-                player.animDelay("teleport_land")
-            }
-        }
+        val type = if (definition.tags.contains("scroll")) "scroll" else "tablet"
+        Teleport.teleport(player, definition.area.random(player)!!, type, spell = option.item.id)
     }
 
     fun Player.cast(id: String, component: String) {
-        if (contains("delay") || queue.contains("teleport")) {
-            return
-        }
-        if (component == "ape_atoll_teleport" && !questCompleted("recipe_for_disaster")) {
-            return
-        }
-        closeInterfaces()
-        strongQueue("teleport") {
-            if (!removeSpellItems(component)) {
-                return@strongQueue
-            }
-            exp(Skill.Magic, Tables.int("spells.$component.xp") / 10.0)
-            val book = id.removeSuffix("_spellbook")
-            sound("teleport")
-            gfx("teleport_$book")
-            animDelay("teleport_$book")
-            tele(Areas[component].random(this)!!)
-            delay(1)
-            sound("teleport_land")
-            gfx("teleport_land_$book")
-            animDelay("teleport_land_$book")
-            if (book == "ancient") {
-                delay(1)
-                clearAnim()
-            }
-        }
+        val xp = Tables.int("spells.$component.xp") / 10.0
+        val book = id.removeSuffix("_spellbook")
+        Teleport.teleport(this, area = component, type = book, xp = xp, spell = component)
     }
 }
