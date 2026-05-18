@@ -29,25 +29,24 @@ class Incubator : Script {
     init {
         objectOperate("Inspect", "incubator_*") {
             val suffix = it.target.id.removePrefix("incubator_")
-            when (get("incubator_state_$suffix", "empty")) {
-                "finished" -> message("The egg inside has finished incubating.")
-                "incubating" -> {
-                    val eggId = get("incubator_egg_$suffix", "")
+            val eggId = get("incubator_egg_$suffix", "")
+            when {
+                eggId.isBlank() -> message("The incubator is currently empty.")
+                isFinished(suffix) -> message("The egg inside has finished incubating.")
+                else -> {
                     val productName = egg(eggId)?.item("product")?.replace('_', ' ') ?: "an"
                     message("There is currently a $productName egg incubating.")
                 }
-                else -> message("The incubator is currently empty.")
             }
         }
 
         objectOperate("Take-egg", "incubator_*") {
             val suffix = it.target.id.removePrefix("incubator_")
-            if (get("incubator_state_$suffix", "empty") != "finished") {
+            if (get("incubator_egg_$suffix", "").isBlank() || !isFinished(suffix)) {
                 message("That egg hasn't finished incubating!")
                 return@objectOperate
             }
-            val eggId = get("incubator_egg_$suffix", "")
-            val def = egg(eggId) ?: return@objectOperate
+            val def = egg(get("incubator_egg_$suffix", "")) ?: return@objectOperate
             val product = def.item("product")
             if (!inventory.add(product)) {
                 message("You don't have enough room in your inventory.")
@@ -60,8 +59,12 @@ class Incubator : Script {
         itemOnObjectOperate(obj = "incubator_*") { interact ->
             val suffix = interact.target.id.removePrefix("incubator_")
             val def = eggForItem(interact.item.id) ?: return@itemOnObjectOperate
-            if (get("incubator_state_$suffix", "empty") != "empty") {
-                message("You already have an egg in this incubator.")
+            if (get("incubator_egg_$suffix", "").isNotBlank()) {
+                if (isFinished(suffix)) {
+                    message("Your previous egg has finished hatching, take it out first.")
+                } else {
+                    message("You already have an egg in this incubator.")
+                }
                 return@itemOnObjectOperate
             }
             val level = def.int("summoning_level")
@@ -86,15 +89,10 @@ class Incubator : Script {
             for (suffix in SUFFIXES) {
                 val eggId = get("incubator_egg_$suffix", "")
                 if (eggId.isBlank()) continue
-                val state = get("incubator_state_$suffix", "empty")
-                if (state == "finished") {
-                    active = true
-                    continue
-                }
-                if (remaining("incubator_end_$suffix", epochSeconds()) <= 0) {
+                if (!get("incubator_finished_announced_$suffix", false) && isFinished(suffix)) {
                     val productName = egg(eggId)?.item("product")?.replace('_', ' ') ?: "egg"
                     message("<col=00cc00>Your $productName egg has finished hatching.</col>")
-                    set("incubator_state_$suffix", "finished")
+                    set("incubator_finished_announced_$suffix", true)
                 }
                 active = true
             }
@@ -103,17 +101,24 @@ class Incubator : Script {
 
         playerSpawn {
             for (suffix in SUFFIXES) {
-                if (get("incubator_state_$suffix", "empty") == "incubating") {
+                if (get("incubator_egg_$suffix", "").isNotBlank()) {
+                    // Force the scenery transform back to "incubating" in case
+                    // an older save persisted the now-removed "finished" value.
+                    set("incubator_state_$suffix", "incubating")
                     timers.restart("incubator_check")
-                    return@playerSpawn
                 }
             }
         }
+    }
+
+    private fun Player.isFinished(suffix: String): Boolean {
+        return remaining("incubator_end_$suffix", epochSeconds()) <= 0
     }
 
     private fun Player.clearIncubator(suffix: String) {
         set("incubator_egg_$suffix", "")
         set("incubator_end_$suffix", 0)
         set("incubator_state_$suffix", "empty")
+        set("incubator_finished_announced_$suffix", false)
     }
 }

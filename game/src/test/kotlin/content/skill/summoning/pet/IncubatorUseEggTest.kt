@@ -36,8 +36,12 @@ internal class IncubatorUseEggTest : WorldTest() {
         val activeIncubator = createObject("incubator_taverley", taverleyIncubatorTile)
         val player = createPlayer(Tile(taverleyIncubatorTile.x + 1, taverleyIncubatorTile.y, 0))
         // Pre-populate as if an egg was placed and has finished incubating.
+        // "Finished" is no longer a discrete varbit value: the scenery stays
+        // on the "incubating" morph (28359) which carries the Take-egg cache
+        // option, and isFinished() is derived from the expired end-clock.
         player.set("incubator_egg_taverley", "penguin")
-        player.set("incubator_state_taverley", "finished")
+        player.set("incubator_state_taverley", "incubating")
+        // end-clock unset → remaining() returns -1 → isFinished() == true.
 
         player.objectOption(activeIncubator, "Take-egg")
         tick(5)
