@@ -305,6 +305,24 @@ id = 19
 id = 668
 type = "dialogue_box"
 
+[.bulldog]
+id = 3
+
+[.dalmatian]
+id = 4
+
+[.greyhound]
+id = 5
+
+[.terrier]
+id = 6
+
+[.sheepdog]
+id = 7
+
+[.labrador]
+id = 8
+
 [dialogue_pick_a_kitten]
 id = 737
 type = "dialogue_box"
