@@ -89,7 +89,12 @@ fun Player.pickupPet(): Boolean {
 
 fun Player.updatePetInterface() {
     val pet = pet ?: return
-    interfaces.open("pet_details")
+    val row = petRowForNpc(pet.id)
+    // Cats use iface 663 ("pet_details") which exposes cat-flavoured option
+    // labels like "Release Cat". Everything else (dogs, dragons, etc.) uses
+    // the generic follower iface 662 ("familiar_details").
+    val ifaceId = if (row?.isCatLike() == true) "pet_details" else "familiar_details"
+    interfaces.open(ifaceId)
     val itemStringId = get("pet_active_item", "")
     val itemIntId = ItemDefinitions.getOrNull(itemStringId)?.id ?: 0
     set("follower_details_name", itemIntId)
