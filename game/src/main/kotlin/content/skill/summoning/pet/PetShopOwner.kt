@@ -12,25 +12,40 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.suspend.Suspension
+import world.gregs.voidps.engine.suspend.pauseInt
 
 private const val PUPPY_PRICE = 500
 private const val SHARD_PRICE = 25
 
 private data class Breed(val option: String, val petId: String, val puppyItem: String)
 
+/**
+ * Order matches the click index resolved from the iface 668 ("Pick a puppy") components:
+ *   .bulldog (cache id 3)   -> index 0
+ *   .dalmatian (id 4)       -> index 1
+ *   .greyhound (id 5)       -> index 2
+ *   .terrier (id 6)         -> index 3
+ *   .sheepdog (id 7)        -> index 4
+ *   .labrador (id 8)        -> index 5
+ */
 private val BREEDS = listOf(
     Breed("Bulldog", "bulldog", "bulldog_puppy_white"),
     Breed("Dalmatian", "dalmatian", "dalmatian_puppy_black"),
     Breed("Greyhound", "greyhound", "greyhound_puppy_brown"),
-    Breed("Labrador", "labrador", "labrador_puppy_yellow"),
-    Breed("Sheepdog", "sheepdog", "sheepdog_puppy_black"),
     Breed("Terrier", "terrier", "terrier_puppy_2"),
+    Breed("Sheepdog", "sheepdog", "sheepdog_puppy_black"),
+    Breed("Labrador", "labrador", "labrador_puppy_yellow"),
 )
+
+private val BREED_INDEX = BREEDS.withIndex().associate { (i, breed) -> breed.petId to i }
 
 private fun Player.alreadyHasDog(): Boolean {
     val active = get("pet_active_item", "")
@@ -45,6 +60,12 @@ class PetShopOwner : Script {
     init {
         npcOperate("Talk-to", "pet_shop_owner_yanille,pet_shop_owner_taverley") { interact ->
             mainMenu(interact.target)
+        }
+
+        for ((breedId, index) in BREED_INDEX) {
+            continueDialogue("dialogue_pick_a_puppy:$breedId") {
+                (suspension as? Suspension.IntEntry)?.resume(index)
+            }
         }
     }
 
@@ -72,12 +93,11 @@ class PetShopOwner : Script {
             return
         }
         npc<Happy>(owner.id, "The one with the waggly tail?")
-        choice("Pick a Puppy") {
-            for (breed in BREEDS) {
-                option(breed.option) { buyPuppy(owner, breed) }
-            }
-            option("Sorry, none today.")
-        }
+        if (!open("dialogue_pick_a_puppy")) return
+        val index = pauseInt()
+        close("dialogue_pick_a_puppy")
+        val breed = BREEDS.getOrNull(index) ?: return
+        buyPuppy(owner, breed)
     }
 
     private suspend fun Player.buyPuppy(owner: NPC, breed: Breed) {
