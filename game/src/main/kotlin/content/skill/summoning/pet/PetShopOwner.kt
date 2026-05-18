@@ -62,6 +62,14 @@ class PetShopOwner : Script {
             mainMenu(interact.target)
         }
 
+        npcOperate("Trade", "pet_shop_owner_yanille,pet_shop_owner_taverley") {
+            openShop("pet_shop")
+        }
+
+        npcOperate("Sell-shards", "pet_shop_owner_yanille,pet_shop_owner_taverley") { interact ->
+            spiritShards(interact.target)
+        }
+
         // iface 668 may emit either a continue-dialogue packet or a regular
         // interface-option packet depending on how the cache wires up each
         // button, so register both dispatch paths against the same resume.
