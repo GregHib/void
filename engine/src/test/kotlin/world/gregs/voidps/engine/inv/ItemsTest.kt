@@ -207,15 +207,15 @@ class ItemsTest {
         override val failedChecks = emptyList<List<String>>()
 
         override fun Script.register(args: List<String>, caller: Caller) {
-            takeable(args[0]) { item ->
+            takeable(args[0]) { item, _ ->
                 caller.call()
-                assertEquals("item", item)
+                assertEquals("item", item.id)
                 "string"
             }
         }
 
         override fun invoke(args: List<String>) {
-            val actual = Items.takeable(Player(), "item")
+            val actual = Items.takeable(Player(), FloorItem(Tile.EMPTY, "item"))
             assertTrue(actual == "item" || actual == "string")
         }
 

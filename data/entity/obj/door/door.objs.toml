@@ -1,3 +1,6 @@
+[inviswall]
+id = 83
+
 [door_opened]
 id = 1531
 examine = "The door is open."
@@ -1087,19 +1090,19 @@ id = 5175
 id = 5174
 examine = "The door to the garden shed."
 
-[door_142_opened]
+[fenk_door_opened]
 id = 5187
 examine = "Looks wooden. Feels wooden. I wonder is it wooden?"
 
-[door_142_closed]
+[fenk_door_closed]
 id = 5183
 examine = "Looks wooden. Feels wooden. I wonder is it wooden?"
 
-[door_143_opened]
+[fenk_door_mirror_opened]
 id = 5188
 examine = "Looks wooden. Feels wooden. I wonder is it wooden?"
 
-[door_143_closed]
+[fenk_door_mirror_closed]
 id = 5186
 examine = "Looks wooden. Feels wooden. I wonder is it wooden?"
 
@@ -2914,20 +2917,6 @@ examine = "The door is open."
 [cell_door_12_closed]
 id = 30570
 examine = "A hastily constructed yet sturdy prison door."
-
-[large_door_90_opened]
-id = 30709
-
-[large_door_90_closed]
-id = 30707
-examine = "Sturdy looking door."
-
-[large_door_91_opened]
-id = 30710
-
-[large_door_91_closed]
-id = 30708
-examine = "Sturdy looking door."
 
 [door_525_opened]
 id = 30865

@@ -1,4 +1,4 @@
-[temple_guardian]
+[priestperilguarddog]
 id = 7711
 hitpoints = 450
 att = 20
@@ -10,3 +10,54 @@ slayer_xp = 45.0
 categories = ["dogs"]
 immune_cannon = true
 examine = "Looks like a big ugly dog."
+
+[priestperilevilmonk1]
+id = 1044
+hitpoints = 200
+att = 18
+str = 18
+def = 22
+mage = 25
+combat_def = "monk_of_zamorak"
+max_hit_crush = 30
+max_hit_magic = 110
+hunt_mode = "cowardly"
+respawn_delay = 25
+examine = "An evil human cleric."
+
+[priestperilevilmonk2]
+id = 1045
+hitpoints = 100
+att = 8
+str = 8
+def = 12
+mage = 25
+combat_def = "monk_of_zamorak"
+max_hit_crush = 50
+max_hit_magic = 50
+hunt_mode = "cowardly"
+respawn_delay = 25
+examine = "An evil human cleric."
+
+[priestperilevilmonk3]
+id = 1046
+hitpoints = 250
+att = 25
+str = 25
+def = 25
+mage = 40
+combat_def = "monk_of_zamorak"
+max_hit_melee = 30
+max_hit_magic = 80
+hunt_mode = "cowardly"
+respawn_delay = 25
+examine = "An evil human cleric."
+
+[priestperiltrappedmonk_vis]
+id = 1047
+
+[priestperiltrappedmonk2]
+id = 1049
+
+[priestperiltrappedmonk]
+id = 7707

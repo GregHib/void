@@ -51,6 +51,12 @@ enum class Direction(deltaX: Int, deltaY: Int) {
         NONE -> NONE
     }
 
+    /**
+     * Lower-cased hyphenated label, e.g. [NORTH_EAST] -> "north-east", suitable for chat messages.
+     */
+    val label: String
+        get() = name.lowercase().replace('_', '-')
+
     companion object {
         val size = entries.size
         val cardinal = entries.filter { it.isCardinal() && it.delta.x != it.delta.y }

@@ -1,6 +1,7 @@
 package content.area.morytania.mort_myre_swamp
 
 import content.entity.combat.hit.directHit
+import content.entity.combat.hit.hit
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.Areas
@@ -9,9 +10,7 @@ import world.gregs.voidps.engine.inv.any
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.Timer
-import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.random
-import java.util.concurrent.TimeUnit
 import kotlin.random.nextInt
 
 class SwampDecay : Script {
@@ -36,16 +35,27 @@ class SwampDecay : Script {
         }
 
         timerStart("swamp_decay") {
-            TimeUnit.SECONDS.toTicks(138) // 2 minutes 18 seconds
+            230 // 2 minutes 18 seconds
         }
 
         timerTick("swamp_decay") {
             if (inventory.any(immunity) || equipment.any(immunity)) {
+                when {
+                    equipment.contains("silver_sickle_b") -> message("The blessed sick prevents the swamp from decaying you.")
+                }
+                gfx("druidicspirit_druidsshield", delay = 30)
                 return@timerTick Timer.CONTINUE
             }
+
+            if (tile in Areas["filliman_grotto"]) {
+                message("The aura of Fillimans camp protects you from the swamp.")
+                gfx("druidicspirit_druidsshield", delay = 30)
+                return@timerTick Timer.CONTINUE
+            }
+
             if (tile in Areas["mort_myre_swamp"]) {
                 message("The swamp decays you!")
-                directHit(random.nextInt(10..30))
+                directHit( damage = random.nextInt(10..30))
                 gfx("swamp_decay")
                 Timer.CONTINUE
             } else {

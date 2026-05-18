@@ -19,8 +19,10 @@ val quests = setOf(
     "prince_ali_rescue",
     "imp_catcher",
     // members
+    "creature_of_fenkenstrain",
     "druidic_ritual",
     "plague_city",
+    "priest_in_peril",
     "lost_city",
     "tears_of_guthix",
     // mini-quests
