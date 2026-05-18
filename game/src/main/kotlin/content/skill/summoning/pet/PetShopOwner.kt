@@ -62,8 +62,14 @@ class PetShopOwner : Script {
             mainMenu(interact.target)
         }
 
+        // iface 668 may emit either a continue-dialogue packet or a regular
+        // interface-option packet depending on how the cache wires up each
+        // button, so register both dispatch paths against the same resume.
         for ((breedId, index) in BREED_INDEX) {
             continueDialogue("dialogue_pick_a_puppy:$breedId") {
+                (suspension as? Suspension.IntEntry)?.resume(index)
+            }
+            interfaceOption(id = "dialogue_pick_a_puppy:$breedId") {
                 (suspension as? Suspension.IntEntry)?.resume(index)
             }
         }
