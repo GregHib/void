@@ -45,10 +45,6 @@ object Tables {
 
     fun intOrNull(path: String): Int? = getOrNull(path, ColumnType.ColumnInt)
 
-    fun double(path: String): Double = get(path, ColumnType.ColumnDouble)
-
-    fun doubleOrNull(path: String): Double? = getOrNull(path, ColumnType.ColumnDouble)
-
     fun string(path: String): String = get(path, ColumnType.ColumnString)
 
     fun stringOrNull(path: String): String? = getOrNull(path, ColumnType.ColumnString)
