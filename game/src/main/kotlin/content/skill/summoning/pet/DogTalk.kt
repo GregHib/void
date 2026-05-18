@@ -43,7 +43,13 @@ suspend fun Player.talkToDog(row: RowDefinition, dog: NPC) {
             line.startsWith("d:") -> {
                 val text = renderDogLine(line.removePrefix("d:").trim(), understandsPet)
                 if (text.isNotBlank()) {
-                    npc<Happy>(dog.id, text, largeHead = true)
+                    // Send under a "dog" expression name. There is no `expression_dog*`
+                    // entry in dialogue_expressions.anims.toml yet, so AnimationDefinitions
+                    // falls back to id -1 and the chathead renders without playing the
+                    // wrong human face animation. Drop a real anim id in when the cache
+                    // chat-anim group for dogs (likely a subset of 6550..9202 per
+                    // 2009scape's familiar group) is identified.
+                    npc(dog.id, "dog", text, largeHead = true)
                 }
             }
             line.startsWith("p:") -> player<Happy>(line.removePrefix("p:").trim())
