@@ -12,8 +12,8 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import org.jetbrains.compose.resources.painterResource
-import world.gregs.void.tools.generated.resources.Res
-import world.gregs.void.tools.generated.resources.void_icon
+import world.gregs.void.app.generated.resources.Res
+import world.gregs.void.app.generated.resources.void_icon
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.tools.search.screen.AppScreen
 import world.gregs.voidps.tools.search.screen.pick.CachePickerScreen
@@ -24,7 +24,7 @@ import world.gregs.voidps.tools.search.screen.view.tab.buildTabs
 
 fun main() = application {
     Settings.load()
-    Settings.rebase("../")
+    Settings.rebase("../../")
     ParamLookup.load()
 
     /*

@@ -17,8 +17,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.painterResource
-import world.gregs.void.tools.generated.resources.Res
-import world.gregs.void.tools.generated.resources.content_copy
+import world.gregs.void.app.generated.resources.Res
+import world.gregs.void.app.generated.resources.content_copy
 import world.gregs.voidps.tools.search.BgCard
 import world.gregs.voidps.tools.search.BorderColor
 import world.gregs.voidps.tools.search.TextSecond

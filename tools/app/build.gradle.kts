@@ -1,8 +1,14 @@
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+
 plugins {
     id("shared")
+    alias(libs.plugins.compose)
+    alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.composeHotReload)
 }
 
 kotlin {
+    jvmToolchain(21)
     dependencies {
         implementation(project(":buffer"))
         implementation(project(":cache"))
@@ -12,7 +18,8 @@ kotlin {
         implementation(project(":config"))
         implementation(project(":types"))
 
-        implementation("org.seleniumhq.selenium:selenium-java:4.16.1")
+        implementation(libs.bundles.compose)
+        implementation(compose.desktop.currentOs)
 
         implementation(libs.kotlinx.io)
         implementation(libs.kotlinx.coroutines)
@@ -42,4 +49,25 @@ tasks.withType<AbstractTestTask>().configureEach {
 
 tasks.withType<JavaExec> {
     workingDir = projectDir
+}
+
+compose {
+    desktop {
+        application {
+            mainClass = "world.gregs.voidps.tools.search.AppKt"
+            nativeDistributions {
+                targetFormats(TargetFormat.Msi, TargetFormat.Deb)
+                packageName = "VoidDefinitionBrowser"
+                packageVersion = "1.0.0"
+                val icon = project.file("src/main/composeResources/drawable/void_icon.png")
+                windows {
+                    includeAllModules = true
+                    iconFile.set(icon)
+                }
+                linux {
+                    iconFile.set(icon)
+                }
+            }
+        }
+    }
 }

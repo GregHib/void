@@ -35,8 +35,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.painterResource
-import world.gregs.void.tools.generated.resources.Res
-import world.gregs.void.tools.generated.resources.view_column
+import world.gregs.void.app.generated.resources.Res
+import world.gregs.void.app.generated.resources.view_column
 import world.gregs.voidps.tools.search.AccentBlue
 import world.gregs.voidps.tools.search.BgCard
 import world.gregs.voidps.tools.search.BgPanel
