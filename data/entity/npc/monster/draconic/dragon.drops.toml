@@ -337,19 +337,19 @@ drops = [
 [red_dragon_pet_egg]
 roll = 2000
 drops = [
-  { id = "red_dragon_egg" },
+  { id = "red_dragon_egg", skill = "summoning", equals = 99 },
 ]
 
 [blue_dragon_pet_egg]
 roll = 2000
 drops = [
-  { id = "blue_dragon_egg" },
+  { id = "blue_dragon_egg", skill = "summoning", equals = 99 },
 ]
 
 [green_dragon_pet_egg]
 roll = 2000
 drops = [
-  { id = "green_dragon_egg" },
+  { id = "green_dragon_egg", skill = "summoning", equals = 99 },
 ]
 
 [frost_dragon_drop_table]
