@@ -124,7 +124,6 @@ sealed interface ColumnReader<T : Any> {
         fun reader(name: String): ColumnReader<*> = when (name) {
             "boolean" -> ReaderBoolean
             "int" -> ReaderInt
-            "double" -> ReaderDouble
             "range" -> ReaderIntRange
             "tile" -> ReaderTile
             "string" -> ReaderString

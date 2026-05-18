@@ -16,11 +16,6 @@ sealed interface ColumnType<T : Any> {
         override fun toString() = "ColumnInt"
     }
 
-    object ColumnDouble : ColumnType<Double> {
-        override val default = 0.0
-        override fun toString() = "ColumnDouble"
-    }
-
     object ColumnIntRange : ColumnType<IntRange> {
         override val default = 0..0
         override fun toString() = "ColumnInt"
