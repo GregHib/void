@@ -1,10 +1,17 @@
 # Breed-specific Talk-to dialogue for pet dogs. One row per conversation.
 # Each `lines` entry is prefixed with a single-character speaker code:
-#   b:  - overhead bark (NPC.say) used for puppy lines (raw barks, no translation)
-#   d:  - dog chathead (npc<Happy>(...)) used for adult lines where the wiki
-#         renders "bark (translation)" together
+#   d:  - dog chathead (npc<Happy>(...))
 #   p:  - player chathead (player<Happy>(...))
 #   (no prefix) - narrator chatbox (statement(...))
+#
+# Dog lines may include a "(translation)" parenthetical. The dialogue layer
+# shows the bark text (everything before the parens) when the player is below
+# Summoning level 14 and the translation only once they've hit 14, since at
+# that point the player can understand their pet.
+#
+# Lines wrapped entirely in [brackets] are dog thoughts the player picks up by
+# context (typically tied to a condition item like logs / cup_of_tea / wool);
+# they render verbatim regardless of Summoning level.
 #
 # `condition` is an optional item string-id; the row only plays if the player
 # is currently carrying that item. Blank = unconditional.
@@ -21,9 +28,9 @@ breed = "labrador"
 stage = "baby"
 condition = ""
 lines = [
-  "b:Yipyip yip yap yipyap, yap!",
+  "d:Yipyip yip yap yipyap, yap!",
   "p:I'm sure I can find us something to do.",
-  "b:Yapyapyap? Yapyap!",
+  "d:Yapyapyap? Yapyap!",
   "p:Sure. We can play when I'm finished here, okay?",
 ]
 
@@ -66,9 +73,9 @@ breed = "greyhound"
 stage = "baby"
 condition = ""
 lines = [
-  "b:Yipyip yip yap? (Where to now?)",
+  "d:Yipyip yip yap? (Where to now?)",
   "p:I haven't decided yet!",
-  "b:Yipyip! Yipyip! (Race you! Race you!)",
+  "d:Yipyip! Yipyip! (Race you! Race you!)",
   "p:Alright, first one there wins!",
 ]
 
@@ -130,11 +137,11 @@ breed = "dalmatian"
 stage = "baby"
 condition = ""
 lines = [
-  "b:Yipyipyip! (Hello!)",
+  "d:Yipyipyip! (Hello!)",
   "p:Hello there!",
-  "b:Yipyapyipyipyap! (Pay attention to me!)",
+  "d:Yipyapyipyipyap! (Pay attention to me!)",
   "p:I am!",
-  "b:Yapyapyapyap! (Yay!)",
+  "d:Yapyapyapyap! (Yay!)",
 ]
 
 [.dalmatian_grown_1]
@@ -202,11 +209,11 @@ breed = "bulldog"
 stage = "baby"
 condition = ""
 lines = [
-  "b:Whurfwhurf, grumble snuffle whurf whurf?",
+  "d:Whurfwhurf, grumble snuffle whurf whurf?",
   "p:Well, I could carry you if you like.",
-  "b:Whurfwhurf, whurf.",
+  "d:Whurfwhurf, whurf.",
   "p:You know, you won't grow up to be big and strong if you keep getting carried everywhere.",
-  "b:Whurf, whurf.",
+  "d:Whurf, whurf.",
 ]
 
 [.bulldog_grown_1]
@@ -273,9 +280,9 @@ breed = "terrier"
 stage = "baby"
 condition = ""
 lines = [
-  "b:Yipyip yip yap yip yip! (Are we going shomeplache intereshting?)",
+  "d:Yipyip yip yap yip yip! (Are we going shomeplache intereshting?)",
   "p:Don't you think this place is interesting?",
-  "b:Yipyipyip yap yip yapyap. (It'sh hardly what i would call lively, thatsh fer shure.)",
+  "d:Yipyipyip yap yip yapyap. (It'sh hardly what i would call lively, thatsh fer shure.)",
   "p:Well, we'll head out in a bit.",
 ]
 
@@ -336,11 +343,11 @@ breed = "sheepdog"
 stage = "baby"
 condition = ""
 lines = [
-  "b:Yapyap yip yap! (Hello!)",
+  "d:Yapyap yip yap! (Hello!)",
   "p:Hello to you, too!",
-  "b:Yipyipyip! (I'm a good dog!)",
+  "d:Yipyipyip! (I'm a good dog!)",
   "p:Yes you are. You're a very good puppy.",
-  "b:Yappypyappyyap! (Huzzah!)",
+  "d:Yappypyappyyap! (Huzzah!)",
 ]
 
 [.sheepdog_grown_1]
