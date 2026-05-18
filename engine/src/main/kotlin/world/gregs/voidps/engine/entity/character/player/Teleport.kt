@@ -17,7 +17,7 @@ import world.gregs.voidps.type.Tile
 
 interface Teleport {
 
-    fun teleportTakeOff(type: String, block: Player.() -> Boolean) {
+    fun teleportTakeOff(type: String, block: Player.(String) -> Boolean) {
         Script.checkLoading()
         takeOff.getOrPut(type) { mutableSetOf() }.add(block)
     }
@@ -47,7 +47,7 @@ interface Teleport {
     }
 
     companion object : AutoCloseable {
-        private val takeOff = Object2ObjectOpenHashMap<String, MutableSet<Player.() -> Boolean>>(5)
+        private val takeOff = Object2ObjectOpenHashMap<String, MutableSet<Player.(String) -> Boolean>>(5)
         private val items = Object2ObjectOpenHashMap<String, MutableSet<Player.(String) -> Boolean>>(5)
         private val land = Object2ObjectOpenHashMap<String, Player.() -> Unit>(5)
         private val objectTakeOff = Object2ObjectOpenHashMap<String, Player.(GameObject, String) -> Int>(50)
@@ -56,9 +56,9 @@ interface Teleport {
         const val CONTINUE = 0
         const val CANCEL = -1
 
-        fun takeOff(player: Player, type: String): Boolean {
+        fun takeOff(player: Player, type: String, item: String): Boolean {
             for (handler in takeOff[type] ?: return true) {
-                if (!handler.invoke(player)) {
+                if (!handler.invoke(player, item)) {
                     return false
                 }
             }
@@ -106,7 +106,7 @@ interface Teleport {
             }
             player.closeInterfaces()
             player.strongQueue("teleport") {
-                if (!takeOff(player, type)) {
+                if (!takeOff(player, type, spell ?: "")) {
                     return@strongQueue
                 }
                 if (spell != null && !removeItems(player, type, spell)) {
@@ -125,10 +125,14 @@ interface Teleport {
                     player.sound("teleport_land_${type}")
                 }
                 player.gfx("teleport_land_$type")
-                player.animDelay("teleport_land_$type")
+                val delay = player.anim("teleport_land_$type")
+                if (delay == -1) {
+                    player.clearAnim()
+                } else {
+                    player.delay(delay)
+                }
                 if (type == "ancient" || type == "ectophial") {
                     player.delay(1)
-                    player.clearAnim()
                 }
                 land(player, type)
             }

@@ -80,7 +80,7 @@ ticks = 5
 
 [teleport_lunar]
 id = 9606
-ticks = 4
+ticks = 6
 
 [teleport_land_lunar]
 id = 9013
@@ -88,7 +88,7 @@ ticks = 2
 
 [teleport_tablet]
 id = 9597
-ticks = 3
+ticks = 2
 
 [teleport_land]
 id = 9598
@@ -96,7 +96,7 @@ ticks = 1
 
 [teleport_scroll]
 id = 14293
-ticks = 3
+ticks = 5
 
 [teleport_ectophial]
 id = 8939

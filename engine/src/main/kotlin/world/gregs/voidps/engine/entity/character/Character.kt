@@ -388,7 +388,6 @@ interface Character :
      */
     suspend fun pause(ticks: Int) {
         delay(ticks, cancellable = true)
-//        Suspension.start(this, ticks)
     }
 
     /**

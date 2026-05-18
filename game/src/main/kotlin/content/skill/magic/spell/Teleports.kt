@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.ItemOption
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
@@ -16,15 +15,9 @@ import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
-import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.inv.discharge
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.random
-import world.gregs.voidps.engine.queue.ActionPriority
-import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.timer.epochSeconds
 import java.util.concurrent.TimeUnit
@@ -34,18 +27,15 @@ class Teleports : Script {
     init {
         interfaceOption("Cast", "*_spellbook:*_teleport") {
             val component = it.component
-            if (component == "ardougne_teleport" && quest("plague_city") != "completed_with_spell") {
-                message("You haven't learnt how to cast this spell yet.")
-                return@interfaceOption
-            }
             if (component != "lumbridge_home_teleport") {
                 cast(it.id, it.component)
                 return@interfaceOption
             }
-            if (!Teleport.takeOff(this, component)) {
+            val book = it.id.removeSuffix("_spellbook")
+            if (!Teleport.takeOff(this, book, component)) {
                 return@interfaceOption
             }
-            if (!Teleport.removeItems(this, component, component)) {
+            if (!Teleport.removeItems(this, book, component)) {
                 return@interfaceOption
             }
             var total = 0
@@ -80,42 +70,24 @@ class Teleports : Script {
         itemOption("Read", "*_teleport", handler = ::teleport)
         itemOption("Break", "*_teleport", handler = ::teleport)
 
-        val teleportSpells = listOf(
-            "lumbridge_home_teleport",
-            "ardougne_teleport",
-            "mobilising_armies_teleport",
-            "lumbridge_teleport",
-            "falador_teleport",
-            "camelot_teleport",
-            "ardougne_teleport",
-            "watchtower_teleport",
-            "trollheim_teleport",
-            "edgeville_home_teleport",
-            "paddewwa_teleport",
-            "senntisten_teleport",
-            "kharyrll_teleport",
-            "lassar_teleport",
-            "dareeyak_teleport",
-            "carrallanger_teleport",
-            "annakarl_teleport",
-            "ghorrock_teleport",
-            "lunar_home_teleport",
-            "moonclan_teleport",
-            "ourania_teleport",
-            "waterbirth_teleport",
-            "barbarian_teleport",
-            "khazard_teleport",
-            "fishing_guild_teleport",
-            "catherby_teleport",
-            "ice_plateau_teleport",
-        )
-        for (spell in teleportSpells) {
-            teleportRemoveItems(spell) { removeSpellItems(spell) }
-        }
-        teleportRemoveItems("ape_atoll_teleport") { questCompleted("recipe_for_disaster") && removeSpellItems("ape_atoll_teleport") }
+        teleportRemoveItems("modern") { removeSpellItems(it) }
+        teleportRemoveItems("ancient") { removeSpellItems(it) }
+        teleportRemoveItems("lunar") { removeSpellItems(it) }
+        teleportRemoveItems("dungeoneering") { removeSpellItems(it) }
 
-        teleportRemoveItems("teleport_scroll", ::removeItem)
-        teleportRemoveItems("teleport_tablet", ::removeItem)
+        teleportTakeOff("modern") {
+            when (it) {
+                "ardougne_teleport" if (quest("plague_city") != "completed_with_spell") -> {
+                    message("You haven't learnt how to cast this spell yet.")
+                    false
+                }
+                "ape_atoll_teleport" -> questCompleted("recipe_for_disaster")
+                else -> true
+            }
+        }
+
+        teleportRemoveItems("scroll", ::removeItem)
+        teleportRemoveItems("tablet", ::removeItem)
     }
 
     fun removeItem(player: Player, item: String): Boolean {
@@ -129,8 +101,8 @@ class Teleports : Script {
     }
 
     fun Player.cast(id: String, component: String) {
-        val xp = Tables.int("spells.$component.xp") / 10.0
+        val xp = Tables.intOrNull("spells.$component.xp") ?: 0
         val book = id.removeSuffix("_spellbook")
-        Teleport.teleport(this, area = component, type = book, xp = xp, spell = component)
+        Teleport.teleport(this, area = component, type = book, xp = xp / 10.0, spell = component)
     }
 }
