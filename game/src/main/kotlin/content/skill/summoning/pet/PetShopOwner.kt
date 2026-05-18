@@ -67,6 +67,7 @@ class PetShopOwner : Script {
         }
 
         npcOperate("Sell-shards", "pet_shop_owner_yanille,pet_shop_owner_taverley") { interact ->
+            player<Quiz>("Are you interested in buying spirit shards?")
             spiritShards(interact.target)
         }
 
@@ -95,7 +96,7 @@ class PetShopOwner : Script {
             option<Quiz>("So, what sorts of pets are available?") {
                 availablePets(owner)
             }
-            option("Are you interested in buying spirit shards?") {
+            option<Quiz>("Are you interested in buying spirit shards?") {
                 spiritShards(owner)
             }
         }
