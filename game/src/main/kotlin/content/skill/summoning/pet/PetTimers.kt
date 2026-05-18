@@ -16,6 +16,10 @@ private const val HUNGER_GROWN_PER_TICK = 90
 private const val WARN_HUNGRY = 7500
 private const val WARN_STARVING = 9000
 
+/** Kittens get lonely if they aren't periodically interacted with. */
+private const val LONELINESS_PER_TICK = 125
+private const val WARN_LONELY = 9000
+
 /** Per-tick probability a pet says one of its ambient phrases. */
 private const val AMBIENT_CHANCE = 0.12
 
@@ -45,6 +49,11 @@ class PetTimers : Script {
             tickHunger(row, stage)
             if (get("pet_active_item", "").isBlank()) {
                 // Ran away during hunger tick.
+                return@timerTick Timer.CANCEL
+            }
+            tickLoneliness(row, stage)
+            if (get("pet_active_item", "").isBlank()) {
+                // Ran away during loneliness tick.
                 return@timerTick Timer.CANCEL
             }
             tickGrowth(row, item)
@@ -84,6 +93,22 @@ class PetTimers : Script {
             return
         }
         sendPetDetailsStats()
+    }
+
+    private fun Player.tickLoneliness(row: RowDefinition, stage: PetStage) {
+        if (!row.isCatLike() || stage != PetStage.Baby) return
+        val newLoneliness = inc("pet_${row.rowId}_loneliness", LONELINESS_PER_TICK, max = PET_STAT_MAX)
+        if (newLoneliness >= PET_STAT_MAX) {
+            message("<col=ff0000>Your kitten got lonely and ran away.</col>")
+            dismissPet()
+            clearPetStats(row.rowId)
+            return
+        }
+        val warn = get("pet_${row.rowId}_lonely_warn", 0)
+        if (newLoneliness >= WARN_LONELY && warn < 1) {
+            set("pet_${row.rowId}_lonely_warn", 1)
+            message("<col=ff0000>Your kitten is feeling lonely. Pay it some attention before it runs off.</col>")
+        }
     }
 
     private fun Player.tickGrowth(row: RowDefinition, item: String) {

@@ -59,6 +59,13 @@ class KittenInteract : Script {
     }
 
     private suspend fun Player.openMenu(cat: NPC) {
+        // Any Interact-with click counts as attention; reset the kitten
+        // loneliness counter before the player even picks an option.
+        petRowForNpc(cat.id)?.let { row ->
+            if (row.isCatLike() && row.stageForNpc(cat.id) == PetStage.Baby) {
+                resetKittenLoneliness(row.rowId)
+            }
+        }
         choice("Interact with ${if (isAdultCat(cat)) "Cat" else "Kitten"}") {
             option("Stroke") { stroke(cat) }
             option("Chase vermin") { chaseVermin(cat) }

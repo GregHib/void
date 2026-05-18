@@ -221,6 +221,9 @@ class PetScripts : Script {
             }
             val row = petRowForNpc(interact.target.id) ?: return@npcOperate
             if (row.isCatLike()) {
+                if (row.stageForNpc(owner.id) == PetStage.Baby) {
+                    resetKittenLoneliness(row.rowId)
+                }
                 if (hasCatspeakAmulet() && isAdultCat(owner)) {
                     talkToCatWithAmulet(owner)
                 } else {

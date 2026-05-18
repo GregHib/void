@@ -1276,3 +1276,83 @@ format = "int"
 persist = true
 transmit = false
 
+
+[pet_cat_loneliness]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_lonely_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_1_loneliness]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_1_lonely_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_2_loneliness]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_2_lonely_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_3_loneliness]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_3_lonely_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_4_loneliness]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_4_lonely_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_5_loneliness]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_5_lonely_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_hellcat_loneliness]
+format = "int"
+persist = true
+transmit = false
+
+[pet_hellcat_lonely_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_6_loneliness]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_6_lonely_warn]
+format = "int"
+persist = true
+transmit = false
