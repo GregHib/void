@@ -220,17 +220,19 @@ class PetScripts : Script {
                 return@npcOperate
             }
             val row = petRowForNpc(interact.target.id) ?: return@npcOperate
-            if (row.isCatLike()) {
-                if (row.stageForNpc(owner.id) == PetStage.Baby) {
-                    resetKittenLoneliness(row.rowId)
+            when {
+                row.isCatLike() -> {
+                    if (row.stageForNpc(owner.id) == PetStage.Baby) {
+                        resetKittenLoneliness(row.rowId)
+                    }
+                    if (hasCatspeakAmulet() && isAdultCat(owner)) {
+                        talkToCatWithAmulet(owner)
+                    } else {
+                        talkToCatPlain(owner)
+                    }
                 }
-                if (hasCatspeakAmulet() && isAdultCat(owner)) {
-                    talkToCatWithAmulet(owner)
-                } else {
-                    talkToCatPlain(owner)
-                }
-            } else {
-                talkToPet(row, owner)
+                row.dogBreed() != null -> talkToDog(row, owner)
+                else -> talkToPet(row, owner)
             }
         }
 
