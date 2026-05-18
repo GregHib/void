@@ -5,7 +5,16 @@ import world.gregs.voidps.engine.data.definition.Tables
 
 enum class PetStage { Baby, Grown, Overgrown }
 
+private val DOG_BREEDS = setOf("bulldog", "dalmatian", "greyhound", "labrador", "sheepdog", "terrier")
+
 fun RowDefinition.isCatLike(): Boolean = rowId == "hellcat" || rowId == "cat" || rowId.startsWith("cat_")
+
+/** Maps row ids like `bulldog`, `bulldog_1`, `bulldog_2` back to the canonical breed name, or null for non-dog pets. */
+fun RowDefinition.dogBreed(): String? {
+    val base = rowId.substringBefore('_')
+    val candidate = if (rowId.contains('_') && rowId.substringAfter('_').all(Char::isDigit)) base else rowId
+    return if (candidate in DOG_BREEDS) candidate else null
+}
 
 fun RowDefinition.itemFor(stage: PetStage): String? = when (stage) {
     PetStage.Baby -> itemOrNull("baby_item")
