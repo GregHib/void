@@ -253,6 +253,15 @@ class Summoning : Script {
         }
 
         interfaceOption("*", "familiar_details:dismiss") { option ->
+            if (pet != null) {
+                choice("Are you sure you want to release your pet?") {
+                    option("Yes.") {
+                        dismissPet()
+                    }
+                    option("No.")
+                }
+                return@interfaceOption
+            }
             when (option.option) {
                 "Dismiss Familiar" -> choice("Are you sure you want to dismiss your familiar?") {
                     option("Yes.") {
@@ -264,7 +273,7 @@ class Summoning : Script {
             }
         }
 
-        interfaceOption("Release Pet", "pet_details:dismiss") {
+        interfaceOption("*", "pet_details:dismiss") {
             choice("Are you sure you want to release your pet?") {
                 option("Yes.") {
                     dismissPet()
@@ -277,11 +286,11 @@ class Summoning : Script {
             renewFamiliar()
         }
 
-        interfaceOption("Call Follower", "familiar_details:call") {
-            callFollower()
+        interfaceOption("*", "familiar_details:call") {
+            if (pet != null) callPet() else callFollower()
         }
 
-        interfaceOption("Call Follower", "pet_details:call") {
+        interfaceOption("*", "pet_details:call") {
             callPet()
         }
 
