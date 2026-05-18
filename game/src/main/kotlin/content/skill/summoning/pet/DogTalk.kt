@@ -54,8 +54,9 @@ suspend fun Player.talkToDog(row: RowDefinition, dog: NPC) {
 
 /**
  * Lines wrapped in [brackets] are thought-bubbles the player picks up via context, so they render
- * as-is. Lines like "Whiiiiine. (Boring!)" carry both a bark and an English translation; show only
- * the bark while the player can't understand pets yet, and only the translation once they can.
+ * as-is. Lines like "Whiiiiine. (Boring!)" carry both a bark and an English translation; below the
+ * understanding threshold the chathead shows only the bark, at or above it the chathead shows the
+ * bark on the first line with the translation on a second line beneath it.
  */
 private fun renderDogLine(line: String, understandsPet: Boolean): String {
     if (line.startsWith("[") && line.endsWith("]")) {
@@ -66,9 +67,7 @@ private fun renderDogLine(line: String, understandsPet: Boolean): String {
     if (parenStart < 0 || parenEnd < 0) {
         return line
     }
-    return if (understandsPet) {
-        line.substring(parenStart + 1, parenEnd).trim()
-    } else {
-        line.substring(0, parenStart).trim()
-    }
+    val bark = line.substring(0, parenStart).trim()
+    val translation = line.substring(parenStart + 1, parenEnd).trim()
+    return if (understandsPet) "$bark\n($translation)" else bark
 }
