@@ -43,7 +43,7 @@ suspend fun Player.talkToDog(row: RowDefinition, dog: NPC) {
             line.startsWith("d:") -> {
                 val text = renderDogLine(line.removePrefix("d:").trim(), understandsPet)
                 if (text.isNotBlank()) {
-                    npc<Happy>(dog.id, text)
+                    npc<Happy>(dog.id, text, largeHead = true)
                 }
             }
             line.startsWith("p:") -> player<Happy>(line.removePrefix("p:").trim())
