@@ -27,6 +27,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.addToLimit
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import kotlin.random.nextInt
@@ -53,7 +54,7 @@ class Mining : Script {
             }
             softTimers.start("mining")
             var first = true
-            while (true) {
+            while (awaitDialogues()) {
                 if (!GameObjects.contains(target)) {
                     break
                 }
@@ -117,7 +118,6 @@ class Mining : Script {
                             exp(Skill.Mining, xp * added)
                         }
                         if (added < 1 || deplete(target, ore.int("life"))) {
-                            println("Depleted")
                             clearAnim()
                             break
                         }
