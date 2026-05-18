@@ -5,11 +5,11 @@ id = 4277
 format = "list"
 default = "empty"
 persist = true
-values = [ "empty", "incubating", "finished" ]
+values = [ "empty", "incubating" ]
 
 [incubator_state_yanille]
 id = 4221
 format = "list"
 default = "empty"
 persist = true
-values = [ "empty", "incubating", "finished" ]
+values = [ "empty", "incubating" ]
