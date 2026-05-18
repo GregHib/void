@@ -21,12 +21,6 @@ sealed interface ColumnReader<T : Any> {
         override fun read(reader: ConfigReader) = reader.int()
     }
 
-    object ReaderDouble : ColumnReader<Double> {
-        override val type = ColumnType.ColumnDouble
-        override fun list() = mutableListOf<Double>()
-        override fun read(reader: ConfigReader) = reader.double()
-    }
-
     object ReaderTile : ColumnReader<Int> {
         override val type = ColumnType.ColumnInt
         override fun list() = mutableListOf<Int>()
