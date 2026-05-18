@@ -41,20 +41,37 @@ suspend fun Player.talkToDog(row: RowDefinition, dog: NPC) {
     for (line in chosen.stringList("lines")) {
         when {
             line.startsWith("d:") -> {
-                val text = renderDogLine(line.removePrefix("d:").trim(), understandsPet)
+                val raw = line.removePrefix("d:").trim()
+                val text = renderDogLine(raw, understandsPet)
                 if (text.isNotBlank()) {
-                    // Send under a "dog" expression name. There is no `expression_dog*`
-                    // entry in dialogue_expressions.anims.toml yet, so AnimationDefinitions
-                    // falls back to id -1 and the chathead renders without playing the
-                    // wrong human face animation. Drop a real anim id in when the cache
-                    // chat-anim group for dogs (likely a subset of 6550..9202 per
-                    // 2009scape's familiar group) is identified.
-                    npc(dog.id, "dog", text, largeHead = true)
+                    npc(dog.id, dogExpressionFor(raw), text, largeHead = true)
                 }
             }
             line.startsWith("p:") -> player<Happy>(line.removePrefix("p:").trim())
             else -> statement(line)
         }
+    }
+}
+
+/**
+ * Picks the dog chathead expression for a given dialogue line. The cache exposes four:
+ *   expression_dog_normal (6551) — default idle / talking
+ *   expression_dog_quiz   (6553) — asking / questioning
+ *   expression_dog_no     (6552) — head shake / disagreement
+ *   expression_dog_down   (6550) — head down / sad
+ *
+ * We pick based on the line's punctuation and a couple of word hints. Falls back to
+ * `dog_normal` for anything that doesn't fit one of the other moods.
+ */
+private fun dogExpressionFor(line: String): String {
+    val trimmed = line.trim().trimEnd('.', '!')
+    val lower = trimmed.lowercase()
+    val translation = trimmed.substringAfter('(', "").substringBeforeLast(')').lowercase()
+    return when {
+        trimmed.endsWith('?') -> "dog_quiz"
+        translation.startsWith("no") || lower.startsWith("no ") || lower == "no" -> "dog_no"
+        "whine" in lower || "grumble" in lower || "sad" in translation || "bored" in translation -> "dog_down"
+        else -> "dog_normal"
     }
 }
 
