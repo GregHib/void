@@ -346,7 +346,7 @@ class DungeoneeringParty : Script {
             val members = leader.dungeonMembers.toMutableList()
             if (members.size > 1) {
                 members.remove(promote)
-                members.addFirst(promote)
+                members.add(0, promote)
             }
             promote["dungeoneering_party_leader"] = promote.name
             promote.dungeonMembers = members
