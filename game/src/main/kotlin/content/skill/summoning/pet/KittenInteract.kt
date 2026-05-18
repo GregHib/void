@@ -9,6 +9,8 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow
@@ -67,7 +69,7 @@ class KittenInteract : Script {
     private suspend fun Player.stroke(cat: NPC) {
         steps.clear()
         cat.steps.clear()
-        cat.mode = EmptyMode
+        cat.start("movement_delay", Int.MAX_VALUE)
         cat.watch(this)
         face(cat)
         anim("pet_stroke_player")
@@ -85,7 +87,8 @@ class KittenInteract : Script {
         player<Happy>("That cat sure loves to be stroked.")
         if (pet?.index == cat.index) {
             cat.say("Miaow!")
-            cat.mode = Follow(cat, this)
+            cat.stop("movement_delay")
+            cat.steps.clear()
         }
     }
 
