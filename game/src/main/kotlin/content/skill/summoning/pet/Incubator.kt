@@ -111,9 +111,7 @@ class Incubator : Script {
         }
     }
 
-    private fun Player.isFinished(suffix: String): Boolean {
-        return remaining("incubator_end_$suffix", epochSeconds()) <= 0
-    }
+    private fun Player.isFinished(suffix: String): Boolean = remaining("incubator_end_$suffix", epochSeconds()) <= 0
 
     private fun Player.clearIncubator(suffix: String) {
         set("incubator_egg_$suffix", "")
