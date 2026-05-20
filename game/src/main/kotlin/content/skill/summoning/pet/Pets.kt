@@ -85,17 +85,34 @@ fun RowDefinition.hungerPhrase(tier: Int): String? {
     return stringOrNull("hungry_phrase")?.takeIf { it.isNotBlank() }
 }
 
-fun petRowForItem(itemId: String): RowDefinition? = Tables.get("pets").rows().firstOrNull {
-    it.itemOrNull("baby_item") == itemId ||
-        it.itemOrNull("grown_item") == itemId ||
-        it.itemOrNull("overgrown_item") == itemId
+// Lazily-built lookup tables. Pet rows are scanned on every timer tick,
+// Talk-to, drop, feed and Interact-with click; a linear firstOrNull across
+// the table on each call dominated the hot path. Both maps are initialised
+// on first access (after Tables load) and remain stable for the lifetime of
+// the process.
+private val itemIndex: Map<String, RowDefinition> by lazy {
+    buildMap {
+        for (row in Tables.get("pets").rows()) {
+            row.itemOrNull("baby_item")?.let { put(it, row) }
+            row.itemOrNull("grown_item")?.let { put(it, row) }
+            row.itemOrNull("overgrown_item")?.let { put(it, row) }
+        }
+    }
 }
 
-fun petRowForNpc(npcId: String): RowDefinition? = Tables.get("pets").rows().firstOrNull {
-    it.npcOrNull("baby_npc") == npcId ||
-        it.npcOrNull("grown_npc") == npcId ||
-        it.npcOrNull("overgrown_npc") == npcId
+private val npcIndex: Map<String, RowDefinition> by lazy {
+    buildMap {
+        for (row in Tables.get("pets").rows()) {
+            row.npcOrNull("baby_npc")?.let { put(it, row) }
+            row.npcOrNull("grown_npc")?.let { put(it, row) }
+            row.npcOrNull("overgrown_npc")?.let { put(it, row) }
+        }
+    }
 }
+
+fun petRowForItem(itemId: String): RowDefinition? = itemIndex[itemId]
+
+fun petRowForNpc(npcId: String): RowDefinition? = npcIndex[npcId]
 
 fun allPetRows(): List<RowDefinition> = Tables.get("pets").rows()
 
