@@ -79,11 +79,11 @@ class PetTimers : Script {
         if (crossedStarving) {
             set("pet_${row.rowId}_warn", 2)
             message("<col=ff0000>Your pet is starving, feed it before it runs off.</col>")
-            row.stringOrNull("hungry_phrase")?.takeIf { it.isNotBlank() }?.let { pet?.say(it) }
+            row.hungerPhrase(tier = 1)?.let { pet?.say(it) }
         } else if (crossedHungry) {
             set("pet_${row.rowId}_warn", 1)
             message("<col=ff0000>Your pet is getting hungry.</col>")
-            row.stringOrNull("hungry_phrase")?.takeIf { it.isNotBlank() }?.let { pet?.say(it) }
+            row.hungerPhrase(tier = 0)?.let { pet?.say(it) }
         }
 
         if (newHunger >= PET_STAT_MAX && row.int("growth_per_tick") > 0) {

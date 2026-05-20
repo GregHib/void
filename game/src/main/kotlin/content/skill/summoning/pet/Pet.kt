@@ -1,5 +1,8 @@
 package content.skill.summoning.pet
 
+import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.skill.summoning.follower
 import org.rsmod.game.pathfinder.StepValidator
@@ -7,7 +10,9 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.data.config.RowDefinition
+import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -115,16 +120,27 @@ fun Player.sendPetDetailsStats() {
 }
 
 suspend fun Player.talkToPet(row: RowDefinition, pet: NPC) {
-    val talkLines = row.stringList("talk_lines")
-    if (talkLines.isEmpty()) {
+    val stageKey = row.stageForNpc(pet.id)?.name?.lowercase() ?: ""
+    val candidates = setOf(row.rowId, row.petTalksKey())
+    val rows = Tables.get("pet_talks").rows().filter {
+        val stages = it.string("stage")
+        it.string("pet") in candidates && (stages.isEmpty() || stages.split(',').any { s -> s.trim() == stageKey })
+    }
+    val matchingConditional = rows.filter { matchesPetCondition(it.string("condition")) }
+    val chosen = matchingConditional.randomOrNull()
+        ?: rows.filter { it.string("condition").isBlank() }.randomOrNull()
+    if (chosen == null) {
         row.ambientPhrases().randomOrNull()?.let { pet.say(it) }
         return
     }
-    for (line in talkLines) {
-        if (line.startsWith("pet:")) {
-            pet.say(line.removePrefix("pet:").trim())
-        } else {
-            statement(line)
+    val fallbackAnim = EnumDefinitions.get("pet_details_chathead_animations_normal").defaultInt
+    for (line in chosen.stringList("lines")) {
+        when {
+            line.startsWith("npc:") -> npc(pet.id, fallbackAnim, line.removePrefix("npc:").trim())
+            line.startsWith("player:") -> player<Happy>(line.removePrefix("player:").trim())
+            line.startsWith("overhead:") -> pet.say(line.removePrefix("overhead:").trim())
+            line.startsWith("[") && line.endsWith("]") -> statement(line.removePrefix("[").removeSuffix("]").trim())
+            else -> statement(line)
         }
     }
 }
@@ -172,7 +188,7 @@ private fun Player.deactivateSummoningOrb() {
 private suspend fun Player.dropPet(row: RowDefinition, itemId: String) {
     val amulet = hasCatspeakAmulet()
     if (row.isCatLike() && amulet) {
-        summonCatWithAmulet(row, itemId)
+        summonCatWithAmulet(row)
     }
     if (summonPet(row, itemId, restart = false)) {
         inventory.remove(itemId)

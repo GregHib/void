@@ -1,13 +1,23 @@
 package content.skill.summoning.pet
 
+import content.quest.questCompleted
 import world.gregs.voidps.engine.data.config.RowDefinition
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.Tables
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inv.carriesItem
+import world.gregs.voidps.engine.inv.equipment
 
 enum class PetStage { Baby, Grown, Overgrown }
 
 private val DOG_BREEDS = setOf("bulldog", "dalmatian", "greyhound", "labrador", "sheepdog", "terrier")
 
 fun RowDefinition.isCatLike(): Boolean = rowId == "hellcat" || rowId == "cat" || rowId.startsWith("cat_")
+
+private val VARIANT_SUFFIX = Regex("(.*)_\\d+$")
+
+/** Strips trailing `_<digit>` suffix from a row id so colour variants share one pet_talks row. */
+fun RowDefinition.petTalksKey(): String = VARIANT_SUFFIX.matchEntire(rowId)?.groupValues?.get(1) ?: rowId
 
 /** Maps row ids like `bulldog`, `bulldog_1`, `bulldog_2` back to the canonical breed name, or null for non-dog pets. */
 fun RowDefinition.dogBreed(): String? {
@@ -66,6 +76,15 @@ fun RowDefinition.ambientPhrases(): List<String> {
     return listOf(hungry)
 }
 
+/** Picks the tier-N hunger bark (0 = hungry, 1 = starving, 2 = runaway), falling back to the legacy single `hungry_phrase`. */
+fun RowDefinition.hungerPhrase(tier: Int): String? {
+    val tiered = stringList("hungry_phrases")
+    if (tiered.isNotEmpty()) {
+        return tiered.getOrNull(tier) ?: tiered.last()
+    }
+    return stringOrNull("hungry_phrase")?.takeIf { it.isNotBlank() }
+}
+
 fun petRowForItem(itemId: String): RowDefinition? = Tables.get("pets").rows().firstOrNull {
     it.itemOrNull("baby_item") == itemId ||
         it.itemOrNull("grown_item") == itemId ||
@@ -79,3 +98,42 @@ fun petRowForNpc(npcId: String): RowDefinition? = Tables.get("pets").rows().firs
 }
 
 fun allPetRows(): List<RowDefinition> = Tables.get("pets").rows()
+
+/**
+ * Evaluates a `pet_talks` `condition` cell against the player's inventory, equipment, location and quest log.
+ *
+ * Supported syntaxes:
+ *   - `""` (blank): not a conditional row; never matches via this helper.
+ *   - `"item_id"`: matches if the item is in inventory or equipped.
+ *   - `"a|b|c"`: pipe-separated list; matches if any item is in inventory or equipped.
+ *   - `"count:N:a|b|c|d"`: matches if at least N of the listed items are equipped.
+ *   - `"tainted:<god>"`: matches if any equipped item has a `god` param that is non-empty and not `<god>`.
+ *   - `"area:<name>"`: matches if the player tile is inside the named area.
+ *   - `"tag:<tag>"`: matches if the player tile is inside any area carrying the tag.
+ *   - `"quest:<name>"`: matches if the player has completed the named quest.
+ */
+fun Player.matchesPetCondition(condition: String): Boolean {
+    if (condition.isBlank()) return false
+    return when {
+        condition.startsWith("tainted:") -> {
+            val ownGod = condition.removePrefix("tainted:").trim()
+            equipment.items.any {
+                val g = it.def.getOrNull<String>("god") ?: ""
+                g.isNotBlank() && g != ownGod
+            }
+        }
+        condition.startsWith("count:") -> {
+            val rest = condition.removePrefix("count:")
+            val sep = rest.indexOf(':')
+            if (sep < 0) return false
+            val needed = rest.substring(0, sep).trim().toIntOrNull() ?: return false
+            val itemIds = rest.substring(sep + 1).split('|').map { it.trim() }.toSet()
+            equipment.items.count { it.id in itemIds } >= needed
+        }
+        condition.startsWith("area:") -> Areas.get(condition.removePrefix("area:").trim()).contains(tile)
+        condition.startsWith("tag:") -> Areas.tagged(condition.removePrefix("tag:").trim()).any { it.area.contains(tile) }
+        condition.startsWith("quest:") -> questCompleted(condition.removePrefix("quest:").trim())
+        '|' in condition -> condition.split('|').any { carriesItem(it.trim()) }
+        else -> carriesItem(condition)
+    }
+}

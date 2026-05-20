@@ -9,8 +9,9 @@ growth_per_tick = "int"
 summoning_level = "int"
 food = "list<item>"
 hungry_phrase = "string"
+hungry_phrases = "list<string>"
 idle_phrases = "list<string>"
-talk_lines = "list<string>"
+feed_phrase = "string"
 
 [.cat]
 baby_item = "pet_kitten"
@@ -23,11 +24,6 @@ growth_per_tick = 77
 summoning_level = 0
 hungry_phrase = "Meeoooow!"
 idle_phrases = ["Meow!", "Purr...", "Mrow?", "Meeoooow!"]
-talk_lines = [
-    "You attempt to talk to your kitten.",
-    "pet: Meow!",
-    "It seems content to be near you.",
-]
 food = ["raw_anchovies", "anchovies", "raw_bass", "bass", "raw_cod", "cod", "raw_cavefish", "raw_herring", "herring", "raw_lobster", "lobster", "raw_mackerel", "mackerel", "raw_manta_ray", "manta_ray", "raw_monkfish", "monkfish", "raw_pike", "pike", "raw_salmon", "salmon", "raw_sardine", "sardine", "raw_sea_turtle", "sea_turtle", "raw_shark", "shark", "raw_shrimps", "shrimps", "raw_swordfish", "swordfish", "raw_trout", "trout", "raw_tuna", "tuna", "raw_cavefish", "raw_rocktail", "bucket_of_milk"]
 
 [.cat_1]
@@ -41,11 +37,6 @@ growth_per_tick = 77
 summoning_level = 0
 hungry_phrase = "Meeoooow!"
 idle_phrases = ["Meow!", "Purr...", "Mrow?", "Meeoooow!"]
-talk_lines = [
-    "You attempt to talk to your kitten.",
-    "pet: Meow!",
-    "It seems content to be near you.",
-]
 food = ["raw_anchovies", "anchovies", "raw_bass", "bass", "raw_cod", "cod", "raw_cavefish", "raw_herring", "herring", "raw_lobster", "lobster", "raw_mackerel", "mackerel", "raw_manta_ray", "manta_ray", "raw_monkfish", "monkfish", "raw_pike", "pike", "raw_salmon", "salmon", "raw_sardine", "sardine", "raw_sea_turtle", "sea_turtle", "raw_shark", "shark", "raw_shrimps", "shrimps", "raw_swordfish", "swordfish", "raw_trout", "trout", "raw_tuna", "tuna", "raw_cavefish", "raw_rocktail", "bucket_of_milk"]
 
 [.cat_2]
@@ -59,11 +50,6 @@ growth_per_tick = 77
 summoning_level = 0
 hungry_phrase = "Meeoooow!"
 idle_phrases = ["Meow!", "Purr...", "Mrow?", "Meeoooow!"]
-talk_lines = [
-    "You attempt to talk to your kitten.",
-    "pet: Meow!",
-    "It seems content to be near you.",
-]
 food = ["raw_anchovies", "anchovies", "raw_bass", "bass", "raw_cod", "cod", "raw_cavefish", "raw_herring", "herring", "raw_lobster", "lobster", "raw_mackerel", "mackerel", "raw_manta_ray", "manta_ray", "raw_monkfish", "monkfish", "raw_pike", "pike", "raw_salmon", "salmon", "raw_sardine", "sardine", "raw_sea_turtle", "sea_turtle", "raw_shark", "shark", "raw_shrimps", "shrimps", "raw_swordfish", "swordfish", "raw_trout", "trout", "raw_tuna", "tuna", "raw_cavefish", "raw_rocktail", "bucket_of_milk"]
 
 [.cat_3]
@@ -77,11 +63,6 @@ growth_per_tick = 77
 summoning_level = 0
 hungry_phrase = "Meeoooow!"
 idle_phrases = ["Meow!", "Purr...", "Mrow?", "Meeoooow!"]
-talk_lines = [
-    "You attempt to talk to your kitten.",
-    "pet: Meow!",
-    "It seems content to be near you.",
-]
 food = ["raw_anchovies", "anchovies", "raw_bass", "bass", "raw_cod", "cod", "raw_cavefish", "raw_herring", "herring", "raw_lobster", "lobster", "raw_mackerel", "mackerel", "raw_manta_ray", "manta_ray", "raw_monkfish", "monkfish", "raw_pike", "pike", "raw_salmon", "salmon", "raw_sardine", "sardine", "raw_sea_turtle", "sea_turtle", "raw_shark", "shark", "raw_shrimps", "shrimps", "raw_swordfish", "swordfish", "raw_trout", "trout", "raw_tuna", "tuna", "raw_cavefish", "raw_rocktail", "bucket_of_milk"]
 
 [.cat_4]
@@ -95,11 +76,6 @@ growth_per_tick = 77
 summoning_level = 0
 hungry_phrase = "Meeoooow!"
 idle_phrases = ["Meow!", "Purr...", "Mrow?", "Meeoooow!"]
-talk_lines = [
-    "You attempt to talk to your kitten.",
-    "pet: Meow!",
-    "It seems content to be near you.",
-]
 food = ["raw_anchovies", "anchovies", "raw_bass", "bass", "raw_cod", "cod", "raw_cavefish", "raw_herring", "herring", "raw_lobster", "lobster", "raw_mackerel", "mackerel", "raw_manta_ray", "manta_ray", "raw_monkfish", "monkfish", "raw_pike", "pike", "raw_salmon", "salmon", "raw_sardine", "sardine", "raw_sea_turtle", "sea_turtle", "raw_shark", "shark", "raw_shrimps", "shrimps", "raw_swordfish", "swordfish", "raw_trout", "trout", "raw_tuna", "tuna", "raw_cavefish", "raw_rocktail", "bucket_of_milk"]
 
 [.cat_5]
@@ -113,11 +89,6 @@ growth_per_tick = 77
 summoning_level = 0
 hungry_phrase = "Meeoooow!"
 idle_phrases = ["Meow!", "Purr...", "Mrow?", "Meeoooow!"]
-talk_lines = [
-    "You attempt to talk to your kitten.",
-    "pet: Meow!",
-    "It seems content to be near you.",
-]
 food = ["raw_anchovies", "anchovies", "raw_bass", "bass", "raw_cod", "cod", "raw_cavefish", "raw_herring", "herring", "raw_lobster", "lobster", "raw_mackerel", "mackerel", "raw_manta_ray", "manta_ray", "raw_monkfish", "monkfish", "raw_pike", "pike", "raw_salmon", "salmon", "raw_sardine", "sardine", "raw_sea_turtle", "sea_turtle", "raw_shark", "shark", "raw_shrimps", "shrimps", "raw_swordfish", "swordfish", "raw_trout", "trout", "raw_tuna", "tuna", "raw_cavefish", "raw_rocktail", "bucket_of_milk"]
 
 [.hellcat]
@@ -131,11 +102,6 @@ growth_per_tick = 77
 summoning_level = 0
 hungry_phrase = "Hissss!"
 idle_phrases = ["Hissss!", "Snarl!", "Hrrgh!", "Grrrr..."]
-talk_lines = [
-    "You hiss softly at your hellcat.",
-    "pet: Hissss!",
-    "It glares back with smouldering eyes.",
-]
 food = ["raw_anchovies", "anchovies", "raw_bass", "bass", "raw_cod", "cod", "raw_cavefish", "raw_herring", "herring", "raw_lobster", "lobster", "raw_mackerel", "mackerel", "raw_manta_ray", "manta_ray", "raw_monkfish", "monkfish", "raw_pike", "pike", "raw_salmon", "salmon", "raw_sardine", "sardine", "raw_sea_turtle", "sea_turtle", "raw_shark", "shark", "raw_shrimps", "shrimps", "raw_swordfish", "swordfish", "raw_trout", "trout", "raw_tuna", "tuna", "raw_cavefish", "raw_rocktail", "bucket_of_milk"]
 
 [.cat_6]
@@ -147,11 +113,6 @@ growth_per_tick = 77
 summoning_level = 0
 hungry_phrase = "Meeoooow!"
 idle_phrases = ["Meow!", "Purr...", "Mrow?", "Meeoooow!"]
-talk_lines = [
-    "You attempt to talk to your kitten.",
-    "pet: Meow!",
-    "It seems content to be near you.",
-]
 food = ["raw_anchovies", "anchovies", "raw_bass", "bass", "raw_cod", "cod", "raw_cavefish", "raw_herring", "herring", "raw_lobster", "lobster", "raw_mackerel", "mackerel", "raw_manta_ray", "manta_ray", "raw_monkfish", "monkfish", "raw_pike", "pike", "raw_salmon", "salmon", "raw_sardine", "sardine", "raw_sea_turtle", "sea_turtle", "raw_shark", "shark", "raw_shrimps", "shrimps", "raw_swordfish", "swordfish", "raw_trout", "trout", "raw_tuna", "tuna", "raw_cavefish", "raw_rocktail", "bucket_of_milk"]
 
 [.clockwork_cat]
@@ -160,11 +121,6 @@ baby_npc = "pet_clockwork_cat_baby"
 growth_per_tick = 0
 summoning_level = 0
 idle_phrases = ["Whir...", "Tick tock."]
-talk_lines = [
-    "You wind up your clockwork cat.",
-    "pet: Tick tock.",
-    "It paces stiffly in a perfect circle.",
-]
 
 [.bulldog]
 baby_item = "bulldog_puppy_white"
@@ -175,11 +131,6 @@ growth_per_tick = 17
 summoning_level = 4
 hungry_phrase = "Woof!"
 idle_phrases = ["Woof!", "Bark!", "Arf!", "Ruff!"]
-talk_lines = [
-    "You pat your dog on the head.",
-    "pet: Woof!",
-    "Its tail thumps the ground in reply.",
-]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
 [.bulldog_1]
@@ -191,11 +142,6 @@ growth_per_tick = 17
 summoning_level = 4
 hungry_phrase = "Woof!"
 idle_phrases = ["Woof!", "Bark!", "Arf!", "Ruff!"]
-talk_lines = [
-    "You pat your dog on the head.",
-    "pet: Woof!",
-    "Its tail thumps the ground in reply.",
-]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
 [.bulldog_2]
@@ -207,11 +153,6 @@ growth_per_tick = 17
 summoning_level = 4
 hungry_phrase = "Woof!"
 idle_phrases = ["Woof!", "Bark!", "Arf!", "Ruff!"]
-talk_lines = [
-    "You pat your dog on the head.",
-    "pet: Woof!",
-    "Its tail thumps the ground in reply.",
-]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
 [.dalmatian]
@@ -223,11 +164,6 @@ growth_per_tick = 17
 summoning_level = 4
 hungry_phrase = "Woof!"
 idle_phrases = ["Woof!", "Bark!", "Arf!", "Ruff!"]
-talk_lines = [
-    "You pat your dog on the head.",
-    "pet: Woof!",
-    "Its tail thumps the ground in reply.",
-]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
 [.dalmatian_1]
@@ -239,11 +175,6 @@ growth_per_tick = 17
 summoning_level = 4
 hungry_phrase = "Woof!"
 idle_phrases = ["Woof!", "Bark!", "Arf!", "Ruff!"]
-talk_lines = [
-    "You pat your dog on the head.",
-    "pet: Woof!",
-    "Its tail thumps the ground in reply.",
-]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
 [.dalmatian_2]
@@ -255,11 +186,6 @@ growth_per_tick = 17
 summoning_level = 4
 hungry_phrase = "Woof!"
 idle_phrases = ["Woof!", "Bark!", "Arf!", "Ruff!"]
-talk_lines = [
-    "You pat your dog on the head.",
-    "pet: Woof!",
-    "Its tail thumps the ground in reply.",
-]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
 [.greyhound]
@@ -271,11 +197,6 @@ growth_per_tick = 17
 summoning_level = 4
 hungry_phrase = "Woof!"
 idle_phrases = ["Woof!", "Bark!", "Arf!", "Ruff!"]
-talk_lines = [
-    "You pat your dog on the head.",
-    "pet: Woof!",
-    "Its tail thumps the ground in reply.",
-]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
 [.greyhound_1]
@@ -287,11 +208,6 @@ growth_per_tick = 17
 summoning_level = 4
 hungry_phrase = "Woof!"
 idle_phrases = ["Woof!", "Bark!", "Arf!", "Ruff!"]
-talk_lines = [
-    "You pat your dog on the head.",
-    "pet: Woof!",
-    "Its tail thumps the ground in reply.",
-]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
 [.greyhound_2]
@@ -303,11 +219,6 @@ growth_per_tick = 17
 summoning_level = 4
 hungry_phrase = "Woof!"
 idle_phrases = ["Woof!", "Bark!", "Arf!", "Ruff!"]
-talk_lines = [
-    "You pat your dog on the head.",
-    "pet: Woof!",
-    "Its tail thumps the ground in reply.",
-]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
 [.labrador]
@@ -319,11 +230,6 @@ growth_per_tick = 17
 summoning_level = 4
 hungry_phrase = "Woof!"
 idle_phrases = ["Woof!", "Bark!", "Arf!", "Ruff!"]
-talk_lines = [
-    "You pat your dog on the head.",
-    "pet: Woof!",
-    "Its tail thumps the ground in reply.",
-]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
 [.labrador_1]
@@ -335,11 +241,6 @@ growth_per_tick = 17
 summoning_level = 4
 hungry_phrase = "Woof!"
 idle_phrases = ["Woof!", "Bark!", "Arf!", "Ruff!"]
-talk_lines = [
-    "You pat your dog on the head.",
-    "pet: Woof!",
-    "Its tail thumps the ground in reply.",
-]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
 [.labrador_2]
@@ -351,11 +252,6 @@ growth_per_tick = 17
 summoning_level = 4
 hungry_phrase = "Woof!"
 idle_phrases = ["Woof!", "Bark!", "Arf!", "Ruff!"]
-talk_lines = [
-    "You pat your dog on the head.",
-    "pet: Woof!",
-    "Its tail thumps the ground in reply.",
-]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
 [.sheepdog]
@@ -367,11 +263,6 @@ growth_per_tick = 17
 summoning_level = 4
 hungry_phrase = "Woof!"
 idle_phrases = ["Woof!", "Bark!", "Arf!", "Ruff!"]
-talk_lines = [
-    "You pat your dog on the head.",
-    "pet: Woof!",
-    "Its tail thumps the ground in reply.",
-]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
 [.sheepdog_1]
@@ -383,11 +274,6 @@ growth_per_tick = 17
 summoning_level = 4
 hungry_phrase = "Woof!"
 idle_phrases = ["Woof!", "Bark!", "Arf!", "Ruff!"]
-talk_lines = [
-    "You pat your dog on the head.",
-    "pet: Woof!",
-    "Its tail thumps the ground in reply.",
-]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
 [.sheepdog_2]
@@ -399,11 +285,6 @@ growth_per_tick = 17
 summoning_level = 4
 hungry_phrase = "Woof!"
 idle_phrases = ["Woof!", "Bark!", "Arf!", "Ruff!"]
-talk_lines = [
-    "You pat your dog on the head.",
-    "pet: Woof!",
-    "Its tail thumps the ground in reply.",
-]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
 [.terrier]
@@ -415,11 +296,6 @@ growth_per_tick = 17
 summoning_level = 4
 hungry_phrase = "Woof!"
 idle_phrases = ["Woof!", "Bark!", "Arf!", "Ruff!"]
-talk_lines = [
-    "You pat your dog on the head.",
-    "pet: Woof!",
-    "Its tail thumps the ground in reply.",
-]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
 [.terrier_1]
@@ -431,11 +307,6 @@ growth_per_tick = 17
 summoning_level = 4
 hungry_phrase = "Woof!"
 idle_phrases = ["Woof!", "Bark!", "Arf!", "Ruff!"]
-talk_lines = [
-    "You pat your dog on the head.",
-    "pet: Woof!",
-    "Its tail thumps the ground in reply.",
-]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
 [.terrier_2]
@@ -447,11 +318,6 @@ growth_per_tick = 17
 summoning_level = 4
 hungry_phrase = "Woof!"
 idle_phrases = ["Woof!", "Bark!", "Arf!", "Ruff!"]
-talk_lines = [
-    "You pat your dog on the head.",
-    "pet: Woof!",
-    "Its tail thumps the ground in reply.",
-]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "bones"]
 
 [.gecko]
@@ -463,11 +329,6 @@ growth_per_tick = 25
 summoning_level = 10
 hungry_phrase = "Chirp!"
 idle_phrases = ["Chirp!", "Tk tk tk!", "Click!"]
-talk_lines = [
-    "You click your tongue at your gecko.",
-    "pet: Chirp!",
-    "Its eyes swivel independently to look at you.",
-]
 food = ["flies", "beetle_bits"]
 
 [.gecko_1]
@@ -479,11 +340,6 @@ growth_per_tick = 25
 summoning_level = 10
 hungry_phrase = "Chirp!"
 idle_phrases = ["Chirp!", "Tk tk tk!", "Click!"]
-talk_lines = [
-    "You click your tongue at your gecko.",
-    "pet: Chirp!",
-    "Its eyes swivel independently to look at you.",
-]
 food = ["flies", "beetle_bits"]
 
 [.gecko_2]
@@ -495,11 +351,6 @@ growth_per_tick = 25
 summoning_level = 10
 hungry_phrase = "Chirp!"
 idle_phrases = ["Chirp!", "Tk tk tk!", "Click!"]
-talk_lines = [
-    "You click your tongue at your gecko.",
-    "pet: Chirp!",
-    "Its eyes swivel independently to look at you.",
-]
 food = ["flies", "beetle_bits"]
 
 [.gecko_3]
@@ -511,11 +362,6 @@ growth_per_tick = 25
 summoning_level = 10
 hungry_phrase = "Chirp!"
 idle_phrases = ["Chirp!", "Tk tk tk!", "Click!"]
-talk_lines = [
-    "You click your tongue at your gecko.",
-    "pet: Chirp!",
-    "Its eyes swivel independently to look at you.",
-]
 food = ["flies", "beetle_bits"]
 
 [.gecko_4]
@@ -527,11 +373,6 @@ growth_per_tick = 25
 summoning_level = 10
 hungry_phrase = "Chirp!"
 idle_phrases = ["Chirp!", "Tk tk tk!", "Click!"]
-talk_lines = [
-    "You click your tongue at your gecko.",
-    "pet: Chirp!",
-    "Its eyes swivel independently to look at you.",
-]
 food = ["flies", "beetle_bits"]
 
 [.platypus]
@@ -543,11 +384,6 @@ growth_per_tick = 23
 summoning_level = 10
 hungry_phrase = "Splash!"
 idle_phrases = ["Splash!", "Chirp!", "Chrr!"]
-talk_lines = [
-    "You greet your platypus.",
-    "pet: Splash!",
-    "It flaps its bill happily.",
-]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail", "ground_fishing_bait"]
 
 [.platypus_1]
@@ -559,11 +395,6 @@ growth_per_tick = 23
 summoning_level = 10
 hungry_phrase = "Splash!"
 idle_phrases = ["Splash!", "Chirp!", "Chrr!"]
-talk_lines = [
-    "You greet your platypus.",
-    "pet: Splash!",
-    "It flaps its bill happily.",
-]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail", "ground_fishing_bait"]
 
 [.platypus_2]
@@ -575,11 +406,6 @@ growth_per_tick = 23
 summoning_level = 10
 hungry_phrase = "Splash!"
 idle_phrases = ["Splash!", "Chirp!", "Chrr!"]
-talk_lines = [
-    "You greet your platypus.",
-    "pet: Splash!",
-    "It flaps its bill happily.",
-]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail", "ground_fishing_bait"]
 
 [.broav]
@@ -588,12 +414,8 @@ baby_npc = "pet_broav_baby"
 growth_per_tick = 0
 summoning_level = 23
 idle_phrases = ["Snort!", "Grunt!"]
-talk_lines = [
-    "You poke your broav curiously.",
-    "pet: Snort!",
-    "It snuffles around your feet.",
-]
 food = ["mort_myre_fungus"]
+feed_phrase = "Ooiiink!"
 
 [.penguin]
 baby_item = "pet_penguin_baby"
@@ -603,13 +425,10 @@ grown_npc = "pet_penguin"
 growth_per_tick = 23
 summoning_level = 30
 hungry_phrase = "Awk awk awk!"
+hungry_phrases = ["Awk awk!", "Awk awk!", "Awk awk!"]
 idle_phrases = ["Awk awk awk!", "Squawk!", "Honk honk!", "Chirp!"]
-talk_lines = [
-    "You greet your penguin.",
-    "pet: Awk awk awk!",
-    "It waddles a little closer.",
-]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
+feed_phrase = "Awk!"
 
 [.penguin_1]
 baby_item = "penguin_brown"
@@ -619,13 +438,10 @@ grown_npc = "pet_penguin_1"
 growth_per_tick = 23
 summoning_level = 30
 hungry_phrase = "Awk awk awk!"
+hungry_phrases = ["Awk awk!", "Awk awk!", "Awk awk!"]
 idle_phrases = ["Awk awk awk!", "Squawk!", "Honk honk!", "Chirp!"]
-talk_lines = [
-    "You greet your penguin.",
-    "pet: Awk awk awk!",
-    "It waddles a little closer.",
-]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
+feed_phrase = "Awk!"
 
 [.penguin_2]
 baby_item = "penguin_blue"
@@ -635,13 +451,10 @@ grown_npc = "pet_penguin_2"
 growth_per_tick = 23
 summoning_level = 30
 hungry_phrase = "Awk awk awk!"
+hungry_phrases = ["Awk awk!", "Awk awk!", "Awk awk!"]
 idle_phrases = ["Awk awk awk!", "Squawk!", "Honk honk!", "Chirp!"]
-talk_lines = [
-    "You greet your penguin.",
-    "pet: Awk awk awk!",
-    "It waddles a little closer.",
-]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
+feed_phrase = "Awk!"
 
 [.giant_crab]
 baby_item = "baby_giant_crab_beige"
@@ -651,13 +464,10 @@ grown_npc = "pet_giant_crab"
 growth_per_tick = 35
 summoning_level = 40
 hungry_phrase = "Click clack!"
+hungry_phrases = ["Clatter... Clatter", "Clatter...", "Clatter!"]
 idle_phrases = ["Click clack!", "Snip snap!"]
-talk_lines = [
-    "You tap on your giant crab's shell.",
-    "pet: Click clack!",
-    "It waves a pincer in your general direction.",
-]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
+feed_phrase = "Click...clatter"
 
 [.giant_crab_1]
 baby_item = "baby_giant_crab_grey"
@@ -667,13 +477,10 @@ grown_npc = "pet_giant_crab_1"
 growth_per_tick = 35
 summoning_level = 40
 hungry_phrase = "Click clack!"
+hungry_phrases = ["Clatter... Clatter", "Clatter...", "Clatter!"]
 idle_phrases = ["Click clack!", "Snip snap!"]
-talk_lines = [
-    "You tap on your giant crab's shell.",
-    "pet: Click clack!",
-    "It waves a pincer in your general direction.",
-]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
+feed_phrase = "Click...clatter"
 
 [.giant_crab_2]
 baby_item = "baby_giant_crab_green"
@@ -683,13 +490,10 @@ grown_npc = "pet_giant_crab_2"
 growth_per_tick = 35
 summoning_level = 40
 hungry_phrase = "Click clack!"
+hungry_phrases = ["Clatter... Clatter", "Clatter...", "Clatter!"]
 idle_phrases = ["Click clack!", "Snip snap!"]
-talk_lines = [
-    "You tap on your giant crab's shell.",
-    "pet: Click clack!",
-    "It waves a pincer in your general direction.",
-]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
+feed_phrase = "Click...clatter"
 
 [.giant_crab_3]
 baby_item = "baby_giant_crab_yellow"
@@ -699,13 +503,10 @@ grown_npc = "pet_giant_crab_3"
 growth_per_tick = 35
 summoning_level = 40
 hungry_phrase = "Click clack!"
+hungry_phrases = ["Clatter... Clatter", "Clatter...", "Clatter!"]
 idle_phrases = ["Click clack!", "Snip snap!"]
-talk_lines = [
-    "You tap on your giant crab's shell.",
-    "pet: Click clack!",
-    "It waves a pincer in your general direction.",
-]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
+feed_phrase = "Click...clatter"
 
 [.giant_crab_4]
 baby_item = "baby_giant_crab_6"
@@ -715,13 +516,10 @@ grown_npc = "pet_giant_crab_4"
 growth_per_tick = 35
 summoning_level = 40
 hungry_phrase = "Click clack!"
+hungry_phrases = ["Clatter... Clatter", "Clatter...", "Clatter!"]
 idle_phrases = ["Click clack!", "Snip snap!"]
-talk_lines = [
-    "You tap on your giant crab's shell.",
-    "pet: Click clack!",
-    "It waves a pincer in your general direction.",
-]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
+feed_phrase = "Click...clatter"
 
 [.raven]
 baby_item = "raven_chick_blue"
@@ -732,11 +530,6 @@ growth_per_tick = 35
 summoning_level = 50
 hungry_phrase = "Caw!"
 idle_phrases = ["Caw!", "Caw caw!", "Squawk!"]
-talk_lines = [
-    "You call to your raven.",
-    "pet: Caw!",
-    "Its dark eyes watch you intently.",
-]
 food = ["fishing_bait", "ground_fishing_bait"]
 
 [.raven_1]
@@ -748,11 +541,6 @@ growth_per_tick = 35
 summoning_level = 50
 hungry_phrase = "Caw!"
 idle_phrases = ["Caw!", "Caw caw!", "Squawk!"]
-talk_lines = [
-    "You call to your raven.",
-    "pet: Caw!",
-    "Its dark eyes watch you intently.",
-]
 food = ["fishing_bait", "ground_fishing_bait"]
 
 [.raven_2]
@@ -764,11 +552,6 @@ growth_per_tick = 35
 summoning_level = 50
 hungry_phrase = "Caw!"
 idle_phrases = ["Caw!", "Caw caw!", "Squawk!"]
-talk_lines = [
-    "You call to your raven.",
-    "pet: Caw!",
-    "Its dark eyes watch you intently.",
-]
 food = ["fishing_bait", "ground_fishing_bait"]
 
 [.raven_3]
@@ -780,11 +563,6 @@ growth_per_tick = 35
 summoning_level = 50
 hungry_phrase = "Caw!"
 idle_phrases = ["Caw!", "Caw caw!", "Squawk!"]
-talk_lines = [
-    "You call to your raven.",
-    "pet: Caw!",
-    "Its dark eyes watch you intently.",
-]
 food = ["fishing_bait", "ground_fishing_bait"]
 
 [.raven_4]
@@ -796,11 +574,6 @@ growth_per_tick = 35
 summoning_level = 50
 hungry_phrase = "Caw!"
 idle_phrases = ["Caw!", "Caw caw!", "Squawk!"]
-talk_lines = [
-    "You call to your raven.",
-    "pet: Caw!",
-    "Its dark eyes watch you intently.",
-]
 food = ["fishing_bait", "ground_fishing_bait"]
 
 [.raven_5]
@@ -812,11 +585,6 @@ growth_per_tick = 35
 summoning_level = 50
 hungry_phrase = "Caw!"
 idle_phrases = ["Caw!", "Caw caw!", "Squawk!"]
-talk_lines = [
-    "You call to your raven.",
-    "pet: Caw!",
-    "Its dark eyes watch you intently.",
-]
 food = ["fishing_bait", "ground_fishing_bait"]
 
 [.squirrel]
@@ -828,11 +596,6 @@ growth_per_tick = 36
 summoning_level = 60
 hungry_phrase = "Squeak!"
 idle_phrases = ["Squeak!", "Chitter!", "Chirp!"]
-talk_lines = [
-    "You whisper to your squirrel.",
-    "pet: Squeak!",
-    "It twitches its tail and scampers around your feet.",
-]
 food = ["nuts"]
 
 [.squirrel_1]
@@ -844,11 +607,6 @@ growth_per_tick = 36
 summoning_level = 60
 hungry_phrase = "Squeak!"
 idle_phrases = ["Squeak!", "Chitter!", "Chirp!"]
-talk_lines = [
-    "You whisper to your squirrel.",
-    "pet: Squeak!",
-    "It twitches its tail and scampers around your feet.",
-]
 food = ["nuts"]
 
 [.squirrel_2]
@@ -860,11 +618,6 @@ growth_per_tick = 36
 summoning_level = 60
 hungry_phrase = "Squeak!"
 idle_phrases = ["Squeak!", "Chitter!", "Chirp!"]
-talk_lines = [
-    "You whisper to your squirrel.",
-    "pet: Squeak!",
-    "It twitches its tail and scampers around your feet.",
-]
 food = ["nuts"]
 
 [.squirrel_3]
@@ -876,11 +629,6 @@ growth_per_tick = 36
 summoning_level = 60
 hungry_phrase = "Squeak!"
 idle_phrases = ["Squeak!", "Chitter!", "Chirp!"]
-talk_lines = [
-    "You whisper to your squirrel.",
-    "pet: Squeak!",
-    "It twitches its tail and scampers around your feet.",
-]
 food = ["nuts"]
 
 [.squirrel_4]
@@ -892,11 +640,6 @@ growth_per_tick = 36
 summoning_level = 60
 hungry_phrase = "Squeak!"
 idle_phrases = ["Squeak!", "Chitter!", "Chirp!"]
-talk_lines = [
-    "You whisper to your squirrel.",
-    "pet: Squeak!",
-    "It twitches its tail and scampers around your feet.",
-]
 food = ["nuts"]
 
 [.saradomin_owl]
@@ -910,11 +653,6 @@ growth_per_tick = 35
 summoning_level = 70
 hungry_phrase = "Hoot!"
 idle_phrases = ["Hoot!", "Hoo!", "Whoo!"]
-talk_lines = [
-    "You whisper a prayer to your owl.",
-    "pet: Hoot!",
-    "It blinks its great wise eyes at you.",
-]
 food = ["fishing_bait", "ground_fishing_bait"]
 
 [.zamorak_hawk]
@@ -928,11 +666,6 @@ growth_per_tick = 35
 summoning_level = 70
 hungry_phrase = "Skreee!"
 idle_phrases = ["Skreee!", "Caw!", "Shriek!"]
-talk_lines = [
-    "You bow your head to your hawk.",
-    "pet: Skreee!",
-    "It puffs up its feathers in reply.",
-]
 food = ["fishing_bait", "ground_fishing_bait"]
 
 [.guthix_raptor]
@@ -946,11 +679,6 @@ growth_per_tick = 35
 summoning_level = 70
 hungry_phrase = "Skraaa!"
 idle_phrases = ["Skraaa!", "Screech!", "Cry!"]
-talk_lines = [
-    "You salute your raptor.",
-    "pet: Skraaa!",
-    "It tilts its head, regarding you in silence.",
-]
 food = ["fishing_bait", "ground_fishing_bait"]
 
 [.ex_ex_parrot]
@@ -959,11 +687,6 @@ baby_npc = "pet_ex_ex_parrot_baby"
 growth_per_tick = 0
 summoning_level = 71
 idle_phrases = ["Squawk!", "Pretty bird!"]
-talk_lines = [
-    "You greet your parrot.",
-    "pet: Pretty bird!",
-    "It puffs up its feathers proudly.",
-]
 food = ["rock_fragments"]
 
 [.cute_phoenix_eggling]
@@ -972,11 +695,6 @@ baby_npc = "pet_cute_phoenix_eggling_baby"
 growth_per_tick = 0
 summoning_level = 72
 food = ["ashes"]
-talk_lines = [
-    "You whisper to your phoenix eggling.",
-    "pet: Cheep!",
-    "It glows faintly warm to the touch.",
-]
 
 [.mean_phoenix_eggling]
 baby_item = "phoenix_eggling"
@@ -984,11 +702,6 @@ baby_npc = "pet_mean_phoenix_eggling_baby"
 growth_per_tick = 0
 summoning_level = 72
 food = ["ashes"]
-talk_lines = [
-    "You whisper to your phoenix eggling.",
-    "pet: Cheep!",
-    "It glares at you with tiny fierce eyes.",
-]
 
 [.raccoon]
 baby_item = "baby_raccoon_grey"
@@ -999,11 +712,6 @@ growth_per_tick = 15
 summoning_level = 80
 hungry_phrase = "Chitter!"
 idle_phrases = ["Chitter!", "Trill!", "Purr-rr!"]
-talk_lines = [
-    "You speak softly to your raccoon.",
-    "pet: Chitter!",
-    "It washes its paws as if pleased to see you.",
-]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail", "raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat"]
 
 [.raccoon_1]
@@ -1015,11 +723,6 @@ growth_per_tick = 15
 summoning_level = 80
 hungry_phrase = "Chitter!"
 idle_phrases = ["Chitter!", "Trill!", "Purr-rr!"]
-talk_lines = [
-    "You speak softly to your raccoon.",
-    "pet: Chitter!",
-    "It washes its paws as if pleased to see you.",
-]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail", "raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat"]
 
 [.raccoon_2]
@@ -1031,11 +734,6 @@ growth_per_tick = 15
 summoning_level = 80
 hungry_phrase = "Chitter!"
 idle_phrases = ["Chitter!", "Trill!", "Purr-rr!"]
-talk_lines = [
-    "You speak softly to your raccoon.",
-    "pet: Chitter!",
-    "It washes its paws as if pleased to see you.",
-]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail", "raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat"]
 
 [.vulture]
@@ -1046,13 +744,10 @@ grown_npc = "pet_vulture"
 growth_per_tick = 39
 summoning_level = 85
 hungry_phrase = "Screech!"
+hungry_phrases = ["Craaaw... Craaaw", "Craaaw...", "Craaaw!"]
 idle_phrases = ["Screech!", "Caw!", "Skreee!"]
-talk_lines = [
-    "You greet your vulture.",
-    "pet: Screech!",
-    "It eyes you warily.",
-]
 food = ["fishing_bait", "ground_fishing_bait"]
+feed_phrase = "Craaaw"
 
 [.vulture_1]
 baby_item = "pet_vulture_1_baby"
@@ -1062,13 +757,10 @@ grown_npc = "pet_vulture_1"
 growth_per_tick = 39
 summoning_level = 85
 hungry_phrase = "Screech!"
+hungry_phrases = ["Craaaw... Craaaw", "Craaaw...", "Craaaw!"]
 idle_phrases = ["Screech!", "Caw!", "Skreee!"]
-talk_lines = [
-    "You greet your vulture.",
-    "pet: Screech!",
-    "It eyes you warily.",
-]
 food = ["fishing_bait", "ground_fishing_bait"]
+feed_phrase = "Craaaw"
 
 [.vulture_2]
 baby_item = "pet_vulture_2_baby"
@@ -1078,13 +770,10 @@ grown_npc = "pet_vulture_2"
 growth_per_tick = 39
 summoning_level = 85
 hungry_phrase = "Screech!"
+hungry_phrases = ["Craaaw... Craaaw", "Craaaw...", "Craaaw!"]
 idle_phrases = ["Screech!", "Caw!", "Skreee!"]
-talk_lines = [
-    "You greet your vulture.",
-    "pet: Screech!",
-    "It eyes you warily.",
-]
 food = ["fishing_bait", "ground_fishing_bait"]
+feed_phrase = "Craaaw"
 
 [.vulture_3]
 baby_item = "pet_vulture_3_baby"
@@ -1094,13 +783,10 @@ grown_npc = "pet_vulture_3"
 growth_per_tick = 39
 summoning_level = 85
 hungry_phrase = "Screech!"
+hungry_phrases = ["Craaaw... Craaaw", "Craaaw...", "Craaaw!"]
 idle_phrases = ["Screech!", "Caw!", "Skreee!"]
-talk_lines = [
-    "You greet your vulture.",
-    "pet: Screech!",
-    "It eyes you warily.",
-]
 food = ["fishing_bait", "ground_fishing_bait"]
+feed_phrase = "Craaaw"
 
 [.vulture_4]
 baby_item = "pet_vulture_4_baby"
@@ -1110,13 +796,10 @@ grown_npc = "pet_vulture_4"
 growth_per_tick = 39
 summoning_level = 85
 hungry_phrase = "Screech!"
+hungry_phrases = ["Craaaw... Craaaw", "Craaaw...", "Craaaw!"]
 idle_phrases = ["Screech!", "Caw!", "Skreee!"]
-talk_lines = [
-    "You greet your vulture.",
-    "pet: Screech!",
-    "It eyes you warily.",
-]
 food = ["fishing_bait", "ground_fishing_bait"]
+feed_phrase = "Craaaw"
 
 [.vulture_5]
 baby_item = "pet_vulture_5_baby"
@@ -1126,13 +809,10 @@ grown_npc = "pet_vulture_5"
 growth_per_tick = 39
 summoning_level = 85
 hungry_phrase = "Screech!"
+hungry_phrases = ["Craaaw... Craaaw", "Craaaw...", "Craaaw!"]
 idle_phrases = ["Screech!", "Caw!", "Skreee!"]
-talk_lines = [
-    "You greet your vulture.",
-    "pet: Screech!",
-    "It eyes you warily.",
-]
 food = ["fishing_bait", "ground_fishing_bait"]
+feed_phrase = "Craaaw"
 
 [.chameleon]
 baby_item = "baby_chameleon"
@@ -1143,11 +823,6 @@ growth_per_tick = 35
 summoning_level = 90
 hungry_phrase = "Hiss..."
 idle_phrases = ["Hiss...", "Click click!", "Chrk!"]
-talk_lines = [
-    "You whisper to your chameleon.",
-    "pet: Hiss...",
-    "It blinks at you, slowly shifting colour.",
-]
 food = ["flies"]
 
 [.monkey]
@@ -1159,11 +834,6 @@ growth_per_tick = 35
 summoning_level = 95
 hungry_phrase = "Eee eee!"
 idle_phrases = ["Eee eee!", "Ook ook!", "Chitter chitter!"]
-talk_lines = [
-    "You chatter at your monkey.",
-    "pet: Eee eee!",
-    "It mimics you with a cheeky grin.",
-]
 food = ["banana"]
 
 [.monkey_1]
@@ -1175,11 +845,6 @@ growth_per_tick = 35
 summoning_level = 95
 hungry_phrase = "Eee eee!"
 idle_phrases = ["Eee eee!", "Ook ook!", "Chitter chitter!"]
-talk_lines = [
-    "You chatter at your monkey.",
-    "pet: Eee eee!",
-    "It mimics you with a cheeky grin.",
-]
 food = ["banana"]
 
 [.monkey_2]
@@ -1191,11 +856,6 @@ growth_per_tick = 35
 summoning_level = 95
 hungry_phrase = "Eee eee!"
 idle_phrases = ["Eee eee!", "Ook ook!", "Chitter chitter!"]
-talk_lines = [
-    "You chatter at your monkey.",
-    "pet: Eee eee!",
-    "It mimics you with a cheeky grin.",
-]
 food = ["banana"]
 
 [.monkey_3]
@@ -1207,11 +867,6 @@ growth_per_tick = 35
 summoning_level = 95
 hungry_phrase = "Eee eee!"
 idle_phrases = ["Eee eee!", "Ook ook!", "Chitter chitter!"]
-talk_lines = [
-    "You chatter at your monkey.",
-    "pet: Eee eee!",
-    "It mimics you with a cheeky grin.",
-]
 food = ["banana"]
 
 [.monkey_4]
@@ -1223,11 +878,6 @@ growth_per_tick = 35
 summoning_level = 95
 hungry_phrase = "Eee eee!"
 idle_phrases = ["Eee eee!", "Ook ook!", "Chitter chitter!"]
-talk_lines = [
-    "You chatter at your monkey.",
-    "pet: Eee eee!",
-    "It mimics you with a cheeky grin.",
-]
 food = ["banana"]
 
 [.monkey_5]
@@ -1239,11 +889,6 @@ growth_per_tick = 35
 summoning_level = 95
 hungry_phrase = "Eee eee!"
 idle_phrases = ["Eee eee!", "Ook ook!", "Chitter chitter!"]
-talk_lines = [
-    "You chatter at your monkey.",
-    "pet: Eee eee!",
-    "It mimics you with a cheeky grin.",
-]
 food = ["banana"]
 
 [.monkey_6]
@@ -1255,11 +900,6 @@ growth_per_tick = 35
 summoning_level = 95
 hungry_phrase = "Eee eee!"
 idle_phrases = ["Eee eee!", "Ook ook!", "Chitter chitter!"]
-talk_lines = [
-    "You chatter at your monkey.",
-    "pet: Eee eee!",
-    "It mimics you with a cheeky grin.",
-]
 food = ["banana"]
 
 [.monkey_7]
@@ -1271,11 +911,6 @@ growth_per_tick = 35
 summoning_level = 95
 hungry_phrase = "Eee eee!"
 idle_phrases = ["Eee eee!", "Ook ook!", "Chitter chitter!"]
-talk_lines = [
-    "You chatter at your monkey.",
-    "pet: Eee eee!",
-    "It mimics you with a cheeky grin.",
-]
 food = ["banana"]
 
 [.monkey_8]
@@ -1287,11 +922,6 @@ growth_per_tick = 35
 summoning_level = 95
 hungry_phrase = "Eee eee!"
 idle_phrases = ["Eee eee!", "Ook ook!", "Chitter chitter!"]
-talk_lines = [
-    "You chatter at your monkey.",
-    "pet: Eee eee!",
-    "It mimics you with a cheeky grin.",
-]
 food = ["banana"]
 
 [.monkey_9]
@@ -1303,11 +933,6 @@ growth_per_tick = 35
 summoning_level = 95
 hungry_phrase = "Eee eee!"
 idle_phrases = ["Eee eee!", "Ook ook!", "Chitter chitter!"]
-talk_lines = [
-    "You chatter at your monkey.",
-    "pet: Eee eee!",
-    "It mimics you with a cheeky grin.",
-]
 food = ["banana"]
 
 [.baby_dragon]
@@ -1318,12 +943,7 @@ grown_npc = "pet_baby_dragon"
 growth_per_tick = 26
 summoning_level = 99
 hungry_phrase = "Grrrrr!"
-idle_phrases = ["Grrrrr!", "Roarr!", "Snort!", "Burp!"]
-talk_lines = [
-    "You speak softly to your baby dragon.",
-    "pet: Grrrr!",
-    "Its tiny scales shimmer as it acknowledges you.",
-]
+idle_phrases = ["Growl!"]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
 
 [.baby_dragon_1]
@@ -1334,12 +954,7 @@ grown_npc = "pet_baby_dragon_1"
 growth_per_tick = 26
 summoning_level = 99
 hungry_phrase = "Grrrrr!"
-idle_phrases = ["Grrrrr!", "Roarr!", "Snort!", "Burp!"]
-talk_lines = [
-    "You speak softly to your baby dragon.",
-    "pet: Grrrr!",
-    "Its tiny scales shimmer as it acknowledges you.",
-]
+idle_phrases = ["Growl!"]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
 
 [.baby_dragon_2]
@@ -1350,12 +965,7 @@ grown_npc = "pet_baby_dragon_2"
 growth_per_tick = 26
 summoning_level = 99
 hungry_phrase = "Grrrrr!"
-idle_phrases = ["Grrrrr!", "Roarr!", "Snort!", "Burp!"]
-talk_lines = [
-    "You speak softly to your baby dragon.",
-    "pet: Grrrr!",
-    "Its tiny scales shimmer as it acknowledges you.",
-]
+idle_phrases = ["Growl!"]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
 
 [.baby_dragon_3]
@@ -1366,11 +976,6 @@ grown_npc = "pet_baby_dragon_3"
 growth_per_tick = 26
 summoning_level = 99
 hungry_phrase = "Grrrrr!"
-idle_phrases = ["Grrrrr!", "Roarr!", "Snort!", "Burp!"]
-talk_lines = [
-    "You speak softly to your baby dragon.",
-    "pet: Grrrr!",
-    "Its tiny scales shimmer as it acknowledges you.",
-]
+idle_phrases = ["Growl!"]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
 
