@@ -110,20 +110,39 @@ class ActionQueue<C : Character>(
         while (action != null) {
             if (action.priority == ActionPriority.Long) {
                 scope.launch(action)
-                var suspension = character.suspension
-                while (suspension != null) {
-                    when (suspension) {
-                        is Suspension.Continue -> suspension.resume()
-                        is Suspension.Custom -> suspension.resume()
-                        is Suspension.Delay -> suspension.resume()
-                        else -> {}
-                    }
-                    suspension = character.suspension
-                }
+                fastForwardLong()
             }
             action = action.next
         }
         clear()
+    }
+
+    private fun fastForwardLong() {
+        while (true) {
+            val suspension = character.suspension ?: return
+            val resumed = when (suspension) {
+                is Suspension.Continue -> {
+                    suspension.resume()
+                    true
+                }
+                is Suspension.Delay -> {
+                    suspension.resume()
+                    true
+                }
+                // Force-resuming a Custom whose predicate is still false makes
+                // the awaiting code believe its condition was met (e.g. that a
+                // dialogue closed when it did not). Skip when not ready and
+                // let the cleared queue drop the action.
+                is Suspension.Custom -> if (suspension.ready()) {
+                    suspension.resume()
+                    true
+                } else {
+                    false
+                }
+                else -> false
+            }
+            if (!resumed) return
+        }
     }
 }
 

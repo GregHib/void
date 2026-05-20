@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.queue
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import org.junit.jupiter.api.Assertions.assertFalse
@@ -16,6 +17,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ClientScriptDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.suspend.Suspension
 
 @OptIn(ExperimentalCoroutinesApi::class)
 internal class ActionQueueTest {
@@ -144,6 +146,40 @@ internal class ActionQueueTest {
         queue.logout()
 
         assertTrue(executed, "Long actions should execute on logout regardless of delay")
+        assertTrue(queue.isEmpty())
+    }
+
+    @Test
+    fun `Logout does not force-resume a Custom suspension whose predicate is false`() {
+        var pastAwait = false
+        queue.add(Action<Player>("long", 1, ActionPriority.Long) {
+            suspendCancellableCoroutine { cont ->
+                suspension = Suspension.Custom(cont) { false }
+            }
+            suspension = null
+            pastAwait = true
+        })
+
+        queue.logout()
+
+        assertFalse(pastAwait, "Action must not advance past a Custom await whose predicate is unmet")
+        assertTrue(queue.isEmpty())
+    }
+
+    @Test
+    fun `Logout resumes a Custom suspension whose predicate is ready`() {
+        var pastAwait = false
+        queue.add(Action<Player>("long", 1, ActionPriority.Long) {
+            suspendCancellableCoroutine { cont ->
+                suspension = Suspension.Custom(cont) { true }
+            }
+            suspension = null
+            pastAwait = true
+        })
+
+        queue.logout()
+
+        assertTrue(pastAwait, "Action should advance when the Custom predicate is already satisfied")
         assertTrue(queue.isEmpty())
     }
 }
