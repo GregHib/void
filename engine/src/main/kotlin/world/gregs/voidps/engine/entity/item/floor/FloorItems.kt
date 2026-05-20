@@ -36,15 +36,17 @@ object FloorItems : ZoneBatchUpdates.Sender, Runnable {
     private val removeQueue = mutableListOf<FloorItem>()
 
     override fun run() {
-        for (floorItem in removeQueue) {
+        val removing = removeQueue.toList()
+        removeQueue.clear()
+        for (floorItem in removing) {
             Despawn.floorItem(floorItem)
         }
-        removeQueue.clear()
-        for (floorItem in addQueue) {
+        val adding = addQueue.toList()
+        addQueue.clear()
+        for (floorItem in adding) {
             add(floorItem)
             Spawn.floorItem(floorItem)
         }
-        addQueue.clear()
     }
 
     fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = NEVER, disappearTicks: Int = NEVER, charges: Int = 0, owner: Player?) = add(tile, id, amount, revealTicks, disappearTicks, charges, owner?.name)
