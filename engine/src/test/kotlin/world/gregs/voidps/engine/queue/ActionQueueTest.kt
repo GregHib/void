@@ -120,6 +120,20 @@ internal class ActionQueueTest {
     }
 
     @Test
+    fun `Clear by priority removes every matching action`() {
+        queue.add(Action<Player>("normal_a", 1, ActionPriority.Normal) {})
+        queue.add(Action<Player>("normal_b", 1, ActionPriority.Normal) {})
+        queue.add(Action<Player>("normal_c", 1, ActionPriority.Normal) {})
+
+        queue.clear(ActionPriority.Normal)
+
+        assertFalse(queue.contains("normal_a"))
+        assertFalse(queue.contains("normal_b"))
+        assertFalse(queue.contains("normal_c"))
+        assertTrue(queue.isEmpty())
+    }
+
+    @Test
     fun `Logout executes long actions immediately`() {
         var executed = false
         queue.add(Action<Player>("long", 5, ActionPriority.Long) {
