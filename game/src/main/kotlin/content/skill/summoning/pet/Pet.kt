@@ -189,7 +189,21 @@ private fun Player.deactivateSummoningOrb() {
     }
 }
 
+private fun Player.canSummonPet(row: RowDefinition): Boolean {
+    if (pet != null || follower != null || get("pet_active_item", "").isNotBlank()) {
+        return false
+    }
+    return has(Skill.Summoning, row.int("summoning_level"))
+}
+
 private suspend fun Player.dropPet(row: RowDefinition, itemId: String) {
+    // Run the precondition gate before the cat-amulet flavour dialogue,
+    // otherwise a player who can't summon (no level, follower active, etc.)
+    // sits through three chathead lines just to get a failure message.
+    if (!canSummonPet(row)) {
+        summonPet(row, itemId, restart = false)
+        return
+    }
     val amulet = hasCatspeakAmulet()
     if (row.isCatLike() && amulet) {
         summonCatWithAmulet(row)
