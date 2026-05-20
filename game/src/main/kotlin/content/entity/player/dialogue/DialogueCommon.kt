@@ -24,6 +24,18 @@ fun Interfaces.sendChat(
     sendLines(id, lines)
 }
 
+fun Interfaces.sendChat(
+    id: String,
+    component: String,
+    animationId: Int,
+    title: String,
+    lines: List<String>,
+) {
+    sendAnimation(id, component, animationId)
+    sendText(id, "title", title)
+    sendLines(id, lines)
+}
+
 fun Player.continueDialogue() {
     (suspension as? Suspension.Continue)?.resume()
 }
