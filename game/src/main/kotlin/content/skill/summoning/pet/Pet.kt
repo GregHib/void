@@ -26,6 +26,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.canFit
 import world.gregs.voidps.engine.map.spiral
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.type.Tile
 
@@ -67,8 +68,11 @@ fun Player.summonPet(row: RowDefinition, itemId: String, restart: Boolean = fals
     if (!restart) {
         anim("climb_down")
     }
-    weakQueue("summon_pet", 2) {
-        timers.start("pet_tick")
+    // Timer must start synchronously: a strong-priority action in the next
+    // two ticks would wipe a weakQueue, leaving the pet without hunger or
+    // growth updates for its entire lifetime.
+    timers.start("pet_tick")
+    queue("summon_pet", 2) {
         updatePetInterface()
     }
     return true
