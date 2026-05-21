@@ -22,9 +22,9 @@ suspend inline fun <reified E : Expression> Player.player(text: String, largeHea
 suspend fun Player.player(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val font = get<FontDefinitions>().get("q8_full")
     val lines = if (text.contains("\n")) {
-        text.trimIndent().lines().flatMap { chunk -> font.splitLines(chunk, 380) }
+        text.trimIndent().lines().flatMap { chunk -> font.splitLines(chunk, 400) }
     } else {
-        font.splitLines(text, 380)
+        font.splitLines(text, 400)
     }
     if (lines.size > 4) {
         for (chunk in lines.chunked(4)) {
