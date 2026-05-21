@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Void — Play Now</title>
+<style>
+  :root {
+    --gold:    #c9a84c;
+    --gold-lt: #e8d08a;
+    --bg:      #0f0f0f;
+    --card:    #1c1c1c;
+    --border:  #333;
+    --text:    #d4c89a;
+    --muted:   #888;
+    --green:   #5cb85c;
+    --red:     #d9534f;
+    --blue:    #4a9ede;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    padding: 0 16px 60px;
+  }
+
+  header {
+    text-align: center;
+    padding: 48px 0 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+
+  header h1 {
+    font-size: 2.6rem;
+    color: var(--gold);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+
+  header p {
+    color: var(--muted);
+    margin-top: 8px;
+    font-size: 0.9rem;
+  }
+
+  .container { max-width: 900px; margin: 0 auto; }
+
+  h2 {
+    font-size: 1.1rem;
+    color: var(--gold-lt);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 32px;
+  }
+
+  /* ---- Browser play grid ---- */
+  .sessions {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+  }
+
+  .session-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 18px 12px;
+    background: #242424;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.15s, background 0.15s;
+  }
+
+  .session-btn:hover {
+    border-color: var(--gold);
+    background: #2a2a2a;
+  }
+
+  .session-btn .icon {
+    font-size: 1.8rem;
+  }
+
+  .session-btn .label {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  /* ---- Download section ---- */
+  .tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .tab {
+    padding: 8px 18px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    background: none;
+    color: var(--muted);
+    transition: all 0.15s;
+  }
+
+  .tab.active {
+    background: var(--gold);
+    color: #000;
+    border-color: var(--gold);
+    font-weight: 600;
+  }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .steps { display: flex; flex-direction: column; gap: 16px; }
+
+  .step {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: #000;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-body { flex: 1; }
+
+  .step-body p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .step-body a {
+    color: var(--blue);
+    text-decoration: none;
+  }
+
+  .step-body a:hover { text-decoration: underline; }
+
+  .btn {
+    display: inline-block;
+    padding: 9px 20px;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: #000;
+  }
+
+  .btn-primary:hover { background: var(--gold-lt); }
+
+  code {
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.85rem;
+    display: block;
+    white-space: pre-wrap;
+    word-break: break-all;
+    color: #a8d8a0;
+    margin-top: 6px;
+    position: relative;
+  }
+
+  code .copy-hint {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.75rem;
+    color: var(--muted);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .note {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  /* ---- Info strip ---- */
+  .info-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .info-item .key {
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .info-item .val {
+    font-size: 0.95rem;
+    font-family: monospace;
+    color: var(--gold-lt);
+  }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.78rem;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 480px) {
+    header h1 { font-size: 1.8rem; }
+    .sessions { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>&#x2694;&#xFE0F; Void RSPS</h1>
+  <p>RuneScape 2011 — Revision 634</p>
+</header>
+
+<div class="container">
+
+  <!-- Browser Play -->
+  <h2>Play in Browser</h2>
+  <div class="card">
+    <p style="font-size:0.88rem;color:var(--muted);margin-bottom:18px;">
+      Click a session below. The game client runs on the server &mdash; no downloads or installs needed.
+      Each session is independent, so you and your friends can play simultaneously.
+    </p>
+    <div class="sessions" id="sessions">
+      <!-- populated by JS -->
+    </div>
+  </div>
+
+  <!-- Download Client -->
+  <h2>Download Client</h2>
+  <div class="card">
+    <p style="font-size:0.88rem;color:var(--muted);margin-bottom:18px;">
+      For the best experience, run the client locally. Requires
+      <a href="https://adoptium.net/temurin/releases/?package=jre&version=21" target="_blank">Java 21+</a>.
+    </p>
+
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('win')">&#x1F5A5; Windows</button>
+      <button class="tab" onclick="showTab('mac')">&#x1F34E; macOS</button>
+      <button class="tab" onclick="showTab('lin')">&#x1F427; Linux</button>
+    </div>
+
+    <div id="tab-win" class="tab-panel active">
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <p>Download the game client JAR:</p>
+            <a class="btn btn-primary" id="dl-btn" href="#" download="client.jar">⬇ Download client.jar</a>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <p>Save this as <strong>play.bat</strong> in the same folder as the JAR, then double-click it:</p>
+            <code id="win-cmd">@echo off
+java -jar client.jar</code>
+            <p class="note">If you see "Java not found", install Java 21+ first.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <p>Login with any username and password to create your account!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-mac" class="tab-panel">
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <p>Download the game client JAR:</p>
+            <a class="btn btn-primary" id="dl-btn-mac" href="#" download="client.jar">⬇ Download client.jar</a>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <p>Open Terminal, navigate to where you saved the file, and run:</p>
+            <code id="mac-cmd">java -jar client.jar</code>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <p>Login with any username and password to create your account!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-lin" class="tab-panel">
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <p>Download and run in one command:</p>
+            <code id="lin-cmd">wget -O client.jar https://github.com/GregHib/void-client/releases/latest/download/client.jar
+java -jar client.jar</code>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <p>Login with any username and password to create your account!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Server Info -->
+  <h2>Server Info</h2>
+  <div class="card">
+    <div class="info-strip">
+      <div class="info-item">
+        <span class="key">Game Server</span>
+        <span class="val" id="info-host">—</span>
+      </div>
+      <div class="info-item">
+        <span class="key">Port</span>
+        <span class="val">43594</span>
+      </div>
+      <div class="info-item">
+        <span class="key">Revision</span>
+        <span class="val">634 (2011)</span>
+      </div>
+      <div class="info-item">
+        <span class="key">Accounts</span>
+        <span class="val">Create on first login</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<footer>
+  Powered by <a style="color:var(--gold)" href="https://github.com/GregHib/void" target="_blank">Void</a>
+  &mdash; RuneScape 634 private server
+</footer>
+
+<script>
+  const NUM_SESSIONS = 5;
+  const GAME_CLIENT_URL = 'https://github.com/GregHib/void-client/releases/latest/download/client.jar';
+
+  const host = window.location.hostname;
+  const serverAddr = host + ':43594';
+
+  // Info strip
+  document.getElementById('info-host').textContent = serverAddr;
+
+  // Download buttons — link to the official release JAR
+  document.getElementById('dl-btn').href = GAME_CLIENT_URL;
+  document.getElementById('dl-btn-mac').href = GAME_CLIENT_URL;
+
+  // Build browser session grid
+  const grid = document.getElementById('sessions');
+  for (let i = 1; i <= NUM_SESSIONS; i++) {
+    const url = `/play/${i}/`;
+    const a = document.createElement('a');
+    a.className = 'session-btn';
+    a.href = url;
+    a.target = '_blank';
+    a.innerHTML = `
+      <span class="icon">&#x1F5A5;</span>
+      <strong>Session ${i}</strong>
+      <span class="label">Open in tab</span>`;
+    grid.appendChild(a);
+  }
+
+  // Tabs
+  function showTab(id) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+</body>
+</html>
