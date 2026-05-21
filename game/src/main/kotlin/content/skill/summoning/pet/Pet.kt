@@ -96,7 +96,7 @@ fun Player.pickupPet(): Boolean {
     }
     NPCs.remove(npc)
     pet = null
-    set("pet_active_item", "")
+    clear("pet_active_item")
     timers.stop("pet_tick")
     anim("climb_down")
     deactivateSummoningOrb()
@@ -178,7 +178,7 @@ fun Player.dismissPet() {
     val npc = pet ?: return
     NPCs.remove(npc)
     pet = null
-    set("pet_active_item", "")
+    clear("pet_active_item")
     timers.stop("pet_tick")
     deactivateSummoningOrb()
 }
