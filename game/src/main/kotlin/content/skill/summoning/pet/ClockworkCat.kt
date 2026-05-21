@@ -14,15 +14,13 @@ class ClockworkCat : Script {
                 message("This isn't your pet.")
                 return@npcOperate
             }
-            choice("Are you sure you want to shoo away the clockwork cat?") {
-                option<Quiz>("Yes I am.") {
+            choice("Are you sure you want to release your pet?") {
+                option<Quiz>("Yes.") {
                     if (pet?.index != interact.target.index) return@option
-                    say("Shoo!")
-                    interact.target.say("Whir...")
                     dismissPet()
                     message("The clockwork cat winds down and stops.")
                 }
-                option<Sad>("No I'm not.") {
+                option<Sad>("No.") {
                     message("You choose not to shoo away the clockwork cat.")
                 }
             }
