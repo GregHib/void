@@ -1,5 +1,6 @@
 package content.skill.summoning.pet
 
+import com.github.michaelbull.logging.InlineLogger
 import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
@@ -24,6 +25,8 @@ import world.gregs.voidps.engine.suspend.pauseInt
 
 private const val PUPPY_PRICE = 500
 private const val SHARD_PRICE = 25
+
+private val logger = InlineLogger()
 
 private data class Breed(val option: String, val petId: String, val puppyItem: String)
 
@@ -144,7 +147,10 @@ class PetShopOwner : Script {
         if (!inventory.remove("coins", PUPPY_PRICE)) return
         if (!inventory.add(breed.puppyItem)) {
             // Roll back the coins if we somehow can't fit the puppy.
-            inventory.add("coins", PUPPY_PRICE)
+            if (!inventory.add("coins", PUPPY_PRICE)) {
+                logger.warn { "Failed to refund $PUPPY_PRICE coins to ${accountName} after puppy add failed" }
+                message("Something went wrong; please contact a member of staff.")
+            }
             return
         }
         npc<Happy>(owner.id, "There you go! I hope you two get on.")
@@ -203,7 +209,11 @@ class PetShopOwner : Script {
         val payout = toSell * SHARD_PRICE
         if (!inventory.add("coins", payout)) {
             // Out of room; refund.
-            inventory.add("spirit_shards", toSell)
+            if (!inventory.add("spirit_shards", toSell)) {
+                logger.warn { "Failed to refund $toSell spirit shards to ${accountName} after coin payout failed" }
+                message("Something went wrong; please contact a member of staff.")
+                return
+            }
             message("You don't have enough room in your inventory.")
             return
         }
