@@ -133,10 +133,15 @@ fun Player.sendPetDetailsStats() {
     val packed = (growth shl 1) or (hunger shl 9)
     set("pet_details_stats", packed)
     variables.send("pet_details_stats")
-    // Override the CS2-driven "X%" growth label with "NA" once the pet has
-    // reached its final stage — the percentage is meaningless past that.
+    // Component 17 on iface pet_details has a stateChange CS2 handler bound
+    // to varp 1175 that re-formats the growth text as "X%" on every varp
+    // update. Running sendText in the same tick gets clobbered by the CS2.
+    // Defer the override by a tick so the CS2 has already written "100%"
+    // before our "NA" lands.
     if (fullyGrown) {
-        interfaces.sendText("pet_details", "growth_percentage", "NA")
+        queue("pet_growth_na", 1) {
+            interfaces.sendText("pet_details", "growth_percentage", "NA")
+        }
     }
 }
 
