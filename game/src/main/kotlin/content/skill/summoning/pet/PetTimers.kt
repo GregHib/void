@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 
 /** Hunger / growth per 30s tick, both on the 0..PET_STAT_MAX scale. */
@@ -140,7 +141,7 @@ class PetTimers : Script {
     private fun Player.ambientChatter(row: RowDefinition) {
         val phrases = row.ambientPhrases()
         if (phrases.isEmpty()) return
-        if (Math.random() >= AMBIENT_CHANCE) return
+        if (random.nextDouble() >= AMBIENT_CHANCE) return
         val npc = pet ?: return
         npc.say(phrases.random())
     }
