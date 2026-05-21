@@ -70,9 +70,9 @@ suspend fun Player.npc(npcId: String, animationId: Int, text: String, largeHead:
 private fun Player.splitDialogueLines(text: String): List<String> {
     val font = get<FontDefinitions>().get("q8_full")
     return if (text.contains("\n")) {
-        text.trimIndent().lines().flatMap { chunk -> font.splitLines(chunk, 380) }
+        text.trimIndent().lines().flatMap { chunk -> font.splitLines(chunk, 400) }
     } else {
-        font.splitLines(text, 380)
+        font.splitLines(text, 400)
     }
 }
 
