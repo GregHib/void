@@ -179,40 +179,40 @@ class KittenInteract : Script {
 
 fun isHellcat(cat: NPC): Boolean = petRowForNpc(cat.id)?.rowId == "hellcat"
 
-/** Adult-cat catspeak Talk-to: 4-option chathead tree that recurses until the player picks the quit option. */
+/** Adult-cat catspeak Talk-to: 4-option chathead tree that loops until the player picks the quit option. */
 suspend fun Player.talkToCatWithAmulet(cat: NPC) {
     if (isHellcat(cat)) {
         talkToHellcatWithAmulet(cat)
         return
     }
-    choice("What would you like to ask?") {
-        option("How are you doing?") {
-            player<Quiz>("How are you doing?")
-            npc<Happy>(cat.id, "I'm good. But could we go adventuring soon? I'm tired of talkin, meeoow.")
-            talkToCatWithAmulet(cat)
-        }
-        option("How old are you now?") {
-            player<Quiz>("How old are you now?")
-            npc<Happy>(cat.id, "I'm not too old, and not too young. In fact I think I'm just right.")
-            talkToCatWithAmulet(cat)
-        }
-        option("Where do you want to go?") {
-            player<Quiz>("Where do you want to go?")
-            npc<Happy>(cat.id, "Can we go to Varrock Sewer and chase some rats?")
-            talkToCatWithAmulet(cat)
-        }
-        option("What do you want to do now?") {
-            player<Quiz>("What do you want to do now?")
-            npc<Happy>(cat.id, "I want to go chase things, kill them and then eat them. Purrr.")
-            talkToCatWithAmulet(cat)
-        }
-        if (questCompleted("icthlarins_little_helper")) {
-            option("Did you understand what went on in that quest with the devourer and Icthlarin?") {
-                icthlarinRecap(cat)
-                talkToCatWithAmulet(cat)
+    var done = false
+    while (!done) {
+        choice("What would you like to ask?") {
+            option("How are you doing?") {
+                player<Quiz>("How are you doing?")
+                npc<Happy>(cat.id, "I'm good. But could we go adventuring soon? I'm tired of talkin, meeoow.")
+            }
+            option("How old are you now?") {
+                player<Quiz>("How old are you now?")
+                npc<Happy>(cat.id, "I'm not too old, and not too young. In fact I think I'm just right.")
+            }
+            option("Where do you want to go?") {
+                player<Quiz>("Where do you want to go?")
+                npc<Happy>(cat.id, "Can we go to Varrock Sewer and chase some rats?")
+            }
+            option("What do you want to do now?") {
+                player<Quiz>("What do you want to do now?")
+                npc<Happy>(cat.id, "I want to go chase things, kill them and then eat them. Purrr.")
+            }
+            if (questCompleted("icthlarins_little_helper")) {
+                option("Did you understand what went on in that quest with the devourer and Icthlarin?") {
+                    icthlarinRecap(cat)
+                }
+            }
+            option("That's enough talking for now.") {
+                done = true
             }
         }
-        option("That's enough talking for now.")
     }
 }
 
@@ -268,30 +268,31 @@ private suspend fun Player.icthlarinRecap(cat: NPC) {
 
 /** Hellcat catspeak Talk-to: separate option tree with wily/lazy hellcat flavour. */
 private suspend fun Player.talkToHellcatWithAmulet(cat: NPC) {
-    choice("What would you like to ask?") {
-        option("How are you doing?") {
-            player<Quiz>("How are you doing?")
-            npc<Happy>(cat.id, "I'm as happy as a demon in a lava pit.")
-            talkToCatWithAmulet(cat)
+    var done = false
+    while (!done) {
+        choice("What would you like to ask?") {
+            option("How are you doing?") {
+                player<Quiz>("How are you doing?")
+                npc<Happy>(cat.id, "I'm as happy as a demon in a lava pit.")
+            }
+            option("How old are you now?") {
+                player<Quiz>("How old are you now?")
+                npc<Happy>(cat.id, "I'm feeling a bit like a ghost in a cake shop.")
+                player<Quiz>("A ghost in a cake shop? What do you mean?")
+                npc<Happy>(cat.id, "You know, in need of exorcise.")
+            }
+            option("Where do you want to go?") {
+                player<Quiz>("Where do you want to go?")
+                npc<Happy>(cat.id, "Let's go steal some things from stalls...")
+            }
+            option("What do you want to do now?") {
+                player<Quiz>("What do you want to do now?")
+                npc<Happy>(cat.id, "Curling up on a nice rug in front of a fire...")
+            }
+            option("That's enough talking for now.") {
+                done = true
+            }
         }
-        option("How old are you now?") {
-            player<Quiz>("How old are you now?")
-            npc<Happy>(cat.id, "I'm feeling a bit like a ghost in a cake shop.")
-            player<Quiz>("A ghost in a cake shop? What do you mean?")
-            npc<Happy>(cat.id, "You know, in need of exorcise.")
-            talkToCatWithAmulet(cat)
-        }
-        option("Where do you want to go?") {
-            player<Quiz>("Where do you want to go?")
-            npc<Happy>(cat.id, "Let's go steal some things from stalls...")
-            talkToCatWithAmulet(cat)
-        }
-        option("What do you want to do now?") {
-            player<Quiz>("What do you want to do now?")
-            npc<Happy>(cat.id, "Curling up on a nice rug in front of a fire...")
-            talkToCatWithAmulet(cat)
-        }
-        option("That's enough talking for now.")
     }
 }
 
