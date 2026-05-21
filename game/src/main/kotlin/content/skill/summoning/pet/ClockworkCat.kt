@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.client.message
 class ClockworkCat : Script {
 
     init {
-        npcOperate("Shoo away", "pet_clockwork_cat_baby") { interact ->
+        npcOperate("Shoo", "pet_clockwork_cat_baby") { interact ->
             if (pet?.index != interact.target.index) {
                 message("This isn't your pet.")
                 return@npcOperate
