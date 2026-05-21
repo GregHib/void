@@ -101,12 +101,15 @@ class Incubator : Script {
 
         playerSpawn {
             for (suffix in SUFFIXES) {
-                if (get("incubator_egg_$suffix", "").isNotBlank()) {
-                    // Force the scenery transform back to "incubating" in case
-                    // an older save persisted the now-removed "finished" value.
+                if (get("incubator_egg_$suffix", "").isBlank()) continue
+                // The state varbit only carries empty/incubating; "finished"
+                // is computed from remaining time. Only force state back to
+                // "incubating" when the egg is still mid-incubation, so a
+                // finished slot keeps whatever state value it logged out with.
+                if (!isFinished(suffix)) {
                     set("incubator_state_$suffix", "incubating")
-                    timers.restart("incubator_check")
                 }
+                timers.restart("incubator_check")
             }
         }
     }
