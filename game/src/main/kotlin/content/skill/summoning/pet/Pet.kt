@@ -161,13 +161,26 @@ suspend fun Player.talkToPet(row: RowDefinition, pet: NPC) {
     val fallbackAnim = EnumDefinitions.get("pet_details_chathead_animations_normal").defaultInt
     for (line in chosen.stringList("lines")) {
         when {
-            line.startsWith("npc:") -> npc(pet.id, fallbackAnim, line.removePrefix("npc:").trim())
+            line.startsWith("npc:") -> npc(pet.id, fallbackAnim, breakParenTranslation(line.removePrefix("npc:").trim()))
             line.startsWith("player:") -> player<Happy>(line.removePrefix("player:").trim())
             line.startsWith("overhead:") -> pet.say(line.removePrefix("overhead:").trim())
             line.startsWith("[") && line.endsWith("]") -> statement(line.removePrefix("[").removeSuffix("]").trim())
             else -> statement(line)
         }
     }
+}
+
+/**
+ * Splits `Bark! (Translation!)` into `Bark!\n(Translation!)` so the chathead
+ * renders the bark on one line and the bracketed translation on the next.
+ */
+private fun breakParenTranslation(line: String): String {
+    val parenStart = line.indexOf('(')
+    if (parenStart <= 0) return line
+    val bark = line.substring(0, parenStart).trimEnd()
+    if (bark.isEmpty()) return line
+    val translation = line.substring(parenStart)
+    return "$bark\n$translation"
 }
 
 fun Player.callPet() {
