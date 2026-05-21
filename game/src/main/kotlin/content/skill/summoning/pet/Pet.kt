@@ -123,7 +123,8 @@ fun Player.sendPetDetailsStats() {
     val itemStringId = get("pet_active_item", "")
     if (itemStringId.isBlank()) return
     val row = petRowForItem(itemStringId) ?: return
-    val growth = (getPetGrowth(row.rowId) / 100).coerceIn(0, 100)
+    val fullyGrown = row.isFinalStage(itemStringId)
+    val growth = if (fullyGrown) 100 else (getPetGrowth(row.rowId) / 100).coerceIn(0, 100)
     val hunger = (getPetHunger(row.rowId) / 100).coerceIn(0, 100)
     // Packed layout for the pet_details_stats varp (id 1175, see
     // data/skill/summoning/summoning.varps.toml): bits 1..7 = growth (0..100),
@@ -132,6 +133,11 @@ fun Player.sendPetDetailsStats() {
     val packed = (growth shl 1) or (hunger shl 9)
     set("pet_details_stats", packed)
     variables.send("pet_details_stats")
+    // Override the CS2-driven "X%" growth label with "NA" once the pet has
+    // reached its final stage — the percentage is meaningless past that.
+    if (fullyGrown) {
+        interfaces.sendText("pet_details", "growth_percentage", "NA")
+    }
 }
 
 suspend fun Player.talkToPet(row: RowDefinition, pet: NPC) {
