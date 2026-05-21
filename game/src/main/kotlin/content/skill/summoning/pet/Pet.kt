@@ -58,6 +58,13 @@ fun Player.summonPet(row: RowDefinition, itemId: String, restart: Boolean = fals
     }
     val stage = row.stageForItem(itemId) ?: return false
     val npcStringId = row.npcFor(stage) ?: return false
+    // Consume the inventory item up front (skipped on restart, which is the
+    // login-time re-spawn path with no item to consume). If the remove fails
+    // we never commit active_item or spawn the NPC, so dropPet does not need
+    // to worry about rolling back partial state.
+    if (!restart && !inventory.remove(itemId)) {
+        return false
+    }
     val spawned = NPCs.add(npcStringId, tile)
     spawned.mode = Follow(spawned, this)
     // Set the pet index synchronously so a second drop on the same tick sees
@@ -209,7 +216,6 @@ private suspend fun Player.dropPet(row: RowDefinition, itemId: String) {
         summonCatWithAmulet(row)
     }
     if (summonPet(row, itemId, restart = false)) {
-        inventory.remove(itemId)
         if (row.isCatLike() && !amulet) {
             // pet is wired up in summonPet's own +2 weakQueue; wait a tick past
             // that so pet?.say() targets the newly-summoned NPC.
