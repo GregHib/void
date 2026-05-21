@@ -128,9 +128,11 @@ class KittenInteract : Script {
         nearbyRat.say("Eeek!")
         cat.mode = EmptyMode
         cat.walkTo(nearbyRat.tile)
+        val ratIndex = nearbyRat.index
         queue("kitten_chase", 4) {
             val current = pet
-            if (current != null && current.index == cat.index && nearbyRat.tile.distanceTo(current.tile) <= 1) {
+            val ratStillThere = NPCs.indexed(ratIndex) === nearbyRat
+            if (current != null && current.index == cat.index && ratStillThere && nearbyRat.tile.distanceTo(current.tile) <= 1) {
                 current.face(nearbyRat)
                 current.anim("pet_pounce_kitten")
             }
@@ -139,7 +141,11 @@ class KittenInteract : Script {
                 if (resolved != null && resolved.index == cat.index) {
                     resolved.mode = Follow(resolved, this)
                 }
-                if (caught && nearbyRat.tile.distanceTo(resolved?.tile ?: nearbyRat.tile) <= 1) {
+                // Guard against index reuse: if the rat died or despawned in
+                // the 5-tick window, NPCs.indexed at this slot could now be a
+                // freshly-spawned NPC that has nothing to do with this chase.
+                val ratAlive = NPCs.indexed(ratIndex) === nearbyRat
+                if (caught && ratAlive && nearbyRat.tile.distanceTo(resolved?.tile ?: nearbyRat.tile) <= 1) {
                     NPCs.remove(nearbyRat)
                     val count = inc("pet_rats_caught", 1)
                     player<Happy>("Hey well done puss, you got it!")
