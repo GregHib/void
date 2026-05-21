@@ -272,9 +272,6 @@ id = 213
 id = 663
 type = "follower_details_tab"
 
-[.growth_percentage]
-id = 17
-
 [.call]
 id = 21
 

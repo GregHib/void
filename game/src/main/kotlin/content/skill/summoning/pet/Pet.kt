@@ -123,27 +123,26 @@ fun Player.sendPetDetailsStats() {
     val itemStringId = get("pet_active_item", "")
     if (itemStringId.isBlank()) return
     val row = petRowForItem(itemStringId) ?: return
+    // The client CS2 (script 753 on iface 662, script 820 on iface 663) reads
+    // varbits 4285 / 4286 — the growth and hunger sub-fields of varp 1175 —
+    // and checks for the sentinel value 101. When it sees 101 it renders
+    // "NA" instead of "X%". Send 101 for growth on a fully-grown pet so the
+    // percentage label is automatically swapped out by the client.
     val fullyGrown = row.isFinalStage(itemStringId)
-    val growth = if (fullyGrown) 100 else (getPetGrowth(row.rowId) / 100).coerceIn(0, 100)
+    val growth = if (fullyGrown) NA_SENTINEL else (getPetGrowth(row.rowId) / 100).coerceIn(0, 100)
     val hunger = (getPetHunger(row.rowId) / 100).coerceIn(0, 100)
     // Packed layout for the pet_details_stats varp (id 1175, see
-    // data/skill/summoning/summoning.varps.toml): bits 1..7 = growth (0..100),
-    // bits 9..15 = hunger (0..100). Bits 0 and 8 are unused padding so the
-    // client-side CS2 can read each value via a 7-bit shift+mask.
+    // data/skill/summoning/summoning.varps.toml): bits 1..7 = growth (0..100
+    // or NA_SENTINEL), bits 9..15 = hunger (0..100 or NA_SENTINEL). Bits 0
+    // and 8 are unused padding so the client CS2 can read each value via a
+    // 7-bit shift+mask.
     val packed = (growth shl 1) or (hunger shl 9)
     set("pet_details_stats", packed)
     variables.send("pet_details_stats")
-    // Component 17 on iface pet_details has a stateChange CS2 handler bound
-    // to varp 1175 that re-formats the growth text as "X%" on every varp
-    // update. Running sendText in the same tick gets clobbered by the CS2.
-    // Defer the override by a tick so the CS2 has already written "100%"
-    // before our "NA" lands.
-    if (fullyGrown) {
-        queue("pet_growth_na", 1) {
-            interfaces.sendText("pet_details", "growth_percentage", "NA")
-        }
-    }
 }
+
+/** CS2 sentinel meaning "this metric does not apply" — pet panel renders it as "NA". */
+private const val NA_SENTINEL = 101
 
 suspend fun Player.talkToPet(row: RowDefinition, pet: NPC) {
     val stageKey = row.stageForNpc(pet.id)?.name?.lowercase() ?: ""
