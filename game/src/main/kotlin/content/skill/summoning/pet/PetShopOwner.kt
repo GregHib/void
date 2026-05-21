@@ -108,6 +108,11 @@ class PetShopOwner : Script {
             npc<Neutral>(owner.id, "You asked me that when you last picked up a dog, and I can't sell you another.")
             return
         }
+        if (inventory.isFull()) {
+            npc<Neutral>(owner.id, "Where are you going to put it, on your head? You can't buy a puppy unless you have space to hold it.")
+            player<Neutral>("Good point, I'll go bank some items.")
+            return
+        }
         npc<Happy>(owner.id, "The one with the waggly tail?")
         if (!open("dialogue_pick_a_puppy")) return
         val index = pauseInt()
@@ -148,7 +153,7 @@ class PetShopOwner : Script {
         if (!inventory.add(breed.puppyItem)) {
             // Roll back the coins if we somehow can't fit the puppy.
             if (!inventory.add("coins", PUPPY_PRICE)) {
-                logger.warn { "Failed to refund $PUPPY_PRICE coins to ${accountName} after puppy add failed" }
+                logger.warn { "Failed to refund $PUPPY_PRICE coins to $accountName after puppy add failed" }
                 message("Something went wrong; please contact a member of staff.")
             }
             return
@@ -210,7 +215,7 @@ class PetShopOwner : Script {
         if (!inventory.add("coins", payout)) {
             // Out of room; refund.
             if (!inventory.add("spirit_shards", toSell)) {
-                logger.warn { "Failed to refund $toSell spirit shards to ${accountName} after coin payout failed" }
+                logger.warn { "Failed to refund $toSell spirit shards to $accountName after coin payout failed" }
                 message("Something went wrong; please contact a member of staff.")
                 return
             }
