@@ -11,7 +11,6 @@ food = "list<item>"
 hungry_phrase = "string"
 hungry_phrases = "list<string>"
 idle_phrases = "list<string>"
-feed_phrase = "string"
 
 [.cat]
 baby_item = "pet_kitten"
@@ -415,7 +414,6 @@ growth_per_tick = 0
 summoning_level = 23
 idle_phrases = ["Snort!", "Grunt!"]
 food = ["mort_myre_fungus"]
-feed_phrase = "Ooiiink!"
 
 [.penguin]
 baby_item = "pet_penguin_baby"
@@ -428,7 +426,6 @@ hungry_phrase = "Awk awk awk!"
 hungry_phrases = ["Awk awk!", "Awk awk!", "Awk awk!"]
 idle_phrases = ["Awk awk awk!", "Squawk!", "Honk honk!", "Chirp!"]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
-feed_phrase = "Awk!"
 
 [.penguin_1]
 baby_item = "penguin_brown"
@@ -441,7 +438,6 @@ hungry_phrase = "Awk awk awk!"
 hungry_phrases = ["Awk awk!", "Awk awk!", "Awk awk!"]
 idle_phrases = ["Awk awk awk!", "Squawk!", "Honk honk!", "Chirp!"]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
-feed_phrase = "Awk!"
 
 [.penguin_2]
 baby_item = "penguin_blue"
@@ -454,7 +450,6 @@ hungry_phrase = "Awk awk awk!"
 hungry_phrases = ["Awk awk!", "Awk awk!", "Awk awk!"]
 idle_phrases = ["Awk awk awk!", "Squawk!", "Honk honk!", "Chirp!"]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
-feed_phrase = "Awk!"
 
 [.giant_crab]
 baby_item = "baby_giant_crab_beige"
@@ -467,7 +462,6 @@ hungry_phrase = "Click clack!"
 hungry_phrases = ["Clatter... Clatter", "Clatter...", "Clatter!"]
 idle_phrases = ["Click clack!", "Snip snap!"]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
-feed_phrase = "Click...clatter"
 
 [.giant_crab_1]
 baby_item = "baby_giant_crab_grey"
@@ -480,7 +474,6 @@ hungry_phrase = "Click clack!"
 hungry_phrases = ["Clatter... Clatter", "Clatter...", "Clatter!"]
 idle_phrases = ["Click clack!", "Snip snap!"]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
-feed_phrase = "Click...clatter"
 
 [.giant_crab_2]
 baby_item = "baby_giant_crab_green"
@@ -493,7 +486,6 @@ hungry_phrase = "Click clack!"
 hungry_phrases = ["Clatter... Clatter", "Clatter...", "Clatter!"]
 idle_phrases = ["Click clack!", "Snip snap!"]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
-feed_phrase = "Click...clatter"
 
 [.giant_crab_3]
 baby_item = "baby_giant_crab_yellow"
@@ -506,7 +498,6 @@ hungry_phrase = "Click clack!"
 hungry_phrases = ["Clatter... Clatter", "Clatter...", "Clatter!"]
 idle_phrases = ["Click clack!", "Snip snap!"]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
-feed_phrase = "Click...clatter"
 
 [.giant_crab_4]
 baby_item = "baby_giant_crab_6"
@@ -519,7 +510,6 @@ hungry_phrase = "Click clack!"
 hungry_phrases = ["Clatter... Clatter", "Clatter...", "Clatter!"]
 idle_phrases = ["Click clack!", "Snip snap!"]
 food = ["raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
-feed_phrase = "Click...clatter"
 
 [.raven]
 baby_item = "raven_chick_blue"
@@ -747,7 +737,6 @@ hungry_phrase = "Screech!"
 hungry_phrases = ["Craaaw... Craaaw", "Craaaw...", "Craaaw!"]
 idle_phrases = ["Screech!", "Caw!", "Skreee!"]
 food = ["fishing_bait", "ground_fishing_bait"]
-feed_phrase = "Craaaw"
 
 [.vulture_1]
 baby_item = "pet_vulture_1_baby"
@@ -760,7 +749,6 @@ hungry_phrase = "Screech!"
 hungry_phrases = ["Craaaw... Craaaw", "Craaaw...", "Craaaw!"]
 idle_phrases = ["Screech!", "Caw!", "Skreee!"]
 food = ["fishing_bait", "ground_fishing_bait"]
-feed_phrase = "Craaaw"
 
 [.vulture_2]
 baby_item = "pet_vulture_2_baby"
@@ -773,7 +761,6 @@ hungry_phrase = "Screech!"
 hungry_phrases = ["Craaaw... Craaaw", "Craaaw...", "Craaaw!"]
 idle_phrases = ["Screech!", "Caw!", "Skreee!"]
 food = ["fishing_bait", "ground_fishing_bait"]
-feed_phrase = "Craaaw"
 
 [.vulture_3]
 baby_item = "pet_vulture_3_baby"
@@ -786,7 +773,6 @@ hungry_phrase = "Screech!"
 hungry_phrases = ["Craaaw... Craaaw", "Craaaw...", "Craaaw!"]
 idle_phrases = ["Screech!", "Caw!", "Skreee!"]
 food = ["fishing_bait", "ground_fishing_bait"]
-feed_phrase = "Craaaw"
 
 [.vulture_4]
 baby_item = "pet_vulture_4_baby"
@@ -799,7 +785,6 @@ hungry_phrase = "Screech!"
 hungry_phrases = ["Craaaw... Craaaw", "Craaaw...", "Craaaw!"]
 idle_phrases = ["Screech!", "Caw!", "Skreee!"]
 food = ["fishing_bait", "ground_fishing_bait"]
-feed_phrase = "Craaaw"
 
 [.vulture_5]
 baby_item = "pet_vulture_5_baby"
@@ -812,7 +797,6 @@ hungry_phrase = "Screech!"
 hungry_phrases = ["Craaaw... Craaaw", "Craaaw...", "Craaaw!"]
 idle_phrases = ["Screech!", "Caw!", "Skreee!"]
 food = ["fishing_bait", "ground_fishing_bait"]
-feed_phrase = "Craaaw"
 
 [.chameleon]
 baby_item = "baby_chameleon"
