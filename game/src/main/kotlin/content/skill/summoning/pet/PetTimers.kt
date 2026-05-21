@@ -134,6 +134,12 @@ class PetTimers : Script {
         replacement.mode = Follow(replacement, this)
         pet = replacement
         set("pet_active_item", nextItem)
+        // Fresh stage starts with fresh stats. Growth was zeroed by the
+        // caller; clear hunger and warn so the hungry / starving messages
+        // can re-fire at the new stage's threshold instead of staying
+        // suppressed by the previous stage's warn level.
+        clear("pet_${row.rowId}_hunger")
+        clear("pet_${row.rowId}_warn")
         message("<col=00cc00>Your pet has grown larger.</col>")
         updatePetInterface()
     }
