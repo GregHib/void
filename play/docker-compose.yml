@@ -1,0 +1,81 @@
+# Shared noVNC session definition — each playerN service inherits this
+x-novnc: &novnc
+  build: ./novnc
+  environment:
+    GAME_HOST: void
+    GAME_PORT: "43594"
+  depends_on:
+    - void
+  networks:
+    - internal
+  restart: unless-stopped
+
+services:
+
+  # ── Game Server ─────────────────────────────────────────────────────────────
+  void:
+    image: greghib/void
+    volumes:
+      # Player saves persist across restarts
+      - ../data/saves:/app/data/saves
+    ports:
+      # Expose game port for the downloadable client option
+      - "43594:43594"
+    environment:
+      storage: files
+    networks:
+      - internal
+    restart: unless-stopped
+
+  # ── Web Landing Page (nginx) ─────────────────────────────────────────────────
+  web:
+    build: ./web
+    ports:
+      - "8080:80"
+    networks:
+      - internal
+    restart: unless-stopped
+
+  # ── Browser Play Sessions (noVNC) ────────────────────────────────────────────
+  # Each is an isolated game client running in a virtual display.
+  # Friends visit http://YOUR-IP:8080/play/N/ for their session.
+  # Add more sessions by duplicating these blocks.
+
+  player1:
+    <<: *novnc
+    environment:
+      GAME_HOST: void
+      GAME_PORT: "43594"
+      SESSION_NAME: "Player 1"
+
+  player2:
+    <<: *novnc
+    environment:
+      GAME_HOST: void
+      GAME_PORT: "43594"
+      SESSION_NAME: "Player 2"
+
+  player3:
+    <<: *novnc
+    environment:
+      GAME_HOST: void
+      GAME_PORT: "43594"
+      SESSION_NAME: "Player 3"
+
+  player4:
+    <<: *novnc
+    environment:
+      GAME_HOST: void
+      GAME_PORT: "43594"
+      SESSION_NAME: "Player 4"
+
+  player5:
+    <<: *novnc
+    environment:
+      GAME_HOST: void
+      GAME_PORT: "43594"
+      SESSION_NAME: "Player 5"
+
+networks:
+  internal:
+    driver: bridge
