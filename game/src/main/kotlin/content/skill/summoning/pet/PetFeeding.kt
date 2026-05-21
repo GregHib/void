@@ -38,7 +38,6 @@ class PetFeeding : Script {
             }
             sendPetDetailsStats()
             message("Your pet happily eats the ${food.replace('_', ' ')}.")
-            row.stringOrNull("feed_phrase")?.takeIf { it.isNotBlank() }?.let { pet?.say(it) }
         }
     }
 }
