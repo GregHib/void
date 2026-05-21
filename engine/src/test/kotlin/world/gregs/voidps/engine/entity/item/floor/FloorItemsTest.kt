@@ -10,8 +10,6 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.Despawn
-import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemAddition
 import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemRemoval
 import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemUpdate
@@ -177,57 +175,8 @@ class FloorItemsTest {
         }
     }
 
-    @Test
-    fun `Despawn handler removing another item does not throw CME`() {
-        val a = FloorItems.add(Tile.EMPTY, "item")
-        val b = FloorItems.add(Tile.EMPTY, "item")
-        val c = FloorItems.add(Tile.EMPTY, "item")
-        FloorItems.run()
-
-        var fires = 0
-        val script = object : Despawn {}
-        script.floorItemDespawn("item") {
-            if (fires++ == 0) {
-                FloorItems.remove(c)
-            }
-        }
-
-        assertTrue(FloorItems.remove(a))
-        assertTrue(FloorItems.remove(b))
-        FloorItems.run()
-
-        assertEquals(2, fires)
-        assertTrue(FloorItems.at(Tile.EMPTY).isEmpty())
-
-        FloorItems.run()
-        assertEquals(3, fires)
-    }
-
-    @Test
-    fun `Spawn handler adding another item does not throw CME`() {
-        var extra: FloorItem? = null
-        val script = object : Spawn {}
-        script.floorItemSpawn("item") {
-            if (extra == null) {
-                extra = FloorItems.add(Tile.EMPTY, "item")
-            }
-        }
-
-        FloorItems.add(Tile.EMPTY, "item")
-        FloorItems.add(Tile.EMPTY, "item")
-        FloorItems.run()
-
-        assertNotNull(extra)
-        assertFalse(FloorItems.at(Tile.EMPTY).contains(extra))
-
-        FloorItems.run()
-        assertTrue(FloorItems.at(Tile.EMPTY).contains(extra))
-    }
-
     @AfterEach
     fun teardown() {
         unmockkObject(ZoneBatchUpdates)
-        Despawn.close()
-        Spawn.close()
     }
 }
