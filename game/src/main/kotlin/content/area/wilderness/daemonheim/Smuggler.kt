@@ -148,7 +148,7 @@ class Smuggler : Script {
             player<Quiz>("Didn't I just see you at the start of the dungeon?")
             npc<Shifty>("Yes.")
             player<Quiz>("You managed to get here very quickly.")
-            npc<Shifty>("I know these floors well, ${name}. You should spend more time worrying about the dangers lurking below.")
+            npc<Shifty>("I know these floors well, $name. You should spend more time worrying about the dangers lurking below.")
             npc<Happy>("Combat will be the only challenge you'll face, so I've given you a selection of melee, ranged and magical gear.")
             menu()
         }

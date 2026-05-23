@@ -12,16 +12,18 @@ import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.area.Rectangle
-import world.gregs.voidps.type.equals
+import java.io.File
 
 object DungeoneeringDumper {
 
     data class RoomData(
         var zone: Zone = Zone.EMPTY,
-        var complexity: Int = 0,
+        var complexity: Int = 1,
+        var floor: Int = 0,
         var type: String? = null,
         var doors: BooleanArray = BooleanArray(4),
     ) {
+        // TODO key spawns, npc spawns, ore spawns
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
             if (javaClass != other?.javaClass) return false
@@ -91,10 +93,56 @@ object DungeoneeringDumper {
                 }
             }
         }
+        val themes = mutableMapOf<String, MutableMap<String, MutableList<String>>>()
         for ((zone, data) in zones) {
-            println("${zone} complexity=${data.complexity} type=${data.type} ${Zone(zone).tile} ${if(data.doors[WEST]) "w" else ""}${if(data.doors[NORTH]) "n" else ""}${if(data.doors[EAST]) "e" else ""}${if(data.doors[SOUTH]) "s" else ""}")
+            val zone = Zone(zone)
+            val theme = theme(zone)
+            val t = when (data.type) {
+                "base" -> "base"
+                "boss" -> "boss"
+                null -> "normal"
+                else -> "puzzle"
+            }
+            val list = themes.getOrPut(theme) { mutableMapOf() }.getOrPut("[${theme}_c${data.complexity}_$t]") { mutableListOf() }
+            list.add(buildString {
+                appendLine("[.${t}_${list.size}_${if (data.doors[NORTH]) "n" else ""}${if (data.doors[EAST]) "e" else ""}${if (data.doors[SOUTH]) "s" else ""}${if (data.doors[WEST]) "w" else ""}]")
+                if (data.type != null && data.type != "base") {
+                    appendLine("type = \"${data.type}\"")
+                }
+                appendLine("x = ${zone.x}")
+                appendLine("y = ${zone.y}")
+                appendLine("doors = [${data.doors[WEST]}, ${data.doors[NORTH]}, ${data.doors[EAST]}, ${data.doors[SOUTH]}]")
+            })
+        }
+        for ((theme, map) in themes) {
+            val file = File("./dungeoneering_${theme}_rooms.tables.toml")
+            file.writeText(buildString {
+                for ((key, list) in map.toSortedMap()) {
+                    appendLine(key.removePrefix("."))
+                    appendLine("type = \"string\"")
+                    appendLine("x = \"int\"")
+                    appendLine("y = \"int\"")
+                    appendLine("doors = \"list<boolean>\"")
+                    appendLine()
+                    for (value in list) {
+                        appendLine(value)
+                    }
+                }
+            })
         }
         println("Zones ${zones.size}")
+        // TODO print grouped by complexity and available doors, maybe type too?
+    }
+
+    private fun theme(zone: Zone): String {
+        return when (zone.tile.y) {
+            in 1920..2130, in 4220..4340, in 4990..5080 -> "frozen"
+            in 2300..2515, in 4350..4470, in 5120..5200 -> "abandoned"
+            in 2680..2900, in 4480..4600, in 5245..5330 -> "furnished"
+            in 3070..3300, in 4600..4720, in 5375..5460 -> "occult"
+            in 3450..3670, in 4730..4850, in 5500..5588 -> "warped"
+            else -> ""
+        }
     }
 
     private fun puzzle(tile: Tile): String? {
@@ -160,7 +208,7 @@ object DungeoneeringDumper {
     private const val SOUTH = 3
 
     private fun doors(def: ObjectDefinitionFull, tile: Tile, roomX: Int, roomY: Int, array: BooleanArray) {
-        if (def.name != "Door") {
+        if (def.name != "Door" && def.name != "Boss door") {
             return
         }
         val delta = tile.delta(roomX * 16, roomY * 16)
@@ -175,9 +223,9 @@ object DungeoneeringDumper {
 
     private fun type(def: ObjectDefinitionFull, tile: Tile): String? {
         return when (def.name) {
-            "Dungeon exit" -> "start"
-            "Table" -> "start"
-            "Group gatestone portal" -> "start"
+            "Dungeon exit" -> "base"
+            "Table" -> "base"
+            "Group gatestone portal" -> "base"
             "Boss door" -> "boss"
             else -> puzzle(tile)
         }
@@ -185,7 +233,7 @@ object DungeoneeringDumper {
 
     private fun complexity(def: ObjectDefinitionFull): Int {
         return when (def.name) {
-            "Wall" -> 2
+//            "Wall" -> 2
             "Cooking range" -> 2
             "Runecrafting altar" -> 3
             "Furnace" -> 3
