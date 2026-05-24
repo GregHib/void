@@ -43,3 +43,9 @@ tasks.withType<AbstractTestTask>().configureEach {
 tasks.withType<JavaExec> {
     workingDir = projectDir
 }
+
+tasks.register<JavaExec>("importPetTranscript") {
+    classpath = sourceSets["main"].runtimeClasspath
+    mainClass.set("world.gregs.voidps.tools.cache.ImportPetTranscript")
+    workingDir = rootDir
+}
