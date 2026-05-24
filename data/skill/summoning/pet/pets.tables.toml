@@ -985,8 +985,9 @@ baby_npc = "pet_minitrice_baby"
 growth_per_tick = 0
 summoning_level = 25
 skill = "slayer"
-hungry_phrase = "Squawk!"
-idle_phrases = ["Squawk!", "Cluck...", "Peep!", "Don't look into the light!", "I will blind you!"]
+hungry_phrase = "My eyes feel like burning!..."
+hungry_phrases = ["My eyes feel like burning!...", "My eyes feel like burning!!", "My eyes feel like burning!... My eyes feel like burning!"]
+idle_phrases = ["I will blind you!", "Don't look into the light!"]
 food = ["limpwurt_root"]
 
 [.baby_basilisk]
