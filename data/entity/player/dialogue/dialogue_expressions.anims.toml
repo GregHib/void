@@ -634,6 +634,12 @@ id = 6552
 [expression_dog_quiz]
 id = 6553
 
+[expression_sneakerpeeper_normal]
+id = 8463
+
+[expression_sneakerpeeper_sad]
+id = 8464
+
 [expression_tree_neutral]
 id = 584
 
