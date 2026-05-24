@@ -43,6 +43,9 @@ id = 79
 id = 662
 type = "follower_details_tab"
 
+[.chathead]
+id = 1
+
 [.call]
 id = 49
 
@@ -271,6 +274,9 @@ id = 213
 [pet_details]
 id = 663
 type = "follower_details_tab"
+
+[.chathead]
+id = 3
 
 [.call]
 id = 21
