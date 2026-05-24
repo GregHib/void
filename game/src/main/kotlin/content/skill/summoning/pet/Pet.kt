@@ -131,12 +131,15 @@ fun Player.updatePetInterface() {
     set("follower_details_chathead", pet.def.id)
     // The CS2 driving the chathead anim on the panel reads the cache enum
     // pet_details_chathead_animations_normal (1276) keyed by the value of
-    // varbit 4282. Pets whose own NPC id isn't in that enum (e.g. our
-    // sneakerpeeper pet variants 13089/13090) fall back to the generic
-    // defaultInt and show the wrong expression. Rows may declare a
-    // chathead_npc override pointing at an NPC id that IS in the enum.
-    val chatheadNpc = row?.npcOrNull("chathead_npc") ?: pet.id
-    set("follower_details_chathead_animation", chatheadNpc)
+    // varbit 4282. Pets whose own NPC id isn't in that enum fall back to
+    // the enum's generic defaultInt. Rows may declare:
+    //   - chathead_npc — alias pointing at an NPC id that IS in the enum.
+    //   - chathead_disabled — skip the varbit set entirely (intentional no-op
+    //     for pets whose right anim hasn't been identified yet).
+    if (row?.boolOrNull("chathead_disabled") != true) {
+        val chatheadNpc = row?.npcOrNull("chathead_npc") ?: pet.id
+        set("follower_details_chathead_animation", chatheadNpc)
+    }
     sendPetDetailsStats()
 }
 
@@ -179,14 +182,20 @@ suspend fun Player.talkToPet(row: RowDefinition, pet: NPC) {
         row.ambientPhrases().randomOrNull()?.let { pet.say(it) }
         return
     }
-    // Animation precedence: row-declared chathead_anim wins, then the cache
-    // enum entry keyed by this NPC id, then the enum's generic defaultInt.
-    // Most pets fall to defaultInt; pets whose own NPC id isn't in the enum
-    // but have a known canonical animation (e.g. sneakerpeeper points at the
-    // in-dungeon NPC 22's anim) declare chathead_anim on the row.
+    // Animation precedence:
+    //   - chathead_disabled on the row -> -1 (no anim played; client clears
+    //     any active chathead emote). Used as a placeholder for pets whose
+    //     right animation hasn't been identified yet.
+    //   - row-declared chathead_anim wins next.
+    //   - then the cache enum entry keyed by this NPC id.
+    //   - then the enum's generic defaultInt.
     val animEnum = EnumDefinitions.get("pet_details_chathead_animations_normal")
     val rowAnim = row.animOrNull("chathead_anim")?.let { AnimationDefinitions.getOrNull(it)?.id }
-    val fallbackAnim = rowAnim ?: animEnum.intOrNull(pet.def.id) ?: animEnum.defaultInt
+    val fallbackAnim = when {
+        row.boolOrNull("chathead_disabled") == true -> -1
+        rowAnim != null -> rowAnim
+        else -> animEnum.intOrNull(pet.def.id) ?: animEnum.defaultInt
+    }
     for (line in chosen.stringList("lines")) {
         when {
             line.startsWith("npc:") -> npc(pet.id, fallbackAnim, breakParenTranslation(line.removePrefix("npc:").trim()))
