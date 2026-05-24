@@ -8,14 +8,3 @@ id = 9173
 
 [pet_pounce_kitten]
 id = 9163
-
-# Chathead expressions for sneakerpeeper. The cache enum
-# pet_details_chathead_animations_normal (1276) maps the in-dungeon
-# Sneakerpeeper NPC (cache id 22) to these anims; our pet variants
-# (13089 baby, 13090 grown) don't have enum entries so they need an
-# explicit override via the pets table's chathead_anim column.
-[expression_sneakerpeeper_normal]
-id = 8463
-
-[expression_sneakerpeeper_sad]
-id = 8464
