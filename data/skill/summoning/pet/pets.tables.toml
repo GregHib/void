@@ -12,6 +12,7 @@ secondary_skill = "skill"
 secondary_level = "int"
 chathead_npc = "npc"
 chathead_anim = "anim"
+chathead_disabled = "boolean"
 food = "list<item>"
 hungry_phrase = "string"
 hungry_phrases = "list<string>"
@@ -1037,8 +1038,11 @@ summoning_level = 80
 skill = "dungeoneering"
 secondary_skill = "summoning"
 secondary_level = 80
-chathead_npc = "sneakerpeeper_chathead"
-chathead_anim = "expression_sneakerpeeper_normal"
+# TODO: cache enum 1276 key 22 -> anim 8463 was a wrong guess; needs
+# further cache investigation. Disable the chathead anim until the
+# right value is found so we send -1 (no animation) instead of a
+# misleading override.
+chathead_disabled = true
 hungry_phrase = "Squelch..."
 idle_phrases = ["Squelch...", "Blink.", "Peep!"]
 food = ["eye_of_newt"]
