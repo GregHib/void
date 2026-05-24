@@ -1031,6 +1031,7 @@ summoning_level = 80
 skill = "dungeoneering"
 secondary_skill = "summoning"
 secondary_level = 80
+chathead_anim = "expression_sneakerpeeper_normal"
 hungry_phrase = "Squelch..."
 idle_phrases = ["Squelch...", "Blink.", "Peep!"]
 food = ["eye_of_newt"]
