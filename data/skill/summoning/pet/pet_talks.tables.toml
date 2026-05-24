@@ -1722,35 +1722,58 @@ lines = [
 ]
 
 
-[.sneakerpeeper_baby_1]
+[.sneakerpeeper_baby_collection]
 pet = "sneakerpeeper"
 stage = "baby"
 condition = ""
 lines = [
-    "npc: You no talk to Sneaks today?",
-    "player: Why would you think that?",
-    "npc: Player find Sneak's collection, yes?",
-    "player: Wait — what collection?",
+    "npc: You no talk to Sneaks today? Awww, Sneaks do something wrong?",
+    "player: Why would you think th-",
+    "npc: Player find Sneak's collection, yes? That why Player not talk to Sneaks?",
+    "player: Look, everything's fine between us... Wait, what collection?",
+    "npc: Player want to see collection? Player just had to ask Sneaks! Sneaks have one ball of Player eyelashes, slippers made from Player belly button fluff and a Player-skin hat.",
+    "player: That's...that's horrible. I...I feel nauseous; I think I need to sit down.",
+    "npc: Don't worry, Sneaks nurse you back to good health with Player-hair brush.",
 ]
 
-[.sneakerpeeper_baby_2]
+[.sneakerpeeper_baby_floating]
+pet = "sneakerpeeper"
+stage = "baby"
+condition = ""
+lines = [
+    "player: You don't have to float so close to me, Sneaks.",
+    "npc: Sneaks doesn't HAVE to, but Sneaks want to send message to other sneakerpeepers.",
+    "player: I'm going to regret asking, but what would that message be?",
+    "npc: That Player belongs to Sneaks, and if other sneakerpeepers want Player then they'll have to fight to the death in a no-holds-barred staring contest.",
+    "player: How can a staring contest be to the death?",
+    "npc: Player know how dry eyes get if Player not blink? A contest can take months! Now, Player imagine being made entirely out of eye. Stare-death is THE WORST way for sneakerpeeper to die.",
+]
+
+[.sneakerpeeper_baby_origin]
+pet = "sneakerpeeper"
+stage = "baby"
+condition = ""
+lines = [
+    "npc: Player, where do sneakerpeepers come from?",
+    "player: Uh, wow. Isn't this a conversation you should be having with...anyone else?",
+    "npc: No, Sneaks like to hear it from you. Sneaks like to watch you talk.",
+    "player: I'm sorry, Sneaks. I just don't have much information on how sneakerpeepers 'spawn'-",
+    "npc: Player, your lips are like irrestible eyelids.",
+    "player: *shudder* You're not really listening, are you?",
+    "npc: Mmmmm, Player-lips.",
+]
+
+[.sneakerpeeper_baby_songs]
 pet = "sneakerpeeper"
 stage = "baby"
 condition = ""
 lines = [
     "npc: Sneaks and Player, sitting in a tree...",
-    "player: Can you stop singing that? It's freaking me out.",
-]
-
-[.sneakerpeeper_grown_1]
-pet = "sneakerpeeper"
-stage = "grown"
-condition = ""
-lines = [
-    "npc: Player, it time that Sneaks spawned.",
-    "player: What, now?",
-    "npc: Sneaks not sure. My lids are contracting and...",
-    "player: You don't have to go into detail, Sneaks.",
+    "player: Can you stop singing that? It's kind of freaking me out.",
+    "npc: That fine, Player! Sneaks has bag under its eye, full of songs dedicated to you. ' If you're happy and you know it, snuggle your Sneaks...'",
+    "player: Do you take requests, perhaps? how about something that doesn't involve my name or yours?",
+    "npc: Sneaks can do that — old swoony tune, about how Sneaks only have one eye, and it for Player.",
+    "player: Don't make me visit a slayer master to get some earmuffs, Sneaks.",
 ]
 
 [.sneakerpeeper_grown_low_summoning]
@@ -1759,4 +1782,60 @@ stage = "grown"
 condition = "skill_below:summoning:91"
 lines = [
     "npc: KnnnGGGGppwww CCCChhhhKKKKKnnn.",
+]
+
+[.sneakerpeeper_grown_spawning]
+pet = "sneakerpeeper"
+stage = "grown"
+condition = ""
+lines = [
+    "npc: Player, it time that Sneaks spawned.",
+    "player: What, now?",
+    "npc: Sneaks not sure. My lids are contracting and I can feel movement about my retina.",
+    "player: You don't have to go into detail, Sneaks. I'd be happier not knowing about your innards.",
+    "npc: If Player not know, than how can Player help Sneaks with the spawning ritual? How can you squeeze Sneak's eyeball and keep spawn wet with sneakerpeeper ooze?",
+    "player: I'm pretty sure I'll have passed out by then.",
+]
+
+[.sneakerpeeper_grown_hairball]
+pet = "sneakerpeeper"
+stage = "grown"
+condition = ""
+lines = [
+    "player: You know, Sneaks, when you were young, you used to make all sorts of uncomfortable comments about me.",
+    "npc: Oh, really?",
+    "player: Sure! It verged on harassment. You even kept a ball of my eyelash hair!",
+    "player: Strange times. Wait, what are you playing with?",
+    "npc: Oh, what, this? It nothing.",
+    "player: You're playing with it! You're playing with my eyelash hairball!",
+    "npc: Player, Sneaks not like that any more. Sneaks is a much better sneakerpeeper, less unprofessional. You see, this is not your eyelashes, they Thok's. Thok's hair much stronger and keeps in a ball better.",
+]
+
+[.sneakerpeeper_grown_hivemind]
+pet = "sneakerpeeper"
+stage = "grown"
+condition = ""
+lines = [
+    "npc: Huh-huh.",
+    "player: Why are you chuckling, Sneaks? Something amuse you?",
+    "npc: Player wouldn't understand. It's hive-minded humour. Lakhrahnaz make joke about how silly Player looks when he pushes you about on ice.",
+    "player: Hey!",
+    "npc: Hehe! Lakhrahnaz say that you look like you being tickled when you slide about.",
+    "player: Do you stalkers do this a lot? You know, having a hive-mind joke at my expense?",
+    "npc: Sorry, what was that? Haasghenahk just did an impression of you.",
+    "player: *sigh*",
+]
+
+[.sneakerpeeper_grown_eyemax]
+pet = "sneakerpeeper"
+stage = "grown"
+condition = ""
+lines = [
+    "player: So, Sneaks, I have a question.",
+    "npc: Sneaks always likes shooting the breeze with Player.",
+    "player: You're one eyeball, right? You only see through one eye.",
+    "npc: Player say obvious things.",
+    "player: Yeah, but if you only see through one eyeball, how do you have any form of depth perception? Surely you can't even reach for a door handle, shake someone's hand, catch a ball in the air...",
+    "npc: We see everything in eye-max, Player. Our eye so big that we can perceive more than two eyes can. We look better in monocles, too.",
+    "player: You're probably right.",
 ]
