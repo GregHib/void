@@ -1503,3 +1503,172 @@ lines = [
     "player: Looks like we already are.",
     "npc: Chatter chitter. (Hah! So we are. Good.)",
 ]
+
+# === Soul Wars Slayer reward pets + Dungeoneering sneakerpeeper ===
+# Conversation skeletons follow the format of the rows above. Fuller dialogue
+# trees can be sourced from the RuneScape Wiki transcripts under
+# https://runescape.wiki/w/Transcript:<Pet_name>. Conditional rows below
+# exercise the abyssal-whip and sneakerpeeper low-Summoning branches.
+
+[.creeping_hand_1]
+pet = "creeping_hand"
+stage = ""
+condition = ""
+lines = [
+    "player: I'd shake your hand, but I'm not sure how.",
+    "npc: Every time, the hand jokes.",
+    "player: Sorry; I can't help myself.",
+]
+
+[.creeping_hand_2]
+pet = "creeping_hand"
+stage = ""
+condition = ""
+lines = [
+    "overhead: How handy am I?",
+]
+
+[.minitrice_1]
+pet = "minitrice"
+stage = ""
+condition = ""
+lines = [
+    "player: What are you, exactly?",
+    "npc: I minitrice.",
+    "player: And what's a minitrice?",
+    "npc: Fearsome creature that kill with single glance!",
+]
+
+[.minitrice_2]
+pet = "minitrice"
+stage = ""
+condition = ""
+lines = [
+    "overhead: Don't look into the light!",
+]
+
+[.baby_basilisk_1]
+pet = "baby_basilisk"
+stage = "baby"
+condition = ""
+lines = [
+    "npc: Why do my eyes sting?",
+    "player: Ah, you're only little. Someone should probably tell you...",
+    "npc: Tell me what?",
+    "player: When you grow up, your eyes will weaken and kill people.",
+    "npc: Cool!",
+]
+
+[.baby_basilisk_2]
+pet = "baby_basilisk"
+stage = "baby"
+condition = ""
+lines = [
+    "overhead: I will blind you!",
+]
+
+[.baby_kurask_1]
+pet = "baby_kurask"
+stage = "baby"
+condition = ""
+lines = [
+    "npc: Ughhh.",
+    "player: What are you trying to say? Hungry? Sleepy?",
+    "npc: Aaghhaargh.",
+    "player: I give up.",
+]
+
+[.baby_kurask_2]
+pet = "baby_kurask"
+stage = "baby"
+condition = ""
+lines = [
+    "overhead: Eurghh!",
+]
+
+[.abyssal_minion_1]
+pet = "abyssal_minion"
+stage = ""
+condition = ""
+lines = [
+    "npc: I am confused. I thought you killed me?",
+    "player: Lucky for you, I found a place to bring you back.",
+    "npc: This makes me happy. Maybe we can go to THE ABYSS.",
+]
+
+[.abyssal_minion_whip_request]
+pet = "abyssal_minion"
+stage = ""
+condition = ""
+lines = [
+    "player: Why don't you give me an abyssal whip? I saved your life.",
+    "npc: Of course. There you go.",
+    "player: Wow! I didn't think that would work!",
+]
+
+[.abyssal_minion_whip_held]
+pet = "abyssal_minion"
+stage = ""
+condition = "abyssal_whip"
+lines = [
+    "player: Why don't you give me an abyssal whip? I saved your life.",
+    "npc: I would, but you still have the last one I gave you.",
+]
+
+[.abyssal_minion_whip_trick]
+pet = "abyssal_minion"
+stage = ""
+condition = "abyssal_whip"
+lines = [
+    "npc: Did I give you that whip?",
+    "player: No, I don't think so. This one's mine.",
+    "npc: Want to see a magic trick?",
+    "player: Not if it involves the whip vanishing.",
+]
+
+[.abyssal_minion_overhead]
+pet = "abyssal_minion"
+stage = ""
+condition = ""
+lines = [
+    "overhead: For the Abyss!",
+]
+
+[.sneakerpeeper_baby_1]
+pet = "sneakerpeeper"
+stage = "baby"
+condition = ""
+lines = [
+    "npc: You no talk to Sneaks today?",
+    "player: Why would you think that?",
+    "npc: Player find Sneak's collection, yes?",
+    "player: Wait — what collection?",
+]
+
+[.sneakerpeeper_baby_2]
+pet = "sneakerpeeper"
+stage = "baby"
+condition = ""
+lines = [
+    "npc: Sneaks and Player, sitting in a tree...",
+    "player: Can you stop singing that? It's freaking me out.",
+]
+
+[.sneakerpeeper_grown_1]
+pet = "sneakerpeeper"
+stage = "grown"
+condition = ""
+lines = [
+    "npc: Player, it time that Sneaks spawned.",
+    "player: What, now?",
+    "npc: Sneaks not sure. My lids are contracting and...",
+    "player: You don't have to go into detail, Sneaks.",
+]
+
+[.sneakerpeeper_grown_low_summoning]
+pet = "sneakerpeeper"
+stage = "grown"
+condition = "skill_below:summoning:91"
+lines = [
+    "npc: KnnnGGGGppwww CCCChhhhKKKKKnnn.",
+]
