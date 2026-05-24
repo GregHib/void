@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.data.config.RowDefinition
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
@@ -128,7 +129,14 @@ fun Player.updatePetInterface() {
     val itemIntId = ItemDefinitions.getOrNull(itemStringId)?.id ?: 0
     set("follower_details_name", itemIntId)
     set("follower_details_chathead", pet.def.id)
-    set("follower_details_chathead_animation", pet.id)
+    // The CS2 driving the chathead anim on the panel reads the cache enum
+    // pet_details_chathead_animations_normal (1276) keyed by the value of
+    // varbit 4282. Pets whose own NPC id isn't in that enum (e.g. our
+    // sneakerpeeper pet variants 13089/13090) fall back to the generic
+    // defaultInt and show the wrong expression. Rows may declare a
+    // chathead_npc override pointing at an NPC id that IS in the enum.
+    val chatheadNpc = row?.npcOrNull("chathead_npc") ?: pet.id
+    set("follower_details_chathead_animation", chatheadNpc)
     sendPetDetailsStats()
 }
 
@@ -171,7 +179,14 @@ suspend fun Player.talkToPet(row: RowDefinition, pet: NPC) {
         row.ambientPhrases().randomOrNull()?.let { pet.say(it) }
         return
     }
-    val fallbackAnim = EnumDefinitions.get("pet_details_chathead_animations_normal").defaultInt
+    // Animation precedence: row-declared chathead_anim wins, then the cache
+    // enum entry keyed by this NPC id, then the enum's generic defaultInt.
+    // Most pets fall to defaultInt; pets whose own NPC id isn't in the enum
+    // but have a known canonical animation (e.g. sneakerpeeper points at the
+    // in-dungeon NPC 22's anim) declare chathead_anim on the row.
+    val animEnum = EnumDefinitions.get("pet_details_chathead_animations_normal")
+    val rowAnim = row.animOrNull("chathead_anim")?.let { AnimationDefinitions.getOrNull(it)?.id }
+    val fallbackAnim = rowAnim ?: animEnum.intOrNull(pet.def.id) ?: animEnum.defaultInt
     for (line in chosen.stringList("lines")) {
         when {
             line.startsWith("npc:") -> npc(pet.id, fallbackAnim, breakParenTranslation(line.removePrefix("npc:").trim()))
