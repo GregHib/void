@@ -220,8 +220,7 @@ suspend fun Player.talkToPet(row: RowDefinition, pet: NPC) {
  */
 private val PLAYER_NAME_TOKEN = Regex("\\bPlayer\\b")
 
-private fun substitutePlayerName(line: String, name: String): String =
-    PLAYER_NAME_TOKEN.replace(line, name)
+private fun substitutePlayerName(line: String, name: String): String = PLAYER_NAME_TOKEN.replace(line, name)
 
 /**
  * Splits `Bark! (Translation!)` into `Bark!\n(Translation!)` so the chathead
