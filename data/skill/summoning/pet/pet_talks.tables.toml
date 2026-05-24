@@ -1586,36 +1586,35 @@ lines = [
     "overhead: Eurghh!",
 ]
 
-[.abyssal_minion_1]
+[.abyssal_minion_reminisce]
+pet = "abyssal_minion"
+stage = ""
+condition = ""
+lines = [
+    "npc: You know what I miss? I miss THE ABYSS.",
+    "player: That rhymes, you know.",
+    "npc: ...the warm, slippery walls, the piercing screams...",
+    "player: How lovely.",
+    "npc: ...the chasing after runecrafters...",
+    "player: We could still chase after runecrafters, you know.",
+    "npc: Human, nothing would make me happier.",
+]
+
+[.abyssal_minion_revive]
 pet = "abyssal_minion"
 stage = ""
 condition = ""
 lines = [
     "npc: I am confused. I thought you killed me?",
-    "player: Lucky for you, I found a place to bring you back.",
+    "player: Lucky for you, I found a place to bring you back to life.",
     "npc: This makes me happy. Maybe we can go to THE ABYSS.",
-]
-
-[.abyssal_minion_whip_request]
-pet = "abyssal_minion"
-stage = ""
-condition = ""
-lines = [
-    "player: Why don't you give me an abyssal whip? I saved your life.",
+    "player: As fun as that sounds, why don't you give me an abyssal whip instead? I saved your life.",
     "npc: Of course. There you go.",
-    "player: Wow! I didn't think that would work!",
+    "player: Wow, I didn't think that would work!",
+    "npc: I can't believe you fell for that!",
 ]
 
-[.abyssal_minion_whip_held]
-pet = "abyssal_minion"
-stage = ""
-condition = "abyssal_whip"
-lines = [
-    "player: Why don't you give me an abyssal whip? I saved your life.",
-    "npc: I would, but you still have the last one I gave you.",
-]
-
-[.abyssal_minion_whip_trick]
+[.abyssal_minion_magic_trick]
 pet = "abyssal_minion"
 stage = ""
 condition = "abyssal_whip"
@@ -1623,7 +1622,9 @@ lines = [
     "npc: Did I give you that whip?",
     "player: No, I don't think so. This one's mine.",
     "npc: Want to see a magic trick?",
-    "player: Not if it involves the whip vanishing.",
+    "player: Not if it involves the whip, no. Especially not if it's a disappearing trick.",
+    "npc: No, it's not...I...don't want your stupid whip. I'm not that predictable, am I? I mean, can't I even have a bit of fun anymore?",
+    "player: Maybe next time.",
 ]
 
 [.abyssal_minion_overhead]
