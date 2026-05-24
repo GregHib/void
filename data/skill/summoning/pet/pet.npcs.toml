@@ -551,3 +551,10 @@ id = 13089
 [pet_sneakerpeeper]
 id = 13090
 
+# Alias for the in-dungeon Sneakerpeeper NPC (cache id 22). Used by
+# the chathead_npc row column to drive the client CS2 to look up
+# anim 8463/8464 in enum 1276 instead of falling back to defaultInt
+# for the pet variants above.
+[sneakerpeeper_chathead]
+id = 22
+
