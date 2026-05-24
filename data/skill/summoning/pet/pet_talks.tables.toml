@@ -1510,14 +1510,42 @@ lines = [
 # https://runescape.wiki/w/Transcript:<Pet_name>. Conditional rows below
 # exercise the abyssal-whip and sneakerpeeper low-Summoning branches.
 
-[.creeping_hand_1]
+[.creeping_hand_valiant]
 pet = "creeping_hand"
 stage = ""
 condition = ""
 lines = [
-    "player: I'd shake your hand, but I'm not sure how.",
-    "npc: Every time, the hand jokes.",
-    "player: Sorry; I can't help myself.",
+    "player: I've got to hand it to you, you fought valiantly.",
+    "npc: My goodness, you're very witty for a cold-blooded killer.",
+    "player: You forgot to add 'hand-some'.",
+    "npc: Yes, that's right. I forgot.",
+    "player: That's enough chatter for now. There's no wrist for the wicked.",
+]
+
+[.creeping_hand_shake]
+pet = "creeping_hand"
+stage = ""
+condition = ""
+lines = [
+    "player: Greetings. I would shake your hand, but I'm not sure how that would work.",
+    "npc: Every time, always with the hand jokes.",
+    "player: I'm sorry, I can't help myself. Gimme five!",
+    "npc: I should slap you right here and now.",
+    "player: Okay, we shouldn't let this get out of hand.",
+    "npc: ...",
+]
+
+[.creeping_hand_truth]
+pet = "creeping_hand"
+stage = ""
+condition = ""
+lines = [
+    "player: Lovely day, isn't it?",
+    "npc: Sorry. Did you just say something WITHOUT a needless hand pun?",
+    "player: It can happen, you know.",
+    "npc: I'm... I'm stunned.",
+    "player: Obviously, you can't hand-le the truth.",
+    "npc: Ah, there it is.",
 ]
 
 [.minitrice_1]
