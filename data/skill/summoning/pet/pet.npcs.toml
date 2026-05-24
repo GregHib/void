@@ -523,10 +523,6 @@ id = 6906
 [pet_baby_dragon_3]
 id = 6907
 
-# Soul Wars Slayer reward pets — single stage (no metamorphosis).
-# Pick-up + Talk-to NPCs only; the 9245-9249 "Interact, Examine" variants
-# are the lobby/reward-room display NPCs and are not used as pet followers.
-
 [pet_creeping_hand_baby]
 id = 8619
 
@@ -542,19 +538,12 @@ id = 8622
 [pet_abyssal_minion_baby]
 id = 8624
 
-# Dungeoneering reward pet — two stages.
-# Baby = "Sneakerpeeper spawn" (13089), grown = "Sneakerpeeper" (13090).
-
 [pet_sneakerpeeper_baby]
 id = 13089
 
 [pet_sneakerpeeper]
 id = 13090
 
-# Alias for the in-dungeon Sneakerpeeper NPC (cache id 22). Used by
-# the chathead_npc row column to drive the client CS2 to look up
-# anim 8463/8464 in enum 1276 instead of falling back to defaultInt
-# for the pet variants above.
 [sneakerpeeper_chathead]
 id = 22
 
