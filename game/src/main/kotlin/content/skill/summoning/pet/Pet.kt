@@ -61,6 +61,14 @@ fun Player.summonPet(row: RowDefinition, itemId: String, restart: Boolean = fals
         message("You need a ${skill.name} level of $level to raise this pet.")
         return false
     }
+    // Optional secondary gate — sneakerpeeper requires Summoning 80 on top of
+    // its primary Dungeoneering 80 check.
+    val secondarySkill = row.skillOrNull("secondary_skill")
+    val secondaryLevel = row.intOrNull("secondary_level") ?: 0
+    if (secondarySkill != null && secondaryLevel > 0 && !has(secondarySkill, secondaryLevel)) {
+        message("You also need a ${secondarySkill.name} level of $secondaryLevel to raise this pet.")
+        return false
+    }
     val stage = row.stageForItem(itemId) ?: return false
     val npcStringId = row.npcFor(stage) ?: return false
     // Consume the inventory item up front (skipped on restart, which is the

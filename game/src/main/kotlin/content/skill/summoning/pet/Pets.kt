@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.equipment
 
@@ -128,6 +129,7 @@ fun allPetRows(): List<RowDefinition> = Tables.get("pets").rows()
  *   - `"area:<name>"`: matches if the player tile is inside the named area.
  *   - `"tag:<tag>"`: matches if the player tile is inside any area carrying the tag.
  *   - `"quest:<name>"`: matches if the player has completed the named quest.
+ *   - `"skill_below:<skill>:<level>"`: matches when the player's level in the named skill is strictly less than `<level>`. Used by adult sneakerpeeper to gate a low-Summoning garbled line.
  */
 fun Player.matchesPetCondition(condition: String): Boolean {
     if (condition.isBlank()) return false
@@ -138,6 +140,15 @@ fun Player.matchesPetCondition(condition: String): Boolean {
                 val g = it.def.getOrNull<String>("god") ?: ""
                 g.isNotBlank() && g != ownGod
             }
+        }
+        condition.startsWith("skill_below:") -> {
+            val rest = condition.removePrefix("skill_below:")
+            val sep = rest.indexOf(':')
+            if (sep < 0) return false
+            val skillName = rest.substring(0, sep).trim().replaceFirstChar { it.uppercase() }
+            val skill = Skill.of(skillName) ?: return false
+            val limit = rest.substring(sep + 1).trim().toIntOrNull() ?: return false
+            levels.get(skill) < limit
         }
         condition.startsWith("count:") -> {
             val rest = condition.removePrefix("count:")
