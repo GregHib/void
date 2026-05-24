@@ -26,6 +26,7 @@ import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.suspend.pauseButton
 import world.gregs.voidps.network.login.protocol.encode.*
 import kotlin.collections.iterator
 
@@ -86,6 +87,15 @@ class InterfaceCommands(
             handler = ::expression,
         )
 
+        adminCommand(
+            "expr_scan",
+            intArg("npc-id"),
+            intArg("start-anim"),
+            intArg("end-anim"),
+            desc = "Cycle dialogue chathead anims across a range; the title shows the current anim id, click continue to advance.",
+            handler = ::scanExpressions,
+        )
+
         adminCommand("shop", stringArg("shop-id", autofill = { inventoryDefinitions.definitions.filter { it["shop", false] }.map { it.stringId }.toSet() }), desc = "Open a shop by id") { args ->
             openShop(args[0])
         }
@@ -129,6 +139,27 @@ class InterfaceCommands(
             player.sendScript(id = args[0], *remainder.toTypedArray())
         } else {
             player.sendScript(id, remainder)
+        }
+    }
+
+    fun scanExpressions(player: Player, args: List<String>) {
+        val npcId = args[0].toInt()
+        val start = args[1].toInt()
+        val end = args[2].toInt()
+        if (start > end) {
+            player.message("expr_scan: start ($start) must be <= end ($end)")
+            return
+        }
+        player.queue("expr_scan") {
+            for (anim in start..end) {
+                if (!open("dialogue_npc_chat1")) return@queue
+                client?.npcDialogueHead(InterfaceDefinition.pack(241, 2), npcId)
+                interfaces.sendAnimation("dialogue_npc_chat1", "head", anim)
+                interfaces.sendText("dialogue_npc_chat1", "title", "anim $anim")
+                interfaces.sendLines("dialogue_npc_chat1", listOf("Anim $anim of $start..$end — click continue to advance."))
+                pauseButton()
+            }
+            message("Anim scan complete.")
         }
     }
 
