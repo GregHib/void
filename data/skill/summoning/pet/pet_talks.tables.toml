@@ -1548,7 +1548,7 @@ lines = [
     "npc: Ah, there it is.",
 ]
 
-[.minitrice_1]
+[.minitrice_feathered_frog]
 pet = "minitrice"
 stage = ""
 condition = ""
@@ -1557,6 +1557,42 @@ lines = [
     "npc: I minitrice.",
     "player: And what's a minitrice?",
     "npc: Fearsome creature that kill with single glance!",
+    "player: Is that so? Then why do you look like a feathered frog?",
+    "npc: ...",
+]
+
+[.minitrice_deaded]
+pet = "minitrice"
+stage = ""
+condition = ""
+lines = [
+    "npc: You deaded me!",
+    "player: Okay, okay, let's leave all that in the past.",
+    "npc: But you deaded me!",
+    "player: It was an accident.",
+    "npc: No accident; you deaded me on purpose!",
+    "player: Uh-huh. What can I do to make up for it?",
+    "npc: Nothing. I get payback, I'll dead you!",
+    "player: Riiight. You're just a baby. Give it your best shot.",
+    "[*Stares hard*]",
+    "player: ...",
+    "npc: ...",
+    "player: Oh, no! My eyes are burning!",
+    "npc: Mwa-ha-ha! Me told you I dead you!",
+    "player: And I told you that you're just a baby. I can't believe you fell for that!",
+]
+
+[.minitrice_dinner]
+pet = "minitrice"
+stage = ""
+condition = ""
+lines = [
+    "npc: Me kill you.",
+    "player: Yes, yes, I know.",
+    "npc: Maybe not today, maybe not tomorrow, but me kill you.",
+    "player: I await the day.",
+    "npc: We understand each other, hooman. Now, when's dinner time?",
+    "player: You're very hard to love, you know that?",
 ]
 
 [.baby_basilisk_eyes]
