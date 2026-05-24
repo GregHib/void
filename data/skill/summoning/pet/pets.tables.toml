@@ -976,7 +976,7 @@ growth_per_tick = 0
 summoning_level = 5
 skill = "slayer"
 hungry_phrase = "Tap tap..."
-idle_phrases = ["Tap tap...", "Scuttle scuttle.", "Click clack!"]
+idle_phrases = ["Tap tap...", "Scuttle scuttle.", "Click clack!", "How handy am I?", "I can't feel my arms!"]
 food = ["leather_gloves"]
 
 [.minitrice]
@@ -986,7 +986,7 @@ growth_per_tick = 0
 summoning_level = 25
 skill = "slayer"
 hungry_phrase = "Squawk!"
-idle_phrases = ["Squawk!", "Cluck...", "Peep!"]
+idle_phrases = ["Squawk!", "Cluck...", "Peep!", "Don't look into the light!", "I will blind you!"]
 food = ["limpwurt_root"]
 
 [.baby_basilisk]
@@ -996,7 +996,7 @@ growth_per_tick = 0
 summoning_level = 40
 skill = "slayer"
 hungry_phrase = "Hisss..."
-idle_phrases = ["Hisss...", "Hiss-hiss.", "Sssss!"]
+idle_phrases = ["Hisss...", "Hiss-hiss.", "Sssss!", "I will blind you!", "Don't look into the light!"]
 food = ["eye_of_newt"]
 
 [.baby_kurask]
@@ -1006,7 +1006,7 @@ growth_per_tick = 0
 summoning_level = 70
 skill = "slayer"
 hungry_phrase = "Mrf!"
-idle_phrases = ["Mrf!", "Snort.", "Huff!"]
+idle_phrases = ["Mrf!", "Snort.", "Huff!", "Eurghh!", "I kill you!"]
 food = ["bones"]
 
 [.abyssal_minion]
@@ -1016,7 +1016,7 @@ growth_per_tick = 0
 summoning_level = 85
 skill = "slayer"
 hungry_phrase = "Shhhhh..."
-idle_phrases = ["Shhhhh...", "Whisper whisper.", "Hsssss."]
+idle_phrases = ["Shhhhh...", "Whisper whisper.", "Hsssss.", "For the Abyss!", "To the Abyss!"]
 food = ["ashes"]
 
 # Dungeoneering reward pet — two-stage, gated on Dungeoneering. The
