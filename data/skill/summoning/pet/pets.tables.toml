@@ -969,9 +969,6 @@ hungry_phrase = "Grrrrr!"
 idle_phrases = ["Growl!"]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
 
-# Soul Wars Slayer reward pets — single-stage non-growing followers,
-# gated on Slayer level rather than Summoning.
-
 [.creeping_hand]
 baby_item = "creeping_hand_2"
 baby_npc = "pet_creeping_hand_baby"
@@ -1024,10 +1021,6 @@ hungry_phrase = "Shhhhh..."
 idle_phrases = ["For the Abyss!", "To the Abyss!"]
 food = ["ashes"]
 
-# Dungeoneering reward pet — two-stage, gated on Dungeoneering. The
-# secondary Summoning 80 requirement isn't enforced here yet (the row
-# schema only supports one gate); revisit if a multi-skill gate is added.
-
 [.sneakerpeeper]
 baby_item = "sneakerpeeper_spawn"
 baby_npc = "pet_sneakerpeeper_baby"
@@ -1038,11 +1031,6 @@ summoning_level = 80
 skill = "dungeoneering"
 secondary_skill = "summoning"
 secondary_level = 80
-# TODO: cache enum 1276 key 22 -> anim 8463 was a wrong guess; needs
-# further cache investigation. Disable the chathead anim until the
-# right value is found so we send -1 (no animation) instead of a
-# misleading override.
-chathead_disabled = true
 hungry_phrase = "Squelch..."
 idle_phrases = ["Squelch...", "Blink.", "Peep!"]
 food = ["eye_of_newt"]
