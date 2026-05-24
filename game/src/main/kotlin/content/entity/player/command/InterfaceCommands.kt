@@ -151,15 +151,26 @@ class InterfaceCommands(
             return
         }
         player.queue("expr_scan") {
-            for (anim in start..end) {
-                if (!open("dialogue_npc_chat1")) return@queue
-                client?.npcDialogueHead(InterfaceDefinition.pack(241, 2), npcId)
-                interfaces.sendAnimation("dialogue_npc_chat1", "head", anim)
-                interfaces.sendText("dialogue_npc_chat1", "title", "anim $anim")
-                interfaces.sendLines("dialogue_npc_chat1", listOf("Anim $anim of $start..$end — click continue to advance."))
-                pauseButton()
+            if (!open("dialogue_npc_chat1")) {
+                message("expr_scan: could not open dialogue_npc_chat1")
+                return@queue
             }
-            message("Anim scan complete.")
+            try {
+                for (anim in start..end) {
+                    if (!interfaces.contains("dialogue_npc_chat1")) {
+                        message("expr_scan: dialogue closed early at anim $anim")
+                        return@queue
+                    }
+                    client?.npcDialogueHead(InterfaceDefinition.pack(241, 2), npcId)
+                    interfaces.sendAnimation("dialogue_npc_chat1", "head", anim)
+                    interfaces.sendText("dialogue_npc_chat1", "title", "anim $anim")
+                    interfaces.sendLines("dialogue_npc_chat1", listOf("Anim $anim of $start..$end — click continue to advance."))
+                    pauseButton()
+                }
+                message("expr_scan: complete.")
+            } finally {
+                interfaces.close("dialogue_npc_chat1")
+            }
         }
     }
 
