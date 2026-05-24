@@ -995,8 +995,9 @@ baby_npc = "pet_baby_basilisk_baby"
 growth_per_tick = 0
 summoning_level = 40
 skill = "slayer"
-hungry_phrase = "Hisss..."
-idle_phrases = ["Hisss...", "Hiss-hiss.", "Sssss!", "I will blind you!", "Don't look into the light!"]
+hungry_phrase = "My eyes feel like burning!..."
+hungry_phrases = ["My eyes feel like burning!...", "My eyes feel like burning!!", "My eyes feel like burning!... My eyes feel like burning!"]
+idle_phrases = ["I will blind you!", "Don't look into the light!"]
 food = ["eye_of_newt"]
 
 [.baby_kurask]
@@ -1006,7 +1007,7 @@ growth_per_tick = 0
 summoning_level = 70
 skill = "slayer"
 hungry_phrase = "Mrf!"
-idle_phrases = ["Mrf!", "Snort.", "Huff!", "Eurghh!", "I kill you!"]
+idle_phrases = ["Eurghh!", "I kill you!"]
 food = ["bones"]
 
 [.abyssal_minion]
@@ -1016,7 +1017,7 @@ growth_per_tick = 0
 summoning_level = 85
 skill = "slayer"
 hungry_phrase = "Shhhhh..."
-idle_phrases = ["Shhhhh...", "Whisper whisper.", "Hsssss.", "For the Abyss!", "To the Abyss!"]
+idle_phrases = ["For the Abyss!", "To the Abyss!"]
 food = ["ashes"]
 
 # Dungeoneering reward pet — two-stage, gated on Dungeoneering. The
