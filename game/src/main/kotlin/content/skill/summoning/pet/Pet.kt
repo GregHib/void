@@ -52,8 +52,13 @@ fun Player.summonPet(row: RowDefinition, itemId: String, restart: Boolean = fals
         return false
     }
     val level = row.int("summoning_level")
-    if (!has(Skill.Summoning, level)) {
-        message("You need a Summoning level of $level to raise this pet.")
+    // Row "skill" defaults to Summoning when unset, but Soul Wars Slayer pets
+    // (creeping hand, minitrice, baby basilisk, baby kurask, abyssal minion)
+    // gate on Slayer and sneakerpeeper on Dungeoneering — so the skill is
+    // row-driven rather than hardcoded.
+    val skill = row.skillOrNull("skill") ?: Skill.Summoning
+    if (!has(skill, level)) {
+        message("You need a ${skill.name} level of $level to raise this pet.")
         return false
     }
     val stage = row.stageForItem(itemId) ?: return false

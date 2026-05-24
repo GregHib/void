@@ -1356,3 +1356,97 @@ transmit = false
 format = "int"
 persist = true
 transmit = false
+
+# Soul Wars Slayer reward pets — single-stage, no loneliness.
+
+[pet_creeping_hand_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_creeping_hand_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_creeping_hand_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_minitrice_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_minitrice_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_minitrice_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_basilisk_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_basilisk_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_basilisk_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_kurask_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_kurask_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_kurask_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_abyssal_minion_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_abyssal_minion_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_abyssal_minion_warn]
+format = "int"
+persist = true
+transmit = false
+
+# Dungeoneering reward pet — two-stage, no loneliness.
+
+[pet_sneakerpeeper_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_sneakerpeeper_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_sneakerpeeper_warn]
+format = "int"
+persist = true
+transmit = false

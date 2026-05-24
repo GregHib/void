@@ -7,6 +7,7 @@ overgrown_item = "item"
 overgrown_npc = "npc"
 growth_per_tick = "int"
 summoning_level = "int"
+skill = "skill"
 food = "list<item>"
 hungry_phrase = "string"
 hungry_phrases = "list<string>"
@@ -962,4 +963,74 @@ summoning_level = 99
 hungry_phrase = "Grrrrr!"
 idle_phrases = ["Growl!"]
 food = ["raw_beef", "raw_rat_meat", "raw_bear_meat", "raw_chicken", "raw_yak_meat", "raw_beast_meat", "raw_bird_meat", "raw_anchovies", "raw_bass", "raw_cod", "raw_cavefish", "raw_herring", "raw_lobster", "raw_mackerel", "raw_manta_ray", "raw_monkfish", "raw_pike", "raw_salmon", "raw_sardine", "raw_sea_turtle", "raw_shark", "raw_shrimps", "raw_swordfish", "raw_trout", "raw_tuna", "raw_cavefish", "raw_rocktail"]
+
+# Soul Wars Slayer reward pets — single-stage non-growing followers,
+# gated on Slayer level rather than Summoning.
+
+[.creeping_hand]
+baby_item = "creeping_hand_2"
+baby_npc = "pet_creeping_hand_baby"
+growth_per_tick = 0
+summoning_level = 5
+skill = "slayer"
+hungry_phrase = "Tap tap..."
+idle_phrases = ["Tap tap...", "Scuttle scuttle.", "Click clack!"]
+food = ["leather_gloves"]
+
+[.minitrice]
+baby_item = "minitrice_2"
+baby_npc = "pet_minitrice_baby"
+growth_per_tick = 0
+summoning_level = 25
+skill = "slayer"
+hungry_phrase = "Squawk!"
+idle_phrases = ["Squawk!", "Cluck...", "Peep!"]
+food = ["limpwurt_root"]
+
+[.baby_basilisk]
+baby_item = "baby_basilisk_2"
+baby_npc = "pet_baby_basilisk_baby"
+growth_per_tick = 0
+summoning_level = 40
+skill = "slayer"
+hungry_phrase = "Hisss..."
+idle_phrases = ["Hisss...", "Hiss-hiss.", "Sssss!"]
+food = ["eye_of_newt"]
+
+[.baby_kurask]
+baby_item = "baby_kurask_2"
+baby_npc = "pet_baby_kurask_baby"
+growth_per_tick = 0
+summoning_level = 70
+skill = "slayer"
+hungry_phrase = "Mrf!"
+idle_phrases = ["Mrf!", "Snort.", "Huff!"]
+food = ["bones"]
+
+[.abyssal_minion]
+baby_item = "abyssal_minion_2"
+baby_npc = "pet_abyssal_minion_baby"
+growth_per_tick = 0
+summoning_level = 85
+skill = "slayer"
+hungry_phrase = "Shhhhh..."
+idle_phrases = ["Shhhhh...", "Whisper whisper.", "Hsssss."]
+food = ["ashes"]
+
+# Dungeoneering reward pet — two-stage, gated on Dungeoneering. The
+# secondary Summoning 80 requirement isn't enforced here yet (the row
+# schema only supports one gate); revisit if a multi-skill gate is added.
+
+[.sneakerpeeper]
+baby_item = "sneakerpeeper_spawn"
+baby_npc = "pet_sneakerpeeper_baby"
+grown_item = "sneakerpeeper"
+grown_npc = "pet_sneakerpeeper"
+growth_per_tick = 30
+summoning_level = 80
+skill = "dungeoneering"
+hungry_phrase = "Squelch..."
+idle_phrases = ["Squelch...", "Blink.", "Peep!"]
+food = ["eye_of_newt"]
+
 
