@@ -1636,15 +1636,48 @@ lines = [
     "npc: Mum!",
 ]
 
-[.baby_kurask_1]
+[.baby_kurask_grunts]
 pet = "baby_kurask"
 stage = "baby"
 condition = ""
 lines = [
     "npc: Ughhh.",
-    "player: What are you trying to say? Hungry? Sleepy?",
+    "player: What are you trying to say? Are you in pain?",
+    "npc: Eeeurgh.",
+    "player: Hungry? Thirsty?",
+    "npc: Baarughm.",
+    "player: Sleepy?",
     "npc: Aaghhaargh.",
     "player: I give up.",
+]
+
+[.baby_kurask_economy]
+pet = "baby_kurask"
+stage = "baby"
+condition = ""
+lines = [
+    "npc: Uhhhhrrr.",
+    "player: Hey kurask, what do you think of the current state of the economy?",
+    "npc: Blerughh, boring.",
+    "player: Wow, really? What are your thoughts on the melting ice on Ice Mountain?",
+    "npc: Eurggh, warm.",
+    "player: A fascinating response. Anything else?",
+    "npc: ...",
+    "player: Well, that was a thrilling conversation.",
+]
+
+[.baby_kurask_ispy]
+pet = "baby_kurask"
+stage = "baby"
+condition = ""
+lines = [
+    "player: I spy with my little eye, something beginning with 'K'.",
+    "npc: Krrgghh...knave?",
+    "player: No.",
+    "npc: Kuennnag...knucklehead?",
+    "player: Nope.",
+    "npc: Knnnnnggg...kumquat?",
+    "player: No, it's a kurask. Honestly, that wasn't difficult.",
 ]
 
 [.abyssal_minion_reminisce]
