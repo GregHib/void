@@ -1531,16 +1531,45 @@ lines = [
     "npc: Fearsome creature that kill with single glance!",
 ]
 
-[.baby_basilisk_1]
+[.baby_basilisk_eyes]
 pet = "baby_basilisk"
 stage = "baby"
 condition = ""
 lines = [
+    "player: Hey there.",
     "npc: Why do my eyes sting?",
-    "player: Ah, you're only little. Someone should probably tell you...",
+    "player: Ah, you're only little, but someone should probably tell you...",
     "npc: Tell me what?",
-    "player: When you grow up, your eyes will weaken and kill people.",
+    "player: Well, when you grow up, your eyes will have the power to weaken and kill people.",
+    "npc: ...",
+    "player: ...",
     "npc: Cool!",
+]
+
+[.baby_basilisk_origin]
+pet = "baby_basilisk"
+stage = "baby"
+condition = ""
+lines = [
+    "npc: So, how did I come to be?",
+    "player: Is this the birds and the bees question?",
+    "npc: I have no idea. Yes?",
+    "player: Well, you began life as a serpent egg that got hatched by a chicken.",
+    "npc: But which came first, the chicken or the egg?",
+    "player: Good question. I'll get back to you.",
+]
+
+[.baby_basilisk_mum]
+pet = "baby_basilisk"
+stage = "baby"
+condition = ""
+lines = [
+    "player: Hello there, little creature.",
+    "npc: Mum!",
+    "player: Er, no, I'm not your mother.",
+    "npc: Not mum?",
+    "player: Well, no, but I will be taking care of you... I suppose.",
+    "npc: Mum!",
 ]
 
 [.baby_kurask_1]
