@@ -635,10 +635,10 @@ id = 6552
 id = 6553
 
 [expression_sneakerpeeper_normal]
-id = 8463
+id = 8008
 
-[expression_sneakerpeeper_sad]
-id = 8464
+[expression_sneakerpeeper_excited]
+id = 8009
 
 [expression_tree_neutral]
 id = 584

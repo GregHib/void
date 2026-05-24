@@ -134,15 +134,22 @@ fun Player.updatePetInterface() {
     // pet_details_chathead_animations_normal (1276) keyed by the value of
     // varbit 4282. Pets whose own NPC id isn't in that enum fall back to
     // the enum's generic defaultInt. Rows may declare:
-    //   - chathead_npc — alias pointing at an NPC id that IS in the enum.
-    //   - chathead_disabled — bypass the varbit/CS2 path entirely and push
-    //     animation -1 directly onto the chathead component, so no anim
-    //     plays. Used for pets whose correct value hasn't been identified.
-    if (row?.boolOrNull("chathead_disabled") == true) {
-        interfaces.sendAnimation(ifaceId, "chathead", -1)
-    } else {
-        val chatheadNpc = row?.npcOrNull("chathead_npc") ?: pet.id
-        set("follower_details_chathead_animation", chatheadNpc)
+    //   - chathead_anim — push the named animation directly onto the
+    //     chathead component, bypassing the varbit / CS2 lookup. Use this
+    //     when the right anim id is known but no enum entry exists for the
+    //     pet (e.g. sneakerpeeper -> expression_sneakerpeeper_normal).
+    //   - chathead_npc — alias pointing at an NPC id that IS in the enum;
+    //     written to the varbit so CS2 picks up the mapped anim.
+    //   - chathead_disabled — push -1 to clear any leftover anim. Used for
+    //     pets whose correct value hasn't been identified yet.
+    val rowAnim = row?.animOrNull("chathead_anim")?.let { AnimationDefinitions.getOrNull(it)?.id }
+    when {
+        rowAnim != null -> interfaces.sendAnimation(ifaceId, "chathead", rowAnim)
+        row?.boolOrNull("chathead_disabled") == true -> interfaces.sendAnimation(ifaceId, "chathead", -1)
+        else -> {
+            val chatheadNpc = row?.npcOrNull("chathead_npc") ?: pet.id
+            set("follower_details_chathead_animation", chatheadNpc)
+        }
     }
     sendPetDetailsStats()
 }
