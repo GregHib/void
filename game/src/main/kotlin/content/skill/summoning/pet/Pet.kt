@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.get
@@ -134,9 +135,11 @@ fun Player.updatePetInterface() {
     // varbit 4282. Pets whose own NPC id isn't in that enum fall back to
     // the enum's generic defaultInt. Rows may declare:
     //   - chathead_npc — alias pointing at an NPC id that IS in the enum.
-    //   - chathead_disabled — skip the varbit set entirely (intentional no-op
-    //     for pets whose right anim hasn't been identified yet).
-    if (row?.boolOrNull("chathead_disabled") != true) {
+    //   - chathead_disabled — write -1 to the varbit to explicitly request
+    //     "no anim" for pets whose right value hasn't been identified yet.
+    if (row?.boolOrNull("chathead_disabled") == true) {
+        set("follower_details_chathead_animation", -1)
+    } else {
         val chatheadNpc = row?.npcOrNull("chathead_npc") ?: pet.id
         set("follower_details_chathead_animation", chatheadNpc)
     }
@@ -197,15 +200,27 @@ suspend fun Player.talkToPet(row: RowDefinition, pet: NPC) {
         else -> animEnum.intOrNull(pet.def.id) ?: animEnum.defaultInt
     }
     for (line in chosen.stringList("lines")) {
+        val rendered = substitutePlayerName(line, name)
         when {
-            line.startsWith("npc:") -> npc(pet.id, fallbackAnim, breakParenTranslation(line.removePrefix("npc:").trim()))
-            line.startsWith("player:") -> player<Happy>(line.removePrefix("player:").trim())
-            line.startsWith("overhead:") -> pet.say(line.removePrefix("overhead:").trim())
-            line.startsWith("[") && line.endsWith("]") -> statement(line.removePrefix("[").removeSuffix("]").trim())
-            else -> statement(line)
+            rendered.startsWith("npc:") -> npc(pet.id, fallbackAnim, breakParenTranslation(rendered.removePrefix("npc:").trim()))
+            rendered.startsWith("player:") -> player<Happy>(rendered.removePrefix("player:").trim())
+            rendered.startsWith("overhead:") -> pet.say(rendered.removePrefix("overhead:").trim())
+            rendered.startsWith("[") && rendered.endsWith("]") -> statement(rendered.removePrefix("[").removeSuffix("]").trim())
+            else -> statement(rendered)
         }
     }
 }
+
+/**
+ * Replaces the literal stand-in "Player" used by some wiki-sourced pet
+ * dialogue (sneakerpeeper in particular) with the player's display name.
+ * Matches whole words only so "Player-skin" / "Player-lips" / "Player," all
+ * substitute correctly without touching unrelated substrings.
+ */
+private val PLAYER_NAME_TOKEN = Regex("\\bPlayer\\b")
+
+private fun substitutePlayerName(line: String, name: String): String =
+    PLAYER_NAME_TOKEN.replace(line, name)
 
 /**
  * Splits `Bark! (Translation!)` into `Bark!\n(Translation!)` so the chathead
