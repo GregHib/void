@@ -100,7 +100,7 @@ class DungeonMap(
                         DungeonRoomType.Puzzle -> "Puzzle Room"
                         DungeonRoomType.Normal -> if (room.isCritical) "Critical Normal" else "Bonus Normal"
                     }
-                    val zoneStr = room.zone?.let { " [Template at: (${it.x}, ${it.y}), Rot: ${room.rotation * 90}°]" } ?: ""
+                    val zoneStr = room.zone?.let { " [Template at: (${it.x}, ${it.y}), Rot: ${room.rotation * 90}]" } ?: ""
                     println("  Room at ($x, $y) [$typeStr]$zoneStr contains key(s): [ $keysStr ]")
                 }
             }

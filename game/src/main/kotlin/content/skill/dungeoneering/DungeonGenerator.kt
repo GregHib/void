@@ -371,7 +371,7 @@ class DungeonGenerator(
                 room.zone = selection.first
                 room.rotation = selection.second
             } else {
-                System.err.println("Warning: No matching layout template found for $tableName room at (${room.tile.x}, ${room.tile.y})")
+                System.err.println("Warning: No matching layout template found for $tableName room at (${room.tile.x}, ${room.tile.y}) [${requiredDoors.joinToString()}]")
             }
         }
     }

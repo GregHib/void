@@ -3,6 +3,7 @@ package content.skill.dungeoneering
 import content.quest.smallInstance
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.zone.DynamicZones
@@ -11,13 +12,22 @@ import world.gregs.voidps.type.Tile
 class Dungeoneering : Script {
     init {
         adminCommand("dungeon") {
-            println("Generating structured dungeon...")
-
+            println("Generating dungeon...")
+            val floor = 60
+            val size = DungeonSize.Small
+            val complexity = 1
             val generator = DungeonGenerator(
-                size = DungeonSize.Small,
-                floor = 1,
-                complexity = 1,
+                size = size,
+                floor = floor,
+                complexity = complexity,
             )
+            message("")
+            message("- Welcome to Daemonheim -")
+            message("Floor <purple>$floor</col>    Complexity <purple>$complexity")
+            message("Dungeon Size: <purple>${size}")
+            message("Party Size:Difficulty <purple>1:1")
+            message("<purple>Guide Mode OFF")
+            message("")
             val start = System.currentTimeMillis()
             val dungeon = generator.generate()
             println("Took ${System.currentTimeMillis() - start}ms")
@@ -29,10 +39,8 @@ class Dungeoneering : Script {
             println("  B   : Boss Room (Goal)")
             println("  P   : Puzzle Room (Guaranteed to have an exit)")
             println("  .   : Normal Room")
-            println("  a-t : Critical Keys (lowercase)")
-            println("  u-z : Bonus Keys (lowercase)")
-            println("  A-T : Critical Locked Doors (uppercase)")
-            println("  U-Z : Bonus Locked Doors (uppercase)")
+            println("  a-z : Critical Keys (lowercase)")
+            println("  A-Z : Critical Locked Doors (uppercase)")
             println("  G   : Outward Guardian Door")
             println("  K   : Outward Skill Door")
             println("  + - | : Walls and normal corridors")
