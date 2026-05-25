@@ -16,7 +16,7 @@ class Dungeoneering : Script {
             val generator = DungeonGenerator(
                 size = DungeonSize.Small,
                 floor = 1,
-                complexity = 1
+                complexity = 1,
             )
             val start = System.currentTimeMillis()
             val dungeon = generator.generate()

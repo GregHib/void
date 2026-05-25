@@ -110,7 +110,7 @@ class DungeonGenerator(
                 return path
             }
         }
-        throw IllegalStateException("A path of length $targetLength cannot fit on a ${width}x${height} grid.")
+        throw IllegalStateException("A path of length $targetLength cannot fit on a ${width}x$height grid.")
     }
 
     internal fun findPath(startX: Int, startY: Int, length: Int): List<Tile>? {
@@ -333,7 +333,7 @@ class DungeonGenerator(
         val allActiveRooms = grid.filterNotNull()
         for (room in allActiveRooms) {
             val typeName = room.type.name.lowercase()
-            val tableName = "${themeName}_c${complexity}_${typeName}"
+            val tableName = "${themeName}_c${complexity}_$typeName"
             val table = Tables.getOrNull(tableName) ?: continue
             val requiredDoors = BooleanArray(4) { idx ->
                 val dir = Direction.westClockwise[idx]
@@ -399,9 +399,7 @@ class DungeonGenerator(
         return true
     }
 
-    private fun getDirection(from: DungeonRoom, to: DungeonRoom): Direction {
-        return to.tile.delta(from.tile).toDirection()
-    }
+    private fun getDirection(from: DungeonRoom, to: DungeonRoom): Direction = to.tile.delta(from.tile).toDirection()
 
     private fun IntArray.shuffleInPlace() {
         for (i in lastIndex downTo 1) {
@@ -435,7 +433,7 @@ class DungeonGenerator(
     internal fun bfs(
         start: DungeonRoom,
         grid: Array<DungeonRoom?>,
-        canTraverse: (from: DungeonRoom, door: DungeonDoor?, neighbour: DungeonRoom) -> Boolean = { _, _, _ -> true }
+        canTraverse: (from: DungeonRoom, door: DungeonDoor?, neighbour: DungeonRoom) -> Boolean = { _, _, _ -> true },
     ): List<DungeonRoom> {
         val visitedList = mutableListOf<DungeonRoom>()
         val visitedSet = mutableSetOf<DungeonRoom>()
@@ -489,7 +487,7 @@ class DungeonGenerator(
             val generator = DungeonGenerator(
                 floor = 1,
                 complexity = 1,
-                size = DungeonSize.Large
+                size = DungeonSize.Large,
             )
             val start = System.currentTimeMillis()
             val dungeon = generator.generate()

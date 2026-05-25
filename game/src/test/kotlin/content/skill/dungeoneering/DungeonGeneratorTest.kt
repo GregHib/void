@@ -151,7 +151,7 @@ class DungeonGeneratorTest {
             DungeonSize.Small,
             floor = 1,
             complexity = 5,
-            puzzleRoomChance = 1.0 // Force puzzle rooms
+            puzzleRoomChance = 1.0, // Force puzzle rooms
         )
         val gridHigh = arrayOfNulls<DungeonRoom>(5 * 4)
         val pathHigh = generatorHighComplexity.createCriticalPath(gridHigh)
@@ -213,7 +213,7 @@ class DungeonGeneratorTest {
 
         assertTrue(
             accessibleRooms.contains(bossRoom),
-            "Boss room was not reachable during play simulation. Solvability invariant violated."
+            "Boss room was not reachable during play simulation. Solvability invariant violated.",
         )
     }
 

@@ -233,7 +233,7 @@ object DungeoneeringDumper {
 
     private fun complexity(def: ObjectDefinitionFull): Int {
         return when (def.name) {
-//            "Wall" -> 2
+//            "Wall" -> 2 // Woodcutting walls don't have to be populated
             "Cooking range" -> 2
             "Runecrafting altar" -> 3
             "Furnace" -> 3

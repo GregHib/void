@@ -5,7 +5,7 @@ import world.gregs.voidps.type.Direction
 class DungeonMap(
     val width: Int,
     val height: Int,
-    val grid: Array<DungeonRoom?>
+    val grid: Array<DungeonRoom?>,
 ) {
 
     private val Direction.index: Int
@@ -108,8 +108,5 @@ class DungeonMap(
         if (!keysFound) println("  No keys placed.")
     }
 
-    private fun getKeyChar(keyId: Int): Char {
-        return ('a'.code + keyId).toChar()
-    }
-
+    private fun getKeyChar(keyId: Int): Char = ('a'.code + keyId).toChar()
 }
