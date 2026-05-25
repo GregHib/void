@@ -1,38 +1,30 @@
 package content.skill.dungeoneering
+import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Tile
 import java.util.ArrayDeque
+import kotlin.collections.lastIndex
 import kotlin.collections.set
 import kotlin.random.Random
 
-enum class Direction(val dx: Int, val dy: Int) {
-    NORTH(0, -1), SOUTH(0, 1), EAST(1, 0), WEST(-1, 0);
-
-    fun opposite(): Direction = when (this) {
-        NORTH -> SOUTH
-        SOUTH -> NORTH
-        EAST -> WEST
-        WEST -> EAST
-    }
-}
-
 enum class RoomType {
-    START, BOSS, NORMAL, PUZZLE
+    Base, Boss, Normal, Puzzle
 }
 
-enum class DoorType {
-    NORMAL, GUARDIAN, SKILL
+sealed class Door {
+    object Normal : Door()
+    object Guardian : Door()
+    object Skill : Door()
+    data class Locked(val key: Int) : Door()
 }
 
-class Door(
-    var isLocked: Boolean = false,
-    var keyId: Int? = null,
-    var type: DoorType = DoorType.NORMAL
-)
-
-class Room(val x: Int, val y: Int, val isCritical: Boolean) {
-    var type: RoomType = RoomType.NORMAL
+class Room(val tile: Tile, val isCritical: Boolean) {
+    var type: RoomType = RoomType.Normal
     val keyIds = mutableListOf<Int>()
-    val doors = mutableMapOf<Direction, Door>() // TODO replace with array
+    val doors = arrayOfNulls<Door>(4)
 }
+
+private val Direction.index: Int
+    get() = ordinal / 2
 
 class DungeonMap(
     val width: Int,
@@ -40,6 +32,7 @@ class DungeonMap(
     val grid: Array<Room?>,
     private val parentMap: Map<Room, Room>
 ) {
+
     fun prettyPrint(totalCritKeys: Int) {
         val charWidth = 2 * width + 1
         val charHeight = 2 * height + 1
@@ -59,10 +52,10 @@ class DungeonMap(
 
                 // Draw room center
                 renderGrid[cy][cx] = when (room.type) {
-                    RoomType.START -> 'S'
-                    RoomType.BOSS -> 'B'
-                    RoomType.PUZZLE -> 'P'
-                    RoomType.NORMAL -> {
+                    RoomType.Base -> 'S'
+                    RoomType.Boss -> 'B'
+                    RoomType.Puzzle -> 'P'
+                    RoomType.Normal -> {
                         if (room.keyIds.isNotEmpty()) {
                             val firstKey = room.keyIds.first()
                             getKeyChar(firstKey, totalCritKeys)
@@ -73,29 +66,31 @@ class DungeonMap(
                 }
 
                 // Draw doors or walls
-                for (dir in Direction.entries) {
-                    val wx = cx + dir.dx
-                    val wy = cy + dir.dy
-                    val door = room.doors[dir]
+                for (dir in Direction.cardinal) {
+                    val wx = cx + dir.delta.x
+                    val wy = cy + dir.delta.y
+                    val door = room.doors[dir.index]
 
-                    if (door != null) {
-                        if (door.isLocked) {
-                            renderGrid[wy][wx] = getLockChar(door.keyId!!, totalCritKeys)
-                        } else {
-                            // Check if traversing outwards (from parent to child)
-                            val adjacentRoom = grid[(y + dir.dy) * width + (x + dir.dx)]!!
-                            val isOutward = parentMap[adjacentRoom] == room
-
-                            if (isOutward && door.type == DoorType.GUARDIAN) {
-                                renderGrid[wy][wx] = 'G'
-                            } else if (isOutward && door.type == DoorType.SKILL) {
-                                renderGrid[wy][wx] = 'K'
-                            } else {
-                                renderGrid[wy][wx] = ' ' // Standard open passage
-                            }
-                        }
-                    } else {
+                    if (door == null) {
                         renderGrid[wy][wx] = if (dir == Direction.NORTH || dir == Direction.SOUTH) '-' else '|'
+                        continue
+                    }
+
+                    if (door is Door.Locked) {
+                        renderGrid[wy][wx] = getLockChar(door.key, totalCritKeys)
+                        continue
+                    }
+
+                    // Check if traversing outwards (from parent to child)
+                    val adjacentRoom = grid[(y + dir.delta.y) * width + (x + dir.delta.x)]!!
+                    val isOutward = parentMap[adjacentRoom] == room
+
+                    if (isOutward && door is Door.Guardian) {
+                        renderGrid[wy][wx] = 'G'
+                    } else if (isOutward && door is Door.Skill) {
+                        renderGrid[wy][wx] = 'K'
+                    } else {
+                        renderGrid[wy][wx] = ' ' // Standard open passage
                     }
                 }
             }
@@ -116,10 +111,10 @@ class DungeonMap(
                     keysFound = true
                     val keysStr = room.keyIds.map { getKeyChar(it, totalCritKeys) }.joinToString(", ")
                     val typeStr = when (room.type) {
-                        RoomType.START -> "Start Room"
-                        RoomType.BOSS -> "Boss Room"
-                        RoomType.PUZZLE -> "Puzzle Room"
-                        RoomType.NORMAL -> if (room.isCritical) "Critical Normal" else "Bonus Normal"
+                        RoomType.Base -> "Start Room"
+                        RoomType.Boss -> "Boss Room"
+                        RoomType.Puzzle -> "Puzzle Room"
+                        RoomType.Normal -> if (room.isCritical) "Critical Normal" else "Bonus Normal"
                     }
                     println("  Room at ($x, $y) [$typeStr] contains key(s): [ $keysStr ]")
                 }
@@ -158,6 +153,8 @@ class DungeonGenerator(
     val bossDoorLockChance: Double = 0.90,
     val random: Random = Random.Default
 ) {
+
+    private fun Tile.index() = y * width + x
     private var adjTotalRooms = totalRooms
     private var adjCritRooms = criticalRoomsCount
     private var adjCritKeys = criticalKeysCount
@@ -186,7 +183,7 @@ class DungeonGenerator(
     private fun bfs(
         start: Room,
         grid: Array<Room?>,
-        canTraverse: (from: Room, door: Door, neighbour: Room) -> Boolean = { _, _, _ -> true }
+        canTraverse: (from: Room, door: Door?, neighbour: Room) -> Boolean = { _, _, _ -> true }
     ): List<Room> {
         val visitedList = mutableListOf<Room>()
         val visitedSet = mutableSetOf<Room>()
@@ -198,9 +195,10 @@ class DungeonGenerator(
         while (queue.isNotEmpty()) {
             val curr = queue.removeFirst()
             visitedList.add(curr)
-            for ((dir, door) in curr.doors) {
-                val nx = curr.x + dir.dx
-                val ny = curr.y + dir.dy
+            for ((i, door) in curr.doors.withIndex()) {
+                val dir = Direction.cardinal[i]
+                val nx = curr.tile.x + dir.delta.x
+                val ny = curr.tile.y + dir.delta.y
                 if (nx in 0 until width && ny in 0 until height) {
                     val neighbour = grid[ny * width + nx]
                     if (neighbour != null && neighbour !in visitedSet) {
@@ -221,18 +219,18 @@ class DungeonGenerator(
         // 1. Generate the critical path
         val pathCoords = findPathOnGrid(adjCritRooms)
         val pathRooms = mutableListOf<Room>()
-        for (coord in pathCoords) {
-            val room = Room(coord.first, coord.second, isCritical = true)
-            grid[coord.second * width + coord.first] = room
+        for (tile in pathCoords) {
+            val room = Room(tile, isCritical = true)
+            grid[tile.index()] = room
             pathRooms.add(room)
         }
 
-        pathRooms.first().type = RoomType.START
-        pathRooms.last().type = RoomType.BOSS
+        pathRooms.first().type = RoomType.Base
+        pathRooms.last().type = RoomType.Boss
 
         // 2. Select critical doors to lock
         val criticalDoors = mutableListOf<Pair<Room, Room>>()
-        for (i in 0 until pathRooms.size - 1) {
+        for (i in 0 until pathRooms.lastIndex) {
             criticalDoors.add(Pair(pathRooms[i], pathRooms[i + 1]))
         }
 
@@ -243,16 +241,11 @@ class DungeonGenerator(
             val shouldLockBossDoor = random.nextDouble() < bossDoorLockChance
             if (shouldLockBossDoor) {
                 lockedCriticalEdges.add(bossDoorEdge)
-                val availableCount = criticalDoors.size - 1
+                val availableCount = criticalDoors.lastIndex
                 val neededCount = adjCritKeys - 1
                 if (availableCount > 0 && neededCount > 0) {
                     val indices = IntArray(availableCount) { it }
-                    for (i in availableCount - 1 downTo 1) {
-                        val j = random.nextInt(i + 1)
-                        val temp = indices[i]
-                        indices[i] = indices[j]
-                        indices[j] = temp
-                    }
+                    indices.shuffleInPlace()
                     for (i in 0 until neededCount) {
                         lockedCriticalEdges.add(criticalDoors[indices[i]])
                     }
@@ -260,12 +253,7 @@ class DungeonGenerator(
             } else {
                 val availableCount = criticalDoors.size
                 val indices = IntArray(availableCount) { it }
-                for (i in availableCount - 1 downTo 1) {
-                    val j = random.nextInt(i + 1)
-                    val temp = indices[i]
-                    indices[i] = indices[j]
-                    indices[j] = temp
-                }
+                indices.shuffleInPlace()
                 for (i in 0 until adjCritKeys) {
                     lockedCriticalEdges.add(criticalDoors[indices[i]])
                 }
@@ -273,26 +261,26 @@ class DungeonGenerator(
         }
 
         val sortedLockedCriticalEdges = lockedCriticalEdges.sortedBy { pathRooms.indexOf(it.first) }
-
         for ((idx, edge) in sortedLockedCriticalEdges.withIndex()) {
             val r1 = edge.first
             val r2 = edge.second
             val dir = getDirection(r1, r2)
-            val door = Door(isLocked = true, keyId = idx)
-            r1.doors[dir] = door
-            r2.doors[dir.opposite()] = door
+            val door = Door.Locked(idx)
+            r1.doors[dir.index] = door
+            r2.doors[dir.inverse().index] = door
         }
 
         // Connect remaining unlocked critical passages
         for (edge in criticalDoors) {
-            if (edge !in sortedLockedCriticalEdges) {
-                val r1 = edge.first
-                val r2 = edge.second
-                val dir = getDirection(r1, r2)
-                val door = Door(isLocked = false)
-                r1.doors[dir] = door
-                r2.doors[dir.opposite()] = door
+            if (edge in sortedLockedCriticalEdges) {
+                continue
             }
+            val r1 = edge.first
+            val r2 = edge.second
+            val dir = getDirection(r1, r2)
+            val door = Door.Normal
+            r1.doors[dir.index] = door
+            r2.doors[dir.inverse().index] = door
         }
 
         // 3. Grow bonus rooms
@@ -301,20 +289,19 @@ class DungeonGenerator(
         val targetBonusRooms = adjTotalRooms - adjCritRooms
 
         for (b in 0 until targetBonusRooms) {
-            val candidates = grid.filter { it != null && it.type != RoomType.BOSS }
+            val candidates = grid.filter { it != null && it.type != RoomType.Boss }
             val attachment = findAttachmentPoint(grid, candidates) ?: break
 
             val (parentRoom, dir) = attachment
-            val nx = parentRoom.x + dir.dx
-            val ny = parentRoom.y + dir.dy
+            val tile = parentRoom.tile.add(dir)
 
-            val newRoom = Room(nx, ny, isCritical = false)
-            grid[ny * width + nx] = newRoom
+            val newRoom = Room(tile, isCritical = false)
+            grid[tile.index()] = newRoom
             bonusRooms.add(newRoom)
 
-            val door = Door(isLocked = false)
-            parentRoom.doors[dir] = door
-            newRoom.doors[dir.opposite()] = door
+            val door = Door.Normal
+            parentRoom.doors[dir.index] = door
+            newRoom.doors[dir.inverse().index] = door
             currentRoomsCount++
         }
 
@@ -333,37 +320,40 @@ class DungeonGenerator(
             bonusDoors.add(Pair(parent, room))
         }
         val lockedBonusEdges = bonusDoors.shuffled(random).take(adjBonusKeys)
-
         for ((idx, edge) in lockedBonusEdges.withIndex()) {
             val parent = edge.first
             val child = edge.second
             val dir = getDirection(parent, child)
-            val door = parent.doors[dir]!!
-            door.isLocked = true
-            door.keyId = adjCritKeys + idx
+            parent.doors[dir.index] = Door.Locked(adjCritKeys + idx)
         }
 
         // 6. Assign room properties (Puzzle rooms) and door types
         val allActiveRooms = grid.filterNotNull()
         for (room in allActiveRooms) {
-            if (room.type == RoomType.NORMAL && room != startRoom && room != pathRooms.last()) {
+            if (room.type == RoomType.Normal && room != startRoom && room != pathRooms.last()) {
                 // Ensure puzzle rooms are not leaf nodes (they must lead somewhere)
                 val hasChildren = allActiveRooms.any { parentMap[it] == room }
                 if (hasChildren && random.nextDouble() < puzzleRoomChance) {
-                    room.type = RoomType.PUZZLE
+                    room.type = RoomType.Puzzle
                 }
             }
 
-            for ((dir, door) in room.doors) {
-                if (!door.isLocked) {
-                    val neighbor = grid[(room.y + dir.dy) * width + (room.x + dir.dx)]!!
-                    if (parentMap[neighbor] == room) { // Outward-facing transition
-                        val r = random.nextDouble()
-                        door.type = when {
-                            r < skillDoorChance -> DoorType.SKILL
-                            r < skillDoorChance + guardianDoorChance -> DoorType.GUARDIAN
-                            else -> DoorType.NORMAL
-                        }
+            for ((i, door) in room.doors.withIndex()) {
+                if (door == null) {
+                    continue
+                }
+                val dir = Direction.cardinal[i]
+                if (door is Door.Locked) {
+                    continue
+                }
+                val tile = room.tile.add(dir)
+                val neighbor = grid[tile.index()]
+                if (neighbor != null && parentMap[neighbor] == room) { // Outward-facing transition
+                    val r = random.nextDouble()
+                    room.doors[i] = when {
+                        r < skillDoorChance -> Door.Skill
+                        r < skillDoorChance + guardianDoorChance -> Door.Guardian
+                        else -> Door.Normal
                     }
                 }
             }
@@ -373,81 +363,82 @@ class DungeonGenerator(
         val totalKeys = adjCritKeys + adjBonusKeys
         for (i in 0 until totalKeys) {
             val isCriticalKey = (i < adjCritKeys)
-
             // Unified conditional BFS search
             val reachable = bfs(startRoom, grid) { _, door, _ ->
-                !door.isLocked || (door.keyId != null && door.keyId!! < i)
+                door !is Door.Locked || (door.key < i)
             }
-
-            val candidates = if (isCriticalKey) {
-                reachable.filter { it.isCritical && it.type != RoomType.BOSS }
-            } else {
-                reachable.filter { it.type != RoomType.BOSS }
-            }
-
+            val candidates = reachable.filter { it.isCritical == isCriticalKey && it.type != RoomType.Boss }
             val emptyCandidates = candidates.filter { it.keyIds.isEmpty() }
             val targetRoom = if (emptyCandidates.isNotEmpty()) {
-                emptyCandidates.shuffled(random).first()
+                emptyCandidates.random(random)
             } else {
-                candidates.minByOrNull { it.keyIds.size }!!
+                candidates.minBy { it.keyIds.size }
             }
-
             targetRoom.keyIds.add(i)
         }
 
         return DungeonMap(width, height, grid, parentMap)
     }
 
-    private fun findPathOnGrid(targetLength: Int): List<Pair<Int, Int>> {
-
-        val totalCells = width * height
-        val indices = IntArray(totalCells) { it }
-
-        // In-place Fisher-Yates shuffle
-        for (i in totalCells - 1 downTo 1) {
-            val j = random.nextInt(i + 1)
-            val temp = indices[i]
-            indices[i] = indices[j]
-            indices[j] = temp
-        }
+    private fun findPathOnGrid(targetLength: Int): List<Tile> {
+        val indices = IntArray(width * height) { it }
+        indices.shuffleInPlace()
         for (idx in indices) {
             val x = idx % width
             val y = idx / width
             val path = findPath(x, y, targetLength)
-            if (path != null) return path
+            if (path != null) {
+                return path
+            }
         }
         throw IllegalStateException("A path of length $targetLength cannot fit on a ${width}x${height} grid.")
     }
 
-    val localDirs = arrayOf(Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST)
-    private fun findPath(startX: Int, startY: Int, length: Int): List<Pair<Int, Int>>? {
-        val path = mutableListOf<Pair<Int, Int>>()
-        val visited = BooleanArray(width * height)
-        fun dfs(cx: Int, cy: Int): Boolean {
-            path.add(Pair(cx, cy))
-            visited[cy * width + cx] = true
-            if (path.size == length) return true
+    private fun IntArray.shuffleInPlace() {
+        for (i in lastIndex downTo 1) {
+            val j = random.nextInt(i + 1)
+            val temp = this[i]
+            this[i] = this[j]
+            this[j] = temp
+        }
+    }
 
-            for (i in 3 downTo 1) {
-                val j = random.nextInt(i + 1)
-                val temp = localDirs[i]
-                localDirs[i] = localDirs[j]
-                localDirs[j] = temp
+    private fun <T> Array<T>.shuffleInPlace() {
+        for (i in lastIndex downTo 1) {
+            val j = random.nextInt(i + 1)
+            val temp = this[i]
+            this[i] = this[j]
+            this[j] = temp
+        }
+    }
+    private fun findPath(startX: Int, startY: Int, length: Int): List<Tile>? {
+        val path = mutableListOf<Tile>()
+        val visited = BooleanArray(width * height)
+        val localDirs = arrayOf(Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST)
+
+        fun dfs(tile: Tile): Boolean {
+            path.add(tile)
+            visited[tile.index()] = true
+            if (path.size == length) {
+                return true
             }
+
+            localDirs.shuffleInPlace()
             for (dir in localDirs) {
-                val nx = cx + dir.dx
-                val ny = cy + dir.dy
-                if (nx in 0 until width && ny in 0 until height && !visited[ny * width + nx]) {
-                    if (dfs(nx, ny)) return true
+                val neighbour = tile.add(dir)
+                if (neighbour.x in 0 until width && neighbour.y in 0 until height && !visited[neighbour.index()]) {
+                    if (dfs(neighbour)) {
+                        return true
+                    }
                 }
             }
 
             path.removeAt(path.lastIndex)
-            visited[cy * width + cx] = false
+            visited[tile.index()] = false
             return false
         }
 
-        if (dfs(startX, startY)) {
+        if (dfs(Tile(startX, startY))) {
             return path
         }
         return null
@@ -455,10 +446,12 @@ class DungeonGenerator(
 
     private fun findAttachmentPoint(grid: Array<Room?>, rooms: Collection<Room?>): Pair<Room, Direction>? {
         for (room in rooms.shuffled(random)) {
-            for (dir in Direction.entries.shuffled(random)) {
-                val nx = room!!.x + dir.dx
-                val ny = room.y + dir.dy
-                if (nx in 0 until width && ny in 0 until height && grid[ny * width + nx] == null) {
+            if (room == null) {
+                continue
+            }
+            for (dir in Direction.cardinal.shuffled(random)) {
+                val tile = room.tile.add(dir)
+                if (tile.x in 0 until width && tile.y in 0 until height && grid[tile.index()] == null) {
                     return Pair(room, dir)
                 }
             }
@@ -467,19 +460,17 @@ class DungeonGenerator(
     }
 
     private fun getDirection(from: Room, to: Room): Direction {
-        val dx = to.x - from.x
-        val dy = to.y - from.y
-        return Direction.entries.first { it.dx == dx && it.dy == dy }
+        return to.tile.delta(from.tile).toDirection()
     }
 }
 
 fun main() {
-    val width = 5
-    val height = 5
-    val totalRooms = 12
+    val width = 4
+    val height = 4
+    val totalRooms = 6
     val criticalRooms = 6
-    val criticalKeys = 3
-    val bonusKeys = 2
+    val criticalKeys = 2
+    val bonusKeys = 1
 
     println("Generating structured dungeon...")
 
@@ -495,15 +486,11 @@ fun main() {
         guardianDoorChance = 0.20,
         bossDoorLockChance = 0.95
     )
-    generator.generate()
     val start = System.currentTimeMillis()
-    repeat(10) {
-
-        generator.generate()
-    }
+    val dungeon = generator.generate()
     println("Took ${System.currentTimeMillis() - start}ms")
 
-//    dungeon.prettyPrint(totalCritKeys = criticalKeys)
+    dungeon.prettyPrint(totalCritKeys = criticalKeys)
 
     println("\nLegend:")
     println("  S   : Start Room")
