@@ -1,0 +1,2328 @@
+[occult_c1_base]
+type = "string"
+x = "int"
+y = "int"
+doors = "list<boolean>"
+
+[.base_0_nesw]
+x = 8
+y = 680
+doors = [true, true, true, true]
+
+[.base_1_s]
+x = 8
+y = 672
+doors = [false, false, false, true]
+
+[.base_2_sw]
+x = 8
+y = 674
+doors = [true, false, false, true]
+
+[.base_3_ns]
+x = 8
+y = 676
+doors = [false, true, false, true]
+
+[.base_4_nsw]
+x = 8
+y = 678
+doors = [true, true, false, true]
+
+[occult_c1_boss]
+type = "string"
+x = "int"
+y = "int"
+doors = "list<boolean>"
+
+[.boss_0_s]
+type = "boss"
+x = 26
+y = 674
+doors = [false, false, false, true]
+
+[.boss_1_s]
+type = "boss"
+x = 28
+y = 672
+doors = [false, false, false, true]
+
+[.boss_2_s]
+type = "boss"
+x = 30
+y = 672
+doors = [false, false, false, true]
+
+[.boss_3_s]
+type = "boss"
+x = 24
+y = 672
+doors = [false, false, false, true]
+
+[.boss_4_s]
+type = "boss"
+x = 24
+y = 674
+doors = [false, false, false, true]
+
+[.boss_5_s]
+type = "boss"
+x = 26
+y = 672
+doors = [false, false, false, true]
+
+[occult_c1_normal]
+type = "string"
+x = "int"
+y = "int"
+doors = "list<boolean>"
+
+[.normal_0_ns]
+x = 48
+y = 388
+doors = [false, true, false, true]
+
+[.normal_1_ns]
+x = 50
+y = 388
+doors = [false, true, false, true]
+
+[.normal_2_s]
+x = 52
+y = 384
+doors = [false, false, false, true]
+
+[.normal_3_ns]
+x = 32
+y = 388
+doors = [false, true, false, true]
+
+[.normal_4_nsw]
+x = 64
+y = 390
+doors = [true, true, false, true]
+
+[.normal_5_ns]
+x = 66
+y = 388
+doors = [false, true, false, true]
+
+[.normal_6_s]
+x = 70
+y = 384
+doors = [false, false, false, true]
+
+[.normal_7_sw]
+x = 70
+y = 386
+doors = [true, false, false, true]
+
+[.normal_8_nesw]
+x = 10
+y = 392
+doors = [true, true, true, true]
+
+[.normal_9_nesw]
+x = 12
+y = 392
+doors = [true, true, true, true]
+
+[.normal_10_ns]
+x = 42
+y = 388
+doors = [false, true, false, true]
+
+[.normal_11_ns]
+x = 44
+y = 388
+doors = [false, true, false, true]
+
+[.normal_12_ns]
+x = 46
+y = 388
+doors = [false, true, false, true]
+
+[.normal_13_nesw]
+x = 16
+y = 408
+doors = [true, true, true, true]
+
+[.normal_14_nesw]
+x = 22
+y = 408
+doors = [true, true, true, true]
+
+[.normal_15_nesw]
+x = 66
+y = 392
+doors = [true, true, true, true]
+
+[.normal_16_nsw]
+x = 72
+y = 390
+doors = [true, true, false, true]
+
+[.normal_17_sw]
+x = 72
+y = 386
+doors = [true, false, false, true]
+
+[.normal_18_ns]
+x = 74
+y = 388
+doors = [false, true, false, true]
+
+[.normal_19_nsw]
+x = 74
+y = 390
+doors = [true, true, false, true]
+
+[.normal_20_s]
+x = 76
+y = 384
+doors = [false, false, false, true]
+
+[.normal_21_nsw]
+x = 78
+y = 390
+doors = [true, true, false, true]
+
+[.normal_22_nsw]
+x = 28
+y = 390
+doors = [true, true, false, true]
+
+[.normal_23_ns]
+x = 30
+y = 388
+doors = [false, true, false, true]
+
+[.normal_24_sw]
+x = 24
+y = 402
+doors = [true, false, false, true]
+
+[.normal_25_s]
+x = 8
+y = 400
+doors = [false, false, false, true]
+
+[.normal_26_nsw]
+x = 8
+y = 406
+doors = [true, true, false, true]
+
+[.normal_27_sw]
+x = 10
+y = 402
+doors = [true, false, false, true]
+
+[.normal_28_nsw]
+x = 10
+y = 406
+doors = [true, true, false, true]
+
+[.normal_29_sw]
+x = 12
+y = 402
+doors = [true, false, false, true]
+
+[.normal_30_nsw]
+x = 12
+y = 406
+doors = [true, true, false, true]
+
+[.normal_31_s]
+x = 14
+y = 400
+doors = [false, false, false, true]
+
+[.normal_32_nsw]
+x = 14
+y = 406
+doors = [true, true, false, true]
+
+[.normal_33_sw]
+x = 14
+y = 402
+doors = [true, false, false, true]
+
+[.normal_34_s]
+x = 58
+y = 384
+doors = [false, false, false, true]
+
+[.normal_35_sw]
+x = 62
+y = 386
+doors = [true, false, false, true]
+
+[.normal_36_s]
+x = 62
+y = 384
+doors = [false, false, false, true]
+
+[.normal_37_nesw]
+x = 80
+y = 588
+doors = [true, true, true, true]
+
+[.normal_38_esw]
+x = 80
+y = 584
+doors = [true, false, true, true]
+
+[.normal_39_nes]
+x = 80
+y = 586
+doors = [false, true, true, true]
+
+[.normal_40_nesw]
+x = 24
+y = 408
+doors = [true, true, true, true]
+
+[.normal_41_es]
+x = 80
+y = 578
+doors = [false, false, true, true]
+
+[.normal_42_nsw]
+x = 80
+y = 582
+doors = [true, true, false, true]
+
+[.normal_43_sw]
+x = 80
+y = 576
+doors = [true, false, false, true]
+
+[.normal_44_ns]
+x = 80
+y = 580
+doors = [false, true, false, true]
+
+[.normal_45_s]
+x = 18
+y = 384
+doors = [false, false, false, true]
+
+[.normal_46_s]
+x = 20
+y = 384
+doors = [false, false, false, true]
+
+[.normal_47_ns]
+x = 16
+y = 404
+doors = [false, true, false, true]
+
+[.normal_48_nsw]
+x = 16
+y = 406
+doors = [true, true, false, true]
+
+[.normal_49_ns]
+x = 18
+y = 404
+doors = [false, true, false, true]
+
+[.normal_50_sw]
+x = 22
+y = 402
+doors = [true, false, false, true]
+
+[.normal_51_ns]
+x = 22
+y = 404
+doors = [false, true, false, true]
+
+[.normal_52_s]
+x = 22
+y = 400
+doors = [false, false, false, true]
+
+[.normal_53_ns]
+x = 8
+y = 388
+doors = [false, true, false, true]
+
+[.normal_54_nsw]
+x = 8
+y = 390
+doors = [true, true, false, true]
+
+[.normal_55_s]
+x = 10
+y = 384
+doors = [false, false, false, true]
+
+[.normal_56_ns]
+x = 12
+y = 388
+doors = [false, true, false, true]
+
+[.normal_57_sw]
+x = 12
+y = 386
+doors = [true, false, false, true]
+
+[.normal_58_s]
+x = 12
+y = 384
+doors = [false, false, false, true]
+
+[.normal_59_s]
+x = 14
+y = 384
+doors = [false, false, false, true]
+
+[.normal_60_nesw]
+x = 10
+y = 408
+doors = [true, true, true, true]
+
+[.normal_61_nesw]
+x = 12
+y = 408
+doors = [true, true, true, true]
+
+[.normal_62_nesw]
+x = 62
+y = 392
+doors = [true, true, true, true]
+
+[.normal_63_nesw]
+x = 74
+y = 392
+doors = [true, true, true, true]
+
+[.normal_64_nesw]
+x = 76
+y = 392
+doors = [true, true, true, true]
+
+[occult_c3_base]
+type = "string"
+x = "int"
+y = "int"
+doors = "list<boolean>"
+
+[.base_0_nesw]
+x = 10
+y = 680
+doors = [true, true, true, true]
+
+[.base_1_s]
+x = 10
+y = 672
+doors = [false, false, false, true]
+
+[.base_2_sw]
+x = 10
+y = 674
+doors = [true, false, false, true]
+
+[.base_3_ns]
+x = 10
+y = 676
+doors = [false, true, false, true]
+
+[.base_4_nsw]
+x = 10
+y = 678
+doors = [true, true, false, true]
+
+[occult_c3_normal]
+type = "string"
+x = "int"
+y = "int"
+doors = "list<boolean>"
+
+[.normal_0_ns]
+x = 64
+y = 388
+doors = [false, true, false, true]
+
+[.normal_1_sw]
+x = 68
+y = 386
+doors = [true, false, false, true]
+
+[.normal_2_sw]
+x = 20
+y = 402
+doors = [true, false, false, true]
+
+[occult_c4_base]
+type = "string"
+x = "int"
+y = "int"
+doors = "list<boolean>"
+
+[.base_0_nesw]
+x = 12
+y = 680
+doors = [true, true, true, true]
+
+[.base_1_s]
+x = 12
+y = 672
+doors = [false, false, false, true]
+
+[.base_2_sw]
+x = 12
+y = 674
+doors = [true, false, false, true]
+
+[.base_3_ns]
+x = 12
+y = 676
+doors = [false, true, false, true]
+
+[.base_4_nsw]
+x = 12
+y = 678
+doors = [true, true, false, true]
+
+[occult_c4_normal]
+type = "string"
+x = "int"
+y = "int"
+doors = "list<boolean>"
+
+[.normal_0_sw]
+x = 64
+y = 386
+doors = [true, false, false, true]
+
+[.normal_1_s]
+x = 66
+y = 384
+doors = [false, false, false, true]
+
+[.normal_2_s]
+x = 68
+y = 384
+doors = [false, false, false, true]
+
+[.normal_3_ns]
+x = 40
+y = 388
+doors = [false, true, false, true]
+
+[.normal_4_s]
+x = 72
+y = 384
+doors = [false, false, false, true]
+
+[.normal_5_ns]
+x = 76
+y = 388
+doors = [false, true, false, true]
+
+[.normal_6_sw]
+x = 8
+y = 402
+doors = [true, false, false, true]
+
+[.normal_7_s]
+x = 56
+y = 384
+doors = [false, false, false, true]
+
+[.normal_8_s]
+x = 16
+y = 400
+doors = [false, false, false, true]
+
+[.normal_9_nesw]
+x = 78
+y = 392
+doors = [true, true, true, true]
+
+[occult_c5_base]
+type = "string"
+x = "int"
+y = "int"
+doors = "list<boolean>"
+
+[.base_0_nesw]
+x = 14
+y = 680
+doors = [true, true, true, true]
+
+[.base_1_s]
+x = 14
+y = 672
+doors = [false, false, false, true]
+
+[.base_2_sw]
+x = 14
+y = 674
+doors = [true, false, false, true]
+
+[.base_3_ns]
+x = 14
+y = 676
+doors = [false, true, false, true]
+
+[.base_4_nsw]
+x = 14
+y = 678
+doors = [true, true, false, true]
+
+[occult_c5_normal]
+type = "string"
+x = "int"
+y = "int"
+doors = "list<boolean>"
+
+[.normal_0_s]
+x = 54
+y = 384
+doors = [false, false, false, true]
+
+[.normal_1_sw]
+x = 34
+y = 386
+doors = [true, false, false, true]
+
+[.normal_2_nsw]
+x = 38
+y = 390
+doors = [true, true, false, true]
+
+[.normal_3_s]
+x = 64
+y = 384
+doors = [false, false, false, true]
+
+[.normal_4_nsw]
+x = 66
+y = 390
+doors = [true, true, false, true]
+
+[.normal_5_sw]
+x = 66
+y = 386
+doors = [true, false, false, true]
+
+[.normal_6_ns]
+x = 68
+y = 388
+doors = [false, true, false, true]
+
+[.normal_7_nsw]
+x = 68
+y = 390
+doors = [true, true, false, true]
+
+[.normal_8_ns]
+x = 70
+y = 388
+doors = [false, true, false, true]
+
+[.normal_9_nsw]
+x = 70
+y = 390
+doors = [true, true, false, true]
+
+[.normal_10_nesw]
+x = 8
+y = 392
+doors = [true, true, true, true]
+
+[.normal_11_nesw]
+x = 18
+y = 408
+doors = [true, true, true, true]
+
+[.normal_12_nesw]
+x = 64
+y = 392
+doors = [true, true, true, true]
+
+[.normal_13_ns]
+x = 72
+y = 388
+doors = [false, true, false, true]
+
+[.normal_14_s]
+x = 74
+y = 384
+doors = [false, false, false, true]
+
+[.normal_15_sw]
+x = 74
+y = 386
+doors = [true, false, false, true]
+
+[.normal_16_sw]
+x = 76
+y = 386
+doors = [true, false, false, true]
+
+[.normal_17_nsw]
+x = 76
+y = 390
+doors = [true, true, false, true]
+
+[.normal_18_ns]
+x = 78
+y = 388
+doors = [false, true, false, true]
+
+[.normal_19_s]
+x = 78
+y = 384
+doors = [false, false, false, true]
+
+[.normal_20_sw]
+x = 78
+y = 386
+doors = [true, false, false, true]
+
+[.normal_21_sw]
+x = 24
+y = 386
+doors = [true, false, false, true]
+
+[.normal_22_sw]
+x = 26
+y = 386
+doors = [true, false, false, true]
+
+[.normal_23_ns]
+x = 8
+y = 404
+doors = [false, true, false, true]
+
+[.normal_24_s]
+x = 10
+y = 400
+doors = [false, false, false, true]
+
+[.normal_25_ns]
+x = 10
+y = 404
+doors = [false, true, false, true]
+
+[.normal_26_ns]
+x = 12
+y = 404
+doors = [false, true, false, true]
+
+[.normal_27_s]
+x = 12
+y = 400
+doors = [false, false, false, true]
+
+[.normal_28_ns]
+x = 14
+y = 404
+doors = [false, true, false, true]
+
+[.normal_29_s]
+x = 60
+y = 384
+doors = [false, false, false, true]
+
+[.normal_30_ns]
+x = 62
+y = 388
+doors = [false, true, false, true]
+
+[.normal_31_nsw]
+x = 62
+y = 390
+doors = [true, true, false, true]
+
+[.normal_32_nesw]
+x = 36
+y = 392
+doors = [true, true, true, true]
+
+[.normal_33_s]
+x = 16
+y = 384
+doors = [false, false, false, true]
+
+[.normal_34_s]
+x = 22
+y = 384
+doors = [false, false, false, true]
+
+[.normal_35_sw]
+x = 16
+y = 402
+doors = [true, false, false, true]
+
+[.normal_36_nsw]
+x = 22
+y = 406
+doors = [true, true, false, true]
+
+[.normal_37_s]
+x = 8
+y = 384
+doors = [false, false, false, true]
+
+[.normal_38_sw]
+x = 8
+y = 386
+doors = [true, false, false, true]
+
+[.normal_39_ns]
+x = 10
+y = 388
+doors = [false, true, false, true]
+
+[.normal_40_nsw]
+x = 10
+y = 390
+doors = [true, true, false, true]
+
+[.normal_41_sw]
+x = 10
+y = 386
+doors = [true, false, false, true]
+
+[.normal_42_nsw]
+x = 12
+y = 390
+doors = [true, true, false, true]
+
+[.normal_43_nesw]
+x = 8
+y = 408
+doors = [true, true, true, true]
+
+[.normal_44_nesw]
+x = 14
+y = 408
+doors = [true, true, true, true]
+
+[.normal_45_nesw]
+x = 72
+y = 392
+doors = [true, true, true, true]
+
+[occult_c5_puzzle]
+type = "string"
+x = "int"
+y = "int"
+doors = "list<boolean>"
+
+[.puzzle_0_es]
+type = "suspicious_grooves"
+x = 34
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_1_ns]
+type = "suspicious_grooves"
+x = 34
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_2_sw]
+type = "agility_maze"
+x = 36
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_3_es]
+type = "agility_maze"
+x = 36
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_4_ns]
+type = "agility_maze"
+x = 36
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_5_nsw]
+type = "agility_maze"
+x = 36
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_6_es]
+type = "levers"
+x = 38
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_7_sw]
+type = "fishing_ferret"
+x = 32
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_8_nsw]
+type = "fishing_ferret"
+x = 32
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_9_es]
+type = "fishing_ferret"
+x = 32
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_10_ns]
+type = "fishing_ferret"
+x = 32
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_11_sw]
+type = "suspicious_grooves"
+x = 34
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_12_nsw]
+type = "suspicious_grooves"
+x = 34
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_13_sw]
+type = "levers"
+x = 38
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_14_nsw]
+type = "levers"
+x = 38
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_15_ns]
+type = "levers"
+x = 38
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_16_esw]
+type = "toxin_maze"
+x = 20
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_17_nes]
+type = "toxin_maze"
+x = 20
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_18_nesw]
+type = "toxin_maze"
+x = 20
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_19_nesw]
+type = "icy_pressure_pad"
+x = 22
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_20_esw]
+type = "icy_pressure_pad"
+x = 22
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_21_nes]
+type = "icy_pressure_pad"
+x = 22
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_22_esw]
+type = "three_statue_weapon"
+x = 16
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_23_nesw]
+type = "three_statue_weapon"
+x = 16
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_24_nes]
+type = "three_statue_weapon"
+x = 16
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_25_esw]
+type = "follow_the_leader"
+x = 18
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_26_nesw]
+type = "follow_the_leader"
+x = 18
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_27_nes]
+type = "follow_the_leader"
+x = 18
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_28_esw]
+type = "barrel_puzzle"
+x = 40
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_29_nesw]
+type = "barrel_puzzle"
+x = 40
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_30_nes]
+type = "barrel_puzzle"
+x = 40
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_31_esw]
+type = "sliding_statues"
+x = 42
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_32_nesw]
+type = "sliding_statues"
+x = 42
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_33_nes]
+type = "sliding_statues"
+x = 42
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_34_esw]
+type = "hunter_ferret"
+x = 44
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_35_nesw]
+type = "hunter_ferret"
+x = 44
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_36_nes]
+type = "hunter_ferret"
+x = 44
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_37_esw]
+type = "magic_construct"
+x = 46
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_38_nesw]
+type = "magic_construct"
+x = 46
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_39_nes]
+type = "magic_construct"
+x = 46
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_40_nesw]
+type = "flip_tiles"
+x = 24
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_41_esw]
+type = "flip_tiles"
+x = 24
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_42_nes]
+type = "flip_tiles"
+x = 24
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_43_nesw]
+type = "fremennik_camp"
+x = 26
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_44_esw]
+type = "fremennik_camp"
+x = 26
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_45_nes]
+type = "fremennik_camp"
+x = 26
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_46_esw]
+type = "ten_statue_weapon"
+x = 28
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_47_nesw]
+type = "ten_statue_weapon"
+x = 28
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_48_nes]
+type = "ten_statue_weapon"
+x = 28
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_49_esw]
+type = "lodestone_power"
+x = 30
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_50_nesw]
+type = "lodestone_power"
+x = 30
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_51_nes]
+type = "lodestone_power"
+x = 30
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_52_esw]
+type = "statue_bridge"
+x = 64
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_53_nesw]
+type = "statue_bridge"
+x = 64
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_54_nes]
+type = "statue_bridge"
+x = 64
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_55_esw]
+type = "return_the_flow"
+x = 66
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_56_nesw]
+type = "return_the_flow"
+x = 66
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_57_nes]
+type = "return_the_flow"
+x = 66
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_58_esw]
+type = "coloured_recess"
+x = 68
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_59_nesw]
+type = "coloured_recess"
+x = 68
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_60_nes]
+type = "coloured_recess"
+x = 68
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_61_esw]
+type = "winch_bridge"
+x = 70
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_62_nesw]
+type = "winch_bridge"
+x = 70
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_63_nes]
+type = "winch_bridge"
+x = 70
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_64_sw]
+type = "grapple_tightrope"
+x = 56
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_65_ns]
+type = "unhappy_ghost"
+x = 60
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_66_nsw]
+type = "grapple_tightrope"
+x = 56
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_67_es]
+type = "grapple_tightrope"
+x = 56
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_68_ns]
+type = "grapple_tightrope"
+x = 56
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_69_sw]
+type = "pondskaters"
+x = 58
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_70_nsw]
+type = "pondskaters"
+x = 58
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_71_es]
+type = "pondskaters"
+x = 58
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_72_ns]
+type = "pondskaters"
+x = 58
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_73_sw]
+type = "unhappy_ghost"
+x = 60
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_74_nsw]
+type = "unhappy_ghost"
+x = 60
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_75_es]
+type = "unhappy_ghost"
+x = 60
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_76_sw]
+type = "broken_plank_bridge"
+x = 62
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_77_nsw]
+type = "broken_plank_bridge"
+x = 62
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_78_es]
+type = "broken_plank_bridge"
+x = 62
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_79_ns]
+type = "broken_plank_bridge"
+x = 62
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_80_esw]
+type = "collapsing_room"
+x = 10
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_81_nes]
+type = "collapsing_room"
+x = 10
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_82_nesw]
+type = "collapsing_room"
+x = 10
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_83_esw]
+type = "monolith"
+x = 8
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_84_nesw]
+type = "monolith"
+x = 8
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_85_nes]
+type = "monolith"
+x = 8
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_86_esw]
+type = "crystal_puzzle"
+x = 12
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_87_nesw]
+type = "crystal_puzzle"
+x = 12
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_88_nes]
+type = "crystal_puzzle"
+x = 12
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_89_s]
+type = "ghosts"
+x = 14
+y = 584
+doors = [false, false, false, true]
+
+[.puzzle_90_s]
+type = "ghosts"
+x = 14
+y = 588
+doors = [false, false, false, true]
+
+[.puzzle_91_s]
+type = "ghosts"
+x = 14
+y = 586
+doors = [false, false, false, true]
+
+[.puzzle_92_sw]
+type = "barrel_puzzle"
+x = 40
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_93_nsw]
+type = "barrel_puzzle"
+x = 40
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_94_es]
+type = "barrel_puzzle"
+x = 40
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_95_ns]
+type = "barrel_puzzle"
+x = 40
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_96_sw]
+type = "sliding_statues"
+x = 42
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_97_nsw]
+type = "sliding_statues"
+x = 42
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_98_es]
+type = "sliding_statues"
+x = 42
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_99_ns]
+type = "sliding_statues"
+x = 42
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_100_sw]
+type = "hunter_ferret"
+x = 44
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_101_nsw]
+type = "hunter_ferret"
+x = 44
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_102_es]
+type = "hunter_ferret"
+x = 44
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_103_ns]
+type = "hunter_ferret"
+x = 44
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_104_sw]
+type = "magic_construct"
+x = 46
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_105_nsw]
+type = "magic_construct"
+x = 46
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_106_es]
+type = "magic_construct"
+x = 46
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_107_ns]
+type = "magic_construct"
+x = 46
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_108_esw]
+type = "suspicious_grooves"
+x = 34
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_109_esw]
+type = "agility_maze"
+x = 36
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_110_nesw]
+type = "agility_maze"
+x = 36
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_111_nes]
+type = "agility_maze"
+x = 36
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_112_esw]
+type = "fishing_ferret"
+x = 32
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_113_nesw]
+type = "fishing_ferret"
+x = 32
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_114_nes]
+type = "fishing_ferret"
+x = 32
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_115_nesw]
+type = "suspicious_grooves"
+x = 34
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_116_nes]
+type = "suspicious_grooves"
+x = 34
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_117_esw]
+type = "levers"
+x = 38
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_118_nesw]
+type = "levers"
+x = 38
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_119_nes]
+type = "levers"
+x = 38
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_120_s]
+type = "ramokee_familiars"
+x = 74
+y = 588
+doors = [false, false, false, true]
+
+[.puzzle_121_esw]
+type = "coloured_ferrets"
+x = 78
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_122_s]
+type = "mercenary_leader"
+x = 72
+y = 584
+doors = [false, false, false, true]
+
+[.puzzle_123_s]
+type = "mercenary_leader"
+x = 72
+y = 588
+doors = [false, false, false, true]
+
+[.puzzle_124_s]
+type = "mercenary_leader"
+x = 72
+y = 586
+doors = [false, false, false, true]
+
+[.puzzle_125_s]
+type = "ramokee_familiars"
+x = 74
+y = 584
+doors = [false, false, false, true]
+
+[.puzzle_126_s]
+type = "ramokee_familiars"
+x = 74
+y = 586
+doors = [false, false, false, true]
+
+[.puzzle_127_esw]
+type = "sliding_block"
+x = 76
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_128_nesw]
+type = "sliding_block"
+x = 76
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_129_nes]
+type = "sliding_block"
+x = 76
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_130_nesw]
+type = "coloured_ferrets"
+x = 78
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_131_nes]
+type = "coloured_ferrets"
+x = 78
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_132_sw]
+type = "statue_bridge"
+x = 64
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_133_nsw]
+type = "statue_bridge"
+x = 64
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_134_es]
+type = "statue_bridge"
+x = 64
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_135_ns]
+type = "statue_bridge"
+x = 64
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_136_sw]
+type = "return_the_flow"
+x = 66
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_137_nsw]
+type = "return_the_flow"
+x = 66
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_138_es]
+type = "return_the_flow"
+x = 66
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_139_ns]
+type = "return_the_flow"
+x = 66
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_140_sw]
+type = "coloured_recess"
+x = 68
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_141_nsw]
+type = "coloured_recess"
+x = 68
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_142_es]
+type = "coloured_recess"
+x = 68
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_143_ns]
+type = "coloured_recess"
+x = 68
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_144_sw]
+type = "winch_bridge"
+x = 70
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_145_nsw]
+type = "winch_bridge"
+x = 70
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_146_es]
+type = "winch_bridge"
+x = 70
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_147_ns]
+type = "winch_bridge"
+x = 70
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_148_nesw]
+type = "broken_plank_bridge"
+x = 62
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_149_esw]
+type = "grapple_tightrope"
+x = 56
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_150_nesw]
+type = "grapple_tightrope"
+x = 56
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_151_nes]
+type = "grapple_tightrope"
+x = 56
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_152_esw]
+type = "pondskaters"
+x = 58
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_153_nesw]
+type = "pondskaters"
+x = 58
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_154_nes]
+type = "pondskaters"
+x = 58
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_155_esw]
+type = "unhappy_ghost"
+x = 60
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_156_nesw]
+type = "unhappy_ghost"
+x = 60
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_157_nes]
+type = "unhappy_ghost"
+x = 60
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_158_esw]
+type = "broken_plank_bridge"
+x = 62
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_159_nes]
+type = "broken_plank_bridge"
+x = 62
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_160_ns]
+type = "poltergeist"
+x = 52
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_161_sw]
+type = "enigmatic_hoardstalker"
+x = 48
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_162_nsw]
+type = "enigmatic_hoardstalker"
+x = 48
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_163_es]
+type = "enigmatic_hoardstalker"
+x = 48
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_164_ns]
+type = "enigmatic_hoardstalker"
+x = 48
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_165_sw]
+type = "flower_roots"
+x = 50
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_166_nsw]
+type = "flower_roots"
+x = 50
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_167_es]
+type = "flower_roots"
+x = 50
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_168_ns]
+type = "flower_roots"
+x = 50
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_169_sw]
+type = "poltergeist"
+x = 52
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_170_nsw]
+type = "poltergeist"
+x = 52
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_171_es]
+type = "poltergeist"
+x = 52
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_172_sw]
+type = "keystone_bridge"
+x = 54
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_173_nsw]
+type = "keystone_bridge"
+x = 54
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_174_es]
+type = "keystone_bridge"
+x = 54
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_175_ns]
+type = "keystone_bridge"
+x = 54
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_176_nesw]
+type = "keystone_bridge"
+x = 54
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_177_esw]
+type = "enigmatic_hoardstalker"
+x = 48
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_178_nesw]
+type = "enigmatic_hoardstalker"
+x = 48
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_179_nes]
+type = "enigmatic_hoardstalker"
+x = 48
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_180_esw]
+type = "flower_roots"
+x = 50
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_181_nesw]
+type = "flower_roots"
+x = 50
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_182_nes]
+type = "flower_roots"
+x = 50
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_183_esw]
+type = "poltergeist"
+x = 52
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_184_nesw]
+type = "poltergeist"
+x = 52
+y = 588
+doors = [true, true, true, true]
+
+[.puzzle_185_nes]
+type = "poltergeist"
+x = 52
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_186_esw]
+type = "keystone_bridge"
+x = 54
+y = 584
+doors = [true, false, true, true]
+
+[.puzzle_187_nes]
+type = "keystone_bridge"
+x = 54
+y = 586
+doors = [false, true, true, true]
+
+[.puzzle_188_s]
+type = "ramokee_familiars"
+x = 74
+y = 578
+doors = [false, false, false, true]
+
+[.puzzle_189_s]
+type = "ramokee_familiars"
+x = 74
+y = 580
+doors = [false, false, false, true]
+
+[.puzzle_190_ns]
+type = "sliding_block"
+x = 76
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_191_sw]
+type = "coloured_ferrets"
+x = 78
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_192_s]
+type = "mercenary_leader"
+x = 72
+y = 576
+doors = [false, false, false, true]
+
+[.puzzle_193_s]
+type = "mercenary_leader"
+x = 72
+y = 582
+doors = [false, false, false, true]
+
+[.puzzle_194_s]
+type = "mercenary_leader"
+x = 72
+y = 578
+doors = [false, false, false, true]
+
+[.puzzle_195_s]
+type = "mercenary_leader"
+x = 72
+y = 580
+doors = [false, false, false, true]
+
+[.puzzle_196_s]
+type = "ramokee_familiars"
+x = 74
+y = 576
+doors = [false, false, false, true]
+
+[.puzzle_197_s]
+type = "ramokee_familiars"
+x = 74
+y = 582
+doors = [false, false, false, true]
+
+[.puzzle_198_sw]
+type = "sliding_block"
+x = 76
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_199_nsw]
+type = "sliding_block"
+x = 76
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_200_es]
+type = "sliding_block"
+x = 76
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_201_nsw]
+type = "coloured_ferrets"
+x = 78
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_202_es]
+type = "coloured_ferrets"
+x = 78
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_203_ns]
+type = "coloured_ferrets"
+x = 78
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_204_sw]
+type = "toxin_maze"
+x = 20
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_205_es]
+type = "toxin_maze"
+x = 20
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_206_ns]
+type = "toxin_maze"
+x = 20
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_207_nsw]
+type = "toxin_maze"
+x = 20
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_208_es]
+type = "icy_pressure_pad"
+x = 22
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_209_nsw]
+type = "icy_pressure_pad"
+x = 22
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_210_sw]
+type = "icy_pressure_pad"
+x = 22
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_211_ns]
+type = "icy_pressure_pad"
+x = 22
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_212_sw]
+type = "three_statue_weapon"
+x = 16
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_213_nsw]
+type = "three_statue_weapon"
+x = 16
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_214_es]
+type = "three_statue_weapon"
+x = 16
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_215_ns]
+type = "three_statue_weapon"
+x = 16
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_216_sw]
+type = "follow_the_leader"
+x = 18
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_217_nsw]
+type = "follow_the_leader"
+x = 18
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_218_es]
+type = "follow_the_leader"
+x = 18
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_219_ns]
+type = "follow_the_leader"
+x = 18
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_220_ns]
+type = "flip_tiles"
+x = 24
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_221_sw]
+type = "flip_tiles"
+x = 24
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_222_nsw]
+type = "flip_tiles"
+x = 24
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_223_es]
+type = "flip_tiles"
+x = 24
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_224_sw]
+type = "fremennik_camp"
+x = 26
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_225_es]
+type = "fremennik_camp"
+x = 26
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_226_ns]
+type = "fremennik_camp"
+x = 26
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_227_nsw]
+type = "fremennik_camp"
+x = 26
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_228_sw]
+type = "ten_statue_weapon"
+x = 28
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_229_nsw]
+type = "ten_statue_weapon"
+x = 28
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_230_es]
+type = "ten_statue_weapon"
+x = 28
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_231_ns]
+type = "ten_statue_weapon"
+x = 28
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_232_sw]
+type = "lodestone_power"
+x = 30
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_233_nsw]
+type = "lodestone_power"
+x = 30
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_234_es]
+type = "lodestone_power"
+x = 30
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_235_ns]
+type = "lodestone_power"
+x = 30
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_236_sw]
+type = "monolith"
+x = 8
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_237_sw]
+type = "collapsing_room"
+x = 10
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_238_ns]
+type = "collapsing_room"
+x = 10
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_239_nsw]
+type = "collapsing_room"
+x = 10
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_240_es]
+type = "collapsing_room"
+x = 10
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_241_es]
+type = "crystal_puzzle"
+x = 12
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_242_nsw]
+type = "monolith"
+x = 8
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_243_es]
+type = "monolith"
+x = 8
+y = 578
+doors = [false, false, true, true]
+
+[.puzzle_244_ns]
+type = "monolith"
+x = 8
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_245_sw]
+type = "crystal_puzzle"
+x = 12
+y = 576
+doors = [true, false, false, true]
+
+[.puzzle_246_nsw]
+type = "crystal_puzzle"
+x = 12
+y = 582
+doors = [true, true, false, true]
+
+[.puzzle_247_ns]
+type = "crystal_puzzle"
+x = 12
+y = 580
+doors = [false, true, false, true]
+
+[.puzzle_248_s]
+type = "ghosts"
+x = 14
+y = 576
+doors = [false, false, false, true]
+
+[.puzzle_249_s]
+type = "ghosts"
+x = 14
+y = 582
+doors = [false, false, false, true]
+
+[.puzzle_250_s]
+type = "ghosts"
+x = 14
+y = 578
+doors = [false, false, false, true]
+
+[.puzzle_251_s]
+type = "ghosts"
+x = 14
+y = 580
+doors = [false, false, false, true]
+
