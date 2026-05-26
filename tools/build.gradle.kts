@@ -49,3 +49,9 @@ tasks.register<JavaExec>("importPetTranscript") {
     mainClass.set("world.gregs.voidps.tools.cache.ImportPetTranscript")
     workingDir = rootDir
 }
+
+tasks.register<JavaExec>("fixEnums") {
+    classpath = sourceSets["main"].runtimeClasspath
+    mainClass.set("world.gregs.voidps.tools.cache.FixEnums")
+    workingDir = rootDir
+}

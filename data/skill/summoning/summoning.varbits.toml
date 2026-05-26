@@ -111,6 +111,8 @@ values = {
     iron_titan = 27,
     pack_yak = 0,
     steel_titan = 27,
+    pet_sneakerpeeper_baby = 37,
+    pet_sneakerpeeper = 37,
 }
 
 [pet_details_growth_percentage]
