@@ -29,6 +29,8 @@ import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.network.login.protocol.encode.*
 import kotlin.collections.iterator
 
+private const val MAX_EXPR_SCAN_RANGE = 1024
+
 class InterfaceCommands(
     val inventoryDefinitions: InventoryDefinitions,
     scriptDefinitions: ClientScriptDefinitions,
@@ -143,12 +145,20 @@ class InterfaceCommands(
     }
 
     fun scanExpressions(player: Player, args: List<String>) {
-        val npcId = args[0].toInt()
-        val start = args[1].toInt()
-        val end = args[2].toInt()
+        val npcId = args[0].toIntOrNull()
+        val start = args[1].toIntOrNull()
+        val end = args[2].toIntOrNull()
+        if (npcId == null || start == null || end == null) {
+            player.message("expr_scan: npc-id / start-anim / end-anim must all be integers")
+            return
+        }
         val tickDelay = args.getOrNull(3)?.toIntOrNull()?.coerceAtLeast(1) ?: 3
         if (start > end) {
             player.message("expr_scan: start ($start) must be <= end ($end)")
+            return
+        }
+        if (end - start > MAX_EXPR_SCAN_RANGE) {
+            player.message("expr_scan: range ${end - start} exceeds $MAX_EXPR_SCAN_RANGE")
             return
         }
         player.queue("expr_scan") {
