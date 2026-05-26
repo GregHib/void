@@ -125,20 +125,17 @@ fun Player.updatePetInterface() {
     // labels like "Release Cat". Everything else (dogs, dragons, etc.) uses
     // the generic follower iface 662 ("familiar_details").
     val ifaceId = if (row?.isCatLike() == true) "pet_details" else "familiar_details"
-    interfaces.open(ifaceId)
     val itemStringId = get("pet_active_item", "")
     val itemIntId = ItemDefinitions.getOrNull(itemStringId)?.id ?: 0
     set("follower_details_name", itemIntId)
     set("follower_details_chathead", pet.def.id)
-    val rowAnim = row?.animOrNull("chathead_anim")?.let { AnimationDefinitions.getOrNull(it)?.id }
-    when {
-        rowAnim != null -> interfaces.sendAnimation(ifaceId, "chathead", rowAnim)
-        row?.boolOrNull("chathead_disabled") == true -> interfaces.sendAnimation(ifaceId, "chathead", -1)
-        else -> {
-            val chatheadNpc = row?.npcOrNull("chathead_npc") ?: pet.id
-            set("follower_details_chathead_animation", chatheadNpc)
-        }
-    }
+    val chatheadNpc = row?.npcOrNull("chathead_npc") ?: pet.id
+    set("follower_details_chathead_animation", chatheadNpc)
+    variables.send("follower_details_name")
+    variables.send("follower_details_chathead")
+    variables.send("follower_details_chathead_animation")
+
+    interfaces.open(ifaceId)
     sendPetDetailsStats()
 }
 
@@ -181,13 +178,6 @@ suspend fun Player.talkToPet(row: RowDefinition, pet: NPC) {
         row.ambientPhrases().randomOrNull()?.let { pet.say(it) }
         return
     }
-    // Animation precedence:
-    //   - chathead_disabled on the row -> -1 (no anim played; client clears
-    //     any active chathead emote). Used as a placeholder for pets whose
-    //     right animation hasn't been identified yet.
-    //   - row-declared chathead_anim wins next.
-    //   - then the cache enum entry keyed by this NPC id.
-    //   - then the enum's generic defaultInt.
     val animEnum = EnumDefinitions.get("pet_details_chathead_animations_normal")
     val rowAnim = row.animOrNull("chathead_anim")?.let { AnimationDefinitions.getOrNull(it)?.id }
     val fallbackAnim = when {
