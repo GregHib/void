@@ -9,11 +9,13 @@ import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.client.variable.MapValues
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
+import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -125,17 +127,31 @@ fun Player.updatePetInterface() {
     // labels like "Release Cat". Everything else (dogs, dragons, etc.) uses
     // the generic follower iface 662 ("familiar_details").
     val ifaceId = if (row?.isCatLike() == true) "pet_details" else "familiar_details"
+    val rowAnim = row?.animOrNull("chathead_anim")?.let { AnimationDefinitions.getOrNull(it)?.id }
+    val chatheadNpc = row?.npcOrNull("chathead_npc") ?: pet.id
+    // The varbit's "values" map keys are the only strings that translate to a
+    // real int via MapValues.toInt; anything else collapses to -1 and breaks
+    // the CS2 enum lookup. Check membership before any set() so unmapped pets
+    // skip the update and keep the persisted value instead of being wiped to
+    // -1 (which renders no chathead animation at all).
+    val chatheadNpcMapped = (VariableDefinitions.get("follower_details_chathead_animation")?.values as? MapValues)
+        ?.values?.containsKey(chatheadNpc) == true
+    if (rowAnim != null && chatheadNpcMapped) {
+        // Pre-set BEFORE iface open so the client CS2 on first render reads
+        // the correct enum 1276 index instead of whatever stale value was
+        // persisted (sneakerpeeper relies on this via pet_sneakerpeeper = 37).
+        set("follower_details_chathead_animation", chatheadNpc)
+    }
+    interfaces.open(ifaceId)
     val itemStringId = get("pet_active_item", "")
     val itemIntId = ItemDefinitions.getOrNull(itemStringId)?.id ?: 0
     set("follower_details_name", itemIntId)
     set("follower_details_chathead", pet.def.id)
-    val chatheadNpc = row?.npcOrNull("chathead_npc") ?: pet.id
-    set("follower_details_chathead_animation", chatheadNpc)
-    variables.send("follower_details_name")
-    variables.send("follower_details_chathead")
-    variables.send("follower_details_chathead_animation")
-
-    interfaces.open(ifaceId)
+    when {
+        rowAnim != null -> interfaces.sendAnimation(ifaceId, "chathead", rowAnim)
+        row?.boolOrNull("chathead_disabled") == true -> interfaces.sendAnimation(ifaceId, "chathead", -1)
+        chatheadNpcMapped -> set("follower_details_chathead_animation", chatheadNpc)
+    }
     sendPetDetailsStats()
 }
 
@@ -152,7 +168,7 @@ fun Player.sendPetDetailsStats() {
     val growth = if (fullyGrown) NA_SENTINEL else (getPetGrowth(row.rowId) / 100).coerceIn(0, 100)
     val hunger = (getPetHunger(row.rowId) / 100).coerceIn(0, 100)
     // Packed layout for the pet_details_stats varp (id 1175, see
-    // data/skill/summoning/summoning.varps.toml): bits 1..7 = growth (0..100
+    // data/skill/summoning/summoni55ng.varps.toml): bits 1..7 = growth (0..100
     // or NA_SENTINEL), bits 9..15 = hunger (0..100 or NA_SENTINEL). Bits 0
     // and 8 are unused padding so the client CS2 can read each value via a
     // 7-bit shift+mask.
