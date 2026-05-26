@@ -293,7 +293,10 @@ private fun Player.canSummonPet(row: RowDefinition): Boolean {
     if (pet != null || follower != null || get("pet_active_item", "").isNotBlank()) {
         return false
     }
-    return has(Skill.Summoning, row.int("summoning_level"))
+    // Mirror summonPet: the gating skill is row-driven (Slayer for Soul Wars
+    // pets, Dungeoneering for sneakerpeeper) and only defaults to Summoning.
+    val skill = row.skillOrNull("skill") ?: Skill.Summoning
+    return has(skill, row.int("summoning_level"))
 }
 
 private suspend fun Player.dropPet(row: RowDefinition, itemId: String) {
