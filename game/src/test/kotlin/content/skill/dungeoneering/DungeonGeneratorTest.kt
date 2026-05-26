@@ -206,7 +206,7 @@ class DungeonGeneratorTest {
                 if (accessibleRooms.add(room)) {
                     addedNewRooms = true
                     // Collect any keys lying in newly reached rooms
-                    acquiredKeys.addAll(room.keyIds)
+                    acquiredKeys.addAll(room.keys)
                 }
             }
         }

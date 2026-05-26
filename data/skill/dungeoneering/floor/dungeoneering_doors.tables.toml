@@ -1,0 +1,56 @@
+[skill_doors]
+row_id = "skill"
+id = "obj"
+open = "obj"
+
+[.runecrafting]
+id = "runed_door_frozen"
+
+[.strength]
+id = "barred_door_frozen"
+open = "unbarred_door_frozen"
+
+[.mining]
+id = "pile_of_rocks_frozen"
+
+[.firemaking]
+id = "flammable_debris_frozen"
+
+[.magic]
+id = "magical_barrier_frozen"
+
+[.prayer]
+id = "dark_spirit_frozen"
+
+[.woodcutting]
+id = "wooden_barricade_frozen"
+open = "cleared_barricade_frozen"
+
+[.smithing]
+id = "broken_key_door_frozen"
+open = "fixed_key_door_frozen"
+
+[.crafting]
+id = "broken_pulley_door_frozen"
+open = "fixed_pulley_door_frozen"
+
+[.agility]
+id = "locked_door_frozen"
+open = "unlocked_door_frozen"
+
+[.thieving]
+id = "padlocked_door_frozen"
+open = "picked_door_frozen"
+
+[.summoning]
+id = "ramokee_exile_frozen"
+
+[.herblore]
+id = "liquid_lock_door_frozen"
+open = "exploded_liquid_door_frozen"
+
+[.farming]
+id = "vine_covered_door_frozen"
+
+[.construction]
+id = "collapsing_doorframe_frozen"

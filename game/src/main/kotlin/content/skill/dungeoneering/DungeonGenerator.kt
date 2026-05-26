@@ -80,8 +80,9 @@ class DungeonGenerator(
         lockBonusDoors(bonusRooms)
         assignRoomTypes(grid, maxSkills)
         placeKeys(startRoom, grid)
-        populateMap(grid)
-        return DungeonMap(width, height, grid)
+        val themeName = theme()
+        populateMap(grid, themeName)
+        return DungeonMap(width, height, grid, themeName)
     }
 
     /**
@@ -316,21 +317,20 @@ class DungeonGenerator(
             }
             val isCriticalKey = i < criticalKeysCount
             val candidates = reachable.filter { it.isCritical == isCriticalKey && it.type != DungeonRoomType.Boss }
-            val emptyCandidates = candidates.filter { it.keyIds.isEmpty() }
+            val emptyCandidates = candidates.filter { it.keys.isEmpty() }
             val targetRoom = if (emptyCandidates.isNotEmpty()) {
                 emptyCandidates.random(random)
             } else {
-                candidates.minByOrNull { it.keyIds.size } ?: error("No valid rooms left for key depth $i $reachable")
+                candidates.minByOrNull { it.keys.size } ?: error("No valid rooms left for key depth $i $reachable")
             }
-            targetRoom.keyIds.add(keys[i])
+            targetRoom.keys.add(keys[i])
         }
     }
 
     /**
      * Populate dungeons rooms with valid map zones
      */
-    private fun populateMap(grid: Array<DungeonRoom?>) {
-        val themeName = theme()
+    private fun populateMap(grid: Array<DungeonRoom?>, theme: String) {
         val allActiveRooms = grid.filterNotNull()
         for (room in allActiveRooms) {
             val typeName = room.type.name.lowercase()
@@ -340,7 +340,7 @@ class DungeonGenerator(
             }
             val matchingOptions = mutableListOf<Pair<Zone, Int>>()
             for (c in complexity downTo 1) { // TODO applies to only normal or all??
-                val table = Tables.getOrNull("${themeName}_c${c}_$typeName") ?: continue
+                val table = Tables.getOrNull("${theme}_c${c}_$typeName") ?: continue
                 for (row in table.rows()) {
                     if (floor in 12..17) {
                         // TODO skip seeker sentinel puzzle, balak pummeller and shadow forgr ihlakhizan bosses
@@ -373,7 +373,7 @@ class DungeonGenerator(
                 room.zone = selection.first
                 room.rotation = selection.second
             } else {
-                System.err.println("Warning: No matching layout template found for ${themeName}_c${complexity}_$typeName room at (${room.tile.x}, ${room.tile.y}) [${requiredDoors.joinToString()}]")
+                System.err.println("Warning: No matching layout template found for ${theme}_c${complexity}_$typeName room at (${room.tile.x}, ${room.tile.y}) [${requiredDoors.joinToString()}]")
             }
         }
     }

@@ -5,7 +5,11 @@ import content.quest.smallInstance
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.type.Delta
@@ -23,26 +27,19 @@ class Dungeoneering : Script {
         objectOperate("Enter", "occult_door_normal") { (target) ->
             val dungeon: DungeonMap = get("dungeon") ?: return@objectOperate
             val instance = instance() ?: return@objectOperate
-            println("Offset ${instance.tile}")
             val delta = target.tile.delta(instance.tile)
-            println(delta)
             val rx = delta.x / 16
             val ry = delta.y / 16
-            println("Room ${rx} ${ry}")
             val dx = delta.x - (rx * 16)
             val dy = delta.y - (ry * 16)
-            println("Door ${dx} $dy")
             val direction = toDirection(Delta(dx, dy))
-            println("Dir $direction")
             val room = dungeon.room(rx, ry)
-            println(room)
-//            room.doors
 //            val target = dungeon.room(rx + direction.delta.x, ry + direction.delta.y)!!
-            tele(target.tile.add(direction).add(direction))
+            tele(tile.add(direction).add(direction).add(direction))
         }
 
         adminCommand("dungeon") {
-            setRandom(Random(0L))
+//            setRandom(Random(0L))
             println("Generating dungeon...")
             val floor = 60
             val size = DungeonSize.Small
@@ -64,6 +61,7 @@ class Dungeoneering : Script {
             val dungeon = generator.generate(skills)
             println("Took ${System.currentTimeMillis() - start}ms")
 
+
             set("dungeon", dungeon)
 
             dungeon.prettyPrint()
@@ -72,6 +70,7 @@ class Dungeoneering : Script {
             val zones = get<DynamicZones>()
             val origin = instance.tile.zone
             var tile = Tile.EMPTY
+            val theme = dungeon.theme
             for (room in dungeon.grid) {
                 if (room == null) {
                     continue
@@ -81,6 +80,11 @@ class Dungeoneering : Script {
                 }
                 val zone = room.zone ?: continue
                 val target = origin.add(room.tile.x * 2, room.tile.y * 2)
+                if (room.keys.isNotEmpty()) {
+                    for (key in room.keys) {
+                        FloorItems.add(target.tile.add(8, 8), key)
+                    }
+                }
                 // Iterate through the 2x2 zones of the room template
                 for (sx in 0..1) {
                     for (sy in 0..1) {
@@ -102,6 +106,34 @@ class Dungeoneering : Script {
                         val clientRotation = (4 - room.rotation) % 4
                         zones.copy(zone.add(sx, sy), target.add(tx, ty), clientRotation)
                     }
+                }
+                // TODO don't spawn two keys and two doors
+                //      Boss doors take priority over key doors?
+                for ((i, door) in room.doors.withIndex()) {
+                    if (door == null) {
+                        continue
+                    }
+                    val dir = Direction.westClockwise[i]
+                    val delta = toDelta(dir)
+                    val tile = target.tile.add(delta)
+                    val id = when (door) {
+                        is DungeonDoor.Blocked -> {
+                            val skillDoor = Tables.obj("skill_doors.${door.skill.name.lowercase()}.id").replace("_frozen", "_${theme}")
+                            if (door.skill == Skill.Runecrafting) {
+                                GameObjects.add(skillDoor, tile.add(dir.inverse()), rotation = i)
+                                "door_$theme"
+                            } else {
+                                skillDoor
+                            }
+                        }
+                        DungeonDoor.Guardian -> "guardian_door_$theme"
+                        is DungeonDoor.Locked -> {
+                            GameObjects.add(door.key.replace("_key", "_door"), tile.add(dir.inverse()), rotation = i)
+                            "${door.key.replace("_key", "_door")}_$theme"
+                        }
+                        DungeonDoor.Normal -> "door_$theme"
+                    }
+                    GameObjects.add(id, tile, rotation = i)
                 }
             }
             tele(instance.tile.add(tile.x * 16 + 8, tile.y * 16 + 8))

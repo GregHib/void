@@ -6,6 +6,7 @@ class DungeonMap(
     val width: Int,
     val height: Int,
     val grid: Array<DungeonRoom?>,
+    val theme: String
 ) {
 
     private val Direction.index: Int
@@ -71,11 +72,11 @@ class DungeonMap(
                 writeCentered(renderGrid, cy - 1, cx, room.type.name.take(innerRoomWidth - 2))
 
                 // Draw room contents / dropped keys
-                if (room.keyIds.isNotEmpty()) {
+                if (room.keys.isNotEmpty()) {
                     // Place the centre dot on the middle row
                     renderGrid[cy][cx] = '.'
                     // Write the key abbreviation on the lower row
-                    val firstKeyStr = getKeyAbbrev(room.keyIds.first()).lowercase()
+                    val firstKeyStr = getKeyAbbrev(room.keys.first()).lowercase()
                     writeCentered(renderGrid, cy + 1, cx, firstKeyStr)
                 } else {
                     renderGrid[cy][cx] = '.'
@@ -137,9 +138,9 @@ class DungeonMap(
         for (y in height - 1 downTo 0) {
             for (x in 0 until width) {
                 val room = grid[y * width + x] ?: continue
-                if (room.keyIds.isNotEmpty()) {
+                if (room.keys.isNotEmpty()) {
                     keysFound = true
-                    val keysStr = room.keyIds.joinToString(", ") { getKeyAbbrev(it).lowercase() }
+                    val keysStr = room.keys.joinToString(", ") { getKeyAbbrev(it).lowercase() }
                     val typeStr = when (room.type) {
                         DungeonRoomType.Base -> "Start Room"
                         DungeonRoomType.Boss -> "Boss Room"
