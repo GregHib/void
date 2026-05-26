@@ -187,4 +187,8 @@ class DungeonMap(
         val abbrev = "${colorWord.take(3)}_${shapeWord.take(3)}"
         return abbrev
     }
+
+    fun room(x: Int, y: Int): DungeonRoom? {
+        return grid[y * width + x]
+    }
 }

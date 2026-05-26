@@ -334,35 +334,36 @@ class DungeonGenerator(
         val allActiveRooms = grid.filterNotNull()
         for (room in allActiveRooms) {
             val typeName = room.type.name.lowercase()
-            val tableName = "${themeName}_c${complexity}_$typeName"
-            val table = Tables.getOrNull(tableName) ?: continue
             val requiredDoors = BooleanArray(4) { idx ->
                 val dir = Direction.westClockwise[idx]
                 room.doors[dir.index] != null
             }
             val matchingOptions = mutableListOf<Pair<Zone, Int>>()
-            for (row in table.rows()) {
-                if (floor in 12..17) {
-                    // TODO skip seeker sentinel puzzle, balak pummeller and shadow forgr ihlakhizan bosses
-                }
-                val zone = Zone(row.int("x"), row.int("y"))
-                val actualDoors = row.boolList("doors")
-                if (room.type == DungeonRoomType.Puzzle) {
-                    // Puzzles rooms are only valid if the template's original south door
-                    // points towards the parent room after rotation is applied.
-                    val parent = room.parent
-                    if (parent != null) {
-                        val entryDir = getDirection(room, parent)
-                        // Rotate so puzzle entry door (south) is in the correct orientation
-                        val requiredRotation = (entryDir.index - 3 + 4) % 4
-                        if (matchesDoors(actualDoors, requiredDoors, requiredRotation)) {
-                            matchingOptions.add(Pair(zone, requiredRotation))
-                        }
+            for (c in complexity downTo 1) { // TODO applies to only normal or all??
+                val table = Tables.getOrNull("${themeName}_c${c}_$typeName") ?: continue
+                for (row in table.rows()) {
+                    if (floor in 12..17) {
+                        // TODO skip seeker sentinel puzzle, balak pummeller and shadow forgr ihlakhizan bosses
                     }
-                } else {
-                    for (r in 0..3) {
-                        if (matchesDoors(actualDoors, requiredDoors, r)) {
-                            matchingOptions.add(Pair(zone, r))
+                    val zone = Zone(row.int("x"), row.int("y"))
+                    val actualDoors = row.boolList("doors")
+                    if (room.type == DungeonRoomType.Puzzle) {
+                        // Puzzles rooms are only valid if the template's original south door
+                        // points towards the parent room after rotation is applied.
+                        val parent = room.parent
+                        if (parent != null) {
+                            val entryDir = getDirection(room, parent)
+                            // Rotate so puzzle entry door (south) is in the correct orientation
+                            val requiredRotation = (entryDir.index - 3 + 4) % 4
+                            if (matchesDoors(actualDoors, requiredDoors, requiredRotation)) {
+                                matchingOptions.add(Pair(zone, requiredRotation))
+                            }
+                        }
+                    } else {
+                        for (r in 0..3) {
+                            if (matchesDoors(actualDoors, requiredDoors, r)) {
+                                matchingOptions.add(Pair(zone, r))
+                            }
                         }
                     }
                 }
@@ -372,7 +373,7 @@ class DungeonGenerator(
                 room.zone = selection.first
                 room.rotation = selection.second
             } else {
-                System.err.println("Warning: No matching layout template found for $tableName room at (${room.tile.x}, ${room.tile.y}) [${requiredDoors.joinToString()}]")
+                System.err.println("Warning: No matching layout template found for ${themeName}_c${complexity}_$typeName room at (${room.tile.x}, ${room.tile.y}) [${requiredDoors.joinToString()}]")
             }
         }
     }
