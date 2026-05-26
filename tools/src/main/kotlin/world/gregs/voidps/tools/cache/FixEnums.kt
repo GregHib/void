@@ -15,6 +15,12 @@ object FixEnums {
 
     private const val RUNE_MINOTAUR_POUCH = 12083
 
+    private const val PET_DETAILS_CHATHEAD_ANIMATIONS_NORMAL = 1276
+
+    private const val PET_SNEAKERPEEPER_BABY = 13089
+    private const val PET_SNEAKERPEEPER = 13090
+    private const val EXPRESSION_SNEAKERPEEPER_NORMAL = 13322
+
     fun fix(library: CacheLibrary) {
         println("Fixing enums...")
         val indexId = Index.ENUMS
@@ -27,6 +33,21 @@ object FixEnums {
             SUMMONING_POUCH_CRAFTING_INGREDIENT_STRINGS to mapOf(
                 RUNE_MINOTAUR_POUCH to "This pouch requires 1 runite bar, 1 blue charm and 100 spirit shards.",
             ),
+            // Wire both sneakerpeeper life stages to their expression animation so the
+            // CS2-driven chathead lookup resolves immediately on iface open, instead of
+            // missing and flashing the previous defaultInt for ~1 frame.
+            PET_DETAILS_CHATHEAD_ANIMATIONS_NORMAL to mapOf(
+                PET_SNEAKERPEEPER_BABY to EXPRESSION_SNEAKERPEEPER_NORMAL,
+                PET_SNEAKERPEEPER to EXPRESSION_SNEAKERPEEPER_NORMAL,
+            ),
+        )
+
+        /*
+            Override defaultInt for enums where an unmapped key should produce "no
+            animation" (-1) rather than a wrong fallback emote.
+         */
+        val enumDefaultIntFixes = mapOf(
+            PET_DETAILS_CHATHEAD_ANIMATIONS_NORMAL to -1,
         )
 
         val cache = CacheDelegate(library)
@@ -34,15 +55,19 @@ object FixEnums {
         val encoder = EnumEncoder()
 
         val fixed = mutableListOf<EnumDefinition>()
-        for ((id, fixes) in enumFixes) {
+        val ids = enumFixes.keys + enumDefaultIntFixes.keys
+        for (id in ids) {
             val definition = EnumDefinition(id)
             val data = library.data(indexId, decoder.getArchive(id), decoder.getFile(id)) ?: continue
             val buffer = ArrayReader(data)
             decoder.readLoop(definition, buffer)
-            val map = definition.map!! as MutableMap
-            for ((key, value) in fixes) {
-                map[key] = value
+            enumFixes[id]?.let { fixes ->
+                val map = definition.map!! as MutableMap
+                for ((key, value) in fixes) {
+                    map[key] = value
+                }
             }
+            enumDefaultIntFixes[id]?.let { definition.defaultInt = it }
             fixed.add(definition)
         }
 
