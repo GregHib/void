@@ -37,7 +37,14 @@ import world.gregs.voidps.type.Tile
 var Player.pet: NPC?
     get() {
         val index = get("pet_index", -1)
-        return NPCs.indexed(index)
+        if (index < 0) return null
+        val npc = NPCs.indexed(index) ?: return null
+        // NPC slot indices are reused. Without cross-checking against the
+        // active item + a known pet row, a despawned-and-respawned slot
+        // could resolve to an unrelated NPC.
+        if (get("pet_active_item", "").isBlank()) return null
+        if (petRowForNpc(npc.id) == null) return null
+        return npc
     }
     set(value) {
         if (value != null) {
