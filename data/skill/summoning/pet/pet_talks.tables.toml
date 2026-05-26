@@ -783,9 +783,27 @@ lines = [
     "player: Mighty Karamja.",
     "npc: Shaikahan eats, tonight.",
     "player: On Karamja.",
-    "player: Mighty Karamja.",
-    "npc: Shaikahan sleeps, tonight.",
+    "npc: Mighty Karamja.",
+    "player: Shaikahan sleeps, tonight.",
+    "player: Woooooo, hoo hoooo hooooo, hey, Marimbo, hey.",
+    "player: Woooooo, hoo hoooo hooooo, hey, Marimbo, hey.",
     "npc: Marimbo, hey. Marimbo, hey. Marimbo, hey. Marimbo, hey...",
+]
+
+[.monkey_baby_noamulet]
+pet = "monkey"
+stage = "baby"
+condition = ""
+lines = [
+    "npc: Eeek eek! Ook ook eeek eek eeeeek!",
+]
+
+[.monkey_grown_noamulet]
+pet = "monkey"
+stage = "grown"
+condition = ""
+lines = [
+    "npc: Ook ook ook! Eeek eek ook ook! Eeek!",
 ]
 
 # === Easy-wins transcript batch ===
