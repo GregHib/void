@@ -77,12 +77,18 @@ fun Player.summonPet(row: RowDefinition, itemId: String, restart: Boolean = fals
     val npcStringId = row.npcFor(stage) ?: return false
     // Consume the inventory item up front (skipped on restart, which is the
     // login-time re-spawn path with no item to consume). If the remove fails
-    // we never commit active_item or spawn the NPC, so dropPet does not need
-    // to worry about rolling back partial state.
+    // we never commit active_item or spawn the NPC.
     if (!restart && !inventory.remove(itemId)) {
         return false
     }
-    val spawned = NPCs.add(npcStringId, tile)
+    val spawned = try {
+        NPCs.add(npcStringId, tile)
+    } catch (t: Throwable) {
+        // Roll back the consumed item so a spawn failure (unknown id, NPC
+        // cap, world full, ...) doesn't silently destroy the player's pet.
+        if (!restart) inventory.add(itemId)
+        throw t
+    }
     spawned.mode = Follow(spawned, this)
     // Set the pet index synchronously so a second drop on the same tick sees
     // pet != null and trips the "You already have a follower." gate, instead
