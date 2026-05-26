@@ -2,12 +2,14 @@ package content.skill.dungeoneering
 
 import content.quest.instance
 import content.quest.smallInstance
+import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
+import world.gregs.voidps.engine.client.command.intArg
+import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
@@ -20,11 +22,7 @@ import kotlin.random.Random
 
 class Dungeoneering : Script {
     init {
-        objectSpawn("occult_door_normal") {
-            println("Spawned ${this.tile}")
-        }
-
-        objectOperate("Enter", "occult_door_normal") { (target) ->
+        objectOperate("Enter", "*door_frozen,*door_abandoned,*door_furnished,*door_occult,*door_warped") { (target) ->
             val dungeon: DungeonMap = get("dungeon") ?: return@objectOperate
             val instance = instance() ?: return@objectOperate
             val delta = target.tile.delta(instance.tile)
@@ -38,12 +36,12 @@ class Dungeoneering : Script {
             tele(tile.add(direction).add(direction).add(direction))
         }
 
-        adminCommand("dungeon") {
-//            setRandom(Random(0L))
+        adminCommand("dungeon", intArg("floor", optional = true), stringArg("size", autofill = setOf("small", "medium", "large"), optional = true), intArg("complexity", optional = true)) { args ->
+            setRandom(Random(0L))
             println("Generating dungeon...")
-            val floor = 60
-            val size = DungeonSize.Small
-            val complexity = 1
+            val floor = args.getOrNull(0)?.toInt() ?: 1
+            val size = DungeonSize.valueOf((args.getOrNull(1) ?: "small").toTitleCase())
+            val complexity = args.getOrNull(2)?.toInt() ?: 1
             val generator = DungeonGenerator(
                 size = size,
                 floor = floor,
@@ -53,14 +51,13 @@ class Dungeoneering : Script {
             message("")
             message("- Welcome to Daemonheim -")
             message("Floor <purple>$floor</col>    Complexity <purple>$complexity")
-            message("Dungeon Size: <purple>${size}")
+            message("Dungeon Size: <purple>$size")
             message("Party Size:Difficulty <purple>1:1")
             message("<purple>Guide Mode OFF")
             message("")
             val start = System.currentTimeMillis()
             val dungeon = generator.generate(skills)
             println("Took ${System.currentTimeMillis() - start}ms")
-
 
             set("dungeon", dungeon)
 
@@ -109,6 +106,7 @@ class Dungeoneering : Script {
                 }
                 // TODO don't spawn two keys and two doors
                 //      Boss doors take priority over key doors?
+                //      TODO what doors are used once skills are removed
                 for ((i, door) in room.doors.withIndex()) {
                     if (door == null) {
                         continue
@@ -118,8 +116,9 @@ class Dungeoneering : Script {
                     val tile = target.tile.add(delta)
                     val id = when (door) {
                         is DungeonDoor.Blocked -> {
-                            val skillDoor = Tables.obj("skill_doors.${door.skill.name.lowercase()}.id").replace("_frozen", "_${theme}")
-                            if (door.skill == Skill.Runecrafting) {
+                            val skill = door.skill.name.lowercase()
+                            val skillDoor = Tables.obj("skill_doors.$skill.id").replace("_frozen", "_$theme")
+                            if (Tables.bool("skill_doors.$skill.in_front")) {
                                 GameObjects.add(skillDoor, tile.add(dir.inverse()), rotation = i)
                                 "door_$theme"
                             } else {
@@ -140,14 +139,14 @@ class Dungeoneering : Script {
         }
     }
 
-    private fun toDirection(delta: Delta) : Direction = when (delta) {
+    private fun toDirection(delta: Delta): Direction = when (delta) {
         Delta(0, 7) -> Direction.WEST
         Delta(7, 15) -> Direction.NORTH
         Delta(15, 7) -> Direction.EAST
         else -> Direction.SOUTH
     }
 
-    private fun toDelta(direction: Direction) : Delta = when (direction) {
+    private fun toDelta(direction: Direction): Delta = when (direction) {
         Direction.WEST -> Delta(0, 7)
         Direction.NORTH -> Delta(7, 15)
         Direction.EAST -> Delta(15, 7)

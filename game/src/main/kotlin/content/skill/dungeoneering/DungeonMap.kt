@@ -6,7 +6,7 @@ class DungeonMap(
     val width: Int,
     val height: Int,
     val grid: Array<DungeonRoom?>,
-    val theme: String
+    val theme: String,
 ) {
 
     private val Direction.index: Int
@@ -189,7 +189,5 @@ class DungeonMap(
         return abbrev
     }
 
-    fun room(x: Int, y: Int): DungeonRoom? {
-        return grid[y * width + x]
-    }
+    fun room(x: Int, y: Int): DungeonRoom? = grid[y * width + x]
 }
