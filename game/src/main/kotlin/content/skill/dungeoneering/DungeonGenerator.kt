@@ -28,10 +28,11 @@ class DungeonGenerator(
     size: DungeonSize,
     val floor: Int,
     val complexity: Int,
-    private val puzzleRoomChance: Double = 0.35, // Estimates
-    private val skillDoorChance: Double = 0.20, // Estimates (closer to 33%?)
-    private val guardianDoorChance: Double = 0.20, // Estimates
-    private val bossDoorLockChance: Double = 0.90, // Estimates
+    // Estimated chances
+    private val puzzleRoomChance: Double = 0.33,
+    private val skillDoorChance: Double = 0.33,
+    private val guardianDoorChance: Double = 0.33,
+    private val bossDoorLockChance: Double = 0.90,
 ) {
     private val width: Int = when (size) {
         DungeonSize.Small -> 5
@@ -319,9 +320,9 @@ class DungeonGenerator(
             val targetRoom = if (emptyCandidates.isNotEmpty()) {
                 emptyCandidates.random(random)
             } else {
-                candidates.minBy { it.keyIds.size }
+                candidates.minByOrNull { it.keyIds.size } ?: error("No valid rooms left for key depth $i $reachable")
             }
-            targetRoom.keyIds.add(i)
+            targetRoom.keyIds.add(keys[i])
         }
     }
 
@@ -471,7 +472,8 @@ class DungeonGenerator(
     }
 
     companion object {
-        fun main() {
+        @JvmStatic
+        fun main(args: Array<String>) {
             val settings = Settings.load()
             val files = configFiles()
             val cache = Cache.load(settings)
@@ -482,12 +484,12 @@ class DungeonGenerator(
             ObjectDefinitions.init(ObjectDecoder(true, lowDetail = false).load(cache)).load(files.list(Settings["definitions.objects"]))
             VariableDefinitions.load(files)
             Tables.load(files.list(Settings["definitions.tables"]))
-            println("Generating structured dungeon...")
+            println("Generating dungeon...")
 
             val generator = DungeonGenerator(
                 floor = 1,
-                complexity = 1,
-                size = DungeonSize.Large,
+                complexity = 6,
+                size = DungeonSize.Small,
             )
             val start = System.currentTimeMillis()
             val dungeon = generator.generate()
@@ -495,19 +497,6 @@ class DungeonGenerator(
 
             println(dungeon.grid.filter { it != null && it.parent == null }.map { "${it?.type} ${it?.tile}" })
             dungeon.prettyPrint()
-
-            println("\nLegend:")
-            println("  S   : Start Room")
-            println("  B   : Boss Room (Goal)")
-            println("  P   : Puzzle Room (Guaranteed to have an exit)")
-            println("  .   : Normal Room")
-            println("  a-t : Critical Keys (lowercase)")
-            println("  u-z : Bonus Keys (lowercase)")
-            println("  A-T : Critical Locked Doors (uppercase)")
-            println("  U-Z : Bonus Locked Doors (uppercase)")
-            println("  G   : Outward Guardian Door")
-            println("  K   : Outward Skill Door")
-            println("  + - | : Walls and normal corridors")
         }
     }
 }

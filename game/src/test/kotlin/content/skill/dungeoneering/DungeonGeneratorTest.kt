@@ -185,7 +185,7 @@ class DungeonGeneratorTest {
         val startRoom = dungeonMap.grid.filterNotNull().first { it.type == DungeonRoomType.Base }
         val bossRoom = dungeonMap.grid.filterNotNull().first { it.type == DungeonRoomType.Boss }
 
-        val acquiredKeys = mutableSetOf<Int>()
+        val acquiredKeys = mutableSetOf<String>()
         val accessibleRooms = mutableSetOf<DungeonRoom>()
 
         var addedNewRooms = true
@@ -197,7 +197,7 @@ class DungeonGeneratorTest {
 
             val reachable = generator.bfs(startRoom, dungeonMap.grid) { _, door, _ ->
                 when (door) {
-                    is DungeonDoor.Locked -> door.depth in acquiredKeys
+                    is DungeonDoor.Locked -> door.key in acquiredKeys
                     else -> true
                 }
             }

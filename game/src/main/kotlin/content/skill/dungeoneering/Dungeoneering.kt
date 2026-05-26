@@ -21,6 +21,7 @@ class Dungeoneering : Script {
                 floor = floor,
                 complexity = complexity,
             )
+            val skills = DungeonDoor.Blocked.skills.associateWith { levels.getMax(it) }
             message("")
             message("- Welcome to Daemonheim -")
             message("Floor <purple>$floor</col>    Complexity <purple>$complexity")
@@ -29,21 +30,10 @@ class Dungeoneering : Script {
             message("<purple>Guide Mode OFF")
             message("")
             val start = System.currentTimeMillis()
-            val dungeon = generator.generate()
+            val dungeon = generator.generate(skills)
             println("Took ${System.currentTimeMillis() - start}ms")
 
             dungeon.prettyPrint()
-
-            println("\nLegend:")
-            println("  S   : Start Room")
-            println("  B   : Boss Room (Goal)")
-            println("  P   : Puzzle Room (Guaranteed to have an exit)")
-            println("  .   : Normal Room")
-            println("  a-z : Critical Keys (lowercase)")
-            println("  A-Z : Critical Locked Doors (uppercase)")
-            println("  G   : Outward Guardian Door")
-            println("  K   : Outward Skill Door")
-            println("  + - | : Walls and normal corridors")
 
             val instance = smallInstance()
             val zones = get<DynamicZones>()
