@@ -83,27 +83,21 @@ class KittenInteract : Script {
         face(cat)
         anim("pet_stroke_player")
         cat.anim("pet_stroke_kitten")
-        try {
-            if (hasCatspeakAmulet() && isAdultCat(cat)) {
-                statement("You softly stroke your cat.")
-                player<Happy>("Who's a good cat then?")
-                npc<Happy>(cat.id, "Me, me. Scratch me behind the ears. Purr...purr...")
-                statement("The cat turns on its side while you bend down to pet it.")
-            } else {
-                statement("You softly stroke your cat.")
-                cat.say("Purr...purr...")
-                statement("The cat turns on its side while you bend down to pet it.")
-            }
-            player<Happy>("That cat sure loves to be stroked.")
-            if (pet?.index == cat.index) {
-                cat.say("Miaow!")
-                cat.steps.clear()
-            }
-        } finally {
-            // Always release the freeze, even if the player was dismissed,
-            // logged out, or the pet was shooed mid-dialogue. Without this
-            // an orphaned NPC keeps an Int.MAX_VALUE movement delay forever.
+        if (hasCatspeakAmulet() && isAdultCat(cat)) {
+            statement("You softly stroke your cat.")
+            player<Happy>("Who's a good cat then?")
+            npc<Happy>(cat.id, "Me, me. Scratch me behind the ears. Purr...purr...")
+            statement("The cat turns on its side while you bend down to pet it.")
+        } else {
+            statement("You softly stroke your cat.")
+            cat.say("Purr...purr...")
+            statement("The cat turns on its side while you bend down to pet it.")
+        }
+        player<Happy>("That cat sure loves to be stroked.")
+        if (pet?.index == cat.index) {
+            cat.say("Miaow!")
             cat.stop("movement_delay")
+            cat.steps.clear()
         }
     }
 
