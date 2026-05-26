@@ -15,8 +15,6 @@ object FixEnums {
 
     private const val RUNE_MINOTAUR_POUCH = 12083
 
-    private const val PET_DETAILS_CHATHEAD_ANIMATIONS_NORMAL = 1276
-
     fun fix(library: CacheLibrary) {
         println("Fixing enums...")
         val indexId = Index.ENUMS
@@ -31,49 +29,20 @@ object FixEnums {
             ),
         )
 
-        /*
-            Restore enum defaultInt values. Earlier tooling overwrote enum 1276's
-            defaultInt to -1, which suppressed the fallback chathead animation for
-            every pet not explicitly listed in varbit 4282's values map. The 8373
-            below is the original 634-cache value.
-         */
-        val enumDefaultIntFixes = mapOf(
-            PET_DETAILS_CHATHEAD_ANIMATIONS_NORMAL to 8373,
-        )
-
-        /*
-            Strip stale keys written by earlier tooling. Adding NPC ids 13089/13090
-            to enum 1276 was a dead-end — varbit 4282 never stores those values, so
-            the entries were unreachable and just bloated the map.
-         */
-        val enumKeyRemovals = mapOf(
-            PET_DETAILS_CHATHEAD_ANIMATIONS_NORMAL to setOf(13089, 13090),
-        )
-
         val cache = CacheDelegate(library)
         val decoder = EnumDecoder()
         val encoder = EnumEncoder()
 
         val fixed = mutableListOf<EnumDefinition>()
-        val ids = enumFixes.keys + enumDefaultIntFixes.keys + enumKeyRemovals.keys
-        for (id in ids) {
+        for ((id, fixes) in enumFixes) {
             val definition = EnumDefinition(id)
             val data = library.data(indexId, decoder.getArchive(id), decoder.getFile(id)) ?: continue
             val buffer = ArrayReader(data)
             decoder.readLoop(definition, buffer)
-            enumFixes[id]?.let { fixes ->
-                val map = definition.map!! as MutableMap
-                for ((key, value) in fixes) {
-                    map[key] = value
-                }
+            val map = definition.map!! as MutableMap
+            for ((key, value) in fixes) {
+                map[key] = value
             }
-            enumKeyRemovals[id]?.let { removals ->
-                val map = definition.map!! as MutableMap<Int, Any>
-                for (key in removals) {
-                    map.remove(key)
-                }
-            }
-            enumDefaultIntFixes[id]?.let { definition.defaultInt = it }
             fixed.add(definition)
         }
 
