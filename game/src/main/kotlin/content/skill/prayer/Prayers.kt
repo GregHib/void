@@ -13,14 +13,6 @@ class Prayers :
     PrayerApi {
 
     init {
-        playerSpawn {
-            sendVariable("attack_bonus")
-            sendVariable("strength_bonus")
-            sendVariable("defence_bonus")
-            sendVariable("ranged_bonus")
-            sendVariable("magic_bonus")
-        }
-
         prayerStart { prayer ->
             val curses = isCurses()
             if (curses) {

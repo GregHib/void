@@ -14,17 +14,6 @@ class FarmingEquipmentStore : Script {
     init {
         interfaceOpened("farming_equipment_store") {
             open("farming_equipment_store_side")
-            sendVariable("farming_tool_rake")
-            sendVariable("farming_tool_seed_dibber")
-            sendVariable("farming_tool_spade")
-            sendVariable("farming_tool_secateurs")
-            sendVariable("farming_tool_gardening_trowel")
-            sendVariable("farming_tool_scarecrow")
-            sendVariable("farming_tool_bucket")
-            sendVariable("farming_tool_compost")
-            sendVariable("farming_tool_supercompost")
-            sendVariable("farming_tool_watering_can")
-            sendVariable("farming_tool_secateurs_type")
         }
 
         interfaceClosed("farming_equipment_store") {

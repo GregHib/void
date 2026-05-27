@@ -18,11 +18,6 @@ import world.gregs.voidps.engine.queue.queue
 class EnchantedGem : Script {
 
     init {
-        playerSpawn {
-            sendVariable("slayer_count")
-            sendVariable("slayer_target")
-        }
-
         itemOption("Activate", "enchanted_gem") {
             queue("enchanted_gem_activate") {
                 val master = slayerMaster

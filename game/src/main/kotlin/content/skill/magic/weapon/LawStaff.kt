@@ -15,10 +15,6 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 class LawStaff : Script {
 
     init {
-        playerSpawn {
-            sendVariable("law_staff_charges")
-        }
-
         itemOption("Inspect", "law_staff") {
             val charges = inventory.charges(this, it.slot)
             message("The staff has ${if (charges == 0) "no" else charges} ${"charge".plural(charges)}.")

@@ -11,11 +11,6 @@ import world.gregs.voidps.type.Tile
 class StrongholdOfPlayerSafety : Script {
 
     init {
-        playerSpawn {
-            sendVariable("stronghold_of_player_safety_poster")
-            sendVariable("stronghold_of_player_safety_lever")
-        }
-
         objectOperate("Open", "misthalin_exam_door_closed") { (target) ->
             // From wiki: The main door into the Training Centre, which is locked, preventing players from opening it from the outside, until they talk to the Guard in the jail and go through the entire conversation about reporting rule-breakers
             if (get("safety_prison_guard_talked", false)) {

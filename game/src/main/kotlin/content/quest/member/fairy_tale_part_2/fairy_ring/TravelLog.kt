@@ -16,7 +16,6 @@ class TravelLog(val fairyRing: FairyRingCodes) : Script {
         }
 
         interfaceOpened("travel_log") { id ->
-            sendVariable("travel_log_re_sort")
             val list: List<String> = get("travel_log_locations") ?: return@interfaceOpened
             for ((code, def) in fairyRing.codes) {
                 if (list.contains(code)) {

@@ -31,7 +31,7 @@ class Options : Script {
         }
 
         interfaceOption("Toggle Accept Aid", "options:aid") {
-            set("accept_aid", !get("accept_aid", true))
+            toggle("accept_aid", default = true)
         }
     }
 }

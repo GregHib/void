@@ -7,11 +7,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 class SpellBookFilter : Script {
 
     init {
-        playerSpawn {
-            sendVariable("spellbook_sort")
-            sendVariable("spellbook_config")
-        }
-
         interfaceOpened("*_spellbook") { id ->
             val id = when (id) {
                 "ancient_spellbook" -> 1

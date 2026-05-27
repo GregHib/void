@@ -95,7 +95,6 @@ class BarrowsCrypts : Script {
                 open("barrows_overlay")
             }
             softTimers.start("barrows_prayer_drain")
-            send()
             minimap(Minimap.HideMap)
         }
 
@@ -128,15 +127,6 @@ class BarrowsCrypts : Script {
                 return@exited
             }
             close("barrows_overlay")
-        }
-
-        interfaceOpened("barrows_overlay") {
-            sendVariable("ahrim_killed")
-            sendVariable("dharok_killed")
-            sendVariable("guthan_killed")
-            sendVariable("karil_killed")
-            sendVariable("torag_killed")
-            sendVariable("verac_killed")
         }
 
         objectOperate("Climb-up", "barrows_rope") {
@@ -234,19 +224,6 @@ class BarrowsCrypts : Script {
         }
     }
 
-    private fun Player.send() {
-        for (direction in Direction.ordinal) {
-            sendVariable("barrows_rope_${direction.name.lowercase()}")
-        }
-        for (row in Tables.get("barrows_doors").rows()) {
-            for (variable in row.stringList("vars")) {
-                sendVariable(variable)
-            }
-        }
-        sendVariable("barrows_in_tunnel")
-        sendVariable("barrows_killed_monsters")
-    }
-
     private fun Player.removeBrother(brother: String) {
         if (!contains("${brother}_spawn")) {
             return
@@ -258,7 +235,7 @@ class BarrowsCrypts : Script {
     companion object {
         internal fun spawnBrother(player: Player, brother: String, tile: Tile?) {
             val id = Tables.npc("barrows_brothers.$brother.npc")
-            val npc = NPCs.add(id, tile ?: player.tile)
+            val npc = NPCs.add(id, tile ?: player.tile, ticks = TimeUnit.SECONDS.toTicks(60), owner = player)
             npc.say(if (npc.tile.level == 3) "You dare disturb my rest!" else "You dare steal from us!")
             npc.interactPlayer(player, "Attack")
             player["${brother}_spawn"] = npc.index

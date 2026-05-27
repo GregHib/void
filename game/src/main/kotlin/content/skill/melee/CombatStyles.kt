@@ -15,9 +15,6 @@ class CombatStyles(val styles: WeaponStyleDefinitions) : Script {
         }
 
         interfaceOpened("combat_styles") {
-            sendVariable("attack_style_index")
-            sendVariable("special_attack_energy")
-            sendVariable("auto_retaliate")
             refreshStyle(this)
         }
 

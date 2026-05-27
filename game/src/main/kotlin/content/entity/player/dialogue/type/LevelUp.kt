@@ -27,7 +27,6 @@ suspend fun Player.levelUp(skill: Skill, text: String) {
 fun levelUp(player: Player, skill: Skill, text: String): Boolean {
     val lines = text.trimIndent().lines()
     player["level_up_icon"] = skill.name
-    player.sendVariable("level_up_icon")
     if (!player.open(LEVEL_UP_INTERFACE_ID)) {
         return false
     }

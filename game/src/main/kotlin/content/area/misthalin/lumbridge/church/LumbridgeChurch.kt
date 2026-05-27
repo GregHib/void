@@ -35,11 +35,6 @@ class LumbridgeChurch : Script {
     val ghostSpawn = Tile(3250, 3195)
 
     init {
-        playerSpawn {
-            sendVariable("rocks_restless_ghost")
-            sendVariable("restless_ghost_coffin")
-        }
-
         objectOperate("Play", "lumbridge_organ") {
             anim("play_organ")
             midi("church_organ")

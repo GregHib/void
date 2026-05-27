@@ -7,7 +7,6 @@ import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -41,16 +40,12 @@ class LumbridgeSwamp : Script {
                 }
             }
             message("A skeleton warlock has appeared.")
-            val warlock = NPCs.add("skeleton_warlock", Tile(3236, 3149), Direction.SOUTH)
+            val warlock = NPCs.add("skeleton_warlock", Tile(3236, 3149), Direction.SOUTH, ticks = TimeUnit.SECONDS.toTicks(60), owner = this)
             set("restless_ghost_warlock", warlock.index)
             warlock.anim("restless_ghost_warlock_spawn")
             val player = this
             warlock.queue("delayed_attack", 4) {
                 warlock.interactPlayer(player, "Attack")
-            }
-            World.queue("skeleton_warlock", TimeUnit.SECONDS.toTicks(60)) {
-                NPCs.remove(warlock)
-                clear("restless_ghost_warlock")
             }
         }
 

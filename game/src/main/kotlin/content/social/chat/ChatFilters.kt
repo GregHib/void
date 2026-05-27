@@ -32,9 +32,6 @@ class ChatFilters : Script {
         playerSpawn {
             privateStatus(privateStatus)
             publicStatus(publicStatus, tradeStatus)
-            sendVariable("game_status")
-            sendVariable("assist_status")
-            sendVariable("clan_status")
         }
 
         interfaceOption("View", id = "filter_buttons:*") {

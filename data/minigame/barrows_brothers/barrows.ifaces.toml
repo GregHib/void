@@ -1,6 +1,6 @@
 [barrows_overlay]
 id = 24
-type = "overlay"
+type = "game_screen_overlay"
 
 [barrows_puzzle]
 id = 25
