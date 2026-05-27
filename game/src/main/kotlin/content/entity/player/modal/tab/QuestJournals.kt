@@ -5,6 +5,7 @@ import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.ui.InterfaceApi
+import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.timer.Timer
 
@@ -46,6 +47,7 @@ class QuestJournals(val questDefinitions: QuestDefinitions) : Script {
                 logger.warn { "Unknown quest $itemSlot" }
                 return@interfaceOption
             }
+            closeInterfaces()
             InterfaceApi.openQuestJournal(this, quest.stringId)
         }
 
