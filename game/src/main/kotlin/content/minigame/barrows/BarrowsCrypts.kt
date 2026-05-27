@@ -95,7 +95,6 @@ class BarrowsCrypts : Script {
                 open("barrows_overlay")
             }
             softTimers.start("barrows_prayer_drain")
-            send()
             minimap(Minimap.HideMap)
         }
 
@@ -128,15 +127,6 @@ class BarrowsCrypts : Script {
                 return@exited
             }
             close("barrows_overlay")
-        }
-
-        interfaceOpened("barrows_overlay") {
-            sendVariable("ahrim_killed")
-            sendVariable("dharok_killed")
-            sendVariable("guthan_killed")
-            sendVariable("karil_killed")
-            sendVariable("torag_killed")
-            sendVariable("verac_killed")
         }
 
         objectOperate("Climb-up", "barrows_rope") {
@@ -232,19 +222,6 @@ class BarrowsCrypts : Script {
                 set(variable, false)
             }
         }
-    }
-
-    private fun Player.send() {
-        for (direction in Direction.ordinal) {
-            sendVariable("barrows_rope_${direction.name.lowercase()}")
-        }
-        for (row in Tables.get("barrows_doors").rows()) {
-            for (variable in row.stringList("vars")) {
-                sendVariable(variable)
-            }
-        }
-        sendVariable("barrows_in_tunnel")
-        sendVariable("barrows_killed_monsters")
     }
 
     private fun Player.removeBrother(brother: String) {
