@@ -251,7 +251,9 @@ class TzhaarFightCave(
         }
         player["fight_cave_wave"] = wave
         if (player["fight_caves_logout_warning", false]) {
-            Script.launch { accountManager.logout(player, false) }
+            Script.launch {
+                accountManager.logout(player, true)
+            }
             return
         }
         if (start && wave != 63) {
