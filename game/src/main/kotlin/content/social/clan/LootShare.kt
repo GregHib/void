@@ -10,10 +10,6 @@ import java.util.concurrent.TimeUnit
 class LootShare : Script {
 
     init {
-        playerSpawn {
-            sendVariable("loot_share")
-        }
-
         interfaceOption(id = "clan_chat:loot_share") {
             val clan = clan ?: return@interfaceOption
             if (clan.lootRank == ClanRank.None) {

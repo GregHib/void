@@ -9,19 +9,6 @@ import world.gregs.voidps.engine.inv.carriesItem
 class GunnarsGround : Script {
 
     init {
-        playerSpawn {
-            sendVariable("gudrun_after_quest")
-            sendVariable("dororan_after_quest")
-            sendVariable("kjell")
-            sendVariable("dororan")
-            sendVariable("dororan_after_cutscene")
-            sendVariable("gudrun")
-            sendVariable("gudrun_after_cutscene")
-            sendVariable("dororan_ruby_bracelet")
-            sendVariable("dororan_dragonstone_necklace")
-            sendVariable("dororan_onyx_amulet")
-        }
-
         itemOption("Read", "gunnars_ground") {
             letterScroll(
                 "Gunnar's Ground",

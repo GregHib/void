@@ -27,10 +27,6 @@ import world.gregs.voidps.type.random
 class MageOfZamorak : Script {
 
     init {
-        playerSpawn {
-            sendVariable("enter_the_abyss")
-        }
-
         npcOperate("Teleport", "mage_of_zamorak_wilderness_*") { (target) ->
             teleport(this, target)
         }

@@ -9,10 +9,6 @@ import world.gregs.voidps.engine.client.ui.open
 class Options : Script {
 
     init {
-        playerSpawn {
-            sendVariable("accept_aid")
-        }
-
         interfaceOption("Graphics Settings", "options:graphics") {
             if (hasMenuOpen()) {
                 message("Please close the interface you have open before setting your graphics options.")

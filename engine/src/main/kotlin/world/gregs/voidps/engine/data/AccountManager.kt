@@ -84,6 +84,7 @@ class AccountManager(
         }
         loadCallback.invoke(player)
         player.open(player.interfaces.gameFrame)
+        player.variables.sendAll()
         Spawn.player(player)
         val offset = player.get<Long>("instance_offset")?.let { Delta(it) } ?: Delta.EMPTY
         val original = player.tile.minus(offset)

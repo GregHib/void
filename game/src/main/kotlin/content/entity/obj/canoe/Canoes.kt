@@ -25,14 +25,6 @@ import world.gregs.voidps.type.Direction
 class Canoes(val stations: CanoeDefinitions) : Script {
 
     init {
-        playerSpawn {
-            sendVariable("canoe_state_lumbridge")
-            sendVariable("canoe_state_champions_guild")
-            sendVariable("canoe_state_barbarian_village")
-            sendVariable("canoe_state_edgeville")
-            sendVariable("canoe_state_wilderness_pond")
-        }
-
         objectOperate("Chop-down", "canoe_station") { (target) ->
             if (!has(Skill.Woodcutting, 12, false)) {
                 statement("You must have at least level 12 woodcutting to start making canoes.")
