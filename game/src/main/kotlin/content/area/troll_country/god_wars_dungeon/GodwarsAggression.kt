@@ -24,14 +24,6 @@ class GodwarsAggression : Script {
             set("gods", equipment.items.mapNotNull { it.def.getOrNull<String>("god") }.toMutableSet())
         }
 
-        interfaceOpened("godwars_overlay") {
-            sendVariable("armadyl_killcount")
-            sendVariable("bandos_killcount")
-            sendVariable("saradomin_killcount")
-            sendVariable("zamorak_killcount")
-            sendVariable("godwars_darkness")
-        }
-
         exited("godwars_dungeon_multi_area") {
             close("godwars_overlay")
             if (get("logged_out", false)) {

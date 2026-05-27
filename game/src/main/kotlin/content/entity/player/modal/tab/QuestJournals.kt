@@ -34,9 +34,6 @@ class QuestJournals(val questDefinitions: QuestDefinitions) : Script {
             sendVariable("quest_points")
             sendVariable("quest_points_total") // set total quest points available in variables-player.yml
             sendVariable("unstable_foundations")
-            for (quest in questDefinitions.ids.keys) {
-                sendVariable(quest)
-            }
         }
 
         interfaceOption(id = "quest_journals:journals") { (_, itemSlot) ->

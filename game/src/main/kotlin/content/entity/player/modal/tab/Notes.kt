@@ -16,12 +16,6 @@ class Notes : Script {
             set("selected_note", -1)
             sendScript("clear_notes")
             sendScript("show_notes")
-            for (i in 0 until 30) {
-                if (contains("note_$i")) {
-                    sendVariable("note_$i")
-                    sendVariable("note_colour_$i")
-                }
-            }
         }
 
         interfaceOption("Add note", "notes:add") {

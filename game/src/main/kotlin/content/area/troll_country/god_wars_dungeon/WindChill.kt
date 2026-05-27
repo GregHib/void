@@ -42,7 +42,6 @@ class WindChill : Script {
         }
 
         entered("godwars_chill_area") {
-            sendVariable("godwars_knights_notes")
             timers.start("windchill")
         }
 

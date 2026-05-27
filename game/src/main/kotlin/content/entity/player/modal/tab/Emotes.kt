@@ -30,14 +30,6 @@ class Emotes : Script {
     }
 
     init {
-        interfaceOpened("emotes") { id ->
-            for (compId in unlockableEmotes) {
-                val component = InterfaceDefinitions.getComponent(id, compId) ?: continue
-                sendVariable("unlocked_emote_${component.stringId}")
-            }
-            sendVariable("unlocked_emote_lost_tribe")
-        }
-
         interfaceRefresh("emotes") {
             interfaceOptions.unlockAll("emotes", "emotes", 0..190)
         }

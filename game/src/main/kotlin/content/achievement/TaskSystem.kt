@@ -18,7 +18,13 @@ class TaskSystem : Script {
 
     init {
         interfaceOpened("task_system") {
+            sendVariable("task_pin_slot")
+            sendVariable("task_pinned")
+            sendVariable("introducing_explorer_jack_task")
             refreshSlots(this)
+            if (contains("task_dont_show_again")) {
+                sendVariable("task_dont_show_again")
+            }
             if (!questCompleted("unstable_foundations")) {
                 set("task_pinned", 3520) // Talk to explorer jack
                 set("task_pin_slot", 1)
