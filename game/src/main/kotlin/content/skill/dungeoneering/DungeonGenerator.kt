@@ -82,7 +82,8 @@ class DungeonGenerator(
         placeKeys(startRoom, grid)
         val themeName = theme()
         populateMap(grid, themeName)
-        return DungeonMap(width, height, grid, themeName)
+        startRoom.open = true
+        return DungeonMap(width, height, startRoom.tile, grid, themeName)
     }
 
     /**

@@ -1,10 +1,13 @@
 package content.skill.dungeoneering
 
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Tile
 
 class DungeonMap(
     val width: Int,
     val height: Int,
+    val start: Tile,
     val grid: Array<DungeonRoom?>,
     val theme: String,
 ) {
@@ -69,7 +72,7 @@ class DungeonMap(
                 val cy = stepY * (height - 1 - y) + (stepY / 2)
 
                 // Draw room label (centered on the line above the middle line)
-                writeCentered(renderGrid, cy - 1, cx, room.type.name.take(innerRoomWidth - 2))
+                writeCentered(renderGrid, cy - 1, cx, (if (room.type == DungeonRoomType.Normal && room.isCritical)"Critical" else room.type.name).take(innerRoomWidth - 2))
 
                 // Draw room contents / dropped keys
                 if (room.keys.isNotEmpty()) {
@@ -189,5 +192,9 @@ class DungeonMap(
         return abbrev
     }
 
+    fun start() = room(start.x, start.y)!!
     fun room(x: Int, y: Int): DungeonRoom? = grid[y * width + x]
 }
+
+internal val Player.dungeonMap: DungeonMap?
+    get() = get("dungeon")

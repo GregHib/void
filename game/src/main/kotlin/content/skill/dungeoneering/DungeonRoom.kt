@@ -10,6 +10,7 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
     val adjacentRooms = arrayOfNulls<DungeonRoom>(4)
     var parent: DungeonRoom? = null
 
+    var open: Boolean = false
     var zone: Zone? = null
     var rotation: Int = 0
 }
