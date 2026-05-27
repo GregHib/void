@@ -311,19 +311,23 @@ class DungeonGenerator(
      */
     internal fun placeKeys(startRoom: DungeonRoom, grid: Array<DungeonRoom?>) {
         val totalKeys = criticalKeysCount + bonusKeysCount
-        for (i in 0 until totalKeys) {
+        for (depth in 0 until totalKeys) {
             val reachable = bfs(startRoom, grid) { _, door, _ ->
-                door !is DungeonDoor.Locked || (door.depth < i) // Ensure room is reachable given keys so far
+                door !is DungeonDoor.Locked || (door.depth < depth) // Ensure room is reachable given keys so far
             }
-            val isCriticalKey = i < criticalKeysCount
-            val candidates = reachable.filter { it.isCritical == isCriticalKey && it.type != DungeonRoomType.Boss }
+            val isCriticalKey = depth < criticalKeysCount
+
+            var candidates = reachable.filter { it.isCritical == isCriticalKey && it.type != DungeonRoomType.Boss }
+            if (candidates.isEmpty()) {
+                candidates = reachable.filter { it.type != DungeonRoomType.Boss }
+            }
             val emptyCandidates = candidates.filter { it.keys.isEmpty() }
             val targetRoom = if (emptyCandidates.isNotEmpty()) {
                 emptyCandidates.random(random)
             } else {
-                candidates.minByOrNull { it.keys.size } ?: error("No valid rooms left for key depth $i $reachable")
+                candidates.minByOrNull { it.keys.size } ?: error("No valid rooms left for key depth $depth $reachable")
             }
-            targetRoom.keys.add(keys[i])
+            targetRoom.keys.add(keys[depth])
         }
     }
 
