@@ -258,7 +258,7 @@ class BarrowsCrypts : Script {
     companion object {
         internal fun spawnBrother(player: Player, brother: String, tile: Tile?) {
             val id = Tables.npc("barrows_brothers.$brother.npc")
-            val npc = NPCs.add(id, tile ?: player.tile)
+            val npc = NPCs.add(id, tile ?: player.tile, ticks = TimeUnit.SECONDS.toTicks(60), owner = player)
             npc.say(if (npc.tile.level == 3) "You dare disturb my rest!" else "You dare steal from us!")
             npc.interactPlayer(player, "Attack")
             player["${brother}_spawn"] = npc.index

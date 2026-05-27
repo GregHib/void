@@ -17,6 +17,8 @@ object Players : Iterable<Player>, CharacterSearch<Player> {
 
     fun find(name: String): Player? = firstOrNull { it.name == name }
 
+    fun findByAccount(name: String): Player? = firstOrNull { it.accountName == name }
+
     fun add(player: Player): Boolean {
         if (player.index == -1 || indexArray[player.index] != null) {
             return false
