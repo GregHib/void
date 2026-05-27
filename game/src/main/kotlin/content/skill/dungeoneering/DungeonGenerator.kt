@@ -439,7 +439,7 @@ class DungeonGenerator(
     internal fun bfs(
         start: DungeonRoom,
         grid: Array<DungeonRoom?>,
-        canTraverse: (from: DungeonRoom, door: DungeonDoor?, neighbour: DungeonRoom) -> Boolean = { _, _, _ -> true },
+        canTraverse: (from: DungeonRoom, door: DungeonDoor, neighbour: DungeonRoom) -> Boolean = { _, _, _ -> true },
     ): List<DungeonRoom> {
         val visitedList = mutableListOf<DungeonRoom>()
         val visitedSet = mutableSetOf<DungeonRoom>()
@@ -452,6 +452,9 @@ class DungeonGenerator(
             val curr = queue.removeFirst()
             visitedList.add(curr)
             for ((i, door) in curr.doors.withIndex()) {
+                if (door == null) {
+                    continue
+                }
                 val dir = Direction.westClockwise[i]
                 val nx = curr.tile.x + dir.delta.x
                 val ny = curr.tile.y + dir.delta.y
