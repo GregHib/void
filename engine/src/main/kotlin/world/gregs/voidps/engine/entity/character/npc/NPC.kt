@@ -102,7 +102,6 @@ data class NPC(
      * Remove then npc completely after [ticks]
      */
     fun despawn(ticks: Int = 0) {
-        hide = true
         lifecycle = -(ticks + 1)
     }
 
