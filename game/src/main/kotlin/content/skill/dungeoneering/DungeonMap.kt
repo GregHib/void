@@ -193,6 +193,7 @@ class DungeonMap(
     }
 
     fun start() = room(start.x, start.y)!!
+
     fun room(x: Int, y: Int): DungeonRoom? = grid[y * width + x]
 }
 

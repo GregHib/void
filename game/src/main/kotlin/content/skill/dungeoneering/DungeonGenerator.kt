@@ -82,7 +82,6 @@ class DungeonGenerator(
         placeKeys(startRoom, grid)
         val themeName = theme()
         populateMap(grid, themeName)
-        startRoom.open = true
         return DungeonMap(width, height, startRoom.tile, grid, themeName)
     }
 
@@ -187,7 +186,7 @@ class DungeonGenerator(
             val r1 = edge.first
             val r2 = edge.second
             val dir = getDirection(r1, r2)
-            connect(r1, r2, dir, DungeonDoor.Locked(keys[idx], idx))
+            connect(r1, r2, dir, DungeonDoor.Locked(keys[idx], idx), DungeonDoor.Normal)
         }
 
         // Connect remaining unlocked critical passages
@@ -259,7 +258,7 @@ class DungeonGenerator(
             val dir = getDirection(parent, child)
             val index = criticalKeysCount + idx
             parent.doors[dir.index] = DungeonDoor.Locked(keys[index], index)
-            child.doors[dir.inverse().index] = DungeonDoor.Locked(keys[index], index)
+            child.doors[dir.inverse().index] = DungeonDoor.Normal
         }
     }
 
@@ -302,7 +301,7 @@ class DungeonGenerator(
                     else -> DungeonDoor.Normal
                 }
                 room.doors[i] = newDoor
-                neighbor.doors[dir.inverse().index] = newDoor
+                neighbor.doors[dir.inverse().index] = DungeonDoor.Normal
             }
         }
     }
@@ -473,10 +472,10 @@ class DungeonGenerator(
         return visitedList
     }
 
-    private fun connect(r1: DungeonRoom, r2: DungeonRoom, dir: Direction, door: DungeonDoor = DungeonDoor.Normal) {
-        r1.doors[dir.index] = door
+    private fun connect(r1: DungeonRoom, r2: DungeonRoom, dir: Direction, door1: DungeonDoor = DungeonDoor.Normal, door2: DungeonDoor = DungeonDoor.Normal) {
+        r1.doors[dir.index] = door1
         r1.adjacentRooms[dir.index] = r2
-        r2.doors[dir.inverse().index] = door
+        r2.doors[dir.inverse().index] = door2
         r2.adjacentRooms[dir.inverse().index] = r1
     }
 
