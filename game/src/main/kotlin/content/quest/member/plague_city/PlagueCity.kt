@@ -25,24 +25,6 @@ class PlagueCity : Script {
     val stages = setOf("grill_open", "spoken_to_jethick", "returned_book", "spoken_to_ted", "spoken_to_milli", "need_clearance", "talk_to_bravek", "has_cure_paper", "gave_cure", "freed_elena", "completed", "completed_with_spell")
 
     init {
-        playerSpawn {
-            if (get("plaguecity_hide_edmond_up_top", false)) {
-                sendVariable("plaguecity_hide_edmond_up_top")
-            }
-            if (get("plaguecity_dug_mud_pile", false)) {
-                sendVariable("plaguecity_dug_mud_pile")
-            }
-            if (get("plaguecity_checked_grill", false)) {
-                sendVariable("plaguecity_checked_grill")
-            }
-            if (get("plaguecity_key_asked", false)) {
-                sendVariable("plaguecity_key_asked")
-            }
-            sendVariable("plaguecity_pipe")
-            sendVariable("plaguecity_elena_at_home")
-            sendVariable("plague_city")
-        }
-
         questJournalOpen("plague_city") {
             val lines = when (quest("plague_city")) {
                 "started" -> {
@@ -553,7 +535,7 @@ class PlagueCity : Script {
                 set("plague_city", "completed_with_spell")
                 sound("wom_bless")
                 inventory.remove("a_magic_scroll")
-                item("a_magic_scroll", 600, "You memorise what is written on the scroll. You can now use the Ardougne Teleport Spell.")
+                item("a_magic_scroll", "You memorise what is written on the scroll. You can now use the Ardougne Teleport Spell.")
             }
         }
 
@@ -575,7 +557,7 @@ class PlagueCity : Script {
         crafted { def ->
             if (def.add.any { it.id == "chocolatey_milk" }) {
                 queue("milk") {
-                    item("chocolatey_milk", 400, "You mix the chocolate into the bucket.")
+                    item("chocolatey_milk", "You mix the chocolate into the bucket.")
                 }
             }
         }
@@ -583,7 +565,7 @@ class PlagueCity : Script {
         crafted { def ->
             if (def.add.any { it.id == "hangover_cure" }) {
                 queue("cure") {
-                    item("hangover_cure", 400, "You mix the snape grass into the bucket.")
+                    item("hangover_cure", "You mix the snape grass into the bucket.")
                 }
             }
         }
@@ -599,6 +581,6 @@ class PlagueCity : Script {
         set("plaguecity_pipe", "grill_rope")
         set("plague_city", "grill_rope")
         inventory.remove("rope", 1)
-        item("rope", 600, "You tie the end of the rope to the sewer pipe's grill.")
+        item("rope", "You tie the end of the rope to the sewer pipe's grill.")
     }
 }

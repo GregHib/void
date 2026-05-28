@@ -22,7 +22,8 @@ import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.longQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
@@ -34,11 +35,6 @@ class LumbridgeChurch : Script {
     val ghostSpawn = Tile(3250, 3195)
 
     init {
-        playerSpawn {
-            sendVariable("rocks_restless_ghost")
-            sendVariable("restless_ghost_coffin")
-        }
-
         objectOperate("Play", "lumbridge_organ") {
             anim("play_organ")
             midi("church_organ")
@@ -147,7 +143,7 @@ class LumbridgeChurch : Script {
         exp(Skill.Prayer, 1125.0)
         refreshQuestJournal()
         inc("quest_points")
-        softQueue("quest_complete", 1) {
+        longQueue("quest_complete", 1) {
             questComplete(
                 "The Restless Ghost",
                 "1 Quest Point",
@@ -172,7 +168,7 @@ class LumbridgeChurch : Script {
         delay(1)
         val ghost = NPCs.add("restless_ghost", ghostSpawn, Direction.SOUTH)
         ghost.animDelay("restless_ghost_awakens")
-        ghost.softQueue("despawn", TimeUnit.SECONDS.toTicks(60)) {
+        ghost.queue("despawn", TimeUnit.SECONDS.toTicks(60)) {
             NPCs.remove(ghost)
         }
     }

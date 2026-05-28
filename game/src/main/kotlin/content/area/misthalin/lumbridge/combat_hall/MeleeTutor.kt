@@ -106,7 +106,7 @@ class MeleeTutor : Script {
                     option("Hood") {
                         player<Quiz>("May I have another hood for my cape, please?")
                         npc<Idle>("Most certainly, and free of charge!")
-                        item("defence_hood", 400, "The tutor hands you another hood for your skillcape.")
+                        item("defence_hood", "The tutor hands you another hood for your skillcape.")
                         inventory.add("defence_hood")
                     }
                 }
@@ -156,9 +156,9 @@ class MeleeTutor : Script {
             return@option
         }
 
-        item("training_sword", 800, "Harlan gives you a Training sword.")
+        item("training_sword", "Harlan gives you a Training sword.")
         inventory.add("training_sword")
-        item("training_shield", 800, "Harlan gives you a Training shield.")
+        item("training_shield", "Harlan gives you a Training shield.")
         inventory.add("training_shield")
         npc<Idle>("There you go, use it well.")
         menu("Is there anything else I can help you with?")

@@ -68,20 +68,20 @@ class Oracle : Script {
                 items("nature_rune", "water_rune", "The Oracle gives you some runes.") // TODO proper message
             }
             "herbs" -> {
-                item("grimy_tarromin", 400, "<navy>The Oracle gives you some herbs.") // TODO proper message
+                item("grimy_tarromin", "<navy>The Oracle gives you some herbs.") // TODO proper message
             }
             "seeds" -> {
-                item("potato_seed", 400, "<navy>The Oracle gives you some seeds.")
+                item("potato_seed", "<navy>The Oracle gives you some seeds.")
                 npc<Happy>("New life from these shall perchance spring!")
             }
             "prayer" -> {
                 item(167, "<navy>The Oracle blesses you.<br>You gain some Prayer xp.") // TODO proper message
             }
             "coins" -> {
-                item("coins_8", 400, "<navy>The Oracle gives you some coins.") // TODO proper message
+                item("coins_8", "<navy>The Oracle gives you some coins.") // TODO proper message
             }
             else -> {
-                item(reward, 400, "The Oracle gives you an ${reward.toSentenceCase()}!") // TODO proper message
+                item(reward, "The Oracle gives you an ${reward.toSentenceCase()}!") // TODO proper message
                 npc<Happy>("I found this while I was mining. Hope you like it.")
             }
         }

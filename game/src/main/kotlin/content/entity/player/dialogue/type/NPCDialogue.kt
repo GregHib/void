@@ -3,7 +3,6 @@ package content.entity.player.dialogue.type
 import content.entity.player.dialogue.Expression
 import content.entity.player.dialogue.sendChat
 import net.pearx.kasechange.toSnakeCase
-import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.FontDefinitions
@@ -13,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.mode.Face
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.suspend.ContinueSuspension
+import world.gregs.voidps.engine.suspend.pauseButton
 import world.gregs.voidps.network.login.protocol.encode.npcDialogueHead
 
 suspend inline fun <reified E : Expression> Player.npc(text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
@@ -29,7 +28,7 @@ suspend inline fun <reified E : Expression> Player.npc(npcId: String, text: Stri
 @JvmName("npcExpression")
 suspend fun Player.npc(expression: String, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
     val target: NPC = get("dialogue_target") ?: throw IllegalArgumentException("No npc specified for dialogue. Please use player.talkWith(npc) or npc(npcId, text).")
-    val id = target["transform_id", get<NPCDefinition>("dialogue_def")?.stringId ?: target.id]
+    val id = target["transform_id", get("dialogue_def") ?: target.id]
     if (target.def["interacts", true]) {
         target.mode = Face(target, this, target.def["interact_range", 1])
     }
@@ -50,13 +49,15 @@ suspend fun Player.npc(npcId: String, expression: String, text: String, largeHea
 private suspend fun Player.npc(lines: List<String>, clickToContinue: Boolean, npcId: String, largeHead: Boolean?, expression: String, title: String?) {
     check(lines.size <= 4) { "Maximum npc chat lines exceeded ${lines.size} for $this" }
     val id = getInterfaceId(lines.size, clickToContinue)
-    check(open(id)) { "Unable to open npc dialogue $id for $this" }
+    if (!open(id)) {
+        return
+    }
     val npcDef = NPCDefinitions.get(npcId)
     val head = getChatHeadComponentName(largeHead ?: npcDef["large_head", false])
     sendNPCHead(this, id, head, npcDef.id)
     interfaces.sendChat(id, head, if (npcDef.contains("dialogue")) "${npcDef["dialogue", ""]}_$expression" else expression, title ?: npcDef.name, lines)
     if (clickToContinue) {
-        ContinueSuspension.get(this)
+        pauseButton()
         close(id)
     }
 }

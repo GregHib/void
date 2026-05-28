@@ -31,5 +31,18 @@ class PlayerVariables(
         variable.send(client ?: return, value)
     }
 
+    override fun sendAll() {
+        val client = client ?: return
+        for ((key, value) in data) {
+            val variable = VariableDefinitions.get(key) ?: continue
+            if (!variable.transmit) {
+                continue
+            }
+            if (value != variable.defaultValue) {
+                variable.send(client, value)
+            }
+        }
+    }
+
     override fun data(key: String): MutableMap<String, Any> = if (VariableDefinitions.get(key).persist) data else temp
 }

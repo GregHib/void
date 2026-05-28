@@ -18,7 +18,7 @@ class FremennikSlayerDungeonTest : WorldTest() {
 
         val chasm = GameObjects.find(Tile(2769, 10002), "slayer_dungeon_chasm")
         player.objectOption(chasm, "Jump-across")
-        tick(7)
+        tick(8)
 
         assertEquals(10.0, player.experience.get(Skill.Agility))
         assertTrue(player.containsMessage("Your feet skid as you land"))
@@ -32,7 +32,7 @@ class FremennikSlayerDungeonTest : WorldTest() {
 
         val chasm = GameObjects.find(Tile(2769, 10002), "slayer_dungeon_chasm")
         player.objectOption(chasm, "Jump-across")
-        tick(7)
+        tick(8)
 
         assertEquals(10.0, player.experience.get(Skill.Agility))
         assertTrue(player.containsMessage("Your feet skid as you land"))

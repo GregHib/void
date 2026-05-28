@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.timer.TimerSlot
 import world.gregs.voidps.engine.timer.Timers
 import world.gregs.voidps.network.login.protocol.visual.NPCVisuals
 import world.gregs.voidps.type.Tile
-import kotlin.coroutines.Continuation
 
 /**
  * A non-player character
@@ -54,6 +53,8 @@ data class NPC(
         }
     }
 
+    var lifecycle: Int = 0
+
     override val size = def.size
     override var mode: Mode = EmptyMode
         set(value) {
@@ -62,12 +63,12 @@ data class NPC(
             value.start()
         }
 
-    override var queue = ActionQueue(this)
+    override var queue: ActionQueue<*> = ActionQueue(this)
     override var softTimers: Timers = TimerSlot(this)
-    override var delay: Continuation<Unit>? = null
     override var suspension: Suspension? = null
     override var variables: Variables = Variables(this)
     override val steps: Steps = Steps(this)
+    override var walkTrigger: (() -> Unit)? = null
 
     override lateinit var collision: CollisionStrategy
 
@@ -80,6 +81,28 @@ data class NPC(
             return NPCDefinitions.get(this["transform_id", ""])
         }
         return NPCDefinitions.resolve(def, player)
+    }
+
+    /**
+     * Respawn an npc after [ticks]
+     */
+    fun respawn(ticks: Int) {
+        hide = true
+        lifecycle = ticks + 1
+    }
+
+    /**
+     * Revert the transform of an npc after [ticks]
+     */
+    fun revert(ticks: Int) {
+        lifecycle = ticks + 1
+    }
+
+    /**
+     * Remove then npc completely after [ticks]
+     */
+    fun despawn(ticks: Int = 0) {
+        lifecycle = -(ticks + 1)
     }
 
     override fun equals(other: Any?): Boolean {

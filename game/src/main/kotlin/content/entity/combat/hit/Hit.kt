@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
@@ -142,7 +143,7 @@ object Hit {
  * @param offensiveType attack type used for calculating offensive rating and damage
  * @param defensiveType attack type used for rolling the [target]s defensive rating
  * @param delay Hit delay in client ticks
- * @param spell The type of maigc spell used
+ * @param spell The type of magic spell used
  * @param special Special attack
  * @param damage The amount of damage dealt
  * @return The actual amount damage dealt after bonuses and protections applied
@@ -164,8 +165,14 @@ fun Character.hit(
     } else if (this is NPC) {
         CombatApi.attack(this, CombatAttack(target, actualDamage, offensiveType, weapon, spell, special, delay))
     }
-    target.strongQueue("hit", if (delay == 0) 0 else CLIENT_TICKS.toTicks(delay) + 1) {
-        target.directHit(this@hit, actualDamage, offensiveType, weapon, spell, special)
+    if (target is NPC) {
+        target.queue("hit", if (delay == 0) 0 else CLIENT_TICKS.toTicks(delay) + 1) {
+            target.directHit(this@hit, actualDamage, offensiveType, weapon, spell, special)
+        }
+    } else if (target is Player) {
+        target.strongQueue("hit", if (delay == 0) 0 else CLIENT_TICKS.toTicks(delay) + 1) {
+            target.directHit(this@hit, actualDamage, offensiveType, weapon, spell, special)
+        }
     }
     return actualDamage
 }

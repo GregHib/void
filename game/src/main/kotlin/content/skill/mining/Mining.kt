@@ -1,7 +1,6 @@
 package content.skill.mining
 
 import content.activity.shooting_star.ShootingStarHandler
-import content.entity.combat.underAttack
 import content.entity.player.bank.bank
 import content.entity.player.bank.ownsItem
 import content.quest.questCompleted
@@ -28,6 +27,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.addToLimit
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import kotlin.random.nextInt
@@ -54,7 +54,7 @@ class Mining : Script {
             }
             softTimers.start("mining")
             var first = true
-            while (!underAttack) {
+            while (awaitDialogues()) {
                 if (!GameObjects.contains(target)) {
                     break
                 }

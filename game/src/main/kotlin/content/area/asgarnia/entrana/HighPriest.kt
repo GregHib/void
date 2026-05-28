@@ -35,17 +35,17 @@ class HighPriest : Script {
         when (reward) {
             "runes" -> items("nature_rune", "water_rune", "The High Priest gives you some runes.") // TODO proper message
             "herbs" -> npc<Happy>("Here, let me give you some herbs.")
-            "seeds" -> item("potato_seed", 400, "<navy>The High Priest gives you some seeds.") // TODO proper message
+            "seeds" -> item("potato_seed", "<navy>The High Priest gives you some seeds.") // TODO proper message
             "prayer" -> {
                 item(167, "<navy>The High Priest blesses you.<br>You gain some Prayer xp.")
                 npc<Happy>("In the name of Saradomin I shall bless you...")
             }
             "coins" -> {
-                item("coins_8", 400, "The High Priest gives you some coins.")
+                item("coins_8", "The High Priest gives you some coins.")
                 npc<Happy>("I don't have much in the way of wealth, but I can spare you a few coins for your trouble.")
             }
             else -> {
-                item(reward, 400, "The High Priest gives you an ${reward.toLowerSpaceCase()}!")
+                item(reward, "The High Priest gives you an ${reward.toLowerSpaceCase()}!")
                 npc<Happy>("The beasts which dwell under this island occasionally drop gems when they die - please take this one as a sign of my gratitude.")
             }
         }

@@ -158,7 +158,7 @@ class CaptainRovin : Script {
         npc<Laugh>("Ha ha ha! The idiot!")
         npc<Laugh>("Okay, I'll give you the key, just so that it's you that kills the demon and not Sir Prysin!")
         if (inventory.add("silverlight_key_captain_rovin")) {
-            item("silverlight_key_captain_rovin", 400, "Captain Rovin hands you a key.")
+            item("silverlight_key_captain_rovin", "Captain Rovin hands you a key.")
         }
     }
 }

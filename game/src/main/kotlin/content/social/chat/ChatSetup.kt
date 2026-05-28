@@ -4,13 +4,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
 
 class ChatSetup : Script {
-
     init {
-        playerSpawn {
-            sendVariable("clan_chat_colour")
-            sendVariable("private_chat_colour")
-        }
-
         interfaceOption("Open chat display options", "options:chat") {
             open("chat_setup")
         }

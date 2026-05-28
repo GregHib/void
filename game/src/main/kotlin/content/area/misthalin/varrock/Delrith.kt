@@ -41,7 +41,8 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.longQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.timer.toTicks
@@ -108,7 +109,7 @@ class Delrith : Script {
                     val text = "$selected$suffix"
                     say(text)
                     player<Neutral>(text, largeHead = true, clickToContinue = false)
-                    val expected = DemonSlayerSpell.getWord(player, index + 1)
+                    val expected = DemonSlayerSpell.getWord(this, index + 1)
                     if (selected != expected) {
                         correct = false
                         target.anim("delrith_continue")
@@ -150,7 +151,7 @@ class Delrith : Script {
         if (npc.queue.contains("death")) {
             npc.queue.clear("death")
         }
-        npc.strongQueue("death", TimeUnit.MINUTES.toTicks(5)) {
+        npc.queue("death", TimeUnit.MINUTES.toTicks(5)) {
             Death.killed(npc)
         }
         //    player.playSound("demon_slayer_portal_open")
@@ -295,8 +296,8 @@ class Delrith : Script {
         set("demon_slayer", "completed")
         inc("quest_points", 3)
         DemonSlayerSpell.clear(this)
-        softQueue("quest_complete", 1) {
-            player.questComplete(
+        longQueue("quest_complete", 1) {
+            questComplete(
                 "Demon Slayer",
                 "3 Quest Points",
                 "Silverlight",

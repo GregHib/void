@@ -14,10 +14,6 @@ import world.gregs.voidps.engine.inv.*
 class Windmill : Script {
 
     init {
-        playerSpawn {
-            sendVariable("flour_bin")
-        }
-
         // TODO: Fix Zanaris Flour Bin object definition which makes it invisible if it contains more than 1 flour.
 
         objectOperate("Operate", "hopper_controls*") { (target) ->

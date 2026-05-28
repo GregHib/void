@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 
@@ -63,7 +63,7 @@ class Werewolf : Script {
             areaSound("lycanthropy", tile, radius = 5)
             source.mode = EmptyMode
             mode = PauseMode
-            softQueue("werewolf_transform", 1) {
+            queue("werewolf_transform", 1) {
                 transform("werewolf")
                 if (source is Player) {
                     interactPlayer(source, "Attack")

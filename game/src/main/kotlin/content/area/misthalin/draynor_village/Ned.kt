@@ -45,7 +45,7 @@ class Ned : Script {
                         remove("ball_of_wool", 3)
                         add("wig_grey")
                     }
-                    item("wig_grey", 400, "Ned gives you a pretty good wig.")
+                    item("wig_grey", "Ned gives you a pretty good wig.")
                     npc<Happy>("Here you go. How's that for a quick effort? Not bad I think!")
                     player<Happy>("Thanks Ned. There's more to you than meets the eye.")
                 }

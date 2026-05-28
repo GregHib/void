@@ -10,11 +10,268 @@ id = 936
 [dungeon_complexity]
 id = 938
 
+[.complexity]
+id = 42
+
+[.confirm]
+id = 39
+
+[.complexity_1]
+id = 56
+
+[.complexity_1_selected]
+id = 57
+
+[.complexity_2]
+id = 61
+
+[.complexity_2_selected]
+id = 62
+
+[.complexity_3]
+id = 66
+
+[.complexity_3_selected]
+id = 67
+
+[.complexity_4]
+id = 71
+
+[.complexity_4_selected]
+id = 72
+
+[.complexity_5]
+id = 76
+
+[.complexity_5_selected]
+id = 77
+
+[.complexity_6]
+id = 81
+
+[.complexity_6_selected]
+id = 82
+
+[.combat_sprite]
+id = 87
+
+[.combat_text]
+id = 88
+
+[.cooking_sprite]
+id = 89
+
+[.cooking_text]
+id = 90
+
+[.firemaking_sprite]
+id = 91
+
+[.firemaking_text]
+id = 92
+
+[.woodcutting_sprite]
+id = 93
+
+[.woodcutting_text]
+id = 94
+
+[.fishing_sprite]
+id = 95
+
+[.fishing_text]
+id = 96
+
+[.weapons_sprite]
+id = 97
+
+[.weapons_text]
+id = 98
+
+[.mining_sprite]
+id = 99
+
+[.mining_text]
+id = 100
+
+[.runecrafting_sprite]
+id = 101
+
+[.runecrafting_text]
+id = 102
+
+[.textiles_sprite]
+id = 103
+
+[.textiles_text]
+id = 104
+
+[.hunter_sprite]
+id = 105
+
+[.hunter_text]
+id = 106
+
+[.armour_sprite]
+id = 107
+
+[.armour_text]
+id = 108
+
+[.seeds_sprite]
+id = 109
+
+[.seeds_text]
+id = 110
+
+[.herblore_sprite]
+id = 111
+
+[.herblore_text]
+id = 112
+
+[.thieving_sprite]
+id = 113
+
+[.thieving_text]
+id = 114
+
+[.summoning_sprite]
+id = 115
+
+[.summoning_text]
+id = 116
+
+[.construction_sprite]
+id = 117
+
+[.construction_text]
+id = 118
+
+[.xp_penalty]
+id = 119
+
 [dungeoneering_party]
 id = 939
+type = "quest_journals_tab"
 
-[dungeoneering_rewards]
+[.member_0]
+id = 59
+
+[.xp_0]
+id = 60
+
+[.member_1]
+id = 62
+
+[.xp_1]
+id = 63
+
+[.member_2]
+id = 65
+
+[.xp_2]
+id = 66
+
+[.member_3]
+id = 68
+
+[.xp_3]
+id = 69
+
+[.member_4]
+id = 71
+
+[.xp_4]
+id = 72
+
+[.left_colour]
+id = 29
+
+[.right_colour]
+id = 30
+
+[.leave_party_leader]
+id = 31
+
+[.leave_party_member]
+id = 34
+
+[.leave_party_button]
+id = 36
+
+[.form_party_group]
+id = 37
+
+[.invite_party_leader]
+id = 38
+
+[.leave_party]
+id = 33
+
+[.invite_player]
+id = 43
+
+[.no_options]
+id = 39
+
+[.change_floor]
+id = 108
+
+[.change_floor_disabled]
+id = 111
+
+[.change_complexity]
+id = 102
+
+[.change_complexity_disabled]
+id = 105
+
+[.reset_disabled]
+id = 88
+
+[.guide_mode]
+id = 94
+
+[.guide_mode_disabled]
+id = 95
+
+[.guide_mode_selected]
+id = 93
+
+[.reset]
+id = 87
+
+[.form_party]
+id = 45
+
+[.close]
+id = 112
+
+[daemonheim_rewards]
 id = 940
+
+[.items]
+id = 2
+options = { Select = 0 }
+
+[.buy]
+id = 64
+
+[.buy_panel]
+id = 41
+
+[.confirm_panel]
+id = 42
+
+[.confirm]
+id = 48
+
+[.cancel]
+id = 50
+
+[.tokens]
+id = 31
 
 [dungeoneering_smelt]
 id = 941
@@ -22,8 +279,188 @@ id = 941
 [dungeon_floor]
 id = 947
 
+[.select_1]
+id = "48-107"
+
+[.p0_f1]
+id = "608-667"
+
+[.p0_cf1]
+id = "669-728"
+
+[.p0]
+id = 729
+
+[.p1_f1]
+id = "486-545"
+
+[.p1_cf1]
+id = "547-606"
+
+[.p1]
+id = 607
+
+[.p2_f1]
+id = "364-423"
+
+[.p2_cf1]
+id = "425-484"
+
+[.p2]
+id = "485"
+
+[.p3_f1]
+id = "242-301"
+
+[.p3_cf1]
+id = "303-362"
+
+[.p3]
+id = 363
+
+[.p4_f1]
+id = "120-179"
+
+[.p4_cf1]
+id = "181-240"
+
+[.p4]
+id = 241
+
+[.floor]
+id = 765
+
+[.confirm]
+id = 766
+
+[dungeon_journals]
+id = 948
+
+[.bilrach]
+id = 232
+
+[.journal_1]
+id = 234
+
+[.journal_2]
+id = 235
+
+[.journal_3]
+id = 236
+
+[.journal_4]
+id = 237
+
+[.journal_5]
+id = 238
+
+[.journal_6]
+id = 239
+
+[.journal_7]
+id = 240
+
+[.journal_8]
+id = 241
+
+[.journal_9]
+id = 242
+
+[.journal_10]
+id = 243
+
+[.journal_11]
+id = 244
+
+[.journal_12]
+id = 245
+
+[.journal_13]
+id = 246
+
+[.journal_14]
+id = 247
+
+[.journal_15]
+id = 248
+
+[.journal_16]
+id = 249
+
+[.journal_17]
+id = 250
+
+[.journal_18]
+id = 251
+
+[.journal_19]
+id = 252
+
+[.journal_20]
+id = 253
+
+[.journal_21]
+id = 254
+
+[.journal_22]
+id = 255
+
+[.journal_23]
+id = 256
+
+[.journal_24]
+id = 257
+
+[.journal_25]
+id = 258
+
+[.journal_26]
+id = 259
+
+[.journal_27]
+id = 260
+
+[.journal_28]
+id = 261
+
+[.journal_29]
+id = 262
+
+[.journal_30]
+id = 263
+
+[.journal_31]
+id = 264
+
+[.journal_32]
+id = 265
+
+[.marmaros]
+id = 206
+
+[.stalker]
+id = 189
+
+[.behemoth]
+id = 172
+
+[.kalgerion]
+id = 155
+
+[.misc]
+id = 107
+
 [dungeon_party_invite]
 id = 949
+
+[.accept]
+id = 65
+
+[.decline]
+id = 63
+
+[.decline_forever]
+id = 61
 
 [dungeoneering_spellbook]
 id = 950
@@ -196,6 +633,78 @@ id = 65
 id = 66
 cast_id = 141
 
+[kinship_customisation]
+id = 993
+
+[.switch_1]
+id = 137
+
+[.upgrade_1]
+id = 139
+options = { "Switch-to" = 0, "Quick-switch" = 1 }
+
+[.switch_2]
+id = 44
+
+[.upgrade_2]
+id = 46
+
+[.switch_3]
+id = 86
+
+[.upgrade_3]
+id = 88
+
+[.melee]
+id = 257
+
+[.ranged]
+id = 242
+
+[.magic]
+id = 227
+
+[.skiller]
+id = 212
+
+[.reset]
+id = 190
+
+[.reset_overlay]
+id = 191
+
+[.reset_cancel]
+id = 303
+
+[.upgrade_overlay]
+id = 261
+
+[.upgrade_cancel]
+id = 278
+
+[.upgrade_text]
+id = 276
+
+[.upgrade_confirm]
+id = 279
+
+[.upgrade_tokens]
+id = 298
+
+[.upgrade_cost]
+id = 277
+
+[.reset_text]
+id = 18
+
+[.reset_count]
+id = 20
+
+[.reset_confirm]
+id = 22
+
+[.reset_disabled]
+id = 305
+
 [herbicide]
 id = 1006
-

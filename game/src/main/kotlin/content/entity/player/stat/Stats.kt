@@ -13,7 +13,6 @@ class Stats : Script {
 
     init {
         interfaceOpened("stats") {
-            sendVariable("skill_stat_flash")
             Skill.entries.forEach {
                 experience.update(it)
             }

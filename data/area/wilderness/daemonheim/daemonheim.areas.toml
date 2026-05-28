@@ -3,3 +3,16 @@ x = [3392, 3392, 3519, 3519, 3455, 3455]
 y = [3612, 3839, 3839, 3648, 3648, 3612]
 tags = ["penguin_area"]
 hint = "where the Fremennik 'heim' and seek."
+
+[daemonheim_castle]
+x = [3427, 3472]
+y = [3707, 3755]
+
+[daemonheim_teleport]
+x = [3444, 3448]
+y = [3693, 3698]
+
+[daemonheim_castle_exit]
+x = [3454, 3465]
+y = [3717, 3724]
+level = 1

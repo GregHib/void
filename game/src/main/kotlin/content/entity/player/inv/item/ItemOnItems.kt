@@ -57,7 +57,7 @@ class ItemOnItems(val itemOnItemDefs: ItemOnItemDefinitions) : Script {
                     )
                     overlaps.first { it.add.first().id == selection } to amount
                 }
-                useItemOnItem(player, def.skill, def, amount, 0)
+                useItemOnItem(this, def.skill, def, amount, 0)
             }
         }
 

@@ -1,4 +1,14 @@
-[martin_thwait_rogues_den]
+[martin_thwait]
 id = 2270
+wander_radius = 3
+shop = "martin_thwaits_lost_and_found"
 examine = "A loveable rogue."
 
+[emerald_benedict]
+id = 2271
+examine = "A rich banker man... Some say too rich."
+
+[brian_o_richard]
+id = 2266
+wander_radius = 4
+examine = "Head of the maze."

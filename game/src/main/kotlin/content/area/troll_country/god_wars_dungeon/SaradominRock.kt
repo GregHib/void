@@ -12,11 +12,6 @@ import world.gregs.voidps.engine.inv.remove
 class SaradominRock : Script {
 
     init {
-        entered("godwars_dungeon_multi_area") {
-            sendVariable("godwars_saradomin_rope_top")
-            sendVariable("godwars_saradomin_rope_bottom")
-        }
-
         objectOperate("Tie-rope", "godwars_saradomin_rock_top,godwars_saradomin_rock_bottom") { (target) ->
             tieRope(this, target.def(this).stringId)
         }

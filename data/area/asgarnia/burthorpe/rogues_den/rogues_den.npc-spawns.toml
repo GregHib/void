@@ -1,3 +1,5 @@
 spawns = [
-  { id = "martin_thwait_rogues_den", x = 3034, y = 4961, members = true },
+  { id = "emerald_benedict", x = 3042, y = 4972, level = 1, members = true },
+  { id = "martin_thwait", x = 3051, y = 4974, level = 1, members = true },
+  { id = "brian_o_richard", x = 3049, y = 4977, level = 1, members = true },
 ]

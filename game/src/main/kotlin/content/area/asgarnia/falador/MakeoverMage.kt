@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.*
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyColour
 import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
@@ -120,7 +120,7 @@ class MakeoverMage : Script {
         npc.transform(if (toFemale) "makeover_mage_female" else "makeover_mage_male")
         npc.gfx("curse_impact", delay = 15)
         npc.anim("bind_staff")
-        npc.softQueue("transform", 1) {
+        npc.queue("transform", 1) {
             npc.say(if (toFemale) "Ooh!" else "Aha!")
         }
         return Timer.CONTINUE
@@ -168,7 +168,7 @@ class MakeoverMage : Script {
                     add("yin_yang_amulet")
                 }
                 when (inventory.transaction.error) {
-                    TransactionError.None -> item("yin_yang_amulet", 300, "You receive an amulet in exchange for $cost coins")
+                    TransactionError.None -> item("yin_yang_amulet", "You receive an amulet in exchange for $cost coins")
                     is TransactionError.Deficient -> notEnough("coins")
                     is TransactionError.Full -> {
                         npc<Quiz>("Um...you don't seem to have room to take the amulet. Maybe you should buy it some other time.")

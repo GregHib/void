@@ -10,13 +10,13 @@ import content.skill.magic.spell.removeSpellItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.type.random
 
-class EnergyTransfer(val definitions: SpellDefinitions) : Script {
+class EnergyTransfer : Script {
 
     init {
         onPlayerApproach("lunar_spellbook:energy_transfer") { (target) ->
@@ -44,12 +44,11 @@ class EnergyTransfer(val definitions: SpellDefinitions) : Script {
             if (!removeSpellItems("energy_transfer")) {
                 return@onPlayerApproach
             }
-            val definition = definitions.get("energy_transfer")
             start("movement_delay", 2)
             anim("lunar_cast")
             target.gfx("energy_transfer")
             sound("energy_transfer")
-            exp(Skill.Magic, definition.experience)
+            exp(Skill.Magic, Tables.int("spells.energy_transfer.xp") / 10.0)
             damage(random.nextInt(95, 100))
             specialAttackEnergy = 0
             target.specialAttackEnergy = MAX_SPECIAL_ATTACK

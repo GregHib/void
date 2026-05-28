@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.longQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 
@@ -81,7 +81,7 @@ class LumbridgeSwampShed : Script {
         jingle("quest_complete_1")
         refreshQuestJournal()
         inc("quest_points", 3)
-        softQueue("quest_complete", 1) {
+        longQueue("quest_complete", 1) {
             message("Congratulations, Quest complete!")
             questComplete(
                 "Lost City",

@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -20,9 +19,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 import world.gregs.voidps.engine.queue.weakQueue
 
-class EnchantCrossbowBolt(
-    val spellDefinitions: SpellDefinitions,
-) : Script {
+class EnchantCrossbowBolt : Script {
     val set = setOf(
         "opal",
         "sapphire",
@@ -101,8 +98,7 @@ class EnchantCrossbowBolt(
                 anim("enchanted_tipping")
                 gfx("enchanted_tipping")
                 sound("enchanted_tipping")
-                val exp = spellDefinitions.get("enchant_${type}_bolts").experience
-                exp(Skill.Magic, exp)
+                exp(Skill.Magic, Tables.int("spells.enchant_${type}_bolts.xp") / 10.0)
                 start("action_delay", 1)
                 weakQueue("bolt_enchant", 3) {
                     enchant(type, repeat - 1)

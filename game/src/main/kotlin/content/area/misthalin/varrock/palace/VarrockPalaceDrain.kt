@@ -20,12 +20,6 @@ class VarrockPalaceDrain : Script {
     val logger = InlineLogger()
 
     init {
-        playerSpawn {
-            if (get("demon_slayer_drain_dislodged", false)) {
-                sendVariable("demon_slayer_drain_dislodged")
-            }
-        }
-
         objectOperate("Search", "varrock_palace_drain*") {
             anim("climb_down")
             if (get("demon_slayer_drain_dislodged", false) || ownsItem("silverlight_key_sir_prysin")) {
@@ -66,7 +60,7 @@ class VarrockPalaceDrain : Script {
         objectOperate("Take", "demon_slayer_rusty_key") {
             if (inventory.add("silverlight_key_sir_prysin")) {
                 set("demon_slayer_drain_dislodged", false)
-                item("silverlight_key_sir_prysin", 400, "You pick up an old rusty key.")
+                item("silverlight_key_sir_prysin", "You pick up an old rusty key.")
             }
         }
     }

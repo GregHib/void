@@ -36,7 +36,6 @@ import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
-import kotlin.coroutines.Continuation
 import kotlin.math.round
 
 interface Character :
@@ -48,17 +47,26 @@ interface Character :
     val levels: Levels
     var collision: CollisionStrategy
     var mode: Mode
-    var queue: ActionQueue
+    var queue: ActionQueue<*>
     var softTimers: Timers
     var suspension: Suspension?
-    var delay: Continuation<Unit>?
     override var variables: Variables
     val steps: Steps
     val size: Int
     val blockMove: Int
     val collisionFlag: Int
+    var walkTrigger: (() -> Unit)?
 
     override fun compareTo(other: Character): Int = index.compareTo(other.index)
+
+    fun walkTrigger() {
+        if (suspension != null) {
+            return
+        }
+        val trigger = walkTrigger ?: return
+        walkTrigger = null
+        trigger.invoke()
+    }
 
     /**
      * Gradually move the characters appeared location to [delta] over [delay] time
@@ -101,10 +109,10 @@ interface Character :
 
     /**
      * Apply [id] graphical effect (aka spotanim) to the character with optional [delay]
-     * @see GraphicDefinitions for adjusting height, rotation and refresh
+     * @see GraphicDefinitions for adjusting height, rotation, and refresh
      */
     fun gfx(id: String, delay: Int? = null) {
-        val definition = get<GraphicDefinitions>().getOrNull(id) ?: return
+        val definition = GraphicDefinitions.getOrNull(id) ?: return
         val mask = if (this is Player) VisualMask.PLAYER_GRAPHIC_1_MASK else VisualMask.NPC_GRAPHIC_1_MASK
         val graphic = if (visuals.flagged(mask)) visuals.primaryGraphic else visuals.secondaryGraphic
         graphic.id = definition.id
@@ -135,7 +143,7 @@ interface Character :
      * with optional [delay] and [override]ing of the previous animation
      */
     fun anim(id: String, delay: Int? = null, override: Boolean = false): Int {
-        val definition = get<AnimationDefinitions>().getOrNull(id) ?: return -1
+        val definition = AnimationDefinitions.getOrNull(id) ?: return -1
         val anim = visuals.animation
         if (!override && definition.priority < anim.priority) {
             return -1
@@ -281,19 +289,28 @@ interface Character :
         flagWatch()
     }
 
+    /**
+     * Trigger something on next attempted [world.gregs.voidps.network.client.instruction.Walk].
+     */
+    fun walkTrigger(block: () -> Unit) {
+        this.walkTrigger = block
+    }
 
     /**
      * Prevents non-interface player input and most processing
      * Cannot be cancelled.
      */
-    suspend fun delay(ticks: Int = 1) {
+    suspend fun delay(ticks: Int = 1, cancellable: Boolean = false) {
         if (ticks <= 0) {
             return
         }
-        this["delay"] = ticks
-        suspendCancellableCoroutine {
-            delay = it
+        if (!cancellable) {
+            this["delay"] = ticks
         }
+        suspendCancellableCoroutine {
+            suspension = Suspension.Delay(it, ticks)
+        }
+        suspension = null
     }
 
     /**
@@ -369,7 +386,7 @@ interface Character :
      * interaction will have finished and there will be nothing to resume the suspension
      */
     suspend fun pause(ticks: Int) {
-        Suspension.start(this, ticks)
+        delay(ticks, cancellable = true)
     }
 
     /**

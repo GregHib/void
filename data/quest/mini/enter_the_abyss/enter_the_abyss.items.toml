@@ -87,6 +87,7 @@ kept = "Wilderness"
 id = 5520
 tradeable = false
 weight = 0.01
+book = "abyssal_research_notes"
 aka = ["abyssal_research_notes"]
 examine = "Some research notes on abyssal space."
 kept = "Wilderness"

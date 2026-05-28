@@ -5,12 +5,12 @@ import content.entity.effect.toxin.poisoned
 import content.skill.magic.spell.removeSpellItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 
-class CureMe(val definitions: SpellDefinitions) : Script {
+class CureMe : Script {
 
     init {
         interfaceOption("Cast", "lunar_spellbook:cure_me") {
@@ -22,11 +22,10 @@ class CureMe(val definitions: SpellDefinitions) : Script {
             if (!removeSpellItems(spell)) {
                 return@interfaceOption
             }
-            val definition = definitions.get(spell)
             anim("lunar_cast")
             gfx(spell)
             sound(spell)
-            exp(Skill.Magic, definition.experience)
+            exp(Skill.Magic, Tables.int("spells.$spell.xp") / 10.0)
             curePoison()
         }
     }

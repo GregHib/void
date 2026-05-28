@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.map.collision.random
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
@@ -31,8 +31,8 @@ class Imp : Script {
         npcCombatDamage("imp") { (source, _, damage) ->
             if (levels.get(Skill.Constitution) - damage > 0 && random.nextDouble() < retreatChance) {
                 if (levels.get(Skill.Constitution) - damage < 10) {
-                    softQueue("imp_retreat") {
-                        mode = Retreat(npc, source)
+                    queue("imp_retreat") {
+                        mode = Retreat(this, source)
                     }
                 } else if (mode !is Retreat) {
                     teleportImp(this, teleportChanceHit)
@@ -71,7 +71,7 @@ class Imp : Script {
             return
         }
 
-        npc.softQueue("imp_teleport") {
+        npc.queue("imp_teleport") {
             areaSound("smoke_puff", npc.tile, telePoofVfxRadius)
             areaGfx("imp_puff", npc.tile)
             npc.steps.clear()

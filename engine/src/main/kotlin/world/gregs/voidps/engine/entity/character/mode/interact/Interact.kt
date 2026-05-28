@@ -91,12 +91,13 @@ open class Interact(
             return
         }
         calculate()
+        character.walkTrigger()
         val interacted = processInteraction()
         if (interacted && interactionFinished()) {
             clear()
             return
         }
-        if (character.hasClock("movement_delay") || character.visuals.moved || arrived(approachRange ?: -1) || character.suspension != null || character.delay != null) {
+        if (character.hasClock("movement_delay") || character.visuals.moved || arrived(approachRange ?: -1) || character.suspension != null) {
             return
         }
         character.cantReach()

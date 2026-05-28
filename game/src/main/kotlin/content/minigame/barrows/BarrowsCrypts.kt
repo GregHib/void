@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.map.collision.random
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
@@ -95,7 +95,6 @@ class BarrowsCrypts : Script {
                 open("barrows_overlay")
             }
             softTimers.start("barrows_prayer_drain")
-            send()
             minimap(Minimap.HideMap)
         }
 
@@ -128,15 +127,6 @@ class BarrowsCrypts : Script {
                 return@exited
             }
             close("barrows_overlay")
-        }
-
-        interfaceOpened("barrows_overlay") {
-            sendVariable("ahrim_killed")
-            sendVariable("dharok_killed")
-            sendVariable("guthan_killed")
-            sendVariable("karil_killed")
-            sendVariable("torag_killed")
-            sendVariable("verac_killed")
         }
 
         objectOperate("Climb-up", "barrows_rope") {
@@ -184,7 +174,7 @@ class BarrowsCrypts : Script {
             }
             val npc = NPCs.add(id, spawn)
             npc.interactPlayer(this, "Attack")
-            npc.softQueue("despawn", TimeUnit.MINUTES.toTicks(2)) {
+            npc.queue("despawn", TimeUnit.MINUTES.toTicks(2)) {
                 NPCs.remove(npc)
             }
         }
@@ -234,19 +224,6 @@ class BarrowsCrypts : Script {
         }
     }
 
-    private fun Player.send() {
-        for (direction in Direction.ordinal) {
-            sendVariable("barrows_rope_${direction.name.lowercase()}")
-        }
-        for (row in Tables.get("barrows_doors").rows()) {
-            for (variable in row.stringList("vars")) {
-                sendVariable(variable)
-            }
-        }
-        sendVariable("barrows_in_tunnel")
-        sendVariable("barrows_killed_monsters")
-    }
-
     private fun Player.removeBrother(brother: String) {
         if (!contains("${brother}_spawn")) {
             return
@@ -258,7 +235,7 @@ class BarrowsCrypts : Script {
     companion object {
         internal fun spawnBrother(player: Player, brother: String, tile: Tile?) {
             val id = Tables.npc("barrows_brothers.$brother.npc")
-            val npc = NPCs.add(id, tile ?: player.tile)
+            val npc = NPCs.add(id, tile ?: player.tile, ticks = TimeUnit.SECONDS.toTicks(60), owner = player)
             npc.say(if (npc.tile.level == 3) "You dare disturb my rest!" else "You dare steal from us!")
             npc.interactPlayer(player, "Attack")
             player["${brother}_spawn"] = npc.index

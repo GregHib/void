@@ -15,15 +15,15 @@ interface VariableStore {
 
     fun clear(key: String, refresh: Boolean = true) = variables.clear(key, refresh)
 
-    fun toggle(key: String, refresh: Boolean = true): Boolean {
-        val value = variables.get(key, false)
+    fun toggle(key: String, refresh: Boolean = true, default: Boolean = false): Boolean {
+        val value = variables.get(key, default)
         variables.set(key, !value as Any, refresh)
         return !value
     }
 
-    fun inc(key: String, amount: Int = 1, refresh: Boolean = true): Int {
+    fun inc(key: String, amount: Int = 1, refresh: Boolean = true, max: Int = Int.MAX_VALUE): Int {
         val value: Int = variables.get(key, 0)
-        variables.set(key, value + amount, refresh)
+        variables.set(key, (value + amount).coerceAtMost(max), refresh)
         return value + amount
     }
 

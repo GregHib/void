@@ -75,7 +75,6 @@ class BarrowsChest(val drops: DropTables) : Script {
             if (get("barrows_looted", false)) {
                 softTimers.restart("barrows_cave_shake")
             }
-            sendVariable("barrows_chest_open")
         }
 
         exited("barrows_tunnels") {

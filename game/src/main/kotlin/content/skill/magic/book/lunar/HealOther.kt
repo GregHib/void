@@ -5,13 +5,13 @@ import content.skill.magic.spell.removeSpellItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 
-class HealOther(val definitions: SpellDefinitions) : Script {
+class HealOther : Script {
 
     init {
         onPlayerApproach("lunar_spellbook:heal_other") { (target) ->
@@ -31,14 +31,13 @@ class HealOther(val definitions: SpellDefinitions) : Script {
             if (!removeSpellItems("heal_other")) {
                 return@onPlayerApproach
             }
-            val definition = definitions.get("heal_other")
             val amount = (levels.get(Skill.Constitution) * 0.75).toInt() + 1
             start("movement_delay", 2)
             anim("lunar_cast")
             sound("heal_other")
             target.gfx("heal_other")
             target.sound("heal_other_impact")
-            exp(Skill.Magic, definition.experience)
+            exp(Skill.Magic, Tables.int("spells.heal_other.xp") / 10.0)
             val restored = target.levels.restore(Skill.Constitution, amount)
             target.message("You have been healed by $name.")
             damage(restored, delay = 2)

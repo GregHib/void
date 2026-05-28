@@ -39,14 +39,14 @@ interface Dialogues {
     }
 }
 
-fun Player.talkWith(npc: NPC, def: NPCDefinition = npc.def) {
+fun Player.talkWith(npc: NPC, def: NPCDefinition = npc.def(this)) {
     set("dialogue_target", npc)
-    set("dialogue_def", def)
+    set("dialogue_def", def.stringId)
 }
 
 suspend fun Player.talkWith(npc: NPC, block: suspend Dialogue.() -> Unit) {
     set("dialogue_target", npc)
-    set("dialogue_def", npc.def(this))
+    set("dialogue_def", npc.def(this).stringId)
     block(Dialogue(this, npc))
 }
 

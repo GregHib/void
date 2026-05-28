@@ -59,7 +59,7 @@ class TaskSystem : Script {
         }
 
         interfaceOption("Toggle", "task_system:dont_show") {
-            set("task_dont_show_again", !get("task_dont_show_again", false))
+            toggle("task_dont_show_again")
         }
 
         interfaceOption("Open", "task_system:task_list") {

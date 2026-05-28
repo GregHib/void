@@ -1,137 +1,135 @@
 package world.gregs.voidps.engine.queue
 
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.verify
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.TestScope
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.koin.test.mock.declare
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
+import world.gregs.voidps.cache.definition.data.InterfaceDefinition
+import world.gregs.voidps.engine.client.ui.Interfaces
+import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.hasMenuOpen
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ClientScriptDefinitions
+import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.script.KoinMock
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertNotNull
-import kotlin.test.assertTrue
 
-internal class ActionQueueTest : KoinMock() {
+@OptIn(ExperimentalCoroutinesApi::class)
+internal class ActionQueueTest {
+    private val testDispatcher = UnconfinedTestDispatcher()
+    private val testScope = TestScope(testDispatcher)
 
     private lateinit var player: Player
-    private lateinit var queue: ActionQueue
+    private lateinit var queue: ActionQueue<Player>
 
     @BeforeEach
     fun setup() {
         player = Player()
-        queue = ActionQueue(player)
-        player.queue = queue
-        player.interfaces = mockk(relaxed = true)
-        every { player.interfaces.get(any()) } returns null
-        val definitions = mockk<ClientScriptDefinitions>(relaxed = true)
-        every { definitions.get(any<String>()) } returns ClientScriptDefinition()
-        declare {
-            definitions
-        }
+        queue = ActionQueue(player, testScope)
+        InterfaceDefinitions.set(arrayOf(InterfaceDefinition(id = 0, type = "main_screen")), mapOf("test" to 0))
+        player.interfaces = Interfaces(player, mutableMapOf())
     }
 
     @Test
-    fun `Queue an action for immediate use`() {
-        var resumed = false
-        val action = action(delay = 0) {
-            resumed = true
-        }
-        queue.add(action)
-        assertEquals(0, action.remaining)
-        assertFalse(action.removed)
-        assertFalse(resumed)
-        queue.tick()
-        assertEquals(-1, action.remaining)
-        assertTrue(resumed)
-    }
+    fun `Actions route to correct internal queues based on priority`() {
+        val weak = Action<Player>("weak", 1, ActionPriority.Weak) {}
+        val engine = Action<Player>("engine", 1, ActionPriority.Engine) {}
+        val normal = Action<Player>("normal", 1, ActionPriority.Normal) {}
 
-    @Test
-    fun `Queuing a strong action removes weak actions`() {
-        val weak = action(ActionPriority.Weak, 5)
         queue.add(weak)
-        val strong = action(ActionPriority.Strong, 5)
-        queue.add(strong)
-        assertFalse(weak.removed)
-        tick()
-        assertTrue(weak.removed)
-    }
-
-    @Test
-    fun `Strong and soft actions close interfaces`() {
-        every { player.interfaces.get("main_screen") } returns "open_id"
-        val action = action(ActionPriority.Strong, 5)
-        queue.add(action)
-        tick()
-        verify {
-            player.interfaces.close("open_id")
-        }
-    }
-
-    @Test
-    fun `Soft actions are always called`() {
-        val action = action(ActionPriority.Soft)
-        queue.add(action)
-        player["delay"] = 10
-        tick()
-        assertTrue(action.removed)
-    }
-
-    @Test
-    fun `Normal actions wait for interfaces`() {
-        every { player.interfaces.get("main_screen") } returns "open_id"
-        val normal = action(ActionPriority.Normal)
+        queue.add(engine)
         queue.add(normal)
-        tick()
-        assertFalse(normal.removed)
-        every { player.interfaces.get("main_screen") } returns null
-        tick()
-        assertTrue(normal.removed)
+
+        assertTrue(queue.contains(ActionPriority.Weak))
+        assertTrue(queue.contains(ActionPriority.Engine))
+        assertTrue(queue.contains(ActionPriority.Normal))
     }
 
     @Test
-    fun `Strong actions wait for delays`() {
-        val action = action(ActionPriority.Strong, delay = 1)
-        queue.add(action)
-        player["delay"] = 10
-        tick()
-        assertFalse(action.removed)
-    }
+    fun `Strong action closes menus and clears weak actions on tick`() {
+        queue.add(Action<Player>("weak", 1, ActionPriority.Weak) {})
+        queue.add(Action<Player>("strong", 1, ActionPriority.Strong) {})
+        player.open("test")
 
-    @Test
-    fun `Queues can be suspended and resumed`() {
-        var resumed = false
-        val action = action {
-            pause(4)
-            resumed = true
-        }
-        queue.add(action)
-        tick()
-        assertEquals(4, action.remaining)
-        assertNotNull(action.suspension)
-        repeat(4) {
-            tick()
-        }
-        assertTrue(resumed)
-    }
-
-    @Test
-    fun `Logout accelerates marked actions`() {
-        var resumed = false
-        val action = action(behaviour = LogoutBehaviour.Accelerate) {
-            resumed = true
-        }
-        queue.add(action)
-        queue.logout()
-        assertTrue(resumed)
-    }
-
-    private fun tick() {
         queue.tick()
+
+        assertFalse(player.hasMenuOpen(), "Menu should be closed by strong action tick")
+        assertFalse(queue.contains(ActionPriority.Weak), "Weak actions should be cleared")
     }
 
-    private fun action(priority: ActionPriority = ActionPriority.Normal, delay: Int = 0, behaviour: LogoutBehaviour = LogoutBehaviour.Discard, action: suspend Action<Player>.() -> Unit = {}): Action<Player> = Action(player, "action", priority, delay, behaviour, null, action as suspend Action<*>.() -> Unit)
+    @Test
+    fun `Execution is blocks normal actions when player is delayed`() {
+        var executed = false
+        queue.add(Action<Player>("test", 1, ActionPriority.Normal) { executed = true })
+
+        // Add delay
+        player["delay"] = 1
+        queue.tick()
+
+        assertFalse(executed, "Action should not execute while delayed")
+
+        // Remove delay
+        player.clear("delay")
+        queue.tick()
+
+        assertTrue(executed, "Action should execute after delay removed")
+    }
+
+    @Test
+    fun `Execution is blocks normal actions if menu is open`() {
+        var executed = false
+        queue.add(Action<Player>("test", 1, ActionPriority.Normal) { executed = true })
+
+        player.open("test")
+        queue.tick()
+
+        assertFalse(executed, "Action should not execute with menu open")
+
+        player.close("test")
+        queue.tick()
+
+        assertTrue(executed, "Action should execute with menu closed")
+    }
+
+    @Test
+    fun `EngineTick executes only engine actions`() {
+        var engineExecuted = false
+        var normalExecuted = false
+
+        queue.add(Action<Player>("engine", 1, ActionPriority.Engine) { engineExecuted = true })
+        queue.add(Action<Player>("normal", 1, ActionPriority.Normal) { normalExecuted = true })
+
+        queue.engineTick()
+
+        assertTrue(engineExecuted)
+        assertFalse(normalExecuted)
+    }
+
+    @Test
+    fun `Clear by priority removes specific priority actions`() {
+        queue.add(Action<Player>("normal", 1, ActionPriority.Normal) {})
+        queue.add(Action<Player>("long", 1, ActionPriority.Long) {})
+
+        queue.clear(ActionPriority.Normal)
+
+        assertFalse(queue.contains(ActionPriority.Normal))
+        assertTrue(queue.contains(ActionPriority.Long))
+    }
+
+    @Test
+    fun `Logout executes long actions immediately`() {
+        var executed = false
+        queue.add(Action<Player>("long", 5, ActionPriority.Long) {
+            delay(4)
+            executed = true
+        })
+
+        queue.logout()
+
+        assertTrue(executed, "Long actions should execute on logout regardless of delay")
+        assertTrue(queue.isEmpty())
+    }
 }

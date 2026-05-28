@@ -7,13 +7,13 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.timer.TICKS
 
-class Charge(val definitions: SpellDefinitions) : Script {
+class Charge : Script {
 
     init {
         interfaceOption("Cast", "modern_spellbook:charge") {
@@ -27,12 +27,12 @@ class Charge(val definitions: SpellDefinitions) : Script {
                 return@interfaceOption
             }
 
-            val definition = definitions.get(spell)
+            val row = Rows.get("spells.$spell")
             anim(spell)
             sound(spell)
-            exp(Skill.Magic, definition.experience)
-            start("charge", definition["effect_ticks"])
-            start("charge_delay", definition["delay_ticks"])
+            exp(Skill.Magic, row.int("xp") / 10.0)
+            start("charge", row.int("effect_ticks"))
+            start("charge_delay", row.int("delay_ticks"))
         }
     }
 }

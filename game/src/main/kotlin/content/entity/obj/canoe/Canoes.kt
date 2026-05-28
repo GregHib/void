@@ -18,20 +18,13 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.suspend.StringSuspension
+import world.gregs.voidps.engine.suspend.Suspension
+import world.gregs.voidps.engine.suspend.pauseString
 import world.gregs.voidps.type.Direction
 
 class Canoes(val stations: CanoeDefinitions) : Script {
 
     init {
-        playerSpawn {
-            sendVariable("canoe_state_lumbridge")
-            sendVariable("canoe_state_champions_guild")
-            sendVariable("canoe_state_barbarian_village")
-            sendVariable("canoe_state_edgeville")
-            sendVariable("canoe_state_wilderness_pond")
-        }
-
         objectOperate("Chop-down", "canoe_station") { (target) ->
             if (!has(Skill.Woodcutting, 12, false)) {
                 statement("You must have at least level 12 woodcutting to start making canoes.")
@@ -77,7 +70,7 @@ class Canoes(val stations: CanoeDefinitions) : Script {
 
         interfaceOption("Select", "canoe:a_*") {
             val type = it.component.removePrefix("a_")
-            (dialogueSuspension as? StringSuspension)?.resume(type)
+            (suspension as? Suspension.StringEntry)?.resume(type)
         }
 
         objectOperate("Shape-canoe", "canoe_station_fallen") { (target) ->
@@ -96,7 +89,7 @@ class Canoes(val stations: CanoeDefinitions) : Script {
             val location = target.id.removePrefix("canoe_station_")
             face(Direction.cardinal[target.rotation])
             open("canoe")
-            val canoe = StringSuspension.get(this)
+            val canoe = pauseString()
             closeMenu()
             val required = when (canoe) {
                 "log" -> 12

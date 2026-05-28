@@ -20,7 +20,6 @@ class Music(val tracks: MusicTracks) : Script {
             unlockDefaultTracks(this)
             playAreaTrack(this)
             sendUnlocks(this)
-            sendPlaylist(this)
         }
 
         moved { from ->
@@ -129,18 +128,8 @@ class Music(val tracks: MusicTracks) : Script {
     }
 
     fun sendUnlocks(player: Player) {
-        for (key in player.variables.data.keys.filter { it.startsWith("unlocked_music_") }) {
-            player.sendVariable(key)
-        }
-
         player.interfaceOptions.unlockAll("music_player", "tracks", 0..2048) // 837.cs2
         player.interfaceOptions.unlockAll("music_player", "playlist", 0..23)
-    }
-
-    fun sendPlaylist(player: Player) {
-        for (slotNum in 1..12) {
-            player.sendVariable("playlist_slot_$slotNum")
-        }
     }
 
     /**

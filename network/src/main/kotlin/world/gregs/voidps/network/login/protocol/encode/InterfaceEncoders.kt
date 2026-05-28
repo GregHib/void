@@ -234,6 +234,15 @@ fun Client.interfaceVisibility(
 }
 
 /**
+ * Set the position of an interface component
+ */
+fun Client.interfacePosition(interfaceComponent: Int, x: Int, y: Int) = send(Protocol.INTERFACE_COMPONENT_POSITION) {
+    writeShort(y)
+    writeInt(interfaceComponent)
+    writeShortAdd(x)
+}
+
+/**
  * Send an update to grand exchange slot
  * @param slot offer slot
  * @param state the offer state 1 - submitting, 2 - open, 5 - cancelled

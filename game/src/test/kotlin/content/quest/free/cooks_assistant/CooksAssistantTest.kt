@@ -23,8 +23,7 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.suspend.ContinueSuspension
-import world.gregs.voidps.engine.suspend.IntSuspension
+import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
@@ -126,15 +125,15 @@ class CooksAssistantTest : WorldTest() {
 
     private fun Player.fastForwardDialogue() {
         assertNotNull(dialogue)
-        require(dialogueSuspension is ContinueSuspension)
-        while (dialogueSuspension is ContinueSuspension) {
+        require(suspension is Suspension.Continue)
+        while (suspension is Suspension.Continue) {
             dialogueContinue()
         }
     }
 
     private fun Player.selectDialogueOption(option: Int) {
         assertNotNull(dialogue)
-        require(dialogueSuspension is IntSuspension)
+        require(suspension is Suspension.IntEntry)
         dialogueOption("line$option")
     }
 }

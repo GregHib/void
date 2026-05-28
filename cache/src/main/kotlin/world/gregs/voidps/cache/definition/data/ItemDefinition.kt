@@ -6,6 +6,7 @@ import world.gregs.voidps.cache.definition.Parameterized
 data class ItemDefinition(
     override var id: Int = -1,
     var name: String = "null",
+    var spriteScale: Int = 2000,
     var stackable: Int = 0,
     var cost: Int = 1,
     var members: Boolean = false,
@@ -37,6 +38,7 @@ data class ItemDefinition(
 
         if (id != other.id) return false
         if (name != other.name) return false
+        if (spriteScale != other.spriteScale) return false
         if (stackable != other.stackable) return false
         if (cost != other.cost) return false
         if (members != other.members) return false
@@ -56,6 +58,7 @@ data class ItemDefinition(
     override fun hashCode(): Int {
         var result = id
         result = 31 * result + name.hashCode()
+        result = 31 * result + spriteScale
         result = 31 * result + stackable
         result = 31 * result + cost
         result = 31 * result + members.hashCode()
@@ -84,6 +87,7 @@ data class ItemDefinition(
         cost = 0
         name = item.name
         equipIndex = item.equipIndex
+        spriteScale = template.spriteScale
         System.arraycopy(item.options, 0, options, 0, 4)
         options[4] = "Discard"
     }
@@ -96,6 +100,7 @@ data class ItemDefinition(
         name = item.name
         stackable = 1
         members = item.members
+        spriteScale = template.spriteScale
     }
 
     companion object {

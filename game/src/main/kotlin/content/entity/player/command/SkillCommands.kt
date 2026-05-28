@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 
 class SkillCommands(val accounts: AccountDefinitions) : Script {
 
@@ -50,7 +50,7 @@ class SkillCommands(val accounts: AccountDefinitions) : Script {
         val level = args[1].toInt()
         target.experience.set(skill, Level.experience(skill, level))
         target.levels.set(skill, level)
-        target.softQueue("flash_reset", 1) {
+        target.queue("flash_reset", 1) {
             target.removeVarbit("skill_stat_flash", skill.name.lowercase())
         }
     }
@@ -61,7 +61,7 @@ class SkillCommands(val accounts: AccountDefinitions) : Script {
             target.experience.set(skill, 14000000.0)
             target.levels.restore(skill, 1000)
         }
-        target.softQueue("clear_flash", 1) {
+        target.queue("clear_flash", 1) {
             player.clear("skill_stat_flash")
         }
     }

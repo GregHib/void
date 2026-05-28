@@ -14,10 +14,10 @@ internal class AnimationDefinitionsTest : DefinitionsDecoderTest<AnimationDefini
 
     override fun empty(): AnimationDefinition = AnimationDefinition(-1)
 
-    override fun definitions(): AnimationDefinitions = AnimationDefinitions(definitions)
+    override fun definitions(): AnimationDefinitions = AnimationDefinitions.init(definitions)
 
     override fun load(definitions: AnimationDefinitions) {
         val uri = AnimationDefinitionsTest::class.java.getResource("test-animation.toml")!!
-        definitions.load(listOf(uri.path))
+        AnimationDefinitions.load(listOf(uri.path))
     }
 }

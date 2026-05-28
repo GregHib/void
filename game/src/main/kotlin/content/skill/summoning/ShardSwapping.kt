@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -75,7 +76,6 @@ class ShardSwapping : Script {
                 remove(it.item.id)
                 add("spirit_shards", 5000)
             }
-            // TODO proper message
         }
 
         itemOption("Open-All", "spirit_shard_pack") {
@@ -84,7 +84,7 @@ class ShardSwapping : Script {
                 add("spirit_shards", removed * 5000)
             }
             if (inventory.transaction.error is TransactionError.Full) {
-                message("You don't have enough inventory space to open all the spirit shards.") // TODO proper message
+                inventoryFull()
             }
         }
     }

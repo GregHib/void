@@ -20,11 +20,11 @@ class SkullSceptre : Script {
     init {
         crafted {
             if (it.add.any { item -> item.id == "strange_skull" }) {
-                item("strange_skull", 600, "The two halves of the skull fit perfectly, they appear to have a fixing point, perhaps they are to be mounted on something?")
+                item("strange_skull", "The two halves of the skull fit perfectly, they appear to have a fixing point, perhaps they are to be mounted on something?")
             } else if (it.add.any { item -> item.id == "runed_sceptre" }) {
-                item("runed_sceptre", 900, "The two halves of the sceptre fit perfectly. It appears to be designed to have something on top.")
+                item("runed_sceptre", "The two halves of the sceptre fit perfectly. It appears to be designed to have something on top.")
             } else if (it.add.any { item -> item.id == "skull_sceptre" }) {
-                item("skull_sceptre", 900, "The skull fits perfectly atop the sceptre. You feel there is great magical power at work here, and that the sceptre has 10 charges.")
+                item("skull_sceptre", "The skull fits perfectly atop the sceptre. You feel there is great magical power at work here, and that the sceptre has 10 charges.")
             }
         }
 
@@ -54,7 +54,7 @@ class SkullSceptre : Script {
 
         itemOption("Divine", "skull_sceptre") { (item) ->
             val charges = item.charges()
-            item("skull_sceptre", 900, "Concentrating deeply, you divine that the sceptre has $charges ${"charge".plural(charges)} left.")
+            item("skull_sceptre", "Concentrating deeply, you divine that the sceptre has $charges ${"charge".plural(charges)} left.")
         }
     }
 }

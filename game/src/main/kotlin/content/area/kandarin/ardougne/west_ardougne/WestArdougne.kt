@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.type.Tile
 
 class WestArdougne : Script {
@@ -33,7 +32,7 @@ class WestArdougne : Script {
             if (!inventory.add("a_small_key")) {
                 FloorItems.add(tile, "a_small_key", disappearTicks = 300, owner = this)
             }
-            item("a_small_key", 300, "You find a small key in the barrel.")
+            item("a_small_key", "You find a small key in the barrel.")
         }
 
         objectOperate("Open", "door_elena_prison_closed") { (target) ->
@@ -90,7 +89,7 @@ class WestArdougne : Script {
                 enterDoor(target, delay = 2)
                 inventory.remove("book_turnip_growing_for_beginners")
                 set("plague_city", "returned_book")
-                item("book_turnip_growing_for_beginners", 600, "You hand the book to Ted as you enter.")
+                item("book_turnip_growing_for_beginners", "You hand the book to Ted as you enter.")
                 npc<Happy>("ted_rehnison", "Thanks, I've been missing that.")
             }
         }
@@ -141,9 +140,8 @@ class WestArdougne : Script {
 
         objectOperate("Open", "ardougne_wall_door_2_closed,ardougne_wall_door_closed") {
             message("You pull on the large wooden doors...")
-            softQueue("ardougne_wall_door", 2) {
-                message("...But they will not open.")
-            }
+            delay(2)
+            message("...But they will not open.")
         }
     }
 }

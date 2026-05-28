@@ -44,7 +44,7 @@ class BrotherJared : Script {
                     option("Bless star, please.") {
                         player<Neutral>("Yes please.")
                         inventory.replace("unblessed_symbol", "holy_symbol")
-                        item("holy_symbol", 400, "You give Jered the symbol. Jered closes his eyes and places his hand on the symbol. He softly chants. Jered passes you the holy symbol.")
+                        item("holy_symbol", "You give Jered the symbol. Jered closes his eyes and places his hand on the symbol. He softly chants. Jered passes you the holy symbol.")
                     }
                 } else {
                     option<Neutral>("Tell me about holy symbols.") {

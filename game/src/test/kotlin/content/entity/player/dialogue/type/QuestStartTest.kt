@@ -62,10 +62,8 @@ internal class QuestStartTest : DialogueTest() {
     @Test
     fun `Quest info not sent if interface not opened`() {
         every { player.open("quest_intro") } returns false
-        assertThrows<IllegalStateException> {
-            dialogueBlocking {
-                startQuest("test_quest")
-            }
+        dialogueBlocking {
+            startQuest("test_quest")
         }
         coVerify(exactly = 0) {
             interfaces.sendText("quest_intro", "quest_field", "quest_name")

@@ -33,7 +33,7 @@ class StrongholdOfSecurityRewards : Script {
             statement("The box hinges creak and appear to be forming audible words....")
             jingle("stronghold_of_security_gift_of_peace")
             set("unlocked_emote_flap", true)
-            item("coins_9", 400, "...congratulations adventurer, you have been deemed worthy of this reward. You have also unlocked the Flap emote!")
+            item("coins_9", "...congratulations adventurer, you have been deemed worthy of this reward. You have also unlocked the Flap emote!")
         }
 
         objectOperate("Search", "grain_of_plenty") {
@@ -49,7 +49,7 @@ class StrongholdOfSecurityRewards : Script {
             statement("The grain shifts in the sack, sighing audible words....")
             jingle("stronghold_of_security_grain_of_plenty")
             set("unlocked_emote_slap_head", true)
-            item("coins_9", 400, "...congratulations adventurer, you have been deemed worthy of this reward. You have also unlocked the Slap Head emote!")
+            item("coins_9", "...congratulations adventurer, you have been deemed worthy of this reward. You have also unlocked the Slap Head emote!")
         }
 
         objectOperate("Open", "box_of_health") {
@@ -68,7 +68,7 @@ class StrongholdOfSecurityRewards : Script {
             message("You feel refreshed and renewed.")
             jingle("stronghold_of_security_box_of_health")
             set("unlocked_emote_idea", true)
-            item("coins_10", 400, "...congratulations adventurer, you have been deemed worthy of this reward. You have also unlocked the Idea emote!")
+            item("coins_10", "...congratulations adventurer, you have been deemed worthy of this reward. You have also unlocked the Idea emote!")
         }
 
         objectOperate("Search", "cradle_of_life") {
@@ -100,14 +100,14 @@ class StrongholdOfSecurityRewards : Script {
                     if (inventory.add("fancy_boots")) {
                         jingle("stronghold_of_security_cradle_of_life")
                         set("unlocked_emote_stomp", true)
-                        item("fancy_boots", 400, "Congratulations! You have successfully navigated the Stronghold of Security and claimed your reward. You have unlocked the Stomp emote.")
+                        item("fancy_boots", "Congratulations! You have successfully navigated the Stronghold of Security and claimed your reward. You have unlocked the Stomp emote.")
                     }
                 }
                 option<Happy>("I'll take the fighting ones.") {
                     if (inventory.add("fighting_boots")) {
                         jingle("stronghold_of_security_cradle_of_life")
                         set("unlocked_emote_stomp", true)
-                        item("fighting_boots", 400, "Congratulations! You have successfully navigated the Stronghold of Security and claimed your reward. You have unlocked the Stomp emote.")
+                        item("fighting_boots", "Congratulations! You have successfully navigated the Stronghold of Security and claimed your reward. You have unlocked the Stomp emote.")
                     }
                 }
             }

@@ -12,8 +12,8 @@ class WalkMapDecoder : Decoder(5) {
 
     override suspend fun decode(packet: Source): Instruction {
         val y = packet.readShortLittleEndian().toInt()
-        val running = packet.readBooleanAdd()
+        val forceWalk = packet.readBooleanAdd()
         val x = packet.readUnsignedShortAdd()
-        return Walk(x, y)
+        return Walk(x, y, forceWalk)
     }
 }

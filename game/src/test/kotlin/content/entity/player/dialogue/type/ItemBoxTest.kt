@@ -2,12 +2,11 @@ package content.entity.player.dialogue.type
 
 import io.mockk.*
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
-import world.gregs.voidps.engine.suspend.ContinueSuspension
+import world.gregs.voidps.engine.suspend.Suspension
 import kotlin.test.assertTrue
 
 internal class ItemBoxTest : DialogueTest() {
@@ -16,12 +15,11 @@ internal class ItemBoxTest : DialogueTest() {
     fun `Send item box`() {
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         var resumed = false
-        ItemDefinitions.set(arrayOf(ItemDefinition(id = 9009, name = "item_name")), mapOf("item_name" to 0))
+        ItemDefinitions.set(arrayOf(ItemDefinition(id = 9009, name = "item_name", spriteScale = 1300)), mapOf("item_name" to 0))
         every { player.sendScript(any(), *anyVararg()) } just Runs
         dialogue {
             item(
                 "item_name",
-                650,
                 """
                 An item
                 description
@@ -30,7 +28,7 @@ internal class ItemBoxTest : DialogueTest() {
             )
             resumed = true
         }
-        (player.dialogueSuspension as ContinueSuspension).resume(Unit)
+        (player.suspension as Suspension.Continue).resume()
         verify {
             player.open("dialogue_obj_box")
             player.sendScript("dialogue_item_zoom", 9009, 650)
@@ -49,7 +47,7 @@ internal class ItemBoxTest : DialogueTest() {
             items("item_name", "item2_name", "Item descriptions")
             resumed = true
         }
-        (player.dialogueSuspension as ContinueSuspension).resume(Unit)
+        (player.suspension as Suspension.Continue).resume()
         verify {
             player.open("dialogue_double_obj_box")
             interfaces.sendItem("dialogue_double_obj_box", "model1", 9009)
@@ -64,10 +62,8 @@ internal class ItemBoxTest : DialogueTest() {
         mockkStatic("world.gregs.voidps.engine.client.EncodeExtensionsKt")
         every { player.sendScript(any(), *anyVararg()) } just Runs
         every { player.open("dialogue_obj_box") } returns false
-        assertThrows<IllegalStateException> {
-            dialogueBlocking {
-                item("9009", 650, "text", 10)
-            }
+        dialogueBlocking {
+            item("9009", "text", 10)
         }
         coVerify(exactly = 0) {
             player.sendScript("dialogue_item_zoom", 650, 9009)

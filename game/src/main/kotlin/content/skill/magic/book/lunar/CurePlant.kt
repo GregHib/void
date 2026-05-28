@@ -4,12 +4,12 @@ import content.skill.magic.spell.removeSpellItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 
-class CurePlant(val definitions: SpellDefinitions) : Script {
+class CurePlant : Script {
 
     init {
         onObjectOperate("lunar_spellbook:cure_plant", "*") { (target) ->
@@ -30,14 +30,13 @@ class CurePlant(val definitions: SpellDefinitions) : Script {
             if (!removeSpellItems("cure_plant")) {
                 return@onObjectOperate
             }
-            val definition = definitions.get("cure_plant")
             start("movement_delay", 3)
             anim("lunar_cure_plant")
             gfx("cure_me")
             areaSound("lunar_fertilize", target.tile, radius = 10)
             delay(3)
             set(target.id, value.replace("_diseased", ""))
-            exp(Skill.Magic, definition.experience)
+            exp(Skill.Magic, Tables.int("spells.cure_plant.xp") / 10.0)
         }
     }
 }

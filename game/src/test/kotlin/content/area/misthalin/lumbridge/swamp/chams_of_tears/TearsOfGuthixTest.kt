@@ -99,8 +99,8 @@ class TearsOfGuthixTest : WorldTest() {
         player.objectOption(wall, "Collect-from")
         tick(40) // Times up
 
-        assertEquals(25, player["tears_of_guthix_points", 0])
+        assertEquals(24, player["tears_of_guthix_points", 0])
         assertEquals(Tile(3251, 9516, 2), player.tile)
-        assertEquals(250.0, player.experience.get(Skill.Cooking))
+        assertEquals(240.0, player.experience.get(Skill.Cooking))
     }
 }

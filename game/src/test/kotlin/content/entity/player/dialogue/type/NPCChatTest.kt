@@ -7,10 +7,8 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.cache.definition.data.NPCDefinition
@@ -19,7 +17,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.suspend.ContinueSuspension
+import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.protocol.encode.npcDialogueHead
 import kotlin.test.assertTrue
@@ -33,23 +31,25 @@ internal class NPCChatTest : DialogueTest() {
         super.setup()
         npc = NPC(id = "jim", index = -1, def = NPCDefinition(id = 123, stringId = "jim", name = "Jim"))
         player.talkWith(npc)
-        declareMock<AnimationDefinitions> {
-            every { this@declareMock.get(any<String>()) } returns AnimationDefinition()
-            every { this@declareMock.get("expression_neutral").id } returns 9803
-            every { this@declareMock.getOrNull("expression_neutral1")?.id } returns 9803
-            every { this@declareMock.getOrNull("expression_neutral2")?.id } returns 9803
-            every { this@declareMock.getOrNull("expression_neutral3")?.id } returns 9803
-            every { this@declareMock.getOrNull("expression_neutral4")?.id } returns 9803
-            every { this@declareMock.get("expression_cackle").id } returns 9840
-            every { this@declareMock.getOrNull("expression_cackle1") } returns null
-            every { this@declareMock.getOrNull("expression_cackle2") } returns null
-            every { this@declareMock.getOrNull("expression_cackle3") } returns null
-            every { this@declareMock.getOrNull("expression_cackle4") } returns null
-            every { this@declareMock.getOrNull("expression_laugh1")?.id } returns 9840
-            every { this@declareMock.getOrNull("expression_laugh2")?.id } returns 9840
-            every { this@declareMock.getOrNull("expression_laugh3")?.id } returns 9840
-            every { this@declareMock.getOrNull("expression_laugh4")?.id } returns 9840
-        }
+        AnimationDefinitions.set(
+            arrayOf(
+                AnimationDefinition(9803, stringId = "expression_neutral"),
+                AnimationDefinition(9840, stringId = "expression_cackle"),
+                AnimationDefinition(9840, stringId = "expression_laugh"),
+            ),
+            mapOf(
+                "expression_neutral" to 0,
+                "expression_neutral1" to 0,
+                "expression_neutral2" to 0,
+                "expression_neutral3" to 0,
+                "expression_neutral4" to 0,
+                "expression_cackle" to 1,
+                "expression_laugh1" to 2,
+                "expression_laugh2" to 2,
+                "expression_laugh3" to 2,
+                "expression_laugh4" to 2,
+            ),
+        )
         NPCDefinitions.set(Array(124) { if (it == 123) NPCDefinition(id = 123, name = "Jim") else NPCDefinition.EMPTY }, mapOf("jim" to 123))
     }
 
@@ -117,7 +117,7 @@ internal class NPCChatTest : DialogueTest() {
         dialogue {
             npc<Neutral>(text = "\nOne\nTwo\nThree\nFour\nFive")
         }
-        (player.dialogueSuspension as ContinueSuspension).resume(Unit)
+        (player.suspension as Suspension.Continue).resume()
         verify(exactly = 2) {
             player.open(any())
         }
@@ -156,7 +156,7 @@ internal class NPCChatTest : DialogueTest() {
             npc<Cackle>(text = "text", largeHead = true)
             resumed = true
         }
-        (player.dialogueSuspension as ContinueSuspension).resume(Unit)
+        (player.suspension as Suspension.Continue).resume()
         coVerify {
             interfaces.sendText("dialogue_npc_chat1", "title", "Jim")
             interfaces.sendAnimation("dialogue_npc_chat1", "head_large", 9840)
@@ -167,10 +167,8 @@ internal class NPCChatTest : DialogueTest() {
     @Test
     fun `NPC chat not sent if interface not opened`() {
         every { player.open("dialogue_npc_chat1") } returns false
-        assertThrows<IllegalStateException> {
-            dialogueBlocking {
-                npc<Neutral>(text = "text")
-            }
+        dialogueBlocking {
+            npc<Neutral>(text = "text")
         }
         coVerify(exactly = 0) {
             interfaces.sendText("dialogue_npc_chat1", "line1", "text")

@@ -38,7 +38,6 @@ class Tea : Script {
             val charges = it.item.charges(this)
             item(
                 "tea_flask",
-                400,
                 when (charges) {
                     0 -> "There's no tea in this flask."
                     1 -> "There is one serving of tea in this flask."

@@ -12,24 +12,28 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill.*
 import world.gregs.voidps.engine.entity.character.player.skill.Skills
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.suspend.ContinueSuspension
+import world.gregs.voidps.engine.queue.weakQueue
+import world.gregs.voidps.engine.suspend.pauseButton
 
 private const val LEVEL_UP_INTERFACE_ID = "dialogue_level_up"
 
 suspend fun Player.levelUp(skill: Skill, text: String) {
-    levelUp(this, skill, text)
-    ContinueSuspension.get(this)
-    close(LEVEL_UP_INTERFACE_ID)
+    if (levelUp(this, skill, text)) {
+        pauseButton()
+        close(LEVEL_UP_INTERFACE_ID)
+    }
 }
 
-fun levelUp(player: Player, skill: Skill, text: String) {
+fun levelUp(player: Player, skill: Skill, text: String): Boolean {
     val lines = text.trimIndent().lines()
     player["level_up_icon"] = skill.name
-    player.sendVariable("level_up_icon")
-    check(player.open(LEVEL_UP_INTERFACE_ID)) { "Unable to open level up interface for $player" }
+    if (!player.open(LEVEL_UP_INTERFACE_ID)) {
+        return false
+    }
     for ((index, line) in lines.withIndex()) {
         player.interfaces.sendText(LEVEL_UP_INTERFACE_ID, "line${index + 1}", line)
     }
+    return true
 }
 
 class LevelUp : Script {
@@ -62,19 +66,15 @@ class LevelUp : Script {
             jingle("level_up_${skill.name.lowercase()}${if (unlock) "_unlock" else ""}", 0.5)
             addVarbit("skill_stat_flash", skill.name.lowercase())
             val level = if (skill == Constitution) to / 10 else to
-            levelUp(
-                this,
-                skill,
-                """
-                Congratulations! You've just advanced${skill.name.an()} ${skill.name} level!
-                You have now reached level $level!
-            """,
-            )
-        }
-
-        combatDamage {
-            if (!(menu ?: dialogue).isNullOrBlank()) {
-                closeInterfaces()
+            weakQueue("level_up") {
+                levelUp(
+                    this,
+                    skill,
+                    """
+                    Congratulations! You've just advanced${skill.name.an()} ${skill.name} level!
+                    You have now reached level $level!
+                """,
+                )
             }
         }
     }

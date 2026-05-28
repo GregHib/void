@@ -39,6 +39,13 @@ object Target {
             if (source is Player && !CombatApi.canAttack(source, target)) {
                 return false
             }
+            if (source is Player && target.contains("owner")) {
+                val owner = target.get<String>("owner")
+                if (source.accountName != owner) {
+                    source.message("Someone else is fighting that.")
+                    return false
+                }
+            }
             if (target.transform != "") {
                 if (!NPCDefinitions.get(target.transform).options.contains("Attack")) {
                     return false

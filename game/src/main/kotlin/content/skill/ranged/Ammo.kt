@@ -24,7 +24,6 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
-import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
@@ -44,11 +43,9 @@ object Ammo {
             player.equipment.remove(ammo, required)
             return
         } else if (ammo == "bolt_rack" || ammo == "hand_cannon_shot" || ammo.endsWith("chinchompa")) {
-            player.softQueue("ammo") {
-                player.equipment.remove(ammo, required)
-                if (!player.equipment.contains(ammo)) {
-                    player.message("That was your last one!")
-                }
+            player.equipment.remove(ammo, required)
+            if (!player.equipment.contains(ammo)) {
+                player.message("That was your last one!")
             }
             return
         }

@@ -211,6 +211,7 @@ class ApeAtoll : Script {
                     anim("ninja_monkey_fall")
                     sound("stumble_loop", repeat = 2)
                     exactMoveDelay(Tile(2747, 2741), 50, Direction.WEST)
+                    clearRenderEmote()
                 }
                 // Human
                 else -> {

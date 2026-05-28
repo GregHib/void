@@ -4,12 +4,14 @@ import content.entity.gfx.areaGfx
 import content.entity.player.inv.item.take.ItemTake
 import content.entity.proj.shoot
 import content.skill.magic.spell.removeSpellItems
+import content.skill.magic.spell.spell
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.areaSound
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -19,10 +21,9 @@ import world.gregs.voidps.engine.inv.Items
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import world.gregs.voidps.engine.queue.softQueue
-import world.gregs.voidps.engine.timer.CLIENT_TICKS
+import world.gregs.voidps.engine.queue.queue
 
-class TelekineticGrab(val definitions: SpellDefinitions) : Script {
+class TelekineticGrab : Script {
     init {
         onFloorItemApproach("modern_spellbook:telekinetic_grab") {
             approachRange(10)
@@ -46,23 +47,23 @@ class TelekineticGrab(val definitions: SpellDefinitions) : Script {
                 }
                 else -> return@onFloorItemApproach
             }
-            val definition = definitions.get(spell)
             anim("tele_grab_cast")
             gfx("tele_grab_cast")
             sound("tele_grab_cast")
-            exp(Skill.Magic, definition.experience)
+            exp(Skill.Magic, Tables.int("spells.$spell.xp") / 10.0)
 
             val clientTicks = shoot("tele_grab_travel", floorItem.tile)
             areaSound("tele_grab_impact", floorItem.tile, delay = clientTicks, radius = 10)
             areaGfx("tele_grab_impact", floorItem.tile, delay = clientTicks)
 
-            softQueue("tele_grab", CLIENT_TICKS.toTicks(clientTicks) + 1) {
-                if (player.tile.level != floorItem.tile.level) {
+            delay(3)
+            queue("tele_grab", 3) {
+                if (tile.level != floorItem.tile.level) {
                     message("Your telegrab fizzles as you move too far away.")
-                    return@softQueue
+                    return@queue
                 }
-                if (!ItemTake.take(player, floorItem)) {
-                    return@softQueue
+                if (!ItemTake.take(this, floorItem)) {
+                    return@queue
                 }
                 start("action_delay", 3)
                 AuditLog.event(this@onFloorItemApproach, "telegrab", floorItem, floorItem.tile)
@@ -70,8 +71,15 @@ class TelekineticGrab(val definitions: SpellDefinitions) : Script {
             }
         }
 
-        onNPCApproach("modern_spellbook:telekinetic_grab") {
-            message("You can't use Telekinetic Grab on them.")
+        combatPrepare("magic") { target ->
+            if (spell == "telekinetic_grab") {
+                if (target is NPC) {
+                    message("You can't use Telekinetic Grab on them.")
+                }
+                false
+            } else {
+                true
+            }
         }
     }
 }

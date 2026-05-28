@@ -1,6 +1,6 @@
 package content.area.morytania.mort_myre_swamp
 
-import content.entity.combat.hit.hit
+import content.entity.combat.hit.directHit
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.Areas
@@ -9,7 +9,9 @@ import world.gregs.voidps.engine.inv.any
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.Timer
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.random
+import java.util.concurrent.TimeUnit
 import kotlin.random.nextInt
 
 class SwampDecay : Script {
@@ -34,7 +36,7 @@ class SwampDecay : Script {
         }
 
         timerStart("swamp_decay") {
-            230 // 2 minutes 18 seconds
+            TimeUnit.SECONDS.toTicks(138) // 2 minutes 18 seconds
         }
 
         timerTick("swamp_decay") {
@@ -43,7 +45,7 @@ class SwampDecay : Script {
             }
             if (tile in Areas["mort_myre_swamp"]) {
                 message("The swamp decays you!")
-                hit(this, weapon = Item.EMPTY, spell = "", special = false, offensiveType = "damage", damage = random.nextInt(10..30))
+                directHit(random.nextInt(10..30))
                 gfx("swamp_decay")
                 Timer.CONTINUE
             } else {

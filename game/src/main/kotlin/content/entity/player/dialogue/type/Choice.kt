@@ -4,7 +4,7 @@ import content.entity.player.dialogue.sendLines
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.suspend.IntSuspension
+import world.gregs.voidps.engine.suspend.pauseInt
 
 private val CHOICE_LINE_RANGE = 2..5
 private const val APPROXIMATE_WIDE_TITLE_LENGTH = 30
@@ -30,6 +30,9 @@ suspend fun Player.choice(title: String? = null, block: suspend ChoiceOption.() 
         return
     }
     val choice = choice(lines, title)
+    if (choice == -1) {
+        return
+    }
     builder.invoke(choice - 1, this)
 }
 
@@ -46,7 +49,9 @@ suspend fun Player.choice(lines: List<String>, title: String? = null): Int {
     val multilineTitle = question?.contains("<br>") ?: false
     val multilineOptions = lines.any { isMultiline(it) }
     val id = getChoiceId(multilineTitle, multilineOptions, lines.size)
-    check(open(id)) { "Unable to open choice dialogue for $this" }
+    if (!open(id)) {
+        return -1
+    }
     if (question != null) {
         val longestLine = question.split("<br>").maxByOrNull { it.length }?.length ?: 0
         val wide = longestLine > APPROXIMATE_WIDE_TITLE_LENGTH
@@ -55,7 +60,7 @@ suspend fun Player.choice(lines: List<String>, title: String? = null): Int {
         interfaces.sendText(id, "title", question)
     }
     interfaces.sendLines(id, lines)
-    val result = IntSuspension.get(this)
+    val result = pauseInt()
     close(id)
     return result
 }

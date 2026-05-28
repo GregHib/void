@@ -1,0 +1,6 @@
+[other]
+int_field = "int"
+clone = "clone"
+
+[.row]
+int_field = 99

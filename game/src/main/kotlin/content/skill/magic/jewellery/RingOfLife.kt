@@ -6,6 +6,7 @@ import content.skill.magic.book.modern.teleBlocked
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.discharge
@@ -46,6 +47,6 @@ class RingOfLife : Script {
             return
         }
         val destination = player["respawn_tile", Tile(Settings["world.home.x", 0], Settings["world.home.y", 0])]
-        itemTeleport(player, destination, "jewellery")
+        Teleport.teleport(player, destination, "jewellery")
     }
 }

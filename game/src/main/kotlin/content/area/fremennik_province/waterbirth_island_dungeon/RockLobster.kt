@@ -6,7 +6,7 @@ import content.entity.effect.transform
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
@@ -24,7 +24,7 @@ class RockLobster : Script {
             transform("rock_lobster")
 
             // stand-up delay
-            softQueue("stand_up", 2) {
+            queue("stand_up", 2) {
                 interactPlayer(target, "Attack")
                 resetToHidden(this@huntPlayer)
             }
@@ -35,7 +35,7 @@ class RockLobster : Script {
      * Resets Rock Lobster to hidden form after 30s of no combat.
      */
     fun resetToHidden(npc: NPC) {
-        npc.softQueue("reset_hidden", TimeUnit.SECONDS.toTicks(30)) {
+        npc.queue("reset_hidden", TimeUnit.SECONDS.toTicks(30)) {
             if (npc.underAttack || npc.target != null) {
                 resetToHidden(npc)
             } else {

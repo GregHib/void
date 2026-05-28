@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.map.collision.random
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
@@ -29,7 +29,7 @@ class Nechryael : Script {
                 // TODO gfx
                 val spawn = NPCs.add("death_spawn", tile)
                 val name = target.name
-                spawn.softQueue("despawn", TimeUnit.SECONDS.toTicks(60)) {
+                spawn.queue("despawn", TimeUnit.SECONDS.toTicks(60)) {
                     NPCs.remove(spawn)
                     Players.find(name)?.dec("death_spawns")
                 }

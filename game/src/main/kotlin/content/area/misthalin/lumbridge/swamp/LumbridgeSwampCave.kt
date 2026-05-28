@@ -39,7 +39,7 @@ class LumbridgeSwampCave : Script {
                         anim("climb_down")
                         set("cave_goblin_rope", true)
                         sound("attach_rope")
-                        item("rope", 400, "You tie the rope to the top of the hole and throw it down.")
+                        item("rope", "You tie the rope to the top of the hole and throw it down.")
                     }
                     option("No.")
                 }

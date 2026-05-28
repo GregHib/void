@@ -2,7 +2,6 @@ package content.area.misthalin.lumbridge.swamp.chams_of_tears
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
-import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Tables
@@ -11,8 +10,8 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.timer.Timer
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.random
@@ -23,32 +22,35 @@ class WeepingWall : Script {
 
     init {
         objectOperate("Collect-from", "weeping_wall") { (target) ->
-            val switching = hasClock("action_delay")
-            weakQueue("collect_tears", onCancel = {
+            val next = when (target.rotation) {
+                0 -> Direction.WEST
+                1 -> Direction.NORTH
+                else -> Direction.SOUTH
+            }
+            clearAnim()
+            walkToDelay(target.tile.add(next))
+            arriveDelay()
+            delay(1)
+            face(target)
+            anim("tears_lean_forward_bowl")
+            walkTrigger {
+                clear("face_entity")
                 anim("tears_lean_back_bowl")
-            }) {
-                if (switching) {
-                    pause(1)
-                    face(target)
+                start("movement_delay", 1)
+            }
+            var i = 0
+            while (i++ < 200) {
+                val tears = GameObjects.getLayer(target.tile, ObjectLayer.WALL_DECORATION) ?: continue
+                if (tears.id.startsWith("blue_tears")) {
+                    inc("tears_of_guthix_points")
+                    sound("collect_good_tear")
+                } else if (tears.id.startsWith("green_tears")) {
+                    val amount = dec("tears_of_guthix_points")
+                    if (amount != 0) {
+                        sound("collect_bad_tear")
+                    }
                 }
                 pause(1)
-                face(target)
-                anim("tears_lean_forward_bowl")
-                var i = 0
-                while (i++ < 200) {
-                    val tears = GameObjects.getLayer(target.tile, ObjectLayer.WALL_DECORATION) ?: continue
-                    if (tears.id.startsWith("blue_tears")) {
-                        inc("tears_of_guthix_points")
-                        sound("collect_good_tear")
-                    } else if (tears.id.startsWith("green_tears")) {
-                        val amount = dec("tears_of_guthix_points")
-                        if (amount != 0) {
-                            sound("collect_bad_tear")
-                        }
-                    }
-                    pause(1)
-                    start("action_delay", 2)
-                }
             }
         }
 

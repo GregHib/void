@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
@@ -48,7 +48,7 @@ class PrinceAli : Script {
         npc<Happy>("Thank you, my friend. I must leave you now, but my father will pay you well for this.")
         player<Happy>("Go to Leela, she is close to here.")
         target.hide = true
-        target.softQueue("ali_respawn", TimeUnit.SECONDS.toTicks(60)) {
+        target.queue("ali_respawn", TimeUnit.SECONDS.toTicks(60)) {
             target.hide = false
         }
         statement("The prince has escaped, well done! You are now a friend of Al-Kharid and may pass through the Al-Kharid toll gate for free.")

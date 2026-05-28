@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
@@ -44,7 +44,7 @@ class TaverleyDungeon : Script {
         val suit = NPCs.add("suit_of_armour", armour.tile)
         player.message("Suddenly the suit of armour comes to life!")
         //    suit.setAnimation("suit_of_armour_stand") TODO find animation
-        suit.softQueue("despawn", TimeUnit.MINUTES.toTicks(5)) {
+        suit.queue("despawn", TimeUnit.MINUTES.toTicks(5)) {
             World.queue("despawn_${suit.index}") {
                 NPCs.remove(suit)
             }

@@ -35,7 +35,6 @@ import world.gregs.voidps.engine.data.definition.PrayerDefinitions
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.data.definition.RenderEmoteDefinitions
 import world.gregs.voidps.engine.data.definition.SoundDefinitions
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.World
@@ -112,11 +111,11 @@ class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
             }
             "areas" -> Areas.load(files.list(Settings["map.areas"]))
             "emotes", "render_anims", "render_emotes" -> get<RenderEmoteDefinitions>().load(files.find(Settings["definitions.renderEmotes"]))
-            "anim_defs", "anims", "animations" -> get<AnimationDefinitions>().load(files.list(Settings["definitions.animations"]))
+            "anim_defs", "anims", "animations" -> AnimationDefinitions.load(files.list(Settings["definitions.animations"]))
             "container_defs", "containers", "inventory_defs", "inventories", "inv_defs", "invs", "shop", "shops" -> {
                 get<InventoryDefinitions>().load(files.list(Settings["definitions.inventories"]), files.list(Settings["definitions.shops"]))
             }
-            "graphic_defs", "graphics", "gfx", "gfxs" -> get<GraphicDefinitions>().load(files.list(Settings["definitions.graphics"]))
+            "graphic_defs", "graphics", "gfx", "gfxs" -> GraphicDefinitions.load(files.list(Settings["definitions.graphics"]))
             "item_on_item", "item-on-item", "ioi", "recipes" -> get<ItemOnItemDefinitions>().load(files.list(Settings["definitions.itemOnItem"]))
             "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load(files.list(Settings["definitions.sounds"]))
             "produce", "farming" -> get<FarmingDefinitions>().load(files.find(Settings["definitions.produce"]))
@@ -131,7 +130,6 @@ class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
                 }
                 InterfaceDefinitions.load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"]))
             }
-            "spells" -> get<SpellDefinitions>().load(files.find(Settings["definitions.spells"]))
             "patrols", "paths" -> get<PatrolDefinitions>().load(files.list(Settings["definitions.patrols"]))
             "prayers" -> get<PrayerDefinitions>().load(files.find(Settings["definitions.prayers"]))
             "drops", "drop_tables" -> get<DropTables>().load(files.list(Settings["spawns.drops"]))
@@ -141,7 +139,7 @@ class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
                 SettingsReload.now()
             }
             "bots" -> get<BotManager>().load(files)
-            "tables", "rows", "dbs" -> Tables.load(files.list(Settings["definitions.tables"]))
+            "tables", "rows", "dbs", "spells" -> Tables.load(files.list(Settings["definitions.tables"]))
         }
     }
 

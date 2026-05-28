@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.weakQueue
+import world.gregs.voidps.engine.queue.strongQueue
 
 class BoneBurying : Script {
 
@@ -39,7 +39,7 @@ class BoneBurying : Script {
             exp(Skill.Prayer, xp)
             sound("bury_bones")
             set("i_wonder_if_itll_sprout_task", true)
-            weakQueue("bury", 1, onCancel = null) {
+            strongQueue("bury", 2) {
                 message("You bury the ${item.def.name.lowercase()}.", ChatType.Filter)
             }
         }

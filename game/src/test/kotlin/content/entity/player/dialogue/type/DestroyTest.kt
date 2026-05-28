@@ -6,7 +6,6 @@ import io.mockk.verify
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import stringEntry
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.open
@@ -42,10 +41,8 @@ internal class DestroyTest : DialogueTest() {
     @Test
     fun `Destroy not sent if interface not opened`() {
         every { player.open("dialogue_confirm_destroy") } returns false
-        assertThrows<IllegalStateException> {
-            dialogueBlocking {
-                destroy("1234", "question")
-            }
+        dialogueBlocking {
+            destroy("1234", "question")
         }
         coVerify(exactly = 0) {
             interfaces.sendText("dialogue_confirm_destroy", "line1", "question")

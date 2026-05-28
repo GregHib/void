@@ -48,7 +48,7 @@ import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
@@ -170,7 +170,8 @@ class Juna : Script {
         }
 
         timerStop("tears_of_guthix_timer") {
-            queue("tears_of_guthix_exit") {
+            suspension = null
+            strongQueue("tears_of_guthix_exit") {
                 message("Your time in the caves is up.")
                 walkToDelay(Tile(3254, 9517, 2))
                 exit()

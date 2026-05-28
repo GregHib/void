@@ -29,6 +29,7 @@ import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -40,7 +41,6 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.queue.softQueue
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.epochMilliseconds
 import world.gregs.voidps.engine.timer.epochSeconds
@@ -104,7 +104,7 @@ class TzhaarFightCave(
         exited("tzhaar_fight_cave_multi_area") {
             close("tzhaar_fight_cave")
             clearInstance()
-            if (get("logged_out", false)) {
+            if (get("logged_out", false) && wave != -1) {
                 // Save the player's relative position in the original region
                 val offset = tile.delta(tile.region.tile)
                 tele(region.tile.add(offset))
@@ -190,8 +190,7 @@ class TzhaarFightCave(
                 tele(centre.add(instanceOffset()))
             }
             strongQueue("fight_cave_start", TimeUnit.SECONDS.toTicks(2)) {
-                startWave(player, wave, start = true)
-                player.sendVariable("fight_cave_wave")
+                startWave(this, wave, start = true)
             }
         }
 
@@ -203,11 +202,13 @@ class TzhaarFightCave(
             }
             it.dropItems = false
             it.teleport = outside
-            softQueue("fire_cave_death", 3) {
+            World.queue("fight_cave_death_$index", 3) {
+                queue.clear()
                 leave(wave)
             }
         }
     }
+    // 2436, 5170
 
     fun Player.leave(wave: Int, defeatedJad: Boolean = false) {
         clear("fight_cave_wave")
@@ -250,7 +251,9 @@ class TzhaarFightCave(
         }
         player["fight_cave_wave"] = wave
         if (player["fight_caves_logout_warning", false]) {
-            Script.launch { accountManager.logout(player, false) }
+            Script.launch {
+                accountManager.logout(player, true)
+            }
             return
         }
         if (start && wave != 63) {

@@ -33,3 +33,15 @@ id = 2398
 id = 12335
 wander_range = 3
 examine = "Master of Imps."
+
+[wizard]
+id = 13
+hitpoints = 140
+att = 8
+str = 8
+def = 5
+mage = 10
+combat_def = "fire_wizard"
+respawn_delay = 30
+drop_table = "wizard"
+examine = "Slightly magical."

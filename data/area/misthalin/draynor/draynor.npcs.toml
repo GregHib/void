@@ -139,15 +139,13 @@ examine = "A master at farming."
 
 [market_guard_draynor]
 id = 2236
-hunt_mode = "guarding"
 hitpoints = 220
 att = 17
 str = 18
 def = 13
-attack_speed = 5
-style = "crush"
-max_hit_melee = 30
 attack_bonus = 9
+combat_def = "draynor_market_guard"
+hunt_mode = "guarding"
 respawn_delay = 50
 examine = "He guards the Draynor Market stalls from thieves."
 
@@ -197,10 +195,16 @@ id = 8204
 
 [shady_stranger]
 id = 8339
+hitpoints = 300
+combat_def = "man"
+max_hit_crush = 60
 examine = "He seems to be trying to watch everyone at once."
 
 [suspicious_outsider]
 id = 8436
+hitpoints = 440
+combat_def = "man"
+max_hit_crush = 60
 examine = "Haven't seen his sort around here before; what's he doing here?"
 
 [ruantun_draynor_sewers]

@@ -4,7 +4,7 @@ import content.entity.effect.transform
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.queue.softQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
@@ -22,12 +22,12 @@ class DagannothEggHatch : Script {
             transform("dagannoth_egg_open")
 
             // Small stand-up delay before attacking
-            softQueue("dagannoth_hatch_attack", 1) {
+            queue("dagannoth_hatch_attack", 1) {
                 transform("dagannoth_egg_opened")
                 NPCs.add("dagannoth_spawn", tile)
                 interactPlayer(target, "Attack")
             }
-            softQueue("dagannoth_respawn", TimeUnit.MINUTES.toTicks(5)) {
+            queue("dagannoth_respawn", TimeUnit.MINUTES.toTicks(5)) {
                 transform("dagannoth_egg")
             }
         }

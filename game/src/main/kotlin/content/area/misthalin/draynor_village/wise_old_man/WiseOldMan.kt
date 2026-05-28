@@ -99,11 +99,11 @@ class WiseOldMan : Script {
                 npc<Happy>("Thank you, thank you! Please take these runes as a sign of my gratitude.")
             }
             "herbs" -> {
-                item("grimy_tarromin", 400, "<navy>The Wise Old Man gives you some backnotes that can be exchanged for herbs.")
+                item("grimy_tarromin", "<navy>The Wise Old Man gives you some backnotes that can be exchanged for herbs.")
                 npc<Happy>("Thank you, thank you! Please take these herbs as a sign of my gratitude.")
             }
             "seeds" -> {
-                item("potato_seed", 400, "<navy>The Wise Old Man gives you some seeds.")
+                item("potato_seed", "<navy>The Wise Old Man gives you some seeds.")
                 npc<Happy>("Thank you, thank you! Please take these seeds as a sign of my gratitude.")
             }
             "prayer" -> {
@@ -111,12 +111,11 @@ class WiseOldMan : Script {
                 npc<Happy>("Thank you, thank you! In thanks, I shall bestow on you a simple blessing.")
             }
             "coins" -> {
-                item("coins_8", 400, "<navy>The Wise Old Man gives you some coins.")
+                item("coins_8", "<navy>The Wise Old Man gives you some coins.")
                 npc<Happy>("Thank you, thank you! Please take this money as a sign of my gratitude.")
             }
             else -> item(
                 reward,
-                400,
                 "The Wise Old Man gives you an ${reward.toSentenceCase()}${
                     when {
                         reward.endsWith("diamond") || reward.endsWith("ruby") || reward.endsWith("emerald") -> "!"

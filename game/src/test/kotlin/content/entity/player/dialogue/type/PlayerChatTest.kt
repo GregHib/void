@@ -8,10 +8,8 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
@@ -19,7 +17,7 @@ import world.gregs.voidps.engine.Contexts
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.suspend.ContinueSuspension
+import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.login.protocol.encode.playerDialogueHead
 import kotlin.test.assertTrue
@@ -30,23 +28,25 @@ internal class PlayerChatTest : DialogueTest() {
     override fun setup() {
         super.setup()
         player.accountName = "John"
-        declareMock<AnimationDefinitions> {
-            every { this@declareMock.get(any<String>()) } returns AnimationDefinition()
-            every { this@declareMock.get("expression_neutral").id } returns 9803
-            every { this@declareMock.getOrNull("expression_neutral1")?.id } returns 9803
-            every { this@declareMock.getOrNull("expression_neutral2")?.id } returns 9803
-            every { this@declareMock.getOrNull("expression_neutral3")?.id } returns 9803
-            every { this@declareMock.getOrNull("expression_neutral4")?.id } returns 9803
-            every { this@declareMock.get("expression_laugh").id } returns 9840
-            every { this@declareMock.getOrNull("expression_laugh1") } returns null
-            every { this@declareMock.getOrNull("expression_laugh2") } returns null
-            every { this@declareMock.getOrNull("expression_laugh3") } returns null
-            every { this@declareMock.getOrNull("expression_laugh4") } returns null
-            every { this@declareMock.getOrNull("expression_cackle1")?.id } returns 9840
-            every { this@declareMock.getOrNull("expression_cackle2")?.id } returns 9840
-            every { this@declareMock.getOrNull("expression_cackle3")?.id } returns 9840
-            every { this@declareMock.getOrNull("expression_cackle4")?.id } returns 9840
-        }
+        AnimationDefinitions.set(
+            arrayOf(
+                AnimationDefinition(9803, stringId = "expression_neutral"),
+                AnimationDefinition(9840, stringId = "expression_cackle"),
+                AnimationDefinition(9840, stringId = "expression_laugh"),
+            ),
+            mapOf(
+                "expression_neutral" to 0,
+                "expression_neutral1" to 0,
+                "expression_neutral2" to 0,
+                "expression_neutral3" to 0,
+                "expression_neutral4" to 0,
+                "expression_cackle" to 1,
+                "expression_laugh1" to 2,
+                "expression_laugh2" to 2,
+                "expression_laugh3" to 2,
+                "expression_laugh4" to 2,
+            ),
+        )
     }
 
     @TestFactory
@@ -113,7 +113,7 @@ internal class PlayerChatTest : DialogueTest() {
         dialogue {
             player<Neutral>(text = "\nOne\nTwo\nThree\nFour\nFive")
         }
-        (player.dialogueSuspension as ContinueSuspension).resume(Unit)
+        (player.suspension as Suspension.Continue).resume()
         verifyOrder {
             player.open("dialogue_chat4")
             interfaces.sendText("dialogue_chat4", "line1", "One")
@@ -166,7 +166,7 @@ internal class PlayerChatTest : DialogueTest() {
             player<Cackle>(text = "text", largeHead = true)
             resumed = true
         }
-        (player.dialogueSuspension as ContinueSuspension).resume(Unit)
+        (player.suspension as Suspension.Continue).resume()
         coVerify {
             interfaces.sendText("dialogue_chat1", "title", "Jim")
             interfaces.sendAnimation("dialogue_chat1", "head_large", 9840)
@@ -177,10 +177,8 @@ internal class PlayerChatTest : DialogueTest() {
     @Test
     fun `Player chat not sent if interface not opened`() {
         every { player.open("dialogue_chat1") } returns false
-        assertThrows<IllegalStateException> {
-            dialogueBlocking {
-                player<Neutral>(text = "text")
-            }
+        dialogueBlocking {
+            player<Neutral>(text = "text")
         }
         coVerify(exactly = 0) {
             interfaces.sendText("dialogue_chat1", "line1", "text")

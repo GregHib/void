@@ -14,10 +14,10 @@ internal class GraphicDefinitionsTest : DefinitionsDecoderTest<GraphicDefinition
 
     override fun empty(): GraphicDefinition = GraphicDefinition(-1)
 
-    override fun definitions(): GraphicDefinitions = GraphicDefinitions(definitions)
+    override fun definitions(): GraphicDefinitions = GraphicDefinitions.init(definitions)
 
     override fun load(definitions: GraphicDefinitions) {
         val uri = GraphicDefinitionsTest::class.java.getResource("test-gfx.toml")!!
-        definitions.load(listOf(uri.path))
+        GraphicDefinitions.load(listOf(uri.path))
     }
 }

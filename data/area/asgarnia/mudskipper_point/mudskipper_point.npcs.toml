@@ -16,9 +16,11 @@ id = 325
 
 [giant_rat_mudskipper_point]
 id = 446
+clone = "giant_rat_lumbridge_swamp"
 
 [giant_rat_mudskipper_point_2]
 id = 4924
+clone = "giant_rat_lumbridge_swamp"
 
 [mogre]
 id = 114

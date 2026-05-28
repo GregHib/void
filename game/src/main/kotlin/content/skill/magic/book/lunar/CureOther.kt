@@ -6,13 +6,13 @@ import content.skill.magic.spell.removeSpellItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.SpellDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 
-class CureOther(val definitions: SpellDefinitions) : Script {
+class CureOther : Script {
 
     init {
         onPlayerApproach("lunar_spellbook:cure_other") { (target) ->
@@ -28,12 +28,11 @@ class CureOther(val definitions: SpellDefinitions) : Script {
             if (!removeSpellItems("cure_other")) {
                 return@onPlayerApproach
             }
-            val definition = definitions.get("cure_other")
             start("movement_delay", 2)
             anim("lunar_cast")
             target.gfx("cure_other")
             sound("cure_other")
-            exp(Skill.Magic, definition.experience)
+            exp(Skill.Magic, Tables.int("spells.cure_other.xp") / 10.0)
             target.curePoison()
             target.sound("cure_other_impact")
             target.message("You have been cured by $name.")

@@ -84,6 +84,7 @@ class AccountManager(
         }
         loadCallback.invoke(player)
         player.open(player.interfaces.gameFrame)
+        player.variables.sendAll()
         Spawn.player(player)
         val offset = player.get<Long>("instance_offset")?.let { Delta(it) } ?: Delta.EMPTY
         val original = player.tile.minus(offset)
@@ -108,7 +109,7 @@ class AccountManager(
         player["logged_out"] = true
         if (safely) {
             player.client?.logout()
-            player.strongQueue("logout", onCancel = null) {
+            player.strongQueue("logout") {
                 // Make sure nothing else starts
             }
         }

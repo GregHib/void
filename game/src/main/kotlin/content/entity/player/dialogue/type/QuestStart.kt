@@ -12,12 +12,15 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.suspend.StringSuspension
+import world.gregs.voidps.engine.suspend.Suspension
+import world.gregs.voidps.engine.suspend.pauseString
 
 private const val QUEST_START_ID = "quest_intro"
 
 suspend fun Player.startQuest(questId: String): Boolean {
-    check(open(QUEST_START_ID)) { "Unable to open destroy dialogue for $questId $this" }
+    if (!open(QUEST_START_ID)) {
+        return false
+    }
     val questDefinitions: QuestDefinitions = get()
     val quest = questDefinitions.getOrNull(questId)
     check(quest != null) { "Unable to find quest with id $questId $this" }
@@ -82,7 +85,7 @@ suspend fun Player.startQuest(questId: String): Boolean {
     if (quest.contains("sprite")) {
         interfaces.sendSprite("quest_intro", "quest_icon", quest["sprite", -1])
     }
-    val result = StringSuspension.get(this) == "yes"
+    val result = pauseString() == "yes"
     close(QUEST_START_ID)
     return result
 }
@@ -111,15 +114,15 @@ class QuestStart : Script {
         }
 
         interfaceOption("No", "quest_intro:startno_layer") {
-            (dialogueSuspension as? StringSuspension)?.resume("no")
+            (suspension as? Suspension.StringEntry)?.resume("no")
         }
 
         interfaceOption("Yes", "quest_intro:startyes_layer") {
-            (dialogueSuspension as? StringSuspension)?.resume("yes")
+            (suspension as? Suspension.StringEntry)?.resume("yes")
         }
 
         interfaceClosed("quest_intro") {
-            (dialogueSuspension as? StringSuspension)?.resume("no")
+            (suspension as? Suspension.StringEntry)?.resume("no")
         }
     }
 }

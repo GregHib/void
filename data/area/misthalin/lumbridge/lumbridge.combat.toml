@@ -2,6 +2,7 @@
 attack_speed = 5
 defend_anim = "sword_defend"
 death_anim = "human_death"
+death_sound = "human_death"
 
 [lumbridge_guardsman_attackable.melee]
 range = 1
@@ -12,6 +13,7 @@ target_hit = { offense = "slash", max = 16 }
 attack_speed = 5
 defend_anim = "sword_defend"
 death_anim = "human_death"
+death_sound = "human_death"
 
 [lumbridge_guardsman_attackable2.melee]
 range = 1
@@ -22,6 +24,7 @@ target_hit = { offense = "slash", max = 16 }
 attack_speed = 6
 defend_anim = "farmer_defend"
 death_anim = "human_death"
+death_sound = "human_death"
 
 [farmer.melee]
 range = 1

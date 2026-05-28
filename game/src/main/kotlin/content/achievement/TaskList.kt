@@ -12,22 +12,18 @@ class TaskList : Script {
 
     init {
         playerSpawn {
-            sendVariable("task_disable_popups")
             set("task_popup", 0)
             set("task_previous_popup", 0)
             var total = 0
             for (area in 0 until 8) {
                 Tasks.forEach(area) {
                     if (Tasks.isCompleted(this@playerSpawn, definition.stringId)) {
-                        sendVariable(definition.stringId)
                         total++
                     }
                     null
                 }
             }
             set("task_progress_overall", total)
-            sendVariable("task_hide_completed")
-            sendVariable("task_filter_sets")
         }
 
         interfaceOpened("task_list") {
@@ -57,16 +53,15 @@ class TaskList : Script {
         }
 
         interfaceOption("Filter-sets", "task_list:filter_sets") {
-            set("task_filter_sets", !get("task_filter_sets", false))
+            toggle("task_filter_sets")
         }
 
         interfaceOption("Filter-done", "task_list:filter_done") {
-            set("task_hide_completed", !get("task_hide_completed", false))
+            toggle("task_hide_completed")
         }
 
         interfaceOption("Turn-off", "task_list:toggle_popups") {
-            val disable = !get("task_disable_popups", false)
-            set("task_disable_popups", disable)
+            val disable = !toggle("task_disable_popups")
             if (disable) {
                 set("task_popup", 0)
                 set("task_previous_popup", 0)

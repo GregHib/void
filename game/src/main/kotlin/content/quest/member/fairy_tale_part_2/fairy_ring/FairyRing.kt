@@ -13,7 +13,8 @@ import world.gregs.voidps.engine.client.variable.ListValues
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
-import world.gregs.voidps.engine.suspend.StringSuspension
+import world.gregs.voidps.engine.suspend.Suspension
+import world.gregs.voidps.engine.suspend.pauseString
 import world.gregs.voidps.type.Tile
 
 class FairyRing(val fairyRing: FairyRingCodes) : Script {
@@ -36,7 +37,7 @@ class FairyRing(val fairyRing: FairyRingCodes) : Script {
             }
             open("fairy_ring")
             open("travel_log")
-            val code = StringSuspension.get(this)
+            val code = pauseString()
             val fairyRing = fairyRing.codes[code] ?: return@objectOperate
             if (fairyRing.tile == Tile.EMPTY) {
                 return@objectOperate
@@ -56,7 +57,7 @@ class FairyRing(val fairyRing: FairyRingCodes) : Script {
 
         interfaceOption("Teleport", "fairy_ring:teleport") {
             val code = code
-            (dialogueSuspension as? StringSuspension)?.resume(code)
+            (suspension as? Suspension.StringEntry)?.resume(code)
         }
 
         interfaceOpened("fairy_ring") {

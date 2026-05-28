@@ -80,7 +80,7 @@ object Level {
 
     fun Player.hasRequirementsToUse(item: Item, message: Boolean = false, skills: Set<Skill> = emptySet()): Boolean {
         val def = item.def
-        for (i in 1 .. 6) {
+        for (i in 1..6) {
             val index: Int = def.getOrNull("use_skill_${i}") ?: break
             val level: Int = def.getOrNull("use_level_${i}") ?: break
             val skill = Skill.all[index]
@@ -93,7 +93,7 @@ object Level {
 
     fun Player.hasRequirements(item: Item, message: Boolean = false): Boolean {
         val def = item.def
-        for (i in 1 .. 6) {
+        for (i in 1..6) {
             val index: Int = def.getOrNull("equip_skill_${i}") ?: break
             val level: Int = def.getOrNull("equip_level_${i}") ?: break
             val skill = Skill.all[index]
@@ -104,7 +104,8 @@ object Level {
         val index: Int? = item.def.getOrNull(Params.SKILLCAPE_SKILL)
         if (index != null) {
             val skill = Skill.all[index]
-            if (!has(skill, skill.maximum(), message)) {
+            val max = if (skill == Skill.Dungeoneering && item.id.startsWith("dungeoneering_cape")) MAX_LEVEL else skill.maximum()
+            if (!hasMax(skill, max, message)) {
                 return false
             }
         }

@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.mode.interact
 
 import io.mockk.*
+import kotlinx.coroutines.suspendCancellableCoroutine
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
@@ -79,7 +80,10 @@ internal class InteractTest : KoinMock() {
                 if (operate) {
                     Script.launch {
                         if (suspend) {
-                            Suspension.start(player, 2)
+                            suspendCancellableCoroutine {
+                                player.suspension = Suspension.Delay(it, 2)
+                            }
+                            player.suspension = null
                         }
                         operated = true
                     }
@@ -90,7 +94,10 @@ internal class InteractTest : KoinMock() {
                 if (approach) {
                     Script.launch {
                         if (suspend) {
-                            Suspension.start(player, 2)
+                            suspendCancellableCoroutine {
+                                player.suspension = Suspension.Delay(it, 2)
+                            }
+                            player.suspension = null
                         }
                         approached = true
                     }

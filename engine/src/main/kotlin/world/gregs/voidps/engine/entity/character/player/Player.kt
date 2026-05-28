@@ -7,6 +7,7 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.client.instruction.InstructionTask
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
+import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.client.variable.Variables
@@ -16,16 +17,12 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.mode.move.Steps
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.Inventories
 import world.gregs.voidps.engine.queue.ActionQueue
-import world.gregs.voidps.engine.suspend.DialogueSuspension
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.timer.TimerQueue
 import world.gregs.voidps.engine.timer.Timers
@@ -33,7 +30,6 @@ import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.login.protocol.visual.PlayerVisuals
 import world.gregs.voidps.type.Tile
-import kotlin.coroutines.Continuation
 
 /**
  * A player controlled by client or bot
@@ -66,6 +62,11 @@ class Player(
         }
     }
 
+    fun closeModal() {
+        closeMenu()
+        queue.clearWeak()
+    }
+
     override val size: Int
         get() = appearance.size
 
@@ -91,11 +92,7 @@ class Player(
 
     override var suspension: Suspension? = null
 
-    override var delay: Continuation<Unit>? = null
-
-    var dialogueSuspension: DialogueSuspension<*>? = null
-
-    override var queue = ActionQueue(this)
+    override var queue: ActionQueue<*> = ActionQueue(this)
 
     /**
      * Always ticks
@@ -110,6 +107,7 @@ class Player(
     override var variables: Variables = PlayerVariables(this, variables)
 
     override val steps = Steps(this)
+    override var walkTrigger: (() -> Unit)? = null
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

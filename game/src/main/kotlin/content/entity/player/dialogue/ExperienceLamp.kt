@@ -1,7 +1,7 @@
 package content.entity.player.dialogue
 
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.suspend.StringSuspension
+import world.gregs.voidps.engine.suspend.Suspension
 
 class ExperienceLamp : Script {
 
@@ -11,7 +11,7 @@ class ExperienceLamp : Script {
         }
 
         interfaceOption("Confirm", "skill_stat_advance:confirm") {
-            (dialogueSuspension as? StringSuspension)?.resume(get("stat_advance_selected_skill", "none"))
+            (suspension as? Suspension.StringEntry)?.resume(get("stat_advance_selected_skill", "none"))
         }
     }
 }

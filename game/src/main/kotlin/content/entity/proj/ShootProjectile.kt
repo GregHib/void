@@ -195,7 +195,7 @@ private fun projectile(
     sourceHeight: Int = 0,
     targetHeight: Int = 0,
 ): Int {
-    val definition = get<GraphicDefinitions>().getOrNull(id) ?: return -1
+    val definition = GraphicDefinitions.getOrNull(id) ?: return -1
     val time = flightTime(definition, sourceTile, targetTile, flightTime)
     if (time == -1) {
         return -1
@@ -228,7 +228,6 @@ private fun sendProjectile(
     curve: Int = DEFAULT_CURVE,
     offset: Int = DEFAULT_OFFSET,
 ) {
-    val definitions: GraphicDefinitions = get()
     var index = if (target != null) target.index + 1 else 0
     if (target is Player) {
         index = -index
@@ -237,7 +236,7 @@ private fun sendProjectile(
         tile.zone,
         ProjectileAddition(
             tile = tile.id,
-            id = definitions.get(id).id,
+            id = GraphicDefinitions.get(id).id,
             index = index,
             directionX = direction.x,
             directionY = direction.y,

@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.network.login.protocol.encode.*
 
 /**
@@ -157,8 +157,7 @@ class Interfaces(
 
     fun sendAnimation(id: String, component: String, animation: String): Boolean {
         val comp = InterfaceDefinitions.getComponent(id, component) ?: return false
-        val definitions: AnimationDefinitions = get()
-        player.client?.animateInterface(comp.id, definitions.get(animation).id)
+        player.client?.animateInterface(comp.id, AnimationDefinitions.get(animation).id)
         return true
     }
 
@@ -171,6 +170,12 @@ class Interfaces(
     fun sendVisibility(id: String, component: String, visible: Boolean): Boolean {
         val comp = InterfaceDefinitions.getComponent(id, component) ?: return false
         player.client?.interfaceVisibility(comp.id, !visible)
+        return true
+    }
+
+    fun sendPosition(id: String, component: String, x: Int? = null, y: Int? = null): Boolean {
+        val comp = InterfaceDefinitions.getComponent(id, component) ?: return false
+        player.client?.interfacePosition(comp.id, x ?: comp.baseX, y ?: comp.baseY)
         return true
     }
 
@@ -268,8 +273,8 @@ val Player.menu: String?
     get() = interfaces.get("main_screen") ?: interfaces.get("wide_screen") ?: interfaces.get("underlay")
 
 fun Player.closeDialogue(): Boolean {
-    if (dialogueSuspension != null) {
-        dialogueSuspension = null
+    if (suspension is Suspension.Continue || suspension is Suspension.IntEntry || suspension is Suspension.StringEntry || suspension is Suspension.NameEntry) {
+        suspension = null
     }
     sendScript("close_entry")
     return closeType("dialogue_box") || closeType("dialogue_box_small")

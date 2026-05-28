@@ -7,10 +7,10 @@ import world.gregs.voidps.engine.Script
 class Wizards : Script {
 
     init {
-        npcCondition("not_confused") { target -> Spell.canDrain(target, "confuse") }
-        npcCondition("not_weakened") { target -> Spell.canDrain(target, "weaken") }
-        npcCondition("not_cursed") { target -> Spell.canDrain(target, "curse") }
-        npcCondition("not_vulnerable") { target -> Spell.canDrain(target, "vulnerability") }
+        npcCondition("not_confused") { target -> Spell.canDrain(target, "confuse") == true }
+        npcCondition("not_weakened") { target -> Spell.canDrain(target, "weaken") == true }
+        npcCondition("not_cursed") { target -> Spell.canDrain(target, "curse") == true }
+        npcCondition("not_vulnerable") { target -> Spell.canDrain(target, "vulnerability") == true }
 
         npcCombatDamage("air_wizard") {
             if (it.spell.startsWith("air_")) {

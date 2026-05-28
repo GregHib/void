@@ -39,7 +39,7 @@ object SkillDataConverter {
         val cache: Cache = koin.get()
         val files = configFiles()
         val sounds = SoundDefinitions().load(files.list(Settings["definitions.sounds"]))
-        val animations = AnimationDefinitions(AnimationDecoder().load(cache)).load(listOf(Settings["definitions.animations"]))
+        val animations = AnimationDefinitions.init(AnimationDecoder().load(cache)).load(listOf(Settings["definitions.animations"]))
 //        var decoder = InventoryDecoder(koin.get())
         val mapper = ObjectMapper()
         val yaml = ObjectMapper(

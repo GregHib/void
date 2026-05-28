@@ -84,7 +84,7 @@ class BarrowsTest : WorldTest() {
         assertEquals(3, player.tile.level)
         val torag = GameObjects.find(Tile(3569, 9685, 3), "torag_sarcophagus")
         player.objectOption(torag, "Search")
-        tick(1)
+        tick(2)
         player.dialogueContinue()
         player.dialogueOption("line1")
         tick(2)
@@ -120,7 +120,7 @@ class BarrowsTest : WorldTest() {
         assertTrue(player.contains("dharok_spawn"))
         val stairs = GameObjects.find(Tile(3557, 9718, 3), "dharok_stairs")
         player.objectOption(stairs, "Climb-up")
-        tick(3)
+        tick(4)
         assertFalse(player.contains("dharok_spawn"))
         assertNull(NPCs.findOrNull(Region(14231).toLevel(3), "dharok_the_wretched"))
     }

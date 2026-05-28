@@ -12,10 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 class Running : Script {
 
     init {
-        playerSpawn {
-            sendVariable("movement")
-        }
-
         interfaceOpened("energy_orb") {
             sendRunEnergy(energyPercent())
         }

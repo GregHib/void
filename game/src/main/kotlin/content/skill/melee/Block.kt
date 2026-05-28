@@ -22,7 +22,6 @@ class Block(
     val combatDefinitions: CombatDefinitions,
     val styleDefinitions: WeaponStyleDefinitions,
     val weaponDefinitions: WeaponAnimationDefinitions,
-    val animationDefinitions: AnimationDefinitions,
 ) : Script {
 
     init {
@@ -50,7 +49,7 @@ class Block(
                 if (animation == null) {
                     val id = target.weapon.def["weapon_style", -1]
                     val style = styleDefinitions.get(id)
-                    animation = if (id != -1 && animationDefinitions.contains("${style.stringId}_defend")) "${style.stringId}_defend" else "human_defend"
+                    animation = if (id != -1 && AnimationDefinitions.contains("${style.stringId}_defend")) "${style.stringId}_defend" else "human_defend"
                 }
                 target.anim(animation, delay)
             }

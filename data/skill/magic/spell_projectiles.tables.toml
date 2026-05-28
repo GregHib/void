@@ -1,0 +1,31 @@
+[spell_projectiles]
+gfx = "gfx"
+delay = "int"
+curve = "int"
+end_height = "int"
+end_height_default = -1
+
+[.ice_barrage]
+end_height = 0
+
+[.bind]
+gfx = "bind"
+end_height = 0
+
+[.fire_blast_1]
+gfx = "fire_blast_1"
+
+[.fire_blast_2]
+gfx = "fire_blast_2"
+
+[.fire_strike_1]
+gfx = "fire_blast_1"
+delay = 54
+curve = 16
+
+[.fire_strike_2]
+gfx = "fire_blast_1"
+curve = -10
+
+[.fire_strike_3]
+gfx = "fire_blast_2"
