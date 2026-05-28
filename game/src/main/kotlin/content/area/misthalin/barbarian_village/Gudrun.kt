@@ -87,13 +87,6 @@ class Gudrun : Script {
     suspend fun Player.cutscene() {
         open("fade_out")
         val cutscene = startCutscene("gudrun", region)
-        cutscene.onEnd {
-            open("fade_out")
-            delay(3)
-            tele(3081, 3416)
-            clearCamera()
-            clearAnim()
-        }
         delay(4)
         tele(cutscene.tile(3078, 3435), clearInterfaces = false)
         val dororan = NPCs.add("dororan_cutscene", cutscene.tile(3079, 3435), Direction.SOUTH)
@@ -228,6 +221,13 @@ class Gudrun : Script {
         delay(2)
         gudrunHugging.anim("gudrun_hugging")
         delay(4)
+        cutscene.onEnd {
+            open("fade_out")
+            delay(3)
+            tele(3081, 3416)
+            clearCamera()
+            clearAnim()
+        }
         queue.clear("gunnars_ground_cutscene_end")
         cutscene.end()
         set("gunnars_ground", "gunnars_ground")
