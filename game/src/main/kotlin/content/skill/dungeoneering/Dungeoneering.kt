@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.remove
+import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -43,18 +44,7 @@ class Dungeoneering : Script {
 
     init {
         objectOperate("Enter", "*door_frozen,*door_abandoned,*door_furnished,*door_occult,*door_warped") { (target) ->
-            val dungeon = dungeonMap ?: return@objectOperate
-            val instance = instance() ?: return@objectOperate
-            val delta = target.tile.delta(instance.tile)
-            val rx = delta.x / 16
-            val ry = delta.y / 16
-            val dx = delta.x - (rx * 16)
-            val dy = delta.y - (ry * 16)
-            val direction = toDirection(Delta(dx, dy))
-            val room = dungeon.room(rx, ry)
-//            val target = dungeon.room(rx + direction.delta.x, ry + direction.delta.y)!!
-            tele(tile.add(direction).add(direction).add(direction))
-            sendScript("dung_map_add_player", rx, ry, index, 1, name)
+            openDoor(target.rotation)
         }
 
         objectOperate("Unlock", "orange_*_door,silver_*_door,yellow_*_door,green_*_door,blue_*_door,purple_*_door,crimson_*_door,gold_*_door") { (target) ->
@@ -62,29 +52,8 @@ class Dungeoneering : Script {
             val instance = instance() ?: return@objectOperate
             val origin = tile.delta(instance.tile)
             val roomTile = origin.room
-            val d = when (target.rotation) {
-                0 -> Direction.WEST
-                1 -> Direction.NORTH
-                2 -> Direction.EAST
-                3 -> Direction.SOUTH
-                else -> return@objectOperate
-            }
-            // TODO check if offset or not
-            println("Rotation ${target.rotation}")
-            println("D ${tile.x.rem(16)} ${tile.y.rem(16)}")
-            val delta = origin.minus(roomTile.x * 16, roomTile.y * 16)
-            println("Delta ${delta}")
-            val direction = toDirection(delta)
             val room = dungeon.room(roomTile.x, roomTile.y) ?: return@objectOperate
-            val index = when (direction) {
-                Direction.WEST -> 0
-                Direction.NORTH -> 1
-                Direction.EAST -> 2
-                Direction.SOUTH -> 3
-                else -> return@objectOperate
-            }
-            println(direction)
-            val door = room.doors[index] ?: return@objectOperate
+            val door = room.doors[target.rotation] ?: return@objectOperate
             if (door is DungeonDoor.Locked) {
                 if (!inventory.remove(door.key)) {
                     message("You don't have the correct key.")
@@ -94,28 +63,12 @@ class Dungeoneering : Script {
             }
         }
 
-        objectOperate("Open", "*door_frozen,*door_abandoned,*door_furnished,*door_occult,*door_warped") {
-            val dungeon = dungeonMap ?: return@objectOperate
-            val instance = instance() ?: return@objectOperate
-            val origin = tile.delta(instance.tile)
-            val roomTile = origin.room
-            val delta = origin.minus(roomTile.x * 16, roomTile.y * 16)
-            val direction = toDirection(delta)
-            val room = dungeon.room(roomTile.x, roomTile.y) ?: return@objectOperate
-            val index = when (direction) {
-                Direction.WEST -> 0
-                Direction.NORTH -> 1
-                Direction.EAST -> 2
-                Direction.SOUTH -> 3
-                else -> return@objectOperate
-            }
-            val adj = room.adjacentRooms[index] ?: return@objectOperate
-            if (adj.open) {
-                tele(tile.add(direction).add(direction).add(direction))
-                sendScript("dung_map_add_player", roomTile.x, roomTile.y, index, 1, name)
-                return@objectOperate
-            }
-            openRoom(this, adj, dungeon)
+        objectOperate("Fix-pulley", "broken_pulley_door_*") { (target) ->
+            target.replace(target.id.replace("broken_pulley", "fixed_pulley"))
+        }
+
+        objectOperate("Open", "*door_frozen,*door_abandoned,*door_furnished,*door_occult,*door_warped") { (target) ->
+            openDoor(target.rotation)
         }
 
         adminCommand("dungeon", intArg("floor", optional = true), stringArg("size", autofill = setOf("small", "medium", "large"), optional = true), intArg("complexity", optional = true)) { args ->
@@ -146,9 +99,11 @@ class Dungeoneering : Script {
 
             dungeon.prettyPrint()
 
-            val instance = smallInstance()
+            val instance = smallInstance(logout = false)
+            dungeon.region = instance
             val startRoom = dungeon.start()
             openRoom(this, startRoom, dungeon)
+            dungeon.players.add(index)
             var tile = startRoom.tile
             tele(instance.tile.add(tile.x * 16 + 8, tile.y * 16 + 8))
         }
@@ -164,6 +119,28 @@ class Dungeoneering : Script {
         }
     }
 
+    private fun Player.openDoor(rotation: Int) {
+        val dungeon = dungeonMap ?: return
+        val instance = instance() ?: return
+        val origin = tile.delta(instance.tile)
+        val roomTile = origin.room
+        val direction = when (rotation) {
+            0 -> Direction.WEST
+            1 -> Direction.NORTH
+            2 -> Direction.EAST
+            3 -> Direction.SOUTH
+            else -> return
+        }
+        val room = dungeon.room(roomTile.x, roomTile.y) ?: return
+        val adj = room.adjacentRooms[rotation] ?: return
+        if (adj.open) {
+            tele(tile.add(direction).add(direction).add(direction))
+            sendScript("dung_map_add_player", roomTile.x, roomTile.y, rotation, 1, name)
+            return
+        }
+        openRoom(this, adj, dungeon)
+    }
+
     private fun openRoom(player: Player, room: DungeonRoom, dungeon: DungeonMap) {
         val zone = room.zone ?: return
         val origin = player.instance()?.tile?.zone ?: return
@@ -176,7 +153,6 @@ class Dungeoneering : Script {
             FloorItems.add(target.tile.add(8, 8), key)
         }
         val zones = get<DynamicZones>()
-        // Iterate through the 2x2 zones of the room template
         for (sx in 0..1) {
             for (sy in 0..1) {
                 // Calculate the target zone offset (tx, ty) based on CW rotation
@@ -195,13 +171,9 @@ class Dungeoneering : Script {
                     else -> sy
                 }
                 val clientRotation = (4 - room.rotation) % 4
-                println("Copy $zone to $target")
                 zones.copy(zone.add(sx, sy), target.add(tx, ty), clientRotation)
             }
         }
-        // TODO don't spawn two keys and two doors
-        //      Boss doors take priority over key doors?
-        //      TODO what doors are used once skills are removed
         val theme = dungeon.theme
         for ((i, door) in room.doors.withIndex()) {
             if (door == null) {
