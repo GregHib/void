@@ -3,55 +3,50 @@ package content.skill.dungeoneering
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
-import world.gregs.voidps.type.Tile
 
 class DungeonWorldMap : Script {
     init {
         interfaceOpened("dungeon_map") {
             val dungeon = dungeonMap ?: return@interfaceOpened
             sendScript("dung_map_reset")
-            val tile = dungeon.start
-            sendScript("dung_map_start_room", dungeon.start.x, dungeon.start.y, 1)
-            sendScript("dung_map_add_player", dungeon.start.x, dungeon.start.y, index, 1, name)
-            val startRoom = dungeon.room(dungeon.start.x, dungeon.start.y)!!
-            addRoom(startRoom, Direction.NONE, tile)
-            for ((index, door) in startRoom.doors.withIndex()) {
-                if (door == null) {
-                    continue
-                }
-                val dir = Direction.westClockwise[index]
-                val tile = tile.add(dir)
-                val room = dungeon.room(tile.x, tile.y) ?: continue
-                addRoom(room, dir, tile)
+            for (room in dungeon.traverse { from, _, _ -> from.open }) {
+                showRoom(room, room.tile.delta(room.parent?.tile ?: room.tile).toDirection())
+            }
+            for (index in dungeon.players) {
+                val player = Players.indexed(index) ?: continue
+                val delta = player.tile.delta(dungeon.region.tile)
+                val room = Delta(delta.x / 16, delta.y / 16)
+                sendScript("dung_map_add_player", room.x, room.y, index, 1, player.name)
             }
         }
     }
 
-    private fun Player.addRoom(room: DungeonRoom, dir: Direction, tile: Tile) {
+    private fun Player.showRoom(room: DungeonRoom, dir: Direction = Direction.NONE) {
         when (room.type) {
             DungeonRoomType.Base -> sendScript("dung_map_start_room", room.tile.x, room.tile.y, 1)
             DungeonRoomType.Boss -> sendScript("dung_map_boss_room", room.tile.x, room.tile.y, 1)
             else -> {}
         }
         var id = if (room.open) {
-            val directions = room.doors.mapIndexed { index, door -> if (door != null) Direction.westClockwise[index] else null }.filterNotNull().toSet()
-            when (directions) {
-                setOf(Direction.SOUTH) -> 2791
-                setOf(Direction.WEST) -> 2792
-                setOf(Direction.NORTH) -> 2793
-                setOf(Direction.EAST) -> 2794
-                setOf(Direction.SOUTH, Direction.WEST) -> 2795
-                setOf(Direction.NORTH, Direction.WEST) -> 2796
-                setOf(Direction.NORTH, Direction.EAST) -> 2797
-                setOf(Direction.SOUTH, Direction.EAST) -> 2798
-                setOf(Direction.SOUTH, Direction.WEST, Direction.NORTH) -> 2799
-                setOf(Direction.WEST, Direction.EAST, Direction.NORTH) -> 2800
-                setOf(Direction.SOUTH, Direction.EAST, Direction.NORTH) -> 2801
-                setOf(Direction.SOUTH, Direction.EAST, Direction.WEST) -> 2802
-                setOf(Direction.SOUTH, Direction.EAST, Direction.WEST, Direction.NORTH) -> 2803
-                setOf(Direction.WEST, Direction.EAST) -> 2804
+            when (room.doors.foldIndexed(0) { index, acc, door -> if (door != null) acc or (1 shl index) else acc }) {
+                SOUTH -> 2791
+                WEST -> 2792
+                NORTH -> 2793
+                EAST -> 2794
+                SOUTH or WEST -> 2795
+                NORTH or WEST -> 2796
+                NORTH or EAST -> 2797
+                SOUTH or EAST -> 2798
+                SOUTH or WEST or NORTH -> 2799
+                WEST or EAST or NORTH -> 2800
+                SOUTH or EAST or NORTH -> 2801
+                SOUTH or EAST or WEST -> 2802
+                SOUTH or EAST or WEST or NORTH -> 2803
+                WEST or EAST -> 2804
                 else -> return
             }
         } else {
@@ -66,6 +61,13 @@ class DungeonWorldMap : Script {
         if (get("guide_mode", false) && room.isCritical) {
             id += 19
         }
-        sendScript("dung_map_add_room", tile.x, tile.y, id, 1)
+        sendScript("dung_map_add_room", room.tile.x, room.tile.y, id, 1)
+    }
+
+    companion object {
+        private const val WEST = 1 shl 0
+        private const val NORTH = 1 shl 1
+        private const val EAST = 1 shl 2
+        private const val SOUTH = 1 shl 3
     }
 }

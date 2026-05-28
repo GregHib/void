@@ -159,7 +159,7 @@ class DungeonGeneratorTest {
 
         // Re-establish parent relations (usually done during BFS)
         val startRoom = pathHigh.first()
-        generatorHighComplexity.bfs(startRoom, gridHigh) { curr, _, neighbour ->
+        DungeonMap.traverse(startRoom, generatorHighComplexity.width, generatorHighComplexity.height, gridHigh) { curr, _, neighbour ->
             neighbour.parent = curr
             true
         }
@@ -195,7 +195,7 @@ class DungeonGeneratorTest {
         while (addedNewRooms) {
             addedNewRooms = false
 
-            val reachable = generator.bfs(startRoom, dungeonMap.grid) { _, door, _ ->
+            val reachable = DungeonMap.traverse(startRoom, generator.width, generator.height, dungeonMap.grid) { _, door, _ ->
                 when (door) {
                     is DungeonDoor.Locked -> door.key in acquiredKeys
                     else -> true

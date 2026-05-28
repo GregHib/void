@@ -1,5 +1,6 @@
 package content.skill.dungeoneering
 
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
@@ -14,3 +15,12 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
     var zone: Zone? = null
     var rotation: Int = 0
 }
+
+internal val Direction.roomIndex: Int
+    get() = when (this) {
+        Direction.WEST -> 0
+        Direction.NORTH -> 1
+        Direction.EAST -> 2
+        Direction.SOUTH -> 3
+        else -> -1
+    }

@@ -2,7 +2,9 @@ package content.skill.dungeoneering
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
+import java.util.ArrayDeque
 
 class DungeonMap(
     val width: Int,
@@ -11,6 +13,8 @@ class DungeonMap(
     val grid: Array<DungeonRoom?>,
     val theme: String,
 ) {
+    var region = Region.EMPTY
+    val players = mutableListOf<Int>()
 
     private val Direction.index: Int
         get() = when (this) {
@@ -195,6 +199,51 @@ class DungeonMap(
     fun start() = room(start.x, start.y)!!
 
     fun room(x: Int, y: Int): DungeonRoom? = grid[y * width + x]
+
+    fun traverse(filter: (from: DungeonRoom, door: DungeonDoor, neighbour: DungeonRoom) -> Boolean = { _, _, _ -> true }): List<DungeonRoom> = traverse(start(), width, height, grid, filter)
+
+    companion object {
+        /**
+         * Breadth-first search
+         */
+        internal fun traverse(
+            start: DungeonRoom,
+            width: Int,
+            height: Int,
+            grid: Array<DungeonRoom?>,
+            canTraverse: (from: DungeonRoom, door: DungeonDoor, neighbour: DungeonRoom) -> Boolean = { _, _, _ -> true },
+        ): List<DungeonRoom> {
+            val visitedList = mutableListOf<DungeonRoom>()
+            val visitedSet = mutableSetOf<DungeonRoom>()
+            val queue = ArrayDeque<DungeonRoom>()
+
+            queue.add(start)
+            visitedSet.add(start)
+
+            while (queue.isNotEmpty()) {
+                val curr = queue.removeFirst()
+                visitedList.add(curr)
+                for ((i, door) in curr.doors.withIndex()) {
+                    if (door == null) {
+                        continue
+                    }
+                    val dir = Direction.westClockwise[i]
+                    val nx = curr.tile.x + dir.delta.x
+                    val ny = curr.tile.y + dir.delta.y
+                    if (nx in 0 until width && ny in 0 until height) {
+                        val neighbour = grid[ny * width + nx]
+                        if (neighbour != null && neighbour !in visitedSet) {
+                            if (canTraverse(curr, door, neighbour)) {
+                                visitedSet.add(neighbour)
+                                queue.add(neighbour)
+                            }
+                        }
+                    }
+                }
+            }
+            return visitedList
+        }
+    }
 }
 
 internal val Player.dungeonMap: DungeonMap?
