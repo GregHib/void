@@ -27,7 +27,7 @@ class BotPerceptionConditionsTest {
         bot.combatContext = BotCombatContext(
             incomingAttackStyle = incomingAttackStyle,
             scan = emptyMap(),
-            spiralScanner = { emptyMap() }
+            spiralScanner = { emptyMap() },
         )
     }
 

@@ -32,7 +32,7 @@ data class BotSwitchLoadout(
     val condition: Condition? = null,
     val startingLoadout: String? = null,
     val cooldown: Int = 3,
-    val swapsPerTick: Int = 1
+    val swapsPerTick: Int = 1,
 ) : BotAction {
     override fun update(bot: Bot, world: BotWorld, frame: BehaviourFrame): BehaviourState {
         val player = bot.player

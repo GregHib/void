@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 
 class BotCombatContext(
     val incomingAttackStyle: String?,
-    private var scan:  Map<Int, List<Player>>? = null,
+    private var scan: Map<Int, List<Player>>? = null,
     private val spiralScanner: () -> Map<Int, List<Player>>,
 ) {
     /**
