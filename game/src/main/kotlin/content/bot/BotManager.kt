@@ -14,7 +14,7 @@ import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.condition.BotInArea
 import content.bot.behaviour.condition.Condition
 import content.bot.behaviour.loadBehaviours
-import content.bot.behaviour.perception.BotCombatContextBuilder
+import content.bot.behaviour.perception.BotCombatContext
 import content.bot.behaviour.setup.DynamicResolvers
 import content.bot.behaviour.setup.Resolver
 import world.gregs.voidps.engine.data.ConfigFiles
@@ -132,7 +132,7 @@ class BotManager(
     private fun updateCombatContext(bot: Bot) {
         val activity = bot.frames.firstOrNull()?.behaviour
         if (activity != null && activity.reactive.isNotEmpty()) {
-            bot.combatContext = BotCombatContextBuilder.build(bot)
+            bot.combatContext = BotCombatContext(bot)
         } else if (bot.combatContext != null) {
             bot.combatContext = null
         }
