@@ -18,6 +18,10 @@ examine = "Ooooh! Spooky!"
 id = 5729
 examine = "Ooooh! Spooky!"
 
+[rocks_skull_restless_ghost_quest_base]
+id = 47713
+examine = "A haven for all manner of creepy crawlies, no doubt."
+
 [rocks_skull_restless_ghost_quest]
 id = 47714
 examine = "A haven for all manner of creepy crawlies, no doubt."
