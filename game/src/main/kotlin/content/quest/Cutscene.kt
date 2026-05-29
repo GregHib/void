@@ -97,12 +97,13 @@ class Cutscene(
     }
 }
 
-fun Player.smallInstance(region: Region? = null, levels: Int = 4): Region {
+fun Player.smallInstance(region: Region? = null, levels: Int = 4, logout: Boolean = true): Region {
     val instance = Instances.small()
     if (region != null) {
         get<DynamicZones>().copy(region, instance, levels)
         set("instance_offset", instance.offset(region).id)
     }
+    set("instance_logout", logout)
     set("instance", instance.id)
     return instance
 }
@@ -124,7 +125,7 @@ fun Player.instanceOffset(): Delta {
 }
 
 fun Player.setInstanceLogout(tile: Tile) {
-    set("instance_logout", tile.id)
+    set("instance_logout_tile", tile.id)
 }
 
 fun Player.exitInstance() {
@@ -137,7 +138,7 @@ fun Player.exitInstance() {
 fun Player.instanceOrigin(): Tile = instanceLogout() ?: tile.minus(instanceOffset())
 
 fun Player.instanceLogout(): Tile? {
-    val logout: Int = get("instance_logout") ?: return null
+    val logout: Int = get("instance_logout_tile") ?: return null
     return Tile(logout)
 }
 

@@ -1,0 +1,68 @@
+[teleport_clan_wars_games_necklace]
+weight = 100
+requires = [
+    { equipment = { amulet = { id = "games_necklace_8" } } },
+]
+actions = [
+    { interface = { option = "Clan Wars", id = "worn_equipment:amulet_slot:games_necklace_8" } },
+    { wait = { ticks = 5 } },
+]
+produces = [
+    { area = "clan_wars_teleport" },
+]
+
+[enter_clan_wars_ffa_safe]
+weight = -10
+requires = [
+    { combat_level = { min = 30 } },
+    { area = { id = "clan_wars_teleport" } },
+]
+actions = [
+    { object = { option = "Enter", id = "clan_wars_portal_ffa_safe", radius = 15, success = { any = [{ interface_open = { id = "warning_clan_wars_ffa_safe" } }, { area = { id = "clan_wars_ffa_safe_lobby" } }, { area = { id = "clan_wars_ffa_safe_arena" } }] } } },
+    { interface = { option = "Go in", id = "warning_clan_wars_ffa_safe:yes", if = { interface_open = { id = "warning_clan_wars_ffa_safe" } }, success = { any = [{ area = { id = "clan_wars_ffa_safe_lobby" } }, { area = { id = "clan_wars_ffa_safe_arena" } }] } } },
+    { tile = { x = 2815, y = 5515, radius = 2 } },
+]
+produces = [
+    { area = "clan_wars_ffa_safe_arena" },
+]
+
+[enter_clan_wars_ffa_safe_from_lobby]
+weight = -10
+requires = [
+    { combat_level = { min = 30 } },
+    { area = { id = "clan_wars_ffa_safe_lobby" } },
+]
+actions = [
+    { tile = { x = 2815, y = 5515, radius = 2 } },
+]
+produces = [
+    { area = "clan_wars_ffa_safe_arena" },
+]
+
+[enter_clan_wars_ffa_dangerous]
+weight = -10
+requires = [
+    { combat_level = { min = 30 } },
+    { area = { id = "clan_wars_teleport" } },
+]
+actions = [
+    { object = { option = "Enter", id = "clan_wars_portal_ffa_dangerous", radius = 15, success = { any = [{ interface_open = { id = "warning_clan_wars_ffa_safe" } }, { area = { id = "clan_wars_ffa_dangerous_lobby" } }, { area = { id = "clan_wars_ffa_dangerous_arena" } }] } } },
+    { interface = { option = "Go in", id = "warning_clan_wars_ffa_safe:yes", if = { interface_open = { id = "warning_clan_wars_ffa_safe" } }, success = { any = [{ area = { id = "clan_wars_ffa_dangerous_lobby" } }, { area = { id = "clan_wars_ffa_dangerous_arena" } }] } } },
+    { tile = { x = 3007, y = 5515, radius = 2 } },
+]
+produces = [
+    { area = "clan_wars_ffa_dangerous_arena" },
+]
+
+[enter_clan_wars_ffa_dangerous_from_lobby]
+weight = -10
+requires = [
+    { combat_level = { min = 30 } },
+    { area = { id = "clan_wars_ffa_dangerous_lobby" } },
+]
+actions = [
+    { tile = { x = 3007, y = 5515, radius = 2 } },
+]
+produces = [
+    { area = "clan_wars_ffa_dangerous_arena" },
+]

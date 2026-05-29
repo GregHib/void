@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.map.obj
 
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
@@ -12,6 +11,9 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Assertions.assertNull
 
 class MapObjectsRotatedDecoderTest {
 
@@ -20,7 +22,9 @@ class MapObjectsRotatedDecoderTest {
 
     @BeforeEach
     fun setup() {
-        ObjectDefinitions.init(Array(10_000) { ObjectDefinition.EMPTY })
+        val defs = Array(10_000) { ObjectDefinition.EMPTY }
+        defs[123] = ObjectDefinition(options = arrayOf())
+        ObjectDefinitions.init(defs)
         decoder = MapObjectsRotatedDecoder()
         settings = ByteArray(64 * 64 * 4)
     }
@@ -191,6 +195,11 @@ class MapObjectsRotatedDecoderTest {
         assertEquals(Tile(6, 7), tile)
     }
 
+    @Test
+    fun `1x2 object - zone rotation 90 at edge`() {
+        val tile = rotate(0, 7, 1, 2, 0, 1)
+        assertEquals(Tile(7, 7), tile)
+    }
 
     @TestFactory
     fun `2x1 object with all rotation combinations`() = listOf(
@@ -201,10 +210,10 @@ class MapObjectsRotatedDecoderTest {
         Triple(0, 1, Tile(0, 6)),
         Triple(0, 2, Tile(6, 7)),
         Triple(0, 3, Tile(7, 0))
-    ).map { (objRot, zoneRot, expected) ->
-        dynamicTest("2x1 object rotate obj $objRot zone rot $zoneRot") {
-            val result = rotate(0, 0, 2, 1, objRot, zoneRot)
-            assertEquals(expected, result, "Failed for objRot=$objRot, zoneRot=$zoneRot")
+    ).map { (originalRot, zoneRot, expected) ->
+        dynamicTest("2x1 object rotate obj $originalRot zone rot $zoneRot") {
+            val result = rotate(0, 0, 2, 1, originalRot, zoneRot)
+            assertEquals(expected, result, "Failed for originalRot=$originalRot, zoneRot=$zoneRot")
         }
     }
 
@@ -242,15 +251,12 @@ class MapObjectsRotatedDecoderTest {
         assertEquals(original, backAgain)
     }
 
-    private fun rotate(
-        objX: Int, objY: Int,
-        sizeX: Int, sizeY: Int,
-        objRotation: Int, zoneRotation: Int
-    ): Tile {
-        val x = decoder.rotateX(objX, objY, sizeX, sizeY, objRotation, zoneRotation)
-        val y = decoder.rotateY(objX, objY, sizeX, sizeY, objRotation, zoneRotation)
+    private fun rotate(objX: Int, objY: Int, sizeX: Int, sizeY: Int, originalRotation: Int, zoneRotation: Int): Tile {
+        val x = decoder.rotateX(objX, objY, sizeX, sizeY, originalRotation, zoneRotation)
+        val y = decoder.rotateY(objX, objY, sizeX, sizeY, originalRotation, zoneRotation)
         return Tile(x, y)
     }
+
     companion object {
         private fun packInfo(shape: Int, rotation: Int) = rotation + (shape shl 2)
 

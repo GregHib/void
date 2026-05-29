@@ -708,3 +708,6 @@ id = 305
 
 [herbicide]
 id = 1006
+
+[dungeon_map]
+id = 942

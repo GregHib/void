@@ -17,5 +17,7 @@ data class BotActivity(
     override val requires: List<Condition> = emptyList(),
     override val setup: List<Condition> = emptyList(),
     override val actions: List<BotAction> = emptyList(),
+    override val reactive: List<BotAction> = emptyList(),
     override val produces: Set<String> = emptySet(),
+    val loadouts: Map<String, Loadout> = emptyMap(),
 ) : Behaviour

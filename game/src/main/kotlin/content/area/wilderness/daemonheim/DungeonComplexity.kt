@@ -83,12 +83,13 @@ class DungeonComplexity : Script {
         val amount = when (complexity) {
             1 -> 1
             2 -> 5
-            3 -> 10
+            3 -> 8
+            4 -> 11
             else -> types.size
         }
         for (i in types.indices) {
             val type = types[i]
-            val active = i <= amount
+            val active = i < amount
             val component = InterfaceDefinitions.getComponent("dungeon_complexity", "${type}_sprite")!!
             interfaces.sendColour("dungeon_complexity", "${type}_text", if (active) 0xe2e2a2 else 0x4e4e4e)
             interfaces.sendSprite(
