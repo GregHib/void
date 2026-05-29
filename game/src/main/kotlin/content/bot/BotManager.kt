@@ -299,16 +299,11 @@ class BotManager(
             return
         }
         val debug = bot.player["debug", false]
-        var refreshed = false
         for (requirement in behaviour.setup) {
             if (requirement.check(bot.player)) {
                 continue
             }
             if (bot.pinned == behaviour.id && requirement !is BotInArea) {
-                if (!refreshed) {
-                    bot.refresh?.invoke()
-                    refreshed = true
-                }
                 continue
             }
             frame.blocked.removeAll(DynamicResolvers.ids())

@@ -30,12 +30,6 @@ data class Bot(val player: Player) : Character by player {
      */
     var pinned: String? = null
 
-    /**
-     * Re-applies tier-specific state (skills, equipment, inventory) when the pinned activity's setup
-     * requirement fails. Called from [content.bot.BotManager.start] instead of running a resolver.
-     */
-    var refresh: (() -> Unit)? = null
-
     fun noTask() = frames.isEmpty()
 
     internal fun action(): BotAction = frames.peek().action()
