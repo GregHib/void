@@ -6,9 +6,8 @@ import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.BotWorld
 import content.bot.behaviour.Reason
 import content.bot.behaviour.condition.Condition
-import content.skill.magic.jewellery.itemTeleport
+import content.skill.magic.jewellery.jewelleryTeleport
 import world.gregs.voidps.engine.data.definition.Areas
-import world.gregs.voidps.engine.inv.discharge
 import world.gregs.voidps.engine.inv.equipment
 
 /**
@@ -32,7 +31,7 @@ data class BotJewelleryTeleport(
         val player = bot.player
         // Teleport coroutine takes ~4 ticks (cast anim + tele + landing). Reactive ticks every
         // 1 tick — without this guard we'd stack multiple discharges + teleports per retreat.
-        if (player.queue.contains("teleport_jewellery")) {
+        if (player.queue.contains("teleport")) {
             return BehaviourState.Running
         }
         val slot = player.equipment.indexOf(item)
@@ -40,8 +39,9 @@ data class BotJewelleryTeleport(
             return BehaviourState.Failed(Reason.Invalid("$item not equipped for jewellery teleport."))
         }
         val areaDef = Areas.getOrNull(area)?.area ?: return BehaviourState.Failed(Reason.Invalid("Unknown area '$area'."))
-        player.equipment.discharge(player, slot)
-        itemTeleport(player, areaDef, "jewellery", force = true)
+        if (!jewelleryTeleport(player, "equipment", slot, areaDef)) {
+            return BehaviourState.Wait(1, BehaviourState.Running)
+        }
         return when {
             success == null -> BehaviourState.Wait(1, BehaviourState.Success)
             success.check(player) -> BehaviourState.Success
