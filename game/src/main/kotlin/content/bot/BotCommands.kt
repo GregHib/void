@@ -7,7 +7,6 @@ import content.bot.behaviour.condition.BotEquipmentSetup
 import content.bot.behaviour.condition.BotInventorySetup
 import content.bot.combat.ClanWarsBotContext
 import content.bot.combat.CombatBotContext
-import content.bot.combat.CombatBotContexts
 import content.bot.combat.CombatTier
 import content.entity.combat.dead
 import content.entity.combat.killer
@@ -71,12 +70,13 @@ class BotCommands(
     private val combatBotTiers = mutableMapOf<String, CombatTier>()
 
     var counter = 0
+    val contexts = mutableListOf<CombatBotContext>()
 
     init {
         // Combat-bot contexts. New minigames register a CombatBotContext here so the generic
         // dispatchers below (playerDeath, entered, maintain timer, ::combatbots) pick them up
         // without touching this file.
-        CombatBotContexts.register(ClanWarsBotContext())
+        contexts.add(ClanWarsBotContext())
 
         worldTimerStart("bot_spawn") { TimeUnit.SECONDS.toTicks(Settings["bots.spawnSeconds", 60]) }
 
@@ -91,7 +91,7 @@ class BotCommands(
         // Per-context auto-spawn timers — every arena that any registered context lists in
         // autospawnArenaKeys() gets its own maintain timer. Wired once at script init; the
         // timer body re-resolves the context in case settings reload changes it.
-        for (context in CombatBotContexts.all()) {
+        for (context in contexts) {
             for (arenaKey in context.autospawnArenaKeys()) {
                 val timerName = "combat_spawn_$arenaKey"
                 worldTimerStart(timerName) { context.autospawnIntervalTicks(arenaKey) }
@@ -111,7 +111,7 @@ class BotCommands(
 
         playerDeath {
             val tier = combatBotTiers[accountName] ?: return@playerDeath
-            val context = CombatBotContexts.find(tier) ?: return@playerDeath
+            val context = contexts.firstOrNull { it.handles(tier) } ?: return@playerDeath
             if (get("debug", false)) {
                 combatBotsLogger.info { "playerDeath fired for '$accountName', tier=${tier.activityId}, context=${context.id}" }
             }
@@ -150,10 +150,10 @@ class BotCommands(
         // Wire one `entered` listener per area any context subscribes to. The handler
         // dispatches by tier → context. Adding a new subscribed area in a new context works
         // automatically as long as that context is registered before this init block runs.
-        for (areaId in CombatBotContexts.subscribedAreas()) {
+        for (areaId in contexts.flatMapTo(mutableSetOf()) { it.subscribedAreas }) {
             entered(areaId) {
                 val tier = combatBotTiers[accountName] ?: return@entered
-                val context = CombatBotContexts.find(tier) ?: return@entered
+                val context = contexts.firstOrNull { it.handles(tier) } ?: return@entered
                 // Death sequence also fires entered(...) while dead is still true; skip those
                 // — playerDeath already schedules a delayed applyTier and we don't want to
                 // double up.
@@ -183,7 +183,7 @@ class BotCommands(
         adminCommand("clear_bots", intArg("count", optional = true), desc = "Clear all or some amount of bots", handler = ::clear)
         adminCommand("bot", stringArg("task", optional = true, autofill = manager.activityNames), desc = "Toggle yourself on/off as a bot player", handler = ::toggle)
         adminCommand("bot_info", stringArg("name", optional = true, desc = "Filter by bot name", autofill = accountDefinitions.displayNames.keys), desc = "Print bot info", handler = ::info)
-        adminCommand("combatbots", stringArg("arena", autofill = { CombatBotContexts.all().flatMap { it.arenaKeys() }.toSet() }), intArg("count", optional = true), desc = "Spawn combat bots for a named arena", handler = ::combatBots)
+        adminCommand("combatbots", stringArg("arena", autofill = { contexts.flatMap { it.arenaKeys() }.toSet() }), intArg("count", optional = true), desc = "Spawn combat bots for a named arena", handler = ::combatBots)
         adminCommand("bot_stress", intArg("ticks", optional = true), intArg("warmup", optional = true), desc = "Measure BotManager perf for N ticks (default 500); optional warmup ticks delay measurement.", handler = ::botStress)
     }
 
@@ -227,8 +227,10 @@ class BotCommands(
             names.clear()
             names.addAll(File(Settings["bots.names"]).readLines())
         }
-        CombatBotContexts.loadAll()
-        for (context in CombatBotContexts.all()) {
+        for (context in contexts) {
+            context.load()
+        }
+        for (context in contexts) {
             for (arenaKey in context.autospawnArenaKeys()) {
                 if (context.autospawnTarget(arenaKey) > 0) {
                     World.timers.start("combat_spawn_$arenaKey")
@@ -362,9 +364,9 @@ class BotCommands(
 
     fun combatBots(player: Player, args: List<String>) {
         val arenaKey = args[0]
-        val context = CombatBotContexts.forArenaKey(arenaKey)
+        val context = contexts.firstOrNull { arenaKey in it.arenaKeys() }
         if (context == null) {
-            val keys = CombatBotContexts.all().flatMap { it.arenaKeys() }.joinToString()
+            val keys = contexts.flatMap { it.arenaKeys() }.joinToString()
             player.message("Unknown arena '$arenaKey'. Options: $keys.", ChatType.Console)
             return
         }

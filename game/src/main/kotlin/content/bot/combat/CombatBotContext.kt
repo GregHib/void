@@ -11,8 +11,7 @@ import world.gregs.voidps.type.Tile
  *
  * Adding a new context:
  *  1. Implement this interface with a new ID and an `activityId` prefix in [handles].
- *  2. Register it with [CombatBotContexts.register] from `BotCommands.init`.
- *  3. Add a corresponding `*.bots.toml` entry that creates activities under that prefix and a
+ *  2. Add a corresponding `*.bots.toml` entry that creates activities under that prefix and a
  *     templates file (see `minigame_combat.templates.toml` for the PvP example).
  */
 interface CombatBotContext {
