@@ -26,7 +26,8 @@ class BotPerceptionConditionsTest {
     private fun setContext(incomingAttackStyle: String? = null) {
         bot.combatContext = BotCombatContext(
             incomingAttackStyle = incomingAttackStyle,
-            enemiesByTile = emptyMap(),
+            scan = emptyMap(),
+            spiralScanner = { emptyMap() }
         )
     }
 

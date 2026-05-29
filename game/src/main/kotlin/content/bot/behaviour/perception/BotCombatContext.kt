@@ -1,6 +1,7 @@
 package content.bot.behaviour.perception
 
 import content.bot.Bot
+import content.bot.BotMetrics
 import content.entity.combat.Target
 import content.entity.combat.attacker
 import content.entity.combat.dead
@@ -11,35 +12,23 @@ import world.gregs.voidps.engine.entity.character.player.Players
 
 class BotCombatContext(
     val incomingAttackStyle: String?,
-    enemiesByTile: Map<Int, List<Player>>? = null,
-    private val spiralScanner: (() -> SpiralScan)? = null,
+    private var scan:  Map<Int, List<Player>>? = null,
+    private val spiralScanner: () -> Map<Int, List<Player>>,
 ) {
     /**
      * Holds the spiral-scan output. Only built the first time [enemiesByTile] is read. Reactive
      * actions that don't touch this field (e.g. BotAttackerStyle) pay nothing for the scan.
      */
-    private var scan: SpiralScan? = if (enemiesByTile != null) {
-        SpiralScan(enemiesByTile)
-    } else {
-        null
-    }
-
-    val enemiesByTile: Map<Int, List<Player>> get() = ensureScan().byTile
-
-
-    private fun ensureScan(): SpiralScan {
-        val cached = scan
-        if (cached != null) return cached
-        val fresh = spiralScanner?.invoke() ?: SpiralScan.EMPTY
-        scan = fresh
-        return fresh
-    }
-
-    data class SpiralScan(val byTile: Map<Int, List<Player>>) {
-        companion object {
-            val EMPTY = SpiralScan(emptyMap())
+    val enemiesByTile: Map<Int, List<Player>>
+        get() {
+            val cached = scan
+            if (cached != null) {
+                return cached
+            }
+            val fresh = spiralScanner.invoke()
+            scan = fresh
+            return fresh
         }
-    }
 
     companion object {
         private const val DEFAULT_RADIUS = 15
@@ -58,8 +47,8 @@ class BotCombatContext(
             )
         }
 
-        private fun scan(player: Player, radius: Int): SpiralScan {
-            content.bot.BotMetrics.incScans()
+        private fun scan(player: Player, radius: Int): Map<Int, List<Player>> {
+            BotMetrics.incScans()
             val byTile = mutableMapOf<Int, MutableList<Player>>()
             Players.forEachInRadius(player.tile, radius) { other ->
                 if (other === player || other.dead) {
@@ -69,7 +58,7 @@ class BotCombatContext(
                     byTile.getOrPut(other.tile.id) { mutableListOf() }.add(other)
                 }
             }
-            return SpiralScan(byTile)
+            return byTile
         }
 
         private fun categorize(attacker: Player): String? = when (Weapon.type(attacker)) {
