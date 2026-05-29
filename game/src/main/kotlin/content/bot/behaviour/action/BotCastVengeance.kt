@@ -28,7 +28,7 @@ object BotCastVengeance : BotAction {
         val player = bot.player
         if (player.levels.get(Skill.Magic) < MIN_MAGIC) return BehaviourState.Success
         val now = epochSeconds()
-        val nextCheck = player.get("bot_vengeance_next_check", 0)
+        val nextCheck = player["bot_vengeance_next_check", 0]
         if (now < nextCheck) return BehaviourState.Success
         player["bot_vengeance_next_check"] = now + RECHECK_SECONDS
         if (player.contains("vengeance")) return BehaviourState.Success

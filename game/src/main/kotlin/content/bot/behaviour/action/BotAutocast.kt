@@ -18,7 +18,7 @@ internal fun ensureAutocast(player: Player, spell: String?) {
         player.open("ancient_spellbook")
     }
     val castId: Int = InterfaceDefinitions.getComponent("ancient_spellbook", spell)?.getOrNull("cast_id") ?: return
-    if (player.get("autocast", 0) == castId) return
-    player.set("autocast_spell", spell)
-    player.set("autocast", castId)
+    if (player["autocast", 0] == castId) return
+    player["autocast_spell"] = spell
+    player["autocast"] = castId
 }
