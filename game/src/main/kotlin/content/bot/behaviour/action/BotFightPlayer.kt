@@ -16,13 +16,11 @@ import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnFloorIte
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnPlayerInteract
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.map.Spiral
 import world.gregs.voidps.network.client.instruction.InteractFloorItem
-import world.gregs.voidps.network.client.instruction.InteractInterface
 import world.gregs.voidps.network.client.instruction.InteractPlayer
 import world.gregs.voidps.type.Tile
 
@@ -30,7 +28,6 @@ data class BotFightPlayer(
     val delay: Int = 0,
     val success: Condition? = null,
     val radius: Int = 10,
-    val healPercentage: Int = 20,
     val lootOverValue: Int = 0,
     val lootStrategy: BotLootStrategy = BotLootStrategy.DEFAULT,
     val area: String? = null,
@@ -39,7 +36,6 @@ data class BotFightPlayer(
         // Success first so a retreat-by-teleport (bot now outside `area`) can complete the
         // activity even at low HP — otherwise eat() spins forever when food is exhausted.
         success?.check(bot.player) == true -> BehaviourState.Success
-        healPercentage > 0 && bot.levels.get(Skill.Constitution) <= bot.levels.getMax(Skill.Constitution) * healPercentage / 100 -> eat(bot, world)
         bot.mode is PlayerOnPlayerInteract -> handleEngaged(bot, world)
         bot.mode is PlayerOnFloorItemInteract -> BehaviourState.Running
         bot.mode is EmptyMode -> search(bot, world)
@@ -65,25 +61,6 @@ data class BotFightPlayer(
     private fun targetGone(bot: Bot, target: Player): Boolean {
         if (target.tile.level != bot.player.tile.level) return true
         return bot.player.tile.distanceTo(target.tile) > radius * 2
-    }
-
-    private fun eat(bot: Bot, world: BotWorld): BehaviourState {
-        val inventory = bot.player.inventory
-        for (index in inventory.indices) {
-            val item = inventory[index]
-            val option = item.def.options.indexOf("Eat")
-            if (option == -1) {
-                continue
-            }
-            val valid = world.execute(bot.player, InteractInterface(149, 0, item.def.id, index, option))
-            if (!valid) {
-                return BehaviourState.Failed(Reason.Invalid("Invalid inventory interaction: ${item.def.id} $index $option"))
-            }
-            // Window for a follow-up brew reactive to chain on top of the food (overheal stack).
-            bot.player.start("just_ate_food", 2)
-            return BehaviourState.Wait(1, BehaviourState.Running)
-        }
-        return BehaviourState.Running
     }
 
     private fun search(bot: Bot, world: BotWorld): BehaviourState {

@@ -129,8 +129,7 @@ actions = [
     { interface = { option = "Select", id = "combat_styles:$style" } },
 
     # The long-running engagement loop — BotFightPlayer. Picks a target via
-    # spiral search within `radius`, attacks, eats when HP <= heal_percent
-    # of max, loots own kills (loot_strategy = survival prefers consumables).
+    # spiral search within `radius`, attacks, loots own kills (loot_strategy = survival prefers consumables).
     # `success` here is what flips this action to Success early — the
     # bot leaving `$area` (retreat or teleport-out) ends the fight cleanly
     # so the next action (`restart`) can decide whether to loop.
@@ -138,7 +137,6 @@ actions = [
         option        = "Attack",
         radius        = 10,
         delay         = 1,
-        heal_percent  = 40,
         loot_strategy = "survival",
         area          = "$area",
         success       = { area = { id = "$area", present = false } },
@@ -156,6 +154,7 @@ actions = [
 # (any potion drink) or otherwise blocks subsequent reactives, later entries
 # no-op for that tick.
 reactive = [
+    { eat = { heal_percent = 40 } },
     # Overhead prayer: matches the most recent attacker's style. attacker_style
     # reads the same source as the `Player.attackerStyle` debug. These three
     # rows are mutually exclusive — only one matches per tick.
@@ -243,10 +242,11 @@ setup = [
 ]
 actions = [
     { interface = { option = "Select", id = "combat_styles:$style" } },
-    { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 25, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
+    { player = { option = "Attack", radius = 10, delay = 1, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area", present = false } } } },
 ]
 reactive = [
+    { eat = { heal_percent = 25 } },
     { pray = { id = "berserker", if = { area = { id = "$area" } } } },
     { pray = { id = "soul_split", if = { area = { id = "$area" } } } },
     { pray = { id = "turmoil", if = { area = { id = "$area" } } } },
@@ -287,10 +287,11 @@ setup = [
 ]
 actions = [
     { interface = { option = "Select", id = "combat_styles:$style" } },
-    { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 40, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
+    { player = { option = "Attack", radius = 10, delay = 1, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area", present = false } } } },
 ]
 reactive = [
+    { eat = { heal_percent = 40 } },
     { pray = { id = "deflect_melee", if = { attacker_style = { equals = "melee" } } } },
     { pray = { id = "deflect_missiles", if = { attacker_style = { equals = "ranged" } } } },
     { pray = { id = "deflect_magic", if = { attacker_style = { equals = "magic" } } } },
@@ -330,10 +331,11 @@ setup = [
     { area = { id = "$area" } },
 ]
 actions = [
-    { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 40, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
+    { player = { option = "Attack", radius = 10, delay = 1, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area", present = false } } } },
 ]
 reactive = [
+    { eat = { heal_percent = 40 } },
     { spec_attack = { weapon = "granite_maul", fallback = "tzhaar_ket_om", min_energy = 500, if = { target_hp_percent = { max = 0.35 } } } },
     # Boost only at fight start or pre-spec; obby_pure has no super_restore so no safety-net.
     { drink_potion = { item = "super_strength_*", skill = "strength", if = { any = [{ clock = { id = "fight_starting" } }, { target_hp_percent = { max = 0.35 } }] } } },
@@ -363,10 +365,11 @@ setup = [
 ]
 actions = [
     { interface = { option = "Select", id = "combat_styles:$style" } },
-    { player = { option = "Attack", radius = 12, delay = 1, heal_percent = 40, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
+    { player = { option = "Attack", radius = 12, delay = 1, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area", present = false } } } },
 ]
 reactive = [
+    { eat = { heal_percent = 40 } },
     { pray = { id = "deflect_melee", if = { attacker_style = { equals = "melee" } } } },
     { pray = { id = "deflect_missiles", if = { attacker_style = { equals = "ranged" } } } },
     { pray = { id = "deflect_magic", if = { attacker_style = { equals = "magic" } } } },
@@ -404,10 +407,11 @@ setup = [
 ]
 actions = [
     { interface = { option = "Select", id = "combat_styles:$style" } },
-    { player = { option = "Attack", radius = 12, delay = 1, heal_percent = 40, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
+    { player = { option = "Attack", radius = 12, delay = 1, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area", present = false } } } },
 ]
 reactive = [
+    { eat = { heal_percent = 40 } },
     { pray = { id = "deflect_melee", if = { attacker_style = { equals = "melee" } } } },
     { pray = { id = "deflect_missiles", if = { attacker_style = { equals = "ranged" } } } },
     { pray = { id = "deflect_magic", if = { attacker_style = { equals = "magic" } } } },
@@ -449,10 +453,11 @@ setup = [
     { area = { id = "$area" } },
 ]
 actions = [
-    { cast_spell = { family = "ice", radius = 12, delay = 1, heal_percent = 40, kite = true, area = "$area", success = { area = { id = "$area", present = false } } } },
+    { cast_spell = { family = "ice", radius = 12, delay = 1, kite = true, area = "$area", success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area", present = false } } } },
 ]
 reactive = [
+    { eat = { heal_percent = 40 } },
     { pray = { id = "deflect_melee", if = { attacker_style = { equals = "melee" } } } },
     { pray = { id = "deflect_missiles", if = { attacker_style = { equals = "ranged" } } } },
     { pray = { id = "deflect_magic", if = { attacker_style = { equals = "magic" } } } },
@@ -502,10 +507,11 @@ setup = [
     { area = { id = "$area" } },
 ]
 actions = [
-    { cast_spell = { family = "ice", radius = 12, delay = 1, heal_percent = 40, kite = true, area = "$area", success = { area = { id = "$area", present = false } } } },
+    { cast_spell = { family = "ice", radius = 12, delay = 1, kite = true, area = "$area", success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area", present = false } } } },
 ]
 reactive = [
+    { eat = { heal_percent = 40 } },
     { pray = { id = "deflect_melee", if = { attacker_style = { equals = "melee" } } } },
     { pray = { id = "deflect_missiles", if = { attacker_style = { equals = "ranged" } } } },
     { pray = { id = "deflect_magic", if = { attacker_style = { equals = "magic" } } } },
@@ -560,10 +566,11 @@ setup = [
 ]
 actions = [
     { interface = { option = "Select", id = "combat_styles:$style" } },
-    { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 40, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
+    { player = { option = "Attack", radius = 10, delay = 1, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area", present = false } } } },
 ]
 reactive = [
+    { eat = { heal_percent = 40 } },
     { pray = { id = "deflect_melee", if = { attacker_style = { equals = "melee" } } } },
     { pray = { id = "deflect_missiles", if = { attacker_style = { equals = "ranged" } } } },
     { pray = { id = "deflect_magic", if = { attacker_style = { equals = "magic" } } } },
@@ -607,10 +614,11 @@ setup = [
 ]
 actions = [
     { interface = { option = "Select", id = "combat_styles:$style" } },
-    { player = { option = "Attack", radius = 12, delay = 1, heal_percent = 40, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
+    { player = { option = "Attack", radius = 12, delay = 1, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area", present = false } } } },
 ]
 reactive = [
+    { eat = { heal_percent = 40 } },
     { pray = { id = "deflect_melee", if = { attacker_style = { equals = "melee" } } } },
     { pray = { id = "deflect_missiles", if = { attacker_style = { equals = "ranged" } } } },
     { pray = { id = "deflect_magic", if = { attacker_style = { equals = "magic" } } } },
@@ -658,10 +666,11 @@ loadouts = { melee  = { equipment = { weapon = { id = "abyssal_whip" }, chest = 
             }
 
 actions = [
-    { player = { option = "Attack", radius = 10, delay = 1, heal_percent = 40, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
+    { player = { option = "Attack", radius = 10, delay = 1, loot_strategy = "survival", area = "$area", success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area", present = false } } } },
 ]
 reactive = [
+    { eat = { heal_percent = 40 } },
     { switch_loadout = { counter_attacker = true } },
     { pray = { id = "deflect_melee",    if = { attacker_style = { equals = "melee"  } } } },
     { pray = { id = "deflect_missiles", if = { attacker_style = { equals = "ranged" } } } },
@@ -707,10 +716,11 @@ setup = [
     { area = { id = "$area" } },
 ]
 actions = [
-    { cast_spell = { family = "ice", radius = 12, delay = 1, heal_percent = 40, kite = true, area = "$area", success = { area = { id = "$area", present = false } } } },
+    { cast_spell = { family = "ice", radius = 12, delay = 1, kite = true, area = "$area", success = { area = { id = "$area", present = false } } } },
     { restart = { success = { area = { id = "$area", present = false } } } },
 ]
 reactive = [
+    { eat = { heal_percent = 40 } },
     { pray = { id = "deflect_melee", if = { attacker_style = { equals = "melee" } } } },
     { pray = { id = "deflect_missiles", if = { attacker_style = { equals = "ranged" } } } },
     { pray = { id = "deflect_magic", if = { attacker_style = { equals = "magic" } } } },

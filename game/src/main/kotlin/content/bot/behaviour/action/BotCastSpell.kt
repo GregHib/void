@@ -20,9 +20,7 @@ import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnPlayerIn
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.map.Spiral
-import world.gregs.voidps.network.client.instruction.InteractInterface
 import world.gregs.voidps.network.client.instruction.InteractPlayer
 import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.type.Tile
@@ -31,7 +29,6 @@ data class BotCastSpell(
     val delay: Int = 0,
     val success: Condition? = null,
     val radius: Int = 10,
-    val healPercentage: Int = 40,
     val family: String = "ice",
     val kite: Boolean = true,
     val area: String? = null,
@@ -40,9 +37,6 @@ data class BotCastSpell(
         // Success first so a retreat-by-teleport (bot now outside `area`) can complete the
         // activity even at low HP — otherwise eat() spins forever when food is exhausted.
         if (success?.check(bot.player) == true) return BehaviourState.Success
-        if (healPercentage > 0 && bot.levels.get(Skill.Constitution) <= bot.levels.getMax(Skill.Constitution) * healPercentage / 100) {
-            return eat(bot, world)
-        }
         val target = engagedTarget(bot)
         if (target != null) return handleCombat(bot, world, target)
         if (bot.mode is PlayerOnFloorItemInteract) return BehaviourState.Running
@@ -103,19 +97,6 @@ data class BotCastSpell(
         if (current == target.index) return
         bot.player["bot_kite_anchor"] = bot.tile
         bot.player["bot_kite_anchor_target"] = target.index
-    }
-
-    private fun eat(bot: Bot, world: BotWorld): BehaviourState {
-        val inventory = bot.player.inventory
-        for (index in inventory.indices) {
-            val item = inventory[index]
-            val option = item.def.options.indexOf("Eat")
-            if (option == -1) continue
-            val valid = world.execute(bot.player, InteractInterface(149, 0, item.def.id, index, option))
-            if (!valid) return BehaviourState.Failed(Reason.Invalid("Invalid inventory interaction: ${item.def.id} $index $option"))
-            return BehaviourState.Wait(1, BehaviourState.Running)
-        }
-        return BehaviourState.Running
     }
 
     private fun search(bot: Bot, world: BotWorld): BehaviourState {

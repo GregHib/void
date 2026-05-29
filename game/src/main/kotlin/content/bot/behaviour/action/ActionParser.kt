@@ -26,7 +26,7 @@ sealed class ActionParser {
 
     object InteractNpcParser : ActionParser() {
         override val required = setOf("id", "option")
-        override val optional = setOf("delay", "success", "radius", "heal_percent", "loot_over_value")
+        override val optional = setOf("delay", "success", "radius", "loot_over_value")
 
         override fun parse(map: Map<String, Any>): BotAction {
             val option = map["option"] as String
@@ -35,9 +35,8 @@ sealed class ActionParser {
             val success = requirement(map, "success").singleOrNull()
             val radius = map["radius"] as? Int ?: 10
             return if (option == "Attack") {
-                val healPercent = map["heal_percent"] as? Int ?: 20
                 val lootOverValue = map["loot_over_value"] as? Int ?: 0
-                BotFightNpc(id, delay, success, radius, healPercent, lootOverValue)
+                BotFightNpc(id, delay, success, radius, lootOverValue)
             } else {
                 BotInteractNpc(option, id, delay, success, radius)
             }
@@ -46,7 +45,7 @@ sealed class ActionParser {
 
     object InteractPlayerParser : ActionParser() {
         override val required = setOf("option")
-        override val optional = setOf("delay", "success", "radius", "heal_percent", "loot_over_value", "loot_strategy", "area")
+        override val optional = setOf("delay", "success", "radius", "loot_over_value", "loot_strategy", "area")
 
         override fun parse(map: Map<String, Any>): BotAction {
             val option = map["option"] as String
@@ -54,11 +53,10 @@ sealed class ActionParser {
             val delay = map["delay"] as? Int ?: 0
             val success = requirement(map, "success").singleOrNull()
             val radius = map["radius"] as? Int ?: 10
-            val healPercent = map["heal_percent"] as? Int ?: 20
             val lootOverValue = map["loot_over_value"] as? Int ?: 0
             val lootStrategy = BotLootStrategy.of(map["loot_strategy"] as? String)
             val area = map["area"] as? String
-            return BotFightPlayer(delay, success, radius, healPercent, lootOverValue, lootStrategy, area)
+            return BotFightPlayer(delay, success, radius, lootOverValue, lootStrategy, area)
         }
     }
 
@@ -100,22 +98,31 @@ sealed class ActionParser {
         }
     }
 
+    object EatFoodParser : ActionParser() {
+        override val required = setOf("heal_percent")
+
+        override fun parse(map: Map<String, Any>): BotAction {
+            val healPercentage = map["heal_percent"] as Int
+            val condition = requirement(map, "if").singleOrNull()
+            return BotEatFood(healPercentage, condition)
+        }
+    }
+
     object CastVengeanceParser : ActionParser() {
         override fun parse(map: Map<String, Any>): BotAction = BotCastVengeance
     }
 
     object CastSpellParser : ActionParser() {
-        override val optional = setOf("delay", "success", "radius", "heal_percent", "family", "kite", "area")
+        override val optional = setOf("delay", "success", "radius", "family", "kite", "area")
 
         override fun parse(map: Map<String, Any>): BotAction {
             val delay = map["delay"] as? Int ?: 0
             val success = requirement(map, "success").singleOrNull()
             val radius = map["radius"] as? Int ?: 10
-            val healPercent = map["heal_percent"] as? Int ?: 40
             val family = map["family"] as? String ?: "ice"
             val kite = map["kite"] as? Boolean ?: true
             val area = map["area"] as? String
-            return BotCastSpell(delay, success, radius, healPercent, family, kite, area)
+            return BotCastSpell(delay, success, radius, family, kite, area)
         }
     }
 
@@ -172,6 +179,7 @@ sealed class ActionParser {
     }
 
     object JewelleryTeleportParser : ActionParser() {
+        // TODO use navigation to figure out best escape route
         override val required = setOf("item", "area")
         override val optional = setOf("if", "success")
 
@@ -370,6 +378,7 @@ sealed class ActionParser {
             "pray" to PrayParser,
             "spec_attack" to SpecAttackParser,
             "drink_potion" to DrinkPotionParser,
+            "eat" to EatFoodParser,
             "cast_vengeance" to CastVengeanceParser,
             "cast_spell" to CastSpellParser,
             "switch_setup" to SwitchSetupParser,
