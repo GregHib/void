@@ -1,6 +1,5 @@
 package content.skill.dungeoneering
 
-import content.quest.instance
 import content.quest.smallInstance
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
@@ -10,13 +9,11 @@ import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.type.setRandom
-import kotlin.random.Random
 
 class Dungeoneering : Script {
     init {
         adminCommand("start_dungeon", intArg("floor", optional = true), stringArg("size", autofill = setOf("small", "medium", "large"), optional = true), intArg("complexity", optional = true)) { args ->
-            setRandom(Random(0L))
+//            setRandom(Random(0L))
             println("Generating dungeon...")
             val floor = args.getOrNull(0)?.toInt() ?: 1
             val size = DungeonSize.valueOf((args.getOrNull(1) ?: "small").toTitleCase())
@@ -48,6 +45,7 @@ class Dungeoneering : Script {
             startRoom.open(this, dungeon)
             dungeon.players.add(index)
             var tile = startRoom.tile
+            delay(1) // Delay to avoid ghosting # 1000
             tele(instance.tile.add(tile.x * 16 + 8, tile.y * 16 + 8))
         }
 
