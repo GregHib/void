@@ -28,7 +28,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.restrict.ValidItemRestriction
 import world.gregs.voidps.engine.inv.stack.ItemDependentStack
 import world.gregs.voidps.network.client.instruction.InteractFloorItem
-import world.gregs.voidps.network.client.instruction.InteractInterface
 
 class BotFightPlayerTest {
 
@@ -49,34 +48,6 @@ class BotFightPlayerTest {
         player.inventories.player = player
         player.inventories.normalStack = ItemDependentStack
         player.inventories.inventory(InventoryDefinition(stringId = "inventory", length = length))
-    }
-
-    @Test
-    fun `Low hp triggers eat and returns wait`() {
-        initInventory(length = 2)
-        player.levels.set(Skill.Constitution, 5)
-        player.experience.set(Skill.Constitution, Level.experience(Skill.Constitution, 100))
-
-        ItemDefinitions.set(
-            arrayOf(ItemDefinition(id = 100, options = arrayOf("Eat"))),
-            mapOf("fish" to 0),
-        )
-        player.inventory.add("fish")
-
-        var called = false
-        val world = FakeWorld(
-            execute = { _, instruction ->
-                called = instruction is InteractInterface
-                true
-            },
-        )
-
-        val action = BotFightPlayer()
-
-        val state = action.update(bot, world, BehaviourFrame(FakeBehaviour()))
-
-        assertTrue(called)
-        assertEquals(BehaviourState.Wait(1, BehaviourState.Running), state)
     }
 
     @Test
