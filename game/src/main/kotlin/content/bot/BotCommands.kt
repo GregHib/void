@@ -3,6 +3,7 @@
 package content.bot
 
 import com.github.michaelbull.logging.InlineLogger
+import content.bot.behaviour.action.BotSwitchLoadout
 import content.bot.behaviour.condition.BotEquipmentSetup
 import content.bot.behaviour.condition.BotInventorySetup
 import content.bot.combat.ClanWarsBotContext
@@ -451,7 +452,7 @@ class BotCommands(
                 else -> Unit
             }
         }
-        val starting = activity.hybridStartingLoadout
+        val starting = activity.reactive.firstOrNull { it is BotSwitchLoadout }?.let { (it as BotSwitchLoadout).startingLoadout }
         if (starting != null) {
             target["current_loadout"] = starting
             target["last_loadout_swap_tick"] = -10_000

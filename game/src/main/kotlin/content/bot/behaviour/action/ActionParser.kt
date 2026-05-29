@@ -142,14 +142,17 @@ sealed class ActionParser {
     }
 
     object SwitchLoadoutParser : ActionParser() {
-        override val optional = setOf("to", "counter_attacker", "if")
+        override val optional = setOf("to", "counter_attacker", "if", "starting_loadout", "cooldown", "swaps_per_tick")
 
         override fun parse(map: Map<String, Any>): BotAction {
             val to = map["to"] as? String
             val counterAttacker = map["counter_attacker"] as? Boolean ?: false
             require(to != null || counterAttacker) { "switch_loadout: must set 'to' or 'counter_attacker' in $map" }
             val condition = requirement(map, "if").singleOrNull()
-            return BotSwitchLoadout(to, counterAttacker, condition)
+            val loadout = map["starting_loadout"] as? String
+            val cooldown = map["cooldown"] as? Int ?: 3
+            val swapsPerTick = map["swaps_per_tick"] as? Int ?: 1
+            return BotSwitchLoadout(to, counterAttacker, condition, loadout, cooldown, swapsPerTick)
         }
     }
 

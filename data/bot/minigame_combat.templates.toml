@@ -646,9 +646,6 @@ requires = [
     { skill = { id = "constitution", min = 80 } },
     { skill = { id = "prayer", min = 95 } },
 ]
-hybrid_starting_loadout = "melee"
-hybrid_swap_cooldown = 3
-hybrid_swap_per_tick = 4
 setup = [
     { equipment = { weapon = { id = "abyssal_whip" }, chest = { id = "fighter_torso" }, legs = { id = "rune_platelegs" }, hat = { id = "helm_of_neitiznot" }, feet = { id = "dragon_boots" }, amulet = { id = "amulet_of_glory_4" }, cape = { id = "obsidian_cape" } } },
     { inventory = [
@@ -671,7 +668,7 @@ actions = [
 ]
 reactive = [
     { eat = { heal_percent = 40 } },
-    { switch_loadout = { counter_attacker = true } },
+    { switch_loadout = { counter_attacker = true, starting_loadout = "melee", cooldown = 3, swaps_per_tick = 4 } },
     { pray = { id = "deflect_melee",    if = { attacker_style = { equals = "melee"  } } } },
     { pray = { id = "deflect_missiles", if = { attacker_style = { equals = "ranged" } } } },
     { pray = { id = "deflect_magic",    if = { attacker_style = { equals = "magic"  } } } },

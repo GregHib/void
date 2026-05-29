@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.GameLoop
  * Reactive action for hybrid PvP bots: swap the entire worn kit to a named loadout declared on
  * the bot's current [BotActivity]. Two safety rails:
  * 1. Change-trigger — short-circuits when the bot is already on (or transitioning into) the target.
- * 2. Cooldown — stamps `last_loadout_swap_tick` and gates new swaps for [BotActivity.hybridSwapCooldown] ticks.
+ * 2. Cooldown — stamps `last_loadout_swap_tick` and gates new swaps for [cooldown] ticks.
  *
  * Target resolution:
  * - Explicit: `to = "magic"` always picks the named loadout.
@@ -23,13 +23,16 @@ import world.gregs.voidps.engine.GameLoop
  *   to the "magic" loadout so the bot still moves to a defensive kit.
  *
  * Once the rails clear, delegates to [BotSwitchSetup] for the per-slot equip (up to
- * [BotActivity.hybridSwapPerTick] slots committed per tick). When the target loadout declares an
+ * [swapsPerTick] slots committed per tick). When the target loadout declares an
  * `autocast` spell, that autocast is bound on entry so subsequent attacks fire the spell.
  */
 data class BotSwitchLoadout(
     val to: String? = null,
     val counterAttacker: Boolean = false,
     val condition: Condition? = null,
+    val startingLoadout: String? = null,
+    val cooldown: Int = 3,
+    val swapsPerTick: Int = 1
 ) : BotAction {
     override fun update(bot: Bot, world: BotWorld, frame: BehaviourFrame): BehaviourState {
         val player = bot.player
@@ -50,20 +53,20 @@ data class BotSwitchLoadout(
 
         val target = activity.loadouts[resolved] ?: return BehaviourState.Success
 
-        val current = player["current_loadout", activity.hybridStartingLoadout ?: ""]
+        val current = player["current_loadout", startingLoadout ?: "" ]
         if (current == resolved) {
             ensureAutocast(player, target.autocast)
-            return BotSwitchSetup(target.equipment.items, condition = null, maxPerTick = activity.hybridSwapPerTick).update(bot, world, frame)
+            return BotSwitchSetup(target.equipment.items, condition = null, maxPerTick = swapsPerTick).update(bot, world, frame)
         }
 
         val last = player["last_loadout_swap_tick", -10_000]
-        if (GameLoop.tick - last <= activity.hybridSwapCooldown) return BehaviourState.Success
+        if (GameLoop.tick - last <= cooldown) return BehaviourState.Success
 
         player["current_loadout"] = resolved
         player["last_loadout_swap_tick"] = GameLoop.tick
         ensureAutocast(player, target.autocast)
 
-        return BotSwitchSetup(target.equipment.items, condition = null, maxPerTick = activity.hybridSwapPerTick).update(bot, world, frame)
+        return BotSwitchSetup(target.equipment.items, condition = null, maxPerTick = swapsPerTick).update(bot, world, frame)
     }
 
     companion object {

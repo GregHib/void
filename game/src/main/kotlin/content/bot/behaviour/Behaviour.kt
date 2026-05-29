@@ -191,9 +191,6 @@ private fun loadTemplates(paths: List<String>): Map<String, Template> {
                     val reactive = mutableListOf<Pair<String, Map<String, Any>>>()
                     val produces = mutableSetOf<String>()
                     var loadouts: Map<String, Any> = emptyMap()
-                    var hybridStartingLoadout: String? = null
-                    var hybridSwapCooldown: Int? = null
-                    var hybridSwapPerTick: Int? = null
                     while (nextPair()) {
                         when (val key = key()) {
                             "requires" -> requirements(requires)
@@ -202,13 +199,10 @@ private fun loadTemplates(paths: List<String>): Map<String, Template> {
                             "reactive" -> actions(reactive)
                             "produces" -> produces(produces)
                             "loadouts" -> loadouts = map()
-                            "hybrid_starting_loadout" -> hybridStartingLoadout = string()
-                            "hybrid_swap_cooldown" -> hybridSwapCooldown = int()
-                            "hybrid_swap_per_tick" -> hybridSwapPerTick = int()
                             else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
                     }
-                    templates[id] = Template(requires, setup, actions, reactive, produces, loadouts, hybridStartingLoadout, hybridSwapCooldown, hybridSwapPerTick)
+                    templates[id] = Template(requires, setup, actions, reactive, produces, loadouts)
                 }
             }
         }
@@ -276,9 +270,6 @@ private data class Fragment(
         reactive = resolveActions(template.reactive, reactive),
         produces = resolve(template.produces) + produces,
         loadouts = resolveLoadouts(template),
-        hybridStartingLoadout = template.hybridStartingLoadout,
-        hybridSwapCooldown = template.hybridSwapCooldown ?: 3,
-        hybridSwapPerTick = template.hybridSwapPerTick ?: 1,
     )
 
     @Suppress("UNCHECKED_CAST")
@@ -405,7 +396,4 @@ private data class Template(
     val reactive: List<Pair<String, Map<String, Any>>>,
     val produces: Set<String>,
     val loadouts: Map<String, Any> = emptyMap(),
-    val hybridStartingLoadout: String? = null,
-    val hybridSwapCooldown: Int? = null,
-    val hybridSwapPerTick: Int? = null,
 )
