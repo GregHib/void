@@ -9,9 +9,9 @@ import world.gregs.voidps.type.Zone
 
 object Players : Iterable<Player>, CharacterSearch<Player> {
     private val players = mutableListOf<Player>()
-    @PublishedApi internal val indexArray: Array<Player?> = arrayOfNulls(MAX_PLAYERS)
+    private val indexArray: Array<Player?> = arrayOfNulls(MAX_PLAYERS)
     private var indexer = 1
-    @PublishedApi internal val map = CharacterIndexMap(MAX_PLAYERS)
+    private val map = CharacterIndexMap(MAX_PLAYERS)
     val size: Int
         get() = players.size
 
@@ -81,7 +81,7 @@ object Players : Iterable<Player>, CharacterSearch<Player> {
      * Dramatically cheaper than calling [at] per-tile in a spiral: one zone lookup per overlapping
      * zone (≤ 25 for radius 15) versus 961 tile lookups each scanning the full zone.
      */
-    inline fun forEachInRadius(center: Tile, radius: Int, action: (Player) -> Unit) {
+    fun forEachInRadius(center: Tile, radius: Int, action: (Player) -> Unit) {
         val minZx = (center.x - radius) shr 3
         val maxZx = (center.x + radius) shr 3
         val minZy = (center.y - radius) shr 3
