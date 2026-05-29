@@ -45,7 +45,7 @@ object Prayer {
                 if (!character.contains("turmoil")) {
                     bonus += character.getLeech(skill) * 100.0 / character.levels.getMax(skill) / 100.0
                 }
-                bonus -= character.getBaseDrain(skill) + character.getDrain(skill) / 100.0
+                bonus -= (character.getBaseDrain(skill) + character.getDrain(skill)) / 100.0
                 bonus
             }
             else -> 1.0

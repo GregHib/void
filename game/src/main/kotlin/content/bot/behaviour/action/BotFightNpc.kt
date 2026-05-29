@@ -9,53 +9,30 @@ import content.bot.behaviour.condition.Condition
 import content.entity.combat.attacker
 import content.entity.combat.dead
 import content.entity.combat.underAttack
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnFloorItemInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnNPCInteract
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.wildcardEquals
-import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.map.Spiral
 import world.gregs.voidps.network.client.instruction.InteractFloorItem
-import world.gregs.voidps.network.client.instruction.InteractInterface
 import world.gregs.voidps.network.client.instruction.InteractNPC
-import kotlin.collections.indexOf
-import kotlin.collections.iterator
 
 data class BotFightNpc(
     val id: String,
     val delay: Int = 0,
     val success: Condition? = null,
     val radius: Int = 10,
-    val healPercentage: Int = 20,
     val lootOverValue: Int = 0,
 ) : BotAction {
     override fun update(bot: Bot, world: BotWorld, frame: BehaviourFrame) = when {
-        healPercentage > 0 && bot.levels.get(Skill.Constitution) <= bot.levels.getMax(Skill.Constitution) / healPercentage -> eat(bot, world)
         success?.check(bot.player) == true -> BehaviourState.Success
         bot.mode is PlayerOnNPCInteract -> if (success == null) BehaviourState.Success else BehaviourState.Running
         bot.mode is PlayerOnFloorItemInteract -> BehaviourState.Running
         bot.mode is EmptyMode -> search(bot, world)
         else -> null
-    }
-
-    private fun eat(bot: Bot, world: BotWorld): BehaviourState {
-        val inventory = bot.player.inventory
-        for (index in inventory.indices) {
-            val item = inventory[index]
-            val option = item.def.options.indexOf("Eat")
-            if (option == -1) {
-                continue
-            }
-            val valid = world.execute(bot.player, InteractInterface(149, 0, item.def.id, index, option))
-            if (!valid) {
-                return BehaviourState.Failed(Reason.Invalid("Invalid inventory interaction: ${item.def.id} $index $option"))
-            }
-            return BehaviourState.Wait(1, BehaviourState.Running)
-        }
-        return BehaviourState.Running
     }
 
     private fun search(bot: Bot, world: BotWorld): BehaviourState {
@@ -90,6 +67,7 @@ data class BotFightNpc(
                 if (!valid) {
                     return BehaviourState.Failed(Reason.Invalid("Invalid npc interaction: ${npc.index} ${index + 1}"))
                 }
+                bot.player.start("fight_starting", 5)
                 return BehaviourState.Running
             }
         }

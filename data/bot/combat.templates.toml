@@ -11,6 +11,9 @@ actions = [
     { interface = { option = "Select", id = "combat_styles:$style" } },
     { npc = { option = "Attack", id = "chicken*", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
 ]
+reactive = [
+    { eat = { heal_percent = 20 } }
+]
 produces = [
     { item = "feather" },
     { item = "bones" },
@@ -31,6 +34,9 @@ setup = [
 actions = [
     { interface = { option = "Select", id = "combat_styles:style1" } },
     { npc = { option = "Attack", id = "cow*", delay = 5, success = { inventory = { id = "empty", max = 0 } } } },
+]
+reactive = [
+    { eat = { heal_percent = 20 } }
 ]
 produces = [
     { item = "bones" },
