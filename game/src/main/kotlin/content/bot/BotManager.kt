@@ -388,9 +388,6 @@ class BotManager(
             if (!pinnedSoft) {
                 bot.blocked.add(behaviour.id)
             } else {
-                // start() blocked the activity when it began (line 345); fail-paths never run the
-                // matching remove from nextAction. For a pinned bot we want it to be reassignable
-                // next tick, so undo the start-time block here.
                 bot.blocked.remove(behaviour.id)
             }
             slots.release(behaviour)
