@@ -29,7 +29,7 @@ class DungeonMap(
      * Prints the map dynamically.
      * @param innerRoomWidth The inside width of each room in characters.
      */
-    fun prettyPrint(innerRoomWidth: Int = 9) {
+    fun prettyPrint(innerRoomWidth: Int = 9, print: (Array<CharArray>) -> Unit = ::printOut) {
         val halfWidth = innerRoomWidth / 2
         val wallOffset = halfWidth + 1
         val stepX = 2 * halfWidth + 2
@@ -42,7 +42,7 @@ class DungeonMap(
         // PASS 1: Draw all walls and corners first so boundaries are established globally
         for (y in 0 until height) {
             for (x in 0 until width) {
-                val room = grid[y * width + x] ?: continue
+                grid[y * width + x] ?: continue
 
                 val cx = stepX * x + (stepX / 2)
                 val cy = stepY * (height - 1 - y) + (stepY / 2)
@@ -76,7 +76,7 @@ class DungeonMap(
                 val cy = stepY * (height - 1 - y) + (stepY / 2)
 
                 // Draw room label (centered on the line above the middle line)
-                writeCentered(renderGrid, cy - 1, cx, (if (room.type == DungeonRoomType.Normal && room.isCritical)"Critical" else room.type.name).take(innerRoomWidth - 2))
+                writeCentered(renderGrid, cy - 1, cx, (if (room.type == DungeonRoomType.Normal && room.isCritical) "Critical" else room.type.name).take(innerRoomWidth - 2))
 
                 // Draw room contents / dropped keys
                 if (room.keys.isNotEmpty()) {
@@ -133,7 +133,10 @@ class DungeonMap(
                 }
             }
         }
+        print.invoke(renderGrid)
+    }
 
+    private fun printOut(renderGrid: Array<CharArray>) {
         // Print ASCII Map
         for (row in renderGrid) {
             println(row.joinToString(""))
@@ -159,7 +162,9 @@ class DungeonMap(
                 }
             }
         }
-        if (!keysFound) println("  No keys placed.")
+        if (!keysFound) {
+            println("  No keys placed.")
+        }
     }
 
     /**
@@ -183,19 +188,6 @@ class DungeonMap(
         }
     }
 
-    /**
-     * Converts a key string ID (e.g. "blue_rectangle_key") into a 5-letter abbreviation.
-     * Takes the first letter of the colour and the first letter of the shape.
-     * Special handling maps "black" to 'k' to avoid conflicts with "blue".
-     */
-    private fun getKeyAbbrev(keyId: String): String {
-        val parts = keyId.lowercase().split("_")
-        val colorWord = parts[0]
-        val shapeWord = parts[1]
-        val abbrev = "${colorWord.take(3)}_${shapeWord.take(3)}"
-        return abbrev
-    }
-
     fun start() = room(start.x, start.y)!!
 
     fun room(x: Int, y: Int): DungeonRoom? = grid[y * width + x]
@@ -203,6 +195,17 @@ class DungeonMap(
     fun traverse(filter: (from: DungeonRoom, door: DungeonDoor, neighbour: DungeonRoom) -> Boolean = { _, _, _ -> true }): List<DungeonRoom> = traverse(start(), width, height, grid, filter)
 
     companion object {
+        /**
+         * Converts a key string ID (e.g. "blue_rectangle_key") into a 5-letter abbreviation.
+         * Takes the first letter of the colour and the first letter of the shape.
+         * Special handling maps "black" to 'k' to avoid conflicts with "blue".
+         */
+        internal fun getKeyAbbrev(keyId: String): String {
+            val parts = keyId.lowercase().split("_")
+            val abbrev = "${parts[0].take(3)}_${parts[1].take(3)}"
+            return abbrev
+        }
+
         /**
          * Breadth-first search
          */

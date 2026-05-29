@@ -58,22 +58,33 @@ class DungeonDoors : Script {
         }
 
         objectOperate("Imbue-energy", "runed_door_*") { (target) ->
+            anim("bind_runes")
+            gfx("bind_runes")
+            delay(2)
             target.remove()
         }
 
         objectOperate("Repair", "collapsing_doorframe_*") { (target) ->
+            anim("repair_collapsing_doorframe")
+            delay(2)
             target.replace(target.id.replace("collapsing_doorframe", "repaired_door"))
         }
 
         objectOperate("Disarm", "locked_door_*") { (target) ->
+            anim("disarm_locked_door")
+            delay(2)
             target.replace(target.id.replace("locked_door", "unlocked_door"))
         }
 
         objectOperate("Pick-lock", "padlocked_door_*") { (target) ->
+            anim("pick_padlocked_door")
+            delay(2)
             target.replace(target.id.replace("padlocked_door", "picked_door"))
         }
 
         objectOperate("Fix-pulley", "broken_pulley_door_*") { (target) ->
+            anim("disarm_locked_door")
+            delay(2)
             target.replace(target.id.replace("broken_pulley", "fixed_pulley"))
         }
 
@@ -82,6 +93,8 @@ class DungeonDoors : Script {
         }
 
         objectOperate("Repair-key", "broken_key_door_*") { (target) ->
+            anim("fix_broken_key_door")
+            delay(2)
             target.replace(target.id.replace("broken_key_door", "fixed_key_door"))
         }
 
@@ -94,22 +107,33 @@ class DungeonDoors : Script {
         }
 
         objectOperate("Prune-vines", "vine_covered_door_*") { (target) ->
+            anim("pruning_mid_high")
+            delay(2)
             target.remove()
         }
 
         objectOperate("Dismiss", "ramokee_exile_*") { (target) ->
+            anim("superheat_item")
+            delay(2)
             target.remove()
         }
 
         objectOperate("Dispel", "magical_barrier_*") { (target) ->
+            anim("lunar_cast")
+            delay(2)
+            // obj anim 13551, 13550
             target.remove()
         }
 
         objectOperate("Exorcise", "dark_spirit_*") { (target) ->
-            target.remove()
+            anim("altar_pray")
+            delay(2)
+            target.remove() // obj anim 13557/13556
         }
 
         objectOperate("Add-compound", "liquid_lock_door_*") { (target) ->
+            anim("open_liquid_lock_door")
+            delay(2)
             target.replace(target.id.replace("liquid_lock_door", "exploded_liquid_door"))
         }
     }
