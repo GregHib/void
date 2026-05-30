@@ -1,8 +1,8 @@
 spawns = [
     { id = "priestperilguarddog", x = 3405, y = 9902, level = 0, members = true },
     { id = "priestperiltrappedmonk2", x = 3440, y = 9895, members = true },
-    { id = "priestperilevilmonk1", x = 3410, y = 3484, members = true },
-    { id = "priestperilevilmonk1", x = 3410, y = 3493, members = true },
+    { id = "priestperilevilmonk1", x = 3409, y = 3484, members = true },
+    { id = "priestperilevilmonk1", x = 3409, y = 3493, members = true },
     { id = "priestperilevilmonk1", x = 3414, y = 3487, level = 1, members = true },
     { id = "priestperilevilmonk1", x = 3412, y = 3489, level = 1, members = true },
     { id = "priestperilevilmonk2", x = 3415, y = 3489, members = true },

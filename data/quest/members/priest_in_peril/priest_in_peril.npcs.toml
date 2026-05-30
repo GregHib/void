@@ -5,6 +5,7 @@ att = 20
 str = 20
 def = 20
 style = "stab"
+combat_def = "guard_dog"
 max_hit_melee = 30
 slayer_xp = 45.0
 categories = ["dogs"]
@@ -23,6 +24,7 @@ max_hit_crush = 30
 max_hit_magic = 110
 hunt_mode = "cowardly"
 respawn_delay = 25
+drop_table = "evil_monk"
 examine = "An evil human cleric."
 
 [priestperilevilmonk2]
@@ -37,6 +39,7 @@ max_hit_crush = 50
 max_hit_magic = 50
 hunt_mode = "cowardly"
 respawn_delay = 25
+drop_table = "bones"
 examine = "An evil human cleric."
 
 [priestperilevilmonk3]
@@ -51,6 +54,7 @@ max_hit_melee = 30
 max_hit_magic = 80
 hunt_mode = "cowardly"
 respawn_delay = 25
+drop_table = "bones"
 examine = "An evil human cleric."
 
 [priestperiltrappedmonk_vis]

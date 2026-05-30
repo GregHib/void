@@ -1,9 +1,9 @@
-package content.quest.member.misc
+package content.quest.member.priest_in_peril
 
 import content.entity.combat.hit.directHit
 import content.entity.combat.killer
 import content.entity.gfx.areaGfx
-import content.entity.obj.door.walkThroughDoor
+import content.entity.obj.door.enterDoor
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Happy
@@ -13,7 +13,10 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
+import content.quest.quest
+import content.quest.questCompleted
 import content.quest.questJournal
+import content.quest.questStage
 import content.skill.magic.spell.spell
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -25,20 +28,19 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
-import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.ObjectShape
-import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.equals
+import world.gregs.voidps.type.random
 
 class PriestInPeril : Script {
 
     init {
-
         questJournalOpen("priest_in_peril") {
-            val progress = pipProgress
+            val progress = questStage("priest_in_peril")
             val lines = mutableListOf<String>()
             if (progress == 0) {
                 lines += "<navy>I can start this quest by speaking to <maroon>King Roald<navy> in <maroon>Varrock"
@@ -125,35 +127,28 @@ class PriestInPeril : Script {
         }
 
         objectOperate("Study", "priestperil_grave_base*") { (target) ->
-            if (pipProgress >= 60) {
-                return@objectOperate message("A monument dedicated to the fallen.")
+            if (questCompleted("priest_in_peril")) {
+                message("A monument dedicated to the fallen.")
+                return@objectOperate
             }
-
             val value = get(target.id, 0)
-            getMonumentInterface(value)
+            sendMonumentInterface(value)
         }
 
         objectOperate("Take-from", "priestperil_grave_base*") {
-            if (pipProgress >= 60) {
-                return@objectOperate message("It would be wrong to dishonour this monument.")
+            if (questCompleted("priest_in_peril")) {
+                message("It would be wrong to dishonour this monument.")
+                return@objectOperate
             }
-
             anim("human_opencupboard")
             directHit(10)
             message("A holy power prevents you from stealing from the monument.")
         }
 
         objectOperate("Search", "priestperil_well") {
-            val clean = pipProgress >= 60
-            statement(
-                "You look down the well and see the ${
-                    if (clean) {
-                        "fresh water of the River Salve moving swiftly"
-                    } else {
-                        "filthy polluted water of the River Salve moving slowly"
-                    }
-                } along.",
-            )
+            val clean = questCompleted("priest_in_peril")
+            val desc = if (clean) "fresh water of the River Salve moving swiftly" else "filthy polluted water of the River Salve moving slowly"
+            statement("You look down the well and see the $desc along.")
         }
 
         itemOnObjectOperate("bucket", "priestperil_well") {
@@ -165,8 +160,7 @@ class PriestInPeril : Script {
         }
 
         itemOnObjectOperate(
-            "pipkey_gold,pipkey_iron,piptinderbox_gold,pipcandle_gold,pippot_gold,piphammer_gold," +
-                "pipfeather_gold,pipneedle_gold,tinderbox,unlit_candle,empty_pot,hammer,feather,needle",
+            "pipkey_gold,pipkey_iron,piptinderbox_gold,pipcandle_gold,pippot_gold,piphammer_gold,pipfeather_gold,pipneedle_gold,tinderbox,unlit_candle,empty_pot,hammer,feather,needle",
             "priestperil_grave_base*",
         ) { interaction ->
             val value = get(interaction.target.id, 0)
@@ -183,35 +177,30 @@ class PriestInPeril : Script {
                     firstItem = "pipfeather_gold",
                     secondItem = "feather",
                 )
-
                 3 -> handleGoldItemSwamp(
                     index = 3,
                     itemUsed = interaction.item,
                     firstItem = "hammer",
                     secondItem = "piphammer_gold",
                 )
-
                 4 -> handleGoldItemSwamp(
                     index = 4,
                     itemUsed = interaction.item,
                     firstItem = "pipcandle_gold",
                     secondItem = "unlit_candle",
                 )
-
                 5 -> handleGoldItemSwamp(
                     index = 5,
                     itemUsed = interaction.item,
                     firstItem = "pipkey_gold",
                     secondItem = "pipkey_iron",
                 )
-
                 6 -> handleGoldItemSwamp(
                     index = 6,
                     itemUsed = interaction.item,
                     firstItem = "piptinderbox_gold",
                     secondItem = "tinderbox",
                 )
-
                 7 -> handleGoldItemSwamp(
                     index = 7,
                     itemUsed = interaction.item,
@@ -222,208 +211,122 @@ class PriestInPeril : Script {
         }
 
         itemOnObjectOperate("bucket_of_water,bucket_murkywater,bucket_blessedwater", "priestperil_coffin_noanim") { interaction ->
-            arriveDelay()
             handleWaterOnCoffin(interaction.item)
         }
 
         objectOperate("Open", "priestperil_coffin_noanim") { (target) ->
-            arriveDelay()
             player<Confused>("It sounds like there's something alive inside it. I don't think it would be a very good idea to open it.")
         }
 
         objectOperate("Open", "priestperiltempledoor*") { (target) ->
-            arriveDelay()
-
-            if (pipProgress < 4) {
+            if (questStage("priest_in_peril") < 4) {
                 sound("locked")
                 message("This door is securely locked from the inside.")
                 return@objectOperate
             }
-
             sound("barrows_door_open")
-            walkTo(
-                target = Tile(if (tile.x == 3406) 3407 else 3406, tile.y),
-                forceWalk = true,
-                noCollision = true,
-            )
-            val leftDoor = GameObjects.find(Tile(3406, 3489), "priestperiltempledoorl")
-            GameObjects.add(
-                id = "inactivetempledoorl",
-                tile = Tile(3407, 3489),
-                shape = leftDoor.shape,
-                rotation = 1,
-                ticks = 3,
-            )
-            val rightDoor = GameObjects.find(Tile(3406, 3488), "priestperiltempledoorr")
-            GameObjects.add(
-                id = "inactivetempledoorr",
-                tile = Tile(3407, 3488),
-                shape = leftDoor.shape,
-                rotation = 3,
-                ticks = 3,
-            )
-            leftDoor.replace(
-                id = "inviswall",
-                tile = leftDoor.tile,
-                shape = ObjectShape.WALL_STRAIGHT,
-                rotation = leftDoor.rotation,
-                ticks = 3,
-            )
-            rightDoor.replace(
-                id = "inviswall",
-                tile = rightDoor.tile,
-                shape = ObjectShape.WALL_STRAIGHT,
-                rotation = rightDoor.rotation,
-                ticks = 3,
-            )
-            delay(2)
+            enterDoor(target, delay = 2)
         }
 
-        itemOnObjectOperate("pipkey_iron,pipkey_gold", "pip_prisondoor") { interaction ->
+        itemOnObjectOperate("pipkey_iron,pipkey_gold", "pip_prisondoor_closed") { interaction ->
             if (interaction.item.id == "pipkey_gold") {
-                return@itemOnObjectOperate message("The key is a similar size to the lock, but does not fit.")
+                message("The key is a similar size to the lock, but does not fit.")
+                return@itemOnObjectOperate
             }
-
-            if (pipProgress >= 6) {
-                return@itemOnObjectOperate message("Nothing interesting happens.")
+            if (questStage("priest_in_peril") >= 6) {
+                message("Nothing interesting happens.")
+                return@itemOnObjectOperate
             }
-
             foundKey()
         }
 
-        objectOperate("Open", "pip_prisondoor") { (target) ->
-            arriveDelay()
-            if (pipProgress < 6) {
-
+        objectOperate("Open", "pip_prisondoor_closed") { (target) ->
+            if (questStage("priest_in_peril") < 6) {
                 if (inventory.contains("pipkey_iron")) {
                     return@objectOperate foundKey()
                 }
-
-                return@objectOperate message("The door is securely locked shut.")
+                message("The door is securely locked shut.")
+                return@objectOperate
             }
-
-            walkThroughDoor(
-                target = target,
-                enter = tile.x <= 3413,
-                enterOffset = 0,
-                exitOffset = 1,
-                openId = "inactive_pipprisondoor",
-                openRotation = 3,
-                openOffset = 1,
-                openSound = "iron_door_open",
-            )
+            enterDoor(target)
         }
 
-        objectOperate("Open", "pip_underground_door1") { (target) ->
-            arriveDelay()
-            if (pipProgress < 4) {
+        objectOperate("Open", "pip_underground_door1_closed") { (target) ->
+            if ((questStage("priest_in_peril") < 6 || !inventory.contains("pipkey_gold")) && !tile.equals(3405, 9894)) {
                 sound("locked")
                 message("The door is securely locked shut.")
                 player<Quiz>("Hmmm... from the looks of things, it seems as though somebody has been trying to force this door open. It's still securely locked however.")
                 return@objectOperate
             }
-
-            walkThroughDoor(
-                target = target,
-                enter = tile.y >= 9895,
-                enterOffset = 0,
-                exitOffset = -1,
-                openId = "inacpip_underground_door",
-                openRotation = 0,
-                openOffset = -1,
-                openSound = "grate_open",
-                xAxis = false,
-            )
+            enterDoor(target)
         }
 
-        objectOperate("Open", "pip_underground_door2", arrive = false) { (target) ->
-            arriveDelay()
-            if (pipProgress < 8) {
+        objectOperate("Open", "pip_underground_door2_closed") { (target) ->
+            if (questStage("priest_in_peril") < 8) {
                 sound("locked")
                 message("The door is securely locked shut.")
                 return@objectOperate
             }
-
-            walkThroughDoor(
-                target = target,
-                enter = tile.x <= 3431,
-                enterOffset = 0,
-                exitOffset = 1,
-                openId = "inacpip_underground_door",
-                openRotation = 3,
-                openOffset = 1,
-                openSound = "grate_open",
-            )
+            enterDoor(target)
         }
 
         objectOperate("Climb-up", "priestperil_temple_stair_sw_lower") {
-            arriveDelay()
             delay(1)
             tele(3415, 3485, 1)
         }
 
         objectOperate("Climb-down", "priestperil_temple_stair_sw_upper") {
-            arriveDelay()
             delay(1)
             tele(3415, 3485, 0)
         }
 
         objectOperate("Climb-up", "priestperil_temple_stair_se_lower") {
-            arriveDelay()
             delay(1)
             tele(3415, 3492, 1)
         }
 
         objectOperate("Climb-down", "priestperil_temple_stair_se_upper") {
-            arriveDelay()
             delay(1)
             tele(3415, 3492, 0)
         }
 
         objectOperate("Climb-up", "priestperil_cell_ladder_bottom") {
-            arriveDelay()
             delay(1)
             tele(3408, 3485, 2)
         }
 
         objectOperate("Climb-down", "priestperil_cell_ladder_top") {
-            arriveDelay()
             delay(1)
             tele(3410, 3484, 1)
         }
 
         objectOperate("Pass-through", "pip_underground_wall_side_withportal") {
-            arriveDelay()
-            if (pipProgress >= 61) {
+            val stage = quest("priest_in_peril")
+            if (stage == "completed_wolfbane") {
                 tele(Tile(3423, 3484, 0))
                 message("You pass through the holy barrier.")
                 delay(1)
                 return@objectOperate
             }
-            val drezel = NPCs.find(tile.regionLevel) { it.id.startsWith("priestperiltrappedmonk2") }
+            val drezel = NPCs.findBySpawn(Tile(3440, 9895), "priestperiltrappedmonk2")
             talkWith(drezel)
             npc<Angry>("STOP!")
             player<Quiz>("Can't I go through there?")
-            if (pipProgress == 60) {
-                npc<Neutral>(
-                    "Yes, now the Salve is restored you may, but speak to me first, as I have " +
-                        "advice for you before you pass through.",
-                )
+            if (stage == "completed") {
+                npc<Neutral>("Yes, now the Salve is restored you may, but speak to me first, as I have advice for you before you pass through.")
             } else {
-                npc<Angry>(
-                    "No, you cannot! It is taking all of my willpower to hold that barrier in " +
-                        "place. You must restore the sanctity of the Salve as soon as possible!",
-                )
+                npc<Angry>("No, you cannot! It is taking all of my willpower to hold that barrier in place. You must restore the sanctity of the Salve as soon as possible!")
             }
         }
 
         canAttack("priestperilguarddog") {
+            val stage = questStage("priest_in_peril")
             when {
-                pipProgress < 2 -> {
+                stage < 2 -> {
                     message("You have no reason to attack a helpless dog!")
                     false
                 }
-                pipProgress >= 3 -> {
+                stage >= 3 -> {
                     message("I'd better not make the King mad at me again!")
                     false
                 }
@@ -431,21 +334,29 @@ class PriestInPeril : Script {
                     message("Your spells do not seem to affect it.")
                     false
                 }
-                else -> {
-                    true
-                }
+                else -> true
             }
         }
 
         npcDeath("priestperilguarddog") {
             val killer = killer as? Player ?: return@npcDeath
-            if (killer.pipProgress == 2) {
-                killer.pipProgress = 3
+            if (killer.quest("priest_in_peril") == "kill_dog") {
+                killer["priest_in_peril"] = "dog_dead"
+            }
+        }
+
+        variableSet("priest_in_peril") { _, _, to ->
+            if (to == "find_drezel") {
+                listOf(1, 2, 3, 4, 5, 6, 7)
+                    .shuffled(random)
+                    .forEachIndexed { index, value ->
+                    set("priestperil_grave_base${index + 1}", value)
+                }
             }
         }
     }
 
-    fun Player.getMonumentInterface(index: Int) {
+    fun Player.sendMonumentInterface(index: Int) {
         when (index) {
             1 -> sendMonumentInterface(
                 index = index,
@@ -453,7 +364,6 @@ class PriestInPeril : Script {
                 swappedId = "needle",
                 message = "Saradomin is the <br> <br> needle that binds <br> <br>  our lives <br> <br>  together.",
             )
-
             2 -> sendMonumentInterface(
                 index = index,
                 originalId = "pipfeather_gold",
@@ -495,7 +405,6 @@ class PriestInPeril : Script {
 
     fun Player.sendMonumentInterface(index: Int, originalId: String, swappedId: String, message: String) {
         val swapped = get("priestperil_${index}_swapped", false)
-
         open("priestperil_gravemonument")
         interfaces.sendText(
             id = "priestperil_gravemonument",
@@ -541,10 +450,10 @@ class PriestInPeril : Script {
 
     suspend fun Player.handleWaterOnCoffin(itemUsed: Item) {
         when (itemUsed.id) {
-            "bucket_murkywater" -> player<Confused>("This water doesn't look particularly holy to me... I think I'd better check wth the priest first.")
+            "bucket_murkywater" -> player<Confused>("This water doesn't look particularly holy to me... I think I'd better check with the priest first.")
             "bucket_blessedwater" -> {
-                if (pipProgress == 6) {
-                    pipProgress = 7
+                if (quest("priest_in_peril") == "drezel_free") {
+                    set("priest_in_peril", "coffin_destroyed")
                 }
                 message("You pour the water over the coffin...")
                 anim("throw_bucketofwater")
@@ -564,19 +473,7 @@ class PriestInPeril : Script {
         talkWith(drezel)
         inventory.remove("pipkey_iron")
         message("You unlock the cell door.")
-        pipProgress = 6
+        set("priest_in_peril", "drezel_free")
         npc<Happy>("Oh! Thank you! You have found the key!")
     }
 }
-
-fun Player.rollMonuments() {
-    val numbers = mutableListOf(1, 2, 3, 4, 5, 6, 7).shuffled()
-
-    numbers.forEachIndexed { index, value ->
-        set("priestperil_grave_base${index + 1}", value)
-    }
-}
-
-var Player.pipProgress: Int
-    get() = get("priestperil", 0)
-    set(value) = set("priestperil", value)
