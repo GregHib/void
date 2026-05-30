@@ -202,7 +202,7 @@ fun Player.dialogueOption(
 }
 
 fun Player.dialogueOption(option: Int) {
-    dialogueOption("line${option}")
+    dialogueOption("line$option")
 }
 
 private fun isContinuableDialogue(id: String) = id.startsWith("dialogue_chat") || id.startsWith("dialogue_npc_chat") || id.startsWith("dialogue_message") || id.startsWith("dialogue_obj") || id.startsWith("dialogue_double_obj")

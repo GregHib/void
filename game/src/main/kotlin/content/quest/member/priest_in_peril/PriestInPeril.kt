@@ -31,7 +31,6 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 import world.gregs.voidps.type.random
@@ -350,8 +349,8 @@ class PriestInPeril : Script {
                 listOf(1, 2, 3, 4, 5, 6, 7)
                     .shuffled(random)
                     .forEachIndexed { index, value ->
-                    set("priestperil_grave_base${index + 1}", value)
-                }
+                        set("priestperil_grave_base${index + 1}", value)
+                    }
             }
         }
     }

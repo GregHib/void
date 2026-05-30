@@ -1,12 +1,12 @@
 package content.area.kharidian_desert.magic_carpet
 
 import WorldTest
-import skipDialogues
 import dialogueOption
 import npcOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Test
+import skipDialogues
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory

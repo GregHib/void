@@ -70,7 +70,6 @@ class KingRoald : Script {
                 else -> postQuestSmalltalk()
             }
         }
-
     }
 
     private suspend fun Player.startQuestRequest() {
@@ -93,7 +92,7 @@ class KingRoald : Script {
     }
 
     fun ChoiceOption.soundsBoring(): Unit = option<Neutral>("No, that sounds boring.") {
-        npc<Neutral>("Yes, I dare say it does. I wouldn't even have mentioned it had you not seemed to be looking for something to do anyway.",)
+        npc<Neutral>("Yes, I dare say it does. I wouldn't even have mentioned it had you not seemed to be looking for something to do anyway.")
     }
 
     suspend fun Player.questQuestionsChoice() {
