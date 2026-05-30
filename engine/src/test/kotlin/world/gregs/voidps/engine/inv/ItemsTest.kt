@@ -215,8 +215,10 @@ class ItemsTest {
         }
 
         override fun invoke(args: List<String>) {
-            val actual = Items.takeable(Player(), FloorItem(Tile.EMPTY, "item"))
-            assertTrue(actual == "item" || actual == "string")
+            runTest {
+                val actual = Items.takeable(Player(), FloorItem(Tile.EMPTY, "item"))
+                assertTrue(actual == "item" || actual == "string")
+            }
         }
 
         override val apis = listOf(Items)
