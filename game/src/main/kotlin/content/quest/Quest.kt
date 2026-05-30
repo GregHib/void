@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.item.Item
 
 val quests = setOf(
     // free
+    "blood_pact",
     "unstable_foundations",
     "cooks_assistant",
     "demon_slayer",

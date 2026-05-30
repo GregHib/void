@@ -3,12 +3,24 @@ package content.area.misthalin.lumbridge.catacomb
 import content.entity.combat.killer
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
+import content.quest.instanceOffset
+import content.quest.quest
+import content.quest.setInstanceLogout
+import content.quest.smallInstance
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
+import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.RegionLevel
+import world.gregs.voidps.type.Tile
 
 class LumbridgeCatacombs : Script {
 

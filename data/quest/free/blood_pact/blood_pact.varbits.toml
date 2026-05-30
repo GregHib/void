@@ -1,0 +1,33 @@
+[blood_pact]
+id = 335 #confirm later
+persist = true
+format = "map"
+default = "unstarted"
+values = {
+    unstarted = 0,
+    started = 1,
+    first_cultist = 2,
+    xenia_wounded = 3,
+    second_cultist = 4,
+    third_cultist = 5,
+    untie_ilona = 6,
+    completed = 100
+}
+
+[kayle]
+id = 5819
+persist = true
+default = "staff"
+values = [ "alive", "spared", "dead" ]
+
+[caitlin]
+id = 5819
+persist = true
+default = "bow"
+values = [ "alive", "spared", "dead" ]
+
+[reese]
+id = 5819
+persist = true
+default = "sword"
+values = [ "alive", "spared", "dead" ]
