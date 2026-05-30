@@ -196,10 +196,13 @@ fun Player.equipItem(
 
 fun Player.dialogueOption(
     component: String,
-    option: Int = -1,
     id: String = dialogue ?: error("No dialogue found for $this."),
 ) {
     Dialogues.continueDialogue(this, "$id:$component")
+}
+
+fun Player.dialogueOption(option: Int) {
+    dialogueOption("line${option}")
 }
 
 private fun isContinuableDialogue(id: String) = id.startsWith("dialogue_chat") || id.startsWith("dialogue_npc_chat") || id.startsWith("dialogue_message") || id.startsWith("dialogue_obj") || id.startsWith("dialogue_double_obj")
@@ -211,7 +214,8 @@ fun Player.dialogueContinue(repeat: Int = 1) {
     }
 }
 
-fun Player.dialogueContinues() {
+fun Player.skipDialogues() {
+    requireNotNull(dialogue) { "No dialogue found for $this." }
     while (dialogue != null && isContinuableDialogue(dialogue!!)) {
         dialogueOption("continue")
     }

@@ -1,7 +1,7 @@
 package content.area.kharidian_desert.magic_carpet
 
 import WorldTest
-import dialogueContinues
+import skipDialogues
 import dialogueOption
 import npcOption
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -22,7 +22,7 @@ class RugMerchantTest : WorldTest() {
 
         player.npcOption(merchant, "Talk-to")
         tick()
-        player.dialogueContinues()
+        player.skipDialogues()
         player.dialogueOption("line1")
         player.dialogueOption("line1")
 
@@ -40,13 +40,13 @@ class RugMerchantTest : WorldTest() {
 
         player.npcOption(merchant, "Talk-to")
         tick()
-        player.dialogueContinues()
+        player.skipDialogues()
         player.dialogueOption("line1") // Would you like to travel: Yes please.
-        player.dialogueContinues()
+        player.skipDialogues()
         player.dialogueOption("line1") // I want to travel to
-        player.dialogueContinues()
+        player.skipDialogues()
         player.dialogueOption("line2") // How about 100gp?
-        player.dialogueContinues()
+        player.skipDialogues()
 
         tick(10)
         assertNotEquals(Tile(3309, 3109), player.tile)
@@ -62,11 +62,11 @@ class RugMerchantTest : WorldTest() {
 
         player.npcOption(merchant, "Talk-to")
         tick()
-        player.dialogueContinues()
+        player.skipDialogues()
         player.dialogueOption("line1") // Would you like to travel: Yes please.
-        player.dialogueContinues()
+        player.skipDialogues()
         player.dialogueOption("line1") // I want to travel to
-        player.dialogueContinues()
+        player.skipDialogues()
 
         tick(10)
         assertNotEquals(Tile(3309, 3109), player.tile)
@@ -83,13 +83,13 @@ class RugMerchantTest : WorldTest() {
 
         player.npcOption(merchant, "Talk-to")
         tick()
-        player.dialogueContinues()
+        player.skipDialogues()
         player.dialogueOption("line1") // Would you like to travel: Yes please.
-        player.dialogueContinues()
+        player.skipDialogues()
         player.dialogueOption("line1") // I want to travel to
-        player.dialogueContinues()
+        player.skipDialogues()
         player.dialogueOption("line2") // How about 75gp?
-        player.dialogueContinues()
+        player.skipDialogues()
 
         tick(10)
         assertNotEquals(Tile(3309, 3109), player.tile)
