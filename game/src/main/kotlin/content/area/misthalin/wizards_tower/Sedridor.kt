@@ -77,13 +77,13 @@ class Sedridor : Script {
 
     suspend fun Player.okHere() {
         player<Idle>("Okay, here you are.")
-        if (inventory.contains("air_talisman")) {
+        if (inventory.contains("talisman_rune_mysteries")) {
             set("rune_mysteries", "talisman_delivered")
-            item("air_talisman", "You hand the talisman to Sedridor.")
-            inventory.remove("air_talisman")
+            item("talisman_rune_mysteries", "You hand the talisman to Sedridor.")
+            inventory.remove("talisman_rune_mysteries")
             npc<Confused>("Hmm... Doesn't seem to be anything too special. Just a normal air talisman by the looks of things. Still, looks can be deceiving. Let me take a closer look...")
             sound("enchant_emerald_ring")
-            item("air_talisman", "Sedridor murmurs some sort of incantation and the talisman glows slightly.")
+            item("talisman_rune_mysteries", "Sedridor murmurs some sort of incantation and the talisman glows slightly.")
             npc<Confused>("How interesting... It would appear I spoke too soon. There's more to this talisman than meets the eye. In fact, it may well be the last piece of the puzzle.")
             player<Quiz>("Puzzle?")
             npc<Happy>("Indeed! The lost legacy of the first tower. This talisman may in fact be key to finding the forgotten essence mine!")

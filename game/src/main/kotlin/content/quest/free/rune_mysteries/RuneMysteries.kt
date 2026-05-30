@@ -41,7 +41,7 @@ class RuneMysteries : Script {
                         "<maroon>Lumbridge, across the bridge from <maroon>Draynor Village.",
                     )
 
-                    if (!carriesItem("air_talisman")) {
+                    if (!carriesItem("talisman_rune_mysteries")) {
                         list.add("<navy>If I lose the <maroon>Strange Talisman<navy> , I'll need to ask <maroon>Duke Horacio<navy> for")
                         list.add("<navy>another.")
                     }
@@ -118,7 +118,7 @@ class RuneMysteries : Script {
                 }
                 else -> listOf(
                     "<navy>I can start this quest by speaking to <maroon>Duke Horacio of",
-                    "<maroon>Lumbridge<navy>upstairs in <maroon>Lumbridge Castle.",
+                    "<maroon>Lumbridge<navy> upstairs in <maroon>Lumbridge Castle.",
                 )
             }
             questJournal("Rune Mysteries", lines)

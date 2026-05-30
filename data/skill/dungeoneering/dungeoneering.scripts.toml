@@ -9,3 +9,60 @@ id = 3494
 
 [dung_rewards_clickinformation]
 id = 2250
+
+[dung_map_reset]
+id = 3277
+
+[dung_map_add_room]
+id = 3278
+params = [
+    "x", # -2..5
+    "y", # -2..5
+    "sprite",
+    "type" # 1 = x/y, 2 = horizontal only
+]
+# Sprites
+#  Hidden
+#  s 2787
+#  w 2788
+#  n 2789
+#  e 2790
+#  Shown +1
+#  s 2791
+#  w
+#  n
+#  e
+#  sw
+#  nw
+#  ne
+#  se
+#  sen
+#  wne
+#  nes
+#  esw
+#  nesw
+#  ns
+#  we 2805
+#  Crit hidden 2806..2809
+#  Crit shown 2810..2824
+
+[dung_map_add_player]
+id = 3279
+params = [
+    "x",
+    "y",
+    "player_index", # 1..5
+    "type",
+    "username",
+]
+
+[dung_map_start_room]
+id = 3280
+params = ["x", "y", "type"]
+
+[dung_map_boss_room]
+id = 3281
+params = ["x", "y", "type"]
+
+[dung_map_tooltip]
+id = 3282

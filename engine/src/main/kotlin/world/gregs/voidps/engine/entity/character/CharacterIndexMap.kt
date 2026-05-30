@@ -52,7 +52,10 @@ class CharacterIndexMap(size: Int) {
     }
 
     fun onEach(id: Int, action: (Int) -> Unit) {
-        table.get(id)?.onEach(action)
+        val set = table.get(id) ?: return
+        for (index in set) {
+            action(index)
+        }
     }
 
     companion object {
