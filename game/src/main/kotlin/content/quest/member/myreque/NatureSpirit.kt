@@ -4,12 +4,12 @@ import content.entity.combat.killer
 import content.entity.effect.transform
 import content.entity.gfx.areaGfx
 import content.entity.player.bank.ownsItem
-import content.entity.proj.shoot
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
+import content.entity.proj.shoot
 import content.quest.questComplete
 import content.quest.questCompleted
 import content.quest.questJournal
@@ -35,7 +35,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.longQueue
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Cuboid
@@ -246,8 +245,8 @@ class NatureSpirit : Script {
             item(
                 item = "journal_nature_spirit",
                 text = "You search the strange rock. You find a knot and inside of it you discover " +
-                        "a small tome. The words on the front are a bit vague, but you make out the " +
-                        "words 'Tarlock' and 'journal'."
+                    "a small tome. The words on the front are a bit vague, but you make out the " +
+                    "words 'Tarlock' and 'journal'.",
             )
             addOrDrop("journal_nature_spirit")
         }
@@ -267,24 +266,33 @@ class NatureSpirit : Script {
         objectOperate("Search", "stonedisc_ds_nature") {
             val brown = get("ns_brown_correct", false)
             statement(
-                if (brown) "You search the stone and find that it has some sort of nature symbol scratched into it.<br>This stone seems complete in some way."
-                else "You search the stone and find that it has some sort of nature symbol scratched into it."
+                if (brown) {
+                    "You search the stone and find that it has some sort of nature symbol scratched into it.<br>This stone seems complete in some way."
+                } else {
+                    "You search the stone and find that it has some sort of nature symbol scratched into it."
+                },
             )
         }
 
         objectOperate("Search", "stonedisc_ds_faith") {
             val placedFaith = (tile.x == 3440 && tile.y == 3335) || nature_spirit >= 10
             statement(
-                if (placedFaith) "You search the stone and find that it has some sort of faith symbol scratched into it.<br>This stone seems complete in some way."
-                else "You search the stone and find that it has some sort of faith symbol scratched into it."
+                if (placedFaith) {
+                    "You search the stone and find that it has some sort of faith symbol scratched into it.<br>This stone seems complete in some way."
+                } else {
+                    "You search the stone and find that it has some sort of faith symbol scratched into it."
+                },
             )
         }
 
         objectOperate("Search", "stonedisc_ds_spirit") {
             val grey = get("ns_grey_correct", false)
             statement(
-                if (grey) "You search the stone and find that it has some sort of spirit symbol scratched into it.<br>This stone seems complete in some way."
-                else "You search the stone and find that it has some sort of spirit symbol scratched into it."
+                if (grey) {
+                    "You search the stone and find that it has some sort of spirit symbol scratched into it.<br>This stone seems complete in some way."
+                } else {
+                    "You search the stone and find that it has some sort of spirit symbol scratched into it."
+                },
             )
         }
 
@@ -325,9 +333,9 @@ class NatureSpirit : Script {
         itemOption("Read", "druidic_spell,a_used_spell") {
             statement(
                 "Most of the writing is pretty uninteresting, but something inside refers to " +
-                        "nature spirit. The requirements for which are,<br>'Something from nature', " +
-                        "'something with faith' and 'something of the spirit-to-become freely given'." +
-                        "<br>It's all pretty vague."
+                    "nature spirit. The requirements for which are,<br>'Something from nature', " +
+                    "'something with faith' and 'something of the spirit-to-become freely given'." +
+                    "<br>It's all pretty vague.",
             )
         }
 
@@ -335,12 +343,12 @@ class NatureSpirit : Script {
             item(
                 item = "journal_nature_spirit",
                 text = "Most of the writing is pretty uninteresting, but something inside refers to " +
-                        "nature spirit. The requirements for which are,"
+                    "nature spirit. The requirements for which are,",
             )
             item(
                 item = "journal_nature_spirit",
                 text = "'Something from nature', 'something with faith' and 'something of the " +
-                        "spirit-to-become freely given'. It's all pretty vague."
+                    "spirit-to-become freely given'. It's all pretty vague.",
             )
         }
 
@@ -384,7 +392,7 @@ class NatureSpirit : Script {
             gfx(
                 id = "ghast_spotdeath",
                 delay = 20,
-                height = 50
+                height = 50,
             )
             val killer = killer
             if (killer !is Player) {
@@ -436,7 +444,7 @@ class NatureSpirit : Script {
     private fun Player.ensureFillimanGhost(area: Area): NPC {
         NPCs.findOrNull(tile.regionLevel, "filliman_tarlock_ghost")?.let { return it }
         NPCs.findOrNull(tile.regionLevel, "filliman_tarlock_spirit")?.let { return it }
-        val id = if (nature_spirit >= 70) "filliman_tarlock_spirit" else  "filliman_tarlock_ghost"
+        val id = if (nature_spirit >= 70) "filliman_tarlock_spirit" else "filliman_tarlock_ghost"
         val npc = NPCs.addRandom(id, area)
         return npc ?: NPCs.add(id, tile)
     }
@@ -456,7 +464,7 @@ class NatureSpirit : Script {
         val isNatureStone = target.id == "stonedisc_ds_nature"
         val isSpiritStone = target.id == "stonedisc_ds_spirit"
         val correct = (isNatureStone && itemId == "mort_myre_fungus") ||
-                (isSpiritStone && (itemId == "druidic_spell" || itemId == "a_used_spell"))
+            (isSpiritStone && (itemId == "druidic_spell" || itemId == "a_used_spell"))
         anim("human_pickupfloor")
         inventory.remove(itemId, 1)
         FloorItems.add(target.tile, itemId, revealTicks = 0, disappearTicks = 2, owner = this)
@@ -543,14 +551,21 @@ class NatureSpirit : Script {
 
     private fun Player.sprinkleBloomGfx(height: Int, delay: Int) {
         val offsets = listOf(
-            0 to -1, 0 to 1, -1 to -1, -1 to 1, 1 to -1, 1 to 1, -1 to 0, 1 to 0,
+            0 to -1,
+            0 to 1,
+            -1 to -1,
+            -1 to 1,
+            1 to -1,
+            1 to 1,
+            -1 to 0,
+            1 to 0,
         )
         for ((dx, dy) in offsets) {
             areaGfx(
                 id = "druidicspirit_bloom_spotanim",
                 tile = Tile(tile.x + dx, tile.y + dy, tile.level),
                 height = height,
-                delay = delay
+                delay = delay,
             )
         }
     }
@@ -630,8 +645,7 @@ class NatureSpirit : Script {
         npc.transform("ghast_level_30")
     }
 
-    fun Player.atMortMyre(): Boolean =
-        tile.x in 3400..3520 && tile.y in 3324..3455
+    fun Player.atMortMyre(): Boolean = tile.x in 3400..3520 && tile.y in 3324..3455
 
     private fun Player.prayNatureAltar() {
         val max = levels.getMax(Skill.Prayer)
@@ -735,8 +749,8 @@ suspend fun Player.sendNatureSpiritReward() {
     )
 
     longQueue("Filliman Post Quest") {
-        val spirit = NPCs.findOrNull(tile.regionLevel, "filliman_tarlock_spirit") ?:
-        NPCs.add("filliman_tarlock_spirit", Tile(3441, 9738, 1))
+        val spirit = NPCs.findOrNull(tile.regionLevel, "filliman_tarlock_spirit")
+            ?: NPCs.add("filliman_tarlock_spirit", Tile(3441, 9738, 1))
 
         face(spirit)
         spirit.face(this)

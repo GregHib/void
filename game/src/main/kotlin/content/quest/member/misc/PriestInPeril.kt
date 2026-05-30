@@ -147,9 +147,12 @@ class PriestInPeril : Script {
             val clean = pipProgress >= 60
             statement(
                 "You look down the well and see the ${
-                    if (clean) "fresh water of the River Salve moving swiftly" else
+                    if (clean) {
+                        "fresh water of the River Salve moving swiftly"
+                    } else {
                         "filthy polluted water of the River Salve moving slowly"
-                } along."
+                    }
+                } along.",
             )
         }
 
@@ -161,56 +164,59 @@ class PriestInPeril : Script {
             message("You fill the bucket from the well.")
         }
 
-        itemOnObjectOperate("pipkey_gold,pipkey_iron,piptinderbox_gold,pipcandle_gold,pippot_gold,piphammer_gold," +
-                "pipfeather_gold,pipneedle_gold,tinderbox,unlit_candle,empty_pot,hammer,feather,needle", "priestperil_grave_base*") { interaction ->
+        itemOnObjectOperate(
+            "pipkey_gold,pipkey_iron,piptinderbox_gold,pipcandle_gold,pippot_gold,piphammer_gold," +
+                "pipfeather_gold,pipneedle_gold,tinderbox,unlit_candle,empty_pot,hammer,feather,needle",
+            "priestperil_grave_base*",
+        ) { interaction ->
             val value = get(interaction.target.id, 0)
             when (value) {
                 1 -> handleGoldItemSwamp(
                     index = 1,
                     itemUsed = interaction.item,
                     firstItem = "pipneedle_gold",
-                    secondItem = "needle"
+                    secondItem = "needle",
                 )
                 2 -> handleGoldItemSwamp(
                     index = 2,
                     itemUsed = interaction.item,
                     firstItem = "pipfeather_gold",
-                    secondItem = "feather"
+                    secondItem = "feather",
                 )
 
                 3 -> handleGoldItemSwamp(
                     index = 3,
                     itemUsed = interaction.item,
                     firstItem = "hammer",
-                    secondItem = "piphammer_gold"
+                    secondItem = "piphammer_gold",
                 )
 
                 4 -> handleGoldItemSwamp(
                     index = 4,
                     itemUsed = interaction.item,
                     firstItem = "pipcandle_gold",
-                    secondItem = "unlit_candle"
+                    secondItem = "unlit_candle",
                 )
 
                 5 -> handleGoldItemSwamp(
                     index = 5,
                     itemUsed = interaction.item,
                     firstItem = "pipkey_gold",
-                    secondItem = "pipkey_iron"
+                    secondItem = "pipkey_iron",
                 )
 
                 6 -> handleGoldItemSwamp(
                     index = 6,
                     itemUsed = interaction.item,
                     firstItem = "piptinderbox_gold",
-                    secondItem = "tinderbox"
+                    secondItem = "tinderbox",
                 )
 
                 7 -> handleGoldItemSwamp(
                     index = 7,
                     itemUsed = interaction.item,
                     firstItem = "pippot_gold",
-                    secondItem = "pot"
+                    secondItem = "pot",
                 )
             }
         }
@@ -238,7 +244,7 @@ class PriestInPeril : Script {
             walkTo(
                 target = Tile(if (tile.x == 3406) 3407 else 3406, tile.y),
                 forceWalk = true,
-                noCollision = true
+                noCollision = true,
             )
             val leftDoor = GameObjects.find(Tile(3406, 3489), "priestperiltempledoorl")
             GameObjects.add(
@@ -246,7 +252,7 @@ class PriestInPeril : Script {
                 tile = Tile(3407, 3489),
                 shape = leftDoor.shape,
                 rotation = 1,
-                ticks = 3
+                ticks = 3,
             )
             val rightDoor = GameObjects.find(Tile(3406, 3488), "priestperiltempledoorr")
             GameObjects.add(
@@ -254,21 +260,21 @@ class PriestInPeril : Script {
                 tile = Tile(3407, 3488),
                 shape = leftDoor.shape,
                 rotation = 3,
-                ticks = 3
+                ticks = 3,
             )
             leftDoor.replace(
                 id = "inviswall",
                 tile = leftDoor.tile,
                 shape = ObjectShape.WALL_STRAIGHT,
                 rotation = leftDoor.rotation,
-                ticks = 3
+                ticks = 3,
             )
             rightDoor.replace(
                 id = "inviswall",
                 tile = rightDoor.tile,
                 shape = ObjectShape.WALL_STRAIGHT,
                 rotation = rightDoor.rotation,
-                ticks = 3
+                ticks = 3,
             )
             delay(2)
         }
@@ -326,7 +332,7 @@ class PriestInPeril : Script {
                 openRotation = 0,
                 openOffset = -1,
                 openSound = "grate_open",
-                xAxis = false
+                xAxis = false,
             )
         }
 
@@ -401,12 +407,12 @@ class PriestInPeril : Script {
             if (pipProgress == 60) {
                 npc<Neutral>(
                     "Yes, now the Salve is restored you may, but speak to me first, as I have " +
-                            "advice for you before you pass through."
+                        "advice for you before you pass through.",
                 )
             } else {
                 npc<Angry>(
                     "No, you cannot! It is taking all of my willpower to hold that barrier in " +
-                            "place. You must restore the sanctity of the Salve as soon as possible!"
+                        "place. You must restore the sanctity of the Salve as soon as possible!",
                 )
             }
         }
@@ -445,46 +451,45 @@ class PriestInPeril : Script {
                 index = index,
                 originalId = "pipneedle_gold",
                 swappedId = "needle",
-                message = "Saradomin is the <br> <br> needle that binds <br> <br>  our lives <br> <br>  together."
+                message = "Saradomin is the <br> <br> needle that binds <br> <br>  our lives <br> <br>  together.",
             )
 
-           2 -> sendMonumentInterface(
-               index = index,
+            2 -> sendMonumentInterface(
+                index = index,
                 originalId = "pipfeather_gold",
                 swappedId = "feather",
-                message = "Saradomin is the <br> <br> delicate touch <br> <br>  that brushes us <br> <br>  with love."
+                message = "Saradomin is the <br> <br> delicate touch <br> <br>  that brushes us <br> <br>  with love.",
             )
             3 -> sendMonumentInterface(
                 index = index,
                 originalId = "piphammer_gold",
                 swappedId = "hammer",
-                message = "Saradomin is the <br> <br> hammer that <br> <br>  crushes evil <br> <br>  everywhere."
+                message = "Saradomin is the <br> <br> hammer that <br> <br>  crushes evil <br> <br>  everywhere.",
             )
             4 -> sendMonumentInterface(
                 index = index,
                 originalId = "pipcandle_gold",
                 swappedId = "unlit_candle",
-                message = "Saradomin is the <br> <br> light that shines <br> <br>  throughout <br> <br> our lives."
+                message = "Saradomin is the <br> <br> light that shines <br> <br>  throughout <br> <br> our lives.",
             )
             5 -> sendMonumentInterface(
                 index = index,
                 originalId = "pipkey_iron",
                 swappedId = "pipkey_gold",
-                message = "Saradomin is the <br> <br> key that unlocks <br> <br> the mysteries <br> <br> of life."
+                message = "Saradomin is the <br> <br> key that unlocks <br> <br> the mysteries <br> <br> of life.",
             )
             6 -> sendMonumentInterface(
                 index = index,
                 originalId = "piptinderbox_gold",
                 swappedId = "tinderbox",
-                message = "Saradomin <br> <br> lights my way <br> <br>  through <br> <br> the darkness of life."
+                message = "Saradomin <br> <br> lights my way <br> <br>  through <br> <br> the darkness of life.",
             )
             7 -> sendMonumentInterface(
                 index = index,
                 originalId = "pippot_gold",
                 swappedId = "pot",
-                message = "Saradomin is the <br> <br> vessel that <br> <br> keeps us safe <br> <br> from harm."
+                message = "Saradomin is the <br> <br> vessel that <br> <br> keeps us safe <br> <br> from harm.",
             )
-
         }
     }
 
@@ -495,12 +500,12 @@ class PriestInPeril : Script {
         interfaces.sendText(
             id = "priestperil_gravemonument",
             component = "text_component",
-            text = message
+            text = message,
         )
         interfaces.sendItem(
             id = "priestperil_gravemonument",
             component = "item_component",
-            item = Item(if (swapped) swappedId else originalId)
+            item = Item(if (swapped) swappedId else originalId),
         )
     }
 

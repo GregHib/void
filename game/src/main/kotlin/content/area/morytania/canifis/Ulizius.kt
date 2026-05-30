@@ -37,9 +37,9 @@ class Ulizius : Script {
             if (nature_spirit == 0) {
                 statement(
                     "There's a message attached to this gate, it reads:<br>" +
-                            "<navy> ~ Mort Myre is a dangerous Ghast infested swamp. ~<br>" +
-                            "<navy> ~ Do not enter if you value your life. ~<br>" +
-                            "<navy> ~ All persons wishing to enter must see Drezel. ~"
+                        "<navy> ~ Mort Myre is a dangerous Ghast infested swamp. ~<br>" +
+                        "<navy> ~ Do not enter if you value your life. ~<br>" +
+                        "<navy> ~ All persons wishing to enter must see Drezel. ~",
                 )
                 return@objectOperate
             }
@@ -60,13 +60,13 @@ class Ulizius : Script {
         }
         npc<Scared>(
             "Absolutely not. I've been given strict instructions not to let anyone through. It's " +
-                    "just too dangerous. No one gets in without Drezel's say so!"
+                "just too dangerous. No one gets in without Drezel's say so!",
         )
         if (nature_spirit == 0) {
             player<Quiz>("Where is Drezel?")
             npc<Scared>(
                 "Oh, he's in the temple, just go back over the bridge, down the ladder and along " +
-                        "the hallway, you can't miss him."
+                    "the hallway, you can't miss him.",
             )
         } else {
             player<Neutral>("But I'm doing a quest for Drezel!")

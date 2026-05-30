@@ -25,7 +25,7 @@ class KingRoald : Script {
             if (tile.region.id == 7511) {
                 npc<Angry>(
                     "I'm rather busy right now. In case you hadn't noticed, there are zombies " +
-                            "all over the palace."
+                        "all over the palace.",
                 )
                 zombiePalaceChoice()
                 return@npcOperate
@@ -84,20 +84,20 @@ class KingRoald : Script {
         player<Neutral>("I am looking for a quest!")
         npc<Neutral>(
             "A quest you say? Hmm, what an odd request to make of the king. It's funny you " +
-                    "should mention it though, as there is something you can do for me."
+                "should mention it though, as there is something you can do for me.",
         )
         npc<Confused>(
             "Are you aware of the temple east of here? It stands on the river Salve and guards " +
-                    "the entrance to the lands of Morytania?"
+                "the entrance to the lands of Morytania?",
         )
         player<Confused>("No, I don't think I know it...")
         npc<Neutral>(
             "Hmm, how strange that you don't. Well anyway, it has been some days since last I " +
-                    "heard from Drezel, the priest who lives there."
+                "heard from Drezel, the priest who lives there.",
         )
         npc<Neutral>(
             "Be a sport and make sure that nothing untoward has happened to the silly old " +
-                    "codger for me, would you?"
+                "codger for me, would you?",
         )
         questAcceptChoice()
     }
@@ -115,14 +115,14 @@ class KingRoald : Script {
         player<Neutral>("Sure, I don't have anything better to do right now.")
         npc<Happy>(
             "Many thanks adventurer! I would have sent one of my squires but they wanted " +
-                    "payment for it!"
+                "payment for it!",
         )
     }
 
     fun ChoiceOption.soundsBoring(): Unit = option<Neutral>("No, that sounds boring.") {
         npc<Neutral>(
             "Yes, I dare say it does. I wouldn't even have mentioned it had you not seemed to " +
-                    "be looking for something to do anyway."
+                "be looking for something to do anyway.",
         )
     }
 
@@ -143,7 +143,7 @@ class KingRoald : Script {
     fun ChoiceOption.whosDrezel(): Unit = option<Quiz>("Who's Drezel?") {
         npc<Confused>(
             "Drezel is the priest who lives in the Temple to the east of here. You're supposed " +
-                    "to go make sure nothing's happened to him. Remember?"
+                "to go make sure nothing's happened to him. Remember?",
         )
         player<Neutral>("Oooooooooh, THAT Drezel. Yup, I'll go do that then.")
     }
@@ -151,7 +151,7 @@ class KingRoald : Script {
     fun ChoiceOption.whereGoAgain(): Unit = option<Quiz>("Where am I supposed to go again?") {
         npc<Neutral>(
             "The temple where Drezel lives is but a short journey east from here. It lies " +
-                    "south of the cliffs, on the mouth of the river Salve."
+                "south of the cliffs, on the mouth of the river Salve.",
         )
         npc<Neutral>("Don't worry, you can't miss it.")
     }
@@ -159,42 +159,42 @@ class KingRoald : Script {
     fun ChoiceOption.whyCareAboutDrezel(): Unit = option<Quiz>("Why do you care about Drezel anyway?") {
         npc<Neutral>(
             "Well, that is a slightly impertinent question to ask of your King, but I shall " +
-                    "overlook it this time."
+                "overlook it this time.",
         )
         npc<Neutral>(
             "As you are no doubt aware, this kingdom worships Saradomin, and is a peaceful " +
-                    "place to live and prosper. The temple where Drezel lives stands"
+                "place to live and prosper. The temple where Drezel lives stands",
         )
         npc<Neutral>(
             "on the Eastern border of Misthalin, and further East lie the evil lands of " +
-                    "Morytania, a fearful land of undead monsters and Zamorakians."
+                "Morytania, a fearful land of undead monsters and Zamorakians.",
         )
         npc<Neutral>(
             "The sacred river Salve marks a natural border between our kingdoms, and the " +
-                    "temple prevents any invasions to this land from Morytania."
+                "temple prevents any invasions to this land from Morytania.",
         )
         npc<Neutral>(
             "By keeping the water of the river blessed, our defences remain strong, as the " +
-                    "fiends that inhabit Morytania cannot cross such a holy barrier."
+                "fiends that inhabit Morytania cannot cross such a holy barrier.",
         )
         npc<Neutral>(
             "Drezel is the descendant of one of the original Saradominist priests who first " +
-                    "blessed the river, and built the temple there."
+                "blessed the river, and built the temple there.",
         )
         npc<Neutral>(
             "His job is to ensure nothing happens to the river at the source that might allow " +
-                    "the evil Morytanians to invade this land. This is the reason"
+                "the evil Morytanians to invade this land. This is the reason",
         )
         npc<Neutral>(
             "why the lack of communication from him bothers me somewhat, although I am sure " +
-                    "nobody would dare to try and attack our kingdom!"
+                "nobody would dare to try and attack our kingdom!",
         )
     }
 
     fun ChoiceOption.doIGetReward(): Unit = option<Quiz>("Do I get a reward for this?") {
         npc<Neutral>(
             "You will be rewarded in the knowledge that you have done the right thing and " +
-                    "assisted the King of Misthalin."
+                "assisted the King of Misthalin.",
         )
         player<Angry>("Soooooo...... that would be a 'no' then?")
         npc<Neutral>("That is correct.")
@@ -204,26 +204,26 @@ class KingRoald : Script {
         npc<Neutral>("You have news of Drezel for me?")
         player<Happy>(
             "Yeah, I spoke to the guys at the temple and they said they were being bothered by " +
-                    "that dog in the crypt, so I went and killed it for them. No problem."
+                "that dog in the crypt, so I went and killed it for them. No problem.",
         )
         npc<Shock>("YOU DID WHAT???")
         npc<Angry>(
             "Are you mentally deficient??? That guard dog was protecting the route to " +
-                    "Morytania! Without it we could be in severe peril of attack!"
+                "Morytania! Without it we could be in severe peril of attack!",
         )
         player<Sad>("Did I make a mistake?")
         npc<Angry>(
             "YES YOU DID!!!!! You need to get there right now and find out what is happening! " +
-                    "Before it is too late for us all!"
+                "Before it is too late for us all!",
         )
         player<Sad>("B-but Drezel TOLD me to...!")
         npc<Angry>(
             "No, you absolute cretin! Obviously some fiend has done something to Drezel and " +
-                    "tricked your feeble intellect into helping them kill that guard dog!"
+                "tricked your feeble intellect into helping them kill that guard dog!",
         )
         npc<Angry>(
             "You get back there and do whatever is necessary to safeguard my kingdom from " +
-                    "attack, or I will see you beheaded for high treason!"
+                "attack, or I will see you beheaded for high treason!",
         )
         pipProgress = 4
         player<Sad>("Y-yes your Highness.")
@@ -231,21 +231,21 @@ class KingRoald : Script {
 
     private suspend fun Player.shoutBorderSecure() {
         npc<Angry>(
-            "AND MORE IMPORTANTLY, WHY HAVEN'T YOU ENSURED THE BORDER TO MORYTANIA IS SECURE YET?"
+            "AND MORE IMPORTANTLY, WHY HAVEN'T YOU ENSURED THE BORDER TO MORYTANIA IS SECURE YET?",
         )
         player<Sad>("Okay, okay, I'm going, I'm going... There's no need to shout...")
         npc<Angry>("NO NEED TO SHOUT???")
         npc<Neutral>(
             "Listen, and listen well, and see if your puny mind can comprehend this: if the " +
-                    "border is not protected, then we are at the mercy of the evil beings"
+                "border is not protected, then we are at the mercy of the evil beings",
         )
         npc<Neutral>(
             "that live in Morytania. Given that most of the inhabitants consider humans to be " +
-                    "nothing more than over talkative snack food, I would"
+                "nothing more than over talkative snack food, I would",
         )
         npc<Angry>(
             "say that me shouting at you for your incompetence is the LEAST of your worries " +
-                    "right now. NOW GO!"
+                "right now. NOW GO!",
         )
     }
 
@@ -254,7 +254,7 @@ class KingRoald : Script {
         player<Neutral>("I do indeed, sire. He has been imprisoned by some Zamorakian monks.")
         npc<Angry>(
             "What? This is wholly unacceptable! I order you to do all that you can to free " +
-                    "Drezel immediately!"
+                "Drezel immediately!",
         )
         player<Neutral>("I was doing that anyway.")
         npc<Neutral>("Ah, I see. In that case keep up the good work.")
@@ -264,7 +264,7 @@ class KingRoald : Script {
         npc<Neutral>("Have you freed Drezel yet?")
         player<Neutral>(
             "Well, I found the key to his cell and unlocked it, but there's a vampire in there " +
-                    "stopping him leaving."
+                "stopping him leaving.",
         )
         npc<Neutral>("A vampire eh? Nasty pieces of work. Well, I order you to do something about it at once!")
         player<Confused>("Yeah, I was planning on doing that anyway.")
@@ -282,48 +282,48 @@ class KingRoald : Script {
         npc<Confused>("Do you have anything of importance to say?")
         player<Sad>("...Not really.")
         npc<Neutral>(
-            "You will have to excuse me, then. I am very busy as I have a kingdom to run!"
+            "You will have to excuse me, then. I am very busy as I have a kingdom to run!",
         )
     }
 
     private suspend fun Player.shieldOfArravRecovered() {
         player<Happy>(
-            "Your majesty, I have recovered the Shield Of Arrav; I would like to claim the reward."
+            "Your majesty, I have recovered the Shield Of Arrav; I would like to claim the reward.",
         )
         npc<Quiz>(
             "The Shield of Arrav, eh? Yes, I do recall my father, King Roald, put a reward " +
-                    "out for that."
+                "out for that.",
         )
         npc<Neutral>("Very well.")
         npc<Neutral>(
             "If you get the authenticity of the shield verified by the curator at the museum " +
-                    "and then return here with authentication, I will grant you your reward."
+                "and then return here with authentication, I will grant you your reward.",
         )
     }
 
     private suspend fun Player.claimReward(certificate: String) {
         player<Happy>(
-            "Your majesty, I have come to claim the reward for the return of the Shield Of Arrav."
+            "Your majesty, I have come to claim the reward for the return of the Shield Of Arrav.",
         )
         item("certificate", "You show the certificate to the king.")
         if (certificate == "certificate_full") {
             npc<Happy>(
-                "My goodness! This claim is for the reward offered by my father many years ago!"
+                "My goodness! This claim is for the reward offered by my father many years ago!",
             )
             npc<Happy>(
                 "I never thought I would live to see the day when someone came forward to claim " +
-                        "this reward!"
+                    "this reward!",
             )
             npc<Happy>(
                 "I heard that you found half the shield, so I will give you half of the bounty. " +
-                        "That comes to exactly 600gp!"
+                    "That comes to exactly 600gp!",
             )
             item("coins", "You hand over a certificate. The king gives you 600gp.") // TODO check amount
             // grantShieldOfArravReward(certificate) TODO
         } else {
             npc<Sad>(
                 "I'm afraid that's only half the reward certificate. You'll have to get the " +
-                        "other half and join them together if you want to claim the reward."
+                    "other half and join them together if you want to claim the reward.",
             )
         }
     }
@@ -338,32 +338,32 @@ class KingRoald : Script {
     fun ChoiceOption.talkAboutSurok(): Unit = option("Talk about Surok.") {
         player<Neutral>("Your majesty, I think that you should see this letter.")
         npc<Neutral>(
-            "Letter? Let me see. Where's Postie Pete? He usually deals with the mail around here."
+            "Letter? Let me see. Where's Postie Pete? He usually deals with the mail around here.",
         )
         player<Neutral>(
             "This letter was delivered to me by hand, your majesty. I think you may be in some " +
-                    "danger."
+                "danger.",
         )
         npc<Neutral>(
             "Hmmm. I see. I appreciate your concern. However, I assure you, I am quite safe " +
-                    "here. My guards are on full alert at all times."
+                "here. My guards are on full alert at all times.",
         )
         player<Neutral>("I don't think you understand...")
         npc<Neutral>(
             "I understand perfectly. Now, for all I know, that letter could be a fake ruse. " +
-                    "We get a lot of that sort of thing and it causes a lot of hassle."
+                "We get a lot of that sort of thing and it causes a lot of hassle.",
         )
         player<Angry>("I'm trying to save your life!")
         npc<Angry>(
             "And you are shouting at your king! People who yell at their monarchs often find " +
-                    "their heads become...loose!"
+                "their heads become...loose!",
         )
         player<Neutral>("I'm just saying that the letter is real.")
         npc<Quiz>("Then why do you have it?")
         player<Sad>("Because I'm supposed to deliv...oh.")
         npc<Neutral>(
             "It seems to me that if that letter were genuine, I would be forced to arrest its " +
-                    "bearer for treason. You understand."
+                "bearer for treason. You understand.",
         )
         npc<Quiz>("So what do you say?")
         player<Sad>("I...er...I reckon it's a fake! ...I guess...")
@@ -388,13 +388,13 @@ class KingRoald : Script {
         val defenderProgress = get("defender_of_varrock", 0)
         if (defenderProgress in 220..225) {
             player<Neutral>(
-                "So I can see. We might have a solution with this shield, though."
+                "So I can see. We might have a solution with this shield, though.",
             )
             shieldSolution()
         } else {
             player<Neutral>("I'm sorry, Your Majesty. I'm trying to get rid of them.")
             npc<Angry>(
-                "Well, help get rid of them, rather than standing there yapping at me."
+                "Well, help get rid of them, rather than standing there yapping at me.",
             )
         }
     }
@@ -415,30 +415,30 @@ class KingRoald : Script {
         if (inventory.contains("restored_shield_of_arrav")) {
             npc<Confused>(
                 "No one has figured out how to unlock the powers of the shield in hundreds of " +
-                        "years - are we so desperate that we are relying on legends?"
+                    "years - are we so desperate that we are relying on legends?",
             )
             player<Happy>(
                 "I have a reason to believe that you are descended from an original elder of " +
-                        "Varrock."
+                    "Varrock.",
             )
             npc<Neutral>(
-                "That's right. Would you expect anything less of the man who is king?"
+                "That's right. Would you expect anything less of the man who is king?",
             )
             player<Neutral>(
                 "No, Your Majesty, but it might mean that you can use the shield to defeat the " +
-                        "zombies. Here, hold the shield and see if anything happens."
+                    "zombies. Here, hold the shield and see if anything happens.",
             )
             npc<Neutral>("Well, I have held the shield before, but I'll give it a go.")
             item(item = "restored_shield_of_arrav", "You pass the shield to King Roald.")
             npc<Neutral>("It doesn't seem to be doing anything special.")
             player<Neutral>(
                 "It must be someone else who is descended from the correct elder, then. Ah, " +
-                        "well, thank you for your time."
+                    "well, thank you for your time.",
             )
         } else {
             npc<Confused>("What shield?")
             player<Neutral>(
-                "Actually, no, I don't have it. How embarrassing. I'll be back in a bit."
+                "Actually, no, I don't have it. How embarrassing. I'll be back in a bit.",
             )
         }
     }
