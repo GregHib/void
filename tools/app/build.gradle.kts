@@ -9,46 +9,53 @@ plugins {
 
 kotlin {
     jvmToolchain(21)
+
     dependencies {
+        implementation(kotlin("reflect"))
         implementation(project(":buffer"))
         implementation(project(":cache"))
         implementation(project(":engine"))
-        implementation(project(":game"))
-        implementation(project(":network"))
         implementation(project(":config"))
         implementation(project(":types"))
 
         implementation(libs.bundles.compose)
-        implementation(compose.desktop.currentOs)
+//        implementation(compose.desktop.currentOs)
+        implementation(libs.bundles.compose.release)
 
         implementation(libs.kotlinx.io)
         implementation(libs.kotlinx.coroutines)
 
         implementation("org.apache.commons:commons-compress:1.24.0")
-        implementation("org.jsoup:jsoup:1.17.2")
-        implementation("org.sweble.wikitext:swc-engine:3.1.9")
-        implementation("com.github.weisj:darklaf-core:2.7.3")
-        implementation("javax.xml.bind:jaxb-api:2.3.1")
         implementation(libs.kasechange)
 
         implementation(libs.koin)
         implementation(libs.displee.cache)
-        implementation("com.fasterxml.jackson.core:jackson-core:2.16.1")
-        implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.16.1")
-        implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.16.1")
         implementation(libs.fastutil)
-        implementation(libs.rsmod.pathfinder)
 
         testImplementation(libs.mockk)
     }
+
+    sourceSets {
+        val main by getting {
+            resources.srcDir(file("composeResources/drawable"))
+        }
+    }
 }
 
-tasks.withType<AbstractTestTask>().configureEach {
-    failOnNoDiscoveredTests = false
-}
+tasks {
+    withType<AbstractTestTask>().configureEach {
+        failOnNoDiscoveredTests = false
+    }
 
-tasks.withType<JavaExec> {
-    workingDir = projectDir
+    withType<JavaExec> {
+        workingDir = projectDir
+    }
+
+    processResources {
+        from("../../game/src/main/resources/") {
+            include("game.properties")
+        }
+    }
 }
 
 compose {
@@ -57,7 +64,7 @@ compose {
             mainClass = "world.gregs.voidps.tools.search.AppKt"
             nativeDistributions {
                 targetFormats(TargetFormat.Msi, TargetFormat.Deb)
-                packageName = "VoidDefinitionBrowser"
+                packageName = "void-cache-viewer"
                 packageVersion = "1.0.0"
                 val icon = project.file("src/main/composeResources/drawable/void_icon.png")
                 windows {
@@ -67,6 +74,12 @@ compose {
                 linux {
                     iconFile.set(icon)
                 }
+            }
+
+            buildTypes.release.proguard {
+                isEnabled.set(true)
+                optimize.set(true)
+                configurationFiles.from(project.file("compose-proguard-rules.pro"))
             }
         }
     }
