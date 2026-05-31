@@ -75,7 +75,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
         DefinitionTab(
             label = Tabs.NPCS,
             clazz = NPCDefinitionFull::class.java,
-            defaultColumns = listOf("id", "stringId", "name"),
+            defaultColumns = listOf("id", "stringId", "name", "varbit", "transforms"),
             fieldLinks = listOf(
                 FieldLink("renderEmote", Tabs.EMOTES),
                 FieldLink("idleSound", Tabs.SOUNDS),
@@ -97,7 +97,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
         DefinitionTab(
             label = Tabs.OBJS,
             clazz = ObjectDefinitionFull::class.java,
-            defaultColumns = listOf("id", "stringId", "name", "varbit", "varp"),
+            defaultColumns = listOf("id", "stringId", "name", "varbit", "varp", "transforms"),
             fieldLinks = listOf(
                 FieldLink("transforms", Tabs.OBJS),
                 FieldLink("varbit", Tabs.VARS),
