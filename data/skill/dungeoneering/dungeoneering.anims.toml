@@ -1,0 +1,20 @@
+[unlock_dung_door]
+id = 13798
+
+[pile_of_rocks_remove]
+id = 13559
+
+[fix_broken_key_door]
+id = 13759
+
+[disarm_locked_door]
+id = 13547
+
+[pick_padlocked_door]
+id = 14568
+
+[open_liquid_lock_door]
+id = 14568
+
+[repair_collapsing_doorframe]
+id = 14566

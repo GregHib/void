@@ -31,8 +31,8 @@ class MapObjectsRotatedDecoder : MapObjectDecoder() {
         }
         val def = ObjectDefinitions.getValue(objectId)
         val objRotation = (rotation + zoneRotation) and 0x3
-        val rotX = rotateX(localX.rem(8), localY.rem(8), def.sizeX, def.sizeY, objRotation, zoneRotation)
-        val rotY = rotateY(localX.rem(8), localY.rem(8), def.sizeX, def.sizeY, objRotation, zoneRotation)
+        val rotX = rotateX(localX.rem(8), localY.rem(8), def.sizeX, def.sizeY, rotation, zoneRotation)
+        val rotY = rotateY(localX.rem(8), localY.rem(8), def.sizeX, def.sizeY, rotation, zoneRotation)
         GameObjects.set(objectId, regionTileX + rotX, regionTileY + rotY, level, shape, objRotation, def)
     }
 
@@ -41,13 +41,13 @@ class MapObjectsRotatedDecoder : MapObjectDecoder() {
         objY: Int,
         sizeX: Int,
         sizeY: Int,
-        objRotation: Int,
+        originalRotation: Int,
         zoneRotation: Int,
     ): Int {
         var x = sizeX
         var y = sizeY
         val rotation = zoneRotation and 0x3
-        if (objRotation and 0x1 == 1) {
+        if (originalRotation and 0x1 == 1) {
             val temp = x
             x = y
             y = temp
@@ -66,13 +66,13 @@ class MapObjectsRotatedDecoder : MapObjectDecoder() {
         objY: Int,
         sizeX: Int,
         sizeY: Int,
-        objRotation: Int,
+        originalRotation: Int,
         zoneRotation: Int,
     ): Int {
         val rotation = zoneRotation and 0x3
         var x = sizeY
         var y = sizeX
-        if (objRotation and 0x1 == 1) {
+        if (originalRotation and 0x1 == 1) {
             val temp = y
             y = x
             x = temp

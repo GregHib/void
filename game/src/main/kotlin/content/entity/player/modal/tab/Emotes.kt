@@ -30,6 +30,11 @@ class Emotes : Script {
     }
 
     init {
+        playerSpawn {
+            val item = equipped(EquipSlot.Cape)
+            set("unlocked_emote_skillcape", item.def.contains(Params.SKILLCAPE_SKILL) || item.id == "quest_point_cape")
+        }
+
         interfaceRefresh("emotes") {
             interfaceOptions.unlockAll("emotes", "emotes", 0..190)
         }

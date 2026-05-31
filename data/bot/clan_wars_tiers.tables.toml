@@ -1,0 +1,65 @@
+[clan_wars_tiers]
+row_id = "string"
+combat_style = "string"
+skills = "list<string>"
+levels = "list<int>"
+
+[.clan_wars_ffa_safe_zerker]
+combat_style = "slash"
+skills = ["attack", "strength", "defence", "constitution", "prayer"]
+levels = [60, 80, 45, 75, 95]
+
+[.clan_wars_ffa_safe_dharoker]
+combat_style = "slash"
+skills = ["attack", "strength", "defence", "constitution", "prayer"]
+levels = [70, 70, 70, 70, 95]
+
+[.clan_wars_ffa_safe_ags_main]
+combat_style = "slash"
+skills = ["attack", "strength", "defence", "constitution", "prayer"]
+levels = [75, 85, 75, 85, 95]
+
+[.clan_wars_ffa_safe_obby_pure]
+combat_style = "crush"
+skills = ["attack", "strength", "defence", "constitution"]
+levels = [1, 80, 1, 70]
+
+[.clan_wars_ffa_safe_msb_pure]
+combat_style = "rapid"
+skills = ["attack", "strength", "defence", "constitution", "ranged", "prayer"]
+levels = [1, 1, 1, 70, 70, 95]
+
+[.clan_wars_ffa_safe_karils_tank]
+combat_style = "rapid"
+skills = ["attack", "strength", "defence", "constitution", "ranged", "prayer"]
+levels = [1, 1, 70, 75, 75, 95]
+
+[.clan_wars_ffa_safe_ancient_tank]
+combat_style = "accurate"
+skills = ["magic", "defence", "constitution", "prayer"]
+levels = [94, 70, 80, 95]
+
+[.clan_wars_ffa_safe_ancient_hybrid]
+combat_style = "accurate"
+skills = ["magic", "attack", "strength", "ranged", "defence", "constitution", "prayer"]
+levels = [94, 75, 80, 75, 70, 85, 95]
+
+[.clan_wars_ffa_dangerous_melee]
+combat_style = "slash"
+skills = ["attack", "strength", "defence", "constitution", "prayer", "magic"]
+levels = [60, 70, 40, 70, 95, 94]
+
+[.clan_wars_ffa_dangerous_ranged]
+combat_style = "rapid"
+skills = ["ranged", "defence", "constitution", "prayer"]
+levels = [70, 40, 70, 95]
+
+[.clan_wars_ffa_dangerous_magic]
+combat_style = "accurate"
+skills = ["magic", "defence", "constitution", "prayer"]
+levels = [94, 40, 70, 95]
+
+[.clan_wars_ffa_dangerous_hybrid]
+combat_style = "slash"
+skills = ["attack", "strength", "ranged", "magic", "defence", "constitution", "prayer"]
+levels = [75, 80, 75, 94, 60, 80, 95]

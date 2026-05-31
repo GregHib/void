@@ -33,7 +33,7 @@ fun Character.praying(name: String): Boolean = when (this) {
 
 fun Player.getActivePrayerVarKey(): String = if (isCurses()) PrayerConfigs.ACTIVE_CURSES else PrayerConfigs.ACTIVE_PRAYERS
 
-fun Player.isCurses(): Boolean = get(PrayerConfigs.PRAYERS, "") == "curses"
+fun Player.isCurses(): Boolean = get(PrayerConfigs.PRAYERS, "normal") == "curses"
 
 /**
  * Bonus' are a value between 11..42 to represent -25%..15% with 30=0%

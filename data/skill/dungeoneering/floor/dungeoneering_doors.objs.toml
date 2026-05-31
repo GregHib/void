@@ -1,0 +1,1553 @@
+[occult_exit]
+id = 56149
+
+[orange_triangle_door]
+id = 50208
+
+[orange_diamond_door]
+id = 50209
+
+[orange_rectangle_door]
+id = 50210
+
+[orange_pentagon_door]
+id = 50211
+
+[orange_corner_door]
+id = 50212
+
+[orange_crescent_door]
+id = 50213
+
+[orange_wedge_door]
+id = 50214
+
+[orange_shield_door]
+id = 50215
+
+[silver_triangle_door]
+id = 50216
+
+[silver_diamond_door]
+id = 50217
+
+[silver_rectangle_door]
+id = 50218
+
+[silver_pentagon_door]
+id = 50219
+
+[silver_corner_door]
+id = 50220
+
+[silver_crescent_door]
+id = 50221
+
+[silver_wedge_door]
+id = 50222
+
+[silver_shield_door]
+id = 50223
+
+[yellow_triangle_door]
+id = 50224
+
+[yellow_diamond_door]
+id = 50225
+
+[yellow_rectangle_door]
+id = 50226
+
+[yellow_pentagon_door]
+id = 50227
+
+[yellow_corner_door]
+id = 50228
+
+[yellow_crescent_door]
+id = 50229
+
+[yellow_wedge_door]
+id = 50230
+
+[yellow_shield_door]
+id = 50231
+
+[green_triangle_door]
+id = 50232
+
+[green_diamond_door]
+id = 50233
+
+[green_rectangle_door]
+id = 50234
+
+[green_pentagon_door]
+id = 50235
+
+[green_corner_door]
+id = 50236
+
+[green_crescent_door]
+id = 50237
+
+[green_wedge_door]
+id = 50238
+
+[green_shield_door]
+id = 50239
+
+[blue_triangle_door]
+id = 50240
+
+[blue_diamond_door]
+id = 50241
+
+[blue_rectangle_door]
+id = 50242
+
+[blue_pentagon_door]
+id = 50243
+
+[blue_corner_door]
+id = 50244
+
+[blue_crescent_door]
+id = 50245
+
+[blue_wedge_door]
+id = 50246
+
+[blue_shield_door]
+id = 50247
+
+[purple_triangle_door]
+id = 50248
+
+[purple_diamond_door]
+id = 50249
+
+[purple_rectangle_door]
+id = 50250
+
+[purple_pentagon_door]
+id = 50251
+
+[purple_corner_door]
+id = 50252
+
+[purple_crescent_door]
+id = 50253
+
+[purple_wedge_door]
+id = 50254
+
+[purple_shield_door]
+id = 50255
+
+[crimson_triangle_door]
+id = 50256
+
+[crimson_diamond_door]
+id = 50257
+
+[crimson_rectangle_door]
+id = 50258
+
+[crimson_pentagon_door]
+id = 50259
+
+[crimson_corner_door]
+id = 50260
+
+[crimson_crescent_door]
+id = 50261
+
+[crimson_wedge_door]
+id = 50262
+
+[crimson_shield_door]
+id = 50263
+
+[gold_triangle_door]
+id = 50264
+
+[gold_diamond_door]
+id = 50265
+
+[gold_rectangle_door]
+id = 50266
+
+[gold_pentagon_door]
+id = 50267
+
+[gold_corner_door]
+id = 50268
+
+[gold_crescent_door]
+id = 50269
+
+[gold_wedge_door]
+id = 50270
+
+[gold_shield_door]
+id = 50271
+
+[barred_door_frozen]
+id = 50272
+
+[barred_door_abandoned]
+id = 50273
+
+[barred_door_furnished]
+id = 50274
+
+[unbarred_door_frozen]
+id = 50275
+
+[unbarred_door_abandoned]
+id = 50276
+
+[unbarred_door_furnished]
+id = 50277
+
+[runed_door_frozen]
+id = 50278
+
+[runed_door_abandoned]
+id = 50279
+
+[runed_door_furnished]
+id = 50280
+
+[collapsing_doorframe_frozen]
+id = 50281
+
+[collapsing_doorframe_abandoned]
+id = 50282
+
+[collapsing_doorframe_furnished]
+id = 50283
+
+[repaired_door_frozen]
+id = 50284
+
+[repaired_door_abandoned]
+id = 50285
+
+[repaired_door_furnished]
+id = 50286
+
+[locked_door_frozen]
+id = 50287
+
+[locked_door_abandoned]
+id = 50288
+
+[locked_door_furnished]
+id = 50289
+
+[unlocked_door_frozen]
+id = 50290
+
+[unlocked_door_abandoned]
+id = 50291
+
+[unlocked_door_furnished]
+id = 50292
+
+[padlocked_door_frozen]
+id = 50293
+
+[padlocked_door_abandoned]
+id = 50294
+
+[padlocked_door_furnished]
+id = 50295
+
+[picked_door_frozen]
+id = 50296
+
+[picked_door_abandoned]
+id = 50297
+
+[picked_door_furnished]
+id = 50298
+
+[broken_pulley_door_frozen]
+id = 50299
+
+[broken_pulley_door_abandoned]
+id = 50300
+
+[broken_pulley_door_furnished]
+id = 50301
+
+[fixed_pulley_door_frozen]
+id = 50302
+
+[fixed_pulley_door_abandoned]
+id = 50303
+
+[fixed_pulley_door_furnished]
+id = 50304
+
+[pile_of_rocks_frozen]
+id = 50305
+
+[pile_of_rocks_abandoned]
+id = 50306
+
+[pile_of_rocks_furnished]
+id = 50307
+
+[broken_key_door_frozen]
+id = 50308
+
+[broken_key_door_abandoned]
+id = 50309
+
+[broken_key_door_furnished]
+id = 50310
+
+[fixed_key_door_frozen]
+id = 50311
+
+[fixed_key_door_abandoned]
+id = 50312
+
+[fixed_key_door_furnished]
+id = 50313
+
+[flammable_debris_frozen]
+id = 50314
+
+[flammable_debris_abandoned]
+id = 50315
+
+[flammable_debris_furnished]
+id = 50316
+
+[wooden_barricade_frozen]
+id = 50317
+
+[wooden_barricade_abandoned]
+id = 50318
+
+[wooden_barricade_furnished]
+id = 50319
+
+[cleared_barricade_frozen]
+id = 50320
+
+[cleared_barricade_abandoned]
+id = 50321
+
+[cleared_barricade_furnished]
+id = 50322
+
+[vine_covered_door_frozen]
+id = 50323
+
+[vine_covered_door_abandoned]
+id = 50324
+
+[vine_covered_door_furnished]
+id = 50325
+
+[ramokee_exile_frozen]
+id = 50326
+
+[ramokee_exile_abandoned]
+id = 50327
+
+[ramokee_exile_furnished]
+id = 50328
+
+[magical_barrier_frozen]
+id = 50329
+
+[magical_barrier_abandoned]
+id = 50330
+
+[magical_barrier_furnished]
+id = 50331
+
+[dark_spirit_frozen]
+id = 50332
+
+[dark_spirit_abandoned]
+id = 50333
+
+[dark_spirit_furnished]
+id = 50334
+
+[liquid_lock_door_frozen]
+id = 50335
+
+[liquid_lock_door_abandoned]
+id = 50336
+
+[liquid_lock_door_furnished]
+id = 50337
+
+[exploded_liquid_door_frozen]
+id = 50338
+
+[exploded_liquid_door_abandoned]
+id = 50339
+
+[exploded_liquid_door_furnished]
+id = 50340
+
+[door_furnished_1]
+id = 50341
+
+[door_frozen]
+id = 50342
+
+[door_abandoned]
+id = 50343
+
+[door_furnished_2]
+id = 50344
+
+[guardian_door_furnished_1]
+id = 50345
+
+[guardian_door_frozen]
+id = 50346
+
+[guardian_door_abandoned]
+id = 50347
+
+[guardian_door_furnished_2]
+id = 50348
+
+[boss_door_furnished_1]
+id = 50349
+
+[boss_door_frozen]
+id = 50350
+
+[boss_door_abandoned]
+id = 50351
+
+[boss_door_furnished_2]
+id = 50352
+
+[orange_triangle_door_frozen]
+id = 50353
+
+[orange_diamond_door_frozen]
+id = 50354
+
+[orange_rectangle_door_frozen]
+id = 50355
+
+[orange_pentagon_door_frozen]
+id = 50356
+
+[orange_corner_door_frozen]
+id = 50357
+
+[orange_crescent_door_frozen]
+id = 50358
+
+[orange_wedge_door_frozen]
+id = 50359
+
+[orange_shield_door_frozen]
+id = 50360
+
+[silver_triangle_door_frozen]
+id = 50361
+
+[silver_diamond_door_frozen]
+id = 50362
+
+[silver_rectangle_door_frozen]
+id = 50363
+
+[silver_pentagon_door_frozen]
+id = 50364
+
+[silver_corner_door_frozen]
+id = 50365
+
+[silver_crescent_door_frozen]
+id = 50366
+
+[silver_wedge_door_frozen]
+id = 50367
+
+[silver_shield_door_frozen]
+id = 50368
+
+[yellow_triangle_door_frozen]
+id = 50369
+
+[yellow_diamond_door_frozen]
+id = 50370
+
+[yellow_rectangle_door_frozen]
+id = 50371
+
+[yellow_pentagon_door_frozen]
+id = 50372
+
+[yellow_corner_door_frozen]
+id = 50373
+
+[yellow_crescent_door_frozen]
+id = 50374
+
+[yellow_wedge_door_frozen]
+id = 50375
+
+[yellow_shield_door_frozen]
+id = 50376
+
+[green_triangle_door_frozen]
+id = 50377
+
+[green_diamond_door_frozen]
+id = 50378
+
+[green_rectangle_door_frozen]
+id = 50379
+
+[green_pentagon_door_frozen]
+id = 50380
+
+[green_corner_door_frozen]
+id = 50381
+
+[green_crescent_door_frozen]
+id = 50382
+
+[green_wedge_door_frozen]
+id = 50383
+
+[green_shield_door_frozen]
+id = 50384
+
+[blue_triangle_door_frozen]
+id = 50385
+
+[blue_diamond_door_frozen]
+id = 50386
+
+[blue_rectangle_door_frozen]
+id = 50387
+
+[blue_pentagon_door_frozen]
+id = 50388
+
+[blue_corner_door_frozen]
+id = 50389
+
+[blue_crescent_door_frozen]
+id = 50390
+
+[blue_wedge_door_frozen]
+id = 50391
+
+[blue_shield_door_frozen]
+id = 50392
+
+[purple_triangle_door_frozen]
+id = 50393
+
+[purple_diamond_door_frozen]
+id = 50394
+
+[purple_rectangle_door_frozen]
+id = 50395
+
+[purple_pentagon_door_frozen]
+id = 50396
+
+[purple_corner_door_frozen]
+id = 50397
+
+[purple_crescent_door_frozen]
+id = 50398
+
+[purple_wedge_door_frozen]
+id = 50399
+
+[purple_shield_door_frozen]
+id = 50400
+
+[crimson_triangle_door_frozen]
+id = 50401
+
+[crimson_diamond_door_frozen]
+id = 50402
+
+[crimson_rectangle_door_frozen]
+id = 50403
+
+[crimson_pentagon_door_frozen]
+id = 50404
+
+[crimson_corner_door_frozen]
+id = 50405
+
+[crimson_crescent_door_frozen]
+id = 50406
+
+[crimson_wedge_door_frozen]
+id = 50407
+
+[crimson_shield_door_frozen]
+id = 50408
+
+[gold_triangle_door_frozen]
+id = 50409
+
+[gold_diamond_door_frozen]
+id = 50410
+
+[gold_rectangle_door_frozen]
+id = 50411
+
+[gold_pentagon_door_frozen]
+id = 50412
+
+[gold_corner_door_frozen]
+id = 50413
+
+[gold_crescent_door_frozen]
+id = 50414
+
+[gold_wedge_door_frozen]
+id = 50415
+
+[gold_shield_door_frozen]
+id = 50416
+
+[orange_triangle_door_abandoned]
+id = 50417
+
+[orange_diamond_door_abandoned]
+id = 50418
+
+[orange_rectangle_door_abandoned]
+id = 50419
+
+[orange_pentagon_door_abandoned]
+id = 50420
+
+[orange_corner_door_abandoned]
+id = 50421
+
+[orange_crescent_door_abandoned]
+id = 50422
+
+[orange_wedge_door_abandoned]
+id = 50423
+
+[orange_shield_door_abandoned]
+id = 50424
+
+[silver_triangle_door_abandoned]
+id = 50425
+
+[silver_diamond_door_abandoned]
+id = 50426
+
+[silver_rectangle_door_abandoned]
+id = 50427
+
+[silver_pentagon_door_abandoned]
+id = 50428
+
+[silver_corner_door_abandoned]
+id = 50429
+
+[silver_crescent_door_abandoned]
+id = 50430
+
+[silver_wedge_door_abandoned]
+id = 50431
+
+[silver_shield_door_abandoned]
+id = 50432
+
+[yellow_triangle_door_abandoned]
+id = 50433
+
+[yellow_diamond_door_abandoned]
+id = 50434
+
+[yellow_rectangle_door_abandoned]
+id = 50435
+
+[yellow_pentagon_door_abandoned]
+id = 50436
+
+[yellow_corner_door_abandoned]
+id = 50437
+
+[yellow_crescent_door_abandoned]
+id = 50438
+
+[yellow_wedge_door_abandoned]
+id = 50439
+
+[yellow_shield_door_abandoned]
+id = 50440
+
+[green_triangle_door_abandoned]
+id = 50441
+
+[green_diamond_door_abandoned]
+id = 50442
+
+[green_rectangle_door_abandoned]
+id = 50443
+
+[green_pentagon_door_abandoned]
+id = 50444
+
+[green_corner_door_abandoned]
+id = 50445
+
+[green_crescent_door_abandoned]
+id = 50446
+
+[green_wedge_door_abandoned]
+id = 50447
+
+[green_shield_door_abandoned]
+id = 50448
+
+[blue_triangle_door_abandoned]
+id = 50449
+
+[blue_diamond_door_abandoned]
+id = 50450
+
+[blue_rectangle_door_abandoned]
+id = 50451
+
+[blue_pentagon_door_abandoned]
+id = 50452
+
+[blue_corner_door_abandoned]
+id = 50453
+
+[blue_crescent_door_abandoned]
+id = 50454
+
+[blue_wedge_door_abandoned]
+id = 50455
+
+[blue_shield_door_abandoned]
+id = 50456
+
+[purple_triangle_door_abandoned]
+id = 50457
+
+[purple_diamond_door_abandoned]
+id = 50458
+
+[purple_rectangle_door_abandoned]
+id = 50459
+
+[purple_pentagon_door_abandoned]
+id = 50460
+
+[purple_corner_door_abandoned]
+id = 50461
+
+[purple_crescent_door_abandoned]
+id = 50462
+
+[purple_wedge_door_abandoned]
+id = 50463
+
+[purple_shield_door_abandoned]
+id = 50464
+
+[crimson_triangle_door_abandoned]
+id = 50465
+
+[crimson_diamond_door_abandoned]
+id = 50466
+
+[crimson_rectangle_door_abandoned]
+id = 50467
+
+[crimson_pentagon_door_abandoned]
+id = 50468
+
+[crimson_corner_door_abandoned]
+id = 50469
+
+[crimson_crescent_door_abandoned]
+id = 50470
+
+[crimson_wedge_door_abandoned]
+id = 50471
+
+[crimson_shield_door_abandoned]
+id = 50472
+
+[gold_triangle_door_abandoned]
+id = 50473
+
+[gold_diamond_door_abandoned]
+id = 50474
+
+[gold_rectangle_door_abandoned]
+id = 50475
+
+[gold_pentagon_door_abandoned]
+id = 50476
+
+[gold_corner_door_abandoned]
+id = 50477
+
+[gold_crescent_door_abandoned]
+id = 50478
+
+[gold_wedge_door_abandoned]
+id = 50479
+
+[gold_shield_door_abandoned]
+id = 50480
+
+[orange_triangle_door_furnished]
+id = 50481
+
+[orange_diamond_door_furnished]
+id = 50482
+
+[orange_rectangle_door_furnished]
+id = 50483
+
+[orange_pentagon_door_furnished]
+id = 50484
+
+[orange_corner_door_furnished]
+id = 50485
+
+[orange_crescent_door_furnished]
+id = 50486
+
+[orange_wedge_door_furnished]
+id = 50487
+
+[orange_shield_door_furnished]
+id = 50488
+
+[silver_triangle_door_furnished]
+id = 50489
+
+[silver_diamond_door_furnished]
+id = 50490
+
+[silver_rectangle_door_furnished]
+id = 50491
+
+[silver_pentagon_door_furnished]
+id = 50492
+
+[silver_corner_door_furnished]
+id = 50493
+
+[silver_crescent_door_furnished]
+id = 50494
+
+[silver_wedge_door_furnished]
+id = 50495
+
+[silver_shield_door_furnished]
+id = 50496
+
+[yellow_triangle_door_furnished]
+id = 50497
+
+[yellow_diamond_door_furnished]
+id = 50498
+
+[yellow_rectangle_door_furnished]
+id = 50499
+
+[yellow_pentagon_door_furnished]
+id = 50500
+
+[yellow_corner_door_furnished]
+id = 50501
+
+[yellow_crescent_door_furnished]
+id = 50502
+
+[yellow_wedge_door_furnished]
+id = 50503
+
+[yellow_shield_door_furnished]
+id = 50504
+
+[green_triangle_door_furnished]
+id = 50505
+
+[green_diamond_door_furnished]
+id = 50506
+
+[green_rectangle_door_furnished]
+id = 50507
+
+[green_pentagon_door_furnished]
+id = 50508
+
+[green_corner_door_furnished]
+id = 50509
+
+[green_crescent_door_furnished]
+id = 50510
+
+[green_wedge_door_furnished]
+id = 50511
+
+[green_shield_door_furnished]
+id = 50512
+
+[blue_triangle_door_furnished]
+id = 50513
+
+[blue_diamond_door_furnished]
+id = 50514
+
+[blue_rectangle_door_furnished]
+id = 50515
+
+[blue_pentagon_door_furnished]
+id = 50516
+
+[blue_corner_door_furnished]
+id = 50517
+
+[blue_crescent_door_furnished]
+id = 50518
+
+[blue_wedge_door_furnished]
+id = 50519
+
+[blue_shield_door_furnished]
+id = 50520
+
+[purple_triangle_door_furnished]
+id = 50521
+
+[purple_diamond_door_furnished]
+id = 50522
+
+[purple_rectangle_door_furnished]
+id = 50523
+
+[purple_pentagon_door_furnished]
+id = 50524
+
+[purple_corner_door_furnished]
+id = 50525
+
+[purple_crescent_door_furnished]
+id = 50526
+
+[purple_wedge_door_furnished]
+id = 50527
+
+[purple_shield_door_furnished]
+id = 50528
+
+[crimson_triangle_door_furnished]
+id = 50529
+
+[crimson_diamond_door_furnished]
+id = 50530
+
+[crimson_rectangle_door_furnished]
+id = 50531
+
+[crimson_pentagon_door_furnished]
+id = 50532
+
+[crimson_corner_door_furnished]
+id = 50533
+
+[crimson_crescent_door_furnished]
+id = 50534
+
+[crimson_wedge_door_furnished]
+id = 50535
+
+[crimson_shield_door_furnished]
+id = 50536
+
+[gold_triangle_door_furnished]
+id = 50537
+
+[gold_diamond_door_furnished]
+id = 50538
+
+[gold_rectangle_door_furnished]
+id = 50539
+
+[gold_pentagon_door_furnished]
+id = 50540
+
+[gold_corner_door_furnished]
+id = 50541
+
+[gold_crescent_door_furnished]
+id = 50542
+
+[gold_wedge_door_furnished]
+id = 50543
+
+[gold_shield_door_furnished]
+id = 50544
+
+[orange_triangle_door_occult]
+id = 53884
+
+[orange_diamond_door_occult]
+id = 53885
+
+[orange_rectangle_door_occult]
+id = 53886
+
+[orange_pentagon_door_occult]
+id = 53887
+
+[orange_corner_door_occult]
+id = 53888
+
+[orange_crescent_door_occult]
+id = 53889
+
+[orange_wedge_door_occult]
+id = 53890
+
+[orange_shield_door_occult]
+id = 53891
+
+[silver_triangle_door_occult]
+id = 53892
+
+[silver_diamond_door_occult]
+id = 53893
+
+[silver_rectangle_door_occult]
+id = 53894
+
+[silver_pentagon_door_occult]
+id = 53895
+
+[silver_corner_door_occult]
+id = 53896
+
+[silver_crescent_door_occult]
+id = 53897
+
+[silver_wedge_door_occult]
+id = 53898
+
+[silver_shield_door_occult]
+id = 53899
+
+[yellow_triangle_door_occult]
+id = 53900
+
+[yellow_diamond_door_occult]
+id = 53901
+
+[yellow_rectangle_door_occult]
+id = 53902
+
+[yellow_pentagon_door_occult]
+id = 53903
+
+[yellow_corner_door_occult]
+id = 53904
+
+[yellow_crescent_door_occult]
+id = 53905
+
+[yellow_wedge_door_occult]
+id = 53906
+
+[yellow_shield_door_occult]
+id = 53907
+
+[green_triangle_door_occult]
+id = 53908
+
+[green_diamond_door_occult]
+id = 53909
+
+[green_rectangle_door_occult]
+id = 53910
+
+[green_pentagon_door_occult]
+id = 53911
+
+[green_corner_door_occult]
+id = 53912
+
+[green_crescent_door_occult]
+id = 53913
+
+[green_wedge_door_occult]
+id = 53914
+
+[green_shield_door_occult]
+id = 53915
+
+[blue_triangle_door_occult]
+id = 53916
+
+[blue_diamond_door_occult]
+id = 53917
+
+[blue_rectangle_door_occult]
+id = 53918
+
+[blue_pentagon_door_occult]
+id = 53919
+
+[blue_corner_door_occult]
+id = 53920
+
+[blue_crescent_door_occult]
+id = 53921
+
+[blue_wedge_door_occult]
+id = 53922
+
+[blue_shield_door_occult]
+id = 53923
+
+[purple_triangle_door_occult]
+id = 53924
+
+[purple_diamond_door_occult]
+id = 53925
+
+[purple_rectangle_door_occult]
+id = 53926
+
+[purple_pentagon_door_occult]
+id = 53927
+
+[purple_corner_door_occult]
+id = 53928
+
+[purple_crescent_door_occult]
+id = 53929
+
+[purple_wedge_door_occult]
+id = 53930
+
+[purple_shield_door_occult]
+id = 53931
+
+[crimson_triangle_door_occult]
+id = 53932
+
+[crimson_diamond_door_occult]
+id = 53933
+
+[crimson_rectangle_door_occult]
+id = 53934
+
+[crimson_pentagon_door_occult]
+id = 53935
+
+[crimson_corner_door_occult]
+id = 53936
+
+[crimson_crescent_door_occult]
+id = 53937
+
+[crimson_wedge_door_occult]
+id = 53938
+
+[crimson_shield_door_occult]
+id = 53939
+
+[gold_triangle_door_occult]
+id = 53940
+
+[gold_diamond_door_occult]
+id = 53941
+
+[gold_rectangle_door_occult]
+id = 53942
+
+[gold_pentagon_door_occult]
+id = 53943
+
+[gold_corner_door_occult]
+id = 53944
+
+[gold_crescent_door_occult]
+id = 53945
+
+[gold_wedge_door_occult]
+id = 53946
+
+[gold_shield_door_occult]
+id = 53947
+
+[door_occult]
+id = 53948
+
+[guardian_door_occult]
+id = 53949
+
+[boss_door_occult]
+id = 53950
+
+[barred_door_occult]
+id = 53951
+
+[unbarred_door_occult]
+id = 53952
+
+[runed_door_occult]
+id = 53953
+
+[collapsing_doorframe_occult]
+id = 53954
+
+[fixed_door_occult]
+id = 53955
+
+[locked_door_occult]
+id = 53956
+
+[unlocked_door_occult]
+id = 53957
+
+[padlocked_door_occult]
+id = 53958
+
+[picked_door_occult]
+id = 53959
+
+[broken_pulley_door_occult]
+id = 53960
+
+[fixed_pulley_door_occult]
+id = 53961
+
+[pile_of_rocks_occult]
+id = 53962
+
+[broken_key_door_occult]
+id = 53963
+
+[fixed_key_door_occult]
+id = 53964
+
+[flammable_debris_occult]
+id = 53965
+
+[wooden_barricade_occult]
+id = 53966
+
+[cleared_barricade_occult]
+id = 53967
+
+[vine_covered_door_occult]
+id = 53968
+
+[ramokee_exile_occult]
+id = 53969
+
+[magical_barrier_occult]
+id = 53970
+
+[dark_spirit_occult]
+id = 53971
+
+[liquid_lock_door_occult]
+id = 53972
+
+[exploded_liquid_door_occult]
+id = 53973
+
+[orange_triangle_door_warped]
+id = 55675
+
+[orange_diamond_door_warped]
+id = 55676
+
+[orange_rectangle_door_warped]
+id = 55677
+
+[orange_pentagon_door_warped]
+id = 55678
+
+[orange_corner_door_warped]
+id = 55679
+
+[orange_crescent_door_warped]
+id = 55680
+
+[orange_wedge_door_warped]
+id = 55681
+
+[orange_shield_door_warped]
+id = 55682
+
+[silver_triangle_door_warped]
+id = 55683
+
+[silver_diamond_door_warped]
+id = 55684
+
+[silver_rectangle_door_warped]
+id = 55685
+
+[silver_pentagon_door_warped]
+id = 55686
+
+[silver_corner_door_warped]
+id = 55687
+
+[silver_crescent_door_warped]
+id = 55688
+
+[silver_wedge_door_warped]
+id = 55689
+
+[silver_shield_door_warped]
+id = 55690
+
+[yellow_triangle_door_warped]
+id = 55691
+
+[yellow_diamond_door_warped]
+id = 55692
+
+[yellow_rectangle_door_warped]
+id = 55693
+
+[yellow_pentagon_door_warped]
+id = 55694
+
+[yellow_corner_door_warped]
+id = 55695
+
+[yellow_crescent_door_warped]
+id = 55696
+
+[yellow_wedge_door_warped]
+id = 55697
+
+[yellow_shield_door_warped]
+id = 55698
+
+[green_triangle_door_warped]
+id = 55699
+
+[green_diamond_door_warped]
+id = 55700
+
+[green_rectangle_door_warped]
+id = 55701
+
+[green_pentagon_door_warped]
+id = 55702
+
+[green_corner_door_warped]
+id = 55703
+
+[green_crescent_door_warped]
+id = 55704
+
+[green_wedge_door_warped]
+id = 55705
+
+[green_shield_door_warped]
+id = 55706
+
+[blue_triangle_door_warped]
+id = 55707
+
+[blue_diamond_door_warped]
+id = 55708
+
+[blue_rectangle_door_warped]
+id = 55709
+
+[blue_pentagon_door_warped]
+id = 55710
+
+[blue_corner_door_warped]
+id = 55711
+
+[blue_crescent_door_warped]
+id = 55712
+
+[blue_wedge_door_warped]
+id = 55713
+
+[blue_shield_door_warped]
+id = 55714
+
+[purple_triangle_door_warped]
+id = 55715
+
+[purple_diamond_door_warped]
+id = 55716
+
+[purple_rectangle_door_warped]
+id = 55717
+
+[purple_pentagon_door_warped]
+id = 55718
+
+[purple_corner_door_warped]
+id = 55719
+
+[purple_crescent_door_warped]
+id = 55720
+
+[purple_wedge_door_warped]
+id = 55721
+
+[purple_shield_door_warped]
+id = 55722
+
+[crimson_triangle_door_warped]
+id = 55723
+
+[crimson_diamond_door_warped]
+id = 55724
+
+[crimson_rectangle_door_warped]
+id = 55725
+
+[crimson_pentagon_door_warped]
+id = 55726
+
+[crimson_corner_door_warped]
+id = 55727
+
+[crimson_crescent_door_warped]
+id = 55728
+
+[crimson_wedge_door_warped]
+id = 55729
+
+[crimson_shield_door_warped]
+id = 55730
+
+[gold_triangle_door_warped]
+id = 55731
+
+[gold_diamond_door_warped]
+id = 55732
+
+[gold_rectangle_door_warped]
+id = 55733
+
+[gold_pentagon_door_warped]
+id = 55734
+
+[gold_corner_door_warped]
+id = 55735
+
+[gold_crescent_door_warped]
+id = 55736
+
+[gold_wedge_door_warped]
+id = 55737
+
+[gold_shield_door_warped]
+id = 55738
+
+[barred_door_warped]
+id = 55739
+
+[unbarred_door_warped]
+id = 55740
+
+[runed_door_warped]
+id = 55741
+
+[collapsing_doorframe_warped]
+id = 55742
+
+[repaired_door_warped]
+id = 55743
+
+[locked_door_warped]
+id = 55744
+
+[unlocked_door_warped]
+id = 55745
+
+[padlocked_door_warped]
+id = 55746
+
+[picked_door_warped]
+id = 55747
+
+[broken_pulley_door_warped]
+id = 55748
+
+[fixed_pulley_door_warped]
+id = 55749
+
+[pile_of_rocks_warped]
+id = 55750
+
+[broken_key_door_warped]
+id = 55751
+
+[fixed_key_door_warped]
+id = 55752
+
+[flammable_debris_warped]
+id = 55753
+
+[wooden_barricade_warped]
+id = 55754
+
+[cleared_barricade_warped]
+id = 55755
+
+[vine_covered_door_warped]
+id = 55756
+
+[ramokee_exile_warped]
+id = 55757
+
+[magical_barrier_warped]
+id = 55758
+
+[dark_spirit_warped]
+id = 55759
+
+[liquid_lock_door_warped]
+id = 55760
+
+[exploded_liquid_door_warped]
+id = 55761
+
+[door_warped]
+id = 55762
+
+[guardian_door_warped]
+id = 55763
+
+[boss_door_warped]
+id = 55764
