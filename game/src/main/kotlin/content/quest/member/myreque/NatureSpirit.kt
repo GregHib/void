@@ -10,9 +10,11 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
 import content.entity.proj.shoot
+import content.quest.quest
 import content.quest.questComplete
 import content.quest.questCompleted
 import content.quest.questJournal
+import content.quest.questStage
 import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
@@ -44,7 +46,6 @@ import kotlin.text.get
 class NatureSpirit : Script {
 
     init {
-
         questJournalOpen("nature_spirit") {
             val progress = nature_spirit
             val lines = mutableListOf<String>()
@@ -238,15 +239,13 @@ class NatureSpirit : Script {
         }
 
         objectOperate("Search", "grotto_druidicspirit") {
-            if (nature_spirit != 25 || inventory.contains("journal_nature_spirit")) {
+            if (quest("nature_spirit") != "find_journal" || inventory.contains("journal_nature_spirit")) {
                 message("You find nothing interesting.")
                 return@objectOperate
             }
             item(
                 item = "journal_nature_spirit",
-                text = "You search the strange rock. You find a knot and inside of it you discover " +
-                    "a small tome. The words on the front are a bit vague, but you make out the " +
-                    "words 'Tarlock' and 'journal'.",
+                text = "You search the strange rock. You find a knot and inside of it you discover a small tome. The words on the front are a bit vague, but you make out the words 'Tarlock' and 'journal'.",
             )
             addOrDrop("journal_nature_spirit")
         }
@@ -270,7 +269,7 @@ class NatureSpirit : Script {
                     "You search the stone and find that it has some sort of nature symbol scratched into it.<br>This stone seems complete in some way."
                 } else {
                     "You search the stone and find that it has some sort of nature symbol scratched into it."
-                },
+                }
             )
         }
 
@@ -281,7 +280,7 @@ class NatureSpirit : Script {
                     "You search the stone and find that it has some sort of faith symbol scratched into it.<br>This stone seems complete in some way."
                 } else {
                     "You search the stone and find that it has some sort of faith symbol scratched into it."
-                },
+                }
             )
         }
 
@@ -292,7 +291,7 @@ class NatureSpirit : Script {
                     "You search the stone and find that it has some sort of spirit symbol scratched into it.<br>This stone seems complete in some way."
                 } else {
                     "You search the stone and find that it has some sort of spirit symbol scratched into it."
-                },
+                }
             )
         }
 
@@ -332,23 +331,18 @@ class NatureSpirit : Script {
 
         itemOption("Read", "druidic_spell,a_used_spell") {
             statement(
-                "Most of the writing is pretty uninteresting, but something inside refers to " +
-                    "nature spirit. The requirements for which are,<br>'Something from nature', " +
-                    "'something with faith' and 'something of the spirit-to-become freely given'." +
-                    "<br>It's all pretty vague.",
+                "Most of the writing is pretty uninteresting, but something inside refers to nature spirit. The requirements for which are,<br>'Something from nature', 'something with faith' and 'something of the spirit-to-become freely given'.<br>It's all pretty vague.",
             )
         }
 
         itemOption("Read", "journal_nature_spirit") {
             item(
                 item = "journal_nature_spirit",
-                text = "Most of the writing is pretty uninteresting, but something inside refers to " +
-                    "nature spirit. The requirements for which are,",
+                text = "Most of the writing is pretty uninteresting, but something inside refers to nature spirit. The requirements for which are,",
             )
             item(
                 item = "journal_nature_spirit",
-                text = "'Something from nature', 'something with faith' and 'something of the " +
-                    "spirit-to-become freely given'. It's all pretty vague.",
+                text = "'Something from nature', 'something with faith' and 'something of the spirit-to-become freely given'. It's all pretty vague.",
             )
         }
 
@@ -372,20 +366,11 @@ class NatureSpirit : Script {
             applyPouchOnGhast(interaction.target)
         }
 
-        takeable("washing_bowl") { item, _ ->
+        taken("washing_bowl") { item ->
             if (item.tile == Tile(3437, 3337) && !inventory.contains("mirror")) {
-                anim("human_pickuptable")
                 message("You find a small mirror under the washing bowl.")
-                FloorItems.add(Tile(3437, 3337), "mirror", revealTicks = 0, disappearTicks = 300, owner = this)
+                FloorItems.add(Tile(3437, 3337), "mirror", disappearTicks = 300, owner = this)
             }
-            item.id
-        }
-
-        takeable("mirror") { item, _ ->
-            if (item.tile == Tile(3437, 3337)) {
-                anim("human_pickuptable")
-            }
-            item.id
         }
 
         npcDeath("ghast") {
@@ -419,11 +404,10 @@ class NatureSpirit : Script {
     private suspend fun Player.enterGrotto() {
         message("You prepare to enter the Druid's grotto.")
         delay(1)
-        if (nature_spirit < 60) {
+        if (questStage("nature_spirit") < 60) {
             sound("ghast_appear")
-            val filliman = ensureFillimanGhost(Cuboid(3440, 3336, 0, 0))
+            val filliman = NPCs.findOrNull(Tile(3440, 3336), "filliman_tarlock_ghost") ?: NPCs.add("filliman_tarlock_ghost", Tile(3440, 3336))
             talkWith(filliman)
-            statement("A shifting apparition appears in front of you.")
             interactNpc(filliman, "Talk-to")
             return
         }

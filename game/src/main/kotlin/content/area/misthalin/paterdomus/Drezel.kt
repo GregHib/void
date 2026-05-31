@@ -473,6 +473,7 @@ class Drezel : Script {
         items(item1 = "apple_pie", item2 = "meat_pie", text = "The cleric hands you some food.")
         addOrDrop("meat_pie", 3)
         addOrDrop("apple_pie", 3)
+        set("nature_spirit", "find_filliman")
         nature_spirit = 10
         npc<Quiz>("Please take this food to Filliman, he'll probably appreciate a bit of cooked food. Now, he's never revealed where he lives in the swamps but I guess he'd be to the south, search for him won't you?")
         player<Happy>("I'll do my very best, don't worry, if he's in there and he's still alive I'll definitely find him.")
@@ -556,6 +557,7 @@ class Drezel : Script {
         player<Angry>("But can you bless me?")
         npc<Neutral>("Very well my friend, prepare yourself for the blessings of Saradomin. Here we go!")
         blessPlayer()
+        set("nature_spirit", "blessed_spell")
         nature_spirit = 40
         npc<Neutral>("There you go my friend, you're now blessed. It's funny, now that I look at you, there seems to be something of the faith about you. Anyway, good luck with your quest!")
         player<Happy>("Many thanks!")

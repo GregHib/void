@@ -2,3 +2,17 @@
 id = 307
 persist = true
 format = "int"
+
+[nature_spirit]
+id = 308 # FIXME 307
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+    unstarted = 0,
+    find_filliman = 10,
+    hes_a_ghost = 20,
+    find_journal = 25,
+    spell = 35,
+    blessed_spell = 40,
+}

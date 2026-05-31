@@ -35,16 +35,17 @@ class PriestInPerilTest : WorldTest() {
         player.levels.set(Skill.Attack, 50)
         player.levels.set(Skill.Strength, 50)
         player.levels.set(Skill.Defence, 50)
-        val roald = NPCs.findBySpawn(Tile(3222, 3476), "king_roald")
 
+        // Quest from king roald
+        val roald = NPCs.findBySpawn(Tile(3222, 3476), "king_roald")
         player.npcOption(roald, "Talk-to")
         tick(1)
-
         player.skipDialogues()
         player.dialogueOption(1) // Sure
         player.skipDialogues()
         assertEquals("find_drezel", player.quest("priest_in_peril"))
 
+        // Knock at door
         player.tele(3406, 3489)
         val door = GameObjects.find(Tile(3406, 3489), "priestperiltempledoorl_closed")
         player.objectOption(door, "Knock-at")
@@ -56,6 +57,7 @@ class PriestInPerilTest : WorldTest() {
         player.skipDialogues()
         assertEquals("kill_dog", player.quest("priest_in_peril"))
 
+        // Kill dog
         player.tele(3405, 9903)
         val guardian = NPCs.findBySpawn(Tile(3405, 9902), "priestperilguarddog")
         player.npcOption(guardian, "Attack")
@@ -63,12 +65,14 @@ class PriestInPerilTest : WorldTest() {
         tickIf { !guardian.dead }
         assertEquals("dog_dead", player.quest("priest_in_peril"))
 
+        // Return to roald
         player.tele(3222, 3475)
         player.npcOption(roald, "Talk-to")
         tick(1)
         player.skipDialogues()
         assertEquals("go_back", player.quest("priest_in_peril"))
 
+        // Find drezel in prison
         player.tele(3413, 3487, 2)
         val prisonDoor = GameObjects.find(Tile(3413, 3487, 2), "pip_prisondoor_closed")
         player.objectOption(prisonDoor, "Talk-through")
@@ -80,6 +84,7 @@ class PriestInPerilTest : WorldTest() {
         player.skipDialogues()
         assertEquals("help_drezel", player.quest("priest_in_peril"))
 
+        // Find gold key
         player.tele(3409, 3485, 0)
         val monk = NPCs.findBySpawn(Tile(3409, 3484), "priestperilevilmonk1")
         player.npcOption(monk, "Attack")
@@ -89,6 +94,7 @@ class PriestInPerilTest : WorldTest() {
         player.floorItemOption(key, "Take")
         tickIf { !player.inventory.contains("pipkey_gold") }
 
+        // Find iron key
         player.tele(3422, 9886)
         val base = GameObjects.find(Tile(3422, 9884), "priestperil_grave_base4")
         player.itemOnObject(base, 1)
@@ -101,6 +107,7 @@ class PriestInPerilTest : WorldTest() {
         tick()
         assertTrue(player.inventory.contains("bucket_murkywater"))
 
+        // Free drezel
         player.tele(3413, 3487, 2)
         player.objectOption(prisonDoor, "Open")
         tick(1)
@@ -120,6 +127,7 @@ class PriestInPerilTest : WorldTest() {
         tick(5)
         assertEquals("coffin_destroyed", player.quest("priest_in_peril"))
 
+        // Repair barrier
         player.tele(3415, 3488, 2)
         player.npcOption(drezel, "Talk-to")
         tick(1)
