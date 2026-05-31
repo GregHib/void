@@ -15,3 +15,9 @@ values = {
     completed = 100
 }
 
+[blood_pact_kayle]
+format = "list"
+persist = true
+default = "alive"
+values = ["alive", "defeated", "spared", "killed"]
+

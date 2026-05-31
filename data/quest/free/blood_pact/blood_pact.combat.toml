@@ -8,14 +8,15 @@ target_hit = { offense = "crush", max = 6 }
 
 [kayle_attackable]
 attack_speed = 4
+death_anim = "kayle_defeat"
 defend_anim = "human_defend"
 
 [kayle_attackable.ranged]
-range = 8
-#anim = "gnome_bow_attack"
-#projectile = "bronze_arrow"
-#target_hit = { offense = "range", max = 6 }
-#sound = { id = "crossbow_shoot", radius = 5 }
+range = 5
+anim = "sling_sling"
+projectile = "sling_rock"
+target_hit = { offense = "range", max = 6 }
+sound = { id = "crossbow_shoot", radius = 5 }
 
 [caitlin_attackable]
 attack_speed = 4

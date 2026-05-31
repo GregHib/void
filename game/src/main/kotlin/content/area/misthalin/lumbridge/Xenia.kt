@@ -1,5 +1,6 @@
 package content.area.misthalin.lumbridge
 
+import content.entity.combat.hit.directHit
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.exitInstance
@@ -17,6 +18,9 @@ import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.Follow
+import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -65,10 +69,56 @@ class Xenia : Script {
                     npc<Neutral>("I'm glad you've come by. I need some help.")
                     choiceBase()
                 }
+                "watched_cutscene" -> {
+                    npc<Neutral>("There's a guard in the room ahead. Together we should be able to take him out.")
+                    firstFightOptions()
+                }
+                "xenia_wounded" -> {
+                    if (false) { //check if player has no melee weapon
+                        //give bronze dagger
+                        npc<LookDown>("You'll need a weapon. Equip this bronze dagger, then talk to me again.")
+                    } else {
+                        npc<LookDown>("Ah...")
+                        npc<LookDown>("It looks like I'm too old for this after all. You'll have to do the rest without me.")
+                        npc<LookDown>("I'll follow you, but I'll stay out of combat. Return to me if you're wounded. I have some food to share.")
+                        npc<LookDown>("The first cultist is using a ranged weapon, so you should attack him with your melee weapon.")
+
+                        optionsBeforeFirstFight()
+                    }
+                }
                 "completed" -> {
                     npc<Happy>("Hello again, adventurer.")
                     choiceAfterQuest()
                 }
+            }
+        }
+        moved { _ ->
+            if (quest("blood_pact") != "watched_cutscene") return@moved
+            if (tile != instanceOffset().tile(3877, 5530, 1) && tile != instanceOffset().tile(3877, 5531, 1)) return@moved
+
+            set("blood_pact", "xenia_wounded")
+
+            val region = instance() ?: return@moved
+            val xenia = NPCs.findOrNull(region.toLevel(1), "xenia_after_cutscene") ?: return@moved
+            val kayle = NPCs.findOrNull(region.toLevel(1), "kayle_attackable") ?: return@moved
+
+            xenia.mode = EmptyMode
+            xenia.walkTo(instanceOffset().tile(3877, 5530, 1))
+
+            queue("blood_pact_xenia_hit") {
+                delay(1)   // time for xenia to walk there
+                kayle.anim("sling_sling")
+                delay(3)
+                xenia.directHit(kayle, 19, "range")
+                xenia.anim("human_defend")
+                open("fade_out")
+                delay(3)
+                tele(instanceOffset().tile(3876, 5528, 1))
+                NPCs.remove(xenia)
+                NPCs.add("xenia_wounded", instanceOffset().tile(3875, 5529, 1), Direction.SOUTH)
+                delay(3)
+                open("fade_in")
+                // anything that happens AFTER the hit goes here
             }
         }
     }
@@ -232,6 +282,40 @@ class Xenia : Script {
         woundedDetails()
     }
 
+    suspend fun Player.firstFightOptions() {
+        choice {
+            option<Neutral>("What's the plan of attack?") {
+                npc<Neutral>("It looks like the cultist has a bow. The best way to deal with someone with a ranged weapon is to get close to them and attack with melee.")
+                firstFightOptions()
+            }
+            option<Neutral>("What's a blood pact?") {
+                npc<Neutral>("It's something Zamorakian cults do sometimes; a way of swearing loyalty to their leader.")
+                npc<Neutral>("A blood pact doesn't have real magical power, but that kind of thing can have great power over a person if they believe strongly enough.")
+                firstFightOptions()
+            }
+            option<Neutral>("Let's get on with this.") { }
+        }
+    }
+
+    suspend fun Player.optionsBeforeFirstFight() {
+        choice {
+            option<LookDown>("Tell me more about melee combat.") {
+                npc<LookDown>("There's not much to tell. Just run up and attack. You don't even need a weapon - you can use your fists. Melee combat is strong against rangers. Avoid magic users, though.")
+                optionsBeforeFirstFight()
+            }
+            option<LookDown>("What's a blood pact?") {
+                npc<LookDown>("It's something Zamorakian cults do sometimes; a way of swearing loyalty to their leader.")
+                npc<LookDown>("A blood pact doesn't have real magical power, but that kind of thing can have great power over a person if they believe strongly enough.")
+                optionsBeforeFirstFight()
+            }
+            option<LookDown>("Are you going to be alright?") {
+                npc<LookDown>("Don't worry about me. I've survived worse wounds than this. I'm going to hang back from combat, but I'll be here to give you advice if you need it. I'm sure you can beat these cultists on your own.")
+                optionsBeforeFirstFight()
+            }
+            option<LookDown>("I can handle this.") { }
+        }
+    }
+
     suspend fun Player.backToQuestions() {
         choice {
             whatNow()
@@ -339,6 +423,7 @@ class Xenia : Script {
 
         reese.face(kayle)
         npc<Frustrated>("reese_cutscene", "Kayle, you stay here. Guard the door.")
+        reese.face(ilona)
         npc<Frustrated>("reese_cutscene", "You, come on.")
         reese.face(Direction.NORTH)
 
@@ -371,6 +456,9 @@ class Xenia : Script {
             open("fade_in")
             delay(1)
             npc<Neutral>("xenia_after_cutscene", "Looks like there's a guard ahead. We should take him together.")
+            val xenia = NPCs.findOrNull(instance()!!.toLevel(1), "xenia_after_cutscene") ?: return
+            xenia.running = true
+            xenia.mode = Follow(xenia, this)
         }
     }
 

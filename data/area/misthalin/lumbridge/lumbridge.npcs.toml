@@ -293,12 +293,16 @@ id = 9633
 categories = ["human"]
 examine = "An old adventurer."
 
-[xenia_2]
-id = 11476
-clone = "xenia"
-
 [xenia_after_cutscene]
 id = 9634
+clone = "xenia"
+
+[xenia_wounded]
+id = 9636
+clone = "xenia"
+
+[xenia_2]
+id = 11476
 clone = "xenia"
 
 [chief_thief_robin_lumbridge_2]

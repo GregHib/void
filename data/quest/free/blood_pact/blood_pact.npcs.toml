@@ -23,6 +23,8 @@ id = 9628
 hitpoints = 20
 categories = ["human"]
 combat_def = "kayle_attackable"
+hunt_mode = "aggressive"
+hunt_range = 8
 
 [kayle_defeated]
 id = 9629
