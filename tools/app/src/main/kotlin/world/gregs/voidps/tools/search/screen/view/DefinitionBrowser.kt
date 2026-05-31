@@ -32,6 +32,7 @@ import world.gregs.voidps.tools.search.screen.view.tab.TabState
 import world.gregs.voidps.tools.search.screen.view.table.filter.FieldFilter
 import world.gregs.voidps.tools.search.screen.view.table.filter.MatchMode
 import kotlin.reflect.KProperty1
+import kotlin.reflect.jvm.isAccessible
 import kotlin.reflect.jvm.kotlinProperty
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -210,7 +211,7 @@ fun resolveDisplayName(tabLabel: String, id: Number, link: FieldLink? = null, it
         .mapNotNull { it.kotlinProperty }
 
     fun valueOf(key: String) = props
-        .firstOrNull { it.name == key }
+        .firstOrNull { it.name == key && (it as? KProperty1<Any, *>)?.isAccessible == true }
         ?.let { (it as? KProperty1<Any, *>)?.get(def)?.toString() }
         ?.takeIf { it.isNotBlank() && it != "null" && it != def.id.toString() }
 

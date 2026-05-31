@@ -49,12 +49,11 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
     var loadConfig = false
     val files = if (file.resolve("dirs.txt").exists()) {
         loadConfig = true
-        configFiles(path, "${path}/.temp/modified.dat")
+        configFiles(path, "${path}/.temp/modified.dat", cachePath)
     } else {
         configFiles()
     }
     val cache = CacheDelegate(cachePath)
-
 
     listOf(
         DefinitionTab(

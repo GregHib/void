@@ -70,6 +70,10 @@ compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "compose" }
 compose-components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "compose" }
 compose-uiToolingPreview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "compose" }
 compose-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "compose" }
+compose-windows = { module = "org.jetbrains.compose.desktop:desktop-jvm-windows-x64", version.ref = "compose" }
+compose-linux = { module = "org.jetbrains.compose.desktop:desktop-jvm-linux-x64", version.ref = "compose" }
+compose-mac-intel = { module = "org.jetbrains.compose.desktop:desktop-jvm-macos-x64", version.ref = "compose" }
+compose-mac-arm = { module = "org.jetbrains.compose.desktop:desktop-jvm-macos-arm64", version.ref = "compose" }
 
 [bundles]
 testing = ["junit-params", "mockk", "kotlinx-coroutines-test", "koin-test"]
@@ -78,6 +82,7 @@ logging = ["koin-log", "logback", "inline-logging"]
 postgres = ["testcontainers", "testcontainers-junit", "testcontainers-postgresql", "embedded-postgres"]
 database = ["exposed", "exposed-jdbc", "postgresql", "hikari"]
 compose = ["compose-runtime", "compose-foundation", "compose-material3", "compose-ui", "compose-components-resources", "compose-uiToolingPreview", "compose-resources"]
+compose-release = ["compose-windows", "compose-linux", "compose-mac-intel", "compose-mac-arm"]
 
 [plugins]
 shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
