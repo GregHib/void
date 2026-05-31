@@ -3,6 +3,8 @@ package content.area.misthalin.lumbridge.catacomb
 import content.entity.combat.killer
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
+import content.quest.exitInstance
+import content.quest.instance
 import content.quest.instanceOffset
 import content.quest.quest
 import content.quest.setInstanceLogout
@@ -18,6 +20,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.type.Tile
@@ -25,6 +28,14 @@ import world.gregs.voidps.type.Tile
 class LumbridgeCatacombs : Script {
 
     init {
+        objectOperate("Climb-up", "lumbridge_catacomb_exit_stairs") {
+            if (instance() != null) {
+                exitInstance()
+            } else {
+                tele(3246, 3198,0)
+            }
+        }
+
         objectOperate("Take", "*_demon_statuette") { (target) ->
             val def = target.def(this)
             if (get(def.stringId, "take") != "take") {

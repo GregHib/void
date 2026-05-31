@@ -153,9 +153,12 @@ fun Player.clearInstance(): Boolean {
     val region = Region(id)
     Instances.free(region)
     get<DynamicZones>().clear(region)
-    val regionLevel = Region(id).toLevel(0)
-    NPCs.clear(regionLevel)
-    for (zone in regionLevel.toCuboid().toZones()) {
+    //clears all region levels
+    for (level in 0..3) {
+        NPCs.clear(Region(id).toLevel(level))
+    }
+    val cuboid = Region(id).toCuboid()  // Region.toCuboid() already defaults to levels=4
+    for (zone in cuboid.toZones()) {
         GameObjects.clear(zone)
         Collisions.clear(zone)
     }

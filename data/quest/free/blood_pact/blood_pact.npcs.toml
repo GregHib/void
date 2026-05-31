@@ -2,3 +2,45 @@
 # https://runescape.wiki/w/Caitlin
 # https://runescape.wiki/w/Reese
 # https://runescape.wiki/w/Ilona
+
+[reese_cutscene]
+id = 9637
+
+[reese_attackable]
+id = 9624
+hitpoints = 20
+categories = ["human"]
+combat_def = "reese_attackable"
+
+[reese_defeated]
+id = 9625
+
+[kayle_cutscene]
+id = 9639
+
+[kayle_attackable]
+id = 9628
+hitpoints = 20
+categories = ["human"]
+combat_def = "kayle_attackable"
+
+[kayle_defeated]
+id = 9629
+
+[caitlin_attackable]
+id = 9626
+hitpoints = 20
+categories = ["human"]
+combat_def = "caitlin_attackable"
+
+[caitlin_defeated]
+id = 9627
+
+[caitlin_cutscene]
+id = 9638
+
+[ilona_tied]
+id = 9630
+
+[ilona_cutscene]
+id = 9640

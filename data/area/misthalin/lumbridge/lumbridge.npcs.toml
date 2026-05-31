@@ -297,7 +297,7 @@ examine = "An old adventurer."
 id = 11476
 clone = "xenia"
 
-[xenia_3]
+[xenia_after_cutscene]
 id = 9634
 clone = "xenia"
 

@@ -1,12 +1,9 @@
 package content.area.misthalin.lumbridge
 
-import content.entity.effect.clearTransform
-import content.entity.effect.transform
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import content.entity.world.music.playTrack
-import content.quest.free.demon_slayer.DemonSlayerSpell.getWord
-import content.quest.free.demon_slayer.DemonSlayerSpell.randomiseOrder
+import content.quest.exitInstance
+import content.quest.instance
 import content.quest.instanceOffset
 import content.quest.quest
 import content.quest.refreshQuestJournal
@@ -15,35 +12,22 @@ import content.quest.smallInstance
 import content.quest.startCutscene
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
+import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.moveCamera
-import world.gregs.voidps.engine.client.shakeCamera
 import world.gregs.voidps.engine.client.turnCamera
-import world.gregs.voidps.engine.client.ui.InterfaceApi.Companion.option
-import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.entity.character.areaSound
-import world.gregs.voidps.engine.entity.character.jingle
-import world.gregs.voidps.engine.entity.character.mode.Face
-import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
-import world.gregs.voidps.engine.entity.character.player.combatLevel
-import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.queue.longQueue
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.timer.Timer
+import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.type.Tile
-import java.awt.Choice
 
 class Xenia : Script {
     init {
@@ -58,36 +42,42 @@ class Xenia : Script {
                     }
                     Teleport.CANCEL
                 }
-                "started" -> {
-                    val instance = smallInstance(Region(15446))
-                    setInstanceLogout(Tile(3247, 3197))
-                    val offset = instanceOffset()
-                    tele(offset.tile(3877, 5526, 1))
+
+                "completed" -> Teleport.CONTINUE
+                else -> {
+                    setInstanceLogout(Tile(3246, 3198, 0))
+                    if (quest("blood_pact") == "started") {
+                        longQueue("blood_pact_intro") {
+                            open("fade_out")
+                            cutscene()
+                        }
+                    } else {
+                        tele(instanceOffset().tile(3877, 5528, 1))
+                        face(Direction.NORTH)
+                    }
                     Teleport.CANCEL
                 }
-                else -> Teleport.CONTINUE
             }
         }
-
-        npcOperate("Talk-to", "xenia_2") { (target) ->
+        npcOperate("Talk-to", "xenia*") {
             when (quest("blood_pact")) {
                 "unstarted" -> {
                     npc<Neutral>("I'm glad you've come by. I need some help.")
-                    choiceBase(target)
+                    choiceBase()
                 }
                 "completed" -> {
                     npc<Happy>("Hello again, adventurer.")
-                    choiceAfterQuest(target)
+                    choiceAfterQuest()
                 }
             }
         }
     }
 
-    suspend fun Player.choiceBase(target: NPC) {
+    suspend fun Player.choiceBase() {
         choice {
-            whatDoYouNeed(target)
-            whoAreYou(target)
-            howDoYouKnow(target)
+            whatDoYouNeed()
+            whoAreYou()
+            howDoYouKnow()
             option<Neutral>("Sorry, I've got to go.")
         }
     }
@@ -96,22 +86,22 @@ class Xenia : Script {
         npc<Neutral>("Farewell, adventurer.")
     }
 
-    fun ChoiceOption.whatDoYouNeed(target: NPC): Unit = option<Neutral>("What do you need help with?") {
+    fun ChoiceOption.whatDoYouNeed(): Unit = option<Neutral>("What do you need help with?") {
         npc<Neutral>("Some cultists of Zamorak have gone into the catacombs with a prisoner. I don't know what they're planning, but I'm pretty sure it's not a tea party.")
         npc<Neutral>("There are three of them, and I'm not as young as I was the last time I was here. I don't want to go down there without backup.")
-        questAccept(target)
+        questAccept()
     }
 
-    suspend fun Player.questAccept(target: NPC) {
+    suspend fun Player.questAccept() {
         choice {
-            acceptQuest(target)
-            moreInfos(target)
-            whoAreYou(target)
-            howDoYouKnow(target)
+            acceptQuest()
+            moreInfos()
+            whoAreYou()
+            howDoYouKnow()
         }
     }
 
-    fun ChoiceOption.acceptQuest(target : NPC) : Unit = option<Neutral>("I'll help you.") {
+    fun ChoiceOption.acceptQuest( ) : Unit = option<Neutral>("I'll help you.") {
         if (startQuest("blood_pact")) {
             set("blood_pact", "started")
             refreshQuestJournal()
@@ -122,57 +112,57 @@ class Xenia : Script {
         }
     }
 
-    fun ChoiceOption.moreInfos(target: NPC) : Unit = option<Neutral>("I need to know more before I help you.") {
+    fun ChoiceOption.moreInfos() : Unit = option<Neutral>("I need to know more before I help you.") {
         npc<Neutral>("Very wise. I got into a lot of trouble in my youth by rushing in without knowing a situation.")
-        moreInfoChoices(target)
+        moreInfoChoices()
     }
 
-    suspend fun Player.moreInfoChoices(target: NPC) {
+    suspend fun Player.moreInfoChoices() {
         choice {
             option<Neutral>("Tell me more about these cultists.") {
                 npc<Neutral>("Lumbridge is a Saradominist town, but there will always be some people drawn to worship Zamorak. They must have found some ritual that they think will give them power over other people.")
-                moreInfoChoices(target)
+                moreInfoChoices()
             }
 
             option<Neutral>("Who did they kidnap?") {
                 npc<Neutral>("A young woman named Ilona. She had just left Lumbridge to apprentice at the Wizards' Tower.")
                 npc<Neutral>("They grabbed her on the road. Without training she didn't have a chance.")
-                moreInfoChoices(target)
+                moreInfoChoices()
             }
 
             option<Neutral>("What's down there?") {
                 npc<Neutral>("The catacombs of Lumbridge Church. The dead of Lumbridge have been buried there since...well, for about forty years now.")
-                moreInfoChoices(target)
+                moreInfoChoices()
             }
 
             option<Neutral>("Is there a reward if I help you?") {
                 npc<Neutral>("The cultists all have weapons, and you'll be able to keep them if we succeed. This adventure will also help to train your combat skills.")
-                moreInfoChoices(target)
+                moreInfoChoices()
             }
 
             option<Neutral>("Enough questions.") {
                 npc<Neutral>("So, will you help me, adventurer?")
-                questAccept(target)
+                questAccept()
             }
         }
     }
 
-    fun ChoiceOption.whoAreYou(target: NPC) : Unit = option<Confused>("Who are you?"){
+    fun ChoiceOption.whoAreYou() : Unit = option<Confused>("Who are you?"){
         npc<Neutral>("My name's Xenia. I'm an adventurer.")
         npc<Neutral>("I'm one of the old guard, I suppose. I helped found the Champions' Guild, and I've done a fair few quests in my time.")
         npc<Neutral>("Now I'm starting to get a bit old for action, which is why I need your help.")
-        choiceBase(target)
+        choiceBase()
     }
 
-    fun ChoiceOption.howDoYouKnow(target: NPC) : Unit = option<Confused>("How did you know who I am?"){
+    fun ChoiceOption.howDoYouKnow() : Unit = option<Confused>("How did you know who I am?"){
         npc<Neutral>("Oh, I have my ways. I get the feeling that you're one to watch; you could be quite the hero some day.")
-        choiceBase(target)
+        choiceBase()
     }
 
-    suspend fun Player.choiceAfterQuest(target: NPC) {
+    suspend fun Player.choiceAfterQuest() {
         choice {
-            choiceQuestDetail(target)
-            if(checkForLostWeapons()) { lostWeapon(target) }
+            choiceQuestDetail()
+            if(checkForLostWeapons()) { lostWeapon() }
             leaving()
         }
     }
@@ -188,7 +178,7 @@ class Xenia : Script {
         return false
     }
 
-    fun ChoiceOption.lostWeapon(target: NPC) : Unit = option<Neutral>("I've lost some of the cultists' weapons.") {
+    fun ChoiceOption.lostWeapon() : Unit = option<Neutral>("I've lost some of the cultists' weapons.") {
         npc<Neutral>("Yes, one of my contacts in the Champion's Guild found them and returned them to me.")
         //if not in invent or bank "Kayle's chargebow"
         //  Xenia gives you Kayle's chargebow.
@@ -203,70 +193,192 @@ class Xenia : Script {
         //  Xenia gives you Reese's off-hand sword.
     }
 
-    fun ChoiceOption.choiceQuestDetail(target: NPC) : Unit = option<Neutral>("I've got a question about my adventure in the catacombs...") {
-        afterQuestDetail(target)
+    fun ChoiceOption.choiceQuestDetail() : Unit = option<Neutral>("I've got a question about my adventure in the catacombs...") {
+        afterQuestDetail()
     }
 
-    fun ChoiceOption.notWounded(target: NPC) : Unit = option<Neutral>("You weren't really wounded, were you?") {
+    fun ChoiceOption.notWounded() : Unit = option<Neutral>("You weren't really wounded, were you?") {
         npc<Neutral>("Very perceptive, adventurer. I was wounded, but not as badly as I looked. I took the opportunity to see how you would fare.")
-        woundedDetails(target)
+        woundedDetails()
     }
 
-    fun ChoiceOption.whatNow(target: NPC) : Unit = option<Neutral>("What will happen in the catacombs now?\n") {
+    fun ChoiceOption.whatNow() : Unit = option<Neutral>("What will happen in the catacombs now?\n") {
         npc<Neutral>(" Reese managed to complete the ritual with his own death. He's opened the staircase to the nest of undead creatures in the lower level of the catacombs. Without a necromancer to control them, the creatures won't leave the tomb. I'll warn Father Aereck not to let people go down there. You're an adventurer, though. If you want to, you can venture into the tomb and fight the creatures.\n")
-        afterQuestDetail(target)
+        afterQuestDetail()
     }
 
-    fun ChoiceOption.whatBloodPact(target: NPC) : Unit = option<Neutral>("What is a blood pact?\n") {
+    fun ChoiceOption.whatBloodPact() : Unit = option<Neutral>("What is a blood pact?\n") {
         npc<Neutral>(" It's something Zamorakian cults do sometimes; a way of swearing loyalty to their leader. A blood pact doesn't have real magical power, but that kind of thing can have great power over a person if they believe strongly enough.")
-        afterQuestDetail(target)
+        afterQuestDetail()
     }
 
-    fun ChoiceOption.whoDragith(target: NPC) : Unit = option<Neutral>("Who was Dragith Nurn?\n") {
+    fun ChoiceOption.whoDragith() : Unit = option<Neutral>("Who was Dragith Nurn?\n") {
         npc<Neutral>("Dragith Nurn was a wizard. He studied at the Wizards' Tower, but he also studied the dar ark, necromancy, on his own. He had a secret magical workshop beneath Lumbridge. He would steal bodies from the graveyard and perform experiments on them. Necromancy was like an addiction for him. When I met him he was very troubled; very conflicted. I convinced him to put an end to it all. He couldn't destroy all the undead he had created - not permanently - so he trapped them all in the lower level of his workshop and sealed it off. He converted the upper level into these catacombs. Everyone thinks Dragith Nurn is buried here in the tomb, but he isn't. He built the tomb to hide the entrance to the lower level. Dragith Nurn is still down there. He knew that when he died he would rise again as a monster, so he sealed himself in with his creatures.")
-        afterQuestDetail(target)
+        afterQuestDetail()
     }
 
-    fun ChoiceOption.womansLife(target: NPC) : Unit = option<Neutral>("You risked that woman's life for the sake of a test?") {
+    fun ChoiceOption.womansLife() : Unit = option<Neutral>("You risked that woman's life for the sake of a test?") {
         npc<Neutral>(" I was prepared to step in and rescue her if you failed, but I won't always be that ready. That's why I had to do this. The world needs heroes. I was a hero, once, but I'm not getting any younger. I need to make sure the news generation has its own heroes.")
-        woundedDetails(target)
+        woundedDetails()
     }
 
-    fun ChoiceOption.playerLife(target: NPC) : Unit = option<Neutral>("You risked my life for the sake of a test?") {
+    fun ChoiceOption.playerLife() : Unit = option<Neutral>("You risked my life for the sake of a test?") {
         npc<Neutral>("You're a born adventurer. I can practically smell it on you. People like you have a habit of coming back from things that would kill an ordinary person.")
-        woundedDetails(target)
+        woundedDetails()
     }
 
-    fun ChoiceOption.howDidIDo(target: NPC) : Unit = option<Neutral>("So how did I do?") {
+    fun ChoiceOption.howDidIDo() : Unit = option<Neutral>("So how did I do?") {
         npc<Neutral>("Very well indeed. You're a hero. You're exactly the sort of person the world needs. I'm glad I met you.")
-        woundedDetails(target)
+        woundedDetails()
     }
 
-    suspend fun Player.backToQuestions(target: NPC) {
+    suspend fun Player.backToQuestions() {
         choice {
-            whatNow(target)
-            whatBloodPact(target)
-            whoDragith(target)
+            whatNow()
+            whatBloodPact()
+            whoDragith()
             leaving()
         }
     }
 
-    suspend fun Player.woundedDetails(target: NPC) {
+    suspend fun Player.woundedDetails() {
         choice {
-            womansLife(target)
-            playerLife(target)
-            howDidIDo(target)
-            option<Neutral>("Back to my other questions...") { backToQuestions(target) }
+            womansLife()
+            playerLife()
+            howDidIDo()
+            option<Neutral>("Back to my other questions...") { backToQuestions() }
         }
     }
 
-    suspend fun Player.afterQuestDetail(target : NPC) {
+    suspend fun Player.afterQuestDetail( ) {
         choice {
-            notWounded(target)
-            whatNow(target)
-            whatBloodPact(target)
-            whoDragith(target)
+            notWounded()
+            whatNow()
+            whatBloodPact()
+            whoDragith()
             leaving()
         }
+    }
+
+    suspend fun Player.cutscene() {
+        delay(3)
+        val instance = smallInstance(Region(15446))
+        val offset = instanceOffset()
+        val cutscene = startCutscene("blood_pact_intro", instance, offset)
+
+        tele(offset.tile(3878, 5548, 1), clearInterfaces = false)
+        face(Direction.SOUTH)
+
+        cutscene.onEnd(destroyInstance = false) {
+            open("fade_out")
+            tele(instanceOffset().tile(3246, 3198, 0))
+            face(Direction.NORTH)
+            clearCamera()
+        }
+
+        //added, so we have can use delays between dialogs, without ending the cutscene, but still
+        //having the saftey net, if the player dc'ed in the middle
+        queue.clear("blood_pact_intro_cutscene_end")
+        longQueue("blood_pact_intro_cutscene_end", 6000) {
+            cutscene.end(destroyInstance = false)
+        }
+
+        // spawn cutscene Xenia NPC, move camera, play dialogue...
+        //spawn kayle 3876, 5531, 1
+        val kayle = NPCs.add("kayle_cutscene", offset.tile(3876, 5532, 1), Direction.NORTH)
+        //spawn resee 3877, 5532, 1
+        val reese = NPCs.add("reese_cutscene", offset.tile(3877, 5532, 1), Direction.NORTH)
+        //spawn caitlin 3878, 5532, 1
+        val caitlin = NPCs.add("caitlin_cutscene", offset.tile(3878, 5532, 1), Direction.NORTH)
+        //spawn prison 3877, 5533, 1
+        val ilona = NPCs.add("ilona_cutscene", offset.tile(3877, 5533, 1), Direction.NORTH)
+
+        delay(2)
+
+        clearCamera()
+        //camera at 3876, 5545, 0 looking at 3877, 5531, 1
+        moveCamera(offset.tile(3876, 5546, 1), 350)
+        turnCamera(offset.tile(3877, 5531, 1), 220)
+
+        open("fade_in")
+
+        delay(1)
+        //move all until
+
+        //kyle 3876, 5537, 1
+        kayle.walkTo(offset.tile(3876, 5535, 1))
+        //cait 3878, 5540, 1
+        caitlin.walkTo(offset.tile(3878, 5541, 1))
+        //ilona 3877, 5541, 1
+        ilona.walkTo(offset.tile(3877, 5542, 1))
+        //reese 3877, 5538, 1
+        delay(1)
+        reese.walkTo(offset.tile(3877, 5540, 1))
+
+        delay(10)
+        reese.face(kayle)
+        npc<Frustrated>("reese_cutscene", "Come on, Kayle! We don't have forever.")
+        kayle.walkTo(offset.tile(3876, 5539, 1))
+        delay(4)
+        kayle.face(reese)
+
+        npc<Teary>("kayle_cutscene", "Look, Reese; are you sure about this? There must be some other way we can...")
+
+        reese.face(kayle)
+        npc<Frustrated>("reese_cutscene", "We made a blood pact, Kayle! The three of us are in this all the way.")
+        npc<Teary>("kayle_cutscene", "Yes, but...")
+
+        caitlin.face(reese)
+        npc<Frustrated>("caitlin_cutscene", "Do we have to take this idiot?")
+        reese.face(caitlin)
+        npc<Angry>("reese_cutscene", "Yes! The blood pact! You read the book!")
+
+        npc<Scared>("ilona_cutscene", "Let me go! I didn't make any blood pact with-")
+        reese.face(ilona)
+        npc<Angry>("reese_cutscene", "Shut up!")
+
+        reese.face(kayle)
+        npc<Frustrated>("reese_cutscene", "Kayle, you stay here. Guard the door.")
+        npc<Frustrated>("reese_cutscene", "You, come on.")
+        reese.face(Direction.NORTH)
+
+        //kayle stays, rest walks towards the end - fade out
+        //resee 3877, 5544, 1
+        reese.walkTo(offset.tile(3877, 5544, 1))
+        // cait 3878, 5544, 1
+        caitlin.walkTo(offset.tile(3878, 5544, 1))
+        // prison 3877, 5545, 1
+        ilona.walkTo(offset.tile(3877, 5545, 1))
+
+        //fade out + removal of npcs
+        delay(1)
+        open("fade_out")
+        delay(4)
+        NPCs.remove(ilona)
+        NPCs.remove(kayle)
+        NPCs.remove(caitlin)
+        NPCs.remove(reese)
+
+        cutscene.end(destroyInstance = false)
+        if (instance() != null) {
+            set("blood_pact", "watched_cutscene")
+            queue.clear("blood_pact_intro_cutscene_end")
+            tele(offset.tile(3877, 5527, 1))
+            face(Direction.SOUTH)
+            spawnInstance(offset)
+            clearCamera()
+            clearAnim()
+            open("fade_in")
+            delay(1)
+            npc<Neutral>("xenia_after_cutscene", "Looks like there's a guard ahead. We should take him together.")
+        }
+    }
+
+    fun spawnInstance(offset: Delta) {
+        NPCs.add("xenia_after_cutscene", offset.tile(3877, 5526, 1), Direction.NORTH)
+        NPCs.add("kayle_attackable", offset.tile(3877, 5543, 1), Direction.SOUTH)
+        NPCs.add("caitlin_attackable", offset.tile(3864, 5538, 1), Direction.EAST)
+        NPCs.add("ilona_tied", offset.tile(3865, 5523, 2), Direction.NORTH)
+        NPCs.add("reese_attackable", offset.tile(3865, 5523, 2), Direction.SOUTH)
     }
 }

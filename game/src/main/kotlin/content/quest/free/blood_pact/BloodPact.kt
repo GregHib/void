@@ -27,7 +27,7 @@ class BloodPact : Script{
                     "",
                     "<red>QUEST COMPLETE!",
                 )
-                "started" -> listOf(
+                "started", "watched_cutscene" -> listOf(
                     "<maroon>Xenia<navy>, an old adventurer, said she had seen some Zamorakian ",
                     "<navy>cultists entering the catacombs beneath Lumbridge Church. ",
                     "<navy>She asked me to  go with her into the <maroon>catacombs ",

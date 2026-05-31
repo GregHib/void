@@ -6,28 +6,12 @@ default = "unstarted"
 values = {
     unstarted = 0,
     started = 1,
-    first_cultist = 2,
-    xenia_wounded = 3,
-    second_cultist = 4,
-    third_cultist = 5,
-    untie_ilona = 6,
+    watched_cutscene = 2,
+    first_cultist = 3,
+    xenia_wounded = 4,
+    second_cultist = 5,
+    third_cultist = 6,
+    untie_ilona = 7,
     completed = 100
 }
 
-[kayle]
-id = 5819
-persist = true
-default = "staff"
-values = [ "alive", "spared", "dead" ]
-
-[caitlin]
-id = 5819
-persist = true
-default = "bow"
-values = [ "alive", "spared", "dead" ]
-
-[reese]
-id = 5819
-persist = true
-default = "sword"
-values = [ "alive", "spared", "dead" ]
