@@ -48,9 +48,13 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
     }
     var loadConfig = false
     val files = if (file.resolve("dirs.txt").exists()) {
+        Settings.load()
+        Settings.rebase("${file.absolutePath}/")
         loadConfig = true
         configFiles(path, "${path}/.temp/modified.dat", cachePath)
     } else {
+        Settings.load()
+        Settings.rebase("${file.parentFile.parent}/")
         configFiles()
     }
     val cache = CacheDelegate(cachePath)
