@@ -7,6 +7,8 @@ plugins {
     alias(libs.plugins.composeHotReload)
 }
 
+version = "1.0.1"
+
 kotlin {
     jvmToolchain(21)
 
@@ -65,7 +67,7 @@ compose {
             nativeDistributions {
                 targetFormats(TargetFormat.Msi, TargetFormat.Deb)
                 packageName = "void-cache-viewer"
-                packageVersion = "1.0.0"
+                packageVersion = version.toString()
                 val icon = project.file("src/main/composeResources/drawable/void_icon.png")
                 windows {
                     includeAllModules = true
