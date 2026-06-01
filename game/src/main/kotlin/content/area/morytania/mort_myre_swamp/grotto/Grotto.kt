@@ -23,18 +23,14 @@ class Grotto : Script {
             val direction = if (tile.y > 3330) Direction.SOUTH else Direction.NORTH
             if (Level.success(levels.get(Skill.Agility), 60..252)) {
                 anim("stepping_stone_step", delay = 30)
+                sound("jump", delay = 60)
                 exactMoveDelay(target.tile.addY(direction.delta.y * 2), startDelay = 58, delay = 70, direction = direction)
-                delay(2)
-                sound("jump")
-                delay(2)
                 exp(Skill.Agility, 15.0)
             } else {
                 anim("rope_walk_fall_${if (direction == Direction.SOUTH) "right" else "left"}", delay = 30)
                 var river = Tile(3439, 3330)
+                sound("jump", delay = 30)
                 exactMoveDelay(river, startDelay = 58, delay = 60, direction = Direction.WEST)
-                delay(1)
-                sound("jump")
-                delay(1)
                 areaGfx("big_splash", tile, delay = 3)
                 sound("pool_plop")
                 renderEmote("swim")
