@@ -1,10 +1,6 @@
-[void_dance]
-id = 7451
+[recruitment_drive]
+id = 657
 persist = true
 format = "map"
 default = "unstarted"
 values = { unstarted = 0, started = 1 }
-
-[void_dance_bartender]
-id = 7451
-format = "int"

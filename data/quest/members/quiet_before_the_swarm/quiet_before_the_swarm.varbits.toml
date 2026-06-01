@@ -1,10 +1,6 @@
-[void_dance]
-id = 7451
+[quiet_before_the_swarm]
+id = 7958
 persist = true
 format = "map"
 default = "unstarted"
 values = { unstarted = 0, started = 1 }
-
-[void_dance_bartender]
-id = 7451
-format = "int"

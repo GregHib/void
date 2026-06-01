@@ -1,10 +1,6 @@
-[void_dance]
-id = 7451
+[back_to_my_roots]
+id = 4055
 persist = true
 format = "map"
 default = "unstarted"
 values = { unstarted = 0, started = 1 }
-
-[void_dance_bartender]
-id = 7451
-format = "int"

@@ -3,4 +3,4 @@ id = 281
 persist = true
 format = "map"
 default = "unstarted"
-values = { unstarted = 0, incomplete = 1, completed = 1000 }
+values = { unstarted = 0, started = 1, completed = 1000 }
