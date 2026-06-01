@@ -24,11 +24,11 @@ class LostCity : Script {
                     "<red>QUEST COMPLETE!",
                 )
                 "started" -> listOf(
-                        "<str>According to one of the adventurers in Lumbridge Swamp, ",
-                        "<str>the entrance to Zanaris is somewhere around there.",
-                        "<navy>Apparently, there is a <maroon>leprechaun <navy>hiding in a tree nearby ",
-                        "<navy>who can tell me how to enter the <maroon>lost city of Zanaris.",
-                        "",
+                    "<str>According to one of the adventurers in Lumbridge Swamp, ",
+                    "<str>the entrance to Zanaris is somewhere around there.",
+                    "<navy>Apparently, there is a <maroon>leprechaun <navy>hiding in a tree nearby ",
+                    "<navy>who can tell me how to enter the <maroon>lost city of Zanaris.",
+                    "",
                 )
                 "find_staff", "tree_spirit" -> listOf(
                     "<str>According to one of the adventurers in Lumbridge Swamp the",

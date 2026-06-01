@@ -81,7 +81,6 @@ class LostCityTest : WorldTest() {
         assertTrue(player.inventory.contains("dramen_staff"))
         assertEquals("crafted_staff", player["lost_city", "unstarted"])
 
-
         player.tele(3201, 3169)
         player.equipItem("dramen_staff")
         val door = GameObjects.find(Tile(3201, 3169), "zanaris_door_closed")
