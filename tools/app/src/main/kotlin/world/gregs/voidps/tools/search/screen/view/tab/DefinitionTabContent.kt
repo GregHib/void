@@ -1,6 +1,7 @@
 package world.gregs.voidps.tools.search.screen.view.tab
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.VerticalScrollbar
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -22,7 +23,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.rememberScrollbarAdapter
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
@@ -78,10 +79,9 @@ import world.gregs.voidps.tools.search.propertyTypeLabel
 import world.gregs.voidps.tools.search.screen.view.detail.DetailPanel
 import kotlin.reflect.KProperty1
 
-@Suppress("UNCHECKED_CAST")
 @Composable
 fun DefinitionTabContent(state: TabState, onNavigate: (String, Map<String, String>) -> Unit) {
-    val clazz = state.clazz as Class<Definition>
+    val clazz = state.clazz
     val properties: List<KProperty1<Definition, *>> = remember(clazz) { getProperties(clazz) }
     val allFieldNames = remember(clazz) { properties.map { it.name } }
     val propsByName = remember(clazz) { properties.associateBy { it.name } }
@@ -111,14 +111,26 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Map<String, Strin
         val filtered = state.definitions.filter { def ->
             state.columnFilters.values.all { f ->
                 if (f.value.isBlank()) return@all true
-                val raw = try { propsByName[f.fieldName]?.get(def) } catch (_: Exception) { null }
+                val raw = try {
+                    propsByName[f.fieldName]?.get(def)
+                } catch (_: Exception) {
+                    null
+                }
                 matchesFilter(raw, f)
             }
         }
         val sortProp = state.sortField?.let { propsByName[it] } ?: return@remember filtered
         filtered.sortedWith(Comparator { a, b ->
-            val av = try { sortProp.get(a) } catch (_: Exception) { null }
-            val bv = try { sortProp.get(b) } catch (_: Exception) { null }
+            val av = try {
+                sortProp.get(a)
+            } catch (_: Exception) {
+                null
+            }
+            val bv = try {
+                sortProp.get(b)
+            } catch (_: Exception) {
+                null
+            }
             val cmp = compareValues(av, bv)
             if (state.sortAscending) cmp else -cmp
         })
@@ -248,47 +260,55 @@ fun DefinitionTabContent(state: TabState, onNavigate: (String, Map<String, Strin
 
                 HorizontalDivider(color = BorderColor, thickness = 0.5.dp)
 
-                LazyColumn(state = listState, modifier = Modifier.fillMaxSize()) {
-                    items(filteredResults) { item ->
-                        val itemIndex = filteredResults.indexOf(item)
-                        val isSelected = state.selectedItems.lastOrNull() == item
-                        val isInMulti = item in state.selectedItems
-                        ResultRow(
-                            item = item,
-                            isSelected = isSelected,
-                            isInMultiSelection = isInMulti && !isSelected,
-                            selectedItems = state.selectedItems,
-                            columns = visibleProps,
-                            onClick = {
-                                if (isShiftHeld) {
-                                    if (state.lastClickedIndex == -1) {
+                Box(modifier = Modifier.weight(1f).fillMaxWidth()) {
+                    LazyColumn(state = listState, modifier = Modifier.fillMaxSize()) {
+                        items(filteredResults) { item ->
+                            val itemIndex = filteredResults.indexOf(item)
+                            val isSelected = state.selectedItems.lastOrNull() == item
+                            val isInMulti = item in state.selectedItems
+                            ResultRow(
+                                item = item,
+                                isSelected = isSelected,
+                                isInMultiSelection = isInMulti && !isSelected,
+                                selectedItems = state.selectedItems,
+                                columns = visibleProps,
+                                onClick = {
+                                    if (isShiftHeld) {
+                                        if (state.lastClickedIndex == -1) {
+                                            state.selectedItems = listOf(item)
+                                            state.lastClickedIndex = itemIndex
+                                        } else {
+                                            val lo = minOf(state.lastClickedIndex, itemIndex)
+                                            val hi = maxOf(state.lastClickedIndex, itemIndex)
+                                            state.selectedItems = filteredResults.slice(lo..hi)
+                                        }
+                                        focusRequester.requestFocus()
+                                    } else {
                                         state.selectedItems = listOf(item)
                                         state.lastClickedIndex = itemIndex
-                                    } else {
-                                        val lo = minOf(state.lastClickedIndex, itemIndex)
-                                        val hi = maxOf(state.lastClickedIndex, itemIndex)
-                                        state.selectedItems = filteredResults.slice(lo..hi)
+                                        focusRequester.requestFocus()
                                     }
-                                    focusRequester.requestFocus()
-                                } else {
-                                    state.selectedItems = listOf(item)
-                                    state.lastClickedIndex = itemIndex
-                                    focusRequester.requestFocus()
+                                },
+                            )
+                            HorizontalDivider(color = BorderColor.copy(alpha = 0.35f), thickness = 0.5.dp)
+                        }
+                        if (filteredResults.isEmpty()) {
+                            item {
+                                Box(Modifier.fillMaxWidth().padding(48.dp), contentAlignment = Alignment.Center) {
+                                    Text(
+                                        if (activeFilters > 0) "No results match current filters" else "No definitions loaded",
+                                        color = TextMuted, fontSize = 13.sp
+                                    )
                                 }
-                            },
-                        )
-                        HorizontalDivider(color = BorderColor.copy(alpha = 0.35f), thickness = 0.5.dp)
-                    }
-                    if (filteredResults.isEmpty()) {
-                        item {
-                            Box(Modifier.fillMaxWidth().padding(48.dp), contentAlignment = Alignment.Center) {
-                                Text(
-                                    if (activeFilters > 0) "No results match current filters" else "No definitions loaded",
-                                    color = TextMuted, fontSize = 13.sp
-                                )
                             }
                         }
                     }
+                    VerticalScrollbar(
+                        modifier = Modifier
+                            .align(Alignment.CenterEnd)
+                            .fillMaxHeight(),
+                        adapter = rememberScrollbarAdapter(listState)
+                    )
                 }
             }
 

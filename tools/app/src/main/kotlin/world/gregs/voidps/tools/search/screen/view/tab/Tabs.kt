@@ -48,13 +48,16 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
     }
     var loadConfig = false
     val files = if (file.resolve("dirs.txt").exists()) {
+        Settings.load()
+        Settings.rebase("${file.absolutePath}/")
         loadConfig = true
-        configFiles(path, "${path}/.temp/modified.dat")
+        configFiles(path, "${path}/.temp/modified.dat", cachePath)
     } else {
+        Settings.load()
+        Settings.rebase("${file.parentFile.parent}/")
         configFiles()
     }
     val cache = CacheDelegate(cachePath)
-
 
     listOf(
         DefinitionTab(
@@ -75,7 +78,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
         DefinitionTab(
             label = Tabs.NPCS,
             clazz = NPCDefinitionFull::class.java,
-            defaultColumns = listOf("id", "stringId", "name"),
+            defaultColumns = listOf("id", "stringId", "name", "varbit", "transforms"),
             fieldLinks = listOf(
                 FieldLink("renderEmote", Tabs.EMOTES),
                 FieldLink("idleSound", Tabs.SOUNDS),
@@ -97,7 +100,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
         DefinitionTab(
             label = Tabs.OBJS,
             clazz = ObjectDefinitionFull::class.java,
-            defaultColumns = listOf("id", "stringId", "name", "varbit", "varp"),
+            defaultColumns = listOf("id", "stringId", "name", "varbit", "varp", "transforms"),
             fieldLinks = listOf(
                 FieldLink("transforms", Tabs.OBJS),
                 FieldLink("varbit", Tabs.VARS),

@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.map.collision.clear
 import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.engine.queue.longQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
@@ -43,7 +44,13 @@ class Cutscene(
     }
 
     fun onEnd(destroyInstance: Boolean = true, block: suspend () -> Unit) {
-        player.longQueue("${name}_cutscene_end", 1) {
+        player.walkTrigger = {
+            player.queue.clear("${name}_cutscene_end")
+            player.queue("${name}_cutscene_end") {
+                end(destroyInstance)
+            }
+        }
+        player.longQueue("${name}_cutscene_end", Int.MAX_VALUE) {
             end(destroyInstance)
         }
         this@Cutscene.block = block

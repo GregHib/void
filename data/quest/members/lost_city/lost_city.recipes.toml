@@ -5,3 +5,4 @@ requires = ["knife"]
 remove = ["dramen_branch"]
 add = ["dramen_staff"]
 message = "You carve a branch into a staff."
+animation = "fletching_log"

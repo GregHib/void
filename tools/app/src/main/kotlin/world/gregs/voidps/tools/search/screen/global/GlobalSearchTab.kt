@@ -1,6 +1,7 @@
 package world.gregs.voidps.tools.search.screen.global
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.VerticalScrollbar
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -22,6 +23,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.rememberScrollbarAdapter
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.Divider
@@ -264,175 +266,183 @@ fun GlobalSearchTab(
 
             Row(modifier = Modifier.fillMaxSize()) {
                 // Results list
-                LazyColumn(state = listState, modifier = Modifier.weight(1f).fillMaxHeight()) {
-                    if (debouncedQuery.isBlank() || searching) {
-                        item {
-                            Box(
-                                Modifier.fillMaxWidth().padding(64.dp),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Column(
-                                    horizontalAlignment = Alignment.CenterHorizontally,
-                                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                Box(modifier = Modifier.weight(1f).fillMaxWidth()) {
+                    LazyColumn(state = listState, modifier = Modifier.padding(end = 8.dp).fillMaxHeight()) {
+                        if (debouncedQuery.isBlank() || searching) {
+                            item {
+                                Box(
+                                    Modifier.fillMaxWidth().padding(64.dp),
+                                    contentAlignment = Alignment.Center
                                 ) {
-                                    if (searching) {
-                                        CircularProgressIndicator(color = AccentBlue, modifier = Modifier.size(12.dp), strokeWidth = 1.5.dp)
-                                    }
-                                    Text("Search across all tabs", fontSize = 14.sp, color = TextSecond)
-                                    Text(
-                                        "Matches name, stringId, id, and all other fields",
-                                        fontSize = 12.sp, color = TextMuted
-                                    )
-                                }
-                            }
-                        }
-                    } else {
-                        // Group by tab label
-                        grouped.forEach { (tabLabel, groupResults) ->
-                            val isCollapsed = tabLabel in globalState.collapsedSections
-                            // Group header
-                            stickyHeader(key = "header_${tabLabel}") {
-                                Row(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .background(BgPanel)
-                                        .clickable {
-                                            val wasCollapsed = tabLabel in globalState.collapsedSections
-                                            globalState.collapsedSections = if (isCollapsed) {
-
-                                                globalState.collapsedSections - tabLabel
-                                            } else {
-                                                globalState.collapsedSections + tabLabel
-                                            }
-                                            scope.launch {
-                                                var idx = 0
-                                                for ((label, results) in grouped) {
-                                                    if (label == tabLabel) break
-                                                    idx += 1  // the header
-                                                    if (label !in globalState.collapsedSections) {
-                                                        idx += results.size  // its items, using the NEW collapsed state
-                                                    }
-                                                }
-                                                listState.animateScrollToItem(idx)
-                                            }
-                                        }
-                                        .padding(horizontal = 12.dp, vertical = 5.dp),
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                                ) {
-                                    Icon(
-                                        painterResource(if (isCollapsed) Res.drawable.arrow_right else Res.drawable.arrow_drop_down),
-                                        if (isCollapsed) "expand" else "collapse",
-                                        tint = TextSecond,
-                                        modifier = Modifier.width(12.dp)
-                                    )
-                                    Box(
-                                        Modifier
-                                            .background(TagBg, RoundedCornerShape(3.dp))
-                                            .padding(horizontal = 6.dp, vertical = 2.dp)
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                        verticalArrangement = Arrangement.spacedBy(8.dp)
                                     ) {
-                                        Text(tabLabel, fontSize = 11.sp, color = TagText)
+                                        if (searching) {
+                                            CircularProgressIndicator(color = AccentBlue, modifier = Modifier.size(12.dp), strokeWidth = 1.5.dp)
+                                        }
+                                        Text("Search across all tabs", fontSize = 14.sp, color = TextSecond)
+                                        Text(
+                                            "Matches name, stringId, id, and all other fields",
+                                            fontSize = 12.sp, color = TextMuted
+                                        )
                                     }
-                                    Text(
-                                        "${groupResults.size} match${if (groupResults.size != 1) "es" else ""}",
-                                        fontSize = 11.sp, color = TextMuted
-                                    )
                                 }
-                                Divider(color = BorderColor, thickness = 0.5.dp)
                             }
-
-                            if (!isCollapsed) {
-                                items(groupResults,
-                                    key = { "${it.tabLabel}_${it.definition.id}_${it.definition.hashCode()}" }
-                                ) { result ->
-                                    val isSelected = globalState.selectedItem == result.definition
-                                    val def = result.definition
+                        } else {
+                            // Group by tab label
+                            grouped.forEach { (tabLabel, groupResults) ->
+                                val isCollapsed = tabLabel in globalState.collapsedSections
+                                // Group header
+                                stickyHeader(key = "header_${tabLabel}") {
                                     Row(
                                         modifier = Modifier
                                             .fillMaxWidth()
-                                            .background(if (isSelected) BgSelected else Color.Transparent)
+                                            .background(BgPanel)
                                             .clickable {
-                                                globalState.selectedItem = def
-                                                globalState.selectedItemTabLabel = result.tabLabel
-                                            }
-                                            .padding(horizontal = 12.dp, vertical = 8.dp),
-                                        verticalAlignment = Alignment.CenterVertically,
-                                        horizontalArrangement = Arrangement.spacedBy(10.dp),
-                                    ) {
-                                        // ID
-                                        Text(
-                                            "#${def.id}", fontSize = 12.sp,
-                                            color = AccentBlue, fontFamily = FontFamily.Monospace,
-                                            modifier = Modifier.width(48.dp)
-                                        )
+                                                val wasCollapsed = tabLabel in globalState.collapsedSections
+                                                globalState.collapsedSections = if (isCollapsed) {
 
-                                        // Name / stringId
-                                        val displayName = resolveDisplayName(result.tabLabel, def.id)
-                                        Column(modifier = Modifier.weight(1f)) {
-                                            if (displayName != null) {
-                                                Text(displayName, fontSize = 13.sp, color = TextPrimary, maxLines = 1)
-                                            } else {
-                                                result.matchedFields
+                                                    globalState.collapsedSections - tabLabel
+                                                } else {
+                                                    globalState.collapsedSections + tabLabel
+                                                }
+                                                scope.launch {
+                                                    var idx = 0
+                                                    for ((label, results) in grouped) {
+                                                        if (label == tabLabel) break
+                                                        idx += 1  // the header
+                                                        if (label !in globalState.collapsedSections) {
+                                                            idx += results.size  // its items, using the NEW collapsed state
+                                                        }
+                                                    }
+                                                    listState.animateScrollToItem(idx)
+                                                }
                                             }
-                                            // Show which non-obvious fields matched
-                                            val interestingFields = result.matchedFields
-                                                .filter { it != "id" && it != "name" && it != "stringId" }
-                                            if (interestingFields.isNotEmpty()) {
-                                                Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                                                    interestingFields.take(4).forEach { field ->
-                                                        Box(
-                                                            Modifier
-                                                                .background(AccentBlue.copy(0.1f), RoundedCornerShape(2.dp))
-                                                                .padding(horizontal = 4.dp, vertical = 1.dp)
-                                                        ) {
-                                                            Text(field, fontSize = 10.sp, color = AccentLight)
+                                            .padding(horizontal = 12.dp, vertical = 5.dp),
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                                    ) {
+                                        Icon(
+                                            painterResource(if (isCollapsed) Res.drawable.arrow_right else Res.drawable.arrow_drop_down),
+                                            if (isCollapsed) "expand" else "collapse",
+                                            tint = TextSecond,
+                                            modifier = Modifier.width(12.dp)
+                                        )
+                                        Box(
+                                            Modifier
+                                                .background(TagBg, RoundedCornerShape(3.dp))
+                                                .padding(horizontal = 6.dp, vertical = 2.dp)
+                                        ) {
+                                            Text(tabLabel, fontSize = 11.sp, color = TagText)
+                                        }
+                                        Text(
+                                            "${groupResults.size} match${if (groupResults.size != 1) "es" else ""}",
+                                            fontSize = 11.sp, color = TextMuted
+                                        )
+                                    }
+                                    Divider(color = BorderColor, thickness = 0.5.dp)
+                                }
+
+                                if (!isCollapsed) {
+                                    items(
+                                        groupResults,
+                                        key = { "${it.tabLabel}_${it.definition.id}_${it.definition.hashCode()}" }
+                                    ) { result ->
+                                        val isSelected = globalState.selectedItem == result.definition
+                                        val def = result.definition
+                                        Row(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .background(if (isSelected) BgSelected else Color.Transparent)
+                                                .clickable {
+                                                    globalState.selectedItem = def
+                                                    globalState.selectedItemTabLabel = result.tabLabel
+                                                }
+                                                .padding(horizontal = 12.dp, vertical = 8.dp),
+                                            verticalAlignment = Alignment.CenterVertically,
+                                            horizontalArrangement = Arrangement.spacedBy(10.dp),
+                                        ) {
+                                            // ID
+                                            Text(
+                                                "#${def.id}", fontSize = 12.sp,
+                                                color = AccentBlue, fontFamily = FontFamily.Monospace,
+                                                modifier = Modifier.width(48.dp)
+                                            )
+
+                                            // Name / stringId
+                                            val displayName = resolveDisplayName(result.tabLabel, def.id)
+                                            Column(modifier = Modifier.weight(1f)) {
+                                                if (displayName != null) {
+                                                    Text(displayName, fontSize = 13.sp, color = TextPrimary, maxLines = 1)
+                                                } else {
+                                                    result.matchedFields
+                                                }
+                                                // Show which non-obvious fields matched
+                                                val interestingFields = result.matchedFields
+                                                    .filter { it != "id" && it != "name" && it != "stringId" }
+                                                if (interestingFields.isNotEmpty()) {
+                                                    Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                                                        interestingFields.take(4).forEach { field ->
+                                                            Box(
+                                                                Modifier
+                                                                    .background(AccentBlue.copy(0.1f), RoundedCornerShape(2.dp))
+                                                                    .padding(horizontal = 4.dp, vertical = 1.dp)
+                                                            ) {
+                                                                Text(field, fontSize = 10.sp, color = AccentLight)
+                                                            }
                                                         }
                                                     }
                                                 }
                                             }
-                                        }
 
-                                        // "Open in tab" button
-                                        Box(
-                                            modifier = Modifier
-                                                .clip(RoundedCornerShape(3.dp))
-                                                .background(BgCard)
-                                                .border(0.5.dp, BorderColor, RoundedCornerShape(3.dp))
-                                                .clickable {
-                                                    onNavigate(
-                                                        result.tabLabel,
-                                                        mapOf("id" to def.id.toString())
-                                                    )
-                                                }
-                                                .padding(horizontal = 6.dp, vertical = 3.dp),
-                                        ) {
-                                            Text(
-                                                "→ ${result.tabLabel}",
-                                                fontSize = 11.sp, color = TextSecond
-                                            )
+                                            // "Open in tab" button
+                                            Box(
+                                                modifier = Modifier
+                                                    .clip(RoundedCornerShape(3.dp))
+                                                    .background(BgCard)
+                                                    .border(0.5.dp, BorderColor, RoundedCornerShape(3.dp))
+                                                    .clickable {
+                                                        onNavigate(
+                                                            result.tabLabel,
+                                                            mapOf("id" to def.id.toString())
+                                                        )
+                                                    }
+                                                    .padding(horizontal = 6.dp, vertical = 3.dp),
+                                            ) {
+                                                Text(
+                                                    "→ ${result.tabLabel}",
+                                                    fontSize = 11.sp, color = TextSecond
+                                                )
+                                            }
                                         }
+                                        Divider(color = BorderColor.copy(alpha = 0.3f), thickness = 0.5.dp)
                                     }
-                                    Divider(color = BorderColor.copy(alpha = 0.3f), thickness = 0.5.dp)
                                 }
                             }
-                        }
 
-                        if (results.size == 500) {
-                            item {
-                                Box(
-                                    Modifier.fillMaxWidth().padding(16.dp),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    Text(
-                                        "Results capped at 500 — refine your query",
-                                        fontSize = 12.sp, color = TextMuted
-                                    )
+                            if (results.size == 500) {
+                                item {
+                                    Box(
+                                        Modifier.fillMaxWidth().padding(16.dp),
+                                        contentAlignment = Alignment.Center
+                                    ) {
+                                        Text(
+                                            "Results capped at 500 — refine your query",
+                                            fontSize = 12.sp, color = TextMuted
+                                        )
+                                    }
                                 }
                             }
                         }
                     }
+                    VerticalScrollbar(
+                        modifier = Modifier
+                            .align(Alignment.CenterEnd)
+                            .fillMaxHeight(),
+                        adapter = rememberScrollbarAdapter(listState)
+                    )
                 }
-
                 // Detail panel — reuses the same DetailPanel composable
                 globalState.selectedItem?.let { item ->
                     // Drag handle
