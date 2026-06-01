@@ -1,5 +1,5 @@
 [in_aid_of_the_myreque]
-id = 705 # this and varbits works
+id = 1990 # this and varps works
 persist = true
 format = "map"
 default = "unstarted"
