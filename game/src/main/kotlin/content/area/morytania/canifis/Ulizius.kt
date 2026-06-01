@@ -9,7 +9,6 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.player.dialogue.type.warning
-import content.quest.member.myreque.nature_spirit
 import content.quest.quest
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script

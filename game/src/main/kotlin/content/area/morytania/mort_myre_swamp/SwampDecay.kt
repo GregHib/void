@@ -39,8 +39,8 @@ class SwampDecay : Script {
 
         timerTick("swamp_decay") {
             if (inventory.any(immunity) || equipment.any(immunity)) {
-                when {
-                    equipment.contains("silver_sickle_b") -> message("The blessed sick prevents the swamp from decaying you.")
+                if (equipment.contains("silver_sickle_b")) {
+                    message("The blessed sickle prevents the swamp from decaying you.")
                 }
                 gfx("druidicspirit_druidsshield", delay = 30)
                 return@timerTick Timer.CONTINUE

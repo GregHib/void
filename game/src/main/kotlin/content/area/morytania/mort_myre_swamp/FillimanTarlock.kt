@@ -18,11 +18,9 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
 import content.entity.proj.shoot
-import content.quest.member.myreque.nature_spirit
 import content.quest.member.myreque.sendNatureSpiritReward
 import content.quest.questStage
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.InterfaceApi.Companion.option
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -41,18 +39,19 @@ class FillimanTarlock : Script {
     init {
         npcOperate("Talk-to", "filliman_tarlock_ghost,filliman_tarlock_spirit") { (target) ->
             npcTile = target.tile
+            val stage = questStage("nature_spirit")
             when {
-                nature_spirit < 15 -> earlyEncounter()
+                stage < 15 -> earlyEncounter()
                 equipped(EquipSlot.Amulet).id != "ghostspeak_amulet" -> {
                     npc<Neutral>("Woooo wooo wooo wooo")
                     statement("You cannot understand the ghost.")
                 }
-                nature_spirit in 15..19 -> {
+                stage in 15..19 -> {
                     player<Neutral>("Hello?")
                     npc<Shock>("Oh, I understand you! At last, someone who doesn't just mumble. I understand what you're saying!")
                     convinceHesAGhost()
                 }
-                nature_spirit == 20 -> {
+                stage == 20 -> {
                     player<Neutral>("Hello again!")
                     npc<Sad>(
                         "Oh, hello there, do you still think I am dead? It's hard to see how I could " +
@@ -62,7 +61,7 @@ class FillimanTarlock : Script {
                     player<Neutral>("Yes, I do think you're dead and I'll prove it somehow.")
                     convinceHesAGhost()
                 }
-                nature_spirit == 25 -> {
+                stage == 25 -> {
                     player<Neutral>("Hello again..")
                     npc<Sad>(
                         "Oh, hello... Sorry, you've caught me at a bad time, it's just that I've " +
@@ -74,15 +73,15 @@ class FillimanTarlock : Script {
                             "remember something about a knot? Perhaps I was meant to tie a knot or something?",
                     )
                 }
-                nature_spirit == 30 -> readJournalRecap()
-                nature_spirit == 35 -> {
+                stage == 30 -> readJournalRecap()
+                stage == 35 -> {
                     npc<Sad>("Hello there, have you been blessed yet?")
                     player<Neutral>("No, not yet.")
                     npc<Sad>("Well, hurry up!")
                     bloomScrollChoiceLoop()
                 }
-                nature_spirit == 40 -> hasFungusAtStage40()
-                nature_spirit in 45..50 -> {
+                stage == 40 -> hasFungusAtStage40()
+                stage in 45..50 -> {
                     if (inventory.contains("mort_myre_fungus")) {
                         showedFungusScene()
                     } else {
@@ -91,24 +90,24 @@ class FillimanTarlock : Script {
                         bloomScrollChoiceLoop()
                     }
                 }
-                nature_spirit == 55 -> {
+                stage == 55 -> {
                     npc<Neutral>(
                         "Hello again! I don't suppose you've found out what the other components " +
                             "of the Nature spell are have you?",
                     )
                     componentsHelpLoop()
                 }
-                nature_spirit == 60 -> {
+                stage == 60 -> {
                     npc<Neutral>("Please come down into the grotto, we have much to discuss.")
                 }
-                nature_spirit == 65 -> {
+                stage == 65 -> {
                     npc<Neutral>(
                         "Well, hello there again, I was just enjoying the grotto. Many thanks for " +
                             "your help, I couldn't have become a Spirit of nature without you.",
                     )
                     transformInGrotto()
                 }
-                nature_spirit == 70 -> {
+                stage == 70 -> {
                     npc<Neutral>("Have you brought me the silver sickle?")
                     if (inventory.contains("silver_sickle")) {
                         player<Neutral>("Yes, here it is. What are you going to do with it?")
@@ -120,13 +119,13 @@ class FillimanTarlock : Script {
                         postSickleHelpLoop()
                     }
                 }
-                nature_spirit in 75..104 -> {
+                stage in 75..104 -> {
                     npc<Neutral>("Hello again my friend, have you defeated three Ghasts as I asked you?")
                     player<Neutral>("Not yet.")
                     npc<Neutral>("Well, when you do, please come to me and I'll reward you!")
                     ghastHuntHelpLoop()
                 }
-                nature_spirit == 105 -> {
+                stage == 105 -> {
                     npc<Neutral>("Hello again my friend, have you defeated three Ghasts as I asked you?")
                     player<Neutral>("Yes, I've killed all three and their spirits have been released!")
                     npc<Neutral>(
@@ -135,7 +134,7 @@ class FillimanTarlock : Script {
                     )
                     sendNatureSpiritReward()
                 }
-                nature_spirit >= 110 -> {
+                stage >= 110 -> {
                     npc<Happy>("Welcome to my Altar to Nature! Farewell my friend and keep those Ghasts at bay!")
                     val npc = NPCs.findOrNull(tile.regionLevel, "filliman_tarlock_spirit")
                     if (npc != null) {
@@ -168,11 +167,9 @@ class FillimanTarlock : Script {
                 statement("You cannot understand the ghost.")
                 return@itemOnNPCOperate
             }
-            when (nature_spirit) {
+            when (questStage("nature_spirit")) {
                 25 -> journalScene()
-                in 30..109 -> {
-                    npc<Happy>("Oh, keep hold of that, I may need it later.")
-                }
+                in 30..109 -> npc<Happy>("Oh, keep hold of that, I may need it later.")
                 else -> statement("The spirit doesn't seem interested in this right now.")
             }
         }
@@ -243,7 +240,6 @@ class FillimanTarlock : Script {
         npc<Sad>("I think you might be right my friend, though I still feel very much alive. It is strange how I still come to be here and yet I've not turned into a Ghast.")
         npc<Sad>("It must be a sign... Yes a sign... I must try to find out what it means. Now, where did I put my journal?")
         set("nature_spirit", "find_journal")
-        nature_spirit = 25
     }
 
     private suspend fun Player.journalScene() {
@@ -254,18 +250,14 @@ class FillimanTarlock : Script {
             item = "journal_nature_spirit",
             text = "~ The spirit starts leafing through the journal. ~ <br>~ He seems quite distant as he regards the pages. ~ <br>~ After some time the druid faces you again. ~",
         )
-        npc<Sad>(
-            "It's all coming back to me now. It looks like I came to a violent and bitter end but that's not important now. I just have to figure out what I am going to do now?",
-        )
-        nature_spirit = 30
+        npc<Sad>("It's all coming back to me now. It looks like I came to a violent and bitter end but that's not important now. I just have to figure out what I am going to do now?")
+        set("nature_spirit", "choice")
         inventory.remove("journal_nature_spirit")
         planChoiceLoop()
     }
 
     private suspend fun Player.readJournalRecap() {
-        npc<Sad>(
-            "Thanks for the journal, I've been reading it. It looks like I came to a violent and bitter end but that's not really important I just have to figure out what I am going to do now?",
-        )
+        npc<Sad>("Thanks for the journal, I've been reading it. It looks like I came to a violent and bitter end but that's not really important I just have to figure out what I am going to do now?")
         planChoiceLoop()
     }
 
@@ -303,7 +295,6 @@ class FillimanTarlock : Script {
         )
         addOrDrop("druidic_spell")
         set("nature_spirit", "spell")
-        nature_spirit = 35
         npc<Sad>("This spell needs to be cast in the swamp after you have been blessed. I'm afraid you'll need to go to the temple to the North and ask a member of the clergy to bless you.")
         player<Neutral>("Blessed, what does that do?")
         npc<Sad>("It is required if you're to cast this druid spell. Once you've cast the spell, you should find something from nature. Bring it back to me and then we'll try to figure out the other things we need.")
@@ -331,13 +322,9 @@ class FillimanTarlock : Script {
     private suspend fun Player.hasFungusAtStage40() {
         if (!inventory.contains("mort_myre_fungus") && !get("ns_brown_correct", false)) {
             player<Neutral>("Hello, I've been blessed but I don't know what to do now.")
-            npc<Neutral>(
-                "Well, you need to bring 'something from nature', 'something with faith' and 'something of the spirit-to-become freely given-",
-            )
+            npc<Neutral>("Well, you need to bring 'something from nature', 'something with faith' and 'something of the spirit-to-become freely given-")
             player<Neutral>("Yeah, but what does that mean?")
-            npc<Neutral>(
-                "Hmm, it is a conundrum, however, if you use that Bloom spell I gave you, you should be able to get something from nature. Once you have that, we may be able to puzzle the rest out.",
-            )
+            npc<Neutral>("Hmm, it is a conundrum, however, if you use that Bloom spell I gave you, you should be able to get something from nature. Once you have that, we may be able to puzzle the rest out.")
             bloomScrollChoiceLoop()
             return
         }
@@ -348,11 +335,9 @@ class FillimanTarlock : Script {
     private suspend fun Player.showedFungusScene() {
         item(item = "mort_myre_fungus", text = "You show the fungus to Filliman.")
         player<Neutral>("I picked a fungus that grew when I cast the bloom spell.")
-        npc<Neutral>(
-            "Wonderful, the mushroom represents 'something from nature'. Now we need to work out what the other components of the spell are!",
-        )
-        if (nature_spirit <= 50) {
-            nature_spirit = 55
+        npc<Neutral>("Wonderful, the mushroom represents 'something from nature'. Now we need to work out what the other components of the spell are!")
+        if (questStage("nature_spirit") <= 50) {
+            set("nature_spirit", "show_mushroom")
         }
         componentsHelpLoop()
     }
@@ -383,9 +368,7 @@ class FillimanTarlock : Script {
                 componentsHelpLoop()
             }
             option<Neutral>("I think I've solved the puzzle!") {
-                npc<Neutral>(
-                    "Oh really.. Have you placed all the items on the stones? Ok, well, let's try! <navy>~ The druid attempts to cast a spell. ~",
-                )
+                npc<Neutral>("Oh really.. Have you placed all the items on the stones? Ok, well, let's try! <navy>~ The druid attempts to cast a spell. ~")
                 if (solvedPuzzle()) {
                     correctSpellScene()
                 } else {
@@ -399,8 +382,10 @@ class FillimanTarlock : Script {
         }
     }
 
-    private fun Player.solvedPuzzle(): Boolean = get("ns_brown_correct", false) && get("ns_grey_correct", false) &&
-        tile.x == 3440 && tile.y == 3335
+    private fun Player.solvedPuzzle(): Boolean = get("ns_brown_correct", false) &&
+        get("ns_grey_correct", false) &&
+        tile.x == 3440 &&
+        tile.y == 3335
 
     private suspend fun Player.failSpellScene() {
         val ghost = NPCs.findOrNull(tile.regionLevel, "filliman_tarlock_ghost")
@@ -434,7 +419,7 @@ class FillimanTarlock : Script {
             )
         }
         delay(2)
-        nature_spirit = 60
+        set("nature_spirit", "transform_ready")
         for (step in 0..2) {
             areaGfx(
                 id = "druidicspirit_effect",
@@ -444,16 +429,11 @@ class FillimanTarlock : Script {
             )
         }
         sound("bloom_pears", delay = 30)
-        npc<Happy>(
-            "Aha, everything seems to be in place! You can come through now into the grotto for the final section of my transformation.",
-        )
+        npc<Happy>("Aha, everything seems to be in place! You can come through now into the grotto for the final section of my transformation.")
     }
 
     private suspend fun Player.transformInGrotto() {
-        npc<Neutral>(
-            "I must complete the transformation now. Just stand there and watch the show, apparently it's quite good!",
-        )
-
+        npc<Neutral>("I must complete the transformation now. Just stand there and watch the show, apparently it's quite good!")
         delay(1)
         val ghost = NPCs.findOrNull(tile.regionLevel, "filliman_tarlock_ghost") ?: NPCs.add("filliman_tarlock_ghost", npcTile)
 
@@ -494,38 +474,27 @@ class FillimanTarlock : Script {
             )
         }
         delay(1)
-        nature_spirit = 70
+        set("nature_spirit", "transform_done")
         talkWith(ghost)
         delay(4)
-
-        npc<Neutral>(
-            "Hmmm, good, the transformation is complete. Now, my friend, in return for your assistance, I will help you to kill the Ghasts. First bring to me a silver sickle so that I can bless it for you.",
-        )
+        npc<Neutral>("Hmmm, good, the transformation is complete. Now, my friend, in return for your assistance, I will help you to kill the Ghasts. First bring to me a silver sickle so that I can bless it for you.")
         player<Neutral>("A silver sickle? What's that?")
-        npc<Neutral>(
-            "The sickle is the symbol and weapon of the Druid, you need to construct one of silver so that I can bless it, with its powers you will be able to defeat the Ghasts of Mort Myre.",
-        )
+        npc<Neutral>("The sickle is the symbol and weapon of the Druid, you need to construct one of silver so that I can bless it, with its powers you will be able to defeat the Ghasts of Mort Myre.")
         postSickleHelpLoop()
     }
 
     private suspend fun Player.postSickleHelpLoop() {
         choice {
             option<Neutral>("Where would I get a silver sickle?") {
-                npc<Neutral>(
-                    "You could make one yourself if you're artisan enough. I've heard of a distant sandy place where you can buy the mould that you require, it's similar in many respects to the creating of a holy symbol.",
-                )
+                npc<Neutral>("You could make one yourself if you're artisan enough. I've heard of a distant sandy place where you can buy the mould that you require, it's similar in many respects to the creating of a holy symbol.")
                 postSickleHelpLoop()
             }
             option<Neutral>("What will you do to the silver sickle?") {
-                npc<Neutral>(
-                    "Why, I will give it my blessings so that the very swamp in which you stand will blossom and bloom!",
-                )
+                npc<Neutral>("Why, I will give it my blessings so that the very swamp in which you stand will blossom and bloom!")
                 postSickleHelpLoop()
             }
             option<Neutral>("How can a blessed sickle help me to defeat the Ghasts?") {
-                npc<Neutral>(
-                    "My blessings will entice nature to bloom in Mort Myre! And then with nature's harvest you can fill a druids' pouch and release the Ghasts from their torment.",
-                )
+                npc<Neutral>("My blessings will entice nature to bloom in Mort Myre! And then with nature's harvest you can fill a druids' pouch and release the Ghasts from their torment.")
                 postSickleHelpLoop()
             }
             option<Neutral>("Ok, thanks.")
@@ -562,7 +531,7 @@ class FillimanTarlock : Script {
         delay(1)
         anim(id = "druidicspirit_human_bloom", delay = 30)
         delay(1)
-        nature_spirit = 75
+        set("nature_spirit", "natures_bounty")
         inventory.remove("silver_sickle")
         addOrDrop("silver_sickle_b")
         delay(3)
@@ -570,40 +539,26 @@ class FillimanTarlock : Script {
             item = "silver_sickle_b",
             text = "Your sickle has been blessed! <navy>~ If you lose the blessed sickle, you can bless a new sickle by dipping it in the grotto waters. ~",
         )
-        npc<Neutral>(
-            "Now you can go forth and make the swamp bloom. Collect nature's bounty to fill a druids pouch. So armed will the Ghasts be bound to you until you flee or they are defeated.",
-        )
-        npc<Neutral>(
-            "Before I can make this grotto into an Altar of Nature, I need to be sure that the Ghasts will be kept at bay. Go forth into Mort Myre and slay three Ghasts. You'll be releasing their souls from Mort Myre.",
-        )
+        npc<Neutral>("Now you can go forth and make the swamp bloom. Collect nature's bounty to fill a druids pouch. So armed will the Ghasts be bound to you until you flee or they are defeated.")
+        npc<Neutral>("Before I can make this grotto into an Altar of Nature, I need to be sure that the Ghasts will be kept at bay. Go forth into Mort Myre and slay three Ghasts. You'll be releasing their souls from Mort Myre.")
         addOrDrop("druid_pouch")
         item(item = "druid_pouch", text = "The nature spirit gives you an empty pouch.")
-        npc<Neutral>(
-            "You'll need this in order to collect together nature's bounty. When it contains items, it will bind the Ghast to you until you flee or it is defeated.",
-        )
+        npc<Neutral>("You'll need this in order to collect together nature's bounty. When it contains items, it will bind the Ghast to you until you flee or it is defeated.")
     }
 
     private suspend fun Player.ghastHuntHelpLoop() {
         choice {
             option<Neutral>("How do I get to attack the Ghasts?") {
-                npc<Neutral>(
-                    "Go forth and with the sickle make the swamp bloom. Collect nature's bounty to fill a druid's pouch. So armed will the Ghasts be bound to you until you flee or they are defeated.",
-                )
+                npc<Neutral>("Go forth and with the sickle make the swamp bloom. Collect nature's bounty to fill a druid's pouch. So armed will the Ghasts be bound to you until you flee or they are defeated.")
             }
             option<Neutral>("What's this pouch for?") {
-                npc<Neutral>(
-                    "It is for collecting natures bounty, once it contains the blossomed items of the swamp, it will make the Ghasts appear and you can then attack them.",
-                )
+                npc<Neutral>("It is for collecting natures bounty, once it contains the blossomed items of the swamp, it will make the Ghasts appear and you can then attack them.")
             }
             option<Neutral>("What can I do with this sickle?") {
-                npc<Neutral>(
-                    "You may use it wisely within the area of Mort Myre to affect nature's balance and bring forth a bounty of nature's harvest. Once collected into the druid pouch, will the Ghast be apparent.",
-                )
+                npc<Neutral>("You may use it wisely within the area of Mort Myre to affect nature's balance and bring forth a bounty of nature's harvest. Once collected into the druid pouch, will the Ghast be apparent.")
             }
             option<Neutral>("I've lost my sickle.") {
-                npc<Neutral>(
-                    "If you should lose the blessed sickle, simply bring another to my altar of nature and refresh it in the grotto waters.",
-                )
+                npc<Neutral>("If you should lose the blessed sickle, simply bring another to my altar of nature and refresh it in the grotto waters.")
             }
             option<Neutral>("Ok, thanks.")
         }

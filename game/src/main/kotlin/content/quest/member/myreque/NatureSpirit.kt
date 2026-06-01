@@ -1,7 +1,5 @@
 package content.quest.member.myreque
 
-import content.entity.combat.killer
-import content.entity.effect.transform
 import content.entity.gfx.areaGfx
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Neutral
@@ -10,16 +8,12 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
 import content.entity.proj.shoot
-import content.quest.quest
-import content.quest.questComplete
-import content.quest.questCompleted
-import content.quest.questJournal
-import content.quest.questStage
-import content.quest.refreshQuestJournal
+import content.quest.*
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -27,30 +21,34 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.longQueue
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Area
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Cuboid
-import kotlin.collections.set
-import kotlin.text.get
+import world.gregs.voidps.type.random
+import java.util.concurrent.TimeUnit
 
 class NatureSpirit : Script {
 
     init {
         questJournalOpen("nature_spirit") {
-            val progress = nature_spirit
+            val progress = questStage("nature_spirit")
             val lines = mutableListOf<String>()
 
-            if (nature_spirit >= 110) {
+            if (questCompleted("nature_spirit")) {
                 lines += "<str>Drezel, a priest of Saradomin, asked me to look for the"
                 lines += "<str>druid Filliman Tarlock in the swamps of Mort Myre. However"
                 lines += "<str>Filliman had been slain and appeared as a ghost. After"
@@ -269,18 +267,18 @@ class NatureSpirit : Script {
                     "You search the stone and find that it has some sort of nature symbol scratched into it.<br>This stone seems complete in some way."
                 } else {
                     "You search the stone and find that it has some sort of nature symbol scratched into it."
-                }
+                },
             )
         }
 
         objectOperate("Search", "stonedisc_ds_faith") {
-            val placedFaith = (tile.x == 3440 && tile.y == 3335) || nature_spirit >= 10
+            val placedFaith = (tile.x == 3440 && tile.y == 3335) || questStage("nature_spirit") >= 10
             statement(
                 if (placedFaith) {
                     "You search the stone and find that it has some sort of faith symbol scratched into it.<br>This stone seems complete in some way."
                 } else {
                     "You search the stone and find that it has some sort of faith symbol scratched into it."
-                }
+                },
             )
         }
 
@@ -291,7 +289,7 @@ class NatureSpirit : Script {
                     "You search the stone and find that it has some sort of spirit symbol scratched into it.<br>This stone seems complete in some way."
                 } else {
                     "You search the stone and find that it has some sort of spirit symbol scratched into it."
-                }
+                },
             )
         }
 
@@ -330,9 +328,7 @@ class NatureSpirit : Script {
         }
 
         itemOption("Read", "druidic_spell,a_used_spell") {
-            statement(
-                "Most of the writing is pretty uninteresting, but something inside refers to nature spirit. The requirements for which are,<br>'Something from nature', 'something with faith' and 'something of the spirit-to-become freely given'.<br>It's all pretty vague.",
-            )
+            statement("Most of the writing is pretty uninteresting, but something inside refers to nature spirit. The requirements for which are,<br>'Something from nature', 'something with faith' and 'something of the spirit-to-become freely given'.<br>It's all pretty vague.")
         }
 
         itemOption("Read", "journal_nature_spirit") {
@@ -362,41 +358,10 @@ class NatureSpirit : Script {
             fillPouch()
         }
 
-        itemOnNPCOperate("druid_pouch_2", "ghast") { interaction ->
-            applyPouchOnGhast(interaction.target)
-        }
-
         taken("washing_bowl") { item ->
             if (item.tile == Tile(3437, 3337) && !inventory.contains("mirror")) {
                 message("You find a small mirror under the washing bowl.")
                 FloorItems.add(Tile(3437, 3337), "mirror", disappearTicks = 300, owner = this)
-            }
-        }
-
-        npcDeath("ghast") {
-            gfx(
-                id = "ghast_spotdeath",
-                delay = 20,
-                height = 50,
-            )
-            val killer = killer
-            if (killer !is Player) {
-                return@npcDeath
-            }
-            killer.exp(Skill.Prayer, 30.0)
-            when (killer.nature_spirit) {
-                90 -> {
-                    killer.message("That's one Ghast, 2 more to kill.")
-                    killer.nature_spirit = 95
-                }
-                95 -> {
-                    killer.message("That's two Ghasts, 1 more to kill.")
-                    killer.nature_spirit = 100
-                }
-                100 -> {
-                    killer.message("That's all three ghasts!")
-                    killer.nature_spirit = 105
-                }
             }
         }
     }
@@ -412,10 +377,10 @@ class NatureSpirit : Script {
             return
         }
         message("You see a beautifully tended small grotto area.")
-        val z = if (nature_spirit >= 110) 1 else 0
+        val z = if (questCompleted("nature_spirit")) 1 else 0
         tele(3442, 9734, z)
-        if (nature_spirit == 60) {
-            nature_spirit = 65
+        if (quest("nature_spirit") == "transform_ready") {
+            set("nature_spirit", "transform_start")
         }
     }
 
@@ -423,12 +388,13 @@ class NatureSpirit : Script {
         val filliman = ensureFillimanGhost(Cuboid(3438, 9735, 3444, 9742, 0))
         sound("spirit_transform_start")
         talkWith(filliman)
+        interactNpc(filliman, "Talk-to")
     }
 
     private fun Player.ensureFillimanGhost(area: Area): NPC {
         NPCs.findOrNull(tile.regionLevel, "filliman_tarlock_ghost")?.let { return it }
         NPCs.findOrNull(tile.regionLevel, "filliman_tarlock_spirit")?.let { return it }
-        val id = if (nature_spirit >= 70) "filliman_tarlock_spirit" else "filliman_tarlock_ghost"
+        val id = if (questStage("nature_spirit") >= 70) "filliman_tarlock_spirit" else "filliman_tarlock_ghost"
         val npc = NPCs.addRandom(id, area)
         return npc ?: NPCs.add(id, tile)
     }
@@ -441,7 +407,7 @@ class NatureSpirit : Script {
     }
 
     private suspend fun Player.handlePuzzleItem(target: GameObject, itemId: String) {
-        if (nature_spirit !in 45..55) {
+        if (questStage("nature_spirit") !in 45..55) {
             message("Nothing interesting happens.")
             return
         }
@@ -480,27 +446,27 @@ class NatureSpirit : Script {
             "mort_myre_fungus" -> message("You pick a mushroom from the log.")
             "mort_myre_pear" -> message("You pick a pear from the tree.")
         }
-        target.replace(target.id.removeSuffix("2"))
-        when (nature_spirit) {
-            45 -> nature_spirit = 50
-            80 -> nature_spirit = 85
+        target.remove()
+        when (quest("nature_spirit")) {
+            "spell_cast" -> set("nature_spirit", "has_mushroom")
+            "bloomed" -> set("nature_spirit", "picked")
         }
     }
 
     private suspend fun Player.castBloomFromScroll() {
-        if (nature_spirit < 40) {
+        if (questStage("nature_spirit") < 40) {
             message("You need to be blessed before you can cast this spell.")
             return
         }
-        if (!atMortMyre()) {
+        if (tile !in Areas["mort_myre_swamp_bloom_area"]) {
             message("This spell has no effect outside of Mort Myre swamp.")
             return
         }
 
         message("You cast the spell in the swamp.")
         delay(2)
-        if (nature_spirit == 40) {
-            nature_spirit = 45
+        if (quest("nature_spirit") == "blessed_spell") {
+            set("nature_spirit", "spell_cast")
         }
         anim("human_casting", delay = 30)
         sprinkleBloomGfx(height = 46, delay = 30)
@@ -513,11 +479,11 @@ class NatureSpirit : Script {
     }
 
     private suspend fun Player.castBloomFromSickle() {
-        if (levels.get(Skill.Prayer) <= 0) {
+        if (!has(Skill.Prayer, 0)) {
             message("You need some prayer points to activate the power of the sickle.")
             return
         }
-        if (!atMortMyre()) {
+        if (tile !in Areas["mort_myre_swamp_bloom_area"]) {
             message("This spell has no effect outside of Mort Myre swamp.")
             return
         }
@@ -525,8 +491,8 @@ class NatureSpirit : Script {
         anim("druidicspirit_human_bloom", delay = 10)
         sound("cast_bloom", delay = 35)
         delay(1)
-        if (nature_spirit == 75) {
-            nature_spirit = 80
+        if (quest("nature_spirit") == "natures_bounty") {
+            set("nature_spirit", "bloomed")
         }
         levels.drain(Skill.Prayer, ((1..6).random()).coerceAtMost(levels.get(Skill.Prayer)))
         sprinkleBloomGfx(height = 150, delay = 15)
@@ -534,20 +500,10 @@ class NatureSpirit : Script {
     }
 
     private fun Player.sprinkleBloomGfx(height: Int, delay: Int) {
-        val offsets = listOf(
-            0 to -1,
-            0 to 1,
-            -1 to -1,
-            -1 to 1,
-            1 to -1,
-            1 to 1,
-            -1 to 0,
-            1 to 0,
-        )
-        for ((dx, dy) in offsets) {
+        for (dir in Direction.all) {
             areaGfx(
                 id = "druidicspirit_bloom_spotanim",
-                tile = Tile(tile.x + dx, tile.y + dy, tile.level),
+                tile = tile.add(dir),
                 height = height,
                 delay = delay,
             )
@@ -555,17 +511,15 @@ class NatureSpirit : Script {
     }
 
     private fun Player.bloomNearbyPlants() {
-        for (dx in -1..1) {
-            for (dy in -1..1) {
-                val at = Tile(tile.x + dx, tile.y + dy, tile.level)
-                for (data in BLOOM_TABLE) {
-                    val obj = GameObjects.findOrNull(at, data.unbloomedName) ?: continue
-                    if ((1..4).random() != 1) {
-                        continue
-                    }
-                    sound(data.sound, delay = 40)
-                    obj.replace(data.bloomedName, ticks = 25)
+        for (dir in Direction.all) {
+            val at = tile.add(dir)
+            for (data in BLOOM_TABLE) {
+                val obj = GameObjects.findOrNull(at, data.unbloomedName) ?: continue
+                if (random.nextInt(4) != 0) {
+                    continue
                 }
+                sound(data.sound, delay = 40)
+                obj.replace(data.bloomedName, ticks = TimeUnit.SECONDS.toTicks(15))
             }
         }
     }
@@ -601,35 +555,11 @@ class NatureSpirit : Script {
             charges += 1
             added++
         }
-        if (nature_spirit in 75..85) {
-            nature_spirit = 90
+        if (questStage("nature_spirit") in 75..85) {
+            set("nature_spirit", "ghast_3")
         }
         message("You add $charges nature's ${if (charges == 1) "harvest" else "harvests"} to your druid pouch.")
     }
-
-    private suspend fun Player.applyPouchOnGhast(npc: NPC) {
-        message("The druid pouch makes the Ghast visible.")
-        sound("ghast_appear")
-        npc.gfx("druidpouch_impact", delay = 90)
-        inventory.remove("druid_pouch_2", 1)
-        if (inventory.count("druid_pouch_2") == 0) {
-            inventory.add("druid_pouch")
-        }
-        shoot(
-            id = "druid_shooting_star",
-            target = npc,
-            delay = 51,
-            flightTime = 39,
-            height = 43,
-            endHeight = 31,
-            curve = 16,
-            offset = 64,
-        )
-        delay(2)
-        npc.transform("ghast_level_30")
-    }
-
-    fun Player.atMortMyre(): Boolean = tile.x in 3400..3520 && tile.y in 3324..3455
 
     private fun Player.prayNatureAltar() {
         val max = levels.getMax(Skill.Prayer)
@@ -663,14 +593,9 @@ class NatureSpirit : Script {
     }
 }
 
-var Player.nature_spirit: Int
-    get() = get("druidspirit", 0)
-    set(value) = set("druidspirit", value)
-
 suspend fun Player.sendNatureSpiritReward() {
     val spirit = NPCs.findOrNull(tile.regionLevel, "filliman_tarlock_spirit")
     val spiritTile = spirit?.tile ?: Tile(3444, 9738, 0)
-
     spirit?.anim("human_casting")
     delay(2)
 
@@ -719,7 +644,7 @@ suspend fun Player.sendNatureSpiritReward() {
     exp(Skill.Defence, 2000.0)
     addOrDrop("silver_sickle_b")
     inc("quest_points", 2)
-    nature_spirit = 110
+    set("nature_spirit", "completed")
     clear("ns_brown_correct")
     clear("ns_grey_correct")
     refreshQuestJournal()

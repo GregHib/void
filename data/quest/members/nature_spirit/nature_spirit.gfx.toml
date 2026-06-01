@@ -21,3 +21,5 @@ height = 124
 
 [ghast_spotdeath]
 id = 265
+delay = 20
+height = 50

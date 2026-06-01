@@ -2330,7 +2330,9 @@ points = 2
 reward = "Access to Mort Myre swamp and the Altar of Nature<br>30 Prayer XP each time you kill a ghast"
 xp = "3,000 Crafting XP lamp"
 variables = [
-  "nature_spirit"
+  "nature_spirit",
+  "ns_brown_correct",
+  "ns_grey_correct"
 ]
 
 [nomads_requiem]
