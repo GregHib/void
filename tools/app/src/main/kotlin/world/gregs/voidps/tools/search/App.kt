@@ -27,17 +27,6 @@ fun main() = application {
     Settings.rebase("../../")
     ParamLookup.load()
 
-    /*
-        Improvements:
-            - Filter nested array fields
-            - Scroll to top/bottom button
-            - Fix filtering by null not working
-            - Select/Copy from details panel
-            - Support for enum replacements e.g. component.type/contentType, anims.replayMode etc...
-            - Reverse lookup, e.g. all npcs with render emote X
-            - Column size adjusting
-            - Support for non-definition types like Tables
-     */
     var screen by remember { mutableStateOf(AppScreen.PICKER) }
     var tabs by remember { mutableStateOf<List<DefinitionTab<*>>>(emptyList()) }
     var loadError by remember { mutableStateOf<String?>(null) }
@@ -53,7 +42,7 @@ fun main() = application {
                 screen = AppScreen.BROWSER
             }
             .onFailure { e ->
-                loadError = e.message ?: "Failed to load cache"
+                loadError = e.stackTraceToString()
             }
     }
 
@@ -63,7 +52,7 @@ fun main() = application {
 
     val state = rememberWindowState(width = 1000.dp, height = 600.dp)
 
-    Window(onCloseRequest = ::exitApplication, title = "Void Definition Browser", state = state, icon = painterResource(Res.drawable.void_icon)) {
+    Window(onCloseRequest = ::exitApplication, title = "Void Cache Viewer", state = state, icon = painterResource(Res.drawable.void_icon)) {
         MaterialTheme(colors = darkColors(background = BgDark, surface = BgPanel, primary = AccentBlue)) {
             when (screen) {
                 AppScreen.PICKER -> CachePickerScreen(
