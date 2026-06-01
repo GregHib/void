@@ -18,19 +18,28 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
 import content.entity.proj.shoot
-import content.quest.member.myreque.sendNatureSpiritReward
+import content.quest.questComplete
 import content.quest.questStage
+import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
+import world.gregs.voidps.engine.entity.character.jingle
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.queue.longQueue
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
+import java.util.concurrent.TimeUnit
 
 class FillimanTarlock : Script {
 
@@ -53,25 +62,15 @@ class FillimanTarlock : Script {
                 }
                 stage == 20 -> {
                     player<Neutral>("Hello again!")
-                    npc<Sad>(
-                        "Oh, hello there, do you still think I am dead? It's hard to see how I could " +
-                            "be dead when I'm still in the world, I can see everything quite clearly. " +
-                            "And nothing of what you say reflects the truth.",
-                    )
+                    npc<Sad>("Oh, hello there, do you still think I am dead? It's hard to see how I could be dead when I'm still in the world, I can see everything quite clearly. And nothing of what you say reflects the truth.")
                     player<Neutral>("Yes, I do think you're dead and I'll prove it somehow.")
                     convinceHesAGhost()
                 }
                 stage == 25 -> {
                     player<Neutral>("Hello again..")
-                    npc<Sad>(
-                        "Oh, hello... Sorry, you've caught me at a bad time, it's just that I've " +
-                            "had a sign you see and I need to find my journal.",
-                    )
+                    npc<Sad>("Oh, hello... Sorry, you've caught me at a bad time, it's just that I've had a sign you see and I need to find my journal.")
                     player<Neutral>("Where did you put it?")
-                    npc<Sad>(
-                        "Well, if I knew that, I wouldn't still be looking for it. However, I do " +
-                            "remember something about a knot? Perhaps I was meant to tie a knot or something?",
-                    )
+                    npc<Sad>("Well, if I knew that, I wouldn't still be looking for it. However, I do remember something about a knot? Perhaps I was meant to tie a knot or something?")
                 }
                 stage == 30 -> readJournalRecap()
                 stage == 35 -> {
@@ -91,20 +90,14 @@ class FillimanTarlock : Script {
                     }
                 }
                 stage == 55 -> {
-                    npc<Neutral>(
-                        "Hello again! I don't suppose you've found out what the other components " +
-                            "of the Nature spell are have you?",
-                    )
+                    npc<Neutral>("Hello again! I don't suppose you've found out what the other components of the Nature spell are have you?")
                     componentsHelpLoop()
                 }
                 stage == 60 -> {
                     npc<Neutral>("Please come down into the grotto, we have much to discuss.")
                 }
                 stage == 65 -> {
-                    npc<Neutral>(
-                        "Well, hello there again, I was just enjoying the grotto. Many thanks for " +
-                            "your help, I couldn't have become a Spirit of nature without you.",
-                    )
+                    npc<Neutral>("Well, hello there again, I was just enjoying the grotto. Many thanks for your help, I couldn't have become a Spirit of nature without you.")
                     transformInGrotto()
                 }
                 stage == 70 -> {
@@ -346,25 +339,17 @@ class FillimanTarlock : Script {
         choice {
             option("What are the things that are needed?") {
                 player<Neutral>("What are the things that are needed again?")
-                npc<Neutral>(
-                    "The three things are: 'Something with faith', 'something from nature' and 'something of the spirit-to-become freely given'.",
-                )
+                npc<Neutral>("The three things are: 'Something with faith', 'something from nature' and 'something of the spirit-to-become freely given'.")
                 player<Neutral>("Ok, and 'something from nature' is the mushroom from the bloom spell you gave me?")
-                npc<Neutral>(
-                    "Yes, that's correct, that seems right to me. The other things we need are 'something with faith' and 'something of the spirit-to-become freely given'.",
-                )
+                npc<Neutral>("Yes, that's correct, that seems right to me. The other things we need are 'something with faith' and 'something of the spirit-to-become freely given'.")
                 player<Neutral>("Do you have any idea what those things are?")
                 npc<Neutral>("I'm sorry my friend, but I do not.")
                 componentsHelpLoop()
             }
             option<Neutral>("What should I do when I have those things?") {
-                npc<Neutral>(
-                    "Ah yes, I looked this up. It says... 'to arrange upon three rocks around the spirit-to-become...'. Then I must cast a spell. As you can see, I've already placed the rocks. I must have planned to do this before I died!",
-                )
+                npc<Neutral>("Ah yes, I looked this up. It says... 'to arrange upon three rocks around the spirit-to-become...'. Then I must cast a spell. As you can see, I've already placed the rocks. I must have planned to do this before I died!")
                 player<Neutral>("Can we just place the components on any rock?")
-                npc<Neutral>(
-                    "Well, the only thing the journal says is that 'something with faith stand south of the spirit-to-become', but I'm so confused now I don't really know what that means. Oh, if only I had all my faculties!",
-                )
+                npc<Neutral>("Well, the only thing the journal says is that 'something with faith stand south of the spirit-to-become', but I'm so confused now I don't really know what that means. Oh, if only I had all my faculties!")
                 componentsHelpLoop()
             }
             option<Neutral>("I think I've solved the puzzle!") {
@@ -392,9 +377,7 @@ class FillimanTarlock : Script {
         ghost?.anim("human_casting")
         sound("spirit_transform_start")
         delay(2)
-        npc<Confused>(
-            "Hmm, something still doesn't seem right. I think we need something more before we can continue.",
-        )
+        npc<Confused>("Hmm, something still doesn't seem right. I think we need something more before we can continue.")
     }
 
     private suspend fun Player.correctSpellScene() {
@@ -435,7 +418,8 @@ class FillimanTarlock : Script {
     private suspend fun Player.transformInGrotto() {
         npc<Neutral>("I must complete the transformation now. Just stand there and watch the show, apparently it's quite good!")
         delay(1)
-        val ghost = NPCs.findOrNull(tile.regionLevel, "filliman_tarlock_ghost") ?: NPCs.add("filliman_tarlock_ghost", npcTile)
+        val ghost = NPCs.ensureSpawn("filliman_tarlock_ghost", npcTile)
+        ghost.despawn(TimeUnit.SECONDS.toTicks(60))
 
         ghost.anim("human_casting", delay = 5)
         sound("spirit_transform", delay = 30)
@@ -561,6 +545,77 @@ class FillimanTarlock : Script {
                 npc<Neutral>("If you should lose the blessed sickle, simply bring another to my altar of nature and refresh it in the grotto waters.")
             }
             option<Neutral>("Ok, thanks.")
+        }
+    }
+
+    private suspend fun Player.sendNatureSpiritReward() {
+        val spirit = NPCs.findOrNull(tile.regionLevel, "filliman_tarlock_spirit")
+        val spiritTile = spirit?.tile ?: Tile(3444, 9738, 0)
+        spirit?.anim("human_casting")
+        delay(2)
+
+        sound("spirit_transform_start", delay = 30)
+        val projectiles = listOf(
+            Tile(3438, 9742, spiritTile.level) to 106,
+            Tile(3444, 9742, spiritTile.level) to 86,
+            Tile(3442, 9737, spiritTile.level) to 66,
+        )
+        for ((origin, flightTime) in projectiles) {
+            origin.shoot(
+                id = "druid_shooting_star",
+                tile = spiritTile,
+                delay = 30,
+                flightTime = flightTime,
+                height = 0,
+                endHeight = 42,
+                curve = 180,
+                offset = 0,
+            )
+        }
+        delay(1)
+        for (height in listOf(128, 64, 0)) {
+            areaGfx(
+                id = "druidicspirit_effect",
+                tile = spiritTile,
+                delay = 96,
+                height = height,
+            )
+        }
+        sound("bloom_pears", delay = 30)
+        sound("fire_bolt_all", delay = 30)
+        sound("fire_bolt_all", delay = 30)
+        delay(3)
+        spirit?.anim("human_casting")
+        delay(3)
+        tele(tile.x, tile.y, 1)
+        message("You see a beautifully tended small grotto area.")
+        jingle("quest_complete_1")
+        exp(Skill.Crafting, 3000.0)
+        exp(Skill.Constitution, 2000.0)
+        exp(Skill.Defence, 2000.0)
+        addOrDrop("silver_sickle_b")
+        inc("quest_points", 2)
+        set("nature_spirit", "completed")
+        clear("ns_brown_correct")
+        clear("ns_grey_correct")
+        refreshQuestJournal()
+        questComplete(
+            "Nature Spirit Quest!",
+            "2 Quest Points",
+            "3000 Crafting XP",
+            "2000 Constitution XP",
+            "2000 Defence XP",
+            item = "silver_sickle_b",
+        )
+
+        longQueue("filliman_post_quest") {
+            val spirit = NPCs.ensureSpawn("filliman_tarlock_spirit", Tile(3441, 9738, 1))
+            spirit.despawn(TimeUnit.SECONDS.toTicks(60))
+            face(spirit)
+            spirit.face(this)
+            talkWith(spirit)
+            npc<Neutral>("Welcome to my Altar to Nature! Farewell my friend, and keep those Ghasts at bay!")
+            NPCs.remove(spirit)
         }
     }
 }

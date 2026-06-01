@@ -86,6 +86,8 @@ object NPCs : Runnable,
         return npc
     }
 
+    fun ensureSpawn(id: String, tile: Tile): NPC = findBySpawnOrNull(tile, id) ?: add(id, tile)
+
     /**
      * Spawns an NPC at a random tile inside [area], honouring the NPC's tile footprint and
      * collision strategy from its definition so the chosen tile is guaranteed walkable for the
