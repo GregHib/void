@@ -251,7 +251,7 @@ class PriestInPeril : Script {
         }
 
         objectOperate("Open", "pip_underground_door1_closed") { (target) ->
-            if ((questStage("priest_in_peril") < 6 || !inventory.contains("pipkey_gold")) && !tile.equals(3405, 9894)) {
+            if (questStage("priest_in_peril") < 4) {
                 sound("locked")
                 message("The door is securely locked shut.")
                 player<Quiz>("Hmmm... from the looks of things, it seems as though somebody has been trying to force this door open. It's still securely locked however.")

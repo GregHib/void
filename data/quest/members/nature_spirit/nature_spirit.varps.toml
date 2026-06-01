@@ -15,4 +15,5 @@ values = {
     find_journal = 25,
     spell = 35,
     blessed_spell = 40,
+    spell_cast = 45,
 }
