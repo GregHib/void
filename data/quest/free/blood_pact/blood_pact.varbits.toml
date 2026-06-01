@@ -7,10 +7,10 @@ values = {
     unstarted = 0,
     started = 1,
     watched_cutscene = 2,
-    first_cultist = 3,
+    kayle = 3,
     xenia_wounded = 4,
-    second_cultist = 5,
-    third_cultist = 6,
+    caitlin = 5,
+    reese = 6,
     untie_ilona = 7,
     completed = 100
 }
