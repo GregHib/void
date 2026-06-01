@@ -1,6 +1,6 @@
-[shades_of_mort'ton]
+[shades_of_mortton]
 id = 339
 persist = true
 format = "map"
 default = "unstarted"
-values = { unstarted = 0, started = 1 }
+values = { unstarted = 0, completed = 85 }

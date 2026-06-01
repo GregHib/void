@@ -1,6 +1,6 @@
-[watchtower_quest]
+[watchtower]
 id = 212
 persist = true
 format = "map"
 default = "unstarted"
-values = { unstarted = 0, started = 1 }
+values = { unstarted = 0, completed = 14 }
