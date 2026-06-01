@@ -1,5 +1,5 @@
 [blood_pact]
-id = 335 #confirm later
+id = 170
 persist = true
 format = "map"
 default = "unstarted"
@@ -14,10 +14,3 @@ values = {
     untie_ilona = 7,
     completed = 100
 }
-
-[blood_pact_kayle]
-format = "list"
-persist = true
-default = "alive"
-values = ["alive", "defeated", "spared", "killed"]
-

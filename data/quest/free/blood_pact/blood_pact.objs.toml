@@ -1,3 +1,9 @@
 [lumbridge_catacomb_exit_stairs]
 id = 48798
 examine = "A staircase leading up out of the catacombs."
+
+[door_kayle]
+id = 48757
+
+[gate_caitlin]
+id = 48764

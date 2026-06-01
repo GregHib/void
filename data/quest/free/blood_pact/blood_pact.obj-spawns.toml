@@ -1,0 +1,9 @@
+spawns = [
+    #maybe for kayle door
+    { id = "gate_closed", x = 3872, y = 5543, level = 1, type = 0, rotation = 0 },
+
+    #doors infront of caitlin
+    { id = "gates_closed", x = 3870, y = 5531, level = 1, type = 0, rotation = 1 },
+    { id = "gates_closed", x = 3862, y = 5531, level = 1, type = 0, rotation = 1 },
+
+]

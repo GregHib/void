@@ -16,7 +16,7 @@ range = 5
 anim = "sling_sling"
 projectile = "sling_rock"
 target_hit = { offense = "range", max = 6 }
-sound = { id = "crossbow_shoot", radius = 5 }
+sound = { id = "crossbow_shoot", radius = 5 } #needs to be changed
 
 [caitlin_attackable]
 attack_speed = 4
@@ -24,10 +24,10 @@ defend_anim = "human_defend"
 
 [caitlin_attackable.mage]
 range = 8
-#anim = "air_spell_staff"
-#projectile = "wind_rush"
-#target_hit = { offense = "mage", max = 6 }
-#impact_sound = "wind_rush_impact"
-#impact_gfx = "wind_rush_impact"
-#miss_gfx = "spell_splash"
-#miss_sound = "spell_splash"
+anim = "wind_spell_staff"
+projectile = "wind_rush"
+target_hit = { offense = "magic", max = 6 }
+impact_sound = "wind_rush_impact"
+impact_gfx = "wind_rush_impact"
+miss_gfx = "spell_splash"
+miss_sound = "spell_splash"

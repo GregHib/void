@@ -24,7 +24,7 @@ hitpoints = 20
 categories = ["human"]
 combat_def = "kayle_attackable"
 hunt_mode = "aggressive"
-hunt_range = 8
+hunt_range = 5
 
 [kayle_defeated]
 id = 9629
@@ -34,6 +34,8 @@ id = 9626
 hitpoints = 20
 categories = ["human"]
 combat_def = "caitlin_attackable"
+hunt_mode = "aggressive"
+hunt_range = 8
 
 [caitlin_defeated]
 id = 9627

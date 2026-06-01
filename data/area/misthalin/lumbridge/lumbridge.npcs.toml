@@ -290,6 +290,7 @@ examine = "A collector of ancient artefacts."
 
 [xenia]
 id = 9633
+hitpoints = 20
 categories = ["human"]
 examine = "An old adventurer."
 
