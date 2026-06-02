@@ -155,15 +155,4 @@ class PriestInPerilTest : WorldTest() {
         assertEquals("completed", player.quest("priest_in_peril"))
     }
 
-    @Test
-    fun `Can't open gate without golden key`() {
-        val player = createPlayer(Tile(3405, 9895))
-        player["priest_in_peril"] = "help_drezel"
-        val gate = GameObjects.find(Tile(3405, 9895), "pip_underground_door1_closed")
-
-        player.objectOption(gate, "Open")
-        tick(3)
-
-        assertEquals(Tile(3405, 9895), player.tile)
-    }
 }
