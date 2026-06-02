@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.map.collision.clear
 import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.engine.queue.longQueue
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
@@ -43,7 +44,13 @@ class Cutscene(
     }
 
     fun onEnd(destroyInstance: Boolean = true, block: suspend () -> Unit) {
-        player.longQueue("${name}_cutscene_end", 1) {
+        player.walkTrigger = {
+            player.queue.clear("${name}_cutscene_end")
+            player.queue("${name}_cutscene_end") {
+                end(destroyInstance)
+            }
+        }
+        player.longQueue("${name}_cutscene_end", Int.MAX_VALUE) {
             end(destroyInstance)
         }
         this@Cutscene.block = block
@@ -97,12 +104,13 @@ class Cutscene(
     }
 }
 
-fun Player.smallInstance(region: Region? = null, levels: Int = 4): Region {
+fun Player.smallInstance(region: Region? = null, levels: Int = 4, logout: Boolean = true): Region {
     val instance = Instances.small()
     if (region != null) {
         get<DynamicZones>().copy(region, instance, levels)
         set("instance_offset", instance.offset(region).id)
     }
+    set("instance_logout", logout)
     set("instance", instance.id)
     return instance
 }
@@ -124,7 +132,7 @@ fun Player.instanceOffset(): Delta {
 }
 
 fun Player.setInstanceLogout(tile: Tile) {
-    set("instance_logout", tile.id)
+    set("instance_logout_tile", tile.id)
 }
 
 fun Player.exitInstance() {
@@ -137,7 +145,7 @@ fun Player.exitInstance() {
 fun Player.instanceOrigin(): Tile = instanceLogout() ?: tile.minus(instanceOffset())
 
 fun Player.instanceLogout(): Tile? {
-    val logout: Int = get("instance_logout") ?: return null
+    val logout: Int = get("instance_logout_tile") ?: return null
     return Tile(logout)
 }
 

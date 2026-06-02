@@ -1,0 +1,6 @@
+[perils_of_ice_mountain]
+id = 4684
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

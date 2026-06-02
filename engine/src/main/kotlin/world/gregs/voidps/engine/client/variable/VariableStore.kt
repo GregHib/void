@@ -15,8 +15,8 @@ interface VariableStore {
 
     fun clear(key: String, refresh: Boolean = true) = variables.clear(key, refresh)
 
-    fun toggle(key: String, refresh: Boolean = true): Boolean {
-        val value = variables.get(key, false)
+    fun toggle(key: String, refresh: Boolean = true, default: Boolean = false): Boolean {
+        val value = variables.get(key, default)
         variables.set(key, !value as Any, refresh)
         return !value
     }

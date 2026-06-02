@@ -24,3 +24,11 @@ y = [5512, 5631]
 x = [2948, 3071]
 y = [5571, 5631]
 tags = ["multi_combat"]
+
+[clan_wars_ffa_safe_lobby]
+x = [2810, 2820]
+y = [5508, 5511]
+
+[clan_wars_ffa_dangerous_lobby]
+x = [3002, 3012]
+y = [5508, 5511]

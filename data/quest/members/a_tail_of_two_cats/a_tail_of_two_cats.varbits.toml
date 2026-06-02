@@ -1,0 +1,6 @@
+[a_tail_of_two_cats]
+id = 1028
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

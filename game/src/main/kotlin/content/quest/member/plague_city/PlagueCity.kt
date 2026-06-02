@@ -25,16 +25,6 @@ class PlagueCity : Script {
     val stages = setOf("grill_open", "spoken_to_jethick", "returned_book", "spoken_to_ted", "spoken_to_milli", "need_clearance", "talk_to_bravek", "has_cure_paper", "gave_cure", "freed_elena", "completed", "completed_with_spell")
 
     init {
-        playerSpawn {
-            sendVariable("plaguecity_hide_edmond_up_top")
-            sendVariable("plaguecity_dug_mud_pile")
-            sendVariable("plaguecity_checked_grill")
-            sendVariable("plaguecity_key_asked")
-            sendVariable("plaguecity_pipe")
-            sendVariable("plaguecity_elena_at_home")
-            sendVariable("plague_city")
-        }
-
         questJournalOpen("plague_city") {
             val lines = when (quest("plague_city")) {
                 "started" -> {

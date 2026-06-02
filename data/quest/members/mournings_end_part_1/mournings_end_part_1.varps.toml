@@ -1,0 +1,6 @@
+[mournings_end_part_1]
+id = 517
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

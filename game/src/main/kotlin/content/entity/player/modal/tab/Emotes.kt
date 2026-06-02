@@ -30,12 +30,9 @@ class Emotes : Script {
     }
 
     init {
-        interfaceOpened("emotes") { id ->
-            for (compId in unlockableEmotes) {
-                val component = InterfaceDefinitions.getComponent(id, compId) ?: continue
-                sendVariable("unlocked_emote_${component.stringId}")
-            }
-            sendVariable("unlocked_emote_lost_tribe")
+        playerSpawn {
+            val item = equipped(EquipSlot.Cape)
+            set("unlocked_emote_skillcape", item.def.contains(Params.SKILLCAPE_SKILL) || item.id == "quest_point_cape")
         }
 
         interfaceRefresh("emotes") {

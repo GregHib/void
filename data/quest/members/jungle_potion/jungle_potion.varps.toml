@@ -1,0 +1,6 @@
+[jungle_potion]
+id = 175
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 12 }

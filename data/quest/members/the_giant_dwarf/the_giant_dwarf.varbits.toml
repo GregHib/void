@@ -1,0 +1,6 @@
+[the_giant_dwarf]
+id = 571
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

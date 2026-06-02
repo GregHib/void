@@ -1,0 +1,6 @@
+[eadgars_ruse]
+id = 335
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

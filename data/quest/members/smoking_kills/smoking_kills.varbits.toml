@@ -1,0 +1,6 @@
+[smoking_kills]
+id = 4764
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

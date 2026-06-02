@@ -11,8 +11,11 @@ import world.gregs.voidps.engine.entity.character.CharacterSearch
 import world.gregs.voidps.engine.entity.character.CharacterIndexMap
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Wander
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
+import world.gregs.voidps.engine.map.collision.random
+import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.type.Tile
@@ -74,8 +77,35 @@ object NPCs : Runnable,
         return npc
     }
 
+    fun add(id: String, tile: Tile, direction: Direction = Direction.SOUTH, ticks: Int, owner: Player? = null): NPC {
+        val npc = add(id, tile, direction)
+        npc.despawn(ticks)
+        if (owner != null) {
+            npc["owner"] = owner.accountName
+        }
+        return npc
+    }
+
+    fun ensureSpawn(id: String, tile: Tile): NPC = findBySpawnOrNull(tile, id) ?: add(id, tile)
+
+    /**
+     * Spawns an NPC at a random tile inside [area], honouring the NPC's tile footprint and
+     * collision strategy from its definition so the chosen tile is guaranteed walkable for the
+     * NPC's full size. Returns `null` if the NPC id is unknown or no valid tile can be found
+     * (the underlying [Area.random] retries up to 100 times before giving up).
+     */
+    fun addRandom(id: String, area: Area, direction: Direction = Direction.SOUTH): NPC? {
+        val def = NPCDefinitions.getOrNull(id) ?: return null
+        val collision = CollisionStrategyProvider.get(def)
+        val tile = area.random(collision, def.size) ?: return null
+        return add(id, tile, direction)
+    }
+
     fun remove(npc: NPC?): Boolean {
-        if (npc == null || npc.index == -1) {
+        if (npc == null) {
+            return false
+        }
+        if (npc.index == -1) {
             logger.warn { "Unable to remove npc $npc." }
             return false
         }

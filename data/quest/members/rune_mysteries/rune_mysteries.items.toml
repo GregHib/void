@@ -18,5 +18,6 @@ kept = "Reclaim"
 id = 15361
 tradeable = false
 weight = 0.015
+destroy = "You can get another one by speaking to Duke Horacio in Lumbridge Castle."
 examine = "A mysterious power emanates from the talisman..."
 kept = "Reclaim"

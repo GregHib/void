@@ -36,7 +36,6 @@ class GrandExchangeOffers(
         playerSpawn(exchange::login)
 
         interfaceOpened("grand_exchange") { id ->
-            sendVariable("grand_exchange_ranges")
             set("grand_exchange_page", "offers")
             set("grand_exchange_box", -1)
             interfaceOptions.unlockAll(id, "collect_slot_0")

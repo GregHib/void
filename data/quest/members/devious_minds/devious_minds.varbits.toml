@@ -1,0 +1,6 @@
+[devious_minds]
+id = 1465
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

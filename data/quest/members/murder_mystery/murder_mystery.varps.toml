@@ -1,0 +1,6 @@
+[murder_mystery]
+id = 192
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 2 }

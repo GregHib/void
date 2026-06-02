@@ -1,0 +1,6 @@
+[creature_of_fenkenstrain]
+id = 399
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

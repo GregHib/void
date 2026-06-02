@@ -11,10 +11,6 @@ import world.gregs.voidps.engine.entity.character.move.tele
 
 class CaptainBentley : Script {
     init {
-        playerSpawn {
-            sendVariable("lunar_diplomacy")
-        }
-
         npcOperate("Talk-to", "captain_bentley*") {
             if (tile in Areas["lunar_isle"]) {
                 player<Neutral>("Hi.")

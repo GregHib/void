@@ -1,0 +1,6 @@
+[eagles_peak]
+id = 2780
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

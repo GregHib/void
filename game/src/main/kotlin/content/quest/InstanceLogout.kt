@@ -5,7 +5,9 @@ import world.gregs.voidps.engine.Script
 class InstanceLogout : Script {
     init {
         playerDespawn {
-            exitInstance()
+            if (get("instance_logout", false)) {
+                exitInstance()
+            }
         }
     }
 }

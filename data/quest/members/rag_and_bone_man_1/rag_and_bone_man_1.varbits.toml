@@ -1,0 +1,6 @@
+[rag_and_bone_man_1]
+id = 6178
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

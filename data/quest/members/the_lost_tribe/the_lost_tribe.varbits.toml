@@ -1,0 +1,6 @@
+[the_lost_tribe]
+id = 532
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

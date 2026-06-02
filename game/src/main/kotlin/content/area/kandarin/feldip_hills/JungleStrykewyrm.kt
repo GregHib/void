@@ -1,7 +1,6 @@
 package content.area.kandarin.feldip_hills
 
 import content.entity.combat.hit.directHit
-import content.entity.combat.inCombat
 import content.entity.effect.clearTransform
 import content.entity.effect.toxin.poison
 import content.entity.effect.transform
@@ -18,7 +17,6 @@ import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
@@ -28,19 +26,6 @@ class JungleStrykewyrm : Script {
     init {
         npcOperate("Investigate", "mound_feldip_hills") { (target) ->
             investigate(this, target, "jungle_strykewyrm")
-        }
-
-        npcTimerStart("strykewyrm_revert") { 20 }
-
-        npcTimerTick("strykewyrm_revert") {
-            if (inCombat) {
-                return@npcTimerTick Timer.CONTINUE
-            }
-            anim("strykewyrm_bury")
-            queue("bury", 3) {
-                clearTransform()
-            }
-            Timer.CANCEL
         }
 
         npcAttack("jungle_strykewyrm", "dig") { target ->
@@ -94,7 +79,7 @@ class JungleStrykewyrm : Script {
             target.start("movement_delay", Int.MAX_VALUE)
             target.mode = EmptyMode
             target.steps.clear()
-            target.softTimers.start("strykewyrm_revert")
+            target.despawn(20)
             source.delay(3)
             target.mode = EmptyMode
             target.transform(to)

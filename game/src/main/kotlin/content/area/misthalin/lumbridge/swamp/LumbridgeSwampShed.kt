@@ -24,7 +24,7 @@ class LumbridgeSwampShed : Script {
     init {
         objectOperate("Open", "zanaris_door_closed") { (target) ->
             val stage = quest("lost_city")
-            val enter = equipped(EquipSlot.Weapon).id == "dramen_staff" && (stage == "spirit_killed" || stage == "enter_shed" || stage == "completed")
+            val enter = equipped(EquipSlot.Weapon).id == "dramen_staff" && (stage == "crafted_staff" || stage == "completed")
             if (enter) {
                 message("The world starts to shimmer...", type = ChatType.Game)
             }
@@ -69,7 +69,7 @@ class LumbridgeSwampShed : Script {
 
         teleportLand("fairy") {
             val stage = quest("lost_city")
-            if (stage == "spirit_killed" || stage == "enter_shed") {
+            if (stage == "crafted_staff") {
                 questComplete()
             }
         }

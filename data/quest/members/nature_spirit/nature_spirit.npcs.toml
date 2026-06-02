@@ -1,0 +1,7 @@
+[filliman_tarlock_ghost]
+id = 1050
+examine = "He looks a bit lost."
+
+[filliman_tarlock_spirit]
+id = 1051
+examine = "The Nature Spirit of Filliman Tarlock."

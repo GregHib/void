@@ -137,6 +137,10 @@ object Tables {
 
     fun stringListOrNull(path: String): List<String>? = getOrNull(path, ColumnType.StringList)
 
+    fun boolList(path: String): List<Boolean> = get(path, ColumnType.BooleanList)
+
+    fun boolListOrNull(path: String): List<Boolean>? = getOrNull(path, ColumnType.BooleanList)
+
 
     /*
         Entity Lists

@@ -7,10 +7,6 @@ import world.gregs.voidps.network.login.protocol.encode.skillLevel
 class Experience : Script {
 
     init {
-        playerSpawn {
-            sendVariable("xp_counter")
-        }
-
         levelChanged { skill, _, to ->
             val exp = experience.direct(skill) / 10
             if (skill == Skill.Constitution) {

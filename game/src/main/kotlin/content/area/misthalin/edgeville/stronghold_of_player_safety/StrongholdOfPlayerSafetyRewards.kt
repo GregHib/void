@@ -14,10 +14,6 @@ import world.gregs.voidps.engine.inv.remove
 class StrongholdOfPlayerSafetyRewards : Script {
 
     init {
-        playerSpawn {
-            sendVariable("stronghold_of_player_safety_chest")
-        }
-
         objectOperate("Open", "stronghold_of_player_safety_treasure_chest_closed") { (target) ->
             if (inventory.isFull()) {
                 // https://youtu.be/eSZY9zdBAwg?si=UlMwKzgDA51IZ7TF&t=203

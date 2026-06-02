@@ -1,0 +1,28 @@
+[nature_spirit]
+id = 307
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+    unstarted = 0,
+    find_filliman = 10,
+    hes_a_ghost = 20,
+    find_journal = 25,
+    choice = 30,
+    spell = 35,
+    blessed_spell = 40,
+    spell_cast = 45,
+    has_mushroom = 50,
+    show_mushroom = 55,
+    transform_ready = 60,
+    transform_start = 65,
+    transform_done = 70,
+    natures_bounty = 75,
+    bloomed = 80,
+    picked = 85,
+    ghast_3 = 90,
+    ghast_2 = 95,
+    ghast_1 = 100,
+    ghasts_killed = 105,
+    completed = 110,
+}

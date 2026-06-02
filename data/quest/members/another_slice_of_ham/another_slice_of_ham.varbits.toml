@@ -1,0 +1,6 @@
+[another_slice_of_ham]
+id = 3550
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

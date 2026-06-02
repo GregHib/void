@@ -260,8 +260,10 @@ object Params {
     const val MIN_HIT_DRAGONFIRE = 5260
     const val SKILL_CAPE_T = 5261
     const val QUEST_INFO = 5262
+    const val VARIABLES = 5263
 
     private fun custom(name: String) = when (name) {
+        "variables" -> VARIABLES
         "quest_info" -> QUEST_INFO
         "skill_cape_t" -> SKILL_CAPE_T
         "min_hit_stab" -> MIN_HIT_STAB

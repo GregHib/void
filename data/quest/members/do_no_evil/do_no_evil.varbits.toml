@@ -1,0 +1,6 @@
+[do_no_evil]
+id = 8605
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

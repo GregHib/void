@@ -65,10 +65,6 @@ class RingOfKinship : Script {
 
         interfaceOpened("kinship_customisation") {
             set("kinship_customisation_tab", "melee")
-            sendVariable("kinship_class")
-            forEachClass { name ->
-                sendVariable("kinship_${name}_level")
-            }
             refreshTab()
         }
 

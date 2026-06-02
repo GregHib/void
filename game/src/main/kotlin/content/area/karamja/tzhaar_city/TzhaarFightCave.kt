@@ -104,7 +104,7 @@ class TzhaarFightCave(
         exited("tzhaar_fight_cave_multi_area") {
             close("tzhaar_fight_cave")
             clearInstance()
-            if (get("logged_out", false)) {
+            if (get("logged_out", false) && wave != -1) {
                 // Save the player's relative position in the original region
                 val offset = tile.delta(tile.region.tile)
                 tele(region.tile.add(offset))
@@ -191,7 +191,6 @@ class TzhaarFightCave(
             }
             strongQueue("fight_cave_start", TimeUnit.SECONDS.toTicks(2)) {
                 startWave(this, wave, start = true)
-                sendVariable("fight_cave_wave")
             }
         }
 
@@ -209,6 +208,7 @@ class TzhaarFightCave(
             }
         }
     }
+    // 2436, 5170
 
     fun Player.leave(wave: Int, defeatedJad: Boolean = false) {
         clear("fight_cave_wave")
@@ -251,7 +251,9 @@ class TzhaarFightCave(
         }
         player["fight_cave_wave"] = wave
         if (player["fight_caves_logout_warning", false]) {
-            Script.launch { accountManager.logout(player, false) }
+            Script.launch {
+                accountManager.logout(player, true)
+            }
             return
         }
         if (start && wave != 63) {

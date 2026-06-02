@@ -6,7 +6,6 @@ import content.entity.combat.attackers
 import content.entity.combat.damageDealers
 import content.entity.combat.dead
 import content.entity.combat.killer
-import content.entity.effect.clearTransform
 import content.entity.player.inv.item.tradeable
 import content.skill.slayer.*
 import content.social.clan.clan
@@ -14,15 +13,11 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
-import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Death
-import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
-import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.combatLevel
@@ -36,7 +31,6 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
 class NPCDeath(
@@ -87,21 +81,10 @@ class NPCDeath(
                 hide = true
                 val respawn = get<Tile>("respawn_tile")
                 if (respawn != null && onDeath.respawn) {
-                    tele(respawn)
-                    delay(npc["respawn_delay", 60])
-                    clearAnim()
-                    clearTransform()
                     damageDealers.clear()
-                    levels.clear()
-                    face(npc["respawn_direction", Direction.NORTH], update = false)
-                    hide = false
-                    dead = false
-                    mode = EmptyMode
-                    Spawn.npc(npc)
+                    respawn(npc["respawn_delay", 60])
                 } else {
-                    World.queue("remove_npc_${npc.index}") {
-                        NPCs.remove(npc)
-                    }
+                    despawn(1)
                 }
             }
         }
@@ -109,11 +92,7 @@ class NPCDeath(
 
     fun dropLoot(npc: NPC, killer: Character?, tile: Tile) {
         val table = tables.get("${npc.def["drop_table", npc.id]}_drop_table") ?: return
-        val combatLevel = when (killer) {
-            is Player -> killer.combatLevel
-            is NPC -> killer.def.combat
-            else -> -1
-        }
+        val combatLevel = npc.def.combat
         val drops = table.roll(maximumRoll = if (combatLevel > 0) combatLevel * 10 else -1, player = killer as? Player)
             .filterNot { it.id == "nothing" }
             .reversed()

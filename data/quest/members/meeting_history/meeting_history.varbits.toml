@@ -1,0 +1,6 @@
+[meeting_history]
+id = 5075
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 20 }

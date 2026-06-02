@@ -72,5 +72,8 @@ open class Variables(
     open fun send(key: String) {
     }
 
+    open fun sendAll() {
+    }
+
     open fun data(key: String): MutableMap<String, Any> = data
 }
