@@ -197,7 +197,7 @@ interface Character :
      * The direction the character is currently facing
      */
     val direction: Direction
-        get() = Direction.of(visuals.face.targetX - tile.x, visuals.face.targetY - tile.y)
+        get() = Direction.of((visuals.face.targetX - tile.x).coerceIn(-1, 1), (visuals.face.targetY - tile.y).coerceIn(-1, 1))
 
     /**
      * Turn to face a [direction]
