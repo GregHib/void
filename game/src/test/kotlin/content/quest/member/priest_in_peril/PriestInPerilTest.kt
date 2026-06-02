@@ -154,5 +154,4 @@ class PriestInPerilTest : WorldTest() {
         player.skipDialogues()
         assertEquals("completed", player.quest("priest_in_peril"))
     }
-
 }
