@@ -549,13 +549,6 @@ id = 3269
 id = 3023
 examine = "A wrought iron gate."
 
-[gate_78_opened]
-id = 3446
-
-[gate_78_closed]
-id = 3444
-examine = "A sturdy metal gate."
-
 [gate_79_opened]
 id = 3446
 
@@ -1073,6 +1066,7 @@ examine = "A gate."
 
 [gate_171_closed]
 id = 24369
+gate = false
 examine = "A gate."
 
 [gate_172_opened]
@@ -1081,6 +1075,7 @@ examine = "A gate."
 
 [gate_172_closed]
 id = 24370
+gate = false
 examine = "A gate."
 
 [gate_173]

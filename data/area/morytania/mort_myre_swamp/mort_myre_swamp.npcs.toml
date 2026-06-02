@@ -1,5 +1,12 @@
 [ghast]
 id = 1052
+hitpoints = 450
+att = 22
+str = 22
+def = 18
+style = "slash"
+max_hit_melee = 30
+respawn_delay = 40
 categories = ["ghosts"]
 hunt_mode = "aggressive"
 examine = "Arrghhh... A Ghast."
@@ -13,6 +20,7 @@ def = 18
 style = "slash"
 max_hit_melee = 30
 respawn_delay = 40
+categories = ["ghosts"]
 drop_table = "ghast"
 examine = "Arrghhh... A ghast!"
 

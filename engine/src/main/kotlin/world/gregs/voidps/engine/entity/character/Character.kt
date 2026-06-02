@@ -111,14 +111,14 @@ interface Character :
      * Apply [id] graphical effect (aka spotanim) to the character with optional [delay]
      * @see GraphicDefinitions for adjusting height, rotation, and refresh
      */
-    fun gfx(id: String, delay: Int? = null) {
+    fun gfx(id: String, delay: Int? = null, height: Int? = null) {
         val definition = GraphicDefinitions.getOrNull(id) ?: return
         val mask = if (this is Player) VisualMask.PLAYER_GRAPHIC_1_MASK else VisualMask.NPC_GRAPHIC_1_MASK
         val graphic = if (visuals.flagged(mask)) visuals.primaryGraphic else visuals.secondaryGraphic
         graphic.id = definition.id
         graphic.delay = delay ?: definition["delay", 0]
         val characterHeight = (this as? NPC)?.def?.get("height", 0) ?: 40
-        graphic.height = (characterHeight + definition["height", -1000]).coerceAtLeast(0)
+        graphic.height = height ?: (characterHeight + definition["height", -1000]).coerceAtLeast(0)
         graphic.rotation = definition["rotation", 0]
         graphic.forceRefresh = definition["force_refresh", false]
         if (visuals.flagged(mask)) {

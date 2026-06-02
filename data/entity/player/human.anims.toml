@@ -61,6 +61,12 @@ id = 820
 [human_lockedchest]
 id = 537
 
+[throw_bucketofwater]
+id = 1077
+
+[human_opencupboard]
+id = 538
+
 [human_push]
 id = 810
 

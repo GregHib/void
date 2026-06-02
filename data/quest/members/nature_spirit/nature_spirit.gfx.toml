@@ -1,0 +1,25 @@
+[druid_shooting_star]
+id = 268
+
+[druidicspirit_druidsshield]
+id = 255
+
+[druidicspirit_bloom_player_spotanim]
+id = 264
+height = 200
+
+[druidicspirit_bloom_spotanim]
+id = 263
+height = 46
+
+[druidicspirit_effect]
+id = 266
+
+[druidpouch_impact]
+id = 269
+height = 124
+
+[ghast_spotdeath]
+id = 265
+delay = 20
+height = 50
