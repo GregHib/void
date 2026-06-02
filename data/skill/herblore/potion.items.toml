@@ -311,6 +311,7 @@ price = 4364
 weight = 0.03
 excess = "super_ranging_potion_2"
 empty = "vial"
+aka = ["ranging_potion_3", "range_potion_3", "super_range_3", "super_range_potion_3"]
 examine = "3 doses of super ranging potion."
 
 [super_ranging_potion_3_noted]
@@ -322,6 +323,7 @@ price = 2939
 weight = 0.025
 excess = "super_ranging_potion_1"
 empty = "vial"
+aka = ["ranging_potion_2", "range_potion_2", "super_range_2", "super_range_potion_2"]
 examine = "2 doses of super ranging potion."
 
 [super_ranging_potion_2_noted]
@@ -333,6 +335,7 @@ price = 1554
 weight = 0.02
 excess = "vial"
 empty = "vial"
+aka = ["ranging_potion_1", "range_potion_1", "super_range_1", "super_range_potion_1"]
 examine = "1 dose of super ranging potion."
 
 [super_ranging_potion_1_noted]
@@ -552,7 +555,7 @@ id = 2443
 id = 2444
 price = 5861
 weight = 0.035
-aka = ["super_rng", "super_range", "super_ranges"]
+aka = ["super_rng", "super_range", "super_ranging_potion", "super_ranges", "ranging_potion_4"]
 excess = "super_ranging_potion_3"
 empty = "vial"
 examine = "4 doses of super ranging potion."
@@ -822,6 +825,7 @@ price = 6810
 weight = 0.035
 excess = "super_magic_potion_3"
 empty = "vial"
+aka = ["super_magic_potion", "magic_potion", "super_magic_4", "magic_potion_4"]
 examine = "4 doses of super magic potion."
 
 [super_magic_potion_4_noted]
@@ -833,6 +837,7 @@ price = 5257
 weight = 0.03
 excess = "super_magic_potion_2"
 empty = "vial"
+aka = ["magic_potion_3", "super_magic_3"]
 examine = "3 doses of super magic potion."
 
 [super_magic_potion_3_noted]
@@ -844,6 +849,7 @@ price = 3550
 weight = 0.025
 excess = "super_magic_potion_1"
 empty = "vial"
+aka = ["magic_potion_2", "super_magic_3"]
 examine = "2 doses of super magic potion."
 
 [super_magic_potion_2_noted]
@@ -855,6 +861,7 @@ price = 1783
 weight = 0.02
 excess = "vial"
 empty = "vial"
+aka = ["magic_potion_1", "super_magic_1"]
 examine = "1 dose of super magic potion."
 
 [super_magic_potion_1_noted]

@@ -83,6 +83,7 @@ limit = 100
 weight = 0.453
 slot = "Hat"
 type = "HairLow"
+aka = ["blue_wizard_hat"]
 examine = "A silly pointed hat."
 kept = "Wilderness"
 
@@ -369,6 +370,7 @@ limit = 100
 weight = 0.453
 slot = "Hat"
 type = "HairLow"
+aka = ["wizard_hat_black"]
 examine = "A silly pointed hat."
 
 [black_wizard_hat_noted]
