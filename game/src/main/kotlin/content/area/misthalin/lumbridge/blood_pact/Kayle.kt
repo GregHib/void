@@ -108,6 +108,7 @@ class Kayle : Script {
             val xenia = NPCs.add("xenia_wounded", instanceOffset().tile(3877, 5538, 1), Direction.NORTH)
             open("fade_in")
             xenia.walkTo(instanceOffset().tile(3877, 5541, 1))
+            delay(1)
             talkWith(xenia) {
                 val kayleStatus = get<String>("blood_pact_kayle")
                 when (kayleStatus) {

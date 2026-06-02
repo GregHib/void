@@ -1,40 +1,27 @@
 package content.area.misthalin.lumbridge
 
 import content.entity.combat.hit.directHit
+import content.entity.player.bank.bank
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
-import content.quest.exitInstance
 import content.quest.instance
 import content.quest.instanceOffset
 import content.quest.quest
 import content.quest.refreshQuestJournal
-import content.quest.setInstanceLogout
-import content.quest.smallInstance
-import content.quest.startCutscene
+import content.skill.melee.weapon.Weapon
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.clearCamera
-import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
-import world.gregs.voidps.engine.client.moveCamera
-import world.gregs.voidps.engine.client.turnCamera
-import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
-import world.gregs.voidps.engine.entity.character.mode.Follow
-import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Teleport
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.queue.longQueue
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.type.Delta
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
-import world.gregs.voidps.type.Region
-import world.gregs.voidps.type.RegionLevel
-import world.gregs.voidps.type.Tile
 
 class Xenia : Script {
     init {
@@ -47,31 +34,47 @@ class Xenia : Script {
                 }
                 "watched_cutscene" -> {
                     npc<Neutral>("There's a guard in the room ahead. Together we should be able to take him out.")
-                    firstFightOptions()
+                    optionsAfterEntering()
                 }
                 "xenia_wounded" -> {
-                    if (false) { //check if player has no melee weapon
-                        //give bronze dagger
+                    if (!hasPlayerWeaponType("melee")) {
+                        inventory.add("bronze_dagger", 1)
                         npc<LookDown>("You'll need a weapon. Equip this bronze dagger, then talk to me again.")
                     } else {
                         npc<LookDown>("Ah...")
                         npc<LookDown>("It looks like I'm too old for this after all. You'll have to do the rest without me.")
-                        foodChat()
                         npc<LookDown>("The first cultist is using a ranged weapon, so you should attack him with your melee weapon.")
-
-                        optionsBeforeFirstFight()
+                        npc<LookDown>("I'll follow you, but I'll stay out of combat. Return to me if you're wounded. I have some food to share.")
+                        foodChat()
+                        optionsAfterEntering()
                     }
                 }
                 "kayle" -> {
                     val kayleStatus = get<String>("blood_pact_kayle")
+                    foodChat()
+
                     when (kayleStatus) {
-                        "spared", "killed" -> listOf("")
-                        "defeated" -> listOf("")
-                        else -> listOf("")
+                        "spared", "killed" -> {
+                            if (equipped(EquipSlot.Weapon).id == "kayles_sling") {
+                                npc<LookDown>("You're holding the sling right. You should be able to attack the second cultist without any trouble.")
+                            } else if (Weapon.type(this, equipped(EquipSlot.Weapon)) != "range") {
+                                npc<LookDown>(" I see you've brought your own ranged weapon. I'll assume you know how to use it!")
+                            } else if (!(inventory.contains("kayles_sling"))) {
+                                npc<LookDown>("You'll need to equip the bow before you can attack the second cultist.")
+                            } else {
+                                npc<LookDown>("You'll need to pick up the bow and equip it before you can attack the second cultist.")
+                            }
+
+                            optionsBeforeSecondFight()
+                        }
+                        "defeated" -> {
+                            npc<LookDown>("The first cultist is defeated, but not dead. I'll leave it up to you to how to deal with him.")
+                            optionsBeforeFirstFight()
+                        }
                     }
                 }
                 "caitlin" -> {
-                    val kayleStatus = get<String>("blood_pact_kayle")
+                    val kayleStatus = get<String>("blood_pact_cayle")
                     when (kayleStatus) {
                         "spared", "killed" -> listOf("")
                         "defeated" -> listOf("")
@@ -79,7 +82,7 @@ class Xenia : Script {
                     }
                 }
                 "reese" -> {
-                    val kayleStatus = get<String>("blood_pact_kayle")
+                    val kayleStatus = get<String>("blood_pact_reese")
                     when (kayleStatus) {
                         "spared", "killed" -> listOf("")
                         "defeated" -> listOf("")
@@ -126,6 +129,12 @@ class Xenia : Script {
         }
     }
 
+    fun Player.hasPlayerWeaponType(weaponType : String) : Boolean {
+        val equippedWeapon = equipped(EquipSlot.Weapon)
+        return inventory.items.any { !it.isEmpty() && Weapon.type(this, it) == weaponType }
+                || (!equippedWeapon.isEmpty() && Weapon.type(this, equippedWeapon) == weaponType)
+    }
+
     suspend fun Player.choiceBase() {
         choice {
             whatDoYouNeed()
@@ -137,8 +146,7 @@ class Xenia : Script {
 
     suspend fun Player.foodChat() {
         val playerHealthPercentage = levels.get(Skill.Constitution).toDouble() / levels.getMax(Skill.Constitution)
-        npc<LookDown>("I'll follow you, but I'll stay out of combat. Return to me if you're wounded. I have some food to share.")
-        when (contains("food"))  {
+        when (inventory.items.any { it.def["consumable", false] })  {
             true -> {
                 if (playerHealthPercentage < 1.0 && playerHealthPercentage > 0.75) {
                     npc<LookDown>(" You're lightly wounded. You should eat some of the food you're carrying.")
@@ -246,12 +254,13 @@ class Xenia : Script {
         }
     }
 
-    fun checkForLostWeapons() : Boolean {
-        val weapons = arrayOf("") //quest weapons
+    fun Player.checkForLostWeapons() : Boolean {
+        val weapons = arrayOf("reeses_sword", "kayles_sling", "caitlins_staff") //quest weapons
 
         for (weapon in weapons) {
-            //check player bank and inventory for weapon
-            //return true if missing
+            if (!(inventory.contains(weapon) || bank.contains(weapon))) {
+                return true
+            }
         }
 
         return false
@@ -259,7 +268,10 @@ class Xenia : Script {
 
     fun ChoiceOption.lostWeapon() : Unit = option<Neutral>("I've lost some of the cultists' weapons.") {
         npc<Neutral>("Yes, one of my contacts in the Champion's Guild found them and returned them to me.")
-        //if not in invent or bank "Kayle's chargebow"
+
+        if (!(inventory.contains("") || bank.contains("")) && inventory.) {
+
+        }
         //  Xenia gives you Kayle's chargebow.
 
         //if not in invent or bank "Catilin's staff"
@@ -267,9 +279,6 @@ class Xenia : Script {
 
         //if not in invent or bank "Reese's sword"
         //  Xenia gives you Reese's sword.
-
-        //if not in invent or bank "Reese's off-hand sword"
-        //  Xenia gives you Reese's off-hand sword.
     }
 
     fun ChoiceOption.choiceQuestDetail() : Unit = option<Neutral>("I've got a question about my adventure in the catacombs...") {
@@ -311,16 +320,16 @@ class Xenia : Script {
         woundedDetails()
     }
 
-    suspend fun Player.firstFightOptions() {
+    suspend fun Player.optionsAfterEntering() {
         choice {
             option<Neutral>("What's the plan of attack?") {
                 npc<Neutral>("It looks like the cultist has a bow. The best way to deal with someone with a ranged weapon is to get close to them and attack with melee.")
-                firstFightOptions()
+                optionsAfterEntering()
             }
             option<Neutral>("What's a blood pact?") {
                 npc<Neutral>("It's something Zamorakian cults do sometimes; a way of swearing loyalty to their leader.")
                 npc<Neutral>("A blood pact doesn't have real magical power, but that kind of thing can have great power over a person if they believe strongly enough.")
-                firstFightOptions()
+                optionsAfterEntering()
             }
             option<Neutral>("Let's get on with this.") { }
         }
@@ -340,6 +349,25 @@ class Xenia : Script {
             option<LookDown>("Are you going to be alright?") {
                 npc<LookDown>("Don't worry about me. I've survived worse wounds than this. I'm going to hang back from combat, but I'll be here to give you advice if you need it. I'm sure you can beat these cultists on your own.")
                 optionsBeforeFirstFight()
+            }
+            option<LookDown>("I can handle this.") { }
+        }
+    }
+
+    suspend fun Player.optionsBeforeSecondFight() {
+        choice {
+            option<LookDown>("Tell me more about ranged combat.") {
+                npc<LookDown>("In order to use ranged combat, you'll need to wield a ranged weapon. For most weapons you'll also need ammunition, but if you use a chargebow you'll always be able to fire low power magical arrows. After that it's easy; just attack your enemy. Ranged combat is good against magic users. It's not so good against melee fighters, since projectiles have trouble getting through heavy armour.")
+                optionsBeforeSecondFight()
+            }
+            option<LookDown>("What's a blood pact?") {
+                npc<LookDown>("It's something Zamorakian cults do sometimes; a way of swearing loyalty to their leader.")
+                npc<LookDown>("A blood pact doesn't have real magical power, but that kind of thing can have great power over a person if they believe strongly enough.")
+                optionsBeforeSecondFight()
+            }
+            option<LookDown>("Are you going to be alright?") {
+                npc<LookDown>("Don't worry about me. I've survived worse wounds than this. I'm going to hang back from combat, but I'll be here to give you advice if you need it. I'm sure you can beat these cultists on your own.")
+                optionsBeforeSecondFight()
             }
             option<LookDown>("I can handle this.") { }
         }
