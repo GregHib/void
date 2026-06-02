@@ -1,10 +1,6 @@
-[void_dance]
-id = 7451
+[in_aid_of_the_myreque]
+id = 705 # this and varbits works
 persist = true
 format = "map"
 default = "unstarted"
 values = { unstarted = 0, started = 1 }
-
-[void_dance_bartender]
-id = 7451
-format = "int"

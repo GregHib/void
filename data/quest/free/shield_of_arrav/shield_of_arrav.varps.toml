@@ -1,0 +1,13 @@
+[shield_of_arrav_phoenix]
+id = 145
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }
+
+[shield_of_arrav_black_arm]
+id = 146
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

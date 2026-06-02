@@ -1,0 +1,6 @@
+[what_lies_below]
+id = 3523
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 150 }
