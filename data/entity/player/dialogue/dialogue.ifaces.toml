@@ -96,10 +96,10 @@ id = 8
 id = 68
 type = "dialogue_box"
 
-[.head_large]
+[.head]
 id = 1
 
-[.head]
+[.head_large]
 id = 2
 
 [.title]
@@ -115,10 +115,10 @@ id = 5
 id = 69
 type = "dialogue_box"
 
-[.head_large]
+[.head]
 id = 1
 
-[.head]
+[.head_large]
 id = 2
 
 [.title]
@@ -137,10 +137,10 @@ id = 6
 id = 70
 type = "dialogue_box"
 
-[.head_large]
+[.head]
 id = 1
 
-[.head]
+[.head_large]
 id = 2
 
 [.title]
@@ -162,10 +162,10 @@ id = 7
 id = 71
 type = "dialogue_box"
 
-[.head_large]
+[.head]
 id = 1
 
-[.head]
+[.head_large]
 id = 2
 
 [.title]
