@@ -14,7 +14,7 @@ drops = [
     { id = "iron_boots", chance = 4 },
     { id = "iron_javelin", amount = 5, chance = 4 },
     { id = "steel_longsword", chance = 4 },
-    { id = "light_mystic_boots" },
+    { id = "mystic_boots_light" },
     { id = "nature_rune", amount = 2, chance = 24 },
     { id = "nature_rune", amount = 4, chance = 16 },
     { id = "nature_rune", amount = 6, chance = 8 },

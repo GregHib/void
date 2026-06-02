@@ -274,34 +274,34 @@ id = 13511
 [mystic_boots_blue_lent]
 id = 13512
 
-[dark_mystic_hat_lent]
+[mystic_hat_dark_lent]
 id = 13513
 
-[dark_mystic_robe_top_lent]
+[mystic_robe_top_dark_lent]
 id = 13514
 
-[dark_mystic_robe_bottom_lent]
+[mystic_robe_bottom_dark_lent]
 id = 13515
 
-[dark_mystic_gloves_lent]
+[mystic_gloves_dark_lent]
 id = 13516
 
-[dark_mystic_boots_lent]
+[mystic_boots_dark_lent]
 id = 13517
 
-[light_mystic_hat_lent]
+[mystic_hat_light_lent]
 id = 13518
 
-[light_mystic_robe_top_lent]
+[mystic_robe_top_light_lent]
 id = 13519
 
-[light_mystic_robe_bottom_lent]
+[mystic_robe_bottom_light_lent]
 id = 13520
 
-[light_mystic_gloves_lent]
+[mystic_gloves_light_lent]
 id = 13521
 
-[light_mystic_boots_lent]
+[mystic_boots_light_lent]
 id = 13522
 
 [maple_longbow_lent]
