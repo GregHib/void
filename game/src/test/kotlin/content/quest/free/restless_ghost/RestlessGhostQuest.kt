@@ -3,22 +3,19 @@ package content.quest.free.restless_ghost
 import WorldTest
 import content.entity.player.dialogue.continueDialogue
 import content.quest.quest
-import dialogueContinue
 import dialogueOption
 import equipItem
 import interfaceOption
 import npcOption
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertNotNull
+import skipDialogues
 import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
@@ -34,13 +31,13 @@ class RestlessGhostQuest : WorldTest() {
         val fatherAereck = NPCs.find(player.tile.regionLevel, "father_aereck")
         player.npcOption(fatherAereck, "Talk-to")
         tick()
-        player.fastForwardDialogue()
-        player.selectDialogueOption(3) // I'm looking for a quest!
-        player.fastForwardDialogue()
+        player.skipDialogues()
+        player.dialogueOption(3) // I'm looking for a quest!
+        player.skipDialogues()
         tick(2)
         // quest overview interface
         player.interfaceOption("quest_intro", "startyes_layer", "Yes")
-        player.fastForwardDialogue()
+        player.skipDialogues()
 
         assertNull(player.dialogue)
         assertEquals("started", player.quest("the_restless_ghost"))
@@ -50,11 +47,11 @@ class RestlessGhostQuest : WorldTest() {
         val fatherUrhney = NPCs.find(player.tile.regionLevel, "father_urhney")
         player.npcOption(fatherUrhney, "Talk-to")
         tick()
-        player.fastForwardDialogue()
-        player.selectDialogueOption(2) // Father Aereck sent me to talk to you.
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1) // A ghost is haunting his graveyard.
-        player.fastForwardDialogue()
+        player.skipDialogues()
+        player.dialogueOption(2) // Father Aereck sent me to talk to you.
+        player.skipDialogues()
+        player.dialogueOption(1) // A ghost is haunting his graveyard.
+        player.skipDialogues()
 
         assertNull(player.dialogue)
         assertEquals("ghost", player.quest("the_restless_ghost"))
@@ -72,9 +69,9 @@ class RestlessGhostQuest : WorldTest() {
         val restlessGhost = NPCs.find(Tile(3250, 3195), "restless_ghost")
         player.npcOption(restlessGhost, "Talk-to")
         tick(2)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1) // Yep. Now, tell me what the problem is.
-        player.fastForwardDialogue()
+        player.skipDialogues()
+        player.dialogueOption(1) // Yep. Now, tell me what the problem is.
+        player.skipDialogues()
 
         assertNull(player.dialogue)
         assertEquals("mining_spot", player.quest("the_restless_ghost"))
@@ -99,19 +96,5 @@ class RestlessGhostQuest : WorldTest() {
 
         assertEquals("completed", player.quest("the_restless_ghost"))
         assertEquals(1125.0, player.experience.get(Skill.Prayer))
-    }
-
-    private fun Player.fastForwardDialogue() {
-        assertNotNull(dialogue)
-        require(suspension is Suspension.Continue)
-        while (suspension is Suspension.Continue) {
-            dialogueContinue()
-        }
-    }
-
-    private fun Player.selectDialogueOption(option: Int) {
-        assertNotNull(dialogue)
-        require(suspension is Suspension.IntEntry)
-        dialogueOption("line$option")
     }
 }

@@ -2,21 +2,19 @@ package content.quest.free.gunnars_ground
 
 import WorldTest
 import content.quest.quest
-import dialogueContinue
 import dialogueOption
 import itemOnItem
 import npcOption
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import skipDialogues
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertNull
 
@@ -31,22 +29,22 @@ class GunnarsGroundTest : WorldTest() {
 
         player.npcOption(dororan, "Talk-to")
         tick()
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
 
-        player.fastForwardDialogue()
-        player.selectDialogueOption(2)
+        player.skipDialogues()
+        player.dialogueOption(2)
 
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
 
-        player.fastForwardDialogue()
-        player.selectDialogueOption(2)
+        player.skipDialogues()
+        player.dialogueOption(2)
 
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
 
-        player.fastForwardDialogue()
+        player.skipDialogues()
 
         assertNull(player.dialogue)
         assertEquals("unstarted", player.quest("gunnars_ground"))
@@ -68,24 +66,24 @@ class GunnarsGroundTest : WorldTest() {
         // start quest
         player.npcOption(dororan, "Talk-to")
         tick()
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(2)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(2)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(2)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(2)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
 
         assertEquals("started", player.quest("gunnars_ground"))
 
-        player.fastForwardDialogue()
-        player.selectDialogueOption(2)
-        player.fastForwardDialogue()
+        player.skipDialogues()
+        player.dialogueOption(2)
+        player.skipDialogues()
 
         assertNull(player.dialogue)
         assertEquals(1, player.inventory.count("love_poem"))
@@ -96,17 +94,17 @@ class GunnarsGroundTest : WorldTest() {
         val jeffery = NPCs.find(player.tile.regionLevel, "jeffery")
         player.npcOption(jeffery, "Talk-to")
         tick(2)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
 
         // check if jeffery_ring / love_poem
         assertNull(player.dialogue)
@@ -117,15 +115,15 @@ class GunnarsGroundTest : WorldTest() {
         player.tele(3099, 3422)
         player.npcOption(dororan, "Talk-to")
         tick()
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(2)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(2)
-        player.fastForwardDialogue()
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(2)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(2)
+        player.skipDialogues()
 
         assertNull(player.dialogue)
         assertEquals(1, player.inventory.count("chisel"))
@@ -133,7 +131,7 @@ class GunnarsGroundTest : WorldTest() {
 
         player.itemOnItem(1, 0)
         tick()
-        player.fastForwardDialogue()
+        player.skipDialogues()
 
         // player should get 125 exp for engraving
         assertEquals(playerCraftingExp + 125, player.experience.get(Skill.Crafting))
@@ -147,15 +145,15 @@ class GunnarsGroundTest : WorldTest() {
         player.npcOption(dororan, "Talk-to")
         tick()
 
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(2)
-        player.fastForwardDialogue()
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(2)
+        player.skipDialogues()
 
         assertNull(player.dialogue)
         assertEquals("show_gudrun", player.quest("gunnars_ground"))
@@ -166,17 +164,17 @@ class GunnarsGroundTest : WorldTest() {
         player.npcOption(gudrun, "Talk-to")
         tick(4)
 
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(2)
-        player.fastForwardDialogue()
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(2)
+        player.skipDialogues()
 
         assertNull(player.dialogue)
         assertEquals("meet_chieftain", player.quest("gunnars_ground"))
@@ -187,17 +185,17 @@ class GunnarsGroundTest : WorldTest() {
         player.npcOption(chieftain, "Talk-to")
         tick()
 
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
 
         assertNull(player.dialogue)
         assertEquals("tell_gudrun", player.quest("gunnars_ground"))
@@ -207,9 +205,9 @@ class GunnarsGroundTest : WorldTest() {
         player.npcOption(gudrun, "Talk-to")
         tick()
 
-        player.fastForwardDialogue()
-        player.selectDialogueOption(2)
-        player.fastForwardDialogue()
+        player.skipDialogues()
+        player.dialogueOption(2)
+        player.skipDialogues()
 
         assertNull(player.dialogue)
         assertEquals("tell_dororan", player.quest("gunnars_ground"))
@@ -219,32 +217,32 @@ class GunnarsGroundTest : WorldTest() {
         player.npcOption(dororan, "Talk-to")
         tick()
 
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(2)
-        player.fastForwardDialogue()
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(2)
+        player.skipDialogues()
         tick(6)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(5)
-        player.selectDialogueOption(3)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(5)
-        player.selectDialogueOption(2)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(5)
-        player.selectDialogueOption(3)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(5)
+        player.dialogueOption(3)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(5)
+        player.dialogueOption(2)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(5)
+        player.dialogueOption(3)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
 
         assertNull(player.dialogue)
         assertEquals("poem", player.quest("gunnars_ground"))
@@ -253,35 +251,35 @@ class GunnarsGroundTest : WorldTest() {
         player.npcOption(gudrun, "Talk-to")
         tick(4)
 
-        player.fastForwardDialogue()
+        player.skipDialogues()
 
         tick(6)
 
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(2)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(2)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(2)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(2)
+        player.skipDialogues()
+        player.dialogueOption(2)
+        player.skipDialogues()
+        player.dialogueOption(2)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
 
         tick(6)
 
-        player.fastForwardDialogue()
+        player.skipDialogues()
 
         tick(4)
 
-        player.fastForwardDialogue()
+        player.skipDialogues()
 
         tick(9)
 
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
 
         tick(4)
 
@@ -290,19 +288,5 @@ class GunnarsGroundTest : WorldTest() {
         assertEquals(1, player.inventory.count("swanky_boots"))
         assertEquals(1, player.inventory.count("antique_lamp_gunnars_ground"))
         assertEquals(playerCraftingExp + 300, player.experience.get(Skill.Crafting))
-    }
-
-    private fun Player.fastForwardDialogue() {
-        assertNotNull(dialogue)
-        require(suspension is Suspension.Continue)
-        while (suspension is Suspension.Continue) {
-            dialogueContinue()
-        }
-    }
-
-    private fun Player.selectDialogueOption(option: Int) {
-        assertNotNull(dialogue)
-        require(suspension is Suspension.IntEntry)
-        dialogueOption("line$option")
     }
 }
