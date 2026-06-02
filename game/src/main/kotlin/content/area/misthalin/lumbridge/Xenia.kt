@@ -25,6 +25,9 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.longQueue
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Delta
@@ -53,11 +56,38 @@ class Xenia : Script {
                     } else {
                         npc<LookDown>("Ah...")
                         npc<LookDown>("It looks like I'm too old for this after all. You'll have to do the rest without me.")
-                        npc<LookDown>("I'll follow you, but I'll stay out of combat. Return to me if you're wounded. I have some food to share.")
+                        foodChat()
                         npc<LookDown>("The first cultist is using a ranged weapon, so you should attack him with your melee weapon.")
 
                         optionsBeforeFirstFight()
                     }
+                }
+                "kayle" -> {
+                    val kayleStatus = get<String>("blood_pact_kayle")
+                    when (kayleStatus) {
+                        "spared", "killed" -> listOf("")
+                        "defeated" -> listOf("")
+                        else -> listOf("")
+                    }
+                }
+                "caitlin" -> {
+                    val kayleStatus = get<String>("blood_pact_kayle")
+                    when (kayleStatus) {
+                        "spared", "killed" -> listOf("")
+                        "defeated" -> listOf("")
+                        else -> listOf("")
+                    }
+                }
+                "reese" -> {
+                    val kayleStatus = get<String>("blood_pact_kayle")
+                    when (kayleStatus) {
+                        "spared", "killed" -> listOf("")
+                        "defeated" -> listOf("")
+                        else -> listOf("")
+                    }
+                }
+                "untied_ilona" -> {
+                    listOf("")
                 }
                 "completed" -> {
                     npc<Happy>("Hello again, adventurer.")
@@ -102,6 +132,32 @@ class Xenia : Script {
             whoAreYou()
             howDoYouKnow()
             option<Neutral>("Sorry, I've got to go.")
+        }
+    }
+
+    suspend fun Player.foodChat() {
+        val playerHealthPercentage = levels.get(Skill.Constitution).toDouble() / levels.getMax(Skill.Constitution)
+        npc<LookDown>("I'll follow you, but I'll stay out of combat. Return to me if you're wounded. I have some food to share.")
+        when (contains("food"))  {
+            true -> {
+                if (playerHealthPercentage < 1.0 && playerHealthPercentage > 0.75) {
+                    npc<LookDown>(" You're lightly wounded. You should eat some of the food you're carrying.")
+
+                } else if (playerHealthPercentage <= 0.75) {
+                    npc<LookDown>("You're badly wounded! You should eat some of the food you're carrying.")
+                }
+            }
+            false -> {
+                if (playerHealthPercentage < 1.0 && playerHealthPercentage > 0.75) {
+                    npc<LookDown>("You're lightly wounded. Here, have some food...")
+                    statement("Xenia gives you a piece of cooked meat. Eat food to heal yourself.")
+                    inventory.add("cooked_meat", 1)
+                } else if (playerHealthPercentage <= 0.75) {
+                    npc<LookDown>("You're badly wounded! Eat some food, quickly...")
+                    statement("Xenia gives you 4 pieces of cooked meat. Eat food to heal yourself.")
+                    inventory.add("cooked_meat", 4)
+                }
+            }
         }
     }
 

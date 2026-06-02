@@ -1,5 +1,5 @@
 [blood_pact]
-id = 170
+id = 7238
 persist = true
 format = "map"
 default = "unstarted"
@@ -11,6 +11,6 @@ values = {
     xenia_wounded = 4,
     caitlin = 5,
     reese = 6,
-    untie_ilona = 7,
-    completed = 100
+    untied_ilona = 7,
+    completed = 60
 }

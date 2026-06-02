@@ -4,14 +4,18 @@ import content.entity.combat.dead
 import world.gregs.voidps.engine.Script
 import content.entity.effect.transform
 import content.entity.player.dialogue.Angry
+import content.entity.player.dialogue.LookDown
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Scared
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.quest.instance
 import content.quest.instanceOffset
+import content.quest.refreshQuestJournal
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -43,30 +47,28 @@ class Kayle : Script {
             }
             option<Angry>("Yes. Now die!") {
                 set("blood_pact_kayle", "killed")
-                anim("kayle_death")
+                target.anim("kayle_death")
+                delay(1)
                 open("fade_out")
                 delay(3)
                 NPCs.remove(target)
                 FloorItems.add(instanceOffset().tile(3877, 5543, 1), "kayles_sling", disappearTicks = 300, owner = this)
                 open("fade_in")
-                //xenia : "It's a pity you had to kill that man...but I'm not questioning your judgment."
+                set("blood_pact", "caitlin")
+                refreshQuestJournal()
+                xeniaAfterChoice(target)
             }
             option<Neutral>("No. Just give me your stuff and get out of here.") {
                 set("blood_pact_kayle", "spared")
-                anim("kayle_getUp")
-                //TODO: find anim and delay removal
-                NPCs.remove(target)
-                val kayle = NPCs.add("kayle_cutscene", instanceOffset().tile(3877, 5543, 1), Direction.NORTH)
-                kayle.walkTo(instanceOffset().tile(3876, 5542, 1))
-                kayle.walkTo(instanceOffset().tile(3876, 5531, 1))
-                delay(2)
+                target.anim("kayle_getUp")
+                delay(1)
                 open("fade_out")
                 delay(3)
-                NPCs.remove(kayle)
+                NPCs.remove(target)
                 FloorItems.add(instanceOffset().tile(3877, 5543, 1), "kayles_sling", disappearTicks = 300, owner = this)
-                open("fade_in")
-                //xenia : "I don't think that cultist will be any more trouble. I'm glad you didn't have to kill him."
-
+                set("blood_pact", "caitlin")
+                refreshQuestJournal()
+                xeniaAfterChoice(target)
             }
         }
     }
@@ -95,6 +97,24 @@ class Kayle : Script {
             option<Neutral>("Enough questions.") {
                 npc<Scared>("Are - are you going to kill me now?")
                 initialOptions(target)
+            }
+        }
+    }
+
+    suspend fun Player.xeniaAfterChoice(target : NPC) {
+        val instance = instance()
+        if (instance != null) {
+            NPCs.remove(NPCs.findOrNull(instance.toLevel(1), "xenia_wounded"))
+            val xenia = NPCs.add("xenia_wounded", instanceOffset().tile(3877, 5538, 1), Direction.NORTH)
+            open("fade_in")
+            xenia.walkTo(instanceOffset().tile(3877, 5541, 1))
+            talkWith(xenia) {
+                val kayleStatus = get<String>("blood_pact_kayle")
+                when (kayleStatus) {
+                    "spared" -> npc<LookDown>("I don't think that cultist will be any more trouble. I'm glad you didn't have to kill him.")
+                    "killed" -> npc<LookDown>("It's a pity you had to kill that man...but I'm not questioning your judgment.")
+                }
+                npc<LookDown>("I think the second cultist was using magic. You should use a ranged weapon to defeat magic-users. Ask me if you need any help.")
             }
         }
     }

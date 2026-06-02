@@ -43,7 +43,7 @@ class Caitlin : Script {
             }
             option<Angry>("Yes. Now die!") {
                 set("blood_pact_caitlin", "killed")
-                anim("caitlin_death")
+                delay(target.anim("caitlin_death").coerceAtLeast(1))
                 open("fade_out")
                 delay(3)
                 NPCs.remove(target)
@@ -53,8 +53,7 @@ class Caitlin : Script {
             }
             option<Neutral>("No. Just give me your stuff and get out of here.") {
                 set("blood_pact_caitlin", "spared")
-                anim("caitlin_getUp")
-                //TODO: find anim and delay removal
+                delay(target.anim("caitlin_getUp").coerceAtLeast(1))
                 NPCs.remove(target)
                 val caitlin = NPCs.add("caitlin_cutscene", instanceOffset().tile(3877, 5543, 1), Direction.NORTH)
                 caitlin.walkTo(instanceOffset().tile(3876, 5542, 1))
