@@ -3,7 +3,7 @@ spawns = [
   { id = "uglug_nar", x = 2442, y = 3049, members = true },
   { id = "pilg", x = 2443, y = 3046, members = true },
   { id = "grug", x = 2446, y = 3049, members = true },
-  { id = "ogre_guard_jiggig", x = 2454, y = 3047, members = true },
+  { id = "zogre_ogre_guard", x = 2454, y = 3047, members = true },
   { id = "ogre_guard_jiggig_2", x = 2443, y = 3038, members = true },
   { id = "ogre_guard_jiggig_2", x = 2452, y = 3030, members = true },
   { id = "zogre_jiggig", x = 2486, y = 3048, members = true },

@@ -68,6 +68,23 @@ interface Character :
         trigger.invoke()
     }
 
+    fun exactMoveProper(startX: Int, startY: Int, startDelay: Int, endX: Int, endY: Int, endDelay: Int, direction: Direction = Direction.NONE) {
+        tele(endX, endY, tile.level)
+        if (this is Player) {
+            temporaryMoveType = MoveType.Walk
+        }
+        visuals.exactMovement.apply {
+            this.startX = startX - tile.x
+            this.startY = startY - tile.y
+            this.startDelay = startDelay
+            this.endX = endX - tile.x
+            this.endY = endY - tile.y
+            this.endDelay = endDelay
+            this.direction = direction.ordinal
+        }
+        flagExactMovement()
+    }
+
     /**
      * Gradually move the characters appeared location to [delta] over [delay] time
      */

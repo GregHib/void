@@ -1,0 +1,47 @@
+[ogre_destroy_barricade]
+id = 1954
+
+[drip_poison]
+id = 1955
+
+[down_stone_stairs]
+id = 1952
+
+[up_stone_stairs]
+id = 1956
+
+[disease_hitsplat]
+id = 2388
+
+[strangedoor_open]
+id = 2410
+
+[smokepuff]
+id = 1930
+
+[zogre_writing]
+id = 1958
+
+[bonewalk]
+id = 1953
+
+[zogre_death]
+id = 916
+
+[zogre_hit]
+id = 917
+
+[zogre_attack]
+id = 914
+
+[zogre_shield_hit]
+id = 915
+
+[zogre_axe_attack]
+id = 913
+
+[skelly_hit]
+id = 779
+
+[zogre_bell]
+id = 1959

@@ -2,6 +2,10 @@
 id = 9302
 examine = "A rather strategically placed hole, which appears to be in the ground."
 
+[zogre_outdoor_bell]
+id = 6847
+examine = "A bell to attract the attention of the secretary."
+
 [yanille_underwall_tunnel_castle_wall]
 id = 9301
 examine = "A well constructed castle wall."

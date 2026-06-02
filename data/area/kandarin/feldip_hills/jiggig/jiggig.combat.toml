@@ -1,0 +1,75 @@
+[zogre_jiggig]
+attack_speed = 6
+defend_anim = "ogre_defend"
+defend_sound = "zogre_hit"
+death_anim = "ogre_death"
+death_sound = "zogre_death"
+
+[zogre_jiggig.melee]
+range = 1
+anim = "ogre_attack"
+target_sound = "zogre_attack"
+target_hit = { offense = "crush", max = 50 }
+impact_disease = 50
+
+[zogre_jiggig_2]
+clone = "zogre_jiggig"
+
+[zogre_jiggig_2.melee]
+clone = "zogre_jiggig.melee"
+
+[zogre_jiggig_3]
+clone = "zogre_jiggig"
+
+[zogre_jiggig_3.melee]
+clone = "zogre_jiggig.melee"
+
+[zogre_jiggig_4]
+clone = "zogre_jiggig"
+
+[zogre_jiggig_4.melee]
+clone = "zogre_jiggig.melee"
+
+[zogre_jiggig_5]
+clone = "zogre_jiggig"
+
+[zogre_jiggig_5.melee]
+clone = "zogre_jiggig.melee"
+
+[zogre_jiggig_6]
+clone = "zogre_jiggig"
+
+[zogre_jiggig_6.melee]
+clone = "zogre_jiggig.melee"
+
+[zogre_jiggig_7]
+clone = "zogre_jiggig"
+
+[zogre_jiggig_7.melee]
+clone = "zogre_jiggig.melee"
+
+[skogre_jiggig]
+attack_speed = 6
+defend_anim = "ogre_defend"
+defend_sound = "skelly_hit"
+death_anim = "ogre_death"
+death_sound = "zogre_death"
+
+[skogre_jiggig.melee]
+range = 1
+anim = "ogre_attack"
+target_sound = "giant_attack"
+target_hit = { offense = "crush", max = 50 }
+impact_disease = 50
+
+[skogre_jiggig_2]
+clone = "skogre_jiggig"
+
+[skogre_jiggig_2.melee]
+clone = "skogre_jiggig.melee"
+
+[skogre_jiggig_3]
+clone = "skogre_jiggig"
+
+[skogre_jiggig_3.melee]
+clone = "skogre_jiggig.melee"

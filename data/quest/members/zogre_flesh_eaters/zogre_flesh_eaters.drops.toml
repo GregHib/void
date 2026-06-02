@@ -12,3 +12,15 @@ roll = 5000
 drops = [
     { id = "zombie_champions_scroll", members = true, lacks = "zombie_champions_scroll" },
 ]
+
+[zogre_human_brentle_vahn_drop_table]
+type = "all"
+drops = [
+    { id = "ruined_backpack" },
+]
+
+[zogre_human_brentle_vahn_tertiary]
+roll = 5000
+drops = [
+    { id = "zombie_champions_scroll", members = true, lacks = "zombie_champions_scroll" },
+]

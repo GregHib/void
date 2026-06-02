@@ -92,6 +92,8 @@ skill = "fletching"
 level = 7
 xp = 8.4
 ticks = 2
+requires = ["hammer"]
+requires_message = "You need a hammer to force these nails into the arrow shafts."
 remove = [{ id = "flighted_ogre_arrow", amount = 6 }, { id = "bronze_nails", amount = 6 }]
 add = [{ id = "bronze_brutal", amount = 6 }]
 message = "You attach the nails to 6 arrow shafts."
@@ -103,6 +105,8 @@ skill = "fletching"
 level = 18
 xp = 15.6
 ticks = 2
+requires = ["hammer"]
+requires_message = "You need a hammer to force these nails into the arrow shafts."
 remove = [{ id = "flighted_ogre_arrow", amount = 6 }, { id = "iron_nails", amount = 6 }]
 add = [{ id = "iron_brutal", amount = 6 }]
 message = "You attach the nails to 6 arrow shafts."
@@ -114,6 +118,8 @@ skill = "fletching"
 level = 33
 xp = 30.6
 ticks = 2
+requires = ["hammer"]
+requires_message = "You need a hammer to force these nails into the arrow shafts."
 remove = [{ id = "flighted_ogre_arrow", amount = 6 }, { id = "steel_nails", amount = 6 }]
 add = [{ id = "steel_brutal", amount = 6 }]
 message = "You attach the nails to 6 arrow shafts."
@@ -125,6 +131,8 @@ skill = "fletching"
 level = 38
 xp = 39.0
 ticks = 2
+requires = ["hammer"]
+requires_message = "You need a hammer to force these nails into the arrow shafts."
 remove = [{ id = "flighted_ogre_arrow", amount = 6 }, { id = "black_nails", amount = 6 }]
 add = [{ id = "black_brutal", amount = 6 }]
 message = "You attach the nails to 6 arrow shafts."
@@ -136,6 +144,8 @@ skill = "fletching"
 level = 49
 xp = 45.0
 ticks = 2
+requires = ["hammer"]
+requires_message = "You need a hammer to force these nails into the arrow shafts."
 remove = [{ id = "flighted_ogre_arrow", amount = 6 }, { id = "mithril_nails", amount = 6 }]
 add = [{ id = "mithril_brutal", amount = 6 }]
 message = "You attach the nails to 6 arrow shafts."
@@ -147,6 +157,8 @@ skill = "fletching"
 level = 62
 xp = 61.2
 ticks = 2
+requires = ["hammer"]
+requires_message = "You need a hammer to force these nails into the arrow shafts."
 remove = [{ id = "flighted_ogre_arrow", amount = 6 }, { id = "adamant_nails", amount = 6 }]
 add = [{ id = "adamant_brutal", amount = 6 }]
 message = "You attach the nails to 6 arrow shafts."
@@ -158,6 +170,8 @@ skill = "fletching"
 level = 77
 xp = 75.0
 ticks = 2
+requires = ["hammer"]
+requires_message = "You need a hammer to force these nails into the arrow shafts."
 remove = [{ id = "flighted_ogre_arrow", amount = 6 }, { id = "rune_nails", amount = 6 }]
 add = [{ id = "rune_brutal", amount = 6 }]
 message = "You attach the nails to 6 arrow shafts."
@@ -183,6 +197,6 @@ ticks = 3
 requires = ["knife"]
 remove = ["achey_tree_logs", "wolf_bones"]
 add = ["unstrung_comp_bow"]
-message = "You carefully cut the wood and add the bones."
+message = "You carefully cut the wood into a composite ogre bow."
 question = "What would you like to fletch?"
 animation = "fletching_log"

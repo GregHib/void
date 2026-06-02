@@ -4,12 +4,18 @@ import content.entity.combat.hit.directHit
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.flagHits
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.timer.*
+import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
+import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
+import kotlin.math.ceil
 import kotlin.math.sign
 
 val Character.diseased: Boolean get() = diseaseCounter > 0
@@ -120,6 +126,47 @@ class Disease : Script {
         }
         character["disease_damage"] = damage - 2
         val source = character["disease_source", character]
-        character.directHit(source, damage, "disease")
+        val drain = ceil(damage / 5.0).toInt()
+        character.sound("disease_hitsplat")
+        if (character is Player) {
+            val skill = DRAINABLE_SKILLS[random.nextInt(DRAINABLE_SKILLS.size)]
+            val current = character.levels.get(skill)
+            if (current <= 1) {
+                // No skill level left to drain — bite Hitpoints instead.
+                character.directHit(source, drain * 10, "disease")
+            } else {
+                character.levels.drain(skill, drain)
+                showDiseaseSplat(character, source, drain * 10)
+            }
+        } else {
+            character.directHit(source, drain * 10, "disease")
+        }
+    }
+
+    /**
+     * Adds a yellow disease hitsplat showing [amount] without deducting Constitution
+     * (used when disease drained a stat instead of HP).
+     */
+    private fun showDiseaseSplat(target: Character, source: Character, amount: Int) {
+        val hp = target.levels.get(Skill.Constitution)
+        val percentage = target.levels.getPercent(Skill.Constitution, hp, 255.0).toInt()
+        target.visuals.hits.add(
+            HitSplat(
+                amount,
+                HitSplat.Mark.Diseased,
+                percentage,
+                0,
+                false,
+                if (source is NPC) -source.index else source.index,
+                -1,
+            ),
+        )
+        target.flagHits()
+    }
+
+    companion object {
+        private val DRAINABLE_SKILLS: Array<Skill> = Skill.entries
+            .filter { it != Skill.Constitution && it != Skill.Prayer }
+            .toTypedArray()
     }
 }

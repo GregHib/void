@@ -80,6 +80,7 @@ examine = "A large and contentious lady ogre."
 
 [rantz_feldip_hills_2]
 id = 8659
+dialogue = "ogre"
 
 [mound_feldip_hills]
 id = 9466
@@ -115,11 +116,6 @@ id = 13174
 id = 5073
 examine = "This bird obviously doesn't believe in subtlety."
 
-[rantz]
-id = 3587
-wander_range = 4
-examine = "A large dim looking humanoid."
-
 [ogre_boat_feldip_hills_2]
 id = 3472
 
@@ -128,6 +124,7 @@ id = 3467
 
 [rantz_feldip_hills_2_2]
 id = 1010
+dialogue = "ogre"
 
 [fishing_spot_big_net_harpoon_feldip_hills]
 id = 7044

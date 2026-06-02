@@ -94,11 +94,11 @@ object NPCs : Runnable,
      * NPC's full size. Returns `null` if the NPC id is unknown or no valid tile can be found
      * (the underlying [Area.random] retries up to 100 times before giving up).
      */
-    fun addRandom(id: String, area: Area, direction: Direction = Direction.SOUTH): NPC? {
+    fun addRandom(id: String, area: Area, direction: Direction = Direction.SOUTH, ticks: Int, owner: Player? = null): NPC? {
         val def = NPCDefinitions.getOrNull(id) ?: return null
         val collision = CollisionStrategyProvider.get(def)
         val tile = area.random(collision, def.size) ?: return null
-        return add(id, tile, direction)
+        return add(id, tile, direction, ticks, owner)
     }
 
     fun remove(npc: NPC?): Boolean {

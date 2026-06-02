@@ -1,0 +1,29 @@
+[ogre_kick]
+id = 2102
+
+[slash_bash_melee]
+id = 11458
+
+[ogre_breath]
+id = 2101
+
+[human_reachforladder]
+id = 828
+
+[human_mapping]
+id = 909
+
+[regicide_stepover]
+id = 1236
+
+[zombie_update_defend_normal]
+id = 5567
+
+[zombie_update_attack_normal]
+id = 5568
+
+[zombie_update_death_normal]
+id = 5569
+
+[zogre_bell_ring]
+id = 2103

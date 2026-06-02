@@ -1,0 +1,53 @@
+[ogre_stairs_down]
+id = 6841
+
+[ogre_stairs]
+id = 6842
+
+[zogre_lecturn]
+id = 6846
+
+[zogre_coffin_special]
+id = 6844
+
+[zogre_coffin_special_searched]
+id = 6845
+
+[zogre_brentle_skeleton]
+id = 6893
+
+[zogre_stand]
+id = 6897
+
+[ogre_cavedoorr]
+id = 6871
+
+[ogre_cavedoorl]
+id = 6872
+
+[ogre_cavedoorr_inactive]
+id = 6873
+
+[ogre_cavedoorl_inactive]
+id = 6874
+
+[zogre_sithik_bed_entity]
+id = 6887
+
+[ogre_bedman_loc]
+id = 6888
+
+[sithiks_drawers]
+id = 6875
+
+[sithiks_cupboard]
+id = 6876
+
+[sithiks_wardrobe]
+id = 55412
+
+[ogre_barricade_collapsedr]
+id = 6881
+
+[ogre_barricade_collapsedl]
+id = 6882

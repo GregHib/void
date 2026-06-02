@@ -12,3 +12,18 @@ id = 1451
 
 [chompy_bird_squak]
 id = 1453
+
+[ogre_bow]
+id = 1452
+
+[ogre_bellows_suck]
+id = 1454
+
+[ogre_bellows]
+id = 1455
+
+[spit_roast]
+id = 1456
+
+[toad_croak]
+id = 1458

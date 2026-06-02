@@ -1,0 +1,31 @@
+[zogre_jiggig_dungeon]
+attack_speed = 6
+defend_anim = "ogre_defend"
+defend_sound = "zogre_hit"
+death_anim = "ogre_death"
+death_sound = "zogre_death"
+
+[zogre_jiggig_dungeon.melee]
+range = 1
+anim = "ogre_attack"
+target_sound = "zogre_attack"
+target_hit = { offense = "crush", max = 50 }
+impact_disease = 50
+
+[zogre_jiggig_dungeon_2]
+clone = "zogre_jiggig_dungeon"
+
+[zogre_jiggig_dungeon_2.melee]
+clone = "zogre_jiggig_dungeon.melee"
+
+[zogre_jiggig_dungeon_3]
+clone = "zogre_jiggig_dungeon"
+
+[zogre_jiggig_dungeon_3.melee]
+clone = "zogre_jiggig_dungeon.melee"
+
+[zogre_jiggig_dungeon_4]
+clone = "zogre_jiggig_dungeon"
+
+[zogre_jiggig_dungeon_4.melee]
+clone = "zogre_jiggig_dungeon.melee"

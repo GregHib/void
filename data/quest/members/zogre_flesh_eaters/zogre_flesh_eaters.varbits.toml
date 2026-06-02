@@ -1,6 +1,84 @@
 [zogre_flesh_eaters]
 id = 487
 persist = true
-format = "map"
-default = "unstarted"
-values = { unstarted = 0, started = 1 }
+format = "int"
+
+[thzfe_prismsearch]
+id = 488
+persist = true
+format = "int"
+
+[thzfe_innkeepermugshown]
+id = 489
+persist = true
+format = "boolean"
+
+[thzfe_innkeeperportraitshown]
+id = 490
+persist = true
+format = "boolean"
+
+[thzfe_shownnecrobook]
+id = 491
+persist = true
+format = "boolean"
+
+[thzfe_shownhambook]
+id = 492
+persist = true
+format = "boolean"
+
+[thzfe_showntankard]
+id = 493
+persist = true
+format = "boolean"
+
+[thzfe_shownsignedportrait]
+id = 494
+persist = true
+format = "boolean"
+
+[thzfe_sithik_transformed]
+id = 495
+persist = true
+format = "int"
+
+[thzfe_blocking_barricade]
+id = 496
+persist = true
+format = "boolean"
+
+[thzfe_makecuredisease]
+id = 498
+persist = true
+format = "boolean"
+
+[thzfe_makebrutalarrow]
+id = 499
+persist = true
+format = "boolean"
+
+[thzfe_makecompozogrebow]
+id = 500
+persist = true
+format = "boolean"
+
+[thzfe_sold_balm]
+id = 502
+persist = true
+format = "boolean"
+
+[thzfe_brentle_skele]
+id = 503
+persist = true
+format = "int"
+
+[thzfe_cut_scene]
+id = 505
+persist = true
+format = "boolean"
+
+[thzfe_grish_warning_yes]
+id = 507
+persist = true
+format = "boolean"

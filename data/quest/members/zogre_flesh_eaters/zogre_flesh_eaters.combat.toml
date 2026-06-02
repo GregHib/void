@@ -1,0 +1,27 @@
+[slash_bash]
+attack_speed = 6
+retreat_range = 12
+defend_anim = "ogre_defend"
+defend_sound = "zogre_hit"
+death_anim = "ogre_death"
+death_sound = "zogre_death"
+
+[slash_bash.melee]
+chance = 1
+range = 1
+anim = "slash_bash_melee"
+target_sound = "zogre_attack"
+target_hit = { offense = "crush", max = 130 }
+impact_disease = 75
+approach = false
+
+[slash_bash.range]
+chance = 1
+range = 10
+anim = "ogre_breath"
+target_sound = "ogre_bow"
+projectile = "slash_bash_projectile"
+projectile_origin_x = 1
+projectile_origin_y = 1
+target_hit = { offense = "range", max = 130 }
+impact_disease = 75

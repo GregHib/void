@@ -6,3 +6,40 @@ id = 6802
 
 [chompy_bird_death]
 id = 6823
+
+# Cache-canonical names from D:/Names. Some collide on id with existing aliases; that's allowed.
+[chompy_update_attack]
+id = 6761
+
+[chompy_update_death]
+id = 6762
+
+[chompy_update_fly_down]
+id = 6766
+
+[jubbly_update_attack]
+id = 6800
+
+[jubbly_update_death]
+id = 6801
+
+[jubbly_update_fly_down]
+id = 6805
+
+[human_cooking]
+id = 896
+
+[chompy_toad_inflate]
+id = 1019
+
+[human_chompybird_ogrebellows]
+id = 1026
+
+[human_ogre_fletching]
+id = 4433
+
+[human_castcurse_walkmerge]
+id = 11428
+
+[human_openchest]
+id = 536

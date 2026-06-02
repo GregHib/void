@@ -14,7 +14,7 @@ examine = "They're done for!"
 id = 2041
 examine = "They're done for!"
 
-[ogre_guard_jiggig]
+[zogre_ogre_guard]
 id = 2042
 
 [ogre_guard_jiggig_2]
@@ -58,6 +58,7 @@ examine = "An undead skeletal ogre."
 
 [skogre_jiggig_2]
 id = 2056
+retaliates = false
 clone = "skogre_jiggig"
 
 [skogre_jiggig_3]
@@ -66,20 +67,24 @@ clone = "skogre_jiggig"
 
 [zogre_jiggig_3]
 id = 2051
+clone = "zogre_jiggig"
 
 [zogre_jiggig_4]
 id = 2052
+clone = "zogre_jiggig"
 
 [zogre_jiggig_5]
 id = 2053
+clone = "zogre_jiggig"
 
 [zogre_jiggig_6]
 id = 2054
+clone = "zogre_jiggig"
 
 [zogre_jiggig_7]
 id = 2055
-categories = ["ogres"]
-examine = "A partially decomposing zombie ogre."
+retaliates = false
+clone = "zogre_jiggig"
 
 [ogre_cook_jiggig]
 id = 791
