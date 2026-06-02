@@ -1,0 +1,60 @@
+[priestperil_grave_base1]
+persist = true
+format = "int"
+
+[priestperil_grave_base2]
+persist = true
+format = "int"
+
+[priestperil_grave_base3]
+persist = true
+format = "int"
+
+[priestperil_grave_base4]
+persist = true
+format = "int"
+
+[priestperil_grave_base5]
+persist = true
+format = "int"
+
+[priestperil_grave_base6]
+persist = true
+format = "int"
+
+[priestperil_grave_base7]
+persist = true
+format = "int"
+
+[priestperil_1_swapped]
+persist = true
+format = "boolean"
+
+[priestperil_2_swapped]
+persist = true
+format = "boolean"
+
+[priestperil_3_swapped]
+persist = true
+format = "boolean"
+
+[priestperil_4_swapped]
+persist = true
+format = "boolean"
+
+[priestperil_5_swapped]
+persist = true
+format = "boolean"
+
+[priestperil_6_swapped]
+persist = true
+format = "boolean"
+
+[priestperil_7_swapped]
+persist = true
+format = "boolean"
+
+[priestperiltrappedmonk_hide]
+id = 4593
+persist = true
+format = "boolean"

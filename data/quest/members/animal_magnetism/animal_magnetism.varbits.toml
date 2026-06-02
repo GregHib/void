@@ -1,0 +1,6 @@
+[animal_magnetism]
+id = 3185
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

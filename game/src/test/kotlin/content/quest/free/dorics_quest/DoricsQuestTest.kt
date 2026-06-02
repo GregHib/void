@@ -2,19 +2,16 @@ package content.quest.free.dorics_quest
 
 import WorldTest
 import content.quest.quest
-import dialogueContinue
 import dialogueOption
 import npcOption
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertNotNull
+import skipDialogues
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
@@ -33,13 +30,13 @@ class DoricsQuestTest : WorldTest() {
         val doric = NPCs.find(player.tile.regionLevel, "doric")
         player.npcOption(doric, "Talk-to")
         tick()
-        player.fastForwardDialogue()
+        player.skipDialogues()
         // start quest with option 2
-        player.selectDialogueOption(2)
-        player.fastForwardDialogue()
+        player.dialogueOption(2)
+        player.skipDialogues()
         // accept quest
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
+        player.dialogueOption(1)
+        player.skipDialogues()
 
         assertNull(player.dialogue)
         assertEquals("started", player.quest("dorics_quest"))
@@ -56,13 +53,13 @@ class DoricsQuestTest : WorldTest() {
         val doric = NPCs.find(player.tile.regionLevel, "doric")
         player.npcOption(doric, "Talk-to")
         tick()
-        player.fastForwardDialogue()
+        player.skipDialogues()
         // start quest with option 1
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
+        player.dialogueOption(1)
+        player.skipDialogues()
         // accept quest
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
+        player.dialogueOption(1)
+        player.skipDialogues()
 
         assertNull(player.dialogue)
         assertEquals("started", player.quest("dorics_quest"))
@@ -75,23 +72,9 @@ class DoricsQuestTest : WorldTest() {
         // give items to doric and complete quest
         player.npcOption(doric, "Talk-to")
         tick()
-        player.fastForwardDialogue()
+        player.skipDialogues()
 
         tick(1)
         assertEquals("completed", player.quest("dorics_quest"))
-    }
-
-    private fun Player.fastForwardDialogue() {
-        assertNotNull(dialogue)
-        require(suspension is Suspension.Continue)
-        while (suspension is Suspension.Continue) {
-            dialogueContinue()
-        }
-    }
-
-    private fun Player.selectDialogueOption(option: Int) {
-        assertNotNull(dialogue)
-        require(suspension is Suspension.IntEntry)
-        dialogueOption("line$option")
     }
 }

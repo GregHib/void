@@ -79,6 +79,7 @@ class LostCityTest : WorldTest() {
         player.itemOnItem(1, 2)
         tick(2)
         assertTrue(player.inventory.contains("dramen_staff"))
+        assertEquals("crafted_staff", player["lost_city", "unstarted"])
 
         player.tele(3201, 3169)
         player.equipItem("dramen_staff")

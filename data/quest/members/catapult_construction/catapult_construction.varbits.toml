@@ -1,0 +1,6 @@
+[catapult_construction]
+id = 4396
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 60 }

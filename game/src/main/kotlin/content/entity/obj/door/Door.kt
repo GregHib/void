@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.timer.toTicks
@@ -254,4 +255,53 @@ fun Player.closeDoor(door: GameObject, ticks: Int = 0): Boolean {
     }
     Door.closeDoor(this, door, def)
     return false
+}
+
+suspend fun Player.walkThroughDoor(
+    target: GameObject,
+    enter: Boolean,
+    enterOffset: Int,
+    exitOffset: Int,
+    openId: String,
+    openRotation: Int = 2,
+    openOffset: Int = 0,
+    openSound: String,
+    xAxis: Boolean = true,
+) {
+    sound(openSound)
+    if (xAxis) {
+        walkToDelay(Tile(if (enter) target.x + enterOffset else target.x + exitOffset, target.y, target.level), true)
+        walkTo(
+            target = Tile(if (enter) target.x + exitOffset else target.x + enterOffset, target.y, target.level),
+            forceWalk = true,
+            noCollision = true,
+        )
+        target.replace(
+            id = openId,
+            tile = Tile(target.x + openOffset, target.y, target.level),
+            rotation = openRotation,
+            ticks = 3,
+        )
+    } else {
+        walkToDelay(Tile(target.x, if (enter) target.y + enterOffset else target.y + exitOffset, target.level), true)
+        walkTo(
+            target = Tile(target.x, if (enter) target.y + exitOffset else target.y + enterOffset, target.level),
+            forceWalk = true,
+            noCollision = true,
+        )
+        target.replace(
+            id = openId,
+            tile = Tile(target.x, target.y + openOffset, target.level),
+            rotation = openRotation,
+            ticks = 3,
+        )
+    }
+    GameObjects.add(
+        id = "inviswall",
+        tile = target.tile,
+        shape = ObjectShape.WALL_STRAIGHT,
+        rotation = target.rotation,
+        ticks = 3,
+    )
+    delay(2)
 }

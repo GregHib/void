@@ -1,0 +1,6 @@
+[forgiveness_of_a_chaos_dwarf]
+id = 6471
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

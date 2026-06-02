@@ -1,0 +1,6 @@
+[blood_pact]
+id = 7238
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

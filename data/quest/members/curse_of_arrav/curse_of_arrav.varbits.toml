@@ -1,0 +1,6 @@
+[curse_of_arrav]
+id = 6289
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

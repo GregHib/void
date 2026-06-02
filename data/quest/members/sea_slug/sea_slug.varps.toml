@@ -1,0 +1,6 @@
+[sea_slug]
+id = 159
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 12 }

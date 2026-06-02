@@ -368,7 +368,7 @@ id = 11960
 price = 446500
 limit = 100
 weight = 2.267
-items = ["light_mystic_hat", "light_mystic_robe_top", "light_mystic_robe_bottom", "light_mystic_gloves", "light_mystic_boots"]
+items = ["mystic_hat_light", "mystic_robe_top_light", "mystic_robe_bottom_light", "mystic_gloves_light", "mystic_boots_light"]
 examine = "Grand Exchange set containing a hat, top, bottoms, gloves and boots."
 
 [light_mystic_robes_set_noted]
@@ -379,7 +379,7 @@ id = 11962
 price = 285600
 limit = 100
 weight = 2.267
-items = ["dark_mystic_hat", "dark_mystic_robe_top", "dark_mystic_robe_bottom", "dark_mystic_gloves", "dark_mystic_boots"]
+items = ["mystic_hat_dark", "mystic_robe_top_dark", "mystic_robe_bottom_dark", "mystic_gloves_dark", "mystic_boots_dark"]
 examine = "Grand Exchange set containing a hat, top, bottoms, gloves and boots."
 
 [dark_mystic_robes_set_noted]

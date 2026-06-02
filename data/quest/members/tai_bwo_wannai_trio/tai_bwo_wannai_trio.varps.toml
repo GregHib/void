@@ -1,0 +1,6 @@
+[tai_bwo_wannai_trio]
+id = 320
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 6 }

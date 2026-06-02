@@ -15,7 +15,7 @@ drops = [
     { id = "adamant_full_helm", chance = 4 },
     { id = "rune_dagger", chance = 4 },
     { id = "leaf_bladed_sword" },
-    { id = "light_mystic_robe_bottom" },
+    { id = "mystic_robe_bottom_light" },
     { id = "law_rune", amount = 3, chance = 24 },
     { id = "nature_rune", amount = 15, chance = 20 },
     { id = "nature_rune", amount = 37, chance = 4 },

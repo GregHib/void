@@ -1,0 +1,6 @@
+[tower_of_life]
+id = 3337
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 18 }

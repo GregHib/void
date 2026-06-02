@@ -16,6 +16,8 @@ class QuestJournals(val questDefinitions: QuestDefinitions) : Script {
     init {
         playerSpawn {
             clearCamera()
+            sendVariable("quest_journal_show_all")
+            sendVariable("quest_journal_order")
         }
 
         timerStart("refresh_quest_journal") { 1 }

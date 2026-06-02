@@ -1,0 +1,6 @@
+[kenniths_concerns]
+id = 4505
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 100 }

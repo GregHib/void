@@ -1,0 +1,6 @@
+[great_brain_robbery]
+id = 980
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

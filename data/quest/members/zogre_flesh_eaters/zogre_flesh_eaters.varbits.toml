@@ -1,0 +1,6 @@
+[zogre_flesh_eaters]
+id = 487
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

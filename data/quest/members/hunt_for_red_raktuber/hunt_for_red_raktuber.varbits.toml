@@ -1,0 +1,6 @@
+[hunt_for_red_raktuber]
+id = 6180
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

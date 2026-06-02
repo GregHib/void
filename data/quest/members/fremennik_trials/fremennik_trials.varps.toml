@@ -1,0 +1,6 @@
+[fremennik_trials]
+id = 347
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 10 }

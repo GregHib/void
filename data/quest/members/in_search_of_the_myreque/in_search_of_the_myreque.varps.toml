@@ -1,0 +1,6 @@
+[in_search_of_the_myreque]
+id = 387
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

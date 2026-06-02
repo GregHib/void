@@ -1,0 +1,9 @@
+[wolf_whistle]
+id = 4302
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+    unstarted = 0,
+    completed = 110,
+}

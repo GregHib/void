@@ -1,0 +1,6 @@
+[while_guthix_sleeps]
+id = 5491
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 910 }

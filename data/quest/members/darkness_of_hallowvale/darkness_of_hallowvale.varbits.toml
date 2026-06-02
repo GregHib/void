@@ -1,0 +1,6 @@
+[darkness_of_hallowvale]
+id = 2573
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

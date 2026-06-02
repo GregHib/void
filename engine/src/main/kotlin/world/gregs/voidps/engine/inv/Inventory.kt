@@ -77,6 +77,10 @@ class Inventory(
         return get(index).amount >= amount
     }
 
+    fun contains(vararg ids: String, amount: Int = 1): Boolean {
+        return ids.all { contains(it, amount) }
+    }
+
     fun stackable(id: String) = stackRule.stackable(id)
 
     fun restricted(id: String) = itemRule.restricted(id)

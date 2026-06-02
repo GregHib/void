@@ -1,0 +1,6 @@
+[rum_deal]
+id = 600
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

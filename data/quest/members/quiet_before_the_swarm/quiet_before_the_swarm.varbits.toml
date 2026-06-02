@@ -1,0 +1,6 @@
+[quiet_before_the_swarm]
+id = 7958
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

@@ -1,0 +1,6 @@
+[spirits_of_the_elid]
+id = 1444
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

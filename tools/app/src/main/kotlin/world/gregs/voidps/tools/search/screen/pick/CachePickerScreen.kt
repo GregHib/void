@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -83,7 +84,9 @@ fun CachePickerScreen(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     Text("✕", fontSize = 12.sp, color = Color(0xFFE06C75))
-                    Text(error, fontSize = 12.sp, color = Color(0xFFE06C75), lineHeight = 18.sp)
+                    SelectionContainer(modifier = Modifier.weight(1f)) {
+                        Text(error, fontSize = 12.sp, color = Color(0xFFE06C75), lineHeight = 18.sp)
+                    }
                 }
             }
             Row(

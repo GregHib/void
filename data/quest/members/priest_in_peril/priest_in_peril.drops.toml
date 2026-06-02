@@ -1,0 +1,6 @@
+[evil_monk_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "pipkey_gold", variable = "priest_in_peril", equals = "help_drezel" },
+]

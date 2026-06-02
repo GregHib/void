@@ -1,0 +1,6 @@
+[kings_ransom]
+id = 3888
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 90 }

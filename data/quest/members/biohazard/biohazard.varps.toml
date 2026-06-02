@@ -1,0 +1,6 @@
+[biohazard]
+id = 68
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 16 }

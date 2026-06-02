@@ -19,6 +19,7 @@ class Examines : Script {
         interfaceOption("Examine", "inventory:inventory", ::examineItem)
         interfaceOption("Examine", "worn_equipment:item", ::examineItem)
         interfaceOption("Examine", "bank:inventory", ::examineItem)
+        interfaceOption("Examine", "bank_side:inventory", ::examineItem)
         interfaceOption("Examine", "price_checker:items", ::examineItem)
         interfaceOption("Examine", "equipment_bonuses:inventory", ::examineItem)
         interfaceOption("Examine", "trade_main:offer_options", ::examineItem)

@@ -1,0 +1,6 @@
+[tale_of_the_muspah]
+id = 6048
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

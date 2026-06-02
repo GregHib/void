@@ -1,0 +1,6 @@
+[souls_bane]
+id = 2011
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 13 }

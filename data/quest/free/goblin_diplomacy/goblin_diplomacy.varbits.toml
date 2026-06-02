@@ -1,0 +1,6 @@
+[goblin_diplomacy]
+id = 2378
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

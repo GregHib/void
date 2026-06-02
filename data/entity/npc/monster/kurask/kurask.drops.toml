@@ -14,7 +14,7 @@ drops = [
     { id = "adamant_platebody", chance = 24 },
     { id = "rune_hatchet", chance = 24 },
     { id = "leaf_bladed_sword", chance = 2 },
-    { id = "light_mystic_robe_top", chance = 2 },
+    { id = "mystic_robe_top_light", chance = 2 },
     { id = "leaf_bladed_spear" },
     { id = "nature_rune", amount = 10, chance = 80 },
     { id = "nature_rune", amount = 15, chance = 56 },
