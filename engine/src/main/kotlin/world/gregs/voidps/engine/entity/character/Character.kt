@@ -202,7 +202,9 @@ interface Character :
     /**
      * Turn to face a [direction]
      */
-    fun face(direction: Direction, update: Boolean = true) = face(direction.delta, update)
+    fun face(direction: Direction, update: Boolean = true): Boolean {
+        return face(Delta(direction.delta.x * 100, direction.delta.y * 100), update)
+    }
 
     /**
      * Turn to face a [tile]

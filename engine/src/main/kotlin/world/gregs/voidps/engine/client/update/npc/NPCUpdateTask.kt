@@ -128,7 +128,9 @@ class NPCUpdateTask(
                 sync.writeBits(1, visuals.tele)
                 sync.writeBits(5, delta.y + if (delta.y < 15) 32 else 0)
                 sync.writeBits(5, delta.x + if (delta.x < 15) 32 else 0)
-                sync.writeBits(3, (visuals.face.direction shr 11) - 4)
+                val roundedSector = ((visuals.face.direction + 1024) and 0x3fff) shr 11
+                val bitsToWrite = (roundedSector - 4) and 0x7
+                sync.writeBits(3, bitsToWrite)
                 sync.writeBits(1, flag != 0)
                 sync.writeBits(14, npc.def.id)
                 encodeVisuals(updates, flag, visuals, client.index)
