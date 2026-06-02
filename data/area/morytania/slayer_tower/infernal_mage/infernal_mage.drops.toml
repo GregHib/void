@@ -9,8 +9,8 @@ drops = [
 roll = 1000
 drops = [
   { id = "lava_battlestaff" },
-  { id = "dark_mystic_boots" },
-  { id = "dark_mystic_hat" },
+  { id = "mystic_boots_dark" },
+  { id = "mystic_hat_dark" },
   { id = "staff", chance = 56 },
   { id = "staff_of_fire", chance = 7 },
   { id = "earth_rune", amount = 10, chance = 42 },

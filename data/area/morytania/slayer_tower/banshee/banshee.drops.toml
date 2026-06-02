@@ -12,7 +12,7 @@ drops = [
     { id = "iron_mace", chance = 2 },
     { id = "iron_dagger", chance = 2 },
     { id = "iron_kiteshield" },
-    { id = "dark_mystic_gloves" },
+    { id = "mystic_gloves_dark" },
     { id = "air_rune", amount = 3, chance = 12 },
     { id = "cosmic_rune", amount = 2, chance = 12 },
     { id = "chaos_rune", amount = 3, chance = 8 },

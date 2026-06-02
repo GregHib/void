@@ -46,7 +46,7 @@ drops = [
     { id = "mithril_med_helm", chance = 4 },
     { id = "mithril_full_helm", chance = 4 },
     { id = "adamant_med_helm", chance = 4 },
-    { id = "light_mystic_hat" },
+    { id = "mystic_hat_light" },
     { id = "grimy_guam", chance = 128 },
     { id = "coins", amount = 15, chance = 40 },
     { id = "tinderbox", chance = 84 },
