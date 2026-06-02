@@ -31,6 +31,9 @@ suspend fun Player.npc(expression: String, text: String, largeHead: Boolean? = n
     val id = target["transform_id", get("dialogue_def") ?: target.id]
     if (target.def["interacts", true]) {
         target.mode = Face(target, this, target.def["interact_range", 1])
+        if (target.tile.within(tile, 10)) {
+            face(target)
+        }
     }
     npc(id, expression, text, largeHead, clickToContinue, title)
 }
