@@ -72,7 +72,7 @@ open class Client(
     open fun send(opcode: Int, block: suspend ByteWriteChannel.() -> Unit) = send(opcode, -1, FIXED, block)
 
     open fun send(opcode: Int, size: Int, type: Int, block: suspend ByteWriteChannel.() -> Unit) {
-        if (disconnected) {
+        if (disconnected || state != ClientState.Connected) {
             return
         }
         runBlocking(handler) {

@@ -30,8 +30,9 @@ class NPCUpdateTask(
         processAdditions(player, viewport, writer, updates, npcs)
         writer.stopBitAccess()
 
-        player.client?.updateNPCs(writer, updates)
-        player.client?.flush()
+        val client = player.client ?: return
+        client.updateNPCs(writer, updates)
+        client.flush()
         writer.position(0)
         updates.position(0)
     }
