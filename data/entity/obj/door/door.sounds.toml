@@ -21,3 +21,6 @@ id = 66
 
 [gate_open]
 id = 67
+
+[grate_open]
+id = 69

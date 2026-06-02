@@ -21,11 +21,20 @@ defend_sound = "ghast_defend"
 death_anim = "ghast_death"
 death_sound = "ghast_death"
 
+[ghast_level_30]
+attack_speed = 20
+retreat_range = 8
+defend_anim = "ghast_defend"
+defend_sound = "ghast_defend"
+death_anim = "ghast_death"
+death_sound = "ghast_death"
+
 [ghast.skip]
 chance = 20
 range = 1
 
 [ghast.miss]
+condition = "has_no_druid_pouch"
 chance = 7
 range = 1
 say = "OOooooohhh"
@@ -57,3 +66,12 @@ target_sound = "ghast_attack"
 impact_regardless = true
 target_hit = { offense = "damage", min = 10, max = 20, accuracy_roll = false }
 impact_message = "A supernatural force draws energy from you."
+
+[ghast.reveal]
+condition = "has_druid_pouch"
+chance = 3
+range = 1
+target_sound = "ghast_appear"
+impact_regardless = true
+impact_gfx = { id = "druidpouch_impact", delay = 90 }
+impact_message = "The druid pouch makes the Ghast visible."

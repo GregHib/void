@@ -1,0 +1,14 @@
+[human_casting]
+id = 811
+
+[druidicspirit_human_bloom]
+id = 1100
+
+[human_pickupfloor]
+id = 827
+
+[human_pickuptable]
+id = 832
+
+[human_pray]
+id = 645

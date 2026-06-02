@@ -61,6 +61,15 @@ value class Tile(val id: Int) {
     fun addY(value: Int) = add(0, value, 0)
     fun addLevel(value: Int) = add(0, 0, value)
 
+    /**
+     * The 8-way compass [Direction] this tile would have to travel to reach [target].
+     * Returns [Direction.NONE] if [target] is this same tile.
+     */
+    fun directionTo(target: Tile): Direction = Direction.of(
+        (target.x - x).coerceIn(-1, 1),
+        (target.y - y).coerceIn(-1, 1),
+    )
+
     companion object {
         fun id(x: Int, y: Int, level: Int = 0) = (y and 0x3fff) + ((x and 0x3fff) shl 14) + ((level and 0x3) shl 28)
         fun x(id: Int) = id shr 14 and 0x3fff

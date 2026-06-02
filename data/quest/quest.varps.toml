@@ -141,13 +141,6 @@ id = 1199
 format = "int"
 persist = true
 
-[priest_in_peril]
-id = 302
-format = "map"
-persist = true
-default = "unstarted"
-values = { unstarted = 0, completed = 60 }
-
 [shades_of_mortton]
 id = 339
 format = "map"

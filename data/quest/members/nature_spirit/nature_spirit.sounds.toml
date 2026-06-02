@@ -1,0 +1,29 @@
+[spirit_transform_start]
+id = 1495
+
+[spirit_transform]
+id = 1490
+
+[bloom_pears]
+id = 1492
+
+[cast_bloom]
+id = 1493
+
+[bloom_mushroom]
+id = 1491
+
+[bloom_branch]
+id = 1489
+
+[ghast_appear]
+id = 432
+
+[fire_bolt_all]
+id = 2340
+
+[prayer_recharge]
+id = 2674
+
+[prayer_boost]
+id = 2671
