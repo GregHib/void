@@ -2,8 +2,6 @@ package content.quest.member.ogre
 
 import content.entity.combat.killer
 import content.entity.gfx.areaGfx
-import content.entity.npc.findNearbyNPC
-import content.entity.npc.owner
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Mad
@@ -27,8 +25,10 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings.Companion.getOrNull
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -171,18 +171,14 @@ class ZogreFleshEaters : Script {
             message("Something screams into life right in front of you.")
             sound("disease_hitsplat") // 2388
 
-            val zombie = NPCs.add(
-                id = "zogre_human_brentle_vahn",
-                tile = Tile(2442, 9458, 2),
-                ticks = 1000,
-                owner = this
-            )
+            val zombie = NPCs.add(id = "zogre_human_brentle_vahn", tile = Tile(2442, 9458, 2), ticks = 1000, owner = this)
             zombie.interactPlayer(this, "Attack")
         }
 
-        npcDespawn("zogre_human_brentle_vahn") { // TODO why is not suspended....
+        npcDespawn("zogre_human_brentle_vahn") {
             areaGfx("smokepuff_large", tile)
-            val owner = owner ?: return@npcDespawn
+            val name: String = getOrNull("owner") ?: return@npcDespawn
+            val owner = Players.find(name) ?: return@npcDespawn
             owner.queue("brentle_zombie_wanders") {
                 statement("This mindless zombie loses interest in fighting you and wanders off.")
             }
@@ -827,6 +823,10 @@ class ZogreFleshEaters : Script {
 
         return list
     }
+}
+
+fun findNearbyNPC(string: String): NPC? {
+    TODO("Not yet implemented")
 }
 
 var Player.zogre_flesh_eaters: Int

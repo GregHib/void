@@ -18,7 +18,7 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
-import content.quest.member.hand_in_the_sand.sendHandQuestReward
+import content.quest.member.ogre.findNearbyNPC
 import content.quest.member.ogre.zogre_flesh_eaters
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
@@ -350,7 +350,7 @@ class ZavisticRarve : Script {
                         "Thank you - we shall bury him today. I have sent word for the guards " +
                             "to arrest Sandy, so no one will ever see him again!",
                     )
-                    sendHandQuestReward()
+//                    sendHandQuestReward()
                 } else {
                     statement(
                         "Perhaps you should have the wizard's head with you before speaking to " +

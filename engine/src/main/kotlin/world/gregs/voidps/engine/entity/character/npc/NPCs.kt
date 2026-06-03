@@ -79,7 +79,9 @@ object NPCs : Runnable,
 
     fun add(id: String, tile: Tile, direction: Direction = Direction.SOUTH, ticks: Int, owner: Player? = null): NPC {
         val npc = add(id, tile, direction)
-        npc.despawn(ticks)
+        if (ticks > 0) {
+            npc.despawn(ticks)
+        }
         if (owner != null) {
             npc["owner"] = owner.accountName
         }
@@ -94,7 +96,7 @@ object NPCs : Runnable,
      * NPC's full size. Returns `null` if the NPC id is unknown or no valid tile can be found
      * (the underlying [Area.random] retries up to 100 times before giving up).
      */
-    fun addRandom(id: String, area: Area, direction: Direction = Direction.SOUTH, ticks: Int, owner: Player? = null): NPC? {
+    fun addRandom(id: String, area: Area, direction: Direction = Direction.SOUTH, ticks: Int = -1, owner: Player? = null): NPC? {
         val def = NPCDefinitions.getOrNull(id) ?: return null
         val collision = CollisionStrategyProvider.get(def)
         val tile = area.random(collision, def.size) ?: return null

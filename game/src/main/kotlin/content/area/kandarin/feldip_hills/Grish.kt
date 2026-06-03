@@ -13,7 +13,6 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
-import content.quest.member.ogre.chompybird
 import content.quest.member.ogre.zogre_flesh_eaters
 import content.quest.questComplete
 import content.quest.questCompleted
@@ -260,6 +259,9 @@ class Grish : Script {
             "Der's yous go creatures...da best me's do for yous...and be back wivout da sickies.",
         )
     }
+
+    val Player.chompybird: Int
+        get() = 0
 
     private fun Player.meetsZogreRequirements(): Boolean = hasMax(Skill.Ranged, 30) &&
         // questCompleted("jungle_potion") && TODO
