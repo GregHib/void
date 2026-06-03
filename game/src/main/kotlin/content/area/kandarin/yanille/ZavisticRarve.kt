@@ -1,6 +1,5 @@
 package content.area.kandarin.yanille
 
-import content.entity.npc.findNearbyNPC
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Happy
@@ -67,7 +66,7 @@ class ZavisticRarve : Script {
             sound("zogre_bell")
             target.anim("zogre_bell_ring")
             var zavistic = findNearbyNPC("zavistic_rarve")
-            if (zavistic  == null) {
+            if (zavistic == null) {
                 zavistic = NPCs.add(
                     id = "zavistic_rarve",
                     tile = Tile(2598, 3087, 0),
@@ -986,5 +985,4 @@ class ZavisticRarve : Script {
         )
         guildMenu()
     }
-
 }

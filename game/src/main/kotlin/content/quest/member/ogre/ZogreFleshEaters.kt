@@ -32,7 +32,6 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -164,7 +163,6 @@ class ZogreFleshEaters : Script {
                 return@objectOperate message("You're in mortal danger, you don't have time to search!")
             }
 
-
             areaGfx("smokepuff_large", Tile(2442, 9458, 2))
             delay(1)
             set("thzfe_brentle_skele", 1)
@@ -183,8 +181,6 @@ class ZogreFleshEaters : Script {
                 statement("This mindless zombie loses interest in fighting you and wanders off.")
             }
         }
-
-
 
         // ===== Knife on coffin (force the lock) =====
         itemOnObjectOperate("knife", "zogre_coffin_special") {
@@ -375,7 +371,7 @@ class ZogreFleshEaters : Script {
 
         // ===== Plinth in the tomb (Slash Bash spawn / artefact retrieval) =====
         objectOperate("Search", "zogre_stand") { (target) ->
-            if (findNearbyNPC("slash_bash")  != null) {
+            if (findNearbyNPC("slash_bash") != null) {
                 return@objectOperate message("You're in mortal danger, you don't have time to search!")
             }
 
@@ -403,7 +399,7 @@ class ZogreFleshEaters : Script {
                         id = "slash_bash",
                         tile = Tile(2477, 9444, 0),
                         ticks = 1000,
-                        owner = this
+                        owner = this,
                     )
                 }
             }
@@ -836,7 +832,5 @@ var Player.zogre_flesh_eaters: Int
         message("zogre_flesh_eaters $current -> $value")
         set("zogre_flesh_eaters", value)
     }
-
-
 
 // disease doesn't work

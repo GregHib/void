@@ -1,6 +1,5 @@
 package content.area.kandarin.yanille
 
-import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Happy
@@ -413,7 +412,7 @@ class SithikInts : Script {
         )
         npc<Angry>(
             npcId = sithik,
-            text = "Why, if I was a few years younger I'd give you a good hiding!"
+            text = "Why, if I was a few years younger I'd give you a good hiding!",
         )
         player<Neutral>("I'm sure!")
         sithikQuestionsMenu()
@@ -422,7 +421,7 @@ class SithikInts : Script {
     private suspend fun Player.triedAlready() {
         npc<Angry>(
             npcId = sithik,
-            text = "I've already told you that I do! But you'll probably just ignore me again!"
+            text = "I've already told you that I do! But you'll probably just ignore me again!",
         )
         player<Neutral>("Quite right!")
     }
@@ -464,7 +463,7 @@ class SithikInts : Script {
         } else {
             npc<Neutral>(
                 npcId = sithik,
-                text = "What do you want now?"
+                text = "What do you want now?",
             )
             noNeedToBeRude()
         }
@@ -473,7 +472,7 @@ class SithikInts : Script {
     private suspend fun Player.ogreFormConfession() {
         npc<Neutral>(
             npcId = sithik,
-            text = "Arghhhh..what's happened to me...you beast!"
+            text = "Arghhhh..what's happened to me...you beast!",
         )
         player<Neutral>(
             "It's your own fault, you shouldn't have lied about your involvement with the " +
@@ -502,8 +501,8 @@ class SithikInts : Script {
     ) {
         player<Neutral>(
             "How do I remove the effects of the spell from the area? The ogres want to get " +
-                    "their ceremonial dance area back and can't do that with undead walking all " +
-                    "over it.",
+                "their ceremonial dance area back and can't do that with undead walking all " +
+                "over it.",
         )
         if (zogre_flesh_eaters >= 8) {
             npc<Neutral>(
@@ -514,7 +513,7 @@ class SithikInts : Script {
             npc<Neutral>(
                 npcId = sithik,
                 text = "Unfortunately you can't. The spell is permanent, it will last forever, the only " +
-                        "option you have is to move the ceremonial area.",
+                    "option you have is to move the ceremonial area.",
             )
             zogre_flesh_eaters = 8
         }
@@ -534,7 +533,7 @@ class SithikInts : Script {
         if (get("thzfe_makebrutalarrow", false)) {
             npc<Shock>(
                 npcId = sithik,
-                text = "Haven't I already explained this to you once before?"
+                text = "Haven't I already explained this to you once before?",
             )
             player<Neutral>("Humour me!")
             explainBrutalArrows()
@@ -580,7 +579,7 @@ class SithikInts : Script {
         if (get("thzfe_makecuredisease", false)) {
             npc<Shock>(
                 npcId = sithik,
-                text = "Haven't I already explained this disease thing to you once before?"
+                text = "Haven't I already explained this disease thing to you once before?",
             )
             val threat = if (get("thzfe_sithik_transformed", 0) == 2) {
                 "Just tell me again or else I'll turn you back into an ogre!"
@@ -590,7 +589,7 @@ class SithikInts : Script {
             player<Neutral>(threat)
             npc<Shock>(
                 npcId = sithik,
-                text = "No...noo...please, I'll tell you."
+                text = "No...noo...please, I'll tell you.",
             )
             explainDiseaseCure()
         } else {
@@ -608,7 +607,7 @@ class SithikInts : Script {
         )
         npc<Neutral>(
             npcId = sithik,
-            text = "It's quite well camouflaged so it's unlikely that you'll find it."
+            text = "It's quite well camouflaged so it's unlikely that you'll find it.",
         )
         player<Neutral>("We'll see about that!")
         confessionAnswersMenu()
@@ -617,7 +616,7 @@ class SithikInts : Script {
     fun ChoiceOption.sorryHaveToGo(): Unit = option<Neutral>("Sorry, I have to go.") {
         npc<Shock>(
             npcId = sithik,
-            text = "But...you can't just leave me here like this!"
+            text = "But...you can't just leave me here like this!",
         )
     }
 
@@ -626,14 +625,14 @@ class SithikInts : Script {
     private suspend fun Player.postQuestProgressed() {
         npc<Shock>(
             npcId = sithik,
-            text = "Arghhhh..what do you want now...you've turned me into a beast!"
+            text = "Arghhhh..what do you want now...you've turned me into a beast!",
         )
         player<Neutral>(
             "I've got some questions for you...and you'd better answer them well or else!",
         )
         npc<Shock>(
             npcId = sithik,
-            text = "Ok, ok, I'll tell you anything, just turn me back into a human again!"
+            text = "Ok, ok, I'll tell you anything, just turn me back into a human again!",
         )
         confessionAnswersMenu()
     }
@@ -643,7 +642,7 @@ class SithikInts : Script {
     private suspend fun Player.backToGloat() {
         npc<Neutral>(
             npcId = sithik,
-            text = "Oh, so you're back then, come to gloat have you?"
+            text = "Oh, so you're back then, come to gloat have you?",
         )
         player<Neutral>("Nope, I've just come to ask you a couple of questions.")
         choice {

@@ -15,7 +15,6 @@ import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
 import content.quest.member.ogre.zogre_flesh_eaters
 import content.quest.questComplete
-import content.quest.questCompleted
 import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -347,7 +346,7 @@ class Grish : Script {
     ) {
         player<Neutral>(
             "Sithik told me how to make Brutal arrows which means I can kill these zogres " +
-                    "from a distance!",
+                "from a distance!",
         )
         teachCompositeBow()
     }
