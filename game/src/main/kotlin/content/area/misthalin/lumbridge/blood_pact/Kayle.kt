@@ -1,6 +1,7 @@
 package content.area.misthalin.lumbridge.blood_pact
 
 import content.entity.combat.dead
+import content.entity.combat.killer
 import world.gregs.voidps.engine.Script
 import content.entity.effect.transform
 import content.entity.player.dialogue.Angry
@@ -29,7 +30,15 @@ class Kayle : Script {
             dead = false
             mode = EmptyMode
             levels.restore(Skill.Constitution)
-            set("blood_pact_kayle", "defeated")
+            anim("kayle_defeat")
+            val player = killer as? Player
+            if (player != null) {
+                player["blood_pact_kayle"] = "defeated"
+                player["blood_pact"] = "kayle"
+                val original = tile.minus(player.instanceOffset())
+                player["blood_pact_kayle_tile"] = original.id
+                player.refreshQuestJournal()
+            }
             transform("kayle_defeated")
         }
 
@@ -53,7 +62,6 @@ class Kayle : Script {
                 delay(3)
                 NPCs.remove(target)
                 FloorItems.add(instanceOffset().tile(3877, 5543, 1), "kayles_sling", disappearTicks = 300, owner = this)
-                open("fade_in")
                 set("blood_pact", "caitlin")
                 refreshQuestJournal()
                 xeniaAfterChoice(target)
@@ -106,6 +114,7 @@ class Kayle : Script {
         if (instance != null) {
             NPCs.remove(NPCs.findOrNull(instance.toLevel(1), "xenia_wounded"))
             val xenia = NPCs.add("xenia_wounded", instanceOffset().tile(3877, 5538, 1), Direction.NORTH)
+            delay(1)
             open("fade_in")
             xenia.walkTo(instanceOffset().tile(3877, 5541, 1))
             delay(1)

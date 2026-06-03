@@ -2,8 +2,52 @@
 id = 48798
 examine = "A staircase leading up out of the catacombs."
 
-[door_kayle]
-id = 48757
+[blood_pact_altar]
+id = 48686
+examine = "An ancient altar used for dark rituals."
 
-[gate_caitlin]
-id = 48764
+[blood_pact_altar_crumbling]
+id = 48687
+examine = "An ancient altar used for dark rituals."
+
+[blood_pact_winch]
+id = 48791
+examine = "A winch connected to the gates below."
+
+[blood_pact_stairs_down_north]
+id = 48678
+examine = "A staircase leading deeper into the catacombs."
+
+[blood_pact_stairs_down_south]
+id = 48678
+examine = "A staircase leading deeper into the catacombs."
+
+[blood_pact_stairs_up_north]
+id = 48677
+examine = "A staircase leading back up."
+
+[blood_pact_stairs_up_south]
+id = 48677
+examine = "A staircase leading back up."
+
+[blood_pact_tomb_door]
+id = 48793
+
+[tomb_door_sliding_down]
+id = 48795
+
+[tomb_door_sliding_up]
+id = 48796
+
+[blood_pact_caitlin_gate]
+id = 48792
+
+[wall_sliding_up]
+id = 48787
+
+[48786]
+id = 48786
+
+[tomb_door_without_skull]
+id = 48785
+

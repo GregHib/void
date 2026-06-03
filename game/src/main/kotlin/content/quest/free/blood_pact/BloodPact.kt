@@ -126,12 +126,12 @@ class BloodPact : Script{
                     when (caitlinStatus) {
                         "spared" -> {
                             list.add("<str>I defeated the second cultist.")
-                            list.add("<str>I spared the first cultist.")
+                            list.add("<str>I spared the second cultist.")
                             list.add("<navy>I need to defeat the <maroon>third cultist<navy>.")
                         }
                         "killed" -> {
                             list.add("<str>I defeated the second cultist.")
-                            list.add("<str>I killed the first cultist.")
+                            list.add("<str>I killed the second cultist.")
                             list.add("<navy>I need to defeat the <maroon>third cultist<navy>.")
                         }
                         "defeated" -> {

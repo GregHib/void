@@ -57,9 +57,9 @@ class Xenia : Script {
                         "spared", "killed" -> {
                             if (equipped(EquipSlot.Weapon).id == "kayles_sling") {
                                 npc<LookDown>("You're holding the sling right. You should be able to attack the second cultist without any trouble.")
-                            } else if (Weapon.type(this, equipped(EquipSlot.Weapon)) != "range") {
-                                npc<LookDown>(" I see you've brought your own ranged weapon. I'll assume you know how to use it!")
-                            } else if (!(inventory.contains("kayles_sling"))) {
+                            } else if (Weapon.type(this, equipped(EquipSlot.Weapon)) == "range") {
+                                npc<LookDown>("I see you've brought your own ranged weapon. I'll assume you know how to use it!")
+                            } else if (inventory.contains("kayles_sling")) {
                                 npc<LookDown>("You'll need to equip the bow before you can attack the second cultist.")
                             } else {
                                 npc<LookDown>("You'll need to pick up the bow and equip it before you can attack the second cultist.")
@@ -74,23 +74,46 @@ class Xenia : Script {
                     }
                 }
                 "caitlin" -> {
-                    val kayleStatus = get<String>("blood_pact_cayle")
-                    when (kayleStatus) {
-                        "spared", "killed" -> listOf("")
-                        "defeated" -> listOf("")
-                        else -> listOf("")
+                    val caitlinStatus = get<String>("blood_pact_caitlin")
+                    foodChat()
+                    when (caitlinStatus) {
+                        "spared", "killed" -> {
+                            if (equipped(EquipSlot.Weapon).id == "caitlins_staff") {
+                                npc<LookDown>("You're holding the staff. You should be able to attack the last cultist without any trouble.")
+                            } else if (Weapon.type(this, equipped(EquipSlot.Weapon)) == "magic") {
+                                npc<LookDown>("I see you've brought your own magic weapon. I'll assume you know how to use it!")
+                            } else if (inventory.contains("caitlins_staff")) {
+                                npc<LookDown>("You'll need to equip the staff before you can attack the last cultist.")
+                            } else {
+                                npc<LookDown>("You'll need to pick up the staff and equip it before you can attack the last cultist.")
+                            }
+                            optionsBeforeThirdFight()
+                        }
+                        "defeated" -> {
+                            npc<LookDown>("The second cultist is defeated, but not dead. I'll leave it up to you how to deal with her.")
+                            optionsBeforeSecondFight()
+                        }
                     }
                 }
                 "reese" -> {
-                    val kayleStatus = get<String>("blood_pact_reese")
-                    when (kayleStatus) {
-                        "spared", "killed" -> listOf("")
-                        "defeated" -> listOf("")
-                        else -> listOf("")
+                    val reeseStatus = get<String>("blood_pact_reese")
+                    foodChat()
+                    when (reeseStatus) {
+                        "killed" -> {
+                            npc<LookDown>("You've defeated the last cultist. Now you need to untie their prisoner.")
+                        }
+                        "defeated" -> {
+                            npc<LookDown>("If you've defeated the last cultist, you'll need to decide how to deal with him.")
+                            optionsBeforeThirdFight()
+                        }
+                        else -> {
+                            npc<LookDown>("The last cultist is a swordsman. Magic is the best thing to use against melee fighters.")
+                            optionsBeforeThirdFight()
+                        }
                     }
                 }
                 "untied_ilona" -> {
-                    listOf("")
+                    npc<LookDown>("You've freed the prisoner. Escort her out of the catacombs.")
                 }
                 "completed" -> {
                     npc<Happy>("Hello again, adventurer.")
@@ -191,6 +214,14 @@ class Xenia : Script {
     fun ChoiceOption.acceptQuest( ) : Unit = option<Neutral>("I'll help you.") {
         if (startQuest("blood_pact")) {
             set("blood_pact", "started")
+            // Reset per-cultist progress so a replay doesn't inherit stale "killed"/"spared" state
+            set("blood_pact_kayle", "alive")
+            set("blood_pact_caitlin", "alive")
+            set("blood_pact_reese", "alive")
+            clear("blood_pact_kayle_tile")
+            clear("blood_pact_caitlin_tile")
+            clear("blood_pact_reese_tile")
+            clear("blood_pact_reese_door")
             refreshQuestJournal()
             npc<Happy>("I knew you would!")
             npc<Neutral>("We've got no time to lose. You head down the stairs, and I'll follow.")
@@ -268,17 +299,18 @@ class Xenia : Script {
 
     fun ChoiceOption.lostWeapon() : Unit = option<Neutral>("I've lost some of the cultists' weapons.") {
         npc<Neutral>("Yes, one of my contacts in the Champion's Guild found them and returned them to me.")
-
-        if (!(inventory.contains("") || bank.contains("")) && inventory.) {
-
+        if (!(inventory.contains("kayles_sling") || bank.contains("kayles_sling"))) {
+            statement("Xenia gives you Kayle's sling.")
+            inventory.add("kayles_sling", 1)
         }
-        //  Xenia gives you Kayle's chargebow.
-
-        //if not in invent or bank "Catilin's staff"
-        //  Xenia gives you Catilin's staff.
-
-        //if not in invent or bank "Reese's sword"
-        //  Xenia gives you Reese's sword.
+        if (!(inventory.contains("caitlins_staff") || bank.contains("caitlins_staff"))) {
+            statement("Xenia gives you Caitlin's staff.")
+            inventory.add("caitlins_staff", 1)
+        }
+        if (!(inventory.contains("reeses_sword") || bank.contains("reeses_sword"))) {
+            statement("Xenia gives you Reese's sword.")
+            inventory.add("reeses_sword", 1)
+        }
     }
 
     fun ChoiceOption.choiceQuestDetail() : Unit = option<Neutral>("I've got a question about my adventure in the catacombs...") {
@@ -368,6 +400,26 @@ class Xenia : Script {
             option<LookDown>("Are you going to be alright?") {
                 npc<LookDown>("Don't worry about me. I've survived worse wounds than this. I'm going to hang back from combat, but I'll be here to give you advice if you need it. I'm sure you can beat these cultists on your own.")
                 optionsBeforeSecondFight()
+            }
+            option<LookDown>("I can handle this.") { }
+        }
+    }
+
+    suspend fun Player.optionsBeforeThirdFight() {
+        choice {
+            option<LookDown>("Tell me more about magic combat.") {
+                npc<LookDown>("Magic is based on runes. The runes contain magical power, and you can cast spells by combining them in specific ways. It's like cooking: the runes are ingredients, and a spell is a recipe.")
+                npc<LookDown>("Some magical staves act as an infinite supply of a certain type of rune. Magic is very useful against melee fighters. Watch out for rangers, though; arrows go straight through mage robes.")
+                optionsBeforeThirdFight()
+            }
+            option<LookDown>("What's a blood pact?") {
+                npc<LookDown>("It's something Zamorakian cults do sometimes; a way of swearing loyalty to their leader.")
+                npc<LookDown>("A blood pact doesn't have real magical power, but that kind of thing can have great power over a person if they believe strongly enough.")
+                optionsBeforeThirdFight()
+            }
+            option<LookDown>("Are you going to be alright?") {
+                npc<LookDown>("Don't worry about me. I've survived worse wounds than this. I'm going to hang back from combat, but I'll be here to give you advice if you need it. I'm sure you can beat these cultists on your own.")
+                optionsBeforeThirdFight()
             }
             option<LookDown>("I can handle this.") { }
         }

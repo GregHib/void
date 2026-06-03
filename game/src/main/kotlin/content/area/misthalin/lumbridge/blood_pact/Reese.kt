@@ -1,0 +1,158 @@
+package content.area.misthalin.lumbridge.blood_pact
+
+import content.area.misthalin.lumbridge.catacomb.completeBloodPact
+import content.entity.combat.Target
+import content.entity.combat.dead
+import content.entity.combat.killer
+import world.gregs.voidps.engine.Script
+import content.entity.effect.transform
+import content.entity.player.dialogue.Angry
+import content.entity.player.dialogue.Expression
+import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Scared
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.statement
+import content.quest.instance
+import content.quest.instanceOffset
+import content.quest.quest
+import content.quest.refreshQuestJournal
+import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectShape
+
+class Reese : Script {
+    init {
+        // Interacting with Reese's chamber door triggers the intro dialog;
+        // interacting with Caitlin's area gates (same object) just shows a blocked message.
+        objectOperate("Open", "blood_pact_tomb_door") { (target) ->
+            val offset = instanceOffset()
+            if (target.tile != offset.tile(3866, 5527, 0)) {
+                message("This gate won't budge.")
+                return@objectOperate
+            }
+            if (quest("blood_pact") != "reese") {
+                message("You don't need to go in there yet.")
+                return@objectOperate
+            }
+            if (get("blood_pact_reese_door", false)) {
+                // Door dialog already triggered; just remove it so the player can pass
+                GameObjects.remove(target)
+                return@objectOperate
+            }
+
+            set("blood_pact_reese_door", true)
+
+            val reese = NPCs.find(offset.tile(3865, 5525, 0), "reese_attackable")
+            val ilona = NPCs.find(offset.tile(3865, 5523, 0), "ilona_tied")
+
+            npc<Angry>( "reese_attackable", "The potion is complete. Where are they? The whole group should be present.")
+
+            npc<Scared>("ilona_tied","Let me go, you-")
+
+            npc<Angry>("reese_attackable","Shut up!")
+
+
+            GameObjects.remove(target)
+            val slidingDoor = GameObjects.add("tomb_door_sliding_down", offset.tile(3866, 5527, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
+            delay(1)
+            GameObjects.remove(slidingDoor)
+            talkWith(reese) {
+                npc<Angry>("Who are you? What are you doing here?")
+                //TODO: options
+            }
+            // Once the dialogue (and its option branches) end, Reese turns hostile
+            println(Target.attackable(reese, this))
+
+
+            //reese.interactPlayer(this, "Attack")
+
+            reese.huntMode = "aggressive"
+        }
+
+        npcAfterDeath("reese_attackable") {
+            dead = false
+            mode = EmptyMode
+            levels.restore(Skill.Constitution)
+            anim("reese_defeat")
+            val player = killer as? Player
+            if (player != null) {
+                player["blood_pact_reese"] = "defeated"
+                val original = tile.minus(player.instanceOffset())
+                player["blood_pact_reese_tile"] = original.id
+                player.refreshQuestJournal()
+            }
+            transform("reese_defeated")
+        }
+
+        npcOperate("Talk-to", "reese_defeated") { (target) ->
+            npc<Angry>("You've beaten me, adventurer.")
+            npc<Angry>("Now strike the final blow! End the blood pact in this tomb.")
+            initialOptions(target)
+        }
+    }
+
+    suspend fun Player.initialOptions(target: NPC) {
+        choice {
+            option<Neutral>("I have some questions.") {
+                npc<Angry>("Ask your questions.")
+                questionToReese(target)
+            }
+            option<Angry>("Time for you to die!") {
+                killReese(target)
+            }
+            option<Neutral>("I'm not killing you. Give me your stuff and get out of here.") {
+                npc<Angry>("No! There must be a death! The blood pact must be complete!")
+                statement("Reese drinks a vial of poison.")
+                killReese(target)
+            }
+        }
+    }
+
+    suspend fun Player.killReese(target: NPC) {
+        set("blood_pact_reese", "killed")
+        target.anim("reese_death")
+        delay(2)
+        NPCs.remove(target)
+        //TODO: make drop on death tile
+        FloorItems.add(instanceOffset().tile(3865, 5525, 0), "reeses_sword", disappearTicks = 300, owner = this)
+        // Altar crumbles when Reese dies
+        val altar = GameObjects.findOrNull(instanceOffset().tile(3865, 5524, 0), "blood_pact_altar")
+        if (altar != null) GameObjects.remove(altar)
+        val crumblingAltar = GameObjects.add("blood_pact_altar_crumbling", instanceOffset().tile(3865, 5524, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 2)
+        delay(5)
+        GameObjects.remove(crumblingAltar)
+        //TODO: ilona talks to player
+        //npc<Scared>("Please, untie me!")
+    }
+
+    suspend fun Player.questionToReese(target: NPC) {
+        choice {
+            option<Neutral>("Who are you?") {
+                npc<Angry>("I am Reese! Warrior of Zamorak and leader of the blood pact!")
+                questionToReese(target)
+            }
+            option<Neutral>("Who were the others?") {
+                npc<Angry>("Faithful servants of Zamorak! He is the god of chaos and destruction. We bound ourselves to his service!")
+                questionToReese(target)
+            }
+            option<Neutral>("What were you planning to do down here?") {
+                npc<Angry>("End Saradomin's dominance over Lumbridge! The tyrant god shall fall.")
+                npc<Angry>("With the blood pact, and the power of the tomb of Dragith Nurn, we would send an army of the dead to claim this town for Zamorak!")
+                questionToReese(target)
+            }
+            option<Neutral>("Enough questions.") {
+                npc<Angry>("Now strike the final blow!")
+                initialOptions(target)
+            }
+        }
+    }
+}

@@ -1,23 +1,23 @@
-["kayle_defeat"]
+[kayle_defeat]
 id = 12851
 
-["kayle_death"]
+[kayle_death]
 id = 12880
 
-["kayle_getUp"]
+[kayle_getUp]
 id = 12856
 
-["caitlin_defeat"]
+[caitlin_defeat]
 id = 12851
 
-["caitlin_death"]
+[caitlin_death]
 id = 12880
 
-["caitlin_getUp"]
+[caitlin_getUp]
 id = 12856
 
-["reese_defeat"]
+[reese_defeat]
 id = 12851
 
-["reese_death"]
+[reese_death]
 id = 12880

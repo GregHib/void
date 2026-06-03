@@ -1,10 +1,11 @@
 [reese_attackable]
 attack_speed = 4
 defend_anim = "human_defend"
+death_anim = "reese_defeat"
 
 [reese_attackable.melee]
-anim = "human_attack"
-target_hit = { offense = "crush", max = 6 }
+anim = "sword_slash"
+target_hit = { offense = "slash", max = 6 }
 
 [kayle_attackable]
 attack_speed = 4
@@ -21,6 +22,7 @@ sound = { id = "crossbow_shoot", radius = 5 } #needs to be changed
 [caitlin_attackable]
 attack_speed = 4
 defend_anim = "human_defend"
+death_anim = "caitlin_defeat"
 
 [caitlin_attackable.mage]
 range = 8

@@ -212,7 +212,7 @@ start_path = [[ 3244, 3198 ]]
 req_items = "None."
 req_combat = "Must be able to defeat three low-level enemies."
 points = 1
-reward = "Reese's main-hand and off-hand sword<br>Kayle's chargebow (requires no arrows)<br>Caitlin's staff (requires no air runes)<br>Access to the Lumbridge Catacombs dungeon"
+reward = "Reese's sword<br>Kayle's sling (requires no arrows)<br>Caitlin's staff (requires no air runes)<br>Access to the Lumbridge Catacombs dungeon"
 
 [blood_runs_deep]
 id = 163

@@ -9,8 +9,11 @@ id = 9637
 [reese_attackable]
 id = 9624
 hitpoints = 20
+wander_range = 20
 categories = ["human"]
 combat_def = "reese_attackable"
+hunt_mode = "cowardly"
+hunt_range = 10
 
 [reese_defeated]
 id = 9625
@@ -45,6 +48,9 @@ id = 9638
 
 [ilona_tied]
 id = 9630
+
+[ilona_following]
+id = 9631
 
 [ilona_cutscene]
 id = 9640

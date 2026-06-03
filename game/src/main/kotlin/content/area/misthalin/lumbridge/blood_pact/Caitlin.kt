@@ -1,15 +1,18 @@
 package content.area.misthalin.lumbridge.blood_pact
 
 import content.entity.combat.dead
+import content.entity.combat.killer
 import world.gregs.voidps.engine.Script
 import content.entity.effect.transform
 import content.entity.player.dialogue.Angry
+import content.entity.player.dialogue.LookDown
 import content.entity.player.dialogue.Neutral
-import content.entity.player.dialogue.Scared
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.quest.instance
 import content.quest.instanceOffset
+import content.quest.refreshQuestJournal
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -25,97 +28,111 @@ class Caitlin : Script {
             dead = false
             mode = EmptyMode
             levels.restore(Skill.Constitution)
-            set("blood_pact_caitlin", "defeated")
+            anim("caitlin_defeat")
+            val player = killer as? Player
+            if (player != null) {
+                player.set("blood_pact_caitlin", "defeated")
+                val original = tile.minus(player.instanceOffset())
+                player.set("blood_pact_caitlin_tile", original.id)
+                player.refreshQuestJournal()
+            }
             transform("caitlin_defeated")
         }
 
         npcOperate("Talk-to", "caitlin_defeated") { (target) ->
-            npc<Scared>("Are - are you going to kill me?")
+            npc<Angry>("What are you waiting for? Finish me!")
             initialOptions(target)
         }
     }
 
-    suspend fun Player.initialOptions(target : NPC) {
+    suspend fun Player.initialOptions(target: NPC) {
         choice {
             option<Neutral>("I have some questions.") {
-                npc<Scared>("Y-yes! I'll tell you anything!")
-                questionTocaitlin(target)
+                npc<Angry>("What?")
+                questionToCaitlin(target)
             }
-            option<Angry>("Yes. Now die!") {
+            option<Angry>("Time for you to die!") {
                 set("blood_pact_caitlin", "killed")
-                delay(target.anim("caitlin_death").coerceAtLeast(1))
+                target.anim("caitlin_death")
+                delay(1)
                 open("fade_out")
                 delay(3)
                 NPCs.remove(target)
-                FloorItems.add(instanceOffset().tile(3877, 5543, 1), "caitlins_sling", disappearTicks = 300, owner = this)
-                open("fade_in")
-                //xenia : "It's a pity you had to kill that man...but I'm not questioning your judgment."
+                // TODO: Tile missing — replace with actual floor drop tile near Caitlin's spawn (3864, 5538, 1)
+                FloorItems.add(instanceOffset().tile(3864, 5538, 1), "caitlins_staff", disappearTicks = 300, owner = this)
+                set("blood_pact", "reese")
+                set("blood_pact_reese", "unstarted")
+                refreshQuestJournal()
+                xeniaAfterChoice()
             }
-            option<Neutral>("No. Just give me your stuff and get out of here.") {
+            option<Neutral>("I'm not killing you. Just give me your stuff and get out of here.") {
                 set("blood_pact_caitlin", "spared")
-                delay(target.anim("caitlin_getUp").coerceAtLeast(1))
-                NPCs.remove(target)
-                val caitlin = NPCs.add("caitlin_cutscene", instanceOffset().tile(3877, 5543, 1), Direction.NORTH)
-                caitlin.walkTo(instanceOffset().tile(3876, 5542, 1))
-                caitlin.walkTo(instanceOffset().tile(3876, 5531, 1))
-                delay(2)
+                target.anim("caitlin_getUp")
+                delay(1)
                 open("fade_out")
                 delay(3)
-                NPCs.remove(caitlin)
-                FloorItems.add(instanceOffset().tile(3877, 5543, 1), "caitlins_sling", disappearTicks = 300, owner = this)
-                open("fade_in")
-                //xenia : "I don't think that cultist will be any more trouble. I'm glad you didn't have to kill him."
-
+                NPCs.remove(target)
+                // TODO: Tile missing — replace walk path with actual exit path from Caitlin's room
+                val caitlin = NPCs.add("caitlin_cutscene", instanceOffset().tile(3864, 5538, 1), Direction.SOUTH)
+                caitlin.walkTo(instanceOffset().tile(3864, 5535, 1))
+                caitlin.walkTo(instanceOffset().tile(3877, 5530, 1))
+                FloorItems.add(instanceOffset().tile(3864, 5538, 1), "caitlins_staff", disappearTicks = 300, owner = this)
+                set("blood_pact", "reese")
+                set("blood_pact_reese", "unstarted")
+                refreshQuestJournal()
+                xeniaAfterChoice()
             }
         }
     }
 
-    suspend fun Player.questionTocaitlin(target : NPC) {
+    suspend fun Player.questionToCaitlin(target: NPC) {
         choice {
             option<Neutral>("Who are you?") {
-                npc<Scared>("I- My name's caitlin. I'm a ranger. Well, I'd been practising the chargebow... I guess I wasn't as good as I'd thought.")
-                questionTocaitlin(target)
+                npc<Angry>("I am the wizard Caitlin.")
+                questionToCaitlin(target)
             }
             option<Neutral>("Who are the others?") {
-                npc<Scared>("Reese is the leader. All this, the blood pact, it was his idea. He doesn't know magic but he's a strong fighter.")
-                npc<Scared>("Caitlin is a wizard. She was a student at the Wizards' Tower, but she left. She wanted to study dark magic.")
-                questionTocaitlin(target)
+                npc<Angry>("Reese used to be an acolyte at Lumbridge Church. He and I came up with this whole idea.")
+                when (get<String>("blood_pact_kayle")) {
+                    "spared" -> npc<Angry>("Kayle's just some idiot Reese roped into helping us. I heard you let him go. It's more than he deserved. He's useless.")
+                    "killed" -> npc<Angry>("Kayle was just some idiot Reese roped into helping us. I heard you killed him and I can't say I mind. If I'd had my way we'd have used him as the sacrifice.")
+                }
+                questionToCaitlin(target)
             }
             option<Neutral>("What were you planning to do down here?") {
-                npc<Scared>("I - I don't really know! Honestly!")
-                npc<Scared>("Listen...Reese used to be an acolyte at the church here. He discovered something about these catacombs; I don't know what. Something about how they were built, I think.")
-                npc<Scared>("Caitlin was a student at the Wizards' Tower. She found something too, in the ruins of the old tower, from back when Zamorakian wizards used it.")
-                npc<Scared>("Caitlin and Reese put what they'd found together. They said they'd discovered a ritual they could perform, something that could give them power over life and death.")
-                npc<Scared>("We made a blood pact, the three of us. So that we'd be in it together, whatever happened.")
-                npc<Scared>("Then we kidnapped Ilona. She was another apprentice from the Wizards' Tower, someone Caitlin had known there.")
-                npc<Scared>("Reese and Caitlin are going down there to perform the ritual. I don't - I don't know what it involves.")
-                whatPlans(target)
+                npc<Angry>("Idiot hero! You don't even know what this place is, do you?")
+                npc<Angry>("This is the tomb of Dragith Nurn!")
+                npc<Angry>("Dragith Nurn was a necromancer. He lived in Lumbridge decades ago.")
+                npc<Angry>("He kept his necromancy secret. Everyone thought he was just a wealthy nobleman and wizard. He paid for these catacombs to be built, and he's interred here in a special tomb.")
+                npc<Angry>("Reese was an acolyte here at the church. He learned that Dragith Nurn was buried here.")
+                npc<Angry>("I was a student at the Wizards' Tower. In the library, I discovered a note left by Dragith Nurn.")
+                npc<Angry>("The body of a necromancer contains powerful magic. We learned we could perform a ritual on his tomb to unlock the secrets of his work.")
+                npc<Angry>("We would have gained mastery over life and death!")
+                questionToCaitlin(target)
             }
             option<Neutral>("Enough questions.") {
-                npc<Scared>("Are - are you going to kill me now?")
+                npc<Angry>("All right. Now finish me!")
                 initialOptions(target)
             }
         }
     }
 
-    suspend fun Player.whatPlans(target : NPC) {
-        choice {
-            option<Neutral>("And you just went along with this?") {
-                npc<Scared>("The blood pact! We'd made a blood pact, and Reese said that bound me to him. It meant I had to do anything he said. He...he said he could curse me.")
-                questionTocaitlin(target)
-            }
-            option<Neutral>("Who are you?") {
-                npc<Scared>("I- My name's caitlin. I'm a ranger. Well, I'd been practising the chargebow... I guess I wasn't as good as I'd thought.")
-                questionTocaitlin(target)
-            }
-            option<Neutral>("Who are the others?") {
-                npc<Scared>("Reese is the leader. All this, the blood pact, it was his idea. He doesn't know magic but he's a strong fighter.")
-                npc<Scared>("Caitlin is a wizard. She was a student at the Wizards' Tower, but she left. She wanted to study dark magic.")
-                questionTocaitlin(target)
-            }
-            option<Neutral>("Enough questions.") {
-                npc<Scared>("Are - are you going to kill me now?")
-                initialOptions(target)
+    suspend fun Player.xeniaAfterChoice() {
+        val instance = instance()
+        if (instance != null) {
+            NPCs.remove(NPCs.findOrNull(instance.toLevel(1), "xenia_wounded"))
+            // Spawn two tiles south of Caitlin's initial spawn (3864, 5538, 1)
+            val xenia = NPCs.add("xenia_wounded", instanceOffset().tile(3864, 5536, 1), Direction.NORTH)
+            delay(1)
+            open("fade_in")
+            xenia.walkTo(instanceOffset().tile(3864, 5540, 1))
+            delay(1)
+            talkWith(xenia) {
+                when (get<String>("blood_pact_caitlin")) {
+                    "spared" -> npc<LookDown>("The second cultist came past me on her way out. I don't think she'll be any more trouble. I'm glad you didn't have to kill her.")
+                    "killed" -> npc<LookDown>("I heard you killed the second cultist. It's a pity it had to come to that...but I'm not questioning your judgment.")
+                }
+                npc<LookDown>("I think the third cultist is a swordsman. Magic is the best thing to use against melee fighters. Speak to me if you need any help.")
             }
         }
     }
