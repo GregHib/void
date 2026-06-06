@@ -12,6 +12,8 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.Follow
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
+import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -27,6 +29,8 @@ import world.gregs.voidps.engine.map.collision.canFit
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Tile
+
+const val FAMILIAR_CALL_DISTANCE = 15
 
 val Character?.isFamiliar: Boolean
     get() = this != null && this is NPC && id.endsWith("_familiar")
@@ -67,6 +71,7 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean) {
         updateFamiliarInterface()
         if (!restart) {
             timers.start("familiar_timer")
+            timers.start("familiar_leash")
         }
     }
 }
@@ -76,9 +81,11 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean) {
  * states. Also stops the familiar timer.
  */
 fun Player.dismissFamiliar() {
+    dropBeastOfBurdenItems()
     NPCs.remove(follower)
     follower = null
     interfaces.close("familiar_details")
+    interfaces.close("beast_of_burden")
     sendScript("reset_summoning_orb")
 
     // Need to wait for the above sendScript to reach the client before resetting
@@ -90,6 +97,7 @@ fun Player.dismissFamiliar() {
         set("familiar_details_seconds_remaining", 0)
     }
     timers.stop("familiar_timer")
+    timers.stop("familiar_leash")
 }
 
 /**
@@ -119,6 +127,20 @@ fun Player.confirmFollowerLeftClickOptions() {
 }
 
 /**
+ * Teleports the follower nearby if it has drifted too far away (unless it is in combat).
+ */
+fun Player.ensureFollowerNearby(distance: Int = FAMILIAR_CALL_DISTANCE) {
+    val familiar = follower ?: return
+    if (familiar.tile.level != tile.level || familiar.tile.distanceTo(this) <= distance) {
+        return
+    }
+    if (familiar.mode is CombatMovement) {
+        return
+    }
+    callFollower()
+}
+
+/**
  * Teleports the player's follower to their position
  */
 fun Player.callFollower() {
@@ -142,6 +164,9 @@ fun Player.callFollower() {
     follower.tele(target, clearMode = false)
     follower.watch(this)
     follower.gfx("summon_familiar_size_${follower.size}")
+    if (follower.mode !is Follow) {
+        follower.mode = Follow(follower, this)
+    }
 }
 
 /**
@@ -257,11 +282,8 @@ class Summoning : Script {
             variables.send("familiar_details_seconds_remaining")
             variables.send("follower_details_chathead_animation")
             timers.restart("familiar_timer")
+            timers.restart("familiar_leash")
             summonFamiliar(familiarDef, true)
-        }
-
-        interfaceOption("Take BoB", "familiar_details:take_bob_items") {
-            message("<dark_green>Not currently implemented.")
         }
     }
 }

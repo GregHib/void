@@ -38,6 +38,18 @@ class SummoningTimers : Script {
             return@timerTick Timer.CONTINUE
         }
 
+        timerStart("familiar_leash") { 10 }
+
+        timerTick("familiar_leash") {
+            ensureFollowerNearby()
+            if (follower == null) {
+                return@timerTick Timer.CANCEL
+            }
+            return@timerTick Timer.CONTINUE
+        }
+
+        timerStop("familiar_leash") {}
+
         timerStop("familiar_timer") { logout ->
             if (logout) {
                 NPCs.remove(follower)
