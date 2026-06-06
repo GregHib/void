@@ -72,6 +72,9 @@ class EnchantJewellery : Script {
                     }
                     val xp = Tables.int("jewellery_enchant.$spell.xp") / 10.0
                     exp(Skill.Magic, xp)
+                    if (spell == "enchant_level_1") {
+                        set("absolutely_enchanting_task", true)
+                    }
                 }
                 else -> return@onItem
             }

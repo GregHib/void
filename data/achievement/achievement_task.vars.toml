@@ -167,6 +167,24 @@ format = "boolean"
 persist = true
 format = "boolean"
 
+[warped_bat_accurate_kill]
+persist = true
+format = "boolean"
+
+[warped_bat_rapid_kill]
+persist = true
+format = "boolean"
+
+[warped_bat_longrange_kill]
+persist = true
+format = "boolean"
+
+[cant_touch_this_target]
+format = "int"
+
+[cant_touch_this_start_lp]
+format = "int"
+
 [equip_shortbow]
 persist = true
 format = "boolean"
