@@ -8,6 +8,8 @@ id = 9637
 
 [reese_attackable]
 id = 9624
+att = 4
+str = 4
 hitpoints = 20
 wander_range = 20
 categories = ["human"]
@@ -24,6 +26,7 @@ id = 9639
 [kayle_attackable]
 id = 9628
 hitpoints = 20
+range = 5
 categories = ["human"]
 combat_def = "kayle_attackable"
 hunt_mode = "aggressive"
@@ -35,6 +38,7 @@ id = 9629
 [caitlin_attackable]
 id = 9626
 hitpoints = 20
+mage = 5
 categories = ["human"]
 combat_def = "caitlin_attackable"
 hunt_mode = "aggressive"
