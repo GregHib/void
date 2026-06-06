@@ -37,10 +37,6 @@ class Reese : Script {
                         message("This gate won't budge.")
                         return@objectOperate
                     }
-                    if (quest("blood_pact") != "reese") {
-                        message("You don't need to go in there yet.")
-                        return@objectOperate
-                    }
                     if (get("blood_pact_reese_door", false)) {
                         // Door dialog already triggered; just remove it so the player can pass
                         GameObjects.remove(target)
@@ -120,11 +116,11 @@ class Reese : Script {
                 npc<Scared>("ilona_tied", "Thank Saradomin! He's insane! He's going to kill me!")
                 npc<Angry>("Maybe you can take her place as the sacrifice, adventurer. Stand and fight!")
             }
-            if (get<String>("blood_pact_reese") == "killed" && get<String>("blood_pact_caitlin") == "killed") {
+            if (get<String>("blood_pact_kayle") == "killed" && get<String>("blood_pact_caitlin") == "killed") {
                 option("I'm the one who killed your lackeys. Think you can do better?") {
                     npc<Angry>("They were weak. Zamorak will turn his face from them - but he will smile on me when I offer him your blood!")
                 }
-            } else if (get<String>("blood_pact_reese") == "spared" && get<String>("blood_pact_caitlin") == "spared") {
+            } else if (get<String>("blood_pact_kayle") == "spared" && get<String>("blood_pact_caitlin") == "spared") {
                 option("I let both the others live. This doesn't have to end in violence.") {
                     npc<Angry>("They were weak. Zamorak will turn his face from them - but he will smile on me when I offer him your blood!")
                 }

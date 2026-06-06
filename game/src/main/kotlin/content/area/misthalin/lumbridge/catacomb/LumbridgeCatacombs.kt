@@ -113,18 +113,6 @@ class LumbridgeCatacombs : Script {
             }
         }
 
-        // Door between entrance and Caitlin's gallery — locked until Kayle is dealt with
-        objectOperate("Open", "door_kayle") { (target) ->
-            val kayleStatus = get<String>("blood_pact_kayle")
-            if (quest("blood_pact") in listOf("watched_cutscene", "xenia_wounded") ||
-                (quest("blood_pact") == "kayle" && kayleStatus !in listOf("spared", "killed"))
-            ) {
-                message("There's someone in the way.")
-                return@objectOperate
-            }
-            GameObjects.remove(target)
-        }
-
         // Winch in Caitlin's gallery — removes the gates blocking the stairs once Caitlin is dealt with
         objectOperate("Operate", "blood_pact_winch") {
             if (get<String>("blood_pact_caitlin") != "defeated") {
@@ -198,13 +186,7 @@ class LumbridgeCatacombs : Script {
                     tele(Tile(3857, 5543, 1))
                     face(Direction.SOUTH)
                 }
-                "reese" -> {
-                    if (get<String>("blood_pact_caitlin") == "killed") {
-                        statement("You should deal with the third Cultist first.")
-                    } else {
-                        statement("You should deal with the third Cultist first.")
-                    }
-                }
+                "reese" -> statement("You should deal with the third Cultist first.")
                 else -> {
                     tele(instanceOffset().tile(3857, 5543, 1))
                     face(Direction.SOUTH)
@@ -374,8 +356,6 @@ class LumbridgeCatacombs : Script {
         NPCDefinitions.get("caitlin_attackable").walkMode = ModeType.EMPTY_MOVEABLE.toByte()
         NPCDefinitions.get("reese_attackable").walkMode = ModeType.EMPTY_MOVEABLE.toByte()
 
-        // Door between entrance and Caitlin's gallery
-        // GameObjects.add("door_kayle", offset.tile(3872, 5543, 1), ObjectShape.WALL_STRAIGHT, 0)
         // Gates in front of Caitlin's gallery (opened by winch after Caitlin is defeated)
         GameObjects.add("blood_pact_caitlin_gate", offset.tile(3870, 5531, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
         GameObjects.add("blood_pact_caitlin_gate", offset.tile(3862, 5531, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
@@ -463,21 +443,14 @@ class LumbridgeCatacombs : Script {
                 NPCs.add("ilona_tied", offset.tile(3865, 5523, 0), Direction.NORTH)
         }
 
-        // Doors — always present for stages that still need them
-        // GameObjects.add("door_kayle", offset.tile(3872, 5543, 1), ObjectShape.WALL_STRAIGHT, 0)
         // Caitlin's gates: only closed if Caitlin has not yet been dealt with
 
-        if (quest("blood_pact") !in listOf("winch_activated", "reese", "ilona_untied")) {
+        if (quest("blood_pact") !in listOf("winch_activated", "reese", "untied_ilona")) {
             GameObjects.add("blood_pact_caitlin_gate", offset.tile(3870, 5531, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
             GameObjects.add("blood_pact_caitlin_gate", offset.tile(3862, 5531, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
         }
-        // Kayle's door: only locked if Kayle hasn't been dealt with yet
-        // if (kayleStatus in listOf("spared", "killed")) {
-        //    val door = GameObjects.findOrNull(offset.tile(3872, 5543, 1), "door_kayle")
-        //    if (door != null) GameObjects.remove(door)
-        // }
         // Winch — present until Caitlin's gates are opened
-        if (quest("blood_pact") !in listOf("winch_activated", "reese", "ilona_untied")) {
+        if (quest("blood_pact") !in listOf("winch_activated", "reese", "untied_ilona")) {
             GameObjects.add("blood_pact_winch", offset.tile(3871, 5534, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
         }
         // Reese's chamber door — always present when player could be on level 2, removed during fight trigger

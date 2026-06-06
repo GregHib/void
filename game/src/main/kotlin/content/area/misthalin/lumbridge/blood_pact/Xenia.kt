@@ -72,9 +72,9 @@ class Xenia : Script {
                             } else if (Weapon.type(this, equipped(EquipSlot.Weapon)) == "range") {
                                 npc<LookDown>("I see you've brought your own ranged weapon. I'll assume you know how to use it!")
                             } else if (inventory.contains("kayles_sling")) {
-                                npc<LookDown>("You'll need to equip the bow before you can attack the second cultist.")
+                                npc<LookDown>("You'll need to equip the sling before you can attack the second cultist.")
                             } else {
-                                npc<LookDown>("You'll need to pick up the bow and equip it before you can attack the second cultist.")
+                                npc<LookDown>("You'll need to pick up the sling and equip it before you can attack the second cultist.")
                             }
 
                             optionsBeforeSecondFight()
@@ -370,7 +370,7 @@ class Xenia : Script {
     suspend fun Player.optionsAfterEntering() {
         choice {
             option<Neutral>("What's the plan of attack?") {
-                npc<Neutral>("It looks like the cultist has a bow. The best way to deal with someone with a ranged weapon is to get close to them and attack with melee.")
+                npc<Neutral>("It looks like the cultist has a sling. The best way to deal with someone with a ranged weapon is to get close to them and attack with melee.")
                 optionsAfterEntering()
             }
             option<Neutral>("What's a blood pact?") {
@@ -404,7 +404,7 @@ class Xenia : Script {
     suspend fun Player.optionsBeforeSecondFight() {
         choice {
             option<LookDown>("Tell me more about ranged combat.") {
-                npc<LookDown>("In order to use ranged combat, you'll need to wield a ranged weapon. For most weapons you'll also need ammunition, but if you use a chargebow you'll always be able to fire low power magical arrows. After that it's easy; just attack your enemy. Ranged combat is good against magic users. It's not so good against melee fighters, since projectiles have trouble getting through heavy armour.")
+                npc<LookDown>("In order to use ranged combat, you'll need to wield a ranged weapon. For most weapons you'll also need ammunition, but if you use a sling you'll always be able to fire low power stones. After that it's easy; just attack your enemy. Ranged combat is good against magic users. It's not so good against melee fighters, since projectiles have trouble getting through heavy armour.")
                 optionsBeforeSecondFight()
             }
             option<LookDown>("What's a blood pact?") {

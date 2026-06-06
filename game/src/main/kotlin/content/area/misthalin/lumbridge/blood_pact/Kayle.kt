@@ -82,7 +82,7 @@ class Kayle : Script {
     suspend fun Player.questionToKayle(target: NPC) {
         choice {
             option<Neutral>("Who are you?") {
-                npc<Scared>("I- My name's Kayle. I'm a ranger. Well, I'd been practising the chargebow... I guess I wasn't as good as I'd thought.")
+                npc<Scared>("I- My name's Kayle. I'm a ranger. Well, I'd been practising the sling... I guess I wasn't as good as I'd thought.")
                 questionToKayle(target)
             }
             option<Neutral>("Who are the others?") {
@@ -134,7 +134,7 @@ class Kayle : Script {
                 questionToKayle(target)
             }
             option<Neutral>("Who are you?") {
-                npc<Scared>("I- My name's Kayle. I'm a ranger. Well, I'd been practising the chargebow... I guess I wasn't as good as I'd thought.")
+                npc<Scared>("I- My name's Kayle. I'm a ranger. Well, I'd been practising the sling... I guess I wasn't as good as I'd thought.")
                 questionToKayle(target)
             }
             option<Neutral>("Who are the others?") {
