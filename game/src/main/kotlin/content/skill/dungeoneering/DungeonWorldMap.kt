@@ -46,7 +46,8 @@ class DungeonWorldMap : Script {
                 SOUTH or EAST or NORTH -> 2801
                 SOUTH or EAST or WEST -> 2802
                 SOUTH or EAST or WEST or NORTH -> 2803
-                WEST or EAST -> 2804
+                NORTH or SOUTH -> 2804
+                WEST or EAST -> 2805
                 else -> return
             }
         } else {

@@ -1,0 +1,6 @@
+[love_story]
+id = 8045
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

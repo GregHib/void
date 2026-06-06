@@ -1,0 +1,59 @@
+[grotto_door_druidicspirit]
+id = 3516
+examine = "Looks like a hole that leads underground."
+
+[grotto_druidicspirit]
+id = 3517
+examine = "It looks like a tree on a large rock with roots trailing down to the ground."
+
+[druidic_spirit_grotto]
+id = 3520
+examine = "A cosy little spot tucked under the roots."
+
+[druidic_spirit_grotto_naturealtar]
+id = 3521
+examine = "A grotto transformed into an altar of nature."
+
+[underground_rootwall_door]
+id = 3525
+examine = "The way back to the surface."
+
+[underground_rootwall_door_green]
+id = 3526
+clone = "underground_rootwall_door"
+
+[stonedisc_ds_nature]
+id = 3527
+examine = "A grave-stone with a nature symbol scratched into it."
+
+[stonedisc_ds_faith]
+id = 3528
+examine = "A grave-stone with a faith symbol scratched into it."
+
+[stonedisc_ds_spirit]
+id = 3529
+examine = "A grave-stone with a spirit symbol scratched into it."
+
+[log_druidicspirit]
+id = 3508
+examine = "A withered patch on the swamp floor."
+
+[log_druidicspirit2]
+id = 3509
+examine = "A mushroom raised by druidic magic."
+
+[branch_druidicspirit]
+id = 3510
+examine = "A budding branch waiting for the bloom."
+
+[branch_druidicspirit2]
+id = 3511
+examine = "A budding stem raised by druidic magic."
+
+[peartree_druidicspirit]
+id = 3512
+examine = "A bush that should bear fruit."
+
+[peartree_druidicspirit2]
+id = 3513
+examine = "A bush of swamp pears raised by druidic magic."

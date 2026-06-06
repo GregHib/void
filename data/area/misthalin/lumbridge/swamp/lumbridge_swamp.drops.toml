@@ -1,7 +1,7 @@
 [rockslug_drop_table]
 roll = 512
 drops = [
-    { id = "light_mystic_gloves" },
+    { id = "mystic_gloves_light" },
     { id = "earth_rune", amount = 5, chance = 120 },
     { id = "earth_rune", amount = 42, chance = 16 },
     { id = "chaos_rune", amount = 2, chance = 16 },

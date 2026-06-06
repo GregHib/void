@@ -44,7 +44,7 @@ class GrottoTest : WorldTest() {
         val bridge = GameObjects.find(Tile(3441, 3331), "grotto_bridge")
 
         player.objectOption(bridge, "Jump")
-        tick(6)
+        tick(8)
 
         assertEquals(Tile(3438, 3328), player.tile)
         assertTrue(player.levels.get(Skill.Constitution) < 100)
@@ -59,7 +59,7 @@ class GrottoTest : WorldTest() {
         val bridge = GameObjects.find(Tile(3440, 3329), "grotto_bridge")
 
         player.objectOption(bridge, "Jump")
-        tick(6)
+        tick(8)
 
         assertEquals(Tile(3438, 3332), player.tile)
         assertTrue(player.levels.get(Skill.Constitution) < 100)

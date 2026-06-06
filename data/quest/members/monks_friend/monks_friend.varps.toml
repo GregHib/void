@@ -1,0 +1,6 @@
+[monks_friend]
+id = 30
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 80 }

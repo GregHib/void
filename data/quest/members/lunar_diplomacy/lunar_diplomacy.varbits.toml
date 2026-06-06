@@ -1,0 +1,6 @@
+[lunar_diplomacy]
+id = 2448
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 190 }

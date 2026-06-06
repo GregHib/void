@@ -2,28 +2,25 @@ package content.quest.free.cooks_assistant
 
 import WorldTest
 import content.quest.quest
-import dialogueContinue
 import dialogueOption
 import itemOnObject
 import npcOption
 import objectOption
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertNotNull
+import skipDialogues
 import world.gregs.voidps.engine.client.instruction.handle.interactFloorItem
 import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
@@ -46,11 +43,11 @@ class CooksAssistantTest : WorldTest() {
         player.tele(3208, 3215, 0)
         player.npcOption(cook, "Talk-to")
         tick()
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1) // What's wrong?
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1) // Yes, I'll help
-        player.fastForwardDialogue()
+        player.skipDialogues()
+        player.dialogueOption(1) // What's wrong?
+        player.skipDialogues()
+        player.dialogueOption(1) // Yes, I'll help
+        player.skipDialogues()
         assertNull(player.dialogue)
         assertEquals("started", player.quest("cooks_assistant"))
 
@@ -87,10 +84,10 @@ class CooksAssistantTest : WorldTest() {
         val millie = NPCs.find(Tile(3169, 3306), "millie_miller")
         player.npcOption(millie, "Talk-to")
         tick()
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1) // Extra fine flour
-        player.fastForwardDialogue()
-        player.selectDialogueOption(2) // I'm fine, thanks
+        player.skipDialogues()
+        player.dialogueOption(1) // Extra fine flour
+        player.skipDialogues()
+        player.dialogueOption(2) // I'm fine, thanks
 
         player.tele(3165, 3307, 2)
         val hopper = GameObjects.find(Tile(3166, 3307, 2), "hopper")
@@ -115,25 +112,11 @@ class CooksAssistantTest : WorldTest() {
         player.tele(3208, 3215, 0)
         player.npcOption(cook, "Talk-to")
         tick()
-        player.fastForwardDialogue()
+        player.skipDialogues()
 
         assertNull(player.dialogue)
         assertEquals("completed", player.quest("cooks_assistant"))
         assertTrue(player.inventory.contains("sardine_noted", 20))
         assertTrue(player.inventory.contains("coins", 500))
-    }
-
-    private fun Player.fastForwardDialogue() {
-        assertNotNull(dialogue)
-        require(suspension is Suspension.Continue)
-        while (suspension is Suspension.Continue) {
-            dialogueContinue()
-        }
-    }
-
-    private fun Player.selectDialogueOption(option: Int) {
-        assertNotNull(dialogue)
-        require(suspension is Suspension.IntEntry)
-        dialogueOption("line$option")
     }
 }

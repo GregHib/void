@@ -9,7 +9,7 @@ drops = [
 [lizard_secondary]
 roll = 512
 drops = [
-    { id = "light_mystic_gloves" },
+    { id = "mystic_gloves_light" },
     { id = "fire_rune", amount = 5, chance = 120 },
     { id = "fire_rune", amount = 42, chance = 56 },
     { id = "nature_rune", amount = 5, chance = 16 },

@@ -1,0 +1,6 @@
+[ernest_the_chicken]
+id = 32
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

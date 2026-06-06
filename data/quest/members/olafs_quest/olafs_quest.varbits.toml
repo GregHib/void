@@ -1,0 +1,6 @@
+[olafs_quest]
+id = 3534
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

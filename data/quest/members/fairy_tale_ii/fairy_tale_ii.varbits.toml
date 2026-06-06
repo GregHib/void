@@ -1,0 +1,6 @@
+[fairy_tale_ii]
+id = 2326
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

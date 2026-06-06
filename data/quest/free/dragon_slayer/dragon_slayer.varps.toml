@@ -1,0 +1,6 @@
+[dragon_slayer]
+id = 176
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, received_shield = 1, completed = 10 }

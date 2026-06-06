@@ -1,0 +1,6 @@
+[void_stares_back]
+id = 8248
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

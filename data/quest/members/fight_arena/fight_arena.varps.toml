@@ -1,0 +1,6 @@
+[fight_arena]
+id = 17
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

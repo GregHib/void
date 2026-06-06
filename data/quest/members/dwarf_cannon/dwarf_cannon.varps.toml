@@ -1,0 +1,6 @@
+[dwarf_cannon]
+id = 0
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

@@ -54,8 +54,9 @@ class PlayerUpdateTask {
         processGlobals(player, writer, updates, players, viewport, true)
         processGlobals(player, writer, updates, players, viewport, false)
 
-        player.client?.updatePlayers(writer, updates)
-        player.client?.flush()
+        val client = player.client ?: return
+        client.updatePlayers(writer, updates)
+        client.flush()
         writer.position(0)
         updates.position(0)
     }

@@ -1,0 +1,9 @@
+[hand_in_the_sand]
+id = 1527
+format = "map"
+persist = true
+default = "unstarted"
+values = {
+    unstarted = 0,
+    completed = 160
+}

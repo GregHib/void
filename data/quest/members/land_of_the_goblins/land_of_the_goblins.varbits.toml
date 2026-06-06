@@ -1,0 +1,6 @@
+[land_of_the_goblins]
+id = 4105
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }
