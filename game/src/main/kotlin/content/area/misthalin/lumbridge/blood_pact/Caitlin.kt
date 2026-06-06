@@ -31,7 +31,7 @@ class Caitlin : Script {
             levels.restore(Skill.Constitution)
             val player = killer as? Player
             if (player != null) {
-                player.set("blood_pact_caitlin", "defeated")
+                player["blood_pact_caitlin"] = "defeated"
                 val original = tile.minus(player.instanceOffset())
                 player["blood_pact_caitlin_tile"] = original.id
                 player.refreshQuestJournal()

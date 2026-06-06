@@ -63,7 +63,7 @@ class Kayle : Script {
                 FloorItems.add(instanceOffset().tile(3877, 5543, 1), "kayles_sling", disappearTicks = 300, owner = this)
                 set("blood_pact", "caitlin")
                 refreshQuestJournal()
-                xeniaAfterChoice(target)
+                xeniaAfterChoice()
             }
             option<Neutral>("No. Just give me your stuff and get out of here.") {
                 set("blood_pact_kayle", "spared")
@@ -74,7 +74,7 @@ class Kayle : Script {
                 FloorItems.add(instanceOffset().tile(3877, 5543, 1), "kayles_sling", disappearTicks = 300, owner = this)
                 set("blood_pact", "caitlin")
                 refreshQuestJournal()
-                xeniaAfterChoice(target)
+                xeniaAfterChoice()
             }
         }
     }
@@ -107,7 +107,7 @@ class Kayle : Script {
         }
     }
 
-    suspend fun Player.xeniaAfterChoice(target: NPC) {
+    suspend fun Player.xeniaAfterChoice() {
         val instance = instance()
         if (instance != null) {
             NPCs.remove(NPCs.findOrNull(instance.toLevel(1), "xenia_wounded"))

@@ -289,7 +289,6 @@ class LumbridgeCatacombs : Script {
         val caitlin = NPCs.add("caitlin_cutscene", offset.tile(3878, 5532, 1), Direction.NORTH)
         val ilona = NPCs.add("ilona_cutscene", offset.tile(3877, 5533, 1), Direction.NORTH)
 
-
         delay(2)
 
         clearCamera()
@@ -375,7 +374,6 @@ class LumbridgeCatacombs : Script {
         NPCDefinitions.get("caitlin_attackable").walkMode = ModeType.EMPTY_MOVEABLE.toByte()
         NPCDefinitions.get("reese_attackable").walkMode = ModeType.EMPTY_MOVEABLE.toByte()
 
-
         // Door between entrance and Caitlin's gallery
         // GameObjects.add("door_kayle", offset.tile(3872, 5543, 1), ObjectShape.WALL_STRAIGHT, 0)
         // Gates in front of Caitlin's gallery (opened by winch after Caitlin is defeated)
@@ -389,14 +387,7 @@ class LumbridgeCatacombs : Script {
         GameObjects.add("blood_pact_winch", offset.tile(3871, 5534, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
 
         // Stairs down from Caitlin's gallery (level 1) to Reese's chamber (level 2)
-        GameObjects.add("blood_pact_stairs_down_south", offset.tile(3858, 5533, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
-
-        // Stairs down from Caitlin's gallery (level 1) to Reese's chamber (level 2)
-        GameObjects.add("blood_pact_stairs_down_north", offset.tile(3858, 5543, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
-
-        // Stairs up from Reese's chamber (level 2) back to Caitlin's gallery
-        GameObjects.add("blood_pact_stairs_up_south", offset.tile(3858, 5533, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
-        GameObjects.add("blood_pact_stairs_up_north", offset.tile(3858, 5543, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
+        spawnStairs(offset)
 
         // Altar in Reese's chamber
         GameObjects.add("blood_pact_altar", offset.tile(3865, 5524, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
@@ -495,15 +486,7 @@ class LumbridgeCatacombs : Script {
         }
 
         // Stairs down from Caitlin's gallery (level 1) to Reese's chamber (level 2)
-        GameObjects.add("blood_pact_stairs_down_south", offset.tile(3858, 5533, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
-
-        // Stairs down from Caitlin's gallery (level 1) to Reese's chamber (level 2)
-        GameObjects.add("blood_pact_stairs_down_north", offset.tile(3858, 5543, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
-
-        // Stairs up from Reese's chamber (level 2) back to Caitlin's gallery
-        GameObjects.add("blood_pact_stairs_up_south", offset.tile(3858, 5533, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
-        // Altar in Reese's chamber
-        GameObjects.add("blood_pact_stairs_up_north", offset.tile(3858, 5543, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
+        spawnStairs(offset)
 
         // Altar — present until Reese is killed
         if (stage in listOf("watched_cutscene", "xenia_wounded", "kayle", "caitlin", "winch_activated") ||
@@ -512,6 +495,18 @@ class LumbridgeCatacombs : Script {
             GameObjects.add("blood_pact_altar", offset.tile(3865, 5524, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
         }
     }
+}
+
+fun spawnStairs(offset: Delta) {
+    GameObjects.add("blood_pact_stairs_down_south", offset.tile(3858, 5533, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
+
+    // Stairs down from Caitlin's gallery (level 1) to Reese's chamber (level 2)
+    GameObjects.add("blood_pact_stairs_down_north", offset.tile(3858, 5543, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
+
+    // Stairs up from Reese's chamber (level 2) back to Caitlin's gallery
+    GameObjects.add("blood_pact_stairs_up_south", offset.tile(3858, 5533, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
+    // Altar in Reese's chamber
+    GameObjects.add("blood_pact_stairs_up_north", offset.tile(3858, 5543, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
 }
 
 fun Player.completeBloodPact() {

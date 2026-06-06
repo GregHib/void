@@ -1,6 +1,5 @@
 package content.area.misthalin.lumbridge.blood_pact
 
-import content.entity.combat.Target
 import content.entity.combat.dead
 import content.entity.combat.killer
 import content.entity.effect.transform
@@ -51,7 +50,6 @@ class Reese : Script {
                     set("blood_pact_reese_door", true)
 
                     val reese = NPCs.find(offset.tile(3865, 5525, 0), "reese_attackable")
-                    val ilona = NPCs.find(offset.tile(3865, 5523, 0), "ilona_tied")
 
                     npc<Angry>("reese_attackable", "The potion is complete. Where are they? The whole group should be present.")
 
@@ -63,9 +61,10 @@ class Reese : Script {
                     val slidingDoor = GameObjects.add("tomb_door_sliding_down", offset.tile(3866, 5527, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
                     delay(1)
                     GameObjects.remove(slidingDoor)
+
                     talkWith(reese) {
                         npc<Angry>("Who are you? What are you doing here?")
-                        // TODO: options
+                        reeseOptionsBeforeFight()
                     }
                     reese.interactPlayer(this, "Attack")
 
@@ -108,6 +107,34 @@ class Reese : Script {
             option<Neutral>("I'm not killing you. Give me your stuff and get out of here.") {
                 npc<Angry>("No! There must be a death! The blood pact must be complete!")
                 killReese(target, "Reese drinks a poisonous potion, and dies. The fake tomb of Dragith Nurn breaks, revealing stairs to the last level of the catacombs.")
+            }
+        }
+    }
+
+    suspend fun Player.reeseOptionsBeforeFight() {
+        choice {
+            option("My Name is Player. I'm an adventurer") {
+                npc<Angry>("This will be your tomb, adventurer. The blood pact will prevail!")
+            }
+            option("I'm Player. Don't worry, Ilona, I'm here to rescue you.") {
+                npc<Scared>("ilona_tied", "Thank Saradomin! He's insane! He's going to kill me!")
+                npc<Angry>("Maybe you can take her place as the sacrifice, adventurer. Stand and fight!")
+            }
+            if (get<String>("blood_pact_reese") == "killed" && get<String>("blood_pact_caitlin") == "killed") {
+                option("I'm the one who killed your lackeys. Think you can do better?") {
+                    npc<Angry>("They were weak. Zamorak will turn his face from them - but he will smile on me when I offer him your blood!")
+                }
+            } else if (get<String>("blood_pact_reese") == "spared" && get<String>("blood_pact_caitlin") == "spared") {
+                option("I let both the others live. This doesn't have to end in violence.") {
+                    npc<Angry>("They were weak. Zamorak will turn his face from them - but he will smile on me when I offer him your blood!")
+                }
+            } else {
+                option("I'm the one who defeated your lackeys. Think you can do better?") {
+                    npc<Angry>("They were weak. Zamorak will turn his face from them - but he will smile on me when I offer him your blood!")
+                }
+            }
+            option("I'm your worst nightmare, Zamorakian scum!") {
+                npc<Angry>("This will be your tomb, adventurer. The blood pact will prevail!")
             }
         }
     }
