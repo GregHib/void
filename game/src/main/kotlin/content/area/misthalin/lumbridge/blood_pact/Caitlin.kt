@@ -2,7 +2,6 @@ package content.area.misthalin.lumbridge.blood_pact
 
 import content.entity.combat.dead
 import content.entity.combat.killer
-import world.gregs.voidps.engine.Script
 import content.entity.effect.transform
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.LookDown
@@ -12,6 +11,7 @@ import content.entity.player.dialogue.type.npc
 import content.quest.instance
 import content.quest.instanceOffset
 import content.quest.refreshQuestJournal
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode

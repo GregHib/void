@@ -148,7 +148,7 @@ class Xenia : Script {
             xenia.walkTo(instanceOffset().tile(3877, 5530, 1))
 
             queue("blood_pact_xenia_hit") {
-                delay(1)   // time for xenia to walk there
+                delay(1) // time for xenia to walk there
                 kayle.anim("sling_sling")
                 delay(3)
                 xenia.directHit(kayle, 19, "range")
@@ -165,10 +165,10 @@ class Xenia : Script {
         }
     }
 
-    fun Player.hasPlayerWeaponType(weaponType : String) : Boolean {
+    fun Player.hasPlayerWeaponType(weaponType: String): Boolean {
         val equippedWeapon = equipped(EquipSlot.Weapon)
-        return inventory.items.any { !it.isEmpty() && Weapon.type(this, it) == weaponType }
-                || (!equippedWeapon.isEmpty() && Weapon.type(this, equippedWeapon) == weaponType)
+        return inventory.items.any { !it.isEmpty() && Weapon.type(this, it) == weaponType } ||
+            (!equippedWeapon.isEmpty() && Weapon.type(this, equippedWeapon) == weaponType)
     }
 
     suspend fun Player.choiceBase() {
@@ -182,11 +182,10 @@ class Xenia : Script {
 
     suspend fun Player.foodChat() {
         val playerHealthPercentage = levels.get(Skill.Constitution).toDouble() / levels.getMax(Skill.Constitution)
-        when (inventory.items.any { it.def["consumable", false] })  {
+        when (inventory.items.any { it.def["consumable", false] }) {
             true -> {
                 if (playerHealthPercentage < 1.0 && playerHealthPercentage > 0.75) {
                     npc<LookDown>(" You're lightly wounded. You should eat some of the food you're carrying.")
-
                 } else if (playerHealthPercentage <= 0.75) {
                     npc<LookDown>("You're badly wounded! You should eat some of the food you're carrying.")
                 }
@@ -224,17 +223,17 @@ class Xenia : Script {
         }
     }
 
-    fun ChoiceOption.acceptQuest( ) : Unit = option<Neutral>("I'll help you.") {
+    fun ChoiceOption.acceptQuest(): Unit = option<Neutral>("I'll help you.") {
         if (startQuest("blood_pact")) {
             set("blood_pact", "started")
             // Reset per-cultist progress so a replay doesn't inherit stale "killed"/"spared" state
             set("blood_pact_kayle", "alive")
             set("blood_pact_caitlin", "alive")
             set("blood_pact_reese", "alive")
-             clear("blood_pact_kayle_tile")
-             clear("blood_pact_caitlin_tile")
-             clear("blood_pact_reese_tile")
-             clear("blood_pact_reese_door")
+            clear("blood_pact_kayle_tile")
+            clear("blood_pact_caitlin_tile")
+            clear("blood_pact_reese_tile")
+            clear("blood_pact_reese_door")
             refreshQuestJournal()
             npc<Happy>("I knew you would!")
             npc<Neutral>("We've got no time to lose. You head down the stairs, and I'll follow.")
@@ -243,7 +242,7 @@ class Xenia : Script {
         }
     }
 
-    fun ChoiceOption.moreInfos() : Unit = option<Neutral>("I need to know more before I help you.") {
+    fun ChoiceOption.moreInfos(): Unit = option<Neutral>("I need to know more before I help you.") {
         npc<Neutral>("Very wise. I got into a lot of trouble in my youth by rushing in without knowing a situation.")
         moreInfoChoices()
     }
@@ -278,14 +277,14 @@ class Xenia : Script {
         }
     }
 
-    fun ChoiceOption.whoAreYou() : Unit = option<Confused>("Who are you?") {
+    fun ChoiceOption.whoAreYou(): Unit = option<Confused>("Who are you?") {
         npc<Neutral>("My name's Xenia. I'm an adventurer.")
         npc<Neutral>("I'm one of the old guard, I suppose. I helped found the Champions' Guild, and I've done a fair few quests in my time.")
         npc<Neutral>("Now I'm starting to get a bit old for action, which is why I need your help.")
         choiceBase()
     }
 
-    fun ChoiceOption.howDoYouKnow() : Unit = option<Confused>("How did you know who I am?") {
+    fun ChoiceOption.howDoYouKnow(): Unit = option<Confused>("How did you know who I am?") {
         npc<Neutral>("Oh, I have my ways. I get the feeling that you're one to watch; you could be quite the hero some day.")
         choiceBase()
     }
@@ -293,13 +292,15 @@ class Xenia : Script {
     suspend fun Player.choiceAfterQuest() {
         choice {
             choiceQuestDetail()
-            if(checkForLostWeapons()) { lostWeapon() }
+            if (checkForLostWeapons()) {
+                lostWeapon()
+            }
             leaving()
         }
     }
 
-    fun Player.checkForLostWeapons() : Boolean {
-        val weapons = arrayOf("reeses_sword", "kayles_sling", "caitlins_staff") //quest weapons
+    fun Player.checkForLostWeapons(): Boolean {
+        val weapons = arrayOf("reeses_sword", "kayles_sling", "caitlins_staff") // quest weapons
 
         for (weapon in weapons) {
             if (!(inventory.contains(weapon) || bank.contains(weapon))) {
@@ -310,7 +311,7 @@ class Xenia : Script {
         return false
     }
 
-    fun ChoiceOption.lostWeapon() : Unit = option<Neutral>("I've lost some of the cultists' weapons.") {
+    fun ChoiceOption.lostWeapon(): Unit = option<Neutral>("I've lost some of the cultists' weapons.") {
         npc<Neutral>("Yes, one of my contacts in the Champion's Guild found them and returned them to me.")
 
         if (!inventory.isFull() && !ownsItem("kayles_sling")) {
@@ -327,43 +328,41 @@ class Xenia : Script {
         }
     }
 
-    fun ChoiceOption.choiceQuestDetail() : Unit =
-        option<Neutral>("I've got a question about my adventure in the catacombs...") {
-            afterQuestDetail()
-        }
+    fun ChoiceOption.choiceQuestDetail(): Unit = option<Neutral>("I've got a question about my adventure in the catacombs...") {
+        afterQuestDetail()
+    }
 
-    fun ChoiceOption.notWounded() : Unit = option<Neutral>("You weren't really wounded, were you?") {
+    fun ChoiceOption.notWounded(): Unit = option<Neutral>("You weren't really wounded, were you?") {
         npc<Neutral>("Very perceptive, adventurer. I was wounded, but not as badly as I looked. I took the opportunity to see how you would fare.")
         woundedDetails()
     }
 
-    fun ChoiceOption.whatNow() : Unit = option<Neutral>("What will happen in the catacombs now?\n") {
+    fun ChoiceOption.whatNow(): Unit = option<Neutral>("What will happen in the catacombs now?\n") {
         npc<Neutral>(" Reese managed to complete the ritual with his own death. He's opened the staircase to the nest of undead creatures in the lower level of the catacombs. Without a necromancer to control them, the creatures won't leave the tomb. I'll warn Father Aereck not to let people go down there. You're an adventurer, though. If you want to, you can venture into the tomb and fight the creatures.\n")
         afterQuestDetail()
     }
 
-    fun ChoiceOption.whatBloodPact() : Unit = option<Neutral>("What is a blood pact?\n") {
+    fun ChoiceOption.whatBloodPact(): Unit = option<Neutral>("What is a blood pact?\n") {
         npc<Neutral>(" It's something Zamorakian cults do sometimes; a way of swearing loyalty to their leader. A blood pact doesn't have real magical power, but that kind of thing can have great power over a person if they believe strongly enough.")
         afterQuestDetail()
     }
 
-    fun ChoiceOption.whoDragith() : Unit = option<Neutral>("Who was Dragith Nurn?\n") {
+    fun ChoiceOption.whoDragith(): Unit = option<Neutral>("Who was Dragith Nurn?\n") {
         npc<Neutral>("Dragith Nurn was a wizard. He studied at the Wizards' Tower, but he also studied the dar ark, necromancy, on his own. He had a secret magical workshop beneath Lumbridge. He would steal bodies from the graveyard and perform experiments on them. Necromancy was like an addiction for him. When I met him he was very troubled; very conflicted. I convinced him to put an end to it all. He couldn't destroy all the undead he had created - not permanently - so he trapped them all in the lower level of his workshop and sealed it off. He converted the upper level into these catacombs. Everyone thinks Dragith Nurn is buried here in the tomb, but he isn't. He built the tomb to hide the entrance to the lower level. Dragith Nurn is still down there. He knew that when he died he would rise again as a monster, so he sealed himself in with his creatures.")
         afterQuestDetail()
     }
 
-    fun ChoiceOption.womansLife() : Unit =
-        option<Neutral>("You risked that woman's life for the sake of a test?") {
-            npc<Neutral>(" I was prepared to step in and rescue her if you failed, but I won't always be that ready. That's why I had to do this. The world needs heroes. I was a hero, once, but I'm not getting any younger. I need to make sure the news generation has its own heroes.")
-            woundedDetails()
-        }
+    fun ChoiceOption.womansLife(): Unit = option<Neutral>("You risked that woman's life for the sake of a test?") {
+        npc<Neutral>(" I was prepared to step in and rescue her if you failed, but I won't always be that ready. That's why I had to do this. The world needs heroes. I was a hero, once, but I'm not getting any younger. I need to make sure the news generation has its own heroes.")
+        woundedDetails()
+    }
 
-    fun ChoiceOption.playerLife() : Unit = option<Neutral>("You risked my life for the sake of a test?") {
+    fun ChoiceOption.playerLife(): Unit = option<Neutral>("You risked my life for the sake of a test?") {
         npc<Neutral>("You're a born adventurer. I can practically smell it on you. People like you have a habit of coming back from things that would kill an ordinary person.")
         woundedDetails()
     }
 
-    fun ChoiceOption.howDidIDo() : Unit = option<Neutral>("So how did I do?") {
+    fun ChoiceOption.howDidIDo(): Unit = option<Neutral>("So how did I do?") {
         npc<Neutral>("Very well indeed. You're a hero. You're exactly the sort of person the world needs. I'm glad I met you.")
         woundedDetails()
     }
@@ -459,7 +458,7 @@ class Xenia : Script {
         }
     }
 
-    suspend fun Player.afterQuestDetail( ) {
+    suspend fun Player.afterQuestDetail() {
         choice {
             notWounded()
             whatNow()
@@ -469,7 +468,7 @@ class Xenia : Script {
         }
     }
 
-    suspend fun Player.finalDialogBloodPact(target : NPC) {
+    suspend fun Player.finalDialogBloodPact(target: NPC) {
         choice {
             option("I'm ready for my reward.") {
                 npc<Neutral>("xenia_2", "Farewell, adventurer.")
@@ -497,7 +496,7 @@ class Xenia : Script {
         }
     }
 
-    suspend fun Player.werentWoundedOptions(target : NPC) {
+    suspend fun Player.werentWoundedOptions(target: NPC) {
         choice {
             option("You risked that woman's life for the sake of a test?\n") {
                 npc<Neutral>("xenia_2", "I was prepared to step in and rescue her if you failed, but I won't always be that ready. That's why I had to do this. The world needs heroes. I was a hero, once, but I'm not getting any younger. I need to make sure the new generation has its own heroes.")

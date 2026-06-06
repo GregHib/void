@@ -1,11 +1,8 @@
 package content.area.misthalin.lumbridge.blood_pact
 
-import content.area.misthalin.lumbridge.blood_pact.Xenia
-import content.area.misthalin.lumbridge.catacomb.completeBloodPact
 import content.entity.player.bank.bank
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Neutral
-import content.entity.player.dialogue.Scared
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
@@ -22,7 +19,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
-class Ilona : Script  {
+class Ilona : Script {
 
     init {
         npcOperate("Untie", "ilona_tied") { (target) ->
@@ -30,11 +27,10 @@ class Ilona : Script  {
         }
 
         npcOperate("Talk-to", "ilona_following") { _ ->
-
         }
     }
 
-    suspend fun Player.untieIlonaOptions(target : NPC) {
+    suspend fun Player.untieIlonaOptions(target: NPC) {
         choice {
             option("Yes, rescue Ilona.") {
                 untieIlona(target)
@@ -43,7 +39,7 @@ class Ilona : Script  {
         }
     }
 
-    suspend fun Player.untieIlona(target : NPC) {
+    suspend fun Player.untieIlona(target: NPC) {
         statement("You untie Ilona and return to the surface.")
         open("fade_out")
         delay(2)
@@ -66,9 +62,7 @@ class Ilona : Script  {
 
         face(Direction.WEST)
 
-
-        if (checkForUnlootedWeapons())
-        {
+        if (checkForUnlootedWeapons()) {
             npc<Neutral>("xenia_2", "I took the liberty of retrieving the weapons you missed.")
 
             if (!inventory.isFull() && !ownsItem("kayles_sling")) {
@@ -84,8 +78,7 @@ class Ilona : Script  {
                 inventory.add("reeses_sword", 1)
             }
 
-            if (inventory.isFull() && checkForUnlootedWeapons())
-            {
+            if (inventory.isFull() && checkForUnlootedWeapons()) {
                 statement("You don't have room in your inventory to receive your last reward. Speak to Xenia again when you have dropped, destroyed or banked some of your items.")
             }
         }
@@ -100,8 +93,8 @@ class Ilona : Script  {
         talkWith(xenia)
     }
 
-    fun Player.checkForUnlootedWeapons() : Boolean {
-        val weapons = arrayOf("reeses_sword", "kayles_sling", "caitlins_staff") //quest weapons
+    fun Player.checkForUnlootedWeapons(): Boolean {
+        val weapons = arrayOf("reeses_sword", "kayles_sling", "caitlins_staff") // quest weapons
 
         for (weapon in weapons) {
             if (!(inventory.contains(weapon) || bank.contains(weapon))) {

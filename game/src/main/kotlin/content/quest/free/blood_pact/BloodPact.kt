@@ -4,7 +4,7 @@ import content.quest.quest
 import content.quest.questJournal
 import world.gregs.voidps.engine.Script
 
-class BloodPact : Script{
+class BloodPact : Script {
 
     init {
         questJournalOpen("blood_pact") {
@@ -16,10 +16,14 @@ class BloodPact : Script{
                 "completed" -> {
 
                     val list = mutableListOf(
-                        "<str>Xenia, an old adventurer, said she had seen some Zamorakian cultists entering the catacombs beneath Lumbridge Church. She asked me to go with her into the catacombs to deal with them.",
-                        "<str>Inside the catacombs, Xenia and I overheard the cultists talking about a blood pact.",
-                        "<str>The first cultist shot Xenia, wounding her badly. She will not be able to fight.",
-                        "<str>I defeated the first cultist."
+                        "<str>Xenia, an old adventurer, said she had seen some Zamorakian",
+                        "<str>cultists entering the catacombs beneath Lumbridge Church.",
+                        "<str>She asked me to go with her into the catacombs to deal with them.",
+                        "<str>Inside the catacombs, Xenia and I overheard the cultists talking",
+                        "<str>about a blood pact.",
+                        "<str>The first cultist shot Xenia, wounding her badly.",
+                        "<str>She will not be able to fight.",
+                        "<str>I defeated the first cultist.",
                     )
 
                     when (kayleStatus) {
@@ -35,10 +39,11 @@ class BloodPact : Script{
                     }
 
                     list.add("<str>I defeated the third cultist.")
-                    list.add("<str>The death of the third cultist completed the ritual. A tomb in the catacombs collapsed, revealing a staircase.")
+                    list.add("<str>The death of the third cultist completed the ritual.")
+                    list.add("<str>A tomb in the catacombs collapsed, revealing a staircase.")
                     list.add("<str>I untied the prisoner and escaped from the catacombs.")
                     list.add("<str>Xenia thanked me for my help.")
-                    list.add( "")
+                    list.add("")
                     list.add("<red>QUEST COMPLETE!")
 
                     list
@@ -46,10 +51,14 @@ class BloodPact : Script{
 
                 "untied_ilona" -> {
                     val list = mutableListOf(
-                        "<str>Xenia, an old adventurer, said she had seen some Zamorakian cultists entering the catacombs beneath Lumbridge Church. She asked me to go with her into the catacombs to deal with them.",
-                        "<str>Inside the catacombs, Xenia and I overheard the cultists talking about a blood pact.",
-                        "<str>The first cultist shot Xenia, wounding her badly. She will not be able to fight.",
-                        "<str>I defeated the first cultist."
+                        "<str>Xenia, an old adventurer, said she had seen some Zamorakian",
+                        "<str>cultists entering the catacombs beneath Lumbridge Church.",
+                        "<str>She asked me to go with her into the catacombs to deal with them.",
+                        "<str>Inside the catacombs, Xenia and I overheard the cultists talking",
+                        "<str>about a blood pact.",
+                        "<str>The first cultist shot Xenia, wounding her badly.",
+                        "<str>She will not be able to fight.",
+                        "<str>I defeated the first cultist.",
                     )
 
                     when (kayleStatus) {
@@ -65,7 +74,8 @@ class BloodPact : Script{
                     }
 
                     list.add("<str>I defeated the third cultist.")
-                    list.add("<str>The death of the third cultist completed the ritual. A tomb in the catacombs collapsed, revealing a staircase.")
+                    list.add("<str>The death of the third cultist completed the ritual.")
+                    list.add("<str>A tomb in the catacombs collapsed, revealing a staircase.")
                     list.add("<str>I untied the prisoner and escaped from the catacombs.")
                     list.add("<navy>I should speak to <maroon>Xenia.")
 
@@ -74,20 +84,24 @@ class BloodPact : Script{
 
                 "reese" -> {
                     val list = mutableListOf(
-                        "<str>Xenia, an old adventurer, said she had seen some Zamorakian cultists entering the catacombs beneath Lumbridge Church. She asked me to go with her into the catacombs to deal with them.",
-                        "<str>Inside the catacombs, Xenia and I overheard the cultists talking about a blood pact.",
-                        "<str>The first cultist shot Xenia, wounding her badly. She will not be able to fight.",
-                        "<str>I defeated the first cultist."
+                        "<str>Xenia, an old adventurer, said she had seen some Zamorakian",
+                        "<str>cultists entering the catacombs beneath Lumbridge Church.",
+                        "<str>She asked me to go with her into the catacombs to deal with them.",
+                        "<str>Inside the catacombs, Xenia and I overheard the cultists talking",
+                        "<str>about a blood pact.",
+                        "<str>The first cultist shot Xenia, wounding her badly.",
+                        "<str>She will not be able to fight.",
+                        "<str>I defeated the first cultist.",
                     )
 
-                    when(kayleStatus) {
+                    when (kayleStatus) {
                         "spared" -> list.add("<str>I spared the first cultist.")
                         "killed" -> list.add("<str>I killed the first cultist.")
                     }
 
                     list.add("<str>I defeated the second cultist.")
 
-                    when(caitlinStatus) {
+                    when (caitlinStatus) {
                         "spared" -> list.add("<str>I spared the second cultist.")
                         "killed" -> list.add("<str>I killed the second cultist.")
                     }
@@ -95,9 +109,9 @@ class BloodPact : Script{
                     when (reeseStatus) {
                         "killed", "spared" -> {
                             list.add("<str>I defeated the third cultist.")
-                            list.add("<str>The death of the third cultist completed the ritual. A tomb in the catacombs collapsed, revealing a staircase.")
+                            list.add("<str>The death of the third cultist completed the ritual.")
+                            list.add("<str>A tomb in the catacombs collapsed, revealing a staircase.")
                             list.add("<navy>I should untie the <maroon>prisoner <navy>and escape.")
-
                         }
                         "defeated" -> {
                             list.add("<str>I defeated the third cultist.")
@@ -112,13 +126,17 @@ class BloodPact : Script{
 
                 "caitlin", "winch_activated" -> {
                     val list = mutableListOf(
-                        "<str>Xenia, an old adventurer, said she had seen some Zamorakian cultists entering the catacombs beneath Lumbridge Church. She asked me to go with her into the catacombs to deal with them.",
-                        "<str>Inside the catacombs, Xenia and I overheard the cultists talking about a blood pact.",
-                        "<str>The first cultist shot Xenia, wounding her badly. She will not be able to fight.",
-                        "<str>I defeated the first cultist."
-                        )
+                        "<str>Xenia, an old adventurer, said she had seen some Zamorakian",
+                        "<str>cultists entering the catacombs beneath Lumbridge Church.",
+                        "<str>She asked me to go with her into the catacombs to deal with them.",
+                        "<str>Inside the catacombs, Xenia and I overheard the cultists talking",
+                        "<str>about a blood pact.",
+                        "<str>The first cultist shot Xenia, wounding her badly.",
+                        "<str>She will not be able to fight.",
+                        "<str>I defeated the first cultist.",
+                    )
 
-                    when(kayleStatus) {
+                    when (kayleStatus) {
                         "spared" -> list.add("<str>I spared the first cultist.")
                         "killed" -> list.add("<str>I killed the first cultist.")
                     }
@@ -147,9 +165,13 @@ class BloodPact : Script{
 
                 "kayle", "xenia_wounded" -> {
                     val list = mutableListOf(
-                        "<str>Xenia, an old adventurer, said she had seen some Zamorakian cultists entering the catacombs beneath Lumbridge Church. She asked me to go with her into the catacombs to deal with them.",
-                        "<str>Inside the catacombs, Xenia and I overheard the cultists talking about a blood pact.",
-                        "<str>The first cultist shot Xenia, wounding her badly. She will not be able to fight.",
+                        "<str>Xenia, an old adventurer, said she had seen some Zamorakian",
+                        "<str>cultists entering the catacombs beneath Lumbridge Church.",
+                        "<str>She asked me to go with her into the catacombs to deal with them.",
+                        "<str>Inside the catacombs, Xenia and I overheard the cultists talking",
+                        "<str>about a blood pact.",
+                        "<str>The first cultist shot Xenia, wounding her badly.",
+                        "<str>She will not be able to fight.",
                     )
                     when (kayleStatus) {
                         "spared" -> {
@@ -174,21 +196,25 @@ class BloodPact : Script{
                 }
 
                 "watched_cutscene" -> listOf(
-                    "<str>Xenia, an old adventurer, said she had seen some Zamorakian cultists entering the catacombs beneath Lumbridge Church. She asked me to go with her into the catacombs to deal with them.",
-                    "<str>Inside the catacombs, Xenia and I overheard the cultists talking about a blood pact.",
+                    "<str>Xenia, an old adventurer, said she had seen some Zamorakian",
+                    "<str>cultists entering the catacombs beneath Lumbridge Church.",
+                    "<str>She asked me to go with her into the catacombs to deal with them.",
+                    "<str>Inside the catacombs, Xenia and I overheard the cultists talking",
+                    "<str>about a blood pact.",
                     "<navy>I should accompany Xenia to fight the <maroon>first cultist.",
                 )
 
                 "started" -> listOf(
                     "<maroon>Xenia<navy>, an old adventurer, said she had seen some Zamorakian ",
                     "<navy>cultists entering the catacombs beneath Lumbridge Church. ",
-                    "<navy>She asked me to  go with her into the <maroon>catacombs ",
+                    "<navy>She asked me to go with her into the <maroon>catacombs ",
                     "<navy>to deal with them.",
                     "",
                 )
 
                 else -> listOf(
-                    "<navy> I can start this quest by speaking to <maroon>Xenia <navy>in the <marron>Lumbridge cemetery.",
+                    "<navy> I can start this quest by speaking to <maroon>Xenia <navy>in the",
+                    "<maroon>Lumbridge cemetery.",
                     "",
                 )
             }

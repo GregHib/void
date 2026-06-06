@@ -1,23 +1,19 @@
 package content.area.misthalin.lumbridge.blood_pact
 
-import content.area.misthalin.lumbridge.catacomb.completeBloodPact
 import content.entity.combat.Target
 import content.entity.combat.dead
 import content.entity.combat.killer
-import world.gregs.voidps.engine.Script
 import content.entity.effect.transform
 import content.entity.player.dialogue.Angry
-import content.entity.player.dialogue.Expression
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Scared
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
-import content.quest.instance
 import content.quest.instanceOffset
 import content.quest.quest
 import content.quest.refreshQuestJournal
-import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -34,7 +30,7 @@ class Reese : Script {
         // Interacting with Reese's chamber door triggers the intro dialog;
         // interacting with Caitlin's area gates (same object) just shows a blocked message.
         objectOperate("Open", "blood_pact_tomb_door") { (target) ->
-            when(quest("blood_pact")) {
+            when (quest("blood_pact")) {
                 "reese" -> {
                     val offset = instanceOffset()
                     if (target.tile != offset.tile(3866, 5527, 0)) {
@@ -56,12 +52,11 @@ class Reese : Script {
                     val reese = NPCs.find(offset.tile(3865, 5525, 0), "reese_attackable")
                     val ilona = NPCs.find(offset.tile(3865, 5523, 0), "ilona_tied")
 
-                    npc<Angry>( "reese_attackable", "The potion is complete. Where are they? The whole group should be present.")
+                    npc<Angry>("reese_attackable", "The potion is complete. Where are they? The whole group should be present.")
 
-                    npc<Scared>("ilona_tied","Let me go, you-")
+                    npc<Scared>("ilona_tied", "Let me go, you-")
 
-                    npc<Angry>("reese_attackable","Shut up!")
-
+                    npc<Angry>("reese_attackable", "Shut up!")
 
                     GameObjects.remove(target)
                     val slidingDoor = GameObjects.add("tomb_door_sliding_down", offset.tile(3866, 5527, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
@@ -69,18 +64,16 @@ class Reese : Script {
                     GameObjects.remove(slidingDoor)
                     talkWith(reese) {
                         npc<Angry>("Who are you? What are you doing here?")
-                        //TODO: options
+                        // TODO: options
                     }
                     // Once the dialogue (and its option branches) end, Reese turns hostile
                     println(Target.attackable(reese, this))
 
-
-                    //reese.interactPlayer(this, "Attack")
+                    // reese.interactPlayer(this, "Attack")
 
                     reese.huntMode = "aggressive"
                 }
             }
-
         }
 
         npcAfterDeath("reese_attackable") {
@@ -121,12 +114,12 @@ class Reese : Script {
         }
     }
 
-    suspend fun Player.killReese(target: NPC, msg : String) {
+    suspend fun Player.killReese(target: NPC, msg: String) {
         set("blood_pact_reese", "killed")
         target.anim("reese_death")
         delay(4)
         NPCs.remove(target)
-        //TODO: make drop on death tile
+        // TODO: make drop on death tile
         FloorItems.add(instanceOffset().tile(3865, 5525, 0), "reeses_sword", disappearTicks = 300, owner = this)
         // Altar crumbles when Reese dies
         val altar = GameObjects.findOrNull(instanceOffset().tile(3865, 5524, 0), "blood_pact_altar")

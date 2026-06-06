@@ -47,7 +47,6 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.type.Tile
-import javax.naming.directory.DirContext
 
 class LumbridgeCatacombs : Script {
 
@@ -55,7 +54,7 @@ class LumbridgeCatacombs : Script {
         moved {
             val tiles = listOf(instanceOffset().tile(3871, 5543, 1), instanceOffset().tile(3872, 5543, 1))
             if (tile in tiles && get("blood_pact_kayle") !in listOf("spared", "killed")) {
-                queue("stop_player_from_moving"){
+                queue("stop_player_from_moving") {
                     walkTo(instanceOffset().tile(3873, 5543, 1))
                     statement("You should deal with the first Cultist before advancing further.")
                 }
@@ -150,7 +149,7 @@ class LumbridgeCatacombs : Script {
                     tele(instanceOffset().tile(3861, 5533, 0))
                     face(Direction.NORTH)
                 }
-                "completed"-> {
+                "completed" -> {
                     tele(Tile(3861, 5533, 0))
                     face(Direction.NORTH)
                 }
@@ -163,12 +162,14 @@ class LumbridgeCatacombs : Script {
             when (quest("blood_pact")) {
                 "completed" -> {
                     tele(Tile(3857, 5533, 1))
-                    face (Direction.SOUTH)
+                    face(Direction.SOUTH)
                 }
-                "reese" -> { statement("You should deal with the third Cultist first.")}
+                "reese" -> {
+                    statement("You should deal with the third Cultist first.")
+                }
                 else -> {
                     tele(instanceOffset().tile(3857, 5533, 1))
-                    face (Direction.SOUTH)
+                    face(Direction.SOUTH)
                 }
             }
         }
@@ -180,7 +181,7 @@ class LumbridgeCatacombs : Script {
                     tele(instanceOffset().tile(3861, 5543, 0))
                     face(Direction.NORTH)
                 }
-                "completed"-> {
+                "completed" -> {
                     tele(Tile(3861, 5543, 0))
                     face(Direction.NORTH)
                 }
@@ -193,7 +194,7 @@ class LumbridgeCatacombs : Script {
             when (quest("blood_pact")) {
                 "completed" -> {
                     tele(Tile(3857, 5543, 1))
-                    face (Direction.SOUTH)
+                    face(Direction.SOUTH)
                 }
                 "reese" -> {
                     if (get<String>("blood_pact_caitlin") == "killed") {
@@ -204,7 +205,7 @@ class LumbridgeCatacombs : Script {
                 }
                 else -> {
                     tele(instanceOffset().tile(3857, 5543, 1))
-                    face (Direction.SOUTH)
+                    face(Direction.SOUTH)
                 }
             }
         }
@@ -368,7 +369,7 @@ class LumbridgeCatacombs : Script {
         NPCs.add("ilona_tied", offset.tile(3865, 5523, 0), Direction.NORTH)
 
         // Door between entrance and Caitlin's gallery
-        //GameObjects.add("door_kayle", offset.tile(3872, 5543, 1), ObjectShape.WALL_STRAIGHT, 0)
+        // GameObjects.add("door_kayle", offset.tile(3872, 5543, 1), ObjectShape.WALL_STRAIGHT, 0)
         // Gates in front of Caitlin's gallery (opened by winch after Caitlin is defeated)
         GameObjects.add("blood_pact_caitlin_gate", offset.tile(3870, 5531, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
         GameObjects.add("blood_pact_caitlin_gate", offset.tile(3862, 5531, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
@@ -391,7 +392,6 @@ class LumbridgeCatacombs : Script {
 
         // Altar in Reese's chamber
         GameObjects.add("blood_pact_altar", offset.tile(3865, 5524, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
-
     }
 
     fun Player.respawnInstance(offset: Delta) {
@@ -461,7 +461,7 @@ class LumbridgeCatacombs : Script {
         }
 
         // Doors — always present for stages that still need them
-        //GameObjects.add("door_kayle", offset.tile(3872, 5543, 1), ObjectShape.WALL_STRAIGHT, 0)
+        // GameObjects.add("door_kayle", offset.tile(3872, 5543, 1), ObjectShape.WALL_STRAIGHT, 0)
         // Caitlin's gates: only closed if Caitlin has not yet been dealt with
 
         if (quest("blood_pact") !in listOf("winch_activated", "reese", "ilona_untied")) {
@@ -469,10 +469,10 @@ class LumbridgeCatacombs : Script {
             GameObjects.add("blood_pact_caitlin_gate", offset.tile(3862, 5531, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
         }
         // Kayle's door: only locked if Kayle hasn't been dealt with yet
-        //if (kayleStatus in listOf("spared", "killed")) {
+        // if (kayleStatus in listOf("spared", "killed")) {
         //    val door = GameObjects.findOrNull(offset.tile(3872, 5543, 1), "door_kayle")
         //    if (door != null) GameObjects.remove(door)
-        //}
+        // }
         // Winch — present until Caitlin's gates are opened
         if (quest("blood_pact") !in listOf("winch_activated", "reese", "ilona_untied")) {
             GameObjects.add("blood_pact_winch", offset.tile(3871, 5534, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
@@ -487,7 +487,6 @@ class LumbridgeCatacombs : Script {
 
         // Stairs down from Caitlin's gallery (level 1) to Reese's chamber (level 2)
         GameObjects.add("blood_pact_stairs_down_north", offset.tile(3858, 5543, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
-
 
         // Stairs up from Reese's chamber (level 2) back to Caitlin's gallery
         GameObjects.add("blood_pact_stairs_up_south", offset.tile(3858, 5533, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
