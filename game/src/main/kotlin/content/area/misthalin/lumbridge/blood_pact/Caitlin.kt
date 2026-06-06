@@ -27,13 +27,13 @@ class Caitlin : Script {
         npcAfterDeath("caitlin_attackable") {
             dead = false
             mode = EmptyMode
+            huntMode = ""
             levels.restore(Skill.Constitution)
-            anim("caitlin_defeat")
             val player = killer as? Player
             if (player != null) {
                 player.set("blood_pact_caitlin", "defeated")
                 val original = tile.minus(player.instanceOffset())
-                player.set("blood_pact_caitlin_tile", original.id)
+                player["blood_pact_caitlin_tile"] = original.id
                 player.refreshQuestJournal()
             }
             transform("caitlin_defeated")

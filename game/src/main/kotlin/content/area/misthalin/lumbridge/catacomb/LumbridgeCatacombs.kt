@@ -26,8 +26,10 @@ import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.mode.Follow
+import world.gregs.voidps.engine.entity.character.mode.ModeType
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -287,6 +289,7 @@ class LumbridgeCatacombs : Script {
         val caitlin = NPCs.add("caitlin_cutscene", offset.tile(3878, 5532, 1), Direction.NORTH)
         val ilona = NPCs.add("ilona_cutscene", offset.tile(3877, 5533, 1), Direction.NORTH)
 
+
         delay(2)
 
         clearCamera()
@@ -368,6 +371,11 @@ class LumbridgeCatacombs : Script {
         NPCs.add("reese_attackable", offset.tile(3865, 5525, 0), Direction.SOUTH)
         NPCs.add("ilona_tied", offset.tile(3865, 5523, 0), Direction.NORTH)
 
+        NPCDefinitions.get("kayle_attackable").walkMode = ModeType.EMPTY_MOVEABLE.toByte()
+        NPCDefinitions.get("caitlin_attackable").walkMode = ModeType.EMPTY_MOVEABLE.toByte()
+        NPCDefinitions.get("reese_attackable").walkMode = ModeType.EMPTY_MOVEABLE.toByte()
+
+
         // Door between entrance and Caitlin's gallery
         // GameObjects.add("door_kayle", offset.tile(3872, 5543, 1), ObjectShape.WALL_STRAIGHT, 0)
         // Gates in front of Caitlin's gallery (opened by winch after Caitlin is defeated)
@@ -377,16 +385,16 @@ class LumbridgeCatacombs : Script {
         // Reese's chamber door (level 2)
         GameObjects.add("blood_pact_tomb_door", offset.tile(3866, 5527, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
 
-        // Winch that opens the Caitlin gallery gates (TODO: maybe not needed)
+        // Winch that opens the Caitlin gallery gates
         GameObjects.add("blood_pact_winch", offset.tile(3871, 5534, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
 
-        // Stairs down from Caitlin's gallery (level 1) to Reese's chamber (level 2) (TODO: verify tile/id)
+        // Stairs down from Caitlin's gallery (level 1) to Reese's chamber (level 2)
         GameObjects.add("blood_pact_stairs_down_south", offset.tile(3858, 5533, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
 
-        // Stairs down from Caitlin's gallery (level 1) to Reese's chamber (level 2) (TODO: verify tile/id)
+        // Stairs down from Caitlin's gallery (level 1) to Reese's chamber (level 2)
         GameObjects.add("blood_pact_stairs_down_north", offset.tile(3858, 5543, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
 
-        // Stairs up from Reese's chamber (level 2) back to Caitlin's gallery (TODO: verify tile/id)
+        // Stairs up from Reese's chamber (level 2) back to Caitlin's gallery
         GameObjects.add("blood_pact_stairs_up_south", offset.tile(3858, 5533, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
         GameObjects.add("blood_pact_stairs_up_north", offset.tile(3858, 5543, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
 
@@ -414,8 +422,10 @@ class LumbridgeCatacombs : Script {
 
         // Kayle — attackable until beaten, defeated NPC until player decides, then gone
         when (stage) {
-            in listOf("watched_cutscene", "xenia_wounded") ->
+            in listOf("watched_cutscene", "xenia_wounded") -> {
                 NPCs.add("kayle_attackable", offset.tile(3877, 5543, 1), Direction.SOUTH)
+                NPCDefinitions.get("kayle_attackable").walkMode = ModeType.EMPTY_MOVEABLE.toByte()
+            }
 
             "kayle" if kayleStatus == "defeated" -> {
                 val kayleTile = offset.tile(3877, 5543, 1)
@@ -428,9 +438,10 @@ class LumbridgeCatacombs : Script {
 
         // Caitlin — present in kayle/caitlin stages; gone once player moves to Reese
         when (stage) {
-            in listOf("watched_cutscene", "xenia_wounded", "kayle") ->
+            in listOf("watched_cutscene", "xenia_wounded", "kayle") -> {
                 NPCs.add("caitlin_attackable", offset.tile(3864, 5538, 1), Direction.EAST)
-
+                NPCDefinitions.get("caitlin_attackable").walkMode = ModeType.EMPTY_MOVEABLE.toByte()
+            }
             in listOf("caitlin", "winch_activated") if caitlinStatus == "defeated" -> {
                 val caitlinTile = offset.tile(3864, 5538, 1)
                 NPCs.add("caitlin_defeated", caitlinTile, Direction.EAST)
@@ -442,9 +453,10 @@ class LumbridgeCatacombs : Script {
 
         // Reese — present until killed
         when (stage) {
-            in listOf("watched_cutscene", "xenia_wounded", "kayle", "caitlin", "winch_activated") ->
+            in listOf("watched_cutscene", "xenia_wounded", "kayle", "caitlin", "winch_activated") -> {
                 NPCs.add("reese_attackable", offset.tile(3865, 5525, 0), Direction.SOUTH)
-
+                NPCDefinitions.get("reese_attackable").walkMode = ModeType.EMPTY_MOVEABLE.toByte()
+            }
             "reese" if reeseStatus == "defeated" -> {
                 val reeseTile = offset.tile(3865, 5525, 0)
                 NPCs.add("reese_defeated", reeseTile, Direction.SOUTH)

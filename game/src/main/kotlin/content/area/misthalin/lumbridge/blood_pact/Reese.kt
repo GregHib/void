@@ -14,6 +14,7 @@ import content.quest.instanceOffset
 import content.quest.quest
 import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -66,10 +67,7 @@ class Reese : Script {
                         npc<Angry>("Who are you? What are you doing here?")
                         // TODO: options
                     }
-                    // Once the dialogue (and its option branches) end, Reese turns hostile
-                    println(Target.attackable(reese, this))
-
-                    // reese.interactPlayer(this, "Attack")
+                    reese.interactPlayer(this, "Attack")
 
                     reese.huntMode = "aggressive"
                 }
@@ -79,8 +77,8 @@ class Reese : Script {
         npcAfterDeath("reese_attackable") {
             dead = false
             mode = EmptyMode
+            huntMode = ""
             levels.restore(Skill.Constitution)
-            anim("reese_defeat")
             val player = killer as? Player
             if (player != null) {
                 player["blood_pact_reese"] = "defeated"

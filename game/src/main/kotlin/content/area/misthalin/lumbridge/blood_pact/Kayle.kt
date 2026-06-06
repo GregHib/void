@@ -28,8 +28,8 @@ class Kayle : Script {
         npcAfterDeath("kayle_attackable") {
             dead = false
             mode = EmptyMode
+            huntMode = ""
             levels.restore(Skill.Constitution)
-            anim("kayle_defeat")
             val player = killer as? Player
             if (player != null) {
                 player["blood_pact_kayle"] = "defeated"
