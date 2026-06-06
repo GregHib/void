@@ -54,31 +54,23 @@ class Caitlin : Script {
             option<Angry>("Time for you to die!") {
                 set("blood_pact_caitlin", "killed")
                 target.anim("caitlin_death")
-                delay(1)
+                delay(2)
                 open("fade_out")
                 delay(3)
                 NPCs.remove(target)
-                // TODO: Tile missing — replace with actual floor drop tile near Caitlin's spawn (3864, 5538, 1)
                 FloorItems.add(instanceOffset().tile(3864, 5538, 1), "caitlins_staff", disappearTicks = 300, owner = this)
                 set("blood_pact", "reese")
-                set("blood_pact_reese", "unstarted")
                 refreshQuestJournal()
                 xeniaAfterChoice()
             }
             option<Neutral>("I'm not killing you. Just give me your stuff and get out of here.") {
                 set("blood_pact_caitlin", "spared")
-                target.anim("caitlin_getUp")
-                delay(1)
                 open("fade_out")
+                target.anim("caitlin_getUp")
                 delay(3)
                 NPCs.remove(target)
-                // TODO: Tile missing — replace walk path with actual exit path from Caitlin's room
-                val caitlin = NPCs.add("caitlin_cutscene", instanceOffset().tile(3864, 5538, 1), Direction.SOUTH)
-                caitlin.walkTo(instanceOffset().tile(3864, 5535, 1))
-                caitlin.walkTo(instanceOffset().tile(3877, 5530, 1))
                 FloorItems.add(instanceOffset().tile(3864, 5538, 1), "caitlins_staff", disappearTicks = 300, owner = this)
                 set("blood_pact", "reese")
-                set("blood_pact_reese", "unstarted")
                 refreshQuestJournal()
                 xeniaAfterChoice()
             }

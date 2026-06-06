@@ -10,7 +10,8 @@ values = {
     kayle = 3,
     xenia_wounded = 4,
     caitlin = 5,
-    reese = 6,
-    untied_ilona = 7,
+    winch_activated = 6,
+    reese = 7,
+    untied_ilona = 8,
     completed = 60
 }

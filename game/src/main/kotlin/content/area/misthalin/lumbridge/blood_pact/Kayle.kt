@@ -57,7 +57,7 @@ class Kayle : Script {
             option<Angry>("Yes. Now die!") {
                 set("blood_pact_kayle", "killed")
                 target.anim("kayle_death")
-                delay(1)
+                delay(2)
                 open("fade_out")
                 delay(3)
                 NPCs.remove(target)
@@ -68,9 +68,8 @@ class Kayle : Script {
             }
             option<Neutral>("No. Just give me your stuff and get out of here.") {
                 set("blood_pact_kayle", "spared")
-                target.anim("kayle_getUp")
-                delay(1)
                 open("fade_out")
+                target.anim("kayle_getUp")
                 delay(3)
                 NPCs.remove(target)
                 FloorItems.add(instanceOffset().tile(3877, 5543, 1), "kayles_sling", disappearTicks = 300, owner = this)

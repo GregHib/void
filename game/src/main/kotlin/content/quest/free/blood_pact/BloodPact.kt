@@ -110,7 +110,7 @@ class BloodPact : Script{
                     list
                 }
 
-                "caitlin" -> {
+                "caitlin", "winch_activated" -> {
                     val list = mutableListOf(
                         "<str>Xenia, an old adventurer, said she had seen some Zamorakian cultists entering the catacombs beneath Lumbridge Church. She asked me to go with her into the catacombs to deal with them.",
                         "<str>Inside the catacombs, Xenia and I overheard the cultists talking about a blood pact.",

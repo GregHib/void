@@ -45,3 +45,9 @@ option = "Climb"
 tile = { x = 3936, y = 5373, level = 2 }
 to = { x = 3744, y = 5287 }
 
+# 15696 halloween
+[48688]
+option = "Climb-down"
+tile = { x = 3865, y = 5524 }
+to = { x = 3972, y = 5565 }
+

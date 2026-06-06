@@ -1,9 +1,20 @@
-package content.area.misthalin.lumbridge
+package content.area.misthalin.lumbridge.blood_pact
 
+import content.area.misthalin.lumbridge.catacomb.completeBloodPact
 import content.entity.combat.hit.directHit
 import content.entity.player.bank.bank
-import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.*
+import content.entity.player.bank.ownsItem
+import content.entity.player.dialogue.Confused
+import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.LookDown
+import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.No
+import content.entity.player.dialogue.type.ChoiceOption
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
+import content.entity.player.dialogue.type.startQuest
+import content.entity.player.dialogue.type.statement
 import content.quest.instance
 import content.quest.instanceOffset
 import content.quest.quest
@@ -13,6 +24,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -26,7 +38,7 @@ import world.gregs.voidps.type.Direction
 class Xenia : Script {
     init {
 
-        npcOperate("Talk-to", "xenia*") {
+        npcOperate("Talk-to", "xenia*") { (target) ->
             when (quest("blood_pact")) {
                 "unstarted" -> {
                     npc<Neutral>("I'm glad you've come by. I need some help.")
@@ -49,7 +61,7 @@ class Xenia : Script {
                         optionsAfterEntering()
                     }
                 }
-                "kayle" -> {
+                "kayle", "winch_activated" -> {
                     val kayleStatus = get<String>("blood_pact_kayle")
                     foodChat()
 
@@ -113,7 +125,8 @@ class Xenia : Script {
                     }
                 }
                 "untied_ilona" -> {
-                    npc<LookDown>("You've freed the prisoner. Escort her out of the catacombs.")
+                    npc<Neutral>("Is there anything you want to ask before you go to seek out new adventures?")
+                    finalDialogBloodPact(target)
                 }
                 "completed" -> {
                     npc<Happy>("Hello again, adventurer.")
@@ -218,10 +231,10 @@ class Xenia : Script {
             set("blood_pact_kayle", "alive")
             set("blood_pact_caitlin", "alive")
             set("blood_pact_reese", "alive")
-            clear("blood_pact_kayle_tile")
-            clear("blood_pact_caitlin_tile")
-            clear("blood_pact_reese_tile")
-            clear("blood_pact_reese_door")
+             clear("blood_pact_kayle_tile")
+             clear("blood_pact_caitlin_tile")
+             clear("blood_pact_reese_tile")
+             clear("blood_pact_reese_door")
             refreshQuestJournal()
             npc<Happy>("I knew you would!")
             npc<Neutral>("We've got no time to lose. You head down the stairs, and I'll follow.")
@@ -265,14 +278,14 @@ class Xenia : Script {
         }
     }
 
-    fun ChoiceOption.whoAreYou() : Unit = option<Confused>("Who are you?"){
+    fun ChoiceOption.whoAreYou() : Unit = option<Confused>("Who are you?") {
         npc<Neutral>("My name's Xenia. I'm an adventurer.")
         npc<Neutral>("I'm one of the old guard, I suppose. I helped found the Champions' Guild, and I've done a fair few quests in my time.")
         npc<Neutral>("Now I'm starting to get a bit old for action, which is why I need your help.")
         choiceBase()
     }
 
-    fun ChoiceOption.howDoYouKnow() : Unit = option<Confused>("How did you know who I am?"){
+    fun ChoiceOption.howDoYouKnow() : Unit = option<Confused>("How did you know who I am?") {
         npc<Neutral>("Oh, I have my ways. I get the feeling that you're one to watch; you could be quite the hero some day.")
         choiceBase()
     }
@@ -299,23 +312,25 @@ class Xenia : Script {
 
     fun ChoiceOption.lostWeapon() : Unit = option<Neutral>("I've lost some of the cultists' weapons.") {
         npc<Neutral>("Yes, one of my contacts in the Champion's Guild found them and returned them to me.")
-        if (!(inventory.contains("kayles_sling") || bank.contains("kayles_sling"))) {
+
+        if (!inventory.isFull() && !ownsItem("kayles_sling")) {
             statement("Xenia gives you Kayle's sling.")
             inventory.add("kayles_sling", 1)
         }
-        if (!(inventory.contains("caitlins_staff") || bank.contains("caitlins_staff"))) {
+        if (!inventory.isFull() && !ownsItem("caitlins_staff")) {
             statement("Xenia gives you Caitlin's staff.")
             inventory.add("caitlins_staff", 1)
         }
-        if (!(inventory.contains("reeses_sword") || bank.contains("reeses_sword"))) {
+        if (!inventory.isFull() && !ownsItem("reeses_sword")) {
             statement("Xenia gives you Reese's sword.")
             inventory.add("reeses_sword", 1)
         }
     }
 
-    fun ChoiceOption.choiceQuestDetail() : Unit = option<Neutral>("I've got a question about my adventure in the catacombs...") {
-        afterQuestDetail()
-    }
+    fun ChoiceOption.choiceQuestDetail() : Unit =
+        option<Neutral>("I've got a question about my adventure in the catacombs...") {
+            afterQuestDetail()
+        }
 
     fun ChoiceOption.notWounded() : Unit = option<Neutral>("You weren't really wounded, were you?") {
         npc<Neutral>("Very perceptive, adventurer. I was wounded, but not as badly as I looked. I took the opportunity to see how you would fare.")
@@ -337,10 +352,11 @@ class Xenia : Script {
         afterQuestDetail()
     }
 
-    fun ChoiceOption.womansLife() : Unit = option<Neutral>("You risked that woman's life for the sake of a test?") {
-        npc<Neutral>(" I was prepared to step in and rescue her if you failed, but I won't always be that ready. That's why I had to do this. The world needs heroes. I was a hero, once, but I'm not getting any younger. I need to make sure the news generation has its own heroes.")
-        woundedDetails()
-    }
+    fun ChoiceOption.womansLife() : Unit =
+        option<Neutral>("You risked that woman's life for the sake of a test?") {
+            npc<Neutral>(" I was prepared to step in and rescue her if you failed, but I won't always be that ready. That's why I had to do this. The world needs heroes. I was a hero, once, but I'm not getting any younger. I need to make sure the news generation has its own heroes.")
+            woundedDetails()
+        }
 
     fun ChoiceOption.playerLife() : Unit = option<Neutral>("You risked my life for the sake of a test?") {
         npc<Neutral>("You're a born adventurer. I can practically smell it on you. People like you have a habit of coming back from things that would kill an ordinary person.")
@@ -450,6 +466,54 @@ class Xenia : Script {
             whatBloodPact()
             whoDragith()
             leaving()
+        }
+    }
+
+    suspend fun Player.finalDialogBloodPact(target : NPC) {
+        choice {
+            option("I'm ready for my reward.") {
+                npc<Neutral>("xenia_2", "Farewell, adventurer.")
+                completeBloodPact()
+            }
+
+            option("What should I do now?") {
+                npc<Neutral>("xenia_2", "The cultists' ritual opened up the lower level of the catacombs, which is swarming with undead creatures. If you want to practice your combat skills, you could go down there.")
+                npc<Neutral>("xenia_2", "Alternatively, if you explore the world I'm sure you'll find other quests you can do.")
+                finalDialogBloodPact(target)
+            }
+
+            option("You weren't really wounded, were you?") {
+                npc<Neutral>("xenia_2", "Very perceptive, adventurer.")
+                npc<Neutral>("xenia_2", "I was wounded, but not as badly as I looked. I took the opportunity to see how you would fare.")
+                werentWoundedOptions(target)
+            }
+
+            option("What will happen in the catacombs now?\n") {
+                npc<Neutral>("xenia_2", "Reese managed to complete the ritual with his own death. He's opened the staircase to the nest of undead creatures in the lower level of the catacombs, which is swarming with undead.")
+                npc<Neutral>("xenia_2", "Without a necromancer to control them, the creatures won't leave the tomb. I'll warn Father Aereck not to let people go down there.\n")
+                npc<Neutral>("xenia_2", "You're an adventurer, though. If you want to, you can venture into the tomb and fight the creatures.\n")
+                finalDialogBloodPact(target)
+            }
+        }
+    }
+
+    suspend fun Player.werentWoundedOptions(target : NPC) {
+        choice {
+            option("You risked that woman's life for the sake of a test?\n") {
+                npc<Neutral>("xenia_2", "I was prepared to step in and rescue her if you failed, but I won't always be that ready. That's why I had to do this. The world needs heroes. I was a hero, once, but I'm not getting any younger. I need to make sure the new generation has its own heroes.")
+                werentWoundedOptions(target)
+            }
+            option("You risked my life for the sake of a test?") {
+                npc<Neutral>("xenia_2", "You're a born adventurer. I can practically smell it on you. People like you have a habit of coming back from things that would kill an ordinary person.")
+                werentWoundedOptions(target)
+            }
+            option("So how did I do?") {
+                npc<Neutral>("xenia_2", "Very well indeed. You're a hero. You're exactly the sort of person the world needs. I'm glad I met you.")
+                werentWoundedOptions(target)
+            }
+            option("Back to my other questions...") {
+                finalDialogBloodPact(target)
+            }
         }
     }
 }

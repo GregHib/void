@@ -47,10 +47,20 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.RegionLevel
 import world.gregs.voidps.type.Tile
+import javax.naming.directory.DirContext
 
 class LumbridgeCatacombs : Script {
 
     init {
+        moved {
+            val tiles = listOf(instanceOffset().tile(3871, 5543, 1), instanceOffset().tile(3872, 5543, 1))
+            if (tile in tiles && get("blood_pact_kayle") !in listOf("spared", "killed")) {
+                queue("stop_player_from_moving"){
+                    walkTo(instanceOffset().tile(3873, 5543, 1))
+                    statement("You should deal with the first Cultist before advancing further.")
+                }
+            }
+        }
         objTeleportTakeOff("Climb-down", "lumbridge_catacomb_stairs") { _, _ ->
             when (quest("blood_pact")) {
                 "unstarted" -> {
@@ -73,6 +83,7 @@ class LumbridgeCatacombs : Script {
                     if (quest("blood_pact") == "started") {
                         longQueue("blood_pact_intro") {
                             open("fade_out")
+                            delay(1)
                             cutscene()
                         }
                     } else {
@@ -116,7 +127,7 @@ class LumbridgeCatacombs : Script {
         // Winch in Caitlin's gallery — removes the gates blocking the stairs once Caitlin is dealt with
         objectOperate("Operate", "blood_pact_winch") {
             if (get<String>("blood_pact_caitlin") != "defeated") {
-                message("There's no reason to operate this.")
+                statement("You should deal with the second Cultist, before trying to operate the winch.")
                 return@objectOperate
             }
             if (quest("blood_pact") != "caitlin") {
@@ -125,9 +136,9 @@ class LumbridgeCatacombs : Script {
             }
 
             statement("You operate the winch. The gates creak open.")
-            val offset = instanceOffset()
             val gate1 = GameObjects.findOrNull(instanceOffset().tile(3870, 5531, 1), "blood_pact_caitlin_gate")
             val gate2 = GameObjects.findOrNull(instanceOffset().tile(3862, 5531, 1), "blood_pact_caitlin_gate")
+            set("blood_pact", "winch_activated")
             if (gate1 != null) GameObjects.remove(gate1)
             if (gate2 != null) GameObjects.remove(gate2)
         }
@@ -143,7 +154,7 @@ class LumbridgeCatacombs : Script {
                     tele(Tile(3861, 5533, 0))
                     face(Direction.NORTH)
                 }
-                else -> message("You can't go down there yet.")
+                else -> statement("You should deal with the second Cultist first.")
             }
         }
 
@@ -154,6 +165,7 @@ class LumbridgeCatacombs : Script {
                     tele(Tile(3857, 5533, 1))
                     face (Direction.SOUTH)
                 }
+                "reese" -> { statement("You should deal with the third Cultist first.")}
                 else -> {
                     tele(instanceOffset().tile(3857, 5533, 1))
                     face (Direction.SOUTH)
@@ -172,7 +184,7 @@ class LumbridgeCatacombs : Script {
                     tele(Tile(3861, 5543, 0))
                     face(Direction.NORTH)
                 }
-                else -> message("You can't go down there yet.")
+                else -> statement("You should deal with the second Cultist first.")
             }
         }
 
@@ -183,10 +195,25 @@ class LumbridgeCatacombs : Script {
                     tele(Tile(3857, 5543, 1))
                     face (Direction.SOUTH)
                 }
+                "reese" -> {
+                    if (get<String>("blood_pact_caitlin") == "killed") {
+                        statement("You should deal with the third Cultist first.")
+                    } else {
+                        statement("You should deal with the third Cultist first.")
+                    }
+                }
                 else -> {
                     tele(instanceOffset().tile(3857, 5543, 1))
                     face (Direction.SOUTH)
                 }
+            }
+        }
+
+        objectOperate("Climb-down", "blood_pact_tomb_stairs_down") {
+            if (quest("blood_pact") != "completed") {
+                statement("You should take the prisoner to the surface and speak to Xenia before you venture deeper into the dungeon.")
+            } else {
+                tele(Tile(3972, 5565, 0))
             }
         }
 
@@ -379,61 +406,65 @@ class LumbridgeCatacombs : Script {
                 NPCs.add("xenia_after_cutscene", offset.tile(3877, 5526, 1), Direction.NORTH)
             "xenia_wounded", "kayle" ->
                 NPCs.add("xenia_wounded", offset.tile(3875, 5529, 1), Direction.SOUTH)
-            "caitlin" ->
-                NPCs.add("xenia_wounded", offset.tile(3877, 5529, 1), Direction.SOUTH)
+            "caitlin", "winch_activated" ->
+                NPCs.add("xenia_wounded", offset.tile(3877, 5538, 1), Direction.SOUTH)
             "reese", "untied_ilona" ->
-                NPCs.add("xenia_wounded", offset.tile(3877, 5529, 1), Direction.NORTH) //TODO: check loc
+                NPCs.add("xenia_wounded", offset.tile(3864, 5536, 1), Direction.NORTH)
         }
 
         // Kayle — attackable until beaten, defeated NPC until player decides, then gone
-        when {
-            stage in listOf("watched_cutscene", "xenia_wounded") ->
+        when (stage) {
+            in listOf("watched_cutscene", "xenia_wounded") ->
                 NPCs.add("kayle_attackable", offset.tile(3877, 5543, 1), Direction.SOUTH)
-            stage == "kayle" && kayleStatus == "defeated" -> {
-                val kayleTile = get<Int>("blood_pact_kayle_tile")?.let { Tile(it) }?.add(offset) ?: offset.tile(3877, 5543, 1)
+
+            "kayle" if kayleStatus == "defeated" -> {
+                val kayleTile = offset.tile(3877, 5543, 1)
                 NPCs.add("kayle_defeated", kayleTile, Direction.SOUTH)
             }
-            stage == "kayle" && kayleStatus !in listOf("killed", "spared") ->
+
+            "kayle" if kayleStatus !in listOf("killed", "spared") ->
                 NPCs.add("kayle_attackable", offset.tile(3877, 5543, 1), Direction.SOUTH)
         }
 
         // Caitlin — present in kayle/caitlin stages; gone once player moves to Reese
-        when {
-            stage in listOf("watched_cutscene", "xenia_wounded", "kayle") ->
+        when (stage) {
+            in listOf("watched_cutscene", "xenia_wounded", "kayle") ->
                 NPCs.add("caitlin_attackable", offset.tile(3864, 5538, 1), Direction.EAST)
-            stage == "caitlin" && caitlinStatus == "defeated" -> {
-                val caitlinTile = get<Int>("blood_pact_caitlin_tile")?.let { Tile(it) }?.add(offset) ?: offset.tile(3864, 5538, 1)
+
+            in listOf("caitlin", "winch_activated") if caitlinStatus == "defeated" -> {
+                val caitlinTile = offset.tile(3864, 5538, 1)
                 NPCs.add("caitlin_defeated", caitlinTile, Direction.EAST)
             }
-            stage == "caitlin" && caitlinStatus !in listOf("killed", "spared") ->
+
+            in listOf("caitlin", "winch_activated") if caitlinStatus !in listOf("killed", "spared") ->
                 NPCs.add("caitlin_attackable", offset.tile(3864, 5538, 1), Direction.EAST)
         }
 
         // Reese — present until killed
-        when {
-            stage in listOf("watched_cutscene", "xenia_wounded", "kayle", "caitlin") ->
+        when (stage) {
+            in listOf("watched_cutscene", "xenia_wounded", "kayle", "caitlin", "winch_activated") ->
                 NPCs.add("reese_attackable", offset.tile(3865, 5525, 0), Direction.SOUTH)
-            stage == "reese" && reeseStatus == "defeated" -> {
-                val reeseTile = get<Int>("blood_pact_reese_tile")?.let { Tile(it) }?.add(offset) ?: offset.tile(3865, 5525, 0)
+
+            "reese" if reeseStatus == "defeated" -> {
+                val reeseTile = offset.tile(3865, 5525, 0)
                 NPCs.add("reese_defeated", reeseTile, Direction.SOUTH)
             }
-            stage == "reese" && reeseStatus !in listOf("killed", "spared") ->
+
+            "reese" if reeseStatus !in listOf("killed", "spared") ->
                 NPCs.add("reese_attackable", offset.tile(3865, 5525, 0), Direction.SOUTH)
         }
 
         // Ilona — tied until untied; once "untied_ilona" is reached, the player exits immediately
-        when {
-            stage in listOf("watched_cutscene", "xenia_wounded", "kayle", "caitlin") ->
-                NPCs.add("ilona_tied", offset.tile(3865, 5523, 0), Direction.NORTH)
-            stage == "reese" && reeseStatus != "killed" ->
+        when (stage) {
+            !in listOf("untied_ilona") ->
                 NPCs.add("ilona_tied", offset.tile(3865, 5523, 0), Direction.NORTH)
         }
 
         // Doors — always present for stages that still need them
         //GameObjects.add("door_kayle", offset.tile(3872, 5543, 1), ObjectShape.WALL_STRAIGHT, 0)
         // Caitlin's gates: only closed if Caitlin has not yet been dealt with
-        val caitlinGatesClosed = caitlinStatus !in listOf("spared", "killed") || stage in listOf("watched_cutscene", "xenia_wounded", "kayle")
-        if (caitlinGatesClosed) {
+
+        if (quest("blood_pact") !in listOf("winch_activated", "reese", "ilona_untied")) {
             GameObjects.add("blood_pact_caitlin_gate", offset.tile(3870, 5531, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
             GameObjects.add("blood_pact_caitlin_gate", offset.tile(3862, 5531, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
         }
@@ -443,28 +474,28 @@ class LumbridgeCatacombs : Script {
         //    if (door != null) GameObjects.remove(door)
         //}
         // Winch — present until Caitlin's gates are opened
-        if (caitlinGatesClosed) {
+        if (quest("blood_pact") !in listOf("winch_activated", "reese", "ilona_untied")) {
             GameObjects.add("blood_pact_winch", offset.tile(3871, 5534, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
         }
         // Reese's chamber door — always present when player could be on level 2, removed during fight trigger
-        if (stage in listOf("watched_cutscene", "xenia_wounded", "kayle", "caitlin", "reese")) {
+        if (stage in listOf("watched_cutscene", "xenia_wounded", "kayle", "caitlin", "winch_activated", "reese")) {
             GameObjects.add("blood_pact_tomb_door", offset.tile(3866, 5527, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
         }
 
-        // Stairs down from Caitlin's gallery (level 1) to Reese's chamber (level 2) (TODO: verify tile/id)
+        // Stairs down from Caitlin's gallery (level 1) to Reese's chamber (level 2)
         GameObjects.add("blood_pact_stairs_down_south", offset.tile(3858, 5533, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
 
-        // Stairs down from Caitlin's gallery (level 1) to Reese's chamber (level 2) (TODO: verify tile/id)
+        // Stairs down from Caitlin's gallery (level 1) to Reese's chamber (level 2)
         GameObjects.add("blood_pact_stairs_down_north", offset.tile(3858, 5543, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
 
 
-        // Stairs up from Reese's chamber (level 2) back to Caitlin's gallery (TODO: verify tile/id)
+        // Stairs up from Reese's chamber (level 2) back to Caitlin's gallery
         GameObjects.add("blood_pact_stairs_up_south", offset.tile(3858, 5533, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
         // Altar in Reese's chamber
         GameObjects.add("blood_pact_stairs_up_north", offset.tile(3858, 5543, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
 
         // Altar — present until Reese is killed
-        if (stage in listOf("watched_cutscene", "xenia_wounded", "kayle", "caitlin") ||
+        if (stage in listOf("watched_cutscene", "xenia_wounded", "kayle", "caitlin", "winch_activated") ||
             (stage == "reese" && reeseStatus != "killed")
         ) {
             GameObjects.add("blood_pact_altar", offset.tile(3865, 5524, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
@@ -474,7 +505,7 @@ class LumbridgeCatacombs : Script {
 
 fun Player.completeBloodPact() {
     set("blood_pact", "completed")
-    inc("quest_points")
+    inc("quest_points", 1)
     jingle("quest_complete_1")
     unlockTrack("catacomb")
     unlockTrack("cursed_you_are")
@@ -488,8 +519,15 @@ fun Player.completeBloodPact() {
     questComplete(
         "The Blood Pact",
         "1 Quest Point",
-        "100 Attack, Strength, Defence, Ranged and Magic XP",
-        "Kayle's sling, Caitlin's staff and Reese's sword",
-        "Access to the Lumbridge Catacombs",
+        "Kayle's sling, Caitlin's staff",
+        "and Reese's sword",
+        "100 Attack, Strength,",
+        "Defence, Ranged and Magic",
+        "XP",
+        "Access to the Lumbridge",
+        "Catacombs dungeon",
     )
+
+    val xenia = NPCs.find(Tile(3245, 3198, 0), "xenia_2")
+    NPCs.remove(xenia)
 }

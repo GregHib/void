@@ -34,48 +34,53 @@ class Reese : Script {
         // Interacting with Reese's chamber door triggers the intro dialog;
         // interacting with Caitlin's area gates (same object) just shows a blocked message.
         objectOperate("Open", "blood_pact_tomb_door") { (target) ->
-            val offset = instanceOffset()
-            if (target.tile != offset.tile(3866, 5527, 0)) {
-                message("This gate won't budge.")
-                return@objectOperate
+            when(quest("blood_pact")) {
+                "reese" -> {
+                    val offset = instanceOffset()
+                    if (target.tile != offset.tile(3866, 5527, 0)) {
+                        message("This gate won't budge.")
+                        return@objectOperate
+                    }
+                    if (quest("blood_pact") != "reese") {
+                        message("You don't need to go in there yet.")
+                        return@objectOperate
+                    }
+                    if (get("blood_pact_reese_door", false)) {
+                        // Door dialog already triggered; just remove it so the player can pass
+                        GameObjects.remove(target)
+                        return@objectOperate
+                    }
+
+                    set("blood_pact_reese_door", true)
+
+                    val reese = NPCs.find(offset.tile(3865, 5525, 0), "reese_attackable")
+                    val ilona = NPCs.find(offset.tile(3865, 5523, 0), "ilona_tied")
+
+                    npc<Angry>( "reese_attackable", "The potion is complete. Where are they? The whole group should be present.")
+
+                    npc<Scared>("ilona_tied","Let me go, you-")
+
+                    npc<Angry>("reese_attackable","Shut up!")
+
+
+                    GameObjects.remove(target)
+                    val slidingDoor = GameObjects.add("tomb_door_sliding_down", offset.tile(3866, 5527, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
+                    delay(1)
+                    GameObjects.remove(slidingDoor)
+                    talkWith(reese) {
+                        npc<Angry>("Who are you? What are you doing here?")
+                        //TODO: options
+                    }
+                    // Once the dialogue (and its option branches) end, Reese turns hostile
+                    println(Target.attackable(reese, this))
+
+
+                    //reese.interactPlayer(this, "Attack")
+
+                    reese.huntMode = "aggressive"
+                }
             }
-            if (quest("blood_pact") != "reese") {
-                message("You don't need to go in there yet.")
-                return@objectOperate
-            }
-            if (get("blood_pact_reese_door", false)) {
-                // Door dialog already triggered; just remove it so the player can pass
-                GameObjects.remove(target)
-                return@objectOperate
-            }
 
-            set("blood_pact_reese_door", true)
-
-            val reese = NPCs.find(offset.tile(3865, 5525, 0), "reese_attackable")
-            val ilona = NPCs.find(offset.tile(3865, 5523, 0), "ilona_tied")
-
-            npc<Angry>( "reese_attackable", "The potion is complete. Where are they? The whole group should be present.")
-
-            npc<Scared>("ilona_tied","Let me go, you-")
-
-            npc<Angry>("reese_attackable","Shut up!")
-
-
-            GameObjects.remove(target)
-            val slidingDoor = GameObjects.add("tomb_door_sliding_down", offset.tile(3866, 5527, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
-            delay(1)
-            GameObjects.remove(slidingDoor)
-            talkWith(reese) {
-                npc<Angry>("Who are you? What are you doing here?")
-                //TODO: options
-            }
-            // Once the dialogue (and its option branches) end, Reese turns hostile
-            println(Target.attackable(reese, this))
-
-
-            //reese.interactPlayer(this, "Attack")
-
-            reese.huntMode = "aggressive"
         }
 
         npcAfterDeath("reese_attackable") {
@@ -107,20 +112,19 @@ class Reese : Script {
                 questionToReese(target)
             }
             option<Angry>("Time for you to die!") {
-                killReese(target)
+                killReese(target, "Reese dies. The fake tomb of Dragith Nurn breaks, revealing stairs to the last level of the catacombs.\n")
             }
             option<Neutral>("I'm not killing you. Give me your stuff and get out of here.") {
                 npc<Angry>("No! There must be a death! The blood pact must be complete!")
-                statement("Reese drinks a vial of poison.")
-                killReese(target)
+                killReese(target, "Reese drinks a poisonous potion, and dies. The fake tomb of Dragith Nurn breaks, revealing stairs to the last level of the catacombs.")
             }
         }
     }
 
-    suspend fun Player.killReese(target: NPC) {
+    suspend fun Player.killReese(target: NPC, msg : String) {
         set("blood_pact_reese", "killed")
         target.anim("reese_death")
-        delay(2)
+        delay(4)
         NPCs.remove(target)
         //TODO: make drop on death tile
         FloorItems.add(instanceOffset().tile(3865, 5525, 0), "reeses_sword", disappearTicks = 300, owner = this)
@@ -128,10 +132,11 @@ class Reese : Script {
         val altar = GameObjects.findOrNull(instanceOffset().tile(3865, 5524, 0), "blood_pact_altar")
         if (altar != null) GameObjects.remove(altar)
         val crumblingAltar = GameObjects.add("blood_pact_altar_crumbling", instanceOffset().tile(3865, 5524, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 2)
-        delay(5)
+        delay(1)
+        statement(msg)
+        delay(1)
         GameObjects.remove(crumblingAltar)
-        //TODO: ilona talks to player
-        //npc<Scared>("Please, untie me!")
+        npc<Scared>("ilona_tied", "Help! Untie me so we can get out of here!")
     }
 
     suspend fun Player.questionToReese(target: NPC) {
