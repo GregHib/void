@@ -145,6 +145,19 @@ fun Player.callFollower() {
 }
 
 /**
+ * Restores summoning points at an obelisk, mirroring prayer altar behaviour.
+ */
+fun Player.renewSummoningPoints() {
+    if (levels.getOffset(Skill.Summoning) >= 0) {
+        message("You already have full summoning points.")
+    } else {
+        levels.set(Skill.Summoning, levels.getMax(Skill.Summoning))
+        anim("summoning_infuse")
+        message("You renew your summoning points at the obelisk.")
+    }
+}
+
+/**
  * Resets the familiar back to its maximum remaining time based on the summoned familiar. Removes the pouch from the player's
  * inventory and rewards xp.
  */
@@ -173,6 +186,10 @@ fun Player.renewFamiliar() {
 class Summoning : Script {
 
     init {
+        objectOperate("Renew-points") {
+            renewSummoningPoints()
+        }
+
         itemOption("Summon", "*_pouch") { option ->
             val familiarLevel = EnumDefinitions.get("summoning_pouch_levels").int(option.item.def.id)
             val familiarId = EnumDefinitions.get("summoning_familiar_ids").int(option.item.def.id)
