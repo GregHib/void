@@ -1,0 +1,6 @@
+[path_of_glouphrie]
+id = 3954
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

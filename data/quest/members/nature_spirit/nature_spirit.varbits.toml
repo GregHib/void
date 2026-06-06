@@ -1,0 +1,7 @@
+[ns_brown_correct]
+persist = true
+format = "boolean"
+
+[ns_grey_correct]
+persist = true
+format = "boolean"

@@ -3,23 +3,22 @@ package content.quest.free.the_knights_sword
 import FakeRandom
 import WorldTest
 import content.quest.quest
-import dialogueContinue
 import dialogueOption
 import npcOption
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
+import skipDialogues
 import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 
@@ -44,15 +43,15 @@ class TheKnightsSwordTest : WorldTest() {
         val squireAsrol = NPCs.find(player.tile.regionLevel, "squire_asrol")
         player.npcOption(squireAsrol, "Talk-to")
         tick(2)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(2)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(2)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
 
         assertNull(player.dialogue)
         assertEquals("started", player.quest("the_knights_sword"))
@@ -62,9 +61,9 @@ class TheKnightsSwordTest : WorldTest() {
         val reldo = NPCs.find(player.tile.regionLevel, "reldo")
         player.npcOption(reldo, "Talk-to")
         tick(4)
-        player.fastForwardDialogue()
-        player.selectDialogueOption(3)
-        player.fastForwardDialogue()
+        player.skipDialogues()
+        player.dialogueOption(3)
+        player.skipDialogues()
 
         assertNull(player.dialogue)
         assertEquals("find_thurgo", player.quest("the_knights_sword"))
@@ -74,8 +73,8 @@ class TheKnightsSwordTest : WorldTest() {
         val thurgo = NPCs.find(player.tile.regionLevel, "thurgo")
         player.npcOption(thurgo, "Talk-to")
         tick(5)
-        player.selectDialogueOption(2)
-        player.fastForwardDialogue()
+        player.dialogueOption(2)
+        player.skipDialogues()
 
         assertNull(player.dialogue)
         assertEquals(0, player.inventory.count("redberry_pie"))
@@ -84,8 +83,8 @@ class TheKnightsSwordTest : WorldTest() {
         // talk to thurgo again after pie
         player.npcOption(thurgo, "Talk-to")
         tick(5)
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
+        player.dialogueOption(1)
+        player.skipDialogues()
 
         assertNull(player.dialogue)
         assertEquals("picture", player.quest("the_knights_sword"))
@@ -94,7 +93,7 @@ class TheKnightsSwordTest : WorldTest() {
         player.tele(2973, 3344, 0)
         player.npcOption(squireAsrol, "Talk-to")
         tick(2)
-        player.fastForwardDialogue()
+        player.skipDialogues()
 
         assertNull(player.dialogue)
         assertEquals("cupboard", player.quest("the_knights_sword"))
@@ -113,7 +112,7 @@ class TheKnightsSwordTest : WorldTest() {
         val cupboardOpen = GameObjects.find(Tile(2984, 3336, 2), "cupboard_the_knights_sword_opened")
         player.interactObject(cupboardOpen, "Search")
         tick()
-        player.fastForwardDialogue()
+        player.skipDialogues()
 
         assertNull(player.dialogue)
         assertEquals(1, player.inventory.count("portrait"))
@@ -123,8 +122,8 @@ class TheKnightsSwordTest : WorldTest() {
         player.tele(3000, 3144, 0)
         player.npcOption(thurgo, "Talk-to")
         tick(5)
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
+        player.dialogueOption(1)
+        player.skipDialogues()
 
         assertNull(player.dialogue)
         assertEquals(0, player.inventory.count("portrait"))
@@ -148,8 +147,8 @@ class TheKnightsSwordTest : WorldTest() {
         player.tele(3000, 3144, 0)
         player.npcOption(thurgo, "Talk-to")
         tick(5)
-        player.selectDialogueOption(1)
-        player.fastForwardDialogue()
+        player.dialogueOption(1)
+        player.skipDialogues()
 
         assertNull(player.dialogue)
         assertEquals(0, player.inventory.count("iron_bar"))
@@ -161,25 +160,11 @@ class TheKnightsSwordTest : WorldTest() {
         player.tele(2973, 3344, 0)
         player.npcOption(squireAsrol, "Talk-to")
         tick(2)
-        player.fastForwardDialogue()
+        player.skipDialogues()
 
         assertNull(player.dialogue)
         assertEquals(0, player.inventory.count("blurite_sword"))
         assertEquals("completed", player.quest("the_knights_sword"))
         assertEquals(12725.0, player.experience.get(Skill.Smithing))
-    }
-
-    private fun Player.fastForwardDialogue() {
-        assertNotNull(dialogue)
-        require(suspension is Suspension.Continue)
-        while (suspension is Suspension.Continue) {
-            dialogueContinue()
-        }
-    }
-
-    private fun Player.selectDialogueOption(option: Int) {
-        assertNotNull(dialogue)
-        require(suspension is Suspension.IntEntry)
-        dialogueOption("line$option")
     }
 }

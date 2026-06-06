@@ -1,0 +1,6 @@
+[mountain_daughter]
+id = 260
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

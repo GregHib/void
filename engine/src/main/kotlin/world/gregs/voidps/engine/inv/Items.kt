@@ -103,8 +103,9 @@ interface Items {
 
     /**
      * Returns id of an item to take off of the floor or null to cancel.
+     * [telegrab] is true when the player is picking up the item via Telekinetic Grab.
      */
-    fun takeable(item: String, handler: Player.(item: String) -> String?) {
+    fun takeable(item: String, handler: suspend Player.(item: FloorItem, telegrab: Boolean) -> String?) {
         Script.checkLoading()
         Wildcards.find(item, Wildcard.Item) { i ->
             takeable[i] = handler
@@ -125,16 +126,16 @@ interface Items {
         private val bought = Object2ObjectOpenHashMap<String, (Player, Item) -> Unit>(5)
         private val sold = Object2ObjectOpenHashMap<String, (Player, Item) -> Unit>(5)
         private val taken = Object2ObjectOpenHashMap<String, (Player, FloorItem) -> Unit>(5)
-        private val takeable = Object2ObjectOpenHashMap<String, (Player, String) -> String?>(2)
+        private val takeable = Object2ObjectOpenHashMap<String, suspend (Player, FloorItem, Boolean) -> String?>(2)
         private val destroyed = Object2ObjectOpenHashMap<String, (Player, Item) -> Unit>(5)
         private val destroyable = Object2ObjectOpenHashMap<String, (Player, Item) -> Boolean>(2)
         private val consumed = Object2ObjectOpenHashMap<String, (Player, Item, Int) -> Unit>(5)
         private val consumable = Object2ObjectOpenHashMap<String, (Player, Item) -> Boolean>(125)
         private val crafted = Object2ObjectOpenHashMap<Skill?, MutableList<suspend (Player, ItemOnItemDefinition) -> Unit>>(5)
 
-        fun takeable(player: Player, item: String): String? {
-            val handler = takeable[item] ?: return item
-            return handler.invoke(player, item)
+        suspend fun takeable(player: Player, item: FloorItem, telegrab: Boolean = false): String? {
+            val handler = takeable[item.id] ?: return item.id
+            return handler.invoke(player, item, telegrab)
         }
 
         fun take(player: Player, floorItem: FloorItem) {

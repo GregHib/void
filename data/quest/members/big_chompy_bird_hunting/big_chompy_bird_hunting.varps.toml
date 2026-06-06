@@ -1,0 +1,6 @@
+[big_chompy_bird_hunting]
+id = 293
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

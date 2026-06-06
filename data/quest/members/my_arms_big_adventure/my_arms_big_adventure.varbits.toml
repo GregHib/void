@@ -1,0 +1,6 @@
+[my_arms_big_adventure]
+id = 2790
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

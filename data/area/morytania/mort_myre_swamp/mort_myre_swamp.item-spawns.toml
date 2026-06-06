@@ -22,6 +22,7 @@ spawns = [
   { id = "swamp_tar", x = 3440, y = 3375, delay = 100, members = true },
   { id = "swamp_tar", x = 3412, y = 3366, delay = 100, members = true },
   { id = "swamp_tar", x = 3409, y = 3363, delay = 100, members = true },
+  { id = "washing_bowl", x = 3437, y = 3337, delay = 3, members = true },
 # 13621
   { id = "swamp_tar", x = 3453, y = 3441, delay = 100, members = true },
   { id = "swamp_tar", x = 3441, y = 3438, delay = 100, members = true },

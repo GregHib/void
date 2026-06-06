@@ -1,0 +1,6 @@
+[horror_from_the_deep]
+id = 34
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

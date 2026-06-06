@@ -2329,6 +2329,11 @@ req_combat = "You will need to defeat three level 35 ghasts."
 points = 2
 reward = "Access to Mort Myre swamp and the Altar of Nature<br>30 Prayer XP each time you kill a ghast"
 xp = "3,000 Crafting XP lamp"
+variables = [
+  "nature_spirit",
+  "ns_brown_correct",
+  "ns_grey_correct"
+]
 
 [nomads_requiem]
 id = 162
@@ -2509,6 +2514,24 @@ start_path = [[ 3221, 3472 ]]
 req_items = "Bucket, 50 rune essence or 25 pure essence (un-noted)."
 req_combat = "You will need to defeat a level 33 enemy and level 23 enemy."
 points = 1
+variables = [
+  "priest_in_peril",
+  "priestperil_grave_base1",
+  "priestperil_grave_base2",
+  "priestperil_grave_base3",
+  "priestperil_grave_base4",
+  "priestperil_grave_base5",
+  "priestperil_grave_base6",
+  "priestperil_grave_base7",
+  "priestperil_1_swapped",
+  "priestperil_2_swapped",
+  "priestperil_3_swapped",
+  "priestperil_4_swapped",
+  "priestperil_5_swapped",
+  "priestperil_6_swapped",
+  "priestperil_7_swapped",
+  "priestperiltrappedmonk_hide"
+]
 reward = "The blessed wolfbane dagger<br>5 kudos from Historian Minas at the Varrock Museum"
 
 [prince_ali_rescue]

@@ -1,0 +1,6 @@
+[tribal_totem]
+id = 200
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

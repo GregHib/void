@@ -1,0 +1,6 @@
+[garden_of_tranquillity]
+id = 961
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 60 }

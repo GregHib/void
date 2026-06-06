@@ -49,8 +49,8 @@ class ItemTake : Script {
 
     companion object {
         private val logger = InlineLogger()
-        fun take(player: Player, target: FloorItem): Boolean {
-            val item = Items.takeable(player, target.id) ?: return false
+        suspend fun take(player: Player, target: FloorItem, telegrab: Boolean = false): Boolean {
+            val item = Items.takeable(player, target, telegrab) ?: return false
             if (player.inventory.isFull() && (!player.inventory.stackable(item) || !player.inventory.contains(item))) {
                 player.inventoryFull()
                 return false

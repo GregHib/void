@@ -1,0 +1,6 @@
+[enlightened_journey]
+id = 2866
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 200 }

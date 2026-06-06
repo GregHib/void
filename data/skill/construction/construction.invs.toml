@@ -395,8 +395,8 @@ defaults = [
 id = 446
 defaults = [
     { id = "mystic_hat_blue_2", amount = 1 },
-    { id = "dark_mystic_hat_2", amount = 1 },
-    { id = "light_mystic_hat_3", amount = 1 },
+    { id = "mystic_hat_dark_2", amount = 1 },
+    { id = "mystic_hat_light_3", amount = 1 },
     { id = "skeletal_helm_2", amount = 1 },
     { id = "infinity_top_2", amount = 1 },
     { id = "splitbark_helm_2", amount = 1 },

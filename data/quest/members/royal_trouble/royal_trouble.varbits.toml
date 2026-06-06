@@ -1,0 +1,6 @@
+[royal_trouble]
+id = 2140
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, completed = 30 }

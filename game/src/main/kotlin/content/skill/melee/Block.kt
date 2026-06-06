@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.data.definition.WeaponAnimationDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatDamage
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -25,16 +26,17 @@ class Block(
 ) : Script {
 
     init {
-        combatAttack(handler = ::attack)
-        npcCombatAttack(handler = ::attack)
+        combatAttack(handler = ::anims)
+        npcCombatAttack(handler = ::anims)
+
+        combatDamage(handler = ::sounds)
+        npcCombatDamage(handler = ::sounds)
     }
 
-    fun attack(source: Character, attack: CombatAttack) {
+    fun anims(source: Character, attack: CombatAttack) {
         val target = attack.target
         val delay = attack.delay
         if (target is Player) {
-            source.sound(calculateHitSound(target), delay)
-            target.sound(calculateHitSound(target), delay)
             val shield = target.equipped(EquipSlot.Shield).id
             if (shield.endsWith("shield")) {
                 target.anim("shield_block", delay)
@@ -58,7 +60,19 @@ class Block(
             val def = NPCDefinitions.get(id)
             val combat = combatDefinitions.get(def["combat_def", id])
             target.anim(combat.defendAnim, delay)
-            source.sound(combat.defendSound?.id ?: return, delay)
+        }
+    }
+
+    fun sounds(target: Character, damage: CombatDamage) {
+        val source = damage.source
+        if (target is Player) {
+            source.sound(calculateHitSound(target))
+            target.sound(calculateHitSound(target))
+        } else if (target is NPC) {
+            val id = if (source is Player) target.def(source).stringId else target.id
+            val def = NPCDefinitions.get(id)
+            val combat = combatDefinitions.get(def["combat_def", id])
+            source.sound(combat.defendSound?.id ?: return)
         }
     }
 

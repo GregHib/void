@@ -1,0 +1,6 @@
+[elemental_workshop_3]
+id = 7871
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

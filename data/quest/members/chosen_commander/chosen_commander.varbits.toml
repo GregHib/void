@@ -1,0 +1,6 @@
+[chosen_commander]
+id = 1938
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

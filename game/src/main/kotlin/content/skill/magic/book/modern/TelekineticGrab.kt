@@ -31,7 +31,7 @@ class TelekineticGrab : Script {
             val spell = "telekinetic_grab"
             val floorItem = it.target
             face(floorItem.tile)
-            val item = Items.takeable(this, floorItem.id) ?: return@onFloorItemApproach
+            val item = Items.takeable(this, floorItem) ?: return@onFloorItemApproach
             if (hasClock("action_delay")) {
                 return@onFloorItemApproach
             }

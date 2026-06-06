@@ -1,0 +1,6 @@
+[fremennik_isles]
+id = 3311
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

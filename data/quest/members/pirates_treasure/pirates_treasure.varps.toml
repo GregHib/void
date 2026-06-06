@@ -1,0 +1,6 @@
+[pirates_treasure]
+id = 71
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }

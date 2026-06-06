@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.queue.weakQueue
 class PortSarim : Script {
 
     init {
-        takeable("white_apron_port_sarim") {
+        takeable("white_apron_port_sarim") { _, _ ->
             if (carriesItem("white_apron")) {
                 message("You already have one of those.")
                 null

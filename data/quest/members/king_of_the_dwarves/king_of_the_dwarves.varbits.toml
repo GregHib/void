@@ -1,0 +1,6 @@
+[king_of_the_dwarves]
+id = 8704
+persist = true
+format = "map"
+default = "unstarted"
+values = { unstarted = 0, started = 1 }
