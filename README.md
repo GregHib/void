@@ -31,7 +31,7 @@
 * **High-performance**: Capable of supporting thousands of concurrent players.
 * **Rich content**: Offers a wide range of emulated content.
 * **AI player characters**: Introduced intelligent player bots to enhance immersion.
-* **User-friendly**: Simplifies content creation with [scripts](https://github.com/GregHib/void/wiki/scripts) eliminating the need for complex integration.
+* **User-friendly**: [Scripts](https://github.com/GregHib/void/wiki/scripts) let you add content without touching engine internals.
 * **Lightweight**: Memory usage under 300MB in low-memory mode.
 * **Customisable**: Personalise your gameplay by tweaking settings in the `game.properties` file or modifying the code to suit your preferences.
 
@@ -42,7 +42,7 @@
 3. Extract the [latest pre-modified game files cache.zip](https://mega.nz/folder/ZMN2AQaZ#4rJgfzbVW0_mWsr1oPLh1A) into `/data/cache/`.
 4. Run either the `run-server.bat` on Windows, or `run-server.sh` on Linux.
 
-   You should see `[Main] - Void loaded in 2349ms` to show the server is up and running correctly.
+   You should see `[Main] - Void loaded in ...ms` to show the server is up and running correctly.
 
    > Ctrl + C to exit and shutdown the server when running from a command line terminal.
 
@@ -55,13 +55,12 @@ For more details see the full [Installation Guide](https://github.com/GregHib/vo
 
 ## Development
 
-It is recommended to use IntelliJ IDEA to develop with Void.
-The community edition can be downloaded for free from the [jetbrains website.](https://www.jetbrains.com/idea/download/)
+Use [IntelliJ](https://www.jetbrains.com/idea/download/) (which is free to use) to develop with Void.
 See [the installation guide](https://www.jetbrains.com/help/idea/installation-guide.html) for more instructions.
 
 Once opened the IDE click the `Clone Repository` button or `File | New | Project from version control... |` if in the full application.
 
-Selecting `git` version control and entering the void project URL Found under the `<> Code` button on the [GitHub page](https://github.com/GregHib/void).
+Select `git` and enter the project URL (Found under the `<> Code` button on the [GitHub page](https://github.com/GregHib/void)).
 - `git@github.com:GregHib/void.git` if you have [GitHub authentication setup](https://docs.github.com/en/authentication).
 - `https://github.com/GregHib/void.git` if you don't have SSH authentication.
 
@@ -91,9 +90,9 @@ You can also run in the command line using the gradle wrapper.
 
 Once the server is up and running; download one of the [prebuilt client.jars](https://github.com/GregHib/void-client/releases) or set up the [void-client repository](https://github.com/GregHib/void-client/) and run to log into the game.
 
-Don't forget to check out our [Contributing guidelines](./CONTRIBUTING.md) before submitting your first pull request!
+Remember to check out our [Contributing guidelines](./CONTRIBUTING.md) before submitting your first pull request!
 
-Formatting is done with spotless but should align with IntelliJ's default formatting. To be certain run:
+Run spotless before commiting to ensure formatting is correct:
 
 ```bash
 ./gradlew spotlessApply
@@ -106,9 +105,15 @@ Formatting is done with spotless but should align with IntelliJ's default format
 
 For further guides on how to write content please refer to the [Void Wiki](https://github.com/GregHib/void/wiki/).
 
+## AI Policy
+
+The vast majority of this project was written by hand. AI-assisted contributions are welcome but held to the same bar as any other submission:
+keep changes small and focused, ensure they are well tested, and make sure the code follows the style of the surrounding codebase.
+Low-effort or bulk-generated PRs will not be accepted.
+
 ## Bugs
 
-If you run into any problems or find any bugs please report them by creating a [New Issue on our Issues Page](https://github.com/GregHib/void/issues) describing the problem, so it can be fixed.
+If you run into any problems or find any bugs, please open a [GitHub Issue](https://github.com/GregHib/void/issues) describing the problem.
 
 ## Thanks to
 
