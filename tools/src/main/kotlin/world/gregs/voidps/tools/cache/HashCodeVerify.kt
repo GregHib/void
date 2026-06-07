@@ -6,7 +6,7 @@ object HashCodeVerify {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val file = File("./temp/hashes/hashes-modified.tsv")
+        val file = File("./temp/hashes/634-cache-hash-names.tsv")
         val known = file.readLines()
             .associate {
                 val parts = it.split("\t")
@@ -20,6 +20,8 @@ object HashCodeVerify {
             }
         }
 
+        var count = 0
+        var total = 0
         println(
             """
             [table="width: 500, class: full_border"]
@@ -46,8 +48,12 @@ object HashCodeVerify {
                 [/tr]
                 """.trimIndent(),
             )
+            count += found
+            total += lines.size
         }
         println("[/table]")
+
+        println("Total: ${String.format("%.2f", count / total.toDouble() * 100.0)}%")
     }
 
     private val names = mapOf(
