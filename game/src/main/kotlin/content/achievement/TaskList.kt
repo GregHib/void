@@ -12,6 +12,10 @@ class TaskList : Script {
 
     init {
         playerSpawn {
+            sendVariable("task_pin_slot")
+            sendVariable("task_pinned")
+            sendVariable("introducing_explorer_jack_task")
+            sendVariable("task_dont_show_again")
             set("task_popup", 0)
             set("task_previous_popup", 0)
             var total = 0
