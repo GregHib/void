@@ -24,6 +24,7 @@ class Yohnus : Script {
                     }
                     when (inventory.transaction.error) {
                         TransactionError.None -> {
+                            this["yohnus_paid"] = true
                             npc<Happy>("Thanks Bwana! Enjoy the facilities!")
                         }
                         else -> npc<Neutral>("Sorry, you don't have enough coins.")
@@ -40,11 +41,16 @@ class Yohnus : Script {
                 enterDoor(target)
                 return@objectOperate
             }
-            if (!inventory.contains("coins", 20)) {
+            if (!inventory.contains("coins", 20) && !this["yohnus_paid", false]) {
                 npc<Quiz>(
                     "yohnus_shilo_village",
                     "Sorry but the blacksmiths is closed. But I can let you use the furnace at the cost of 20 gold pieces."
                 )
+                return@objectOperate
+            }
+            if (this["yohnus_paid", false]) {
+                clear("yohnus_paid")
+                enterDoor(target)
                 return@objectOperate
             }
             inventory.transaction {
