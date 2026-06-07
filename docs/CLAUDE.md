@@ -113,3 +113,14 @@ Test heap is set to 5 GB in `buildSrc/src/main/kotlin/shared.gradle.kts`. Tests 
 - ktlint with `intellij_idea` style, enforced by Spotless. Always run `./gradlew spotlessApply` before committing.
 - Wildcard imports are allowed (`ktlint_standard_no-wildcard-imports` is disabled).
 - Kotlin compiler flags in use: `-Xinline-classes`, `-Xcontext-parameters`, `-Xjvm-default=all-compatibility`.
+
+### Structural conventions
+
+Beyond the linter, content code follows consistent structural patterns. See `docs/CODE_STYLE_FOR_LLMS.md` for the full guide with examples. In brief:
+
+- **Flatten with early exits.** Guard every disqualifying condition first with `return`/`return@label` (no nested `if` pyramids). Braces on every block.
+- **Scripts are thin shells.** `init {}` only registers handlers; multi-step logic goes in `private` helpers or `suspend fun Player.x()` extensions.
+- **Exhaustive `when` over if/else chains** when branching on state (quest stage, `TransactionError`); handle every arm explicitly.
+- **Handler order:** guards → local `val` setup → state mutation → check result → feedback effects (anim/gfx/sound/xp/audit) last, only after success.
+- **Use the receiver** — call `message(...)`, `inventory`, etc. bare; don't re-qualify with `player.`.
+- **`val` by default**, `var` only for real loop state. Lowercase snake_case string ids matching config; class name matches file. Comments are rare and purposeful.
