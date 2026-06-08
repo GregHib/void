@@ -44,19 +44,18 @@ fun isAdultCat(npc: NPC): Boolean {
 class KittenInteract : Script {
 
     init {
-        val registered = mutableSetOf<String>()
-        for (row in allPetRows()) {
-            if (!row.isCatLike()) continue
-            for (npcId in listOfNotNull(row.npcOrNull("baby_npc"), row.npcOrNull("grown_npc"), row.npcOrNull("overgrown_npc"))) {
-                if (!registered.add(npcId)) continue
-                npcOperate("Interact-with", npcId) { interact ->
-                    if (pet?.index != interact.target.index) {
-                        message("This isn't your pet.")
-                        return@npcOperate
-                    }
-                    openMenu(interact.target)
-                }
+        val catNpcIds = allPetRows()
+            .filter { it.isCatLike() }
+            .flatMap { listOfNotNull(it.npcOrNull("baby_npc"), it.npcOrNull("grown_npc"), it.npcOrNull("overgrown_npc")) }
+            .toSet()
+            .joinToString(",")
+
+        npcOperate("Interact-with", catNpcIds) { interact ->
+            if (pet?.index != interact.target.index) {
+                message("This isn't your pet.")
+                return@npcOperate
             }
+            openMenu(interact.target)
         }
     }
 
