@@ -237,7 +237,7 @@ private val PLAYER_NAME_TOKEN = Regex("\\bPlayer\\b")
 private fun substitutePlayerName(line: String, name: String): String = PLAYER_NAME_TOKEN.replace(line, name)
 
 /**
- * Splits `Bark! (Translation!)` into `Bark!\n(Translation!)` so the chathead
+ * Splits `Bark! (Translation!)` into `Bark!<br>(Translation!)` so the chathead
  * renders the bark on one line and the bracketed translation on the next.
  */
 private fun breakParenTranslation(line: String): String {
@@ -246,7 +246,7 @@ private fun breakParenTranslation(line: String): String {
     val bark = line.substring(0, parenStart).trimEnd()
     if (bark.isEmpty()) return line
     val translation = line.substring(parenStart)
-    return "$bark\n$translation"
+    return "$bark<br>$translation"
 }
 
 fun Player.callPet() {

@@ -76,7 +76,7 @@ private fun dogExpressionFor(line: String): String {
  * Lines wrapped in [brackets] are thought-bubbles the player picks up via context, so they render
  * as-is. Lines like "Whiiiiine. (Boring!)" carry both a bark and an English translation; below the
  * understanding threshold the chathead shows only the bark, at or above it the chathead shows the
- * bark on the first line with the translation on a second line beneath it.
+ * bark on the first line with the translation on a second line beneath it (via a `<br>` break).
  */
 private fun renderDogLine(line: String, understandsPet: Boolean): String {
     if (line.startsWith("[") && line.endsWith("]")) {
@@ -89,5 +89,5 @@ private fun renderDogLine(line: String, understandsPet: Boolean): String {
     }
     val bark = line.substring(0, parenStart).trim()
     val translation = line.substring(parenStart + 1, parenEnd).trim()
-    return if (understandsPet) "$bark\n($translation)" else bark
+    return if (understandsPet) "$bark<br>($translation)" else bark
 }
