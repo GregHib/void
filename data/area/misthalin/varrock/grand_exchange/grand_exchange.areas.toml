@@ -2,5 +2,4 @@
 x = [3145, 3189]
 y = [3469, 3513]
 level = 0
-hint = "in the Grand Exchange."
 tags = ["grand_exchange"]
