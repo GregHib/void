@@ -88,14 +88,7 @@ fun Player.summonPet(row: RowDefinition, itemId: String, restart: Boolean = fals
     if (!restart && !inventory.remove(itemId)) {
         return false
     }
-    val spawned = try {
-        NPCs.add(npcStringId, tile)
-    } catch (t: Throwable) {
-        // Roll back the consumed item so a spawn failure (unknown id, NPC
-        // cap, world full, ...) doesn't silently destroy the player's pet.
-        if (!restart) inventory.add(itemId)
-        throw t
-    }
+    val spawned = NPCs.add(npcStringId, tile)
     spawned.mode = Follow(spawned, this)
     // Set the pet index synchronously so a second drop on the same tick sees
     // pet != null and trips the "You already have a follower." gate, instead
