@@ -11,8 +11,6 @@ import world.gregs.voidps.engine.inv.equipment
 
 enum class PetStage { Baby, Grown, Overgrown }
 
-private val DOG_BREEDS = setOf("bulldog", "dalmatian", "greyhound", "labrador", "sheepdog", "terrier")
-
 fun RowDefinition.isCatLike(): Boolean = rowId == "hellcat" || rowId == "cat" || rowId.startsWith("cat_")
 
 private val VARIANT_SUFFIX = Regex("(.*)_\\d+$")
@@ -24,7 +22,7 @@ fun RowDefinition.petTalksKey(): String = VARIANT_SUFFIX.matchEntire(rowId)?.gro
 fun RowDefinition.dogBreed(): String? {
     val base = rowId.substringBefore('_')
     val candidate = if (rowId.contains('_') && rowId.substringAfter('_').all(Char::isDigit)) base else rowId
-    return if (candidate in DOG_BREEDS) candidate else null
+    return if (Tables.get("dog_breeds").rows().any { it.string("pet_id") == candidate }) candidate else null
 }
 
 fun RowDefinition.itemFor(stage: PetStage): String? = when (stage) {

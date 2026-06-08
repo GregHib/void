@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
@@ -30,28 +31,16 @@ private val logger = InlineLogger()
 
 private data class Breed(val option: String, val petId: String, val puppyItem: String)
 
-/**
- * Order matches the click index resolved from the iface 668 ("Pick a puppy") components:
- *   .bulldog (cache id 3)   -> index 0
- *   .dalmatian (id 4)       -> index 1
- *   .greyhound (id 5)       -> index 2
- *   .terrier (id 6)         -> index 3
- *   .sheepdog (id 7)        -> index 4
- *   .labrador (id 8)        -> index 5
- */
-private val BREEDS = listOf(
-    Breed("Bulldog", "bulldog", "bulldog_puppy_white"),
-    Breed("Dalmatian", "dalmatian", "dalmatian_puppy_black"),
-    Breed("Greyhound", "greyhound", "greyhound_puppy_brown"),
-    Breed("Terrier", "terrier", "terrier_puppy_2"),
-    Breed("Sheepdog", "sheepdog", "sheepdog_puppy_black"),
-    Breed("Labrador", "labrador", "labrador_puppy_yellow"),
-)
+/** Dog breeds sold by the pet shop, ordered to match the iface 668 ("Pick a puppy") component indices. */
+private fun dogBreeds(): List<Breed> = Tables.get("dog_breeds").rows().map {
+    Breed(it.string("option"), it.string("pet_id"), it.item("puppy_item"))
+}
 
 private fun Player.alreadyHasDog(): Boolean {
     val active = get("pet_active_item", "")
-    if (active.isNotBlank() && BREEDS.any { active.startsWith(it.petId) }) return true
-    return BREEDS.any { breed ->
+    val breeds = dogBreeds()
+    if (active.isNotBlank() && breeds.any { active.startsWith(it.petId) }) return true
+    return breeds.any { breed ->
         inventory.contains(breed.puppyItem) || inventory.contains(breed.petId)
     }
 }
@@ -76,11 +65,11 @@ class PetShopOwner : Script {
         // interface-option packet depending on how the cache wires up each
         // button, so register both dispatch paths against the same resume.
         continueDialogue("dialogue_pick_a_puppy:*") { id ->
-            val index = BREEDS.indexOfFirst { it.petId == id.substringAfter(":") }
+            val index = dogBreeds().indexOfFirst { it.petId == id.substringAfter(":") }
             if (index >= 0) (suspension as? Suspension.IntEntry)?.resume(index)
         }
         interfaceOption(id = "dialogue_pick_a_puppy:*") { option ->
-            val index = BREEDS.indexOfFirst { it.petId == option.component }
+            val index = dogBreeds().indexOfFirst { it.petId == option.component }
             if (index >= 0) (suspension as? Suspension.IntEntry)?.resume(index)
         }
     }
@@ -117,7 +106,7 @@ class PetShopOwner : Script {
         if (!open("dialogue_pick_a_puppy")) return
         val index = pauseInt()
         close("dialogue_pick_a_puppy")
-        val breed = BREEDS.getOrNull(index) ?: return
+        val breed = dogBreeds().getOrNull(index) ?: return
         buyPuppy(owner, breed)
     }
 
