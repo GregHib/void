@@ -24,8 +24,8 @@ suspend fun Player.talkToDog(row: RowDefinition, dog: NPC) {
     val stageKey = if (row.stageForNpc(dog.id) == PetStage.Baby) "baby" else "grown"
 
     val rows = Tables.get("pet_talks").rows().filter {
-        val stages = it.string("stage")
-        it.string("pet") == breed && (stages.isEmpty() || stages.split(',').any { s -> s.trim() == stageKey })
+        val stages = it.stringList("stage")
+        it.string("pet") == breed && (stages.isEmpty() || stageKey in stages)
     }
     if (rows.isEmpty()) return
 

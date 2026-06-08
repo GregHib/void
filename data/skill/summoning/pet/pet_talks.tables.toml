@@ -17,7 +17,7 @@
 
 [pet_talks]
 pet = "string"
-stage = "string"
+stage = "list<string>"
 condition = "string"
 lines = "list<string>"
 
@@ -25,7 +25,7 @@ lines = "list<string>"
 
 [.baby_dragon_baby]
 pet = "baby_dragon"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc: Rawr, raaar! Growl raaaaawraaaaw!",
@@ -33,7 +33,7 @@ lines = [
 
 [.baby_dragon_grown]
 pet = "baby_dragon"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Roooooar! Graaaaah roaaaaar!",
@@ -41,7 +41,7 @@ lines = [
 
 [.labrador_baby_1]
 pet = "labrador"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc:Yipyip yip yap yipyap, yap!",
@@ -52,7 +52,7 @@ lines = [
 
 [.labrador_grown_1]
 pet = "labrador"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:Can we play now?",
@@ -64,7 +64,7 @@ lines = [
 
 [.labrador_grown_2]
 pet = "labrador"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:It wouldn't kill you to throw a stick around, eh?",
@@ -74,7 +74,7 @@ lines = [
 
 [.labrador_grown_3]
 pet = "labrador"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:I want to get something to eat!",
@@ -85,7 +85,7 @@ lines = [
 
 [.greyhound_baby_1]
 pet = "greyhound"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc:Yipyip yip yap? (Where to now?)",
@@ -96,7 +96,7 @@ lines = [
 
 [.greyhound_grown_1]
 pet = "greyhound"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:Whiiiiine. (Boring!)",
@@ -106,7 +106,7 @@ lines = [
 
 [.greyhound_grown_2]
 pet = "greyhound"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:Whinewhine. (Bored now.)",
@@ -118,7 +118,7 @@ lines = [
 
 [.greyhound_grown_3]
 pet = "greyhound"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:Woofwoof! (Hurry up, slowpoke!)",
@@ -130,7 +130,7 @@ lines = [
 
 [.greyhound_grown_4]
 pet = "greyhound"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:Woofwoof woof whine. (Any reason we are stood here idly?)",
@@ -140,7 +140,7 @@ lines = [
 
 [.greyhound_grown_5]
 pet = "greyhound"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:Whoofwoof woof! (Don't stop now! Keep running!)",
@@ -148,7 +148,7 @@ lines = [
 
 [.dalmatian_baby_1]
 pet = "dalmatian"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc:Yipyipyip! (Hello!)",
@@ -160,7 +160,7 @@ lines = [
 
 [.dalmatian_grown_1]
 pet = "dalmatian"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:Woof! (Hey!)",
@@ -173,7 +173,7 @@ lines = [
 
 [.dalmatian_grown_2]
 pet = "dalmatian"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:Woofwoof woof? (Whatcha doin'?)",
@@ -184,7 +184,7 @@ lines = [
 
 [.dalmatian_grown_3]
 pet = "dalmatian"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:Woofwoof woof woof! (I'm a good dog!)",
@@ -194,7 +194,7 @@ lines = [
 
 [.dalmatian_grown_4]
 pet = "dalmatian"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:Woofwoof woof woof! (Pay attention to me!)",
@@ -204,14 +204,14 @@ lines = [
 
 [.dalmatian_grown_stick]
 pet = "dalmatian"
-stage = "grown"
+stage = ["grown"]
 condition = "logs"
 lines = [
 ]
 
 [.bulldog_baby_1]
 pet = "bulldog"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc:Whurfwhurf, grumble snuffle whurf whurf?",
@@ -223,7 +223,7 @@ lines = [
 
 [.bulldog_grown_1]
 pet = "bulldog"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:Whurfwhurf whurf, whurfwhurf whurf.",
@@ -235,7 +235,7 @@ lines = [
 
 [.bulldog_grown_2]
 pet = "bulldog"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:Whurf whurfwhurf whurf. Grumblewhurf.",
@@ -247,7 +247,7 @@ lines = [
 
 [.bulldog_grown_3]
 pet = "bulldog"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:Whurfwhurf Whurf.",
@@ -257,7 +257,7 @@ lines = [
 
 [.bulldog_grown_4]
 pet = "bulldog"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:Whurfwhurf?",
@@ -267,14 +267,14 @@ lines = [
 
 [.bulldog_grown_tea]
 pet = "bulldog"
-stage = "grown"
+stage = ["grown"]
 condition = "cup_of_tea"
 lines = [
 ]
 
 [.terrier_baby_1]
 pet = "terrier"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc:Yipyip yip yap yip yip! (Are we going shomeplache intereshting?)",
@@ -285,7 +285,7 @@ lines = [
 
 [.terrier_grown_1]
 pet = "terrier"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:Yipyap yip yap yapyap yip yip? (Are we going to get shome shpecial equipment for thish misshion?)",
@@ -295,7 +295,7 @@ lines = [
 
 [.terrier_grown_2]
 pet = "terrier"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:Yap, yappity yap, yap? (Sho, what'sh the plan today, M?)",
@@ -306,7 +306,7 @@ lines = [
 
 [.terrier_grown_3]
 pet = "terrier"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:Yipyip yap yap yap yapyapyap! (Quickly, letsh get moving. Time ish washting!)",
@@ -316,7 +316,7 @@ lines = [
 
 [.terrier_grown_4]
 pet = "terrier"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:Arf arf yip yap yipyip yap? (How are we supposed to shave the world shtanding around here?)",
@@ -326,7 +326,7 @@ lines = [
 
 [.terrier_grown_5]
 pet = "terrier"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:Yappy yappy yap yip yap! (Shaved the world again, M!)",
@@ -336,7 +336,7 @@ lines = [
 
 [.sheepdog_baby_1]
 pet = "sheepdog"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc:Yapyap yip yap! (Hello!)",
@@ -348,7 +348,7 @@ lines = [
 
 [.sheepdog_grown_1]
 pet = "sheepdog"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:Whurf. Woof whurf woofwoof? (I say. Where are we off to?)",
@@ -358,7 +358,7 @@ lines = [
 
 [.sheepdog_grown_2]
 pet = "sheepdog"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:Whurf woof woof woof, whurfwoof? (Are we lost, old sport?)",
@@ -368,7 +368,7 @@ lines = [
 
 [.sheepdog_grown_3]
 pet = "sheepdog"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:Whurf, woofwoof. (I say, old fruit.)",
@@ -380,7 +380,7 @@ lines = [
 
 [.sheepdog_grown_4]
 pet = "sheepdog"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc:Whurfwoofwhurf, woof woof? (What's the plan, old bean?)",
@@ -390,7 +390,7 @@ lines = [
 
 [.sheepdog_grown_wool]
 pet = "sheepdog"
-stage = "grown"
+stage = ["grown"]
 condition = "wool"
 lines = [
     "npc:Whurf. Whine woof whine whurf. (I say. It's not on, stealing someone else's coat.)",
@@ -405,7 +405,7 @@ lines = [
 
 [.platypus_baby]
 pet = "platypus"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc: Chirrup-chirrup snuffle honk squeeeee? (What are we doing today? Huh? Huh?)",
@@ -418,7 +418,7 @@ lines = [
 
 [.platypus_grown_1]
 pet = "platypus"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "player: So what would you like to do today?",
@@ -434,7 +434,7 @@ lines = [
 
 [.platypus_grown_2]
 pet = "platypus"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Sniffle snuffle churrup-sneeze? (So, it occurred to me... Might I suggest that we hunt for a nice, hollow log inside which we could take a little snooze?)",
@@ -447,7 +447,7 @@ lines = [
 
 [.platypus_grown_3]
 pet = "platypus"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Chirrup-chirrup snuffle BARK! (Nice day for a stroll, isn't it?)",
@@ -461,7 +461,7 @@ lines = [
 
 [.platypus_grown_4]
 pet = "platypus"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Chirrup sniffle-snuff? (So, have you read anything interesting lately? A good novel? A historical tome? Winsome love letters?)",
@@ -475,7 +475,7 @@ lines = [
 
 [.platypus_lavender]
 pet = "platypus"
-stage = "grown"
+stage = ["grown"]
 condition = "lavender"
 lines = [
     "npc: Chirrup-chirrup? (Oo, is that aromatic lavender I smell?)",
@@ -488,7 +488,7 @@ lines = [
 
 [.broav_1]
 pet = "broav"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: Oink snort oink squeal oink snort squeal? (What would you get if you pushed me down a hill?)",
@@ -500,7 +500,7 @@ lines = [
 
 [.broav_2]
 pet = "broav"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: Oink oink squeal snort oink. (I eat like a pig.)",
@@ -510,7 +510,7 @@ lines = [
 
 [.broav_3]
 pet = "broav"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: Oink oink snort squeal oink? (Why doesn't my tail like mornings?)",
@@ -522,7 +522,7 @@ lines = [
 
 [.broav_hungry_empty]
 pet = "broav"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: Oink-oink grunt snort! (Gimme some food!)",
@@ -532,7 +532,7 @@ lines = [
 
 [.broav_fungus]
 pet = "broav"
-stage = ""
+stage = []
 condition = "mort_myre_fungus"
 lines = [
     "npc: Oink-oink grunt snort! (Gimme some food!)",
@@ -543,7 +543,7 @@ lines = [
 
 [.giant_crab_baby]
 pet = "giant_crab"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc: Clickclick clackclatter clack click! (I are playin' \"Followin' der Yooman\"!)",
@@ -553,7 +553,7 @@ lines = [
 
 [.giant_crab_grown_1]
 pet = "giant_crab"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Clatterclatterclatter! (Yooman, gimmie the fishies!)",
@@ -565,7 +565,7 @@ lines = [
 
 [.giant_crab_grown_2]
 pet = "giant_crab"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Clatter clatter clatter click clatter! (I is going to eat you, little fishies!)",
@@ -575,7 +575,7 @@ lines = [
 
 [.giant_crab_grown_3]
 pet = "giant_crab"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Clatterclatter... (Dis is too dry...)",
@@ -584,7 +584,7 @@ lines = [
 
 [.giant_crab_grown_4]
 pet = "giant_crab"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Clackclackclack clatter click cliak. (Hey, yooman, I wanna go away.)",
@@ -596,7 +596,7 @@ lines = [
 
 [.squirrel_baby]
 pet = "squirrel"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc: Chatterchatter chatter chatter chitter! (Throw a ball for me!)",
@@ -609,7 +609,7 @@ lines = [
 
 [.squirrel_grown_1]
 pet = "squirrel"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Chitterchitter! (Gimme a nut!)",
@@ -619,7 +619,7 @@ lines = [
 
 [.squirrel_grown_2]
 pet = "squirrel"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Chatterchatter chatter! (Stop doing that and play with me!)",
@@ -629,7 +629,7 @@ lines = [
 
 [.squirrel_grown_3]
 pet = "squirrel"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Chatterchatterchatter chitter. (This is boring, take me someplace fun.)",
@@ -639,7 +639,7 @@ lines = [
 
 [.squirrel_grown_4]
 pet = "squirrel"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Chitterchatter? (Is it nearly nut time?)",
@@ -650,7 +650,7 @@ lines = [
 
 [.squirrel_logs]
 pet = "squirrel"
-stage = "grown"
+stage = ["grown"]
 condition = "logs"
 lines = [
     "npc: Chitter... (Sigh...)",
@@ -663,7 +663,7 @@ lines = [
 
 [.vulture_baby]
 pet = "vulture"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc: Chirrup! (Carry me!)",
@@ -673,7 +673,7 @@ lines = [
 
 [.vulture_grown_1]
 pet = "vulture"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Awk craaaawawk! Awk craaaawawk! (Pay attention to me!)",
@@ -683,7 +683,7 @@ lines = [
 
 [.vulture_grown_2]
 pet = "vulture"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Craaaawawk? (Do you smell that?)",
@@ -694,7 +694,7 @@ lines = [
 
 [.vulture_grown_3]
 pet = "vulture"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Craaaawk awwwk craaaw? (Can we go digging up dead things?)",
@@ -704,7 +704,7 @@ lines = [
 
 [.vulture_grown_4]
 pet = "vulture"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Awk! Awk! (I smell dead people!)",
@@ -715,7 +715,7 @@ lines = [
 
 [.monkey_baby]
 pet = "monkey"
-stage = "baby"
+stage = ["baby"]
 condition = "monkeyspeak_amulet"
 lines = [
     "npc: Wanna go play in the trees?",
@@ -731,7 +731,7 @@ lines = [
 
 [.monkey_grown_1]
 pet = "monkey"
-stage = "grown"
+stage = ["grown"]
 condition = "monkeyspeak_amulet"
 lines = [
     "npc: So why do you walk so funny all the time? Your knuckles barely even touch the ground.",
@@ -744,7 +744,7 @@ lines = [
 
 [.monkey_grown_2]
 pet = "monkey"
-stage = "grown"
+stage = ["grown"]
 condition = "monkeyspeak_amulet"
 lines = [
     "npc: I want a banana!",
@@ -760,7 +760,7 @@ lines = [
 
 [.monkey_grown_3]
 pet = "monkey"
-stage = "grown"
+stage = ["grown"]
 condition = "monkeyspeak_amulet"
 lines = [
     "npc: Hey, you!",
@@ -776,7 +776,7 @@ lines = [
 
 [.monkey_grown_4]
 pet = "monkey"
-stage = "grown"
+stage = ["grown"]
 condition = "monkeyspeak_amulet"
 lines = [
     "npc: On Karamja.",
@@ -792,7 +792,7 @@ lines = [
 
 [.monkey_baby_noamulet]
 pet = "monkey"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc: Eeek eek! Ook ook eeek eek eeeeek!",
@@ -800,7 +800,7 @@ lines = [
 
 [.monkey_grown_noamulet]
 pet = "monkey"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Ook ook ook! Eeek eek ook ook! Eeek!",
@@ -810,7 +810,7 @@ lines = [
 
 [.clockwork_cat]
 pet = "clockwork_cat"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "You wind the key on the clockwork cat.",
@@ -821,7 +821,7 @@ lines = [
 
 [.saradomin_owl_chick]
 pet = "saradomin_owl"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc: Cheepcheep? (Are you my mummy/daddy?)",
@@ -833,7 +833,7 @@ lines = [
 
 [.saradomin_owl_grown_1]
 pet = "saradomin_owl"
-stage = "grown,overgrown"
+stage = ["grown", "overgrown"]
 condition = ""
 lines = [
     "npc: Hoothoot hoot? (Have you considered the words of Saradomin today?)",
@@ -842,7 +842,7 @@ lines = [
 
 [.saradomin_owl_grown_2]
 pet = "saradomin_owl"
-stage = "grown,overgrown"
+stage = ["grown", "overgrown"]
 condition = ""
 lines = [
     "npc: Hoothoot! (Saradomin be praised!)",
@@ -852,7 +852,7 @@ lines = [
 
 [.saradomin_owl_grown_3]
 pet = "saradomin_owl"
-stage = "grown,overgrown"
+stage = ["grown", "overgrown"]
 condition = ""
 lines = [
     "npc: Hoot? (Oh, really?)",
@@ -862,7 +862,7 @@ lines = [
 
 [.saradomin_owl_grown_4]
 pet = "saradomin_owl"
-stage = "grown,overgrown"
+stage = ["grown", "overgrown"]
 condition = ""
 lines = [
     "npc: Hoothoot hoot... (We should be out saving people...)",
@@ -873,7 +873,7 @@ lines = [
 
 [.zamorak_hawk_chick]
 pet = "zamorak_hawk"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc: Cheepcheep? (Are you my mummy/daddy?)",
@@ -885,7 +885,7 @@ lines = [
 
 [.zamorak_hawk_grown_1]
 pet = "zamorak_hawk"
-stage = "grown,overgrown"
+stage = ["grown", "overgrown"]
 condition = ""
 lines = [
     "npc: Squaa scree! (I can feel anger welling within you!)",
@@ -897,7 +897,7 @@ lines = [
 
 [.zamorak_hawk_grown_2]
 pet = "zamorak_hawk"
-stage = "grown,overgrown"
+stage = ["grown", "overgrown"]
 condition = ""
 lines = [
     "npc: Craak Squaa! (All will fall before me!)",
@@ -906,7 +906,7 @@ lines = [
 
 [.zamorak_hawk_grown_3]
 pet = "zamorak_hawk"
-stage = "grown,overgrown"
+stage = ["grown", "overgrown"]
 condition = ""
 lines = [
     "npc: Craaak....craaak. (How much longer must we wait here?)",
@@ -916,7 +916,7 @@ lines = [
 
 [.zamorak_hawk_grown_4]
 pet = "zamorak_hawk"
-stage = "grown,overgrown"
+stage = ["grown", "overgrown"]
 condition = ""
 lines = [
     "npc: Screee craak? (When will we subjugate these people?)",
@@ -927,7 +927,7 @@ lines = [
 
 [.guthix_raptor_chick]
 pet = "guthix_raptor"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc: Cheepcheep? (Are you my mummy/daddy?)",
@@ -939,7 +939,7 @@ lines = [
 
 [.guthix_raptor_grown_1]
 pet = "guthix_raptor"
-stage = "grown,overgrown"
+stage = ["grown", "overgrown"]
 condition = ""
 lines = [
     "npc: Cawwcaww... (I sense a lack of balance...)",
@@ -948,7 +948,7 @@ lines = [
 
 [.guthix_raptor_grown_2]
 pet = "guthix_raptor"
-stage = "grown,overgrown"
+stage = ["grown", "overgrown"]
 condition = ""
 lines = [
     "npc: Cacawcaw caw cawcaw! (Let's go equalise things!)",
@@ -958,7 +958,7 @@ lines = [
 
 [.guthix_raptor_grown_3]
 pet = "guthix_raptor"
-stage = "grown,overgrown"
+stage = ["grown", "overgrown"]
 condition = ""
 lines = [
     "npc: Caw cawcaw caaaw! (Today is going to be a wonderful day!)",
@@ -971,7 +971,7 @@ lines = [
 
 [.guthix_raptor_grown_4]
 pet = "guthix_raptor"
-stage = "grown,overgrown"
+stage = ["grown", "overgrown"]
 condition = ""
 lines = [
     "npc: Caw? (Are you balanced?)",
@@ -983,7 +983,7 @@ lines = [
 
 [.ex_ex_parrot_1]
 pet = "ex_ex_parrot"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: Braaaa.....cawwww...braaaaaawk..... (What evil looks I get from young and old.)",
@@ -996,7 +996,7 @@ lines = [
 
 [.ex_ex_parrot_2]
 pet = "ex_ex_parrot"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: Braaaawk kaaaaaw.....braaaaa......wk? (Are we going to a wedding?)",
@@ -1007,7 +1007,7 @@ lines = [
 
 [.ex_ex_parrot_3]
 pet = "ex_ex_parrot"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: Braaawk braaaa.....awk. (I have a story for you.)",
@@ -1022,7 +1022,7 @@ lines = [
 
 [.ex_ex_parrot_4]
 pet = "ex_ex_parrot"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: (What use be the painted ship upon the painted ocean?)",
@@ -1032,7 +1032,7 @@ lines = [
 
 [.cute_phoenix_eggling_1]
 pet = "cute_phoenix_eggling"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: Cheep cheepy-chirp chir? (Can me has ashes?)",
@@ -1042,7 +1042,7 @@ lines = [
 
 [.cute_phoenix_eggling_2]
 pet = "cute_phoenix_eggling"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: Cheep chirreep chirrup, cheep chip chirp? (What came first, chickens or eggs?)",
@@ -1054,7 +1054,7 @@ lines = [
 
 [.cute_phoenix_eggling_3]
 pet = "cute_phoenix_eggling"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: Cheep chirrup chirp cheerp. (You killed my mummy.)",
@@ -1065,7 +1065,7 @@ lines = [
 
 [.cute_phoenix_eggling_4]
 pet = "cute_phoenix_eggling"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: Chip cheep chirrurp cheep? (Does you think me are cute?)",
@@ -1078,7 +1078,7 @@ lines = [
 
 [.mean_phoenix_eggling_1]
 pet = "mean_phoenix_eggling"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: Bwark bwik bwak! (Gimme some ash!)",
@@ -1089,7 +1089,7 @@ lines = [
 
 [.mean_phoenix_eggling_2]
 pet = "mean_phoenix_eggling"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "player: How do you drop an egg six feet without breaking it?",
@@ -1100,7 +1100,7 @@ lines = [
 
 [.mean_phoenix_eggling_3]
 pet = "mean_phoenix_eggling"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "player: Knock knock.",
@@ -1113,7 +1113,7 @@ lines = [
 
 [.mean_phoenix_eggling_4]
 pet = "mean_phoenix_eggling"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "player: Wait a minute, where did you get a scar?",
@@ -1127,7 +1127,7 @@ lines = [
 
 [.chameleon_baby]
 pet = "chameleon"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc: Hsssssss sssshsssss hssss! (You can't see me!)",
@@ -1137,7 +1137,7 @@ lines = [
 
 [.chameleon_grown_1]
 pet = "chameleon"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Hssshsss hsssshsss ssshsss? (You can't see me, right?)",
@@ -1147,7 +1147,7 @@ lines = [
 
 [.chameleon_grown_2]
 pet = "chameleon"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Hshsssss hssss hss hsss! (From the shadows, I strike!)",
@@ -1159,7 +1159,7 @@ lines = [
 
 [.chameleon_grown_3]
 pet = "chameleon"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Hsssh sssssss ssshssssss. (I am one stealthy chameleon.)",
@@ -1168,7 +1168,7 @@ lines = [
 
 [.chameleon_grown_4]
 pet = "chameleon"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Hssshsss hssssh sssshssss sss. (Nobody can see through my perfect camouflage.)",
@@ -1183,7 +1183,7 @@ lines = [
 
 [.giant_crab_crab_gear]
 pet = "giant_crab"
-stage = "grown"
+stage = ["grown"]
 condition = "crab_claw|crab_helmet"
 lines = [
     "npc: Clackclackclack clatter click clack. (Hey yooman, you best not be doin' dat ter me...)",
@@ -1198,7 +1198,7 @@ lines = [
 
 [.saradomin_owl_tainted]
 pet = "saradomin_owl"
-stage = "grown,overgrown"
+stage = ["grown", "overgrown"]
 condition = "tainted:saradomin"
 lines = [
     "npc: Hoothoot hoothoothoot? (How can you wear those tainted items?)",
@@ -1208,7 +1208,7 @@ lines = [
 
 [.zamorak_hawk_tainted]
 pet = "zamorak_hawk"
-stage = "grown,overgrown"
+stage = ["grown", "overgrown"]
 condition = "tainted:zamorak"
 lines = [
     "npc: Suaaa craak! Scree! (Those items aren't right! Drop them!)",
@@ -1218,7 +1218,7 @@ lines = [
 
 [.guthix_raptor_tainted]
 pet = "guthix_raptor"
-stage = "grown,overgrown"
+stage = ["grown", "overgrown"]
 condition = "tainted:guthix"
 lines = [
     "npc: Caw Cawcaw? (Why aren't you wearing Guthix items?)",
@@ -1228,7 +1228,7 @@ lines = [
 
 [.ex_ex_parrot_pirate]
 pet = "ex_ex_parrot"
-stage = ""
+stage = []
 condition = "count:4:pirate_hat|pirate_boots|pirate_shirt_white|pirate_shirt_red|pirate_shirt_blue|pirate_shirt_brown|pirate_bandana_white|pirate_bandana_red|pirate_bandana_blue|pirate_bandana_brown|pirate_leggings_white|pirate_leggings_red|pirate_leggings_blue|pirate_leggings_brown"
 lines = [
     "npc: (Arrrr, be thee one of the crew?)",
@@ -1241,7 +1241,7 @@ lines = [
 
 [.chameleon_camo]
 pet = "chameleon"
-stage = "grown"
+stage = ["grown"]
 condition = "count:2:camo_top|camo_bottoms|camo_helmet"
 lines = [
     "npc: Hssshssshsss! Hss hssssh ssssshssss hsss. (Hahaha! You're not fooling anyone...)",
@@ -1252,7 +1252,7 @@ lines = [
 
 [.gecko_1]
 pet = "gecko"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: Gronk, Gecko gronk? (When can we go back to the jungle?)",
@@ -1261,7 +1261,7 @@ lines = [
 
 [.gecko_2]
 pet = "gecko"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: Hiss gronk. Gecko? (Can you carry me?)",
@@ -1271,7 +1271,7 @@ lines = [
 
 [.gecko_3]
 pet = "gecko"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: Hiss, gecko. Gecko! (I want to rest.)",
@@ -1280,7 +1280,7 @@ lines = [
 
 [.gecko_4]
 pet = "gecko"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: Meep, gecko! Gecko! (Happy happy!)",
@@ -1289,7 +1289,7 @@ lines = [
 
 [.gecko_5]
 pet = "gecko"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: Moop, Gecko presko! (You're nice to me!)",
@@ -1298,7 +1298,7 @@ lines = [
 
 [.penguin_1]
 pet = "penguin"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: Awk Awk! (This is fun!)",
@@ -1309,7 +1309,7 @@ lines = [
 
 [.penguin_2]
 pet = "penguin"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: Awkawk awk awk. (Dis place is rather dull.)",
@@ -1320,7 +1320,7 @@ lines = [
 
 [.penguin_3]
 pet = "penguin"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: Awwk... (I'm much too warm here...)",
@@ -1330,7 +1330,7 @@ lines = [
 
 [.penguin_4]
 pet = "penguin"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: Awwwwwwwwk? (Are we gonna be here much longer?)",
@@ -1341,7 +1341,7 @@ lines = [
 
 [.raven_chick]
 pet = "raven"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc: Cheepity twittercheep! (I want to play! Play with me!)",
@@ -1350,7 +1350,7 @@ lines = [
 
 [.raven_grown_1]
 pet = "raven"
-stage = "grown,overgrown"
+stage = ["grown", "overgrown"]
 condition = ""
 lines = [
     "npc: Cawcaw cawcrawk caw crawk caaaw... (Smothered by madness, all hope must surely perish...)",
@@ -1362,7 +1362,7 @@ lines = [
 
 [.raven_grown_2]
 pet = "raven"
-stage = "grown,overgrown"
+stage = ["grown", "overgrown"]
 condition = ""
 lines = [
     "npc: Craw cawcrawk crawk caw... (Stricken are we...)",
@@ -1374,7 +1374,7 @@ lines = [
 
 [.raven_grown_3]
 pet = "raven"
-stage = "grown,overgrown"
+stage = ["grown", "overgrown"]
 condition = ""
 lines = [
     "npc: Cawcaw cawcawcaw crawcaw... (Lost souls surround us, crying...)",
@@ -1386,7 +1386,7 @@ lines = [
 
 [.raven_grown_4]
 pet = "raven"
-stage = "grown,overgrown"
+stage = ["grown", "overgrown"]
 condition = ""
 lines = [
     "npc: Crawk cawkcrawk cawcaw caw... (The night falls in a heavy, suffocating...)",
@@ -1398,7 +1398,7 @@ lines = [
 
 [.raven_ghostly]
 pet = "raven"
-stage = "grown,overgrown"
+stage = ["grown", "overgrown"]
 condition = "count:4:ghostly_robe_top|ghostly_robe_bottom|ghostly_hood|ghostly_gloves|ghostly_boots|ghostly_cloak"
 lines = [
     "npc: Cacaw caw craaw! (Finally, another person that understands my bleak miasma!)",
@@ -1412,7 +1412,7 @@ lines = [
 
 [.raccoon_baby]
 pet = "raccoon"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc: Chitterchatterchittter chatter chatter! (I wanna go play, now!)",
@@ -1422,7 +1422,7 @@ lines = [
 
 [.raccoon_grown_1]
 pet = "raccoon"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Chitter chatter chittterchatter chatter? (So where are ya takin' me today?)",
@@ -1432,7 +1432,7 @@ lines = [
 
 [.raccoon_grown_2]
 pet = "raccoon"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Chitter chatterchittter chitter? (When we gonna do somethin' fun?)",
@@ -1444,7 +1444,7 @@ lines = [
 
 [.raccoon_grown_3]
 pet = "raccoon"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Chatter chatter chatter chatter? (When is we gonna go back to one of those evergreen forests?)",
@@ -1458,7 +1458,7 @@ lines = [
 
 [.raccoon_grown_4]
 pet = "raccoon"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Chitterchatter chatterchitter chitter? (When are we gonna be done here?)",
@@ -1468,7 +1468,7 @@ lines = [
 
 [.raccoon_mask]
 pet = "raccoon"
-stage = "grown"
+stage = ["grown"]
 condition = "highwayman_mask|cavalier_mask|cavalier_and_mask"
 lines = [
     "npc: Chatter chatter? (Are you makin' fun of me?)",
@@ -1484,7 +1484,7 @@ lines = [
 
 [.gecko_desert]
 pet = "gecko"
-stage = ""
+stage = []
 condition = "area:kharidian_desert"
 lines = [
     "npc: Hss! Hsss! Gecko! Hsss! (Too hot! Let's go home!)",
@@ -1493,7 +1493,7 @@ lines = [
 
 [.penguin_frozen]
 pet = "penguin"
-stage = ""
+stage = []
 condition = "area:frozen_wastes"
 lines = [
     "npc: Awk! (Slide!)",
@@ -1505,7 +1505,7 @@ lines = [
 
 [.gecko_grand_exchange]
 pet = "gecko"
-stage = ""
+stage = []
 condition = "area:grand_exchange"
 lines = [
     "npc: Hss! Hsss! Gecko! Hsss! (Too hot! Let's go home!)",
@@ -1514,7 +1514,7 @@ lines = [
 
 [.raccoon_forest]
 pet = "raccoon"
-stage = "grown"
+stage = ["grown"]
 condition = "tag:evergreen_forest"
 lines = [
     "npc: Chatter chatter chatter chatter? (When is we gonna go back to one of those evergreen forests?)",
@@ -1530,7 +1530,7 @@ lines = [
 
 [.creeping_hand_valiant]
 pet = "creeping_hand"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "player: I've got to hand it to you, you fought valiantly.",
@@ -1542,7 +1542,7 @@ lines = [
 
 [.creeping_hand_shake]
 pet = "creeping_hand"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "player: Greetings. I would shake your hand, but I'm not sure how that would work.",
@@ -1555,7 +1555,7 @@ lines = [
 
 [.creeping_hand_truth]
 pet = "creeping_hand"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "player: Lovely day, isn't it?",
@@ -1568,7 +1568,7 @@ lines = [
 
 [.minitrice_feathered_frog]
 pet = "minitrice"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "player: What are you, exactly?",
@@ -1581,7 +1581,7 @@ lines = [
 
 [.minitrice_deaded]
 pet = "minitrice"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: You deaded me!",
@@ -1602,7 +1602,7 @@ lines = [
 
 [.minitrice_dinner]
 pet = "minitrice"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: Me kill you.",
@@ -1615,7 +1615,7 @@ lines = [
 
 [.baby_basilisk_eyes]
 pet = "baby_basilisk"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "player: Hey there.",
@@ -1630,7 +1630,7 @@ lines = [
 
 [.baby_basilisk_origin]
 pet = "baby_basilisk"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc: So, how did I come to be?",
@@ -1643,7 +1643,7 @@ lines = [
 
 [.baby_basilisk_mum]
 pet = "baby_basilisk"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "player: Hello there, little creature.",
@@ -1656,7 +1656,7 @@ lines = [
 
 [.baby_kurask_grunts]
 pet = "baby_kurask"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc: Ughhh.",
@@ -1671,7 +1671,7 @@ lines = [
 
 [.baby_kurask_economy]
 pet = "baby_kurask"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc: Uhhhhrrr.",
@@ -1686,7 +1686,7 @@ lines = [
 
 [.baby_kurask_ispy]
 pet = "baby_kurask"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "player: I spy with my little eye, something beginning with 'K'.",
@@ -1700,7 +1700,7 @@ lines = [
 
 [.abyssal_minion_reminisce]
 pet = "abyssal_minion"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: You know what I miss? I miss THE ABYSS.",
@@ -1714,7 +1714,7 @@ lines = [
 
 [.abyssal_minion_revive]
 pet = "abyssal_minion"
-stage = ""
+stage = []
 condition = ""
 lines = [
     "npc: I am confused. I thought you killed me?",
@@ -1728,7 +1728,7 @@ lines = [
 
 [.abyssal_minion_magic_trick]
 pet = "abyssal_minion"
-stage = ""
+stage = []
 condition = "abyssal_whip"
 lines = [
     "npc: Did I give you that whip?",
@@ -1742,7 +1742,7 @@ lines = [
 
 [.sneakerpeeper_baby_collection]
 pet = "sneakerpeeper"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc: You no talk to Sneaks today? Awww, Sneaks do something wrong?",
@@ -1756,7 +1756,7 @@ lines = [
 
 [.sneakerpeeper_baby_floating]
 pet = "sneakerpeeper"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "player: You don't have to float so close to me, Sneaks.",
@@ -1769,7 +1769,7 @@ lines = [
 
 [.sneakerpeeper_baby_origin]
 pet = "sneakerpeeper"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc: Player, where do sneakerpeepers come from?",
@@ -1783,7 +1783,7 @@ lines = [
 
 [.sneakerpeeper_baby_songs]
 pet = "sneakerpeeper"
-stage = "baby"
+stage = ["baby"]
 condition = ""
 lines = [
     "npc: Sneaks and Player, sitting in a tree...",
@@ -1796,7 +1796,7 @@ lines = [
 
 [.sneakerpeeper_grown_low_summoning]
 pet = "sneakerpeeper"
-stage = "grown"
+stage = ["grown"]
 condition = "skill_below:summoning:91"
 lines = [
     "npc: KnnnGGGGppwww CCCChhhhKKKKKnnn.",
@@ -1804,7 +1804,7 @@ lines = [
 
 [.sneakerpeeper_grown_spawning]
 pet = "sneakerpeeper"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Player, it time that Sneaks spawned.",
@@ -1817,7 +1817,7 @@ lines = [
 
 [.sneakerpeeper_grown_hairball]
 pet = "sneakerpeeper"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "player: You know, Sneaks, when you were young, you used to make all sorts of uncomfortable comments about me.",
@@ -1831,7 +1831,7 @@ lines = [
 
 [.sneakerpeeper_grown_hivemind]
 pet = "sneakerpeeper"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "npc: Huh-huh.",
@@ -1846,7 +1846,7 @@ lines = [
 
 [.sneakerpeeper_grown_eyemax]
 pet = "sneakerpeeper"
-stage = "grown"
+stage = ["grown"]
 condition = ""
 lines = [
     "player: So, Sneaks, I have a question.",

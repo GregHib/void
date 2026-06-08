@@ -197,8 +197,8 @@ suspend fun Player.talkToPet(row: RowDefinition, pet: NPC) {
     val stageKey = row.stageForNpc(pet.id)?.name?.lowercase() ?: ""
     val candidates = setOf(row.rowId, row.petTalksKey())
     val rows = Tables.get("pet_talks").rows().filter {
-        val stages = it.string("stage")
-        it.string("pet") in candidates && (stages.isEmpty() || stages.split(',').any { s -> s.trim() == stageKey })
+        val stages = it.stringList("stage")
+        it.string("pet") in candidates && (stages.isEmpty() || stageKey in stages)
     }
     val matchingConditional = rows.filter { matchesPetCondition(it.string("condition")) }
     val chosen = matchingConditional.randomOrNull()
