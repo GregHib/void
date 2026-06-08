@@ -80,8 +80,8 @@ internal class PlayerChatTest : DialogueTest() {
         }
         verify {
             player.open("dialogue_chat2")
-            interfaces.sendText("dialogue_chat2", "line1", "This is one long dialogue text line which should be wrapped")
-            interfaces.sendText("dialogue_chat2", "line2", "into two lines.")
+            interfaces.sendText("dialogue_chat2", "line1", "This is one long dialogue text line which should be")
+            interfaces.sendText("dialogue_chat2", "line2", "wrapped into two lines.")
         }
     }
 

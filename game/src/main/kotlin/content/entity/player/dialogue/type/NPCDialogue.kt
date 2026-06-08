@@ -39,7 +39,7 @@ suspend fun Player.npc(expression: String, text: String, largeHead: Boolean? = n
 }
 
 suspend fun Player.npc(npcId: String, expression: String, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
-    val lines = splitDialogueLines(text)
+    val lines = if (text.contains("\n")) text.trimIndent().lines() else get<FontDefinitions>().get("q8_full").splitLines(text, 380)
     if (lines.size > 4) {
         for (chunk in lines.chunked(4)) {
             npc(chunk, clickToContinue, npcId, largeHead, expression, title)
@@ -50,29 +50,13 @@ suspend fun Player.npc(npcId: String, expression: String, text: String, largeHea
 }
 
 suspend fun Player.npc(npcId: String, animationId: Int, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
-    val lines = splitDialogueLines(text)
+    val lines = if (text.contains("\n")) text.trimIndent().lines() else get<FontDefinitions>().get("q8_full").splitLines(text, 380)
     if (lines.size > 4) {
         for (chunk in lines.chunked(4)) {
             npc(chunk, clickToContinue, npcId, largeHead, animationId, title)
         }
     } else {
         npc(lines, clickToContinue, npcId, largeHead, animationId, title)
-    }
-}
-
-/**
- * Splits dialogue text into chathead lines. Explicit `\n` line breaks are
- * preserved, and each resulting chunk is then word-wrapped at the chathead
- * width so long sub-lines don't overflow. Callers that want hard breaks at
- * specific points (e.g. bark + translation on separate lines) get both the
- * hard break AND wrapping within each chunk.
- */
-private fun Player.splitDialogueLines(text: String): List<String> {
-    val font = get<FontDefinitions>().get("q8_full")
-    return if (text.contains("\n")) {
-        text.trimIndent().lines().flatMap { chunk -> font.splitLines(chunk, 400) }
-    } else {
-        font.splitLines(text, 400)
     }
 }
 
