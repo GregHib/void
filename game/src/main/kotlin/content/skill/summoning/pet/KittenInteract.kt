@@ -178,41 +178,44 @@ class KittenInteract : Script {
 
 fun isHellcat(cat: NPC): Boolean = petRowForNpc(cat.id)?.rowId == "hellcat"
 
-/** Adult-cat catspeak Talk-to: 4-option chathead tree that loops until the player picks the quit option. */
+/** Adult-cat catspeak Talk-to: 4-option chathead tree that re-opens until the player picks the quit option. */
 suspend fun Player.talkToCatWithAmulet(cat: NPC) {
     if (isHellcat(cat)) {
         talkToHellcatWithAmulet(cat)
         return
     }
-    var done = false
-    while (!done) {
+    suspend fun menu() {
         choice("What would you like to ask?") {
             option("How are you doing?") {
                 player<Quiz>("How are you doing?")
                 npc<Happy>(cat.id, "I'm good. But could we go adventuring soon? I'm tired of talkin, meeoow.")
+                menu()
             }
             option("How old are you now?") {
                 player<Quiz>("How old are you now?")
                 npc<Happy>(cat.id, "I'm not too old, and not too young. In fact I think I'm just right.")
+                menu()
             }
             option("Where do you want to go?") {
                 player<Quiz>("Where do you want to go?")
                 npc<Happy>(cat.id, "Can we go to Varrock Sewer and chase some rats?")
+                menu()
             }
             option("What do you want to do now?") {
                 player<Quiz>("What do you want to do now?")
                 npc<Happy>(cat.id, "I want to go chase things, kill them and then eat them. Purrr.")
+                menu()
             }
             if (questCompleted("icthlarins_little_helper")) {
                 option("Did you understand what went on in that quest with the devourer and Icthlarin?") {
                     icthlarinRecap(cat)
+                    menu()
                 }
             }
-            option("That's enough talking for now.") {
-                done = true
-            }
+            option("That's enough talking for now.")
         }
     }
+    menu()
 }
 
 private suspend fun Player.icthlarinRecap(cat: NPC) {
