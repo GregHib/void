@@ -5,7 +5,13 @@ type = "overlay"
 [.right_skull]
 id = 0
 
-[.center_skull]
+[.right_side]
+id = 2
+
+[.left_side]
+id = 3
+
+[.left_skull]
 id = 4
 
 [warning_wilderness]
