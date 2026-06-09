@@ -64,6 +64,7 @@ class GameFrame : Script {
         }
 
         timerStart("wilderness_level_refresh") { 1 }
+
         timerStop("wilderness_level_refresh") {
             interfaces.sendVisibility(interfaces.gameFrame, "wilderness_level", false)
         }
