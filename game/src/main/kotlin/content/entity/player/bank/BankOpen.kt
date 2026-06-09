@@ -1,6 +1,8 @@
 package content.entity.player.bank
 
 import content.entity.player.bank.Bank.tabs
+import content.entity.player.bank.pin.openBank
+import content.entity.player.bank.pin.openCollection
 import content.entity.player.command.find
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
@@ -24,11 +26,11 @@ class BankOpen(val accounts: AccountDefinitions) : Script {
         adminCommand("bank", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Open the players bank", handler = ::bank)
 
         objectOperate("Use-quickly") {
-            open("bank")
+            openBank()
         }
 
         objectOperate("Collect") {
-            open("collection_box")
+            openCollection()
         }
 
         interfaceClosed("bank") {

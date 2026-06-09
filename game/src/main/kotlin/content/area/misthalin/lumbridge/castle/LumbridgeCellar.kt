@@ -1,17 +1,17 @@
 package content.area.misthalin.lumbridge.castle
 
 import content.entity.npc.shop.openShop
+import content.entity.player.bank.pin.openBank
 import content.entity.player.dialogue.type.warning
 import content.skill.firemaking.Light
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.type.Direction
 
 class LumbridgeCellar : Script {
     init {
         objectOperate("Bank", "culinaromancers_chest") {
-            open("bank")
+            openBank()
         }
 
         objectOperate("Buy-food", "culinaromancers_chest") {

@@ -1,6 +1,7 @@
 package content.area.kharidian_desert.shantay_pass
 
 import content.entity.player.bank.bank
+import content.entity.player.bank.pin.openBank
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
@@ -8,7 +9,6 @@ import content.entity.player.dialogue.type.statement
 import content.entity.player.dialogue.type.warning
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -42,7 +42,7 @@ class ShantayPass : Script {
         }
 
         objectOperate("Open", "shantay_chest") {
-            open("bank")
+            openBank()
         }
 
         npcOperate("Bribe", "shantay_guard_still") {
