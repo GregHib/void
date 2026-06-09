@@ -59,7 +59,7 @@ class Firemaking : Script {
     suspend fun lightFire(
         player: Player,
         floorItem: FloorItem,
-        skip: Boolean = player["recently_dropped", false]
+        skip: Boolean = player["recently_dropped", false],
     ) {
         val row = Rows.getOrNull("firemaking.${floorItem.id}") ?: return
         player.arriveDelay()
