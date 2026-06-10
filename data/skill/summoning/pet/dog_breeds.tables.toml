@@ -1,0 +1,43 @@
+# Dog breeds sold by the pet shop owner. Row order matches the iface 668
+# ("Pick a puppy") component indices:
+#   .bulldog (cache id 3)   -> index 0
+#   .dalmatian (id 4)       -> index 1
+#   .greyhound (id 5)       -> index 2
+#   .terrier (id 6)         -> index 3
+#   .sheepdog (id 7)        -> index 4
+#   .labrador (id 8)        -> index 5
+
+[dog_breeds]
+option = "string"
+pet_id = "string"
+puppy_item = "item"
+
+[.bulldog]
+option = "Bulldog"
+pet_id = "bulldog"
+puppy_item = "bulldog_puppy_white"
+
+[.dalmatian]
+option = "Dalmatian"
+pet_id = "dalmatian"
+puppy_item = "dalmatian_puppy_black"
+
+[.greyhound]
+option = "Greyhound"
+pet_id = "greyhound"
+puppy_item = "greyhound_puppy_brown"
+
+[.terrier]
+option = "Terrier"
+pet_id = "terrier"
+puppy_item = "terrier_puppy_2"
+
+[.sheepdog]
+option = "Sheepdog"
+pet_id = "sheepdog"
+puppy_item = "sheepdog_puppy_black"
+
+[.labrador]
+option = "Labrador"
+pet_id = "labrador"
+puppy_item = "labrador_puppy_yellow"

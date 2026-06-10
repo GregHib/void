@@ -1,0 +1,72 @@
+[incubator_eggs]
+egg = "item"
+product = "item"
+summoning_level = "int"
+incubation_seconds = "int"
+
+
+[.penguin]
+egg = "penguin_egg"
+product = "pet_penguin_baby"
+summoning_level = 30
+incubation_seconds = 1800
+
+[.raven]
+egg = "raven_egg"
+product = "raven_chick_blue"
+summoning_level = 50
+incubation_seconds = 1800
+
+[.saradomin_owl]
+egg = "birds_egg_blue"
+product = "saradomin_chick"
+summoning_level = 70
+incubation_seconds = 3600
+
+[.zamorak_hawk]
+egg = "birds_egg_red"
+product = "zamorak_chick"
+summoning_level = 70
+incubation_seconds = 3600
+
+[.guthix_raptor]
+egg = "birds_egg_green"
+product = "guthix_chick"
+summoning_level = 70
+incubation_seconds = 3600
+
+[.vulture]
+egg = "vulture_egg"
+product = "pet_vulture_baby"
+summoning_level = 85
+incubation_seconds = 3600
+
+[.chameleon]
+egg = "chameleon_egg"
+product = "baby_chameleon"
+summoning_level = 90
+incubation_seconds = 3600
+
+[.red_dragon]
+egg = "red_dragon_egg"
+product = "hatchling_dragon_red"
+summoning_level = 99
+incubation_seconds = 3600
+
+[.blue_dragon]
+egg = "blue_dragon_egg"
+product = "hatchling_dragon_blue"
+summoning_level = 99
+incubation_seconds = 3600
+
+[.green_dragon]
+egg = "green_dragon_egg"
+product = "hatchling_dragon_green"
+summoning_level = 99
+incubation_seconds = 3600
+
+[.black_dragon]
+egg = "black_dragon_egg"
+product = "hatchling_dragon_black"
+summoning_level = 99
+incubation_seconds = 3600

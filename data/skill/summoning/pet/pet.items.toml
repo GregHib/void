@@ -1,0 +1,29 @@
+# Pet item definitions for pet items missing string ids in the cache.
+
+[pet_penguin_baby]
+id = 12481
+
+[pet_penguin_1]
+id = 12762
+
+[pet_penguin_2]
+id = 12764
+
+[pet_vulture_baby]
+id = 12498
+
+[pet_vulture_1_baby]
+id = 12766
+
+[pet_vulture_2_baby]
+id = 12768
+
+[pet_vulture_3_baby]
+id = 12770
+
+[pet_vulture_4_baby]
+id = 12772
+
+[pet_vulture_5_baby]
+id = 12774
+

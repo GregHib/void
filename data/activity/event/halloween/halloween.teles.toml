@@ -33,12 +33,6 @@ option = "Climb-down"
 tile = { x = 3804, y = 5155, level = 1 }
 delta = { x = 5, level = -1 }
 
-# 15696 halloween
-[48688]
-option = "Climb-down"
-tile = { x = 3865, y = 5524 }
-to = { x = 3972, y = 5565 }
-
 # 15699 halloween
 [web_ladder_halloween_2009]
 option = "Climb"

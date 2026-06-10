@@ -9,7 +9,9 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.move.running
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
@@ -56,6 +58,12 @@ class LumbridgeBeginnerTasks(
         itemAdded("copper_ore", inventory = "inventory") {
             if (softTimers.contains("mining") && tile in Areas["lumbridge_swamp_east_copper_mine"]) {
                 set("take_your_pick_task", true)
+            }
+        }
+
+        itemAdded("clay", inventory = "inventory") {
+            if (softTimers.contains("mining") && tile in Areas["varrock_south_west_mine"]) {
+                set("clay_of_champions_task", true)
             }
         }
 
@@ -198,6 +206,19 @@ class LumbridgeBeginnerTasks(
             }
         }
 
+        itemAdded("pot_of_flour", inventory = "inventory") {
+            set("flour_power_task", true)
+            if (tile in Areas["lumbridge_mill"]) {
+                set("grinding_my_gears_task", true)
+            }
+        }
+
+        crafted(Skill.Crafting) { recipe ->
+            if (recipe.add.any { it.id == "soft_clay" } && tile in Areas["draynor_potter_house"]) {
+                set("just_add_water_task", true)
+            }
+        }
+
         maxLevelChanged { _, _, _ ->
             if (!get("on_the_level_task", false) || !get("quarter_centurion_task", false)) {
                 val total = Skill.all.sumOf { (if (it == Skill.Constitution) levels.getMax(it) / 10 - 10 else levels.getMax(it) - 1) }
@@ -250,6 +271,66 @@ class LumbridgeBeginnerTasks(
                     killer.clear("giant_rat_controlled")
                     killer.clear("giant_rat_defensive")
                 }
+            }
+        }
+
+        npcDeath("warped_fly") {
+            val killer = killer
+            if (killer !is Player) {
+                return@npcDeath
+            }
+            if (killer.tile !in Areas["lumbridge_catacombs"]) {
+                return@npcDeath
+            }
+            if (killer.attackStyle == "aggressive" || killer.attackStyle == "controlled") {
+                killer["come_and_have_a_go_task"] = true
+            }
+        }
+
+        npcDeath("warped_bat") {
+            val killer = killer
+            if (killer is Player && !killer["three_rounds_rapid_men_task", false] && killer.tile in Areas["lumbridge_catacombs"]) {
+                val weaponStyle = styleDefinitions.get(killer.equipped(EquipSlot.Weapon).def["weapon_style", -1]).stringId
+                when (weaponStyle) {
+                    "bow", "crossbow", "thrown", "chinchompa", "sling" -> when (killer.attackStyle) {
+                        "accurate" -> killer["warped_bat_accurate_kill"] = true
+                        "rapid" -> killer["warped_bat_rapid_kill"] = true
+                        "long_range" -> killer["warped_bat_longrange_kill"] = true
+                    }
+                }
+                if (killer["warped_bat_accurate_kill", false] && killer["warped_bat_rapid_kill", false] && killer["warped_bat_longrange_kill", false]) {
+                    killer["three_rounds_rapid_men_task"] = true
+                    killer.clear("warped_bat_accurate_kill")
+                    killer.clear("warped_bat_rapid_kill")
+                    killer.clear("warped_bat_longrange_kill")
+                }
+            }
+        }
+
+        combatStart { target ->
+            if (target is NPC && target.id == "skeleton_catacombs" && tile in Areas["lumbridge_catacombs"] && get("cant_touch_this_target", -1) != target.index) {
+                set("cant_touch_this_target", target.index)
+                set("cant_touch_this_start_lp", levels.get(Skill.Constitution))
+            }
+        }
+
+        npcCombatStart { target ->
+            if (id == "skeleton_catacombs" && target is Player && target.tile in Areas["lumbridge_catacombs"] && target["cant_touch_this_target", -1] != index) {
+                target["cant_touch_this_target"] = index
+                target["cant_touch_this_start_lp"] = target.levels.get(Skill.Constitution)
+            }
+        }
+
+        npcDeath("skeleton_catacombs") {
+            val killer = killer
+            if (killer is Player && killer["cant_touch_this_target", -1] == index) {
+                if (killer.tile in Areas["lumbridge_catacombs"] &&
+                    killer.levels.get(Skill.Constitution) == killer["cant_touch_this_start_lp", -1]
+                ) {
+                    killer["cant_touch_this_task"] = true
+                }
+                killer.clear("cant_touch_this_target")
+                killer.clear("cant_touch_this_start_lp")
             }
         }
 

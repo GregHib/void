@@ -3,4 +3,15 @@ id = 7238
 persist = true
 format = "map"
 default = "unstarted"
-values = { unstarted = 0, started = 1 }
+values = {
+    unstarted = 0,
+    started = 1,
+    watched_cutscene = 2,
+    kayle = 3,
+    xenia_wounded = 4,
+    caitlin = 5,
+    winch_activated = 6,
+    reese = 7,
+    untied_ilona = 55,
+    completed = 60
+}

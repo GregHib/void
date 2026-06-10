@@ -1,0 +1,83 @@
+# https://runescape.wiki/w/Kayle
+# https://runescape.wiki/w/Caitlin
+# https://runescape.wiki/w/Reese
+# https://runescape.wiki/w/Ilona
+
+[xenia]
+id = 9633
+hitpoints = 20
+wander_range = 3
+categories = ["human"]
+examine = "An old adventurer."
+
+[xenia_after_cutscene]
+id = 9634
+clone = "xenia"
+
+[xenia_wounded]
+id = 9636
+clone = "xenia"
+
+[xenia_2]
+id = 11476
+clone = "xenia"
+
+[reese_cutscene]
+id = 9637
+
+[reese_attackable]
+id = 9624
+att = 4
+str = 4
+hitpoints = 20
+wander_range = 20
+categories = ["human"]
+combat_def = "reese_attackable"
+hunt_mode = "cowardly"
+hunt_range = 10
+
+[reese_defeated]
+id = 9625
+
+[kayle_cutscene]
+id = 9639
+
+[kayle_attackable]
+id = 9628
+hitpoints = 20
+range = 5
+categories = ["human"]
+combat_def = "kayle_attackable"
+hunt_mode = "aggressive"
+hunt_range = 5
+
+[kayle_defeated]
+id = 9629
+
+[caitlin_attackable]
+id = 9626
+hitpoints = 20
+mage = 5
+categories = ["human"]
+combat_def = "caitlin_attackable"
+hunt_mode = "aggressive"
+hunt_range = 8
+
+[caitlin_defeated]
+id = 9627
+
+[caitlin_cutscene]
+id = 9638
+
+[ilona_tied]
+id = 9630
+
+[ilona_following]
+id = 9631
+
+[ilona]
+id = 9632
+examine = "A Lumbridge citizen."
+
+[ilona_cutscene]
+id = 9640

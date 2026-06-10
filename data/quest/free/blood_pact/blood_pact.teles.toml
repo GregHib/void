@@ -4,7 +4,7 @@ option = "Climb-down"
 tile = { x = 3809, y = 5276 }
 delta = { x = -65, y = -1 }
 
-[48798]
+[lumbridge_catacomb_exit_stairs] #id = 48798
 option = "Climb-up"
 tile = { x = 3877, y = 5525, level = 1 }
 delta = { x = -631, y = -2328, level = -1 }
@@ -44,4 +44,10 @@ delta = { x = 4, level = -1 }
 option = "Climb"
 tile = { x = 3936, y = 5373, level = 2 }
 to = { x = 3744, y = 5287 }
+
+# 15696 halloween
+[48688]
+option = "Climb-down"
+tile = { x = 3865, y = 5524 }
+to = { x = 3972, y = 5565 }
 
