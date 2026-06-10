@@ -66,7 +66,7 @@ class Caitlin : Script {
             option<Neutral>("I'm not killing you. Just give me your stuff and get out of here.") {
                 set("blood_pact_caitlin", "spared")
                 open("fade_out")
-                target.anim("caitlin_getUp")
+                target.anim("caitlin_getup")
                 delay(3)
                 NPCs.remove(target)
                 FloorItems.add(instanceOffset().tile(3864, 5538, 1), "caitlins_staff", disappearTicks = 300, owner = this)

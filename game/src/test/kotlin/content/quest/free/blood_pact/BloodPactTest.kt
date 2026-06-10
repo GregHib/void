@@ -12,7 +12,7 @@ import npcOption
 import objectOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertNotNull
+import skipDialogues
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -39,14 +39,14 @@ class BloodPactTest : WorldTest() {
         val xenia = NPCs.find(Tile(3244, 3198, 0), "xenia")
         player.npcOption(xenia, "Talk-to")
         player.waitForDialogue() // "I'm glad you've come by. I need some help."
-        player.continues()
-        player.selectDialogueOption(1) // What do you need help with?
-        player.continues() // Cultists explanation
-        player.selectDialogueOption(1) // I'll help you.
-        player.continues()
+        player.skipDialogues()
+        player.dialogueOption(1) // What do you need help with?
+        player.skipDialogues() // Cultists explanation
+        player.dialogueOption(1) // I'll help you.
+        player.skipDialogues()
         assertEquals("quest_intro", player.menu)
         player.interfaceOption("quest_intro", "startyes_layer", "Yes")
-        player.continues() // "I knew you would!" / "We've got no time to lose..."
+        player.skipDialogues() // "I knew you would!" / "We've got no time to lose..."
         assertNull(player.dialogue)
         assertEquals("started", player.quest("blood_pact"))
 
@@ -71,8 +71,8 @@ class BloodPactTest : WorldTest() {
         assertEquals("defeated", player["blood_pact_kayle", ""])
 
         player.talkAt(kayle, offset.tile(3877, 5542, 1), "Talk-to") // south of Kayle
-        player.continues() // "Are - are you going to kill me?"
-        player.selectDialogueOption(3) // No. Just give me your stuff and get out of here.
+        player.skipDialogues() // "Are - are you going to kill me?"
+        player.dialogueOption(3) // No. Just give me your stuff and get out of here.
         player.runUntilIdle { player.quest("blood_pact") == "caitlin" } // Kayle flees, Xenia advice
         assertEquals("spared", player["blood_pact_kayle", ""])
         assertEquals("caitlin", player.quest("blood_pact"))
@@ -84,8 +84,8 @@ class BloodPactTest : WorldTest() {
         assertEquals("defeated", player["blood_pact_caitlin", ""])
 
         player.talkAt(caitlin, offset.tile(3863, 5538, 1), "Talk-to") // west of Caitlin (east edge is walled)
-        player.continues() // "What are you waiting for? Finish me!"
-        player.selectDialogueOption(3) // I'm not killing you. Just give me your stuff...
+        player.skipDialogues() // "What are you waiting for? Finish me!"
+        player.dialogueOption(3) // I'm not killing you. Just give me your stuff...
         player.runUntilIdle { player.quest("blood_pact") == "reese" } // Caitlin flees, Xenia advice
         assertEquals("spared", player["blood_pact_caitlin", ""])
         assertEquals("reese", player.quest("blood_pact"))
@@ -97,15 +97,15 @@ class BloodPactTest : WorldTest() {
         assertEquals("defeated", player["blood_pact_reese", ""])
 
         player.talkAt(reese, offset.tile(3864, 5525, 0), "Talk-to") // west of Reese
-        player.continues() // "You've beaten me..." / "Now strike the final blow!"
-        player.selectDialogueOption(2) // Time for you to die!
+        player.skipDialogues() // "You've beaten me..." / "Now strike the final blow!"
+        player.dialogueOption(2) // Time for you to die!
         player.runUntilIdle { player["blood_pact_reese", ""] == "killed" } // Reese dies, altar crumbles, Ilona calls out
         assertEquals("killed", player["blood_pact_reese", ""])
 
         // Untie the prisoner and escape to the surface
         val ilona = NPCs.find(offset.tile(3865, 5523, 0), "ilona_tied")
         player.talkAt(ilona, offset.tile(3864, 5523, 0), "Untie") // west of Ilona
-        player.selectDialogueOption(1) // Yes, rescue Ilona.
+        player.dialogueOption(1) // Yes, rescue Ilona.
         player.runUntilIdle { player.quest("blood_pact") == "untied_ilona" } // escape cutscene and Xenia's thanks
         assertEquals("untied_ilona", player.quest("blood_pact"))
 
@@ -113,9 +113,9 @@ class BloodPactTest : WorldTest() {
         val xenia2 = NPCs.find(Tile(3245, 3198, 0), "xenia_2")
         player.npcOption(xenia2, "Talk-to")
         player.waitForDialogue() // "Is there anything you want to ask..."
-        player.continues()
-        player.selectDialogueOption(1) // I'm ready for my reward.
-        player.continues() // "Farewell, adventurer."
+        player.skipDialogues()
+        player.dialogueOption(1) // I'm ready for my reward.
+        player.skipDialogues() // "Farewell, adventurer."
         assertEquals("completed", player.quest("blood_pact"))
     }
 
@@ -172,17 +172,5 @@ class BloodPactTest : WorldTest() {
      */
     private fun Player.waitForDialogue() {
         tickIf(20) { dialogue == null }
-    }
-
-    private fun Player.continues() {
-        while (dialogue != null && suspension is Suspension.Continue) {
-            dialogueContinue()
-        }
-    }
-
-    private fun Player.selectDialogueOption(option: Int) {
-        assertNotNull(dialogue)
-        require(suspension is Suspension.IntEntry)
-        dialogueOption("line$option")
     }
 }

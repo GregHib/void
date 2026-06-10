@@ -1,9 +1,0 @@
-spawns = [
-    # Door between entrance and Caitlin's gallery (non-instance, completed quest)
-    #{ id = "door_kayle", x = 3872, y = 5543, level = 1, type = 0, rotation = 0 },
-
-    # Gates in front of Caitlin's gallery (non-instance, completed quest)
-    #{ id = "gate_caitlin", x = 3870, y = 5531, level = 1, type = 0, rotation = 1 },
-    #{ id = "gate_caitlin", x = 3862, y = 5531, level = 1, type = 0, rotation = 1 },
-
-]

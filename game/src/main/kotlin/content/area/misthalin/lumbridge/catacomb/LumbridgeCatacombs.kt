@@ -505,6 +505,7 @@ fun Player.completeBloodPact() {
         "XP",
         "Access to the Lumbridge",
         "Catacombs dungeon",
+        item = "reeses_sword"
     )
 
     val xenia = NPCs.find(Tile(3245, 3198, 0), "xenia_2")

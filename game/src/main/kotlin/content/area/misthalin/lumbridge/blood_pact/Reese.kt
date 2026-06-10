@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -109,10 +110,10 @@ class Reese : Script {
 
     suspend fun Player.reeseOptionsBeforeFight() {
         choice {
-            option("My Name is Player. I'm an adventurer") {
+            option("My Name is ${name}. I'm an adventurer") {
                 npc<Angry>("This will be your tomb, adventurer. The blood pact will prevail!")
             }
-            option("I'm Player. Don't worry, Ilona, I'm here to rescue you.") {
+            option("I'm ${name}. Don't worry, Ilona, I'm here to rescue you.") {
                 npc<Scared>("ilona_tied", "Thank Saradomin! He's insane! He's going to kill me!")
                 npc<Angry>("Maybe you can take her place as the sacrifice, adventurer. Stand and fight!")
             }

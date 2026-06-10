@@ -61,66 +61,71 @@ class Xenia : Script {
                         optionsAfterEntering()
                     }
                 }
-                "kayle", "winch_activated" -> {
+                "kayle" -> {
                     val kayleStatus = get<String>("blood_pact_kayle")
                     foodChat()
 
                     when (kayleStatus) {
-                        "spared", "killed" -> {
-                            if (equipped(EquipSlot.Weapon).id == "kayles_sling") {
-                                npc<LookDown>("You're holding the sling right. You should be able to attack the second cultist without any trouble.")
-                            } else if (Weapon.type(this, equipped(EquipSlot.Weapon)) == "range") {
-                                npc<LookDown>("I see you've brought your own ranged weapon. I'll assume you know how to use it!")
-                            } else if (inventory.contains("kayles_sling")) {
-                                npc<LookDown>("You'll need to equip the sling before you can attack the second cultist.")
-                            } else {
-                                npc<LookDown>("You'll need to pick up the sling and equip it before you can attack the second cultist.")
-                            }
-
-                            optionsBeforeSecondFight()
-                        }
                         "defeated" -> {
                             npc<LookDown>("The first cultist is defeated, but not dead. I'll leave it up to you to how to deal with him.")
                             optionsBeforeFirstFight()
                         }
                     }
                 }
-                "caitlin" -> {
+                "caitlin", "winch_activated" -> {
                     val caitlinStatus = get<String>("blood_pact_caitlin")
+
                     foodChat()
-                    when (caitlinStatus) {
-                        "spared", "killed" -> {
-                            if (equipped(EquipSlot.Weapon).id == "caitlins_staff") {
-                                npc<LookDown>("You're holding the staff. You should be able to attack the last cultist without any trouble.")
-                            } else if (Weapon.type(this, equipped(EquipSlot.Weapon)) == "magic") {
-                                npc<LookDown>("I see you've brought your own magic weapon. I'll assume you know how to use it!")
-                            } else if (inventory.contains("caitlins_staff")) {
-                                npc<LookDown>("You'll need to equip the staff before you can attack the last cultist.")
-                            } else {
-                                npc<LookDown>("You'll need to pick up the staff and equip it before you can attack the last cultist.")
-                            }
-                            optionsBeforeThirdFight()
+                    if (caitlinStatus == "alive")
+                    {
+                        if (equipped(EquipSlot.Weapon).id == "kayles_sling") {
+                            npc<LookDown>("You're holding the sling right. You should be able to attack the second cultist without any trouble.")
+                        } else if (Weapon.type(this, equipped(EquipSlot.Weapon)) == "range") {
+                            npc<LookDown>("I see you've brought your own ranged weapon. I'll assume you know how to use it!")
+                        } else if (inventory.contains("kayles_sling")) {
+                            npc<LookDown>("You'll need to equip the sling before you can attack the second cultist.")
+                        } else {
+                            npc<LookDown>("You'll need to pick up the sling and equip it before you can attack the second cultist.")
                         }
-                        "defeated" -> {
-                            npc<LookDown>("The second cultist is defeated, but not dead. I'll leave it up to you how to deal with her.")
-                            optionsBeforeSecondFight()
+
+                        optionsBeforeSecondFight()
+                    } else {
+                        when (caitlinStatus) {
+                            "defeated" -> {
+                                npc<LookDown>("The second cultist is defeated, but not dead. I'll leave it up to you how to deal with her.")
+                                optionsBeforeSecondFight()
+                            }
                         }
                     }
                 }
                 "reese" -> {
                     val reeseStatus = get<String>("blood_pact_reese")
+
                     foodChat()
-                    when (reeseStatus) {
-                        "killed" -> {
-                            npc<LookDown>("You've defeated the last cultist. Now you need to untie their prisoner.")
+                    if (reeseStatus == "alive") {
+                        if (equipped(EquipSlot.Weapon).id == "caitlins_staff") {
+                            npc<LookDown>("You're holding the staff. You should be able to attack the last cultist without any trouble.")
+                        } else if (Weapon.type(this, equipped(EquipSlot.Weapon)) == "magic") {
+                            npc<LookDown>("I see you've brought your own magic weapon. I'll assume you know how to use it!")
+                        } else if (inventory.contains("caitlins_staff")) {
+                            npc<LookDown>("You'll need to equip the staff before you can attack the last cultist.")
+                        } else {
+                            npc<LookDown>("You'll need to pick up the staff and equip it before you can attack the last cultist.")
                         }
-                        "defeated" -> {
-                            npc<LookDown>("If you've defeated the last cultist, you'll need to decide how to deal with him.")
-                            optionsBeforeThirdFight()
-                        }
-                        else -> {
-                            npc<LookDown>("The last cultist is a swordsman. Magic is the best thing to use against melee fighters.")
-                            optionsBeforeThirdFight()
+                        optionsBeforeThirdFight()
+                    } else {
+                        when (reeseStatus) {
+                            "killed" -> {
+                                npc<LookDown>("You've defeated the last cultist. Now you need to untie their prisoner.")
+                            }
+                            "defeated" -> {
+                                npc<LookDown>("If you've defeated the last cultist, you'll need to decide how to deal with him.")
+                                optionsBeforeThirdFight()
+                            }
+                            else -> {
+                                npc<LookDown>("The last cultist is a swordsman. Magic is the best thing to use against melee fighters.")
+                                optionsBeforeThirdFight()
+                            }
                         }
                     }
                 }
@@ -198,7 +203,7 @@ class Xenia : Script {
                 } else if (playerHealthPercentage <= 0.75) {
                     npc<LookDown>("You're badly wounded! Eat some food, quickly...")
                     statement("Xenia gives you 4 pieces of cooked meat. Eat food to heal yourself.")
-                    inventory.add("cooked_meat", 4)
+                    inventory.add("cooked_meat", 4) //TODO: doesnt give meat at all if not enough space in invent - might need for loop
                 }
             }
         }
@@ -337,17 +342,17 @@ class Xenia : Script {
         woundedDetails()
     }
 
-    fun ChoiceOption.whatNow(): Unit = option<Neutral>("What will happen in the catacombs now?\n") {
-        npc<Neutral>(" Reese managed to complete the ritual with his own death. He's opened the staircase to the nest of undead creatures in the lower level of the catacombs. Without a necromancer to control them, the creatures won't leave the tomb. I'll warn Father Aereck not to let people go down there. You're an adventurer, though. If you want to, you can venture into the tomb and fight the creatures.\n")
+    fun ChoiceOption.whatNow(): Unit = option<Neutral>("What will happen in the catacombs now?") {
+        npc<Neutral>(" Reese managed to complete the ritual with his own death. He's opened the staircase to the nest of undead creatures in the lower level of the catacombs. Without a necromancer to control them, the creatures won't leave the tomb. I'll warn Father Aereck not to let people go down there. You're an adventurer, though. If you want to, you can venture into the tomb and fight the creatures.")
         afterQuestDetail()
     }
 
-    fun ChoiceOption.whatBloodPact(): Unit = option<Neutral>("What is a blood pact?\n") {
+    fun ChoiceOption.whatBloodPact(): Unit = option<Neutral>("What is a blood pact?") {
         npc<Neutral>(" It's something Zamorakian cults do sometimes; a way of swearing loyalty to their leader. A blood pact doesn't have real magical power, but that kind of thing can have great power over a person if they believe strongly enough.")
         afterQuestDetail()
     }
 
-    fun ChoiceOption.whoDragith(): Unit = option<Neutral>("Who was Dragith Nurn?\n") {
+    fun ChoiceOption.whoDragith(): Unit = option<Neutral>("Who was Dragith Nurn?") {
         npc<Neutral>("Dragith Nurn was a wizard. He studied at the Wizards' Tower, but he also studied the dar ark, necromancy, on his own. He had a secret magical workshop beneath Lumbridge. He would steal bodies from the graveyard and perform experiments on them. Necromancy was like an addiction for him. When I met him he was very troubled; very conflicted. I convinced him to put an end to it all. He couldn't destroy all the undead he had created - not permanently - so he trapped them all in the lower level of his workshop and sealed it off. He converted the upper level into these catacombs. Everyone thinks Dragith Nurn is buried here in the tomb, but he isn't. He built the tomb to hide the entrance to the lower level. Dragith Nurn is still down there. He knew that when he died he would rise again as a monster, so he sealed himself in with his creatures.")
         afterQuestDetail()
     }
@@ -487,10 +492,10 @@ class Xenia : Script {
                 werentWoundedOptions(target)
             }
 
-            option("What will happen in the catacombs now?\n") {
+            option("What will happen in the catacombs now?") {
                 npc<Neutral>("xenia_2", "Reese managed to complete the ritual with his own death. He's opened the staircase to the nest of undead creatures in the lower level of the catacombs, which is swarming with undead.")
-                npc<Neutral>("xenia_2", "Without a necromancer to control them, the creatures won't leave the tomb. I'll warn Father Aereck not to let people go down there.\n")
-                npc<Neutral>("xenia_2", "You're an adventurer, though. If you want to, you can venture into the tomb and fight the creatures.\n")
+                npc<Neutral>("xenia_2", "Without a necromancer to control them, the creatures won't leave the tomb. I'll warn Father Aereck not to let people go down there.")
+                npc<Neutral>("xenia_2", "You're an adventurer, though. If you want to, you can venture into the tomb and fight the creatures.")
                 finalDialogBloodPact(target)
             }
         }
@@ -498,7 +503,7 @@ class Xenia : Script {
 
     suspend fun Player.werentWoundedOptions(target: NPC) {
         choice {
-            option("You risked that woman's life for the sake of a test?\n") {
+            option("You risked that woman's life for the sake of a test?") {
                 npc<Neutral>("xenia_2", "I was prepared to step in and rescue her if you failed, but I won't always be that ready. That's why I had to do this. The world needs heroes. I was a hero, once, but I'm not getting any younger. I need to make sure the new generation has its own heroes.")
                 werentWoundedOptions(target)
             }

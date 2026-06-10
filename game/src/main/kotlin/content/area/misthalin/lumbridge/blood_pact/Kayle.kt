@@ -68,7 +68,7 @@ class Kayle : Script {
             option<Neutral>("No. Just give me your stuff and get out of here.") {
                 set("blood_pact_kayle", "spared")
                 open("fade_out")
-                target.anim("kayle_getUp")
+                target.anim("kayle_getup")
                 delay(3)
                 NPCs.remove(target)
                 FloorItems.add(instanceOffset().tile(3877, 5543, 1), "kayles_sling", disappearTicks = 300, owner = this)
