@@ -15,12 +15,15 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.suspend.pauseInt
 
@@ -29,19 +32,14 @@ private const val SHARD_PRICE = 25
 
 private val logger = InlineLogger()
 
-private data class Breed(val option: String, val petId: String, val puppyItem: String)
-
-/** Dog breeds sold by the pet shop, ordered to match the iface 668 ("Pick a puppy") component indices. */
-private fun dogBreeds(): List<Breed> = Tables.get("dog_breeds").rows().map {
-    Breed(it.string("option"), it.string("pet_id"), it.item("puppy_item"))
-}
-
 private fun Player.alreadyHasDog(): Boolean {
     val active = get("pet_active_item", "")
-    val breeds = dogBreeds()
-    if (active.isNotBlank() && breeds.any { active.startsWith(it.petId) }) return true
+    val breeds = Tables.get("dog_breeds").rows()
+    if (active.isNotBlank() && breeds.any { active.startsWith(it.string("pet_id"))}) {
+        return true
+    }
     return breeds.any { breed ->
-        inventory.contains(breed.puppyItem) || inventory.contains(breed.petId)
+        inventory.contains(breed.item("puppy_item")) || inventory.contains(breed.string("pet_id"))
     }
 }
 
@@ -61,15 +59,13 @@ class PetShopOwner : Script {
             spiritShards(interact.target)
         }
 
-        // iface 668 may emit either a continue-dialogue packet or a regular
-        // interface-option packet depending on how the cache wires up each
-        // button, so register both dispatch paths against the same resume.
         continueDialogue("dialogue_pick_a_puppy:*") { id ->
-            val index = dogBreeds().indexOfFirst { it.petId == id.substringAfter(":") }
+            val index = Tables.get("dog_breeds").rows().indexOfFirst { it.rowId == id.substringAfter(":") }
             if (index >= 0) (suspension as? Suspension.IntEntry)?.resume(index)
         }
+
         interfaceOption(id = "dialogue_pick_a_puppy:*") { option ->
-            val index = dogBreeds().indexOfFirst { it.petId == option.component }
+            val index = Tables.get("dog_breeds").rows().indexOfFirst { it.rowId == option.component }
             if (index >= 0) (suspension as? Suspension.IntEntry)?.resume(index)
         }
     }
@@ -103,15 +99,17 @@ class PetShopOwner : Script {
             return
         }
         npc<Happy>(owner.id, "The one with the waggly tail?")
-        if (!open("dialogue_pick_a_puppy")) return
+        if (!open("dialogue_pick_a_puppy")) {
+            return
+        }
         val index = pauseInt()
         close("dialogue_pick_a_puppy")
-        val breed = dogBreeds().getOrNull(index) ?: return
+        val breed = Tables.get("dog_breeds").rows().getOrNull(index) ?: return
         buyPuppy(owner, breed)
     }
 
-    private suspend fun Player.buyPuppy(owner: NPC, breed: Breed) {
-        player<Quiz>("No, the ${breed.option.lowercase()}.")
+    private suspend fun Player.buyPuppy(owner: NPC, breed: RowDefinition) {
+        player<Quiz>("No, the ${breed.string("option").lowercase()}.")
         npc<Neutral>(owner.id, "$PUPPY_PRICE gold.")
         player<Quiz>("Isn't that a little steep?")
         npc<Pleased>(
@@ -121,33 +119,30 @@ class PetShopOwner : Script {
                 "then they don't deserve to have the puppy in the first place. So, do you still want one?",
         )
         choice {
-            option<Happy>("Okay, I'll take the ${breed.option}.") {
+            option<Happy>("Okay, I'll take the ${breed.string("option")}.") {
                 completePuppySale(owner, breed)
             }
             option<Neutral>("No thanks.")
         }
     }
 
-    private suspend fun Player.completePuppySale(owner: NPC, breed: Breed) {
-        if (inventory.isFull()) {
-            npc<Neutral>(owner.id, "Where are you going to put it, on your head? You can't buy a puppy unless you have space to hold it.")
-            player<Neutral>("Good point, I'll go bank some items.")
-            return
+    private suspend fun Player.completePuppySale(owner: NPC, breed: RowDefinition) {
+        inventory.transaction {
+            remove("coins", PUPPY_PRICE)
+            add(breed.item("puppy_item"))
         }
-        if (!inventory.contains("coins", PUPPY_PRICE)) {
-            npc<Neutral>(owner.id, "You don't seem to have $PUPPY_PRICE coins on you. Come back when you do!")
-            return
-        }
-        if (!inventory.remove("coins", PUPPY_PRICE)) return
-        if (!inventory.add(breed.puppyItem)) {
-            // Roll back the coins if we somehow can't fit the puppy.
-            if (!inventory.add("coins", PUPPY_PRICE)) {
-                logger.warn { "Failed to refund $PUPPY_PRICE coins to $accountName after puppy add failed" }
+        when (inventory.transaction.error) {
+            is TransactionError.Deficient -> npc<Neutral>(owner.id, "You don't seem to have $PUPPY_PRICE coins on you. Come back when you do!")
+            is TransactionError.Full -> {
+                npc<Neutral>(owner.id, "Where are you going to put it, on your head? You can't buy a puppy unless you have space to hold it.")
+                player<Neutral>("Good point, I'll go bank some items.")
+            }
+            TransactionError.Invalid -> {
+                logger.warn { "Failed to purchase puppy $accountName" }
                 message("Something went wrong; please contact a member of staff.")
             }
-            return
+            TransactionError.None -> npc<Happy>(owner.id, "There you go! I hope you two get on.")
         }
-        npc<Happy>(owner.id, "There you go! I hope you two get on.")
     }
 
     private suspend fun Player.availablePets(owner: NPC) {
@@ -199,18 +194,19 @@ class PetShopOwner : Script {
         val requested = intEntry("How many will you sell? ($SHARD_PRICE coins each, you have $held)")
         if (requested <= 0) return
         val toSell = requested.coerceAtMost(held)
-        if (!inventory.remove("spirit_shards", toSell)) return
         val payout = toSell * SHARD_PRICE
-        if (!inventory.add("coins", payout)) {
-            // Out of room; refund.
-            if (!inventory.add("spirit_shards", toSell)) {
-                logger.warn { "Failed to refund $toSell spirit shards to $accountName after coin payout failed" }
-                message("Something went wrong; please contact a member of staff.")
-                return
-            }
-            message("You don't have enough room in your inventory.")
-            return
+        inventory.transaction {
+            remove("spirit_shards", toSell)
+            add("coins", payout)
         }
-        statement("You sell $toSell spirit shard${if (toSell == 1) "" else "s"} for $payout coins.")
+        when (inventory.transaction.error) {
+            is TransactionError.Deficient -> player<Neutral>("Thanks, I'll bear that in mind.")
+            is TransactionError.Full -> inventoryFull()
+            TransactionError.Invalid -> {
+                logger.warn { "Failed to exchange $toSell spirit shards to $accountName" }
+                message("Something went wrong; please contact a member of staff.")
+            }
+            TransactionError.None -> statement("You sell $toSell spirit shard${if (toSell == 1) "" else "s"} for $payout coins.")
+        }
     }
 }
