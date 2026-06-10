@@ -19,8 +19,9 @@ const val PERMANENT = Long.MAX_VALUE
 val Player.isMuted: Boolean
     get() = this["muted_until", 0L] > System.currentTimeMillis()
 
-fun Player.mute(hours: Int = 48) {
+fun Player.mute(hours: Int = 48, rule: Rule? = null) {
     this["muted_until"] = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(hours.toLong())
+    addBlackMark(rule)
     message("You have been temporarily muted due to breaking a rule.")
 }
 

@@ -16,8 +16,11 @@ import java.util.concurrent.TimeUnit
 val Player.isBanned: Boolean
     get() = this["banned_until", 0L] > System.currentTimeMillis()
 
-fun Player.ban(hours: Int = 48) {
+fun Player.ban(hours: Int = 48, rule: Rule? = null) {
     this["banned_until"] = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(hours.toLong())
+    repeat(2) {
+        addBlackMark(rule)
+    }
 }
 
 fun Player.permBan() {
@@ -39,7 +42,7 @@ class Ban(val accounts: AccountDefinitions, val manager: AccountManager, val sto
                 target.ban(hours)
                 AuditLog.event(this, "banned", target, hours)
                 manager.logout(target, false)
-            } else if (!setOfflineVariable(args[0], "banned_until", until)) {
+            } else if (!banOffline(args[0], until)) {
                 message("Unable to find player '${args[0]}'.")
                 return@modCommand
             } else {
@@ -86,6 +89,20 @@ class Ban(val accounts: AccountDefinitions, val manager: AccountManager, val sto
             AuditLog.event(this, "unbanned", args[0])
             message("${args[0]} has been unbanned.")
         }
+    }
+
+    /**
+     * Bans an offline player's saved account and adds two black marks
+     */
+    private fun banOffline(displayName: String, until: Long): Boolean {
+        val account = accounts.get(displayName)?.accountName ?: displayName
+        val save = storage.load(account) ?: return false
+        val variables = save.variables.toMutableMap()
+        variables["banned_until"] = until
+        val marks = activeBlackMarks((variables["black_marks"] as? List<*>)?.filterIsInstance<String>() ?: emptyList())
+        variables["black_marks"] = marks + blackMark() + blackMark()
+        storage.save(listOf(save.copy(variables = variables)))
+        return true
     }
 
     /**
