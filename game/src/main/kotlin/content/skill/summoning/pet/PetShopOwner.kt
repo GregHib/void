@@ -35,7 +35,7 @@ private val logger = InlineLogger()
 private fun Player.alreadyHasDog(): Boolean {
     val active = get("pet_active_item", "")
     val breeds = Tables.get("dog_breeds").rows()
-    if (active.isNotBlank() && breeds.any { active.startsWith(it.string("pet_id"))}) {
+    if (active.isNotBlank() && breeds.any { active.startsWith(it.string("pet_id")) }) {
         return true
     }
     return breeds.any { breed ->

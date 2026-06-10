@@ -16,21 +16,21 @@ internal class PetOwnershipTest : WorldTest() {
         val owner = createPlayer(emptyTile)
         val petNpc = createNPC("pet_cat_baby", emptyTile)
         owner.pet = petNpc
-        owner.set("pet_active_item", "pet_kitten")
+        owner["pet_active_item"] = "pet_kitten"
 
         val intruder = createPlayer(emptyTile)
         // Give the intruder their own pet slot to prove the index-mismatch
         // branch (not the null-pet branch) blocks the pickup.
         val intruderPet = createNPC("pet_cat_baby", emptyTile)
         intruder.pet = intruderPet
-        intruder.set("pet_active_item", "pet_kitten")
+        intruder["pet_active_item"] = "pet_kitten"
 
         intruder.npcOption(petNpc, "Pick-up")
         tick(3)
 
         // Pet still belongs to its owner.
-        assertEquals(petNpc.index, owner.get("pet_index", -1))
-        assertEquals("pet_kitten", owner.get("pet_active_item", ""))
+        assertEquals(petNpc.index, owner["pet_index", -1])
+        assertEquals("pet_kitten", owner["pet_active_item", ""])
         // Intruder gained no kitten item and saw the guard message.
         assertFalse(intruder.inventory.contains("pet_kitten"))
         assertTrue(intruder.containsMessage("This isn't your pet."))
@@ -41,15 +41,15 @@ internal class PetOwnershipTest : WorldTest() {
         val owner = createPlayer(emptyTile)
         val petNpc = createNPC("pet_cat_baby", emptyTile)
         owner.pet = petNpc
-        owner.set("pet_active_item", "pet_kitten")
+        owner["pet_active_item"] = "pet_kitten"
 
         val intruder = createPlayer(emptyTile)
         // Intruder has no pet slot; the owner == null branch is the one we hit.
         intruder.npcOption(petNpc, "Pick-up")
         tick(3)
 
-        assertEquals(-1, intruder.get("pet_index", -1))
-        assertEquals(petNpc.index, owner.get("pet_index", -1))
+        assertEquals(-1, intruder["pet_index", -1])
+        assertEquals(petNpc.index, owner["pet_index", -1])
         assertTrue(intruder.containsMessage("This isn't your pet."))
     }
 }

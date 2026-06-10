@@ -29,9 +29,9 @@ internal class PetLogoutTest : WorldTest() {
     @Test
     fun `pet stats persist as per-pet hunger growth warn vars`() {
         val player = createPlayer(emptyTile)
-        player.set("pet_cat_hunger", 4250)
-        player.set("pet_cat_growth", 1700)
-        player.set("pet_cat_warn", 1)
+        player["pet_cat_hunger"] = 4250
+        player["pet_cat_growth"] = 1700
+        player["pet_cat_warn"] = 1
 
         val persisted = player.variables.data
         assertEquals(4250, persisted["pet_cat_hunger"])
@@ -45,8 +45,8 @@ internal class PetLogoutTest : WorldTest() {
     @Test
     fun `incubator state persists per region`() {
         val player = createPlayer(emptyTile)
-        player.set("incubator_egg_taverley", "penguin")
-        player.set("incubator_end_taverley", 12_345)
+        player["incubator_egg_taverley"] = "penguin"
+        player["incubator_end_taverley"] = 12_345
 
         val persisted = player.variables.data
         assertEquals("penguin", persisted["incubator_egg_taverley"])

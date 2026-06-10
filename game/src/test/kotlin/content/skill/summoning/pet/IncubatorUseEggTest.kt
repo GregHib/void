@@ -39,8 +39,8 @@ internal class IncubatorUseEggTest : WorldTest() {
         // "Finished" is no longer a discrete varbit value: the scenery stays
         // on the "incubating" morph (28359) which carries the Take-egg cache
         // option, and isFinished() is derived from the expired end-clock.
-        player.set("incubator_egg_taverley", "penguin")
-        player.set("incubator_state_taverley", "incubating")
+        player["incubator_egg_taverley"] = "penguin"
+        player["incubator_state_taverley"] = "incubating"
         // end-clock unset → remaining() returns -1 → isFinished() == true.
 
         player.objectOption(activeIncubator, "Take-egg")
