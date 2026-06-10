@@ -1,0 +1,10 @@
+[muted_until]
+format = "long"
+persist = true
+
+[banned_until]
+format = "long"
+persist = true
+
+[black_marks]
+persist = true

@@ -55,7 +55,12 @@ class PlayerAccountLoader(
                 client.disconnect(Response.GAME_UPDATE)
                 return null
             }
-            var player = storage.load(username)?.toPlayer()
+            val save = storage.load(username)
+            if (save != null && banned(save.variables)) {
+                client.disconnect(Response.ACCOUNT_DISABLED)
+                return null
+            }
+            var player = save?.toPlayer()
             if (player == null) {
                 if (!Settings["development.accountCreation", false]) {
                     client.disconnect(Response.INVALID_CREDENTIALS)
@@ -71,6 +76,11 @@ class PlayerAccountLoader(
             client.disconnect(Response.COULD_NOT_COMPLETE_LOGIN)
             return null
         }
+    }
+
+    private fun banned(variables: Map<String, Any>): Boolean {
+        val until = (variables["banned_until"] as? Number)?.toLong() ?: return false
+        return until > System.currentTimeMillis()
     }
 
     suspend fun connect(player: Player, client: Client, displayMode: Int = 0, viewport: Boolean = true) {

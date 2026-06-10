@@ -58,6 +58,24 @@ class SafeStorage(
         }
     }
 
+    override fun saveReport(report: AbuseReport) {
+        val parent = directory.resolve("reports/")
+        parent.mkdirs()
+        val file = parent.resolve("${report.time}-${report.reporter}.toml")
+        file.writeText(
+            buildString {
+                appendLine("reporter = \"${report.reporter}\"")
+                appendLine("reported = \"${report.reported}\"")
+                appendLine("rule = ${report.rule}")
+                appendLine("rule_name = \"${report.ruleName}\"")
+                appendLine("mute = ${report.mute}")
+                appendLine("suggestion = \"${report.suggestion}\"")
+                appendLine("time = ${report.time}")
+                appendLine("evidence = [${report.evidence.joinToString(", ") { "\"${it}\"" }}]")
+            },
+        )
+    }
+
     override fun saveOffers(offers: OpenOffers) {
         val buy = directory.resolve(Settings["storage.grand.exchange.offers.buy.path"])
         buy.mkdirs()

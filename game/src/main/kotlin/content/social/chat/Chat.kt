@@ -3,6 +3,8 @@ package content.social.chat
 import content.social.clan.chatType
 import content.social.clan.clan
 import content.social.ignore.ignores
+import content.social.report.isMuted
+import content.social.report.sendMuteMessage
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.Script
@@ -25,13 +27,22 @@ import world.gregs.voidps.network.login.protocol.encode.publicChat
 class Chat(val huffman: Huffman) : Script {
 
     init {
+        playerDespawn {
+            ChatHistory.clear(accountName)
+        }
+
         instruction<ChatPrivate> { player ->
+            if (player.isMuted) {
+                player.sendMuteMessage()
+                return@instruction
+            }
             val target = Players.find(friend)
             if (target == null || target.ignores(player)) {
                 player.message("Unable to send message - player unavailable.")
                 return@instruction
             }
             AuditLog.event(player, "told", target, message)
+            ChatHistory.add(player, "private", message)
             val compressed = huffman.compress(message)
             player.client?.privateChatTo(target.name, compressed)
             target.client?.privateChatFrom(player.name, player.rights.ordinal, compressed)
@@ -45,6 +56,10 @@ class Chat(val huffman: Huffman) : Script {
         }
 
         instruction<ChatPublic> { player ->
+            if (player.isMuted) {
+                player.sendMuteMessage()
+                return@instruction
+            }
             val text = if (text.all { it.isUpperCase() }) {
                 text.toTitleCase()
             } else {
@@ -54,6 +69,7 @@ class Chat(val huffman: Huffman) : Script {
             when (player.chatType) {
                 "public" -> {
                     AuditLog.event(player, "said", text)
+                    ChatHistory.add(player, "public", text)
                     val compressed = huffman.compress(text)
                     Players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }.forEach {
                         it.client?.publicChat(player.index, effects, player.rights.ordinal, compressed)
@@ -70,6 +86,7 @@ class Chat(val huffman: Huffman) : Script {
                         return@instruction
                     }
                     AuditLog.event(player, "clan_said", clan, text)
+                    ChatHistory.add(player, "clan", text)
                     val compressed = huffman.compress(text)
                     clan.members.filterNot { it.ignores(player) }.forEach { member ->
                         member.client?.clanChat(player.name, member.clan!!.name, player.rights.ordinal, compressed)
