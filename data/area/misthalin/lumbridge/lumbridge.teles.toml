@@ -30,7 +30,7 @@ tile = { x = 3193, y = 3255 }
 delta = { x = 3, level = 1 }
 
 # 12850 lumbridge
-[48797]
+[lumbridge_catacomb_stairs]
 option = "Climb-down"
 tile = { x = 3247, y = 3197 }
 to = { x = 3877, y = 5526, level = 1 }

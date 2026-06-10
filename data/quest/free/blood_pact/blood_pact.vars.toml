@@ -1,0 +1,21 @@
+[blood_pact_kayle]
+format = "list"
+persist = true
+default = "alive"
+values = ["alive", "defeated", "spared", "killed"]
+
+[blood_pact_caitlin]
+format = "list"
+persist = true
+default = "alive"
+values = ["alive", "defeated", "spared", "killed"]
+
+[blood_pact_reese]
+format = "list"
+persist = true
+default = "alive"
+values = ["alive", "defeated", "spared", "killed"]
+
+[blood_pact_ilona_departed]
+format = "boolean"
+persist = true
