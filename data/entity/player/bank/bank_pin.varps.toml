@@ -1,0 +1,7 @@
+[bank_pin_digits]
+id = 562
+format = "int"
+
+[bank_pin_shuffle]
+id = 563
+format = "int"

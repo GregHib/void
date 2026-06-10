@@ -1,0 +1,27 @@
+[bank_pin]
+format = "string"
+persist = true
+
+[bank_pin_pending]
+format = "string"
+persist = true
+
+[bank_pin_delete]
+format = "boolean"
+persist = true
+
+[bank_pin_change]
+format = "int"
+persist = true
+
+[bank_pin_long_recovery]
+format = "boolean"
+persist = true
+
+[bank_pin_tries]
+format = "int"
+persist = true
+
+[bank_pin_lockout]
+format = "int"
+persist = true

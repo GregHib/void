@@ -1,0 +1,14 @@
+[bank_pin_pending]
+id = 1040
+
+[bank_pin_beep]
+id = 1041
+
+[bank_pin_cancel]
+id = 1042
+
+[bank_pin_success]
+id = 2274
+
+[bank_pin_wrong]
+id = 2277

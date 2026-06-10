@@ -1,5 +1,25 @@
 [bank_pin]
 id = 13
+type = "main_screen"
+
+[.digit_1]
+id = "1-10"
+
+[.cell_1]
+id = "11-20"
+
+[.instruction]
+id = 28
+
+[.forgot]
+id = 29
+options = { "I don't know it" = 0 }
+
+[.exit]
+id = 30
+
+[.deletion]
+id = 31
 
 [bank_deposit_box]
 id = 11
@@ -26,6 +46,58 @@ id = 22
 
 [bank_pin_settings]
 id = 14
+type = "main_screen"
+
+[.close]
+id = 3
+
+[.message_header]
+id = 41
+
+[.extra_1]
+id = "55-57"
+
+[.message_1]
+id = "42-54"
+
+[.set_pin]
+id = 60
+
+[.recovery_new]
+id = 61
+
+[.change_pin]
+id = 62
+
+[.delete_pin]
+id = 63
+
+[.recovery]
+id = 64
+
+[.cancel_pending]
+id = 65
+
+[.status]
+id = 69
+
+[.delay]
+id = 71
+
+[.confirm_text]
+id = 73
+
+[.hint]
+id = 86
+
+[.confirm_overlay]
+id = 87
+
+[.confirm]
+id = 89
+
+[.cancel]
+id = 91
 
 [ourania_bank_charge]
 id = 619
