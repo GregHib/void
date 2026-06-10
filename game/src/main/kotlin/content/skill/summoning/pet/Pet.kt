@@ -319,17 +319,11 @@ class PetScripts : Script {
             listOfNotNull(it.npcOrNull("baby_npc"), it.npcOrNull("grown_npc"), it.npcOrNull("overgrown_npc"))
         }.toSet().joinToString(",")
 
-        // Both inventory options route to dropPet. The cache wires pet items
-        // to "Release" rather than the generic "Drop", and ItemDestroy
-        // registers a wildcard "Release" handler that would open a destroy
-        // confirmation dialog. Registering "Release" against the specific pet
-        // item ids takes precedence over that wildcard so pets bypass the
-        // confirm and go straight into the summon flow. Also handle "Drop"
-        // because a handful of pet items still expose it.
         itemOption("Drop", itemIds) { (item) ->
             val row = petRowForItem(item.id) ?: return@itemOption
             dropPet(row, item.id)
         }
+
         itemOption("Release", itemIds) { (item) ->
             val row = petRowForItem(item.id) ?: return@itemOption
             dropPet(row, item.id)
@@ -347,6 +341,7 @@ class PetScripts : Script {
                 pickupPet()
             }
         }
+
         npcOperate("Talk-to", npcIds) { interact ->
             val owner = pet
             if (owner == null || owner.index != interact.target.index) {

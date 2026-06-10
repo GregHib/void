@@ -10,11 +10,6 @@ id = 1174
 format = "int"
 persist = true
 
-# Packed pet growth + hunger. The familiar-details panel CS2 reads this varp to
-# render the growth / hunger bars when the active follower is a pet:
-#   bits 1..7  = growth  (0..100)
-#   bits 9..15 = hunger  (0..100)
-# Derived from the persistent `pet_stats` blob; re-sent on demand.
 [pet_details_stats]
 id = 1175
 format = "int"

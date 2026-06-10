@@ -1,6 +1,4 @@
 # Persistent incubator state, per region.
-#
-# `incubator_end_*` is a tick-based clock (engine `start` / `remaining` helpers).
 
 [incubator_egg_taverley]
 format = "string"
