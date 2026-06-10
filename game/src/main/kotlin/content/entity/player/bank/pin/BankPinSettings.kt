@@ -29,7 +29,7 @@ class BankPinSettings : Script {
         }
 
         interfaceOption("Change your recovery delay", "bank_pin_settings:recovery*") {
-            set("bank_pin_long_recovery", !get("bank_pin_long_recovery", false))
+            toggle("bank_pin_long_recovery")
             val days = BankPin.recoveryDays(this)
             refresh(
                 this,
