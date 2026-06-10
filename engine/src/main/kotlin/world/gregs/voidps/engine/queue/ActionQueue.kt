@@ -77,10 +77,11 @@ class ActionQueue<C : Character>(
         }
         var action = queue.peek()
         while (action != null) {
+            val next = action.next
             if (action.priority == priority) {
                 queue.remove(action)
             }
-            action = action.next
+            action = next
         }
     }
 

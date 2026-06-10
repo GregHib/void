@@ -1,0 +1,546 @@
+[pet_cat_baby]
+id = 761
+
+[pet_cat]
+id = 768
+
+[pet_cat_overgrown]
+id = 774
+
+[pet_cat_1_baby]
+id = 762
+
+[pet_cat_1]
+id = 769
+
+[pet_cat_1_overgrown]
+id = 775
+
+[pet_cat_2_baby]
+id = 763
+
+[pet_cat_2]
+id = 770
+
+[pet_cat_2_overgrown]
+id = 776
+
+[pet_cat_3_baby]
+id = 764
+
+[pet_cat_3]
+id = 771
+
+[pet_cat_3_overgrown]
+id = 777
+
+[pet_cat_4_baby]
+id = 765
+
+[pet_cat_4]
+id = 772
+
+[pet_cat_4_overgrown]
+id = 778
+
+[pet_cat_5_baby]
+id = 766
+
+[pet_cat_5]
+id = 773
+
+[pet_cat_5_overgrown]
+id = 779
+
+[pet_hellcat_baby]
+id = 3505
+
+[pet_hellcat]
+id = 3504
+
+[pet_hellcat_overgrown]
+id = 3503
+
+[pet_cat_6_baby]
+id = 8217
+
+[pet_cat_6]
+id = 8214
+
+[pet_clockwork_cat_baby]
+id = 3598
+
+[pet_bulldog_baby]
+id = 6969
+
+[pet_bulldog]
+id = 6968
+
+[pet_bulldog_1_baby]
+id = 7259
+
+[pet_bulldog_1]
+id = 7257
+
+[pet_bulldog_2_baby]
+id = 7260
+
+[pet_bulldog_2]
+id = 7258
+
+[pet_dalmatian_baby]
+id = 6964
+
+[pet_dalmatian]
+id = 6965
+
+[pet_dalmatian_1_baby]
+id = 7249
+
+[pet_dalmatian_1]
+id = 7250
+
+[pet_dalmatian_2_baby]
+id = 7251
+
+[pet_dalmatian_2]
+id = 7252
+
+[pet_greyhound_baby]
+id = 6960
+
+[pet_greyhound]
+id = 6961
+
+[pet_greyhound_1_baby]
+id = 7241
+
+[pet_greyhound_1]
+id = 7242
+
+[pet_greyhound_2_baby]
+id = 7243
+
+[pet_greyhound_2]
+id = 7244
+
+[pet_labrador_baby]
+id = 6962
+
+[pet_labrador]
+id = 6963
+
+[pet_labrador_1_baby]
+id = 7245
+
+[pet_labrador_1]
+id = 7246
+
+[pet_labrador_2_baby]
+id = 7247
+
+[pet_labrador_2]
+id = 7248
+
+[pet_sheepdog_baby]
+id = 6966
+
+[pet_sheepdog]
+id = 6967
+
+[pet_sheepdog_1_baby]
+id = 7253
+
+[pet_sheepdog_1]
+id = 7254
+
+[pet_sheepdog_2_baby]
+id = 7255
+
+[pet_sheepdog_2]
+id = 7256
+
+[pet_terrier_baby]
+id = 6958
+
+[pet_terrier]
+id = 6959
+
+[pet_terrier_1_baby]
+id = 7237
+
+[pet_terrier_1]
+id = 7238
+
+[pet_terrier_2_baby]
+id = 7239
+
+[pet_terrier_2]
+id = 7240
+
+[pet_gecko_baby]
+id = 6915
+
+[pet_gecko]
+id = 6916
+
+[pet_gecko_1_baby]
+id = 7277
+
+[pet_gecko_1]
+id = 7281
+
+[pet_gecko_2_baby]
+id = 7278
+
+[pet_gecko_2]
+id = 7282
+
+[pet_gecko_3_baby]
+id = 7279
+
+[pet_gecko_3]
+id = 7283
+
+[pet_gecko_4_baby]
+id = 7280
+
+[pet_gecko_4]
+id = 7284
+
+[pet_platypus_baby]
+id = 7018
+
+[pet_platypus]
+id = 7015
+
+[pet_platypus_1_baby]
+id = 7019
+
+[pet_platypus_1]
+id = 7016
+
+[pet_platypus_2_baby]
+id = 7020
+
+[pet_platypus_2]
+id = 7017
+
+[pet_broav_baby]
+id = 8491
+
+[pet_penguin_baby]
+id = 6908
+
+[pet_penguin]
+id = 6909
+
+[pet_penguin_1_baby]
+id = 7313
+
+[pet_penguin_1]
+id = 7314
+
+[pet_penguin_2_baby]
+id = 7316
+
+[pet_penguin_2]
+id = 7317
+
+[pet_giant_crab_baby]
+id = 6947
+
+[pet_giant_crab]
+id = 6948
+
+[pet_giant_crab_1_baby]
+id = 7293
+
+[pet_giant_crab_1]
+id = 7294
+
+[pet_giant_crab_2_baby]
+id = 7295
+
+[pet_giant_crab_2]
+id = 7296
+
+[pet_giant_crab_3_baby]
+id = 7297
+
+[pet_giant_crab_3]
+id = 7298
+
+[pet_giant_crab_4_baby]
+id = 7299
+
+[pet_giant_crab_4]
+id = 7300
+
+[pet_raven_baby]
+id = 6911
+
+[pet_raven]
+id = 6912
+
+[pet_raven_1_baby]
+id = 7261
+
+[pet_raven_1]
+id = 7262
+
+[pet_raven_2_baby]
+id = 7263
+
+[pet_raven_2]
+id = 7264
+
+[pet_raven_3_baby]
+id = 7265
+
+[pet_raven_3]
+id = 7266
+
+[pet_raven_4_baby]
+id = 7267
+
+[pet_raven_4]
+id = 7268
+
+[pet_raven_5_baby]
+id = 7269
+
+[pet_raven_5]
+id = 7270
+
+[pet_squirrel_baby]
+id = 6919
+
+[pet_squirrel]
+id = 6920
+
+[pet_squirrel_1_baby]
+id = 7301
+
+[pet_squirrel_1]
+id = 7302
+
+[pet_squirrel_2_baby]
+id = 7303
+
+[pet_squirrel_2]
+id = 7304
+
+[pet_squirrel_3_baby]
+id = 7305
+
+[pet_squirrel_3]
+id = 7306
+
+[pet_squirrel_4_baby]
+id = 7307
+
+[pet_squirrel_4]
+id = 7308
+
+[pet_saradomin_owl_baby]
+id = 6949
+
+[pet_saradomin_owl]
+id = 6950
+
+[pet_saradomin_owl_overgrown]
+id = 6951
+
+[pet_zamorak_hawk_baby]
+id = 6952
+
+[pet_zamorak_hawk]
+id = 6953
+
+[pet_zamorak_hawk_overgrown]
+id = 6954
+
+[pet_guthix_raptor_baby]
+id = 6955
+
+[pet_guthix_raptor]
+id = 6956
+
+[pet_guthix_raptor_overgrown]
+id = 6957
+
+[pet_ex_ex_parrot_baby]
+id = 7844
+
+[pet_cute_phoenix_eggling_baby]
+id = 8578
+
+[pet_mean_phoenix_eggling_baby]
+id = 8577
+
+[pet_raccoon_baby]
+id = 6913
+
+[pet_raccoon]
+id = 6914
+
+[pet_raccoon_1_baby]
+id = 7271
+
+[pet_raccoon_1]
+id = 7272
+
+[pet_raccoon_2_baby]
+id = 7273
+
+[pet_raccoon_2]
+id = 7274
+
+[pet_vulture_baby]
+id = 6945
+
+[pet_vulture]
+id = 6946
+
+[pet_vulture_1_baby]
+id = 7319
+
+[pet_vulture_1]
+id = 7320
+
+[pet_vulture_2_baby]
+id = 7321
+
+[pet_vulture_2]
+id = 7322
+
+[pet_vulture_3_baby]
+id = 7323
+
+[pet_vulture_3]
+id = 7324
+
+[pet_vulture_4_baby]
+id = 7325
+
+[pet_vulture_4]
+id = 7326
+
+[pet_vulture_5_baby]
+id = 7327
+
+[pet_vulture_5]
+id = 7328
+
+[pet_chameleon_baby]
+id = 6922
+
+[pet_chameleon]
+id = 6923
+
+[pet_monkey_baby]
+id = 6942
+
+[pet_monkey]
+id = 6943
+
+[pet_monkey_1_baby]
+id = 7210
+
+[pet_monkey_1]
+id = 7211
+
+[pet_monkey_2_baby]
+id = 7212
+
+[pet_monkey_2]
+id = 7213
+
+[pet_monkey_3_baby]
+id = 7214
+
+[pet_monkey_3]
+id = 7215
+
+[pet_monkey_4_baby]
+id = 7216
+
+[pet_monkey_4]
+id = 7217
+
+[pet_monkey_5_baby]
+id = 7218
+
+[pet_monkey_5]
+id = 7219
+
+[pet_monkey_6_baby]
+id = 7220
+
+[pet_monkey_6]
+id = 7221
+
+[pet_monkey_7_baby]
+id = 7222
+
+[pet_monkey_7]
+id = 7223
+
+[pet_monkey_8_baby]
+id = 7224
+
+[pet_monkey_8]
+id = 7225
+
+[pet_monkey_9_baby]
+id = 7226
+
+[pet_monkey_9]
+id = 7227
+
+[pet_baby_dragon_baby]
+id = 6900
+
+[pet_baby_dragon]
+id = 6901
+
+[pet_baby_dragon_1_baby]
+id = 6902
+
+[pet_baby_dragon_1]
+id = 6903
+
+[pet_baby_dragon_2_baby]
+id = 6904
+
+[pet_baby_dragon_2]
+id = 6905
+
+[pet_baby_dragon_3_baby]
+id = 6906
+
+[pet_baby_dragon_3]
+id = 6907
+
+[pet_creeping_hand_baby]
+id = 8619
+
+[pet_minitrice_baby]
+id = 8620
+
+[pet_baby_basilisk_baby]
+id = 8621
+
+[pet_baby_kurask_baby]
+id = 8622
+
+[pet_abyssal_minion_baby]
+id = 8624
+
+[pet_sneakerpeeper_baby]
+id = 13089
+
+[pet_sneakerpeeper]
+id = 13090
+

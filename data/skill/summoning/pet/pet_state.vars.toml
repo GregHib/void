@@ -1,0 +1,1452 @@
+# Per-pet hunger / growth / warn state.
+# Generated from pets.tables.toml. Keep in sync if pet ids change.
+
+[pet_cat_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_1_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_1_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_1_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_2_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_2_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_2_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_3_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_3_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_3_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_4_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_4_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_4_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_5_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_5_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_5_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_hellcat_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_hellcat_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_hellcat_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_6_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_6_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_6_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_clockwork_cat_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_clockwork_cat_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_clockwork_cat_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_bulldog_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_bulldog_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_bulldog_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_bulldog_1_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_bulldog_1_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_bulldog_1_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_bulldog_2_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_bulldog_2_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_bulldog_2_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_dalmatian_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_dalmatian_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_dalmatian_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_dalmatian_1_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_dalmatian_1_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_dalmatian_1_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_dalmatian_2_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_dalmatian_2_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_dalmatian_2_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_greyhound_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_greyhound_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_greyhound_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_greyhound_1_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_greyhound_1_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_greyhound_1_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_greyhound_2_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_greyhound_2_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_greyhound_2_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_labrador_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_labrador_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_labrador_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_labrador_1_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_labrador_1_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_labrador_1_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_labrador_2_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_labrador_2_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_labrador_2_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_sheepdog_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_sheepdog_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_sheepdog_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_sheepdog_1_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_sheepdog_1_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_sheepdog_1_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_sheepdog_2_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_sheepdog_2_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_sheepdog_2_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_terrier_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_terrier_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_terrier_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_terrier_1_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_terrier_1_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_terrier_1_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_terrier_2_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_terrier_2_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_terrier_2_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_gecko_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_gecko_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_gecko_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_gecko_1_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_gecko_1_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_gecko_1_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_gecko_2_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_gecko_2_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_gecko_2_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_gecko_3_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_gecko_3_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_gecko_3_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_gecko_4_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_gecko_4_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_gecko_4_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_platypus_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_platypus_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_platypus_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_platypus_1_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_platypus_1_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_platypus_1_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_platypus_2_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_platypus_2_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_platypus_2_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_broav_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_broav_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_broav_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_penguin_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_penguin_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_penguin_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_penguin_1_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_penguin_1_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_penguin_1_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_penguin_2_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_penguin_2_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_penguin_2_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_giant_crab_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_giant_crab_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_giant_crab_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_giant_crab_1_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_giant_crab_1_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_giant_crab_1_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_giant_crab_2_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_giant_crab_2_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_giant_crab_2_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_giant_crab_3_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_giant_crab_3_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_giant_crab_3_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_giant_crab_4_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_giant_crab_4_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_giant_crab_4_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raven_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raven_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raven_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raven_1_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raven_1_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raven_1_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raven_2_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raven_2_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raven_2_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raven_3_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raven_3_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raven_3_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raven_4_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raven_4_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raven_4_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raven_5_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raven_5_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raven_5_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_squirrel_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_squirrel_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_squirrel_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_squirrel_1_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_squirrel_1_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_squirrel_1_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_squirrel_2_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_squirrel_2_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_squirrel_2_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_squirrel_3_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_squirrel_3_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_squirrel_3_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_squirrel_4_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_squirrel_4_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_squirrel_4_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_saradomin_owl_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_saradomin_owl_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_saradomin_owl_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_zamorak_hawk_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_zamorak_hawk_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_zamorak_hawk_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_guthix_raptor_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_guthix_raptor_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_guthix_raptor_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_ex_ex_parrot_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_ex_ex_parrot_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_ex_ex_parrot_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cute_phoenix_eggling_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cute_phoenix_eggling_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cute_phoenix_eggling_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_mean_phoenix_eggling_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_mean_phoenix_eggling_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_mean_phoenix_eggling_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raccoon_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raccoon_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raccoon_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raccoon_1_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raccoon_1_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raccoon_1_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raccoon_2_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raccoon_2_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_raccoon_2_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_vulture_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_vulture_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_vulture_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_vulture_1_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_vulture_1_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_vulture_1_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_vulture_2_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_vulture_2_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_vulture_2_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_vulture_3_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_vulture_3_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_vulture_3_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_vulture_4_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_vulture_4_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_vulture_4_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_vulture_5_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_vulture_5_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_vulture_5_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_chameleon_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_chameleon_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_chameleon_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_1_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_1_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_1_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_2_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_2_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_2_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_3_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_3_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_3_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_4_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_4_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_4_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_5_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_5_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_5_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_6_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_6_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_6_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_7_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_7_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_7_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_8_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_8_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_8_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_9_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_9_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_monkey_9_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_dragon_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_dragon_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_dragon_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_dragon_1_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_dragon_1_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_dragon_1_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_dragon_2_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_dragon_2_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_dragon_2_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_dragon_3_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_dragon_3_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_dragon_3_warn]
+format = "int"
+persist = true
+transmit = false
+
+
+[pet_cat_loneliness]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_lonely_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_1_loneliness]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_1_lonely_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_2_loneliness]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_2_lonely_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_3_loneliness]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_3_lonely_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_4_loneliness]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_4_lonely_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_5_loneliness]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_5_lonely_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_hellcat_loneliness]
+format = "int"
+persist = true
+transmit = false
+
+[pet_hellcat_lonely_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_6_loneliness]
+format = "int"
+persist = true
+transmit = false
+
+[pet_cat_6_lonely_warn]
+format = "int"
+persist = true
+transmit = false
+
+# Soul Wars Slayer reward pets — single-stage, no loneliness.
+
+[pet_creeping_hand_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_creeping_hand_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_creeping_hand_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_minitrice_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_minitrice_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_minitrice_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_basilisk_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_basilisk_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_basilisk_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_kurask_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_kurask_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_baby_kurask_warn]
+format = "int"
+persist = true
+transmit = false
+
+[pet_abyssal_minion_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_abyssal_minion_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_abyssal_minion_warn]
+format = "int"
+persist = true
+transmit = false
+
+# Dungeoneering reward pet — two-stage, no loneliness.
+
+[pet_sneakerpeeper_hunger]
+format = "int"
+persist = true
+transmit = false
+
+[pet_sneakerpeeper_growth]
+format = "int"
+persist = true
+transmit = false
+
+[pet_sneakerpeeper_warn]
+format = "int"
+persist = true
+transmit = false

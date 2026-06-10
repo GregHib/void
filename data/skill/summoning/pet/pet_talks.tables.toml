@@ -1,0 +1,1867 @@
+# Talk-to dialogue rows for pets. One row per conversation; selected at random.
+# Each `lines` entry is prefixed with a single speaker code:
+#   npc:      - pet chathead dialogue
+#   player:   - player chathead dialogue
+#   overhead: - overhead bubble above the pet
+#   [...]     - narrator thought-bubble, brackets stripped
+#   (none)    - narrator chatbox statement
+#
+# Dog rows may include inline (translation) parens; the dog walker shows
+# only the bark text below Summoning level 14, and both bark+translation
+# at level 14+. Non-dog rows render parens verbatim.
+#
+# `pet` matches RowDefinition.rowId for generic pets, or the breed name
+# (`bulldog`, `dalmatian`, etc.) for dogs. `stage` filters by life stage
+# ("baby"/"grown"/"overgrown"); blank matches any stage. `condition` is
+# an optional inventory item id; conditional rows win over the random pool.
+
+[pet_talks]
+pet = "string"
+stage = "list<string>"
+condition = "string"
+lines = "list<string>"
+
+# === Generic pets (migrated from pets.tables.toml talk_lines) ===
+
+[.baby_dragon_baby]
+pet = "baby_dragon"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc: Rawr, raaar! Growl raaaaawraaaaw!",
+]
+
+[.baby_dragon_grown]
+pet = "baby_dragon"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Roooooar! Graaaaah roaaaaar!",
+]
+
+[.labrador_baby_1]
+pet = "labrador"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc:Yipyip yip yap yipyap, yap!",
+    "player:I'm sure I can find us something to do.",
+    "npc:Yapyapyap? Yapyap!",
+    "player:Sure. We can play when I'm finished here, okay?",
+]
+
+[.labrador_grown_1]
+pet = "labrador"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:Can we play now?",
+    "player:Give me a minute, I have to finish something before we can.",
+    "npc:What about afterwards?",
+    "player:Well we'll have to see, won't we?",
+    "npc:Fair enough, eh!",
+]
+
+[.labrador_grown_2]
+pet = "labrador"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:It wouldn't kill you to throw a stick around, eh?",
+    "player:That's true, and I will but right now I'm busy, okay?",
+    "npc:Okay, I know you have biped stuff to get on with, eh.",
+]
+
+[.labrador_grown_3]
+pet = "labrador"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:I want to get something to eat!",
+    "player:You always want something to eat!",
+    "npc:I'm a growing dog!",
+    "player:You'll have to lay off the food or the only way you will grow is outwards.",
+]
+
+[.greyhound_baby_1]
+pet = "greyhound"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc:Yipyip yip yap? (Where to now?)",
+    "player:I haven't decided yet!",
+    "npc:Yipyip! Yipyip! (Race you! Race you!)",
+    "player:Alright, first one there wins!",
+]
+
+[.greyhound_grown_1]
+pet = "greyhound"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:Whiiiiine. (Boring!)",
+    "player:Well if you give me a moment we can move on.",
+    "npc:Woofwoof. (We'd better.)",
+]
+
+[.greyhound_grown_2]
+pet = "greyhound"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:Whinewhine. (Bored now.)",
+    "player:Want me to dance for your entertainment or something?",
+    "npc:Woof! (That would help!)",
+    "player:That's so not happening!",
+    "npc:Whiiiine. (Awwwww.)",
+]
+
+[.greyhound_grown_3]
+pet = "greyhound"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:Woofwoof! (Hurry up, slowpoke!)",
+    "player:You're the one always behind me, why should I hurry up?",
+    "npc:Woofwoof whine woof. (Because if I was running, I'd beat you.)",
+    "player:Well, why don't you run ahead?",
+    "npc:Woofwoof woof! (Because you haven't told me where we are going!)",
+]
+
+[.greyhound_grown_4]
+pet = "greyhound"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:Woofwoof woof whine. (Any reason we are stood here idly?)",
+    "player:Well, I do have things to do here.",
+    "npc:Woofwoofwoof. (Well, chop-chop.)",
+]
+
+[.greyhound_grown_5]
+pet = "greyhound"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:Whoofwoof woof! (Don't stop now! Keep running!)",
+]
+
+[.dalmatian_baby_1]
+pet = "dalmatian"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc:Yipyipyip! (Hello!)",
+    "player:Hello there!",
+    "npc:Yipyapyipyipyap! (Pay attention to me!)",
+    "player:I am!",
+    "npc:Yapyapyapyap! (Yay!)",
+]
+
+[.dalmatian_grown_1]
+pet = "dalmatian"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:Woof! (Hey!)",
+    "player:What is it?",
+    "npc:Woof woof! (Hello!)",
+    "player:Hello?",
+    "npc:Woof! Woof! (Yay! Hello!)",
+    "player:Simple things for simple minds, I suppose.",
+]
+
+[.dalmatian_grown_2]
+pet = "dalmatian"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:Woofwoof woof? (Whatcha doin'?)",
+    "player:Nothing much. I'll be done in a little while.",
+    "npc:Woofwoofwoof woof woofwoof! (Then it's playtime?)",
+    "player:It certainly will be.",
+]
+
+[.dalmatian_grown_3]
+pet = "dalmatian"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:Woofwoof woof woof! (I'm a good dog!)",
+    "player:Yes, you are!",
+    "npc:Woof! (Hooray!)",
+]
+
+[.dalmatian_grown_4]
+pet = "dalmatian"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:Woofwoof woof woof! (Pay attention to me!)",
+    "player:I am, I am! What do you want?",
+    "npc:Woof woof woofwoof woof woof! (For you to pay attention to me!)",
+]
+
+[.dalmatian_grown_stick]
+pet = "dalmatian"
+stage = ["grown"]
+condition = "logs"
+lines = [
+    "npc:[Throw the stick!]",
+    "player:These sticks are not for throwing, sorry.",
+    "npc:[Throw the stick! Throw the stick!]",
+    "player:Okay, look, there it goes.",
+    "npc:[I lost it.]",
+    "player:That's okay, I have more.",
+    "npc:[Yay! Throw the stick!]",
+    "player:Here we go again.",
+]
+
+[.bulldog_baby_1]
+pet = "bulldog"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc:Whurfwhurf, grumble snuffle whurf whurf?",
+    "player:Well, I could carry you if you like.",
+    "npc:Whurfwhurf, whurf.",
+    "player:You know, you won't grow up to be big and strong if you keep getting carried everywhere.",
+    "npc:Whurf, whurf.",
+]
+
+[.bulldog_grown_1]
+pet = "bulldog"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:Whurfwhurf whurf, whurfwhurf whurf.",
+    "player:What? This place or what we are doing?",
+    "npc:Whurfwhurf grumble.",
+    "player:You're feeling lazy today, aren't you?",
+    "npc:Whurfwhurf! Whurf whurf Whurfwhurf!",
+]
+
+[.bulldog_grown_2]
+pet = "bulldog"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:Whurf whurfwhurf whurf. Grumblewhurf.",
+    "player:Is it me who needs a rest or you?",
+    "npc:Whurfwhurf whurf.",
+    "player:Yeah, I thought as much.",
+    "npc:Grumble...",
+]
+
+[.bulldog_grown_3]
+pet = "bulldog"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:Whurfwhurf Whurf.",
+    "player:I don't know if a cup of tea would be good for you.",
+    "npc:Whurf whurf whurfwhurf.",
+]
+
+[.bulldog_grown_4]
+pet = "bulldog"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:Whurfwhurf?",
+    "player:Not for a while I guess...",
+    "npc:*grumble* Whurf",
+]
+
+[.bulldog_grown_tea]
+pet = "bulldog"
+stage = ["grown"]
+condition = "cup_of_tea"
+lines = [
+]
+
+[.terrier_baby_1]
+pet = "terrier"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc:Yipyip yip yap yip yip! (Are we going shomeplache intereshting?)",
+    "player:Don't you think this place is interesting?",
+    "npc:Yipyipyip yap yip yapyap. (It'sh hardly what i would call lively, thatsh fer shure.)",
+    "player:Well, we'll head out in a bit.",
+]
+
+[.terrier_grown_1]
+pet = "terrier"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:Yipyap yip yap yapyap yip yip? (Are we going to get shome shpecial equipment for thish misshion?)",
+    "player:I don't think I'll have to get anything special and, if I do, it won't be that hard to get a hold of.",
+    "npc:Yipyap. (Shure, M. Just checking.)",
+]
+
+[.terrier_grown_2]
+pet = "terrier"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:Yap, yappity yap, yap? (Sho, what'sh the plan today, M?)",
+    "player:Why do you keep calling me 'M'?",
+    "npc:Yapyap yapyap yip yap. ('M' ish for mishtress/mashter, of coarshe.)",
+    "player:Well, that makes sense.",
+]
+
+[.terrier_grown_3]
+pet = "terrier"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:Yipyip yap yap yap yapyapyap! (Quickly, letsh get moving. Time ish washting!)",
+    "player:Less haste, more speed!",
+    "npc:Yipyip! Yip yip yap! (More hashte AND shpeed! Off we go!)",
+]
+
+[.terrier_grown_4]
+pet = "terrier"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:Arf arf yip yap yipyip yap? (How are we supposed to shave the world shtanding around here?)",
+    "player:We're sort of shaving..sorry saving the world, if you think about it.",
+    "npc:Yapyap yip! (Whatever you shay, M.)",
+]
+
+[.terrier_grown_5]
+pet = "terrier"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:Yappy yappy yap yip yap! (Shaved the world again, M!)",
+    "player:Time to go home for tea and medals!",
+    "npc:Yap yap! (Shurely!)",
+]
+
+[.sheepdog_baby_1]
+pet = "sheepdog"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc:Yapyap yip yap! (Hello!)",
+    "player:Hello to you, too!",
+    "npc:Yipyipyip! (I'm a good dog!)",
+    "player:Yes you are. You're a very good puppy.",
+    "npc:Yappypyappyyap! (Huzzah!)",
+]
+
+[.sheepdog_grown_1]
+pet = "sheepdog"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:Whurf. Woof whurf woofwoof? (I say. Where are we off to?)",
+    "player:Well, I've got a list of jobs to get done, and they do take me all over the place.",
+    "npc:Whurfwhurf, woof? Whurf! (Bit of a trek, then? Masterful!)",
+]
+
+[.sheepdog_grown_2]
+pet = "sheepdog"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:Whurf woof woof woof, whurfwoof? (Are we lost, old sport?)",
+    "player:No more than we were the last time you asked.",
+    "npc:Woofwoofwhurf woof. (Just keeping tabs on the situation.)",
+]
+
+[.sheepdog_grown_3]
+pet = "sheepdog"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:Whurf, woofwoof. (I say, old fruit.)",
+    "player:Yes? What do you want?",
+    "npc:Whurfwhurf. (Nothing, really.)",
+    "player:Oh, okay. Well, if you want something just bark, okay?",
+    "npc:Whurf woof woof. (Reading you loud and clear.)",
+]
+
+[.sheepdog_grown_4]
+pet = "sheepdog"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc:Whurfwoofwhurf, woof woof? (What's the plan, old bean?)",
+    "player:I haven't decided yet. When I do, you'll be the first to know.",
+    "npc:Whurf whurf! (Smashing!)",
+]
+
+[.sheepdog_grown_wool]
+pet = "sheepdog"
+stage = ["grown"]
+condition = "wool"
+lines = [
+    "npc:Whurf. Whine woof whine whurf. (I say. It's not on, stealing someone else's coat.)",
+    "player:What are you talking about?",
+    "npc:Whurf whurf whurf whiiiine. (All that fur you are holding there.)",
+    "player:You mean this wool? It's from a sheep, not a sheepdog.",
+    "npc:Woof, woof? Whoof woof whurf. (Oh, really? How terribly embarrassing.)",
+    "player:It was an honest mistake.",
+]
+
+# === Transcript-based dialogue ===
+
+[.platypus_baby]
+pet = "platypus"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc: Chirrup-chirrup snuffle honk squeeeee? (What are we doing today? Huh? Huh?)",
+    "player: Well, what do you want to do?",
+    "npc: Honk! (Oo, can we do some trigonometry together? Or maybe we could discuss the philosophical implications of postmodernism?)",
+    "player: Um, you're a platypus. A baby platypus. Don't you want to burrow in soft earth and splash about in big, muddy puddles?",
+    "npc: Chirrup-honk! (That sounds good too! What a perfect environment in which to discuss the viscosity and other physical principles that describe the world around us! Where's the mud?)",
+    "player: Uh...right over here. Mud galore. Just follow me...",
+]
+
+[.platypus_grown_1]
+pet = "platypus"
+stage = ["grown"]
+condition = ""
+lines = [
+    "player: So what would you like to do today?",
+    "npc: Snoofle-snort sniff. (Not knowing, and having no adequate means of ascertaining for a certainty...)",
+    "player: Yeah?",
+    "npc: Chirrup-chirrup-chee... (...and for fear of prevaricating, or in some form deviating from the paths of rectitude...)",
+    "player: Uh-huh...",
+    "npc: Woof. (...I'd hesitate to say.)",
+    "player: You mean, you don't know?",
+    "npc: Cough. (Correct.)",
+    "player: You know, you could've just said so in the first place!",
+]
+
+[.platypus_grown_2]
+pet = "platypus"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Sniffle snuffle churrup-sneeze? (So, it occurred to me... Might I suggest that we hunt for a nice, hollow log inside which we could take a little snooze?)",
+    "player: Um...that doesn't sound like the most comfy spot for a rest to me.",
+    "npc: Chirrup-snuff? Sniff? (Well, how about a nice, irriguous burrow? Or a large aggregation of frowsty vegetation?)",
+    "player: You want to nap in a pile of rotting leaves?",
+    "npc: Brrrip-chirrup! Chirrup! ('Frowsty'! I said 'frowsty'!)",
+    "player: Sorry, you're still not selling it to me.",
+]
+
+[.platypus_grown_3]
+pet = "platypus"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Chirrup-chirrup snuffle BARK! (Nice day for a stroll, isn't it?)",
+    "player: Um, excuse me, did you just...bark?",
+    "npc: Chim chim chiree. (I may have done. Is it really necessary to make personal comments?)",
+    "player: Oh, no, it's not necessary; it's just fun.",
+    "npc: Chirp! (Maybe I'd get more respect around here if I wore my monocle more often!)",
+    "player: Oh, I'm sure you'd get more of something!",
+    "npc: Grr.. (Hmph. Philistine.)",
+]
+
+[.platypus_grown_4]
+pet = "platypus"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Chirrup sniffle-snuff? (So, have you read anything interesting lately? A good novel? A historical tome? Winsome love letters?)",
+    "player: Oh, and what business is that of yours, nosy?",
+    "npc: Chirrup-chirrup sniff! (I think you'll find that I have a beak, not a nose, sir!)",
+    "player: Oo, looks like somebody has their pedantic hat on today!",
+    "npc: Brrip-squee? (Do you mean 'pedantic' in the pejorative sense or 'pedantic' in the Shakespearean sense?)",
+    "player: Whichever makes you most happy, beaky.",
+    "npc: Brup. (Well, it makes a difference. And don't call me 'beaky'.)",
+]
+
+[.platypus_lavender]
+pet = "platypus"
+stage = ["grown"]
+condition = "lavender"
+lines = [
+    "npc: Chirrup-chirrup? (Oo, is that aromatic lavender I smell?)",
+    "player: Why yes! Nice, isn't it?",
+    "npc: Sniffle snuffle. (Ah, such a fragrant aroma. I'll tell you a secret if your burrow ever smells a bit, well, whiffy, a sprig of lavender fixes everything!)",
+    "npc: Sniffle-squee! (Nothing says 'home' like a monocle rack, a decanter of port, and some lavender potpourri!)",
+    "player: Well, I'll certainly keep that in mind if I ever have to, um, unstinkify a burrow!",
+]
+
+
+[.broav_1]
+pet = "broav"
+stage = []
+condition = ""
+lines = [
+    "npc: Oink snort oink squeal oink snort squeal? (What would you get if you pushed me down a hill?)",
+    "player: I don't know, what?",
+    "npc: Oink snort! (A bacon roll!)",
+    "player: ...",
+    "npc: Oink snort oink oink, snort oink. (Your jokes aren't much better, you know.)",
+]
+
+[.broav_2]
+pet = "broav"
+stage = []
+condition = ""
+lines = [
+    "npc: Oink oink squeal snort oink. (I eat like a pig.)",
+    "player: You are a pig!",
+    "npc: Snort snort oink snort! (That's MR Pig to you!)",
+]
+
+[.broav_3]
+pet = "broav"
+stage = []
+condition = ""
+lines = [
+    "npc: Oink oink snort squeal oink? (Why doesn't my tail like mornings?)",
+    "player: I don't know, why?",
+    "npc: Oink oink snort snort! (Because it's t-wirly!)",
+    "player: ...",
+    "npc: Oink snort oink oink, snort oink. (Oh, come on, that's a good joke.)",
+]
+
+[.broav_hungry_empty]
+pet = "broav"
+stage = []
+condition = ""
+lines = [
+    "npc: Oink-oink grunt snort! (Gimme some food!)",
+    "player: I don't have an-",
+    "npc: Oink... Snort oink... (Awww... I want food...)",
+]
+
+[.broav_fungus]
+pet = "broav"
+stage = []
+condition = "mort_myre_fungus"
+lines = [
+    "npc: Oink-oink grunt snort! (Gimme some food!)",
+    "player: I don't have an-",
+    "npc: Oink! Oink snort snort! (Liar! I can smell it from here!)",
+]
+
+
+[.giant_crab_baby]
+pet = "giant_crab"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc: Clickclick clackclatter clack click! (I are playin' \"Followin' der Yooman\"!)",
+    "player: That you are. You're good at this game.",
+    "npc: Clack clatter! (I are der bestest.)",
+]
+
+[.giant_crab_grown_1]
+pet = "giant_crab"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Clatterclatterclatter! (Yooman, gimmie the fishies!)",
+    "player: I don't think you need feeding that badly right now.",
+    "npc: Clatter clatter click click? (Please will the yooman gimme the fishies?)",
+    "player: Not right now.",
+    "npc: Claaack... (Awww...)",
+]
+
+[.giant_crab_grown_2]
+pet = "giant_crab"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Clatter clatter clatter click clatter! (I is going to eat you, little fishies!)",
+    "player: Yeah, right after I catch them for you!",
+    "npc: Clatter click click click clatter. (Yah, so long as the yooman isn't burnifying da fishies first.)",
+]
+
+[.giant_crab_grown_3]
+pet = "giant_crab"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Clatterclatter... (Dis is too dry...)",
+    "player: Well, if I could take you diving easily, I would.",
+]
+
+[.giant_crab_grown_4]
+pet = "giant_crab"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Clackclackclack clatter click cliak. (Hey, yooman, I wanna go away.)",
+    "player: What do you mean 'away'?",
+    "npc: Clackclack. Clackclackclick clatter. ('Away' away. Dis place is stoo-pid.)",
+    "player: Well, we'll set off in a bit, okay?",
+]
+
+
+[.squirrel_baby]
+pet = "squirrel"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc: Chatterchatter chatter chatter chitter! (Throw a ball for me!)",
+    "player: Are you part-dog or something?",
+    "npc: Chitterchitter chatter? (What's a dog?)",
+    "player: It's another kind of animal. Squirrels are more famous for eating nuts than chasing balls.",
+    "npc: Chatter chatter! (Give me a nut, then!)",
+    "player: I walked into that one, didn't I?",
+]
+
+[.squirrel_grown_1]
+pet = "squirrel"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Chitterchitter! (Gimme a nut!)",
+    "player: Not just now, I wouldn't want to spoil your dinner with one.",
+    "npc: Chatter... (Awww...)",
+]
+
+[.squirrel_grown_2]
+pet = "squirrel"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Chatterchatter chatter! (Stop doing that and play with me!)",
+    "player: Okay, but just for a minute, I'm busy.",
+    "npc: Chatter! (Yay!)",
+]
+
+[.squirrel_grown_3]
+pet = "squirrel"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Chatterchatterchatter chitter. (This is boring, take me someplace fun.)",
+    "player: I'll be done in a moment, and you can play here if you want.",
+    "npc: Chatter! (Huzzah!)",
+]
+
+[.squirrel_grown_4]
+pet = "squirrel"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Chitterchatter? (Is it nearly nut time?)",
+    "player: Didn't you just ask me that a little while ago?",
+    "npc: Chatter. (Maybe.)",
+    "player: Then whatever answer I gave still applies now.",
+]
+
+[.squirrel_logs]
+pet = "squirrel"
+stage = ["grown"]
+condition = "logs"
+lines = [
+    "npc: Chitter... (Sigh...)",
+    "player: What's the matter?",
+    "npc: Chatterchatter chatterchatter chitter... (I'm wondering how many houses you destroyed for those logs...)",
+    "player: I made sure they were all empty before I started.",
+    "npc: Chatter chatter. (Well that's okay, then.)",
+]
+
+
+[.vulture_baby]
+pet = "vulture"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc: Chirrup! (Carry me!)",
+    "player: Are you tired already?",
+    "npc: Chirrrrup twitter! (I likes the bag!)",
+]
+
+[.vulture_grown_1]
+pet = "vulture"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Awk craaaawawk! Awk craaaawawk! (Pay attention to me!)",
+    "player: Do you have to be that noisy?",
+    "npc: Craaaaw! (Yes!)",
+]
+
+[.vulture_grown_2]
+pet = "vulture"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Craaaawawk? (Do you smell that?)",
+    "player: Smell what?",
+    "npc: Crawcawwww. (Dead Stuff.)",
+    "player: No, thankfully.",
+]
+
+[.vulture_grown_3]
+pet = "vulture"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Craaaawk awwwk craaaw? (Can we go digging up dead things?)",
+    "player: Well, if we do will you stop making that racket?",
+    "npc: Craaaawk. (I makes no promises.)",
+]
+
+[.vulture_grown_4]
+pet = "vulture"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Awk! Awk! (I smell dead people!)",
+    "player: How often do you smell them?",
+    "npc: Craaaaw crawk! (All the time...)",
+]
+
+
+[.monkey_baby]
+pet = "monkey"
+stage = ["baby"]
+condition = "monkeyspeak_amulet"
+lines = [
+    "npc: Wanna go play in the trees?",
+    "player: Maybe later - I can't right now.",
+    "npc: Why not?",
+    "player: I can't climb and swing as well as you can.",
+    "npc: You don't want to play in the trees with me?",
+    "player: Yes, I...",
+    "player: Who wants a banana?",
+    "npc: Me! Me! I want a banana!",
+    "player: Phew, crisis averted.",
+]
+
+[.monkey_grown_1]
+pet = "monkey"
+stage = ["grown"]
+condition = "monkeyspeak_amulet"
+lines = [
+    "npc: So why do you walk so funny all the time? Your knuckles barely even touch the ground.",
+    "player: I should hope they don't touch the ground at all!",
+    "npc: Why, though? Is there something wrong with your back?",
+    "player: Yes, it's called good posture.",
+    "npc: Ouch, sounds painful. I hope I don't catch it.",
+    "player: I don't think there's much chance of that...",
+]
+
+[.monkey_grown_2]
+pet = "monkey"
+stage = ["grown"]
+condition = "monkeyspeak_amulet"
+lines = [
+    "npc: I want a banana!",
+    "player: 'I want', never gets.",
+    "npc: Well, what DO I have to say to get a banana, then? What's the 'magic word'?",
+    "player: If I told you what the 'magic word' was, you'd just ask for a banana again.",
+    "npc: Of course I would.",
+    "player: And that's why I'm not going to tell you.",
+    "npc: Please tell me what the magic word is, pleaaaaase...",
+    "player: 'Pleaaaaase'.",
+    "npc: Fine, don't tell me. Humph.",
+]
+
+[.monkey_grown_3]
+pet = "monkey"
+stage = ["grown"]
+condition = "monkeyspeak_amulet"
+lines = [
+    "npc: Hey, you!",
+    "player: Who, me?",
+    "npc: Yes, you!",
+    "player: What do you want?",
+    "npc: Where did all your fur and tail go?",
+    "player: I was a bad little monkey that kept asking silly questions, so all my fur fell out and my tail dropped off.",
+    "npc: Oh no! No wonder you're so mean and grumpy all the time.",
+    "player: Yes, I...",
+    "player: Hey!",
+]
+
+[.monkey_grown_4]
+pet = "monkey"
+stage = ["grown"]
+condition = "monkeyspeak_amulet"
+lines = [
+    "npc: On Karamja.",
+    "player: Mighty Karamja.",
+    "npc: Shaikahan eats, tonight.",
+    "player: On Karamja.",
+    "npc: Mighty Karamja.",
+    "player: Shaikahan sleeps, tonight.",
+    "player: Woooooo, hoo hoooo hooooo, hey, Marimbo, hey.",
+    "player: Woooooo, hoo hoooo hooooo, hey, Marimbo, hey.",
+    "npc: Marimbo, hey. Marimbo, hey. Marimbo, hey. Marimbo, hey...",
+]
+
+[.monkey_baby_noamulet]
+pet = "monkey"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc: Eeek eek! Ook ook eeek eek eeeeek!",
+]
+
+[.monkey_grown_noamulet]
+pet = "monkey"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Ook ook ook! Eeek eek ook ook! Eeek!",
+]
+
+# === Easy-wins transcript batch ===
+
+[.clockwork_cat]
+pet = "clockwork_cat"
+stage = []
+condition = ""
+lines = [
+    "You wind the key on the clockwork cat.",
+    "overhead: Whir... click...",
+    "It paces stiffly in a perfect circle.",
+]
+
+
+[.saradomin_owl_chick]
+pet = "saradomin_owl"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc: Cheepcheep? (Are you my mummy/daddy?)",
+    "player: Err...yes?",
+    "npc: Cheeeeep! (I wuv you mummy/daddy!)",
+    "player: It's so adorable...",
+]
+
+
+[.saradomin_owl_grown_1]
+pet = "saradomin_owl"
+stage = ["grown", "overgrown"]
+condition = ""
+lines = [
+    "npc: Hoothoot hoot? (Have you considered the words of Saradomin today?)",
+    "player: I was going to, honestly.",
+]
+
+[.saradomin_owl_grown_2]
+pet = "saradomin_owl"
+stage = ["grown", "overgrown"]
+condition = ""
+lines = [
+    "npc: Hoothoot! (Saradomin be praised!)",
+    "player: Well they certainly seem chirpy!",
+    "npc: Hooot... (That was a bad pun...)",
+]
+
+[.saradomin_owl_grown_3]
+pet = "saradomin_owl"
+stage = ["grown", "overgrown"]
+condition = ""
+lines = [
+    "npc: Hoot? (Oh, really?)",
+    "player: Oh no...",
+    "npc: Hoot... (Sorry...)",
+]
+
+[.saradomin_owl_grown_4]
+pet = "saradomin_owl"
+stage = ["grown", "overgrown"]
+condition = ""
+lines = [
+    "npc: Hoothoot hoot... (We should be out saving people...)",
+    "player: We'll get to it in the end, honest.",
+    "npc: Hoooot! (Hurrah!)",
+]
+
+
+[.zamorak_hawk_chick]
+pet = "zamorak_hawk"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc: Cheepcheep? (Are you my mummy/daddy?)",
+    "player: Err...yes?",
+    "npc: Cheeeeep! (I wuv you mummy/daddy!)",
+    "player: It's so adorable...",
+]
+
+
+[.zamorak_hawk_grown_1]
+pet = "zamorak_hawk"
+stage = ["grown", "overgrown"]
+condition = ""
+lines = [
+    "npc: Squaa scree! (I can feel anger welling within you!)",
+    "player: What? I'm not feeling very angry.",
+    "npc: Craaak scree! (Yes you are!)",
+    "player: I will be if you keep this up!",
+    "npc: Craaaak. (Told you so.)",
+]
+
+[.zamorak_hawk_grown_2]
+pet = "zamorak_hawk"
+stage = ["grown", "overgrown"]
+condition = ""
+lines = [
+    "npc: Craak Squaa! (All will fall before me!)",
+    "player: Yeah, I'm sure they will.",
+]
+
+[.zamorak_hawk_grown_3]
+pet = "zamorak_hawk"
+stage = ["grown", "overgrown"]
+condition = ""
+lines = [
+    "npc: Craaak....craaak. (How much longer must we wait here?)",
+    "player: We'll be moving on in a while.",
+    "npc: Screeeeeee? (Excellent!)",
+]
+
+[.zamorak_hawk_grown_4]
+pet = "zamorak_hawk"
+stage = ["grown", "overgrown"]
+condition = ""
+lines = [
+    "npc: Screee craak? (When will we subjugate these people?)",
+    "player: I don't know if we will for a while.",
+    "npc: Scree scree! (But we will eventually!)",
+]
+
+
+[.guthix_raptor_chick]
+pet = "guthix_raptor"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc: Cheepcheep? (Are you my mummy/daddy?)",
+    "player: Err...yes?",
+    "npc: Cheeeeep! (I wuv you mummy/daddy!)",
+    "player: It's so adorable...",
+]
+
+
+[.guthix_raptor_grown_1]
+pet = "guthix_raptor"
+stage = ["grown", "overgrown"]
+condition = ""
+lines = [
+    "npc: Cawwcaww... (I sense a lack of balance...)",
+    "player: There, there - it's not the end of the world, you know.",
+]
+
+[.guthix_raptor_grown_2]
+pet = "guthix_raptor"
+stage = ["grown", "overgrown"]
+condition = ""
+lines = [
+    "npc: Cacawcaw caw cawcaw! (Let's go equalise things!)",
+    "player: What do you mean? Bring balance to people's lives or something?",
+    "npc: Cawcaw caw cawcaw cawcaw. (I meant in the wilderness, but that too.)",
+]
+
+[.guthix_raptor_grown_3]
+pet = "guthix_raptor"
+stage = ["grown", "overgrown"]
+condition = ""
+lines = [
+    "npc: Caw cawcaw caaaw! (Today is going to be a wonderful day!)",
+    "player: That's the spirit!",
+    "npc: Cawww....cawww... (I feel so depressed...)",
+    "player: That was sudden. Are you okay?",
+    "npc: Cawwcaw cawcawcaw cawcaw caw cawcaw. (Yes. I'm just striving for balance in my moods.)",
+    "player: Suuuure...",
+]
+
+[.guthix_raptor_grown_4]
+pet = "guthix_raptor"
+stage = ["grown", "overgrown"]
+condition = ""
+lines = [
+    "npc: Caw? (Are you balanced?)",
+    "player: What do you mean?",
+    "npc: Caw? Caw? (Are you balanced? Do you feel balanced?)",
+    "player: Questions like that throw me off balance a little...",
+]
+
+
+[.ex_ex_parrot_1]
+pet = "ex_ex_parrot"
+stage = []
+condition = ""
+lines = [
+    "npc: Braaaa.....cawwww...braaaaaawk..... (What evil looks I get from young and old.)",
+    "player: Well, I can't see anything wrong with you, aside from the maggots. Oh, and the smell...",
+    "npc: Braaaaaaawk....braaawk... (My Mistress finds me lovely.)",
+    "player: Who is your mistress?",
+    "npc: Bkraaaaaw....caw caw kraaaaaw... (Ye'll not know her; she lives in death.)",
+    "player: Yeah, I tend not to visit there too often.",
+]
+
+[.ex_ex_parrot_2]
+pet = "ex_ex_parrot"
+stage = []
+condition = ""
+lines = [
+    "npc: Braaaawk kaaaaaw.....braaaaa......wk? (Are we going to a wedding?)",
+    "player: Why would we be going to a wedding?",
+    "npc: (Because I like weddings!)",
+    "player: Well, we aren't going to one today.",
+]
+
+[.ex_ex_parrot_3]
+pet = "ex_ex_parrot"
+stage = []
+condition = ""
+lines = [
+    "npc: Braaawk braaaa.....awk. (I have a story for you.)",
+    "player: Oh, what is it?",
+    "npc: (A long one!)",
+    "player: I don't think I have time for a long story.",
+    "npc: (You'll like it.)",
+    "player: But I have to be somewhere.",
+    "npc: (Why does nobody want to listen to the nightmares of the sea?)",
+    "player: Maybe it makes them seasick?",
+]
+
+[.ex_ex_parrot_4]
+pet = "ex_ex_parrot"
+stage = []
+condition = ""
+lines = [
+    "npc: (What use be the painted ship upon the painted ocean?)",
+    "player: Not much, that I can see.",
+]
+
+
+[.cute_phoenix_eggling_1]
+pet = "cute_phoenix_eggling"
+stage = []
+condition = ""
+lines = [
+    "npc: Cheep cheepy-chirp chir? (Can me has ashes?)",
+    "player: I'll get you some soon, I promise.",
+    "npc: Chirreeeeeeeeep! (Okaaaaaaaaaay!)",
+]
+
+[.cute_phoenix_eggling_2]
+pet = "cute_phoenix_eggling"
+stage = []
+condition = ""
+lines = [
+    "npc: Cheep chirreep chirrup, cheep chip chirp? (What came first, chickens or eggs?)",
+    "player: Eggs.",
+    "npc: Cheereep? Cheep chip chireep chirup cheep? (Really? You knows the answer? For reals and for trues?)",
+    "player: Of course! Dragons were laying eggs long before chickens were on the scene.",
+    "npc: Cheep chip chirp chirrup. (That not what me meant.)",
+]
+
+[.cute_phoenix_eggling_3]
+pet = "cute_phoenix_eggling"
+stage = []
+condition = ""
+lines = [
+    "npc: Cheep chirrup chirp cheerp. (You killed my mummy.)",
+    "player: I know. I'm sorry.",
+    "npc: Chirp chirrup cheep? Chirpy chip cheep chir! (Why am you sorry? You killed my mummy so she can has new life!)",
+    "player: Phew. I'm glad that's under the rug...",
+]
+
+[.cute_phoenix_eggling_4]
+pet = "cute_phoenix_eggling"
+stage = []
+condition = ""
+lines = [
+    "npc: Chip cheep chirrurp cheep? (Does you think me are cute?)",
+    "player: Extremely cute!",
+    "npc: Chip chireep? Cheep chirrup cheep? (You mean it? You not just saying that?)",
+    "player: I mean it, I swear! Your cuteness makes a fluffy bunny look like the shaved rear end of a sheep.",
+    "npc: Cheep cheep chirp. (Me bet you says that to all the pets.)",
+]
+
+
+[.mean_phoenix_eggling_1]
+pet = "mean_phoenix_eggling"
+stage = []
+condition = ""
+lines = [
+    "npc: Bwark bwik bwak! (Gimme some ash!)",
+    "player: What's the magic word?",
+    "npc: Bwakwabwikbwakra! Bwak, bwark bwik bwak. (Abracadabra! Now, gimme some ash.)",
+    "player: Not with THAT attitude!",
+]
+
+[.mean_phoenix_eggling_2]
+pet = "mean_phoenix_eggling"
+stage = []
+condition = ""
+lines = [
+    "player: How do you drop an egg six feet without breaking it?",
+    "npc: Bwark buwk bwark bwak, bwik bwuk. Bwark? (You are an expert on smashing eggs...)",
+    "player: Drop it SEVEN feet. It won't break for the first six!",
+    "npc: Bwark bark bwuk bwik bwurk. Bwuk bwark bwik bwarkwa. (You're an egg-icidal maniac...)",
+]
+
+[.mean_phoenix_eggling_3]
+pet = "mean_phoenix_eggling"
+stage = []
+condition = ""
+lines = [
+    "player: Knock knock.",
+    "npc: Bwuku, bwark bwak bwik. Bwuk bwak? (Okay, I'll play along. Who's there?)",
+    "player: The yolk's on.",
+    "npc: Bwark bwuk bwak bwook? (The yolk's on who?)",
+    "player: The yolk's on YOU!",
+    "npc: Bwuk bwark bwak bwik bwarkark! (Looks like the yolk's on you after all!)",
+]
+
+[.mean_phoenix_eggling_4]
+pet = "mean_phoenix_eggling"
+stage = []
+condition = ""
+lines = [
+    "player: Wait a minute, where did you get a scar?",
+    "npc: Bwark bwik bwak bwark bwark? (You mean you don't remember?)",
+    "player: Remember what?",
+    "npc: Bwak bwik bwark, bwakwak bwarkark bwik bwak! (You did it, when you kicked my flipping egg in!)",
+    "player: Oh, yeah. I'm sorry about that.",
+    "npc: Bwark bwuk bwak... (You will be...)",
+]
+
+
+[.chameleon_baby]
+pet = "chameleon"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc: Hsssssss sssshsssss hssss! (You can't see me!)",
+    "player: Who said that?",
+    "npc: Hsssshsssss hsssssss sssshssss! (I'm so stealthy I sneak up on myself!)",
+]
+
+[.chameleon_grown_1]
+pet = "chameleon"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Hssshsss hsssshsss ssshsss? (You can't see me, right?)",
+    "player: See who?",
+    "npc: Hssh hssssss! Hssshsshssss sssh sss. (Hah ha! I am like a ghostly shadow.)",
+]
+
+[.chameleon_grown_2]
+pet = "chameleon"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Hshsssss hssss hss hsss! (From the shadows, I strike!)",
+    "player: At what? Flies and beetles?",
+    "npc: Hssshss hsss hsss... (I thought you said you couldn't see me...)",
+    "player: I was talking to myself?",
+    "npc: Hssshsshsss hssssssss. (That's okay then.)",
+]
+
+[.chameleon_grown_3]
+pet = "chameleon"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Hsssh sssssss ssshssssss. (I am one stealthy chameleon.)",
+    "player: Here was me thinking chameleons were adaptable, not stealthy...",
+]
+
+[.chameleon_grown_4]
+pet = "chameleon"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Hssshsss hssssh sssshssss sss. (Nobody can see through my perfect camouflage.)",
+    "player: Errr, you know it's not entirely perfect, right?",
+    "npc: Hssssss! (Shut up!)",
+    "player: Who said that?",
+    "npc: Hssh sss! Hsss hssssss sss hsssss! (Hah! I am the supreme ninja!)",
+]
+
+
+# === Conditional rows for equipment / god items ===
+
+[.giant_crab_crab_gear]
+pet = "giant_crab"
+stage = ["grown"]
+condition = "crab_claw|crab_helmet"
+lines = [
+    "npc: Clackclackclack clatter click clack. (Hey yooman, you best not be doin' dat ter me...)",
+    "player: What have I done now?",
+    "npc: Clackclackclack clatter. (You wearin' der crab shell. Dat not right, right?)",
+    "player: I'm sure I don't know what you're talking ab-",
+    "npc: Clatter clatter clack clack. (I en't got no weak point!)",
+    "player: Really, I don-",
+    "npc: Clatter clatter clack clack. (You not be hittin' me fer massive damage!)",
+    "player: Alright. Alright, already. I promise you're safe with me.",
+]
+
+[.saradomin_owl_tainted]
+pet = "saradomin_owl"
+stage = ["grown", "overgrown"]
+condition = "tainted:saradomin"
+lines = [
+    "npc: Hoothoot hoothoothoot? (How can you wear those tainted items?)",
+    "player: Just because they are not Saradominist does not make them 'tainted'.",
+    "npc: Hoooot... (My owner is a heretic...)",
+]
+
+[.zamorak_hawk_tainted]
+pet = "zamorak_hawk"
+stage = ["grown", "overgrown"]
+condition = "tainted:zamorak"
+lines = [
+    "npc: Suaaa craak! Scree! (Those items aren't right! Drop them!)",
+    "player: I can wear what I like!",
+    "npc: Scree! Screeeee! (Zamorak will see, unbeliever!)",
+]
+
+[.guthix_raptor_tainted]
+pet = "guthix_raptor"
+stage = ["grown", "overgrown"]
+condition = "tainted:guthix"
+lines = [
+    "npc: Caw Cawcaw? (Why aren't you wearing Guthix items?)",
+    "player: Does it matter that much?",
+    "npc: Cawcaw. (I suppose not.)",
+]
+
+[.ex_ex_parrot_pirate]
+pet = "ex_ex_parrot"
+stage = []
+condition = "count:4:pirate_hat|pirate_boots|pirate_shirt_white|pirate_shirt_red|pirate_shirt_blue|pirate_shirt_brown|pirate_bandana_white|pirate_bandana_red|pirate_bandana_blue|pirate_bandana_brown|pirate_leggings_white|pirate_leggings_red|pirate_leggings_blue|pirate_leggings_brown"
+lines = [
+    "npc: (Arrrr, be thee one of the crew?)",
+    "player: Err...yes?",
+    "npc: (Ye should nay have praised yon mariner fer shootin' the bird.)",
+    "player: I didn't...",
+    "npc: (Though it seemed it brought fog and ice, 'twas a bird of good omen!)",
+    "player: I get the feeling I'm better off not knowing what it's talking about.",
+]
+
+[.chameleon_camo]
+pet = "chameleon"
+stage = ["grown"]
+condition = "count:2:camo_top|camo_bottoms|camo_helmet"
+lines = [
+    "npc: Hssshssshsss! Hss hssssh ssssshssss hsss. (Hahaha! You're not fooling anyone...)",
+    "player: The good thing is that if I ignore them they will assume they are too stealthy...",
+]
+
+# === Stage-split transcript batch (gecko, penguin, raven, raccoon) ===
+
+[.gecko_1]
+pet = "gecko"
+stage = []
+condition = ""
+lines = [
+    "npc: Gronk, Gecko gronk? (When can we go back to the jungle?)",
+    "player: When I have a reason to go there.",
+]
+
+[.gecko_2]
+pet = "gecko"
+stage = []
+condition = ""
+lines = [
+    "npc: Hiss gronk. Gecko? (Can you carry me?)",
+    "player: Well if you are tired I suppose I could...",
+    "npc: Gecko! Gronk gronk. (It's hard to keep up with you!)",
+]
+
+[.gecko_3]
+pet = "gecko"
+stage = []
+condition = ""
+lines = [
+    "npc: Hiss, gecko. Gecko! (I want to rest.)",
+    "player: I think I could do with a short rest, too.",
+]
+
+[.gecko_4]
+pet = "gecko"
+stage = []
+condition = ""
+lines = [
+    "npc: Meep, gecko! Gecko! (Happy happy!)",
+    "player: Hehe, you seem full of energy today.",
+]
+
+[.gecko_5]
+pet = "gecko"
+stage = []
+condition = ""
+lines = [
+    "npc: Moop, Gecko presko! (You're nice to me!)",
+]
+
+
+[.penguin_1]
+pet = "penguin"
+stage = []
+condition = ""
+lines = [
+    "npc: Awk Awk! (This is fun!)",
+    "player: What's fun?",
+    "npc: Awk! (This!)",
+    "player: I'm glad someone's enjoying themself...",
+]
+
+[.penguin_2]
+pet = "penguin"
+stage = []
+condition = ""
+lines = [
+    "npc: Awkawk awk awk. (Dis place is rather dull.)",
+    "player: It'll liven up in a while, I'm sure.",
+    "npc: Awkawk awk awk! (I know, let's go visit the zoo!)",
+    "player: Hmm, I dunno, the penguins there are a bit shifty. You shouldn't mix with them.",
+]
+
+[.penguin_3]
+pet = "penguin"
+stage = []
+condition = ""
+lines = [
+    "npc: Awwk... (I'm much too warm here...)",
+    "player: Well, just give me a little while longer and maybe we'll go find some ice for you.",
+    "npc: Awk! Awkawk awk awk. (Yay! Don't be too long.)",
+]
+
+[.penguin_4]
+pet = "penguin"
+stage = []
+condition = ""
+lines = [
+    "npc: Awwwwwwwwk? (Are we gonna be here much longer?)",
+    "player: Why? Is there some place else where you'd rather be?",
+    "npc: Awk awk awk! (For sure. Somewhere colder! Like the Motherland...)",
+]
+
+
+[.raven_chick]
+pet = "raven"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc: Cheepity twittercheep! (I want to play! Play with me!)",
+    "player: In a moment!",
+]
+
+[.raven_grown_1]
+pet = "raven"
+stage = ["grown", "overgrown"]
+condition = ""
+lines = [
+    "npc: Cawcaw cawcrawk caw crawk caaaw... (Smothered by madness, all hope must surely perish...)",
+    "player: Why are you so depressed all the time?",
+    "npc: Craaawkcraw caw crawk... (Because my life is a bleak miasma.)",
+    "player: Which part? The free food, the roof over you head, or the bit where I'll carry you if you are tired and hungry?",
+    "npc: Cawcaw! Crrrrawk... (Never mind! Siiiigh...)",
+]
+
+[.raven_grown_2]
+pet = "raven"
+stage = ["grown", "overgrown"]
+condition = ""
+lines = [
+    "npc: Craw cawcrawk crawk caw... (Stricken are we...)",
+    "player: With what? Should I get a potion?",
+    "npc: Caw caw cawcaw caw craw... (You just don't understand my pain...)",
+    "player: Would you like some food to heal yourself then?",
+    "npc: Cawcaw! Crrrrawk... (Never mind! Siiiigh...)",
+]
+
+[.raven_grown_3]
+pet = "raven"
+stage = ["grown", "overgrown"]
+condition = ""
+lines = [
+    "npc: Cawcaw cawcawcaw crawcaw... (Lost souls surround us, crying...)",
+    "player: Where? Let me get ready, then we'll fight them all!",
+    "npc: Cacawcraaawk? (What are you talking about?)",
+    "player: Didn't you say we were surrounded by monsters?",
+    "npc: Cawcaw! Crrrrawk... (You're soooo literal. You'll never understand my poetry...)",
+]
+
+[.raven_grown_4]
+pet = "raven"
+stage = ["grown", "overgrown"]
+condition = ""
+lines = [
+    "npc: Crawk cawkcrawk cawcaw caw... (The night falls in a heavy, suffocating...)",
+    "player: The what falls?",
+    "npc: Craaawk caw! Cawkcrawk ca... (The night! Like a heavy...)",
+    "player: What fell again?",
+    "npc: Cawcaw, crrrrawk! (Quoth I, 'nevermore!')",
+]
+
+[.raven_ghostly]
+pet = "raven"
+stage = ["grown", "overgrown"]
+condition = "count:4:ghostly_robe_top|ghostly_robe_bottom|ghostly_hood|ghostly_gloves|ghostly_boots|ghostly_cloak"
+lines = [
+    "npc: Cacaw caw craaw! (Finally, another person that understands my bleak miasma!)",
+    "player: So this is a good thing then?",
+    "npc: Caw! (Yes!)",
+    "npc: Cacaww caw? (Want to hear my poetry?)",
+    "player: Some other time.",
+    "npc: Crrrrawk... (Siiiigh...)",
+]
+
+
+[.raccoon_baby]
+pet = "raccoon"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc: Chitterchatterchittter chatter chatter! (I wanna go play, now!)",
+    "player: Well, why not just look at all this walking around after me as a game.",
+    "npc: Chitter! Chatterchitter chitter! (Yay! I win at this here game!)",
+]
+
+[.raccoon_grown_1]
+pet = "raccoon"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Chitter chatter chittterchatter chatter? (So where are ya takin' me today?)",
+    "player: Oh, I think we'll be covering a lot of ground today.",
+    "npc: Chitter chatter chatter. (There'd better not be much walkin'. I don't like to walk much. You'd best carry me.)",
+]
+
+[.raccoon_grown_2]
+pet = "raccoon"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Chitter chatterchittter chitter? (When we gonna do somethin' fun?)",
+    "player: What do you mean 'fun'?",
+    "npc: Chatter chatter chitter. (More fun than this. Like chasin' cats - I don't like kitties.)",
+    "player: Oh, give me a minute and we'll see...",
+    "npc: Chatter chatter chitter? (Don't you keep me waiting too long, now - ya hear?)",
+]
+
+[.raccoon_grown_3]
+pet = "raccoon"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Chatter chatter chatter chatter? (When is we gonna go back to one of those evergreen forests?)",
+    "player: We'll go soon, I promise.",
+    "npc: Chatter chitter. (I like it when them other critters run with us.)",
+    "player: Yeah, me too. The squirrels and the rabbits are really cute.",
+    "npc: Chitter. (Yeah.)",
+    "npc: Chatter chitter. (Don't ever refer to me as cute, though, boy.)",
+    "player: No chance. I know better than that by now.",
+]
+
+[.raccoon_grown_4]
+pet = "raccoon"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Chitterchatter chatterchitter chitter? (When are we gonna be done here?)",
+    "player: Well, when I'm finished what I'm doing, I'll tell you.",
+    "npc: Chitterchatter chatterchitter chitter. (You don't tell me nothin'. You'd best start openin' up ter me soon, boy, or we are gonna fall out.)",
+]
+
+[.raccoon_mask]
+pet = "raccoon"
+stage = ["grown"]
+condition = "highwayman_mask|cavalier_mask|cavalier_and_mask"
+lines = [
+    "npc: Chatter chatter? (Are you makin' fun of me?)",
+    "player: Excuse me? I didn't say a word!",
+    "npc: Chitter chatter chatter? (I'm talkin' 'bout that there thing on yer face. Tryin' ta look like little ol' me?)",
+    "player: The merest speculation of the tiniest sliver of the notion hadn't ever dared to cross my mind.",
+    "npc: Chitter chatter chatchatchatter... (You got yerself a smart mouth, boy.)",
+    "player: Fine, I'll take the mask off in a minute.",
+]
+
+
+# === Location-conditional rows ===
+
+[.gecko_desert]
+pet = "gecko"
+stage = []
+condition = "area:kharidian_desert"
+lines = [
+    "npc: Hss! Hsss! Gecko! Hsss! (Too hot! Let's go home!)",
+    "player: Don't worry, we'll be out of the sun soon.",
+]
+
+[.penguin_frozen]
+pet = "penguin"
+stage = []
+condition = "area:frozen_wastes"
+lines = [
+    "npc: Awk! (Slide!)",
+    "player: You want me to slide?",
+    "npc: Awwwwwwwwwwwwk! (Sliiiiiiide!)",
+    "player: I can't; I don't know how. You have fun with it though.",
+    "npc: Awk! (Slide!)",
+]
+
+[.gecko_grand_exchange]
+pet = "gecko"
+stage = []
+condition = "area:grand_exchange"
+lines = [
+    "npc: Hss! Hsss! Gecko! Hsss! (Too hot! Let's go home!)",
+    "player: Don't worry, we'll be out of the sun soon.",
+]
+
+[.raccoon_forest]
+pet = "raccoon"
+stage = ["grown"]
+condition = "tag:evergreen_forest"
+lines = [
+    "npc: Chatter chatter chatter chatter? (When is we gonna go back to one of those evergreen forests?)",
+    "player: Looks like we already are.",
+    "npc: Chatter chitter. (Hah! So we are. Good.)",
+]
+
+# === Soul Wars Slayer reward pets + Dungeoneering sneakerpeeper ===
+# Conversation skeletons follow the format of the rows above. Fuller dialogue
+# trees can be sourced from the RuneScape Wiki transcripts under
+# https://runescape.wiki/w/Transcript:<Pet_name>. Conditional rows below
+# exercise the abyssal-whip and sneakerpeeper low-Summoning branches.
+
+[.creeping_hand_valiant]
+pet = "creeping_hand"
+stage = []
+condition = ""
+lines = [
+    "player: I've got to hand it to you, you fought valiantly.",
+    "npc: My goodness, you're very witty for a cold-blooded killer.",
+    "player: You forgot to add 'hand-some'.",
+    "npc: Yes, that's right. I forgot.",
+    "player: That's enough chatter for now. There's no wrist for the wicked.",
+]
+
+[.creeping_hand_shake]
+pet = "creeping_hand"
+stage = []
+condition = ""
+lines = [
+    "player: Greetings. I would shake your hand, but I'm not sure how that would work.",
+    "npc: Every time, always with the hand jokes.",
+    "player: I'm sorry, I can't help myself. Gimme five!",
+    "npc: I should slap you right here and now.",
+    "player: Okay, we shouldn't let this get out of hand.",
+    "npc: ...",
+]
+
+[.creeping_hand_truth]
+pet = "creeping_hand"
+stage = []
+condition = ""
+lines = [
+    "player: Lovely day, isn't it?",
+    "npc: Sorry. Did you just say something WITHOUT a needless hand pun?",
+    "player: It can happen, you know.",
+    "npc: I'm... I'm stunned.",
+    "player: Obviously, you can't hand-le the truth.",
+    "npc: Ah, there it is.",
+]
+
+[.minitrice_feathered_frog]
+pet = "minitrice"
+stage = []
+condition = ""
+lines = [
+    "player: What are you, exactly?",
+    "npc: I minitrice.",
+    "player: And what's a minitrice?",
+    "npc: Fearsome creature that kill with single glance!",
+    "player: Is that so? Then why do you look like a feathered frog?",
+    "npc: ...",
+]
+
+[.minitrice_deaded]
+pet = "minitrice"
+stage = []
+condition = ""
+lines = [
+    "npc: You deaded me!",
+    "player: Okay, okay, let's leave all that in the past.",
+    "npc: But you deaded me!",
+    "player: It was an accident.",
+    "npc: No accident; you deaded me on purpose!",
+    "player: Uh-huh. What can I do to make up for it?",
+    "npc: Nothing. I get payback, I'll dead you!",
+    "player: Riiight. You're just a baby. Give it your best shot.",
+    "[*Stares hard*]",
+    "player: ...",
+    "npc: ...",
+    "player: Oh, no! My eyes are burning!",
+    "npc: Mwa-ha-ha! Me told you I dead you!",
+    "player: And I told you that you're just a baby. I can't believe you fell for that!",
+]
+
+[.minitrice_dinner]
+pet = "minitrice"
+stage = []
+condition = ""
+lines = [
+    "npc: Me kill you.",
+    "player: Yes, yes, I know.",
+    "npc: Maybe not today, maybe not tomorrow, but me kill you.",
+    "player: I await the day.",
+    "npc: We understand each other, hooman. Now, when's dinner time?",
+    "player: You're very hard to love, you know that?",
+]
+
+[.baby_basilisk_eyes]
+pet = "baby_basilisk"
+stage = ["baby"]
+condition = ""
+lines = [
+    "player: Hey there.",
+    "npc: Why do my eyes sting?",
+    "player: Ah, you're only little, but someone should probably tell you...",
+    "npc: Tell me what?",
+    "player: Well, when you grow up, your eyes will have the power to weaken and kill people.",
+    "npc: ...",
+    "player: ...",
+    "npc: Cool!",
+]
+
+[.baby_basilisk_origin]
+pet = "baby_basilisk"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc: So, how did I come to be?",
+    "player: Is this the birds and the bees question?",
+    "npc: I have no idea. Yes?",
+    "player: Well, you began life as a serpent egg that got hatched by a chicken.",
+    "npc: But which came first, the chicken or the egg?",
+    "player: Good question. I'll get back to you.",
+]
+
+[.baby_basilisk_mum]
+pet = "baby_basilisk"
+stage = ["baby"]
+condition = ""
+lines = [
+    "player: Hello there, little creature.",
+    "npc: Mum!",
+    "player: Er, no, I'm not your mother.",
+    "npc: Not mum?",
+    "player: Well, no, but I will be taking care of you... I suppose.",
+    "npc: Mum!",
+]
+
+[.baby_kurask_grunts]
+pet = "baby_kurask"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc: Ughhh.",
+    "player: What are you trying to say? Are you in pain?",
+    "npc: Eeeurgh.",
+    "player: Hungry? Thirsty?",
+    "npc: Baarughm.",
+    "player: Sleepy?",
+    "npc: Aaghhaargh.",
+    "player: I give up.",
+]
+
+[.baby_kurask_economy]
+pet = "baby_kurask"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc: Uhhhhrrr.",
+    "player: Hey kurask, what do you think of the current state of the economy?",
+    "npc: Blerughh, boring.",
+    "player: Wow, really? What are your thoughts on the melting ice on Ice Mountain?",
+    "npc: Eurggh, warm.",
+    "player: A fascinating response. Anything else?",
+    "npc: ...",
+    "player: Well, that was a thrilling conversation.",
+]
+
+[.baby_kurask_ispy]
+pet = "baby_kurask"
+stage = ["baby"]
+condition = ""
+lines = [
+    "player: I spy with my little eye, something beginning with 'K'.",
+    "npc: Krrgghh...knave?",
+    "player: No.",
+    "npc: Kuennnag...knucklehead?",
+    "player: Nope.",
+    "npc: Knnnnnggg...kumquat?",
+    "player: No, it's a kurask. Honestly, that wasn't difficult.",
+]
+
+[.abyssal_minion_reminisce]
+pet = "abyssal_minion"
+stage = []
+condition = ""
+lines = [
+    "npc: You know what I miss? I miss THE ABYSS.",
+    "player: That rhymes, you know.",
+    "npc: ...the warm, slippery walls, the piercing screams...",
+    "player: How lovely.",
+    "npc: ...the chasing after runecrafters...",
+    "player: We could still chase after runecrafters, you know.",
+    "npc: Human, nothing would make me happier.",
+]
+
+[.abyssal_minion_revive]
+pet = "abyssal_minion"
+stage = []
+condition = ""
+lines = [
+    "npc: I am confused. I thought you killed me?",
+    "player: Lucky for you, I found a place to bring you back to life.",
+    "npc: This makes me happy. Maybe we can go to THE ABYSS.",
+    "player: As fun as that sounds, why don't you give me an abyssal whip instead? I saved your life.",
+    "npc: Of course. There you go.",
+    "player: Wow, I didn't think that would work!",
+    "npc: I can't believe you fell for that!",
+]
+
+[.abyssal_minion_magic_trick]
+pet = "abyssal_minion"
+stage = []
+condition = "abyssal_whip"
+lines = [
+    "npc: Did I give you that whip?",
+    "player: No, I don't think so. This one's mine.",
+    "npc: Want to see a magic trick?",
+    "player: Not if it involves the whip, no. Especially not if it's a disappearing trick.",
+    "npc: No, it's not...I...don't want your stupid whip. I'm not that predictable, am I? I mean, can't I even have a bit of fun anymore?",
+    "player: Maybe next time.",
+]
+
+
+[.sneakerpeeper_baby_collection]
+pet = "sneakerpeeper"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc: You no talk to Sneaks today? Awww, Sneaks do something wrong?",
+    "player: Why would you think th-",
+    "npc: Player find Sneak's collection, yes? That why Player not talk to Sneaks?",
+    "player: Look, everything's fine between us... Wait, what collection?",
+    "npc: Player want to see collection? Player just had to ask Sneaks! Sneaks have one ball of Player eyelashes, slippers made from Player belly button fluff and a Player-skin hat.",
+    "player: That's...that's horrible. I...I feel nauseous; I think I need to sit down.",
+    "npc: Don't worry, Sneaks nurse you back to good health with Player-hair brush.",
+]
+
+[.sneakerpeeper_baby_floating]
+pet = "sneakerpeeper"
+stage = ["baby"]
+condition = ""
+lines = [
+    "player: You don't have to float so close to me, Sneaks.",
+    "npc: Sneaks doesn't HAVE to, but Sneaks want to send message to other sneakerpeepers.",
+    "player: I'm going to regret asking, but what would that message be?",
+    "npc: That Player belongs to Sneaks, and if other sneakerpeepers want Player then they'll have to fight to the death in a no-holds-barred staring contest.",
+    "player: How can a staring contest be to the death?",
+    "npc: Player know how dry eyes get if Player not blink? A contest can take months! Now, Player imagine being made entirely out of eye. Stare-death is THE WORST way for sneakerpeeper to die.",
+]
+
+[.sneakerpeeper_baby_origin]
+pet = "sneakerpeeper"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc: Player, where do sneakerpeepers come from?",
+    "player: Uh, wow. Isn't this a conversation you should be having with...anyone else?",
+    "npc: No, Sneaks like to hear it from you. Sneaks like to watch you talk.",
+    "player: I'm sorry, Sneaks. I just don't have much information on how sneakerpeepers 'spawn'-",
+    "npc: Player, your lips are like irrestible eyelids.",
+    "player: *shudder* You're not really listening, are you?",
+    "npc: Mmmmm, Player-lips.",
+]
+
+[.sneakerpeeper_baby_songs]
+pet = "sneakerpeeper"
+stage = ["baby"]
+condition = ""
+lines = [
+    "npc: Sneaks and Player, sitting in a tree...",
+    "player: Can you stop singing that? It's kind of freaking me out.",
+    "npc: That fine, Player! Sneaks has bag under its eye, full of songs dedicated to you. ' If you're happy and you know it, snuggle your Sneaks...'",
+    "player: Do you take requests, perhaps? how about something that doesn't involve my name or yours?",
+    "npc: Sneaks can do that 'Millions of people go by, but they all disappear from view. I only have eyes for you.'",
+    "player: Don't make me visit a slayer master to get some earmuffs, Sneaks.",
+]
+
+[.sneakerpeeper_grown_low_summoning]
+pet = "sneakerpeeper"
+stage = ["grown"]
+condition = "skill_below:summoning:91"
+lines = [
+    "npc: KnnnGGGGppwww CCCChhhhKKKKKnnn.",
+]
+
+[.sneakerpeeper_grown_spawning]
+pet = "sneakerpeeper"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Player, it time that Sneaks spawned.",
+    "player: What, now?",
+    "npc: Sneaks not sure. My lids are contracting and I can feel movement about my retina.",
+    "player: You don't have to go into detail, Sneaks. I'd be happier not knowing about your innards.",
+    "npc: If Player not know, than how can Player help Sneaks with the spawning ritual? How can you squeeze Sneak's eyeball and keep spawn wet with sneakerpeeper ooze?",
+    "player: I'm pretty sure I'll have passed out by then.",
+]
+
+[.sneakerpeeper_grown_hairball]
+pet = "sneakerpeeper"
+stage = ["grown"]
+condition = ""
+lines = [
+    "player: You know, Sneaks, when you were young, you used to make all sorts of uncomfortable comments about me.",
+    "npc: Oh, really?",
+    "player: Sure! It verged on harassment. You even kept a ball of my eyelash hair!",
+    "player: Strange times. Wait, what are you playing with?",
+    "npc: Oh, what, this? It nothing.",
+    "player: You're playing with it! You're playing with my eyelash hairball!",
+    "npc: Player, Sneaks not like that any more. Sneaks is a much better sneakerpeeper, less unprofessional. You see, this is not your eyelashes, they Thok's. Thok's hair much stronger and keeps in a ball better.",
+]
+
+[.sneakerpeeper_grown_hivemind]
+pet = "sneakerpeeper"
+stage = ["grown"]
+condition = ""
+lines = [
+    "npc: Huh-huh.",
+    "player: Why are you chuckling, Sneaks? Something amuse you?",
+    "npc: Player wouldn't understand. It's hive-minded humour. Lakhrahnaz make joke about how silly Player looks when he pushes you about on ice.",
+    "player: Hey!",
+    "npc: Hehe! Lakhrahnaz say that you look like you being tickled when you slide about.",
+    "player: Do you stalkers do this a lot? You know, having a hive-mind joke at my expense?",
+    "npc: Sorry, what was that? Haasghenahk just did an impression of you.",
+    "player: *sigh*",
+]
+
+[.sneakerpeeper_grown_eyemax]
+pet = "sneakerpeeper"
+stage = ["grown"]
+condition = ""
+lines = [
+    "player: So, Sneaks, I have a question.",
+    "npc: Sneaks always likes shooting the breeze with Player.",
+    "player: You're one eyeball, right? You only see through one eye.",
+    "npc: Player say obvious things.",
+    "player: Yeah, but if you only see through one eyeball, how do you have any form of depth perception? Surely you can't even reach for a door handle, shake someone's hand, catch a ball in the air...",
+    "npc: We see everything in eye-max, Player. Our eye so big that we can perceive more than two eyes can. We look better in monocles, too.",
+    "player: You're probably right.",
+]

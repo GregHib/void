@@ -622,6 +622,21 @@ id = 9178
 [expression_cat_unamused]
 id = 9187
 
+[expression_dog_down]
+id = 6550
+
+[expression_dog_normal]
+id = 6551
+
+[expression_dog_no]
+id = 6552
+
+[expression_dog_quiz]
+id = 6553
+
+[expression_sneakerpeeper_normal]
+id = 13322
+
 [expression_tree_neutral]
 id = 584
 
