@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.AbuseReport
 import world.gregs.voidps.engine.data.Reports
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerRights
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.hasRights
@@ -23,11 +24,21 @@ class ReportAbuse(val reports: Reports, val accounts: AccountDefinitions) : Scri
 
     init {
         interfaceOption("Report Abuse", "filter_buttons:report") {
-            if (hasMenuOpen()) {
-                message("Please finish what you're doing first.")
+            openReportAbuse(this)
+        }
+
+        // Chat line ops are set at runtime by client scripts over placeholder strings in the cache,
+        // so the option resolves to "8" rather than "Report abuse"; match by index instead.
+        // The client keeps the reported name in a varc string for the report abuse interface.
+        interfaceOption("*", "chat_background:chat_line*") {
+            if (it.optionIndex != 7) {
                 return@interfaceOption
             }
-            open("report_abuse")
+            openReportAbuse(this)
+        }
+
+        interfaceOption("Report Abuse", "private_chat:line*") {
+            openReportAbuse(this)
         }
 
         interfaceOpened("report_abuse") {
@@ -83,5 +94,13 @@ class ReportAbuse(val reports: Reports, val accounts: AccountDefinitions) : Scri
             }
             player.message("Thank-you, your abuse report has been received.")
         }
+    }
+
+    fun openReportAbuse(player: Player) {
+        if (player.hasMenuOpen()) {
+            player.message("Please finish what you're doing first.")
+            return
+        }
+        player.open("report_abuse")
     }
 }

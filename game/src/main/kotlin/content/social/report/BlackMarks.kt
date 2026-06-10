@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit
  */
 const val BLACK_MARK_LIMIT = 10
 
-private val EXPIRY_MONTHS = TimeUnit.DAYS.toMillis(365)
+private val TWELVE_MONTHS = TimeUnit.DAYS.toMillis(365)
 private val PERMANENT_RULES = setOf(Rule.BreakingRealWorldLaws)
 private val DATE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy").withZone(ZoneOffset.UTC)
 
@@ -54,7 +54,7 @@ fun activeBlackMarks(marks: List<String>): List<String> {
 }
 
 fun Player.addBlackMark(rule: Rule) {
-    val expiry = if (rule in PERMANENT_RULES) PERMANENT else System.currentTimeMillis() + EXPIRY_MONTHS
+    val expiry = if (rule in PERMANENT_RULES) PERMANENT else System.currentTimeMillis() + TWELVE_MONTHS
     this["black_marks"] = activeBlackMarks() + "${rule.id}:$expiry"
 }
 

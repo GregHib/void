@@ -183,6 +183,36 @@ internal class ReportAbuseTest : WorldTest() {
     }
 
     @Test
+    fun `Chat line report abuse option opens the report abuse interface`() = runTest {
+        val (player, _) = createClient("player")
+
+        player.interfaceOption("chat_background", "chat_line7", optionIndex = 7)
+        tick()
+
+        assertTrue(player.hasOpen("report_abuse"))
+    }
+
+    @Test
+    fun `Other chat line options don't open the report abuse interface`() = runTest {
+        val (player, _) = createClient("player")
+
+        player.interfaceOption("chat_background", "chat_line1", optionIndex = 9)
+        tick()
+
+        assertFalse(player.hasOpen("report_abuse"))
+    }
+
+    @Test
+    fun `Private chat report abuse option opens the report abuse interface`() = runTest {
+        val (player, _) = createClient("player")
+
+        player.interfaceOption("private_chat", "line1", "Report Abuse")
+        tick()
+
+        assertTrue(player.hasOpen("report_abuse"))
+    }
+
+    @Test
     fun `Mute toggle is revealed for moderators`() = runTest {
         val (player, client) = createClient("mod_steve")
         player.rights = PlayerRights.Mod
