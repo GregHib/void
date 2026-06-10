@@ -4,6 +4,7 @@ import FakeRandom
 import WorldTest
 import dialogueContinue
 import dialogueOption
+import interfaceOnItem
 import interfaceOption
 import itemOnItem
 import itemOnObject
@@ -12,6 +13,7 @@ import kotlinx.coroutines.test.runTest
 import npcOption
 import objectOption
 import org.junit.jupiter.api.Test
+import skipDialogues
 import walk
 import world.gregs.voidps.engine.client.instruction.handle.interactOn
 import world.gregs.voidps.engine.entity.character.move.running
@@ -829,5 +831,378 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         tick(2)
 
         assertTrue(player["what_is_this_place_task", false])
+    }
+
+    @Test
+    fun `Come and Have a Go`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = until
+            override fun nextInt(from: Int, until: Int) = until
+        })
+        val player = createPlayer(Tile(3989, 5545))
+        val npc = NPCs.first(Tile(3988, 5545)) { it.id == "warped_fly" }
+
+        player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
+        tick()
+        player.levels.set(Skill.Attack, 100)
+        player.levels.set(Skill.Strength, 100)
+        player.levels.set(Skill.Defence, 100)
+        player["attack_style"] = "aggressive"
+
+        player.npcOption(npc, "Attack")
+        tick(20)
+
+        assertTrue(player["come_and_have_a_go_task", false])
+    }
+
+    @Test
+    fun `Come and Have a Go with non-strength style`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = until
+            override fun nextInt(from: Int, until: Int) = until
+        })
+        val player = createPlayer(Tile(3989, 5545))
+        val npc = NPCs.first(Tile(3988, 5545)) { it.id == "warped_fly" }
+
+        player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
+        tick()
+        player.levels.set(Skill.Attack, 100)
+        player.levels.set(Skill.Strength, 100)
+        player.levels.set(Skill.Defence, 100)
+        player["attack_style"] = "accurate"
+
+        player.npcOption(npc, "Attack")
+        tick(20)
+
+        assertFalse(player["come_and_have_a_go_task", false])
+    }
+
+    @Test
+    fun `Three Rounds Rapid, Men`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(from: Int, until: Int) = until / 2
+            override fun nextBits(bitCount: Int) = 100
+        })
+        val player = createPlayer(Tile(4015, 5512))
+        player.levels.set(Skill.Ranged, 99)
+        player.equipment.set(EquipSlot.Weapon.index, "magic_shortbow")
+        player.equipment.set(EquipSlot.Ammo.index, "steel_arrow", 1000)
+        tick()
+
+        val bats = listOf(
+            "accurate" to createNPC("warped_bat", Tile(4015, 5514)),
+            "rapid" to createNPC("warped_bat", Tile(4016, 5514)),
+            "long_range" to createNPC("warped_bat", Tile(4014, 5514)),
+        )
+        for ((style, bat) in bats) {
+            player["attack_style"] = style
+            player.npcOption(bat, "Attack")
+            tick(20)
+        }
+
+        assertTrue(player["three_rounds_rapid_men_task", false])
+    }
+
+    @Test
+    fun `Three Rounds Rapid, Men with one repeated style`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(from: Int, until: Int) = until / 2
+            override fun nextBits(bitCount: Int) = 100
+        })
+        val player = createPlayer(Tile(4015, 5512))
+        player.levels.set(Skill.Ranged, 99)
+        player.equipment.set(EquipSlot.Weapon.index, "magic_shortbow")
+        player.equipment.set(EquipSlot.Ammo.index, "steel_arrow", 1000)
+        player["attack_style"] = "accurate"
+        tick()
+
+        val bats = listOf(
+            createNPC("warped_bat", Tile(4015, 5514)),
+            createNPC("warped_bat", Tile(4016, 5514)),
+            createNPC("warped_bat", Tile(4014, 5514)),
+        )
+        for (bat in bats) {
+            player.npcOption(bat, "Attack")
+            tick(20)
+        }
+
+        assertFalse(player["three_rounds_rapid_men_task", false])
+        assertTrue(player["warped_bat_accurate_kill", false])
+    }
+
+    @Test
+    fun `Flour Power`() {
+        val player = createPlayer()
+
+        player.inventory.add("pot_of_flour")
+
+        assertTrue(player["flour_power_task", false])
+    }
+
+    @Test
+    fun `Flour Power not from empty pot`() {
+        val player = createPlayer()
+
+        player.inventory.add("empty_pot")
+
+        assertFalse(player["flour_power_task", false])
+    }
+
+    @Test
+    fun `Grinding My Gears`() {
+        val player = createPlayer(Tile(3165, 3307, 2))
+        player.inventory.add("grain", "empty_pot")
+
+        val hopper = GameObjects.find(Tile(3166, 3307, 2), "hopper")
+        player.itemOnObject(hopper, 0)
+        tick()
+
+        player.tele(3165, 3305, 2)
+        val hopperControls = GameObjects.find(Tile(3166, 3305, 2), "hopper_controls")
+        player.objectOption(hopperControls, "Operate")
+        tick(3)
+
+        player.tele(3165, 3306, 0)
+        val flourBin = GameObjects.find(Tile(3166, 3306, 0), "flour_bin_3")
+        player.objectOption(flourBin, "Take-flour")
+        tick(2)
+
+        assertTrue(player.inventory.contains("pot_of_flour"))
+        assertTrue(player["grinding_my_gears_task", false])
+    }
+
+    @Test
+    fun `Grinding My Gears not from elsewhere`() {
+        val player = createPlayer()
+
+        player.inventory.add("pot_of_flour")
+
+        assertTrue(player["flour_power_task", false])
+        assertFalse(player["grinding_my_gears_task", false])
+    }
+
+    @Test
+    fun `The Rules of Engagement`() {
+        val player = createPlayer(Tile(3079, 3250))
+        val crier = createNPC("town_crier_draynor", Tile(3079, 3249))
+
+        player.npcOption(crier, "Talk-to")
+        tick()
+        player.skipDialogues()
+        player.dialogueOption(2)
+        player.dialogueContinue()
+        tick()
+
+        assertTrue(player["the_rules_of_engagement_task", false])
+    }
+
+    @Test
+    fun `The Rules of Engagement not for other dialogue`() {
+        val player = createPlayer(Tile(3079, 3250))
+        val crier = createNPC("town_crier_draynor", Tile(3079, 3249))
+
+        player.npcOption(crier, "Talk-to")
+        tick()
+        player.skipDialogues()
+        player.dialogueOption(3)
+        tick()
+
+        assertFalse(player["the_rules_of_engagement_task", false])
+    }
+
+    @Test
+    fun `The Rules of Engagement not from another crier`() {
+        val player = createPlayer(emptyTile)
+        val crier = createNPC("town_crier_varrock", emptyTile.addX(1))
+
+        player.npcOption(crier, "Talk-to")
+        tick()
+        player.skipDialogues()
+        player.dialogueOption(2)
+        player.dialogueContinue()
+        tick()
+
+        assertFalse(player["the_rules_of_engagement_task", false])
+    }
+
+    @Test
+    fun `A Grave Consideration`() {
+        val player = createPlayer(emptyTile)
+        player["the_restless_ghost"] = "completed"
+        val aereck = createNPC("father_aereck", emptyTile.addX(1))
+
+        player.npcOption(aereck, "Talk-to")
+        tick()
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        tick()
+
+        assertTrue(player["a_grave_consideration_task", false])
+    }
+
+    @Test
+    fun `A Grave Consideration not for other dialogue`() {
+        val player = createPlayer(emptyTile)
+        player["the_restless_ghost"] = "completed"
+        val aereck = createNPC("father_aereck", emptyTile.addX(1))
+
+        player.npcOption(aereck, "Talk-to")
+        tick()
+        player.skipDialogues()
+        player.dialogueOption(2)
+        player.skipDialogues()
+        tick()
+
+        assertFalse(player["a_grave_consideration_task", false])
+    }
+
+    @Test
+    fun `Clay of Champions`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = if (until == 256) until else 0
+        })
+        val player = createPlayer(Tile(3176, 3372))
+        player.levels.set(Skill.Mining, 100)
+        val rocks = createObject("clay_rocks_rock_1", Tile(3176, 3373))
+        player.inventory.add("bronze_pickaxe")
+
+        player.objectOption(rocks, "Mine")
+        tick(9)
+
+        assertTrue(player["clay_of_champions_task", false])
+    }
+
+    @Test
+    fun `Clay of Champions mined elsewhere`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = if (until == 256) until else 0
+        })
+        val player = createPlayer(emptyTile)
+        player.levels.set(Skill.Mining, 100)
+        val rocks = createObject("clay_rocks_rock_1", emptyTile.addY(1))
+        player.inventory.add("bronze_pickaxe")
+
+        player.objectOption(rocks, "Mine")
+        tick(9)
+
+        assertTrue(player.inventory.contains("clay"))
+        assertFalse(player["clay_of_champions_task", false])
+    }
+
+    @Test
+    fun `Just Add Water`() {
+        val player = createPlayer(Tile(3090, 3283))
+        player.inventory.add("clay")
+        player.inventory.add("bucket_of_water")
+
+        player.itemOnItem(0, 1)
+        tick(3)
+
+        assertTrue(player.inventory.contains("soft_clay"))
+        assertTrue(player["just_add_water_task", false])
+    }
+
+    @Test
+    fun `Just Add Water outside the potter's house`() {
+        val player = createPlayer(Tile(3090, 3250))
+        player.inventory.add("clay")
+        player.inventory.add("bucket_of_water")
+
+        player.itemOnItem(0, 1)
+        tick(3)
+
+        assertTrue(player.inventory.contains("soft_clay"))
+        assertFalse(player["just_add_water_task", false])
+    }
+
+    @Test
+    fun `Absolutely Enchanting`() {
+        val player = createPlayer()
+        player.levels.set(Skill.Magic, 7)
+        player.inventory.add("sapphire_ring", "water_rune", "cosmic_rune")
+
+        player.interfaceOnItem("modern_spellbook", "enchant_level_1", Item("sapphire_ring"), 0)
+        tick()
+
+        assertTrue(player.inventory.contains("ring_of_recoil"))
+        assertTrue(player["absolutely_enchanting_task", false])
+    }
+
+    @Test
+    fun `Absolutely Enchanting not for other enchant spells`() {
+        val player = createPlayer()
+        player.levels.set(Skill.Magic, 27)
+        player.inventory.add("emerald_ring")
+        player.inventory.add("air_rune", 3)
+        player.inventory.add("cosmic_rune")
+
+        player.interfaceOnItem("modern_spellbook", "enchant_level_2", Item("emerald_ring"), 0)
+        tick()
+
+        assertTrue(player.inventory.contains("ring_of_duelling_8"))
+        assertFalse(player["absolutely_enchanting_task", false])
+    }
+
+    @Test
+    fun `Can't Touch This`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = until
+            override fun nextInt(from: Int, until: Int) = until
+        })
+        val player = createPlayer(Tile(3989, 5545))
+        player["god_mode"] = true
+        player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
+        player.levels.set(Skill.Attack, 100)
+        player.levels.set(Skill.Strength, 100)
+        val skeleton = createNPC("skeleton_catacombs", Tile(3988, 5545))
+        skeleton.levels.set(Skill.Constitution, 5)
+
+        player.npcOption(skeleton, "Attack")
+        tick(15)
+
+        assertTrue(player["cant_touch_this_task", false])
+    }
+
+    @Test
+    fun `Can't Touch This after taking damage`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = until
+            override fun nextInt(from: Int, until: Int) = until
+        })
+        val player = createPlayer(Tile(4021, 5530))
+        player["god_mode"] = true
+        player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
+        player.levels.set(Skill.Attack, 100)
+        player.levels.set(Skill.Strength, 100)
+        val skeleton = createNPC("skeleton_catacombs", Tile(4021, 5531))
+        skeleton.levels.set(Skill.Constitution, 150)
+
+        player.npcOption(skeleton, "Attack")
+        tick(2)
+        player.levels.drain(Skill.Constitution, 5)
+        tick(30)
+
+        assertFalse(player["cant_touch_this_task", false])
+    }
+
+    @Test
+    fun `Can't Touch This only counts skeletons`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = until
+            override fun nextInt(from: Int, until: Int) = until
+        })
+        val player = createPlayer(Tile(3989, 5545))
+        player["god_mode"] = true
+        player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
+        player.levels.set(Skill.Attack, 100)
+        player.levels.set(Skill.Strength, 100)
+        val fly = createNPC("warped_fly", Tile(3989, 5546))
+        fly.levels.set(Skill.Constitution, 5)
+
+        player.npcOption(fly, "Attack")
+        tick(15)
+
+        assertFalse(player["cant_touch_this_task", false])
     }
 }
