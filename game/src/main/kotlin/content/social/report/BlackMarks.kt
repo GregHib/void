@@ -53,18 +53,26 @@ fun activeBlackMarks(marks: List<String>): List<String> {
     return marks.filter { expiry(it) > now }
 }
 
-fun Player.addBlackMark(rule: Rule) {
-    val expiry = if (rule in PERMANENT_RULES) PERMANENT else System.currentTimeMillis() + TWELVE_MONTHS
-    this["black_marks"] = activeBlackMarks() + "${rule.id}:$expiry"
+fun Player.addBlackMark(rule: Rule? = null) {
+    this["black_marks"] = activeBlackMarks() + blackMark(rule)
+}
+
+/**
+ * A black mark entry for breaking [rule], or at a moderator's discretion when no rule is given
+ */
+fun blackMark(rule: Rule? = null): String {
+    val expiry = if (rule != null && rule in PERMANENT_RULES) PERMANENT else System.currentTimeMillis() + TWELVE_MONTHS
+    return "${rule?.id ?: -1}:$expiry"
 }
 
 private fun expiry(mark: String): Long = mark.substringAfter(':').toLongOrNull() ?: 0L
 
 private fun describe(mark: String): String {
-    val rule = Rule.byId(mark.substringBefore(':').toIntOrNull() ?: -1)
+    val id = mark.substringBefore(':').toIntOrNull() ?: -1
+    val title = if (id == -1) "Moderator discretion" else Rule.byId(id)?.title ?: "Unknown offence"
     val expiry = expiry(mark)
     val expires = if (expiry == PERMANENT) "never expires" else "expires ${DATE_FORMAT.format(Instant.ofEpochMilli(expiry))}"
-    return "${rule?.title ?: "Unknown offence"} - $expires"
+    return "$title - $expires"
 }
 
 class BlackMarks(val accounts: AccountDefinitions) : Script {

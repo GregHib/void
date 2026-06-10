@@ -85,7 +85,7 @@ class ReportAbuse(val reports: Reports, val accounts: AccountDefinitions) : Scri
             )
             AuditLog.event(player, "report_abuse", target ?: name, rule.name, muted)
             if (muted) {
-                target?.mute()
+                target?.mute(rule = rule)
             }
             for (mod in Players) {
                 if (mod.isMod()) {
