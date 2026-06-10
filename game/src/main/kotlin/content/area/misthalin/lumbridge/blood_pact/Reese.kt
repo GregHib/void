@@ -110,10 +110,10 @@ class Reese : Script {
 
     suspend fun Player.reeseOptionsBeforeFight() {
         choice {
-            option("My Name is ${name}. I'm an adventurer") {
+            option("My Name is $name. I'm an adventurer") {
                 npc<Angry>("This will be your tomb, adventurer. The blood pact will prevail!")
             }
-            option("I'm ${name}. Don't worry, Ilona, I'm here to rescue you.") {
+            option("I'm $name. Don't worry, Ilona, I'm here to rescue you.") {
                 npc<Scared>("ilona_tied", "Thank Saradomin! He's insane! He's going to kill me!")
                 npc<Angry>("Maybe you can take her place as the sacrifice, adventurer. Stand and fight!")
             }

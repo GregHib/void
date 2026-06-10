@@ -23,7 +23,6 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class Xenia : Script {
     init {
-
         npcOperate("Talk-to", "xenia*") { (target) ->
             when (quest("blood_pact")) {
                 "unstarted" -> {
@@ -244,7 +243,7 @@ class Xenia : Script {
     }
 
     fun Player.checkForLostWeapons(): Boolean {
-        val weapons = arrayOf("reeses_sword", "kayles_sling", "caitlins_staff") // quest weapons
+        val weapons = arrayOf("reeses_sword", "kayles_sling", "caitlins_staff")
         for (weapon in weapons) {
             if (!ownsItem(weapon)) {
                 return true
@@ -455,7 +454,7 @@ class Xenia : Script {
                 "XP",
                 "Access to the Lumbridge",
                 "Catacombs dungeon",
-                item = "reeses_sword"
+                item = "reeses_sword",
             )
         }
     }
