@@ -103,19 +103,22 @@ class BloodPactTest : WorldTest() {
         assertEquals("killed", player["blood_pact_reese", ""])
 
         // Untie the prisoner and escape to the surface
-        val ilona = NPCs.find(offset.tile(3865, 5523, 0), "ilona_tied")
-        player.talkAt(ilona, offset.tile(3864, 5523, 0), "Untie") // west of Ilona
+        val ilona = NPCs.find(offset.tile(3865, 5523), "ilona_tied")
+        player.talkAt(ilona, offset.tile(3864, 5523), "Untie") // west of Ilona
         player.dialogueOption(1) // Yes, rescue Ilona.
-        player.runUntilIdle { player.quest("blood_pact") == "untied_ilona" } // escape cutscene and Xenia's thanks
+        player.skipDialogues()
+        tick(3)
         assertEquals("untied_ilona", player.quest("blood_pact"))
+        player.skipDialogues()
 
         // Claim the reward from Xenia on the surface
-        val xenia2 = NPCs.find(Tile(3245, 3198, 0), "xenia_2")
+        val xenia2 = NPCs.findBySpawn(Tile(3244, 3198), "xenia")
         player.npcOption(xenia2, "Talk-to")
         player.waitForDialogue() // "Is there anything you want to ask..."
         player.skipDialogues()
         player.dialogueOption(1) // I'm ready for my reward.
         player.skipDialogues() // "Farewell, adventurer."
+        tick(1)
         assertEquals("completed", player.quest("blood_pact"))
     }
 

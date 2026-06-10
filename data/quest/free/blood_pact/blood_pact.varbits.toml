@@ -12,6 +12,6 @@ values = {
     caitlin = 5,
     winch_activated = 6,
     reese = 7,
-    untied_ilona = 8,
+    untied_ilona = 55,
     completed = 60
 }

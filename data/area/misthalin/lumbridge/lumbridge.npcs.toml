@@ -288,24 +288,6 @@ id = 4320
 id = 6540
 examine = "A collector of ancient artefacts."
 
-[xenia]
-id = 9633
-hitpoints = 20
-categories = ["human"]
-examine = "An old adventurer."
-
-[xenia_after_cutscene]
-id = 9634
-clone = "xenia"
-
-[xenia_wounded]
-id = 9636
-clone = "xenia"
-
-[xenia_2]
-id = 11476
-clone = "xenia"
-
 [chief_thief_robin_lumbridge_2]
 id = 7955
 

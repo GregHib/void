@@ -14,7 +14,6 @@ class BloodPact : Script {
 
             val lines = when (quest("blood_pact")) {
                 "completed" -> {
-
                     val list = mutableListOf(
                         "<str>Xenia, an old adventurer, said she had seen some Zamorakian",
                         "<str>cultists entering the catacombs beneath Lumbridge Church.",

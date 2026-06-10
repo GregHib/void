@@ -23,8 +23,10 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
+import world.gregs.voidps.type.Delta
 
 class Reese : Script {
     init {
@@ -46,7 +48,11 @@ class Reese : Script {
 
                     set("blood_pact_reese_door", true)
 
-                    val reese = NPCs.find(offset.tile(3865, 5525, 0), "reese_attackable")
+                    val reese = NPCs.findOrNull(offset.tile(3865, 5525, 0), "reese_attackable")
+                    if (reese == null) {
+                        removeDoor(target, offset)
+                        return@objectOperate
+                    }
 
                     npc<Angry>("reese_attackable", "The potion is complete. Where are they? The whole group should be present.")
 
@@ -54,17 +60,13 @@ class Reese : Script {
 
                     npc<Angry>("reese_attackable", "Shut up!")
 
-                    GameObjects.remove(target)
-                    val slidingDoor = GameObjects.add("tomb_door_sliding_down", offset.tile(3866, 5527, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
-                    delay(1)
-                    GameObjects.remove(slidingDoor)
+                    removeDoor(target, offset)
 
                     talkWith(reese) {
                         npc<Angry>("Who are you? What are you doing here?")
                         reeseOptionsBeforeFight()
                     }
                     reese.interactPlayer(this, "Attack")
-
                     reese.huntMode = "aggressive"
                 }
             }
@@ -90,6 +92,13 @@ class Reese : Script {
             npc<Angry>("Now strike the final blow! End the blood pact in this tomb.")
             initialOptions(target)
         }
+    }
+
+    private suspend fun Player.removeDoor(target: GameObject, offset: Delta) {
+        GameObjects.remove(target)
+        val slidingDoor = GameObjects.add("tomb_door_sliding_down", offset.tile(3866, 5527, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 0)
+        delay(1)
+        GameObjects.remove(slidingDoor)
     }
 
     suspend fun Player.initialOptions(target: NPC) {

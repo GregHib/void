@@ -95,16 +95,23 @@ class Xenia : Script {
                     }
                     optionsBeforeThirdFight()
                 }
-                "untied_ilona" -> {
-                    npc<Neutral>("Is there anything you want to ask before you go to seek out new adventures?")
-                    finalDialogBloodPact()
-                }
+                "untied_ilona" -> askAnything()
                 "completed" -> {
+                    if (get("blood_pact_ilona_departed", false)) {
+                        askAnything()
+                        return@npcOperate
+                    }
                     npc<Happy>("Hello again, adventurer.")
                     choiceAfterQuest()
                 }
             }
         }
+    }
+
+    private suspend fun Player.askAnything() {
+        completeBloodPact()
+        npc<Neutral>("Is there anything you want to ask before you go to seek out new adventures?")
+        finalDialogBloodPact()
     }
 
     fun Player.hasPlayerWeaponType(weaponType: String): Boolean {
@@ -235,34 +242,16 @@ class Xenia : Script {
     suspend fun Player.choiceAfterQuest() {
         choice {
             choiceQuestDetail()
-            if (checkForLostWeapons()) {
+            if (checkForLostWeapons(this@choiceAfterQuest)) {
                 lostWeapon()
             }
             leaving()
         }
     }
 
-    fun Player.checkForLostWeapons(): Boolean {
-        val weapons = arrayOf("reeses_sword", "kayles_sling", "caitlins_staff")
-        for (weapon in weapons) {
-            if (!ownsItem(weapon)) {
-                return true
-            }
-        }
-        return false
-    }
-
     fun ChoiceOption.lostWeapon(): Unit = option<Neutral>("I've lost some of the cultists' weapons.") {
         npc<Neutral>("Yes, one of my contacts in the Champion's Guild found them and returned them to me.")
-        if (!ownsItem("kayles_sling") && inventory.add("kayles_sling")) {
-            statement("Xenia gives you Kayle's sling.")
-        }
-        if (!ownsItem("caitlins_staff") && inventory.add("caitlins_staff")) {
-            statement("Xenia gives you Caitlin's staff.")
-        }
-        if (!ownsItem("reeses_sword") && inventory.add("reeses_sword")) {
-            statement("Xenia gives you Reese's sword.")
-        }
+        giveWeapons(this)
     }
 
     fun ChoiceOption.choiceQuestDetail(): Unit = option<Neutral>("I've got a question about my adventure in the catacombs...") {
@@ -409,7 +398,6 @@ class Xenia : Script {
         choice {
             option("I'm ready for my reward.") {
                 npc<Neutral>("Farewell, adventurer.")
-                completeBloodPact()
             }
             option("What should I do now?") {
                 npc<Neutral>("The cultists' ritual opened up the lower level of the catacombs, which is swarming with undead creatures. If you want to practice your combat skills, you could go down there.")
@@ -432,6 +420,7 @@ class Xenia : Script {
 
     fun Player.completeBloodPact() {
         longQueue("quest_complete") {
+            clear("blood_pact_ilona_departed")
             set("blood_pact", "completed")
             inc("quest_points", 1)
             jingle("quest_complete_1")
@@ -475,6 +464,30 @@ class Xenia : Script {
             }
             option("Back to my other questions...") {
                 finalDialogBloodPact()
+            }
+        }
+    }
+
+    companion object {
+        fun checkForLostWeapons(player: Player): Boolean {
+            val weapons = arrayOf("reeses_sword", "kayles_sling", "caitlins_staff")
+            for (weapon in weapons) {
+                if (!player.ownsItem(weapon)) {
+                    return true
+                }
+            }
+            return false
+        }
+
+        suspend fun giveWeapons(player: Player) {
+            if (!player.ownsItem("kayles_sling") && player.inventory.add("kayles_sling")) {
+                player.statement("Xenia gives you Kayle's sling.")
+            }
+            if (!player.ownsItem("caitlins_staff") && player.inventory.add("caitlins_staff")) {
+                player.statement("Xenia gives you Caitlin's staff.")
+            }
+            if (!player.ownsItem("reeses_sword") && player.inventory.add("reeses_sword")) {
+                player.statement("Xenia gives you Reese's sword.")
             }
         }
     }

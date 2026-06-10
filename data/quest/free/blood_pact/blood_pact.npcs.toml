@@ -3,6 +3,25 @@
 # https://runescape.wiki/w/Reese
 # https://runescape.wiki/w/Ilona
 
+[xenia]
+id = 9633
+hitpoints = 20
+wander_range = 3
+categories = ["human"]
+examine = "An old adventurer."
+
+[xenia_after_cutscene]
+id = 9634
+clone = "xenia"
+
+[xenia_wounded]
+id = 9636
+clone = "xenia"
+
+[xenia_2]
+id = 11476
+clone = "xenia"
+
 [reese_cutscene]
 id = 9637
 
@@ -55,6 +74,10 @@ id = 9630
 
 [ilona_following]
 id = 9631
+
+[ilona]
+id = 9632
+examine = "A Lumbridge citizen."
 
 [ilona_cutscene]
 id = 9640
