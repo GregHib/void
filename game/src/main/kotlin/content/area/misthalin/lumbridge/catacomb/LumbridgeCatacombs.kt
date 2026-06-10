@@ -481,33 +481,3 @@ fun spawnStairs(offset: Delta) {
     // Altar in Reese's chamber
     GameObjects.add("blood_pact_stairs_up_north", offset.tile(3858, 5543, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
 }
-
-fun Player.completeBloodPact() {
-    set("blood_pact", "completed")
-    inc("quest_points", 1)
-    jingle("quest_complete_1")
-    unlockTrack("catacomb")
-    unlockTrack("cursed_you_are")
-    exp(Skill.Attack, 100.0)
-    exp(Skill.Strength, 100.0)
-    exp(Skill.Defence, 100.0)
-    exp(Skill.Ranged, 100.0)
-    exp(Skill.Magic, 100.0)
-    message("Congratulations, you've completed a quest: <navy>The Blood Pact")
-    refreshQuestJournal()
-    questComplete(
-        "The Blood Pact",
-        "1 Quest Point",
-        "Kayle's sling, Caitlin's staff",
-        "and Reese's sword",
-        "100 Attack, Strength,",
-        "Defence, Ranged and Magic",
-        "XP",
-        "Access to the Lumbridge",
-        "Catacombs dungeon",
-        item = "reeses_sword"
-    )
-
-    val xenia = NPCs.find(Tile(3245, 3198, 0), "xenia_2")
-    NPCs.remove(xenia)
-}

@@ -1,8 +1,6 @@
 package content.area.misthalin.lumbridge.blood_pact
 
-import content.area.misthalin.lumbridge.catacomb.completeBloodPact
 import content.entity.combat.hit.directHit
-import content.entity.player.bank.bank
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Happy
@@ -15,13 +13,18 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.startQuest
 import content.entity.player.dialogue.type.statement
+import content.entity.player.inv.item.addOrDrop
+import content.entity.world.music.unlockTrack
 import content.quest.instance
 import content.quest.instanceOffset
 import content.quest.quest
+import content.quest.questComplete
 import content.quest.refreshQuestJournal
 import content.skill.melee.weapon.Weapon
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -29,11 +32,14 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.queue.longQueue
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Tile
 
 class Xenia : Script {
     init {
@@ -44,90 +50,71 @@ class Xenia : Script {
                     npc<Neutral>("I'm glad you've come by. I need some help.")
                     choiceBase()
                 }
+                "started" -> npc<Neutral>("We've got no time to lose. You head down the stairs, and I'll follow.")
                 "watched_cutscene" -> {
                     npc<Neutral>("There's a guard in the room ahead. Together we should be able to take him out.")
                     optionsAfterEntering()
                 }
                 "xenia_wounded" -> {
                     if (!hasPlayerWeaponType("melee")) {
-                        inventory.add("bronze_dagger", 1)
+                        addOrDrop("bronze_dagger")
                         npc<LookDown>("You'll need a weapon. Equip this bronze dagger, then talk to me again.")
-                    } else {
-                        npc<LookDown>("Ah...")
-                        npc<LookDown>("It looks like I'm too old for this after all. You'll have to do the rest without me.")
-                        npc<LookDown>("The first cultist is using a ranged weapon, so you should attack him with your melee weapon.")
-                        npc<LookDown>("I'll follow you, but I'll stay out of combat. Return to me if you're wounded. I have some food to share.")
-                        foodChat()
-                        optionsAfterEntering()
+                        return@npcOperate
                     }
+                    npc<LookDown>("Ah...")
+                    npc<LookDown>("It looks like I'm too old for this after all. You'll have to do the rest without me.")
+                    npc<LookDown>("The first cultist is using a ranged weapon, so you should attack him with your melee weapon.")
+                    npc<LookDown>("I'll follow you, but I'll stay out of combat. Return to me if you're wounded. I have some food to share.")
+                    foodChat()
+                    optionsAfterEntering()
                 }
                 "kayle" -> {
                     val kayleStatus = get<String>("blood_pact_kayle")
                     foodChat()
-
-                    when (kayleStatus) {
-                        "defeated" -> {
-                            npc<LookDown>("The first cultist is defeated, but not dead. I'll leave it up to you to how to deal with him.")
-                            optionsBeforeFirstFight()
-                        }
+                    if (kayleStatus == "defeated") {
+                        npc<LookDown>("The first cultist is defeated, but not dead. I'll leave it up to you to how to deal with him.")
                     }
+                    optionsBeforeFirstFight()
                 }
                 "caitlin", "winch_activated" -> {
                     val caitlinStatus = get<String>("blood_pact_caitlin")
-
                     foodChat()
-                    if (caitlinStatus == "alive")
-                    {
-                        if (equipped(EquipSlot.Weapon).id == "kayles_sling") {
-                            npc<LookDown>("You're holding the sling right. You should be able to attack the second cultist without any trouble.")
-                        } else if (Weapon.type(this, equipped(EquipSlot.Weapon)) == "range") {
-                            npc<LookDown>("I see you've brought your own ranged weapon. I'll assume you know how to use it!")
-                        } else if (inventory.contains("kayles_sling")) {
-                            npc<LookDown>("You'll need to equip the sling before you can attack the second cultist.")
-                        } else {
-                            npc<LookDown>("You'll need to pick up the sling and equip it before you can attack the second cultist.")
-                        }
-
-                        optionsBeforeSecondFight()
-                    } else {
-                        when (caitlinStatus) {
-                            "defeated" -> {
-                                npc<LookDown>("The second cultist is defeated, but not dead. I'll leave it up to you how to deal with her.")
-                                optionsBeforeSecondFight()
+                    when (caitlinStatus) {
+                        "alive" -> {
+                            if (equipped(EquipSlot.Weapon).id == "kayles_sling") {
+                                npc<LookDown>("You're holding the sling right. You should be able to attack the second cultist without any trouble.")
+                            } else if (Weapon.type(this, equipped(EquipSlot.Weapon)) == "range") {
+                                npc<LookDown>("I see you've brought your own ranged weapon. I'll assume you know how to use it!")
+                            } else if (inventory.contains("kayles_sling")) {
+                                npc<LookDown>("You'll need to equip the sling before you can attack the second cultist.")
+                            } else {
+                                npc<LookDown>("You'll need to pick up the sling and equip it before you can attack the second cultist.")
                             }
                         }
+                        "defeated" -> npc<LookDown>("The second cultist is defeated, but not dead. I'll leave it up to you how to deal with her.")
                     }
+                    optionsBeforeSecondFight()
                 }
                 "reese" -> {
                     val reeseStatus = get<String>("blood_pact_reese")
-
                     foodChat()
-                    if (reeseStatus == "alive") {
-                        if (equipped(EquipSlot.Weapon).id == "caitlins_staff") {
-                            npc<LookDown>("You're holding the staff. You should be able to attack the last cultist without any trouble.")
-                        } else if (Weapon.type(this, equipped(EquipSlot.Weapon)) == "magic") {
-                            npc<LookDown>("I see you've brought your own magic weapon. I'll assume you know how to use it!")
-                        } else if (inventory.contains("caitlins_staff")) {
-                            npc<LookDown>("You'll need to equip the staff before you can attack the last cultist.")
-                        } else {
-                            npc<LookDown>("You'll need to pick up the staff and equip it before you can attack the last cultist.")
-                        }
-                        optionsBeforeThirdFight()
-                    } else {
-                        when (reeseStatus) {
-                            "killed" -> {
-                                npc<LookDown>("You've defeated the last cultist. Now you need to untie their prisoner.")
-                            }
-                            "defeated" -> {
-                                npc<LookDown>("If you've defeated the last cultist, you'll need to decide how to deal with him.")
-                                optionsBeforeThirdFight()
-                            }
-                            else -> {
-                                npc<LookDown>("The last cultist is a swordsman. Magic is the best thing to use against melee fighters.")
-                                optionsBeforeThirdFight()
+                    when (reeseStatus) {
+                        "alive" -> {
+                            if (equipped(EquipSlot.Weapon).id == "caitlins_staff") {
+                                npc<LookDown>("You're holding the staff. You should be able to attack the last cultist without any trouble.")
+                            } else if (Weapon.type(this, equipped(EquipSlot.Weapon)) == "magic") {
+                                npc<LookDown>("I see you've brought your own magic weapon. I'll assume you know how to use it!")
+                            } else if (inventory.contains("caitlins_staff")) {
+                                npc<LookDown>("You'll need to equip the staff before you can attack the last cultist.")
+                            } else {
+                                npc<LookDown>("You'll need to pick up the staff and equip it before you can attack the last cultist.")
                             }
                         }
+                        "killed" -> npc<LookDown>("You've defeated the last cultist. Now you need to untie their prisoner.")
+                        "defeated" -> npc<LookDown>("If you've defeated the last cultist, you'll need to decide how to deal with him.")
+                        else -> npc<LookDown>("The last cultist is a swordsman. Magic is the best thing to use against melee fighters.")
                     }
+                    optionsBeforeThirdFight()
                 }
                 "untied_ilona" -> {
                     npc<Neutral>("Is there anything you want to ask before you go to seek out new adventures?")
@@ -172,8 +159,10 @@ class Xenia : Script {
 
     fun Player.hasPlayerWeaponType(weaponType: String): Boolean {
         val equippedWeapon = equipped(EquipSlot.Weapon)
-        return inventory.items.any { !it.isEmpty() && Weapon.type(this, it) == weaponType } ||
-            (!equippedWeapon.isEmpty() && Weapon.type(this, equippedWeapon) == weaponType)
+        if (equippedWeapon.isNotEmpty() && Weapon.type(this, equippedWeapon) == weaponType) {
+            return true
+        }
+        return inventory.items.any { !it.isEmpty() && Weapon.type(this, it) == weaponType }
     }
 
     suspend fun Player.choiceBase() {
@@ -187,23 +176,22 @@ class Xenia : Script {
 
     suspend fun Player.foodChat() {
         val playerHealthPercentage = levels.get(Skill.Constitution).toDouble() / levels.getMax(Skill.Constitution)
-        when (inventory.items.any { it.def["consumable", false] }) {
-            true -> {
-                if (playerHealthPercentage < 1.0 && playerHealthPercentage > 0.75) {
-                    npc<LookDown>(" You're lightly wounded. You should eat some of the food you're carrying.")
-                } else if (playerHealthPercentage <= 0.75) {
-                    npc<LookDown>("You're badly wounded! You should eat some of the food you're carrying.")
-                }
+        if (inventory.items.any { it.def.contains("heals") && !it.def.contains("excess") }) {
+            if (playerHealthPercentage < 1.0 && playerHealthPercentage > 0.75) {
+                npc<LookDown>("You're lightly wounded. You should eat some of the food you're carrying.")
+            } else if (playerHealthPercentage <= 0.75) {
+                npc<LookDown>("You're badly wounded! You should eat some of the food you're carrying.")
             }
-            false -> {
-                if (playerHealthPercentage < 1.0 && playerHealthPercentage > 0.75) {
-                    npc<LookDown>("You're lightly wounded. Here, have some food...")
-                    statement("Xenia gives you a piece of cooked meat. Eat food to heal yourself.")
-                    inventory.add("cooked_meat", 1)
-                } else if (playerHealthPercentage <= 0.75) {
-                    npc<LookDown>("You're badly wounded! Eat some food, quickly...")
-                    statement("Xenia gives you 4 pieces of cooked meat. Eat food to heal yourself.")
-                    inventory.add("cooked_meat", 4) //TODO: doesnt give meat at all if not enough space in invent - might need for loop
+        } else {
+            if (playerHealthPercentage < 1.0 && playerHealthPercentage > 0.75) {
+                npc<LookDown>("You're lightly wounded. Here, have some food...")
+                statement("Xenia gives you a piece of cooked meat. Eat food to heal yourself.")
+                addOrDrop("cooked_meat")
+            } else if (playerHealthPercentage <= 0.75) {
+                npc<LookDown>("You're badly wounded! Eat some food, quickly...")
+                statement("Xenia gives you 4 pieces of cooked meat. Eat food to heal yourself.")
+                repeat(4) {
+                    addOrDrop("cooked_meat")
                 }
             }
         }
@@ -306,30 +294,24 @@ class Xenia : Script {
 
     fun Player.checkForLostWeapons(): Boolean {
         val weapons = arrayOf("reeses_sword", "kayles_sling", "caitlins_staff") // quest weapons
-
         for (weapon in weapons) {
-            if (!(inventory.contains(weapon) || bank.contains(weapon))) {
+            if (!ownsItem(weapon)) {
                 return true
             }
         }
-
         return false
     }
 
     fun ChoiceOption.lostWeapon(): Unit = option<Neutral>("I've lost some of the cultists' weapons.") {
         npc<Neutral>("Yes, one of my contacts in the Champion's Guild found them and returned them to me.")
-
-        if (!inventory.isFull() && !ownsItem("kayles_sling")) {
+        if (!ownsItem("kayles_sling") && inventory.add("kayles_sling")) {
             statement("Xenia gives you Kayle's sling.")
-            inventory.add("kayles_sling", 1)
         }
-        if (!inventory.isFull() && !ownsItem("caitlins_staff")) {
+        if (!ownsItem("caitlins_staff") && inventory.add("caitlins_staff")) {
             statement("Xenia gives you Caitlin's staff.")
-            inventory.add("caitlins_staff", 1)
         }
-        if (!inventory.isFull() && !ownsItem("reeses_sword")) {
+        if (!ownsItem("reeses_sword") && inventory.add("reeses_sword")) {
             statement("Xenia gives you Reese's sword.")
-            inventory.add("reeses_sword", 1)
         }
     }
 
@@ -498,6 +480,36 @@ class Xenia : Script {
                 npc<Neutral>("xenia_2", "You're an adventurer, though. If you want to, you can venture into the tomb and fight the creatures.")
                 finalDialogBloodPact(target)
             }
+        }
+    }
+    fun Player.completeBloodPact() {
+        longQueue("quest_complete") {
+            set("blood_pact", "completed")
+            inc("quest_points", 1)
+            jingle("quest_complete_1")
+            unlockTrack("catacomb")
+            unlockTrack("cursed_you_are")
+            exp(Skill.Attack, 100.0)
+            exp(Skill.Strength, 100.0)
+            exp(Skill.Defence, 100.0)
+            exp(Skill.Ranged, 100.0)
+            exp(Skill.Magic, 100.0)
+            message("Congratulations, you've completed a quest: <navy>The Blood Pact")
+            refreshQuestJournal()
+            questComplete(
+                "The Blood Pact",
+                "1 Quest Point",
+                "Kayle's sling, Caitlin's staff",
+                "and Reese's sword",
+                "100 Attack, Strength,",
+                "Defence, Ranged and Magic",
+                "XP",
+                "Access to the Lumbridge",
+                "Catacombs dungeon",
+                item = "reeses_sword"
+            )
+            val xenia = NPCs.find(Tile(3245, 3198, 0), "xenia_2")
+            NPCs.remove(xenia)
         }
     }
 
