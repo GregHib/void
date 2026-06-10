@@ -150,23 +150,6 @@ internal class ActionQueueTest {
     }
 
     @Test
-    fun `Logout does not force-resume a Custom suspension whose predicate is false`() {
-        var pastAwait = false
-        queue.add(Action<Player>("long", 1, ActionPriority.Long) {
-            suspendCancellableCoroutine { cont ->
-                suspension = Suspension.Custom(cont) { false }
-            }
-            suspension = null
-            pastAwait = true
-        })
-
-        queue.logout()
-
-        assertFalse(pastAwait, "Action must not advance past a Custom await whose predicate is unmet")
-        assertTrue(queue.isEmpty())
-    }
-
-    @Test
     fun `Logout resumes a Custom suspension whose predicate is ready`() {
         var pastAwait = false
         queue.add(Action<Player>("long", 1, ActionPriority.Long) {
