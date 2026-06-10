@@ -11,8 +11,8 @@ class ReportAbuseDecoder : Decoder(BYTE) {
     override suspend fun decode(packet: Source): Instruction {
         val name = packet.readString()
         val type = packet.readByte().toInt()
-        val integer = packet.readByte().toInt()
-        val string = packet.readString()
-        return ReportAbuse(name, type, integer, string)
+        val mute = packet.readByte().toInt()
+        val suggestion = packet.readString()
+        return ReportAbuse(name, type, mute, suggestion)
     }
 }

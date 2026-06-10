@@ -13,3 +13,12 @@ id = 110
 [report_abuse]
 id = 594
 
+[.mute_confirm]
+id = 8
+
+[.mute_entry]
+id = 52
+
+[.mute_select]
+id = 66
+

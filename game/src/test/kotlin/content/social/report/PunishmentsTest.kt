@@ -1,0 +1,55 @@
+package content.social.report
+
+import WorldTest
+import kotlinx.coroutines.test.runTest
+import org.junit.jupiter.api.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
+
+internal class PunishmentsTest : WorldTest() {
+
+    @Test
+    fun `Black marks accumulate up to the permanent punishment limit`() = runTest {
+        val player = createPlayer(name = "offender")
+
+        repeat(BLACK_MARK_LIMIT) {
+            player.addBlackMark(Rule.MacroingOrUseOfBots)
+        }
+
+        assertEquals(BLACK_MARK_LIMIT, player.blackMarks)
+    }
+
+    @Test
+    fun `Expired black marks degrade`() = runTest {
+        val player = createPlayer(name = "offender")
+        player["black_marks"] = listOf("7:1", "15:${Long.MAX_VALUE}")
+
+        assertEquals(1, player.blackMarks)
+        assertEquals(listOf("15:${Long.MAX_VALUE}"), player.activeBlackMarks())
+    }
+
+    @Test
+    fun `Real world trading marks never expire`() = runTest {
+        val player = createPlayer(name = "offender")
+
+        player.addBlackMark(Rule.BreakingRealWorldLaws)
+
+        assertTrue(player.activeBlackMarks().single().endsWith(":${Long.MAX_VALUE}"))
+    }
+
+    @Test
+    fun `Banned player flag`() = runTest {
+        val player = createPlayer(name = "offender")
+        assertFalse(player.isBanned)
+
+        player.ban(48)
+        assertTrue(player.isBanned)
+
+        player.unban()
+        assertFalse(player.isBanned)
+
+        player.permBan()
+        assertTrue(player.isBanned)
+    }
+}
