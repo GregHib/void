@@ -276,9 +276,13 @@ class LumbridgeBeginnerTasks(
 
         npcDeath("warped_fly") {
             val killer = killer
-            if (killer is Player && killer.tile in Areas["lumbridge_catacombs"] &&
-                (killer.attackStyle == "aggressive" || killer.attackStyle == "controlled")
-            ) {
+            if (killer !is Player) {
+                return@npcDeath
+            }
+            if (killer.tile !in Areas["lumbridge_catacombs"]) {
+                return@npcDeath
+            }
+            if (killer.attackStyle == "aggressive" || killer.attackStyle == "controlled") {
                 killer["come_and_have_a_go_task"] = true
             }
         }
