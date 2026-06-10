@@ -49,17 +49,6 @@ suspend fun Player.npc(npcId: String, expression: String, text: String, largeHea
     }
 }
 
-suspend fun Player.npc(npcId: String, animationId: Int, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
-    val lines = if (text.contains("\n")) text.trimIndent().lines() else get<FontDefinitions>().get("q8_full").splitLines(text, 380)
-    if (lines.size > 4) {
-        for (chunk in lines.chunked(4)) {
-            npc(chunk, clickToContinue, npcId, largeHead, animationId, title)
-        }
-    } else {
-        npc(lines, clickToContinue, npcId, largeHead, animationId, title)
-    }
-}
-
 private suspend fun Player.npc(lines: List<String>, clickToContinue: Boolean, npcId: String, largeHead: Boolean?, expression: String, title: String?) {
     check(lines.size <= 4) { "Maximum npc chat lines exceeded ${lines.size} for $this" }
     val id = getInterfaceId(lines.size, clickToContinue)
@@ -70,22 +59,6 @@ private suspend fun Player.npc(lines: List<String>, clickToContinue: Boolean, np
     val head = getChatHeadComponentName(largeHead ?: npcDef["large_head", false])
     sendNPCHead(this, id, head, npcDef.id)
     interfaces.sendChat(id, head, if (npcDef.contains("dialogue")) "${npcDef["dialogue", ""]}_$expression" else expression, title ?: npcDef.name, lines)
-    if (clickToContinue) {
-        pauseButton()
-        close(id)
-    }
-}
-
-private suspend fun Player.npc(lines: List<String>, clickToContinue: Boolean, npcId: String, largeHead: Boolean?, animationId: Int, title: String?) {
-    check(lines.size <= 4) { "Maximum npc chat lines exceeded ${lines.size} for $this" }
-    val id = getInterfaceId(lines.size, clickToContinue)
-    if (!open(id)) {
-        return
-    }
-    val npcDef = NPCDefinitions.get(npcId)
-    val head = getChatHeadComponentName(largeHead ?: npcDef["large_head", false])
-    sendNPCHead(this, id, head, npcDef.id)
-    interfaces.sendChat(id, head, animationId, title ?: npcDef.name, lines)
     if (clickToContinue) {
         pauseButton()
         close(id)

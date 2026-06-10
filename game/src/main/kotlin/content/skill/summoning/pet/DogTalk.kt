@@ -27,7 +27,9 @@ suspend fun Player.talkToDog(row: RowDefinition, dog: NPC) {
         val stages = it.stringList("stage")
         it.string("pet") == breed && (stages.isEmpty() || stageKey in stages)
     }
-    if (rows.isEmpty()) return
+    if (rows.isEmpty()) {
+        return
+    }
 
     val matchingConditional = rows.filter { matchesPetCondition(it.string("condition")) }
     val chosen = matchingConditional.randomOrNull()

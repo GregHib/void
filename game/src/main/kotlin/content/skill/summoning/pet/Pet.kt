@@ -194,17 +194,15 @@ suspend fun Player.talkToPet(row: RowDefinition, pet: NPC) {
         row.ambientPhrases().randomOrNull()?.let { pet.say(it) }
         return
     }
-    val animEnum = EnumDefinitions.get("pet_details_chathead_animations_normal")
-    val rowAnim = row.animOrNull("chathead_anim")?.let { AnimationDefinitions.getOrNull(it)?.id }
+    val rowAnim = row.animOrNull("chathead_anim") // TODO no pet dialogues are added, "pet_details_chathead_animations_normal" is only for pouch familiars
     val fallbackAnim = when {
-        row.boolOrNull("chathead_disabled") == true -> -1
         rowAnim != null -> rowAnim
-        else -> animEnum.intOrNull(pet.def.id) ?: animEnum.defaultInt
+        else -> AnimationDefinitions.get(EnumDefinitions.int("pet_details_chathead_animations_normal", pet.def.id)).stringId
     }
     for (line in chosen.stringList("lines")) {
         val rendered = substitutePlayerName(line, name)
         when {
-            rendered.startsWith("npc:") -> npc(pet.id, fallbackAnim, breakParenTranslation(rendered.removePrefix("npc:").trim()))
+            rendered.startsWith("npc:") -> npc(npcId = pet.id, expression = fallbackAnim, text = breakParenTranslation(rendered.removePrefix("npc:").trim()))
             rendered.startsWith("player:") -> player<Happy>(rendered.removePrefix("player:").trim())
             rendered.startsWith("overhead:") -> pet.say(rendered.removePrefix("overhead:").trim())
             rendered.startsWith("[") && rendered.endsWith("]") -> statement(rendered.removePrefix("[").removeSuffix("]").trim())
