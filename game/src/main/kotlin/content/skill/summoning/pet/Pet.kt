@@ -173,14 +173,8 @@ fun Player.sendPetDetailsStats() {
     val fullyGrown = row.isFinalStage(itemStringId)
     val growth = if (fullyGrown) NA_SENTINEL else (getPetGrowth(row.rowId) / 100).coerceIn(0, 100)
     val hunger = (getPetHunger(row.rowId) / 100).coerceIn(0, 100)
-    // Packed layout for the pet_details_stats varp (id 1175, see
-    // data/skill/summoning/summoni55ng.varps.toml): bits 1..7 = growth (0..100
-    // or NA_SENTINEL), bits 9..15 = hunger (0..100 or NA_SENTINEL). Bits 0
-    // and 8 are unused padding so the client CS2 can read each value via a
-    // 7-bit shift+mask.
-    val packed = (growth shl 1) or (hunger shl 9)
-    set("pet_details_stats", packed)
-    variables.send("pet_details_stats")
+    set("pet_details_growth_percentage", growth)
+    set("pet_details_hunger_percentage", hunger)
 }
 
 /** CS2 sentinel meaning "this metric does not apply" — pet panel renders it as "NA". */
@@ -278,7 +272,8 @@ private fun Player.deactivateSummoningOrb() {
         this["follower_details_chathead"] = 0
         this["familiar_details_minutes_remaining"] = 0
         this["familiar_details_seconds_remaining"] = 0
-        this["pet_details_stats"] = 0
+        this["pet_details_growth_percentage"] = 0
+        this["pet_details_hunger_percentage"] = 0
     }
 }
 
