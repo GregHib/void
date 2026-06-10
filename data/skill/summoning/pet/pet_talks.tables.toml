@@ -207,6 +207,14 @@ pet = "dalmatian"
 stage = ["grown"]
 condition = "logs"
 lines = [
+    "npc:[Throw the stick!]",
+    "player:These sticks are not for throwing, sorry.",
+    "npc:[Throw the stick! Throw the stick!]",
+    "player:Okay, look, there it goes.",
+    "npc:[I lost it.]",
+    "player:That's okay, I have more.",
+    "npc:[Yay! Throw the stick!]",
+    "player:Here we go again.",
 ]
 
 [.bulldog_baby_1]
