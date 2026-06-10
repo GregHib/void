@@ -1,34 +1,17 @@
 package content.area.misthalin.lumbridge.blood_pact
 
-import content.entity.combat.hit.directHit
 import content.entity.player.bank.ownsItem
-import content.entity.player.dialogue.Confused
-import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.LookDown
-import content.entity.player.dialogue.Neutral
-import content.entity.player.dialogue.No
-import content.entity.player.dialogue.type.ChoiceOption
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
-import content.entity.player.dialogue.type.startQuest
-import content.entity.player.dialogue.type.statement
+import content.entity.player.dialogue.*
+import content.entity.player.dialogue.type.*
 import content.entity.player.inv.item.addOrDrop
 import content.entity.world.music.unlockTrack
-import content.quest.instance
-import content.quest.instanceOffset
 import content.quest.quest
 import content.quest.questComplete
 import content.quest.refreshQuestJournal
 import content.skill.melee.weapon.Weapon
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.jingle
-import world.gregs.voidps.engine.entity.character.mode.EmptyMode
-import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -36,10 +19,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.longQueue
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
-import world.gregs.voidps.type.Direction
-import world.gregs.voidps.type.Tile
 
 class Xenia : Script {
     init {
@@ -118,41 +98,12 @@ class Xenia : Script {
                 }
                 "untied_ilona" -> {
                     npc<Neutral>("Is there anything you want to ask before you go to seek out new adventures?")
-                    finalDialogBloodPact(target)
+                    finalDialogBloodPact()
                 }
                 "completed" -> {
                     npc<Happy>("Hello again, adventurer.")
                     choiceAfterQuest()
                 }
-            }
-        }
-        moved { _ ->
-            if (quest("blood_pact") != "watched_cutscene") return@moved
-            if (tile != instanceOffset().tile(3877, 5530, 1) && tile != instanceOffset().tile(3877, 5531, 1)) return@moved
-
-            set("blood_pact", "xenia_wounded")
-
-            val region = instance() ?: return@moved
-            val xenia = NPCs.findOrNull(region.toLevel(1), "xenia_after_cutscene") ?: return@moved
-            val kayle = NPCs.findOrNull(region.toLevel(1), "kayle_attackable") ?: return@moved
-
-            xenia.mode = EmptyMode
-            xenia.walkTo(instanceOffset().tile(3877, 5530, 1))
-
-            queue("blood_pact_xenia_hit") {
-                delay(1) // time for xenia to walk there
-                kayle.anim("sling_sling")
-                delay(3)
-                xenia.directHit(kayle, 19, "range")
-                xenia.anim("human_defend")
-                open("fade_out")
-                delay(3)
-                tele(instanceOffset().tile(3876, 5528, 1))
-                NPCs.remove(xenia)
-                NPCs.add("xenia_wounded", instanceOffset().tile(3875, 5529, 1), Direction.SOUTH)
-                delay(3)
-                open("fade_in")
-                // anything that happens AFTER the hit goes here
             }
         }
     }
@@ -455,33 +406,31 @@ class Xenia : Script {
         }
     }
 
-    suspend fun Player.finalDialogBloodPact(target: NPC) {
+    suspend fun Player.finalDialogBloodPact() {
         choice {
             option("I'm ready for my reward.") {
-                npc<Neutral>("xenia_2", "Farewell, adventurer.")
+                npc<Neutral>("Farewell, adventurer.")
                 completeBloodPact()
             }
-
             option("What should I do now?") {
-                npc<Neutral>("xenia_2", "The cultists' ritual opened up the lower level of the catacombs, which is swarming with undead creatures. If you want to practice your combat skills, you could go down there.")
-                npc<Neutral>("xenia_2", "Alternatively, if you explore the world I'm sure you'll find other quests you can do.")
-                finalDialogBloodPact(target)
+                npc<Neutral>("The cultists' ritual opened up the lower level of the catacombs, which is swarming with undead creatures. If you want to practice your combat skills, you could go down there.")
+                npc<Neutral>("Alternatively, if you explore the world I'm sure you'll find other quests you can do.")
+                finalDialogBloodPact()
             }
-
             option("You weren't really wounded, were you?") {
-                npc<Neutral>("xenia_2", "Very perceptive, adventurer.")
-                npc<Neutral>("xenia_2", "I was wounded, but not as badly as I looked. I took the opportunity to see how you would fare.")
-                werentWoundedOptions(target)
+                npc<Neutral>("Very perceptive, adventurer.")
+                npc<Neutral>("I was wounded, but not as badly as I looked. I took the opportunity to see how you would fare.")
+                werentWoundedOptions()
             }
-
             option("What will happen in the catacombs now?") {
-                npc<Neutral>("xenia_2", "Reese managed to complete the ritual with his own death. He's opened the staircase to the nest of undead creatures in the lower level of the catacombs, which is swarming with undead.")
-                npc<Neutral>("xenia_2", "Without a necromancer to control them, the creatures won't leave the tomb. I'll warn Father Aereck not to let people go down there.")
-                npc<Neutral>("xenia_2", "You're an adventurer, though. If you want to, you can venture into the tomb and fight the creatures.")
-                finalDialogBloodPact(target)
+                npc<Neutral>("Reese managed to complete the ritual with his own death. He's opened the staircase to the nest of undead creatures in the lower level of the catacombs, which is swarming with undead.")
+                npc<Neutral>("Without a necromancer to control them, the creatures won't leave the tomb. I'll warn Father Aereck not to let people go down there.")
+                npc<Neutral>("You're an adventurer, though. If you want to, you can venture into the tomb and fight the creatures.")
+                finalDialogBloodPact()
             }
         }
     }
+
     fun Player.completeBloodPact() {
         longQueue("quest_complete") {
             set("blood_pact", "completed")
@@ -508,27 +457,25 @@ class Xenia : Script {
                 "Catacombs dungeon",
                 item = "reeses_sword"
             )
-            val xenia = NPCs.find(Tile(3245, 3198, 0), "xenia_2")
-            NPCs.remove(xenia)
         }
     }
 
-    suspend fun Player.werentWoundedOptions(target: NPC) {
+    suspend fun Player.werentWoundedOptions() {
         choice {
             option("You risked that woman's life for the sake of a test?") {
-                npc<Neutral>("xenia_2", "I was prepared to step in and rescue her if you failed, but I won't always be that ready. That's why I had to do this. The world needs heroes. I was a hero, once, but I'm not getting any younger. I need to make sure the new generation has its own heroes.")
-                werentWoundedOptions(target)
+                npc<Neutral>("I was prepared to step in and rescue her if you failed, but I won't always be that ready. That's why I had to do this. The world needs heroes. I was a hero, once, but I'm not getting any younger. I need to make sure the new generation has its own heroes.")
+                werentWoundedOptions()
             }
             option("You risked my life for the sake of a test?") {
-                npc<Neutral>("xenia_2", "You're a born adventurer. I can practically smell it on you. People like you have a habit of coming back from things that would kill an ordinary person.")
-                werentWoundedOptions(target)
+                npc<Neutral>("You're a born adventurer. I can practically smell it on you. People like you have a habit of coming back from things that would kill an ordinary person.")
+                werentWoundedOptions()
             }
             option("So how did I do?") {
-                npc<Neutral>("xenia_2", "Very well indeed. You're a hero. You're exactly the sort of person the world needs. I'm glad I met you.")
-                werentWoundedOptions(target)
+                npc<Neutral>("Very well indeed. You're a hero. You're exactly the sort of person the world needs. I'm glad I met you.")
+                werentWoundedOptions()
             }
             option("Back to my other questions...") {
-                finalDialogBloodPact(target)
+                finalDialogBloodPact()
             }
         }
     }

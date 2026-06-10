@@ -1,24 +1,12 @@
 package content.area.misthalin.lumbridge.catacomb
 
+import content.entity.combat.hit.directHit
 import content.entity.combat.killer
-import content.entity.player.dialogue.Angry
-import content.entity.player.dialogue.Frustrated
-import content.entity.player.dialogue.Neutral
-import content.entity.player.dialogue.Scared
-import content.entity.player.dialogue.Teary
+import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
-import content.entity.world.music.unlockTrack
-import content.quest.exitInstance
-import content.quest.instance
-import content.quest.instanceOffset
-import content.quest.quest
-import content.quest.questComplete
-import content.quest.refreshQuestJournal
-import content.quest.setInstanceLogout
-import content.quest.smallInstance
-import content.quest.startCutscene
+import content.quest.*
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
@@ -27,7 +15,7 @@ import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.engine.entity.character.jingle
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.mode.ModeType
 import world.gregs.voidps.engine.entity.character.move.running
@@ -36,37 +24,21 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.longQueue
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.type.Delta
-import world.gregs.voidps.type.Direction
-import world.gregs.voidps.type.Region
-import world.gregs.voidps.type.RegionLevel
-import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.*
 
 class LumbridgeCatacombs : Script {
 
     init {
-        moved {
-            val tiles = listOf(instanceOffset().tile(3871, 5543, 1), instanceOffset().tile(3872, 5543, 1))
-            if (tile in tiles && get("blood_pact_kayle") !in listOf("spared", "killed")) {
-                queue("stop_player_from_moving") {
-                    walkTo(instanceOffset().tile(3873, 5543, 1))
-                    statement("You should deal with the first Cultist before advancing further.")
-                }
-            }
-        }
         objTeleportTakeOff("Climb-down", "lumbridge_catacomb_stairs") { _, _ ->
             when (quest("blood_pact")) {
                 "unstarted" -> {
-                    val xenia = NPCs.findOrNull(RegionLevel(12849), "xenia")
-                        ?: NPCs.findOrNull(RegionLevel(12850), "xenia")
+                    val xenia = NPCs.findBySpawnOrNull(Tile(3244, 3198), "xenia")
                     if (xenia != null) {
                         queue("xenia_greet") {
                             talkWith(xenia) {
@@ -76,11 +48,9 @@ class LumbridgeCatacombs : Script {
                     }
                     Teleport.CANCEL
                 }
-
                 "completed" -> Teleport.CONTINUE
                 else -> {
                     setInstanceLogout(Tile(3246, 3198, 0))
-
                     if (quest("blood_pact") == "started") {
                         longQueue("blood_pact_intro") {
                             open("fade_out")
@@ -124,6 +94,7 @@ class LumbridgeCatacombs : Script {
                 return@objectOperate
             }
 
+            // TODO: anim
             statement("You operate the winch. The gates creak open.")
             val gate1 = GameObjects.findOrNull(instanceOffset().tile(3870, 5531, 1), "blood_pact_caitlin_gate")
             val gate2 = GameObjects.findOrNull(instanceOffset().tile(3862, 5531, 1), "blood_pact_caitlin_gate")
@@ -243,6 +214,48 @@ class LumbridgeCatacombs : Script {
         destroyed("*_demon_statuette") { item ->
             set(item.id, "take")
         }
+
+        entered("kayles_room") {
+            if (quest("blood_pact") != "watched_cutscene") {
+                return@entered
+            }
+            if (tile != instanceOffset().tile(3877, 5530, 1) && tile != instanceOffset().tile(3877, 5531, 1)) {
+                return@entered
+            }
+            set("blood_pact", "xenia_wounded")
+            val region = instance() ?: return@entered
+            val xenia = NPCs.findOrNull(region.toLevel(1), "xenia_after_cutscene") ?: return@entered
+            val kayle = NPCs.findOrNull(region.toLevel(1), "kayle_attackable") ?: return@entered
+
+            xenia.mode = EmptyMode
+            xenia.walkTo(instanceOffset().tile(3877, 5530, 1))
+
+            queue("blood_pact_xenia_hit") {
+                delay(1) // time for xenia to walk there
+                kayle.anim("sling_sling")
+                delay(3)
+                xenia.directHit(kayle, 19, "range")
+                xenia.anim("human_defend")
+                open("fade_out")
+                delay(3)
+                tele(instanceOffset().tile(3876, 5528, 1))
+                NPCs.remove(xenia)
+                NPCs.add("xenia_wounded", instanceOffset().tile(3875, 5529, 1), Direction.SOUTH)
+                delay(3)
+                open("fade_in")
+                // anything that happens AFTER the hit goes here
+            }
+        }
+
+        exited("kayles_room") {
+            val tiles = listOf(instanceOffset().tile(3871, 5543, 1), instanceOffset().tile(3872, 5543, 1))
+            if (tile in tiles && get("blood_pact_kayle") !in listOf("spared", "killed")) {
+                queue("blood_pact_force_walk") {
+                    walkTo(instanceOffset().tile(3873, 5543, 1)) // TODO: walkToDelay
+                    statement("You should deal with the first Cultist before advancing further.")
+                }
+            }
+        }
     }
 
     suspend fun Player.cutscene() {
@@ -326,7 +339,6 @@ class LumbridgeCatacombs : Script {
         NPCs.remove(kayle)
         NPCs.remove(caitlin)
         NPCs.remove(reese)
-
         cutscene.end(destroyInstance = false)
         if (instance() != null) {
             set("blood_pact", "watched_cutscene")
@@ -381,14 +393,10 @@ class LumbridgeCatacombs : Script {
 
         // Xenia — position advances through the dungeon as stages progress
         when (stage) {
-            "watched_cutscene" ->
-                NPCs.add("xenia_after_cutscene", offset.tile(3877, 5526, 1), Direction.NORTH)
-            "xenia_wounded", "kayle" ->
-                NPCs.add("xenia_wounded", offset.tile(3875, 5529, 1), Direction.SOUTH)
-            "caitlin", "winch_activated" ->
-                NPCs.add("xenia_wounded", offset.tile(3877, 5538, 1), Direction.SOUTH)
-            "reese", "untied_ilona" ->
-                NPCs.add("xenia_wounded", offset.tile(3864, 5536, 1), Direction.NORTH)
+            "watched_cutscene" -> NPCs.add("xenia_after_cutscene", offset.tile(3877, 5526, 1), Direction.NORTH)
+            "xenia_wounded", "kayle" -> NPCs.add("xenia_wounded", offset.tile(3875, 5529, 1), Direction.SOUTH)
+            "caitlin", "winch_activated" -> NPCs.add("xenia_wounded", offset.tile(3877, 5538, 1), Direction.SOUTH)
+            "reese", "untied_ilona" -> NPCs.add("xenia_wounded", offset.tile(3864, 5536, 1), Direction.NORTH)
         }
 
         // Kayle — attackable until beaten, defeated NPC until player decides, then gone
@@ -397,14 +405,11 @@ class LumbridgeCatacombs : Script {
                 NPCs.add("kayle_attackable", offset.tile(3877, 5543, 1), Direction.SOUTH)
                 NPCDefinitions.get("kayle_attackable").walkMode = ModeType.EMPTY_MOVEABLE.toByte()
             }
-
             "kayle" if kayleStatus == "defeated" -> {
                 val kayleTile = offset.tile(3877, 5543, 1)
                 NPCs.add("kayle_defeated", kayleTile, Direction.SOUTH)
             }
-
-            "kayle" if kayleStatus !in listOf("killed", "spared") ->
-                NPCs.add("kayle_attackable", offset.tile(3877, 5543, 1), Direction.SOUTH)
+            "kayle" if kayleStatus !in listOf("killed", "spared") -> NPCs.add("kayle_attackable", offset.tile(3877, 5543, 1), Direction.SOUTH)
         }
 
         // Caitlin — present in kayle/caitlin stages; gone once player moves to Reese
@@ -417,9 +422,7 @@ class LumbridgeCatacombs : Script {
                 val caitlinTile = offset.tile(3864, 5538, 1)
                 NPCs.add("caitlin_defeated", caitlinTile, Direction.EAST)
             }
-
-            in listOf("caitlin", "winch_activated") if caitlinStatus !in listOf("killed", "spared") ->
-                NPCs.add("caitlin_attackable", offset.tile(3864, 5538, 1), Direction.EAST)
+            in listOf("caitlin", "winch_activated") if caitlinStatus !in listOf("killed", "spared") -> NPCs.add("caitlin_attackable", offset.tile(3864, 5538, 1), Direction.EAST)
         }
 
         // Reese — present until killed
@@ -432,15 +435,12 @@ class LumbridgeCatacombs : Script {
                 val reeseTile = offset.tile(3865, 5525, 0)
                 NPCs.add("reese_defeated", reeseTile, Direction.SOUTH)
             }
-
-            "reese" if reeseStatus !in listOf("killed", "spared") ->
-                NPCs.add("reese_attackable", offset.tile(3865, 5525, 0), Direction.SOUTH)
+            "reese" if reeseStatus !in listOf("killed", "spared") -> NPCs.add("reese_attackable", offset.tile(3865, 5525, 0), Direction.SOUTH)
         }
 
         // Ilona — tied until untied; once "untied_ilona" is reached, the player exits immediately
         when (stage) {
-            !in listOf("untied_ilona") ->
-                NPCs.add("ilona_tied", offset.tile(3865, 5523, 0), Direction.NORTH)
+            !in listOf("untied_ilona") -> NPCs.add("ilona_tied", offset.tile(3865, 5523, 0), Direction.NORTH)
         }
 
         // Caitlin's gates: only closed if Caitlin has not yet been dealt with
