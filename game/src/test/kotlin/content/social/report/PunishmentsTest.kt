@@ -57,12 +57,12 @@ internal class PunishmentsTest : WorldTest() {
     }
 
     @Test
-    fun `Ban adds two black marks`() = runTest {
+    fun `Ban adds a black mark`() = runTest {
         val player = createPlayer(name = "offender")
 
         player.ban()
 
-        assertEquals(2, player.blackMarks)
+        assertEquals(1, player.blackMarks)
     }
 
     @Test

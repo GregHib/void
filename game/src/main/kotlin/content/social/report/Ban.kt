@@ -18,9 +18,7 @@ val Player.isBanned: Boolean
 
 fun Player.ban(hours: Int = 48, rule: Rule? = null) {
     this["banned_until"] = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(hours.toLong())
-    repeat(2) {
-        addBlackMark(rule)
-    }
+    addBlackMark(rule)
 }
 
 fun Player.permBan() {
@@ -92,7 +90,7 @@ class Ban(val accounts: AccountDefinitions, val manager: AccountManager, val sto
     }
 
     /**
-     * Bans an offline player's saved account and adds two black marks
+     * Bans an offline player's saved account and adds a black mark
      */
     private fun banOffline(displayName: String, until: Long): Boolean {
         val account = accounts.get(displayName)?.accountName ?: displayName
@@ -100,7 +98,7 @@ class Ban(val accounts: AccountDefinitions, val manager: AccountManager, val sto
         val variables = save.variables.toMutableMap()
         variables["banned_until"] = until
         val marks = activeBlackMarks((variables["black_marks"] as? List<*>)?.filterIsInstance<String>() ?: emptyList())
-        variables["black_marks"] = marks + blackMark() + blackMark()
+        variables["black_marks"] = marks + blackMark()
         storage.save(listOf(save.copy(variables = variables)))
         return true
     }
