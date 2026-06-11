@@ -1,0 +1,32 @@
+[string_jewellery]
+string = "pair<item, item>"
+
+[.string_gold_amulet]
+string = ["gold_amulet_unstrung", "gold_amulet"]
+
+[.string_sapphire_amulet]
+string = ["sapphire_amulet_unstrung", "sapphire_amulet"]
+
+[.string_emerald_amulet]
+string = ["emerald_amulet_unstrung", "emerald_amulet"]
+
+[.string_ruby_amulet]
+string = ["ruby_amulet_unstrung", "ruby_amulet"]
+
+[.string_diamond_amulet]
+string = ["diamond_amulet_unstrung", "diamond_amulet"]
+
+[.string_dragonstone_amulet]
+string = ["dragonstone_amulet_unstrung", "dragonstone_amulet"]
+
+[.string_onyx_amulet]
+string = ["onyx_amulet_unstrung", "onyx_amulet"]
+
+[.string_salve_shard]
+string = ["salve_shard", "salve_amulet"]
+
+[.string_unstrung_symbol]
+string = ["unstrung_symbol", "unblessed_symbol"]
+
+[.string_unstrung_emblem]
+string = ["unstrung_emblem", "unpowered_symbol"]

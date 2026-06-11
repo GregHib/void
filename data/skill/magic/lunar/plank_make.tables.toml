@@ -1,0 +1,24 @@
+[plank_make]
+log = "item"
+plank = "item"
+cost = "int"
+
+[.plank_make_logs]
+log = "logs"
+plank = "plank"
+cost = 70
+
+[.plank_make_oak]
+log = "oak_logs"
+plank = "oak_plank"
+cost = 175
+
+[.plank_make_teak]
+log = "teak_logs"
+plank = "teak_plank"
+cost = 350
+
+[.plank_make_mahogany]
+log = "mahogany_logs"
+plank = "mahogany_plank"
+cost = 1050

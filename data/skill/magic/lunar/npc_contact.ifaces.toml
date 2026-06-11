@@ -1,0 +1,107 @@
+[npc_contact]
+id = 429
+
+[.honest_jimmy_head]
+id = 10
+
+[.bert_head]
+id = 11
+
+[.advisor_ghrim_head]
+id = 12
+
+[.turael_head]
+id = 13
+
+[.spria_head]
+id = 15
+
+[.lanthus_head]
+id = 17
+
+[.mazchna_head]
+id = 18
+
+[.achtryn_head]
+id = 21
+
+[.achtryn_name]
+id = 22
+
+[.duradel_head]
+id = 23
+
+[.lapalok_head]
+id = 25
+
+[.sumona_head]
+id = 27
+
+[.vannaka_head]
+id = 28
+
+[.chaeldar_head]
+id = 29
+
+[.dark_mage_head]
+id = 30
+
+[.cyrisus_head]
+id = 31
+
+[.cyrisus_name]
+id = 32
+
+[.larry_head]
+id = 33
+
+[.random_head]
+id = 35
+
+[.lapalok_name]
+id = 36
+
+[.spria_name]
+id = 37
+
+[.honest_jimmy_name]
+id = 38
+
+[.bert_name]
+id = 39
+
+[.advisor_ghrim_name]
+id = 40
+
+[.turael_name]
+id = 41
+
+[.sumona_name]
+id = 42
+
+[.lanthus_name]
+id = 43
+
+[.mazchna_name]
+id = 44
+
+[.duradel_name]
+id = 45
+
+[.vannaka_name]
+id = 46
+
+[.dark_mage_name]
+id = 47
+
+[.chaeldar_name]
+id = 48
+
+[.larry_name]
+id = 49
+
+[.random_name]
+id = 51
+
+[.close]
+id = 52
