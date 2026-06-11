@@ -184,6 +184,6 @@ class Woodcutting(val drops: DropTables) : Script {
             random.nextInt(delay.first, delay.last) // Regular tree's
         } else {
             Interpolation.interpolate(Players.size, delay.last, delay.first, minPlayers, maxPlayers)
-        }
+        }.coerceAtLeast(1)
     }
 }
