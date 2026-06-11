@@ -129,6 +129,7 @@ kept = "Wilderness"
 id = 731
 tradeable = false
 weight = 0.01
+full = "holy_water"
 examine = "An enchanted empty glass vial."
 kept = "Wilderness"
 
