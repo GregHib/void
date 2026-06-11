@@ -21,7 +21,7 @@ class Humidify : Script {
             if (hasClock("action_delay")) {
                 return@interfaceOption
             }
-            if (inventory.items.none { item -> item.def.contains("full") }) {
+            if (inventory.items.none { item -> item.id != "enchanted_vial" && item.def.contains("full") }) {
                 message("You have no empty containers to fill.")
                 return@interfaceOption
             }
@@ -36,7 +36,8 @@ class Humidify : Script {
             inventory.transaction {
                 for (index in inventory.indices) {
                     val item = inventory[index]
-                    if (!item.def.contains("full")) {
+                    // Holy water requires blessed water from the Legends' Quest golden bowl
+                    if (item.id == "enchanted_vial" || !item.def.contains("full")) {
                         continue
                     }
                     replace(index, item.id, item.def["full"])

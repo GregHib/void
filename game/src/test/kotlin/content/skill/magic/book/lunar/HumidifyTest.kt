@@ -36,6 +36,25 @@ class HumidifyTest : WorldTest() {
     }
 
     @Test
+    fun `Enchanted vials aren't filled with holy water`() {
+        val player = createPlayer()
+        player.levels.set(Skill.Magic, 68)
+        player.open("lunar_spellbook")
+        player.inventory.add("astral_rune")
+        player.inventory.add("water_rune", 3)
+        player.inventory.add("fire_rune")
+        player.inventory.add("enchanted_vial")
+        player.inventory.add("vial")
+
+        player.interfaceOption("lunar_spellbook", "humidify", "Cast")
+        tick(3)
+
+        assertEquals(1, player.inventory.count("enchanted_vial"))
+        assertEquals(0, player.inventory.count("holy_water"))
+        assertEquals(1, player.inventory.count("vial_of_water"))
+    }
+
+    @Test
     fun `Can't cast with nothing to fill`() {
         val player = createPlayer()
         player.levels.set(Skill.Magic, 68)
