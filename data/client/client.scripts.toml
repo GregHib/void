@@ -1,6 +1,9 @@
 [model_swapper]
 id = 67
 
+[refresh_bonus_experience]
+id = 776
+
 [is_quest_item]
 id = 927
 

@@ -53,6 +53,16 @@ internal class ExperienceTableTest {
     }
 
     @Test
+    fun `Add experience with bonus multiplier`() {
+        experience.multiplier = 2.7
+        experience.add(Skill.Attack, 10.0)
+        assertEquals(27.0, experience.get(Skill.Attack))
+        experience.multiplier = 1.0
+        experience.add(Skill.Attack, 10.0)
+        assertEquals(37.0, experience.get(Skill.Attack))
+    }
+
+    @Test
     fun `Can't set negative experience`() {
         experience.set(Skill.Attack, -10.0)
         assertEquals(0.0, experience.get(Skill.Attack))
