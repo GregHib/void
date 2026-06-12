@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -17,11 +16,6 @@ import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.engine.queue.weakQueue
 
 class StringJewellery : Script {
-
-    private val strung: Map<String, String> by lazy {
-        val table = Tables.getOrNull("string_jewellery") ?: return@lazy emptyMap()
-        table.rows.map { Rows.get(it).itemPair("string") }.toMap()
-    }
 
     init {
         interfaceOption("Cast", "lunar_spellbook:string_jewellery") {
@@ -36,23 +30,24 @@ class StringJewellery : Script {
         }
     }
 
-    private fun find(player: Player): Pair<Int, String>? {
+    private fun find(player: Player): Triple<Int, String, String>? {
         for (index in player.inventory.indices) {
             val item = player.inventory[index]
-            if (strung.containsKey(item.id)) {
-                return index to item.id
+            val product = Tables.itemOrNull("string_jewellery.${item.id}.product")
+            if (product != null) {
+                return Triple(index, item.id, product)
             }
         }
         return null
     }
 
     private fun string(player: Player) {
-        val (index, id) = find(player) ?: return
+        val (index, id, product) = find(player) ?: return
         if (!player.removeSpellItems("string_jewellery")) {
             return
         }
         player.inventory.transaction {
-            replace(index, id, strung.getValue(id))
+            replace(index, id, product)
         }
         if (player.inventory.transaction.error != TransactionError.None) {
             return

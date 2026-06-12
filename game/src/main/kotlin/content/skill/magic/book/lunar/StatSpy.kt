@@ -15,33 +15,6 @@ import world.gregs.voidps.engine.entity.character.sound
 
 class StatSpy : Script {
 
-    private val skills = listOf(
-        Skill.Attack,
-        Skill.Constitution,
-        Skill.Mining,
-        Skill.Strength,
-        Skill.Agility,
-        Skill.Smithing,
-        Skill.Defence,
-        Skill.Herblore,
-        Skill.Fishing,
-        Skill.Ranged,
-        Skill.Thieving,
-        Skill.Cooking,
-        Skill.Prayer,
-        Skill.Crafting,
-        Skill.Firemaking,
-        Skill.Magic,
-        Skill.Fletching,
-        Skill.Woodcutting,
-        Skill.Runecrafting,
-        Skill.Slayer,
-        Skill.Farming,
-        Skill.Construction,
-        Skill.Hunter,
-        Skill.Summoning,
-    )
-
     init {
         interfaceOption("Close", "player_stat_spy:close") {
             close("player_stat_spy")
@@ -67,7 +40,10 @@ class StatSpy : Script {
             target.sound("stat_spy_impact")
             exp(Skill.Magic, Tables.int("spells.stat_spy.xp") / 10.0)
             open("player_stat_spy")
-            for (skill in skills) {
+            for (skill in Skill.all) {
+                if (skill == Skill.Dungeoneering) {
+                    continue
+                }
                 val name = name(skill)
                 // Constitution is stored as lifepoints (x10); the interface shows levels
                 val divisor = if (skill == Skill.Constitution) 10 else 1
