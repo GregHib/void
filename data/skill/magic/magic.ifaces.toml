@@ -186,6 +186,12 @@ id = 93
 [.summoning_base]
 id = 94
 
+[.dungeoneering_current]
+id = 97
+
+[.dungeoneering_base]
+id = 98
+
 [.name]
 id = 104
 

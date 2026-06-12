@@ -41,9 +41,6 @@ class StatSpy : Script {
             exp(Skill.Magic, Tables.int("spells.stat_spy.xp") / 10.0)
             open("player_stat_spy")
             for (skill in Skill.all) {
-                if (skill == Skill.Dungeoneering) {
-                    continue
-                }
                 val name = name(skill)
                 // Constitution is stored as lifepoints (x10); the interface shows levels
                 val divisor = if (skill == Skill.Constitution) 10 else 1
