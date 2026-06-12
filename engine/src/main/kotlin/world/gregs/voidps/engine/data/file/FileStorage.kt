@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.data.file
 
+import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.*
 import world.gregs.voidps.engine.data.PlayerSave
@@ -17,20 +18,26 @@ class FileStorage(
     private val directory: File,
 ) : Storage {
 
+    private val logger = InlineLogger()
+
     override fun names(): Map<String, AccountDefinition> {
         val files = directory.listFiles { _, b -> b.endsWith(".toml") } ?: return emptyMap()
         val definitions: MutableMap<String, AccountDefinition> = Object2ObjectOpenHashMap()
         for (save in files) {
-            val data = PlayerSave.load(save)
-            val variables = data.variables
-            val accountName = data.name
-            val displayName = variables.getOrDefault("display_name", accountName) as String
-            definitions[accountName.lowercase()] = AccountDefinition(
-                accountName = accountName,
-                displayName = displayName,
-                previousName = (variables.getOrDefault("name_history", emptyList<String>()) as List<String>).lastOrNull() ?: "",
-                passwordHash = data.password,
-            )
+            try {
+                val data = PlayerSave.load(save)
+                val variables = data.variables
+                val accountName = data.name
+                val displayName = variables.getOrDefault("display_name", accountName) as String
+                definitions[accountName.lowercase()] = AccountDefinition(
+                    accountName = accountName,
+                    displayName = displayName,
+                    previousName = (variables.getOrDefault("name_history", emptyList<String>()) as List<String>).lastOrNull() ?: "",
+                    passwordHash = data.password,
+                )
+            } catch (e: Exception) {
+                logger.warn(e) { "Failed to load account file ${save.name}, skipping." }
+            }
         }
         return definitions
     }
@@ -39,22 +46,26 @@ class FileStorage(
         val files = directory.listFiles { _, b -> b.endsWith(".toml") } ?: return emptyMap()
         val clans: MutableMap<String, Clan> = Object2ObjectOpenHashMap()
         for (save in files) {
-            val data = PlayerSave.load(save)
-            val variables = data.variables
-            val accountName = data.name
-            val displayName = variables.getOrDefault("display_name", accountName) as String
-            clans[accountName.lowercase()] = Clan(
-                owner = accountName,
-                ownerDisplayName = displayName,
-                name = variables.getOrDefault("clan_name", "") as String,
-                friends = data.friends,
-                ignores = data.ignores,
-                joinRank = ClanRank.valueOf(variables.getOrDefault("clan_join_rank", "Anyone") as String),
-                talkRank = ClanRank.valueOf(variables.getOrDefault("clan_talk_rank", "Anyone") as String),
-                kickRank = ClanRank.valueOf(variables.getOrDefault("clan_kick_rank", "Corporeal") as String),
-                lootRank = ClanRank.valueOf(variables.getOrDefault("clan_loot_rank", "None") as String),
-                coinShare = variables.getOrDefault("coin_share_setting", false) as Boolean,
-            )
+            try {
+                val data = PlayerSave.load(save)
+                val variables = data.variables
+                val accountName = data.name
+                val displayName = variables.getOrDefault("display_name", accountName) as String
+                clans[accountName.lowercase()] = Clan(
+                    owner = accountName,
+                    ownerDisplayName = displayName,
+                    name = variables.getOrDefault("clan_name", "") as String,
+                    friends = data.friends,
+                    ignores = data.ignores,
+                    joinRank = ClanRank.valueOf(variables.getOrDefault("clan_join_rank", "Anyone") as String),
+                    talkRank = ClanRank.valueOf(variables.getOrDefault("clan_talk_rank", "Anyone") as String),
+                    kickRank = ClanRank.valueOf(variables.getOrDefault("clan_kick_rank", "Corporeal") as String),
+                    lootRank = ClanRank.valueOf(variables.getOrDefault("clan_loot_rank", "None") as String),
+                    coinShare = variables.getOrDefault("coin_share_setting", false) as Boolean,
+                )
+            } catch (e: Exception) {
+                logger.warn(e) { "Failed to load clan from account file ${save.name}, skipping." }
+            }
         }
         return clans
     }
