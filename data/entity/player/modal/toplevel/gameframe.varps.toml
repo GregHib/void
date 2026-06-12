@@ -3,6 +3,11 @@ id = 1801
 persist = true
 format = "int"
 
+[bonus_xp_counter]
+id = 1878
+persist = true
+format = "int"
+
 [movement]
 id = 173
 persist = true
