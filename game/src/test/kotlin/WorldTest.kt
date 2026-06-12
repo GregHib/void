@@ -105,7 +105,7 @@ abstract class WorldTest : KoinTest {
         return player to client
     }
 
-    fun createPlayer(tile: Tile = Tile.EMPTY, name: String = "player${Players.size}"): Player {
+    fun createPlayer(tile: Tile = Tile.EMPTY, name: String = "player${Players.size}", setup: (Player) -> Unit = {}): Player {
         if (Players.any { it.accountName == name }) {
             throw IllegalStateException("Player already exists: $name")
         }
@@ -115,6 +115,7 @@ abstract class WorldTest : KoinTest {
         tick()
         player["creation"] = -1
         player["skip_level_up"] = true
+        setup(player)
         accounts.spawn(player, null)
         player.softTimers.clear("restore_stats")
         player.softTimers.clear("restore_hitpoints")
