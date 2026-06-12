@@ -1,5 +1,6 @@
 package content.social.clan
 
+import content.bot.isBot
 import content.social.friend.*
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
@@ -7,6 +8,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -36,6 +38,11 @@ class ClanChat(
             if (current.isNotEmpty()) {
                 val account = accountDefinitions.getByAccount(current)
                 joinClan(this, account?.displayName ?: "")
+            } else if (contains("new_player") && !isBot) {
+                val default = Settings["world.start.clanChat", ""]
+                if (default.isNotEmpty()) {
+                    joinClan(this, default)
+                }
             }
             val ownClan = accounts.clan(name.lowercase()) ?: return@playerSpawn
             this.ownClan = ownClan
