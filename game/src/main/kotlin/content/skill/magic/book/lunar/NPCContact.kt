@@ -52,6 +52,15 @@ class NPCContact : Script {
             if (hasClock("action_delay")) {
                 return@interfaceOption
             }
+            if (!removeSpellItems("npc_contact")) {
+                return@interfaceOption
+            }
+            start("action_delay", 2)
+            anim("lunar_cast_charge")
+            gfx("npc_contact")
+            sound("npc_contact")
+            exp(Skill.Magic, Tables.int("spells.npc_contact.xp") / 10.0)
+            delay(2)
             open("npc_contact")
         }
 
@@ -79,15 +88,6 @@ class NPCContact : Script {
                 return@interfaceOption
             }
             close("npc_contact")
-            if (!removeSpellItems("npc_contact")) {
-                return@interfaceOption
-            }
-            start("action_delay", 2)
-            anim("lunar_cast_charge")
-            gfx("npc_contact")
-            sound("npc_contact")
-            exp(Skill.Magic, Tables.int("spells.npc_contact.xp") / 10.0)
-            delay(2)
             contact(contact)
         }
     }

@@ -33,6 +33,7 @@ class Humidify : Script {
             gfx(spell)
             sound(spell)
             exp(Skill.Magic, Tables.int("spells.$spell.xp") / 10.0)
+            delay(2)
             inventory.transaction {
                 for (index in inventory.indices) {
                     val item = inventory[index]

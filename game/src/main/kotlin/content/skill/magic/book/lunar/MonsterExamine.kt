@@ -6,13 +6,14 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 
-class MonsterExamine : Script {
+class MonsterExamine(val combatDefinitions: CombatDefinitions) : Script {
 
     private val styles = listOf("stab", "slash", "crush", "melee", "range", "magic", "dragonfire")
 
@@ -46,6 +47,13 @@ class MonsterExamine : Script {
     }
 
     private fun maxHit(npc: NPC): Int {
+        val definition = combatDefinitions.getOrNull(npc.transformDef["combat_def", npc.id])
+        if (definition != null) {
+            val max = definition.attacks.values.flatMap { it.targetHits }.maxOfOrNull { npc.def["max_hit_${it.offense}", it.max] } ?: 0
+            if (max > 0) {
+                return max
+            }
+        }
         val defined = styles.maxOf { npc.def["max_hit_$it", 0] }
         if (defined > 0) {
             return defined

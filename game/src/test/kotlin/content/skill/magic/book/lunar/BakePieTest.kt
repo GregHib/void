@@ -34,6 +34,26 @@ class BakePieTest : WorldTest() {
     }
 
     @Test
+    fun `Bake an uncooked apple pie`() {
+        val player = createPlayer()
+        player.levels.set(Skill.Magic, 65)
+        player.levels.set(Skill.Cooking, 30)
+        player.open("lunar_spellbook")
+        player.inventory.add("astral_rune")
+        player.inventory.add("fire_rune", 5)
+        player.inventory.add("water_rune", 4)
+        player.inventory.add("uncooked_apple_pie")
+
+        player.interfaceOption("lunar_spellbook", "bake_pie", "Cast")
+        tick(5)
+
+        assertEquals(1, player.inventory.count("apple_pie"))
+        assertEquals(0, player.inventory.count("uncooked_apple_pie"))
+        assertEquals(60.0, player.experience.get(Skill.Magic))
+        assertEquals(130.0, player.experience.get(Skill.Cooking))
+    }
+
+    @Test
     fun `Can't bake pies above cooking level`() {
         val player = createPlayer()
         player.levels.set(Skill.Magic, 65)

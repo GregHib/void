@@ -34,7 +34,7 @@ class BakePie : Script {
     private fun findPie(player: Player): Pair<Int, String>? {
         for (index in player.inventory.indices) {
             val item = player.inventory[index]
-            if (!item.id.startsWith("raw_") || !item.id.endsWith("_pie")) {
+            if (!(item.id.startsWith("raw_") || item.id.startsWith("uncooked_")) || !item.id.endsWith("_pie")) {
                 continue
             }
             val row = Rows.getOrNull("cooking.${item.id}") ?: continue
