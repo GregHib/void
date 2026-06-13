@@ -227,7 +227,7 @@ suspend fun ByteWriteChannel.writeLong(string: String) {
         when (char) {
             in 65..90 -> long += char - 64L
             in 97..122 -> long += char - 96L
-            in 0..9 -> long += char - 21L
+            in 48..57 -> long += char - 21L
         }
     }
     while (long % 37L == 0L && long != 0L) {

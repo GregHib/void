@@ -22,6 +22,13 @@ import world.gregs.voidps.type.random
 class CompostBin : Script {
 
     init {
+        playerSpawn {
+            sendVariable("compost_bin_falador")
+            sendVariable("compost_bin_catherby")
+            sendVariable("compost_bin_port_phasmatys")
+            sendVariable("compost_bin_ardougne")
+        }
+
         itemOnObjectOperate("*", "compost_bin_*", handler = ::compost)
 
         objectOperate("Close", "compost_bin_*_15") {

@@ -1,0 +1,16 @@
+# Persistent player state for pets.
+
+[pet_active_item]
+format = "string"
+persist = true
+transmit = false
+
+[pet_index]
+format = "int"
+persist = false
+transmit = false
+
+[pet_rats_caught]
+format = "int"
+persist = true
+transmit = false

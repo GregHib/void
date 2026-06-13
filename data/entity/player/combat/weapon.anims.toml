@@ -319,16 +319,16 @@ id = 9047
 id = 9048
 
 [sling_rock]
-id = 14867 # needs verification
+id = 14867
 
 [sling_sling]
-id = 14867 # needs verification
+id = 14867
 
 [sling_chuck]
-id = 14867 # needs verification
+id = 14867
 
 [sling_lob]
-id = 14867 # needs verification
+id = 14867
 
 #[sling_defend]
 #[trident_jab] # needs verification

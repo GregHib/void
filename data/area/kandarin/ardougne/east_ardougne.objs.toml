@@ -188,3 +188,7 @@ id = 2721
 
 [flour_bin_ardougne_empty]
 id = 5792
+
+[dairy_churn_ardougne]
+id = 34800
+examine = "Used to make dairy products."

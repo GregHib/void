@@ -43,6 +43,9 @@ id = 79
 id = 662
 type = "follower_details_tab"
 
+[.chathead]
+id = 1
+
 [.call]
 id = 49
 
@@ -272,6 +275,9 @@ id = 213
 id = 663
 type = "follower_details_tab"
 
+[.chathead]
+id = 3
+
 [.call]
 id = 21
 
@@ -304,6 +310,24 @@ id = 19
 [dialogue_pick_a_puppy]
 id = 668
 type = "dialogue_box"
+
+[.bulldog]
+id = 3
+
+[.dalmatian]
+id = 4
+
+[.greyhound]
+id = 5
+
+[.terrier]
+id = 6
+
+[.sheepdog]
+id = 7
+
+[.labrador]
+id = 8
 
 [dialogue_pick_a_kitten]
 id = 737

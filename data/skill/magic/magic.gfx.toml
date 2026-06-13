@@ -654,6 +654,65 @@ height = 60
 id = 738
 height = 60
 
+[bake_pie]
+id = 746
+height = 60
+
+[monster_examine]
+id = 1060
+height = 60
+
+[stat_spy]
+id = 1060
+height = 60
+
+[stat_spy_target]
+id = 734
+height = 60
+
+[npc_contact]
+id = 728
+height = 130
+
+[humidify]
+id = 1061
+height = 20
+
+[hunter_kit]
+id = 1074
+height = 60
+
+[superglass_make]
+id = 729
+height = 120
+
+[dream]
+id = 1056
+
+[string_jewellery]
+id = 730
+height = 100
+
+[pot_share]
+id = 733
+height = 130
+
+[magic_imbue]
+id = 141
+height = 96
+
+[fertile_soil]
+id = 724
+height = 60
+
+[plank_make]
+id = 1063
+height = 120
+
+[spellbook_swap]
+id = 1062
+height = 60
+
 [spell_splash]
 id = 85
 height = 60

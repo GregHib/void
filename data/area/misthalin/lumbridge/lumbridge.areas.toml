@@ -46,6 +46,14 @@ tags = ["high"]
 x = [3227, 3231]
 y = [3143, 3149]
 
+[lumbridge_catacombs]
+x = [3740, 4031]
+y = [5270, 5567]
+
+[lumbridge_mill]
+x = [3163, 3170]
+y = [3303, 3309]
+
 [lumbridge_swamp_east_tin_mine]
 x = [3222, 3226]
 y = [3145, 3149]
@@ -145,3 +153,7 @@ y = [3236, 3242]
 [lumbridge_west_cow_field]
 x = [3156, 3202]
 y = [3316, 3341]
+
+[lumbridge_cemetery]
+x = [3234, 3252]
+y = [3190, 3206]

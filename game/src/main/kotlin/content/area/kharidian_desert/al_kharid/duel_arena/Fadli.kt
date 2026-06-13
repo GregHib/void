@@ -1,13 +1,14 @@
 package content.area.kharidian_desert.al_kharid.duel_arena
 
 import content.entity.npc.shop.openShop
+import content.entity.player.bank.pin.openBank
+import content.entity.player.bank.pin.openCollection
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.World
 
 class Fadli : Script {
@@ -29,11 +30,11 @@ class Fadli : Script {
                 }
                 option<Idle>("I'd like to access my bank, please.") {
                     npc<Bored>("Sure.")
-                    open("bank")
+                    openBank()
                 }
                 option<Happy>("I'd like to collect items.") {
                     npc<Bored>("Yeah, okay.")
-                    open("collection_box")
+                    openCollection()
                 }
                 option<Idle>("Do you watch any matches?") {
                     npc<Idle>("When I can.")
@@ -51,11 +52,11 @@ class Fadli : Script {
         }
 
         npcOperate("Bank", "fadli") {
-            open("bank")
+            openBank()
         }
 
         npcOperate("Collect", "fadli") {
-            open("collection_box")
+            openCollection()
         }
 
         npcOperate("Buy", "fadli") {

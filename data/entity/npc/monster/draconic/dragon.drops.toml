@@ -97,6 +97,7 @@ drops = [
   { table = "black_dragon_secondary" },
   { table = "black_dragon_tertiary" },
   { table = "black_dragon_charms", members = true },
+  { table = "black_dragon_pet_egg", members = true },
 ]
 
 [black_dragon_primary]
@@ -146,12 +147,19 @@ drops = [
   { id = "blue_charm", amount = 3, chance = 13 },
 ]
 
+[black_dragon_pet_egg]
+roll = 2000
+drops = [
+  { id = "black_dragon_egg", skill = "summoning", equals = 99 },
+]
+
 [blue_dragon_drop_table]
 type = "all"
 drops = [
   { table = "blue_dragon_primary" },
   { table = "blue_dragon_secondary" },
   { table = "hard_clue_scroll", roll = 128 },
+  { table = "blue_dragon_pet_egg", members = true },
 ]
 
 [blue_dragon_primary]
@@ -193,6 +201,7 @@ type = "all"
 drops = [
   { table = "green_dragon_primary" },
   { table = "green_dragon_secondary" },
+  { table = "green_dragon_pet_egg", members = true },
 ]
 
 [green_dragon_primary]
@@ -281,6 +290,7 @@ drops = [
   { table = "red_dragon_primary" },
   { table = "red_dragon_secondary" },
   { table = "hard_clue_scroll", roll = 128 },
+  { table = "red_dragon_pet_egg", members = true },
 ]
 
 [red_dragon_primary]
@@ -319,6 +329,27 @@ drops = [
 type = "all"
 drops = [
     { id = "babydragon_bones" }
+]
+
+# Pet-dragon eggs. Used by the incubator system (Taverley / Yanille) to hatch
+# baby-dragon pets. Roughly 1/2000 on the dropping dragon — comparable to the
+# draconic visage tier but distinct from it.
+[red_dragon_pet_egg]
+roll = 2000
+drops = [
+  { id = "red_dragon_egg", skill = "summoning", equals = 99 },
+]
+
+[blue_dragon_pet_egg]
+roll = 2000
+drops = [
+  { id = "blue_dragon_egg", skill = "summoning", equals = 99 },
+]
+
+[green_dragon_pet_egg]
+roll = 2000
+drops = [
+  { id = "green_dragon_egg", skill = "summoning", equals = 99 },
 ]
 
 [frost_dragon_drop_table]

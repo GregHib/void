@@ -21,7 +21,7 @@ internal class FiremakingTest : WorldTest() {
         player.inventory.add("logs", 27)
 
         player.itemOnItem(0, 2)
-        tickIf { player.tile == start }
+        tick(5)
 
         assertTrue(player.inventory.count("logs") < 27)
         assertTrue(player.inventory[1].isNotEmpty())

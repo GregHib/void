@@ -111,3 +111,36 @@ id = 4411
 
 [lunar_cure_plant]
 id = 4432
+
+[lunar_cast_charge]
+id = 4413
+
+[lunar_examine]
+id = 6293
+
+[humidify]
+id = 6294
+
+[dream_start]
+id = 6295
+
+[dream_middle]
+id = 6296
+
+[dream_wake]
+id = 6297
+
+[plank_make]
+id = 6298
+
+[spellbook_swap]
+id = 6299
+
+[hunter_kit]
+id = 6303
+
+[string_jewellery]
+id = 4412
+
+[magic_imbue]
+id = 722

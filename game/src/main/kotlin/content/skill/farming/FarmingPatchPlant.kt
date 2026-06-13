@@ -16,6 +16,14 @@ import world.gregs.voidps.engine.inv.*
 class FarmingPatchPlant : Script {
 
     init {
+        playerSpawn {
+            for (variable in variables.data.keys) {
+                if (variable.startsWith("farming_")) {
+                    sendVariable(variable)
+                }
+            }
+        }
+
         itemOnObjectOperate("*_seed,scarecrow,*_sapling", "*", handler = ::plantSeed)
     }
 

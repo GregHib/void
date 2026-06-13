@@ -51,6 +51,26 @@ Content tests extend `WorldTest` (`game/src/test/kotlin/WorldTest.kt`): boots fu
 
 `WorldTest` is expensive (`@TestInstance(PER_CLASS)`). Use only for integration-level content tests. Engine unit tests use plain JUnit 5.
 
+## Groml Config Format
+
+Config files use **Groml** — a TOML subset/variant. Files use `.toml` extension for syntax highlighting. Full spec: `config/README.md`.
+
+Differences from TOML:
+
+- **No tables (`[[...]]`), no dates, no `inf`/`nan`, no hex/octal/binary integers, no multi-line strings.**
+- **Section inheritance** — `.`-prefixed header inherits the previous base name: `[.foo]` inside `[bar]` becomes `bar.foo`.
+- **Clone** — `clone = "other_section"` copies all values from that section; keys defined after override.
+
+```toml
+[antique_lamp_easy]
+id = 11137
+examine = "I wonder what happens if I rub it."
+
+[antique_lamp_medium]
+clone = "antique_lamp_easy"
+id = 11139   # overrides cloned value
+```
+
 ## Code Style
 
 ktlint (`intellij_idea` style) via Spotless. Wildcard imports allowed. Structural patterns in brief:

@@ -42,7 +42,7 @@ fun gameModule(files: ConfigFiles) = module {
             try {
                 clazz = Class.forName("world.gregs.voidps.storage.DatabaseStorage")
                 companion = Class.forName("${clazz.name}\$Companion")
-            } catch (e: ClassNotFoundException) {
+            } catch (_: ClassNotFoundException) {
                 throw IllegalStateException("Database class not found; are you compiling using `-PincludeDb`?")
             }
             val method = companion.declaredMethods.first { it.name == "connect" }

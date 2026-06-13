@@ -14,6 +14,12 @@ class WildernessIcons :
     init {
         interfaceOpened("wilderness_skull") { id ->
             interfaces.sendSprite(id, "right_skull", 439)
+            interfaces.sendSprite(id, "left_skull", 439)
+        }
+
+        interfaceRefresh("wilderness_skull") { id ->
+            interfaces.sendVisibility(id, "right_side", !this.interfaces.resizable)
+            interfaces.sendVisibility(id, "left_side", this.interfaces.resizable)
         }
 
         variableSet("in_wilderness") { _, _, to ->

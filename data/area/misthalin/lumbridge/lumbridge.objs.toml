@@ -561,3 +561,11 @@ examine = "The inscription is worn away and unreadable."
 [lumbridge_gravestone_3]
 id = 37006
 examine = "'Here lies...'is all I can read."
+
+[lumbridge_catacomb_stairs]
+id = 48797
+examine = "A staircase leading down into the catacombs."
+
+[dairy_churn_lumbridge]
+id = 35931
+examine = "Used to make dairy products."

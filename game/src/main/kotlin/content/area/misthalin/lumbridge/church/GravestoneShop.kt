@@ -12,6 +12,7 @@ class GravestoneShop : Script {
     init {
         interfaceOpened("gravestone_shop") { id ->
             if (questCompleted("the_restless_ghost")) {
+                set("a_grave_consideration_task", true)
                 addVarbit("unlocked_gravestones", "flag")
                 addVarbit("unlocked_gravestones", "small_gravestone")
                 addVarbit("unlocked_gravestones", "ornate_gravestone")

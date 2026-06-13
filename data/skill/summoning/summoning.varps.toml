@@ -10,6 +10,11 @@ id = 1174
 format = "int"
 persist = true
 
+[pet_details_stats]
+id = 1175
+format = "int"
+persist = false
+
 [summoning_special_points_remaining]
 id = 1177
 format = "int"

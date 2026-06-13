@@ -42,6 +42,7 @@ class Firemaking : Script {
             queue.clearWeak()
             if (inventory.remove(logSlot, log.id)) {
                 val floorItem = FloorItems.add(tile, log.id, disappearTicks = 300, owner = this)
+                set("recently_dropped", true)
                 interactFloorItem(floorItem, "Light")
             }
         }
@@ -58,15 +59,17 @@ class Firemaking : Script {
     suspend fun lightFire(
         player: Player,
         floorItem: FloorItem,
+        skip: Boolean = player["recently_dropped", false],
     ) {
         val row = Rows.getOrNull("firemaking.${floorItem.id}") ?: return
         player.arriveDelay()
         player.softTimers.start("firemaking")
+        player.clear("recently_dropped")
         val log = Item(floorItem.id)
         var first = true
         while (player.awaitDialogues()) {
             val level = row.int("level")
-            if (!player.canLight(log.id, level, floorItem)) {
+            if (!player.canLight(log.id, level, floorItem, skip)) {
                 break
             }
             val remaining = player.remaining("action_delay")
@@ -94,7 +97,7 @@ class Firemaking : Script {
         player.clearAnim()
     }
 
-    fun Player.canLight(log: String, level: Int, item: FloorItem): Boolean {
+    fun Player.canLight(log: String, level: Int, item: FloorItem, skipFloorCheck: Boolean): Boolean {
         if (log.endsWith("branches") && !inventory.contains("tinderbox_dungeoneering")) {
             message("You don't have the required items to light this.")
             return false
@@ -110,7 +113,7 @@ class Firemaking : Script {
             message("You can't light a fire here.")
             return false
         }
-        return FloorItems.at(item.tile).contains(item)
+        return skipFloorCheck || FloorItems.at(item.tile).contains(item)
     }
 
     fun spawnFire(player: Player, tile: Tile, row: RowDefinition) {
