@@ -409,3 +409,42 @@ id = 2727
 
 [lunar_fertilize]
 id = 2891
+
+[bake_pie]
+id = 2879
+
+[stat_spy]
+id = 3620
+
+[stat_spy_impact]
+id = 3621
+
+[npc_contact]
+id = 3618
+
+[humidify]
+id = 3614
+
+[hunter_kit]
+id = 3615
+
+[superglass_make]
+id = 2896
+
+[dream]
+id = 3619
+
+[string_jewellery]
+id = 2903
+
+[stat_restore_pot_share]
+id = 2899
+
+[boost_potion_share]
+id = 2901
+
+[magic_imbue]
+id = 2888
+
+[plank_make]
+id = 3617

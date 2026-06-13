@@ -9,3 +9,7 @@ id = 24072
 
 [flour_bin_cooks_guild_empty]
 id = 24069
+
+[dairy_churn_cooks_guild]
+id = 10094
+examine = "Used to make dairy products."

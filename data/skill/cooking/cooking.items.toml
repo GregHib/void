@@ -724,6 +724,7 @@ id = 1980
 price = 2
 limit = 100
 weight = 0.05
+full = "cup_of_water"
 examine = "An empty cup."
 
 [empty_cup_noted]

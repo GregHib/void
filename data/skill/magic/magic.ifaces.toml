@@ -18,9 +18,185 @@ id = 5
 
 [monster_stat_spy]
 id = 522
+type = "overlay_tab"
+
+[.name]
+id = 0
+
+[.line1]
+id = 1
+
+[.line2]
+id = 2
+
+[.line3]
+id = 3
+
+[.line4]
+id = 4
+
+[.close]
+id = 6
 
 [player_stat_spy]
 id = 523
+type = "overlay_tab"
+
+[.attack_current]
+id = 1
+
+[.attack_base]
+id = 2
+
+[.constitution_current]
+id = 5
+
+[.constitution_base]
+id = 6
+
+[.mining_current]
+id = 9
+
+[.mining_base]
+id = 10
+
+[.strength_current]
+id = 13
+
+[.strength_base]
+id = 14
+
+[.agility_current]
+id = 17
+
+[.agility_base]
+id = 18
+
+[.smithing_current]
+id = 21
+
+[.smithing_base]
+id = 22
+
+[.defence_current]
+id = 25
+
+[.defence_base]
+id = 26
+
+[.herblore_current]
+id = 29
+
+[.herblore_base]
+id = 30
+
+[.fishing_current]
+id = 33
+
+[.fishing_base]
+id = 34
+
+[.ranged_current]
+id = 37
+
+[.ranged_base]
+id = 38
+
+[.thieving_current]
+id = 41
+
+[.thieving_base]
+id = 42
+
+[.cooking_current]
+id = 45
+
+[.cooking_base]
+id = 46
+
+[.prayer_current]
+id = 49
+
+[.prayer_base]
+id = 50
+
+[.crafting_current]
+id = 53
+
+[.crafting_base]
+id = 54
+
+[.firemaking_current]
+id = 57
+
+[.firemaking_base]
+id = 58
+
+[.magic_current]
+id = 61
+
+[.magic_base]
+id = 62
+
+[.fletching_current]
+id = 65
+
+[.fletching_base]
+id = 66
+
+[.woodcutting_current]
+id = 69
+
+[.woodcutting_base]
+id = 70
+
+[.runecrafting_current]
+id = 73
+
+[.runecrafting_base]
+id = 74
+
+[.slayer_current]
+id = 77
+
+[.slayer_base]
+id = 78
+
+[.farming_current]
+id = 81
+
+[.farming_base]
+id = 82
+
+[.construction_current]
+id = 85
+
+[.construction_base]
+id = 86
+
+[.hunter_current]
+id = 89
+
+[.hunter_base]
+id = 90
+
+[.summoning_current]
+id = 93
+
+[.summoning_base]
+id = 94
+
+[.dungeoneering_current]
+id = 97
+
+[.dungeoneering_base]
+id = 98
+
+[.name]
+id = 104
+
+[.close]
+id = 105
 
 [spells_ancient]
 id = 797

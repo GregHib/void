@@ -1,0 +1,33 @@
+[string_jewellery]
+row_id = "item"
+product = "item"
+
+[.gold_amulet_unstrung]
+product = "gold_amulet"
+
+[.sapphire_amulet_unstrung]
+product = "sapphire_amulet"
+
+[.emerald_amulet_unstrung]
+product = "emerald_amulet"
+
+[.ruby_amulet_unstrung]
+product = "ruby_amulet"
+
+[.diamond_amulet_unstrung]
+product = "diamond_amulet"
+
+[.dragonstone_amulet_unstrung]
+product = "dragonstone_amulet"
+
+[.onyx_amulet_unstrung]
+product = "onyx_amulet"
+
+[.salve_shard]
+product = "salve_amulet"
+
+[.unstrung_symbol]
+product = "unblessed_symbol"
+
+[.unstrung_emblem]
+product = "unpowered_symbol"
