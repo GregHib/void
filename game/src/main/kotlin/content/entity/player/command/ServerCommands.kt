@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.AccountDefinitionsReloader
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.SettingsReload
 import world.gregs.voidps.engine.data.configFiles
@@ -56,7 +57,7 @@ import kotlin.text.isBlank
 import kotlin.text.split
 import kotlin.text.toIntOrNull
 
-class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
+class ServerCommands(val accountLoader: PlayerAccountLoader, val accountReloader: AccountDefinitionsReloader) : Script {
 
     init {
         adminCommand(
@@ -67,7 +68,7 @@ class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
         )
         val configs = setOf(
             "books", "teleports", "music_tracks", "fairy_rings", "ships", "objects", "items", "bots", "npcs", "areas", "emotes", "anims", "containers", "graphics",
-            "item_on_item", "sounds", "quests", "midis", "variables", "music", "interfaces", "spells", "patrols", "prayers", "drops", "client_scripts", "settings",
+            "item_on_item", "sounds", "quests", "midis", "variables", "music", "interfaces", "spells", "patrols", "prayers", "drops", "client_scripts", "settings", "accounts",
         )
         adminCommand(
             "reload",
@@ -137,6 +138,11 @@ class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
             "settings", "setting", "game_setting", "game_settings", "games_settings", "properties", "props" -> {
                 Settings.load()
                 SettingsReload.now()
+            }
+            "accounts", "account", "passwords" -> {
+                if (!accountReloader.reload { count -> player.message("Reloaded $count account definitions.", ChatType.Console) }) {
+                    player.message("Account reload already in progress.", ChatType.Console)
+                }
             }
             "bots" -> get<BotManager>().load(files)
             "tables", "rows", "dbs", "spells" -> Tables.load(files.list(Settings["definitions.tables"]))

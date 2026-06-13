@@ -72,6 +72,24 @@ class JagExtensionsTest {
     }
 
     @Test
+    fun `Write string as long includes digits`() = runTest {
+        val channel = ByteChannel(autoFlush = true)
+        channel.writeLong("clan123")
+        channel.close()
+        val packet = ByteReadPacket(channel.readRemaining().readByteArray())
+        assertEquals(8531929449L, packet.readLong())
+    }
+
+    @Test
+    fun `Write all numeric string as long`() = runTest {
+        val channel = ByteChannel(autoFlush = true)
+        channel.writeLong("123")
+        channel.close()
+        val packet = ByteReadPacket(channel.readRemaining().readByteArray())
+        assertEquals(39435L, packet.readLong())
+    }
+
+    @Test
     fun `Read byte inverse`() {
         val data = byteArrayOf(0x01)
         val packet = ByteReadPacket(data)

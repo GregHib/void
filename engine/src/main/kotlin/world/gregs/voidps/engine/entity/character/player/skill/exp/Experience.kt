@@ -14,6 +14,12 @@ class Experience(
 
     lateinit var player: Player
 
+    /**
+     * Per-player experience multiplier applied on top of the "world.experienceRate" setting.
+     * Not persisted; resets to 1.0 every login.
+     */
+    var multiplier: Double = 1.0
+
     fun direct(skill: Skill): Int = experience[skill.ordinal]
 
     fun get(skill: Skill): Double = experience[skill.ordinal] / 10.0
@@ -40,7 +46,7 @@ class Experience(
         if (experience <= 0.0) {
             return
         }
-        val actual = experience * 10 * Settings["world.experienceRate", DEFAULT_EXPERIENCE_RATE]
+        val actual = experience * 10 * multiplier * Settings["world.experienceRate", DEFAULT_EXPERIENCE_RATE]
         if (blocked.contains(skill)) {
             Skills.blocked(player, skill, actual.toInt())
         } else {

@@ -1,3 +1,12 @@
 [life_points]
 id = 7198
 format = "int"
+
+[bonus_xp_enabled]
+id = 7232
+format = "boolean"
+
+[bonus_xp_time]
+id = 7233
+persist = true
+format = "int"

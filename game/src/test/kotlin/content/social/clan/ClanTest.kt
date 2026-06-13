@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.secure.Huffman
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.PlayerRights
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
@@ -88,6 +89,31 @@ internal class ClanTest : WorldTest() {
         verify {
             client.message("Now talking in clan channel player", ChatType.ClanChat.id)
         }
+    }
+
+    @Test
+    fun `New players automatically join the default clan chat`() = runTest {
+        Settings.load(mapOf("world.start.clanChat" to "player"))
+        val owner = createPlayer(name = "player")
+        owner.ownClan?.name = "clan"
+
+        val newbie = createPlayer(name = "newbie") { it["new_player"] = true }
+
+        assertEquals(owner.ownClan, newbie.clan)
+        assertEquals("player", newbie["clan_chat", ""])
+        assertTrue(owner.ownClan!!.members.contains(newbie))
+    }
+
+    @Test
+    fun `Existing players do not join the default clan chat`() = runTest {
+        Settings.load(mapOf("world.start.clanChat" to "player"))
+        val owner = createPlayer(name = "player")
+        owner.ownClan?.name = "clan"
+
+        val existing = createPlayer(name = "existing")
+
+        assertEquals(null, existing.clan)
+        assertTrue(owner.ownClan!!.members.isEmpty())
     }
 
     @Test
