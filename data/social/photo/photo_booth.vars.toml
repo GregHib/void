@@ -1,0 +1,21 @@
+[photo_booth_cooldown]
+format = "int"
+persist = true
+
+[photo_booth_time]
+format = "int"
+persist = true
+
+[photo_booth_male]
+format = "boolean"
+persist = true
+
+[photo_booth_looks]
+persist = true
+
+[photo_booth_colours]
+persist = true
+
+# Each entry: "slot:item_id:equipIndex"
+[photo_booth_equipment]
+persist = true

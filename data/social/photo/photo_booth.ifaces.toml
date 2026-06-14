@@ -1,3 +1,40 @@
 [photo_booth]
 id = 549
+type = "main_screen"
 
+[.close]
+id = 13
+options = { "Close" = 0 }
+
+[.confirm_overlay]
+id = 16
+
+[.confirm_warning]
+id = 27
+
+[.confirm_no]
+id = 31
+options = { "No" = 0 }
+
+[.confirm_yes]
+id = 33
+options = { "Yes" = 0 }
+
+[.take_picture]
+id = 35
+options = { "Take picture" = 0 }
+
+[.equipment_panel]
+id = 36
+
+[.body_panel]
+id = 37
+
+[.head_panel]
+id = 38
+
+[.head_model]
+id = 54
+
+[.body_model]
+id = 82
