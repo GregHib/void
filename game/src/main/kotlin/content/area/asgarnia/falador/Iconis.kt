@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.type.Tile
+import java.util.concurrent.TimeUnit
 
 class Iconis : Script {
 
@@ -171,7 +172,7 @@ class Iconis : Script {
             return
         }
         saveSnapshot()
-        start("photo_booth_cooldown", COOLDOWN_SECONDS, epochSeconds())
+        start("photo_booth_cooldown", TimeUnit.HOURS.toSeconds(2).toInt(), epochSeconds())
         GameObjects.findOrNull(BOOTH_OBJECT_TILE, "photo_booth")?.anim("photo_booth_picture")
         close("photo_booth")
         npc<Happy>("booth_imp", "There ya go, guv!")
@@ -180,17 +181,16 @@ class Iconis : Script {
     private fun Player.saveSnapshot() {
         this["photo_booth_time"] = epochSeconds()
         this["photo_booth_male"] = body.male
-        this["photo_booth_looks"] = body.looks.toList()
-        this["photo_booth_colours"] = body.colours.toList()
-        val equipment = (0 until equipment.size).mapNotNull { slot ->
+        this["photo_booth_looks"] = body.looks.joinToString(",")
+        this["photo_booth_colours"] = body.colours.joinToString(",")
+        // One equipIndex per worn slot in slot order; position implies the slot.
+        this["photo_booth_equipment"] = (0 until equipment.size).joinToString(",") { slot ->
             val item = equipment[slot]
-            if (item.isEmpty()) null else "$slot:${item.id}:${item.def.equipIndex}"
+            if (item.isEmpty()) "-1" else item.def.equipIndex.toString()
         }
-        this["photo_booth_equipment"] = equipment
     }
 
     companion object {
-        private const val COOLDOWN_SECONDS = 2 * 60 * 60
         private val BOOTH_OBJECT_TILE = Tile(2928, 3323)
         private val BOOTH_TILE = Tile(2930, 3324)
         private val ENTRANCE_TILE = Tile(2931, 3324)

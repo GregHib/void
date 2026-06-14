@@ -11,11 +11,14 @@ format = "boolean"
 persist = true
 
 [photo_booth_looks]
+format = "string"
 persist = true
 
 [photo_booth_colours]
+format = "string"
 persist = true
 
-# Each entry: "slot:item_id:equipIndex"
+# Comma-joined equipIndexes, one per worn slot in slot order (-1 = empty slot).
 [photo_booth_equipment]
+format = "string"
 persist = true
