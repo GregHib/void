@@ -1,0 +1,20 @@
+[dairy]
+row_id = "item"
+level = "int"
+xp = "int"
+inputs = "list<item>"
+
+[.pot_of_cream]
+level = 21
+xp = 180
+inputs = ["bucket_of_milk"]
+
+[.pat_of_butter]
+level = 38
+xp = 405
+inputs = ["bucket_of_milk", "pot_of_cream"]
+
+[.cheese]
+level = 48
+xp = 640
+inputs = ["bucket_of_milk", "pot_of_cream", "pat_of_butter"]

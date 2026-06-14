@@ -520,6 +520,10 @@ examine = "An Octagonal Pillar."
 id = 10057
 examine = "Flag, pole...Yep, it's a flagpole."
 
+[dairy_churn]
+id = 10093
+examine = "Used to make dairy products."
+
 [fountain_6]
 id = 10436
 examine = "Nardah's main water supply."
