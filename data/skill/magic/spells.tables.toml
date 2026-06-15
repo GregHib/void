@@ -15,6 +15,8 @@ poison_damage = "int"
 projectiles = "list<row>"
 drain_skill = "skill"
 drain_percent = "int"
+npc_message = "string"
+player_message = "string"
 clone = "clone"
 
 [.blood_rush]
@@ -504,9 +506,57 @@ xp = 1240
 
 [.energy_transfer]
 xp = 1000
+player_message = ""
 
 [.cure_plant]
 xp = 600
+
+[.bake_pie]
+xp = 600
+
+[.monster_examine]
+xp = 660
+npc_message = ""
+
+[.npc_contact]
+xp = 630
+
+[.humidify]
+xp = 650
+
+[.hunter_kit]
+xp = 700
+
+[.stat_spy]
+xp = 760
+player_message = ""
+
+[.superglass_make]
+xp = 780
+
+[.dream]
+xp = 820
+
+[.string_jewellery]
+xp = 830
+
+[.stat_restore_pot_share]
+xp = 840
+
+[.magic_imbue]
+xp = 860
+
+[.fertile_soil]
+xp = 870
+
+[.boost_potion_share]
+xp = 880
+
+[.plank_make]
+xp = 900
+
+[.spellbook_swap]
+xp = 1300
 
 [.superheat_item]
 xp = 530

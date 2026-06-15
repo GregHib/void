@@ -1,5 +1,6 @@
 package content.skill.magic.spell
 
+import content.skill.magic.book.lunar.checkSpellbookSwapCast
 import content.skill.magic.spell.SpellRunes.removeItems
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.engine.client.message
@@ -33,6 +34,9 @@ object SpellRunes {
             return
         }
         removeItems(player, required, spell, message)
+        if (!failed) {
+            player.checkSpellbookSwapCast(spell)
+        }
     }
 
     fun Transaction.removeItems(player: Player, required: MutableMap<String, Int>, spell: String, message: Boolean = true) {

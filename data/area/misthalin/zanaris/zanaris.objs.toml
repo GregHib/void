@@ -61,3 +61,7 @@ id = 12126
 
 [zanaris_jutting_wall]
 id = 12127
+
+[dairy_churn_zanaris]
+id = 12011
+examine = "Used to make dairy products."

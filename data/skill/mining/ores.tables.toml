@@ -3,7 +3,7 @@ row_id = "item"
 level = "int"
 xp = "int"
 gems = "boolean" # can recieve random gems with glory equipped
-life = "int" # respawn time in ticks
+life = "int" # base respawn time in ticks at max population (-1 = never depletes)
 life_default = -1
 chance = "range" # Chance at level 1 and 99
 
@@ -84,21 +84,21 @@ chance = [75, 300]
 level = 1
 xp = 175
 gems = true
-life = 4
+life = 3
 chance = [40, 500]
 
 [.tin_ore]
 level = 1
 xp = 175
 gems = true
-life = 4
+life = 3
 chance = [40, 500]
 
 [.iron_ore]
 level = 15
 xp = 350
 gems = true
-life = 9
+life = 8
 chance = [110, 350]
 
 [.silver_ore]
@@ -119,28 +119,28 @@ chance = [7, 75]
 level = 55
 xp = 800
 gems = true
-life = 200
+life = 203
 chance = [10, 75]
 
 [.adamantite_ore]
 level = 70
 xp = 950
 gems = true
-life = 400
+life = 417
 chance = [5, 55]
 
 [.runite_ore]
 level = 85
 xp = 1250
 gems = true
-life = 1200
+life = 1000
 chance = [1, 18]
 
 [.coal]
 level = 30
 xp = 500
 gems = true
-life = 50
+life = 47
 chance = [20, 150]
 
 [.sandstone_1kg]
