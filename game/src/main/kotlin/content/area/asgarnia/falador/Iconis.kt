@@ -172,6 +172,7 @@ class Iconis : Script {
             return
         }
         saveSnapshot()
+        this["photo_booth_dirty"] = true // flag for the avatar render tool / forum sync
         start("photo_booth_cooldown", TimeUnit.HOURS.toSeconds(2).toInt(), epochSeconds())
         GameObjects.findOrNull(BOOTH_OBJECT_TILE, "photo_booth")?.anim("photo_booth_picture")
         close("photo_booth")
