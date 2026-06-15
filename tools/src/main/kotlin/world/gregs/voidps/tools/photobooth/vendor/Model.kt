@@ -1,13 +1,11 @@
 @file:Suppress("unused")
 
-package io.blurite.cache.model
+package world.gregs.voidps.tools.photobooth.vendor
 
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
 import kotlin.math.cos
 import kotlin.math.sin
-import net.rsprot.buffer.extensions.gSmart1or2s
-import net.rsprot.buffer.extensions.pSmart1or2s
 
 /**
  * @author Kris | 13/02/2023

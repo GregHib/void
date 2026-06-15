@@ -1,4 +1,4 @@
-package net.rsprot.buffer.extensions
+package world.gregs.voidps.tools.photobooth.vendor
 
 import io.netty.buffer.ByteBuf
 

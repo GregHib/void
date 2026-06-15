@@ -1,15 +1,14 @@
 package world.gregs.voidps.tools.photobooth.render
 
-import io.blurite.cache.model.MeshDecodingOption
-import io.blurite.cache.model.Model
 import io.netty.buffer.Unpooled
+import world.gregs.voidps.tools.photobooth.vendor.MeshDecodingOption
+import world.gregs.voidps.tools.photobooth.vendor.Model
 
 /**
  * Decodes, merges and recolours cache models into a flat [RenderModel].
  *
  * Ported and trimmed from Quill's `ModelDecoderAdapter` — only the composite/recolour path is kept
  * (NPC/object/animation/texture paths dropped). Model bytes come from an injected [ModelDataSource]
- * rather than Quill's static CacheManager, so a single void cache handle is used throughout.
  */
 class ModelComposer(private val source: ModelDataSource) {
 

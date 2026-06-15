@@ -129,7 +129,8 @@ class PlayerModelAssembler(
         } else {
             intArrayOf(full.primaryFemaleDialogueHead, full.secondaryFemaleDialogueHead)
         }
-        return ids.filter { it != -1 }.toIntArray()
+        // Dialogue-head ids are decoded as signed shorts; mask to unsigned (-1 = none).
+        return ids.filter { it != -1 }.map { it and 0xFFFF }.toIntArray()
     }
 
     private fun defaultLook(male: Boolean, index: Int): Int =

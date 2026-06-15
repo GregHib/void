@@ -94,14 +94,15 @@ object PhotoBoothRenderer {
             }
             args.value("--player") != null -> {
                 withStorage { repo ->
-                    val name = args.value("--player")!!
+                    // '+' stands in for spaces so account names survive -Pargs space-splitting.
+                    val name = args.value("--player")!!.replace('+', ' ')
                     val snapshot = repo.load(name) ?: run { println("No snapshot for $name"); return@withStorage }
                     render(snapshot, name)
                 }
             }
             args.value("--players") != null -> {
                 withStorage { repo ->
-                    args.value("--players")!!.split(",").map { it.trim() }.filter { it.isNotEmpty() }.forEach { name ->
+                    args.value("--players")!!.split(",").map { it.trim().replace('+', ' ') }.filter { it.isNotEmpty() }.forEach { name ->
                         val snapshot = repo.load(name)
                         if (snapshot == null) println("  - $name: no snapshot") else render(snapshot, name)
                     }

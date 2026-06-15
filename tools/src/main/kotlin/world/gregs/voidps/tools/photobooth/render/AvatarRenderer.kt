@@ -10,7 +10,7 @@ import kotlin.math.sin
 import kotlin.math.sqrt
 
 /**
- * Software rasterizer for [RenderModel]s. Ported from Quill's `SoftwareModelRenderer.renderModelPreview`
+ * Software rasterizer for [RenderModel]s.
  * (z-buffered, flat HSL shading, painter-ordered translucency) with two deliberate changes for avatars:
  *  - textures are never sampled (flat shaded faces only);
  *  - the inventory-sprite black outline + drop shadow post-process is dropped (it looks like a sticker

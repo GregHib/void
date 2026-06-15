@@ -1,7 +1,7 @@
 package world.gregs.voidps.tools.photobooth.render
 
 /**
- * Flattened, render-ready geometry produced from a decoded [io.blurite.cache.model.Model].
+ * Flattened, render-ready geometry produced from a decoded [world.gregs.voidps.tools.photobooth.vendor.Model].
  *
  * Texture fields from the original Quill `RenderModel` are intentionally omitted: the photo booth
  * renderer renders flat-shaded faces only (see [AvatarRenderer]), so per-face texture data is never

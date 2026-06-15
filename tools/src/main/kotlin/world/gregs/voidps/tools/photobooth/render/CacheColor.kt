@@ -1,7 +1,7 @@
 package world.gregs.voidps.tools.photobooth.render
 
 /**
- * Converts RuneScape packed 16-bit HSL face colours to RGB. Ported from Quill's CacheColor.
+ * Converts RuneScape packed 16-bit HSL face colours to RGB.
  */
 object CacheColor {
 
