@@ -98,9 +98,10 @@ id = 6973
 clone = "druid_grey_stick"
 combat_def = "druid_unarmed"
 
-[druid_ponytail]
+[druid_ponytail_sickle]
 id = 6974
-clone = "druid_hair"
+clone = "druid_grey_stick"
+combat_def = "druid_sickle"
 
 [druid_bald_stick]
 id = 6975
@@ -113,7 +114,6 @@ clone = "druid_hair"
 [druid_sickle]
 id = 6977
 clone = "druid_grey_stick"
-combat_def = "druid_sickle"
 
 [druid_hood]
 id = 6978
