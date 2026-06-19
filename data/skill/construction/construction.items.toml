@@ -107,6 +107,7 @@ id = 7687
 [kettle]
 id = 7688
 weight = 0.001
+full = "full_kettle"
 examine = "The kettle is empty."
 
 [kettle_noted]
