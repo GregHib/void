@@ -6,10 +6,10 @@ import world.gregs.voidps.engine.data.definition.StructDefinitions
 
 class AppearanceOverrides {
 
-    private val maleMid by lazy { load("look_hair_male", "body_look_flat_mid") }
-    private val femaleMid by lazy { load("look_hair_female", "body_look_flat_mid") }
-    private val maleLow by lazy { load("look_hair_male", "body_look_flat_low") }
-    private val femaleLow by lazy { load("look_hair_female", "body_look_flat_low") }
+    private val maleMid = load("look_hair_male", "body_look_flat_mid")
+    private val femaleMid = load("look_hair_female", "body_look_flat_mid")
+    private val maleLow = load("look_hair_male", "body_look_flat_low")
+    private val femaleLow = load("look_hair_female", "body_look_flat_low")
 
     fun hairMid(current: Int, male: Boolean): Int = (if (male) maleMid else femaleMid).getOrDefault(current, current) + 0x100
 
