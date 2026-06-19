@@ -196,6 +196,9 @@ id = 762
 [.item_mode]
 id = 15
 
+[.search]
+id = 17
+
 [.note_mode]
 id = 19
 
