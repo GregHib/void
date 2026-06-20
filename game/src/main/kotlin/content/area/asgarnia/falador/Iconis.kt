@@ -73,15 +73,6 @@ class Iconis : Script {
             }
         }
 
-        interfaceOpened("photo_booth") { id ->
-            // Entry is blocked while on cooldown (see enterBooth), so everything is
-            // unlocked here.
-            interfaceOptions.unlock(id, "close", 0..0, "Close")
-            interfaceOptions.unlock(id, "take_picture", 0..0, "Take picture")
-            interfaceOptions.unlock(id, "confirm_yes", 0..0, "Yes")
-            interfaceOptions.unlock(id, "confirm_no", 0..0, "No")
-        }
-
         interfaceOption("Yes", "photo_booth:confirm_yes") {
             takePicture()
         }
