@@ -1,0 +1,23 @@
+[dice_roll_6_sides]
+id = 2072
+
+[dice_roll_2_6_sides]
+id = 2074
+
+[dice_roll_8_sides]
+id = 2071
+
+[dice_roll_10_sides]
+id = 2070
+
+[dice_roll_12_sides]
+id = 2073
+
+[dice_roll_20_sides]
+id = 2068
+
+[dice_roll_up_to_100]
+id = 2075
+
+[dice_roll_4_sides]
+id = 2069
