@@ -1,0 +1,30 @@
+[photo_booth_cooldown]
+format = "int"
+persist = true
+
+[photo_booth_time]
+format = "int"
+persist = true
+
+[photo_booth_male]
+format = "boolean"
+persist = true
+
+[photo_booth_looks]
+format = "string"
+persist = true
+
+[photo_booth_colours]
+format = "string"
+persist = true
+
+# Comma-joined equipIndexes, one per worn slot in slot order (-1 = empty slot).
+[photo_booth_equipment]
+format = "string"
+persist = true
+
+# Set true when a new photo is taken; the avatar render tool/website pick it up to
+# (re)generate the forum avatar, then clear it once rendered and pushed.
+[photo_booth_dirty]
+format = "boolean"
+persist = true
