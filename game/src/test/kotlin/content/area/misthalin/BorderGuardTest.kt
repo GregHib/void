@@ -61,4 +61,28 @@ internal class BorderGuardTest : WorldTest() {
 
         assertEquals(Tile(3292, 3387), player.tile)
     }
+
+    @Test
+    fun `Guards open the east Varrock gate walking east`() {
+        val player = createPlayer(Tile(3271, 3429))
+        tick()
+
+        handler.walk(Walk(3275, 3429), player)
+        tick(8)
+
+        // Carried through the closed gate to the far (east) side
+        assertEquals(Tile(3275, 3429), player.tile)
+    }
+
+    @Test
+    fun `Guards open the east Varrock gate walking west`() {
+        val player = createPlayer(Tile(3275, 3429))
+        tick()
+
+        handler.walk(Walk(3271, 3429), player)
+        tick(8)
+
+        // Carried through the closed gate to the far (west) side
+        assertEquals(Tile(3271, 3429), player.tile)
+    }
 }

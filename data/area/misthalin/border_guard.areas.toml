@@ -32,3 +32,8 @@ tags = ["border"]
 x = [3077, 3078]
 y = [3332, 3334]
 tags = ["border"]
+
+[border_guard_varrock_east]
+x = [3272, 3274]
+y = [3428, 3429]
+tags = ["border"]
