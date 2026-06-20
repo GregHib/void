@@ -176,7 +176,7 @@ class Iconis : Script {
         start("photo_booth_cooldown", TimeUnit.HOURS.toSeconds(2).toInt(), epochSeconds())
         GameObjects.findOrNull(BOOTH_OBJECT_TILE, "photo_booth")?.anim("photo_booth_picture")
         close("photo_booth")
-        npc<Happy>("booth_imp", "There ya go, guv!")
+        npc<Happy>("booth_imp", "There ya go, guv!") // TODO dialogue anim
     }
 
     private fun Player.saveSnapshot() {
