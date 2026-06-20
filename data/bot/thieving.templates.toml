@@ -12,7 +12,7 @@ actions = [
     { restart = { wait_if = [
         { variable = { id = "delay", min = 0, default = -1 } },
         { clock = { id = "stunned", min = 0 } }
-    ], success = { skill = { id = "constitution", max = 20 } } } }
+    ], success = { skill = { id = "constitution", max = "$min_hp", current = true } } } }
 ]
 produces = [
     { item = "coins" },

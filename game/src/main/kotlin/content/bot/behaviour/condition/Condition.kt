@@ -333,6 +333,7 @@ sealed class Condition(val priority: Int) {
                     skill = Skill.of((map["id"] as String).toPascalCase()) ?: error("Unknown skill: '${map["id"]}'"),
                     min = map["min"] as? Int,
                     max = map["max"] as? Int,
+                    current = map["current"] as? Boolean ?: false,
                 )
             }
             return null

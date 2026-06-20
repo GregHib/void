@@ -16,7 +16,22 @@ edges = [
     { from = { x = 2655, y = 4831 }, to = { x = 2655, y = 4830 } }, # varrock_east_earth_altar_to_exit
     { from = { x = 2655, y = 4830 }, to = { x = 3304, y = 3474 }, cost = 3, actions = [{ object = { option = "Enter", id = "earth_altar_portal", x = 2655, y = 4829, success = { tile = { x = 3304, y = 3474 } } } }] }, # varrock_east_earth_altar_exit_to_ruins
     { from = { x = 3254, y = 3422 }, to = { x = 3265, y = 3428 } }, # varrock_east_bank_to_dirt_crossroad
-    { from = { x = 3265, y = 3428 }, to = { x = 3280, y = 3428 } }, # varrock_east_dirt_crossroad_to_east_crossroad
+    { from = { x = 3265, y = 3428 }, to = { x = 3273, y = 3428 } }, # varrock_east_dirt_crossroad_to_east_crossroad
+    { from = { x = 3273, y = 3428 }, to = { x = 3274, y = 3428 }, cost = 1, actions = [
+        { object = { option = "Open", id = "gate_west_varrock_2_closed", x = 3273, y = 3428, success = { tile = { x = 3274, y = 3428 } } }},
+    ] },
+    { from = { x = 3274, y = 3428 }, to = { x = 3273, y = 3428 }, cost = 1, actions = [
+        { object = { option = "Open", id = "gate_west_varrock_2_closed", x = 3273, y = 3428, success = { tile = { x = 3273, y = 3428 } } }},
+    ] },
+    { from = { x = 3273, y = 3429 }, to = { x = 3274, y = 3429 }, cost = 1, actions = [
+        { object = { option = "Open", id = "gate_west_varrock_closed", x = 3273, y = 3429, success = { tile = { x = 3274, y = 3429 } } }},
+    ] },
+    { from = { x = 3274, y = 3429 }, to = { x = 3273, y = 3429 }, cost = 1, actions = [
+        { object = { option = "Open", id = "gate_west_varrock_closed", x = 3273, y = 3429, success = { tile = { x = 3273, y = 3429 } } }},
+    ] },
+    { from = { x = 3274, y = 3428 }, to = { x = 3274, y = 3429 } },
+    { from = { x = 3273, y = 3428 }, to = { x = 3273, y = 3429 } },
+    { from = { x = 3280, y = 3428 }, to = { x = 3274, y = 3428 } },
     { from = { x = 3280, y = 3428 }, to = { x = 3287, y = 3414 } }, # varrock_east_crossroad_to_east_path_south
     { from = { x = 3287, y = 3414 }, to = { x = 3291, y = 3399 } }, # varrock_east_path_to_south
     { from = { x = 3291, y = 3399 }, to = { x = 3293, y = 3384 } }, # varrock_east_path_south_to_east_border
