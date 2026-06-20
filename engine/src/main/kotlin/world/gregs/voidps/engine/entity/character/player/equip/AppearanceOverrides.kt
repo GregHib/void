@@ -20,7 +20,7 @@ class AppearanceOverrides {
         femaleLow.getOrDefault(current, 243)
     } + 0x100
 
-    private fun load() {
+    fun load() {
         load(maleMid, EnumDefinitions.get("look_hair_male"), "body_look_flat_mid")
         load(femaleMid, EnumDefinitions.get("look_hair_female"), "body_look_flat_mid")
         load(maleLow, EnumDefinitions.get("look_hair_male"), "body_look_flat_low")

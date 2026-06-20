@@ -506,8 +506,8 @@ class DatabaseStorage : Storage {
             TYPE_BOOLEAN -> row[VariablesTable.boolean]!!
             TYPE_DOUBLE -> row[VariablesTable.double]!!
             TYPE_LONG -> row[VariablesTable.long]!!
-            TYPE_STRING_LIST -> row[VariablesTable.stringList] ?: emptyList<String>()
-            TYPE_INT_LIST -> row[VariablesTable.intList]!!
+            TYPE_STRING_LIST -> ArrayList(row[VariablesTable.stringList] ?: emptyList())
+            TYPE_INT_LIST -> ArrayList(row[VariablesTable.intList]!!)
             else -> throw IllegalArgumentException("Unsupported variable type: $variableType")
         }
     }
