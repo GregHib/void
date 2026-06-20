@@ -20,9 +20,9 @@ class BorderGuard : Script {
 
     val raised = mutableMapOf<GameObject, Boolean>()
 
-    val gates = mutableMapOf<Rectangle, Tile>()
+    val gates = mutableMapOf<Rectangle, List<Tile>>()
 
-    private val gateAutoCloseDelay = 6
+    private val gateAutoCloseDelay = 5
 
     init {
         worldSpawn {
@@ -34,12 +34,12 @@ class BorderGuard : Script {
                         val obj = GameObjects.getLayer(it, ObjectLayer.GROUND)
                         if (obj != null && obj.id.startsWith("border_guard")) obj else null
                     }
-                    for (tile in tiles) {
-                        val obj = GameObjects.getLayer(tile, ObjectLayer.WALL) ?: continue
-                        if (obj.def.isDoor()) {
-                            gates[passage] = obj.tile
-                            break
-                        }
+                    val doors = tiles.mapNotNull {
+                        val obj = GameObjects.getLayer(it, ObjectLayer.WALL)
+                        if (obj != null && obj.def.isDoor()) obj.tile else null
+                    }
+                    if (doors.isNotEmpty()) {
+                        gates[passage] = doors
                     }
                 }
             }
@@ -54,7 +54,6 @@ class BorderGuard : Script {
         entered("border_guard_draynor_falador", ::enter)
         entered("border_guard_varrock_east", ::enterGate)
 
-        exited("border_guard_varrock_east", ::exitGate)
         exited("border_guard_edgeville_varrock", ::exit)
         exited("border_guard_al_kharid_varrock", ::exit)
         exited("border_guard_port_sarim_draynor", ::exit)
@@ -86,20 +85,12 @@ class BorderGuard : Script {
 
     fun enterGate(player: Player, def: AreaDefinition) {
         val border = def.area as Rectangle
-        val gateTile = gates[border]
-        if (gateTile != null) {
-            val gate = GameObjects.getLayer(gateTile, ObjectLayer.WALL)
-            if (gate != null && gate.id.endsWith("_closed")) {
-                // collision = false leaves the map untouched (others stay blocked); the timer closes it behind us
-                Door.openDoor(player, gate, ticks = gateAutoCloseDelay, collision = false)
+        for (gateTile in gates[border] ?: return) {
+            val gate = GameObjects.getLayer(gateTile, ObjectLayer.WALL) ?: continue
+            if (gate.id.endsWith("_closed")) {
+                Door.openDoor(player, gate, ticks = gateAutoCloseDelay, collision = true)
             }
         }
-        val endSide = Border.getOppositeSide(border, border.nearestTo(player.tile))
-        player.walkTo(endSide, noCollision = true, forceWalk = true)
-    }
-
-    fun exitGate(player: Player, def: AreaDefinition) {
-        player.steps.update(noCollision = false, noRun = false)
     }
 
     fun changeGuardState(guards: List<GameObject>, raise: Boolean) {

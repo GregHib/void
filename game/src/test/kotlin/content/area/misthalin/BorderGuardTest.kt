@@ -64,25 +64,25 @@ internal class BorderGuardTest : WorldTest() {
 
     @Test
     fun `Guards open the east Varrock gate walking east`() {
-        val player = createPlayer(Tile(3271, 3429))
+        // The full bot route (varrock_east_dirt_crossroad -> east_crossroad) through closed gate 45851.
+        // Pathfinding truncates at the gate; entering the border opens it and movement re-paths across.
+        val player = createPlayer(Tile(3265, 3428))
         tick()
 
-        handler.walk(Walk(3275, 3429), player)
-        tick(8)
+        handler.walk(Walk(3280, 3428), player)
+        tick(20)
 
-        // Carried through the closed gate to the far (east) side
-        assertEquals(Tile(3275, 3429), player.tile)
+        assertEquals(Tile(3280, 3428), player.tile)
     }
 
     @Test
     fun `Guards open the east Varrock gate walking west`() {
-        val player = createPlayer(Tile(3275, 3429))
+        val player = createPlayer(Tile(3280, 3428))
         tick()
 
-        handler.walk(Walk(3271, 3429), player)
-        tick(8)
+        handler.walk(Walk(3265, 3428), player)
+        tick(20)
 
-        // Carried through the closed gate to the far (west) side
-        assertEquals(Tile(3271, 3429), player.tile)
+        assertEquals(Tile(3265, 3428), player.tile)
     }
 }
