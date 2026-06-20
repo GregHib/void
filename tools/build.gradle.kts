@@ -69,12 +69,3 @@ tasks.register<JavaExec>("renderPhotoBooth") {
     args = cliArgs
 }
 
-tasks.register<JavaExec>("migrateRsmodSaves") {
-    group = "migration"
-    description = "Imports rsmod (rev 664) JSON player saves into void's PostgreSQL. Pass args via -Pargs=\"--dry-run --limit=5\"."
-    mainClass.set("world.gregs.voidps.tools.convert.RsmodSaveMigrator")
-    classpath = sourceSets["main"].runtimeClasspath
-    workingDir = rootDir
-    val cliArgs = (findProperty("args") as String?)?.split(" ")?.filter { it.isNotBlank() } ?: emptyList()
-    args = cliArgs
-}
