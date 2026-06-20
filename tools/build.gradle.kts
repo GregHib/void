@@ -29,8 +29,6 @@ kotlin {
 
         implementation(libs.koin)
         implementation(libs.displee.cache)
-        // Vendored Quill model renderer (photo booth avatars) decodes geometry via netty ByteBuf.
-        implementation("io.netty:netty-buffer:4.1.118.Final")
         implementation("com.fasterxml.jackson.core:jackson-core:2.16.1")
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.16.1")
         implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.16.1")

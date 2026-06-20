@@ -23,7 +23,7 @@ class ArrayReader(
         this.array = array
     }
 
-    override fun peek(): Int = array[position].toInt()
+    override fun peek(): Int = array[position].toInt() and 0xFF
 
     override fun readByte(): Int = array[position++].toInt()
 

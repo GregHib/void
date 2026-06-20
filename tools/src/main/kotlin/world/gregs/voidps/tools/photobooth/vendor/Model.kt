@@ -2,8 +2,11 @@
 
 package world.gregs.voidps.tools.photobooth.vendor
 
-import io.netty.buffer.ByteBuf
-import io.netty.buffer.Unpooled
+import world.gregs.voidps.buffer.read.ArrayReader
+import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.buffer.write.BufferWriter
+import world.gregs.voidps.buffer.write.Writer
+import kotlin.collections.forEach
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -792,16 +795,16 @@ data class Model(
     }
 
     fun decode(
-        buf: ByteBuf,
+        data: ByteArray,
         vararg options: MeshDecodingOption,
     ) {
-        val version = buf.getByte(buf.writerIndex() - 1).toInt()
-        val extra = buf.getByte(buf.writerIndex() - 2).toInt()
+        val version = data[data.size - 1].toInt()
+        val extra = data[data.size - 2].toInt()
         return when {
-            version == -3 && extra == -1 -> decode4(buf, options)
-            version == -2 && extra == -1 -> decode3(buf, options)
-            version == -1 && extra == -1 -> decode2(buf, options)
-            else -> decode1(buf, options)
+            version == -3 && extra == -1 -> decode4(data, options)
+            version == -2 && extra == -1 -> decode3(data, options)
+            version == -1 && extra == -1 -> decode2(data, options)
+            else -> decode1(data, options)
         }
     }
 
@@ -855,7 +858,7 @@ data class Model(
         this.faceBillboards = null
     }
 
-    fun encode(): ByteBuf =
+    fun encode(): Writer =
         when (type) {
             MeshType.Unversioned -> encode1()
             MeshType.Versioned -> encode2()
@@ -863,25 +866,22 @@ data class Model(
             MeshType.VersionedSkeletal -> encode4()
         }
 
-    private fun decode1(
-        data: ByteBuf,
-        options: Array<out MeshDecodingOption>,
-    ) {
+    private fun decode1(data: ByteArray, options: Array<out MeshDecodingOption>) {
         this.type = MeshType.Unversioned
-        val buf1 = data.duplicate()
-        val buf2 = data.duplicate()
-        val buf3 = data.duplicate()
-        val buf4 = data.duplicate()
-        val buf5 = data.duplicate()
-        buf1.readerIndex(buf1.writerIndex() - 18)
+        val buf1 = ArrayReader(data)
+        val buf2 = ArrayReader(data)
+        val buf3 = ArrayReader(data)
+        val buf4 = ArrayReader(data)
+        val buf5 = ArrayReader(data)
+        buf1.position(buf1.length - 18)
         val vertexCount = buf1.readUnsignedShort()
         val triangleCount = buf1.readUnsignedShort()
-        val textureTriangleCount = buf1.readUnsignedByte().toInt()
-        val hasTextures = buf1.readUnsignedByte().toInt()
-        val modelPriority = buf1.readUnsignedByte().toInt()
-        val hasFaceAlphas = buf1.readUnsignedByte().toInt()
-        val hasFaceSkins = buf1.readUnsignedByte().toInt()
-        val hasVertexSkins = buf1.readUnsignedByte().toInt()
+        val textureTriangleCount = buf1.readUnsignedByte()
+        val hasTextures = buf1.readUnsignedByte()
+        val modelPriority = buf1.readUnsignedByte()
+        val hasFaceAlphas = buf1.readUnsignedByte()
+        val hasFaceSkins = buf1.readUnsignedByte()
+        val hasVertexSkins = buf1.readUnsignedByte()
         val vertexXBufIndex = buf1.readUnsignedShort()
         val vertexYBufIndex = buf1.readUnsignedShort()
 
@@ -940,11 +940,11 @@ data class Model(
             hasSkeletalBones = false,
         )
 
-        buf1.readerIndex(vertexFlagsOffset)
-        buf2.readerIndex(vertexXOffsetOffset)
-        buf3.readerIndex(vertexYOffsetOffset)
-        buf4.readerIndex(vertexZOffsetOffset)
-        buf5.readerIndex(vertexSkinsOffset)
+        buf1.position(vertexFlagsOffset)
+        buf2.position(vertexXOffsetOffset)
+        buf3.position(vertexYOffsetOffset)
+        buf4.position(vertexZOffsetOffset)
+        buf5.position(vertexSkinsOffset)
         readVertexPositions(
             hasVertexSkins,
             hasSkeletalBones = false,
@@ -954,11 +954,11 @@ data class Model(
             buf4,
             buf5,
         )
-        buf1.readerIndex(faceColorsOffset)
-        buf2.readerIndex(faceTypesOffset)
-        buf3.readerIndex(facePrioritiesOffset)
-        buf4.readerIndex(faceAlphasOffset)
-        buf5.readerIndex(faceSkinsOffset)
+        buf1.position(faceColorsOffset)
+        buf2.position(faceTypesOffset)
+        buf3.position(facePrioritiesOffset)
+        buf4.position(faceAlphasOffset)
+        buf5.position(faceSkinsOffset)
         val (usesFaceTypes, usesMaterials) =
             readUnversionedTriangleInfo(
                 options,
@@ -972,13 +972,10 @@ data class Model(
                 buf4,
                 buf5,
             )
-        buf1.readerIndex(faceIndicesOffset)
-        buf2.readerIndex(facesCompressTypeOffset)
-        readTriangleVertices(
-            buf1,
-            buf2,
-        )
-        buf1.readerIndex(faceMappingsOffset)
+        buf1.position(faceIndicesOffset)
+        buf2.position(facesCompressTypeOffset)
+        readTriangleVertices(buf1, buf2)
+        buf1.position(faceMappingsOffset)
         readUnversionedTextureVertices(buf1)
         if (!options.contains(MeshDecodingOption.PreserveOriginalData)) {
             filterUnversionedTextures(
@@ -988,41 +985,38 @@ data class Model(
         }
     }
 
-    private fun decode2(
-        data: ByteBuf,
-        options: Array<out MeshDecodingOption>,
-    ) {
+    private fun decode2(data: ByteArray, options: Array<out MeshDecodingOption>) {
         this.type = MeshType.Versioned
-        val buf1 = data.duplicate()
-        val buf2 = data.duplicate()
-        val buf3 = data.duplicate()
-        val buf4 = data.duplicate()
-        val buf5 = data.duplicate()
-        val buf6 = data.duplicate()
-        val buf7 = data.duplicate()
-        buf1.readerIndex(buf1.writerIndex() - 23)
+        val buf1 = ArrayReader(data)
+        val buf2 = ArrayReader(data)
+        val buf3 = ArrayReader(data)
+        val buf4 = ArrayReader(data)
+        val buf5 = ArrayReader(data)
+        val buf6 = ArrayReader(data)
+        val buf7 = ArrayReader(data)
+        buf1.position(buf1.length - 23)
         val vertexCount = buf1.readUnsignedShort()
         val triangleCount = buf1.readUnsignedShort()
-        val textureTriangleCount = buf1.readUnsignedByte().toInt()
-        val footerFlags = buf1.readUnsignedByte().toInt()
+        val textureTriangleCount = buf1.readUnsignedByte()
+        val footerFlags = buf1.readUnsignedByte()
         val hasFaceTypes = footerFlags and FACE_TYPES_FLAG == FACE_TYPES_FLAG
         val hasParticleEffects = footerFlags and PARTICLES_FLAG == PARTICLES_FLAG
         val hasBillboards = footerFlags and BILLBOARDS_FLAG == BILLBOARDS_FLAG
         val hasVersion = footerFlags and VERSION_FLAG == VERSION_FLAG
         val version =
             if (hasVersion) {
-                buf1.readerIndex(buf1.readerIndex() - 7)
-                val version = buf1.readUnsignedByte().toInt()
-                buf1.readerIndex(buf1.readerIndex() + 6)
+                buf1.position(buf1.position() - 7)
+                val version = buf1.readUnsignedByte()
+                buf1.position(buf1.position() + 6)
                 version
             } else {
                 DEFAULT_VERSION
             }
-        val modelPriority = buf1.readUnsignedByte().toInt()
-        val hasFaceAlphas = buf1.readUnsignedByte().toInt()
-        val hasFaceSkins = buf1.readUnsignedByte().toInt()
-        val hasTextures = buf1.readUnsignedByte().toInt()
-        val hasVertexSkins = buf1.readUnsignedByte().toInt()
+        val modelPriority = buf1.readUnsignedByte()
+        val hasFaceAlphas = buf1.readUnsignedByte()
+        val hasFaceSkins = buf1.readUnsignedByte()
+        val hasTextures = buf1.readUnsignedByte()
+        val hasVertexSkins = buf1.readUnsignedByte()
         val modelVerticesX = buf1.readUnsignedShort()
         val modelVerticesY = buf1.readUnsignedShort()
         val modelVerticesZ = buf1.readUnsignedShort()
@@ -1035,9 +1029,9 @@ data class Model(
         if (textureTriangleCount > 0) {
             val textureRenderTypes = IntArray(textureTriangleCount)
             this.textureRenderTypes = textureRenderTypes
-            buf1.readerIndex(0)
+            buf1.position(0)
             for (index in 0 until textureTriangleCount) {
-                textureRenderTypes[index] = buf1.readByte().toInt()
+                textureRenderTypes[index] = buf1.readByte()
                 val type = textureRenderTypes[index]
                 if (type == SIMPLE_TEXTURE) {
                     simpleTextureFaceCount++
@@ -1128,11 +1122,11 @@ data class Model(
             hasSkeletalBones = false,
         )
 
-        buf1.readerIndex(vertexFlagsOffset)
-        buf2.readerIndex(vertexXOffsetOffset)
-        buf3.readerIndex(vertexYOffsetOffset)
-        buf4.readerIndex(vertexZOffsetOffset)
-        buf5.readerIndex(vertexSkinsOffset)
+        buf1.position(vertexFlagsOffset)
+        buf2.position(vertexXOffsetOffset)
+        buf3.position(vertexYOffsetOffset)
+        buf4.position(vertexZOffsetOffset)
+        buf5.position(vertexSkinsOffset)
         readVertexPositions(
             hasVertexSkins,
             hasSkeletalBones = false,
@@ -1143,13 +1137,13 @@ data class Model(
             buf5,
         )
 
-        buf1.readerIndex(faceColorsOffset)
-        buf2.readerIndex(faceTypesOffset)
-        buf3.readerIndex(facePrioritiesOffset)
-        buf4.readerIndex(faceAlphasOffset)
-        buf5.readerIndex(faceSkinsOffset)
-        buf6.readerIndex(faceMaterialsOffset)
-        buf7.readerIndex(faceTextureIndicesOffset)
+        buf1.position(faceColorsOffset)
+        buf2.position(faceTypesOffset)
+        buf3.position(facePrioritiesOffset)
+        buf4.position(faceAlphasOffset)
+        buf5.position(faceSkinsOffset)
+        buf6.position(faceMaterialsOffset)
+        buf7.position(faceTextureIndicesOffset)
         readVersionedTriangleInfo(
             hasTextures,
             modelPriority,
@@ -1164,18 +1158,18 @@ data class Model(
             buf6,
             buf7,
         )
-        buf1.readerIndex(faceIndicesOffset)
-        buf2.readerIndex(faceCompressTypeOffset)
+        buf1.position(faceIndicesOffset)
+        buf2.position(faceCompressTypeOffset)
         readTriangleVertices(
             buf1,
             buf2,
         )
-        buf1.readerIndex(simpleTexturesOffset)
-        buf2.readerIndex(complexTexturesOffset)
-        buf3.readerIndex(texturesScaleOffset)
-        buf4.readerIndex(texturesRotationOffset)
-        buf5.readerIndex(texturesDirectionOffset)
-        buf6.readerIndex(texturesTranslationOffset)
+        buf1.position(simpleTexturesOffset)
+        buf2.position(complexTexturesOffset)
+        buf3.position(texturesScaleOffset)
+        buf4.position(texturesRotationOffset)
+        buf5.position(texturesDirectionOffset)
+        buf6.position(texturesTranslationOffset)
         readVersionedTextures(
             buf1,
             buf2,
@@ -1185,12 +1179,9 @@ data class Model(
             buf6,
         )
 
-        buf1.readerIndex(particlesOffset)
+        buf1.position(particlesOffset)
         if (hasParticleEffects) {
-            decodeParticles(
-                buf1,
-                modelPriority,
-            )
+            decodeParticles(buf1, modelPriority)
         }
         if (hasBillboards) {
             decodeBillboards(buf1)
@@ -1338,11 +1329,11 @@ data class Model(
     private fun readVertexPositions(
         hasVertexSkins: Int,
         hasSkeletalBones: Boolean,
-        buf1: ByteBuf,
-        buf2: ByteBuf,
-        buf3: ByteBuf,
-        buf4: ByteBuf,
-        buf5: ByteBuf,
+        buf1: Reader,
+        buf2: Reader,
+        buf3: Reader,
+        buf4: Reader,
+        buf5: Reader,
     ) {
         if (vertexCount <= 0) return
         val vertexPositionsX = requireNotNull(vertexPositionsX)
@@ -1352,7 +1343,7 @@ data class Model(
         var lastYOffset = 0
         var lastZOffset = 0
         for (index in 0 until vertexCount) {
-            val pflag = buf1.readUnsignedByte().toInt()
+            val pflag = buf1.readUnsignedByte()
             var xOffset = 0
             if (pflag and X_POS_FLAG != 0) {
                 xOffset = buf2.gSmart1or2s()
@@ -1373,7 +1364,7 @@ data class Model(
             lastZOffset = vertexPositionsZ[index]
             if (hasVertexSkins == 1) {
                 val vertexSkins = requireNotNull(vertexSkins)
-                vertexSkins[index] = buf5.readUnsignedByte().toInt()
+                vertexSkins[index] = buf5.readUnsignedByte()
             }
         }
 
@@ -1381,14 +1372,14 @@ data class Model(
             val skeletalBones = requireNotNull(this.skeletalBones)
             val skeletalScales = requireNotNull(this.skeletalScales)
             for (index in 0 until vertexCount) {
-                val count = buf5.readUnsignedByte().toInt()
+                val count = buf5.readUnsignedByte()
                 val bones = IntArray(count)
                 val scales = IntArray(count)
                 skeletalBones[index] = bones
                 skeletalScales[index] = scales
                 for (i in 0 until count) {
-                    bones[i] = buf5.readUnsignedByte().toInt()
-                    scales[i] = buf5.readUnsignedByte().toInt()
+                    bones[i] = buf5.readUnsignedByte()
+                    scales[i] = buf5.readUnsignedByte()
                 }
             }
         }
@@ -1400,11 +1391,11 @@ data class Model(
         modelPriority: Int,
         hasFaceAlphas: Int,
         hasFaceSkins: Int,
-        buf1: ByteBuf,
-        buf2: ByteBuf,
-        buf3: ByteBuf,
-        buf4: ByteBuf,
-        buf5: ByteBuf,
+        buf1: Reader,
+        buf2: Reader,
+        buf3: Reader,
+        buf4: Reader,
+        buf5: Reader,
     ): Pair<Boolean, Boolean> {
         if (triangleCount <= 0) return Pair(first = false, second = false)
         var usesFaceTypes = false
@@ -1417,7 +1408,7 @@ data class Model(
                 val triangleRenderTypes = requireNotNull(this.triangleRenderTypes)
                 val textureCoordinates = requireNotNull(this.textureCoordinates)
                 val triangleTextures = requireNotNull(this.triangleTextures)
-                val flag = buf2.readUnsignedByte().toInt()
+                val flag = buf2.readUnsignedByte()
                 if (flag and USES_FACE_TYPES_FLAG == 1) {
                     triangleRenderTypes[index] = 1
                     usesFaceTypes = true
@@ -1440,15 +1431,15 @@ data class Model(
             }
             if (modelPriority == 0xFF) {
                 val triangleRenderPriorities = requireNotNull(this.triangleRenderPriorities)
-                triangleRenderPriorities[index] = buf3.readByte().toInt()
+                triangleRenderPriorities[index] = buf3.readByte()
             }
             if (hasFaceAlphas == 1) {
                 val triangleAlphas = requireNotNull(this.triangleAlphas)
-                triangleAlphas[index] = buf4.readByte().toInt()
+                triangleAlphas[index] = buf4.readByte()
             }
             if (hasFaceSkins == 1) {
                 val triangleSkins = requireNotNull(this.triangleSkins)
-                triangleSkins[index] = buf5.readUnsignedByte().toInt()
+                triangleSkins[index] = buf5.readUnsignedByte()
             }
         }
         return Pair(first = usesFaceTypes, second = usesMaterials)
@@ -1460,13 +1451,13 @@ data class Model(
         hasFaceAlphas: Int,
         hasFaceSkins: Int,
         hasFaceTypes: Boolean,
-        buf1: ByteBuf,
-        buf2: ByteBuf,
-        buf3: ByteBuf,
-        buf4: ByteBuf,
-        buf5: ByteBuf,
-        buf6: ByteBuf,
-        buf7: ByteBuf,
+        buf1: Reader,
+        buf2: Reader,
+        buf3: Reader,
+        buf4: Reader,
+        buf5: Reader,
+        buf6: Reader,
+        buf7: Reader,
     ) {
         if (triangleCount <= 0) return
         val triangleColors = requireNotNull(this.triangleColors)
@@ -1475,19 +1466,19 @@ data class Model(
             triangleColors[index] = buf1.readUnsignedShort().toShort()
             if (hasFaceTypes) {
                 val triangleRenderTypes = requireNotNull(this.triangleRenderTypes)
-                triangleRenderTypes[index] = buf2.readByte().toInt()
+                triangleRenderTypes[index] = buf2.readByte()
             }
             if (modelPriority == 0xFF) {
                 val triangleRenderPriorities = requireNotNull(this.triangleRenderPriorities)
-                triangleRenderPriorities[index] = buf3.readByte().toInt()
+                triangleRenderPriorities[index] = buf3.readByte()
             }
             if (hasFaceAlphas == 1) {
                 val triangleAlphas = requireNotNull(this.triangleAlphas)
-                triangleAlphas[index] = buf4.readByte().toInt()
+                triangleAlphas[index] = buf4.readByte()
             }
             if (hasFaceSkins == 1) {
                 val triangleSkins = requireNotNull(this.triangleSkins)
-                triangleSkins[index] = buf5.readUnsignedByte().toInt()
+                triangleSkins[index] = buf5.readUnsignedByte()
             }
             if (hasTextures == 1) {
                 val triangleTextures = requireNotNull(this.triangleTextures)
@@ -1504,10 +1495,7 @@ data class Model(
         }
     }
 
-    private fun readTriangleVertices(
-        buf1: ByteBuf,
-        buf2: ByteBuf,
-    ) {
+    private fun readTriangleVertices(buf1: Reader, buf2: Reader) {
         if (triangleCount <= 0) return
         val triangleVertex1 = requireNotNull(this.triangleVertex1)
         val triangleVertex2 = requireNotNull(this.triangleVertex2)
@@ -1517,7 +1505,7 @@ data class Model(
         var vertex3 = 0
         var offset = 0
         for (index in 0 until triangleCount) {
-            when (buf2.readUnsignedByte().toInt()) {
+            when (buf2.readUnsignedByte()) {
                 1 -> {
                     vertex1 = buf1.gSmart1or2s() + offset
                     offset = vertex1
@@ -1559,7 +1547,7 @@ data class Model(
         }
     }
 
-    private fun readUnversionedTextureVertices(buf1: ByteBuf) {
+    private fun readUnversionedTextureVertices(buf1: Reader) {
         if (textureTriangleCount <= 0) return
         val textureRenderTypes = requireNotNull(this.textureRenderTypes)
         val textureTriangleVertex1 = requireNotNull(this.textureTriangleVertex1)
@@ -1625,12 +1613,12 @@ data class Model(
     }
 
     private fun readVersionedTextures(
-        buf1: ByteBuf,
-        buf2: ByteBuf,
-        buf3: ByteBuf,
-        buf4: ByteBuf,
-        buf5: ByteBuf,
-        buf6: ByteBuf,
+        buf1: Reader,
+        buf2: Reader,
+        buf3: Reader,
+        buf4: Reader,
+        buf5: Reader,
+        buf6: Reader,
     ) {
         if (textureTriangleCount <= 0) return
         val textureRenderTypes = requireNotNull(this.textureRenderTypes)
@@ -1691,9 +1679,9 @@ data class Model(
                     textureSpeed[index] = buf3.readMedium()
                     textureScaleX[index] = buf3.readMedium()
                 }
-                textureRotation[index] = buf4.readByte().toInt()
-                textureScaleY[index] = buf5.readByte().toInt()
-                textureDirection[index] = buf6.readByte().toInt()
+                textureRotation[index] = buf4.readByte()
+                textureScaleY[index] = buf5.readByte()
+                textureDirection[index] = buf6.readByte()
             }
             if (textureRenderType == CUBE_TEXTURE) {
                 val textureScaleX = requireNotNull(this.textureScaleX)
@@ -1732,11 +1720,11 @@ data class Model(
                     textureSpeed[index] = buf3.readMedium()
                     textureScaleX[index] = buf3.readMedium()
                 }
-                textureRotation[index] = buf4.readByte().toInt()
-                textureScaleY[index] = buf5.readByte().toInt()
-                textureDirection[index] = buf6.readByte().toInt()
-                textureTransU[index] = buf6.readByte().toInt()
-                textureTransV[index] = buf6.readByte().toInt()
+                textureRotation[index] = buf4.readByte()
+                textureScaleY[index] = buf5.readByte()
+                textureDirection[index] = buf6.readByte()
+                textureTransU[index] = buf6.readByte()
+                textureTransV[index] = buf6.readByte()
             }
             if (textureRenderType == SPHERICAL_TEXTURE) {
                 val textureScaleX = requireNotNull(this.textureScaleX)
@@ -1773,18 +1761,15 @@ data class Model(
                     textureSpeed[index] = buf3.readMedium()
                     textureScaleX[index] = buf3.readMedium()
                 }
-                textureRotation[index] = buf4.readByte().toInt()
-                textureScaleY[index] = buf5.readByte().toInt()
-                textureDirection[index] = buf6.readByte().toInt()
+                textureRotation[index] = buf4.readByte()
+                textureScaleY[index] = buf5.readByte()
+                textureDirection[index] = buf6.readByte()
             }
         }
     }
 
-    private fun decodeParticles(
-        buf1: ByteBuf,
-        modelPriority: Int,
-    ) {
-        val numEmitters = buf1.readUnsignedByte().toInt()
+    private fun decodeParticles(buf1: Reader, modelPriority: Int) {
+        val numEmitters = buf1.readUnsignedByte()
         if (numEmitters > 0) {
             val triangleVertex1 = requireNotNull(this.triangleVertex1)
             val triangleVertex2 = requireNotNull(this.triangleVertex2)
@@ -1811,7 +1796,7 @@ data class Model(
                     )
                 }
         }
-        val numEffectors = buf1.readUnsignedByte().toInt()
+        val numEffectors = buf1.readUnsignedByte()
         if (numEffectors > 0) {
             effectors =
                 Array(numEffectors) {
@@ -1822,41 +1807,38 @@ data class Model(
         }
     }
 
-    private fun decodeBillboards(buf1: ByteBuf) {
-        val count = buf1.readUnsignedByte().toInt()
+    private fun decodeBillboards(buf1: Reader) {
+        val count = buf1.readUnsignedByte()
         if (count > 0) {
             val faceBillboards =
                 Array(count) {
                     val id = buf1.readUnsignedShort()
                     val face = buf1.readUnsignedShort()
-                    val skin = buf1.readUnsignedByte().toInt()
-                    val distance = buf1.readByte().toInt()
+                    val skin = buf1.readUnsignedByte()
+                    val distance = buf1.readByte()
                     FaceBillboard(id, face, skin, distance)
                 }
             this.faceBillboards = faceBillboards
         }
     }
 
-    private fun decode3(
-        data: ByteBuf,
-        options: Array<out MeshDecodingOption>,
-    ) {
+    private fun decode3(data: ByteArray, options: Array<out MeshDecodingOption>) {
         this.type = MeshType.UnversionedSkeletal
-        val buf1 = data.duplicate()
-        val buf2 = data.duplicate()
-        val buf3 = data.duplicate()
-        val buf4 = data.duplicate()
-        val buf5 = data.duplicate()
-        buf1.readerIndex(buf1.writerIndex() - 23)
+        val buf1 = ArrayReader(data)
+        val buf2 = ArrayReader(data)
+        val buf3 = ArrayReader(data)
+        val buf4 = ArrayReader(data)
+        val buf5 = ArrayReader(data)
+        buf1.position(buf1.length - 23)
         val vertexCount = buf1.readUnsignedShort()
         val triangleCount = buf1.readUnsignedShort()
-        val textureTriangleCount = buf1.readUnsignedByte().toInt()
-        val hasTextures = buf1.readUnsignedByte().toInt()
-        val modelPriority = buf1.readUnsignedByte().toInt()
-        val hasFaceAlphas = buf1.readUnsignedByte().toInt()
-        val hasFaceSkins = buf1.readUnsignedByte().toInt()
-        val hasVertexSkins = buf1.readUnsignedByte().toInt()
-        val hasSkeletalBones = buf1.readUnsignedByte().toInt()
+        val textureTriangleCount = buf1.readUnsignedByte()
+        val hasTextures = buf1.readUnsignedByte()
+        val modelPriority = buf1.readUnsignedByte()
+        val hasFaceAlphas = buf1.readUnsignedByte()
+        val hasFaceSkins = buf1.readUnsignedByte()
+        val hasVertexSkins = buf1.readUnsignedByte()
+        val hasSkeletalBones = buf1.readUnsignedByte()
         val vertexXBufIndex = buf1.readUnsignedShort()
         val vertexYBufIndex = buf1.readUnsignedShort()
 
@@ -1914,11 +1896,11 @@ data class Model(
             hasSkeletalBones = hasSkeletalBones == 1,
         )
 
-        buf1.readerIndex(vertexFlagsOffset)
-        buf2.readerIndex(vertexXOffsetOffset)
-        buf3.readerIndex(vertexYOffsetOffset)
-        buf4.readerIndex(vertexZOffsetOffset)
-        buf5.readerIndex(vertexSkinsOffset)
+        buf1.position(vertexFlagsOffset)
+        buf2.position(vertexXOffsetOffset)
+        buf3.position(vertexYOffsetOffset)
+        buf4.position(vertexZOffsetOffset)
+        buf5.position(vertexSkinsOffset)
         readVertexPositions(
             hasVertexSkins,
             hasSkeletalBones = hasSkeletalBones == 1,
@@ -1928,11 +1910,11 @@ data class Model(
             buf4,
             buf5,
         )
-        buf1.readerIndex(faceColorsOffset)
-        buf2.readerIndex(faceTypesOffset)
-        buf3.readerIndex(facePrioritiesOffset)
-        buf4.readerIndex(faceAlphasOffset)
-        buf5.readerIndex(faceSkinsOffset)
+        buf1.position(faceColorsOffset)
+        buf2.position(faceTypesOffset)
+        buf3.position(facePrioritiesOffset)
+        buf4.position(faceAlphasOffset)
+        buf5.position(faceSkinsOffset)
         val (usesFaceTypes, usesMaterials) =
             readUnversionedTriangleInfo(
                 options,
@@ -1946,13 +1928,13 @@ data class Model(
                 buf4,
                 buf5,
             )
-        buf1.readerIndex(faceIndicesOffset)
-        buf2.readerIndex(facesCompressTypeOffset)
+        buf1.position(faceIndicesOffset)
+        buf2.position(facesCompressTypeOffset)
         readTriangleVertices(
             buf1,
             buf2,
         )
-        buf1.readerIndex(faceMappingsOffset)
+        buf1.position(faceMappingsOffset)
         readUnversionedTextureVertices(buf1)
         if (!options.contains(MeshDecodingOption.PreserveOriginalData)) {
             filterUnversionedTextures(
@@ -1962,42 +1944,39 @@ data class Model(
         }
     }
 
-    private fun decode4(
-        data: ByteBuf,
-        options: Array<out MeshDecodingOption>,
-    ) {
+    private fun decode4(data: ByteArray, options: Array<out MeshDecodingOption>) {
         this.type = MeshType.VersionedSkeletal
-        val buf1 = data.duplicate()
-        val buf2 = data.duplicate()
-        val buf3 = data.duplicate()
-        val buf4 = data.duplicate()
-        val buf5 = data.duplicate()
-        val buf6 = data.duplicate()
-        val buf7 = data.duplicate()
-        buf1.readerIndex(buf1.writerIndex() - 26)
+        val buf1 = ArrayReader(data)
+        val buf2 = ArrayReader(data)
+        val buf3 = ArrayReader(data)
+        val buf4 = ArrayReader(data)
+        val buf5 = ArrayReader(data)
+        val buf6 = ArrayReader(data)
+        val buf7 = ArrayReader(data)
+        buf1.position(buf1.length - 26)
         val vertexCount = buf1.readUnsignedShort()
         val triangleCount = buf1.readUnsignedShort()
-        val textureTriangleCount = buf1.readUnsignedByte().toInt()
-        val footerFlags = buf1.readUnsignedByte().toInt()
+        val textureTriangleCount = buf1.readUnsignedByte()
+        val footerFlags = buf1.readUnsignedByte()
         val hasFaceTypes = footerFlags and FACE_TYPES_FLAG == 1
         val hasParticleEffects = footerFlags and PARTICLES_FLAG == 2
         val hasBillboards = footerFlags and BILLBOARDS_FLAG == 4
         val hasVersion = footerFlags and VERSION_FLAG == 8
         val version =
             if (hasVersion) {
-                buf1.readerIndex(buf1.readerIndex() - 7)
-                val version = buf1.readUnsignedByte().toInt()
-                buf1.readerIndex(buf1.readerIndex() + 6)
+                buf1.position(buf1.position() - 7)
+                val version = buf1.readUnsignedByte()
+                buf1.position(buf1.position() + 6)
                 version
             } else {
                 DEFAULT_VERSION
             }
-        val modelPriority = buf1.readUnsignedByte().toInt()
-        val hasFaceAlphas = buf1.readUnsignedByte().toInt()
-        val hasFaceSkins = buf1.readUnsignedByte().toInt()
-        val hasTextures = buf1.readUnsignedByte().toInt()
-        val hasVertexSkins = buf1.readUnsignedByte().toInt()
-        val hasSkeletalBones = buf1.readUnsignedByte().toInt()
+        val modelPriority = buf1.readUnsignedByte()
+        val hasFaceAlphas = buf1.readUnsignedByte()
+        val hasFaceSkins = buf1.readUnsignedByte()
+        val hasTextures = buf1.readUnsignedByte()
+        val hasVertexSkins = buf1.readUnsignedByte()
+        val hasSkeletalBones = buf1.readUnsignedByte()
         val modelVerticesX = buf1.readUnsignedShort()
         val modelVerticesY = buf1.readUnsignedShort()
         val modelVerticesZ = buf1.readUnsignedShort()
@@ -2011,9 +1990,9 @@ data class Model(
         if (textureTriangleCount > 0) {
             val textureRenderTypes = IntArray(textureTriangleCount)
             this.textureRenderTypes = textureRenderTypes
-            buf1.readerIndex(0)
+            buf1.position(0)
             for (index in 0 until textureTriangleCount) {
-                textureRenderTypes[index] = buf1.readByte().toInt()
+                textureRenderTypes[index] = buf1.readByte()
                 val type = textureRenderTypes[index]
                 if (type == 0) {
                     simpleTextureFaceCount++
@@ -2102,11 +2081,11 @@ data class Model(
             hasSkeletalBones = hasSkeletalBones == 1,
         )
 
-        buf1.readerIndex(vertexFlagsOffset)
-        buf2.readerIndex(vertexXOffsetOffset)
-        buf3.readerIndex(vertexYOffsetOffset)
-        buf4.readerIndex(vertexZOffsetOffset)
-        buf5.readerIndex(vertexSkinsOffset)
+        buf1.position(vertexFlagsOffset)
+        buf2.position(vertexXOffsetOffset)
+        buf3.position(vertexYOffsetOffset)
+        buf4.position(vertexZOffsetOffset)
+        buf5.position(vertexSkinsOffset)
         readVertexPositions(
             hasVertexSkins,
             hasSkeletalBones = hasSkeletalBones == 1,
@@ -2117,13 +2096,13 @@ data class Model(
             buf5,
         )
 
-        buf1.readerIndex(faceColorsOffset)
-        buf2.readerIndex(faceTypesOffset)
-        buf3.readerIndex(facePrioritiesOffset)
-        buf4.readerIndex(faceAlphasOffset)
-        buf5.readerIndex(faceSkinsOffset)
-        buf6.readerIndex(faceMaterialsOffset)
-        buf7.readerIndex(faceTextureIndicesOffset)
+        buf1.position(faceColorsOffset)
+        buf2.position(faceTypesOffset)
+        buf3.position(facePrioritiesOffset)
+        buf4.position(faceAlphasOffset)
+        buf5.position(faceSkinsOffset)
+        buf6.position(faceMaterialsOffset)
+        buf7.position(faceTextureIndicesOffset)
         readVersionedTriangleInfo(
             hasTextures,
             modelPriority,
@@ -2138,18 +2117,18 @@ data class Model(
             buf6,
             buf7,
         )
-        buf1.readerIndex(faceIndicesOffset)
-        buf2.readerIndex(faceCompressTypeOffset)
+        buf1.position(faceIndicesOffset)
+        buf2.position(faceCompressTypeOffset)
         readTriangleVertices(
             buf1,
             buf2,
         )
-        buf1.readerIndex(simpleTexturesOffset)
-        buf2.readerIndex(complexTexturesOffset)
-        buf3.readerIndex(texturesScaleOffset)
-        buf4.readerIndex(texturesRotationOffset)
-        buf5.readerIndex(texturesDirectionOffset)
-        buf6.readerIndex(texturesTranslationOffset)
+        buf1.position(simpleTexturesOffset)
+        buf2.position(complexTexturesOffset)
+        buf3.position(texturesScaleOffset)
+        buf4.position(texturesRotationOffset)
+        buf5.position(texturesDirectionOffset)
+        buf6.position(texturesTranslationOffset)
         readVersionedTextures(
             buf1,
             buf2,
@@ -2159,7 +2138,7 @@ data class Model(
             buf6,
         )
 
-        buf1.readerIndex(particlesOffset)
+        buf1.position(particlesOffset)
         if (hasParticleEffects) {
             decodeParticles(
                 buf1,
@@ -2226,22 +2205,22 @@ data class Model(
         }
     }
 
-    private fun encode1(): ByteBuf {
-        val masterBuffer = Unpooled.buffer(16 * 1024)
-        val vertexFlagsBuffer = Unpooled.buffer(128)
-        val faceTypesBuffer = Unpooled.buffer(128)
-        val faceIndexTypesBuffer = Unpooled.buffer(128)
-        val facePrioritiesBuffer = Unpooled.buffer(128)
-        val faceSkinsBuffer = Unpooled.buffer(128)
-        val vertexSkinsBuffer = Unpooled.buffer(128)
-        val faceAlphasBuffer = Unpooled.buffer(128)
-        val faceIndicesBuffer = Unpooled.buffer(128)
-        val faceColorsBuffer = Unpooled.buffer(128)
-        val vertexXBuffer = Unpooled.buffer(128)
-        val vertexYBuffer = Unpooled.buffer(128)
-        val vertexZBuffer = Unpooled.buffer(128)
-        val texturesBuffer = Unpooled.buffer(128)
-        val footerBuffer = Unpooled.buffer(128)
+    private fun encode1(): Writer {
+        val masterBuffer = BufferWriter(16 * 1024)
+        val vertexFlagsBuffer = BufferWriter(128)
+        val faceTypesBuffer = BufferWriter(128)
+        val faceIndexTypesBuffer = BufferWriter(128)
+        val facePrioritiesBuffer = BufferWriter(128)
+        val faceSkinsBuffer = BufferWriter(128)
+        val vertexSkinsBuffer = BufferWriter(128)
+        val faceAlphasBuffer = BufferWriter(128)
+        val faceIndicesBuffer = BufferWriter(128)
+        val faceColorsBuffer = BufferWriter(128)
+        val vertexXBuffer = BufferWriter(128)
+        val vertexYBuffer = BufferWriter(128)
+        val vertexZBuffer = BufferWriter(128)
+        val texturesBuffer = BufferWriter(128)
+        val footerBuffer = BufferWriter(128)
         val buffers =
             listOf(
                 vertexFlagsBuffer,
@@ -2284,45 +2263,47 @@ data class Model(
         footerBuffer.writeShort(vertexCount)
         footerBuffer.writeShort(triangleCount)
         footerBuffer.writeByte(textureTriangleCount)
-        footerBuffer.writeBoolean(triangleRenderTypes != null)
+        footerBuffer.writeByte(triangleRenderTypes != null)
         footerBuffer.writeByte(if (triangleRenderPriorities != null) -1 else renderPriority)
-        footerBuffer.writeBoolean(triangleAlphas != null)
-        footerBuffer.writeBoolean(triangleSkins != null)
-        footerBuffer.writeBoolean(vertexSkins != null)
-        footerBuffer.writeShort(vertexXBuffer.writerIndex())
-        footerBuffer.writeShort(vertexYBuffer.writerIndex())
-        footerBuffer.writeShort(vertexZBuffer.writerIndex())
-        footerBuffer.writeShort(faceIndicesBuffer.writerIndex())
-        buffers.forEach(masterBuffer::writeBytes)
+        footerBuffer.writeByte(triangleAlphas != null)
+        footerBuffer.writeByte(triangleSkins != null)
+        footerBuffer.writeByte(vertexSkins != null)
+        footerBuffer.writeShort(vertexXBuffer.position())
+        footerBuffer.writeShort(vertexYBuffer.position())
+        footerBuffer.writeShort(vertexZBuffer.position())
+        footerBuffer.writeShort(faceIndicesBuffer.position())
+        buffers.forEach {
+            masterBuffer.writeBytes(it.toArray())
+        }
         return masterBuffer
     }
 
-    private fun encode2(): ByteBuf {
-        val masterBuffer = Unpooled.buffer(16 * 1024)
-        val faceMappingsBuffer = Unpooled.buffer(128)
-        val vertexFlagsBuffer = Unpooled.buffer(128)
-        val faceTypesBuffer = Unpooled.buffer(128)
-        val faceIndexTypesBuffer = Unpooled.buffer(128)
-        val facePrioritiesBuffer = Unpooled.buffer(128)
-        val faceSkinsBuffer = Unpooled.buffer(128)
-        val vertexSkinsBuffer = Unpooled.buffer(128)
-        val faceAlphasBuffer = Unpooled.buffer(128)
-        val faceIndicesBuffer = Unpooled.buffer(128)
-        val faceMaterialsBuffer = Unpooled.buffer(128)
-        val faceTexturesBuffer = Unpooled.buffer(128)
-        val faceColorsBuffer = Unpooled.buffer(128)
-        val vertexXBuffer = Unpooled.buffer(128)
-        val vertexYBuffer = Unpooled.buffer(128)
-        val vertexZBuffer = Unpooled.buffer(128)
-        val simpleTexturesBuffer = Unpooled.buffer(128)
-        val complexTexturesBuffer = Unpooled.buffer(128)
-        val textureScaleBuffer = Unpooled.buffer(128)
-        val textureRotationBuffer = Unpooled.buffer(128)
-        val textureDirectionBuffer = Unpooled.buffer(128)
-        val textureTranslationBuffer = Unpooled.buffer(128)
-        val particleEffectsBuffer = Unpooled.buffer(128)
-        val billboardsBuffer = Unpooled.buffer(128)
-        val footerBuffer = Unpooled.buffer(128)
+    private fun encode2(): Writer {
+        val masterBuffer = BufferWriter(16 * 1024)
+        val faceMappingsBuffer = BufferWriter(128)
+        val vertexFlagsBuffer = BufferWriter(128)
+        val faceTypesBuffer = BufferWriter(128)
+        val faceIndexTypesBuffer = BufferWriter(128)
+        val facePrioritiesBuffer = BufferWriter(128)
+        val faceSkinsBuffer = BufferWriter(128)
+        val vertexSkinsBuffer = BufferWriter(128)
+        val faceAlphasBuffer = BufferWriter(128)
+        val faceIndicesBuffer = BufferWriter(128)
+        val faceMaterialsBuffer = BufferWriter(128)
+        val faceTexturesBuffer = BufferWriter(128)
+        val faceColorsBuffer = BufferWriter(128)
+        val vertexXBuffer = BufferWriter(128)
+        val vertexYBuffer = BufferWriter(128)
+        val vertexZBuffer = BufferWriter(128)
+        val simpleTexturesBuffer = BufferWriter(128)
+        val complexTexturesBuffer = BufferWriter(128)
+        val textureScaleBuffer = BufferWriter(128)
+        val textureRotationBuffer = BufferWriter(128)
+        val textureDirectionBuffer = BufferWriter(128)
+        val textureTranslationBuffer = BufferWriter(128)
+        val particleEffectsBuffer = BufferWriter(128)
+        val billboardsBuffer = BufferWriter(128)
+        val footerBuffer = BufferWriter(128)
         val buffers =
             listOf(
                 faceMappingsBuffer,
@@ -2428,36 +2409,39 @@ data class Model(
         }
         footerBuffer.writeByte(flags)
         footerBuffer.writeByte(if (hasFacePriorities) -1 else renderPriority)
-        footerBuffer.writeBoolean(hasFaceAlpha)
-        footerBuffer.writeBoolean(hasFaceSkins)
-        footerBuffer.writeBoolean(hasFaceTextures)
-        footerBuffer.writeBoolean(hasVertexSkins)
-        footerBuffer.writeShort(vertexXBuffer.writerIndex())
-        footerBuffer.writeShort(vertexYBuffer.writerIndex())
-        footerBuffer.writeShort(vertexZBuffer.writerIndex())
-        footerBuffer.writeShort(faceIndicesBuffer.writerIndex())
-        footerBuffer.writeShort(faceTexturesBuffer.writerIndex())
-        buffers.forEach(masterBuffer::writeBytes)
-        masterBuffer.writeByte(0xFF).writeByte(0xFF)
+        footerBuffer.writeByte(hasFaceAlpha)
+        footerBuffer.writeByte(hasFaceSkins)
+        footerBuffer.writeByte(hasFaceTextures)
+        footerBuffer.writeByte(hasVertexSkins)
+        footerBuffer.writeShort(vertexXBuffer.position())
+        footerBuffer.writeShort(vertexYBuffer.position())
+        footerBuffer.writeShort(vertexZBuffer.position())
+        footerBuffer.writeShort(faceIndicesBuffer.position())
+        footerBuffer.writeShort(faceTexturesBuffer.position())
+        buffers.forEach {
+            masterBuffer.writeBytes(it.toArray())
+        }
+        masterBuffer.writeByte(0xFF)
+        masterBuffer.writeByte(0xFF)
         return masterBuffer
     }
 
-    private fun encode3(): ByteBuf {
-        val masterBuffer = Unpooled.buffer(16 * 1024)
-        val vertexFlagsBuffer = Unpooled.buffer(128)
-        val faceTypesBuffer = Unpooled.buffer(128)
-        val faceIndexTypesBuffer = Unpooled.buffer(128)
-        val facePrioritiesBuffer = Unpooled.buffer(128)
-        val faceSkinsBuffer = Unpooled.buffer(128)
-        val vertexSkinsBuffer = Unpooled.buffer(128)
-        val faceAlphasBuffer = Unpooled.buffer(128)
-        val faceIndicesBuffer = Unpooled.buffer(128)
-        val faceColorsBuffer = Unpooled.buffer(128)
-        val vertexXBuffer = Unpooled.buffer(128)
-        val vertexYBuffer = Unpooled.buffer(128)
-        val vertexZBuffer = Unpooled.buffer(128)
-        val texturesBuffer = Unpooled.buffer(128)
-        val footerBuffer = Unpooled.buffer(128)
+    private fun encode3(): Writer {
+        val masterBuffer = BufferWriter(16 * 1024)
+        val vertexFlagsBuffer = BufferWriter(128)
+        val faceTypesBuffer = BufferWriter(128)
+        val faceIndexTypesBuffer = BufferWriter(128)
+        val facePrioritiesBuffer = BufferWriter(128)
+        val faceSkinsBuffer = BufferWriter(128)
+        val vertexSkinsBuffer = BufferWriter(128)
+        val faceAlphasBuffer = BufferWriter(128)
+        val faceIndicesBuffer = BufferWriter(128)
+        val faceColorsBuffer = BufferWriter(128)
+        val vertexXBuffer = BufferWriter(128)
+        val vertexYBuffer = BufferWriter(128)
+        val vertexZBuffer = BufferWriter(128)
+        val texturesBuffer = BufferWriter(128)
+        val footerBuffer = BufferWriter(128)
         val hasSkeletalBones = this.skeletalBones != null && this.skeletalScales != null
         val buffers =
             listOf(
@@ -2501,48 +2485,51 @@ data class Model(
         footerBuffer.writeShort(vertexCount)
         footerBuffer.writeShort(triangleCount)
         footerBuffer.writeByte(textureTriangleCount)
-        footerBuffer.writeBoolean(triangleRenderTypes != null)
+        footerBuffer.writeByte(triangleRenderTypes != null)
         footerBuffer.writeByte(if (triangleRenderPriorities != null) -1 else renderPriority)
-        footerBuffer.writeBoolean(triangleAlphas != null)
-        footerBuffer.writeBoolean(triangleSkins != null)
-        footerBuffer.writeBoolean(vertexSkins != null)
-        footerBuffer.writeBoolean(hasSkeletalBones)
-        footerBuffer.writeShort(vertexXBuffer.writerIndex())
-        footerBuffer.writeShort(vertexYBuffer.writerIndex())
-        footerBuffer.writeShort(vertexZBuffer.writerIndex())
-        footerBuffer.writeShort(faceIndicesBuffer.writerIndex())
-        footerBuffer.writeShort(vertexSkinsBuffer.writerIndex())
-        buffers.forEach(masterBuffer::writeBytes)
-        masterBuffer.writeByte(0xFF).writeByte(0xFE)
+        footerBuffer.writeByte(triangleAlphas != null)
+        footerBuffer.writeByte(triangleSkins != null)
+        footerBuffer.writeByte(vertexSkins != null)
+        footerBuffer.writeByte(hasSkeletalBones)
+        footerBuffer.writeShort(vertexXBuffer.position())
+        footerBuffer.writeShort(vertexYBuffer.position())
+        footerBuffer.writeShort(vertexZBuffer.position())
+        footerBuffer.writeShort(faceIndicesBuffer.position())
+        footerBuffer.writeShort(vertexSkinsBuffer.position())
+        buffers.forEach {
+            masterBuffer.writeBytes(it.toArray())
+        }
+        masterBuffer.writeByte(0xFF)
+        masterBuffer.writeByte(0xFE)
         return masterBuffer
     }
 
-    private fun encode4(): ByteBuf {
-        val masterBuffer = Unpooled.buffer(16 * 1024)
-        val faceMappingsBuffer = Unpooled.buffer(128)
-        val vertexFlagsBuffer = Unpooled.buffer(128)
-        val faceTypesBuffer = Unpooled.buffer(128)
-        val faceIndexTypesBuffer = Unpooled.buffer(128)
-        val facePrioritiesBuffer = Unpooled.buffer(128)
-        val faceSkinsBuffer = Unpooled.buffer(128)
-        val vertexSkinsBuffer = Unpooled.buffer(128)
-        val faceAlphasBuffer = Unpooled.buffer(128)
-        val faceIndicesBuffer = Unpooled.buffer(128)
-        val faceMaterialsBuffer = Unpooled.buffer(128)
-        val faceTexturesBuffer = Unpooled.buffer(128)
-        val faceColorsBuffer = Unpooled.buffer(128)
-        val vertexXBuffer = Unpooled.buffer(128)
-        val vertexYBuffer = Unpooled.buffer(128)
-        val vertexZBuffer = Unpooled.buffer(128)
-        val simpleTexturesBuffer = Unpooled.buffer(128)
-        val complexTexturesBuffer = Unpooled.buffer(128)
-        val textureScaleBuffer = Unpooled.buffer(128)
-        val textureRotationBuffer = Unpooled.buffer(128)
-        val textureDirectionBuffer = Unpooled.buffer(128)
-        val textureTranslationBuffer = Unpooled.buffer(128)
-        val particleEffectsBuffer = Unpooled.buffer(128)
-        val billboardsBuffer = Unpooled.buffer(128)
-        val footerBuffer = Unpooled.buffer(128)
+    private fun encode4(): Writer {
+        val masterBuffer = BufferWriter(16 * 1024)
+        val faceMappingsBuffer = BufferWriter(128)
+        val vertexFlagsBuffer = BufferWriter(128)
+        val faceTypesBuffer = BufferWriter(128)
+        val faceIndexTypesBuffer = BufferWriter(128)
+        val facePrioritiesBuffer = BufferWriter(128)
+        val faceSkinsBuffer = BufferWriter(128)
+        val vertexSkinsBuffer = BufferWriter(128)
+        val faceAlphasBuffer = BufferWriter(128)
+        val faceIndicesBuffer = BufferWriter(128)
+        val faceMaterialsBuffer = BufferWriter(128)
+        val faceTexturesBuffer = BufferWriter(128)
+        val faceColorsBuffer = BufferWriter(128)
+        val vertexXBuffer = BufferWriter(128)
+        val vertexYBuffer = BufferWriter(128)
+        val vertexZBuffer = BufferWriter(128)
+        val simpleTexturesBuffer = BufferWriter(128)
+        val complexTexturesBuffer = BufferWriter(128)
+        val textureScaleBuffer = BufferWriter(128)
+        val textureRotationBuffer = BufferWriter(128)
+        val textureDirectionBuffer = BufferWriter(128)
+        val textureTranslationBuffer = BufferWriter(128)
+        val particleEffectsBuffer = BufferWriter(128)
+        val billboardsBuffer = BufferWriter(128)
+        val footerBuffer = BufferWriter(128)
         val hasSkeletalBones = this.skeletalBones != null && this.skeletalScales != null
         val buffers =
             listOf(
@@ -2649,23 +2636,26 @@ data class Model(
         }
         footerBuffer.writeByte(flags)
         footerBuffer.writeByte(if (hasFacePriorities) -1 else renderPriority)
-        footerBuffer.writeBoolean(hasFaceAlpha)
-        footerBuffer.writeBoolean(hasFaceSkins)
-        footerBuffer.writeBoolean(hasFaceTextures)
-        footerBuffer.writeBoolean(hasVertexSkins)
-        footerBuffer.writeBoolean(hasSkeletalBones)
-        footerBuffer.writeShort(vertexXBuffer.writerIndex())
-        footerBuffer.writeShort(vertexYBuffer.writerIndex())
-        footerBuffer.writeShort(vertexZBuffer.writerIndex())
-        footerBuffer.writeShort(faceIndicesBuffer.writerIndex())
-        footerBuffer.writeShort(faceTexturesBuffer.writerIndex())
-        footerBuffer.writeShort(vertexSkinsBuffer.writerIndex())
-        buffers.forEach(masterBuffer::writeBytes)
-        masterBuffer.writeByte(0xFF).writeByte(0xFD)
+        footerBuffer.writeByte(hasFaceAlpha)
+        footerBuffer.writeByte(hasFaceSkins)
+        footerBuffer.writeByte(hasFaceTextures)
+        footerBuffer.writeByte(hasVertexSkins)
+        footerBuffer.writeByte(hasSkeletalBones)
+        footerBuffer.writeShort(vertexXBuffer.position())
+        footerBuffer.writeShort(vertexYBuffer.position())
+        footerBuffer.writeShort(vertexZBuffer.position())
+        footerBuffer.writeShort(faceIndicesBuffer.position())
+        footerBuffer.writeShort(faceTexturesBuffer.position())
+        footerBuffer.writeShort(vertexSkinsBuffer.position())
+        buffers.forEach {
+            masterBuffer.writeBytes(it.toArray())
+        }
+        masterBuffer.writeByte(0xFF)
+        masterBuffer.writeByte(0xFD)
         return masterBuffer
     }
 
-    private fun encodeBillboards(billboardsBuffer: ByteBuf) {
+    private fun encodeBillboards(billboardsBuffer: Writer) {
         val faceBillboards = requireNotNull(this.faceBillboards)
         billboardsBuffer.writeByte(faceBillboards.size)
         for (billboard in faceBillboards) {
@@ -2676,7 +2666,7 @@ data class Model(
         }
     }
 
-    private fun encodeParticles(particleEffectsBuffer: ByteBuf) {
+    private fun encodeParticles(particleEffectsBuffer: Writer) {
         val numEmitters = emitters?.size ?: 0
         particleEffectsBuffer.writeByte(numEmitters)
         if (numEmitters > 0) {
@@ -2700,11 +2690,11 @@ data class Model(
     }
 
     private fun encodeUnversionedTriangleInfo(
-        faceColoursBuf: ByteBuf,
-        faceTypesBuf: ByteBuf,
-        facePrioritiesBuf: ByteBuf,
-        faceAlphasBuf: ByteBuf,
-        faceSkinsBuf: ByteBuf,
+        faceColoursBuf: Writer,
+        faceTypesBuf: Writer,
+        facePrioritiesBuf: Writer,
+        faceAlphasBuf: Writer,
+        faceSkinsBuf: Writer,
     ) {
         if (triangleCount <= 0) return
         val triangleColors = requireNotNull(this.triangleColors)
@@ -2749,13 +2739,13 @@ data class Model(
         hasFaceAlpha: Boolean,
         hasFaceSkins: Boolean,
         hasFaceTextures: Boolean,
-        faceColorsBuffer: ByteBuf,
-        faceTypesBuffer: ByteBuf,
-        facePrioritiesBuffer: ByteBuf,
-        faceAlphasBuffer: ByteBuf,
-        faceSkinsBuffer: ByteBuf,
-        faceMaterialsBuffer: ByteBuf,
-        faceTexturesBuffer: ByteBuf,
+        faceColorsBuffer: Writer,
+        faceTypesBuffer: Writer,
+        facePrioritiesBuffer: Writer,
+        faceAlphasBuffer: Writer,
+        faceSkinsBuffer: Writer,
+        faceMaterialsBuffer: Writer,
+        faceTexturesBuffer: Writer,
     ) {
         if (triangleCount <= 0) return
         val triangleColors = requireNotNull(this.triangleColors)
@@ -2793,11 +2783,11 @@ data class Model(
 
     private fun encodeVertexPositions(
         hasSkeletalBones: Boolean,
-        vertexXBuffer: ByteBuf,
-        vertexYBuffer: ByteBuf,
-        vertexZBuffer: ByteBuf,
-        vertexFlagsBuffer: ByteBuf,
-        vertexSkinsBuffer: ByteBuf,
+        vertexXBuffer: Writer,
+        vertexYBuffer: Writer,
+        vertexZBuffer: Writer,
+        vertexFlagsBuffer: Writer,
+        vertexSkinsBuffer: Writer,
     ) {
         if (vertexCount <= 0) return
         val vertexPositionsX = requireNotNull(this.vertexPositionsX)
@@ -2853,7 +2843,7 @@ data class Model(
         }
     }
 
-    private fun encodeUnversionedTriangles(texturesBuf: ByteBuf) {
+    private fun encodeUnversionedTriangles(texturesBuf: Writer) {
         if (textureTriangleCount <= 0) return
         val textureTriangleVertex1 = requireNotNull(this.textureTriangleVertex1)
         val textureTriangleVertex2 = requireNotNull(this.textureTriangleVertex2)
@@ -2866,12 +2856,12 @@ data class Model(
     }
 
     private fun encodeVersionedTriangles(
-        simple: ByteBuf,
-        complex: ByteBuf,
-        scale: ByteBuf,
-        rotation: ByteBuf,
-        direction: ByteBuf,
-        translation: ByteBuf,
+        simple: Writer,
+        complex: Writer,
+        scale: Writer,
+        rotation: Writer,
+        direction: Writer,
+        translation: Writer,
     ) {
         if (textureTriangleCount <= 0) return
         val textureRenderTypes = requireNotNull(this.textureRenderTypes)
@@ -2991,10 +2981,7 @@ data class Model(
         }
     }
 
-    private fun encodeVertices(
-        ibuffer: ByteBuf,
-        tbuffer: ByteBuf,
-    ) {
+    private fun encodeVertices(ibuffer: Writer, tbuffer: Writer) {
         if (triangleCount <= 0) return
         val triangleVertex1 = requireNotNull(this.triangleVertex1)
         val triangleVertex2 = requireNotNull(this.triangleVertex2)
@@ -3367,12 +3354,12 @@ data class Model(
 
         fun decode(
             id: Int,
-            buf: ByteBuf,
+            data: ByteArray,
             vararg options: MeshDecodingOption,
         ): Model {
             val model = Model(id)
             try {
-                model.decode(buf, *options)
+                model.decode(data, *options)
             } catch (e: Exception) {
                 println(model.version)
                 println(model)

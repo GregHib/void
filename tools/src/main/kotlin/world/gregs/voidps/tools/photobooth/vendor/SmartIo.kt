@@ -1,17 +1,18 @@
 package world.gregs.voidps.tools.photobooth.vendor
 
-import io.netty.buffer.ByteBuf
+import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.buffer.write.Writer
 
-fun ByteBuf.gSmart1or2s(): Int {
-    val peek = getUnsignedByte(readerIndex()).toInt()
+fun Reader.gSmart1or2s(): Int {
+    val peek = peek() and 0xFF
     return if (peek < 128) {
-        readUnsignedByte().toInt() - 64
+        readUnsignedByte() - 64
     } else {
         readUnsignedShort() - 49152
     }
 }
 
-fun ByteBuf.pSmart1or2s(value: Int) {
+fun Writer.pSmart1or2s(value: Int) {
     require(value in -16384..16383) {
         "smart value out of range: $value"
     }

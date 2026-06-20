@@ -1,6 +1,5 @@
 package world.gregs.voidps.tools.photobooth.render
 
-import io.netty.buffer.Unpooled
 import world.gregs.voidps.tools.photobooth.vendor.MeshDecodingOption
 import world.gregs.voidps.tools.photobooth.vendor.Model
 
@@ -18,7 +17,7 @@ class ModelComposer(private val source: ModelDataSource) {
         if (modelId < 0) return null
         val data = source.modelData(modelId) ?: return null
         if (data.isEmpty()) return null
-        return Model.decode(modelId, Unpooled.wrappedBuffer(data), *options)
+        return Model.decode(modelId, data, *options)
     }
 
     /**
