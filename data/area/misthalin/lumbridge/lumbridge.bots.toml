@@ -130,7 +130,7 @@ produces = [
 [lumbridge_pickpocketing]
 template = "pickpocketting_template"
 capacity = 2
-fields = { location = "lumbridge_thieving_area", npc = "lumbridge_man*,lumbridge_woman*" }
+fields = { location = "lumbridge_thieving_area", npc = "lumbridge_man*,lumbridge_woman*", min_hp = 20 }
 requires = [
     { skill = { id = "thieving", min = 1, max = 10 } }
 ]
