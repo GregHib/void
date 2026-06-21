@@ -10,6 +10,7 @@
 scripts.txt
 /data/wildcards.txt
 /data/.temp/*
+/data/avatars/*
 
 # tools
 *.jar

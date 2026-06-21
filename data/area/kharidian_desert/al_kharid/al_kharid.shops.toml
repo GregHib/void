@@ -162,6 +162,7 @@ defaults = [
 id = 551
 defaults = [
     { id = "magic_skullball", amount = 10 },
+    { id = "dice_bag", amount = 10 },
     { id = "ring_of_seeking_hide", amount = 10 },
     { id = "ring_of_seeking_seek", amount = 10 },
     { id = "ring_of_seeking_both", amount = 10 },

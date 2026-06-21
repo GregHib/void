@@ -5,3 +5,7 @@ format = "int"
 [bank_spaces_used_member]
 id = 192
 format = "int"
+
+[bank_search_reset]
+id = 190
+format = "int"

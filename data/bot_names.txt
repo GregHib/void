@@ -6,7 +6,7 @@ Abrams
 AbyssAce
 AccelAce
 Accident
-AccurateA
+Accurate
 AceAdam
 ActivePass
 ActualAce
@@ -20,7 +20,7 @@ Aeon
 Aerodactyl
 Aether
 Afiko
-AfternoonA
+Afternoon
 Agent Zero
 AgentZero
 AgileeAce
@@ -54,26 +54,26 @@ Amber Light
 Amethyst
 Amit
 Amon
-AmplifiedA
+Amplified
 Amy
-AnacondaA
+Anaconda
 Anais
 AncientMod
 Anezka
 Angel
 Angel Wings
-AngelfishA
+Angelfish
 AngoraAce
 AngryAnvil
-AngulatedA
+Angulated
 AnkyloAce
-AnnihilateA
-AnniversarA
-AnonymousA
+Annihilate
+Anniversar
+Anonymous
 Anselm
 AntFly
 Anzih
-ApatosaurA
+Apatosaur
 ApexHunter
 Apollo
 Appa
@@ -90,7 +90,7 @@ ArcAngel
 Arcane
 Arcanine
 Arche
-ArcheoA
+Archeo
 Archer
 Archer Aim
 Archer Mark
@@ -111,7 +111,7 @@ Aroyo
 Arpy
 Arr
 ArrowStorm
-ArsonistA
+Arsonist
 Arthur
 Articuno
 Artillery
@@ -131,7 +131,7 @@ Astro Boy
 Astrofire
 Athena
 Auckes
-AudaciousA
+Audacious
 AugustAce
 Aura
 Aureus
@@ -163,7 +163,7 @@ BalancedTip
 Balin
 Ballet
 BananaBob
-BananasB
+Bananas
 Bandit Mask
 Bao
 Barbarian
@@ -175,7 +175,7 @@ Bark beetle
 BaronBob
 Baroness
 BarraBob
-BarryonixB
+Barryonix
 Bartok
 BasalBill
 Basalt
@@ -185,7 +185,7 @@ BasicBob
 BasiclyBob
 Basilisk Eye
 BaskinShrk
-BasmatiB
+Basmati
 BasssBob
 BastionBoss
 Battle Axe
@@ -232,7 +232,7 @@ BinaryBeast
 BioChem
 Birdie
 Birthday99
-BiryaniB
+Biryani
 BisqueBob
 Black Sun
 BlackBerry
@@ -253,7 +253,7 @@ Blessed
 BlessedDmnd
 BlistorBlue
 BlitzKrieg
-BlockheadB
+Blockhead
 Blonde
 Blood Moon
 Blood Wings
@@ -263,7 +263,7 @@ Blue Falcon
 BlueBarry
 BlueBird99
 Blueberry
-BluegillB
+Bluegill
 BluffBob
 BluntBlade
 Bo Staff
@@ -278,8 +278,8 @@ BoltBrian
 BombSquad
 Bomber Run
 Bonaro
-BoneheadB
-BonfireB
+Bonehead
+Bonfire
 BonkersBen
 BonkersBob
 Boom
@@ -291,7 +291,7 @@ Boromir
 Bosco
 BottomBob
 BoulengBoul
-BoulevardB
+Boulevard
 BouncyRock
 BoundUnbound
 BowMaster
@@ -300,8 +300,8 @@ BowWow
 BowfinBob
 Bowie Knife
 BoxTurtle
-BoysenB
-BrachioB
+Boysen
+Brachio
 Bradley
 Brady
 BradyBrady
@@ -327,7 +327,7 @@ BrittleMall
 Broadsword
 BrokenHero
 BrokenWheel
-BrontoB
+Bronto
 Bronze Medal
 BrothBob
 Brouhaha
@@ -367,7 +367,7 @@ Byte Boss
 ByteBandit
 CPU King
 Cacl
-CadenceC
+Cadence
 Caedes
 Cafi
 CaimanGator
@@ -377,10 +377,10 @@ CaliRoll
 Calico
 CalicoKid
 CalmStorm
-CamShaftC
+CamShaft
 CamelCarl
 CanTorGiant
-CanaryC
+Canary
 Cancer Crab
 Candle
 CannonKing
@@ -390,7 +390,7 @@ Canyon
 CanyonCarl
 Capricorn
 Captain Hook
-CaptainC
+Captain
 CarchCarl
 CarettCaret
 CarnoCarl
@@ -398,14 +398,14 @@ Carp
 CarpCarl
 Carpet
 CaseCarl
-CashmerC
+Cashmer
 Casual
 CasualCarl
 Cat Owl
 CatNip
 Caterpie
 Caterpillar
-CatfishC
+Catfish
 Catgator
 Cavalry Rush
 Cavil
@@ -417,13 +417,13 @@ Celestial
 Centaur Run
 CenterCore
 CenteredOff
-CentralC
+Central
 Centurion
 Cerberus Dog
 Chain Whip
 ChainBreaker
 Chan
-ChancellorC
+Chancellor
 Chansey
 Chaos
 ChaosOrder
@@ -435,7 +435,7 @@ CharmedCurs
 Charmeleon
 Charmy
 ChasmCharlie
-ChassisC
+Chassis
 CheatEngine
 CheetahSloth
 CheloChelyon
@@ -456,7 +456,7 @@ ChimeraCore
 Chipette
 ChopperChad
 Chorab
-ChowderC
+Chowder
 Chris
 Chronos
 ChryChrys
@@ -467,8 +467,8 @@ CinderSoul
 CipherCode
 Cipmunk
 CircleLine
-CirclingC
-CircuitC
+Circling
+Circuit
 Cirtus
 CitadelCore
 Clanker
@@ -480,7 +480,7 @@ ClearCarl
 Cleaver Chop
 Clefable
 Clefairy
-ClementyneC
+Clementyne
 ClemmClemm
 Cleric Heal
 ClickHeads
@@ -489,15 +489,15 @@ CliffCarl
 Clonas
 Cloud
 Cloud Nine
-CloudArchC
-CloudCompC
+CloudArch
+CloudComp
 CloudNine
 ClownCarl
 Cloyster
 ClutchKing
 Cobalt Blue
 CobraStrike
-CockatooC
+Cockatoo
 CodCarl
 Code Master
 CodeCrusher
@@ -505,17 +505,17 @@ ColdFeet
 Collin
 Colonel Rank
 ColonelCarl
-ColossusC
+Colossus
 Comet Tail
-CommanderC
+Commander
 CompileCarl
 Complain
 CompletelyNo
 CompyCarl
-ConcreteC
+Concrete
 Conduit
-ConquerorC
-ConsommeC
+Conqueror
+Consomme
 ControlFreak
 CooCooKid
 CoolBeans
@@ -531,8 +531,8 @@ CornishRex
 Corporal Hit
 Corsair Sail
 CoryhtoCory
-CourageC
-CouscousC
+Courage
+Couscous
 CovertCore
 CozyCharlie
 CrackCarl
@@ -545,18 +545,18 @@ CrawlSprint
 Crazy
 CrazyCarl
 CreatureFeat
-CreviceC
+Crevice
 Crimson Tide
 CrimsonWolf
 Crinfrid
-CriticalC
+Critical
 CrocodileD
 CrookedStrt
 CrossHair
 CrossbowKid
 CrowLook
 CrucialCal
-CrusherC
+Crusher
 Crutek
 Cruz
 Cry
@@ -565,7 +565,7 @@ Crypton
 CrystalClear
 CtrlAltWin
 Cubone
-CucumberC
+Cucumber
 Cue
 CuoraCuora
 CurrentCarl
@@ -582,7 +582,7 @@ Cyber Wolf
 CyberNinja
 CyberPunk
 CyclemCycle
-CycloneC
+Cyclone
 Cyclops Eye
 Cynthia
 DBAdmin
@@ -619,8 +619,8 @@ Davina
 Dawn
 DawnDan
 DayOff
-DayOneD
-DazzlingD
+DayOne
+Dazzling
 Dead Eye
 DeadAlive
 DeadCenter
@@ -629,9 +629,9 @@ Death Star
 DeathDealer
 Debate
 DebugDan
-DecemberD
+December
 Decimation
-DecimatorD
+Decimator
 DeepDan
 DefaultDan
 DefenderDX
@@ -647,7 +647,7 @@ Demeter
 DemoDay
 DemoDisc
 DemoExpert
-DemolisherD
+Demolisher
 Demolition
 Demon
 Demon Spawn
@@ -662,7 +662,7 @@ Desafe
 DesertTort
 DesktopDan
 Destroyed
-DestroyerD
+Destroyer
 DesyncDave
 Detective Q
 DevOpsDave
@@ -677,9 +677,9 @@ DigitalDoom
 Diglett
 DimBright
 DimDave
-DinosaurD
+Dinosaur
 DinosaurKom
-DiplodocusD
+Diplodocus
 DipsoDipso
 Dire
 DirectDan
@@ -695,7 +695,7 @@ Dizzee
 Dodrio
 Doduo
 DolphinDan
-DominatorD
+Dominator
 Donza
 Doorman
 DopeDan
@@ -754,15 +754,15 @@ EarlyAcces
 EarlyBird
 Earth
 EasyEd
-EasygoingE
+Easygoing
 Eceth
 Echidna
 Echo
 Eclipse Day
 EdgeNode
 Edgecrusher
-EdmontoE
-EdmontoniE
+Edmonto
+Edmontoni
 Eeli
 Eevee
 Eggman
@@ -778,7 +778,7 @@ ElbowLeech
 Elder
 ElderBerry
 Electabuzz
-ElectricE
+Electric
 Electrode
 Elendil
 ElephantKoi
@@ -806,7 +806,7 @@ EmptySpark
 Enaka
 EndGame99
 EnergeticL
-EnergizedE
+Energized
 Engineer Fix
 Enigma
 EnigmaEdge
@@ -814,17 +814,17 @@ Envy
 Eomund
 Eothain
 Eowyn
-EpsilonE
-EradicatorE
+Epsilon
+Eradicator
 Erasold
 Erehk
 Erste
 Erulasteil
-EscarpmentE
+Escarpment
 Eskem
 Espeon
 EssenceEd
-EssentialE
+Essential
 Eternal
 Ethereal
 Eural
@@ -833,11 +833,11 @@ EvenUneven
 EveningEd
 Evu
 ExactEd
-ExecutorE
+Executor
 Exeggcute
 Exeggutor
 ExploitLord
-ExplosiveE
+Explosive
 EzClap
 Ezpz
 Ezra
@@ -861,17 +861,17 @@ Fathey
 Faun
 FearlessFred
 Fearow
-FebruaryF
+February
 FeebleMighty
 FeelsBad
 Felicia
 Felix
 Fencer Parry
 Feran
-FettucineF
+Fettucine
 FieldFare
 FieryIce
-FiestaF
+Fiesta
 FigFrank
 Fighter Jet
 FighterSwing
@@ -891,11 +891,11 @@ Fisher Hook
 Fisherman
 Fishie
 Fishopotamus
-FissureF
+Fissure
 FiveFinn
 FiveSeven
 FiveThree
-FlaatbackF
+Flaatback
 Flail Spin
 FlailFury
 Flakey
@@ -921,15 +921,15 @@ FlyFrank
 Flying Bison
 FocusFrank
 Fog Horn
-FogCompF
+FogComp
 FoolFrank
 FootLong
 Foox
 ForcefulWeek
 ForestFinn
 Forie
-ForstensF
-FortressF
+Forstens
+Fortress
 FortuneUnf
 FosseFrank
 FounderFred
@@ -950,8 +950,8 @@ Frankie
 Fraser
 FreeToPlay
 FreeTrapped
-FreebieF
-FreewayF
+Freebie
+Freeway
 FreezeFrame
 FreshPrince
 FridayFun
@@ -960,7 +960,7 @@ Friuti
 Frodo
 FrogLizard
 FrogTurtle
-FrontendF
+Frontend
 Frost
 Frost Bite
 FrostBite
@@ -970,10 +970,10 @@ FrostyFeet
 FrozenFood
 Fukiya Dart
 FullBlank
-FullStackF
+FullStack
 FullTower
 FullVoid
-FundamentalF
+Fundamental
 FunnelCloud
 FurBall
 FurryFred
@@ -1010,7 +1010,7 @@ GeckoSnake
 Geist
 Gemini Twin
 General Star
-GeneralG
+General
 Gengar
 Genna
 GeoGeoemy
@@ -1060,7 +1060,7 @@ Gold
 Gold Rush
 GoldFinch
 Goldeen
-GoldfishG
+Goldfish
 Golduck
 Golem
 GoliathGrim
@@ -1126,9 +1126,9 @@ Gyarados
 Gyatso
 Hack Smith
 HackerHal
-HaddockH
+Haddock
 Hades
-HadrosaurH
+Hadrosaur
 Haggard
 Hail Mary
 Halberd Chop
@@ -1159,7 +1159,7 @@ Hawk
 Hawk Eye
 HawkVision
 Hawkmoth
-HawksbillH
+Hawksbill
 Hawky
 HaxorMan
 Haze
@@ -1184,8 +1184,8 @@ Hidden King
 HiddenNeck
 HierHiero
 HighPingGod
-HighlandH
-HighwayH
+Highland
+Highway
 HillHank
 Hippo cow
 Hippy
@@ -1211,11 +1211,11 @@ HomopHomo2
 HomopusHomo
 HonestHank
 HoneyDew99
-HootnannyH
+Hootnanny
 Hopium
 Hoplite Wall
 Horsea
-HorsfieldsH
+Horsfields
 HotDog99
 HotHank
 Hotkeys
@@ -1231,7 +1231,7 @@ HumpDay
 Hunter Trap
 HunterHank
 Huntsman
-HurricaneH
+Hurricane
 Hydra Head
 HydraHead
 HyperDrive
@@ -1250,17 +1250,17 @@ Iceberg
 IgnitePro
 Igor
 IguanaDrgn
-IguanadonI
+Iguanadon
 IllMoves
 Ilona
 Immola
 ImmortalDie
 ImmortalMan
-ImperialI
+Imperial
 ImpotentPot
 ImprssImprs
 InOut99
-IncognitoI
+Incognito
 IndiIndote
 IndianStar
 Infantry
@@ -1271,7 +1271,7 @@ InsaneIan
 Inspector G
 InstantIan
 InvaderIvan
-InvincibleI
+Invincible
 Iroh
 Iron Fist
 Iron Will
@@ -1297,7 +1297,7 @@ Jake
 Jamboree
 Jan
 JanuaryJim
-JasmineJ
+Jasmine
 Jawn
 Jaws
 Jay
@@ -1346,7 +1346,7 @@ Jos
 Jose
 JoyStickJoe
 Judas
-JuggernautJ
+Juggernaut
 Juked
 JulyJim
 JumpySeat
@@ -1415,7 +1415,7 @@ Kirito
 KittyKat
 Kjell
 Klas
-KleinmanK
+Kleinman
 Klop
 KnifeMaster
 Knight
@@ -1462,7 +1462,7 @@ LaidBackLou
 LambdaLion
 Lambert
 Lament
-LampeoL
+Lampeo
 Lance Charge
 LanceLord
 Lane
@@ -1498,16 +1498,16 @@ LethargeticE
 Letho
 LevelLuke
 LevelUnlevl
-LeviathanL
+Leviathan
 Liam
 Libra Scale
 Lickitung
 Light
 LightDark99
-LightningL
+Lightning
 Lily
 LineCircle
-LinguineL
+Linguine
 Linus
 Lionfish
 LiteralLee
@@ -1551,13 +1551,13 @@ Luiqis
 Luiz
 Luke
 Lukey
-LuminousL
+Luminous
 Luna
 Lunar Phase
 Lynx Titan
 Lyric
 Macao
-MacaroniM
+Macaroni
 MacawMax
 Macaws
 Mace Swing
@@ -1567,7 +1567,7 @@ Machamp
 Machete Hack
 Machoke
 Machop
-MackerelM
+Mackerel
 MadMike
 Maddie
 MadnessSane
@@ -1598,7 +1598,7 @@ MalaMalacl
 Malget
 MalleableU
 MambaBlack
-MandarinM
+Mandarin
 Mankey
 Manks
 ManoManour
@@ -1613,14 +1613,14 @@ MarauderM
 MarchMad
 Marcus
 MargMargin
-MarginatdM
+Marginatd
 Margot
 Maria
 MarkmanMax
 Marksman Hit
 Marowak
 Marshal Law
-MarshalM
+Marshal
 MasterMax
 MataMata
 Mathas
@@ -1640,14 +1640,14 @@ MaybeSo
 MaybeYes
 McCaine
 McGinnis
-MeadowM
-MeasureM
+Meadow
+Measure
 Medic Bag
 Medusa Gaze
 Mega
 MegaOof
 MegaPunch
-MegalodonM
+Megalodon
 MelanMelano
 Melc
 Melee
@@ -1674,10 +1674,10 @@ Mew
 Mewtwo
 MicroATX
 MicroRaptor
-MidTierM
+MidTier
 MidTower
 MiddleWeek
-MidnightM
+Midnight
 Mighty
 MightyFeeble
 Miles
@@ -1723,15 +1723,15 @@ Morax
 MoreMornie
 Morena
 Moril
-MorningM
+Morning
 MortalDiv
 MortarMan
 MotorMouth
 Mottle
 MoundMike
-MountainM
+Mountain
 Mourn
-MourningM
+Mourning
 MouseAccel
 MouseMatt
 MovingStill
@@ -1741,7 +1741,7 @@ MuMaster
 MudTurtle
 Muk
 MummyAlive
-MunchkinM
+Munchkin
 MuskTurtle
 MuskieMax
 MustardMan
@@ -1772,7 +1772,7 @@ Neon
 Neon Dash
 Neon Knight
 NerfThis
-NetAdminN
+NetAdmin
 NetCaster
 NetNinja
 NeverYes
@@ -1811,7 +1811,7 @@ NoSkinNed
 NoYes99
 NobleNed
 Noch
-NodosaursN
+Nodosaurs
 NonneOne
 Noob
 NoodleNed
@@ -1822,11 +1822,11 @@ NotABot123
 NotAbsolute
 Nova Blast
 NovaBlast
-NovemberN
+November
 NowThen
 NuNinja
 NuchaNucha
-NucleusN
+Nucleus
 Nuke
 NullFilled
 NullKnight
@@ -1836,10 +1836,10 @@ NuttyNed
 OGPlayer
 OMEGALUL
 Oathkeeper
-ObliviatorO
+Obliviator
 Oceanic
 Oceanus
-OctoberO
+October
 Octopus
 OcultaOcul
 Oddish
@@ -1872,10 +1872,10 @@ Onyx Black
 OofSize
 OpPleaseNo
 OpenOscar
-OpeningO
+Opening
 OrangeOscar
 Orbit King
-OrbitingO
+Orbiting
 Orc Smash
 OrderChaos
 Origami
@@ -1895,11 +1895,11 @@ OverPower
 OwOSniper
 OwlWatch
 PachyPete
-PachycephP
+Pachyceph
 Pack Leader
 PackerPatr
-PaddlefishP
-PaellaP
+Paddlefish
+Paella
 Paid
 Paige
 Pain Train
@@ -1915,17 +1915,17 @@ Papu
 ParaPete
 Parab
 Paradox
-ParakeetP
+Parakeet
 Paras
-ParasaurP
+Parasaur
 Parasect
 ParkwayPat
 ParrotBeak
 ParrotPete
 PartiallyYes
-PartridgeP
+Partridge
 PartyTime
-PashmineP
+Pashmine
 PassiveActv
 PastFutur
 Pasta
@@ -1962,7 +1962,7 @@ Phantom Pain
 PhantomFox
 PhantomPhan
 Phaser
-PheasantP
+Pheasant
 PhiPhantom
 Philippa
 PhoPhil
@@ -2012,7 +2012,6 @@ PluggedIn
 PlumPerfect
 PlumbPete
 PlumbTilted
-Plunderer
 PlundererP
 PocketLoss
 PogChamp99
@@ -2034,13 +2033,13 @@ PowerFist
 PowerStrife
 PoweredUp
 PowerlessPow
-PracticlyP
+Practicly
 Praetorian
-PrairieP
-PranksterP
-PreciseP
-PredatorP
-PrehistorP
+Prairie
+Prankster
+Precise
+Predator
+Prehistor
 Prie
 PrimaryPat
 PrimePete
@@ -2059,7 +2058,7 @@ Prod
 ProductOwn
 ProfaneSacr
 Professor
-ProfoundP
+Profound
 Promiz
 PropPro
 ProtectorPro
@@ -2069,7 +2068,7 @@ PsammPsamm
 PseuPseudem
 PsiPower
 Psyduck
-PtarmiganP
+Ptarmigan
 PteroPete
 Pudao Chop
 PuffinSeal
@@ -2104,7 +2103,7 @@ QuickScope
 Quiet
 QuietLion
 Quinn
-QuinoaQ
+Quinoa
 Quint
 Quintis
 Quteth
@@ -2168,9 +2167,9 @@ Rem
 RenderRon
 RespawnKing
 RespawnNow
-ReticleR
+Reticle
 RetroRon
-RevolvingR
+Revolving
 RevvedUp
 Rew
 RhinoRhino
@@ -2184,7 +2183,7 @@ Rido
 RifleRanger
 Rifleman
 RiftRick
-RigatoniR
+Rigatoni
 RightLeft99
 RigidFlexy
 RigidSoft
@@ -2194,7 +2193,7 @@ RipperRyan
 RippleRick
 Risen
 RiskSecure
-RisottoR
+Risotto
 RoadRage
 Roan
 RobinRed
@@ -2215,7 +2214,7 @@ Rooda
 Rope Dart
 RopeDancer
 Rose
-RotatingR
+Rotating
 RoughPolish
 RoundSquare
 Rowan
@@ -2274,13 +2273,13 @@ Sapper Mine
 SapperSam
 SapphireSoul
 Saruman
-SashimiS
+Sashimi
 SatinySam
 SaturdaySam
 Sauade
 Sauron
-SauropeltaS
-SavannaS
+Sauropelta
+Savanna
 Sawyer
 ScaldingSam
 ScaleSteve
@@ -2288,9 +2287,9 @@ Scarak
 ScaredBear
 ScarelyNo
 Scarlett
-ScavengerS
+Scavenger
 Scimitar Arc
-ScimitarS
+Scimitar
 ScopeDogg
 ScopeKing
 ScorchMark
@@ -2342,7 +2341,6 @@ Shadow
 Shadow Fox
 ShadowBlade
 ShadowOps
-ShaftedSam
 ShakyStable
 ShakySteady
 Shaman Mask
@@ -2361,10 +2359,10 @@ Shelob
 Sheng Biao
 Sheriff Star
 ShieldHero
-ShifterS
-ShimmerS
-ShindigS
-ShiningS
+Shifter
+Shimmer
+Shindig
+Shining
 ShinyDull
 Shir
 Shiv
@@ -2462,14 +2460,14 @@ Sob
 SobaSteve
 SoftHammer
 SoftHard
-SoftShellS
+SoftShell
 Softy
 Sokka
 Solar
 Solar Flare
 SolitaSolit
 Solitude
-SolutionS
+Solution
 SometimesNo
 Sonic
 SonicBoom
@@ -2483,11 +2481,11 @@ Soulless
 SoupSam
 Sozin
 Space Cadet
-SpaghettiS
+Spaghetti
 Spark
 SparkPlug
 SparkleKid
-SparrowS
+Sparrow
 Spartan 300
 Spat
 Spear Thrust
@@ -2505,14 +2503,14 @@ SpicyTuna
 Spider Bat
 SpiderTort
 Spiderfly
-SpinningS
-SpinosarusS
+Spinning
+Spinosarus
 SpinyShell
 SpiritSpike
 SpiritSpook
 SplitSteve
-SplitterS
-SpoonfishS
+Splitter
+Spoonfish
 SpotStripe
 SprintCrawl
 SprintStan
@@ -2536,13 +2534,13 @@ Star
 Star Gazer
 Star Lord
 StarStar
-StarlingS
+Starling
 Starmie
 StartPoint
 StarterStan
 Staryu
 StaticDynmc
-StaticS
+Static
 SteadyShake
 SteadyUnstdy
 Stealth Fly
@@ -2575,7 +2573,7 @@ StormRider
 Stormy
 StraightBent
 StraightLean
-StraightS
+Straight
 StraightTwst
 StrawBerry
 StreetKing
@@ -2584,12 +2582,12 @@ StrongWeak
 Stuey
 SturgenSam
 StutterStep
-StygimolchS
+Stygimolch
 Styloire
 StylysSteve
-StyracoS
+Styraco
 Subtle
-SuchomimusS
+Suchomimus
 Suhly
 Suki
 SulcataSul
@@ -2602,21 +2600,21 @@ SunriseSam
 SunsetStan
 SuperSlam
 Support Unit
-SupremeS
+Supreme
 SurfaceSam
 Surge
 SurgeSteve
 SushiSam
 Suspect
 Sven
-SwallowS
+Swallow
 Swan
 SwiftSteve
 SwiftStrike
 SwirlingSam
 SwordSaint
 Swordsman
-SwordtailS
+Swordtail
 Syndicate
 SyntaxSlayer
 SysAdminSam
@@ -2631,7 +2629,7 @@ TallAnt
 Talon
 TameWild
 Tangela
-TangerinT
+Tangerin
 Tank Shell
 Tanto Blade
 Tanto Sharp
@@ -2659,7 +2657,7 @@ TenuiTenui
 Teps
 Teran
 Term
-TerminatorT
+Terminator
 TerraTerrp
 TerrapinTur
 Tessa
@@ -2671,7 +2669,7 @@ TexasTort
 ThenNow
 Theoden
 ThereHere
-TherizinoT
+Therizino
 ThetaThree
 Theump
 ThickSkull
@@ -2684,7 +2682,7 @@ ThreatPeace
 ThreeFive
 ThreeOne
 ThreeTom
-ThrottleT
+Throttle
 Thru
 Thulth
 Thump
@@ -2692,7 +2690,6 @@ Thunder
 Thunder God
 ThunderHead
 ThunderStrix
-ThunderT
 ThursdayT
 TiedLoose
 Tiff
@@ -2729,7 +2726,6 @@ Toph
 Topher
 TorchBearer
 Tornado
-TornadoT
 TotallyNot
 TotallyReal
 TouchPadTom
@@ -2738,7 +2734,7 @@ TowerTom
 Toxic Venom
 ToyboyTom
 TrachemTrac
-TrackBallT
+TrackBall
 TrackerTom
 TransMaster
 TrappedFree
@@ -2754,7 +2750,7 @@ Trevor
 TrialTime
 TriceraTop
 TrickShot99
-TricksterT
+Trickster
 TridentKing
 TrimTrimacu
 Triss
@@ -2793,10 +2789,10 @@ TwisterTed
 TwoFour
 TwoTim
 TwoZero
-TyphoonT
+Typhoon
 UdonUlf
 Uiua
-UltimateU
+Ultimate
 UltraKick
 UltraOof
 Umar
@@ -2821,14 +2817,14 @@ UplandUlf
 UpperDeck
 Uraby
 Usagi
-UtahraptrU
+Utahraptr
 Uther
 UwUWarrior
 VacayVibes
 Vaht
 Valar
 Valette
-ValiantV
+Valiant
 Valkyrie
 ValleyVic
 Valor
@@ -2838,8 +2834,8 @@ Vaporeon
 Varyn
 Vasco
 Vector
-VelociRapV
-VelocityV
+VelociRap
+Velocity
 VelutiVelu
 VelvetVic
 Venator
@@ -2847,7 +2843,7 @@ VenomStrike
 Venomoth
 Venonat
 Venusaur
-VersionV
+Version
 Ves
 VetVince
 VibeCheck
@@ -2865,7 +2861,7 @@ ViperVenom
 Virgo Pure
 Virtual Pro
 VirtualVoid
-VirtuallyV
+Virtually
 Viscous
 VitalVince
 Void Hunter
@@ -2873,7 +2869,7 @@ VoidFull
 VoidVader
 VoidVince
 VoidWalker
-VoltageV
+Voltage
 Voltorb
 Vortex
 VortexVic
@@ -2903,7 +2899,7 @@ WarpDrive
 Wartortle
 Water
 WaterMelon
-WaterfallW
+Waterfall
 Waves
 WaveyWill
 Wazzy
@@ -2945,7 +2941,7 @@ Wild Card
 WildCard99
 WildRice
 WildTame
-WildfireW
+Wildfire
 Willy
 Wilt
 Wind
@@ -2962,7 +2958,7 @@ Wobsy
 WolfPack99
 WolfmanWolf
 WoodFrog
-WoodlandW
+Woodland
 Woof
 WorkDay
 Wraith
@@ -2987,7 +2983,7 @@ Yarpen
 YeetMaster
 YellowBelly
 YellowFoot
-YellowtailY
+Yellowtail
 Yelp
 Yelpsie
 Yenn
@@ -3005,7 +3001,7 @@ YudonYuri
 Yumi Bow
 Yuno
 Yurcher
-YutytyrannY
+Yutytyrann
 Zac
 Zach
 Zamata
@@ -3043,7 +3039,7 @@ Zombie Brain
 ZombieAlive
 ZoomMaster
 Zubat
-ZucchiniZ
+Zucchini
 Zuko
 Zulu
 Zurm

@@ -36,6 +36,7 @@ class HerbCleaningTest : WorldTest() {
     fun `Clean grimy herb`() = herbs.map { herb ->
         dynamicTest("Clean ${herb.toSentenceCase()}") {
             val player = createPlayer()
+            player["druidic_ritual"] = "completed"
             player.levels.set(Skill.Herblore, 99)
             player.inventory.add(herb)
 

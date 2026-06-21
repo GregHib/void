@@ -2,67 +2,84 @@
 row_id = "item"
 level = "int"
 xp = "int"
+name = "string"
 
 [.grimy_guam]
-level = 1
+level = 3
 xp = 25
+name = "guam leaf"
 
 [.grimy_marrentill]
 level = 9
 xp = 50
+name = "marrentill"
 
 [.grimy_tarromin]
 level = 5
 xp = 38
+name = "tarromin"
 
 [.grimy_harralander]
 level = 20
 xp = 63
+name = "harralander"
 
 [.grimy_ranarr]
 level = 25
 xp = 75
+name = "ranarr weed"
 
 [.grimy_irit]
 level = 40
 xp = 88
+name = "irit leaf"
 
 [.grimy_avantoe]
 level = 48
 xp = 100
+name = "avantoe"
 
 [.grimy_kwuarm]
 level = 54
 xp = 113
+name = "kwuarm"
 
 [.grimy_cadantine]
 level = 65
 xp = 125
+name = "cadantine"
 
 [.grimy_dwarf_weed]
 level = 70
 xp = 138
+name = "dwarf weed"
 
 [.grimy_torstol]
 level = 75
 xp = 150
+name = "torstol"
 
 [.grimy_lantadyme]
 level = 67
 xp = 131
+name = "lantadyme"
 
 [.grimy_toadflax]
 level = 30
 xp = 80
+name = "toadflax"
 
 [.grimy_snapdragon]
 level = 59
 xp = 118
+name = "snapdragon"
 
 [.grimy_wergali]
 level = 41
 xp = 95
+name = "wergali"
 
 [.grimy_spirit_weed]
 level = 35
 xp = 78
+name = "spirit weed"

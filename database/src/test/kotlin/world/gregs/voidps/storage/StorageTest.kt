@@ -103,6 +103,31 @@ abstract class StorageTest {
     }
 
     @Test
+    fun `Loaded list variables are mutable`() {
+        storage.save(
+            listOf(
+                save.copy(
+                    variables = mapOf(
+                        "skill_stat_flash" to emptyList<String>(),
+                        "unlocked_music_0" to listOf("scape_summon"),
+                        "favourite_numbers" to listOf(11, 42),
+                    ),
+                ),
+            ),
+        )
+
+        val account = assertNotNull(storage.load(save.name))
+
+        // Regression: empty string-lists used to load as a read-only EmptyList, crashing addVarbit().
+        @Suppress("UNCHECKED_CAST")
+        (account.variables["skill_stat_flash"] as MutableList<Any>).add("attack")
+        @Suppress("UNCHECKED_CAST")
+        (account.variables["unlocked_music_0"] as MutableList<Any>).add("scape_theme")
+        @Suppress("UNCHECKED_CAST")
+        (account.variables["favourite_numbers"] as MutableList<Any>).add(64)
+    }
+
+    @Test
     fun `Loading non-existent account returns null`() {
         assertNull(storage.load(save.name))
     }

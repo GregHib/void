@@ -46,6 +46,9 @@ id = 695
 [update_bank_slots]
 id = 1465
 
+[bank_search_arm]
+id = 1472
+
 [quest_journal_refresh]
 id = 2169
 

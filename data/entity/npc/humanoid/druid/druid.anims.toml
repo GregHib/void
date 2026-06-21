@@ -1,0 +1,14 @@
+[druid_staff_attack]
+id = 7181
+
+[druid_unarmed_attack]
+id = 7182
+
+[druid_death]
+id = 7185
+
+[druid_staff_defend]
+id = 7186
+
+[druid_defend]
+id = 7187

@@ -2,13 +2,21 @@ package content.entity.player.bank
 
 import WorldTest
 import interfaceOption
+import io.mockk.mockk
+import io.mockk.mockkStatic
+import io.mockk.unmockkStatic
+import io.mockk.verify
 import objectOption
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.login.protocol.encode.sendScript
+import world.gregs.voidps.network.login.protocol.encode.sendVarc
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 internal class BankTest : WorldTest() {
@@ -120,5 +128,88 @@ internal class BankTest : WorldTest() {
         assertEquals(Item("coins", 1000), player.inventory[0])
         assertEquals(Item("bronze_sword_noted", 10), player.inventory[1])
         assertTrue(player.bank.isEmpty())
+    }
+
+    @Test
+    fun `Bank open arms search via the search client var and clientscript 1472`() {
+        val player = createPlayer(emptyTile, "bank_search")
+        val client: Client = mockk(relaxed = true)
+        player.client = client
+        (player.variables as PlayerVariables).client = client
+        val bank = createObject(bankBooth, emptyTile.addY(1))
+
+        mockkStatic(
+            "world.gregs.voidps.network.login.protocol.encode.VarcEncoderKt",
+            "world.gregs.voidps.network.login.protocol.encode.ScriptEncoderKt",
+        )
+        try {
+            // Opening must transmit VARC 190 = 1 (CLIENT_VARC) - the var the search button hooks on -
+            // and run cs2 1472 to wire the button. See issue #1028.
+            player.objectOption(bank, "Use-quickly")
+            tick(5)
+            assertTrue(player.interfaces.contains("bank"), "bank should open")
+            verify { client.sendVarc(190, 1) }
+            verify { client.sendScript(1472, any()) }
+        } finally {
+            unmockkStatic(
+                "world.gregs.voidps.network.login.protocol.encode.VarcEncoderKt",
+                "world.gregs.voidps.network.login.protocol.encode.ScriptEncoderKt",
+            )
+        }
+    }
+
+    @Test
+    fun `Clicking search re-arms via the search client var and reruns clientscript 1472`() {
+        val player = createPlayer(emptyTile, "bank_search_click")
+        val client: Client = mockk(relaxed = true)
+        player.client = client
+        (player.variables as PlayerVariables).client = client
+        val bank = createObject(bankBooth, emptyTile.addY(1))
+
+        player.objectOption(bank, "Use-quickly")
+        tick(5)
+
+        mockkStatic(
+            "world.gregs.voidps.network.login.protocol.encode.VarcEncoderKt",
+            "world.gregs.voidps.network.login.protocol.encode.ScriptEncoderKt",
+        )
+        try {
+            // Each click re-transmits VARC 190 = 1 and re-runs cs2 1472 to re-wire the button so the
+            // search can be toggled / re-used. See issue #1028.
+            player.interfaceOption("bank", "search", "Search")
+            verify { client.sendVarc(190, 1) }
+            verify { client.sendScript(1472, any()) }
+        } finally {
+            unmockkStatic(
+                "world.gregs.voidps.network.login.protocol.encode.VarcEncoderKt",
+                "world.gregs.voidps.network.login.protocol.encode.ScriptEncoderKt",
+            )
+        }
+    }
+
+    @Test
+    fun `Toggling search off re-renders the bank to clear the filter`() {
+        val player = createPlayer(emptyTile, "bank_search_toggle")
+        val client: Client = mockk(relaxed = true)
+        player.client = client
+        (player.variables as PlayerVariables).client = client
+        val bank = createObject(bankBooth, emptyTile.addY(1))
+
+        player.objectOption(bank, "Use-quickly")
+        tick(5)
+
+        // First click opens the search.
+        player.interfaceOption("bank", "search", "Search")
+        assertTrue(player["bank_searching", false], "should be searching after the first click")
+
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.ScriptEncoderKt")
+        try {
+            // Second click toggles the search off - the bank must be re-rendered so the filter clears.
+            player.interfaceOption("bank", "search", "Search")
+            assertFalse(player["bank_searching", false], "should not be searching after the second click")
+            verify { client.sendScript(1465, any()) } // update_bank_slots re-render
+        } finally {
+            unmockkStatic("world.gregs.voidps.network.login.protocol.encode.ScriptEncoderKt")
+        }
     }
 }

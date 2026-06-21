@@ -1,0 +1,80 @@
+[druid_staff]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "druid_staff_defend"
+defend_sound = "man_defend"
+death_anim = "druid_death"
+death_sound = "man_death"
+
+[druid_staff.melee]
+range = 1
+chance = 65
+anim = "druid_staff_attack"
+target_sound = "staff_stab"
+target_hit = { offense = "crush", max = 40 }
+
+[druid_staff.magic]
+range = 1
+chance = 35
+target_hit = { offense = "magic", max = 50 }
+anim = "bind_staff"
+gfx = "bind_cast"
+miss_sound = { id = "spell_splash", delay = 60 }
+miss_gfx = { id = "spell_splash", delay = 60 }
+impact_gfx = "entangle_impact"
+impact_sound = "entangle_impact"
+
+[druid_unarmed]
+clone = "druid_staff"
+defend_anim = "druid_defend"
+
+[druid_unarmed.melee]
+clone = "druid_staff.melee"
+anim = "druid_unarmed_attack"
+target_sound = "man_attack"
+
+[druid_unarmed.magic]
+clone = "druid_staff.magic"
+
+[druid_sickle]
+clone = "druid_unarmed"
+
+[druid_sickle.melee]
+clone = "druid_unarmed.melee"
+target_sound = "sickle_slash"
+
+[druid_sickle.magic]
+clone = "druid_staff.magic"
+
+[druidess_staff]
+clone = "druid_staff"
+defend_sound = "woman_defend"
+death_sound = "woman_death"
+
+[druidess_staff.melee]
+clone = "druid_staff.melee"
+
+[druidess_staff.magic]
+clone = "druid_staff.magic"
+
+[druidess_unarmed]
+clone = "druidess_staff"
+defend_anim = "druid_defend"
+
+[druidess_unarmed.melee]
+clone = "druid_staff.melee"
+anim = "druid_unarmed_attack"
+target_sound = "woman_attack"
+
+[druidess_unarmed.magic]
+clone = "druid_staff.magic"
+
+[druidess_sickle]
+clone = "druidess_unarmed"
+
+[druidess_sickle.melee]
+clone = "druid_unarmed.melee"
+target_sound = "sickle_slash"
+
+[druidess_sickle.magic]
+clone = "druid_staff.magic"
