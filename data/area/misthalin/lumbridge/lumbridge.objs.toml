@@ -122,7 +122,7 @@ examine = "A wooden defensive structure."
 id = 45282
 examine = "A wooden barrel for storage."
 
-[lumbridge_sacks]
+[sacks_lumbridge]
 id = 45287
 examine = "These may have something in them."
 
@@ -310,7 +310,7 @@ examine = "A painting of the King looking royal."
 id = 12281
 examine = "A small wooden table."
 
-[lumbridge_sacks_2]
+[sacks_lumbridge_2]
 id = 32049
 examine = "These may have something in them."
 
