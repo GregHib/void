@@ -34,8 +34,8 @@ class SethGroatsFarm : Script {
             }
         }
 
-        objectOperate ("Search", "crate_groats_farm*") {
-            //both rs3 and osrs has this messages.
+        objectOperate("Search", "crate_groats_farm*") {
+            // both rs3 and osrs has this messages.
             message("The crate is empty.")
         }
     }

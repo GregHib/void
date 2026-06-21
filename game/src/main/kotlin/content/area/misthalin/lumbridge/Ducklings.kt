@@ -32,7 +32,7 @@ class Ducklings : Script {
 
         npcTimerTick("quack") {
             say("Quack!")
-          areaSound("duck_quack", tile)
+            areaSound("duck_quack", tile)
             Timer.CONTINUE
         }
     }

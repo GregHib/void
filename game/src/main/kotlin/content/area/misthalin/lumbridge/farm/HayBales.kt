@@ -1,23 +1,23 @@
 package content.area.misthalin.lumbridge.farm
 
+import content.entity.combat.hit.damage
+import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Sad
+import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import content.entity.player.dialogue.type.player
-import content.entity.player.dialogue.Happy
-import world.gregs.voidps.type.random
-import content.entity.player.dialogue.Sad
-import content.entity.combat.hit.damage
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.type.random
 
 class HayBales : Script {
-    //https://x.com/JagexAsh/status/1056603985342275585
+    // https://x.com/JagexAsh/status/1056603985342275585
 
     init {
-        objectOperate ("Search", "hay_bales*,hay_bale_*") { (target) ->
+        objectOperate("Search", "hay_bales*,hay_bale_*") { (target) ->
             anim("climb_down")
-            //both rs3 and osrs has these messages.
+            // both rs3 and osrs has these messages.
             if (target.id.contains("hay_bale_")) {
                 message("You search the hay bale...")
             } else {
