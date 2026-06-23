@@ -7,11 +7,16 @@ import world.gregs.voidps.engine.entity.character.player.Player
 
 fun Character.resumeSuspension(): Boolean {
     val suspend = suspension ?: return false
-    if (suspend is Suspension.Delay && suspend.ready()) {
-        suspend.resume()
-    }
-    if (suspend is Suspension.Custom && suspend.ready()) {
-        suspend.resume()
+    try {
+        if (suspend is Suspension.Delay && suspend.ready()) {
+            suspend.resume()
+        }
+        if (suspend is Suspension.Custom && suspend.ready()) {
+            suspend.resume()
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
+        suspension = null
     }
     return true
 }
