@@ -80,9 +80,11 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean) {
  * states. Also stops the familiar timer.
  */
 fun Player.dismissFamiliar() {
+    dropBeastOfBurdenItems()
     NPCs.remove(follower)
     follower = null
     interfaces.close("familiar_details")
+    interfaces.close("beast_of_burden")
     sendScript("reset_summoning_orb")
 
     // Need to wait for the above sendScript to reach the client before resetting
@@ -150,6 +152,9 @@ fun Player.callFollower() {
     follower.tele(target, clearMode = false)
     follower.watch(this)
     follower.gfx("summon_familiar_size_${follower.size}")
+    if (follower.mode !is Follow) {
+        follower.mode = Follow(follower, this)
+    }
 }
 
 /**
@@ -323,10 +328,6 @@ class Summoning : Script {
             variables.send("follower_details_chathead_animation")
             timers.restart("familiar_timer")
             summonFamiliar(familiarDef, true)
-        }
-
-        interfaceOption("Take BoB", "familiar_details:take_bob_items") {
-            message("<dark_green>Not currently implemented.")
         }
     }
 }

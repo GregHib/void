@@ -296,6 +296,18 @@ id = 18
 
 [beast_of_burden]
 id = 671
+type = "main_screen"
+
+[.items]
+id = 27
+inventory = "beast_of_burden"
+options = { Withdraw-1 = 0, Withdraw-5 = 1, Withdraw-10 = 2, Withdraw-All = 3, Withdraw-X = 4, Examine = 9 }
+
+[.close]
+id = 13
+
+[.take_bob]
+id = 29
 
 [summoning_pouch_creation]
 id = 672
@@ -384,4 +396,10 @@ id = 21
 
 [summoning_side]
 id = 722
+type = "inventory_tab"
+
+[.inventory]
+id = 0
+inventory = "inventory"
+options = { Store-1 = 0, Store-5 = 1, Store-10 = 2, Store-All = 3, Store-X = 4, Examine = 9 }
 
