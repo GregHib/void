@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -24,22 +24,17 @@ import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimi
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
-/** Items (or stacks) worth more than this can't be carried by a familiar. */
-private const val MAX_BEAST_OF_BURDEN_VALUE = 5_000_000L
-
 /** The only items the abyssal essence familiars carry; every other familiar refuses them. */
 private val BEAST_OF_BURDEN_ESSENCE = setOf("rune_essence", "pure_essence")
 
-private fun Player.familiarDef() = follower?.let { NPCDefinitions.get(it.id) }
-
 val Player.beastOfBurdenCapacity: Int
-    get() = familiarDef()?.get("summoning_beast_of_burden_capacity", 0) ?: 0
+    get() = follower?.def?.get("summoning_beast_of_burden_capacity", 0) ?: 0
 
 /** Abyssal parasite/lurker/titan carry only rune and pure essence, nothing else. */
 val Player.beastOfBurdenEssenceOnly: Boolean
-    get() = familiarDef()?.get("summoning_beast_of_burden_essence", 0) == 1
+    get() = follower?.def?.get("summoning_beast_of_burden_essence", 0) == 1
 
-fun Player.hasBeastOfBurden(): Boolean = familiarDef()?.get("summoning_beast_of_burden", 0) == 1
+fun Player.hasBeastOfBurden(): Boolean = follower?.def?.get("summoning_beast_of_burden", 0) == 1
 
 fun Player.ensureBeastOfBurdenInventory() {
     val capacity = beastOfBurdenCapacity
@@ -138,6 +133,18 @@ class BeastOfBurden : Script {
                 return@npcOperate
             }
             openBeastOfBurden()
+        }
+
+        itemOnNPCOperate("*", "*_familiar") { (target, item) ->
+            if (target != follower) {
+                message("That's not your familiar.")
+                return@itemOnNPCOperate
+            }
+            if (underAttack) {
+                message("You can't do that in combat.")
+                return@itemOnNPCOperate
+            }
+            store(this, item, item.amount)
         }
 
         npcOperate("Interact", "*_familiar") { (target) ->
@@ -259,8 +266,10 @@ class BeastOfBurden : Script {
         val bob = player.beastOfBurden
         val stackable = bob.stackable(item.id)
         val valueEach = def["price", def.cost]
+        // Items (or stacks) worth more than this can't be carried by a familiar.
+        val maxValue = Settings["summoning.beastOfBurden.maxValue", 5_000_000L]
         // An unstackable item worth more than the cap can't be carried.
-        if (!stackable && valueEach > MAX_BEAST_OF_BURDEN_VALUE) {
+        if (!stackable && valueEach > maxValue) {
             player.message("Your familiar can't carry items that valuable.")
             return
         }
@@ -281,7 +290,7 @@ class BeastOfBurden : Script {
             return
         }
         // A stack whose total value would exceed the cap can't be carried.
-        if (stackable && (bob.count(item.id).toLong() + toStore) * valueEach > MAX_BEAST_OF_BURDEN_VALUE) {
+        if (stackable && (bob.count(item.id).toLong() + toStore) * valueEach > maxValue) {
             player.message("Your familiar can't carry items that valuable.")
             return
         }

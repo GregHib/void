@@ -3,6 +3,7 @@ package content.skill.summoning
 import WorldTest
 import containsMessage
 import interfaceOption
+import itemOnNpc
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertNotNull
@@ -65,6 +66,35 @@ class BeastOfBurdenWikiTest : WorldTest() {
 
         assertEquals(0, player.beastOfBurden.count("pure_essence"))
         assertEquals(10, player.inventory.count("pure_essence"))
+        assertTrue(player.containsMessage("Your familiar can't carry that item."))
+    }
+
+    @Test
+    fun `using an item on a familiar stores it`() {
+        val player = createPlayer(Tile(3200, 3200))
+        player.summonFamiliar(NPCDefinitions.get("pack_yak_familiar"), false)
+        tick(3)
+        player.inventory.add("coins", 100)
+
+        player.itemOnNpc(player.follower!!, 0)
+        tick()
+
+        assertEquals(100, player.beastOfBurden.count("coins"))
+        assertEquals(0, player.inventory.count("coins"))
+    }
+
+    @Test
+    fun `using rune essence on a standard familiar is rejected`() {
+        val player = createPlayer(Tile(3200, 3200))
+        player.summonFamiliar(NPCDefinitions.get("pack_yak_familiar"), false)
+        tick(3)
+        player.inventory.add("rune_essence", 10)
+
+        player.itemOnNpc(player.follower!!, 0)
+        tick()
+
+        assertEquals(0, player.beastOfBurden.count("rune_essence"))
+        assertEquals(10, player.inventory.count("rune_essence"))
         assertTrue(player.containsMessage("Your familiar can't carry that item."))
     }
 
