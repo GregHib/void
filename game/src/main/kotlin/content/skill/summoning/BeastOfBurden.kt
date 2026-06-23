@@ -15,9 +15,9 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.beastOfBurden
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.moveAll
 import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveAllToLimit
 import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimit
 
 private fun Player.familiarDef() = follower?.let { NPCDefinitions.get(it.id) }
@@ -67,7 +67,13 @@ fun Player.takeAllBeastOfBurden() {
         message("Your familiar is not carrying any items.")
         return
     }
-    beastOfBurden.moveAll(inventory)
+    // Withdraw as many items as fit rather than failing all-or-nothing: fill the
+    // inventory up to its capacity and leave the remainder on the familiar.
+    val target = inventory
+    beastOfBurden.transaction {
+        moveAllToLimit(target)
+    }
+    syncBeastOfBurdenInterface()
     if (!beastOfBurden.isEmpty()) {
         inventoryFull()
     }
