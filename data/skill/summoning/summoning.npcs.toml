@@ -44,11 +44,17 @@ id = 6817
 id = 6818
 dialogue = "leech"
 interacts = false
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 7
+summoning_beast_of_burden_essence = 1
 
 [abyssal_lurker_familiar]
 id = 6820
 dialogue = "bird"
 interacts = false
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 12
+summoning_beast_of_burden_essence = 1
 
 [unicorn_stallion_familiar]
 id = 6822
@@ -195,6 +201,9 @@ id = 7347
 
 [abyssal_titan_familiar]
 id = 7349
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 20
+summoning_beast_of_burden_essence = 1
 
 [void_torcher_familiar]
 id = 7351

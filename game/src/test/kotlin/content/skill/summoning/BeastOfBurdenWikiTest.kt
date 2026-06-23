@@ -69,6 +69,49 @@ class BeastOfBurdenWikiTest : WorldTest() {
     }
 
     @Test
+    fun `essence familiar stores rune essence`() {
+        val player = createPlayer(Tile(3200, 3200))
+        player.summonFamiliar(NPCDefinitions.get("abyssal_parasite_familiar"), false)
+        tick(3)
+        player.inventory.add("rune_essence", 5)
+        player.openBeastOfBurden()
+
+        player.interfaceOption("summoning_side", "inventory", "Store-All", item = Item("rune_essence"), slot = 0)
+
+        assertEquals(5, player.beastOfBurden.count("rune_essence"))
+        assertEquals(0, player.inventory.count("rune_essence"))
+    }
+
+    @Test
+    fun `essence familiar stores pure essence`() {
+        val player = createPlayer(Tile(3200, 3200))
+        player.summonFamiliar(NPCDefinitions.get("abyssal_lurker_familiar"), false)
+        tick(3)
+        player.inventory.add("pure_essence", 5)
+        player.openBeastOfBurden()
+
+        player.interfaceOption("summoning_side", "inventory", "Store-All", item = Item("pure_essence"), slot = 0)
+
+        assertEquals(5, player.beastOfBurden.count("pure_essence"))
+        assertEquals(0, player.inventory.count("pure_essence"))
+    }
+
+    @Test
+    fun `essence familiar refuses non-essence items`() {
+        val player = createPlayer(Tile(3200, 3200))
+        player.summonFamiliar(NPCDefinitions.get("abyssal_titan_familiar"), false)
+        tick(3)
+        player.inventory.add("coins", 100)
+        player.openBeastOfBurden()
+
+        player.interfaceOption("summoning_side", "inventory", "Store-All", item = Item("coins"), slot = 0)
+
+        assertEquals(0, player.beastOfBurden.count("coins"))
+        assertEquals(100, player.inventory.count("coins"))
+        assertTrue(player.containsMessage("Your familiar can't carry that item."))
+    }
+
+    @Test
     fun `tradeable items can still be stored`() {
         val player = createPlayer(Tile(3200, 3200))
         player.summonFamiliar(NPCDefinitions.get("pack_yak_familiar"), false)

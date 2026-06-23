@@ -27,13 +27,17 @@ import java.util.concurrent.TimeUnit
 /** Items (or stacks) worth more than this can't be carried by a familiar. */
 private const val MAX_BEAST_OF_BURDEN_VALUE = 5_000_000L
 
-/** Item ids a familiar refuses to carry regardless of value/tradeability. */
-private val BEAST_OF_BURDEN_RESTRICTED = setOf("rune_essence", "pure_essence")
+/** The only items the abyssal essence familiars carry; every other familiar refuses them. */
+private val BEAST_OF_BURDEN_ESSENCE = setOf("rune_essence", "pure_essence")
 
 private fun Player.familiarDef() = follower?.let { NPCDefinitions.get(it.id) }
 
 val Player.beastOfBurdenCapacity: Int
     get() = familiarDef()?.get("summoning_beast_of_burden_capacity", 0) ?: 0
+
+/** Abyssal parasite/lurker/titan carry only rune and pure essence, nothing else. */
+val Player.beastOfBurdenEssenceOnly: Boolean
+    get() = familiarDef()?.get("summoning_beast_of_burden_essence", 0) == 1
 
 fun Player.hasBeastOfBurden(): Boolean = familiarDef()?.get("summoning_beast_of_burden", 0) == 1
 
@@ -239,7 +243,9 @@ class BeastOfBurden : Script {
             player.message("Your follower can't carry any items.")
             return
         }
-        if (item.id in BEAST_OF_BURDEN_RESTRICTED) {
+        // Essence familiars carry only essence; all other familiars refuse essence.
+        val isEssence = item.id in BEAST_OF_BURDEN_ESSENCE
+        if (player.beastOfBurdenEssenceOnly != isEssence) {
             player.message("Your familiar can't carry that item.")
             return
         }
