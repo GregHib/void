@@ -27,3 +27,30 @@ id = 5569
 
 [zogre_bell_ring]
 id = 2103
+
+[expression_ogre_neutral]
+id = 8579
+
+[expression_ogre_quiz]
+id = 8580
+
+[expression_ogre_angry]
+id = 8583
+
+[expression_ogre_mad]
+id = 8657
+
+[expression_ogre_confused]
+id = 8584
+
+[expression_ogre_happy]
+id = 8585
+
+[expression_ogre_scared]
+id = 8598
+
+[expression_ogre_sad]
+id = 8559
+
+[expression_ogre_shock]
+id = 8562
