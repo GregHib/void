@@ -174,8 +174,15 @@ class BeastOfBurden : Script {
         if (amount < 1) {
             return
         }
+        // Clamp to what's actually carried. moveToLimit's undo path (when the
+        // source holds fewer than requested) re-shuffles items into the wrong
+        // slots and leaves gaps, so never let it overshoot the source.
+        val toWithdraw = minOf(amount, player.beastOfBurden.count(item.id))
+        if (toWithdraw < 1) {
+            return
+        }
         player.beastOfBurden.transaction {
-            moveToLimit(item.id, amount, player.inventory)
+            moveToLimit(item.id, toWithdraw, player.inventory)
         }
         when (player.beastOfBurden.transaction.error) {
             is TransactionError.Full -> player.inventoryFull()
@@ -203,8 +210,15 @@ class BeastOfBurden : Script {
             player.message("Your familiar can't carry any more items.")
             return
         }
+        // Clamp to what's actually held. moveToLimit's undo path (when the source
+        // holds fewer than requested) re-shuffles items into the wrong slots and
+        // leaves gaps in the beast of burden, so never let it overshoot the source.
+        val toStore = minOf(amount, player.inventory.count(item.id))
+        if (toStore < 1) {
+            return
+        }
         player.inventory.transaction {
-            val moved = moveToLimit(item.id, amount, player.beastOfBurden)
+            val moved = moveToLimit(item.id, toStore, player.beastOfBurden)
             if (moved == 0) {
                 error = TransactionError.Full()
             }
