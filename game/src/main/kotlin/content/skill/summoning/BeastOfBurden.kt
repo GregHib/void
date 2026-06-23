@@ -44,6 +44,27 @@ fun Player.syncBeastOfBurdenInterface() {
     sendInventory(inventory)
 }
 
+/**
+ * Reorganises the stored items so they fill the interface from the top, leaving
+ * any empty slots at the bottom. Order is preserved.
+ */
+fun Player.compactBeastOfBurden() {
+    beastOfBurden.transaction {
+        var target = 0
+        for (index in inventory.indices) {
+            val item = inventory[index]
+            if (item.isEmpty()) {
+                continue
+            }
+            if (index != target) {
+                set(target, item)
+                set(index, null)
+            }
+            target++
+        }
+    }
+}
+
 fun Player.openBeastOfBurden() {
     if (!hasBeastOfBurden()) {
         message("Your follower can't carry any items.")
@@ -117,6 +138,7 @@ class BeastOfBurden : Script {
                 return@interfaceOpened
             }
             ensureBeastOfBurdenInventory()
+            compactBeastOfBurden()
             open("summoning_side")
             tab(Tab.Inventory)
             syncBeastOfBurdenInterface()
