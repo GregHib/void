@@ -1,0 +1,10 @@
+##based on video:https://youtu.be/BoSFtTZhQds?si=wo4l3wpUAfvv-DrD&t=183 and wiki: 4 January 2011 (Update): A farmer no longer has inappropriate attack animations. All the farmer types had the same attack in this revision. Have to change when next revision.
+
+[farmer_attack]
+id = 7181
+
+[farmer_defend]
+id = 7186
+
+[farmer_death]
+id = 836

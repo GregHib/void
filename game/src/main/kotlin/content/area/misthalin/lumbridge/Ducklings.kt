@@ -1,6 +1,7 @@
 package content.area.misthalin.lumbridge
 
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.mode.Wander
@@ -20,6 +21,19 @@ class Ducklings : Script {
             val ducklings: NPC = get("ducklings") ?: return@npcDeath
             ducklings.say("Eek!")
             followParent(ducklings)
+        }
+        npcSpawn("duck_*,drake") {
+            softTimers.start("quack")
+        }
+        npcTimerStart("quack") {
+            // Don't have authentic data.
+            random.nextInt(50, 150)
+        }
+
+        npcTimerTick("quack") {
+            say("Quack!")
+            areaSound("duck_quack", tile)
+            Timer.CONTINUE
         }
     }
 

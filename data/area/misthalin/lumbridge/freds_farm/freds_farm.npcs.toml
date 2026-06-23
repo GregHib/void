@@ -36,7 +36,7 @@ id = 5423
 
 [farmer]
 id = 7
-examine = "He grows the crops in this area."
+clone = "farmer_lumbridge"
 
 [hay_bales_2]
 id = 11625

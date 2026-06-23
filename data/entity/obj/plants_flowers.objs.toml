@@ -122,6 +122,10 @@ examine = "A leafy fern."
 id = 9606
 examine = "A leafy shrub."
 
+[bush]
+id = 11912
+examine = "A dead bush."
+
 [fairy2_plant_1]
 id = 16267
 examine = "A leafy fern."

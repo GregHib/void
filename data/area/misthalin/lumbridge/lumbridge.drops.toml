@@ -1,10 +1,3 @@
-[farmer_pickpocket]
-roll = 128
-drops = [
-    { id = "coins", amount = 9, chance = 123 },
-    { id = "potato_seed", chance = 5 },
-]
-
 [lumbridge_guard_drop_table]
 type = "all"
 drops = [
