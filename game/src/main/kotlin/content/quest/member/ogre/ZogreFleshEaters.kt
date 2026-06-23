@@ -43,6 +43,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.random
 
 class ZogreFleshEaters : Script {
 
@@ -159,7 +160,7 @@ class ZogreFleshEaters : Script {
                 return@objectOperate
             }
 
-            if (findNearbyNPC("zogre_human_brentle_vahn") != null) {
+            if (NPCs.findOrNull(tile.regionLevel, "zogre_human_brentle_vahn") != null) {
                 return@objectOperate message("You're in mortal danger, you don't have time to search!")
             }
 
@@ -218,13 +219,12 @@ class ZogreFleshEaters : Script {
                     if (inventory.contains("black_prism")) {
                         return@objectOperate message("You find nothing inside this time.")
                     }
-                    if (inventory.isFull()) {
+                    if (!inventory.add("black_prism")) {
                         return@objectOperate statement(
                             "You see something inside, but you have no space in your inventory " +
                                 "to store the item.",
                         )
                     }
-                    addOrDrop("black_prism")
                     item(item = "black_prism", text = "You find a creepy looking black prism inside.")
                 }
             }
@@ -371,7 +371,7 @@ class ZogreFleshEaters : Script {
 
         // ===== Plinth in the tomb (Slash Bash spawn / artefact retrieval) =====
         objectOperate("Search", "zogre_stand") { (target) ->
-            if (findNearbyNPC("slash_bash") != null) {
+            if (NPCs.findOrNull(tile.regionLevel, "slash_bash") != null) {
                 return@objectOperate message("You're in mortal danger, you don't have time to search!")
             }
 
@@ -545,7 +545,7 @@ class ZogreFleshEaters : Script {
         say("Aarrrgghhh!")
         player<Mad>("Aarrrgghhh!", clickToContinue = false)
         delay(3)
-        if ((0..1).random() == 0) {
+        if (random.nextBoolean()) {
             levels.drain(Skill.Strength, 2)
             statement(
                 "You struggle, but just get weakened from your experience. Perhaps you should " +
@@ -821,15 +821,9 @@ class ZogreFleshEaters : Script {
     }
 }
 
-fun findNearbyNPC(string: String): NPC? {
-    TODO("Not yet implemented")
-}
-
 var Player.zogre_flesh_eaters: Int
     get() = get("zogre_flesh_eaters", 0)
     set(value) {
-        val current = get("zogre_flesh_eaters", 0)
-        message("zogre_flesh_eaters $current -> $value")
         set("zogre_flesh_eaters", value)
     }
 

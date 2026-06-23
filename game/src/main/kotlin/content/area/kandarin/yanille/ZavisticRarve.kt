@@ -17,7 +17,6 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
-import content.quest.member.ogre.findNearbyNPC
 import content.quest.member.ogre.zogre_flesh_eaters
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
@@ -65,7 +64,7 @@ class ZavisticRarve : Script {
         objectOperate("Ring", "zogre_outdoor_bell") { (target) ->
             sound("zogre_bell")
             target.anim("zogre_bell_ring")
-            var zavistic = findNearbyNPC("zavistic_rarve")
+            var zavistic = NPCs.findOrNull(tile.regionLevel, "zavistic_rarve")
             if (zavistic == null) {
                 zavistic = NPCs.add(
                     id = "zavistic_rarve",

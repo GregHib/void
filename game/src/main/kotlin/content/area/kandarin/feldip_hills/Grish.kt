@@ -35,8 +35,7 @@ class Grish : Script {
     init {
         npcOperate("Talk-to", "grish") { (target) ->
             grish = target
-            val progress = zogre_flesh_eaters
-            when (progress) {
+            when (val progress = zogre_flesh_eaters) {
                 0 -> {
                     if (get("thzfe_grish_warning_yes", false)) {
                         confirmQuestStart()
@@ -260,7 +259,7 @@ class Grish : Script {
     }
 
     val Player.chompybird: Int
-        get() = 0
+        get() = get("chompy_birds", 0)
 
     private fun Player.meetsZogreRequirements(): Boolean = hasMax(Skill.Ranged, 30) &&
         // questCompleted("jungle_potion") && TODO
@@ -269,9 +268,7 @@ class Grish : Script {
     // ===== Mid-quest check-in =====
 
     private suspend fun Player.midQuestCheckIn(progress: Int) {
-        npc<Neutral>(
-            "Yous creature dun da fing yet? Da zogries going in da dirt full home?",
-        )
+        npc<Neutral>("Yous creature dun da fing yet? Da zogries going in da dirt full home?")
         if (progress == 8) {
             progress8Menu()
         } else {

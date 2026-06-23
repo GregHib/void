@@ -7,6 +7,9 @@ id = 6842
 [zogre_lecturn]
 id = 6846
 
+[zogre_coffin_base]
+id = 6843
+
 [zogre_coffin_special]
 id = 6844
 
@@ -31,6 +34,9 @@ id = 6873
 [ogre_cavedoorl_inactive]
 id = 6874
 
+[zogre_sithik_bed]
+id = 6889
+
 [zogre_sithik_bed_entity]
 id = 6887
 
@@ -45,6 +51,9 @@ id = 6876
 
 [sithiks_wardrobe]
 id = 55412
+
+[ogre_barricade_collapsed]
+id = 6879
 
 [ogre_barricade_collapsedr]
 id = 6881
