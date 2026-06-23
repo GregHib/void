@@ -1,6 +1,8 @@
 package content.skill.summoning
 
+import content.entity.combat.underAttack
 import content.entity.player.dialogue.type.intEntry
+import content.entity.player.inv.item.tradeable
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import world.gregs.voidps.engine.Script
@@ -19,6 +21,8 @@ import world.gregs.voidps.engine.inv.sendInventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveAllToLimit
 import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimit
+import world.gregs.voidps.engine.timer.toTicks
+import java.util.concurrent.TimeUnit
 
 private fun Player.familiarDef() = follower?.let { NPCDefinitions.get(it.id) }
 
@@ -62,6 +66,10 @@ fun Player.compactBeastOfBurden() {
 }
 
 fun Player.openBeastOfBurden() {
+    if (underAttack) {
+        message("You can't do that in combat.")
+        return
+    }
     if (!hasBeastOfBurden()) {
         message("Your follower can't carry any items.")
         return
@@ -102,10 +110,11 @@ fun Player.dropBeastOfBurdenItems() {
         if (item.isEmpty()) {
             continue
         }
-        FloorItems.add(tile, item.id, item.amount, owner = this)
+        // Owner-only, retrievable for five minutes before despawning.
+        FloorItems.add(tile, item.id, item.amount, revealTicks = FloorItems.NEVER, disappearTicks = TimeUnit.MINUTES.toTicks(5), owner = this)
     }
     beastOfBurden.clear()
-    message("Your familiar's items have been dropped on the floor.")
+    message("Your familiar has dropped all the items it was holding.")
 }
 
 class BeastOfBurden : Script {
@@ -220,6 +229,12 @@ class BeastOfBurden : Script {
         val capacity = player.beastOfBurdenCapacity
         if (capacity <= 0) {
             player.message("Your follower can't carry any items.")
+            return
+        }
+        // Familiars only carry tradeable items (the same rule the trade screen uses).
+        val def = item.def
+        if (def.lendTemplateId != -1 || def.dummyItem != 0 || !item.tradeable) {
+            player.message("Your familiar can't carry that item.")
             return
         }
         player.ensureBeastOfBurdenInventory()

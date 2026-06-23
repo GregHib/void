@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -67,6 +68,7 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean) {
     familiarNpc.mode = Follow(familiarNpc, this)
     queue("summon_familiar", 2) {
         follower = familiarNpc
+        familiarNpc["owner_index"] = index
         familiarNpc.gfx("summon_familiar_size_${familiarNpc.size}")
         updateFamiliarInterface()
         if (!restart) {
@@ -79,9 +81,11 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean) {
  * Dismisses the familiar following the player and resets the summoning orb and varbits back to their default
  * states. Also stops the familiar timer.
  */
-fun Player.dismissFamiliar() {
+fun Player.dismissFamiliar(removeNpc: Boolean = true) {
     dropBeastOfBurdenItems()
-    NPCs.remove(follower)
+    if (removeNpc) {
+        NPCs.remove(follower)
+    }
     follower = null
     interfaces.close("familiar_details")
     interfaces.close("beast_of_burden")
@@ -328,6 +332,17 @@ class Summoning : Script {
             variables.send("follower_details_chathead_animation")
             timers.restart("familiar_timer")
             summonFamiliar(familiarDef, true)
+        }
+
+        npcDeath("*_familiar") { death ->
+            death.respawn = false
+            death.dropItems = false
+            val owner = Players.indexed(this["owner_index", -1]) ?: return@npcDeath
+            if (owner.follower?.index == index) {
+                // Familiar slain in combat: drop its stored items and dismiss it.
+                // The death flow despawns the NPC, so don't remove it again here.
+                owner.dismissFamiliar(removeNpc = false)
+            }
         }
     }
 }
