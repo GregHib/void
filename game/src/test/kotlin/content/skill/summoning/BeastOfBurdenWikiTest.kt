@@ -39,6 +39,36 @@ class BeastOfBurdenWikiTest : WorldTest() {
     }
 
     @Test
+    fun `rune essence cannot be stored`() {
+        val player = createPlayer(Tile(3200, 3200))
+        player.summonFamiliar(NPCDefinitions.get("pack_yak_familiar"), false)
+        tick(3)
+        player.inventory.add("rune_essence", 10)
+        player.openBeastOfBurden()
+
+        player.interfaceOption("summoning_side", "inventory", "Store-All", item = Item("rune_essence"), slot = 0)
+
+        assertEquals(0, player.beastOfBurden.count("rune_essence"))
+        assertEquals(10, player.inventory.count("rune_essence"))
+        assertTrue(player.containsMessage("Your familiar can't carry that item."))
+    }
+
+    @Test
+    fun `pure essence cannot be stored`() {
+        val player = createPlayer(Tile(3200, 3200))
+        player.summonFamiliar(NPCDefinitions.get("pack_yak_familiar"), false)
+        tick(3)
+        player.inventory.add("pure_essence", 10)
+        player.openBeastOfBurden()
+
+        player.interfaceOption("summoning_side", "inventory", "Store-All", item = Item("pure_essence"), slot = 0)
+
+        assertEquals(0, player.beastOfBurden.count("pure_essence"))
+        assertEquals(10, player.inventory.count("pure_essence"))
+        assertTrue(player.containsMessage("Your familiar can't carry that item."))
+    }
+
+    @Test
     fun `tradeable items can still be stored`() {
         val player = createPlayer(Tile(3200, 3200))
         player.summonFamiliar(NPCDefinitions.get("pack_yak_familiar"), false)

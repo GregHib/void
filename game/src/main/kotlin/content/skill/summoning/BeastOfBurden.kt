@@ -27,6 +27,9 @@ import java.util.concurrent.TimeUnit
 /** Items (or stacks) worth more than this can't be carried by a familiar. */
 private const val MAX_BEAST_OF_BURDEN_VALUE = 5_000_000L
 
+/** Item ids a familiar refuses to carry regardless of value/tradeability. */
+private val BEAST_OF_BURDEN_RESTRICTED = setOf("rune_essence", "pure_essence")
+
 private fun Player.familiarDef() = follower?.let { NPCDefinitions.get(it.id) }
 
 val Player.beastOfBurdenCapacity: Int
@@ -234,6 +237,10 @@ class BeastOfBurden : Script {
         val capacity = player.beastOfBurdenCapacity
         if (capacity <= 0) {
             player.message("Your follower can't carry any items.")
+            return
+        }
+        if (item.id in BEAST_OF_BURDEN_RESTRICTED) {
+            player.message("Your familiar can't carry that item.")
             return
         }
         // Familiars only carry tradeable items (the same rule the trade screen uses).
