@@ -24,6 +24,9 @@ import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimi
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
+/** Items (or stacks) worth more than this can't be carried by a familiar. */
+private const val MAX_BEAST_OF_BURDEN_VALUE = 5_000_000L
+
 private fun Player.familiarDef() = follower?.let { NPCDefinitions.get(it.id) }
 
 val Player.beastOfBurdenCapacity: Int
@@ -241,8 +244,15 @@ class BeastOfBurden : Script {
         }
         player.ensureBeastOfBurdenInventory()
         val bob = player.beastOfBurden
+        val stackable = bob.stackable(item.id)
+        val valueEach = def["price", def.cost]
+        // An unstackable item worth more than the cap can't be carried.
+        if (!stackable && valueEach > MAX_BEAST_OF_BURDEN_VALUE) {
+            player.message("Your familiar can't carry items that valuable.")
+            return
+        }
         val usedSlots = bob.items.count { it.isNotEmpty() }
-        val sharesStack = bob.stackable(item.id) && bob.indexOf(item.id) != -1
+        val sharesStack = stackable && bob.indexOf(item.id) != -1
         val freeSlots = capacity - usedSlots
         if (freeSlots <= 0 && !sharesStack) {
             player.message("Your familiar can't carry any more items.")
@@ -250,11 +260,16 @@ class BeastOfBurden : Script {
         }
         val requested = minOf(amount, player.inventory.count(item.id))
         var toStore = requested
-        if (!sharesStack && !bob.stackable(item.id)) {
+        if (!stackable) {
             // Each non-stackable item needs its own slot, so cap to the free slots.
             toStore = minOf(toStore, freeSlots)
         }
         if (toStore < 1) {
+            return
+        }
+        // A stack whose total value would exceed the cap can't be carried.
+        if (stackable && (bob.count(item.id).toLong() + toStore) * valueEach > MAX_BEAST_OF_BURDEN_VALUE) {
+            player.message("Your familiar can't carry items that valuable.")
             return
         }
         player.inventory.transaction {

@@ -52,6 +52,49 @@ class BeastOfBurdenWikiTest : WorldTest() {
     }
 
     @Test
+    fun `unstackable item worth over 5m cannot be stored`() {
+        val player = createPlayer(Tile(3200, 3200))
+        player.summonFamiliar(NPCDefinitions.get("pack_yak_familiar"), false)
+        tick(3)
+        player.inventory.add("red_partyhat", 1) // tradeable but worth ~1.9b
+        player.openBeastOfBurden()
+
+        player.interfaceOption("summoning_side", "inventory", "Store-1", item = Item("red_partyhat"), slot = 0)
+
+        assertEquals(0, player.beastOfBurden.count("red_partyhat"))
+        assertEquals(1, player.inventory.count("red_partyhat"))
+        assertTrue(player.containsMessage("Your familiar can't carry items that valuable."))
+    }
+
+    @Test
+    fun `stack worth more than 5m cannot be stored`() {
+        val player = createPlayer(Tile(3200, 3200))
+        player.summonFamiliar(NPCDefinitions.get("pack_yak_familiar"), false)
+        tick(3)
+        player.inventory.add("coins", 5_000_001)
+        player.openBeastOfBurden()
+
+        player.interfaceOption("summoning_side", "inventory", "Store-All", item = Item("coins"), slot = 0)
+
+        assertEquals(0, player.beastOfBurden.count("coins"))
+        assertEquals(5_000_001, player.inventory.count("coins"))
+        assertTrue(player.containsMessage("Your familiar can't carry items that valuable."))
+    }
+
+    @Test
+    fun `stack worth exactly 5m can be stored`() {
+        val player = createPlayer(Tile(3200, 3200))
+        player.summonFamiliar(NPCDefinitions.get("pack_yak_familiar"), false)
+        tick(3)
+        player.inventory.add("coins", 5_000_000)
+        player.openBeastOfBurden()
+
+        player.interfaceOption("summoning_side", "inventory", "Store-All", item = Item("coins"), slot = 0)
+
+        assertEquals(5_000_000, player.beastOfBurden.count("coins"))
+    }
+
+    @Test
     fun `cannot open familiar inventory while in combat`() {
         val player = createPlayer(Tile(3200, 3200))
         player.summonFamiliar(NPCDefinitions.get("pack_yak_familiar"), false)
