@@ -1,10 +1,10 @@
 [inventory_ranging]
 id = 512
 
-[unknown_side0]
+[unknown_side0] # stockmarket_offer0
 id = 517
 
-[unknown_side1]
+[unknown_side1] # impc_mizgog_amulet_shop
 id = 602
 
 [lore_bank_side]
