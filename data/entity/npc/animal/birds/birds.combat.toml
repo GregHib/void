@@ -1,0 +1,21 @@
+[duck_swim]
+defend_sound = "duck_defend"
+death_anim = "duck_death_swim"
+death_sound = "duck_death"
+
+[duck_swim.melee]
+range = 1
+target_hit = { offense = "stab", max = 1 }
+
+[duck_walk]
+attack_speed = 4
+defend_anim = "duck_defend_walk"
+defend_sound = "duck_defend"
+death_anim = "duck_death_walk"
+death_sound = "duck_death"
+
+[duck_walk.melee]
+range = 1
+anim = "duck_attack_walk"
+target_sound = "duck_quack"
+target_hit = { offense = "stab", max = 1 }

@@ -489,7 +489,7 @@ examine = "Some wooden crates."
 id = 15695
 examine = "A crate full of machine parts."
 
-[crate_128]
+[crate_groats_farm]
 id = 15696
 examine = "An empty crate."
 
@@ -501,7 +501,7 @@ examine = "A crate full of machine parts."
 id = 15698
 examine = "An empty machine parts crate."
 
-[crate_131]
+[crate_groats_farm_2]
 id = 15704
 examine = "A discarded crate with a lid."
 

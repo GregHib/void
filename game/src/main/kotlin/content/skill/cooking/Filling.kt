@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.inv.replace
 class Filling : Script {
 
     init {
-        itemOnObjectOperate(obj = "sink*,fountain*,well*,water_trough*,pump_and_drain*") { (target, item) ->
+        itemOnObjectOperate(obj = "sink*,fountain*,well*,water_trough*,pump_and_drain*,water_barrel_*") { (target, item) ->
             if (!item.def.contains("full")) {
                 return@itemOnObjectOperate
             }

@@ -19,5 +19,11 @@ class Empty : Script {
             inventory.replace(slot, item.id, "pie_dish")
             message("You remove the burnt pie from the pie dish.", ChatType.Filter)
         }
+
+        itemOption("Empty", "bucket_of_*") { (item, slot) ->
+            val replacement: String = item.def.getOrNull("empty") ?: return@itemOption
+            inventory.replace(slot, item.id, replacement)
+            message("You empty the contents of the bucket on the floor.")
+        }
     }
 }

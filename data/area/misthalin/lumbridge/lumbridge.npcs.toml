@@ -227,6 +227,7 @@ def = 8
 combat_def = "farmer"
 attack_bonus = 5
 respawn_delay = 25
+drop_table = "farmer_members"
 examine = "He grows the crops in this area."
 
 [farmer_lumbridge_2]
@@ -273,6 +274,7 @@ examine = "Perhaps this gardener might look after your crops for you."
 [farmer_lumbridge_3]
 id = 1758
 examine = "He grows the crops in this area."
+clone = "farmer_lumbridge"
 
 [sigmund_lumbridge]
 id = 2079
