@@ -29,10 +29,6 @@ fun Player.hasBeastOfBurden(): Boolean = familiarDef()?.get("summoning_beast_of_
 
 fun Player.ensureBeastOfBurdenInventory() {
     val capacity = beastOfBurdenCapacity
-    // A stale/undersized instance restored from an old save would have fewer
-    // slots than the familiar's capacity. Discard it so the engine recreates it
-    // from the definition at full size on next access. Only safe to discard when
-    // empty, otherwise stored items would be lost.
     if (capacity > 0 && beastOfBurden.size < capacity && beastOfBurden.isEmpty()) {
         inventories.clear("beast_of_burden")
     }
@@ -88,8 +84,6 @@ fun Player.takeAllBeastOfBurden() {
         message("Your familiar is not carrying any items.")
         return
     }
-    // Withdraw as many items as fit rather than failing all-or-nothing: fill the
-    // inventory up to its capacity and leave the remainder on the familiar.
     val target = inventory
     beastOfBurden.transaction {
         moveAllToLimit(target)
@@ -202,9 +196,6 @@ class BeastOfBurden : Script {
         if (amount < 1) {
             return
         }
-        // Clamp to what's actually carried. moveToLimit's undo path (when the
-        // source holds fewer than requested) re-shuffles items into the wrong
-        // slots and leaves gaps, so never let it overshoot the source.
         val toWithdraw = minOf(amount, player.beastOfBurden.count(item.id))
         if (toWithdraw < 1) {
             return
@@ -233,15 +224,19 @@ class BeastOfBurden : Script {
         }
         player.ensureBeastOfBurdenInventory()
         val bob = player.beastOfBurden
-        val usedSlots = bob.items.take(capacity).count { it.isNotEmpty() }
-        if (usedSlots >= capacity && bob.indexOf(item.id) == -1) {
+        val usedSlots = bob.items.count { it.isNotEmpty() }
+        val sharesStack = bob.stackable(item.id) && bob.indexOf(item.id) != -1
+        val freeSlots = capacity - usedSlots
+        if (freeSlots <= 0 && !sharesStack) {
             player.message("Your familiar can't carry any more items.")
             return
         }
-        // Clamp to what's actually held. moveToLimit's undo path (when the source
-        // holds fewer than requested) re-shuffles items into the wrong slots and
-        // leaves gaps in the beast of burden, so never let it overshoot the source.
-        val toStore = minOf(amount, player.inventory.count(item.id))
+        val requested = minOf(amount, player.inventory.count(item.id))
+        var toStore = requested
+        if (!sharesStack && !bob.stackable(item.id)) {
+            // Each non-stackable item needs its own slot, so cap to the free slots.
+            toStore = minOf(toStore, freeSlots)
+        }
         if (toStore < 1) {
             return
         }
@@ -253,7 +248,12 @@ class BeastOfBurden : Script {
         }
         when (player.inventory.transaction.error) {
             is TransactionError.Full -> player.message("Your familiar can't carry any more items.")
-            else -> player.syncBeastOfBurdenInterface()
+            else -> {
+                if (toStore < requested) {
+                    player.message("Your familiar can't carry any more items.")
+                }
+                player.syncBeastOfBurdenInterface()
+            }
         }
     }
 }
