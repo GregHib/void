@@ -106,12 +106,14 @@ fun Player.dropBeastOfBurdenItems() {
     if (beastOfBurden.isEmpty()) {
         return
     }
+    // Items drop under the familiar, falling back to the player if it's already gone.
+    val dropTile = follower?.tile ?: tile
     for (item in beastOfBurden.items) {
         if (item.isEmpty()) {
             continue
         }
         // Owner-only, retrievable for five minutes before despawning.
-        FloorItems.add(tile, item.id, item.amount, revealTicks = FloorItems.NEVER, disappearTicks = TimeUnit.MINUTES.toTicks(5), owner = this)
+        FloorItems.add(dropTile, item.id, item.amount, revealTicks = FloorItems.NEVER, disappearTicks = TimeUnit.MINUTES.toTicks(5), owner = this)
     }
     beastOfBurden.clear()
     message("Your familiar has dropped all the items it was holding.")

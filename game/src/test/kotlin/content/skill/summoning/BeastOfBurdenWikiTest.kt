@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -64,33 +65,39 @@ class BeastOfBurdenWikiTest : WorldTest() {
     }
 
     @Test
-    fun `dismissing drops stored items to the floor`() {
+    fun `dismissing drops stored items under the familiar`() {
         val player = createPlayer(Tile(3200, 3200))
         player.summonFamiliar(NPCDefinitions.get("pack_yak_familiar"), false)
         tick(3)
         player.beastOfBurden.add("coins", 250)
+        val familiarTile = Tile(3205, 3205)
+        player.follower!!.tele(familiarTile)
 
         player.dismissFamiliar()
         tick(1)
 
         assertTrue(player.beastOfBurden.isEmpty())
-        assertNotNull(FloorItems.firstOrNull(player.tile, "coins"))
+        assertNotNull(FloorItems.firstOrNull(familiarTile, "coins"))
+        assertNull(FloorItems.firstOrNull(player.tile, "coins"))
         assertTrue(player.containsMessage("Your familiar has dropped all the items it was holding."))
     }
 
     @Test
-    fun `familiar death drops stored items and clears follower`() {
+    fun `familiar death drops stored items under the familiar and clears follower`() {
         val player = createPlayer(Tile(3200, 3200))
         player.summonFamiliar(NPCDefinitions.get("pack_yak_familiar"), false)
         tick(3)
         player.beastOfBurden.add("coins", 250)
         val familiar = player.follower!!
+        val familiarTile = Tile(3205, 3205)
+        familiar.tele(familiarTile)
 
         familiar.levels.set(Skill.Constitution, 0)
         tick(2)
 
         assertNull(player.follower)
         assertTrue(player.beastOfBurden.isEmpty())
-        assertNotNull(FloorItems.firstOrNull(player.tile, "coins"))
+        assertNotNull(FloorItems.firstOrNull(familiarTile, "coins"))
+        assertNull(FloorItems.firstOrNull(player.tile, "coins"))
     }
 }
