@@ -3,11 +3,11 @@ package content.skill.summoning
 import WorldTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.beastOfBurden
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimit
-import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.type.Tile
 
 class BeastOfBurdenZeroSizeTest : WorldTest() {
