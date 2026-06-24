@@ -50,7 +50,10 @@ class CaptainBarnaby : Script {
             message("You must speak to the Customs officer before it will set sail.")
         }
 
-        objectOperate("Climb-down", "captain_barnaby_ship_ladder") {
+        objectOperate("Climb-down", "captain_barnaby_ship_ladder") { (ladder) ->
+            if (ladder.tile != Tile(2682, 3267, 1)) {
+                return@objectOperate
+            }
             message("I don't think Captain Barnaby wants me going down there.")
         }
     }
