@@ -57,3 +57,13 @@ to = { x = 2636, y = 9510, level = 2}
 option = "Walk-down"
 tile = { x = 2635, y = 9511, level = 2}
 to = { x = 2636, y = 9517}
+
+[gangplank_brimhaven_enter]
+option = "Cross"
+tile = { x = 2773, y = 3234 }
+to = { x = 2775, y = 3234, level = 1 }
+
+[gangplank_brimhaven_exit]
+option = "Cross"
+tile = { x = 2774, y = 3234, level = 1 }
+to = { x = 2772, y = 3234 }

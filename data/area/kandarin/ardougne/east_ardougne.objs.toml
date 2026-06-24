@@ -192,3 +192,11 @@ id = 5792
 [dairy_churn_ardougne]
 id = 34800
 examine = "Used to make dairy products."
+
+[gangplank_ardougne_enter]
+id = 2085
+examine = "Handy for boarding the ship."
+
+[gangplank_ardougne_exit]
+id = 2086
+examine = "Handy for boarding the ship."
