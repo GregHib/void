@@ -50,7 +50,10 @@ id = 8585
 id = 8598
 
 [expression_ogre_sad]
-id = 8559
+id = 8659
+
+[expression_ogre_shifty]
+id = 8661
 
 [expression_ogre_shock]
-id = 8562
+id = 8662

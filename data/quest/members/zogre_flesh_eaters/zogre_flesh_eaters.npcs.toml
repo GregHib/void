@@ -20,6 +20,7 @@ id = 2061
 
 [zogre_sithik_ogre]
 id = 2062
+dialogue = "ogre"
 
 [zogre_human_brentle_vahn]
 id = 1826

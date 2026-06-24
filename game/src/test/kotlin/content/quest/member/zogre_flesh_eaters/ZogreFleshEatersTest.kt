@@ -2,13 +2,15 @@ package content.quest.member.zogre_flesh_eaters
 
 import WorldTest
 import dialogueOption
+import itemOnFloorItem
 import itemOnNpc
 import itemOnObject
 import itemOption
-import messages
 import npcOption
 import objectOption
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertNotNull
 import skipDialogues
 import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -71,7 +73,6 @@ class ZogreFleshEatersTest : WorldTest() {
         val lecturn = GameObjects.find(Tile(2443, 9459, 2), "zogre_lecturn")
         player.objectOption(lecturn, "Search")
         tick(3)
-        println(player.messages)
         assertTrue(player.inventory.contains("torn_page"))
 
         player.tele(2442, 9459, 2)
@@ -161,5 +162,91 @@ class ZogreFleshEatersTest : WorldTest() {
         assertTrue(player.inventory.contains("papyrus"))
         assertTrue(player.inventory.contains("book_of_portraiture"))
 
+        player.itemOnObject(sithik, player.inventory.indexOf("papyrus"))
+        tick(1)
+        player.skipDialogues()
+        tick(2)
+        assertTrue(player.inventory.contains("zogre_sithik_portrait_good"))
+
+        player.tele(2556, 3079, 0)
+        player.itemOnNpc(bartender, player.inventory.indexOf("zogre_sithik_portrait_good"))
+        tick(1)
+        player.skipDialogues()
+        assertTrue(player["thzfe_innkeeperportraitshown", false])
+
+
+        player.tele(2588, 3090, 1)
+        val rarve = NPCs.findBySpawn(Tile(2588, 3091, 1), "zavistic_rarve")
+        player.npcOption(rarve, "Talk-to")
+        tick(1)
+        player.skipDialogues()
+        player.dialogueOption(3)
+        player.skipDialogues()
+        assertEquals(4, player["zogre_flesh_eaters", 0])
+        assertTrue(player.inventory.contains("zogre_ogre_trans_potion"))
+        assertFalse(player.inventory.contains("book_of_ham"))
+        assertFalse(player.inventory.contains("necromancy_book"))
+        assertFalse(player.inventory.contains("zogre_sithik_portrait_signed"))
+
+        player.tele(2593, 3103, 1)
+        val floorItem = FloorItems.add(Tile(2594, 3103, 1), "cup_of_tea_zogre_flesh_eaters")
+        player.itemOnFloorItem(floorItem, player.inventory.indexOf("zogre_ogre_trans_potion"))
+        tick(3)
+        player.skipDialogues()
+        assertEquals(6, player["zogre_flesh_eaters", 0])
+
+        player.tele(2597, 3108, 0)
+        val ladder = GameObjects.find(Tile(2597, 3107), "basic_ladder_bottom")
+        player.objectOption(ladder, "Climb-up")
+        tick(2)
+        assertEquals(1, player["thzfe_sithik_transformed", 0])
+
+        player.tele(2593, 3103, 1)
+        player.objectOption(sithik, "Talk-to")
+        tick(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        assertEquals(8, player["zogre_flesh_eaters"])
+        player.dialogueOption(2)
+        player.skipDialogues()
+        assertTrue(player["thzfe_makebrutalarrow", false])
+        player.dialogueOption(3)
+        player.skipDialogues()
+        assertTrue(player["thzfe_makecuredisease", false])
+        assertEquals(8, player["zogre_flesh_eaters", 0])
+
+        player.tele(2445, 3052, 0)
+        player.npcOption(grish, "Talk-to")
+        tick(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        assertTrue(player.inventory.contains("ogre_gate_key"))
+
+        player.tele(2482, 9445)
+        val stand = GameObjects.find(Tile(2483, 9445), "zogre_stand")
+        player.objectOption(stand, "Search")
+        tick(1)
+        player.skipDialogues()
+        tick(15)
+
+        assertEquals(12, player["zogre_flesh_eaters", 0])
+        val artifact = FloorItems.firstOrNull(Tile(2477, 9444), "ogre_artefact")
+        assertNotNull(artifact)
+
+        player.objectOption(stand, "Search")
+        tick(4)
+        player.skipDialogues()
+        assertTrue(player.inventory.contains("ogre_artefact"))
+
+        player.tele(2445, 3052, 0)
+        player.npcOption(grish, "Talk-to")
+        tick(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        tick(1)
+        assertEquals(14, player["zogre_flesh_eaters", 0])
     }
 }

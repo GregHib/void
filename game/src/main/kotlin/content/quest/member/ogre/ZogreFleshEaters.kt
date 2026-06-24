@@ -387,8 +387,7 @@ class ZogreFleshEaters : Script {
                     addOrDrop("ogre_artefact")
                     item(
                         item = "ogre_artefact",
-                        text = "An ogre artefact appears in front of you. You quickly put it " +
-                            "into your backpack.",
+                        text = "An ogre artefact appears in front of you. You quickly put it into your backpack."
                     )
                 }
                 else -> {
@@ -798,8 +797,10 @@ class ZogreFleshEaters : Script {
             list += "<str>I've told Grish to relocate the dance area, but he needs"
             list += "<str>me to get something from the tomb to so that he can do"
             list += "<str>this."
-            list += "<navy>I need to go back into the <maroon>tomb<navy> and look for some <maroon>'old'"
-            list += "<navy>items<navy> that <maroon>Grish<navy> has asked for."
+            if (stage == 10) {
+                list += "<navy>I need to go back into the <maroon>tomb<navy> and look for some <maroon>'old'"
+                list += "<navy>items<navy> that <maroon>Grish<navy> has asked for."
+            }
         }
 
         // ===== Stage 12+ — killed Slash Bash =====
