@@ -192,8 +192,7 @@ class Grish : Script {
         get() = get("chompy_birds", 0)
 
     private fun Player.meetsZogreRequirements(): Boolean = hasMax(Skill.Ranged, 30) &&
-        questCompleted("jungle_potion") && // TODO
-        chompybird == 65
+        questCompleted("jungle_potion") && chompybird == 65 // TODO
 
     suspend fun Player.foundMenu() {
         choice {
@@ -233,16 +232,12 @@ class Grish : Script {
         npc<Neutral>("Yeah creature, yous gotta get da ogrish old fings for da making new jiggig and proper in da special way.")
     }
 
-    fun ChoiceOption.killFromDistanceOption(): Unit = option(
-        "I've got some information on how to kill the zogres from a distance.",
-    ) {
+    fun ChoiceOption.killFromDistanceOption(): Unit = option("I've got some information on how to kill the zogres from a distance.") {
         player<Neutral>("Sithik told me how to make Brutal arrows which means I can kill these zogres from a distance!")
         teachCompositeBow()
     }
 
-    fun ChoiceOption.cureDiseaseOption(): Unit = option(
-        "I've found out how to cure the disease.",
-    ) {
+    fun ChoiceOption.cureDiseaseOption(): Unit = option("I've found out how to cure the disease.") {
         player<Neutral>("I also found out that the disease can be cured.")
         npc<Neutral>("Dat's da good fing creature, yous do good fing to give un to Uglug...he gives bright pretties for da sickies glug glug.")
         returnToProgressMenu()
@@ -268,9 +263,7 @@ class Grish : Script {
     private suspend fun Player.teachCompositeBow() {
         npc<Neutral>("Uhggh, whas you's sayin' creature? Yous speakies too stupid for Grish...")
         player<Neutral>("I know how to make large arrows...you know, 'big stabbers', to kill the zogres...they're bigger and apparently do a lot of damage, only thing is, the normal ogre bow I need to fire it is quite slow.")
-        npc<Neutral>(
-            "Why you's not say so creature...me's shows you how to make da bigger stabber chucker... <blue>~ Grish gets a couple of items out of his back pack.~", // TODO makes too much of the line blue
-        )
+        npc<Neutral>("Why you's not say so creature...me's shows you how to make da bigger stabber chucker... <blue>~ Grish gets a couple of items out of his back pack.~") // TODO makes too much of the line blue
         set("thzfe_makecompozogrebow", true)
         items(
             "achey_tree_logs",

@@ -12,7 +12,7 @@ range = 1
 anim = "slash_bash_melee"
 target_sound = "zogre_attack"
 target_hit = { offense = "crush", max = 130 }
-impact_disease = 75
+impact_disease = 15
 approach = false
 
 [slash_bash.range]
@@ -24,4 +24,4 @@ projectile = "slash_bash_projectile"
 projectile_origin_x = 1
 projectile_origin_y = 1
 target_hit = { offense = "range", max = 130 }
-impact_disease = 75
+impact_disease = 15

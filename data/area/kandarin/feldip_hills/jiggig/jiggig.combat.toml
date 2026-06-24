@@ -10,7 +10,7 @@ range = 1
 anim = "ogre_attack"
 target_sound = "zogre_attack"
 target_hit = { offense = "crush", max = 50 }
-impact_disease = 50
+impact_disease = 10
 
 [zogre_jiggig_2]
 clone = "zogre_jiggig"
@@ -60,7 +60,7 @@ range = 1
 anim = "ogre_attack"
 target_sound = "giant_attack"
 target_hit = { offense = "crush", max = 50 }
-impact_disease = 50
+impact_disease = 10
 
 [skogre_jiggig_2]
 clone = "skogre_jiggig"

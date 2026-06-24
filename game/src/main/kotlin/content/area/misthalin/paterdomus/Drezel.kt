@@ -628,9 +628,7 @@ class Drezel : Script {
         when (ghastKills) {
             1 -> npc<Neutral>("So you've got two more to kill then!")
             2 -> npc<Neutral>("So you've got one more to kill then!")
-            3 -> npc<Neutral>(
-                "So you've killed them all then! Go and tell him, I bet he'll be pleased.",
-            )
+            3 -> npc<Neutral>("So you've killed them all then! Go and tell him, I bet he'll be pleased.")
         }
     }
 

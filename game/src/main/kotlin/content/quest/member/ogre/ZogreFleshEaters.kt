@@ -2,6 +2,7 @@ package content.quest.member.ogre
 
 import content.entity.combat.killer
 import content.entity.gfx.areaGfx
+import content.entity.obj.door.enterDoor
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Mad
@@ -35,9 +36,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.ObjectShape
-import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -88,9 +86,7 @@ class ZogreFleshEaters : Script {
         takeable("cup_of_tea_zogre_flesh_eaters") { _, telegrab ->
             val sithik = if (get("thzfe_sithik_transformed", false)) "zogre_sithik_ogre" else "zogre_sithik_man"
             if (telegrab) {
-                npc<Angry>(
-                    sithik,
-                    "Hey! What do you think you're doing? Don't go casting that kind of spell anywhere near my tea!  Leave my tea alone you telegrabbing fiend!")
+                npc<Angry>(sithik, "Hey! What do you think you're doing? Don't go casting that kind of spell anywhere near my tea!  Leave my tea alone you telegrabbing fiend!")
             } else {
                 npc<Angry>(sithik, "Hey! What do you think you're doing? Leave my tea alone!")
             }
@@ -191,9 +187,7 @@ class ZogreFleshEaters : Script {
             }
             set("thzfe_prismsearch", 2)
             sound("unlock")
-            item(
-                item = "knife",
-                text = "With some skill you manage to slide the blade along the lock edge and click into place the teeth of the primitive mechanism.")
+            item("knife", "With some skill you manage to slide the blade along the lock edge and click into place the teeth of the primitive mechanism.")
         }
 
         // ===== Locked ogre coffin (multi-stage search) =====
@@ -237,9 +231,7 @@ class ZogreFleshEaters : Script {
             if (inventory.spaces < 3) {
                 return@itemOption message("You don't have enough room in your inventory for the contents of this bag.")
             }
-            item(
-                item = "ruined_backpack",
-                text = "Just before you open the backpack, you notice a small leather patch with the moniker: 'B.Vahn', on it.")
+            item("ruined_backpack", "Just before you open the backpack, you notice a small leather patch with the moniker: 'B.Vahn', on it.")
             inventory.remove("ruined_backpack")
             addOrDrop("dragon_inn_tankard")
             addOrDrop("rotten_food")
@@ -314,7 +306,7 @@ class ZogreFleshEaters : Script {
 
         // ===== Plinth in the tomb (Slash Bash spawn / artefact retrieval) =====
         objectOperate("Search", "zogre_stand") { (target) ->
-            if (NPCs.findOrNull(tile.regionLevel, "slash_bash") != null) {
+            if (NPCs.at(tile.regionLevel).any { it.id == "slash_bash" && it["owner", ""] == accountName }) {
                 return@objectOperate message("You're in mortal danger, you don't have time to search!")
             }
 
@@ -359,9 +351,6 @@ class ZogreFleshEaters : Script {
     }
 
     // ===== Ogre tomb double doors =====
-    // The closed pair lives at (x_r, y) + (x_r + 1, y) on level 2.  Each half morphs to its
-    // `_inactive` open variant for 2 ticks: the right half rotates from 3 → 0, the left half
-    // from 3 → 2 (Java spawns those rotations explicitly on the open temp objects).
 
     private suspend fun Player.enterOgreCaveDoor(target: GameObject) {
         val enter = tile.y >= target.tile.y
@@ -371,47 +360,7 @@ class ZogreFleshEaters : Script {
         }
         message(if (enter) "You use the Ogre Tomb Key to unlock the door." else "You push the gates open.")
         sound("strangedoor_open")
-
-        walkTo(
-            target = Tile(tile.x, target.tile.y - if (enter) 1 else 0, tile.level),
-            forceWalk = true,
-            noCollision = true,
-        )
-
-        val targetIsRight = target.id == "ogre_cavedoorr"
-        val partnerId = if (targetIsRight) "ogre_cavedoorl" else "ogre_cavedoorr"
-        val partner = GameObjects.findOrNull(target.tile.add(1, 0), partnerId)
-            ?: GameObjects.findOrNull(target.tile.add(-1, 0), partnerId)
-
-        GameObjects.add(
-            id = "inviswall",
-            tile = target.tile,
-            shape = ObjectShape.WALL_STRAIGHT,
-            rotation = target.rotation,
-            ticks = 2,
-        )
-        if (partner != null) {
-            GameObjects.add(
-                id = "inviswall",
-                tile = partner.tile,
-                shape = ObjectShape.WALL_STRAIGHT,
-                rotation = partner.rotation,
-                ticks = 2,
-            )
-        }
-
-        target.replace(
-            id = "${target.id}_inactive",
-            rotation = if (targetIsRight) 0 else 2,
-            ticks = 3,
-        )
-        partner?.replace(
-            id = "${partner.id}_inactive",
-            rotation = if (targetIsRight) 2 else 0,
-            ticks = 3,
-        )
-
-        delay(2)
+        enterDoor(target)
     }
 
     // ===== Cutscene: blackened, charred area =====
@@ -502,7 +451,7 @@ class ZogreFleshEaters : Script {
             req(has(Skill.Fletching, 30), "Fletching level: 30"),
             req(has(Skill.Smithing, 4), "Smithing level: 4"),
             req(has(Skill.Herblore, 4), "Herblore level: 4"),
-            "<navy>Must be able to defeat a <maroon>level 111<navy> foe."
+            "<navy>Must be able to defeat a <maroon>level 111<navy> foe.",
         )
     }
 
@@ -523,12 +472,12 @@ class ZogreFleshEaters : Script {
         "<str>more effective against Zogres, and he also told me how to",
         "<str>make a disease balm.",
         "",
-        "<red>QUEST COMPLETE!"
+        "<red>QUEST COMPLETE!",
     )
 
     private fun Player.startedJournal(stage: Int): List<String> {
         val list = mutableListOf<String>()
-        val varbit = get("thzfe_prismsearch", 0)
+        val search = get("thzfe_prismsearch", 0)
 
         // ===== Stage 2+ — initial Grish conversation =====
         if (stage < 3) {
@@ -553,28 +502,28 @@ class ZogreFleshEaters : Script {
             list += "<str>can enter now."
 
             // Sub-stages tracked by the sithik_intro varbit
-            if (varbit >= 4 || stage >= 4) {
+            if (search >= 4 || stage >= 4) {
                 list += "<str>The guard has smashed the barricade down. I can enter"
                 list += "<str>now. I need to find out what happened here"
-            } else if (varbit >= 1) {
+            } else if (search >= 1) {
                 list += "<navy>I need to find out what happened here."
             }
 
-            if (varbit >= 2) {
+            if (search >= 2) {
                 list += "<str>I have searched a coffin, it has a funny looking hole at the"
                 list += "<str>side."
             }
-            if (varbit >= 3) {
+            if (search >= 3) {
                 list += "<str>I have forced the lock on a coffin, maybe I can open it"
                 list += "<str>now?"
             }
-            if (varbit >= 4) {
+            if (search >= 4) {
                 list += "<str>I've opened the coffin and retrieved a black prism, this"
                 list += "<str>may be useful."
                 list += "<str>I found a half torn page from a necromantic spell book,"
                 list += "<str>maybe this is a clue?"
             }
-            if (varbit >= 5) {
+            if (search >= 5) {
                 list += "<str>I have shown the prism to the grand secretary of the"
                 list += "<str>wizards guild."
             }
@@ -603,8 +552,8 @@ class ZogreFleshEaters : Script {
         }
 
         // Current-state hint based on varbit (overrides earlier <str> versions for the live state)
-        if (stage == 3 && varbit < 4) {
-            when (varbit) {
+        if (stage == 3 && search < 4) {
+            when (search) {
                 0 -> list += "<navy>I need to find out what happened here."
                 1 -> {
                     list += "<navy>I have searched a <maroon>coffin<navy>, it has a funny looking <maroon>hole<navy> at the"
@@ -626,13 +575,13 @@ class ZogreFleshEaters : Script {
             }
         }
 
-        if (stage == 3 && varbit == 4) {
+        if (stage == 3 && search == 4) {
             list += "<navy>I have shown the <maroon>prism<navy> and the <maroon>necromantic page<navy> to"
             list += "<navy><maroon>Zavistic Rarve<navy>. He's told me about a <maroon>wizard<navy> named <maroon>Sithik"
             list += "<navy>Ints<navy> who might have some information."
         }
 
-        if (stage == 3 && varbit == 5) {
+        if (stage == 3 && search == 5) {
             list += "<navy>I've spoken to <maroon>Sithik<navy>, I need to see if he was <maroon>involved<navy> in"
             list += "<navy>some way."
             when {
@@ -748,11 +697,3 @@ class ZogreFleshEaters : Script {
         return list
     }
 }
-
-var Player.zogre_flesh_eaters: Int
-    get() = get("zogre_flesh_eaters", 0)
-    set(value) {
-        set("zogre_flesh_eaters", value)
-    }
-
-// disease doesn't work

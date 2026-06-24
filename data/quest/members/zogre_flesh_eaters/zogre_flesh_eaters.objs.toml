@@ -22,16 +22,16 @@ id = 6893
 [zogre_stand]
 id = 6897
 
-[ogre_cavedoorr]
+[ogre_cavedoorr_closed]
 id = 6871
 
-[ogre_cavedoorl]
+[ogre_cavedoorl_closed]
 id = 6872
 
-[ogre_cavedoorr_inactive]
+[ogre_cavedoorr_opened]
 id = 6873
 
-[ogre_cavedoorl_inactive]
+[ogre_cavedoorl_opened]
 id = 6874
 
 [zogre_sithik_bed]

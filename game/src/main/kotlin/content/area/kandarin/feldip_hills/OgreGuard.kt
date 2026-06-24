@@ -12,14 +12,11 @@ import world.gregs.voidps.type.Tile
 
 class OgreGuard : Script {
 
-    lateinit var guard: NPC
-
     init {
         npcOperate("Talk-to", "zogre_ogre_guard") { (target) ->
-            guard = target
             when (quest("zogre_flesh_eaters")) {
                 "unstarted" -> warnAway()
-                "investigate" -> openBarricade()
+                "investigate" -> openBarricade(target)
                 else -> postBarricadeWarning()
             }
         }
@@ -28,45 +25,31 @@ class OgreGuard : Script {
     // ===== Progress 0: Generic warning, player hasn't accepted quest =====
 
     private suspend fun Player.warnAway() {
-        npc<Neutral>(
-            "Yous needs ta stay away from dis place...yous get da sickies and mebe yous goes " +
-                "to dead if yous da unlucky fing.",
-        )
+        npc<Neutral>("Yous needs ta stay away from dis place...yous get da sickies and mebe yous goes to dead if yous da unlucky fing.")
     }
 
     // ===== Progress 2: Player has accepted quest, ready to break barricade =====
 
-    private suspend fun Player.openBarricade() {
-        npc<Neutral>(
-            "Yous needs ta stay away from dis place...yous get da sickies and mebe yous goes " +
-                "to dead if yous da unlucky fing.",
-        )
-        player<Neutral>(
-            "But Grish has asked me to look into this place and find out why all the undead " +
-                "ogres are here.",
-        )
-        npc<Neutral>(
-            "Ok, dat is da big, big scary, danger fing!<br>You's sure you's wants to go in?",
-        )
+    private suspend fun Player.openBarricade(guard: NPC) {
+        npc<Neutral>("Yous needs ta stay away from dis place...yous get da sickies and mebe yous goes to dead if yous da unlucky fing.")
+        player<Neutral>("But Grish has asked me to look into this place and find out why all the undead ogres are here.")
+        npc<Neutral>("Ok, dat is da big, big scary, danger fing!<br>You's sure you's wants to go in?")
         player<Neutral>("Yes, I'm sure.")
         npc<Neutral>("Ok, I opens da stoppa's for yous creature.")
-        breakBarricadeCutscene()
+        breakBarricadeCutscene(guard)
         npc<Neutral>("Ok der' yous goes!")
     }
 
     // ===== Progress 3+: Past the barricade, just a flavor warning =====
 
     private suspend fun Player.postBarricadeWarning() {
-        npc<Neutral>(
-            "Hey yous tryin' not to get da sickies else yous be da sick-un and mebe get to " +
-                "be a dead-un if yous be da unlucky fing.",
-        )
+        npc<Neutral>("Hey yous tryin' not to get da sickies else yous be da sick-un and mebe get to be a dead-un if yous be da unlucky fing.")
         player<Neutral>("Don't worry, I know how to take care of myself.")
     }
 
     // ===== Helpers - replace with project-specific implementations =====
 
-    private suspend fun Player.breakBarricadeCutscene() {
+    private suspend fun Player.breakBarricadeCutscene(guard: NPC) {
         guard.clearWatch()
         guard.face(Tile(2458, 3049, 0))
         delay(2)

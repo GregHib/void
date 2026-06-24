@@ -217,9 +217,7 @@ class SithikInts : Script {
         }
     }
 
-    fun ChoiceOption.askAboutUndeadOgres(): Unit = option<Neutral>(
-        "Do you know anything about the undead ogres at Jiggig?",
-    ) {
+    fun ChoiceOption.askAboutUndeadOgres(): Unit = option<Neutral>("Do you know anything about the undead ogres at Jiggig?") {
         sithik<Neutral>("Er...undead ogres...no, sorry, no idea what you're talking about there.")
         player<Neutral>("Hmm, is that right...")
         sithik<Neutral>("Well, yes, yes it is. If I knew something, I'd tell you.")

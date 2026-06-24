@@ -19,7 +19,7 @@ range = 1
 anim = "spider_large_attack"
 target_sound = "insect_attack"
 impact_regardless = true
-impact_disease = 80
+impact_disease = 8
 
 [zombie_pirate]
 attack_speed = 4
