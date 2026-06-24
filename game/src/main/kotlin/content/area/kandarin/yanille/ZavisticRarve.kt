@@ -17,7 +17,8 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
-import content.quest.member.ogre.zogre_flesh_eaters
+import content.quest.quest
+import content.quest.questStage
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -36,7 +37,7 @@ class ZavisticRarve : Script {
 
         npcOperate("Talk-to", "zavistic_rarve") { (target) ->
             val sandProgress = get("hand_in_the_sand", 0)
-            val zogreProgress = zogre_flesh_eaters
+            val zogreProgress = questStage("zogre_flesh_eaters")
             if (sandProgress < 40 && zogreProgress < 4) {
                 npc<Neutral>("What are you doing bothering me? Don't you think some of us have work to do?")
                 player<Neutral>("I thought you were here to help?")
@@ -63,7 +64,7 @@ class ZavisticRarve : Script {
             talkWith(zavistic)
 
             val sandProgress = get("hand_in_the_sand", 0)
-            val zogreProgress = zogre_flesh_eaters
+            val zogreProgress = questStage("zogre_flesh_eaters")
             if (sandProgress < 40 && zogreProgress < 4) {
                 npc<Neutral>("What are you doing ringing that bell?! Don't you think some of us have work to do?")
                 player<Neutral>("But I was told to ring the bell if I wanted some attention.")
@@ -130,7 +131,7 @@ class ZavisticRarve : Script {
 
     private suspend fun Player.mainMenu() {
         val sand = get("hand_in_the_sand", 0) >= 20
-        val zogre = zogre_flesh_eaters >= 3
+        val zogre = questStage("zogre_flesh_eaters") >= 3
         when {
             zogre && sand -> {
                 choice {
@@ -444,19 +445,19 @@ class ZavisticRarve : Script {
     // ===== ZOGRE FLESH EATERS branches =====
 
     private suspend fun Player.sendZogreChat() {
-        val progress = zogre_flesh_eaters
+        val progress = quest("zogre_flesh_eaters")
         val sithikIntro = get("thzfe_prismsearch", 0)
 
         when {
-            progress >= 8 -> {
+            progress == "permanent_spell" || progress == "given_key" || progress == "killed_slash_bash" || progress == "completed" -> {
                 npc<Neutral>("Don't you worry about Sithik, he's not likely to be moving from his bed for a long time. When he eventually does get better, he's going to be sent before a disciplinary tribunal, then we'll sort out what's what.")
                 player<Neutral>("Thanks for your help with all of this.")
                 npc<Neutral>("Ooohh, no thanks required. It's I who should be thanking you my friend...your investigative mind has shown how vigilant we really should be for this type of evil use of the magical arts.")
                 guildMenu()
             }
-            progress == 4 || progress == 6 -> {
+            progress == "sithik" || progress == "potion" -> {
                 npc<Neutral>("Have you used that potion yet?")
-                if (progress == 6) {
+                if (progress == "potion") {
                     yesUsedPotion()
                 } else if (inventory.contains("zogre_ogre_trans_potion")) {
                     notYetUsedPotion()
@@ -684,7 +685,7 @@ class ZavisticRarve : Script {
 
     private suspend fun Player.handOverPotion() {
         npc<Neutral>("And I'm starting to think that Sithik may be involved. Here, take this potion and give some to Sithik. It'll bring on a change which should solicit some answers - tell him the effects won't revert until he's told the truth.")
-        zogre_flesh_eaters = 4
+        set("zogre_flesh_eaters", "sithik")
         inventory.remove("necromancy_book")
         inventory.remove("torn_page")
         inventory.remove("dragon_inn_tankard")

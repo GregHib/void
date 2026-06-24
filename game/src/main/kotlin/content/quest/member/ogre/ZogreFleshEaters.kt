@@ -13,8 +13,10 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
+import content.quest.quest
 import content.quest.questCompleted
 import content.quest.questJournal
+import content.quest.questStage
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
@@ -51,10 +53,10 @@ class ZogreFleshEaters : Script {
         // ===== Quest journal =====
 
         questJournalOpen("zogre_flesh_eaters") {
-            val lines = when (val stage = zogre_flesh_eaters) {
-                0 -> notStartedJournal()
-                14 -> completedJournal()
-                else -> startedJournal(stage)
+            val lines = when (quest("zogre_flesh_eaters")) {
+                "unstarted" -> notStartedJournal()
+                "completed" -> completedJournal()
+                else -> startedJournal(questStage("zogre_flesh_eaters"))
             }
             questJournal("Zogre Flesh Eaters", lines)
         }
@@ -62,7 +64,9 @@ class ZogreFleshEaters : Script {
         // ===== Movement-triggered cutscene =====
         // The blackened/charred area cutscene plays when the player first walks into the right tile.
         entered("zogre_blackened_area") {
-            if (get("thzfe_cut_scene", false)) return@entered
+            if (get("thzfe_cut_scene", false)) {
+                return@entered
+            }
             queue("zogre_blackened_cutscene") { playBlackenedCutscene() }
         }
 
@@ -86,9 +90,7 @@ class ZogreFleshEaters : Script {
             if (telegrab) {
                 npc<Angry>(
                     sithik,
-                    "Hey! What do you think you're doing? Don't go casting that kind of spell " +
-                        "anywhere near my tea!  Leave my tea alone you telegrabbing fiend!",
-                )
+                    "Hey! What do you think you're doing? Don't go casting that kind of spell anywhere near my tea!  Leave my tea alone you telegrabbing fiend!")
             } else {
                 npc<Angry>(sithik, "Hey! What do you think you're doing? Leave my tea alone!")
             }
@@ -129,7 +131,7 @@ class ZogreFleshEaters : Script {
 
         // ===== Lectern in the tomb (search for torn page) =====
         objectOperate("Search", "zogre_lecturn") {
-            if (zogre_flesh_eaters >= 4) {
+            if (questStage("zogre_flesh_eaters") >= 4) {
                 return@objectOperate message("You search the lectern, but find nothing.")
             }
             message("You search the broken down lectern.")
@@ -148,7 +150,7 @@ class ZogreFleshEaters : Script {
         objectOperate("Search", "zogre_brentle_skeleton") {
             val skeletonState = get("thzfe_brentle_skele", 0)
             if (skeletonState == 2) {
-                if (zogre_flesh_eaters >= 4 ||
+                if (questStage("zogre_flesh_eaters") >= 4 ||
                     inventory.contains("ruined_backpack") ||
                     inventory.contains("dragon_inn_tankard")
                 ) {
@@ -191,26 +193,17 @@ class ZogreFleshEaters : Script {
             sound("unlock")
             item(
                 item = "knife",
-                text = "With some skill you manage to slide the blade along the lock edge and " +
-                    "click into place the teeth of the primitive mechanism.",
-            )
+                text = "With some skill you manage to slide the blade along the lock edge and click into place the teeth of the primitive mechanism.")
         }
 
         // ===== Locked ogre coffin (multi-stage search) =====
         objectOperate("Search", "zogre_coffin_special*") {
             when (val value = get("thzfe_prismsearch", 0)) {
                 0, 1 -> {
-                    statement(
-                        "You search the coffin and find a small geometrically shaped hole in " +
-                            "the side. It looks as if this hole was made with a considerable " +
-                            "amount of force, maybe the thing which made the hole is still inside?",
-                    )
+                    statement("You search the coffin and find a small geometrically shaped hole in the side. It looks as if this hole was made with a considerable amount of force, maybe the thing which made the hole is still inside?")
                     if (value == 0) {
                         set("thzfe_prismsearch", 1)
-                        statement(
-                            "The lock looks quite crude, with some skill and a slender blade, you " +
-                                "may be able to force it.",
-                        )
+                        statement("The lock looks quite crude, with some skill and a slender blade, you may be able to force it.")
                     }
                 }
                 2 -> liftCoffinLid()
@@ -219,10 +212,7 @@ class ZogreFleshEaters : Script {
                         return@objectOperate message("You find nothing inside this time.")
                     }
                     if (!inventory.add("black_prism")) {
-                        return@objectOperate statement(
-                            "You see something inside, but you have no space in your inventory " +
-                                "to store the item.",
-                        )
+                        return@objectOperate statement("You see something inside, but you have no space in your inventory to store the item.")
                     }
                     item(item = "black_prism", text = "You find a creepy looking black prism inside.")
                 }
@@ -245,15 +235,11 @@ class ZogreFleshEaters : Script {
         // ===== Item examine: ruined backpack (open it) =====
         itemOption("Open", "ruined_backpack") {
             if (inventory.spaces < 3) {
-                return@itemOption message(
-                    "You don't have enough room in your inventory for the contents of this bag.",
-                )
+                return@itemOption message("You don't have enough room in your inventory for the contents of this bag.")
             }
             item(
                 item = "ruined_backpack",
-                text = "Just before you open the backpack, you notice a small leather patch " +
-                    "with the moniker: 'B.Vahn', on it.",
-            )
+                text = "Just before you open the backpack, you notice a small leather patch with the moniker: 'B.Vahn', on it.")
             inventory.remove("ruined_backpack")
             addOrDrop("dragon_inn_tankard")
             addOrDrop("rotten_food")
@@ -267,95 +253,53 @@ class ZogreFleshEaters : Script {
         // ===== Item examine handlers (read books, examine items) =====
 
         itemOption("Read", "torn_page") {
-            statement(
-                "You don't manage to understand all of it as there is only a half page here. " +
-                    "But it seems the spell was used to place a curse on an area and for all " +
-                    "time raise the dead.",
-            )
+            statement("You don't manage to understand all of it as there is only a half page here. But it seems the spell was used to place a curse on an area and for all time raise the dead.")
             statement("If you look very carefully, you see what looks like a guild emblem.")
         }
 
         itemOption("Look-at", "black_prism") {
-            item(
-                item = "black_prism",
-                text = "It looks like a smokey black gem of some sort...very creepy. Some " +
-                    "magical force must have prevented it from being shattered when it hit " +
-                    "the coffin.",
-            )
+            item("black_prism", "It looks like a smokey black gem of some sort...very creepy. Some magical force must have prevented it from being shattered when it hit the coffin.")
         }
 
         itemOption("Look-at", "dragon_inn_tankard") {
-            item(
-                item = "dragon_inn_tankard",
-                text = "A stout ceramic tankard with a Dragon Emblem on the side, the words, " +
-                    "'Ye Olde Dragon Inn' are inscribed in the bottom.",
-            )
+            item("dragon_inn_tankard", "A stout ceramic tankard with a Dragon Emblem on the side, the words, 'Ye Olde Dragon Inn' are inscribed in the bottom.")
         }
 
         itemOption("Look-at", "zogre_sithik_portrait_signed") {
-            item(
-                item = "signed_portrait",
-                text = "You see an image of Sithik with a message underneath '<blue>I, the " +
-                    "bartender of the Dragon Inn, do swear that this <blue>is a true likeness " +
-                    "of the wizzy who was talking to <blue>Brentle Vahn, my customer the " +
-                    "other day.'",
-            )
+            item("signed_portrait", "You see an image of Sithik with a message underneath '<blue>I, the bartender of the Dragon Inn, do swear that this <blue>is a true likeness of the wizzy who was talking to <blue>Brentle Vahn, my customer the other day.'")
         }
 
         itemOption("Read", "necromancy_book") {
-            item(
-                item = "necromancy_book",
-                text = "This book uses very strange language and some incomprehensible symbols. " +
-                    "It has a very dark feeling to it. As you're looking through the book, " +
-                    "you notice that one of the pages has been torn and half of it is missing.",
-            )
+            item("necromancy_book", "This book uses very strange language and some incomprehensible symbols. It has a very dark feeling to it. As you're looking through the book, you notice that one of the pages has been torn and half of it is missing.")
         }
 
         itemOption("Read", "book_of_portraiture") {
-            item(
-                item = "book_of_portraiture",
-                text = "All interested artisans should really consider taking up the hobby of " +
-                    "portraiture. To do so, one uses a piece of papyrus on the intended " +
-                    "subject to initiate a likeness drawing activity.",
-            )
+            item("book_of_portraiture", "All interested artisans should really consider taking up the hobby of portraiture. To do so, one uses a piece of papyrus on the intended subject to initiate a likeness drawing activity.")
         }
 
         itemOption("Read", "book_of_ham") {
-            statement(
-                "You read this book for a while, it seems to be some sort of political " +
-                    "manifesto about how the king doesn't do enough to safeguard the citizens " +
-                    "of the realm from the monsters that still thrive within the borders. It " +
-                    "sends out a rallying cry to all people who would want to stop monsters, " +
-                    "to join the HAM movement.",
-            )
-            player<Quiz>(
-                "Hmmm, Sithik must really hate monsters then, I wonder if he hates ogres in " +
-                    "particular?",
-            )
+            statement("You read this book for a while, it seems to be some sort of political manifesto about how the king doesn't do enough to safeguard the citizens of the realm from the monsters that still thrive within the borders. It sends out a rallying cry to all people who would want to stop monsters, to join the HAM movement.")
+            player<Quiz>("Hmmm, Sithik must really hate monsters then, I wonder if he hates ogres in particular?")
         }
 
         // ===== Strange potion on Sithik's tea (ground item interaction) =====
         itemOnFloorItemOperate("zogre_ogre_trans_potion", "cup_of_tea_zogre_flesh_eaters") {
             arriveDelay()
-            if (zogre_flesh_eaters != 4) {
+            if (quest("zogre_flesh_eaters") != "sithik") {
                 return@itemOnFloorItemOperate message("Nothing interesting happens.")
             }
-            zogre_flesh_eaters = 6
+            set("zogre_flesh_eaters", "potion")
             anim("human_pickuptable")
             sound("drip_poison")
             inventory.remove("zogre_ogre_trans_potion")
             addOrDrop("sample_bottle")
             delay(2)
-            item(
-                item = "zogre_ogre_trans_potion",
-                text = "You pour some of the potion into the cup. Zavistic said it may take " +
-                    "some time to have an effect.",
-            )
+            item("zogre_ogre_trans_potion", "You pour some of the potion into the cup. Zavistic said it may take some time to have an effect.")
         }
 
         objTeleportTakeOff("Climb-up", "basic_ladder_bottom") { obj, _ ->
             if (obj.tile == Tile(2597, 3107, 0)) {
-                if (zogre_flesh_eaters == 6 && get("thzfe_sithik_transformed", 0) == 0) {
+                if (quest("zogre_flesh_eaters") == "potion" && get("thzfe_sithik_transformed", 0) == 0) {
                     set("thzfe_sithik_transformed", 1)
                 }
             }
@@ -375,24 +319,21 @@ class ZogreFleshEaters : Script {
             }
 
             statement("You search the plinth...")
-            val progress = zogre_flesh_eaters
+            val progress = quest("zogre_flesh_eaters")
             when {
-                progress == 14 || inventory.contains("ogre_artefact") -> {
+                progress == "completed" || inventory.contains("ogre_artefact") -> {
                     message("You find nothing in particular.")
                 }
-                progress == 12 -> {
-                    areaGfx("smokepuff_large", target.tile) // 188
-                    areaSound("smokepuff", target.tile) // 1930
+                progress == "killed_slash_bash" -> {
+                    areaGfx("smokepuff_large", target.tile)
+                    areaSound("smokepuff", target.tile)
                     addOrDrop("ogre_artefact")
-                    item(
-                        item = "ogre_artefact",
-                        text = "An ogre artefact appears in front of you. You quickly put it into your backpack.",
-                    )
+                    item("ogre_artefact", "An ogre artefact appears in front of you. You quickly put it into your backpack.")
                 }
                 else -> {
                     message("Something stirs behind you!")
-                    areaGfx("smokepuff_large", Tile(2477, 9444, 0)) // 188
-                    areaSound("smokepuff", Tile(2477, 9444, 0)) // 1930
+                    areaGfx("smokepuff_large", Tile(2477, 9444, 0))
+                    areaSound("smokepuff", Tile(2477, 9444, 0))
                     NPCs.add(
                         id = "slash_bash",
                         tile = Tile(2477, 9444, 0),
@@ -405,8 +346,8 @@ class ZogreFleshEaters : Script {
 
         npcDeath("slash_bash") {
             val killer = killer as? Player ?: return@npcDeath
-            if (killer.zogre_flesh_eaters == 10) {
-                killer.zogre_flesh_eaters = 12
+            if (killer.quest("zogre_flesh_eaters") == "given_key") {
+                killer["zogre_flesh_eaters"] = "killed_slash_bash"
             }
         }
 
@@ -482,8 +423,7 @@ class ZogreFleshEaters : Script {
         moveCamera(tile = Tile(2445, 9460), height = 400, speed = 4, acceleration = 4)
         turnCamera(tile = Tile(2441, 9459), height = 25, speed = 15, acceleration = 15)
         statement(
-            "You enter this blackened, charred area - it looks like some sort of explosion has " +
-                "taken place.",
+            "You enter this blackened, charred area - it looks like some sort of explosion has taken place.",
             clickToContinue = false,
         )
         delay(3)
@@ -516,10 +456,7 @@ class ZogreFleshEaters : Script {
         turnCamera(tile = Tile(2437, 9459), height = 25, speed = 15, acceleration = 15)
         delay(1)
 
-        statement(
-            "You enter this blackened, charred area - it looks like some sort of explosion has " +
-                "taken place.",
-        )
+        statement("You enter this blackened, charred area - it looks like some sort of explosion has taken place.")
         clearCamera()
     }
 
@@ -527,16 +464,10 @@ class ZogreFleshEaters : Script {
 
     private suspend fun Player.liftCoffinLid() {
         if (inventory.isFull()) {
-            statement(
-                "You start to lift the lid and see something inside, but you have no space in " +
-                    "your inventory to store the item.",
-            )
+            statement("You start to lift the lid and see something inside, but you have no space in your inventory to store the item.")
             return
         }
-        statement(
-            "The lid looks heavy, but now that you've unlocked it, you may be able to lift it. " +
-                "You prepare yourself.",
-        )
+        statement("The lid looks heavy, but now that you've unlocked it, you may be able to lift it. You prepare yourself.")
         say("Urrrgggg.")
         player<Mad>("Urrrgggg.", clickToContinue = false)
         delay(3)
@@ -545,10 +476,7 @@ class ZogreFleshEaters : Script {
         delay(3)
         if (random.nextBoolean()) {
             levels.drain(Skill.Strength, 2)
-            statement(
-                "You struggle, but just get weakened from your experience. Perhaps you should " +
-                    "try again after you've recovered from the effort?",
-            )
+            statement("You struggle, but just get weakened from your experience. Perhaps you should try again after you've recovered from the effort?")
         } else {
             set("thzfe_prismsearch", 3)
             sound("coffin_open")
@@ -574,7 +502,7 @@ class ZogreFleshEaters : Script {
             req(has(Skill.Fletching, 30), "Fletching level: 30"),
             req(has(Skill.Smithing, 4), "Smithing level: 4"),
             req(has(Skill.Herblore, 4), "Herblore level: 4"),
-            "<navy>Must be able to defeat a <maroon>level 111<navy> foe.",
+            "<navy>Must be able to defeat a <maroon>level 111<navy> foe."
         )
     }
 
@@ -595,7 +523,7 @@ class ZogreFleshEaters : Script {
         "<str>more effective against Zogres, and he also told me how to",
         "<str>make a disease balm.",
         "",
-        "<red>QUEST COMPLETE!",
+        "<red>QUEST COMPLETE!"
     )
 
     private fun Player.startedJournal(stage: Int): List<String> {

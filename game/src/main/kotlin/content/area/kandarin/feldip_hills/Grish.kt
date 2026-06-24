@@ -13,8 +13,9 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
-import content.quest.member.ogre.zogre_flesh_eaters
+import content.quest.quest
 import content.quest.questComplete
+import content.quest.questCompleted
 import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -32,30 +33,37 @@ class Grish : Script {
 
     init {
         npcOperate("Talk-to", "grish") { (target) ->
-            when (val progress = zogre_flesh_eaters) {
-                0 -> {
+            when (val progress = quest("zogre_flesh_eaters")) {
+                "unstarted" -> {
                     if (get("thzfe_grish_warning_yes", false)) {
                         confirmQuestStart()
                     } else {
                         intro(target)
                     }
                 }
-                10 -> {
+                "given_key" -> {
                     if (inventory.contains("ogre_gate_key")) {
                         artefactReminderMenu()
                     } else {
                         lostKey()
                     }
                 }
-                12 -> {
+                "killed_slash_bash" -> {
                     if (inventory.contains("ogre_gate_key")) {
                         questFinishHandover()
                     } else {
                         lostKey()
                     }
                 }
-                14 -> postQuest()
-                else -> midQuestCheckIn(progress)
+                "completed" -> postQuest()
+                else -> {
+                    npc<Neutral>("Yous creature dun da fing yet? Da zogries going in da dirt full home?")
+                    if (progress == "permanent_spell") {
+                        foundMenu()
+                    } else {
+                        player<Neutral>("Nope, I haven't figured out why the zogres are here yet.")
+                    }
+                }
             }
         }
 
@@ -173,7 +181,7 @@ class Grish : Script {
         npc<Neutral>("Dats da good fing yous creature...yous does Grish a good fing. But yous know dat yous get sickies and mebe get dead!")
         player<Neutral>("If that's your idea of a pep talk, I have to say that it leaves a lot to be desired.")
         npc<Neutral>("Yous creatures is alus says funny stuff...speaks proper like Grish!")
-        zogre_flesh_eaters = 2
+        set("zogre_flesh_eaters", "investigate")
         addOrDrop("cooked_chompy", 3)
         addOrDrop("super_restore_3", 2)
         items("cooked_chompy", "super_restore_3", "Grish hands you some food and two potions.")
@@ -184,21 +192,10 @@ class Grish : Script {
         get() = get("chompy_birds", 0)
 
     private fun Player.meetsZogreRequirements(): Boolean = hasMax(Skill.Ranged, 30) &&
-        // questCompleted("jungle_potion") && TODO
+        questCompleted("jungle_potion") && // TODO
         chompybird == 65
 
-    // ===== Mid-quest check-in =====
-
-    private suspend fun Player.midQuestCheckIn(progress: Int) {
-        npc<Neutral>("Yous creature dun da fing yet? Da zogries going in da dirt full home?")
-        if (progress == 8) {
-            progress8Menu()
-        } else {
-            player<Neutral>("Nope, I haven't figured out why the zogres are here yet.")
-        }
-    }
-
-    suspend fun Player.progress8Menu() {
+    suspend fun Player.foundMenu() {
         choice {
             foundResponsibleOption()
             if (get("thzfe_makebrutalarrow", false)) {
@@ -227,7 +224,7 @@ class Grish : Script {
         npc<Neutral>("Dat is da bad fing creature...we's needs new Jiggig for da fallin' down jig.")
         player<Neutral>("Yes, that's right, you'll need to create a new ceremonial dance area.")
         npc<Neutral>("Urghhh...not good fing creature, yous gotta get da ogrish old fings for da making new jiggig special. You's creature needs da key for getting in da low bury place.")
-        zogre_flesh_eaters = 10
+        set("zogre_flesh_eaters", "given_key")
         set("thzfe_sithik_transformed", 2)
         addOrDrop("ogre_gate_key")
         message("Grish gives you a crudely crafted key.")
@@ -257,7 +254,11 @@ class Grish : Script {
      * tomb key) drops into the post-no menu instead.
      */
     private suspend fun Player.returnToProgressMenu() {
-        if (zogre_flesh_eaters == 8) progress8Menu() else postNoMenu()
+        if (quest("zogre_flesh_eaters") == "permanent_spell") {
+            foundMenu()
+        } else {
+            postNoMenu()
+        }
     }
 
     fun ChoiceOption.otherQuestionsOption(): Unit = option<Neutral>("I have some other questions for you.") {
@@ -292,7 +293,7 @@ class Grish : Script {
 
     suspend fun Player.otherQuestionsBranch() {
         npc<Neutral>("Oh yes creatures...what's other fings yous wanna know?")
-        if (zogre_flesh_eaters == 8) {
+        if (quest("zogre_flesh_eaters") == "permanent_spell") {
             otherQuestionsLimited()
         } else {
             otherQuestionsFull()
@@ -338,21 +339,29 @@ class Grish : Script {
         npc<Neutral>("Me's know's about Rantz, he's da biggun chompy hunter..he finks...ha ha ha!")
         player<Neutral>("How do you mean?")
         npc<Neutral>("He's da bad shot chompy sticker, no good at sneaky, sneaky part, he's more gooder at da 'noisy, noisy miss da chompy', ha ha ha! ")
-        if (zogre_flesh_eaters == 8) otherQuestionsLimited() else otherQuestionsFull()
+        otherQuestions()
+    }
+
+    private suspend fun Player.otherQuestions() {
+        if (quest("zogre_flesh_eaters") == "permanent") {
+            otherQuestionsLimited()
+        } else {
+            otherQuestionsFull()
+        }
     }
 
     fun ChoiceOption.whyDoesntRantzLive(): Unit = option<Neutral>("Why doesn't Rantz live with the rest of the Ogres?") {
         npc<Neutral>("He's been leaving Gu 'Noth 'cos dey's peoples is da big stressy dere? All da ogries is busying all da time...not doin' no good for da healfy fing. Rantz is da brave-un tho! He's got da big secret fing for leaving Gu' Noth but me's not knowin it. But maybe's he's just want's to be da better chompy sticker?")
-        if (zogre_flesh_eaters == 8) otherQuestionsLimited() else otherQuestionsFull()
+        otherQuestions()
     }
 
     fun ChoiceOption.whyJiggig(): Unit = option<Neutral>("Why do you call this place Jiggig?") {
         npc<Neutral>("It's da place where da Jiggig is done...we's jig at Jiggig...")
-        if (zogre_flesh_eaters == 8) otherQuestionsLimited() else otherQuestionsFull()
+        otherQuestions()
     }
 
     fun ChoiceOption.talkAboutQuestOption(): Unit = option<Neutral>("I want to talk about the quest.") {
-        progress8Menu()
+        foundMenu()
     }
 
     // ===== Progress 10/12: Lost key handling =====
@@ -470,7 +479,7 @@ fun Player.sendZogreFleshEatersReward() {
     exp(Skill.Herblore, 2000.0)
     inc("quest_points", 1)
     AuditLog.event(this, "quest_completed", "zogre_flesh_eaters")
-    zogre_flesh_eaters = 14
+    set("zogre_flesh_eaters", "completed")
     refreshQuestJournal()
     questComplete(
         "Zogre Flesh Eaters",

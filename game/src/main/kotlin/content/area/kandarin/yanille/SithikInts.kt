@@ -16,7 +16,8 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
-import content.quest.member.ogre.zogre_flesh_eaters
+import content.quest.quest
+import content.quest.questStage
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -29,16 +30,14 @@ import world.gregs.voidps.type.random
 class SithikInts : Script {
     init {
         objectOperate("Talk-to", "zogre_sithik_bed_entity,ogre_bedman_loc") {
-            val progress = zogre_flesh_eaters
-            when (progress) {
-                0, 2 -> sleepyOldManIntro()
-                3, 4 -> conversationByVarbit488()
-                6 -> postOgreReveal()
-                8 -> postQuestProgressed()
-                10, 12 -> backToGloat()
+            when (quest("zogre_flesh_eaters")) {
+                "unstarted", "started", "investigate" -> sleepyOldManIntro()
+                "barricade", "sithik" -> conversationByVarbit488()
+                "potion" -> postOgreReveal()
+                "permanent_spell" -> postQuestProgressed()
+                "given_key", "killed_slash_bash", "completed" -> backToGloat()
                 else -> sleepyOldManIntro() // catch-all preservation of other states
             }
-            // TODO (case 14): unknown progress 14 branch — preserve original placeholder
         }
 
         objectOperate("Search", "sithiks_drawers") {
@@ -89,7 +88,7 @@ class SithikInts : Script {
 
         // ===== Papyrus (sketching Sithik) =====
         itemOnObjectOperate("papyrus", "zogre_sithik_bed_entity,ogre_bedman_loc") {
-            if (zogre_flesh_eaters >= 6) {
+            if (questStage("zogre_flesh_eaters") >= 6) {
                 message("You have already created Sithik's portrait, you don't need another one.")
                 return@itemOnObjectOperate
             }
@@ -313,11 +312,11 @@ class SithikInts : Script {
 
     fun ChoiceOption.removeSpellFromArea(): Unit = option("How do I remove the effects of the spell from the area?") {
         player<Neutral>("How do I remove the effects of the spell from the area? The ogres want to get their ceremonial dance area back and can't do that with undead walking all over it.")
-        if (zogre_flesh_eaters >= 8) {
+        if (questStage("zogre_flesh_eaters") >= 8) {
             sithik<Neutral>("Haven't I told you this already? You can't remove the spell, it's permanent, it will last forever, the only option you have is to move the ceremonial area.")
         } else {
             sithik<Neutral>("Unfortunately you can't. The spell is permanent, it will last forever, the only option you have is to move the ceremonial area.")
-            zogre_flesh_eaters = 8
+            set("zogre_flesh_eaters", "permanent_spell")
         }
         player<Neutral>("You're an evil man and I'm going to make you pay for this...you can stay like that forever as far as I'm concerned.")
         sithik<Sad>("No...no, let me try to make amends...please I can help you. Just don't leave me like this.")
@@ -399,7 +398,7 @@ class SithikInts : Script {
      * Once you're at progress 4+, the furniture has nothing of significance.
      */
     private fun Player.noMoreSnooping(): Boolean {
-        if (zogre_flesh_eaters >= 4) {
+        if (questStage("zogre_flesh_eaters") >= 4) {
             message("You search but find nothing of significance.")
             return true
         }

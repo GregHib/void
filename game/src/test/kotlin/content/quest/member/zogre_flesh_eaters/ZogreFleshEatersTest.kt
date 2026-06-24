@@ -1,6 +1,7 @@
 package content.quest.member.zogre_flesh_eaters
 
 import WorldTest
+import content.quest.quest
 import dialogueOption
 import itemOnFloorItem
 import itemOnNpc
@@ -52,7 +53,7 @@ class ZogreFleshEatersTest : WorldTest() {
         player.skipDialogues()
         tick(4)
 
-        assertEquals(2, player["zogre_flesh_eaters", 0])
+        assertEquals("investigate", player.quest("zogre_flesh_eaters"))
         assertEquals(3, player.inventory.count("cooked_chompy"))
         assertEquals(2, player.inventory.count("super_restore_3"))
 
@@ -62,7 +63,7 @@ class ZogreFleshEatersTest : WorldTest() {
         tick(1)
         player.skipDialogues()
         tick(6)
-        assertEquals(3, player["zogre_flesh_eaters", 0])
+        assertEquals("barricade", player.quest("zogre_flesh_eaters"))
 
         val barricade = GameObjects.find(Tile(2456, 3049), "ogre_barricade_collapsed")
         player.objectOption(barricade, "Climb-over")
@@ -180,7 +181,7 @@ class ZogreFleshEatersTest : WorldTest() {
         player.skipDialogues()
         player.dialogueOption(3)
         player.skipDialogues()
-        assertEquals(4, player["zogre_flesh_eaters", 0])
+        assertEquals("sithik", player.quest("zogre_flesh_eaters"))
         assertTrue(player.inventory.contains("zogre_ogre_trans_potion"))
         assertFalse(player.inventory.contains("book_of_ham"))
         assertFalse(player.inventory.contains("necromancy_book"))
@@ -191,7 +192,7 @@ class ZogreFleshEatersTest : WorldTest() {
         player.itemOnFloorItem(floorItem, player.inventory.indexOf("zogre_ogre_trans_potion"))
         tick(3)
         player.skipDialogues()
-        assertEquals(6, player["zogre_flesh_eaters", 0])
+        assertEquals("potion", player.quest("zogre_flesh_eaters"))
 
         player.tele(2597, 3108, 0)
         val ladder = GameObjects.find(Tile(2597, 3107), "basic_ladder_bottom")
@@ -205,14 +206,13 @@ class ZogreFleshEatersTest : WorldTest() {
         player.skipDialogues()
         player.dialogueOption(1)
         player.skipDialogues()
-        assertEquals(8, player["zogre_flesh_eaters"])
+        assertEquals("permanent_spell", player.quest("zogre_flesh_eaters"))
         player.dialogueOption(2)
         player.skipDialogues()
         assertTrue(player["thzfe_makebrutalarrow", false])
         player.dialogueOption(3)
         player.skipDialogues()
         assertTrue(player["thzfe_makecuredisease", false])
-        assertEquals(8, player["zogre_flesh_eaters", 0])
 
         player.tele(2445, 3052, 0)
         player.npcOption(grish, "Talk-to")
@@ -221,6 +221,7 @@ class ZogreFleshEatersTest : WorldTest() {
         player.dialogueOption(1)
         player.skipDialogues()
         assertTrue(player.inventory.contains("ogre_gate_key"))
+        assertEquals("given_key", player.quest("zogre_flesh_eaters"))
 
         player.tele(2482, 9445)
         val stand = GameObjects.find(Tile(2483, 9445), "zogre_stand")
@@ -229,7 +230,7 @@ class ZogreFleshEatersTest : WorldTest() {
         player.skipDialogues()
         tick(15)
 
-        assertEquals(12, player["zogre_flesh_eaters", 0])
+        assertEquals("killed_slash_bash", player.quest("zogre_flesh_eaters"))
         val artifact = FloorItems.firstOrNull(Tile(2477, 9444), "ogre_artefact")
         assertNotNull(artifact)
 
@@ -245,6 +246,6 @@ class ZogreFleshEatersTest : WorldTest() {
         player.dialogueOption(1)
         player.skipDialogues()
         tick(1)
-        assertEquals(14, player["zogre_flesh_eaters", 0])
+        assertEquals("completed", player.quest("zogre_flesh_eaters"))
     }
 }

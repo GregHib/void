@@ -10,7 +10,7 @@ import content.entity.player.dialogue.type.items
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.inv.item.addOrDrop
-import content.quest.member.ogre.zogre_flesh_eaters
+import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
@@ -19,10 +19,9 @@ import world.gregs.voidps.engine.inv.remove
 class UglugNar : Script {
     init {
         npcOperate("Talk-to", "uglug_nar") { (target) ->
-            val progress = zogre_flesh_eaters
-            when (progress) {
-                0 -> firstMeetingMenu()
-                in 2..4 -> repeatMeetingMenu()
+            when (quest("zogre_flesh_eaters")) {
+                "unstarted" -> firstMeetingMenu()
+                "investigate", "barricade", "sithik" -> repeatMeetingMenu()
                 else -> repeatMeetingMenu()
             }
         }

@@ -3859,3 +3859,22 @@ req_combat = "You will need to defeat a level 58 enemy and level 36 enemy."
 points = 1
 reward = "3 ourg bones<br>2 zogre bones<br>Access to Jiggig<br>Ability to equip inoculation brace<br>Ability to fletch composite ogre bow and brutal arrows<br>Access to post-quest rewards from Zavistic Rarve or Yanni Salika, and Uglug Nar"
 xp = "2,000 Fletching XP<br>2,000 Ranged XP<br>2,000 Herblore XP"
+variables = [
+  "zogre_flesh_eaters",
+  "thzfe_prismsearch",
+  "thzfe_innkeepermugshown",
+  "thzfe_innkeeperportraitshown",
+  "thzfe_shownnecrobook",
+  "thzfe_shownhambook",
+  "thzfe_showntankard",
+  "thzfe_shownsignedportrait",
+  "thzfe_sithik_transformed",
+  "thzfe_blocking_barricade",
+  "thzfe_makecuredisease",
+  "thzfe_makebrutalarrow",
+  "thzfe_makecompozogrebow",
+  "thzfe_sold_balm",
+  "thzfe_brentle_skele",
+  "thzfe_cut_scene",
+  "thzfe_grish_warning_yes",
+]

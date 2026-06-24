@@ -1,7 +1,19 @@
 [zogre_flesh_eaters]
 id = 487
 persist = true
-format = "int"
+format = "map"
+default = "unstarted"
+values = {
+    unstarted = 0,
+    investigate = 2,
+    barricade = 3,
+    sithik = 4,
+    potion = 6,
+    permanent_spell = 8,
+    given_key = 10,
+    killed_slash_bash = 12,
+    completed = 14,
+}
 
 [thzfe_prismsearch]
 id = 488

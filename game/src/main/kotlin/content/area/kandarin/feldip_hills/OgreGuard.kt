@@ -3,7 +3,7 @@ package content.area.kandarin.feldip_hills
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.quest.member.ogre.zogre_flesh_eaters
+import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -17,9 +17,9 @@ class OgreGuard : Script {
     init {
         npcOperate("Talk-to", "zogre_ogre_guard") { (target) ->
             guard = target
-            when (zogre_flesh_eaters) {
-                0 -> warnAway()
-                2 -> openBarricade()
+            when (quest("zogre_flesh_eaters")) {
+                "unstarted" -> warnAway()
+                "investigate" -> openBarricade()
                 else -> postBarricadeWarning()
             }
         }
@@ -73,7 +73,7 @@ class OgreGuard : Script {
         guard.anim("ogre_kick")
         sound("unarmed_kick")
         delay(1)
-        zogre_flesh_eaters = 3
+        set("zogre_flesh_eaters", "barricade")
         set("thzfe_blocking_barricade", true)
         sound("ogre_destroy_barricade")
         delay(2)
