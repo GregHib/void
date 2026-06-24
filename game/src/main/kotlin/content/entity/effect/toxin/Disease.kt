@@ -111,8 +111,10 @@ class Disease : Script {
         character.clear("disease_source")
     }
 
-    fun immune(character: Character) = character is NPC && character.def["immune_disease", false] ||
-            character is Player && character.antiDisease
+    fun immune(character: Character) = character is NPC &&
+        character.def["immune_disease", false] ||
+        character is Player &&
+        character.antiDisease
 
     fun damage(character: Character, damage: Int) {
         val source = character["disease_source", character]

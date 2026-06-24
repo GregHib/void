@@ -237,13 +237,15 @@ class Grish : Script {
     }
 
     fun ChoiceOption.killFromDistanceOption(): Unit = option(
-        "I've got some information on how to kill the zogres from a distance.") {
+        "I've got some information on how to kill the zogres from a distance.",
+    ) {
         player<Neutral>("Sithik told me how to make Brutal arrows which means I can kill these zogres from a distance!")
         teachCompositeBow()
     }
 
     fun ChoiceOption.cureDiseaseOption(): Unit = option(
-        "I've found out how to cure the disease.") {
+        "I've found out how to cure the disease.",
+    ) {
         player<Neutral>("I also found out that the disease can be cured.")
         npc<Neutral>("Dat's da good fing creature, yous do good fing to give un to Uglug...he gives bright pretties for da sickies glug glug.")
         returnToProgressMenu()
@@ -265,18 +267,21 @@ class Grish : Script {
     private suspend fun Player.teachCompositeBow() {
         npc<Neutral>("Uhggh, whas you's sayin' creature? Yous speakies too stupid for Grish...")
         player<Neutral>("I know how to make large arrows...you know, 'big stabbers', to kill the zogres...they're bigger and apparently do a lot of damage, only thing is, the normal ogre bow I need to fire it is quite slow.")
-        npc<Neutral>("Why you's not say so creature...me's shows you how to make da bigger stabber chucker... <blue>~ Grish gets a couple of items out of his back pack.~", // TODO makes too much of the line blue
+        npc<Neutral>(
+            "Why you's not say so creature...me's shows you how to make da bigger stabber chucker... <blue>~ Grish gets a couple of items out of his back pack.~", // TODO makes too much of the line blue
         )
         set("thzfe_makecompozogrebow", true)
         items(
             "achey_tree_logs",
             "wolf_bones",
-            "Grish shows you he has Achey tree logs and wolf bones, he starts to whittle away at them both with a knife.")
+            "Grish shows you he has Achey tree logs and wolf bones, he starts to whittle away at them both with a knife.",
+        )
         item(item = "unstrung_comp_bow", text = "Grish shows you his achievement, a rather powerful looking composite bow frame...")
         items(
             "unstrung_comp_bow",
             "bowstring",
-            "He shows you the bow frame and the string and after some time and a great deal of effort, he strings the composite ogre bow.")
+            "He shows you the bow frame and the string and after some time and a great deal of effort, he strings the composite ogre bow.",
+        )
         item(item = "comp_ogre_bow", text = "Grish shows you his proud achievement...")
         npc<Neutral>("De're creature...now yous is makin' da bigga stabber chucker...")
         player<Neutral>("Thanks! I think....")
@@ -474,6 +479,6 @@ fun Player.sendZogreFleshEatersReward() {
         "and cure disease potions.",
         "2000 Ranged, Fletching and",
         "Herblore XP.",
-        item = "ogre_artefact"
+        item = "ogre_artefact",
     )
 }

@@ -82,9 +82,8 @@ class ZogreFleshEatersTest : WorldTest() {
         player.objectOption(skeleton, "Search")
         tick(15)
 
-        assertTrue(FloorItems.at(player.tile.zone).any { list -> list.any { item -> item.id == "ruined_backpack" }})
+        assertTrue(FloorItems.at(player.tile.zone).any { list -> list.any { item -> item.id == "ruined_backpack" } })
         player.inventory.add("ruined_backpack")
-
 
         player.itemOption("Open", "ruined_backpack")
         tick(1)
@@ -173,7 +172,6 @@ class ZogreFleshEatersTest : WorldTest() {
         tick(1)
         player.skipDialogues()
         assertTrue(player["thzfe_innkeeperportraitshown", false])
-
 
         player.tele(2588, 3090, 1)
         val rarve = NPCs.findBySpawn(Tile(2588, 3091, 1), "zavistic_rarve")

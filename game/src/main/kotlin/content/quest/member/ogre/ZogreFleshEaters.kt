@@ -25,7 +25,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings.Companion.getOrNull
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -387,7 +386,7 @@ class ZogreFleshEaters : Script {
                     addOrDrop("ogre_artefact")
                     item(
                         item = "ogre_artefact",
-                        text = "An ogre artefact appears in front of you. You quickly put it into your backpack."
+                        text = "An ogre artefact appears in front of you. You quickly put it into your backpack.",
                     )
                 }
                 else -> {

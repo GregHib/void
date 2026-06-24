@@ -21,7 +21,6 @@ import content.quest.member.ogre.zogre_flesh_eaters
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
@@ -232,7 +231,8 @@ class ZavisticRarve : Script {
                     magicScrollReveal()
                 } else {
                     statement(
-                        "Perhaps you should have the scroll from Bert with you before you speak to Zavistic.")
+                        "Perhaps you should have the scroll from Bert with you before you speak to Zavistic.",
+                    )
                 }
             }
             70 -> guildMenuWithOrbHelp()
@@ -249,7 +249,8 @@ class ZavisticRarve : Script {
             120 -> {
                 if (inventory.contains("magical_orb_active")) {
                     statement(
-                        "You hand the magical scrying orb to the Wizard and watch as the recording is played back.")
+                        "You hand the magical scrying orb to the Wizard and watch as the recording is played back.",
+                    )
                     npc<Angry>("Well, well...I think this Sandy needs a lesson, please bring me 5 earth runes and a bucket of sand.")
                     runesAndSandRequest()
                 } else {
@@ -279,7 +280,8 @@ class ZavisticRarve : Script {
 //                    sendHandQuestReward()
                 } else {
                     statement(
-                        "Perhaps you should have the wizard's head with you before speaking to Zavistic.")
+                        "Perhaps you should have the wizard's head with you before speaking to Zavistic.",
+                    )
                 }
             }
             160 -> {
@@ -332,7 +334,8 @@ class ZavisticRarve : Script {
         addOrDrop("magical_orb")
         item(
             item = "magical_orb",
-            text = "You exchange the scroll for the magical scrying orb. Perhaps Zavistic can give you even more of a hand to find the murderer?")
+            text = "You exchange the scroll for the magical scrying orb. Perhaps Zavistic can give you even more of a hand to find the murderer?",
+        )
     }
 
     // ===== "Can you help me more?" / replace orb / teleport =====
@@ -426,9 +429,11 @@ class ZavisticRarve : Script {
         // - Set hand_in_the_sand to 140
 
         statement(
-            "The Wizard chants and your attention is taken to the sandpit where Bert found the hand.")
+            "The Wizard chants and your attention is taken to the sandpit where Bert found the hand.",
+        )
         statement(
-            "Something very strange happens to the Sandpit, it looks like it has filled itself up!")
+            "Something very strange happens to the Sandpit, it looks like it has filled itself up!",
+        )
         inventory.remove("earth_rune", 5)
         inventory.remove("bucket_of_sand")
         set("hand_in_the_sand", 140)
@@ -688,7 +693,8 @@ class ZavisticRarve : Script {
         addOrDrop("zogre_ogre_trans_potion")
         item(
             item = "zogre_ogre_trans_potion",
-            text = "Zavistic hands you a strange looking potion bottle and takes all the evidence you've accumulated so far.")
+            text = "Zavistic hands you a strange looking potion bottle and takes all the evidence you've accumulated so far.",
+        )
     }
 
     private suspend fun Player.notYetUsedPotion() {
