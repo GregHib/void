@@ -31,8 +31,14 @@ class Follow(
             return
         }
         if (character is NPC && character.tile.distanceTo(target) > 15) {
-            character.tele(strategy.tile, clearMode = false)
-            character.clearWatch()
+            val followTile = strategy.tile
+            val destination = when {
+                followTile != Tile.EMPTY && followTile.level == target.tile.level && followTile.distanceTo(target) <= 15 -> followTile
+                else -> target.tile
+            }
+            character.tele(destination, clearMode = false)
+            character.watch(target)
+            return
         }
         character.walkTrigger()
         if (!smart) {
