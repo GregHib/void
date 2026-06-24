@@ -200,3 +200,7 @@ examine = "Handy for boarding the ship."
 [gangplank_ardougne_exit]
 id = 2086
 examine = "Handy for boarding the ship."
+
+[captain_barnaby_ship_ladder]
+id = 9745
+examine = "A sturdy wooden ladder."
