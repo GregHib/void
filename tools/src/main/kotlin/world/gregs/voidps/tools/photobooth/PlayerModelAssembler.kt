@@ -141,7 +141,7 @@ class PlayerModelAssembler(
 
     companion object {
         // Mirrors BodyParts.DEFAULT_LOOK_*.
-        private val DEFAULT_LOOK_MALE = intArrayOf(0, 14, 18, 26, 34, 38, 42)
+        private val DEFAULT_LOOK_MALE = intArrayOf(5, 14, 18, 26, 34, 38, 42)
         private val DEFAULT_LOOK_FEMALE = intArrayOf(45, -1, 58, 61, 68, 72, 80)
         private const val KIT_ID_BASE = 0x100000
         private const val PLAYER_MODEL_ID = 0x200000
