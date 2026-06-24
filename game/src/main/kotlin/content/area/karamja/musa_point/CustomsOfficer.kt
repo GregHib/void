@@ -56,7 +56,7 @@ class CustomsOfficer : Script {
     private suspend fun Player.travel(officer: NPC) {
         message("You pay 30 coins and board the ship.")
         if (officer.tile in Areas["brimhaven"]) {
-            boatTravel("brimhaven_to_ardougne", 7, Tile(2683, 3268, 1))
+            boatTravel("brimhaven_to_ardougne", 5, Tile(2683, 3268, 1))
             statement("The ship arrives at Ardougne.")
         } else {
             boatTravel("karamja_to_port_sarim", 7, Tile(3032, 3217, 1))
