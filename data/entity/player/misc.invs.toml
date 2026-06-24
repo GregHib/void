@@ -1,4 +1,58 @@
-[unknown_crafting_store] # Perhaps used for crafting stores before nature spirit?
+[trawler_rewardinv]
+id = 0
+
+[foodshop]
+id = 20
+
+[fishrestaurant]
+id = 44
+
+[silvershop]
+id = 55
+
+[gemshop3]
+id = 56
+
+[spiceshop]
+id = 58
+
+[furstall]
+id = 75
+
+[partyroom_dropinv]
+id = 91
+
+[partyroom_tempinv]
+id = 92
+
+[crafting_make_rings]
+id = 96
+
+[crafting_make_necklaces]
+id = 97
+
+[crafting_make_amulets]
+id = 98
+
+[deathkeep]
+id = 133
+
+[dueloffer]
+id = 134
+
+[duelwinnings]
+id = 136
+
+[trail_puzzleinv]
+id = 140
+
+[trail_rewardinv]
+id = 141
+
+[duelarrows]
+id = 142
+
+[craftingshop_free] # Perhaps used for crafting stores before nature spirit?
 id = 146
 defaults = [
     { id = "chisel", amount = 10 },
@@ -11,7 +65,7 @@ defaults = [
     { id = "tiara_mould", amount = 10 },
 ]
 
-[unknown_crafting_store_2]
+[craftingshop2_free]
 id = 147
 defaults = [
     { id = "chisel", amount = 10 },
@@ -24,15 +78,456 @@ defaults = [
     { id = "tiara_mould", amount = 10 },
 ]
 
-[inventory_572]
+[skill_guide_firemaking]
+id = 161
+
+[skill_guide_agility]
+id = 162
+
+[skill_guide_combat_weapons]
+id = 163
+
+[skill_guide_combat_armours]
+id = 164
+
+[skill_guide_cooking_overall]
+id = 165
+
+[skill_guide_cooking_overall2]
+id = 166
+
+[skill_guide_cooking_meat]
+id = 167
+
+[skill_guide_cooking_bread]
+id = 168
+
+[skill_guide_cooking_cakes]
+id = 169
+
+[skill_guide_cooking_pizzas]
+id = 170
+
+[skill_guide_cooking_pies]
+id = 171
+
+[skill_guide_cooking_stews]
+id = 172
+
+[skill_guide_cooking_wine]
+id = 173
+
+[skill_guide_crafting_leather]
+id = 174
+
+[skill_guide_crafting_spinning]
+id = 175
+
+[skill_guide_crafting_pottery]
+id = 176
+
+[skill_guide_crafting_glass]
+id = 177
+
+[skill_guide_crafting_jewellery]
+id = 178
+
+[skill_guide_crafting_staffs]
+id = 179
+
+[skill_guide_fishing]
+id = 180
+
+[skill_guide_fletching_bows]
+id = 181
+
+[skill_guide_fletching_arrows]
+id = 182
+
+[skill_guide_fletching_darts]
+id = 183
+
+[skill_guide_fletching_bolts]
+id = 184
+
+[skill_guide_herblore_herbs]
+id = 185
+
+[skill_guide_herblore_potions]
+id = 186
+
+[skill_guide_mining_ores]
+id = 187
+
+[skill_guide_mining_pickaxes]
+id = 188
+
+[skill_guide_ranged_bows]
+id = 189
+
+[skill_guide_ranged_thrown]
+id = 190
+
+[skill_guide_ranged_armour]
+id = 191
+
+[skill_guide_runecrafting]
+id = 192
+
+[skill_guide_smithing_smelting]
+id = 193
+
+[skill_guide_smithing_bronze]
+id = 194
+
+[skill_guide_smithing_iron]
+id = 195
+
+[skill_guide_smithing_steel]
+id = 196
+
+[skill_guide_smithing_mithril]
+id = 197
+
+[skill_guide_smithing_adamant]
+id = 198
+
+[skill_guide_smithing_rune]
+id = 199
+
+[skill_guide_thieving_stalls]
+id = 200
+
+[skill_guide_thieving_pickpocket]
+id = 201
+
+[skill_guide_crafting_armour]
+id = 202
+
+[skill_guide_woodcutting]
+id = 203
+
+[skill_guide_magic_armour]
+id = 206
+
+[trail_puzzlehintinv]
+id = 207
+
+[boardgames_boardinv]
+id = 215
+
+[boardgames_sideinv]
+id = 216
+
+[reinitialisation_inv]
+id = 221
+
+[reinitialisation_inv_inactive]
+id = 222
+
+[skill_guide_slayer_monsters]
+id = 229
+
+[skill_guide_slayer_equipment]
+id = 230
+
+[generalshop_phasmatys]
+id = 233
+
+[skill_guide_cooking_hotdrinks]
+id = 234
+
+[castlewars_trade_tickets]
+id = 246
+
+[castlewars_trade_coins]
+id = 247
+
+[minecart_temp_inv]
+id = 272
+
+[skill_guide_thieving_chests]
+id = 274
+
+[skill_guide_prayer]
+id = 275
+
+[roguesden_puzzle_rotation]
+id = 278
+
+[skill_guide_cooking_brewing]
+id = 284
+
+[skill_guide_cooking_vegetables]
+id = 285
+
+[skill_guide_crafting_weaving]
+id = 286
+
+[skill_guide_farming_veg]
+id = 287
+
+[skill_guide_farming_hops]
+id = 288
+
+[skill_guide_farming_trees]
+id = 289
+
+[skill_guide_farming_fruit_trees]
+id = 290
+
+[skill_guide_farming_herbs]
+id = 291
+
+[skill_guide_farming_flowers]
+id = 292
+
+[skill_guide_farming_bushes]
+id = 293
+
+[skill_guide_farming_special]
+id = 294
+
+[skill_guide_farming_mushroom]
+id = 295
+
+[skill_guide_farming_cactus]
+id = 296
+
+[skill_guide_farming_calquat]
+id = 297
+
+[skill_guide_farming_spirit_tree]
+id = 298
+
+[skill_guide_farming_scarecrow]
+id = 299
+
+[skill_guide_farming_belladonna]
+id = 300
+
+[macro_certer]
+id = 307
+
+[roguetrader_toughsudukuinv]
+id = 308
+
+[roguetrader_alim_runedump]
+id = 315
+
+[blast_furnace_inv]
+id = 316
+
+[blast_furnace_bars_inv]
+id = 317
+
+[skill_guide_agility_courses]
+id = 321
+
+[skill_guide_agility_areas]
+id = 322
+
+[skill_guide_agility_shortcuts]
+id = 323
+
+[tzhaar_shop_general]
+id = 324
+
+[skill_guide_cooking_dairy]
+id = 335
+
+[skill_guide_woodcutting_axes]
+id = 336
+
+[skill_guide_woodcutting_canoes]
+id = 353
+
+[farming_tools_fairyversion]
+id = 354
+
+[wielded_weapon_inv]
+id = 355
+
+[hundred_quest_journal]
+id = 376
+
+[misc_resources_collected]
+id = 390
+
+[poh_furniture_menu_inv]
+id = 398
+
+[skill_guide_thieving_other]
+id = 415
+
+[skill_guide_ranged_shortcuts]
+id = 420
+
+[skill_guide_strength_weapons_and_armour]
+id = 421
+
+[skill_guide_strength_shortcuts]
+id = 422
+
+[skill_guide_fletching_cbows]
+id = 423
+
+[skill_guide_magic_bolts]
+id = 424
+
+[skill_guide_ranged_crossbows]
+id = 425
+
+[skill_guide_smithing_blurite]
+id = 426
+
+[skill_guide_cooking_gnome]
+id = 437
+
+[eyeglo_inv_in]
+id = 438
+
+[eyeglo_inv_out]
+id = 439
+
+[poh_costume_menu_inv]
+id = 445
+
+[skill_guide_hunting_tracking]
+id = 469
+
+[skill_guide_hunting_birds]
+id = 470
+
+[skill_guide_hunting_butterflies]
+id = 471
+
+[skill_guide_hunting_deadfalls]
+id = 472
+
+[skill_guide_hunting_boxtraps]
+id = 473
+
+[skill_guide_hunting_nettraps]
+id = 474
+
+[skill_guide_hunting_pitfalls]
+id = 475
+
+[skill_guide_hunting_falconry]
+id = 476
+
+[skill_guide_hunting_impboxes]
+id = 477
+
+[skill_guide_hunting_rabbits]
+id = 478
+
+[skill_guide_hunting_eagles]
+id = 479
+
+[skill_guide_hunting_traps]
+id = 480
+
+[skill_guide_hunting_clothing]
+id = 481
+
+[barbassault_egginv]
+id = 490
+
+[dorgesh_food_sold]
+id = 510
+
+[dream_bank_inventory]
+id = 514
+
+[dream_crate_inventory]
+id = 515
+
+[lotg_temp_armour_holder]
+id = 516
+
+[stockmarket_offer0]
+id = 517
+
+[stockmarket_offer1]
+id = 518
+
+[stockmarket_offer2]
+id = 519
+
+[stockmarket_offer3]
+id = 520
+
+[stockmarket_offer4]
+id = 521
+
+[stockmarket_offer5]
+id = 522
+
+[partyroom_chestinv]
+id = 529
+
+[easter08_transmog_inv]
+id = 535
+
+[inventory_539]
+id = 539
+
+[crcs_ranged_weapons]
+id = 542
+
+[crcs_magic_spells]
+id = 543
+
+[crcs_agility_juggling]
+id = 544
+
+[crcs_rewards_inv]
+id = 545
+
+[pvpw_drop_inv]
+id = 546
+
+[glomem_inv_beer]
+id = 548
+
+[mob_offer]
+id = 550
+
+[poh_pethouse]
+id = 552
+
+[evq_inv_bow]
+id = 563
+
+[inventory_468]
+id = 568
+
+[death_bootshop]
+id = 569
+
+[lumbcat_runeshop]
 id = 572
 defaults = [
     { id = "air_rune", amount = 300 },
 ]
 
-[inventory_578]
+[rand_bound]
+id = 573
+
+[thigui_fence_low_nocosh]
 id = 578
 defaults = [
     { id = "tinderbox", amount = 10 },
     { id = "rope", amount = 10 },
 ]
+
+[inventory_583]
+id = 583
+
+[inventory_584]
+id = 584
+
+[apmeken_banana_shop]
+id = 607

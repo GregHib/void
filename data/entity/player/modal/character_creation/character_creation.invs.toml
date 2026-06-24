@@ -21,7 +21,7 @@ defaults = [
     { id = "character_creation_12", amount = 1 },
 ]
 
-[inventory_585]
+[playerkit_default]
 id = 585
 defaults = [
     { id = "character_creation_shadow", amount = 1 },

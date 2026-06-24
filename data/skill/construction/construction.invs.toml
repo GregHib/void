@@ -1,4 +1,4 @@
-[inventory_399]
+[skill_guide_carpentry_rooms]
 id = 399
 defaults = [
     { id = "pond", amount = 1 },
@@ -22,7 +22,7 @@ defaults = [
     { id = "mahogany_chest", amount = 1 },
 ]
 
-[inventory_400]
+[skill_guide_carpentry_seating]
 id = 400
 defaults = [
     { id = "crude_wooden_chair", amount = 1 },
@@ -65,7 +65,7 @@ defaults = [
     { id = "demonic_throne", amount = 1 },
 ]
 
-[inventory_401]
+[skill_guide_carpentry_storage]
 id = 401
 defaults = [
     { id = "wooden_bookcase", amount = 1 },
@@ -108,7 +108,7 @@ defaults = [
     { id = "gilded_wardrobe", amount = 1 },
 ]
 
-[inventory_402]
+[skill_guide_carpentry_skills]
 id = 402
 defaults = [
     { id = "clay_fireplace", amount = 1 },
@@ -141,7 +141,7 @@ defaults = [
     { id = "bench_with_lathe", amount = 1 },
 ]
 
-[inventory_403]
+[skill_guide_carpentry_decorative]
 id = 403
 defaults = [
     { id = "brown_rug", amount = 1 },
@@ -181,7 +181,7 @@ defaults = [
     { id = "large_orrery", amount = 1 },
 ]
 
-[inventory_404]
+[skill_guide_carpentry_games]
 id = 404
 defaults = [
     { id = "hoop_and_stick", amount = 1 },
@@ -209,7 +209,7 @@ defaults = [
     { id = "balance_beam", amount = 1 },
 ]
 
-[inventory_405]
+[skill_guide_carpentry_garden]
 id = 405
 defaults = [
     { id = "exit_portal", amount = 1 },
@@ -253,7 +253,7 @@ defaults = [
     { id = "posh_fountain", amount = 1 },
 ]
 
-[inventory_406]
+[skill_guide_carpentry_misc]
 id = 406
 defaults = [
     { id = "cat_blanket", amount = 1 },
@@ -284,7 +284,7 @@ defaults = [
     { id = "marble_spiral", amount = 1 },
 ]
 
-[inventory_407]
+[skill_guide_carpentry_chapel]
 id = 407
 defaults = [
     { id = "oak_altar", amount = 1 },
@@ -319,7 +319,7 @@ defaults = [
     { id = "stained_glass", amount = 1 },
 ]
 
-[inventory_408]
+[skill_guide_carpentry_dungeon]
 id = 408
 defaults = [
     { id = "floor_decoration", amount = 1 },
@@ -363,7 +363,7 @@ defaults = [
     { id = "steel_dragon", amount = 1 },
 ]
 
-[inventory_409]
+[skill_guide_carpentry_trophies]
 id = 409
 defaults = [
     { id = "oak_decoration", amount = 1 },
@@ -391,7 +391,7 @@ defaults = [
     { id = "kite_shield", amount = 1 },
 ]
 
-[inventory_446]
+[poh_costume_room_magic_wardrobe_inv]
 id = 446
 defaults = [
     { id = "mystic_hat_blue_2", amount = 1 },
@@ -413,7 +413,7 @@ defaults = [
     { id = "lord_marshal_cap_2", amount = 1 },
 ]
 
-[inventory_448]
+[poh_costume_room_ame_inv]
 id = 448
 defaults = [
     { id = "mime_mask_2", amount = 1 },
@@ -426,7 +426,7 @@ defaults = [
     { id = "swanky_boots_2", amount = 1 },
 ]
 
-[inventory_449]
+[poh_costume_room_treasure_trail_1_inv]
 id = 449
 defaults = [
     { id = "black_platebody_h1_2", amount = 1 },
@@ -461,7 +461,7 @@ defaults = [
     { id = "more", amount = 1 },
 ]
 
-[inventory_450]
+[poh_costume_room_treasure_trail_2_inv]
 id = 450
 defaults = [
     { id = "red_boater_2", amount = 1 },
@@ -496,7 +496,7 @@ defaults = [
     { id = "more", amount = 1 },
 ]
 
-[inventory_451]
+[poh_costume_room_treasure_trail_3_inv]
 id = 451
 defaults = [
     { id = "rune_platebody_h1_2", amount = 1 },
@@ -566,7 +566,7 @@ defaults = [
     { id = "more", amount = 1 },
 ]
 
-[inventory_454]
+[skill_guide_carpentry_costume_room]
 id = 454
 defaults = [
     { id = "oak_magic_wardrobe", amount = 1 },
@@ -596,7 +596,7 @@ defaults = [
     { id = "magical_cape_rack", amount = 1 },
 ]
 
-[inventory_485]
+[poh_costume_room_treasure_trail_1a_inv]
 id = 485
 defaults = [
     { id = "black_cane_2", amount = 1 },
@@ -604,7 +604,7 @@ defaults = [
     { id = "back", amount = 1 },
 ]
 
-[inventory_487]
+[poh_costume_room_treasure_trail_3a_inv]
 id = 487
 defaults = [
     { id = "fox_mask_2", amount = 1 },
@@ -628,7 +628,7 @@ defaults = [
     { id = "back", amount = 1 },
 ]
 
-[inventory_496]
+[poh_costume_room_treasure_trail_1_inv_check]
 id = 496
 defaults = [
     { id = "black_platebody_h1", amount = 1 },
@@ -663,7 +663,7 @@ defaults = [
     { id = "more", amount = 1 },
 ]
 
-[inventory_497]
+[poh_costume_room_treasure_trail_1a_inv_check]
 id = 497
 defaults = [
     { id = "black_cane", amount = 1 },
@@ -671,7 +671,7 @@ defaults = [
     { id = "back", amount = 1 },
 ]
 
-[inventory_498]
+[poh_costume_room_treasure_trail_2_inv_check]
 id = 498
 defaults = [
     { id = "red_boater", amount = 1 },
@@ -706,7 +706,7 @@ defaults = [
     { id = "more", amount = 1 },
 ]
 
-[inventory_500]
+[poh_costume_room_treasure_trail_3_inv_check]
 id = 500
 defaults = [
     { id = "rune_platebody_h1", amount = 1 },
@@ -741,7 +741,7 @@ defaults = [
     { id = "more", amount = 1 },
 ]
 
-[inventory_501]
+[poh_costume_room_treasure_trail_3a_inv_check]
 id = 501
 defaults = [
     { id = "fox_mask", amount = 1 },
@@ -753,7 +753,7 @@ defaults = [
     { id = "back", amount = 1 },
 ]
 
-[inventory_537]
+[poh_costume_room_armour_inv_page2]
 id = 537
 defaults = [
     { id = "void_knight_deflector_2", amount = 1 },
@@ -774,7 +774,7 @@ defaults = [
     { id = "back", amount = 1 },
 ]
 
-[inventory_581]
+[poh_costume_room_treasure_trail_4_inv]
 id = 581
 defaults = [
     { id = "black_dragon_mask_2", amount = 1 },
@@ -797,7 +797,7 @@ defaults = [
     { id = "ancient_dragonhide", amount = 1 },
 ]
 
-[inventory_582]
+[poh_costume_room_treasure_trail_4_inv_check]
 id = 582
 defaults = [
     { id = "black_dragon_mask", amount = 1 },
