@@ -191,8 +191,7 @@ class Grish : Script {
     val Player.chompybird: Int
         get() = get("chompy_birds", 0)
 
-    private fun Player.meetsZogreRequirements(): Boolean = hasMax(Skill.Ranged, 30) &&
-        questCompleted("jungle_potion") && chompybird == 65 // TODO
+    private fun Player.meetsZogreRequirements(): Boolean = hasMax(Skill.Ranged, 30) && questCompleted("jungle_potion") && chompybird == 65 // TODO
 
     suspend fun Player.foundMenu() {
         choice {
