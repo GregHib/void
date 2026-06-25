@@ -10,5 +10,5 @@ death_sound = "giant_death"
 chance = 75
 range = 1
 anim = "ogre_attack"
-target_sound = "giant_attack"
+target_sound = "moss_giant_attack"
 target_hit = { offense = "crush", max = 80 }

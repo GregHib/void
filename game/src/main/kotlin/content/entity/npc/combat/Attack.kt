@@ -47,7 +47,7 @@ class Attack(
                 val def = def(primaryTarget)
                 def["combat_def", get("transform_id", def.stringId)]
             } else {
-                def["combat_def", get("transform_id", id)]
+                get("transform_id", id)
             }
             val definition = definitions.getOrNull(defId) ?: return@npcCombatSwing
             if (definition.attacks.isEmpty()) {
@@ -110,12 +110,11 @@ class Attack(
                         offense = listOf("crush", "range", "magic").random(random)
                         defence = offense
                     }
-                    val spell = if (offense == "magic" || defence == "magic") attack.id else ""
                     val damage = if (hit.max == 0) {
-                        hit(target = target, delay = delay, offensiveType = offense, defensiveType = defence, special = hit.special, spell = spell)
+                        hit(target = target, delay = delay, offensiveType = offense, defensiveType = defence, special = hit.special, spell = attack.id) // Reuse spell for attack name
                     } else {
                         val damage = Damage.roll(source = this, target = target, offensiveType = offense, weapon = Item.EMPTY, special = hit.special, defensiveType = defence, range = hit.min..hit.max, skipAccuracyRoll = !hit.accuracyRoll)
-                        hit(target = target, delay = delay, offensiveType = offense, defensiveType = defence, special = hit.special, damage = damage, spell = spell)
+                        hit(target = target, delay = delay, offensiveType = offense, defensiveType = defence, special = hit.special, damage = damage, spell = attack.id)
                     }
                     if (damage > 0) {
                         miss = false

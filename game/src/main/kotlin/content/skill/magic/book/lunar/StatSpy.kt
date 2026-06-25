@@ -25,7 +25,7 @@ class StatSpy : Script {
             if (hasClock("action_delay")) {
                 return@onPlayerApproach
             }
-            if (!target.get("accept_aid", true)) {
+            if (!target["accept_aid", true]) {
                 message("This player is not currently accepting aid.")
                 return@onPlayerApproach
             }
@@ -40,6 +40,7 @@ class StatSpy : Script {
             target.sound("stat_spy_impact")
             exp(Skill.Magic, Tables.int("spells.stat_spy.xp") / 10.0)
             open("player_stat_spy")
+            clear("spell")
             for (skill in Skill.all) {
                 val name = name(skill)
                 // Constitution is stored as lifepoints (x10); the interface shows levels

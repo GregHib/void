@@ -48,6 +48,7 @@ class ItemOnItemDefinitions {
                         var sound = ""
                         var message = ""
                         var failure = ""
+                        var requiresMessage = ""
                         var question: String? = null
                         var maximum: Int = -1
                         var members: Boolean = false
@@ -72,6 +73,7 @@ class ItemOnItemDefinitions {
                                 "sound" -> sound = string()
                                 "message" -> message = string()
                                 "failure" -> failure = string()
+                                "requires_message" -> requiresMessage = string()
                                 "question" -> question = string()
                                 "maximum" -> maximum = int()
                                 "members" -> members = boolean()
@@ -96,6 +98,7 @@ class ItemOnItemDefinitions {
                             sound = sound,
                             message = message,
                             failure = failure,
+                            requiresMessage = requiresMessage,
                             question = question ?: "How many would you like to $type?",
                             maximum = maximum,
                             members = members,

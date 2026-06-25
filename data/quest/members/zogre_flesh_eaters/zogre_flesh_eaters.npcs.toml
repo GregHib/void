@@ -14,3 +14,25 @@ slayer_xp = 100.0
 categories = ["zombies"]
 drop_table = "slash_bash"
 examine = "A powerful looking Zogre."
+
+[zogre_sithik_man]
+id = 2061
+
+[zogre_sithik_ogre]
+id = 2062
+dialogue = "ogre"
+
+[zogre_human_brentle_vahn]
+id = 1826
+hitpoints = 500
+att = 30
+str = 30
+def = 30
+attack_speed = 6
+style = "crush"
+max_hit_melee = 40
+hunt_mode = "cowardly"
+slayer_xp = 50.0
+categories = ["zombies"]
+drop_table = "zogre_human_brentle_vahn"
+examine = "A human zombie."

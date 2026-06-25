@@ -121,10 +121,7 @@ class FillimanTarlock : Script {
                 stage == 105 -> {
                     npc<Neutral>("Hello again my friend, have you defeated three Ghasts as I asked you?")
                     player<Neutral>("Yes, I've killed all three and their spirits have been released!")
-                    npc<Neutral>(
-                        "Many thanks my friend, you have completed your quest! I can now change " +
-                            "this place into a holy sanctuary! And forever will it now be an Altar of Nature!",
-                    )
+                    npc<Neutral>("Many thanks my friend, you have completed your quest! I can now change this place into a holy sanctuary! And forever will it now be an Altar of Nature!")
                     sendNatureSpiritReward()
                 }
                 stage >= 110 -> {
