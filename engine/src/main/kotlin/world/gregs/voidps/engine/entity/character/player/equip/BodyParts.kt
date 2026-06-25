@@ -13,7 +13,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.BodyPart
 data class BodyParts(
     override var male: Boolean = true,
     val looks: IntArray = if (male) DEFAULT_LOOK_MALE.clone() else DEFAULT_LOOK_FEMALE.clone(),
-    val colours: IntArray = DEFAULT_COLOURS.clone(),
+    val colours: IntArray = if (male) DEFAULT_COLOURS_MALE.clone() else DEFAULT_COLOURS_FEMALE.clone(),
 ) : Body {
     private val parts = IntArray(12)
 
@@ -134,8 +134,11 @@ data class BodyParts(
     }
 
     companion object {
-        val DEFAULT_LOOK_MALE = intArrayOf(0, 14, 18, 26, 34, 38, 42)
+        // Hair, beard, chest, arms, hands, legs, feet. Hair 5 = "Short" body_look_id.
+        val DEFAULT_LOOK_MALE = intArrayOf(5, 14, 18, 26, 34, 38, 42)
         val DEFAULT_LOOK_FEMALE = intArrayOf(45, -1, 58, 61, 68, 72, 80)
-        val DEFAULT_COLOURS = IntArray(5)
+        // Hair, top, legs, feet, skin. Hair 7 = "Willow brown" (light brown).
+        val DEFAULT_COLOURS_MALE = intArrayOf(7, 0, 0, 0, 0)
+        val DEFAULT_COLOURS_FEMALE = IntArray(5)
     }
 }
