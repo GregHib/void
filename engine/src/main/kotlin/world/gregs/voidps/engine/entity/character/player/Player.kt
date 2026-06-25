@@ -124,3 +124,7 @@ class Player(
         private val logger = InlineLogger("Player")
     }
 }
+
+var Player.wearingGhostspeak: Boolean
+    get() = get("wearing_ghost_speak_amulet", false)
+    set(value) = set("wearing_ghost_speak_amulet", value)

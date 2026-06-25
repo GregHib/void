@@ -22,52 +22,40 @@ class Daga : Script {
     init {
 
         npcOperate("Talk-to", "daga") {
-
             val amulet = equipped(EquipSlot.Amulet)
-
-            if (amulet.id == "monkeyspeak_amulet") {
-
-                npc<Shifty>("Sorry, you don't have enough space in your inventory.")
-
-                choice {
-                    option<Neutral>("Yes, please.") {
-                        openShop("dagas_scimitar_smithy")
-                    }
-                    option<Neutral>("No, thanks.") {
-                    }
-                    option<Quiz>("Do you have any Dragon Scimitars in stock?") {
-                        npc<Happy>("It just so happens I recently got a fresh delivery. <br>Do you want to buy one?")
-                        choice {
-                            option("Yes.") {
-                                player<Neutral>("Yes, please.")
-                                inventory.transaction {
-                                    remove("coin", 100_000)
-                                    add("dragon_scimitar")
+            if (amulet.id != "monkeyspeak_amulet") {
+                npc<Shifty>("Ook! Ah Uh Ah! Ook Ook! Ah!")
+                return@npcOperate
+            }
+            npc<Shifty>("Sorry, you don't have enough space in your inventory.")
+            choice {
+                option<Neutral>("Yes, please.") {
+                    openShop("dagas_scimitar_smithy")
+                }
+                option<Neutral>("No, thanks.")
+                option<Quiz>("Do you have any Dragon Scimitars in stock?") {
+                    npc<Happy>("It just so happens I recently got a fresh delivery. <br>Do you want to buy one?")
+                    choice {
+                        option("Yes.") {
+                            player<Neutral>("Yes, please.")
+                            inventory.transaction {
+                                remove("coin", 100_000)
+                                add("dragon_scimitar")
+                            }
+                            when (inventory.transaction.error) {
+                                is TransactionError.Full -> {
+                                    inventoryFull()
+                                    npc<Shifty>("Sorry, you don't have enough space in your inventory.")
                                 }
-                                when (inventory.transaction.error) {
-                                    is TransactionError.Full -> {
-                                        inventoryFull()
-                                        npc<Shifty>("Sorry, you don't have enough space in your inventory.")
-                                    }
-
-                                    TransactionError.None -> {
-                                        npc<Shifty>("There you go. Pleasure doing business with you.")
-                                    }
-
-                                    else -> npc<Shifty>(
-                                        "Sorry, you don't have enough coins. <br>It costs 100,000 gold coins.",
-                                    )
-                                }
-
-                                option("No.") {
-                                    player<Shifty>("No.")
-                                }
+                                TransactionError.None -> npc<Shifty>("There you go. Pleasure doing business with you.")
+                                else -> npc<Shifty>("Sorry, you don't have enough coins. <br>It costs 100,000 gold coins.")
+                            }
+                            option("No.") {
+                                player<Shifty>("No.")
                             }
                         }
                     }
                 }
-            } else {
-                npc<Shifty>("Ook! Ah Uh Ah! Ook Ook! Ah!")
             }
         }
 

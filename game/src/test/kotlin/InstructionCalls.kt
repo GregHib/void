@@ -261,6 +261,11 @@ fun Player.itemOnNpc(npc: NPC, itemSlot: Int, inventory: String = "inventory") {
     interactItemOn(npc, inventory, inventory, item, itemSlot)
 }
 
+fun Player.itemOnFloorItem(floorItem: FloorItem, itemSlot: Int, inventory: String = "inventory") {
+    val item = inventories.inventory(inventory)[itemSlot]
+    interactItemOn(floorItem, inventory, inventory, item, itemSlot)
+}
+
 fun Player.itemOnItem(
     firstSlot: Int,
     secondSlot: Int,

@@ -1,0 +1,12 @@
+[smokepuff_large]
+id = 188
+
+[slash_bash_projectile]
+id = 397
+height = 40
+end_height = 36
+delay = 41
+curve = 15
+size_offset = 11
+time_offset = 15
+multiplier = 5

@@ -191,9 +191,7 @@ class KingRoald : Script {
     }
 
     private suspend fun Player.claimReward(certificate: String) {
-        player<Happy>(
-            "Your majesty, I have come to claim the reward for the return of the Shield Of Arrav.",
-        )
+        player<Happy>("Your majesty, I have come to claim the reward for the return of the Shield Of Arrav.")
         item("certificate", "You show the certificate to the king.")
         if (certificate == "certificate_full") {
             npc<Happy>("My goodness! This claim is for the reward offered by my father many years ago!")

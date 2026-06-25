@@ -114,9 +114,7 @@ class PetShopOwner : Script {
         player<Quiz>("Isn't that a little steep?")
         npc<Pleased>(
             owner.id,
-            "Well, if we gave them away for free then people would just buy them and dump them without a care. " +
-                "Dogs are a big responsibility and should be cared for. If a person is unwilling to invest $PUPPY_PRICE coins, " +
-                "then they don't deserve to have the puppy in the first place. So, do you still want one?",
+            "Well, if we gave them away for free then people would just buy them and dump them without a care. Dogs are a big responsibility and should be cared for. If a person is unwilling to invest $PUPPY_PRICE coins, then they don't deserve to have the puppy in the first place. So, do you still want one?",
         )
         choice {
             option<Happy>("Okay, I'll take the ${breed.string("option")}.") {
@@ -150,35 +148,29 @@ class PetShopOwner : Script {
         player<Quiz>("Such as?")
         npc<Happy>(
             owner.id,
-            "Well, we sell nuts. Those can be used to feed squirrels. If you want to capture a squirrel, you'll need to use the nuts " +
-                "on the trap you set, as the little scamps won't be fooled by anything else.",
+            "Well, we sell nuts. Those can be used to feed squirrels. If you want to capture a squirrel, you'll need to use the nuts on the trap you set, as the little scamps won't be fooled by anything else.",
         )
         player<Happy>("I'll bear that in mind!")
         npc<Happy>(
             owner.id,
-            "There are also a number of birds that live in the woodlands of the world. If you can find their eggs then you can use " +
-                "the incubator over there to hatch it. So long as you are the first thing they see out of the shell, they will follow " +
-                "you anywhere. After that, you just need to feed the chick ground fishing bait until it's old enough to eat it solid.",
+            "There are also a number of birds that live in the woodlands of the world. If you can find their eggs then you can use the incubator over there to hatch it. So long as you are the first thing they see out of the shell, they will follow you anywhere. After that, you just need to feed the chick ground fishing bait until it's old enough to eat it solid.",
         )
         player<Pleased>("I'll make sure to keep an eye on them if I go anywhere dangerous.")
         npc<Happy>(
             owner.id,
-            "There are also a number of fabulous and exotic lizards in Karamja. Some can be caught easily in a box trap, while others " +
-                "will need to be raised from an egg.",
+            "There are also a number of fabulous and exotic lizards in Karamja. Some can be caught easily in a box trap, while others will need to be raised from an egg.",
         )
         player<Quiz>("Will the incubator work for them, too?")
         npc<Happy>(owner.id, "Of course! I'll keep an eye on all the eggs you put in there, so they will never end up hard-boiled.")
         player<Pleased>("Thank goodness!")
         npc<Happy>(
             owner.id,
-            "The geckos of Karamja are quite easy to trap, like raccoons. Both will investigate a trap happily without any special bait. " +
-                "Monkeys are a different story, however!",
+            "The geckos of Karamja are quite easy to trap, like raccoons. Both will investigate a trap happily without any special bait. Monkeys are a different story, however!",
         )
         player<Quiz>("What do you mean?")
         npc<Pleased>(
             owner.id,
-            "Well, they are clever little things and can easily get out of a box trap, unless they are stuck. The easiest way to do that " +
-                "is to put a banana into the workings. They will hang on tight, and never let go, even when the trap closes!",
+            "Well, they are clever little things and can easily get out of a box trap, unless they are stuck. The easiest way to do that is to put a banana into the workings. They will hang on tight, and never let go, even when the trap closes!",
         )
         player<Happy>("Thanks a lot, you've been very helpful!")
         npc<Happy>(owner.id, "It's always a pleasure to help a fellow animal-lover. Come back and visit soon.")

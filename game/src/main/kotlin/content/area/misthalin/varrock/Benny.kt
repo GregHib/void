@@ -49,17 +49,12 @@ class Benny : Script {
                     purchase()
                 }
                 option<Quiz>("Varrock Herald? Never heard of it.") {
-                    npc<Neutral>(
-                        "For the illiterate amongst us, I shall elucidate. The Varrock Herald is a new newspaper. It is edited, printed and published by myself, Benny Gutenberg, and each edition promises to enthrall the reader with ",
-                    )
+                    npc<Neutral>("For the illiterate amongst us, I shall elucidate. The Varrock Herald is a new newspaper. It is edited, printed and published by myself, Benny Gutenberg, and each edition promises to enthrall the reader with")
                     npc<Happy>("captivating material! Now, can I interest you in buying one for a mere 50 coins?")
                     purchase()
                 }
                 option<Quiz>("Anything interesting in there?") {
-                    npc<Happy>(
-
-                        "Of course there is, mate. Packed full of thought provoking insights, contentious interviews and celebrity scandalmongering! An excellent read and all for just 50 coins! Want one?",
-                    )
+                    npc<Happy>("Of course there is, mate. Packed full of thought provoking insights, contentious interviews and celebrity scandalmongering! An excellent read and all for just 50 coins! Want one?")
                     purchase()
                 }
             }

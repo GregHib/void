@@ -1,9 +1,7 @@
 package world.gregs.voidps.engine.suspend
 
 import kotlinx.coroutines.CancellableContinuation
-import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.GameLoop
-import world.gregs.voidps.engine.entity.character.player.Player
 import kotlin.coroutines.resume
 
 sealed class Suspension {
@@ -13,21 +11,36 @@ sealed class Suspension {
      * p_countdialog
      */
     class IntEntry(private val continuation: CancellableContinuation<Int>) : Suspension() {
-        fun resume(int: Int) = continuation.resume(int)
+        fun resume(int: Int) {
+            if (continuation.isCancelled) {
+                return
+            }
+            continuation.resume(int)
+        }
     }
 
     /**
      * Wait for string entry dialogue
      */
     class StringEntry(private val continuation: CancellableContinuation<String>) : Suspension() {
-        fun resume(string: String) = continuation.resume(string)
+        fun resume(string: String) {
+            if (continuation.isCancelled) {
+                return
+            }
+            continuation.resume(string)
+        }
     }
 
     /**
      * Wait for name entry dialogue
      */
     class NameEntry(private val continuation: CancellableContinuation<String>) : Suspension() {
-        fun resume(string: String) = continuation.resume(string)
+        fun resume(string: String) {
+            if (continuation.isCancelled) {
+                return
+            }
+            continuation.resume(string)
+        }
     }
 
     /**
@@ -35,7 +48,12 @@ sealed class Suspension {
      * p_pausebutton
      */
     class Continue(private val continuation: CancellableContinuation<Unit>) : Suspension() {
-        fun resume() = continuation.resume(Unit)
+        fun resume() {
+            if (continuation.isCancelled) {
+                return
+            }
+            continuation.resume(Unit)
+        }
     }
 
     /**
@@ -47,13 +65,23 @@ sealed class Suspension {
 
         fun ready(): Boolean = GameLoop.tick >= tick
 
-        fun resume() = continuation.resume(Unit)
+        fun resume() {
+            if (continuation.isCancelled) {
+                return
+            }
+            continuation.resume(Unit)
+        }
     }
 
     class Custom(private val continuation: CancellableContinuation<Unit>, val block: () -> Boolean) : Suspension() {
 
         fun ready(): Boolean = block.invoke()
 
-        fun resume() = continuation.resume(Unit)
+        fun resume() {
+            if (continuation.isCancelled) {
+                return
+            }
+            continuation.resume(Unit)
+        }
     }
 }

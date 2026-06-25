@@ -59,6 +59,10 @@ class LightSource : Script {
         }
 
         entered("*") {
+            if (it.tags.contains("dark")) {
+                open("level_one_darkness")
+                return@entered
+            }
             if (!it.tags.contains("darkness")) {
                 return@entered
             }
@@ -71,7 +75,9 @@ class LightSource : Script {
         }
 
         exited("*") {
-            if (it.tags.contains("darkness")) {
+            if (it.tags.contains("dark")) {
+                close("level_one_darkness")
+            } else if (it.tags.contains("darkness")) {
                 close("level_one_darkness")
                 close("level_three_darkness")
             }
