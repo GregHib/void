@@ -272,3 +272,13 @@ to = { x = 2044, y = 4649 }
 option = "Climb-up"
 tile = { x = 2044, y = 4650 }
 to = { x = 2543, y = 3327 }
+
+[gangplank_ardougne_enter]
+option = "Cross"
+tile = { x = 2683, y = 3270 }
+to = { x = 2683, y = 3268, level = 1 }
+
+[gangplank_ardougne_exit]
+option = "Cross"
+tile = { x = 2683, y = 3269, level = 1 }
+to = { x = 2683, y = 3271 }

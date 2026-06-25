@@ -161,7 +161,10 @@ class Mining : Script {
             val totalStarDust = player.inventory.count(ore) + player.bank.count(ore)
             if (totalStarDust >= 200) {
                 player.message("You have the maximum amount of stardust but was still rewarded experience.")
-                return -1
+                // Still count as a successful mine so the star depletes and experience is awarded,
+                // even though the dust can't be carried. Returning <1 here would skip deplete() and
+                // let totalCollected grow unbounded (negative "% left of this layer").
+                return 1
             }
         }
         var amount = when (target.id) {
