@@ -70,6 +70,9 @@ class AccountManagerTest : KoinMock() {
             override fun save(accounts: List<PlayerSave>) {
             }
 
+            override fun saveReport(report: AbuseReport) {
+            }
+
             override fun exists(accountName: String): Boolean = false
 
             override fun load(accountName: String): PlayerSave? = null

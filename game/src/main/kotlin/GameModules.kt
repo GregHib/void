@@ -11,6 +11,7 @@ import org.koin.dsl.module
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
 import world.gregs.voidps.engine.data.ConfigFiles
+import world.gregs.voidps.engine.data.Reports
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.file.FileStorage
@@ -19,6 +20,7 @@ import java.io.File
 
 fun gameModule(files: ConfigFiles) = module {
     single { ItemSpawns() }
+    single { Reports(get()) }
     single { BotManager().load(files) }
     single { loadGraph(files) }
     single(createdAtStart = true) { Books().load(files.list(Settings["definitions.books"])) }
