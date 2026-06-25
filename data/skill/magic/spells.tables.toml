@@ -15,7 +15,6 @@ poison_damage = "int"
 projectiles = "list<row>"
 drain_skill = "skill"
 drain_percent = "int"
-npc_message = "string"
 player_message = "string"
 clone = "clone"
 
@@ -516,7 +515,6 @@ xp = 600
 
 [.monster_examine]
 xp = 660
-npc_message = ""
 
 [.npc_contact]
 xp = 630

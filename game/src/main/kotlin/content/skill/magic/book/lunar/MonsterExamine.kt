@@ -37,6 +37,7 @@ class MonsterExamine(val combatDefinitions: CombatDefinitions) : Script {
             sound("stat_spy")
             exp(Skill.Magic, Tables.int("spells.monster_examine.xp") / 10.0)
             open("monster_stat_spy")
+            clear("spell")
             val maxHit = maxHit(target)
             interfaces.sendText("monster_stat_spy", "name", target.def.name)
             interfaces.sendText("monster_stat_spy", "line1", "Combat level: ${target.def.combat}")
@@ -59,7 +60,7 @@ class MonsterExamine(val combatDefinitions: CombatDefinitions) : Script {
             return defined
         }
         // No data defined; estimate with the same melee formula combat uses
-        val strengthBonus = npc.get("strength", 0) + 64
+        val strengthBonus = npc["strength", 0] + 64
         return 5 + (npc.levels.get(Skill.Strength) * strengthBonus) / 64
     }
 }
