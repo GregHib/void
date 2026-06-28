@@ -6,16 +6,12 @@ import java.awt.Point
 import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
-import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 
 class Raster(private val bi: BufferedImage) {
     val width: Int = bi.width
     val height: Int = bi.height
-
-    private var minX = 0
-    private var minY = 0
 
     fun get(x: Int, y: Int): Int = bi.getRGB(x, y)
 
@@ -33,110 +29,67 @@ class Raster(private val bi: BufferedImage) {
         val minY = min(y1, min(y2, y3))
         val maxY = max(y1, max(y2, y3))
 
-        val used = Array(maxX - minX + 1) { BooleanArray(maxY - minY + 1) }
+        val area = (x2 - x1) * (y3 - y1) - (x3 - x1) * (y2 - y1)
+        if (area == 0) {
+            return
+        }
 
-        this.minX = minX
-        this.minY = minY
+        val exclude = if (area > 0) -1 else 1
+        val bias1 = edgeBias(x2, y2, x3, y3, area, exclude)
+        val bias2 = edgeBias(x3, y3, x1, y1, area, exclude)
+        val bias3 = edgeBias(x1, y1, x2, y2, area, exclude)
 
-        bresenhamLine(used, x1, y1, x2, y2, colour1, colour2)
-        bresenhamLine(used, x1, y1, x3, y3, colour1, colour3)
-        bresenhamLine(used, x2, y2, x3, y3, colour2, colour3)
+        val r1 = colour1 shr 16 and 0xff
+        val g1 = colour1 shr 8 and 0xff
+        val b1 = colour1 and 0xff
+        val r2 = colour2 shr 16 and 0xff
+        val g2 = colour2 shr 8 and 0xff
+        val b2 = colour2 and 0xff
+        val r3 = colour3 shr 16 and 0xff
+        val g3 = colour3 shr 8 and 0xff
+        val b3 = colour3 and 0xff
 
-        // Find right point
-        for (y in minY .. maxY) {
-            for (x in minX .. maxX) {
-                if (used[x - this.minX][y - this.minY]) {
-                    val leftColour = get(x, y)
-                    for (rx in maxX downTo minX) {
-                        if (used[rx - this.minX][y - this.minY]) {
-                            bresenhamLine(used, x, y, rx, y, leftColour, get(rx, y))
-                            break
-                        }
-                    }
-                    break
+        val areaF = area.toFloat()
+        for (y in minY..maxY) {
+            if (y !in 0..<height) {
+                continue
+            }
+            for (x in minX..maxX) {
+                if (x !in 0..<width) {
+                    continue
                 }
+                val e1 = (x3 - x2) * (y - y2) - (y3 - y2) * (x - x2)
+                val e2 = (x1 - x3) * (y - y3) - (y1 - y3) * (x - x3)
+                val e3 = (x2 - x1) * (y - y1) - (y2 - y1) * (x - x1)
+                if (area > 0) {
+                    if (e1 + bias1 < 0 || e2 + bias2 < 0 || e3 + bias3 < 0) {
+                        continue
+                    }
+                } else {
+                    if (e1 + bias1 > 0 || e2 + bias2 > 0 || e3 + bias3 > 0) {
+                        continue
+                    }
+                }
+               val w1 = e1 / areaF
+                val w2 = e2 / areaF
+                val w3 = 1f - w1 - w2
+                val r = (w1 * r1 + w2 * r2 + w3 * r3).toInt().coerceIn(0, 255)
+                val g = (w1 * g1 + w2 * g2 + w3 * g3).toInt().coerceIn(0, 255)
+                val b = (w1 * b1 + w2 * b2 + w3 * b3).toInt().coerceIn(0, 255)
+                set(x, y, -16777216 or (r shl 16) or (g shl 8) or b)
             }
         }
     }
 
-    private fun bresenhamLine(used: Array<BooleanArray>, x0: Int, y0: Int, x1: Int, y1: Int, colour1: Int, colour2: Int) {
-        var x0 = x0
-        var y0 = y0
-
-        val deltaWidth = x1 - x0
-        val deltaHeight = y1 - y0
-
-        var dx0 = 0
-        var dy0 = 0
-        var dx1 = 0
-        var dy1 = 0
-
-        if (deltaWidth < 0) {
-            dx0 = -1
-        } else if (deltaWidth > 0) {
-            dx0 = 1
+    private fun edgeBias(ax: Int, ay: Int, bx: Int, by: Int, area: Int, exclude: Int): Int {
+        val dx = bx - ax
+        val dy = by - ay
+        val topLeft = if (area > 0) {
+            dy < 0 || (dy == 0 && dx < 0)
+        } else {
+            dy > 0 || (dy == 0 && dx > 0)
         }
-        if (deltaHeight < 0) {
-            dy0 = -1
-        } else if (deltaHeight > 0) {
-            dy0 = 1
-        }
-        if (deltaWidth < 0) {
-            dx1 = -1
-        } else if (deltaWidth > 0) {
-            dx1 = 1
-        }
-
-        var longest = abs(deltaWidth)
-        var shortest = abs(deltaHeight)
-
-        if (longest <= shortest) {
-            longest = abs(deltaHeight)
-            shortest = abs(deltaWidth)
-            if (deltaHeight < 0) {
-                dy1 = -1
-            } else if (deltaHeight > 0) {
-                dy1 = 1
-            }
-            dx1 = 0
-        }
-        var numerator = longest shr 1
-        val red1 = colour1 shr 16 and 0xff
-        val green1 = colour1 shr 8 and 0xff
-        val blue1 = colour1 and 0xff
-        val red2 = colour2 shr 16 and 0xff
-        val green2 = colour2 shr 8 and 0xff
-        val blue2 = colour2 and 0xff
-
-        val rStep = (red2 - red1).toFloat() / longest
-        val gStep = (green2 - green1).toFloat() / longest
-        val bStep = (blue2 - blue1).toFloat() / longest
-
-        for (i in 0..longest) {
-            // Colour computation
-            val r = (red1 + rStep * i).toDouble()
-            val g = (green1 + gStep * i).toDouble()
-            val b = (blue1 + bStep * i).toDouble()
-
-            // Pixel writing
-            if (y0 > -1 && x0 > -1 && y0 < height && x0 < width) {
-                val pixel = (abs(r).toInt() shl 16 or (abs(g).toInt() shl 8) or abs(b).toInt())
-                if (pixel > 0) {
-                    set(x0, y0, -16777216 or pixel)
-                }
-                used[x0 - minX][y0 - minY] = true
-            }
-
-            numerator += shortest
-            if (numerator >= longest) {
-                numerator -= longest
-                x0 += dx0
-                y0 += dy0
-            } else {
-                x0 += dx1
-                y0 += dy1
-            }
-        }
+        return if (topLeft) 0 else exclude
     }
 
     companion object {
