@@ -63,7 +63,7 @@ class Mute(val accounts: AccountDefinitions) : Script {
             AuditLog.event(this, "muted", target, hours)
         }
 
-        modCommand("permmute", stringArg("player-name", autofill = accounts.displayNames.keys), desc = "Permanently mute a player so they can't chat") { args ->
+        modCommand("perm_mute", stringArg("player-name", autofill = accounts.displayNames.keys), desc = "Permanently mute a player so they can't chat") { args ->
             val target = Players.find(args[0])
             if (target == null) {
                 message("Unable to find player '${args[0]}'.")
