@@ -1,61 +1,76 @@
 [spirit_terrorbird_familiar]
 id = 6794
+large_head = true
 interacts = false
 
 [granite_crab_familiar]
 id = 6796
+large_head = true
 interacts = false
 
 [praying_mantis_familiar]
 id = 6798
+large_head = true
 interacts = false
 
 [giant_ent_familiar]
 id = 6800
+large_head = true
 interacts = false
 
 [spirit_cobra_familiar]
 id = 6802
+large_head = true
 interacts = false
 
 [spirit_dagannoth_familiar]
 id = 6804
+large_head = true
 interacts = false
 
 [thorny_snail_familiar]
 id = 6806
+large_head = true
 interacts = false
 
 [beaver_familiar]
 id = 6808
+large_head = true
 interacts = false
 
 [karamthulhu_overlord_familiar]
 id = 6809
+large_head = true
 interacts = false
 
 [hydra_familiar]
 id = 6811
+large_head = true
 interacts = false
 
 [spirit_jelly_familiar]
 id = 6992
+large_head = true
 interacts = false
 
 [bunyip_familiar]
 id = 6813
+large_head = true
 interacts = false
 
 [war_tortoise_familiar]
 id = 6815
+large_head = true
 interacts = false
 
 [fruit_bat_familiar]
 id = 6817
+large_head = true
 interacts = false
 
 [abyssal_parasite_familiar]
 id = 6818
+large_head = true
 dialogue = "leech"
 interacts = false
 summoning_beast_of_burden = 1
@@ -64,6 +79,7 @@ summoning_beast_of_burden_essence = 1
 
 [abyssal_lurker_familiar]
 id = 6820
+large_head = true
 dialogue = "bird"
 interacts = false
 summoning_beast_of_burden = 1
@@ -72,195 +88,243 @@ summoning_beast_of_burden_essence = 1
 
 [unicorn_stallion_familiar]
 id = 6822
+large_head = true
 interacts = false
 
 [magpie_familiar]
 id = 6824
+large_head = true
 interacts = false
 
 [dreadfowl_familiar]
 id = 6825
+large_head = true
 interacts = false
 
 [stranger_plant_familiar]
 id = 6827
+large_head = true
 interacts = false
 
 [spirit_wolf_familiar]
 id = 6829
+large_head = true
 dialogue = "wolf"
 interacts = false
 
 [desert_wyrm_familiar]
 id = 6831
+large_head = true
 interacts = false
 
 [evil_turnip_familiar]
 id = 6833
+large_head = true
 interacts = false
 
 [vampire_bat_familiar]
 id = 6835
+large_head = true
 interacts = false
 
 [spirit_scorpion_familiar]
 id = 6837
+large_head = true
 interacts = false
 
 [arctic_bear_familiar]
 id = 6839
+large_head = true
 interacts = false
 
 [spirit_spider_familiar]
 id = 6841
+large_head = true
 interacts = false
 
 [bloated_leech_familiar]
 id = 6843
+large_head = true
 interacts = false
 
 [spirit_kalphite_familiar]
 id = 6994
+large_head = true
 interacts = false
 
 [honey_badger_familiar]
 id = 6845
+large_head = true
 interacts = false
 
 [albino_rat_familiar]
 id = 6847
+large_head = true
 interacts = false
 
 [granite_lobster_familiar]
 id = 6849
+large_head = true
 interacts = false
 
 [macaw_familiar]
 id = 6851
+large_head = true
 interacts = false
 
 [bronze_minotaur_familiar]
 id = 6853
+large_head = true
 interacts = false
 
 [iron_minotaur_familiar]
 id = 6855
+large_head = true
 interacts = false
 
 [steel_minotaur_familiar]
 id = 6857
+large_head = true
 interacts = false
 
 [mithril_minotaur_familiar]
 id = 6859
+large_head = true
 interacts = false
 
 [adamant_minotaur_familiar]
 id = 6861
+large_head = true
 interacts = false
 
 [rune_minotaur_familiar]
 id = 6863
+large_head = true
 interacts = false
 
 [smoke_devil_familiar]
 id = 6865
+large_head = true
 interacts = false
 
 [bull_ant_familiar]
 id = 6867
+large_head = true
 interacts = false
 
 [wolpertinger_familiar]
 id = 6869
+large_head = true
 interacts = false
 
 [compost_mound_familiar]
 id = 6871
+large_head = true
 interacts = false
 
 [pack_yak_familiar]
 id = 6873
+large_head = true
 interacts = false
 
 [spirit_cockatrice_familiar]
 id = 6875
+large_head = true
 interacts = false
 
 [spirit_guthatrice_familiar]
 id = 6877
+large_head = true
 interacts = false
 
 [spirit_saratrice_familiar]
 id = 6879
+large_head = true
 interacts = false
 
 [spirit_zamatrice_familiar]
 id = 6881
+large_head = true
 interacts = false
 
 [spirit_pengatrice_familiar]
 id = 6883
+large_head = true
 interacts = false
 
 [spirit_coraxatrice_familiar]
 id = 6885
+large_head = true
 interacts = false
 
 [spirit_vulatrice_familiar]
 id = 6887
+large_head = true
 interacts = false
 
 [barker_toad_familiar]
 id = 6889
+large_head = true
 interacts = false
 
 [ibis_familiar]
 id = 6991
+large_head = true
 interacts = false
 
 [swamp_titan_familiar]
 id = 7329
+large_head = true
 interacts = false
 
 [spirit_mosquito_familiar]
 id = 7331
+large_head = true
 interacts = false
 
 [void_spinner_familiar]
 id = 7333
+large_head = true
 interacts = false
 
 [forge_regent_familiar]
 id = 7335
+large_head = true
 interacts = false
 
 [spirit_larupia_familiar]
 id = 7337
+large_head = true
 interacts = false
 
 [geyser_titan_familiar]
 id = 7339
+large_head = true
 interacts = false
 
 [lava_titan_familiar]
 id = 7341
+large_head = true
 interacts = false
 
 [steel_titan_familiar]
 id = 7343
+large_head = true
 interacts = false
 
 [obsidian_golem_familiar]
 id = 7345
+large_head = true
 interacts = false
 
 [talon_beast_familiar]
 id = 7347
+large_head = true
 interacts = false
 
 [abyssal_titan_familiar]
 id = 7349
+large_head = true
 interacts = false
 summoning_beast_of_burden = 1
 summoning_beast_of_burden_capacity = 20
@@ -268,321 +332,401 @@ summoning_beast_of_burden_essence = 1
 
 [void_torcher_familiar]
 id = 7351
+large_head = true
 interacts = false
 
 [giant_chinchompa_familiar]
 id = 7353
+large_head = true
 interacts = false
 
 [fire_titan_familiar]
 id = 7355
+large_head = true
 interacts = false
 
 [moss_titan_familiar]
 id = 7357
+large_head = true
 interacts = false
 
 [ice_titan_familiar]
 id = 7359
+large_head = true
 interacts = false
 
 [spirit_tz-kih_familiar]
 id = 7361
+large_head = true
 interacts = false
 
 [spirit_graahk_familiar]
 id = 7363
+large_head = true
 interacts = false
 
 [spirit_kyatt_familiar]
 id = 7365
+large_head = true
 interacts = false
 
 [void_shifter_familiar]
 id = 7367
+large_head = true
 interacts = false
 
 [pyrelord_familiar]
 id = 7377
+large_head = true
 interacts = false
 
 [void_ravager_familiar]
 id = 7370
+large_head = true
 interacts = false
 
 [ravenous_locust_familiar]
 id = 7372
+large_head = true
 interacts = false
 
 [iron_titan_familiar]
 id = 7375
+large_head = true
 interacts = false
 
 [clay_familiar_class_1_familiar]
 id = 8240
+large_head = true
 interacts = false
 
 [clay_familiar_class_2_familiar]
 id = 8242
+large_head = true
 interacts = false
 
 [clay_familiar_class_3_familiar]
 id = 8244
+large_head = true
 interacts = false
 
 [clay_familiar_class_4_familiar]
 id = 8246
+large_head = true
 interacts = false
 
 [clay_familiar_class_5_familiar]
 id = 8248
+large_head = true
 interacts = false
 
 [phoenix_familiar]
 id = 8575
+large_head = true
 interacts = false
 
 [cub_bloodrager_familiar]
 id = 11106
+large_head = true
 interacts = false
 
 [little_bloodrager_familiar]
 id = 11108
+large_head = true
 interacts = false
 
 [naïve_bloodrager_familiar]
 id = 11110
+large_head = true
 interacts = false
 
 [keen_bloodrager_familiar]
 id = 11112
+large_head = true
 interacts = false
 
 [brave_bloodrager_familiar]
 id = 11114
+large_head = true
 interacts = false
 
 [brah_bloodrager_familiar]
 id = 11116
+large_head = true
 interacts = false
 
 [naabe_bloodrager_familiar]
 id = 11118
+large_head = true
 interacts = false
 
 [wise_bloodrager_familiar]
 id = 11120
+large_head = true
 interacts = false
 
 [adept_bloodrager_familiar]
 id = 11122
+large_head = true
 interacts = false
 
 [sachem_bloodrager_familiar]
 id = 11124
+large_head = true
 interacts = false
 
 [cub_stormbringer_familiar]
 id = 11126
+large_head = true
 interacts = false
 
 [little_stormbringer_familiar]
 id = 11128
+large_head = true
 interacts = false
 
 [naïve_stormbringer_familiar]
 id = 11130
+large_head = true
 interacts = false
 
 [keen_stormbringer_familiar]
 id = 11132
+large_head = true
 interacts = false
 
 [brave_stormbringer_familiar]
 id = 11134
+large_head = true
 interacts = false
 
 [brah_stormbringer_familiar]
 id = 11136
+large_head = true
 interacts = false
 
 [naabe_stormbringer_familiar]
 id = 11138
+large_head = true
 interacts = false
 
 [wise_stormbringer_familiar]
 id = 11140
+large_head = true
 interacts = false
 
 [adept_stormbringer_familiar]
 id = 11142
+large_head = true
 interacts = false
 
 [sachem_stormbringer_familiar]
 id = 11144
+large_head = true
 interacts = false
 
 [cub_hoardstalker_familiar]
 id = 11146
+large_head = true
 interacts = false
 
 [little_hoardstalker_familiar]
 id = 11148
+large_head = true
 interacts = false
 
 [naïve_hoardstalker_familiar]
 id = 11150
+large_head = true
 interacts = false
 
 [keen_hoardstalker_familiar]
 id = 11152
+large_head = true
 interacts = false
 
 [brave_hoardstalker_familiar]
 id = 11154
+large_head = true
 interacts = false
 
 [brah_hoardstalker_familiar]
 id = 11156
+large_head = true
 interacts = false
 
 [naabe_hoardstalker_familiar]
 id = 11158
+large_head = true
 interacts = false
 
 [wise_hoardstalker_familiar]
 id = 11160
+large_head = true
 interacts = false
 
 [adept_hoardstalker_familiar]
 id = 11162
+large_head = true
 interacts = false
 
 [sachem_hoardstalker_familiar]
 id = 11164
+large_head = true
 interacts = false
 
 [cub_skinweaver_familiar]
 id = 11166
+large_head = true
 interacts = false
 
 [little_skinweaver_familiar]
 id = 11168
+large_head = true
 interacts = false
 
 [naïve_skinweaver_familiar]
 id = 11170
+large_head = true
 interacts = false
 
 [keen_skinweaver_familiar]
 id = 11172
+large_head = true
 interacts = false
 
 [brave_skinweaver_familiar]
 id = 11174
+large_head = true
 interacts = false
 
 [brah_skinweaver_familiar]
 id = 11176
+large_head = true
 interacts = false
 
 [naabe_skinweaver_familiar]
 id = 11178
+large_head = true
 interacts = false
 
 [wise_skinweaver_familiar]
 id = 11180
+large_head = true
 interacts = false
 
 [adept_skinweaver_familiar]
 id = 11182
+large_head = true
 interacts = false
 
 [sachem_skinweaver_familiar]
 id = 11184
+large_head = true
 interacts = false
 
 [cub_worldbearer_familiar]
 id = 11186
+large_head = true
 interacts = false
 
 [little_worldbearer_familiar]
 id = 11188
+large_head = true
 interacts = false
 
 [naïve_worldbearer_familiar]
 id = 11190
+large_head = true
 interacts = false
 
 [keen_worldbearer_familiar]
 id = 11192
+large_head = true
 interacts = false
 
 [brave_worldbearer_familiar]
 id = 11194
+large_head = true
 interacts = false
 
 [brah_worldbearer_familiar]
 id = 11196
+large_head = true
 interacts = false
 
 [naabe_worldbearer_familiar]
 id = 11198
+large_head = true
 interacts = false
 
 [wise_worldbearer_familiar]
 id = 11200
+large_head = true
 interacts = false
 
 [adept_worldbearer_familiar]
 id = 11202
+large_head = true
 interacts = false
 
 [sachem_worldbearer_familiar]
 id = 11204
+large_head = true
 interacts = false
 
 [cub_deathslinger_familiar]
 id = 11206
+large_head = true
 interacts = false
 
 [little_deathslinger_familiar]
 id = 11208
+large_head = true
 interacts = false
 
 [naive_deathslinger_familiar]
 id = 11210
+large_head = true
 interacts = false
 
 [keen_deathslinger_familiar]
 id = 11212
+large_head = true
 interacts = false
 
 [brave_deathslinger_familiar]
 id = 11214
+large_head = true
 interacts = false
 
 [brah_deathslinger_familiar]
 id = 11216
+large_head = true
 interacts = false
 
 [naabe_deathslinger_familiar]
 id = 11218
+large_head = true
 interacts = false
 
 [wise_deathslinger_familiar]
 id = 11220
+large_head = true
 interacts = false
 
 [adept_deathslinger_familiar]
 id = 11222
+large_head = true
 interacts = false
 
 [sachem_deathslinger_familiar]
 id = 11224
+large_head = true
 interacts = false
 
 [meerkats_familiar]
 id = 11640
+large_head = true
 interacts = false
 familiar_time = 40
