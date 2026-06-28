@@ -43,8 +43,8 @@ class Raster(private val bi: BufferedImage) {
         bresenhamLine(used, x2, y2, x3, y3, colour2, colour3)
 
         // Find right point
-        for (y in minY until maxY) {
-            for (x in minX until maxX) {
+        for (y in minY .. maxY) {
+            for (x in minX .. maxX) {
                 if (used[x - this.minX][y - this.minY]) {
                     val leftColour = get(x, y)
                     for (rx in maxX downTo minX) {
