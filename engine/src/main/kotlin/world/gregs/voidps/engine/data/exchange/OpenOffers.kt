@@ -42,7 +42,10 @@ class OpenOffers(
         }
     }
 
-    fun active(offer: ExchangeOffer): Boolean = (if (offer.sell) selling(offer.item) else buying(offer.item))[offer.price]?.any { it.id == offer.id } ?: false
+    fun active(offer: ExchangeOffer): Boolean {
+        val map = if (offer.sell) selling(offer.item) else buying(offer.item)
+        return map[offer.price]?.any { it.id == offer.id } ?: false
+    }
 
     fun add(offer: ExchangeOffer) {
         add(offer.id, offer.item, offer.price, offer.state.sell)
