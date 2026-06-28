@@ -5,6 +5,8 @@ interacts = false
 
 [granite_crab_familiar]
 id = 6796
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
 large_head = true
 interacts = false
 
@@ -15,6 +17,8 @@ interacts = false
 
 [giant_ent_familiar]
 id = 6800
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
 large_head = true
 interacts = false
 
@@ -35,6 +39,8 @@ interacts = false
 
 [beaver_familiar]
 id = 6808
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
 large_head = true
 interacts = false
 
@@ -65,6 +71,8 @@ interacts = false
 
 [fruit_bat_familiar]
 id = 6817
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
 large_head = true
 interacts = false
 
@@ -105,6 +113,8 @@ interacts = false
 
 [stranger_plant_familiar]
 id = 6827
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
 large_head = true
 interacts = false
 
@@ -121,6 +131,8 @@ interacts = false
 
 [evil_turnip_familiar]
 id = 6833
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
 large_head = true
 interacts = false
 
@@ -141,6 +153,8 @@ interacts = false
 
 [spirit_spider_familiar]
 id = 6841
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
 large_head = true
 interacts = false
 
@@ -166,11 +180,15 @@ interacts = false
 
 [granite_lobster_familiar]
 id = 6849
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
 large_head = true
 interacts = false
 
 [macaw_familiar]
 id = 6851
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
 large_head = true
 interacts = false
 
@@ -221,6 +239,8 @@ interacts = false
 
 [compost_mound_familiar]
 id = 6871
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
 large_head = true
 interacts = false
 
@@ -231,36 +251,50 @@ interacts = false
 
 [spirit_cockatrice_familiar]
 id = 6875
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
 large_head = true
 interacts = false
 
 [spirit_guthatrice_familiar]
 id = 6877
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
 large_head = true
 interacts = false
 
 [spirit_saratrice_familiar]
 id = 6879
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
 large_head = true
 interacts = false
 
 [spirit_zamatrice_familiar]
 id = 6881
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
 large_head = true
 interacts = false
 
 [spirit_pengatrice_familiar]
 id = 6883
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
 large_head = true
 interacts = false
 
 [spirit_coraxatrice_familiar]
 id = 6885
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
 large_head = true
 interacts = false
 
 [spirit_vulatrice_familiar]
 id = 6887
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
 large_head = true
 interacts = false
 
@@ -271,6 +305,8 @@ interacts = false
 
 [ibis_familiar]
 id = 6991
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
 large_head = true
 interacts = false
 
@@ -384,6 +420,8 @@ interacts = false
 
 [void_ravager_familiar]
 id = 7370
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
 large_head = true
 interacts = false
 
