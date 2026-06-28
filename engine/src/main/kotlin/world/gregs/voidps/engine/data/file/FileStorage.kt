@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.data.file
 import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.*
+import world.gregs.voidps.engine.data.AbuseReport
 import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.Storage
@@ -89,6 +90,22 @@ class FileStorage(
         }
         offers.removeInactive(days)
         return offers
+    }
+
+    override fun saveReport(report: AbuseReport) {
+        val parent = directory.resolve(Settings["storage.reports.path", "reports/"])
+        parent.mkdirs()
+        val file = parent.resolve("${report.time}-${report.reporter}.toml")
+        Config.fileWriter(file) {
+            writePair("reporter", report.reporter)
+            writePair("reported", report.reported)
+            writePair("rule", report.rule)
+            writePair("rule_name", report.ruleName)
+            writePair("mute", report.mute)
+            writePair("suggestion", report.suggestion)
+            writePair("time", report.time)
+            writePair("evidence", report.evidence)
+        }
     }
 
     override fun saveOffers(offers: OpenOffers) {

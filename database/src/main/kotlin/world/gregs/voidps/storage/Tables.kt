@@ -157,6 +157,20 @@ internal object ClaimsTable : Table("grand_exchange_claims") {
     val coins = integer("coins")
 }
 
+internal object ReportsTable : Table("abuse_reports") {
+    val id = integer("id").autoIncrement().uniqueIndex()
+    val reporter = varchar("reporter", 12)
+    val reported = text("reported")
+    val rule = integer("rule")
+    val ruleName = text("rule_name")
+    val mute = bool("mute")
+    val suggestion = text("suggestion")
+    val time = integer("time")
+    val evidence = array<String>("evidence")
+
+    override val primaryKey = PrimaryKey(id, name = "pk_report_id")
+}
+
 internal object ItemHistoryTable : Table("grand_exchange_item_history") {
     val item = text("item")
     val timestamp = long("timestamp")
