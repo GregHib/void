@@ -9,22 +9,29 @@ class MouseZoom(private val view: MapView, private val type: ZoomType) : MouseWh
         private set
 
     override fun mouseWheelMoved(e: MouseWheelEvent) {
-        val mapX = when (type) {
-            ZoomType.Centre -> view.viewToMapX(view.getCentreX())
-            ZoomType.Mouse -> view.viewToMapX(e.x)
+        val anchorViewX = when (type) {
+            ZoomType.Centre -> view.getCentreX()
+            ZoomType.Mouse -> e.x
         }
-        val mapY = when (type) {
-            ZoomType.Centre -> view.viewToMapY(view.getCentreY())
-            ZoomType.Mouse -> view.viewToMapY(e.y)
+        val anchorViewY = when (type) {
+            ZoomType.Centre -> view.getCentreY()
+            ZoomType.Mouse -> e.y
         }
+        val imageX = view.viewToImageXd(anchorViewX)
+        val imageY = view.viewToImageYd(anchorViewY)
+
         val offset = e.unitsToScroll.coerceIn(-1, 1)
         val previous = this.scale
         this.scale = (this.scale - offset).coerceIn(ZOOM_MIN, ZOOM_MAX)
         if (this.scale != previous) {
-            view.updateZoom(e.x, e.y)
             when (type) {
-                ZoomType.Centre -> view.centreOn(mapX, mapY)
-                ZoomType.Mouse -> view.align(e.x, e.y, mapX, mapY)
+                ZoomType.Centre -> {
+                    val mapX = (imageX / previous).toInt()
+                    val mapY = (imageY / previous).toInt()
+                    view.updateZoom(anchorViewX, anchorViewY)
+                    view.centreOn(mapX, mapY)
+                }
+                ZoomType.Mouse -> view.alignToImage(anchorViewX, anchorViewY, imageX, imageY, previous)
             }
         }
     }

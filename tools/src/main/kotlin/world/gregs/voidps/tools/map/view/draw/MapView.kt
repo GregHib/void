@@ -40,8 +40,14 @@ class MapView : JPanel() {
     /*
         Offset from view 0, 0 to top left of world map
      */
-    var offsetX = 0
-    var offsetY = 0
+    private var offsetXd = 0.0
+    private var offsetYd = 0.0
+    var offsetX: Int
+        get() = offsetXd.toInt()
+        set(value) { offsetXd = value.toDouble() }
+    var offsetY: Int
+        get() = offsetYd.toInt()
+        set(value) { offsetYd = value.toDouble() }
     var level = 0
         private set
 
@@ -140,6 +146,10 @@ class MapView : JPanel() {
 
     fun viewToImageY(viewY: Int) = viewY - offsetY
 
+    fun viewToImageXd(viewX: Int): Double = viewX - offsetXd
+
+    fun viewToImageYd(viewY: Int): Double = viewY - offsetYd
+
     fun imageToViewX(imageX: Int) = imageX + offsetX
 
     fun imageToViewY(imageY: Int) = imageY + offsetY
@@ -202,6 +212,23 @@ class MapView : JPanel() {
         offsetY = viewY - mapToImageY(mapY)
         this.level = level
         update()
+    }
+
+    /**
+     * Aligns the viewport so that the map position currently under ([viewX], [viewY]) stays
+     * fixed after a scale change. [preZoomImageX]/[preZoomImageY] are the exact (fractional)
+     * image-space coordinates captured *before* the scale was updated (i.e. `viewX - offsetXd`).
+     *
+     * Uses doubles throughout to avoid the integer-division truncation that snaps the anchor
+     * to a tile corner and causes drift across multiple zoom steps.
+     *
+     * Also refreshes the hover overlay at ([viewX], [viewY]) after updating the offset, so
+     * the highlight doesn't bounce while the mouse is stationary.
+     */
+    fun alignToImage(viewX: Int, viewY: Int, preZoomImageX: Double, preZoomImageY: Double, oldScale: Int) {
+        offsetXd = viewX - preZoomImageX * scale / oldScale
+        offsetYd = viewY - preZoomImageY * scale / oldScale
+        update(viewX, viewY)
     }
 
     fun offset(mapX: Int, mapY: Int, level: Int = 0) {
