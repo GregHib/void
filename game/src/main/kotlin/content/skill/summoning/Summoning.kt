@@ -25,6 +25,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -74,6 +75,9 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean) {
         if (!restart) {
             timers.start("familiar_timer")
         }
+        if (get<DropTables>().get("forage_${familiarNpc.id.removeSuffix("_familiar")}") != null) {
+            timers.start("forage")
+        }
     }
 }
 
@@ -100,6 +104,7 @@ fun Player.dismissFamiliar(removeNpc: Boolean = true) {
         set("familiar_details_seconds_remaining", 0)
     }
     timers.stop("familiar_timer")
+    timers.stop("forage")
 }
 
 /**

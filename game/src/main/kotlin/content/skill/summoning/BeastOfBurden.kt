@@ -13,6 +13,8 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.entity.item.drop.DropTable
+import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.beastOfBurden
 import world.gregs.voidps.engine.inv.clear
@@ -35,6 +37,16 @@ val Player.beastOfBurdenEssenceOnly: Boolean
     get() = follower?.def?.get("summoning_beast_of_burden_essence", 0) == 1
 
 fun Player.hasBeastOfBurden(): Boolean = follower?.def?.get("summoning_beast_of_burden", 0) == 1
+
+/**
+ * A forager familiar's loot table is named `forage_<familiar>` (e.g. `forage_magpie`); returns
+ * null if the current follower isn't a forager. Detected by table existence so no npc-def param
+ * is needed.
+ */
+fun Player.forageTable(dropTables: DropTables): DropTable? {
+    val id = follower?.id ?: return null
+    return dropTables.get("forage_${id.removeSuffix("_familiar")}")
+}
 
 fun Player.ensureBeastOfBurdenInventory() {
     val capacity = beastOfBurdenCapacity
@@ -124,7 +136,7 @@ fun Player.dropBeastOfBurdenItems() {
     message("Your familiar has dropped all the items it was holding.")
 }
 
-class BeastOfBurden : Script {
+class BeastOfBurden(private val dropTables: DropTables) : Script {
 
     init {
         npcOperate("Store", "*_familiar") { (target) ->
@@ -243,6 +255,10 @@ class BeastOfBurden : Script {
         }
         if (!player.hasBeastOfBurden()) {
             player.message("Your follower can't carry any items.")
+            return
+        }
+        if (player.forageTable(dropTables) != null) {
+            player.message("Your familiar forages for its own items and won't carry yours.")
             return
         }
         val capacity = player.beastOfBurdenCapacity

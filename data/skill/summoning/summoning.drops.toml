@@ -1,0 +1,19 @@
+# Forage tables for forager familiars. Rolled into the familiar's inventory
+# periodically while summoned; the player withdraws the loot from the familiar.
+# One item is picked per roll (roll == number of drops, each weight 1).
+[forage_magpie]
+roll = 12
+drops = [
+    { id = "uncut_diamond" },
+    { id = "uncut_ruby" },
+    { id = "uncut_emerald" },
+    { id = "uncut_sapphire" },
+    { id = "uncut_opal" },
+    { id = "uncut_jade" },
+    { id = "uncut_red_topaz" },
+    { id = "gold_ring" },
+    { id = "sapphire_ring" },
+    { id = "emerald_ring" },
+    { id = "ruby_ring" },
+    { id = "diamond_ring" }
+]

@@ -95,6 +95,8 @@ interacts = false
 id = 6824
 large_head = true
 interacts = false
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
 
 [dreadfowl_familiar]
 id = 6825
