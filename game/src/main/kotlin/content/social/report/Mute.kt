@@ -14,13 +14,18 @@ import world.gregs.voidps.engine.event.AuditLog
 import java.util.concurrent.TimeUnit
 
 // Max value rather than -1 as small numbers are loaded back from saves as ints
-const val PERMANENT = Long.MAX_VALUE
+const val PERMANENT = Int.MAX_VALUE
+
+/**
+ * Current time as an epoch second; punishments don't need sub-second precision
+ */
+fun epochSeconds(): Int = (System.currentTimeMillis() / 1000).toInt()
 
 val Player.isMuted: Boolean
-    get() = this["muted_until", 0L] > System.currentTimeMillis()
+    get() = this["muted_until", 0] > epochSeconds()
 
 fun Player.mute(hours: Int = 48, rule: Rule? = null) {
-    this["muted_until"] = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(hours.toLong())
+    this["muted_until"] = epochSeconds() + TimeUnit.HOURS.toSeconds(hours.toLong()).toInt()
     addBlackMark(rule)
     message("You have been temporarily muted due to breaking a rule.")
 }
@@ -38,12 +43,12 @@ fun Player.unmute() {
  * Informs a muted player why their chat attempt was blocked
  */
 fun Player.sendMuteMessage() {
-    val until = this["muted_until", 0L]
+    val until = this["muted_until", 0]
     if (until == PERMANENT) {
         message("You are permanently muted because of breaking a rule.")
     } else {
-        val day = TimeUnit.DAYS.toMillis(1)
-        val days = (until - System.currentTimeMillis() + day - 1) / day
+        val day = TimeUnit.DAYS.toSeconds(1)
+        val days = (until - epochSeconds() + day - 1) / day
         message("You are temporarily muted because of breaking a rule. This mute will remain for a further $days ${"day".plural(days)}. To prevent further mutes please read the rules.")
     }
 }

@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit
  */
 const val BLACK_MARK_LIMIT = 10
 
-private val TWELVE_MONTHS = TimeUnit.DAYS.toMillis(365)
+private val TWELVE_MONTHS = TimeUnit.DAYS.toSeconds(365)
 private val PERMANENT_RULES = setOf(Rule.BreakingRealWorldLaws)
 private val DATE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy").withZone(ZoneOffset.UTC)
 
@@ -49,7 +49,7 @@ fun Player.activeBlackMarks(): List<String> {
 }
 
 fun activeBlackMarks(marks: List<String>): List<String> {
-    val now = System.currentTimeMillis()
+    val now = epochSeconds()
     return marks.filter { expiry(it) > now }
 }
 
@@ -61,17 +61,17 @@ fun Player.addBlackMark(rule: Rule? = null) {
  * A black mark entry for breaking [rule], or at a moderator's discretion when no rule is given
  */
 fun blackMark(rule: Rule? = null): String {
-    val expiry = if (rule != null && rule in PERMANENT_RULES) PERMANENT else System.currentTimeMillis() + TWELVE_MONTHS
+    val expiry = if (rule != null && rule in PERMANENT_RULES) PERMANENT else epochSeconds() + TWELVE_MONTHS.toInt()
     return "${rule?.id ?: -1}:$expiry"
 }
 
-private fun expiry(mark: String): Long = mark.substringAfter(':').toLongOrNull() ?: 0L
+private fun expiry(mark: String): Int = mark.substringAfter(':').toIntOrNull() ?: 0
 
 private fun describe(mark: String): String {
     val id = mark.substringBefore(':').toIntOrNull() ?: -1
     val title = if (id == -1) "Moderator discretion" else Rule.byId(id)?.title ?: "Unknown offence"
     val expiry = expiry(mark)
-    val expires = if (expiry == PERMANENT) "never expires" else "expires ${DATE_FORMAT.format(Instant.ofEpochMilli(expiry))}"
+    val expires = if (expiry == PERMANENT) "never expires" else "expires ${DATE_FORMAT.format(Instant.ofEpochSecond(expiry.toLong()))}"
     return "$title - $expires"
 }
 

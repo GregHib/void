@@ -79,7 +79,7 @@ class ReportAbuse(val reports: Reports, val accounts: AccountDefinitions) : Scri
                     ruleName = rule.title,
                     mute = muted,
                     suggestion = suggestion,
-                    time = System.currentTimeMillis(),
+                    time = epochSeconds(),
                     evidence = ChatHistory.recent(account),
                 ),
             )

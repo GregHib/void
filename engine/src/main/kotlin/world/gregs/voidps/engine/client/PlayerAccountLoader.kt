@@ -79,8 +79,8 @@ class PlayerAccountLoader(
     }
 
     private fun banned(variables: Map<String, Any>): Boolean {
-        val until = (variables["banned_until"] as? Number)?.toLong() ?: return false
-        return until > System.currentTimeMillis()
+        val until = (variables["banned_until"] as? Number)?.toInt() ?: return false
+        return until > (System.currentTimeMillis() / 1000).toInt()
     }
 
     suspend fun connect(player: Player, client: Client, displayMode: Int = 0, viewport: Boolean = true) {

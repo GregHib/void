@@ -8,7 +8,7 @@ package world.gregs.voidps.engine.data
  * @param ruleName Readable name of the rule broken
  * @param mute Whether a moderator requested the accused be muted
  * @param suggestion Additional text submitted with the report
- * @param time Epoch millisecond timestamp the report was received
+ * @param time Epoch second timestamp the report was received
  * @param evidence Recent chat messages sent by the accused player
  */
 data class AbuseReport(
@@ -18,6 +18,6 @@ data class AbuseReport(
     val ruleName: String,
     val mute: Boolean,
     val suggestion: String,
-    val time: Long,
+    val time: Int,
     val evidence: List<String>,
 )

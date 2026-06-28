@@ -14,10 +14,10 @@ import world.gregs.voidps.engine.event.AuditLog
 import java.util.concurrent.TimeUnit
 
 val Player.isBanned: Boolean
-    get() = this["banned_until", 0L] > System.currentTimeMillis()
+    get() = this["banned_until", 0] > epochSeconds()
 
 fun Player.ban(hours: Int = 48, rule: Rule? = null) {
-    this["banned_until"] = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(hours.toLong())
+    this["banned_until"] = epochSeconds() + TimeUnit.HOURS.toSeconds(hours.toLong()).toInt()
     addBlackMark(rule)
 }
 
@@ -34,7 +34,7 @@ class Ban(val accounts: AccountDefinitions, val manager: AccountManager, val sto
     init {
         modCommand("ban", stringArg("player-name", autofill = accounts.displayNames.keys), intArg("hours", optional = true), desc = "Temporarily ban a player from logging in") { args ->
             val hours = args.getOrNull(1)?.toIntOrNull() ?: 48
-            val until = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(hours.toLong())
+            val until = epochSeconds() + TimeUnit.HOURS.toSeconds(hours.toLong()).toInt()
             val target = Players.find(args[0])
             if (target != null) {
                 target.ban(hours)
@@ -92,7 +92,7 @@ class Ban(val accounts: AccountDefinitions, val manager: AccountManager, val sto
     /**
      * Bans an offline player's saved account and adds a black mark
      */
-    private fun banOffline(displayName: String, until: Long): Boolean {
+    private fun banOffline(displayName: String, until: Int): Boolean {
         val account = accounts.get(displayName)?.accountName ?: displayName
         val save = storage.load(account) ?: return false
         val variables = save.variables.toMutableMap()

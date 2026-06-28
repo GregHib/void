@@ -1,9 +1,9 @@
 [muted_until]
-format = "long"
+format = "int"
 persist = true
 
 [banned_until]
-format = "long"
+format = "int"
 persist = true
 
 [black_marks]

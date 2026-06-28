@@ -23,10 +23,10 @@ internal class PunishmentsTest : WorldTest() {
     @Test
     fun `Expired black marks degrade`() = runTest {
         val player = createPlayer(name = "offender")
-        player["black_marks"] = listOf("7:1", "15:${Long.MAX_VALUE}")
+        player["black_marks"] = listOf("7:1", "15:$PERMANENT")
 
         assertEquals(1, player.blackMarks)
-        assertEquals(listOf("15:${Long.MAX_VALUE}"), player.activeBlackMarks())
+        assertEquals(listOf("15:$PERMANENT"), player.activeBlackMarks())
     }
 
     @Test
@@ -35,7 +35,7 @@ internal class PunishmentsTest : WorldTest() {
 
         player.addBlackMark(Rule.BreakingRealWorldLaws)
 
-        assertTrue(player.activeBlackMarks().single().endsWith(":${Long.MAX_VALUE}"))
+        assertTrue(player.activeBlackMarks().single().endsWith(":$PERMANENT"))
     }
 
     @Test
