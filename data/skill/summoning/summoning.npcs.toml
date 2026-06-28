@@ -1,71 +1,57 @@
 [spirit_terrorbird_familiar]
 id = 6794
-dialogue = "familiar"
 interacts = false
 
 [granite_crab_familiar]
 id = 6796
-dialogue = "familiar"
 interacts = false
 
 [praying_mantis_familiar]
 id = 6798
-dialogue = "familiar"
 interacts = false
 
 [giant_ent_familiar]
 id = 6800
-dialogue = "familiar"
 interacts = false
 
 [spirit_cobra_familiar]
 id = 6802
-dialogue = "familiar"
 interacts = false
 
 [spirit_dagannoth_familiar]
 id = 6804
-dialogue = "familiar"
 interacts = false
 
 [thorny_snail_familiar]
 id = 6806
-dialogue = "familiar"
 interacts = false
 
 [beaver_familiar]
 id = 6808
-dialogue = "familiar"
 interacts = false
 
 [karamthulhu_overlord_familiar]
 id = 6809
-dialogue = "familiar"
 interacts = false
 
 [hydra_familiar]
 id = 6811
-dialogue = "familiar"
 interacts = false
 
 [spirit_jelly_familiar]
 id = 6992
-dialogue = "familiar"
 interacts = false
 
 [bunyip_familiar]
 id = 6813
-dialogue = "familiar"
 interacts = false
 
 [war_tortoise_familiar]
 id = 6815
-dialogue = "familiar"
 interacts = false
 
 [fruit_bat_familiar]
 id = 6817
-dialogue = "familiar"
 interacts = false
 
 [abyssal_parasite_familiar]
@@ -86,22 +72,18 @@ summoning_beast_of_burden_essence = 1
 
 [unicorn_stallion_familiar]
 id = 6822
-dialogue = "familiar"
 interacts = false
 
 [magpie_familiar]
 id = 6824
-dialogue = "familiar"
 interacts = false
 
 [dreadfowl_familiar]
 id = 6825
-dialogue = "familiar"
 interacts = false
 
 [stranger_plant_familiar]
 id = 6827
-dialogue = "familiar"
 interacts = false
 
 [spirit_wolf_familiar]
@@ -111,217 +93,174 @@ interacts = false
 
 [desert_wyrm_familiar]
 id = 6831
-dialogue = "familiar"
 interacts = false
 
 [evil_turnip_familiar]
 id = 6833
-dialogue = "familiar"
 interacts = false
 
 [vampire_bat_familiar]
 id = 6835
-dialogue = "familiar"
 interacts = false
 
 [spirit_scorpion_familiar]
 id = 6837
-dialogue = "familiar"
 interacts = false
 
 [arctic_bear_familiar]
 id = 6839
-dialogue = "familiar"
 interacts = false
 
 [spirit_spider_familiar]
 id = 6841
-dialogue = "familiar"
 interacts = false
 
 [bloated_leech_familiar]
 id = 6843
-dialogue = "familiar"
 interacts = false
 
 [spirit_kalphite_familiar]
 id = 6994
-dialogue = "familiar"
 interacts = false
 
 [honey_badger_familiar]
 id = 6845
-dialogue = "familiar"
 interacts = false
 
 [albino_rat_familiar]
 id = 6847
-dialogue = "familiar"
 interacts = false
 
 [granite_lobster_familiar]
 id = 6849
-dialogue = "familiar"
 interacts = false
 
 [macaw_familiar]
 id = 6851
-dialogue = "familiar"
 interacts = false
 
 [bronze_minotaur_familiar]
 id = 6853
-dialogue = "familiar"
 interacts = false
 
 [iron_minotaur_familiar]
 id = 6855
-dialogue = "familiar"
 interacts = false
 
 [steel_minotaur_familiar]
 id = 6857
-dialogue = "familiar"
 interacts = false
 
 [mithril_minotaur_familiar]
 id = 6859
-dialogue = "familiar"
 interacts = false
 
 [adamant_minotaur_familiar]
 id = 6861
-dialogue = "familiar"
 interacts = false
 
 [rune_minotaur_familiar]
 id = 6863
-dialogue = "familiar"
 interacts = false
 
 [smoke_devil_familiar]
 id = 6865
-dialogue = "familiar"
 interacts = false
 
 [bull_ant_familiar]
 id = 6867
-dialogue = "familiar"
 interacts = false
 
 [wolpertinger_familiar]
 id = 6869
-dialogue = "familiar"
 interacts = false
 
 [compost_mound_familiar]
 id = 6871
-dialogue = "familiar"
 interacts = false
 
 [pack_yak_familiar]
 id = 6873
-dialogue = "familiar"
 interacts = false
 
 [spirit_cockatrice_familiar]
 id = 6875
-dialogue = "familiar"
 interacts = false
 
 [spirit_guthatrice_familiar]
 id = 6877
-dialogue = "familiar"
 interacts = false
 
 [spirit_saratrice_familiar]
 id = 6879
-dialogue = "familiar"
 interacts = false
 
 [spirit_zamatrice_familiar]
 id = 6881
-dialogue = "familiar"
 interacts = false
 
 [spirit_pengatrice_familiar]
 id = 6883
-dialogue = "familiar"
 interacts = false
 
 [spirit_coraxatrice_familiar]
 id = 6885
-dialogue = "familiar"
 interacts = false
 
 [spirit_vulatrice_familiar]
 id = 6887
-dialogue = "familiar"
 interacts = false
 
 [barker_toad_familiar]
 id = 6889
-dialogue = "familiar"
 interacts = false
 
 [ibis_familiar]
 id = 6991
-dialogue = "familiar"
 interacts = false
 
 [swamp_titan_familiar]
 id = 7329
-dialogue = "familiar"
 interacts = false
 
 [spirit_mosquito_familiar]
 id = 7331
-dialogue = "familiar"
 interacts = false
 
 [void_spinner_familiar]
 id = 7333
-dialogue = "familiar"
 interacts = false
 
 [forge_regent_familiar]
 id = 7335
-dialogue = "familiar"
 interacts = false
 
 [spirit_larupia_familiar]
 id = 7337
-dialogue = "familiar"
 interacts = false
 
 [geyser_titan_familiar]
 id = 7339
-dialogue = "familiar"
 interacts = false
 
 [lava_titan_familiar]
 id = 7341
-dialogue = "familiar"
 interacts = false
 
 [steel_titan_familiar]
 id = 7343
-dialogue = "familiar"
 interacts = false
 
 [obsidian_golem_familiar]
 id = 7345
-dialogue = "familiar"
 interacts = false
 
 [talon_beast_familiar]
 id = 7347
-dialogue = "familiar"
 interacts = false
 
 [abyssal_titan_familiar]
 id = 7349
-dialogue = "familiar"
 interacts = false
 summoning_beast_of_burden = 1
 summoning_beast_of_burden_capacity = 20
@@ -329,401 +268,321 @@ summoning_beast_of_burden_essence = 1
 
 [void_torcher_familiar]
 id = 7351
-dialogue = "familiar"
 interacts = false
 
 [giant_chinchompa_familiar]
 id = 7353
-dialogue = "familiar"
 interacts = false
 
 [fire_titan_familiar]
 id = 7355
-dialogue = "familiar"
 interacts = false
 
 [moss_titan_familiar]
 id = 7357
-dialogue = "familiar"
 interacts = false
 
 [ice_titan_familiar]
 id = 7359
-dialogue = "familiar"
 interacts = false
 
 [spirit_tz-kih_familiar]
 id = 7361
-dialogue = "familiar"
 interacts = false
 
 [spirit_graahk_familiar]
 id = 7363
-dialogue = "familiar"
 interacts = false
 
 [spirit_kyatt_familiar]
 id = 7365
-dialogue = "familiar"
 interacts = false
 
 [void_shifter_familiar]
 id = 7367
-dialogue = "familiar"
 interacts = false
 
 [pyrelord_familiar]
 id = 7377
-dialogue = "familiar"
 interacts = false
 
 [void_ravager_familiar]
 id = 7370
-dialogue = "familiar"
 interacts = false
 
 [ravenous_locust_familiar]
 id = 7372
-dialogue = "familiar"
 interacts = false
 
 [iron_titan_familiar]
 id = 7375
-dialogue = "familiar"
 interacts = false
 
 [clay_familiar_class_1_familiar]
 id = 8240
-dialogue = "familiar"
 interacts = false
 
 [clay_familiar_class_2_familiar]
 id = 8242
-dialogue = "familiar"
 interacts = false
 
 [clay_familiar_class_3_familiar]
 id = 8244
-dialogue = "familiar"
 interacts = false
 
 [clay_familiar_class_4_familiar]
 id = 8246
-dialogue = "familiar"
 interacts = false
 
 [clay_familiar_class_5_familiar]
 id = 8248
-dialogue = "familiar"
 interacts = false
 
 [phoenix_familiar]
 id = 8575
-dialogue = "familiar"
 interacts = false
 
 [cub_bloodrager_familiar]
 id = 11106
-dialogue = "familiar"
 interacts = false
 
 [little_bloodrager_familiar]
 id = 11108
-dialogue = "familiar"
 interacts = false
 
 [naïve_bloodrager_familiar]
 id = 11110
-dialogue = "familiar"
 interacts = false
 
 [keen_bloodrager_familiar]
 id = 11112
-dialogue = "familiar"
 interacts = false
 
 [brave_bloodrager_familiar]
 id = 11114
-dialogue = "familiar"
 interacts = false
 
 [brah_bloodrager_familiar]
 id = 11116
-dialogue = "familiar"
 interacts = false
 
 [naabe_bloodrager_familiar]
 id = 11118
-dialogue = "familiar"
 interacts = false
 
 [wise_bloodrager_familiar]
 id = 11120
-dialogue = "familiar"
 interacts = false
 
 [adept_bloodrager_familiar]
 id = 11122
-dialogue = "familiar"
 interacts = false
 
 [sachem_bloodrager_familiar]
 id = 11124
-dialogue = "familiar"
 interacts = false
 
 [cub_stormbringer_familiar]
 id = 11126
-dialogue = "familiar"
 interacts = false
 
 [little_stormbringer_familiar]
 id = 11128
-dialogue = "familiar"
 interacts = false
 
 [naïve_stormbringer_familiar]
 id = 11130
-dialogue = "familiar"
 interacts = false
 
 [keen_stormbringer_familiar]
 id = 11132
-dialogue = "familiar"
 interacts = false
 
 [brave_stormbringer_familiar]
 id = 11134
-dialogue = "familiar"
 interacts = false
 
 [brah_stormbringer_familiar]
 id = 11136
-dialogue = "familiar"
 interacts = false
 
 [naabe_stormbringer_familiar]
 id = 11138
-dialogue = "familiar"
 interacts = false
 
 [wise_stormbringer_familiar]
 id = 11140
-dialogue = "familiar"
 interacts = false
 
 [adept_stormbringer_familiar]
 id = 11142
-dialogue = "familiar"
 interacts = false
 
 [sachem_stormbringer_familiar]
 id = 11144
-dialogue = "familiar"
 interacts = false
 
 [cub_hoardstalker_familiar]
 id = 11146
-dialogue = "familiar"
 interacts = false
 
 [little_hoardstalker_familiar]
 id = 11148
-dialogue = "familiar"
 interacts = false
 
 [naïve_hoardstalker_familiar]
 id = 11150
-dialogue = "familiar"
 interacts = false
 
 [keen_hoardstalker_familiar]
 id = 11152
-dialogue = "familiar"
 interacts = false
 
 [brave_hoardstalker_familiar]
 id = 11154
-dialogue = "familiar"
 interacts = false
 
 [brah_hoardstalker_familiar]
 id = 11156
-dialogue = "familiar"
 interacts = false
 
 [naabe_hoardstalker_familiar]
 id = 11158
-dialogue = "familiar"
 interacts = false
 
 [wise_hoardstalker_familiar]
 id = 11160
-dialogue = "familiar"
 interacts = false
 
 [adept_hoardstalker_familiar]
 id = 11162
-dialogue = "familiar"
 interacts = false
 
 [sachem_hoardstalker_familiar]
 id = 11164
-dialogue = "familiar"
 interacts = false
 
 [cub_skinweaver_familiar]
 id = 11166
-dialogue = "familiar"
 interacts = false
 
 [little_skinweaver_familiar]
 id = 11168
-dialogue = "familiar"
 interacts = false
 
 [naïve_skinweaver_familiar]
 id = 11170
-dialogue = "familiar"
 interacts = false
 
 [keen_skinweaver_familiar]
 id = 11172
-dialogue = "familiar"
 interacts = false
 
 [brave_skinweaver_familiar]
 id = 11174
-dialogue = "familiar"
 interacts = false
 
 [brah_skinweaver_familiar]
 id = 11176
-dialogue = "familiar"
 interacts = false
 
 [naabe_skinweaver_familiar]
 id = 11178
-dialogue = "familiar"
 interacts = false
 
 [wise_skinweaver_familiar]
 id = 11180
-dialogue = "familiar"
 interacts = false
 
 [adept_skinweaver_familiar]
 id = 11182
-dialogue = "familiar"
 interacts = false
 
 [sachem_skinweaver_familiar]
 id = 11184
-dialogue = "familiar"
 interacts = false
 
 [cub_worldbearer_familiar]
 id = 11186
-dialogue = "familiar"
 interacts = false
 
 [little_worldbearer_familiar]
 id = 11188
-dialogue = "familiar"
 interacts = false
 
 [naïve_worldbearer_familiar]
 id = 11190
-dialogue = "familiar"
 interacts = false
 
 [keen_worldbearer_familiar]
 id = 11192
-dialogue = "familiar"
 interacts = false
 
 [brave_worldbearer_familiar]
 id = 11194
-dialogue = "familiar"
 interacts = false
 
 [brah_worldbearer_familiar]
 id = 11196
-dialogue = "familiar"
 interacts = false
 
 [naabe_worldbearer_familiar]
 id = 11198
-dialogue = "familiar"
 interacts = false
 
 [wise_worldbearer_familiar]
 id = 11200
-dialogue = "familiar"
 interacts = false
 
 [adept_worldbearer_familiar]
 id = 11202
-dialogue = "familiar"
 interacts = false
 
 [sachem_worldbearer_familiar]
 id = 11204
-dialogue = "familiar"
 interacts = false
 
 [cub_deathslinger_familiar]
 id = 11206
-dialogue = "familiar"
 interacts = false
 
 [little_deathslinger_familiar]
 id = 11208
-dialogue = "familiar"
 interacts = false
 
 [naive_deathslinger_familiar]
 id = 11210
-dialogue = "familiar"
 interacts = false
 
 [keen_deathslinger_familiar]
 id = 11212
-dialogue = "familiar"
 interacts = false
 
 [brave_deathslinger_familiar]
 id = 11214
-dialogue = "familiar"
 interacts = false
 
 [brah_deathslinger_familiar]
 id = 11216
-dialogue = "familiar"
 interacts = false
 
 [naabe_deathslinger_familiar]
 id = 11218
-dialogue = "familiar"
 interacts = false
 
 [wise_deathslinger_familiar]
 id = 11220
-dialogue = "familiar"
 interacts = false
 
 [adept_deathslinger_familiar]
 id = 11222
-dialogue = "familiar"
 interacts = false
 
 [sachem_deathslinger_familiar]
 id = 11224
-dialogue = "familiar"
 interacts = false
 
 [meerkats_familiar]
 id = 11640
-dialogue = "familiar"
 interacts = false
 familiar_time = 40
