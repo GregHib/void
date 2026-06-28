@@ -49,7 +49,7 @@ class Ban(val accounts: AccountDefinitions, val manager: AccountManager, val sto
             message("${args[0]} has been banned for $hours hours.")
         }
 
-        modCommand("permban", stringArg("player-name", autofill = accounts.displayNames.keys), desc = "Permanently ban a player from logging in") { args ->
+        modCommand("perm_ban", stringArg("player-name", autofill = accounts.displayNames.keys), desc = "Permanently ban a player from logging in") { args ->
             val target = Players.find(args[0])
             if (target != null) {
                 if (target.blackMarks < BLACK_MARK_LIMIT) {
