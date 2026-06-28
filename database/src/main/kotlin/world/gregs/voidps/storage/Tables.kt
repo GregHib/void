@@ -165,7 +165,7 @@ internal object ReportsTable : Table("abuse_reports") {
     val ruleName = text("rule_name")
     val mute = bool("mute")
     val suggestion = text("suggestion")
-    val time = long("time")
+    val time = integer("time")
     val evidence = array<String>("evidence")
 
     override val primaryKey = PrimaryKey(id, name = "pk_report_id")
