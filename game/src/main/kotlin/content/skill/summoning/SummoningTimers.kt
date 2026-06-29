@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 
 class SummoningTimers : Script {
@@ -19,6 +20,12 @@ class SummoningTimers : Script {
         }
 
         timerTick("familiar_timer") {
+            follower?.let { familiar ->
+                val lines = FAMILIAR_OVERHEAD[familiar.id]
+                if (!lines.isNullOrEmpty()) {
+                    familiar.say(lines[random.nextInt(lines.size)])
+                }
+            }
             var seconds = get("familiar_details_seconds_remaining", 0)
             if (seconds == 0) {
                 dec("familiar_details_minutes_remaining")
