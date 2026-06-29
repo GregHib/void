@@ -23,6 +23,7 @@ class FamiliarSpecialMove : Script {
             }
             player<Quiz>("Can you boost my Farming stat please?")
             npc<Happy>("Bwuck cluck ckuck?<br>(If I do, will you let me fight?)")
+            gfx("dreadfowl_special_player")
             follower?.anim("dreadfowl_special")
             follower?.gfx("dreadfowl_special")
             boostFarming(1)
