@@ -70,6 +70,7 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean) {
     queue("summon_familiar", 2) {
         follower = familiarNpc
         familiarNpc["owner_index"] = index
+        familiarNpc.anim("${familiarNpc.id.removeSuffix("_familiar")}_spawn")
         familiarNpc.gfx("summon_familiar_size_${familiarNpc.size}")
         updateFamiliarInterface()
         if (!restart) {
@@ -176,6 +177,7 @@ fun Player.callFollower() {
     }
     follower.tele(target, clearMode = false)
     follower.watch(this)
+    follower.anim("${follower.id.removeSuffix("_familiar")}_spawn")
     follower.gfx("summon_familiar_size_${follower.size}")
     if (follower.mode !is Follow) {
         follower.mode = Follow(follower, this)
