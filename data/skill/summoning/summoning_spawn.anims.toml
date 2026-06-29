@@ -28,6 +28,11 @@ id = 13676
 [adept_worldbearer_spawn]
 id = 13684
 
+# Best-guess: the rat skeleton's summoning-era animation (8545), since albino rat
+# reuses the generic rat render anims. darkanrs' value (16080) is outside void's cache.
+[albino_rat_spawn]
+id = 8545
+
 [arctic_bear_spawn]
 id = 8522
 
