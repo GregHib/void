@@ -87,6 +87,7 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean) {
  */
 fun Player.dismissFamiliar(removeNpc: Boolean = true) {
     dropBeastOfBurdenItems()
+    removeFamiliarFarmingBoost()
     if (removeNpc) {
         NPCs.remove(follower)
     }
@@ -105,6 +106,21 @@ fun Player.dismissFamiliar(removeNpc: Boolean = true) {
     }
     timers.stop("familiar_timer")
     timers.stop("forage")
+}
+
+/**
+ * Removes a familiar's Farming boost (dreadfowl/compost mound special) when the familiar leaves,
+ * but only if it's still the active boost - a decayed or later (e.g. garden pie) boost is left be.
+ */
+fun Player.removeFamiliarFarmingBoost() {
+    val boostedTo = get("familiar_farming_boost", 0)
+    if (boostedTo <= 0) {
+        return
+    }
+    if (levels.get(Skill.Farming) == boostedTo && boostedTo > levels.getMax(Skill.Farming)) {
+        levels.set(Skill.Farming, levels.getMax(Skill.Farming))
+    }
+    clear("familiar_farming_boost")
 }
 
 /**
