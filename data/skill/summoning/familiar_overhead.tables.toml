@@ -1,0 +1,256 @@
+# Random overhead lines a summoned familiar periodically shouts (~every 30s, see
+# SummoningTimers). Sourced from the RuneScape Wiki transcript "Overhead dialogue"
+# sections. Keyed by familiar npc id; familiars without a row stay silent.
+
+[familiar_overhead]
+lines = "list<string>"
+
+[.spirit_wolf_familiar]
+lines = ["Grrrrr...", "Whuff-whuff!"]
+
+[.dreadfowl_familiar]
+lines = ["Bwaaak!", "Bwuk bwuk!"]
+
+[.vampire_bat_familiar]
+lines = ["Squeak!", "Squeak squeak!"]
+
+[.spirit_terrorbird_familiar]
+lines = ["Scree screee!", "Screee!"]
+
+[.granite_crab_familiar]
+lines = ["Chitter!", "Click click!"]
+
+[.praying_mantis_familiar]
+lines = ["Chitter!", "Clack clack!"]
+
+[.giant_ent_familiar]
+lines = ["Groooooan!", "Creeeeak!"]
+
+[.spirit_cobra_familiar]
+lines = ["Hssssssss!", "Hsss!"]
+
+[.spirit_dagannoth_familiar]
+lines = ["Raaaw!", "Grrrowl!"]
+
+[.thorny_snail_familiar]
+lines = ["Slither!", "Sclurp!"]
+
+[.beaver_familiar]
+lines = ["Gnawgnaw...", "Gnaw ..."]
+
+[.karamthulhu_overlord_familiar]
+lines = ["(Bow down!)", "(Obey!)"]
+
+[.hydra_familiar]
+lines = ["Rassssssp!", "Raaaaasp!"]
+
+[.spirit_jelly_familiar]
+lines = ["Jiggle!", "Flobble!"]
+
+[.bunyip_familiar]
+lines = ["Glorp glorp!", "Glorp!"]
+
+[.war_tortoise_familiar]
+lines = ["Hsss..."]
+
+[.fruit_bat_familiar]
+lines = ["Squeeeak!", "Squeee!"]
+
+[.abyssal_parasite_familiar]
+lines = ["Schlorp!", "Gurgle"]
+
+[.abyssal_lurker_familiar]
+lines = ["Craaaw!", "Screee!"]
+
+[.unicorn_stallion_familiar]
+lines = ["Whinney!", "Neigh!"]
+
+[.magpie_familiar]
+lines = ["Chirrup!", "Twitter!"]
+
+[.stranger_plant_familiar]
+lines = ["Rustle!", "Snapsnap!"]
+
+[.desert_wyrm_familiar]
+lines = ["Ssssss!", "Hssssss!"]
+
+[.evil_turnip_familiar]
+lines = ["Graaah!", "Hur hur hur!"]
+
+[.spirit_scorpion_familiar]
+lines = ["Clatter!", "Clack clack!"]
+
+[.arctic_bear_familiar]
+lines = ["Unf!", "Graaaowl!"]
+
+[.spirit_spider_familiar]
+lines = ["Clitterclatter!", "Click!"]
+
+[.bloated_leech_familiar]
+lines = ["Gurgle!", "Schlurp!"]
+
+[.spirit_kalphite_familiar]
+lines = ["Click click!", "Hsssss!"]
+
+[.honey_badger_familiar]
+lines = ["Raaaaar!", "Grooowl!"]
+
+[.albino_rat_familiar]
+lines = ["Squeee!", "Squeak squeak!"]
+
+[.granite_lobster_familiar]
+lines = ["Grind!", "Clonk clonk!"]
+
+[.macaw_familiar]
+lines = ["Braaak!", "Caw!"]
+
+[.bronze_minotaur_familiar]
+lines = ["Out of the way!", "Hey, no-horns!"]
+
+[.iron_minotaur_familiar]
+lines = ["Out of the way!", "Hey, no-horns!"]
+
+[.steel_minotaur_familiar]
+lines = ["Out of the way!", "Hey, no-horns!"]
+
+[.mithril_minotaur_familiar]
+lines = ["Out of the way!", "Hey, no-horns!"]
+
+[.adamant_minotaur_familiar]
+lines = ["Out of the way!", "Hey, no-horns!"]
+
+[.rune_minotaur_familiar]
+lines = ["Out of the way!", "Hey, no-horns!"]
+
+[.smoke_devil_familiar]
+lines = ["Hoot!", "Honk!"]
+
+[.bull_ant_familiar]
+lines = ["Click click!", "Click!"]
+
+[.wolpertinger_familiar]
+lines = ["Mew!", "Raawr!"]
+
+[.compost_mound_familiar]
+lines = ["Splutter!", "Schlorp!"]
+
+[.pack_yak_familiar]
+lines = ["Barooo barooo!", "Barooo!"]
+
+[.spirit_cockatrice_familiar]
+lines = ["Bwwwark bwwwark!", "Bwwwark!"]
+
+[.spirit_guthatrice_familiar]
+lines = ["Caaaw caaaw!", "Caaaw!"]
+
+[.spirit_saratrice_familiar]
+lines = ["Hoooot hoooot!", "Hoooot!"]
+
+[.spirit_zamatrice_familiar]
+lines = ["Screeee screeee!", "Screeee!"]
+
+[.spirit_pengatrice_familiar]
+lines = ["Awk awk!", "Awk!"]
+
+[.spirit_coraxatrice_familiar]
+lines = ["Craaw craaw!", "Craaw!"]
+
+[.spirit_vulatrice_familiar]
+lines = ["Scraaaaw scraaaaw!", "Scraaaaw!"]
+
+[.barker_toad_familiar]
+lines = ["Braaaaap!", "Craaaaaaak!"]
+
+[.ibis_familiar]
+lines = ["Chirp!", "Twitter!"]
+
+[.swamp_titan_familiar]
+lines = ["Something smells clean...", "The power of stench compels you!"]
+
+[.spirit_mosquito_familiar]
+lines = ["Bzzzzzzzzz!", "Whiiiiiine!"]
+
+[.void_spinner_familiar]
+lines = ["Whiiiiiir!", "Whiiiir!"]
+
+[.forge_regent_familiar]
+lines = ["Sizzle!", "Crackle!"]
+
+[.spirit_larupia_familiar]
+lines = ["Hssssss!", "Ssssss!"]
+
+[.geyser_titan_familiar]
+lines = ["Pah!", "Flee from me!"]
+
+[.lava_titan_familiar]
+lines = ["Sacred flames...", "By my fire..."]
+
+[.steel_titan_familiar]
+lines = ["Stand back!", "I Am Legend!"]
+
+[.obsidian_golem_familiar]
+lines = ["Onward to glory!", "Stand back!"]
+
+[.talon_beast_familiar]
+lines = ["Growwwl!", "Mrowl!"]
+
+[.abyssal_titan_familiar]
+lines = ["Mwanu b'ruum!", "T'verah hoshay!"]
+
+[.void_torcher_familiar]
+lines = ["Scree!", "Squaa!"]
+
+[.giant_chinchompa_familiar]
+lines = ["Squeek!", "Squeek squeek!"]
+
+[.fire_titan_familiar]
+lines = ["Come on and fight!", "Hey, tiny!"]
+
+[.moss_titan_familiar]
+lines = ["Don't get me mad!", "Little soft humies!"]
+
+[.ice_titan_familiar]
+lines = ["I'm melting!", "It's so warm here!"]
+
+[.spirit_tz-kih_familiar]
+lines = ["Squee!", "Squee squee!"]
+
+[.spirit_graahk_familiar]
+lines = ["Howl!", "Rowr!"]
+
+[.spirit_kyatt_familiar]
+lines = ["Grrrrrr!", "Mrrrowl!"]
+
+[.void_shifter_familiar]
+lines = ["Chitter!", "Scree!"]
+
+[.pyrelord_familiar]
+lines = ["Whoosh!", "Crackle!"]
+
+[.void_ravager_familiar]
+lines = ["Rarf!", "Grrrrr!"]
+
+[.ravenous_locust_familiar]
+lines = ["Whiiiiiine!", "Click!"]
+
+[.iron_titan_familiar]
+lines = ["Victory!", "Crush them!"]
+
+[.meerkats_familiar]
+lines = ["Squeak squeak!", "Simples!"]
+
+[.clay_familiar_class_1_familiar]
+lines = ["Rumble!", "Rumble, rumble!"]
+
+[.clay_familiar_class_2_familiar]
+lines = ["Rumble!", "Rumble, rumble!"]
+
+[.clay_familiar_class_3_familiar]
+lines = ["Rumble!", "Rumble, rumble!"]
+
+[.clay_familiar_class_4_familiar]
+lines = ["Rumble!", "Rumble, rumble!"]
+
+[.clay_familiar_class_5_familiar]
+lines = ["Rumble!", "Rumble, rumble!"]
+

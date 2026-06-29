@@ -2,6 +2,7 @@ package content.skill.summoning
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.toTicks
@@ -21,7 +22,7 @@ class SummoningTimers : Script {
 
         timerTick("familiar_timer") {
             follower?.let { familiar ->
-                val lines = FAMILIAR_OVERHEAD[familiar.id]
+                val lines = Rows.getOrNull("familiar_overhead.${familiar.id}")?.stringListOrNull("lines")
                 if (!lines.isNullOrEmpty()) {
                     familiar.say(lines[random.nextInt(lines.size)])
                 }
