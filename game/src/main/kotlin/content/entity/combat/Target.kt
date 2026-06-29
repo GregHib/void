@@ -39,6 +39,10 @@ object Target {
             if (source is Player && !CombatApi.canAttack(source, target)) {
                 return false
             }
+            if (source is Player && target["owner_index", -1] == source.index) {
+                if (message) source.message("You can't attack your own familiar.")
+                return false
+            }
             if (source is Player && target.contains("owner")) {
                 val owner = target.get<String>("owner")
                 if (source.accountName != owner) {
@@ -93,7 +97,9 @@ object Target {
             return true
         }
         // If the target I'm trying to attack is already in combat and I am not the attacker
-        if (target.inSingleCombat && target.underAttack && target.attacker != source) {
+        // (or its attacker's familiar / the familiar's owner - a player and its familiar fight
+        // as one side, so they may both attack the same target in single-way combat).
+        if (target.inSingleCombat && target.underAttack && target.attacker != source && !alliedOwnerFamiliar(source, target.attacker)) {
             if (message) {
                 if (target is NPC) {
                     (source as? Player)?.message("Someone else is fighting that.")
@@ -110,6 +116,20 @@ object Target {
         }
         // PVP area, slayer requirements, in combat etc..
         return true
+    }
+
+    /**
+     * Whether [a] and [b] are a player and its own summoning familiar (in either order). Such a
+     * pair counts as a single side for single-way combat, so both may attack the same target.
+     */
+    private fun alliedOwnerFamiliar(a: Character?, b: Character?): Boolean {
+        if (a == null || b == null) {
+            return false
+        }
+        if (a is NPC && b is Player && a["owner_index", -1] == b.index) {
+            return true
+        }
+        return b is NPC && a is Player && b["owner_index", -1] == a.index
     }
 
     fun isDemon(target: Character) = target is NPC && target.categories.contains("demons")
