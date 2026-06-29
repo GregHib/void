@@ -1,5 +1,6 @@
 package content.skill.firemaking
 
+import content.skill.summoning.familiarBoost
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactFloorItem
 import world.gregs.voidps.engine.client.message
@@ -85,7 +86,7 @@ class Firemaking : Script {
                 player.pause(remaining)
             }
             val chance = row.intRange("chance")
-            if (Level.success(player.levels.get(Skill.Firemaking), chance) && FloorItems.remove(floorItem)) {
+            if (Level.success(player.levels.get(Skill.Firemaking) + player.familiarBoost(Skill.Firemaking), chance) && FloorItems.remove(floorItem)) {
                 player.message("The fire catches and the logs begin to burn.", ChatType.Filter)
                 player.exp(Skill.Firemaking, row.int("xp") / 10.0)
                 spawnFire(player, floorItem.tile, row)

@@ -1,5 +1,6 @@
 package content.skill.thieving
 
+import content.skill.summoning.familiarBoost
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.effect.stun
 import content.skill.slayer.categories
@@ -63,7 +64,7 @@ class Pickpocketing(val combatDefinitions: CombatDefinitions, val dropTables: Dr
         if (equipped(EquipSlot.Hands).id == "gloves_of_silence" && equipment.discharge(this, EquipSlot.Hands.index)) {
             chances = (chances.first + (chances.first / 20)).coerceAtMost(255)..(chances.last + (chances.last / 20)).coerceAtMost(255)
         }
-        val success = success(levels.get(Skill.Thieving), chances)
+        val success = success(levels.get(Skill.Thieving) + familiarBoost(Skill.Thieving), chances)
         val table = pickpocket.string("table")
         val drops = getLoot(target, table) ?: emptyList()
         if (success && !canLoot(this, drops)) {
