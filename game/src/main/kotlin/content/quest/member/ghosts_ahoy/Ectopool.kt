@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Direction
 
 class Ectopool : Script {

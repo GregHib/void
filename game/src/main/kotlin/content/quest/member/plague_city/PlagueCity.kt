@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class PlagueCity : Script {
@@ -556,17 +555,13 @@ class PlagueCity : Script {
 
         crafted { def ->
             if (def.add.any { it.id == "chocolatey_milk" }) {
-                queue("milk") {
-                    item("chocolatey_milk", "You mix the chocolate into the bucket.")
-                }
+                item("chocolatey_milk", "You mix the chocolate into the bucket.")
             }
         }
 
         crafted { def ->
             if (def.add.any { it.id == "hangover_cure" }) {
-                queue("cure") {
-                    item("hangover_cure", "You mix the snape grass into the bucket.")
-                }
+                item("hangover_cure", "You mix the snape grass into the bucket.")
             }
         }
     }

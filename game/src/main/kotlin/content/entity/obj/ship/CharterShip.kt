@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Tile
 
 class CharterShip(val ships: CharterShips, val teles: ObjectTeleports) : Script {
