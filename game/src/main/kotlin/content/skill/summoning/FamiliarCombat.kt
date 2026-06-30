@@ -3,6 +3,7 @@ package content.skill.summoning
 import content.area.wilderness.inMultiCombat
 import content.area.wilderness.inPvp
 import content.area.wilderness.inWilderness
+import content.entity.combat.Target
 import content.entity.combat.target
 import content.entity.effect.clearTransform
 import content.entity.effect.transform
@@ -29,9 +30,10 @@ fun NPC.canFight(): Boolean {
 }
 
 /**
- * Directs the player's familiar to attack [target], enforcing authentic combat rules: familiars
- * may only attack players in PvP areas and NPCs in multi-combat zones. [silent] suppresses the
- * rejection messages (used by auto-assist).
+ * Directs the player's familiar to attack [target]. A familiar may only attack players in PvP
+ * areas; against NPCs it fights solo (even in single-way) but, like any attacker, can't share a
+ * target someone else is already fighting - including its own owner - so single-combat rules in
+ * [Target.attackable] are pre-checked. [silent] suppresses the rejection messages (auto-assist).
  */
 fun Player.commandFamiliarAttack(target: Character, silent: Boolean = false) {
     val familiar = follower ?: return
@@ -47,10 +49,10 @@ fun Player.commandFamiliarAttack(target: Character, silent: Boolean = false) {
             if (!silent) message("You can only attack players in a player-vs-player area.")
             return
         }
-        // Familiars can only fight in multi-combat zones; in single-way combat the player can
-        // still use the familiar (storage, foraging, specials) but it won't assist in the fight.
-        is NPC -> if (!inMultiCombat || !target.inMultiCombat) {
-            if (!silent) message("You can only use your familiar in a multi-zone area.")
+        // A familiar can't pile onto an NPC that's already under attack (e.g. one the owner is
+        // fighting in single-way); it must be sent at its own, separate target.
+        is NPC -> if (!Target.attackable(familiar, target, message = false)) {
+            if (!silent) message("Your familiar can't attack that right now.")
             return
         }
     }
@@ -66,6 +68,11 @@ fun Player.commandFamiliarAttack(target: Character, silent: Boolean = false) {
  */
 fun Player.assistFamiliar(target: Character) {
     val familiar = follower ?: return
+    // Familiars only auto-join the owner's fight in multi-combat. In single-way the owner's
+    // target is theirs alone, so the familiar must be ordered at a separate NPC instead.
+    if (!inMultiCombat) {
+        return
+    }
     if (familiar.target != null || familiar.mode is CombatMovement) {
         return
     }

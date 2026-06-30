@@ -1,8 +1,10 @@
 package content.entity.combat
 
 import WorldTest
+import content.skill.summoning.commandFamiliarAttack
 import content.skill.summoning.follower
 import npcOption
+import world.gregs.voidps.engine.client.variable.start
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -155,6 +157,37 @@ internal class CombatMovementTest : WorldTest() {
         // even though its spawn tile is far away (a spawn-anchored NPC would drop out here).
         tick(2)
         assertTrue(familiar.mode is CombatMovement)
+    }
+
+    @Test
+    fun `Familiar can be ordered to attack an npc in single-way`() {
+        val owner = createPlayer(Tile(3032, 3352))
+        val familiar = createNPC("spirit_wolf_familiar", Tile(3033, 3352))
+        familiar["owner_index"] = owner.index
+        familiar["spawn_tile"] = familiar.tile
+        owner.follower = familiar
+        // Single-way zone, unengaged NPC: the familiar can be ordered to fight it solo.
+        val target = createNPC("guard_falador", Tile(3032, 3351))
+
+        owner.commandFamiliarAttack(target)
+        tick(8)
+
+        assertTrue(familiar.mode is CombatMovement)
+        assertEquals(target, (familiar.mode as CombatMovement).target)
+    }
+
+    @Test
+    fun `Player cannot attack a monster its familiar is fighting in single-way`() {
+        val owner = createPlayer(Tile(3032, 3352))
+        val familiar = createNPC("spirit_wolf_familiar", Tile(3033, 3352))
+        familiar["owner_index"] = owner.index
+        val target = createNPC("guard_falador", Tile(3034, 3352))
+        // The familiar is already fighting the target (single-combat tracks one attacker per
+        // target), so the owner - a separate attacker - can't also attack it in a single-way zone.
+        target.attacker = familiar
+        target.start("under_attack", 8)
+
+        assertFalse(Target.attackable(owner, target, message = false))
     }
 
     @Test
